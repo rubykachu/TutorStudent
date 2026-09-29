@@ -14,6 +14,9 @@ type HighlightProps = {
   // A concept colour draws a ring; "highlight" fills the background, as the
   // first hint level does.
   color?: HighlightColor;
+  // The second hint level, when there is no hint visual, marks the same parts
+  // more boldly instead.
+  strong?: boolean;
   children: ReactNode;
   className?: string;
 };
@@ -23,23 +26,28 @@ type HighlightProps = {
 export function Highlight({
   active,
   color = "highlight",
+  strong = false,
   children,
   className = "",
 }: HighlightProps) {
   const transition = useVisualTransition();
-  const paint =
+  const base =
     color === "highlight"
       ? "bg-highlight"
       : `border-3 ${CONCEPT_CLASSES[color].border}`;
+  const paint = strong
+    ? `${base} -inset-2 bg-highlight outline-3 outline-foreground`
+    : `${base} -inset-1`;
   return (
     <span
       className={`relative isolate inline-flex ${className}`}
       data-highlighted={active || undefined}
+      data-highlight-strong={(active && strong) || undefined}
     >
       <motion.span
         {...decorative}
         aria-hidden
-        className={`pointer-events-none absolute -inset-1 -z-10 rounded-sm ${paint}`}
+        className={`pointer-events-none absolute -z-10 rounded-sm ${paint}`}
         initial={false}
         animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 0.9 }}
         transition={transition}

@@ -124,6 +124,24 @@
 
   /* A single elevation level; shadows are never nested. */
   --shadow-card: 0 2px 8px rgb(15 23 42 / 0.08);
+
+  /* Wrong answer: 300ms, 6px, three swings; skipped under reduced motion. */
+  --animate-shake: shake 300ms ease-in-out;
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    16%,
+    50%,
+    83% {
+      transform: translateX(-6px);
+    }
+    33%,
+    66% {
+      transform: translateX(6px);
+    }
+  }
 }
 
 @layer base {

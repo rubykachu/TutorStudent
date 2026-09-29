@@ -47,7 +47,7 @@ Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ
 **Checkpoint A:** gate + `pnpm build` xanh; ảnh primitive đã xem; mở app từ iPad qua LAN; báo người dùng.
 
 ### Bài tập
-- [ ] 4. Engine chấm 8 dạng + máy trạng thái 3 nấc + `ExerciseFrame`
+- [x] 4. Engine chấm 8 dạng + máy trạng thái 3 nấc + `ExerciseFrame`
 - [ ] 5. UI: `choice`, `numeric` (+ `NumberPad`), `fillBlank`, `order`
 - [ ] 6. UI: `match`, `tapText`, `tapRegion`, `manipulate`
 - [ ] 7. `PassageReader` + UI `openEnded` (checklist tự tick)
