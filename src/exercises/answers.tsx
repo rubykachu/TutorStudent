@@ -4,6 +4,7 @@ import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import { FillBlankAnswer } from "@/exercises/fill-blank/fill-blank-answer";
 import type { InputFor } from "@/exercises/input";
 import { NumericAnswer } from "@/exercises/numeric/numeric-answer";
+import type { StepRenderer } from "@/exercises/open-ended/open-ended-runner";
 import { OrderAnswer } from "@/exercises/order/order-answer";
 import type { BasicExercise, BasicExerciseType } from "@/schema/content";
 
@@ -49,3 +50,11 @@ export function renderAnswer<E extends BasicExercise>(
   }
   return <Answer exercise={exercise} slot={slot} />;
 }
+
+// Open-ended steps hand over a slot typed with the whole input union; the
+// frame only ever feeds a step inputs of that step's own type.
+export const renderStep: StepRenderer = (exercise, slot) =>
+  renderAnswer(
+    exercise,
+    slot as AnswerSlotProps<InputFor<typeof exercise.type>>,
+  );

@@ -2,10 +2,20 @@
 
 import { useMemo, useState } from "react";
 import { BigButton } from "@/components/big-button";
-import { hasAnswerComponent, renderAnswer } from "@/exercises/answers";
+import {
+  hasAnswerComponent,
+  renderAnswer,
+  renderStep,
+} from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
-import type { BasicExercise, Concept, Exercise } from "@/schema/content";
+import { OpenEndedRunner } from "@/exercises/open-ended/open-ended-runner";
+import type {
+  BasicExercise,
+  Concept,
+  Exercise,
+  OpenEndedExercise,
+} from "@/schema/content";
 
 type ExerciseGalleryProps = {
   exercises: readonly Exercise[];
@@ -34,7 +44,9 @@ export function ExerciseGallery({ exercises, concepts }: ExerciseGalleryProps) {
           <h2 className="break-all text-caption text-muted-foreground">
             {exercise.type} · {exercise.id}
           </h2>
-          {withAnswerUi(exercise) ? (
+          {exercise.type === "openEnded" ? (
+            <OpenEndedCard exercise={exercise} concepts={conceptById} />
+          ) : withAnswerUi(exercise) ? (
             <ExerciseCard exercise={exercise} concepts={conceptById} />
           ) : (
             <p className="rounded-xl border-2 border-dashed border-border p-4 text-muted-foreground">
@@ -85,6 +97,40 @@ function ExerciseCard({
             Làm lại
           </BigButton>
         </>
+      )}
+    </div>
+  );
+}
+
+function OpenEndedCard({
+  exercise,
+  concepts,
+}: {
+  exercise: OpenEndedExercise;
+  concepts: ReadonlyMap<string, Concept>;
+}) {
+  const [round, setRound] = useState(0);
+  const [done, setDone] = useState(false);
+
+  return (
+    <div className="flex flex-col gap-4 rounded-xl bg-surface p-4 shadow-card md:p-6">
+      <OpenEndedRunner
+        key={round}
+        exercise={exercise}
+        concepts={concepts}
+        renderStep={renderStep}
+        onDone={() => setDone(true)}
+      />
+      {done && (
+        <BigButton
+          variant="secondary"
+          onClick={() => {
+            setDone(false);
+            setRound(round + 1);
+          }}
+        >
+          Làm lại
+        </BigButton>
       )}
     </div>
   );
