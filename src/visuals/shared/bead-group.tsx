@@ -112,32 +112,34 @@ export function BeadGroup({
             }}
             transition={transition}
           >
-            {/* Only the bead fades; the slash over it stays fully visible. */}
+            {/* Only the bead's disc fades; its label switches to the text
+                colour so a crossed-out factor stays readable, and the slash
+                over it stays fully visible. */}
             <motion.g
+              {...(bead.text ? decorative : {})}
               initial={false}
               animate={{ opacity: isCrossed ? CROSSED_OPACITY : 1 }}
               transition={transition}
             >
               <ConceptShape
-                {...(bead.text ? decorative : {})}
                 color={bead.color}
                 cx={cx}
                 cy={cy}
                 r={BEAD_RADIUS}
               />
-              {bead.text && (
-                <text
-                  x={cx}
-                  y={cy}
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                  fontSize={18}
-                  className="fill-primary-foreground font-heading font-bold"
-                >
-                  {bead.text}
-                </text>
-              )}
             </motion.g>
+            {bead.text && (
+              <text
+                x={cx}
+                y={cy}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={18}
+                className={`font-heading font-bold ${isCrossed ? "fill-foreground" : "fill-primary-foreground"}`}
+              >
+                {bead.text}
+              </text>
+            )}
             {isCrossed && (
               <line
                 {...decorative}
