@@ -467,6 +467,8 @@ export const LessonSummarySchema = z.object({
     }),
   ),
   cardCount: z.int().nonnegative(),
+  // Shown on home, earned or greyed, without loading the whole lesson.
+  sticker: LessonSchema.shape.sticker,
 });
 
 export const ContentIndexSchema = z.object({

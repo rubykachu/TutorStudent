@@ -94,6 +94,7 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 - Viewport mục tiêu: iPad dọc 820×1180, ngang 1180×820; điện thoại 390×844. Không cuộn ngang. Tôn trọng `env(safe-area-inset-*)` khi chạy PWA toàn màn hình.
 - Nội dung học: một cột, rộng tối đa 720px, căn giữa. iPad ngang: visual bên trái, bài tập bên phải chỉ khi cả hai vừa khung không cuộn.
 - Nút "Tiếp" / "Kiểm tra" cố định đáy màn hình, trong vùng ngón cái.
+- Màn một khối (giải thích, nhắc lại, xong phần, ôn xong): nội dung căn giữa theo chiều dọc giữa đầu màn và thanh nút, không để khoảng trống lớn phía trên nút. iPad dọc (biến thể `tall:` = rộng ≥ 768px và cao ≥ 992px): visual phóng 1.3×, ô môn cao hơn, linh vật màn xong lớn hơn.
 - Kéo thả (dnd-kit): có phương án thay thế chạm-để-chọn rồi chạm-để-đặt cho mọi thao tác kéo.
 - Không phụ thuộc hover. Mọi phản hồi chạm hiện trong ≤ 100ms (scale 0.97 khi nhấn).
 
@@ -139,7 +140,7 @@ Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái
 | Component | Mô tả |
 |---|---|
 | `BigButton` | Nút chính, cao 64/56px, bo 20px, chữ 20/18px đậm 600, có trạng thái nhấn và disabled rõ ràng |
-| `SubjectTile` | Ô môn trên trang chủ: màu môn, biểu tượng SVG (Lucide), tiến độ dạng vòng, nhắc "n ngày chưa học" |
+| `SubjectTile` | Ô môn trên trang chủ: màu môn, biểu tượng SVG (Lucide), tiến độ dạng vòng, luôn có dòng phụ (trạng thái môn), nhắc "n ngày chưa học"; trên iPad ba ô dùng chung hàng lưới (subgrid) để tên môn thẳng hàng |
 | `ReviewButton` | Nút "Ôn bài này" trong trang bài, kèm nhãn nhỏ "n thẻ sắp quên" khi có |
 | `SectionStepper` | Chấm tiến độ các khối trong một phần (không số, không phần trăm) |
 | `ExerciseFrame` | Khung chung cho 8 dạng bài: đề, vùng trả lời, nút "Kiểm tra", vùng gợi ý, trạng thái 3 nấc |

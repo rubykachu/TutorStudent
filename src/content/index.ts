@@ -128,6 +128,7 @@ export function summarizeLesson(lesson: Lesson): LessonSummary {
       minutes: s.minutes,
     })),
     cardCount: lesson.cards.length,
+    sticker: lesson.sticker,
   };
 }
 

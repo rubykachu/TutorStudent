@@ -4,7 +4,12 @@ import { UsersRound } from "lucide-react";
 import Link from "next/link";
 import { SoundToggle } from "@/components/sound-toggle";
 import { StreakFlame } from "@/components/streak-flame";
-import { SubjectTile } from "@/components/subject-tile";
+import {
+  SUBJECT_TILE_CELL,
+  SUBJECT_TILE_GRID,
+  SubjectTile,
+} from "@/components/subject-tile";
+import { continueTarget, subjectStatus } from "@/learn/next-step";
 import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
@@ -23,7 +28,10 @@ import {
   subjectNudgeDays,
   subjectProgress,
 } from "@/progress/summary";
+import type { ContentIndex } from "@/schema/content";
 import { ContentError } from "./content-error";
+import { ContinueCard } from "./continue-card";
+import { StickerStrip } from "./sticker-strip";
 import { useRequiredProfile } from "./use-required-profile";
 
 // What the owl says next to its expression on the home screen.
@@ -37,19 +45,78 @@ function OwlGreeting({ progress }: { progress: ChildProgress }) {
   const today = vnDayKey(now());
   const expression = homeMascotExpression(progress.activityDays, today);
   return (
-    <section className="flex items-center gap-4" aria-label="Bạn cú">
-      <Owl expression={expression} size="home" />
-      <div className="flex min-w-0 flex-col items-start gap-3">
-        <p className="font-semibold">
-          {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
-        </p>
+    // Phones put the streak on its own full-width row under the owl and its
+    // words; tablets keep it beside the owl.
+    <section
+      className="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-3"
+      aria-label="Bạn cú"
+    >
+      <Owl
+        expression={expression}
+        size="home"
+        className="md:row-span-2 md:self-center"
+      />
+      <p className="font-semibold md:self-end">
+        {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
+      </p>
+      <div className="col-span-2 md:col-span-1 md:col-start-2 md:self-start md:justify-self-start">
         <StreakFlame streak={computeStreak(progress.activityDays, today)} />
       </div>
     </section>
   );
 }
 
-function SubjectGrid({
+function HomeLessons({
+  index,
+  profile,
+  progress,
+}: {
+  index: ContentIndex;
+  profile: ProfileRecord;
+  progress: ChildProgress;
+}) {
+  const lessonsOf = (subjectId: string) =>
+    lessonsForSubject(index, subjectId, profile.series[subjectId]);
+  const lastStudied = lastStudiedBySubject(
+    index.lessons,
+    progress.attempts,
+    progress.sections,
+  );
+  const today = now();
+  const target = continueTarget(index, profile.series, progress);
+  const targetSubject =
+    target && index.subjects.find((s) => s.id === target.lesson.subject);
+  const earned = new Set(progress.stickers.map((s) => s.lessonId));
+  return (
+    <>
+      {target && targetSubject && (
+        <ContinueCard target={target} subject={targetSubject} />
+      )}
+      <ul className={SUBJECT_TILE_GRID}>
+        {index.subjects.map((subject) => {
+          const lessons = lessonsOf(subject.id);
+          return (
+            <li key={subject.id} className={SUBJECT_TILE_CELL}>
+              <SubjectTile
+                subject={subject}
+                href={subjectPath(subject.id)}
+                progress={subjectProgress(lessons, progress.stickers)}
+                status={subjectStatus(lessons, progress)}
+                nudgeDays={subjectNudgeDays(lastStudied.get(subject.id), today)}
+              />
+            </li>
+          );
+        })}
+      </ul>
+      <StickerStrip
+        lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
+        earnedLessonIds={earned}
+      />
+    </>
+  );
+}
+
+function HomeBody({
   profile,
   progress,
 }: {
@@ -57,32 +124,18 @@ function SubjectGrid({
   progress: ChildProgress;
 }) {
   const content = useContentIndex();
-  if (content.status === "error") return <ContentError />;
-  if (content.status === "loading") return null;
-
-  const { index } = content;
-  const lastStudied = lastStudiedBySubject(
-    index.lessons,
-    progress.attempts,
-    progress.sections,
-  );
-  const today = now();
   return (
-    <ul className="grid gap-4 md:grid-cols-3">
-      {index.subjects.map((subject) => (
-        <li key={subject.id}>
-          <SubjectTile
-            subject={subject}
-            href={subjectPath(subject.id)}
-            progress={subjectProgress(
-              lessonsForSubject(index, subject.id, profile.series[subject.id]),
-              progress.stickers,
-            )}
-            nudgeDays={subjectNudgeDays(lastStudied.get(subject.id), today)}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      <OwlGreeting progress={progress} />
+      {content.status === "error" && <ContentError />}
+      {content.status === "ready" && (
+        <HomeLessons
+          index={content.index}
+          profile={profile}
+          progress={progress}
+        />
+      )}
+    </>
   );
 }
 
@@ -105,12 +158,7 @@ function HomeContent({ profile }: { profile: ProfileRecord }) {
           </Link>
         </div>
       </header>
-      {progress && (
-        <>
-          <OwlGreeting progress={progress} />
-          <SubjectGrid profile={profile} progress={progress} />
-        </>
-      )}
+      {progress && <HomeBody profile={profile} progress={progress} />}
     </>
   );
 }
@@ -118,7 +166,7 @@ function HomeContent({ profile }: { profile: ProfileRecord }) {
 export function HomeScreen() {
   const profile = useRequiredProfile();
   return (
-    <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-8 px-gutter py-6 md:px-gutter-lg md:py-10">
+    <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10 tall:gap-8">
       {profile && <HomeContent profile={profile} />}
     </main>
   );

@@ -27,6 +27,7 @@ function lesson(
       { id: `${id}.section.two`, title: "Hai", minutes: 5 },
     ],
     cardCount: 1,
+    sticker: { name: "Sao", visualId: "fixture.visual.star-sticker" },
     ...overrides,
   };
 }

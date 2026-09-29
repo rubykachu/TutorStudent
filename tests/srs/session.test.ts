@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
   answerCurrent,
+  closeRecap,
   currentItem,
   isFinished,
   isRated,
   lastReviewExerciseIds,
   ratedCount,
+  recentExerciseIds,
   startSession,
 } from "@/srs/session";
 
@@ -83,7 +85,25 @@ describe("review session", () => {
 
   it("ignores answers after the end", () => {
     const done = answerCurrent(startSession([]), false, exercisesByCard);
-    expect(done).toEqual({ items: [], current: 0 });
+    expect(done).toEqual({ items: [], current: 0, recap: null });
+  });
+
+  it("shows the card recap only after a missed question", () => {
+    let session = startSession(picks);
+    session = answerCurrent(session, true, exercisesByCard, first);
+    expect(session.recap).toBeNull();
+
+    session = answerCurrent(session, false, exercisesByCard, first);
+    expect(session.recap).toEqual({ at: 1, cardId: "card.b" });
+    // The recap stays until the child closes it; the queue already moved on.
+    expect(currentItem(session)?.reask).toBe(true);
+    session = closeRecap(session);
+    expect(session.recap).toBeNull();
+
+    // A missed re-ask teaches with the recap too, without queueing more.
+    session = answerCurrent(session, false, exercisesByCard, first);
+    expect(session.recap).toEqual({ at: 2, cardId: "card.b" });
+    expect(isFinished(session)).toBe(true);
   });
 });
 
@@ -92,5 +112,21 @@ describe("lastReviewExerciseIds", () => {
     const attempts = ["e1", "e2", "e3"].map((exerciseId) => ({ exerciseId }));
     expect(lastReviewExerciseIds(attempts, 2)).toEqual(["e2", "e3"]);
     expect(lastReviewExerciseIds(attempts)).toEqual(["e1", "e2", "e3"]);
+  });
+});
+
+describe("recentExerciseIds", () => {
+  const now = new Date("2026-03-02T01:00:00Z");
+  const minutesAgo = (m: number) =>
+    new Date(now.getTime() - m * 60 * 1000).toISOString();
+
+  it("keeps exercises answered within the window", () => {
+    const attempts = [
+      { exerciseId: "old", at: minutesAgo(45) },
+      { exerciseId: "edge", at: minutesAgo(30) },
+      { exerciseId: "just-now", at: minutesAgo(1) },
+    ];
+    expect(recentExerciseIds(attempts, now)).toEqual(["edge", "just-now"]);
+    expect(recentExerciseIds(attempts, now, 5)).toEqual(["just-now"]);
   });
 });
