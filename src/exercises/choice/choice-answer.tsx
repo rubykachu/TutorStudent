@@ -1,0 +1,97 @@
+"use client";
+
+import { Check } from "lucide-react";
+import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
+import type { AnswerSlotProps } from "@/exercises/exercise-frame";
+import type { ChoiceInput } from "@/exercises/input";
+import { ItemContent } from "@/exercises/item-content";
+import type { ChoiceExercise } from "@/schema/content";
+
+type ChoiceAnswerProps = {
+  exercise: ChoiceExercise;
+  slot: AnswerSlotProps<ChoiceInput>;
+};
+
+function nextSelection(
+  exercise: ChoiceExercise,
+  selected: readonly string[],
+  id: string,
+): string[] {
+  if (!exercise.multiple) return [id];
+  return selected.includes(id)
+    ? selected.filter((s) => s !== id)
+    : [...selected, id];
+}
+
+export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
+  const { value, onChange, disabled, highlight, reveal } = slot;
+  const selected = reveal ? exercise.answer : (value?.selected ?? []);
+
+  function toggle(id: string) {
+    const next = nextSelection(exercise, value?.selected ?? [], id);
+    onChange(next.length === 0 ? null : { type: "choice", selected: next });
+  }
+
+  return (
+    <fieldset className="flex flex-col gap-4" data-reveal={reveal || undefined}>
+      {/* Told up front so the child knows whether one tap is enough. */}
+      <legend className="mb-4 text-caption text-muted-foreground">
+        {exercise.multiple ? "Chọn tất cả đáp án đúng" : "Chọn một đáp án"}
+      </legend>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {exercise.options.map((option) => {
+          const spec = highlight.get(option.id);
+          const on = selected.includes(option.id);
+          return (
+            <AnswerHighlight key={option.id} spec={spec} className="w-full">
+              <button
+                type="button"
+                aria-pressed={on}
+                disabled={disabled}
+                data-option={option.id}
+                onClick={() => toggle(option.id)}
+                className={`flex min-h-16 w-full items-center gap-3 rounded-lg px-4 py-3 text-left motion-safe:transition-transform motion-safe:active:scale-97 ${
+                  on
+                    ? reveal
+                      ? "border-3 border-correct bg-correct-soft"
+                      : `border-3 border-primary ${surfaceFor(spec)}`
+                    : `border-2 border-border ${surfaceFor(spec)}`
+                }`}
+              >
+                <Marker multiple={exercise.multiple} on={on} reveal={reveal} />
+                <ItemContent content={option.content} />
+              </button>
+            </AnswerHighlight>
+          );
+        })}
+      </div>
+    </fieldset>
+  );
+}
+
+// Round for "pick one", square for "pick several", with a tick when chosen,
+// so the choice never rests on colour alone.
+function Marker({
+  multiple,
+  on,
+  reveal,
+}: {
+  multiple: boolean;
+  on: boolean;
+  reveal: boolean;
+}) {
+  const shape = multiple ? "rounded-sm" : "rounded-full";
+  const fill = on
+    ? reveal
+      ? "border-correct bg-correct text-primary-foreground"
+      : "border-primary bg-primary text-primary-foreground"
+    : "border-muted-foreground bg-surface";
+  return (
+    <span
+      aria-hidden
+      className={`flex size-7 shrink-0 items-center justify-center border-2 ${shape} ${fill}`}
+    >
+      {on && <Check className="size-5" strokeWidth={3} />}
+    </span>
+  );
+}

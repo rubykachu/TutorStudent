@@ -2,8 +2,9 @@
 // visual screenshots always target the same devices and server.
 
 // Separate from the everyday dev port (3000) so a server already running
-// there, possibly another project, is never mistaken for this app.
-export const TEST_PORT = 3100;
+// there, possibly another project, is never mistaken for this app. TEST_PORT
+// moves it when several checkouts of this repo run E2E side by side.
+export const TEST_PORT = Number(process.env.TEST_PORT ?? 3100);
 export const TEST_BASE_URL = `http://localhost:${TEST_PORT}`;
 export const TEST_SERVER_COMMAND = `pnpm dev --port ${TEST_PORT}`;
 export const TEST_SERVER_ENV = { CONTENT_INCLUDE_FIXTURE: "1" } as const;

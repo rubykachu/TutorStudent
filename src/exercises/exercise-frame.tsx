@@ -2,6 +2,7 @@
 
 import { Check, ChevronRight, RotateCcw } from "lucide-react";
 import { type ReactNode, useState } from "react";
+import { BigButton } from "@/components/big-button";
 import { Formula } from "@/components/blocks/formula";
 import {
   type FeedbackHighlights,
@@ -42,9 +43,6 @@ type ExerciseFrameProps<E extends BasicExercise> = {
   renderMascot?: (expression: MascotExpression) => ReactNode;
   children: (slot: AnswerSlotProps<InputFor<E["type"]>>) => ReactNode;
 };
-
-const BUTTON =
-  "inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 font-semibold text-body text-primary-foreground disabled:opacity-50 motion-safe:transition-transform motion-safe:active:scale-97 md:min-h-16 md:text-body-lg";
 
 type Tone = "idle" | "selected" | "retry" | "correct";
 
@@ -189,29 +187,24 @@ function FrameButton({
   if (phase === "done") return null;
   if (phase === "correct") {
     return (
-      <button type="button" className={BUTTON} onClick={onNext}>
+      <BigButton onClick={onNext}>
         Tiếp
         <ChevronRight aria-hidden className="size-6" />
-      </button>
+      </BigButton>
     );
   }
   if (phase === "wrong3") {
     return (
-      <button type="button" className={BUTTON} onClick={onRetype}>
+      <BigButton onClick={onRetype}>
         <RotateCcw aria-hidden className="size-6" />
         Tự làm lại
-      </button>
+      </BigButton>
     );
   }
   return (
-    <button
-      type="button"
-      className={BUTTON}
-      disabled={!canCheck}
-      onClick={onCheck}
-    >
+    <BigButton disabled={!canCheck} onClick={onCheck}>
       Kiểm tra
-    </button>
+    </BigButton>
   );
 }
 

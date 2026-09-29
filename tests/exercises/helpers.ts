@@ -3,6 +3,7 @@ import type {
   FillBlankExercise,
   Hints,
   NumericExercise,
+  OrderExercise,
 } from "@/schema/content";
 
 export const NO_HINTS: Hints = { highlight: [] };
@@ -40,9 +41,11 @@ export function numericExercise(
   return { ...base("so", hints), type: "numeric", answer };
 }
 
+// Without a bank the child types the word.
 export function fillBlankExercise(
   accept: string[],
   hints: Hints = NO_HINTS,
+  bank?: string[],
 ): FillBlankExercise {
   return {
     ...base("dien", hints),
@@ -52,5 +55,18 @@ export function fillBlankExercise(
       { type: "blank", id: "ten", accept },
       { type: "text", text: "." },
     ],
+    bank,
+  };
+}
+
+// Items are listed in the correct order, as content authors them.
+export function orderExercise(
+  ids: string[],
+  hints: Hints = NO_HINTS,
+): OrderExercise {
+  return {
+    ...base("xep", hints),
+    type: "order",
+    items: ids.map((id) => ({ id, content: { type: "text", text: id } })),
   };
 }

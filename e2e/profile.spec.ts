@@ -1,4 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
+import { expectNoHorizontalScroll } from "./layout";
 
 // Each test starts in a fresh browser context, so IndexedDB is empty and the
 // device has no profile yet. The dev server runs with CONTENT_INCLUDE_FIXTURE=1,
@@ -15,14 +16,6 @@ async function createProfile(page: Page, name: string, avatar: string) {
   await expect(
     page.getByRole("heading", { level: 1, name: `Chào ${name}!` }),
   ).toBeVisible();
-}
-
-async function expectNoHorizontalScroll(page: Page) {
-  const overflow = await page.evaluate(() => {
-    const root = document.documentElement;
-    return { scrollWidth: root.scrollWidth, clientWidth: root.clientWidth };
-  });
-  expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth);
 }
 
 test("a first visit creates a profile that survives a reload", async ({

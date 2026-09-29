@@ -54,7 +54,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 
 ### Bài tập
 - [x] 4. Engine chấm 8 dạng + máy trạng thái 3 nấc + `ExerciseFrame`
-- [ ] 5. UI: `choice`, `numeric` (+ `NumberPad`), `fillBlank`, `order`
+- [x] 5. UI: `choice`, `numeric` (+ `NumberPad`), `fillBlank`, `order`
 - [ ] 6. UI: `match`, `tapText`, `tapRegion`, `manipulate`
 - [ ] 7. `PassageReader` + UI `openEnded` (checklist tự tick)
 
