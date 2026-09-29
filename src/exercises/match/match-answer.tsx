@@ -11,7 +11,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { type ReactNode, useId, useState } from "react";
+import { type ReactNode, useId, useMemo, useState } from "react";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { MatchInput } from "@/exercises/input";
@@ -24,6 +24,7 @@ import {
   type Pairs,
   pairItems,
   type Side,
+  shuffleRight,
   tapItem,
 } from "./pairs";
 
@@ -38,19 +39,19 @@ const DRAG_DISTANCE_PX = 8;
 
 const NO_PAIRS: Pairs = {};
 
-// Items are announced by position: their content may be a formula or a
-// picture with no short spoken form.
+// Items are announced by the row they are shown on: their content may be a
+// formula or a picture with no short spoken form.
 function positionLabel(side: Side, index: number): string {
   return side === "left"
     ? `mục ${index + 1} bên trái`
     : `ô ${index + 1} bên phải`;
 }
 
-function announcements(exercise: MatchExercise): Announcements {
+function announcements(columns: Record<Side, readonly Item[]>): Announcements {
   const label = (side: Side, id: string | number) =>
     positionLabel(
       side,
-      exercise[side].findIndex((item) => item.id === String(id)),
+      columns[side].findIndex((item) => item.id === String(id)),
     );
   return {
     onDragStart: ({ active }) => `Đang kéo ${label("left", active.id)}.`,
@@ -209,7 +210,8 @@ function RightItem({
 // Drag a left item onto a right item, or tap one and then the other. Right
 // items without a pair in the answer are distractors and look like the rest.
 export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal } = slot;
+  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  const right = useMemo(() => shuffleRight(exercise, seed), [exercise, seed]);
   const [armedItem, setArmedItem] = useState<Armed | null>(null);
   const dndId = useId();
   const sensors = useSensors(
@@ -251,7 +253,7 @@ export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
       sensors={sensors}
       onDragEnd={dragEnd}
       accessibility={{
-        announcements: announcements(exercise),
+        announcements: announcements({ left: exercise.left, right }),
         screenReaderInstructions: {
           draggable:
             "Chạm một mục bên trái rồi chạm một ô bên phải để nối, hoặc kéo mục sang ô.",
@@ -275,7 +277,7 @@ export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
           ))}
         </ul>
         <ul className="flex flex-col gap-3" aria-label="Cột phải">
-          {exercise.right.map((item) => {
+          {right.map((item) => {
             const left = leftOf(pairs, item.id);
             return (
               <RightItem

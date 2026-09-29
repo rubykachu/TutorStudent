@@ -222,6 +222,7 @@ export const CheckSchema = z.object({ expr: TextSchema });
 export const ChoiceExerciseSchema = z.object({
   ...exerciseBase,
   type: z.literal("choice"),
+  // Any order; the UI shuffles them for every attempt.
   options: z.array(ItemSchema).min(2),
   answer: z.array(LocalIdSchema).min(1),
   // Shown up front so the child knows whether to pick one or several.
@@ -248,7 +249,8 @@ export const NumericExerciseSchema = z.object({
 });
 
 // Every left item pairs with exactly one right item; extra right items act as
-// distractors.
+// distractors. The left column shows in the listed order; the UI shuffles the
+// right column for every attempt, so pairs may be listed side by side.
 export const MatchExerciseSchema = z.object({
   ...exerciseBase,
   type: z.literal("match"),
@@ -257,7 +259,8 @@ export const MatchExerciseSchema = z.object({
   pairs: z.array(z.object({ left: LocalIdSchema, right: LocalIdSchema })),
 });
 
-// Items are listed in the correct order; the UI shuffles them.
+// Items are listed in the correct order; the UI shuffles them for every
+// attempt.
 export const OrderExerciseSchema = z.object({
   ...exerciseBase,
   type: z.literal("order"),
@@ -278,7 +281,8 @@ export const FillBlankExerciseSchema = z.object({
   ...exerciseBase,
   type: z.literal("fillBlank"),
   segments: z.array(FillBlankSegmentSchema).min(1),
-  // Present: the child picks words from this bank; absent: the child types.
+  // Present: the child picks words from this bank, which the UI shuffles for
+  // every attempt; absent: the child types.
   bank: z.array(TextSchema).min(2).optional(),
 });
 

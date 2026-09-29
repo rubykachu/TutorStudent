@@ -1,11 +1,13 @@
 "use client";
 
 import { Check } from "lucide-react";
+import { useMemo } from "react";
 import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { ChoiceInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
 import { toggleId } from "@/exercises/selection";
+import { seededShuffle } from "@/exercises/shuffle";
 import type { ChoiceExercise } from "@/schema/content";
 
 type ChoiceAnswerProps = {
@@ -22,7 +24,11 @@ function nextSelection(
 }
 
 export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal } = slot;
+  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  const options = useMemo(
+    () => seededShuffle(exercise.options, seed),
+    [exercise.options, seed],
+  );
   const selected = reveal ? exercise.answer : (value?.selected ?? []);
 
   function toggle(id: string) {
@@ -37,7 +43,7 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
         {exercise.multiple ? "Chọn tất cả đáp án đúng" : "Chọn một đáp án"}
       </legend>
       <div className="grid gap-3 sm:grid-cols-2">
-        {exercise.options.map((option) => {
+        {options.map((option) => {
           const spec = highlight.get(option.id);
           const on = selected.includes(option.id);
           return (

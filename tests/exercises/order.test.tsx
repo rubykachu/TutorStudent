@@ -1,6 +1,5 @@
 import { fireEvent } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { seededShuffle } from "@/exercises/order/shuffle";
 import { orderExercise } from "./helpers";
 import {
   checkAnswer,
@@ -111,22 +110,5 @@ describe("OrderAnswer with visuals", () => {
     const misplaced = IDS.find((id, index) => start[index] !== id) ?? "";
     expectVisualTiers(view, () => item(view.container, misplaced));
     expect(shownOrder(view.container)).toEqual(start);
-  });
-});
-
-describe("seededShuffle", () => {
-  it("is deterministic per seed", () => {
-    expect(seededShuffle(IDS, "a.ex.b")).toEqual(seededShuffle(IDS, "a.ex.b"));
-  });
-
-  it("never returns the original order", () => {
-    for (let n = 2; n <= 6; n++) {
-      const items = IDS.concat(["nam", "sau"]).slice(0, n);
-      for (let seed = 0; seed < 200; seed++) {
-        const out = seededShuffle(items, `lesson.ex.${seed}`);
-        expect(out).not.toEqual(items);
-        expect([...out].sort()).toEqual([...items].sort());
-      }
-    }
   });
 });

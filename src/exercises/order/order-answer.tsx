@@ -16,9 +16,9 @@ import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { OrderInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
+import { seededShuffle } from "@/exercises/shuffle";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { Item, OrderExercise } from "@/schema/content";
-import { seededShuffle } from "./shuffle";
 
 type OrderAnswerProps = {
   exercise: OrderExercise;
@@ -26,14 +26,15 @@ type OrderAnswerProps = {
 };
 
 export function OrderAnswer({ exercise, slot }: OrderAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal } = slot;
+  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  // Never the authored order, which is the solved one.
   const initial = useMemo(
     () =>
       seededShuffle(
         exercise.items.map((item) => item.id),
-        exercise.id,
+        seed,
       ),
-    [exercise],
+    [exercise.items, seed],
   );
   const order = reveal
     ? exercise.items.map((item) => item.id)

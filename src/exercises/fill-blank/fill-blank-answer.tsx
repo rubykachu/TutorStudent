@@ -7,13 +7,14 @@ import {
   useDroppable,
 } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
 import { DRAG_ACCESSIBILITY, useDragSensors } from "@/exercises/drag";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import { ownValue } from "@/exercises/grade/result";
 import type { FillBlankInput } from "@/exercises/input";
+import { seededShuffle } from "@/exercises/shuffle";
 import type { FillBlankExercise } from "@/schema/content";
 
 type FillBlankAnswerProps = {
@@ -34,12 +35,25 @@ function revealedBlanks(exercise: FillBlankExercise): Blanks {
 const CHIP_DRAG_PREFIX = "chip:";
 
 export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal } = slot;
+  const { value, onChange, disabled, highlight, reveal, seed } = slot;
   const blanks = reveal ? revealedBlanks(exercise) : (value?.blanks ?? {});
   // Bank index of the word tapped first, waiting for a blank to go into.
   const [picked, setPicked] = useState<number | null>(null);
   const sensors = useDragSensors();
   const { bank } = exercise;
+  // Bank indexes in the order the chips are shown; a word may repeat, so two
+  // chips with the same word count as looking the same.
+  const chipOrder = useMemo(
+    () =>
+      bank
+        ? seededShuffle(
+            bank.map((_, index) => index),
+            seed,
+            { key: (index) => bank[index] },
+          )
+        : [],
+    [bank, seed],
+  );
 
   function setBlank(id: string, text: string) {
     const next = { ...(value?.blanks ?? {}), [id]: text };
@@ -112,13 +126,12 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
           className="min-w-0 flex flex-wrap gap-3"
           aria-label="Chọn từ rồi chạm vào ô trống"
         >
-          {bank.map((word, index) => (
+          {chipOrder.map((index) => (
             <BankChip
-              // Bank words may repeat, so the position is the identity.
-              // biome-ignore lint/suspicious/noArrayIndexKey: see above
+              // Bank words may repeat, so the bank index is the identity.
               key={index}
               index={index}
-              word={word}
+              word={bank[index]}
               picked={picked === index}
               disabled={disabled}
               onTap={() => setPicked(picked === index ? null : index)}

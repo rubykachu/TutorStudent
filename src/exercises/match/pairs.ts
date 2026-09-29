@@ -1,3 +1,6 @@
+import { seededShuffle } from "@/exercises/shuffle";
+import type { Item, MatchExercise } from "@/schema/content";
+
 // Left item id -> right item id. Content pairs every left item with its own
 // right item (`content:check` rejects a right item used twice), so the UI
 // keeps pairs one-to-one as well.
@@ -48,4 +51,24 @@ export function tapItem(
       ? unpairLeft(pairs, left)
       : pairItems(pairs, left, right);
   return { pairs: next, armed: null };
+}
+
+// The right column for one attempt. Left items keep their listed order, so
+// the right column is scrambled until at least one pair no longer sits on the
+// same row as its left item: authors list pairs side by side.
+export function shuffleRight(
+  exercise: Pick<MatchExercise, "left" | "right" | "pairs">,
+  seed: string,
+): Item[] {
+  const leftRow = new Map(exercise.left.map((item, row) => [item.id, row]));
+  const allSideBySide = (right: readonly Item[]) =>
+    exercise.pairs.every(
+      (pair) =>
+        leftRow.get(pair.left) ===
+        right.findIndex((item) => item.id === pair.right),
+    );
+  return seededShuffle(exercise.right, seed, {
+    key: (item) => item.id,
+    accept: (right) => !allSideBySide(right),
+  });
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronRight, RotateCcw } from "lucide-react";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useLayoutEffect, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
@@ -16,6 +16,8 @@ import {
   type MachineState,
   useExerciseMachine,
 } from "@/exercises/machine";
+import { attemptSeed } from "@/exercises/shuffle";
+import { newId } from "@/lib/id";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
 import { Owl } from "@/mascot/owl";
@@ -35,6 +37,9 @@ export type AnswerSlotProps<I> = {
   highlight: ReadonlyMap<string, HighlightSpec>;
   // Show the correct answer in place (third wrong check, no solution visual).
   reveal: boolean;
+  // Seed for `seededShuffle` of the answer items: the same for the whole
+  // attempt, retype included, and new for every attempt.
+  seed: string;
 };
 
 type ExerciseFrameProps<E extends BasicExercise> = {
@@ -86,7 +91,8 @@ function statusText(
 
 // Shared frame for every basic exercise type: prompt, answer slot, the
 // "Kiểm tra" button and the three feedback tiers with their fallbacks. Key it
-// by exercise id so each exercise starts from a fresh state.
+// so that every attempt mounts a new frame: each mount starts from a fresh
+// state and a fresh arrangement of the answer items.
 export function ExerciseFrame<E extends BasicExercise>({
   exercise,
   concepts,
@@ -96,6 +102,13 @@ export function ExerciseFrame<E extends BasicExercise>({
   children,
 }: ExerciseFrameProps<E>) {
   const machine = useExerciseMachine(exercise);
+  // Made on the client after mount, never during a server render, so the
+  // server HTML and hydration agree. Kept here and not in the answer
+  // component, which remounts for a retype of the same attempt. A layout
+  // effect sets it before the first paint on the client, and only once, as
+  // Strict Mode runs mount effects twice.
+  const [nonce, setNonce] = useState<string | null>(null);
+  useLayoutEffect(() => setNonce((kept) => kept ?? newId()), []);
   const { state, tier } = machine;
   const view = feedbackView(exercise, state, concepts);
   const reducedMotion = usePrefersReducedMotion();
@@ -158,13 +171,15 @@ export function ExerciseFrame<E extends BasicExercise>({
           )}
           {/* A retype starts from a fresh answer component, not an edited one. */}
           <div key={state.phase === "retype" ? "retype" : "first"}>
-            {children({
-              value: state.input,
-              onChange: machine.setInput,
-              disabled: accepted || state.phase === "wrong3",
-              highlight: answerHighlight,
-              reveal: view.reveal,
-            })}
+            {nonce !== null &&
+              children({
+                value: state.input,
+                onChange: machine.setInput,
+                disabled: accepted || state.phase === "wrong3",
+                highlight: answerHighlight,
+                reveal: view.reveal,
+                seed: attemptSeed(exercise.id, nonce),
+              })}
           </div>
         </div>
         {renderMascot(view.mascot)}
