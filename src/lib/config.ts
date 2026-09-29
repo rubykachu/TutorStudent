@@ -21,3 +21,10 @@ export const VISUAL_STEP_MS = 1800;
 // Progress stays on the device until family sync exists; every local record
 // still carries a family id so it can later be claimed by a real family.
 export const LOCAL_FAMILY_ID = "local";
+
+// Home nudges a subject once more than this many Vietnam days have passed
+// since the child last studied it.
+export const SUBJECT_NUDGE_AFTER_DAYS = 3;
+
+// Longest child name the profile form accepts, so it fits the home greeting.
+export const PROFILE_NAME_MAX_LENGTH = 20;

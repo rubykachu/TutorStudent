@@ -91,6 +91,20 @@
   --color-concept-lime: #4d7c0f;
   --color-concept-slate: #475569;
 
+  /* Profile avatars: flat animal faces on a soft disc; decoration only, never text. */
+  --color-avatar-cat: #94a3b8;
+  --color-avatar-cat-bg: #e0f2fe;
+  --color-avatar-bear: #a8703a;
+  --color-avatar-bear-bg: #fef3c7;
+  --color-avatar-rabbit-bg: #fce7f3;
+  --color-avatar-fox: #f97316;
+  --color-avatar-fox-bg: #ecfccb;
+  --color-avatar-panda-bg: #ede9fe;
+  --color-avatar-chick: #facc15;
+  --color-avatar-chick-bg: #dbeafe;
+  --color-avatar-beak: #fb923c;
+  --color-avatar-cheek: #f9a8d4;
+
   /* Paired phone / tablet (md:) sizes; nothing may render below 16px. */
   --text-title: 1.75rem;
   --text-title--line-height: 1.2;
