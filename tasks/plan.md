@@ -71,7 +71,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 
 ### Nội dung
 - [x] 13. Lint nội dung tự động + glossary + cổng `status`
-- [ ] 14a. Skill `lesson-review` (+ kiểm bằng lỗi cài cố ý, 3 lần)
+- [x] 14a. Skill `lesson-review` (+ kiểm bằng lỗi cài cố ý, 3 lần)
 - [ ] 14. Skill `lesson-author` + `lesson-visual` + `CLAUDE.md`
 - [ ] 15. Bài Toán — Luỹ thừa với số mũ tự nhiên
 - [ ] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn
