@@ -1,10 +1,13 @@
 import { REVIEW_RECENT_MINUTES, REVIEW_SESSION_SIZE } from "@/lib/config";
-import type { ReviewItem } from "@/srs/select";
+import { narrow, type ReviewItem } from "@/srs/select";
 
 // One on-demand review session as a queue. A card missed on its rated
 // question comes back once at the end, with another exercise when the card
 // has one, to teach it again; that second ask is never rated. After any
 // missed question the card's recap is shown until the child moves on.
+// The re-ask prefers an exercise the child has not met yet: not asked in
+// this session, then not among the exercises to avoid (answered moments ago,
+// or met in the lesson's sections while learning the card).
 
 export type SessionItem = ReviewItem & { reask: boolean };
 
@@ -18,14 +21,31 @@ export type ReviewSession = {
   // Set after a missed question, cleared by `closeRecap`; an answer that was
   // right the first time moves straight on.
   recap: SessionRecap | null;
+  // Exercises a re-ask avoids when the card has others.
+  avoid: ReadonlySet<string>;
 };
 
-export function startSession(picks: readonly ReviewItem[]): ReviewSession {
+export function startSession(
+  picks: readonly ReviewItem[],
+  avoid: Iterable<string> = [],
+): ReviewSession {
   return {
     items: picks.map((pick) => ({ ...pick, reask: false })),
     current: 0,
     recap: null,
+    avoid: new Set(avoid),
   };
+}
+
+// Exercises a child meets while learning a lesson: the comprehension checks
+// and the practice of every section.
+export function sectionExerciseIds(
+  sections: readonly {
+    checkIds: readonly string[];
+    practiceIds: readonly string[];
+  }[],
+): string[] {
+  return sections.flatMap((s) => [...s.checkIds, ...s.practiceIds]);
 }
 
 export function closeRecap(session: ReviewSession): ReviewSession {
@@ -51,19 +71,24 @@ export function answeredCount(session: ReviewSession): number {
   return Math.min(session.current, session.items.length);
 }
 
-function pickExercise(
+function pickReask(
+  session: ReviewSession,
   pool: readonly string[],
-  used: string,
+  missed: string,
   random: () => number,
 ): string {
-  const others = pool.filter((id) => id !== used);
-  if (others.length === 0) return used;
-  return others[Math.floor(random() * others.length)] ?? used;
+  const asked = new Set(session.items.map((item) => item.exerciseId));
+  const others = narrow(
+    pool.filter((id) => id !== missed),
+    [(id) => !asked.has(id), (id) => !session.avoid.has(id)],
+  );
+  if (others.length === 0) return missed;
+  return others[Math.floor(random() * others.length)] ?? missed;
 }
 
 // Moves past the current item. Any miss opens the card's recap; a rated miss
 // also queues the card once more at the end, asked with a different exercise
-// from `exerciseIdsByCard` if possible.
+// from `exerciseIdsByCard` if possible, one the child has not met if any.
 export function answerCurrent(
   session: ReviewSession,
   firstTryCorrect: boolean,
@@ -83,7 +108,7 @@ export function answerCurrent(
   const pool = exerciseIdsByCard.get(item.cardId) ?? [];
   const reask: SessionItem = {
     cardId: item.cardId,
-    exerciseId: pickExercise(pool, item.exerciseId, random),
+    exerciseId: pickReask(session, pool, item.exerciseId, random),
     reask: true,
   };
   return { ...next, items: [...session.items, reask] };

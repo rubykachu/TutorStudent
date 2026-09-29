@@ -68,7 +68,7 @@ function sectionPracticeByCard(
 
 // Narrows `candidates` by each preference in turn, skipping a preference that
 // would leave nothing, so a card is always asked with some exercise.
-function narrow(
+export function narrow(
   candidates: readonly string[],
   preferences: readonly ((id: string) => boolean)[],
 ): readonly string[] {

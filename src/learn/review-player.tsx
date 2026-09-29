@@ -29,6 +29,7 @@ import {
   lastReviewExerciseIds,
   type ReviewSession,
   recentExerciseIds,
+  sectionExerciseIds,
   startSession,
 } from "@/srs/session";
 import { findVisual } from "@/visuals/registry";
@@ -88,16 +89,23 @@ export function ReviewPlayer({
     ]).then(([progress, attempts]) => {
       if (!live) return;
       const at = now();
+      const recent = recentExerciseIds(attempts, at);
       const picks = selectReview({
         now: at,
         lessonId: lesson.id,
         states: progress.cardStates,
         index,
         lastUsedExerciseIds: lastReviewExerciseIds(progress.reviewAttempts),
-        recentExerciseIds: recentExerciseIds(attempts, at),
+        recentExerciseIds: recent,
         random,
       }).filter((pick) => basicExercise(index, pick.exerciseId));
-      setSession(startSession(picks));
+      // A re-ask avoids what the child met moments ago or while learning.
+      setSession(
+        startSession(picks, [
+          ...recent,
+          ...sectionExerciseIds(index.lesson.sections),
+        ]),
+      );
     });
     return () => {
       live = false;
