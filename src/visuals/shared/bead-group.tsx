@@ -12,6 +12,7 @@ const GROUP_GAP = 36;
 const PADDING = 4;
 const BAR_HEIGHT = 5;
 const BAR_OFFSET = 8;
+const CROSSED_OPACITY = 0.35;
 
 export type BeadGroupSpec = {
   color: ConceptColor;
@@ -24,7 +25,14 @@ type BeadGroupProps = {
   groups: readonly BeadGroupSpec[];
   // When true the groups slide together into one row, e.g. 2³ · 2² → 2⁵.
   merged: boolean;
+  // How many beads, counted from the end, are crossed out, e.g. the three
+  // factors 2⁵ : 2³ takes away. Crossed beads fade and get a slash.
+  crossed?: number;
   label: string;
+  // Draws beads at this many times their natural 44px size instead of
+  // stretching the row to the full width, so one bead never fills the frame.
+  // The row still shrinks to fit a narrow screen.
+  scale?: number;
   className?: string;
 };
 
@@ -43,7 +51,9 @@ function barRect({ from, to }: Span, y: number) {
 export function BeadGroup({
   groups,
   merged,
+  crossed = 0,
   label,
+  scale,
   className = "h-auto w-full max-w-md",
 }: BeadGroupProps) {
   const transition = useVisualTransition();
@@ -72,6 +82,7 @@ export function BeadGroup({
     first += group.count;
   });
   const mergedSpan = { from: mergedX(0), to: mergedX(beads.length) };
+  const firstCrossed = beads.length - crossed;
 
   return (
     <svg
@@ -79,37 +90,69 @@ export function BeadGroup({
       aria-label={label}
       viewBox={`0 0 ${viewWidth} ${viewHeight}`}
       className={className}
+      style={
+        scale === undefined
+          ? undefined
+          : { width: viewWidth * scale, maxWidth: "100%" }
+      }
     >
-      {beads.map((bead, k) => (
-        <motion.g
-          // biome-ignore lint/suspicious/noArrayIndexKey: beads never reorder, position is the identity
-          key={k}
-          data-bead=""
-          initial={false}
-          animate={{ x: merged ? 0 : splitX(k, bead.groupIndex) - mergedX(k) }}
-          transition={transition}
-        >
-          <ConceptShape
-            {...(bead.text ? decorative : {})}
-            color={bead.color}
-            cx={mergedX(k) + BEAD / 2}
-            cy={PADDING + BEAD / 2}
-            r={BEAD_RADIUS}
-          />
-          {bead.text && (
-            <text
-              x={mergedX(k) + BEAD / 2}
-              y={PADDING + BEAD / 2}
-              textAnchor="middle"
-              dominantBaseline="central"
-              fontSize={18}
-              className="fill-primary-foreground font-heading font-bold"
+      {beads.map((bead, k) => {
+        const isCrossed = k >= firstCrossed;
+        const cx = mergedX(k) + BEAD / 2;
+        const cy = PADDING + BEAD / 2;
+        return (
+          <motion.g
+            // biome-ignore lint/suspicious/noArrayIndexKey: beads never reorder, position is the identity
+            key={k}
+            data-bead=""
+            data-crossed={isCrossed || undefined}
+            initial={false}
+            animate={{
+              x: merged ? 0 : splitX(k, bead.groupIndex) - mergedX(k),
+            }}
+            transition={transition}
+          >
+            {/* Only the bead fades; the slash over it stays fully visible. */}
+            <motion.g
+              initial={false}
+              animate={{ opacity: isCrossed ? CROSSED_OPACITY : 1 }}
+              transition={transition}
             >
-              {bead.text}
-            </text>
-          )}
-        </motion.g>
-      ))}
+              <ConceptShape
+                {...(bead.text ? decorative : {})}
+                color={bead.color}
+                cx={cx}
+                cy={cy}
+                r={BEAD_RADIUS}
+              />
+              {bead.text && (
+                <text
+                  x={cx}
+                  y={cy}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={18}
+                  className="fill-primary-foreground font-heading font-bold"
+                >
+                  {bead.text}
+                </text>
+              )}
+            </motion.g>
+            {isCrossed && (
+              <line
+                {...decorative}
+                x1={cx - BEAD_RADIUS}
+                y1={cy + BEAD_RADIUS}
+                x2={cx + BEAD_RADIUS}
+                y2={cy - BEAD_RADIUS}
+                strokeWidth={4}
+                strokeLinecap="round"
+                className="stroke-foreground"
+              />
+            )}
+          </motion.g>
+        );
+      })}
       {groupSpans.map((span, groupIndex) => (
         <motion.rect
           // biome-ignore lint/suspicious/noArrayIndexKey: groups never reorder

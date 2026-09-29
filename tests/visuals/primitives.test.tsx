@@ -1,9 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { formatInteger } from "@/lib/number-format";
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { DotGrid } from "@/visuals/shared/dot-grid";
 import { Highlight } from "@/visuals/shared/highlight";
 import { DECORATIVE_ATTR } from "@/visuals/shared/markers";
+import { NumberStepper } from "@/visuals/shared/number-stepper";
 
 describe("DotGrid", () => {
   it("fills the first cells and leaves the rest as empty slots", () => {
@@ -78,5 +80,52 @@ describe("Highlight", () => {
         opacity: "1",
       }),
     );
+  });
+});
+
+describe("BeadGroup crossed", () => {
+  it("marks the last beads as crossed out", () => {
+    const { container } = render(
+      <BeadGroup
+        groups={[{ color: "blue", count: 5, text: "2" }]}
+        merged
+        crossed={3}
+        label="Năm hạt"
+      />,
+    );
+    const beads = [...container.querySelectorAll("[data-bead]")];
+    expect(beads.map((b) => b.hasAttribute("data-crossed"))).toEqual([
+      false,
+      false,
+      true,
+      true,
+      true,
+    ]);
+  });
+});
+
+describe("NumberStepper", () => {
+  it("steps within its range and names its buttons after the label", () => {
+    const onChange = vi.fn();
+    render(
+      <NumberStepper
+        label="Cơ số"
+        value={10}
+        min={1}
+        max={10}
+        onChange={onChange}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Tăng cơ số" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "Giảm cơ số" }));
+    expect(onChange).toHaveBeenCalledWith(9);
+  });
+});
+
+describe("formatInteger", () => {
+  it("groups by three from four digits with a narrow no-break space", () => {
+    expect(formatInteger(999)).toBe("999");
+    expect(formatInteger(1024)).toBe("1 024");
+    expect(formatInteger(1000000)).toBe("1 000 000");
   });
 });
