@@ -1,0 +1,25 @@
+{
+  "subjects": [
+    {
+      "id": "math",
+      "name": "Toán",
+      "color": "math",
+      "series": [{ "id": "kntt", "name": "Kết nối tri thức với cuộc sống" }],
+      "defaultSeries": "kntt"
+    },
+    {
+      "id": "literature",
+      "name": "Ngữ văn",
+      "color": "literature",
+      "series": [{ "id": "ctst", "name": "Chân trời sáng tạo" }],
+      "defaultSeries": "ctst"
+    },
+    {
+      "id": "geography",
+      "name": "Địa lí",
+      "color": "geography",
+      "series": [{ "id": "kntt", "name": "Kết nối tri thức với cuộc sống" }],
+      "defaultSeries": "kntt"
+    }
+  ]
+}

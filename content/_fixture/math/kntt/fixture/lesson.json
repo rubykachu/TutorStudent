@@ -1,0 +1,384 @@
+{
+  "id": "fixture",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 0,
+  "title": "Bài mẫu: phép nhân và đọc hiểu",
+  "sourceRef": "Bài mẫu kiểm thử",
+  "status": "draft",
+  "concepts": [
+    { "id": "fixture.concept.co-so", "name": "Cơ số", "color": "blue" },
+    { "id": "fixture.concept.so-mu", "name": "Số mũ", "color": "violet" },
+    { "id": "fixture.concept.tich", "name": "Tích", "color": "amber" },
+    { "id": "fixture.concept.nhan-vat", "name": "Nhân vật", "color": "pink" }
+  ],
+  "sections": [
+    {
+      "id": "fixture.section.phep-nhan",
+      "title": "Phép nhân là phép cộng lặp lại",
+      "sourceRef": "Bài mẫu, phần 1",
+      "minutes": 8,
+      "blocks": [
+        { "type": "note", "text": "Có hai hàng chấm, mỗi hàng ba chấm." },
+        {
+          "type": "visual",
+          "visualId": "fixture.visual.dot-grid",
+          "caption": "Hai hàng, mỗi hàng ba chấm."
+        },
+        { "type": "formula", "tex": "3 + 3 = 2 \\cdot 3 = 6" }
+      ],
+      "checkIds": ["fixture.ex.chon-phep-nhan", "fixture.ex.cham-hinh-tron"],
+      "practiceIds": [
+        "fixture.ex.dem-cham",
+        "fixture.ex.ghep-phep-nhan",
+        "fixture.ex.tao-sau-cham",
+        "fixture.ex.viet-luy-thua",
+        "fixture.ex.sap-xep"
+      ],
+      "recap": { "type": "formula", "tex": "2 \\cdot 3 = 3 + 3 = 6" }
+    },
+    {
+      "id": "fixture.section.doc-hieu",
+      "title": "Đọc một đoạn văn ngắn",
+      "sourceRef": "Bài mẫu, phần 2",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                { "id": "s1", "text": "Minh có một người bạn tên là Lan." },
+                { "id": "s2", "text": "Hai bạn thường cùng nhau đi học." }
+              ]
+            },
+            {
+              "sentences": [
+                { "id": "s3", "text": "Một hôm, Lan bị ốm và phải nghỉ học." },
+                {
+                  "id": "s4",
+                  "text": "Minh chép bài giúp Lan và mang sang nhà bạn."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "s4",
+              "label": "Theo dõi",
+              "text": "Chú ý việc làm của Minh."
+            }
+          ],
+          "source": "Đoạn văn mẫu do nhóm soạn bài viết"
+        },
+        { "type": "note", "text": "Đọc chậm từng câu nhé." }
+      ],
+      "checkIds": ["fixture.ex.dien-tu"],
+      "practiceIds": ["fixture.ex.cham-cau", "fixture.ex.viet-ve-ban"],
+      "recap": {
+        "type": "visual",
+        "visualId": "fixture.visual.star-sticker",
+        "caption": "Giúp đỡ bạn là một việc tốt."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "fixture.card.nhan-lap",
+      "sourceRef": "Bài mẫu, phần 1",
+      "conceptIds": ["fixture.concept.tich"],
+      "recap": { "type": "formula", "tex": "2 \\cdot 3 = 6" }
+    },
+    {
+      "id": "fixture.card.luy-thua",
+      "sourceRef": "Bài mẫu, phần 1",
+      "conceptIds": ["fixture.concept.co-so", "fixture.concept.so-mu"],
+      "recap": {
+        "type": "formula",
+        "tex": "\\htmlId{co-so}{2}^{\\htmlId{so-mu}{3}} = 2 \\cdot 2 \\cdot 2 = 8"
+      }
+    },
+    {
+      "id": "fixture.card.doc-hieu",
+      "sourceRef": "Bài mẫu, phần 2",
+      "conceptIds": ["fixture.concept.nhan-vat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "fixture.visual.star-sticker",
+        "caption": "Minh giúp Lan khi Lan bị ốm."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "fixture.ex.chon-phep-nhan",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        { "type": "visual", "visualId": "fixture.visual.dot-grid" },
+        { "type": "note", "text": "Phép tính nào cho biết số chấm?" }
+      ],
+      "options": [
+        { "id": "a", "content": { "type": "formula", "tex": "2 \\cdot 3" } },
+        { "id": "b", "content": { "type": "formula", "tex": "2 + 3" } },
+        { "id": "c", "content": { "type": "formula", "tex": "3 - 2" } }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": { "highlight": [{ "target": "block", "index": 0 }] },
+      "difficulty": 1
+    },
+    {
+      "id": "fixture.ex.cham-hinh-tron",
+      "type": "tapRegion",
+      "cardIds": [],
+      "prompt": [{ "type": "note", "text": "Chạm vào hình tròn." }],
+      "visualId": "fixture.visual.shapes",
+      "answer": ["circle"],
+      "hints": { "highlight": [] },
+      "difficulty": 1
+    },
+    {
+      "id": "fixture.ex.dem-cham",
+      "type": "numeric",
+      "cardIds": ["fixture.card.nhan-lap"],
+      "prompt": [
+        { "type": "visual", "visualId": "fixture.visual.dot-grid" },
+        { "type": "note", "text": "Có tất cả bao nhiêu chấm?" }
+      ],
+      "answer": { "kind": "value", "value": 6 },
+      "check": { "expr": "2·3" },
+      "hints": {
+        "highlight": [
+          { "target": "block", "index": 0, "conceptId": "fixture.concept.tich" }
+        ],
+        "hintVisualId": "fixture.visual.dot-grid",
+        "solutionVisualId": "fixture.visual.dot-grid"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "fixture.ex.ghep-phep-nhan",
+      "type": "match",
+      "cardIds": ["fixture.card.nhan-lap"],
+      "prompt": [{ "type": "note", "text": "Nối mỗi phép nhân với kết quả." }],
+      "left": [
+        {
+          "id": "hai-nhan-ba",
+          "content": { "type": "formula", "tex": "2 \\cdot 3" }
+        },
+        {
+          "id": "bon-nhan-hai",
+          "content": { "type": "formula", "tex": "4 \\cdot 2" }
+        }
+      ],
+      "right": [
+        { "id": "sau", "content": { "type": "text", "text": "6" } },
+        { "id": "tam", "content": { "type": "text", "text": "8" } },
+        { "id": "nam", "content": { "type": "text", "text": "5" } }
+      ],
+      "pairs": [
+        { "left": "hai-nhan-ba", "right": "sau" },
+        { "left": "bon-nhan-hai", "right": "tam" }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "option",
+            "id": "hai-nhan-ba",
+            "conceptId": "fixture.concept.tich"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "fixture.ex.tao-sau-cham",
+      "type": "manipulate",
+      "cardIds": ["fixture.card.nhan-lap"],
+      "prompt": [
+        { "type": "note", "text": "Bấm nút để có đúng hai lần ba chấm." }
+      ],
+      "visualId": "fixture.visual.dot-counter",
+      "validatorId": "count-equals",
+      "params": { "count": 6 },
+      "hints": { "highlight": [{ "target": "block", "index": 0 }] },
+      "difficulty": 2
+    },
+    {
+      "id": "fixture.ex.viet-luy-thua",
+      "type": "numeric",
+      "cardIds": ["fixture.card.luy-thua"],
+      "prompt": [
+        { "type": "note", "text": "Viết tích sau dưới dạng luỹ thừa." },
+        { "type": "formula", "tex": "2 \\cdot 2 \\cdot 2" }
+      ],
+      "answer": { "kind": "power", "base": 2, "exponent": 3 },
+      "check": { "expr": "2·2·2" },
+      "hints": {
+        "highlight": [
+          {
+            "target": "option",
+            "id": "base",
+            "conceptId": "fixture.concept.co-so"
+          },
+          {
+            "target": "option",
+            "id": "exponent",
+            "conceptId": "fixture.concept.so-mu"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "fixture.ex.sap-xep",
+      "type": "order",
+      "cardIds": ["fixture.card.luy-thua"],
+      "prompt": [{ "type": "note", "text": "Sắp xếp các số từ bé đến lớn." }],
+      "items": [
+        { "id": "mot", "content": { "type": "formula", "tex": "2^1" } },
+        { "id": "hai", "content": { "type": "formula", "tex": "2^2" } },
+        { "id": "ba", "content": { "type": "formula", "tex": "2^3" } }
+      ],
+      "hints": { "highlight": [] },
+      "difficulty": 2
+    },
+    {
+      "id": "fixture.ex.chon-luy-thua",
+      "type": "choice",
+      "cardIds": ["fixture.card.luy-thua"],
+      "prompt": [
+        { "type": "note", "text": "Chọn tất cả cách viết bằng số dưới đây." },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{co-so}{2}^{\\htmlId{so-mu}{3}}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": { "type": "formula", "tex": "2 \\cdot 2 \\cdot 2" }
+        },
+        { "id": "b", "content": { "type": "text", "text": "8" } },
+        { "id": "c", "content": { "type": "formula", "tex": "2 \\cdot 3" } }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "co-so",
+            "conceptId": "fixture.concept.co-so"
+          },
+          {
+            "target": "part",
+            "id": "so-mu",
+            "conceptId": "fixture.concept.so-mu"
+          }
+        ]
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "fixture.ex.dien-tu",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [{ "type": "note", "text": "Chọn tên còn thiếu trong câu." }],
+      "segments": [
+        { "type": "text", "text": "Minh chép bài giúp " },
+        { "type": "blank", "id": "ten-ban", "accept": ["Lan"] },
+        { "type": "text", "text": "." }
+      ],
+      "bank": ["Lan", "Minh", "Hoa"],
+      "hints": { "highlight": [{ "target": "option", "id": "ten-ban" }] },
+      "difficulty": 1
+    },
+    {
+      "id": "fixture.ex.cham-cau",
+      "type": "tapText",
+      "cardIds": ["fixture.card.doc-hieu"],
+      "prompt": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                { "id": "s1", "text": "Một hôm, Lan bị ốm và phải nghỉ học." },
+                {
+                  "id": "s2",
+                  "text": "Minh chép bài giúp Lan và mang sang nhà bạn."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        },
+        { "type": "note", "text": "Chạm vào câu kể việc Minh giúp bạn." }
+      ],
+      "answer": ["s2"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "s1",
+            "conceptId": "fixture.concept.nhan-vat"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "fixture.ex.viet-ve-ban",
+      "type": "openEnded",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Em hãy kể về một lần em giúp đỡ bạn của mình."
+        }
+      ],
+      "steps": [
+        {
+          "id": "fixture.ex.chon-y-chinh",
+          "type": "choice",
+          "cardIds": ["fixture.card.doc-hieu"],
+          "prompt": [{ "type": "note", "text": "Đoạn văn kể về điều gì?" }],
+          "options": [
+            {
+              "id": "a",
+              "content": {
+                "type": "text",
+                "text": "Minh giúp Lan khi Lan bị ốm."
+              }
+            },
+            {
+              "id": "b",
+              "content": { "type": "text", "text": "Minh đi chơi một mình." }
+            }
+          ],
+          "answer": ["a"],
+          "multiple": false,
+          "hints": { "highlight": [] },
+          "difficulty": 1
+        }
+      ],
+      "writing": {
+        "starter": "Có một lần, em đã giúp bạn",
+        "rubric": [
+          "Kể được việc em đã làm.",
+          "Nói được bạn cảm thấy thế nào.",
+          "Viết từ hai câu trở lên."
+        ]
+      },
+      "hints": { "highlight": [] },
+      "difficulty": 2
+    }
+  ],
+  "sticker": {
+    "name": "Ngôi sao chăm chỉ",
+    "visualId": "fixture.visual.star-sticker"
+  }
+}

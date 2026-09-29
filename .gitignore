@@ -35,3 +35,6 @@ video/projects/**/audio/
 *.pem
 npm-debug.log*
 .pnpm-debug.log*
+
+# content emitted at build time from content/
+public/content/
