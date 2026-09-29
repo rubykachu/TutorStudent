@@ -453,7 +453,8 @@ class Walker {
     await this.look(where);
     const next = this.page.locator(`[data-section-step] [${STEP_NEXT_ATTR}]`);
     if ((await next.count()) === 0) return;
-    while (await next.isEnabled()) await next.tap();
+    // The step button leaves once the last step is on screen.
+    while ((await next.count()) > 0) await next.tap();
     await this.look(`${where}-end`);
   }
 

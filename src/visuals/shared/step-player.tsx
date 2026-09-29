@@ -31,7 +31,9 @@ const STEP_BUTTON = `${BUTTON} border-2 border-primary bg-surface text-primary`;
 // Drives an explainer visual through its steps. It plays on its own, and the
 // child can pause or replay it; with reduced motion it never moves by itself
 // and advances only when the child taps "Bước tiếp", named and drawn apart
-// from the bottom bar's "Tiếp" that leaves the screen.
+// from the bottom bar's "Tiếp" that leaves the screen. Once the last step is
+// on screen only "Xem lại" is left: a "Phát" there would read as if there
+// were more to play.
 export function StepPlayer({
   steps,
   label,
@@ -55,13 +57,6 @@ export function StepPlayer({
     setPlaying(true);
   }
 
-  function togglePlay() {
-    if (atEnd) replay();
-    else setPlaying((p) => !p);
-  }
-
-  const showPause = playing && !atEnd;
-
   return (
     <figure
       aria-label={label}
@@ -77,12 +72,11 @@ export function StepPlayer({
         {`Bước ${step + 1} trên ${steps}`}
       </p>
       <div className="flex gap-3">
-        {reducedMotion ? (
+        {atEnd ? null : reducedMotion ? (
           <button
             type="button"
             className={STEP_BUTTON}
             aria-label="Bước tiếp"
-            disabled={atEnd}
             onClick={() => setStep((s) => Math.min(s + 1, last))}
             {...{ [STEP_NEXT_ATTR]: "" }}
           >
@@ -93,15 +87,15 @@ export function StepPlayer({
           <button
             type="button"
             className={PRIMARY_BUTTON}
-            aria-label={showPause ? "Tạm dừng" : "Phát"}
-            onClick={togglePlay}
+            aria-label={playing ? "Tạm dừng" : "Phát"}
+            onClick={() => setPlaying((p) => !p)}
           >
-            {showPause ? (
+            {playing ? (
               <Pause aria-hidden className="size-5" />
             ) : (
               <Play aria-hidden className="size-5" />
             )}
-            {showPause ? "Tạm dừng" : "Phát"}
+            {playing ? "Tạm dừng" : "Phát"}
           </button>
         )}
         <button

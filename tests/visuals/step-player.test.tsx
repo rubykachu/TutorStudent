@@ -58,7 +58,12 @@ describe("StepPlayer", () => {
       expect(screen.getByText("Cảnh 3")).toBeInTheDocument();
       advance(VISUAL_STEP_MS * 5);
       expect(screen.getByText("Cảnh 3")).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "Phát" })).toBeInTheDocument();
+      // Only a replay is left once the animation has finished.
+      expect(screen.queryByRole("button", { name: "Phát" })).toBeNull();
+      expect(screen.queryByRole("button", { name: "Tạm dừng" })).toBeNull();
+      expect(
+        screen.getByRole("button", { name: "Xem lại từ đầu" }),
+      ).toBeEnabled();
     });
 
     it("pauses, resumes and replays", () => {
@@ -97,7 +102,10 @@ describe("StepPlayer", () => {
 
       fireEvent.click(next);
       expect(screen.getByText("Cảnh 3")).toBeInTheDocument();
-      expect(next).toBeDisabled();
+      expect(screen.queryByRole("button", { name: "Bước tiếp" })).toBeNull();
+      expect(
+        screen.getByRole("button", { name: "Xem lại từ đầu" }),
+      ).toBeEnabled();
     });
   });
 
