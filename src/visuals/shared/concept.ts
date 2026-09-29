@@ -5,7 +5,13 @@ import type { ConceptColor } from "@/schema/content";
 export const CONCEPT_CLASSES: Readonly<
   Record<
     ConceptColor,
-    { fill: string; stroke: string; text: string; border: string }
+    {
+      fill: string;
+      stroke: string;
+      text: string;
+      border: string;
+      decoration: string;
+    }
   >
 > = {
   blue: {
@@ -13,48 +19,56 @@ export const CONCEPT_CLASSES: Readonly<
     stroke: "stroke-concept-blue",
     text: "text-concept-blue",
     border: "border-concept-blue",
+    decoration: "decoration-concept-blue",
   },
   violet: {
     fill: "fill-concept-violet",
     stroke: "stroke-concept-violet",
     text: "text-concept-violet",
     border: "border-concept-violet",
+    decoration: "decoration-concept-violet",
   },
   pink: {
     fill: "fill-concept-pink",
     stroke: "stroke-concept-pink",
     text: "text-concept-pink",
     border: "border-concept-pink",
+    decoration: "decoration-concept-pink",
   },
   amber: {
     fill: "fill-concept-amber",
     stroke: "stroke-concept-amber",
     text: "text-concept-amber",
     border: "border-concept-amber",
+    decoration: "decoration-concept-amber",
   },
   teal: {
     fill: "fill-concept-teal",
     stroke: "stroke-concept-teal",
     text: "text-concept-teal",
     border: "border-concept-teal",
+    decoration: "decoration-concept-teal",
   },
   sky: {
     fill: "fill-concept-sky",
     stroke: "stroke-concept-sky",
     text: "text-concept-sky",
     border: "border-concept-sky",
+    decoration: "decoration-concept-sky",
   },
   lime: {
     fill: "fill-concept-lime",
     stroke: "stroke-concept-lime",
     text: "text-concept-lime",
     border: "border-concept-lime",
+    decoration: "decoration-concept-lime",
   },
   slate: {
     fill: "fill-concept-slate",
     stroke: "stroke-concept-slate",
     text: "text-concept-slate",
     border: "border-concept-slate",
+    decoration: "decoration-concept-slate",
   },
 };
 
