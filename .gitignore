@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env*
+!.env.example
+sources/
+.shots/
+coverage/
+playwright-report/
+test-results/
+.vercel/
+video/projects/**/renders/
+video/projects/**/audio/
+.DS_Store

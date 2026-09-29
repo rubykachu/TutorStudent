@@ -1,0 +1,10 @@
+# Local Python toolchain, venv and package caches
+.venv/
+.python/
+.uv-cache/
+__pycache__/
+# Hugging Face model cache (VieNeu-TTS, whisper)
+.hf/
+# Raw synthesis outputs; only the converted samples/*.m4a are kept
+out/
+*.wav

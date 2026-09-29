@@ -1,0 +1,4 @@
+# onnxruntime 1.30 rejects the ONNX external-data files when they are symlinks from the Hugging Face cache; 1.23.2 works
+vieneu==3.8.3
+onnxruntime==1.23.2
+mlx-whisper==0.4.3
