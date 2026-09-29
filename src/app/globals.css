@@ -124,6 +124,11 @@
   --text-passage-lg--line-height: 1.75;
   --text-caption: 1rem;
   --text-caption--line-height: 1.5;
+  /*
+   * Passage text in tap mode: every line at least 2.3 of the font size and at
+   * least 48px, so a whole sentence is a comfortable touch target.
+   */
+  --leading-tap: max(2.3em, 3rem);
 
   /*
    * The default 4px spacing unit already yields the design scale

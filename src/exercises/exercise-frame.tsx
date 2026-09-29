@@ -4,6 +4,7 @@ import { Check, ChevronRight, RotateCcw } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { Formula } from "@/components/blocks/formula";
+import { PassageReader } from "@/components/passage-reader";
 import {
   type FeedbackHighlights,
   feedbackView,
@@ -216,7 +217,11 @@ type PromptBlockProps = {
 
 // Minimal prompt rendering for exercises; lesson blocks get a full renderer
 // of their own, which can replace this one.
-function PromptBlock({ block, blockHighlight, parts }: PromptBlockProps) {
+export function PromptBlock({
+  block,
+  blockHighlight,
+  parts,
+}: PromptBlockProps) {
   return (
     <Highlight
       active={blockHighlight !== undefined}
@@ -261,31 +266,7 @@ function PromptContent({
         </figure>
       );
     case "passage":
-      return (
-        <div className="flex flex-col gap-3 text-passage md:text-passage-lg">
-          {block.paragraphs.map((paragraph) => (
-            <p key={paragraph.sentences[0]?.id}>
-              {paragraph.sentences.map((sentence) => {
-                const spec = parts.get(sentence.id);
-                return (
-                  <Highlight
-                    key={sentence.id}
-                    active={spec !== undefined}
-                    color={spec?.color}
-                    strong={spec?.strong}
-                    className="mr-1"
-                  >
-                    {sentence.text}
-                  </Highlight>
-                );
-              })}
-            </p>
-          ))}
-          {block.source && (
-            <p className="text-caption text-muted-foreground">{block.source}</p>
-          )}
-        </div>
-      );
+      return <PassageReader passage={block} highlight={parts} />;
     case "image":
       return (
         // Content images come from the media bucket with unknown dimensions,
