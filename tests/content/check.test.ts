@@ -451,6 +451,30 @@ describe("exercise answers", () => {
       'has no validator "count-equals"',
     );
   });
+
+  it("requires a manipulate answer to be showable on the third wrong check", () => {
+    const counter = visualRegistry["fixture.visual.dot-counter"];
+    if (!counter) throw new Error("dot counter missing");
+    const { solutions: _solutions, ...withoutSolver } = counter;
+    const catalog = {
+      ...visualRegistry,
+      "fixture.visual.dot-counter": withoutSolver,
+    };
+    const raw = fixtureContent();
+    const i = exerciseIndex(raw, "fixture.ex.tao-sau-cham");
+    expectError(
+      checkContent(raw, catalog),
+      `${LESSON_FILE} $.exercises[${i}].validatorId`,
+      'cannot show a solution for "count-equals"',
+    );
+
+    const hints = exercise(raw, "fixture.ex.tao-sau-cham").hints as Record<
+      string,
+      unknown
+    >;
+    hints.solutionVisualId = "fixture.visual.dot-grid";
+    expect(errors(checkContent(raw, catalog))).toEqual([]);
+  });
 });
 
 describe("videos", () => {
@@ -662,9 +686,9 @@ describe("lessonStats", () => {
     expect(lessonStats(checked.lesson, visualRegistry)).toEqual({
       sections: 2,
       cards: 3,
-      exercises: 11,
+      exercises: 12,
       exerciseTypes: 8,
-      interactiveVisuals: 1,
+      interactiveVisuals: 2,
     });
   });
 });

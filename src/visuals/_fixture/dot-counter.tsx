@@ -12,11 +12,17 @@ const MAX_DOTS = ROWS * COLUMNS;
 const BUTTON =
   "inline-flex min-h-touch min-w-touch items-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50";
 
-export default function DotCounter({ onStateChange }: VisualProps) {
-  const [count, setCount] = useState(0);
+export default function DotCounter({
+  onStateChange,
+  shownState,
+  disabled = false,
+}: VisualProps) {
+  const [ownCount, setOwnCount] = useState(0);
+  const count = shownState?.count ?? ownCount;
+  const locked = disabled || shownState !== undefined;
 
   function update(next: number) {
-    setCount(next);
+    setOwnCount(next);
     onStateChange?.({ count: next });
   }
 
@@ -36,7 +42,7 @@ export default function DotCounter({ onStateChange }: VisualProps) {
           type="button"
           className={BUTTON}
           aria-label="Bớt một chấm"
-          disabled={count === 0}
+          disabled={locked || count === 0}
           onClick={() => update(count - 1)}
         >
           <Minus aria-hidden className="size-5" />
@@ -46,7 +52,7 @@ export default function DotCounter({ onStateChange }: VisualProps) {
           type="button"
           className={BUTTON}
           aria-label="Thêm một chấm"
-          disabled={count === MAX_DOTS}
+          disabled={locked || count === MAX_DOTS}
           onClick={() => update(count + 1)}
         >
           <Plus aria-hidden className="size-5" />

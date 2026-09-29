@@ -374,6 +374,18 @@ function checkExercise(
           `Visual "${exercise.visualId}" has no validator "${exercise.validatorId}"`,
         );
       }
+      // The third wrong check must show the answer somewhere: in a solution
+      // visual, or as a solved state inside the manipulated visual itself.
+      if (
+        meta?.validators?.[exercise.validatorId] &&
+        !meta.solutions?.[exercise.validatorId] &&
+        exercise.hints.solutionVisualId === undefined
+      ) {
+        report(
+          ["validatorId"],
+          `Visual "${exercise.visualId}" cannot show a solution for "${exercise.validatorId}"; add hints.solutionVisualId`,
+        );
+      }
       break;
     }
     case "numeric":

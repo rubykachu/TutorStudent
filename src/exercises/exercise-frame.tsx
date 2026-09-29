@@ -95,6 +95,13 @@ export function ExerciseFrame<E extends BasicExercise>({
   const accepted = state.phase === "correct" || state.phase === "done";
   const tone = toneOf(state, tier, machine.canCheck);
   const status = statusText(state, tier, view.reveal);
+  // A tapText answer area renders the prompt's passages as tappable
+  // sentences, so the prompt leaves them out and hints on sentences (`part`
+  // targets) are handed to the answer area with its own elements.
+  const passageInAnswer = exercise.type === "tapText";
+  const answerHighlight = passageInAnswer
+    ? new Map([...view.highlights.parts, ...view.highlights.options])
+    : view.highlights.options;
 
   return (
     <section
@@ -104,16 +111,18 @@ export function ExerciseFrame<E extends BasicExercise>({
       data-mascot={view.mascot}
     >
       <div className="flex flex-col gap-4">
-        {exercise.prompt.map((block, index) => (
-          <PromptBlock
-            // Prompt blocks have no ids; their order is fixed content.
-            // biome-ignore lint/suspicious/noArrayIndexKey: static list
-            key={index}
-            block={block}
-            blockHighlight={view.highlights.blocks.get(index)}
-            parts={view.highlights.parts}
-          />
-        ))}
+        {exercise.prompt.map((block, index) =>
+          passageInAnswer && block.type === "passage" ? null : (
+            <PromptBlock
+              // Prompt blocks have no ids; their order is fixed content.
+              // biome-ignore lint/suspicious/noArrayIndexKey: static list
+              key={index}
+              block={block}
+              blockHighlight={view.highlights.blocks.get(index)}
+              parts={view.highlights.parts}
+            />
+          ),
+        )}
       </div>
 
       <div className="flex items-start gap-4">
@@ -141,7 +150,7 @@ export function ExerciseFrame<E extends BasicExercise>({
               value: state.input,
               onChange: machine.setInput,
               disabled: accepted || state.phase === "wrong3",
-              highlight: view.highlights.options,
+              highlight: answerHighlight,
               reveal: view.reveal,
             })}
           </div>

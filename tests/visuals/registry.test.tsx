@@ -42,4 +42,64 @@ describe("visualRegistry", () => {
     expect(validate({ count: 2 }, { count: 1 })).toBe(false);
     expect(validate({}, { count: 1 })).toBe(false);
   });
+
+  it("solves only with validators of the same id, which accept the solution", () => {
+    const samples: Record<string, Record<string, number>[]> = {
+      "count-equals": [{ count: 0 }, { count: 6 }],
+      "square-of": [{ n: 1 }, { n: 3 }],
+    };
+    for (const entry of Object.values(visualRegistry)) {
+      for (const [id, solve] of Object.entries(entry.solutions ?? {})) {
+        const validate = entry.validators?.[id];
+        expect(validate, id).toBeDefined();
+        for (const params of samples[id] ?? []) {
+          expect(validate?.(solve(params), params), id).toBe(true);
+        }
+      }
+    }
+  });
+
+  it("the dot square reports the box around its dots and satisfies square-of", async () => {
+    const entry = visualRegistry["fixture.visual.dot-square"];
+    const validate = entry?.validators?.["square-of"];
+    if (!entry || !validate) throw new Error("dot square missing");
+    const { default: DotSquare } = await entry.load();
+    const onStateChange = vi.fn();
+    render(<DotSquare onStateChange={onStateChange} />);
+    const cell = (row: number, column: number) =>
+      screen.getByRole("button", { name: `Hàng ${row}, cột ${column}` });
+
+    fireEvent.click(cell(2, 2));
+    fireEvent.click(cell(2, 3));
+    fireEvent.click(cell(3, 2));
+    fireEvent.click(cell(3, 3));
+    expect(onStateChange).toHaveBeenLastCalledWith({
+      count: 4,
+      width: 2,
+      height: 2,
+    });
+    expect(validate({ count: 4, width: 2, height: 2 }, { n: 2 })).toBe(true);
+    // Four dots in a 2 × 2 box with one moved out is not a square.
+    fireEvent.click(cell(3, 3));
+    fireEvent.click(cell(4, 4));
+    expect(onStateChange).toHaveBeenLastCalledWith({
+      count: 4,
+      width: 3,
+      height: 3,
+    });
+    for (const cells of [
+      [2, 2],
+      [2, 3],
+      [3, 2],
+      [4, 4],
+    ] as const) {
+      fireEvent.click(cell(cells[0], cells[1]));
+    }
+    expect(onStateChange).toHaveBeenLastCalledWith({
+      count: 0,
+      width: 0,
+      height: 0,
+    });
+    expect(validate({ count: 4, width: 2, height: 2 }, {})).toBe(false);
+  });
 });

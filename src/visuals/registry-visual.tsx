@@ -6,11 +6,7 @@ import {
   lazy,
   Suspense,
 } from "react";
-import {
-  findVisual,
-  type VisualProps,
-  type VisualState,
-} from "@/visuals/registry";
+import { findVisual, type VisualProps } from "@/visuals/registry";
 
 type LazyVisual = LazyExoticComponent<ComponentType<VisualProps>>;
 
@@ -29,13 +25,10 @@ function lazyVisual(id: string): LazyVisual {
   return component;
 }
 
-type RegistryVisualProps = {
-  id: string;
-  onStateChange?: (state: VisualState) => void;
-};
+type RegistryVisualProps = VisualProps & { id: string };
 
 // Renders a registered visual by id, loading its code on first use.
-export function RegistryVisual({ id, onStateChange }: RegistryVisualProps) {
+export function RegistryVisual({ id, ...props }: RegistryVisualProps) {
   const Visual = lazyVisual(id);
   return (
     <Suspense
@@ -43,7 +36,7 @@ export function RegistryVisual({ id, onStateChange }: RegistryVisualProps) {
         <div aria-busy className="h-visual-frame w-full rounded-lg bg-muted" />
       }
     >
-      <Visual onStateChange={onStateChange} />
+      <Visual {...props} />
     </Suspense>
   );
 }
