@@ -4,6 +4,7 @@ import path from "node:path";
 import { type Browser, chromium, type Page, webkit } from "@playwright/test";
 import { collectVisualRefs } from "@/content/check";
 import { readContentRoot } from "@/content/load";
+import { MASCOT_EXPRESSIONS, MASCOT_SIZES } from "@/mascot/expressions";
 import { findVisual, visualRegistry } from "@/visuals/registry";
 import {
   attrSelector,
@@ -22,19 +23,20 @@ import {
   TEST_SERVER_ENV,
 } from "../e2e/targets";
 
-// Usage: visual-shot <lessonId|all>
-// Screenshots every visual a lesson uses (or the whole registry) at each
-// target device into .shots/<target>/, and fails when any element leaves the
-// visual frame or two sibling shapes/boxes overlap.
+// Usage: visual-shot <lessonId|all|mascot>
+// Screenshots every visual a lesson uses (or the whole registry, or every owl
+// expression at every size) at each target device into .shots/<target>/, and
+// fails when any element leaves the frame or two sibling shapes/boxes overlap.
 
 const ALL = "all";
+const MASCOT = "mascot";
 const SHOTS_DIR = path.join(process.cwd(), ".shots");
 const SERVER_START_TIMEOUT_MS = 120_000;
 const STEP_TIMEOUT_MS = 5_000;
 const PROBE_PATH = "/dev/visuals";
 
 function usage(): never {
-  console.error("Usage: pnpm visual:shot <lessonId|all>");
+  console.error("Usage: pnpm visual:shot <lessonId|all|mascot>");
   process.exit(2);
 }
 
@@ -179,6 +181,22 @@ function findLayoutIssues({ frame, decorative }: Selectors): string[] {
   return issues;
 }
 
+// One page to screenshot: a registry visual, or an owl expression at a size.
+type Shot = { id: string; path: string };
+
+function visualShots(ids: readonly string[]): Shot[] {
+  return ids.map((id) => ({ id, path: `/dev/visuals/${id}` }));
+}
+
+function mascotShots(): Shot[] {
+  return MASCOT_EXPRESSIONS.flatMap((expression) =>
+    Object.keys(MASCOT_SIZES).map((size) => ({
+      id: `${expression}-${size}`,
+      path: `/dev/mascot/${expression}?size=${size}`,
+    })),
+  );
+}
+
 type ShotResult = {
   id: string;
   // "-" when the visual could not be shot on any device.
@@ -187,14 +205,14 @@ type ShotResult = {
   issues: string[];
 };
 
-async function shootVisual(
+async function shoot(
   page: Page,
-  id: string,
+  { id, path: shotPath }: Shot,
   device: TargetDeviceName,
   outDir: string,
 ): Promise<ShotResult> {
   const result: ShotResult = { id, device, steps: 1, issues: [] };
-  const response = await page.goto(`${TEST_BASE_URL}/dev/visuals/${id}`);
+  const response = await page.goto(`${TEST_BASE_URL}${shotPath}`);
   if (!response?.ok()) {
     result.issues.push(`page returned ${response?.status() ?? "no response"}`);
     return result;
@@ -256,9 +274,16 @@ async function main() {
   const target = process.argv[2];
   if (!target) usage();
   const ids =
-    target === ALL ? Object.keys(visualRegistry) : lessonVisualIds(target);
+    target === MASCOT
+      ? []
+      : target === ALL
+        ? Object.keys(visualRegistry)
+        : lessonVisualIds(target);
   const unknown = ids.filter((id) => !findVisual(id));
-  const known = ids.filter((id) => findVisual(id));
+  const shots =
+    target === MASCOT
+      ? mascotShots()
+      : visualShots(ids.filter((id) => findVisual(id)));
 
   const outDir = path.join(SHOTS_DIR, target);
   rmSync(outDir, { recursive: true, force: true });
@@ -286,10 +311,8 @@ async function main() {
       // a `__name` helper; functions sent to page.evaluate need it too.
       await context.addInitScript("globalThis.__name = (target) => target;");
       const page = await context.newPage();
-      for (const id of known) {
-        results.push(
-          await shootVisual(page, id, name as TargetDeviceName, outDir),
-        );
+      for (const shot of shots) {
+        results.push(await shoot(page, shot, name as TargetDeviceName, outDir));
       }
     }
   } finally {

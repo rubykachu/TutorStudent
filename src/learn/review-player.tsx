@@ -11,6 +11,7 @@ import { findExercise, type LessonIndex } from "@/content";
 import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
+import { useCorrectSound } from "@/learn/use-correct-sound";
 import { CARD_RECAP_MS } from "@/lib/config";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
@@ -62,6 +63,7 @@ export function ReviewPlayer({
   const [session, setSession] = useState<ReviewSession | null>(null);
   // Queue position whose card recap is showing.
   const [recapAt, setRecapAt] = useState<number | null>(null);
+  const onCorrect = useCorrectSound(scope.childId);
 
   // Cards are chosen once, from the memory states at the moment the session
   // starts; ratings given during the session must not reshuffle it.
@@ -223,6 +225,7 @@ export function ReviewPlayer({
           key={session.current}
           exercise={exercise}
           concepts={index.conceptById}
+          onCorrect={onCorrect}
           onDone={finish}
         >
           {(slot) => renderAnswer(exercise, slot)}

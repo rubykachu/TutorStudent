@@ -105,6 +105,18 @@
   --color-avatar-beak: #fb923c;
   --color-avatar-cheek: #f9a8d4;
 
+  /*
+   * Owl mascot: caramel body with a darker shade for tufts and wings, a cream
+   * face and belly, an amber beak and feet. Decoration only, never text.
+   */
+  --color-mascot-body: #c08457;
+  --color-mascot-shade: #94603a;
+  --color-mascot-belly: #fdf0dc;
+  --color-mascot-beak: #f59e0b;
+  /* Streak flame: warm amber so it reads as "fire" without meaning "wrong". */
+  --color-streak: #ea8a0c;
+  --color-streak-soft: #fff4e0;
+
   /* Paired phone / tablet (md:) sizes; nothing may render below 16px. */
   --text-title: 1.75rem;
   --text-title--line-height: 1.2;

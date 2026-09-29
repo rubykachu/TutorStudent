@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  homeMascotExpression,
   lastStudiedBySubject,
   lessonState,
   lessonsForSubject,
@@ -184,5 +185,27 @@ describe("subjectProgress", () => {
         { lessonId: "retired" },
       ]),
     ).toEqual({ done: 1, total: 2 });
+  });
+});
+
+describe("homeMascotExpression", () => {
+  it("stays calm before the first study day", () => {
+    expect(homeMascotExpression([], "2026-09-30")).toBe("idle");
+  });
+
+  it("is happy once the child studied today", () => {
+    expect(
+      homeMascotExpression(["2026-09-30", "2026-09-28"], "2026-09-30"),
+    ).toBe("happy");
+  });
+
+  it("stays calm after a short break", () => {
+    expect(homeMascotExpression(["2026-09-28"], "2026-09-30")).toBe("idle");
+  });
+
+  it("welcomes the child back after three days away", () => {
+    expect(
+      homeMascotExpression(["2026-09-20", "2026-09-27"], "2026-09-30"),
+    ).toBe("welcome");
   });
 });

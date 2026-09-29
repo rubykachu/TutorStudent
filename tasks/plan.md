@@ -65,7 +65,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 - [x] 9. Hồ sơ + trang chủ + trang môn
 - [x] 10. Trang bài + player phần + block renderer + sticker
 - [x] 11. Ôn bài theo yêu cầu (nút "Ôn bài này")
-- [ ] 12. Linh vật + chuỗi ngày + nhắc môn + âm "ting"
+- [x] 12. Linh vật + chuỗi ngày + nhắc môn + âm "ting"
 
 **Checkpoint C:** với fixture: chọn hồ sơ → học hết một phần → bấm "Ôn bài này" → thẻ vừa sai được hỏi trước. Ảnh nguồn hai bài đã có trong `sources/` (đặt tên theo trang). **Xin người dùng ảnh một bài mẫu** cho task 17.
 

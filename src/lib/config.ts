@@ -30,3 +30,10 @@ export const SUBJECT_NUDGE_AFTER_DAYS = 3;
 
 // Longest child name the profile form accepts, so it fits the home greeting.
 export const PROFILE_NAME_MAX_LENGTH = 20;
+
+// Missed days per Monday–Sunday week that keep the study streak alive.
+export const STREAK_REST_DAYS_PER_WEEK = 1;
+
+// The home owl says "good to see you again" once the child comes back after
+// at least this many Vietnam days without studying.
+export const MASCOT_WELCOME_AFTER_DAYS = 3;

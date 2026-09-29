@@ -8,6 +8,7 @@ import {
   ACTIVE_PROFILE_KEY,
   awardSticker,
   DEVICE_SCOPE,
+  markActivityDay,
   putProfile,
   putSectionProgress,
   setSetting,
@@ -18,18 +19,21 @@ import {
   CONTENT_INDEX_URL,
   createProfile,
   readChildProgress,
+  readSoundEnabled,
   requestContentIndex,
   requestLesson,
   resetAppDbForTesting,
   resetContentIndexForTesting,
   resetLessonsForTesting,
   setActiveProfile,
+  setSoundEnabled,
   useActiveProfile,
   useChildProgress,
   useContentIndex,
   useLesson,
   useLessonProgress,
   useProfiles,
+  useSoundEnabled,
 } from "@/progress/hooks";
 import { recordAttempt, saveSectionPosition } from "@/progress/record";
 import type { ContentIndex, Subject } from "@/schema/content";
@@ -155,7 +159,7 @@ describe("profiles and the active child", () => {
 });
 
 describe("child progress", () => {
-  it("reads one child's attempts, sections and stickers", async () => {
+  it("reads one child's attempts, sections, stickers and study days", async () => {
     const scope = { familyId: LOCAL_FAMILY_ID, childId: "kid-1" };
     const section = {
       ...scope,
@@ -174,6 +178,7 @@ describe("child progress", () => {
         attempts: [],
         sections: [section],
         stickers: [],
+        activityDays: [],
       }),
     );
 
@@ -188,6 +193,25 @@ describe("child progress", () => {
     expect((await readChildProgress(appDb(), "kid-2")).sections).toHaveLength(
       1,
     );
+
+    await act(() => markActivityDay(appDb(), scope, "2026-03-02"));
+    await waitFor(() =>
+      expect(result.current?.activityDays).toEqual(["2026-03-02"]),
+    );
+  });
+});
+
+describe("sound setting", () => {
+  it("is on by default and kept per child once turned off", async () => {
+    const { result } = renderHook(() => useSoundEnabled("kid-1"));
+    await waitFor(() => expect(result.current).toBe(true));
+
+    await act(() => setSoundEnabled("kid-1", false));
+    await waitFor(() => expect(result.current).toBe(false));
+    expect(await readSoundEnabled(appDb(), "kid-2")).toBe(true);
+
+    await act(() => setSoundEnabled("kid-1", true));
+    await waitFor(() => expect(result.current).toBe(true));
   });
 });
 

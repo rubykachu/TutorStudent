@@ -165,7 +165,8 @@ export type ExerciseMachine<I> = {
   canCheck: boolean;
   firstTryCorrect: boolean;
   setInput: (input: I | null) => void;
-  check: () => void;
+  // Grades the input; returns whether the answer was accepted.
+  check: () => boolean;
   startRetype: () => void;
   // Moves `correct` to `done` and returns the outcome to record.
   finish: () => ExerciseOutcome;
@@ -188,8 +189,10 @@ export function useExerciseMachine<E extends BasicExercise>(
   }, []);
 
   const check = useCallback(() => {
-    if (!canCheck(state) || state.input === null) return;
-    dispatch({ type: "check", result: grade(exercise, state.input) });
+    if (!canCheck(state) || state.input === null) return false;
+    const result = grade(exercise, state.input);
+    dispatch({ type: "check", result });
+    return result.correct;
   }, [exercise, state]);
 
   const startRetype = useCallback(() => dispatch({ type: "retype" }), []);

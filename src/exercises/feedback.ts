@@ -3,11 +3,9 @@ import {
   type MachineState,
   type Phase,
 } from "@/exercises/machine";
+import type { MascotExpression } from "@/mascot/expressions";
 import type { BasicExercise, Concept, TargetRef } from "@/schema/content";
 import type { HighlightColor } from "@/visuals/shared/highlight";
-
-// Owl expressions the exercise frame asks for; the mascot draws them.
-export type MascotExpression = "idle" | "hint" | "cheer" | "happy";
 
 export type HighlightSpec = { color: HighlightColor; strong: boolean };
 
