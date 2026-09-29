@@ -8,6 +8,14 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/*
+ * `tall:` = a tablet held upright (portrait iPad 820×1180): wide enough for the
+ * tablet layout and tall enough that learning screens and home would otherwise
+ * leave a large empty band, so content is allowed to grow into the height.
+ * Landscape tablets and phones do not match.
+ */
+@custom-variant tall (@media (min-width: 48rem) and (min-height: 62rem));
+
 /* shadcn/ui components read these unprefixed variables directly. */
 :root {
   --background: #f8fafc;

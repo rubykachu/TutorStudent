@@ -111,6 +111,10 @@ describe("summarizeLesson", () => {
         },
       ],
       cardCount: 3,
+      sticker: {
+        name: "Ngôi sao chăm chỉ",
+        visualId: "fixture.visual.star-sticker",
+      },
     });
   });
 });

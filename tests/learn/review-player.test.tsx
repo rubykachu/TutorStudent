@@ -1,18 +1,12 @@
 import "fake-indexeddb/auto";
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ReviewPlayer } from "@/learn/review-player";
-import { CARD_RECAP_MS, LOCAL_FAMILY_ID } from "@/lib/config";
+import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { setNowForTesting } from "@/lib/time";
 import { type ChildScope, listAttempts, TutorDb } from "@/progress/db";
 import { recordAttempt } from "@/progress/record";
-import { CARD_A, CARD_B, LESSON_ID, learnIndex } from "./helpers";
+import { CARD_A, CARD_B, choice, LESSON_ID, learnIndex } from "./helpers";
 
 const scope: ChildScope = { familyId: LOCAL_FAMILY_ID, childId: "kid-1" };
 const AT = new Date("2026-03-02T01:00:00Z");
@@ -94,15 +88,14 @@ describe("ReviewPlayer", () => {
     tap("Đúng");
     tap("Kiểm tra");
     tap("Tiếp");
-    // A tap anywhere on the recap also moves on.
-    fireEvent.click(await screen.findByText("Nhớ nhé!"));
 
+    // Right the first time: no recap, straight to the re-ask.
+    await waitFor(() => expect(item()).toHaveAttribute("data-reask", "true"));
+    expect(screen.queryByText("Nhớ nhé!")).toBeNull();
     expect(item()).toHaveAttribute("data-card", CARD_A);
-    expect(item()).toHaveAttribute("data-reask", "true");
     expect(screen.getByText("Hỏi lại")).toBeInTheDocument();
     tap("Đúng");
     tap("Kiểm tra");
-    tap("Tiếp");
     tap("Tiếp");
 
     expect(await screen.findByText("Ôn xong 2 thẻ!")).toBeInTheDocument();
@@ -117,7 +110,7 @@ describe("ReviewPlayer", () => {
     expect(onAgain).toHaveBeenCalledOnce();
   });
 
-  it("hides the recap on its own after a few seconds", async () => {
+  it("keeps the recap of a missed card until the child taps Tiếp", async () => {
     render(
       <ReviewPlayer
         db={db}
@@ -129,17 +122,40 @@ describe("ReviewPlayer", () => {
     );
     await screen.findByText("Câu luyện A");
     vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+    tap("Sai");
+    tap("Kiểm tra");
     tap("Đúng");
     tap("Kiểm tra");
     tap("Tiếp");
-    await vi.waitFor(() =>
-      expect(screen.getByText("Nhớ nhé!")).toBeInTheDocument(),
-    );
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(CARD_RECAP_MS);
-    });
+    const recap = await vi.waitFor(() => screen.getByText("Nhớ nhé!"));
+    await vi.advanceTimersByTimeAsync(60_000);
+    // Neither time nor a tap outside the button closes it.
+    fireEvent.click(recap);
+    expect(screen.getByText("Nhớ nhé!")).toBeInTheDocument();
+    expect(item()).toBeNull();
+
+    tap("Tiếp");
     expect(screen.queryByText("Nhớ nhé!")).toBeNull();
     expect(item()).toHaveAttribute("data-card", CARD_B);
+  });
+
+  it("prefers a bank exercise over the practice the child just did", async () => {
+    // Card A gets a second exercise outside any section practice.
+    const base = learnIndex().lesson;
+    const index = learnIndex({
+      exercises: [...base.exercises, choice("kho-a", [CARD_A], "Câu kho A")],
+    });
+    render(
+      <ReviewPlayer
+        db={db}
+        index={index}
+        scope={scope}
+        onAgain={vi.fn()}
+        random={() => 0}
+      />,
+    );
+    expect(await screen.findByText("Câu kho A")).toBeInTheDocument();
+    expect(item()).toHaveAttribute("data-exercise", `${LESSON_ID}.ex.kho-a`);
   });
 
   it("says there is nothing to review before any card is opened", async () => {

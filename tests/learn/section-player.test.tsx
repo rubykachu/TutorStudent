@@ -174,6 +174,13 @@ describe("SectionPlayer", () => {
     tap("Xong phần");
     // Another section is still open: no sticker, and it is offered next.
     expect(await screen.findByText("Xong phần này!")).toBeInTheDocument();
+    // Praise names the section; progress says how far the sticker is.
+    expect(
+      screen.getByText("Bạn vừa học xong “Phần một”. Giỏi lắm!"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Xong 1/2 phần — thêm 1 phần là có sticker"),
+    ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Học phần tiếp/ })).toHaveAttribute(
       "href",
       `/lessons/${LESSON_ID}/sections/${LESSON_ID}.section.two`,

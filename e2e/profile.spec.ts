@@ -1,12 +1,20 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { createProfile, FIXTURE_LESSON_TITLE } from "./flows";
-import { expectNoHorizontalScroll } from "./layout";
+import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 
 // Each test starts in a fresh browser context, so IndexedDB is empty and the
 // device has no profile yet. The dev server runs with CONTENT_INCLUDE_FIXTURE=1,
-// so the draft fixture lesson is the only math lesson; a default build leaves
-// it (and every other draft) out of /content/index.json, which the unit tests
-// of the content index cover.
+// so the draft fixture lesson (textbook order 0) is the first math lesson,
+// next to every published one; a default build leaves it (and every other
+// draft) out of /content/index.json, which the unit tests of the content index
+// cover.
+
+// Lessons the served index lists, so the checks follow published content.
+async function servedLessons(page: Page): Promise<{ subject: string }[]> {
+  const response = await page.request.get("/content/index.json");
+  return ((await response.json()) as { lessons: { subject: string }[] })
+    .lessons;
+}
 
 test("a first visit creates a profile that survives a reload", async ({
   page,
@@ -21,15 +29,38 @@ test("a first visit creates a profile that survives a reload", async ({
 
   await createProfile(page, "Bé Na", "Cáo");
   await expect(page).toHaveURL(/\/$/);
+  const lessons = await servedLessons(page);
+  const mathLessons = lessons.filter((l) => l.subject === "math").length;
 
-  const math = page.getByRole("link", { name: /Toán/ });
+  // No chain yet: an invitation, never "0 ngày".
+  await expect(
+    page.getByText("Bắt đầu chuỗi ngày học hôm nay nhé"),
+  ).toBeVisible();
+  // The main action starts the first lesson's first section in one tap.
+  const start = page.locator("[data-continue]");
+  await expect(start).toHaveAccessibleName(
+    new RegExp(`^Bắt đầu học: ${FIXTURE_LESSON_TITLE}, phần 1`),
+  );
+  await expect(start).toHaveAttribute(
+    "href",
+    "/lessons/fixture/sections/fixture.section.phep-nhan",
+  );
+
+  const math = page.locator('[data-subject="math"]');
   await expect(math).toBeVisible();
   await expect(
-    math.getByRole("img", { name: "Xong 0 trên 1 bài" }),
+    math.getByRole("img", { name: `Xong 0 trên ${mathLessons} bài` }),
   ).toBeVisible();
+  await expect(math).toContainText(`${mathLessons} bài · Chưa học`);
   await expect(page.getByRole("link", { name: /Ngữ văn/ })).toContainText(
     "Sắp có bài",
   );
+  // Every lesson's sticker waits, greyed, in the strip.
+  await expect(page.locator("[data-sticker-lesson]")).toHaveCount(
+    lessons.length,
+  );
+  await expect(page.locator('[data-sticker-earned="true"]')).toHaveCount(0);
+  await expectTouchTargets(page);
   await expectNoHorizontalScroll(page);
 
   await page.reload();
@@ -48,7 +79,7 @@ test("a first visit creates a profile that survives a reload", async ({
   await expect(lesson).toHaveAttribute("href", "/lessons/fixture");
   await expect(lesson).toContainText("Chưa học");
   // Exactly the lessons in the served index: nothing else leaks into the list.
-  await expect(page.locator("[data-lesson]")).toHaveCount(1);
+  await expect(page.locator("[data-lesson]")).toHaveCount(mathLessons);
   await expectNoHorizontalScroll(page);
 
   await page.getByRole("link", { name: "Trang chủ" }).click();

@@ -1,34 +1,37 @@
 "use client";
 
-import { ChevronRight, CircleCheck, X } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
-import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
 import { SectionStepper } from "@/components/section-stepper";
 import { findExercise, type LessonIndex } from "@/content";
 import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
+import { BlockStage } from "@/learn/block-stage";
+import { DoneScreen } from "@/learn/done-screen";
 import { useCorrectSound } from "@/learn/use-correct-sound";
-import { CARD_RECAP_MS } from "@/lib/config";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
-import type { ChildScope, TutorDb } from "@/progress/db";
+import { type ChildScope, listAttempts, type TutorDb } from "@/progress/db";
 import { readLessonProgress } from "@/progress/hooks";
 import { recordAttempt } from "@/progress/record";
-import type { BasicExercise } from "@/schema/content";
+import type { BasicExercise, RecapBlock } from "@/schema/content";
 import { selectReview } from "@/srs/select";
 import {
   answerCurrent,
+  closeRecap,
   currentItem,
   isRated,
   lastReviewExerciseIds,
   type ReviewSession,
   ratedCount,
+  recentExerciseIds,
   startSession,
 } from "@/srs/session";
+import { findVisual } from "@/visuals/registry";
 
 type ReviewPlayerProps = {
   db: TutorDb;
@@ -49,9 +52,20 @@ function basicExercise(
   return exercise && exercise.type !== "openEnded" ? exercise : undefined;
 }
 
+// Starts loading a recap's visual while its question is still on screen, so
+// the recap is drawn at once if the answer is missed.
+function preloadRecap(recap: RecapBlock | undefined): void {
+  if (recap?.type !== "visual") return;
+  // A failed preload is not an error yet: the recap loads again when drawn.
+  findVisual(recap.visualId)
+    ?.load()
+    .catch(() => undefined);
+}
+
 // One on-demand review session of a lesson: the cards closest to being
-// forgotten, each asked with one exercise (rated), its recap shown briefly
-// after the answer, and missed cards asked again once at the end (not rated).
+// forgotten, each asked with one exercise (rated), missed cards asked again
+// once at the end (not rated). After a missed question the card's recap stays
+// on screen until the child taps "Tiếp"; a right answer moves straight on.
 export function ReviewPlayer({
   db,
   index,
@@ -60,23 +74,27 @@ export function ReviewPlayer({
   random = Math.random,
 }: ReviewPlayerProps) {
   const { lesson } = index;
+  const { familyId, childId } = scope;
   const [session, setSession] = useState<ReviewSession | null>(null);
-  // Queue position whose card recap is showing.
-  const [recapAt, setRecapAt] = useState<number | null>(null);
-  const onCorrect = useCorrectSound(scope.childId);
+  const onCorrect = useCorrectSound(childId);
 
   // Cards are chosen once, from the memory states at the moment the session
   // starts; ratings given during the session must not reshuffle it.
   useEffect(() => {
     let live = true;
-    readLessonProgress(db, scope.childId, lesson.id).then((progress) => {
+    Promise.all([
+      readLessonProgress(db, childId, lesson.id),
+      listAttempts(db, { familyId, childId }),
+    ]).then(([progress, attempts]) => {
       if (!live) return;
+      const at = now();
       const picks = selectReview({
-        now: now(),
+        now: at,
         lessonId: lesson.id,
         states: progress.cardStates,
         index,
         lastUsedExerciseIds: lastReviewExerciseIds(progress.reviewAttempts),
+        recentExerciseIds: recentExerciseIds(attempts, at),
         random,
       }).filter((pick) => basicExercise(index, pick.exerciseId));
       setSession(startSession(picks));
@@ -84,17 +102,15 @@ export function ReviewPlayer({
     return () => {
       live = false;
     };
-  }, [db, scope.childId, lesson.id, index, random]);
+  }, [db, familyId, childId, lesson.id, index, random]);
 
-  useEffect(() => {
-    if (recapAt === null) return;
-    const timer = setTimeout(() => setRecapAt(null), CARD_RECAP_MS);
-    return () => clearTimeout(timer);
-  }, [recapAt]);
+  const item = session ? currentItem(session) : undefined;
+  const upcomingRecap = item && index.cardById.get(item.cardId)?.recap;
+  useEffect(() => preloadRecap(upcomingRecap), [upcomingRecap]);
 
   if (!session) return null;
 
-  const item = currentItem(session);
+  const { recap } = session;
   const header = (
     <header className="flex items-center gap-4">
       <Link
@@ -104,39 +120,33 @@ export function ReviewPlayer({
       >
         <X aria-hidden className="size-7" />
       </Link>
-      {session.items.length > 0 && (item || recapAt !== null) && (
+      {session.items.length > 0 && (item || recap) && (
         <SectionStepper
           total={session.items.length}
-          current={recapAt ?? session.current}
+          current={recap?.at ?? session.current}
         />
       )}
     </header>
   );
 
-  if (recapAt !== null) {
-    const card = index.cardById.get(session.items[recapAt]?.cardId ?? "");
-    const skip = () => setRecapAt(null);
+  if (recap) {
+    const card = index.cardById.get(recap.cardId);
     return (
       <>
         {header}
-        {/* Tapping anywhere skips the recap; the button is the keyboard path. */}
-        {/* biome-ignore lint/a11y/noStaticElementInteractions: see above */}
-        {/* biome-ignore lint/a11y/useKeyWithClickEvents: see above */}
-        <div
-          className="flex flex-1 flex-col gap-6"
-          data-review-step="recap"
-          onClick={skip}
-        >
-          <h1 className="text-block font-semibold md:text-block-lg">
-            Nhớ nhé!
-          </h1>
+        <div className="flex flex-1 flex-col" data-review-step="recap">
           {card && (
-            <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8">
-              <BlockView block={card.recap} />
-            </div>
+            <BlockStage
+              block={card.recap}
+              heading={
+                <h1 className="text-block font-semibold md:text-block-lg">
+                  Nhớ nhé!
+                </h1>
+              }
+            />
           )}
           <BottomBar>
-            <BigButton onClick={skip}>
+            <BigButton onClick={() => setSession(closeRecap(session))}>
               Tiếp
               <ChevronRight aria-hidden className="size-6" />
             </BigButton>
@@ -151,27 +161,30 @@ export function ReviewPlayer({
     return (
       <>
         {header}
-        <div
-          className="flex flex-1 flex-col items-center justify-center gap-6 text-center"
-          data-review-step="end"
+        <DoneScreen
+          stepAttr={{ name: "data-review-step", value: "end" }}
+          owl={rated > 0 ? "happy" : "idle"}
+          title={rated > 0 ? `Ôn xong ${rated} thẻ!` : "Chưa có thẻ nào để ôn"}
+          actions={
+            <>
+              {rated > 0 && <BigButton onClick={onAgain}>Ôn tiếp</BigButton>}
+              <Link
+                href={lessonPath(lesson.id)}
+                className={bigButtonClassName(
+                  rated > 0 ? "secondary" : "primary",
+                )}
+              >
+                Về bài
+              </Link>
+            </>
+          }
         >
-          <CircleCheck aria-hidden className="size-20 text-correct" />
-          <h1 className="text-title font-bold md:text-title-lg">
-            {rated > 0 ? `Ôn xong ${rated} thẻ!` : "Chưa có thẻ nào để ôn"}
-          </h1>
-          {rated === 0 && <p>Học một phần của bài trước rồi ôn nhé.</p>}
-          <BottomBar>
-            {rated > 0 && <BigButton onClick={onAgain}>Ôn tiếp</BigButton>}
-            <Link
-              href={lessonPath(lesson.id)}
-              className={bigButtonClassName(
-                rated > 0 ? "secondary" : "primary",
-              )}
-            >
-              Về bài
-            </Link>
-          </BottomBar>
-        </div>
+          <p className="max-w-md">
+            {rated > 0
+              ? `Bạn vừa ôn lại bài “${lesson.title}”. Giỏi lắm!`
+              : "Học một phần của bài trước rồi ôn nhé."}
+          </p>
+        </DoneScreen>
       </>
     );
   }
@@ -195,7 +208,6 @@ export function ReviewPlayer({
         now(),
       );
     }
-    setRecapAt(session.current);
     setSession(
       answerCurrent(
         session,

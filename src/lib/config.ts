@@ -5,8 +5,9 @@ export const FSRS_REQUEST_RETENTION = 0.9;
 export const FSRS_ENABLE_SHORT_TERM = false;
 
 export const REVIEW_SESSION_SIZE = 10;
-// How long a card's recap stays up after its review question; a tap skips it.
-export const CARD_RECAP_MS = 3000;
+// Review avoids exercises the child answered within this many minutes (for
+// example the section practice just finished) whenever the card has another.
+export const REVIEW_RECENT_MINUTES = 30;
 // A card whose predicted recall drops below this counts as "about to be forgotten".
 export const FORGETTING_THRESHOLD = 0.7;
 

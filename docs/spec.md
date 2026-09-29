@@ -200,7 +200,7 @@ Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, c
 ```
 
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.
-- `Card.recap` hiện sau khi câu ôn kết thúc (trạng thái `done`, tức sau cả vòng gợi ý và nhập lại), tự ẩn sau 3 giây hoặc khi trẻ chạm để qua. `Section.recap` hiện ở cuối phần.
+- `Card.recap` chỉ hiện sau câu ôn trẻ trả lời sai ở lần đầu (kể cả lần hỏi lại), khi câu đã kết thúc (trạng thái `done`, tức sau cả vòng gợi ý và nhập lại); câu đúng ngay thì sang câu kế luôn. Tóm tắt không tự ẩn, không bỏ qua bằng chạm ngoài nút: chỉ nút "Tiếp" mới đi tiếp. `Section.recap` hiện ở cuối phần.
 - `openEnded` không gắn card (không vào phiên ôn); các bước con tự chấm của nó có thể gắn card. `openEnded` tính là 1 exercise nhưng không tính vào số dạng bài khác nhau.
 
 Quy tắc:
@@ -267,7 +267,7 @@ Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài,
 - **Rating:** đúng ngay lần đầu = `Good`; sai ở lần đầu (kể cả đúng sau gợi ý) = `Again`. Không dùng `Easy`/`Hard`. Gợi ý 3 nấc vẫn chạy để dạy, không ảnh hưởng rating.
 - **Câu nào được rating:** câu trong `practiceIds` của phần học và câu trong phiên ôn; rating áp cho mọi `cardIds` của exercise. Câu `checkIds` không rating.
 - **Mở thẻ:** câu luyện tập trong phần học là lần gặp đầu tiên của card. Chỉ card đã mở mới vào phiên ôn.
-- **Chọn thẻ khi bấm ôn:** các card đã mở của bài, sắp theo mức nhớ ước lượng tại thời điểm bấm (`retrievability` của ts-fsrs, thấp nhất trước), lấy tối đa `REVIEW_SESSION_SIZE` = 10. Mỗi card lấy 1 exercise ngẫu nhiên từ index card → exercises, tránh exercise đã dùng ở lần ôn trước. Bài ít hơn 10 card thì ôn hết.
+- **Chọn thẻ khi bấm ôn:** các card đã mở của bài, sắp theo mức nhớ ước lượng tại thời điểm bấm (`retrievability` của ts-fsrs, thấp nhất trước), lấy tối đa `REVIEW_SESSION_SIZE` = 10. Mỗi card lấy 1 exercise ngẫu nhiên từ index card → exercises, ưu tiên lần lượt: chưa có trong phiên này, không vừa làm trong `REVIEW_RECENT_MINUTES` = 30 phút gần nhất (vd phần luyện tập vừa xong), không dùng ở lần ôn trước, là câu trong "kho" (không thuộc `practiceIds` của phần mở card đó); ưu tiên nào làm hết lựa chọn thì bỏ qua ưu tiên đó. Bài ít hơn 10 card thì ôn hết.
 - **Hỏi lại trong phiên:** card bị `Again` được hỏi lại một lần ở cuối phiên bằng exercise khác (nếu có; không thì cùng exercise). Lần hỏi lại chỉ để dạy, không rating.
 - **Gợi ý nhẹ (không ép):** thẻ bài hiển thị số card có mức nhớ dưới `FORGETTING_THRESHOLD` (mặc định 0.7), vd "6 thẻ sắp quên". Không thông báo, không chặn.
 - **Thời gian:** mọi code lấy thời điểm hiện tại qua `now()` trong `src/lib/time.ts` (thay được trong test).
@@ -275,8 +275,8 @@ Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài,
 
 ### 5.5 Luồng học của trẻ
 - **Chọn hồ sơ:** sau khi mở khoá, chọn hồ sơ con (avatar lớn); máy nhớ lựa chọn cuối, đổi được từ góc màn hình.
-- **Trang chủ:** linh vật + chuỗi ngày + lưới môn học + nhắc môn lâu chưa học (> 3 ngày).
-- **Bài** → nút "Ôn bài này" (khi đã có card mở) + danh sách phần (chưa học / đang học / xong) → phần: các block giải thích tuần tự (bấm "Tiếp") → check → luyện tập → nhắc lại (`Section.recap`) → nhận sticker khi xong mọi phần của bài.
+- **Trang chủ:** linh vật + chuỗi ngày (chưa có chuỗi thì mời "Bắt đầu chuỗi ngày học hôm nay nhé", không hiện "0 ngày") + thẻ "Học tiếp" vào thẳng phần kế tiếp (bài học gần nhất chưa xong; học xong một bài thì bài kế của môn đó; chưa học gì thì bài đầu tiên, trẻ mới thấy "Bắt đầu học") + lưới môn học (luôn có dòng phụ: "Sắp có bài", "n bài · Chưa học", "n bài · Đang học phần k", "Xong d/n bài") + nhắc môn lâu chưa học (> 3 ngày) + dải sticker (đã nhận có màu, chưa nhận xám).
+- **Bài** → nút "Ôn bài này" (khi đã có card mở; nút phụ khi bài còn phần phải học) + danh sách phần (chưa học / đang học / xong), phần kế tiếp viền màu môn và gắn nhãn "Học tiếp" → phần: các block giải thích tuần tự (bấm "Tiếp") → check → luyện tập → nhắc lại (`Section.recap`) → nhận sticker khi xong mọi phần của bài.
 - **Chuỗi ngày:** tính theo ngày giờ Việt Nam; tuần từ thứ Hai đến Chủ nhật; mỗi tuần có 1 "ngày nghỉ" tự động giữ chuỗi.
 - **Bộ sách:** hồ sơ mới lấy bộ sách mặc định trong `subjects.json`; màn đổi bộ sách chỉ làm khi một môn có từ hai bộ trở lên.
 

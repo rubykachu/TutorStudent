@@ -8,21 +8,27 @@ type SubjectColor = Subject["color"];
 // Class names are spelled out in full because Tailwind only generates
 // utilities it can find as literal strings in the source.
 export const SUBJECT_STYLES: Readonly<
-  Record<SubjectColor, { bg: string; text: string; icon: LucideIcon }>
+  Record<
+    SubjectColor,
+    { bg: string; text: string; border: string; icon: LucideIcon }
+  >
 > = {
   math: {
     bg: "bg-subject-math",
     text: "text-subject-math",
+    border: "border-subject-math",
     icon: Calculator,
   },
   literature: {
     bg: "bg-subject-literature",
     text: "text-subject-literature",
+    border: "border-subject-literature",
     icon: BookOpen,
   },
   geography: {
     bg: "bg-subject-geography",
     text: "text-subject-geography",
+    border: "border-subject-geography",
     icon: Globe,
   },
 };

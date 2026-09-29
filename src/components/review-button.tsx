@@ -1,23 +1,34 @@
 import { RotateCcw } from "lucide-react";
 import Link from "next/link";
-import { bigButtonClassName } from "@/components/big-button";
+import {
+  type BigButtonVariant,
+  bigButtonClassName,
+} from "@/components/big-button";
 
 type ReviewButtonProps = {
   href: string;
   // Opened cards whose predicted recall is below the forgetting threshold;
   // a gentle hint, never a requirement.
   forgetting: number;
+  // Secondary while a section is still to study, so "Học tiếp" stays the
+  // main action of the lesson page.
+  variant?: BigButtonVariant;
 };
 
 // "Ôn bài này": starts an on-demand review of the lesson, any time and as
 // often as the child likes.
-export function ReviewButton({ href, forgetting }: ReviewButtonProps) {
+export function ReviewButton({
+  href,
+  forgetting,
+  variant = "primary",
+}: ReviewButtonProps) {
   return (
     <Link
       href={href}
       data-review-button
+      data-variant={variant}
       className={bigButtonClassName(
-        "primary",
+        variant,
         "h-auto! min-h-14 py-3 md:h-auto! md:min-h-16",
       )}
     >

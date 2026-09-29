@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
-import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
 import { SectionStepper } from "@/components/section-stepper";
 import { Sticker } from "@/components/sticker";
@@ -17,6 +16,8 @@ import {
   type OpenEndedResult,
   OpenEndedRunner,
 } from "@/exercises/open-ended/open-ended-runner";
+import { BlockStage } from "@/learn/block-stage";
+import { DoneScreen } from "@/learn/done-screen";
 import {
   resumeStepIndex,
   type SectionStep,
@@ -26,7 +27,12 @@ import { useCorrectSound } from "@/learn/use-correct-sound";
 import { lessonPath, sectionPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
-import type { ChildScope, SectionPosition, TutorDb } from "@/progress/db";
+import {
+  type ChildScope,
+  getSectionProgress,
+  type SectionPosition,
+  type TutorDb,
+} from "@/progress/db";
 import {
   completeSection,
   recordAttempt,
@@ -47,6 +53,9 @@ type SectionPlayerProps = {
 
 const EXERCISE_LABELS = { check: "Kiểm tra nhanh", practice: "Luyện tập" };
 
+// A finished section and how many sections of its lesson are done with it.
+type Finished = SectionCompletion & { doneCount: number };
+
 // Plays one section: explanation blocks one at a time ("Tiếp"), the
 // comprehension checks (graded, never rated), the practice exercises (rated;
 // they open the cards for review) and the recap. Every move is saved, so
@@ -63,7 +72,7 @@ export function SectionPlayer({
   const [stepIndex, setStepIndex] = useState(() =>
     resumeStepIndex(steps, initialPosition),
   );
-  const [completion, setCompletion] = useState<SectionCompletion | null>(null);
+  const [completion, setCompletion] = useState<Finished | null>(null);
   const [saving, setSaving] = useState(false);
   const step = steps[stepIndex];
   const { familyId, childId } = scope;
@@ -90,15 +99,22 @@ export function SectionPlayer({
       return;
     }
     setSaving(true);
-    setCompletion(
-      await completeSection(
-        db,
-        scope,
-        { lessonId: lesson.id, sectionId: section.id },
-        lesson.sections.map((s) => s.id),
-        now(),
-      ),
+    const sectionIds = lesson.sections.map((s) => s.id);
+    const result = await completeSection(
+      db,
+      scope,
+      { lessonId: lesson.id, sectionId: section.id },
+      sectionIds,
+      now(),
     );
+    const records = await getSectionProgress(db, scope, lesson.id);
+    const done = new Set(
+      records.filter((r) => r.state === "done").map((r) => r.sectionId),
+    );
+    setCompletion({
+      ...result,
+      doneCount: sectionIds.filter((id) => done.has(id)).length,
+    });
   };
 
   const record = (
@@ -228,10 +244,8 @@ function StepView({
   switch (step.kind) {
     case "block":
       return (
-        <div className="flex flex-1 flex-col gap-6" data-section-step="block">
-          <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8">
-            <BlockView block={step.block} videos={lesson.videos} />
-          </div>
+        <div className="flex flex-1 flex-col" data-section-step="block">
+          <BlockStage block={step.block} videos={lesson.videos} />
           <BottomBar>
             <BigButton onClick={onNext}>
               Tiếp
@@ -242,13 +256,15 @@ function StepView({
       );
     case "recap":
       return (
-        <div className="flex flex-1 flex-col gap-6" data-section-step="recap">
-          <h2 className="text-block font-semibold md:text-block-lg">
-            Nhớ nhé!
-          </h2>
-          <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8">
-            <BlockView block={step.recap} />
-          </div>
+        <div className="flex flex-1 flex-col" data-section-step="recap">
+          <BlockStage
+            block={step.recap}
+            heading={
+              <h2 className="text-block font-semibold md:text-block-lg">
+                Nhớ nhé!
+              </h2>
+            }
+          />
           <BottomBar>
             <BigButton onClick={onNext} disabled={saving}>
               <CircleCheck aria-hidden className="size-6" />
@@ -303,66 +319,108 @@ function SectionDone({
 }: {
   lesson: Lesson;
   section: Section;
-  completion: SectionCompletion;
+  completion: Finished;
 }) {
   const reducedMotion = usePrefersReducedMotion();
   if (completion.lessonDone) {
     return (
-      <div
-        className="flex flex-1 flex-col items-center justify-center gap-6 text-center"
-        data-section-step="sticker"
-      >
-        <motion.div
-          className="w-48 md:w-64"
-          initial={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4 }}
-          animate={reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-          transition={
-            reducedMotion
-              ? { duration: 0.3 }
-              : { type: "spring", stiffness: 260, damping: 12 }
-          }
-        >
-          <Sticker
-            visualId={lesson.sticker.visualId}
-            name={lesson.sticker.name}
-            earned
-          />
-        </motion.div>
-        <h1 className="text-title font-bold md:text-title-lg">Giỏi quá!</h1>
-        <p>{`Bạn học xong cả bài và nhận sticker “${lesson.sticker.name}”.`}</p>
-        <BottomBar>
+      <DoneScreen
+        stepAttr={{ name: "data-section-step", value: "sticker" }}
+        title="Giỏi quá!"
+        art={
+          <motion.div
+            className="w-48 md:w-64"
+            initial={
+              reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4 }
+            }
+            animate={reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
+            transition={
+              reducedMotion
+                ? { duration: 0.3 }
+                : { type: "spring", stiffness: 260, damping: 12 }
+            }
+          >
+            <Sticker
+              visualId={lesson.sticker.visualId}
+              name={lesson.sticker.name}
+              earned
+            />
+          </motion.div>
+        }
+        actions={
           <Link href={lessonPath(lesson.id)} className={bigButtonClassName()}>
             Về bài
           </Link>
-        </BottomBar>
-      </div>
+        }
+      >
+        <p>{`Bạn học xong cả bài và nhận sticker “${lesson.sticker.name}”.`}</p>
+      </DoneScreen>
     );
   }
+  const total = lesson.sections.length;
+  const left = total - completion.doneCount;
   return (
-    <div
-      className="flex flex-1 flex-col items-center justify-center gap-6 text-center"
-      data-section-step="section-done"
-    >
-      <CircleCheck aria-hidden className="size-20 text-correct" />
-      <h1 className="text-title font-bold md:text-title-lg">Xong phần này!</h1>
-      <p>{section.title}</p>
-      <BottomBar>
-        {completion.nextSectionId && (
+    <DoneScreen
+      stepAttr={{ name: "data-section-step", value: "section-done" }}
+      title="Xong phần này!"
+      actions={
+        <>
+          {completion.nextSectionId && (
+            <Link
+              href={sectionPath(lesson.id, completion.nextSectionId)}
+              className={bigButtonClassName()}
+            >
+              Học phần tiếp
+              <ChevronRight aria-hidden className="size-6" />
+            </Link>
+          )}
           <Link
-            href={sectionPath(lesson.id, completion.nextSectionId)}
-            className={bigButtonClassName()}
+            href={lessonPath(lesson.id)}
+            className={bigButtonClassName("secondary")}
           >
-            Học phần tiếp
-            <ChevronRight aria-hidden className="size-6" />
+            Về bài
           </Link>
-        )}
-        <Link
-          href={lessonPath(lesson.id)}
-          className={bigButtonClassName("secondary")}
+        </>
+      }
+    >
+      <p className="max-w-lg">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
+      <div
+        className="flex w-full max-w-lg items-center gap-4 rounded-lg bg-surface p-4 text-left shadow-card md:p-6"
+        data-sections-done={completion.doneCount}
+      >
+        <Sticker
+          visualId={lesson.sticker.visualId}
+          name={lesson.sticker.name}
+          earned={false}
+          className="size-16 shrink-0"
+        />
+        <div className="flex min-w-0 flex-col gap-2">
+          <p className="font-semibold">
+            {`Xong ${completion.doneCount}/${total} phần — thêm ${left} phần là có sticker`}
+          </p>
+          <SectionDots total={total} done={completion.doneCount} />
+        </div>
+      </div>
+    </DoneScreen>
+  );
+}
+
+// Finished sections of the lesson as a row of ticks: no percentages.
+function SectionDots({ total, done }: { total: number; done: number }) {
+  return (
+    <div aria-hidden className="flex flex-wrap gap-2">
+      {Array.from({ length: total }, (_, i) => (
+        <span
+          // Dots only mark position.
+          // biome-ignore lint/suspicious/noArrayIndexKey: static list
+          key={i}
+          className={`flex size-6 items-center justify-center rounded-full ${
+            i < done ? "bg-correct text-primary-foreground" : "bg-muted"
+          }`}
         >
-          Về bài
-        </Link>
-      </BottomBar>
+          {i < done && <CircleCheck className="size-4" />}
+        </span>
+      ))}
     </div>
   );
 }

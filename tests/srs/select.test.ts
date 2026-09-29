@@ -1,5 +1,6 @@
 import { Rating } from "ts-fsrs";
 import { describe, expect, it } from "vitest";
+import { indexLesson } from "@/content";
 import { FORGETTING_THRESHOLD, REVIEW_SESSION_SIZE } from "@/lib/config";
 import type { ReviewRating } from "@/srs/rate";
 import { applyRating, retrievability } from "@/srs/schedule";
@@ -207,6 +208,73 @@ describe("selectReview", () => {
       { cardId: cardId("a"), exerciseId: exId("both") },
       { cardId: cardId("b"), exerciseId: exId("b1") },
     ]);
+  });
+});
+
+describe("selectReview prefers exercises the child has not just done", () => {
+  // Card a is opened by the practice of section "one" (a1); a2 and a3 are its
+  // bank. Card b has only practice exercises.
+  function practicedIndex() {
+    const base = lessonIndex({ a: ["a1", "a2", "a3"], b: ["b1", "b2"] });
+    const [section] = base.lesson.sections;
+    if (!section) throw new Error("helper lesson has a section");
+    return indexLesson({
+      ...base.lesson,
+      sections: [
+        { ...section, practiceIds: [exId("a1"), exId("b1"), exId("b2")] },
+      ],
+    });
+  }
+
+  it("asks a bank exercise rather than one from the section practice", () => {
+    const items = selectReview({
+      now: shifted(DAY),
+      lessonId: LESSON_ID,
+      states: [opened("a", Rating.Again)],
+      index: practicedIndex(),
+      random: first,
+    });
+    expect(items[0]?.exerciseId).toBe(exId("a2"));
+  });
+
+  it("avoids exercises answered moments ago", () => {
+    const items = selectReview({
+      now: shifted(DAY),
+      lessonId: LESSON_ID,
+      states: [opened("a", Rating.Again), opened("b", Rating.Again)],
+      index: practicedIndex(),
+      recentExerciseIds: [exId("a2"), exId("b1")],
+      random: first,
+    });
+    expect(items).toEqual([
+      { cardId: cardId("a"), exerciseId: exId("a3") },
+      { cardId: cardId("b"), exerciseId: exId("b2") },
+    ]);
+  });
+
+  it("varies the bank across reviews before going back to practice", () => {
+    const items = selectReview({
+      now: shifted(DAY),
+      lessonId: LESSON_ID,
+      states: [opened("a", Rating.Good)],
+      index: practicedIndex(),
+      lastUsedExerciseIds: [exId("a2")],
+      random: first,
+    });
+    expect(items[0]?.exerciseId).toBe(exId("a3"));
+  });
+
+  it("falls back to a recent practice exercise when nothing else exists", () => {
+    const items = selectReview({
+      now: shifted(DAY),
+      lessonId: LESSON_ID,
+      states: [opened("b", Rating.Good)],
+      index: practicedIndex(),
+      recentExerciseIds: [exId("b1"), exId("b2")],
+      lastUsedExerciseIds: [exId("b1")],
+      random: first,
+    });
+    expect(items[0]?.exerciseId).toBe(exId("b2"));
   });
 });
 
