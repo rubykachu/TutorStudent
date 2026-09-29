@@ -5,6 +5,7 @@ import { FactorList, type PowerSpec } from "./phan-tich";
 import { ZeroExponent, type ZeroExponentMode } from "./so-mu-0";
 import { HiddenExponentOne } from "./so-mu-an";
 import { type Mode, RepeatedProduct } from "./tinh-tung-buoc";
+import { SquareAndCube } from "./tom-tat-hinh";
 import { PlaceValueSum } from "./tong-hang";
 
 // Registry entries that reuse one component with fixed numbers. This module
@@ -63,6 +64,13 @@ export function factorList(
 export function placeValueSum(value: number): ComponentType<VisualProps> {
   function Example() {
     return <PlaceValueSum value={value} />;
+  }
+  return Example;
+}
+
+export function squareAndCube(side: number): ComponentType<VisualProps> {
+  function Example() {
+    return <SquareAndCube side={side} />;
   }
   return Example;
 }

@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { formatInteger } from "@/lib/number-format";
 import { PowerText } from "@/visuals/shared/power-text";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import { MATH_LINE, Reveal, ZeroTermNote } from "./parts";
+import { MATH_LINE, Reveal, ZeroTerms } from "./parts";
 
 // A zero digit, as in the exercises: its term is dropped from the sum.
 const NUMBER = 6084;
@@ -94,7 +94,7 @@ export default function TachSo() {
                 </Fragment>
               ))}
             </p>
-            <ZeroTermNote value={NUMBER} />
+            <ZeroTerms value={NUMBER} />
           </Reveal>
         </div>
       )}

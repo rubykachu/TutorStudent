@@ -123,27 +123,19 @@ export function Reveal({
   );
 }
 
-// A rule or recap screen: the sentence to remember in body text, never a grey
-// caption, above a labelled example that shows it.
-export function RuleCard({
-  rule,
-  children,
-}: {
-  rule: ReactNode;
-  children: ReactNode;
-}) {
+// A labelled example made of several parts (a picture, lines of maths, the
+// colour legend), stacked with even space. Its sentence is the note or
+// caption in lesson.json that goes with it.
+export function Example({ children }: { children: ReactNode }) {
   return (
-    <div className="flex w-full flex-col items-center gap-5">
-      <p className="max-w-prose text-center font-semibold">{rule}</p>
-      {children}
-    </div>
+    <div className="flex w-full flex-col items-center gap-5">{children}</div>
   );
 }
 
-// Why a sum by place value skips a place: "0 · 10² = 0, nên không cần viết
-// số hạng này." for each zero digit of `value` (the units place excepted,
-// which never has a power of 10 to drop).
-export function ZeroTermNote({ value }: { value: number }) {
+// "0 · 10² = 0" for each zero digit of `value` (the units place excepted,
+// which never has a power of 10 to drop): the maths behind leaving that term
+// out of a sum by place value. The sentence saying so is in lesson.json.
+export function ZeroTerms({ value }: { value: number }) {
   const digits = [...String(value)].map(Number);
   const zeroPlaces = digits
     .map((digit, i) => ({ digit, exponent: digits.length - 1 - i }))
@@ -159,7 +151,7 @@ export function ZeroTermNote({ value }: { value: number }) {
           ) : (
             <PowerText base={10} exponent={exponent} />
           )}{" "}
-          = 0, nên không cần viết số hạng này.
+          = 0
         </p>
       ))}
     </div>

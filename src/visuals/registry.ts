@@ -229,119 +229,119 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.dinh-nghia": {
     interactive: false,
-    load: () => lessonScreen("DinhNghia"),
+    load: () => ruleExample("DinhNghia"),
   },
   "luy-thua.visual.ket-ban-co": {
     interactive: false,
-    load: () => lessonScreen("KetBanCo"),
+    load: () => ruleExample("KetBanCo"),
   },
   "luy-thua.visual.quy-tac-so-mu-1": {
     interactive: false,
-    load: () => lessonScreen("QuyTacSoMu1"),
+    load: () => ruleExample("QuyTacSoMu1"),
   },
   "luy-thua.visual.bam-mu": {
     interactive: false,
-    load: () => lessonScreen("BamMu"),
+    load: () => ruleExample("BamMu"),
   },
   "luy-thua.visual.doc-binh-phuong": {
     interactive: false,
-    load: () => lessonScreen("DocBinhPhuong"),
+    load: () => lessonExample((m) => m.squareAndCube(2)),
   },
   "luy-thua.visual.tinh-tung-buoc": {
     interactive: false,
-    load: () => lessonScreen("TinhTungBuoc"),
+    load: () => lessonExample((m) => m.repeatedProduct(2, 5, "solution")),
   },
   "luy-thua.visual.quy-tac-nhan": {
     interactive: false,
-    load: () => lessonScreen("QuyTacNhan"),
+    load: () => ruleExample("QuyTacNhan"),
   },
   "luy-thua.visual.quy-tac-so-mu-an": {
     interactive: false,
-    load: () => lessonScreen("QuyTacSoMuAn"),
+    load: () => ruleExample("QuyTacSoMuAn"),
   },
   "luy-thua.visual.quy-tac-chia": {
     interactive: false,
-    load: () => lessonScreen("QuyTacChia"),
+    load: () => ruleExample("QuyTacChia"),
   },
   "luy-thua.visual.quy-tac-so-mu-0": {
     interactive: false,
-    load: () => lessonScreen("QuyTacSoMu0"),
+    load: () => lessonExample((m) => m.zeroExponent("solution")),
   },
   "luy-thua.visual.quy-tac-luy-thua-10": {
     interactive: false,
-    load: () => lessonScreen("QuyTacLuyThua10"),
+    load: () => ruleExample("QuyTacLuyThua10"),
   },
   "luy-thua.visual.quy-tac-tach-so": {
     interactive: false,
-    load: () => lessonScreen("QuyTacTachSo"),
+    load: () => import("@/visuals/math/luy-thua/tach-so"),
   },
   "luy-thua.visual.tom-tat-luy-thua": {
     interactive: false,
-    load: () => lessonScreen("TomTatLuyThua"),
+    load: () => import("@/visuals/math/luy-thua/cac-phan"),
   },
   "luy-thua.visual.tom-tat-binh-phuong": {
     interactive: false,
-    load: () => lessonScreen("TomTatBinhPhuong"),
+    load: () => lessonExample((m) => m.squareAndCube(3)),
   },
   "luy-thua.visual.tom-tat-nhan": {
     interactive: false,
-    load: () => lessonScreen("TomTatNhan"),
+    load: () => ruleExample("TomTatNhan"),
   },
   "luy-thua.visual.tom-tat-chia": {
     interactive: false,
-    load: () => lessonScreen("TomTatChia"),
+    load: () => ruleExample("TomTatChia"),
   },
   "luy-thua.visual.tom-tat-luy-thua-10": {
     interactive: false,
-    load: () => lessonScreen("TomTatLuyThua10"),
+    load: () => ruleExample("TomTatLuyThua10"),
   },
   "luy-thua.visual.the-viet-luy-thua": {
     interactive: false,
-    load: () => lessonScreen("TheVietLuyThua"),
+    load: () => ruleExample("TheVietLuyThua"),
   },
   "luy-thua.visual.the-co-so-so-mu": {
     interactive: false,
-    load: () => lessonScreen("TheCoSoSoMu"),
+    load: () => ruleExample("TheCoSoSoMu"),
   },
   "luy-thua.visual.the-so-mu-1": {
     interactive: false,
-    load: () => lessonScreen("TheSoMu1"),
+    load: () => ruleExample("TheSoMu1"),
   },
   "luy-thua.visual.the-binh-phuong": {
     interactive: false,
-    load: () => lessonScreen("TheBinhPhuong"),
+    load: () => ruleExample("TheBinhPhuong"),
   },
   "luy-thua.visual.the-lap-phuong": {
     interactive: false,
-    load: () => lessonScreen("TheLapPhuong"),
+    load: () => ruleExample("TheLapPhuong"),
   },
   "luy-thua.visual.the-tinh-gia-tri": {
     interactive: false,
-    load: () => lessonScreen("TheTinhGiaTri"),
+    load: () => ruleExample("TheTinhGiaTri"),
   },
   "luy-thua.visual.the-nhan-cung-co-so": {
     interactive: false,
-    load: () => lessonScreen("TheNhanCungCoSo"),
+    load: () => ruleExample("TheNhanCungCoSo"),
   },
   "luy-thua.visual.the-nhan-so-mu-1": {
     interactive: false,
-    load: () => lessonScreen("TheNhanSoMu1"),
+    load: () => ruleExample("TheNhanSoMu1"),
   },
   "luy-thua.visual.the-chia-cung-co-so": {
     interactive: false,
-    load: () => lessonScreen("TheChiaCungCoSo"),
+    load: () => ruleExample("TheChiaCungCoSo"),
   },
   "luy-thua.visual.the-so-mu-0": {
     interactive: false,
-    load: () => lessonScreen("TheSoMu0"),
+    load: () => ruleExample("TheSoMu0"),
   },
   "luy-thua.visual.the-luy-thua-10": {
     interactive: false,
-    load: () => lessonScreen("TheLuyThua10"),
+    load: () => ruleExample("TheLuyThua10"),
   },
   "luy-thua.visual.the-tong-luy-thua-10": {
     interactive: false,
-    load: () => lessonScreen("TheTongLuyThua10"),
+    load: () => ruleExample("TheTongLuyThua10"),
   },
   "luy-thua.visual.sticker": {
     interactive: false,
@@ -358,13 +358,16 @@ async function lessonExample(
   return { default: pick(await import("@/visuals/math/luy-thua/examples")) };
 }
 
-type LessonScreens = typeof import("@/visuals/math/luy-thua/rules");
+type RuleExamples = typeof import("@/visuals/math/luy-thua/rule-examples");
 
-// Rule and recap screens: a sentence to remember with a labelled example.
-async function lessonScreen(
-  name: keyof LessonScreens,
+// Labelled examples of rule screens and recaps; their sentences are in
+// lesson.json.
+async function ruleExample(
+  name: keyof RuleExamples,
 ): Promise<{ default: ComponentType<VisualProps> }> {
-  return { default: (await import("@/visuals/math/luy-thua/rules"))[name] };
+  return {
+    default: (await import("@/visuals/math/luy-thua/rule-examples"))[name],
+  };
 }
 
 // Own keys only, so a URL like /dev/visuals/constructor never resolves to an

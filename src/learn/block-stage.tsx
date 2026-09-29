@@ -32,7 +32,7 @@ export function BlockStage({
       data-block-stage
     >
       {heading && <div className="text-center">{heading}</div>}
-      <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8 tall:p-12 tall:[&>[data-block=note]]:text-block-lg tall:[&>[data-block=note]]:leading-normal tall:[&_[data-block=visual]>:first-child]:[zoom:1.3]">
+      <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8 tall:p-12 tall:[&>[data-block=note]]:text-block-lg tall:[&>[data-block=note]]:leading-normal tall:[&_[data-block=visual]>:not(figcaption)]:[zoom:1.3]">
         <BlockView block={block} videos={videos} leadCaption={recap} />
       </div>
     </div>

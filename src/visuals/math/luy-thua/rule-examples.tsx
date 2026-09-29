@@ -3,28 +3,24 @@ import { formatInteger } from "@/lib/number-format";
 import { PowerText } from "@/visuals/shared/power-text";
 import { Board } from "./ban-co";
 import { CubeBlocks, SquareTiles } from "./blocks";
-import CacPhan from "./cac-phan";
 import { grainsOn } from "./grains";
 import {
+  Example,
   FactorCount,
   FactorRow,
   MATH_LINE,
   PowerAnatomy,
   PowerLegend,
-  RuleCard,
   ZerosInColour,
-  ZeroTermNote,
+  ZeroTerms,
 } from "./parts";
-import { ZeroExponent } from "./so-mu-0";
 import SoMu1 from "./so-mu-1";
-import TachSo from "./tach-so";
-import { RepeatedProduct } from "./tinh-tung-buoc";
-import { SquareAndCube } from "./tom-tat-hinh";
 
-// Screens that pair a sentence to remember with a labelled example: the rule
-// screens of the sections and the recaps of sections and cards. The lesson
-// player shows one block per screen, so a rule and its example live in one
-// visual instead of a lone note followed by a lone formula.
+// Labelled examples of the rule screens (shown in a section group under the
+// rule's note) and of the recaps of sections and cards (under the recap
+// caption). The sentences themselves live in lesson.json, where the content
+// lint and review read them; these draw only maths, pictures and short
+// labels.
 
 // Letters stand for any number, set in italics as the textbook writes them.
 function Letter({ children }: { children: ReactNode }) {
@@ -70,14 +66,7 @@ const n = <Letter>n</Letter>;
 
 export function DinhNghia() {
   return (
-    <RuleCard
-      rule={
-        <>
-          <PowerText base={a} exponent={n} /> là tích của {n} thừa số, thừa số
-          nào cũng bằng {a}.
-        </>
-      }
-    >
+    <Example>
       <PowerAnatomy base={a} exponent={n} />
       <div className="flex flex-col items-center">
         <Line>
@@ -92,15 +81,7 @@ export function DinhNghia() {
         />
         <FactorCount count={n} />
       </div>
-      <p className="text-center">
-        Đọc <PowerText base={a} exponent={n} /> là <strong>“a mũ n”</strong>{" "}
-        hoặc <strong>“a luỹ thừa n”</strong>.
-      </p>
-      <p className="text-center">
-        Nhân nhiều thừa số bằng nhau như thế gọi là{" "}
-        <strong>phép nâng lên luỹ thừa</strong>.
-      </p>
-    </RuleCard>
+    </Example>
   );
 }
 
@@ -108,9 +89,7 @@ const LAST_SQUARE = 64;
 
 export function KetBanCo() {
   return (
-    <RuleCard
-      rule={`Ô cuối là ô thứ ${LAST_SQUARE}, nên số hạt là tích của ${LAST_SQUARE - 1} thừa số 2.`}
-    >
+    <Example>
       <Board square={LAST_SQUARE} />
       <div className="flex flex-col items-center gap-1">
         <Line>
@@ -121,23 +100,20 @@ export function KetBanCo() {
           {`${formatInteger(grainsOn(LAST_SQUARE))} hạt`}
         </p>
       </div>
-      <p className="text-center font-semibold">
-        Nhiều thóc đến thế, nhà vua không có đủ để thưởng!
-      </p>
-    </RuleCard>
+    </Example>
   );
 }
 
 export function QuyTacSoMu1() {
   return (
-    <RuleCard rule="Số mũ bằng 1 thì luỹ thừa bằng chính cơ số.">
+    <Example>
       <SoMu1 />
       <Line>
         <PowerText base={a} exponent={1} />
         <span>=</span>
         <span className="text-concept-blue">{a}</span>
       </Line>
-    </RuleCard>
+    </Example>
   );
 }
 
@@ -155,7 +131,7 @@ function slotClass(focused: boolean): string {
 
 export function BamMu() {
   return (
-    <RuleCard rule="Viết luỹ thừa: bấm cơ số, bấm phím “mũ”, rồi bấm số mũ.">
+    <Example>
       <ol
         className="grid w-full grid-cols-3 gap-2 md:gap-6"
         aria-label="Viết 2 mũ 5: bấm 2, bấm mũ, rồi bấm 5"
@@ -193,54 +169,38 @@ export function BamMu() {
         ))}
       </ol>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
-export function DocBinhPhuong() {
+// aᵐ · aⁿ = aᵐ⁺ⁿ, the product rule in letters.
+function ProductRule() {
   return (
-    <RuleCard
-      rule={
-        <>
-          <PowerText base={a} exponent={2} /> đọc là “a bình phương”,{" "}
-          <PowerText base={a} exponent={3} /> đọc là “a lập phương”.
-        </>
-      }
-    >
-      <SquareAndCube side={2} />
-    </RuleCard>
-  );
-}
-
-export function TinhTungBuoc() {
-  return (
-    <RuleCard rule="Nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số. Ghi từng kết quả ra nháp.">
-      <RepeatedProduct base={2} exponent={5} mode="solution" />
-    </RuleCard>
+    <Line>
+      <Powers
+        operator="·"
+        items={[
+          [a, m],
+          [a, n],
+        ]}
+      />
+      <span>=</span>
+      <PowerText
+        base={a}
+        exponent={
+          <>
+            {m} + {n}
+          </>
+        }
+      />
+    </Line>
   );
 }
 
 export function QuyTacNhan() {
   return (
-    <RuleCard rule="Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.">
-      <Line>
-        <Powers
-          operator="·"
-          items={[
-            [a, m],
-            [a, n],
-          ]}
-        />
-        <span>=</span>
-        <PowerText
-          base={a}
-          exponent={
-            <>
-              {m} + {n}
-            </>
-          }
-        />
-      </Line>
+    <Example>
+      <ProductRule />
       <Line>
         <Powers
           operator="·"
@@ -255,13 +215,13 @@ export function QuyTacNhan() {
         <PowerText base={5} exponent={6} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function QuyTacSoMuAn() {
   return (
-    <RuleCard rule="Số không ghi số mũ thì có số mũ là 1.">
+    <Example>
       <Line>
         <Powers
           operator="·"
@@ -286,7 +246,7 @@ export function QuyTacSoMuAn() {
         <PowerText base={5} exponent={4} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
@@ -320,7 +280,7 @@ function DivisionRule() {
 
 export function QuyTacChia() {
   return (
-    <RuleCard rule="Chia hai luỹ thừa cùng cơ số: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai.">
+    <Example>
       <DivisionRule />
       <Line>
         <Powers
@@ -336,15 +296,7 @@ export function QuyTacChia() {
         <PowerText base={3} exponent={4} />
       </Line>
       <PowerLegend />
-    </RuleCard>
-  );
-}
-
-export function QuyTacSoMu0() {
-  return (
-    <RuleCard rule="Ta quy ước: luỹ thừa có số mũ 0 thì bằng 1, với cơ số khác 0.">
-      <ZeroExponent mode="solution" />
-    </RuleCard>
+    </Example>
   );
 }
 
@@ -356,7 +308,7 @@ const POWERS_OF_TEN = [
 
 export function QuyTacLuyThua10() {
   return (
-    <RuleCard rule="Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1.">
+    <Example>
       <div className="grid grid-cols-[auto_auto_auto_auto] items-baseline gap-x-3 gap-y-2">
         {POWERS_OF_TEN.map(({ exponent, name }) => (
           <Fragment key={exponent}>
@@ -374,50 +326,17 @@ export function QuyTacLuyThua10() {
         ))}
       </div>
       <PowerLegend />
-    </RuleCard>
-  );
-}
-
-export function QuyTacTachSo() {
-  return (
-    <RuleCard rule="Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại.">
-      <TachSo />
-    </RuleCard>
+    </Example>
   );
 }
 
 // ---------------------------------------------------------------------------
 // Recaps: one sentence and one labelled example each.
 
-export function TomTatLuyThua() {
-  return (
-    <RuleCard rule="Luỹ thừa viết gọn một tích có các thừa số bằng nhau.">
-      <CacPhan />
-      <p className="text-center">
-        Đọc là <strong>“2 mũ 5”</strong>.
-      </p>
-    </RuleCard>
-  );
-}
-
-export function TomTatBinhPhuong() {
-  return (
-    <RuleCard
-      rule={
-        <>
-          <PowerText base={a} exponent={2} /> là “a bình phương”,{" "}
-          <PowerText base={a} exponent={3} /> là “a lập phương”.
-        </>
-      }
-    >
-      <SquareAndCube side={3} />
-    </RuleCard>
-  );
-}
-
 export function TomTatNhan() {
   return (
-    <RuleCard rule="Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.">
+    <Example>
+      <ProductRule />
       <Line>
         <Powers
           operator="·"
@@ -442,24 +361,21 @@ export function TomTatNhan() {
         <PowerText base={5} exponent={4} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TomTatChia() {
   return (
-    <RuleCard rule="Chia hai luỹ thừa cùng cơ số: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai.">
+    <Example>
       <DivisionRule />
-      <p className="text-center font-semibold">
-        Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0.
-      </p>
       <Line>
         <PowerText base={a} exponent={0} />
         <span>= 1</span>
       </Line>
       <p>(với {a} ≠ 0)</p>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
@@ -511,31 +427,27 @@ function PlaceValueSum({ value }: { value: number }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <PlaceValueRecap value={value} />
-      <ZeroTermNote value={value} />
+      <ZeroTerms value={value} />
     </div>
   );
 }
 
 export function TomTatLuyThua10() {
   return (
-    <RuleCard rule="Số mũ của 10 bằng số chữ số 0 đứng sau chữ số 1.">
+    <Example>
       <Line>
         <PowerText base={10} exponent={3} />
         <span>=</span>
         <ZerosInColour value={formatInteger(1000)} />
       </Line>
-      <p className="text-center font-semibold">
-        Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của
-        nó, rồi cộng lại.
-      </p>
       <PlaceValueSum value={6084} />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheVietLuyThua() {
   return (
-    <RuleCard rule="Tích các thừa số bằng nhau viết gọn thành một luỹ thừa.">
+    <Example>
       <Line>
         <FactorRow base={2} count={3} />
         <span>=</span>
@@ -543,33 +455,33 @@ export function TheVietLuyThua() {
       </Line>
       <FactorCount count={3} />
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheCoSoSoMu() {
   return (
-    <RuleCard rule="Cơ số là thừa số được nhân lặp lại, số mũ là số thừa số.">
+    <Example>
       <PowerAnatomy base={4} exponent={3} />
       <Line>
         <span>=</span>
         <FactorRow base={4} count={3} />
       </Line>
       <FactorCount count={3} />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheSoMu1() {
   return (
-    <RuleCard rule="Số mũ bằng 1 thì luỹ thừa bằng chính cơ số.">
+    <Example>
       <Line>
         <PowerText base={5} exponent={1} />
         <span>=</span>
         <span className="text-concept-blue">5</span>
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
@@ -603,32 +515,20 @@ function NamedPower({
 
 export function TheBinhPhuong() {
   return (
-    <RuleCard
-      rule={
-        <>
-          <PowerText base={a} exponent={2} /> đọc là “a bình phương”.
-        </>
-      }
-    >
+    <Example>
       <NamedPower
         base={6}
         exponent={2}
         name="6 bình phương"
         picture={<SquareTiles side={6} label="Hình vuông cạnh 6, có 36 ô" />}
       />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheLapPhuong() {
   return (
-    <RuleCard
-      rule={
-        <>
-          <PowerText base={a} exponent={3} /> đọc là “a lập phương”.
-        </>
-      }
-    >
+    <Example>
       <NamedPower
         base={2}
         exponent={3}
@@ -637,13 +537,13 @@ export function TheLapPhuong() {
           <CubeBlocks side={2} label="Hình lập phương cạnh 2, có 8 khối nhỏ" />
         }
       />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheTinhGiaTri() {
   return (
-    <RuleCard rule="Tính luỹ thừa: nhân lần lượt từng thừa số, ghi kết quả từng bước.">
+    <Example>
       <Line>
         <PowerText base={2} exponent={4} />
         <span>=</span>
@@ -664,13 +564,13 @@ export function TheTinhGiaTri() {
           </Fragment>
         ))}
       </div>
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheNhanCungCoSo() {
   return (
-    <RuleCard rule="Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.">
+    <Example>
       <Line>
         <Powers
           operator="·"
@@ -685,13 +585,13 @@ export function TheNhanCungCoSo() {
         <PowerText base={5} exponent={5} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheNhanSoMu1() {
   return (
-    <RuleCard rule="Số không ghi số mũ thì có số mũ là 1.">
+    <Example>
       <Line>
         <Powers
           operator="·"
@@ -712,13 +612,13 @@ export function TheNhanSoMu1() {
         <PowerText base={2} exponent={5} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheChiaCungCoSo() {
   return (
-    <RuleCard rule="Chia hai luỹ thừa cùng cơ số: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai.">
+    <Example>
       <Line>
         <Powers
           operator=":"
@@ -733,39 +633,35 @@ export function TheChiaCungCoSo() {
         <PowerText base={7} exponent={3} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheSoMu0() {
   return (
-    <RuleCard rule="Số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0.">
+    <Example>
       <Line>
         <PowerText base={4} exponent={0} />
         <span>= 1</span>
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheLuyThua10() {
   return (
-    <RuleCard rule="Số mũ của 10 bằng số chữ số 0 đứng sau chữ số 1.">
+    <Example>
       <Line>
         <PowerText base={10} exponent={3} />
         <span>=</span>
         <ZerosInColour value={formatInteger(1000)} />
       </Line>
       <PowerLegend />
-    </RuleCard>
+    </Example>
   );
 }
 
 export function TheTongLuyThua10() {
-  return (
-    <RuleCard rule="Nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại.">
-      <PlaceValueSum value={8059} />
-    </RuleCard>
-  );
+  return <PlaceValueSum value={8059} />;
 }

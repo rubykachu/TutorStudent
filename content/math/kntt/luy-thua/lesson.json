@@ -7,7 +7,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "bad8f74e0c21e91c602ce58dd0d7d9b47c9d2ce14abf852f25a0d899d69cadbb",
+  "reviewedHash": "2f96efcb21d2b62de3cfd2e612be2befd1c67d02c95e12e63f68be71f50d289e",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -38,12 +38,38 @@
           "caption": "Tích 2 · 2 · 2 · 2 · 2 viết gọn là 2⁵."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.dinh-nghia"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "aⁿ là tích của n thừa số, thừa số nào cũng bằng a."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.dinh-nghia"
+            },
+            {
+              "type": "note",
+              "text": "Đọc aⁿ là “a mũ n” hoặc “a luỹ thừa n”. Nhân nhiều thừa số bằng nhau như thế gọi là phép nâng lên luỹ thừa."
+            }
+          ]
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.ket-ban-co"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ô cuối là ô thứ 64, nên số hạt là tích của 63 thừa số 2."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.ket-ban-co"
+            },
+            {
+              "type": "note",
+              "text": "Nhiều thóc đến thế, nhà vua không có đủ để thưởng!"
+            }
+          ]
         },
         {
           "type": "visual",
@@ -51,13 +77,31 @@
           "caption": "Đổi cơ số và số mũ, rồi xem phép nhân thay đổi."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-so-mu-1"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-so-mu-1"
+            }
+          ]
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.bam-mu",
-          "caption": "Ví dụ: viết 2⁵ trên bàn phím số."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Viết luỹ thừa: bấm cơ số, bấm phím “mũ”, rồi bấm số mũ."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.bam-mu",
+              "caption": "Ví dụ: viết 2⁵ trên bàn phím số."
+            }
+          ]
         }
       ],
       "checkIds": ["luy-thua.ex.tim-o-16-hat", "luy-thua.ex.cham-co-so"],
@@ -70,7 +114,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-luy-thua"
+        "visualId": "luy-thua.visual.tom-tat-luy-thua",
+        "caption": "Luỹ thừa viết gọn một tích có các thừa số bằng nhau. Đọc 2⁵ là “2 mũ 5”."
       }
     },
     {
@@ -80,8 +125,17 @@
       "minutes": 8,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.doc-binh-phuong"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "a² đọc là “a bình phương”, a³ đọc là “a lập phương”."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.doc-binh-phuong"
+            }
+          ]
         },
         {
           "type": "visual",
@@ -89,8 +143,17 @@
           "caption": "Chọn cơ số, rồi bấm “Bình phương” hoặc “Lập phương”."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.tinh-tung-buoc"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số. Ghi từng kết quả ra nháp."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.tinh-tung-buoc"
+            }
+          ]
         }
       ],
       "checkIds": ["luy-thua.ex.doc-6-mu-2", "luy-thua.ex.hinh-vuong-16"],
@@ -103,7 +166,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-binh-phuong"
+        "visualId": "luy-thua.visual.tom-tat-binh-phuong",
+        "caption": "a² là “a bình phương”, a³ là “a lập phương”."
       }
     },
     {
@@ -118,8 +182,17 @@
           "caption": "Gộp hai nhóm thừa số 3 thành một nhóm."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-nhan"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-nhan"
+            }
+          ]
         },
         {
           "type": "visual",
@@ -127,8 +200,17 @@
           "caption": "Chọn hai số mũ, rồi bấm “Ghép lại”."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-so-mu-an"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số không ghi số mũ thì có số mũ là 1."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-so-mu-an"
+            }
+          ]
         }
       ],
       "checkIds": ["luy-thua.ex.chon-2-mu-7"],
@@ -141,7 +223,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-nhan"
+        "visualId": "luy-thua.visual.tom-tat-nhan",
+        "caption": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ. Số không ghi số mũ thì có số mũ là 1."
       }
     },
     {
@@ -156,13 +239,31 @@
           "caption": "Chia cho 2³ là gạch đi 3 thừa số 2, còn lại 2 thừa số 2."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-chia"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-chia"
+            }
+          ]
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-so-mu-0",
-          "caption": "Một số khác 0 chia cho chính nó thì được 1."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ta quy ước: luỹ thừa có số mũ 0 thì bằng 1, với cơ số khác 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-so-mu-0",
+              "caption": "Một số khác 0 chia cho chính nó thì được 1."
+            }
+          ]
         },
         {
           "type": "visual",
@@ -180,7 +281,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-chia"
+        "visualId": "luy-thua.visual.tom-tat-chia",
+        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
       }
     },
     {
@@ -190,8 +292,17 @@
       "minutes": 7,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-luy-thua-10"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-luy-thua-10"
+            }
+          ]
         },
         {
           "type": "visual",
@@ -199,8 +310,21 @@
           "caption": "Bấm − và + để đổi số mũ, rồi đếm các chữ số 0."
         },
         {
-          "type": "visual",
-          "visualId": "luy-thua.visual.quy-tac-tach-so"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-tach-so"
+            },
+            {
+              "type": "note",
+              "text": "Hàng có chữ số 0 thì số hạng bằng 0, nên không cần viết."
+            }
+          ]
         }
       ],
       "checkIds": ["luy-thua.ex.viet-1000"],
@@ -213,7 +337,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-luy-thua-10"
+        "visualId": "luy-thua.visual.tom-tat-luy-thua-10",
+        "caption": "Số mũ của 10 bằng số chữ số 0 đứng sau chữ số 1. Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại. Hàng có chữ số 0 thì số hạng bằng 0, nên không cần viết."
       }
     }
   ],
@@ -224,7 +349,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-viet-luy-thua"
+        "visualId": "luy-thua.visual.the-viet-luy-thua",
+        "caption": "Tích các thừa số bằng nhau viết gọn thành một luỹ thừa."
       }
     },
     {
@@ -233,7 +359,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-co-so-so-mu"
+        "visualId": "luy-thua.visual.the-co-so-so-mu",
+        "caption": "Cơ số là thừa số được nhân lặp lại, số mũ là số thừa số."
       }
     },
     {
@@ -242,7 +369,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-so-mu-1"
+        "visualId": "luy-thua.visual.the-so-mu-1",
+        "caption": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
       }
     },
     {
@@ -251,7 +379,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-binh-phuong"
+        "visualId": "luy-thua.visual.the-binh-phuong",
+        "caption": "a² đọc là “a bình phương”."
       }
     },
     {
@@ -260,7 +389,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-lap-phuong"
+        "visualId": "luy-thua.visual.the-lap-phuong",
+        "caption": "a³ đọc là “a lập phương”."
       }
     },
     {
@@ -269,7 +399,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-tinh-gia-tri"
+        "visualId": "luy-thua.visual.the-tinh-gia-tri",
+        "caption": "Tính luỹ thừa: nhân lần lượt từng thừa số, ghi kết quả từng bước."
       }
     },
     {
@@ -278,7 +409,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-nhan-cung-co-so"
+        "visualId": "luy-thua.visual.the-nhan-cung-co-so",
+        "caption": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
       }
     },
     {
@@ -287,7 +419,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-nhan-so-mu-1"
+        "visualId": "luy-thua.visual.the-nhan-so-mu-1",
+        "caption": "Số không ghi số mũ thì có số mũ là 1."
       }
     },
     {
@@ -296,7 +429,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-chia-cung-co-so"
+        "visualId": "luy-thua.visual.the-chia-cung-co-so",
+        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
       }
     },
     {
@@ -305,7 +439,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-so-mu-0"
+        "visualId": "luy-thua.visual.the-so-mu-0",
+        "caption": "Số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
       }
     },
     {
@@ -314,7 +449,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-luy-thua-10"
+        "visualId": "luy-thua.visual.the-luy-thua-10",
+        "caption": "Số mũ của 10 bằng số chữ số 0 đứng sau chữ số 1."
       }
     },
     {
@@ -323,7 +459,8 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.the-tong-luy-thua-10"
+        "visualId": "luy-thua.visual.the-tong-luy-thua-10",
+        "caption": "Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại. Hàng có chữ số 0 thì số hạng bằng 0, nên không cần viết."
       }
     }
   ],
