@@ -119,6 +119,8 @@
   --spacing-gutter: 1rem;
   --spacing-gutter-lg: 1.5rem;
   --container-content: 45rem;
+  /* Height budget for one lesson visual; `pnpm visual:shot` checks against it. */
+  --spacing-visual-frame: 30rem;
 
   /* A single elevation level; shadows are never nested. */
   --shadow-card: 0 2px 8px rgb(15 23 42 / 0.08);

@@ -14,3 +14,6 @@ export const REQUIRE_OWNER_APPROVAL = false;
 // The fixture lesson is served only in dev/E2E runs that opt in explicitly.
 export const CONTENT_INCLUDE_FIXTURE: boolean =
   process.env.CONTENT_INCLUDE_FIXTURE === "1";
+
+// How long an explainer animation shows each step before auto-advancing.
+export const VISUAL_STEP_MS = 1800;

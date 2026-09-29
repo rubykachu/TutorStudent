@@ -1,4 +1,7 @@
+import { ConceptShape } from "@/visuals/shared/concept-mark";
+
 // Region ids must match the `regions` declared for this visual in the registry.
+// Each region is drawn in the concept colour whose marker is that shape.
 export default function Shapes() {
   return (
     <svg
@@ -7,25 +10,20 @@ export default function Shapes() {
       viewBox="0 0 300 100"
       className="h-auto w-full max-w-96"
     >
-      <circle
-        data-region="circle"
-        cx={50}
-        cy={50}
-        r={40}
-        className="fill-concept-blue"
-      />
-      <rect
+      <ConceptShape data-region="circle" color="blue" cx={50} cy={50} r={40} />
+      <ConceptShape
         data-region="square"
-        x={110}
-        y={10}
-        width={80}
-        height={80}
-        className="fill-concept-violet"
+        color="amber"
+        cx={150}
+        cy={50}
+        r={45}
       />
-      <polygon
+      <ConceptShape
         data-region="triangle"
-        points="250,10 290,90 210,90"
-        className="fill-concept-teal"
+        color="violet"
+        cx={250}
+        cy={50}
+        r={42}
       />
     </svg>
   );

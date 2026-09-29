@@ -30,6 +30,9 @@ test-results/
 video/projects/**/renders/
 video/projects/**/audio/
 
+# agent git worktrees: separate checkouts, never part of this tree
+.claude/worktrees/
+
 # misc
 .DS_Store
 *.pem

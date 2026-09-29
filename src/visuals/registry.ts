@@ -49,4 +49,14 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => import("@/visuals/_fixture/star-sticker"),
   },
+  "fixture.visual.bead-merge": {
+    interactive: false,
+    load: () => import("@/visuals/_fixture/bead-merge"),
+  },
 };
+
+// Own keys only, so a URL like /dev/visuals/constructor never resolves to an
+// Object.prototype member.
+export function findVisual(id: string): VisualEntry | undefined {
+  return Object.hasOwn(visualRegistry, id) ? visualRegistry[id] : undefined;
+}

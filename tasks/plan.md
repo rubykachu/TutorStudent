@@ -42,7 +42,7 @@ Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ
 ### Nền tảng
 - [x] 1. Scaffold dự án + design tokens
 - [x] 2. Content schema, loader, `content:check`, `ids.lock`, nội dung tĩnh
-- [ ] 3. Visual registry, primitive dùng chung, `visual:shot`
+- [x] 3. Visual registry, primitive dùng chung, `visual:shot`
 
 **Checkpoint A:** gate + `pnpm build` xanh; ảnh primitive đã xem; mở app từ iPad qua LAN; báo người dùng.
 

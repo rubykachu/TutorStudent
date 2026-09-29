@@ -228,7 +228,8 @@
             "id": "exponent",
             "conceptId": "fixture.concept.so-mu"
           }
-        ]
+        ],
+        "hintVisualId": "fixture.visual.bead-merge"
       },
       "difficulty": 2
     },

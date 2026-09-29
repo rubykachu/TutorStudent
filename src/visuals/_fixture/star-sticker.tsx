@@ -1,3 +1,5 @@
+import { ConceptShape } from "@/visuals/shared/concept-mark";
+
 export default function StarSticker() {
   return (
     <svg
@@ -6,10 +8,7 @@ export default function StarSticker() {
       viewBox="0 0 100 100"
       className="h-auto w-full max-w-32"
     >
-      <polygon
-        points="50,5 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38"
-        className="fill-concept-lime"
-      />
+      <ConceptShape color="lime" cx={50} cy={52} r={46} />
     </svg>
   );
 }

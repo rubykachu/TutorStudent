@@ -1,9 +1,10 @@
 import { defineConfig } from "@playwright/test";
-
-// Separate from the everyday dev port (3000) so a server already running
-// there, possibly another project, is never mistaken for this app.
-const PORT = 3100;
-const BASE_URL = `http://localhost:${PORT}`;
+import {
+  TARGET_DEVICES,
+  TEST_BASE_URL,
+  TEST_SERVER_COMMAND,
+  TEST_SERVER_ENV,
+} from "./e2e/targets";
 
 export default defineConfig({
   testDir: "./e2e",
@@ -12,37 +13,18 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? "github" : "list",
   use: {
-    baseURL: BASE_URL,
+    baseURL: TEST_BASE_URL,
     trace: "on-first-retry",
   },
-  projects: [
-    {
-      name: "ipad",
-      use: {
-        // Safari engine, portrait iPad Air size: the primary target device.
-        browserName: "webkit",
-        viewport: { width: 820, height: 1180 },
-        hasTouch: true,
-        isMobile: true,
-        deviceScaleFactor: 2,
-      },
-    },
-    {
-      name: "phone",
-      use: {
-        browserName: "chromium",
-        viewport: { width: 390, height: 844 },
-        hasTouch: true,
-        isMobile: true,
-        deviceScaleFactor: 2,
-      },
-    },
-  ],
+  projects: Object.entries(TARGET_DEVICES).map(([name, device]) => ({
+    name,
+    use: device,
+  })),
   webServer: {
-    command: `pnpm dev --port ${PORT}`,
-    url: BASE_URL,
+    command: TEST_SERVER_COMMAND,
+    url: TEST_BASE_URL,
     reuseExistingServer: !process.env.CI,
-    env: { CONTENT_INCLUDE_FIXTURE: "1" },
+    env: TEST_SERVER_ENV,
     timeout: 120_000,
   },
 });

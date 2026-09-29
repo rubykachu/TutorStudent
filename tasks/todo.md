@@ -25,7 +25,7 @@ Zod schema theo spec "Mô hình nội dung" (gồm `status` + `reviewedHash`, `s
 ## 3. Visual registry, primitive dùng chung, `visual:shot`
 Registry (id → dynamic import + `interactive`). Primitive: `DotGrid`, `BeadGroup`, `Highlight`, `ConceptMark`, `StepPlayer` (phát/tạm dừng/tua lại; từng bước khi reduced-motion). `/dev/visuals/[id]` (`notFound()` ở production). `visual:shot <lesson|all>` chụp 2 viewport vào `.shots/`, kiểm phần tử con không tràn khung.
 - Acceptance: `content:check` fail khi `visualId` thiếu; ảnh fixture đã xem; test `StepPlayer` reduced-motion.
-- Verify: gate + `pnpm visual:shot _fixture`.
+- Verify: gate + `pnpm visual:shot fixture`.
 - Files: `src/visuals/registry.ts`, `src/visuals/shared/*.tsx`, `src/app/dev/visuals/[id]/page.tsx`, `scripts/visual-shot.ts`, `tests/visuals/*.test.tsx`.
 - Size: M
 

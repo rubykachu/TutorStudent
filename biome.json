@@ -18,6 +18,7 @@
       "!!**/test-results",
       "!!**/.shots",
       "!!sources",
+      "!!.claude/worktrees",
       "!!video/**/.venv",
       "!!video/**/.python",
       "!!video/**/.hf",
