@@ -238,6 +238,20 @@ describe("glossary", () => {
     ]);
   });
 
+  it("paints formula symbols only in colours of the lesson's concepts", () => {
+    const tex = (color: string) => `\\concept{${color}}{2}^{3} = 8`;
+    expect(findings(withFormula(tex("blue")), "glossary")).toEqual([]);
+    expect(findings(withFormula(tex("teal")), "glossary")).toMatchObject([
+      { path: FORMULA_PATH, message: "No concept of this lesson is teal" },
+    ]);
+    expect(findings(withFormula(tex("#f00")), "glossary")).toMatchObject([
+      {
+        path: FORMULA_PATH,
+        message: '"\\concept{#f00}" is not a concept colour',
+      },
+    ]);
+  });
+
   it("flags a glossary whose forbidden word is also a term", () => {
     const raw = fixtureContent();
     const glossary = raw.glossaries.find((g) => g.subject === "math");
@@ -354,6 +368,9 @@ describe("check-expr", () => {
       expect(evaluateExpr(bad).ok).toBe(false);
     }
     expect(texValue("\\htmlId{co-so}{2}^{\\htmlId{so-mu}{3}}")).toBe(8);
+    expect(
+      texValue("\\htmlId{co-so}{\\concept{blue}{2}}^{\\concept{violet}{3}}"),
+    ).toBe(8);
     expect(texValue("2{,}5 \\cdot 2")).toBe(5);
     expect(texValue("\\frac{1}{2}")).toBeUndefined();
     expect(texValue("3 + 3 = 6")).toBeUndefined();

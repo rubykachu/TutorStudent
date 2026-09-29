@@ -64,7 +64,7 @@ Gán qua `Concept.color` trong `lesson.json` bằng tên token, không bằng he
 | `lime` | `#4D7C0F` | ★ sao | Từ khoá |
 | `slate` | `#475569` | ▬ thanh | Phụ, trung tính |
 
-Trong một bài, mỗi khái niệm giữ một màu cho mọi visual, công thức, highlight, thẻ ôn.
+Trong một bài, mỗi khái niệm giữ một màu cho mọi visual, công thức, highlight, thẻ ôn. Ký hiệu trong công thức cũng tô màu, không chỉ chú thích: TeX viết `\concept{blue}{2}^{\concept{violet}{5}}` (tên màu khái niệm, không mã hex); `content:check` báo lỗi nếu màu không thuộc khái niệm nào của bài.
 
 ## 3. Chữ
 

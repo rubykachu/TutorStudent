@@ -1,18 +1,33 @@
 "use client";
 
 import "katex/dist/katex.min.css";
-import katex from "katex";
+import katex, { type TrustContext } from "katex";
 import { useLayoutEffect, useMemo, useRef } from "react";
+import { CONCEPT_DATA_ATTR, isConceptColor, TEX_MACROS } from "@/lib/tex";
+import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 
 export type FormulaHighlight = { id: string; strong: boolean };
 
-// `\htmlId` is the only HTML extension content may use: it names the parts a
-// hint can light up. Everything else stays untrusted.
+// Content may use two HTML extensions: `\htmlId`, naming the parts a hint can
+// light up, and `\htmlData` carrying only a concept colour (what `\concept`
+// expands to). Everything else stays untrusted.
+function trusted(context: TrustContext): boolean {
+  if (context.command === "\\htmlId") return true;
+  if (context.command !== "\\htmlData") return false;
+  const entries = Object.entries(context.attributes);
+  return (
+    entries.length === 1 &&
+    entries[0]?.[0] === CONCEPT_DATA_ATTR &&
+    isConceptColor(entries[0][1])
+  );
+}
+
 function renderTex(tex: string): string {
   return katex.renderToString(tex, {
     throwOnError: false,
     errorColor: "var(--color-muted-foreground)",
-    trust: (context) => context.command === "\\htmlId",
+    macros: { ...TEX_MACROS },
+    trust: trusted,
     strict: (errorCode) => (errorCode === "htmlExtension" ? "ignore" : "warn"),
   });
 }
@@ -38,6 +53,12 @@ export function Formula({ tex, highlight = [], className = "" }: FormulaProps) {
   useLayoutEffect(() => {
     const root = ref.current;
     if (!root) return;
+    for (const el of root.querySelectorAll<HTMLElement>(
+      `[${CONCEPT_DATA_ATTR}]`,
+    )) {
+      const color = el.getAttribute(CONCEPT_DATA_ATTR) ?? "";
+      if (isConceptColor(color)) el.classList.add(CONCEPT_CLASSES[color].text);
+    }
     const marks = new Map(highlight.map((h) => [h.id, h.strong]));
     for (const el of root.querySelectorAll<HTMLElement>("[id]")) {
       const strong = marks.get(el.id);

@@ -1,3 +1,5 @@
+import { CONCEPT_TEX_PATTERN } from "@/lib/tex";
+
 // Evaluator for `check.expr`: numbers (decimal comma), + - · : ^ and
 // parentheses, with the usual precedence and right-associative powers.
 
@@ -108,13 +110,16 @@ export function sameNumber(a: number, b: number): boolean {
 }
 
 // Value shown by a TeX formula made only of numbers and supported operators,
-// e.g. "2^{3} \cdot 2" or "\htmlId{co-so}{2}^{3}"; undefined otherwise.
+// e.g. "2^{3} \cdot 2", "\htmlId{co-so}{2}^{3}" or "\concept{blue}{2}^{3}";
+// undefined otherwise.
 export function texValue(tex: string): number | undefined {
   let source = tex;
   let previous = "";
   while (previous !== source) {
     previous = source;
-    source = source.replace(/\\htmlId\{[^}]*\}\{([^{}]*)\}/g, "($1)");
+    source = source
+      .replace(/\\htmlId\{[^}]*\}\{([^{}]*)\}/g, "($1)")
+      .replace(CONCEPT_TEX_PATTERN, "($2)");
   }
   source = source
     .replace(/\\cdot/g, "·")

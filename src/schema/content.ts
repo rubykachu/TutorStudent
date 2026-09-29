@@ -95,7 +95,9 @@ export const VisualBlockSchema = z.object({
   caption: TextSchema.optional(),
 });
 
-// Parts a hint may highlight are marked in the TeX with `\htmlId{<local-id>}{…}`.
+// Parts a hint may highlight are marked in the TeX with `\htmlId{<local-id>}{…}`;
+// a concept's symbols are painted with `\concept{<concept colour>}{…}`, e.g.
+// `\concept{blue}{2}^{\concept{violet}{5}}` for a blue base, violet exponent.
 export const FormulaBlockSchema = z.object({
   type: z.literal("formula"),
   tex: TextSchema,

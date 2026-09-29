@@ -1,3 +1,4 @@
+import { conceptColorsInTex, isConceptColor } from "@/lib/tex";
 import type { GlossaryFile } from "@/schema/content";
 import type { IssuePath } from "../check";
 import { findWordRun, wordKeys } from "./text";
@@ -5,7 +6,9 @@ import { type Finding, findingCollector, type LintInput } from "./types";
 import type { LessonStrings } from "./walk";
 
 // One concept, one word, one colour: rejects non-standard synonyms listed in
-// the subject glossary and keeps concept colours identical across lessons.
+// the subject glossary, keeps concept colours identical across lessons, and
+// lets a formula paint a symbol only in the colour of one of the lesson's
+// concepts.
 
 export function lintGlossary(
   input: LintInput,
@@ -40,6 +43,17 @@ export function lintGlossary(
       );
     }
   });
+
+  const lessonColors = new Set(input.lesson.concepts.map((c) => c.color));
+  for (const { path, value } of strings.formulas) {
+    for (const color of conceptColorsInTex(value)) {
+      if (!isConceptColor(color)) {
+        report(path, `"\\concept{${color}}" is not a concept colour`);
+      } else if (!lessonColors.has(color)) {
+        report(path, `No concept of this lesson is ${color}`);
+      }
+    }
+  }
   return findings;
 }
 
