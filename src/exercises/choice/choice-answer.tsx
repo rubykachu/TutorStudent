@@ -2,7 +2,11 @@
 
 import { Check } from "lucide-react";
 import { useMemo } from "react";
-import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
+import {
+  AnswerHighlight,
+  surfaceFor,
+  WRONG_TONE,
+} from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { ChoiceInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
@@ -24,7 +28,7 @@ function nextSelection(
 }
 
 export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  const { value, onChange, disabled, highlight, wrong, reveal, seed } = slot;
   const options = useMemo(
     () => seededShuffle(exercise.options, seed),
     [exercise.options, seed],
@@ -46,6 +50,7 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
         {options.map((option) => {
           const spec = highlight.get(option.id);
           const on = selected.includes(option.id);
+          const missed = !on && wrong.has(option.id);
           return (
             <AnswerHighlight key={option.id} spec={spec} className="w-full">
               <button
@@ -53,13 +58,16 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
                 aria-pressed={on}
                 disabled={disabled}
                 data-option={option.id}
+                data-wrong={missed || undefined}
                 onClick={() => toggle(option.id)}
                 className={`flex min-h-16 w-full items-center gap-3 rounded-lg px-4 py-3 text-left motion-safe:transition-transform motion-safe:active:scale-97 ${
                   on
                     ? reveal
                       ? "border-3 border-correct bg-correct-soft"
                       : `border-3 border-primary ${surfaceFor(spec)}`
-                    : `border-2 border-border ${surfaceFor(spec)}`
+                    : missed
+                      ? WRONG_TONE
+                      : `border-2 border-border ${surfaceFor(spec)}`
                 }`}
               >
                 <Marker multiple={exercise.multiple} on={on} reveal={reveal} />

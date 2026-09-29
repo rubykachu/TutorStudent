@@ -63,16 +63,24 @@ const POSES: Record<MascotExpression, Pose> = {
     eyes: "smile",
     sparkles: false,
   },
-  // Head tilted, one wing raised toward the exercise on its left, eyes
-  // following the wing.
+  // Leans and tilts its head toward the hint visual, which shows below and
+  // to the left of it (under the answer card, or in the left column of the
+  // two-column layout), and points there with a wing: a little hop and two
+  // jabs make the change noticeable at 56px. Eyes follow the wing.
   hint: {
-    body: { keyframes: { rotate: [0, -6] }, rest: { rotate: -6 } },
-    leftWing: {
-      keyframes: { rotate: [0, 125, 110] },
-      rest: { rotate: 110 },
+    body: {
+      keyframes: { rotate: [0, -16, -12], y: [0, -6, 0] },
+      rest: { rotate: -12, y: 0 },
     },
-    rightWing: STILL,
-    pupils: { x: -3, y: -2 },
+    leftWing: {
+      keyframes: { rotate: [0, 95, 60, 85, 65] },
+      rest: { rotate: 65 },
+    },
+    rightWing: {
+      keyframes: { rotate: [0, -20, -12] },
+      rest: { rotate: -12 },
+    },
+    pupils: { x: -4, y: 3 },
     eyes: "open",
     sparkles: false,
   },

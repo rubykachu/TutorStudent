@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, Pause, Play, RotateCcw } from "lucide-react";
+import { Pause, Play, RotateCcw, StepForward } from "lucide-react";
 import { type ReactNode, useEffect, useState } from "react";
 import { VISUAL_STEP_MS } from "@/lib/config";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
@@ -24,10 +24,14 @@ const BUTTON =
   "inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg px-4 font-semibold motion-safe:transition-transform motion-safe:active:scale-97 disabled:opacity-50";
 const PRIMARY_BUTTON = `${BUTTON} bg-primary text-primary-foreground`;
 const SECONDARY_BUTTON = `${BUTTON} border-2 border-border bg-surface text-foreground`;
+// Outlined rather than filled, so stepping through a visual never looks like
+// the bottom bar's filled "Tiếp" button.
+const STEP_BUTTON = `${BUTTON} border-2 border-primary bg-surface text-primary`;
 
 // Drives an explainer visual through its steps. It plays on its own, and the
 // child can pause or replay it; with reduced motion it never moves by itself
-// and advances only when the child taps "Tiếp".
+// and advances only when the child taps "Bước tiếp", named and drawn apart
+// from the bottom bar's "Tiếp" that leaves the screen.
 export function StepPlayer({
   steps,
   label,
@@ -76,14 +80,14 @@ export function StepPlayer({
         {reducedMotion ? (
           <button
             type="button"
-            className={PRIMARY_BUTTON}
-            aria-label="Tiếp"
+            className={STEP_BUTTON}
+            aria-label="Bước tiếp"
             disabled={atEnd}
             onClick={() => setStep((s) => Math.min(s + 1, last))}
             {...{ [STEP_NEXT_ATTR]: "" }}
           >
-            Tiếp
-            <ChevronRight aria-hidden className="size-5" />
+            <StepForward aria-hidden className="size-5" />
+            Bước tiếp
           </button>
         ) : (
           <button

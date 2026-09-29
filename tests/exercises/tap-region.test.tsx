@@ -89,7 +89,7 @@ describe("TapRegionAnswer", () => {
     });
   });
 
-  it("marks only extra regions, then strong marks, then reveals", async () => {
+  it("lets go of an extra region and rings it, then reveals", async () => {
     const { frame, onDone, container } = await renderTapRegion();
     tap("square");
 
@@ -97,12 +97,16 @@ describe("TapRegionAnswer", () => {
     expect(frame).toHaveAttribute("data-tier", "1");
     expect(region("square")).toHaveAttribute("data-highlighted");
     expect(region("square")).toHaveClass("stroke-highlight");
+    expect(region("square")).toHaveAttribute("aria-pressed", "false");
     expect(region("circle")).not.toHaveAttribute("data-highlighted");
+    expect(checkButton()).toBeDisabled();
 
+    tap("square");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
-    expect(region("square")).toHaveAttribute("data-highlight-strong");
+    expect(region("square")).toHaveAttribute("data-highlighted");
 
+    tap("square");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(revealed(container)).not.toBeNull();
@@ -139,16 +143,19 @@ describe("TapRegionAnswer", () => {
     const { frame, container } = await renderTapRegion(VISUAL_HINTS);
     tap("triangle");
     checkAnswer();
+    tap("triangle");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(feedbackVisual(container, "fixture.visual.dot-grid")).not.toBeNull();
     expect(region("triangle")).not.toHaveAttribute("data-highlight-strong");
+    tap("triangle");
     checkAnswer();
     expect(
       feedbackVisual(container, "fixture.visual.bead-merge"),
     ).not.toBeNull();
     expect(revealed(container)).toBeNull();
-    expect(region("triangle")).toHaveAttribute("aria-pressed", "true");
+    // Let go after the last check too; the solution visual shows the answer.
+    expect(region("triangle")).toHaveAttribute("aria-pressed", "false");
   });
 
   it("draws the same visual as a static image outside an exercise", () => {

@@ -10,7 +10,11 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
+import {
+  AnswerHighlight,
+  surfaceFor,
+  WRONG_TONE,
+} from "@/exercises/answer-highlight";
 import { DRAG_ACCESSIBILITY, useDragSensors } from "@/exercises/drag";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
@@ -26,7 +30,7 @@ type OrderAnswerProps = {
 };
 
 export function OrderAnswer({ exercise, slot }: OrderAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  const { value, onChange, disabled, highlight, wrong, reveal, seed } = slot;
   // Never the authored order, which is the solved one.
   const initial = useMemo(
     () =>
@@ -98,6 +102,7 @@ export function OrderAnswer({ exercise, slot }: OrderAnswerProps) {
                   disabled={disabled}
                   reveal={reveal}
                   spec={highlight.get(id)}
+                  wrong={wrong.has(id)}
                   onTap={() => tap(id)}
                 />
               );
@@ -116,6 +121,7 @@ type SortableRowProps = {
   disabled: boolean;
   reveal: boolean;
   spec: HighlightSpec | undefined;
+  wrong: boolean;
   onTap: () => void;
 };
 
@@ -126,6 +132,7 @@ function SortableRow({
   disabled,
   reveal,
   spec,
+  wrong,
   onTap,
 }: SortableRowProps) {
   const {
@@ -141,7 +148,9 @@ function SortableRow({
     ? "border-3 border-correct bg-correct-soft"
     : picked
       ? `border-3 border-primary ${surfaceFor(spec)}`
-      : `border-2 border-border ${surfaceFor(spec)}`;
+      : wrong
+        ? WRONG_TONE
+        : `border-2 border-border ${surfaceFor(spec)}`;
 
   return (
     <li
@@ -158,6 +167,7 @@ function SortableRow({
           aria-pressed={picked}
           disabled={disabled}
           data-item={item.id}
+          data-wrong={wrong || undefined}
           onClick={onTap}
           className={`flex min-h-16 w-full items-center gap-3 rounded-lg px-4 py-2 text-left motion-safe:transition-transform motion-safe:active:scale-97 ${tone} ${isDragging ? "shadow-card" : ""}`}
         >

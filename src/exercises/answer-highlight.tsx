@@ -34,3 +34,9 @@ export function surfaceFor(spec: HighlightSpec | undefined): string {
     spec !== undefined && (spec.color === "highlight" || spec.strong);
   return filled ? "bg-transparent" : "bg-surface";
 }
+
+// An answer-area element the grader flagged: orange dashed border on a plain
+// surface with softer text, so it reads as "try again" and never as chosen
+// (the dash keeps it distinct without relying on colour).
+export const WRONG_TONE =
+  "border-3 border-dashed border-retry bg-surface text-muted-foreground";

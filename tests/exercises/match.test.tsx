@@ -13,6 +13,7 @@ import {
   checkButton,
   feedbackVisual,
   highlightOf,
+  isMarkedWrong,
   next,
   renderExercise,
   revealed,
@@ -152,24 +153,24 @@ describe("MatchAnswer", () => {
     expect(checkButton()).toBeDisabled();
   });
 
-  it("marks wrong pairs by id, then falls back to strong marks and a reveal", () => {
+  it("marks wrong pairs by id in orange, then reveals", () => {
     const { frame, onDone, container } = renderMatch();
     pair("hai-ba", "nam");
     pair("hai-bon", "tam");
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(highlightOf(item("hai-ba"))).not.toBeNull();
-    expect(highlightOf(item("nam"))).not.toBeNull();
+    expect(isMarkedWrong(item("hai-ba"))).toBe(true);
+    expect(isMarkedWrong(item("nam"))).toBe(true);
     // Never the right item the child should have chosen, nor correct pairs.
-    expect(highlightOf(item("sau"))).toBeNull();
-    expect(highlightOf(item("hai-bon"))).toBeNull();
-    expect(highlightOf(item("tam"))).toBeNull();
+    expect(item("sau")).not.toHaveAttribute("data-wrong");
+    expect(item("hai-bon")).not.toHaveAttribute("data-wrong");
+    expect(item("tam")).not.toHaveAttribute("data-wrong");
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(container.querySelector("[data-feedback-visual]")).toBeNull();
-    expect(highlightOf(item("nam"))).toHaveAttribute("data-highlight-strong");
+    expect(isMarkedWrong(item("nam"))).toBe(true);
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
@@ -201,9 +202,7 @@ describe("MatchAnswer", () => {
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(feedbackVisual(container, "fixture.visual.dot-grid")).not.toBeNull();
-    expect(highlightOf(item("tam"))).not.toHaveAttribute(
-      "data-highlight-strong",
-    );
+    expect(isMarkedWrong(item("tam"))).toBe(true);
     checkAnswer();
     expect(
       feedbackVisual(container, "fixture.visual.bead-merge"),

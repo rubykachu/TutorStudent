@@ -197,4 +197,39 @@
   h3 {
     @apply font-heading;
   }
+  /*
+   * The sticky bottom bar publishes its height here (BottomBar), so content
+   * scrolled into view stops above the bar rather than under it.
+   */
+  html {
+    scroll-padding-bottom: var(--bottom-bar-height, 0px);
+  }
+}
+
+/*
+ * Sticky bottom bar surface: the page background across the full viewport
+ * width behind the bar, with a 1px border-coloured hairline on its top edge.
+ * Box-shadows paint outside the box without widening the page (no sideways
+ * scroll, unlike a 100vw element); the clip keeps them to the bar's height
+ * plus the hairline. Each shadow is offset down by its spread so it starts
+ * at the bar's top edge (the hairline 1px above it) and never paints upward.
+ */
+@utility bar-surface {
+  box-shadow:
+    0 50vmax 0 50vmax var(--color-background),
+    0 calc(50vmax - 1px) 0 50vmax var(--color-border);
+  clip-path: inset(-1px -50vmax 0);
+}
+
+/*
+ * Formula blocks (Formula): digits, operators and plain symbols in the body
+ * font at semibold, so numerals match the ones drawn in visuals and read as
+ * clearly as the text around them. Letters keep KaTeX's own maths italic
+ * (their classes set that family), turned bold by the inherited weight, and
+ * KaTeX still positions exponents, so a 1.5× formula keeps its exponents
+ * above 16px on a phone.
+ */
+.formula .katex {
+  font-family: var(--font-body), KaTeX_Main, serif;
+  font-weight: 600;
 }

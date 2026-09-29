@@ -89,14 +89,18 @@ function shown(selector: string, attribute: string): string[] {
 }
 
 // Three wrong checks, the revealed answer, then the retype of one attempt:
-// the arrangement must not move at any point.
+// the arrangement must not move at any point. A selection answer lets go of
+// a wrong pick, so the wrong answer is entered again when "Kiểm tra" is off.
 function expectStableThroughTiers(
   read: () => string[],
   answerWrong: () => void,
 ) {
   const start = read();
-  answerWrong();
   for (const tier of ["1", "2", "3"]) {
+    const released = document.querySelector(
+      "[data-bottom-bar] button:disabled",
+    );
+    if (tier === "1" || released) answerWrong();
     checkAnswer();
     expect(document.querySelector("section")).toHaveAttribute(
       "data-tier",

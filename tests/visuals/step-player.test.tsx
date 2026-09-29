@@ -50,7 +50,7 @@ describe("StepPlayer", () => {
     it("advances on its own and stops at the last step", () => {
       renderPlayer();
       expect(screen.getByText("Cảnh 1")).toBeInTheDocument();
-      expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+      expect(screen.queryByRole("button", { name: "Bước tiếp" })).toBeNull();
 
       advance(VISUAL_STEP_MS);
       expect(screen.getByText("Cảnh 2")).toBeInTheDocument();
@@ -83,13 +83,13 @@ describe("StepPlayer", () => {
       restore = stubMatchMedia(REDUCED);
     });
 
-    it("never advances by itself and steps on each tap of Tiếp", () => {
+    it("never advances by itself and steps on each tap of Bước tiếp", () => {
       renderPlayer();
       advance(VISUAL_STEP_MS * 5);
       expect(screen.getByText("Cảnh 1")).toBeInTheDocument();
       expect(screen.queryByRole("button", { name: "Phát" })).toBeNull();
 
-      const next = screen.getByRole("button", { name: "Tiếp" });
+      const next = screen.getByRole("button", { name: "Bước tiếp" });
       fireEvent.click(next);
       expect(screen.getByText("Cảnh 2")).toBeInTheDocument();
       advance(VISUAL_STEP_MS * 5);

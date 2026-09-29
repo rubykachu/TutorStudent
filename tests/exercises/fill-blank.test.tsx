@@ -6,7 +6,7 @@ import {
   checkButton,
   expectVisualTiers,
   highlightOf,
-  isStrong,
+  isMarkedWrong,
   renderExercise,
   startRetype,
   tap,
@@ -59,11 +59,13 @@ describe("FillBlankAnswer with a word bank", () => {
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(highlightOf(blank())).not.toBeNull();
+    expect(isMarkedWrong(blank())).toBe(true);
+    expect(blank()).toHaveTextContent("Minh");
     expect(highlightOf(screen.getByRole("button", { name: "Lan" }))).toBeNull();
 
     checkAnswer();
-    expect(isStrong(blank())).toBe(true);
+    expect(frame).toHaveAttribute("data-tier", "2");
+    expect(isMarkedWrong(blank())).toBe(true);
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
@@ -121,7 +123,7 @@ describe("FillBlankAnswer typed", () => {
     renderExercise(fillBlankExercise(["Lan"]));
     fireEvent.change(input(), { target: { value: "Hoa" } });
     checkAnswer();
-    expect(highlightOf(input())).not.toBeNull();
+    expect(isMarkedWrong(input())).toBe(true);
     checkAnswer();
     checkAnswer();
     expect(input()).toHaveValue("Lan");

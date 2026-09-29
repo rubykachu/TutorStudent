@@ -73,7 +73,9 @@ export function Formula({ tex, highlight = [], className = "" }: FormulaProps) {
   return (
     <span
       ref={ref}
-      className={`text-[1.25em] ${className}`}
+      // KaTeX draws at 1.21em of this, so a formula is about 1.5× the body
+      // text; globals.css sets its digits in the body font at semibold.
+      className={`formula text-[1.25em] ${className}`}
       // Trusted: KaTeX escapes the TeX source and only `\htmlId` is allowed.
       // biome-ignore lint/security/noDangerouslySetInnerHtml: KaTeX output
       dangerouslySetInnerHTML={markup}

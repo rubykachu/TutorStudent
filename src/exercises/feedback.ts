@@ -9,6 +9,9 @@ import type { HighlightColor } from "@/visuals/shared/highlight";
 
 export type HighlightSpec = { color: HighlightColor; strong: boolean };
 
+// Authored hint targets (`hints.highlight`) to light up. The child's own
+// mistakes are never painted with the highlight colour, which would read as
+// a selection; they come separately as `FeedbackView.wrong`.
 export type FeedbackHighlights = {
   // Prompt blocks by position.
   blocks: ReadonlyMap<number, HighlightSpec>;
@@ -22,7 +25,10 @@ export type FeedbackHighlights = {
 // the fallbacks for exercises without hint/solution visuals cannot drift.
 export type FeedbackView = {
   highlights: FeedbackHighlights;
-  // Visual to play under the answer area: the hint visual on the second wrong
+  // Answer-area elements the grader flagged on the last check (from the first
+  // tier on), drawn by each answer component as a subdued "try again" state.
+  wrong: ReadonlySet<string>;
+  // Visual to play next to the answer area: the hint visual on the second wrong
   // check, the solution visual on the third.
   visualId: string | undefined;
   // Third wrong check without a solution visual: the answer component shows
@@ -48,19 +54,16 @@ const NO_HIGHLIGHTS: FeedbackHighlights = {
   options: new Map(),
 };
 
+const NO_WRONG: ReadonlySet<string> = new Set();
+
 function buildHighlights(
   targets: readonly TargetRef[],
-  wrongTargets: readonly string[],
   strong: boolean,
   concepts: ReadonlyMap<string, Concept> | undefined,
 ): FeedbackHighlights {
   const blocks = new Map<number, HighlightSpec>();
   const parts = new Map<string, HighlightSpec>();
   const options = new Map<string, HighlightSpec>();
-  // Graded mistakes use the plain highlight colour; an authored target on the
-  // same element overrides it with its concept colour.
-  for (const id of wrongTargets)
-    options.set(id, { color: "highlight", strong });
   for (const target of targets) {
     const color: HighlightColor =
       (target.conceptId && concepts?.get(target.conceptId)?.color) ||
@@ -91,12 +94,8 @@ export function feedbackView(
     highlights:
       tier === 0
         ? NO_HIGHLIGHTS
-        : buildHighlights(
-            hints.highlight,
-            state.wrongTargets,
-            strong,
-            concepts,
-          ),
+        : buildHighlights(hints.highlight, strong, concepts),
+    wrong: tier === 0 ? NO_WRONG : new Set(state.wrongTargets),
     visualId,
     reveal: state.phase === "wrong3" && hints.solutionVisualId === undefined,
     mascot: MASCOT[state.phase],

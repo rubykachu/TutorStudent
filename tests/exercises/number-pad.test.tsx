@@ -12,7 +12,7 @@ import {
 describe("NumberPad", () => {
   it("reports every key it shows", () => {
     const onKey = vi.fn();
-    render(<NumberPad onKey={onKey} />);
+    render(<NumberPad onKey={onKey} decimal />);
     const names: [string, PadKey][] = [
       ...[..."0123456789"].map((d): [string, PadKey] => [d, d as PadKey]),
       ["Dấu phẩy", "comma"],
@@ -32,7 +32,7 @@ describe("NumberPad", () => {
 
   it("disables single keys, or all of them", () => {
     const { rerender } = render(
-      <NumberPad onKey={() => {}} disabledKeys={new Set(["comma"])} />,
+      <NumberPad onKey={() => {}} decimal disabledKeys={new Set(["comma"])} />,
     );
     expect(screen.getByRole("button", { name: "Dấu phẩy" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "1" })).toBeEnabled();
@@ -40,6 +40,19 @@ describe("NumberPad", () => {
     for (const button of screen.getAllByRole("button")) {
       expect(button).toBeDisabled();
     }
+  });
+
+  it("leaves out the comma unless decimals are needed, delete filling its place", () => {
+    const { rerender } = render(<NumberPad onKey={() => {}} />);
+    expect(screen.queryByRole("button", { name: "Dấu phẩy" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Xoá" })).toHaveClass(
+      "row-span-2",
+    );
+    rerender(<NumberPad onKey={() => {}} decimal />);
+    expect(screen.getByRole("button", { name: "Dấu phẩy" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Xoá" })).not.toHaveClass(
+      "row-span-2",
+    );
   });
 
   it("marks the mũ key while the exponent is being typed", () => {

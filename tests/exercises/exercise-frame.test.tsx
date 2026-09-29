@@ -17,6 +17,7 @@ function TestChoice({
   exercise: ChoiceExercise;
   slot: AnswerSlotProps<ChoiceInput>;
 }) {
+  lastSlot = slot;
   const selected = slot.reveal ? exercise.answer : (slot.value?.selected ?? []);
   return (
     <div data-reveal={slot.reveal || undefined}>
@@ -34,6 +35,7 @@ function TestChoice({
               aria-pressed={selected.includes(id)}
               disabled={slot.disabled}
               data-option={id}
+              data-wrong={slot.wrong.has(id) || undefined}
               onClick={() => slot.onChange({ type: "choice", selected: [id] })}
             >
               {`Đáp án ${id}`}
@@ -101,6 +103,17 @@ function endAnimation(el: Element) {
   }
 }
 
+function option(id: string) {
+  return screen.getByRole("button", { name: `Đáp án ${id}` });
+}
+
+// The last slot the frame handed to the answer component.
+let lastSlot: AnswerSlotProps<ChoiceInput> | undefined;
+function slotOf<K extends keyof AnswerSlotProps<ChoiceInput>>(key: K) {
+  if (!lastSlot) throw new Error("no slot yet");
+  return lastSlot[key];
+}
+
 function optionHighlight(id: string) {
   return screen
     .getByRole("button", { name: `Đáp án ${id}` })
@@ -158,8 +171,11 @@ describe("ExerciseFrame", () => {
     expect(frame).toHaveAttribute("data-tier", "1");
     expect(answerArea(container)).toHaveAttribute("data-tone", "retry");
     expect(answerArea(container)).toHaveClass("animate-shake");
-    // The graded mistake and the authored targets light up.
-    expect(optionHighlight("b")).not.toBeNull();
+    // The graded mistake is handed over as wrong (and let go), never lit up
+    // with the highlight colour; only the authored targets light up.
+    expect(option("b")).toHaveAttribute("data-wrong");
+    expect(option("b")).toHaveAttribute("aria-pressed", "false");
+    expect(optionHighlight("b")).toBeNull();
     expect(optionHighlight("a")).toBeNull();
     expect(
       screen.getByText("Chọn cách viết đúng.").closest("[data-highlighted]"),
@@ -168,13 +184,17 @@ describe("ExerciseFrame", () => {
     expect(part).toHaveAttribute("data-highlighted");
     expect(frame).toHaveAttribute("data-mascot", "idle");
 
+    choose("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(container.querySelector("[data-feedback-visual]")).toBeNull();
-    expect(optionHighlight("b")).toHaveAttribute("data-highlight-strong");
+    expect(
+      screen.getByText("Chọn cách viết đúng.").closest("[data-highlighted]"),
+    ).toHaveAttribute("data-highlight-strong");
     expect(part).toHaveClass("outline-3");
     expect(frame).toHaveAttribute("data-mascot", "hint");
 
+    choose("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(frame).toHaveAttribute("data-mascot", "cheer");
@@ -211,8 +231,9 @@ describe("ExerciseFrame", () => {
     choose("b");
     checkAnswer();
     expect(container.querySelector("[data-feedback-visual]")).toBeNull();
-    expect(optionHighlight("b")).not.toHaveAttribute("data-highlight-strong");
+    expect(slotOf("feedbackVisual")).toBe(false);
 
+    choose("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(
@@ -220,9 +241,10 @@ describe("ExerciseFrame", () => {
         '[data-feedback-visual="fixture.visual.dot-grid"]',
       ),
     ).not.toBeNull();
-    // With a hint visual the highlight stays at its first-tier strength.
-    expect(optionHighlight("b")).not.toHaveAttribute("data-highlight-strong");
+    // The answer component is told, so a bulky input can give up its place.
+    expect(slotOf("feedbackVisual")).toBe(true);
 
+    choose("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(
@@ -246,16 +268,16 @@ describe("ExerciseFrame", () => {
 
   it("nudges again when a retype is wrong", () => {
     const { frame } = renderFrame(HINTS_FALLBACK);
-    choose("b");
-    checkAnswer();
-    checkAnswer();
-    checkAnswer();
+    for (let i = 0; i < 3; i++) {
+      choose("b");
+      checkAnswer();
+    }
     fireEvent.click(screen.getByRole("button", { name: "Tự làm lại" }));
     choose("c");
     checkAnswer();
     expect(frame).toHaveAttribute("data-phase", "retype");
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(optionHighlight("c")).not.toBeNull();
+    expect(option("c")).toHaveAttribute("data-wrong");
   });
 
   it("does not shake with reduced motion", () => {
@@ -286,7 +308,7 @@ describe("ExerciseFrame", () => {
     expect(onCorrect).toHaveBeenCalledTimes(1);
   });
 
-  it("shows the 56px owl beside the answer by default", () => {
+  it("perches the owl on the answer card: 56px on a phone, 72px on a tablet", () => {
     const exercise = choiceExercise(["a"], HINTS_FALLBACK);
     const { container } = render(
       <ExerciseFrame exercise={exercise} onDone={vi.fn()}>
@@ -295,7 +317,13 @@ describe("ExerciseFrame", () => {
     );
     const owl = container.querySelector("svg[data-mascot]");
     expect(owl).toHaveAttribute("data-mascot", "idle");
-    expect(owl).toHaveClass("size-14");
+    expect(owl).toHaveClass("size-14", "md:size-18");
+    // Absolute on the card's corner on a phone, never taking a tap.
+    expect(owl?.parentElement).toHaveClass(
+      "pointer-events-none",
+      "absolute",
+      "md:static",
+    );
     choose("a");
     checkAnswer();
     expect(container.querySelector("svg[data-mascot]")).toHaveAttribute(
@@ -304,12 +332,74 @@ describe("ExerciseFrame", () => {
     );
   });
 
+  it("brings the feedback visual, then the revealed answer, into view", () => {
+    const calls: [Element, ScrollIntoViewOptions | undefined][] = [];
+    const original = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = function (
+      this: Element,
+      options?: boolean | ScrollIntoViewOptions,
+    ) {
+      calls.push([this, typeof options === "object" ? options : undefined]);
+    };
+    try {
+      const { container } = renderFrame(HINTS_WITH_VISUALS);
+      choose("b");
+      checkAnswer();
+      expect(calls).toEqual([]);
+      choose("b");
+      checkAnswer();
+      const visual = container.querySelector("[data-feedback-visual]");
+      expect(calls.at(-1)).toEqual([
+        visual,
+        { block: "nearest", behavior: "smooth" },
+      ]);
+      // In the two-column layout the visual sits in the prompt's column.
+      expect(visual).toHaveClass(
+        "lg:landscape:col-start-1",
+        "lg:landscape:row-start-2",
+      );
+    } finally {
+      Element.prototype.scrollIntoView = original;
+    }
+  });
+
+  it("jumps instead of gliding under reduced motion, and shows the reveal", () => {
+    const calls: [Element, ScrollIntoViewOptions | undefined][] = [];
+    const original = Element.prototype.scrollIntoView;
+    const originalMatch = window.matchMedia;
+    Element.prototype.scrollIntoView = function (
+      this: Element,
+      options?: boolean | ScrollIntoViewOptions,
+    ) {
+      calls.push([this, typeof options === "object" ? options : undefined]);
+    };
+    window.matchMedia = (query: string) => ({
+      ...originalMatch(query),
+      matches: query === "(prefers-reduced-motion: reduce)",
+    });
+    try {
+      const { container } = renderFrame(HINTS_FALLBACK);
+      for (let i = 0; i < 3; i++) {
+        choose("b");
+        checkAnswer();
+      }
+      expect(calls.at(-1)).toEqual([
+        answerArea(container),
+        { block: "nearest", behavior: "auto" },
+      ]);
+    } finally {
+      Element.prototype.scrollIntoView = original;
+      window.matchMedia = originalMatch;
+    }
+  });
+
   it("shakes again on the next wrong check once the shake ended", () => {
     const { container } = renderFrame(HINTS_FALLBACK);
     choose("b");
     checkAnswer();
     endAnimation(answerArea(container));
     expect(answerArea(container)).not.toHaveClass("animate-shake");
+    choose("b");
     checkAnswer();
     expect(answerArea(container)).toHaveClass("animate-shake");
   });

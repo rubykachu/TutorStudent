@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { numericExercise } from "./helpers";
 import {
@@ -6,7 +6,7 @@ import {
   checkButton,
   expectVisualTiers,
   highlightOf,
-  isStrong,
+  isMarkedWrong,
   renderExercise,
   startRetype,
   tap,
@@ -52,7 +52,8 @@ describe("NumericAnswer", () => {
     const { frame, container } = renderExercise(numericExercise(POWER));
     press("2", "Số mũ");
     expect(slot(container, "exponent")).toHaveAttribute("data-focused");
-    expect(screen.getByRole("button", { name: "Dấu phẩy" })).toBeDisabled();
+    // A whole-number answer offers no comma key at all.
+    expect(screen.queryByRole("button", { name: "Dấu phẩy" })).toBeNull();
     press("3");
     expect(slot(container, "base")).toHaveTextContent("2");
     expect(slot(container, "exponent")).toHaveTextContent("3");
@@ -86,12 +87,12 @@ describe("NumericAnswer", () => {
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(highlightOf(slot(container, "exponent"))).not.toBeNull();
-    expect(highlightOf(slot(container, "base"))).toBeNull();
+    expect(isMarkedWrong(slot(container, "exponent"))).toBe(true);
+    expect(slot(container, "base")).not.toHaveAttribute("data-wrong");
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
-    expect(isStrong(slot(container, "exponent"))).toBe(true);
+    expect(isMarkedWrong(slot(container, "exponent"))).toBe(true);
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
@@ -109,10 +110,11 @@ describe("NumericAnswer", () => {
   });
 
   it("lights up the mũ key when a plain value misses a power answer", () => {
-    const { frame } = renderExercise(numericExercise(POWER));
+    const { frame, container } = renderExercise(numericExercise(POWER));
     press("8");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
+    expect(isMarkedWrong(slot(container, "value"))).toBe(true);
     expect(
       highlightOf(screen.getByRole("button", { name: "Số mũ" })),
     ).not.toBeNull();
@@ -127,6 +129,62 @@ describe("NumericAnswer", () => {
     checkAnswer();
     checkAnswer();
     expect(slot(container, "value")).toHaveTextContent("2,5");
+  });
+
+  it("offers the comma key only when the answer has decimals", () => {
+    renderExercise(numericExercise({ kind: "value", value: 6 }));
+    expect(screen.queryByRole("button", { name: "Dấu phẩy" })).toBeNull();
+    // A typed comma is ignored too.
+    fireEvent.keyDown(screen.getByRole("button", { name: /Đáp số/ }), {
+      key: ",",
+    });
+    expect(checkButton()).toBeDisabled();
+    cleanup();
+    renderExercise(numericExercise({ kind: "value", value: 2.5 }));
+    expect(screen.getByRole("button", { name: "Dấu phẩy" })).toBeEnabled();
+  });
+
+  it("lets the hint visual take the pad's place until the child asks for it", () => {
+    const { container } = renderExercise(
+      numericExercise({ kind: "value", value: 6 }, VISUAL_HINTS),
+    );
+    const pad = () =>
+      screen.getByRole("group", { name: "Bàn phím số" }).parentElement;
+    press("9");
+    checkAnswer();
+    expect(pad()).not.toHaveAttribute("data-pad-collapsed");
+
+    checkAnswer();
+    expect(container.querySelector("[data-feedback-visual]")).not.toBeNull();
+    // Hidden where the layout stacks; the two-column layout keeps it.
+    expect(pad()).toHaveAttribute("data-pad-collapsed");
+    expect(pad()).toHaveClass("hidden", "lg:landscape:block");
+    expect(slot(container, "value")).toHaveTextContent("9");
+
+    fireEvent.click(screen.getByRole("button", { name: "Mở bàn phím số" }));
+    expect(pad()).not.toHaveAttribute("data-pad-collapsed");
+    expect(screen.queryByRole("button", { name: "Mở bàn phím số" })).toBeNull();
+
+    // The solution visual takes the place again; the retype brings it back.
+    checkAnswer();
+    expect(pad()).toHaveAttribute("data-pad-collapsed");
+    startRetype();
+    expect(pad()).not.toHaveAttribute("data-pad-collapsed");
+  });
+
+  it("puts the revealed answer in place of the pad", () => {
+    const { container } = renderExercise(
+      numericExercise({ kind: "value", value: 6 }),
+    );
+    press("9");
+    checkAnswer();
+    checkAnswer();
+    checkAnswer();
+    expect(slot(container, "value")).toHaveTextContent("6");
+    expect(slot(container, "value")).toHaveClass("border-correct");
+    expect(
+      screen.getByRole("group", { name: "Bàn phím số" }).parentElement,
+    ).toHaveAttribute("data-pad-collapsed");
   });
 
   it("plays the hint and solution visuals when the exercise has them", () => {

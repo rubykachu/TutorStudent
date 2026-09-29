@@ -7,7 +7,7 @@ import {
   checkButton,
   expectVisualTiers,
   highlightOf,
-  isStrong,
+  isMarkedWrong,
   renderExercise,
   startRetype,
   tap,
@@ -70,15 +70,22 @@ describe("ChoiceAnswer", () => {
     tap("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(highlightOf(option("b"))).not.toBeNull();
+    // The wrong pick is let go and marked orange, not lit up yellow.
+    expect(isMarkedWrong(option("b"))).toBe(true);
+    expect(option("b")).toHaveAttribute("aria-pressed", "false");
+    expect(option("b")).toHaveClass("border-dashed", "border-retry");
+    expect(option("b")).not.toHaveClass("bg-transparent");
     expect(highlightOf(option("a"))).toBeNull();
-    expect(isStrong(option("b"))).toBe(false);
+    expect(checkButton()).toBeDisabled();
 
+    tap("c");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
-    // No hint visual: the same option is marked more boldly instead.
-    expect(isStrong(option("b"))).toBe(true);
+    expect(isMarkedWrong(option("c"))).toBe(true);
+    // Only the last check's mistakes are marked.
+    expect(option("b")).not.toHaveAttribute("data-wrong");
 
+    tap("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(container.querySelector("[data-reveal]")).not.toBeNull();
@@ -98,7 +105,11 @@ describe("ChoiceAnswer", () => {
   it("plays the hint and solution visuals when the exercise has them", () => {
     const view = renderExercise(choiceExercise(["a"], VISUAL_HINTS));
     tap("b");
-    expectVisualTiers(view, () => option("b"));
+    expectVisualTiers(
+      view,
+      () => option("b"),
+      () => tap("b"),
+    );
     expect(option("b")).toHaveAttribute("aria-pressed", "false");
     expect(checkButton()).toBeDisabled();
   });

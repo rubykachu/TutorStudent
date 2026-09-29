@@ -5,8 +5,7 @@ import {
   checkAnswer,
   checkButton,
   expectVisualTiers,
-  highlightOf,
-  isStrong,
+  isMarkedWrong,
   renderExercise,
   startRetype,
   VISUAL_HINTS,
@@ -81,12 +80,12 @@ describe("OrderAnswer", () => {
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
     for (const id of IDS) {
-      const lit = highlightOf(item(container, id)) !== null;
-      expect(lit).toBe(misplaced.includes(id));
+      expect(isMarkedWrong(item(container, id))).toBe(misplaced.includes(id));
     }
 
     checkAnswer();
-    expect(isStrong(item(container, misplaced[0]))).toBe(true);
+    expect(frame).toHaveAttribute("data-tier", "2");
+    expect(isMarkedWrong(item(container, misplaced[0]))).toBe(true);
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");

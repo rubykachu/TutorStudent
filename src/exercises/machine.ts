@@ -5,6 +5,7 @@ import {
   type ExerciseInput,
   type InputFor,
   isInputEmpty,
+  releaseWrongPicks,
 } from "@/exercises/input";
 import type { BasicExercise } from "@/schema/content";
 
@@ -111,6 +112,7 @@ export function exerciseReducer<I extends ExerciseInput>(
       return {
         ...state,
         phase: NEXT_WRONG[state.phase] ?? state.phase,
+        input: releaseWrongPicks(state.input, action.result.wrongTargets),
         wrongCount: state.wrongCount + 1,
         wrongTargets: action.result.wrongTargets,
         retypeMissed: state.phase === "retype",

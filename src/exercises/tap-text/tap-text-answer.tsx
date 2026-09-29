@@ -22,10 +22,15 @@ function passageParagraphs(exercise: TapTextExercise) {
   );
 }
 
-// A hint or mistake mark is an underline, because a selected sentence already
-// uses the highlight background.
-function markClass(mark: HighlightSpec | undefined): string {
-  if (!mark) return "";
+// A hint mark is an underline, because a selected sentence already uses the
+// highlight background. A sentence the last check found wrong (and let go)
+// gets a dashed orange underline instead.
+function markClass(mark: HighlightSpec | undefined, wrong: boolean): string {
+  if (!mark) {
+    return wrong
+      ? "underline decoration-dashed decoration-retry decoration-3 underline-offset-8"
+      : "";
+  }
   const color =
     mark.color === "highlight"
       ? "decoration-foreground"
@@ -40,6 +45,7 @@ type SentenceProps = {
   selected: boolean;
   revealed: boolean;
   mark: HighlightSpec | undefined;
+  wrong: boolean;
   disabled: boolean;
   onToggle: (id: string) => void;
 };
@@ -50,6 +56,7 @@ function Sentence({
   selected,
   revealed,
   mark,
+  wrong,
   disabled,
   onToggle,
 }: SentenceProps) {
@@ -73,7 +80,8 @@ function Sentence({
       data-revealed={revealed || undefined}
       data-highlighted={mark !== undefined || undefined}
       data-highlight-strong={mark?.strong || undefined}
-      className={`rounded-sm px-1 py-1 box-decoration-clone ${paint} ${markClass(mark)} ${disabled ? "" : "cursor-pointer"}`}
+      data-wrong={wrong || undefined}
+      className={`rounded-sm px-1 py-1 box-decoration-clone ${paint} ${markClass(mark, wrong)} ${disabled ? "" : "cursor-pointer"}`}
       onClick={toggle}
       onKeyDown={(event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
@@ -95,7 +103,7 @@ function Sentence({
 
 // The passage as tappable sentences: a tap selects or clears a whole sentence.
 export function TapTextAnswer({ exercise, slot }: TapTextAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal } = slot;
+  const { value, onChange, disabled, highlight, wrong, reveal } = slot;
   const own = value?.selected ?? [];
   const selected = new Set(reveal ? exercise.answer : own);
   const answer = new Set(exercise.answer);
@@ -122,6 +130,7 @@ export function TapTextAnswer({ exercise, slot }: TapTextAnswerProps) {
                 selected={selected.has(sentence.id)}
                 revealed={reveal && answer.has(sentence.id)}
                 mark={highlight.get(sentence.id)}
+                wrong={!selected.has(sentence.id) && wrong.has(sentence.id)}
                 disabled={disabled}
                 onToggle={toggle}
               />

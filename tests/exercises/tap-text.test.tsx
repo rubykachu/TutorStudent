@@ -95,7 +95,7 @@ describe("TapTextAnswer", () => {
     });
   });
 
-  it("marks only extra selections, then strong marks, then reveals", () => {
+  it("lets go of extra selections and underlines them, then reveals", () => {
     const { frame, onDone, container } = renderTapText({
       highlight: [
         { target: "part", id: "s3", conceptId: "test.concept.nhan-vat" },
@@ -105,16 +105,23 @@ describe("TapTextAnswer", () => {
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(sentence("s1")).toHaveAttribute("data-highlighted");
+    // The extra pick is let go and underlined orange, not lit up.
+    expect(sentence("s1")).toHaveAttribute("data-wrong");
+    expect(sentence("s1")).toHaveAttribute("aria-pressed", "false");
+    expect(sentence("s1")).toHaveClass("decoration-retry", "decoration-dashed");
+    expect(sentence("s1")).not.toHaveAttribute("data-highlighted");
     // The missed answer is never pointed at.
     expect(sentence("s2")).not.toHaveAttribute("data-highlighted");
+    expect(sentence("s2")).not.toHaveAttribute("data-wrong");
     // An authored sentence hint reaches the answer area in its concept colour.
     expect(sentence("s3")).toHaveClass("decoration-concept-pink");
 
+    tap("s1");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
-    expect(sentence("s1")).toHaveAttribute("data-highlight-strong");
+    expect(sentence("s3")).toHaveAttribute("data-highlight-strong");
 
+    tap("s1");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(revealed(container)).not.toBeNull();
@@ -141,16 +148,18 @@ describe("TapTextAnswer", () => {
     const { frame, container } = renderTapText(VISUAL_HINTS);
     tap("s3");
     checkAnswer();
+    tap("s3");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(feedbackVisual(container, "fixture.visual.dot-grid")).not.toBeNull();
     expect(sentence("s3")).not.toHaveAttribute("data-highlight-strong");
+    tap("s3");
     checkAnswer();
     expect(
       feedbackVisual(container, "fixture.visual.bead-merge"),
     ).not.toBeNull();
     expect(revealed(container)).toBeNull();
-    expect(sentence("s3")).toHaveAttribute("aria-pressed", "true");
+    expect(sentence("s3")).toHaveAttribute("aria-pressed", "false");
     expect(highlightOf(sentence("s2"))).toBeNull();
   });
 });

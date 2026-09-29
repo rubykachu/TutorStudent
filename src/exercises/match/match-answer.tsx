@@ -12,6 +12,7 @@ import {
 } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { type ReactNode, useId, useMemo, useState } from "react";
+import { WRONG_TONE } from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { MatchInput } from "@/exercises/input";
@@ -66,10 +67,11 @@ function announcements(columns: Record<Side, readonly Item[]>): Announcements {
 }
 
 const ITEM =
-  "relative flex min-h-touch w-full items-center gap-3 rounded-md bg-surface px-3 py-2 text-left disabled:cursor-default motion-safe:transition-transform motion-safe:active:scale-97";
+  "relative flex min-h-touch w-full items-center gap-3 rounded-md px-3 py-2 text-left disabled:cursor-default motion-safe:transition-transform motion-safe:active:scale-97";
 
-function itemBorder(armed: boolean, over: boolean): string {
-  return armed || over ? "border-3 border-primary" : "border-2 border-border";
+function itemBorder(armed: boolean, over: boolean, wrong: boolean): string {
+  if (armed || over) return "border-3 border-primary bg-surface";
+  return wrong ? WRONG_TONE : "border-2 border-border bg-surface";
 }
 
 // Number shared by a left item and the right item it is paired with, so a
@@ -105,6 +107,7 @@ type ItemProps = {
   disabled: boolean;
   revealed: boolean;
   highlight: HighlightSpec | undefined;
+  wrong: boolean;
   onTap: () => void;
 };
 
@@ -135,6 +138,7 @@ function LeftItem({
   disabled,
   revealed,
   highlight,
+  wrong,
   onTap,
 }: ItemProps & { index: number; paired: boolean }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
@@ -153,11 +157,12 @@ function LeftItem({
           data-item={item.id}
           data-side="left"
           data-armed={armed || undefined}
+          data-wrong={wrong || undefined}
           style={{ transform: CSS.Translate.toString(transform) }}
           onClick={onTap}
           // Touch drags would otherwise scroll the page instead of moving the item.
           // A transform transition would make the item trail the finger.
-          className={`${ITEM} touch-none ${itemBorder(armed, false)} ${isDragging ? "z-10 shadow-card transition-none" : ""}`}
+          className={`${ITEM} touch-none ${itemBorder(armed, false, wrong)} ${isDragging ? "z-10 shadow-card transition-none" : ""}`}
         >
           <PairBadge
             number={paired ? index + 1 : undefined}
@@ -179,6 +184,7 @@ function RightItem({
   disabled,
   revealed,
   highlight,
+  wrong,
   onTap,
 }: ItemProps & { pairedWith: number | undefined }) {
   const { setNodeRef, isOver } = useDroppable({ id: item.id, disabled });
@@ -193,8 +199,9 @@ function RightItem({
           data-item={item.id}
           data-side="right"
           data-armed={armed || undefined}
+          data-wrong={wrong || undefined}
           onClick={onTap}
-          className={`${ITEM} ${itemBorder(armed, isOver)}`}
+          className={`${ITEM} ${itemBorder(armed, isOver, wrong)}`}
         >
           <PairBadge number={pairedWith} revealed={revealed} />
           <ItemContent content={item.content} />
@@ -210,7 +217,7 @@ function RightItem({
 // Drag a left item onto a right item, or tap one and then the other. Right
 // items without a pair in the answer are distractors and look like the rest.
 export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  const { value, onChange, disabled, highlight, wrong, reveal, seed } = slot;
   const right = useMemo(() => shuffleRight(exercise, seed), [exercise, seed]);
   const [armedItem, setArmedItem] = useState<Armed | null>(null);
   const dndId = useId();
@@ -272,6 +279,7 @@ export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
               disabled={disabled}
               revealed={reveal}
               highlight={highlight.get(item.id)}
+              wrong={!reveal && wrong.has(item.id)}
               onTap={() => tap({ side: "left", id: item.id })}
             />
           ))}
@@ -290,6 +298,7 @@ export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
                 disabled={disabled}
                 revealed={reveal}
                 highlight={highlight.get(item.id)}
+                wrong={!reveal && wrong.has(item.id)}
                 onTap={() => tap({ side: "right", id: item.id })}
               />
             );

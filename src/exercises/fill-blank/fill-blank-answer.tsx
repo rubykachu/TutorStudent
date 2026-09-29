@@ -8,7 +8,11 @@ import {
 } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
-import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
+import {
+  AnswerHighlight,
+  surfaceFor,
+  WRONG_TONE,
+} from "@/exercises/answer-highlight";
 import { DRAG_ACCESSIBILITY, useDragSensors } from "@/exercises/drag";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
@@ -35,7 +39,7 @@ function revealedBlanks(exercise: FillBlankExercise): Blanks {
 const CHIP_DRAG_PREFIX = "chip:";
 
 export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal, seed } = slot;
+  const { value, onChange, disabled, highlight, wrong, reveal, seed } = slot;
   const blanks = reveal ? revealedBlanks(exercise) : (value?.blanks ?? {});
   // Bank index of the word tapped first, waiting for a blank to go into.
   const [picked, setPicked] = useState<number | null>(null);
@@ -75,6 +79,7 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
       number: blankNumber,
       text,
       spec: highlight.get(segment.id),
+      wrong: wrong.has(segment.id),
       disabled,
       reveal,
     };
@@ -148,12 +153,19 @@ type BlankProps = {
   number: number;
   text: string;
   spec: HighlightSpec | undefined;
+  wrong: boolean;
   disabled: boolean;
   reveal: boolean;
 };
 
-function blankTone(text: string, reveal: boolean, spec?: HighlightSpec) {
+function blankTone(
+  text: string,
+  reveal: boolean,
+  wrong: boolean,
+  spec?: HighlightSpec,
+) {
   if (reveal) return "border-2 border-correct bg-correct-soft";
+  if (wrong) return WRONG_TONE;
   return text === ""
     ? `border-2 border-dashed border-muted-foreground ${surfaceFor(spec)}`
     : `border-2 border-primary ${surfaceFor(spec)}`;
@@ -164,6 +176,7 @@ function BankBlank({
   number,
   text,
   spec,
+  wrong,
   disabled,
   reveal,
   onTap,
@@ -177,8 +190,9 @@ function BankBlank({
         aria-label={`Ô trống ${number}: ${text === "" ? "chưa điền" : text}`}
         disabled={disabled}
         data-blank={id}
+        data-wrong={wrong || undefined}
         onClick={onTap}
-        className={`inline-flex h-12 min-w-24 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, spec)} ${isOver ? "outline-3 outline-primary" : ""}`}
+        className={`inline-flex h-12 min-w-24 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, wrong, spec)} ${isOver ? "outline-3 outline-primary" : ""}`}
       >
         {text}
       </button>
@@ -191,6 +205,7 @@ function TypedBlank({
   number,
   text,
   spec,
+  wrong,
   disabled,
   reveal,
   onType,
@@ -212,9 +227,10 @@ function TypedBlank({
           enterKeyHint="done"
           disabled={disabled}
           data-blank={id}
+          data-wrong={wrong || undefined}
           value={text}
           onChange={(event) => onType(event.target.value)}
-          className={`h-12 w-36 rounded-sm px-3 text-body md:text-body-lg ${blankTone(text, reveal, spec)}`}
+          className={`h-12 w-36 rounded-sm px-3 text-body md:text-body-lg ${blankTone(text, reveal, wrong, spec)}`}
         />
       </label>
     </AnswerHighlight>

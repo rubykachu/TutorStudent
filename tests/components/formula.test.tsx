@@ -31,4 +31,9 @@ describe("Formula", () => {
     );
     expect(container.querySelector("#co-so")).toHaveClass("bg-highlight");
   });
+
+  it("marks itself for the formula typography in globals.css", () => {
+    const { container } = render(<Formula tex="2^5" />);
+    expect(container.firstElementChild).toHaveClass("formula");
+  });
 });

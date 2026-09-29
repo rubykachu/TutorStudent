@@ -77,8 +77,20 @@ describe("exerciseReducer", () => {
     expect([three.phase, feedbackTier(three)]).toEqual(["wrong3", 3]);
   });
 
+  it("lets go of wrong picks of a selection and keeps the right ones", () => {
+    const state = run(
+      { type: "input", input: { type: "choice", selected: ["a", "b"] } },
+      { type: "check", result: { correct: false, wrongTargets: ["b"] } },
+    );
+    expect(state.phase).toBe("wrong1");
+    expect(state.input).toEqual({ type: "choice", selected: ["a"] });
+    const emptied = run(pick("b"), WRONG);
+    expect(emptied.input).toBeNull();
+    expect(canCheck(emptied)).toBe(false);
+  });
+
   it("requires retyping the answer after three wrong checks", () => {
-    const three = run(pick("b"), WRONG, WRONG, WRONG);
+    const three = run(pick("b"), WRONG, pick("b"), WRONG, pick("b"), WRONG);
     expect(three.phase).toBe("wrong3");
     // The answer is on show: no edits, no checks, no finishing.
     expect(exerciseReducer(three, pick("a"))).toBe(three);

@@ -1,8 +1,16 @@
 "use client";
 
+import { Keyboard } from "lucide-react";
 import { type KeyboardEvent, useState } from "react";
-import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
-import type { AnswerSlotProps } from "@/exercises/exercise-frame";
+import {
+  AnswerHighlight,
+  surfaceFor,
+  WRONG_TONE,
+} from "@/exercises/answer-highlight";
+import {
+  type AnswerSlotProps,
+  COLLAPSED_INPUT_CLASS,
+} from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { NumericInput } from "@/exercises/input";
 import {
@@ -25,6 +33,7 @@ type NumericAnswerProps = {
 };
 
 const NO_COMMA: ReadonlySet<PadKey> = new Set(["comma"]);
+const POWER_KEY_HINT: HighlightSpec = { color: "highlight", strong: false };
 
 function revealedInput(exercise: NumericExercise): NumericInput {
   const { answer } = exercise;
@@ -38,6 +47,15 @@ function revealedInput(exercise: NumericExercise): NumericInput {
     : { type: "numeric", kind: "value", value: formatNumber(answer.value) };
 }
 
+// The comma key is offered only when the answer itself has decimals, so a
+// whole-number answer never suggests typing one. Exponents are whole numbers.
+export function needsDecimal(exercise: NumericExercise): boolean {
+  const { answer } = exercise;
+  return !Number.isInteger(
+    answer.kind === "power" ? answer.base : answer.value,
+  );
+}
+
 // Physical keyboards (and switch access) type the same keys as the pad.
 function padKeyOf(event: KeyboardEvent): PadKey | undefined {
   if ((DIGITS as readonly string[]).includes(event.key))
@@ -49,22 +67,34 @@ function padKeyOf(event: KeyboardEvent): PadKey | undefined {
 }
 
 export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
-  const { value, onChange, disabled, highlight, reveal } = slot;
+  const { value, onChange, disabled, highlight, wrong, reveal } = slot;
   const [powerFocus, setPowerFocus] = useState<NumericSlot>("exponent");
+  // The child asked for the pad back while a hint visual stands in for it.
+  const [padWanted, setPadWanted] = useState(false);
   const shown = reveal ? revealedInput(exercise) : (value ?? EMPTY_NUMERIC);
   const focus: NumericSlot = shown.kind === "value" ? "value" : powerFocus;
+  const decimal = needsDecimal(exercise);
+  // While a hint or solution visual (or the revealed answer) is showing, the
+  // pad steps aside on stacked layouts so it is seen without scrolling; the
+  // entered answer stays as a compact summary above.
+  const padCollapsed =
+    (slot.feedbackVisual || reveal) && (disabled || !padWanted);
 
   function press(key: PadKey) {
     if (disabled) return;
+    if (key === "comma" && !decimal) return;
     const edit = applyPadKey(value, focus, key);
     if (edit.focus !== "value") setPowerFocus(edit.focus);
     onChange(edit.input);
   }
 
-  // A plain value checked against a power answer: point at the "mũ" key.
+  // A plain value checked against a power answer: point at the "mũ" key,
+  // in the colour of an authored hint on the power if there is one.
   const powerHint =
     shown.kind === "value"
-      ? (highlight.get("exponent") ?? highlight.get("base"))
+      ? (highlight.get("exponent") ??
+        highlight.get("base") ??
+        (wrong.has("exponent") ? POWER_KEY_HINT : undefined))
       : undefined;
 
   const box = (
@@ -76,6 +106,9 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
   ) => {
     const spec: HighlightSpec | undefined = highlight.get(id);
     const focused = !disabled && focus === id;
+    // A plain value checked against a power answer is flagged by its parts
+    // (base, exponent); the value box shows it was wrong all the same.
+    const missed = !reveal && (id === "value" ? wrong.size > 0 : wrong.has(id));
     return (
       <AnswerHighlight spec={spec} className={offset}>
         <button
@@ -84,14 +117,20 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
           disabled={disabled}
           data-slot={id}
           data-focused={focused || undefined}
+          data-wrong={missed || undefined}
           onClick={() => {
             if (id !== "value") setPowerFocus(id);
+            setPadWanted(true);
           }}
           className={`flex items-center justify-center rounded-lg px-3 font-bold tabular-nums ${size} ${
-            focused
-              ? `border-3 border-primary ${surfaceFor(spec)}`
-              : `border-2 border-border ${surfaceFor(spec)}`
-          } ${reveal ? "text-correct-soft-foreground" : ""}`}
+            reveal
+              ? "border-3 border-correct bg-correct-soft text-correct-soft-foreground"
+              : missed
+                ? WRONG_TONE
+                : focused
+                  ? `border-3 border-primary ${surfaceFor(spec)}`
+                  : `border-2 border-border ${surfaceFor(spec)}`
+          }`}
         >
           {text}
         </button>
@@ -138,14 +177,31 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
           </span>
         )}
         {exercise.unit && <span className="text-body-lg">{exercise.unit}</span>}
+        {padCollapsed && !disabled && (
+          <button
+            type="button"
+            aria-label="Mở bàn phím số"
+            data-open-pad
+            onClick={() => setPadWanted(true)}
+            className="flex size-14 items-center justify-center rounded-lg border-2 border-border bg-surface text-muted-foreground motion-safe:transition-transform motion-safe:active:scale-97 lg:landscape:hidden"
+          >
+            <Keyboard aria-hidden className="size-7" />
+          </button>
+        )}
       </div>
-      <NumberPad
-        onKey={press}
-        disabled={disabled}
-        disabledKeys={focus === "exponent" ? NO_COMMA : undefined}
-        powerActive={focus === "exponent"}
-        powerHighlight={powerHint}
-      />
+      <div
+        className={padCollapsed ? COLLAPSED_INPUT_CLASS : undefined}
+        data-pad-collapsed={padCollapsed || undefined}
+      >
+        <NumberPad
+          onKey={press}
+          decimal={decimal}
+          disabled={disabled}
+          disabledKeys={focus === "exponent" ? NO_COMMA : undefined}
+          powerActive={focus === "exponent"}
+          powerHighlight={powerHint}
+        />
+      </div>
     </div>
   );
 }

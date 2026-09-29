@@ -63,6 +63,12 @@ export function isStrong(el: Element) {
   return highlightOf(el)?.hasAttribute("data-highlight-strong") ?? false;
 }
 
+// Drawn as a mistake from the last check: orange and dashed, never lit up
+// with the highlight colour that would read as a selection.
+export function isMarkedWrong(el: Element) {
+  return el.hasAttribute("data-wrong") && highlightOf(el) === null;
+}
+
 // Exercises with both visuals: tier 2 plays the hint visual and tier 3 the
 // solution visual instead of the stronger highlight and the revealed answer.
 export const VISUAL_HINTS: Hints = {
@@ -73,22 +79,27 @@ export const VISUAL_HINTS: Hints = {
 
 // Walks the three wrong checks of an exercise built with VISUAL_HINTS whose
 // current answer is wrong; `wrong` is the answer element the grader flags.
+// Selection answers let go of a wrong pick after each check, so `repick`
+// enters the wrong answer again before the next one.
 export function expectVisualTiers(
   { frame, container }: { frame: Element; container: HTMLElement },
   wrong: () => Element,
+  repick: () => void = () => {},
 ) {
   const visual = (id: string) =>
     container.querySelector(`[data-feedback-visual="${id}"]`);
 
   checkAnswer();
   expect(frame).toHaveAttribute("data-tier", "1");
-  expect(highlightOf(wrong())).not.toBeNull();
+  expect(isMarkedWrong(wrong())).toBe(true);
 
+  repick();
   checkAnswer();
   expect(frame).toHaveAttribute("data-tier", "2");
   expect(visual("fixture.visual.dot-grid")).not.toBeNull();
-  expect(isStrong(wrong())).toBe(false);
+  expect(highlightOf(wrong())).toBeNull();
 
+  repick();
   checkAnswer();
   expect(frame).toHaveAttribute("data-tier", "3");
   expect(visual("fixture.visual.bead-merge")).not.toBeNull();
