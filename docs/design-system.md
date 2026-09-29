@@ -128,7 +128,7 @@ Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái
 
 - Một bạn cú, vẽ SVG phẳng, 2–3 màu từ bảng màu, nét tròn, mắt to.
 - Biểu cảm: `happy`, `hint`, `cheer`, `welcome` (vui khi gặp lại sau nhiều ngày không học — không trách), `idle`.
-- Kích thước: 96px trên trang chủ, 56px cạnh bài tập (điện thoại: phía trên vùng trả lời, căn phải). Không che nội dung bài.
+- Kích thước: 96px trên trang chủ; cạnh bài tập 72px trên iPad dọc, 56px đậu ở góc trên phải thẻ trả lời trên điện thoại và iPad ngang (không chiếm hàng riêng, không nhận chạm). Không che nội dung bài.
 - Biểu cảm đổi bằng Motion (xoay đầu, chớp mắt, vỗ cánh ≤ 600ms).
 - Màu: `--color-mascot-body` `#C08457` (thân), `--color-mascot-shade` `#94603A` (tai, cánh), `--color-mascot-belly` `#FDF0DC` (mặt, bụng), `--color-mascot-beak` `#F59E0B` (mỏ, chân, lấp lánh). Chỉ trang trí, không mang chữ.
 - Trang chủ: `welcome` khi lần học cuối cách hôm nay ≥ 3 ngày; `happy` khi hôm nay đã học; còn lại `idle`.
@@ -143,7 +143,7 @@ Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái
 | `ReviewButton` | Nút "Ôn bài này" trong trang bài, kèm nhãn nhỏ "n thẻ sắp quên" khi có |
 | `SectionStepper` | Chấm tiến độ các khối trong một phần (không số, không phần trăm) |
 | `ExerciseFrame` | Khung chung cho 8 dạng bài: đề, vùng trả lời, nút "Kiểm tra", vùng gợi ý, trạng thái 3 nấc |
-| `NumberPad` | Bàn phím số 3×4, phím 64px, có phím "mũ" để nhập số mũ cho bài luỹ thừa |
+| `NumberPad` | Khối số 3 cột (phím 0 trải ngang hàng cuối) + cột phụ Xoá / "mũ" / "," — phím "," chỉ hiện khi đáp án có số thập phân; phím 64px (60px ở iPad ngang). Khi nấc 2/3 có hình, bàn phím tạm ẩn để hình vào đúng chỗ, chạm ô đáp số để mở lại |
 | `PassageReader` | Hiển thị văn bản đọc hiểu, chạm từng câu để chọn, ghi chú "Theo dõi" dạng thẻ nhỏ bên lề (iPad) hoặc dưới đoạn (điện thoại) |
 | `ConceptChip` | Chip màu khái niệm + ký hiệu hình |
 | `StickerBook` | Lưới sticker đã nhận, sticker chưa nhận hiện bóng xám |

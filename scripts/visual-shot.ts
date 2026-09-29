@@ -237,7 +237,7 @@ async function shoot(
   }
 
   const base = path.join(outDir, `${id}-${device}`);
-  // The browser runs with reduced motion, so a StepPlayer waits on "Tiếp" and
+  // The browser runs with reduced motion, so a StepPlayer waits on "Bước tiếp" and
   // every step is a still frame. The final step gets the plain file name.
   for (let step = 0; step < result.steps; step++) {
     const issues = await page.evaluate(findLayoutIssues, selectors);
@@ -261,7 +261,7 @@ async function shoot(
         { timeout: STEP_TIMEOUT_MS },
       );
     } catch {
-      result.issues.push(`step ${step + 1}: "Tiếp" did not advance`);
+      result.issues.push(`step ${step + 1}: "Bước tiếp" did not advance`);
       break;
     }
   }
