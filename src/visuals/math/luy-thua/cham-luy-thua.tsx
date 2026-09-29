@@ -1,17 +1,24 @@
 import { decorative } from "@/visuals/shared/markers";
 import { Region, RegionSvg } from "@/visuals/shared/region";
 
-// 6⁴ drawn large for "tap the base / tap the exponent". Both parts are drawn
-// in the plain text colour: in this lesson blue marks the base, so colouring
-// them would answer the question. Region ids match the registry entry.
-export default function ChamLuyThua() {
+// A power drawn large for "tap the base / tap the exponent". Both parts are
+// drawn in the plain text colour: in this lesson blue marks the base, so
+// colouring them would answer the question. Region ids match the registry
+// entries. Single-digit parts only, so each fits its box.
+export function TapPower({
+  base,
+  exponent,
+}: {
+  base: number;
+  exponent: number;
+}) {
   return (
     <RegionSvg
-      label="Luỹ thừa 6 mũ 4"
+      label={`Luỹ thừa ${base} mũ ${exponent}`}
       viewBox="0 0 250 180"
       className="h-auto w-full max-w-64"
     >
-      <Region id="base" label="Số 6">
+      <Region id="base" label={`Số ${base}`}>
         <rect
           {...decorative}
           x={20}
@@ -30,10 +37,10 @@ export default function ChamLuyThua() {
           stroke="none"
           className="fill-foreground font-heading font-bold"
         >
-          6
+          {base}
         </text>
       </Region>
-      <Region id="exponent" label="Số 4">
+      <Region id="exponent" label={`Số ${exponent}`}>
         <rect
           {...decorative}
           x={165}
@@ -52,9 +59,13 @@ export default function ChamLuyThua() {
           stroke="none"
           className="fill-foreground font-heading font-bold"
         >
-          4
+          {exponent}
         </text>
       </Region>
     </RegionSvg>
   );
+}
+
+export default function ChamLuyThua() {
+  return <TapPower base={6} exponent={4} />;
 }

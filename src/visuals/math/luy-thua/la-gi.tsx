@@ -32,15 +32,25 @@ export default function LaGi() {
           <p className={MATH_LINE}>
             <FactorRow base={BASE} count={EXPONENT} />
           </p>
-          <Reveal shown={step >= COUNT_STEP}>
+          <Reveal
+            shown={step >= COUNT_STEP}
+            placeholder={<FactorCount count="?" />}
+          >
             <FactorCount count={EXPONENT} />
           </Reveal>
-          <Reveal shown={step >= POWER_STEP}>
+          <Reveal
+            shown={step >= POWER_STEP}
+            placeholder={<PowerAnatomy base={BASE} exponent="?" />}
+          >
             <PowerAnatomy base={BASE} exponent={EXPONENT} />
           </Reveal>
-          <Reveal shown={step >= READ_STEP}>
-            <p className="text-body md:text-body-lg">
-              Đọc là: <strong>“2 mũ 5”</strong>
+          <Reveal
+            shown={step >= READ_STEP}
+            placeholder={<p className="text-center">Đọc là: “?”</p>}
+          >
+            <p className="text-center">
+              Đọc là: <strong>“2 mũ 5”</strong> hoặc{" "}
+              <strong>“2 luỹ thừa 5”</strong>
             </p>
           </Reveal>
         </div>

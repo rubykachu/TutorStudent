@@ -7,7 +7,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "0a889877b6b77243facff25b3320b2a1c665eef3602665bf90587b48d69be3bb",
+  "reviewedHash": "bad8f74e0c21e91c602ce58dd0d7d9b47c9d2ce14abf852f25a0d899d69cadbb",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -25,16 +25,12 @@
       "id": "luy-thua.section.luy-thua-la-gi",
       "title": "Luỹ thừa là gì?",
       "sourceRef": "SGK tr.22–23",
-      "minutes": 8,
+      "minutes": 10,
       "blocks": [
-        {
-          "type": "note",
-          "text": "Ô đầu tiên của bàn cờ có 1 hạt thóc. Mỗi ô sau có số hạt gấp đôi ô trước."
-        },
         {
           "type": "visual",
           "visualId": "luy-thua.visual.ban-co",
-          "caption": "Bấm “Ô sau” để xem số hạt thóc. Thử cả “Ô cuối” nhé!"
+          "caption": "Ô đầu có 1 hạt thóc, mỗi ô sau gấp đôi ô trước. Bấm “Ô sau” để xem, thử cả “Ô cuối” nhé!"
         },
         {
           "type": "visual",
@@ -42,8 +38,12 @@
           "caption": "Tích 2 · 2 · 2 · 2 · 2 viết gọn là 2⁵."
         },
         {
-          "type": "formula",
-          "tex": "\\concept{blue}{a}^{\\concept{violet}{n}} = \\underbrace{\\concept{blue}{a} \\cdot \\concept{blue}{a} \\cdot \\ldots \\cdot \\concept{blue}{a}}_{\\concept{violet}{n}}"
+          "type": "visual",
+          "visualId": "luy-thua.visual.dinh-nghia"
+        },
+        {
+          "type": "visual",
+          "visualId": "luy-thua.visual.ket-ban-co"
         },
         {
           "type": "visual",
@@ -51,12 +51,13 @@
           "caption": "Đổi cơ số và số mũ, rồi xem phép nhân thay đổi."
         },
         {
-          "type": "note",
-          "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
+          "type": "visual",
+          "visualId": "luy-thua.visual.quy-tac-so-mu-1"
         },
         {
-          "type": "formula",
-          "tex": "\\concept{blue}{a}^{\\concept{violet}{1}} = \\concept{blue}{a} \\qquad \\concept{blue}{4}^{\\concept{violet}{1}} = \\concept{blue}{4}"
+          "type": "visual",
+          "visualId": "luy-thua.visual.bam-mu",
+          "caption": "Ví dụ: viết 2⁵ trên bàn phím số."
         }
       ],
       "checkIds": ["luy-thua.ex.tim-o-16-hat", "luy-thua.ex.cham-co-so"],
@@ -68,8 +69,8 @@
         "luy-thua.ex.viet-9-mu-1"
       ],
       "recap": {
-        "type": "formula",
-        "tex": "\\begin{gathered} \\concept{blue}{2}^{\\concept{violet}{5}} = \\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} \\\\ \\concept{blue}{a}^{\\concept{violet}{1}} = \\concept{blue}{a} \\end{gathered}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-luy-thua"
       }
     },
     {
@@ -80,26 +81,21 @@
       "blocks": [
         {
           "type": "visual",
+          "visualId": "luy-thua.visual.doc-binh-phuong"
+        },
+        {
+          "type": "visual",
           "visualId": "luy-thua.visual.binh-phuong-lap-phuong",
           "caption": "Chọn cơ số, rồi bấm “Bình phương” hoặc “Lập phương”."
         },
         {
-          "type": "note",
-          "text": "a² đọc là “a bình phương”, a³ đọc là “a lập phương”."
-        },
-        {
           "type": "visual",
-          "visualId": "luy-thua.visual.tinh-2-mu-5",
-          "caption": "Nhân hai số đầu, rồi lấy kết quả nhân tiếp với cơ số."
-        },
-        {
-          "type": "note",
-          "text": "Nhân từng bước và ghi kết quả ra nháp để khỏi nhầm."
+          "visualId": "luy-thua.visual.tinh-tung-buoc"
         }
       ],
       "checkIds": ["luy-thua.ex.doc-6-mu-2", "luy-thua.ex.hinh-vuong-16"],
       "practiceIds": [
-        "luy-thua.ex.tinh-3-mu-4",
+        "luy-thua.ex.tinh-3-mu-3",
         "luy-thua.ex.ghep-binh-phuong",
         "luy-thua.ex.lap-phuong-4",
         "luy-thua.ex.xep-gia-tri",
@@ -107,7 +103,7 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-hinh"
+        "visualId": "luy-thua.visual.tom-tat-binh-phuong"
       }
     },
     {
@@ -122,12 +118,8 @@
           "caption": "Gộp hai nhóm thừa số 3 thành một nhóm."
         },
         {
-          "type": "note",
-          "text": "Nhân hai luỹ thừa cùng cơ số: cơ số giữ nguyên, các số mũ cộng lại."
-        },
-        {
-          "type": "formula",
-          "tex": "\\concept{blue}{a}^{\\concept{violet}{m}} \\cdot \\concept{blue}{a}^{\\concept{violet}{n}} = \\concept{blue}{a}^{\\concept{violet}{m} + \\concept{violet}{n}}"
+          "type": "visual",
+          "visualId": "luy-thua.visual.quy-tac-nhan"
         },
         {
           "type": "visual",
@@ -135,12 +127,8 @@
           "caption": "Chọn hai số mũ, rồi bấm “Ghép lại”."
         },
         {
-          "type": "note",
-          "text": "Số không ghi số mũ thì có số mũ là 1."
-        },
-        {
-          "type": "formula",
-          "tex": "\\concept{blue}{5}^{\\concept{violet}{3}} \\cdot \\concept{blue}{5} = \\concept{blue}{5}^{\\concept{violet}{3} + \\concept{violet}{1}} = \\concept{blue}{5}^{\\concept{violet}{4}}"
+          "type": "visual",
+          "visualId": "luy-thua.visual.quy-tac-so-mu-an"
         }
       ],
       "checkIds": ["luy-thua.ex.chon-2-mu-7"],
@@ -152,8 +140,8 @@
         "luy-thua.ex.chon-phep-dung"
       ],
       "recap": {
-        "type": "formula",
-        "tex": "\\begin{gathered} \\concept{blue}{a}^{\\concept{violet}{m}} \\cdot \\concept{blue}{a}^{\\concept{violet}{n}} = \\concept{blue}{a}^{\\concept{violet}{m} + \\concept{violet}{n}} \\\\ \\concept{blue}{5}^{\\concept{violet}{3}} \\cdot \\concept{blue}{5} = \\concept{blue}{5}^{\\concept{violet}{4}} \\end{gathered}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-nhan"
       }
     },
     {
@@ -168,25 +156,13 @@
           "caption": "Chia cho 2³ là gạch đi 3 thừa số 2, còn lại 2 thừa số 2."
         },
         {
-          "type": "note",
-          "text": "Chia hai luỹ thừa cùng cơ số: cơ số giữ nguyên, số mũ thứ nhất trừ số mũ thứ hai."
-        },
-        {
-          "type": "formula",
-          "tex": "\\begin{gathered} \\concept{blue}{a}^{\\concept{violet}{m}} : \\concept{blue}{a}^{\\concept{violet}{n}} = \\concept{blue}{a}^{\\concept{violet}{m} - \\concept{violet}{n}} \\\\ (a \\ne 0,\\ m \\ge n) \\end{gathered}"
+          "type": "visual",
+          "visualId": "luy-thua.visual.quy-tac-chia"
         },
         {
           "type": "visual",
-          "visualId": "luy-thua.visual.so-mu-0",
+          "visualId": "luy-thua.visual.quy-tac-so-mu-0",
           "caption": "Một số khác 0 chia cho chính nó thì được 1."
-        },
-        {
-          "type": "note",
-          "text": "Ta quy ước: luỹ thừa có số mũ 0 thì bằng 1, với cơ số khác 0."
-        },
-        {
-          "type": "formula",
-          "tex": "\\concept{blue}{a}^{\\concept{violet}{0}} = 1 \\quad (a \\ne 0)"
         },
         {
           "type": "visual",
@@ -203,29 +179,28 @@
         "luy-thua.ex.thuong-2-mu-0"
       ],
       "recap": {
-        "type": "formula",
-        "tex": "\\begin{gathered} \\concept{blue}{a}^{\\concept{violet}{m}} : \\concept{blue}{a}^{\\concept{violet}{n}} = \\concept{blue}{a}^{\\concept{violet}{m} - \\concept{violet}{n}} \\\\ (a \\ne 0,\\ m \\ge n) \\\\ \\concept{blue}{a}^{\\concept{violet}{0}} = 1 \\quad (a \\ne 0) \\end{gathered}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-chia"
       }
     },
     {
       "id": "luy-thua.section.luy-thua-cua-10",
       "title": "Luỹ thừa của 10",
       "sourceRef": "SGK tr.23",
-      "minutes": 8,
+      "minutes": 7,
       "blocks": [
         {
           "type": "visual",
-          "visualId": "luy-thua.visual.luy-thua-cua-10",
-          "caption": "Số mũ bằng số chữ số 0 đứng sau chữ số 1."
-        },
-        {
-          "type": "note",
-          "text": "Một nghìn là 10³, một trăm là 10², một chục là 10."
+          "visualId": "luy-thua.visual.quy-tac-luy-thua-10"
         },
         {
           "type": "visual",
-          "visualId": "luy-thua.visual.tach-so",
-          "caption": "Nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại."
+          "visualId": "luy-thua.visual.luy-thua-cua-10",
+          "caption": "Bấm − và + để đổi số mũ, rồi đếm các chữ số 0."
+        },
+        {
+          "type": "visual",
+          "visualId": "luy-thua.visual.quy-tac-tach-so"
         }
       ],
       "checkIds": ["luy-thua.ex.viet-1000"],
@@ -237,8 +212,8 @@
         "luy-thua.ex.chon-tong-3-062"
       ],
       "recap": {
-        "type": "formula",
-        "tex": "\\begin{gathered} \\concept{blue}{10}^{\\concept{violet}{3}} = 1\\,000 \\\\ 6\\,384 = 6 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 3 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}} \\\\ + 8 \\cdot \\concept{blue}{10} + 4 \\end{gathered}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-luy-thua-10"
       }
     }
   ],
@@ -248,8 +223,8 @@
       "sourceRef": "SGK tr.22",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} = \\concept{blue}{2}^{\\concept{violet}{3}}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-viet-luy-thua"
       }
     },
     {
@@ -258,7 +233,7 @@
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.cac-phan"
+        "visualId": "luy-thua.visual.the-co-so-so-mu"
       }
     },
     {
@@ -266,8 +241,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{a}^{\\concept{violet}{1}} = \\concept{blue}{a} \\qquad \\concept{blue}{5}^{\\concept{violet}{1}} = \\concept{blue}{5}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-so-mu-1"
       }
     },
     {
@@ -275,8 +250,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{6}^{\\concept{violet}{2}} = \\concept{blue}{6} \\cdot \\concept{blue}{6} = 36"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-binh-phuong"
       }
     },
     {
@@ -284,8 +259,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{2}^{\\concept{violet}{3}} = \\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} = 8"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-lap-phuong"
       }
     },
     {
@@ -293,8 +268,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{2}^{\\concept{violet}{4}} = \\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} \\cdot \\concept{blue}{2} = 16"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-tinh-gia-tri"
       }
     },
     {
@@ -302,8 +277,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{a}^{\\concept{violet}{m}} \\cdot \\concept{blue}{a}^{\\concept{violet}{n}} = \\concept{blue}{a}^{\\concept{violet}{m} + \\concept{violet}{n}}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-nhan-cung-co-so"
       }
     },
     {
@@ -311,8 +286,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{2}^{\\concept{violet}{4}} \\cdot \\concept{blue}{2} = \\concept{blue}{2}^{\\concept{violet}{4} + \\concept{violet}{1}} = \\concept{blue}{2}^{\\concept{violet}{5}}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-nhan-so-mu-1"
       }
     },
     {
@@ -320,8 +295,8 @@
       "sourceRef": "SGK tr.24",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\begin{gathered} \\concept{blue}{a}^{\\concept{violet}{m}} : \\concept{blue}{a}^{\\concept{violet}{n}} = \\concept{blue}{a}^{\\concept{violet}{m} - \\concept{violet}{n}} \\\\ (a \\ne 0,\\ m \\ge n) \\end{gathered}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-chia-cung-co-so"
       }
     },
     {
@@ -329,8 +304,8 @@
       "sourceRef": "SGK tr.24",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{a}^{\\concept{violet}{0}} = 1 \\quad (a \\ne 0)"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-so-mu-0"
       }
     },
     {
@@ -338,8 +313,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{10}^{\\concept{violet}{6}} = 1\\,000\\,000"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-luy-thua-10"
       }
     },
     {
@@ -347,8 +322,8 @@
       "sourceRef": "SGK tr.23",
       "conceptIds": ["luy-thua.concept.co-so", "luy-thua.concept.so-mu"],
       "recap": {
-        "type": "formula",
-        "tex": "\\begin{gathered} 8\\,539 = 8 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 5 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}} \\\\ + 3 \\cdot \\concept{blue}{10} + 9 \\end{gathered}"
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-tong-luy-thua-10"
       }
     }
   ],
@@ -537,7 +512,7 @@
           "text": "Chạm vào số mũ của luỹ thừa này."
         }
       ],
-      "visualId": "luy-thua.visual.cham-luy-thua",
+      "visualId": "luy-thua.visual.cham-luy-thua-3-mu-5",
       "answer": ["exponent"],
       "hints": {
         "highlight": [
@@ -666,13 +641,7 @@
         "expr": "9"
       },
       "hints": {
-        "highlight": [
-          {
-            "target": "option",
-            "id": "exponent",
-            "conceptId": "luy-thua.concept.so-mu"
-          }
-        ],
+        "highlight": [],
         "hintVisualId": "luy-thua.visual.so-mu-1"
       },
       "difficulty": 2
@@ -787,7 +756,7 @@
       "difficulty": 1
     },
     {
-      "id": "luy-thua.ex.tinh-3-mu-4",
+      "id": "luy-thua.ex.tinh-3-mu-3",
       "type": "numeric",
       "cardIds": ["luy-thua.card.tinh-gia-tri"],
       "prompt": [
@@ -797,15 +766,15 @@
         },
         {
           "type": "formula",
-          "tex": "\\concept{blue}{3}^{\\htmlId{so-mu}{\\concept{violet}{4}}}"
+          "tex": "\\concept{blue}{3}^{\\htmlId{so-mu}{\\concept{violet}{3}}}"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 81
+        "value": 27
       },
       "check": {
-        "expr": "3^4"
+        "expr": "3^3"
       },
       "hints": {
         "highlight": [
@@ -815,8 +784,8 @@
             "conceptId": "luy-thua.concept.so-mu"
           }
         ],
-        "hintVisualId": "luy-thua.visual.tinh-3-mu-4-goi-y",
-        "solutionVisualId": "luy-thua.visual.tinh-3-mu-4"
+        "hintVisualId": "luy-thua.visual.tinh-3-mu-3-goi-y",
+        "solutionVisualId": "luy-thua.visual.tinh-3-mu-3"
       },
       "difficulty": 2
     },
@@ -846,19 +815,19 @@
           }
         },
         {
-          "id": "bay",
+          "id": "chin",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{7}^{\\concept{violet}{2}}"
+            "tex": "\\concept{blue}{9}^{\\concept{violet}{2}}"
           }
         }
       ],
       "right": [
         {
-          "id": "bon-chin",
+          "id": "tam-muoi-mot",
           "content": {
             "type": "text",
-            "text": "49"
+            "text": "81"
           }
         },
         {
@@ -869,7 +838,7 @@
           }
         },
         {
-          "id": "chin",
+          "id": "chin-don-vi",
           "content": {
             "type": "text",
             "text": "9"
@@ -886,15 +855,15 @@
       "pairs": [
         {
           "left": "ba",
-          "right": "chin"
+          "right": "chin-don-vi"
         },
         {
           "left": "nam",
           "right": "hai-lam"
         },
         {
-          "left": "bay",
-          "right": "bon-chin"
+          "left": "chin",
+          "right": "tam-muoi-mot"
         }
       ],
       "hints": {
@@ -1024,6 +993,54 @@
           }
         ],
         "hintVisualId": "luy-thua.visual.tinh-10-mu-3-goi-y"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "luy-thua.ex.chon-6-lap-phuong",
+      "type": "choice",
+      "cardIds": ["luy-thua.card.lap-phuong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "6 lập phương viết là luỹ thừa nào?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{6}^{\\concept{violet}{3}}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{6}^{\\concept{violet}{2}}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{3}^{\\concept{violet}{6}}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "6^3"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
       },
       "difficulty": 1
     },
@@ -1370,6 +1387,44 @@
         "hintVisualId": "luy-thua.visual.nhan-hai-luy-thua"
       },
       "difficulty": 3
+    },
+    {
+      "id": "luy-thua.ex.nhan-6",
+      "type": "numeric",
+      "cardIds": ["luy-thua.card.nhan-cung-co-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết kết quả dưới dạng một luỹ thừa."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{blue}{6}^{\\htmlId{mu-dau}{\\concept{violet}{3}}} \\cdot \\concept{blue}{6}^{\\htmlId{mu-sau}{\\concept{violet}{4}}}"
+        }
+      ],
+      "answer": {
+        "kind": "power",
+        "base": 6,
+        "exponent": 7
+      },
+      "check": {
+        "expr": "6^3·6^4"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "mu-dau",
+            "conceptId": "luy-thua.concept.so-mu"
+          },
+          {
+            "target": "part",
+            "id": "mu-sau",
+            "conceptId": "luy-thua.concept.so-mu"
+          }
+        ]
+      },
+      "difficulty": 2
     },
     {
       "id": "luy-thua.ex.nhan-ba-luy-thua-10",
@@ -1946,6 +2001,39 @@
       "hints": {
         "highlight": [],
         "hintVisualId": "luy-thua.visual.phan-tich-luy-thua-10"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "luy-thua.ex.viet-1-000-000",
+      "type": "numeric",
+      "cardIds": ["luy-thua.card.luy-thua-10"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số này dưới dạng luỹ thừa của 10."
+        },
+        {
+          "type": "formula",
+          "tex": "1\\,\\htmlId{khong}{000\\,000}"
+        }
+      ],
+      "answer": {
+        "kind": "power",
+        "base": 10,
+        "exponent": 6
+      },
+      "check": {
+        "expr": "10^6"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "khong",
+            "conceptId": "luy-thua.concept.so-mu"
+          }
+        ]
       },
       "difficulty": 2
     },

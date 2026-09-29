@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { VisualProps } from "@/visuals/registry";
+import { stateSet } from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { PowerText } from "@/visuals/shared/power-text";
 import { CubeBlocks, PICTURE, SquareTiles } from "./blocks";
@@ -49,6 +50,7 @@ export default function BinhPhuongLapPhuong({
                 key={s.exponent}
                 type="button"
                 aria-pressed={pressed}
+                {...stateSet("exponent", s.exponent)}
                 disabled={locked}
                 onClick={() => update({ base, exponent: s.exponent })}
                 className={`${TOGGLE} ${pressed ? "border-3 border-primary bg-surface text-foreground" : "border-2 border-border bg-surface text-muted-foreground"}`}
@@ -60,6 +62,7 @@ export default function BinhPhuongLapPhuong({
         </fieldset>
         <NumberStepper
           label="Cơ số"
+          stateKey="base"
           color="blue"
           value={base}
           {...SIDE}

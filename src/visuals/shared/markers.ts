@@ -17,6 +17,30 @@ export const STEP_ATTR = "data-step";
 export const STEP_COUNT_ATTR = "data-steps";
 export const STEP_NEXT_ATTR = "data-step-next";
 
+// Controls of an interactive visual, marked by the state key they change, so
+// `pnpm lesson:walk` can drive any visual to the state a solver asks for:
+// - a stepper root carries the key and its current value, with its two
+//   buttons marked "down" and "up";
+// - a button that sets one value directly is marked "<key>=<value>".
+export const STATE_KEY_ATTR = "data-state-key";
+export const STATE_VALUE_ATTR = "data-state-value";
+export const STATE_STEP_ATTR = "data-state-step";
+export const STATE_SET_ATTR = "data-state-set";
+
+export function stateStepper(key: string | undefined, value: number) {
+  return key === undefined
+    ? {}
+    : { [STATE_KEY_ATTR]: key, [STATE_VALUE_ATTR]: value };
+}
+
+export function stateStep(key: string | undefined, direction: "down" | "up") {
+  return key === undefined ? {} : { [STATE_STEP_ATTR]: direction };
+}
+
+export function stateSet(key: string, value: number) {
+  return { [STATE_SET_ATTR]: `${key}=${value}` };
+}
+
 export function attrSelector(attr: string): string {
   return `[${attr}]`;
 }

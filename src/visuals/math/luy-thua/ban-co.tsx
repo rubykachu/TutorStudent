@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react";
 import { useState } from "react";
 import { formatInteger } from "@/lib/number-format";
 import type { VisualProps } from "@/visuals/registry";
-import { decorative } from "@/visuals/shared/markers";
+import { decorative, stateStep, stateStepper } from "@/visuals/shared/markers";
 import {
   BOARD_SIZE,
   boardState,
@@ -68,7 +68,7 @@ function GrainShape({ x, y, size }: Grain) {
   );
 }
 
-function Board({ square }: { square: number }) {
+export function Board({ square }: { square: number }) {
   const cells = Array.from({ length: SQUARE_COUNT }, (_, i) => i);
   const current = square - 1;
   return (
@@ -186,14 +186,21 @@ export default function BanCo({
             {factors >= 2 ? `= ${grains} hạt` : `${grains} hạt`}
           </span>
         </p>
-        {factors >= 2 && <FactorCount count={factors} />}
+        {/* Square n holds n − 1 factors 2: the first square has none. */}
+        {square >= 2 && (
+          <FactorCount count={factors} working={`${square} − 1 =`} />
+        )}
       </div>
-      <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+      <div
+        className="flex flex-wrap justify-center gap-2 md:gap-3"
+        {...stateStepper("square", square)}
+      >
         {/* Icon only, so all three buttons fit one row on a phone. */}
         <button
           type="button"
           className={`${ACTION_BUTTON} w-touch px-0`}
           aria-label="Ô trước"
+          {...stateStep("square", "down")}
           disabled={locked || square === 1}
           onClick={() => go(square - 1)}
         >
@@ -204,6 +211,7 @@ export default function BanCo({
           className={ACTION_BUTTON}
           disabled={locked || square === SQUARE_COUNT}
           onClick={() => go(square + 1)}
+          {...stateStep("square", "up")}
         >
           Ô sau
           <ChevronRight aria-hidden className="size-5" />

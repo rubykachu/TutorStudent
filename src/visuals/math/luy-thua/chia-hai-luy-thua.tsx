@@ -34,10 +34,24 @@ export default function ChiaHaiLuyThua() {
             <span>:</span>
             <PowerText base={BASE} exponent={N} />
           </p>
-          <Reveal shown={step >= CROSS_STEP}>
+          <Reveal
+            shown={step >= CROSS_STEP}
+            placeholder={<FactorCount count="?" working={`${M} − ${N} =`} />}
+          >
             <FactorCount count={M - N} working={`${M} − ${N} =`} />
           </Reveal>
-          <Reveal shown={step >= RESULT_STEP}>
+          <Reveal
+            shown={step >= RESULT_STEP}
+            placeholder={
+              <p className={`${MATH_LINE} px-4 py-1`}>
+                <PowerText base={BASE} exponent={M} />
+                <span>:</span>
+                <PowerText base={BASE} exponent={N} />
+                <span>=</span>
+                <span>?</span>
+              </p>
+            }
+          >
             <p className={`${MATH_LINE} rounded-lg bg-highlight px-4 py-1`}>
               <PowerText base={BASE} exponent={M} />
               <span>:</span>

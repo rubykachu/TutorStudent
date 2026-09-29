@@ -97,10 +97,6 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => import("@/visuals/math/luy-thua/la-gi"),
   },
-  "luy-thua.visual.cac-phan": {
-    interactive: false,
-    load: () => import("@/visuals/math/luy-thua/cac-phan"),
-  },
   "luy-thua.visual.tao-luy-thua": {
     interactive: true,
     validators: { "luy-thua-la": powerIs },
@@ -112,27 +108,24 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     regions: ["base", "exponent"],
     load: () => import("@/visuals/math/luy-thua/cham-luy-thua"),
   },
+  "luy-thua.visual.cham-luy-thua-3-mu-5": {
+    interactive: false,
+    regions: ["base", "exponent"],
+    load: () => lessonExample((m) => m.tapPower(3, 5)),
+  },
   "luy-thua.visual.binh-phuong-lap-phuong": {
     interactive: true,
     validators: { "luy-thua-la": powerIs },
     solutions: { "luy-thua-la": solvePowerIs },
     load: () => import("@/visuals/math/luy-thua/binh-phuong-lap-phuong"),
   },
-  "luy-thua.visual.tom-tat-hinh": {
+  "luy-thua.visual.tinh-3-mu-3-goi-y": {
     interactive: false,
-    load: () => import("@/visuals/math/luy-thua/tom-tat-hinh"),
+    load: () => lessonExample((m) => m.repeatedProduct(3, 3, "hint")),
   },
-  "luy-thua.visual.tinh-2-mu-5": {
+  "luy-thua.visual.tinh-3-mu-3": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(2, 5, "solution")),
-  },
-  "luy-thua.visual.tinh-3-mu-4-goi-y": {
-    interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(3, 4, "hint")),
-  },
-  "luy-thua.visual.tinh-3-mu-4": {
-    interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(3, 4, "solution")),
+    load: () => lessonExample((m) => m.repeatedProduct(3, 3, "solution")),
   },
   "luy-thua.visual.tinh-4-mu-3-goi-y": {
     interactive: false,
@@ -167,7 +160,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     load: () =>
       lessonExample((m) =>
         m.factorList([
-          { base: 7, exponent: 2 },
+          { base: 9, exponent: 2 },
           { base: 3, exponent: 2 },
           { base: 5, exponent: 2 },
         ]),
@@ -206,10 +199,6 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => import("@/visuals/math/luy-thua/chia-hai-luy-thua"),
   },
-  "luy-thua.visual.so-mu-0": {
-    interactive: false,
-    load: () => lessonExample((m) => m.zeroExponent("solution")),
-  },
   "luy-thua.visual.so-mu-0-goi-y": {
     interactive: false,
     load: () => lessonExample((m) => m.zeroExponent("hint")),
@@ -234,13 +223,125 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     solutions: { "luy-thua-la": solvePowerIs },
     load: () => import("@/visuals/math/luy-thua/luy-thua-cua-10"),
   },
-  "luy-thua.visual.tach-so": {
-    interactive: false,
-    load: () => import("@/visuals/math/luy-thua/tach-so"),
-  },
   "luy-thua.visual.tong-hang-5-247": {
     interactive: false,
     load: () => lessonExample((m) => m.placeValueSum(5247)),
+  },
+  "luy-thua.visual.dinh-nghia": {
+    interactive: false,
+    load: () => lessonScreen("DinhNghia"),
+  },
+  "luy-thua.visual.ket-ban-co": {
+    interactive: false,
+    load: () => lessonScreen("KetBanCo"),
+  },
+  "luy-thua.visual.quy-tac-so-mu-1": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacSoMu1"),
+  },
+  "luy-thua.visual.bam-mu": {
+    interactive: false,
+    load: () => lessonScreen("BamMu"),
+  },
+  "luy-thua.visual.doc-binh-phuong": {
+    interactive: false,
+    load: () => lessonScreen("DocBinhPhuong"),
+  },
+  "luy-thua.visual.tinh-tung-buoc": {
+    interactive: false,
+    load: () => lessonScreen("TinhTungBuoc"),
+  },
+  "luy-thua.visual.quy-tac-nhan": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacNhan"),
+  },
+  "luy-thua.visual.quy-tac-so-mu-an": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacSoMuAn"),
+  },
+  "luy-thua.visual.quy-tac-chia": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacChia"),
+  },
+  "luy-thua.visual.quy-tac-so-mu-0": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacSoMu0"),
+  },
+  "luy-thua.visual.quy-tac-luy-thua-10": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacLuyThua10"),
+  },
+  "luy-thua.visual.quy-tac-tach-so": {
+    interactive: false,
+    load: () => lessonScreen("QuyTacTachSo"),
+  },
+  "luy-thua.visual.tom-tat-luy-thua": {
+    interactive: false,
+    load: () => lessonScreen("TomTatLuyThua"),
+  },
+  "luy-thua.visual.tom-tat-binh-phuong": {
+    interactive: false,
+    load: () => lessonScreen("TomTatBinhPhuong"),
+  },
+  "luy-thua.visual.tom-tat-nhan": {
+    interactive: false,
+    load: () => lessonScreen("TomTatNhan"),
+  },
+  "luy-thua.visual.tom-tat-chia": {
+    interactive: false,
+    load: () => lessonScreen("TomTatChia"),
+  },
+  "luy-thua.visual.tom-tat-luy-thua-10": {
+    interactive: false,
+    load: () => lessonScreen("TomTatLuyThua10"),
+  },
+  "luy-thua.visual.the-viet-luy-thua": {
+    interactive: false,
+    load: () => lessonScreen("TheVietLuyThua"),
+  },
+  "luy-thua.visual.the-co-so-so-mu": {
+    interactive: false,
+    load: () => lessonScreen("TheCoSoSoMu"),
+  },
+  "luy-thua.visual.the-so-mu-1": {
+    interactive: false,
+    load: () => lessonScreen("TheSoMu1"),
+  },
+  "luy-thua.visual.the-binh-phuong": {
+    interactive: false,
+    load: () => lessonScreen("TheBinhPhuong"),
+  },
+  "luy-thua.visual.the-lap-phuong": {
+    interactive: false,
+    load: () => lessonScreen("TheLapPhuong"),
+  },
+  "luy-thua.visual.the-tinh-gia-tri": {
+    interactive: false,
+    load: () => lessonScreen("TheTinhGiaTri"),
+  },
+  "luy-thua.visual.the-nhan-cung-co-so": {
+    interactive: false,
+    load: () => lessonScreen("TheNhanCungCoSo"),
+  },
+  "luy-thua.visual.the-nhan-so-mu-1": {
+    interactive: false,
+    load: () => lessonScreen("TheNhanSoMu1"),
+  },
+  "luy-thua.visual.the-chia-cung-co-so": {
+    interactive: false,
+    load: () => lessonScreen("TheChiaCungCoSo"),
+  },
+  "luy-thua.visual.the-so-mu-0": {
+    interactive: false,
+    load: () => lessonScreen("TheSoMu0"),
+  },
+  "luy-thua.visual.the-luy-thua-10": {
+    interactive: false,
+    load: () => lessonScreen("TheLuyThua10"),
+  },
+  "luy-thua.visual.the-tong-luy-thua-10": {
+    interactive: false,
+    load: () => lessonScreen("TheTongLuyThua10"),
   },
   "luy-thua.visual.sticker": {
     interactive: false,
@@ -255,6 +356,15 @@ async function lessonExample(
   pick: (examples: LessonExamples) => ComponentType<VisualProps>,
 ): Promise<{ default: ComponentType<VisualProps> }> {
   return { default: pick(await import("@/visuals/math/luy-thua/examples")) };
+}
+
+type LessonScreens = typeof import("@/visuals/math/luy-thua/rules");
+
+// Rule and recap screens: a sentence to remember with a labelled example.
+async function lessonScreen(
+  name: keyof LessonScreens,
+): Promise<{ default: ComponentType<VisualProps> }> {
+  return { default: (await import("@/visuals/math/luy-thua/rules"))[name] };
 }
 
 // Own keys only, so a URL like /dev/visuals/constructor never resolves to an

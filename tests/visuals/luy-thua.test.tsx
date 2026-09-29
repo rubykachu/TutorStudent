@@ -6,6 +6,7 @@ import {
   grainsEqual,
   grainsOn,
 } from "@/visuals/math/luy-thua/grains";
+import { Reveal } from "@/visuals/math/luy-thua/parts";
 import {
   exponentDifference,
   exponentSum,
@@ -38,6 +39,54 @@ describe("chessboard grains", () => {
     for (let i = 0; i < 4; i++) fireEvent.click(next);
     expect(onStateChange).toHaveBeenLastCalledWith({ square: 5, grains: 16 });
     expect(screen.getByText("= 16 hạt")).toBeInTheDocument();
+    // Square n holds n − 1 factors 2.
+    expect(screen.getByText("5 − 1 = 4 thừa số")).toBeInTheDocument();
+  });
+});
+
+describe("Reveal", () => {
+  it("shows a dimmed placeholder row until its step, then the row itself", () => {
+    const { rerender } = render(
+      <Reveal shown={false} placeholder={<span>? · 2 = ?</span>}>
+        <span>4 · 2 = 8</span>
+      </Reveal>,
+    );
+    expect(screen.getByText("? · 2 = ?").parentElement).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+    expect(screen.queryByText("4 · 2 = 8")).toBeNull();
+    rerender(
+      <Reveal shown placeholder={<span>? · 2 = ?</span>}>
+        <span>4 · 2 = 8</span>
+      </Reveal>,
+    );
+    expect(screen.getByText("4 · 2 = 8")).toBeVisible();
+    expect(screen.queryByText("? · 2 = ?")).toBeNull();
+  });
+
+  it("keeps a row without placeholder hidden but in place", () => {
+    render(
+      <Reveal shown={false}>
+        <span>8 : 8 = 1</span>
+      </Reveal>,
+    );
+    expect(screen.getByText("8 : 8 = 1").parentElement).toHaveClass(
+      "invisible",
+    );
+  });
+});
+
+describe("tap-region powers", () => {
+  it("draws the practice power with other numbers than the check's 6⁴", async () => {
+    const entry = visualRegistry["luy-thua.visual.cham-luy-thua-3-mu-5"];
+    if (!entry) throw new Error("3⁵ tap visual missing");
+    const { default: TapPower } = await entry.load();
+    render(<TapPower />);
+    expect(
+      screen.getByRole("img", { name: "Luỹ thừa 3 mũ 5" }),
+    ).toBeInTheDocument();
+    expect(entry.regions).toEqual(["base", "exponent"]);
   });
 });
 

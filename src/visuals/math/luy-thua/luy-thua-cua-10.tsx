@@ -6,29 +6,11 @@ import type { VisualProps } from "@/visuals/registry";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { PowerText } from "@/visuals/shared/power-text";
-import { FactorRow, MATH_LINE } from "./parts";
+import { FactorRow, MATH_LINE, ZerosInColour } from "./parts";
 
 const BASE = 10;
 const EXPONENT = { min: 1, max: 6 } as const;
 const START = 2;
-
-// 10ⁿ is 1 followed by n zeros: the zeros take the exponent colour so the
-// child sees that their count is the exponent.
-function ZerosInColour({ value }: { value: string }) {
-  return (
-    <span className="whitespace-nowrap">
-      {[...value].map((char, i) => (
-        <span
-          // biome-ignore lint/suspicious/noArrayIndexKey: digits never reorder
-          key={i}
-          className={char === "0" ? "text-concept-violet" : undefined}
-        >
-          {char}
-        </span>
-      ))}
-    </span>
-  );
-}
 
 export default function LuyThuaCua10({
   onStateChange,
@@ -49,6 +31,7 @@ export default function LuyThuaCua10({
     <div className="flex w-full flex-col items-center gap-5">
       <NumberStepper
         label="Số mũ"
+        stateKey="exponent"
         color="violet"
         value={exponent}
         {...EXPONENT}

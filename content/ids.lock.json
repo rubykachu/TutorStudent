@@ -22,6 +22,7 @@
     "luy-thua.ex.chia-luy-thua-10",
     "luy-thua.ex.chon-10-lap-phuong",
     "luy-thua.ex.chon-2-mu-7",
+    "luy-thua.ex.chon-6-lap-phuong",
     "luy-thua.ex.chon-6-mu-3",
     "luy-thua.ex.chon-bang-1",
     "luy-thua.ex.chon-bang-7",
@@ -40,6 +41,7 @@
     "luy-thua.ex.lap-phuong-4",
     "luy-thua.ex.mu-0-bang",
     "luy-thua.ex.nhan-3-mu-4-voi-3",
+    "luy-thua.ex.nhan-6",
     "luy-thua.ex.nhan-7",
     "luy-thua.ex.nhan-ba-luy-thua-10",
     "luy-thua.ex.tach-5-247",
@@ -48,10 +50,12 @@
     "luy-thua.ex.thuong-2-mu-0",
     "luy-thua.ex.tim-o-16-hat",
     "luy-thua.ex.tinh-10-mu-5",
+    "luy-thua.ex.tinh-3-mu-3",
     "luy-thua.ex.tinh-3-mu-4",
     "luy-thua.ex.tinh-5-mu-3",
     "luy-thua.ex.tinh-thuong-3",
     "luy-thua.ex.tinh-tong-7-409",
+    "luy-thua.ex.viet-1-000-000",
     "luy-thua.ex.viet-1000",
     "luy-thua.ex.viet-9-mu-1",
     "luy-thua.ex.viet-gon-10",
@@ -63,5 +67,7 @@
     "luy-thua.section.luy-thua-la-gi",
     "luy-thua.section.nhan-cung-co-so"
   ],
-  "retired": {}
+  "retired": {
+    "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3"
+  }
 }

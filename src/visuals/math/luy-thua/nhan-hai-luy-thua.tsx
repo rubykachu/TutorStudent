@@ -38,7 +38,10 @@ export default function NhanHaiLuyThua() {
             <span>·</span>
             <PowerText base={BASE} exponent={N} />
           </p>
-          <Reveal shown={step >= FACTORS_STEP}>
+          <Reveal
+            shown={step >= FACTORS_STEP}
+            placeholder={<p className={MATH_LINE}>= ?</p>}
+          >
             <p className="flex flex-wrap items-baseline justify-center gap-x-2 font-heading text-block font-bold md:text-block-lg">
               <span>=</span>
               <span>
@@ -50,10 +53,24 @@ export default function NhanHaiLuyThua() {
               </span>
             </p>
           </Reveal>
-          <Reveal shown={step >= MERGED_STEP}>
+          <Reveal
+            shown={step >= MERGED_STEP}
+            placeholder={<FactorCount count="?" working={`${M} + ${N} =`} />}
+          >
             <FactorCount count={M + N} working={`${M} + ${N} =`} />
           </Reveal>
-          <Reveal shown={step >= RESULT_STEP}>
+          <Reveal
+            shown={step >= RESULT_STEP}
+            placeholder={
+              <p className={`${MATH_LINE} px-4 py-1`}>
+                <PowerText base={BASE} exponent={M} />
+                <span>·</span>
+                <PowerText base={BASE} exponent={N} />
+                <span>=</span>
+                <span>?</span>
+              </p>
+            }
+          >
             <p className={`${MATH_LINE} rounded-lg bg-highlight px-4 py-1`}>
               <PowerText base={BASE} exponent={M} />
               <span>·</span>

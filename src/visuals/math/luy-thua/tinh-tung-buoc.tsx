@@ -36,6 +36,20 @@ function linesOf(base: number, exponent: number, mode: Mode): Line[] {
 
 const CELL = "text-right tabular-nums";
 
+// A multiplication still to come: which factor it uses is known, the two
+// numbers are not yet.
+function PendingLine({ base }: { base: number }) {
+  return (
+    <>
+      <span className={CELL}>?</span>
+      <span>·</span>
+      <span className="text-concept-blue">{base}</span>
+      <span>=</span>
+      <span className="justify-self-start">?</span>
+    </>
+  );
+}
+
 export function RepeatedProduct({
   base,
   exponent,
@@ -64,6 +78,7 @@ export function RepeatedProduct({
               <Reveal
                 key={String(line.left)}
                 shown={step >= i + 1}
+                placeholder={<PendingLine base={base} />}
                 className="col-span-5 grid grid-cols-subgrid"
               >
                 <span className={CELL}>{formatInteger(line.left)}</span>
@@ -82,7 +97,16 @@ export function RepeatedProduct({
             ))}
           </div>
           {mode === "solution" && (
-            <Reveal shown={step >= steps - 1}>
+            <Reveal
+              shown={step >= steps - 1}
+              placeholder={
+                <p className={`${MATH_LINE} px-4 py-1`}>
+                  <PowerText base={base} exponent={exponent} />
+                  <span>=</span>
+                  <span>?</span>
+                </p>
+              }
+            >
               <p className={`${MATH_LINE} rounded-lg bg-highlight px-4 py-1`}>
                 <PowerText base={base} exponent={exponent} />
                 <span>=</span>

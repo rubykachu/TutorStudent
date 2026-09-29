@@ -34,6 +34,7 @@ export default function BotLuyThua({
       <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8">
         <NumberStepper
           label="Số mũ thứ nhất"
+          stateKey="m"
           color="violet"
           value={m}
           {...DIVIDE_EXPONENT}
@@ -43,6 +44,7 @@ export default function BotLuyThua({
         />
         <NumberStepper
           label="Số mũ thứ hai"
+          stateKey="n"
           color="violet"
           value={n}
           min={DIVIDE_EXPONENT.min}

@@ -13,6 +13,9 @@ const PADDING = 4;
 const BAR_HEIGHT = 5;
 const BAR_OFFSET = 8;
 const CROSSED_OPACITY = 0.35;
+// Drawn at natural size (`scale` 1) this stays above the 16px text floor
+// down to a 0.8× shrink, which a row of 7 beads reaches on a phone.
+const BEAD_TEXT_SIZE = 20;
 
 export type BeadGroupSpec = {
   color: ConceptColor;
@@ -134,7 +137,7 @@ export function BeadGroup({
                 y={cy}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={18}
+                fontSize={BEAD_TEXT_SIZE}
                 className={`font-heading font-bold ${isCrossed ? "fill-foreground" : "fill-primary-foreground"}`}
               >
                 {bead.text}

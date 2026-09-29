@@ -24,7 +24,10 @@ export function PowerText({
   return (
     <span className={`whitespace-nowrap ${className}`}>
       <span className={CONCEPT_CLASSES[baseColor].text}>{base}</span>
-      <sup className={`text-[0.6em] ${CONCEPT_CLASSES[exponentColor].text}`}>
+      {/* Never below the 16px text floor, even beside a small base. */}
+      <sup
+        className={`text-[max(0.6em,1rem)] ${CONCEPT_CLASSES[exponentColor].text}`}
+      >
         {exponent}
       </sup>
     </span>

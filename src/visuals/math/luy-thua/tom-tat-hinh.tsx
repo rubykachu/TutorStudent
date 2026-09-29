@@ -1,30 +1,33 @@
 import { PowerText } from "@/visuals/shared/power-text";
 import { CubeBlocks, SquareTiles } from "./blocks";
 
-const SIDE = 3;
-
-// Recap of the names: 3² as a square of tiles ("bình phương") next to 3³ as
-// a cube of small cubes ("lập phương").
-export default function TomTatHinh() {
+// The names side by side: a² as a square of tiles ("bình phương") next to a³
+// as a cube of small cubes ("lập phương").
+export function SquareAndCube({ side }: { side: number }) {
   const items = [
     {
       exponent: 2,
-      name: "3 bình phương",
-      picture: <SquareTiles side={SIDE} label="Hình vuông cạnh 3, có 9 ô" />,
+      name: `${side} bình phương`,
+      picture: (
+        <SquareTiles
+          side={side}
+          label={`Hình vuông cạnh ${side}, có ${side ** 2} ô`}
+        />
+      ),
     },
     {
       exponent: 3,
-      name: "3 lập phương",
+      name: `${side} lập phương`,
       picture: (
         <CubeBlocks
-          side={SIDE}
-          label="Hình lập phương cạnh 3, có 27 khối nhỏ"
+          side={side}
+          label={`Hình lập phương cạnh ${side}, có ${side ** 3} khối nhỏ`}
         />
       ),
     },
   ];
   return (
-    <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
+    <div className="flex justify-center gap-x-4 md:gap-x-10">
       {items.map((item) => (
         <figure
           key={item.exponent}
@@ -35,7 +38,7 @@ export default function TomTatHinh() {
           </div>
           <figcaption className="flex flex-col items-center">
             <PowerText
-              base={SIDE}
+              base={side}
               exponent={item.exponent}
               className="font-heading text-title font-bold md:text-title-lg"
             />

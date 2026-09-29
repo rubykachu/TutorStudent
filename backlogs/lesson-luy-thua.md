@@ -1,10 +1,10 @@
 # Bài Luỹ thừa với số mũ tự nhiên — việc còn lại
 
-Bài đã `published` (review cuối không còn lỗi Nghiêm trọng, xem `content/math/kntt/luy-thua/review.md`). Còn lại, sửa thì phải review lại vì đổi `reviewedHash`:
+Bài đã `published` (review cuối không còn lỗi Nghiêm trọng, xem `content/math/kntt/luy-thua/review.md`). Sửa `lesson.json` thì phải review lại vì đổi `reviewedHash`; sửa chữ trong visual (`src/visuals/math/luy-thua/rules.tsx`) cũng nên review lại vì hash không bắt được.
 
-- `luy-thua.ex.cham-so-mu` (luyện tập) dùng lại đúng hình 6⁴ của `luy-thua.ex.cham-co-so` (kiểm tra): trẻ chỉ cần chạm "số còn lại". Cho visual chạm vùng nhận số (qua `src/visuals/math/luy-thua/examples.tsx`) và dùng luỹ thừa khác, vd 3⁵.
-- Công thức định nghĩa chỉ ghi `n` dưới ngoặc, chưa có chữ "thừa số": KaTeX hiển thị chữ Việt trong `\text{}` bằng font dự phòng (thiếu metric), cần cách hiển thị nhãn chữ Việt trong công thức trước.
-- Nấc 1 của `lap-phuong-4`, `chon-10-lap-phuong`, `binh-phuong-8`, `tim-o-16-hat` tô cả câu đề (đề chỉ có một câu chữ, không có phần `\htmlId` để trỏ vào).
+- Mục Nên sửa duy nhất của review cuối (tổng theo hàng bỏ số hạng của chữ số 0 mà không nói vì sao) đã được sửa sau review bằng dòng "0 · 10² = 0, nên không cần viết số hạng này." trên màn tách số, recap phần luỹ thừa của 10 và thẻ ôn tổng. Lần review sau cần soát lại dòng này.
+- Nấc 1 của `lap-phuong-4`, `chon-10-lap-phuong`, `binh-phuong-8`, `tim-o-16-hat`, `chon-6-lap-phuong` tô cả câu đề (đề chỉ có một câu chữ, không có phần `\htmlId` để trỏ vào).
 
-Về app (không riêng bài này):
-- Highlight `target: "option"` không `conceptId` trùng màu với dấu "làm sai" khung tự tô, nên ô trẻ làm đúng trông như sai. Cân nhắc cho highlight của tác giả một kiểu tô khác hẳn.
+Về app (không riêng bài này), `pnpm lesson:walk luy-thua` còn báo:
+- Điện thoại 390×844: thanh dưới che hàng phím "0" ở `chia-luy-thua-10` (đề hai dòng đẩy bàn phím xuống).
+- iPad ngang 1180×820: lựa chọn dạng tổng của `chon-tong-3-062` vỡ thành nhiều dòng trong lưới hai cột và bị thanh dưới che.

@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { VisualProps } from "@/visuals/registry";
+import { TapPower } from "./cham-luy-thua";
 import { FactorList, type PowerSpec } from "./phan-tich";
 import { ZeroExponent, type ZeroExponentMode } from "./so-mu-0";
 import { HiddenExponentOne } from "./so-mu-an";
@@ -17,6 +18,16 @@ export function repeatedProduct(
 ): ComponentType<VisualProps> {
   function Example() {
     return <RepeatedProduct base={base} exponent={exponent} mode={mode} />;
+  }
+  return Example;
+}
+
+export function tapPower(
+  base: number,
+  exponent: number,
+): ComponentType<VisualProps> {
+  function Example() {
+    return <TapPower base={base} exponent={exponent} />;
   }
   return Example;
 }

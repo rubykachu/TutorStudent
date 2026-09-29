@@ -33,6 +33,7 @@ export default function TaoLuyThua({
       <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8">
         <NumberStepper
           label="Cơ số"
+          stateKey="base"
           color="blue"
           value={base}
           {...BUILDER_BASE}
@@ -41,6 +42,7 @@ export default function TaoLuyThua({
         />
         <NumberStepper
           label="Số mũ"
+          stateKey="exponent"
           color="violet"
           value={exponent}
           {...BUILDER_EXPONENT}

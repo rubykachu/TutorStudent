@@ -4,7 +4,12 @@ import { formatInteger } from "@/lib/number-format";
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { DotGrid } from "@/visuals/shared/dot-grid";
 import { Highlight } from "@/visuals/shared/highlight";
-import { DECORATIVE_ATTR } from "@/visuals/shared/markers";
+import {
+  DECORATIVE_ATTR,
+  STATE_KEY_ATTR,
+  STATE_STEP_ATTR,
+  STATE_VALUE_ATTR,
+} from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 
 describe("DotGrid", () => {
@@ -119,6 +124,41 @@ describe("NumberStepper", () => {
     expect(screen.getByRole("button", { name: "Tăng cơ số" })).toBeDisabled();
     fireEvent.click(screen.getByRole("button", { name: "Giảm cơ số" }));
     expect(onChange).toHaveBeenCalledWith(9);
+  });
+
+  it("marks its value and buttons with the state key it reports", () => {
+    const { container } = render(
+      <NumberStepper
+        label="Số mũ"
+        value={3}
+        min={1}
+        max={6}
+        onChange={() => {}}
+        stateKey="exponent"
+      />,
+    );
+    const root = container.querySelector(`[${STATE_KEY_ATTR}="exponent"]`);
+    expect(root).toHaveAttribute(STATE_VALUE_ATTR, "3");
+    expect(
+      root?.querySelector(`[${STATE_STEP_ATTR}="up"]`),
+    ).toHaveAccessibleName("Tăng số mũ");
+    expect(
+      root?.querySelector(`[${STATE_STEP_ATTR}="down"]`),
+    ).toHaveAccessibleName("Giảm số mũ");
+  });
+
+  it("carries no state markers without a state key", () => {
+    const { container } = render(
+      <NumberStepper
+        label="Số mũ"
+        value={3}
+        min={1}
+        max={6}
+        onChange={() => {}}
+      />,
+    );
+    expect(container.querySelector(`[${STATE_KEY_ATTR}]`)).toBeNull();
+    expect(container.querySelector(`[${STATE_STEP_ATTR}]`)).toBeNull();
   });
 });
 

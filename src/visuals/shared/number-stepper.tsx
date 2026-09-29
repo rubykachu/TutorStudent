@@ -4,6 +4,7 @@ import { Minus, Plus } from "lucide-react";
 import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
+import { stateStep, stateStepper } from "@/visuals/shared/markers";
 
 type NumberStepperProps = {
   // Visible name, e.g. "Cơ số"; buttons are spoken as "Giảm cơ số".
@@ -16,6 +17,8 @@ type NumberStepperProps = {
   // number takes its colour.
   color?: ConceptColor;
   disabled?: boolean;
+  // Key of the visual state this number is reported as, e.g. "base".
+  stateKey?: string;
 };
 
 const BUTTON =
@@ -31,11 +34,15 @@ export function NumberStepper({
   onChange,
   color,
   disabled = false,
+  stateKey,
 }: NumberStepperProps) {
   const name = label.toLocaleLowerCase("vi");
   const valueColor = color ? CONCEPT_CLASSES[color].text : "text-foreground";
   return (
-    <fieldset className="flex flex-col items-center gap-1">
+    <fieldset
+      className="flex flex-col items-center gap-1"
+      {...stateStepper(stateKey, value)}
+    >
       <legend className="mx-auto flex items-center gap-2 text-caption text-muted-foreground">
         {color && <ConceptMark color={color} className="size-4" />}
         {label}
@@ -45,6 +52,7 @@ export function NumberStepper({
           type="button"
           className={BUTTON}
           aria-label={`Giảm ${name}`}
+          {...stateStep(stateKey, "down")}
           disabled={disabled || value <= min}
           onClick={() => onChange(Math.max(min, value - 1))}
         >
@@ -60,6 +68,7 @@ export function NumberStepper({
           type="button"
           className={BUTTON}
           aria-label={`Tăng ${name}`}
+          {...stateStep(stateKey, "up")}
           disabled={disabled || value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}
         >

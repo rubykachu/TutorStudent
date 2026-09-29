@@ -38,6 +38,7 @@ export default function GhepLuyThua({
       <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8">
         <NumberStepper
           label="Số mũ thứ nhất"
+          stateKey="m"
           color="violet"
           value={m}
           {...MULTIPLY_EXPONENT}
@@ -46,6 +47,7 @@ export default function GhepLuyThua({
         />
         <NumberStepper
           label="Số mũ thứ hai"
+          stateKey="n"
           color="violet"
           value={n}
           {...MULTIPLY_EXPONENT}

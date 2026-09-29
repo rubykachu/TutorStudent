@@ -45,16 +45,36 @@ export function ZeroExponent({ mode }: { mode: ZeroExponentMode }) {
             <PowerText base={BASE} exponent={EXPONENT} />
             <Reveal
               shown={step >= CROSS_STEP}
+              placeholder={
+                <>
+                  <span>=</span>
+                  <span>?</span>
+                </>
+              }
               className="flex items-baseline gap-x-3"
             >
               <span>=</span>
               <PowerText base={BASE} exponent={0} />
             </Reveal>
           </div>
-          <Reveal shown={step >= CROSS_STEP}>
+          <Reveal
+            shown={step >= CROSS_STEP}
+            placeholder={
+              <FactorCount count="?" working={`${EXPONENT} − ${EXPONENT} =`} />
+            }
+          >
             <FactorCount count={0} working={`${EXPONENT} − ${EXPONENT} =`} />
           </Reveal>
-          <Reveal shown={step >= VALUE_STEP} className="flex flex-col gap-1">
+          <Reveal
+            shown={step >= VALUE_STEP}
+            placeholder={
+              <p className={MATH_LINE}>
+                <PowerText base={BASE} exponent={EXPONENT} />
+                <span>= ?</span>
+              </p>
+            }
+            className="flex flex-col gap-1"
+          >
             {/* Links the dividend to 8, so "8 : 8" does not appear from nowhere. */}
             <p className={MATH_LINE}>
               <PowerText base={BASE} exponent={EXPONENT} />
@@ -72,7 +92,15 @@ export function ZeroExponent({ mode }: { mode: ZeroExponentMode }) {
             </p>
           </Reveal>
           {solution && (
-            <Reveal shown={step >= RESULT_STEP}>
+            <Reveal
+              shown={step >= RESULT_STEP}
+              placeholder={
+                <p className={`${MATH_LINE} px-4 py-1`}>
+                  <PowerText base={BASE} exponent={0} />
+                  <span>= ?</span>
+                </p>
+              }
+            >
               <p className={`${MATH_LINE} rounded-lg bg-highlight px-4 py-1`}>
                 <PowerText base={BASE} exponent={0} />
                 <span>=</span>
