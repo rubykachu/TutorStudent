@@ -71,6 +71,7 @@ Mỗi hồ sơ con khai báo bộ sách cho từng môn. Nội dung chỉ có ch
 | Session cookie | jose (JWT HS256) | latest |
 | AI nhận xét | Gemini API qua adapter `AiReviewer` (đổi nhà cung cấp bằng một file) | — |
 | Lint + format | Biome | latest |
+| Chạy script TypeScript (content, visual, admin) | tsx | latest |
 | Unit test | Vitest + Testing Library | 5.x |
 | E2E + screenshot | Playwright | 1.x |
 | Font | Baloo 2 (tiêu đề), Be Vietnam Pro (thân) qua `next/font` | — |
