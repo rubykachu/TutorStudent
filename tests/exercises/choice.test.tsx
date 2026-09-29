@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { cleanup, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import type { ChoiceExercise } from "@/schema/content";
 import { choiceExercise } from "./helpers";
@@ -62,6 +62,30 @@ describe("ChoiceAnswer", () => {
     };
     const { container } = renderExercise(exercise);
     expect(container.querySelector('[data-option="a"] .katex')).not.toBeNull();
+  });
+
+  it("puts short options side by side and gives a long one a whole row", () => {
+    const grid = (container: HTMLElement) =>
+      container.querySelector('[data-option="a"]')?.closest(".grid");
+    const short = renderExercise(choiceExercise(["a"]));
+    expect(grid(short.container)?.className).toContain("auto-fit");
+    cleanup();
+
+    const long = renderExercise({
+      ...choiceExercise(["a"]),
+      options: [
+        {
+          id: "a",
+          content: {
+            type: "formula",
+            tex: "3 \\cdot 10^{3} + 6 \\cdot 10 + 2",
+          },
+        },
+        { id: "b", content: { type: "formula", tex: "10^{3}" } },
+      ],
+    });
+    expect(grid(long.container)?.className).not.toContain("auto-fit");
+    expect(grid(long.container)).toHaveAttribute("data-long-options");
   });
 
   it("walks the three wrong tiers, reveals the answer and asks for a retype", () => {

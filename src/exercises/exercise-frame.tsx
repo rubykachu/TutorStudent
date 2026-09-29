@@ -187,8 +187,41 @@ export function ExerciseFrame<E extends BasicExercise>({
     };
   }, [inViewKey, visualKey, reducedMotion]);
 
+  // A tall prompt (two lines of text above a formula) can push the bottom of
+  // the answer area under the sticky bottom bar on a short screen, where the
+  // child would have to discover that the page scrolls to reach the last row
+  // of keys or options. Once the answer is on screen, the page scrolls just
+  // enough to lift it above the bar, but never so far that the prompt's top
+  // leaves the screen. A prompt visual that grows after it loads is followed
+  // for a moment, like the feedback visual above.
+  const frameRef = useRef<HTMLElement>(null);
+  const answerReady = nonce !== null;
+  useEffect(() => {
+    const frame = frameRef.current;
+    const answer = answerRef.current;
+    if (!answerReady || !frame || !answer) return;
+    const liftAnswer = () => {
+      const bar = frame.querySelector("[data-bottom-bar]");
+      const barTop = bar?.getBoundingClientRect().top ?? window.innerHeight;
+      const hidden = answer.getBoundingClientRect().bottom - barTop;
+      const room = frame.getBoundingClientRect().top;
+      const lift = Math.min(hidden, room);
+      if (lift > 0) window.scrollBy({ top: lift, behavior: "auto" });
+    };
+    liftAnswer();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(liftAnswer);
+    observer.observe(frame);
+    const stop = setTimeout(() => observer.disconnect(), FOLLOW_VISUAL_MS);
+    return () => {
+      observer.disconnect();
+      clearTimeout(stop);
+    };
+  }, [answerReady]);
+
   return (
     <section
+      ref={frameRef}
       className="flex w-full flex-1 flex-col gap-6"
       data-phase={state.phase}
       data-tier={tier}
