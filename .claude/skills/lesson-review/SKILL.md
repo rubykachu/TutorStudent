@@ -9,7 +9,7 @@ Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ th
 
 ## Chỉ chạy trong subagent mới
 
-Người soạn đọc lại bài của mình thường bỏ sót chính lỗi mình tạo. Nếu phiên hiện tại đã soạn hay sửa bài này, hoặc không chắc, không tự review: dùng Agent tool (`general-purpose`) mở subagent mới với prompt "Dùng skill lesson-review cho `<đường dẫn lesson.json>`", rồi chuyển kết quả cho người dùng.
+Người soạn đọc lại bài của mình thường bỏ sót chính lỗi mình tạo. Phiên hiện tại đã soạn hay sửa bài này (hoặc không chắc) thì không tự review: dùng Agent tool (`general-purpose`) mở subagent mới với prompt "Dùng skill lesson-review cho `<đường dẫn lesson.json>`", rồi chuyển kết quả cho người dùng.
 
 ## Đầu vào
 
@@ -21,15 +21,16 @@ Người soạn đọc lại bài của mình thường bỏ sót chính lỗi m
 
 1. Chạy `pnpm content:check --root <ROOT>`. Mỗi `error` thuộc `LESSON` là một lỗi Nghiêm trọng; vẫn review tiếp.
 2. Đọc hết `LESSON`. Với mỗi `sourceRef` (bài, section, card), mở đúng trang ảnh và đọc, không đoán nội dung trang. Không có ảnh nguồn: ghi lỗi Nghiêm trọng "thiếu nguồn", vẫn soát phạm vi theo chương trình lớp 6.
-3. Soát mọi section, card và exercise theo bốn trục và "Luật gợi ý 3 nấc" trong `references/checklist.md`; bỏ qua mọi mục trong "Không bắt lỗi" của file đó. Với mỗi exercise, tự giải trước khi đọc `answer`. Soát hết bài, không dừng ở lỗi đầu tiên.
-4. Ghi `review.md` cạnh `LESSON` theo `templates/review.md` (ghi đè bản cũ). Không chép dài chữ SGK: trỏ trang là đủ.
-5. Không còn lỗi Nghiêm trọng: chạy `pnpm content:hash <id bài> --root <ROOT> --approve`. Lệnh từ chối nếu `content:check` còn lỗi; nếu không, ghi `reviewedHash` và đặt `status: published`, trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật (khi đó quản trị viên đặt `published`). Còn lỗi Nghiêm trọng: không chạy lệnh, bài giữ `draft`.
-6. Ghi kết quả bước 5 vào dòng "Kết luận" của `review.md`, rồi báo người gọi: số phát hiện theo từng mức, kết luận, đường dẫn `review.md`.
+3. Chạy `pnpm lesson:walk <id bài>` (tự mở server phục vụ cả bài `draft`) và đọc ảnh trong `.shots/walk/<id bài>/` cho trục "Trải nghiệm trên màn".
+4. Soát mọi section, card và exercise theo năm trục và "Luật gợi ý 3 nấc" trong `references/checklist.md`; bỏ qua mọi mục trong "Không bắt lỗi" của file đó. Với mỗi exercise, tự giải trước khi đọc `answer`. Soát hết bài, không dừng ở lỗi đầu tiên.
+5. Ghi `review.md` cạnh `LESSON` theo `templates/review.md` (ghi đè bản cũ). Không chép dài chữ SGK: trỏ trang là đủ.
+6. Không còn lỗi Nghiêm trọng: chạy `pnpm content:hash <id bài> --root <ROOT> --approve`. Lệnh từ chối nếu `content:check` còn lỗi; nếu không, ghi `reviewedHash` và đặt `status: published`, trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật (khi đó quản trị viên đặt `published`). Còn lỗi Nghiêm trọng: không chạy lệnh, bài giữ `draft`.
+7. Ghi kết quả bước 6 vào dòng "Kết luận" của `review.md`, rồi báo người gọi: số phát hiện theo từng mức, kết luận, đường dẫn `review.md`.
 
 ## Mức độ
 
-- **Nghiêm trọng**: chặn xuất bản. Trẻ học sai, không làm được bài, hoặc bài vi phạm luật nội dung.
+- **Nghiêm trọng**: chặn xuất bản. Trẻ học sai hoặc nhớ sai (định nghĩa, quy tắc, recap, cách đọc), không làm được bài, hoặc bài vi phạm luật nội dung. Ghi vào backlog không thay cho việc sửa.
 - **Nên sửa**: bài vẫn dùng được nhưng kém hiệu quả hoặc thiếu nhất quán.
 - **Góp ý**: tuỳ tác giả, như từ Hán Việt khó.
 
-Mức của từng loại lỗi ghi trong checklist. Phân vân giữa hai mức thì chọn mức cao hơn và nêu lý do.
+Mức của từng loại lỗi ghi trong checklist. Phân vân giữa hai mức thì chọn mức cao hơn và nêu lý do. Cách sửa đề xuất phải theo được luật của bài: không đề xuất điều mà `.claude/skills/lesson-author/references/pitfalls.md` cấm (như chữ Việt trong `\text{}`).

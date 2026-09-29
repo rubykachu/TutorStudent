@@ -1,8 +1,9 @@
 # Review: <tiêu đề bài> (`<id bài>`)
 
 - Bài: `<đường dẫn lesson.json>`
-- Nguồn đã đọc: `<sources/<subject>/<id bài>/>` - <p22, p23-24> | không có
+- Nguồn đã đọc: `sources/<subject>/<id bài>/` - <các trang đã đọc, vd p22, p23-24> | không có
 - `content:check`: <số> lỗi, <số> cảnh báo của bài
+- `lesson:walk`: <số> FAIL, <số> cảnh báo, ảnh trong `.shots/walk/<id bài>/`
 - Kết luận: <Đã xuất bản | Đã ghi reviewedHash, chờ quản trị viên đặt published | Chưa đạt: còn <số> lỗi Nghiêm trọng>
 
 ## Nghiêm trọng

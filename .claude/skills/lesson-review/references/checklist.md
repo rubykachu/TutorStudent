@@ -1,6 +1,6 @@
 # Checklist review bài học
 
-Bốn trục, soát lần lượt trên từng section, card và exercise (cả `steps` của `openEnded`, đáp án nhiễu, mục `order`/`match`, `recap`, `caption`). Mỗi mục ghi mức lỗi khi không đạt. Không soát lại những gì `content:check` đã kiểm (`docs/spec.md`, mục "Kiểm duyệt nội dung", phần "Lớp tự động").
+Năm trục, soát lần lượt trên từng section, card và exercise (cả `steps` của `openEnded`, đáp án nhiễu, mục `order`/`match`, `recap`, `caption`). Mỗi mục có ghi sẵn mức lỗi khi không đạt. Không soát lại những gì `content:check` đã kiểm (`docs/spec.md`, mục "Kiểm duyệt nội dung", phần "Lớp tự động").
 
 ## 1. Khớp nguồn
 
@@ -51,6 +51,18 @@ Bốn trục, soát lần lượt trên từng section, card và exercise (cả 
 
 **`recap` khớp card hay section** mà nó tóm tắt: lệch là Nên sửa.
 
+## 5. Trải nghiệm trên màn
+
+Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm trong visual (màn quy tắc, recap) chỉ thấy ở đây nên soát theo cả bốn trục trên.
+
+**Mỗi dòng FAIL của walk**: Nên sửa, ghi kèm tên ảnh. FAIL do bố cục của app (không do nội dung bài) ghi ở Góp ý để báo người làm app, không chặn bài.
+
+**Quy tắc đọc được và nhớ được.** Định nghĩa hay quy tắc chỉ nằm trong `caption` xám, màn chỉ có một `note` hay một `formula`, recap là công thức trần không nhãn: Nghiêm trọng (trẻ nhớ sai hoặc bỏ qua).
+
+**Người học chậm theo kịp.** Thiếu ví dụ mẫu trước câu tự làm, thao tác nhập mới chưa được dạy trước câu đầu dùng nó, câu chuyện mở đầu không có kết, câu luyện tập phải tính nhẩm quá 2 phép: Nên sửa. Card không có câu ôn nào ngoài `practiceIds` khác số với câu luyện tập: Nên sửa.
+
+**Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.
+
 ## Luật gợi ý 3 nấc
 
 Luật cố định. Không ghi phát hiện trái với luật này, kể cả khi vòng review trước đã ghi.
@@ -75,7 +87,8 @@ Ví dụ từ bài `luy-thua`:
 
 Quy ước đã chốt. Không ghi thành phát hiện ở bất kỳ mức nào:
 - Thứ tự lựa chọn `choice`, cột phải `match`, ngân hàng từ `fillBlank`, mục `order` trong JSON: app xáo mỗi lần làm.
-- Câu kiểm tra (`checkIds`) không gắn card; thiếu `hintVisualId` hay `solutionVisualId` (khung có cách hiện thay).
+- Câu kiểm tra (`checkIds`) không gắn card.
+- Thiếu `hintVisualId` hay `solutionVisualId` (khung có cách hiện thay).
 - Nấc 1 tô cả câu đề (`target: "block"`) khi đề chỉ có một câu chữ.
 - Các cách viết trong `.claude/skills/lesson-author/references/pitfalls.md` (công thức xếp `gathered`, không chữ Việt trong TeX, phần trẻ phải chạm hay gọi tên không mang màu khái niệm).
-- Mục Nên sửa và Góp ý đã ghi trong `backlogs/lesson-<id bài>.md`.
+- Mục Góp ý và Nên sửa đã ghi trong `backlogs/lesson-<id bài>.md`.

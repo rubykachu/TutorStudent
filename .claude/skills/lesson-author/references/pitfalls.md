@@ -4,7 +4,6 @@ Rút từ bài `content/math/kntt/luy-thua/`.
 
 ## Màn hình
 
-- Một `note` hay `formula` đứng riêng trông trống trải: đưa lời vào visual và dùng `caption`. `note` chỉ để dẫn ý.
 - KaTeX không ngắt dòng ở `\qquad`: hai công thức dài đặt cạnh nhau sẽ tràn màn hình điện thoại. Xếp dọc bằng `\begin{gathered} … \\ … \end{gathered}`.
 - Không viết chữ Việt trong TeX (`\text{thừa số}`): KaTeX hiển thị bằng font dự phòng, chữ lệch dòng. Lời để trong `note` hay `caption`.
 - Luỹ thừa trong câu chữ viết bằng ký tự mũ Unicode (2⁵, aⁿ), không viết `2^5`. Công thức cần tô màu thì đưa vào khối `formula`.
