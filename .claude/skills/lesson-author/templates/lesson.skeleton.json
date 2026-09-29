@@ -1,0 +1,104 @@
+{
+  "id": "bai-moi",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 1,
+  "title": "Tên bài theo sách",
+  "sourceRef": "SGK tr.1–2",
+  "status": "draft",
+  "concepts": [
+    { "id": "bai-moi.concept.thua-so", "name": "Thừa số", "color": "blue" }
+  ],
+  "sections": [
+    {
+      "id": "bai-moi.section.phan-mot",
+      "title": "Tên phần",
+      "sourceRef": "SGK tr.1",
+      "minutes": 8,
+      "blocks": [
+        { "type": "note", "text": "Một câu dẫn vào phần." },
+        {
+          "type": "formula",
+          "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+        }
+      ],
+      "checkIds": ["bai-moi.ex.kiem-tra"],
+      "practiceIds": ["bai-moi.ex.tinh-tich", "bai-moi.ex.chon-tich"],
+      "recap": {
+        "type": "formula",
+        "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "bai-moi.card.tich",
+      "sourceRef": "SGK tr.1",
+      "conceptIds": ["bai-moi.concept.thua-so"],
+      "recap": {
+        "type": "formula",
+        "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "bai-moi.ex.kiem-tra",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        { "type": "note", "text": "Tích này bằng bao nhiêu?" },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{tich}{\\concept{blue}{2} \\cdot \\concept{blue}{4}}"
+        }
+      ],
+      "options": [
+        { "id": "a", "content": { "type": "text", "text": "8" } },
+        { "id": "b", "content": { "type": "text", "text": "6" } }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": { "expr": "2·4" },
+      "hints": { "highlight": [{ "target": "part", "id": "tich" }] },
+      "difficulty": 1
+    },
+    {
+      "id": "bai-moi.ex.tinh-tich",
+      "type": "numeric",
+      "cardIds": ["bai-moi.card.tich"],
+      "prompt": [
+        { "type": "note", "text": "Tính tích sau." },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{tich}{\\concept{blue}{3} \\cdot \\concept{blue}{5}}"
+        }
+      ],
+      "answer": { "kind": "value", "value": 15 },
+      "check": { "expr": "3·5" },
+      "hints": { "highlight": [{ "target": "part", "id": "tich" }] },
+      "difficulty": 1
+    },
+    {
+      "id": "bai-moi.ex.chon-tich",
+      "type": "choice",
+      "cardIds": ["bai-moi.card.tich"],
+      "prompt": [{ "type": "note", "text": "Tích nào bằng 12?" }],
+      "options": [
+        { "id": "a", "content": { "type": "formula", "tex": "3 \\cdot 4" } },
+        { "id": "b", "content": { "type": "formula", "tex": "3 \\cdot 5" } },
+        { "id": "c", "content": { "type": "formula", "tex": "2 \\cdot 5" } }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": { "expr": "3·4" },
+      "hints": { "highlight": [{ "target": "block", "index": 0 }] },
+      "difficulty": 2
+    }
+  ],
+  "sticker": {
+    "name": "Tên hình thưởng",
+    "visualId": "fixture.visual.star-sticker"
+  }
+}

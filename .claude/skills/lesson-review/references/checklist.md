@@ -1,6 +1,6 @@
 # Checklist review bài học
 
-Bốn trục, soát lần lượt trên từng section, card và exercise (cả `steps` của `openEnded`, đáp án nhiễu, mục `order`/`match`, `recap`, `caption`). Mỗi mục ghi mức lỗi khi không đạt. Không soát lại những gì `content:check` đã kiểm (ký hiệu, phân cách hàng nghìn, thuật ngữ cấm, tiếng Anh, độ dài câu, đáp án tính lại từ `check.expr`, văn bản đọc hiểu khớp `source-passage.txt`).
+Bốn trục, soát lần lượt trên từng section, card và exercise (cả `steps` của `openEnded`, đáp án nhiễu, mục `order`/`match`, `recap`, `caption`). Mỗi mục ghi mức lỗi khi không đạt. Không soát lại những gì `content:check` đã kiểm (`docs/spec.md`, mục "Kiểm duyệt nội dung", phần "Lớp tự động").
 
 ## 1. Khớp nguồn
 
@@ -16,7 +16,7 @@ Bốn trục, soát lần lượt trên từng section, card và exercise (cả 
 
 ## 2. Đúng kiến thức
 
-**Mỗi câu hỏi có đúng một đáp án đúng** (hoặc đúng một tập đáp án khi `multiple: true`). Tự giải trước khi đọc `answer`. Đáp án sai, hai lựa chọn cùng đúng, hoặc không lựa chọn nào đúng: Nghiêm trọng. `fillBlank` thiếu một cách viết đúng khác trong `accept`: Nên sửa.
+**Mỗi câu hỏi có đúng một đáp án đúng** (hoặc đúng một tập đáp án khi `multiple: true`). Đáp án sai, hai lựa chọn cùng đúng, hoặc không lựa chọn nào đúng: Nghiêm trọng. `fillBlank` thiếu một cách viết đúng khác trong `accept`: Nên sửa.
 
 **Câu đọc hiểu có căn cứ trong văn bản.** Mỗi đáp án đọc hiểu phải chỉ ra được câu làm căn cứ (id câu trong `passage`, của đề bài hoặc của section đứng trước). Không có câu nào làm căn cứ: Nghiêm trọng, kể cả khi đáp án nghe hợp lý.
 - Không đạt: hỏi "Vì sao bạn nhỏ khóc?", đáp án "Vì bạn làm mất đồ chơi", trong khi văn bản chỉ tả bạn nhỏ khóc mà không nêu lý do.
@@ -43,15 +43,39 @@ Bốn trục, soát lần lượt trên từng section, card và exercise (cả 
 
 ## 4. Nhất quán
 
-**Gợi ý nấc 1 không lộ đáp án**: Nghiêm trọng. Lần sai đầu, phần được `hints.highlight` trỏ tới sáng lên, không kèm chữ. Lộ đáp án khi highlight trỏ vào chính đáp án:
-- `choice`: `target: "option"` với id nằm trong `answer`;
-- `tapText` / `tapRegion`: câu hay vùng nằm trong `answer`;
-- `match` / `order`: làm lộ cặp hay vị trí đúng.
-- Đạt: trỏ vào cơ số và số mũ trong đề (`target: "part"`), hay vào ô `base` / `exponent` của câu `numeric` (ô trống, không lộ giá trị).
-`hintVisualId` (nấc 2) chỉ tách bài toán, không chiếu kết quả cuối; kết quả thuộc `solutionVisualId` (nấc 3). Nấc 2 lộ kết quả: Nghiêm trọng.
+**Gợi ý theo "Luật gợi ý 3 nấc"** dưới đây.
 
-**Gợi ý khớp chỗ trẻ có thể sai.** Highlight trỏ vào phần không liên quan tới lỗi hay gặp, hoặc rỗng ở câu dễ sai: Nên sửa.
+**Gợi ý khớp chỗ trẻ có thể sai.** Highlight trỏ vào phần không liên quan tới lỗi hay gặp, hoặc rỗng ở câu dễ sai mà không có `hintVisualId`: Nên sửa.
 
 **Một khái niệm, một từ, một màu** trong bài và giữa các bài. Cùng khái niệm mà gọi hai tên, hoặc `conceptId` của highlight không khớp phần được tô (tô số mũ bằng màu cơ số): Nên sửa.
 
 **`recap` khớp card hay section** mà nó tóm tắt: lệch là Nên sửa.
+
+## Luật gợi ý 3 nấc
+
+Luật cố định. Không ghi phát hiện trái với luật này, kể cả khi vòng review trước đã ghi.
+
+**Nấc 1, `hints.highlight`** (lần sai đầu, sáng lên, không kèm chữ).
+- Được: phần của đề mà trẻ cần nhìn lại, qua `target: "part"` (`\htmlId` trong công thức, câu trong `passage`) hoặc `target: "block"`.
+- Nghiêm trọng khi highlight lộ đáp án: `option` có id nằm trong `answer`; câu hay vùng nằm trong `answer` của `tapText`/`tapRegion`; mục của `match`/`order` (lộ cặp hay vị trí); `conceptId` tô màu lên phần mà câu hỏi bắt trẻ gọi tên.
+- Nên sửa: `target: "option"` trỏ vào vùng trả lời. Khung đã tô cam ô làm sai, highlight cùng chỗ khiến ô đúng trông như sai; chuyển sang phần tương ứng trong đề.
+- `highlight: []` được khi câu có `hintVisualId`.
+
+**Nấc 2, `hintVisualId`**: tách bài toán rồi dừng ở "?" trước kết quả của đề. Ví dụ giải trọn vẹn chỉ được dùng số khác đề. Nghiêm trọng khi hình hiện kết quả của đề, hoặc khi câu "gọi tên phần" dùng hình có nhãn tên phần (hình đó chính là đáp án).
+
+**Nấc 3, `solutionVisualId`**: được chạy trọn lời giải với số của đề. Không có hình thì khung tự hiện đáp án.
+
+Ví dụ từ bài `luy-thua`:
+- `chon-tich-5-mu-4` (5⁴ bằng tích nào): đạt khi nấc 1 tô `co-so` và `so-mu` trong đề bằng màu khái niệm; lộ đáp án nếu tô lựa chọn `5 · 5 · 5 · 5`.
+- `dien-ten` (điền "cơ số", "số mũ" cho 8³): đạt khi nấc 1 tô 8 và 3 trong đề, không `conceptId`; lộ đáp án nếu tô bằng màu xanh, tím, hoặc nếu nấc 2 là hình `cac-phan` có nhãn "Cơ số", "Số mũ".
+- `xep-gia-tri` (xếp 2³, 3², 2⁴, 5² từ bé đến lớn): đạt khi nấc 1 trống và nấc 2 `phan-tich` viết mỗi luỹ thừa thành tích, không ghi giá trị, không theo thứ tự đúng; lộ vị trí nếu nấc 1 tô cặp 2³ và 3².
+- `tinh-3-mu-4` (tính 3⁴): nấc 2 làm 3 · 3 = 9 rồi dừng ở 9 · 3 = ?; hiện 81 là lộ kết quả. `mu-0-bang` (5⁰ bằng bao nhiêu): nấc 2 dùng số khác đề, 2³ : 2³, và dừng ở 8 : 8 = ?.
+
+## Không bắt lỗi
+
+Quy ước đã chốt. Không ghi thành phát hiện ở bất kỳ mức nào:
+- Thứ tự lựa chọn `choice`, cột phải `match`, ngân hàng từ `fillBlank`, mục `order` trong JSON: app xáo mỗi lần làm.
+- Câu kiểm tra (`checkIds`) không gắn card; thiếu `hintVisualId` hay `solutionVisualId` (khung có cách hiện thay).
+- Nấc 1 tô cả câu đề (`target: "block"`) khi đề chỉ có một câu chữ.
+- Các cách viết trong `.claude/skills/lesson-author/references/pitfalls.md` (công thức xếp `gathered`, không chữ Việt trong TeX, phần trẻ phải chạm hay gọi tên không mang màu khái niệm).
+- Mục Nên sửa và Góp ý đã ghi trong `backlogs/lesson-<id bài>.md`.
