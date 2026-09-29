@@ -1,0 +1,149 @@
+/*
+ * Design tokens: the only place colors and scales are defined.
+ * Values and contrast ratios are documented in docs/design-system.md.
+ * Components use Tailwind utilities generated from these tokens, never raw hex.
+ * Light theme only: the app has no dark mode by design.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* shadcn/ui components read these unprefixed variables directly. */
+:root {
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--muted);
+  --accent-foreground: var(--foreground);
+  /* Only for dangerous parent/admin actions, never in the child UI. */
+  --destructive: #dc2626;
+  --border: #e2e8f0;
+  --input: var(--border);
+  --ring: var(--primary);
+  /* shadcn derives its radius scale from this: sm 12px, lg 20px, xl 28px. */
+  --radius: 1.25rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--card);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* next/font injects the family variables on <html> (see app/layout.tsx). */
+  --font-heading: var(--font-baloo-2);
+  --font-body: var(--font-be-vietnam-pro);
+  --font-sans: var(--font-body);
+
+  /* Small cells 12px, cards and big buttons 20px, exercise frame 28px. */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+@theme {
+  --color-subject-math: #2563eb;
+  --color-subject-literature: #b4533f;
+  /* Teal rather than green so geography never reads as "correct". */
+  --color-subject-geography: #0f766e;
+
+  --color-correct: #15803d;
+  --color-correct-soft: #f0fdf4;
+  --color-correct-soft-foreground: #166534;
+  /* Wrong answers use orange, not red, so mistakes do not feel alarming. */
+  --color-retry: #c2410c;
+  --color-retry-soft: #fff7ed;
+  --color-retry-soft-foreground: #9a3412;
+  --color-highlight: #fde68a;
+
+  /* Lessons reference these by name (Concept.color); each pairs with a shape. */
+  --color-concept-blue: #2563eb;
+  --color-concept-violet: #7c3aed;
+  --color-concept-pink: #db2777;
+  --color-concept-amber: #b45309;
+  --color-concept-teal: #0f766e;
+  --color-concept-sky: #0369a1;
+  --color-concept-lime: #4d7c0f;
+  --color-concept-slate: #475569;
+
+  /* Paired phone / tablet (md:) sizes; nothing may render below 16px. */
+  --text-title: 1.75rem;
+  --text-title--line-height: 1.2;
+  --text-title-lg: 2rem;
+  --text-title-lg--line-height: 1.2;
+  --text-block: 1.375rem;
+  --text-block--line-height: 1.25;
+  --text-block-lg: 1.5rem;
+  --text-block-lg--line-height: 1.25;
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.6;
+  --text-body-lg: 1.25rem;
+  --text-body-lg--line-height: 1.6;
+  --text-passage: 1.1875rem;
+  --text-passage--line-height: 1.75;
+  --text-passage-lg: 1.3125rem;
+  --text-passage-lg--line-height: 1.75;
+  --text-caption: 1rem;
+  --text-caption--line-height: 1.5;
+
+  /*
+   * The default 4px spacing unit already yields the design scale
+   * (8, 12, 16, 24, 32, 48, 64, 96px = 2, 3, 4, 6, 8, 12, 16, 24).
+   */
+  --spacing-touch: 3rem;
+  --spacing-gutter: 1rem;
+  --spacing-gutter-lg: 1.5rem;
+  --container-content: 45rem;
+
+  /* A single elevation level; shadows are never nested. */
+  --shadow-card: 0 2px 8px rgb(15 23 42 / 0.08);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  html {
+    @apply font-body;
+  }
+  body {
+    @apply bg-background text-foreground text-body md:text-body-lg;
+    /* viewport-fit=cover lets the installed app draw under the iPad notch/home bar. */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+      env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-heading;
+  }
+}

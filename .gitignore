@@ -1,13 +1,37 @@
+# dependencies
 node_modules/
+.pnp
+.pnp.*
+
+# next.js build output
 .next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# env files (only the documented template is committed)
 .env*
 !.env.example
+
+# textbook sources are never committed
 sources/
-.shots/
+
+# test and screenshot output
 coverage/
 playwright-report/
 test-results/
+.shots/
+
+# deployment
 .vercel/
+
+# heavy video pipeline artifacts
 video/projects/**/renders/
 video/projects/**/audio/
+
+# misc
 .DS_Store
+*.pem
+npm-debug.log*
+.pnpm-debug.log*
