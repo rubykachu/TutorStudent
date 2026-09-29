@@ -356,6 +356,35 @@ describe("length", () => {
   });
 });
 
+describe("group blocks", () => {
+  // The fixture's first section with its note and formula moved into a group.
+  function withGroup(text: string): LintInput {
+    const input = withNote(text);
+    const section = input.lesson.sections[0];
+    const [note, visual, formula] = section?.blocks ?? [];
+    if (!section || note?.type !== "note" || formula?.type !== "formula") {
+      throw new Error("fixture blocks moved");
+    }
+    if (visual?.type !== "visual") throw new Error("fixture visual moved");
+    section.blocks = [{ type: "group", children: [note, formula, visual] }];
+    return input;
+  }
+
+  it("applies the note and text rules to the sentence inside a group", () => {
+    const path = ["sections", 0, "blocks", 0, "children", 0, "text"];
+    const length = findings(withGroup("Một câu. Hai câu. Ba câu."), "length");
+    expect(length.map((f) => [f.path, f.message])).toEqual([
+      [path, expect.stringContaining("3 sentences")],
+    ]);
+    expect(
+      findings(withGroup("Nhân lên được 1234 hạt."), "numbers").map(
+        (f) => f.path,
+      ),
+    ).toEqual([path]);
+    expect(findings(withGroup("Nhân lên được 12 hạt."), "fields")).toEqual([]);
+  });
+});
+
 describe("check-expr", () => {
   it("evaluates textbook expressions", () => {
     expect(evaluateExpr("2^3·2^2")).toEqual({ ok: true, value: 32 });

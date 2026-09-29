@@ -20,12 +20,12 @@ description: Soạn một bài học từ ảnh SGK trong sources/<môn>/<bài>/
 Bài viết cho trẻ lớp 6 học chậm, hay quên. Mọi bài theo các luật sau.
 
 - **Mẫu → cùng làm → tự làm.** Mỗi ý: một màn ví dụ mẫu giải trọn, rồi một màn trẻ thao tác có hướng dẫn (visual tương tác), rồi mới tới câu kiểm tra và luyện tập.
-- **Quy tắc là câu để nhớ, không phải chú thích.** Định nghĩa, quy tắc, quy ước viết thành 1–2 câu, chữ thân bài, trên màn quy tắc, cùng ví dụ có nhãn. `caption` xám chỉ dùng cho hướng dẫn thao tác hay nhận xét ngắn.
+- **Quy tắc là câu để nhớ, không phải chú thích.** Định nghĩa, quy tắc, quy ước viết thành 1–2 câu trong `note` của một `group`, cùng ví dụ có nhãn (`formula` hay `visual`) ngay dưới. Câu bài học luôn nằm trong JSON để lint và review đọc được; visual không chứa câu bài học, chỉ nhãn ngắn. `caption` xám chỉ dùng cho hướng dẫn thao tác hay nhận xét ngắn.
 - **Số nhỏ.** Câu luyện tập và ôn tính nhẩm được trong tối đa 2 phép tính (3³ = 27 được, 3⁴ = 81 thì không). Ví dụ mẫu được dài hơn khi có hình từng bước.
 - **Dạy thao tác nhập trước lần dùng đầu.** Cách nhập mới (phím "mũ", kéo thả, chạm vùng) có một màn hướng dẫn tĩnh ngay trước phần bài tập đầu tiên dùng nó, dùng số khác với câu bài tập đó.
 - **Câu chuyện mở đầu phải có kết** trong cùng section, bằng kiến thức vừa học.
 - **`minutes` tính từ số màn**: khoảng 40 giây mỗi màn (block, câu hỏi, recap), làm tròn phút.
-- **Recap = một câu + một ví dụ có nhãn** (visual, ký hiệu ● Cơ số ▲ Số mũ hay tương đương), không để công thức trần.
+- **Recap = một câu + một ví dụ có nhãn**: một `visual` vẽ ví dụ có nhãn (ký hiệu ● Cơ số ▲ Số mũ hay tương đương), câu cần nhớ đặt ở `caption` của nó (màn recap hiện caption thành chữ thân bài phía trên hình). Không để công thức trần.
 - **Luyện tập và kho ôn khác số.** Mỗi card có ít nhất một câu ngoài `practiceIds`, khác số với câu luyện tập và với ví dụ trên màn quy tắc, để phiên ôn không hỏi lại đúng câu vừa làm.
 
 ## Quy trình
@@ -37,7 +37,7 @@ Sửa bài đã có: bỏ bước 1–4, sửa theo bước 5–9, rồi làm ti
 3. **Biên soạn lại.** Viết định nghĩa, ví dụ, bài tập bằng lời và số của mình, không chép câu hay hình SGK. Riêng khối `passage` giữ nguyên văn.
 4. **Dựng khung.** Chép `templates/lesson.skeleton.json` vào thư mục bài, thay mọi `bai-moi` bằng slug, đặt `subject`, `series`, `order`, `title`, `sourceRef`. Sticker trỏ `fixture.visual.star-sticker` tới khi có sticker riêng.
 5. **Khái niệm.** Tên và màu lấy theo `content/glossary/<subject>.json`; chưa có term thì thêm vào đó kèm `color`. Mỗi khái niệm giữ một màu ở mọi công thức, visual, highlight.
-6. **Chia phần.** Mỗi section một ý chính, `sourceRef` trỏ đúng trang. Mỗi block là đúng một màn hình, nên không có màn chỉ một `note` hay một `formula`: quy tắc và ví dụ của nó chung một visual "màn quy tắc" (mẫu `RuleCard` trong `src/visuals/math/luy-thua/rules.tsx`). Sau phần giải thích: 1–2 câu `checkIds` (không tính điểm nhớ) và khoảng 5 câu `practiceIds` (mỗi câu là lần gặp đầu của một card).
+6. **Chia phần.** Mỗi section một ý chính, `sourceRef` trỏ đúng trang. Mỗi phần tử của `blocks` là đúng một màn hình, nên không có màn chỉ một `note` hay một `formula`: màn quy tắc là một `group` gồm `note` (câu quy tắc) rồi `formula`/`visual` (ví dụ có nhãn), xem các `group` trong `content/math/kntt/luy-thua/lesson.json`. Sau phần giải thích: 1–2 câu `checkIds` (không tính điểm nhớ) và khoảng 5 câu `practiceIds` (mỗi câu là lần gặp đầu của một card).
 7. **Card và bài tập.** Đạt số tối thiểu ở `docs/spec.md` mục "Tiêu chí thành công". Mỗi card chỉ có 1 câu trong `practiceIds`; các câu ôn còn lại chỉ nằm trong `exercises` (xem luật "Luyện tập và kho ôn khác số"). `openEnded` của Ngữ văn chia thành các bước nhỏ tự chấm, đặt trước bước viết.
 8. **Chi tiết từng câu.**
    - Bài Toán: đặt `check.expr` cho mọi `numeric` và `choice`; lint tính lại đáp án và báo lỗi khi có lựa chọn nhiễu cũng ra giá trị đó.

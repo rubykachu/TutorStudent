@@ -145,6 +145,30 @@ describe("references", () => {
     );
   });
 
+  it("checks visual ids inside a section's group blocks", () => {
+    const raw = fixtureContent();
+    const [section] = lessonData(raw).sections;
+    if (!section) throw new Error("no section");
+    const blocks = section.blocks as unknown[];
+    blocks.push({
+      type: "group",
+      children: [
+        { type: "note", text: "Nhìn hình nhé." },
+        { type: "visual", visualId: "fixture.visual.khong-co" },
+      ],
+    });
+    expectError(
+      check(raw),
+      `${LESSON_FILE} $.sections[0].blocks[${blocks.length - 1}].children[1].visualId`,
+      'Visual "fixture.visual.khong-co" is not in the visual registry',
+    );
+    (blocks.at(-1) as { children: { visualId?: string }[] }).children[1] = {
+      visualId: "fixture.visual.dot-grid",
+      type: "visual",
+    } as never;
+    expect(check(raw).issues).toEqual([]);
+  });
+
   it("reports ids declared twice, within and across lessons", () => {
     const raw = fixtureContent();
     const [first, second] = lessonData(raw).cards;

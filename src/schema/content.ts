@@ -154,6 +154,31 @@ export const BlockSchema = z.discriminatedUnion("type", [
   ImageBlockSchema,
 ]);
 
+// Several blocks shown together on one learning screen, in order: a rule
+// sentence (`note`) with the formula or picture that shows it. A section
+// otherwise shows one block per screen. Only short, still parts may share a
+// screen: no passage or video, and no group inside a group. Allowed in
+// `Section.blocks` only: an exercise prompt already shows all its blocks on
+// one screen, so a `block` hint target keeps counting plain prompt blocks.
+export const GroupChildSchema = z.discriminatedUnion("type", [
+  NoteBlockSchema,
+  FormulaBlockSchema,
+  VisualBlockSchema,
+  ImageBlockSchema,
+]);
+
+export const GroupBlockSchema = z.object({
+  type: z.literal("group"),
+  // A group of one is just that block.
+  children: z.array(GroupChildSchema).min(2),
+});
+
+// A screen of a section: one block, or a group of blocks.
+export const SectionBlockSchema = z.discriminatedUnion("type", [
+  ...BlockSchema.options,
+  GroupBlockSchema,
+]);
+
 export const RecapBlockSchema = z.discriminatedUnion("type", [
   VisualBlockSchema,
   FormulaBlockSchema,
@@ -375,7 +400,7 @@ export const SectionSchema = z.object({
   title: TextSchema,
   sourceRef: TextSchema,
   minutes: z.int().positive(),
-  blocks: z.array(BlockSchema).min(1),
+  blocks: z.array(SectionBlockSchema).min(1),
   // Comprehension checks: graded but never rated.
   checkIds: z.array(ExerciseIdSchema).min(1),
   // First encounter of each card; these answers are rated.
@@ -483,6 +508,8 @@ export type SubjectsFile = z.infer<typeof SubjectsFileSchema>;
 export type Concept = z.infer<typeof ConceptSchema>;
 export type ConceptColor = z.infer<typeof ConceptColorSchema>;
 export type Block = z.infer<typeof BlockSchema>;
+export type GroupBlock = z.infer<typeof GroupBlockSchema>;
+export type SectionBlock = z.infer<typeof SectionBlockSchema>;
 export type RecapBlock = z.infer<typeof RecapBlockSchema>;
 export type PassageBlock = z.infer<typeof PassageBlockSchema>;
 export type FormulaBlock = z.infer<typeof FormulaBlockSchema>;

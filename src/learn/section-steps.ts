@@ -1,13 +1,13 @@
 import type { AnyExercise, LessonIndex } from "@/content";
 import type { SectionPosition } from "@/progress/db";
-import type { Block, RecapBlock, Section } from "@/schema/content";
+import type { RecapBlock, Section, SectionBlock } from "@/schema/content";
 
 // A section as the ordered list of screens the child goes through.
 
 export type ExerciseContext = "check" | "practice";
 
 export type SectionStep =
-  | { kind: "block"; position: SectionPosition; block: Block }
+  | { kind: "block"; position: SectionPosition; block: SectionBlock }
   | {
       kind: "exercise";
       position: SectionPosition;
@@ -35,7 +35,7 @@ function exerciseSteps(
   }));
 }
 
-// Blocks one at a time, then the comprehension checks, the practice
+// Blocks one at a time (a group is one screen), then the comprehension checks, the practice
 // exercises and finally the recap.
 export function sectionSteps(
   section: Section,

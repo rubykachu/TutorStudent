@@ -184,14 +184,15 @@ Subject      { id: "math" | "literature" | "geography" | …, name, color, serie
 Lesson       { id, subject, series, grade: 6, order, title, sourceRef (vd "SGK tr.22–24"),
                status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker }
 Concept      { id, name, color }                 # tên token màu khái niệm (design-system.md)
-Section      { id, title, sourceRef, minutes, blocks[], checkIds[], practiceIds[], recap: RecapBlock }
+Section      { id, title, sourceRef, minutes, blocks: SectionBlock[], checkIds[], practiceIds[], recap: RecapBlock }
+SectionBlock = Block | group { children: (note | formula | visual | image)[] }   # mỗi phần tử là một màn
 Block        = visual { visualId, caption? }
              | formula { tex }
              | passage { paragraphs[], annotations[] }   # văn bản đọc hiểu, chạm được theo câu
              | note { text }                             # chữ ngắn, tối đa ~2 câu
              | video { videoId, clipId? }
              | image { src, alt }                        # chỉ URL trong bucket media (SVG nạp nhanh)
-RecapBlock   = visual | formula                          # hình/công thức nhắc lại, xem nhanh được
+RecapBlock   = visual | formula                          # hình/công thức nhắc lại, xem nhanh được; câu cần nhớ ở `caption`
 Card         { id, sourceRef, conceptIds[], recap: RecapBlock }
 Exercise     = discriminated union theo `type` (xem "Tám dạng bài tập"), mỗi loại có:
                { id, cardIds[], prompt: Block[], hints: Hints, difficulty: 1..3 }
@@ -199,6 +200,8 @@ Hints        { highlight: TargetRef[], hintVisualId?, solutionVisualId? }
 Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, cardIds[] }], voice }
 ```
 
+- Section hiện mỗi phần tử của `blocks` trên một màn. `group` gom ≥ 2 khối ngắn, tĩnh lên cùng một màn theo thứ tự: câu quy tắc (`note`, chữ thân bài) rồi ví dụ có nhãn (`formula`/`visual`/`image`). Không lồng `group`, không chứa `passage`/`video`; chỉ dùng trong `Section.blocks` (đề bài tập vốn đã hiện mọi khối trên một màn, nên chỉ số `block` của gợi ý vẫn đếm khối đề). Lint, `content:check` và review đọc được chữ trong `group` như mọi khối khác.
+- Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap vẫn là một `visual`/`formula`; câu cần nhớ của recap là `caption` của visual, màn recap hiện nó thành chữ thân bài phía trên ví dụ.
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.
 - `Card.recap` chỉ hiện sau câu ôn trẻ trả lời sai ở lần đầu (kể cả lần hỏi lại), khi câu đã kết thúc (trạng thái `done`, tức sau cả vòng gợi ý và nhập lại); câu đúng ngay thì sang câu kế luôn. Tóm tắt không tự ẩn, không bỏ qua bằng chạm ngoài nút: chỉ nút "Tiếp" mới đi tiếp. `Section.recap` hiện ở cuối phần.
 - `openEnded` không gắn card (không vào phiên ôn); các bước con tự chấm của nó có thể gắn card. `openEnded` tính là 1 exercise nhưng không tính vào số dạng bài khác nhau.

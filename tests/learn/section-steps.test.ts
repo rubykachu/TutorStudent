@@ -31,6 +31,32 @@ describe("sectionSteps", () => {
     ]);
   });
 
+  it("counts a group of blocks as one screen", () => {
+    const [first] = learnLesson().sections;
+    const { index, section: s } = section({
+      sections: [
+        {
+          ...first,
+          blocks: [
+            {
+              type: "group",
+              children: [
+                { type: "note", text: "Quy tắc" },
+                { type: "formula", tex: "2^{3} = 8" },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    const blocks = sectionSteps(s, index).filter((st) => st.kind === "block");
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0]).toMatchObject({
+      position: { phase: "blocks", index: 0 },
+      block: { type: "group" },
+    });
+  });
+
   it("skips missing exercises without gaps in positions", () => {
     const base = learnLesson();
     const [first] = base.sections;

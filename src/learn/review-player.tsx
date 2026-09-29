@@ -138,6 +138,7 @@ export function ReviewPlayer({
           {card && (
             <BlockStage
               block={card.recap}
+              recap
               heading={
                 <h1 className="text-block font-semibold md:text-block-lg">
                   Nhớ nhé!

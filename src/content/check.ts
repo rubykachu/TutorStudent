@@ -7,6 +7,7 @@ import {
   IdsLockSchema,
   type Lesson,
   LessonSchema,
+  type SectionBlock,
   type SubjectsFile,
   SubjectsFileSchema,
 } from "@/schema/content";
@@ -538,14 +539,20 @@ function checkLesson(
   });
 }
 
-// Every block position in a lesson: section blocks, exercise and step prompts.
+// Every block position in a lesson: section blocks, the blocks inside a
+// section's groups, exercise and step prompts.
 function walkBlocks(
   lesson: Lesson,
-  visit: (block: Block, path: IssuePath) => void,
+  visit: (block: SectionBlock, path: IssuePath) => void,
 ): void {
   lesson.sections.forEach((section, i) => {
     section.blocks.forEach((block, j) => {
-      visit(block, ["sections", i, "blocks", j]);
+      const path: IssuePath = ["sections", i, "blocks", j];
+      visit(block, path);
+      if (block.type !== "group") return;
+      block.children.forEach((child, k) => {
+        visit(child, [...path, "children", k]);
+      });
     });
   });
   for (const entry of flattenExercises(lesson)) {

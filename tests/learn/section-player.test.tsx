@@ -126,6 +126,38 @@ describe("SectionPlayer", () => {
     expect(await listStickers(db, scope)).toHaveLength(1);
   });
 
+  it("shows a group of blocks on one screen and counts it as one step", async () => {
+    const [first] = learnLesson().sections;
+    if (!first) throw new Error("section missing");
+    renderPlayer(SECTION_START, {
+      sections: [
+        {
+          ...first,
+          blocks: [
+            {
+              type: "group",
+              children: [
+                { type: "note", text: "Câu quy tắc" },
+                { type: "note", text: "Câu ví dụ" },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    expect(screen.getByText("Câu quy tắc")).toBeInTheDocument();
+    expect(screen.getByText("Câu ví dụ")).toBeInTheDocument();
+    expect(screen.getByText("Bước 1 trên 5")).toBeInTheDocument();
+    tap("Tiếp");
+    expect(screen.getByText("Kiểm tra nhanh")).toBeInTheDocument();
+    // Let the saved position land before the database is dropped.
+    await waitFor(async () =>
+      expect(await sectionRecord()).toMatchObject({
+        position: { phase: "check", index: 0 },
+      }),
+    );
+  });
+
   it("resumes on the saved item and saves each move", async () => {
     renderPlayer({ phase: "practice", index: 1 });
     expect(screen.getByText("Câu luyện B")).toBeInTheDocument();

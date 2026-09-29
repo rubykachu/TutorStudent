@@ -1,4 +1,4 @@
-import type { Block, PassageBlock } from "@/schema/content";
+import type { PassageBlock, SectionBlock } from "@/schema/content";
 import type { IssuePath } from "../check";
 import { flattenExercises } from "../index";
 import { VERBATIM_PASSAGE_SUBJECTS } from "./config";
@@ -31,7 +31,8 @@ function passageBlocks(
   input: LintInput,
 ): { block: PassageBlock; path: IssuePath }[] {
   const found: { block: PassageBlock; path: IssuePath }[] = [];
-  const collect = (blocks: readonly Block[], base: IssuePath) => {
+  // A group never holds a passage, so only top-level blocks are looked at.
+  const collect = (blocks: readonly SectionBlock[], base: IssuePath) => {
     blocks.forEach((block, i) => {
       if (block.type === "passage") found.push({ block, path: [...base, i] });
     });

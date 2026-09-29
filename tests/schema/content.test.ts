@@ -9,6 +9,7 @@ import {
   ContentIndexSchema,
   ExerciseSchema,
   LessonSchema,
+  SectionBlockSchema,
   SubjectsFileSchema,
 } from "@/schema/content";
 
@@ -144,6 +145,56 @@ describe("BlockSchema", () => {
     expect(BlockSchema.safeParse({ type: "note", text: "   " }).success).toBe(
       false,
     );
+  });
+});
+
+describe("SectionBlockSchema", () => {
+  const note = { type: "note", text: "Nhân hai luỹ thừa cùng cơ số." };
+  const formula = { type: "formula", tex: "5^{2} \\cdot 5^{4} = 5^{6}" };
+
+  it("accepts a group of short parts shown on one screen", () => {
+    const visual = { type: "visual", visualId: "bai.visual.hinh" };
+    expect(
+      SectionBlockSchema.safeParse({
+        type: "group",
+        children: [note, formula, visual],
+      }).success,
+    ).toBe(true);
+  });
+
+  it("rejects a group of one, a nested group and long or moving parts", () => {
+    const group = (children: unknown[]) =>
+      SectionBlockSchema.safeParse({ type: "group", children }).success;
+    expect(group([note])).toBe(false);
+    expect(group([note, { type: "group", children: [note, formula] }])).toBe(
+      false,
+    );
+    expect(group([note, { type: "video", videoId: "bai.video.mot" }])).toBe(
+      false,
+    );
+    const passage = { type: "passage", paragraphs: [], annotations: [] };
+    expect(group([note, passage])).toBe(false);
+    expect(group([note, { type: "note", text: " " }])).toBe(false);
+  });
+
+  it("keeps groups out of exercise prompts and recaps", () => {
+    const group = { type: "group", children: [note, formula] };
+    expect(BlockSchema.safeParse(group).success).toBe(false);
+    expect(
+      ExerciseSchema.safeParse({
+        ...baseExercise,
+        type: "choice",
+        prompt: [group],
+      }).success,
+    ).toBe(false);
+    const lesson = fixture();
+    const sections = lesson.sections as Record<string, unknown>[];
+    const first = sections[0] as Record<string, unknown>;
+    first.recap = group;
+    expect(LessonSchema.safeParse(lesson).success).toBe(false);
+    first.recap = formula;
+    first.blocks = [group];
+    expect(LessonSchema.safeParse(lesson).success).toBe(true);
   });
 });
 

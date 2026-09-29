@@ -259,6 +259,7 @@ function StepView({
         <div className="flex flex-1 flex-col" data-section-step="recap">
           <BlockStage
             block={step.recap}
+            recap
             heading={
               <h2 className="text-block font-semibold md:text-block-lg">
                 Nhớ nhé!
