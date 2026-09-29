@@ -1,4 +1,5 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
+import { createProfile, FIXTURE_LESSON_TITLE } from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
 
 // Each test starts in a fresh browser context, so IndexedDB is empty and the
@@ -6,17 +7,6 @@ import { expectNoHorizontalScroll } from "./layout";
 // so the draft fixture lesson is the only math lesson; a default build leaves
 // it (and every other draft) out of /content/index.json, which the unit tests
 // of the content index cover.
-
-const FIXTURE_TITLE = "Bài mẫu: phép nhân và đọc hiểu";
-
-async function createProfile(page: Page, name: string, avatar: string) {
-  await page.getByLabel("Bạn tên là gì?").fill(name);
-  await page.getByText(avatar, { exact: true }).click();
-  await page.getByRole("button", { name: "Bắt đầu học" }).click();
-  await expect(
-    page.getByRole("heading", { level: 1, name: `Chào ${name}!` }),
-  ).toBeVisible();
-}
 
 test("a first visit creates a profile that survives a reload", async ({
   page,
@@ -52,7 +42,9 @@ test("a first visit creates a profile that survives a reload", async ({
   await expect(
     page.getByRole("heading", { level: 1, name: "Toán" }),
   ).toBeVisible();
-  const lesson = page.getByRole("link", { name: new RegExp(FIXTURE_TITLE) });
+  const lesson = page.getByRole("link", {
+    name: new RegExp(FIXTURE_LESSON_TITLE),
+  });
   await expect(lesson).toHaveAttribute("href", "/lessons/fixture");
   await expect(lesson).toContainText("Chưa học");
   // Exactly the lessons in the served index: nothing else leaks into the list.

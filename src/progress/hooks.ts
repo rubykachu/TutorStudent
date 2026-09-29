@@ -1,13 +1,22 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useSyncExternalStore } from "react";
+import {
+  CONTENT_BASE_URL,
+  indexLesson,
+  type LessonIndex,
+  lessonContentUrl,
+} from "@/content";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { newId } from "@/lib/id";
 import { now } from "@/lib/time";
 import {
   ACTIVE_PROFILE_KEY,
   type AttemptRecord,
+  type CardStateRecord,
   type ChildScope,
   DEVICE_SCOPE,
+  getCardStates,
+  getSectionProgress,
   getSetting,
   listAttempts,
   listProfiles,
@@ -23,6 +32,7 @@ import {
 import {
   type ContentIndex,
   ContentIndexSchema,
+  LessonSchema,
   type Subject,
 } from "@/schema/content";
 
@@ -42,7 +52,7 @@ export function resetAppDbForTesting(): void {
   appDbInstance = null;
 }
 
-function childScope(childId: string): ChildScope {
+export function childScope(childId: string): ChildScope {
   return { familyId: LOCAL_FAMILY_ID, childId };
 }
 
@@ -136,10 +146,51 @@ export function useChildProgress(childId: string): ChildProgress | undefined {
   return useLiveQuery(() => readChildProgress(appDb(), childId), [childId]);
 }
 
+export type LessonProgress = {
+  sections: SectionProgressRecord[];
+  cardStates: CardStateRecord[];
+  sticker: StickerRecord | undefined;
+  // Answers given in review sessions of this lesson, oldest first.
+  reviewAttempts: AttemptRecord[];
+};
+
+export async function readLessonProgress(
+  db: TutorDb,
+  childId: string,
+  lessonId: string,
+): Promise<LessonProgress> {
+  const scope = childScope(childId);
+  const [sections, cardStates, sticker, attempts] = await Promise.all([
+    getSectionProgress(db, scope, lessonId),
+    getCardStates(db, scope, lessonId),
+    db.stickers.get([scope.familyId, scope.childId, lessonId]),
+    db.attempts
+      .where("[familyId+childId+lessonId]")
+      .equals([scope.familyId, scope.childId, lessonId])
+      .sortBy("at"),
+  ]);
+  return {
+    sections,
+    cardStates,
+    sticker,
+    reviewAttempts: attempts.filter((a) => a.context === "review"),
+  };
+}
+
+export function useLessonProgress(
+  childId: string,
+  lessonId: string,
+): LessonProgress | undefined {
+  return useLiveQuery(
+    () => readLessonProgress(appDb(), childId, lessonId),
+    [childId, lessonId],
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Content index
 
-export const CONTENT_INDEX_URL = "/content/index.json";
+export const CONTENT_INDEX_URL = `${CONTENT_BASE_URL}/index.json`;
 
 export type ContentIndexState =
   | { status: "loading" }
@@ -199,5 +250,62 @@ export function useContentIndex(): ContentIndexState {
     subscribeContentIndex,
     () => indexState,
     () => SERVER_INDEX_STATE,
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Lessons
+
+export type LessonState =
+  | { status: "loading" }
+  | { status: "error" }
+  | { status: "ready"; index: LessonIndex };
+
+// Like the index, a lesson file only changes with a new build: fetched once
+// per page load and shared by the lesson, section and review screens.
+const LESSON_LOADING: LessonState = { status: "loading" };
+const lessonStates = new Map<string, LessonState>();
+const lessonListeners = new Set<() => void>();
+
+function setLessonState(lessonId: string, next: LessonState): void {
+  lessonStates.set(lessonId, next);
+  for (const listener of lessonListeners) listener();
+}
+
+async function fetchLesson(lessonId: string): Promise<LessonIndex> {
+  const url = lessonContentUrl(lessonId);
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${url} returned ${response.status}`);
+  return indexLesson(LessonSchema.parse(await response.json()));
+}
+
+// Starts the fetch unless one is running or already succeeded; after an error
+// calling it again retries.
+export function requestLesson(lessonId: string): void {
+  const current = lessonStates.get(lessonId);
+  if (current && current.status !== "error") return;
+  setLessonState(lessonId, LESSON_LOADING);
+  fetchLesson(lessonId).then(
+    (index) => setLessonState(lessonId, { status: "ready", index }),
+    () => setLessonState(lessonId, { status: "error" }),
+  );
+}
+
+export function resetLessonsForTesting(): void {
+  lessonStates.clear();
+  lessonListeners.clear();
+}
+
+function subscribeLessons(listener: () => void): () => void {
+  lessonListeners.add(listener);
+  return () => lessonListeners.delete(listener);
+}
+
+export function useLesson(lessonId: string): LessonState {
+  useEffect(() => requestLesson(lessonId), [lessonId]);
+  return useSyncExternalStore(
+    subscribeLessons,
+    () => lessonStates.get(lessonId) ?? LESSON_LOADING,
+    () => LESSON_LOADING,
   );
 }

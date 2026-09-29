@@ -1,43 +1,16 @@
 "use client";
 
-import {
-  ChevronLeft,
-  Circle,
-  CircleCheck,
-  CircleDot,
-  type LucideIcon,
-} from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { StateBadge } from "@/components/state-badge";
 import { SUBJECT_STYLES } from "@/components/subject-style";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
-import type { ProfileRecord, SectionState } from "@/progress/db";
+import type { ProfileRecord } from "@/progress/db";
 import { useChildProgress, useContentIndex } from "@/progress/hooks";
 import { lessonState, lessonsForSubject } from "@/progress/summary";
 import type { Subject } from "@/schema/content";
 import { ContentError } from "../../content-error";
 import { useRequiredProfile } from "../../use-required-profile";
-
-// Each state pairs its colour with an icon so it never relies on colour alone.
-const STATE_BADGES: Record<
-  SectionState,
-  { label: string; icon: LucideIcon; className: string }
-> = {
-  not_started: {
-    label: "Chưa học",
-    icon: Circle,
-    className: "bg-muted text-muted-foreground",
-  },
-  in_progress: {
-    label: "Đang học",
-    icon: CircleDot,
-    className: "bg-muted text-foreground",
-  },
-  done: {
-    label: "Xong",
-    icon: CircleCheck,
-    className: "bg-correct-soft text-correct-soft-foreground",
-  },
-};
 
 function LessonList({
   subject,
@@ -73,8 +46,6 @@ function LessonList({
           progress.sections.filter((s) => s.lessonId === lesson.id),
           stickers,
         );
-        const badge = STATE_BADGES[state];
-        const BadgeIcon = badge.icon;
         return (
           <li key={lesson.id}>
             <Link
@@ -90,12 +61,7 @@ function LessonList({
                   {lesson.sourceRef}
                 </p>
               </div>
-              <span
-                className={`${badge.className} inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1 text-caption font-semibold`}
-              >
-                <BadgeIcon aria-hidden className="size-5" />
-                {badge.label}
-              </span>
+              <StateBadge state={state} />
             </Link>
           </li>
         );

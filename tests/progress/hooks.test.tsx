@@ -1,6 +1,7 @@
 import "fake-indexeddb/auto";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { lessonContentUrl } from "@/content";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { setNowForTesting } from "@/lib/time";
 import {
@@ -18,15 +19,21 @@ import {
   createProfile,
   readChildProgress,
   requestContentIndex,
+  requestLesson,
   resetAppDbForTesting,
   resetContentIndexForTesting,
+  resetLessonsForTesting,
   setActiveProfile,
   useActiveProfile,
   useChildProgress,
   useContentIndex,
+  useLesson,
+  useLessonProgress,
   useProfiles,
 } from "@/progress/hooks";
+import { recordAttempt, saveSectionPosition } from "@/progress/record";
 import type { ContentIndex, Subject } from "@/schema/content";
+import { learnLesson } from "../learn/helpers";
 
 const subjects: Subject[] = [
   {
@@ -49,6 +56,7 @@ afterEach(async () => {
   await appDb().delete();
   resetAppDbForTesting();
   resetContentIndexForTesting();
+  resetLessonsForTesting();
   setNowForTesting(null);
   vi.unstubAllGlobals();
 });
@@ -154,7 +162,7 @@ describe("child progress", () => {
       sectionId: "powers.section.one",
       lessonId: "powers",
       state: "done" as const,
-      blockIndex: 3,
+      position: { phase: "practice" as const, index: 1 },
       updatedAt: "2026-03-02T01:00:00.000Z",
     };
     await putSectionProgress(appDb(), section);
@@ -225,5 +233,88 @@ describe("useContentIndex", () => {
       expect(result.current).toEqual({ status: "ready", index }),
     );
     expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+});
+
+describe("lesson progress", () => {
+  it("reads one child's sections, card states, sticker and review answers of a lesson", async () => {
+    const scope = { familyId: LOCAL_FAMILY_ID, childId: "kid-1" };
+    const at = new Date("2026-03-02T01:00:00Z");
+    const db = appDb();
+    await saveSectionPosition(
+      db,
+      scope,
+      { lessonId: "powers", sectionId: "powers.section.one" },
+      { phase: "check", index: 0 },
+      at,
+    );
+    const answer = {
+      ...scope,
+      lessonId: "powers",
+      exerciseId: "powers.ex.one",
+      cardIds: ["powers.card.a"],
+      firstTryCorrect: false,
+      wrongCount: 1,
+    };
+    await recordAttempt(db, { ...answer, context: "practice" }, at);
+    const review = await recordAttempt(
+      db,
+      { ...answer, context: "review" },
+      at,
+    );
+    await recordAttempt(
+      db,
+      {
+        ...answer,
+        lessonId: "roots",
+        cardIds: ["roots.card.a"],
+        context: "review",
+      },
+      at,
+    );
+    await awardSticker(db, scope, "powers", at);
+
+    const { result } = renderHook(() => useLessonProgress("kid-1", "powers"));
+    await waitFor(() => expect(result.current).toBeDefined());
+    expect(result.current?.sections.map((s) => s.sectionId)).toEqual([
+      "powers.section.one",
+    ]);
+    expect(result.current?.cardStates.map((s) => s.cardId)).toEqual([
+      "powers.card.a",
+    ]);
+    expect(result.current?.sticker?.lessonId).toBe("powers");
+    expect(result.current?.reviewAttempts).toEqual([review]);
+  });
+});
+
+describe("useLesson", () => {
+  const lesson = learnLesson();
+
+  it("fetches, validates and indexes a lesson once", async () => {
+    const fetchMock = vi.fn(
+      async () => new Response(JSON.stringify(lesson), { status: 200 }),
+    );
+    vi.stubGlobal("fetch", fetchMock);
+    const first = renderHook(() => useLesson(lesson.id));
+    expect(first.result.current).toEqual({ status: "loading" });
+    await waitFor(() => expect(first.result.current.status).toBe("ready"));
+    const state = first.result.current;
+    expect(state.status === "ready" && state.index.lesson.id).toBe(lesson.id);
+
+    renderHook(() => useLesson(lesson.id));
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith(lessonContentUrl(lesson.id));
+  });
+
+  it("reports failures and retries on request", async () => {
+    const fetchMock = vi
+      .fn<() => Promise<Response>>()
+      .mockResolvedValueOnce(new Response("{}", { status: 404 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify(lesson)));
+    vi.stubGlobal("fetch", fetchMock);
+    const { result } = renderHook(() => useLesson(lesson.id));
+    await waitFor(() => expect(result.current).toEqual({ status: "error" }));
+    act(() => requestLesson(lesson.id));
+    await waitFor(() => expect(result.current.status).toBe("ready"));
   });
 });

@@ -7,9 +7,15 @@ import {
   getCardStates,
   listActivityDays,
   listAttempts,
+  listStickers,
   TutorDb,
 } from "@/progress/db";
-import { type AttemptInput, recordAttempt } from "@/progress/record";
+import {
+  type AttemptInput,
+  completeSection,
+  recordAttempt,
+  saveSectionPosition,
+} from "@/progress/record";
 import { retrievability } from "@/srs/schedule";
 
 const scope: ChildScope = { familyId: LOCAL_FAMILY_ID, childId: "kid-1" };
@@ -131,6 +137,83 @@ describe("recordAttempt", () => {
     expect(await listActivityDays(db, scope)).toEqual([
       "2026-03-02",
       "2026-03-03",
+    ]);
+  });
+});
+
+describe("section progress", () => {
+  const one = { lessonId: LESSON, sectionId: "powers.section.one" };
+  const two = { lessonId: LESSON, sectionId: "powers.section.two" };
+  const three = { lessonId: LESSON, sectionId: "powers.section.three" };
+  const sections = [one, two, three].map((s) => s.sectionId);
+  const read = (sectionId: string) =>
+    db.sectionProgress.get([scope.familyId, scope.childId, sectionId]);
+
+  it("saves the place in a section and marks it started", async () => {
+    await saveSectionPosition(
+      db,
+      scope,
+      one,
+      { phase: "check", index: 1 },
+      START,
+    );
+    expect(await read(one.sectionId)).toEqual({
+      ...scope,
+      ...one,
+      state: "in_progress",
+      position: { phase: "check", index: 1 },
+      updatedAt: START.toISOString(),
+    });
+  });
+
+  it("keeps a finished section finished when it is gone through again", async () => {
+    await completeSection(db, scope, one, sections, START);
+    await saveSectionPosition(
+      db,
+      scope,
+      one,
+      { phase: "blocks", index: 2 },
+      START,
+    );
+    expect(await read(one.sectionId)).toMatchObject({
+      state: "done",
+      position: { phase: "blocks", index: 2 },
+    });
+  });
+
+  it("rewinds a completed section and points at the next one to do", async () => {
+    await saveSectionPosition(
+      db,
+      scope,
+      two,
+      { phase: "practice", index: 3 },
+      START,
+    );
+    expect(await completeSection(db, scope, two, sections, START)).toEqual({
+      lessonDone: false,
+      nextSectionId: three.sectionId,
+    });
+    expect(await read(two.sectionId)).toMatchObject({
+      state: "done",
+      position: { phase: "blocks", index: 0 },
+    });
+    // After the last section, the first unfinished one is next.
+    expect(await completeSection(db, scope, three, sections, START)).toEqual({
+      lessonDone: false,
+      nextSectionId: one.sectionId,
+    });
+    expect(await listStickers(db, scope)).toEqual([]);
+  });
+
+  it("awards the sticker once every section is done", async () => {
+    await completeSection(db, scope, one, sections, START);
+    await completeSection(db, scope, two, sections, START);
+    expect(await completeSection(db, scope, three, sections, START)).toEqual({
+      lessonDone: true,
+      nextSectionId: null,
+    });
+    expect(await listStickers(db, scope)).toEqual([
+      { ...scope, lessonId: LESSON, at: START.toISOString() },
     ]);
   });
 });

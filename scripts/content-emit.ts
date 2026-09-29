@@ -1,5 +1,6 @@
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { lessonContentFile } from "@/content";
 import { buildContentIndex, loadContent } from "@/content/load";
 
 // Writes the static content the app fetches: /content/index.json and
@@ -19,7 +20,7 @@ writeFileSync(
 );
 for (const { lesson } of content.lessons) {
   writeFileSync(
-    path.join(OUT_DIR, `${lesson.id}.json`),
+    path.join(OUT_DIR, lessonContentFile(lesson.id)),
     JSON.stringify(lesson),
   );
 }

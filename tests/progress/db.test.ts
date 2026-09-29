@@ -99,11 +99,15 @@ describe("section progress", () => {
       sectionId: "powers.section.one",
       lessonId: "powers",
       state: "in_progress" as const,
-      blockIndex: 2,
+      position: { phase: "blocks" as const, index: 2 },
       updatedAt: "2026-03-02T01:00:00.000Z",
     };
     await putSectionProgress(db, record);
-    await putSectionProgress(db, { ...record, state: "done", blockIndex: 5 });
+    await putSectionProgress(db, {
+      ...record,
+      state: "done",
+      position: { phase: "recap", index: 0 },
+    });
     await putSectionProgress(db, {
       ...record,
       sectionId: "roots.section.one",
@@ -111,7 +115,7 @@ describe("section progress", () => {
     });
     await putSectionProgress(db, { ...record, ...sibling });
     expect(await getSectionProgress(db, scope, "powers")).toEqual([
-      { ...record, state: "done", blockIndex: 5 },
+      { ...record, state: "done", position: { phase: "recap", index: 0 } },
     ]);
   });
 
@@ -121,7 +125,7 @@ describe("section progress", () => {
       sectionId: "powers.section.one",
       lessonId: "powers",
       state: "in_progress" as const,
-      blockIndex: 0,
+      position: { phase: "blocks" as const, index: 0 },
       updatedAt: "2026-03-02T01:00:00.000Z",
     };
     const other = {

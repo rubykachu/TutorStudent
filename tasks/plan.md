@@ -63,7 +63,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 ### Luồng học
 - [x] 8. Dexie + SRS (rating, lịch, chọn thẻ ôn)
 - [x] 9. Hồ sơ + trang chủ + trang môn
-- [ ] 10. Trang bài + player phần + block renderer + sticker
+- [x] 10. Trang bài + player phần + block renderer + sticker
 - [ ] 11. Ôn bài theo yêu cầu (nút "Ôn bài này")
 - [ ] 12. Linh vật + chuỗi ngày + nhắc môn + âm "ting"
 

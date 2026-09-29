@@ -3,8 +3,8 @@
 import { Check, ChevronRight, RotateCcw } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { BigButton } from "@/components/big-button";
-import { Formula } from "@/components/blocks/formula";
-import { PassageReader } from "@/components/passage-reader";
+import { BlockView } from "@/components/blocks/block-view";
+import { BottomBar } from "@/components/bottom-bar";
 import {
   type FeedbackHighlights,
   feedbackView,
@@ -98,7 +98,7 @@ export function ExerciseFrame<E extends BasicExercise>({
 
   return (
     <section
-      className="flex w-full flex-col gap-6"
+      className="flex w-full flex-1 flex-col gap-6"
       data-phase={state.phase}
       data-tier={tier}
       data-mascot={view.mascot}
@@ -159,13 +159,17 @@ export function ExerciseFrame<E extends BasicExercise>({
         {status}
       </p>
 
-      <FrameButton
-        phase={state.phase}
-        canCheck={machine.canCheck}
-        onCheck={machine.check}
-        onRetype={machine.startRetype}
-        onNext={() => onDone(machine.finish())}
-      />
+      {state.phase !== "done" && (
+        <BottomBar>
+          <FrameButton
+            phase={state.phase}
+            canCheck={machine.canCheck}
+            onCheck={machine.check}
+            onRetype={machine.startRetype}
+            onNext={() => onDone(machine.finish())}
+          />
+        </BottomBar>
+      )}
     </section>
   );
 }
@@ -185,7 +189,6 @@ function FrameButton({
   onRetype,
   onNext,
 }: FrameButtonProps) {
-  if (phase === "done") return null;
   if (phase === "correct") {
     return (
       <BigButton onClick={onNext}>
@@ -215,8 +218,8 @@ type PromptBlockProps = {
   parts: FeedbackHighlights["parts"];
 };
 
-// Minimal prompt rendering for exercises; lesson blocks get a full renderer
-// of their own, which can replace this one.
+// A prompt block inside the frame: the shared block renderer, lit up as a
+// whole when a hint targets the block.
 export function PromptBlock({
   block,
   blockHighlight,
@@ -229,58 +232,7 @@ export function PromptBlock({
       strong={blockHighlight?.strong}
       className="w-full flex-col"
     >
-      <PromptContent block={block} parts={parts} />
+      <BlockView block={block} parts={parts} />
     </Highlight>
   );
-}
-
-function PromptContent({
-  block,
-  parts,
-}: {
-  block: Block;
-  parts: FeedbackHighlights["parts"];
-}) {
-  switch (block.type) {
-    case "note":
-      return <p>{block.text}</p>;
-    case "formula":
-      return (
-        <Formula
-          tex={block.tex}
-          highlight={[...parts].map(([id, spec]) => ({
-            id,
-            strong: spec.strong,
-          }))}
-        />
-      );
-    case "visual":
-      return (
-        <figure className="flex w-full flex-col items-center gap-2">
-          <RegistryVisual id={block.visualId} />
-          {block.caption && (
-            <figcaption className="text-caption text-muted-foreground">
-              {block.caption}
-            </figcaption>
-          )}
-        </figure>
-      );
-    case "passage":
-      return <PassageReader passage={block} highlight={parts} />;
-    case "image":
-      return (
-        // Content images come from the media bucket with unknown dimensions,
-        // which next/image cannot lay out without extra config.
-        // biome-ignore lint/performance/noImgElement: see above
-        <img
-          src={block.src}
-          alt={block.alt}
-          className="max-w-full rounded-lg"
-        />
-      );
-    case "video":
-      // Exercises are answered on the spot; video clips belong to the lesson
-      // flow between blocks, so an exercise prompt does not play them.
-      return null;
-  }
 }

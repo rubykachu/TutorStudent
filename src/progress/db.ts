@@ -42,12 +42,23 @@ export type AttemptRecord = ChildScope & {
 export const SECTION_STATES = ["not_started", "in_progress", "done"] as const;
 export type SectionState = (typeof SECTION_STATES)[number];
 
+// A section is worked through in this order: explanation blocks, comprehension
+// checks, practice exercises, then the closing recap.
+export const SECTION_PHASES = ["blocks", "check", "practice", "recap"] as const;
+export type SectionPhase = (typeof SECTION_PHASES)[number];
+
+// The item the child is on: `index` counts blocks in "blocks", exercises in
+// "check" / "practice", and is 0 in "recap".
+export type SectionPosition = { phase: SectionPhase; index: number };
+
+export const SECTION_START: SectionPosition = { phase: "blocks", index: 0 };
+
 export type SectionProgressRecord = ChildScope & {
   sectionId: string;
   lessonId: string;
   state: SectionState;
-  // Block the child reached, so a section resumes where it was left.
-  blockIndex: number;
+  // Where the child left off, so the section resumes on the same item.
+  position: SectionPosition;
   updatedAt: string;
 };
 

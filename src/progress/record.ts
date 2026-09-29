@@ -1,12 +1,15 @@
 import { newId } from "@/lib/id";
 import { vnDayKey } from "@/lib/time";
-import type {
-  AttemptContext,
-  AttemptRecord,
-  ChildScope,
-  TutorDb,
+import {
+  type AttemptContext,
+  type AttemptRecord,
+  awardSticker,
+  type ChildScope,
+  markActivityDay,
+  SECTION_START,
+  type SectionPosition,
+  type TutorDb,
 } from "@/progress/db";
-import { markActivityDay } from "@/progress/db";
 import { rate } from "@/srs/rate";
 import { applyRating } from "@/srs/schedule";
 
@@ -69,4 +72,82 @@ export async function recordAttempt(
     },
   );
   return attempt;
+}
+
+export type SectionRef = { lessonId: string; sectionId: string };
+
+// Moves the child's place in a section. Going through a finished section
+// again keeps it finished.
+export async function saveSectionPosition(
+  db: TutorDb,
+  scope: ChildScope,
+  ref: SectionRef,
+  position: SectionPosition,
+  now: Date,
+): Promise<void> {
+  const { familyId, childId } = scope;
+  await db.transaction("rw", db.sectionProgress, async () => {
+    const previous = await db.sectionProgress.get([
+      familyId,
+      childId,
+      ref.sectionId,
+    ]);
+    await db.sectionProgress.put({
+      familyId,
+      childId,
+      ...ref,
+      state: previous?.state === "done" ? "done" : "in_progress",
+      position,
+      updatedAt: now.toISOString(),
+    });
+  });
+}
+
+export type SectionCompletion = {
+  lessonDone: boolean;
+  // The next section still to do, after this one in lesson order, else the
+  // first unfinished one; null once the lesson is done.
+  nextSectionId: string | null;
+};
+
+// Marks a section done and rewinds it, so opening it again starts from the
+// first block. Once every section of the lesson is done the lesson's sticker
+// is awarded.
+export async function completeSection(
+  db: TutorDb,
+  scope: ChildScope,
+  ref: SectionRef,
+  lessonSectionIds: readonly string[],
+  now: Date,
+): Promise<SectionCompletion> {
+  const { familyId, childId } = scope;
+  return db.transaction("rw", db.sectionProgress, db.stickers, async () => {
+    await db.sectionProgress.put({
+      familyId,
+      childId,
+      ...ref,
+      state: "done",
+      position: SECTION_START,
+      updatedAt: now.toISOString(),
+    });
+    const records = await db.sectionProgress
+      .where("[familyId+childId+lessonId]")
+      .equals([familyId, childId, ref.lessonId])
+      .toArray();
+    const done = new Set(
+      records.filter((r) => r.state === "done").map((r) => r.sectionId),
+    );
+    const open = lessonSectionIds.filter((id) => !done.has(id));
+    if (open.length === 0) {
+      await awardSticker(db, scope, ref.lessonId, now);
+      return { lessonDone: true, nextSectionId: null };
+    }
+    const after = lessonSectionIds.slice(
+      lessonSectionIds.indexOf(ref.sectionId) + 1,
+    );
+    return {
+      lessonDone: false,
+      nextSectionId: after.find((id) => !done.has(id)) ?? open[0],
+    };
+  });
 }

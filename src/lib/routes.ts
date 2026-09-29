@@ -10,3 +10,11 @@ export function subjectPath(subjectId: string): string {
 export function lessonPath(lessonId: string): string {
   return `/lessons/${encodeURIComponent(lessonId)}`;
 }
+
+export function sectionPath(lessonId: string, sectionId: string): string {
+  return `${lessonPath(lessonId)}/sections/${encodeURIComponent(sectionId)}`;
+}
+
+export function reviewPath(lessonId: string): string {
+  return `${lessonPath(lessonId)}/review`;
+}

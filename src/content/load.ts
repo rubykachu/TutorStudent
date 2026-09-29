@@ -112,6 +112,11 @@ export function loadContent({
   return { subjects, lessons };
 }
 
+// Lessons the app serves, for build-time route params of lesson pages.
+export function servedLessons(root: string = DEFAULT_CONTENT_ROOT): Lesson[] {
+  return loadContent({ root }).lessons.map(({ lesson }) => lesson);
+}
+
 // Subjects alone, for build-time route params that do not need the lessons.
 export function loadSubjects(root: string = DEFAULT_CONTENT_ROOT): Subject[] {
   return parseOrThrow(

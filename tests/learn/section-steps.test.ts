@@ -1,0 +1,81 @@
+import { describe, expect, it } from "vitest";
+import type { AnyExercise } from "@/content";
+import { resumeStepIndex, sectionSteps } from "@/learn/section-steps";
+import { LESSON_ID, learnIndex, learnLesson, SECTION_ID } from "./helpers";
+
+const all = () => true;
+
+function section(overrides: Parameters<typeof learnLesson>[0] = {}) {
+  const index = learnIndex(overrides);
+  const found = index.sectionById.get(SECTION_ID);
+  if (!found) throw new Error("section missing");
+  return { index, section: found };
+}
+
+describe("sectionSteps", () => {
+  it("lists blocks, checks, practice and the recap in order", () => {
+    const { index, section: s } = section();
+    const steps = sectionSteps(s, index, all);
+    expect(steps.map((step) => [step.kind, step.position])).toEqual([
+      ["block", { phase: "blocks", index: 0 }],
+      ["block", { phase: "blocks", index: 1 }],
+      ["exercise", { phase: "check", index: 0 }],
+      ["exercise", { phase: "practice", index: 0 }],
+      ["exercise", { phase: "practice", index: 1 }],
+      ["recap", { phase: "recap", index: 0 }],
+    ]);
+    const exercises = steps.flatMap((step) =>
+      step.kind === "exercise" ? [[step.context, step.exercise.id]] : [],
+    );
+    expect(exercises).toEqual([
+      ["check", `${LESSON_ID}.ex.kiem-tra`],
+      ["practice", `${LESSON_ID}.ex.luyen-a`],
+      ["practice", `${LESSON_ID}.ex.luyen-b`],
+    ]);
+  });
+
+  it("skips missing and unplayable exercises without gaps in positions", () => {
+    const base = learnLesson();
+    const [first] = base.sections;
+    const { index, section: s } = section({
+      sections: [
+        {
+          ...first,
+          practiceIds: [
+            `${LESSON_ID}.ex.gone`,
+            `${LESSON_ID}.ex.cham`,
+            `${LESSON_ID}.ex.luyen-b`,
+          ],
+        },
+      ],
+    });
+    const playable = (exercise: AnyExercise) => exercise.type !== "tapRegion";
+    const practice = sectionSteps(s, index, playable).filter(
+      (step) => step.position.phase === "practice",
+    );
+    expect(practice).toHaveLength(1);
+    expect(practice[0]).toMatchObject({
+      position: { phase: "practice", index: 0 },
+      exercise: { id: `${LESSON_ID}.ex.luyen-b` },
+    });
+  });
+});
+
+describe("resumeStepIndex", () => {
+  const { index, section: s } = section();
+  const steps = sectionSteps(s, index, all);
+
+  it("finds the saved item", () => {
+    expect(resumeStepIndex(steps, { phase: "practice", index: 1 })).toBe(4);
+    expect(resumeStepIndex(steps, { phase: "recap", index: 0 })).toBe(5);
+  });
+
+  it("restarts the phase when the saved item is gone", () => {
+    expect(resumeStepIndex(steps, { phase: "practice", index: 7 })).toBe(3);
+  });
+
+  it("restarts the section when the phase has no items left", () => {
+    const noChecks = steps.filter((step) => step.position.phase !== "check");
+    expect(resumeStepIndex(noChecks, { phase: "check", index: 0 })).toBe(0);
+  });
+});
