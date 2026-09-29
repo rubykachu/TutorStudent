@@ -1,5 +1,9 @@
-import { SUBJECT_NUDGE_AFTER_DAYS } from "@/lib/config";
-import { vnDayKey } from "@/lib/time";
+import {
+  MASCOT_WELCOME_AFTER_DAYS,
+  SUBJECT_NUDGE_AFTER_DAYS,
+} from "@/lib/config";
+import { dayNumber, vnDayKey } from "@/lib/time";
+import type { MascotExpression } from "@/mascot/expressions";
 import type {
   AttemptRecord,
   SectionProgressRecord,
@@ -9,12 +13,6 @@ import type {
 import type { ContentIndex, LessonSummary } from "@/schema/content";
 
 // Pure summaries of a child's progress for the home and subject screens.
-
-const MS_PER_DAY = 86_400_000;
-
-function dayNumber(dayKey: string): number {
-  return Date.parse(`${dayKey}T00:00:00Z`) / MS_PER_DAY;
-}
 
 // Counted in Vietnam calendar days, so studying at 23:00 and checking at
 // 01:00 the next morning is one day apart, not zero.
@@ -99,4 +97,21 @@ export function subjectProgress(
     done: lessons.filter((l) => earned.has(l.id)).length,
     total: lessons.length,
   };
+}
+
+// The owl's mood on the home screen: pleased after studying today, glad to
+// see the child again after a long break (never a reproach), calm otherwise.
+export function homeMascotExpression(
+  activityDays: readonly string[],
+  today: string,
+): MascotExpression {
+  const last = activityDays.reduce<string | undefined>(
+    (latest, day) => (latest === undefined || day > latest ? day : latest),
+    undefined,
+  );
+  if (last === undefined) return "idle";
+  if (last >= today) return "happy";
+  return dayNumber(today) - dayNumber(last) >= MASCOT_WELCOME_AFTER_DAYS
+    ? "welcome"
+    : "idle";
 }

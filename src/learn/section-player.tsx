@@ -3,7 +3,7 @@
 import { ChevronRight, CircleCheck, X } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
@@ -22,6 +22,7 @@ import {
   type SectionStep,
   sectionSteps,
 } from "@/learn/section-steps";
+import { useCorrectSound } from "@/learn/use-correct-sound";
 import { lessonPath, sectionPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
@@ -67,9 +68,13 @@ export function SectionPlayer({
   const step = steps[stepIndex];
   const { familyId, childId } = scope;
   const { phase, index: itemIndex } = step.position;
+  const onCorrect = useCorrectSound(childId);
 
   // Saving on every step change also marks the section started on first open.
-  useEffect(() => {
+  // A layout effect starts the save during commit, before the step can be
+  // tapped: Dexie runs write transactions in start order, so a quick "Xong
+  // phần" can never be overwritten by the save of the step it finished.
+  useLayoutEffect(() => {
     saveSectionPosition(
       db,
       { familyId, childId },
@@ -144,6 +149,7 @@ export function SectionPlayer({
         step={step}
         index={index}
         saving={saving}
+        onCorrect={onCorrect}
         onNext={advance}
         onExerciseDone={async (exerciseId, cardIds, context, outcome) => {
           await record(exerciseId, cardIds, context, outcome, now());
@@ -194,6 +200,7 @@ type StepViewProps = {
   step: SectionStep;
   index: LessonIndex;
   saving: boolean;
+  onCorrect: (() => void) | undefined;
   onNext: () => void;
   onExerciseDone: (
     exerciseId: string,
@@ -212,6 +219,7 @@ function StepView({
   step,
   index,
   saving,
+  onCorrect,
   onNext,
   onExerciseDone,
   onOpenEndedDone,
@@ -267,12 +275,14 @@ function StepView({
               exercise={exercise}
               renderStep={renderStep}
               concepts={conceptById}
+              onCorrect={onCorrect}
               onDone={(result) => onOpenEndedDone(exercise, context, result)}
             />
           ) : (
             <ExerciseFrame
               exercise={exercise}
               concepts={conceptById}
+              onCorrect={onCorrect}
               onDone={(outcome) =>
                 onExerciseDone(exercise.id, exercise.cardIds, context, outcome)
               }

@@ -18,6 +18,7 @@ import {
   getCardStates,
   getSectionProgress,
   getSetting,
+  listActivityDays,
   listAttempts,
   listProfiles,
   listSectionProgress,
@@ -25,6 +26,7 @@ import {
   type ProfileRecord,
   putProfile,
   type SectionProgressRecord,
+  SOUND_ENABLED_KEY,
   type StickerRecord,
   setSetting,
   TutorDb,
@@ -127,6 +129,8 @@ export type ChildProgress = {
   attempts: AttemptRecord[];
   sections: SectionProgressRecord[];
   stickers: StickerRecord[];
+  // Vietnam day keys the child studied on, oldest first.
+  activityDays: string[];
 };
 
 export async function readChildProgress(
@@ -134,16 +138,38 @@ export async function readChildProgress(
   childId: string,
 ): Promise<ChildProgress> {
   const scope = childScope(childId);
-  const [attempts, sections, stickers] = await Promise.all([
+  const [attempts, sections, stickers, activityDays] = await Promise.all([
     listAttempts(db, scope),
     listSectionProgress(db, scope),
     listStickers(db, scope),
+    listActivityDays(db, scope),
   ]);
-  return { attempts, sections, stickers };
+  return { attempts, sections, stickers, activityDays };
 }
 
 export function useChildProgress(childId: string): ChildProgress | undefined {
   return useLiveQuery(() => readChildProgress(appDb(), childId), [childId]);
+}
+
+// Sound is on until the child turns it off.
+export async function readSoundEnabled(
+  db: TutorDb,
+  childId: string,
+): Promise<boolean> {
+  const value = await getSetting(db, childScope(childId), SOUND_ENABLED_KEY);
+  return value !== false;
+}
+
+// `undefined` while the first read is in flight.
+export function useSoundEnabled(childId: string): boolean | undefined {
+  return useLiveQuery(() => readSoundEnabled(appDb(), childId), [childId]);
+}
+
+export async function setSoundEnabled(
+  childId: string,
+  enabled: boolean,
+): Promise<void> {
+  await setSetting(appDb(), childScope(childId), SOUND_ENABLED_KEY, enabled);
 }
 
 export type LessonProgress = {

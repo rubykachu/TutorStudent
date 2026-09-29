@@ -128,8 +128,11 @@ Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái
 
 - Một bạn cú, vẽ SVG phẳng, 2–3 màu từ bảng màu, nét tròn, mắt to.
 - Biểu cảm: `happy`, `hint`, `cheer`, `welcome` (vui khi gặp lại sau nhiều ngày không học — không trách), `idle`.
-- Kích thước: 96px trên trang chủ, 56px cạnh bài tập. Không che nội dung bài.
+- Kích thước: 96px trên trang chủ, 56px cạnh bài tập (điện thoại: phía trên vùng trả lời, căn phải). Không che nội dung bài.
 - Biểu cảm đổi bằng Motion (xoay đầu, chớp mắt, vỗ cánh ≤ 600ms).
+- Màu: `--color-mascot-body` `#C08457` (thân), `--color-mascot-shade` `#94603A` (tai, cánh), `--color-mascot-belly` `#FDF0DC` (mặt, bụng), `--color-mascot-beak` `#F59E0B` (mỏ, chân, lấp lánh). Chỉ trang trí, không mang chữ.
+- Trang chủ: `welcome` khi lần học cuối cách hôm nay ≥ 3 ngày; `happy` khi hôm nay đã học; còn lại `idle`.
+- `StreakFlame`: ngọn lửa `--color-streak` `#EA8A0C` trên nền `--color-streak-soft` `#FFF4E0`; lửa xám khi hôm nay chưa học. Đếm số ngày có học trong chuỗi (ngày nghỉ giữ chuỗi nhưng không cộng).
 
 ## 9. Component chính
 

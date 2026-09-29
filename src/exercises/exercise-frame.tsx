@@ -9,7 +9,6 @@ import {
   type FeedbackHighlights,
   feedbackView,
   type HighlightSpec,
-  type MascotExpression,
 } from "@/exercises/feedback";
 import type { InputFor } from "@/exercises/input";
 import {
@@ -18,6 +17,8 @@ import {
   useExerciseMachine,
 } from "@/exercises/machine";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
+import type { MascotExpression } from "@/mascot/expressions";
+import { Owl } from "@/mascot/owl";
 import type { BasicExercise, Block, Concept } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
 import { Highlight } from "@/visuals/shared/highlight";
@@ -41,9 +42,17 @@ type ExerciseFrameProps<E extends BasicExercise> = {
   // Colours `hints.highlight` targets that name a concept.
   concepts?: ReadonlyMap<string, Concept>;
   onDone: (outcome: ExerciseOutcome) => void;
+  // Draws the mascot beside the answer area; the 56px owl unless replaced.
   renderMascot?: (expression: MascotExpression) => ReactNode;
+  // Runs inside the tap that got the answer accepted, so a sound may start
+  // there (iOS only lets audio start from a user gesture).
+  onCorrect?: () => void;
   children: (slot: AnswerSlotProps<InputFor<E["type"]>>) => ReactNode;
 };
+
+function renderExerciseOwl(expression: MascotExpression): ReactNode {
+  return <Owl expression={expression} size="exercise" />;
+}
 
 type Tone = "idle" | "selected" | "retry" | "correct";
 
@@ -82,7 +91,8 @@ export function ExerciseFrame<E extends BasicExercise>({
   exercise,
   concepts,
   onDone,
-  renderMascot,
+  renderMascot = renderExerciseOwl,
+  onCorrect,
   children,
 }: ExerciseFrameProps<E>) {
   const machine = useExerciseMachine(exercise);
@@ -125,9 +135,11 @@ export function ExerciseFrame<E extends BasicExercise>({
         )}
       </div>
 
-      <div className="flex items-start gap-4">
+      {/* Phones are too narrow to give up 72px of the answer area, so the
+          mascot sits above it there and beside it from tablet width up. */}
+      <div className="flex flex-col-reverse items-end gap-3 md:flex-row md:items-start md:gap-4">
         <div
-          className={`relative flex-1 rounded-xl p-4 md:p-6 ${TONE_CLASSES[tone]} ${shaking ? "animate-shake" : ""}`}
+          className={`relative flex-1 self-stretch rounded-xl p-4 md:p-6 ${TONE_CLASSES[tone]} ${shaking ? "animate-shake" : ""}`}
           data-answer-area
           data-tone={tone}
           data-shaking={shaking || undefined}
@@ -155,7 +167,7 @@ export function ExerciseFrame<E extends BasicExercise>({
             })}
           </div>
         </div>
-        {renderMascot?.(view.mascot)}
+        {renderMascot(view.mascot)}
       </div>
 
       {view.visualId && (
@@ -173,7 +185,9 @@ export function ExerciseFrame<E extends BasicExercise>({
           <FrameButton
             phase={state.phase}
             canCheck={machine.canCheck}
-            onCheck={machine.check}
+            onCheck={() => {
+              if (machine.check()) onCorrect?.();
+            }}
             onRetype={machine.startRetype}
             onNext={() => onDone(machine.finish())}
           />

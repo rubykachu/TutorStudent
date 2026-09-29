@@ -26,3 +26,17 @@ export function vnDayKey(date: Date): string {
     parts.find((p) => p.type === type)?.value ?? "";
   return `${part("year")}-${part("month")}-${part("day")}`;
 }
+
+const MS_PER_DAY = 86_400_000;
+
+// Whole days since the epoch for a day key, so calendar arithmetic on Vietnam
+// days never touches the device timezone.
+export function dayNumber(dayKey: string): number {
+  return Date.parse(`${dayKey}T00:00:00Z`) / MS_PER_DAY;
+}
+
+// Monday = 0 … Sunday = 6: Vietnamese weeks start on Monday.
+export function weekdayOfDay(day: number): number {
+  // Day 0 (1970-01-01) was a Thursday.
+  return (day + 3) % 7;
+}

@@ -6,15 +6,13 @@ import {
   ExerciseFrame,
   PromptBlock,
 } from "@/exercises/exercise-frame";
-import type {
-  FeedbackHighlights,
-  MascotExpression,
-} from "@/exercises/feedback";
+import type { FeedbackHighlights } from "@/exercises/feedback";
 import type { ExerciseInput } from "@/exercises/input";
 import type { ExerciseOutcome } from "@/exercises/machine";
 import { RubricChecklist } from "@/exercises/open-ended/rubric-checklist";
 import type { WritingResult } from "@/exercises/open-ended/writing";
 import { WritingStep } from "@/exercises/open-ended/writing-step";
+import type { MascotExpression } from "@/mascot/expressions";
 import type { WritingCheck } from "@/progress/db";
 import type {
   BasicExercise,
@@ -40,6 +38,7 @@ type OpenEndedRunnerProps = {
   onDone: (result: OpenEndedResult) => void;
   concepts?: ReadonlyMap<string, Concept>;
   renderMascot?: (expression: MascotExpression) => ReactNode;
+  onCorrect?: () => void;
 };
 
 type Stage = "steps" | "writing" | "checklist" | "finished";
@@ -72,6 +71,7 @@ export function OpenEndedRunner({
   onDone,
   concepts,
   renderMascot,
+  onCorrect,
 }: OpenEndedRunnerProps) {
   const [outcomes, setOutcomes] = useState<ExerciseOutcome[]>([]);
   const [stage, setStage] = useState<Stage>(
@@ -137,6 +137,7 @@ export function OpenEndedRunner({
             concepts={concepts}
             onDone={completeStep}
             renderMascot={renderMascot}
+            onCorrect={onCorrect}
           >
             {(slot) => renderStep(step, slot)}
           </ExerciseFrame>

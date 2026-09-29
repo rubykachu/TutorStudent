@@ -61,11 +61,13 @@ function renderFrame(hints: Hints) {
     ],
   };
   const onDone = vi.fn();
+  const onCorrect = vi.fn();
   const view = render(
     <ExerciseFrame
       exercise={exercise}
       concepts={CONCEPTS}
       onDone={onDone}
+      onCorrect={onCorrect}
       renderMascot={(expression) => (
         <span data-testid="mascot">{expression}</span>
       )}
@@ -75,7 +77,7 @@ function renderFrame(hints: Hints) {
   );
   const frame = view.container.querySelector("section");
   if (!frame) throw new Error("frame missing");
-  return { frame, onDone, container: view.container };
+  return { frame, onDone, onCorrect, container: view.container };
 }
 
 function choose(id: string) {
@@ -271,6 +273,35 @@ describe("ExerciseFrame", () => {
     } finally {
       window.matchMedia = original;
     }
+  });
+
+  it("calls onCorrect in the tap that gets the answer accepted", () => {
+    const { onCorrect } = renderFrame(HINTS_FALLBACK);
+    choose("b");
+    checkAnswer();
+    expect(onCorrect).not.toHaveBeenCalled();
+    choose("b");
+    choose("a");
+    checkAnswer();
+    expect(onCorrect).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows the 56px owl beside the answer by default", () => {
+    const exercise = choiceExercise(["a"], HINTS_FALLBACK);
+    const { container } = render(
+      <ExerciseFrame exercise={exercise} onDone={vi.fn()}>
+        {(slot) => <TestChoice exercise={exercise} slot={slot} />}
+      </ExerciseFrame>,
+    );
+    const owl = container.querySelector("svg[data-mascot]");
+    expect(owl).toHaveAttribute("data-mascot", "idle");
+    expect(owl).toHaveClass("size-14");
+    choose("a");
+    checkAnswer();
+    expect(container.querySelector("svg[data-mascot]")).toHaveAttribute(
+      "data-mascot",
+      "happy",
+    );
   });
 
   it("shakes again on the next wrong check once the shake ended", () => {

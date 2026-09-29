@@ -89,6 +89,8 @@ export const DEVICE_SCOPE: ChildScope = {
   childId: "_device",
 };
 export const ACTIVE_PROFILE_KEY = "activeProfileId";
+// Per-child setting: false once the child turns the "ting" off; unset = on.
+export const SOUND_ENABLED_KEY = "soundEnabled";
 
 type ScopedKey = [string, string, string];
 
