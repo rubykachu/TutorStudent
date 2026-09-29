@@ -1,4 +1,3 @@
-import { type ChildProcess, spawn } from "node:child_process";
 import { mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
 import { type Browser, chromium, type Page, webkit } from "@playwright/test";
@@ -19,9 +18,8 @@ import {
   TARGET_DEVICES,
   type TargetDeviceName,
   TEST_BASE_URL,
-  TEST_SERVER_COMMAND,
-  TEST_SERVER_ENV,
 } from "../e2e/targets";
+import { ensureServer, stopServer } from "./lib/dev-server";
 
 // Usage: visual-shot <lessonId|all|mascot>
 // Screenshots every visual a lesson uses (or the whole registry, or every owl
@@ -31,7 +29,6 @@ import {
 const ALL = "all";
 const MASCOT = "mascot";
 const SHOTS_DIR = path.join(process.cwd(), ".shots");
-const SERVER_START_TIMEOUT_MS = 120_000;
 const STEP_TIMEOUT_MS = 5_000;
 const PROBE_PATH = "/dev/visuals";
 
@@ -55,41 +52,6 @@ function lessonVisualIds(lessonId: string): string[] {
     process.exit(2);
   }
   return [...new Set(collectVisualRefs(lesson.data).map((r) => r.visualId))];
-}
-
-async function isServing(): Promise<boolean> {
-  try {
-    const response = await fetch(`${TEST_BASE_URL}${PROBE_PATH}`);
-    return response.ok;
-  } catch {
-    return false;
-  }
-}
-
-// Reuses a dev server already on the test port (e.g. from an E2E run),
-// otherwise starts one and returns it so it can be stopped afterwards.
-async function ensureServer(): Promise<ChildProcess | undefined> {
-  if (await isServing()) return undefined;
-  const server = spawn(TEST_SERVER_COMMAND, {
-    shell: true,
-    // Own process group, so stopping it also stops the processes Next forks.
-    detached: true,
-    stdio: "ignore",
-    env: { ...process.env, ...TEST_SERVER_ENV },
-  });
-  const deadline = Date.now() + SERVER_START_TIMEOUT_MS;
-  while (Date.now() < deadline) {
-    if (await isServing()) return server;
-    if (server.exitCode !== null) break;
-    await new Promise((resolve) => setTimeout(resolve, 500));
-  }
-  stopServer(server);
-  throw new Error(`Dev server did not start: ${TEST_SERVER_COMMAND}`);
-}
-
-function stopServer(server: ChildProcess | undefined) {
-  if (server?.pid === undefined || server.exitCode !== null) return;
-  process.kill(-server.pid, "SIGTERM");
 }
 
 type Selectors = { frame: string; decorative: string };
@@ -296,7 +258,7 @@ async function main() {
     issues: ["not in the visual registry"],
   }));
 
-  const server = await ensureServer();
+  const server = await ensureServer(PROBE_PATH);
   const browsers: Browser[] = [];
   try {
     for (const [name, device] of Object.entries(TARGET_DEVICES)) {

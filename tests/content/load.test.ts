@@ -81,6 +81,16 @@ describe("loadContent", () => {
     expect(loadContent({ root, includeFixture: false }).lessons).toEqual([]);
   });
 
+  it("includes real drafts only when asked, never the fixture with them", () => {
+    writeRealLesson("draft");
+    expect(
+      loadContent({ root, includeFixture: false, includeDraft: true }).lessons,
+    ).toEqual([expect.objectContaining({ fixture: false })]);
+    expect(
+      loadContent({ root, includeFixture: false, includeDraft: false }).lessons,
+    ).toEqual([]);
+  });
+
   it("includes the fixture only when asked", () => {
     expect(
       loadContent({ root, includeFixture: true }).lessons.map((l) => l.fixture),

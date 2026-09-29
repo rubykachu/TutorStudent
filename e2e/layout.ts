@@ -99,7 +99,7 @@ export async function expectNothingUnderBottomBar(page: Page) {
     .toEqual([]);
 }
 
-async function coveredByBottomBar(page: Page): Promise<string[]> {
+export async function coveredByBottomBar(page: Page): Promise<string[]> {
   return page.evaluate(() => {
     const bar = document.querySelector("[data-bottom-bar]");
     if (!bar) return [];

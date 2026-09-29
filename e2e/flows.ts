@@ -24,7 +24,7 @@ export async function check(exercise: Locator) {
   await exercise.getByRole("button", { name: "Kiểm tra" }).tap();
 }
 
-async function pad(exercise: Locator, keys: string[]) {
+export async function pad(exercise: Locator, keys: string[]) {
   for (const key of keys) {
     await exercise.locator(`[data-pad-key="${key}"]`).tap();
   }
@@ -32,7 +32,7 @@ async function pad(exercise: Locator, keys: string[]) {
 
 // Taps order cards until they read `ids` top to bottom: picking a card and
 // then the card at its target place moves it there.
-async function sortItems(exercise: Locator, ids: string[]) {
+export async function sortItems(exercise: Locator, ids: string[]) {
   for (const [position, id] of ids.entries()) {
     const current = await exercise
       .locator("[data-item]")

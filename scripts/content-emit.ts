@@ -4,8 +4,9 @@ import { lessonContentFile } from "@/content";
 import { buildContentIndex, loadContent } from "@/content/load";
 
 // Writes the static content the app fetches: /content/index.json and
-// /content/<lessonId>.json. Only published lessons (plus the fixture when
-// CONTENT_INCLUDE_FIXTURE=1) are written, so drafts never reach the browser.
+// /content/<lessonId>.json. Only published lessons are written, plus the
+// fixture when CONTENT_INCLUDE_FIXTURE=1 and real drafts when
+// CONTENT_INCLUDE_DRAFT=1 outside a production build.
 const OUT_DIR = path.join(process.cwd(), "public", "content");
 
 const content = loadContent();

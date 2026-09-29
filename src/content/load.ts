@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import type { z } from "zod";
-import { CONTENT_INCLUDE_FIXTURE } from "@/lib/config";
+import { CONTENT_INCLUDE_DRAFT, CONTENT_INCLUDE_FIXTURE } from "@/lib/config";
 import {
   type ContentIndex,
   type Lesson,
@@ -93,7 +93,8 @@ export type LoadedLesson = { lesson: Lesson; fixture: boolean };
 
 export type LoadedContent = {
   subjects: Subject[];
-  // Only lessons the app may show: published ones, plus the fixture on opt-in.
+  // Only lessons the app may show: published ones, plus the fixture and the
+  // drafts on opt-in.
   lessons: LoadedLesson[];
 };
 
@@ -116,9 +117,12 @@ function parseOrThrow<T>(raw: RawFile, schema: z.ZodType<T>): T {
 export function loadContent({
   root = DEFAULT_CONTENT_ROOT,
   includeFixture = CONTENT_INCLUDE_FIXTURE,
+  includeDraft = CONTENT_INCLUDE_DRAFT,
 }: {
   root?: string;
   includeFixture?: boolean;
+  // Real draft lessons too, for previewing on an author's machine.
+  includeDraft?: boolean;
 } = {}): LoadedContent {
   const raw = readContentRoot(root);
   const { subjects } = parseOrThrow(raw.subjects, SubjectsFileSchema);
@@ -129,7 +133,10 @@ export function loadContent({
       lesson: parseOrThrow(file, LessonSchema),
       fixture: file.fixture,
     }))
-    .filter(({ lesson, fixture }) => isServed(lesson, fixture, includeFixture))
+    .filter(
+      ({ lesson, fixture }) =>
+        isServed(lesson, fixture, includeFixture) || (includeDraft && !fixture),
+    )
     .sort((a, b) => a.lesson.order - b.lesson.order);
   return { subjects, lessons };
 }

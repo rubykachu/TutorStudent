@@ -18,6 +18,13 @@ export const REQUIRE_OWNER_APPROVAL = false;
 export const CONTENT_INCLUDE_FIXTURE: boolean =
   process.env.CONTENT_INCLUDE_FIXTURE === "1";
 
+// Draft lessons are served too, so an author can walk a lesson in `pnpm dev`
+// before its review. Never in a production build (the build script emits
+// content with NODE_ENV=production), so a draft cannot ship.
+export const CONTENT_INCLUDE_DRAFT: boolean =
+  process.env.CONTENT_INCLUDE_DRAFT === "1" &&
+  process.env.NODE_ENV !== "production";
+
 // How long an explainer animation shows each step before auto-advancing.
 export const VISUAL_STEP_MS = 1800;
 

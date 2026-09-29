@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "pnpm content:emit && next dev --hostname 0.0.0.0",
-    "build": "pnpm content:check && pnpm content:emit && next build",
+    "build": "pnpm content:check && NODE_ENV=production pnpm content:emit && next build",
     "start": "next start",
     "lint": "biome check .",
     "format": "biome check --write .",
@@ -20,7 +20,8 @@
     "content:lock": "tsx scripts/content-lock.ts",
     "content:emit": "tsx scripts/content-emit.ts",
     "content:hash": "tsx scripts/content-hash.ts",
-    "visual:shot": "tsx scripts/visual-shot.ts"
+    "visual:shot": "tsx scripts/visual-shot.ts",
+    "lesson:walk": "tsx scripts/lesson-walk.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
