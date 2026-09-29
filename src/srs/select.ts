@@ -81,3 +81,8 @@ export function countForgetting(input: LessonScope): number {
     (state) => retrievability(state, input.now) < FORGETTING_THRESHOLD,
   ).length;
 }
+
+// Cards of the lesson the child has opened; review is offered once there is one.
+export function countOpened(input: LessonScope): number {
+  return openedCards(input).length;
+}

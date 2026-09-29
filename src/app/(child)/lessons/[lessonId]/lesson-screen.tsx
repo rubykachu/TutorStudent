@@ -2,12 +2,15 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { ReviewButton } from "@/components/review-button";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
-import { HOME_PATH, sectionPath, subjectPath } from "@/lib/routes";
+import { HOME_PATH, reviewPath, sectionPath, subjectPath } from "@/lib/routes";
+import { now } from "@/lib/time";
 import type { ProfileRecord, SectionState } from "@/progress/db";
 import { useContentIndex, useLessonProgress } from "@/progress/hooks";
+import { countForgetting, countOpened } from "@/srs/select";
 import { LessonGate } from "./lesson-gate";
 
 function BackLink({ subjectId }: { subjectId: string }) {
@@ -40,6 +43,12 @@ function LessonBody({
 
   const stateOf = new Map(progress.sections.map((s) => [s.sectionId, s.state]));
   const earned = progress.sticker !== undefined;
+  const scope = {
+    now: now(),
+    lessonId: lesson.id,
+    states: progress.cardStates,
+    index,
+  };
   return (
     <>
       <BackLink subjectId={lesson.subject} />
@@ -49,6 +58,13 @@ function LessonBody({
         </h1>
         <p className="text-caption text-muted-foreground">{lesson.sourceRef}</p>
       </header>
+
+      {countOpened(scope) > 0 && (
+        <ReviewButton
+          href={reviewPath(lesson.id)}
+          forgetting={countForgetting(scope)}
+        />
+      )}
 
       <section
         aria-label="Sticker của bài"

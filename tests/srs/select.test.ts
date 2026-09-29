@@ -5,6 +5,7 @@ import type { ReviewRating } from "@/srs/rate";
 import { applyRating, retrievability } from "@/srs/schedule";
 import {
   countForgetting,
+  countOpened,
   type LessonCardState,
   selectReview,
 } from "@/srs/select";
@@ -248,5 +249,18 @@ describe("countForgetting", () => {
         index,
       }),
     ).toBe(2);
+  });
+});
+
+describe("countOpened", () => {
+  it("counts opened cards that still exist in the lesson", () => {
+    const index = lessonIndex({ a: ["a1"], b: ["b1"] });
+    const states = [opened("a", Rating.Good), opened("gone", Rating.Again)];
+    expect(
+      countOpened({ now: START, lessonId: LESSON_ID, states, index }),
+    ).toBe(1);
+    expect(
+      countOpened({ now: START, lessonId: LESSON_ID, states: [], index }),
+    ).toBe(0);
   });
 });

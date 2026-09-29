@@ -1,4 +1,5 @@
 import { expect, type Locator, type Page } from "@playwright/test";
+import { expectNoHorizontalScroll } from "./layout";
 
 // Steps several specs share. The dev server runs with CONTENT_INCLUDE_FIXTURE=1,
 // so the fixture lesson is served at /lessons/fixture.
@@ -62,11 +63,12 @@ async function tapTimes(exercise: Locator, name: string, times: number) {
 
 type Answerer = (exercise: Locator) => Promise<void>;
 
-// Known answers of the fixture exercises: `right` enters the correct answer,
-// `wrong` a wrong one. Only exercises the E2E flows reach are listed.
+// Known answers of the fixture exercises: `right` enters the correct answer
+// into an empty answer area, `wrong` a wrong one, and `fix` turns that wrong
+// answer into the right one. Only exercises the E2E flows reach are listed.
 export const FIXTURE_ANSWERS: Record<
   string,
-  { right: Answerer; wrong?: Answerer; clear?: Answerer }
+  { right: Answerer; wrong?: Answerer; fix?: Answerer }
 > = {
   "fixture.ex.chon-phep-nhan": {
     right: (ex) => ex.locator('[data-option="a"]').tap(),
@@ -80,9 +82,22 @@ export const FIXTURE_ANSWERS: Record<
         ["hai-nhan-ba", "sau"],
         ["bon-nhan-hai", "tam"],
       ]),
+    wrong: (ex) =>
+      pairItems(ex, [
+        ["hai-nhan-ba", "tam"],
+        ["bon-nhan-hai", "sau"],
+      ]),
+    // Pairing an item again moves it to its new partner.
+    fix: (ex) =>
+      pairItems(ex, [
+        ["hai-nhan-ba", "sau"],
+        ["bon-nhan-hai", "tam"],
+      ]),
   },
   "fixture.ex.tao-sau-cham": {
     right: (ex) => tapTimes(ex, "Thêm một chấm", 6),
+    wrong: (ex) => tapTimes(ex, "Thêm một chấm", 5),
+    fix: (ex) => tapTimes(ex, "Thêm một chấm", 1),
   },
   "fixture.ex.xep-hinh-vuong": {
     // A 3 × 3 square in the top-left corner of the 5 × 5 board.
@@ -92,10 +107,16 @@ export const FIXTURE_ANSWERS: Record<
       }
     },
   },
+  "fixture.ex.cham-cau": {
+    right: (ex) => ex.locator('[data-sentence="s2"]').tap(),
+  },
+  "fixture.ex.chon-y-chinh": {
+    right: (ex) => ex.locator('[data-option="a"]').tap(),
+  },
   "fixture.ex.dem-cham": {
     right: (ex) => pad(ex, ["6"]),
     wrong: (ex) => pad(ex, ["9"]),
-    clear: (ex) => pad(ex, ["backspace"]),
+    fix: (ex) => pad(ex, ["backspace", "6"]),
   },
   "fixture.ex.viet-luy-thua": {
     right: (ex) => pad(ex, ["2", "power", "3"]),
@@ -123,11 +144,7 @@ export function answersFor(id: string) {
   return answers;
 }
 
-// Answers the exercise on screen correctly on the first try and moves on.
-export async function answerRight(page: Page) {
-  const exercise = currentExercise(page);
-  const id = await exerciseId(page);
-  await answersFor(id).right(exercise);
+async function acceptAndContinue(page: Page, exercise: Locator, id: string) {
   await check(exercise);
   await expect(exercise.locator("section[data-phase]")).toHaveAttribute(
     "data-phase",
@@ -137,20 +154,71 @@ export async function answerRight(page: Page) {
   await expect(page.locator(`[data-exercise="${id}"]`)).toHaveCount(0);
 }
 
+// Answers the exercise on screen correctly on the first try and moves on.
+export async function answerRight(page: Page) {
+  const exercise = currentExercise(page);
+  const id = await exerciseId(page);
+  await answersFor(id).right(exercise);
+  await acceptAndContinue(page, exercise, id);
+}
+
 // One wrong check, then the right answer: finished, but rated Again.
 export async function answerWrongOnce(page: Page) {
   const exercise = currentExercise(page);
   const id = await exerciseId(page);
-  const answers = answersFor(id);
-  if (!answers.wrong || !answers.clear) {
-    throw new Error(`No wrong answer listed for "${id}"`);
-  }
-  await answers.wrong(exercise);
+  const { wrong, fix } = answersFor(id);
+  if (!wrong || !fix) throw new Error(`No wrong answer listed for "${id}"`);
+  await wrong(exercise);
   await check(exercise);
   await expect(exercise.locator("section[data-phase]")).toHaveAttribute(
     "data-phase",
     "wrong1",
   );
-  await answers.clear(exercise);
+  await fix(exercise);
+  await acceptAndContinue(page, exercise, id);
+}
+
+async function stepKind(page: Page) {
+  const step = page.locator("[data-section-step]");
+  await expect(step).toHaveCount(1);
+  return step.getAttribute("data-section-step");
+}
+
+async function missThreeTimesThenRetype(page: Page, id: string) {
+  const exercise = currentExercise(page);
+  const frame = exercise.locator("section[data-phase]");
+  await answersFor(id).wrong?.(exercise);
+  for (const phase of ["wrong1", "wrong2", "wrong3"]) {
+    await check(exercise);
+    await expect(frame).toHaveAttribute("data-phase", phase);
+  }
+  await exercise.getByRole("button", { name: "Tự làm lại" }).tap();
+  await expect(frame).toHaveAttribute("data-phase", "retype");
   await answerRight(page);
+}
+
+// From anywhere inside a section: goes through the remaining blocks and
+// exercises (all right, except `missedId`, which is missed three times and
+// retyped), then taps "Xong phần" on the recap.
+export async function finishSection(page: Page, missedId: string) {
+  let missed = false;
+  for (;;) {
+    const kind = await stepKind(page);
+    if (kind === "block") {
+      await page.getByRole("button", { name: "Tiếp" }).tap();
+    } else if (kind === "exercise") {
+      await expectNoHorizontalScroll(page);
+      if ((await exerciseId(page)) === missedId) {
+        await missThreeTimesThenRetype(page, missedId);
+        missed = true;
+      } else {
+        await answerRight(page);
+      }
+    } else {
+      break;
+    }
+  }
+  expect(missed).toBe(true);
+  expect(await stepKind(page)).toBe("recap");
+  await page.getByRole("button", { name: "Xong phần" }).tap();
 }

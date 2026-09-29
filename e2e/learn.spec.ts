@@ -1,37 +1,10 @@
-import { expect, type Page, test } from "@playwright/test";
-import {
-  answerRight,
-  answersFor,
-  check,
-  createProfile,
-  currentExercise,
-  exerciseId,
-} from "./flows";
+import { expect, test } from "@playwright/test";
+import { createProfile, finishSection } from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
 
 const SECTION = "fixture.section.phep-nhan";
 // Answered wrong three times, then retyped after the answer is shown.
 const MISSED_EXERCISE = "fixture.ex.dem-cham";
-
-async function stepKind(page: Page) {
-  const step = page.locator("[data-section-step]");
-  await expect(step).toHaveCount(1);
-  return step.getAttribute("data-section-step");
-}
-
-async function missThreeTimesThenRetype(page: Page) {
-  const exercise = currentExercise(page);
-  const answers = answersFor(MISSED_EXERCISE);
-  const frame = exercise.locator("section[data-phase]");
-  await answers.wrong?.(exercise);
-  for (const phase of ["wrong1", "wrong2", "wrong3"]) {
-    await check(exercise);
-    await expect(frame).toHaveAttribute("data-phase", phase);
-  }
-  await exercise.getByRole("button", { name: "Tự làm lại" }).tap();
-  await expect(frame).toHaveAttribute("data-phase", "retype");
-  await answerRight(page);
-}
 
 test("a child learns a section, resuming where they left off", async ({
   page,
@@ -57,27 +30,7 @@ test("a child learns a section, resuming where they left off", async ({
   await sectionLink.tap();
   await expect(stepper).toHaveAttribute("data-current", "1");
 
-  let missed = false;
-  for (;;) {
-    const kind = await stepKind(page);
-    if (kind === "block") {
-      await page.getByRole("button", { name: "Tiếp" }).tap();
-    } else if (kind === "exercise") {
-      await expectNoHorizontalScroll(page);
-      if ((await exerciseId(page)) === MISSED_EXERCISE) {
-        await missThreeTimesThenRetype(page);
-        missed = true;
-      } else {
-        await answerRight(page);
-      }
-    } else {
-      break;
-    }
-  }
-  expect(missed).toBe(true);
-
-  expect(await stepKind(page)).toBe("recap");
-  await page.getByRole("button", { name: "Xong phần" }).tap();
+  await finishSection(page, MISSED_EXERCISE);
   await expect(
     page.getByRole("heading", { name: "Xong phần này!" }),
   ).toBeVisible();
