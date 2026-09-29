@@ -2,11 +2,11 @@
 
 - Bài: `content/math/kntt/luy-thua/lesson.json`
 - Nguồn đã đọc: `sources/math/luy-thua/` - p22, p23-24
-- `content:check`: 1 lỗi, 0 cảnh báo của bài (`$.reviewedHash: Lesson changed after its review`: cổng review mà lần review này gỡ, không tính là phát hiện)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/luy-thua/` (chạy với `WALK_BASE_URL=http://localhost:3001` sau `CONTENT_INCLUDE_FIXTURE=1 pnpm content:emit`)
-- Kết luận: Đạt: 0 lỗi Nghiêm trọng; đã chạy `content:hash luy-thua --approve` (reviewedHash ghi, status published)
+- `content:check`: 1 lỗi, 0 cảnh báo của bài (`$.reviewedHash: Lesson changed after its review`: cổng review, không tính là phát hiện)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/luy-thua/` (chạy với `WALK_BASE_URL=http://192.168.0.27:3001` sau `CONTENT_INCLUDE_FIXTURE=1 pnpm content:emit`). Visual recap của 12 card xem thêm qua `/dev/visuals/<visualId>` trên phone.
+- Kết luận: Đạt: 0 lỗi Nghiêm trọng (2 mục Nên sửa, 2 mục Góp ý); tác giả đã thêm card `so-mu-0` và `nhan-so-mu-1` vào `cardIds` của `ghep-thuong` (Nên sửa 1, phần card) và card `nhan-so-mu-1` vào `cardIds` của `chon-phep-dung` (cùng dạng lỗi), rồi chạy `content:hash luy-thua --approve` (reviewedHash ghi, status published). Các mục còn lại ghi trong `backlogs/lesson-luy-thua.md`.
 
-Visual của màn quy tắc và recap (`src/visuals/math/luy-thua/rule-examples.tsx`, `parts.tsx`, `tach-so.tsx`) chỉ còn hình, phép tính và nhãn ngắn ("Cơ số", "Số mũ", "n thừa số", "Bấm", "một chục", "6 bình phương", "(với a ≠ 0, m ≥ n)"); không còn câu bài học nào trong visual. Mọi câu trong `note`/`caption` đúng kiến thức, khớp tr.22-24 và khớp hình ví dụ đi kèm.
+Đã tự giải toàn bộ 45 exercise trước khi đọc `answer`: mỗi câu có đúng một đáp án (đúng một tập đáp án với `chon-phep-dung`); đáp án nhiễu phản ánh lỗi hay gặp (nhân cơ số với số mũ, đảo cơ số và số mũ, nhân số mũ thay vì cộng, nhân hoặc chia cơ số, chia số mũ, bỏ qua hàng có chữ số 0). Định nghĩa, cách đọc, quy tắc nhân, chia, quy ước a⁰ = 1 và a¹ = a khớp tr.22–24; câu quy tắc ở màn quy tắc, recap phần và recap card trùng từng chữ cho mọi quy tắc; recap card chia đã có điều kiện m ≥ n ở cả `caption` lẫn visual. Hình gợi ý nấc 2 (`tinh-*-goi-y`, `so-mu-0-goi-y`, `so-mu-an-*`, `phan-tich*`, `tong-hang-5-247`, `so-mu-1`, `nhan-hai-luy-thua`, `chia-hai-luy-thua`) đều dừng ở "?" hoặc dùng số khác đề. Hình chạm (`cham-luy-thua`, `cham-luy-thua-3-mu-5`) vẽ cơ số và số mũ cùng màu chữ, không lộ đáp án. Mỗi card có ít nhất một câu ôn ngoài `practiceIds`. Các mục đã ghi trong `backlogs/lesson-luy-thua.md` (`chon-phep-dung`, `xep-gia-tri`, câu số mũ ẩn, hàng đơn vị, trật tự câu `dien-quy-tac`, nấc 1 tô cả câu, cỡ ký tự mũ Unicode) không ghi lại.
 
 ## Nghiêm trọng
 
@@ -14,50 +14,32 @@ Không có.
 
 ## Nên sửa
 
-### 1. Phần "Luỹ thừa là gì?" không có câu nào nói cơ số, số mũ là gì
+### 1. `ghep-thuong` kiểm ba quy tắc nhưng chỉ gắn card và hình gợi ý của quy tắc chia
 
-- Vị trí: `$.sections[0].blocks[2].children` (nhóm định nghĩa) và `$.sections[0].recap.caption` (`luy-thua.section.luy-thua-la-gi`)
-- Nguồn: tr.22, `p22.png` ("a là cơ số, n là số mũ")
-- Vấn đề: tên hai phần chỉ có ở nhãn mũi tên trong hình `dinh-nghia` và `tom-tat-luy-thua`; chữ thân bài của section và recap không nhắc. Trong khi đó card `luy-thua.card.co-so-so-mu` có câu "Cơ số là thừa số được nhân lặp lại, số mũ là số thừa số." mà section không dạy bằng lời, và câu kiểm tra `cham-co-so` hỏi ngay sau section. Section, recap và card lệch nhau.
-- Sửa: thêm vào note thứ hai của nhóm định nghĩa (`$.sections[0].blocks[2].children[2].text`) câu "Trong aⁿ, a là cơ số (thừa số được nhân lặp lại), n là số mũ (số thừa số)."; nối vào recap caption: "Trong 2⁵, 2 là cơ số, 5 là số mũ."
+- Vị trí: `$.exercises[31].cardIds`, `$.exercises[31].hints.hintVisualId` (`luy-thua.ex.ghep-thuong`)
+- Nguồn: tr.24, `p23-24.png` (quy tắc chia, quy ước a⁰ = 1); tr.23 (a¹ = a)
+- Vấn đề: cặp 2⁶ : 2⁶ = 1 cần quy ước số mũ 0, cặp 2⁶ : 2 = 2⁵ cần quy tắc số không ghi số mũ có số mũ 1. Câu chỉ gắn `luy-thua.card.chia-cung-co-so`, nên trẻ nối sai hai cặp này ở lượt ôn sẽ thấy recap card chia (không có a⁰ = 1, không có số mũ 1), và hình gợi ý `chia-hai-luy-thua` (2⁵ : 2³) không chạm hai chỗ đó. Recap trẻ được nhắc không khớp quy tắc trẻ vừa làm sai. Cùng dạng với mục `chon-phep-dung` trong backlog.
+- Sửa: thêm `luy-thua.card.so-mu-0` và `luy-thua.card.nhan-so-mu-1` vào `cardIds`; hoặc đổi hai cặp đó thành phép chia thường (vd 2⁶ : 2³ = 2³, 2⁵ : 2³ = 2², đổi cột phải cho khớp) để câu chỉ kiểm quy tắc chia, rồi để quy ước số mũ 0 cho `mu-0-bang`, `thuong-2-mu-0`.
 
-### 2. Câu cách tính giá trị luỹ thừa thiếu chủ đề, và lệch với card
+### 2. `chia-luy-thua-10` bắt tính nhẩm 3 phép
 
-- Vị trí: `$.sections[1].blocks[2].children[0].text` (`luy-thua.section.binh-phuong-lap-phuong`) và `$.cards[5].recap.caption` (`luy-thua.card.tinh-gia-tri`)
-- Nguồn: tr.23, `p23-24.png` (Ví dụ 1b)
-- Vấn đề: note mở đầu bằng "Nhân hai thừa số đầu, rồi…" mà không nói đây là cách tính giá trị luỹ thừa; card lại viết "Tính luỹ thừa: nhân lần lượt từng thừa số, ghi kết quả từng bước." Hai cách nói cho một quy tắc, và "Tính luỹ thừa" khác chữ "Tính giá trị của luỹ thừa" trong đề các bài tập (`tinh-3-mu-3`, `tinh-5-mu-3`).
-- Sửa: dùng một câu cho cả hai chỗ, ví dụ "Tính giá trị luỹ thừa: nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số. Ghi từng kết quả ra nháp."
-
-### 3. Recap của phần "Bình phương và lập phương" bỏ sót cách tính giá trị
-
-- Vị trí: `$.sections[1].recap.caption` (`luy-thua.section.binh-phuong-lap-phuong`)
-- Nguồn: tr.23, `p23-24.png`
-- Vấn đề: section dạy hai ý (cách đọc a², a³; cách tính giá trị từng bước) và ba câu luyện tập (`tinh-3-mu-3`, `lap-phuong-4`, `xep-gia-tri`) dùng ý thứ hai, nhưng recap chỉ nhắc cách đọc.
-- Sửa: nối vào caption câu giống mục 2, ví dụ "Tính giá trị luỹ thừa: nhân lần lượt từng thừa số, ghi từng kết quả ra nháp."; tuỳ chọn thêm một dòng tính trong hình recap.
+- Vị trí: `$.exercises[32]` (`luy-thua.ex.chia-luy-thua-10`), câu luyện tập của `$.sections[3]`
+- Nguồn: tr.24, `p23-24.png` (HĐ3c viết thương 10⁷ : 10⁴ dưới dạng luỹ thừa của 10)
+- Vấn đề: trẻ phải trừ số mũ (8 − 5 = 3) rồi tính 10³ bằng hai phép nhân (10 · 10 = 100, 100 · 10 = 1 000): 3 phép, quá ngưỡng 2 phép cho người học chậm. Quy tắc đếm chữ số 0 của luỹ thừa của 10 chỉ được dạy ở phần sau (`luy-thua-cua-10`), nên ở chỗ này trẻ chưa có đường tắt. Câu cũng không có hình gợi ý nấc 2 cho bước tính giá trị.
+- Sửa: đổi đề thành "Viết kết quả dưới dạng luỹ thừa của 10." với đáp án `{ kind: "power", base: 10, exponent: 3 }` (sát HĐ3c); hoặc giữ đề tính số nhưng chuyển câu sang phần `luy-thua-cua-10` (sau quy tắc đếm chữ số 0).
 
 ## Góp ý
 
-### 1. "Số không ghi số mũ thì có số mũ là 1" nói hơi lỏng
+### 1. `tach-5-247` ngắt dòng giữa "2 ·" và ô trống trên phone
 
-- Vị trí: `$.sections[2].blocks[3].children[0].text`, `$.sections[2].recap.caption`, `$.cards[7].recap.caption`
-- Nguồn: tr.23 (Chú ý a¹ = a)
-- Vấn đề: một số tự nhiên không "có" số mũ; trẻ có thể hiểu nhầm là mọi số đứng một mình đều cộng thêm 1 vào số mũ (như 5 · 5 · 5 · 25).
-- Sửa: "Một số không ghi số mũ thì viết được thành luỹ thừa của chính nó với số mũ 1, như 5 = 5¹." (sửa đồng loạt ba chỗ).
+- Vị trí: `$.exercises[42].segments` (`luy-thua.ex.tach-5-247`)
+- Nguồn: —
+- Vấn đề: ảnh `phone/118-s5-08-exercise-tach-5-247.png`: dòng đầu kết thúc ở "+ 2 ·", ô trống thứ hai xuống dòng. Trẻ vẫn làm được, nhưng số hạng "2 · 10²" bị tách làm hai dòng. Lỗi bố cục của khung `fillBlank` (không giữ chữ đứng trước ô trống cùng dòng với ô), không do nội dung bài.
+- Sửa: báo người làm app để khung giữ đoạn chữ ngay trước ô trống dính với ô; không cần sửa bài.
 
-### 2. Hàng đơn vị và hàng chục trong hình tách số không khớp chữ "luỹ thừa của 10"
+### 2. Hạt bị gạch trong hình chia và số mũ 0 khó đọc số bên trong
 
-- Vị trí: `src/visuals/math/luy-thua/tach-so.tsx:24` và note `$.sections[4].blocks[2].children[0].text`
-- Vấn đề: note nói "nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó", nhưng cột đơn vị ghi "1" và số hạng "4" đứng một mình. Đúng như SGK, nhưng câu chưa nói chữ số hàng đơn vị giữ nguyên.
-- Sửa: thêm vào note "…rồi cộng lại; chữ số hàng đơn vị giữ nguyên."
-
-### 3. Hình card "Tính giá trị" không có dòng kết quả
-
-- Vị trí: `src/visuals/math/luy-thua/rule-examples.tsx:544` (`TheTinhGiaTri`)
-- Vấn đề: hình dừng ở 8 · 2 = 16, không có dòng 2⁴ = 16 nối kết quả về luỹ thừa như hình `tinh-tung-buoc` của section.
-- Sửa: thêm dòng `2⁴ = 16` cuối hình.
-
-### 4. Câu "phép nâng lên luỹ thừa" sát chữ SGK
-
-- Vị trí: `$.sections[0].blocks[2].children[2].text`
-- Nguồn: tr.22
-- Vấn đề: "Nhân nhiều thừa số bằng nhau như thế gọi là phép nâng lên luỹ thừa." gần như trùng câu SGK. Chấp nhận được vì là câu gọi tên thuật ngữ; nếu muốn tránh hẳn: "Phép tính aⁿ gọi là phép nâng lên luỹ thừa."
+- Vị trí: visual `luy-thua.visual.quy-tac-so-mu-0` (`$.sections[3].blocks[2].children[1]`), `luy-thua.visual.chia-hai-luy-thua` (`$.sections[3].blocks[0]`)
+- Nguồn: —
+- Vấn đề: ảnh `phone/090-s4-03-block-end.png`: số 2 trong hạt xanh nhạt bị nét gạch đè gần hết. Công thức ngay dưới vẫn ghi rõ 2³ : 2³, nên không chặn hiểu bài.
+- Sửa: giữ số 2 đọc được sau khi gạch (nét gạch mảnh hơn hoặc chéo lệch khỏi số), trong `src/visuals/shared/bead-group`.

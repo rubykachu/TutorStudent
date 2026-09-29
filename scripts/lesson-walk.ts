@@ -330,6 +330,8 @@ function received(error: unknown): string {
 }
 
 const MIN_TEXT_PX = 16;
+// Longest wait for a visual's code to load before its screen is shot.
+const VISUAL_LOAD_MS = 10_000;
 
 class Walker {
   readonly findings: Finding[] = [];
@@ -350,9 +352,20 @@ class Walker {
   // solution visual, or else the revealed answer, must then be in view.
   async look(where: string, { feedback = false } = {}) {
     await this.page.waitForTimeout(feedback ? SETTLE_MS : 100);
+    // A visual still fetching its code shows an `aria-busy` placeholder; a
+    // shot of it shows the reviewer nothing, so wait for the drawing.
+    const loadingVisual = await this.page
+      .locator("[aria-busy]")
+      .first()
+      .waitFor({ state: "detached", timeout: VISUAL_LOAD_MS })
+      .then(() => false)
+      .catch(() => true);
     this.shotCount += 1;
     const file = `${String(this.shotCount).padStart(3, "0")}-${where.replaceAll(/[^a-z0-9-]+/gi, "-")}.png`;
     await this.page.screenshot({ path: path.join(this.outDir, file) });
+    if (loadingVisual) {
+      this.report("fail", where, `visual still loading (${file})`);
+    }
     try {
       await expectNothingUnderBottomBar(this.page);
     } catch {

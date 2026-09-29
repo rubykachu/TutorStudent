@@ -142,7 +142,7 @@ export function ZeroTerms({ value }: { value: number }) {
     .filter(({ digit, exponent }) => digit === 0 && exponent > 0);
   if (zeroPlaces.length === 0) return null;
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center font-heading text-block font-bold md:text-block-lg">
       {zeroPlaces.map(({ exponent }) => (
         <p key={exponent} className="text-center">
           0 ·{" "}

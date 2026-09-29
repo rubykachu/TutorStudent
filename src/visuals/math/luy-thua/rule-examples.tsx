@@ -333,6 +333,34 @@ export function QuyTacLuyThua10() {
 // ---------------------------------------------------------------------------
 // Recaps: one sentence and one labelled example each.
 
+// Pictures left out so the two sentences, both names and a worked value fit
+// a phone screen; the pictures are on the rule screen before.
+export function TomTatBinhPhuong() {
+  return (
+    <Example>
+      <div className="flex flex-col items-center">
+        <Line>
+          <PowerText base={3} exponent={2} />
+          <span>=</span>
+          <FactorRow base={3} count={2} />
+          <span>=</span>
+          <span>9</span>
+        </Line>
+        <p>3 bình phương</p>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Line>
+          <PowerText base={3} exponent={3} />
+          <span>=</span>
+          <FactorRow base={3} count={3} />
+        </Line>
+        <ValueSteps base={3} exponent={3} />
+        <p>3 lập phương</p>
+      </div>
+    </Example>
+  );
+}
+
 export function TomTatNhan() {
   return (
     <Example>
@@ -423,9 +451,11 @@ function PlaceValueRecap({ value }: { value: number }) {
   );
 }
 
+// The zero-digit lines sit well apart from the sum so they never read as
+// one more term of it.
 function PlaceValueSum({ value }: { value: number }) {
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-6">
       <PlaceValueRecap value={value} />
       <ZeroTerms value={value} />
     </div>
@@ -541,6 +571,33 @@ export function TheLapPhuong() {
   );
 }
 
+// The value of base^exponent worked out one multiplication per row
+// ("2 · 2 = 4", "4 · 2 = 8", …), ending on "2⁴ = 16" so the result is tied
+// back to the power.
+function ValueSteps({ base, exponent }: { base: number; exponent: number }) {
+  const rows = Array.from({ length: exponent - 1 }, (_, i) => base ** (i + 1));
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <div className="grid grid-cols-[repeat(5,auto)] items-baseline gap-x-2 gap-y-1 font-heading text-block font-bold tabular-nums md:text-block-lg">
+        {rows.map((left) => (
+          <Fragment key={left}>
+            <span className="text-right">{left}</span>
+            <span>·</span>
+            <span className="text-concept-blue">{base}</span>
+            <span>=</span>
+            <span>{left * base}</span>
+          </Fragment>
+        ))}
+      </div>
+      <Line>
+        <PowerText base={base} exponent={exponent} />
+        <span>=</span>
+        <span>{base ** exponent}</span>
+      </Line>
+    </div>
+  );
+}
+
 export function TheTinhGiaTri() {
   return (
     <Example>
@@ -549,21 +606,7 @@ export function TheTinhGiaTri() {
         <span>=</span>
         <FactorRow base={2} count={4} />
       </Line>
-      <div className="grid grid-cols-[repeat(5,auto)] items-baseline gap-x-2 gap-y-1 font-heading text-block font-bold tabular-nums md:text-block-lg">
-        {[
-          [2, 4],
-          [4, 8],
-          [8, 16],
-        ].map(([left, right]) => (
-          <Fragment key={left}>
-            <span className="text-right">{left}</span>
-            <span>·</span>
-            <span className="text-concept-blue">2</span>
-            <span>=</span>
-            <span>{right}</span>
-          </Fragment>
-        ))}
-      </div>
+      <ValueSteps base={2} exponent={4} />
     </Example>
   );
 }
@@ -619,6 +662,7 @@ export function TheNhanSoMu1() {
 export function TheChiaCungCoSo() {
   return (
     <Example>
+      <DivisionRule />
       <Line>
         <Powers
           operator=":"

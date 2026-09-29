@@ -281,7 +281,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.tom-tat-binh-phuong": {
     interactive: false,
-    load: () => lessonExample((m) => m.squareAndCube(3)),
+    load: () => ruleExample("TomTatBinhPhuong"),
   },
   "luy-thua.visual.tom-tat-nhan": {
     interactive: false,
