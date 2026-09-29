@@ -428,6 +428,22 @@ export const IdsLockSchema = z.object({
   retired: z.record(z.string().min(1), z.string().min(1).nullable()),
 });
 
+// `content/glossary/<subject>.json`: the one accepted word for each concept of
+// a subject, and the colour every lesson must give that concept.
+export const GlossaryTermSchema = z.object({
+  term: TextSchema,
+  // Non-standard synonyms the content lint rejects in favour of `term`.
+  forbidden: z.array(TextSchema),
+  color: ConceptColorSchema.optional(),
+});
+
+export const GlossaryFileSchema = z.object({
+  terms: z.array(GlossaryTermSchema),
+  // Proper names (characters, places) that are not Vietnamese syllables but
+  // may still appear in lesson text.
+  names: z.array(TextSchema),
+});
+
 // Static files emitted at build time: `/content/index.json` lists what the app
 // may show; each lesson is served whole at `/content/<lessonId>.json`.
 export const LessonSummarySchema = z.object({
@@ -484,3 +500,5 @@ export type Video = z.infer<typeof VideoSchema>;
 export type Lesson = z.infer<typeof LessonSchema>;
 export type LessonStatus = Lesson["status"];
 export type IdsLock = z.infer<typeof IdsLockSchema>;
+export type GlossaryTerm = z.infer<typeof GlossaryTermSchema>;
+export type GlossaryFile = z.infer<typeof GlossaryFileSchema>;

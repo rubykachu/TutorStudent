@@ -1,0 +1,9 @@
+{
+  "terms": [
+    { "term": "bản đồ", "forbidden": [] },
+    { "term": "tỉ lệ bản đồ", "forbidden": ["tỷ lệ bản đồ"] },
+    { "term": "kinh tuyến", "forbidden": [] },
+    { "term": "vĩ tuyến", "forbidden": [] }
+  ],
+  "names": []
+}

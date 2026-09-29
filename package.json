@@ -19,6 +19,7 @@
     "content:check": "tsx scripts/content-check.ts",
     "content:lock": "tsx scripts/content-lock.ts",
     "content:emit": "tsx scripts/content-emit.ts",
+    "content:hash": "tsx scripts/content-hash.ts",
     "visual:shot": "tsx scripts/visual-shot.ts"
   },
   "dependencies": {

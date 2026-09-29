@@ -17,6 +17,7 @@ export default defineConfig({
         "src/srs/**",
         "src/progress/**",
         "src/exercises/grade/**",
+        "src/content/lint/**",
       ],
       thresholds: { lines: 90 },
     },

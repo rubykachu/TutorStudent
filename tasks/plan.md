@@ -70,7 +70,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 **Checkpoint C:** với fixture: chọn hồ sơ → học hết một phần → bấm "Ôn bài này" → thẻ vừa sai được hỏi trước. Ảnh nguồn hai bài đã có trong `sources/` (đặt tên theo trang). **Xin người dùng ảnh một bài mẫu** cho task 17.
 
 ### Nội dung
-- [ ] 13. Lint nội dung tự động + glossary + cổng `status`
+- [x] 13. Lint nội dung tự động + glossary + cổng `status`
 - [ ] 14a. Skill `lesson-review` (+ kiểm bằng lỗi cài cố ý, 3 lần)
 - [ ] 14. Skill `lesson-author` + `lesson-visual` + `CLAUDE.md`
 - [ ] 15. Bài Toán — Luỹ thừa với số mũ tự nhiên

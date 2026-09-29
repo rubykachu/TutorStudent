@@ -1,0 +1,13 @@
+{
+  "terms": [
+    { "term": "nhân vật", "forbidden": [] },
+    { "term": "lời thoại", "forbidden": [] },
+    { "term": "người kể chuyện", "forbidden": ["người dẫn truyện"] },
+    { "term": "so sánh", "forbidden": [] },
+    { "term": "từ ghép", "forbidden": [] },
+    { "term": "từ láy", "forbidden": [] },
+    { "term": "đoạn văn", "forbidden": [] },
+    { "term": "văn bản", "forbidden": [] }
+  ],
+  "names": []
+}

@@ -100,6 +100,7 @@ pnpm test:e2e                # playwright test (project ipad + phone)
 pnpm test:r2                 # test tích hợp với bucket R2 dev thật (chỉ chạy tay, cần .env.local)
 pnpm content:check           # validate content/ + ids.lock + overlay trên R2 (nếu có biến môi trường R2)
 pnpm content:lock            # cập nhật content/ids.lock.json sau khi thêm id mới
+pnpm content:hash <lesson>   # in reviewedHash của bài; --approve ghi hash và đặt published (skill lesson-review dùng)
 pnpm content:prompt <lesson> # in prompt sinh bài tập cho ChatGPT/Gemini
 pnpm visual:shot <lesson>    # chụp ảnh các visual của bài bằng Playwright vào .shots/
 pnpm admin <command>         # CLI quản trị: family:create, family:revoke, pin:reset, restore
@@ -218,11 +219,11 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 
 **Lớp tự động** (trong `content:check`, không dùng AI; mọi so khớp chuẩn hoá Unicode NFC; **miễn khối `passage`** vì văn bản nguyên tác):
 - Ký hiệu theo SGK Việt Nam, chỉ kiểm trong `formula.tex`, `check.expr` và đoạn chữ dạng số–toán tử–số: nhân `·`, chia `:`; cấm `×`, `*`, `÷`, `/`, `\times`, `\div`. Số từ 4 chữ số (ngưỡng trong config) phân cách hàng nghìn bằng dấu cách không ngắt dòng (U+202F; trong TeX là `\,`); miễn năm, số trang, id. Thập phân dùng dấu phẩy.
-- Thuật ngữ theo `content/glossary/<subject>.json` (`{ term, forbidden[], color? }`): cấm từ đồng nghĩa không chuẩn; `Concept.name` khớp `term` thì `Concept.color` phải khớp `color` (nhất quán màu giữa các bài).
+- Thuật ngữ theo `content/glossary/<subject>.json` (`{ terms: [{ term, forbidden[], color? }], names[] }`, `names` là tên riêng không phải âm tiết tiếng Việt): cấm từ đồng nghĩa không chuẩn; `Concept.name` khớp `term` thì `Concept.color` phải khớp `color` (nhất quán màu giữa các bài).
 - Chặn tiếng Anh theo allowlist: mọi token chữ phải là âm tiết tiếng Việt hợp lệ (kiểm theo quy tắc âm đầu + vần + dấu) hoặc có trong glossary / danh sách tên riêng.
 - Độ dài: câu ≤ 25 âm tiết (không đếm công thức; tách câu có danh sách viết tắt như "tr.", "SGK"); `note` ≤ 2 câu.
 - Toán: `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài Toán bắt buộc `check.expr` cho mọi `numeric`.
-- Ngữ văn: `passage` khớp `source-passage.txt` sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
+- Ngữ văn: mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
 - Cổng review: bài `published` phải có `reviewedHash` bằng hash nội dung hiện tại (đã chuẩn hoá, không tính `status`/`reviewedHash`); sửa bài sau review → fail cho tới khi review lại.
 
 **Lớp review độc lập** (skill `lesson-review`, chạy trong subagent mới, không phải agent đã soạn bài):

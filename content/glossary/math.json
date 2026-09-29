@@ -1,0 +1,19 @@
+{
+  "terms": [
+    { "term": "luỹ thừa", "forbidden": ["lũy thừa"] },
+    { "term": "cơ số", "forbidden": [], "color": "blue" },
+    { "term": "số mũ", "forbidden": [], "color": "violet" },
+    { "term": "bình phương", "forbidden": [] },
+    { "term": "lập phương", "forbidden": [] },
+    { "term": "thừa số", "forbidden": ["nhân tử"] },
+    { "term": "tích", "forbidden": [] },
+    { "term": "thương", "forbidden": [] },
+    { "term": "số bị chia", "forbidden": [] },
+    { "term": "số chia", "forbidden": [] },
+    { "term": "số hạng", "forbidden": [] },
+    { "term": "tổng", "forbidden": [] },
+    { "term": "hiệu", "forbidden": [] },
+    { "term": "số tự nhiên", "forbidden": [] }
+  ],
+  "names": []
+}

@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import type { z } from "zod";
 import { CONTENT_INCLUDE_FIXTURE } from "@/lib/config";
@@ -14,10 +14,12 @@ import {
   formatPath,
   type RawContent,
   type RawFile,
+  type RawGlossaryFile,
   type RawLessonFile,
   zodPath,
 } from "./check";
 import { isServed, summarizeLesson } from "./index";
+import { SOURCE_PASSAGE_FILE } from "./lint/passage";
 
 // Node-only: reads content/ from disk at build time. Browser code imports the
 // pure modules (`./index`, `./check`) instead.
@@ -25,6 +27,7 @@ import { isServed, summarizeLesson } from "./index";
 export const DEFAULT_CONTENT_ROOT = path.join(process.cwd(), "content");
 export const SUBJECTS_FILE = "subjects.json";
 export const IDS_LOCK_FILE = "ids.lock.json";
+export const GLOSSARY_DIR = "glossary";
 const LESSON_FILE = "lesson.json";
 
 function displayPath(absolute: string): string {
@@ -54,15 +57,34 @@ export function readContentRoot(
     .sort();
   const lessons: RawLessonFile[] = lessonFiles.map((relative) => {
     const dir = path.dirname(relative).split(path.sep);
+    const passageFile = path.join(
+      root,
+      path.dirname(relative),
+      SOURCE_PASSAGE_FILE,
+    );
     return {
       ...readJson(path.join(root, relative)),
       fixture: dir[0] === FIXTURE_DIR,
       dir,
+      ...(existsSync(passageFile)
+        ? { sourcePassage: readFileSync(passageFile, "utf8") }
+        : {}),
     };
   });
+  const glossaryDir = path.join(root, GLOSSARY_DIR);
+  const glossaries: RawGlossaryFile[] = existsSync(glossaryDir)
+    ? readdirSync(glossaryDir)
+        .filter((name) => name.endsWith(".json"))
+        .sort()
+        .map((name) => ({
+          ...readJson(path.join(glossaryDir, name)),
+          subject: path.basename(name, ".json"),
+        }))
+    : [];
   return {
     subjects: readJson(path.join(root, SUBJECTS_FILE)),
     lock: readJson(path.join(root, IDS_LOCK_FILE)),
+    glossaries,
     lessons,
   };
 }

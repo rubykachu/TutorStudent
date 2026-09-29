@@ -100,3 +100,57 @@ describe("content-lock", () => {
     expect(err).toContain("fix the errors above");
   });
 });
+
+// Each case spawns tsx several times, which is slow under coverage.
+describe("content-hash", { timeout: 30_000 }, () => {
+  it("prints the review hash and approves a clean lesson", () => {
+    const printed = run("content-hash.ts", "fixture", "--root", root);
+    expect(printed.code).toBe(0);
+    const hash = printed.out.trim();
+    expect(hash).toMatch(/^[0-9a-f]{64}$/);
+
+    const approved = run(
+      "content-hash.ts",
+      "fixture",
+      "--root",
+      root,
+      "--approve",
+    );
+    expect(approved.code).toBe(0);
+    const lesson = JSON.parse(readFileSync(realLessonFile(), "utf8"));
+    expect(lesson.status).toBe("published");
+    expect(lesson.reviewedHash).toBe(hash);
+    expect(Object.keys(lesson).indexOf("reviewedHash")).toBe(
+      Object.keys(lesson).indexOf("status") + 1,
+    );
+    expect(run("content-check.ts", "--root", root).code).toBe(0);
+
+    lesson.title = "Bài mẫu đã sửa";
+    writeFileSync(realLessonFile(), JSON.stringify(lesson));
+    const stale = run("content-check.ts", "--root", root);
+    expect(stale.code).toBe(1);
+    expect(stale.err).toMatch(/\$\.reviewedHash: .*\[review-hash\]/);
+  });
+
+  it("refuses to approve a lesson with lint errors", () => {
+    const lesson = JSON.parse(readFileSync(realLessonFile(), "utf8"));
+    lesson.sections[0].blocks[0].text = "Click vào đây.";
+    writeFileSync(realLessonFile(), JSON.stringify(lesson));
+    const { code, err } = run(
+      "content-hash.ts",
+      "fixture",
+      "--root",
+      root,
+      "--approve",
+    );
+    expect(code).toBe(1);
+    expect(err).toContain("[vietnamese]");
+    expect(JSON.parse(readFileSync(realLessonFile(), "utf8")).status).toBe(
+      "draft",
+    );
+  });
+
+  it("fails for an unknown lesson", () => {
+    expect(run("content-hash.ts", "khong-co", "--root", root).code).toBe(1);
+  });
+});

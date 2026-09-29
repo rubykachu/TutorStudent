@@ -1,6 +1,8 @@
 import type { z } from "zod";
 import {
   type Block,
+  type GlossaryFile,
+  GlossaryFileSchema,
   type IdsLock,
   IdsLockSchema,
   type Lesson,
@@ -15,6 +17,8 @@ import {
   indexLesson,
   practiceExerciseIds,
 } from "./index";
+import { lintLesson } from "./lint";
+import { checkGlossaryFile } from "./lint/glossary";
 
 // Pure content validation: everything `content:check` enforces beyond the zod
 // schema. Reading files is the loader's job, so tests can feed mutated content.
@@ -26,6 +30,8 @@ export type Issue = {
   file: string;
   path: IssuePath;
   message: string;
+  // Content-lint rule family that raised the issue, when it came from one.
+  rule?: string;
 };
 
 export type RawFile = {
@@ -39,11 +45,16 @@ export type RawLessonFile = RawFile & {
   fixture: boolean;
   // Directory of lesson.json relative to the content root, split by segment.
   dir: string[];
+  // Verbatim source text of the lesson's reading passages, when provided.
+  sourcePassage?: string;
 };
+
+export type RawGlossaryFile = RawFile & { subject: string };
 
 export type RawContent = {
   subjects: RawFile;
   lock: RawFile;
+  glossaries: RawGlossaryFile[];
   lessons: RawLessonFile[];
 };
 
@@ -66,7 +77,8 @@ export function formatPath(path: IssuePath): string {
 }
 
 export function formatIssue(issue: Issue): string {
-  return `${issue.severity} ${issue.file} ${formatPath(issue.path)}: ${issue.message}`;
+  const rule = issue.rule === undefined ? "" : ` [${issue.rule}]`;
+  return `${issue.severity} ${issue.file} ${formatPath(issue.path)}: ${issue.message}${rule}`;
 }
 
 export function zodPath(issue: z.core.$ZodIssue): IssuePath {
@@ -618,6 +630,15 @@ export function checkContent(
   const issues: Issue[] = [];
   const subjects = parseFile(raw.subjects, SubjectsFileSchema, issues);
   const lock = parseFile(raw.lock, IdsLockSchema, issues);
+  const glossaries = new Map<string, GlossaryFile>();
+  for (const file of raw.glossaries) {
+    const glossary = parseFile(file, GlossaryFileSchema, issues);
+    if (!glossary) continue;
+    glossaries.set(file.subject, glossary);
+    for (const { path, message } of checkGlossaryFile(glossary)) {
+      issues.push({ severity: "error", file: file.file, path, message });
+    }
+  }
 
   const lessons: CheckedLesson[] = [];
   for (const file of raw.lessons) {
@@ -626,6 +647,14 @@ export function checkContent(
     lessons.push({ file: file.file, fixture: file.fixture, lesson });
     checkLesson(file, lesson, subjects, catalog, (path, message) =>
       issues.push({ severity: "error", file: file.file, path, message }),
+    );
+    issues.push(
+      ...lintLesson({
+        file: file.file,
+        lesson,
+        glossary: glossaries.get(lesson.subject),
+        sourcePassage: file.sourcePassage,
+      }),
     );
   }
 
