@@ -17,3 +17,7 @@ export const CONTENT_INCLUDE_FIXTURE: boolean =
 
 // How long an explainer animation shows each step before auto-advancing.
 export const VISUAL_STEP_MS = 1800;
+
+// Progress stays on the device until family sync exists; every local record
+// still carries a family id so it can later be claimed by a real family.
+export const LOCAL_FAMILY_ID = "local";

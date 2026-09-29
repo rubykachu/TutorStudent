@@ -55,7 +55,7 @@ Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ
 **Checkpoint B:** `/dev/exercises` đủ 8 dạng + openEnded từ fixture; test component xanh; chạm thử trên iPad.
 
 ### Luồng học
-- [ ] 8. Dexie + SRS (rating, lịch, chọn thẻ ôn)
+- [x] 8. Dexie + SRS (rating, lịch, chọn thẻ ôn)
 - [ ] 9. Hồ sơ + trang chủ + trang môn
 - [ ] 10. Trang bài + player phần + block renderer + sticker
 - [ ] 11. Ôn bài theo yêu cầu (nút "Ôn bài này")
