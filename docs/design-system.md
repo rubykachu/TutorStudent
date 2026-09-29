@@ -145,6 +145,7 @@ Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái
 | `ConceptChip` | Chip màu khái niệm + ký hiệu hình |
 | `StickerBook` | Lưới sticker đã nhận, sticker chưa nhận hiện bóng xám |
 | `StreakFlame` | Số ngày học liên tục + biểu tượng, hiển thị ngày nghỉ còn lại trong tuần |
+| `Avatar` | Mặt thú SVG phẳng (mèo, gấu, thỏ, cáo, gấu trúc, gà con) trên đĩa nền nhạt; màu lấy từ token `--color-avatar-*`, chỉ để trang trí, không mang chữ |
 
 Biểu tượng: Lucide (SVG). Không dùng emoji làm biểu tượng giao diện.
 

@@ -1,4 +1,5 @@
 import { Dexie, type Table } from "dexie";
+import { LOCAL_FAMILY_ID } from "@/lib/config";
 import type { LessonCardState } from "@/srs/select";
 
 // Local-first progress store. Every record carries the family and child it
@@ -68,6 +69,15 @@ export type WritingRecord = ChildScope & {
 export type SettingValue = string | number | boolean | null;
 
 export type SettingRecord = ChildScope & { key: string; value: SettingValue };
+
+// Settings that describe the device rather than a child (e.g. which child is
+// using it) live in the same table under this reserved child id. Generated
+// child ids are hex strings, so the underscore can never collide with one.
+export const DEVICE_SCOPE: ChildScope = {
+  familyId: LOCAL_FAMILY_ID,
+  childId: "_device",
+};
+export const ACTIVE_PROFILE_KEY = "activeProfileId";
 
 type ScopedKey = [string, string, string];
 
@@ -144,6 +154,19 @@ export function getSectionProgress(
   return db.sectionProgress
     .where("[familyId+childId+lessonId]")
     .equals([...scopeKey(scope), lessonId])
+    .toArray();
+}
+
+export function listSectionProgress(
+  db: TutorDb,
+  scope: ChildScope,
+): Promise<SectionProgressRecord[]> {
+  return db.sectionProgress
+    .where("[familyId+childId+lessonId]")
+    .between(
+      [...scopeKey(scope), Dexie.minKey],
+      [...scopeKey(scope), Dexie.maxKey],
+    )
     .toArray();
 }
 

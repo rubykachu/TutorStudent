@@ -56,7 +56,7 @@ Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ
 
 ### Luồng học
 - [x] 8. Dexie + SRS (rating, lịch, chọn thẻ ôn)
-- [ ] 9. Hồ sơ + trang chủ + trang môn
+- [x] 9. Hồ sơ + trang chủ + trang môn
 - [ ] 10. Trang bài + player phần + block renderer + sticker
 - [ ] 11. Ôn bài theo yêu cầu (nút "Ôn bài này")
 - [ ] 12. Linh vật + chuỗi ngày + nhắc môn + âm "ting"

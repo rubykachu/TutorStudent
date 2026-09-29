@@ -3,6 +3,7 @@ import path from "node:path";
 import type { z } from "zod";
 import { CONTENT_INCLUDE_FIXTURE } from "@/lib/config";
 import {
+  type ContentIndex,
   type Lesson,
   LessonSchema,
   type Subject,
@@ -16,7 +17,7 @@ import {
   type RawLessonFile,
   zodPath,
 } from "./check";
-import { isServed } from "./index";
+import { isServed, summarizeLesson } from "./index";
 
 // Node-only: reads content/ from disk at build time. Browser code imports the
 // pure modules (`./index`, `./check`) instead.
@@ -109,4 +110,21 @@ export function loadContent({
     .filter(({ lesson, fixture }) => isServed(lesson, fixture, includeFixture))
     .sort((a, b) => a.lesson.order - b.lesson.order);
   return { subjects, lessons };
+}
+
+// Subjects alone, for build-time route params that do not need the lessons.
+export function loadSubjects(root: string = DEFAULT_CONTENT_ROOT): Subject[] {
+  return parseOrThrow(
+    readJson(path.join(root, SUBJECTS_FILE)),
+    SubjectsFileSchema,
+  ).subjects;
+}
+
+// What the browser receives as /content/index.json: only lessons that
+// `loadContent` serves, so a draft can never reach the lesson lists.
+export function buildContentIndex(content: LoadedContent): ContentIndex {
+  return {
+    subjects: content.subjects,
+    lessons: content.lessons.map(({ lesson }) => summarizeLesson(lesson)),
+  };
 }

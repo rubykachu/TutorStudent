@@ -9,6 +9,7 @@ import {
   getSetting,
   listActivityDays,
   listProfiles,
+  listSectionProgress,
   listStickers,
   listWritings,
   markActivityDay,
@@ -112,6 +113,26 @@ describe("section progress", () => {
     expect(await getSectionProgress(db, scope, "powers")).toEqual([
       { ...record, state: "done", blockIndex: 5 },
     ]);
+  });
+
+  it("lists every section a child touched across lessons", async () => {
+    const record = {
+      ...scope,
+      sectionId: "powers.section.one",
+      lessonId: "powers",
+      state: "in_progress" as const,
+      blockIndex: 0,
+      updatedAt: "2026-03-02T01:00:00.000Z",
+    };
+    const other = {
+      ...record,
+      sectionId: "roots.section.one",
+      lessonId: "roots",
+    };
+    await putSectionProgress(db, record);
+    await putSectionProgress(db, other);
+    await putSectionProgress(db, { ...record, ...sibling });
+    expect(await listSectionProgress(db, scope)).toEqual([record, other]);
   });
 });
 

@@ -3,7 +3,12 @@ import { cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { loadContent, readContentRoot } from "@/content/load";
+import {
+  buildContentIndex,
+  loadContent,
+  loadSubjects,
+  readContentRoot,
+} from "@/content/load";
 import { CONTENT_ROOT, fixtureContent, fixtureFile } from "./helpers";
 
 let root: string;
@@ -96,5 +101,49 @@ describe("loadContent", () => {
   it("throws when a file cannot be parsed", () => {
     writeFileSync(path.join(root, "subjects.json"), "{ nope");
     expect(() => loadContent({ root })).toThrow(/subjects\.json: Invalid JSON/);
+  });
+});
+
+describe("buildContentIndex", () => {
+  it("lists only what the app may show, so drafts never reach the browser", () => {
+    writeRealLesson("draft");
+    const hidden = buildContentIndex(
+      loadContent({ root, includeFixture: false }),
+    );
+    expect(hidden.subjects.map((s) => s.id)).toEqual([
+      "math",
+      "literature",
+      "geography",
+    ]);
+    expect(hidden.lessons).toEqual([]);
+
+    // The fixture is itself a draft; it appears only on explicit opt-in.
+    const withFixture = buildContentIndex(
+      loadContent({ root, includeFixture: true }),
+    );
+    expect(withFixture.lessons.map((l) => l.id)).toEqual(["fixture"]);
+
+    writeRealLesson("published");
+    const published = buildContentIndex(
+      loadContent({ root, includeFixture: false }),
+    );
+    expect(published.lessons).toEqual([
+      expect.objectContaining({ id: "fixture", subject: "math" }),
+    ]);
+  });
+
+  it("hides the committed fixture from a default build", () => {
+    const index = buildContentIndex(loadContent({ includeFixture: false }));
+    expect(index.lessons.map((l) => l.id)).not.toContain("fixture");
+  });
+});
+
+describe("loadSubjects", () => {
+  it("reads the subjects without the lessons", () => {
+    expect(loadSubjects(root).map((s) => s.defaultSeries)).toEqual([
+      "kntt",
+      "ctst",
+      "kntt",
+    ]);
   });
 });
