@@ -6,3 +6,7 @@ export function countEquals(
 ): boolean {
   return state.count !== undefined && state.count === params.count;
 }
+
+export function solveCountEquals(params: Record<string, number>): VisualState {
+  return { count: params.count ?? 0 };
+}

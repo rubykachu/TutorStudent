@@ -28,7 +28,11 @@
         },
         { "type": "formula", "tex": "3 + 3 = 2 \\cdot 3 = 6" }
       ],
-      "checkIds": ["fixture.ex.chon-phep-nhan", "fixture.ex.cham-hinh-tron"],
+      "checkIds": [
+        "fixture.ex.chon-phep-nhan",
+        "fixture.ex.cham-hinh-tron",
+        "fixture.ex.xep-hinh-vuong"
+      ],
       "practiceIds": [
         "fixture.ex.dem-cham",
         "fixture.ex.ghep-phep-nhan",
@@ -375,6 +379,20 @@
         ]
       },
       "hints": { "highlight": [] },
+      "difficulty": 2
+    },
+    {
+      "id": "fixture.ex.xep-hinh-vuong",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        { "type": "note", "text": "Xếp các chấm thành một hình vuông." },
+        { "type": "formula", "tex": "3 \\cdot 3 = 9" }
+      ],
+      "visualId": "fixture.visual.dot-square",
+      "validatorId": "square-of",
+      "params": { "n": 3 },
+      "hints": { "highlight": [{ "target": "block", "index": 1 }] },
       "difficulty": 2
     }
   ],

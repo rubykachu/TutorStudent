@@ -49,7 +49,7 @@ Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ
 ### Bài tập
 - [x] 4. Engine chấm 8 dạng + máy trạng thái 3 nấc + `ExerciseFrame`
 - [ ] 5. UI: `choice`, `numeric` (+ `NumberPad`), `fillBlank`, `order`
-- [ ] 6. UI: `match`, `tapText`, `tapRegion`, `manipulate`
+- [x] 6. UI: `match`, `tapText`, `tapRegion`, `manipulate`
 - [ ] 7. `PassageReader` + UI `openEnded` (checklist tự tick)
 
 **Checkpoint B:** `/dev/exercises` đủ 8 dạng + openEnded từ fixture; test component xanh; chạm thử trên iPad.

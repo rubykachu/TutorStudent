@@ -44,7 +44,7 @@ describe("content-check", () => {
     expect(code).toBe(0);
     expect(out).toContain("fixture (");
     expect(out).toContain(
-      "2 sections, 3 cards, 11 exercises, 8 exercise types, 1 interactive visuals",
+      "2 sections, 3 cards, 12 exercises, 8 exercise types, 2 interactive visuals",
     );
   });
 

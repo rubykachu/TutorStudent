@@ -124,6 +124,11 @@
   --text-passage-lg--line-height: 1.75;
   --text-caption: 1rem;
   --text-caption--line-height: 1.5;
+  /*
+   * Running text whose sentences are tap targets: at least 2.3 and never
+   * under 48px a line, standing in for the 48px touch minimum.
+   */
+  --leading-tap: max(2.3em, 3rem);
 
   /*
    * The default 4px spacing unit already yields the design scale
