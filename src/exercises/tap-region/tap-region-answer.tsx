@@ -7,21 +7,16 @@ import type { TapRegionExercise } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
 import { RegionProvider } from "@/visuals/shared/region";
 
-export type TapRegionAnswerProps = AnswerSlotProps<TapRegionInput> & {
+export type TapRegionAnswerProps = {
   exercise: TapRegionExercise;
+  slot: AnswerSlotProps<TapRegionInput>;
 };
 
 const NONE: ReadonlySet<string> = new Set();
 
 // The exercise's visual with its declared regions turned into toggles.
-export function TapRegionAnswer({
-  exercise,
-  value,
-  onChange,
-  disabled,
-  highlight,
-  reveal,
-}: TapRegionAnswerProps) {
+export function TapRegionAnswer({ exercise, slot }: TapRegionAnswerProps) {
+  const { value, onChange, disabled, highlight, reveal } = slot;
   const selected = value?.selected ?? [];
   return (
     <div

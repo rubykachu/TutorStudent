@@ -1,18 +1,17 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ManipulateAnswer } from "@/exercises/manipulate";
 import type { Hints, ManipulateExercise } from "@/schema/content";
+import { NO_HINTS } from "./helpers";
 import {
   checkAnswer,
   checkButton,
   feedbackVisual,
-  HINT_VISUALS,
-  NO_HINTS,
   next,
-  renderInFrame,
-  retype,
+  renderExercise,
   revealed,
-} from "./frame-harness";
+  startRetype,
+  VISUAL_HINTS,
+} from "./render";
 
 const BLOCK_HINT: Hints = { highlight: [{ target: "block", index: 0 }] };
 
@@ -31,9 +30,7 @@ function squareExercise(hints: Hints = NO_HINTS): ManipulateExercise {
 }
 
 async function renderManipulate(exercise: ManipulateExercise) {
-  const view = renderInFrame(exercise, (slot) => (
-    <ManipulateAnswer exercise={exercise} {...slot} />
-  ));
+  const view = renderExercise(exercise);
   await screen.findByRole("group", { name: /Bảng chấm/ });
   return view;
 }
@@ -125,7 +122,7 @@ describe("ManipulateAnswer", () => {
     expect(cell(1, 3)).toHaveAttribute("aria-pressed", "false");
     expect(cell(1, 1)).toBeDisabled();
 
-    retype();
+    startRetype();
     expect(revealed(container)).toBeNull();
     expect(pressedCells()).toBe(0);
     expect(checkButton()).toBeDisabled();
@@ -141,7 +138,7 @@ describe("ManipulateAnswer", () => {
 
   it("plays hint and solution visuals and keeps the child's board", async () => {
     const { frame, container } = await renderManipulate(
-      squareExercise(HINT_VISUALS),
+      squareExercise(VISUAL_HINTS),
     );
     place(ROW);
     checkAnswer();
@@ -164,9 +161,7 @@ describe("ManipulateAnswer", () => {
       validatorId: "count-equals",
       params: { count: 3 },
     };
-    const { frame } = renderInFrame(exercise, (slot) => (
-      <ManipulateAnswer exercise={exercise} {...slot} />
-    ));
+    const { frame } = renderExercise(exercise);
     const add = await screen.findByRole("button", { name: "Thêm một chấm" });
     fireEvent.click(add);
     checkAnswer();

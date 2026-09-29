@@ -1,4 +1,5 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
+import { pairItems } from "./flows";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 
 // /dev/exercises renders every fixture exercise whose type has an answer
@@ -46,11 +47,50 @@ test("a power is entered with the mũ key", async ({ page }) => {
   await expectAccepted(card);
 });
 
+test("a match is paired by tapping one item and then its partner", async ({
+  page,
+}) => {
+  const card = exercise(page, "fixture.ex.ghep-phep-nhan");
+  await pairItems(card, [
+    ["hai-nhan-ba", "sau"],
+    ["bon-nhan-hai", "tam"],
+  ]);
+  await card.getByRole("button", { name: "Kiểm tra" }).tap();
+  await expectAccepted(card);
+});
+
+test("every exercise type is drawn in its frame", async ({ page }) => {
+  const types = await page
+    .locator("[data-exercise-type]")
+    .evaluateAll((els) =>
+      els.map((el) => el.getAttribute("data-exercise-type")),
+    );
+  expect(new Set(types)).toEqual(
+    new Set([
+      "choice",
+      "numeric",
+      "match",
+      "order",
+      "fillBlank",
+      "tapText",
+      "tapRegion",
+      "manipulate",
+      "openEnded",
+    ]),
+  );
+  // Every basic exercise sits in a frame, so none is left without a UI.
+  const basic = page.locator(
+    "[data-exercise]:not([data-exercise-type=openEnded])",
+  );
+  const framed = page.locator(
+    "[data-exercise]:not([data-exercise-type=openEnded]) section[data-phase]",
+  );
+  await expect(framed).toHaveCount(await basic.count());
+});
+
 test("every touch target is at least 48px and nothing scrolls sideways", async ({
   page,
 }) => {
-  // Types without an answer component yet are listed, not rendered.
-  await expect(page.getByText("chưa có giao diện").first()).toBeVisible();
   await expectTouchTargets(page);
   await expectNoHorizontalScroll(page);
 });

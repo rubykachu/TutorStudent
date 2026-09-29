@@ -3,9 +3,13 @@ import { ChoiceAnswer } from "@/exercises/choice/choice-answer";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import { FillBlankAnswer } from "@/exercises/fill-blank/fill-blank-answer";
 import type { InputFor } from "@/exercises/input";
+import { ManipulateAnswer } from "@/exercises/manipulate";
+import { MatchAnswer } from "@/exercises/match";
 import { NumericAnswer } from "@/exercises/numeric/numeric-answer";
 import type { StepRenderer } from "@/exercises/open-ended/open-ended-runner";
 import { OrderAnswer } from "@/exercises/order/order-answer";
+import { TapRegionAnswer } from "@/exercises/tap-region";
+import { TapTextAnswer } from "@/exercises/tap-text";
 import type { BasicExercise, BasicExerciseType } from "@/schema/content";
 
 type ExerciseOf<T extends BasicExerciseType> = Extract<
@@ -19,17 +23,18 @@ export type AnswerComponent<T extends BasicExerciseType> = ComponentType<{
 }>;
 
 // The single place an exercise type is tied to the component that draws its
-// answer area; a type without an entry has no UI yet.
-const ANSWER_COMPONENTS: { [T in BasicExerciseType]?: AnswerComponent<T> } = {
+// answer area. Every type needs one, so adding a type to the schema fails
+// type-checking here until it has a UI.
+const ANSWER_COMPONENTS: { [T in BasicExerciseType]: AnswerComponent<T> } = {
   choice: ChoiceAnswer,
   numeric: NumericAnswer,
-  fillBlank: FillBlankAnswer,
+  match: MatchAnswer,
   order: OrderAnswer,
+  fillBlank: FillBlankAnswer,
+  tapText: TapTextAnswer,
+  tapRegion: TapRegionAnswer,
+  manipulate: ManipulateAnswer,
 };
-
-export function hasAnswerComponent(type: BasicExerciseType): boolean {
-  return ANSWER_COMPONENTS[type] !== undefined;
-}
 
 // Draws the answer area of any basic exercise inside `ExerciseFrame`:
 //   <ExerciseFrame exercise={ex}>{(slot) => renderAnswer(ex, slot)}</ExerciseFrame>
@@ -39,15 +44,10 @@ export function renderAnswer<E extends BasicExercise>(
 ): ReactNode {
   // TypeScript cannot tie the looked-up entry to E, only to the union of
   // all types; the key is exactly `exercise.type`, so this is sound.
-  const Answer = ANSWER_COMPONENTS[exercise.type] as
-    | ComponentType<{
-        exercise: E;
-        slot: AnswerSlotProps<InputFor<E["type"]>>;
-      }>
-    | undefined;
-  if (!Answer) {
-    throw new Error(`No answer component for "${exercise.type}" exercises`);
-  }
+  const Answer = ANSWER_COMPONENTS[exercise.type] as unknown as ComponentType<{
+    exercise: E;
+    slot: AnswerSlotProps<InputFor<E["type"]>>;
+  }>;
   return <Answer exercise={exercise} slot={slot} />;
 }
 

@@ -31,7 +31,9 @@ let db: TutorDb;
 
 beforeEach(() => {
   db = new TutorDb();
-  setNowForTesting(() => AT);
+  // Each read moves the clock on, so answers keep their order by time.
+  let tick = 0;
+  setNowForTesting(() => new Date(AT.getTime() + 1000 * tick++));
 });
 
 afterEach(async () => {
@@ -146,7 +148,7 @@ describe("SectionPlayer", () => {
         sections: [
           {
             ...first,
-            practiceIds: [`${LESSON_ID}.ex.viet`, `${LESSON_ID}.ex.cham`],
+            practiceIds: [`${LESSON_ID}.ex.viet`],
           },
           { ...first, id: `${LESSON_ID}.section.two` },
         ],
@@ -159,7 +161,6 @@ describe("SectionPlayer", () => {
     tap("Xong");
     tap("Hoàn thành");
 
-    // The tap-region practice has no answer UI yet, so the recap comes next.
     expect(await screen.findByText("Nhớ nhé!")).toBeInTheDocument();
     const attempts = await listAttempts(db, scope);
     expect(attempts.map((a) => [a.exerciseId, a.context, a.cardIds])).toEqual([

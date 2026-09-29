@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { AnyExercise } from "@/content";
 import { resumeStepIndex, sectionSteps } from "@/learn/section-steps";
 import { LESSON_ID, learnIndex, learnLesson, SECTION_ID } from "./helpers";
-
-const all = () => true;
 
 function section(overrides: Parameters<typeof learnLesson>[0] = {}) {
   const index = learnIndex(overrides);
@@ -15,7 +12,7 @@ function section(overrides: Parameters<typeof learnLesson>[0] = {}) {
 describe("sectionSteps", () => {
   it("lists blocks, checks, practice and the recap in order", () => {
     const { index, section: s } = section();
-    const steps = sectionSteps(s, index, all);
+    const steps = sectionSteps(s, index);
     expect(steps.map((step) => [step.kind, step.position])).toEqual([
       ["block", { phase: "blocks", index: 0 }],
       ["block", { phase: "blocks", index: 1 }],
@@ -34,23 +31,18 @@ describe("sectionSteps", () => {
     ]);
   });
 
-  it("skips missing and unplayable exercises without gaps in positions", () => {
+  it("skips missing exercises without gaps in positions", () => {
     const base = learnLesson();
     const [first] = base.sections;
     const { index, section: s } = section({
       sections: [
         {
           ...first,
-          practiceIds: [
-            `${LESSON_ID}.ex.gone`,
-            `${LESSON_ID}.ex.cham`,
-            `${LESSON_ID}.ex.luyen-b`,
-          ],
+          practiceIds: [`${LESSON_ID}.ex.gone`, `${LESSON_ID}.ex.luyen-b`],
         },
       ],
     });
-    const playable = (exercise: AnyExercise) => exercise.type !== "tapRegion";
-    const practice = sectionSteps(s, index, playable).filter(
+    const practice = sectionSteps(s, index).filter(
       (step) => step.position.phase === "practice",
     );
     expect(practice).toHaveLength(1);
@@ -63,7 +55,7 @@ describe("sectionSteps", () => {
 
 describe("resumeStepIndex", () => {
   const { index, section: s } = section();
-  const steps = sectionSteps(s, index, all);
+  const steps = sectionSteps(s, index);
 
   it("finds the saved item", () => {
     expect(resumeStepIndex(steps, { phase: "practice", index: 1 })).toBe(4);

@@ -17,5 +17,5 @@ test("static content lists and serves the fixture lesson", async ({
 
   const lesson = await request.get("/content/fixture.json");
   expect(lesson.ok()).toBe(true);
-  expect((await lesson.json()).exercises).toHaveLength(11);
+  expect((await lesson.json()).exercises).toHaveLength(12);
 });

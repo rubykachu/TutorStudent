@@ -2,11 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { BigButton } from "@/components/big-button";
-import {
-  hasAnswerComponent,
-  renderAnswer,
-  renderStep,
-} from "@/exercises/answers";
+import { renderAnswer, renderStep } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
 import { OpenEndedRunner } from "@/exercises/open-ended/open-ended-runner";
@@ -21,10 +17,6 @@ type ExerciseGalleryProps = {
   exercises: readonly Exercise[];
   concepts: readonly Concept[];
 };
-
-function withAnswerUi(exercise: Exercise): exercise is BasicExercise {
-  return exercise.type !== "openEnded" && hasAnswerComponent(exercise.type);
-}
 
 export function ExerciseGallery({ exercises, concepts }: ExerciseGalleryProps) {
   const conceptById = useMemo(
@@ -46,12 +38,8 @@ export function ExerciseGallery({ exercises, concepts }: ExerciseGalleryProps) {
           </h2>
           {exercise.type === "openEnded" ? (
             <OpenEndedCard exercise={exercise} concepts={conceptById} />
-          ) : withAnswerUi(exercise) ? (
-            <ExerciseCard exercise={exercise} concepts={conceptById} />
           ) : (
-            <p className="rounded-xl border-2 border-dashed border-border p-4 text-muted-foreground">
-              chưa có giao diện
-            </p>
+            <ExerciseCard exercise={exercise} concepts={conceptById} />
           )}
         </li>
       ))}

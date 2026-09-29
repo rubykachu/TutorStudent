@@ -20,13 +20,12 @@ function exerciseSteps(
   ids: readonly string[],
   context: ExerciseContext,
   index: LessonIndex,
-  playable: (exercise: AnyExercise) => boolean,
 ): SectionStep[] {
-  // Ids left behind by edited content, and exercises the app cannot show,
-  // are skipped; positions count only the exercises that remain.
+  // Ids left behind by edited content are skipped; positions count only the
+  // exercises that remain.
   const exercises = ids.flatMap((id) => {
     const exercise = index.exerciseById.get(id)?.exercise;
-    return exercise && playable(exercise) ? [exercise] : [];
+    return exercise ? [exercise] : [];
   });
   return exercises.map((exercise, i) => ({
     kind: "exercise",
@@ -41,7 +40,6 @@ function exerciseSteps(
 export function sectionSteps(
   section: Section,
   index: LessonIndex,
-  playable: (exercise: AnyExercise) => boolean,
 ): SectionStep[] {
   return [
     ...section.blocks.map(
@@ -51,8 +49,8 @@ export function sectionSteps(
         block,
       }),
     ),
-    ...exerciseSteps(section.checkIds, "check", index, playable),
-    ...exerciseSteps(section.practiceIds, "practice", index, playable),
+    ...exerciseSteps(section.checkIds, "check", index),
+    ...exerciseSteps(section.practiceIds, "practice", index),
     {
       kind: "recap",
       position: { phase: "recap", index: 0 },

@@ -17,7 +17,6 @@ import {
   type OpenEndedResult,
   OpenEndedRunner,
 } from "@/exercises/open-ended/open-ended-runner";
-import { isPlayable, playableOpenEnded } from "@/exercises/playable";
 import {
   resumeStepIndex,
   type SectionStep,
@@ -59,10 +58,7 @@ export function SectionPlayer({
   initialPosition,
 }: SectionPlayerProps) {
   const { lesson } = index;
-  const steps = useMemo(
-    () => sectionSteps(section, index, isPlayable),
-    [section, index],
-  );
+  const steps = useMemo(() => sectionSteps(section, index), [section, index]);
   const [stepIndex, setStepIndex] = useState(() =>
     resumeStepIndex(steps, initialPosition),
   );
@@ -267,12 +263,11 @@ function StepView({
             {EXERCISE_LABELS[context]}
           </p>
           {exercise.type === "openEnded" ? (
-            <OpenEndedStep
+            <OpenEndedRunner
               exercise={exercise}
-              index={index}
-              onDone={(playable, result) =>
-                onOpenEndedDone(playable, context, result)
-              }
+              renderStep={renderStep}
+              concepts={conceptById}
+              onDone={(result) => onOpenEndedDone(exercise, context, result)}
             />
           ) : (
             <ExerciseFrame
@@ -289,26 +284,6 @@ function StepView({
       );
     }
   }
-}
-
-function OpenEndedStep({
-  exercise,
-  index,
-  onDone,
-}: {
-  exercise: OpenEndedExercise;
-  index: LessonIndex;
-  onDone: (exercise: OpenEndedExercise, result: OpenEndedResult) => void;
-}) {
-  const playable = useMemo(() => playableOpenEnded(exercise), [exercise]);
-  return (
-    <OpenEndedRunner
-      exercise={playable}
-      renderStep={renderStep}
-      concepts={index.conceptById}
-      onDone={(result) => onDone(playable, result)}
-    />
-  );
 }
 
 function SectionDone({

@@ -1,19 +1,18 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { TapTextAnswer } from "@/exercises/tap-text";
 import type { Hints, TapTextExercise } from "@/schema/content";
+import { NO_HINTS } from "./helpers";
 import {
   checkAnswer,
   checkButton,
   feedbackVisual,
-  HINT_VISUALS,
-  litWrapper,
-  NO_HINTS,
+  highlightOf,
   next,
-  renderInFrame,
-  retype,
+  renderExercise,
   revealed,
-} from "./frame-harness";
+  startRetype,
+  VISUAL_HINTS,
+} from "./render";
 
 const SENTENCES = {
   s1: "Lan bị ốm.",
@@ -50,9 +49,7 @@ function tapTextExercise(hints: Hints = NO_HINTS): TapTextExercise {
 
 function renderTapText(hints: Hints = NO_HINTS) {
   const exercise = tapTextExercise(hints);
-  return renderInFrame(exercise, (slot) => (
-    <TapTextAnswer exercise={exercise} {...slot} />
-  ));
+  return renderExercise(exercise);
 }
 
 function sentence(id: keyof typeof SENTENCES): HTMLElement {
@@ -127,7 +124,7 @@ describe("TapTextAnswer", () => {
     tap("s3");
     expect(sentence("s3")).toHaveAttribute("aria-pressed", "false");
 
-    retype();
+    startRetype();
     expect(revealed(container)).toBeNull();
     expect(sentence("s2")).toHaveAttribute("aria-pressed", "false");
     tap("s2");
@@ -141,7 +138,7 @@ describe("TapTextAnswer", () => {
   });
 
   it("plays hint and solution visuals instead of the fallbacks", () => {
-    const { frame, container } = renderTapText(HINT_VISUALS);
+    const { frame, container } = renderTapText(VISUAL_HINTS);
     tap("s3");
     checkAnswer();
     checkAnswer();
@@ -154,6 +151,6 @@ describe("TapTextAnswer", () => {
     ).not.toBeNull();
     expect(revealed(container)).toBeNull();
     expect(sentence("s3")).toHaveAttribute("aria-pressed", "true");
-    expect(litWrapper(sentence("s2"))).toBeNull();
+    expect(highlightOf(sentence("s2"))).toBeNull();
   });
 });

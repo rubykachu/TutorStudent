@@ -1,6 +1,5 @@
 import { fireEvent } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { MatchAnswer } from "@/exercises/match";
 import {
   leftOf,
   pairItems,
@@ -8,18 +7,18 @@ import {
   unpairLeft,
 } from "@/exercises/match/pairs";
 import type { Hints, MatchExercise } from "@/schema/content";
+import { NO_HINTS } from "./helpers";
 import {
   checkAnswer,
   checkButton,
   feedbackVisual,
-  HINT_VISUALS,
-  litWrapper,
-  NO_HINTS,
+  highlightOf,
   next,
-  renderInFrame,
-  retype,
+  renderExercise,
   revealed,
-} from "./frame-harness";
+  startRetype,
+  VISUAL_HINTS,
+} from "./render";
 
 function text(id: string, value: string) {
   return { id, content: { type: "text" as const, text: value } };
@@ -45,9 +44,7 @@ function matchExercise(hints: Hints = NO_HINTS): MatchExercise {
 
 function renderMatch(hints: Hints = NO_HINTS) {
   const exercise = matchExercise(hints);
-  return renderInFrame(exercise, (slot) => (
-    <MatchAnswer exercise={exercise} {...slot} />
-  ));
+  return renderExercise(exercise);
 }
 
 function item(id: string): HTMLElement {
@@ -162,17 +159,17 @@ describe("MatchAnswer", () => {
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(litWrapper(item("hai-ba"))).not.toBeNull();
-    expect(litWrapper(item("nam"))).not.toBeNull();
+    expect(highlightOf(item("hai-ba"))).not.toBeNull();
+    expect(highlightOf(item("nam"))).not.toBeNull();
     // Never the right item the child should have chosen, nor correct pairs.
-    expect(litWrapper(item("sau"))).toBeNull();
-    expect(litWrapper(item("hai-bon"))).toBeNull();
-    expect(litWrapper(item("tam"))).toBeNull();
+    expect(highlightOf(item("sau"))).toBeNull();
+    expect(highlightOf(item("hai-bon"))).toBeNull();
+    expect(highlightOf(item("tam"))).toBeNull();
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(container.querySelector("[data-feedback-visual]")).toBeNull();
-    expect(litWrapper(item("nam"))).toHaveAttribute("data-highlight-strong");
+    expect(highlightOf(item("nam"))).toHaveAttribute("data-highlight-strong");
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
@@ -182,7 +179,7 @@ describe("MatchAnswer", () => {
     expect(badge("nam")).toBe("");
     expect(item("hai-ba")).toBeDisabled();
 
-    retype();
+    startRetype();
     expect(revealed(container)).toBeNull();
     expect(badge("sau")).toBe("");
     expect(checkButton()).toBeDisabled();
@@ -198,13 +195,13 @@ describe("MatchAnswer", () => {
   });
 
   it("plays hint and solution visuals instead of the fallbacks", () => {
-    const { frame, container } = renderMatch(HINT_VISUALS);
+    const { frame, container } = renderMatch(VISUAL_HINTS);
     pair("hai-ba", "tam");
     checkAnswer();
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(feedbackVisual(container, "fixture.visual.dot-grid")).not.toBeNull();
-    expect(litWrapper(item("tam"))).not.toHaveAttribute(
+    expect(highlightOf(item("tam"))).not.toHaveAttribute(
       "data-highlight-strong",
     );
     checkAnswer();
@@ -223,7 +220,7 @@ describe("MatchAnswer", () => {
     });
     pair("hai-ba", "tam");
     checkAnswer();
-    const wrapper = litWrapper(item("sau"));
+    const wrapper = highlightOf(item("sau"));
     expect(wrapper?.querySelector(".border-concept-pink")).not.toBeNull();
   });
 

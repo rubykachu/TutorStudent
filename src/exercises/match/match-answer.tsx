@@ -15,9 +15,9 @@ import { type ReactNode, useId, useState } from "react";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { MatchInput } from "@/exercises/input";
+import { ItemContent } from "@/exercises/item-content";
 import type { Item, MatchExercise } from "@/schema/content";
 import { Highlight } from "@/visuals/shared/highlight";
-import { ItemContent } from "./item-content";
 import {
   type Armed,
   leftOf,
@@ -27,8 +27,9 @@ import {
   tapItem,
 } from "./pairs";
 
-export type MatchAnswerProps = AnswerSlotProps<MatchInput> & {
+export type MatchAnswerProps = {
   exercise: MatchExercise;
+  slot: AnswerSlotProps<MatchInput>;
 };
 
 // A press has to travel this far before it becomes a drag, so a plain tap
@@ -207,14 +208,8 @@ function RightItem({
 
 // Drag a left item onto a right item, or tap one and then the other. Right
 // items without a pair in the answer are distractors and look like the rest.
-export function MatchAnswer({
-  exercise,
-  value,
-  onChange,
-  disabled,
-  highlight,
-  reveal,
-}: MatchAnswerProps) {
+export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
+  const { value, onChange, disabled, highlight, reveal } = slot;
   const [armedItem, setArmedItem] = useState<Armed | null>(null);
   const dndId = useId();
   const sensors = useSensors(

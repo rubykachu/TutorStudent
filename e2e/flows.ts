@@ -42,6 +42,24 @@ async function sortItems(exercise: Locator, ids: string[]) {
   }
 }
 
+// Pairs match items by tapping the left item, then its right partner.
+export async function pairItems(
+  exercise: Locator,
+  pairs: [left: string, right: string][],
+) {
+  for (const [left, right] of pairs) {
+    await exercise.locator(`[data-side="left"][data-item="${left}"]`).tap();
+    await exercise.locator(`[data-side="right"][data-item="${right}"]`).tap();
+  }
+}
+
+async function tapTimes(exercise: Locator, name: string, times: number) {
+  const button = exercise.getByRole("button", { name });
+  // The visual loads on first use.
+  await button.waitFor();
+  for (let i = 0; i < times; i++) await button.tap();
+}
+
 type Answerer = (exercise: Locator) => Promise<void>;
 
 // Known answers of the fixture exercises: `right` enters the correct answer,
@@ -52,6 +70,27 @@ export const FIXTURE_ANSWERS: Record<
 > = {
   "fixture.ex.chon-phep-nhan": {
     right: (ex) => ex.locator('[data-option="a"]').tap(),
+  },
+  "fixture.ex.cham-hinh-tron": {
+    right: (ex) => ex.locator('[data-region="circle"]').tap(),
+  },
+  "fixture.ex.ghep-phep-nhan": {
+    right: (ex) =>
+      pairItems(ex, [
+        ["hai-nhan-ba", "sau"],
+        ["bon-nhan-hai", "tam"],
+      ]),
+  },
+  "fixture.ex.tao-sau-cham": {
+    right: (ex) => tapTimes(ex, "Thêm một chấm", 6),
+  },
+  "fixture.ex.xep-hinh-vuong": {
+    // A 3 × 3 square in the top-left corner of the 5 × 5 board.
+    right: async (ex) => {
+      for (const cell of [0, 1, 2, 5, 6, 7, 10, 11, 12]) {
+        await ex.locator(`[data-cell="${cell}"]`).tap();
+      }
+    },
   },
   "fixture.ex.dem-cham": {
     right: (ex) => pad(ex, ["6"]),

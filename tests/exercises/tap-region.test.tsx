@@ -1,19 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { TapRegionAnswer } from "@/exercises/tap-region";
 import type { Hints, TapRegionExercise } from "@/schema/content";
 import Shapes from "@/visuals/_fixture/shapes";
+import { NO_HINTS } from "./helpers";
 import {
   checkAnswer,
   checkButton,
   feedbackVisual,
-  HINT_VISUALS,
-  NO_HINTS,
   next,
-  renderInFrame,
-  retype,
+  renderExercise,
   revealed,
-} from "./frame-harness";
+  startRetype,
+  VISUAL_HINTS,
+} from "./render";
 
 const NAMES = {
   circle: "Hình tròn",
@@ -38,9 +37,7 @@ function tapRegionExercise(hints: Hints = NO_HINTS): TapRegionExercise {
 // The visual loads lazily, so the first query waits for it.
 async function renderTapRegion(hints: Hints = NO_HINTS) {
   const exercise = tapRegionExercise(hints);
-  const view = renderInFrame(exercise, (slot) => (
-    <TapRegionAnswer exercise={exercise} {...slot} />
-  ));
+  const view = renderExercise(exercise);
   await screen.findByRole("button", { name: NAMES.circle });
   return view;
 }
@@ -114,7 +111,7 @@ describe("TapRegionAnswer", () => {
     expect(region("circle")).toHaveClass("stroke-correct");
     expect(region("square")).toHaveAttribute("aria-pressed", "false");
 
-    retype();
+    startRetype();
     expect(revealed(container)).toBeNull();
     expect(region("circle")).toHaveAttribute("aria-pressed", "false");
     tap("circle");
@@ -139,7 +136,7 @@ describe("TapRegionAnswer", () => {
   });
 
   it("plays hint and solution visuals instead of the fallbacks", async () => {
-    const { frame, container } = await renderTapRegion(HINT_VISUALS);
+    const { frame, container } = await renderTapRegion(VISUAL_HINTS);
     tap("triangle");
     checkAnswer();
     checkAnswer();

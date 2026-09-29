@@ -9,8 +9,9 @@ import { toggleId } from "@/exercises/selection";
 import type { TapTextExercise } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 
-export type TapTextAnswerProps = AnswerSlotProps<TapTextInput> & {
+export type TapTextAnswerProps = {
   exercise: TapTextExercise;
+  slot: AnswerSlotProps<TapTextInput>;
 };
 
 // Sentences of every passage block in the prompt, which the frame leaves for
@@ -93,14 +94,8 @@ function Sentence({
 }
 
 // The passage as tappable sentences: a tap selects or clears a whole sentence.
-export function TapTextAnswer({
-  exercise,
-  value,
-  onChange,
-  disabled,
-  highlight,
-  reveal,
-}: TapTextAnswerProps) {
+export function TapTextAnswer({ exercise, slot }: TapTextAnswerProps) {
+  const { value, onChange, disabled, highlight, reveal } = slot;
   const own = value?.selected ?? [];
   const selected = new Set(reveal ? exercise.answer : own);
   const answer = new Set(exercise.answer);

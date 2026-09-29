@@ -5,6 +5,7 @@ import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { ChoiceInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
+import { toggleId } from "@/exercises/selection";
 import type { ChoiceExercise } from "@/schema/content";
 
 type ChoiceAnswerProps = {
@@ -17,10 +18,7 @@ function nextSelection(
   selected: readonly string[],
   id: string,
 ): string[] {
-  if (!exercise.multiple) return [id];
-  return selected.includes(id)
-    ? selected.filter((s) => s !== id)
-    : [...selected, id];
+  return exercise.multiple ? toggleId(selected, id) : [id];
 }
 
 export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {

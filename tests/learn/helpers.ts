@@ -3,7 +3,6 @@ import type {
   ChoiceExercise,
   Lesson,
   OpenEndedExercise,
-  TapRegionExercise,
 } from "@/schema/content";
 
 // A small lesson for the section player: one note block and one formula, a
@@ -33,17 +32,6 @@ export function choice(
     multiple: false,
   };
 }
-
-export const tapRegion: TapRegionExercise = {
-  id: `${LESSON_ID}.ex.cham`,
-  type: "tapRegion",
-  cardIds: [CARD_A],
-  prompt: [{ type: "note", text: "Chạm hình tròn" }],
-  hints: { highlight: [] },
-  difficulty: 1,
-  visualId: "fixture.visual.shapes",
-  answer: ["circle"],
-};
 
 export const openEnded: OpenEndedExercise = {
   id: `${LESSON_ID}.ex.viet`,
@@ -93,7 +81,6 @@ export function learnLesson(overrides: Partial<Lesson> = {}): Lesson {
       choice("kiem-tra", [], "Câu kiểm tra"),
       choice("luyen-a", [CARD_A], "Câu luyện A"),
       choice("luyen-b", [CARD_B], "Câu luyện B"),
-      tapRegion,
       openEnded,
     ],
     sticker: { name: "Ngôi sao", visualId: "fixture.visual.star-sticker" },

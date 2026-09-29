@@ -10,7 +10,6 @@ import {
   lessonContentUrl,
   practiceExerciseIds,
   summarizeLesson,
-  withExercises,
 } from "@/content/index";
 import { type Lesson, LessonSchema } from "@/schema/content";
 import { fixtureContent, fixtureFile } from "./helpers";
@@ -113,19 +112,6 @@ describe("summarizeLesson", () => {
       ],
       cardCount: 3,
     });
-  });
-});
-
-describe("withExercises", () => {
-  it("drops rejected exercises from the card lookup only", () => {
-    const index = indexLesson(fixtureLesson());
-    const kept = withExercises(index, (e) => e.type === "numeric");
-    expect(kept.exerciseIdsByCard.get("fixture.card.nhan-lap")).toEqual([
-      "fixture.ex.dem-cham",
-    ]);
-    // A card with nothing left disappears from the lookup.
-    expect(kept.exerciseIdsByCard.has("fixture.card.doc-hieu")).toBe(false);
-    expect(kept.exerciseById).toBe(index.exerciseById);
   });
 });
 

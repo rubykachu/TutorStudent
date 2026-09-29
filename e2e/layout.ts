@@ -14,7 +14,9 @@ const MIN_TOUCH_PX = 48;
 // Sub-pixel layout can put a 48px box at 47.99px.
 const ROUNDING_PX = 0.5;
 
-// Every visible interactive element is at least 48×48.
+// Every visible interactive element is at least 48×48. Sentences tapped
+// inside running text are the design-system exception: they wrap like prose,
+// so each of their lines must be at least 48px tall instead.
 export async function expectTouchTargets(page: Page) {
   const { checked, tooSmall } = await page.evaluate(
     ({ min }) => {
@@ -33,7 +35,11 @@ export async function expectTouchTargets(page: Page) {
       return {
         checked: visible.length,
         tooSmall: visible
-          .filter(({ box }) => box.width < min || box.height < min)
+          .filter(({ el, box }) =>
+            el.hasAttribute("data-sentence")
+              ? Number.parseFloat(getComputedStyle(el).lineHeight) < min
+              : box.width < min || box.height < min,
+          )
           .map(
             ({ el, box }) =>
               `${Math.round(box.width)}×${Math.round(box.height)} ${el.outerHTML.slice(0, 120)}`,

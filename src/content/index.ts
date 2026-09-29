@@ -131,24 +131,6 @@ export function summarizeLesson(lesson: Lesson): LessonSummary {
   };
 }
 
-// Keeps only the exercises `keep` accepts in the card -> exercises lookup, so
-// review never picks an exercise the app cannot show (e.g. a type whose
-// answer UI does not exist yet). Other lookups stay complete.
-export function withExercises(
-  index: LessonIndex,
-  keep: (exercise: AnyExercise) => boolean,
-): LessonIndex {
-  const exerciseIdsByCard = new Map<string, string[]>();
-  for (const [cardId, ids] of index.exerciseIdsByCard) {
-    const kept = ids.filter((id) => {
-      const entry = index.exerciseById.get(id);
-      return entry !== undefined && keep(entry.exercise);
-    });
-    if (kept.length > 0) exerciseIdsByCard.set(cardId, kept);
-  }
-  return { ...index, exerciseIdsByCard };
-}
-
 // Every served lesson is emitted whole as a static file at this URL.
 export const CONTENT_BASE_URL = "/content";
 

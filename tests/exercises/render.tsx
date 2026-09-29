@@ -2,14 +2,22 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, vi } from "vitest";
 import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
-import type { BasicExercise, Hints } from "@/schema/content";
+import type { BasicExercise, Concept, Hints } from "@/schema/content";
+
+// Concepts a test exercise may colour its hints with.
+export const CONCEPTS: ReadonlyMap<string, Concept> = new Map([
+  [
+    "test.concept.nhan-vat",
+    { id: "test.concept.nhan-vat", name: "Nhân vật", color: "pink" },
+  ],
+]);
 
 // Renders an exercise exactly as the app does: the real frame around the
 // registered answer component.
 export function renderExercise<E extends BasicExercise>(exercise: E) {
   const onDone = vi.fn();
   const view = render(
-    <ExerciseFrame exercise={exercise} onDone={onDone}>
+    <ExerciseFrame exercise={exercise} concepts={CONCEPTS} onDone={onDone}>
       {(slot) => renderAnswer(exercise, slot)}
     </ExerciseFrame>,
   );
@@ -28,6 +36,18 @@ export function checkAnswer() {
 
 export function startRetype() {
   fireEvent.click(screen.getByRole("button", { name: "Tự làm lại" }));
+}
+
+export function next() {
+  fireEvent.click(screen.getByRole("button", { name: /Tiếp/ }));
+}
+
+export function feedbackVisual(container: HTMLElement, id: string) {
+  return container.querySelector(`[data-feedback-visual="${id}"]`);
+}
+
+export function revealed(container: HTMLElement) {
+  return container.querySelector("[data-reveal]");
 }
 
 export function tap(name: string | RegExp) {
