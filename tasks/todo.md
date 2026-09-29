@@ -113,7 +113,7 @@ Chuẩn skill. Luôn chạy trong subagent mới; checklist khớp nguồn / đ�
 - Size: M
 
 ## 14. Skill `lesson-author` + `lesson-visual` + `CLAUDE.md`
-Chuẩn skill (frontmatter `name`, `description` có câu kích hoạt tiếng Việt; `references/`, `templates/`, `scripts/`). `lesson-author`: đọc `sources/`, biên soạn lại (không chép SGK trừ văn bản đọc hiểu), chia phần ~8 phút, số lượng tối thiểu, chia nhỏ câu hỏi mở, `sourceRef`, id bất biến, `content:check --stats` + `content:lock`. `lesson-visual`: primitive, màu khái niệm, reduced-motion, `interactive`, `visual:shot` và tự xem ảnh. Trỏ tới schema, không chép. `CLAUDE.md` (giữ `@AGENTS.md`): kiến trúc, lệnh, ranh giới.
+Chuẩn skill (frontmatter `name`, `description` có câu kích hoạt tiếng Việt; `references/`, `templates/`, `scripts/`). `lesson-author`: đọc `sources/`, biên soạn lại (không chép SGK trừ văn bản đọc hiểu), chia phần ~8 phút, số lượng tối thiểu, chia nhỏ câu hỏi mở, `sourceRef`, id bất biến, `content:check --stats` + `content:lock`. `lesson-visual`: primitive, màu khái niệm (tô cả ký hiệu trong công thức, vd cơ số cũng xanh như chú thích ● Cơ số — không chỉ số mũ), reduced-motion, `interactive`, `visual:shot` và tự xem ảnh. Trỏ tới schema, không chép. `CLAUDE.md` (giữ `@AGENTS.md`): kiến trúc, lệnh, ranh giới.
 - Acceptance: không bản sao schema; mọi đường dẫn tồn tại; grep sạch tham chiếu tạm (`§`, mã task, "Phase", emoji trạng thái).
 - Verify: đọc lại; dùng thật ở task 15.
 - Files: `.claude/skills/{lesson-author,lesson-visual}/**`, `CLAUDE.md`.

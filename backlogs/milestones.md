@@ -26,3 +26,6 @@ Tiêu chí hoàn thành của từng mốc nằm ở `docs/spec.md`, mục "Tiê
 - Chốt domain cho bucket media (Cloudflare) hay tạm `r2.dev`.
 - Skill `lesson-video`: kịch bản → TTS → mlx-whisper → HyperFrames → ffmpeg 720p → clip theo card → upload (hỏi trước) → ghi `Video` vào `lesson.json`.
 - Video đầu tiên: luỹ thừa qua bàn cờ.
+
+## Ý tưởng chờ bàn (chưa chốt)
+- Bài tập bổ trợ ngoài sách giáo khoa cho từng môn, cùng phong cách hướng dẫn và luyện tập. Nhu cầu thực tế: trẻ lớp 6 vẫn sai phép nhân/chia đã học ở tiểu học, không thuộc bài nào của lớp 6. Hướng đã nêu để cân nhắc: mạch "Nền tảng" theo môn (dùng lại toàn bộ hệ thống bài học), bài tập sinh số tự động cho phép tính, bài kiểm tra đầu vào tìm kỹ năng hổng. Chưa quyết cách tổ chức cho các môn khác.
