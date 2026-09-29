@@ -7,6 +7,15 @@ import {
   solveSquareOf,
   squareOf,
 } from "@/visuals/_fixture/dot-square-validators";
+import { grainsEqual, solveGrainsEqual } from "@/visuals/math/luy-thua/grains";
+import {
+  exponentDifference,
+  exponentSum,
+  powerIs,
+  solveExponentDifference,
+  solveExponentSum,
+  solvePowerIs,
+} from "@/visuals/math/luy-thua/validators";
 
 // State an interactive visual reports while the child manipulates it.
 export type VisualState = Record<string, number>;
@@ -78,7 +87,175 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => import("@/visuals/_fixture/bead-merge"),
   },
+  "luy-thua.visual.ban-co": {
+    interactive: true,
+    validators: { "so-hat": grainsEqual },
+    solutions: { "so-hat": solveGrainsEqual },
+    load: () => import("@/visuals/math/luy-thua/ban-co"),
+  },
+  "luy-thua.visual.la-gi": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/la-gi"),
+  },
+  "luy-thua.visual.cac-phan": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/cac-phan"),
+  },
+  "luy-thua.visual.tao-luy-thua": {
+    interactive: true,
+    validators: { "luy-thua-la": powerIs },
+    solutions: { "luy-thua-la": solvePowerIs },
+    load: () => import("@/visuals/math/luy-thua/tao-luy-thua"),
+  },
+  "luy-thua.visual.cham-luy-thua": {
+    interactive: false,
+    regions: ["base", "exponent"],
+    load: () => import("@/visuals/math/luy-thua/cham-luy-thua"),
+  },
+  "luy-thua.visual.binh-phuong-lap-phuong": {
+    interactive: true,
+    validators: { "luy-thua-la": powerIs },
+    solutions: { "luy-thua-la": solvePowerIs },
+    load: () => import("@/visuals/math/luy-thua/binh-phuong-lap-phuong"),
+  },
+  "luy-thua.visual.tom-tat-hinh": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/tom-tat-hinh"),
+  },
+  "luy-thua.visual.tinh-2-mu-5": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(2, 5, "solution")),
+  },
+  "luy-thua.visual.tinh-3-mu-4-goi-y": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(3, 4, "hint")),
+  },
+  "luy-thua.visual.tinh-3-mu-4": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(3, 4, "solution")),
+  },
+  "luy-thua.visual.tinh-4-mu-3-goi-y": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(4, 3, "hint")),
+  },
+  "luy-thua.visual.tinh-8-mu-2-goi-y": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(8, 2, "hint")),
+  },
+  "luy-thua.visual.tinh-10-mu-3-goi-y": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(10, 3, "hint")),
+  },
+  "luy-thua.visual.tinh-5-mu-3-goi-y": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(5, 3, "hint")),
+  },
+  "luy-thua.visual.phan-tich": {
+    interactive: false,
+    load: () =>
+      lessonExample((m) =>
+        m.factorList([
+          { base: 5, exponent: 2 },
+          { base: 2, exponent: 3 },
+          { base: 2, exponent: 4 },
+          { base: 3, exponent: 2 },
+        ]),
+      ),
+  },
+  "luy-thua.visual.phan-tich-binh-phuong": {
+    interactive: false,
+    load: () =>
+      lessonExample((m) =>
+        m.factorList([
+          { base: 7, exponent: 2 },
+          { base: 3, exponent: 2 },
+          { base: 5, exponent: 2 },
+        ]),
+      ),
+  },
+  "luy-thua.visual.phan-tich-luy-thua-10": {
+    interactive: false,
+    load: () =>
+      lessonExample((m) =>
+        m.factorList([
+          { base: 10, exponent: 4 },
+          { base: 10, exponent: 2 },
+          { base: 10, exponent: 3 },
+        ]),
+      ),
+  },
+  "luy-thua.visual.so-mu-1": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/so-mu-1"),
+  },
+  "luy-thua.visual.tinh-4-mu-3": {
+    interactive: false,
+    load: () => lessonExample((m) => m.repeatedProduct(4, 3, "solution")),
+  },
+  "luy-thua.visual.nhan-hai-luy-thua": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/nhan-hai-luy-thua"),
+  },
+  "luy-thua.visual.ghep-luy-thua": {
+    interactive: true,
+    validators: { "tong-so-mu": exponentSum },
+    solutions: { "tong-so-mu": solveExponentSum },
+    load: () => import("@/visuals/math/luy-thua/ghep-luy-thua"),
+  },
+  "luy-thua.visual.chia-hai-luy-thua": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/chia-hai-luy-thua"),
+  },
+  "luy-thua.visual.so-mu-0": {
+    interactive: false,
+    load: () => lessonExample((m) => m.zeroExponent("solution")),
+  },
+  "luy-thua.visual.so-mu-0-goi-y": {
+    interactive: false,
+    load: () => lessonExample((m) => m.zeroExponent("hint")),
+  },
+  "luy-thua.visual.so-mu-an-3": {
+    interactive: false,
+    load: () => lessonExample((m) => m.hiddenExponentOne(3, [4, 1])),
+  },
+  "luy-thua.visual.so-mu-an-10": {
+    interactive: false,
+    load: () => lessonExample((m) => m.hiddenExponentOne(10, [2, 1, 4])),
+  },
+  "luy-thua.visual.bot-luy-thua": {
+    interactive: true,
+    validators: { "hieu-so-mu": exponentDifference },
+    solutions: { "hieu-so-mu": solveExponentDifference },
+    load: () => import("@/visuals/math/luy-thua/bot-luy-thua"),
+  },
+  "luy-thua.visual.luy-thua-cua-10": {
+    interactive: true,
+    validators: { "luy-thua-la": powerIs },
+    solutions: { "luy-thua-la": solvePowerIs },
+    load: () => import("@/visuals/math/luy-thua/luy-thua-cua-10"),
+  },
+  "luy-thua.visual.tach-so": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/tach-so"),
+  },
+  "luy-thua.visual.tong-hang-5-247": {
+    interactive: false,
+    load: () => lessonExample((m) => m.placeValueSum(5247)),
+  },
+  "luy-thua.visual.sticker": {
+    interactive: false,
+    load: () => import("@/visuals/math/luy-thua/sticker"),
+  },
 };
+
+type LessonExamples = typeof import("@/visuals/math/luy-thua/examples");
+
+// Worked examples that share one component with different numbers.
+async function lessonExample(
+  pick: (examples: LessonExamples) => ComponentType<VisualProps>,
+): Promise<{ default: ComponentType<VisualProps> }> {
+  return { default: pick(await import("@/visuals/math/luy-thua/examples")) };
+}
 
 // Own keys only, so a URL like /dev/visuals/constructor never resolves to an
 // Object.prototype member.

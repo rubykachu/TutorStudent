@@ -1,0 +1,84 @@
+"use client";
+
+import { Fragment } from "react";
+import { formatInteger } from "@/lib/number-format";
+import { PowerText } from "@/visuals/shared/power-text";
+import { StepPlayer } from "@/visuals/shared/step-player";
+import { MATH_LINE, Reveal } from "./parts";
+
+const NUMBER = 6384;
+const DIGITS = [...String(NUMBER)].map(Number);
+// Exponent of 10 for each column, left to right: thousands … units.
+const PLACES = DIGITS.map((_, i) => DIGITS.length - 1 - i);
+// Step 0 shows the digits in their columns; each next step names one term;
+// the last step writes the whole sum.
+const SUM_STEP = DIGITS.length + 1;
+
+function PlaceValue({ exponent }: { exponent: number }) {
+  if (exponent === 0) return <span>1</span>;
+  if (exponent === 1) return <span className="text-concept-blue">10</span>;
+  return <PowerText base={10} exponent={exponent} />;
+}
+
+// One term of the sum; the units digit stands alone, as the textbook writes it.
+function Term({ digit, exponent }: { digit: number; exponent: number }) {
+  if (exponent === 0) return <span>{digit}</span>;
+  return (
+    <span className="whitespace-nowrap">
+      {digit} · <PlaceValue exponent={exponent} />
+    </span>
+  );
+}
+
+export default function TachSo() {
+  return (
+    <StepPlayer
+      steps={SUM_STEP + 1}
+      label="Viết 6 384 thành tổng theo luỹ thừa của 10"
+    >
+      {(step) => (
+        <div className="flex w-full flex-col items-center gap-5">
+          <div className="grid grid-cols-4 gap-x-2 text-center">
+            {PLACES.map((exponent) => (
+              <span
+                key={`head-${exponent}`}
+                className="rounded-t-lg bg-muted px-3 py-1 font-heading text-block font-bold md:text-block-lg"
+              >
+                <PlaceValue exponent={exponent} />
+              </span>
+            ))}
+            {DIGITS.map((digit, i) => (
+              <span
+                key={`digit-${PLACES[i]}`}
+                className="rounded-b-lg border-2 border-muted py-1 font-heading text-title font-bold md:text-title-lg"
+              >
+                {digit}
+              </span>
+            ))}
+            {DIGITS.map((digit, i) => (
+              <Reveal
+                key={`term-${PLACES[i]}`}
+                shown={step >= i + 1}
+                className="pt-2 font-heading text-body font-bold md:text-body-lg"
+              >
+                <Term digit={digit} exponent={PLACES[i] ?? 0} />
+              </Reveal>
+            ))}
+          </div>
+          <Reveal shown={step >= SUM_STEP}>
+            <p className={`${MATH_LINE} rounded-lg bg-highlight px-4 py-1`}>
+              <span className="whitespace-nowrap">{formatInteger(NUMBER)}</span>
+              <span>=</span>
+              {DIGITS.map((digit, i) => (
+                <Fragment key={`sum-${PLACES[i]}`}>
+                  {i > 0 && <span>+</span>}
+                  <Term digit={digit} exponent={PLACES[i] ?? 0} />
+                </Fragment>
+              ))}
+            </p>
+          </Reveal>
+        </div>
+      )}
+    </StepPlayer>
+  );
+}

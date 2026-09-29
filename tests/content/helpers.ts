@@ -8,9 +8,15 @@ type Json = Record<string, unknown>;
 
 // A fresh deep copy of the committed content restricted to the fixture lesson,
 // so each test can mutate it without affecting others or depending on real lessons.
+// The lock is emptied too: it lists only real lessons' ids, which would all
+// count as vanished once those lessons are filtered out.
 export function fixtureContent(): RawContent {
   const raw = structuredClone(readContentRoot(CONTENT_ROOT));
-  return { ...raw, lessons: raw.lessons.filter((l) => l.fixture) };
+  return {
+    ...raw,
+    lock: { ...raw.lock, data: { ids: [], retired: {} } },
+    lessons: raw.lessons.filter((l) => l.fixture),
+  };
 }
 
 export function fixtureFile(raw: RawContent): RawLessonFile {

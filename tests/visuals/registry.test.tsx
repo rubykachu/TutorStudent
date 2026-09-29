@@ -47,6 +47,10 @@ describe("visualRegistry", () => {
     const samples: Record<string, Record<string, number>[]> = {
       "count-equals": [{ count: 0 }, { count: 6 }],
       "square-of": [{ n: 1 }, { n: 3 }],
+      "so-hat": [{ grains: 1 }, { grains: 16 }],
+      "luy-thua-la": [{ base: 5, exponent: 3 }],
+      "tong-so-mu": [{ total: 2 }, { total: 5 }, { total: 10 }],
+      "hieu-so-mu": [{ rest: 0 }, { rest: 5 }],
     };
     for (const entry of Object.values(visualRegistry)) {
       for (const [id, solve] of Object.entries(entry.solutions ?? {})) {
