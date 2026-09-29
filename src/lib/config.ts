@@ -14,3 +14,7 @@ export const REQUIRE_OWNER_APPROVAL = false;
 // The fixture lesson is served only in dev/E2E runs that opt in explicitly.
 export const CONTENT_INCLUDE_FIXTURE: boolean =
   process.env.CONTENT_INCLUDE_FIXTURE === "1";
+
+// Progress stays on the device until family sync exists; every local record
+// still carries a family id so it can later be claimed by a real family.
+export const LOCAL_FAMILY_ID = "local";
