@@ -37,6 +37,12 @@ Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ
                                     └── 17 E2E + bố cục + kiểm skill
 ```
 
+## Thứ tự ưu tiên (điều chỉnh theo người dùng)
+Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau. Sau khi xong task 5–7:
+1. Task 10 (trang bài + player) và task 11 (ôn bài) — để có luồng học thật.
+2. Soạn bài Toán (task 15) trực tiếp, kiểm bằng `content:check` + một lượt review độc lập trong subagent; rồi người dùng dùng thử trên iPad qua LAN.
+3. Theo góp ý: sửa; sau đó task 12, 13, 14a, 14 (skill viết từ kinh nghiệm soạn bài thật), 16, 17 (E2E đầy đủ).
+
 ## Danh sách task
 
 ### Nền tảng
