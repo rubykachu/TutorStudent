@@ -6,7 +6,7 @@ import {
   isFinished,
   isRated,
   lastReviewExerciseIds,
-  ratedCount,
+  answeredCount,
   recentExerciseIds,
   startSession,
 } from "@/srs/session";
@@ -31,7 +31,7 @@ describe("review session", () => {
     expect(isFinished(session)).toBe(true);
     expect(currentItem(session)).toBeUndefined();
     expect(session.items).toHaveLength(2);
-    expect(ratedCount(session)).toBe(2);
+    expect(answeredCount(session)).toBe(2);
   });
 
   it("re-asks a missed card once at the end with another exercise", () => {
@@ -51,7 +51,8 @@ describe("review session", () => {
     session = answerCurrent(session, false, exercisesByCard, first);
     expect(isFinished(session)).toBe(true);
     expect(session.items).toHaveLength(3);
-    expect(ratedCount(session)).toBe(2);
+    // The re-ask counts: the child answered three questions.
+    expect(answeredCount(session)).toBe(3);
   });
 
   it("picks the alternative exercise at random among the others", () => {

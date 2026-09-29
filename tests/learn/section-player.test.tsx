@@ -210,8 +210,9 @@ describe("SectionPlayer", () => {
     expect(
       screen.getByText("Bạn vừa học xong “Phần một”. Giỏi lắm!"),
     ).toBeInTheDocument();
+    expect(screen.getByText("Xong 1/2 phần")).toBeInTheDocument();
     expect(
-      screen.getByText("Xong 1/2 phần — thêm 1 phần là có sticker"),
+      screen.getByText("Còn 1 phần nữa là có sticker"),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Học phần tiếp/ })).toHaveAttribute(
       "href",

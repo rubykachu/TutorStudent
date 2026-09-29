@@ -45,10 +45,10 @@ export function isRated(item: SessionItem): boolean {
   return !item.reask;
 }
 
-// Rated questions asked so far: the count shown when the session ends.
-export function ratedCount(session: ReviewSession): number {
-  return session.items.slice(0, session.current).filter((item) => isRated(item))
-    .length;
+// Questions answered so far, re-asks included: the count shown when the
+// session ends, so it matches the questions the child just went through.
+export function answeredCount(session: ReviewSession): number {
+  return Math.min(session.current, session.items.length);
 }
 
 function pickExercise(

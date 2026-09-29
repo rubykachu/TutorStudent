@@ -354,7 +354,7 @@ function SectionDone({
           </Link>
         }
       >
-        <p>{`Bạn học xong cả bài và nhận sticker “${lesson.sticker.name}”.`}</p>
+        <p className="max-w-lg text-balance">{`Bạn học xong cả bài và nhận sticker “${lesson.sticker.name}”.`}</p>
       </DoneScreen>
     );
   }
@@ -384,7 +384,7 @@ function SectionDone({
         </>
       }
     >
-      <p className="max-w-lg">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
+      <p className="max-w-lg text-balance">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
       <div
         className="flex w-full max-w-lg items-center gap-4 rounded-lg bg-surface p-4 text-left shadow-card md:p-6"
         data-sections-done={completion.doneCount}
@@ -396,9 +396,10 @@ function SectionDone({
           className="size-16 shrink-0"
         />
         <div className="flex min-w-0 flex-col gap-2">
-          <p className="font-semibold">
-            {`Xong ${completion.doneCount}/${total} phần — thêm ${left} phần là có sticker`}
-          </p>
+          {/* Two short lines instead of one long one, and "có sticker" held
+            together, so no line ever ends on a lone word. */}
+          <p className="font-semibold">{`Xong ${completion.doneCount}/${total} phần`}</p>
+          <p className="text-balance">{`Còn ${left} phần nữa là có\u00a0sticker`}</p>
           <SectionDots total={total} done={completion.doneCount} />
         </div>
       </div>

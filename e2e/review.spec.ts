@@ -66,7 +66,7 @@ test("review asks the missed card first and again at the end", async ({
   await expectNoRecap(page);
 
   await expect(
-    page.getByRole("heading", { name: "Ôn xong 2 thẻ!" }),
+    page.getByRole("heading", { name: "Ôn xong 3 câu!" }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Về bài" }).tap();
 

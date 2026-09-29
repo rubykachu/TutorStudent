@@ -98,7 +98,7 @@ describe("ReviewPlayer", () => {
     tap("Kiểm tra");
     tap("Tiếp");
 
-    expect(await screen.findByText("Ôn xong 2 thẻ!")).toBeInTheDocument();
+    expect(await screen.findByText("Ôn xong 3 câu!")).toBeInTheDocument();
     const review = (await listAttempts(db, scope)).filter(
       (a) => a.context === "review",
     );

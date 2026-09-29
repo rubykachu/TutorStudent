@@ -22,12 +22,12 @@ import type { BasicExercise, RecapBlock } from "@/schema/content";
 import { selectReview } from "@/srs/select";
 import {
   answerCurrent,
+  answeredCount,
   closeRecap,
   currentItem,
   isRated,
   lastReviewExerciseIds,
   type ReviewSession,
-  ratedCount,
   recentExerciseIds,
   startSession,
 } from "@/srs/session";
@@ -158,21 +158,23 @@ export function ReviewPlayer({
   }
 
   if (!item) {
-    const rated = ratedCount(session);
+    const answered = answeredCount(session);
     return (
       <>
         {header}
         <DoneScreen
           stepAttr={{ name: "data-review-step", value: "end" }}
-          owl={rated > 0 ? "happy" : "idle"}
-          title={rated > 0 ? `Ôn xong ${rated} thẻ!` : "Chưa có thẻ nào để ôn"}
+          owl={answered > 0 ? "happy" : "idle"}
+          title={
+            answered > 0 ? `Ôn xong ${answered} câu!` : "Chưa có thẻ nào để ôn"
+          }
           actions={
             <>
-              {rated > 0 && <BigButton onClick={onAgain}>Ôn tiếp</BigButton>}
+              {answered > 0 && <BigButton onClick={onAgain}>Ôn tiếp</BigButton>}
               <Link
                 href={lessonPath(lesson.id)}
                 className={bigButtonClassName(
-                  rated > 0 ? "secondary" : "primary",
+                  answered > 0 ? "secondary" : "primary",
                 )}
               >
                 Về bài
@@ -181,7 +183,7 @@ export function ReviewPlayer({
           }
         >
           <p className="max-w-md">
-            {rated > 0
+            {answered > 0
               ? `Bạn vừa ôn lại bài “${lesson.title}”. Giỏi lắm!`
               : "Học một phần của bài trước rồi ôn nhé."}
           </p>

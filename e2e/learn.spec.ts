@@ -48,9 +48,8 @@ test("a child learns a section, resuming where they left off", async ({
   await expect(
     page.getByRole("heading", { name: "Xong phần này!" }),
   ).toBeVisible();
-  await expect(
-    page.getByText("Xong 1/2 phần — thêm 1 phần là có sticker"),
-  ).toBeVisible();
+  await expect(page.getByText("Xong 1/2 phần")).toBeVisible();
+  await expect(page.getByText("Còn 1 phần nữa là có sticker")).toBeVisible();
   await expectNoHorizontalScroll(page);
   await page.getByRole("link", { name: "Về bài" }).tap();
   await expect(sectionLink).toHaveAttribute("data-state", "done");
