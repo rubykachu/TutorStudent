@@ -343,7 +343,15 @@
             },
             {
               "type": "formula",
-              "tex": "\\begin{gathered} \\concept{violet}{4} \\cdot 1 = \\concept{blue}{4} \\\\ \\concept{violet}{4} \\cdot 2 = \\concept{blue}{8} \\\\ \\concept{violet}{4} \\cdot 3 = \\concept{blue}{12} \\end{gathered}"
+              "tex": "\\concept{violet}{4} \\cdot 1 = \\concept{blue}{4}"
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{violet}{4} \\cdot 2 = \\concept{blue}{8}"
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{violet}{4} \\cdot 3 = \\concept{blue}{12}"
             }
           ]
         },
@@ -741,7 +749,11 @@
             },
             {
               "type": "formula",
-              "tex": "5 + 5^{2} = 5 \\cdot (1 + 5) = 5 \\cdot 6"
+              "tex": "5 + 5^{2} = 5 \\cdot (1 + 5)"
+            },
+            {
+              "type": "formula",
+              "tex": "= 5 \\cdot 6"
             }
           ]
         },
