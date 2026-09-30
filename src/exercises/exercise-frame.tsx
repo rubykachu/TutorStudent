@@ -313,8 +313,11 @@ export function ExerciseFrame<E extends BasicExercise>({
                   strokeWidth={3}
                 />
               )}
-              {/* A retype starts from a fresh answer component, not an edited one. */}
-              <div key={state.phase === "retype" ? "retype" : "first"}>
+              {/* A retype starts from a fresh answer component, not an edited
+                one. The key changes only when a retype starts, never when an
+                answer is accepted: a remount then would redraw an interactive
+                visual, which keeps its own state, back at its start. */}
+              <div key={state.retypes}>
                 {nonce !== null &&
                   children({
                     value: state.input,

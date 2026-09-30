@@ -101,6 +101,8 @@ describe("exerciseReducer", () => {
     expect(retype.phase).toBe("retype");
     expect(retype.input).toBeNull();
     expect(feedbackTier(retype)).toBe(0);
+    expect(three.retypes).toBe(0);
+    expect(retype.retypes).toBe(1);
 
     const missed = exerciseReducer(exerciseReducer(retype, pick("c")), WRONG);
     expect(missed.phase).toBe("retype");
@@ -111,6 +113,8 @@ describe("exerciseReducer", () => {
     const right = exerciseReducer(exerciseReducer(missed, pick("a")), RIGHT);
     expect(right.phase).toBe("correct");
     expect(isFirstTryCorrect(right)).toBe(false);
+    // The answer area is keyed by it: accepting must not remount it.
+    expect(right.retypes).toBe(1);
     expect(exerciseReducer(right, { type: "finish" }).phase).toBe("done");
   });
 

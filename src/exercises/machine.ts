@@ -34,6 +34,10 @@ export type MachineState<I> = {
   wrongTargets: readonly string[];
   // The last check while retyping was wrong; drives a first-tier nudge.
   retypeMissed: boolean;
+  // Times the child started over from an empty answer area after the answer
+  // was shown. Stays put through the accepting check, so whatever keys the
+  // answer area by it keeps the answer the child just entered on screen.
+  retypes: number;
 };
 
 export type MachineAction<I> =
@@ -53,6 +57,7 @@ export function initialMachineState<I>(): MachineState<I> {
     wrongCount: 0,
     wrongTargets: [],
     retypeMissed: false,
+    retypes: 0,
   };
 }
 
@@ -126,6 +131,7 @@ export function exerciseReducer<I extends ExerciseInput>(
         input: null,
         wrongTargets: [],
         retypeMissed: false,
+        retypes: state.retypes + 1,
       };
     case "finish":
       return state.phase === "correct" ? { ...state, phase: "done" } : state;
