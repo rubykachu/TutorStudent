@@ -1,12 +1,13 @@
 "use client";
 
 import { ArrowLeft, Plus } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { ProfileForm } from "@/components/profile-form";
 import { ProfilePicker } from "@/components/profile-picker";
-import { HOME_PATH } from "@/lib/routes";
+import { HOME_PATH, PARENT_PATH } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
 import {
   createProfile,
@@ -71,6 +72,12 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
           </BigButton>
         </>
       )}
+      <Link
+        href={PARENT_PATH}
+        className="mt-auto inline-flex min-h-touch items-center self-center px-4 text-caption text-muted-foreground underline underline-offset-4"
+      >
+        Phụ huynh
+      </Link>
     </main>
   );
 }

@@ -18,3 +18,5 @@ export function sectionPath(lessonId: string, sectionId: string): string {
 export function reviewPath(lessonId: string): string {
   return `${lessonPath(lessonId)}/review`;
 }
+
+export const PARENT_PATH = "/parent";

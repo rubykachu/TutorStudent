@@ -45,3 +45,29 @@ export const STREAK_REST_DAYS_PER_WEEK = 1;
 // The home owl says "good to see you again" once the child comes back after
 // at least this many Vietnam days without studying.
 export const MASCOT_WELCOME_AFTER_DAYS = 3;
+
+// Parent page PIN: digits only, entered on the device that holds the progress.
+export const PARENT_PIN_MIN_LENGTH = 4;
+export const PARENT_PIN_MAX_LENGTH = 6;
+// Wrong PINs in a row that lock the parent page, and for how long.
+export const PARENT_PIN_MAX_FAILS = 5;
+export const PARENT_PIN_LOCK_MINUTES = 15;
+// PBKDF2-SHA256 rounds for the stored PIN hash. A short PIN can never resist
+// an offline search, so this only keeps it from being read off the device;
+// it is sized to stay well under a second on an older iPad in plain JS.
+export const PARENT_PIN_HASH_ITERATIONS = 20_000;
+// How long one correct PIN keeps the parent page open (in memory only).
+export const PARENT_SESSION_MINUTES = 30;
+
+// Estimated study time, from answer timestamps: the gap to the previous
+// answer counts when it is at most this long (a longer gap is a break)...
+export const STUDY_GAP_MAX_MINUTES = 5;
+// ...and every answer counts for at least this many seconds, so the first
+// answer after a break (whose own time is unknown) is not worth nothing.
+export const STUDY_ATTEMPT_FLOOR_SECONDS = 30;
+// Days shown in the parent page's daily study time chart, ending today.
+export const PARENT_RECENT_DAYS = 7;
+// "Câu hay sai" looks at answers from this many recent days.
+export const PARENT_WRONG_WINDOW_DAYS = 14;
+// Rows in the parent page's "Thẻ hay quên" and "Câu hay sai" lists.
+export const PARENT_TOP_COUNT = 5;

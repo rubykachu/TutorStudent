@@ -153,6 +153,14 @@ Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái
 
 Biểu tượng: Lucide (SVG). Không dùng emoji làm biểu tượng giao diện.
 
+### Trang phụ huynh (`src/components/parent/`)
+
+- Người đọc là phụ huynh trên điện thoại: giọng bình tĩnh, câu ngắn, xưng "bạn" với phụ huynh, gọi trẻ là "con". Vẫn thuần tiếng Việt, cùng token chữ và vùng chạm như giao diện trẻ.
+- Lối vào: liên kết chữ nhỏ, màu phụ "Phụ huynh" ở cuối màn chọn hồ sơ; không nổi bật để trẻ không tò mò bấm.
+- Mỗi mục là một thẻ `bg-surface shadow-card` có tiêu đề khối và một dòng chú thích giải thích số liệu. Nhiều con → thanh chọn dạng segmented (avatar + tên).
+- Biểu đồ chỉ là cột bằng `div` (không thư viện biểu đồ); cột hôm nay `--color-primary`, ngày khác `primary/40`; mỗi cột có chữ số phút và nhãn cho trình đọc màn hình.
+- Được phép hiện phần trăm "còn nhớ khoảng n%" (chỉ ở trang phụ huynh, không bao giờ ở giao diện trẻ). Nhập sai PIN báo bằng chữ `--color-retry-soft-foreground`, không đỏ. `--color-destructive` chỉ cho thao tác xoá/thu hồi — hiện trang chưa có thao tác nào như vậy.
+
 ## 10. Không làm
 
 - Màu đỏ, dấu ✗ lớn, chữ "Sai rồi!" trong giao diện trẻ.

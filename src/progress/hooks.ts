@@ -1,5 +1,5 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useSyncExternalStore } from "react";
 import {
   CONTENT_BASE_URL,
   indexLesson,
@@ -334,4 +334,34 @@ export function useLesson(lessonId: string): LessonState {
     () => lessonStates.get(lessonId) ?? LESSON_LOADING,
     () => LESSON_LOADING,
   );
+}
+
+// Several lessons at once (e.g. every lesson a child has progress in), each
+// fetched through the same shared store as `useLesson`.
+export function useLessons(
+  lessonIds: readonly string[],
+): ReadonlyMap<string, LessonState> {
+  const key = lessonIds.join("\n");
+  useEffect(() => {
+    for (const id of key.split("\n")) if (id) requestLesson(id);
+  }, [key]);
+  // A string snapshot stays equal while nothing changes, which
+  // useSyncExternalStore needs; the map is rebuilt only when it changes.
+  const statuses = useSyncExternalStore(
+    subscribeLessons,
+    () =>
+      key
+        .split("\n")
+        .map((id) => lessonStates.get(id)?.status ?? "loading")
+        .join(","),
+    () => "",
+  );
+  return useMemo(() => {
+    // The map reads the store directly; `statuses` only signals a change.
+    void statuses;
+    const ids = key.split("\n").filter(Boolean);
+    return new Map(
+      ids.map((id) => [id, lessonStates.get(id) ?? LESSON_LOADING]),
+    );
+  }, [key, statuses]);
 }
