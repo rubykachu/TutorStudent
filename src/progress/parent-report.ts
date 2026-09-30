@@ -1,5 +1,6 @@
 import type { AnyExercise, LessonIndex } from "@/content";
 import {
+  FORGETTING_THRESHOLD,
   PARENT_RECENT_DAYS,
   PARENT_TOP_COUNT,
   PARENT_WRONG_WINDOW_DAYS,
@@ -180,7 +181,9 @@ export type ForgettingCard = {
   index: LessonIndex;
 };
 
-// Opened cards with the lowest predicted recall. Cards whose lesson is not
+// Opened cards the child is starting to forget (below the same threshold the
+// lesson page uses), lowest recall first. A card just learned is not "hay
+// quên", so listing it would mislead the parent. Cards whose lesson is not
 // loaded or that edited content no longer has are skipped.
 export function topForgettingCards(
   states: readonly LessonCardState[],
@@ -203,6 +206,7 @@ export function topForgettingCards(
         },
       ];
     })
+    .filter((item) => item.recall < FORGETTING_THRESHOLD)
     .sort((a, b) => a.recall - b.recall || a.cardId.localeCompare(b.cardId))
     .slice(0, count);
 }

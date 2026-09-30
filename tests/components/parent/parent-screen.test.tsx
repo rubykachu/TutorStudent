@@ -240,7 +240,9 @@ describe("ParentScreen dashboard", () => {
     expect(wrong).toHaveTextContent("Sai 2 lần trong 1 lượt làm · Bài học thử");
 
     const cards = screen.getByRole("region", { name: "Thẻ hay quên" });
-    expect(cards.querySelectorAll("[data-parent-card]")).toHaveLength(1);
+    // Everything was just practised, so nothing is below the forgetting threshold yet.
+    expect(cards.querySelectorAll("[data-parent-card]")).toHaveLength(0);
+    expect(cards).toHaveTextContent("chưa có thẻ nào con sắp quên");
 
     const writings = screen.getByRole("region", { name: "Bài viết của con" });
     await waitFor(() => expect(writings).toHaveTextContent("Viết về bạn"));

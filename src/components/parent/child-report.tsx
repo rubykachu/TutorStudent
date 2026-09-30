@@ -213,7 +213,8 @@ function LessonsProgress({
                 <Sticker
                   visualId={lesson.sticker.visualId}
                   name={lesson.sticker.name}
-                  earned={sticker}
+                  done={done}
+                  total={total}
                   className="size-12 shrink-0"
                 />
                 <div className="flex min-w-0 flex-1 flex-col gap-1">
@@ -267,8 +268,8 @@ function ForgettingCards({
     >
       {cards.length === 0 ? (
         <Empty>
-          Chưa có thẻ nào. Thẻ xuất hiện sau khi con làm phần luyện tập của một
-          bài.
+          Hiện chưa có thẻ nào con sắp quên. Thẻ sẽ hiện ở đây khi con lâu chưa
+          ôn một kiến thức đã học.
         </Empty>
       ) : (
         <ol className="flex flex-col gap-3">

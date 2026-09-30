@@ -178,7 +178,9 @@ describe("content lookups", () => {
 });
 
 describe("topForgettingCards", () => {
-  const now = new Date("2026-09-30T02:00:00Z");
+  // Long enough after the review that both an Again and a Good card have
+  // dropped below the forgetting threshold.
+  const now = new Date("2027-03-01T02:00:00Z");
   const reviewedAt = new Date("2026-09-20T02:00:00Z");
 
   function state(cardId: string, correct: boolean, lessonId = LESSON_ID) {
@@ -213,6 +215,16 @@ describe("topForgettingCards", () => {
       now,
     );
     expect(top.map((c) => c.cardId)).toEqual([CARD_B]);
+  });
+
+  it("leaves out a card the child still remembers", () => {
+    const lessons = new Map([[LESSON_ID, learnIndex()]]);
+    const top = topForgettingCards(
+      [state(CARD_B, true)],
+      lessons,
+      new Date(reviewedAt.getTime() + 60_000),
+    );
+    expect(top).toEqual([]);
   });
 
   it("keeps only the top few", () => {
