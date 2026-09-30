@@ -7,7 +7,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "6d70be20a52e49589012f682aaa396c06158e641c2ae3833ec3406520db334d8",
+  "reviewedHash": "eac0c28c40dc5fd60cc665982df129223ae277094d7fe446647dc08dd96ba237",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -2803,5 +2803,23 @@
         "model": "VieNeu-TTS v3 Turbo"
       }
     }
-  ]
+  ],
+  "overview": {
+    "hook": {
+      "text": "Một tin đồn: hôm nay một bạn kể cho hai bạn, hôm sau số bạn biết lại gấp đôi. Trên bàn cờ này, ô đầu có một hạt thóc, mỗi ô sau gấp đôi ô trước. Theo bạn, ô cuối có bao nhiêu hạt?",
+      "visualId": "luy-thua.visual.ban-co"
+    },
+    "summary": "Bài này dạy cách viết gọn tích nhiều thừa số bằng nhau, như hai nhân hai nhân hai viết là hai mũ ba. Bạn cũng học cách tính luỹ thừa, nhân và chia hai luỹ thừa cùng cơ số.",
+    "goals": [
+      "biết luỹ thừa, cơ số và số mũ là gì",
+      "đọc và tính được luỹ thừa, như ba mũ ba",
+      "nhân và chia hai luỹ thừa cùng cơ số",
+      "viết một số thành tổng các luỹ thừa của mười"
+    ],
+    "whyItMatters": "Luỹ thừa giúp bạn viết gọn một tích rất dài, như số hạt thóc ở ô cuối bàn cờ là hai mũ sáu mươi ba.",
+    "narration": {
+      "audioUrl": "narration/luy-thua/overview.m4a",
+      "vttUrl": "narration/luy-thua/overview.vtt"
+    }
+  }
 }
