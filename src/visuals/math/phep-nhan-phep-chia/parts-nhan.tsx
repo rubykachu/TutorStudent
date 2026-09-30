@@ -2,35 +2,13 @@
 
 import { Fragment, type ReactNode } from "react";
 import type { ConceptColor } from "@/schema/content";
-import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
-import { ConceptMark, ConceptShape } from "@/visuals/shared/concept-mark";
+import { ConceptShape } from "@/visuals/shared/concept-mark";
+import { Hole, Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { TIMES } from "./logic-nhan";
 
-// Pieces shared by the multiplication visuals of this lesson.
-
-// A line of maths: large, centred, wrapping between its nowrap pieces.
-export const MATH_LINE =
-  "flex flex-wrap items-baseline justify-center gap-x-2 font-heading text-block font-bold md:text-block-lg";
-
-// Text in the colour of a concept.
-export function Tint({
-  color,
-  children,
-}: {
-  color: ConceptColor;
-  children: ReactNode;
-}) {
-  return <span className={CONCEPT_CLASSES[color].text}>{children}</span>;
-}
-
-// A result still to be found: a dashed box holding "?".
-export function Hole() {
-  return (
-    <span className="inline-block min-w-10 rounded-md border-2 border-muted-foreground border-dashed px-1.5 text-center text-muted-foreground">
-      ?
-    </span>
-  );
-}
+// Pieces shared by the multiplication visuals of this lesson; the generic ones
+// (Tint, Hole, Legend, MATH_LINE) live in `shared/math-parts` and are re-exported.
+export { Hole, Legend, MATH_LINE, Tint };
 
 // "a · b" with both factors in the factor colour.
 export function Product({
@@ -112,24 +90,6 @@ export function DotBlock({
         />
       ))}
     </svg>
-  );
-}
-
-// "● Thừa số   ■ Tích": what the colours in a picture stand for.
-export function Legend({
-  items,
-}: {
-  items: readonly { color: ConceptColor; name: string }[];
-}) {
-  return (
-    <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-caption">
-      {items.map(({ color, name }) => (
-        <li key={name} className="flex items-center gap-2">
-          <ConceptMark color={color} className="size-4" />
-          {name}
-        </li>
-      ))}
-    </ul>
   );
 }
 

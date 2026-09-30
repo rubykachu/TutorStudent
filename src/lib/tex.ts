@@ -7,8 +7,17 @@ import { CONCEPT_COLORS, type ConceptColor } from "@/schema/content";
 // inside a formula is blue like the "● Cơ số" legend next to it. The colour
 // is a design-system token name, never a hex value.
 export const CONCEPT_MACRO = "\\concept";
+
+// Divisibility relations as Vietnamese textbooks print them: "a ⋮ b" reads "a
+// chia hết cho b", and the same sign struck through reads "không chia hết".
+// The content lint recognises both names (`comparisonValue`).
+export const DIVIDES_MACRO = "\\chiahet";
+export const NOT_DIVIDES_MACRO = "\\khongchiahet";
+
 export const TEX_MACROS: Readonly<Record<string, string>> = {
   [CONCEPT_MACRO]: "\\htmlData{concept=#1}{#2}",
+  [DIVIDES_MACRO]: "\\mathrel{\\vdots}",
+  [NOT_DIVIDES_MACRO]: "\\mathrel{\\not\\vdots}",
 };
 
 // The data attribute KaTeX writes for the macro above.

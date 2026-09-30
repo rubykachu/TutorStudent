@@ -1,4 +1,8 @@
-import { CONCEPT_TEX_PATTERN } from "@/lib/tex";
+import {
+  CONCEPT_TEX_PATTERN,
+  DIVIDES_MACRO,
+  NOT_DIVIDES_MACRO,
+} from "@/lib/tex";
 import type { Item } from "@/schema/content";
 
 // Evaluator for `check.expr`: numbers (decimal comma), + - · : ^ and
@@ -180,13 +184,33 @@ const COMPARISONS: [string, (a: number, b: number) => boolean][] = [
   [">", (a, b) => a > b && !sameNumber(a, b)],
 ];
 
+// Divisibility relations of formulas, the longer name first: "a \chiahet b"
+// holds when a is a multiple of b (b is never 0 in a lesson).
+const DIVISIBILITY: [string, (a: number, b: number) => boolean][] = [
+  [NOT_DIVIDES_MACRO, (a, b) => b !== 0 && a % b !== 0],
+  [DIVIDES_MACRO, (a, b) => b !== 0 && a % b === 0],
+];
+
 // Truth of an option that states one comparison between two computable
-// sides, e.g. "2^{3} \cdot 2^{2} = 2^{5}" or "3² < 10"; undefined otherwise.
+// sides, e.g. "2^{3} \cdot 2^{2} = 2^{5}", "3² < 10" or "56 \chiahet 7";
+// undefined otherwise.
 export function comparisonValue(item: Item): boolean | undefined {
   const content = item.content;
   if (content.type !== "text" && content.type !== "formula") return undefined;
   const source = content.type === "text" ? content.text : content.tex;
   const side = content.type === "text" ? textExprValue : texValue;
+  if (content.type === "formula") {
+    for (const [name, holds] of DIVISIBILITY) {
+      const parts = source.split(
+        new RegExp(`${name.replace("\\", "\\\\")}(?![a-z])`),
+      );
+      if (parts.length === 1) continue;
+      if (parts.length !== 2) return undefined;
+      const [left, right] = parts.map((part) => side(part ?? ""));
+      if (left === undefined || right === undefined) return undefined;
+      return holds(left, right);
+    }
+  }
   for (const [spelling, holds] of COMPARISONS) {
     const parts = source.split(new RegExp(`${spelling}(?![a-z])`));
     if (parts.length === 1) continue;

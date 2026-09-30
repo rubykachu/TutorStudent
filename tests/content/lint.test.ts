@@ -681,6 +681,23 @@ describe("check relations", () => {
     expect(findings(input, "check-expr")).toEqual([]);
   });
 
+  it("judges divisibility options written with the chia het signs", () => {
+    const { input, exercise } = chooser(
+      ["56 \\chiahet 7", "63 \\khongchiahet 9", "45 \\khongchiahet 6"],
+      ["a"],
+    );
+    exercise.check = { relation: "holds" };
+    expect(findings(input, "check-expr")).toMatchObject([
+      {
+        path: ["exercises", 7, "options", 2],
+        message: expect.stringContaining("is true"),
+      },
+    ]);
+    exercise.answer = ["b"];
+    exercise.check = { relation: "fails" };
+    expect(findings(input, "check-expr")).toEqual([]);
+  });
+
   it("keeps expr for equal and notEqual only", () => {
     const base = choiceExercise(
       fixtureInput().lesson,

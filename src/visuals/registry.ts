@@ -51,6 +51,16 @@ import {
   validators as nhanValidators,
 } from "@/visuals/math/phep-nhan-phep-chia/validators-nhan";
 import {
+  INTERACTIVE_KINDS as DIVISIBILITY_INTERACTIVE_KINDS,
+  LESSON_SLUG as DIVISIBILITY_SLUG,
+  VISUAL_SPECS as DIVISIBILITY_SPECS,
+  VALIDATOR_IDS as DIVISIBILITY_VALIDATOR_IDS,
+} from "@/visuals/math/quan-he-chia-het-va-tinh-chat/catalog";
+import {
+  solutions as divisibilitySolutions,
+  validators as divisibilityValidators,
+} from "@/visuals/math/quan-he-chia-het-va-tinh-chat/logic";
+import {
   pickMatches,
   solvePickMatches,
   solveXIsMember,
@@ -205,10 +215,49 @@ const congTruEntries: Record<string, VisualEntry> = Object.fromEntries(
   ]),
 );
 
+// Entries of "quan-he-chia-het-va-tinh-chat": one per item of its catalog. The
+// bag-size screen has its own validator; the pick screens reuse the set
+// lesson's "chon-dung" validator (one key per chip, 1 = picked).
+const divisibilityPickValidators = {
+  tui: divisibilityValidators.tui,
+  "chon-dung": pickMatches,
+};
+const divisibilityPickSolutions = {
+  tui: divisibilitySolutions.tui,
+  "chon-dung": solvePickMatches,
+};
+
+const divisibilityEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(DIVISIBILITY_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in DIVISIBILITY_VALIDATOR_IDS
+        ? DIVISIBILITY_VALIDATOR_IDS[
+            spec.kind as keyof typeof DIVISIBILITY_VALIDATOR_IDS
+          ]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: DIVISIBILITY_INTERACTIVE_KINDS.has(spec.kind),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: {
+              [validatorId]: divisibilityPickValidators[validatorId],
+            },
+            solutions: {
+              [validatorId]: divisibilityPickSolutions[validatorId],
+            },
+          }),
+      load: () => lessonExample(DIVISIBILITY_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${DIVISIBILITY_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...thuTuEntries,
   ...nhanChiaEntries,
   ...congTruEntries,
+  ...divisibilityEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -981,6 +1030,8 @@ const EXAMPLE_MODULES = lessonModules({
     import("@/visuals/math/thu-tu-thuc-hien-phep-tinh/examples"),
   "phep-nhan-phep-chia": () =>
     import("@/visuals/math/phep-nhan-phep-chia/examples"),
+  "quan-he-chia-het-va-tinh-chat": () =>
+    import("@/visuals/math/quan-he-chia-het-va-tinh-chat/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
