@@ -22,10 +22,11 @@ Tiêu chí hoàn thành của từng mốc nằm ở `docs/spec.md`, mục "Tiê
 - `content:check` kéo overlay từ R2; client `safeParse`; skill `content-prompt` (sinh prompt, gom overlay về git).
 
 ## Video
-- TTS mặc định: VieNeu-TTS giọng "Hải Đăng" (đã chạy thử được ở `video/spikes/vieneu/`); chuyển script thử nghiệm thành adapter `video/tts/local`.
+Đã xong (chạy trên máy, chưa upload): pipeline `pnpm video:build` (TTS `local` VieNeu "Hải Đăng", kiểm từng câu bằng mlx-whisper, HyperFrames, H.264 720p, phụ đề karaoke WebVTT, clip theo card), player trong bài và nút "Xem lại đoạn video" ở thẻ ôn, skill `lesson-video`, ba video bài Luỹ thừa (file ở `public/media/`, gitignore). Còn lại:
 - Chốt domain cho bucket media (Cloudflare) hay tạm `r2.dev`.
-- Skill `lesson-video`: kịch bản → TTS → mlx-whisper → HyperFrames → ffmpeg 720p → clip theo card → upload (hỏi trước) → ghi `Video` vào `lesson.json`.
-- Video đầu tiên: luỹ thừa qua bàn cờ.
+- Lúc go-live: upload `public/media/` lên bucket media, CORS, đặt `NEXT_PUBLIC_MEDIA_BASE_URL` (các bước ở skill `lesson-video`, mục "Lên go-live"; hỏi trước khi ghi R2).
+- Quản trị viên nghe duyệt giọng của ba video; kiểm tua và phụ đề trên iPad Safari thật.
+- Làm video cho các bài khác khi bài xuất bản, bắt đầu với bài Ngữ văn đầu tiên.
 
 ## Ý tưởng chờ bàn (chưa chốt)
 - Bài tập bổ trợ ngoài sách giáo khoa cho từng môn, cùng phong cách hướng dẫn và luyện tập. Nhu cầu thực tế: trẻ lớp 6 vẫn sai phép nhân/chia đã học ở tiểu học, không thuộc bài nào của lớp 6. Hướng đã nêu để cân nhắc: mạch "Nền tảng" theo môn (dùng lại toàn bộ hệ thống bài học), bài tập sinh số tự động cho phép tính, bài kiểm tra đầu vào tìm kỹ năng hổng. Chưa quyết cách tổ chức cho các môn khác.

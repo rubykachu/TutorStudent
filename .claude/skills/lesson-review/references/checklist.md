@@ -28,6 +28,8 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 **Rubric `openEnded` làm được ở lớp 6** và khớp đề: yêu cầu quá sức hoặc lệch đề là Nên sửa.
 
+**Lời video khớp bài.** Bài có `videos`: đọc kịch bản `video/projects/<id bài>/<tên video>/script.json` (tên video là phần cuối của id video). Câu nói sai kiến thức, hoặc câu nêu quy tắc mà khác câu quy tắc trong `note`/`caption` của bài (được đọc `aⁿ` thành "a mũ n", dấu ngoặc thành dấu phẩy, chữ cái đứng một mình thành "số a" vì TTS và Whisper hay nuốt chữ cái trơ trọi, theo `docs/spec.md` mục Video): Nghiêm trọng. Clip (`videos[].clips`) gắn vào card mà đoạn đó không giảng: Nên sửa.
+
 ## 3. Ngôn từ lớp 6
 
 **Không phủ định kép**: Nghiêm trọng. Trẻ 11 tuổi dễ hiểu ngược.
@@ -63,6 +65,8 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 **Section ngắn, một ý.** `content:check` đã chặn section quá 4 màn hay quá 4 bài tập. Section gộp hai quy tắc cần nhớ riêng (recap phải có hai câu mới đủ), hay `minutes` lệch xa số màn nhân khoảng 40 giây: Nên sửa.
 
 **Người học chậm theo kịp.** Vi phạm một luật trong mục "Sư phạm cho người học chậm" của `.claude/skills/lesson-author/SKILL.md` mà `content:check` không kiểm (ví dụ mẫu trước câu tự làm, dạy thao tác nhập trước lần dùng đầu, câu chuyện có kết, số nhỏ): Nên sửa.
+
+**Video xem được.** Walk báo FAIL ở màn video (thiếu tệp, nút phát nhỏ, không có phụ đề): Nghiêm trọng. Cảnh báo "video did not play here" trên máy không giải mã được H.264 (Chromium của walk): bỏ qua.
 
 **Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.
 

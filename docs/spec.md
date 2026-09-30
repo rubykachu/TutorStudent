@@ -190,17 +190,17 @@ Block        = visual { visualId, caption? }
              | formula { tex }
              | passage { paragraphs[], annotations[] }   # văn bản đọc hiểu, chạm được theo câu
              | note { text }                             # chữ ngắn, tối đa ~2 câu
-             | video { videoId, clipId? }
+             | video { videoId, clipId? }                # không tính vào số màn; tối đa 1 mỗi section
              | image { src, alt }                        # chỉ URL trong bucket media (SVG nạp nhanh)
 RecapBlock   = visual | formula                          # hình/công thức nhắc lại, xem nhanh được; câu cần nhớ ở `caption`
 Card         { id, sourceRef, conceptIds[], recap: RecapBlock }
 Exercise     = discriminated union theo `type` (xem "Tám dạng bài tập"), mỗi loại có:
                { id, cardIds[], prompt: Block[], hints: Hints, difficulty: 1..3 }
 Hints        { highlight: TargetRef[], hintVisualId?, solutionVisualId? }
-Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, cardIds[] }], voice }
+Video        { id, lessonId, url, vttUrl, posterUrl, durationSec, clips[{ id, start, end, cardIds[] }], voice }   # đường dẫn dưới media base
 ```
 
-- Một section dài vài phút: tối đa 4 màn giải thích (`blocks`, một `group` tính là một màn) và 4 bài tập (`checkIds` cộng `practiceIds`), rồi tới recap; ngưỡng là `MAX_SECTION_SCREENS`, `MAX_SECTION_EXERCISES` trong `src/lib/config.ts`. Bài dài hơn chia thành nhiều section, mỗi section một ý và recap một câu.
+- Một section dài vài phút: tối đa 4 màn giải thích (`blocks`, một `group` tính là một màn, khối `video` không tính — xem "Video") và 4 bài tập (`checkIds` cộng `practiceIds`), rồi tới recap; ngưỡng là `MAX_SECTION_SCREENS`, `MAX_SECTION_EXERCISES` trong `src/lib/config.ts`. Bài dài hơn chia thành nhiều section, mỗi section một ý và recap một câu.
 - Section hiện mỗi phần tử của `blocks` trên một màn. `group` gom ≥ 2 khối ngắn, tĩnh lên cùng một màn theo thứ tự: câu quy tắc (`note`, chữ thân bài) rồi ví dụ có nhãn (`formula`/`visual`/`image`). Không lồng `group`, không chứa `passage`/`video`; chỉ dùng trong `Section.blocks` (đề bài tập vốn đã hiện mọi khối trên một màn, nên chỉ số `block` của gợi ý vẫn đếm khối đề). Lint, `content:check` và review đọc được chữ trong `group` như mọi khối khác.
 - Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap là một `visual` có `caption`: câu cần nhớ nằm ở `caption`, màn recap hiện nó thành chữ thân bài phía trên ví dụ (schema còn nhận recap `formula` để bài fixture thử đường hiển thị đó; lint chặn ở bài thật).
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.
@@ -363,12 +363,15 @@ Code dùng một interface `BlobStore { get(key) → { body, etag } | null; put(
 5. Skill `content-prompt` gom overlay về `content/` trong git, thêm id vào `ids.lock`, rồi xoá khỏi R2 sau khi deploy (hỏi trước). Trong khoảng giữa, `content:check` coi overlay trùng id với git là "đã gom": cảnh báo, bản git thắng.
 
 ### 5.11 Video (bổ sung, không chặn go-live)
-- Lớp TTS chung `video/tts/`: `local` (mặc định; VieNeu-TTS v3 Turbo, Apache-2.0, chạy ONNX trên CPU bằng Python arm64 riêng của pipeline — Python mặc định của máy chạy qua Rosetta; giọng mặc định "Hải Đăng"; cách cài ở `video/spikes/vieneu/`), `gemini` (tuỳ chọn, một key), `edge` (tuỳ chọn, tắt mặc định). Mỗi video ghi `voice = { engine, voiceName, model }`; một video dùng đúng một giọng.
-- Kịch bản tránh chữ cái đơn đứng một mình (viết "số a" thay vì "a") vì TTS và Whisper hay nhầm.
-- Sau khi tổng hợp: mlx-whisper phiên âm ngược từng câu; câu lệch kịch bản (sau chuẩn hoá dấu) tự sinh lại, tối đa 3 lần, rồi báo để nghe duyệt. Giảm tốc độ đọc bằng `ffmpeg atempo` (mặc định 0.9) cho trẻ lớp 6.
-- Căn phụ đề karaoke bằng mlx-whisper (word timestamps) → WebVTT.
-- Render HyperFrames → ffmpeg H.264 720p, ≤ 10 MB/phút → cắt clip theo card → upload bucket media (hỏi trước) → ghi `Video` vào `lesson.json`.
-- Domain media: bucket public cần custom domain trên Cloudflare (URL `r2.dev` bị giới hạn tốc độ, chỉ dùng thử). Chốt trước mốc Video.
+- Mỗi video là `video/projects/<id bài>/<tên>/` gồm `script.json` (lời đọc theo cảnh, clip theo card) và `index.html` (hình HyperFrames); một lệnh `pnpm video:build <id bài> <tên>` dựng ra `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và ghi `Video` vào `lesson.json`. Thông số ở `video/config.ts`; quy trình ở skill `lesson-video`. Âm thanh trung gian và bản render nằm trong `audio/`, `renders/` của dự án (gitignore); câu đã đọc được giữ lại nên sửa hình không đọc lại.
+- Lớp TTS chung `video/tts/` (interface `TtsEngine`): hiện chỉ có `local` (mặc định; VieNeu-TTS v3 Turbo, Apache-2.0, chạy ONNX trên CPU bằng Python arm64 riêng của pipeline — Python mặc định của máy chạy qua Rosetta; giọng "Hải Đăng"; cách cài ở `video/spikes/vieneu/`). Engine khác (vd Gemini) thêm bằng một adapter khi cần. Mỗi video ghi `voice = { engine, voiceName, model }`; một video dùng đúng một giọng.
+- Kịch bản cho người học chậm: câu ngắn, câu quy tắc đúng nguyên văn câu trong bài (review kiểm), tránh chữ cái đơn đứng một mình (viết "số a" thay vì "a") vì TTS và Whisper hay nhầm.
+- Sau khi tổng hợp từng câu: giảm tốc bằng `ffmpeg atempo` 0.9, mlx-whisper phiên âm ngược; câu khớp kịch bản dưới 97% (so ký tự sau khi bỏ dấu thanh, dấu câu, đọc số thành chữ, gộp "tr"/"ch" của giọng Bắc) tự sinh lại, tối đa 3 lần, rồi báo để nghe duyệt.
+- Mốc thời gian từng chữ lấy từ mlx-whisper, gióng về chữ của kịch bản → WebVTT karaoke (mỗi chữ một mốc, `src/lib/karaoke-vtt.ts`). Phụ đề không in vào hình: app vẽ, bật sẵn, tắt được; dải dưới của hình để trống cho phụ đề.
+- Render HyperFrames 1280×720 → ffmpeg H.264 720p + AAC mono, ≤ 10 MB/phút (build dừng nếu vượt) → clip theo card là đoạn `start`–`end` trong cùng tệp (không cắt tệp riêng).
+- **Lưu trữ local trước:** `Video.url`, `vttUrl`, `posterUrl` là đường dẫn tương đối dưới `NEXT_PUBLIC_MEDIA_BASE_URL` (mặc định `/media`, tức `public/media/` do app phục vụ; thư mục này không commit). Lúc go-live: upload nguyên cây `public/media/` lên bucket media (hỏi trước), bật CORS cho domain app, đổi biến môi trường; không phải dựng lại video hay sửa `lesson.json`.
+- Phát trong app: khối `video` ở đầu phần (không tính vào số màn, tối đa một video mỗi phần); không tự phát, nút phát ≥ 64px, `playsInline`, phụ đề chữ lớn tô chữ đang đọc. Màn nhắc lại của thẻ ôn có clip thì có nút phụ "Xem lại đoạn video".
+- Domain media: bucket public cần custom domain trên Cloudflare (URL `r2.dev` bị giới hạn tốc độ, chỉ dùng thử). Chốt trước khi upload.
 
 ### 5.12 Giao diện
 Chi tiết ở `docs/design-system.md`. Tóm tắt ràng buộc:
