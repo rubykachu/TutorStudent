@@ -1,14 +1,9 @@
 "use client";
 
 import { BeadGroup } from "@/visuals/shared/bead-group";
+import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import {
-  FactorCount,
-  FactorRow,
-  MATH_LINE,
-  PowerAnatomy,
-  Reveal,
-} from "./parts";
+import { FactorCount, FactorRow, MATH_LINE, PowerAnatomy } from "./parts";
 
 const BASE = 2;
 const EXPONENT = 5;

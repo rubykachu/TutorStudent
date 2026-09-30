@@ -6,7 +6,8 @@ import type { VisualProps } from "@/visuals/registry";
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { PowerText } from "@/visuals/shared/power-text";
-import { ACTION_BUTTON, FactorCount, MATH_LINE, Reveal } from "./parts";
+import { Reveal } from "@/visuals/shared/reveal";
+import { ACTION_BUTTON, FactorCount, MATH_LINE } from "./parts";
 import { MULTIPLY_EXPONENT } from "./validators";
 
 const BASE = 2;

@@ -11,6 +11,7 @@ import {
   STATE_VALUE_ATTR,
 } from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
+import { Reveal } from "@/visuals/shared/reveal";
 
 describe("DotGrid", () => {
   it("fills the first cells and leaves the rest as empty slots", () => {
@@ -185,5 +186,38 @@ describe("formatInteger", () => {
     expect(formatInteger(999)).toBe("999");
     expect(formatInteger(1024)).toBe("1 024");
     expect(formatInteger(1000000)).toBe("1 000 000");
+  });
+});
+
+describe("Reveal", () => {
+  it("shows a dimmed placeholder row until its step, then the row itself", () => {
+    const { rerender } = render(
+      <Reveal shown={false} placeholder={<span>? · 2 = ?</span>}>
+        <span>4 · 2 = 8</span>
+      </Reveal>,
+    );
+    expect(screen.getByText("? · 2 = ?").parentElement).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+    expect(screen.queryByText("4 · 2 = 8")).toBeNull();
+    rerender(
+      <Reveal shown placeholder={<span>? · 2 = ?</span>}>
+        <span>4 · 2 = 8</span>
+      </Reveal>,
+    );
+    expect(screen.getByText("4 · 2 = 8")).toBeVisible();
+    expect(screen.queryByText("? · 2 = ?")).toBeNull();
+  });
+
+  it("keeps a row without placeholder hidden but in place", () => {
+    render(
+      <Reveal shown={false}>
+        <span>8 : 8 = 1</span>
+      </Reveal>,
+    );
+    expect(screen.getByText("8 : 8 = 1").parentElement).toHaveClass(
+      "invisible",
+    );
   });
 });

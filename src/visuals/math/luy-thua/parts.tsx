@@ -1,12 +1,10 @@
 "use client";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { motion } from "motion/react";
 import { Fragment, type ReactNode } from "react";
 import { THOUSANDS_SEPARATOR } from "@/lib/number-format";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
-import { useVisualTransition } from "@/visuals/shared/motion";
 import { PowerText } from "@/visuals/shared/power-text";
 
 // Pieces shared by the visuals of this lesson.
@@ -89,39 +87,6 @@ export const MATH_LINE =
 
 export const ACTION_BUTTON =
   "inline-flex min-h-touch items-center justify-center gap-1 whitespace-nowrap rounded-lg border-2 border-border bg-surface px-3 font-semibold md:gap-2 md:px-4 text-foreground disabled:opacity-40 motion-safe:transition-transform motion-safe:active:scale-97";
-
-// Opacity of a row that is still to come, dim enough to read as "not yet".
-const PENDING_OPACITY = 0.35;
-
-// Rows still to come keep their space, so later steps of an explainer never
-// push the earlier rows around. With a `placeholder` (the row with "?" where
-// its result will be) the row shows dimmed, so the child sees what is coming
-// instead of a blank gap; without one it is hidden, from screen readers too.
-export function Reveal({
-  shown,
-  children,
-  placeholder,
-  className = "",
-}: {
-  shown: boolean;
-  children: ReactNode;
-  placeholder?: ReactNode;
-  className?: string;
-}) {
-  const transition = useVisualTransition();
-  const pending = !shown && placeholder !== undefined;
-  return (
-    <motion.div
-      initial={false}
-      animate={{ opacity: shown ? 1 : pending ? PENDING_OPACITY : 0 }}
-      transition={transition}
-      aria-hidden={pending || undefined}
-      className={`${shown || pending ? "" : "invisible"} ${className}`}
-    >
-      {pending ? placeholder : children}
-    </motion.div>
-  );
-}
 
 // A labelled example made of several parts (a picture, lines of maths, the
 // colour legend), stacked with even space. Its sentence is the note or

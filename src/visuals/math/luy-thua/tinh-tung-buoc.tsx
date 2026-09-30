@@ -2,8 +2,9 @@
 
 import { formatInteger } from "@/lib/number-format";
 import { PowerText } from "@/visuals/shared/power-text";
+import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import { FactorRow, MATH_LINE, Reveal } from "./parts";
+import { FactorRow, MATH_LINE } from "./parts";
 
 // Computing a power one multiplication at a time, for a child who still
 // slips on multiplication tables: multiply the first two factors, then keep

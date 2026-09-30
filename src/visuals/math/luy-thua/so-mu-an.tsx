@@ -4,8 +4,9 @@ import { Fragment } from "react";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { Highlight } from "@/visuals/shared/highlight";
 import { PowerText } from "@/visuals/shared/power-text";
+import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import { MATH_LINE, Reveal } from "./parts";
+import { MATH_LINE } from "./parts";
 
 // Hint for a product with a lone factor, e.g. 3⁴ · 3: the lone 3 is 3¹, so
 // its exponent 1 joins the sum. It stops before the sum's value, which is the

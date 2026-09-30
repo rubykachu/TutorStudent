@@ -3,8 +3,9 @@
 import { Fragment } from "react";
 import { formatInteger } from "@/lib/number-format";
 import { PowerText } from "@/visuals/shared/power-text";
+import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import { MATH_LINE, Reveal, ZeroTerms } from "./parts";
+import { MATH_LINE, ZeroTerms } from "./parts";
 
 // A zero digit, as in the exercises: its term is dropped from the sum.
 const NUMBER = 6084;

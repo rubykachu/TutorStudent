@@ -2,8 +2,9 @@
 
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { PowerText } from "@/visuals/shared/power-text";
+import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import { FactorCount, FactorRow, MATH_LINE, Reveal } from "./parts";
+import { FactorCount, FactorRow, MATH_LINE } from "./parts";
 
 const BASE = 3;
 const M = 2;
