@@ -13,7 +13,13 @@
     { "term": "số hạng", "forbidden": [] },
     { "term": "tổng", "forbidden": [] },
     { "term": "hiệu", "forbidden": [] },
-    { "term": "số tự nhiên", "forbidden": [] }
+    { "term": "số tự nhiên", "forbidden": [] },
+    { "term": "phép tính làm trước", "forbidden": [], "color": "pink" },
+    { "term": "kết quả", "forbidden": [], "color": "amber" },
+    { "term": "ngoặc tròn", "forbidden": [], "color": "teal" },
+    { "term": "ngoặc vuông", "forbidden": [], "color": "sky" },
+    { "term": "ngoặc nhọn", "forbidden": [], "color": "lime" },
+    { "term": "bảng nhân", "forbidden": [], "prerequisite": "tiểu học" }
   ],
   "names": []
 }
