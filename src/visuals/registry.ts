@@ -16,6 +16,11 @@ import {
   solveExponentSum,
   solvePowerIs,
 } from "@/visuals/math/luy-thua/validators";
+import {
+  LESSON_SLUG as THU_TU_SLUG,
+  VISUAL_SPECS as THU_TU_SPECS,
+  tapRegions,
+} from "@/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog";
 
 // State an interactive visual reports while the child manipulates it.
 export type VisualState = Record<string, number>;
@@ -57,7 +62,22 @@ export type VisualEntry = VisualMeta & {
 
 export type VisualCatalog = Readonly<Record<string, VisualMeta>>;
 
+// Entries of "thu-tu-thuc-hien-phep-tinh": one per item of its catalog, the
+// pictures drawn from an expression. Only the "cùng làm" pictures, where the
+// child taps the next operation, count as interactive.
+const thuTuEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(THU_TU_SPECS).map(([key, spec]) => [
+    `${THU_TU_SLUG}.visual.${key}`,
+    {
+      interactive: spec.kind === "try",
+      ...(spec.kind === "tap" ? { regions: tapRegions(spec.source) } : {}),
+      load: () => lessonExample(THU_TU_SLUG, (m) => m.fromSpec(spec)),
+    },
+  ]),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
+  ...thuTuEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -544,6 +564,8 @@ const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 
 const EXAMPLE_MODULES = lessonModules({
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
+  "thu-tu-thuc-hien-phep-tinh": () =>
+    import("@/visuals/math/thu-tu-thuc-hien-phep-tinh/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
