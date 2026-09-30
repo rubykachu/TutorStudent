@@ -9,7 +9,9 @@ import { PowerText } from "@/visuals/shared/power-text";
 import { FactorRow, MATH_LINE, ZerosInColour } from "./parts";
 
 const BASE = 10;
-const EXPONENT = { min: 1, max: 6 } as const;
+// Up to 10⁴ only: the practice right after this screen asks for 10⁵, which
+// the child should work out by counting zeros, not read off this picture.
+const EXPONENT = { min: 1, max: 4 } as const;
 const START = 2;
 
 export default function LuyThuaCua10({
