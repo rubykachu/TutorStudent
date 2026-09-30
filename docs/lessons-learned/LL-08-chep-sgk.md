@@ -9,6 +9,7 @@
 - `tap-hop` vòng 1, `cham-phay-vi-du`: ví dụ dấu chấm phẩy chép tập hợp của SBT.
 - `phep-cong-phep-tru` vòng 1, visual `cong-ten`/`tru-ten`: ví dụ tên gọi chép 25 + 11 = 36 của SBT.
 - `luy-thua` (review ở commit `efe9635`): câu "phép nâng lên luỹ thừa" sát câu sách.
+- `phep-nhan-phep-chia` vòng 1: ví dụ tên gọi 25 · 2 = 50, 36 : 12 = 3 chép sơ đồ "Kiến thức cần nhớ" của SBT; ví dụ mẫu `ket-hop-44-25` là bài tập 1.39 b) kèm đúng lời giải sách.
 
 ## Nguyên nhân gốc
 
