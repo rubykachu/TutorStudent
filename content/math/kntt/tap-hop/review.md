@@ -1,269 +1,269 @@
 # Review: Tập hợp (`tap-hop`)
 
 - Bài: `content/math/kntt/tap-hop/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
 - Nguồn đã đọc: `sources/math/tap-hop/` - p5, p6, p94 (sách bài tập tr.5, tr.6, lời giải tr.94)
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (77 id chưa có trong `ids.lock.json`)
+- `content:check`: 0 lỗi, 1 cảnh báo của bài (80 id chưa có trong `ids.lock.json`)
 - `lesson:walk`: 0 FAIL, không có báo cáo cảnh báo lưu lại, ảnh trong `.shots/walk/tap-hop/`
 - Kết luận: Chưa đạt: còn 3 lỗi Nghiêm trọng
-- Bản đã review: `8cc3ca13548b147156c5430e6cbc148f2014ad672a7a99ae7379c3314820d8fd` (`pnpm content:diff` so với bản này)
+- Bản đã review: `00a554bcaadd807882a174473a747792704b0e4670dc2b1fa40c4f959a02bf7b` (`pnpm content:diff` so với bản này)
 
-Phạm vi "thang kí hiệu" (móc nối đời thường, cách đọc, viết từng nét, chạm chấm, điền chip): ba nhóm cùng chấp nhận, không ghi "không có trong sách". Đây là phần đỡ thao tác viết theo `docs/learner.md` (chưa viết được { }, ∈, ∉), không thêm kiến thức toán; các dấu { } ; ∈ ∉, cách đọc, vạch đứng | và ℕ đều có ở tr.5–6. Mọi exercise đã được tự giải trước khi đọc `answer`: đáp án đều đúng, chỗ lệch duy nhất là cách chấm theo thứ tự phần tử (mục 3).
+Phạm vi "thang kí hiệu" (móc nối đời thường, cách đọc, viết từng nét, chạm chấm, điền chip) và section `thao-tac` vẫn được chấp nhận như vòng 1: đỡ thao tác theo `docs/learner.md`, không thêm kiến thức toán. Ba nhóm đã tự giải cả 55 exercise trước khi đọc `answer`: mọi đáp án đúng và duy nhất.
+
+Mục vòng 1 (số theo `review.md` vòng 1):
+- Đã sửa xong: 1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 27, 29, 30, 31, 32, 36.
+- Sửa một phần, phần còn lại ghi dưới đây: 4 (nhãn "hộp" trong hình), 8 (chấm dẫn ở `ve-mo-ngoac`), 23 (recap ngắt "A.", ∈ trong tiêu đề), 25 (`nhom-la-tap-hop`), 28 (chip ; ,), 35 (∈ gọi là "dấu").
+- Chưa xử lý: 26 (dấu ; trước khi dạy), 34 (`kt-cham-dau-hieu` so chữ). Mục 33 thuộc "Không bắt lỗi", bỏ.
+
+Kiểm lại của Tổng hợp: cả ba mục Nghiêm trọng đã đối chiếu lại với `lesson.json`, `p5.png`, `p6.png` và mã app; giữ mức. Hai nhóm xếp khác mức cho `dem-chu-cai-nha-trang` (nhóm 1 Nghiêm trọng, nhóm 2 Nên sửa): giữ Nghiêm trọng, lý do ở mục 1. Mục "∈ gọi là dấu" nâng từ Góp ý lên Nên sửa theo checklist ("một khái niệm, một từ").
 
 ## Nghiêm trọng
 
-### 1. Chỉ đáp án đúng được tô màu phần tử, trẻ chọn theo màu
+### 1. `dem-chu-cai-nha-trang` gắn card `phan-tu`, có thể ra trong phiên ôn trước khi trẻ học "mỗi phần tử chỉ viết một lần"
 
-- Vị trí: `$.exercises[17].options` (`tap-hop.ex.chon-viet-dung`)
-- Nguồn: tr.5, `p5.png`
-- Vấn đề: lựa chọn a tô amber 4, 5, 6; hai nhiễu `{4, 5, 6}` và `{4.5.6}` để đen (ảnh `ipad/045-s3-05-exercise-chon-viet-dung.png`). Điểm khác thật giữa ba lựa chọn chỉ là một dấu nhỏ, còn màu thì nổi bật, nên màu thành đáp án: trẻ chọn dòng có số màu cam mà không cần nhận ra dấu ; (trái tinh thần luật "màu không được là đáp án" trong `pitfalls.md`). Đã kiểm lại JSON và ảnh: giữ mức Nghiêm trọng.
-- Sửa: tô amber cả 4, 5, 6 ở mọi lựa chọn (như `kt-ngoac-dung`), hoặc bỏ màu ở cả ba.
+- Vị trí: `$.exercises[38].cardIds` (`tap-hop.ex.dem-chu-cai-nha-trang`: `liet-ke`, `phan-tu`)
+- Nguồn: tr.5 (kiến thức cần nhớ 2, "mỗi phần tử được kê đúng một lần"), tr.6 (bài 1.3)
+- Vấn đề: card mở ở câu luyện tập có chấm điểm đầu tiên gắn nó (`src/progress/record.ts`); card `phan-tu` mở ngay ở section 1 (`ngay-trong-tuan`), và nút ôn hiện khi đã có một card mở (`lesson-screen.tsx`). `selectReview` (`src/srs/select.ts`) chọn câu theo từng card đã mở, không đòi mọi card trong `cardIds` đã mở, và ưu tiên câu kho ôn: card `phan-tu` có 4 câu kho ôn, câu này là một. Trẻ chưa qua section `liet-ke` (thứ 7) sẽ đếm 8 chữ, bị chấm sai mà chưa được dạy vì sao là 6. Đây là thiếu kiến thức, không phải thiếu thao tác (khác `chon-x-thuoc`, mục Nên sửa 7), nên là "trẻ không làm được bài": Nghiêm trọng.
+- Sửa: `cardIds: ["tap-hop.card.liet-ke"]`. Card `phan-tu` vẫn còn `ngay-trong-tuan`, `noi-tap-hop-phan-tu`, `dem-ban-trong-to`, `chon-do-dung`.
 
-### 2. Ví dụ màn quy tắc dấu chấm phẩy chép nguyên tập hợp của sách
+### 2. Định nghĩa "dấu hiệu đặc trưng" thiếu vế "chỉ các phần tử đó có"
 
-- Vị trí: `$.sections[2].blocks[0].children[1]` (visual `tap-hop.visual.cham-phay-vi-du`, section `tap-hop.section.dau-cham-phay`)
-- Nguồn: tr.5, `p5.png` (tập P trong ví dụ)
-- Vấn đề: hình vẽ đúng bộ số của tập P trong ví dụ sách bài tập (ảnh `ipad/039-s3-01-block.png`). Ví dụ trùng nguyên văn sách là Nghiêm trọng. Đã đối chiếu ảnh trang: giữ mức.
-- Sửa: đổi bộ số, vẫn giữ một số thập phân để minh hoạ lý do không dùng dấu phẩy, ví dụ {2; 4,5; 9}; kiểm để không trùng số với `kt-dau-giua`, `chon-viet-dung`, kho ôn và lời note (note đang nêu 7,5, nên đổi theo).
+- Vị trí: `$.sections[8].blocks[0].children[0].text`, `$.sections[8].recap.caption`, `$.cards[9].recap.caption` (section `dau-hieu-dac-trung`, card `dau-hieu`: "điều chung của mọi phần tử")
+- Nguồn: tr.5 (kiến thức cần nhớ 2: dấu hiệu đặc trưng "để nhận biết" các phần tử), `p5.png`
+- Vấn đề: "điều chung của mọi phần tử" chưa đủ: với {1; 3; 5}, "x là số lẻ" cũng là điều chung nhưng còn gồm 7, 9. Chính bài dạy đúng ở hình `doi-tu-liet-ke` và `the-hai-cach` ("số lẻ nhỏ hơn 6"), nên câu cần nhớ lệch hình. Trẻ thuộc recap sẽ viết {x | x là số lẻ} cho {1; 3; 5}; bài luyện không có nhiễu "chung nhưng quá rộng" nên không bắt được hiểu sai này.
+- Sửa: cả ba chỗ cùng một câu, ví dụ "Dấu hiệu đặc trưng giúp nhận ra đúng các phần tử: phần tử nào cũng có, số khác thì không có." Thêm vào `chon-dau-hieu-3456` (`$.exercises[51]`) một nhiễu quá rộng, như "x là số tự nhiên nhỏ hơn 7".
 
-### 3. Bài viết tập hợp chấm sai khi trẻ viết phần tử theo thứ tự khác
+### 3. `chon-dong-dung` dùng lại tập B = {x; y} của bài 1.2
 
-- Vị trí: `$.exercises[32].segments` (`kt-ghep-hai-phan-tu`), `$.exercises[33].segments` (`ghep-ba-phan-tu`), `$.exercises[34].items` (`xep-ghep-tap-hop`, `order`), `$.exercises[37].segments` (`ghep-quy-ba`), `$.exercises[45].segments` (`dien-liet-ke-tu-dau`), `$.exercises[51].segments` (`dien-liet-ke-chan`)
-- Nguồn: tr.5 (kiến thức cần nhớ 2), tr.6 (bài 1.3, 1.4), `p5.png`, `p6.png`
-- Vấn đề: tập hợp không phụ thuộc thứ tự phần tử, nhưng mỗi ô chỉ nhận một phần tử cố định (`src/exercises/grade/fill-blank.ts` so từng ô với `accept`) và `order` chỉ nhận đúng một thứ tự (`src/exercises/grade/order.ts`). Trẻ viết {8; 5}, {9; 4}, {8; 7; 6}... là đúng nhưng bị báo sai rồi được xem "đáp án", nên học sai rằng tập hợp phải theo thứ tự cố định; câu `order` có hai đáp án đúng mà chỉ chấm một. Không vá được bằng `accept` (cho mọi ô nhận cả 5 lẫn 8 thì {5; 5} thành đúng). Nhóm 3 xếp `[45]`, `[51]` là Nên sửa theo luật "fillBlank thiếu cách viết đúng khác"; gộp lên Nghiêm trọng vì cùng một lỗi, ảnh hưởng tới hiểu biết về tập hợp chứ không chỉ cách viết.
-- Sửa: áp một cách cho cả sáu câu: (a) đề chốt thứ tự ("…theo thứ tự từ bé đến lớn", "…theo thứ tự các tháng trong năm"); hoặc (b) với câu fillBlank, cho sẵn phần tử dạng chữ trong `segments`, chỉ để trống { ; } (vd `K = [ ] 5 [ ] 8 [ ]`). Câu `order` dùng cách (a).
+- Vị trí: `$.exercises[44].prompt[0].text`, `$.exercises[44].options` (`tap-hop.ex.chon-dong-dung`)
+- Nguồn: tr.6 (bài 1.2), `p6.png`
+- Vấn đề: cùng tên tập, cùng hai phần tử và cùng đáp án (y thuộc B) như bài tập của sách; vòng 1 đã xếp Nghiêm trọng ví dụ trùng tập P của sách, giữ cùng mức. Thêm nữa, x ở đây là một phần tử cụ thể, trong khi note section này và section sau dùng x thay cho phần tử bất kỳ ({x | …}): trẻ dễ lẫn.
+- Sửa: đổi tên và phần tử, tránh x, a, b, c, ví dụ "Cho tập hợp R gồm hai phần tử h và k. Dòng nào đúng?" với k ∈ R (đúng), h ∉ R, u ∈ R.
 
 ## Nên sửa
 
-### 4. Lời dạy đồng nhất "tập hợp" với cái hộp
+### 4. Nhãn trong hình vẫn gọi tập hợp là "hộp bút", "hộp" bằng màu teal
 
-- Vị trí: `$.sections[0].blocks[1].children[0].text` ("như hộp bút hay đội bóng"), `$.cards[0].recap.caption` ("như hộp bút"), `$.exercises[3].prompt[0].text` (`cham-tap-hop`), `$.exercises[21].prompt[0].text` (`kt-cham-thuoc`: "bút thuộc hộp bút"), `$.exercises[26].prompt[0].text` (`kt-cham-khong-thuoc`), nhãn "hộp" trong visual `chon-hop-but`, `chon-do-dung`
+- Vị trí: visual `tap-hop.visual.vi-du-tap-hop` (`$.sections[0].blocks[1].children[1]`), `tap-hop.visual.chon-hop-but` (`$.sections[0].blocks[3]`), `tap-hop.visual.chon-do-dung` (`$.exercises[6]`)
 - Nguồn: tr.5
-- Vấn đề: tập hợp là nhóm các đồ trong hộp, không phải chiếc hộp. `overview.hook` nói đúng ("cả nhóm đồ trong hộp chính là một tập hợp") nhưng note, recap card và các đề trên gọi chính cái hộp là tập hợp: hook lệch note và recap. Trẻ dễ nhớ "tập hợp = cái hộp".
-- Sửa: note "…, như các đồ trong hộp bút hay các bạn trong đội bóng."; recap card "…, như các đồ trong hộp bút."; `cham-tap-hop` "Chạm vào khung bao quanh cả nhóm đồ."; hai câu kiểm tra thuộc: "bút thuộc nhóm đồ trong hộp bút".
+- Vấn đề: note nói "các đồ trong hộp bút" nhưng nhãn teal (màu khái niệm tập hợp) ghi "hộp bút", "hộp" (ảnh `ipad/003-s1-02-block.png`, `ipad/005-s1-04-block.png`): dạy lại "tập hợp là chiếc hộp", phần còn lại của mục 4 vòng 1.
+- Sửa: nhãn `vi-du-tap-hop` "đồ trong hộp bút", "các bạn trong đội bóng"; khung thả đồ ghi "hộp bút" màu trung tính.
 
-### 5. Nhiễu "một ngoặc nhọn" dùng từ chưa học
+### 5. Note hướng dẫn chạm gọi trẻ là "em"
 
-- Vị trí: `$.exercises[0].options[2]` (`kt-phan-tu-hop-but`)
+- Vị trí: `$.sections[1].blocks[0].children[0].text` (section `thao-tac`)
+- Nguồn: —
+- Vấn đề: cả bài và `docs/learner.md` gọi trẻ là "bạn"; một câu "em" lệch giọng.
+- Sửa: "chạm vào hình bạn chọn".
+
+### 6. `sourceRef` sai: section thao tác và section dấu hiệu đặc trưng
+
+- Vị trí: `$.sections[1].sourceRef` ("Sách bài tập tr.5–6 (cách làm bài tập)"), `$.sections[8].sourceRef` (còn "chú ý")
+- Nguồn: tr.5, tr.6
+- Vấn đề: tr.5–6 không có hướng dẫn thao tác app; màn ℕ (mục "Chú ý" tr.6) đã bỏ nhưng `sourceRef` vẫn ghi.
+- Sửa: section thao tác ghi rõ là hướng dẫn thao tác trong app, không lấy từ sách (nếu schema cho chuỗi tự do); section dấu hiệu: "Sách bài tập tr.5–6 (kiến thức cần nhớ 2; ví dụ; bài 1.5)".
+
+### 7. `chon-x-thuoc` dùng nút − / + mà có thể ra trước màn dạy thao tác đổi x
+
+- Vị trí: `$.exercises[26]` (`tap-hop.ex.chon-x-thuoc`, card `thuoc`); màn đổi x đầu tiên là `$.sections[5].blocks[3]` (`chon-x-tu-do`)
+- Nguồn: —
+- Vấn đề: card `thuoc` mở ở section `thuoc`; phiên ôn ưu tiên câu kho ôn nên có thể đưa câu này khi trẻ chưa gặp nút − / + (section `thao-tac` chỉ dạy chạm vùng và điền chip).
+- Sửa: thêm vào đề "Bấm − hoặc + để đổi x, rồi bấm Kiểm tra." (cả `chon-x-khong-thuoc`), hoặc chuyển `chon-x-tu-do` sang section `thuoc`.
+
+### 8. `chon-viet-dung`: dấu cần phân biệt vẽ cỡ chữ công thức thường
+
+- Vị trí: `$.exercises[19].options` (`tap-hop.ex.chon-viet-dung`)
 - Nguồn: tr.5
-- Vấn đề: câu kiểm tra section 1, trẻ chưa gặp "ngoặc nhọn" (dạy ở section 2); nhiễu không phản ánh lỗi hay gặp.
-- Sửa: thay bằng nhiễu cùng tầng nghĩa, như "cả hộp bút".
+- Vấn đề: ba lựa chọn chỉ khác ở dấu giữa các số; ảnh `phone/056-s4-05-exercise-chon-viet-dung.png`: ; , . chỉ vài pixel, `{4.5.6}` trông như một số. Câu kiểm tra cùng section đã đổi sang thẻ dấu to vì đúng lý do này. Không xếp "bẫy" vì chỗ khác nhau chính là kỹ năng section dạy.
+- Sửa: phóng và giãn dấu trong TeX, hoặc dùng visual dòng kí hiệu cho từng lựa chọn.
 
-### 6. Câu điền chip xuất hiện trước màn dạy thao tác chip
+### 9. `dat-cham-phay-bai` lặp dãy số của màn tương tác và không có ngoặc nhọn
 
-- Vị trí: `$.exercises[4]`, `[12]`, `[14]`, `[15]`, `[19]` (kho ôn của card section 1–3); màn dạy ở `$.sections[5].blocks[2]` (`huong-dan-chip`)
-- Nguồn: —
-- Vấn đề: bộ ôn (`src/srs/select.ts`) có thể đưa các câu điền chip ngay sau section 1–3, trong khi thao tác "chạm kí hiệu rồi chạm ô trống" chỉ được dạy ở section 6. Vi phạm "dạy thao tác nhập trước lần dùng đầu".
-- Sửa: chuyển màn hướng dẫn chip lên section `ngoac-nhon` (gộp màn khác để giữ ≤ 4 màn); section 6 chỉ nhắc bằng `caption`.
-
-### 7. Câu chạm vùng đầu tiên không có màn hướng dẫn chạm
-
-- Vị trí: `$.exercises[8]` (`kt-cham-ngoac-mo`, câu `tapRegion` đầu tiên trong luồng section); cả `$.exercises[3]` (`cham-tap-hop`, kho ôn)
-- Nguồn: —
-- Vấn đề: bài chưa dạy thao tác chạm vùng trước lần dùng đầu.
-- Sửa: thêm câu hướng dẫn ngắn vào màn tương tác sẵn có (vd `caption` của `$.sections[0].blocks[3]`) hoặc một màn chạm mẫu với hình khác đề.
-
-### 8. Bài chạm chấm: vòng số che mũi nhọn của dấu ngoặc
-
-- Vị trí: `$.exercises[9]` (visual `tap-net-ngoac-mo`), `$.exercises[10]` (visual `tap-net-ngoac-dong`), màn `ve-mo-ngoac` bước 1 (`$.sections[1].blocks[1]`)
-- Nguồn: —
-- Vấn đề: ảnh `ipad/030-s2-07-exercise-viet-ngoac-mo.png`, `ipad/035-s2-08-exercise-viet-ngoac-dong.png`, `ipad/018-s2-02-block.png`: vòng số 2, 3 nằm sát và che mũi nhọn, chấm dẫn chồng nhau; mũi nhọn là chỗ phân biệt { với (.
-- Sửa: vòng số nhỏ hơn, đặt lệch ra ngoài nét có mũi tên chỉ vào; bỏ chấm trùng.
-
-### 9. Ba dấu câu trong `kt-dau-giua` quá nhỏ để phân biệt
-
-- Vị trí: `$.exercises[16].options` (`kt-dau-giua`)
+- Vị trí: `$.exercises[20]` (visual `dat-cham-phay-bon`: 1 _ 2 _ 3 _ 4), màn `$.sections[3].blocks[2]` (visual `dat-cham-phay`: 1 _ 2 _ 3)
 - Nguồn: tr.5
-- Vấn đề: lựa chọn chỉ là `;`, `,`, `.` cỡ chữ thường (ảnh `ipad/043-s3-04-exercise-kt-dau-giua.png`), vài pixel mỗi dấu.
-- Sửa: đặt mỗi dấu trong ngữ cảnh cỡ lớn (vd `{ 7 ; 9 }`) hoặc dùng thẻ dấu to như `cham-dau-ngan`.
+- Vấn đề: kho ôn dùng lại dãy của màn hướng dẫn; cả hai hình đặt ; ngoài { }, ngay sau section dạy "tập hợp viết giữa hai ngoặc nhọn".
+- Sửa: kho ôn đổi số (vd 5 _ 7 _ 9 _ 11); vẽ { } ở hai đầu cả hai hình.
 
-### 10. Dấu ; đứng sát dấu câu khác trong câu quy tắc và recap
+### 10. Recap có kí hiệu rơi xuống dòng: "A." đứng một mình
 
-- Vị trí: `$.sections[2].blocks[0].children[0].text`, `$.sections[2].recap.caption`, `$.sections[2].blocks[2].caption` (";."); `$.sections[5].recap.caption`, `$.cards[7].recap.caption` (";,")
+- Vị trí: `$.sections[5].recap.caption`, `$.cards[6].recap.caption` (∉); `$.sections[7].recap.caption`, `$.cards[8].recap.caption` (xét thuộc)
+- Nguồn: tr.5 (kiến thức cần nhớ 1)
+- Vấn đề: ảnh `ipad/081-s6-07-recap.png`, `ipad/102-s8-05-recap.png`: dòng hai chỉ còn "A.", tách kí hiệu khỏi tên tập hợp trong câu cần nhớ (phần còn lại của mục 23 vòng 1).
+- Sửa: rút gọn, vd "x ∉ A: x không phải là phần tử của A." (recap ∈ cùng khuôn "x ∈ A: x là phần tử của A."); xét thuộc: "Có trong A thì x ∈ A, không có thì x ∉ A." Card và section giữ cùng câu.
+
+### 11. Kí hiệu ∈, ∉ gọi là "dấu"; dấu { } ; gọi là "kí hiệu"
+
+- Vị trí: `$.exercises[25]`, `[30]` ("Chọn dấu thích hợp…"), `[42]`, `[43]` ("Chọn dấu cho mỗi chỗ trống"); visual `tap-hop.visual.the-khong-thuoc` ("Viết: dấu ∈ và gạch chéo"); ngược lại `$.sections[1]` (title, note, recap: "kí hiệu" cho chip { ; ), `$.exercises[34]` ("Ghép các kí hiệu")
+- Nguồn: tr.5 (sách gọi ∈, ∉ là "kí hiệu")
+- Vấn đề: tiêu đề, note, caption, overview thống nhất "dấu ngoặc nhọn, dấu chấm phẩy, kí hiệu thuộc, kí hiệu không thuộc"; các chỗ trên đảo tên. Checklist: một khái niệm hai tên là Nên sửa (nhóm xếp Góp ý, Tổng hợp nâng mức).
+- Sửa: "Chọn kí hiệu thích hợp…", "Viết: kí hiệu ∈ và gạch chéo"; section thao tác gọi chip là "thẻ" ("chạm một thẻ ở dưới"), `kt-ghep-hai-phan-tu` "Ghép các thẻ".
+
+### 12. `kt-xet-hai-chu-so`: đề không cho biết phố có nhà số nào
+
+- Vị trí: `$.exercises[40].prompt[0].text`
+- Nguồn: tr.6 (bài 1.1)
+- Vấn đề: Q là "các số nhà có hai chữ số trong phố của Nam", đề không nói phố có nhà số 64; nói chặt thì không lựa chọn nào chắc thuộc Q.
+- Sửa: "Phố của Nam có các nhà số 9, 64 và 200. Q là tập hợp các số nhà có hai chữ số. Số nhà nào thuộc Q?"
+
+### 13. Quy tắc "xét thuộc" chỉ nhắc lại định nghĩa, không nói cách xét
+
+- Vị trí: `$.sections[7].blocks[1].children[0].text`, `$.sections[7].recap.caption`, `$.cards[8].recap.caption`
+- Nguồn: tr.5 (ví dụ a), tr.6 (bài 1.1)
+- Vấn đề: "xem x có là phần tử của A không" lặp chính câu hỏi; ba trên năm bài cho tập hợp bằng lời, việc cần làm là so số với điều mô tả A (như hình `xet-mau`).
+- Sửa: "Muốn biết x có thuộc A không, xem x có trong các phần tử của A, hay có đúng điều mô tả A không." Recap rút gọn cùng ý, giữ dòng ngắn (mục 10).
+
+### 14. Hình recap `the-doi-cach` không có vạch đứng mà caption bảo "viết sau vạch đứng |"
+
+- Vị trí: `$.cards[10].recap` (visual `tap-hop.visual.the-doi-cach`)
 - Nguồn: tr.5
-- Vấn đề: ảnh `ipad/039-s3-01-block.png`, `047-s3-06-recap.png`, `085-s6-06-recap.png` hiện ";." và ";,": trẻ đang học phân biệt ; với . và , lại thấy hai dấu dính nhau ngay trong câu cần nhớ.
-- Sửa: đưa kí hiệu vào giữa câu, vd "Ta viết dấu chấm phẩy ; giữa hai phần tử."; recap liệt kê: "Liệt kê là viết các phần tử trong { }. Giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử viết một lần." (sửa cả card và section).
+- Vấn đề: ô dưới chỉ ghi "x là số tự nhiên lớn hơn 6 và nhỏ hơn 10", không có `{ x | … }` (ảnh `.shots/tap-hop/tap-hop.visual.the-doi-cach-ipad.png`).
+- Sửa: bỏ `propertyOnly` để hiện đủ `{ x | … }`, hoặc sửa caption khớp hình.
 
-### 11. Bài "Đổi x" hiện sẵn dấu ∈/∉ và câu đọc
+### 15. Hình recap `the-dau-hieu` hở khoảng lớn giữa các phần của tập hợp
 
-- Vị trí: `$.exercises[24]` (visual `chon-x-thuoc`), `$.exercises[29]` (visual `chon-x-khong-thuoc`)
-- Nguồn: tr.5
-- Vấn đề: hình hiện luôn "1 ∈ A", "x thuộc A" theo giá trị x, nên trẻ chỉ bấm + tới khi câu đổi rồi bấm Kiểm tra; câu không đo kỹ năng xét thuộc.
-- Sửa: ẩn dấu và câu đọc tới khi bấm Kiểm tra, hoặc đổi thành `choice` "Số nào thuộc A?".
-
-### 12. Section ∉ thiếu màn chạm chấm tự vẽ ∉
-
-- Vị trí: `$.sections[4].blocks` (`tap-hop.section.khong-thuoc`)
-- Nguồn: tr.5
-- Vấn đề: {, } và ∈ đều có bước tự chạm chấm, riêng ∉ (dấu khó nhất, trẻ chưa viết được theo `docs/learner.md`) chỉ có màn xem nét.
-- Sửa: thêm visual chạm chấm cho ∉ sau `ve-khong-thuoc`, gộp `chon-x-tu-do` để giữ ≤ 4 màn.
-
-### 13. Nấc 1 tô câu lệnh chung thay vì tập hợp cần nhìn lại
-
-- Vị trí: `$.exercises[23].hints.highlight[0]` (`dien-thuoc`), `$.exercises[24]` (`chon-x-thuoc`), `$.exercises[28]` (`dien-khong-thuoc`), `$.exercises[29]` (`chon-x-khong-thuoc`), `$.exercises[41]` (`xet-hai-tap`)
-- Nguồn: tr.5–6
-- Vấn đề: các đề này có khối công thức tập hợp, nhưng nấc 1 tô khối 0 (câu lệnh). Chỗ trẻ dễ sai là không dò lại tập hợp. Đề nhiều khối nên không thuộc ngoại lệ "đề chỉ một câu chữ".
-- Sửa: tô `{"target": "block", "index": 1}` (và thêm index 2 ở `xet-hai-tap`); không lộ đáp án vì câu hỏi bắt chọn dấu.
-
-### 14. Chip nhiễu "+" vô lý
-
-- Vị trí: `$.exercises[23].bank` (`dien-thuoc`)
-- Nguồn: tr.5
-- Vấn đề: "5 + A" không phải lỗi hay gặp, thực chất còn hai lựa chọn.
-- Sửa: thay bằng "{" hoặc ";".
-
-### 15. Ví dụ liệt kê S, A, P, A không nói là chữ cái của từ nào
-
-- Vị trí: `$.sections[5].blocks[1].children[1]` (visual `vi-du-liet-ke`)
-- Nguồn: tr.6 (bài 1.3)
-- Vấn đề: ảnh `ipad/073-s6-02-block.png` chỉ có bốn ô chữ rồi {S; A; P}, không nói tập hợp gì; trẻ không hiểu vì sao A bị gạch. Địa danh viết đúng là "Sa Pa".
-- Sửa: thêm nhãn "Các chữ cái trong từ …", hoặc chọn từ không phải địa danh.
-
-### 16. `overview.summary` có 3 câu, luật cho 1–2 câu
-
-- Vị trí: `$.overview.summary`
+- Vị trí: `$.sections[8].recap`, `$.cards[9].recap` (visual `tap-hop.visual.the-dau-hieu`)
 - Nguồn: —
-- Vấn đề: luật overview ở `.claude/skills/lesson-author/SKILL.md` (mục "Sư phạm cho người học chậm") cho môn không phải Ngữ văn 1–2 câu.
-- Sửa: gộp thành 2 câu.
-
-### 17. Dấu hiệu đặc trưng mang nhiều tên; note giới thiệu không nêu tên thuật ngữ
-
-- Vị trí: `$.sections[7].blocks[0].children[0].text` ("dấu hiệu chung", "dấu hiệu đó"), `$.exercises[43].prompt[0].text` ("dấu hiệu chung"), `$.cards[10].recap.caption` ("điều chung"), nhãn trong visual `the-dau-hieu`, `hai-cach-vi-du`, `the-hai-cach`, `doi-tu-liet-ke`, `the-doi-cach`
-- Nguồn: tr.5 (kiến thức cần nhớ 2)
-- Vấn đề: glossary chỉ có "dấu hiệu đặc trưng" (lime); note chính không nói tên này, còn section sau (`chon-dau-hieu-3456`, `noi-hai-cach`) và recap section dùng đúng tên. Một khái niệm bốn cách gọi; recap section lệch note.
-- Sửa: note "Có thể mô tả tập hợp bằng cách nêu dấu hiệu đặc trưng, tức là điều chung của mọi phần tử…"; đề `kt-cham-dau-hieu` "Chạm vào dấu hiệu đặc trưng…"; nhãn visual dùng đúng tên, "điều chung" chỉ để giải thích cạnh tên.
-
-### 18. Màn ℕ dạy cách viết mới mà không dạy cách đọc, không luyện, không có trong recap
-
-- Vị trí: `$.sections[7].blocks[2]`
-- Nguồn: tr.6 (mục "Chú ý")
-- Vấn đề: một màn đưa ba thứ mới (ℕ, ∈ đặt trong ngoặc, dấu `<` thay "nhỏ hơn" mà mọi chỗ khác dùng chữ), không nói cách đọc, không liệt kê B, không có exercise, recap section và card `dau-hieu` không nhắc. Section thành hai ý mà recap chỉ tóm một.
-- Sửa: (a) bỏ màn này (đề xuất); hoặc (b) viết bằng chữ, thêm cách đọc "x thuộc ℕ", hiện B dạng liệt kê và thêm một câu luyện.
-
-### 19. Tên B dùng cho nhiều tập hợp khác nhau trên các màn liền nhau
-
-- Vị trí: visual `dau-hieu-vi-du`, `doc-dau-hieu`, `$.sections[7].blocks[2].children[1].tex`, `$.exercises[44]`, `$.exercises[42]`, visual `doi-tu-liet-ke`
-- Nguồn: —
-- Vấn đề: riêng section `dau-hieu-dac-trung` có bốn tập B khác nhau; trẻ dễ lẫn.
-- Sửa: mỗi màn trong một section dùng một chữ khác; câu luyện dùng chữ chưa xuất hiện trong section.
-
-### 20. `liet-ke-tu-dau-hieu` bảo "Viết" nhưng là câu chọn
-
-- Vị trí: `$.exercises[44].prompt[0].text`
-- Nguồn: tr.6 (bài 1.5 là mẫu)
-- Vấn đề: đề mơ hồ về việc phải làm.
-- Sửa: "Chọn cách viết B bằng cách liệt kê các phần tử."
-
-### 21. `kt-hai-cach`: hai lựa chọn khác kiểu hiển thị, chỉ đáp án có màu
-
-- Vị trí: `$.exercises[48].options`
-- Nguồn: —
-- Vấn đề: lựa chọn a là công thức to, số amber; b là chữ thường nhỏ (ảnh `ipad/109-s9-03-exercise-kt-hai-cach.png`); chỉ hai lựa chọn nên đoán cũng đúng 50%. Cùng loại với mục 1 nhưng để Nên sửa vì ở đây nội dung hai lựa chọn khác nhau rõ (có hay không có vạch |), màu không phải là điểm phân biệt duy nhất.
-- Sửa: hiển thị cả hai cùng kiểu công thức (x amber, phần sau | màu lime) và thêm nhiễu thứ ba.
-
-### 22. Recap card `doi-cach` trùng đáp án câu nối của cùng card
-
-- Vị trí: `$.cards[10].recap` (visual `the-doi-cach`), `$.exercises[50].pairs[0]`, `$.exercises[51]`, `$.exercises[48]`
-- Nguồn: —
-- Vấn đề: hình recap cho đúng cặp {2; 4; 6} ↔ "số chẵn lớn hơn 0 và nhỏ hơn 8" mà `noi-hai-cach` hỏi; tập {2; 4; 6} lặp ở bốn chỗ, trẻ nhớ hình thay vì tự tìm dấu hiệu.
-- Sửa: đổi số trong `the-doi-cach`, tránh trùng các vế của `noi-hai-cach` và `chon-dau-hieu-3456`.
-
-### 23. Kí hiệu ∈, ∉ trong chữ thường chỉ bằng nửa cỡ chữ; recap bị ngắt dòng trước "A."
-
-- Vị trí: `$.sections[3].title`, `$.sections[4].title`, note đầu section `thuoc`, `khong-thuoc`, `xet-thuoc` (`$.sections[6].blocks[1].children[0].text`), `caption` của `ve-thuoc`, `tap-net-thuoc`, `ve-khong-thuoc`, recap `$.sections[3]`, `[4]`, `[6]`, `$.cards[5]`, `[6]`, `[8]`
-- Nguồn: —
-- Vấn đề: ảnh `ipad/051-s4-02-block.png`, `061-s5-01-block.png`, `089-s7-02-block.png`, `094-s7-05-recap.png`: ∈, ∉ nhỏ hơn hẳn chữ bên cạnh (phông dự phòng), và "A." rơi xuống dòng riêng. Chính người học này chưa nhận ra ∈, ∉ nên kí hiệu trong câu quy tắc phải rõ. Nhóm 2 ghi Góp ý, nhóm 3 ghi Nên sửa; giữ mức cao hơn.
-- Sửa: đặt phần kí hiệu vào formula dưới câu chữ, hoặc báo người làm app sửa cỡ phông cho ∈, ∉; rút caption recap để "x ∉ A" không bị ngắt.
-
-### 24. Hình hook: khung tập hợp không dùng màu teal, phần tử không màu amber
-
-- Vị trí: `$.overview.hook.visualId` (`tap-hop.visual.tom-tat-tap-hop`, cũng là recap `$.sections[0].recap`)
-- Nguồn: —
-- Vấn đề: mọi hình khác vẽ khung tập hợp teal, phần tử amber; hình hook viền xanh đen, đồ vật đen, nhãn "Phần tử" không chỉ vào vật nào. Lệch "một khái niệm, một màu".
-- Sửa: viền teal, đồ vật (hoặc vòng quanh) amber, nhãn "Phần tử" có gạch nối tới một vật.
+- Vấn đề: ảnh `ipad/111-s9-05-recap.png`, `phone/111-s9-05-recap.png`: "{ x |", khoảng trống, "x là số chẵn", khoảng trống, "}"; cột nhãn đẩy các phần ra xa, khó đọc thành một tập hợp ở chính hình mẫu cách viết.
+- Sửa: `{ x | x là số chẵn }` liền một dòng, nhãn lime dưới phần sau vạch đứng, không làm giãn dòng.
 
 ## Góp ý
 
-### 25. Câu tự làm của section 1 dùng lại đúng ví dụ trên màn
+### 16. `nhom-la-tap-hop` dùng lại đúng ví dụ trong note
 
-- Vị trí: `$.exercises[0]`, `$.exercises[1]`, `$.exercises[2]`
+- Vị trí: `$.exercises[1]` (đáp án "các bạn trong đội bóng")
 - Nguồn: tr.5
-- Vấn đề: ba câu lấy nguyên ví dụ màn giảng; "chiếc thước" vừa là đáp án câu kiểm tra vừa là nhiễu câu sau, trẻ loại bằng trí nhớ.
-- Sửa: đổi một câu luyện sang tình huống mới (món ăn sáng, màu cầu vồng).
+- Vấn đề: đáp án là nguyên cụm ví dụ của note, hình `vi-du-tap-hop` và hình recap `the-tap-hop`; phần còn lại của mục 25 vòng 1.
+- Sửa: đổi sang tình huống mới, vd "các màu của cầu vồng".
 
-### 26. Dấu ; dùng ở section 2 trước khi được dạy
+### 17. Dấu ; xuất hiện từ section 2, trước khi dạy ở section 4
 
-- Vị trí: `$.sections[1].blocks[0].children[1]` (`ngoac-vi-du`), `$.sections[1].blocks[3].children[1]` (`ngoac-du-hai-dau`), `$.exercises[7].options`
+- Vị trí: visual `huong-dan-chip` (`$.sections[1].blocks[1].children[1]`), `ngoac-vi-du`, `ngoac-du-hai-dau`, `$.exercises[9].options` (`kt-ngoac-dung`)
 - Nguồn: tr.5
-- Vấn đề: ví dụ { 1 ; 2 ; 3 } có dấu ; mà section 3 mới dạy. Không sai kiến thức.
-- Sửa: thêm nhãn nhỏ "dấu ; học ở phần sau", hoặc chấp nhận.
+- Vấn đề: mục 26 vòng 1 chưa xử lý; section thao tác đưa ; sớm hơn nữa (ảnh `ipad/018-s2-02-block.png`). Không sai kiến thức.
+- Sửa: `huong-dan-chip` dùng chip từ hay chữ số; hoặc chấp nhận.
 
-### 27. Tình huống điểm kiểm tra có thể trùng số
+### 18. `kt-ngoac-dung` dùng đúng tập của ví dụ ngay trước
 
-- Vị trí: `$.exercises[16].prompt[0].text` (`kt-dau-giua`)
+- Vị trí: `$.exercises[9]` (1, 2, 3), `$.sections[2].blocks[0].children[1]` (`ngoac-vi-du`: {1; 2; 3})
 - Nguồn: tr.5
-- Vấn đề: ba bài kiểm tra dễ có hai điểm bằng nhau, lệch luật "mỗi phần tử một lần" dạy ở section 6.
-- Sửa: đổi sang thứ không trùng, như số áo của ba bạn.
+- Vấn đề: trẻ chọn theo trí nhớ hình.
+- Sửa: đổi số trong đề (vd 4, 7, 9).
 
-### 28. Chip kí hiệu nhỏ và mảnh: ";" và "," khác nhau một chấm, "{" gần "("
+### 19. Kho ôn `cham-dau-cham-phay` trùng câu kiểm tra `kt-dau-giua`
 
-- Vị trí: bank của `$.exercises[12]`, `[14]`, `[15]`, `[19]`, `[33]` và mọi fillBlank có chip kí hiệu
+- Vị trí: `$.exercises[22]` (visual `cham-dau-ngan`), `$.exercises[18]` (visual `cham-dau-giua`)
+- Nguồn: tr.5
+- Vấn đề: cùng bốn thẻ dấu, chỉ đổi thứ tự.
+- Sửa: kho ôn đặt dấu trong ngữ cảnh, vd chọn dấu đúng giữa hai số trong { 3 ? 8 }.
+
+### 20. Id `ngay-trong-tuan` không khớp nội dung (đề hỏi mùa)
+
+- Vị trí: `$.exercises[2].id`
 - Nguồn: —
-- Vấn đề: ảnh `phone/080-s6-05-exercise-ghep-ba-phan-tu.png`, `ipad/075-s6-04-exercise-kt-ghep-hai-phan-tu.png`: chip vẽ kí hiệu bằng cỡ chữ thường. Việc của app.
-- Sửa: báo người làm app tăng cỡ, độ đậm chip khi chip chỉ gồm một kí hiệu.
+- Vấn đề: id chưa khoá trong `ids.lock.json`; sau khi xuất bản không đổi được.
+- Sửa: đổi thành `tap-hop.ex.mua-trong-nam` (cả `practiceIds` section 1) trước `content:lock`.
 
-### 29. Hình đổi x trộn "x" với số cụ thể trong câu đọc; "chưa nằm trong"
+### 21. Nhiễu "một số tự nhiên" của `gom-nhom-hop` không phản ánh lỗi hay gặp
 
-- Vị trí: visual `chon-x-tu-do` (`$.sections[4].blocks[2]`), `chon-x-thuoc`, `chon-x-khong-thuoc`
-- Nguồn: —
-- Vấn đề: ảnh `ipad/064-s5-03-block.png` hiện "4 ∉ A" rồi "x không thuộc A", lệch cách đọc theo số của note, recap; "chưa nằm trong" dễ hiểu là sau này sẽ vào.
-- Sửa: "4 không thuộc A" (đổi theo x); "không nằm trong".
-
-### 30. Hình lắp ghép: dấu ; dính số phía sau; nhãn ngoặc rút gọn
-
-- Vị trí: visual `lap-ghep-liet-ke` (`$.sections[5].blocks[0]`, cũng là `hintVisualId` của `$.exercises[33]`)
+- Vị trí: `$.exercises[3].options[2]`
 - Nguồn: tr.5
-- Vấn đề: ảnh `ipad/072-s6-01-block-end.png` hiện "{ 2 ;4 ;6 }", khác cách viết "2; 4; 6" của note, recap; nhãn "mở ngoặc", "đóng ngoặc" khác thuật ngữ glossary "mở ngoặc nhọn", "đóng ngoặc nhọn".
-- Sửa: ; sát số trước, cách số sau; nhãn đúng thuật ngữ glossary.
+- Vấn đề: không liên quan tình huống cặp sách, câu chỉ còn hai lựa chọn thật.
+- Sửa: "một đồ trong cặp".
 
-### 31. Nhãn "phần tử mẫu" là từ mới
+### 22. Recap card `tap-hop`: câu nêu hộp bút, hình vẽ đội bóng
 
-- Vị trí: visual `tap-hop.visual.dau-hieu-vi-du` (tag "x: phần tử mẫu")
+- Vị trí: `$.cards[0].recap` (visual `the-tap-hop`)
 - Nguồn: tr.5
-- Vấn đề: cách gọi riêng của bài, trẻ có thể nghĩ là loại phần tử khác.
-- Sửa: "x: thay cho mỗi phần tử".
+- Vấn đề: hai ví dụ khác nhau trên cùng một thẻ.
+- Sửa: caption "…, như các bạn trong đội bóng." hoặc đổi hình.
 
-### 32. `doc-dau-hieu` viết "x = 0, 1, 2" và không nói vì sao có 0
+### 23. Màn `ve-mo-ngoac` bước 1: chấm dẫn chồng nhau ở mũi nhọn
 
-- Vị trí: visual `tap-hop.visual.doc-dau-hieu` (bước 3, `ipad/098-s8-02-block-end.png`)
-- Nguồn: tr.6, tr.94
-- Vấn đề: "x = 0, 1, 2" là cách viết lỏng; hình là mẫu cho `liet-ke-tu-dau-hieu` mà nhiễu chính là quên số 0.
-- Sửa: "x có thể là 0, 1, 2", thêm tag "0 cũng là số tự nhiên".
-
-### 33. Nấc 1 của `liet-ke-tu-dau-hieu` không trỏ vào chỗ dễ sai
-
-- Vị trí: `$.exercises[44].hints`
-- Nguồn: tr.6 (bài 1.5)
-- Vấn đề: lỗi hay gặp là bỏ số 0; tô cả đề (đúng luật vì đề một khối) không giúp trẻ để ý "số tự nhiên".
-- Sửa: thêm `hintVisualId` dùng số khác đề, tách "số tự nhiên bắt đầu từ 0" rồi dừng ở `{ ? }`.
-
-### 34. `kt-cham-dau-hieu`: chip đúng lặp nguyên cụm trong đề
-
-- Vị trí: `$.exercises[43].prompt[0].text`, visual `tap-hop.visual.cham-dau-hieu`
+- Vị trí: `$.sections[2].blocks[1]`
 - Nguồn: —
-- Vấn đề: đề nói "số chẵn nhỏ hơn 9", chip đúng ghi "x là số chẵn nhỏ hơn 9"; trẻ chạm đúng nhờ so chữ.
-- Sửa: đề liệt kê số áo rồi hỏi phần nào là dấu hiệu đặc trưng.
+- Vấn đề: ảnh `ipad/032-s3-02-block.png`; phần còn lại của mục 8 vòng 1.
+- Sửa: tách nét 2 tại mũi để không có chấm trùng.
 
-### 35. ∈ khi gọi "dấu", khi gọi "kí hiệu"
+### 24. `kt-dau-giua`: câu chuyện số áo không có số áo nào
 
-- Vị trí: `$.sections[3].title` ("Dấu ∈ (thuộc)"), `$.sections[3].blocks[1].children[0].text` ("Kí hiệu 2 ∈ A"), `$.overview.summary` ("kí hiệu thuộc"), `$.exercises[21]`, `[26]` ("dấu thuộc", "dấu không thuộc")
-- Nguồn: tr.5 (sách dùng "kí hiệu")
-- Vấn đề: cùng một thứ gọi ba cách; không sai nhưng trẻ học chậm có thể tưởng là hai thứ.
-- Sửa: chọn một cách gọi cho ∈, ∉ (nên theo sách: "kí hiệu"), giữ "dấu" cho { } ;, hoặc ghi rõ một lần "kí hiệu ∈ (dấu thuộc)".
+- Vị trí: `$.exercises[18].prompt[0].text`
+- Nguồn: tr.5
+- Vấn đề: tình huống treo, hình chỉ có bốn thẻ dấu.
+- Sửa: nêu số, vd "Ba bạn đeo số áo 3, 8, 10…".
 
-### 36. Dấu ; dùng để ngăn hai mệnh đề ngay sau khi dạy ; ngăn hai phần tử
+### 25. Chữ trong section thao tác và section dấu chấm phẩy
 
-- Vị trí: `$.exercises[40].segments` ("305 [ ] K; 48 [ ] K"), `$.exercises[41].segments`
-- Nguồn: tr.5 (lời giải ví dụ cũng viết như vậy)
-- Vấn đề: trẻ vừa học ; chỉ đứng giữa hai phần tử trong { }, có thể lúng túng khi ; ở đây ngăn hai câu. Đúng cách viết của sách nên chỉ Góp ý.
-- Sửa: tách mỗi mệnh đề một dòng, hoặc chấp nhận.
+- Vị trí: `$.sections[1].blocks[1].children[0].text` và `$.exercises[8]` (`kt-thu-dien`); `$.sections[3].blocks[0].children[0].text`
+- Nguồn: —
+- Vấn đề: note gọi "bài điền kí hiệu" nhưng câu kiểm tra đầu tiên điền từ; note section 4 thiếu dấu phẩy sau trạng ngữ "Giữa hai phần tử".
+- Sửa: "Bài điền: chạm một thẻ ở dưới (từ hoặc kí hiệu), rồi chạm ô trống."; "Giữa hai phần tử, ta viết dấu chấm phẩy."
+
+### 26. Nhiễu `{3; 4; 4}` của `chon-chu-so-343` ít hợp lý
+
+- Vị trí: `$.exercises[37].options[2]`
+- Nguồn: tr.5
+- Vấn đề: 343 chỉ có một chữ số 4, không lỗi nào dẫn tới lặp 4.
+- Sửa: `{ 343 }` (coi cả số là một phần tử).
+
+### 27. Chip ";" và "," vẫn nhỏ, gần giống nhau (việc của app)
+
+- Vị trí: bank `$.exercises[35]` và các fillBlank có chip ;
+- Nguồn: —
+- Vấn đề: ảnh `ipad/088-s7-04-exercise-ghep-ba-phan-tu.png`; phần còn lại của mục 28 vòng 1.
+- Sửa: báo người làm app tăng cỡ, độ đậm cho ; , . trong chip (`src/components/rich-text.tsx`).
+
+### 28. ∈, ∉ trong tiêu đề section vẫn nhỏ (việc của app)
+
+- Vị trí: `$.sections[4].title`, `$.sections[5].title`
+- Nguồn: —
+- Vấn đề: tiêu đề chưa qua `RichText`, kí hiệu bằng nửa cỡ chữ.
+- Sửa: báo người làm app.
+
+### 29. Hình lắp ghép: "{ ?; ?; ? ?" trông như bốn phần tử; nhãn lệch
+
+- Vị trí: visual `tap-hop.visual.lap-ghep-liet-ke` (`$.sections[6].blocks[0]`, cũng là `hintVisualId` của `$.exercises[35]`)
+- Nguồn: —
+- Vấn đề: ảnh `ipad/083-s7-01-block.png`, `ipad/084`: chỗ trống của } giống chỗ trống phần tử; nhãn "mở ngoặc nhọn" nằm dưới "A =".
+- Sửa: vẽ chỗ của } khác kiểu; đặt nhãn ngay dưới kí hiệu.
+
+### 30. Tên K dùng cho hai tập khác nhau trong section liệt kê
+
+- Vị trí: `$.exercises[34]` (K = {5; 8}), visual recap `tap-hop.visual.the-liet-ke` (K = {1; 7; 8})
+- Nguồn: —
+- Vấn đề: cùng loại mục 19 vòng 1.
+- Sửa: đổi tên tập trong recap (vd E).
+
+### 31. Recap liệt kê bỏ chữ "hết" của note; "{ }," dính dấu phẩy
+
+- Vị trí: `$.sections[6].recap.caption`, `$.cards[7].recap.caption`; note `$.sections[6].blocks[1].children[0].text`
+- Nguồn: tr.5 (kiến thức cần nhớ 2)
+- Vấn đề: "hết" là chỗ trẻ hay sót phần tử; } sát dấu phẩy trong câu cần nhớ.
+- Sửa: "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn. Giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
+
+### 32. `kt-cham-dau-hieu`: ô đúng lặp nguyên cụm của đề; hình lệch trái
+
+- Vị trí: `$.exercises[45]`, visual `tap-hop.visual.cham-dau-hieu`
+- Nguồn: —
+- Vấn đề: trẻ chạm đúng nhờ so chữ (mục 34 vòng 1); hình dồn trái (ảnh `ipad/107-s9-03-exercise-kt-cham-dau-hieu.png`).
+- Sửa: đề liệt kê số áo rồi hỏi phần nào là dấu hiệu đặc trưng; căn giữa hình.
+
+### 33. Cùng card `xet-thuoc`, `dien-dau-xet-so` dùng lại K, 305 và 48 của `xet-ba-chu-so`
+
+- Vị trí: `$.exercises[42].segments`
+- Nguồn: —
+- Vấn đề: trẻ nhớ kết quả câu trước.
+- Sửa: đổi số, vd 610 và 95.
+
+### 34. Cùng card `doi-cach`, `noi-hai-cach` và `dien-liet-ke-chan` cùng ra {2; 4; 6}
+
+- Vị trí: `$.exercises[52].left[0]`, `$.exercises[53]` (cả `$.exercises[50].options[0]`)
+- Nguồn: —
+- Vấn đề: phần còn lại của mục 22 vòng 1.
+- Sửa: đổi H, vd "số chẵn lớn hơn 3 và nhỏ hơn 10" → {4; 6; 8}.
+
+### 35. Caption "viết sau vạch đứng |." để | dính dấu chấm
+
+- Vị trí: `$.sections[8].recap.caption`, `$.cards[9].recap.caption`, `$.cards[10].recap.caption`
+- Nguồn: —
+- Vấn đề: cùng loại mục 10 vòng 1.
+- Sửa: đưa kí hiệu vào giữa câu, vd "…, viết sau vạch đứng | trong ngoặc nhọn." (gộp với câu mới của mục 2).
