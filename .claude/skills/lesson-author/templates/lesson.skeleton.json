@@ -15,19 +15,26 @@
       "id": "bai-moi.section.phan-mot",
       "title": "Tên phần",
       "sourceRef": "SGK tr.1",
-      "minutes": 8,
+      "minutes": 3,
       "blocks": [
-        { "type": "note", "text": "Một câu dẫn vào phần." },
+        { "type": "visual", "visualId": "fixture.visual.dot-grid" },
         {
-          "type": "formula",
-          "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+          "type": "group",
+          "children": [
+            { "type": "note", "text": "Câu quy tắc cần nhớ." },
+            {
+              "type": "formula",
+              "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+            }
+          ]
         }
       ],
       "checkIds": ["bai-moi.ex.kiem-tra"],
-      "practiceIds": ["bai-moi.ex.tinh-tich", "bai-moi.ex.chon-tich"],
+      "practiceIds": ["bai-moi.ex.tinh-tich"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+        "type": "visual",
+        "visualId": "fixture.visual.dot-grid",
+        "caption": "Câu quy tắc cần nhớ."
       }
     }
   ],
@@ -37,8 +44,9 @@
       "sourceRef": "SGK tr.1",
       "conceptIds": ["bai-moi.concept.thua-so"],
       "recap": {
-        "type": "formula",
-        "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
+        "type": "visual",
+        "visualId": "fixture.visual.dot-grid",
+        "caption": "Câu quy tắc cần nhớ."
       }
     }
   ],
@@ -87,14 +95,30 @@
       "prompt": [{ "type": "note", "text": "Tích nào bằng 12?" }],
       "options": [
         { "id": "a", "content": { "type": "formula", "tex": "3 \\cdot 4" } },
-        { "id": "b", "content": { "type": "formula", "tex": "3 \\cdot 5" } },
-        { "id": "c", "content": { "type": "formula", "tex": "2 \\cdot 5" } }
+        { "id": "b", "content": { "type": "formula", "tex": "2 \\cdot 5" } },
+        { "id": "c", "content": { "type": "formula", "tex": "4 \\cdot 4" } }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": { "expr": "3·4" },
       "hints": { "highlight": [{ "target": "block", "index": 0 }] },
       "difficulty": 2
+    },
+    {
+      "id": "bai-moi.ex.tinh-tich-khac",
+      "type": "numeric",
+      "cardIds": ["bai-moi.card.tich"],
+      "prompt": [
+        { "type": "note", "text": "Tính tích sau." },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{tich}{\\concept{blue}{5} \\cdot \\concept{blue}{2}}"
+        }
+      ],
+      "answer": { "kind": "value", "value": 10 },
+      "check": { "expr": "5·2" },
+      "hints": { "highlight": [{ "target": "part", "id": "tich" }] },
+      "difficulty": 1
     }
   ],
   "sticker": {

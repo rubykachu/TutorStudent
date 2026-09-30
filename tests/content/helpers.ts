@@ -1,8 +1,49 @@
+import { cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import type { RawContent, RawLessonFile } from "@/content/check";
 import { readContentRoot } from "@/content/load";
 
 export const CONTENT_ROOT = path.join(process.cwd(), "content");
+
+// The lesson-author skill's starting point for a new lesson. It must pass
+// content:check as copied, and follow the authoring rules.
+export const SKELETON_FILE = path.join(
+  process.cwd(),
+  ".claude/skills/lesson-author/templates/lesson.skeleton.json",
+);
+export const SKELETON_ID = "bai-moi";
+
+export function readSkeleton(): Record<string, unknown> {
+  return JSON.parse(readFileSync(SKELETON_FILE, "utf8"));
+}
+
+// Lays out a content root the way content:check reads it: the committed
+// subjects, glossaries and fixture, an empty id lock, and `lesson` (the
+// skeleton by default) as the one real lesson. Returns the lesson's file.
+export function writeContentRoot(
+  root: string,
+  lesson: Record<string, unknown> = readSkeleton(),
+): string {
+  for (const entry of ["subjects.json", "glossary", "_fixture"]) {
+    cpSync(path.join(CONTENT_ROOT, entry), path.join(root, entry), {
+      recursive: true,
+    });
+  }
+  writeFileSync(
+    path.join(root, "ids.lock.json"),
+    JSON.stringify({ ids: [], retired: {} }),
+  );
+  const dir = path.join(
+    root,
+    String(lesson.subject),
+    String(lesson.series),
+    String(lesson.id),
+  );
+  mkdirSync(dir, { recursive: true });
+  const file = path.join(dir, "lesson.json");
+  writeFileSync(file, JSON.stringify(lesson, null, 2));
+  return file;
+}
 
 type Json = Record<string, unknown>;
 
