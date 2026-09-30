@@ -32,6 +32,7 @@ import {
   expectInViewAboveBar,
   expectNothingUnderBottomBar,
 } from "../e2e/layout";
+import { findOverlaps } from "../e2e/overlap";
 import { TARGET_DEVICES, TEST_BASE_URL } from "../e2e/targets";
 import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 
@@ -40,12 +41,14 @@ import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 // every explanation screen, every exercise answered right (read from the
 // lesson the server serves; an open-ended one step by step, then a sample
 // paragraph with every rubric line ticked), and the first exercise of each
-// type, with and without a hint visual, missed three times to see all
-// feedback tiers. Screenshots go to .shots/walk/<lessonId>/<device>/.
+// type, with and without a hint visual, and every exercise whose hints ring
+// parts of its prompt, missed three times to see all feedback tiers.
+// Screenshots go to .shots/walk/<lessonId>/<device>/.
 // Fails when a feedback visual (hint or solution) is out of view, when the
 // hint is lost after the number pad is opened again, when the bottom bar
 // covers something the child must tap, or when anything sticks out of the
-// answer card, an exercise column or the screen sideways, and when a video
+// answer card, an exercise column or the screen sideways, when text is
+// painted over by other text or a hint ring (e2e/overlap.ts), and when a video
 // block has no video, an unserved file or a small play button. Drafts are walked too: a
 // server it starts serves them (CONTENT_INCLUDE_DRAFT=1); WALK_BASE_URL
 // points it at another running server instead.
@@ -488,6 +491,11 @@ class Walker {
     for (const overflow of await this.page.evaluate(measureOverflow)) {
       this.report("fail", where, `${overflow} (${file})`);
     }
+    for (const overlap of await this.page.evaluate(findOverlaps, {
+      scope: "main",
+    })) {
+      this.report("fail", where, `${overlap} (${file})`);
+    }
     for (const small of new Set(text.smallText)) {
       this.report(
         "warn",
@@ -715,8 +723,15 @@ class Walker {
     await this.look(where);
     // Missed on purpose: the first exercise of each type, with and without a
     // hint visual, so every feedback layout (the pad giving way to a hint
-    // included) is seen.
-    const missKind = `${exercise.type}:${exercise.hints.hintVisualId ? "visual" : "plain"}`;
+    // included) is seen; and every exercise whose hints ring parts of its
+    // prompt, since where those rings land depends on each formula or
+    // passage.
+    const ringsParts = exercise.hints.highlight.some(
+      (ref) => ref.target === "part",
+    );
+    const missKind = ringsParts
+      ? exercise.id
+      : `${exercise.type}:${exercise.hints.hintVisualId ? "visual" : "plain"}`;
     if (!this.missedTypes.has(missKind)) {
       this.missedTypes.add(missKind);
       await enterWrong(area, exercise);

@@ -14,6 +14,7 @@ import {
   STEP_PLAYER_ATTR,
   VISUAL_FRAME_ATTR,
 } from "@/visuals/shared/markers";
+import { findOverlaps } from "../e2e/overlap";
 import {
   TARGET_DEVICES,
   type TargetDeviceName,
@@ -24,7 +25,8 @@ import { ensureServer, stopServer } from "./lib/dev-server";
 // Usage: visual-shot <lessonId|all|mascot>
 // Screenshots every visual a lesson uses (or the whole registry, or every owl
 // expression at every size) at each target device into .shots/<target>/, and
-// fails when any element leaves the frame or two sibling shapes/boxes overlap.
+// fails when any element leaves the frame, two sibling shapes/boxes overlap,
+// or text is painted over by other text or a hint ring (e2e/overlap.ts).
 
 const ALL = "all";
 const MASCOT = "mascot";
@@ -206,7 +208,10 @@ async function shoot(
   // The browser runs with reduced motion, so a StepPlayer waits on "Bước tiếp" and
   // every step is a still frame. The final step gets the plain file name.
   for (let step = 0; step < result.steps; step++) {
-    const issues = await page.evaluate(findLayoutIssues, selectors);
+    const issues = [
+      ...(await page.evaluate(findLayoutIssues, selectors)),
+      ...(await page.evaluate(findOverlaps, { scope: selectors.frame })),
+    ];
     const prefix = result.steps > 1 ? `step ${step + 1}: ` : "";
     result.issues.push(...issues.map((issue) => `${prefix}${issue}`));
     const isLast = step === result.steps - 1;
