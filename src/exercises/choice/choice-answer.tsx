@@ -1,7 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   AnswerHighlight,
   surfaceFor,
@@ -56,7 +56,32 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
     () => seededShuffle(exercise.options, seed),
     [exercise.options, seed],
   );
-  const long = longOptions(exercise.options);
+  const gridRef = useRef<HTMLDivElement>(null);
+  // Formula options never wrap, so a row of them that turns out wider than
+  // its column (a long product in a narrow card) falls back to one per row.
+  const [cramped, setCramped] = useState(false);
+  const long = cramped || longOptions(exercise.options);
+  useLayoutEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || long) return;
+    const overflowing = [
+      ...grid.querySelectorAll<HTMLElement>("[data-option]"),
+    ].some((option) => option.scrollWidth > option.clientWidth + 1);
+    if (overflowing) setCramped(true);
+  }, [long]);
+  // A new width (rotation) may fit the columns again: measure afresh.
+  useLayoutEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || typeof ResizeObserver === "undefined") return;
+    let width = grid.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (grid.clientWidth === width) return;
+      width = grid.clientWidth;
+      setCramped(false);
+    });
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
   const selected = reveal ? exercise.answer : (value?.selected ?? []);
 
   function toggle(id: string) {
@@ -71,6 +96,7 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
         {exercise.multiple ? "Chọn tất cả đáp án đúng" : "Chọn một đáp án"}
       </legend>
       <div
+        ref={gridRef}
         className={`grid gap-3 ${long ? "" : SHORT_OPTION_COLUMNS}`}
         data-long-options={long || undefined}
       >

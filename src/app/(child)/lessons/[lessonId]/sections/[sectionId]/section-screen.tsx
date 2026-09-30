@@ -44,7 +44,7 @@ export function SectionScreen({
   sectionId: string;
 }) {
   return (
-    <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-4 px-gutter pt-4 md:px-gutter-lg md:pt-6">
+    <main className="mx-auto flex w-full max-w-content flex-1 lg:landscape:max-w-content-wide flex-col gap-4 px-gutter pt-4 md:px-gutter-lg md:pt-6">
       <LessonGate lessonId={lessonId}>
         {(index, profile) => {
           const section = index.sectionById.get(sectionId);

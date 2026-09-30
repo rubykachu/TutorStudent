@@ -318,12 +318,10 @@ describe("ExerciseFrame", () => {
     const owl = container.querySelector("svg[data-mascot]");
     expect(owl).toHaveAttribute("data-mascot", "idle");
     expect(owl).toHaveClass("size-14", "md:size-18");
-    // Absolute on the card's corner on a phone, never taking a tap.
-    expect(owl?.parentElement).toHaveClass(
-      "pointer-events-none",
-      "absolute",
-      "md:static",
-    );
+    // Absolute on the card's corner at every size, never taking a tap, so
+    // the card keeps the full width.
+    expect(owl?.parentElement).toHaveClass("pointer-events-none", "absolute");
+    expect(owl?.parentElement?.className).not.toMatch(/\bmd:static\b/);
     choose("a");
     checkAnswer();
     expect(container.querySelector("svg[data-mascot]")).toHaveAttribute(

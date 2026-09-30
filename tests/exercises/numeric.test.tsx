@@ -164,6 +164,19 @@ describe("NumericAnswer", () => {
     fireEvent.click(screen.getByRole("button", { name: "Mở bàn phím số" }));
     expect(pad()).not.toHaveAttribute("data-pad-collapsed");
     expect(screen.queryByRole("button", { name: "Mở bàn phím số" })).toBeNull();
+    // The hint folds into a strip right above the pad where parts stack.
+    const visual = container.querySelector("[data-feedback-visual]");
+    expect(visual).toHaveClass("hidden", "lg:landscape:block");
+    const strip = screen.getByRole("button", { name: "Xem gợi ý" });
+    expect(strip).toHaveAttribute("data-hint-strip");
+    expect(strip).toHaveClass("lg:landscape:hidden");
+
+    // Tapping the strip shows the hint again in place of the pad.
+    fireEvent.click(strip);
+    expect(pad()).toHaveAttribute("data-pad-collapsed");
+    expect(visual).not.toHaveClass("hidden");
+    expect(screen.queryByRole("button", { name: "Xem gợi ý" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Mở bàn phím số" }));
 
     // The solution visual takes the place again; the retype brings it back.
     checkAnswer();

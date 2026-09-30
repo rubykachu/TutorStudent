@@ -158,6 +158,11 @@
   --spacing-gutter: 1rem;
   --spacing-gutter-lg: 1.5rem;
   --container-content: 45rem;
+  /*
+   * Learning screens on a landscape tablet: wide enough for the two-column
+   * exercise layout to give both prompt and answer a comfortable column.
+   */
+  --container-content-wide: 60rem;
   /* Height budget for one lesson visual; `pnpm visual:shot` checks against it. */
   --spacing-visual-frame: 30rem;
 

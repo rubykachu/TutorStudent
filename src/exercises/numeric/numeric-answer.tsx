@@ -69,8 +69,6 @@ function padKeyOf(event: KeyboardEvent): PadKey | undefined {
 export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
   const { value, onChange, disabled, highlight, wrong, reveal } = slot;
   const [powerFocus, setPowerFocus] = useState<NumericSlot>("exponent");
-  // The child asked for the pad back while a hint visual stands in for it.
-  const [padWanted, setPadWanted] = useState(false);
   const shown = reveal ? revealedInput(exercise) : (value ?? EMPTY_NUMERIC);
   const focus: NumericSlot = shown.kind === "value" ? "value" : powerFocus;
   const decimal = needsDecimal(exercise);
@@ -78,7 +76,7 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
   // pad steps aside on stacked layouts so it is seen without scrolling; the
   // entered answer stays as a compact summary above.
   const padCollapsed =
-    (slot.feedbackVisual || reveal) && (disabled || !padWanted);
+    (slot.feedbackVisual || reveal) && (disabled || !slot.inputWanted);
 
   function press(key: PadKey) {
     if (disabled) return;
@@ -120,7 +118,7 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
           data-wrong={missed || undefined}
           onClick={() => {
             if (id !== "value") setPowerFocus(id);
-            setPadWanted(true);
+            slot.wantInput();
           }}
           className={`flex items-center justify-center rounded-lg px-3 font-bold tabular-nums ${size} ${
             reveal
@@ -182,13 +180,14 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
             type="button"
             aria-label="Mở bàn phím số"
             data-open-pad
-            onClick={() => setPadWanted(true)}
+            onClick={slot.wantInput}
             className="flex size-14 items-center justify-center rounded-lg border-2 border-border bg-surface text-muted-foreground motion-safe:transition-transform motion-safe:active:scale-97 lg:landscape:hidden"
           >
             <Keyboard aria-hidden className="size-7" />
           </button>
         )}
       </div>
+      {!padCollapsed && slot.feedbackStrip}
       <div
         className={padCollapsed ? COLLAPSED_INPUT_CLASS : undefined}
         data-pad-collapsed={padCollapsed || undefined}

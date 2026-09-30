@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronRight, RotateCcw } from "lucide-react";
+import { Check, ChevronRight, Lightbulb, RotateCcw } from "lucide-react";
 import {
   type ReactNode,
   useEffect,
@@ -48,6 +48,14 @@ export type AnswerSlotProps<I> = {
   // control (the number pad) may give up its place to it by wrapping itself
   // in `COLLAPSED_INPUT_CLASS`.
   feedbackVisual: boolean;
+  // The child asked for the collapsed input control back while the feedback
+  // visual is showing; `wantInput` asks for it. Where the frame stacks its
+  // parts the visual then folds into `feedbackStrip`, which the answer
+  // component draws right above its input control, so the hint stays one
+  // tap away instead of being pushed off the screen.
+  inputWanted: boolean;
+  wantInput: () => void;
+  feedbackStrip: ReactNode;
   // Show the correct answer in place (third wrong check, no solution visual).
   reveal: boolean;
   // Seed for `seededShuffle` of the answer items: the same for the whole
@@ -160,12 +168,17 @@ export function ExerciseFrame<E extends BasicExercise>({
   const visualRef = useRef<HTMLDivElement>(null);
   const answerRef = useRef<HTMLDivElement>(null);
   const visualKey = view.visualId && `${tier}:${view.visualId}`;
+  // The feedback visual for which the child asked the input control back;
+  // a newer visual (the next tier) shows in full again.
+  const [inputWantedFor, setInputWantedFor] = useState<string | null>(null);
+  const inputWanted =
+    visualKey !== undefined && inputWantedFor === visualKey && !accepted;
   const answerKey = view.reveal
     ? "reveal"
-    : state.phase === "retype"
-      ? "retype"
+    : state.phase === "retype" || inputWanted
+      ? "answer"
       : null;
-  const inViewKey = visualKey ?? answerKey;
+  const inViewKey = inputWanted ? answerKey : (visualKey ?? answerKey);
   useEffect(() => {
     if (inViewKey === null) return;
     const target =
@@ -186,6 +199,19 @@ export function ExerciseFrame<E extends BasicExercise>({
       clearTimeout(stop);
     };
   }, [inViewKey, visualKey, reducedMotion]);
+
+  const feedbackStrip = inputWanted ? (
+    // Stacked layouts only: the two-column layout keeps the visual in view.
+    <button
+      type="button"
+      data-hint-strip
+      onClick={() => setInputWantedFor(null)}
+      className="flex min-h-touch w-full items-center justify-center gap-2 rounded-lg border-2 border-highlight bg-highlight/30 px-4 font-semibold motion-safe:transition-transform motion-safe:active:scale-97 lg:landscape:hidden"
+    >
+      <Lightbulb aria-hidden className="size-6" />
+      {state.phase === "wrong3" ? "Xem lời giải" : "Xem gợi ý"}
+    </button>
+  ) : null;
 
   // A tall prompt (two lines of text above a formula) can push the bottom of
   // the answer area under the sticky bottom bar on a short screen, where the
@@ -228,7 +254,7 @@ export function ExerciseFrame<E extends BasicExercise>({
       data-mascot={view.mascot}
     >
       <div
-        className="grid gap-6 lg:landscape:grid-cols-2 lg:landscape:grid-rows-[auto_1fr] lg:landscape:items-start lg:landscape:gap-x-8"
+        className="grid gap-6 lg:landscape:grid-cols-[2fr_3fr] lg:landscape:grid-rows-[auto_1fr] lg:landscape:items-start lg:landscape:gap-x-8"
         data-exercise-layout
       >
         <div className="flex min-w-0 flex-col gap-4 lg:landscape:col-start-1 lg:landscape:row-start-1">
@@ -246,18 +272,18 @@ export function ExerciseFrame<E extends BasicExercise>({
           )}
         </div>
 
-        {/* A phone, and the answer column of the two-column layout, are too
-          narrow to give up a column to the mascot, so it perches on the
-          top-right corner of the answer card there (the card's taller top
-          padding keeps it off the answer); on a stacked tablet layout it
-          stands beside the card. */}
+        {/* The mascot perches on the top-right corner of the answer card at
+          every size, so the card keeps the full width for its answer (a
+          long product or a sentence with blanks stays on one line); the
+          card's taller top padding keeps it off the answer, and the margin
+          above the column keeps it off the prompt. */}
         <div
-          className="relative mt-4 flex min-w-0 items-start gap-4 md:mt-0 lg:landscape:col-start-2 lg:landscape:row-span-2 lg:landscape:row-start-1"
+          className="relative mt-4 min-w-0 md:mt-6 lg:landscape:col-start-2 lg:landscape:row-span-2 lg:landscape:row-start-1 lg:landscape:mt-10"
           data-answer-column
         >
           <div
             ref={answerRef}
-            className={`relative min-w-0 flex-1 self-stretch rounded-xl px-4 pt-8 pb-4 md:p-6 lg:landscape:px-4 lg:landscape:pt-10 lg:landscape:pb-4 ${TONE_CLASSES[tone]} ${shaking ? "animate-shake" : ""}`}
+            className={`relative min-w-0 rounded-xl px-4 pt-8 pb-4 md:px-6 md:pt-12 md:pb-6 lg:landscape:px-5 lg:landscape:pt-11 lg:landscape:pb-5 ${TONE_CLASSES[tone]} ${shaking ? "animate-shake" : ""}`}
             data-answer-area
             data-tone={tone}
             data-shaking={shaking || undefined}
@@ -270,7 +296,7 @@ export function ExerciseFrame<E extends BasicExercise>({
             {accepted && (
               <Check
                 aria-hidden
-                className="absolute top-1 left-3 size-7 text-correct md:top-3 md:right-3 md:left-auto md:size-8 lg:landscape:top-1 lg:landscape:right-auto lg:landscape:left-3"
+                className="absolute top-1 left-3 size-7 text-correct md:top-2 md:left-4 md:size-8"
                 strokeWidth={3}
               />
             )}
@@ -284,6 +310,9 @@ export function ExerciseFrame<E extends BasicExercise>({
                   highlight: answerHighlight,
                   wrong: view.wrong,
                   feedbackVisual: view.visualId !== undefined,
+                  inputWanted,
+                  wantInput: () => setInputWantedFor(visualKey ?? null),
+                  feedbackStrip,
                   reveal: view.reveal,
                   seed: attemptSeed(exercise.id, nonce),
                 })}
@@ -291,7 +320,7 @@ export function ExerciseFrame<E extends BasicExercise>({
           </div>
           {/* Decoration only: it never takes a tap meant for the answer. */}
           <div
-            className="pointer-events-none absolute -top-8 right-3 md:static md:shrink-0 lg:landscape:absolute lg:landscape:-top-10 lg:landscape:right-3"
+            className="pointer-events-none absolute -top-8 right-3 md:-top-10 md:right-4"
             data-mascot-slot
           >
             {renderMascot(view.mascot)}
@@ -301,7 +330,7 @@ export function ExerciseFrame<E extends BasicExercise>({
         {view.visualId && (
           <div
             ref={visualRef}
-            className="min-w-0 lg:landscape:col-start-1 lg:landscape:row-start-2"
+            className={`min-w-0 lg:landscape:col-start-1 lg:landscape:row-start-2 ${inputWanted ? COLLAPSED_INPUT_CLASS : ""}`}
             data-feedback-visual={view.visualId}
           >
             {/* Keyed by tier too, so a visual used for both hint and solution
