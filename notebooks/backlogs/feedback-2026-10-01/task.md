@@ -1,0 +1,23 @@
+# Góp ý của chủ dự án sau khi bé dùng thử (01/10/2026)
+
+Ảnh minh hoạ: các tệp `NN.png` trong thư mục này (số ảnh ghi trong ngoặc).
+Đồng nghiệp nhận xét: app thú vị, UI/UX đẹp, kiểu Duolingo, đúng hướng. Giữ phong cách hiện tại.
+
+## A. Giao diện, trải nghiệm (một đợt)
+1. Trang môn: hiện số chương/bài như sách, vd "Chương I · Bài 4", để phụ huynh tra nhanh (17). Cần trường chương/số bài trong nội dung.
+2. Tiêu đề bài ghi "Bài 4: Phép cộng và phép trừ số tự nhiên"; tiêu đề phần trong player ghi rõ là phần ("Phần 3: Nhân, chia trước…") để không bị hiểu là câu hỏi (18).
+3. Bé không phân biệt màn lý thuyết và màn bài tập: mỗi màn có nhãn rõ "Lý thuyết" / "Bài tập" (kèm "Kiểm tra nhanh" / "Luyện tập"). Chỉ sửa UI, không sửa video.
+4. Màn "cùng làm" (lý thuyết có chạm): chạm đúng thì màn chuyển ngay sang bước giải thích, bé không kịp thấy mình đúng hay sai (19, 20). Chạm đúng phải dừng lại, hiện rõ là đúng (màu, dấu, âm thanh), bé bấm để đi tiếp. Chạm sai hiện đang đúng (21). Bài tập đang đúng (22).
+5. Âm thanh "click" nhẹ khi chạm lựa chọn/đáp án (âm thanh dùng chung, tạo một lần).
+6. Tiêu đề trang môn ghi "Môn: Toán".
+7. Từ màn "Giới thiệu bài" bấm "Học tiếp" sang phần học thì không có nút quay lại màn giới thiệu.
+8. Chấm tiến độ bấm được để về đúng bước đã qua; có nhãn "Câu 1", "Câu 2"… (hoặc "Lý thuyết 1") (23).
+9. Nút "Bỏ qua" cho bài tập (bài khó, không muốn làm, nội dung không phù hợp): đi tiếp không cần đúng; ghi là bỏ qua (không chấm mức nhớ), trang phụ huynh thấy được.
+10. Màn hướng dẫn thao tác là hình minh hoạ nhưng bé tưởng tương tác, chạm mãi không thấy gì, hỏi có phải lỗi app (24, 25). Hoặc làm hình mẫu chạm được thật, hoặc ghi rõ "Hình mẫu, chưa cần chạm" và bỏ dáng vẻ bấm được.
+11. Bài điền: đặt thẻ vào ô trống làm chữ rớt dòng, nội dung nhảy vị trí (26, 27). Ô trống phải giữ chỗ đủ rộng từ đầu.
+12. Chạm sticker không có hiệu ứng, âm thanh; chưa tạo sức hút sưu tầm (28). Thêm hiệu ứng, âm thanh, và màn chi tiết (tên, bài, tiến độ, cách nhận).
+
+## B. Video và giọng đọc
+13. Bài 4 `phep-cong-phep-tru` chưa có video, lời đọc giới thiệu.
+14. Mọi video mở đầu bằng câu chào/giới thiệu ("Ở bài này chúng ta sẽ học…") và vài giây đệm trước nội dung, để bé không mất mấy chữ đầu. Ghi thành luật trong skill `lesson-video` và kiểm tự động được (câu đầu của `script.json` là câu mở đầu).
+15. Thêm giọng nữ để đỡ nhàm chán giọng nam: agent chọn 2–3 ứng viên, tạo mẫu nghe thử (cùng một đoạn), chủ dự án chọn. Sau khi chọn, ghi giọng vào cấu hình; bài nào dùng giọng nào do skill quyết định theo quy tắc rõ ràng.
