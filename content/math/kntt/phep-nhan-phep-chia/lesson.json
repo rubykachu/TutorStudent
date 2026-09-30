@@ -24,7 +24,11 @@
       "viết phép chia có dư: số bị chia bằng số chia nhân thương cộng số dư",
       "tìm lỗi sai và giải bài toán có phép chia dư"
     ],
-    "whyItMatters": "Nhân chia đúng giúp bạn tính tiền, chia đồ và kiểm tra bài toán mà không sợ sai."
+    "whyItMatters": "Nhân chia đúng giúp bạn tính tiền, chia đồ và kiểm tra bài toán mà không sợ sai.",
+    "narration": {
+      "audioUrl": "narration/phep-nhan-phep-chia/overview.m4a",
+      "vttUrl": "narration/phep-nhan-phep-chia/overview.vtt"
+    }
   },
   "concepts": [
     {
@@ -90,6 +94,10 @@
       "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-nhan-phep-chia.video.nhan-cong-lap"
+        },
         {
           "type": "visual",
           "visualId": "phep-nhan-phep-chia.visual.nhan-hop-banh",
@@ -268,6 +276,10 @@
       "sourceRef": "Sách bài tập tr.17, 19",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-nhan-phep-chia.video.nhom-thua-so"
+        },
         {
           "type": "group",
           "children": [
@@ -627,6 +639,10 @@
       "sourceRef": "Sách bài tập tr.17",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-nhan-phep-chia.video.chia-co-du"
+        },
         {
           "type": "visual",
           "visualId": "phep-nhan-phep-chia.visual.chia-keo-23-4",
@@ -4219,5 +4235,70 @@
   "sticker": {
     "name": "Nhà vô địch nhân chia",
     "visualId": "phep-nhan-phep-chia.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "phep-nhan-phep-chia.video.nhan-cong-lap",
+      "lessonId": "phep-nhan-phep-chia",
+      "url": "video/phep-nhan-phep-chia/nhan-cong-lap.mp4",
+      "vttUrl": "video/phep-nhan-phep-chia/nhan-cong-lap.vtt",
+      "posterUrl": "video/phep-nhan-phep-chia/nhan-cong-lap.jpg",
+      "durationSec": 52.2,
+      "clips": [
+        {
+          "id": "nhan-cong-lap",
+          "start": 11.447,
+          "end": 33.256,
+          "cardIds": ["phep-nhan-phep-chia.card.nhan-cong-lap"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.video.chia-co-du",
+      "lessonId": "phep-nhan-phep-chia",
+      "url": "video/phep-nhan-phep-chia/chia-co-du.mp4",
+      "vttUrl": "video/phep-nhan-phep-chia/chia-co-du.vtt",
+      "posterUrl": "video/phep-nhan-phep-chia/chia-co-du.jpg",
+      "durationSec": 58.9,
+      "clips": [
+        {
+          "id": "chia-co-du",
+          "start": 8.81,
+          "end": 41.061,
+          "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.video.nhom-thua-so",
+      "lessonId": "phep-nhan-phep-chia",
+      "url": "video/phep-nhan-phep-chia/nhom-thua-so.mp4",
+      "vttUrl": "video/phep-nhan-phep-chia/nhom-thua-so.vtt",
+      "posterUrl": "video/phep-nhan-phep-chia/nhom-thua-so.jpg",
+      "durationSec": 54.17,
+      "clips": [
+        {
+          "id": "nhom-thua-so",
+          "start": 12.675,
+          "end": 36.628,
+          "cardIds": ["phep-nhan-phep-chia.card.ket-hop"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

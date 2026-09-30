@@ -1,12 +1,17 @@
 # Bàn giao: Bài 5 `phep-nhan-phep-chia` (Phép nhân và phép chia số tự nhiên)
 
 ## Trạng thái
-- Nội dung đã xuất bản (`status: published`) sau 4 vòng review, `content:lock` xong, id đã khoá. Lời đọc và video chưa làm.
+- Nội dung đã xuất bản (`status: published`) sau 4 vòng review, `content:lock` xong, id đã khoá. Lời đọc giới thiệu (45,8 s) và 3 video đã dựng, đang chờ reviewer mới duyệt vòng chỉ phần đổi (diff chỉ có `overview.narration`, `videos[]` và 3 khối video).
 - Nguồn: sách bài tập tr.17–20 (PDF 18–21), lời giải tr.98–100 (PDF 99–101), trong `sources/math/phep-nhan-phep-chia/`.
 - Quy ước viết phép nhân của cả bài: a · b là "a được lấy b lần" (số được cộng viết trước, số lần lấy viết sau), dạy một lần ở section `nhan-cong-lap`.
 
+## Lời đọc và video (giọng Hải Đăng)
+- Giọng `hai-dang` khai trong `video/projects/phep-nhan-phep-chia/media.json`. Lý do: bài trước (Bài 4) là Mỹ Duyên nên đổi giọng cho bé đỡ nhàm; bài nhiều bước thủ tục (đặt tính, tính chất) nên hai giọng đều hợp. Bài 6 và 7 cũng Hải Đăng, nên nếu sau này muốn xen kẽ hơn thì đổi cả lời đọc lẫn video của bài này (đọc lại toàn bộ).
+- Video (đặt ở đầu phần, `pnpm video:check` đạt): `nhan-cong-lap` 52,2 s (phần `nhan-cong-lap`, 4 hộp bánh đến 6 · 4); `chia-co-du` 58,9 s (phần `chia-co-du`, 23 kẹo cho 4 bạn, 23 = 4 · 5 + 3, số dư nhỏ hơn số chia); `nhom-thua-so` 54,2 s (phần `ket-hop`, 36 · 25 = 9 · 4 · 25). Chọn vì đây là ba ý bé dễ hụt nhất: nghĩa phép nhân, phép chia có dư và kiểm tra, nhân nhẩm bằng số tròn.
+- Còn lại: reviewer mới duyệt (vòng chỉ phần đổi, `model: sonnet`), rồi `pnpm content:hash --approve`, `pnpm content:lock` (khoá 3 id video mới; hiện `content:lock` dừng vì `[review-hash]`), `pnpm lesson:walk phep-nhan-phep-chia`, rồi lưu trữ thư mục này.
+
 ## Việc tiếp theo
-1. Lời đọc và video theo skill `lesson-video` (Sonnet), một section một video theo quy định, rồi `video:check`.
+1. Review lời đọc và video như trên.
 2. Còn một ý Nên sửa nhỏ chưa làm (sửa sẽ đổi hash, cần review diff): nhiễu d của `chon-tich-rieng-2` ("Viết 19, nhớ 2 sang cột bên trái") là lựa chọn duy nhất không mở đầu bằng "Viết 192", đề xuất "Viết 192, lùi sang trái hai cột".
 
 ## Lịch sử sửa

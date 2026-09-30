@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Phép chia có dư" (lesson phep-nhan-phep-chia): 23 sweets
+  dealt round by round to 4 plates; the 3 left over turn pink (số dư) and are
+  fewer than the plates. Then 23 = 4 · 5 + 3 with the lesson's colours:
+  số bị chia blue, số chia violet, thương amber, số dư pink, each with a
+  shape (● ▲ ■ ◆). Built by `pnpm video:build phep-nhan-phep-chia chia-co-du`,
+  which injects window.TIMING (scene windows and spoken word times).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Phép chia có dư</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .candy { position: absolute; z-index: 2; width: 34px; height: 34px; border-radius: 10px; background: var(--color-concept-sky); border: 4px solid var(--color-surface); box-shadow: 0 0 0 3px var(--color-concept-sky); }
+      .plate { position: absolute; top: 330px; width: 170px; height: 76px; background: var(--color-surface); border: 6px solid var(--color-border); border-radius: 22px 22px 40px 40px; }
+      .plabel { position: absolute; top: 414px; width: 170px; text-align: center; font: 700 28px / 1.2 "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .tagcard { display: inline-flex; flex-direction: column; align-items: center; padding: 10px 26px 14px; background: var(--color-surface); border: 5px solid var(--c); border-radius: 24px; color: var(--c); }
+      .tagcard .v { font: 800 62px / 1.1 "Baloo 2", sans-serif; }
+      .tagcard .u { font: 700 28px / 1.2 "Be Vietnam Pro", sans-serif; }
+      .cb { color: var(--color-concept-blue); } .cv { color: var(--color-concept-violet); } .ca { color: var(--color-concept-amber); } .cp { color: var(--color-concept-pink); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="work" class="scene layer">
+          <div id="lt" class="abs"></div>
+          <div id="lt-pill" class="row" style="top: 195px"><span class="math pill">3 &lt; 4</span></div>
+          <div id="chipA" class="row" style="top: 205px"><span class="chip" style="--c: var(--color-concept-pink)">phép chia có dư</span></div>
+          <div id="chipsB" class="row" style="top: 205px"><span id="cb1" class="chip" style="--c: var(--color-concept-pink)">◆ số dư</span><span id="cb2" class="math small">&lt;</span><span id="cb3" class="chip" style="--c: var(--color-concept-violet)">▲ số chia</span></div>
+        </section>
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 300px">Phép chia có dư</div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="tags" class="row" style="top: 20px; gap: 26px">
+            <span id="tg1" class="tagcard" style="--c: var(--color-concept-blue)"><span class="v">23</span><span class="u">● số bị chia</span></span>
+            <span id="tg2" class="tagcard" style="--c: var(--color-concept-violet)"><span class="v">4</span><span class="u">▲ số chia</span></span>
+            <span id="tg3" class="tagcard" style="--c: var(--color-concept-amber)"><span class="v">5</span><span class="u">■ thương</span></span>
+            <span id="tg4" class="tagcard" style="--c: var(--color-concept-pink)"><span class="v">3</span><span class="u">◆ số dư</span></span>
+          </div>
+          <div id="eqf" class="row math" style="top: 200px"></div>
+          <div id="chk" class="row math small" style="top: 330px"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="t1" class="row math" style="top: 30px"></div>
+          <div id="t2" class="row math" style="top: 140px"></div>
+          <div id="t3" class="row" style="top: 255px"><span class="math pill"></span></div>
+          <div id="t4" class="row" style="top: 390px"><span class="math pill" style="background: var(--color-muted)"></span></div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="n1" class="row" style="top: 110px"></div>
+          <div id="n2" class="row" style="top: 290px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, end, W, op, owl, pop, rise, hide, pose, color, scenes, finish } = window.LV;
+        const sp = (cls, id, html) => `<span id="${id}" class="${cls}">${html}</span>`;
+        const dot = op("·");
+        const plus = op("+");
+        const eq = op("=");
+
+        // ---------- DOM ----------
+        // 23 sweets in rows of 8, 8, 7; dealt 4 at a time to 4 plates, 3 stay.
+        const CANDY = { size: 34, gap: 44, left: 640 - 4 * 44 + 5, top: 50 };
+        const plateLeft = (i) => 264 + i * 194;
+        const home = (n) => ({ x: CANDY.left + (n % 8) * CANDY.gap, y: CANDY.top + Math.floor(n / 8) * CANDY.gap });
+        const candies = [];
+        for (let n = 0; n < 23; n++) {
+          const c = document.createElement("div");
+          c.className = "candy";
+          c.id = `cd${n}`;
+          c.style.left = `${home(n).x}px`;
+          c.style.top = `${home(n).y}px`;
+          $("#work").append(c);
+          candies.push(c);
+        }
+        for (let i = 0; i < 4; i++) {
+          const p = document.createElement("div");
+          p.className = "plate";
+          p.id = `pl${i}`;
+          p.style.left = `${plateLeft(i)}px`;
+          $("#work").append(p);
+          const l = document.createElement("div");
+          l.className = "plabel";
+          l.id = `pb${i}`;
+          l.style.left = `${plateLeft(i)}px`;
+          l.textContent = `bạn ${i + 1}`;
+          $("#work").append(l);
+        }
+        $("#eqf").innerHTML = `${sp("cb", "q1", "23")}<span id="qe" class="op">=</span>${sp("cv", "q2", "4")}<span id="qd" class="op">·</span>${sp("ca", "q3", "5")}<span id="qp" class="op">+</span>${sp("cp", "q4", "3")}`;
+        $("#chk").innerHTML = `<span id="k1">4${dot}5${eq}</span><span id="k2">20</span><span id="k3" class="op" style="margin: 0 24px">,</span><span id="k4">20${plus}<span class="cp">3</span></span><span id="k5">${eq}</span><span id="k6" class="pill cb">23</span>`;
+        $("#t1").innerHTML = `${sp("cb", "a1", "17")}<span id="a2" class="op">:</span>${sp("cv", "a3", "5")}`;
+        $("#t2").innerHTML = `${sp("cv", "b1", "5")}<span id="b2" class="op">·</span>${sp("ca", "b3", "3")}<span id="b4" class="op">=</span><span id="b5">15</span>`;
+        $("#t3 .pill").innerHTML = `<span class="cp">dư 2</span>`;
+        $("#t4 .pill").innerHTML = `<span class="cp">2</span><span class="op">&lt;</span><span class="cv">5</span>`;
+        $("#n1").innerHTML = `<span id="m1" class="chip" style="--c: var(--color-concept-blue)">● số bị chia</span><span id="m2" class="math small">=</span><span id="m3" class="chip" style="--c: var(--color-concept-violet)">▲ số chia</span><span id="m4" class="math small">·</span><span id="m5" class="chip" style="--c: var(--color-concept-amber)">■ thương</span><span id="m6" class="math small">+</span><span id="m7" class="chip" style="--c: var(--color-concept-pink)">◆ số dư</span>`;
+        $("#n2").innerHTML = `<span id="o1" class="chip" style="--c: var(--color-concept-pink)">◆ số dư</span><span id="o2" class="math small">&lt;</span><span id="o3" class="chip" style="--c: var(--color-concept-violet)">▲ số chia</span>`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+        const pink = color("concept-pink");
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-de"],
+          ["#s4", "s04-kiem"],
+          ["#s5", "s05-thu"],
+          ["#s6", "s06-nho"],
+        ]);
+        {
+          // The sweets and plates stay from the question to the two rules.
+          const el = $("#work");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, W("s01-de", "kẹo"));
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s03-du") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: 23 sweets, 4 friends ----------
+        {
+          const sid = "s01-de";
+          hide(["#title", "#lt-pill", "#chipA", "#chipsB", ".plate", ".plabel"]);
+          hide(candies);
+          pose(bird, "happy", W(sid, "chào"));
+          rise("#title", W(sid, "chào"));
+          tl.to("#title", { autoAlpha: 0, duration: 0.3 }, W(sid, "bạn", 2) - 0.3);
+          pop(".candy", W(sid, "23"), { from: 0.4, stagger: 0.04 });
+          pop(".plate", W(sid, "4"), { from: 0.6, stagger: 0.15 });
+          pop(".plabel", W(sid, "4") + 0.2, { from: 0.6, stagger: 0.15 });
+        }
+
+        // ---------- s02: five rounds of one sweet each ----------
+        {
+          const sid = "s02-chia";
+          pose(bird, "idle", start(sid));
+          const deal = (round, t) => {
+            for (let i = 0; i < 4; i++) {
+              const n = round * 4 + i;
+              const to = { x: plateLeft(i) + 12 + round * 30, y: 350 };
+              tl.to(candies[n], { x: to.x - home(n).x, y: to.y - home(n).y, duration: 0.45, ease: "power2.inOut" }, t + i * 0.08);
+            }
+          };
+          deal(0, W(sid, "phát"));
+          const t0 = W(sid, "5");
+          const t1 = Math.max(t0 + 1.5, W(sid, "20") - 0.6);
+          for (let r = 1; r < 5; r++) deal(r, t0 + ((r - 1) * (t1 - t0)) / 3);
+          candies.slice(20).forEach((c, i) => {
+            tl.to(c, { boxShadow: `0 0 0 3px ${pink}`, backgroundColor: pink, duration: 0.3 }, W(sid, "3") + i * 0.12);
+          });
+          pose(bird, "happy", W(sid, "3"));
+        }
+
+        // ---------- s03: fewer left than friends, and the rule ----------
+        {
+          const sid = "s03-du";
+          pose(bird, "idle", start(sid));
+          pop("#lt-pill", W(sid, "ít"), { from: 0.6 });
+          tl.to("#lt-pill", { autoAlpha: 0, duration: 0.25 }, W(sid, "phép") - 0.1);
+          rise("#chipA", W(sid, "phép"), { y: 14 });
+          tl.to("#chipA", { autoAlpha: 0, duration: 0.25 }, W(sid, "phần") - 0.1);
+          hide(["#cb1", "#cb2", "#cb3"]);
+          tl.set("#chipsB", { autoAlpha: 1 }, W(sid, "phần") - 0.05);
+          rise("#cb1", W(sid, "dư", 2) - 0.3, { y: 14 });
+          rise("#cb2", W(sid, "nhỏ"), { y: 14 });
+          rise("#cb3", W(sid, "chia", 3), { y: 14 });
+        }
+
+        // ---------- s04: the four names and 23 = 4 · 5 + 3 ----------
+        {
+          const sid = "s04-kiem";
+          pose(bird, "idle", start(sid));
+          hide(["#tg1", "#tg2", "#tg3", "#tg4", "#q1", "#qe", "#q2", "#qd", "#q3", "#qp", "#q4", "#k1", "#k2", "#k3", "#k4", "#k5", "#k6"]);
+          pop("#tg1", W(sid, "23"), { from: 0.6 });
+          pop("#tg2", W(sid, "4"), { from: 0.6 });
+          pop("#tg3", W(sid, "5"), { from: 0.6 });
+          pop("#tg4", W(sid, "3"), { from: 0.6 });
+          pop("#q1", W(sid, "bị", 2), { from: 0.6 });
+          pop("#qe", W(sid, "bằng"), { from: 0.6 });
+          pop("#q2", W(sid, "chia", 4), { from: 0.6 });
+          pop("#qd", W(sid, "nhân"), { from: 0.6 });
+          pop("#q3", W(sid, "thương", 2), { from: 0.6 });
+          pop("#qp", W(sid, "cộng"), { from: 0.6 });
+          pop("#q4", W(sid, "dư", 2), { from: 0.6 });
+          pop("#k1", W(sid, "nhân", 2), { from: 0.6 });
+          pop("#k2", W(sid, "20"), { from: 0.6 });
+          pop("#k3", W(sid, "20") + 0.1, { from: 0.6 });
+          pop("#k4", W(sid, "cộng", 2), { from: 0.6 });
+          pop("#k5", W(sid, "bằng", 3), { from: 0.6 });
+          pop("#k6", W(sid, "23", 2), { from: 0.5 });
+          pose(bird, "happy", W(sid, "23", 2));
+        }
+
+        // ---------- s05: a try, 17 : 5 ----------
+        {
+          const sid = "s05-thu";
+          pose(bird, "idle", start(sid));
+          hide(["#t1", "#b1", "#b2", "#b3", "#b4", "#b5", "#t3", "#t4"]);
+          rise("#t1", W(sid, "17"), { y: 20 });
+          pop("#b1", W(sid, "5", 2), { from: 0.6 });
+          pop("#b2", W(sid, "nhân"), { from: 0.6 });
+          pop("#b3", W(sid, "3"), { from: 0.6 });
+          pop("#b4", W(sid, "bằng"), { from: 0.6 });
+          pop("#b5", W(sid, "15"), { from: 0.6 });
+          tl.set("#t2", { autoAlpha: 1 }, W(sid, "5", 2) - 0.01);
+          pop("#t3", W(sid, "2"), { from: 0.6 });
+          pop("#t4", W(sid, "nhỏ"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nhỏ"));
+        }
+
+        // ---------- s06: remember ----------
+        {
+          const sid = "s06-nho";
+          hide(["#m1", "#m2", "#m3", "#m4", "#m5", "#m6", "#m7", "#o1", "#o2", "#o3"]);
+          pop("#m1", W(sid, "bị"), { from: 0.6 });
+          pop("#m2", W(sid, "bằng"), { from: 0.6 });
+          pop("#m3", W(sid, "chia", 2), { from: 0.6 });
+          pop("#m4", W(sid, "nhân"), { from: 0.6 });
+          pop("#m5", W(sid, "thương"), { from: 0.6 });
+          pop("#m6", W(sid, "cộng"), { from: 0.6 });
+          pop("#m7", W(sid, "dư"), { from: 0.6 });
+          pop("#o1", W(sid, "dư", 2), { from: 0.6 });
+          pop("#o2", W(sid, "nhỏ"), { from: 0.6 });
+          pop("#o3", W(sid, "chia", 3), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

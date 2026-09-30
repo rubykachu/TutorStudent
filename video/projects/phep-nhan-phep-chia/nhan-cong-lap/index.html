@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Phép nhân là cộng nhiều lần" (lesson phep-nhan-phep-chia):
+  4 boxes of 6 cakes become 6 + 6 + 6 + 6 and then 6 · 4 (the number added
+  first, the number of times second); a 3 x 5 dot grid is the learner's try.
+  Built by `pnpm video:build phep-nhan-phep-chia nhan-cong-lap`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Phép nhân là cộng nhiều lần</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .box { width: 170px; height: 150px; display: grid; grid-template-columns: repeat(3, 1fr); place-items: center; padding: 22px 26px; background: var(--color-surface); border: 6px solid var(--color-border); border-radius: 26px; }
+      .cake { width: 34px; height: 34px; border-radius: 50%; background: var(--color-concept-amber); }
+      .dotgrid { display: flex; flex-direction: column; gap: 14px; }
+      .dotrow { display: flex; gap: 14px; }
+      .gdot { width: 52px; height: 52px; border-radius: 50%; background: var(--color-concept-blue); }
+      .num6 { color: var(--color-concept-blue); }
+      .times { color: var(--color-concept-violet); }
+      .lbl { font: 700 34px / 1.2 "Be Vietnam Pro", sans-serif; white-space: nowrap; }
+      .lbl.add { color: var(--color-concept-blue); }
+      .lbl.add::before { content: "●"; margin-right: 10px; }
+      .lbl.cnt { color: var(--color-concept-violet); }
+      .lbl.cnt::before { content: "▲"; margin-right: 10px; font-size: 0.8em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="work" class="scene layer">
+          <div id="boxes" class="row" style="top: 70px; gap: 30px"></div>
+          <div id="q" class="row" style="top: 320px"><span class="math pill">?</span></div>
+          <div id="eq" class="row math" style="top: 320px"></div>
+        </section>
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 300px">Phép nhân là cộng nhiều lần</div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="f3" class="row math big" style="top: 60px"></div>
+          <div id="brace3" class="abs" style="left: 268px; top: 190px; width: 500px"><div class="brace"></div></div>
+          <div id="lb3" class="abs lbl cnt" style="left: 318px; top: 232px">4 lần số 6</div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="f4" class="row math big" style="top: 50px"></div>
+          <div id="t4a" class="abs lbl add" style="left: 440px; top: 190px">số được cộng</div>
+          <div id="t4b" class="abs lbl cnt" style="left: 740px; top: 190px">số lần lấy</div>
+          <div id="r4" class="row" style="top: 300px"><span class="math pill">24</span></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="grid" class="row" style="top: 20px"><div class="dotgrid"></div></div>
+          <div id="t-eq" class="row math" style="top: 270px"></div>
+          <div id="t-mul" class="row" style="top: 385px"><span class="math pill"></span></div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="n1" class="row" style="top: 100px"><span class="math pill"></span></div>
+          <div id="n2" class="row" style="top: 270px"><span id="c-add" class="chip" style="--c: var(--color-concept-blue)">● số được cộng</span><span id="dot6" class="math small">·</span><span id="c-cnt" class="chip" style="--c: var(--color-concept-violet)">▲ số lần lấy</span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, end, W, op, owl, pop, rise, hide, pose, color, scenes, finish } = window.LV;
+        const plus = op("+");
+        const dotmul = op("·");
+        const n6 = (id) => `<span id="${id}" class="num6">6</span>`;
+
+        // ---------- DOM ----------
+        $("#boxes").innerHTML = [1, 2, 3, 4].map((i) => `<div id="bx${i}" class="box">${"<span class=\"cake\"></span>".repeat(6)}</div>`).join("");
+        $("#eq").innerHTML = `${n6("e1")}<span id="p1">${plus}</span>${n6("e2")}<span id="p2">${plus}</span>${n6("e3")}<span id="p3">${plus}</span>${n6("e4")}<span id="eqs" class="op">=</span><span id="res" class="pill">24</span>`;
+        $("#f3").innerHTML = `<span id="a3">${n6("x1")}${plus}${n6("x2")}${plus}${n6("x3")}${plus}${n6("x4")}</span><span id="eq3" class="op">=</span><span id="m3" class="pill"><span class="num6">6</span>${dotmul}<span class="times">4</span></span>`;
+        $("#f4").innerHTML = `<span class="num6">6</span>${dotmul}<span class="times">4</span>`;
+        $("#t-eq").innerHTML = `5${plus}5${plus}5<span class="op">=</span><span class="pill">15</span>`;
+        $("#t-mul .pill").innerHTML = `<span class="num6">5</span>${dotmul}<span class="times">3</span>`;
+        $("#n1 .pill").innerHTML = `<span class="num6">6</span>${plus}<span class="num6">6</span>${plus}<span class="num6">6</span>${plus}<span class="num6">6</span><span class="op">=</span><span class="num6">6</span>${dotmul}<span class="times">4</span>`;
+        const grid = $("#grid .dotgrid");
+        for (let r = 0; r < 3; r++) {
+          const row = document.createElement("div");
+          row.className = "dotrow";
+          row.id = `gr${r}`;
+          row.innerHTML = '<span class="gdot"></span>'.repeat(5);
+          grid.append(row);
+        }
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+        const amber = color("concept-amber");
+        const border = color("border");
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-de"],
+          ["#s3", "s03-quy-tac"],
+          ["#s4", "s04-tinh"],
+          ["#s5", "s05-thu"],
+          ["#s6", "s06-nho"],
+        ]);
+        {
+          // The boxes stay from the question to the written product.
+          const el = $("#work");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, W("s01-de", "hộp"));
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s02-cong") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: 4 boxes of 6 cakes ----------
+        {
+          const sid = "s01-de";
+          hide(["#title", "#q", "#eq"]);
+          pose(bird, "happy", W(sid, "chào"));
+          rise("#title", W(sid, "chào"));
+          tl.to("#title", { autoAlpha: 0, duration: 0.3 }, W(sid, "bạn", 2) - 0.3);
+          hide(["#bx1", "#bx2", "#bx3", "#bx4"]);
+          pop(["#bx1", "#bx2", "#bx3", "#bx4"], W(sid, "4"), { from: 0.6, stagger: 0.22 });
+          hide(".cake");
+          pop(".cake", W(sid, "6"), { from: 0.4, stagger: 0.02 });
+          pop("#q", W(sid, "bao"), { from: 0.6 });
+        }
+
+        // ---------- s02: 6 + 6 + 6 + 6 = 24 ----------
+        {
+          const sid = "s02-cong";
+          pose(bird, "idle", start(sid));
+          hide(["#e1", "#p1", "#e2", "#p2", "#e3", "#p3", "#e4", "#eqs", "#res"]);
+          tl.to("#q", { autoAlpha: 0, duration: 0.25 }, W(sid, "cộng"));
+          tl.set("#eq", { autoAlpha: 1 }, W(sid, "cộng"));
+          [["#e1", null], ["#e2", "#p1"], ["#e3", "#p2"], ["#e4", "#p3"]].forEach(([num, plusSel], i) => {
+            const t = W(sid, "6", i + 2);
+            pop(num, t, { from: 0.5 });
+            if (plusSel) pop(plusSel, t - 0.25, { from: 0.5 });
+            const box = `#bx${i + 1}`;
+            tl.to(box, { borderColor: amber, duration: 0.2 }, t);
+            tl.to(box, { borderColor: border, duration: 0.3 }, t + 0.7);
+          });
+          pop("#eqs", W(sid, "bằng"), { from: 0.6 });
+          pop("#res", W(sid, "24"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "24"));
+        }
+
+        // ---------- s03: the rule and how it is written ----------
+        {
+          const sid = "s03-quy-tac";
+          hide(["#eq3", "#m3", "#brace3", "#lb3"]);
+          pose(bird, "idle", start(sid));
+          pop("#a3", W(sid, "phép"), { from: 0.7 });
+          rise("#brace3", W(sid, "lấy"), { y: -10 });
+          rise("#lb3", W(sid, "lấy"), { y: 10 });
+          pop("#eq3", W(sid, "viết") - 0.2, { from: 0.6 });
+          pop("#m3", W(sid, "nhân") - 0.3, { from: 0.5 });
+        }
+
+        // ---------- s04: which number is which ----------
+        {
+          const sid = "s04-tinh";
+          hide(["#t4a", "#t4b", "#r4"]);
+          pop("#f4", start(sid) + 0.1, { from: 0.6 });
+          rise("#t4a", W(sid, "trước"), { y: 10 });
+          rise("#t4b", W(sid, "sau"), { y: 10 });
+          pop("#r4", W(sid, "24"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "24"));
+        }
+
+        // ---------- s05: a try, 3 rows of 5 ----------
+        {
+          const sid = "s05-thu";
+          pose(bird, "idle", start(sid));
+          hide(["#gr0", "#gr1", "#gr2", "#t-eq", "#t-mul"]);
+          pop(["#gr0", "#gr1", "#gr2"], W(sid, "3"), { from: 0.6, stagger: 0.3 });
+          rise("#t-eq", W(sid, "5", 2), { y: 20 });
+          rise("#t-mul", W(sid, "viết"), { y: 20 });
+          pose(bird, "happy", W(sid, "viết"));
+        }
+
+        // ---------- s06: remember ----------
+        {
+          const sid = "s06-nho";
+          hide(["#n1", "#c-add", "#dot6", "#c-cnt"]);
+          pop("#n1", W(sid, "cộng"), { from: 0.6 });
+          rise("#c-add", W(sid, "được"), { y: 14 });
+          rise("#dot6", W(sid, "trước"), { y: 14 });
+          rise("#c-cnt", W(sid, "lấy"), { y: 14 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+{
+  "title": "Nhóm các thừa số cho dễ nhẩm",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-tinh",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta nhóm các thừa số để nhân nhẩm.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú mua 25 khay trứng."
+        },
+        {
+          "text": "Mỗi khay có 36 quả."
+        },
+        {
+          "text": "36 nhân 25 thì khó nhẩm."
+        }
+      ]
+    },
+    {
+      "id": "s02-tach",
+      "sentences": [
+        {
+          "text": "Ta tách 36 thành 9 nhân 4."
+        },
+        {
+          "text": "Nhìn này: 4 nhân 25 bằng 100."
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Nhân ba số thì nhóm hai số nào lại trước cũng được, tích không đổi.",
+          "rule": true
+        },
+        {
+          "text": "Đó là tính chất kết hợp của phép nhân.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-tinh",
+      "sentences": [
+        {
+          "text": "Ta nhóm 4 với 25 lại trước."
+        },
+        {
+          "text": "4 nhân 25 bằng 100."
+        },
+        {
+          "text": "9 nhân 100 bằng 900."
+        },
+        {
+          "text": "Vậy có 900 quả trứng."
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Thử một bài nhé: 12 nhân 25."
+        },
+        {
+          "text": "Tách 12 thành 3 nhân 4."
+        },
+        {
+          "text": "4 nhân 25 bằng 100."
+        },
+        {
+          "text": "3 nhân 100 bằng 300."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Nhóm các thừa số cho ra số tròn rồi mới nhân.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "nhom-thua-so",
+      "from": "s02-tach",
+      "to": "s04-tinh",
+      "cardIds": ["phep-nhan-phep-chia.card.ket-hop"]
+    }
+  ]
+}

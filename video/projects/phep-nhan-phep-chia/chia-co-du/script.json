@@ -1,0 +1,111 @@
+{
+  "title": "Phép chia có dư",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-kiem",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học phép chia có dư.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú có 23 cái kẹo."
+        },
+        {
+          "text": "Chia đều cho 4 bạn."
+        }
+      ]
+    },
+    {
+      "id": "s02-chia",
+      "sentences": [
+        {
+          "text": "Mỗi vòng, phát cho mỗi bạn một cái."
+        },
+        {
+          "text": "Phát 5 vòng thì hết 20 cái."
+        },
+        {
+          "text": "Còn lại 3 cái kẹo."
+        }
+      ]
+    },
+    {
+      "id": "s03-du",
+      "sentences": [
+        {
+          "text": "Còn 3 cái, ít hơn 4 bạn, nên không phát thêm được."
+        },
+        {
+          "text": "Chia mà còn thừa thì gọi là phép chia có dư.",
+          "rule": true
+        },
+        {
+          "text": "Phần còn lại là số dư và luôn nhỏ hơn số chia.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-kiem",
+      "sentences": [
+        {
+          "text": "Số bị chia là 23, số chia là 4."
+        },
+        {
+          "text": "Thương là 5, số dư là 3."
+        },
+        {
+          "text": "Số bị chia bằng số chia nhân thương, cộng số dư.",
+          "rule": true
+        },
+        {
+          "text": "4 nhân 5 bằng 20, cộng 3 bằng 23."
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Thử một bài nhé: 17 chia cho 5."
+        },
+        {
+          "text": "5 nhân 3 bằng 15, còn dư 2."
+        },
+        {
+          "text": "Số dư 2 nhỏ hơn số chia 5."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Số bị chia bằng số chia nhân thương, cộng số dư.",
+          "rule": true
+        },
+        {
+          "text": "Số dư nhỏ hơn số chia.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chia-co-du",
+      "from": "s02-chia",
+      "to": "s04-kiem",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"]
+    }
+  ]
+}

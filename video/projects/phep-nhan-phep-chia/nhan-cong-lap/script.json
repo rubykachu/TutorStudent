@@ -1,0 +1,106 @@
+{
+  "title": "Phép nhân là cộng nhiều lần",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-tinh",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học phép nhân là cộng nhiều lần.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú có 4 hộp bánh."
+        },
+        {
+          "text": "Mỗi hộp có 6 cái bánh."
+        },
+        {
+          "text": "Có tất cả bao nhiêu cái?"
+        }
+      ]
+    },
+    {
+      "id": "s02-cong",
+      "sentences": [
+        {
+          "text": "Ta cộng bốn lần số 6."
+        },
+        {
+          "text": "6 cộng 6 cộng 6 cộng 6."
+        },
+        {
+          "text": "Bằng 24 cái bánh."
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Phép nhân là cộng nhiều số bằng nhau.",
+          "rule": true
+        },
+        {
+          "text": "Số 6 được lấy 4 lần, ta viết 6 nhân 4."
+        }
+      ]
+    },
+    {
+      "id": "s04-tinh",
+      "sentences": [
+        {
+          "text": "Số đứng trước là số được cộng."
+        },
+        {
+          "text": "Số đứng sau là số lần lấy."
+        },
+        {
+          "text": "Vậy 6 nhân 4 bằng 24."
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Thử một bài nhé: 3 hàng, mỗi hàng 5 chấm."
+        },
+        {
+          "text": "5 cộng 5 cộng 5 bằng 15."
+        },
+        {
+          "text": "Số 5 lấy 3 lần, viết 5 nhân 3."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Phép nhân là cộng nhiều số bằng nhau.",
+          "rule": true
+        },
+        {
+          "text": "Số được cộng viết trước, số lần lấy viết sau.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "nhan-cong-lap",
+      "from": "s02-cong",
+      "to": "s04-tinh",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-cong-lap"]
+    }
+  ]
+}
