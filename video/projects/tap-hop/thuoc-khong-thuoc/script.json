@@ -118,17 +118,13 @@
       "id": "thuoc",
       "from": "s02-thuoc",
       "to": "s03-ve-thuoc",
-      "cardIds": [
-        "tap-hop.card.thuoc"
-      ]
+      "cardIds": ["tap-hop.card.thuoc"]
     },
     {
       "id": "khong-thuoc",
       "from": "s04-khong",
       "to": "s05-ve-khong",
-      "cardIds": [
-        "tap-hop.card.khong-thuoc"
-      ]
+      "cardIds": ["tap-hop.card.khong-thuoc"]
     }
   ]
 }

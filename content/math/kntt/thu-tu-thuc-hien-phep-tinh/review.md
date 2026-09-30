@@ -5,8 +5,8 @@
 - Nguồn đã đọc: không có (diff chỉ có overview và video; không đổi card hay bài tập)
 - `content:check`: 1 lỗi (`[review-hash]`, hết khi bản sửa được duyệt), 1 cảnh báo của bài (3 id chưa có trong `ids.lock.json`)
 - `lesson:walk`: 3 FAIL trên server dev `:3250` (cả ba màn hình dừng ở "Chưa tải được bài học", vì server không phục vụ tệp `/content/thu-tu-thuc-hien-phep-tinh.json`, giống vòng 4: bài chưa duyệt lại; không do nội dung), ảnh trong `.shots/walk/thu-tu-thuc-hien-phep-tinh/`. Thay bằng: soát khung hình mp4 bằng ffmpeg, đối chiếu `.vtt` và độ dài tệp
-- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng
-- Bản đã review: `935e92d5f43b40d5f32f814588a8a90c7adcc90a59b46b850cd821487e251007` (`pnpm content:diff` so với bản này)
+- Kết luận: Đã xuất bản: lỗi Nghiêm trọng (thời lượng và clip `ngoac-long` lệch tệp) đã sửa, `hoa-don` dựng lại với vòng xám cho cách làm sai của Lan
+- Bản đã review: `d56403fe9531b17094d3f209b90f6f3f9dd89a853b526c42fcdac30f8c5490f1` (`pnpm content:diff` so với bản này)
 
 Đã soát:
 - Vòng 4, Nghiêm trọng 1 (`hon-hop` hai phép một dòng): đã sửa. Khung 23–46 s nay là `20 + 6 · 3 − 8 : 4` → `20 + 18 − 8 : 4` → `20 + 18 − 2` → `38 − 2` → `36`, mỗi dòng một phép, khớp `hon-hop-tung-buoc` và câu "Mỗi dòng chỉ làm một phép tính." (44,7 s). Góp ý 1 vòng 4 (18 mất màu) hết theo.

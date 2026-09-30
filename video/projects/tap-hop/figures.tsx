@@ -33,7 +33,11 @@ function Mark({ name }: { name: GlyphKey }) {
         const start = strokeStart(stroke);
         const [x, y] = stroke.badge ?? [start.x, start.y];
         return (
-          <g key={stroke.d} className="badge" transform={`translate(${x} ${y})`}>
+          <g
+            key={stroke.d}
+            className="badge"
+            transform={`translate(${x} ${y})`}
+          >
             <circle r="15" fill="#db2777" />
             <text
               textAnchor="middle"

@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi (`review-hash`, hết sau lệnh cuối vòng), 1 cảnh báo (2 id video chưa có trong `ids.lock.json`)
 - `lesson:walk`: không chạy - diff không thêm khối nào lên màn (chưa có khối `video` trong section); khung hình video soát bằng ffmpeg (0,7–58 s của cả hai video)
 - Kết luận: Đã xuất bản
-- Bản đã review: `9cb337aa834caaa053559224381849f924ac2e407846bc45a1b76c5ead4226ba` (`pnpm content:diff` so với bản này)
+- Bản đã review: `1e53bf198ca38f424e6649f1c16344da885ef150c4df24fd47614bb2cc4102b5` (`pnpm content:diff` so với bản này)
 
 Đã soát:
 - `overview.vtt` (39,5 s) đọc đúng nguyên văn `overview.hook.text`, `summary`, bốn `goals`, `whyItMatters`.

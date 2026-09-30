@@ -267,6 +267,8 @@
     "tap-hop.section.thao-tac",
     "tap-hop.section.thuoc",
     "tap-hop.section.xet-thuoc",
+    "tap-hop.video.tap-hop-la-gi",
+    "tap-hop.video.thuoc-khong-thuoc",
     "thu-tu-thuc-hien-phep-tinh",
     "thu-tu-thuc-hien-phep-tinh.card.bieu-thuc-chu",
     "thu-tu-thuc-hien-phep-tinh.card.chon-dong-dung",
@@ -370,7 +372,10 @@
     "thu-tu-thuc-hien-phep-tinh.section.nhan-chia",
     "thu-tu-thuc-hien-phep-tinh.section.nhan-hai-chu-so",
     "thu-tu-thuc-hien-phep-tinh.section.on-nhan-chia",
-    "thu-tu-thuc-hien-phep-tinh.section.tim-so-chua-biet"
+    "thu-tu-thuc-hien-phep-tinh.section.tim-so-chua-biet",
+    "thu-tu-thuc-hien-phep-tinh.video.hoa-don",
+    "thu-tu-thuc-hien-phep-tinh.video.hon-hop",
+    "thu-tu-thuc-hien-phep-tinh.video.ngoac-long"
   ],
   "retired": {
     "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3"

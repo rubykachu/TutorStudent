@@ -119,17 +119,13 @@
       "id": "tap-hop",
       "from": "s01-hop-but",
       "to": "s02-tap-hop",
-      "cardIds": [
-        "tap-hop.card.tap-hop"
-      ]
+      "cardIds": ["tap-hop.card.tap-hop"]
     },
     {
       "id": "phan-tu",
       "from": "s03-phan-tu",
       "to": "s03-phan-tu",
-      "cardIds": [
-        "tap-hop.card.phan-tu"
-      ]
+      "cardIds": ["tap-hop.card.phan-tu"]
     }
   ]
 }

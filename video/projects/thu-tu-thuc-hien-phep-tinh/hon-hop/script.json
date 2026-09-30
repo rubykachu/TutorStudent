@@ -112,9 +112,7 @@
       "id": "hon-hop",
       "from": "s02-quy-tac",
       "to": "s06-nho",
-      "cardIds": [
-        "thu-tu-thuc-hien-phep-tinh.card.hon-hop"
-      ]
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.hon-hop"]
     }
   ]
 }

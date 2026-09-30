@@ -126,9 +126,7 @@
       "id": "ngoac-long",
       "from": "s02-hop",
       "to": "s07-nho",
-      "cardIds": [
-        "thu-tu-thuc-hien-phep-tinh.card.ngoac-long"
-      ]
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.ngoac-long"]
     }
   ]
 }
