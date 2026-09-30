@@ -2,9 +2,7 @@
   "terms": [
     {
       "term": "luỹ thừa",
-      "forbidden": [
-        "lũy thừa"
-      ]
+      "forbidden": ["lũy thừa"]
     },
     {
       "term": "cơ số",
@@ -26,9 +24,7 @@
     },
     {
       "term": "thừa số",
-      "forbidden": [
-        "nhân tử"
-      ],
+      "forbidden": ["nhân tử"],
       "color": "blue"
     },
     {

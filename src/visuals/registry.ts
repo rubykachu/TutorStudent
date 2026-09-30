@@ -18,9 +18,9 @@ import {
 } from "@/visuals/math/luy-thua/validators";
 import {
   INTERACTIVE_KINDS,
+  mulTableRegions,
   LESSON_SLUG as NHAN_CHIA_SLUG,
   VISUAL_SPECS as NHAN_CHIA_SPECS,
-  mulTableRegions,
   VALIDATOR_IDS,
 } from "@/visuals/math/phep-nhan-phep-chia/catalog";
 import {
