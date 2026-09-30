@@ -17,6 +17,18 @@ import {
   solvePowerIs,
 } from "@/visuals/math/luy-thua/validators";
 import {
+  pickMatches,
+  solvePickMatches,
+  solveXIsMember,
+  xIsMember,
+} from "@/visuals/math/tap-hop/set-validators";
+import {
+  gapsFilled,
+  solveGapsFilled,
+  solveStrokesDone,
+  strokesDone,
+} from "@/visuals/math/tap-hop/symbol-validators";
+import {
   LESSON_SLUG as THU_TU_SLUG,
   VISUAL_SPECS as THU_TU_SPECS,
   tapRegions,
@@ -106,6 +118,285 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "fixture.visual.bead-merge": {
     interactive: false,
     load: () => import("@/visuals/_fixture/bead-merge"),
+  },
+  "tap-hop.visual.hop-but": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.HopBut),
+  },
+  "tap-hop.visual.thuoc-hop-but": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ThuocHopBut),
+  },
+  "tap-hop.visual.vi-du-tap-hop": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ViDuTapHop),
+  },
+  "tap-hop.visual.vi-du-phan-tu": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ViDuPhanTu),
+  },
+  "tap-hop.visual.tom-tat-tap-hop": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TomTatTapHop),
+  },
+  "tap-hop.visual.the-tap-hop": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheTapHop),
+  },
+  "tap-hop.visual.the-phan-tu": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ThePhanTu),
+  },
+  "tap-hop.visual.lap-ghep-liet-ke": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.LapGhepLietKe),
+  },
+  "tap-hop.visual.vi-du-liet-ke": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ViDuLietKe),
+  },
+  "tap-hop.visual.the-liet-ke": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheLietKe),
+  },
+  "tap-hop.visual.xet-mau": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.XetMau),
+  },
+  "tap-hop.visual.xet-vi-du": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.XetViDu),
+  },
+  "tap-hop.visual.the-xet-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheXetThuoc),
+  },
+  "tap-hop.visual.dau-hieu-vi-du": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.DauHieuViDu),
+  },
+  "tap-hop.visual.doc-dau-hieu": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.DocDauHieu),
+  },
+  "tap-hop.visual.the-dau-hieu": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheDauHieu),
+  },
+  "tap-hop.visual.hai-cach-vi-du": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.HaiCachViDu),
+  },
+  "tap-hop.visual.doi-tu-liet-ke": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.DoiTuLietKe),
+  },
+  "tap-hop.visual.the-hai-cach": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheHaiCach),
+  },
+  "tap-hop.visual.the-doi-cach": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheDoiCach),
+  },
+  "tap-hop.visual.sticker": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.Sticker),
+  },
+  "tap-hop.visual.ve-mo-ngoac": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.VeMoNgoac),
+  },
+  "tap-hop.visual.ve-dong-ngoac": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.VeDongNgoac),
+  },
+  "tap-hop.visual.ve-cham-phay": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.VeChamPhay),
+  },
+  "tap-hop.visual.ve-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.VeThuoc),
+  },
+  "tap-hop.visual.ve-khong-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.VeKhongThuoc),
+  },
+  "tap-hop.visual.the-ngoac-mo": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheNgoacMo),
+  },
+  "tap-hop.visual.the-ngoac-dong": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheNgoacDong),
+  },
+  "tap-hop.visual.the-cham-phay": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheChamPhay),
+  },
+  "tap-hop.visual.the-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheThuoc),
+  },
+  "tap-hop.visual.the-khong-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.TheKhongThuoc),
+  },
+  "tap-hop.visual.ngoac-vi-du": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.NgoacViDu),
+  },
+  "tap-hop.visual.ngoac-du-hai-dau": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.NgoacDuHaiDau),
+  },
+  "tap-hop.visual.cham-phay-vi-du": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ChamPhayViDu),
+  },
+  "tap-hop.visual.vi-du-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ViDuThuoc),
+  },
+  "tap-hop.visual.vi-du-khong-thuoc": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.ViDuKhongThuoc),
+  },
+  "tap-hop.visual.huong-dan-chip": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.HuongDanChip),
+  },
+  "tap-hop.visual.chon-hop-but": {
+    interactive: true,
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.pickItems(["bút chì", "cục tẩy", "quả cam", "thước kẻ", "con mèo"]),
+      ),
+  },
+  "tap-hop.visual.chon-do-dung": {
+    interactive: true,
+    validators: { "chon-dung": pickMatches },
+    solutions: { "chon-dung": solvePickMatches },
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.pickItems(["thước", "quả bóng", "tẩy", "đĩa", "vở", "bút"]),
+      ),
+  },
+  "tap-hop.visual.hop-cham": {
+    interactive: false,
+    regions: ["but", "thuoc", "tay"],
+    load: () => lessonExample("tap-hop", (m) => m.HopCham),
+  },
+  "tap-hop.visual.cham-dau-hieu": {
+    interactive: false,
+    regions: ["phan-tu-mau", "vach-dung", "dau-hieu"],
+    load: () => lessonExample("tap-hop", (m) => m.DauHieuCham),
+  },
+  "tap-hop.visual.chon-x-tu-do": {
+    interactive: true,
+    load: () =>
+      lessonExample("tap-hop", (m) => m.chooseX([1, 2, 3], 5, true, 4)),
+  },
+  "tap-hop.visual.chon-x-thuoc": {
+    interactive: true,
+    validators: { "x-thuoc": xIsMember },
+    solutions: { "x-thuoc": solveXIsMember },
+    load: () =>
+      lessonExample("tap-hop", (m) => m.chooseX([2, 4, 6, 8], 9, false, 0)),
+  },
+  "tap-hop.visual.chon-x-khong-thuoc": {
+    interactive: true,
+    validators: { "x-thuoc": xIsMember },
+    solutions: { "x-thuoc": solveXIsMember },
+    load: () =>
+      lessonExample("tap-hop", (m) => m.chooseX([1, 3, 5], 7, false, 1)),
+  },
+  "tap-hop.visual.tap-net-ngoac-mo": {
+    interactive: true,
+    validators: { "ve-xong": strokesDone },
+    solutions: { "ve-xong": solveStrokesDone },
+    load: () => lessonExample("tap-hop", (m) => m.tapNet("ngoac-mo")),
+  },
+  "tap-hop.visual.tap-net-ngoac-dong": {
+    interactive: true,
+    validators: { "ve-xong": strokesDone },
+    solutions: { "ve-xong": solveStrokesDone },
+    load: () => lessonExample("tap-hop", (m) => m.tapNet("ngoac-dong")),
+  },
+  "tap-hop.visual.tap-net-khong-thuoc": {
+    interactive: true,
+    load: () => lessonExample("tap-hop", (m) => m.tapNet("khong-thuoc")),
+  },
+  "tap-hop.visual.huong-dan-cham": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.HuongDanCham),
+  },
+  "tap-hop.visual.cham-dau-giua": {
+    interactive: false,
+    regions: ["hai-cham", "cham-phay", "cham", "phay"],
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.symbolTap(["hai-cham", "cham-phay", "cham", "phay"]),
+      ),
+  },
+  "tap-hop.visual.tap-net-thuoc": {
+    interactive: true,
+    load: () => lessonExample("tap-hop", (m) => m.tapNet("thuoc")),
+  },
+  "tap-hop.visual.dat-cham-phay": {
+    interactive: true,
+    load: () => lessonExample("tap-hop", (m) => m.datChamPhay(3, 1)),
+  },
+  "tap-hop.visual.dat-cham-phay-bon": {
+    interactive: true,
+    validators: { "du-cham-phay": gapsFilled },
+    solutions: { "du-cham-phay": solveGapsFilled },
+    load: () => lessonExample("tap-hop", (m) => m.datChamPhay(4, 5)),
+  },
+  "tap-hop.visual.cham-ngoac": {
+    interactive: false,
+    regions: [
+      "ngoac-tron-mo",
+      "ngoac-vuong-mo",
+      "ngoac-nhon-mo",
+      "ngoac-nhon-dong",
+      "ngoac-tron-dong",
+    ],
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.symbolTap([
+          "ngoac-tron-mo",
+          "ngoac-vuong-mo",
+          "ngoac-nhon-mo",
+          "ngoac-nhon-dong",
+          "ngoac-tron-dong",
+        ]),
+      ),
+  },
+  "tap-hop.visual.cham-dau-ngan": {
+    interactive: false,
+    regions: ["nho-hon", "phay", "cham-phay", "bang"],
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.symbolTap(["nho-hon", "phay", "cham-phay", "bang"]),
+      ),
+  },
+  "tap-hop.visual.cham-ki-hieu-thuoc": {
+    interactive: false,
+    regions: ["bang", "thuoc", "cham-phay", "ngoac-nhon-mo"],
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.symbolTap(["bang", "thuoc", "cham-phay", "ngoac-nhon-mo"]),
+      ),
+  },
+  "tap-hop.visual.cham-ki-hieu-khong-thuoc": {
+    interactive: false,
+    regions: ["nho-hon", "thuoc", "khong-thuoc", "bang"],
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.symbolTap(["nho-hon", "thuoc", "khong-thuoc", "bang"]),
+      ),
   },
   "luy-thua.visual.ban-co": {
     interactive: true,
@@ -563,6 +854,7 @@ type Loaders<T> = { [S in keyof T]: () => Promise<T[S]> };
 const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 
 const EXAMPLE_MODULES = lessonModules({
+  "tap-hop": () => import("@/visuals/math/tap-hop/examples"),
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
   "thu-tu-thuc-hien-phep-tinh": () =>
     import("@/visuals/math/thu-tu-thuc-hien-phep-tinh/examples"),

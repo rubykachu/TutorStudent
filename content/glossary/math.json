@@ -24,7 +24,17 @@
       "term": "nhân số có hai chữ số",
       "forbidden": [],
       "prerequisite": "tiểu học"
-    }
+    },
+    { "term": "tập hợp", "forbidden": ["tập họp"], "color": "teal" },
+    { "term": "phần tử", "forbidden": [], "color": "amber" },
+    { "term": "dấu hiệu đặc trưng", "forbidden": [], "color": "lime" },
+    { "term": "kí hiệu", "forbidden": ["ký hiệu"] },
+    { "term": "liệt kê", "forbidden": [] },
+    { "term": "mở ngoặc nhọn", "forbidden": [] },
+    { "term": "đóng ngoặc nhọn", "forbidden": [] },
+    { "term": "dấu chấm phẩy", "forbidden": [] },
+    { "term": "thuộc", "forbidden": [] },
+    { "term": "không thuộc", "forbidden": [] }
   ],
   "names": []
 }

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { bigButtonClassName } from "@/components/big-button";
 import { PageTopBar } from "@/components/page-top-bar";
 import { ReviewButton } from "@/components/review-button";
+import { RichText } from "@/components/rich-text";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
 import { SUBJECT_STYLES } from "@/components/subject-style";
@@ -182,7 +183,7 @@ function LessonBody({
                       </span>
                     )}
                     <h3 className="text-body font-semibold md:text-body-lg">
-                      {section.title}
+                      <RichText text={section.title} />
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
                       <StateBadge state={state} />
