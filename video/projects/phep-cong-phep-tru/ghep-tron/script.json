@@ -1,0 +1,103 @@
+{
+  "title": "Ghép cho tròn chục, tròn trăm",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-tinh",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta ghép số cho tròn để tính nhẩm nhanh.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú mua ba món hàng."
+        },
+        {
+          "text": "Giá là 34, 268 và 66 nghìn đồng."
+        },
+        {
+          "text": "Cộng từ trái sang phải thì hơi khó."
+        }
+      ]
+    },
+    {
+      "id": "s02-ghep",
+      "sentences": [
+        {
+          "text": "Hãy tìm hai số ghép lại thành số tròn."
+        },
+        {
+          "text": "34 cộng 66 bằng 100."
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-tinh",
+      "sentences": [
+        {
+          "text": "Ta đổi chỗ 268 ra sau."
+        },
+        {
+          "text": "34 cộng 66 bằng 100."
+        },
+        {
+          "text": "100 cộng 268 bằng 368."
+        },
+        {
+          "text": "Vậy ba món hết 368 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Thử một bài nhé: 27 cộng 45 cộng 55."
+        },
+        {
+          "text": "45 cộng 55 bằng 100."
+        },
+        {
+          "text": "100 cộng 27 bằng 127."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm.",
+          "rule": true
+        },
+        {
+          "text": "Tính nhẩm sẽ nhanh hơn nhiều.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ghep-tron",
+      "from": "s02-ghep",
+      "to": "s04-tinh",
+      "cardIds": ["phep-cong-phep-tru.card.ghep-tron"]
+    }
+  ]
+}

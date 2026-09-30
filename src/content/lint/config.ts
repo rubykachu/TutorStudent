@@ -31,13 +31,6 @@ export const UNITS = [
   "ml",
 ] as const;
 
-// Subjects whose `numeric` exercises must carry a `check.expr`.
-export const CHECK_EXPR_SUBJECTS = ["math"] as const;
-
-// Subjects whose passages are verbatim source texts: each lesson needs a
-// `source-passage.txt` next to lesson.json to compare them against.
-export const VERBATIM_PASSAGE_SUBJECTS = ["literature"] as const;
-
 // A recap is read in a few seconds after a wrong answer or at a section's
 // end: its caption (the sentence to remember) holds at most this many
 // sentences, next to one labelled example.
@@ -53,3 +46,14 @@ export const MIN_EXERCISES_PER_CARD = 3;
 // lesson's value is said in one sentence.
 export const MAX_OVERVIEW_SUMMARY_SENTENCES = 5;
 export const MAX_OVERVIEW_WHY_SENTENCES = 1;
+
+// A recap sentence sharing at least this share of words with a rule sentence
+// (Dice coefficient over distinct lower-case words) restates that rule, and
+// must then repeat it word for word.
+export const RULE_REWORD_MIN_SIMILARITY = 0.6;
+
+// Textbook copying: a lesson text of at least this many words is reported
+// when this share of its word 5-grams also occurs in the textbook text layer.
+export const COPY_NGRAM = 5;
+export const COPY_MIN_WORDS = 8;
+export const COPY_MAX_SHARE = 0.5;

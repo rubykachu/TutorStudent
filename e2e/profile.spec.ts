@@ -1,6 +1,7 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import { createProfile, FIXTURE_LESSON_TITLE } from "./flows";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
+import { test } from "./test";
 
 // Each test starts in a fresh browser context, so IndexedDB is empty and the
 // device has no profile yet. The dev server runs with CONTENT_INCLUDE_FIXTURE=1,

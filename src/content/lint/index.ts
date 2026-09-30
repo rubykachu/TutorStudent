@@ -1,6 +1,9 @@
 import { lintCardExercises } from "./card-exercises";
 import { lintCheckExpr } from "./check-expr";
+import { lintColorLeak } from "./color-leak";
 import { lintGlossary } from "./glossary";
+import { lintGuides } from "./guides";
+import { lintHintAnswer } from "./hint-answer";
 import { lintLength } from "./length";
 import { lintNfc } from "./nfc";
 import { lintNumbers } from "./numbers";
@@ -11,11 +14,18 @@ import { lintPractice } from "./practice";
 import { lintRecap, lintRecapForm } from "./recap";
 import { lintReviewBank } from "./review-bank";
 import { lintReviewHash } from "./review-hash";
+import { lintRuleSentence } from "./rule-sentence";
 import { lintScreens } from "./screens";
 import { lintSymbols } from "./symbols";
-import { type Finding, findingCollector, type LintInput } from "./types";
+import { lintTextbookCopy } from "./textbook-copy";
+import {
+  type Finding,
+  findingCollector,
+  isVietnamese,
+  type LintInput,
+} from "./types";
 import { lintVietnamese } from "./vietnamese";
-import { collectStrings } from "./walk";
+import { collectStrings, type LessonStrings } from "./walk";
 
 // Automated wording, notation and answer checks of one parsed lesson.
 
@@ -30,6 +40,22 @@ function lintAuthoring(input: LintInput): Finding[] {
     ...lintRecapForm(input),
     ...lintReviewBank(input),
     ...lintPlaceholder(input),
+    ...lintGuides(input),
+    ...lintRuleSentence(input),
+  ];
+}
+
+// Spelling, number format and reading level written for Vietnamese; a subject
+// taught in another language skips them.
+function lintVietnameseRules(
+  input: LintInput,
+  strings: LessonStrings,
+): Finding[] {
+  if (!isVietnamese(input)) return [];
+  return [
+    ...lintNumbers(input, strings),
+    ...lintVietnamese(input, strings),
+    ...lintLength(input, strings),
   ];
 }
 
@@ -46,13 +72,14 @@ export function lintLesson(input: LintInput): Finding[] {
     ...fields.findings,
     ...lintNfc(input, strings),
     ...lintSymbols(input, strings),
-    ...lintNumbers(input, strings),
     ...lintGlossary(input, strings),
-    ...lintVietnamese(input, strings),
-    ...lintLength(input, strings),
+    ...lintVietnameseRules(input, strings),
     ...lintRecap(input),
     ...lintCardExercises(input),
     ...lintCheckExpr(input),
+    ...lintHintAnswer(input),
+    ...lintColorLeak(input),
+    ...lintTextbookCopy(input, strings),
     ...lintPassage(input),
     ...lintReviewHash(input),
     ...lintOverview(input),

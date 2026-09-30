@@ -2,6 +2,7 @@ import { cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import type { RawContent, RawLessonFile } from "@/content/check";
 import { readContentRoot } from "@/content/load";
+import { type Subject, SubjectsFileSchema } from "@/schema/content";
 
 export const CONTENT_ROOT = path.join(process.cwd(), "content");
 
@@ -12,6 +13,15 @@ export const SKELETON_FILE = path.join(
   ".claude/skills/lesson-author/templates/lesson.skeleton.json",
 );
 export const SKELETON_ID = "bai-moi";
+
+// An entry of the committed content/subjects.json.
+export function subjectOf(id: string): Subject {
+  const subject = SubjectsFileSchema.parse(
+    JSON.parse(readFileSync(path.join(CONTENT_ROOT, "subjects.json"), "utf8")),
+  ).subjects.find((s) => s.id === id);
+  if (!subject) throw new Error(`subject ${id} missing`);
+  return subject;
+}
 
 export function readSkeleton(): Record<string, unknown> {
   return JSON.parse(readFileSync(SKELETON_FILE, "utf8"));

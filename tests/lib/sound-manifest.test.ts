@@ -7,6 +7,7 @@ import {
   OOPS_ID,
   type SoundManifest,
   soundUrl,
+  TAP_ID,
 } from "@/lib/sound-manifest";
 import { VOICE_LINES } from "@/mascot/lines";
 import manifest from "../../public/sounds/manifest.json";
@@ -45,7 +46,9 @@ describe("sound manifest", () => {
   });
 
   it("has every tone made from its current settings", () => {
-    expect(Object.keys(TONES).sort()).toEqual([JINGLE_ID, OOPS_ID].sort());
+    expect(Object.keys(TONES).sort()).toEqual(
+      [JINGLE_ID, OOPS_ID, TAP_ID].sort(),
+    );
     for (const [id, spec] of Object.entries(TONES)) {
       const entry = entries.get(id);
       expect(entry?.kind).toBe("tone");

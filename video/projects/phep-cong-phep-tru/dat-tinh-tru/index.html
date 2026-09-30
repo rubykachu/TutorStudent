@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Đặt tính trừ có mượn" (lesson phep-cong-phep-tru):
+  532 − 247 in a column, one digit place per scene from the units to the
+  hundreds. Colours follow the lesson's concepts: số bị trừ violet, số trừ
+  pink, hiệu teal. A digit that lends or borrows is struck and the new
+  digit is written above it.
+  Built by `pnpm video:build phep-cong-phep-tru dat-tinh-tru`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Đặt tính trừ có mượn</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      /* Three digit places, hundreds to units, 150 px apart. */
+      .cell { position: absolute; width: 130px; text-align: center; font: 800 104px / 1 "Baloo 2", sans-serif; }
+      .cell.note { font-size: 54px; color: var(--color-concept-pink); }
+      .hl { position: absolute; top: 30px; width: 150px; height: 440px; border-radius: 28px; background: color-mix(in srgb, var(--color-highlight) 55%, transparent); }
+      .head { position: absolute; top: 4px; width: 150px; text-align: center; font: 700 28px / 1.2 "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .strike { position: absolute; height: 8px; width: 90px; border-radius: 4px; background: var(--color-foreground); }
+      .vio { color: var(--color-concept-violet); }
+      .pnk { color: var(--color-concept-pink); }
+      .teal { color: var(--color-concept-teal); }
+      .ln { position: absolute; left: 440px; top: 338px; width: 470px; height: 8px; border-radius: 4px; background: var(--color-foreground); }
+      .lab { position: absolute; left: 950px; }
+      .minus { position: absolute; left: 450px; top: 228px; font: 800 96px / 1 "Baloo 2", sans-serif; }
+      .ring { display: inline-block; padding: 0 16px 6px; border: 6px solid transparent; border-radius: 24px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 230px">Đặt tính trừ có mượn</div>
+          <div id="q" class="row math" style="top: 230px"></div>
+        </section>
+        <section id="work" class="scene layer" style="top: 30px">
+          <!-- x of a place: hundreds 480, tens 630, units 780 (left edge of a 150 px place) -->
+          <div id="hl-h" class="hl" style="left: 470px"></div>
+          <div id="hl-t" class="hl" style="left: 620px"></div>
+          <div id="hl-u" class="hl" style="left: 770px"></div>
+          <div id="heads">
+            <div class="head" style="left: 470px">trăm</div>
+            <div class="head" style="left: 620px">chục</div>
+            <div class="head" style="left: 770px">đơn vị</div>
+          </div>
+          <!-- borrow notes above the top digits -->
+          <div id="n-h" class="cell note" style="left: 480px; top: 70px">4</div>
+          <div id="n-t1" class="cell note" style="left: 630px; top: 70px">2</div>
+          <div id="n-t2" class="cell note" style="left: 630px; top: 70px">12</div>
+          <div id="n-u" class="cell note" style="left: 780px; top: 70px">12</div>
+          <!-- top number (violet) -->
+          <div id="t-h" class="cell vio" style="left: 480px; top: 130px">5</div>
+          <div id="t-t" class="cell vio" style="left: 630px; top: 130px">3</div>
+          <div id="t-u" class="cell vio" style="left: 780px; top: 130px">2</div>
+          <div id="x-h" class="strike" style="left: 500px; top: 178px"></div>
+          <div id="x-t" class="strike" style="left: 650px; top: 178px"></div>
+          <div id="x-t2" class="strike" style="left: 665px; top: 98px; width: 60px"></div>
+          <div id="x-u" class="strike" style="left: 800px; top: 178px"></div>
+          <div id="lab-top" class="tag lab vio" style="top: 152px">số bị trừ</div>
+          <!-- bottom number (pink) -->
+          <div id="minus" class="minus">−</div>
+          <div id="b-h" class="cell pnk" style="left: 480px; top: 232px">2</div>
+          <div id="b-t" class="cell pnk" style="left: 630px; top: 232px">4</div>
+          <div id="b-u" class="cell pnk" style="left: 780px; top: 232px">7</div>
+          <div id="lab-bottom" class="tag lab pnk" style="top: 254px">số trừ</div>
+          <div id="rule-line" class="ln"></div>
+          <!-- result (teal) -->
+          <div id="r-h" class="cell teal" style="left: 480px; top: 356px">2</div>
+          <div id="r-t" class="cell teal" style="left: 630px; top: 356px">8</div>
+          <div id="r-u" class="cell teal" style="left: 780px; top: 356px">5</div>
+          <div id="lab-res" class="tag lab teal" style="top: 378px">hiệu</div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="check" class="row math" style="top: 200px"></div>
+          <div id="ok" class="row" style="top: 340px"><span class="chip" style="--c: var(--color-concept-teal)">✓ đúng</span></div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="rule-a" class="row" style="top: 130px"><span class="math pill" style="background: color-mix(in srgb, var(--color-concept-pink) 30%, var(--color-surface))">chữ số trên +10</span></div>
+          <div id="rule-b" class="row" style="top: 300px"><span class="math pill" style="background: var(--color-muted)">hàng bên trái −1</span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, end, W, op, owl, pop, rise, hide, pose, color, scenes, finish } = window.LV;
+
+        // ---------- DOM ----------
+        $("#q").innerHTML = `<span class="vio" id="q1">532</span><span id="q-minus">${op("−")}</span><span class="pnk" id="q2">247</span><span id="q-eq">${op("=")}</span><span class="pill" id="q3">?</span>`;
+        $("#check").innerHTML = `<span class="teal">285</span>${op("+")}<span class="pnk">247</span>${op("=")}<span class="vio pill">532</span>`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-de"],
+          ["#s6", "s06-thu"],
+          ["#s7", "s07-nho"],
+        ]);
+        {
+          // The column is drawn from the setup to the end of the hundreds.
+          const el = $("#work");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, start("s02-dat"));
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s05-tram") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // Every part of the column waits for its words.
+        hide(["#hl-h", "#hl-t", "#hl-u", "#heads", "#n-h", "#n-t1", "#n-t2", "#n-u",
+          "#t-h", "#t-t", "#t-u", "#b-h", "#b-t", "#b-u", "#minus", "#lab-top", "#lab-bottom",
+          "#rule-line", "#r-h", "#r-t", "#r-u", "#lab-res"]);
+        window.gsap.set(["#x-h", "#x-t", "#x-t2", "#x-u"], { scaleX: 0, transformOrigin: "0 50%" });
+        // A digit struck and the new one written above it.
+        const strike = (x, note, t) => {
+          tl.to(x, { scaleX: 1, duration: 0.3, ease: "power2.out" }, t);
+          pop(note, t + 0.15, { from: 0.4 });
+        };
+
+        // ---------- s01: the question ----------
+        {
+          const sid = "s01-de";
+          hide(["#q1", "#q-minus", "#q2", "#q-eq", "#q3"]);
+          pose(bird, "happy", W(sid, "chào"));
+          // The title holds the greeting, then gives way to the question.
+          hide(["#title"]);
+          rise("#title", W(sid, "chào"));
+          tl.to("#title", { autoAlpha: 0, duration: 0.3 }, W(sid, "kho") - 0.3);
+          pop("#q1", W(sid, "532"), { from: 0.6 });
+          pop(["#q-minus", "#q2"], W(sid, "247"), { from: 0.6 });
+          pop(["#q-eq", "#q3"], W(sid, "còn"), { from: 0.6 });
+        }
+
+        // ---------- s02: set the column up ----------
+        {
+          const sid = "s02-dat";
+          pose(bird, "idle", start(sid));
+          rise(["#t-h", "#t-t", "#t-u"], W(sid, "trên"), { stagger: 0.12 });
+          rise("#lab-top", W(sid, "trên"));
+          rise(["#minus", "#b-h", "#b-t", "#b-u"], W(sid, "dưới"), { stagger: 0.12 });
+          rise("#lab-bottom", W(sid, "dưới"));
+          rise("#heads", W(sid, "thẳng"));
+          tl.fromTo("#rule-line", { autoAlpha: 0, scaleX: 0, transformOrigin: "0 50%" }, { autoAlpha: 1, scaleX: 1, duration: 0.5, immediateRender: false }, W(sid, "thẳng"));
+          tl.to("#hl-u", { autoAlpha: 1, duration: 0.3 }, W(sid, "đơn"));
+        }
+
+        // ---------- s03: units ----------
+        {
+          const sid = "s03-don-vi";
+          pose(bird, "idle", start(sid));
+          tl.set("#hl-u", { autoAlpha: 1 }, start(sid));
+          tl.to("#hl-t", { autoAlpha: 1, duration: 0.3 }, W(sid, "chục"));
+          strike("#x-u", "#n-u", W(sid, "thành"));
+          rise("#r-u", W(sid, "bằng"));
+          rise("#lab-res", W(sid, "bằng"));
+        }
+
+        // ---------- s04: tens ----------
+        {
+          const sid = "s04-chuc";
+          tl.set("#hl-u", { autoAlpha: 0 }, start(sid));
+          tl.set("#hl-t", { autoAlpha: 1 }, start(sid));
+          strike("#x-t", "#n-t1", W(sid, "còn"));
+          tl.to("#hl-h", { autoAlpha: 1, duration: 0.3 }, W(sid, "lại"));
+          // The 2 that is left is struck and written again as 12.
+          tl.to("#x-t2", { scaleX: 1, duration: 0.3, ease: "power2.out" }, W(sid, "thành"));
+          tl.to(["#n-t1", "#x-t2"], { autoAlpha: 0, duration: 0.2 }, W(sid, "thành") + 0.25);
+          pop("#n-t2", W(sid, "thành") + 0.2, { from: 0.4 });
+          rise("#r-t", W(sid, "bằng"));
+        }
+
+        // ---------- s05: hundreds ----------
+        {
+          const sid = "s05-tram";
+          tl.set("#hl-t", { autoAlpha: 0 }, start(sid));
+          tl.set("#hl-h", { autoAlpha: 1 }, start(sid));
+          strike("#x-h", "#n-h", W(sid, "còn"));
+          rise("#r-h", W(sid, "bằng", 1));
+          tl.to(["#r-h", "#r-t", "#r-u"], { backgroundColor: color("highlight"), borderRadius: 18, duration: 0.3 }, W(sid, "285"));
+          pose(bird, "happy", W(sid, "285"));
+        }
+
+        // ---------- s06: check with an addition ----------
+        {
+          const sid = "s06-thu";
+          hide(["#check", "#ok"]);
+          pose(bird, "idle", start(sid));
+          rise("#check", W(sid, "cộng", 1));
+          pop("#ok", W(sid, "532"), { from: 0.6 });
+        }
+
+        // ---------- s07: remember ----------
+        {
+          const sid = "s07-nho";
+          hide(["#rule-a", "#rule-b"]);
+          pop("#rule-a", W(sid, "chữ"), { from: 0.6 });
+          pop("#rule-b", W(sid, "hàng"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

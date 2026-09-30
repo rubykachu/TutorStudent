@@ -13,12 +13,10 @@ export const MEDIA_DIR = path.join(ROOT, "public", "media");
 export const GLOBALS_CSS = path.join(ROOT, "src", "app", "globals.css");
 
 // The arm64 Python that runs VieNeu-TTS and mlx-whisper, and its model
-// cache; setup and pinned versions in video/spikes/vieneu/requirements.txt.
+// cache; setup and pinned versions in video/requirements.txt.
 export const PYTHON_BIN =
-  process.env.VIDEO_PYTHON ??
-  path.join(VIDEO_DIR, "spikes", "vieneu", ".venv", "bin", "python");
-export const HF_HOME =
-  process.env.VIDEO_HF_HOME ?? path.join(VIDEO_DIR, "spikes", "vieneu", ".hf");
+  process.env.VIDEO_PYTHON ?? path.join(VIDEO_DIR, ".venv", "bin", "python");
+export const HF_HOME = process.env.VIDEO_HF_HOME ?? path.join(VIDEO_DIR, ".hf");
 export const WHISPER_MODEL = "mlx-community/whisper-large-v3-turbo";
 
 // Narration is slowed to this share of the voice's own speed, for a grade-6

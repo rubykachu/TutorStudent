@@ -1,4 +1,4 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import { patchFixtureLesson, withVideo } from "./fixture-routes";
 import {
   answerWrongOnce,
@@ -7,6 +7,7 @@ import {
   openFixtureLesson,
 } from "./flows";
 import { expectControlsApart } from "./layout";
+import { test } from "./test";
 
 // No two controls touch, and nothing touches the sticky bottom bar, on the
 // screens a child moves through: home, subject, lesson, every explanation

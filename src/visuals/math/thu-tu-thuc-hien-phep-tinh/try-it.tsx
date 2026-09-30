@@ -1,7 +1,9 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
+import { Check, ChevronRight, RotateCcw } from "lucide-react";
 import { useState } from "react";
+import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
+import { JINGLE_ID } from "@/lib/sound-manifest";
 import type { VisualProps } from "@/visuals/registry";
 import {
   type RegionInteraction,
@@ -13,43 +15,65 @@ import {
   applyOperation,
   type Line,
   nextOperation,
+  type Operation,
   operationAt,
   operationIndices,
   parseExpression,
+  spokenOperation,
   type Token,
 } from "./expression";
 import { Row, spokenExpression } from "./steps";
 
-// Guided practice: the child taps the operation to do next; a right tap
-// works it out and the line below appears, a wrong one rings the tapped
-// operation in the orange dashed "try again" ring and changes nothing.
+// Guided practice: the child taps the operation to do next. A right tap stays
+// on the step: the operation turns green with a tick, a short line says what
+// it came to and the jingle plays; the next line appears only when the child
+// taps "Tiếp theo". A wrong one rings the tapped operation in the orange
+// dashed "try again" ring and changes nothing.
 const NO_REVEAL: ReadonlySet<string> = new Set();
+
+// A right tap waiting for "Tiếp theo".
+type Accepted = {
+  id: string;
+  operation: Operation;
+  applied: { tokens: Token[]; resultIndex: number };
+};
 
 export function TryIt({
   source,
   onStateChange,
 }: { source: string } & Pick<VisualProps, "onStateChange">) {
+  const sounds = useFeedbackSoundsContext();
   const [history, setHistory] = useState<Line[]>([]);
   const [tokens, setTokens] = useState<Token[]>(() => parseExpression(source));
   const [resultIndex, setResultIndex] = useState<number | undefined>();
   const [wrong, setWrong] = useState<string | undefined>();
+  const [accepted, setAccepted] = useState<Accepted | null>(null);
 
   const expected = nextOperation(tokens);
   const finished = expected === undefined;
 
   function tap(id: string) {
     const index = operationIndices(tokens)[Number(id.slice(2)) - 1];
-    if (index === undefined || expected === undefined) return;
+    if (index === undefined || expected === undefined || accepted) return;
     if (index !== expected.index) {
       setWrong(id);
       return;
     }
     const operation = operationAt(tokens, index);
-    const applied = applyOperation(tokens, operation);
-    setHistory([...history, { tokens, resultIndex, operation }]);
-    setTokens(applied.tokens);
-    setResultIndex(applied.resultIndex);
+    setAccepted({ id, operation, applied: applyOperation(tokens, operation) });
     setWrong(undefined);
+    sounds?.play([JINGLE_ID]);
+  }
+
+  function next() {
+    if (!accepted) return;
+    setHistory([
+      ...history,
+      { tokens, resultIndex, operation: accepted.operation },
+    ]);
+    setTokens(accepted.applied.tokens);
+    setResultIndex(accepted.applied.resultIndex);
+    setAccepted(null);
     onStateChange?.({ done: history.length + 1 });
   }
 
@@ -58,6 +82,7 @@ export function TryIt({
     setTokens(parseExpression(source));
     setResultIndex(undefined);
     setWrong(undefined);
+    setAccepted(null);
     onStateChange?.({ done: 0 });
   }
 
@@ -66,9 +91,9 @@ export function TryIt({
   );
   const interaction: RegionInteraction = {
     selected: new Set(),
-    revealed: NO_REVEAL,
+    revealed: accepted ? new Set([accepted.id]) : NO_REVEAL,
     marks,
-    disabled: finished,
+    disabled: finished || accepted !== null,
     onToggle: tap,
   };
 
@@ -94,22 +119,41 @@ export function TryIt({
           />
         </RegionProvider>
       </div>
-      <p className="min-h-6 text-center text-caption" aria-live="polite">
+      <p
+        className={`flex min-h-6 items-center justify-center gap-2 text-center text-caption ${accepted ? "font-semibold text-correct" : ""}`}
+        aria-live="polite"
+        data-try-it-status={accepted ? "correct" : undefined}
+      >
+        {accepted && <Check aria-hidden className="size-5" strokeWidth={3} />}
         {finished
           ? "Xong rồi."
-          : wrong === undefined
-            ? "Chạm phép tính làm trước."
-            : "Chưa phải. Thử phép khác."}
+          : accepted
+            ? `Đúng rồi! ${spokenOperation(accepted.operation)}.`
+            : wrong === undefined
+              ? "Chạm phép tính làm trước."
+              : "Chưa phải. Thử phép khác."}
       </p>
-      <button
-        type="button"
-        onClick={restart}
-        disabled={history.length === 0}
-        className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50"
-      >
-        <RotateCcw aria-hidden className="size-5" />
-        Làm lại
-      </button>
+      {accepted ? (
+        <button
+          type="button"
+          onClick={next}
+          data-try-it-next
+          className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg bg-primary px-6 font-semibold text-primary-foreground motion-safe:transition-transform motion-safe:active:scale-97"
+        >
+          {nextOperation(accepted.applied.tokens) ? "Tiếp theo" : "Xem kết quả"}
+          <ChevronRight aria-hidden className="size-5" />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={restart}
+          disabled={history.length === 0}
+          className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50"
+        >
+          <RotateCcw aria-hidden className="size-5" />
+          Làm lại
+        </button>
+      )}
     </div>
   );
 }

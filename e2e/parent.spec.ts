@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import {
   createProfile,
   FIXTURE_LESSON_TITLE,
@@ -7,6 +7,7 @@ import {
   openFixtureLesson,
 } from "./flows";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
+import { test } from "./test";
 
 const SECTION = "fixture.section.phep-nhan";
 // Missed three times in the section, so it heads "Câu hay sai".

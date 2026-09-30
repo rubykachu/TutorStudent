@@ -1,0 +1,8 @@
+# Local Python toolchain, venv and model cache of the narration pipeline
+# (setup in requirements.txt)
+.venv/
+.python/
+.uv-cache/
+__pycache__/
+# Hugging Face model cache (VieNeu-TTS, whisper)
+.hf/

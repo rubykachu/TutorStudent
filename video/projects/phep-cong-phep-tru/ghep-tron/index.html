@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Ghép cho tròn chục, tròn trăm" (lesson phep-cong-phep-tru):
+  34 + 268 + 66 worked out one line per step; the pair that makes 100 is
+  ringed in lime (the colour of the lesson's "Kết hợp"), each result amber.
+  Built by `pnpm video:build phep-cong-phep-tru ghep-tron`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Ghép cho tròn chục, tròn trăm</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .ring { display: inline-block; padding: 0 16px 6px; border: 6px solid transparent; border-radius: 24px; }
+      .res { color: var(--color-concept-amber); border-bottom: 8px solid var(--color-concept-amber); }
+      .tagcard { display: inline-flex; flex-direction: column; align-items: center; padding: 14px 30px 18px; background: var(--color-surface); border: 4px solid var(--color-border); border-radius: 24px; }
+      .tagcard .v { font: 800 64px / 1.1 "Baloo 2", sans-serif; }
+      .tagcard .u { font: 600 26px / 1.2 "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="work" class="scene layer">
+          <div id="row1" class="row math" style="top: 30px"></div>
+          <div id="row2" class="row math" style="top: 140px"></div>
+          <div id="row3" class="row math" style="top: 250px"></div>
+          <div id="row4" class="row" style="top: 365px"><span class="math pill"></span></div>
+        </section>
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 230px">Ghép cho tròn để nhẩm nhanh</div>
+          <div id="tags" class="row" style="top: 250px; gap: 40px">
+            <span id="tg1" class="tagcard"><span class="v">34</span><span class="u">nghìn đồng</span></span>
+            <span id="tg2" class="tagcard"><span class="v">268</span><span class="u">nghìn đồng</span></span>
+            <span id="tg3" class="tagcard"><span class="v">66</span><span class="u">nghìn đồng</span></span>
+          </div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="pair" class="row math" style="top: 290px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div class="row" style="top: 330px">
+            <span id="c-swap" class="chip" style="--c: var(--color-concept-sky)">đổi chỗ</span>
+            <span id="c-group" class="chip" style="--c: var(--color-concept-lime)">nhóm lại</span>
+            <span class="math small">→</span>
+            <span id="c-round" class="chip" style="--c: var(--color-concept-amber)">số tròn</span>
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="t-row1" class="row math" style="top: 60px"></div>
+          <div id="t-row2" class="row math" style="top: 190px"></div>
+          <div id="t-row3" class="row" style="top: 320px"><span class="math pill"></span></div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="rule-6" class="row" style="top: 130px"><span class="math pill">đổi chỗ, nhóm lại</span></div>
+          <div id="rule-6b" class="row" style="top: 300px"><span class="math pill" style="background: var(--color-muted)">tròn chục, tròn trăm</span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, end, W, op, owl, pop, rise, hide, pose, color, scenes, finish } = window.LV;
+        const plus = op("+");
+        const ring = (id, html) => `<span id="${id}" class="ring">${html}</span>`;
+        const res = (id, html) => `<span id="${id}" class="res">${html}</span>`;
+
+        // ---------- DOM ----------
+        $("#row1").innerHTML = `<span id="a1">34</span>${plus}<span id="b1">268</span>${plus}<span id="c1">66</span>`;
+        // Swapped: the pair that makes 100 sits together, then is ringed.
+        $("#row2").innerHTML = `${ring("p2", `34${plus}66`)}${plus}268`;
+        $("#row3").innerHTML = `${res("r100", "100")}${plus}268`;
+        $("#row4 .pill").textContent = "368";
+        $("#pair").innerHTML = `${ring("pr", `34${plus}66`)}<span id="pair-eq" class="op">=</span><span id="pair-res" class="pill">100</span>`;
+        $("#t-row1").innerHTML = `27${plus}${ring("t-p", `45${plus}55`)}`;
+        $("#t-row2").innerHTML = `${res("t100", "100")}${plus}27`;
+        $("#t-row3 .pill").textContent = "127";
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+        const lime = color("concept-lime");
+        const clear = "rgba(0,0,0,0)";
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-de"],
+          ["#s2", "s02-ghep"],
+          ["#s3", "s03-quy-tac"],
+          ["#s5", "s05-thu"],
+          ["#s6", "s06-nho"],
+        ]);
+        {
+          // The worked lines wait for the question, then stay until the trial.
+          const el = $("#work");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, W("s01-de", "cộng"));
+          tl.to(el, { autoAlpha: 0 }, end("s04-tinh") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: three prices ----------
+        {
+          const sid = "s01-de";
+          hide(["#tg1", "#tg2", "#tg3", "#row2", "#row3", "#row4"]);
+          pose(bird, "happy", W(sid, "chào"));
+          // The title holds the greeting, then gives way to the prices.
+          hide(["#title"]);
+          rise("#title", W(sid, "chào"));
+          tl.to("#title", { autoAlpha: 0, duration: 0.3 }, W(sid, "bạn", 2) - 0.3);
+          pop("#tg1", W(sid, "34"), { from: 0.6 });
+          pop("#tg2", W(sid, "268"), { from: 0.6 });
+          pop("#tg3", W(sid, "66"), { from: 0.6 });
+          hide(["#row1"]);
+          pop("#row1", W(sid, "cộng"), { from: 0.6 });
+        }
+
+        // ---------- s02: the pair that makes 100 ----------
+        {
+          const sid = "s02-ghep";
+          pose(bird, "idle", start(sid));
+          hide(["#pair-eq", "#pair-res"]);
+          tl.to("#pr", { borderColor: lime, duration: 0.3 }, W(sid, "34"));
+          pop("#pair-eq", W(sid, "bằng"), { from: 0.6 });
+          pop("#pair-res", W(sid, "100"), { from: 0.6 });
+        }
+
+        // ---------- s03: the rule ----------
+        {
+          const sid = "s03-quy-tac";
+          hide(["#c-swap", "#c-group", "#s3 .math", "#c-round"]);
+          rise("#c-swap", W(sid, "đổi"));
+          rise("#c-group", W(sid, "nhóm"));
+          rise("#s3 .math", W(sid, "hai"));
+          rise("#c-round", W(sid, "tròn"));
+        }
+
+        // ---------- s04: swap, group, add ----------
+        {
+          const sid = "s04-tinh";
+          pose(bird, "idle", start(sid));
+          hide(["#row2", "#row3", "#row4"]);
+          rise("#row2", W(sid, "đổi"));
+          tl.to("#p2", { borderColor: lime, duration: 0.3 }, W(sid, "34", 1));
+          rise("#row3", W(sid, "bằng", 1));
+          tl.to("#p2", { borderColor: clear, duration: 0.3 }, W(sid, "100", 2));
+          pop("#row4", W(sid, "bằng", 2), { from: 0.4 });
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+
+        // ---------- s05: a try of the child's own ----------
+        {
+          const sid = "s05-thu";
+          pose(bird, "idle", start(sid));
+          hide(["#t-row1", "#t-row2", "#t-row3"]);
+          rise("#t-row1", W(sid, "27", 1));
+          tl.to("#t-p", { borderColor: lime, duration: 0.3 }, W(sid, "45", 2));
+          rise("#t-row2", W(sid, "bằng", 1));
+          pop("#t-row3", W(sid, "bằng", 2), { from: 0.4 });
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+
+        // ---------- s06: remember ----------
+        {
+          const sid = "s06-nho";
+          hide(["#rule-6", "#rule-6b"]);
+          pop("#rule-6", W(sid, "đổi"), { from: 0.6 });
+          pop("#rule-6b", W(sid, "nhẩm"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

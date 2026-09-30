@@ -91,6 +91,7 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 ## 5. Chạm và bố cục
 
 - Vùng chạm ≥ 48×48px; nút chính cao 64px iPad / 56px điện thoại.
+- Ngoại lệ vùng chạm của chấm tiến độ (`SectionStepper`): cao 48px, rộng bằng chấm cộng khoảng đệm hai bên vì cả hàng chấm phải vừa một hàng; chỉ chấm của màn đã qua bấm được, có tên ("Lý thuyết 1", "Câu 2") hiện khi rê hoặc focus.
 - Ngoại lệ vùng chạm trong dòng chữ (`tapText`, `PassageReader`): ở chế độ chạm, line-height ≥ 2.3 (dòng ≥ 48px), chạm chọn cả câu, câu đang chọn có nền `--color-highlight`.
 - Viewport mục tiêu: iPad dọc 820×1180, ngang 1180×820; điện thoại 390×844. Không cuộn ngang. Tôn trọng `env(safe-area-inset-*)` khi chạy PWA toàn màn hình.
 - Nội dung học: một cột, rộng tối đa 720px, căn giữa. iPad ngang: màn học rộng tối đa 960px, bài tập chia hai cột (đề và hình gợi ý bên trái, ô trả lời bên phải) khi khung bài tập rộng từ 50rem, cột đề rộng ít nhất 26rem, khung hẹp hơn thì giữ một cột; đề có đoạn văn đọc hiểu hoặc câu hỏi dài thì giữ một cột, đề trải hết bề ngang phía trên ô trả lời. Cú đậu ở góc trên phải thẻ trả lời ở mọi khổ, không chiếm cột riêng. Visual rộng hơn cột thì tự thu nhỏ vừa cột.
@@ -153,7 +154,9 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 | `BigButton` | Nút chính, cao 64/56px, bo 20px, chữ 20/18px đậm 600, có trạng thái nhấn và disabled rõ ràng |
 | `SubjectTile` | Ô môn trên trang chủ: màu môn, biểu tượng SVG (Lucide), tiến độ dạng vòng, luôn có dòng phụ (trạng thái môn), nhắc "n ngày chưa học"; trên iPad ba ô dùng chung hàng lưới (subgrid) để tên môn thẳng hàng |
 | `ReviewButton` | Nút "Ôn bài này" trong trang bài, kèm nhãn nhỏ "n thẻ sắp quên" khi có |
-| `SectionStepper` | Chấm tiến độ các khối trong một phần (không số, không phần trăm) |
+| `SectionStepper` | Chấm tiến độ các khối trong một phần (không số, không phần trăm); chấm của màn đã qua bấm được, có tên |
+| `ScreenBadge` | Nhãn loại màn ở đầu mỗi màn của player: Lý thuyết (xanh), Bài tập (vàng), Ôn tập (tím) |
+| `StickerSheet` | Bảng chi tiết một sticker: hình (bóng xám nếu chưa nhận), tên, bài, tiến độ, cách nhận, nút mở bài |
 | `ExerciseFrame` | Khung chung cho 8 dạng bài: đề, vùng trả lời, nút "Kiểm tra", vùng gợi ý, trạng thái 3 nấc |
 | `NumberPad` | Khối số 3 cột (phím 0 trải ngang hàng cuối) + cột phụ Xoá / "mũ" / "," — phím "," chỉ hiện khi đáp án có số thập phân; phím 64px (60px ở iPad ngang). Khi nấc 2/3 có hình, bàn phím tạm ẩn để hình vào đúng chỗ, chạm ô đáp số để mở lại |
 | `PassageReader` | Hiển thị văn bản đọc hiểu, chạm từng câu để chọn, ghi chú "Theo dõi" dạng thẻ nhỏ bên lề (iPad) hoặc dưới đoạn (điện thoại) |

@@ -1,7 +1,12 @@
 import { useEffect, useMemo } from "react";
-import type { FeedbackSounds } from "@/exercises/exercise-frame";
-import { installAudioUnlock, playSequence, preloadSounds } from "@/lib/sound";
-import { allSoundUrls, soundUrl } from "@/lib/sound-manifest";
+import type { FeedbackSounds } from "@/lib/feedback-sounds";
+import {
+  installAudioUnlock,
+  playSequence,
+  playSound,
+  preloadSounds,
+} from "@/lib/sound";
+import { allSoundUrls, soundUrl, TAP_ID } from "@/lib/sound-manifest";
 import { useSoundEnabled } from "@/progress/hooks";
 
 // The feedback sounds of one player session (a section or a review), or
@@ -23,6 +28,10 @@ export function useFeedbackSounds(childId: string): FeedbackSounds | undefined {
         ? {
             play(clipIds) {
               void playSequence(clipIds.flatMap((id) => soundUrl(id) ?? []));
+            },
+            tap() {
+              const url = soundUrl(TAP_ID);
+              if (url) void playSound(url);
             },
           }
         : undefined,

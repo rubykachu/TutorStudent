@@ -75,10 +75,10 @@
 }
 
 @theme {
-  --color-subject-math: #2563eb;
-  --color-subject-literature: #b4533f;
-  /* Teal rather than green so geography never reads as "correct". */
-  --color-subject-geography: #0f766e;
+  --color-subject-blue: #2563eb;
+  --color-subject-terracotta: #b4533f;
+  /* Teal rather than green so a subject never reads as "correct". */
+  --color-subject-teal: #0f766e;
 
   --color-correct: #15803d;
   --color-correct-soft: #f0fdf4;

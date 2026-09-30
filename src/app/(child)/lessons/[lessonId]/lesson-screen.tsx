@@ -7,13 +7,21 @@ import { useState } from "react";
 import { bigButtonClassName } from "@/components/big-button";
 import { PageTopBar } from "@/components/page-top-bar";
 import { ReviewButton } from "@/components/review-button";
+import { RichText } from "@/components/rich-text";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
-import { SUBJECT_STYLES } from "@/components/subject-style";
+import { subjectStyle } from "@/components/subject-style";
 import type { LessonIndex } from "@/content";
 import { LessonOverviewView } from "@/learn/lesson-overview";
 import { nextSectionIndex, stickerFill } from "@/learn/next-step";
-import { HOME_PATH, reviewPath, sectionPath, subjectPath } from "@/lib/routes";
+import { lessonHeading, lessonPlacement } from "@/lib/lesson-label";
+import {
+  HOME_PATH,
+  INTRO_PARAM,
+  reviewPath,
+  sectionPath,
+  subjectPath,
+} from "@/lib/routes";
 import { now } from "@/lib/time";
 import type { ProfileRecord, SectionState } from "@/progress/db";
 import {
@@ -57,10 +65,15 @@ function LessonBody({
   const router = useRouter();
   // null: follow the stored state (the overview opens on the first visit);
   // true / false: the child opened or closed it on this visit.
-  const [overviewOpen, setOverviewOpen] = useState<boolean | null>(null);
+  // The page was opened on the introduction (from a section player's back).
+  // The body renders only after the client loaded the lesson, so reading
+  // the address here never disagrees with the server's HTML.
+  const [overviewOpen, setOverviewOpen] = useState<boolean | null>(() =>
+    new URLSearchParams(window.location.search).has(INTRO_PARAM) ? true : null,
+  );
   if (!progress) return null;
 
-  const style = subject ? SUBJECT_STYLES[subject.color] : undefined;
+  const style = subject ? subjectStyle(subject) : undefined;
   const next = nextSectionIndex(lesson.sections, progress.sections);
   const { overview } = lesson;
   if (overview && (overviewOpen ?? !progress.overviewSeen)) {
@@ -72,7 +85,7 @@ function LessonBody({
           <BackLink subjectId={lesson.subject} />
         </PageTopBar>
         <LessonOverviewView
-          lesson={{ title: lesson.title, overview }}
+          lesson={{ title: lesson.title, number: lesson.number, overview }}
           startLabel={
             nextSection === undefined
               ? "Xem các phần của bài"
@@ -116,8 +129,13 @@ function LessonBody({
       </PageTopBar>
       <header className="flex flex-col gap-1">
         <h1 className="text-title font-bold md:text-title-lg">
-          {lesson.title}
+          {lessonHeading(lesson)}
         </h1>
+        {lessonPlacement(lesson) && (
+          <p className="font-semibold text-caption">
+            {lessonPlacement(lesson)}
+          </p>
+        )}
         <p className="text-caption text-muted-foreground">{lesson.sourceRef}</p>
       </header>
 
@@ -182,7 +200,7 @@ function LessonBody({
                       </span>
                     )}
                     <h3 className="text-body font-semibold md:text-body-lg">
-                      {section.title}
+                      <RichText text={section.title} />
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
                       <StateBadge state={state} />

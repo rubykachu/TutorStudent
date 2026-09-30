@@ -59,8 +59,30 @@ export const CONCEPT_COLORS = [
 ] as const;
 export const ConceptColorSchema = z.enum(CONCEPT_COLORS);
 
-export const SUBJECT_COLORS = ["math", "literature", "geography"] as const;
+// Palette of subject accents (`--color-subject-<token>` in globals.css) and
+// icons (mapped to components in components/subject-style.ts). A subject
+// picks one of each in content/subjects.json; adding a palette entry or icon
+// means extending these lists, the CSS token and the style map together.
+export const SUBJECT_COLORS = ["blue", "terracotta", "teal"] as const;
 export const SubjectColorSchema = z.enum(SUBJECT_COLORS);
+
+export const SUBJECT_ICONS = ["calculator", "book-open", "globe"] as const;
+export const SubjectIconSchema = z.enum(SUBJECT_ICONS);
+
+// `vi` lessons are checked against the Vietnamese spelling and reading-level
+// rules; other languages skip them.
+export const SUBJECT_LANGUAGES = ["vi", "en"] as const;
+export const SubjectLanguageSchema = z.enum(SUBJECT_LANGUAGES);
+
+// Authoring rules that only some subjects follow.
+export const SubjectRulesSchema = z.object({
+  // `numeric` exercises carry `check.expr`, recomputed by content:check.
+  checkExpr: z.boolean(),
+  // Passages are verbatim source texts compared with `source-passage.txt`.
+  verbatimPassage: z.boolean(),
+  // Every lesson ends with at least one openEnded (writing) exercise.
+  requiresOpenEnded: z.boolean(),
+});
 
 export const SeriesSchema = z.object({
   id: LessonIdSchema,
@@ -71,6 +93,9 @@ export const SubjectSchema = z.object({
   id: LessonIdSchema,
   name: TextSchema,
   color: SubjectColorSchema,
+  icon: SubjectIconSchema,
+  language: SubjectLanguageSchema,
+  rules: SubjectRulesSchema,
   series: z.array(SeriesSchema).min(1),
   // A new child profile starts on this series for the subject.
   defaultSeries: LessonIdSchema,
@@ -124,9 +149,13 @@ export const PassageBlockSchema = z.object({
   source: TextSchema.optional(),
 });
 
+// `rule: true` marks the sentence(s) a section teaches as its rule. The
+// content lint then requires recaps that restate the rule to repeat it word
+// for word, so the child meets one wording on the screen, recap and card.
 export const NoteBlockSchema = z.object({
   type: z.literal("note"),
   text: TextSchema,
+  rule: z.boolean().optional(),
 });
 
 export const VideoBlockSchema = z.object({
@@ -167,10 +196,28 @@ export const GroupChildSchema = z.discriminatedUnion("type", [
   ImageBlockSchema,
 ]);
 
+// Answer interactions a child must be shown how to use before the first
+// exercise that needs them: a tap on a picture region or passage sentence,
+// matching, ordering, dragging a manipulable visual, picking words from a
+// fill-in bank, and the power key of the numeric keypad.
+export const GUIDED_INTERACTIONS = [
+  "tapRegion",
+  "tapText",
+  "match",
+  "order",
+  "manipulate",
+  "fillBlankBank",
+  "numericPower",
+] as const;
+export const GuidedInteractionSchema = z.enum(GUIDED_INTERACTIONS);
+
 export const GroupBlockSchema = z.object({
   type: z.literal("group"),
   // A group of one is just that block.
   children: z.array(GroupChildSchema).min(2),
+  // Set on a screen that teaches how to answer with this interaction (a
+  // sentence saying what to tap plus a demo picture).
+  guide: GuidedInteractionSchema.optional(),
 });
 
 // A screen of a section: one block, or a group of blocks.
@@ -241,8 +288,43 @@ const exerciseBase = {
   difficulty: z.int().min(1).max(3),
 };
 
+// How the content lint verifies a choice from the values of its options:
+// - equal (default): the answers are exactly the options equal to `expr`;
+// - notEqual: the answers are exactly the options not equal to `expr`
+//   ("which result is wrong?");
+// - max / min: the answers are the options with the largest / smallest value;
+// - holds / fails: every option is a comparison such as "2^{3} = 8"; the
+//   answers are exactly the true / false ones.
+// Numeric exercises use `equal` only.
+export const CHECK_RELATIONS = [
+  "equal",
+  "notEqual",
+  "max",
+  "min",
+  "holds",
+  "fails",
+] as const;
+export const CheckRelationSchema = z.enum(CHECK_RELATIONS);
+export const RELATIONS_WITH_EXPR: readonly CheckRelation[] = [
+  "equal",
+  "notEqual",
+];
+
 // Expression the content lint recomputes to verify the stated answer.
-export const CheckSchema = z.object({ expr: TextSchema });
+export const CheckSchema = z
+  .object({
+    expr: TextSchema.optional(),
+    relation: CheckRelationSchema.optional(),
+  })
+  .refine(
+    (check) =>
+      RELATIONS_WITH_EXPR.includes(check.relation ?? "equal") ===
+      (check.expr !== undefined),
+    {
+      message:
+        "check.expr is required for relation equal/notEqual and not allowed for max/min/holds/fails",
+    },
+  );
 
 export const ChoiceExerciseSchema = z.object({
   ...exerciseBase,
@@ -470,12 +552,29 @@ export const LessonOverviewSchema = z.object({
 
 export const LESSON_STATUSES = ["draft", "published"] as const;
 
+// The chapter of the textbook a lesson belongs to, as the book prints it:
+// "I" (or "1") and "Tập hợp các số tự nhiên". Left out when the book has no
+// chapters.
+export const LessonChapterSchema = z.object({
+  numeral: TextSchema,
+  name: TextSchema,
+});
+
+// Where the lesson sits in the book, for a parent looking it up: its number
+// inside the book ("Bài 4") and its chapter. Both stay out when the book
+// prints none.
+const lessonPlacement = {
+  number: z.int().positive().optional(),
+  chapter: LessonChapterSchema.optional(),
+};
+
 export const LessonSchema = z.object({
   id: LessonIdSchema,
   subject: LessonIdSchema,
   series: LessonIdSchema,
   grade: z.literal(6),
   order: z.int().nonnegative(),
+  ...lessonPlacement,
   title: TextSchema,
   sourceRef: TextSchema,
   status: z.enum(LESSON_STATUSES),
@@ -531,6 +630,7 @@ export const LessonSummarySchema = z.object({
   subject: LessonIdSchema,
   series: LessonIdSchema,
   order: z.int().nonnegative(),
+  ...lessonPlacement,
   title: TextSchema,
   sourceRef: TextSchema,
   sections: z.array(
@@ -560,12 +660,15 @@ export type SubjectsFile = z.infer<typeof SubjectsFileSchema>;
 export type Concept = z.infer<typeof ConceptSchema>;
 export type ConceptColor = z.infer<typeof ConceptColorSchema>;
 export type Block = z.infer<typeof BlockSchema>;
+export type NoteBlock = z.infer<typeof NoteBlockSchema>;
 export type GroupBlock = z.infer<typeof GroupBlockSchema>;
 export type SectionBlock = z.infer<typeof SectionBlockSchema>;
 export type RecapBlock = z.infer<typeof RecapBlockSchema>;
 export type PassageBlock = z.infer<typeof PassageBlockSchema>;
 export type FormulaBlock = z.infer<typeof FormulaBlockSchema>;
 export type Item = z.infer<typeof ItemSchema>;
+export type CheckRelation = z.infer<typeof CheckRelationSchema>;
+export type GuidedInteraction = z.infer<typeof GuidedInteractionSchema>;
 export type TargetRef = z.infer<typeof TargetRefSchema>;
 export type Hints = z.infer<typeof HintsSchema>;
 export type ChoiceExercise = z.infer<typeof ChoiceExerciseSchema>;
@@ -585,6 +688,7 @@ export type Card = z.infer<typeof CardSchema>;
 export type Section = z.infer<typeof SectionSchema>;
 export type Video = z.infer<typeof VideoSchema>;
 export type LessonOverview = z.infer<typeof LessonOverviewSchema>;
+export type LessonChapter = z.infer<typeof LessonChapterSchema>;
 export type Lesson = z.infer<typeof LessonSchema>;
 export type LessonStatus = Lesson["status"];
 export type IdsLock = z.infer<typeof IdsLockSchema>;

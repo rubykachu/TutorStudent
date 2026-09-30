@@ -14,6 +14,7 @@ import {
   subjectProgress,
   subjectStatus,
 } from "@/learn/next-step";
+import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
 import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
@@ -90,6 +91,7 @@ function HomeLessons({
   const targetSubject =
     target && index.subjects.find((s) => s.id === target.lesson.subject);
   const earned = new Set(progress.stickers.map((s) => s.lessonId));
+  const sounds = useFeedbackSounds(profile.id);
   return (
     <>
       {target && targetSubject && (
@@ -119,6 +121,7 @@ function HomeLessons({
         lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
         earnedLessonIds={earned}
         sections={progress.sections}
+        sounds={sounds}
       />
     </>
   );

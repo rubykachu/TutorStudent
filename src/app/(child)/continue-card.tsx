@@ -1,6 +1,6 @@
 import { Play } from "lucide-react";
 import Link from "next/link";
-import { SUBJECT_STYLES } from "@/components/subject-style";
+import { subjectStyle } from "@/components/subject-style";
 import type { ContinueTarget } from "@/learn/next-step";
 import { lessonPath, sectionPath } from "@/lib/routes";
 import type { Subject } from "@/schema/content";
@@ -24,7 +24,7 @@ export function ContinueCard({
   const section = lesson.sections[sectionIndex];
   const paused = pausedIndex === null ? undefined : pausedIndex + 1;
   if (!section) return null;
-  const style = SUBJECT_STYLES[subject.color];
+  const style = subjectStyle(subject);
   const Icon = style.icon;
   const label = started ? "Học tiếp" : "Bắt đầu học";
   return (

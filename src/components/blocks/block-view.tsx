@@ -1,6 +1,7 @@
 "use client";
 
-import { Clapperboard } from "lucide-react";
+import { Clapperboard, Eye } from "lucide-react";
+import type { ReactNode } from "react";
 import { Formula } from "@/components/blocks/formula";
 import { VideoPlayer } from "@/components/blocks/video-player";
 import { PassageReader } from "@/components/passage-reader";
@@ -108,19 +109,50 @@ export function BlockView({
           data-block="group"
           className="flex w-full flex-col items-center gap-6 [&>[data-block=note]]:max-w-prose [&>[data-block=note]]:items-center [&>[data-block=note]]:text-center"
         >
-          {block.children.map((child, i) => (
-            <BlockView
-              // Children have no ids; their order is fixed content.
+          {block.children.map((child, i) => {
+            const view = (
+              <BlockView
+                // Children have no ids; their order is fixed content.
+                // biome-ignore lint/suspicious/noArrayIndexKey: static list
+                key={i}
+                block={child}
+                parts={parts}
+                videos={videos}
+              />
+            );
+            return block.guide && child.type === "visual" ? (
               // biome-ignore lint/suspicious/noArrayIndexKey: static list
-              key={i}
-              block={child}
-              parts={parts}
-              videos={videos}
-            />
-          ))}
+              <GuideDemo key={i}>{view}</GuideDemo>
+            ) : (
+              view
+            );
+          })}
         </div>
       );
   }
+}
+
+// The demo picture of a guide screen: it shows how to answer, it is not an
+// exercise. It takes no touch and says so, so a child never taps it and wonders
+// whether the app is broken.
+function GuideDemo({ children }: { children: ReactNode }) {
+  return (
+    <div
+      data-guide-demo
+      className="flex w-full flex-col items-center gap-3 rounded-lg border-2 border-dashed border-border p-3"
+    >
+      <p
+        data-guide-demo-label
+        className="flex items-center gap-2 font-semibold text-caption text-muted-foreground"
+      >
+        <Eye aria-hidden className="size-5" />
+        Hình mẫu, chưa cần chạm
+      </p>
+      <div inert className="pointer-events-none flex w-full justify-center">
+        {children}
+      </div>
+    </div>
+  );
 }
 
 function VideoView({

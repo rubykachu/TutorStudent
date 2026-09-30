@@ -9,13 +9,19 @@ import { sentences, syllableCount } from "@/content/lint/text";
 import type { Finding, LintInput, LintRule } from "@/content/lint/types";
 import { isVietnameseSyllable } from "@/content/lint/vietnamese";
 import {
+  ChoiceExerciseSchema,
   type GlossaryFile,
   GlossaryFileSchema,
   type Lesson,
   LessonSchema,
 } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
-import { fixtureContent, fixtureFile, readSkeleton } from "./helpers";
+import {
+  fixtureContent,
+  fixtureFile,
+  readSkeleton,
+  subjectOf,
+} from "./helpers";
 
 const FILE = "lesson.json";
 
@@ -27,6 +33,7 @@ function fixtureInput(): LintInput {
     file: FILE,
     lesson: LessonSchema.parse(file.data),
     fixture: true,
+    subject: subjectOf("math"),
     glossary: GlossaryFileSchema.parse(glossary?.data),
     sourcePassage: file.sourcePassage,
   };
@@ -41,6 +48,7 @@ function skeletonInput(): LintInput {
     file: FILE,
     lesson: LessonSchema.parse(readSkeleton()),
     fixture: false,
+    subject: subjectOf("math"),
     glossary: GlossaryFileSchema.parse(glossary?.data),
   };
 }
@@ -559,7 +567,7 @@ describe("check-expr", () => {
     expect(findings(input, "check-expr")).toMatchObject([
       { path: ["exercises", 2] },
     ]);
-    input.lesson.subject = "literature";
+    input.subject = subjectOf("literature");
     expect(findings(input, "check-expr")).toEqual([]);
   });
 
@@ -598,11 +606,15 @@ describe("check-expr", () => {
 
     exercise.answer = ["a"];
     expect(messages(input, "check-expr")).toEqual([
-      "Option equals check.expr (8) but is not an answer",
+      expect.stringMatching(
+        /^Option is 8 and so also satisfies check \(equal 2\^3\) but is not an answer.*LL-01/,
+      ),
     ]);
     exercise.answer = ["a", "b", "c"];
     expect(messages(input, "check-expr")).toEqual([
-      "Answer option is 6 but check.expr gives 8",
+      expect.stringMatching(
+        /^Answer option is 6, which does not satisfy check/,
+      ),
     ]);
     exercise.options[0] = {
       id: "a",
@@ -612,6 +624,233 @@ describe("check-expr", () => {
     expect(messages(input, "check-expr")).toEqual([
       "Answer option has no computable value to verify",
     ]);
+  });
+});
+
+describe("check relations", () => {
+  function chooser(options: string[], answer: string[]) {
+    const input = fixtureInput();
+    const exercise = choiceExercise(input.lesson, "fixture.ex.chon-luy-thua");
+    exercise.options = options.map((tex, i) => ({
+      id: String.fromCharCode(97 + i),
+      content: { type: "formula", tex },
+    }));
+    exercise.answer = answer;
+    delete exercise.check;
+    return { input, exercise };
+  }
+
+  it("verifies which result is wrong with notEqual", () => {
+    const { input, exercise } = chooser(["2 \\cdot 4", "8", "3^{2}"], ["c"]);
+    exercise.check = { expr: "2^3", relation: "notEqual" };
+    expect(findings(input, "check-expr")).toEqual([]);
+    exercise.options[1] = { id: "b", content: { type: "text", text: "9" } };
+    expect(findings(input, "check-expr")).toMatchObject([
+      {
+        path: ["exercises", 7, "options", 1],
+        message: expect.stringContaining("LL-01"),
+      },
+    ]);
+  });
+
+  it("verifies the largest and smallest option", () => {
+    const { input, exercise } = chooser(["2^{3}", "3^{2}", "10"], ["c"]);
+    exercise.check = { relation: "max" };
+    expect(findings(input, "check-expr")).toEqual([]);
+    exercise.check = { relation: "min" };
+    expect(findings(input, "check-expr")).toHaveLength(2);
+  });
+
+  it("judges comparison options and requires a check for them", () => {
+    const { input, exercise } = chooser(
+      ["2^{3} \\cdot 2^{2} = 2^{5}", "3^{2} = 6", "4^{2} \\cdot 4 = 4^{3}"],
+      ["a"],
+    );
+    expect(messages(input, "check-expr")).toEqual([
+      expect.stringContaining('add check { "relation": "holds" }'),
+    ]);
+    exercise.check = { relation: "holds" };
+    expect(findings(input, "check-expr")).toMatchObject([
+      {
+        path: ["exercises", 7, "options", 2],
+        message: expect.stringContaining("is true"),
+      },
+    ]);
+    exercise.answer = ["b"];
+    exercise.check = { relation: "fails" };
+    expect(findings(input, "check-expr")).toEqual([]);
+  });
+
+  it("keeps expr for equal and notEqual only", () => {
+    const base = choiceExercise(
+      fixtureInput().lesson,
+      "fixture.ex.chon-luy-thua",
+    );
+    expect(
+      ChoiceExerciseSchema.safeParse({ ...base, check: { relation: "max" } })
+        .success,
+    ).toBe(true);
+    expect(
+      ChoiceExerciseSchema.safeParse({
+        ...base,
+        check: { relation: "max", expr: "1" },
+      }).success,
+    ).toBe(false);
+    expect(
+      ChoiceExerciseSchema.safeParse({
+        ...base,
+        check: { relation: "notEqual" },
+      }).success,
+    ).toBe(false);
+  });
+});
+
+describe("hint-answer", () => {
+  it("rejects a first hint that lights up a right option or sentence", () => {
+    const input = fixtureInput();
+    choiceExercise(
+      input.lesson,
+      "fixture.ex.chon-luy-thua",
+    ).hints.highlight.push({
+      target: "option",
+      id: "a",
+    });
+    const tap = input.lesson.exercises.find(
+      (e) => e.id === "fixture.ex.cham-cau",
+    );
+    if (tap?.type !== "tapText") throw new Error("fixture tapText moved");
+    tap.hints.highlight.push({ target: "part", id: "s2" });
+    expect(findings(input, "hint-answer")).toMatchObject([
+      { path: ["exercises", 7, "hints", "highlight", 2] },
+      { path: ["exercises", 9, "hints", "highlight", 1] },
+    ]);
+  });
+});
+
+describe("color-leak", () => {
+  it("reports concept colours that set the right options apart", () => {
+    const input = fixtureInput();
+    const exercise = choiceExercise(input.lesson, "fixture.ex.chon-phep-nhan");
+    exercise.options[0] = {
+      id: "a",
+      content: { type: "formula", tex: "\\concept{blue}{2} \\cdot 3" },
+    };
+    expect(findings(input, "color-leak")).toMatchObject([
+      {
+        path: ["exercises", 0, "options"],
+        message: expect.stringContaining("LL-03"),
+      },
+    ]);
+    exercise.options[1] = {
+      id: "b",
+      content: { type: "formula", tex: "\\concept{blue}{2} + 3" },
+    };
+    expect(findings(input, "color-leak")).toEqual([]);
+  });
+});
+
+describe("guides", () => {
+  function withTapRegion(input: LintInput): LintInput {
+    input.lesson.exercises.push({
+      id: "bai-moi.ex.cham-vung",
+      type: "tapRegion",
+      cardIds: ["bai-moi.card.tich"],
+      prompt: [{ type: "note", text: "Chạm vào hình tròn." }],
+      visualId: "fixture.visual.dot-grid",
+      answer: ["circle"],
+      hints: { highlight: [] },
+      difficulty: 1,
+    });
+    return input;
+  }
+
+  it("warns about an interaction met before any guide screen", () => {
+    const input = withTapRegion(skeletonInput());
+    expect(findings(input, "guides")).toMatchObject([
+      {
+        path: ["exercises", 4],
+        severity: "warning",
+        message: expect.stringContaining("LL-04"),
+      },
+    ]);
+  });
+
+  it("accepts a guide screen in the lesson or an earlier one", () => {
+    const input = withTapRegion(skeletonInput());
+    const group = input.lesson.sections[0]?.blocks[1];
+    if (group?.type !== "group") throw new Error("skeleton group moved");
+    group.guide = "tapRegion";
+    expect(findings(input, "guides")).toEqual([]);
+    delete group.guide;
+    input.priorGuides = new Set(["tapRegion"]);
+    expect(findings(input, "guides")).toEqual([]);
+  });
+});
+
+describe("rule-sentence", () => {
+  function withRule(text: string, recap: string, card = recap): LintInput {
+    const input = skeletonInput();
+    const section = input.lesson.sections[0];
+    const group = section?.blocks[1];
+    const cardRecap = input.lesson.cards[0]?.recap;
+    if (group?.type !== "group" || group.children[0]?.type !== "note") {
+      throw new Error("skeleton rule note moved");
+    }
+    if (section?.recap.type !== "visual" || cardRecap?.type !== "visual") {
+      throw new Error("skeleton recaps moved");
+    }
+    group.children[0] = { type: "note", text, rule: true };
+    section.recap.caption = recap;
+    cardRecap.caption = card;
+    return input;
+  }
+
+  const RULE =
+    "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.";
+
+  it("accepts recaps that repeat the rule or one clause of it", () => {
+    expect(findings(withRule(RULE, RULE), "rule-sentence")).toEqual([]);
+    expect(
+      findings(
+        withRule(RULE, RULE, "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số."),
+        "rule-sentence",
+      ),
+    ).toEqual([]);
+  });
+
+  it("reports a recap that rewords the rule, and a recap without it", () => {
+    const reworded =
+      "Nhân hai luỹ thừa cùng cơ số thì giữ cơ số và cộng số mũ.";
+    expect(
+      findings(withRule(RULE, RULE, reworded), "rule-sentence"),
+    ).toMatchObject([
+      {
+        path: ["cards", 0, "recap", "caption"],
+        message: expect.stringContaining("LL-05"),
+      },
+    ]);
+    expect(
+      findings(withRule(RULE, "Câu khác hẳn để nhớ."), "rule-sentence"),
+    ).toMatchObject([{ path: ["sections", 0, "recap"] }]);
+  });
+});
+
+describe("textbook-copy", () => {
+  it("warns about text that copies the textbook text layer, and skips without one", () => {
+    const text =
+      "Luỹ thừa bậc n của a là tích của n thừa số bằng nhau, mỗi thừa số bằng a.";
+    const input = withNote(text);
+    expect(findings(input, "textbook-copy")).toEqual([]);
+    input.sourceText = `Định nghĩa. ${text} Ví dụ khác.`;
+    expect(findings(input, "textbook-copy")).toMatchObject([
+      {
+        path: NOTE_PATH,
+        severity: "warning",
+        message: expect.stringContaining("LL-08"),
+      },
+    ]);
+    input.sourceText = "Một trang sách nói chuyện hoàn toàn khác về hình học.";
+    expect(findings(input, "textbook-copy")).toEqual([]);
   });
 });
 
@@ -640,7 +879,7 @@ describe("passage", () => {
     const input = fixtureInput();
     delete input.sourcePassage;
     expect(messages(input, "passage")).toEqual([]);
-    input.lesson.subject = "literature";
+    input.subject = subjectOf("literature");
     expect(messages(input, "passage")).toEqual([
       "Passages need source-passage.txt next to lesson.json",
     ]);

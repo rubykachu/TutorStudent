@@ -1,0 +1,119 @@
+{
+  "title": "Tìm số hạng chưa biết",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-tinh",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm số hạng chưa biết.",
+          "opening": true
+        },
+        {
+          "text": "Lan có một số tiền, ta chưa biết là bao nhiêu."
+        },
+        {
+          "text": "Mẹ cho thêm 35 nghìn đồng."
+        },
+        {
+          "text": "Bây giờ Lan có 82 nghìn đồng."
+        },
+        {
+          "text": "Lúc đầu Lan có bao nhiêu?"
+        }
+      ]
+    },
+    {
+      "id": "s02-viet",
+      "sentences": [
+        {
+          "text": "Ta viết phép cộng: số chưa biết cộng 35 bằng 82."
+        },
+        {
+          "text": "Số chưa biết là một số hạng."
+        },
+        {
+          "text": "35 là số hạng đã biết, còn 82 là tổng."
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-tinh",
+      "sentences": [
+        {
+          "text": "Lấy tổng 82 trừ số hạng đã biết 35."
+        },
+        {
+          "text": "82 trừ 35 bằng 47."
+        },
+        {
+          "text": "Vậy lúc đầu Lan có 47 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Thử lại nhé."
+        },
+        {
+          "text": "Thay số chưa biết bằng 47."
+        },
+        {
+          "text": "47 cộng 35 bằng 82."
+        },
+        {
+          "text": "Khớp với đề bài."
+        }
+      ]
+    },
+    {
+      "id": "s06-them",
+      "sentences": [
+        {
+          "text": "Thử một bài nữa: số chưa biết cộng 18 bằng 60."
+        },
+        {
+          "text": "60 trừ 18 bằng 42."
+        },
+        {
+          "text": "Số chưa biết là 42."
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tim-so-hang",
+      "from": "s02-viet",
+      "to": "s05-thu",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-hang"]
+    }
+  ]
+}

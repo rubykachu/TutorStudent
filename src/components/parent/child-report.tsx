@@ -30,7 +30,9 @@ import {
   lessonSections,
   promptSummary,
   recentStudyDays,
+  type SkippedExercise,
   shorten,
+  skippedExercises,
   topForgettingCards,
   topWrongExercises,
   touchedLessonIds,
@@ -352,6 +354,54 @@ function WrongQuestions({
   );
 }
 
+function SkippedQuestions({
+  items,
+  lessons,
+  index,
+}: {
+  items: SkippedExercise[];
+  lessons: ReadonlyMap<string, LessonIndex>;
+  index: ContentIndex;
+}) {
+  return (
+    <Panel
+      label="Câu đã bỏ qua"
+      title="Câu đã bỏ qua"
+      note={`Trong ${PARENT_WRONG_WINDOW_DAYS} ngày qua. Con chọn “Bỏ qua” nên các câu này không được tính đúng hay sai.`}
+    >
+      {items.length === 0 ? (
+        <Empty>Con chưa bỏ qua câu nào gần đây.</Empty>
+      ) : (
+        <ol className="flex flex-col gap-3">
+          {items.map((item) => {
+            const exercise = lessons
+              .get(item.lessonId)
+              ?.exerciseById.get(item.exerciseId)?.exercise;
+            const summary = exercise ? promptSummary(exercise) : null;
+            return (
+              <li
+                key={item.exerciseId}
+                data-parent-skipped={item.exerciseId}
+                className="flex flex-col gap-1 rounded-sm border-2 border-border p-3"
+              >
+                <span className="font-semibold">
+                  {summary?.text || "Câu hỏi đã được thay đổi"}
+                </span>
+                {summary?.tex && (
+                  <Formula tex={summary.tex} className="text-body" />
+                )}
+                <span className="text-caption text-muted-foreground">
+                  Bỏ qua {item.skips} lần · {lessonTitle(index, item.lessonId)}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </Panel>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Writings
 
@@ -507,6 +557,11 @@ function ReportBody({
       />
       <WrongQuestions
         items={topWrongExercises(data.attempts, at)}
+        lessons={lessons}
+        index={index}
+      />
+      <SkippedQuestions
+        items={skippedExercises(data.attempts, at)}
         lessons={lessons}
         index={index}
       />

@@ -4,10 +4,15 @@
   "series": "kntt",
   "grade": 6,
   "order": 6,
+  "number": 6,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "7e2a0149acf9cd330b0ae91476ea9b98f6d5105749b6bf103251dfbd4916e0d7",
+  "reviewedHash": "5319d306dbba023811db8c8b9977f90df52fd49537b0a6718b74587eb9018d40",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -95,7 +100,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
+              "text": "Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -120,7 +126,8 @@
               "visualId": "luy-thua.visual.bam-mu",
               "caption": "Ví dụ: viết 2⁵ trên bàn phím số."
             }
-          ]
+          ],
+          "guide": "numericPower"
         }
       ],
       "checkIds": ["luy-thua.ex.cham-co-so", "luy-thua.ex.viet-4-mu-3"],
@@ -142,7 +149,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
+              "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -170,7 +178,8 @@
           "children": [
             {
               "type": "note",
-              "text": "a² đọc là “a bình phương”, a³ đọc là “a lập phương”."
+              "text": "a² đọc là “a bình phương”, a³ đọc là “a lập phương”.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -206,7 +215,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Tính giá trị luỹ thừa: nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số, tới khi hết thừa số."
+              "text": "Tính giá trị luỹ thừa: nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số, tới khi hết thừa số.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -243,7 +253,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+              "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -276,7 +287,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹."
+              "text": "Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -313,7 +325,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai."
+              "text": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -341,7 +354,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+              "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -375,7 +389,8 @@
           "children": [
             {
               "type": "note",
-              "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau."
+              "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -408,7 +423,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Viết số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, riêng chữ số hàng đơn vị giữ nguyên."
+              "text": "Viết số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, riêng chữ số hàng đơn vị giữ nguyên.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -1793,7 +1809,10 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.nhan-hai-luy-thua"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "check": {
+        "relation": "holds"
+      }
     },
     {
       "id": "luy-thua.ex.nhan-6",

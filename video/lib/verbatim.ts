@@ -58,14 +58,17 @@ function collectRuleTexts(value: unknown, out: string[]): void {
 }
 
 // Every note and caption of the lesson's sections and cards, whole and split
-// into sentences, in spoken form.
-export function ruleSentences(lesson: unknown): Set<string> {
+// into sentences, as written.
+export function ruleTexts(lesson: unknown): string[] {
   const { sections, cards } = (lesson ?? {}) as Record<string, unknown>;
   const texts: string[] = [];
   collectRuleTexts([sections, cards], texts);
-  return new Set(
-    texts.flatMap((t) => [t, ...sentences(t)]).map((t) => spokenForm(t)),
-  );
+  return texts.flatMap((t) => [t, ...sentences(t)]);
+}
+
+// The same, in spoken form.
+export function ruleSentences(lesson: unknown): Set<string> {
+  return new Set(ruleTexts(lesson).map((t) => spokenForm(t)));
 }
 
 const QUOTED = /“([^”]+)”|"([^"]+)"/g;
@@ -104,11 +107,16 @@ export function verbatimIssues(
   return issues;
 }
 
-// Checks a script against the lesson under content/.
-export function checkVerbatim(script: VideoScript, lessonId: string): string[] {
+export function findLesson(lessonId: string) {
   const file = readContentRoot(DEFAULT_CONTENT_ROOT).lessons.find(
     (l) => (l.data as { id?: unknown } | undefined)?.id === lessonId,
   );
-  if (!file?.data) return [`No lesson "${lessonId}" under content/`];
+  return file?.data ? file : undefined;
+}
+
+// Checks a script against the lesson under content/.
+export function checkVerbatim(script: VideoScript, lessonId: string): string[] {
+  const file = findLesson(lessonId);
+  if (!file) return [`No lesson "${lessonId}" under content/`];
   return verbatimIssues(script, file.data, file.sourcePassage);
 }

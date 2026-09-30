@@ -20,6 +20,7 @@ import {
   overviewWordCount,
 } from "@/content/overview";
 import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
+import { lessonHeading } from "@/lib/lesson-label";
 import { mediaUrl } from "@/lib/media";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { Owl } from "@/mascot/owl";
@@ -207,7 +208,7 @@ function PartText({
 }
 
 type LessonOverviewViewProps = {
-  lesson: Pick<Lesson, "title"> & { overview: LessonOverview };
+  lesson: Pick<Lesson, "title" | "number"> & { overview: LessonOverview };
   onStart: () => void;
   startLabel: string;
   // Closes the overview onto the lesson's list of sections.
@@ -254,7 +255,7 @@ export function LessonOverviewView({
         <div className="flex min-w-0 flex-col gap-1">
           <p className="font-semibold text-muted-foreground">Giới thiệu bài</p>
           <h1 className="text-title font-bold md:text-title-lg">
-            {lesson.title}
+            {lessonHeading(lesson)}
           </h1>
         </div>
       </header>

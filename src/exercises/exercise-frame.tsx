@@ -1,6 +1,12 @@
 "use client";
 
-import { Check, ChevronRight, Lightbulb, RotateCcw } from "lucide-react";
+import {
+  Check,
+  ChevronRight,
+  Lightbulb,
+  RotateCcw,
+  SkipForward,
+} from "lucide-react";
 import {
   type ReactNode,
   useEffect,
@@ -22,9 +28,11 @@ import type { InputFor } from "@/exercises/input";
 import {
   type ExerciseOutcome,
   type MachineState,
+  skippedOutcome,
   useExerciseMachine,
 } from "@/exercises/machine";
 import { attemptSeed } from "@/exercises/shuffle";
+import type { FeedbackSounds } from "@/lib/feedback-sounds";
 import { newId } from "@/lib/id";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
@@ -66,13 +74,7 @@ export type AnswerSlotProps<I> = {
   seed: string;
 };
 
-// Sounds of the feedback, supplied by the player (absent while the child has
-// sound off). Called inside the tap on "Kiểm tra", so audio may start there
-// (iOS only lets audio start from a user gesture), with the clip ids of
-// `feedbackCue` to play one after another.
-export type FeedbackSounds = {
-  play: (clipIds: readonly string[]) => void;
-};
+export type { FeedbackSounds };
 
 type ExerciseFrameProps<E extends BasicExercise> = {
   exercise: E;
@@ -82,6 +84,10 @@ type ExerciseFrameProps<E extends BasicExercise> = {
   // Draws the mascot at the answer card; the exercise-size owl unless replaced.
   renderMascot?: (expression: MascotExpression) => ReactNode;
   sounds?: FeedbackSounds;
+  // Offers "Bỏ qua" until the answer is accepted: moves on with a skipped
+  // outcome (see `skippedOutcome`), for a question that is too hard or that
+  // the child does not want to do.
+  skippable?: boolean;
   // An exercise the child already finished, shown again when they go back:
   // the correct answer in place, locked, with no bottom bar and no praise.
   finished?: boolean;
@@ -149,7 +155,9 @@ function renderExerciseOwl(expression: MascotExpression): ReactNode {
 type Tone = "idle" | "selected" | "retry" | "correct";
 
 const TONE_CLASSES: Record<Tone, string> = {
-  idle: "border-2 border-border bg-surface",
+  // Every tone has the same border width, so content never shifts when the
+  // card turns from idle to selected.
+  idle: "border-3 border-border bg-surface",
   selected: "border-3 border-primary bg-surface",
   // Dashed so "try again" never rests on colour alone.
   retry: "border-3 border-dashed border-retry bg-retry-soft",
@@ -176,6 +184,7 @@ export function ExerciseFrame<E extends BasicExercise>({
   onDone,
   renderMascot = renderExerciseOwl,
   sounds,
+  skippable = false,
   finished = false,
   children,
 }: ExerciseFrameProps<E>) {
@@ -455,6 +464,11 @@ export function ExerciseFrame<E extends BasicExercise>({
               setInputWantedFor(null);
             }}
             onNext={() => onDone(machine.finish())}
+            onSkip={
+              skippable
+                ? () => onDone(skippedOutcome(state.wrongCount))
+                : undefined
+            }
           />
         </BottomBar>
       )}
@@ -469,6 +483,7 @@ type FrameButtonProps = {
   onRetype: () => void;
   onReplay: () => void;
   onNext: () => void;
+  onSkip: (() => void) | undefined;
 };
 
 function FrameButton({
@@ -478,6 +493,7 @@ function FrameButton({
   onRetype,
   onReplay,
   onNext,
+  onSkip,
 }: FrameButtonProps) {
   if (phase === "correct") {
     // Practice, not a test: the child may play an accepted exercise again,
@@ -495,18 +511,31 @@ function FrameButton({
       </div>
     );
   }
-  if (phase === "wrong3") {
-    return (
+  const main =
+    phase === "wrong3" ? (
       <BigButton onClick={onRetype}>
         <RotateCcw aria-hidden className="size-6" />
         Tự làm lại
       </BigButton>
+    ) : (
+      <BigButton disabled={!canCheck} onClick={onCheck}>
+        Kiểm tra
+      </BigButton>
     );
-  }
+  if (!onSkip) return main;
   return (
-    <BigButton disabled={!canCheck} onClick={onCheck}>
-      Kiểm tra
-    </BigButton>
+    <div className="grid grid-cols-[auto_1fr] gap-3">
+      <BigButton
+        variant="secondary"
+        onClick={onSkip}
+        data-skip
+        className="px-5 text-muted-foreground"
+      >
+        <SkipForward aria-hidden className="size-6" />
+        Bỏ qua
+      </BigButton>
+      {main}
+    </div>
   );
 }
 

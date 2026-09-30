@@ -75,6 +75,17 @@ describe("recordAttempt", () => {
     }
   });
 
+  it("logs a skipped question without rating or opening its cards", async () => {
+    const saved = await recordAttempt(
+      db,
+      attempt({ context: "skipped", firstTryCorrect: false }),
+      START,
+    );
+    expect(saved.context).toBe("skipped");
+    expect(await getCardStates(db, scope, LESSON)).toEqual([]);
+    expect(await listActivityDays(db, scope)).toHaveLength(1);
+  });
+
   it("rates a wrong first try lower than a right one", async () => {
     await recordAttempt(db, attempt({ cardIds: [CARD_A] }), START);
     await recordAttempt(

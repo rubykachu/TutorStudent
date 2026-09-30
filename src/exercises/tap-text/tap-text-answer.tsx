@@ -6,6 +6,7 @@ import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { TapTextInput } from "@/exercises/input";
 import { toggleId } from "@/exercises/selection";
+import { useTapSound } from "@/lib/feedback-sounds";
 import type { TapTextExercise } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 
@@ -105,7 +106,10 @@ export function TapTextAnswer({ exercise, slot }: TapTextAnswerProps) {
   const selected = new Set(reveal ? exercise.answer : own);
   const answer = new Set(exercise.answer);
 
+  const playTap = useTapSound();
+
   function toggle(id: string) {
+    playTap();
     const next = toggleId(own, id);
     onChange(next.length > 0 ? { type: "tapText", selected: next } : null);
   }

@@ -3,9 +3,11 @@
 import { ChevronRight, CircleCheck } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
+import { RichText } from "@/components/rich-text";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
 import { renderAnswer, renderStep } from "@/exercises/answers";
@@ -23,13 +25,17 @@ import { BlockStage } from "@/learn/block-stage";
 import { DoneScreen } from "@/learn/done-screen";
 import { LessonProgressCard } from "@/learn/lesson-progress-card";
 import { PlayerHeader } from "@/learn/player-header";
+import { ScreenBadge } from "@/learn/screen-badge";
 import {
   resumeStepIndex,
   type SectionStep,
   sectionSteps,
+  stepLabels,
 } from "@/learn/section-steps";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
-import { lessonPath, sectionPath } from "@/lib/routes";
+import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
+import { sectionHeading } from "@/lib/lesson-label";
+import { introPath, lessonPath, sectionPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import {
@@ -57,8 +63,6 @@ type SectionPlayerProps = {
   initialPosition: SectionPosition;
 };
 
-const EXERCISE_LABELS = { check: "Kiểm tra nhanh", practice: "Luyện tập" };
-
 // A finished section and how many sections of its lesson are done with it.
 type Finished = SectionCompletion & { doneCount: number };
 
@@ -83,6 +87,8 @@ export function SectionPlayer({
 }: SectionPlayerProps) {
   const { lesson } = index;
   const steps = useMemo(() => sectionSteps(section, index), [section, index]);
+  const labels = useMemo(() => stepLabels(steps), [steps]);
+  const router = useRouter();
   const [stepIndex, setStepIndex] = useState(() =>
     resumeStepIndex(steps, initialPosition),
   );
@@ -162,7 +168,7 @@ export function SectionPlayer({
         lessonId: lesson.id,
         exerciseId,
         cardIds,
-        context,
+        context: outcome.skipped ? "skipped" : context,
         firstTryCorrect: outcome.firstTryCorrect,
         wrongCount: outcome.wrongCount,
       },
@@ -183,6 +189,11 @@ export function SectionPlayer({
   }
 
   const shown = viewing ?? stepIndex;
+  // From the first screen "Quay lại" leads to the lesson's introduction
+  // when it has one.
+  const backToIntro = lesson.overview
+    ? () => router.push(introPath(lesson.id))
+    : undefined;
   const liveStep = (
     <StepView
       key={`${step.position.phase}-${step.position.index}`}
@@ -214,15 +225,24 @@ export function SectionPlayer({
   const viewedStep = viewing === null ? undefined : steps[viewing];
 
   return (
-    <>
+    <FeedbackSoundsProvider sounds={sounds}>
       <PlayerHeader
         lessonId={lesson.id}
         childId={childId}
-        progress={{ current: shown, total: steps.length }}
-        onBack={shown > 0 ? back : undefined}
+        progress={{
+          current: shown,
+          total: steps.length,
+          labels,
+          reached: stepIndex,
+          // The dot of the screen the child is on returns from a look back.
+          onSelect: (i) => setViewing(i >= stepIndex ? null : i),
+        }}
+        onBack={shown > 0 ? back : backToIntro}
       />
       <h1 className="text-block font-semibold md:text-block-lg">
-        {section.title}
+        <RichText
+          text={sectionHeading(lesson.sections.indexOf(section), section.title)}
+        />
       </h1>
       {viewedStep && (
         <StepView
@@ -250,7 +270,7 @@ export function SectionPlayer({
           {liveStep}
         </div>
       )}
-    </>
+    </FeedbackSoundsProvider>
   );
 }
 
@@ -290,6 +310,7 @@ function StepView({
     case "block":
       return (
         <div className="flex flex-1 flex-col gap-4" data-section-step="block">
+          <ScreenBadge kind="theory" />
           <BlockStage block={step.block} videos={lesson.videos} />
           <BottomBar>
             <BigButton onClick={onNext}>
@@ -302,6 +323,7 @@ function StepView({
     case "recap":
       return (
         <div className="flex flex-1 flex-col gap-4" data-section-step="recap">
+          <ScreenBadge kind="theory" />
           <BlockStage
             block={step.recap}
             recap
@@ -329,9 +351,7 @@ function StepView({
           data-exercise-type={exercise.type}
           data-context={context}
         >
-          <p className="text-caption font-semibold text-muted-foreground">
-            {EXERCISE_LABELS[context]}
-          </p>
+          <ScreenBadge kind={context} />
           {finished ? (
             <>
               {exercise.type === "openEnded" ? (
@@ -359,6 +379,7 @@ function StepView({
               renderStep={renderStep}
               concepts={conceptById}
               sounds={sounds}
+              skippable
               onDone={(result) => onOpenEndedDone(exercise, context, result)}
             />
           ) : (
@@ -366,6 +387,7 @@ function StepView({
               exercise={exercise}
               concepts={conceptById}
               sounds={sounds}
+              skippable
               onDone={(outcome) =>
                 onExerciseDone(exercise.id, exercise.cardIds, context, outcome)
               }

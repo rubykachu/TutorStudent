@@ -183,7 +183,15 @@ export function isFirstTryCorrect<I>(state: MachineState<I>): boolean {
 export type ExerciseOutcome = {
   firstTryCorrect: boolean;
   wrongCount: number;
+  // The child chose "Bỏ qua": moved on without an accepted answer. Never
+  // rated, and never counted as a miss.
+  skipped?: true;
 };
+
+// What a skipped exercise reports.
+export function skippedOutcome(wrongCount = 0): ExerciseOutcome {
+  return { firstTryCorrect: false, wrongCount, skipped: true };
+}
 
 export type ExerciseMachine<I> = {
   state: MachineState<I>;

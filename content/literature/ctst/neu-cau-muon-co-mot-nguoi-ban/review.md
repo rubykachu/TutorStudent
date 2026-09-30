@@ -1,16 +1,18 @@
 # Review: Nếu cậu muốn có một người bạn… (`neu-cau-muon-co-mot-nguoi-ban`)
 
 - Bài: `content/literature/ctst/neu-cau-muon-co-mot-nguoi-ban/lesson.json`
-- Vòng: 14 - chỉ phần đổi (`pnpm content:diff`, so với bản vòng 13), section: `bi-mat` (hàng xóm của card `bai-hoc`); câu kho ôn `ex.chon-tat-ca-loi-dan` (nấc 1 thêm `l56-4`); visual `ai-noi.tsx` (section `cao-xuat-hien`) thêm `mx-auto` cho khung ngoài
-- Nguồn đã đọc: `sources/literature/neu-cau-muon-co-mot-nguoi-ban/` - p25-26 (đối chiếu ở vòng 13; passage `l56-1..4` không đổi)
-- `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường khi bài đổi sau review), 1 cảnh báo (2 id chưa có trong `ids.lock.json`)
-- `lesson:walk`: không chạy; server cổng 3001 phục vụ bản cũ. Bản sửa chỉ thêm một phần tô ở nấc 1 của câu kho ôn (walk không chạy qua kho ôn) và thêm `mx-auto` (căn giữa khung `max-w-md`, không đổi chữ hay kích thước)
-- Kết quả soát:
-  - `ex.chon-tat-ca-loi-dan`: `hints.highlight` giờ tô `l56-2` (căn cứ của `khong-quen`) và `l56-4` (căn cứ của `trach-nhiem`), đúng cách sửa của vòng 13. Đây là câu `choice`: luật nấc 1 chỉ cấm tô `option` có id trong `answer`; tô câu trong `passage` của đề là "được", trẻ vẫn phải tự nối hai câu với hai lựa chọn. Hai phần tô là id có thật trong passage của đề. Trẻ chọn sót một ý nay được dẫn tới câu còn thiếu.
-  - Cùng section `bi-mat` và card `bai-hoc`: `ex.cham-lap-lai-de-nho`, `ex.hong-khac-biet`, `ex.bi-mat-la-gi`, `ex.noi-nghia-tu`, `ex.dien-trach-nhiem` và recap không đổi; bản sửa chỉ chạm gợi ý của một câu nên không đổi đáp án, nhiễu hay hình của câu khác.
-  - `ai-noi.tsx`: khung ngoài `mx-auto flex w-full max-w-md`, căn giữa danh sách lời thoại trên iPad ngang (Góp ý 3 của vòng 13 đã xong); chữ và logic đếm không đổi.
-- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (`pnpm content:hash neu-cau-muon-co-mot-nguoi-ban --root content --approve`)
-- Bản đã review: `1009ae631078b18130b711311b6b8401746600bcdf366afc300cda06e743469c` (`pnpm content:diff` so với bản này)
+- Vòng: 15 - chỉ phần đổi (`pnpm content:diff neu-cau-muon-co-mot-nguoi-ban --root content`), phần đổi: `guide` (tapText, fillBlankBank, match, order) trên bốn màn hướng dẫn; `rule: true` trên note của `cam-hoa-la-gi` và `tu-ghep-tu-lay`; recap card `nghia-cam-hoa`
+- Nguồn đã đọc: `sources/literature/neu-cau-muon-co-mot-nguoi-ban/` - p23-24 đã đối chiếu ở vòng trước; bản sửa chỉ chỉnh lời dẫn của Cáo, câu vẫn đúng văn bản
+- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 1 cảnh báo của bài (2 id chưa có trong `ids.lock.json`, giữ từ vòng trước)
+- `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng trước)
+- Bản đã review: `2c9eeab4aaf238379ef6af16ee10c3774a3e850ad321a7a77fe1a7c51e98e237` (`pnpm content:diff` so với bản này)
+
+Đã soát đạt:
+- Bản sửa recap `nghia-cam-hoa`: "Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”." khớp từng chữ với note `rule` của `cam-hoa-la-gi`, recap section, và câu lời đọc "Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”." trong `video/projects/neu-cau-muon-co-mot-nguoi-ban/cam-hoa-la-gi/script.json`. Câu cũ thiếu chủ ngữ "cảm hoá" nên dễ hiểu sai đối tượng được nói gọn; câu mới rõ hơn và khớp sách: Cáo giải nghĩa "cảm hoá" là "làm cho gần gũi hơn".
+- Bốn `guide`: `tapText` (visual `huong-dan-cham-cau`, chạm câu, tô vàng), `fillBlankBank` (`huong-dan-dien`), `match` (`huong-dan-noi`, chạm ô trái rồi ô phải hoặc kéo), `order` (`huong-dan-xep`) đều nằm trên màn mà note và visual dạy đúng kiểu bài đó.
+- `rule: true` ở `tu-ghep-tu-lay`: note định nghĩa từ ghép, từ láy trùng từng chữ với recap section và các recap card `tu-ghep`, `tu-lay` (mỗi card lặp phần của mình).
+- Chữ hiển thị khác không đổi; recap còn khớp note trong section.
 
 ## Nghiêm trọng
 

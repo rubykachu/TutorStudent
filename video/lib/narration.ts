@@ -8,9 +8,6 @@ import type { VideoScript } from "./script";
 // script the video pipeline's narration step reads. Each part is a scene, so
 // the pause between parts is longer than between sentences.
 
-export const NARRATION_ENGINE: TtsEngineName = "local";
-export const NARRATION_VOICE = "Hải Đăng";
-
 // Superscript exponents and TeX read badly aloud and would need a respelling
 // with a different word count, which the word-by-word highlight cannot map
 // back to the text on screen; an overview says them in words instead.
@@ -19,6 +16,7 @@ const UNSPEAKABLE = /[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻ⁿᵐ\\^_{}]/u;
 export function narrationScript(
   lessonTitle: string,
   overview: LessonOverview,
+  engine: TtsEngineName,
 ): VideoScript {
   const scenes = overviewParts(overview).map((part) => ({
     id: `${part.key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}-${part.item}`,
@@ -35,8 +33,7 @@ export function narrationScript(
   if (!first) throw new Error("The overview has no text");
   return {
     title: lessonTitle,
-    engine: NARRATION_ENGINE,
-    voice: NARRATION_VOICE,
+    engine,
     poster: { scene: first.id, at: 0 },
     scenes,
     clips: [],

@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { resumeStepIndex, sectionSteps } from "@/learn/section-steps";
+import {
+  resumeStepIndex,
+  sectionSteps,
+  stepLabels,
+} from "@/learn/section-steps";
 import { LESSON_ID, learnIndex, learnLesson, SECTION_ID } from "./helpers";
 
 function section(overrides: Parameters<typeof learnLesson>[0] = {}) {
@@ -95,5 +99,19 @@ describe("resumeStepIndex", () => {
   it("restarts the section when the phase has no items left", () => {
     const noChecks = steps.filter((step) => step.position.phase !== "check");
     expect(resumeStepIndex(noChecks, { phase: "check", index: 0 })).toBe(0);
+  });
+});
+
+describe("stepLabels", () => {
+  it("names theory screens, counts every exercise as a question, and names the recap", () => {
+    const { index, section: s } = section();
+    expect(stepLabels(sectionSteps(s, index))).toEqual([
+      "Lý thuyết 1",
+      "Lý thuyết 2",
+      "Câu 1",
+      "Câu 2",
+      "Câu 3",
+      "Nhớ nhé",
+    ]);
   });
 });

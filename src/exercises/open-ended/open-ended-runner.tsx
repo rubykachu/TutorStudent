@@ -40,6 +40,8 @@ type OpenEndedRunnerProps = {
   concepts?: ReadonlyMap<string, Concept>;
   renderMascot?: (expression: MascotExpression) => ReactNode;
   sounds?: FeedbackSounds;
+  // Offers "Bỏ qua" on each guided step.
+  skippable?: boolean;
 };
 
 type Stage = "steps" | "writing" | "checklist" | "finished";
@@ -73,6 +75,7 @@ export function OpenEndedRunner({
   concepts,
   renderMascot,
   sounds,
+  skippable = false,
 }: OpenEndedRunnerProps) {
   const [outcomes, setOutcomes] = useState<ExerciseOutcome[]>([]);
   const [stage, setStage] = useState<Stage>(
@@ -139,6 +142,7 @@ export function OpenEndedRunner({
             onDone={completeStep}
             renderMascot={renderMascot}
             sounds={sounds}
+            skippable={skippable}
           >
             {(slot) => renderStep(step, slot)}
           </ExerciseFrame>

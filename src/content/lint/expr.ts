@@ -1,4 +1,5 @@
 import { CONCEPT_TEX_PATTERN } from "@/lib/tex";
+import type { Item } from "@/schema/content";
 
 // Evaluator for `check.expr`: numbers (decimal comma), + - · : ^ and
 // parentheses, with the usual precedence and right-associative powers.
@@ -138,4 +139,61 @@ export function textValue(text: string): number | undefined {
   const source = text.replace(SPACES, "");
   if (!/^-?\d+(?:,\d+)?$/.test(source)) return undefined;
   return Number(source.replace(",", "."));
+}
+
+const SUPERSCRIPT_DIGITS = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+const SUPERSCRIPT_RUN = new RegExp(`[${SUPERSCRIPT_DIGITS}]+`, "g");
+
+// Value of a plain-text expression such as "2³ · 4" or "12 : 3"; undefined
+// when the text holds anything but numbers and supported operators.
+export function textExprValue(text: string): number | undefined {
+  const source = text.replace(
+    SUPERSCRIPT_RUN,
+    (run) => `^${[...run].map((c) => SUPERSCRIPT_DIGITS.indexOf(c)).join("")}`,
+  );
+  const result = evaluateExpr(source);
+  return result.ok ? result.value : undefined;
+}
+
+// Value shown by a choice option, match or order item.
+export function itemValue(item: Item): number | undefined {
+  if (item.content.type === "text") return textExprValue(item.content.text);
+  if (item.content.type === "formula") return texValue(item.content.tex);
+  return undefined;
+}
+
+// Comparison operators in text and TeX, longest spelling first.
+const COMPARISONS: [string, (a: number, b: number) => boolean][] = [
+  ["\\neq", (a, b) => !sameNumber(a, b)],
+  ["\\ne", (a, b) => !sameNumber(a, b)],
+  ["\\leq", (a, b) => a < b || sameNumber(a, b)],
+  ["\\geq", (a, b) => a > b || sameNumber(a, b)],
+  ["\\le", (a, b) => a < b || sameNumber(a, b)],
+  ["\\ge", (a, b) => a > b || sameNumber(a, b)],
+  ["\\lt", (a, b) => a < b && !sameNumber(a, b)],
+  ["\\gt", (a, b) => a > b && !sameNumber(a, b)],
+  ["≠", (a, b) => !sameNumber(a, b)],
+  ["≤", (a, b) => a < b || sameNumber(a, b)],
+  ["≥", (a, b) => a > b || sameNumber(a, b)],
+  ["=", sameNumber],
+  ["<", (a, b) => a < b && !sameNumber(a, b)],
+  [">", (a, b) => a > b && !sameNumber(a, b)],
+];
+
+// Truth of an option that states one comparison between two computable
+// sides, e.g. "2^{3} \cdot 2^{2} = 2^{5}" or "3² < 10"; undefined otherwise.
+export function comparisonValue(item: Item): boolean | undefined {
+  const content = item.content;
+  if (content.type !== "text" && content.type !== "formula") return undefined;
+  const source = content.type === "text" ? content.text : content.tex;
+  const side = content.type === "text" ? textExprValue : texValue;
+  for (const [spelling, holds] of COMPARISONS) {
+    const parts = source.split(new RegExp(`${spelling}(?![a-z])`));
+    if (parts.length === 1) continue;
+    if (parts.length !== 2) return undefined;
+    const [left, right] = parts.map((part) => side(part ?? ""));
+    if (left === undefined || right === undefined) return undefined;
+    return holds(left, right);
+  }
+  return undefined;
 }

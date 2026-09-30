@@ -38,7 +38,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Câu quy tắc cần nhớ."
+              "text": "Câu quy tắc cần nhớ.",
+              "rule": true
             },
             {
               "type": "formula",

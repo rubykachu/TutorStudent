@@ -1,7 +1,16 @@
+"use client";
+
+import { motion } from "motion/react";
+import { useState } from "react";
+import { ConfettiBurst } from "@/components/confetti-burst";
 import { Sticker } from "@/components/sticker";
 import { stickerFill } from "@/learn/next-step";
+import type { FeedbackSounds } from "@/lib/feedback-sounds";
+import { JINGLE_ID } from "@/lib/sound-manifest";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { SectionProgressRecord } from "@/progress/db";
 import type { LessonSummary } from "@/schema/content";
+import { StickerSheet } from "./sticker-sheet";
 
 type StickerStripProps = {
   lessons: readonly LessonSummary[];
@@ -10,6 +19,8 @@ type StickerStripProps = {
     SectionProgressRecord,
     "lessonId" | "sectionId" | "state"
   >[];
+  // Sounds of a tap; absent while the child has sound off.
+  sounds?: FeedbackSounds;
 };
 
 // Every sticker the child can collect from the lessons they see: earned ones
@@ -32,7 +43,15 @@ export function StickerStrip({
   lessons,
   earnedLessonIds,
   sections,
+  sounds,
 }: StickerStripProps) {
+  const reducedMotion = usePrefersReducedMotion();
+  // The sticker whose sheet is open, and which sticker last played its
+  // tap animation (a counter, so tapping the same one again replays it).
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [tapped, setTapped] = useState<{ id: string; count: number } | null>(
+    null,
+  );
   if (lessons.length === 0) return null;
   const stickers = lessons.map((lesson) => ({
     lesson,
@@ -43,6 +62,7 @@ export function StickerStrip({
       earnedLessonIds.has(lesson.id),
     ),
   }));
+  const openLesson = stickers.find(({ lesson }) => lesson.id === openId);
   return (
     <section
       aria-labelledby="sticker-strip-title"
@@ -60,27 +80,66 @@ export function StickerStrip({
         </p>
       </div>
       <ul className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
-        {stickers.map(({ lesson, earned, fill }) => (
-          <li
-            key={lesson.id}
-            className="flex flex-col items-center gap-2 text-center"
-            data-sticker-lesson={lesson.id}
-          >
-            <Sticker
-              visualId={lesson.sticker.visualId}
-              name={lesson.sticker.name}
-              done={fill.done}
-              total={fill.total}
-              className="size-20 tall:size-24"
-            />
-            <span
-              className={`break-words text-caption ${earned ? "font-semibold" : "text-muted-foreground"}`}
-            >
-              {lesson.sticker.name}
-            </span>
-          </li>
-        ))}
+        {stickers.map(({ lesson, earned, fill }) => {
+          const animating = tapped?.id === lesson.id;
+          return (
+            <li key={lesson.id} data-sticker-lesson={lesson.id}>
+              <button
+                type="button"
+                data-sticker-open={lesson.id}
+                aria-haspopup="dialog"
+                aria-label={`${lesson.sticker.name}, xem chi tiết`}
+                onClick={() => {
+                  setTapped({
+                    id: lesson.id,
+                    count: (tapped?.id === lesson.id ? tapped.count : 0) + 1,
+                  });
+                  if (earned) sounds?.play([JINGLE_ID]);
+                  else sounds?.tap();
+                  setOpenId(lesson.id);
+                }}
+                className="relative flex w-full flex-col items-center gap-2 rounded-lg text-center motion-safe:transition-transform motion-safe:active:scale-95"
+              >
+                <motion.span
+                  // A new key restarts the bounce on every tap.
+                  key={animating ? tapped.count : 0}
+                  className="flex"
+                  animate={
+                    animating && !reducedMotion
+                      ? { scale: [1, 1.25, 0.94, 1], rotate: [0, -8, 8, 0] }
+                      : undefined
+                  }
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <Sticker
+                    visualId={lesson.sticker.visualId}
+                    name={lesson.sticker.name}
+                    done={fill.done}
+                    total={fill.total}
+                    className="size-20 tall:size-24"
+                  />
+                </motion.span>
+                {animating && earned && !reducedMotion && (
+                  <ConfettiBurst key={tapped.count} />
+                )}
+                <span
+                  className={`break-words text-caption ${earned ? "font-semibold" : "text-muted-foreground"}`}
+                >
+                  {lesson.sticker.name}
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
+      {openLesson && (
+        <StickerSheet
+          lesson={openLesson.lesson}
+          fill={openLesson.fill}
+          earned={openLesson.earned}
+          onClose={() => setOpenId(null)}
+        />
+      )}
     </section>
   );
 }

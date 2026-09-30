@@ -1,0 +1,129 @@
+{
+  "title": "Kí hiệu thuộc và không thuộc",
+  "engine": "local",
+  "poster": {
+    "scene": "s06-nho",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-tap-a",
+      "sentences": [
+        {
+          "text": "Bạn cú có tập hợp A.",
+          "say": "Bạn cú có tập hợp a."
+        },
+        {
+          "text": "Tập hợp A có ba phần tử."
+        },
+        {
+          "text": "Đó là 1, 2 và 3."
+        },
+        {
+          "text": "Ta xét từng số một."
+        }
+      ]
+    },
+    {
+      "id": "s02-thuoc",
+      "sentences": [
+        {
+          "text": "Số 2 nằm trong tập hợp A."
+        },
+        {
+          "text": "Ta nói: 2 thuộc A."
+        },
+        {
+          "text": "Nghĩa là 2 là một phần tử của tập hợp A.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-ve-thuoc",
+      "sentences": [
+        {
+          "text": "Giờ ta viết kí hiệu thuộc."
+        },
+        {
+          "text": "Nét một: chữ C quay sang phải."
+        },
+        {
+          "text": "Nét hai: một gạch ngang ở giữa."
+        },
+        {
+          "text": "Ta đọc là: 2 thuộc A."
+        },
+        {
+          "text": "Viết chậm để tay nhớ."
+        }
+      ]
+    },
+    {
+      "id": "s04-khong",
+      "sentences": [
+        {
+          "text": "Còn số 5 thì sao?"
+        },
+        {
+          "text": "Số 5 không nằm trong tập hợp A."
+        },
+        {
+          "text": "Nghĩa là 5 không phải là phần tử của tập hợp A.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s05-ve-khong",
+      "sentences": [
+        {
+          "text": "Ta viết kí hiệu thuộc trước."
+        },
+        {
+          "text": "Rồi thêm một nét gạch chéo."
+        },
+        {
+          "text": "Đó là kí hiệu không thuộc."
+        },
+        {
+          "text": "Ta đọc là: 5 không thuộc A."
+        },
+        {
+          "text": "Viết chậm từng nét nhé."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Có trong tập hợp thì thuộc."
+        },
+        {
+          "text": "Không có trong tập hợp thì không thuộc."
+        },
+        {
+          "text": "Kí hiệu giúp ta viết gọn."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "thuoc",
+      "from": "s02-thuoc",
+      "to": "s03-ve-thuoc",
+      "cardIds": ["tap-hop.card.thuoc"]
+    },
+    {
+      "id": "khong-thuoc",
+      "from": "s04-khong",
+      "to": "s05-ve-khong",
+      "cardIds": ["tap-hop.card.khong-thuoc"]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import type { ChoiceInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
 import { toggleId } from "@/exercises/selection";
 import { seededShuffle } from "@/exercises/shuffle";
+import { useTapSound } from "@/lib/feedback-sounds";
 import type { ChoiceExercise } from "@/schema/content";
 
 type ChoiceAnswerProps = {
@@ -80,7 +81,10 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
   }, []);
   const selected = reveal ? exercise.answer : (value?.selected ?? []);
 
+  const playTap = useTapSound();
+
   function toggle(id: string) {
+    playTap();
     const next = nextSelection(exercise, value?.selected ?? [], id);
     onChange(next.length === 0 ? null : { type: "choice", selected: next });
   }

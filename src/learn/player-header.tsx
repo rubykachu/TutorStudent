@@ -9,7 +9,15 @@ type PlayerHeaderProps = {
   // The child whose sound setting the header's switch shows.
   childId: string;
   // Dots for the position in the section or review; none on an end screen.
-  progress?: { current: number; total: number };
+  progress?: {
+    current: number;
+    total: number;
+    // Names of the dots and a jump to one already reached; see
+    // `SectionStepper`.
+    labels?: readonly string[];
+    reached?: number;
+    onSelect?: (index: number) => void;
+  };
   // Goes to the previous screen; absent on the first one. The button keeps
   // its room even then, so the dots never shift when it appears.
   onBack?: () => void;
@@ -47,9 +55,7 @@ export function PlayerHeader({
           Quay lại
         </button>
       )}
-      {progress && (
-        <SectionStepper total={progress.total} current={progress.current} />
-      )}
+      {progress && <SectionStepper {...progress} />}
       <div className="ml-auto flex shrink-0">
         <SoundToggle childId={childId} />
       </div>

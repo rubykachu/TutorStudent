@@ -52,4 +52,23 @@ describe("BlockView", () => {
     expect(grey).not.toHaveAttribute("data-lead-caption");
     expect(grey).toHaveClass("text-caption", "text-muted-foreground");
   });
+
+  it("marks a guide screen's demo picture as a sample that takes no touch", () => {
+    const guide: SectionBlock = {
+      type: "group",
+      guide: "tapRegion",
+      children: [
+        { type: "note", text: "Chạm vào hình." },
+        { type: "visual", visualId: "fixture.visual.shapes" },
+      ],
+    };
+    const { container } = render(<BlockView block={guide} />);
+    const demo = container.querySelector("[data-guide-demo]");
+    expect(demo).not.toBeNull();
+    expect(demo).toHaveTextContent("Hình mẫu, chưa cần chạm");
+    expect(demo?.querySelector("[inert]")).not.toBeNull();
+    // A group that is not a guide keeps its picture as it is.
+    const plain = render(<BlockView block={{ ...guide, guide: undefined }} />);
+    expect(plain.container.querySelector("[data-guide-demo]")).toBeNull();
+  });
 });

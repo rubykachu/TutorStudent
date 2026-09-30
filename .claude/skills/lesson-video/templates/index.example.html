@@ -3,6 +3,10 @@
   Lesson video "<title>" (lesson <lessonId>): <what it shows>.
   Built by `pnpm video:build <lessonId> <name>`, which injects
   window.TIMING (scene windows and spoken word times from script.json).
+  An element that shows a rule of the lesson on screen carries
+  `data-rule-text`; its text must be a note or caption sentence of the lesson
+  (or the notation of "X đọc là Y", e.g. "2 ∈ A"), which build and
+  `pnpm video:check` verify.
 -->
 <html lang="vi">
   <head>

@@ -11,6 +11,14 @@ export function lessonPath(lessonId: string): string {
   return `/lessons/${encodeURIComponent(lessonId)}`;
 }
 
+// The lesson page opened on its introduction ("Giới thiệu bài"), wherever the
+// child has been before.
+export function introPath(lessonId: string): string {
+  return `${lessonPath(lessonId)}?${INTRO_PARAM}=1`;
+}
+
+export const INTRO_PARAM = "intro";
+
 export function sectionPath(lessonId: string, sectionId: string): string {
   return `${lessonPath(lessonId)}/sections/${encodeURIComponent(sectionId)}`;
 }

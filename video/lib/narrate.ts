@@ -39,7 +39,7 @@ type Line = { sceneId: string; text: string; spoken: string; key: string };
 
 // Takes are cached by everything that changes the audio, so editing one
 // sentence of a script re-synthesizes only that sentence.
-function cacheKey(voice: VoiceInfo, spoken: string): string {
+export function cacheKey(voice: VoiceInfo, spoken: string): string {
   return createHash("sha256")
     .update(JSON.stringify([voice, spoken, TEMPO, WHISPER_MODEL]))
     .digest("hex")
@@ -53,10 +53,11 @@ function cacheKey(voice: VoiceInfo, spoken: string): string {
 export async function narrate(
   script: VideoScript,
   engine: TtsEngine,
+  voiceName: string,
   audioDir: string,
 ): Promise<SentenceTake[]> {
   mkdirSync(audioDir, { recursive: true });
-  const voice = engine.voice(script.voice);
+  const voice = engine.voice(voiceName);
   const lines: Line[] = script.scenes.flatMap((scene) =>
     scene.sentences.map((s) => {
       const spoken = s.say ?? s.text;
@@ -76,8 +77,11 @@ export async function narrate(
         readFileSync(takeFile(line), "utf8"),
       );
       // Scored again, so a change to the normalisation reaches cached takes.
+      // The file is resolved here, not read from the cache entry, so a cache
+      // restored on another machine or path still finds its audio.
       best.set(line.key, {
         ...take,
+        file: path.join(audioDir, `${line.key}.wav`),
         matchRate: matchRate(line.spoken, take.transcript),
       });
     }
@@ -101,7 +105,7 @@ export async function narrate(
     const slow = (l: Line) =>
       path.join(audioDir, `${l.key}.take${attempt}.wav`);
     await engine.synthesize(
-      script.voice,
+      voiceName,
       pending.map((l) => ({ text: l.spoken, out: raw(l) })),
     );
     for (const l of pending) slowSentence(raw(l), slow(l));

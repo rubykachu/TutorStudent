@@ -113,17 +113,16 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 
 ```
 .
-├── CLAUDE.md                     # hướng dẫn cho Claude: kiến trúc, quy ước, lệnh
+├── CLAUDE.md                     # lối vào cho Claude: trỏ tới docs/architecture.md và .claude/rules/
 ├── docs/
 │   ├── spec.md                   # tài liệu này
 │   ├── design-system.md          # design token, màu khái niệm, linh vật, component spec
 │   └── operations.md             # tạo bucket R2, CORS, lifecycle, token, Vercel, mã gia đình, cài PWA
-├── backlogs/                     # task theo feature/bug, ghi chú điều tra
-├── tasks/                        # plan.md, todo.md cho đợt làm hiện tại
+├── notebooks/backlogs/            # spec/plan/task theo feature/bug/bài: <tên>/{spec,plan,task}.md; index.md là hàng đợi; archive/ khi xong
 ├── sources/                      # tài liệu gốc (ảnh/PDF SGK) — .gitignore, không bao giờ commit
 │   └── <subject>/<lesson-slug>/
 ├── content/                      # nội dung đã biên soạn, commit vào git
-│   ├── subjects.json             # danh sách môn, bộ sách, màu môn
+│   ├── subjects.json             # môn: màu, icon, ngôn ngữ vi/en, cờ luật (rules), bộ sách
 │   ├── ids.lock.json             # mọi id đã publish + map retired (xem "Id bất biến")
 │   ├── glossary/<subject>.json   # thuật ngữ chuẩn + từ đồng nghĩa cấm dùng, theo môn
 │   └── <subject>/<series>/<lesson-slug>/
@@ -163,7 +162,7 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 ├── scripts/                      # content-check, content-lock, content-prompt, visual-shot, admin CLI
 ├── video/                        # pipeline video (chạy trên máy, không deploy)
 │   ├── tts/                      # adapter TTS: local (mặc định), gemini, edge
-│   ├── spikes/                   # thử nghiệm công cụ, không dùng trong build
+│   ├── .venv, .python, .hf       # Python arm64, model TTS/whisper (gitignore; cài ở requirements.txt)
 │   └── projects/<lesson>/<video>/  # kịch bản, audio, render — phần nặng gitignore
 ├── tests/                        # unit/component/API test (song song cấu trúc src/)
 ├── e2e/                          # Playwright
@@ -181,8 +180,10 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 ### 5.1 Mô hình nội dung (zod, `src/schema/content.ts`)
 
 ```
-Subject      { id: "math" | "literature" | "geography" | …, name, color, series[] }
-Lesson       { id, subject, series, grade: 6, order, title, sourceRef (vd "SGK tr.22–24"),
+Subject      { id, name, color (token bảng màu), icon, language: "vi" | "en",
+               rules: { checkExpr, verbatimPassage, requiresOpenEnded }, series[], defaultSeries }
+             # cấu hình theo môn chỉ nằm ở content/subjects.json; luật chữ tiếng Việt (âm tiết, số, độ dài câu) chỉ áp cho môn language "vi"
+Lesson       { id, subject, series, grade: 6, order, number?, chapter?: { numeral, name }, title, sourceRef (vd "SGK tr.22–24"),
                status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker,
                videos?, overview? }
 Overview     { hook: { text, visualId? }, summary, goals[2..4], whyItMatters,
@@ -233,8 +234,14 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Độ dài: câu ≤ 25 âm tiết (không đếm công thức; tách câu có danh sách viết tắt như "tr.", "SGK"); `note` ≤ 2 câu.
 - Recap và card (ngưỡng trong `src/content/lint/config.ts`): `caption` của `Section.recap` và `Card.recap` ≤ 2 câu; mỗi card có ≥ 3 exercise (tính cả bước của `openEnded`) để phiên ôn đổi được câu hỏi.
 - Luật soạn bài (bỏ qua bài fixture, vốn để thử mọi đường hiển thị): recap không phải `visual` có `caption` → fail; card có hơn 1 câu trong `practiceIds` của các section → fail; màn chỉ một `note` hay một `formula` ngoài `group` → cảnh báo; câu trong kho ôn có cùng tập số trong đề với câu luyện tập của card → cảnh báo; visual `fixture.*` (chỗ giữ tạm trong khung bài mới) → cảnh báo khi `draft`, fail khi `published`, và `content:hash --approve` từ chối.
-- Toán: `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài Toán bắt buộc `check.expr` cho mọi `numeric`.
-- Ngữ văn: mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
+- Môn có `rules.checkExpr` (hiện là Toán): `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài của môn đó bắt buộc `check.expr` cho mọi `numeric`. `choice` chọn cách so qua `check.relation`: `equal` (mặc định), `notEqual` ("kết quả nào sai"), `max`/`min` (không cần `expr`), `holds`/`fails` khi mỗi lựa chọn là một phép so sánh; mọi lựa chọn được tính, nhiễu cũng thoả → fail; `choice` Toán mà mọi lựa chọn là phép so sánh tính được thì bắt buộc có `check`.
+- Gợi ý và màu: `hints.highlight` trỏ vào lựa chọn, vùng hay câu nằm trong `answer` → fail; trong `choice`, tập màu khái niệm của các đáp án tách hẳn tập màu của các nhiễu → fail.
+- Đánh số theo sách: `number` (Bài 4) và `chapter` (Chương I) là tuỳ chọn, chỉ điền khi sách in số; trang môn hiện "Chương I · Bài 4", tiêu đề bài "Bài 4: …", tiêu đề phần trong player "Phần n: …" (chữ dựng ở `src/lib/lesson-label.ts`).
+- Hướng dẫn thao tác: `group` có `guide` (`tapRegion`, `tapText`, `match`, `order`, `manipulate`, `fillBlankBank`, `numericPower`) là màn dạy thao tác; câu đầu tiên dùng thao tác mà chưa có màn đó ở section trước hay cùng section, hay ở bài đứng trước trong thứ tự app (môn theo `subjects.json`, rồi `order`) → cảnh báo.
+- Câu quy tắc: `note` có `rule: true` phải được recap của section lặp nguyên văn; câu recap (section, card) giống quá nửa số từ của câu quy tắc mà không nguyên văn → fail.
+- Chép sách: có lớp chữ `sources/<môn>/<bài>/p*.txt` thì chữ của bài trùng từ nửa số cụm 5 từ với sách → cảnh báo.
+- Mỗi luật trên trỏ tới mục tương ứng trong `docs/lessons-learned/` (lỗi đã gặp nhiều lần mà luật sinh ra để chặn).
+- Môn có `rules.verbatimPassage` (hiện là Ngữ văn): mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
 - Cổng review: bài `published` phải có `reviewedHash` bằng hash nội dung hiện tại (đã chuẩn hoá, không tính `status`/`reviewedHash`); sửa bài sau review → fail cho tới khi review lại.
 
 **Lớp review độc lập** (skill `lesson-review`, chạy trong subagent mới, không phải agent đã soạn bài):
@@ -301,6 +308,9 @@ Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài,
 - **Giới thiệu bài:** bài có `overview` thì lần đầu mở bài (từ danh sách bài, hay từ thẻ "Học tiếp"/"Bắt đầu học" ở trang chủ khi trẻ chưa xem) hiện màn giới thiệu trước: cú, tình huống đời thường (kèm hình nếu có), "Bài này nói về", "Học xong bài này, bạn sẽ:" với danh sách ý có dấu tích, câu "vì sao có ích", nút chính "Bắt đầu học" (đã học dở: "Học tiếp") vào phần kế tiếp, nút phụ "Xem các phần của bài". Có `narration` thì có trình phát nút lớn, không tự phát, chữ đang đọc được tô (`--color-reading`); không có thì màn chỉ có chữ. Đã xem thì trang bài có nút "Giới thiệu bài" để mở lại. Trạng thái "đã xem" là setting theo từng trẻ (`overviewSeen:<id bài>`).
 - **Không dùng giọng máy của trình duyệt:** app không đọc chữ bằng Web Speech API (giọng máy nghe như robot). Mọi tiếng nói là file ghi sẵn: lời giới thiệu bài (`narration`), video bài và các câu thoại của cú (`public/sounds/`).
 - **Bài** → nút "Ôn bài này" (khi đã có card mở; nút phụ khi bài còn phần phải học) + danh sách phần (chưa học / đang học / xong) + sticker của bài tô màu theo số phần đã xong. Không khoá thứ tự phần: trẻ mở được phần nào cũng được, nhưng "Học tiếp" (nhãn trên danh sách, thẻ trang chủ, nút "Học phần tiếp" ở màn xong phần) luôn trỏ phần đầu tiên chưa xong theo thứ tự bài, kể cả khi một phần sau đang học dở → phần: các block giải thích tuần tự (bấm "Tiếp") → check → luyện tập → nhắc lại (`Section.recap`) → màn xong phần (sticker tô thêm, "Xong d/n phần") → nhận sticker khi xong mọi phần của bài.
+- **Nhãn loại màn:** mỗi màn của player có nhãn "Lý thuyết", "Bài tập · Kiểm tra nhanh", "Bài tập · Luyện tập" hay "Ôn tập"; chấm tiến độ của màn đã qua bấm được để nhảy lại, có tên ("Lý thuyết 1", "Câu 2"). Màn đầu của phần có phần giới thiệu thì "Quay lại" về trang giới thiệu.
+- **Bỏ qua:** nút "Bỏ qua" ở mọi bài tập (kiểm tra nhanh, luyện tập, ôn tập): đi tiếp không chấm, ghi lượt làm với `context: "skipped"` (không cập nhật FSRS, không tính là sai, câu luyện tập bỏ qua không mở thẻ); trang phụ huynh có mục "Câu đã bỏ qua".
+- **Sticker:** chạm sticker ở trang chủ có hiệu ứng nảy, tia sáng (đã nhận), âm thanh và mở bảng chi tiết (tên, bài, "Xong d/n phần", cách nhận, nút mở bài).
 - **Ôn xong:** cú vui + "Bạn vừa ôn n câu" (n đếm mọi câu đã hỏi, gồm câu hỏi lại) + tiến độ bài (sticker tô theo số phần đã xong, "Xong d/n phần").
 - **Chuỗi ngày:** tính theo ngày giờ Việt Nam; tuần từ thứ Hai đến Chủ nhật; mỗi tuần có 1 "ngày nghỉ" tự động giữ chuỗi.
 - **Bộ sách:** hồ sơ mới lấy bộ sách mặc định trong `subjects.json`; màn đổi bộ sách chỉ làm khi một môn có từ hai bộ trở lên.
@@ -382,7 +392,7 @@ Code dùng một interface `BlobStore { get(key) → { body, etag } | null; put(
 
 ### 5.11 Video (bổ sung, không chặn go-live)
 - Mỗi video là `video/projects/<id bài>/<tên>/` gồm `script.json` (lời đọc theo cảnh, clip theo card) và `index.html` (hình HyperFrames); một lệnh `pnpm video:build <id bài> <tên>` dựng ra `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và ghi `Video` vào `lesson.json`. Thông số ở `video/config.ts`; quy trình ở skill `lesson-video`. Âm thanh trung gian và bản render nằm trong `audio/`, `renders/` của dự án (gitignore); câu đã đọc được giữ lại nên sửa hình không đọc lại.
-- Lớp TTS chung `video/tts/` (interface `TtsEngine`): hiện chỉ có `local` (mặc định; VieNeu-TTS v3 Turbo, Apache-2.0, chạy ONNX trên CPU bằng Python arm64 riêng của pipeline — Python mặc định của máy chạy qua Rosetta; giọng "Hải Đăng"; cách cài ở `video/spikes/vieneu/`). Engine khác (vd Gemini) thêm bằng một adapter khi cần. Mỗi video ghi `voice = { engine, voiceName, model }`; một video dùng đúng một giọng.
+- Lớp TTS chung `video/tts/` (interface `TtsEngine`): hiện chỉ có `local` (mặc định; VieNeu-TTS v3 Turbo, Apache-2.0, chạy ONNX trên CPU bằng Python arm64 riêng của pipeline — Python mặc định của máy chạy qua Rosetta; giọng là preset VieNeu "Hải Đăng" (nam) hoặc "Mỹ Duyên" (nữ), mỗi bài khai một giọng trong `video/projects/<bài>/media.json`; cách cài ở `video/requirements.txt`, môi trường ở `video/.venv`, model ở `video/.hf`). Engine khác (vd Gemini) thêm bằng một adapter khi cần. Mỗi video ghi `voice = { engine, voiceName, model }`; một bài dùng đúng một giọng cho lời đọc giới thiệu và mọi video.
 - Kịch bản cho người học chậm: câu ngắn, tránh chữ cái đơn đứng một mình (viết "số a" thay vì "a") vì TTS và Whisper hay nhầm. Câu quy tắc đánh `rule` phải bằng nguyên văn một `note`/`caption` của bài (hay một câu của nó), chỉ khác cách đọc ký hiệu (`aⁿ` → "a mũ n", ngoặc → phẩy, "số a"); câu trích văn bản đánh `quote` phải nằm nguyên văn trong `source-passage.txt`. `video:build` dừng khi lệch; `pnpm test` kiểm lại mọi kịch bản đã commit.
 - Sau khi tổng hợp từng câu: giảm tốc bằng `ffmpeg atempo` 0.9, mlx-whisper phiên âm ngược; câu khớp kịch bản dưới 97% (so ký tự sau khi bỏ dấu thanh, dấu câu, đọc số thành chữ, gộp "tr"/"ch" của giọng Bắc) tự sinh lại, tối đa 3 lần, rồi báo để nghe duyệt.
 - Mốc thời gian từng chữ lấy từ mlx-whisper, gióng về chữ của kịch bản → WebVTT karaoke (mỗi chữ một mốc, `src/lib/karaoke-vtt.ts`). Phụ đề không in vào hình: app vẽ, bật sẵn, tắt được; dải dưới của hình để trống cho phụ đề.

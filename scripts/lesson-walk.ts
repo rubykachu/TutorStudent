@@ -20,6 +20,7 @@ import {
 } from "@/schema/content";
 import { findVisual, type VisualState } from "@/visuals/registry";
 import {
+  DECORATIVE_ATTR,
   STATE_KEY_ATTR,
   STATE_SET_ATTR,
   STATE_STEP_ATTR,
@@ -33,6 +34,7 @@ import {
   expectNothingUnderBottomBar,
 } from "../e2e/layout";
 import { findOverlaps } from "../e2e/overlap";
+import { SILENCE_MEDIA_SCRIPT } from "../e2e/silence";
 import { TARGET_DEVICES, TEST_BASE_URL } from "../e2e/targets";
 import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 
@@ -277,7 +279,22 @@ async function driveTo(exercise: Locator, state: VisualState) {
       continue;
     }
     const stepper = exercise.locator(`[${STATE_KEY_ATTR}="${key}"]`).first();
-    if ((await stepper.count()) === 0) continue;
+    if ((await stepper.count()) === 0) {
+      // A visual that advances one step per tap (strokes of a symbol) marks
+      // only its next control: tap "<key>=1", then "<key>=2", up to the target.
+      if (
+        (await exercise.locator(`[${STATE_SET_ATTR}^="${key}="]`).count()) > 0
+      ) {
+        for (let value = 1; value <= target; value++) {
+          await exercise
+            .locator(`[${STATE_SET_ATTR}="${key}=${value}"]`)
+            .first()
+            .tap();
+        }
+        driven += 1;
+      }
+      continue;
+    }
     driven += 1;
     if ((await stepperValue(stepper)) === target) {
       const up = stepper.locator(`[${STATE_STEP_ATTR}="up"]`);
@@ -309,8 +326,14 @@ async function nudgeAway(exercise: Locator) {
     return;
   }
   const other = exercise.locator(`[${STATE_SET_ATTR}][aria-pressed="false"]`);
-  if ((await other.count()) === 0) throw new Error("no control to go wrong");
-  await other.first().tap();
+  if ((await other.count()) > 0) {
+    await other.first().tap();
+    return;
+  }
+  // Everything is pressed: undo one control (a filled gap, the reset button).
+  const undo = exercise.locator(`[${STATE_SET_ATTR}]:not([disabled])`);
+  if ((await undo.count()) === 0) throw new Error("no control to go wrong");
+  await undo.first().tap();
 }
 
 // ---------------------------------------------------------------------------
@@ -493,6 +516,7 @@ class Walker {
     }
     for (const overlap of await this.page.evaluate(findOverlaps, {
       scope: "main",
+      decorativeAttr: DECORATIVE_ATTR,
     })) {
       this.report("fail", where, `${overlap} (${file})`);
     }
@@ -772,6 +796,7 @@ async function walkDevice(
   // tsx compiles with esbuild keepNames, which wraps nested functions in a
   // `__name` helper; functions sent to page.evaluate need it too.
   await context.addInitScript("globalThis.__name = (target) => target;");
+  await context.addInitScript(SILENCE_MEDIA_SCRIPT);
   const outDir = path.join(outRoot, device);
   mkdirSync(outDir, { recursive: true });
   const page = await context.newPage();

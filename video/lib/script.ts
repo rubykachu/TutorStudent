@@ -4,7 +4,8 @@ import { LocalIdSchema } from "@/schema/content";
 import { TTS_ENGINES } from "../tts";
 
 // `video/projects/<lessonId>/<name>/script.json`: what the narrator says,
-// scene by scene, and which scenes explain which cards.
+// scene by scene, and which scenes explain which cards. The voice is not
+// here: it is the lesson's (video/lib/lesson-media.ts).
 
 const SentenceSchema = z.object({
   // Shown in the captions exactly as written; numbers may be digits.
@@ -18,6 +19,9 @@ const SentenceSchema = z.object({
   // Cites the reading passage: the part in quotation marks (or all of
   // `text`) must be in the lesson's source-passage.txt.
   quote: z.literal(true).optional(),
+  // The greeting that opens the video; only the first sentence of the first
+  // scene (see `openingIssues` in video/lib/consistency.ts).
+  opening: z.literal(true).optional(),
 });
 
 const SceneSchema = z.object({
@@ -30,7 +34,6 @@ export const VideoScriptSchema = z
   .object({
     title: z.string().trim().min(1),
     engine: z.enum(TTS_ENGINES),
-    voice: z.string().trim().min(1),
     // The poster frame is taken this far (0–1) into this scene.
     poster: z.object({ scene: LocalIdSchema, at: z.number().min(0).max(1) }),
     scenes: z.array(SceneSchema).min(1),
@@ -44,6 +47,7 @@ export const VideoScriptSchema = z
       }),
     ),
   })
+  .strict()
   .superRefine((script, ctx) => {
     const order = new Map(script.scenes.map((s, i) => [s.id, i]));
     if (order.size !== script.scenes.length) {

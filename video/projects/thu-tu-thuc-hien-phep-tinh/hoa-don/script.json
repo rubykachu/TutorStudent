@@ -1,0 +1,119 @@
+{
+  "title": "Vì sao cần thứ tự tính?",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-ai-dung",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-hoa-don",
+      "sentences": [
+        {
+          "text": "Bạn cú đi mua đồ dùng học tập."
+        },
+        {
+          "text": "Hai quyển vở, mỗi quyển 8 nghìn đồng."
+        },
+        {
+          "text": "Một cái bút, 5 nghìn đồng."
+        },
+        {
+          "text": "Phép tính là 2 nhân 8 cộng 5."
+        },
+        {
+          "text": "Nam và Lan cùng tính hoá đơn này."
+        }
+      ]
+    },
+    {
+      "id": "s02-nam",
+      "sentences": [
+        {
+          "text": "Nam làm nhân trước."
+        },
+        {
+          "text": "2 nhân 8 bằng 16."
+        },
+        {
+          "text": "16 cộng 5 bằng 21."
+        },
+        {
+          "text": "Nam tính ra 21 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s03-lan",
+      "sentences": [
+        {
+          "text": "Lan làm cộng trước."
+        },
+        {
+          "text": "8 cộng 5 bằng 13."
+        },
+        {
+          "text": "2 nhân 13 bằng 26."
+        },
+        {
+          "text": "Lan tính ra 26 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s04-ai-dung",
+      "sentences": [
+        {
+          "text": "Cùng một hoá đơn mà ra hai số."
+        },
+        {
+          "text": "Ai đúng?"
+        },
+        {
+          "text": "Hai quyển vở là 16 nghìn đồng."
+        },
+        {
+          "text": "Cộng với tiền bút là 21 nghìn đồng."
+        },
+        {
+          "text": "Nam đúng."
+        }
+      ]
+    },
+    {
+      "id": "s05-quy-tac",
+      "sentences": [
+        {
+          "text": "Có cả nhân và cộng thì làm nhân trước, cộng sau.",
+          "rule": true
+        },
+        {
+          "text": "Nhờ có thứ tự chung, ai tính cũng ra cùng một kết quả."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Có cả nhân và cộng thì làm nhân trước, cộng sau.",
+          "rule": true
+        },
+        {
+          "text": "Nhân trước, rồi mới cộng."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hoa-don",
+      "from": "s02-nam",
+      "to": "s05-quy-tac",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.hoa-don"]
+    }
+  ]
+}

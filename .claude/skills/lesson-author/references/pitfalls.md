@@ -19,3 +19,17 @@
 ## Nguồn
 
 - Thuật ngữ đã học trước lớp 6 mà trang SGK chỉ dùng, không định nghĩa (từ ghép, từ láy): chỉ dạy khi glossary ghi `"prerequisite": "tiểu học"` cho thuật ngữ đó, câu định nghĩa là câu chuẩn, gọn như sách lớp 6, ví dụ không gây tranh cãi (tránh từ ghép có hai tiếng cùng âm đầu như "hoa hồng"), và `sourceRef` của section, card ghi rõ "Kiến thức nền (tiểu học); câu 5 tr.26" (lint kiểm dấu này).
+
+## Lỗi hay lặp mà máy chưa bắt hết
+
+Mỗi dòng là việc tự soát trước khi gọi review; triệu chứng, ví dụ thật và nguyên nhân ở mục tương ứng trong `docs/lessons-learned/`.
+
+- Tự giải từng nhiễu theo đúng câu chữ đề, nhất là đề "chắc chắn sai", "lớn nhất", câu Ngữ văn xếp loại từ, và bài `order`/`fillBlank` có thể có thứ tự đúng khác (LL-01).
+- Hình nấc 2, chú thích lề `passage` và chữ in sẵn trong `segments` của `fillBlank` không được cho biết kết quả của đề (LL-02).
+- Màu trong visual và video: cách làm sai không mang màu của cách làm đúng (LL-03).
+- Số của câu kho ôn khác cả số trong recap, ví dụ màn quy tắc và trạng thái đầu của hình tương tác (LL-07).
+- Đọc lại mỗi đề như trẻ chỉ thấy đúng màn đó: đủ dữ kiện, một tên chỉ một tập hợp, "bạn" không lẫn với trẻ (LL-10).
+- Thuật ngữ, quy tắc dùng trong đề, nhiễu, gợi ý phải đã dạy ở section trước; câu kho ôn gắn card cần ý dạy ở section sau thì đổi card (LL-09).
+- Nhiễu ứng với lỗi thật, cùng độ dài và hình thức với đáp án (LL-14).
+- Sửa chữ thì sửa cả hình dùng chữ đó; hình lời giải vẽ đúng số của đề (LL-15).
+- Câu luyện, câu ôn tối đa 2 phép tính nhẩm (LL-18); xưng "bạn", không lộ số trang sách cho trẻ (LL-19).

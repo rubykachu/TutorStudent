@@ -9,6 +9,7 @@ import {
   lastReviewExerciseIds,
   recentExerciseIds,
   sectionExerciseIds,
+  skipCurrent,
   startSession,
 } from "@/srs/session";
 
@@ -168,5 +169,19 @@ describe("recentExerciseIds", () => {
     ];
     expect(recentExerciseIds(attempts, now)).toEqual(["edge", "just-now"]);
     expect(recentExerciseIds(attempts, now, 5)).toEqual(["just-now"]);
+  });
+});
+
+describe("skipCurrent", () => {
+  it("moves on with no recap and queues no re-ask", () => {
+    const session = startSession([
+      { cardId: "card.a", exerciseId: "ex.a1" },
+      { cardId: "card.b", exerciseId: "ex.b1" },
+    ]);
+    const next = skipCurrent(session);
+    expect(next.current).toBe(1);
+    expect(next.recap).toBeNull();
+    expect(next.items).toHaveLength(2);
+    expect(currentItem(skipCurrent(skipCurrent(session)))).toBeUndefined();
   });
 });

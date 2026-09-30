@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
 import { withNarration } from "./fixture-routes";
 import { createProfile, FIXTURE_LESSON_TITLE } from "./flows";
 import {
@@ -6,6 +6,7 @@ import {
   expectNoHorizontalScroll,
   expectTouchTargets,
 } from "./layout";
+import { test } from "./test";
 
 const FIRST_SECTION = "fixture.section.phep-nhan";
 
@@ -50,6 +51,19 @@ test("a new lesson opens on its overview, then starts the first section", async 
     "href",
     `/lessons/fixture/sections/${FIRST_SECTION}`,
   );
+});
+
+test("back on the first screen of a section returns to the lesson introduction", async ({
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Na", "Cáo");
+  await page.goto(`/lessons/fixture/sections/${FIRST_SECTION}`);
+  await page.getByRole("button", { name: "Quay lại" }).tap();
+  await expect(page).toHaveURL(/\/lessons\/fixture\?intro=1$/);
+  await expect(page.locator("[data-lesson-overview]")).toBeVisible();
+  await page.getByRole("button", { name: "Học tiếp" }).tap();
+  await expect(page).toHaveURL(new RegExp(`/sections/${FIRST_SECTION}$`));
 });
 
 test("a recorded narration plays only on request", async ({ page }) => {

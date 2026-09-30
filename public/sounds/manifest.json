@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "id": "tap",
+      "file": "tap.m4a",
+      "kind": "tone",
+      "sha256": "48e1b46ba5d6989b359fe174bb8a67bea0c14c26151305cad246907e18015d96",
+      "lufs": -27.7,
+      "peakDb": -7.8
+    },
+    {
       "id": "correct-jingle",
       "file": "correct-jingle.m4a",
       "kind": "tone",

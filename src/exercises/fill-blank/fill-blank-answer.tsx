@@ -16,6 +16,7 @@ import type { HighlightSpec } from "@/exercises/feedback";
 import { ownValue } from "@/exercises/grade/result";
 import type { FillBlankInput } from "@/exercises/input";
 import { seededShuffle } from "@/exercises/shuffle";
+import { useTapSound } from "@/lib/feedback-sounds";
 import type { FillBlankExercise } from "@/schema/content";
 
 type FillBlankAnswerProps = {
@@ -59,6 +60,7 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
   // Bank index of the word tapped first, waiting for a blank to go into.
   const [picked, setPicked] = useState<number | null>(null);
   const sensors = useDragSensors();
+  const playTap = useTapSound();
   const { bank } = exercise;
   // Bank indexes in the order the chips are shown; a word may repeat, so two
   // chips with the same word count as looking the same.
@@ -123,7 +125,9 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
       <BankBlank
         key={segment.id}
         {...common}
+        bank={bank}
         onTap={() => {
+          playTap();
           if (picked !== null) {
             setBlank(segment.id, bank[picked]);
             setPicked(null);
@@ -184,7 +188,10 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
               word={bank[index]}
               picked={picked === index}
               disabled={disabled}
-              onTap={() => setPicked(picked === index ? null : index)}
+              onTap={() => {
+                playTap();
+                setPicked(picked === index ? null : index);
+              }}
             />
           ))}
         </fieldset>
@@ -219,8 +226,9 @@ function BankBlank({
   wrong,
   disabled,
   reveal,
+  bank,
   onTap,
-}: BlankProps & { onTap: () => void }) {
+}: BlankProps & { bank: readonly string[]; onTap: () => void }) {
   const { setNodeRef, isOver } = useDroppable({ id, disabled });
   return (
     <AnswerHighlight spec={spec} className="align-middle">
@@ -232,9 +240,29 @@ function BankBlank({
         data-blank={id}
         data-wrong={wrong || undefined}
         onClick={onTap}
-        className={`inline-flex h-12 min-w-20 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, wrong)} ${isOver ? "outline-3 outline-primary" : ""}`}
+        // As wide as the widest word of the bank (same padding as a chip), so
+        // placing or removing a word never changes the blank's width and the
+        // sentence never reflows. Every bank word sits invisibly in the same
+        // grid cell as the word shown; the cell takes the widest.
+        className={`inline-grid h-12 min-w-20 content-center items-center justify-items-center rounded-sm px-5 font-semibold ${blankTone(text, reveal, wrong)} ${isOver ? "outline-3 outline-primary" : ""}`}
       >
-        <RichText text={text} />
+        <span className="col-start-1 row-start-1 whitespace-nowrap">
+          {/* An empty blank still holds a (zero-width) character, so the
+              button sits on the same baseline filled or not. */}
+          {text === "" ? "\u200B" : <RichText text={text} />}
+        </span>
+        {bank.map((word, index) => (
+          <span
+            // Bank words may repeat, so the bank index is the identity.
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            key={index}
+            aria-hidden
+            data-blank-sizer
+            className="invisible col-start-1 row-start-1 h-0 overflow-hidden whitespace-nowrap"
+          >
+            <RichText text={word} />
+          </span>
+        ))}
       </button>
     </AnswerHighlight>
   );

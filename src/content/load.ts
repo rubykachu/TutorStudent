@@ -29,6 +29,25 @@ export const SUBJECTS_FILE = "subjects.json";
 export const IDS_LOCK_FILE = "ids.lock.json";
 export const GLOSSARY_DIR = "glossary";
 const LESSON_FILE = "lesson.json";
+// Textbook scans and their text layers sit beside the content root, in
+// sources/<subject>/<lesson>/ (gitignored).
+const SOURCES_DIR = "sources";
+const TEXT_LAYER = /^(?:sbt-)?p[\d-]+\.txt$/;
+
+// The text layers of a lesson's textbook pages, joined; undefined when none.
+function readSourceText(root: string, dir: string[]): string | undefined {
+  const [subject, , slug] = dir;
+  if (!subject || !slug) return undefined;
+  const folder = path.resolve(root, "..", SOURCES_DIR, subject, slug);
+  if (!existsSync(folder)) return undefined;
+  const pages = readdirSync(folder)
+    .filter((name) => TEXT_LAYER.test(name))
+    .sort();
+  if (pages.length === 0) return undefined;
+  return pages
+    .map((name) => readFileSync(path.join(folder, name), "utf8"))
+    .join("\n");
+}
 
 function displayPath(absolute: string): string {
   return path.relative(process.cwd(), absolute) || absolute;
@@ -62,10 +81,13 @@ export function readContentRoot(
       path.dirname(relative),
       SOURCE_PASSAGE_FILE,
     );
+    const fixture = dir[0] === FIXTURE_DIR;
+    const sourceText = fixture ? undefined : readSourceText(root, dir);
     return {
       ...readJson(path.join(root, relative)),
-      fixture: dir[0] === FIXTURE_DIR,
+      fixture,
       dir,
+      ...(sourceText === undefined ? {} : { sourceText }),
       ...(existsSync(passageFile)
         ? { sourcePassage: readFileSync(passageFile, "utf8") }
         : {}),

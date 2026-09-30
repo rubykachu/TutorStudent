@@ -4,7 +4,8 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { PageTopBar } from "@/components/page-top-bar";
 import { StateBadge } from "@/components/state-badge";
-import { SUBJECT_STYLES } from "@/components/subject-style";
+import { subjectStyle } from "@/components/subject-style";
+import { lessonPlacement, subjectHeading } from "@/lib/lesson-label";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
 import { useChildProgress, useContentIndex } from "@/progress/hooks";
@@ -58,6 +59,14 @@ function LessonList({
                 <h2 className="break-words text-block font-semibold md:text-block-lg">
                   {lesson.title}
                 </h2>
+                {lessonPlacement(lesson) && (
+                  <p
+                    className="font-semibold text-caption"
+                    data-lesson-placement
+                  >
+                    {lessonPlacement(lesson)}
+                  </p>
+                )}
                 <p className="text-caption text-muted-foreground">
                   {lesson.sourceRef}
                 </p>
@@ -73,7 +82,7 @@ function LessonList({
 
 export function SubjectScreen({ subject }: { subject: Subject }) {
   const profile = useRequiredProfile();
-  const style = SUBJECT_STYLES[subject.color];
+  const style = subjectStyle(subject);
   const Icon = style.icon;
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">
@@ -95,7 +104,7 @@ export function SubjectScreen({ subject }: { subject: Subject }) {
               <Icon aria-hidden className="size-8" strokeWidth={2.25} />
             </span>
             <h1 className="text-title font-bold md:text-title-lg">
-              {subject.name}
+              {subjectHeading(subject.name)}
             </h1>
           </header>
           <LessonList subject={subject} profile={profile} />

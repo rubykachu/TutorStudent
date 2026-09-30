@@ -101,7 +101,7 @@ describe("ReviewPlayer", () => {
     await waitFor(() => expect(item()).toHaveAttribute("data-reask", "true"));
     expect(screen.queryByText("Nhớ nhé!")).toBeNull();
     expect(item()).toHaveAttribute("data-card", CARD_A);
-    expect(screen.getByText("Hỏi lại")).toBeInTheDocument();
+    expect(screen.getByText("Ôn tập · Hỏi lại")).toBeInTheDocument();
     tap("Đúng");
     tap("Kiểm tra");
     tap("Tiếp");
@@ -285,5 +285,53 @@ describe("ReviewPlayer", () => {
       [[CARD_A], false, 1],
       [[CARD_B], false, 1],
     ]);
+  });
+
+  it("skips a question: no rating, no recap, no re-ask, logged as skipped", async () => {
+    render(
+      <ReviewPlayer
+        db={db}
+        index={learnIndex()}
+        scope={scope}
+        onAgain={vi.fn()}
+        random={() => 0}
+      />,
+    );
+    await screen.findByText("Câu luyện A");
+    const before = await db.cardStates.toArray();
+    tap("Bỏ qua");
+    await waitFor(() => expect(item()).toHaveAttribute("data-card", CARD_B));
+    expect(screen.queryByText("Nhớ nhé!")).toBeNull();
+    tap("Bỏ qua");
+    expect(await screen.findByText("Ôn xong rồi!")).toBeInTheDocument();
+    // Two skipped questions, and the missed card A was not asked again.
+    expect(screen.getByText("Bạn vừa ôn 2 câu. Giỏi lắm!")).toBeInTheDocument();
+    const skipped = (await listAttempts(db, scope)).filter(
+      (a) => a.context === "skipped",
+    );
+    expect(skipped.map((a) => a.cardIds)).toEqual([[CARD_A], [CARD_B]]);
+    expect(await db.cardStates.toArray()).toEqual(before);
+  });
+
+  it("labels each question dot and jumps back to an answered one", async () => {
+    render(
+      <ReviewPlayer
+        db={db}
+        index={learnIndex()}
+        scope={scope}
+        onAgain={vi.fn()}
+        random={() => 0}
+      />,
+    );
+    await screen.findByText("Câu luyện A");
+    expect(screen.getByText("Ôn tập")).toBeInTheDocument();
+    tap("Bỏ qua");
+    await waitFor(() => expect(item()).toHaveAttribute("data-card", CARD_B));
+    tap("Câu 1");
+    expect(
+      document.querySelector("[data-review-step=answered]"),
+    ).not.toBeNull();
+    tap("Câu 2");
+    expect(document.querySelector("[data-review-step=answered]")).toBeNull();
   });
 });

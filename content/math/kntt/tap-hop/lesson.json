@@ -1,0 +1,3306 @@
+{
+  "id": "tap-hop",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 1,
+  "number": 1,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
+  "title": "Tập hợp",
+  "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
+  "status": "published",
+  "reviewedHash": "13e98325fb26a8661317b9f46270d039a1d51a9894fe3cf1334c8b88fe4da9ab",
+  "concepts": [
+    {
+      "id": "tap-hop.concept.tap-hop",
+      "name": "Tập hợp",
+      "color": "teal"
+    },
+    {
+      "id": "tap-hop.concept.phan-tu",
+      "name": "Phần tử",
+      "color": "amber"
+    },
+    {
+      "id": "tap-hop.concept.dau-hieu-dac-trung",
+      "name": "Dấu hiệu đặc trưng",
+      "color": "lime"
+    }
+  ],
+  "sections": [
+    {
+      "id": "tap-hop.section.tap-hop-la-gi",
+      "title": "Tập hợp và phần tử",
+      "sourceRef": "Sách bài tập tr.5",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop.video.tap-hop-la-gi"
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.hop-but",
+          "caption": "Bấm Bước tiếp để xem: cả nhóm đồ là tập hợp, mỗi món là phần tử."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tập hợp là một nhóm các thứ gom lại với nhau, như các đồ trong hộp bút hay các bạn trong đội bóng."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.vi-du-tap-hop"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi thứ trong nhóm là một phần tử của tập hợp."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.vi-du-phan-tu"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.chon-hop-but",
+          "caption": "Chạm đồ vật để bỏ vào hộp bút: chỉ đồ dùng học tập mới thuộc hộp."
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-phan-tu-hop-but"],
+      "practiceIds": ["tap-hop.ex.nhom-la-tap-hop", "tap-hop.ex.mua-trong-nam"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.tom-tat-tap-hop",
+        "caption": "Tập hợp là một nhóm các thứ gom lại. Mỗi thứ trong nhóm là một phần tử."
+      }
+    },
+    {
+      "id": "tap-hop.section.thao-tac",
+      "title": "Cách chạm và điền kí hiệu",
+      "sourceRef": "Hướng dẫn cách làm bài tập, không lấy từ sách",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài chạm vùng: chạm vào hình bạn chọn, hình đó hiện vòng sáng. Chạm lần nữa để bỏ chọn, rồi bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.huong-dan-cham"
+            }
+          ],
+          "guide": "tapRegion"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài điền: chạm một thẻ ở dưới (từ hay kí hiệu), rồi chạm ô trống để đặt vào. Chạm ô đã điền để lấy ra."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.huong-dan-chip"
+            }
+          ],
+          "guide": "fillBlankBank"
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-thu-cham", "tap-hop.ex.kt-thu-dien"],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.huong-dan-cham",
+        "caption": "Bài chạm vùng: chạm hình để chọn. Bài điền: chạm thẻ rồi chạm ô trống."
+      }
+    },
+    {
+      "id": "tap-hop.section.ngoac-nhon",
+      "title": "Ngoặc nhọn { }",
+      "sourceRef": "Sách bài tập tr.5",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn viết một tập hợp, ta đặt các phần tử vào giữa hai ngoặc nhọn. Dấu { đọc là mở ngoặc nhọn, dấu } đọc là đóng ngoặc nhọn."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.ngoac-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.ve-mo-ngoac",
+          "caption": "Vẽ dấu { theo từng nét trên giấy nháp, để tay nhớ cách viết."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.ve-dong-ngoac",
+          "caption": "Vẽ dấu } theo từng nét trên giấy nháp: nó là hình soi gương của dấu {."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi tập hợp cần đủ hai dấu: { ở đầu và } ở cuối."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.ngoac-du-hai-dau"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-ngoac-dung", "tap-hop.ex.kt-cham-ngoac-mo"],
+      "practiceIds": ["tap-hop.ex.viet-ngoac-mo", "tap-hop.ex.viet-ngoac-dong"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.ngoac-du-hai-dau",
+        "caption": "Tập hợp viết giữa hai ngoặc nhọn: { ở đầu và } ở cuối."
+      }
+    },
+    {
+      "id": "tap-hop.section.dau-cham-phay",
+      "title": "Dấu chấm phẩy ;",
+      "sourceRef": "Sách bài tập tr.5",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Giữa hai phần tử ta viết dấu chấm phẩy. Ta không dùng dấu phẩy vì số thập phân như 2,5 đã có dấu phẩy."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.cham-phay-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.ve-cham-phay",
+          "caption": "Vẽ dấu chấm phẩy theo từng nét trên giấy nháp: chấm ở trên, rồi nét phẩy ở dưới."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.dat-cham-phay",
+          "caption": "Chạm khoảng trống giữa các số để đặt dấu chấm phẩy: các phần tử phải cách nhau bằng dấu này."
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-dau-giua"],
+      "practiceIds": ["tap-hop.ex.chon-viet-dung"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-cham-phay",
+        "caption": "Giữa hai phần tử của tập hợp, ta viết dấu chấm phẩy."
+      }
+    },
+    {
+      "id": "tap-hop.section.thuoc",
+      "title": "Kí hiệu ∈ (thuộc)",
+      "sourceRef": "Sách bài tập tr.5",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop.video.thuoc-khong-thuoc"
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.thuoc-hop-but",
+          "caption": "Bấm Bước tiếp để thấy vì sao 2 thuộc A: vì 2 nằm trong A."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Kí hiệu 2 ∈ A đọc là 2 thuộc A. Nghĩa là 2 là một phần tử của tập hợp A."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.vi-du-thuoc"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.ve-thuoc",
+          "caption": "Vẽ kí hiệu ∈ theo từng nét trên giấy nháp: nét một là chữ C, nét hai là gạch ngang."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.tap-net-thuoc",
+          "caption": "Chạm các chấm theo thứ tự để vẽ kí hiệu ∈: đúng thứ tự nét thì viết gọn hơn."
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-cham-thuoc"],
+      "practiceIds": ["tap-hop.ex.doc-thuoc"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-thuoc",
+        "caption": "x ∈ A: x là phần tử của A."
+      }
+    },
+    {
+      "id": "tap-hop.section.khong-thuoc",
+      "title": "Kí hiệu ∉ (không thuộc)",
+      "sourceRef": "Sách bài tập tr.5",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Kí hiệu 5 ∉ A đọc là 5 không thuộc A. Nghĩa là 5 không phải là phần tử của tập hợp A."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.vi-du-khong-thuoc"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.ve-khong-thuoc",
+          "caption": "Vẽ kí hiệu ∉ theo từng nét trên giấy nháp: viết kí hiệu ∈ rồi thêm một nét gạch chéo."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.tap-net-khong-thuoc",
+          "caption": "Chạm các chấm theo thứ tự để vẽ kí hiệu ∉: đúng thứ tự nét thì viết gọn hơn."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.chon-x-tu-do",
+          "caption": "Đổi x rồi xem kí hiệu hiện ra: x nằm trong A thì ∈, không thì ∉."
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-cham-khong-thuoc"],
+      "practiceIds": ["tap-hop.ex.viet-khong-thuoc"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-khong-thuoc",
+        "caption": "x ∉ A: x không phải là phần tử của A."
+      }
+    },
+    {
+      "id": "tap-hop.section.liet-ke",
+      "title": "Viết tập hợp bằng cách liệt kê",
+      "sourceRef": "Sách bài tập tr.5–6 (kiến thức cần nhớ 2; bài 1.3 và bài 1.4)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.lap-ghep-liet-ke",
+          "caption": "Bấm Bước tiếp để ghép từng phần: tập hợp cần đủ ngoặc và dấu chấm phẩy."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.vi-du-liet-ke"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-ghep-hai-phan-tu"],
+      "practiceIds": ["tap-hop.ex.ghep-ba-phan-tu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-liet-ke",
+        "caption": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
+      }
+    },
+    {
+      "id": "tap-hop.section.xet-thuoc",
+      "title": "Xét phần tử có thuộc tập hợp không",
+      "sourceRef": "Sách bài tập tr.5–6 (ví dụ; bài 1.1 và bài 1.2)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.xet-mau",
+          "caption": "Bấm Bước tiếp để xét từng số: xem số đó có đúng điều mô tả Q không."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn biết x có thuộc A không, xem x có nằm trong A hay có đúng điều mô tả A không. Có thì viết x ∈ A, không thì viết x ∉ A."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.xet-vi-du"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-xet-hai-chu-so"],
+      "practiceIds": ["tap-hop.ex.xet-ba-chu-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-xet-thuoc",
+        "caption": "Có trong A thì x ∈ A, không có thì x ∉ A."
+      }
+    },
+    {
+      "id": "tap-hop.section.dau-hieu-dac-trung",
+      "title": "Nêu dấu hiệu đặc trưng",
+      "sourceRef": "Sách bài tập tr.5–6 (kiến thức cần nhớ 2; ví dụ; bài 1.5)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Có thể mô tả tập hợp bằng dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Viết E = {x | x là số tự nhiên lớn hơn 2 và nhỏ hơn 6}, phần sau vạch đứng | là dấu hiệu đó."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.dau-hieu-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.doc-dau-hieu",
+          "caption": "Bấm Bước tiếp để đọc từng phần: hiểu dấu hiệu thì liệt kê được."
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-cham-dau-hieu"],
+      "practiceIds": ["tap-hop.ex.liet-ke-tu-dau-hieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-dau-hieu",
+        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Nó viết sau vạch đứng | trong ngoặc nhọn."
+      }
+    },
+    {
+      "id": "tap-hop.section.hai-cach-mo-ta",
+      "title": "Hai cách mô tả một tập hợp",
+      "sourceRef": "Sách bài tập tr.5–6 (kiến thức cần nhớ 2; bài 1.6 và bài 1.7)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Một tập hợp viết được bằng hai cách: liệt kê các phần tử hoặc nêu dấu hiệu đặc trưng. Hai cách đều chỉ cùng một tập hợp."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop.visual.hai-cach-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop.visual.doi-tu-liet-ke",
+          "caption": "Bấm Bước tiếp để tìm dấu hiệu đặc trưng của các phần tử đã cho."
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-hai-cach"],
+      "practiceIds": ["tap-hop.ex.chon-dau-hieu-3456"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-hai-cach",
+        "caption": "Một tập hợp viết bằng cách liệt kê hoặc bằng dấu hiệu đặc trưng."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "tap-hop.card.tap-hop",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-tap-hop",
+        "caption": "Tập hợp là một nhóm các thứ gom lại, như các bạn trong đội bóng."
+      }
+    },
+    {
+      "id": "tap-hop.card.phan-tu",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.phan-tu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-phan-tu",
+        "caption": "Mỗi thứ trong tập hợp là một phần tử của nó."
+      }
+    },
+    {
+      "id": "tap-hop.card.ngoac-mo",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-ngoac-mo",
+        "caption": "Dấu { đọc là mở ngoặc nhọn, đặt ở đầu tập hợp."
+      }
+    },
+    {
+      "id": "tap-hop.card.ngoac-dong",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-ngoac-dong",
+        "caption": "Dấu } đọc là đóng ngoặc nhọn, đặt ở cuối tập hợp."
+      }
+    },
+    {
+      "id": "tap-hop.card.dau-cham-phay",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-cham-phay",
+        "caption": "Dấu chấm phẩy đứng giữa hai phần tử của tập hợp."
+      }
+    },
+    {
+      "id": "tap-hop.card.thuoc",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.phan-tu", "tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-thuoc",
+        "caption": "x ∈ A: x là phần tử của A."
+      }
+    },
+    {
+      "id": "tap-hop.card.khong-thuoc",
+      "sourceRef": "Sách bài tập tr.5",
+      "conceptIds": ["tap-hop.concept.phan-tu", "tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-khong-thuoc",
+        "caption": "x ∉ A: x không phải là phần tử của A."
+      }
+    },
+    {
+      "id": "tap-hop.card.liet-ke",
+      "sourceRef": "Sách bài tập tr.5–6",
+      "conceptIds": ["tap-hop.concept.tap-hop", "tap-hop.concept.phan-tu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-liet-ke",
+        "caption": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
+      }
+    },
+    {
+      "id": "tap-hop.card.xet-thuoc",
+      "sourceRef": "Sách bài tập tr.5–6",
+      "conceptIds": ["tap-hop.concept.phan-tu", "tap-hop.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-xet-thuoc",
+        "caption": "Có trong A thì x ∈ A, không có thì x ∉ A."
+      }
+    },
+    {
+      "id": "tap-hop.card.dau-hieu",
+      "sourceRef": "Sách bài tập tr.5–6",
+      "conceptIds": ["tap-hop.concept.dau-hieu-dac-trung"],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-dau-hieu",
+        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Nó viết sau vạch đứng | trong ngoặc nhọn."
+      }
+    },
+    {
+      "id": "tap-hop.card.doi-cach",
+      "sourceRef": "Sách bài tập tr.5–6",
+      "conceptIds": [
+        "tap-hop.concept.tap-hop",
+        "tap-hop.concept.dau-hieu-dac-trung"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.the-doi-cach",
+        "caption": "Nhìn các phần tử, tìm dấu hiệu đặc trưng rồi viết sau vạch đứng | trong ngoặc nhọn."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "tap-hop.ex.kt-phan-tu-hop-but",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hộp bút của Lan có bút, thước và tẩy. Chiếc thước là gì của tập hợp đồ dùng trong hộp?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "một phần tử"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "một tập hợp"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "một đồ không có trong hộp"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.nhom-la-tap-hop",
+      "cardIds": ["tap-hop.card.tap-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cái nào là một nhóm nhiều thứ gom lại, tức là một tập hợp?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "các món trong bữa sáng"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "một chiếc áo"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "số 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.mua-trong-nam",
+      "cardIds": ["tap-hop.card.phan-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn một phần tử của tập hợp các mùa trong năm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "mùa thu"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "tháng Chín"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "thứ Sáu"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.gom-nhom-hop",
+      "cardIds": ["tap-hop.card.tap-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong cặp của Mai có vở, sách và hộp bút. Cả nhóm đồ trong cặp được gọi là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "một tập hợp"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "một phần tử"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "một đồ trong cặp"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.noi-tap-hop-phan-tu",
+      "cardIds": ["tap-hop.card.tap-hop", "tap-hop.card.phan-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi cụm từ với tên gọi của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "match",
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "cả nhóm các thứ gom lại"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "mỗi thứ trong nhóm"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "phần tử"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "tập hợp"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "số tự nhiên"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r2"
+        },
+        {
+          "left": "l2",
+          "right": "r1"
+        }
+      ]
+    },
+    {
+      "id": "tap-hop.ex.dem-ban-trong-to",
+      "cardIds": ["tap-hop.card.phan-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tổ của Nam có Nam, Mai, Hà và Sơn. Tập hợp các bạn trong tổ có bao nhiêu phần tử?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "4"
+      }
+    },
+    {
+      "id": "tap-hop.ex.chon-do-dung",
+      "cardIds": ["tap-hop.card.phan-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đưa vào hộp những phần tử của tập hợp đồ dùng học tập. Chạm vào từng thứ."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "manipulate",
+      "visualId": "tap-hop.visual.chon-do-dung",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 1,
+        "i1": 0,
+        "i2": 1,
+        "i3": 0,
+        "i4": 1,
+        "i5": 1
+      }
+    },
+    {
+      "id": "tap-hop.ex.kt-thu-cham",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào chiếc thước trong hộp bút."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.hop-cham",
+      "answer": ["thuoc"]
+    },
+    {
+      "id": "tap-hop.ex.kt-thu-dien",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Mỗi thứ trong nhóm gọi là một "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["phần tử"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["phần tử", "tập hợp"]
+    },
+    {
+      "id": "tap-hop.ex.kt-ngoac-dung",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tổ của Lan có ba bạn đánh số 4, 7, 9. Cách nào viết đúng tập hợp các số đó?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} \\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "( \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} )"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "[ \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} ]"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.kt-cham-ngoac-mo",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào dấu mở ngoặc nhọn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.cham-ngoac",
+      "answer": ["ngoac-nhon-mo"]
+    },
+    {
+      "id": "tap-hop.ex.viet-ngoac-mo",
+      "cardIds": ["tap-hop.card.ngoac-mo"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ dấu mở ngoặc nhọn: chạm các chấm theo số 1, 2, 3."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "manipulate",
+      "visualId": "tap-hop.visual.tap-net-ngoac-mo",
+      "validatorId": "ve-xong",
+      "params": {
+        "total": 3
+      }
+    },
+    {
+      "id": "tap-hop.ex.viet-ngoac-dong",
+      "cardIds": ["tap-hop.card.ngoac-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ dấu đóng ngoặc nhọn: chạm các chấm theo số 1, 2, 3."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "manipulate",
+      "visualId": "tap-hop.visual.tap-net-ngoac-dong",
+      "validatorId": "ve-xong",
+      "params": {
+        "total": 3
+      }
+    },
+    {
+      "id": "tap-hop.ex.chon-doc-mo-ngoac",
+      "cardIds": ["tap-hop.card.ngoac-mo"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dấu nào đọc là mở ngoặc nhọn?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "("
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "["
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dien-ngoac-mo",
+      "cardIds": ["tap-hop.card.ngoac-mo"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền dấu còn thiếu ở đầu tập hợp B."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "B = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " 4 ; 5 }"
+        }
+      ],
+      "bank": ["{", "}", "(", "["]
+    },
+    {
+      "id": "tap-hop.ex.chon-doc-dong-ngoac",
+      "cardIds": ["tap-hop.card.ngoac-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dấu nào đọc là đóng ngoặc nhọn?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": ")"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "]"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dien-ngoac-dong",
+      "cardIds": ["tap-hop.card.ngoac-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền dấu còn thiếu ở cuối tập hợp C."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "C = { 7 ; 8 "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["}"]
+        }
+      ],
+      "bank": ["{", "}", ")", "]"]
+    },
+    {
+      "id": "tap-hop.ex.dien-hai-ngoac",
+      "cardIds": ["tap-hop.card.ngoac-mo", "tap-hop.card.ngoac-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền hai dấu còn thiếu để viết tập hợp D."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "D = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " 2 ; 3 "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["}"]
+        }
+      ],
+      "bank": ["{", "}", "(", ")"]
+    },
+    {
+      "id": "tap-hop.ex.kt-dau-giua",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba bạn đeo số áo 3, 8 và 10. Khi ghi tập hợp các số áo, chạm vào dấu viết giữa hai số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.cham-dau-giua",
+      "answer": ["cham-phay"]
+    },
+    {
+      "id": "tap-hop.ex.chon-viet-dung",
+      "cardIds": ["tap-hop.card.dau-cham-phay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp nào viết đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{4} \\, {\\Large ;} \\, \\concept{amber}{5} \\, {\\Large ;} \\, \\concept{amber}{6} \\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{4} \\, {\\Large ,} \\, \\concept{amber}{5} \\, {\\Large ,} \\, \\concept{amber}{6} \\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{4} \\, {\\Large .} \\, \\concept{amber}{5} \\, {\\Large .} \\, \\concept{amber}{6} \\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dat-cham-phay-bai",
+      "cardIds": ["tap-hop.card.dau-cham-phay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt dấu chấm phẩy vào giữa các số. Chạm vào từng khoảng trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "manipulate",
+      "visualId": "tap-hop.visual.dat-cham-phay-bon",
+      "validatorId": "du-cham-phay",
+      "params": {
+        "gaps": 3
+      }
+    },
+    {
+      "id": "tap-hop.ex.dien-cham-phay",
+      "cardIds": ["tap-hop.card.dau-cham-phay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền dấu còn thiếu giữa các phần tử."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "E = { 2 "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " 5 "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " 8 }"
+        }
+      ],
+      "bank": [";", ",", "."]
+    },
+    {
+      "id": "tap-hop.ex.cham-dau-cham-phay",
+      "cardIds": ["tap-hop.card.dau-cham-phay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào dấu chấm phẩy."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.cham-dau-ngan",
+      "answer": ["cham-phay"]
+    },
+    {
+      "id": "tap-hop.ex.kt-cham-thuoc",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bút là một đồ trong hộp bút, nên bút thuộc tập hợp các đồ trong hộp. Chạm vào kí hiệu thuộc."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.cham-ki-hieu-thuoc",
+      "answer": ["thuoc"]
+    },
+    {
+      "id": "tap-hop.ex.doc-thuoc",
+      "cardIds": ["tap-hop.card.thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dòng nào đọc là “a thuộc B”?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "a \\in B"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "B \\in a"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "a = B"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dien-thuoc",
+      "cardIds": ["tap-hop.card.thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn kí hiệu thích hợp cho chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{A} = \\{ \\concept{amber}{3} ; \\concept{amber}{5} ; \\concept{amber}{7} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "5 "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["∈"]
+        },
+        {
+          "type": "text",
+          "text": " A"
+        }
+      ],
+      "bank": ["∈", "=", "{"]
+    },
+    {
+      "id": "tap-hop.ex.chon-x-thuoc",
+      "cardIds": ["tap-hop.card.thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bấm − hoặc + để đổi x, sao cho x thuộc tập hợp A."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{A} = \\{ \\concept{amber}{2} ; \\concept{amber}{4} ; \\concept{amber}{6} ; \\concept{amber}{8} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "manipulate",
+      "visualId": "tap-hop.visual.chon-x-thuoc",
+      "validatorId": "x-thuoc",
+      "params": {
+        "want": 1,
+        "count": 4,
+        "e0": 2,
+        "e1": 4,
+        "e2": 6,
+        "e3": 8
+      }
+    },
+    {
+      "id": "tap-hop.ex.viet-thuoc-chu",
+      "cardIds": ["tap-hop.card.thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 6 là một phần tử của tập hợp C. Viết đúng là:"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{6} \\in \\concept{teal}{C}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{teal}{C} \\in \\concept{amber}{6}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{6} = \\concept{teal}{C}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.kt-cham-khong-thuoc",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quả cam không phải đồ trong hộp bút, nên quả cam không thuộc tập hợp các đồ trong hộp. Chạm vào kí hiệu không thuộc."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.cham-ki-hieu-khong-thuoc",
+      "answer": ["khong-thuoc"]
+    },
+    {
+      "id": "tap-hop.ex.viet-khong-thuoc",
+      "cardIds": ["tap-hop.card.khong-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 5 không phải là phần tử của tập hợp B. Viết đúng là:"
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{B} = \\{ \\concept{amber}{2} ; \\concept{amber}{4} ; \\concept{amber}{6} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{5} \\notin \\concept{teal}{B}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{5} \\in \\concept{teal}{B}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{teal}{B} \\notin \\concept{amber}{5}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dien-khong-thuoc",
+      "cardIds": ["tap-hop.card.khong-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn kí hiệu thích hợp cho chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{D} = \\{ \\concept{amber}{1} ; \\concept{amber}{3} ; \\concept{amber}{9} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "4 "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["∉"]
+        },
+        {
+          "type": "text",
+          "text": " D"
+        }
+      ],
+      "bank": ["∈", "∉", "="]
+    },
+    {
+      "id": "tap-hop.ex.chon-x-khong-thuoc",
+      "cardIds": ["tap-hop.card.khong-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bấm − hoặc + để đổi x, sao cho x không thuộc tập hợp A."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{A} = \\{ \\concept{amber}{1} ; \\concept{amber}{3} ; \\concept{amber}{5} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "manipulate",
+      "visualId": "tap-hop.visual.chon-x-khong-thuoc",
+      "validatorId": "x-thuoc",
+      "params": {
+        "want": 0,
+        "count": 3,
+        "e0": 1,
+        "e1": 3,
+        "e2": 5
+      }
+    },
+    {
+      "id": "tap-hop.ex.noi-doc-ki-hieu",
+      "cardIds": ["tap-hop.card.khong-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi kí hiệu với cách đọc của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "match",
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "a \\in B"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "a \\notin B"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "a không thuộc B"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "a thuộc B"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r2"
+        },
+        {
+          "left": "l2",
+          "right": "r1"
+        }
+      ]
+    },
+    {
+      "id": "tap-hop.ex.chon-doc-khong-thuoc",
+      "cardIds": ["tap-hop.card.khong-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dòng nào đọc là “m không thuộc P”?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "m \\notin P"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "m \\in P"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "P \\notin m"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.kt-ghep-hai-phan-tu",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ghép các kí hiệu để viết tập hợp K gồm hai số 5 và 8, viết số bé trước."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "K = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["5"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o3",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o4",
+          "accept": ["8"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o5",
+          "accept": ["}"]
+        }
+      ],
+      "bank": ["{", "}", ";", "5", "8", "("]
+    },
+    {
+      "id": "tap-hop.ex.ghep-ba-phan-tu",
+      "cardIds": ["tap-hop.card.liet-ke"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba bạn trong tổ đeo số áo 3, 5 và 9. Viết tập hợp C các số áo đó bằng cách liệt kê, theo thứ tự từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "tap-hop.visual.lap-ghep-liet-ke"
+      },
+      "difficulty": 2,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "C = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["3"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o3",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o4",
+          "accept": ["5"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o5",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o6",
+          "accept": ["9"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o7",
+          "accept": ["}"]
+        }
+      ],
+      "bank": ["{", "}", ";", "3", "5", "9", ","]
+    },
+    {
+      "id": "tap-hop.ex.xep-ghep-tap-hop",
+      "cardIds": ["tap-hop.card.liet-ke"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các thẻ để viết tập hợp D gồm hai số 4 và 9, viết số bé trước."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "order",
+      "items": [
+        {
+          "id": "t1",
+          "content": {
+            "type": "text",
+            "text": "{"
+          }
+        },
+        {
+          "id": "t2",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "t3",
+          "content": {
+            "type": "text",
+            "text": ";"
+          }
+        },
+        {
+          "id": "t4",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "t5",
+          "content": {
+            "type": "text",
+            "text": "}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tap-hop.ex.chon-chu-so-343",
+      "cardIds": ["tap-hop.card.liet-ke"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp các chữ số của số 343 viết đúng là cách nào? Mỗi phần tử chỉ viết một lần."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{3} ; \\concept{amber}{4} \\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{3} ; \\concept{amber}{4} ; \\concept{amber}{3} \\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{343} \\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dem-chu-cai-nha-trang",
+      "cardIds": ["tap-hop.card.liet-ke"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Gọi T là tập hợp các chữ cái trong từ “NHA TRANG”. Tập hợp T có bao nhiêu phần tử?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "tap-hop.ex.ghep-quy-ba",
+      "cardIds": ["tap-hop.card.liet-ke"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quý Ba gồm ba tháng là tháng Bảy, tháng Tám, tháng Chín. Viết tập hợp Q các tháng của quý Ba, theo thứ tự trong năm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Q = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["tháng Bảy"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o3",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o4",
+          "accept": ["tháng Tám"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o5",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o6",
+          "accept": ["tháng Chín"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o7",
+          "accept": ["}"]
+        }
+      ],
+      "bank": [
+        "{",
+        "}",
+        ";",
+        "tháng Bảy",
+        "tháng Tám",
+        "tháng Chín",
+        "tháng Tư"
+      ]
+    },
+    {
+      "id": "tap-hop.ex.kt-xet-hai-chu-so",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phố của Nam có nhà số 9, 64 và 200. Số nhà nào thuộc tập hợp Q các số nhà có hai chữ số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "64"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "200"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.xet-ba-chu-so",
+      "cardIds": ["tap-hop.card.xet-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "K là tập hợp các số tự nhiên có ba chữ số. Chọn tất cả các số thuộc K."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "48"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "305"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "999"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "100"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        }
+      ],
+      "answer": ["b", "c", "d"],
+      "multiple": true
+    },
+    {
+      "id": "tap-hop.ex.dien-dau-xet-so",
+      "cardIds": ["tap-hop.card.xet-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "K là tập hợp các số tự nhiên có ba chữ số. Chọn kí hiệu cho mỗi chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "610 "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["∈"]
+        },
+        {
+          "type": "text",
+          "text": " K và 95 "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["∉"]
+        },
+        {
+          "type": "text",
+          "text": " K"
+        }
+      ],
+      "bank": ["∈", "∉"]
+    },
+    {
+      "id": "tap-hop.ex.xet-hai-tap",
+      "cardIds": ["tap-hop.card.xet-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho hai tập hợp A và B. Chọn kí hiệu cho mỗi chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{A} = \\{ \\concept{amber}{m} ; \\concept{amber}{n} ; \\concept{amber}{p} \\}"
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{B} = \\{ \\concept{amber}{p} ; \\concept{amber}{q} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          },
+          {
+            "target": "block",
+            "index": 2
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "p "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["∈"]
+        },
+        {
+          "type": "text",
+          "text": " A, p "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["∈"]
+        },
+        {
+          "type": "text",
+          "text": " B, q "
+        },
+        {
+          "type": "blank",
+          "id": "o3",
+          "accept": ["∉"]
+        },
+        {
+          "type": "text",
+          "text": " A, q "
+        },
+        {
+          "type": "blank",
+          "id": "o4",
+          "accept": ["∈"]
+        },
+        {
+          "type": "text",
+          "text": " B"
+        }
+      ],
+      "bank": ["∈", "∉"]
+    },
+    {
+      "id": "tap-hop.ex.chon-dong-dung",
+      "cardIds": ["tap-hop.card.xet-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho tập hợp R gồm hai phần tử h và k. Dòng nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{k} \\in \\concept{teal}{R}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{h} \\notin \\concept{teal}{R}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{amber}{u} \\in \\concept{teal}{R}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.kt-cham-dau-hieu",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Các bạn đeo số áo 0, 2, 4, 6, 8 được viết thành tập hợp A. Chạm vào dấu hiệu đặc trưng của A."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "tap-hop.visual.cham-dau-hieu",
+      "answer": ["dau-hieu"]
+    },
+    {
+      "id": "tap-hop.ex.liet-ke-tu-dau-hieu",
+      "cardIds": ["tap-hop.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho tập hợp B = {x | x là số tự nhiên nhỏ hơn 4}. Chọn cách viết B bằng cách liệt kê các phần tử."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{0} ; \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} \\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} \\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} ; \\concept{amber}{4} \\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.dien-liet-ke-tu-dau",
+      "cardIds": ["tap-hop.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho tập hợp D = {x | x là số tự nhiên lớn hơn 5 và nhỏ hơn 9}. Viết D bằng cách liệt kê, theo thứ tự từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "D = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["6"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o3",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o4",
+          "accept": ["7"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o5",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o6",
+          "accept": ["8"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o7",
+          "accept": ["}"]
+        }
+      ],
+      "bank": ["{", "}", ";", "5", "6", "7", "8", "9"]
+    },
+    {
+      "id": "tap-hop.ex.dem-phan-tu-dau-hieu",
+      "cardIds": ["tap-hop.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp các số tự nhiên nhỏ hơn 7 có bao nhiêu phần tử? Nhớ số 0 cũng là số tự nhiên."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "7"
+      }
+    },
+    {
+      "id": "tap-hop.ex.chon-phan-tu-dau-hieu",
+      "cardIds": ["tap-hop.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho tập hợp G = {x | x là số tự nhiên lớn hơn 10 và nhỏ hơn 14}. Chọn tất cả các số thuộc G."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "11"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "14"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["a", "b", "c"],
+      "multiple": true
+    },
+    {
+      "id": "tap-hop.ex.chon-tat-ca-mau-co",
+      "cardIds": ["tap-hop.card.phan-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các phần tử của tập hợp các màu trên lá cờ Việt Nam."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "màu đỏ"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "màu vàng"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "màu xanh"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "màu tím"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "tap-hop.ex.chon-tat-ca-thuoc",
+      "cardIds": ["tap-hop.card.thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số thuộc tập hợp A."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{A} = \\{ \\concept{amber}{2} ; \\concept{amber}{5} ; \\concept{amber}{8} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["a", "c", "d"],
+      "multiple": true
+    },
+    {
+      "id": "tap-hop.ex.chon-tat-ca-khong-thuoc",
+      "cardIds": ["tap-hop.card.khong-thuoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số không thuộc tập hợp C."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{C} = \\{ \\concept{amber}{4} ; \\concept{amber}{6} ; \\concept{amber}{7} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "tap-hop.ex.kt-hai-cach",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cách nào là liệt kê các phần tử của tập hợp?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "{2; 4; 6}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "{x | x là số chẵn}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "{x | x là số lẻ nhỏ hơn 6}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.chon-dau-hieu-3456",
+      "cardIds": ["tap-hop.card.doi-cach"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Các bạn trong tổ đeo số áo 3, 4, 5, 6. Chọn dấu hiệu đặc trưng của tập hợp P các số áo."
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{teal}{P} = \\{ \\concept{amber}{3} ; \\concept{amber}{4} ; \\concept{amber}{5} ; \\concept{amber}{6} \\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "x là số tự nhiên lớn hơn 2 và nhỏ hơn 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "x là số tự nhiên lớn hơn 3 và nhỏ hơn 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "x là số tự nhiên lớn hơn 2 và nhỏ hơn 6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "x là số tự nhiên nhỏ hơn 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "tap-hop.ex.noi-hai-cach",
+      "cardIds": ["tap-hop.card.doi-cach"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi tập hợp với dấu hiệu đặc trưng của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "match",
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{2} ; \\concept{amber}{4} ; \\concept{amber}{6} \\}"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} \\}"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{5} ; \\concept{amber}{6} ; \\concept{amber}{7} \\}"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "các số tự nhiên lớn hơn 4 và nhỏ hơn 8"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "các số tự nhiên lớn hơn 0 và nhỏ hơn 4"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "các số chẵn lớn hơn 0 và nhỏ hơn 8"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r3"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r1"
+        }
+      ]
+    },
+    {
+      "id": "tap-hop.ex.dien-liet-ke-chan",
+      "cardIds": ["tap-hop.card.doi-cach"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho tập hợp H = {x | x là số chẵn lớn hơn 3 và nhỏ hơn 10}. Viết H bằng cách liệt kê, theo thứ tự từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "H = "
+        },
+        {
+          "type": "blank",
+          "id": "o1",
+          "accept": ["{"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o2",
+          "accept": ["4"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o3",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o4",
+          "accept": ["6"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o5",
+          "accept": [";"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o6",
+          "accept": ["8"]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "o7",
+          "accept": ["}"]
+        }
+      ],
+      "bank": ["{", "}", ";", "10", "4", "6", "8"]
+    },
+    {
+      "id": "tap-hop.ex.chon-dau-hieu-so-le",
+      "cardIds": ["tap-hop.card.doi-cach"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp nào có dấu hiệu đặc trưng “x là số lẻ nhỏ hơn 9”?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{3} ; \\concept{amber}{5} ; \\concept{amber}{7} \\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{3} ; \\concept{amber}{5} ; \\concept{amber}{7} ; \\concept{amber}{9} \\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{ \\concept{amber}{0} ; \\concept{amber}{2} ; \\concept{amber}{4} ; \\concept{amber}{6} ; \\concept{amber}{8} \\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    }
+  ],
+  "sticker": {
+    "name": "Chiếc hộp tập hợp",
+    "visualId": "tap-hop.visual.sticker"
+  },
+  "overview": {
+    "hook": {
+      "text": "Bạn xếp bút, thước và tẩy vào một hộp bút: cả nhóm đồ trong hộp chính là một tập hợp.",
+      "visualId": "tap-hop.visual.tom-tat-tap-hop"
+    },
+    "summary": "Bài này dạy cách viết một tập hợp bằng dấu ngoặc nhọn, dấu chấm phẩy, kí hiệu thuộc và kí hiệu không thuộc. Sau đó bạn viết tập hợp theo hai cách: liệt kê và nêu dấu hiệu đặc trưng.",
+    "goals": [
+      "biết tập hợp và phần tử là gì",
+      "viết được dấu ngoặc nhọn và dấu chấm phẩy",
+      "dùng kí hiệu thuộc và không thuộc",
+      "viết một tập hợp bằng hai cách"
+    ],
+    "whyItMatters": "Viết đúng tập hợp là bước đầu để học các bài về số tự nhiên sau này.",
+    "narration": {
+      "audioUrl": "narration/tap-hop/overview.m4a",
+      "vttUrl": "narration/tap-hop/overview.vtt"
+    }
+  },
+  "videos": [
+    {
+      "id": "tap-hop.video.tap-hop-la-gi",
+      "lessonId": "tap-hop",
+      "url": "video/tap-hop/tap-hop-la-gi.mp4",
+      "vttUrl": "video/tap-hop/tap-hop-la-gi.vtt",
+      "posterUrl": "video/tap-hop/tap-hop-la-gi.jpg",
+      "durationSec": 61.07,
+      "clips": [
+        {
+          "id": "tap-hop",
+          "start": 0.7,
+          "end": 14.049,
+          "cardIds": ["tap-hop.card.tap-hop"]
+        },
+        {
+          "id": "phan-tu",
+          "start": 14.449,
+          "end": 22.818,
+          "cardIds": ["tap-hop.card.phan-tu"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "tap-hop.video.thuoc-khong-thuoc",
+      "lessonId": "tap-hop",
+      "url": "video/tap-hop/thuoc-khong-thuoc.mp4",
+      "vttUrl": "video/tap-hop/thuoc-khong-thuoc.vtt",
+      "posterUrl": "video/tap-hop/thuoc-khong-thuoc.jpg",
+      "durationSec": 60.4,
+      "clips": [
+        {
+          "id": "thuoc",
+          "start": 10.271,
+          "end": 29.673,
+          "cardIds": ["tap-hop.card.thuoc"]
+        },
+        {
+          "id": "khong-thuoc",
+          "start": 30.073,
+          "end": 50.042,
+          "cardIds": ["tap-hop.card.khong-thuoc"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Nhân chia trước, cộng trừ sau",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-nhan",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Bạn cú có một biểu thức dài."
+        },
+        {
+          "text": "20 cộng 6 nhân 3 trừ 8 chia 4."
+        },
+        {
+          "text": "Có cả nhân, chia và cộng, trừ."
+        },
+        {
+          "text": "Làm phép nào trước?"
+        },
+        {
+          "text": "Ta cùng làm từng bước nhé."
+        }
+      ]
+    },
+    {
+      "id": "s02-quy-tac",
+      "sentences": [
+        {
+          "text": "Có cả nhân, chia và cộng, trừ thì làm nhân, chia trước, rồi cộng, trừ sau.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-nhan",
+      "sentences": [
+        {
+          "text": "Tìm phép nhân và phép chia trước."
+        },
+        {
+          "text": "6 nhân 3 bằng 18."
+        },
+        {
+          "text": "8 chia 4 bằng 2."
+        },
+        {
+          "text": "Phép tính làm trước được khoanh hồng."
+        },
+        {
+          "text": "Nhân và chia cùng một nhóm."
+        }
+      ]
+    },
+    {
+      "id": "s04-cong",
+      "sentences": [
+        {
+          "text": "Giờ biểu thức còn 20 cộng 18 trừ 2."
+        },
+        {
+          "text": "Chỉ còn cộng và trừ."
+        },
+        {
+          "text": "Trong mỗi nhóm, làm từ trái sang phải.",
+          "rule": true
+        },
+        {
+          "text": "20 cộng 18 bằng 38."
+        },
+        {
+          "text": "38 trừ 2 bằng 36."
+        },
+        {
+          "text": "Mỗi dòng chỉ làm một phép tính."
+        }
+      ]
+    },
+    {
+      "id": "s05-sai",
+      "sentences": [
+        {
+          "text": "Nhưng khi có nhân, chia thì đừng cộng trước."
+        },
+        {
+          "text": "20 cộng 6 rồi nhân 3 là sai."
+        },
+        {
+          "text": "Phải làm nhân, chia trước."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Nhân, chia làm trước; cộng, trừ làm sau.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hon-hop",
+      "from": "s02-quy-tac",
+      "to": "s06-nho",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.hon-hop"]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
 import {
   answerRight,
   createProfile,
@@ -6,6 +6,7 @@ import {
   openFixtureLesson,
 } from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
+import { test } from "./test";
 
 const SECTION = "fixture.section.phep-nhan";
 const NEXT_SECTION = "fixture.section.doc-hieu";
@@ -120,7 +121,9 @@ test("a child goes back to earlier screens without answering again", async ({
   const stepper = page.locator("[data-section-stepper]");
   const back = page.getByRole("button", { name: "Quay lại" });
   await expect(stepper).toHaveAttribute("data-current", "0");
-  await expect(back).toHaveCount(0);
+  // The fixture lesson has an introduction, which the first screen's
+  // "Quay lại" leads to (see overview.spec.ts).
+  await expect(back).toBeVisible();
 
   await page.getByRole("button", { name: "Tiếp" }).tap();
   await expect(back).toBeVisible();
@@ -128,7 +131,6 @@ test("a child goes back to earlier screens without answering again", async ({
   expect(box?.height).toBeGreaterThanOrEqual(48);
   await back.tap();
   await expect(stepper).toHaveAttribute("data-current", "0");
-  await expect(back).toHaveCount(0);
 
   // Through the blocks to the check, answered right.
   for (let i = 0; i < 3; i++) {

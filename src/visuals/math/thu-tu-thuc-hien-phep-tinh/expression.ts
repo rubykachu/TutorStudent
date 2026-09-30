@@ -112,6 +112,13 @@ export type Operation = {
   calculation: Calculation;
 };
 
+// "12 : 3 = 4", or "2 mũ 3 = 8": the operation as a short sentence for the
+// line under a right tap.
+export function spokenOperation({ calculation: c }: Operation): string {
+  const sign = c.sign === "^" ? " mũ " : ` ${c.sign === "-" ? "−" : c.sign} `;
+  return `${c.left}${sign}${c.right} = ${c.result}`;
+}
+
 function numberAt(token: Token | undefined, tokens: readonly Token[]): number {
   if (token?.kind !== "num") {
     throw new Error(`Operand missing in "${tokens.map(tokenText).join(" ")}"`);

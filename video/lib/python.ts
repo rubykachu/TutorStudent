@@ -9,7 +9,7 @@ import { HF_HOME, PYTHON_BIN } from "../config";
 export async function runPython<T>(script: string, job: unknown): Promise<T[]> {
   if (!existsSync(PYTHON_BIN)) {
     throw new Error(
-      `No pipeline Python at ${PYTHON_BIN}; set it up as in video/spikes/vieneu/requirements.txt or set VIDEO_PYTHON`,
+      `No pipeline Python at ${PYTHON_BIN}; set it up as in video/requirements.txt or set VIDEO_PYTHON`,
     );
   }
   const child = spawn(PYTHON_BIN, [script], {

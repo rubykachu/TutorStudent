@@ -33,6 +33,8 @@ export type SoundManifest = { entries: SoundEntry[] };
 export const SOUNDS_DIR_URL = "/sounds";
 // A correct answer.
 export const JINGLE_ID = "correct-jingle";
+// The click of choosing an option, chip or region.
+export const TAP_ID = "tap";
 // A wrong answer after the first one of an attempt.
 export const OOPS_ID = "oops";
 

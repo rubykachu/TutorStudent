@@ -10,6 +10,8 @@ import {
 import { alignWords } from "./lib/align";
 import { layNarration, probeDuration } from "./lib/audio";
 import { buildSite } from "./lib/compose";
+import { captionIssues, checkProject, openingIssues } from "./lib/consistency";
+import { lessonVoice, readLessonMedia } from "./lib/lesson-media";
 import { writeManifest } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
 import { encodeVideo, extractPoster, renderSite } from "./lib/render";
@@ -44,11 +46,37 @@ async function main() {
       `script.json must quote the lesson word for word:\n${verbatim.join("\n")}`,
     );
   }
+  // On-screen rule text is checked before any voice or render work.
+  const onScreen = checkProject(lessonId, name, { captions: false }).issues;
+  if (onScreen.length > 0) {
+    throw new Error(
+      `index.html shows rule text that is off:\n${onScreen.join("\n")}`,
+    );
+  }
+  const lessonMedia = readLessonMedia(lessonId);
+  const opening = openingIssues(
+    script,
+    lessonMedia.openingExempt?.includes(name),
+  );
+  if (opening.length > 0) {
+    throw new Error(`the opening line is off:\n${opening.join("\n")}`);
+  }
+  const voice = lessonVoice(lessonId).spec;
+  if (script.engine !== voice.engine) {
+    throw new Error(
+      `script.json engine "${script.engine}" is not the lesson's voice engine "${voice.engine}"`,
+    );
+  }
   const engine = ttsEngine(script.engine);
   const renders = path.join(projectDir, "renders");
   mkdirSync(renders, { recursive: true });
 
-  const takes = await narrate(script, engine, path.join(projectDir, "audio"));
+  const takes = await narrate(
+    script,
+    engine,
+    voice.preset,
+    path.join(projectDir, "audio"),
+  );
   const words = takes.map((t) =>
     alignWords(t.text, t.spoken, t.words, t.duration),
   );
@@ -76,7 +104,14 @@ async function main() {
       (posterScene.end - posterScene.start) * script.poster.at,
     path.join(outDir, `${name}.jpg`),
   );
-  writeFileSync(path.join(outDir, `${name}.vtt`), buildVtt(timeline));
+  const vtt = buildVtt(timeline);
+  writeFileSync(path.join(outDir, `${name}.vtt`), vtt);
+  const captionProblems = captionIssues(script, vtt);
+  if (captionProblems.length > 0) {
+    throw new Error(
+      `the captions do not match script.json:\n${captionProblems.join("\n")}`,
+    );
+  }
 
   const duration = Math.round(probeDuration(mp4) * 100) / 100;
   const megabytes = statSync(mp4).size / 1_000_000;
@@ -96,7 +131,7 @@ async function main() {
     posterUrl: `${media}.jpg`,
     durationSec: duration,
     clips: buildClips(script, timeline),
-    voice: engine.voice(script.voice),
+    voice: engine.voice(voice.preset),
   });
 
   const report = {

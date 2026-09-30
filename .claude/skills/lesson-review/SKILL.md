@@ -11,7 +11,7 @@ Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ th
 ## Vai
 
 - **Điều phối**: phiên gọi skill (có thể là phiên soạn bài). Chỉ chạy lệnh, chia phần, mở subagent và chuyển kết quả; không phán nội dung, không bỏ phát hiện nào.
-- **Reviewer**, **Tổng hợp**: luôn là subagent mới, mở bằng Agent tool với `subagent_type: "general-purpose"` và `model: "opus"` (mọi reviewer song song lẫn Tổng hợp), không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
+- **Reviewer**, **Tổng hợp**: luôn là subagent mới, mở bằng Agent tool với `subagent_type: "general-purpose"`; model theo vòng: vòng 1 và 2 (soát toàn bài, gồm reviewer song song lẫn Tổng hợp) dùng `model: "opus"`, từ vòng 3 (chỉ phần đổi, kể cả review kịch bản video/lời đọc) dùng `model: "sonnet"`, không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
 
 ## Đầu vào
 
@@ -19,6 +19,7 @@ Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ th
 - `<id bài>` là slug của bài (tên thư mục chứa `lesson.json`).
 - Ảnh nguồn: `sources/<subject>/<id bài>/p<trang>.png` (`sbt-p<trang>.png`: trang sách bài tập) (hoặc `.jpg`; `p23-24.png` chứa hai trang).
 - Trường: `src/schema/content.ts`. Luật: `docs/spec.md` mục "Kiểm duyệt nội dung", "Phản hồi 3 nấc khi sai". Tiêu chí và mức lỗi: `references/checklist.md`.
+- Lỗi đã lặp ở các bài trước: `docs/lessons-learned/index.md`. Reviewer và Tổng hợp đọc nó trước khi soát, rồi soát kỹ phần máy chưa bắt của từng mục.
 
 ## Vòng review
 
@@ -65,4 +66,12 @@ Tổng hợp:
 
 Mức từng loại lỗi ghi trong checklist; phân vân thì chọn mức cao hơn và nêu lý do. Cách sửa đề xuất phải theo được luật của bài: không đề xuất điều `.claude/skills/lesson-author/references/pitfalls.md` cấm.
 
-Báo người gọi: vòng, số phát hiện theo mức, kết luận, đường dẫn `review.md`.
+## Rút kinh nghiệm
+
+Phiên ghi `review.md` (Tổng hợp, hay Reviewer của vòng chỉ phần đổi) cập nhật `docs/lessons-learned/` với mỗi phát hiện Nghiêm trọng:
+- Thuộc một mục đã có: tăng cột Nghiêm trọng và Tổng của mục đó trong bảng "Số lần gặp", thêm ví dụ (bài, id, vòng) vào tệp mục nếu kiểu lỗi có điểm mới.
+- Kiểu mới: thêm tệp `LL-<số kế tiếp>-<slug>.md` theo khuôn các mục có sẵn (Triệu chứng, Ví dụ thật, Nguyên nhân gốc, Cách phòng, Trạng thái), một dòng ở "Mục lục" và ở "Số lần gặp".
+- Bài xong vòng 1: thêm dòng của bài vào bảng "Lỗi Nghiêm trọng ở vòng 1 theo bài".
+- Mục trong `review.md` ghi id mục lessons-learned bên cạnh vị trí khi có (vd "LL-01").
+
+Báo người gọi: vòng, số phát hiện theo mức, kết luận, đường dẫn `review.md`, mục lessons-learned đã thêm hay tăng số.

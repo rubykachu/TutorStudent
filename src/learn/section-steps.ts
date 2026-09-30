@@ -76,3 +76,21 @@ export function resumeStepIndex(
   );
   return Math.max(phaseStart, 0);
 }
+
+// The name of each screen's dot: "Lý thuyết 1", "Câu 1" (comprehension checks
+// and practice exercises count together) and "Nhớ nhé" for the recap.
+export function stepLabels(steps: readonly SectionStep[]): string[] {
+  let theory = 0;
+  let question = 0;
+  return steps.map((step) => {
+    if (step.kind === "block") {
+      theory += 1;
+      return `Lý thuyết ${theory}`;
+    }
+    if (step.kind === "exercise") {
+      question += 1;
+      return `Câu ${question}`;
+    }
+    return "Nhớ nhé";
+  });
+}

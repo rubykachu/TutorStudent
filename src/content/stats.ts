@@ -1,4 +1,4 @@
-import type { Lesson } from "@/schema/content";
+import type { Lesson, Subject } from "@/schema/content";
 import type { VisualCatalog } from "@/visuals/registry";
 import { collectVisualRefs } from "./check";
 
@@ -26,8 +26,8 @@ export const LESSON_MINIMUMS = {
   exerciseTypes: 5,
   // One interactive visual per this many sections, rounded up.
   sectionsPerInteractiveVisual: 3,
-  // Literature lessons end with a writing task.
-  literatureOpenEnded: 1,
+  // Subjects with `rules.requiresOpenEnded` end with a writing task.
+  requiredOpenEnded: 1,
 } as const;
 
 export function lessonStats(
@@ -70,7 +70,7 @@ export type Criterion = {
 };
 
 export function lessonCriteria(
-  lesson: Lesson,
+  subject: Subject | undefined,
   stats: LessonStats,
 ): Criterion[] {
   const min = LESSON_MINIMUMS;
@@ -104,9 +104,9 @@ export function lessonCriteria(
       `ceil(${stats.sections} sections / ${min.sectionsPerInteractiveVisual})`,
     ),
   ];
-  if (lesson.subject === "literature") {
+  if (subject?.rules.requiresOpenEnded) {
     criteria.push(
-      criterion("openEnded", stats.openEnded, min.literatureOpenEnded),
+      criterion("openEnded", stats.openEnded, min.requiredOpenEnded),
     );
   }
   return criteria;

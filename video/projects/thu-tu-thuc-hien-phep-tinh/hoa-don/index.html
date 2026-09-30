@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Vì sao cần thứ tự tính?" (lesson thu-tu-thuc-hien-phep-tinh):
+  two children work out the bill 2 · 8 + 5 in different orders and get 26
+  and 21; the shop bill shows 21 is right, then the rule.
+  Built by `pnpm video:build thu-tu-thuc-hien-phep-tinh hoa-don`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Vì sao cần thứ tự tính?</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .bill { position: absolute; left: 240px; width: 800px; top: 60px; padding: 22px 36px; font: 700 40px / 1.5 "Be Vietnam Pro", sans-serif; }
+      .ring { display: inline-block; padding: 0 16px 6px; border: 6px solid transparent; border-radius: 24px; }
+      .res { color: var(--color-concept-amber); border-bottom: 8px solid var(--color-concept-amber); }
+      .who { position: absolute; top: 40px; left: 0; width: 1280px; display: flex; justify-content: center; }
+      .col { position: absolute; top: 70px; width: 420px; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 10px 26px; }
+      .col .name { font: 800 52px / 1.2 "Baloo 2", sans-serif; display: flex; align-items: center; gap: 12px; }
+      .col .total { font-size: 96px; }
+      .col.right { border: 6px solid var(--color-correct, var(--color-concept-teal)); }
+      .col.wrong { opacity: 0.75; }
+      .mark { font: 800 48px / 1 "Baloo 2", sans-serif; }
+      .mark.ok { color: var(--color-concept-teal); }
+      .mark.no { color: var(--color-concept-slate); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="bill" class="bill card">
+            <div id="l-vo">Hai quyển vở: 8 nghìn đồng một quyển</div>
+            <div id="l-but">Một cái bút: 5 nghìn đồng</div>
+          </div>
+          <div id="sum-1" class="row math" style="top: 330px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div class="who"><span class="chip" style="--c: var(--color-concept-blue)">Nam: nhân trước</span></div>
+          <div id="n-r1" class="row math" style="top: 140px"></div>
+          <div id="n-r2" class="row math" style="top: 260px"></div>
+          <div id="n-r3" class="row" style="top: 380px"><span class="math pill"></span></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div class="who"><span class="chip" style="--c: var(--color-concept-slate)">Lan: cộng trước</span></div>
+          <div id="m-r1" class="row math" style="top: 140px"></div>
+          <div id="m-r2" class="row math" style="top: 260px"></div>
+          <div id="m-r3" class="row" style="top: 380px"><span class="math pill" style="background: var(--color-muted)"></span></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="col-nam" class="col card" style="left: 215px"><div class="name">Nam <span id="ok-nam" class="mark ok">✓</span></div><div class="math total">21</div></div>
+          <div id="col-lan" class="col card" style="left: 645px"><div class="name">Lan <span id="no-lan" class="mark no">✗</span></div><div class="math total">26</div></div>
+          <div id="b-1" class="row math small" style="top: 360px"></div>
+          <div id="b-2" class="row math small" style="top: 440px"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="r-expr" class="row math big" style="top: 70px"></div>
+          <div class="row" style="top: 270px">
+            <span id="t-first" class="chip" style="--c: var(--color-concept-pink)">nhân trước</span>
+            <span id="t-then" class="chip" style="--c: var(--color-concept-slate)">cộng sau</span>
+          </div>
+          <div id="r-eq" class="row" style="top: 380px"><span class="math pill"></span></div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="rule-6" class="row" style="top: 150px"><span class="math pill"></span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, op, owl, pop, rise, hide, pose, color, scenes, finish } = window.LV;
+        const dot = op("·");
+        const plus = op("+");
+        const eq = op("=");
+        const ring = (id, html) => `<span id="${id}" class="ring">${html}</span>`;
+        const res = (html) => `<span class="res">${html}</span>`;
+
+        // ---------- DOM ----------
+        $("#sum-1").innerHTML = `2${dot}8${plus}5`;
+        // Nam: 2 · 8 + 5 -> 16 + 5 -> 21
+        $("#n-r1").innerHTML = `${ring("n-ring", `2${dot}8`)}${plus}5`;
+        $("#n-r2").innerHTML = `${res("16")}${plus}5`;
+        $("#n-r3 .pill").textContent = "21";
+        // Lan: 2 · 8 + 5 -> 2 · 13 -> 26
+        $("#m-r1").innerHTML = `2${dot}${ring("m-ring", `8${plus}5`)}`;
+        $("#m-r2").innerHTML = `2${dot}${res("13")}`;
+        $("#m-r3 .pill").textContent = "26";
+        $("#b-1").innerHTML = `2${dot}8${eq}${res("16")}`;
+        $("#b-2").innerHTML = `${res("16")}${plus}5${eq}<span class="pill">21</span>`;
+        $("#r-expr").innerHTML = `${ring("r-ring", `2${dot}8`)}${plus}5`;
+        $("#r-eq .pill").innerHTML = `2${dot}8${plus}5${eq}21`;
+        $("#rule-6 .pill").textContent = "nhân trước, cộng sau";
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-hoa-don"],
+          ["#s2", "s02-nam"],
+          ["#s3", "s03-lan"],
+          ["#s4", "s04-ai-dung"],
+          ["#s5", "s05-quy-tac"],
+          ["#s6", "s06-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+        const pink = color("concept-pink");
+        const slate = color("concept-slate");
+
+        // ---------- s01: the bill ----------
+        {
+          const sid = "s01-hoa-don";
+          hide(["#l-vo", "#l-but", "#sum-1"]);
+          pose(bird, "happy", W(sid, "cú"));
+          rise("#l-vo", W(sid, "hai"));
+          rise("#l-but", W(sid, "cái"));
+          pop("#sum-1", W(sid, "nhân"), { from: 0.4 });
+        }
+
+        // ---------- s02: Nam multiplies first ----------
+        {
+          const sid = "s02-nam";
+          hide(["#n-r1", "#n-r2", "#n-r3"]);
+          pose(bird, "idle", start(sid));
+          rise("#n-r1", start(sid) + 0.3);
+          tl.to("#n-ring", { borderColor: pink, duration: 0.3 }, W(sid, "nhân"));
+          rise("#n-r2", W(sid, "bằng", 1));
+          pop("#n-r3", W(sid, "bằng", 2), { from: 0.4 });
+        }
+
+        // ---------- s03: Lan adds first ----------
+        {
+          const sid = "s03-lan";
+          hide(["#m-r1", "#m-r2", "#m-r3"]);
+          rise("#m-r1", start(sid) + 0.3);
+          tl.to("#m-ring", { borderColor: slate, duration: 0.3 }, W(sid, "cộng"));
+          rise("#m-r2", W(sid, "bằng", 1));
+          pop("#m-r3", W(sid, "bằng", 2), { from: 0.4 });
+        }
+
+        // ---------- s04: two totals, who is right ----------
+        {
+          const sid = "s04-ai-dung";
+          hide(["#col-nam", "#col-lan", "#ok-nam", "#no-lan", "#b-1", "#b-2"]);
+          pose(bird, "idle", start(sid));
+          pop("#col-nam", W(sid, "cùng"), { from: 0.6 });
+          pop("#col-lan", W(sid, "hai"), { from: 0.6 });
+          rise("#b-1", W(sid, "quyển"));
+          rise("#b-2", W(sid, "cộng"));
+          pop(["#ok-nam", "#no-lan"], W(sid, "đúng", 2), { from: 0.3 });
+          pose(bird, "happy", W(sid, "đúng", 2));
+        }
+
+        // ---------- s05: the rule ----------
+        {
+          const sid = "s05-quy-tac";
+          hide(["#t-first", "#t-then", "#r-eq"]);
+          pop("#r-expr", start(sid) + 0.2, { from: 0.6 });
+          tl.to("#r-ring", { borderColor: pink, duration: 0.3 }, W(sid, "trước"));
+          rise("#t-first", W(sid, "trước"));
+          rise("#t-then", W(sid, "sau"));
+          pop("#r-eq", W(sid, "nhờ"), { from: 0.5 });
+        }
+
+        // ---------- s06: remember ----------
+        {
+          const sid = "s06-nho";
+          pop("#rule-6", start(sid) + 0.2, { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

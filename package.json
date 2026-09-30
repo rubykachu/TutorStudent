@@ -25,8 +25,10 @@
     "lesson:walk": "tsx scripts/lesson-walk.ts",
     "sources:import": "tsx scripts/sources-import.ts",
     "video:build": "tsx video/build.ts",
+    "video:check": "tsx video/check.ts",
     "narration:build": "tsx video/narration-build.ts",
-    "sounds:build": "tsx scripts/sounds-build.ts"
+    "sounds:build": "tsx scripts/sounds-build.ts",
+    "clean": "tsx scripts/clean.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

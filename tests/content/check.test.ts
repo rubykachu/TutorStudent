@@ -23,6 +23,7 @@ import {
   fixtureContent,
   fixtureFile,
   lessonData,
+  subjectOf,
 } from "./helpers";
 
 const LESSON_FILE = "content/_fixture/math/kntt/fixture/lesson.json";
@@ -318,7 +319,7 @@ describe("hint targets", () => {
     const tapText = exercise(raw, "fixture.ex.cham-cau").hints as {
       highlight: Record<string, unknown>[];
     };
-    tapText.highlight = [{ target: "part", id: "s2" }];
+    tapText.highlight = [{ target: "part", id: "s1" }];
     const tapRegion = exercise(raw, "fixture.ex.cham-hinh-tron").hints as {
       highlight: Record<string, unknown>[];
     };
@@ -839,14 +840,8 @@ describe("lessonCriteria", () => {
     openEnded: 0,
   };
 
-  function lessonOf(subject: string): Lesson {
-    const [checked] = check().lessons;
-    if (!checked) throw new Error("fixture missing");
-    return { ...checked.lesson, subject };
-  }
-
   it("compares with the spec minimums, one interactive visual per 3 sections rounded up", () => {
-    expect(lessonCriteria(lessonOf("math"), stats)).toEqual([
+    expect(lessonCriteria(subjectOf("math"), stats)).toEqual([
       { name: "sections", actual: 7, required: 3, pass: true },
       { name: "cards", actual: 8, required: 8, pass: true },
       { name: "exercises", actual: 19, required: 20, pass: false },
@@ -868,13 +863,69 @@ describe("lessonCriteria", () => {
     ]);
   });
 
-  it("requires an openEnded exercise in literature lessons only", () => {
-    expect(lessonCriteria(lessonOf("literature"), stats).at(-1)).toEqual({
+  it("requires an openEnded exercise only where the subject rules say so", () => {
+    expect(lessonCriteria(subjectOf("literature"), stats).at(-1)).toEqual({
       name: "openEnded",
       actual: 0,
       required: 1,
       pass: false,
     });
+  });
+});
+
+describe("a subject added only in subjects.json", () => {
+  // A new subject needs its subjects.json entry and a glossary file, nothing
+  // in code. The fixture lesson moves under it, carrying an English sentence.
+  function withSubject(language: "vi" | "en"): CheckResult {
+    const raw = fixtureContent();
+    const subjects = raw.subjects.data as { subjects: unknown[] };
+    subjects.subjects.push({
+      id: "english",
+      name: "Tiếng Anh",
+      color: "teal",
+      icon: "book-open",
+      language,
+      rules: {
+        checkExpr: false,
+        verbatimPassage: false,
+        requiresOpenEnded: false,
+      },
+      series: [{ id: "main", name: "Main" }],
+      defaultSeries: "main",
+    });
+    raw.glossaries.push({
+      file: "content/glossary/english.json",
+      subject: "english",
+      data: { terms: [], names: [] },
+    });
+    const file = fixtureFile(raw);
+    file.dir = ["_fixture", "english", "main", "fixture"];
+    const data = lessonData(raw);
+    data.subject = "english";
+    data.series = "main";
+    const blocks = data.sections[0]?.blocks as { text?: string }[] | undefined;
+    const note = blocks?.[0];
+    if (!note) throw new Error("fixture note moved");
+    note.text = "Read the story again.";
+    return check(raw);
+  }
+
+  it("is not blocked by the Vietnamese syllable rule when its language is en", () => {
+    const vietnamese = withSubject("en").issues.filter(
+      (i) => i.rule === "vietnamese" || i.rule === "length",
+    );
+    expect(vietnamese).toEqual([]);
+  });
+
+  it("is held to the Vietnamese rules when its language is vi", () => {
+    const vietnamese = withSubject("vi").issues.filter(
+      (i) => i.rule === "vietnamese",
+    );
+    expect(vietnamese.length).toBeGreaterThan(0);
+  });
+
+  it("raises no other error for the new subject", () => {
+    expect(errors(withSubject("en"))).toEqual([]);
   });
 });
 

@@ -38,7 +38,6 @@ function script(
   return {
     title: "t",
     engine: "local",
-    voice: "Hải Đăng",
     poster: { scene: "s01-a", at: 0.5 },
     scenes: [{ id: "s01-a", sentences }],
     clips: [],
