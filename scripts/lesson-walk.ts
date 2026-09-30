@@ -806,21 +806,25 @@ async function main() {
       `lesson:walk ${lessonId}: the server serves another version than lesson.json (not emitted or not approved yet); walking the served one`,
     );
   }
-  const findings: Finding[] = [];
-  const browsers = new Map<string, Browser>();
+  // The devices walk side by side, each in its own browser process, so one
+  // walk costs about as long as its slowest device. Findings keep the
+  // device order of WALK_DEVICES.
+  const devices = Object.keys(WALK_DEVICES) as WalkDevice[];
+  const browsers: Browser[] = [];
+  let findings: Finding[];
   try {
-    for (const device of Object.keys(WALK_DEVICES) as WalkDevice[]) {
-      const { browserName } = WALK_DEVICES[device];
-      let browser = browsers.get(browserName);
-      if (!browser) {
-        browser = await BROWSERS[browserName].launch();
-        browsers.set(browserName, browser);
-      }
-      console.log(`lesson:walk ${lessonId} on ${device}…`);
-      findings.push(...(await walkDevice(browser, device, lesson, outRoot)));
-    }
+    const perDevice = await Promise.all(
+      devices.map(async (device) => {
+        console.log(`lesson:walk ${lessonId} on ${device}…`);
+        const browser =
+          await BROWSERS[WALK_DEVICES[device].browserName].launch();
+        browsers.push(browser);
+        return walkDevice(browser, device, lesson, outRoot);
+      }),
+    );
+    findings = perDevice.flat();
   } finally {
-    await Promise.all([...browsers.values()].map((b) => b.close()));
+    await Promise.all(browsers.map((b) => b.close()));
     stopServer(server);
   }
 

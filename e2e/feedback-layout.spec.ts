@@ -1,5 +1,10 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
-import { answerRight, createProfile, exerciseId } from "./flows";
+import {
+  answerRight,
+  createProfile,
+  exerciseId,
+  openFixtureLesson,
+} from "./flows";
 import {
   expectInViewAboveBar,
   expectNoHorizontalScroll,
@@ -19,7 +24,7 @@ const SCREENS = [
 async function openSection(page: Page) {
   await page.goto("/profiles");
   await createProfile(page, "Bé Na", "Cáo");
-  await page.goto("/lessons/fixture");
+  await openFixtureLesson(page);
   await page.locator('[data-section="fixture.section.phep-nhan"]').tap();
   const step = page.locator("[data-section-step]");
   while ((await step.getAttribute("data-section-step")) === "block") {

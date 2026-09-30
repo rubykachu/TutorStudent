@@ -288,7 +288,7 @@ function StepView({
   switch (step.kind) {
     case "block":
       return (
-        <div className="flex flex-1 flex-col" data-section-step="block">
+        <div className="flex flex-1 flex-col gap-4" data-section-step="block">
           <BlockStage block={step.block} videos={lesson.videos} />
           <BottomBar>
             <BigButton onClick={onNext}>
@@ -300,7 +300,7 @@ function StepView({
       );
     case "recap":
       return (
-        <div className="flex flex-1 flex-col" data-section-step="recap">
+        <div className="flex flex-1 flex-col gap-4" data-section-step="recap">
           <BlockStage
             block={step.recap}
             recap

@@ -12,7 +12,9 @@ export const BOTTOM_BAR_HEIGHT_VAR = "--bottom-bar-height";
 // scrolls. Being sticky, it keeps its own place in the flow, so at the end of
 // the page it never covers the last content; `bar-surface` paints a
 // full-width background with a hairline top edge so content passing under
-// it reads as going beneath.
+// it reads as going beneath. Its parent is a flex column with at least a
+// `gap-4` so the last control above (a secondary button, a video's
+// caption toggle) never touches the bar; e2e/layout.ts checks that.
 export function BottomBar({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 

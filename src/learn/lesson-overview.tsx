@@ -27,6 +27,7 @@ import {
 } from "@/content/overview";
 import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { Owl } from "@/mascot/owl";
 import type { Lesson, LessonOverview } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
@@ -252,12 +253,29 @@ export function LessonOverviewView({
     : readAloud.reading === null
       ? NOT_READING
       : { word: -1, sentence: readAloud.reading };
+  // The text being heard stays on screen: the page follows it down, and the
+  // document's scroll-padding keeps it above the bottom bar.
+  const rootRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = usePrefersReducedMotion();
+  useEffect(() => {
+    if (reading.word < 0 && reading.sentence < 0) return;
+    rootRef.current
+      ?.querySelector("[data-word-reading], [data-reading]")
+      ?.scrollIntoView?.({
+        block: "nearest",
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+  }, [reading.word, reading.sentence, reducedMotion]);
   const find = (key: OverviewPart["key"], item = 0) =>
     parts.find((p) => p.key === key && p.item === item);
   const goals = parts.filter((p) => p.key === "goal");
 
   return (
-    <div className="flex flex-1 flex-col gap-6" data-lesson-overview>
+    <div
+      ref={rootRef}
+      className="flex flex-1 flex-col gap-6"
+      data-lesson-overview
+    >
       <header className="flex items-center gap-4">
         <Owl expression="welcome" size="home" className="shrink-0" />
         <div className="flex min-w-0 flex-col gap-1">

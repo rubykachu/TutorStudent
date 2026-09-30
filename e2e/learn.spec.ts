@@ -1,5 +1,10 @@
 import { expect, test } from "@playwright/test";
-import { answerRight, createProfile, finishSection } from "./flows";
+import {
+  answerRight,
+  createProfile,
+  finishSection,
+  openFixtureLesson,
+} from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
 
 const SECTION = "fixture.section.phep-nhan";
@@ -12,7 +17,7 @@ test("a child learns a section, resuming where they left off", async ({
 }) => {
   await page.goto("/profiles");
   await createProfile(page, "Bé Na", "Cáo");
-  await page.goto("/lessons/fixture");
+  await openFixtureLesson(page);
   const sectionLink = page.locator(`[data-section="${SECTION}"]`);
   await expect(sectionLink).toHaveAttribute("data-state", "not_started");
   await expectNoHorizontalScroll(page);
@@ -77,7 +82,7 @@ test("Học tiếp goes back to the first unfinished section when a later one wa
 }) => {
   await page.goto("/profiles");
   await createProfile(page, "Bé Na", "Cáo");
-  await page.goto("/lessons/fixture");
+  await openFixtureLesson(page);
   // Sections are not locked: the second one opens straight away.
   await page.locator(`[data-section="${NEXT_SECTION}"]`).tap();
   await expect(page).toHaveURL(new RegExp(`/sections/${NEXT_SECTION}$`));
@@ -96,7 +101,7 @@ test("Học tiếp goes back to the first unfinished section when a later one wa
   await expectNoHorizontalScroll(page);
 
   // The lesson page marks part 1 as the one to continue.
-  await page.goto("/lessons/fixture");
+  await openFixtureLesson(page);
   await expect(page.locator(`[data-section="${SECTION}"]`)).toHaveAttribute(
     "data-next",
     "true",

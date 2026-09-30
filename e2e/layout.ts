@@ -127,3 +127,93 @@ export async function coveredByBottomBar(page: Page): Promise<string[]> {
       .map(({ el }) => el.outerHTML.slice(0, 120));
   });
 }
+
+// Controls set apart enough that a tap never lands on the wrong one: no two
+// visible interactive elements closer than MIN_CONTROL_GAP_PX (edge to edge),
+// and, with the page scrolled to its end, nothing above the sticky bottom bar
+// closer to it than MIN_BAR_GAP_PX. Sentences tapped inside running text are
+// prose, not separate controls, and are left out; so is anything nested in
+// another control (a button inside a link counts once).
+const MIN_CONTROL_GAP_PX = 8;
+const MIN_BAR_GAP_PX = 16;
+
+export async function controlSpacingProblems(page: Page): Promise<string[]> {
+  await page.evaluate(() =>
+    window.scrollTo({ top: document.documentElement.scrollHeight }),
+  );
+  return page.evaluate(
+    ({ minGap, minBarGap, rounding }) => {
+      const selector = [
+        "button",
+        "a[href]",
+        "input",
+        "select",
+        "textarea",
+        "[role=button]",
+      ].join(",");
+      const describe = (el: Element) =>
+        (
+          el.getAttribute("aria-label") ||
+          el.textContent?.trim() ||
+          el.outerHTML
+        ).slice(0, 40);
+      const controls = [...document.querySelectorAll(selector)]
+        .filter((el) => !el.closest("[data-sentence-id], [data-passage]"))
+        .filter(
+          (el) =>
+            ![...document.querySelectorAll(selector)].some(
+              (other) => other !== el && other.contains(el),
+            ),
+        )
+        .map((el) => ({ el, r: el.getBoundingClientRect() }))
+        .filter(({ el, r }) => {
+          const style = getComputedStyle(el);
+          return (
+            r.width > 0 &&
+            r.height > 0 &&
+            style.visibility !== "hidden" &&
+            style.pointerEvents !== "none"
+          );
+        });
+      const problems: string[] = [];
+      for (let i = 0; i < controls.length; i++) {
+        for (let j = i + 1; j < controls.length; j++) {
+          const a = controls[i];
+          const b = controls[j];
+          if (!a || !b) continue;
+          const dx = Math.max(0, b.r.left - a.r.right, a.r.left - b.r.right);
+          const dy = Math.max(0, b.r.top - a.r.bottom, a.r.top - b.r.bottom);
+          const gap = Math.hypot(dx, dy);
+          if (gap < minGap - rounding) {
+            problems.push(
+              `"${describe(a.el)}" and "${describe(b.el)}" are ${gap.toFixed(1)}px apart`,
+            );
+          }
+        }
+      }
+      const bar = document.querySelector("[data-bottom-bar]");
+      if (bar) {
+        const barTop = bar.getBoundingClientRect().top;
+        for (const { el, r } of controls) {
+          if (bar.contains(el)) continue;
+          const gap = barTop - r.bottom;
+          if (gap < minBarGap - rounding) {
+            problems.push(
+              `"${describe(el)}" is ${gap.toFixed(1)}px from the bottom bar`,
+            );
+          }
+        }
+      }
+      return problems;
+    },
+    {
+      minGap: MIN_CONTROL_GAP_PX,
+      minBarGap: MIN_BAR_GAP_PX,
+      rounding: ROUNDING_PX,
+    },
+  );
+}
+
+export async function expectControlsApart(page: Page) {
+  expect(await controlSpacingProblems(page)).toEqual([]);
+}
