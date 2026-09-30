@@ -15,7 +15,8 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 7 `thu-tu-thuc-hien-phep-tinh` | published | done |
 | Toán | Bài 2, Bài 3 | on hold (owner, 01/10/2026: Bài 8 and later come first because the child's class is there) | not done |
 | Toán | Bài 8 `quan-he-chia-het-va-tinh-chat` | published (reviewed in 5 rounds, 02/10/2026; handover [`lesson-quan-he-chia-het-va-tinh-chat/task.md`](lesson-quan-he-chia-het-va-tinh-chat/task.md)) | done (voice Mỹ Duyên, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: no videos yet for the difference and later sections, `hieu-*` colour and `nhom-so-hang` example notes, caption wording of `tong-12-18-6`) |
-| Toán | Bài 9 (SBT print page 33), Bài 10 (35), Bài 11 (38) | not started | not done |
+| Toán | Bài 9 `dau-hieu-chia-het` (SBT print pages 33–34, solutions 105–106) | drafting (01/10/2026 night; handover [`lesson-dau-hieu-chia-het/task.md`](lesson-dau-hieu-chia-het/task.md)) | not done |
+| Toán | Bài 10 (SBT print page 35), Bài 11 (38) | not started | not done |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
 
