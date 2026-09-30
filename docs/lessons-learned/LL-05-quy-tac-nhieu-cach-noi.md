@@ -11,6 +11,7 @@ Câu quy tắc trên màn, recap của section, recap của card và video dùng
 - `thu-tu-thuc-hien-phep-tinh` vòng 1: quy tắc luỹ thừa gọi số mũ là "luỹ thừa"; cộng trừ và nhân chia phủ định hai kiểu.
 - `neu-cau-muon-co-mot-nguoi-ban`, card `nghia-cam-hoa`: "Cáo nói gọn: “làm cho gần gũi hơn”." thiếu "cảm hoá là" so với note (luật mới bắt được, đã sửa).
 - `phep-nhan-phep-chia` vòng 1: note section 1 đặt luật "cộng 4 số 6 thì viết là 4 · 6" (số lần đứng trước, ngược quy ước tiểu học 6 × 4), trong khi `ten-goi` viết "2 gói, mỗi gói 25" thành 25 · 2 và các hình đặt tính cũng theo thứ tự ngược lại. Quy ước viết phép nhân a · b phải chốt một lần cho cả bài, kể cả caption và hình.
+- `quan-he-chia-het-va-tinh-chat` vòng 1: sáu quy tắc tính chất gọi số chia theo ba cách ("cho m", "cho một số ... cho số đó", b); `m` chưa từng được giới thiệu mà nằm nguyên trong recap ba card; "một số" vừa là số chia (section `tong-chia-het`) vừa là một số của hiệu (section `hieu-khong-chia-het`, "Một số chia hết cho m, số kia ..."). Cách gọi số chia (chữ đại diện hay lời) phải chốt một lần cho cả bài như quy ước viết phép nhân.
 
 ## Nguyên nhân gốc
 
