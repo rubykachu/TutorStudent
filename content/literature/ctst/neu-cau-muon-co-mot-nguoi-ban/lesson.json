@@ -7,7 +7,7 @@
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
   "status": "published",
-  "reviewedHash": "f5ea321993f96251268c3e0d53ed19864383fa6ae3f99fb6bcf3ecf533cc2265",
+  "reviewedHash": "032208afd71c617383f7d2e02b9e5b6f166a50a15bad6a4edf3af15973bfa578",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -1301,7 +1301,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép: các tiếng đều có nghĩa, như “lúa mì”. Từ láy: các tiếng lặp lại âm đầu, vần hoặc cả tiếng, như “buồn bã”."
+        "caption": "Từ ghép gồm hai hoặc nhiều tiếng ghép lại, các tiếng đều có nghĩa, như “lúa mì”, “cánh đồng”. Từ láy gồm các tiếng có âm đầu hoặc vần (hoặc cả tiếng) lặp lại, như “buồn bã”, “lung linh”."
       }
     },
     {
@@ -4679,47 +4679,33 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trong câu dưới đây, từ nào là từ ghép?"
-        },
-        {
-          "type": "passage",
-          "paragraphs": [
-            {
-              "sentences": [
-                {
-                  "id": "l52-2",
-                  "text": "– Đây là bí mật của mình."
-                }
-              ]
-            }
-          ],
-          "annotations": []
+          "text": "Trong câu “Cáo ngồi chờ bạn trên bãi cỏ, mắt lấp lánh, lòng rộn ràng.”, từ nào là từ ghép?"
         }
       ],
       "options": [
         {
-          "id": "bi-mat",
+          "id": "bai-co",
           "content": {
             "type": "text",
-            "text": "bí mật"
+            "text": "bãi cỏ"
           }
         },
         {
-          "id": "day",
+          "id": "lap-lanh",
           "content": {
             "type": "text",
-            "text": "đây"
+            "text": "lấp lánh"
           }
         },
         {
-          "id": "minh",
+          "id": "ron-rang",
           "content": {
             "type": "text",
-            "text": "mình"
+            "text": "rộn ràng"
           }
         }
       ],
-      "answer": ["bi-mat"],
+      "answer": ["bai-co"],
       "multiple": false,
       "hints": {
         "highlight": [],
