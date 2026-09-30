@@ -1,81 +1,72 @@
 # Review: Thứ tự thực hiện các phép tính (`thu-tu-thuc-hien-phep-tinh`)
 
 - Bài: `content/math/kntt/thu-tu-thuc-hien-phep-tinh/lesson.json`
-- Vòng: 3 - phần đổi (`pnpm content:diff`, so với bản `2547d353…` của vòng 2), section: hoa-don, dau-phep-tinh, cong-tru, on-nhan-chia, nhan-hai-chu-so, nhan-chia, hon-hop, ngoac-tron, ngoac-long, luy-thua, bieu-thuc-chu, bai-tap-sach, tim-so-chua-biet; kèm spec trong `src/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog.ts`, `statics.tsx`, `expr-svg.tsx`
-- Nguồn đã đọc: `sources/math/thu-tu-thuc-hien-phep-tinh/` - p24, p26, p102
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (104 id chưa có trong `ids.lock.json`)
-- `lesson:walk`: 0 FAIL, cảnh báo "text below 16px" chỉ ở màn done (của app), ảnh trong `.shots/walk/thu-tu-thuc-hien-phep-tinh/` (chụp 19:52–19:54, trước commit 79b84b9 lúc 19:55, cùng nội dung)
-- Kết luận: Đã xuất bản
-- Bản đã review: `99ac69420b46e1986b6a809ba949aa2d06e70a7870cb7a5fa196a0a41c36af8b` (`pnpm content:diff` so với bản này)
+- Vòng: 4 - phần đổi (`pnpm content:diff`, so với bản `99ac6942…` của vòng 3): `overview.summary`, `overview.narration`, ba video `hoa-don`, `hon-hop`, `ngoac-long` (khối `video` đầu section và `videos[]` kèm clip), section: hoa-don, hon-hop, ngoac-long; kèm kịch bản và hình `video/projects/thu-tu-thuc-hien-phep-tinh/{hoa-don,hon-hop,ngoac-long}/`
+- Nguồn đã đọc: không có (diff chỉ có overview và video; không đổi card hay bài tập)
+- `content:check`: 1 lỗi (`[review-hash]`, sẽ hết khi chạy lệnh cuối vòng), 1 cảnh báo của bài (3 id chưa có trong `ids.lock.json`)
+- `lesson:walk`: không chạy, điều phối sẽ chạy sau duyệt (server dev chưa phục vụ bài trước khi duyệt)
+- Kết luận: Chưa đạt: còn 2 lỗi Nghiêm trọng
+- Bản đã review: `80c879788764915af9fcbac1b1db92373882960e477d38c7b9e20c6c5d88c4f0` (`pnpm content:diff` so với bản này)
 
-Đã tự giải mọi câu đổi hay thêm trước khi đọc `answer`: `tinh-cong-tru-1` (18), `tinh-hon-hop-1` (16), `tinh-day-du-1` (30), `tinh-day-du-3` (25), `tim-x-kiem-tra` (4), `tim-x-1` (20; 15; 3), `tim-x-2` (32; 24; 4), ba câu nhiều đáp án (a, b, d; a, b, e; a, c): đều đúng. Mọi `solutionVisualId` đổi chạy đúng số của đề; các hình gợi ý đổi dừng ở "?".
-
-Mục của vòng 2:
-- Đã hết: Nghiêm trọng 1 (note `cong-tru`, `nhan-chia`, recap `hon-hop`, `bai-tap-sach` nay cùng một cách nói "làm từ trái sang phải"; nhãn cột sai của `cong-tru-so-sanh`, `nhan-chia-so-sanh`, `hon-hop-so-sanh`, `luy-thua-so-sanh` nói đúng phép bị làm sai chỗ; có câu cộng đứng đầu `9 + 15 − 6`), trừ nhãn `tong-hop-dong-viet-lai` (Nên sửa 1 dưới đây). Nên sửa 1, 2, 3 (ảnh phone, iPad không còn ngắt giữa phép tính), 4 (cột Lan xám, có ×), 6, 7, 8, 10, 11, 12, 13. Góp ý 2, 4 (vòng chọn không còn đè chữ số, ảnh phone và iPad `033-s3-03-block.png`), 14 (đề), 16.
-- Đã chuyển vào `backlogs/lesson-thu-tu-thuc-hien-phep-tinh.md`: Nên sửa 9, 16; Góp ý 1, 5, 10, 18 và một phần Góp ý 9.
-- Còn, gộp vào vòng này: Nên sửa 5 (Nên sửa 2), Nên sửa 15 (Góp ý 3), Góp ý 11 (Góp ý 4).
-- Còn mở, ngoài phần đổi, chưa có trong backlog (không soát lại ở vòng này): Nên sửa 14 (`overview.summary` ba câu, không nhắc biểu thức chứa chữ); Góp ý 3, 6, 7, 8, 12, 13, 15, 17. Tác giả sửa hoặc ghi vào backlog.
+Đã soát:
+- `overview.summary` nay 2 câu, nhắc biểu thức có ngoặc, luỹ thừa và chữ: đúng luật overview, hết Nên sửa 14 của vòng 2. Lời đọc `overview.vtt` khớp nguyên văn hook, summary, goals (sau câu dẫn "Học xong bài này, bạn sẽ:") và whyItMatters; `overview.m4a` có.
+- Số trong ba kịch bản đều đúng: 2 · 8 + 5 = 21; Lan 8 + 5 = 13, 2 · 13 = 26; 20 + 6 · 3 − 8 : 4: 18, 2, 38, 36; {10 + 2 · [5 + (3 · 2)]}: 6, 11, 22, 32. Câu nêu quy tắc đều đánh `rule` trừ câu thứ tự ngoặc của `ngoac-long` cảnh `s03-mo` ("Vậy ta làm ngoặc tròn trước. Rồi làm ngoặc vuông. Cuối cùng làm ngoặc nhọn."): không nguyên văn note (note có kí hiệu ngoặc không đọc được) nhưng đúng kiến thức, cùng thứ tự với note và recap.
+- Màu trong hình: phép làm trước khoanh hồng, kết quả hổ phách gạch chân, ngoặc tròn teal, vuông sky, nhọn lime, nhãn "( ) ngoặc tròn / [ ] ngoặc vuông / { } ngoặc nhọn" khớp note và `bang-ngoac`.
+- Clip: `hoa-don` (s02–s05, 13,7–51,5 s), `hon-hop` (s02–s06, 13,3–60,1 s), `ngoac-long` (s02–s06, 11,4–59,2 s) đều giảng đúng card gắn vào.
+- Các mục khác của ba section không đổi; recap vẫn khớp note.
+- Mục vòng 3 (Nên sửa 1–3, Góp ý 1–5) đã có trong `backlogs/lesson-thu-tu-thuc-hien-phep-tinh.md`, không ghi lại.
 
 ## Nghiêm trọng
 
-Không có.
+### 1. Video `hon-hop`: hình làm hai phép một dòng và bỏ dòng 38 − 2, đúng lúc lời đọc nói "Mỗi dòng chỉ làm một phép tính"
+
+- Vị trí: `video/projects/thu-tu-thuc-hien-phep-tinh/hon-hop/` cảnh `s03-nhan`, `s04-cong` (`index.html`); video `thu-tu-thuc-hien-phep-tinh.video.hon-hop`, 22–47 s, nằm trong clip của `card.hon-hop`
+- Nguồn: —
+- Vấn đề: Khung 22–27 s: dòng thứ hai "20 + 18 − 2" điền cả 18 lẫn 2 (hai phép một dòng). Khung 39–47 s: dòng ba lặp lại "20 + 18 − 2" rồi nhảy thẳng xuống "36"; số 38 và dòng "38 − 2" không bao giờ hiện, trong khi lời đọc "20 cộng 18 bằng 38. 38 trừ 2 bằng 36." Ngay sau đó (44,7 s) lời đọc "Mỗi dòng chỉ làm một phép tính." trong lúc màn hình hiện hai chỗ trái điều đó. "Mỗi dòng chỉ làm một phép tính" là quy tắc trình bày của bài (note `bai-tap-sach`), và hình `hon-hop-tung-buoc` ngay dưới video trong cùng section tính đúng biểu thức này theo từng phép một dòng (20 + 18 − 8 : 4, 20 + 18 − 2, 38 − 2, 36). Trẻ học chậm nhìn hình sẽ nhớ cách trình bày ngược với câu vừa nghe và với màn kế tiếp. Xếp Nghiêm trọng (không phải sai số) vì hình phản ví dụ ngay chính quy tắc được đọc lên; phân vân nên chọn mức cao hơn.
+- Sửa: Dựng lại cảnh `s03-nhan`/`s04-cong` theo từng phép một dòng như `hon-hop-tung-buoc`: `20 + 18 − 8 : 4` → `20 + 18 − 2` → `38 − 2` → `36`, mỗi dòng khoanh hồng một phép, kết quả hổ phách; lời "8 chia 4 bằng 2" đi với dòng thứ hai, "20 cộng 18 bằng 38" hiện dòng `38 − 2`. Nếu giữ hình hai phép một dòng thì bỏ câu "Mỗi dòng chỉ làm một phép tính." và vẫn phải hiện dòng `38 − 2`.
+
+### 2. Video `ngoac-long`: "Hai phần quà hết 32 nghìn đồng" sai với câu chuyện của bài, số 10 không được giải thích
+
+- Vị trí: `video/projects/thu-tu-thuc-hien-phep-tinh/ngoac-long/script.json` cảnh `s04-tron` (câu "Thử với hai phần quà.") và `s05-nhon` (câu "Hai phần quà hết 32 nghìn đồng."), 34–53 s, nằm trong clip của `card.ngoac-long`
+- Nguồn: —
+- Vấn đề: Theo caption `ngoac-long-tung-buoc` ngay dưới video, mỗi phần quà là hộp bút 5 nghìn và 3 gói kẹo 2 nghìn (11 nghìn), hai phần quà là 2 · 11 = 22 nghìn; 10 nghìn là tiền túi đựng quà, không thuộc phần quà nào. Câu "Hai phần quà hết 32 nghìn đồng" vì vậy nói sai số tiền của hai phần quà. Video cũng không nói 3 · 2, 5, 10 là tiền gì, nên trẻ không nối được phép tính với câu chuyện (cùng lỗi "32 là số tiền gì" vòng 3 ghi cho caption, nay lại xuất hiện ở lời đọc, và nói sai).
+- Sửa: Cảnh `s04-tron` thay "Thử với hai phần quà." bằng lời dẫn câu chuyện, ví dụ "Mua 2 phần quà. Mỗi phần có hộp bút 5 nghìn đồng và 3 gói kẹo, mỗi gói 2 nghìn đồng. Thêm túi đựng quà 10 nghìn đồng." Câu cuối `s05-nhon` đổi thành "Cả hai phần quà và túi hết 32 nghìn đồng." (hoặc "Cần tất cả 32 nghìn đồng."). Chạy lại `video:build` và Whisper cho các câu đổi.
 
 ## Nên sửa
 
-### 1. Nhãn cột sai của `tong-hop-dong-viet-lai` vẫn là "Sai: cộng trước"
+### 1. Video `hoa-don`: cách làm sai của Lan khoanh bằng màu hồng "phép làm trước"
 
-- Vị trí: spec `tong-hop-dong-viet-lai` (`wrongLabel`) trong `src/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog.ts`; `$.sections[11].blocks[3].children[1]` (`section.bai-tap-sach`)
-- Nguồn: tr.24, `p24.png`
-- Vấn đề: Ảnh phone `130-s12-04-block.png`. Mọi nhãn cột sai khác của bài nay ghi "Sai: làm … trước"; riêng nhãn này còn là câu chung "Sai: cộng trước", đọc tách khỏi hình là "cộng trước thì sai", trái với `9 + 15 − 6` trẻ vừa làm ở section `cong-tru`. Vòng 2 đã nêu nhãn này trong Nghiêm trọng 1. Không xếp Nghiêm trọng vì trong biểu thức `5 + 3 · 2` của hình nhãn vẫn đúng, và không câu nào sau đó trong section có phép cộng được làm trước.
-- Sửa: `wrongLabel: "Sai: làm 5 + 3 trước"`.
-
-### 2. Câu chuyện mua quà của section ngoặc lồng vẫn không có kết
-
-- Vị trí: `$.sections[8].blocks[2].caption` (visual `ngoac-long-tung-buoc`)
+- Vị trí: `video/projects/thu-tu-thuc-hien-phep-tinh/hoa-don/index.html` cảnh `s03-lan`, 24–31 s (vòng hồng quanh `8 + 5`)
 - Nguồn: —
-- Vấn đề: Ảnh phone `097-s9-03-block-end.png`. Caption đã rõ giá mỗi gói kẹo và 10 nghìn đồng là tiền túi, nhưng không nói 32 là số tiền gì; trẻ thấy hình ra 32 mà không biết câu chuyện hỏi gì (luật "câu chuyện có kết"). Phần còn lại của vòng 2 Nên sửa 5.
-- Sửa: Thêm câu kết: "… Tiền túi đựng quà là 10 nghìn đồng. Cần tất cả 32 nghìn đồng."
+- Vấn đề: Trong cả bài và cả video, khoanh hồng nghĩa là "phép tính làm trước" (đúng). Ở cảnh Lan, `8 + 5` là phép bị làm trước sai nhưng vẫn khoanh hồng giống hệt vòng `2 · 8` của Nam, nên một màu mang hai nghĩa; dấu ✗ của Lan chỉ hiện sau đó ở 42 s. Video `hon-hop` cảnh `s05-sai` đã làm đúng: vòng xám tối kèm nhãn "✗ … sai". Các cột sai của bài cũng xám có ×.
+- Sửa: Cảnh `s03-lan` đổi vòng quanh `8 + 5` sang kiểu vòng sai xám như `s05-sai` của `hon-hop`, và hiện dấu ✗ cạnh "Lan: cộng trước" ngay từ đầu cảnh.
 
-### 3. Câu kho ôn luỹ thừa có lựa chọn cần quy tắc ngoặc mà card luỹ thừa không dạy
+### 2. Video `ngoac-long`: khoảng 4 giây hiện `10 + 2 · 5 + 3 · 2` không có ngoặc
 
-- Vị trí: `$.exercises[?(@.id=="thu-tu-thuc-hien-phep-tinh.ex.chon-nhieu-luy-thua-truoc")].options[4]` (`(1 + 2) \cdot 3^{2}`), `cardIds: [card.luy-thua]`
-- Nguồn: tr.24, `p24.png` (hàng "Có các loại dấu ngoặc")
-- Vấn đề: Đáp án đúng (không chọn e) đòi hỏi biết ngoặc làm trước luỹ thừa. Card `luy-thua` mà câu này ôn lại nói "Có luỹ thừa thì tính luỹ thừa trước…" và bậc thang `luy-thua-bac-uu-tien` chỉ có ba bậc: luỹ thừa, nhân chia, cộng trừ. Trẻ áp đúng quy tắc của card sẽ chọn e và bị chấm sai. Quy tắc ngoặc trước luỹ thừa có trong bài (section `bai-tap-sach`, card `tinh-day-du`), nên đây là lệch card chứ không phải kiến thức ngoài bài.
-- Sửa: Thêm `card.tinh-day-du` vào `cardIds` (bậc thang của card đó có đủ bốn bậc), hoặc thay e bằng một biểu thức không có ngoặc, ví dụ `3^{2} + 2 \cdot 5` (luỹ thừa làm đầu, thêm một đáp án đúng).
+- Vị trí: `video/projects/thu-tu-thuc-hien-phep-tinh/ngoac-long/index.html` chuyển từ `s01-ba-loai` sang `s02-hop`, 11–15 s (đầu clip `card.ngoac-long` ở 11,4 s), hộp ngoặc vuông và nhọn chỉ hiện ở khoảng 17–18 s
+- Nguồn: —
+- Vấn đề: Kí hiệu ngoặc bị xoá trước khi các hộp hiện, nên màn hình còn `10 + 2 · 5 + 3 · 2`: một biểu thức khác (giá trị 26), đúng dạng bỏ ngoặc mà bài dặn tránh. Clip ôn của card bắt đầu đúng ở đoạn này.
+- Sửa: Giữ kí hiệu ngoặc (mờ dần) cho tới khi hộp tương ứng hiện, hoặc vẽ cả ba hộp cùng lúc rồi mới xoá kí hiệu ngoặc.
 
 ## Góp ý
 
-### 1. Chú thích màn cùng làm dùng "để tính ra nó"
+### 1. Video `hon-hop`: số 18 mất màu kết quả khi số 2 hiện
 
-- Vị trí: caption của `$.sections[2].blocks[3]`, `[5].blocks[3]`, `[6].blocks[3]`, `[7].blocks[3]`, `[8].blocks[3]`, `[9].blocks[3]`
+- Vị trí: `hon-hop/index.html` cảnh `s03-nhan`, 23–25 s
 - Nguồn: —
-- Vấn đề: "Chạm phép tính bên trái nhất để tính ra nó" đọc hơi vấp; "nó" chỉ phép tính vừa chạm, trẻ phải đọc lại.
-- Sửa: "Chạm phép tính bên trái nhất để tính trước, vì cộng và trừ làm từ trái sang phải." (các caption khác đổi theo).
+- Vấn đề: 18 hiện hổ phách gạch chân, đến khi 2 hiện thì dòng vẽ lại, 18 thành chữ đen (khoảng 25 s dòng còn nháy mờ nhỏ). Hai kết quả cùng dòng một màu, một không. Sẽ tự hết nếu sửa theo Nghiêm trọng 1.
+- Sửa: Giữ kiểu kết quả cho mỗi số vừa tính ở dòng của nó.
 
-### 2. Hai câu tính dài dùng chung phần đầu `3 · 2³ + 5 · 4`
+### 2. Video `hon-hop`: câu "Đừng làm từ trái sang phải ngay." và nhãn cuối chỉ có nửa quy tắc
 
-- Vị trí: `$.exercises[…]` `tinh-day-du-1` (`3 \cdot 2^{3} + 5 \cdot 4 - 2 \cdot 7`) và `tinh-day-du-3` (`3 \cdot 2^{3} + 5 \cdot 4 - 14 \cdot 2 + 9`), cùng card `tinh-day-du`
-- Nguồn: tr.26 bài 1.63
-- Vấn đề: Câu kho ôn chép lại hai tích đầu của câu luyện tập; trẻ nhớ 24 + 20 từ lần trước thay vì tính lại.
-- Sửa: Đổi phần đầu của `tinh-day-du-3`, ví dụ `2 \cdot 3^{2} + 4 \cdot 5 - 14 \cdot 2 + 9` (= 19), sửa `check.expr` và hai visual `tinh-day-du-3-*`.
-
-### 3. Note "giữa hai chữ" nay không còn ví dụ; lỗi "hai mươi bốn" chỉ có bằng chữ
-
-- Vị trí: `$.sections[10].blocks[1].children[0].text`, visual `chu-bo-dau-nhan` (nay là 2x, x = 4)
-- Nguồn: tr.24 (`p24.png`, ví dụ S = ab)
-- Vấn đề: Ảnh phone `117-s11-02-block.png`. Hình đổi từ ab sang 2x nên phần "hay giữa hai chữ" của note không có hình, trong khi câu kho ôn `tinh-chu-2` hỏi `ab − 4`. Cách đọc sai "24" vẫn chỉ viết bằng chữ, không có cột sai như các màn so sánh khác (phần còn lại của vòng 2 Nên sửa 15).
-- Sửa: Thêm dòng "ab = a · b" vào hình, hoặc bỏ "hay giữa hai chữ" khỏi note; nếu làm được, thêm cột sai "24 ×" cạnh 2 · 4 = 8.
-
-### 4. Hình gợi ý của `tim-x-1` và `tim-x-2` là cùng một đẳng thức không có nghiệm tự nhiên
-
-- Vị trí: spec `tim-x-1-goi-y` và `tim-x-2-goi-y` (cả hai `4x + 4 = 4 · 2² + 9 : 3`)
-- Nguồn: tr.26 bài 1.66 ("Tìm số tự nhiên x")
-- Vấn đề: Vế phải bằng 19 nên 4x = 15, không chia hết cho 4 (vòng 2 Góp ý 11 chưa hết: `tim-x-1-goi-y` được đổi sang đúng spec của `tim-x-2-goi-y`). Hình dừng ở "?" nên trẻ không thấy 4x = 15, nhưng trẻ tính tiếp theo hình sẽ gặp phép chia không hết. Hai câu cùng card lại cùng một hình gợi ý.
-- Sửa: `tim-x-1-goi-y`: `4x + 4 = 3 · 2² + 8` (vế phải 20, x = 4); `tim-x-2-goi-y`: `2x + 1 = 4 · 2² + 9 : 3` (vế phải 19, x = 9).
-
-### 5. Hình lời giải `tim-x-kiem-tra-giai` lặp dòng "2x + 6 = 14"
-
-- Vị trí: spec `tim-x-kiem-tra-giai` (findx, `rhs: "14"`); `TimSoChuaBiet` trong `statics.tsx` (việc của người làm visual)
+- Vị trí: `hon-hop/script.json` cảnh `s05-sai` (47,5 s); `hon-hop/index.html` cảnh `s06-nho` (nhãn "nhân, chia trước")
 - Nguồn: —
-- Vấn đề: Ảnh phone `143-s13-02-exercise-tim-x-kiem-tra-wrong3.png`: khi vế phải là một số, dòng tiêu đề và dòng đầu của phần làm ngược giống hệt nhau, trẻ thấy cùng một dòng hai lần.
-- Sửa: Trong `TimSoChuaBiet`, bỏ dòng đầu của phần làm ngược khi vế phải chỉ có một số.
+- Vấn đề: 8 giây trước đó lời đọc vừa nói "Trong mỗi nhóm, làm từ trái sang phải."; câu "Đừng làm từ trái sang phải ngay" nghe như trái lại. Cảnh nhớ đọc "Nhân, chia làm trước; cộng, trừ làm sau." nhưng nhãn chỉ ghi "nhân, chia trước" (video `hoa-don` ghi đủ "nhân trước, cộng sau").
+- Sửa: "Đừng cộng 20 với 6 trước."; nhãn cuối "nhân, chia trước; cộng, trừ sau".
+
+### 3. Whisper nghe câu thứ tự ngoặc thành "ngọt buông", "ngọt nhọn"
+
+- Vị trí: `video/projects/thu-tu-thuc-hien-phep-tinh/ngoac-long/renders/report.json`, câu "Rồi làm ngoặc vuông." (match 0,842, 4 lần) và "Cuối cùng làm ngoặc nhọn." (0,875, 4 lần); "Ngoặc vuông là hộp vừa." nghe thành "Ngọc Vương" (0,955)
+- Nguồn: —
+- Vấn đề: Đây là các câu nêu thứ tự ngoặc; nếu giọng đọc thật sự méo, trẻ nghe sai tên ngoặc. Reviewer không nghe được âm thanh để xác nhận.
+- Sửa: Tác giả nghe lại ba câu này; méo thì đọc lại (đổi seed hoặc tách câu).

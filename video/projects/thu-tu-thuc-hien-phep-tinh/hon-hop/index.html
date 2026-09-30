@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Nhân chia trước, cộng trừ sau" (lesson thu-tu-thuc-hien-phep-tinh):
+  20 + 6 · 3 − 8 : 4 worked out one step per line, the operation done first
+  ringed in pink and each result amber, like the lesson's step-by-step picture.
+  Built by `pnpm video:build thu-tu-thuc-hien-phep-tinh hon-hop`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Nhân chia trước, cộng trừ sau</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .ring { display: inline-block; padding: 0 16px 6px; border: 6px solid transparent; border-radius: 24px; }
+      .res { color: var(--color-concept-amber); border-bottom: 8px solid var(--color-concept-amber); }
+                      </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="work" class="scene layer">
+          <div id="row1" class="row math small" style="top: 30px"></div>
+          <div id="row2" class="row math small" style="top: 115px"></div>
+          <div id="row3" class="row math small" style="top: 200px"></div>
+          <div id="row4" class="row math small" style="top: 285px"></div>
+          <div id="row5" class="row" style="top: 375px"><span class="math small pill"></span></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div class="row" style="top: 250px">
+            <span class="chip" style="--c: var(--color-concept-pink)">nhân, chia trước</span>
+            <span class="math small">→</span>
+            <span class="chip" style="--c: var(--color-concept-slate)">cộng, trừ sau</span>
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="w-row" class="row math" style="top: 130px"></div>
+          <div id="w-note" class="row" style="top: 290px"><span class="chip" style="--c: var(--color-concept-slate)">✗ cộng 20 + 6 trước: sai</span></div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="rule-6" class="row" style="top: 130px"><span class="math pill">nhân, chia trước</span></div>
+          <div id="rule-6b" class="row" style="top: 300px"><span class="math pill" style="background: var(--color-muted)">cộng, trừ sau</span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, end, W, op, owl, pop, rise, fade, hide, pose, color, scenes, finish } = window.LV;
+        const dot = op("·");
+        const plus = op("+");
+        const minus = op("−");
+        const div = op(":");
+        const ring = (id, html) => `<span id="${id}" class="ring">${html}</span>`;
+        const res = (id, html) => `<span id="${id}" class="res">${html}</span>`;
+
+        // ---------- DOM ----------
+        // One line per operation: each line writes the result of the ringed one.
+        $("#row1").innerHTML = `20${plus}${ring("m1", `6${dot}3`)}${minus}${ring("d1", `8${div}4`)}`;
+        $("#row2").innerHTML = `20${plus}${res("r18", "18")}${minus}8${div}4`;
+        $("#row3").innerHTML = `${ring("p38", `20${plus}18`)}${minus}${res("r2", "2")}`;
+        $("#row4").innerHTML = `${res("r38", "38")}${minus}2`;
+        $("#row5 .pill").textContent = "36";
+        $("#w-row").innerHTML = `${ring("w-bad", `20${plus}6`)}${dot}3${minus}8${div}4`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+        const pink = color("concept-pink");
+        const slate = color("concept-slate");
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s2", "s02-quy-tac"],
+          ["#s5", "s05-sai"],
+          ["#s6", "s06-nho"],
+        ]);
+        {
+          // The worked lines stay from the question to the answer; the rule card sits below the first line.
+          const el = $("#work");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, 0);
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s04-cong") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: the long expression ----------
+        {
+          const sid = "s01-de";
+          hide(["#row1"]);
+          pose(bird, "happy", W(sid, "cú"));
+          pop("#row1", W(sid, "cộng", 1), { from: 0.5 });
+        }
+
+        // ---------- s02: the rule (the lines wait) ----------
+        {
+          const sid = "s02-quy-tac";
+          pose(bird, "idle", start(sid));
+          hide(["#s2 .chip", "#s2 .math"]);
+          rise($$("#s2 .chip")[0], W(sid, "nhân", 2));
+          rise($("#s2 .math"), W(sid, "rồi"));
+          rise($$("#s2 .chip")[1], W(sid, "cộng", 2));
+        }
+
+        // ---------- s03: multiply and divide first ----------
+        {
+          const sid = "s03-nhan";
+          tl.to("#m1", { borderColor: pink, duration: 0.3 }, W(sid, "nhân"));
+          tl.to("#d1", { borderColor: pink, duration: 0.3 }, W(sid, "chia"));
+          hide(["#row2", "#row3"]);
+          rise("#row2", W(sid, "bằng", 1));
+          rise("#row3", W(sid, "bằng", 2));
+          tl.fromTo("#m1, #d1", { scale: 1 }, { scale: 1.1, duration: 0.25, yoyo: true, repeat: 1, stagger: 0.1, immediateRender: false }, W(sid, "khoanh"));
+        }
+
+        // ---------- s04: then add and subtract, left to right ----------
+        {
+          const sid = "s04-cong";
+          pose(bird, "idle", start(sid));
+          hide(["#row4", "#row5"]);
+          tl.to("#p38", { borderColor: pink, duration: 0.3 }, W(sid, "trái"));
+          rise("#row4", W(sid, "bằng", 1));
+          pop("#row5", W(sid, "bằng", 2), { from: 0.4 });
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+
+        // ---------- s05: not left to right straight away ----------
+        {
+          const sid = "s05-sai";
+          hide(["#w-row", "#w-note"]);
+          pose(bird, "idle", start(sid));
+          pop("#w-row", start(sid) + 0.2, { from: 0.6 });
+          tl.to("#w-bad", { borderColor: slate, duration: 0.3 }, W(sid, "cộng", 1));
+          rise("#w-note", W(sid, "sai"));
+          tl.to("#w-bad", { borderColor: "rgba(0,0,0,0)", duration: 0.3 }, W(sid, "phải"));
+          tl.set("#w-note", { autoAlpha: 0 }, W(sid, "phải"));
+        }
+
+        // ---------- s06: remember ----------
+        {
+          const sid = "s06-nho";
+          hide(["#rule-6", "#rule-6b"]);
+          pop("#rule-6", start(sid) + 0.2, { from: 0.6 });
+          pop("#rule-6b", start(sid) + 0.9, { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

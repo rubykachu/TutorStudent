@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Ngoặc tròn, vuông, nhọn: hộp trong hộp" (lesson
+  thu-tu-thuc-hien-phep-tinh): each bracket pair is a box (teal inside sky
+  inside lime), opened from the innermost out on {10 + 2 · [5 + (3 · 2)]}.
+  Built by `pnpm video:build thu-tu-thuc-hien-phep-tinh ngoac-long`, which
+  injects window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Ngoặc tròn, vuông, nhọn: hộp trong hộp</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .res { color: var(--color-concept-amber); border-bottom: 8px solid var(--color-concept-amber); }
+      .nest { position: absolute; left: 0; width: 1280px; top: 90px; display: flex; justify-content: center; }
+      .box { position: relative; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; padding: 54px 24px 20px; border: 7px solid transparent; border-radius: 30px; font: 800 72px / 1.1 "Baloo 2", sans-serif; }
+      .box .lab { position: absolute; left: 20px; top: 6px; font: 800 34px / 1.2 "Baloo 2", sans-serif; opacity: 0; }
+      .box .num { position: absolute; right: 14px; top: 6px; width: 38px; height: 38px; border-radius: 50%; background: var(--color-concept-pink); color: var(--color-surface); font: 800 26px / 38px "Baloo 2", sans-serif; text-align: center; opacity: 0; }
+      .box.lime { color: var(--color-foreground); --c: var(--color-concept-lime); }
+      .box.sky { --c: var(--color-concept-sky); }
+      .box.teal { --c: var(--color-concept-teal); }
+      .box .lab { color: var(--c); }
+      .part { display: inline-flex; align-items: center; }
+      .chips { position: absolute; left: 0; width: 1280px; display: flex; justify-content: center; gap: 28px; top: 200px; }
+      .chip .g { font: 800 52px / 1 "Baloo 2", sans-serif; }
+      .done { position: absolute; left: 0; width: 1280px; top: 150px; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="chips">
+            <span id="c-tron" class="chip" style="--c: var(--color-concept-teal)"><span class="g">( )</span> ngoặc tròn</span>
+            <span id="c-vuong" class="chip" style="--c: var(--color-concept-sky)"><span class="g">[ ]</span> ngoặc vuông</span>
+            <span id="c-nhon" class="chip" style="--c: var(--color-concept-lime)"><span class="g">{ }</span> ngoặc nhọn</span>
+          </div>
+          <div id="plain" class="row math" style="top: 380px">
+            <span style="color: var(--color-concept-lime)">{</span>10 + 2 ·
+            <span style="color: var(--color-concept-sky)">[</span>5 + <span style="color: var(--color-concept-teal)">(</span>3 · 2<span style="color: var(--color-concept-teal)">)</span><span style="color: var(--color-concept-sky)">]</span><span style="color: var(--color-concept-lime)">}</span>
+          </div>
+        </section>
+        <section id="nest-layer" class="scene layer">
+          <div class="nest">
+            <div id="b-lime" class="box lime"><span class="lab">{ }</span><span class="num">3</span>
+              <span id="l-main" class="part">10<span class="op">+</span>
+                <span id="l-mul" class="part">2<span class="op">·</span>
+                  <span id="l-sky" class="part">
+                    <span id="b-sky" class="box sky"><span class="lab">[ ]</span><span class="num">2</span>
+                      <span class="part">5<span class="op">+</span>
+                        <span id="s-teal" class="part">
+                          <span id="b-teal" class="box teal"><span class="lab">( )</span><span class="num">1</span>
+                            <span id="t-calc">3<span class="op">·</span>2</span>
+                            <span id="t-res" class="res" style="display:none">6</span>
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                    <span id="r11" class="res" style="display:none">11</span>
+                  </span>
+                </span>
+              </span>
+              <span id="r22" class="res" style="display:none">22</span>
+            </div>
+          </div>
+          <div id="story" class="row" style="top: 445px; padding-left: 200px; width: 1280px; gap: 14px">
+            <span id="g1" class="chip" style="--c: var(--color-concept-slate); font-size: 30px">hộp bút 5 nghìn</span>
+            <span id="g2" class="chip" style="--c: var(--color-concept-slate); font-size: 30px">3 gói kẹo, mỗi gói 2 nghìn</span>
+            <span id="g3" class="chip" style="--c: var(--color-concept-slate); font-size: 30px">túi 10 nghìn</span>
+          </div>
+          <div id="total" class="done" style="display:none">
+            <span class="math big pill">32</span>
+            <span id="total-tag" class="chip" style="--c: var(--color-concept-amber)">32 nghìn đồng</span>
+          </div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div class="row" style="top: 160px">
+            <span class="chip" style="--c: var(--color-concept-teal)"><span class="g">1</span> ( ) tròn</span>
+            <span class="math small">→</span>
+            <span class="chip" style="--c: var(--color-concept-sky)"><span class="g">2</span> [ ] vuông</span>
+            <span class="math small">→</span>
+            <span class="chip" style="--c: var(--color-concept-lime)"><span class="g">3</span> { } nhọn</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, end, W, owl, pop, rise, fade, hide, pose, color, scenes, finish } = window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+        const tokens = { teal: color("concept-teal"), sky: color("concept-sky"), lime: color("concept-lime") };
+        const rings = { "#b-teal": tokens.teal, "#b-sky": tokens.sky, "#b-lime": tokens.lime };
+        // A box draws its border, a label and a number badge when it is talked about.
+        const draw = (box, t) => tl.to(box, { borderColor: rings[box], duration: 0.35 }, t);
+        const label = (box, t) => tl.to(`${box} > .lab`, { opacity: 1, duration: 0.3 }, t);
+        const badge = (box, t) => tl.fromTo(`${box} > .num`, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)", immediateRender: false }, t);
+        const pulse = (box, t) => tl.fromTo(box, { scale: 1 }, { scale: 1.06, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, t);
+        // A finished box is replaced by its amber result.
+        const swap = (from, to, t) => {
+          tl.set(from, { display: "none" }, t);
+          tl.set(to, { display: "inline-flex" }, t);
+          pop(to, t, { from: 0.4 });
+        };
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-ba-loai"],
+          ["#s6", "s07-nho"],
+        ]);
+        {
+          // The boxes stay from "hộp" to the total.
+          const el = $("#nest-layer");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, start("s02-hop"));
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s06-nhon") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: three kinds of bracket ----------
+        {
+          const sid = "s01-ba-loai";
+          hide(["#c-tron", "#c-vuong", "#c-nhon", "#plain"]);
+          rise("#plain", start(sid) + 0.3);
+          pose(bird, "happy", W(sid, "cú"));
+          pop("#c-tron", W(sid, "tròn"), { from: 0.4 });
+          pop("#c-vuong", W(sid, "vuông"), { from: 0.4 });
+          pop("#c-nhon", W(sid, "nhọn"), { from: 0.4 });
+        }
+
+        // ---------- s02: brackets are boxes, small inside large ----------
+        {
+          const sid = "s02-hop";
+          pose(bird, "idle", start(sid));
+          // The three boxes show with the expression, so its brackets never vanish;
+          // each box is named on the word that talks about it.
+          draw("#b-teal", start(sid) + 0.2);
+          draw("#b-sky", start(sid) + 0.4);
+          draw("#b-lime", start(sid) + 0.6);
+          label("#b-teal", W(sid, "nhỏ", 1));
+          label("#b-sky", W(sid, "vừa"));
+          label("#b-lime", W(sid, "lớn"));
+        }
+
+        // ---------- s03: open the innermost box first ----------
+        {
+          const sid = "s03-mo";
+          pose(bird, "idle", start(sid));
+          badge("#b-teal", W(sid, "tròn"));
+          badge("#b-sky", W(sid, "vuông"));
+          badge("#b-lime", W(sid, "nhọn"));
+          pulse("#b-teal", W(sid, "tròn"));
+          pulse("#b-sky", W(sid, "vuông"));
+          pulse("#b-lime", W(sid, "nhọn"));
+        }
+
+        // ---------- s04: the story behind the numbers ----------
+        {
+          const sid = "s04-qua";
+          hide(["#g1", "#g2", "#g3"]);
+          pose(bird, "idle", start(sid));
+          rise("#g1", W(sid, "hộp"));
+          pulse("#b-sky", W(sid, "hộp"));
+          rise("#g2", W(sid, "kẹo"));
+          pulse("#b-teal", W(sid, "kẹo"));
+          rise("#g3", W(sid, "túi"));
+          pulse("#b-lime", W(sid, "túi"));
+          fade(["#g1", "#g2", "#g3"], end(sid) - 0.3);
+        }
+
+        // ---------- s05: round, then square ----------
+        {
+          const sid = "s05-tron";
+          pulse("#b-teal", W(sid, "tròn"));
+          swap("#t-calc", "#t-res", W(sid, "bằng", 1));
+          pulse("#b-sky", W(sid, "vuông"));
+          // The square box closes: 5 + 6 becomes 11 in the curly box.
+          swap("#b-sky", "#r11", W(sid, "bằng", 2));
+        }
+
+        // ---------- s06: curly ----------
+        {
+          const sid = "s06-nhon";
+          pulse("#b-lime", W(sid, "nhọn"));
+          swap("#l-mul", "#r22", W(sid, "bằng", 1));
+          tl.set("#b-lime", { borderColor: "rgba(0,0,0,0)" }, W(sid, "bằng", 2));
+          tl.to("#b-lime", { autoAlpha: 0, duration: 0.3 }, W(sid, "bằng", 2));
+          tl.set("#total", { display: "flex" }, W(sid, "bằng", 2));
+          pop("#total .pill", W(sid, "bằng", 2), { from: 0.4 });
+          rise("#total-tag", W(sid, "hết"));
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+
+        // ---------- s07: remember ----------
+        {
+          const sid = "s07-nho";
+          hide($$("#s6 .chip"));
+          hide($$("#s6 .math"));
+          const [c1, c2, c3] = $$("#s6 .chip");
+          const [a1, a2] = $$("#s6 .math");
+          pop(c1, start(sid) + 0.3, { from: 0.5 });
+          rise(a1, start(sid) + 0.5);
+          pop(c2, start(sid) + 0.7, { from: 0.5 });
+          rise(a2, start(sid) + 0.9);
+          pop(c3, start(sid) + 1.1, { from: 0.5 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>
