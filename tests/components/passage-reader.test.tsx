@@ -66,18 +66,62 @@ describe("PassageReader in reading mode", () => {
       "grid-cols-1",
       "md:grid-cols-[minmax(0,1fr)_12rem]",
     );
-    expect(aside).toHaveClass("md:col-start-2", "md:row-start-1");
+    expect(aside).toHaveClass(
+      "hidden",
+      "md:flex",
+      "md:col-start-2",
+      "md:row-start-1",
+    );
     expect(aside?.previousElementSibling?.tagName).toBe("P");
 
     const cards = aside?.querySelectorAll("[data-annotation-for='s4']") ?? [];
     expect(cards).toHaveLength(2);
-    expect(cards[0]).toHaveTextContent("Theo dõi");
+    // The textbook's "Theo dõi" stays in the data; the box says "Để ý".
+    expect(cards[0]).toHaveTextContent("Để ý");
+    expect(cards[0]).not.toHaveTextContent("Theo dõi");
+    expect(cards[0]).toHaveAttribute("data-annotation-label", "Theo dõi");
     expect(cards[0]).toHaveTextContent("Chú ý việc làm của Minh.");
     const describedBy = sentence(container, "s4").getAttribute(
       "aria-describedby",
     );
     expect(describedBy?.split(" ")).toEqual([cards[0]?.id, cards[1]?.id]);
     expect(sentence(container, "s1")).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("ties each note to its sentence with an underline and a matching number", () => {
+    const { container } = render(<PassageReader passage={PASSAGE} />);
+    const noted = sentence(container, "s4");
+    expect(noted).toHaveClass("underline", "decoration-dashed");
+    expect(sentence(container, "s3")).not.toHaveClass("underline");
+    // Badges right after the sentence, one per note, numbered in passage order.
+    const paragraph = noted.closest("[data-paragraph]");
+    const inText = [
+      ...(paragraph?.querySelectorAll("p > span > span > [data-note-badge]") ??
+        []),
+    ].map((b) => b.textContent);
+    expect(inText).toEqual(["1", "2"]);
+    const cards = [
+      ...(paragraph?.querySelectorAll("aside [data-annotation-for]") ?? []),
+    ];
+    expect(
+      cards.map((c) => c.querySelector("[data-note-badge]")?.textContent),
+    ).toEqual(["1", "2"]);
+  });
+
+  it("puts a phone copy of each note right under its sentence", () => {
+    const { container } = render(<PassageReader passage={PASSAGE} />);
+    const inline = container.querySelector("[data-annotations-inline]");
+    expect(inline).toHaveClass("md:hidden");
+    expect(inline).toHaveAttribute("aria-hidden", "true");
+    // Inside the sentence's own wrapper, straight after its text.
+    expect(inline?.parentElement?.contains(sentence(container, "s4"))).toBe(
+      true,
+    );
+    expect(inline?.querySelectorAll("[data-annotation-for='s4']")).toHaveLength(
+      2,
+    );
+    // Only the margin copies carry ids, so descriptions are read once.
+    expect(inline?.querySelectorAll("[id]")).toHaveLength(0);
   });
 
   it("omits the citation when the passage has no source", () => {
