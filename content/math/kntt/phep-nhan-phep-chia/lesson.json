@@ -2725,7 +2725,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Viết 1 920, thẳng cột với tích riêng thứ nhất"
+            "text": "Viết 19, nhớ 2 sang cột bên trái"
           }
         }
       ],
@@ -3200,7 +3200,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm số chia, biết số bị chia là 36 và thương là 4."
+          "text": "Tìm số chia, biết số bị chia là 30 và thương là 5."
         }
       ],
       "hints": {
@@ -3214,10 +3214,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 9
+        "value": 6
       },
       "check": {
-        "expr": "36:4"
+        "expr": "30:5"
       }
     },
     {
@@ -3440,7 +3440,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "27 : 5"
+            "tex": "32 : 5"
           }
         },
         {
