@@ -1,382 +1,279 @@
 # Review: Thứ tự thực hiện các phép tính (`thu-tu-thuc-hien-phep-tinh`)
 
 - Bài: `content/math/kntt/thu-tu-thuc-hien-phep-tinh/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
 - Nguồn đã đọc: `sources/math/thu-tu-thuc-hien-phep-tinh/` - p24, p25, p26, p102, p103
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (89 id chưa có trong `ids.lock.json`)
-- `lesson:walk`: 0 FAIL, ảnh trong `.shots/walk/thu-tu-thuc-hien-phep-tinh/`. Ảnh walk chụp lúc 15:46, trước lần sửa cuối của `lesson.json`, `catalog.ts` (15:52) và `statics.tsx`, `steps.tsx` (16:02–16:12), nên vài màn còn hình cũ (ví dụ `095-s8-07-recap.png`, `122-s11-04-block.png`). Màn đã đổi được soát bằng ảnh visual mới trong `.shots/thu-tu-thuc-hien-phep-tinh/`. Ảnh cũ không tính là lỗi nội dung; tác giả chụp lại walk ở vòng sau.
-- Kết luận: Chưa đạt: còn 4 lỗi Nghiêm trọng
-- Bản đã review: `8f532e2d091b375ce2a81059902918ce9433e0ef633ff5e0db933271566eded6` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi, 1 cảnh báo của bài (101 id chưa có trong `ids.lock.json`)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo chặn bài, ảnh trong `.shots/walk/thu-tu-thuc-hien-phep-tinh/` (chụp 16:48–16:49, sau lần sửa cuối của `lesson.json` và `catalog.ts` lúc 16:42)
+- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng
+- Bản đã review: `2547d3534329d3b49991996a5029df47b084bd6b6adc3c6bc9244a27c2576dd7` (`pnpm content:diff` so với bản này)
 
-Ba reviewer đã tự giải mọi exercise trước khi đọc `answer`: mọi đáp án đúng, mỗi câu `choice` có đúng một lựa chọn đúng. Mọi `hintVisualId` dùng số khác đề và dừng ở "?"; mọi `solutionVisualId` dùng số của đề, trừ mục Nghiêm trọng 1.
+Ba reviewer đã tự giải cả 66 exercise trước khi đọc `answer`: mọi đáp án đúng, mỗi câu `choice` có đúng một lựa chọn đúng. Nấc 1 không lộ đáp án ở câu nào; mọi `hintVisualId` dùng số khác đề và dừng ở "?"; mọi `solutionVisualId` dùng số của đề.
 
-Đã soát lại và bỏ hai phát hiện của nhóm:
-- "Câu nối (`match`) và sắp xếp (`order`) chưa có màn hướng dẫn thao tác trong app": sai. Bài đã xuất bản `neu-cau-muon-co-mot-nguoi-ban` có `huong-dan-noi` (nối cặp) và `huong-dan-xep` (sắp xếp). Luật "Mỗi thao tác dạy một lần cho cả app" đã được đáp ứng, nên `noi-dau-voi-ten` và câu kho ôn `sap-buoc-cong-tru` không cần màn riêng.
-- "Ảnh walk cũ hơn bản đang review": đây là việc chụp lại walk, không phải lỗi nội dung (xem dòng `lesson:walk`).
+Mục của vòng 1:
+- Đã hết: Nghiêm trọng 1, 3, 4; Nghiêm trọng 2 (cột sai nay xám, có dấu ×; `ngoac-tron-so-sanh` là "Có dấu ngoặc" / "Không có dấu ngoặc"), trừ nhãn `nhan-chia-so-sanh` (Nghiêm trọng 1 dưới đây); Nên sửa 2, 3, 5–15, 17, 18, 20–24, 26; Góp ý 1, 2, 3, 6, 11, 12, 15–18, 20, 21.
+- Còn, đã gộp vào vòng này: Nên sửa 1 (Nên sửa 1 dưới đây), Nên sửa 4 (Nghiêm trọng 1), Nên sửa 16 (Góp ý 15), Nên sửa 19 (Nên sửa 12), Góp ý 5 (Góp ý 4), Góp ý 8 (Góp ý 5), Góp ý 10 và 13 (Góp ý 10), Nên sửa 25 (Nên sửa 16), Góp ý 4 (Góp ý 16), Góp ý 7 (Góp ý 17), Góp ý 9 (Góp ý 18), Góp ý 14 (Góp ý 9), Góp ý 19 (Nên sửa 15).
 
 ## Nghiêm trọng
 
-### 1. Hình lời giải của câu 7 · 8 giải một bài khác (14 · 6 = 84)
+### 1. Luật "hai phép cùng loại thì làm từ trái sang phải" được nói bằng bốn cách, hai trong đó sai khi đọc như luật chung
 
-- Vị trí: `$.exercises[12].hints.solutionVisualId` (`ex.nhan-7-8`, câu kiểm tra của section `on-nhan-chia`); spec `nhan-7-8-giai` trong `src/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog.ts` là `{ kind: "split", factor: 14, digit: 6 }`
-- Nguồn: —
-- Vấn đề: Sau lần sai thứ ba, trẻ thấy "14 · 6 = 84", giống hệt hình mẫu `nhan-hai-chu-so` trên màn quy tắc. Hình không có số của đề, cũng không có 56. Trẻ yếu bảng nhân đang cần xem cách ra 56 thì lại thấy 84, dễ nhớ sai 7 · 8 = 84.
-- Sửa: Làm hình lời giải cho đúng 7 · 8 (ví dụ 7 · 7 = 49, 49 + 7 = 56, hoặc kiểu `divide` 56 : 8 = 7 đảo ngược), hoặc bỏ `solutionVisualId` để khung tự hiện 56.
-
-### 2. Hình so sánh đúng/sai: cột sai trông như cột đúng, nhãn và màu mâu thuẫn quy tắc
-
-- Vị trí: component `SoSanhThuTu` trong `statics.tsx`, dùng ở `cong-tru-so-sanh` (`$.sections[2].blocks[1].children[1]`), `nhan-chia-so-sanh` (`$.sections[4].blocks[1].children[1]`), `hon-hop-so-sanh` (`$.sections[5].blocks[1].children[1]`), `ngoac-tron-so-sanh` (`$.sections[6].blocks[2].children[1]`), `luy-thua-so-sanh` (`$.sections[8].blocks[1].children[1]`)
-- Nguồn: tr.24, `p24.png`; tr.25, `p25.png` (ví dụ các lời giải ghi rõ "sai vì…")
-- Vấn đề: Ảnh `…visual.hon-hop-so-sanh-ipad.png`: cột sai cũng có khung hồng "làm trước" và kết quả gạch chân hổ phách như cột đúng; hai cột chỉ khác ô màu nhỏ ở đầu cột. Trẻ đọc chậm không biết cột nào bị loại, dễ chép cách sai. Ba chỗ mâu thuẫn với phần còn lại của bài:
-  - Nhãn cột sai của `hon-hop-so-sanh` là "Làm từ trái sang", đúng cụm mà note section `cong-tru`, `nhan-chia` và bậc thang ("Từ trái sang phải") dạy là quy tắc. Trẻ dễ hiểu "làm từ trái sang" là sai.
-  - `ngoac-tron-so-sanh` đặt 3 · 8 + 4 = 28 (tính đúng) dưới nhãn đối lập với "Đúng thứ tự", trong khi note ngay trên nói 3 · 8 + 4 "thì nhân trước", tức là một biểu thức khác được tính đúng.
-  - Màu: ô hổ phách của "Đúng thứ tự" trùng màu khái niệm "Kết quả" trong chú thích mọi hình từng bước; ô slate của cột sai trùng màu khái niệm "Bảng nhân" (chấm slate của hình `nhan-chia-on`). Hai màu mang hai nghĩa.
-- Sửa: Cột sai dùng màu trung tính (không khung hồng, không gạch chân hổ phách), có dấu ✗ và nhãn nói rõ lỗi: "Sai: cộng trước trừ", "Sai: nhân trước chia", "Sai: trừ trước nhân", "Sai: nhân 2 · 3 trước". Cột đúng dùng dấu ✓, không dùng ô hổ phách. Với `ngoac-tron-so-sanh`, đặt hai nhãn là "Có ngoặc" / "Không ngoặc", cả hai tính đúng, để khớp câu "Ngoặc đổi thứ tự tính".
-
-### 3. Câu tìm x điền chỗ trống in sẵn đáp án của hai ô đầu
-
-- Vị trí: `$.exercises[55].segments[2].text`, `$.exercises[55].segments[4].text` (`tim-x-1`, câu luyện tập của card `tim-so`); `$.exercises[56].segments[2].text`, `$.exercises[56].segments[4].text` (`tim-x-2`)
-- Nguồn: tr.26 bài 1.66, tr.102 lời giải 1.66 (`p26.png`, `p102.png`)
-- Vấn đề: Ngay sau ô b1 là chữ "; 4x = 28 − 8 = ", sau ô b2 là "; x = 20 : 4 = " (ảnh walk `129-s11-08-exercise-tim-x-1.png`). Trẻ chép 28 và 20 từ chính dòng chữ, bỏ qua kỹ năng câu hỏi muốn luyện là tính vế phải theo thứ tự. `tim-x-2` lộ theo cùng cách ("6x = 20 + 4", "x = 24 : 6"). Tác dụng như highlight lộ đáp án.
-- Sửa: Chữ sau mỗi ô không in lại kết quả của ô trước, ví dụ "Vế phải = [b1]. Vậy 4x bằng vế phải trừ 8, được [b2]. Vậy x = [b3]". Hoặc chỉ hỏi vế phải ở một câu và x ở câu khác. Giữ nhiễu 36 và 16 vì chúng ứng với lỗi hay gặp.
-
-### 4. Câu quy tắc "Luỹ thừa chỉ tác động lên số ngay bên dưới nó" gọi sai khái niệm và sai vị trí
-
-- Vị trí: `$.sections[8].blocks[1].children[0].text` (`section.luy-thua`)
-- Nguồn: tr.24, `p24.png`
-- Vấn đề: Tổng hợp nâng mức từ Nên sửa lên Nghiêm trọng. Đây là câu quy tắc trẻ phải nhớ, nhưng nó gọi số mũ là "luỹ thừa", trong khi bài `luy-thua` và glossary dùng "luỹ thừa" cho cả 3², "số mũ" cho số nhỏ phía trên. Số mũ cũng không nằm "ngay trên" cơ số mà ở góc trên bên phải, nên "số ngay bên dưới nó" không chỉ đúng cơ số. Trẻ nhớ câu này sẽ nhớ sai tên gọi đã học ở bài trước.
-- Sửa: "Số mũ chỉ gắn với số ngay bên trái nó: 2 · 3² là 2 · 9, không phải 6²." (không để "2 · 9" bị ngắt dòng, như ảnh `098-s9-02-block.png`).
+- Vị trí:
+  - `$.sections[2].blocks[1].children[0].text` (`section.cong-tru`: "Cộng không làm trước trừ: …")
+  - spec `cong-tru-so-sanh` (`wrongLabel: "Sai: cộng trước"`) và `nhan-chia-so-sanh` (`wrongLabel: "Sai: nhân trước"`) trong `src/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog.ts`
+  - `$.sections[5].blocks[1].children[0].text` (`section.nhan-chia`: "Nhân và chia ngang nhau: …")
+  - `$.sections[6].recap.caption`, `$.cards[6].recap.caption`, `$.sections[11].recap.caption` ("Hai phép cùng nhóm …")
+  - Nhãn bậc thang `RUNGS` trong `statics.tsx` ("Từ trái sang phải" ở từng bậc)
+- Nguồn: tr.24, `p24.png` (hai dòng "Từ trái qua phải", cho cộng trừ và cho nhân chia)
+- Vấn đề: Tổng hợp nâng từ Nên sửa (nhóm 1 mục 1, nhóm 2 mục 1 và 2) lên Nghiêm trọng, vì đây là câu quy tắc và nhãn trong hình, hai thứ trẻ nhớ nguyên văn.
+  - "Cộng không làm trước trừ" đọc như luật chung là sai: trong 10 + 4 − 3, cộng làm trước. Nhãn "Sai: cộng trước" ngay dưới lặp lại ý đó. Mọi ví dụ và câu hỏi của card `cong-tru` có dấu trừ đứng đầu, nên không câu nào sửa được hiểu sai "trừ trước cộng".
+  - Nhãn "Sai: nhân trước" (ảnh `ipad/060-s6-02-block.png`) đọc riêng là "nhân trước thì sai". Màn kế tiếp là câu kiểm tra `chon-phep-nhan-chia` (4 · 6 : 3), đáp án là nhân trước: trẻ nhớ nhãn sẽ chạm phép chia và sai.
+  - Cùng nhãn "Sai: cộng trước" được dùng lại ở `tong-hop-dong-viet-lai` (5 + 3 · 2) cho một lỗi khác: cộng trước nhân.
+  - Cùng một luật có bốn cách nói: phủ định (`cong-tru`), "ngang nhau" (`nhan-chia`), "cùng nhóm" (recap `hon-hop`, `bai-tap-sach`), "Từ trái sang phải" (bậc thang). "Ngang nhau" và "nhóm" không được định nghĩa, bậc thang cũng không có chữ "nhóm". Recap của `hon-hop` vì vậy lệch note của hai section nó tóm tắt.
+- Sửa:
+  - Note `cong-tru`: "Cộng và trừ ngang nhau: dấu nào đứng bên trái thì làm trước. Với 10 − 4 + 3, làm 10 − 4 trước, rồi cộng 3."
+  - Recap `hon-hop` (section và card): "Nhân, chia làm trước; cộng, trừ làm sau. Hai phép ngang nhau thì làm từ trái sang phải." Recap `bai-tap-sach`: "Thứ tự: ngoặc, luỹ thừa, nhân chia, cộng trừ; hai phép ngang nhau thì làm từ trái sang phải."
+  - Nhãn cột sai nói đúng phép bị làm sai chỗ, như `luy-thua-so-sanh` đang làm: `cong-tru-so-sanh` "Sai: làm 4 + 3 trước", `nhan-chia-so-sanh` "Sai: làm 6 · 2 trước", `tong-hop-dong-viet-lai` "Sai: làm 5 + 3 trước".
+  - Đổi một câu kho ôn của card `cong-tru` sang biểu thức có dấu cộng đứng đầu, ví dụ `sap-buoc-cong-tru` thành 20 + 15 − 5 − 10 (bước đầu 20 + 15 = 35).
 
 ## Nên sửa
 
-### 1. Hình gợi ý của 7 · 8 dạy tách chục, không hợp với phép nhân trong bảng
+### 1. Hình gợi ý của các câu bảng nhân và chia không dẫn tới phép tính của đề
 
-- Vị trí: `$.exercises[12].hints.hintVisualId` (`ex.nhan-7-8`), spec `nhan-7-8-goi-y` = `split 12 · 7`
+- Vị trí: `$.exercises[12].hints.hintVisualId` (`nhan-7-8`, spec `nhan-7-8-goi-y` là bảng 6: 6 · 5, 6 · 6, 6 · 7 = ?); `$.exercises[14].hints.hintVisualId` (`nhan-9-6`, bảng 8); `$.exercises[13].hints.hintVisualId` (`chia-63-9`, spec `chia-63-9-goi-y` là 56 : 8)
+- Nguồn: Kiến thức nền (tiểu học)
+- Vấn đề: Trẻ sai 7 · 8 thì thấy bảng 6, sai 9 · 6 thì thấy bảng 8, không dòng nào có thừa số của đề. `chia-63-9-goi-y` lặp lại đúng ví dụ 56 : 8 đã giải trọn trên màn `chia-hoi-nguoc`. Luật nấc 2 cho phép dùng số của đề miễn dừng ở "?". Vòng 1 Nên sửa 1 chưa hết.
+- Sửa: `nhan-7-8-goi-y` = 7 · 6 = 42, 7 · 7 = 49, 7 · 8 = ?; `nhan-9-6-goi-y` = 9 · 4 = 36, 9 · 5 = 45, 9 · 6 = ?; `chia-63-9-goi-y` = 63 : 9 = ? (9 · ? = 63), mode `hint`.
+
+### 2. Câu kiểm tra `nhan-7-8` hỏi lại phép nhân vừa hiện trên màn trước
+
+- Vị trí: `$.sections[3].checkIds[0]` (`ex.nhan-7-8`) so với visual `chia-hoi-nguoc` (`$.sections[3].blocks[1].children[1]`, dòng "8 · 7 = 56")
+- Nguồn: Kiến thức nền (tiểu học)
+- Vấn đề: Ảnh `045-s4-02-block.png` hiện 8 · 7 = 56, màn kế `046-s4-03-exercise-nhan-7-8.png` hỏi 7 · 8. Trẻ chép 56, câu kiểm tra không cho biết trẻ đã thuộc bảng nhân chưa.
+- Sửa: Đổi sang một tích không có trên màn quy tắc, luyện tập hay kho ôn (ví dụ 7 · 4 = 28), đổi id và hai spec `nhan-7-8-*` theo.
+
+### 3. Phép tính trong câu quy tắc bị ngắt giữa dòng
+
+- Vị trí: `$.sections[3].blocks[0].children[0].text`, `$.sections[3].recap.caption`, `$.cards[3].recap.caption` ("42 : 6 = 7"); `$.sections[2].blocks[1].children[0].text` ("10 − 4 + 3"); `$.sections[5].blocks[1].children[0].text` ("48 : 6 · 2")
 - Nguồn: —
-- Vấn đề: 7 · 8 không có chữ số hàng chục để tách; hình 12 · 7 = 70 + 2 · 7 không cho trẻ đường nào tới 7 · 8.
-- Sửa: Gợi ý bằng bảng nhân với số khác đề, dừng ở "?" (ví dụ 7 · 6 = 42, 7 · 7 = 49, 7 · 9 = ?), hoặc bằng quan hệ nhân chia như note đầu section.
+- Vấn đề: Ảnh ipad `044-s4-01-block.png`, `050-s4-05-recap.png` ("42 :" / "6 = 7."); phone `032-s3-02-block.png` ("10 −" / "4 + 3"), phone `060-s6-02-block.png` ("48 : 6" / "· 2"). Câu cần nhớ bị đọc thành hai mẩu rời. Nhóm 2 ghi Góp ý; gộp lên mức Nên sửa của nhóm 1.
+- Sửa: Khoảng trắng không ngắt (U+00A0) quanh dấu trong phép tính của `note`/`caption`, hoặc tách phép tính ra khối `formula`; nếu cần app hỗ trợ thì báo người làm app và ghi backlog.
 
-### 2. Hình lời giải của câu đọc tên dấu lại tính giá trị biểu thức
+### 4. Hình mở bài tô cách tính sai của Lan bằng màu "Làm trước" và "Kết quả"
 
-- Vị trí: `$.exercises[6].hints.solutionVisualId` (`ex.dien-ten-dau`), spec `dien-ten-dau-giai` = `steps 12:3+7 full`
-- Nguồn: —
-- Vấn đề: Đề hỏi đọc tên dấu, hình lời giải tính 12 : 3 = 4, 4 + 7 = 11 và không có chữ "chia", "cộng". Trẻ lẫn tên dấu không được sửa đúng chỗ sai.
-- Sửa: Dùng hình kiểu `doc-bieu-thuc` cho 12 : 3 + 7 kèm các chip "mười hai / chia / ba / cộng / bảy", hoặc bỏ `solutionVisualId`.
-
-### 3. "Đọc biểu thức từ trái sang phải" dễ bị hiểu thành "tính từ trái sang phải"
-
-- Vị trí: `$.sections[1].blocks[1].children[0].text` (`section.dau-phep-tinh`)
+- Vị trí: `$.sections[0].blocks[0]`, `$.overview.hook.visualId` (visual `hoa-don-hai-ban`, `HoaDonHaiBan` trong `statics.tsx`)
 - Nguồn: tr.24, `p24.png`
-- Vấn đề: Section trước dạy "nhân trước, cộng sau", section sau dạy "tính từ trái sang phải". Câu "Đọc … từ trái sang phải" đặt giữa, với ví dụ 2 · 8 + 5, dễ bị gộp thành "cứ trái sang phải mà làm", ngược với section đầu.
-- Sửa: Tách rõ đọc và tính, ví dụ "Đọc biểu thức từ trái sang phải, từng số và từng dấu. Còn tính thì theo thứ tự của bài."
+- Vấn đề: Ảnh `002-s1-01-block-end.png`: cột Lan có khung hồng quanh "8 + 5", dấu ♦ hồng, kết quả gạch chân hổ phách, giống cột Nam. Từ màn sau, hồng nghĩa là "Làm trước", cách sai là xám có ×; không màn nào đánh dấu cột Lan sai.
+- Sửa: Ở trạng thái cuối của `hoa-don-hai-ban`, cột Lan dùng kiểu cột sai của bài (xám, ×, "Sai: làm 8 + 5 trước"), hoặc màn `hoa-don-dung` thêm một dòng nêu Lan sai vì cộng trước.
 
-### 4. Luật "cùng loại thì từ trái sang phải" được nói theo hai cách phủ định, và ví dụ phần nhân chia toàn chia đứng đầu
+### 5. Tình huống mua quà của section ngoặc lồng có hai cách hiểu và không có kết
 
-- Vị trí: `$.sections[2].blocks[1].children[0].text` ("Đừng cộng trước: …"), `$.sections[4].blocks[1].children[0].text` ("Nhân không làm trước chia: …"); ví dụ của section `nhan-chia`: `nhan-chia-cam`, `nhan-chia-so-sanh` (48 : 6 · 2), `nhan-chia-tung-buoc` (72 : 6 · 3 : 4), `nhan-chia-tu-lam` (36 : 4 · 3), recap `nhan-chia-tom-tat` (64 : 8 · 3), `$.exercises[17]`, `[18]`, `[20]`
-- Nguồn: tr.24, `p24.png` (cộng trừ; nhân chia: từ trái qua phải); tr.25, `p25.png` bài 1.62b bắt đầu bằng nhân
-- Vấn đề: Cùng một luật, hai section mở đầu bằng hai lệnh phủ định khác nhau. Đọc riêng vế đầu, "Đừng cộng trước" thành "trừ trước cộng", "Nhân không làm trước chia" thành "chia trước nhân". Mọi ví dụ trên màn, recap, câu kiểm tra và câu luyện tập đầu của section `nhan-chia` đều có dấu chia đứng đầu, nên trẻ theo luật sai "chia trước" vẫn làm đúng hết; chỉ câu kho ôn `sap-buoc-nhan-chia` (3 · 8 : 6 · 5) có nhân đứng đầu.
-  Nhóm 2 ghi mục này là Nghiêm trọng. Tổng hợp hạ xuống Nên sửa vì: câu quy tắc đọc trọn vẫn đúng ("dấu nào đứng bên trái thì làm trước"); note đầu section và recap nói đúng "tính từ trái sang phải"; và với phép chia hết, a · b : c tính theo kiểu "chia trước" vẫn ra cùng kết quả, nên hiểu sai này không làm trẻ ra số sai ở câu tính của bài. Nó chỉ lộ ra ở câu chạm vùng hay sắp bước có nhân đứng đầu, mà các câu đó hiện không có ở vị trí kiểm tra.
-- Sửa: Nói luật theo một câu khẳng định, dùng chung cho cả hai section: "Cộng và trừ ngang nhau: dấu nào đứng bên trái thì làm trước." và "Nhân và chia ngang nhau: dấu nào đứng bên trái thì làm trước." Giữ hình so sánh chia đứng đầu (chỗ cách làm sai ra số khác), nhưng đổi hình từng bước hay hình cùng làm và câu kiểm tra chạm vùng sang biểu thức có nhân đứng đầu (ví dụ 4 · 6 : 3, đáp án op1 là phép nhân).
-
-### 5. Màn hướng dẫn chạm vùng gọi trẻ là "em"
-
-- Vị trí: `$.sections[2].blocks[3].children[0].text` ("phép tính em chọn"); nhãn trong hình `huong-dan-cham-phep-tinh` ("Vòng đen: phép tính em chọn", `statics.tsx`)
+- Vị trí: `$.sections[8].blocks[2].caption` (visual `ngoac-long-tung-buoc`)
 - Nguồn: —
-- Vấn đề: `docs/learner.md` quy định linh vật gọi trẻ là "bạn", `overview` của bài cũng dùng "bạn". Hai cách xưng hô trong một bài.
-- Sửa: Đổi "em" thành "bạn" ở note và nhãn trong hình.
+- Vấn đề: "3 gói kẹo 2 nghìn đồng" đọc được là cả 3 gói giá 2 nghìn; "10 nghìn đồng tiền túi" không rõ là gì; caption không nói 32 nghìn đồng là số tiền gì (ảnh `094-s9-03-block.png`, `095-s9-03-block-end.png`).
+- Sửa: "Mua 2 phần quà, mỗi phần có 1 hộp bút 5 nghìn đồng và 3 gói kẹo, mỗi gói 2 nghìn đồng. Mua thêm 1 thiệp 10 nghìn đồng. Cần tất cả 32 nghìn đồng."
 
-### 6. Section `on-nhan-chia` gộp hai ý, recap chỉ nhắc một
+### 6. Câu luyện tập `tinh-hon-hop-1` cần bốn phép tính
 
-- Vị trí: `$.sections[3].blocks[2]` (tách chục và đơn vị) so với `$.sections[3].recap.caption`, `$.cards[3].recap.caption`
-- Nguồn: Kiến thức nền (tiểu học); tr.24, `p24.png`
-- Vấn đề: Section dạy (a) nhân chia đi cùng nhau, chia bằng cách hỏi ngược và (b) nhân số có hai chữ số bằng cách tách chục, có câu kho ôn riêng `nhan-13-4`. Recap chỉ nhắc (a), nên phiên ôn gặp 13 · 4 mà màn "Nhớ nhé!" không có cách làm.
-- Sửa: Tách (b) thành section ngắn có recap riêng, hoặc bỏ khối (b) cùng `nhan-13-4` nếu chỉ cần ôn bảng nhân.
-
-### 7. Thuật ngữ nền "bảng nhân" được khai báo nhưng không xuất hiện trong chữ của bài
-
-- Vị trí: `$.concepts[5]` (`concept.bang-nhan`, slate), `$.cards[3].conceptIds`; mọi `note` của `$.sections[3]`
-- Nguồn: Kiến thức nền (tiểu học) theo `content/glossary/math.json` (`"bảng nhân"`, `prerequisite: "tiểu học"`)
-- Vấn đề: Ngoại lệ "kiến thức nền" dựa vào thuật ngữ "bảng nhân", nhưng không note, caption hay nhãn nào có chữ đó. Hình `nhan-chia-on` nay vẽ chấm màu slate, nhưng không có nhãn nối màu với tên. Khối tách chục (14 = 10 + 4) cũng vượt phạm vi "bảng nhân". Định nghĩa và ví dụ vẫn đúng, và phép nhân hai chữ số với một chữ số cần cho ví dụ tr.24, nên giữ mức Nên sửa.
-- Sửa: Dùng thuật ngữ trong note (ví dụ "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7") và cho hình `nhan-chia-on` một nhãn "Bảng nhân" màu slate. Khối tách chục: bỏ (xem mục 6) hoặc thêm thuật ngữ nền tương ứng vào glossary.
-
-### 8. Dấu nhân "·" trong câu nối dấu quá nhỏ
-
-- Vị trí: `$.exercises[4].left[2].content` (`tex: "\\cdot"`, `ex.noi-dau-voi-ten`)
+- Vị trí: `$.exercises[27]` (`ex.tinh-hon-hop-1`, `30 − 4 · 5 + 12 : 3`)
 - Nguồn: —
-- Vấn đề: Ảnh walk `021-s2-03-…-wrong2.png` (ipad), `phone/019-s2-03-exercise-noi-dau-voi-ten.png`: dấu "·" chỉ là một chấm vài pixel, nhỏ hơn hẳn "+", "−", ":", trong khi câu này kiểm tra đúng việc nhận ra dấu nhân.
-- Sửa: Phóng to ký hiệu (ví dụ `\Large\cdot`) hoặc đặt dấu giữa hai số (`4 \cdot 2`, `8 : 2`, …) như hình `bang-dau`.
+- Vấn đề: Luật "Số nhỏ" giới hạn câu luyện tập ở 2 phép tính nhẩm; đây là câu tự làm đầu tiên sau quy tắc mà có bốn phép.
+- Sửa: Rút còn hai hay ba phép, ví dụ `30 − 4 · 5 + 2` (= 12); chuyển câu hiện tại vào kho ôn nếu muốn giữ; sửa `check.expr` và hai spec `tinh-hon-hop-1-*`.
 
-### 9. Câu luyện tập duy nhất của `cong-tru` cần ba phép tính
+### 7. Hình mẫu tìm x không viết cả đẳng thức, vế phải không có trong câu chuyện
 
-- Vị trí: `$.exercises[9]` (`ex.tinh-cong-tru-1`, 25 − 9 + 6 − 12)
-- Nguồn: —
-- Vấn đề: Luật "Số nhỏ" giới hạn câu luyện tập ở 2 phép tính nhẩm; câu này có 3. Ba số sau còn trùng màn cùng làm `cong-tru-tu-lam` (30 − 9 + 6 − 12).
-- Sửa: Rút còn ba số khác màn cùng làm, ví dụ 24 − 8 + 5 (= 21), và đổi hai spec `tinh-cong-tru-1-goi-y`, `-giai` theo.
+- Vị trí: `$.sections[12].blocks[0].children[1]`, `$.sections[12].recap`, `$.cards[13].recap` (visual `tim-so-mua-but`, spec `findx` rhs `2·4+12`)
+- Nguồn: tr.26 bài 1.66, tr.102 (`p26.png`, `p102.png`)
+- Vấn đề: Ảnh `137-s13-01-block.png`: dòng đầu "3x + 5 = ?", dòng riêng "2 · 4 + 12". Note vừa định nghĩa "Vế phải là phần bên phải dấu =" nhưng bên phải dấu = chỉ có "?". Caption "hết 20 nghìn đồng" không có gì ứng với 2 · 4 + 12.
+- Sửa: Dòng đầu viết `3x + 5 = 2 · 4 + 12`, gắn nhãn "Vế phải"; câu chuyện có đủ vế phải, hoặc dùng vế phải là số cho ví dụ đời sống rồi thêm ví dụ vế phải là biểu thức.
 
-### 10. Section ngoặc lồng nhau thiếu ví dụ đời sống
+### 8. "Làm ngược từng bước" không được giải thích ở chữ hay ở hình
 
-- Vị trí: `$.sections[7]` (`section.ngoac-long`)
-- Nguồn: —
-- Vấn đề: Chỉ có so sánh "quà trong hộp" ở caption, không có tình huống nào có số; trái luật "Ví dụ đời sống ở mọi section Toán".
-- Sửa: Thêm một tình huống số nhỏ dùng hai lớp ngoặc (ví dụ mua 2 phần quà, mỗi phần [1 hộp bút 5 nghìn đồng và (2 · 3) nghìn đồng tiền kẹo]).
-
-### 11. Câu quy tắc thứ hai của section ngoặc lồng không khớp hình đi kèm
-
-- Vị trí: `$.sections[7].blocks[1]` (note "Ngoặc tròn nằm trong cùng, …" + visual `bang-ngoac`)
-- Nguồn: tr.24, `p24.png`; tr.26, `p26.png`
-- Vấn đề: Câu nói về vị trí lồng nhau, hình là ba thẻ rời tả hình dạng từng dấu ("Hai nét cong", …), không vẽ gì bọc gì. Ý lồng nhau đã có ở `ngoac-long-hop` màn trước.
-- Sửa: Giữ hình và đổi câu thành câu nhận dạng ("( ) là ngoặc tròn, [ ] là ngoặc vuông, { } là ngoặc nhọn."), đặt màn này trước `ngoac-long-hop`; hoặc giữ câu và thay hình bằng hình hộp lồng nhau.
-
-### 12. Hai recap dùng từ "bậc" chưa được dạy
-
-- Vị trí: `$.sections[5].recap.caption`, `$.cards[5].recap.caption` (`hon-hop`); `$.sections[10].recap.caption` (`bai-tap-sach`)
-- Nguồn: tr.24, `p24.png`
-- Vấn đề: "cùng bậc thì từ trái sang phải" xuất hiện ở hai màn "Nhớ nhé!", nhưng bài không định nghĩa "bậc", glossary không có. Note của section `cong-tru`, `nhan-chia` và nhãn bậc thang nói cùng ý bằng "từ trái sang phải" mà không dùng "bậc".
-- Sửa: "Nhân, chia làm trước; cộng, trừ làm sau. Hai phép cùng hàng trên bậc thang thì làm từ trái sang phải." hoặc bỏ vế sau vì hình bậc thang đã ghi "Từ trái sang phải" ở mỗi bậc. Sửa cả hai recap theo cùng một cách nói.
-
-### 13. `sourceRef` phần ngoặc nhọn thiếu trang có ngoặc nhọn
-
-- Vị trí: `$.sections[7].sourceRef`, `$.cards[7].sourceRef` (`ngoac-long`)
-- Nguồn: tr.26, `p26.png` (1.64b)
-- Vấn đề: Trang 24 chỉ có ( ) và [ ]; ngoặc nhọn chỉ có ở tr.26.
-- Sửa: "Sách bài tập tr.24, 26".
-
-### 14. Không màn nào làm mẫu bước tìm x; hình mẫu, lời giải và recap đều dừng ở vế phải
-
-- Vị trí: `$.sections[10].blocks[3]` (visual `tong-hop-ve-phai`, `3·2^2+8`); `tim-x-1-giai`, `tim-x-2-giai`, `tim-x-3-giai` (chỉ tính vế phải; `tim-x-3-giai` ở mode `still`); `$.cards[12].recap` (`tong-hop-tom-tat-tim-so` vẽ `2·4^2-5`, không có x)
-- Nguồn: tr.102, lời giải 1.66a (`p102.png`)
-- Vấn đề: Bước "4x + 8 = 20 → 4x = 12 → x = 3" chưa được vẽ ở màn nào; lần đầu trẻ thấy là trong câu luyện tập. `tim-x-3` hỏi thẳng x mà lời giải nấc 3 chỉ hiện 23. Trái luật "Mẫu → cùng làm → tự làm". Recap card `tim-so` không minh hoạ câu caption của nó.
-- Sửa: Cho `tong-hop-ve-phai` chạy tới x; lời giải `tim-x-*-giai` chạy tới x (mode `full`); recap card `tim-so` vẽ một ví dụ tìm x có nhãn.
-
-### 15. Section `bai-tap-sach` gộp "tìm số chưa biết" với "tính biểu thức dài"; recap không nhắc tìm x
-
-- Vị trí: `$.sections[10]`, `$.sections[10].recap.caption`
-- Nguồn: tr.25–26 (`p25.png`, `p26.png`)
-- Vấn đề: Section có hai quy tắc cần nhớ riêng (thứ tự tính; tính vế đã biết trước rồi tìm số chưa biết) và ba dạng câu; recap chỉ nói thứ tự tính.
-- Sửa: Tách "Tìm số chưa biết" thành section riêng (note, ví dụ mẫu trọn như mục 14, câu kiểm tra, `tim-x-1`, recap riêng).
-
-### 16. Chưa có ví dụ mẫu cho dạng "chọn dòng viết lại đúng"
-
-- Vị trí: `$.sections[10].blocks`, trước `$.exercises[51]` (`chon-dong-dung-1`)
-- Nguồn: tr.25, Ví dụ 4 các lời giải (A)–(D) (`p25.png`)
-- Vấn đề: Không màn nào chỉ ra một dòng sai và vì sao sai; trẻ gặp dạng câu này lần đầu ở câu luyện tập.
-- Sửa: Thêm một màn mẫu (số khác đề và khác p25) hiện 3 dòng sai và 1 dòng đúng, mỗi dòng sai có nhãn lý do ngắn (dùng `compare` đã sửa theo Nghiêm trọng 2 hoặc mở rộng).
-
-### 17. Đề "Bốn bạn viết dòng thứ hai…" dễ hiểu là chọn lựa chọn thứ hai
-
-- Vị trí: `$.exercises[51..54].prompt[0].text` (`chon-dong-dung-1..4`); `$.cards[11].recap.caption`
-- Nguồn: tr.25 (`p25.png`)
-- Vấn đề: Lựa chọn hiện thành lưới 2 × 2 (ảnh `127-s11-07-exercise-chon-dong-dung-1.png`); "dòng thứ hai" trùng cách gọi hàng thứ hai của lưới.
-- Sửa: "Bốn bạn làm bước đầu tiên của biểu thức này. Bạn nào làm đúng?"; recap card: "Bước đầu đúng là bước làm đúng phép tính phải làm trước."
-
-### 18. `chon-dong-dung-1` giải được bằng mẹo "chọn dòng không còn số mũ"
-
-- Vị trí: `$.exercises[51].options`
-- Nguồn: tr.25, lời giải (C) (`p25.png`)
-- Vấn đề: Ba nhiễu đều còn luỹ thừa, chỉ đáp án không còn, nên trẻ chọn đúng mà không cần hiểu thứ tự; câu cũng thiếu lỗi hay gặp nhất 3² = 6.
-- Sửa: Thay d bằng `6 + 2 \cdot 6 : 3 - 1` (tính 3² thành 6).
-
-### 19. Câu luyện tập `tinh-day-du-1` quá dài và có 2⁵
-
-- Vị trí: `$.exercises[47]` (`tinh-day-du-1`)
-- Nguồn: tr.26 bài 1.63c (`p26.png`)
-- Vấn đề: 2⁵ cần 4 lần nhân (luật "Số nhỏ": 3⁴ đã không được), cả biểu thức 7 phép tính.
-- Sửa: Ví dụ `3 \cdot 2^{3} + 4 \cdot 5 - 9 \cdot 2 + 7` = 33; sửa `check.expr` và hai visual `tinh-day-du-1-*`.
-
-### 20. Thứ tự câu luyện tập của `bai-tap-sach` không tăng dần độ khó
-
-- Vị trí: `$.sections[10].practiceIds` (`tinh-day-du-1` mức 3, `chon-dong-dung-1` mức 2, `tim-x-1` mức 3)
-- Nguồn: —
-- Vấn đề: Câu tính trọn biểu thức dài đứng trước câu chỉ chọn bước đầu.
-- Sửa: Xếp `chon-dong-dung-1` → `tinh-day-du-1` → `tim-x-1` (nếu chưa tách section).
-
-### 21. Ví dụ lát gạch trộn đơn vị m² với viên gạch
-
-- Vị trí: `$.sections[8].blocks[0].children[1].caption` (visual `luy-thua-lat-gach`, `2·3^2+4`)
-- Nguồn: —
-- Vấn đề: "phòng vuông cạnh 3 m" cho 9 m², cộng "4 viên dự phòng" ra 22 mà không nói 22 là gì, cũng không nói mỗi viên lát 1 m².
-- Sửa: "Hai phòng vuông, mỗi cạnh 3 hàng gạch (mỗi phòng 3 · 3 viên), mua thêm 4 viên dự phòng: cần 22 viên."
-
-### 22. Bài toán mua bút ở section `bai-tap-sach` có hai cách hiểu, và câu chuyện nằm trong `note`
-
-- Vị trí: `$.sections[10].blocks[1].children[0].text` (visual `tong-hop-mua-but`, `50-2·3·4`)
-- Nguồn: —
-- Vấn đề: "mỗi hộp 3 bút giá 4 nghìn đồng" đọc được là mỗi hộp 4 nghìn (thừa 42) hay mỗi bút 4 nghìn (thừa 26); hình chọn cách thứ hai. Đề bài nằm trong `note`, chỗ dành cho câu quy tắc.
-- Sửa: Caption của visual: "Mua 2 hộp bút, mỗi hộp 3 cái, mỗi cái 4 nghìn đồng, đưa 50 nghìn đồng."; `note` chỉ giữ "Bài toán đời sống cũng theo thứ tự đó."
-
-### 23. Caption mua vở của section ngoặc tròn có hai cách hiểu
-
-- Vị trí: `$.sections[6].blocks[0].children[1].caption` (visual `ngoac-tron-mua-vo`, `3·(8+4)`)
-- Nguồn: —
-- Vấn đề: "3 vở, mỗi vở 8 nghìn đồng và 4 nghìn đồng tiền bọc" đọc được là 4 nghìn tiền bọc cho cả ba vở (3 · 8 + 4 = 28), trong khi biểu thức 3 · (8 + 4) = 36 cần 4 nghìn cho mỗi vở. Đây chính là cặp biểu thức mà màn so sánh ngay sau dùng để phân biệt có ngoặc và không ngoặc, nên câu chuyện mơ hồ làm hỏng đúng ý của section.
-- Sửa: "Mua 3 vở, mỗi vở 8 nghìn đồng, bọc mỗi vở thêm 4 nghìn đồng."
-
-### 24. Từ "vế", "vế phải", "vế đã biết" chưa được giải thích
-
-- Vị trí: `$.sections[10].blocks[3].children[0].text`, `$.sections[10].blocks[3].children[1].caption`, `$.exercises[55].segments[0].text`, `$.exercises[56].segments[0].text`, `$.cards[12].recap.caption`
+- Vị trí: `$.sections[12].blocks[0].children[0].text`, `$.sections[12].recap.caption`, `$.cards[13].recap.caption`; hai dòng cuối của `tim-so-mua-but`
 - Nguồn: tr.102 (`p102.png`)
-- Vấn đề: "vế" không có trong glossary và không được định nghĩa trong bài; trẻ học chậm không biết "vế đã biết" là phần nào.
-- Sửa: Định nghĩa tại lần dùng đầu ("Dấu = chia đẳng thức làm hai vế: vế trái và vế phải.", có hình tô hai vế), hoặc nói "phần bên phải dấu =".
+- Vấn đề: Câu quy tắc duy nhất của section không nói ngược phép nào; hình chỉ ghi "3x = 20 − 5 = 15", "x = 15 : 3 = 5", không nhãn vì sao trừ, vì sao chia.
+- Sửa: "Muốn tìm số chưa biết, tính vế phải trước. Rồi bỏ phép cộng bằng phép trừ, bỏ phép nhân bằng phép chia." Hình gắn nhãn "bỏ + 5: trừ 5", "bỏ 3 ·: chia 3". Recap đổi theo.
 
-### 25. Section `bieu-thuc-chu` không có màn cùng làm
+### 9. Section `tim-so-chua-biet` không có màn cùng làm
 
-- Vị trí: `$.sections[9].blocks`
-- Nguồn: tr.24 (`p24.png`)
-- Vấn đề: Mọi section khác có màn trẻ thao tác có hướng dẫn; ý mới "thay chữ bằng số" đi thẳng từ hình mẫu sang câu kiểm tra.
-- Sửa: Thêm một màn cùng làm (số khác đề, ví dụ `3x + 1` với x = 2).
+- Vị trí: `$.sections[12].blocks` (một khối)
+- Nguồn: tr.26, tr.102
+- Vấn đề: Ý mới (tìm x) đi thẳng từ hình mẫu sang câu kiểm tra, trái luật "Mẫu → cùng làm → tự làm" của `.claude/skills/lesson-author/SKILL.md`; section còn chỗ cho một màn.
+- Sửa: Thêm màn cùng làm, số khác đề (ví dụ 2x + 3 = 11): chọn vế phải, rồi chọn phép làm ngược ở từng dòng.
 
-### 26. `overview.hook` dài ba câu
+### 10. Ví dụ mẫu, câu kiểm tra và câu luyện tập tìm x cùng ra x = 5
 
-- Vị trí: `$.overview.hook.text`
+- Vị trí: `tim-so-mua-but` (3x + 5 = 20); `$.exercises[62]` (`tim-x-kiem-tra`, 3x + 4 = 19); `$.exercises[63]` (`tim-x-1`)
 - Nguồn: —
-- Vấn đề: `.claude/skills/lesson-author/SKILL.md` ghi "`hook`: một câu mở", cùng cách viết với "`whyItMatters`: một câu" (mà lint giữ đúng 1 câu). `docs/spec.md` và `src/content/lint/overview.ts` không giới hạn số câu của hook, nên `content:check` không bắt; luật soạn bài thì rõ. Hook hiện có ba câu (tình huống, hai kết quả, câu hỏi). Hình `hoa-don-hai-ban` đi kèm đã in sẵn hoá đơn, nên chữ không cần kể lại giá.
-- Sửa: Một câu ngắn, dựa vào hình cho phần giá: "Cùng một hoá đơn, Nam tính ra hai mươi mốt nghìn, Lan ra hai mươi sáu nghìn: ai đúng?". Không gộp cả ba câu hiện có thành một câu dài.
+- Vấn đề: Ba màn liền nhau cùng đáp án 5, câu kiểm tra cùng hệ số 3 với ví dụ; trẻ chép 5 vẫn đúng.
+- Sửa: Câu kiểm tra `2x + 7 = 15` (x = 4), `tim-x-1` `4x + 8 = 2 \cdot 3^{2} + 14` (x = 6); sửa `accept`, `bank` và hình giải theo.
+
+### 11. Hình lời giải câu kiểm tra tìm x tính một biểu thức ngoặc lạ, không có x
+
+- Vị trí: `$.exercises[62].hints.solutionVisualId` (`tim-x-kiem-tra-giai`, spec `steps` source `(19-4):3`)
+- Nguồn: tr.102 (`p102.png`)
+- Vấn đề: Trẻ thấy "(19 − 4) : 3 = 5", khác cách "3x = 19 − 4 = 15; x = 15 : 3 = 5" vừa học, không có chữ x.
+- Sửa: Dùng spec `findx` như các câu tìm x khác, chạy tới "x = 15 : 3 = 5".
+
+### 12. Câu kho ôn `tinh-day-du-3` còn 2⁵ và bảy phép tính
+
+- Vị trí: `$.exercises[59]` (`tinh-day-du-3`, `3 · 2^5 + 4 · 5 − 27 · 2 + 9`)
+- Nguồn: tr.26 bài 1.63c (`p26.png`)
+- Vấn đề: Vòng 1 Nên sửa 19 chỉ chuyển biểu thức từ câu luyện tập sang kho ôn; luật "Số nhỏ" áp cả câu ôn.
+- Sửa: Ví dụ `3 \cdot 3^{2} + 4 \cdot 5 - 6 \cdot 2 + 9` = 44; sửa `check.expr` và hai visual `tinh-day-du-3-*`.
+
+### 13. Câu luyện tập `tinh-day-du-1` cùng dạng và cùng kết quả 32 với ví dụ mẫu
+
+- Vị trí: `$.exercises[57]` (3 · 2³ + 4 · 5 − 2 · 6 = 32); visual `tong-hop-tung-buoc` (2 · 3² + 4 · 5 − 6 = 32)
+- Nguồn: —
+- Vấn đề: Cùng khung, cùng 32; trẻ nhớ số từ màn mẫu là đúng.
+- Sửa: Ví dụ `3 \cdot 2^{3} + 4 \cdot 5 - 3 \cdot 6` = 26; sửa `check.expr`, `tinh-day-du-1-giai`.
+
+### 14. `overview.summary` dài ba câu và bỏ sót biểu thức chứa chữ
+
+- Vị trí: `$.overview.summary`
+- Nguồn: —
+- Vấn đề: `.claude/skills/lesson-author/SKILL.md` cho môn Toán 1–2 câu; summary không nhắc biểu thức chứa chữ trong khi `goals[2]` có.
+- Sửa: "Bài này dạy thứ tự làm các phép tính: cộng trừ, nhân chia, ngoặc và luỹ thừa. Bạn dùng thứ tự đó để tính biểu thức có chữ và tìm số chưa biết."
+
+### 15. Note "2x không phải hai mươi ba" không có hình minh hoạ, lại dùng số của câu kiểm tra
+
+- Vị trí: `$.sections[10].blocks[1].children[0].text`, `$.sections[10].blocks[1].children[1]` (visual `chu-bo-dau-nhan`: ab); `$.exercises[47]` (`thay-chu-2x-1`: 2x + 1, x = 3)
+- Nguồn: tr.24 (`p24.png`)
+- Vấn đề: Ảnh `115-s11-02-block.png`: note nói về 2x khi x = 3, hình dưới là ab với 5 và 7; lỗi "ghép thành 23" chỉ có chữ, viết số bằng chữ, và trùng số câu kiểm tra.
+- Sửa: Note: "Giữa số và chữ, hay giữa hai chữ, dấu nhân thường được bỏ đi: 2x là 2 · x." Thêm hình so sánh đúng/sai số khác đề ("5x khi x = 4: 5 · 4 = 20 ✓, 54 ×"), giữ `chu-bo-dau-nhan` cho ab.
+
+### 16. Section `bieu-thuc-chu` vẫn không có màn cùng làm
+
+- Vị trí: `$.sections[10].blocks` (hai note và hình từng bước `chu-tung-buoc`, không có khối `try`)
+- Nguồn: tr.24 (`p24.png`)
+- Vấn đề: Mọi section dạy cách tính khác có màn trẻ thao tác có hướng dẫn; ý mới "thay chữ bằng số" đi thẳng từ hình mẫu sang câu kiểm tra, trái luật "Mẫu → cùng làm → tự làm". Vòng 1 Nên sửa 25 chưa sửa.
+- Sửa: Thêm một màn cùng làm, số khác đề và khác câu kiểm tra (ví dụ `3x + 1` với x = 2).
 
 ## Góp ý
 
-### 1. Nói rõ dấu "·" thay cho dấu "×" quen dùng ở tiểu học
+### 1. Hai concept của bài cùng màu violet, trùng màu "số mũ" của glossary
 
-- Vị trí: `$.sections[1].blocks[0].children[0].text`
-- Nguồn: tr.24, `p24.png`
-- Vấn đề: Không nhắc tới "×" thì trẻ khó nối kiến thức cũ với ký hiệu mới.
-- Sửa: "Lớp 6 viết phép nhân bằng dấu chấm ở giữa hai số (thay cho dấu ×). Phép chia viết bằng hai chấm."
-
-### 2. Mọi ví dụ và câu của `hoa-don` có dạng a · b + c, tính từ trái sang phải cũng ra đúng
-
-- Vị trí: `$.sections[0]`; `$.exercises[0]`–`[3]`
+- Vị trí: `$.concepts[5]` (`concept.bang-nhan`), `$.concepts[6]` (`concept.nhan-hai-chu-so`); `content/glossary/math.json` ("số mũ": violet)
 - Nguồn: —
-- Vấn đề: Section không kiểm được quy tắc "nhân trước".
-- Sửa: Đưa ít nhất một câu kho ôn dạng c + a · b (ví dụ 7 + 3 · 4).
+- Vấn đề: Hai khái niệm khác nhau cùng một màu, và màu đó đã có nghĩa "số mũ" trong bài có section luỹ thừa. Màu concept của card hiện chưa hiện cho trẻ (chỉ tên dùng trong `src/progress/parent-report.ts`) nên chưa gây nhầm.
+- Sửa: Hai màu khác nhau, khác mọi màu đã có nghĩa trong glossary (blue, violet, pink, amber, teal, sky, lime).
 
-### 3. Chú thích "ở bài trước" thực ra là phần trước
+### 2. "tính thì theo quy tắc của bài" chưa nói quy tắc nào
 
-- Vị trí: `$.sections[1].blocks[1].children[1].caption`
+- Vị trí: `$.sections[1].blocks[1].children[0].text`
+- Nguồn: tr.24
+- Vấn đề: Tới đây trẻ mới học "nhân trước, cộng sau"; "quy tắc của bài" mơ hồ.
+- Sửa: "Đọc theo thứ tự đó, còn tính thì nhân trước, cộng sau như phần trước."
+
+### 3. Hình gợi ý 15 · 4 trùng câu kho ôn `dien-tach-chuc`
+
+- Vị trí: spec `nhan-25-3-goi-y`, `chon-tach-chuc-goi-y` (`split 15 · 4`) so với `$.exercises[21]`
 - Nguồn: —
-- Vấn đề: Hoá đơn hai vở nằm ở section ngay trước của cùng bài.
-- Sửa: "Hoá đơn hai vở ở phần trước viết là 2 · 8 + 5."
+- Vấn đề: Hình hiện 10 · 4 = 40, đúng ô b1 của câu kho ôn cùng card.
+- Sửa: Dùng số khác cho hai hình gợi ý (ví dụ 16 · 3).
 
-### 4. Nhãn đọc của hình hoá đơn viết "hóa đơn", JSON viết "hoá đơn"
+### 4. Vòng đen chọn đè lên chữ số hai bên (việc của người làm visual)
 
-- Vị trí: `label` của `StepPlayer` trong `HoaDonHaiBan` (`statics.tsx`: "Hai bạn tính cùng một hóa đơn")
+- Vị trí: visual `huong-dan-cham-phep-tinh` (`$.sections[2].blocks[2].children[1]`); vòng chọn của câu chạm (ảnh `033-s3-03-block.png`, `ipad/076-s7-05-exercise-chon-phep-hon-hop-correct.png`)
 - Nguồn: —
-- Vấn đề: Nhãn này là nhãn đọc cho trình đọc màn hình (không hiện chữ trên ảnh visual mới), nhưng vẫn lệch kiểu bỏ dấu với `overview.hook`, `$.sections[0]` và glossary (kiểu "luỹ").
-- Sửa: Đổi thành "hoá đơn".
+- Vấn đề: Vòng quanh dấu cắt vào hai số bên cạnh; màn này dạy thao tác nên hình nên sạch (vòng 1 Góp ý 5).
+- Sửa: Báo người làm visual thu nhỏ vòng hoặc giãn khoảng cách số và dấu.
 
-### 5. Màn hướng dẫn chạm đứng sau màn cùng làm vốn đã bắt trẻ chạm
+### 5. Dòng kết quả của hình bảng nhân, tách chục vẫn tô nền vàng; `nhan-chia-on` vẫn là gạch ngang
 
-- Vị trí: `$.sections[2].blocks[2]` (`cong-tru-tu-lam`) và `$.sections[2].blocks[3]` (`huong-dan-cham-phep-tinh`)
+- Vị trí: visual `nhan-chia-on`, `chia-hoi-nguoc`, `nhan-hai-chu-so`, `nhan-*-giai`, `chia-63-9-giai`
 - Nguồn: —
-- Vấn đề: Trẻ chạm phép tính ở màn cùng làm rồi mới được hướng dẫn cách chạm.
-- Sửa: Đổi chỗ hai khối. Vòng đen trong hình hướng dẫn và hình chạm còn đè lên chữ số hai bên (ảnh `034`, `036`); báo người làm visual.
+- Vấn đề: Cả bài dùng chữ hổ phách gạch chân cho "Kết quả"; các hình này dùng nền vàng. `nhan-chia-on` là 42 gạch ngang trong khi caption nói hàng ghế (vòng 1 Góp ý 8).
+- Sửa: Tô kết quả theo kiểu concept `ket-qua`; vẽ ghế hay hình người nhỏ.
 
-### 6. Nhiễu "27" của `chon-tong-tien-keo` không ứng với lỗi nào hay gặp
+### 6. Ba câu chuyện mở đầu không nói kết quả là gì
 
-- Vị trí: `$.exercises[0].options[3]`
+- Vị trí: `$.sections[5].blocks[0].children[1].caption` (cam), `$.sections[6].blocks[0].children[1].caption` (mua bút), `$.sections[7].blocks[0].children[1].caption` (mua vở)
 - Nguồn: —
-- Vấn đề: 30 và 13 ứng với lỗi thật; 27 thì không.
-- Sửa: Thay bằng 12 (quên cộng chai nước) hoặc 42 = (3 + 4) · 6.
+- Vấn đề: Hình ra 12, 32, 36 nhưng caption chỉ kể đề; `tong-hop-mua-but` đã nói kết.
+- Sửa: Thêm vế kết ("mỗi bạn 12 quả", "còn thừa 32 nghìn đồng", "hết 36 nghìn đồng").
 
-### 7. Ngân hàng số của `dien-chia-nhan` có một chip "8" cho hai ô cùng đáp án 8
+### 7. Note đầu section ngoặc lồng thêm cách đọc ngoặc không có trên hình và trang nguồn
+
+- Vị trí: `$.sections[8].blocks[0].children[0].text`
+- Nguồn: tr.24, tr.26 không có cách đọc
+- Vấn đề: Note hai ý; hình `bang-ngoac` chỉ minh hoạ ý đầu, không câu nào dùng cách đọc.
+- Sửa: Bỏ câu đọc, hoặc đưa vào caption của hình.
+
+### 8. Câu kiểm tra `chon-phep-nhan-chia` chỉ khác màn cùng làm một số
+
+- Vị trí: visual `nhan-chia-tu-lam` (`5·6:3`), `$.exercises[22]` (`4·6:3`)
+- Nguồn: —
+- Vấn đề: Trẻ vừa chạm phép nhân của 5 · 6 : 3, câu kiểm tra cùng khung.
+- Sửa: Ví dụ câu kiểm tra `3·8:4`.
+
+### 9. Vài biểu thức gần trùng hoặc có kết quả trùng số trong đề
+
+- Vị trí: `ngoac-long-hop` (`{2+3·[4+(10−6)]}`) và `$.exercises[38]` (`2+[3·(10−6)−4]:4`); recap `ngoac-long-tom-tat` (`6 − 3 = 3`); `$.exercises[34]` (`sap-buoc-ngoac`, `9 − 4 = 5` rồi `5 · 5`, vòng 1 Góp ý 14)
+- Nguồn: —
+- Vấn đề: Câu kho ôn dùng lại số màn quy tắc; kết quả trùng số trong đề khó theo dõi.
+- Sửa: Kho ôn `3+[2·(9−5)−2]:2`, recap `{2+[7−(1+2)]}`, `sap-buoc-ngoac` `6·(9−4)+6`.
+
+### 10. Hình gợi ý của câu chạm cùng cấu trúc với đề; highlight tô cả biểu thức
+
+- Vị trí: `hintVisualId` của `$.exercises[22]`, `[26]`, `[31]`, `[36]` (ví dụ `chon-phep-ngoac-long-goi-y` `7+[2·(9−6)]` so với đề `5+[3·(8−6)]`); `hints.highlight` của `$.exercises[23]`, `[27]`, `[32]`, `[37]`, `[38]`, `[41]` (tô cả `bt`)
+- Nguồn: —
+- Vấn đề: Phép làm trước ở đúng vị trí vùng đáp án, trẻ chạm theo vị trí thay vì theo quy tắc (vòng 1 Góp ý 10, 13).
+- Sửa: Biểu thức gợi ý có phép làm trước ở vị trí khác đề (`[2·(9−6)]+7`, `(1+5)·4+7`, `9·2+4−5`); câu chỉ có nhân, chia giữ nguyên.
+
+### 11. Hình gợi ý tìm x dùng đẳng thức không có nghiệm tự nhiên
+
+- Vị trí: `$.exercises[63].hints.hintVisualId` (`tim-x-1-goi-y`: 4x = 14); `$.exercises[64].hints.hintVisualId` (`tim-x-2-goi-y`: 4x = 15)
+- Nguồn: tr.26 bài 1.66 ("Tìm số tự nhiên x")
+- Vấn đề: Trẻ tính tiếp theo hình gặp 14 : 4, 15 : 4 không chia hết, dễ nghĩ mình sai.
+- Sửa: `tim-x-1-goi-y`: 4x + 4 = 3 · 2² + 8 (x = 4); `tim-x-2-goi-y`: 2x + 1 = 4 · 2² + 9 : 3 (x = 9).
+
+### 12. Mục tiêu dùng từ "đẳng thức" mà bài không dùng ở đâu khác
+
+- Vị trí: `$.overview.goals[3]`
+- Nguồn: —
+- Vấn đề: Trẻ chỉ gặp "vế phải", "dấu ="; "đẳng thức" không có trong glossary.
+- Sửa: "tìm x trong một phép tính có dấu =".
+
+### 13. Câu kiểm tra chạm luỹ thừa cùng khung với màn cùng làm và hình gợi ý
+
+- Vị trí: `$.exercises[42]` (`5+2·3^2`); visual `luy-thua-tu-lam` (`3+2·2^3`); `chon-phep-luy-thua-goi-y` (`6+3·2^2`)
+- Nguồn: —
+- Vấn đề: Luỹ thừa luôn ở ô cuối (ảnh `107`, `108`); chạm ô cuối là đúng.
+- Sửa: Đặt luỹ thừa ở giữa trong câu kiểm tra, ví dụ `20 - 3^{2} : 3`.
+
+### 14. Hình gợi ý của câu "Bốn bạn làm bước đầu tiên" trôi mất dòng đầu; đề hỏi "Bạn nào" mà lựa chọn không có tên
+
+- Vị trí: `hints.hintVisualId` và `prompt[0].text` của `$.exercises[53]`–`[56]`
+- Nguồn: tr.25 (`p25.png`)
+- Vấn đề: `steps.tsx` chỉ hiện một cửa sổ dòng, khung cuối mất dòng đầu (bước câu hỏi đang hỏi). Lựa chọn là bốn dòng biểu thức, không có "bạn" nào để chọn (ảnh `131`).
+- Sửa: Hình gợi ý dừng ở dòng thứ hai hoặc giữ cố định dòng đầu (báo người làm visual). Đề: "Bốn bạn làm bước đầu tiên của biểu thức này. Chọn dòng viết đúng."
+
+### 15. Màn mẫu bước đầu không có trường hợp luỹ thừa
+
+- Vị trí: `$.sections[11].blocks[3]` (visual `tong-hop-dong-viet-lai`, `5+3·2`)
+- Nguồn: tr.25, Ví dụ 4 (`p25.png`)
+- Vấn đề: Mọi câu "Bốn bạn làm bước đầu tiên" xoay quanh luỹ thừa, màn mẫu chỉ có cộng và nhân (vòng 1 Nên sửa 16, phần còn lại).
+- Sửa: Ví dụ `4 + 3 \cdot 2^{2}` = 16, cột sai "Sai: làm 3 · 2 trước" (4 + 6² = 40).
+
+### 16. Nhãn đọc của hình mở bài viết "hóa đơn", bài viết "hoá đơn"
+
+- Vị trí: `statics.tsx`, `HoaDonHaiBan` (`label="Hai bạn tính cùng một hóa đơn"`) so với `$.overview.hook.text`, `$.sections[0].blocks[0].caption`
+- Nguồn: —
+- Vấn đề: Nhãn trình đọc màn hình dùng cách bỏ dấu khác phần còn lại của bài ("hoá", "luỹ thừa").
+- Sửa: "hoá đơn".
+
+### 17. Ngân hàng số của `dien-chia-nhan` có một chip "8" cho hai ô cùng đáp án 8
 
 - Vị trí: `$.exercises[15].bank`
 - Nguồn: —
-- Vấn đề: App cho dùng lại chip nên câu làm được, nhưng trẻ dễ nghĩ mỗi chip chỉ dùng một lần.
+- Vấn đề: App cho dùng lại chip nên câu làm được, nhưng trẻ dễ nghĩ mỗi chip chỉ dùng một lần (vòng 1 Góp ý 7, chưa đổi).
 - Sửa: Để hai chip "8" trong `bank`.
 
-### 8. Hình `nhan-chia-on` vẽ gạch ngang thay cho ghế và bạn; dòng kết quả tô vàng khác kiểu "Kết quả" của bài
+### 18. Bàn phím số hiện phím "mũ" ở câu không cần (việc của app)
 
-- Vị trí: `$.sections[3].blocks[0].children[1]` (`visual.nhan-chia-on`, ảnh `…visual.nhan-chia-on-ipad.png`), các hình `chia-hoi-nguoc`, `nhan-hai-chu-so`
+- Vị trí: `$.exercises[12]`–`[14]`
 - Nguồn: —
-- Vấn đề: Caption nói "6 hàng ghế, mỗi hàng 7 bạn" nhưng hình là 42 gạch ngang; dòng cuối của hình tách chục, hỏi ngược tô nền vàng, trong khi cả bài dùng chữ hổ phách gạch chân cho "Kết quả".
-- Sửa: Vẽ ghế hay hình người nhỏ; tô kết quả theo kiểu hổ phách của concept `ket-qua`.
-
-### 9. Bàn phím số hiện phím "mũ" ở câu không cần (việc của app)
-
-- Vị trí: `$.exercises[12]`–`[14]` (ảnh `047-s4-04-exercise-nhan-7-8.png`)
-- Nguồn: —
-- Vấn đề: Phím "mũ" hiện ở 7 · 8, 63 : 9, 13 · 4, gây phân tâm.
+- Vấn đề: Phím "mũ" gây phân tâm ở câu bảng nhân, chia (vòng 1 Góp ý 9).
 - Sửa: Báo người làm app chỉ hiện phím "mũ" khi đáp án là luỹ thừa.
-
-### 10. Nấc 1 của các câu tính tô cả biểu thức
-
-- Vị trí: `hints.highlight` của `$.exercises[1]`, `[3]`, `[9]`, `[11]`, `[22]`, `[32]` (`\htmlId{bt}` bọc cả công thức)
-- Nguồn: —
-- Vấn đề: Không sai luật (các câu có `hintVisualId`), nhưng không chỉ ra chỗ hay sai.
-- Sửa: Với câu `numeric`/`fillBlank`, bọc `\htmlId` quanh phần dễ sai (phép làm trước, hay phép chia ngoài ngoặc) rồi tô phần đó; câu `order` giữ nguyên để không lộ bước đầu.
-
-### 11. Nhiễu "8" của `dien-buoc-hon-hop` không phản ánh lỗi hay gặp
-
-- Vị trí: `$.exercises[25].bank`
-- Nguồn: —
-- Vấn đề: 8 là số chép từ đề; lỗi hay gặp với 25 − 15 + 8 là cộng trước, ra 2.
-- Sửa: Đổi "8" thành "2".
-
-### 12. Lựa chọn "50" của `chon-ket-qua-nhan-chia` không ứng với lỗi nào
-
-- Vị trí: `$.exercises[20].options[2]`
-- Nguồn: —
-- Vấn đề: 10 và 20 là nhiễu tốt; 50 không ra từ cách tính sai quen thuộc nào của 100 : 5 · 2.
-- Sửa: Thay bằng 200 (quên phép chia).
-
-### 13. Hình gợi ý của câu "chạm phép tính làm trước" có cùng cấu trúc với đề
-
-- Vị trí: `$.exercises[17]`, `[21]`, `[26]`, `[31]` `hints.hintVisualId` (`chon-phep-nhan-chia-goi-y`, `chon-phep-hon-hop-goi-y`, `chon-phep-ngoac-goi-y`, `chon-phep-ngoac-long-goi-y`)
-- Nguồn: —
-- Vấn đề: Đúng luật (số khác đề), nhưng khung hồng dòng đầu nằm đúng vị trí vùng đáp án của đề; trẻ chỉ cần chạm cùng chỗ.
-- Sửa: Chọn biểu thức gợi ý có phép làm trước ở vị trí khác đề (ví dụ [(9 − 6) · 2] + 7).
-
-### 14. Kết quả trùng số trong đề làm khó nhận ra số nào vừa tính
-
-- Vị trí: recap `nhan-chia-tom-tat` (64 : 8 · 3, kết quả 8 trùng số chia); `$.exercises[29]` (`sap-buoc-ngoac`, 9 − 4 = 5 rồi 5 · 5)
-- Nguồn: —
-- Vấn đề: Trẻ theo dõi từng bước khó biết số nào vừa tính ra.
-- Sửa: Đổi số, ví dụ 56 : 8 · 3 và 6 · (9 − 4) + 6.
-
-### 15. Chữ hướng dẫn lặp hai lần ở màn cùng làm
-
-- Vị trí: caption của visual `*-tu-lam` ở `$.sections[4..8]` ("Cùng làm: chạm phép tính làm trước.")
-- Nguồn: —
-- Vấn đề: Hình tương tác đã in "Chạm phép tính làm trước." ngay dưới biểu thức (ảnh `057-s5-04-block.png`); caption lặp lại.
-- Sửa: Bỏ caption hoặc đổi thành nhắc quy tắc của section.
-
-### 16. Chú thích hình gợi ý xếp ngoặc có mục không có trong hình
-
-- Vị trí: `$.exercises[34].hints.hintVisualId` (`sap-thu-tu-ngoac-goi-y`, `[4+(8-3)]`)
-- Nguồn: —
-- Vấn đề: Chú thích liệt kê "Ngoặc nhọn { }" nhưng hình không có ngoặc nhọn.
-- Sửa: Thêm lớp { } ngoài cùng (ví dụ {1 + [4 + (8 − 3)]}).
-
-### 17. Câu luyện tập đầu của card ngoặc lồng dài so với mức 1
-
-- Vị trí: `$.exercises[32]` (`tinh-ngoac-long-1`, `difficulty: 1`)
-- Nguồn: —
-- Vấn đề: 2 + [3 · (10 − 6) − 4] : 4 có năm phép tính và phép chia ngoài ngoặc trước khi cộng.
-- Sửa: Dùng biểu thức ba, bốn phép (ví dụ 20 − [3 · (8 − 5)]) cho câu luyện tập đầu, chuyển câu hiện tại vào kho ôn mức 2.
-
-### 18. Câu `sap-buoc-day-du` có một bước độc lập
-
-- Vị trí: `$.exercises[50].items` (kho ôn)
-- Nguồn: —
-- Vấn đề: Bước `4 · 2 = 8` không dùng kết quả bước nào; trẻ tính đúng mà xếp khác có thể bị chấm sai.
-- Sửa: Đổi biểu thức để mỗi bước dùng kết quả bước trước, ví dụ `2 \cdot 3^{2} - 4`.
-
-### 19. Nhắc lỗi "2x với x = 3 thành 23"
-
-- Vị trí: `$.sections[9].blocks[1]` (visual `chu-bo-dau-nhan`)
-- Nguồn: tr.24 (`p24.png`)
-- Vấn đề: Lỗi ghép số chỉ có trong nhiễu của câu kho ôn `chon-thay-so`; màn quy tắc chưa cảnh báo.
-- Sửa: Thêm vế so sánh đúng/sai: "2x khi x = 3 là 2 · 3 = 6, không phải 23."
-
-### 20. `summary` và `goals` không nhắc tới tìm số chưa biết
-
-- Vị trí: `$.overview.summary`, `$.overview.goals`
-- Nguồn: —
-- Vấn đề: Bài có ba câu tìm x nhưng tổng quan không nói.
-- Sửa: Gộp hai mục ngoặc và luỹ thừa thành một để thêm mục "tìm được số chưa biết trong một đẳng thức".
-
-### 21. `sourceRef` của card `tim-so` nên thêm trang lời giải
-
-- Vị trí: `$.cards[12].sourceRef`, `$.sections[10].sourceRef`
-- Nguồn: tr.102 (`p102.png`)
-- Vấn đề: Cách giải tìm x chỉ có ở trang lời giải tr.102.
-- Sửa: "Sách bài tập tr.26, 102".
