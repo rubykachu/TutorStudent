@@ -7,7 +7,6 @@ import {
   Repeat,
   Star,
 } from "lucide-react";
-import type { ReactNode } from "react";
 import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
@@ -66,7 +65,7 @@ export function LoiThoaiMau() {
         </li>
         <li className="flex items-center gap-3">
           <Fox className="size-12 shrink-0" />
-          <Label>Lời dẫn “con cáo trả lời”: cáo đang nói</Label>
+          <Label>Lời người kể chuyện “con cáo trả lời”: cáo đang nói</Label>
         </li>
       </ul>
     </Example>
@@ -246,54 +245,24 @@ export function DuyNhat() {
 // ---------------------------------------------------------------------------
 // Comparison
 
-type ComparisonProps = {
-  compared: string;
-  word: string;
-  image: string;
-  // Words between the compared thing and the comparison word, unlabelled.
-  middle?: string;
-};
-
-function ComparisonPart({
-  children,
-  label,
-  color,
-}: {
-  children: ReactNode;
-  label: string;
-  color?: ConceptColor;
-}) {
-  return (
-    <div className="flex max-w-36 flex-col items-center gap-2 text-center">
-      <Chip color={color}>{children}</Chip>
-      <Label>{label}</Label>
-    </div>
-  );
-}
-
-// The two things set side by side and the word joining them, e.g.
-// "Mặt trăng … như … quả bóng".
-export function ComparisonParts({
-  compared,
-  word,
-  image,
-  middle,
-}: ComparisonProps) {
+// The fox's comparison (textbook question 3, p. 26): the footsteps set
+// beside music, joined by "như là".
+export function SoSanhBuocChan() {
   return (
     <Example>
       <p className="text-center font-heading text-block md:text-block-lg">
-        {compared}
-        {middle ? ` ${middle}` : ""}{" "}
-        <span className={CONCEPT_CLASSES[SIMILE_COLOR].text}>{word}</span>{" "}
-        {image}.
+        Bước chân của bạn sẽ gọi mình ra khỏi hang,{" "}
+        <span className={CONCEPT_CLASSES[SIMILE_COLOR].text}>như là</span> tiếng
+        nhạc.
       </p>
-      <div className="flex flex-wrap items-start justify-center gap-3">
-        <ComparisonPart label="Sự vật thứ nhất">{compared}</ComparisonPart>
-        <ComparisonPart label="Từ so sánh" color={SIMILE_COLOR}>
-          {word}
-        </ComparisonPart>
-        <ComparisonPart label="Sự vật thứ hai">{image}</ComparisonPart>
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <Chip>bước chân của bạn</Chip>
+        <Chip color={SIMILE_COLOR}>như là</Chip>
+        <Chip>tiếng nhạc</Chip>
       </div>
+      <Label className="text-center">
+        Bước chân của bạn được so sánh với tiếng nhạc
+      </Label>
     </Example>
   );
 }
@@ -308,22 +277,6 @@ export function SoSanhChoTrong() {
         <Chip>bước chân của bạn</Chip>
         <Chip color={SIMILE_COLOR}>?</Chip>
         <Chip>tiếng nhạc</Chip>
-      </div>
-    </Example>
-  );
-}
-
-// Hint: the words that usually join the two sides of a comparison.
-export function DauHieuSoSanh() {
-  return (
-    <Example>
-      <Label>Tìm từ so sánh</Label>
-      <div className="flex flex-wrap justify-center gap-3">
-        {["như", "như là", "giống như"].map((word) => (
-          <Chip key={word} color={SIMILE_COLOR}>
-            {word}
-          </Chip>
-        ))}
       </div>
     </Example>
   );
@@ -523,7 +476,7 @@ export function TuGhepTuLay() {
             { parts: ["buồn", "bã"], sound: { at: "start", length: 1 } },
             { parts: ["lung", "linh"], sound: { at: "start", length: 1 } },
           ]}
-          label="giống âm hoặc vần"
+          label="giống âm đầu hoặc vần"
         />
       </div>
     </Example>

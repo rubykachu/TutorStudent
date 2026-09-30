@@ -465,24 +465,10 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     load: () =>
       lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.TruocSauTomTat),
   },
-  "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh": {
-    interactive: false,
-    load: () =>
-      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) =>
-        m.comparisonParts("Mặt trăng", "như", "quả bóng", "tròn"),
-      ),
-  },
   "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-buoc-chan": {
     interactive: false,
     load: () =>
-      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) =>
-        m.comparisonParts(
-          "Bước chân của bạn",
-          "như là",
-          "tiếng nhạc",
-          "sẽ gọi mình ra khỏi hang,",
-        ),
-      ),
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.SoSanhBuocChan),
   },
   "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-tac-dung-tom-tat": {
     interactive: false,
@@ -496,11 +482,6 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () =>
       lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.SoSanhChoTrong),
-  },
-  "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh": {
-    interactive: false,
-    load: () =>
-      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.DauHieuSoSanh),
   },
   "neu-cau-muon-co-mot-nguoi-ban.visual.xich-lai-gan-tom-tat": {
     interactive: false,

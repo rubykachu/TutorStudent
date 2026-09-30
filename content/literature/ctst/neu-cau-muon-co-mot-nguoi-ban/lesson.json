@@ -69,7 +69,7 @@
             },
             {
               "type": "note",
-              "text": "Muốn biết ai đang nói, hãy tìm lời dẫn như “con cáo nói”, “hoàng tử bé hỏi”."
+              "text": "Muốn biết ai đang nói, hãy tìm lời người kể chuyện như “con cáo nói”, “hoàng tử bé hỏi”."
             }
           ]
         },
@@ -177,14 +177,14 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau",
-        "caption": "Lời thoại mở đầu bằng dấu gạch ngang. Lời dẫn như “con cáo nói” cho biết ai đang nói."
+        "caption": "Lời thoại mở đầu bằng dấu gạch ngang. Lời người kể chuyện như “con cáo nói” cho biết ai đang nói."
       }
     },
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.section.cam-hoa-la-gi",
       "title": "“Cảm hoá” nghĩa là gì?",
       "sourceRef": "SGK tr.21–22",
-      "minutes": 5,
+      "minutes": 4,
       "blocks": [
         {
           "type": "passage",
@@ -294,7 +294,7 @@
             {
               "sentenceId": "l11-1",
               "label": "Theo dõi",
-              "text": "Đếm xem hoàng tử bé hỏi nghĩa của từ “cảm hoá” mấy lần."
+              "text": "Để ý: hoàng tử bé sẽ hỏi câu này nhiều lần."
             },
             {
               "sentenceId": "l16-2",
@@ -330,10 +330,7 @@
           ]
         }
       ],
-      "checkIds": [
-        "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich",
-        "neu-cau-muon-co-mot-nguoi-ban.ex.dem-lan-hoi"
-      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich"],
       "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.nghia-cam-hoa"],
       "recap": {
         "type": "visual",
@@ -724,11 +721,11 @@
           "children": [
             {
               "type": "note",
-              "text": "So sánh là đặt hai sự vật có nét giống nhau cạnh nhau, nối bằng từ như “như”, “như là”, “giống như”. Nhờ đó người đọc hình dung rõ hơn."
+              "text": "SGK tr.26 cho biết câu này của cáo có biện pháp so sánh. Cáo đặt bước chân của bạn cạnh tiếng nhạc, nối bằng “như là”."
             },
             {
               "type": "visual",
-              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh"
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-buoc-chan"
             }
           ]
         },
@@ -745,8 +742,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh",
-        "caption": "So sánh đặt hai sự vật có nét giống nhau cạnh nhau, thường nối bằng “như”, “như là”. Nhờ đó người đọc hình dung rõ hơn."
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-buoc-chan",
+        "caption": "Cáo so sánh bước chân của bạn với tiếng nhạc, nối bằng “như là”. Nhờ đó ta hình dung cáo sẽ vui mừng thế nào."
       }
     },
     {
@@ -1268,7 +1265,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “tiếng nhạc”, “thời gian”. Từ láy gồm các tiếng giống nhau về âm hoặc vần, như “buồn bã”, “lung linh”."
+              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “tiếng nhạc”, “thời gian”. Từ láy gồm các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”, “lung linh”."
             },
             {
               "type": "visual",
@@ -1303,7 +1300,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép: các tiếng ghép lại theo nghĩa, như “tiếng nhạc”. Từ láy: các tiếng giống nhau về âm hoặc vần, như “buồn bã”."
+        "caption": "Từ ghép: các tiếng ghép lại theo nghĩa, như “tiếng nhạc”. Từ láy: các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”."
       }
     },
     {
@@ -1360,7 +1357,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau",
-        "caption": "Lời dẫn như “con cáo nói”, “hoàng tử bé hỏi” cho biết ai đang nói."
+        "caption": "Lời người kể chuyện như “con cáo nói”, “hoàng tử bé hỏi” cho biết ai đang nói."
       }
     },
     {
@@ -1486,7 +1483,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ láy gồm các tiếng giống nhau về âm hoặc vần, như “buồn bã”, “lung linh”."
+        "caption": "Từ láy gồm các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”, “lung linh”."
       }
     },
     {
@@ -1802,92 +1799,6 @@
           {
             "target": "part",
             "id": "l40-1"
-          }
-        ]
-      },
-      "difficulty": 2
-    },
-    {
-      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dem-lan-hoi",
-      "type": "choice",
-      "cardIds": [],
-      "prompt": [
-        {
-          "type": "note",
-          "text": "Trong đoạn dưới đây, hoàng tử bé hỏi nghĩa của từ “cảm hoá” mấy lần?"
-        },
-        {
-          "type": "passage",
-          "paragraphs": [
-            {
-              "sentences": [
-                {
-                  "id": "l11-1",
-                  "text": "– “Cảm hoá” nghĩa là gì?"
-                }
-              ]
-            },
-            {
-              "sentences": [
-                {
-                  "id": "l12-1",
-                  "text": "– Bạn không phải người ở đây – con cáo nói – bạn đi tìm gì vậy?"
-                }
-              ]
-            },
-            {
-              "sentences": [
-                {
-                  "id": "l13-1",
-                  "text": "– Mình đi tìm con người. – Hoàng tử bé nói."
-                },
-                {
-                  "id": "l13-2",
-                  "text": "– “Cảm hoá” nghĩa là gì?"
-                }
-              ]
-            }
-          ],
-          "annotations": []
-        }
-      ],
-      "options": [
-        {
-          "id": "mot",
-          "content": {
-            "type": "text",
-            "text": "1 lần"
-          }
-        },
-        {
-          "id": "hai",
-          "content": {
-            "type": "text",
-            "text": "2 lần"
-          }
-        },
-        {
-          "id": "ba",
-          "content": {
-            "type": "text",
-            "text": "3 lần"
-          }
-        },
-        {
-          "id": "bon",
-          "content": {
-            "type": "text",
-            "text": "4 lần"
-          }
-        }
-      ],
-      "answer": ["hai"],
-      "multiple": false,
-      "hints": {
-        "highlight": [
-          {
-            "target": "part",
-            "id": "l11-1"
           }
         ]
       },
@@ -2895,8 +2806,12 @@
       ],
       "answer": ["l31-8"],
       "hints": {
-        "highlight": [],
-        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh"
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
       },
       "difficulty": 1
     },
@@ -3044,7 +2959,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn từ so sánh cho chỗ trống."
+          "text": "Chọn từ cáo dùng để so sánh cho chỗ trống."
         }
       ],
       "segments": [
@@ -3155,7 +3070,7 @@
           "id": "ai-noi",
           "content": {
             "type": "text",
-            "text": "Lời dẫn cho biết ai đang nói"
+            "text": "Lời người kể chuyện cho biết ai đang nói"
           }
         },
         {
@@ -4676,31 +4591,40 @@
       "difficulty": 2
     },
     {
-      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-tu-lay",
-      "type": "fillBlank",
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tu-lay-tieng-gio",
+      "type": "choice",
       "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-lay"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn từ láy cho chỗ trống."
+          "text": "Trong câu “Tiếng gió thổi xào xạc trên đồng lúa mì.”, từ nào là từ láy?"
         }
       ],
-      "segments": [
+      "options": [
         {
-          "type": "text",
-          "text": "Tiếng gió thổi "
-        },
-        {
-          "type": "blank",
           "id": "xao-xac",
-          "accept": ["xào xạc"]
+          "content": {
+            "type": "text",
+            "text": "xào xạc"
+          }
         },
         {
-          "type": "text",
-          "text": " trên đồng lúa mì."
+          "id": "tieng-gio",
+          "content": {
+            "type": "text",
+            "text": "tiếng gió"
+          }
+        },
+        {
+          "id": "lua-mi",
+          "content": {
+            "type": "text",
+            "text": "lúa mì"
+          }
         }
       ],
-      "bank": ["xào xạc", "trái tim", "hành tinh"],
+      "answer": ["xao-xac"],
+      "multiple": false,
       "hints": {
         "highlight": [],
         "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
@@ -4756,31 +4680,54 @@
       "difficulty": 2
     },
     {
-      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-tu-ghep",
-      "type": "fillBlank",
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.tu-ghep-vuon-hong",
+      "type": "choice",
       "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn từ ghép cho chỗ trống."
-        }
-      ],
-      "segments": [
-        {
-          "type": "text",
-          "text": "Hoàng tử bé đi thăm lại vườn "
+          "text": "Trong câu dưới đây, từ nào là từ ghép?"
         },
         {
-          "type": "blank",
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l48-1",
+                  "text": "Hoàng tử bé đi thăm lại vườn hoa hồng:"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
           "id": "hoa-hong",
-          "accept": ["hoa hồng"]
+          "content": {
+            "type": "text",
+            "text": "hoa hồng"
+          }
         },
         {
-          "type": "text",
-          "text": "."
+          "id": "di",
+          "content": {
+            "type": "text",
+            "text": "đi"
+          }
+        },
+        {
+          "id": "vuon",
+          "content": {
+            "type": "text",
+            "text": "vườn"
+          }
         }
       ],
-      "bank": ["hoa hồng", "gần gũi", "tò mò"],
+      "answer": ["hoa-hong"],
+      "multiple": false,
       "hints": {
         "highlight": [],
         "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"
@@ -4913,30 +4860,32 @@
         },
         {
           "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-buoc-tu-lay",
-          "type": "fillBlank",
+          "type": "choice",
           "cardIds": [],
           "prompt": [
             {
               "type": "note",
-              "text": "Chọn từ láy cho chỗ trống."
+              "text": "Trong câu “Cáo ngồi lặng lẽ bên đường mòn.”, từ nào là từ láy?"
             }
           ],
-          "segments": [
+          "options": [
             {
-              "type": "text",
-              "text": "Cáo ngồi "
-            },
-            {
-              "type": "blank",
               "id": "lang-le",
-              "accept": ["lặng lẽ"]
+              "content": {
+                "type": "text",
+                "text": "lặng lẽ"
+              }
             },
             {
-              "type": "text",
-              "text": " nhìn theo bạn."
+              "id": "duong-mon",
+              "content": {
+                "type": "text",
+                "text": "đường mòn"
+              }
             }
           ],
-          "bank": ["lặng lẽ", "cánh đồng", "trái tim"],
+          "answer": ["lang-le"],
+          "multiple": false,
           "hints": {
             "highlight": [],
             "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
@@ -4945,30 +4894,32 @@
         },
         {
           "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-buoc-tu-ghep",
-          "type": "fillBlank",
+          "type": "choice",
           "cardIds": [],
           "prompt": [
             {
               "type": "note",
-              "text": "Chọn từ ghép cho chỗ trống."
+              "text": "Trong câu “Gió thổi xào xạc trên đồng lúa mì vàng óng.”, từ nào là từ ghép?"
             }
           ],
-          "segments": [
+          "options": [
             {
-              "type": "text",
-              "text": "Gió thổi trên đồng "
-            },
-            {
-              "type": "blank",
               "id": "lua-mi",
-              "accept": ["lúa mì"]
+              "content": {
+                "type": "text",
+                "text": "lúa mì"
+              }
             },
             {
-              "type": "text",
-              "text": " vàng óng."
+              "id": "xao-xac",
+              "content": {
+                "type": "text",
+                "text": "xào xạc"
+              }
             }
           ],
-          "bank": ["lúa mì", "tò mò", "lặng lẽ"],
+          "answer": ["lua-mi"],
+          "multiple": false,
           "hints": {
             "highlight": [],
             "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"
