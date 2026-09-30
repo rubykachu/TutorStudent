@@ -783,7 +783,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cách viết nào đúng?"
+          "text": "Tổ của Lan có ba bạn đánh số 1, 2, 3. Cách nào viết đúng tập hợp các số đó?"
         }
       ],
       "hints": {
@@ -1113,7 +1113,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Giữa hai phần tử của tập hợp, ta viết dấu nào?"
+          "text": "Nam ghi điểm ba bài kiểm tra vào một tập hợp. Giữa hai số điểm, Nam viết dấu nào?"
         }
       ],
       "hints": {
@@ -1295,7 +1295,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chạm vào dấu thuộc."
+          "text": "Bút nằm trong hộp bút, ta nói bút thuộc hộp bút. Chạm vào dấu thuộc."
         }
       ],
       "hints": {
@@ -1481,7 +1481,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chạm vào dấu không thuộc."
+          "text": "Quả cam không nằm trong hộp bút, ta nói quả cam không thuộc hộp bút. Chạm vào dấu không thuộc."
         }
       ],
       "hints": {
@@ -1800,7 +1800,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Viết tập hợp C gồm ba số 3, 5 và 9 bằng cách liệt kê."
+          "text": "Ba bạn trong tổ đeo số áo 3, 5 và 9. Viết tập hợp C các số áo đó bằng cách liệt kê."
         }
       ],
       "hints": {
@@ -2110,7 +2110,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Q là tập hợp các số tự nhiên có hai chữ số. Số nào thuộc tập hợp Q?"
+          "text": "Q là tập hợp các số nhà có hai chữ số trong phố của Nam. Số nhà nào thuộc Q?"
         }
       ],
       "hints": {
@@ -2375,7 +2375,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chạm vào dấu hiệu chung của các phần tử."
+          "text": "Đội bóng chọn các bạn có số áo là số chẵn nhỏ hơn 9. Chạm vào dấu hiệu chung của các số áo."
         }
       ],
       "hints": {
@@ -2638,7 +2638,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho tập hợp P gồm các phần tử 3, 4, 5, 6. Chọn dấu hiệu đặc trưng đúng."
+          "text": "Các bạn trong tổ đeo số áo 3, 4, 5, 6. Chọn dấu hiệu đặc trưng của tập hợp P các số áo."
         },
         {
           "type": "formula",
@@ -2896,5 +2896,19 @@
   "sticker": {
     "name": "Chiếc hộp tập hợp",
     "visualId": "tap-hop.visual.sticker"
+  },
+  "overview": {
+    "hook": {
+      "text": "Bạn xếp bút, thước và tẩy vào một hộp bút: cả nhóm đồ trong hộp chính là một tập hợp.",
+      "visualId": "tap-hop.visual.tom-tat-tap-hop"
+    },
+    "summary": "Bài này dạy cách nói và cách viết một tập hợp. Bạn sẽ tập viết dấu ngoặc nhọn, dấu chấm phẩy, kí hiệu thuộc và kí hiệu không thuộc. Sau đó bạn viết tập hợp theo hai cách: liệt kê và nêu dấu hiệu đặc trưng.",
+    "goals": [
+      "biết tập hợp và phần tử là gì",
+      "viết được dấu ngoặc nhọn và dấu chấm phẩy",
+      "dùng kí hiệu thuộc và không thuộc",
+      "viết một tập hợp bằng hai cách"
+    ],
+    "whyItMatters": "Viết đúng tập hợp là bước đầu để học các bài về số tự nhiên sau này."
   }
 }
