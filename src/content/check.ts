@@ -1,5 +1,9 @@
 import type { z } from "zod";
-import { MAX_SECTION_EXERCISES, MAX_SECTION_SCREENS } from "@/lib/config";
+import {
+  MAX_SECTION_EXERCISES,
+  MAX_SECTION_SCREENS,
+  MAX_SECTION_VIDEOS,
+} from "@/lib/config";
 import {
   type Block,
   type GlossaryFile,
@@ -467,10 +471,18 @@ function checkLesson(
   const topLevelIds = new Set(lesson.exercises.map((e) => e.id));
   const placed = new Map<string, IssuePath>();
   lesson.sections.forEach((section, i) => {
-    if (section.blocks.length > MAX_SECTION_SCREENS) {
+    const videoCount = section.blocks.filter((b) => b.type === "video").length;
+    const screenCount = section.blocks.length - videoCount;
+    if (screenCount > MAX_SECTION_SCREENS) {
       report(
         ["sections", i, "blocks"],
-        `Section has ${section.blocks.length} screens (max ${MAX_SECTION_SCREENS}); split it into shorter sections`,
+        `Section has ${screenCount} screens (max ${MAX_SECTION_SCREENS}); split it into shorter sections`,
+      );
+    }
+    if (videoCount > MAX_SECTION_VIDEOS) {
+      report(
+        ["sections", i, "blocks"],
+        `Section has ${videoCount} video blocks (max ${MAX_SECTION_VIDEOS})`,
       );
     }
     const exerciseCount = section.checkIds.length + section.practiceIds.length;

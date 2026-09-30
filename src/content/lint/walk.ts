@@ -46,6 +46,7 @@ const NON_TEXT_KEYS = new Set([
   "lessonId",
   "url",
   "vttUrl",
+  "posterUrl",
   "validatorId",
   "src",
   "tex",

@@ -408,11 +408,25 @@ export const SectionSchema = z.object({
   recap: RecapBlockSchema,
 });
 
+// A file in the media store, written as a path under the media base URL
+// (`MEDIA_BASE_URL`): files are served from public/media until the media
+// bucket goes live, and switching to the bucket then changes config only.
+export const MediaPathSchema = z
+  .string()
+  .regex(
+    /^[a-z0-9-]+(?:\/[a-z0-9-]+)*\.[a-z0-9]+$/,
+    'Expected a path under the media base, like "video/<lesson>/<name>.mp4"',
+  );
+
 export const VideoSchema = z.object({
   id: VideoIdSchema,
   lessonId: LessonIdSchema,
-  url: z.url({ protocol: /^https$/ }),
-  vttUrl: z.url({ protocol: /^https$/ }),
+  url: MediaPathSchema,
+  // WebVTT captions, one timestamp per word so the player can highlight the
+  // word being spoken (`src/lib/karaoke-vtt.ts`).
+  vttUrl: MediaPathSchema,
+  // A still frame shown before playback; iPad Safari draws nothing otherwise.
+  posterUrl: MediaPathSchema,
   durationSec: z.number().positive(),
   clips: z.array(
     z.object({

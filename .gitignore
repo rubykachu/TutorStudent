@@ -26,9 +26,12 @@ test-results/
 # deployment
 .vercel/
 
-# heavy video pipeline artifacts
+# heavy video pipeline artifacts; rendered media is served from public/media
+# locally and uploaded to the media bucket, never committed
 video/projects/**/renders/
 video/projects/**/audio/
+video/.cache/
+public/media/
 
 # agent git worktrees: separate checkouts, never part of this tree
 .claude/worktrees/

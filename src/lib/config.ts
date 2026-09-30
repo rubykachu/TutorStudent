@@ -78,3 +78,14 @@ export const PARENT_TOP_COUNT = 5;
 // `content:check` reports a section over either limit.
 export const MAX_SECTION_SCREENS = 4;
 export const MAX_SECTION_EXERCISES = 4;
+// A lesson video retells a section's idea and the child may skip it with
+// "Tiếp", so it is not counted as an explanation screen; a section holds at
+// most this many video blocks.
+export const MAX_SECTION_VIDEOS = 1;
+
+// Lesson videos (and other media files) are paths under this base URL. Until
+// the media bucket goes live they are served from public/media; switching to
+// the bucket means setting NEXT_PUBLIC_MEDIA_BASE_URL to its public URL.
+export const MEDIA_BASE_URL: string = (
+  process.env.NEXT_PUBLIC_MEDIA_BASE_URL || "/media"
+).replace(/\/+$/, "");

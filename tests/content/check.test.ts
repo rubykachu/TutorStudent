@@ -9,7 +9,11 @@ import {
 } from "@/content/check";
 import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
 import { LESSON_MINIMUMS, lessonCriteria, lessonStats } from "@/content/stats";
-import { MAX_SECTION_EXERCISES, MAX_SECTION_SCREENS } from "@/lib/config";
+import {
+  MAX_SECTION_EXERCISES,
+  MAX_SECTION_SCREENS,
+  MAX_SECTION_VIDEOS,
+} from "@/lib/config";
 import type { Lesson } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
 import {
@@ -341,6 +345,36 @@ describe("cards and sections", () => {
     );
   });
 
+  it("does not count a video block as a screen, but limits videos", () => {
+    const raw = fixtureContent();
+    const data = lessonData(raw);
+    data.videos = [
+      {
+        id: "fixture.video.gioi-thieu",
+        lessonId: "fixture",
+        url: "video/fixture/gioi-thieu.mp4",
+        vttUrl: "video/fixture/gioi-thieu.vtt",
+        posterUrl: "video/fixture/gioi-thieu.jpg",
+        durationSec: 60,
+        clips: [],
+        voice: { engine: "local", voiceName: "Hải Đăng", model: "vieneu" },
+      },
+    ];
+    const [section] = data.sections;
+    if (!section) throw new Error("no section");
+    const blocks = section.blocks as unknown[];
+    while (blocks.length < MAX_SECTION_SCREENS) blocks.push(blocks[0]);
+    const video = { type: "video", videoId: "fixture.video.gioi-thieu" };
+    blocks.unshift(video);
+    expect(check(raw).issues).toEqual([]);
+    for (let n = 0; n < MAX_SECTION_VIDEOS; n++) blocks.unshift(video);
+    expectError(
+      check(raw),
+      `${LESSON_FILE} $.sections[0].blocks`,
+      `Section has ${MAX_SECTION_VIDEOS + 1} video blocks (max ${MAX_SECTION_VIDEOS})`,
+    );
+  });
+
   it("reports a section with more checks and practice than the limit", () => {
     const raw = fixtureContent();
     const [first, second] = lessonData(raw).sections;
@@ -537,8 +571,9 @@ describe("videos", () => {
   const video = {
     id: "fixture.video.gioi-thieu",
     lessonId: "fixture",
-    url: "https://media.example.org/gioi-thieu.mp4",
-    vttUrl: "https://media.example.org/gioi-thieu.vtt",
+    url: "video/fixture/gioi-thieu.mp4",
+    vttUrl: "video/fixture/gioi-thieu.vtt",
+    posterUrl: "video/fixture/gioi-thieu.jpg",
     durationSec: 60,
     clips: [
       { id: "mo-dau", start: 0, end: 30, cardIds: ["fixture.card.nhan-lap"] },
