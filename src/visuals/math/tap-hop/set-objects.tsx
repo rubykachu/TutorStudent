@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowDown, ArrowUp } from "lucide-react";
+import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
@@ -30,26 +32,36 @@ function PencilCase({
   pending: boolean;
 }) {
   return (
-    <div className="flex w-full max-w-sm flex-col items-center gap-2">
+    <div className="flex w-full max-w-sm flex-col items-center gap-1">
       <Reveal
         shown={setShown}
         placeholder={pending ? <Pending /> : undefined}
-        className="min-h-6"
+        className="flex min-h-12 flex-col items-center"
       >
         <Tag color="teal">Tập hợp</Tag>
+        <ArrowDown
+          aria-hidden
+          className={`size-5 ${CONCEPT_CLASSES.teal.text}`}
+        />
       </Reveal>
-      <div className="flex w-full justify-around rounded-3xl border-4 border-foreground bg-muted px-2 py-3">
+      <div className="flex w-full justify-around rounded-3xl border-4 border-concept-teal bg-muted px-2 py-3">
         {CASE_ITEMS.map((kind, i) => (
           <div key={kind} className="flex flex-col items-center gap-1">
             <ItemIcon kind={kind} />
-            <span className="text-caption font-semibold">
+            <span
+              className={`text-caption font-semibold ${CONCEPT_CLASSES.amber.text}`}
+            >
               {ITEM_LABELS[kind]}
             </span>
             <Reveal
               shown={elementShown(i)}
               placeholder={pending ? <Pending /> : undefined}
-              className="min-h-6"
+              className="flex min-h-12 flex-col items-center"
             >
+              <ArrowUp
+                aria-hidden
+                className={`size-5 ${CONCEPT_CLASSES.amber.text}`}
+              />
               <Tag color="amber">Phần tử</Tag>
             </Reveal>
           </div>

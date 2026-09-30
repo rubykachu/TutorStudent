@@ -44,14 +44,14 @@ const ANATOMY_ROW =
 
 export function DauHieuViDu() {
   return (
-    <Figure label="Tập hợp B gồm các số x, với x là số tự nhiên lớn hơn 2 và nhỏ hơn 6">
+    <Figure label="Tập hợp E gồm các số x, với x là số tự nhiên lớn hơn 2 và nhỏ hơn 6">
       <PropertyLine
-        name="B"
+        name="E"
         property="x là số tự nhiên lớn hơn 2 và nhỏ hơn 6"
       />
       <ul className="flex flex-col items-start gap-1">
         <li>
-          <Tag color="amber">x: phần tử mẫu</Tag>
+          <Tag color="amber">x: thay cho mỗi phần tử</Tag>
         </li>
         <li className="text-caption font-semibold">
           <span className="font-heading text-block font-bold">|</span> vạch đứng
@@ -66,19 +66,19 @@ export function DauHieuViDu() {
 
 const READING_CAPTIONS = [
   "",
-  "B gồm các số x",
+  "F gồm các số x",
   "mà x là số tự nhiên nhỏ hơn 3",
   "",
 ] as const;
 
-// Reading "B = { x | x là số tự nhiên nhỏ hơn 3 }" in two parts, then listing.
+// Reading "F = { x | x là số tự nhiên nhỏ hơn 3 }" in two parts, then listing.
 export function DocDauHieu() {
   return (
-    <StepPlayer steps={4} label="Đọc tập hợp B theo dấu hiệu đặc trưng">
+    <StepPlayer steps={4} label="Đọc tập hợp F theo dấu hiệu đặc trưng">
       {(step) => (
         <div className="flex w-full flex-col items-center gap-3">
           <PropertyLine
-            name="B"
+            name="F"
             property="x là số tự nhiên nhỏ hơn 3"
             emphasis={step === 1 ? "x" : step === 2 ? "property" : undefined}
           />
@@ -89,13 +89,12 @@ export function DocDauHieu() {
             shown={step >= 3}
             placeholder={
               <p className={MATH_LINE}>
-                <Element>x</Element> = ?
+                <Element>x</Element> có thể là ?
               </p>
             }
           >
             <p className={MATH_LINE}>
-              <Element>x</Element>
-              <span>=</span>
+              <span>x có thể là</span>
               <span>
                 <Element>0</Element>, <Element>1</Element>, <Element>2</Element>
               </span>
@@ -105,11 +104,14 @@ export function DocDauHieu() {
             shown={step >= 3}
             placeholder={
               <p className={MATH_LINE}>
-                <SetName>B</SetName> = {"{ ? }"}
+                <SetName>F</SetName> = {"{ ? }"}
               </p>
             }
           >
-            <ListLine name="B" elements={[0, 1, 2]} />
+            <ListLine name="F" elements={[0, 1, 2]} />
+          </Reveal>
+          <Reveal shown={step >= 3}>
+            <Tag color="amber">0 cũng là số tự nhiên</Tag>
           </Reveal>
         </div>
       )}
@@ -124,7 +126,7 @@ export function TheDauHieu() {
         <Column>
           {"{"} <Element>x</Element> |
         </Column>
-        <Column label={<Tag color="lime">dấu hiệu</Tag>}>
+        <Column label={<Tag color="lime">dấu hiệu đặc trưng</Tag>}>
           <span className={LIME}>x là số chẵn</span>
         </Column>
         <Column>{"}"}</Column>
@@ -174,7 +176,7 @@ function TwoWays({
         <ArrowUpDown aria-hidden className="size-8" />
         {label && <Tag color="lime">{label}</Tag>}
       </div>
-      <WayCard header="Nêu dấu hiệu">
+      <WayCard header="Nêu dấu hiệu đặc trưng">
         {propertyOnly ? (
           <p className={MATH_LINE}>
             <Words text={property} className={LIME} />
@@ -203,33 +205,35 @@ export function TheHaiCach() {
 export function TheDoiCach() {
   return (
     <TwoWays
-      elements={[2, 4, 6]}
-      property="x là số chẵn lớn hơn 0 và nhỏ hơn 8"
-      label="tìm điều chung"
+      elements={[7, 8, 9]}
+      property="x là số tự nhiên lớn hơn 6 và nhỏ hơn 10"
+      label="tìm dấu hiệu đặc trưng"
       propertyOnly
     />
   );
 }
 
-// From a listed set to its property: what every element has in common.
+// From a listed set to its characteristic property.
 export function DoiTuLietKe() {
   return (
     <StepPlayer steps={3} label="Từ liệt kê sang nêu dấu hiệu đặc trưng">
       {(step) => (
         <div className="flex w-full flex-col items-center gap-3">
-          <ListLine name="B" elements={[1, 3, 5, 7, 9]} />
+          <ListLine name="C" elements={[1, 3, 5, 7, 9]} />
           <Reveal
             shown={step >= 1}
-            placeholder={<Tag color="lime">điều chung: ?</Tag>}
+            placeholder={<Tag color="lime">dấu hiệu đặc trưng: ?</Tag>}
             className="text-center"
           >
-            <Tag color="lime">điều chung: đều là số lẻ, đều nhỏ hơn 10</Tag>
+            <Tag color="lime">
+              dấu hiệu đặc trưng: đều là số lẻ, đều nhỏ hơn 10
+            </Tag>
           </Reveal>
           <Reveal
             shown={step >= 2}
-            placeholder={<PropertyLine name="B" property="?" />}
+            placeholder={<PropertyLine name="C" property="?" />}
           >
-            <PropertyLine name="B" property="x là số lẻ nhỏ hơn 10" />
+            <PropertyLine name="C" property="x là số lẻ nhỏ hơn 10" />
           </Reveal>
         </div>
       )}

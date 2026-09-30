@@ -7,13 +7,13 @@ import { Element, ListLine, SetName, Sign } from "./set-parts";
 
 const RESULT_LINE = "font-heading text-title font-bold md:text-title-lg";
 
-// The set "A = { … }" and a number x the child moves with − / +: the line
-// below says whether x is in A. With `showNotIn` off (the ∉ sign is not taught
-// yet) a number outside A gets a neutral sentence without the sign.
+// The set "A = { … }" and a number x the child moves with − / +. With
+// `verdict` on, the line below says whether x is in A; with it off there is
+// no line, so the child compares x with the set herself.
 export function ChooseX({
   elements,
   max,
-  showNotIn,
+  verdict,
   start,
   onStateChange,
   shownState,
@@ -21,7 +21,7 @@ export function ChooseX({
 }: VisualProps & {
   elements: readonly number[];
   max: number;
-  showNotIn: boolean;
+  verdict: boolean;
   start: number;
 }) {
   const [ownX, setOwnX] = useState(start);
@@ -47,26 +47,20 @@ export function ChooseX({
         disabled={locked}
         onChange={change}
       />
-      <div
-        aria-live="polite"
-        className="flex min-h-20 flex-col items-center gap-1 text-center"
-      >
-        {isMember || showNotIn ? (
-          <>
-            <p className={RESULT_LINE}>
-              <Element>{x}</Element> <Sign inside={isMember} />{" "}
-              <SetName>A</SetName>
-            </p>
-            <p className="text-body font-semibold">
-              {isMember ? "x thuộc A" : "x không thuộc A"}
-            </p>
-          </>
-        ) : (
+      {verdict && (
+        <div
+          aria-live="polite"
+          className="flex min-h-20 flex-col items-center gap-1 text-center"
+        >
           <p className={RESULT_LINE}>
-            <Element>{x}</Element> chưa nằm trong <SetName>A</SetName>
+            <Element>{x}</Element> <Sign inside={isMember} />{" "}
+            <SetName>A</SetName>
           </p>
-        )}
-      </div>
+          <p className="text-body font-semibold">
+            {isMember ? `${x} thuộc A` : `${x} không thuộc A`}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

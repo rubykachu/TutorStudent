@@ -13,7 +13,8 @@ export type Stroke = {
   d: string;
   // A dot is a one-point stroke drawn with a fat round cap.
   dot?: boolean;
-  // Where the numbered start dot sits; the start of the path by default.
+  // Where the numbered start dot sits, beside the start so it never covers the
+  // ink; by default behind the start, on the line the pen arrives along.
   badge?: readonly [number, number];
 };
 
@@ -62,8 +63,11 @@ function mirrorStroke(stroke: Stroke): Stroke {
 // "{": the top hook down the spine, the point on the left, the lower hook.
 const OPEN_BRACE: readonly Stroke[] = [
   { d: "M 92 14 C 70 14 62 24 62 42 L 62 62" },
-  { d: "M 62 62 C 62 74 52 80 34 80 C 52 80 62 86 62 98" },
-  { d: "M 62 98 L 62 118 C 62 136 70 146 92 146" },
+  {
+    d: "M 62 62 C 62 70 54 74 34 80 C 54 86 62 90 62 98",
+    badge: [90, 62],
+  },
+  { d: "M 62 98 L 62 118 C 62 136 70 146 92 146", badge: [90, 98] },
 ];
 
 // "∈" and "∉" share the C and the bar; "∉" adds the slash.
@@ -131,7 +135,7 @@ export const GLYPHS: Readonly<Record<GlyphKey, GlyphDef>> = {
   },
   "khong-thuoc": {
     label: "Dấu ∉",
-    strokes: [...MEMBER, { d: "M 100 12 L 44 140" }],
+    strokes: [...MEMBER, { d: "M 102 8 L 42 142", badge: [124, 8] }],
     crop: [22, 108],
   },
   bang: {

@@ -62,19 +62,17 @@ export function NgoacDuHaiDau() {
 export function ChamPhayViDu() {
   return (
     <SymbolLine
-      label="Mở ngoặc nhọn, 3, chấm phẩy, 6, chấm phẩy, 7 phẩy 5, chấm phẩy, 8, đóng ngoặc nhọn"
+      label="Mở ngoặc nhọn, 1, chấm phẩy, 2 phẩy 5, chấm phẩy, 6, đóng ngoặc nhọn"
       tokens={[
         glyph(OPEN),
-        element(3),
+        element(1),
         glyph(SEMICOLON, {
           emphasis: "ring",
           note: { text: "dấu chấm phẩy", side: "above" },
         }),
+        element("2,5", { text: "số thập phân có dấu phẩy", side: "below" }),
+        glyph(SEMICOLON, { emphasis: "ring" }),
         element(6),
-        glyph(SEMICOLON, { emphasis: "ring" }),
-        element("7,5", { text: "số thập phân có dấu phẩy", side: "below" }),
-        glyph(SEMICOLON, { emphasis: "ring" }),
-        element(8),
         glyph(CLOSE),
       ]}
     />
@@ -326,5 +324,48 @@ export function TheKhongThuoc() {
     <SymbolCard
       {...memberCard("khong-thuoc", 5, "không thuộc", "dấu ∈ và gạch chéo")}
     />
+  );
+}
+
+const TILE =
+  "flex size-20 items-center justify-center rounded-2xl bg-muted md:size-24";
+// The look of a selected region: a foreground ring around the shape.
+const SELECTED = "outline outline-4 outline-offset-2 outline-foreground";
+
+const TAP_SHAPES = [
+  <circle key="circle" cx={20} cy={20} r={16} />,
+  <rect key="square" x={5} y={5} width={30} height={30} rx={3} />,
+  <polygon key="triangle" points="20,4 37,35 3,35" />,
+] as const;
+
+// How a tap-the-shape question works: three neutral shapes, the middle one
+// ringed as a tapped region is, and a hand on it.
+export function HuongDanCham() {
+  return (
+    <div
+      role="img"
+      aria-label="Bài chạm vào hình: chạm vào hình, vòng sáng hiện ra quanh hình đó"
+      className="flex w-full flex-col items-center gap-5"
+    >
+      <div aria-hidden className="flex items-start justify-center gap-4">
+        {TAP_SHAPES.map((shape, i) => (
+          <div key={shape.key} className="flex flex-col items-center gap-2">
+            <span className={`${TILE} ${i === 1 ? SELECTED : ""}`}>
+              <svg
+                aria-hidden
+                viewBox="0 0 40 40"
+                className="size-12 fill-foreground"
+              >
+                {shape}
+              </svg>
+            </span>
+            {i === 1 ? <Hand className="size-8 text-primary" /> : null}
+          </div>
+        ))}
+      </div>
+      <p aria-hidden className="text-center text-body font-semibold">
+        Chạm vào hình, vòng sáng hiện ra
+      </p>
+    </div>
   );
 }

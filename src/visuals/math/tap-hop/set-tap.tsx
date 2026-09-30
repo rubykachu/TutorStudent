@@ -17,8 +17,7 @@ const CARD_HEIGHT = 130;
 const ICON_SCALE = 1.25;
 const ICON_SIZE = 48 * ICON_SCALE;
 
-// A box with a pencil, a ruler and an eraser in it: tap the box itself, or one
-// of the items. The box region is drawn first, behind the items.
+// A box with a pencil, a ruler and an eraser in it: tap one of the items.
 export function HopCham() {
   return (
     <RegionSvg
@@ -26,20 +25,6 @@ export function HopCham() {
       viewBox="0 0 300 200"
       className="h-auto w-full max-w-sm"
     >
-      {/* The box is a backdrop the items sit on, so it is marked decorative
-          for the overlap check; it is still tappable as a region. */}
-      <g {...decorative}>
-        <Region id="hop" label="Cái hộp">
-          <rect
-            x={10}
-            y={10}
-            width={280}
-            height={180}
-            rx={20}
-            className="fill-muted"
-          />
-        </Region>
-      </g>
       <rect
         {...decorative}
         x={10}
@@ -47,7 +32,7 @@ export function HopCham() {
         width={280}
         height={180}
         rx={20}
-        className="pointer-events-none fill-none stroke-foreground"
+        className="fill-muted stroke-foreground"
         strokeWidth={3}
       />
       {CASE_ITEMS.map((kind, i) => {

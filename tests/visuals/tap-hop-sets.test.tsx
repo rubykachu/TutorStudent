@@ -101,32 +101,41 @@ describe("pick items visual", () => {
 });
 
 describe("choose x visual", () => {
-  it("shows the membership sign of the chosen x", async () => {
-    const Choose = await load("tap-hop.visual.chon-x-khong-thuoc");
+  it("names the verdict with the real number when it is shown", async () => {
+    const Choose = await load("tap-hop.visual.chon-x-tu-do");
     const onStateChange = vi.fn();
     render(<Choose onStateChange={onStateChange} />);
-    // Starts on x = 1, an element of A = { 1 ; 3 ; 5 }.
-    expect(screen.getByText("x thuộc A")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Tăng x" }));
-    expect(onStateChange).toHaveBeenLastCalledWith({ x: 2 });
-    expect(screen.getByText("x không thuộc A")).toBeInTheDocument();
+    // Starts on x = 4, outside A = { 1 ; 2 ; 3 }.
+    expect(screen.getByText("4 không thuộc A")).toBeInTheDocument();
     expect(screen.getByText(/∉/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Giảm x" }));
+    fireEvent.click(screen.getByRole("button", { name: "Giảm x" }));
+    expect(onStateChange).toHaveBeenLastCalledWith({ x: 2 });
+    expect(screen.getByText("2 thuộc A")).toBeInTheDocument();
+    expect(screen.getByText(/∈/)).toBeInTheDocument();
   });
 
-  it("keeps the not-in sign out of the early lesson", async () => {
-    const Choose = await load("tap-hop.visual.chon-x-thuoc");
-    const { container } = render(<Choose />);
-    expect(container.textContent).toContain("chưa nằm trong");
-    expect(container.textContent).not.toContain("∉");
-    fireEvent.click(screen.getByRole("button", { name: "Tăng x" }));
-    fireEvent.click(screen.getByRole("button", { name: "Tăng x" }));
-    expect(screen.getByText("x thuộc A")).toBeInTheDocument();
+  it("leaves the comparison to the child in the exercise visuals", async () => {
+    for (const id of [
+      "tap-hop.visual.chon-x-thuoc",
+      "tap-hop.visual.chon-x-khong-thuoc",
+    ]) {
+      const Choose = await load(id);
+      const onStateChange = vi.fn();
+      const { container, unmount } = render(
+        <Choose onStateChange={onStateChange} />,
+      );
+      fireEvent.click(screen.getByRole("button", { name: "Tăng x" }));
+      expect(onStateChange).toHaveBeenCalledTimes(1);
+      expect(container.textContent).not.toMatch(/∈|∉|thuộc/);
+      unmount();
+    }
   });
 
   it("draws the revealed answer and locks", async () => {
     const Choose = await load("tap-hop.visual.chon-x-thuoc");
     render(<Choose shownState={{ x: 4 }} />);
-    expect(screen.getByText("x thuộc A")).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("4");
     expect(screen.getByRole("button", { name: "Tăng x" })).toBeDisabled();
   });
 });
@@ -134,7 +143,6 @@ describe("choose x visual", () => {
 describe("tap regions", () => {
   it("declares the regions in drawn order", () => {
     expect(visualRegistry["tap-hop.visual.hop-cham"]?.regions).toEqual([
-      "hop",
       "but",
       "thuoc",
       "tay",

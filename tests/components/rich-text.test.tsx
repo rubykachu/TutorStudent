@@ -34,6 +34,31 @@ describe("RichText", () => {
     expect(container).toHaveTextContent("Đọc 53 là năm mũ ba.");
   });
 
+  it("sets membership signs in the maths font, enlarged", () => {
+    const { container } = render(
+      <p>
+        <RichText text="Kí hiệu 2 ∈ A và 5 ∉ A." />
+      </p>,
+    );
+    const signs = container.querySelectorAll("[data-set-sign]");
+    expect([...signs].map((sign) => sign.textContent)).toEqual(["∈", "∉"]);
+    expect(signs[0]).toHaveClass("font-[KaTeX_Main]", "text-[1.3em]");
+    expect(container).toHaveTextContent("Kí hiệu 2 ∈ A và 5 ∉ A.");
+  });
+
+  it("enlarges a chip that is one sign, so , and ; differ clearly", () => {
+    const { container } = render(
+      <p>
+        <RichText text=";" />
+        <RichText text="{" />
+        <RichText text="5" />
+      </p>,
+    );
+    const signs = container.querySelectorAll("[data-set-sign]");
+    expect([...signs].map((sign) => sign.textContent)).toEqual([";", "{"]);
+    expect(signs[0]).toHaveClass("text-[1.5em]");
+  });
+
   it("renders plain text unchanged", () => {
     const { container } = render(
       <p>

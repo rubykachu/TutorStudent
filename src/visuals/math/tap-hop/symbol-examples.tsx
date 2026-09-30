@@ -27,7 +27,7 @@ export const VeKhongThuoc = demo("khong-thuoc");
 
 // The child draws the mark by tapping its start dots in order.
 export function tapNet(
-  symbol: "ngoac-mo" | "ngoac-dong" | "thuoc",
+  symbol: "ngoac-mo" | "ngoac-dong" | "thuoc" | "khong-thuoc",
 ): ComponentType<VisualProps> {
   function Example(props: VisualProps) {
     return <SymbolTrace symbol={symbol} {...props} />;

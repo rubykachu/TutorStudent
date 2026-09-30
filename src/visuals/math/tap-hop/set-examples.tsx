@@ -46,7 +46,7 @@ export function pickItems(items: string[]): ComponentType<VisualProps> {
 export function chooseX(
   elements: number[],
   max: number,
-  showNotIn: boolean,
+  verdict: boolean,
   start: number,
 ): ComponentType<VisualProps> {
   function Example(props: VisualProps) {
@@ -54,7 +54,7 @@ export function chooseX(
       <ChooseX
         elements={elements}
         max={max}
-        showNotIn={showNotIn}
+        verdict={verdict}
         start={start}
         {...props}
       />

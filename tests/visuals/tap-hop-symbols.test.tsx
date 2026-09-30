@@ -8,6 +8,7 @@ import {
 } from "@/visuals/math/tap-hop/glyphs";
 import {
   datChamPhay,
+  HuongDanCham,
   symbolTap,
   TheThuoc,
   tapNet,
@@ -189,5 +190,26 @@ describe("symbol cards", () => {
     expect(screen.getByText("Đọc: thuộc")).toBeInTheDocument();
     expect(screen.getByText("Viết: chữ C và gạch ngang")).toBeInTheDocument();
     expect(screen.getAllByRole("img", { name: "2 thuộc A" })).toHaveLength(1);
+  });
+});
+
+describe("tracing the not-member sign", () => {
+  it("takes three strokes: the C, the bar and the slash", () => {
+    const Trace = tapNet("khong-thuoc");
+    const onStateChange = vi.fn();
+    render(<Trace onStateChange={onStateChange} />);
+    for (const n of [1, 2, 3]) {
+      fireEvent.click(screen.getByRole("button", { name: /Chạm chấm số/ }));
+      expect(onStateChange).toHaveBeenLastCalledWith({ n });
+    }
+  });
+});
+
+describe("tap-the-shape how-to", () => {
+  it("draws three shapes with a ring on the middle one", () => {
+    render(<HuongDanCham />);
+    expect(
+      screen.getByRole("img", { name: /Bài chạm vào hình/ }),
+    ).toBeInTheDocument();
   });
 });

@@ -26,5 +26,5 @@
     { "term": "thuộc", "forbidden": [] },
     { "term": "không thuộc", "forbidden": [] }
   ],
-  "names": ["ℕ"]
+  "names": []
 }

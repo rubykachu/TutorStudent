@@ -18,32 +18,35 @@ import {
 // an opacity; it stays inside this small drawing.
 
 // Room around the 120 x 160 glyph box for the start dots and their hit areas.
-export const FIGURE_VIEW_BOX = "-14 -14 148 188";
-const DOT_RADIUS = 13;
-const RING_RADIUS = 19;
+export const FIGURE_VIEW_BOX = "-24 -14 172 188";
+const DOT_RADIUS = 10;
+const RING_RADIUS = 15;
 // Radius of the invisible circle that catches a tap: 20 box units are at least
 // 48 screen pixels wide on the smallest figure.
 export const HIT_RADIUS = 22;
 const DRAW_SECONDS = 0.7;
 
+// Distance of the default start dot from the start of its stroke.
+const DOT_OFFSET = 22;
+
 function badgePoint(stroke: Stroke): readonly [number, number] {
   if (stroke.badge) return stroke.badge;
-  const { x, y } = strokeStart(stroke);
-  return [x, y];
+  const { x, y, angle } = strokeStart(stroke);
+  return [x - Math.cos(angle) * DOT_OFFSET, y - Math.sin(angle) * DOT_OFFSET];
 }
 
-// Small arrow beside a start dot, pointing the way the pen goes.
+// Small arrow beside a start dot, pointing in at the start of the stroke.
 function DirectionArrow({ stroke }: { stroke: Stroke }) {
-  if (stroke.dot) return null;
-  const { angle } = strokeStart(stroke);
+  const { x, y } = strokeStart(stroke);
   const [cx, cy] = badgePoint(stroke);
+  const angle = Math.atan2(y - cy, x - cx);
   const ux = Math.cos(angle);
   const uy = Math.sin(angle);
   const point = (along: number, across: number) =>
     `${cx + ux * along - uy * across},${cy + uy * along + ux * across}`;
   return (
     <polygon
-      points={`${point(DOT_RADIUS + 16, 0)} ${point(DOT_RADIUS + 4, 7)} ${point(DOT_RADIUS + 4, -7)}`}
+      points={`${point(DOT_RADIUS + 12, 0)} ${point(DOT_RADIUS + 3, 5)} ${point(DOT_RADIUS + 3, -5)}`}
       className="fill-primary"
     />
   );
@@ -76,7 +79,7 @@ function StartDot({
         y={cy}
         textAnchor="middle"
         dominantBaseline="central"
-        fontSize={16}
+        fontSize={13}
         stroke="none"
         className={`font-heading font-bold ${active ? "fill-primary-foreground" : "fill-muted-foreground"}`}
       >
@@ -150,7 +153,7 @@ export function StrokeFigure({
     >
       <g {...decorative}>
         {strokes.map((stroke, i) =>
-          i < drawn ? null : (
+          i < drawn || (showPending && i !== active) ? null : (
             <path
               key={`guide-${stroke.d}`}
               d={stroke.d}
@@ -159,6 +162,7 @@ export function StrokeFigure({
               strokeLinejoin="round"
               strokeWidth={stroke.dot ? 10 : 5}
               strokeDasharray={stroke.dot ? undefined : "0.1 9"}
+              strokeDashoffset={stroke.dot ? undefined : 4.5}
               className="stroke-muted-foreground opacity-60"
             />
           ),

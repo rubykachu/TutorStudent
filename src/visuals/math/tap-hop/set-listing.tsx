@@ -21,13 +21,15 @@ import {
 // listing them, and checking whether something belongs.
 
 const BUILD_LINE =
-  "flex flex-wrap items-baseline justify-center gap-x-3 font-heading text-title font-bold md:text-title-lg";
+  "flex flex-wrap items-baseline justify-center gap-x-2 font-heading text-title font-bold md:text-title-lg";
 
 type BuildPiece = {
   id: string;
   shownAt: number;
   piece: ReactNode;
   pending: ReactNode;
+  // Starts with ";", which sits right after the previous element.
+  joined?: boolean;
 };
 
 const BUILD_PIECES: readonly BuildPiece[] = [
@@ -62,6 +64,7 @@ const BUILD_PIECES: readonly BuildPiece[] = [
       </span>
     ),
     pending: <span>; ?</span>,
+    joined: true,
   },
   {
     id: "third",
@@ -72,6 +75,7 @@ const BUILD_PIECES: readonly BuildPiece[] = [
       </span>
     ),
     pending: <span>; ?</span>,
+    joined: true,
   },
   {
     id: "close",
@@ -81,12 +85,11 @@ const BUILD_PIECES: readonly BuildPiece[] = [
   },
 ];
 
-const BUILD_LEGEND: readonly { shownAt: number; sign: string; name: string }[] =
-  [
-    { shownAt: 0, sign: "{", name: "mở ngoặc" },
-    { shownAt: 2, sign: ";", name: "ngăn cách" },
-    { shownAt: 4, sign: "}", name: "đóng ngoặc" },
-  ];
+const BUILD_LEGEND: readonly { shownAt: number; name: string }[] = [
+  { shownAt: 0, name: "mở ngoặc nhọn" },
+  { shownAt: 2, name: "dấu chấm phẩy" },
+  { shownAt: 4, name: "đóng ngoặc nhọn" },
+];
 
 // "A = { 2 ; 4 ; 6 }" written piece by piece; pieces still to come wait as "?".
 export function LapGhepLietKe() {
@@ -95,22 +98,22 @@ export function LapGhepLietKe() {
       {(step) => (
         <div className="flex w-full flex-col items-center gap-4">
           <div className={BUILD_LINE}>
-            {BUILD_PIECES.map(({ id, shownAt, piece, pending }) => (
-              <Reveal key={id} shown={step >= shownAt} placeholder={pending}>
+            {BUILD_PIECES.map(({ id, shownAt, piece, pending, joined }) => (
+              <Reveal
+                key={id}
+                shown={step >= shownAt}
+                placeholder={pending}
+                className={joined ? "-ml-2" : ""}
+              >
                 {piece}
               </Reveal>
             ))}
           </div>
           <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-            {BUILD_LEGEND.map(({ shownAt, sign, name }) => (
-              <li key={sign}>
+            {BUILD_LEGEND.map(({ shownAt, name }) => (
+              <li key={name}>
                 <Reveal shown={step >= shownAt}>
-                  <span className="text-caption font-semibold">
-                    <span className="font-heading text-block font-bold">
-                      {sign}
-                    </span>{" "}
-                    {name}
-                  </span>
+                  <span className="text-caption font-semibold">{name}</span>
                 </Reveal>
               </li>
             ))}
@@ -143,6 +146,7 @@ function LetterTile({
 export function ViDuLietKe() {
   return (
     <Figure label="Từ SA PA có các chữ S, A, P, A; tập hợp các chữ là S, A, P, chữ A chỉ viết một lần">
+      <p className="text-caption font-semibold">Các chữ cái trong từ SA PA</p>
       <div className="flex gap-2">
         <LetterTile letter="S" />
         <LetterTile letter="A" />

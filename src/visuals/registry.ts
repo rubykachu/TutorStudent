@@ -265,7 +265,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "tap-hop.visual.hop-cham": {
     interactive: false,
-    regions: ["hop", "but", "thuoc", "tay"],
+    regions: ["but", "thuoc", "tay"],
     load: () => lessonExample("tap-hop", (m) => m.HopCham),
   },
   "tap-hop.visual.cham-dau-hieu": {
@@ -290,7 +290,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     validators: { "x-thuoc": xIsMember },
     solutions: { "x-thuoc": solveXIsMember },
     load: () =>
-      lessonExample("tap-hop", (m) => m.chooseX([1, 3, 5], 7, true, 1)),
+      lessonExample("tap-hop", (m) => m.chooseX([1, 3, 5], 7, false, 1)),
   },
   "tap-hop.visual.tap-net-ngoac-mo": {
     interactive: true,
@@ -303,6 +303,22 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     validators: { "ve-xong": strokesDone },
     solutions: { "ve-xong": solveStrokesDone },
     load: () => lessonExample("tap-hop", (m) => m.tapNet("ngoac-dong")),
+  },
+  "tap-hop.visual.tap-net-khong-thuoc": {
+    interactive: true,
+    load: () => lessonExample("tap-hop", (m) => m.tapNet("khong-thuoc")),
+  },
+  "tap-hop.visual.huong-dan-cham": {
+    interactive: false,
+    load: () => lessonExample("tap-hop", (m) => m.HuongDanCham),
+  },
+  "tap-hop.visual.cham-dau-giua": {
+    interactive: false,
+    regions: ["hai-cham", "cham-phay", "cham", "phay"],
+    load: () =>
+      lessonExample("tap-hop", (m) =>
+        m.symbolTap(["hai-cham", "cham-phay", "cham", "phay"]),
+      ),
   },
   "tap-hop.visual.tap-net-thuoc": {
     interactive: true,
