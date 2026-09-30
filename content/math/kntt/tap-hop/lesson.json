@@ -4,10 +4,15 @@
   "series": "kntt",
   "grade": 6,
   "order": 1,
+  "number": 1,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "627d83e715099514d5245ae924ac46f9de4df45d86e8c5853bd53daec11d0f75",
+  "reviewedHash": "13e98325fb26a8661317b9f46270d039a1d51a9894fe3cf1334c8b88fe4da9ab",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",

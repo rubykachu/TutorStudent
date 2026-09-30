@@ -552,12 +552,29 @@ export const LessonOverviewSchema = z.object({
 
 export const LESSON_STATUSES = ["draft", "published"] as const;
 
+// The chapter of the textbook a lesson belongs to, as the book prints it:
+// "I" (or "1") and "Tập hợp các số tự nhiên". Left out when the book has no
+// chapters.
+export const LessonChapterSchema = z.object({
+  numeral: TextSchema,
+  name: TextSchema,
+});
+
+// Where the lesson sits in the book, for a parent looking it up: its number
+// inside the book ("Bài 4") and its chapter. Both stay out when the book
+// prints none.
+const lessonPlacement = {
+  number: z.int().positive().optional(),
+  chapter: LessonChapterSchema.optional(),
+};
+
 export const LessonSchema = z.object({
   id: LessonIdSchema,
   subject: LessonIdSchema,
   series: LessonIdSchema,
   grade: z.literal(6),
   order: z.int().nonnegative(),
+  ...lessonPlacement,
   title: TextSchema,
   sourceRef: TextSchema,
   status: z.enum(LESSON_STATUSES),
@@ -613,6 +630,7 @@ export const LessonSummarySchema = z.object({
   subject: LessonIdSchema,
   series: LessonIdSchema,
   order: z.int().nonnegative(),
+  ...lessonPlacement,
   title: TextSchema,
   sourceRef: TextSchema,
   sections: z.array(
@@ -670,6 +688,7 @@ export type Card = z.infer<typeof CardSchema>;
 export type Section = z.infer<typeof SectionSchema>;
 export type Video = z.infer<typeof VideoSchema>;
 export type LessonOverview = z.infer<typeof LessonOverviewSchema>;
+export type LessonChapter = z.infer<typeof LessonChapterSchema>;
 export type Lesson = z.infer<typeof LessonSchema>;
 export type LessonStatus = Lesson["status"];
 export type IdsLock = z.infer<typeof IdsLockSchema>;

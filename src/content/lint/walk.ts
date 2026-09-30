@@ -26,6 +26,7 @@ const NON_TEXT_KEYS = new Set([
   "id",
   "subject",
   "series",
+  "numeral",
   "status",
   "reviewedHash",
   "type",

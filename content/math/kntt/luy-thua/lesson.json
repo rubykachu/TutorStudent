@@ -4,10 +4,15 @@
   "series": "kntt",
   "grade": 6,
   "order": 6,
+  "number": 6,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "a1cbf287de64afbb786b13ab5696721f312479f574096fa10df35d76970ccfb8",
+  "reviewedHash": "5319d306dbba023811db8c8b9977f90df52fd49537b0a6718b74587eb9018d40",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",

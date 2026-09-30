@@ -4,10 +4,15 @@
   "series": "kntt",
   "grade": 6,
   "order": 7,
+  "number": 7,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
   "title": "Thứ tự thực hiện các phép tính",
   "sourceRef": "Sách bài tập tr.24–26",
   "status": "published",
-  "reviewedHash": "28c55f77d0ddb235cafcad062122a25c881bbdd8c60d724fb08964045b657ba7",
+  "reviewedHash": "6119c45b2c3129968e26e43702309ccca1ba7684d328ed071a769a5261520e69",
   "overview": {
     "hook": {
       "text": "Nam và Lan cùng tính một hoá đơn nhưng ra hai số khác nhau: ai đúng?",

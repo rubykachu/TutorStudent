@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 7 cảnh báo `[guides]` (match, manipulate, order)
 - `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
 - Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng trước)
-- Bản đã review: `627d83e715099514d5245ae924ac46f9de4df45d86e8c5853bd53daec11d0f75` (`pnpm content:diff` so với bản này)
+- Bản đã review: `13e98325fb26a8661317b9f46270d039a1d51a9894fe3cf1334c8b88fe4da9ab` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt:
 - `guide: tapRegion` (blocks[0]): note "Bài tập chạm vùng... chạm lần nữa để bỏ chọn, bấm Kiểm tra" và visual `huong-dan-cham` dạy đúng thao tác chạm vùng. `guide: fillBlankBank` (blocks[1]): note "chạm một thẻ ở dưới, rồi chạm ô trống" và visual `huong-dan-chip` dạy điền từ ngân hàng thẻ.

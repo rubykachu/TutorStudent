@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi của bài
 - `lesson:walk`: không chạy lại ở vòng này (chỉ đổi chữ, không đổi bố cục); ảnh vòng trước trong `.shots/walk/phep-cong-phep-tru/`
 - Kết luận: Đã ghi reviewedHash, chờ quản trị viên đặt published (0 lỗi Nghiêm trọng; điều phối chạy `--approve`)
-- Bản đã review: `1881f900935138ca0a4a6764865ae4d0641b87f3aa6d2bef21188a56bc3641cc` (`pnpm content:diff` so với bản này)
+- Bản đã review: `ba8c88e269b09e75e1a90d47e0925a4efaa8f8dea72124a725155bb5cb4a3cb2` (`pnpm content:diff` so với bản này)
 
 Đã soát: quy tắc them-bot-cong (nay khớp `tinh-them-bot-1`, hai hình gợi ý/lời giải và recap, hết mâu thuẫn "gần tròn chục hơn"); recap section và card dat-tinh-cong khớp nhau và khớp hai câu quy tắc đứng trước (thứ tự cộng, nhớ 1); recap them-bot-cong, quan-he khớp note. `ex.chon-kiem-tra` tự giải 53 − 19 = 34: a (34 + 19 = 53) đúng; b (53 + 19 = 72), c (53 + 34 = 87, ghi 97), d (34 + 53 = 87, ghi 19) đều sai; d khác cấu trúc a nên hết bẫy một chữ số. `ex.chon-them-bot` (29 + 46 = 75): chỉ a đúng. Số không trùng trong ba section.
 
