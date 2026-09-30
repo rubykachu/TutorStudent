@@ -35,3 +35,6 @@ Nhóm 3 (section 13-18), Nghiêm trọng: `chon-uoc-luong-kt` (399 cũng chắc 
 - Cách mượn trong đặt tính trừ (chữ số trên thêm 10, hàng trái bớt 1, chip "−1 +10") khác cách "nhớ 1 sang số trừ" ở tiểu học; chưa hỏi chủ dự án trẻ quen cách nào (Góp ý của reviewer).
 - Bỏ không soạn: bài 1.37 (tìm chữ số), 1.38 (bảng vuông) của sách bài tập vì quá nâng cao; ví dụ mẫu đều dùng số riêng.
 - Thời gian (giờ máy): nhận việc và dựng kế hoạch 20:07-20:20; soạn nội dung + 3 agent visual song song 20:20-20:45; sửa bố cục, shot, walk, đọc ảnh 20:45-21:15; review vòng 1 (reviewer + tổng hợp) 21:15-21:30; sửa theo vòng 1 + shot + walk 21:30-21:39; vòng 2 mở lúc 21:39.
+
+## Cập nhật sau khi dừng
+- `nhom-2.md` đã có (section `them-bot-cong` → `tim-so-hang`): 0 Nghiêm trọng, 8 Nên sửa, 5 Góp ý. Đáng sửa nhất: câu quy tắc mượn chưa nói so chữ số trên sau khi đã bớt 1 (vd 541 − 246); hàng chỉ cho mượn thiếu chip "−1"; `them-bot-cong` chỉ luyện một chiều chuyển số; `chon-tim-x` có hai nhiễu bằng nhau (61 + 28 và 28 + 61); dòng "3 − 1 − 7" dưới hình đặt tính khó hiểu. Đủ 3 nhóm → chạy bước Tổng hợp vòng 2.
