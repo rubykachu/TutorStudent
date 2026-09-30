@@ -22,10 +22,10 @@ Tiêu chí hoàn thành của từng mốc nằm ở `docs/spec.md`, mục "Tiê
 - `content:check` kéo overlay từ R2; client `safeParse`; skill `content-prompt` (sinh prompt, gom overlay về git).
 
 ## Video
-Đã xong (chạy trên máy, chưa upload): pipeline `pnpm video:build` (TTS `local` VieNeu "Hải Đăng", kiểm từng câu bằng mlx-whisper, HyperFrames, H.264 720p, phụ đề karaoke WebVTT, clip theo card), player trong bài và nút "Xem lại đoạn video" ở thẻ ôn, skill `lesson-video`, ba video bài Luỹ thừa (file ở `public/media/`, gitignore). Còn lại:
+Đã xong (chạy trên máy, chưa upload): pipeline `pnpm video:build` (TTS `local` VieNeu "Hải Đăng", kiểm từng câu bằng mlx-whisper, HyperFrames, H.264 720p, phụ đề karaoke WebVTT, clip theo card), player trong bài và nút "Xem lại đoạn video" ở thẻ ôn, skill `lesson-video`, ba video bài Luỹ thừa, lời đọc giới thiệu và video cho Bài 7 (`thu-tu-thuc-hien-phep-tinh`) và Bài 1 (`tap-hop`) (file ở `public/media/`, gitignore). Còn lại:
 - Chốt domain cho bucket media (Cloudflare) hay tạm `r2.dev`.
 - Lúc go-live: upload `public/media/` lên bucket media, CORS, đặt `NEXT_PUBLIC_MEDIA_BASE_URL` (các bước ở skill `lesson-video`, mục "Lên go-live"; hỏi trước khi ghi R2).
-- Quản trị viên nghe duyệt giọng của ba video; kiểm tua và phụ đề trên iPad Safari thật.
+- Quản trị viên nghe duyệt giọng của các video; kiểm tua và phụ đề trên iPad Safari thật.
 - Làm video cho các bài khác khi bài xuất bản, bắt đầu với bài Ngữ văn đầu tiên.
 
 ## Ý tưởng chờ bàn (chưa chốt)
@@ -53,7 +53,6 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 
 ## Trạng thái khi tạm dừng vì hết hạn mức (tối 2026-09-30)
 - Đã gộp main và xuất bản: Bài 1 `tap-hop`, Bài 7 `thu-tu-thuc-hien-phep-tinh` (cùng Luỹ thừa, bài cáo).
-- Nhánh `wip/bai7-media`: audio giới thiệu + video dở dang cho Bài 7 và Bài 1 (lesson.json đã đổi nên review hash lệch — cần build xong, review phần đổi, approve rồi mới gộp main). File media thật nằm ở `public/media/` (gitignored).
 - Bài 5 `phep-nhan-phep-chia`: nhánh `worktree-agent-a36c64bad7802c3d9`, commit "wip: paused…" (đang dựng visual song song).
 - Bài 4 `phep-cong-phep-tru`: nhánh `worktree-agent-a9710b34e396f6fe3`, đã sửa theo review vòng 1; việc tiếp: gate, shot, walk, review vòng 2.
 - Chưa bắt đầu: Bài 3, Bài 2.
