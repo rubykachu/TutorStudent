@@ -69,12 +69,12 @@ const POSES: Record<MascotExpression, Pose> = {
   // jabs make the change noticeable at 56px. Eyes follow the wing.
   hint: {
     body: {
-      keyframes: { rotate: [0, -16, -12], y: [0, -6, 0] },
-      rest: { rotate: -12, y: 0 },
+      keyframes: { rotate: [0, -13, -9], y: [0, -6, 0] },
+      rest: { rotate: -9, y: 0 },
     },
     leftWing: {
-      keyframes: { rotate: [0, 95, 60, 85, 65] },
-      rest: { rotate: 65 },
+      keyframes: { rotate: [0, 85, 50, 75, 55] },
+      rest: { rotate: 55 },
     },
     rightWing: {
       keyframes: { rotate: [0, -20, -12] },

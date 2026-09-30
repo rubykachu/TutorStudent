@@ -106,6 +106,10 @@ function findLayoutIssues({ frame, decorative }: Selectors): string[] {
   const all = [root, ...root.querySelectorAll("*")];
   for (const el of all) {
     if (el === root || !isShown(el)) continue;
+    // An SVG group paints nothing itself, and under rotation its box is the
+    // box of its children's rotated boxes, wider than what they draw; every
+    // shape inside it is checked on its own instead.
+    if (el instanceof SVGGElement) continue;
     const r = el.getBoundingClientRect();
     const out = Math.max(
       box.left - r.left,
