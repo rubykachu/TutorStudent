@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
 import {
+  cardClip,
   exercisesForCard,
   findExercise,
   flattenExercises,
@@ -124,5 +125,32 @@ describe("lessonContentUrl", () => {
   it("points at the emitted lesson file", () => {
     expect(lessonContentFile("fixture")).toBe("fixture.json");
     expect(lessonContentUrl("fixture")).toBe("/content/fixture.json");
+  });
+});
+
+describe("cardClip", () => {
+  const video = {
+    id: "fixture.video.gioi-thieu",
+    lessonId: "fixture",
+    url: "video/fixture/gioi-thieu.mp4",
+    vttUrl: "video/fixture/gioi-thieu.vtt",
+    posterUrl: "video/fixture/gioi-thieu.jpg",
+    durationSec: 60,
+    clips: [
+      { id: "mo-dau", start: 0, end: 20, cardIds: ["fixture.card.nhan-lap"] },
+      { id: "tiep", start: 20, end: 50, cardIds: ["fixture.card.luy-thua"] },
+    ],
+    voice: { engine: "local", voiceName: "Hải Đăng", model: "vieneu" },
+  };
+
+  it("finds the clip that explains a card", () => {
+    expect(
+      cardClip({ videos: [video] }, "fixture.card.luy-thua")?.clip.id,
+    ).toBe("tiep");
+  });
+
+  it("finds nothing for a card without a clip or a lesson without videos", () => {
+    expect(cardClip({ videos: [video] }, "fixture.card.khac")).toBeUndefined();
+    expect(cardClip({}, "fixture.card.nhan-lap")).toBeUndefined();
   });
 });

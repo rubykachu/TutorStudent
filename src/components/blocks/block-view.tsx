@@ -2,6 +2,7 @@
 
 import { Clapperboard } from "lucide-react";
 import { Formula } from "@/components/blocks/formula";
+import { VideoPlayer } from "@/components/blocks/video-player";
 import { PassageReader } from "@/components/passage-reader";
 import { RichText } from "@/components/rich-text";
 import type { HighlightSpec } from "@/exercises/feedback";
@@ -138,18 +139,5 @@ function VideoView({
   const clip = block.clipId
     ? video.clips.find((c) => c.id === block.clipId)
     : undefined;
-  // A media fragment plays just the clip out of the whole lesson video.
-  const src = clip ? `${video.url}#t=${clip.start},${clip.end}` : video.url;
-  return (
-    <video
-      data-block="video"
-      src={src}
-      controls
-      playsInline
-      preload="metadata"
-      className="w-full rounded-lg bg-muted"
-    >
-      <track kind="captions" src={video.vttUrl} srcLang="vi" default />
-    </video>
-  );
+  return <VideoPlayer video={video} clip={clip} />;
 }

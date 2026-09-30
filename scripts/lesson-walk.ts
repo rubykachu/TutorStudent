@@ -45,7 +45,8 @@ import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 // Fails when a feedback visual (hint or solution) is out of view, when the
 // hint is lost after the number pad is opened again, when the bottom bar
 // covers something the child must tap, or when anything sticks out of the
-// answer card, an exercise column or the screen sideways. Drafts are walked too: a
+// answer card, an exercise column or the screen sideways, and when a video
+// block has no video, an unserved file or a small play button. Drafts are walked too: a
 // server it starts serves them (CONTENT_INCLUDE_DRAFT=1); WALK_BASE_URL
 // points it at another running server instead.
 
@@ -56,6 +57,11 @@ const DRAFT_ENV = { CONTENT_INCLUDE_DRAFT: "1" };
 // the checks measure the screen.
 const SETTLE_MS = 800;
 const MAX_STEPPER_TAPS = 100;
+// A video's play button is at least this big; the walk plays it for this
+// many seconds of video, waiting at most this long.
+const VIDEO_PLAY_MIN_PX = 64;
+const VIDEO_PLAY_CHECK_S = 2;
+const VIDEO_PLAY_TIMEOUT_MS = 10_000;
 const PROFILE = { name: "Bé Thử", avatar: "Cáo" };
 // Typed after an open-ended exercise's starter: a few plain sentences, so
 // the writing step has more than its opening and can be handed in.
@@ -543,11 +549,81 @@ class Walker {
   // and its last step.
   private async walkBlock(where: string) {
     await this.look(where);
+    const video = this.page.locator("[data-section-step] [data-block=video]");
+    if ((await video.count()) > 0) await this.walkVideo(where, video.first());
     const next = this.page.locator(`[data-section-step] [${STEP_NEXT_ATTR}]`);
     if ((await next.count()) === 0) return;
     // The step button leaves once the last step is on screen.
     while ((await next.count()) > 0) await next.tap();
     await this.look(`${where}-end`);
+  }
+
+  // A video block: the lesson lists the video, its files are served, the
+  // play button is big enough, and (where the browser has an H.264 decoder)
+  // it plays with captions on screen.
+  private async walkVideo(where: string, block: Locator) {
+    if ((await block.getAttribute("data-video-missing")) !== null) {
+      this.report("fail", where, "video block without a video in the lesson");
+      return;
+    }
+    const files = await block.evaluate((el) => {
+      const video = el.querySelector("video");
+      const track = el.querySelector("track");
+      return [video?.currentSrc || video?.src, video?.poster, track?.src];
+    });
+    for (const file of files) {
+      const url = file
+        ? new URL(file.split("#")[0] ?? file, BASE_URL)
+        : undefined;
+      const response = url ? await fetch(url, { method: "HEAD" }) : undefined;
+      if (!response?.ok) {
+        this.report(
+          "fail",
+          where,
+          `video file not served: ${file ?? "(none)"}`,
+        );
+      }
+    }
+    const play = block.locator("[data-video-play]");
+    const box = await play.locator("span").first().boundingBox();
+    if (!box || box.width < VIDEO_PLAY_MIN_PX) {
+      this.report(
+        "fail",
+        where,
+        `play button smaller than ${VIDEO_PLAY_MIN_PX}px`,
+      );
+      return;
+    }
+    await play.tap();
+    const played = await this.page
+      .waitForFunction(
+        (min) =>
+          ((
+            document.querySelector(
+              "[data-block=video] video",
+            ) as HTMLVideoElement | null
+          )?.currentTime ?? 0) > min,
+        VIDEO_PLAY_CHECK_S,
+        { timeout: VIDEO_PLAY_TIMEOUT_MS },
+      )
+      .then(() => true)
+      .catch(() => false);
+    if (!played) {
+      this.report(
+        "warn",
+        where,
+        "video did not play here (no H.264 decoder in this browser?)",
+      );
+      return;
+    }
+    const caption = await block
+      .locator("[data-video-caption]")
+      .waitFor({ timeout: VIDEO_PLAY_TIMEOUT_MS })
+      .then(() => true)
+      .catch(() => false);
+    await this.look(`${where}-playing`);
+    await block.locator("video").evaluate((v: HTMLVideoElement) => v.pause());
+    if (!caption) this.report("fail", where, "video plays without captions");
   }
 
   private readonly missedTypes = new Set<string>();

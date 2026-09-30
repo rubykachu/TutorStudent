@@ -11,6 +11,7 @@ import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
 import { BlockStage } from "@/learn/block-stage";
+import { CardClip } from "@/learn/card-clip";
 import { DoneScreen } from "@/learn/done-screen";
 import { LessonProgressCard } from "@/learn/lesson-progress-card";
 import { stickerFill } from "@/learn/next-step";
@@ -167,6 +168,11 @@ export function ReviewPlayer({
               }
             />
           )}
+          <CardClip
+            key={`${recap.cardId}-${recap.at}`}
+            lesson={lesson}
+            cardId={recap.cardId}
+          />
           <BottomBar>
             <BigButton onClick={() => setSession(closeRecap(session))}>
               Tiếp

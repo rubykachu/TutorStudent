@@ -6,6 +6,7 @@ import type {
   Lesson,
   LessonSummary,
   Section,
+  Video,
 } from "@/schema/content";
 
 // Pure lookups over parsed lessons; safe to import from browser code.
@@ -91,6 +92,19 @@ export function findExercise(
   exerciseId: string,
 ): AnyExercise | undefined {
   return index.exerciseById.get(exerciseId)?.exercise;
+}
+
+// The part of a lesson video that explains a card, if any: the first clip
+// listing the card, in video order.
+export function cardClip(
+  lesson: Pick<Lesson, "videos">,
+  cardId: string,
+): { video: Video; clip: Video["clips"][number] } | undefined {
+  for (const video of lesson.videos ?? []) {
+    const clip = video.clips.find((c) => c.cardIds.includes(cardId));
+    if (clip) return { video, clip };
+  }
+  return undefined;
 }
 
 // Exercises answered in a section's practice phase. A practiced openEnded
