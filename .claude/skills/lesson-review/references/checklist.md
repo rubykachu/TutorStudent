@@ -9,6 +9,7 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 - Đạt: quy ước `a^0 = 1` (với `a ≠ 0`) khi trang nguồn có quy ước đó.
 
 **Không có trong sách.** Kiến thức, ví dụ hay thuật ngữ mà trang nguồn không có và không suy ra trực tiếp được: Nghiêm trọng.
+- Ngoại lệ hẹp: thuật ngữ học từ lớp dưới được dạy khi glossary ghi `prerequisite` cho nó (`content/glossary/<subject>.json`), `sourceRef` của section, card ghi "Kiến thức nền (<cấp>)", và câu định nghĩa là câu chuẩn, gọn như sách lớp 6. Soát định nghĩa và ví dụ theo trục 2; ví dụ có thể xếp vào cả hai loại (như từ ghép có hai tiếng cùng âm đầu): Nghiêm trọng.
 
 **Biên soạn lại, không chép.** Câu chữ trùng nguyên văn định nghĩa, ví dụ hay bài tập SGK (trừ khối `passage`): Nghiêm trọng.
 

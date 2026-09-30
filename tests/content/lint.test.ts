@@ -267,6 +267,38 @@ describe("glossary", () => {
     ]);
   });
 
+  it("accepts earlier-stage knowledge only for prerequisite terms", () => {
+    const input = fixtureInput();
+    const [card] = input.lesson.cards;
+    const concept = input.lesson.concepts.find(
+      (c) => c.id === card?.conceptIds[0],
+    );
+    if (!card || !concept) throw new Error("fixture card moved");
+    card.sourceRef = "Kiến thức nền (tiểu học); tr.22";
+    const path = ["cards", 0, "sourceRef"];
+    expect(findings(input, "glossary")).toMatchObject([
+      { path, message: expect.stringMatching(/needs a concept/) },
+    ]);
+
+    input.glossary = {
+      terms: [
+        {
+          term: concept.name,
+          forbidden: [],
+          color: concept.color,
+          prerequisite: "tiểu học",
+        },
+      ],
+      names: [],
+    };
+    expect(findings(input, "glossary")).toEqual([]);
+
+    card.sourceRef = "Kiến thức nền; tr.22";
+    expect(findings(input, "glossary")).toMatchObject([
+      { path, message: expect.stringMatching(/one of: tiểu học/) },
+    ]);
+  });
+
   it("flags a glossary whose forbidden word is also a term", () => {
     const raw = fixtureContent();
     const glossary = raw.glossaries.find((g) => g.subject === "math");

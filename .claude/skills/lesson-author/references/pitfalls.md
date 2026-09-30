@@ -15,3 +15,7 @@
 
 - Câu kiểm tra và câu luyện tập trong cùng section không dùng chung một hình cố định: làm xong câu này, trẻ chỉ cần chọn "phần còn lại" ở câu kia. Đổi số hoặc đổi hình.
 - Đề chỉ có một câu chữ thì nấc 1 chỉ tô được cả câu. Muốn tô trúng chỗ hay sai, thêm khối `formula` có `\htmlId{<id>}{…}` quanh phần đó rồi trỏ `target: "part"`.
+
+## Nguồn
+
+- Thuật ngữ đã học trước lớp 6 mà trang SGK chỉ dùng, không định nghĩa (từ ghép, từ láy): chỉ dạy khi glossary ghi `"prerequisite": "tiểu học"` cho thuật ngữ đó, câu định nghĩa là câu chuẩn, gọn như sách lớp 6, ví dụ không gây tranh cãi (tránh từ ghép có hai tiếng cùng âm đầu như "hoa hồng"), và `sourceRef` của section, card ghi rõ "Kiến thức nền (tiểu học); câu 5 tr.26" (lint kiểm dấu này).

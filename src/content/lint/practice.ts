@@ -6,7 +6,7 @@ import { type Finding, findingCollector, type LintInput } from "./types";
 // child has not just answered.
 
 // Cards trained by a top-level exercise, its openEnded steps included.
-function trainedCards(lesson: Lesson, exerciseId: string): Set<string> {
+export function trainedCards(lesson: Lesson, exerciseId: string): Set<string> {
   const exercise = lesson.exercises.find((e) => e.id === exerciseId);
   if (!exercise) return new Set();
   const steps = exercise.type === "openEnded" ? exercise.steps : [];

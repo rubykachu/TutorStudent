@@ -1,14 +1,24 @@
 import { conceptColorsInTex, isConceptColor } from "@/lib/tex";
-import type { GlossaryFile } from "@/schema/content";
+import {
+  type GlossaryFile,
+  type GlossaryTerm,
+  PREREQUISITE_LEVELS,
+} from "@/schema/content";
 import type { IssuePath } from "../check";
+import { trainedCards } from "./practice";
 import { findWordRun, wordKeys } from "./text";
-import { type Finding, findingCollector, type LintInput } from "./types";
+import {
+  type Finding,
+  findingCollector,
+  type LintInput,
+  type LintReporter,
+} from "./types";
 import type { LessonStrings } from "./walk";
 
 // One concept, one word, one colour: rejects non-standard synonyms listed in
-// the subject glossary, keeps concept colours identical across lessons, and
-// lets a formula paint a symbol only in the colour of one of the lesson's
-// concepts.
+// the subject glossary, keeps concept colours identical across lessons, lets
+// a formula paint a symbol only in the colour of one of the lesson's
+// concepts, and limits earlier-stage knowledge to prerequisite terms.
 
 export function lintGlossary(
   input: LintInput,
@@ -44,6 +54,8 @@ export function lintGlossary(
     }
   });
 
+  lintPrerequisites(input, byTerm, report);
+
   const lessonColors = new Set(input.lesson.concepts.map((c) => c.color));
   for (const { path, value } of strings.formulas) {
     for (const color of conceptColorsInTex(value)) {
@@ -55,6 +67,62 @@ export function lintGlossary(
     }
   }
   return findings;
+}
+
+// Marker in a section or card `sourceRef` for knowledge taught from an earlier
+// school stage instead of an SGK page: "Kiến thức nền (tiểu học); câu 5 tr.26".
+export const PREREQUISITE_MARKER = "Kiến thức nền";
+const PREREQUISITE_REF = new RegExp(`${PREREQUISITE_MARKER}\\s*\\(([^)]*)\\)`);
+
+// A `sourceRef` may claim earlier-stage knowledge only for a section or card
+// covering a glossary term marked `prerequisite` with that stage, so the
+// exception stays limited to terms the glossary vouches for.
+function lintPrerequisites(
+  input: LintInput,
+  byTerm: Map<string, GlossaryTerm>,
+  report: LintReporter,
+): void {
+  const { lesson } = input;
+  const conceptLevel = new Map(
+    lesson.concepts.map((c) => [
+      c.id,
+      byTerm.get(wordKeys(c.name).join(" "))?.prerequisite,
+    ]),
+  );
+  const cardLevels = (cardIds: Iterable<string>) =>
+    new Set(
+      lesson.cards
+        .filter((card) => [...cardIds].includes(card.id))
+        .flatMap((card) => card.conceptIds.map((id) => conceptLevel.get(id))),
+    );
+  const check = (
+    path: IssuePath,
+    sourceRef: string,
+    levels: Set<string | undefined>,
+  ) => {
+    if (!sourceRef.normalize("NFC").includes(PREREQUISITE_MARKER)) return;
+    const level = PREREQUISITE_REF.exec(sourceRef.normalize("NFC"))?.[1];
+    if (level === undefined) {
+      report(
+        path,
+        `Write "${PREREQUISITE_MARKER} (<stage>)" with one of: ${PREREQUISITE_LEVELS.join(", ")}`,
+      );
+    } else if (!levels.has(level)) {
+      report(
+        path,
+        `"${PREREQUISITE_MARKER} (${level})" needs a concept whose glossary term has prerequisite "${level}"`,
+      );
+    }
+  };
+  lesson.sections.forEach((section, i) => {
+    const cardIds = [...section.checkIds, ...section.practiceIds].flatMap(
+      (id) => [...trainedCards(lesson, id)],
+    );
+    check(["sections", i, "sourceRef"], section.sourceRef, cardLevels(cardIds));
+  });
+  lesson.cards.forEach((card, i) => {
+    check(["cards", i, "sourceRef"], card.sourceRef, cardLevels([card.id]));
+  });
 }
 
 // Consistency of a glossary file itself: a word cannot be both a term and a

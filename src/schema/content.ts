@@ -475,11 +475,20 @@ export const IdsLockSchema = z.object({
 
 // `content/glossary/<subject>.json`: the one accepted word for each concept of
 // a subject, and the colour every lesson must give that concept.
+// School stages before grade 6 whose knowledge a lesson may teach as background
+// when the SGK pages do not define it (see `prerequisite` below).
+export const PREREQUISITE_LEVELS = ["tiểu học"] as const;
+
 export const GlossaryTermSchema = z.object({
   term: TextSchema,
   // Non-standard synonyms the content lint rejects in favour of `term`.
   forbidden: z.array(TextSchema),
   color: ConceptColorSchema.optional(),
+  // The term was taught at this earlier stage. A section or card that teaches
+  // it without an SGK page says so in its `sourceRef` ("Kiến thức nền
+  // (tiểu học); câu 5 tr.26"); the content lint accepts that marker only for
+  // sections and cards covering a term marked with the same stage.
+  prerequisite: z.enum(PREREQUISITE_LEVELS).optional(),
 });
 
 export const GlossaryFileSchema = z.object({
