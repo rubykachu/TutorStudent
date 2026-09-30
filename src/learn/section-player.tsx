@@ -172,7 +172,7 @@ export function SectionPlayer({
   if (completion) {
     return (
       <>
-        <PlayerHeader lessonId={lesson.id} />
+        <PlayerHeader lessonId={lesson.id} childId={childId} />
         <SectionDone
           lesson={lesson}
           section={section}
@@ -217,6 +217,7 @@ export function SectionPlayer({
     <>
       <PlayerHeader
         lessonId={lesson.id}
+        childId={childId}
         progress={{ current: shown, total: steps.length }}
         onBack={shown > 0 ? back : undefined}
       />

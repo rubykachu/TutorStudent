@@ -149,6 +149,7 @@ export function ReviewPlayer({
   const header = (
     <PlayerHeader
       lessonId={lesson.id}
+      childId={childId}
       progress={
         session.items.length > 0 && (item || recap)
           ? { total: session.items.length, current: onScreen }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { bigButtonClassName } from "@/components/big-button";
+import { PageTopBar } from "@/components/page-top-bar";
 import { ReviewButton } from "@/components/review-button";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
@@ -67,7 +68,9 @@ function LessonBody({
     const started = progress.sections.some((s) => s.state !== "not_started");
     return (
       <>
-        <BackLink subjectId={lesson.subject} />
+        <PageTopBar childId={profile.id}>
+          <BackLink subjectId={lesson.subject} />
+        </PageTopBar>
         <LessonOverviewView
           lesson={{ title: lesson.title, overview }}
           startLabel={
@@ -108,7 +111,9 @@ function LessonBody({
   };
   return (
     <>
-      <BackLink subjectId={lesson.subject} />
+      <PageTopBar childId={profile.id}>
+        <BackLink subjectId={lesson.subject} />
+      </PageTopBar>
       <header className="flex flex-col gap-1">
         <h1 className="text-title font-bold md:text-title-lg">
           {lesson.title}

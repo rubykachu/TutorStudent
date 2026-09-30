@@ -2,6 +2,7 @@
 
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { PageTopBar } from "@/components/page-top-bar";
 import { StateBadge } from "@/components/state-badge";
 import { SUBJECT_STYLES } from "@/components/subject-style";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
@@ -78,13 +79,15 @@ export function SubjectScreen({ subject }: { subject: Subject }) {
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">
       {profile && (
         <>
-          <Link
-            href={HOME_PATH}
-            className="-ml-2 flex h-12 w-fit items-center gap-1 rounded-full pr-4 pl-2 font-semibold text-muted-foreground"
-          >
-            <ChevronLeft aria-hidden className="size-6" />
-            Trang chủ
-          </Link>
+          <PageTopBar childId={profile.id}>
+            <Link
+              href={HOME_PATH}
+              className="-ml-2 flex h-12 w-fit items-center gap-1 rounded-full pr-4 pl-2 font-semibold text-muted-foreground"
+            >
+              <ChevronLeft aria-hidden className="size-6" />
+              Trang chủ
+            </Link>
+          </PageTopBar>
           <header className="flex items-center gap-4">
             <span
               className={`${style.bg} flex size-14 shrink-0 items-center justify-center rounded-full text-primary-foreground`}

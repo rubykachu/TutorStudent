@@ -155,9 +155,8 @@ function HomeContent({ profile }: { profile: ProfileRecord }) {
         <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
           Chào {profile.name}!
         </h1>
-        {/* The sound switch sits quietly under the profile button: parents
-            reach for it, it should not compete with the lessons. */}
-        <div className="flex shrink-0 flex-col items-end gap-3">
+        {/* The sound switch ends the row, where every screen keeps it. */}
+        <div className="flex shrink-0 items-center gap-2">
           <Link
             href={PROFILES_PATH}
             className="flex h-12 shrink-0 items-center gap-2 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
