@@ -185,11 +185,22 @@ const COMPARISONS: [string, (a: number, b: number) => boolean][] = [
 ];
 
 // Divisibility relations of formulas, the longer name first: "a \chiahet b"
-// holds when a is a multiple of b (b is never 0 in a lesson).
+// holds when a is a multiple of b. The relation is defined on natural numbers
+// only, so a side that is not an integer (or a zero divisor) has no truth
+// value.
 const DIVISIBILITY: [string, (a: number, b: number) => boolean][] = [
-  [NOT_DIVIDES_MACRO, (a, b) => b !== 0 && a % b !== 0],
-  [DIVIDES_MACRO, (a, b) => b !== 0 && a % b === 0],
+  [NOT_DIVIDES_MACRO, (a, b) => a % b !== 0],
+  [DIVIDES_MACRO, (a, b) => a % b === 0],
 ];
+
+function divisibilityValue(
+  holds: (a: number, b: number) => boolean,
+  a: number,
+  b: number,
+): boolean | undefined {
+  if (!Number.isInteger(a) || !Number.isInteger(b) || b === 0) return undefined;
+  return holds(a, b);
+}
 
 // Truth of an option that states one comparison between two computable
 // sides, e.g. "2^{3} \cdot 2^{2} = 2^{5}", "3² < 10" or "56 \chiahet 7";
@@ -208,7 +219,7 @@ export function comparisonValue(item: Item): boolean | undefined {
       if (parts.length !== 2) return undefined;
       const [left, right] = parts.map((part) => side(part ?? ""));
       if (left === undefined || right === undefined) return undefined;
-      return holds(left, right);
+      return divisibilityValue(holds, left, right);
     }
   }
   for (const [spelling, holds] of COMPARISONS) {

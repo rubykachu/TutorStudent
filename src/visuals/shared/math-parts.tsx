@@ -32,17 +32,22 @@ export function Hole() {
   );
 }
 
-// "● Thừa số   ■ Tích": what the colours in a picture stand for.
+// "● Thừa số   ■ Tích": what the colours in a picture stand for. An item with
+// `outline` is marked by an empty slot (things taken away).
 export function Legend({
   items,
 }: {
-  items: readonly { color: ConceptColor; name: string }[];
+  items: readonly { color: ConceptColor; name: string; outline?: boolean }[];
 }) {
   return (
     <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-caption">
-      {items.map(({ color, name }) => (
+      {items.map(({ color, name, outline }) => (
         <li key={name} className="flex items-center gap-2">
-          <ConceptMark color={color} className="size-4" />
+          <ConceptMark
+            color={color}
+            className="size-4"
+            variant={outline ? "outline" : "filled"}
+          />
           {name}
         </li>
       ))}

@@ -12,6 +12,8 @@ import { ConceptShape } from "@/visuals/shared/concept-mark";
 export type Row = {
   tex: string;
   tag?: { text: string; color: ConceptColor };
+  // Starts a new group: leaves extra space above the row.
+  gapBefore?: boolean;
 };
 
 export function TagChip({
@@ -45,18 +47,21 @@ export function FormulaRow({ row }: { row: Row }) {
 
 const DOT_CELL = 32;
 
-// `count` dots in `columns` columns, in a concept colour. Its width follows
-// the columns, so bags of the same size line up.
+// `count` dots in `columns` columns, in a concept colour; the first `gone`
+// are drawn as empty slots (taken away). Its width follows the columns, so
+// bags of the same size line up.
 export function DotBlock({
   count,
   columns,
   color,
   label,
+  gone = 0,
 }: {
   count: number;
   columns: number;
   color: ConceptColor;
   label: string;
+  gone?: number;
 }) {
   const rows = Math.max(1, Math.ceil(count / columns));
   return (
@@ -71,6 +76,7 @@ export function DotBlock({
           // biome-ignore lint/suspicious/noArrayIndexKey: dots are placed by position
           key={i}
           color={color}
+          variant={i < gone ? "outline" : "filled"}
           cx={(i % columns) * DOT_CELL + DOT_CELL / 2}
           cy={Math.floor(i / columns) * DOT_CELL + DOT_CELL / 2}
           r={DOT_CELL * 0.36}
@@ -103,6 +109,7 @@ export function BagBox({
   tone,
   label,
   compact = false,
+  gone = 0,
 }: {
   count: number;
   size: number;
@@ -110,6 +117,8 @@ export function BagBox({
   label: string;
   // Smaller dots, for pictures that stack several rows of bags.
   compact?: boolean;
+  // How many of the first dots were taken away (drawn as empty slots).
+  gone?: number;
 }) {
   const columns = Math.min(bagColumns(size), Math.max(count, 1));
   return (
@@ -133,6 +142,7 @@ export function BagBox({
           columns={columns}
           color={tone === "left" ? "pink" : "blue"}
           label={label}
+          gone={gone}
         />
       )}
     </div>

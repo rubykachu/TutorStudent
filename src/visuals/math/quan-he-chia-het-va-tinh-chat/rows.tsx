@@ -11,7 +11,10 @@ export function Rows({ spec }: { spec: SpecOf<"rows"> }) {
     <figure aria-label={spec.label} className="flex w-full flex-col gap-3">
       <ul className="flex flex-col items-center gap-3">
         {spec.rows.map((row) => (
-          <li key={row.tex} className="w-full">
+          <li
+            key={row.tex}
+            className={row.gapBefore ? "mt-3 w-full" : "w-full"}
+          >
             <FormulaRow row={row} />
           </li>
         ))}

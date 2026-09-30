@@ -4,6 +4,7 @@ import { Formula } from "@/components/blocks/formula";
 import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
+import { Legend } from "@/visuals/shared/math-parts";
 import type { SpecOf } from "./catalog";
 
 function Card({
@@ -33,7 +34,7 @@ function Card({
 }
 
 // A number as a multiple (blue card) and its divisor (violet card), with the
-// two equations that say the same thing.
+// two equations that say the same thing; the quotient is named in the legend.
 export function UocBoi({ spec }: { spec: SpecOf<"uocBoi"> }) {
   const { big, small } = spec;
   return (
@@ -53,6 +54,7 @@ export function UocBoi({ spec }: { spec: SpecOf<"uocBoi"> }) {
         tex={`\\concept{blue}{${big}} = \\concept{violet}{${small}} \\cdot \\concept{amber}{${big / small}}`}
         className="text-block md:text-block-lg"
       />
+      <Legend items={[{ color: "amber", name: "Thương" }]} />
     </figure>
   );
 }

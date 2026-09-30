@@ -16,8 +16,19 @@ const LABELS = {
 } as const;
 
 // `count` items packed into bags of `m`; what does not fill a bag is left over.
-function BagRow({ count, m }: { count: number; m: number }) {
+// The first `gone` items were taken away and show as empty slots.
+function BagRow({
+  count,
+  m,
+  gone = 0,
+}: {
+  count: number;
+  m: number;
+  gone?: number;
+}) {
   const { bags, left } = packBags(count, m);
+  const goneIn = (box: number, size: number) =>
+    Math.min(size, Math.max(0, gone - box * m));
   return (
     <div className="flex flex-wrap items-end justify-center gap-1.5">
       {Array.from({ length: bags }, (_, i) => (
@@ -28,6 +39,7 @@ function BagRow({ count, m }: { count: number; m: number }) {
           size={m}
           tone="bag"
           compact
+          gone={goneIn(i, m)}
           label={`Túi ${i + 1}: ${m} cái`}
         />
       ))}
@@ -37,6 +49,7 @@ function BagRow({ count, m }: { count: number; m: number }) {
           size={m}
           tone="left"
           compact
+          gone={goneIn(bags, left)}
           label={`Còn thừa ${left} cái`}
         />
       )}
@@ -48,15 +61,17 @@ function Operand({
   label,
   count,
   m,
+  gone,
 }: {
   label: string;
   count: number;
   m: number;
+  gone?: number;
 }) {
   return (
     <div className="flex w-full flex-col items-center gap-1">
       <p className="text-center text-caption font-semibold">{`${label}: ${count}`}</p>
-      <BagRow count={count} m={m} />
+      <BagRow count={count} m={m} gone={gone} />
     </div>
   );
 }
@@ -90,11 +105,56 @@ function Equations({ spec }: { spec: Spec }) {
   );
 }
 
+// A difference drawn on one row: the minuend's items, then the subtrahend's
+// items crossed out as empty slots on that same row; what stays is the result.
+function MinusView({ spec, step }: { spec: Spec; step: number }) {
+  const { a, b, m, mode } = spec;
+  const labels = LABELS.minus;
+  const all = mode === "still";
+  const taken = all || step >= 1;
+  const resultShown = all || (mode !== "hint" && step >= 2);
+  const legend = [
+    { color: "violet", name: `Một túi ${m} cái` },
+    { color: "pink", name: "Còn thừa" },
+    { color: "blue", name: "Đã bớt", outline: true },
+  ] as const;
+  return (
+    <div className="flex w-full flex-col items-center gap-2">
+      <Operand label={labels[0]} count={a} m={m} gone={taken ? b : 0} />
+      <Reveal
+        shown={taken}
+        placeholder={
+          <p className="text-center font-heading text-block font-bold text-muted-foreground">
+            {`${labels[1]}: ?`}
+          </p>
+        }
+      >
+        <p className="text-center text-caption font-semibold">{`${labels[1]}: ${b}`}</p>
+      </Reveal>
+      <Reveal
+        shown={resultShown}
+        placeholder={
+          <p className="text-center font-heading text-block font-bold text-muted-foreground">
+            {`${labels[2]}: ?`}
+          </p>
+        }
+      >
+        <p className="text-center text-caption font-semibold">{`${labels[2]}: ${a - b}`}</p>
+      </Reveal>
+      <Reveal shown={resultShown}>
+        <Equations spec={spec} />
+      </Reveal>
+      <Legend items={legend} />
+    </div>
+  );
+}
+
 function SumBarsView({ spec, step }: { spec: Spec; step: number }) {
   const { a, b, m, op, mode } = spec;
+  if (op === "minus") return <MinusView spec={spec} step={step} />;
   const hint = mode === "hint";
   const labels = LABELS[op];
-  const result = op === "plus" ? a + b : a - b;
+  const result = a + b;
   const all = mode === "still";
   const resultShown = all || (!hint && step >= 2);
   const legend = [
@@ -130,8 +190,10 @@ function SumBarsView({ spec, step }: { spec: Spec; step: number }) {
 
 export function SumBars({ spec }: { spec: Spec }) {
   const { a, b, m, op } = spec;
-  const word = op === "plus" ? "cộng" : "trừ";
-  const label = `Hai nhóm ${a} và ${b} cái, xếp vào các túi ${m} cái, rồi ${word} hai nhóm`;
+  const label =
+    op === "plus"
+      ? `Hai nhóm ${a} và ${b} cái, xếp vào các túi ${m} cái, rồi cộng hai nhóm`
+      : `${a} cái xếp vào các túi ${m} cái, rồi bớt đi ${b} cái`;
   if (spec.mode === "still") {
     return (
       <figure aria-label={label} className="w-full">

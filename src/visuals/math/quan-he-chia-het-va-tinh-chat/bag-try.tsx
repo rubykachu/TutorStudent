@@ -5,13 +5,8 @@ import { useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
 import { Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
-import { BagsScene } from "./bags";
+import { BagsScene, bagLegend } from "./bags";
 import { BAG_RANGE, packBags } from "./logic";
-
-const LEGEND = [
-  { color: "violet", name: "Một túi" },
-  { color: "pink", name: "Còn thừa" },
-] as const;
 
 // Bags of candy whose size the child changes with − and +. Reports { size }.
 // With `goal` (the lesson screen) it reads the state back as progress and ends
@@ -54,7 +49,14 @@ export function BagTry({
       <p className="text-center text-body font-semibold md:text-body-lg">
         {`${total} cái kẹo, mỗi túi ${size} cái`}
       </p>
-      <BagsScene total={total} size={size} shown={bags} showLeft bag="túi" />
+      <BagsScene
+        total={total}
+        size={size}
+        shown={bags}
+        showLeft
+        bag="túi"
+        unit="cái"
+      />
       <p className={MATH_LINE} aria-live="polite">
         <Tint color="amber">{bags}</Tint>
         {" túi, "}
@@ -75,7 +77,7 @@ export function BagTry({
           {`Xong rồi! ${total} cái vừa hết ${bags} túi ${size} cái.`}
         </p>
       )}
-      <Legend items={LEGEND} />
+      <Legend items={bagLegend("túi")} />
     </div>
   );
 }

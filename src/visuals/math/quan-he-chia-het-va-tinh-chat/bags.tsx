@@ -10,10 +10,13 @@ import { BagBox } from "./parts";
 
 type Spec = SpecOf<"bags">;
 
-const LEGEND = [
-  { color: "violet", name: "Một túi" },
-  { color: "pink", name: "Còn thừa" },
-] as const;
+// What the colours of a bag picture stand for; `bag` names the container.
+export function bagLegend(bag: string) {
+  return [
+    { color: "violet", name: `Một ${bag}` },
+    { color: "pink", name: "Còn thừa" },
+  ] as const;
+}
 
 // The bags of a number: `shown` full bags, then the left-over box. `pending`
 // draws the left-over box as a "?" (a hint stops before it is known).
@@ -24,6 +27,7 @@ export function BagsScene({
   showLeft,
   leftPending = false,
   bag,
+  unit,
 }: {
   total: number;
   size: number;
@@ -31,6 +35,8 @@ export function BagsScene({
   showLeft: boolean;
   leftPending?: boolean;
   bag: string;
+  // Name of one item ("cái", "viên"), for the spoken labels.
+  unit: string;
 }) {
   const { bags, left } = packBags(total, size);
   return (
@@ -41,7 +47,7 @@ export function BagsScene({
             count={size}
             size={size}
             tone="bag"
-            label={`${capital(bag)} ${i + 1}: ${size} cái`}
+            label={`${capital(bag)} ${i + 1}: ${size} ${unit}`}
           />
         );
         return (
@@ -64,7 +70,7 @@ export function BagsScene({
             count={leftPending ? 1 : left}
             size={size}
             tone={leftPending ? "pending" : "left"}
-            label={`Còn thừa ${left} cái`}
+            label={`Còn thừa ${left} ${unit}`}
           />
         </Reveal>
       )}
@@ -76,28 +82,31 @@ function capital(word: string): string {
   return word.charAt(0).toLocaleUpperCase("vi") + word.slice(1);
 }
 
-// Equation line: the total as bags of `size`, plus what is left.
+// Equation line: the total as bags of `size`, plus what is left. With an
+// open total the number of items and of bags stay the letters a and q.
 function Equation({
   total,
   size,
   bags,
   left,
   hideLeft,
+  open,
 }: {
   total: number;
   size: number;
   bags: number;
   left: number;
   hideLeft: boolean;
+  open: boolean;
 }) {
   return (
     <p className={MATH_LINE}>
-      <Tint color="blue">{total}</Tint>
+      <Tint color="blue">{open ? "a" : total}</Tint>
       <span className="whitespace-nowrap">
         {"= "}
         <Tint color="violet">{size}</Tint>
         {" · "}
-        <Tint color="amber">{bags}</Tint>
+        <Tint color="amber">{open ? "q" : bags}</Tint>
         {(left > 0 || hideLeft) && (
           <>
             {" + "}
@@ -110,7 +119,7 @@ function Equation({
 }
 
 function BagsView({ spec, step }: { spec: Spec; step: number }) {
-  const { total, size, thing, bag, mode } = spec;
+  const { total, size, thing, bag, unit, mode, openTotal } = spec;
   const { bags, left } = packBags(total, size);
   const hint = mode === "hint";
   const final = mode === "still" || step >= bags;
@@ -118,7 +127,9 @@ function BagsView({ spec, step }: { spec: Spec; step: number }) {
   return (
     <div className="flex w-full flex-col items-center gap-4">
       <p className="text-center text-body md:text-body-lg">
-        {`${total} cái ${thing}, mỗi ${bag} ${size} cái`}
+        {openTotal
+          ? `Mỗi ${bag} ${size} ${unit}, còn thừa ${left} ${unit}`
+          : `${total} ${unit} ${thing}, mỗi ${bag} ${size} ${unit}`}
       </p>
       <BagsScene
         total={total}
@@ -127,6 +138,7 @@ function BagsView({ spec, step }: { spec: Spec; step: number }) {
         showLeft={final}
         leftPending={hint}
         bag={bag}
+        unit={unit}
       />
       <div className="min-h-[3.25rem]" aria-live="polite">
         {final ? (
@@ -136,7 +148,18 @@ function BagsView({ spec, step }: { spec: Spec; step: number }) {
             bags={bags}
             left={left}
             hideLeft={hint}
+            open={openTotal === true}
           />
+        ) : shown === 0 ? (
+          <p className={MATH_LINE}>
+            <Tint color="blue">{openTotal ? "a" : total}</Tint>
+            <span className="whitespace-nowrap">
+              {"= "}
+              <Tint color="violet">{size}</Tint>
+              {" · "}
+              <Hole />
+            </span>
+          </p>
         ) : (
           <p className={MATH_LINE}>
             <Tint color="violet">{size}</Tint>
@@ -148,18 +171,20 @@ function BagsView({ spec, step }: { spec: Spec; step: number }) {
       </div>
       {final && !hint && (
         <p className="text-center font-heading text-block font-semibold">
-          {left === 0 ? "Không còn thừa" : `Còn thừa ${left} cái`}
+          {left === 0 ? "Không còn thừa" : `Còn thừa ${left} ${unit}`}
         </p>
       )}
-      <Legend items={LEGEND} />
+      <Legend items={bagLegend(bag)} />
     </div>
   );
 }
 
 export function Bags({ spec }: { spec: Spec }) {
-  const { total, size, bag } = spec;
+  const { total, size, bag, unit, openTotal } = spec;
   const { bags } = packBags(total, size);
-  const label = `Chia ${total} cái vào các ${bag}, mỗi ${bag} ${size} cái`;
+  const label = openTotal
+    ? `Xếp vào các ${bag}, mỗi ${bag} ${size} ${unit}, còn thừa ${total % size} ${unit}`
+    : `Chia ${total} ${unit} vào các ${bag}, mỗi ${bag} ${size} ${unit}`;
   if (spec.mode === "still") {
     return (
       <figure aria-label={label} className="w-full">

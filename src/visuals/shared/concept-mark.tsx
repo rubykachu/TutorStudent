@@ -52,6 +52,8 @@ type ConceptMarkProps = {
   // Spoken name; omit when visible text next to the mark already names it.
   label?: string;
   className?: string;
+  // "outline" is the empty slot, e.g. for items that were taken away.
+  variant?: "filled" | "outline";
 };
 
 // Colour + shape marker for a concept, e.g. next to its name in a chip.
@@ -59,8 +61,11 @@ export function ConceptMark({
   color,
   label,
   className = "size-6",
+  variant = "filled",
 }: ConceptMarkProps) {
-  const shape = <ConceptShape color={color} cx={12} cy={12} r={10} />;
+  const shape = (
+    <ConceptShape color={color} cx={12} cy={12} r={10} variant={variant} />
+  );
   const classes = `inline-block shrink-0 ${className}`;
   return label ? (
     <svg viewBox="0 0 24 24" className={classes} role="img" aria-label={label}>

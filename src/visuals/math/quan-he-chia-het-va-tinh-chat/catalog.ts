@@ -21,14 +21,19 @@ export type LegendItem = { color: ConceptColor; name: string };
 
 export type VisualSpec =
   // `total` items packed into bags of `size`, one bag per step; what is left
-  // over is the remainder. `thing` names the items, `bag` the container.
+  // over is the remainder. `thing` names the items, `unit` one item and `bag`
+  // the container. With `openTotal` the picture never states the total: it
+  // says the bag size and the remainder, and the equation keeps the letters
+  // a and q.
   | {
       kind: "bags";
       total: number;
       size: number;
       thing: string;
+      unit: string;
       bag: string;
       mode: Mode;
+      openTotal?: boolean;
     }
   // Hands-on screen and `manipulate` exercise: the child changes the bag size
   // for `total` candies (the exercise's params override it). `goal` adds a
@@ -104,6 +109,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     total: 12,
     size: 3,
     thing: "kẹo",
+    unit: "cái",
     bag: "túi",
     mode: "steps",
   },
@@ -112,6 +118,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     total: 14,
     size: 3,
     thing: "kẹo",
+    unit: "cái",
     bag: "túi",
     mode: "steps",
   },
@@ -121,6 +128,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "\\concept{blue}{12} = \\concept{violet}{3} \\cdot \\concept{amber}{4}",
+        tag: { text: "12 chia hết cho 3", color: "teal" },
       },
     ],
     legend: [
@@ -132,18 +140,26 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chia-tui-tu-lam-21": { kind: "bagTry", total: 21, goal: true },
   "chia-tui-tu-chon": { kind: "bagTry", total: 24, goal: false },
   "chia-deu-tom-tat": {
-    kind: "bags",
-    total: 16,
-    size: 4,
-    thing: "kẹo",
-    bag: "túi",
-    mode: "still",
+    kind: "rows",
+    label: "15 bằng 5 nhân 3 nên 15 chia hết cho 5",
+    rows: [
+      {
+        tex: "\\concept{blue}{15} = \\concept{violet}{5} \\cdot \\concept{amber}{3}",
+        tag: { text: "15 chia hết cho 5", color: "teal" },
+      },
+    ],
+    legend: [
+      { color: "blue", name: "Số bị chia" },
+      { color: "violet", name: "Số chia" },
+      { color: "amber", name: "Thương" },
+    ],
   },
   "chia-tui-goi-y-17-5": {
     kind: "bags",
     total: 17,
     size: 5,
     thing: "kẹo",
+    unit: "cái",
     bag: "túi",
     mode: "hint",
   },
@@ -152,6 +168,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     total: 26,
     size: 6,
     thing: "bánh",
+    unit: "cái",
     bag: "hộp",
     mode: "solution",
   },
@@ -222,25 +239,30 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "rows",
     label: "Chia 52 và 53 cho 4 rồi xem số dư",
     rows: [
-      { tex: "52 : 4 = 13", tag: { text: "số dư 0", color: "teal" } },
+      { tex: "52 = 4 \\cdot 13", tag: { text: "số dư 0", color: "teal" } },
       { tex: "52 \\chiahet 4" },
-      { tex: "53 : 4 = 13", tag: { text: "số dư 1", color: "pink" } },
+      {
+        tex: "53 = 4 \\cdot 13 + 1",
+        tag: { text: "số dư 1", color: "pink" },
+        gapBefore: true,
+      },
       { tex: "53 \\khongchiahet 4" },
     ],
   },
   "kiem-tra-tom-tat": {
-    kind: "hops",
-    step: 4,
-    limit: 28,
-    target: 28,
-    mode: "still",
+    kind: "rows",
+    label: "72 chia 8 được 9, số dư 0 nên 72 chia hết cho 8",
+    rows: [
+      { tex: "72 : 8 = 9", tag: { text: "số dư 0", color: "teal" } },
+      { tex: "72 \\chiahet 8" },
+    ],
   },
   "dem-cach-goi-y-7-38": {
     kind: "hops",
     step: 7,
     limit: 42,
     target: 38,
-    mode: "steps",
+    mode: "hint",
   },
   "dem-cach-giai-7-59": {
     kind: "hops",
@@ -249,8 +271,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     target: 59,
     mode: "steps",
   },
-  "uoc-boi-15-3": { kind: "uocBoi", big: 15, small: 3 },
-  "uoc-boi-tom-tat": { kind: "uocBoi", big: 18, small: 6 },
+  "uoc-boi-18-6": { kind: "uocBoi", big: 18, small: 6 },
+  "uoc-boi-tom-tat": { kind: "uocBoi", big: 15, small: 3 },
   "tim-uoc-12": { kind: "pairs", n: 12, mode: "steps" },
   "tim-uoc-18": { kind: "pairs", n: 18, mode: "still" },
   "chon-uoc-20-cung-lam": {
@@ -366,10 +388,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "plus",
     mode: "hint",
   },
-  "tong-giai-10-15": {
+  "tong-giai-10-20": {
     kind: "sumBars",
     a: 10,
-    b: 15,
+    b: 20,
     m: 5,
     op: "plus",
     mode: "steps",
@@ -428,6 +450,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     m: 4,
     op: "plus",
     mode: "still",
+  },
+  "hieu-goi-y-20-7": {
+    kind: "sumBars",
+    a: 20,
+    b: 7,
+    m: 5,
+    op: "minus",
+    mode: "hint",
   },
   "hieu-24-12-6": {
     kind: "sumBars",
@@ -605,15 +635,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     total: 34,
     size: 10,
     thing: "bi",
+    unit: "viên",
     bag: "túi",
     mode: "steps",
+    openTotal: true,
   },
   "so-du-dang": {
     kind: "rows",
     label: "a bằng 10 nhân q cộng 4",
-    rows: [{ tex: "a = \\concept{violet}{10} \\cdot q + \\concept{pink}{4}" }],
+    rows: [
+      {
+        tex: "\\concept{blue}{a} = \\concept{violet}{10} \\cdot \\concept{amber}{q} + \\concept{pink}{4}",
+      },
+    ],
     legend: [
+      { color: "blue", name: "Số bị chia" },
       { color: "violet", name: "Số chia" },
+      { color: "amber", name: "Thương" },
       { color: "pink", name: "Số dư" },
     ],
   },
@@ -660,17 +698,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "so-du-goi-y-15-6": {
+  "so-du-goi-y-15-10": {
     kind: "lines",
-    label: "a bằng 15 nhân q cộng 6, xét cho 3",
+    label: "a bằng 15 nhân q cộng 10, xét cho 5",
     mode: "hint",
     rows: [
-      { tex: "a = 15 \\cdot q + 6" },
-      { tex: "15 \\cdot q \\chiahet 3" },
-      { tex: "6 \\chiahet 3" },
+      { tex: "a = 15 \\cdot q + 10" },
+      { tex: "15 \\cdot q \\chiahet 5" },
+      { tex: "10 \\chiahet 5" },
       {
-        tex: "a \\chiahet 3",
-        tag: { text: "a chia hết cho 3", color: "teal" },
+        tex: "a \\chiahet 5",
+        tag: { text: "a chia hết cho 5", color: "teal" },
       },
     ],
   },
@@ -696,6 +734,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       { tex: "5 + 5^{2} + 5^{3} + 5^{4}" },
       { tex: "= (5 + 5^{2}) + (5^{3} + 5^{4})" },
+      { tex: "5^{4} = 5^{3} \\cdot 5" },
       { tex: "= 5 \\cdot (1 + 5) + 5^{3} \\cdot (1 + 5)" },
       { tex: "= 5 \\cdot 6 + 5^{3} \\cdot 6" },
       {
@@ -710,6 +749,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     rows: [
       { tex: "2 + 2^{2} + 2^{3} + 2^{4}" },
+      { tex: "= (2 + 2^{2}) + (2^{3} + 2^{4})" },
+      { tex: "2^{4} = 2^{3} \\cdot 2" },
       { tex: "= 2 \\cdot (1 + 2) + 2^{3} \\cdot (1 + 2)" },
       { tex: "= 2 \\cdot 3 + 2^{3} \\cdot 3" },
       {
@@ -731,6 +772,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
+  "nhom-goi-y-10": {
+    kind: "lines",
+    label: "10 cộng 10 bình phương bằng 10 nhân 11",
+    mode: "hint",
+    rows: [
+      { tex: "10 + 10^{2} = 10 \\cdot (1 + 10)" },
+      { tex: "= 10 \\cdot 11" },
+      {
+        tex: "(10 + 10^{2}) \\chiahet 11",
+        tag: { text: "chia hết cho 11", color: "teal" },
+      },
+    ],
+  },
   "nhom-goi-y-3": {
     kind: "lines",
     label: "3 cộng 3 bình phương bằng 3 nhân 4",
@@ -748,7 +802,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "8 cộng 8 bình phương bằng 8 nhân 9",
     mode: "steps",
-    rows: [{ tex: "8 + 8^{2} = 8 \\cdot (1 + 8)" }, { tex: "= 8 \\cdot 9" }],
+    rows: [
+      { tex: "8 + 8^{2} = 8 \\cdot (1 + 8)" },
+      { tex: "= 8 \\cdot 9" },
+      {
+        tex: "(8 + 8^{2}) \\chiahet 9",
+        tag: { text: "chia hết cho 9", color: "teal" },
+      },
+    ],
   },
   sticker: { kind: "sticker" },
 };

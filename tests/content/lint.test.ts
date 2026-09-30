@@ -3,7 +3,12 @@ import { describe, expect, it } from "vitest";
 import { checkContent, formatIssue } from "@/content/check";
 import { lintLesson } from "@/content/lint";
 import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
-import { evaluateExpr, textValue, texValue } from "@/content/lint/expr";
+import {
+  comparisonValue,
+  evaluateExpr,
+  textValue,
+  texValue,
+} from "@/content/lint/expr";
 import { computeReviewedHash } from "@/content/lint/review-hash";
 import { sentences, syllableCount } from "@/content/lint/text";
 import type { Finding, LintInput, LintRule } from "@/content/lint/types";
@@ -696,6 +701,17 @@ describe("check relations", () => {
     exercise.answer = ["b"];
     exercise.check = { relation: "fails" };
     expect(findings(input, "check-expr")).toEqual([]);
+  });
+
+  it("judges chia het sides with brackets and powers, for whole numbers only", () => {
+    const truth = (tex: string) =>
+      comparisonValue({ id: "x", content: { type: "formula", tex } });
+    expect(truth("(9 + 9^{2}) \\chiahet 5")).toBe(true);
+    expect(truth("(9 + 9^{3}) \\chiahet 5")).toBe(false);
+    expect(truth("(3 + 3^{2}) \\khongchiahet 5")).toBe(true);
+    expect(truth("7 \\chiahet 0")).toBeUndefined();
+    expect(truth("(7 : 2) \\chiahet 1")).toBeUndefined();
+    expect(truth("6 \\chiahet (9 : 6)")).toBeUndefined();
   });
 
   it("keeps expr for equal and notEqual only", () => {
