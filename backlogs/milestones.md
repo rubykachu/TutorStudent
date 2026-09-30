@@ -58,3 +58,10 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 - Chưa bắt đầu: Bài 3, Bài 2.
 - Bài 5: visual chia (share, pack, đặt tính chia…) đã xong trong worktree. Việc app cần làm khi tiếp tục: truyền `params` của bài tập xuống visual `manipulate` (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề.
 - Bài 4: review vòng 2 nhóm 3 (section 13–18) đã có kết quả ở `.claude/worktrees/agent-a9710b34e396f6fe3/.shots/review/phep-cong-phep-tru/nhom-3.md` (3 Nghiêm trọng: `chon-uoc-luong-kt`, `chon-tong-sai`, `chon-cap-day-so-2` có hai đáp án đúng; 6 Nên sửa). Kiểm tra kết quả nhóm 1–2 cùng thư mục khi tiếp tục, rồi gộp vào `review.md`.
+
+## Hàng đợi (làm lần lượt, mỗi lần một subagent)
+1. (đang chạy) Sửa lỗi walk Bài 7 + Bài 1, dựng lại video `thuoc-khong-thuoc`.
+2. Thêm kiểm tra tự động vào `video:build` (không tốn token): mỗi câu trong `script.json` phải có trong phụ đề thật (VTT) của video; chữ trên màn cuối/màn quy tắc phải khớp câu quy tắc của bài. Chỉ thêm kiểm tra, không đổi cách dựng hình, giọng, nhịp. Nếu kiểm tra buộc phải đổi gì ảnh hưởng chất lượng video (ví dụ cắt câu, đổi nhịp, bỏ hiệu ứng) thì dừng và báo chủ dự án trước.
+3. Bài 4 (theo `backlogs/handover-phep-cong-phep-tru.md` trong worktree bài 4).
+4. Bài 5 (theo `backlogs/handover-phep-nhan-phep-chia.md`).
+5. Bài 3, Bài 2.
