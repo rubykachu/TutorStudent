@@ -20,11 +20,16 @@ export function BottomBar({ children }: { children: ReactNode }) {
     const bar = ref.current;
     if (!bar) return;
     const root = document.documentElement;
-    const publish = () =>
+    // A bar hidden with its screen (an exercise kept in progress while the
+    // child looks back at an earlier screen) leaves the height to the bar on
+    // show.
+    const publish = () => {
+      if (bar.closest("[hidden]")) return;
       root.style.setProperty(
         BOTTOM_BAR_HEIGHT_VAR,
         `${bar.getBoundingClientRect().height}px`,
       );
+    };
     publish();
     const observer =
       typeof ResizeObserver === "undefined"

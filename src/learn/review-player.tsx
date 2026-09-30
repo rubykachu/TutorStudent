@@ -1,11 +1,10 @@
 "use client";
 
-import { ChevronRight, X } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
-import { SectionStepper } from "@/components/section-stepper";
 import { findExercise, type LessonIndex } from "@/content";
 import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
@@ -15,6 +14,7 @@ import { CardClip } from "@/learn/card-clip";
 import { DoneScreen } from "@/learn/done-screen";
 import { LessonProgressCard } from "@/learn/lesson-progress-card";
 import { stickerFill } from "@/learn/next-step";
+import { PlayerHeader } from "@/learn/player-header";
 import { useCorrectSound } from "@/learn/use-correct-sound";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
@@ -60,6 +60,8 @@ function basicExercise(
 // forgotten, each asked with one exercise (rated), missed cards asked again
 // once at the end (not rated). After a missed question the card's recap stays
 // on screen until the child taps "Tiếp"; a right answer moves straight on.
+// "Quay lại" shows the questions already answered, finished and locked, then
+// "Tiếp" leads back to the screen the child was on.
 export function ReviewPlayer({
   db,
   index,
@@ -73,6 +75,9 @@ export function ReviewPlayer({
   // Sections of the lesson done, for the progress shown when review ends;
   // reviewing never changes it, so it is read once with the cards.
   const [sectionsDone, setSectionsDone] = useState(0);
+  // An answered question shown again, by queue position; null while the
+  // child is on the current question or recap.
+  const [viewing, setViewing] = useState<number | null>(null);
   const onCorrect = useCorrectSound(childId);
 
   // Cards are chosen once, from the memory states at the moment the session
@@ -133,23 +138,70 @@ export function ReviewPlayer({
   if (!session) return null;
 
   const { recap } = session;
+  // The recap belongs to the question just missed, so going back from it
+  // starts at that question.
+  const live = recap ? recap.at + 1 : session.current;
+  const onScreen = viewing ?? recap?.at ?? session.current;
+  const canGoBack =
+    viewing !== null
+      ? viewing > 0
+      : (item !== undefined || recap !== null) && live > 0;
   const header = (
-    <header className="flex items-center gap-4">
-      <Link
-        href={lessonPath(lesson.id)}
-        aria-label="Về trang bài"
-        className="-ml-2 flex size-12 shrink-0 items-center justify-center rounded-full text-muted-foreground"
-      >
-        <X aria-hidden className="size-7" />
-      </Link>
-      {session.items.length > 0 && (item || recap) && (
-        <SectionStepper
-          total={session.items.length}
-          current={recap?.at ?? session.current}
-        />
-      )}
-    </header>
+    <PlayerHeader
+      lessonId={lesson.id}
+      progress={
+        session.items.length > 0 && (item || recap)
+          ? { total: session.items.length, current: onScreen }
+          : undefined
+      }
+      onBack={canGoBack ? () => setViewing((viewing ?? live) - 1) : undefined}
+    />
   );
+  const viewedItem = viewing === null ? undefined : session.items[viewing];
+  const viewedExercise =
+    viewedItem && basicExercise(index, viewedItem.exerciseId);
+  const viewed = viewedExercise && viewedItem && (
+    <div
+      className="flex flex-1 flex-col gap-4"
+      data-review-step="answered"
+      data-exercise={viewedExercise.id}
+      data-exercise-type={viewedExercise.type}
+    >
+      <p className="text-caption font-semibold text-muted-foreground">
+        {viewedItem.reask ? "Hỏi lại" : "Ôn bài"}
+      </p>
+      <ExerciseFrame
+        key={`answered-${viewing}`}
+        exercise={viewedExercise}
+        concepts={index.conceptById}
+        finished
+        onDone={() => undefined}
+      >
+        {(slot) => renderAnswer(viewedExercise, slot)}
+      </ExerciseFrame>
+      <BottomBar>
+        <BigButton
+          onClick={() =>
+            setViewing(
+              viewing !== null && viewing + 1 < live ? viewing + 1 : null,
+            )
+          }
+        >
+          Tiếp
+          <ChevronRight aria-hidden className="size-6" />
+        </BigButton>
+      </BottomBar>
+    </div>
+  );
+
+  if (viewed && recap) {
+    return (
+      <>
+        {header}
+        {viewed}
+      </>
+    );
+  }
 
   if (recap) {
     const card = index.cardById.get(recap.cardId);
@@ -261,27 +313,36 @@ export function ReviewPlayer({
   return (
     <>
       {header}
+      {viewed}
+      {/* Kept mounted while an answered question is shown, so the question
+        in progress keeps its answer and wrong checks for the rating. */}
       <div
-        className="flex flex-1 flex-col gap-4"
-        data-review-step="exercise"
-        data-card={item.cardId}
-        data-reask={item.reask || undefined}
-        data-exercise={exercise.id}
-        data-exercise-type={exercise.type}
+        hidden={viewed !== undefined}
+        className={viewed === undefined ? "contents" : undefined}
+        data-live-step
       >
-        <p className="text-caption font-semibold text-muted-foreground">
-          {item.reask ? "Hỏi lại" : "Ôn bài"}
-        </p>
-        <ExerciseFrame
-          // The same exercise can come back as a re-ask; each ask starts fresh.
-          key={session.current}
-          exercise={exercise}
-          concepts={index.conceptById}
-          onCorrect={onCorrect}
-          onDone={finish}
+        <div
+          className="flex flex-1 flex-col gap-4"
+          data-review-step="exercise"
+          data-card={item.cardId}
+          data-reask={item.reask || undefined}
+          data-exercise={exercise.id}
+          data-exercise-type={exercise.type}
         >
-          {(slot) => renderAnswer(exercise, slot)}
-        </ExerciseFrame>
+          <p className="text-caption font-semibold text-muted-foreground">
+            {item.reask ? "Hỏi lại" : "Ôn bài"}
+          </p>
+          <ExerciseFrame
+            // The same exercise can come back as a re-ask; each ask starts fresh.
+            key={session.current}
+            exercise={exercise}
+            concepts={index.conceptById}
+            onCorrect={onCorrect}
+            onDone={finish}
+          >
+            {(slot) => renderAnswer(exercise, slot)}
+          </ExerciseFrame>
+        </div>
       </div>
     </>
   );

@@ -74,6 +74,9 @@ type ExerciseFrameProps<E extends BasicExercise> = {
   // Runs inside the tap that got the answer accepted, so a sound may start
   // there (iOS only lets audio start from a user gesture).
   onCorrect?: () => void;
+  // An exercise the child already finished, shown again when they go back:
+  // the correct answer in place, locked, with no bottom bar and no praise.
+  finished?: boolean;
   children: (slot: AnswerSlotProps<InputFor<E["type"]>>) => ReactNode;
 };
 
@@ -133,9 +136,10 @@ export function ExerciseFrame<E extends BasicExercise>({
   onDone,
   renderMascot = renderExerciseOwl,
   onCorrect,
+  finished = false,
   children,
 }: ExerciseFrameProps<E>) {
-  const machine = useExerciseMachine(exercise);
+  const machine = useExerciseMachine(exercise, finished);
   // Made on the client after mount, never during a server render, so the
   // server HTML and hydration agree. Kept here and not in the answer
   // component, which remounts for a retype of the same attempt. A layout
@@ -145,7 +149,10 @@ export function ExerciseFrame<E extends BasicExercise>({
   useLayoutEffect(() => setNonce((kept) => kept ?? newId()), []);
   const { state, tier } = machine;
   const seed = nonce === null ? exercise.id : attemptSeed(exercise.id, nonce);
-  const view = feedbackView(exercise, state, concepts, seed);
+  const feedback = feedbackView(exercise, state, concepts, seed);
+  const view = finished
+    ? { ...feedback, reveal: true, speech: undefined }
+    : feedback;
   const reducedMotion = usePrefersReducedMotion();
   // Wrong checks whose shake already finished; a newer wrong check shakes.
   const [shaken, setShaken] = useState(0);
@@ -252,6 +259,7 @@ export function ExerciseFrame<E extends BasicExercise>({
       ref={frameRef}
       className="flex w-full flex-1 flex-col gap-6"
       data-phase={state.phase}
+      data-finished={finished || undefined}
       data-tier={tier}
       data-mascot={view.mascot}
     >

@@ -224,4 +224,114 @@ describe("SectionPlayer", () => {
     );
     expect(await listStickers(db, scope)).toEqual([]);
   });
+
+  describe("going back", () => {
+    function backButton() {
+      return screen.queryByRole("button", { name: "Quay lại" });
+    }
+
+    function shownExercise() {
+      return document.querySelector(
+        "[data-section-step=exercise]:not([hidden] *)",
+      );
+    }
+
+    it("is not offered on the first screen", async () => {
+      renderPlayer();
+      expect(backButton()).toBeNull();
+      tap("Tiếp");
+      expect(backButton()).toBeInTheDocument();
+      tap("Quay lại");
+      expect(screen.getByText("Khối thứ nhất")).toBeInTheDocument();
+      expect(screen.getByText("Bước 1 trên 6")).toBeInTheDocument();
+      expect(backButton()).toBeNull();
+      tap("Tiếp");
+      expect(screen.getByText("Khối thứ hai")).toBeInTheDocument();
+      await waitFor(async () =>
+        expect(await sectionRecord()).toMatchObject({
+          position: { phase: "blocks", index: 1 },
+        }),
+      );
+    });
+
+    it("shows a finished exercise finished and keeps the one in progress", async () => {
+      renderPlayer();
+      tap("Tiếp");
+      tap("Tiếp");
+      await answer("Câu kiểm tra", ["Đúng"]);
+
+      // A wrong check on the practice question, then a look back.
+      tap("Sai");
+      tap("Kiểm tra");
+      tap("Quay lại");
+      expect(screen.getByText("Bước 3 trên 6")).toBeInTheDocument();
+      const finished = shownExercise();
+      expect(finished).toHaveAttribute(
+        "data-exercise",
+        `${LESSON_ID}.ex.kiem-tra`,
+      );
+      expect(finished?.querySelector("[data-finished]")).toHaveAttribute(
+        "data-phase",
+        "done",
+      );
+      // Nothing to check again: only "Tiếp" leads on.
+      expect(screen.queryByRole("button", { name: "Kiểm tra" })).toBeNull();
+      expect(screen.getByRole("button", { name: /Đúng/ })).toBeDisabled();
+      // The position saved stays on the question the child reached.
+      await waitFor(async () =>
+        expect(await sectionRecord()).toMatchObject({
+          position: { phase: "practice", index: 0 },
+        }),
+      );
+
+      tap("Quay lại");
+      expect(screen.getByText("Khối thứ hai")).toBeInTheDocument();
+      tap("Tiếp");
+      tap("Tiếp");
+
+      // Back on the question in progress, with its wrong check.
+      expect(shownExercise()).toHaveAttribute(
+        "data-exercise",
+        `${LESSON_ID}.ex.luyen-a`,
+      );
+      expect(shownExercise()?.querySelector("section")).toHaveAttribute(
+        "data-phase",
+        "wrong1",
+      );
+      expect(screen.getByText("Bước 4 trên 6")).toBeInTheDocument();
+      tap("Đúng");
+      tap("Kiểm tra");
+      tap("Tiếp");
+      await waitFor(() =>
+        expect(screen.getByText("Câu luyện B")).toBeVisible(),
+      );
+
+      // Each exercise was recorded once, and the miss still counts.
+      const attempts = await listAttempts(db, scope);
+      expect(
+        attempts.map((a) => [a.exerciseId, a.firstTryCorrect, a.wrongCount]),
+      ).toEqual([
+        [`${LESSON_ID}.ex.kiem-tra`, true, 0],
+        [`${LESSON_ID}.ex.luyen-a`, false, 1],
+      ]);
+    });
+
+    it("shows exercises finished before the child resumed as finished", async () => {
+      renderPlayer({ phase: "practice", index: 1 });
+      tap("Quay lại");
+      expect(shownExercise()).toHaveAttribute(
+        "data-exercise",
+        `${LESSON_ID}.ex.luyen-a`,
+      );
+      expect(screen.queryByRole("button", { name: "Kiểm tra" })).toBeNull();
+      tap("Tiếp");
+      expect(screen.getByRole("button", { name: "Kiểm tra" })).toBeDisabled();
+      expect(screen.getByText("Bước 5 trên 6")).toBeInTheDocument();
+      await waitFor(async () =>
+        expect(await sectionRecord()).toMatchObject({
+          position: { phase: "practice", index: 1 },
+        }),
+      );
+    });
+  });
 });

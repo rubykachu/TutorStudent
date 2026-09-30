@@ -51,6 +51,19 @@ test("review asks the missed card first and again at the end", async ({
   await answerWrongOnce(page);
   await closeRecap(page);
 
+  // "Quay lại" shows the answered question finished, then leads back.
+  await page.getByRole("button", { name: "Quay lại" }).tap();
+  const answered = page.locator('[data-review-step="answered"]');
+  await expect(answered).toBeVisible();
+  await expect(answered).toHaveAttribute("data-exercise", firstAsk);
+  await expect(answered.locator("section[data-finished]")).toHaveAttribute(
+    "data-phase",
+    "done",
+  );
+  await expect(page.getByRole("button", { name: "Kiểm tra" })).toHaveCount(0);
+  await answered.getByRole("button", { name: "Tiếp" }).tap();
+  await expect(answered).toHaveCount(0);
+
   // The other opened card is asked with its bank exercise, not the practice
   // just done; answered right, it moves on without a recap.
   await expect(item).not.toHaveAttribute("data-card", MISSED_CARD);

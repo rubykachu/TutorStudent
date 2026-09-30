@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { createProfile, finishSection } from "./flows";
+import { answerRight, createProfile, finishSection } from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
 
 const SECTION = "fixture.section.phep-nhan";
@@ -104,4 +104,53 @@ test("Học tiếp goes back to the first unfinished section when a later one wa
   const later = page.locator(`[data-section="${NEXT_SECTION}"]`);
   await expect(later).toHaveAttribute("data-state", "in_progress");
   await expect(later).not.toHaveAttribute("data-next");
+});
+
+test("a child goes back to earlier screens without answering again", async ({
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Na", "Cáo");
+  await page.goto(`/lessons/fixture/sections/${SECTION}`);
+  const stepper = page.locator("[data-section-stepper]");
+  const back = page.getByRole("button", { name: "Quay lại" });
+  await expect(stepper).toHaveAttribute("data-current", "0");
+  await expect(back).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Tiếp" }).tap();
+  await expect(back).toBeVisible();
+  const box = await back.boundingBox();
+  expect(box?.height).toBeGreaterThanOrEqual(48);
+  await back.tap();
+  await expect(stepper).toHaveAttribute("data-current", "0");
+  await expect(back).toHaveCount(0);
+
+  // Through the blocks to the check, answered right.
+  for (let i = 0; i < 3; i++) {
+    await page.getByRole("button", { name: "Tiếp" }).tap();
+  }
+  await answerRight(page);
+  const live = page.locator('[data-exercise="fixture.ex.dem-cham"]');
+  await expect(live).toBeVisible();
+
+  // Back on the check: finished, its answer shown, nothing to check.
+  await back.tap();
+  const finished = page.locator(
+    '[data-exercise="fixture.ex.xep-hinh-vuong"] section[data-finished]',
+  );
+  await expect(finished).toBeVisible();
+  await expect(finished).toHaveAttribute("data-phase", "done");
+  await expect(live).toBeHidden();
+  await expect(page.getByRole("button", { name: "Kiểm tra" })).toHaveCount(0);
+  await expectNoHorizontalScroll(page);
+
+  // Leaving from here resumes on the question the child reached.
+  await page.reload();
+  await expect(live).toBeVisible();
+  await expect(page.locator("section[data-finished]")).toHaveCount(0);
+  await back.tap();
+  await expect(finished).toBeVisible();
+  await page.getByRole("button", { name: "Tiếp" }).tap();
+  await expect(live).toBeVisible();
+  await expect(finished).toHaveCount(0);
 });

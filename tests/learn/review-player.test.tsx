@@ -223,4 +223,67 @@ describe("ReviewPlayer", () => {
       expect(screen.getByRole("link", { name: "Về bài" })).toBeInTheDocument(),
     );
   });
+
+  it("goes back to answered questions without asking or rating them again", async () => {
+    render(
+      <ReviewPlayer
+        db={db}
+        index={learnIndex()}
+        scope={scope}
+        onAgain={vi.fn()}
+        random={() => 0}
+      />,
+    );
+    await screen.findByText("Câu luyện A");
+    expect(screen.queryByRole("button", { name: "Quay lại" })).toBeNull();
+    tap("Sai");
+    tap("Kiểm tra");
+    tap("Đúng");
+    tap("Kiểm tra");
+    tap("Tiếp");
+    await screen.findByText("Nhớ nhé!");
+
+    // From the recap back to the question it belongs to, finished.
+    tap("Quay lại");
+    const answered = document.querySelector("[data-review-step=answered]");
+    expect(answered).toHaveAttribute(
+      "data-exercise",
+      `${LESSON_ID}.ex.luyen-a`,
+    );
+    expect(answered?.querySelector("[data-finished]")).not.toBeNull();
+    expect(screen.queryByRole("button", { name: "Kiểm tra" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Quay lại" })).toBeNull();
+    tap("Tiếp");
+    expect(screen.getByText("Nhớ nhé!")).toBeInTheDocument();
+    tap("Tiếp");
+
+    // A wrong check on B survives a look back at A.
+    expect(item()).toHaveAttribute("data-card", CARD_B);
+    tap("Sai");
+    tap("Kiểm tra");
+    tap("Quay lại");
+    expect(
+      document.querySelector("[data-review-step=answered]"),
+    ).toHaveAttribute("data-exercise", `${LESSON_ID}.ex.luyen-a`);
+    tap("Tiếp");
+    expect(document.querySelector("[data-review-step=answered]")).toBeNull();
+    expect(item()?.querySelector("section")).toHaveAttribute(
+      "data-phase",
+      "wrong1",
+    );
+    tap("Đúng");
+    tap("Kiểm tra");
+    tap("Tiếp");
+    await screen.findByText("Nhớ nhé!");
+
+    const review = (await listAttempts(db, scope)).filter(
+      (a) => a.context === "review",
+    );
+    expect(
+      review.map((a) => [a.cardIds, a.firstTryCorrect, a.wrongCount]),
+    ).toEqual([
+      [[CARD_A], false, 1],
+      [[CARD_B], false, 1],
+    ]);
+  });
 });

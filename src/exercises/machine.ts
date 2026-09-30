@@ -180,16 +180,23 @@ export type ExerciseMachine<I> = {
   finish: () => ExerciseOutcome;
 };
 
+// An exercise the child already finished, shown again read-only: nothing
+// can be entered, checked or recorded.
+export function finishedMachineState<I>(): MachineState<I> {
+  return { ...initialMachineState<I>(), phase: "done" };
+}
+
 // One machine per exercise: callers key the owning component by exercise id
 // so a new exercise starts from a fresh state.
 export function useExerciseMachine<E extends BasicExercise>(
   exercise: E,
+  finished = false,
 ): ExerciseMachine<InputFor<E["type"]>> {
   type I = InputFor<E["type"]>;
   const [state, dispatch] = useReducer(
     exerciseReducer<I>,
     undefined,
-    initialMachineState<I>,
+    finished ? finishedMachineState<I> : initialMachineState<I>,
   );
 
   const setInput = useCallback((input: I | null) => {

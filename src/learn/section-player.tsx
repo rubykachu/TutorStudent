@@ -1,16 +1,15 @@
 "use client";
 
-import { ChevronRight, CircleCheck, X } from "lucide-react";
+import { ChevronRight, CircleCheck } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
-import { SectionStepper } from "@/components/section-stepper";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
 import { renderAnswer, renderStep } from "@/exercises/answers";
-import { ExerciseFrame } from "@/exercises/exercise-frame";
+import { ExerciseFrame, PromptBlock } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
 import {
   type OpenEndedResult,
@@ -19,6 +18,7 @@ import {
 import { BlockStage } from "@/learn/block-stage";
 import { DoneScreen } from "@/learn/done-screen";
 import { LessonProgressCard } from "@/learn/lesson-progress-card";
+import { PlayerHeader } from "@/learn/player-header";
 import {
   resumeStepIndex,
   type SectionStep,
@@ -61,7 +61,15 @@ type Finished = SectionCompletion & { doneCount: number };
 // Plays one section: explanation blocks one at a time ("Tiếp"), the
 // comprehension checks (graded, never rated), the practice exercises (rated;
 // they open the cards for review) and the recap. Every move is saved, so
-// leaving and coming back resumes on the same item.
+// leaving and coming back resumes on the same item. "Quay lại" shows earlier
+// screens again without leaving the one the child is on: an exercise already
+// finished comes back finished (its answer shown, nothing to check or rate),
+// and an exercise in progress keeps its answer and its wrong checks.
+const NO_EXERCISE_PROPS = {
+  onCorrect: undefined,
+  onExerciseDone: () => undefined,
+  onOpenEndedDone: () => undefined,
+};
 export function SectionPlayer({
   db,
   index,
@@ -74,6 +82,9 @@ export function SectionPlayer({
   const [stepIndex, setStepIndex] = useState(() =>
     resumeStepIndex(steps, initialPosition),
   );
+  // An earlier screen shown again, or null while the child is on the step
+  // they reached (`stepIndex`), which alone is saved as their position.
+  const [viewing, setViewing] = useState<number | null>(null);
   const [completion, setCompletion] = useState<Finished | null>(null);
   const [saving, setSaving] = useState(false);
   const step = steps[stepIndex];
@@ -102,6 +113,12 @@ export function SectionPlayer({
       now(),
     );
   }, [db, familyId, childId, lesson.id, section.id, phase, itemIndex]);
+
+  const back = () => setViewing((viewing ?? stepIndex) - 1);
+  const forward = () =>
+    setViewing(
+      viewing !== null && viewing + 1 < stepIndex ? viewing + 1 : null,
+    );
 
   const advance = async () => {
     if (stepIndex + 1 < steps.length) {
@@ -161,70 +178,82 @@ export function SectionPlayer({
     );
   }
 
+  const shown = viewing ?? stepIndex;
+  const liveStep = (
+    <StepView
+      key={`${step.position.phase}-${step.position.index}`}
+      step={step}
+      index={index}
+      finished={false}
+      saving={saving}
+      onCorrect={onCorrect}
+      onNext={advance}
+      onExerciseDone={async (exerciseId, cardIds, context, outcome) => {
+        await record(exerciseId, cardIds, context, outcome, now());
+        await advance();
+      }}
+      onOpenEndedDone={async (exercise, context, result) => {
+        const at = now();
+        // The open-ended task itself carries no cards; its graded steps may,
+        // and those answers count like any other exercise of this phase.
+        for (const [i, outcome] of result.steps.entries()) {
+          const inner = exercise.steps[i];
+          if (inner && inner.cardIds.length > 0) {
+            await record(inner.id, inner.cardIds, context, outcome, at);
+          }
+        }
+        await saveOpenEndedWriting(db, scope, exercise.id, result, at);
+        await advance();
+      }}
+    />
+  );
+  const viewedStep = viewing === null ? undefined : steps[viewing];
+
   return (
     <>
       <PlayerHeader
         lessonId={lesson.id}
-        progress={{ current: stepIndex, total: steps.length }}
+        progress={{ current: shown, total: steps.length }}
+        onBack={shown > 0 ? back : undefined}
       />
       <h1 className="text-block font-semibold md:text-block-lg">
         {section.title}
       </h1>
-      <StepView
-        key={`${step.position.phase}-${step.position.index}`}
-        step={step}
-        index={index}
-        saving={saving}
-        onCorrect={onCorrect}
-        onNext={advance}
-        onExerciseDone={async (exerciseId, cardIds, context, outcome) => {
-          await record(exerciseId, cardIds, context, outcome, now());
-          await advance();
-        }}
-        onOpenEndedDone={async (exercise, context, result) => {
-          const at = now();
-          // The open-ended task itself carries no cards; its graded steps may,
-          // and those answers count like any other exercise of this phase.
-          for (const [i, outcome] of result.steps.entries()) {
-            const inner = exercise.steps[i];
-            if (inner && inner.cardIds.length > 0) {
-              await record(inner.id, inner.cardIds, context, outcome, at);
-            }
-          }
-          await saveOpenEndedWriting(db, scope, exercise.id, result, at);
-          await advance();
-        }}
-      />
-    </>
-  );
-}
-
-function PlayerHeader({
-  lessonId,
-  progress,
-}: {
-  lessonId: string;
-  progress?: { current: number; total: number };
-}) {
-  return (
-    <header className="flex items-center gap-4">
-      <Link
-        href={lessonPath(lessonId)}
-        aria-label="Về trang bài"
-        className="-ml-2 flex size-12 shrink-0 items-center justify-center rounded-full text-muted-foreground"
-      >
-        <X aria-hidden className="size-7" />
-      </Link>
-      {progress && (
-        <SectionStepper total={progress.total} current={progress.current} />
+      {viewedStep && (
+        <StepView
+          key={`viewed-${viewing}`}
+          step={viewedStep}
+          index={index}
+          // Every step before the one reached was finished to get past it.
+          finished
+          saving={false}
+          onNext={forward}
+          {...NO_EXERCISE_PROPS}
+        />
       )}
-    </header>
+      {/* An exercise in progress stays mounted while an earlier screen is
+        shown, so coming back finds the answer and the wrong checks as they
+        were; any other screen is simply drawn again. */}
+      {(viewedStep === undefined || step.kind === "exercise") && (
+        <div
+          hidden={viewedStep !== undefined}
+          // No box of its own while shown, so the step stays a direct part of
+          // the page's column layout.
+          className={viewedStep === undefined ? "contents" : undefined}
+          data-live-step
+        >
+          {liveStep}
+        </div>
+      )}
+    </>
   );
 }
 
 type StepViewProps = {
   step: SectionStep;
   index: LessonIndex;
+  // Shown again through "Quay lại": an exercise comes back finished.
+  finished: boolean;
   saving: boolean;
   onCorrect: (() => void) | undefined;
   onNext: () => void;
@@ -244,6 +273,7 @@ type StepViewProps = {
 function StepView({
   step,
   index,
+  finished,
   saving,
   onCorrect,
   onNext,
@@ -297,7 +327,28 @@ function StepView({
           <p className="text-caption font-semibold text-muted-foreground">
             {EXERCISE_LABELS[context]}
           </p>
-          {exercise.type === "openEnded" ? (
+          {finished ? (
+            <>
+              {exercise.type === "openEnded" ? (
+                <FinishedOpenEnded exercise={exercise} />
+              ) : (
+                <ExerciseFrame
+                  exercise={exercise}
+                  concepts={conceptById}
+                  finished
+                  onDone={() => undefined}
+                >
+                  {(slot) => renderAnswer(exercise, slot)}
+                </ExerciseFrame>
+              )}
+              <BottomBar>
+                <BigButton onClick={onNext}>
+                  Tiếp
+                  <ChevronRight aria-hidden className="size-6" />
+                </BigButton>
+              </BottomBar>
+            </>
+          ) : exercise.type === "openEnded" ? (
             <OpenEndedRunner
               exercise={exercise}
               renderStep={renderStep}
@@ -321,6 +372,31 @@ function StepView({
       );
     }
   }
+}
+
+const NO_PARTS = new Map();
+
+// An open-ended task shown again after it was handed in: its prompt and a
+// note that it is done; the writing itself is kept with the child's progress.
+function FinishedOpenEnded({ exercise }: { exercise: OpenEndedExercise }) {
+  return (
+    <div className="flex flex-col gap-4" data-open-ended data-stage="finished">
+      {exercise.prompt.map((block, i) => (
+        <PromptBlock
+          // Prompt blocks have no ids; their order is fixed content.
+          // biome-ignore lint/suspicious/noArrayIndexKey: static list
+          key={i}
+          block={block}
+          blockHighlight={undefined}
+          parts={NO_PARTS}
+        />
+      ))}
+      <p className="flex items-center gap-2 rounded-xl border-3 border-correct bg-correct-soft p-4 font-semibold">
+        <CircleCheck aria-hidden className="size-7 shrink-0 text-correct" />
+        Bạn đã làm xong bài này.
+      </p>
+    </div>
+  );
 }
 
 function SectionDone({

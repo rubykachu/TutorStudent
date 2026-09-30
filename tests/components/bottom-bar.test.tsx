@@ -20,4 +20,24 @@ describe("BottomBar", () => {
     unmount();
     expect(root.style.getPropertyValue(BOTTOM_BAR_HEIGHT_VAR)).toBe("");
   });
+
+  it("leaves the height to the bar on show while its screen is hidden", () => {
+    const root = document.documentElement;
+    const shown = render(
+      <BottomBar>
+        <button type="button">Tiếp</button>
+      </BottomBar>,
+    );
+    root.style.setProperty(BOTTOM_BAR_HEIGHT_VAR, "80px");
+    const hidden = render(
+      <div hidden>
+        <BottomBar>
+          <button type="button">Kiểm tra</button>
+        </BottomBar>
+      </div>,
+    );
+    expect(root.style.getPropertyValue(BOTTOM_BAR_HEIGHT_VAR)).toBe("80px");
+    hidden.unmount();
+    shown.unmount();
+  });
 });
