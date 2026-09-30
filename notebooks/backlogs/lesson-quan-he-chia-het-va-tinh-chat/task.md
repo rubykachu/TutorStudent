@@ -2,7 +2,7 @@
 
 ## Trạng thái
 - Nội dung đã xuất bản (`status: published`, hash đã duyệt, id đã khoá). Review 4 vòng: vòng 1 (8 Nghiêm trọng), vòng 2 (3), vòng 3 (1), vòng 4 (0 Nghiêm trọng, 0 Nên sửa, 1 Góp ý).
-- Tiếp theo: lời đọc (`overview` narration) và video bài giảng theo skill `lesson-video` (chưa làm; bài chưa có `videos`). Sửa nội dung sau này phải review lại (hash).
+- Lời đọc và 3 video đã dựng (02/10/2026), chưa review. Việc tiếp theo: vòng review chỉ phần đổi (subagent mới, `model: "sonnet"`, diff chỉ có 3 khối video trong `lesson.json` và `overview.narration`), rồi `pnpm content:lock` (khoá id 3 video), `pnpm lesson:walk quan-he-chia-het-va-tinh-chat`, ghi lại `reviewedHash`. `content:check` hiện báo `[review-hash]` là đúng.
 - Soạn đêm 01/10/2026 thay cho buổi hỏi đáp đầu vào vì chủ dự án đang ngủ; các giả định ở mục "Giả định".
 
 ## Nguồn (sách bài tập, `sources/math/quan-he-chia-het-va-tinh-chat/`, không commit)
@@ -12,12 +12,20 @@
 - Nội dung nguồn: kiến thức (a = k · b; ước, bội; tính chất của tổng), 2 ví dụ, câu 2.1–2.11.
 - Đáp án câu 2.5 trong sách chỉ ghi ý a); ý b) tự tính: 1 930 + 100 + 2 021 không chia hết cho 5 vì 2 021 không chia hết cho 5.
 
+## Lời đọc và video
+- Giọng: `my-duyen` (Mỹ Duyên), khai ở `video/projects/quan-he-chia-het-va-tinh-chat/media.json`. Lý do: Bài 5, 6, 7 đều Hải Đăng nên xen giọng nữ cho bé đỡ nhàm; bài mở đầu một mạch kiến thức mới (chia đều, ước, bội), nhẹ nhàng, không có lý do riêng để giữ giọng nam.
+- Video (id `quan-he-chia-het-va-tinh-chat.video.<tên>`, gắn ở đầu section):
+  - `chia-het` 57,2 s, section `chia-deu`, clip `chia-deu` cho card `chia-deu`.
+  - `uoc-boi` 61,4 s, section `uoc-boi`, clip `uoc-boi` cho card `uoc-boi`.
+  - `tinh-chat-tong` 73,8 s, section `tong-chia-het`, hai clip: `tong-chia-het` (card `tong-chia-het`) và `tong-khong-chia-het` (card `tong-khong-chia-het`, dạy luôn ở video này vì mỗi section chỉ một video).
+- Lời đọc tổng quan 51 s. `pnpm video:check` đạt. Whisper: mọi câu >= 97% trừ một câu của `tinh-chat-tong`: "Mỗi nhóm xếp vừa các túi 6 cái." 96,9% (nghe thành "cắt túi"), cần nghe lại.
+- Chưa có video cho hiệu (section `hieu-chia-het`, `hieu-khong-chia-het`) và các section sau; làm thêm nếu chủ dự án muốn.
+
 ## Giả định (không hỏi được chủ dự án)
 - Trẻ yếu nhân chia và chưa viết được kí hiệu tập hợp: bài bắc thang từ "chia đều không thừa" (kẹo, túi), kiểm bằng bảng nhân hay phép chia có dư, chưa dùng kí hiệu ∈ ∉ hay tập hợp.
 - Kí hiệu chia hết viết trong công thức bằng `\chiahet` và `\khongchiahet` (hai macro TeX trong `src/lib/tex.ts`), lint tính được mệnh đề chia hết.
 - Tính chất của hiệu (sách có ở "Kĩ năng" và câu 2.7) dạy cùng cách với tổng.
 - Quy ước "a · b là a được lấy b lần" của Bài 5 giữ nguyên.
-- Lời đọc và video để sau khi bài được duyệt (đúng quy trình), chưa làm.
 
 ## Cấu trúc bài (13 section, 13 card, 68 bài tập, 74 hình)
 1 `chia-deu` chia đều không thừa (túi kẹo, hình tự chọn cỡ túi); 2 `ky-hieu` dấu chia hết; 3 `kiem-tra` đếm cách và số dư; 4 `uoc-boi`; 5 `tim-uoc`; 6 `tim-boi`; 7 `tong-chia-het`; 8 `tong-khong-chia-het`; 9 `hieu-chia-het`; 10 `hieu-khong-chia-het`; 11 `tim-x` (ví dụ 1, câu 2.6–2.8); 12 `so-du` (ví dụ 2, câu 2.10); 13 `nhom-so-hang` (câu 2.9, luỹ thừa).
@@ -36,7 +44,7 @@ Hình: `src/visuals/math/quan-he-chia-het-va-tinh-chat/` (danh mục `catalog.ts
 - `src/visuals/shared/math-parts.tsx`: `Tint`, `Hole`, `Legend`, `MATH_LINE` chuyển từ `parts-nhan.tsx` của Bài 5 (vẫn re-export).
 
 ## Việc tiếp theo
-1. Lời đọc và ba hoặc nhiều video theo `lesson-video` (Sonnet, một subagent một lần).
+1. Review phần đổi (3 video, lời đọc), khoá id, walk (xem mục "Trạng thái").
 2. Góp ý còn mở: hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án của `dien-du-14-7` là "không chia hết" (không lộ đáp án).
 3. Các mục ở "Để lại" bên dưới.
 

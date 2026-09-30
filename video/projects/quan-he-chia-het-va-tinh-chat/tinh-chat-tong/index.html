@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tính chất của tổng" (lesson quan-he-chia-het-va-tinh-chat):
+  12 + 18 as two groups of bags of 6, both divisible by 6, so the sum 30 is
+  too; then 10 + 7 with bags of 5, where 7 leaves 2 over (pink), so 17 is not
+  divisible by 5. Lesson colours: số hạng blue, tổng amber, leftover pink,
+  with a shape each (● ■ ◆). Built by
+  `pnpm video:build quan-he-chia-het-va-tinh-chat tinh-chat-tong`, which
+  injects window.TIMING (scene windows and spoken word times).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Tính chất của tổng</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .bagbox { position: absolute; width: 130px; height: 96px; background: var(--color-surface); border: 6px solid var(--color-border); border-radius: 18px 18px 34px 34px; }
+      .dot { position: absolute; width: 26px; height: 26px; border-radius: 8px; background: var(--color-concept-sky); border: 3px solid var(--color-surface); box-shadow: 0 0 0 3px var(--color-concept-sky); }
+      .dot.left { background: var(--color-concept-pink); box-shadow: 0 0 0 3px var(--color-concept-pink); }
+      .dv { display: inline-block; height: 1em; width: 0.5em; vertical-align: -0.1em; overflow: visible; }
+      .cb { color: var(--color-concept-blue); } .cv { color: var(--color-concept-violet); } .ca { color: var(--color-concept-amber); } .cp { color: var(--color-concept-pink); } .ct { color: var(--color-concept-teal); }
+      .lab { position: absolute; width: 300px; text-align: center; font: 800 54px / 1 "Baloo 2", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 200px">Tính chất của tổng</div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="gA" class="abs"></div>
+          <div id="pA" class="row" style="top: 140px; gap: 70px"></div>
+          <div id="eA" class="row math" style="top: 440px; left: 220px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="gB" class="abs"></div>
+          <div id="pB" class="row" style="top: 140px; gap: 70px"></div>
+          <div id="eB" class="row math" style="top: 440px; left: 220px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="n1" class="row" style="top: 90px"></div>
+          <div id="n2" class="row" style="top: 270px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, end, W, owl, pop, rise, hide, pose, scenes, finish } = window.LV;
+        const sp = (cls, id, html) => `<span id="${id}" class="${cls}">${html}</span>`;
+        // The lesson's sign "chia hết cho": three dots; crossed by a slash when not.
+        const dv = (not) =>
+          `<svg class="dv" viewBox="0 0 30 60"><g fill="currentColor"><circle cx="15" cy="10" r="6"/><circle cx="15" cy="30" r="6"/><circle cx="15" cy="50" r="6"/></g>${not ? '<line x1="0" y1="62" x2="30" y2="-2" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>' : ""}</svg>`;
+        const chip = (id, c, html) => `<span id="${id}" class="chip" style="--c: var(--color-concept-${c})">${html}</span>`;
+        const pillOf = (id, a, sign, b, colorA = "cb") => `<span id="${id}" class="math small pill"><span class="${colorA}">${a}</span><span class="ct"> ${dv(sign)} </span><span class="cv">${b}</span></span>`;
+
+        // ---------- DOM ----------
+        // A group is a row of bags (each shows its sweets); `loose` sweets
+        // stand beside the bags (pink, left over). `size` sweets per bag.
+        const BAG = 146;
+        const group = (root, prefix, left, bags, size, loose) => {
+          const top = 250;
+          for (let b = 0; b < bags; b++) {
+            const box = document.createElement("div");
+            box.className = `bagbox ${prefix}-bag`;
+            box.style.left = `${left + b * BAG}px`;
+            box.style.top = `${top}px`;
+            root.append(box);
+            const cols = size === 6 ? 3 : 5;
+            for (let k = 0; k < size; k++) {
+              const d = document.createElement("div");
+              d.className = `dot ${prefix}-bag`;
+              d.style.left = `${left + b * BAG + 12 + (k % cols) * (size === 6 ? 32 : 22) - (size === 6 ? 0 : 6)}px`;
+              d.style.top = `${top + 12 + Math.floor(k / cols) * 34}px`;
+              if (size !== 6) { d.style.width = "18px"; d.style.height = "18px"; }
+              root.append(d);
+            }
+          }
+          for (let k = 0; k < loose; k++) {
+            const d = document.createElement("div");
+            d.className = `dot left ${prefix}-loose`;
+            d.style.left = `${left + bags * BAG + 14 + k * 36}px`;
+            d.style.top = `${top + 40}px`;
+            root.append(d);
+          }
+        };
+        group($("#gA"), "ga", 210, 2, 6, 0);
+        group($("#gA"), "gb", 640, 3, 6, 0);
+        group($("#gB"), "gc", 230, 2, 5, 0);
+        group($("#gB"), "gd", 640, 1, 5, 2);
+        $("#gA").insertAdjacentHTML("beforeend", `<div id="la1" class="lab cb" style="left: 138px; top: 365px">12</div><div id="la2" class="lab cb" style="left: 597px; top: 365px">18</div><div id="lp" class="abs math" style="left: 512px; top: 264px; color: var(--color-foreground)">+</div>`);
+        $("#gB").insertAdjacentHTML("beforeend", `<div id="lc1" class="lab cb" style="left: 150px; top: 365px">10</div><div id="lc2" class="lab cb" style="left: 570px; top: 365px">7</div><div id="lq" class="abs math" style="left: 512px; top: 264px; color: var(--color-foreground)">+</div>`);
+        $("#pA").innerHTML = `${pillOf("qa1", "12", false, "6")}${pillOf("qa2", "18", false, "6")}${pillOf("qa3", "30", false, "6", "ca")}`;
+        $("#eA").innerHTML = `${sp("cb", "xa1", "12")}<span id="xa2" class="op">+</span>${sp("cb", "xa3", "18")}<span id="xa4" class="op">=</span>${sp("ca", "xa5", "30")}`;
+        $("#pB").innerHTML = `${pillOf("qb1", "10", false, "5")}${pillOf("qb2", "7", true, "5")}${pillOf("qb3", "17", true, "5", "ca")}`;
+        $("#eB").innerHTML = `${sp("cb", "xb1", "10")}<span id="xb2" class="op">+</span>${sp("cb", "xb3", "7")}<span id="xb4" class="op">=</span>${sp("ca", "xb5", "17")}`;
+        $("#n1").innerHTML = `${chip("m1", "teal", "● đều chia hết")}<span id="m2" class="math small">→</span>${chip("m3", "amber", "■ tổng chia hết")}`;
+        $("#n2").innerHTML = `${chip("o1", "pink", "◆ một số hạng không chia hết")}<span id="o2" class="math small">→</span>${chip("o3", "pink", "■ tổng không chia hết")}`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        // The two groups of 12 and 18 sweets stay from their introduction
+        // (scene 1) to the end of scene 2.
+        tl.fromTo("#s2", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, W("s01-de", "nhóm", 2));
+        tl.to("#s2", { autoAlpha: 0, duration: 0.3 }, end("s02-tong") - 0.3);
+        scenes([
+          ["#s1", "s01-de"],
+          ["#s3", "s03-khong"],
+          ["#s4", "s04-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: title, two groups ----------
+        {
+          const sid = "s01-de";
+          hide(["#title"]);
+          pose(bird, "happy", W(sid, "chào"));
+          rise("#title", W(sid, "chào"));
+          tl.to("#title", { autoAlpha: 0, duration: 0.3 }, W(sid, "hai") - 0.3);
+          hide([".ga-bag", ".gb-bag", "#la1", "#la2", "#lp"]);
+          pop(".ga-bag", W(sid, "12"), { from: 0.6, stagger: 0.05 });
+          pop("#la1", W(sid, "12") + 0.2, { from: 0.6 });
+          pop("#lp", W(sid, "18") - 0.3, { from: 0.6 });
+          pop(".gb-bag", W(sid, "18"), { from: 0.6, stagger: 0.05 });
+          pop("#la2", W(sid, "18") + 0.2, { from: 0.6 });
+        }
+
+        // ---------- s02: 12 + 18 = 30, all divisible by 6 ----------
+        {
+          const sid = "s02-tong";
+          pose(bird, "idle", start(sid));
+          hide(["#qa1", "#qa2", "#qa3", "#xa1", "#xa2", "#xa3", "#xa4", "#xa5"]);
+          pop("#qa1", W(sid, "12"), { from: 0.6 });
+          pop("#qa2", W(sid, "18"), { from: 0.6 });
+          pop("#xa1", W(sid, "gộp"), { from: 0.6 });
+          pop("#xa2", W(sid, "gộp") + 0.15, { from: 0.6 });
+          pop("#xa3", W(sid, "gộp") + 0.3, { from: 0.6 });
+          pop("#xa4", W(sid, "thành"), { from: 0.6 });
+          pop("#xa5", W(sid, "30"), { from: 0.6 });
+          pop("#qa3", W(sid, "30", 2), { from: 0.6 });
+          pose(bird, "happy", W(sid, "30", 2));
+        }
+
+        // ---------- s03: 10 + 7, bags of 5 ----------
+        {
+          const sid = "s03-khong";
+          pose(bird, "idle", start(sid));
+          hide([".gc-bag", ".gd-bag", ".gc-loose", ".gd-loose", "#lc1", "#lc2", "#lq", "#qb1", "#qb2", "#qb3", "#xb1", "#xb2", "#xb3", "#xb4", "#xb5"]);
+          pop(".gc-bag", start(sid) + 0.2, { from: 0.6, stagger: 0.05 });
+          pop("#lc1", start(sid) + 0.5, { from: 0.6 });
+          pop("#lq", start(sid) + 0.7, { from: 0.6 });
+          pop(".gd-bag", start(sid) + 0.8, { from: 0.6, stagger: 0.05 });
+          pop(".gd-loose", W(sid, "thừa"), { from: 0.6, stagger: 0.2 });
+          pop("#lc2", start(sid) + 1.1, { from: 0.6 });
+          pop("#qb1", W(sid, "10", 2), { from: 0.6 });
+          pop("#qb2", W(sid, "7", 2), { from: 0.6 });
+          pop("#xb1", W(sid, "gộp"), { from: 0.6 });
+          pop("#xb2", W(sid, "gộp") + 0.15, { from: 0.6 });
+          pop("#xb3", W(sid, "gộp") + 0.3, { from: 0.6 });
+          pop("#xb4", W(sid, "thành"), { from: 0.6 });
+          pop("#xb5", W(sid, "17"), { from: 0.6 });
+          pop("#qb3", W(sid, "tổng"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "tổng"));
+        }
+
+        // ---------- s04: remember ----------
+        {
+          const sid = "s04-nho";
+          hide(["#m1", "#m2", "#m3", "#o1", "#o2", "#o3"]);
+          pose(bird, "cheer", W(sid, "nhớ"));
+          pop("#m1", W(sid, "đều"), { from: 0.6 });
+          pop("#m2", W(sid, "thì"), { from: 0.6 });
+          pop("#m3", W(sid, "tổng"), { from: 0.6 });
+          pop("#o1", W(sid, "một"), { from: 0.6 });
+          pop("#o2", W(sid, "thì", 2), { from: 0.6 });
+          pop("#o3", W(sid, "tổng", 2), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

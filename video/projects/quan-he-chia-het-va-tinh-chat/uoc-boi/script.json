@@ -1,0 +1,59 @@
+{
+  "title": "Ước và bội",
+  "engine": "local",
+  "poster": { "scene": "s03-uoc", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        { "text": "Chào bạn! Hôm nay ta học ước và bội.", "opening": true },
+        { "text": "Bạn cú có 18 cái bánh." },
+        { "text": "Bạn xếp đều vào các hộp, mỗi hộp 6 cái." }
+      ]
+    },
+    {
+      "id": "s02-xep",
+      "sentences": [
+        { "text": "Xếp được 3 hộp, vừa hết." },
+        { "text": "18 bằng 6 nhân 3, là 6 được lấy 3 lần." },
+        { "text": "Vậy 18 chia hết cho 6." }
+      ]
+    },
+    {
+      "id": "s03-uoc",
+      "sentences": [
+        {
+          "text": "Khi số a chia hết cho số b, ta gọi số b là một ước của số a, còn số a là một bội của số b.",
+          "rule": true
+        },
+        {
+          "text": "Ví dụ 18 chia hết cho 6 nên 6 là ước của 18, còn 18 là bội của 6.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-tich",
+      "sentences": [
+        { "text": "Phép nhân cũng cho ta ước." },
+        { "text": "24 bằng 6 nhân 4, là 6 được lấy 4 lần." },
+        { "text": "Nên 6 và 4 đều là ước của 24." }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé." },
+        { "text": "Khi chia hết, số chia là ước, số bị chia là bội." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "uoc-boi",
+      "from": "s02-xep",
+      "to": "s03-uoc",
+      "cardIds": ["quan-he-chia-het-va-tinh-chat.card.uoc-boi"]
+    }
+  ]
+}

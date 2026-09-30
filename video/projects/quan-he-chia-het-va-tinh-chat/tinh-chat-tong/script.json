@@ -1,0 +1,66 @@
+{
+  "title": "Tính chất của tổng",
+  "engine": "local",
+  "poster": { "scene": "s02-tong", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học tính chất của tổng.",
+          "opening": true
+        },
+        { "text": "Bạn cú có hai nhóm kẹo." },
+        { "text": "Nhóm một có 12 cái, nhóm hai có 18 cái." },
+        { "text": "Mỗi nhóm xếp vừa các túi 6 cái." }
+      ]
+    },
+    {
+      "id": "s02-tong",
+      "sentences": [
+        { "text": "12 chia hết cho 6, 18 cũng chia hết cho 6." },
+        { "text": "Gộp hai nhóm lại thành 30 cái." },
+        { "text": "30 cũng xếp vừa các túi 6 cái." },
+        {
+          "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-khong",
+      "sentences": [
+        { "text": "Giờ thử 10 cái kẹo và 7 cái kẹo, mỗi túi 5 cái." },
+        { "text": "10 chia hết cho 5, nhưng 7 thì không." },
+        { "text": "Gộp lại thành 17, vẫn còn thừa 2 cái." },
+        { "text": "Khi đó tổng không chia hết cho số đó.", "rule": true },
+        { "text": "17 không chia hết cho 5." }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé." },
+        { "text": "Số hạng đều chia hết thì tổng chia hết." },
+        {
+          "text": "Một số hạng không chia hết, số kia chia hết, thì tổng không chia hết."
+        },
+        { "text": "Chỉ cần xét từng số hạng, không cần cộng.", "rule": true }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tong-chia-het",
+      "from": "s02-tong",
+      "to": "s02-tong",
+      "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-chia-het"]
+    },
+    {
+      "id": "tong-khong-chia-het",
+      "from": "s03-khong",
+      "to": "s03-khong",
+      "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-khong-chia-het"]
+    }
+  ]
+}

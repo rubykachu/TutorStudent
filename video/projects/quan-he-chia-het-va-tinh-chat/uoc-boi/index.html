@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Ước và bội" (lesson quan-he-chia-het-va-tinh-chat): 18 cakes
+  fill 3 boxes of 6, so 18 = 6 · 3 and 18 is divisible by 6; then the
+  names: b is an ước (violet ▲) of a, a is a bội (blue ●) of b, and 6 and 4
+  are ước of 24 = 6 · 4. Built by
+  `pnpm video:build quan-he-chia-het-va-tinh-chat uoc-boi`, which injects
+  window.TIMING (scene windows and spoken word times).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Ước và bội</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .cake { position: absolute; z-index: 2; width: 34px; height: 34px; border-radius: 10px; background: var(--color-concept-sky); border: 4px solid var(--color-surface); box-shadow: 0 0 0 3px var(--color-concept-sky); }
+      .box { position: absolute; top: 410px; width: 270px; height: 70px; background: var(--color-surface); border: 6px solid var(--color-border); border-radius: 14px; }
+      .blabel { position: absolute; top: 488px; width: 270px; text-align: center; font: 700 28px / 1.2 "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .dv { display: inline-block; height: 1em; width: 0.5em; vertical-align: -0.1em; overflow: visible; }
+      .cb { color: var(--color-concept-blue); } .cv { color: var(--color-concept-violet); } .ca { color: var(--color-concept-amber); } .ct { color: var(--color-concept-teal); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="work" class="scene layer"></section>
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 200px">Ước và bội</div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="q1" class="row math" style="top: 175px"></div>
+          <div id="q2" class="row" style="top: 270px"><span class="math pill"></span></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="a1" class="row math" style="top: 20px"></div>
+          <div id="a2" class="row" style="top: 125px"></div>
+          <div id="a3" class="row math" style="top: 235px"></div>
+          <div id="a4" class="row" style="top: 340px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="t1" class="row math big" style="top: 80px"></div>
+          <div id="t2" class="row" style="top: 240px; gap: 120px"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="n1" class="row" style="top: 90px"></div>
+          <div id="n2" class="row" style="top: 270px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, end, W, owl, pop, rise, hide, pose, scenes, finish } = window.LV;
+        const sp = (cls, id, html) => `<span id="${id}" class="${cls}">${html}</span>`;
+        // The lesson's sign "chia hết cho": three dots.
+        const dv = `<svg class="dv" viewBox="0 0 30 60"><g fill="currentColor"><circle cx="15" cy="10" r="6"/><circle cx="15" cy="30" r="6"/><circle cx="15" cy="50" r="6"/></g></svg>`;
+        const chip = (id, c, html) => `<span id="${id}" class="chip" style="--c: var(--color-concept-${c})">${html}</span>`;
+
+        // ---------- DOM ----------
+        // 18 cakes in 3 rows of 6 at the top; 3 boxes of 6 below.
+        const BOX_LEFT = (i) => 250 + i * 300;
+        const home = (k) => ({ x: 640 - 3 * 44 + (k % 6) * 44 + 5, y: 30 + Math.floor(k / 6) * 44 });
+        const cakes = [];
+        for (let k = 0; k < 18; k++) {
+          const c = document.createElement("div");
+          c.className = "cake";
+          c.style.left = `${home(k).x}px`;
+          c.style.top = `${home(k).y}px`;
+          $("#work").append(c);
+          cakes.push(c);
+        }
+        for (let i = 0; i < 3; i++) {
+          const b = document.createElement("div");
+          b.className = "box";
+          b.style.left = `${BOX_LEFT(i)}px`;
+          $("#work").append(b);
+          const l = document.createElement("div");
+          l.className = "blabel";
+          l.style.left = `${BOX_LEFT(i)}px`;
+          l.textContent = `hộp ${i + 1}`;
+          $("#work").append(l);
+        }
+        $("#q1").innerHTML = `${sp("cb", "f1", "18")}<span id="f2" class="op">=</span>${sp("cv", "f3", "6")}<span id="f4" class="op">·</span>${sp("ca", "f5", "3")}`;
+        $("#q2 .pill").innerHTML = `<span class="cb">18</span><span class="ct"> ${dv} </span><span class="cv">6</span>`;
+        $("#a1").innerHTML = `${sp("cb", "g1", "a")}<span id="g2" class="ct">${dv}</span>${sp("cv", "g3", "b")}`;
+        $("#a2").innerHTML = `${chip("g4", "violet", "▲ b là ước của a")}${chip("g5", "blue", "● a là bội của b")}`;
+        $("#a3").innerHTML = `${sp("cb", "h1", "18")}<span id="h2" class="ct">${dv}</span>${sp("cv", "h3", "6")}`;
+        $("#a4").innerHTML = `${chip("h4", "violet", "▲ 6 là ước của 18")}${chip("h5", "blue", "● 18 là bội của 6")}`;
+        $("#t1").innerHTML = `${sp("cb", "u1", "24")}<span id="u2" class="op">=</span>${sp("cv", "u3", "6")}<span id="u4" class="op">·</span>${sp("cv", "u5", "4")}`;
+        $("#t2").innerHTML = `${chip("u6", "violet", "▲ ước")}${chip("u7", "violet", "▲ ước")}`;
+        $("#n1").innerHTML = `${chip("m1", "violet", "▲ số chia")}<span id="m2" class="math small">→</span>${chip("m3", "violet", "▲ ước")}`;
+        $("#n2").innerHTML = `${chip("o1", "blue", "● số bị chia")}<span id="o2" class="math small">→</span>${chip("o3", "blue", "● bội")}`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-de"],
+          ["#s2", "s02-xep"],
+          ["#s3", "s03-uoc"],
+          ["#s4", "s04-tich"],
+          ["#s5", "s05-nho"],
+        ]);
+        {
+          // Cakes and boxes stay from the question to the division.
+          const el = $("#work");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, W("s01-de", "18"));
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s02-xep") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: 18 cakes, boxes of 6 ----------
+        {
+          const sid = "s01-de";
+          hide(["#title"]);
+          hide(cakes);
+          tl.set(".box, .blabel", { autoAlpha: 0 }, 0);
+          pose(bird, "happy", W(sid, "chào"));
+          rise("#title", W(sid, "chào"));
+          tl.to("#title", { autoAlpha: 0, duration: 0.3 }, W(sid, "bạn", 2) - 0.3);
+          pop(cakes, W(sid, "18"), { from: 0.4, stagger: 0.04 });
+          pop(".box, .blabel", W(sid, "hộp"), { from: 0.6, stagger: 0.12 });
+        }
+
+        // ---------- s02: 3 boxes, 18 = 6 · 3 ----------
+        {
+          const sid = "s02-xep";
+          pose(bird, "idle", start(sid));
+          hide(["#f1", "#f2", "#f3", "#f4", "#f5", "#q2"]);
+          const t0 = W(sid, "xếp");
+          for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 6; j++) {
+              const k = i * 6 + j;
+              tl.to(cakes[k], { x: BOX_LEFT(i) + 12 + j * 40 - home(k).x, y: 422 - home(k).y, duration: 0.45, ease: "power2.inOut" }, t0 + i * 0.5 + j * 0.06);
+            }
+          }
+          pop("#f1", W(sid, "18"), { from: 0.6 });
+          pop("#f2", W(sid, "bằng"), { from: 0.6 });
+          pop("#f3", W(sid, "6"), { from: 0.6 });
+          pop("#f4", W(sid, "nhân"), { from: 0.6 });
+          pop("#f5", W(sid, "3", 2), { from: 0.6 });
+          pop("#q2", W(sid, "hết", 2), { from: 0.6 });
+          pose(bird, "happy", W(sid, "hết", 2));
+        }
+
+        // ---------- s03: the names ----------
+        {
+          const sid = "s03-uoc";
+          pose(bird, "idle", start(sid));
+          hide(["#g1", "#g2", "#g3", "#g4", "#g5", "#h1", "#h2", "#h3", "#h4", "#h5"]);
+          pop("#g1", W(sid, "a"), { from: 0.6 });
+          pop("#g2", W(sid, "hết"), { from: 0.6 });
+          pop("#g3", W(sid, "b"), { from: 0.6 });
+          pop("#g4", W(sid, "ước"), { from: 0.6 });
+          pop("#g5", W(sid, "bội"), { from: 0.6 });
+          pop("#h1", W(sid, "18"), { from: 0.6 });
+          pop("#h2", W(sid, "hết", 2), { from: 0.6 });
+          pop("#h3", W(sid, "6"), { from: 0.6 });
+          pop("#h4", W(sid, "ước", 2), { from: 0.6 });
+          pop("#h5", W(sid, "bội", 2), { from: 0.6 });
+          pose(bird, "happy", W(sid, "bội", 2));
+        }
+
+        // ---------- s04: a product gives ước ----------
+        {
+          const sid = "s04-tich";
+          pose(bird, "idle", start(sid));
+          hide(["#u1", "#u2", "#u3", "#u4", "#u5", "#u6", "#u7"]);
+          pop("#u1", W(sid, "24"), { from: 0.6 });
+          pop("#u2", W(sid, "bằng"), { from: 0.6 });
+          pop("#u3", W(sid, "6"), { from: 0.6 });
+          pop("#u4", W(sid, "nhân"), { from: 0.6 });
+          pop("#u5", W(sid, "4"), { from: 0.6 });
+          pop("#u6", W(sid, "ước"), { from: 0.6 });
+          pop("#u7", W(sid, "ước") + 0.3, { from: 0.6 });
+          pose(bird, "happy", W(sid, "ước"));
+        }
+
+        // ---------- s05: remember ----------
+        {
+          const sid = "s05-nho";
+          hide(["#m1", "#m2", "#m3", "#o1", "#o2", "#o3"]);
+          pose(bird, "cheer", W(sid, "nhớ"));
+          pop("#m1", W(sid, "số"), { from: 0.6 });
+          pop("#m2", W(sid, "là"), { from: 0.6 });
+          pop("#m3", W(sid, "ước"), { from: 0.6 });
+          pop("#o1", W(sid, "số", 2), { from: 0.6 });
+          pop("#o2", W(sid, "là", 2), { from: 0.6 });
+          pop("#o3", W(sid, "bội"), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

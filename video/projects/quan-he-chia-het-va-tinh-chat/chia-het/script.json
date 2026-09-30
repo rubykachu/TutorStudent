@@ -1,0 +1,63 @@
+{
+  "title": "Chia hết là gì",
+  "engine": "local",
+  "poster": { "scene": "s03-luat", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học thế nào là chia hết.",
+          "opening": true
+        },
+        { "text": "Bạn cú có 12 cái kẹo." },
+        { "text": "Bạn xếp đều vào các túi, mỗi túi 3 cái." }
+      ]
+    },
+    {
+      "id": "s02-chia",
+      "sentences": [
+        { "text": "Một túi, hai túi, ba túi, bốn túi." },
+        { "text": "Kẹo vừa hết, không thừa cái nào." }
+      ]
+    },
+    {
+      "id": "s03-luat",
+      "sentences": [
+        {
+          "text": "Chia đều mà không còn thừa thì ta nói số bị chia chia hết cho số chia.",
+          "rule": true
+        },
+        {
+          "text": "Khi đó số bị chia bằng số chia nhân với thương.",
+          "rule": true
+        },
+        { "text": "12 bằng 3 nhân 4, là 3 được lấy 4 lần." }
+      ]
+    },
+    {
+      "id": "s04-thu",
+      "sentences": [
+        { "text": "Giờ thử 14 cái kẹo, mỗi túi 3 cái." },
+        { "text": "Bốn túi thì hết 12 cái, còn thừa 2 cái." },
+        { "text": "Còn thừa, nên 14 không chia hết cho 3." }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé." },
+        { "text": "Chia đều không còn thừa là chia hết." },
+        { "text": "Còn thừa là không chia hết." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chia-deu",
+      "from": "s02-chia",
+      "to": "s03-luat",
+      "cardIds": ["quan-he-chia-het-va-tinh-chat.card.chia-deu"]
+    }
+  ]
+}

@@ -24,7 +24,11 @@
       "tìm các ước và các bội của một số",
       "dùng tính chất của tổng và hiệu để xét chia hết"
     ],
-    "whyItMatters": "Biết chia hết giúp bạn chia đều đồ vật và kiểm tra phép chia nhanh, không sợ sai."
+    "whyItMatters": "Biết chia hết giúp bạn chia đều đồ vật và kiểm tra phép chia nhanh, không sợ sai.",
+    "narration": {
+      "audioUrl": "narration/quan-he-chia-het-va-tinh-chat/overview.m4a",
+      "vttUrl": "narration/quan-he-chia-het-va-tinh-chat/overview.vtt"
+    }
   },
   "concepts": [
     {
@@ -75,6 +79,10 @@
       "sourceRef": "Sách bài tập tr.30",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "quan-he-chia-het-va-tinh-chat.video.chia-het"
+        },
         {
           "type": "visual",
           "visualId": "quan-he-chia-het-va-tinh-chat.visual.chia-tui-12-3",
@@ -221,6 +229,10 @@
       "sourceRef": "Sách bài tập tr.30",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "quan-he-chia-het-va-tinh-chat.video.uoc-boi"
+        },
         {
           "type": "visual",
           "visualId": "quan-he-chia-het-va-tinh-chat.visual.uoc-boi-18-6",
@@ -400,6 +412,10 @@
       "sourceRef": "Sách bài tập tr.30, 31",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "quan-he-chia-het-va-tinh-chat.video.tinh-chat-tong"
+        },
         {
           "type": "visual",
           "visualId": "quan-he-chia-het-va-tinh-chat.visual.tong-12-18-6",
@@ -4058,5 +4074,76 @@
   "sticker": {
     "name": "Nhà vô địch chia hết",
     "visualId": "quan-he-chia-het-va-tinh-chat.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "quan-he-chia-het-va-tinh-chat.video.chia-het",
+      "lessonId": "quan-he-chia-het-va-tinh-chat",
+      "url": "video/quan-he-chia-het-va-tinh-chat/chia-het.mp4",
+      "vttUrl": "video/quan-he-chia-het-va-tinh-chat/chia-het.vtt",
+      "posterUrl": "video/quan-he-chia-het-va-tinh-chat/chia-het.jpg",
+      "durationSec": 57.23,
+      "clips": [
+        {
+          "id": "chia-deu",
+          "start": 12.381,
+          "end": 34.288,
+          "cardIds": ["quan-he-chia-het-va-tinh-chat.card.chia-deu"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "quan-he-chia-het-va-tinh-chat.video.uoc-boi",
+      "lessonId": "quan-he-chia-het-va-tinh-chat",
+      "url": "video/quan-he-chia-het-va-tinh-chat/uoc-boi.mp4",
+      "vttUrl": "video/quan-he-chia-het-va-tinh-chat/uoc-boi.vtt",
+      "posterUrl": "video/quan-he-chia-het-va-tinh-chat/uoc-boi.jpg",
+      "durationSec": 61.4,
+      "clips": [
+        {
+          "id": "uoc-boi",
+          "start": 11.539,
+          "end": 39.776,
+          "cardIds": ["quan-he-chia-het-va-tinh-chat.card.uoc-boi"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "quan-he-chia-het-va-tinh-chat.video.tinh-chat-tong",
+      "lessonId": "quan-he-chia-het-va-tinh-chat",
+      "url": "video/quan-he-chia-het-va-tinh-chat/tinh-chat-tong.mp4",
+      "vttUrl": "video/quan-he-chia-het-va-tinh-chat/tinh-chat-tong.vtt",
+      "posterUrl": "video/quan-he-chia-het-va-tinh-chat/tinh-chat-tong.jpg",
+      "durationSec": 73.8,
+      "clips": [
+        {
+          "id": "tong-chia-het",
+          "start": 16.027,
+          "end": 34.736,
+          "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-chia-het"]
+        },
+        {
+          "id": "tong-khong-chia-het",
+          "start": 35.136,
+          "end": 57.056,
+          "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-khong-chia-het"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }
