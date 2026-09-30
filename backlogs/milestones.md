@@ -50,3 +50,10 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 - Bài 1 (`tap-hop`): nhánh `worktree-agent-a4090e1d78293321a`. Đã publish trong nhánh sau 3 vòng review; commit cuối "wip: tests in progress…" là test validator đang viết dở. Việc tiếp: hoàn thiện test, gate, gộp main, narration + video.
 - Chưa bắt đầu: Bài 5, 4, 3, 2.
 - Chờ chủ dự án: lệnh `pnpm clean` + chuyển môi trường giọng đọc sang `video/.venv`.
+
+## Trạng thái khi tạm dừng vì hết hạn mức (tối 2026-09-30)
+- Đã gộp main và xuất bản: Bài 1 `tap-hop`, Bài 7 `thu-tu-thuc-hien-phep-tinh` (cùng Luỹ thừa, bài cáo).
+- Nhánh `wip/bai7-media`: audio giới thiệu + video dở dang cho Bài 7 và Bài 1 (lesson.json đã đổi nên review hash lệch — cần build xong, review phần đổi, approve rồi mới gộp main). File media thật nằm ở `public/media/` (gitignored).
+- Bài 5 `phep-nhan-phep-chia`: nhánh `worktree-agent-a36c64bad7802c3d9`, commit "wip: paused…" (đang dựng visual song song).
+- Bài 4 `phep-cong-phep-tru`: nhánh `worktree-agent-a9710b34e396f6fe3`, đã sửa theo review vòng 1; việc tiếp: gate, shot, walk, review vòng 2.
+- Chưa bắt đầu: Bài 3, Bài 2.
