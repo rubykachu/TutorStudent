@@ -62,3 +62,10 @@ Quy ước: bài nào xong (đã gộp main) thì xoá file handover của bài 
 4. Bài 3, Bài 2.
 5. (Xong: `docs/lessons-learned/` với 19 mục và số đếm từ mọi vòng review; luật `content:check` mới `[check-expr]` theo `check.relation`, `[hint-answer]`, `[color-leak]`, `[guides]`, `[rule-sentence]`, `[textbook-copy]`; `lesson-author`, `lesson-review` đọc và cập nhật kho này.) Khi tiếp tục Bài 4, 5: merge main vào nhánh bài trước, chạy `content:check` với luật mới (câu "chắc chắn sai" của Bài 4 đặt `check: { "expr": …, "relation": "notEqual" }`, đánh `guide` cho màn hướng dẫn, `rule` cho note quy tắc).
 6. Màn hướng dẫn `match`, `order`, `manipulate` cho môn Toán (xem `backlogs/lesson-tap-hop.md`), rồi xoá các cảnh báo `[guides]` còn lại.
+
+## Việc kế tiếp sau Bài 4: lượt dọn dẹp và kiến trúc (chủ dự án đã duyệt)
+1. Cấu hình theo môn vào `content/subjects.json` (màu, icon, ngôn ngữ vi/en, luật áp dụng: tính lại đáp án, văn bản gốc, câu viết đoạn văn); bỏ mọi chỗ viết cứng `math`/`literature`/`geography` trong code; luật tiếng Việt chỉ áp cho môn `vi`. Test.
+2. `pnpm clean` (log, ảnh chụp cũ, coverage, file dựng hình trung gian `renders/`; `--deep` thêm `.next/` khi server không chạy). Chuyển môi trường giọng đọc từ `video/spikes/vieneu/` sang `video/.venv`, xoá mã thử nghiệm.
+3. Cache giọng đọc của video (`video/projects/**/audio/`): không commit git (mỗi video ~16 MB WAV). Giữ trên máy; khi Go-live sao lưu kèm media lên R2 (bucket private) để máy khác dựng lại vẫn dùng đúng bản đọc cũ. Nén cache sang FLAC (không mất chất lượng) nếu giảm được dung lượng. `renders/` là file trung gian, xoá được.
+4. Plan và review đã xong → `backlogs/archive/`; `tasks/` chỉ chứa plan đang làm.
+5. `docs/architecture.md`: bản đồ kiến trúc ngắn gọn để session mới vào việc nhanh (luồng dữ liệu content → emit → app; các module; kiểm tra tự động; pipeline media; nơi lưu tiến độ; quy ước). `CLAUDE.md` trỏ tới file này đầu tiên. README thêm mục "Thêm môn mới" và "Dọn dẹp và Go-live".
