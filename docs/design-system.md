@@ -119,12 +119,12 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 |---|---|---|---|---|
 | Chưa trả lời | `--color-border` 2px | `--color-surface` | — | — |
 | Đã chọn | `--color-primary` 3px | `--color-surface` | — | — |
-| Đúng | `--color-correct` 3px + dấu ✓ | `--color-correct-soft` | vui | "ting" nhẹ |
-| Sai lần 1 | `--color-retry` 3px nét đứt + rung | `--color-retry-soft` | — | không |
+| Đúng | `--color-correct` 3px + dấu ✓ + pháo giấy ~1 giây (bỏ khi giảm chuyển động) | `--color-correct-soft` | vui, bong bóng khen | nhạc vui ngắn; cứ 3 câu đúng thì cú đọc lời khen |
+| Sai lần 1 | `--color-retry` 3px nét đứt + rung | `--color-retry-soft` | cổ vũ, bong bóng động viên | cú đọc câu động viên (một lần mỗi lượt làm) |
 | Sai lần 2 | như lần 1 | như lần 1 | gợi ý, chỉ vào visual gợi ý | không |
 | Sai lần 3 | như lần 1 | như lần 1 | cổ vũ, visual lời giải chạy | không |
 
-Nấc 1 không tô vàng, không thêm chữ: thẻ trả lời rung và có viền cam nét đứt; phần trả lời sai có viền cam nét đứt (vùng chạm: vòng cam nét đứt). Gợi ý tác giả trỏ vào đề (khối, phần công thức, câu) và phím "mũ" được viền/gạch chân bằng màu khái niệm của đích gợi ý, không có khái niệm thì `--color-concept-slate`. Nấc 2 khi không có visual gợi ý: cùng viền đó, dày hơn. `--color-highlight` chỉ dành cho trạng thái đang chọn.
+Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bóng của cú: thẻ trả lời rung và có viền cam nét đứt; phần trả lời sai có viền cam nét đứt (vùng chạm: vòng cam nét đứt). Gợi ý tác giả trỏ vào đề (khối, phần công thức, câu) và phím "mũ" được viền/gạch chân bằng màu khái niệm của đích gợi ý, không có khái niệm thì `--color-concept-slate`. Nấc 2 khi không có visual gợi ý: cùng viền đó, dày hơn. `--color-highlight` chỉ dành cho trạng thái đang chọn.
 
 ## 8. Linh vật
 

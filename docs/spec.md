@@ -269,13 +269,15 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 ### 5.3 Phản hồi 3 nấc khi sai
 | Lần sai | Phản hồi |
 |---|---|
-| 1 | Ô trả lời rung nhẹ, viền cam. Các `hints.highlight` sáng lên theo màu khái niệm. Không chữ. |
+| 1 | Ô trả lời rung nhẹ, viền cam. Các `hints.highlight` sáng lên theo màu khái niệm. Cú nói một câu động viên (bong bóng + giọng đọc, một lần mỗi lượt làm). |
 | 2 | Phát `hintVisualId` (animation tách bài toán thành hình). Không có visual → highlight đậm hơn. Linh vật biểu cảm "gợi ý". |
 | 3 | Phát `solutionVisualId` tới đáp án. Không có visual → mỗi dạng bài tự hiện đáp án đúng ngay trên vùng trả lời (`revealAnswer`), rồi xoá. Trẻ **phải tự nhập lại** đáp án mới qua. |
 
 `hintVisualId`/`solutionVisualId` không bắt buộc: chỉ làm cho câu mà hình giúp hiểu rõ hơn. Fallback trên dùng chung trong `ExerciseFrame`.
 
-Đúng: viền xanh lá + dấu ✓, tiếng "ting" nhẹ (tắt được).
+Đúng: viền xanh lá + dấu ✓, pháo giấy trên thẻ trả lời (bỏ khi giảm chuyển động), nhạc vui ngắn; cứ 3 câu đúng trong một phiên thì cú đọc thành tiếng lời khen đang hiện trong bong bóng.
+
+Âm thanh: câu của cú nằm ở `src/mascot/lines.ts`; `pnpm sounds:build` tạo nhạc vui (ffmpeg) và giọng đọc từng câu (TTS chạy trên máy, kiểm bằng Whisper) vào `public/sounds/` kèm `manifest.json` (có commit; mỗi mục lưu sha256 của nguồn nên chỉ tạo lại câu đã đổi, và test báo lỗi khi sửa câu mà chưa build lại). Phát bằng `HTMLAudioElement` trong audio session "playback" để iPhone/iPad ở chế độ im lặng vẫn nghe; mở khoá ở lần chạm đầu. Mỗi con có công tắc "Âm thanh: bật/tắt" ở góc trang chủ.
 
 ### 5.4 Ôn tập theo yêu cầu (`src/srs/`)
 Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài, lúc nào cũng được, bao nhiêu lần cũng được. Không có lịch, không khoá theo ngày, không giới hạn số lần. FSRS chỉ dùng để **ước lượng mức nhớ** của từng thẻ và chọn thẻ nào để hỏi.
