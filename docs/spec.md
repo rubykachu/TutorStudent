@@ -202,7 +202,7 @@ Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, c
 
 - Một section dài vài phút: tối đa 4 màn giải thích (`blocks`, một `group` tính là một màn) và 4 bài tập (`checkIds` cộng `practiceIds`), rồi tới recap; ngưỡng là `MAX_SECTION_SCREENS`, `MAX_SECTION_EXERCISES` trong `src/lib/config.ts`. Bài dài hơn chia thành nhiều section, mỗi section một ý và recap một câu.
 - Section hiện mỗi phần tử của `blocks` trên một màn. `group` gom ≥ 2 khối ngắn, tĩnh lên cùng một màn theo thứ tự: câu quy tắc (`note`, chữ thân bài) rồi ví dụ có nhãn (`formula`/`visual`/`image`). Không lồng `group`, không chứa `passage`/`video`; chỉ dùng trong `Section.blocks` (đề bài tập vốn đã hiện mọi khối trên một màn, nên chỉ số `block` của gợi ý vẫn đếm khối đề). Lint, `content:check` và review đọc được chữ trong `group` như mọi khối khác.
-- Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap vẫn là một `visual`/`formula`; câu cần nhớ của recap là `caption` của visual, màn recap hiện nó thành chữ thân bài phía trên ví dụ.
+- Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap là một `visual` có `caption`: câu cần nhớ nằm ở `caption`, màn recap hiện nó thành chữ thân bài phía trên ví dụ (schema còn nhận recap `formula` để bài fixture thử đường hiển thị đó; lint chặn ở bài thật).
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.
 - `Card.recap` chỉ hiện sau câu ôn trẻ trả lời sai ở lần đầu (kể cả lần hỏi lại), khi câu đã kết thúc (trạng thái `done`, tức sau cả vòng gợi ý và nhập lại); câu đúng ngay thì sang câu kế luôn. Tóm tắt không tự ẩn, không bỏ qua bằng chạm ngoài nút: chỉ nút "Tiếp" mới đi tiếp. `Section.recap` hiện ở cuối phần.
 - `openEnded` không gắn card (không vào phiên ôn); các bước con tự chấm của nó có thể gắn card. `openEnded` tính là 1 exercise nhưng không tính vào số dạng bài khác nhau.
@@ -227,6 +227,7 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Chặn tiếng Anh theo allowlist: mọi token chữ phải là âm tiết tiếng Việt hợp lệ (kiểm theo quy tắc âm đầu + vần + dấu) hoặc có trong glossary / danh sách tên riêng.
 - Độ dài: câu ≤ 25 âm tiết (không đếm công thức; tách câu có danh sách viết tắt như "tr.", "SGK"); `note` ≤ 2 câu.
 - Recap và card (ngưỡng trong `src/content/lint/config.ts`): `caption` của `Section.recap` và `Card.recap` ≤ 2 câu; mỗi card có ≥ 3 exercise (tính cả bước của `openEnded`) để phiên ôn đổi được câu hỏi.
+- Luật soạn bài (bỏ qua bài fixture, vốn để thử mọi đường hiển thị): recap không phải `visual` có `caption` → fail; card có hơn 1 câu trong `practiceIds` của các section → fail; màn chỉ một `note` hay một `formula` ngoài `group` → cảnh báo; câu trong kho ôn có cùng tập số trong đề với câu luyện tập của card → cảnh báo; visual `fixture.*` (chỗ giữ tạm trong khung bài mới) → cảnh báo khi `draft`, fail khi `published`, và `content:hash --approve` từ chối.
 - Toán: `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài Toán bắt buộc `check.expr` cho mọi `numeric`.
 - Ngữ văn: mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
 - Cổng review: bài `published` phải có `reviewedHash` bằng hash nội dung hiện tại (đã chuẩn hoá, không tính `status`/`reviewedHash`); sửa bài sau review → fail cho tới khi review lại.
@@ -236,7 +237,7 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Đúng kiến thức: mỗi câu hỏi có đúng một đáp án đúng; câu đọc hiểu có câu trích trong văn bản làm căn cứ.
 - Ngôn từ lớp 6: không phủ định kép, không câu đánh đố; đáp án nhiễu hợp lý, không bẫy. Từ Hán Việt khó chỉ ghi mức Góp ý (không có nguồn chuẩn để chặn).
 - Nhất quán: một khái niệm một từ, một màu trong bài và giữa các bài; gợi ý nấc 1 không lộ đáp án; `hints` khớp đúng phần trẻ có thể sai.
-- Mỗi kết luận kèm trích dẫn: vị trí trong `lesson.json` + trang nguồn (ảnh nguồn đặt tên theo trang, vd `sources/math/luy-thua/p22.jpg`; `review.md` chỉ trích vị trí, không chép dài chữ SGK). Kết quả ghi `review.md` với mức Nghiêm trọng / Nên sửa / Góp ý.
+- Mỗi kết luận kèm trích dẫn: vị trí trong `lesson.json` + trang nguồn (ảnh nguồn png hoặc jpg đặt tên theo trang, vd `sources/math/luy-thua/p22.png`; `review.md` chỉ trích vị trí, không chép dài chữ SGK). Kết quả ghi `review.md` với mức Nghiêm trọng / Nên sửa / Góp ý.
 
 **Cổng xuất bản:** `draft` → review hết lỗi Nghiêm trọng → skill ghi `reviewedHash` và đặt `published`. Bật `REQUIRE_OWNER_APPROVAL` trong config thì skill chỉ ghi `reviewedHash`, quản trị viên đặt `published`. App chỉ hiển thị bài `published`; bài `_fixture` chỉ có khi `CONTENT_INCLUDE_FIXTURE=1` (dev, test).
 
@@ -454,7 +455,7 @@ Yêu cầu: logic thuần (`src/{schema,srs,progress,exercises/grade}`) phủ �
 
 **Mốc "Học được"** (chạy trên máy, iPad truy cập qua LAN)
 - Hai bài qua `content:check`: Toán — Luỹ thừa với số mũ tự nhiên; Ngữ văn — Nếu cậu muốn có một người bạn.
-- Mỗi bài (đo bằng `content:check --stats`): ≥ 3 phần, mỗi phần ≥ 1 visual, ≥ 1 visual tương tác cho mỗi 3 phần (phần ngắn chỉ nhắc một quy tắc không bắt buộc hình tương tác), ≥ 8 card (mỗi card ≥ 3 exercise), ≥ 20 exercise dùng ≥ 5 dạng; bài Ngữ văn có ≥ 1 `openEnded` (bước viết dùng checklist tự tick ở mốc này).
+- Mỗi bài (đo bằng `content:check --stats`): ≥ 3 phần, mỗi phần ≥ 1 visual trên màn giải thích (không tính recap), số visual tương tác ≥ số phần chia 3 làm tròn lên (4 phần → 2; phần ngắn chỉ nhắc một quy tắc không bắt buộc có hình tương tác riêng), ≥ 8 card (mỗi card ≥ 3 exercise), ≥ 20 exercise dùng ≥ 5 dạng; bài Ngữ văn có ≥ 1 `openEnded` (bước viết dùng checklist tự tick ở mốc này).
 - Đủ 8 dạng bài, mỗi dạng có test component cho đúng và đủ 3 nấc sai (có visual và fallback).
 - Ôn bài: unit test chứng minh card vừa `Again` có mức nhớ thấp hơn card `Good` nên được chọn trước; chỉ card đã mở vào phiên; card `Again` được hỏi lại cuối phiên (không rating); card mồ côi bị bỏ qua không crash.
 - E2E luồng học trên `ipad` + `phone` và `layout.spec.ts` xanh.
