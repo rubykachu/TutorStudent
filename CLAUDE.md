@@ -12,6 +12,7 @@ Self-study app for a Vietnamese grade 6 child (Next.js PWA, iPad first). Product
 - `src/visuals/registry.ts` — `visualId` → component, with `interactive`, `regions`, validators; primitives in `src/visuals/shared/`, lesson visuals in `src/visuals/<subject>/<slug>/`.
 - `src/app/(child)/` — child screens; `src/app/dev/` — visual, exercise and mascot galleries.
 - `docs/learner.md` — the learner profile every lesson is written for.
+- `docs/lessons-learned/` — recurring content errors from review history (index, counts, how each is prevented); `lesson-author` and `lesson-review` read `index.md` first and add or bump entries.
 - `tests/` mirrors `src/`; `e2e/` runs on the `ipad` and `phone` targets in `e2e/targets.ts`.
 
 ## Commands

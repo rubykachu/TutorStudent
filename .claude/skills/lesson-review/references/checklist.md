@@ -78,6 +78,16 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 
 **Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.
 
+## Lỗi hay lặp
+
+Các kiểu lỗi đã gặp ở nhiều bài, kèm ví dụ thật: `docs/lessons-learned/index.md`. Soát kỹ phần máy chưa bắt của từng mục (cột "Nơi chặn"); mức lỗi vẫn theo các trục ở trên.
+
+- Nhiễu cũng đúng ở câu không có `check` (Ngữ văn, thuộc tập hợp, thứ tự khác của `order`/`fillBlank`): LL-01.
+- Nấc 2, chú thích lề, chữ trong `segments` lộ kết quả: LL-02. Màu trong hình và video phân biệt đáp án: LL-03.
+- Câu ôn trùng số recap, ví dụ màn quy tắc, trạng thái đầu của hình: LL-07.
+- Kiến thức chưa dạy (kể cả câu kho ôn gắn card của section sau): LL-09. Đề hai cách hiểu: LL-10. Nhiễu loại được bằng mẹo: LL-14.
+- Hình lệch chữ hay lệch số của đề: LL-15. Thiếu mẫu, cùng làm, ví dụ đời sống: LL-16. Câu quá nhiều phép tính: LL-18.
+
 ## Luật gợi ý 3 nấc
 
 Luật cố định. Không ghi phát hiện trái với luật này, kể cả khi vòng review trước đã ghi.
