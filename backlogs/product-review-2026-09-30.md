@@ -45,3 +45,17 @@ Nguồn: video + ảnh `.shots/evidence/morning-report/{ipad,phone}/`, chạy th
 Việc sửa rõ ràng còn lại: bàn cờ tràn khung ở iPad ngang (walk cần báo tràn); cú chiếm cột làm gãy lựa chọn / ô điền trên iPad dọc; gợi ý nấc 2 bị đẩy khỏi màn khi mở lại bàn phím (phone); recap phần 1 bốn ý; số mũ Unicode nhỏ trong câu và lựa chọn; "Hỏi lại" trùng câu vừa luyện (card cần ≥ 3 câu); 4 mục Nên sửa trong backlog bài; khung xám khi visual đang tải; nút "Phát" hiện lại sau animation; iPad ngang cột hẹp; chữ "sticker" rơi dòng; số thẻ ở màn ôn xong.
 
 Cần chủ dự án quyết thêm: khoá thứ tự phần / "Học tiếp" theo phần đầu tiên chưa học; bỏ hẳn tô vàng ở nấc 1.
+
+## Trạng thái khi tạm dừng (sáng 2026-09-30)
+Đợt sửa vòng 2 dừng giữa chừng theo yêu cầu. Đã commit: tóm tắt ngắn + lint độ dài recap và ≥ 3 câu/card; khung trả lời full width, iPad ngang 2:3, dải gợi ý khi mở lại bàn phím; số mũ trong chữ dễ đọc, công thức/ô điền không gãy dòng; visual rộng co theo cột, preload visual; walk báo tràn ngang và kiểm gợi ý sau khi mở lại bàn phím.
+Chưa xong / cần kiểm lại: thay đổi dở chưa commit ở `src/exercises/fill-blank/fill-blank-answer.tsx` + test; nút "Phát" sau animation; chữ "sticker" rơi dòng + số thẻ ở màn ôn xong; review lại bài luỹ thừa bằng subagent mới + approve (hash có thể đang lệch); chạy gate đầy đủ + `lesson:walk`.
+Hook `github-identity-guard.sh` hiện chặn mọi lệnh git ghi trong repo (đòi email tomosia) — cần chủ dự án chốt mapping `TutorStudent → rubykachu` trước khi commit tiếp.
+
+## Quyết định (chủ dự án giao Claude tự chốt, 2026-09-30)
+1. Mỗi phần tối đa 4 màn giải thích + 4 câu (kiểm tra + luyện tập), cộng màn tóm tắt; `content:check` chặn khi vượt. Phần dài thì tách.
+2. Cú nói một câu ngắn (bong bóng lời) ở nấc 2, nấc 3 và khi đúng; nấc 1 vẫn không chữ.
+3. Màn "Ôn xong" có tiến độ; sticker của bài tô màu dần theo số phần đã xong.
+4. Làm trang phụ huynh tối thiểu có PIN ngay (đọc dữ liệu trên máy; đồng bộ để mốc Go-live).
+5. Không khoá thứ tự phần; "Học tiếp" luôn trỏ phần đầu tiên chưa xong.
+6. Bỏ tô vàng ở nấc 1: rung + viền cam cho câu trả lời; gợi ý trong đề dùng viền màu khái niệm, không dùng nền vàng.
+Mapping hook `TutorStudent → rubykachu` đã thêm vào `~/.claude/hooks/github-identity-guard.sh`.
