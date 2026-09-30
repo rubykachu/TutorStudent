@@ -4,17 +4,15 @@ import {
   type AnswerSlotProps,
   ExerciseFrame,
 } from "@/exercises/exercise-frame";
-import {
-  encouragementFor,
-  praiseFor,
-  praiseLineFor,
-} from "@/exercises/feedback";
+import { encouragementFor, praiseFor } from "@/exercises/feedback";
 import type { ChoiceInput } from "@/exercises/input";
+import { JINGLE_ID, OOPS_ID } from "@/lib/sound-manifest";
 import {
   ENCOURAGE_LINES,
   OWL_LINE_MAX_WORDS,
   OWL_LINES,
-  OWL_PRAISE,
+  PRAISE_LINES,
+  VOICE_LINES,
 } from "@/mascot/lines";
 import type { ChoiceExercise, Concept, Hints } from "@/schema/content";
 import { Highlight } from "@/visuals/shared/highlight";
@@ -94,7 +92,7 @@ function renderFrame(hints: Hints) {
     ],
   };
   const onDone = vi.fn();
-  const sounds = { correct: vi.fn(), encourage: vi.fn() };
+  const sounds = { play: vi.fn<(clipIds: readonly string[]) => void>() };
   const view = render(
     <ExerciseFrame
       exercise={exercise}
@@ -185,13 +183,13 @@ describe("ExerciseFrame owl speech", () => {
 
     choose("b");
     checkAnswer();
-    expect(bubble(container)).toHaveTextContent(OWL_LINES.hintMarks);
-    expect(liveRegion(container)).toHaveTextContent(OWL_LINES.hintMarks);
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.hintMarks.text);
+    expect(liveRegion(container)).toHaveTextContent(OWL_LINES.hintMarks.text);
 
     choose("b");
     checkAnswer();
-    expect(bubble(container)).toHaveTextContent(OWL_LINES.reveal);
-    expect(liveRegion(container)).toHaveTextContent(OWL_LINES.reveal);
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.reveal.text);
+    expect(liveRegion(container)).toHaveTextContent(OWL_LINES.reveal.text);
     // Hidden from screen readers, which hear the live region instead.
     expect(bubble(container)).toHaveAttribute("aria-hidden", "true");
 
@@ -200,7 +198,7 @@ describe("ExerciseFrame owl speech", () => {
     choose("a");
     checkAnswer();
     const praise = bubble(container)?.textContent ?? "";
-    expect(OWL_PRAISE).toContain(praise);
+    expect(PRAISE_LINES.map((l) => l.text)).toContain(praise);
     expect(liveRegion(container)).toHaveTextContent(praise);
   });
 
@@ -210,35 +208,30 @@ describe("ExerciseFrame owl speech", () => {
     checkAnswer();
     choose("b");
     checkAnswer();
-    expect(bubble(container)).toHaveTextContent(OWL_LINES.hintVisual);
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.hintVisual.text);
     choose("b");
     checkAnswer();
-    expect(bubble(container)).toHaveTextContent(OWL_LINES.solutionVisual);
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.solutionVisual.text);
   });
 
   it("keeps every line short", () => {
-    for (const line of [
-      ...Object.values(OWL_LINES),
-      ...OWL_PRAISE,
-      ...ENCOURAGE_LINES.map((l) => l.text),
-    ]) {
-      expect(line.split(/\s+/).length).toBeLessThanOrEqual(OWL_LINE_MAX_WORDS);
+    for (const { text } of VOICE_LINES) {
+      expect(text.split(/\s+/).length).toBeLessThanOrEqual(OWL_LINE_MAX_WORDS);
     }
   });
 
-  it("picks lines from the voice lines, so the spoken clip matches", () => {
-    expect(praiseLineFor("ex.a#1").text).toBe(praiseFor("ex.a#1"));
+  it("picks the same lines for the same attempt", () => {
     expect(ENCOURAGE_LINES).toContainEqual(encouragementFor("ex.a#1"));
     expect(encouragementFor("ex.a#1")).toEqual(encouragementFor("ex.a#1"));
+    expect(praiseFor("ex.a#1")).toEqual(praiseFor("ex.a#1"));
   });
 
-  it("picks the same praise for the same attempt and varies across attempts", () => {
-    expect(praiseFor("ex.a#1")).toBe(praiseFor("ex.a#1"));
+  it("varies the praise across attempts", () => {
     const picked = new Set(
       Array.from({ length: 40 }, (_, i) => praiseFor(`ex.${i}#nonce`)),
     );
     expect(picked.size).toBeGreaterThan(1);
-    for (const line of picked) expect(OWL_PRAISE).toContain(line);
+    for (const line of picked) expect(PRAISE_LINES).toContainEqual(line);
   });
 });
 
@@ -311,7 +304,7 @@ describe("ExerciseFrame", () => {
     expect(
       screen.getByText("Chọn cách viết đúng.").closest("[data-highlighted]"),
     ).toHaveAttribute("data-highlight-strong");
-    expect(part).toHaveClass("outline-5");
+    expect(part).toHaveClass("outline-4");
     expect(frame.querySelector('[class*="highlight"]')).toBeNull();
     expect(frame).toHaveAttribute("data-mascot", "hint");
 
@@ -419,34 +412,51 @@ describe("ExerciseFrame", () => {
   });
 
   it("celebrates only the tap that gets the answer accepted", () => {
-    const { sounds, container } = renderFrame(HINTS_FALLBACK);
+    const { container } = renderFrame(HINTS_FALLBACK);
     choose("b");
     checkAnswer();
-    expect(sounds.correct).not.toHaveBeenCalled();
     expect(container.querySelector("[data-confetti]")).toBeNull();
     choose("b");
     choose("a");
     checkAnswer();
-    expect(sounds.correct).toHaveBeenCalledTimes(1);
-    // The praise it hands over is the one the bubble shows.
-    const [praise] = sounds.correct.mock.calls[0] ?? [];
-    expect(bubble(container)).toHaveTextContent(praise.text);
     expect(container.querySelector("[data-confetti]")).toBeInTheDocument();
   });
 
-  it("encourages out loud once per attempt, at the first wrong check only", () => {
+  it("makes a sound on every check and voices every bubble line", () => {
     const { sounds, container } = renderFrame(HINTS_FALLBACK);
-    for (let i = 0; i < 3; i++) {
-      choose("b");
-      checkAnswer();
-    }
+    const cue = () => sounds.play.mock.calls.at(-1)?.[0] ?? [];
+    const spokenLine = () =>
+      VOICE_LINES.find((line) => line.id === cue().at(-1));
+
+    choose("b");
+    checkAnswer();
+    // First wrong check: the encouragement, as the bubble shows it.
+    expect(cue()).toHaveLength(1);
+    expect(ENCOURAGE_LINES).toContainEqual(spokenLine());
+    expect(bubble(container)).toHaveTextContent(spokenLine()?.text ?? "");
+
+    choose("b");
+    checkAnswer();
+    expect(cue()).toEqual([OOPS_ID, OWL_LINES.hintMarks.id]);
+    choose("b");
+    checkAnswer();
+    expect(cue()).toEqual([OOPS_ID, OWL_LINES.reveal.id]);
+
+    // A miss while entering the shown answer again: the tone alone, as the
+    // owl says nothing then.
     fireEvent.click(screen.getByRole("button", { name: "Tự làm lại" }));
     choose("c");
     checkAnswer();
-    expect(sounds.encourage).toHaveBeenCalledTimes(1);
-    const [line] = sounds.encourage.mock.calls[0] ?? [];
-    expect(ENCOURAGE_LINES).toContainEqual(line);
-    expect(container.querySelector("[data-confetti]")).toBeNull();
+    expect(cue()).toEqual([OOPS_ID]);
+    expect(bubble(container)).toBeNull();
+
+    // Correct after wrong checks: the jingle, then the praise shown.
+    choose("a");
+    checkAnswer();
+    expect(cue()[0]).toBe(JINGLE_ID);
+    expect(PRAISE_LINES).toContainEqual(spokenLine());
+    expect(bubble(container)).toHaveTextContent(spokenLine()?.text ?? "");
+    expect(sounds.play).toHaveBeenCalledTimes(5);
   });
 
   it("celebrates without confetti under reduced motion", () => {
@@ -459,7 +469,7 @@ describe("ExerciseFrame", () => {
       const { sounds, container } = renderFrame(HINTS_FALLBACK);
       choose("a");
       checkAnswer();
-      expect(sounds.correct).toHaveBeenCalledTimes(1);
+      expect(sounds.play).toHaveBeenCalledTimes(1);
       expect(container.querySelector("[data-confetti]")).toBeNull();
       expect(screen.getByTestId("mascot")).toHaveTextContent("happy");
     } finally {
@@ -512,8 +522,8 @@ describe("ExerciseFrame", () => {
       ]);
       // In the two-column layout the visual sits in the prompt's column.
       expect(visual).toHaveClass(
-        "lg:landscape:col-start-1",
-        "lg:landscape:row-start-2",
+        "lg:landscape:@min-[50rem]:col-start-1",
+        "lg:landscape:@min-[50rem]:row-start-2",
       );
     } finally {
       Element.prototype.scrollIntoView = original;

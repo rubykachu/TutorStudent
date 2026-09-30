@@ -1,18 +1,8 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import type { FeedbackSounds } from "@/exercises/exercise-frame";
-import { installAudioUnlock, playSound, preloadSounds } from "@/lib/sound";
-import { JINGLE_ID, soundUrl } from "@/lib/sound-manifest";
-import { VOICE_LINES, type VoiceLine } from "@/mascot/lines";
+import { installAudioUnlock, playSequence, preloadSounds } from "@/lib/sound";
+import { allSoundUrls, soundUrl } from "@/lib/sound-manifest";
 import { useSoundEnabled } from "@/progress/hooks";
-
-// Every this many correct answers in a session, the owl also says its praise
-// out loud after the jingle; saying it every time would soon grate.
-export const SPOKEN_PRAISE_EVERY = 3;
-
-function play(id: string): Promise<void> {
-  const url = soundUrl(id);
-  return url ? playSound(url) : Promise.resolve();
-}
 
 // The feedback sounds of one player session (a section or a review), or
 // undefined while the first read is in flight or this child turned sound
@@ -20,15 +10,10 @@ function play(id: string): Promise<void> {
 // unlocks audio.
 export function useFeedbackSounds(childId: string): FeedbackSounds | undefined {
   const enabled = useSoundEnabled(childId) === true;
-  const correctCount = useRef(0);
 
   useEffect(() => {
     if (!enabled) return undefined;
-    preloadSounds(
-      [JINGLE_ID, ...VOICE_LINES.map((line) => line.id)].flatMap(
-        (id) => soundUrl(id) ?? [],
-      ),
-    );
+    preloadSounds(allSoundUrls());
     return installAudioUnlock();
   }, [enabled]);
 
@@ -36,15 +21,8 @@ export function useFeedbackSounds(childId: string): FeedbackSounds | undefined {
     () =>
       enabled
         ? {
-            correct(praise: VoiceLine) {
-              correctCount.current += 1;
-              const spoken = correctCount.current % SPOKEN_PRAISE_EVERY === 0;
-              void play(JINGLE_ID).then(() =>
-                spoken ? play(praise.id) : undefined,
-              );
-            },
-            encourage(line: VoiceLine) {
-              void play(line.id);
+            play(clipIds) {
+              void playSequence(clipIds.flatMap((id) => soundUrl(id) ?? []));
             },
           }
         : undefined,

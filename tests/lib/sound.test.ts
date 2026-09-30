@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   installAudioUnlock,
+  playSequence,
   playSound,
   preloadSounds,
   resetAudioForTesting,
@@ -111,5 +112,32 @@ describe("sound", () => {
     void playSound("/sounds/a.m4a");
     await settle();
     expect(FakeAudio.instances[0]?.pause).not.toHaveBeenCalled();
+  });
+
+  it("plays a sequence one clip after another", async () => {
+    const done = playSequence(["/sounds/tone.m4a", "/sounds/line.m4a"]);
+    const [tone] = FakeAudio.instances;
+    // The first clip starts at once, inside the caller's tap.
+    expect(tone?.plays).toHaveLength(1);
+    expect(FakeAudio.instances).toHaveLength(1);
+    tone?.dispatchEvent(new Event("ended"));
+    await settle();
+    const line = FakeAudio.instances[1];
+    expect(line?.plays).toHaveLength(1);
+    line?.dispatchEvent(new Event("ended"));
+    await done;
+  });
+
+  it("stops the sequence before when a new one starts", async () => {
+    void playSequence(["/sounds/a.m4a", "/sounds/b.m4a"]);
+    const [a] = FakeAudio.instances;
+    void playSequence(["/sounds/c.m4a"]);
+    expect(a?.pause).toHaveBeenCalled();
+    await settle();
+    // The stopped sequence never goes on to its second clip.
+    expect(FakeAudio.instances.map((x) => x.src)).toEqual([
+      "/sounds/a.m4a",
+      "/sounds/c.m4a",
+    ]);
   });
 });

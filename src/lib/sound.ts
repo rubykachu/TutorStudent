@@ -6,8 +6,9 @@
 const UNLOCK_EVENTS = ["pointerdown", "touchend", "keydown"] as const;
 
 const clips = new Map<string, HTMLAudioElement>();
-// Clips asked to play for real; an unlock in flight leaves them playing.
-const playing = new WeakSet<HTMLAudioElement>();
+// Clips asked to play for real, each with what ends its play; an unlock in
+// flight leaves them playing.
+const playing = new Map<HTMLAudioElement, () => void>();
 
 // Safari 17+ lets a page pick an audio session; "playback" keeps sound on
 // when the ringer switch is on silent.
@@ -40,6 +41,7 @@ function start(element: HTMLAudioElement): Promise<void> {
 
 export function resetAudioForTesting(): void {
   clips.clear();
+  playing.clear();
 }
 
 // Starts loading clips ahead of time so the first play is not delayed.
@@ -84,24 +86,44 @@ export function installAudioUnlock(): () => void {
   return remove;
 }
 
-// Plays a clip from its start. Resolves once it has ended, or at once when it
-// cannot play (missing file, no audio support, blocked by the browser).
+// Plays a clip from its start. Resolves once it has ended or was stopped, or
+// at once when it cannot play (missing file, no audio support, blocked by
+// the browser).
 export function playSound(url: string): Promise<void> {
   const element = clip(url);
   if (!element) return Promise.resolve();
   setPlaybackSession();
+  playing.get(element)?.();
   return new Promise((resolve) => {
+    const events = ["ended", "error"] as const;
     const done = () => {
-      playing.delete(element);
-      element.removeEventListener("ended", done);
-      element.removeEventListener("error", done);
+      if (playing.get(element) === done) playing.delete(element);
+      for (const type of events) element.removeEventListener(type, done);
       resolve();
     };
-    element.addEventListener("ended", done);
-    element.addEventListener("error", done);
-    playing.add(element);
+    for (const type of events) element.addEventListener(type, done);
+    playing.set(element, done);
     element.muted = false;
     element.currentTime = 0;
     start(element).catch(done);
   });
+}
+
+// The sequence playing now; a newer one stops it.
+let sequence = 0;
+
+// Plays clips one after another (a tone, then the owl's line). Starting a
+// new sequence stops the clip of the one before, so quick taps never pile
+// voices on top of each other. The first clip starts right away, inside the
+// caller's tap.
+export async function playSequence(urls: readonly string[]): Promise<void> {
+  const own = ++sequence;
+  for (const [element, done] of [...playing]) {
+    done();
+    element.pause();
+  }
+  for (const url of urls) {
+    if (own !== sequence) return;
+    await playSound(url);
+  }
 }

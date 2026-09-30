@@ -13,11 +13,10 @@ import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
 import { ConfettiBurst } from "@/components/confetti-burst";
 import {
-  encouragementFor,
   type FeedbackHighlights,
+  feedbackCue,
   feedbackView,
   type HighlightSpec,
-  praiseLineFor,
 } from "@/exercises/feedback";
 import type { InputFor } from "@/exercises/input";
 import {
@@ -29,7 +28,6 @@ import { attemptSeed } from "@/exercises/shuffle";
 import { newId } from "@/lib/id";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
-import type { VoiceLine } from "@/mascot/lines";
 import { Owl } from "@/mascot/owl";
 import { SpeechBubble } from "@/mascot/speech-bubble";
 import type { BasicExercise, Block, Concept } from "@/schema/content";
@@ -70,13 +68,10 @@ export type AnswerSlotProps<I> = {
 
 // Sounds of the feedback, supplied by the player (absent while the child has
 // sound off). Called inside the tap on "Kiểm tra", so audio may start there
-// (iOS only lets audio start from a user gesture). Each gets the line the
-// owl's bubble shows, so a spoken line matches it.
+// (iOS only lets audio start from a user gesture), with the clip ids of
+// `feedbackCue` to play one after another.
 export type FeedbackSounds = {
-  // The answer was accepted.
-  correct: (praise: VoiceLine) => void;
-  // The first wrong check of an attempt.
-  encourage: (line: VoiceLine) => void;
+  play: (clipIds: readonly string[]) => void;
 };
 
 type ExerciseFrameProps<E extends BasicExercise> = {
@@ -98,6 +93,45 @@ type ExerciseFrameProps<E extends BasicExercise> = {
 // else the frame stacks prompt, answer and feedback visual in one column.
 // Tailwind needs the variant spelled out in each class, so every class below
 // written with `lg:landscape:` belongs to this one layout.
+//
+// The two columns also need the frame itself to be wide enough: a 26rem
+// prompt column, the gap and a 22rem answer column (container query on the
+// frame, so a narrower frame, such as one inside a gallery, keeps one
+// column). The prompt column is never narrower than 26rem, so a question
+// reads in whole phrases rather than a word per line. A prompt that needs
+// more room than that, a reading passage or a long question, keeps the
+// one-column layout on landscape too, running the full width above the
+// answer. Every class here carries the same variants: a column position
+// without the column template would add an implicit column.
+const TWO_COLUMNS = {
+  grid: "lg:landscape:@min-[50rem]:grid-cols-[minmax(26rem,1fr)_minmax(0,1fr)] lg:landscape:@min-[50rem]:grid-rows-[auto_1fr] lg:landscape:@min-[50rem]:items-start lg:landscape:@min-[50rem]:gap-x-8",
+  prompt:
+    "lg:landscape:@min-[50rem]:col-start-1 lg:landscape:@min-[50rem]:row-start-1",
+  answer:
+    "lg:landscape:@min-[50rem]:col-start-2 lg:landscape:@min-[50rem]:row-span-2 lg:landscape:@min-[50rem]:row-start-1 lg:landscape:@min-[50rem]:mt-10",
+  visual:
+    "lg:landscape:@min-[50rem]:col-start-1 lg:landscape:@min-[50rem]:row-start-2",
+} as const;
+const ONE_COLUMN: Record<keyof typeof TWO_COLUMNS, string> = {
+  grid: "",
+  prompt: "",
+  answer: "",
+  visual: "",
+};
+// Question text longer than this (about five lines of the prompt column)
+// takes the full width.
+const LONG_PROMPT_CHARS = 200;
+
+export function promptNeedsFullWidth(exercise: BasicExercise): boolean {
+  const noteChars = exercise.prompt.reduce(
+    (sum, block) => sum + (block.type === "note" ? block.text.length : 0),
+    0,
+  );
+  return (
+    exercise.prompt.some((block) => block.type === "passage") ||
+    noteChars > LONG_PROMPT_CHARS
+  );
+}
 
 // Hides a collapsed input control where the frame stacks its parts, so the
 // feedback visual takes its place without scrolling; the two-column layout
@@ -170,11 +204,12 @@ export function ExerciseFrame<E extends BasicExercise>({
   const tone = toneOf(state, tier, machine.canCheck);
   // What the live region announces: the owl's line, so screen readers hear
   // exactly what the bubble shows.
-  const status = view.speech ?? "";
+  const status = view.speech?.text ?? "";
   // A tapText answer area renders the prompt's passages as tappable
   // sentences, so the prompt leaves them out and hints on sentences (`part`
   // targets) are handed to the answer area with its own elements.
   const passageInAnswer = exercise.type === "tapText";
+  const columns = promptNeedsFullWidth(exercise) ? ONE_COLUMN : TWO_COLUMNS;
   const answerHighlight = passageInAnswer
     ? new Map([...view.highlights.parts, ...view.highlights.options])
     : view.highlights.options;
@@ -277,17 +312,17 @@ export function ExerciseFrame<E extends BasicExercise>({
   return (
     <section
       ref={frameRef}
-      className="flex w-full flex-1 flex-col gap-6"
+      className="@container flex w-full flex-1 flex-col gap-6"
       data-phase={state.phase}
       data-finished={finished || undefined}
       data-tier={tier}
       data-mascot={view.mascot}
     >
       <div
-        className="grid gap-6 lg:landscape:grid-cols-[2fr_3fr] lg:landscape:grid-rows-[auto_1fr] lg:landscape:items-start lg:landscape:gap-x-8"
-        data-exercise-layout
+        className={`grid gap-6 ${columns.grid}`}
+        data-exercise-layout={columns === TWO_COLUMNS ? "columns" : "stacked"}
       >
-        <div className="flex min-w-0 flex-col gap-4 lg:landscape:col-start-1 lg:landscape:row-start-1">
+        <div className={`flex min-w-0 flex-col gap-4 ${columns.prompt}`}>
           {exercise.prompt.map((block, index) =>
             passageInAnswer && block.type === "passage" ? null : (
               <PromptBlock
@@ -311,7 +346,7 @@ export function ExerciseFrame<E extends BasicExercise>({
           owl's head, so it never covers the answer or a control. */}
         <div
           ref={columnRef}
-          className="relative mt-4 min-w-0 md:mt-6 lg:landscape:col-start-2 lg:landscape:row-span-2 lg:landscape:row-start-1 lg:landscape:mt-10"
+          className={`relative mt-4 min-w-0 md:mt-6 ${columns.answer}`}
           data-answer-column
         >
           {view.speech && (
@@ -319,7 +354,7 @@ export function ExerciseFrame<E extends BasicExercise>({
               className="flex justify-end pr-19 pb-2 md:pr-24"
               data-mascot-speech-row
             >
-              <SpeechBubble text={view.speech} />
+              <SpeechBubble text={view.speech.text} />
             </div>
           )}
           <div className="relative">
@@ -377,7 +412,7 @@ export function ExerciseFrame<E extends BasicExercise>({
         {view.visualId && (
           <div
             ref={visualRef}
-            className={`min-w-0 lg:landscape:col-start-1 lg:landscape:row-start-2 ${inputWanted ? COLLAPSED_INPUT_CLASS : ""}`}
+            className={`min-w-0 ${columns.visual} ${inputWanted ? COLLAPSED_INPUT_CLASS : ""}`}
             data-feedback-visual={view.visualId}
           >
             {/* Keyed by tier too, so a visual used for both hint and solution
@@ -397,13 +432,10 @@ export function ExerciseFrame<E extends BasicExercise>({
             phase={state.phase}
             canCheck={machine.canCheck}
             onCheck={() => {
-              const firstCheck = state.wrongCount === 0;
-              if (machine.check()) {
-                setCelebrating(true);
-                sounds?.correct(praiseLineFor(seed));
-              } else if (firstCheck && machine.canCheck) {
-                sounds?.encourage(encouragementFor(seed));
-              }
+              const next = machine.check();
+              if (!next) return;
+              if (next.phase === "correct") setCelebrating(true);
+              sounds?.play(feedbackCue(exercise, next, seed));
             }}
             onRetype={machine.startRetype}
             onNext={() => onDone(machine.finish())}

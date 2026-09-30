@@ -38,6 +38,8 @@ export type MachineState<I> = {
   // was shown. Stays put through the accepting check, so whatever keys the
   // answer area by it keeps the answer the child just entered on screen.
   retypes: number;
+  // How the accepted play went; null until an answer is accepted.
+  outcome: ExerciseOutcome | null;
 };
 
 export type MachineAction<I> =
@@ -58,6 +60,7 @@ export function initialMachineState<I>(): MachineState<I> {
     wrongTargets: [],
     retypeMissed: false,
     retypes: 0,
+    outcome: null,
   };
 }
 
@@ -112,6 +115,10 @@ export function exerciseReducer<I extends ExerciseInput>(
           phase: "correct",
           wrongTargets: [],
           retypeMissed: false,
+          outcome: state.outcome ?? {
+            firstTryCorrect: state.wrongCount === 0,
+            wrongCount: state.wrongCount,
+          },
         };
       }
       return {
@@ -156,10 +163,7 @@ export function feedbackTier<I>(state: MachineState<I>): FeedbackTier {
 // Only a correct answer with no wrong check before it counts as recalled; it
 // becomes the SRS rating (Good vs Again).
 export function isFirstTryCorrect<I>(state: MachineState<I>): boolean {
-  return (
-    (state.phase === "correct" || state.phase === "done") &&
-    state.wrongCount === 0
-  );
+  return state.outcome?.firstTryCorrect === true;
 }
 
 export type ExerciseOutcome = {
@@ -173,8 +177,9 @@ export type ExerciseMachine<I> = {
   canCheck: boolean;
   firstTryCorrect: boolean;
   setInput: (input: I | null) => void;
-  // Grades the input; returns whether the answer was accepted.
-  check: () => boolean;
+  // Grades the input; returns the state it leads to, or null when there is
+  // nothing to check.
+  check: () => MachineState<I> | null;
   startRetype: () => void;
   // Moves `correct` to `done` and returns the outcome to record.
   finish: () => ExerciseOutcome;
@@ -204,20 +209,25 @@ export function useExerciseMachine<E extends BasicExercise>(
   }, []);
 
   const check = useCallback(() => {
-    if (!canCheck(state) || state.input === null) return false;
-    const result = grade(exercise, state.input);
-    dispatch({ type: "check", result });
-    return result.correct;
+    if (!canCheck(state) || state.input === null) return null;
+    const action: MachineAction<I> = {
+      type: "check",
+      result: grade(exercise, state.input),
+    };
+    dispatch(action);
+    return exerciseReducer(state, action);
   }, [exercise, state]);
 
   const startRetype = useCallback(() => dispatch({ type: "retype" }), []);
 
   const finish = useCallback((): ExerciseOutcome => {
     dispatch({ type: "finish" });
-    return {
-      firstTryCorrect: isFirstTryCorrect(state),
-      wrongCount: state.wrongCount,
-    };
+    return (
+      state.outcome ?? {
+        firstTryCorrect: false,
+        wrongCount: state.wrongCount,
+      }
+    );
   }, [state]);
 
   return {

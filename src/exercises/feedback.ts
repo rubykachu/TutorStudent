@@ -4,11 +4,12 @@ import {
   type Phase,
 } from "@/exercises/machine";
 import { hashSeed } from "@/exercises/shuffle";
+import { JINGLE_ID, OOPS_ID } from "@/lib/sound-manifest";
 import type { MascotExpression } from "@/mascot/expressions";
 import {
   ENCOURAGE_LINES,
   OWL_LINES,
-  PRAISE_VOICE_LINES,
+  PRAISE_LINES,
   type VoiceLine,
 } from "@/mascot/lines";
 import type {
@@ -50,10 +51,11 @@ export type FeedbackView = {
   // the correct answer itself.
   reveal: boolean;
   mascot: MascotExpression;
-  // What the owl says in its speech bubble (and the screen reader announces):
-  // encouragement at the first wrong check, a line at the second and third,
-  // and praise on a correct answer. Undefined while the owl stays silent.
-  speech: string | undefined;
+  // What the owl says in its speech bubble, out loud (its clip) and to the
+  // screen reader: encouragement at the first wrong check, a line at the
+  // second and third, and praise on a correct answer. Undefined while the owl
+  // stays silent.
+  speech: VoiceLine | undefined;
 };
 
 function pick(lines: readonly VoiceLine[], seed: string): VoiceLine {
@@ -62,28 +64,23 @@ function pick(lines: readonly VoiceLine[], seed: string): VoiceLine {
 
 // Praise and encouragement for one attempt: the same through every render of
 // the attempt, and usually different from one exercise or attempt to the
-// next. The frame hands the same line to the sound player, so the voice says
-// what the bubble shows.
-export function praiseLineFor(seed: string): VoiceLine {
-  return pick(PRAISE_VOICE_LINES, seed);
+// next.
+export function praiseFor(seed: string): VoiceLine {
+  return pick(PRAISE_LINES, seed);
 }
 
 export function encouragementFor(seed: string): VoiceLine {
   return pick(ENCOURAGE_LINES, `${seed}:encourage`);
 }
 
-export function praiseFor(seed: string): string {
-  return praiseLineFor(seed).text;
-}
-
 function speechFor(
   state: MachineState<unknown>,
   hints: BasicExercise["hints"],
   seed: string,
-): string | undefined {
+): VoiceLine | undefined {
   switch (state.phase) {
     case "wrong1":
-      return encouragementFor(seed).text;
+      return encouragementFor(seed);
     case "wrong2":
       return hints.hintVisualId === undefined
         ? OWL_LINES.hintMarks
@@ -137,6 +134,32 @@ function buildHighlights(
     else options.set(target.id, spec);
   }
   return { blocks, parts, options };
+}
+
+// The clips to play, in order, right after a check led to `state`: the jingle
+// and the praise on a correct answer; the encouragement on the first wrong
+// check; the soft "oops" tone on every later one, then the owl's line when it
+// has one. Every wrong check makes a sound, and the voice always says what
+// the bubble shows.
+export function feedbackCue(
+  exercise: BasicExercise,
+  state: MachineState<unknown>,
+  seed: string,
+): readonly string[] {
+  const line = speechFor(state, exercise.hints, seed);
+  const spoken = line ? [line.id] : [];
+  switch (state.phase) {
+    case "correct":
+      return [JINGLE_ID, ...spoken];
+    case "wrong1":
+      return spoken;
+    case "wrong2":
+    case "wrong3":
+    case "retype":
+      return [OOPS_ID, ...spoken];
+    default:
+      return [];
+  }
 }
 
 // `seed` is the attempt seed (`attemptSeed`), which picks the praise.

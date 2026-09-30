@@ -4,14 +4,19 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   JINGLE_ID,
+  OOPS_ID,
   type SoundManifest,
   soundUrl,
-  VOICE_LINE_VOICE,
-  voiceLineSource,
 } from "@/lib/sound-manifest";
 import { VOICE_LINES } from "@/mascot/lines";
 import manifest from "../../public/sounds/manifest.json";
-import { JINGLE } from "../../scripts/lib/jingle";
+import {
+  MASTERING,
+  TONES,
+  toneSource,
+  VOICE_ENGINE,
+  voiceLineSource,
+} from "../../scripts/lib/sound-spec";
 
 const sha256 = (text: string) =>
   createHash("sha256").update(text).digest("hex");
@@ -21,31 +26,49 @@ const entries = new Map(
 const onDisk = (file: string) =>
   existsSync(path.join(process.cwd(), "public", "sounds", file));
 
-// A line edited without `pnpm sounds:build` would speak old words; these
-// fail until the clips are made again.
+// A line edited without `pnpm sounds:build` would speak old words (or the
+// bubble would show a line with no voice); these fail until the clips are
+// made again.
 describe("sound manifest", () => {
-  it("has an up-to-date clip for every voice line", () => {
+  it("has one up-to-date, exactly heard clip for every voice line", () => {
     for (const line of VOICE_LINES) {
       const entry = entries.get(line.id);
       expect(entry, line.id).toBeDefined();
+      expect(entry?.kind).toBe("voice");
       expect(entry?.text).toBe(line.text);
-      expect(entry?.voice).toBe(VOICE_LINE_VOICE);
-      expect(entry?.sha256).toBe(
-        sha256(voiceLineSource(line.text, VOICE_LINE_VOICE)),
-      );
+      expect(entry?.engine).toEqual(VOICE_ENGINE);
+      expect(entry?.sha256).toBe(sha256(voiceLineSource(line.text)));
+      expect(entry?.match, line.id).toBe(1);
       expect(onDisk(entry?.file ?? ""), entry?.file).toBe(true);
+    }
+    expect(new Set(VOICE_LINES.map((l) => l.id)).size).toBe(VOICE_LINES.length);
+  });
+
+  it("has every tone made from its current settings", () => {
+    expect(Object.keys(TONES).sort()).toEqual([JINGLE_ID, OOPS_ID].sort());
+    for (const [id, spec] of Object.entries(TONES)) {
+      const entry = entries.get(id);
+      expect(entry?.kind).toBe("tone");
+      expect(entry?.sha256).toBe(sha256(toneSource(spec)));
+      expect(onDisk(entry?.file ?? "")).toBe(true);
     }
   });
 
-  it("has the jingle made from the current settings", () => {
-    const entry = entries.get(JINGLE_ID);
-    expect(entry?.sha256).toBe(sha256(JSON.stringify(JINGLE)));
-    expect(onDisk(entry?.file ?? "")).toBe(true);
+  it("keeps every clip at one loudness and clear of clipping", () => {
+    for (const entry of entries.values()) {
+      expect(entry.peakDb, entry.id).toBeLessThan(MASTERING.maxPeakDb);
+      if (entry.kind === "voice") {
+        expect(
+          Math.abs(entry.lufs - MASTERING.voiceLufs),
+          entry.id,
+        ).toBeLessThanOrEqual(1.5);
+      }
+    }
   });
 
   it("lists nothing else and gives clips URLs under /sounds", () => {
     expect([...entries.keys()].sort()).toEqual(
-      [JINGLE_ID, ...VOICE_LINES.map((l) => l.id)].sort(),
+      [...Object.keys(TONES), ...VOICE_LINES.map((l) => l.id)].sort(),
     );
     expect(soundUrl(JINGLE_ID)).toBe("/sounds/correct-jingle.m4a");
     expect(soundUrl("no-such-clip")).toBeUndefined();

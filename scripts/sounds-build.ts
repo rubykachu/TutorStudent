@@ -1,5 +1,7 @@
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
+  copyFileSync,
   existsSync,
   mkdirSync,
   readFileSync,
@@ -7,34 +9,39 @@ import {
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
-import {
-  JINGLE_ID,
-  type SoundEntry,
-  type SoundManifest,
-  VOICE_LINE_VOICE,
-  voiceLineSource,
-} from "@/lib/sound-manifest";
+import type { SoundEntry, SoundManifest } from "@/lib/sound-manifest";
 import { VOICE_LINES } from "@/mascot/lines";
-import { MATCH_THRESHOLD, RENDER, VIDEO_DIR } from "../video/config";
-import { ffmpeg } from "../video/lib/audio";
-import { narrate } from "../video/lib/narrate";
-import type { VideoScript } from "../video/lib/script";
-import { ttsEngine } from "../video/tts";
-import { JINGLE, jingleExpression } from "./lib/jingle";
+import { transcribe } from "../video/asr/whisper";
+import { VIDEO_DIR } from "../video/config";
+import { ffmpeg, probeDuration } from "../video/lib/audio";
+import { matchRate } from "../video/lib/text";
+import { synthesizeGemini } from "./lib/gemini-tts";
+import {
+  MASTERING,
+  TONES,
+  type ToneSpec,
+  toneExpression,
+  toneSource,
+  VOICE_ENGINE,
+  voiceLineSource,
+} from "./lib/sound-spec";
 
 // Usage: pnpm sounds:build
 // Makes the app's own clips into public/sounds/ and records them in
-// public/sounds/manifest.json: the correct-answer jingle (ffmpeg, from
-// scripts/lib/jingle.ts) and every owl voice line in src/mascot/lines.ts,
-// spoken by the local TTS voice, checked sentence by sentence with Whisper
-// and slowed like lesson narration. Only clips whose source changed are
-// made again; clips of lines that no longer exist are deleted.
+// public/sounds/manifest.json: the tones (the correct-answer jingle and the
+// soft "oops"), synthesised by ffmpeg, and every owl voice line in
+// src/mascot/lines.ts, spoken by VOICE_ENGINE and checked with Whisper. All
+// of them are brought to one loudness and encoded in one format (MASTERING
+// in scripts/lib/sound-spec.ts). Only clips whose source changed are made
+// again; clips of lines that no longer exist are deleted. Synthesised takes
+// are cached, so remastering never asks the voice again.
 
 const OUT_DIR = path.join(process.cwd(), "public", "sounds");
 const MANIFEST = path.join(OUT_DIR, "manifest.json");
-// Synthesised takes, cached by the pipeline so a rerun reuses them.
 const TAKES_DIR = path.join(VIDEO_DIR, ".cache", "sounds");
-const AAC_BITRATE = "64k";
+// Lines whose transcript is not exact are spoken again, at most this many
+// rounds in all; the closest take is kept and flagged.
+const MAX_TAKES = 4;
 
 const sha256 = (text: string) =>
   createHash("sha256").update(text).digest("hex");
@@ -49,44 +56,250 @@ function upToDate(entry: SoundEntry | undefined, hash: string): boolean {
   return entry?.sha256 === hash && existsSync(path.join(OUT_DIR, entry.file));
 }
 
-function buildJingle(file: string): void {
+type Loudness = { lufs: number; peakDb: number };
+
+// EBU R128 loudness and true peak of a file. A clip shorter than the
+// meter's 400 ms window is measured looped, which reads the loudness of the
+// clip itself.
+function measure(file: string): Loudness {
+  const result = spawnSync(
+    "ffmpeg",
+    [
+      "-hide_banner",
+      "-stream_loop",
+      "7",
+      "-i",
+      file,
+      "-af",
+      "ebur128=peak=true",
+      "-f",
+      "null",
+      "-",
+    ],
+    { encoding: "utf8" },
+  );
+  const summary = result.stderr.slice(result.stderr.lastIndexOf("Summary:"));
+  const lufs = Number(summary.match(/I:\s+(-?[\d.]+) LUFS/)?.[1]);
+  const peakDb = Number(summary.match(/Peak:\s+(-?[\d.]+) dBFS/)?.[1]);
+  if (result.status !== 0 || !Number.isFinite(lufs)) {
+    throw new Error(`Could not measure ${file}:\n${result.stderr.slice(-800)}`);
+  }
+  return { lufs, peakDb: Number.isFinite(peakDb) ? peakDb : -70 };
+}
+
+// Brings a clip to `lufs` with one fixed gain (no compression or limiting,
+// which is what distorts short clips), lowered if the true peak would pass
+// MASTERING.truePeakDb, then encodes it in the delivery format and measures
+// the delivered file.
+function master(input: string, lufs: number, file: string): Loudness {
+  const before = measure(input);
+  const gain = Math.min(
+    lufs - before.lufs,
+    MASTERING.truePeakDb - before.peakDb,
+  );
+  ffmpeg([
+    "-i",
+    input,
+    "-af",
+    `volume=${gain.toFixed(2)}dB`,
+    "-ar",
+    String(MASTERING.sampleRate),
+    "-ac",
+    String(MASTERING.channels),
+    "-c:a",
+    MASTERING.codec,
+    "-b:a",
+    MASTERING.bitrate,
+    "-movflags",
+    "+faststart",
+    file,
+  ]);
+  const after = measure(file);
+  if (after.peakDb >= MASTERING.maxPeakDb) {
+    throw new Error(
+      `${file} peaks at ${after.peakDb} dBFS, over ${MASTERING.maxPeakDb}`,
+    );
+  }
+  return {
+    lufs: Math.round(after.lufs * 10) / 10,
+    peakDb: Math.round(after.peakDb * 10) / 10,
+  };
+}
+
+function buildTone(spec: ToneSpec, file: string): Loudness {
+  mkdirSync(TAKES_DIR, { recursive: true });
+  const raw = path.join(TAKES_DIR, `${path.basename(file, ".m4a")}.wav`);
   ffmpeg([
     "-f",
     "lavfi",
     "-i",
-    `aevalsrc='${jingleExpression()}':s=${JINGLE.sampleRate}:d=${JINGLE.durationS}`,
+    `aevalsrc='${toneExpression(spec)}':s=${MASTERING.sampleRate}:d=${spec.durationS}`,
     "-af",
-    `afade=t=out:st=${JINGLE.durationS - JINGLE.fadeOutS}:d=${JINGLE.fadeOutS}`,
-    "-ac",
-    "1",
+    `afade=t=out:st=${spec.durationS - spec.fadeOutS}:d=${spec.fadeOutS}`,
     "-c:a",
-    "aac",
-    "-b:a",
-    AAC_BITRATE,
-    "-movflags",
-    "+faststart",
-    file,
+    "pcm_s16le",
+    raw,
+  ]);
+  return master(raw, spec.lufs, file);
+}
+
+// The words as compared with Whisper's transcript: lower case, tone marks
+// kept, punctuation and spacing dropped.
+function spokenForm(text: string): string {
+  return text
+    .normalize("NFC")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
+function lineMatch(text: string, transcript: string): number {
+  if (spokenForm(text) === spokenForm(transcript)) return 1;
+  return Math.min(0.999, Math.round(matchRate(text, transcript) * 1000) / 1000);
+}
+
+type Take = { file: string; transcript: string; match: number };
+
+const TRIM =
+  "silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.02";
+
+// Cuts `from`–`to` seconds of `input`, trims the silence around the words
+// and pads MASTERING.voicePadS on both sides.
+function cutLine(input: string, from: number, to: number, out: string): void {
+  const pad = MASTERING.voicePadS;
+  ffmpeg([
+    "-i",
+    input,
+    "-ss",
+    from.toFixed(3),
+    "-to",
+    to.toFixed(3),
+    "-af",
+    `${TRIM},areverse,${TRIM},areverse,adelay=${pad * 1000},apad=pad_dur=${pad}`,
+    "-c:a",
+    "pcm_s16le",
+    out,
   ]);
 }
 
-function encodeVoice(wav: string, file: string): void {
-  ffmpeg([
-    "-i",
-    wav,
-    "-af",
-    RENDER.loudness,
-    "-ar",
-    String(JINGLE.sampleRate),
-    "-ac",
-    "1",
-    "-c:a",
-    "aac",
-    "-b:a",
-    AAC_BITRATE,
-    "-movflags",
-    "+faststart",
-    file,
+// Silences in a file, as [start, end] seconds.
+function silences(file: string): [number, number][] {
+  const result = spawnSync(
+    "ffmpeg",
+    [
+      "-hide_banner",
+      "-i",
+      file,
+      "-af",
+      "silencedetect=noise=-40dB:d=0.2",
+      "-f",
+      "null",
+      "-",
+    ],
+    { encoding: "utf8" },
+  );
+  const starts = [...result.stderr.matchAll(/silence_start: (-?[\d.]+)/g)];
+  const ends = [...result.stderr.matchAll(/silence_end: ([\d.]+)/g)];
+  return starts.map((m, i) => [
+    Math.max(0, Number(m[1])),
+    Number(ends[i]?.[1] ?? Number.POSITIVE_INFINITY),
   ]);
+}
+
+// Where to cut a take of `count` lines read one after another: in the middle
+// of the count - 1 longest pauses inside it. The voice pauses far longer
+// between lines than at a comma, and Whisper checks every cut line anyway.
+function cutPoints(file: string, count: number): number[] {
+  const duration = probeDuration(file);
+  const inner = silences(file).filter(
+    ([start, end]) => start > 0.05 && end < duration - 0.05,
+  );
+  return inner
+    .sort((a, b) => b[1] - b[0] - (a[1] - a[0]))
+    .slice(0, count - 1)
+    .map(([start, end]) => (start + end) / 2)
+    .sort((a, b) => a - b);
+}
+
+// One request speaks every line in `texts`, one per paragraph, so all lines
+// share one voice and one delivery and the daily request limit is spent
+// once; the take is then cut into one file per line and each is checked
+// with Whisper.
+async function batchTakes(
+  texts: readonly string[],
+  round: number,
+): Promise<Take[]> {
+  const stamp = sha256(JSON.stringify([texts, VOICE_ENGINE])).slice(0, 12);
+  const raw = path.join(TAKES_DIR, `batch-${stamp}.take${round}.wav`);
+  await synthesizeGemini(VOICE_ENGINE, texts.join("\n\n"), raw);
+  const cuts = cutPoints(raw, texts.length);
+  if (cuts.length !== texts.length - 1) {
+    throw new Error(`Could not find ${texts.length} lines in ${raw}`);
+  }
+  const bounds = [0, ...cuts, probeDuration(raw)];
+  const files = texts.map((_, i) => {
+    const out = path.join(TAKES_DIR, `batch-${stamp}.take${round}.${i}.wav`);
+    cutLine(raw, bounds[i] as number, bounds[i + 1] as number, out);
+    return out;
+  });
+  const heard = await transcribe(files);
+  return texts.map((text, i) => {
+    const file = files[i] as string;
+    const transcript = heard.get(file)?.text ?? "";
+    const match = lineMatch(text, transcript);
+    console.log(
+      `sounds: "${text}" take ${round}: heard "${transcript}"${match === 1 ? "" : ` (${match})`}`,
+    );
+    return { file, transcript, match };
+  });
+}
+
+function takeKey(text: string): string {
+  return sha256(JSON.stringify([text, VOICE_ENGINE])).slice(0, 16);
+}
+
+// The best take of every line: cached from an earlier run, else spoken and
+// checked until it is exact or MAX_TAKES rounds are spent, keeping the
+// closest one.
+async function voiceTakes(
+  texts: readonly string[],
+): Promise<Map<string, Take>> {
+  mkdirSync(TAKES_DIR, { recursive: true });
+  const best = new Map<string, Take>();
+  const cached = (text: string) => ({
+    wav: path.join(TAKES_DIR, `${takeKey(text)}.wav`),
+    json: path.join(TAKES_DIR, `${takeKey(text)}.json`),
+  });
+  for (const text of texts) {
+    const { wav, json } = cached(text);
+    if (existsSync(wav) && existsSync(json)) {
+      best.set(text, { ...JSON.parse(readFileSync(json, "utf8")), file: wav });
+    }
+  }
+  const fresh = new Set<string>();
+  for (let round = 1; round <= MAX_TAKES; round++) {
+    const pending = texts.filter((t) => (best.get(t)?.match ?? 0) < 1);
+    if (pending.length === 0) break;
+    const takes = await batchTakes(pending, round);
+    takes.forEach((take, i) => {
+      const text = pending[i] as string;
+      if (take.match > (best.get(text)?.match ?? -1)) {
+        best.set(text, take);
+        fresh.add(text);
+      }
+    });
+  }
+  for (const text of fresh) {
+    const take = best.get(text) as Take;
+    const { wav, json } = cached(text);
+    copyFileSync(take.file, wav);
+    writeFileSync(
+      json,
+      `${JSON.stringify({ transcript: take.transcript, match: take.match })}\n`,
+    );
+    best.set(text, { ...take, file: wav });
+  }
+  return best;
 }
 
 async function main() {
@@ -94,58 +307,51 @@ async function main() {
   const previous = readManifest();
   const entries: SoundEntry[] = [];
 
-  const jingleHash = sha256(JSON.stringify(JINGLE));
-  const jingleEntry = {
-    id: JINGLE_ID,
-    file: `${JINGLE_ID}.m4a`,
-    sha256: jingleHash,
-  };
-  if (!upToDate(previous.get(JINGLE_ID), jingleHash)) {
-    buildJingle(path.join(OUT_DIR, jingleEntry.file));
-    console.log(`sounds: made ${jingleEntry.file}`);
+  for (const [id, spec] of Object.entries(TONES)) {
+    const hash = sha256(toneSource(spec));
+    const file = `${id}.m4a`;
+    const old = previous.get(id);
+    if (old && upToDate(old, hash)) {
+      entries.push(old);
+      continue;
+    }
+    const loudness = buildTone(spec, path.join(OUT_DIR, file));
+    console.log(`sounds: made ${file} (${loudness.lufs} LUFS)`);
+    entries.push({ id, file, kind: "tone", sha256: hash, ...loudness });
   }
-  entries.push(jingleEntry);
 
-  const lines = VOICE_LINES.map((line) => ({
-    ...line,
-    hash: sha256(voiceLineSource(line.text, VOICE_LINE_VOICE)),
-    file: `${line.id}.m4a`,
-  }));
-  const stale = lines.filter((l) => !upToDate(previous.get(l.id), l.hash));
-  const made = new Map<string, number>();
-  if (stale.length > 0) {
-    const script: VideoScript = {
-      title: "Owl voice lines",
-      engine: "local",
-      voice: VOICE_LINE_VOICE,
-      poster: { scene: stale[0]?.id ?? "", at: 0 },
-      scenes: stale.map((l) => ({ id: l.id, sentences: [{ text: l.text }] })),
-      clips: [],
-    };
-    const takes = await narrate(script, ttsEngine("local"), TAKES_DIR);
-    takes.forEach((take, i) => {
-      const line = stale[i];
-      if (!line) return;
-      encodeVoice(take.file, path.join(OUT_DIR, line.file));
-      made.set(line.id, Math.round(take.matchRate * 1000) / 1000);
-      console.log(
-        `sounds: made ${line.file}, match ${(take.matchRate * 100).toFixed(1)}% (heard "${take.transcript}")`,
-      );
-      if (take.matchRate < MATCH_THRESHOLD) {
-        console.warn(
-          `sounds: listen to ${line.file}; Whisper heard it differently`,
-        );
-      }
-    });
-  }
-  for (const line of lines) {
+  const flagged: string[] = [];
+  const hashOf = (text: string) => sha256(voiceLineSource(text));
+  const stale = VOICE_LINES.filter(
+    (line) => !upToDate(previous.get(line.id), hashOf(line.text)),
+  );
+  const takes = await voiceTakes(stale.map((line) => line.text));
+  for (const line of VOICE_LINES) {
+    const hash = hashOf(line.text);
+    const file = `${line.id}.m4a`;
+    const take = takes.get(line.text);
+    const old = previous.get(line.id);
+    if (!take && old) {
+      entries.push(old);
+      continue;
+    }
+    if (!take) throw new Error(`No take for "${line.text}"`);
+    const loudness = master(
+      take.file,
+      MASTERING.voiceLufs,
+      path.join(OUT_DIR, file),
+    );
+    console.log(`sounds: made ${file} (${loudness.lufs} LUFS)`);
+    if (take.match < 1) flagged.push(file);
     entries.push({
       id: line.id,
-      file: line.file,
-      sha256: line.hash,
+      file,
+      kind: "voice",
+      sha256: hash,
       text: line.text,
-      voice: VOICE_LINE_VOICE,
-      match: made.get(line.id) ?? previous.get(line.id)?.match,
+      engine: { ...VOICE_ENGINE },
+      match: take.match,
+      ...loudness,
     });
   }
 
@@ -157,6 +363,11 @@ async function main() {
   }
   const manifest: SoundManifest = { entries };
   writeFileSync(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`);
+  if (flagged.length > 0) {
+    console.warn(
+      `sounds: Whisper heard these differently; listen, then delete their takes in ${TAKES_DIR} to try again: ${flagged.join(", ")}`,
+    );
+  }
 }
 
 main().catch((error: unknown) => {
