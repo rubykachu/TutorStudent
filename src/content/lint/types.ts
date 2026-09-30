@@ -13,13 +13,19 @@ export type LintRule =
   | "card-exercises"
   | "check-expr"
   | "passage"
-  | "review-hash";
+  | "review-hash"
+  | "screens"
+  | "practice"
+  | "review-bank"
+  | "placeholder";
 
 export type Finding = Issue & { rule: LintRule };
 
 export type LintInput = {
   file: string;
   lesson: Lesson;
+  // Test-only lesson under content/_fixture/; the authoring rules skip it.
+  fixture: boolean;
   // Glossary of the lesson's subject; absent when the subject has none.
   glossary?: GlossaryFile;
   // Content of `source-passage.txt` next to lesson.json, when present.

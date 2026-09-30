@@ -6,9 +6,9 @@ import {
   collectVisualRefs,
   formatIssue,
   formatPath,
-  lessonStats,
 } from "@/content/check";
 import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
+import { LESSON_MINIMUMS, lessonCriteria, lessonStats } from "@/content/stats";
 import { MAX_SECTION_EXERCISES, MAX_SECTION_SCREENS } from "@/lib/config";
 import type { Lesson } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
@@ -604,6 +604,10 @@ describe("ids.lock.json", () => {
     raw.lock = { file: LOCK_FILE, data: lock };
     return raw;
   }
+  // The fixture as a real lesson meets the authoring lint rules, which have
+  // their own tests; these cases look at the lock's findings only.
+  const lockIssues = (result: CheckResult) =>
+    result.issues.filter((issue) => issue.rule === undefined);
   const allIds = () =>
     check(asRealLesson(fixtureContent())).lessons.flatMap(({ lesson }) =>
       collectIds(lesson),
@@ -624,12 +628,12 @@ describe("ids.lock.json", () => {
 
   it("accepts a lock that covers the current ids", () => {
     const result = check(withLock({ ids: allIds(), retired: {} }));
-    expect(result.issues).toEqual([]);
+    expect(lockIssues(result)).toEqual([]);
   });
 
   it("warns about real lesson ids that are not locked yet", () => {
     const result = check(withLock({ ids: [], retired: {} }));
-    expect(result.issues).toEqual([
+    expect(lockIssues(result)).toEqual([
       expect.objectContaining({
         severity: "warning",
         file: LESSON_FILE,
@@ -660,7 +664,7 @@ describe("ids.lock.json", () => {
         },
       }),
     );
-    expect(result.issues).toEqual([]);
+    expect(lockIssues(result)).toEqual([]);
   });
 
   it("reports a retired chain that loops", () => {
@@ -736,7 +740,7 @@ describe("formatPath", () => {
 });
 
 describe("lessonStats", () => {
-  it("counts the fixture's sections, cards, exercises, types and interactive visuals", () => {
+  it("counts the fixture's sections, cards, exercises, types and visuals", () => {
     const [checked] = check().lessons;
     if (!checked) throw new Error("fixture missing");
     expect(lessonStats(checked.lesson, visualRegistry)).toEqual({
@@ -745,6 +749,58 @@ describe("lessonStats", () => {
       exercises: 12,
       exerciseTypes: 8,
       interactiveVisuals: 2,
+      sectionsWithVisual: 1,
+      openEnded: 1,
+    });
+  });
+});
+
+describe("lessonCriteria", () => {
+  const stats = {
+    sections: 7,
+    cards: 8,
+    exercises: 19,
+    exerciseTypes: 5,
+    interactiveVisuals: 2,
+    sectionsWithVisual: 7,
+    openEnded: 0,
+  };
+
+  function lessonOf(subject: string): Lesson {
+    const [checked] = check().lessons;
+    if (!checked) throw new Error("fixture missing");
+    return { ...checked.lesson, subject };
+  }
+
+  it("compares with the spec minimums, one interactive visual per 3 sections rounded up", () => {
+    expect(lessonCriteria(lessonOf("math"), stats)).toEqual([
+      { name: "sections", actual: 7, required: 3, pass: true },
+      { name: "cards", actual: 8, required: 8, pass: true },
+      { name: "exercises", actual: 19, required: 20, pass: false },
+      { name: "exercise types", actual: 5, required: 5, pass: true },
+      {
+        name: "sections with a visual",
+        actual: 7,
+        required: 7,
+        pass: true,
+        basis: "every section",
+      },
+      {
+        name: "interactive visuals",
+        actual: 2,
+        required: Math.ceil(7 / LESSON_MINIMUMS.sectionsPerInteractiveVisual),
+        pass: false,
+        basis: "ceil(7 sections / 3)",
+      },
+    ]);
+  });
+
+  it("requires an openEnded exercise in literature lessons only", () => {
+    expect(lessonCriteria(lessonOf("literature"), stats).at(-1)).toEqual({
+      name: "openEnded",
+      actual: 0,
+      required: 1,
+      pass: false,
     });
   });
 });

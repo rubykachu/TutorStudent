@@ -1,15 +1,19 @@
 import path from "node:path";
 import { parseArgs } from "node:util";
-import {
-  checkContent,
-  formatIssue,
-  type LessonStats,
-  lessonStats,
-} from "@/content/check";
+import { checkContent, formatIssue } from "@/content/check";
 import { DEFAULT_CONTENT_ROOT, readContentRoot } from "@/content/load";
+import {
+  type Criterion,
+  type LessonStats,
+  lessonCriteria,
+  lessonStats,
+} from "@/content/stats";
 import { visualRegistry } from "@/visuals/registry";
 
 // Usage: content-check [--root <dir>] [--stats]
+// --stats prints each lesson's size and, for real lessons, PASS/FAIL against
+// the spec minimums. It reports only: the exit code reflects errors alone,
+// since a lesson being drafted is expected to fall short.
 const { values } = parseArgs({
   options: {
     root: { type: "string" },
@@ -36,10 +40,20 @@ function describeStats(stats: LessonStats): string {
   ].join(", ");
 }
 
+function describeCriterion(c: Criterion): string {
+  const basis = c.basis === undefined ? "" : ` = ${c.basis}`;
+  return `  ${c.pass ? "PASS" : "FAIL"} ${c.name}: ${c.actual} (min ${c.required}${basis})`;
+}
+
 if (values.stats) {
-  for (const { file, lesson } of lessons) {
+  for (const { file, fixture, lesson } of lessons) {
     const stats = lessonStats(lesson, visualRegistry);
     console.log(`${lesson.id} (${file}): ${describeStats(stats)}`);
+    // The fixture is test content, not held to the lesson minimums.
+    if (fixture) continue;
+    for (const criterion of lessonCriteria(lesson, stats)) {
+      console.log(describeCriterion(criterion));
+    }
   }
 }
 

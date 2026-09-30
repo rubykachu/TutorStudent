@@ -40,12 +40,13 @@ if (!values.approve) {
   process.exit(0);
 }
 
-// A stale hash is exactly what approving fixes; every other error blocks.
+// A stale hash is exactly what approving fixes; every other error blocks, and
+// so do placeholder visuals, which only become errors once published.
 const blocking = issues.filter(
   (issue) =>
     issue.file === checked.file &&
-    issue.severity === "error" &&
-    issue.rule !== "review-hash",
+    ((issue.severity === "error" && issue.rule !== "review-hash") ||
+      issue.rule === "placeholder"),
 );
 if (blocking.length > 0) {
   for (const issue of blocking) console.error(formatIssue(issue));

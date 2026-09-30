@@ -669,6 +669,7 @@ export function checkContent(
       ...lintLesson({
         file: file.file,
         lesson,
+        fixture: file.fixture,
         glossary: glossaries.get(lesson.subject),
         sourcePassage: file.sourcePassage,
       }),
@@ -694,35 +695,4 @@ export function checkContent(
 
   if (lock) checkLock(raw.lock, lock, lessons, issues);
   return { issues, lessons };
-}
-
-export type LessonStats = {
-  sections: number;
-  cards: number;
-  // openEnded counts as one exercise; its steps are part of it.
-  exercises: number;
-  // Distinct basic types among top-level exercises (openEnded is not a type).
-  exerciseTypes: number;
-  interactiveVisuals: number;
-};
-
-export function lessonStats(
-  lesson: Lesson,
-  catalog: VisualCatalog,
-): LessonStats {
-  const types = new Set(
-    lesson.exercises.filter((e) => e.type !== "openEnded").map((e) => e.type),
-  );
-  const interactive = new Set(
-    collectVisualRefs(lesson)
-      .map((ref) => ref.visualId)
-      .filter((id) => catalog[id]?.interactive),
-  );
-  return {
-    sections: lesson.sections.length,
-    cards: lesson.cards.length,
-    exercises: lesson.exercises.length,
-    exerciseTypes: types.size,
-    interactiveVisuals: interactive.size,
-  };
 }

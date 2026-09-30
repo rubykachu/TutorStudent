@@ -15,7 +15,7 @@ import {
   LessonSchema,
 } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
-import { fixtureContent, fixtureFile } from "./helpers";
+import { fixtureContent, fixtureFile, readSkeleton } from "./helpers";
 
 const FILE = "lesson.json";
 
@@ -26,8 +26,22 @@ function fixtureInput(): LintInput {
   return {
     file: FILE,
     lesson: LessonSchema.parse(file.data),
+    fixture: true,
     glossary: GlossaryFileSchema.parse(glossary?.data),
     sourcePassage: file.sourcePassage,
+  };
+}
+
+// The lesson-author skeleton as a real lesson: the authoring rules apply.
+function skeletonInput(): LintInput {
+  const glossary = fixtureContent().glossaries.find(
+    (g) => g.subject === "math",
+  );
+  return {
+    file: FILE,
+    lesson: LessonSchema.parse(readSkeleton()),
+    fixture: false,
+    glossary: GlossaryFileSchema.parse(glossary?.data),
   };
 }
 
@@ -607,5 +621,117 @@ describe("review-hash", () => {
     expect(findings(input, "review-hash")).toMatchObject([
       { path: ["reviewedHash"], severity: "warning" },
     ]);
+  });
+});
+
+describe("authoring rules", () => {
+  const AUTHORING: LintRule[] = [
+    "screens",
+    "practice",
+    "recap",
+    "review-bank",
+    "placeholder",
+  ];
+
+  function exerciseOf(input: LintInput, id: string) {
+    const found = input.lesson.exercises.find(
+      (e) => e.id === `bai-moi.ex.${id}`,
+    );
+    if (!found) throw new Error(`skeleton exercise ${id} moved`);
+    return found;
+  }
+
+  it("skip the fixture lesson, which exercises every renderer path", () => {
+    const input = fixtureInput();
+    expect(input.lesson.sections[0]?.recap.type).toBe("formula");
+    for (const rule of AUTHORING) expect(findings(input, rule)).toEqual([]);
+  });
+
+  it("find nothing in the skeleton but its placeholder visuals", () => {
+    const input = skeletonInput();
+    for (const rule of AUTHORING.filter((r) => r !== "placeholder")) {
+      expect(findings(input, rule)).toEqual([]);
+    }
+  });
+
+  it("warn about a note or formula alone on a screen", () => {
+    const input = skeletonInput();
+    const section = input.lesson.sections[0];
+    if (!section) throw new Error("skeleton section moved");
+    section.blocks.push(
+      { type: "note", text: "Một câu." },
+      { type: "formula", tex: "1 + 1 = 2" },
+    );
+    expect(findings(input, "screens")).toMatchObject([
+      { path: ["sections", 0, "blocks", 2], severity: "warning" },
+      { path: ["sections", 0, "blocks", 3], severity: "warning" },
+    ]);
+  });
+
+  it("allow one practice exercise per card", () => {
+    const input = skeletonInput();
+    input.lesson.sections[0]?.practiceIds.push("bai-moi.ex.chon-tich");
+    expect(findings(input, "practice")).toMatchObject([
+      {
+        path: ["cards", 0],
+        severity: "error",
+        message: expect.stringContaining("2 practice exercises"),
+      },
+    ]);
+  });
+
+  it("require a recap to be a visual with a caption", () => {
+    const input = skeletonInput();
+    const section = input.lesson.sections[0];
+    const card = input.lesson.cards[0];
+    if (!section || card?.recap.type !== "visual") {
+      throw new Error("skeleton recaps moved");
+    }
+    section.recap = { type: "formula", tex: "2 \\cdot 3 = 6" };
+    card.recap = { type: "visual", visualId: card.recap.visualId };
+    expect(findings(input, "recap")).toMatchObject([
+      { path: ["sections", 0, "recap"], severity: "error" },
+      { path: ["cards", 0, "recap"], severity: "error" },
+    ]);
+  });
+
+  it("warn when a review exercise repeats the practice numbers", () => {
+    const input = skeletonInput();
+    const practice = exerciseOf(input, "tinh-tich");
+    const bank = exerciseOf(input, "tinh-tich-khac");
+    bank.prompt = structuredClone(practice.prompt);
+    expect(findings(input, "review-bank")).toMatchObject([
+      {
+        path: ["exercises", 3, "prompt"],
+        severity: "warning",
+        message: expect.stringContaining('"bai-moi.ex.tinh-tich"'),
+      },
+    ]);
+  });
+
+  it("read superscripts and grouped thousands as numbers of their own", () => {
+    const input = skeletonInput();
+    exerciseOf(input, "tinh-tich").prompt = [
+      { type: "note", text: "Tính 3⁵ và 1\u202f000." },
+    ];
+    const bank = exerciseOf(input, "tinh-tich-khac");
+    bank.prompt = [{ type: "formula", tex: "5^{3} + 1\\,000" }];
+    expect(findings(input, "review-bank")).toHaveLength(1);
+    bank.prompt = [{ type: "note", text: "Tính 35 và 1000." }];
+    expect(findings(input, "review-bank")).toEqual([]);
+  });
+
+  it("warn about placeholder visuals in a draft and block them once published", () => {
+    const input = skeletonInput();
+    expect(findings(input, "placeholder")).toMatchObject([
+      { path: ["sections", 0, "blocks", 0, "visualId"], severity: "warning" },
+      { path: ["sections", 0, "recap", "visualId"], severity: "warning" },
+      { path: ["cards", 0, "recap", "visualId"], severity: "warning" },
+      { path: ["sticker", "visualId"], severity: "warning" },
+    ]);
+    input.lesson.status = "published";
+    expect(
+      findings(input, "placeholder").every((f) => f.severity === "error"),
+    ).toBe(true);
   });
 });

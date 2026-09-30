@@ -1,16 +1,11 @@
 // @vitest-environment node
 import { spawnSync } from "node:child_process";
-import {
-  cpSync,
-  mkdtempSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { CONTENT_ROOT } from "./helpers";
+import { visualRegistry } from "@/visuals/registry";
+import { readSkeleton, writeContentRoot } from "./helpers";
 
 // Runs the real scripts through tsx against a throwaway content root.
 function run(script: string, ...args: string[]) {
@@ -22,40 +17,65 @@ function run(script: string, ...args: string[]) {
 }
 
 let root: string;
-const realLessonFile = () =>
-  path.join(root, "math", "kntt", "fixture", "lesson.json");
+let lessonFile: string;
 const lockFile = () => path.join(root, "ids.lock.json");
+const readLesson = () => JSON.parse(readFileSync(lessonFile, "utf8"));
 
+// A drawn visual of a real lesson, standing in for the skeleton's fixture
+// placeholders so the lesson can be approved.
+const REAL_VISUAL = Object.keys(visualRegistry).find(
+  (id) => !id.startsWith("fixture.") && !visualRegistry[id]?.interactive,
+);
+
+function withoutPlaceholders(lesson: Record<string, unknown>) {
+  return JSON.parse(
+    JSON.stringify(lesson).replace(
+      /"fixture\.visual\.[^"]+"/g,
+      `"${REAL_VISUAL}"`,
+    ),
+  );
+}
+
+// The skeleton is the one real lesson (ids.lock applies to it); the fixture
+// stays under _fixture/.
 beforeEach(() => {
   root = mkdtempSync(path.join(tmpdir(), "tutor-cli-"));
-  cpSync(CONTENT_ROOT, root, { recursive: true });
-  // The fixture copied outside _fixture/ acts as a real lesson for ids.lock.
-  cpSync(path.join(root, "_fixture", "math"), path.join(root, "math"), {
-    recursive: true,
-  });
-  rmSync(path.join(root, "_fixture"), { recursive: true });
+  lessonFile = writeContentRoot(root, withoutPlaceholders(readSkeleton()));
 });
 
 afterEach(() => rmSync(root, { recursive: true, force: true }));
 
 describe("content-check", () => {
-  it("passes a valid root and prints stats", () => {
+  it("passes a valid root and prints stats, with spec criteria for real lessons", () => {
     const { code, out } = run("content-check.ts", "--root", root, "--stats");
     expect(code).toBe(0);
-    expect(out).toContain("fixture (");
-    expect(out).toContain(
+    const lines = out.split("\n");
+    const fixture = lines.findIndex((line) => line.startsWith("fixture ("));
+    expect(lines[fixture]).toContain(
       "2 sections, 3 cards, 12 exercises, 8 exercise types, 2 interactive visuals",
+    );
+    // The fixture is test content, not held to the lesson minimums.
+    expect(lines[fixture + 1]).toMatch(/^bai-moi \(/);
+    expect(lines[fixture + 1]).toContain(
+      "1 sections, 1 cards, 4 exercises, 2 exercise types, 0 interactive visuals",
+    );
+    expect(lines).toContain("  FAIL sections: 1 (min 3)");
+    expect(lines).toContain(
+      "  PASS sections with a visual: 1 (min 1 = every section)",
+    );
+    expect(lines).toContain(
+      "  FAIL interactive visuals: 0 (min 1 = ceil(1 sections / 3))",
     );
   });
 
   it("exits non-zero and prints file and JSON path for each error", () => {
-    const lesson = JSON.parse(readFileSync(realLessonFile(), "utf8"));
-    lesson.cards[0].conceptIds = ["fixture.concept.khong-co"];
-    writeFileSync(realLessonFile(), JSON.stringify(lesson));
+    const lesson = readLesson();
+    lesson.cards[0].conceptIds = ["bai-moi.concept.khong-co"];
+    writeFileSync(lessonFile, JSON.stringify(lesson));
     const { code, err } = run("content-check.ts", "--root", root);
     expect(code).toBe(1);
     expect(err).toMatch(
-      /^error .*math\/kntt\/fixture\/lesson\.json \$\.cards\[0\]\.conceptIds\[0\]: Unknown concept/m,
+      /^error .*math\/kntt\/bai-moi\/lesson\.json \$\.cards\[0\]\.conceptIds\[0\]: Unknown concept/m,
     );
   });
 });
@@ -65,8 +85,8 @@ describe("content-lock", () => {
     writeFileSync(
       lockFile(),
       JSON.stringify({
-        ids: ["fixture.card.cu"],
-        retired: { "fixture.card.cu": "fixture.card.nhan-lap" },
+        ids: ["bai-moi.card.cu"],
+        retired: { "bai-moi.card.cu": "bai-moi.card.tich" },
       }),
     );
     const first = run("content-lock.ts", "--root", root);
@@ -74,14 +94,13 @@ describe("content-lock", () => {
     const lock = JSON.parse(readFileSync(lockFile(), "utf8"));
     expect(lock.ids).toEqual(
       expect.arrayContaining([
-        "fixture",
-        "fixture.card.cu",
-        "fixture.ex.chon-y-chinh",
+        "bai-moi",
+        "bai-moi.card.cu",
+        "bai-moi.ex.chon-tich",
       ]),
     );
-    expect(lock.retired).toEqual({
-      "fixture.card.cu": "fixture.card.nhan-lap",
-    });
+    expect(lock.ids.some((id: string) => id.startsWith("fixture"))).toBe(false);
+    expect(lock.retired).toEqual({ "bai-moi.card.cu": "bai-moi.card.tich" });
 
     const check = run("content-check.ts", "--root", root);
     expect(check.code).toBe(0);
@@ -93,7 +112,7 @@ describe("content-lock", () => {
   it("refuses to lock content that has errors", () => {
     writeFileSync(
       lockFile(),
-      JSON.stringify({ ids: ["fixture.card.da-xoa"], retired: {} }),
+      JSON.stringify({ ids: ["bai-moi.card.da-xoa"], retired: {} }),
     );
     const { code, err } = run("content-lock.ts", "--root", root);
     expect(code).toBe(1);
@@ -104,20 +123,20 @@ describe("content-lock", () => {
 // Each case spawns tsx several times, which is slow under coverage.
 describe("content-hash", { timeout: 30_000 }, () => {
   it("prints the review hash and approves a clean lesson", () => {
-    const printed = run("content-hash.ts", "fixture", "--root", root);
+    const printed = run("content-hash.ts", "bai-moi", "--root", root);
     expect(printed.code).toBe(0);
     const hash = printed.out.trim();
     expect(hash).toMatch(/^[0-9a-f]{64}$/);
 
     const approved = run(
       "content-hash.ts",
-      "fixture",
+      "bai-moi",
       "--root",
       root,
       "--approve",
     );
     expect(approved.code).toBe(0);
-    const lesson = JSON.parse(readFileSync(realLessonFile(), "utf8"));
+    const lesson = readLesson();
     expect(lesson.status).toBe("published");
     expect(lesson.reviewedHash).toBe(hash);
     expect(Object.keys(lesson).indexOf("reviewedHash")).toBe(
@@ -126,28 +145,40 @@ describe("content-hash", { timeout: 30_000 }, () => {
     expect(run("content-check.ts", "--root", root).code).toBe(0);
 
     lesson.title = "Bài mẫu đã sửa";
-    writeFileSync(realLessonFile(), JSON.stringify(lesson));
+    writeFileSync(lessonFile, JSON.stringify(lesson));
     const stale = run("content-check.ts", "--root", root);
     expect(stale.code).toBe(1);
     expect(stale.err).toMatch(/\$\.reviewedHash: .*\[review-hash\]/);
   });
 
   it("refuses to approve a lesson with lint errors", () => {
-    const lesson = JSON.parse(readFileSync(realLessonFile(), "utf8"));
-    lesson.sections[0].blocks[0].text = "Click vào đây.";
-    writeFileSync(realLessonFile(), JSON.stringify(lesson));
+    const lesson = readLesson();
+    lesson.sections[0].blocks[1].children[0].text = "Click vào đây.";
+    writeFileSync(lessonFile, JSON.stringify(lesson));
     const { code, err } = run(
       "content-hash.ts",
-      "fixture",
+      "bai-moi",
       "--root",
       root,
       "--approve",
     );
     expect(code).toBe(1);
     expect(err).toContain("[vietnamese]");
-    expect(JSON.parse(readFileSync(realLessonFile(), "utf8")).status).toBe(
-      "draft",
+    expect(readLesson().status).toBe("draft");
+  });
+
+  it("refuses to approve a lesson that still shows placeholder visuals", () => {
+    writeFileSync(lessonFile, JSON.stringify(readSkeleton()));
+    const { code, err } = run(
+      "content-hash.ts",
+      "bai-moi",
+      "--root",
+      root,
+      "--approve",
     );
+    expect(code).toBe(1);
+    expect(err).toContain("[placeholder]");
+    expect(readLesson().status).toBe("draft");
   });
 
   it("fails for an unknown lesson", () => {
