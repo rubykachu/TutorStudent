@@ -331,8 +331,8 @@
         }
       ],
       "checkIds": [
-        "neu-cau-muon-co-mot-nguoi-ban.ex.dem-lan-hoi",
-        "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich"
+        "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich",
+        "neu-cau-muon-co-mot-nguoi-ban.ex.dem-lan-hoi"
       ],
       "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.nghia-cam-hoa"],
       "recap": {
@@ -619,6 +619,11 @@
           ],
           "annotations": [
             {
+              "sentenceId": "l31-1",
+              "label": "Theo dõi",
+              "text": "Đơn điệu: cứ lặp lại một kiểu, nên buồn chán."
+            },
+            {
               "sentenceId": "l31-6",
               "label": "Theo dõi",
               "text": "Tiếng bước chân của hoàng tử bé khác các bước chân khác thế nào?"
@@ -719,7 +724,7 @@
           "children": [
             {
               "type": "note",
-              "text": "So sánh là đặt hai sự vật có nét giống nhau cạnh nhau, để câu văn gợi hình, gợi cảm hơn. Từ so sánh hay gặp: như, như là, giống như."
+              "text": "So sánh là đặt hai sự vật có nét giống nhau cạnh nhau, nối bằng từ như “như”, “như là”, “giống như”. Nhờ đó người đọc hình dung rõ hơn."
             },
             {
               "type": "visual",
@@ -741,7 +746,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh",
-        "caption": "So sánh đặt hai sự vật có nét giống nhau cạnh nhau, thường nối bằng “như”, “như là”. Nhờ vậy câu văn gợi hình, gợi cảm hơn."
+        "caption": "So sánh đặt hai sự vật có nét giống nhau cạnh nhau, thường nối bằng “như”, “như là”. Nhờ đó người đọc hình dung rõ hơn."
       }
     },
     {
@@ -843,6 +848,11 @@
             }
           ],
           "annotations": [
+            {
+              "sentenceId": "l37-1",
+              "label": "Theo dõi",
+              "text": "Kiên nhẫn: bền bỉ, chịu khó chờ đợi, không vội."
+            },
             {
               "sentenceId": "l37-2",
               "label": "Theo dõi",
@@ -1121,6 +1131,11 @@
               "sentenceId": "l52-3",
               "label": "Theo dõi",
               "text": "Đây là bí mật cáo tặng hoàng tử bé."
+            },
+            {
+              "sentenceId": "l52-4",
+              "label": "Theo dõi",
+              "text": "Cốt lõi: phần chính, quan trọng nhất. Mắt trần: cái nhìn thường, chưa thấu hiểu."
             }
           ]
         },
@@ -1253,7 +1268,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “mái tóc”, “bông hoa”. Từ láy gồm các tiếng giống nhau về âm hoặc vần, như “buồn bã”, “lung linh”."
+              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “tiếng nhạc”, “thời gian”. Từ láy gồm các tiếng giống nhau về âm hoặc vần, như “buồn bã”, “lung linh”."
             },
             {
               "type": "visual",
@@ -1288,7 +1303,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép: các tiếng ghép lại theo nghĩa, như “mái tóc”. Từ láy: các tiếng giống nhau về âm hoặc vần, như “buồn bã”."
+        "caption": "Từ ghép: các tiếng ghép lại theo nghĩa, như “tiếng nhạc”. Từ láy: các tiếng giống nhau về âm hoặc vần, như “buồn bã”."
       }
     },
     {
@@ -1446,12 +1461,12 @@
     },
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.card.nghia-tu",
-      "sourceRef": "SGK tr.24, tr.26",
+      "sourceRef": "SGK tr.22–24, tr.26",
       "conceptIds": [],
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.nghia-tu",
-        "caption": "Cốt lõi là phần chính, quan trọng hơn cả. Mắt trần là cái nhìn thường, chưa gắn bó, thấu hiểu."
+        "caption": "Cốt lõi: phần chính, quan trọng nhất; mắt trần: cái nhìn thường, chưa thấu hiểu. Đơn điệu: lặp lại, buồn chán; kiên nhẫn: bền bỉ, không vội."
       }
     },
     {
@@ -1481,7 +1496,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “mái tóc”, “bông hoa”."
+        "caption": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “tiếng nhạc”, “thời gian”."
       }
     }
   ],
@@ -1799,7 +1814,41 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trong đoạn vừa đọc, hoàng tử bé phải hỏi mấy lần thì cáo mới giải thích từ “cảm hoá”?"
+          "text": "Trong đoạn dưới đây, hoàng tử bé hỏi nghĩa của từ “cảm hoá” mấy lần?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l11-1",
+                  "text": "– “Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l12-1",
+                  "text": "– Bạn không phải người ở đây – con cáo nói – bạn đi tìm gì vậy?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l13-1",
+                  "text": "– Mình đi tìm con người. – Hoàng tử bé nói."
+                },
+                {
+                  "id": "l13-2",
+                  "text": "– “Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            }
+          ],
+          "annotations": []
         }
       ],
       "options": [
@@ -1832,13 +1881,13 @@
           }
         }
       ],
-      "answer": ["ba"],
+      "answer": ["hai"],
       "multiple": false,
       "hints": {
         "highlight": [
           {
-            "target": "block",
-            "index": 0
+            "target": "part",
+            "id": "l11-1"
           }
         ]
       },
@@ -2369,7 +2418,7 @@
           "id": "ca-hai",
           "content": {
             "type": "text",
-            "text": "Vì ở đó không có thợ săn, nhưng cũng không có gà"
+            "text": "Vì ở đó có điều hay, nhưng cũng có điều dở: không có gà"
           }
         },
         {
@@ -3016,18 +3065,18 @@
       "bank": ["như là", "nhưng", "bởi vì"],
       "hints": {
         "highlight": [],
-        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh"
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-cho-trong"
       },
       "difficulty": 1
     },
     {
-      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.noi-phan-so-sanh",
-      "type": "match",
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-so-sanh-voi",
+      "type": "fillBlank",
       "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.so-sanh"],
       "prompt": [
         {
           "type": "note",
-          "text": "Nối mỗi phần của phép so sánh với tên gọi của nó."
+          "text": "Đọc câu của cáo, rồi chọn từ đúng cho chỗ trống."
         },
         {
           "type": "passage",
@@ -3044,73 +3093,22 @@
           "annotations": []
         }
       ],
-      "left": [
+      "segments": [
         {
-          "id": "buoc-chan",
-          "content": {
-            "type": "text",
-            "text": "bước chân của bạn"
-          }
+          "type": "text",
+          "text": "Bước chân của hoàng tử bé được so sánh với "
         },
         {
-          "id": "nhu-la",
-          "content": {
-            "type": "text",
-            "text": "như là"
-          }
-        },
-        {
+          "type": "blank",
           "id": "tieng-nhac",
-          "content": {
-            "type": "text",
-            "text": "tiếng nhạc"
-          }
+          "accept": ["tiếng nhạc"]
+        },
+        {
+          "type": "text",
+          "text": "."
         }
       ],
-      "right": [
-        {
-          "id": "duoc-so-sanh",
-          "content": {
-            "type": "text",
-            "text": "Sự vật được so sánh"
-          }
-        },
-        {
-          "id": "tu-so-sanh",
-          "content": {
-            "type": "text",
-            "text": "Từ so sánh"
-          }
-        },
-        {
-          "id": "dung-de-so-sanh",
-          "content": {
-            "type": "text",
-            "text": "Sự vật dùng để so sánh"
-          }
-        },
-        {
-          "id": "loi-dan",
-          "content": {
-            "type": "text",
-            "text": "Lời dẫn"
-          }
-        }
-      ],
-      "pairs": [
-        {
-          "left": "buoc-chan",
-          "right": "duoc-so-sanh"
-        },
-        {
-          "left": "nhu-la",
-          "right": "tu-so-sanh"
-        },
-        {
-          "left": "tieng-nhac",
-          "right": "dung-de-so-sanh"
-        }
-      ],
+      "bank": ["tiếng nhạc", "cái hang", "lòng đất"],
       "hints": {
         "highlight": [
           {
@@ -3119,7 +3117,7 @@
           }
         ]
       },
-      "difficulty": 3
+      "difficulty": 2
     },
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.ex.bo-so-sanh",
@@ -3312,14 +3310,7 @@
           "id": "ngoi-xa",
           "content": {
             "type": "text",
-            "text": "Ngồi xa cáo một chút, trên cỏ"
-          }
-        },
-        {
-          "id": "im-lang",
-          "content": {
-            "type": "text",
-            "text": "Không nói gì, để cáo liếc nhìn"
+            "text": "Ngồi xa cáo một chút trên cỏ, không nói gì"
           }
         },
         {
@@ -3327,6 +3318,13 @@
           "content": {
             "type": "text",
             "text": "Mỗi ngày ngồi xích lại gần hơn"
+          }
+        },
+        {
+          "id": "cam-hoa-duoc",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé cảm hoá được cáo"
           }
         }
       ],
@@ -3651,6 +3649,28 @@
             }
           ],
           "annotations": []
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-15",
+                  "text": "Nhưng bạn có mái tóc vàng óng."
+                },
+                {
+                  "id": "l31-16",
+                  "text": "Nếu bạn cảm hoá mình thì thật là tuyệt vời!"
+                },
+                {
+                  "id": "l31-17",
+                  "text": "Lúa mì vàng óng ả sẽ làm mình nhớ đến bạn."
+                }
+              ]
+            }
+          ],
+          "annotations": []
         }
       ],
       "options": [
@@ -3658,7 +3678,7 @@
           "id": "toc-vang",
           "content": {
             "type": "text",
-            "text": "Vì màu lúa mì làm cáo nhớ đến mái tóc vàng của bạn"
+            "text": "Vì lúa mì làm cáo nhớ tóc vàng của bạn"
           }
         },
         {
@@ -3666,13 +3686,6 @@
           "content": {
             "type": "text",
             "text": "Vì cáo thích ăn bánh mì"
-          }
-        },
-        {
-          "id": "gio",
-          "content": {
-            "type": "text",
-            "text": "Vì trên đồng lúa mì có nhiều gió"
           }
         },
         {
@@ -3689,7 +3702,7 @@
         "highlight": [
           {
             "target": "part",
-            "id": "l45-1"
+            "id": "l31-17"
           }
         ]
       },
@@ -4475,10 +4488,10 @@
       ],
       "options": [
         {
-          "id": "to-mo",
+          "id": "vui-ve",
           "content": {
             "type": "text",
-            "text": "tò mò"
+            "text": "vui vẻ"
           }
         },
         {
@@ -4503,7 +4516,7 @@
           }
         }
       ],
-      "answer": ["to-mo"],
+      "answer": ["vui-ve"],
       "multiple": false,
       "hints": {
         "highlight": [],
@@ -4526,8 +4539,8 @@
             {
               "sentences": [
                 {
-                  "id": "l32-1",
-                  "text": "Con cáo ngừng lời và nhìn hoàng tử bé chăm chú."
+                  "id": "l22-1",
+                  "text": "Con cáo tỏ ra rất tò mò:"
                 }
               ]
             }
@@ -4537,24 +4550,10 @@
       ],
       "options": [
         {
-          "id": "cham-chu",
+          "id": "to-mo",
           "content": {
             "type": "text",
-            "text": "chăm chú"
-          }
-        },
-        {
-          "id": "ngung-loi",
-          "content": {
-            "type": "text",
-            "text": "ngừng lời"
-          }
-        },
-        {
-          "id": "hoang-tu",
-          "content": {
-            "type": "text",
-            "text": "hoàng tử"
+            "text": "tò mò"
           }
         },
         {
@@ -4563,9 +4562,16 @@
             "type": "text",
             "text": "con cáo"
           }
+        },
+        {
+          "id": "to-ra",
+          "content": {
+            "type": "text",
+            "text": "tỏ ra"
+          }
         }
       ],
-      "answer": ["cham-chu"],
+      "answer": ["to-mo"],
       "multiple": false,
       "hints": {
         "highlight": [],
@@ -4585,10 +4591,10 @@
       ],
       "options": [
         {
-          "id": "canh-dong",
+          "id": "lua-mi",
           "content": {
             "type": "text",
-            "text": "cánh đồng"
+            "text": "lúa mì"
           }
         },
         {
@@ -4606,14 +4612,14 @@
           }
         },
         {
-          "id": "cham-chu",
+          "id": "lang-le",
           "content": {
             "type": "text",
-            "text": "chăm chú"
+            "text": "lặng lẽ"
           }
         }
       ],
-      "answer": ["canh-dong"],
+      "answer": ["lua-mi"],
       "multiple": false,
       "hints": {
         "highlight": [],
@@ -4633,10 +4639,10 @@
       ],
       "options": [
         {
-          "id": "to-mo",
+          "id": "lang-le",
           "content": {
             "type": "text",
-            "text": "tò mò"
+            "text": "lặng lẽ"
           }
         },
         {
@@ -4647,10 +4653,10 @@
           }
         },
         {
-          "id": "bong-hoa",
+          "id": "hoa-hong",
           "content": {
             "type": "text",
-            "text": "bông hoa"
+            "text": "hoa hồng"
           }
         },
         {
@@ -4661,7 +4667,7 @@
           }
         }
       ],
-      "answer": ["to-mo", "gan-gui"],
+      "answer": ["lang-le", "gan-gui"],
       "multiple": true,
       "hints": {
         "highlight": [],
@@ -4682,19 +4688,19 @@
       "segments": [
         {
           "type": "text",
-          "text": "Con cáo tỏ ra rất "
+          "text": "Tiếng gió thổi "
         },
         {
           "type": "blank",
-          "id": "to-mo",
-          "accept": ["tò mò"]
+          "id": "xao-xac",
+          "accept": ["xào xạc"]
         },
         {
           "type": "text",
-          "text": "."
+          "text": " trên đồng lúa mì."
         }
       ],
-      "bank": ["tò mò", "lúa mì", "trái tim"],
+      "bank": ["xào xạc", "trái tim", "hành tinh"],
       "hints": {
         "highlight": [],
         "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
@@ -4734,10 +4740,10 @@
           }
         },
         {
-          "id": "cham-chu",
+          "id": "vui-ve",
           "content": {
             "type": "text",
-            "text": "chăm chú"
+            "text": "vui vẻ"
           }
         }
       ],
@@ -4950,19 +4956,19 @@
           "segments": [
             {
               "type": "text",
-              "text": "Gió thổi trên "
+              "text": "Gió thổi trên đồng "
             },
             {
               "type": "blank",
-              "id": "canh-dong",
-              "accept": ["cánh đồng"]
+              "id": "lua-mi",
+              "accept": ["lúa mì"]
             },
             {
               "type": "text",
               "text": " vàng óng."
             }
           ],
-          "bank": ["cánh đồng", "tò mò", "lặng lẽ"],
+          "bank": ["lúa mì", "tò mò", "lặng lẽ"],
           "hints": {
             "highlight": [],
             "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"

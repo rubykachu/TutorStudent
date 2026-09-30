@@ -492,6 +492,11 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
         (m) => m.SoSanhTacDungTomTat,
       ),
   },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-cho-trong": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.SoSanhChoTrong),
+  },
   "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh": {
     interactive: false,
     load: () =>

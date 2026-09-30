@@ -271,7 +271,8 @@ function ComparisonPart({
   );
 }
 
-// The three named parts of a comparison, e.g. "Mặt trăng … như … quả bóng".
+// The two things set side by side and the word joining them, e.g.
+// "Mặt trăng … như … quả bóng".
 export function ComparisonParts({
   compared,
   word,
@@ -287,11 +288,26 @@ export function ComparisonParts({
         {image}.
       </p>
       <div className="flex flex-wrap items-start justify-center gap-3">
-        <ComparisonPart label="Sự vật được so sánh">{compared}</ComparisonPart>
+        <ComparisonPart label="Sự vật thứ nhất">{compared}</ComparisonPart>
         <ComparisonPart label="Từ so sánh" color={SIMILE_COLOR}>
           {word}
         </ComparisonPart>
-        <ComparisonPart label="Sự vật dùng để so sánh">{image}</ComparisonPart>
+        <ComparisonPart label="Sự vật thứ hai">{image}</ComparisonPart>
+      </div>
+    </Example>
+  );
+}
+
+// Hint: the two things the fox compares, with the joining word left as "?",
+// so the child still has to find the word.
+export function SoSanhChoTrong() {
+  return (
+    <Example>
+      <Label>Từ nào nối hai sự vật có nét giống nhau?</Label>
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        <Chip>bước chân của bạn</Chip>
+        <Chip color={SIMILE_COLOR}>?</Chip>
+        <Chip>tiếng nhạc</Chip>
       </div>
     </Example>
   );
@@ -342,9 +358,10 @@ export function BaiHoc() {
 }
 
 const WORD_MEANINGS = [
-  { word: "cốt lõi", meaning: "phần chính, quan trọng hơn cả" },
+  { word: "cốt lõi", meaning: "phần chính, quan trọng nhất" },
   { word: "mắt trần", meaning: "cái nhìn thường, chưa thấu hiểu" },
   { word: "đơn điệu", meaning: "lặp lại một kiểu, buồn chán" },
+  { word: "kiên nhẫn", meaning: "bền bỉ, chịu khó, không vội" },
 ] as const;
 
 export function NghiaTu() {
@@ -496,7 +513,7 @@ export function TuGhepTuLay() {
         <WordColumn
           title="Từ ghép"
           color={COMPOUND_COLOR}
-          words={[{ parts: ["mái", "tóc"] }, { parts: ["bông", "hoa"] }]}
+          words={[{ parts: ["tiếng", "nhạc"] }, { parts: ["thời", "gian"] }]}
           label="ghép theo nghĩa"
         />
         <WordColumn

@@ -26,7 +26,7 @@ const MOMENTS: readonly Moment[] = [
   },
   {
     words: "Mình được chứ… còn có màu lúa mì.",
-    feeling: "vẫn thấy mình được nhiều",
+    feeling: "vẫn còn màu lúa mì để nhớ bạn",
     mood: "happy",
     level: 0.72,
   },

@@ -19,7 +19,7 @@ const WORDS: readonly { word: string; kind: Kind }[] = [
   { word: "xinh xắn", kind: "lay" },
   { word: "mặt trời", kind: "ghep" },
   { word: "nhỏ nhắn", kind: "lay" },
-  { word: "tiếng nhạc", kind: "ghep" },
+  { word: "bàn ghế", kind: "ghep" },
   { word: "long lanh", kind: "lay" },
 ];
 

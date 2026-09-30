@@ -15,7 +15,7 @@ const IDEAS: readonly Idea[] = [
   {
     icon: <Footprints aria-hidden className="size-8 text-concept-amber" />,
     text: "Bước chân của bạn",
-    label: "sự vật được so sánh",
+    label: "sự vật thứ nhất",
   },
   {
     icon: (
@@ -30,7 +30,7 @@ const IDEAS: readonly Idea[] = [
         nhạc
       </>
     ),
-    label: "sự vật dùng để so sánh",
+    label: "từ so sánh và sự vật thứ hai",
   },
   {
     icon: <Smile aria-hidden className="size-8 text-concept-sky" />,
