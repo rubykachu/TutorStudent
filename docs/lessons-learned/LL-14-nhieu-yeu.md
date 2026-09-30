@@ -8,6 +8,7 @@ Nhiễu không ứng với lỗi thật, khác đáp án ở hình thức (độ
 
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 2: nhiễu trong ngân hàng từ không hợp nghĩa câu; vòng 6: "bí mật" là lựa chọn hai tiếng duy nhất.
 - `thu-tu-thuc-hien-phep-tinh` vòng 1, `ex.chon-dong-dung-1`: giải bằng mẹo "dòng không còn số mũ".
+- `phep-cong-phep-tru` vòng 3 (Nghiêm trọng), `ex.chon-kiem-tra`: nhiễu "53 + 34 = 97" chỉ lệch kết quả đúng (87) một chữ số, nên yếu như một lỗi gõ hơn là một lỗi hiểu sai.
 
 ## Nguyên nhân gốc
 
