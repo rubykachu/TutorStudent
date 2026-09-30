@@ -1,70 +1,36 @@
-# Các mốc sau "Học được"
+# Current state and queue
 
-Tiêu chí hoàn thành của từng mốc nằm ở `docs/spec.md`, mục "Tiêu chí thành công". File này chỉ liệt kê đầu việc để lập plan chi tiết khi bắt đầu mốc (plan chi tiết ghi vào `tasks/`).
+Only what is true now and what comes next. History lives in git and `backlogs/archive/`. Acceptance criteria of each milestone: `docs/spec.md`, "Tiêu chí thành công".
 
-## Go-live
-- Người dùng tạo 2 bucket R2 (private, public), token app + token admin, lifecycle `snapshots/` 180 ngày, CORS bucket public — theo `docs/operations.md` (viết ở mốc này).
-- Sửa hook `~/.claude/hooks/github-identity-guard.sh` để `TutorStudent` dùng `rubykachu` (đưa diff, chờ duyệt).
-- `BlobStore` + adapter R2 + adapter in-memory; `/api/session`, `/api/parent-session`, `/api/sync`; `proxy.ts`; kiểm family/epoch/isAdmin; khoá PIN.
-- Sync engine Dexie ↔ R2 (If-Match / If-None-Match, snapshot, giới hạn 1 MB), hàng đợi đồng bộ, hàm `merge`, chuyển tiến độ theo `retired`.
-- Đo hiệu năng (Lighthouse, Performance trace iPad).
-- `/unlock`, `/install`, PWA `@serwist/turbopack`, precache toàn bộ nội dung.
-- `pnpm admin` + skill `tutor-admin`.
-- Tạo project Vercel (account `rubykachu`), biến môi trường, deploy (hỏi trước).
+## Lessons
 
-## Đủ 3 môn
-- Chờ tài liệu bài Địa lí đầu tiên. TopoJSON ranh giới theo góc nhìn Việt Nam; `tapRegion` trên bản đồ.
-- Trang phụ huynh: ngày học, thời lượng, thẻ hay quên, bài viết, xuất/nhập JSON.
-- `AiReviewer` + adapter Gemini, `/api/feedback`, hạn mức theo gia đình, fallback tự tick.
+Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe/NhaKy/Toan6-tap1.pdf`, printed page = PDF page − 1.
 
-## Kênh nhanh
-- `z.toJSONSchema` → prompt; trang quản trị dán JSON/SVG; validate trước khi lưu; `/api/content` GET/POST/DELETE; DOMPurify client; hiển thị SVG qua `<img>`.
-- `content:check` kéo overlay từ R2; client `safeParse`; skill `content-prompt` (sinh prompt, gom overlay về git).
+| Subject | Lesson (slug) | Status | Narration and video |
+|---|---|---|---|
+| Toán | Bài 1 `tap-hop` | published | done |
+| Toán | Bài 4 `phep-cong-phep-tru` | published | not done |
+| Toán | Bài 5 `phep-nhan-phep-chia` | draft, only in worktree branch `worktree-agent-a36c64bad7802c3d9` (`.claude/worktrees/agent-a36c64bad7802c3d9`) | not done |
+| Toán | Bài 6 `luy-thua` | published | done |
+| Toán | Bài 7 `thu-tu-thuc-hien-phep-tinh` | published | done |
+| Toán | Bài 2, Bài 3 | not started | not done |
+| Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
+| Địa lí | none | waiting for the first textbook pages | not done |
 
-## Video
-Đã xong (chạy trên máy, chưa upload): pipeline `pnpm video:build` (TTS `local` VieNeu "Hải Đăng", kiểm từng câu bằng mlx-whisper, HyperFrames, H.264 720p, phụ đề karaoke WebVTT, clip theo card), player trong bài và nút "Xem lại đoạn video" ở thẻ ôn, skill `lesson-video`, ba video bài Luỹ thừa, lời đọc giới thiệu và video cho Bài 7 (`thu-tu-thuc-hien-phep-tinh`) và Bài 1 (`tap-hop`) (file ở `public/media/`, gitignore). Còn lại:
-- Chốt domain cho bucket media (Cloudflare) hay tạm `r2.dev`.
-- Lúc go-live: upload `public/media/` lên bucket media, CORS, đặt `NEXT_PUBLIC_MEDIA_BASE_URL` (các bước ở skill `lesson-video`, mục "Lên go-live"; hỏi trước khi ghi R2).
-- Quản trị viên nghe duyệt giọng của các video; kiểm tua và phụ đề trên iPad Safari thật.
-- Làm video cho các bài khác khi bài xuất bản, bắt đầu với bài Ngữ văn đầu tiên.
+Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 96) and Bài 5 (17–20, solutions 98–100) use the same source.
 
-## Ý tưởng chờ bàn (chưa chốt)
-- Bài tập bổ trợ ngoài sách giáo khoa cho từng môn, cùng phong cách hướng dẫn và luyện tập. Nhu cầu thực tế: trẻ lớp 6 vẫn sai phép nhân/chia đã học ở tiểu học, không thuộc bài nào của lớp 6. Hướng đã nêu để cân nhắc: mạch "Nền tảng" theo môn (dùng lại toàn bộ hệ thống bài học), bài tập sinh số tự động cho phép tính, bài kiểm tra đầu vào tìm kỹ năng hổng. Chưa quyết cách tổ chức cho các môn khác.
+## Work queue (in order)
 
-## Hàng đợi soạn bài Toán 6 tập 1 (chủ dự án yêu cầu 2026-09-30)
-Nguồn: `/Users/minhtang/Documents/MyLe/NhaKy/Toan6-tap1.pdf` — đây là **Sách bài tập** Toán 6 KNTT tập 1 (có "Kiến thức cần nhớ", ví dụ, đề bài và phần lời giải cuối sách). Trang in = trang PDF − 1.
-Thứ tự: Bài 7 và Bài 1 đã xong (xuất bản, có lời đọc và video, walk 0 lỗi); còn Bài 5, 4, 3, 2 (song song theo worktree). Bài nào cần thì thêm các bước dẫn dắt từ dễ tới khó. Bé đã học hết chương 1, đang ôn tập chương.
-Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ dễ tới khó (kiến thức nền của bài trước được phép, ghi `sourceRef` rõ). Dùng phần lời giải làm đáp án đối chiếu.
+1. Narration and video for Bài 4 `phep-cong-phep-tru` (`pnpm narration:build`, `pnpm video:build`; skill `lesson-video`).
+2. Bài 5 `phep-nhan-phep-chia`: continue from `backlogs/handover-phep-nhan-phep-chia.md`.
+3. Bài 3, then Bài 2 (`lesson-author`, one subagent at a time; add easy-to-hard guiding steps where the workbook is hard).
+4. Remove the remaining `[guides]` warnings of `content:check` (9, in `tap-hop` and `luy-thua`) by adding guide screens; see `backlogs/lesson-tap-hop.md`.
+5. First Địa lí lesson once the owner supplies pages: TopoJSON boundaries from Vietnam's point of view, `tapRegion` on maps.
+6. Go-live: two R2 buckets (private, public), app and admin tokens, `snapshots/` lifecycle 180 days, CORS on the public bucket (`docs/operations.md`, to be written); fix `~/.claude/hooks/github-identity-guard.sh` so `TutorStudent` uses `rubykachu` (show the diff, wait for approval); `BlobStore` with R2 and in-memory adapters; `/api/session`, `/api/parent-session`, `/api/sync`, `proxy.ts`, family/epoch/isAdmin checks, PIN lock; Dexie to R2 sync engine (If-Match, snapshots, 1 MB limit, queue, `merge`, progress migration by `retired`); performance measurement (Lighthouse, iPad trace); `/unlock`, `/install`, PWA with `@serwist/turbopack`, precache of all content; `pnpm admin` and skill `tutor-admin`; Vercel project (account `rubykachu`), env vars, deploy; upload `public/media/` and back up the narration caches (README, "Dọn dẹp và Go-live"). Each write outside this machine needs the owner's go-ahead.
+7. Later: AI feedback for open-ended writing (`AiReviewer` with a Gemini adapter, `/api/feedback`, per-family quota, self-tick fallback); quick-update channel for content (JSON schema to prompt, admin paste page, `/api/content`, overlays from R2).
 
-| Bài | Trang in (đề) | Trang PDF (đề) | Trang in (lời giải) | Trang PDF (lời giải) |
-|---|---|---|---|---|
-| 7. Thứ tự thực hiện các phép tính | 24–26 | 25–27 | 102–103 | 103–104 |
-| 1. Tập hợp | 5–6 | 6–7 | 94 | 95 |
-| 5. Phép nhân và phép chia số tự nhiên | 17–20 | 18–21 | 98–100 | 99–101 |
-| 4. Phép cộng và phép trừ số tự nhiên | 14–16 | 15–17 | 96–98 | 97–99 |
-| 3. Thứ tự trong tập hợp các số tự nhiên | 11–13 | 12–14 | 96 | 97 |
-| 2. Cách ghi số tự nhiên | 7–10 | 8–11 | 94–96 | 95–97 |
+## Open follow-ups
 
-## Trạng thái khi tạm dừng vì hết hạn mức (tối 2026-09-30)
-- Xong hoàn toàn (xuất bản, lời đọc, video, `lesson:walk` 0 lỗi trên ba thiết bị): Bài 1 `tap-hop`, Bài 7 `thu-tu-thuc-hien-phep-tinh` (cùng Luỹ thừa, bài cáo).
-- Bài 5 `phep-nhan-phep-chia`: nhánh `worktree-agent-a36c64bad7802c3d9`, commit "wip: paused…" (đang dựng visual song song).
-- Bài 4 `phep-cong-phep-tru`: nội dung xong, đã review tới vòng 4 (0 Nghiêm trọng), xuất bản, `lesson:walk` 0 lỗi, đã gộp main; còn lời đọc và video.
-- Chưa bắt đầu: Bài 3, Bài 2.
-- Chờ chủ dự án: lệnh `pnpm clean` + chuyển môi trường giọng đọc sang `video/.venv`.
-- Bài 5: visual chia (share, pack, đặt tính chia…) đã xong trong worktree. Việc app cần làm khi tiếp tục: truyền `params` của bài tập xuống visual `manipulate` (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề.
-
-## Hàng đợi (làm lần lượt, mỗi lần một subagent)
-Quy ước: bài nào xong (đã gộp main) thì xoá file handover của bài đó.
-1. (Xong: `video/lib/consistency.ts`, `pnpm video:check`; 11 video đã dựng đều qua kiểm phụ đề; chưa video nào đánh `data-rule-text` vì không video nào hiện nguyên câu quy tắc trên màn.) Thêm kiểm tra tự động vào `video:build` (không tốn token): mỗi câu trong `script.json` phải có trong phụ đề thật (VTT) của video; chữ trên màn cuối/màn quy tắc phải khớp câu quy tắc của bài. Chỉ thêm kiểm tra, không đổi cách dựng hình, giọng, nhịp. Nếu kiểm tra buộc phải đổi gì ảnh hưởng chất lượng video (ví dụ cắt câu, đổi nhịp, bỏ hiệu ứng) thì dừng và báo chủ dự án trước.
-2. (Xong nội dung, review, gộp main: Bài 4 `phep-cong-phep-tru`, có màn hướng dẫn `match`, `manipulate`, `order`.) Việc kế: lời đọc và video của Bài 4.
-3. Bài 5 (theo `backlogs/handover-phep-nhan-phep-chia.md`).
-4. Bài 3, Bài 2.
-5. (Xong: `docs/lessons-learned/` với 19 mục và số đếm từ mọi vòng review; luật `content:check` mới `[check-expr]` theo `check.relation`, `[hint-answer]`, `[color-leak]`, `[guides]`, `[rule-sentence]`, `[textbook-copy]`; `lesson-author`, `lesson-review` đọc và cập nhật kho này.) Khi tiếp tục Bài 4, 5: merge main vào nhánh bài trước, chạy `content:check` với luật mới (câu "chắc chắn sai" của Bài 4 đặt `check: { "expr": …, "relation": "notEqual" }`, đánh `guide` cho màn hướng dẫn, `rule` cho note quy tắc).
-6. Màn hướng dẫn `match`, `order`, `manipulate` cho môn Toán (xem `backlogs/lesson-tap-hop.md`), rồi xoá các cảnh báo `[guides]` còn lại.
-
-## Việc kế tiếp sau Bài 4: lượt dọn dẹp và kiến trúc (chủ dự án đã duyệt)
-1. Cấu hình theo môn vào `content/subjects.json` (màu, icon, ngôn ngữ vi/en, luật áp dụng: tính lại đáp án, văn bản gốc, câu viết đoạn văn); bỏ mọi chỗ viết cứng `math`/`literature`/`geography` trong code; luật tiếng Việt chỉ áp cho môn `vi`. Test.
-2. `pnpm clean` (log, ảnh chụp cũ, coverage, file dựng hình trung gian `renders/`; `--deep` thêm `.next/` khi server không chạy). Chuyển môi trường giọng đọc từ `video/spikes/vieneu/` sang `video/.venv`, xoá mã thử nghiệm.
-3. Cache giọng đọc của video (`video/projects/**/audio/`): không commit git (mỗi video ~16 MB WAV). Giữ trên máy; khi Go-live sao lưu kèm media lên R2 (bucket private) để máy khác dựng lại vẫn dùng đúng bản đọc cũ. Nén cache sang FLAC (không mất chất lượng) nếu giảm được dung lượng. `renders/` là file trung gian, xoá được.
-4. Plan và review đã xong → `backlogs/archive/`; `tasks/` chỉ chứa plan đang làm.
-5. `docs/architecture.md`: bản đồ kiến trúc ngắn gọn để session mới vào việc nhanh (luồng dữ liệu content → emit → app; các module; kiểm tra tự động; pipeline media; nơi lưu tiến độ; quy ước). `CLAUDE.md` trỏ tới file này đầu tiên. README thêm mục "Thêm môn mới" và "Dọn dẹp và Go-live".
+- Non-blocking leftovers per published lesson: `backlogs/lesson-luy-thua.md`, `backlogs/lesson-neu-cau-muon-co-mot-nguoi-ban.md`, `backlogs/lesson-tap-hop.md`, `backlogs/lesson-thu-tu-thuc-hien-phep-tinh.md`.
+- Owner: listen to and approve the voices of the existing videos; check seeking and subtitles on a real iPad Safari; decide the media bucket domain (Cloudflare domain or temporary `r2.dev`).
+- Idea, not decided: supplementary exercises outside the textbook, because the child still makes mistakes on primary-school multiplication and division. Options raised: a per-subject "foundations" strand reusing the lesson system, auto-generated arithmetic drills, an entry test that finds gaps.
