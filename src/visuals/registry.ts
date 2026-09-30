@@ -17,6 +17,25 @@ import {
   solvePowerIs,
 } from "@/visuals/math/luy-thua/validators";
 import {
+  INTERACTIVE_KINDS,
+  LESSON_SLUG as NHAN_CHIA_SLUG,
+  VISUAL_SPECS as NHAN_CHIA_SPECS,
+  mulTableRegions,
+  VALIDATOR_IDS,
+} from "@/visuals/math/phep-nhan-phep-chia/catalog";
+import {
+  solutions as chiaSolutions,
+  validators as chiaValidators,
+} from "@/visuals/math/phep-nhan-phep-chia/validators-chia";
+import {
+  solutions as cotSolutions,
+  validators as cotValidators,
+} from "@/visuals/math/phep-nhan-phep-chia/validators-cot";
+import {
+  solutions as nhanSolutions,
+  validators as nhanValidators,
+} from "@/visuals/math/phep-nhan-phep-chia/validators-nhan";
+import {
   LESSON_SLUG as THU_TU_SLUG,
   VISUAL_SPECS as THU_TU_SPECS,
   tapRegions,
@@ -76,8 +95,46 @@ const thuTuEntries: Record<string, VisualEntry> = Object.fromEntries(
   ]),
 );
 
+const nhanChiaValidators = {
+  ...nhanValidators,
+  ...cotValidators,
+  ...chiaValidators,
+};
+const nhanChiaSolutions = {
+  ...nhanSolutions,
+  ...cotSolutions,
+  ...chiaSolutions,
+};
+
+// Entries of "phep-nhan-phep-chia": one per item of its catalog. Hands-on
+// screens and `manipulate` exercises count as interactive; the `manipulate`
+// kinds carry the validator and solver of their id.
+const nhanChiaEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(NHAN_CHIA_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in VALIDATOR_IDS
+        ? VALIDATOR_IDS[spec.kind as keyof typeof VALIDATOR_IDS]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: INTERACTIVE_KINDS.has(spec.kind),
+      ...(spec.kind === "mulTableTap"
+        ? { regions: mulTableRegions(spec) }
+        : {}),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: nhanChiaValidators[validatorId] },
+            solutions: { [validatorId]: nhanChiaSolutions[validatorId] },
+          }),
+      load: () => lessonExample(NHAN_CHIA_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${NHAN_CHIA_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...thuTuEntries,
+  ...nhanChiaEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -566,6 +623,8 @@ const EXAMPLE_MODULES = lessonModules({
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
   "thu-tu-thuc-hien-phep-tinh": () =>
     import("@/visuals/math/thu-tu-thuc-hien-phep-tinh/examples"),
+  "phep-nhan-phep-chia": () =>
+    import("@/visuals/math/phep-nhan-phep-chia/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });

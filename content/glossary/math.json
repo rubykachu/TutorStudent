@@ -1,29 +1,112 @@
 {
   "terms": [
-    { "term": "luỹ thừa", "forbidden": ["lũy thừa"] },
-    { "term": "cơ số", "forbidden": [], "color": "blue" },
-    { "term": "số mũ", "forbidden": [], "color": "violet" },
-    { "term": "bình phương", "forbidden": [] },
-    { "term": "lập phương", "forbidden": [] },
-    { "term": "thừa số", "forbidden": ["nhân tử"] },
-    { "term": "tích", "forbidden": [] },
-    { "term": "thương", "forbidden": [] },
-    { "term": "số bị chia", "forbidden": [] },
-    { "term": "số chia", "forbidden": [] },
-    { "term": "số hạng", "forbidden": [] },
-    { "term": "tổng", "forbidden": [] },
-    { "term": "hiệu", "forbidden": [] },
-    { "term": "số tự nhiên", "forbidden": [] },
-    { "term": "phép tính làm trước", "forbidden": [], "color": "pink" },
-    { "term": "kết quả", "forbidden": [], "color": "amber" },
-    { "term": "ngoặc tròn", "forbidden": [], "color": "teal" },
-    { "term": "ngoặc vuông", "forbidden": [], "color": "sky" },
-    { "term": "ngoặc nhọn", "forbidden": [], "color": "lime" },
-    { "term": "bảng nhân", "forbidden": [], "prerequisite": "tiểu học" },
+    {
+      "term": "luỹ thừa",
+      "forbidden": [
+        "lũy thừa"
+      ]
+    },
+    {
+      "term": "cơ số",
+      "forbidden": [],
+      "color": "blue"
+    },
+    {
+      "term": "số mũ",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "bình phương",
+      "forbidden": []
+    },
+    {
+      "term": "lập phương",
+      "forbidden": []
+    },
+    {
+      "term": "thừa số",
+      "forbidden": [
+        "nhân tử"
+      ],
+      "color": "blue"
+    },
+    {
+      "term": "tích",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "thương",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "số bị chia",
+      "forbidden": [],
+      "color": "blue"
+    },
+    {
+      "term": "số chia",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "số hạng",
+      "forbidden": []
+    },
+    {
+      "term": "tổng",
+      "forbidden": []
+    },
+    {
+      "term": "hiệu",
+      "forbidden": []
+    },
+    {
+      "term": "số tự nhiên",
+      "forbidden": []
+    },
+    {
+      "term": "phép tính làm trước",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "kết quả",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "ngoặc tròn",
+      "forbidden": [],
+      "color": "teal"
+    },
+    {
+      "term": "ngoặc vuông",
+      "forbidden": [],
+      "color": "sky"
+    },
+    {
+      "term": "ngoặc nhọn",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "bảng nhân",
+      "forbidden": [],
+      "prerequisite": "tiểu học",
+      "color": "violet"
+    },
     {
       "term": "nhân số có hai chữ số",
       "forbidden": [],
       "prerequisite": "tiểu học"
+    },
+    {
+      "term": "số dư",
+      "forbidden": [],
+      "color": "pink"
     }
   ],
   "names": []
