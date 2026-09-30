@@ -24,6 +24,7 @@
     "visual:shot": "tsx scripts/visual-shot.ts",
     "lesson:walk": "tsx scripts/lesson-walk.ts",
     "video:build": "tsx video/build.ts",
+    "narration:build": "tsx video/narration-build.ts",
     "sounds:build": "tsx scripts/sounds-build.ts"
   },
   "dependencies": {
