@@ -1,5 +1,6 @@
 "use client";
 
+import { X } from "lucide-react";
 import { Fragment, type ReactNode } from "react";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -96,11 +97,13 @@ export function Row({
   first,
   hideResult = false,
   unit,
+  tone = "normal",
 }: {
   line: Line;
   first: boolean;
   hideResult?: boolean;
   unit?: number;
+  tone?: "normal" | "wrong";
 }) {
   const { operation } = line;
   return (
@@ -119,11 +122,16 @@ export function Row({
           next={operation && { start: operation.start, end: operation.end }}
           resultIndex={line.resultIndex}
           unit={unit}
+          tone={tone}
         />
       </div>
       {operation && (
         <p className="flex items-center gap-2 font-heading text-block font-semibold">
-          <ConceptMark color={NEXT_OPERATION_COLOR} className="size-4" />
+          {tone === "wrong" ? (
+            <X aria-hidden className="size-4 text-muted-foreground" />
+          ) : (
+            <ConceptMark color={NEXT_OPERATION_COLOR} className="size-4" />
+          )}
           <span>
             <CalcText calc={operation.calculation} hidden={hideResult} />
           </span>
@@ -149,6 +157,7 @@ export function ExprSteps({
   firstAt,
   legend = true,
   unit: unitOverride,
+  tone = "normal",
 }: {
   source: string;
   mode: StepsMode;
@@ -159,6 +168,8 @@ export function ExprSteps({
   firstAt?: number;
   // Text size of each line, where the picture sits in a smaller box.
   unit?: number;
+  // "wrong" greys the working of a mistake.
+  tone?: "normal" | "wrong";
 }) {
   const all = expressionLines(
     source,
@@ -184,6 +195,7 @@ export function ExprSteps({
             line={line}
             first={i === 0}
             unit={unit}
+            tone={tone}
           />
         ))}
         {legend && <Legend />}
@@ -220,6 +232,7 @@ export function ExprSteps({
                     line={line}
                     first={i === 0}
                     unit={rowUnit}
+                    tone={tone}
                     hideResult={hint && i === lines.length - 1}
                   />
                 </Reveal>

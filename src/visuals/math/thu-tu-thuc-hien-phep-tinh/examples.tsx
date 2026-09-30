@@ -5,6 +5,7 @@ import {
   BacUuTien,
   BangDau,
   BangNgoac,
+  BangNhanDong,
   ChiaHoiNguoc,
   DocBieuThuc,
   HoaDonHaiBan,
@@ -15,6 +16,7 @@ import {
   SoSanhThuTu,
   Sticker,
   ThayChu,
+  TimSoChuaBiet,
 } from "./statics";
 import { ExprSteps } from "./steps";
 import { TapFirst } from "./tap-first";
@@ -58,14 +60,17 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
       };
     }
     case "compare": {
-      const { source, wrongAt, wrongSource, wrongLabel } = spec;
+      const { source, wrongAt, wrongSource, leftLabel, wrongLabel, wrongTone } =
+        spec;
       return function Compare() {
         return (
           <SoSanhThuTu
             source={source}
             wrongAt={wrongAt}
             wrongSource={wrongSource}
+            leftLabel={leftLabel}
             wrongLabel={wrongLabel}
+            wrongTone={wrongTone}
           />
         );
       };
@@ -82,6 +87,18 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
       const { factor, digit, mode } = spec;
       return function Split() {
         return <NhanHaiChuSo factor={factor} digit={digit} mode={mode} />;
+      };
+    }
+    case "times": {
+      const { factor, last, mode } = spec;
+      return function Times() {
+        return <BangNhanDong factor={factor} last={last} mode={mode} />;
+      };
+    }
+    case "findx": {
+      const { coef, add, rhs, mode } = spec;
+      return function FindX() {
+        return <TimSoChuaBiet coef={coef} add={add} rhs={rhs} mode={mode} />;
       };
     }
     case "letters": {

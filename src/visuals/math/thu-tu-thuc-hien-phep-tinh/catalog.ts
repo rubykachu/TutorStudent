@@ -17,7 +17,9 @@ export type VisualSpec =
   | {
       kind: "compare";
       source: string;
+      leftLabel: string;
       wrongLabel: string;
+      wrongTone: "wrong" | "normal";
       wrongAt?: number;
       wrongSource?: string;
     }
@@ -30,6 +32,14 @@ export type VisualSpec =
       mode: "still" | "hint";
     }
   | { kind: "split"; factor: number; digit: number; mode: "still" | "hint" }
+  | { kind: "times"; factor: number; last: number; mode: "still" | "hint" }
+  | {
+      kind: "findx";
+      coef: number;
+      add: number;
+      rhs: string;
+      mode: StepsMode;
+    }
   | {
       kind: "letters";
       display: string;
@@ -81,12 +91,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-phep-tinh-hoa-don-goi-y": {
     kind: "steps",
-    source: "3·7+4",
+    source: "4+3·7",
     mode: "hint",
   },
   "chon-phep-tinh-hoa-don-giai": {
     kind: "steps",
-    source: "2·9+3",
+    source: "3+2·9",
     mode: "full",
   },
   "tinh-hoa-don-keo-goi-y": {
@@ -107,11 +117,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "picture",
     picture: "docBieuThuc",
   },
-  "dien-ten-dau-giai": {
-    kind: "steps",
-    source: "12:3+7",
-    mode: "full",
-  },
   "cong-tru-xe-buyt": {
     kind: "steps",
     source: "20-6+5-3",
@@ -120,8 +125,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "cong-tru-so-sanh": {
     kind: "compare",
     source: "10-4+3",
+    leftLabel: "Đúng thứ tự",
+    wrongLabel: "Sai: cộng trước",
+    wrongTone: "wrong",
     wrongAt: 3,
-    wrongLabel: "Cộng trước",
   },
   "cong-tru-tu-lam": {
     kind: "try",
@@ -152,12 +159,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tinh-cong-tru-1-goi-y": {
     kind: "steps",
-    source: "30-8+5-11",
+    source: "30-8+5",
     mode: "hint",
   },
   "tinh-cong-tru-1-giai": {
     kind: "steps",
-    source: "25-9+6-12",
+    source: "24-9+6",
     mode: "full",
   },
   "sap-buoc-cong-tru-goi-y": {
@@ -190,22 +197,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     divisor: 8,
     mode: "still",
   },
-  "nhan-hai-chu-so": {
-    kind: "split",
-    factor: 14,
-    digit: 6,
-    mode: "still",
-  },
   "nhan-7-8-goi-y": {
-    kind: "split",
-    factor: 12,
-    digit: 7,
+    kind: "times",
+    factor: 6,
+    last: 7,
     mode: "hint",
   },
   "nhan-7-8-giai": {
-    kind: "split",
-    factor: 14,
-    digit: 6,
+    kind: "times",
+    factor: 7,
+    last: 8,
     mode: "still",
   },
   "chia-63-9-goi-y": {
@@ -220,6 +221,36 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     divisor: 9,
     mode: "still",
   },
+  "nhan-9-6-goi-y": {
+    kind: "times",
+    factor: 8,
+    last: 7,
+    mode: "hint",
+  },
+  "nhan-9-6-giai": {
+    kind: "times",
+    factor: 9,
+    last: 6,
+    mode: "still",
+  },
+  "nhan-hai-chu-so": {
+    kind: "split",
+    factor: 14,
+    digit: 6,
+    mode: "still",
+  },
+  "nhan-11-7-goi-y": {
+    kind: "split",
+    factor: 12,
+    digit: 7,
+    mode: "hint",
+  },
+  "nhan-11-7-giai": {
+    kind: "split",
+    factor: 11,
+    digit: 7,
+    mode: "still",
+  },
   "nhan-13-4-goi-y": {
     kind: "split",
     factor: 12,
@@ -232,16 +263,42 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     digit: 4,
     mode: "still",
   },
+  "nhan-25-3-goi-y": {
+    kind: "split",
+    factor: 15,
+    digit: 4,
+    mode: "hint",
+  },
+  "nhan-25-3-giai": {
+    kind: "split",
+    factor: 25,
+    digit: 3,
+    mode: "still",
+  },
+  "chon-tach-chuc-goi-y": {
+    kind: "split",
+    factor: 15,
+    digit: 4,
+    mode: "hint",
+  },
+  "chon-tach-chuc-giai": {
+    kind: "split",
+    factor: 26,
+    digit: 3,
+    mode: "still",
+  },
   "nhan-chia-cam": {
     kind: "steps",
-    source: "48:6·2",
+    source: "6·8:4",
     mode: "still",
   },
   "nhan-chia-so-sanh": {
     kind: "compare",
     source: "48:6·2",
+    leftLabel: "Đúng thứ tự",
+    wrongLabel: "Sai: nhân trước",
+    wrongTone: "wrong",
     wrongAt: 3,
-    wrongLabel: "Nhân trước",
   },
   "nhan-chia-tung-buoc": {
     kind: "steps",
@@ -250,25 +307,25 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "nhan-chia-tu-lam": {
     kind: "try",
-    source: "36:4·3",
+    source: "5·6:3",
   },
   "nhan-chia-tom-tat": {
     kind: "steps",
-    source: "64:8·3",
+    source: "56:8·3",
     mode: "still",
   },
   "chon-phep-nhan-chia-hinh": {
     kind: "tap",
-    source: "60:5·3",
+    source: "4·6:3",
   },
   "chon-phep-nhan-chia-goi-y": {
     kind: "steps",
-    source: "42:7·4",
+    source: "5·4:2",
     mode: "hint",
   },
   "chon-phep-nhan-chia-giai": {
     kind: "steps",
-    source: "60:5·3",
+    source: "4·6:3",
     mode: "full",
   },
   "tinh-nhan-chia-1-goi-y": {
@@ -309,8 +366,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "hon-hop-so-sanh": {
     kind: "compare",
     source: "20-4·3",
+    leftLabel: "Đúng thứ tự",
+    wrongLabel: "Sai: trừ trước nhân",
+    wrongTone: "wrong",
     wrongAt: 1,
-    wrongLabel: "Làm từ trái sang",
   },
   "hon-hop-tung-buoc": {
     kind: "steps",
@@ -393,7 +452,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "compare",
     source: "3·(8+4)",
     wrongSource: "3·8+4",
-    wrongLabel: "Bỏ dấu ngoặc",
+    leftLabel: "Có dấu ngoặc",
+    wrongLabel: "Không có dấu ngoặc",
+    wrongTone: "normal",
   },
   "ngoac-tron-tu-lam": {
     kind: "try",
@@ -468,7 +529,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "ngoac-long-tung-buoc": {
     kind: "steps",
-    source: "{2+3·[4+(10-6)]}",
+    source: "{10+2·[5+(3·2)]}",
     mode: "full",
   },
   "ngoac-long-tu-lam": {
@@ -496,17 +557,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tinh-ngoac-long-1-goi-y": {
     kind: "steps",
-    source: "3+[2·(9-5)-2]:3",
+    source: "30-[2·(9-6)]",
     mode: "hint",
   },
   "tinh-ngoac-long-1-giai": {
+    kind: "steps",
+    source: "20-[3·(8-5)]",
+    mode: "full",
+  },
+  "tinh-ngoac-long-3-goi-y": {
+    kind: "steps",
+    source: "3+[2·(9-5)-2]:3",
+    mode: "hint",
+  },
+  "tinh-ngoac-long-3-giai": {
     kind: "steps",
     source: "2+[3·(10-6)-4]:4",
     mode: "full",
   },
   "sap-thu-tu-ngoac-goi-y": {
     kind: "nested",
-    source: "[4+(8-3)]",
+    source: "{1+[4+(8-3)]}",
   },
   "tinh-ngoac-long-2-goi-y": {
     kind: "steps",
@@ -526,8 +597,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "luy-thua-so-sanh": {
     kind: "compare",
     source: "2·3^2",
+    leftLabel: "Đúng thứ tự",
+    wrongLabel: "Sai: nhân 2 · 3 trước",
+    wrongTone: "wrong",
     wrongSource: "6^2",
-    wrongLabel: "Nhân 2 · 3 trước",
   },
   "luy-thua-tung-buoc": {
     kind: "steps",
@@ -715,10 +788,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     source: "2·3^2+4·5-6",
     mode: "full",
   },
-  "tong-hop-ve-phai": {
-    kind: "steps",
-    source: "3·2^2+8",
-    mode: "still",
+  "tong-hop-dong-viet-lai": {
+    kind: "compare",
+    source: "5+3·2",
+    leftLabel: "Đúng thứ tự",
+    wrongLabel: "Sai: cộng trước",
+    wrongTone: "wrong",
+    wrongAt: 1,
   },
   "tong-hop-tom-tat": {
     kind: "steps",
@@ -730,11 +806,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     source: "30-2^3:4",
     mode: "still",
   },
-  "tong-hop-tom-tat-tim-so": {
-    kind: "steps",
-    source: "2·4^2-5",
-    mode: "still",
-  },
   "tinh-day-du-kiem-tra-goi-y": {
     kind: "steps",
     source: "5·10^2+2·10+8",
@@ -743,46 +814,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tinh-day-du-kiem-tra-giai": {
     kind: "steps",
     source: "4·10^2+3·10+6",
-    mode: "full",
-  },
-  "tinh-day-du-1-goi-y": {
-    kind: "steps",
-    source: "2·3^3+5·4-15·3+7",
-    mode: "hint",
-  },
-  "tinh-day-du-1-giai": {
-    kind: "steps",
-    source: "3·2^5+4·5-27·2+9",
-    mode: "full",
-  },
-  "tinh-day-du-2-goi-y": {
-    kind: "steps",
-    source: "40-3·1^7+2·2·4^2",
-    mode: "hint",
-  },
-  "tinh-day-du-2-giai": {
-    kind: "steps",
-    source: "50-4·1^9+2·3·3^2",
-    mode: "full",
-  },
-  "tinh-ngoac-day-du-goi-y": {
-    kind: "steps",
-    source: "3^2+2·{5+3·[2·(6-4)-1]}",
-    mode: "hint",
-  },
-  "tinh-ngoac-day-du-giai": {
-    kind: "steps",
-    source: "2^3+3·{4+2·[5·(7-4)-9]}",
-    mode: "full",
-  },
-  "sap-buoc-day-du-goi-y": {
-    kind: "steps",
-    source: "3·2^3-5·2",
-    mode: "hint",
-  },
-  "sap-buoc-day-du-giai": {
-    kind: "steps",
-    source: "2·3^2-4·2",
     mode: "full",
   },
   "chon-dong-dung-1-goi-y": {
@@ -825,29 +856,101 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     source: "16+6·2^3:4",
     mode: "full",
   },
-  "tim-x-1-goi-y": {
+  "tinh-day-du-1-goi-y": {
     kind: "steps",
-    source: "3·2^2+2·(1+3)",
+    source: "2·3^2+5·4-3·5",
+    mode: "hint",
+  },
+  "tinh-day-du-1-giai": {
+    kind: "steps",
+    source: "3·2^3+4·5-2·6",
+    mode: "full",
+  },
+  "tinh-day-du-2-goi-y": {
+    kind: "steps",
+    source: "40-3·1^7+2·2·4^2",
+    mode: "hint",
+  },
+  "tinh-day-du-2-giai": {
+    kind: "steps",
+    source: "50-4·1^9+2·3·3^2",
+    mode: "full",
+  },
+  "tinh-day-du-3-goi-y": {
+    kind: "steps",
+    source: "2·3^3+5·4-15·3+7",
+    mode: "hint",
+  },
+  "tinh-day-du-3-giai": {
+    kind: "steps",
+    source: "3·2^5+4·5-27·2+9",
+    mode: "full",
+  },
+  "tinh-ngoac-day-du-goi-y": {
+    kind: "steps",
+    source: "3^2+2·{5+3·[2·(6-4)-1]}",
+    mode: "hint",
+  },
+  "tinh-ngoac-day-du-giai": {
+    kind: "steps",
+    source: "2^3+3·{4+2·[5·(7-4)-9]}",
+    mode: "full",
+  },
+  "sap-buoc-day-du-goi-y": {
+    kind: "steps",
+    source: "3·2^3-5",
+    mode: "hint",
+  },
+  "sap-buoc-day-du-giai": {
+    kind: "steps",
+    source: "2·3^2-4",
+    mode: "full",
+  },
+  "tim-so-mua-but": {
+    kind: "findx",
+    coef: 3,
+    add: 5,
+    rhs: "2·4+12",
+    mode: "still",
+  },
+  "tim-x-kiem-tra-giai": {
+    kind: "steps",
+    source: "(19-4):3",
+    mode: "full",
+  },
+  "tim-x-1-goi-y": {
+    kind: "findx",
+    coef: 4,
+    add: 6,
+    rhs: "3·2^2+8",
     mode: "hint",
   },
   "tim-x-1-giai": {
-    kind: "steps",
-    source: "2·3^2+2·(1+4)",
-    mode: "full",
+    kind: "findx",
+    coef: 4,
+    add: 8,
+    rhs: "2·3^2+10",
+    mode: "still",
   },
   "tim-x-2-goi-y": {
-    kind: "steps",
-    source: "4·2^2+9:3",
+    kind: "findx",
+    coef: 4,
+    add: 4,
+    rhs: "4·2^2+9:3",
     mode: "hint",
   },
   "tim-x-2-giai": {
-    kind: "steps",
-    source: "2·3^2+6:3",
-    mode: "full",
+    kind: "findx",
+    coef: 5,
+    add: 5,
+    rhs: "2·3^2+6:3",
+    mode: "still",
   },
   "tim-x-3-giai": {
-    kind: "steps",
-    source: "5·2^2+9:3",
+    kind: "findx",
+    coef: 3,
+    add: 5,
+    rhs: "5·2^2+9:3",
     mode: "still",
   },
   "tim-x-3-goi-y": {

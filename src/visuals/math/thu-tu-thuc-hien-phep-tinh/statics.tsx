@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, BookOpen, Pencil } from "lucide-react";
+import { ArrowDown, BookOpen, Check, Pencil, X } from "lucide-react";
 import type { ReactNode } from "react";
 import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
@@ -14,7 +14,7 @@ import {
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import { BRACKET_COLORS, ExprSvg } from "./expr-svg";
-import { parseExpression } from "./expression";
+import { expressionValue, parseExpression } from "./expression";
 import { ExprSteps, type StepsMode, spokenExpression } from "./steps";
 
 // Hand-drawn pictures of the lesson that are not one expression worked out
@@ -280,6 +280,79 @@ export function NhanHaiChuSo({
   return <Rows rows={rows} hint={hint} />;
 }
 
+// Three neighbouring products of one factor, the last one the question:
+// 7 · 6, 7 · 7, then 7 · 8.
+export function BangNhanDong({
+  factor,
+  last,
+  mode,
+}: {
+  factor: number;
+  last: number;
+  mode: WorkedMode;
+}) {
+  const hint = mode === "hint";
+  const rows: ReactNode[] = [last - 2, last - 1, last].map((k) =>
+    hint && k === last ? (
+      <>
+        {factor} · {k} = <Hole />
+      </>
+    ) : (
+      `${factor} · ${k} = ${factor * k}`
+    ),
+  );
+  return <Rows rows={rows} hint={hint} />;
+}
+
+// Finding the unknown in `coef · x + add = right side`: work the right side
+// first, then undo the addition and the multiplication.
+export function TimSoChuaBiet({
+  coef,
+  add,
+  rhs,
+  mode,
+}: {
+  coef: number;
+  add: number;
+  rhs: string;
+  mode: StepsMode;
+}) {
+  const total = expressionValue(rhs);
+  const product = total - add;
+  const hint = mode === "hint";
+  return (
+    <div className="flex w-full flex-col items-center gap-2">
+      <p className={BIG_LINE}>
+        <span className="italic">
+          {coef}x + {add} = ?
+        </span>
+      </p>
+      <ExprSteps
+        source={rhs}
+        mode={hint ? "hint" : "still"}
+        legend={false}
+        unit={0.56}
+      />
+      {!hint && (
+        <Rows
+          hint={false}
+          rows={[
+            <span key="a" className="italic">
+              {coef}x + {add} = {total}
+            </span>,
+            <span key="b" className="italic">
+              {coef}x = {total} − {add} = {product}
+            </span>,
+            <span key="c" className="italic">
+              x = {product} : {coef} = {product / coef}
+            </span>,
+          ]}
+        />
+      )}
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Order of operations
 
@@ -399,27 +472,38 @@ export function SoSanhThuTu({
   source,
   wrongAt,
   wrongSource,
+  leftLabel,
   wrongLabel,
+  wrongTone,
 }: {
   source: string;
   // Token index of the operation done first against the rules; or
   wrongAt?: number;
-  // a different expression that shows what ignoring a rule gives.
+  // a different expression to set beside the first one.
   wrongSource?: string;
+  leftLabel: string;
   wrongLabel: string;
+  // "wrong" marks the second column as a mistake (grey, with a cross); with
+  // "normal" both columns are right and only differ in the expression.
+  wrongTone: "wrong" | "normal";
 }) {
+  const mistake = wrongTone === "wrong";
   return (
     <div className="grid w-full grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2">
       <Card>
         <p className="flex items-center gap-2 font-heading text-block font-bold">
-          <ConceptMark color="amber" className="size-4" />
-          Đúng thứ tự
+          <Check aria-hidden className="size-5 text-correct" />
+          {leftLabel}
         </p>
         <ExprSteps source={source} mode="still" legend={false} unit={0.55} />
       </Card>
       <Card>
         <p className="flex items-center gap-2 font-heading text-block font-bold">
-          <ConceptMark color="slate" className="size-4" />
+          {mistake ? (
+            <X aria-hidden className="size-5 text-muted-foreground" />
+          ) : (
+            <Check aria-hidden className="size-5 text-correct" />
+          )}
           {wrongLabel}
         </p>
         <ExprSteps
@@ -428,6 +512,7 @@ export function SoSanhThuTu({
           firstAt={wrongAt}
           legend={false}
           unit={0.55}
+          tone={wrongTone}
         />
       </Card>
     </div>
@@ -493,7 +578,7 @@ export function HuongDanChamPhepTinh() {
           unit={0.9}
         />
       </RegionProvider>
-      <p className="text-caption">Vòng đen: phép tính em chọn</p>
+      <p className="text-caption">Vòng đen: phép tính bạn chọn</p>
     </div>
   );
 }

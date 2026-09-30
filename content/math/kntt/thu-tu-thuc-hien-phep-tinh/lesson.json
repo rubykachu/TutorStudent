@@ -9,15 +9,15 @@
   "status": "draft",
   "overview": {
     "hook": {
-      "text": "Nam và Lan cùng tính một hoá đơn: hai vở, mỗi vở tám nghìn đồng, và một bút năm nghìn đồng. Nam ra hai mươi mốt nghìn, Lan ra hai mươi sáu nghìn. Ai tính đúng?",
+      "text": "Nam và Lan cùng tính một hoá đơn nhưng ra hai số khác nhau: ai đúng?",
       "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hoa-don-hai-ban"
     },
-    "summary": "Bài này dạy thứ tự làm các phép tính trong một biểu thức. Bạn sẽ tính khi chỉ có cộng, trừ, khi chỉ có nhân, chia, rồi khi có dấu ngoặc và luỹ thừa.",
+    "summary": "Bài này dạy thứ tự làm các phép tính trong một biểu thức. Bạn sẽ tính khi chỉ có cộng, trừ, khi chỉ có nhân, chia, rồi khi có ngoặc và luỹ thừa. Bạn cũng dùng thứ tự đó để tìm số chưa biết.",
     "goals": [
       "biết phép tính nào làm trước, phép tính nào làm sau",
-      "tính đúng biểu thức có ngoặc tròn, ngoặc vuông, ngoặc nhọn",
-      "tính được biểu thức có luỹ thừa",
-      "tính giá trị biểu thức có chứa chữ"
+      "tính đúng biểu thức có dấu ngoặc và luỹ thừa",
+      "tính giá trị biểu thức có chứa chữ",
+      "tìm số chưa biết trong một đẳng thức"
     ],
     "whyItMatters": "Nhờ có thứ tự chung, ai tính cùng một biểu thức cũng ra cùng một kết quả, nhất là khi tính tiền."
   },
@@ -50,7 +50,12 @@
     {
       "id": "thu-tu-thuc-hien-phep-tinh.concept.bang-nhan",
       "name": "Bảng nhân",
-      "color": "slate"
+      "color": "violet"
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.concept.nhan-hai-chu-so",
+      "name": "Nhân số có hai chữ số",
+      "color": "violet"
     }
   ],
   "sections": [
@@ -99,7 +104,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Phép nhân viết bằng dấu chấm ở giữa hai số. Phép chia viết bằng hai chấm."
+              "text": "Lớp 6 viết phép nhân bằng dấu chấm ở giữa hai số, thay cho dấu ×. Phép chia viết bằng hai chấm."
             },
             {
               "type": "visual",
@@ -112,12 +117,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Đọc biểu thức từ trái sang phải, từng số và từng dấu."
+              "text": "Đọc biểu thức từ trái sang phải, từng số và từng dấu. Đọc theo thứ tự đó, còn tính thì theo quy tắc của bài."
             },
             {
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.doc-bieu-thuc",
-              "caption": "Hoá đơn hai vở ở bài trước viết là 2 · 8 + 5."
+              "caption": "Hoá đơn hai vở ở phần trước viết là 2 · 8 + 5."
             }
           ]
         }
@@ -155,7 +160,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đừng cộng trước: 10 − 4 + 3 thì làm 10 − 4 trước, rồi mới cộng 3."
+              "text": "Cộng không làm trước trừ: dấu nào đứng bên trái thì làm trước. Với 10 − 4 + 3, làm 10 − 4 trước, rồi cộng 3."
             },
             {
               "type": "visual",
@@ -164,22 +169,22 @@
           ]
         },
         {
-          "type": "visual",
-          "visualId": "thu-tu-thuc-hien-phep-tinh.visual.cong-tru-tu-lam",
-          "caption": "Cùng làm: chạm phép tính làm trước, rồi xem kết quả."
-        },
-        {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Bài chạm vùng: chạm vào phép tính em chọn, vòng đen hiện quanh nó. Chạm lần nữa để bỏ chọn, rồi bấm “Kiểm tra”."
+              "text": "Bài chạm vùng: chạm vào phép tính bạn chọn, vòng đen hiện quanh nó. Chạm lần nữa để bỏ chọn, rồi bấm “Kiểm tra”."
             },
             {
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.huong-dan-cham-phep-tinh"
             }
           ]
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-thuc-hien-phep-tinh.visual.cong-tru-tu-lam",
+          "caption": "Cùng làm một biểu thức."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-dau-tien"],
@@ -194,14 +199,14 @@
       "id": "thu-tu-thuc-hien-phep-tinh.section.on-nhan-chia",
       "title": "Ôn lại nhân và chia",
       "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.24",
-      "minutes": 4,
+      "minutes": 3,
       "blocks": [
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Nhân và chia đi cùng nhau: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+              "text": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
             },
             {
               "type": "visual",
@@ -223,7 +228,22 @@
               "caption": "56 cái kẹo chia đều cho 8 bạn: mỗi bạn mấy cái?"
             }
           ]
-        },
+        }
+      ],
+      "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.nhan-7-8"],
+      "practiceIds": ["thu-tu-thuc-hien-phep-tinh.ex.chia-63-9"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-chia-on",
+        "caption": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+      }
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.section.nhan-hai-chu-so",
+      "title": "Nhân số có hai chữ số",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.24",
+      "minutes": 3,
+      "blocks": [
         {
           "type": "group",
           "children": [
@@ -233,17 +253,18 @@
             },
             {
               "type": "visual",
-              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-hai-chu-so"
+              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-hai-chu-so",
+              "caption": "14 hộp bút, mỗi hộp 6 cái bút."
             }
           ]
         }
       ],
-      "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.nhan-7-8"],
-      "practiceIds": ["thu-tu-thuc-hien-phep-tinh.ex.chia-63-9"],
+      "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.nhan-11-7"],
+      "practiceIds": ["thu-tu-thuc-hien-phep-tinh.ex.nhan-13-4"],
       "recap": {
         "type": "visual",
-        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-chia-on",
-        "caption": "Nhân và chia đi cùng nhau: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-hai-chu-so",
+        "caption": "Nhân số có hai chữ số: tách thành chục và đơn vị, nhân từng phần rồi cộng lại."
       }
     },
     {
@@ -262,7 +283,7 @@
             {
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-chia-cam",
-              "caption": "48 quả cam xếp đều vào 6 giỏ, rồi lấy 2 giỏ."
+              "caption": "Mỗi giỏ 6 quả cam, lấy 8 giỏ, rồi chia đều cho 4 bạn."
             }
           ]
         },
@@ -271,7 +292,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhân không làm trước chia: dấu nào đứng bên trái thì làm trước."
+              "text": "Nhân và chia ngang nhau: dấu nào đứng bên trái thì làm trước. Với 48 : 6 · 2, làm 48 : 6 trước."
             },
             {
               "type": "visual",
@@ -287,7 +308,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-chia-tu-lam",
-          "caption": "Cùng làm: chạm phép tính làm trước."
+          "caption": "Cùng làm một biểu thức."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-nhan-chia"],
@@ -339,7 +360,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hon-hop-tu-lam",
-          "caption": "Cùng làm: chạm phép tính làm trước."
+          "caption": "Cùng làm một biểu thức."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-hon-hop"],
@@ -347,7 +368,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hon-hop-bac-uu-tien",
-        "caption": "Nhân, chia làm trước; cộng, trừ làm sau; cùng bậc thì từ trái sang phải."
+        "caption": "Nhân, chia làm trước; cộng, trừ làm sau. Hai phép cùng nhóm thì làm từ trái sang phải."
       }
     },
     {
@@ -366,7 +387,7 @@
             {
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-tron-mua-vo",
-              "caption": "3 vở, mỗi vở 8 nghìn đồng và 4 nghìn đồng tiền bọc."
+              "caption": "3 vở, mỗi vở giá 8 nghìn đồng, thêm 4 nghìn đồng tiền bọc cho mỗi vở."
             }
           ]
         },
@@ -391,7 +412,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-tron-tu-lam",
-          "caption": "Cùng làm: chạm phép tính làm trước."
+          "caption": "Cùng làm một biểu thức."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac"],
@@ -405,9 +426,22 @@
     {
       "id": "thu-tu-thuc-hien-phep-tinh.section.ngoac-long",
       "title": "Ngoặc tròn, ngoặc vuông, ngoặc nhọn",
-      "sourceRef": "Sách bài tập tr.24",
+      "sourceRef": "Sách bài tập tr.24, 26",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Có ba loại ngoặc: ngoặc tròn, ngoặc vuông, ngoặc nhọn. Đọc là “mở ngoặc”, rồi phần bên trong, rồi “đóng ngoặc”."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.bang-ngoac"
+            }
+          ]
+        },
         {
           "type": "group",
           "children": [
@@ -423,27 +457,14 @@
           ]
         },
         {
-          "type": "group",
-          "children": [
-            {
-              "type": "note",
-              "text": "Ngoặc tròn nằm trong cùng, ngoặc vuông bọc ngoài nó, ngoặc nhọn bọc ngoài cùng."
-            },
-            {
-              "type": "visual",
-              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.bang-ngoac"
-            }
-          ]
-        },
-        {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-long-tung-buoc",
-          "caption": "Xem từng bước: ngoặc làm xong thì mất đi."
+          "caption": "Mua 2 phần quà, mỗi phần có hộp bút 5 nghìn đồng và 3 gói kẹo 2 nghìn đồng. Thêm 10 nghìn đồng tiền túi."
         },
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-long-tu-lam",
-          "caption": "Cùng làm: chạm phép tính làm trước."
+          "caption": "Cùng làm một biểu thức."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac-long"],
@@ -470,7 +491,7 @@
             {
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.luy-thua-lat-gach",
-              "caption": "Lát gạch hai phòng vuông cạnh 3 m, thêm 4 viên dự phòng."
+              "caption": "Hai phòng, mỗi phòng 3 hàng gạch, mỗi hàng 3 viên, thêm 4 viên dự phòng."
             }
           ]
         },
@@ -479,7 +500,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Luỹ thừa chỉ tác động lên số ngay bên dưới nó: 2 · 3² là 2 · 9, không phải 6²."
+              "text": "Số mũ chỉ gắn với số đứng ngay bên trái nó: 2 · 3² là 2 · 9, không phải 6²."
             },
             {
               "type": "visual",
@@ -495,7 +516,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.luy-thua-tu-lam",
-          "caption": "Cùng làm: chạm phép tính làm trước."
+          "caption": "Cùng làm một biểu thức."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-luy-thua"],
@@ -531,7 +552,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Giữa số và chữ, hay giữa hai chữ, dấu nhân thường được bỏ đi."
+              "text": "Giữa số và chữ, hay giữa hai chữ, dấu nhân thường được bỏ đi. Vậy 2x là 2 · x, không phải số hai mươi ba khi x bằng 3."
             },
             {
               "type": "visual",
@@ -557,7 +578,7 @@
       "id": "thu-tu-thuc-hien-phep-tinh.section.bai-tap-sach",
       "title": "Bài tập kiểu sách bài tập",
       "sourceRef": "Sách bài tập tr.25–26",
-      "minutes": 6,
+      "minutes": 5,
       "blocks": [
         {
           "type": "group",
@@ -577,12 +598,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Bài toán đời sống cũng theo thứ tự đó. Mua 2 hộp bút, mỗi hộp 3 bút giá 4 nghìn đồng, trả 50 nghìn đồng."
+              "text": "Bài toán đời sống cũng theo thứ tự đó."
             },
             {
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tong-hop-mua-but",
-              "caption": "Tiền thừa là 26 nghìn đồng."
+              "caption": "Mua 2 hộp bút, mỗi hộp 3 cái, mỗi cái 4 nghìn đồng. Đưa 50 nghìn đồng thì còn thừa 26 nghìn đồng."
             }
           ]
         },
@@ -596,26 +617,53 @@
           "children": [
             {
               "type": "note",
-              "text": "Tìm số chưa biết: tính vế đã biết trước, rồi tìm số chưa biết."
+              "text": "Bước đầu đúng là làm đúng phép tính phải làm trước. Làm sai thứ tự thì kết quả khác."
             },
             {
               "type": "visual",
-              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tong-hop-ve-phai",
-              "caption": "Vế phải của 4x + 8 = 3 · 2² + 8."
+              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tong-hop-dong-viet-lai"
             }
           ]
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-kiem-tra"],
       "practiceIds": [
-        "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-1",
         "thu-tu-thuc-hien-phep-tinh.ex.chon-dong-dung-1",
-        "thu-tu-thuc-hien-phep-tinh.ex.tim-x-1"
+        "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-1"
       ],
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tong-hop-bac-uu-tien",
-        "caption": "Thứ tự: ngoặc, luỹ thừa, nhân chia, cộng trừ; cùng bậc thì từ trái sang phải."
+        "caption": "Thứ tự: ngoặc, luỹ thừa, nhân chia, cộng trừ; hai phép cùng nhóm thì từ trái sang phải."
+      }
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.section.tim-so-chua-biet",
+      "title": "Tìm số chưa biết",
+      "sourceRef": "Sách bài tập tr.26, 102",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vế phải là phần bên phải dấu =. Muốn tìm số chưa biết, tính vế phải trước, rồi làm ngược từng bước."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-so-mua-but",
+              "caption": "Mua 3 bút, mỗi bút x nghìn đồng, và 1 sổ 5 nghìn đồng, hết 20 nghìn đồng."
+            }
+          ]
+        }
+      ],
+      "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.tim-x-kiem-tra"],
+      "practiceIds": ["thu-tu-thuc-hien-phep-tinh.ex.tim-x-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-so-mua-but",
+        "caption": "Muốn tìm số chưa biết, tính vế phải trước, rồi làm ngược từng bước."
       }
     }
   ],
@@ -660,7 +708,17 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-chia-on",
-        "caption": "Nhân và chia đi cùng nhau: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+        "caption": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+      }
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.card.nhan-hai-chu-so",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.24",
+      "conceptIds": ["thu-tu-thuc-hien-phep-tinh.concept.nhan-hai-chu-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-hai-chu-so",
+        "caption": "Nhân số có hai chữ số: tách thành chục và đơn vị, nhân từng phần rồi cộng lại."
       }
     },
     {
@@ -680,7 +738,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hon-hop-bac-uu-tien",
-        "caption": "Nhân, chia làm trước; cộng, trừ làm sau; cùng bậc thì từ trái sang phải."
+        "caption": "Nhân, chia làm trước; cộng, trừ làm sau. Hai phép cùng nhóm thì làm từ trái sang phải."
       }
     },
     {
@@ -695,7 +753,7 @@
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.card.ngoac-long",
-      "sourceRef": "Sách bài tập tr.24",
+      "sourceRef": "Sách bài tập tr.24, 26",
       "conceptIds": [
         "thu-tu-thuc-hien-phep-tinh.concept.ngoac-tron",
         "thu-tu-thuc-hien-phep-tinh.concept.ngoac-vuong",
@@ -744,17 +802,17 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tong-hop-tom-tat-chon",
-        "caption": "Dòng viết lại đúng là dòng có bước đầu làm đúng thứ tự."
+        "caption": "Bước đầu đúng là làm đúng phép tính phải làm trước."
       }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.card.tim-so",
-      "sourceRef": "Sách bài tập tr.26",
+      "sourceRef": "Sách bài tập tr.26, 102",
       "conceptIds": ["thu-tu-thuc-hien-phep-tinh.concept.phep-tinh-lam-truoc"],
       "recap": {
         "type": "visual",
-        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tong-hop-tom-tat-tim-so",
-        "caption": "Muốn tìm số chưa biết, hãy tính vế đã biết trước."
+        "visualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-so-mua-but",
+        "caption": "Muốn tìm số chưa biết, tính vế phải trước, rồi làm ngược từng bước."
       }
     }
   ],
@@ -795,7 +853,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "27"
+            "text": "12"
           }
         }
       ],
@@ -824,10 +882,6 @@
         {
           "type": "note",
           "text": "Mua 4 bút, mỗi bút 3 nghìn đồng, và 1 sổ 7 nghìn đồng. Tính số nghìn đồng phải trả."
-        },
-        {
-          "type": "formula",
-          "tex": "\\htmlId{bt}{4 \\cdot 3 + 7}"
         }
       ],
       "answer": {
@@ -840,8 +894,8 @@
       "hints": {
         "highlight": [
           {
-            "target": "part",
-            "id": "bt"
+            "target": "block",
+            "index": 0
           }
         ],
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hoa-don-but-goi-y",
@@ -856,7 +910,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nam mua 2 hộp bút, mỗi hộp 9 nghìn đồng, và 1 thước 3 nghìn đồng. Phép tính nào cho đúng số tiền?"
+          "text": "Nam mua 1 thước 3 nghìn đồng và 2 hộp bút, mỗi hộp 9 nghìn đồng. Phép tính nào cho đúng số tiền?"
         }
       ],
       "options": [
@@ -864,35 +918,35 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 9 + 3"
+            "tex": "3 + 2 \\cdot 9"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "(9 + 3) \\cdot 2"
+            "tex": "(3 + 2) \\cdot 9"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "2 + 9 + 3"
+            "tex": "3 + 2 + 9"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 9 \\cdot 3"
+            "tex": "3 \\cdot 2 \\cdot 9"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "2·9+3"
+        "expr": "3+2·9"
       },
       "hints": {
         "highlight": [
@@ -914,10 +968,6 @@
         {
           "type": "note",
           "text": "Mua 6 gói kẹo, mỗi gói 2 nghìn đồng, và 1 sữa 8 nghìn đồng. Tính số nghìn đồng phải trả."
-        },
-        {
-          "type": "formula",
-          "tex": "\\htmlId{bt}{6 \\cdot 2 + 8}"
         }
       ],
       "answer": {
@@ -930,8 +980,8 @@
       "hints": {
         "highlight": [
           {
-            "target": "part",
-            "id": "bt"
+            "target": "block",
+            "index": 0
           }
         ],
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hoa-don-keo-goi-y",
@@ -946,7 +996,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nối mỗi dấu với tên của nó."
+          "text": "Nối mỗi phép tính với tên dấu của nó."
         }
       ],
       "left": [
@@ -954,28 +1004,28 @@
           "id": "cong",
           "content": {
             "type": "formula",
-            "tex": "+"
+            "tex": "6 + 2"
           }
         },
         {
           "id": "tru",
           "content": {
             "type": "formula",
-            "tex": "-"
+            "tex": "6 - 2"
           }
         },
         {
           "id": "nhan",
           "content": {
             "type": "formula",
-            "tex": "\\cdot"
+            "tex": "6 \\cdot 2"
           }
         },
         {
           "id": "chia",
           "content": {
             "type": "formula",
-            "tex": ":"
+            "tex": "6 : 2"
           }
         }
       ],
@@ -1134,8 +1184,7 @@
             "target": "part",
             "id": "bt"
           }
-        ],
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-ten-dau-giai"
+        ]
       },
       "difficulty": 2
     },
@@ -1261,15 +1310,15 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{bt}{25 - 9 + 6 - 12}"
+          "tex": "\\htmlId{bt}{24 - 9 + 6}"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 10
+        "value": 21
       },
       "check": {
-        "expr": "25-9+6-12"
+        "expr": "24-9+6"
       },
       "hints": {
         "highlight": [
@@ -1446,7 +1495,7 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-13-4",
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-9-6",
       "type": "numeric",
       "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.on-nhan-chia"],
       "prompt": [
@@ -1456,15 +1505,15 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{bt}{13 \\cdot 4}"
+          "tex": "\\htmlId{bt}{9 \\cdot 6}"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 52
+        "value": 54
       },
       "check": {
-        "expr": "13·4"
+        "expr": "9·6"
       },
       "hints": {
         "highlight": [
@@ -1473,8 +1522,8 @@
             "id": "bt"
           }
         ],
-        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-13-4-goi-y",
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-13-4-giai"
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-9-6-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-9-6-giai"
       },
       "difficulty": 2
     },
@@ -1561,6 +1610,216 @@
       "check": {
         "expr": "48:6"
       },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-11-7",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{11 \\cdot 7}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 77
+      },
+      "check": {
+        "expr": "11·7"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-11-7-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-11-7-giai"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-13-4",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{13 \\cdot 4}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 52
+      },
+      "check": {
+        "expr": "13·4"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-13-4-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-13-4-giai"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-25-3",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{25 \\cdot 3}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 75
+      },
+      "check": {
+        "expr": "25·3"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-25-3-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-25-3-giai"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-tach-chuc",
+      "type": "choice",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cách nào tính đúng tích này?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{26 \\cdot 3}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "20 \\cdot 3 + 6 \\cdot 3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "20 \\cdot 3 + 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 3 + 6 \\cdot 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "20 + 6 \\cdot 3"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "26·3"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-tach-chuc-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-tach-chuc-giai"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-tach-chuc",
+      "type": "fillBlank",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "15 · 4 = 10 · 4 + 5 · 4 = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["40"]
+        },
+        {
+          "type": "text",
+          "text": " + "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["20"]
+        },
+        {
+          "type": "text",
+          "text": " = "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["60"]
+        }
+      ],
+      "bank": ["40", "20", "60", "45"],
       "hints": {
         "highlight": [
           {
@@ -1710,7 +1969,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "50"
+            "text": "200"
           }
         },
         {
@@ -1931,7 +2190,7 @@
           "accept": ["18"]
         }
       ],
-      "bank": ["15", "10", "18", "8"],
+      "bank": ["15", "10", "18", "2"],
       "hints": {
         "highlight": [
           {
@@ -2185,6 +2444,39 @@
         },
         {
           "type": "formula",
+          "tex": "\\htmlId{bt}{20 - [3 \\cdot (8 - 5)]}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 11
+      },
+      "check": {
+        "expr": "20-(3·(8-5))"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-1-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-1-giai"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-long-3",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.ngoac-long"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị biểu thức."
+        },
+        {
+          "type": "formula",
           "tex": "\\htmlId{bt}{2 + [3 \\cdot (10 - 6) - 4] : 4}"
         }
       ],
@@ -2202,10 +2494,10 @@
             "id": "bt"
           }
         ],
-        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-1-goi-y",
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-1-giai"
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-3-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-3-giai"
       },
-      "difficulty": 1
+      "difficulty": 2
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.noi-ngoac-voi-ten",
@@ -2768,168 +3060,13 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-1",
-      "type": "numeric",
-      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
-      "prompt": [
-        {
-          "type": "note",
-          "text": "Tính giá trị biểu thức."
-        },
-        {
-          "type": "formula",
-          "tex": "\\htmlId{bt}{3 \\cdot 2^{5} + 4 \\cdot 5 - 27 \\cdot 2 + 9}"
-        }
-      ],
-      "answer": {
-        "kind": "value",
-        "value": 71
-      },
-      "check": {
-        "expr": "3·2^5+4·5-27·2+9"
-      },
-      "hints": {
-        "highlight": [
-          {
-            "target": "part",
-            "id": "bt"
-          }
-        ],
-        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-1-goi-y",
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-1-giai"
-      },
-      "difficulty": 3
-    },
-    {
-      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-2",
-      "type": "numeric",
-      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
-      "prompt": [
-        {
-          "type": "note",
-          "text": "Tính giá trị biểu thức."
-        },
-        {
-          "type": "formula",
-          "tex": "\\htmlId{bt}{50 - 4 \\cdot 1^{9} + 2 \\cdot 3 \\cdot 3^{2}}"
-        }
-      ],
-      "answer": {
-        "kind": "value",
-        "value": 100
-      },
-      "check": {
-        "expr": "50-4·1^9+2·3·3^2"
-      },
-      "hints": {
-        "highlight": [
-          {
-            "target": "part",
-            "id": "bt"
-          }
-        ],
-        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-2-goi-y",
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-2-giai"
-      },
-      "difficulty": 3
-    },
-    {
-      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-day-du",
-      "type": "numeric",
-      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
-      "prompt": [
-        {
-          "type": "note",
-          "text": "Tính giá trị biểu thức."
-        },
-        {
-          "type": "formula",
-          "tex": "\\htmlId{bt}{2^{3} + 3 \\cdot \\{4 + 2 \\cdot [5 \\cdot (7 - 4) - 9]\\}}"
-        }
-      ],
-      "answer": {
-        "kind": "value",
-        "value": 56
-      },
-      "check": {
-        "expr": "2^3+3·(4+2·(5·(7-4)-9))"
-      },
-      "hints": {
-        "highlight": [
-          {
-            "target": "part",
-            "id": "bt"
-          }
-        ],
-        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-day-du-goi-y",
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-day-du-giai"
-      },
-      "difficulty": 3
-    },
-    {
-      "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-day-du",
-      "type": "order",
-      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
-      "prompt": [
-        {
-          "type": "note",
-          "text": "Xếp các bước tính theo đúng thứ tự."
-        },
-        {
-          "type": "formula",
-          "tex": "\\htmlId{bt}{2 \\cdot 3^{2} - 4 \\cdot 2}"
-        }
-      ],
-      "items": [
-        {
-          "id": "b1",
-          "content": {
-            "type": "formula",
-            "tex": "3^{2} = 9"
-          }
-        },
-        {
-          "id": "b2",
-          "content": {
-            "type": "formula",
-            "tex": "2 \\cdot 9 = 18"
-          }
-        },
-        {
-          "id": "b3",
-          "content": {
-            "type": "formula",
-            "tex": "4 \\cdot 2 = 8"
-          }
-        },
-        {
-          "id": "b4",
-          "content": {
-            "type": "formula",
-            "tex": "18 - 8 = 10"
-          }
-        }
-      ],
-      "hints": {
-        "highlight": [
-          {
-            "target": "part",
-            "id": "bt"
-          }
-        ],
-        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-day-du-goi-y",
-        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-day-du-giai"
-      },
-      "difficulty": 3
-    },
-    {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-dong-dung-1",
       "type": "choice",
       "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.chon-dong-dung"],
       "prompt": [
         {
           "type": "note",
-          "text": "Bốn bạn viết dòng thứ hai khi tính biểu thức này. Dòng nào đúng?"
+          "text": "Bốn bạn làm bước đầu tiên của biểu thức này. Bạn nào viết đúng?"
         },
         {
           "type": "formula",
@@ -2962,7 +3099,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "6 + 2 \\cdot 3^{2} : 2"
+            "tex": "6 + 2 \\cdot 6 : 3 - 1"
           }
         }
       ],
@@ -2990,7 +3127,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bốn bạn viết dòng thứ hai khi tính biểu thức này. Dòng nào đúng?"
+          "text": "Bốn bạn làm bước đầu tiên của biểu thức này. Bạn nào viết đúng?"
         },
         {
           "type": "formula",
@@ -3051,7 +3188,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bốn bạn viết dòng thứ hai khi tính biểu thức này. Dòng nào đúng?"
+          "text": "Bốn bạn làm bước đầu tiên của biểu thức này. Bạn nào viết đúng?"
         },
         {
           "type": "formula",
@@ -3112,7 +3249,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bốn bạn viết dòng thứ hai khi tính biểu thức này. Dòng nào đúng?"
+          "text": "Bốn bạn làm bước đầu tiên của biểu thức này. Bạn nào viết đúng?"
         },
         {
           "type": "formula",
@@ -3167,6 +3304,219 @@
       "difficulty": 3
     },
     {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-1",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị biểu thức."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{3 \\cdot 2^{3} + 4 \\cdot 5 - 2 \\cdot 6}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 32
+      },
+      "check": {
+        "expr": "3·2^3+4·5-2·6"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-1-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-1-giai"
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-2",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị biểu thức."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{50 - 4 \\cdot 1^{9} + 2 \\cdot 3 \\cdot 3^{2}}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 100
+      },
+      "check": {
+        "expr": "50-4·1^9+2·3·3^2"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-2-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-2-giai"
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-3",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị biểu thức."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{3 \\cdot 2^{5} + 4 \\cdot 5 - 27 \\cdot 2 + 9}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 71
+      },
+      "check": {
+        "expr": "3·2^5+4·5-27·2+9"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-3-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-3-giai"
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-day-du",
+      "type": "numeric",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị biểu thức."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{2^{3} + 3 \\cdot \\{4 + 2 \\cdot [5 \\cdot (7 - 4) - 9]\\}}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 56
+      },
+      "check": {
+        "expr": "2^3+3·(4+2·(5·(7-4)-9))"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-day-du-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-day-du-giai"
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-day-du",
+      "type": "order",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tinh-day-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tính theo đúng thứ tự."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{2 \\cdot 3^{2} - 4}"
+        }
+      ],
+      "items": [
+        {
+          "id": "b1",
+          "content": {
+            "type": "formula",
+            "tex": "3^{2} = 9"
+          }
+        },
+        {
+          "id": "b2",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 9 = 18"
+          }
+        },
+        {
+          "id": "b3",
+          "content": {
+            "type": "formula",
+            "tex": "18 - 4 = 14"
+          }
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-day-du-goi-y",
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-day-du-giai"
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.ex.tim-x-kiem-tra",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{bt}{3x + 4 = 19}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "(19-4):3"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "bt"
+          }
+        ],
+        "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-kiem-tra-giai"
+      },
+      "difficulty": 1
+    },
+    {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tim-x-1",
       "type": "fillBlank",
       "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.tim-so"],
@@ -3177,13 +3527,13 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{bt}{4x + 8 = 2 \\cdot 3^{2} + 2 \\cdot (1 + 4)}"
+          "tex": "\\htmlId{bt}{4x + 8 = 2 \\cdot 3^{2} + 10}"
         }
       ],
       "segments": [
         {
           "type": "text",
-          "text": "Vế phải: 2 · 3² + 2 · (1 + 4) = "
+          "text": "Vế phải = "
         },
         {
           "type": "blank",
@@ -3192,7 +3542,7 @@
         },
         {
           "type": "text",
-          "text": "; 4x = 28 − 8 = "
+          "text": "; 4x = "
         },
         {
           "type": "blank",
@@ -3201,7 +3551,7 @@
         },
         {
           "type": "text",
-          "text": "; x = 20 : 4 = "
+          "text": "; x = "
         },
         {
           "type": "blank",
@@ -3233,13 +3583,13 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{bt}{6x - 4 = 2 \\cdot 3^{2} + 6 : 3}"
+          "tex": "\\htmlId{bt}{5x + 5 = 2 \\cdot 3^{2} + 6 : 3}"
         }
       ],
       "segments": [
         {
           "type": "text",
-          "text": "Vế phải: 2 · 3² + 6 : 3 = "
+          "text": "Vế phải = "
         },
         {
           "type": "blank",
@@ -3248,24 +3598,24 @@
         },
         {
           "type": "text",
-          "text": "; 6x = 20 + 4 = "
+          "text": "; 5x = "
         },
         {
           "type": "blank",
           "id": "b2",
-          "accept": ["24"]
+          "accept": ["15"]
         },
         {
           "type": "text",
-          "text": "; x = 24 : 6 = "
+          "text": "; x = "
         },
         {
           "type": "blank",
           "id": "b3",
-          "accept": ["4"]
+          "accept": ["3"]
         }
       ],
-      "bank": ["20", "24", "4", "16", "14", "5"],
+      "bank": ["20", "15", "3", "25", "10", "4"],
       "hints": {
         "highlight": [
           {

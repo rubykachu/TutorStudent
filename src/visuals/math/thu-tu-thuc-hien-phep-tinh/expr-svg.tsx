@@ -100,6 +100,9 @@ type ExprSvgProps = {
   resultIndex?: number;
   // Operations become tappable regions `op1`, `op2`, … from left to right.
   tappable?: boolean;
+  // "wrong" draws a line of a mistaken working in neutral grey, so it never
+  // borrows the pink and amber that mean "next" and "result".
+  tone?: "normal" | "wrong";
   unit?: number;
   className?: string;
 };
@@ -112,6 +115,7 @@ export function ExprSvg({
   next,
   resultIndex,
   tappable = false,
+  tone = "normal",
   unit = DEFAULT_UNIT,
   className = "",
 }: ExprSvgProps) {
@@ -203,7 +207,11 @@ export function ExprSvg({
             width={ringTo - ringFrom + 4}
             height={HALF_H * 2 - 4}
             rx={14}
-            className={`${CONCEPT_CLASSES[NEXT_OPERATION_COLOR].stroke} fill-concept-pink/15`}
+            className={
+              tone === "wrong"
+                ? "fill-muted stroke-muted-foreground"
+                : `${CONCEPT_CLASSES[NEXT_OPERATION_COLOR].stroke} fill-concept-pink/15`
+            }
             strokeWidth={4}
           />,
         );
@@ -219,8 +227,12 @@ export function ExprSvg({
     x: number,
   ): { under: ReactNode[]; over: ReactNode[]; width: number } {
     const isResult = index === resultIndex;
+    const resultFill =
+      tone === "wrong"
+        ? "fill-muted-foreground"
+        : CONCEPT_CLASSES[RESULT_COLOR].fill;
     const digitClass = isResult
-      ? `${CONCEPT_CLASSES[RESULT_COLOR].fill} font-heading font-bold`
+      ? `${resultFill} font-heading font-bold`
       : "fill-foreground font-heading font-bold";
     const mark = (w: number) =>
       isResult ? (
@@ -232,7 +244,7 @@ export function ExprSvg({
           width={w - 6}
           height={5}
           rx={2.5}
-          className={CONCEPT_CLASSES[RESULT_COLOR].fill}
+          className={resultFill}
         />
       ) : null;
     if (token.kind === "num") {
