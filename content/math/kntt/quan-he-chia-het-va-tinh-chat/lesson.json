@@ -131,7 +131,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Dấu chia hết đọc là chia hết cho. Gạch chéo qua dấu đó thì đọc là không chia hết cho.",
+              "text": "Dấu chia hết đọc là “chia hết cho”. Gạch chéo qua dấu đó thì đọc là “không chia hết cho”.",
               "rule": true
             },
             {
@@ -159,7 +159,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.ky-hieu-tom-tat",
-        "caption": "Dấu chia hết đọc là chia hết cho. Gạch chéo qua dấu đó thì đọc là không chia hết cho."
+        "caption": "Dấu chia hết đọc là “chia hết cho”. Gạch chéo qua dấu đó thì đọc là “không chia hết cho”."
       }
     },
     {
@@ -196,7 +196,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chia số bị chia cho số chia, được số dư bằng 0 thì chia hết. Ví dụ 52 quyển vở chia đều cho 4 tổ thì mỗi tổ 13 quyển, không thừa quyển nào.",
+              "text": "Chia số bị chia cho số chia, được số dư bằng 0 thì chia hết. Ví dụ 52 quyển vở xếp thành các chồng 4 quyển thì được 13 chồng, không thừa quyển nào.",
               "rule": true
             },
             {
@@ -244,7 +244,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Từ một phép nhân ta tìm được hai ước. Ví dụ 24 = 6 · 4 nên 6 và 4 đều là ước của 24."
+              "text": "Trong một phép nhân, mỗi thừa số là một ước của tích. Ví dụ 24 = 6 · 4 nên 6 và 4 đều là ước của 24."
             },
             {
               "type": "formula",
@@ -270,14 +270,14 @@
         {
           "type": "visual",
           "visualId": "quan-he-chia-het-va-tinh-chat.visual.tim-uoc-12",
-          "caption": "12 cái bánh xếp đều vào các hộp: viết 12 thành tích của hai số theo mọi cách."
+          "caption": "12 cái bánh xếp đều vào các hộp: viết 12 thành tích của hai số theo mọi cách. Hộp đựng 1, 2, 3, 4, 6 hay 12 cái thì 12 cái bánh vừa hết."
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm các ước của một số, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước.",
+              "text": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước.",
               "rule": true
             },
             {
@@ -304,7 +304,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số 1 và chính số đó luôn là ước của số đó."
+              "text": "Mọi số khác 0 đều có ước là 1 và ước là chính nó. Ví dụ 30 có ước 1 và ước 30."
             },
             {
               "type": "formula",
@@ -313,12 +313,12 @@
           ]
         }
       ],
-      "checkIds": ["quan-he-chia-het-va-tinh-chat.ex.chon-uoc-10"],
+      "checkIds": ["quan-he-chia-het-va-tinh-chat.ex.tim-uoc-10"],
       "practiceIds": ["quan-he-chia-het-va-tinh-chat.ex.chon-nhieu-uoc-28"],
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.tim-uoc-tom-tat",
-        "caption": "Muốn tìm các ước của một số, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
+        "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
       }
     },
     {
@@ -337,7 +337,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm các bội khác 0 của một số, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Số 0 cũng là bội của mọi số khác 0.",
+              "text": "Muốn tìm các bội khác 0 của một số khác 0, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Số 0 cũng là bội của mọi số khác 0.",
               "rule": true
             },
             {
@@ -351,6 +351,10 @@
             {
               "type": "formula",
               "tex": "\\concept{violet}{4} \\cdot 3 = \\concept{blue}{12}"
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{violet}{4} \\cdot 0 = \\concept{blue}{0}"
             }
           ]
         },
@@ -386,12 +390,12 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.tim-boi-tom-tat",
-        "caption": "Muốn tìm các bội khác 0 của một số, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Số 0 cũng là bội của mọi số khác 0."
+        "caption": "Muốn tìm các bội khác 0 của một số khác 0, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Số 0 cũng là bội của mọi số khác 0."
       }
     },
     {
       "id": "quan-he-chia-het-va-tinh-chat.section.tong-chia-het",
-      "title": "Tổng các số cùng chia hết",
+      "title": "Tổng các số đều chia hết",
       "sourceRef": "Sách bài tập tr.30, 31",
       "minutes": 5,
       "blocks": [
@@ -419,7 +423,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tổng có ba số hạng cũng vậy. Ví dụ 8, 12 và 20 đều chia hết cho 4 nên tổng của chúng chia hết cho 4."
+              "text": "Tổng ba số hạng cũng vậy: 8, 12 và 20 đều chia hết cho 4 nên tổng chia hết cho 4. Chỉ cần xét từng số hạng, không cần cộng."
             },
             {
               "type": "visual",
@@ -432,11 +436,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Các số hạng đều chia hết cho một số thì không cần cộng vẫn biết tổng chia hết cho số đó. Chỉ cần xét từng số hạng."
+              "text": "Chạm vào các tổng chia hết cho 5. Xét từng số hạng giúp bạn chọn mà không cần cộng."
             },
             {
               "type": "visual",
-              "visualId": "quan-he-chia-het-va-tinh-chat.visual.xet-tung-so-hang"
+              "visualId": "quan-he-chia-het-va-tinh-chat.visual.chon-tong-5"
             }
           ]
         }
@@ -465,7 +469,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tổng có một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó.",
+              "text": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó.",
               "rule": true
             },
             {
@@ -508,26 +512,26 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.tong-khong-tom-tat",
-        "caption": "Tổng có một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
+        "caption": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
       }
     },
     {
       "id": "quan-he-chia-het-va-tinh-chat.section.hieu-chia-het",
-      "title": "Hiệu của hai số cùng chia hết",
+      "title": "Hiệu của hai số đều chia hết",
       "sourceRef": "Sách bài tập tr.30, 31",
       "minutes": 4,
       "blocks": [
         {
           "type": "visual",
-          "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-24-12-6",
-          "caption": "24 cái bánh xếp vừa các túi 6 cái. Ăn mất 12 cái, các túi vẫn đủ 6 cái."
+          "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-36-12-6",
+          "caption": "36 cái bánh xếp vừa các túi 6 cái. Ăn mất 12 cái, các túi vẫn đủ 6 cái."
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Số bị trừ và số trừ cùng chia hết cho một số thì hiệu chia hết cho số đó. Số bị trừ phải lớn hơn hoặc bằng số trừ.",
+              "text": "Nếu số bị trừ và số trừ đều chia hết cho một số thì hiệu chia hết cho số đó. Số bị trừ phải lớn hơn hoặc bằng số trừ.",
               "rule": true
             },
             {
@@ -555,7 +559,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-chia-het-tom-tat",
-        "caption": "Số bị trừ và số trừ cùng chia hết cho một số thì hiệu chia hết cho số đó. Số bị trừ phải lớn hơn hoặc bằng số trừ."
+        "caption": "Nếu số bị trừ và số trừ đều chia hết cho một số thì hiệu chia hết cho số đó. Số bị trừ phải lớn hơn hoặc bằng số trừ."
       }
     },
     {
@@ -567,14 +571,14 @@
         {
           "type": "visual",
           "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-24-10-6",
-          "caption": "24 cái bánh xếp vừa các túi 6 cái. Ăn mất 10 cái, số bánh còn lại có xếp vừa các túi 6 cái không?"
+          "caption": "24 cái bánh xếp vừa các túi 6 cái. Ăn mất 10 cái thì 14 cái bánh còn lại không xếp vừa các túi 6 cái."
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Số bị trừ chia hết cho một số, số trừ không chia hết cho số đó thì hiệu không chia hết cho số đó. Số bị trừ không chia hết, số trừ chia hết cho số đó thì hiệu cũng không chia hết.",
+              "text": "Nếu số bị trừ chia hết cho một số, số trừ không chia hết cho số đó thì hiệu không chia hết cho số đó. Nếu số bị trừ không chia hết, số trừ chia hết cho số đó thì hiệu cũng không chia hết.",
               "rule": true
             },
             {
@@ -604,7 +608,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-khong-tom-tat",
-        "caption": "Số bị trừ chia hết cho một số, số trừ không chia hết cho số đó thì hiệu không chia hết cho số đó. Số bị trừ không chia hết, số trừ chia hết cho số đó thì hiệu cũng không chia hết."
+        "caption": "Nếu số bị trừ chia hết cho một số, số trừ không chia hết cho số đó thì hiệu không chia hết cho số đó. Nếu số bị trừ không chia hết, số trừ chia hết cho số đó thì hiệu cũng không chia hết."
       }
     },
     {
@@ -731,7 +735,7 @@
       "id": "quan-he-chia-het-va-tinh-chat.section.nhom-so-hang",
       "title": "Nhóm các số hạng là luỹ thừa",
       "sourceRef": "Sách bài tập tr.32",
-      "minutes": 4,
+      "minutes": 5,
       "blocks": [
         {
           "type": "group",
@@ -751,7 +755,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhóm hai số hạng cạnh nhau và đặt thừa số chung ra ngoài ngoặc. Mỗi nhóm cùng chia hết cho một số thì cả tổng chia hết cho số đó.",
+              "text": "Nhóm hai số hạng cạnh nhau và đặt thừa số chung ra ngoài ngoặc. Nếu các nhóm đều chia hết cho một số thì cả tổng chia hết cho số đó.",
               "rule": true
             },
             {
@@ -761,6 +765,10 @@
             {
               "type": "formula",
               "tex": "= 5 \\cdot 6"
+            },
+            {
+              "type": "formula",
+              "tex": "(5 + 5^{2}) \\chiahet 6"
             }
           ]
         },
@@ -780,7 +788,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.nhom-so-hang-tom-tat",
-        "caption": "Nhóm hai số hạng cạnh nhau và đặt thừa số chung ra ngoài ngoặc. Mỗi nhóm cùng chia hết cho một số thì cả tổng chia hết cho số đó."
+        "caption": "Nhóm hai số hạng cạnh nhau và đặt thừa số chung ra ngoài ngoặc. Nếu các nhóm đều chia hết cho một số thì cả tổng chia hết cho số đó."
       }
     }
   ],
@@ -809,7 +817,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.ky-hieu-tom-tat",
-        "caption": "Dấu chia hết đọc là chia hết cho. Gạch chéo qua dấu đó thì đọc là không chia hết cho."
+        "caption": "Dấu chia hết đọc là “chia hết cho”. Gạch chéo qua dấu đó thì đọc là “không chia hết cho”."
       }
     },
     {
@@ -845,7 +853,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.tim-uoc-tom-tat",
-        "caption": "Muốn tìm các ước của một số, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
+        "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
       }
     },
     {
@@ -855,7 +863,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.tim-boi-tom-tat",
-        "caption": "Muốn tìm các bội khác 0 của một số, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Số 0 cũng là bội của mọi số khác 0."
+        "caption": "Muốn tìm các bội khác 0 của một số khác 0, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Số 0 cũng là bội của mọi số khác 0."
       }
     },
     {
@@ -881,7 +889,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.tong-khong-tom-tat",
-        "caption": "Tổng có một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
+        "caption": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
       }
     },
     {
@@ -891,7 +899,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-chia-het-tom-tat",
-        "caption": "Số bị trừ và số trừ cùng chia hết cho một số thì hiệu chia hết cho số đó. Số bị trừ phải lớn hơn hoặc bằng số trừ."
+        "caption": "Nếu số bị trừ và số trừ đều chia hết cho một số thì hiệu chia hết cho số đó. Số bị trừ phải lớn hơn hoặc bằng số trừ."
       }
     },
     {
@@ -901,7 +909,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-khong-tom-tat",
-        "caption": "Số bị trừ chia hết cho một số, số trừ không chia hết cho số đó thì hiệu không chia hết cho số đó. Số bị trừ không chia hết, số trừ chia hết cho số đó thì hiệu cũng không chia hết."
+        "caption": "Nếu số bị trừ chia hết cho một số, số trừ không chia hết cho số đó thì hiệu không chia hết cho số đó. Nếu số bị trừ không chia hết, số trừ chia hết cho số đó thì hiệu cũng không chia hết."
       }
     },
     {
@@ -937,7 +945,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quan-he-chia-het-va-tinh-chat.visual.nhom-so-hang-tom-tat",
-        "caption": "Nhóm hai số hạng cạnh nhau và đặt thừa số chung ra ngoài ngoặc. Mỗi nhóm cùng chia hết cho một số thì cả tổng chia hết cho số đó."
+        "caption": "Nhóm hai số hạng cạnh nhau và đặt thừa số chung ra ngoài ngoặc. Nếu các nhóm đều chia hết cho một số thì cả tổng chia hết cho số đó."
       }
     }
   ],
@@ -1014,7 +1022,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.chia-tui-goi-y-17-5",
+        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.chia-tui-goi-y-19-5",
         "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.chia-tui-giai-26-6"
       },
       "difficulty": 1,
@@ -1378,7 +1386,7 @@
           "text": " 7."
         }
       ],
-      "bank": ["chia hết cho", "không chia hết cho", "nhỏ hơn"]
+      "bank": ["chia hết cho", "không chia hết cho", "chia cho"]
     },
     {
       "id": "quan-he-chia-het-va-tinh-chat.ex.noi-doc-30",
@@ -1536,7 +1544,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.dem-cach-goi-y-7-38",
+        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.dem-cach-goi-y-7-37",
         "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.dem-cach-giai-7-59"
       },
       "difficulty": 1,
@@ -1549,13 +1557,13 @@
       }
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.chon-nhieu-chia-het-7",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.chon-nhieu-chia-het-8",
       "type": "choice",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.kiem-tra"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả số chia hết cho 7."
+          "text": "Chọn tất cả số chia hết cho 8."
         }
       ],
       "hints": {
@@ -1572,32 +1580,32 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "35"
+            "text": "32"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "40"
+            "text": "36"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "56"
+            "text": "44"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "60"
+            "text": "48"
           }
         }
       ],
-      "answer": ["a", "c"],
+      "answer": ["a", "d"],
       "multiple": true
     },
     {
@@ -1870,14 +1878,14 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Ước của 7"
+            "text": "Thương của phép chia"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Bội của 7"
+            "text": "Số bị chia"
           }
         }
       ],
@@ -1885,7 +1893,7 @@
       "multiple": false
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.chon-nhieu-uoc-14",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.chon-nhieu-uoc-22",
       "type": "choice",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.uoc-boi"],
       "prompt": [
@@ -1922,7 +1930,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "7"
+            "text": "11"
           }
         },
         {
@@ -1989,7 +1997,7 @@
       "multiple": false
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.chon-uoc-10",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.tim-uoc-10",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
@@ -2332,7 +2340,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "24"
+            "text": "18"
           }
         },
         {
@@ -2632,7 +2640,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "20 + 26"
+            "tex": "27 + 10"
           }
         },
         {
@@ -2647,7 +2655,7 @@
       "multiple": false
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.dien-tong-7",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.dien-tong-4",
       "type": "fillBlank",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-chia-het"],
       "prompt": [
@@ -2783,13 +2791,13 @@
       }
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.du-tong-30-4",
-      "type": "numeric",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.tong-30-4",
+      "type": "choice",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-khong-chia-het"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chia tổng 30 + 4 cho 6. Số dư là mấy?"
+          "text": "Tổng 30 + 4 có chia hết cho 6 không?"
         }
       ],
       "hints": {
@@ -2800,14 +2808,32 @@
           }
         ]
       },
-      "difficulty": 2,
-      "answer": {
-        "kind": "value",
-        "value": 4
-      },
-      "check": {
-        "expr": "30+4-6·5"
-      }
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Không, vì 4 không chia hết cho 6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Có, vì 30 chia hết cho 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Không, vì 30 không chia hết cho 6"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
     },
     {
       "id": "quan-he-chia-het-va-tinh-chat.ex.chon-so-hang-khong-7",
@@ -3121,7 +3147,7 @@
       ],
       "hints": {
         "highlight": [],
-        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-goi-y-20-7"
+        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-goi-y-22-8"
       },
       "difficulty": 2,
       "options": [
@@ -3236,28 +3262,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "63 - 27"
+            "text": "63 − 27"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "72 - 45"
+            "text": "72 − 45"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "45 - 20"
+            "text": "45 − 20"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "90 - 36"
+            "text": "90 − 36"
           }
         }
       ],
@@ -3323,7 +3349,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm số x nhỏ nhất khác 0 để tổng 18 + 24 + x chia hết cho 6."
+          "text": "Tìm số x nhỏ nhất khác 0 để tổng sau chia hết cho 6."
+        },
+        {
+          "type": "formula",
+          "tex": "18 + 24 + x"
         }
       ],
       "hints": {
@@ -3749,7 +3779,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Vì 20 · q chia hết cho 4 và 6 "
+          "text": "Vì 14 · q chia hết cho 7 và 3 "
         },
         {
           "type": "blank",
@@ -3758,7 +3788,7 @@
         },
         {
           "type": "text",
-          "text": " cho 4 nên 20 · q + 6 không chia hết cho 4."
+          "text": " cho 7 nên 14 · q + 3 không chia hết cho 7."
         }
       ],
       "bank": ["không chia hết", "chia hết"]
@@ -3882,7 +3912,7 @@
       ],
       "hints": {
         "highlight": [],
-        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.nhom-goi-y-10"
+        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.nhom-goi-y-2"
       },
       "difficulty": 3,
       "options": [
@@ -3897,7 +3927,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "(3 + 3^{2}) \\chiahet 5"
+            "tex": "(6 + 6^{2}) \\chiahet 5"
           }
         },
         {
@@ -3911,7 +3941,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "(2 + 2^{2}) \\chiahet 5"
+            "tex": "(3^{2} + 3^{3}) \\chiahet 5"
           }
         }
       ],

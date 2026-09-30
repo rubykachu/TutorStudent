@@ -1,6 +1,7 @@
 "use client";
 
 import { Formula } from "@/components/blocks/formula";
+import type { ConceptColor } from "@/schema/content";
 import { Legend } from "@/visuals/shared/math-parts";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
@@ -9,6 +10,7 @@ import { packBags } from "./logic";
 import { BagBox } from "./parts";
 
 type Spec = SpecOf<"sumBars">;
+type LegendEntry = { color: ConceptColor; name: string; outline?: boolean };
 
 const LABELS = {
   plus: ["Số hạng thứ nhất", "Số hạng thứ hai", "Tổng"],
@@ -20,10 +22,12 @@ const LABELS = {
 function BagRow({
   count,
   m,
+  bag,
   gone = 0,
 }: {
   count: number;
   m: number;
+  bag: string;
   gone?: number;
 }) {
   const { bags, left } = packBags(count, m);
@@ -40,7 +44,7 @@ function BagRow({
           tone="bag"
           compact
           gone={goneIn(i, m)}
-          label={`Túi ${i + 1}: ${m} cái`}
+          label={`${capitalize(bag)} ${i + 1}: ${m} cái`}
         />
       ))}
       {left > 0 && (
@@ -57,21 +61,46 @@ function BagRow({
   );
 }
 
+function capitalize(word: string): string {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+// The legend of a picture: one bag, the left-over box only when some group or
+// the result leaves items over, and the taken-away slots for a difference.
+function legendOf(spec: Spec, resultShown: boolean): LegendEntry[] {
+  const { a, b, m, op } = spec;
+  const result = op === "plus" ? a + b : a - b;
+  const hasLeft =
+    a % m !== 0 || b % m !== 0 || (resultShown && result % m !== 0);
+  return [
+    { color: "violet", name: `Một ${spec.bag ?? "túi"} ${m} cái` },
+    ...(hasLeft ? [{ color: "pink" as const, name: "Còn thừa" }] : []),
+    ...(op === "minus"
+      ? [{ color: "blue" as const, name: "Đã bớt", outline: true }]
+      : []),
+  ];
+}
+
 function Operand({
   label,
   count,
   m,
+  bag,
   gone,
+  suffix = "",
 }: {
   label: string;
   count: number;
   m: number;
+  bag: string;
   gone?: number;
+  // Text after the count, e.g. how many bags the result fills.
+  suffix?: string;
 }) {
   return (
     <div className="flex w-full flex-col items-center gap-1">
-      <p className="text-center text-caption font-semibold">{`${label}: ${count}`}</p>
-      <BagRow count={count} m={m} gone={gone} />
+      <p className="text-center text-caption font-semibold">{`${label}: ${count}${suffix}`}</p>
+      <BagRow count={count} m={m} bag={bag} gone={gone} />
     </div>
   );
 }
@@ -97,10 +126,18 @@ function Equations({ spec }: { spec: Spec }) {
         tex={`${paint.a} ${sign} ${paint.b} = ${paint.r}`}
         className="text-body-lg md:text-block"
       />
-      <Formula
-        tex={`${paint.r} ${relation} \\concept{violet}{${m}}`}
-        className="text-body-lg md:text-block"
-      />
+      <div className="flex flex-wrap items-baseline justify-center gap-x-8">
+        <Formula
+          tex={`${paint.r} ${relation} \\concept{violet}{${m}}`}
+          className="text-body-lg md:text-block"
+        />
+        {spec.countBags && (
+          <Formula
+            tex={`${paint.r} : \\concept{violet}{${m}} = ${result / m}`}
+            className="text-body-lg md:text-block"
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -113,14 +150,16 @@ function MinusView({ spec, step }: { spec: Spec; step: number }) {
   const all = mode === "still";
   const taken = all || step >= 1;
   const resultShown = all || (mode !== "hint" && step >= 2);
-  const legend = [
-    { color: "violet", name: `Một túi ${m} cái` },
-    { color: "pink", name: "Còn thừa" },
-    { color: "blue", name: "Đã bớt", outline: true },
-  ] as const;
+  const bag = spec.bag ?? "túi";
   return (
     <div className="flex w-full flex-col items-center gap-2">
-      <Operand label={labels[0]} count={a} m={m} gone={taken ? b : 0} />
+      <Operand
+        label={labels[0]}
+        count={a}
+        m={m}
+        bag={bag}
+        gone={taken ? b : 0}
+      />
       <Reveal
         shown={taken}
         placeholder={
@@ -144,7 +183,7 @@ function MinusView({ spec, step }: { spec: Spec; step: number }) {
       <Reveal shown={resultShown}>
         <Equations spec={spec} />
       </Reveal>
-      <Legend items={legend} />
+      <Legend items={legendOf(spec, resultShown)} />
     </div>
   );
 }
@@ -157,18 +196,15 @@ function SumBarsView({ spec, step }: { spec: Spec; step: number }) {
   const result = a + b;
   const all = mode === "still";
   const resultShown = all || (!hint && step >= 2);
-  const legend = [
-    { color: "violet", name: `Một túi ${m} cái` },
-    { color: "pink", name: "Còn thừa" },
-  ] as const;
+  const bag = spec.bag ?? "túi";
   return (
     <div className="flex w-full flex-col items-center gap-2">
-      <Operand label={labels[0]} count={a} m={m} />
+      <Operand label={labels[0]} count={a} m={m} bag={bag} />
       <Reveal
         shown={all || step >= 1}
-        placeholder={<Operand label={labels[1]} count={b} m={m} />}
+        placeholder={<Operand label={labels[1]} count={b} m={m} bag={bag} />}
       >
-        <Operand label={labels[1]} count={b} m={m} />
+        <Operand label={labels[1]} count={b} m={m} bag={bag} />
       </Reveal>
       <Reveal
         shown={resultShown}
@@ -178,12 +214,18 @@ function SumBarsView({ spec, step }: { spec: Spec; step: number }) {
           </p>
         }
       >
-        <Operand label={labels[2]} count={result} m={m} />
+        <Operand
+          label={labels[2]}
+          count={result}
+          m={m}
+          bag={bag}
+          suffix={spec.countBags ? `, vừa ${result / m} ${bag}` : ""}
+        />
       </Reveal>
       <Reveal shown={resultShown}>
         <Equations spec={spec} />
       </Reveal>
-      <Legend items={legend} />
+      <Legend items={legendOf(spec, resultShown)} />
     </div>
   );
 }

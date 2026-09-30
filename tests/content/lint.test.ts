@@ -710,6 +710,7 @@ describe("check relations", () => {
     expect(truth("(9 + 9^{3}) \\chiahet 5")).toBe(false);
     expect(truth("(3 + 3^{2}) \\khongchiahet 5")).toBe(true);
     expect(truth("7 \\chiahet 0")).toBeUndefined();
+    expect(truth("(3 - 5) \\chiahet 2")).toBeUndefined();
     expect(truth("(7 : 2) \\chiahet 1")).toBeUndefined();
     expect(truth("6 \\chiahet (9 : 6)")).toBeUndefined();
   });

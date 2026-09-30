@@ -79,7 +79,9 @@ export type VisualSpec =
       done?: string;
     }
   // Two groups of items packed into bags of `m`, and their sum or difference
-  // packed the same way.
+  // packed the same way. `bag` names the container ("túi" by default);
+  // `countBags` adds the final line "total : m = number of bags" for a story
+  // that asks how many containers.
   | {
       kind: "sumBars";
       a: number;
@@ -87,6 +89,8 @@ export type VisualSpec =
       m: number;
       op: "plus" | "minus";
       mode: Mode;
+      bag?: string;
+      countBags?: boolean;
     }
   | { kind: "sticker" };
 
@@ -154,9 +158,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { color: "amber", name: "Thương" },
     ],
   },
-  "chia-tui-goi-y-17-5": {
+  "chia-tui-goi-y-19-5": {
     kind: "bags",
-    total: 17,
+    total: 19,
     size: 5,
     thing: "kẹo",
     unit: "cái",
@@ -239,7 +243,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "rows",
     label: "Chia 52 và 53 cho 4 rồi xem số dư",
     rows: [
-      { tex: "52 = 4 \\cdot 13", tag: { text: "số dư 0", color: "teal" } },
+      { tex: "52 : 4 = 13", tag: { text: "số dư 0", color: "teal" } },
+      { tex: "52 = 4 \\cdot 13" },
       { tex: "52 \\chiahet 4" },
       {
         tex: "53 = 4 \\cdot 13 + 1",
@@ -257,11 +262,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "72 \\chiahet 8" },
     ],
   },
-  "dem-cach-goi-y-7-38": {
+  "dem-cach-goi-y-7-37": {
     kind: "hops",
     step: 7,
     limit: 42,
-    target: 38,
+    target: 37,
     mode: "hint",
   },
   "dem-cach-giai-7-59": {
@@ -358,19 +363,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "xet-tung-so-hang": {
-    kind: "lines",
-    label: "Xét từng số hạng của tổng 25 + 35 + 40",
-    mode: "steps",
-    rows: [
-      { tex: "25 \\chiahet 5" },
-      { tex: "35 \\chiahet 5" },
-      { tex: "40 \\chiahet 5" },
-      {
-        tex: "(25 + 35 + 40) \\chiahet 5",
-        tag: { text: "tổng chia hết", color: "teal" },
-      },
-    ],
+  "chon-tong-5": {
+    kind: "chips",
+    items: ["30 + 45", "30 + 12", "20 + 35", "25 + 8"],
+    wants: [0, 2],
+    done: "Xong rồi! 30, 45, 20 và 35 đều chia hết cho 5 nên hai tổng đó chia hết cho 5.",
   },
   "tong-chia-het-tom-tat": {
     kind: "sumBars",
@@ -395,6 +392,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     m: 5,
     op: "plus",
     mode: "steps",
+    bag: "hộp",
+    countBags: true,
   },
   "tong-10-7-5": {
     kind: "sumBars",
@@ -451,17 +450,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "plus",
     mode: "still",
   },
-  "hieu-goi-y-20-7": {
+  "hieu-goi-y-22-8": {
     kind: "sumBars",
-    a: 20,
-    b: 7,
-    m: 5,
+    a: 22,
+    b: 8,
+    m: 4,
     op: "minus",
     mode: "hint",
   },
-  "hieu-24-12-6": {
+  "hieu-36-12-6": {
     kind: "sumBars",
-    a: 24,
+    a: 36,
     b: 12,
     m: 6,
     op: "minus",
@@ -469,12 +468,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hieu-chia-het-ba-dong": {
     kind: "rows",
-    label: "24 và 12 chia hết cho 6 nên hiệu chia hết cho 6",
+    label: "36 và 12 chia hết cho 6 nên hiệu chia hết cho 6",
     rows: [
-      { tex: "24 \\chiahet \\concept{violet}{6}" },
+      { tex: "36 \\chiahet \\concept{violet}{6}" },
       { tex: "12 \\chiahet \\concept{violet}{6}" },
       {
-        tex: "(24 - 12) \\chiahet \\concept{violet}{6}",
+        tex: "(36 - 12) \\chiahet \\concept{violet}{6}",
         tag: { text: "hiệu chia hết", color: "teal" },
       },
     ],
@@ -621,12 +620,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Tổng 18 cộng 24 cộng x chia hết cho 6 khi x chia hết cho 6",
     mode: "steps",
     rows: [
-      { tex: "E = 18 + 24 + x" },
+      { tex: "18 + 24 + x" },
       { tex: "18 \\chiahet 6" },
       { tex: "24 \\chiahet 6" },
       {
         tex: "x \\chiahet 6",
-        tag: { text: "E chia hết cho 6", color: "teal" },
+        tag: { text: "tổng chia hết cho 6", color: "teal" },
+      },
+      {
+        tex: "x = 6",
+        tag: { text: "bội khác 0 nhỏ nhất của 6", color: "blue" },
       },
     ],
   },
@@ -734,7 +737,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       { tex: "5 + 5^{2} + 5^{3} + 5^{4}" },
       { tex: "= (5 + 5^{2}) + (5^{3} + 5^{4})" },
-      { tex: "5^{4} = 5^{3} \\cdot 5" },
+      { tex: "5^{4} = 5^{3} \\cdot 5", aside: true },
       { tex: "= 5 \\cdot (1 + 5) + 5^{3} \\cdot (1 + 5)" },
       { tex: "= 5 \\cdot 6 + 5^{3} \\cdot 6" },
       {
@@ -750,7 +753,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       { tex: "2 + 2^{2} + 2^{3} + 2^{4}" },
       { tex: "= (2 + 2^{2}) + (2^{3} + 2^{4})" },
-      { tex: "2^{4} = 2^{3} \\cdot 2" },
+      { tex: "2^{4} = 2^{3} \\cdot 2", aside: true },
       { tex: "= 2 \\cdot (1 + 2) + 2^{3} \\cdot (1 + 2)" },
       { tex: "= 2 \\cdot 3 + 2^{3} \\cdot 3" },
       {
@@ -772,16 +775,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "nhom-goi-y-10": {
+  "nhom-goi-y-2": {
     kind: "lines",
-    label: "10 cộng 10 bình phương bằng 10 nhân 11",
+    label: "2 bình phương cộng 2 lập phương bằng 2 bình phương nhân 3",
     mode: "hint",
     rows: [
-      { tex: "10 + 10^{2} = 10 \\cdot (1 + 10)" },
-      { tex: "= 10 \\cdot 11" },
+      { tex: "2^{2} + 2^{3} = 2^{2} \\cdot (1 + 2)" },
+      { tex: "= 2^{2} \\cdot 3" },
       {
-        tex: "(10 + 10^{2}) \\chiahet 11",
-        tag: { text: "chia hết cho 11", color: "teal" },
+        tex: "(2^{2} + 2^{3}) \\chiahet 3",
+        tag: { text: "chia hết cho 3", color: "teal" },
       },
     ],
   },

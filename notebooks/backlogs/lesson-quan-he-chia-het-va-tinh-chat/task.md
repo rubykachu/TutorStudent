@@ -45,6 +45,14 @@ Hình: `src/visuals/math/quan-he-chia-het-va-tinh-chat/` (danh mục `catalog.ts
 - Chưa có video, lời đọc hay glossary video nào cần đồng bộ. Glossary môn thêm "chia hết", "ước", "bội".
 - Kiểm: content:check 0 lỗi, visual:shot 152/152 đã xem ảnh, lesson:walk do điều phối chạy.
 
+## Vòng 2 review đã sửa (02/10/2026)
+- Cả 3 Nghiêm trọng, cả 11 Nên sửa và cả 21 Góp ý đã sửa; không bỏ mục nào.
+- Ví dụ 52 quyển vở đổi thành "các chồng 4 quyển thì được 13 chồng" để số chia là số cái trong một nhóm; hình `chia-du-52-4` thêm dòng `52 : 4 = 13` và giữ `52 = 4 · 13`.
+- Quy tắc tìm ước, tìm bội thêm "khác 0"; hai quy tắc tính chất của tổng và hiệu dùng khuôn "Nếu ... thì ..." với chữ "đều" (quy tắc tổng không chia hết phải chia hai câu vì giới hạn 25 âm tiết). Note, recap section, recap card khớp từng chữ.
+- Hình đổi số: gợi ý `chia-tui-goi-y-19-5`, `dem-cach-goi-y-7-37`, `hieu-goi-y-22-8`, `nhom-goi-y-2`; ví dụ hiệu `hieu-36-12-6`. `sumBars` nhận tên hộp/túi (`bag`), thêm dòng "dùng mấy hộp" (`countBags`) và chỉ in "Còn thừa" khi có phần thừa; hình bội tô số 0 cùng màu "Bội"; hàng phụ "vì ..." của `nhom-5-mu`, `nhom-2-mu` vẽ trong khung nét đứt (`aside`).
+- Section `tong-chia-het`: gộp hai màn ví dụ, màn thứ hai thành chip `chon-tong-5`. Lint chia hết trả `undefined` khi một vế âm.
+- Id đã đổi (bài chưa khoá id): `ex.dien-tong-4`, `ex.tim-uoc-10`, `ex.chon-nhieu-uoc-22`, `ex.chon-nhieu-chia-het-8`, `ex.tong-30-4` (nay là câu chọn, không còn hỏi số dư).
+
 ## Để lại
 - Nên sửa 9 (màu Số hạng xanh dương trùng Số bị chia, Tổng cam trùng Thương): màu của "số hạng", "tổng" do glossary môn giữ và bài khác đang dùng; đổi chỉ trong bài này bị lint chặn, đổi glossary ảnh hưởng bài đã xuất bản. Đã sửa phần của bài: hình bước nhảy dùng xanh dương cho số bị chia, chỗ dừng trung tính.
 - Nên sửa 14, riêng section `nhom-so-hang`: không có tình huống đời sống tự nhiên cho việc đặt thừa số chung của luỹ thừa.

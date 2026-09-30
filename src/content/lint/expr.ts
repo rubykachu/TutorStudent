@@ -198,7 +198,11 @@ function divisibilityValue(
   a: number,
   b: number,
 ): boolean | undefined {
-  if (!Number.isInteger(a) || !Number.isInteger(b) || b === 0) return undefined;
+  // Divisibility here is on natural numbers: a negative side (a difference
+  // such as 3 - 5) has no verdict.
+  if (!Number.isInteger(a) || !Number.isInteger(b) || a < 0 || b <= 0) {
+    return undefined;
+  }
   return holds(a, b);
 }
 

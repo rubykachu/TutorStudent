@@ -14,6 +14,9 @@ export type Row = {
   tag?: { text: string; color: ConceptColor };
   // Starts a new group: leaves extra space above the row.
   gapBefore?: boolean;
+  // A side fact that the next row uses ("vì ..."): smaller, in a dashed box,
+  // so it does not read as a link of the chain of equalities.
+  aside?: boolean;
 };
 
 export function TagChip({
@@ -37,6 +40,14 @@ export function TagChip({
 
 // A formula with its tag on the right; the pair wraps on a narrow screen.
 export function FormulaRow({ row }: { row: Row }) {
+  if (row.aside) {
+    return (
+      <div className="mx-auto flex w-fit items-center justify-center gap-2 rounded-xl border-2 border-muted-foreground border-dashed bg-muted px-3 py-1">
+        <span className="text-caption text-muted-foreground">vì</span>
+        <Formula tex={row.tex} className="text-body-lg" />
+      </div>
+    );
+  }
   return (
     <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
       <Formula tex={row.tex} className="text-block md:text-block-lg" />

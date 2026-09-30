@@ -35,6 +35,9 @@ function Line({ spec, jumps }: { spec: Spec; jumps: number }) {
   const x = (value: number) => MARGIN + (value * (WIDTH - 2 * MARGIN)) / end;
   const hint = mode === "hint" && target === undefined;
   const stop = stopColor(spec);
+  // A picture of multiples counts 0 among them (0 is a multiple of every
+  // number); a test of one dividend or a range leaves 0 neutral.
+  const zeroColor = target === undefined && range === undefined ? "blue" : null;
   const inRange = (v: number) =>
     range === undefined || (v > range[0] && v < range[1]);
   return (
@@ -59,17 +62,21 @@ function Line({ spec, jumps }: { spec: Spec; jumps: number }) {
         y={NUMBER_Y}
         textAnchor="middle"
         fontSize={20}
-        className="fill-foreground font-heading font-bold"
+        className={`${zeroColor ? CONCEPT_CLASSES[zeroColor].fill : "fill-foreground"} font-heading font-bold`}
       >
         0
       </text>
-      <circle
-        {...decorative}
-        cx={x(0)}
-        cy={LINE_Y}
-        r={MARK_RADIUS - 1}
-        className="fill-foreground"
-      />
+      {zeroColor ? (
+        <ConceptShape color={zeroColor} cx={x(0)} cy={LINE_Y} r={MARK_RADIUS} />
+      ) : (
+        <circle
+          {...decorative}
+          cx={x(0)}
+          cy={LINE_Y}
+          r={MARK_RADIUS - 1}
+          className="fill-foreground"
+        />
+      )}
       {target !== undefined && (
         <g>
           <line
