@@ -103,6 +103,26 @@
       "prerequisite": "tiểu học"
     },
     {
+      "term": "tổng các số hạng bằng nhau",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "tích riêng",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "số nhớ",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "đặt tính chia",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
       "term": "số bị trừ",
       "forbidden": [],
       "color": "violet"
