@@ -113,7 +113,7 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 
 ```
 .
-├── CLAUDE.md                     # hướng dẫn cho Claude: kiến trúc, quy ước, lệnh
+├── CLAUDE.md                     # lối vào cho Claude: trỏ tới docs/architecture.md và .claude/rules/
 ├── docs/
 │   ├── spec.md                   # tài liệu này
 │   ├── design-system.md          # design token, màu khái niệm, linh vật, component spec
