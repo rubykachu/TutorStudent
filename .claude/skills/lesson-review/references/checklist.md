@@ -24,7 +24,7 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 - Đạt: hỏi "Bạn nhỏ đã làm gì khi thấy chú chim bị thương?", đáp án "Mang chim về băng cánh", căn cứ câu kể việc đó.
 - Câu suy luận (cảm xúc, tính cách nhân vật) đạt khi văn bản có chi tiết dẫn tới kết luận; ghi chi tiết đó vào review.
 
-**Công thức, `recap`, `caption`, chú thích đúng.** Sai toán học hay sai sự thật: Nghiêm trọng. Ví dụ không đạt: recap `2^3 = 6`.
+**Công thức, `recap`, `caption`, `overview`, chú thích đúng.** Sai toán học hay sai sự thật, tóm tắt truyện sai văn bản: Nghiêm trọng. Ví dụ không đạt: recap `2^3 = 6`.
 
 **Rubric `openEnded` làm được ở lớp 6** và khớp đề: yêu cầu quá sức hoặc lệch đề là Nên sửa.
 
@@ -64,7 +64,7 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 
 **Section ngắn, một ý.** `content:check` đã chặn section quá 4 màn hay quá 4 bài tập. Section gộp hai quy tắc cần nhớ riêng (recap phải có hai câu mới đủ), hay `minutes` lệch xa số màn nhân khoảng 40 giây: Nên sửa.
 
-**Người học chậm theo kịp.** Vi phạm một luật trong mục "Sư phạm cho người học chậm" của `.claude/skills/lesson-author/SKILL.md` mà `content:check` không kiểm (ví dụ mẫu trước câu tự làm, dạy thao tác nhập trước lần dùng đầu, câu chuyện có kết, số nhỏ): Nên sửa.
+**Người học chậm theo kịp.** Vi phạm một luật trong mục "Sư phạm cho người học chậm" của `.claude/skills/lesson-author/SKILL.md` mà `content:check` không kiểm (ví dụ mẫu trước câu tự làm, dạy thao tác nhập trước lần dùng đầu, câu chuyện có kết, số nhỏ, `overview` đúng luật, section Toán hay Địa lí thiếu ví dụ đời sống): Nên sửa.
 
 **Video xem được.** Walk báo FAIL ở màn video (thiếu tệp, nút phát nhỏ, không có phụ đề): Nghiêm trọng. Cảnh báo "video did not play here" trên máy không giải mã được H.264 (Chromium của walk): bỏ qua.
 
