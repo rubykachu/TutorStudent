@@ -11,7 +11,8 @@ import {
   Speaker,
 } from "./parts";
 
-// Lines of the first meeting, each hiding its speaker until tapped.
+// Lines of the first meeting, quoted without the narrator's words so the
+// child works out who speaks; each hides its speaker until tapped.
 const LINES: readonly { text: string; who: Character }[] = [
   { text: "Mình ở đây, dưới cây táo…", who: "fox" },
   { text: "Bạn là ai?", who: "prince" },
@@ -49,7 +50,7 @@ export default function AiNoi() {
                 {open ? <Face who={line.who} className="size-10" /> : "?"}
               </span>
               <span className="flex flex-col">
-                <span className="text-body">– {line.text}</span>
+                <span className="text-body">“{line.text}”</span>
                 {open && <Speaker who={line.who} />}
               </span>
             </button>

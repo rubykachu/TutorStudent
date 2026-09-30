@@ -74,7 +74,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 - [x] 14a. Skill `lesson-review` (+ kiểm bằng lỗi cài cố ý, 3 lần)
 - [x] 14. Skill `lesson-author` + `lesson-visual` + `CLAUDE.md`
 - [x] 15. Bài Toán — Luỹ thừa với số mũ tự nhiên
-- [ ] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn (chờ chủ dự án duyệt `source-passage.txt` với ảnh nguồn)
+- [ ] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn: đã soạn bản `draft`, walk 0 FAIL ở 3 khổ; chờ duyệt văn bản (`source-passage.txt` với ảnh nguồn) và ảnh trang "Tri thức tiếng Việt" định nghĩa từ ghép, từ láy (xem `backlogs/lesson-neu-cau-muon-co-mot-nguoi-ban.md`)
 
 **Checkpoint D:** hai bài `published`, `content:check --stats` đạt tiêu chí, `review.md` sạch lỗi Nghiêm trọng; người dùng xem thử trên iPad.
 
