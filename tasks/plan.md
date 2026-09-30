@@ -74,7 +74,7 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 - [x] 14a. Skill `lesson-review` (+ kiểm bằng lỗi cài cố ý, 3 lần)
 - [x] 14. Skill `lesson-author` + `lesson-visual` + `CLAUDE.md`
 - [x] 15. Bài Toán — Luỹ thừa với số mũ tự nhiên
-- [ ] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn: đã soạn bản `draft`, walk 0 FAIL ở 3 khổ; chờ duyệt văn bản (`source-passage.txt` với ảnh nguồn) và ảnh trang "Tri thức tiếng Việt" định nghĩa từ ghép, từ láy (xem `backlogs/lesson-neu-cau-muon-co-mot-nguoi-ban.md`)
+- [x] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn: đã xuất bản 2026-09-30 (văn bản gốc được chủ dự án duyệt với ảnh; từ ghép, từ láy dạy theo luật kiến thức nền tiểu học của glossary); góp ý còn lại ở `backlogs/lesson-neu-cau-muon-co-mot-nguoi-ban.md`
 
 **Checkpoint D:** hai bài `published`, `content:check --stats` đạt tiêu chí, `review.md` sạch lỗi Nghiêm trọng; người dùng xem thử trên iPad.
 
@@ -96,4 +96,4 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 ## Câu hỏi mở
 - Linh vật: mặc định cú — đổi nếu trẻ thích con vật khác.
 - Xuất bản tự động sau review (đã chốt; `REQUIRE_OWNER_APPROVAL` = false).
-- Bản chép văn bản Ngữ văn (`source-passage.txt`) cần người dùng duyệt với ảnh ở task 16.
+- Bản chép văn bản Ngữ văn (`source-passage.txt`) cần người dùng duyệt với ảnh trước khi xuất bản (bài của task 16 đã duyệt 2026-09-30).

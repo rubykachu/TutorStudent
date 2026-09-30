@@ -15,7 +15,7 @@ const KINDS: Readonly<Record<Kind, { name: string; color: ConceptColor }>> = {
 
 // Words outside the exercises, so tapping them never gives an answer away.
 const WORDS: readonly { word: string; kind: Kind }[] = [
-  { word: "bí mật", kind: "ghep" },
+  { word: "cá vàng", kind: "ghep" },
   { word: "xinh xắn", kind: "lay" },
   { word: "mặt trời", kind: "ghep" },
   { word: "nhỏ nhắn", kind: "lay" },

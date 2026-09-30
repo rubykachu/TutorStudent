@@ -6,7 +6,8 @@
   "order": 1,
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "f5ea321993f96251268c3e0d53ed19864383fa6ae3f99fb6bcf3ecf533cc2265",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -1270,7 +1271,7 @@
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.section.tu-ghep-tu-lay",
       "title": "Từ ghép và từ láy",
-      "sourceRef": "SGK tr.26",
+      "sourceRef": "Kiến thức nền (tiểu học); câu 5 tr.26",
       "minutes": 4,
       "blocks": [
         {
@@ -1278,7 +1279,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “lúa mì”, “hoa hồng”. Từ láy gồm các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”, “lung linh”."
+              "text": "Từ ghép gồm hai hoặc nhiều tiếng ghép lại, các tiếng đều có nghĩa, như “lúa mì”, “cánh đồng”. Từ láy gồm các tiếng có âm đầu hoặc vần (hoặc cả tiếng) lặp lại, như “buồn bã”, “lung linh”."
             },
             {
               "type": "visual",
@@ -1300,7 +1301,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép: các tiếng có quan hệ với nhau về nghĩa, như “lúa mì”. Từ láy: các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”."
+        "caption": "Từ ghép: các tiếng đều có nghĩa, như “lúa mì”. Từ láy: các tiếng lặp lại âm đầu, vần hoặc cả tiếng, như “buồn bã”."
       }
     },
     {
@@ -1478,22 +1479,22 @@
     },
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.card.tu-lay",
-      "sourceRef": "SGK tr.26",
+      "sourceRef": "Kiến thức nền (tiểu học); câu 5 tr.26",
       "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.tu-lay"],
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ láy gồm các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”, “lung linh”."
+        "caption": "Từ láy gồm các tiếng có âm đầu hoặc vần (hoặc cả tiếng) lặp lại, như “buồn bã”, “lung linh”."
       }
     },
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep",
-      "sourceRef": "SGK tr.26",
+      "sourceRef": "Kiến thức nền (tiểu học); câu 5 tr.26",
       "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.tu-ghep"],
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “lúa mì”, “hoa hồng”."
+        "caption": "Từ ghép gồm hai hoặc nhiều tiếng ghép lại, các tiếng đều có nghĩa, như “lúa mì”, “cánh đồng”."
       }
     }
   ],
@@ -4409,17 +4410,17 @@
           }
         },
         {
-          "id": "trai-tim",
+          "id": "mai-toc",
           "content": {
             "type": "text",
-            "text": "trái tim"
+            "text": "mái tóc"
           }
         },
         {
-          "id": "hanh-tinh",
+          "id": "buoc-chan",
           "content": {
             "type": "text",
-            "text": "hành tinh"
+            "text": "bước chân"
           }
         }
       ],
@@ -4464,10 +4465,10 @@
           }
         },
         {
-          "id": "con-cao",
+          "id": "rat",
           "content": {
             "type": "text",
-            "text": "con cáo"
+            "text": "rất"
           }
         },
         {
@@ -4498,10 +4499,10 @@
       ],
       "options": [
         {
-          "id": "trai-tim",
+          "id": "mai-toc",
           "content": {
             "type": "text",
-            "text": "trái tim"
+            "text": "mái tóc"
           }
         },
         {
@@ -4526,7 +4527,7 @@
           }
         }
       ],
-      "answer": ["trai-tim"],
+      "answer": ["mai-toc"],
       "multiple": false,
       "hints": {
         "highlight": [],
@@ -4560,17 +4561,17 @@
           }
         },
         {
-          "id": "hoa-hong",
+          "id": "canh-dong",
           "content": {
             "type": "text",
-            "text": "hoa hồng"
+            "text": "cánh đồng"
           }
         },
         {
-          "id": "thoi-gian",
+          "id": "xe-dap",
           "content": {
             "type": "text",
-            "text": "thời gian"
+            "text": "xe đạp"
           }
         }
       ],
@@ -4635,17 +4636,17 @@
       ],
       "options": [
         {
-          "id": "hanh-tinh",
+          "id": "buoc-chan",
           "content": {
             "type": "text",
-            "text": "hành tinh"
+            "text": "bước chân"
           }
         },
         {
-          "id": "thoi-gian",
+          "id": "xe-dap",
           "content": {
             "type": "text",
-            "text": "thời gian"
+            "text": "xe đạp"
           }
         },
         {
@@ -4663,7 +4664,7 @@
           }
         }
       ],
-      "answer": ["hanh-tinh", "thoi-gian"],
+      "answer": ["buoc-chan", "xe-dap"],
       "multiple": true,
       "hints": {
         "highlight": [],

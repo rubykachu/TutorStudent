@@ -468,8 +468,8 @@ export function TuGhepTuLay() {
         <WordColumn
           title="Từ ghép"
           color={COMPOUND_COLOR}
-          words={[{ parts: ["lúa", "mì"] }, { parts: ["hoa", "hồng"] }]}
-          label="các tiếng có quan hệ về nghĩa"
+          words={[{ parts: ["lúa", "mì"] }, { parts: ["cánh", "đồng"] }]}
+          label="các tiếng đều có nghĩa"
         />
         <WordColumn
           title="Từ láy"
@@ -478,7 +478,7 @@ export function TuGhepTuLay() {
             { parts: ["buồn", "bã"], sound: { at: "start", length: 1 } },
             { parts: ["lung", "linh"], sound: { at: "start", length: 1 } },
           ]}
-          label="giống âm đầu hoặc vần"
+          label="lặp lại âm đầu, vần hoặc cả tiếng"
         />
       </div>
     </Example>
@@ -497,7 +497,7 @@ export function GoiYTuLay() {
           { parts: ["xinh", "xắn"], sound: { at: "start", length: 1 } },
           { parts: ["bồi", "hồi"], sound: { at: "end", length: 2 } },
         ]}
-        label="hai tiếng giống âm đầu hoặc vần"
+        label="lặp lại âm đầu, vần hoặc cả tiếng"
       />
     </Example>
   );
@@ -511,7 +511,7 @@ export function GoiYTuGhep() {
         title="Từ ghép"
         color={COMPOUND_COLOR}
         words={[{ parts: ["sân", "trường"] }, { parts: ["bút", "chì"] }]}
-        label="các tiếng có quan hệ về nghĩa"
+        label="các tiếng đều có nghĩa"
       />
     </Example>
   );
