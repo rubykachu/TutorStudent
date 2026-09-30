@@ -14,9 +14,11 @@ const MIN_TOUCH_PX = 48;
 // Sub-pixel layout can put a 48px box at 47.99px.
 const ROUNDING_PX = 0.5;
 
-// Every visible interactive element is at least 48×48. Sentences tapped
-// inside running text are the design-system exception: they wrap like prose,
-// so each of their lines must be at least 48px tall instead.
+// Every visible interactive element is at least 48×48. Two design-system
+// exceptions: sentences tapped inside running text wrap like prose, so each
+// of their lines must be at least 48px tall instead; the progress dots of a
+// player share one row, so they are 48px tall and only as wide as the row
+// allows.
 export async function expectTouchTargets(page: Page) {
   const { checked, tooSmall } = await page.evaluate(
     ({ min }) => {
@@ -38,7 +40,9 @@ export async function expectTouchTargets(page: Page) {
           .filter(({ el, box }) =>
             el.hasAttribute("data-sentence")
               ? Number.parseFloat(getComputedStyle(el).lineHeight) < min
-              : box.width < min || box.height < min,
+              : el.hasAttribute("data-step-dot")
+                ? box.height < min
+                : box.width < min || box.height < min,
           )
           .map(
             ({ el, box }) =>
@@ -158,7 +162,10 @@ export async function controlSpacingProblems(page: Page): Promise<string[]> {
           el.outerHTML
         ).slice(0, 40);
       const controls = [...document.querySelectorAll(selector)]
+        // Sentences in running text and the row of progress dots keep their
+        // own spacing (see `expectTouchTargets`).
         .filter((el) => !el.closest("[data-sentence-id], [data-passage]"))
+        .filter((el) => !el.hasAttribute("data-step-dot"))
         .filter(
           (el) =>
             ![...document.querySelectorAll(selector)].some(

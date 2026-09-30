@@ -155,7 +155,9 @@ function renderExerciseOwl(expression: MascotExpression): ReactNode {
 type Tone = "idle" | "selected" | "retry" | "correct";
 
 const TONE_CLASSES: Record<Tone, string> = {
-  idle: "border-2 border-border bg-surface",
+  // Every tone has the same border width, so content never shifts when the
+  // card turns from idle to selected.
+  idle: "border-3 border-border bg-surface",
   selected: "border-3 border-primary bg-surface",
   // Dashed so "try again" never rests on colour alone.
   retry: "border-3 border-dashed border-retry bg-retry-soft",

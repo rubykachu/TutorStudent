@@ -247,7 +247,9 @@ function BankBlank({
         className={`inline-grid h-12 min-w-20 items-center justify-items-center rounded-sm px-5 font-semibold ${blankTone(text, reveal, wrong)} ${isOver ? "outline-3 outline-primary" : ""}`}
       >
         <span className="col-start-1 row-start-1 whitespace-nowrap">
-          <RichText text={text} />
+          {/* An empty blank still holds a (zero-width) character, so the
+              button sits on the same baseline filled or not. */}
+          {text === "" ? "\u200B" : <RichText text={text} />}
         </span>
         {bank.map((word, index) => (
           <span

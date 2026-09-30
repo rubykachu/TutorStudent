@@ -9,6 +9,9 @@ type SectionStepperProps = {
   onSelect?: (index: number) => void;
 };
 
+// Room around each dot: the gap between dots and the width of its hit area.
+const DOT_PAD = "px-[3px] md:px-1.5";
+
 const DOT =
   "h-3 min-w-1.5 rounded-full motion-safe:transition-all motion-safe:duration-300";
 
@@ -31,7 +34,7 @@ export function SectionStepper({
 }: SectionStepperProps) {
   return (
     <div
-      className="flex min-w-0 flex-1 items-center gap-1.5 md:gap-2"
+      className="flex min-w-0 flex-1 items-center"
       data-section-stepper
       data-current={current}
     >
@@ -45,8 +48,10 @@ export function SectionStepper({
               // biome-ignore lint/suspicious/noArrayIndexKey: static list
               key={index}
               aria-hidden
-              className={`${DOT} ${dotTone(index, current)}`}
-            />
+              className={`flex ${DOT_PAD}`}
+            >
+              <span className={`${DOT} ${dotTone(index, current)}`} />
+            </span>
           );
         }
         return (
@@ -58,8 +63,9 @@ export function SectionStepper({
             aria-label={label}
             aria-current={index === current ? "step" : undefined}
             onClick={() => onSelect(index)}
-            // A tall hit area around the small dot keeps it easy to tap.
-            className="group relative -mx-0.5 flex h-12 items-center px-0.5"
+            // A 48px tall hit area around the small dot, as wide as the row
+            // allows, keeps it easy to tap.
+            className={`group relative flex h-12 min-w-0 items-center ${DOT_PAD}`}
           >
             <span aria-hidden className={`${DOT} ${dotTone(index, current)}`} />
             <span
