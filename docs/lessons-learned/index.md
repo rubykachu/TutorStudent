@@ -37,24 +37,24 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 01/10/2026 của 6 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 01/10/2026 của 6 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
 | LL-10 | 1 | 17 | 16 | 34 |
 | LL-19 | 1 | 8 | 24 | 33 |
+| LL-12 | 1 | 11 | 21 | 33 |
 | LL-07 | 1 | 16 | 15 | 32 |
-| LL-12 | 0 | 11 | 21 | 32 |
 | LL-15 | 1 | 11 | 6 | 18 |
 | LL-16 | 0 | 16 | 2 | 18 |
 | LL-05 | 3 | 9 | 6 | 18 |
+| LL-09 | 5 | 9 | 3 | 17 |
 | LL-14 | 1 | 8 | 7 | 16 |
-| LL-09 | 4 | 9 | 3 | 16 |
 | LL-11 | 4 | 4 | 7 | 15 |
 | LL-06 | 0 | 11 | 2 | 13 |
 | LL-02 | 2 | 4 | 5 | 11 |
+| LL-01 | 9 | 1 | 0 | 10 |
 | LL-03 | 2 | 6 | 2 | 10 |
-| LL-01 | 8 | 1 | 0 | 9 |
 | LL-17 | 2 | 3 | 3 | 8 |
 | LL-04 | 0 | 5 | 2 | 7 |
 | LL-18 | 0 | 3 | 1 | 4 |
@@ -74,4 +74,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `luy-thua` | Toán | không còn ghi nhận | không còn ghi nhận | 12 |
 | `thu-tu-thuc-hien-phep-tinh` | Toán | 4 | 3 (video: vòng 4 có 2, vòng 5 có 1) | 5 |
 | `phep-cong-phep-tru` | Toán | 3 | 4 (vòng 2 có 3, vòng 3 có 1) | 4 |
-| `phep-nhan-phep-chia` | Toán | 4 | chưa (sau vòng 1) | 1 |
+| `phep-nhan-phep-chia` | Toán | 4 | chưa (vòng 2 còn 3) | 2 |

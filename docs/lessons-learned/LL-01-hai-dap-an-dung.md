@@ -11,16 +11,17 @@ Một lựa chọn nhiễu cũng thoả đề, đáp án ghi sai, hoặc bài `o
 - `phep-cong-phep-tru` vòng 1, `ex.sap-day-so`: hai thứ tự sắp xếp đều đúng.
 - `tap-hop` vòng 1, `ex.kt-ghep-hai-phan-tu`, `ex.xep-ghep-tap-hop`: liệt kê phần tử theo thứ tự khác vẫn đúng nhưng bị chấm sai.
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 1, `ex.chon-tu-ghep`: "chăm chú" xếp được vào cả từ ghép; vòng 4, `ex.cham-cao-buon`: câu `l40-1` cũng cho thấy cáo buồn.
+- `phep-nhan-phep-chia` vòng 2, `ex.dien-7-9`: lần sửa vòng 1 đảo đề `7 · 9 = 9 · ___` thành `9 · 7 = 7 · ___` nhưng giữ `accept: ["7"]`, nên đáp án đúng 9 bị chấm sai; lời giải của chính câu ra 9. `fillBlank` Toán không có `check`, máy không bắt.
 
 ## Nguyên nhân gốc
 
-Tác giả chỉ kiểm đáp án mình định, không tự giải từng lựa chọn nhiễu theo đúng câu chữ của đề (nhất là đề phủ định "chắc chắn sai", "lớn nhất"). Bài `choice` Toán không có `check` nên lint không tính lại lựa chọn.
+Tác giả chỉ kiểm đáp án mình định, không tự giải từng lựa chọn nhiễu theo đúng câu chữ của đề (nhất là đề phủ định "chắc chắn sai", "lớn nhất"). Bài `choice` Toán không có `check` nên lint không tính lại lựa chọn. Sửa chữ của đề (đảo vế, đổi số) mà không tính lại `accept`/`answer` cũng để lại đáp án cũ đã sai.
 
 ## Cách phòng
 
 - Máy: `content:check` luật `[check-expr]`. `numeric` và `choice` Toán có `check`: `relation` mặc định `equal` (đáp án là đúng các lựa chọn bằng `expr`), `notEqual` cho đề "kết quả nào sai", `max`/`min` cho "lớn nhất"/"nhỏ nhất", `holds`/`fails` khi mỗi lựa chọn là một phép so sánh ("2³ · 2² = 2⁵"). Mọi lựa chọn đều là phép so sánh tính được mà thiếu `check` thì báo lỗi.
-- Người: checklist review mục "Mỗi câu hỏi có đúng một đáp án đúng"; tác giả tự giải từng nhiễu (`pitfalls.md`, mục Bài tập). Bài `order`/`fillBlank` có nhiều thứ tự đúng thì đổi dạng bài hoặc ghi thêm cách đúng vào `accept`.
+- Người: checklist review mục "Mỗi câu hỏi có đúng một đáp án đúng"; tác giả tự giải từng nhiễu (`pitfalls.md`, mục Bài tập). Mỗi lần sửa đề, tính lại đáp án của chính câu đó; reviewer tự tính lại mọi `fillBlank` Toán. Bài `order`/`fillBlank` có nhiều thứ tự đúng thì đổi dạng bài hoặc ghi thêm cách đúng vào `accept`.
 
 ## Trạng thái
 
-Đang áp dụng. Chưa máy hoá: câu Ngữ văn, câu `choice` mà lựa chọn không phải số (thuộc tập hợp, cơ số).
+Đang áp dụng. Chưa máy hoá: câu Ngữ văn, câu `choice` mà lựa chọn không phải số (thuộc tập hợp, cơ số), câu `fillBlank` Toán mà `segments` ghép với `accept` thành một đẳng thức tính được (có thể kiểm bằng máy).

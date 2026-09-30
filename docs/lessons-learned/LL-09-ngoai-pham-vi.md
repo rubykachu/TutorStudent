@@ -10,6 +10,7 @@
 - `tap-hop` vòng 2, `ex.dem-chu-cai-nha-trang`: ra trong ôn trước khi dạy "mỗi phần tử viết một lần".
 - `thu-tu-thuc-hien-phep-tinh` vòng 1: "bậc", "vế" dùng mà chưa định nghĩa; vòng 3, `ex.chon-nhieu-luy-thua-truoc`: cần quy tắc ngoặc.
 - `phep-nhan-phep-chia` vòng 1: cộng lặp, đặt tính nhân (số nhớ, tích riêng) và đặt tính chia là kiến thức tiểu học nhưng `sourceRef` ghi thẳng trang SBT, thiếu "Kiến thức nền (tiểu học)" và glossary thiếu `prerequisite`; hình diện tích `gan-tron-12-19` gắn nhãn "−1" đứng riêng (cách viết số nguyên âm, chương 3) cho phần bớt đi.
+- `phep-nhan-phep-chia` vòng 2, section `uoc-luong`: "làm tròn xuống / làm tròn lên" không có ở tr.20 và không có trong glossary; trẻ học "làm tròn" là về số gần nhất nên dễ nhớ "47 làm tròn là 40". Cùng bài đã có từ "số tròn chục" (section `nhan-gan-tron`) để nói ý đó.
 
 ## Nguyên nhân gốc
 
