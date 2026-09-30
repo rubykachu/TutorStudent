@@ -42,7 +42,14 @@ const CHIP_DRAG_PREFIX = "chip:";
 // The last word before a blank, with an operator or punctuation just before
 // it ("2 · " in "5 247 = 5 · 10³ + 2 · ▢"), is kept on the blank's line:
 // a line ending in "2 ·" with the blank alone below reads as two sentences.
+// Punctuation right after a blank (the full stop, a comma) stays with it too.
 const TAIL_BEFORE_BLANK = /(\S+\s+[^\p{L}\p{N}\s]+\s*|\S+\s*)$/u;
+const LEAD_AFTER_BLANK = /^[^\p{L}\p{N}\s]+/u;
+
+export function splitAfterBlank(text: string): { lead: string; rest: string } {
+  const lead = LEAD_AFTER_BLANK.exec(text)?.[0] ?? "";
+  return { lead, rest: text.slice(lead.length) };
+}
 
 export function splitBeforeBlank(text: string): { head: string; tail: string } {
   const match = TAIL_BEFORE_BLANK.exec(text);
@@ -79,16 +86,24 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
 
   let blankNumber = 0;
   const { segments } = exercise;
-  const tailOf = (index: number) => {
-    const before = segments[index - 1];
-    return before?.type === "text" ? splitBeforeBlank(before.text).tail : "";
+  // A text segment between blanks gives its leading punctuation to the blank
+  // before it and its last word to the blank after it.
+  const partsOf = (index: number) => {
+    const segment = segments[index];
+    if (segment?.type !== "text") return { lead: "", middle: "", tail: "" };
+    const { lead, rest } =
+      segments[index - 1]?.type === "blank"
+        ? splitAfterBlank(segment.text)
+        : { lead: "", rest: segment.text };
+    const { head, tail } =
+      segments[index + 1]?.type === "blank"
+        ? splitBeforeBlank(rest)
+        : { head: rest, tail: "" };
+    return { lead, middle: head, tail };
   };
   const sentence = segments.map((segment, index) => {
     if (segment.type === "text") {
-      const text =
-        segments[index + 1]?.type === "blank"
-          ? splitBeforeBlank(segment.text).head
-          : segment.text;
+      const text = partsOf(index).middle;
       return (
         // Segments have no ids; their order is fixed content.
         // biome-ignore lint/suspicious/noArrayIndexKey: static list
@@ -128,11 +143,13 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
         onType={(typed) => setBlank(segment.id, typed)}
       />
     );
-    const tail = tailOf(index);
+    const tail = partsOf(index - 1).tail;
+    const lead = partsOf(index + 1).lead;
     return (
       <span key={segment.id} className="whitespace-nowrap">
         {tail && <RichText text={tail} />}
         {blank}
+        {lead && <RichText text={lead} />}
       </span>
     );
   });

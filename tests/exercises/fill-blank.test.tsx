@@ -1,6 +1,9 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { splitBeforeBlank } from "@/exercises/fill-blank/fill-blank-answer";
+import {
+  splitAfterBlank,
+  splitBeforeBlank,
+} from "@/exercises/fill-blank/fill-blank-answer";
 import { fillBlankExercise, NO_HINTS } from "./helpers";
 import {
   checkAnswer,
@@ -152,5 +155,24 @@ describe("splitBeforeBlank", () => {
 
   it("leaves text of spaces alone", () => {
     expect(splitBeforeBlank(" ")).toEqual({ head: " ", tail: "" });
+  });
+});
+
+describe("splitAfterBlank", () => {
+  it("keeps punctuation right after a blank with it", () => {
+    expect(splitAfterBlank(", các số mũ ")).toEqual({
+      lead: ",",
+      rest: " các số mũ ",
+    });
+    expect(splitAfterBlank(".")).toEqual({ lead: ".", rest: "" });
+    expect(splitAfterBlank(" + 4")).toEqual({ lead: "", rest: " + 4" });
+  });
+});
+
+describe("FillBlankAnswer line breaking", () => {
+  it("keeps the word before a blank and the full stop after it on one unbreakable line", () => {
+    renderExercise(fillBlankExercise(["Lan"], NO_HINTS, BANK));
+    const unit = blank().closest(".whitespace-nowrap");
+    expect(unit?.textContent).toMatch(/^là .*\.$/);
   });
 });
