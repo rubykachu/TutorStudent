@@ -1,21 +1,20 @@
 # Bàn giao: Bài 5 `phep-nhan-phep-chia` (Phép nhân và phép chia số tự nhiên)
 
 ## Trạng thái
-- Worktree `.claude/worktrees/agent-a36c64bad7802c3d9`, nhánh `worktree-agent-a36c64bad7802c3d9`. Đã gộp `main`, đã truyền `params` của `manipulate` xuống visual (có test), đã thêm `number`/`chapter`, `content:check` 0 lỗi.
-- Nguồn: sách bài tập tr.17–20 (PDF 18–21), lời giải tr.98–100 (PDF 99–101), trong `sources/math/phep-nhan-phep-chia/` ở cây chính.
-- Server worktree chạy cổng 3230 (`TEST_PORT=3230` cho `pnpm visual:shot`, `WALK_BASE_URL=http://localhost:3230` cho walk); sau khi sửa `lesson.json` chạy `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
-- Tác giả xong: `visual:shot` 164/164, `content:check --stats` 0 lỗi, `lesson:walk` 0 FAIL 0 WARN, đã xem ảnh. Chưa review, chưa `content:lock`, còn `status: draft`.
+- Nội dung đã xuất bản (`status: published`) sau 4 vòng review, `content:lock` xong, id đã khoá. Lời đọc và video chưa làm.
+- Nguồn: sách bài tập tr.17–20 (PDF 18–21), lời giải tr.98–100 (PDF 99–101), trong `sources/math/phep-nhan-phep-chia/`.
+- Quy ước viết phép nhân của cả bài: a · b là "a được lấy b lần" (số được cộng viết trước, số lần lấy viết sau), dạy một lần ở section `nhan-cong-lap`.
 
 ## Việc tiếp theo
-1. Review bằng subagent mới (Opus, vòng 1 và 2 đầy đủ) rồi approve, `pnpm content:lock`, gộp vào main.
+1. Lời đọc và video theo skill `lesson-video` (Sonnet), một section một video theo quy định, rồi `video:check`.
+2. Còn một ý Nên sửa nhỏ chưa làm (sửa sẽ đổi hash, cần review diff): nhiễu d của `chon-tich-rieng-2` ("Viết 19, nhớ 2 sang cột bên trái") là lựa chọn duy nhất không mở đầu bằng "Viết 192", đề xuất "Viết 192, lùi sang trái hai cột".
 
+## Lịch sử sửa
 ## Sau review vòng 1
 - Quy ước viết phép nhân của cả bài: a · b là "a được lấy b lần" (số được cộng viết trước, số lần lấy viết sau), dạy một lần ở section `nhan-cong-lap`. Mọi đề, hình, đáp án theo quy ước này; giao hoán (section `giao-hoan`) dạy rằng đổi chỗ thì tích không đổi. Đã sửa 4 Nghiêm trọng và các mục Nên sửa, Góp ý còn lại ngoài danh sách dưới. Id đề có số đã đổi theo số mới (vd `chon-du-26-4`, `loi-nhan-38-7`); chưa khoá id nên không cần `retired`.
-- Còn việc: review vòng 2 đầy đủ (Opus), rồi `pnpm content:hash --approve`, `pnpm content:lock`.
 
 ## Sau review vòng 2
 - Đã sửa 3 Nghiêm trọng (đáp án `dien-7-9`, thuật ngữ "số tròn chục liền trước/liền sau" thay "làm tròn", nhãn fact-family không gãy ở iPad dọc) và các Nên sửa 1-12 trừ mục ghi ở "Chưa sửa vòng 2" dưới đây; Góp ý 3-9 đã sửa. Id đổi (chưa khoá): `mua-vo-100-15` thành `mua-so-90-13`, `du-163-15` thành `du-185-15`, `chia-cot-268-12-xong` thành `chia-cot-268-12`. Thêm câu `tim-so-chia-30-5`. Hình diện tích xoay: cạnh ngang là thừa số thứ nhất, số hàng là tổng hay hiệu được tách.
-- Còn việc: review vòng 3 (Sonnet, chỉ phần `pnpm content:diff`), rồi `pnpm content:hash --approve`, `pnpm content:lock`.
 
 ## Chưa sửa vòng 2
 - Nên sửa 5 (phần `hintVisualId` cho `so-sanh-38-50`): hình từng bước có sẵn (`CalcSteps`) chỉ vẽ chuỗi nối bằng dấu "=", không vẽ được chuỗi bất đẳng thức; làm hình so sánh mới là việc riêng. Phần note đã viết đủ bước giữa và kết luận.

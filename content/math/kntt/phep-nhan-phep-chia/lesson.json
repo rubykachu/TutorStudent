@@ -11,7 +11,8 @@
   },
   "title": "Phép nhân và phép chia số tự nhiên",
   "sourceRef": "Sách bài tập tr.17–20",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "d570c3a630fc17ed93ec56d1685cbbde97d80930f2dea8a59f8135fc84de192d",
   "overview": {
     "hook": {
       "text": "Mẹ nhờ bạn tính tiền 24 gói bánh, mỗi gói 37 nghìn đồng. Làm sao để nhân chia nhanh mà không sai?"
