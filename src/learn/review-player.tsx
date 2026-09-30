@@ -15,7 +15,7 @@ import { DoneScreen } from "@/learn/done-screen";
 import { LessonProgressCard } from "@/learn/lesson-progress-card";
 import { stickerFill } from "@/learn/next-step";
 import { PlayerHeader } from "@/learn/player-header";
-import { useCorrectSound } from "@/learn/use-correct-sound";
+import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { type ChildScope, listAttempts, type TutorDb } from "@/progress/db";
@@ -78,7 +78,7 @@ export function ReviewPlayer({
   // An answered question shown again, by queue position; null while the
   // child is on the current question or recap.
   const [viewing, setViewing] = useState<number | null>(null);
-  const onCorrect = useCorrectSound(childId);
+  const sounds = useFeedbackSounds(childId);
 
   // Cards are chosen once, from the memory states at the moment the session
   // starts; ratings given during the session must not reshuffle it.
@@ -337,7 +337,7 @@ export function ReviewPlayer({
             key={session.current}
             exercise={exercise}
             concepts={index.conceptById}
-            onCorrect={onCorrect}
+            sounds={sounds}
             onDone={finish}
           >
             {(slot) => renderAnswer(exercise, slot)}

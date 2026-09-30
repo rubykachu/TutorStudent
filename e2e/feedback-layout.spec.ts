@@ -130,7 +130,7 @@ for (const screen of SCREENS) {
       const dots = await reach(page, "fixture.ex.dem-cham");
       await dots.locator('[data-pad-key="9"]').tap();
       await checkTo(dots, "wrong1");
-      await expect(page.locator("[data-mascot-speech]")).toHaveCount(0);
+      await expectBubbleClear(page);
       await checkTo(dots, "wrong2");
       await expectBubbleClear(page);
       await checkTo(dots, "wrong3");

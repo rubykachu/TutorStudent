@@ -9,7 +9,11 @@ import { BottomBar } from "@/components/bottom-bar";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
 import { renderAnswer, renderStep } from "@/exercises/answers";
-import { ExerciseFrame, PromptBlock } from "@/exercises/exercise-frame";
+import {
+  ExerciseFrame,
+  type FeedbackSounds,
+  PromptBlock,
+} from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
 import {
   type OpenEndedResult,
@@ -24,7 +28,7 @@ import {
   type SectionStep,
   sectionSteps,
 } from "@/learn/section-steps";
-import { useCorrectSound } from "@/learn/use-correct-sound";
+import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
 import { lessonPath, sectionPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
@@ -66,7 +70,7 @@ type Finished = SectionCompletion & { doneCount: number };
 // finished comes back finished (its answer shown, nothing to check or rate),
 // and an exercise in progress keeps its answer and its wrong checks.
 const NO_EXERCISE_PROPS = {
-  onCorrect: undefined,
+  sounds: undefined,
   onExerciseDone: () => undefined,
   onOpenEndedDone: () => undefined,
 };
@@ -90,7 +94,7 @@ export function SectionPlayer({
   const step = steps[stepIndex];
   const { familyId, childId } = scope;
   const { phase, index: itemIndex } = step.position;
-  const onCorrect = useCorrectSound(childId);
+  const sounds = useFeedbackSounds(childId);
 
   // Fetches what the child may see next while this screen is read: the hint
   // and solution visuals of this exercise, the next screen, and the sticker
@@ -186,7 +190,7 @@ export function SectionPlayer({
       index={index}
       finished={false}
       saving={saving}
-      onCorrect={onCorrect}
+      sounds={sounds}
       onNext={advance}
       onExerciseDone={async (exerciseId, cardIds, context, outcome) => {
         await record(exerciseId, cardIds, context, outcome, now());
@@ -255,7 +259,7 @@ type StepViewProps = {
   // Shown again through "Quay lại": an exercise comes back finished.
   finished: boolean;
   saving: boolean;
-  onCorrect: (() => void) | undefined;
+  sounds: FeedbackSounds | undefined;
   onNext: () => void;
   onExerciseDone: (
     exerciseId: string,
@@ -275,7 +279,7 @@ function StepView({
   index,
   finished,
   saving,
-  onCorrect,
+  sounds,
   onNext,
   onExerciseDone,
   onOpenEndedDone,
@@ -353,14 +357,14 @@ function StepView({
               exercise={exercise}
               renderStep={renderStep}
               concepts={conceptById}
-              onCorrect={onCorrect}
+              sounds={sounds}
               onDone={(result) => onOpenEndedDone(exercise, context, result)}
             />
           ) : (
             <ExerciseFrame
               exercise={exercise}
               concepts={conceptById}
-              onCorrect={onCorrect}
+              sounds={sounds}
               onDone={(outcome) =>
                 onExerciseDone(exercise.id, exercise.cardIds, context, outcome)
               }

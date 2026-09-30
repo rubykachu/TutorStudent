@@ -1,116 +1,115 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   installAudioUnlock,
-  playTing,
+  playSound,
+  preloadSounds,
   resetAudioForTesting,
   unlockAudio,
 } from "@/lib/sound";
 
-// jsdom has no WebAudio; this records what the sound code asks for.
-class FakeAudioContext {
-  static instances: FakeAudioContext[] = [];
-  state: AudioContextState = "suspended";
-  currentTime = 1;
-  sampleRate = 44_100;
-  destination = {};
-  resume = vi.fn(async () => {
-    this.state = "running";
+// jsdom does not play media; this records what the sound code asks for.
+class FakeAudio extends EventTarget {
+  static instances: FakeAudio[] = [];
+  static failPlay = false;
+  src: string;
+  preload = "";
+  muted = false;
+  currentTime = 0;
+  paused = true;
+  load = vi.fn();
+  pause = vi.fn(() => {
+    this.paused = true;
   });
-  oscillators: { frequency: number; start: number; stop: number }[] = [];
-  buffersPlayed = 0;
+  plays: { muted: boolean }[] = [];
 
-  constructor() {
-    FakeAudioContext.instances.push(this);
+  constructor(src: string) {
+    super();
+    this.src = src;
+    FakeAudio.instances.push(this);
   }
 
-  createGain() {
-    return {
-      gain: {
-        setValueAtTime: vi.fn(),
-        exponentialRampToValueAtTime: vi.fn(),
-      },
-      connect: vi.fn(),
-    };
-  }
-
-  createOscillator() {
-    const record = { frequency: 0, start: 0, stop: 0 };
-    this.oscillators.push(record);
-    return {
-      type: "",
-      frequency: {
-        setValueAtTime: (hz: number) => {
-          record.frequency = hz;
-        },
-      },
-      connect: vi.fn(),
-      start: (at: number) => {
-        record.start = at;
-      },
-      stop: (at: number) => {
-        record.stop = at;
-      },
-    };
-  }
-
-  createBuffer() {
-    return {};
-  }
-
-  createBufferSource() {
-    return {
-      buffer: null,
-      connect: vi.fn(),
-      start: () => {
-        this.buffersPlayed++;
-      },
-    };
+  play() {
+    this.plays.push({ muted: this.muted });
+    if (FakeAudio.failPlay) return Promise.reject(new Error("blocked"));
+    this.paused = false;
+    return Promise.resolve();
   }
 }
 
+// Lets pending promise callbacks (then, catch, finally) run.
+async function settle() {
+  for (let i = 0; i < 5; i++) await Promise.resolve();
+}
+
 beforeEach(() => {
-  FakeAudioContext.instances = [];
-  vi.stubGlobal("AudioContext", FakeAudioContext);
+  FakeAudio.instances = [];
+  FakeAudio.failPlay = false;
+  vi.stubGlobal("Audio", FakeAudio);
 });
 
 afterEach(() => {
   vi.unstubAllGlobals();
   resetAudioForTesting();
+  delete (navigator as { audioSession?: unknown }).audioSession;
 });
 
 describe("sound", () => {
-  it("plays a short two-note bell and resumes suspended audio", () => {
-    playTing();
-    const [ctx] = FakeAudioContext.instances;
-    expect(ctx?.resume).toHaveBeenCalled();
-    expect(ctx?.oscillators.map((o) => o.frequency)).toEqual([1318.5, 1975.5]);
-    for (const o of ctx?.oscillators ?? []) {
-      expect(o.start).toBe(1);
-      expect(o.stop).toBeLessThanOrEqual(1.6);
-    }
+  it("plays a clip through one reused media element and resolves when it ends", async () => {
+    const played = playSound("/sounds/a.m4a");
+    const [audio] = FakeAudio.instances;
+    expect(audio?.plays).toEqual([{ muted: false }]);
+    audio?.dispatchEvent(new Event("ended"));
+    await played;
+    void playSound("/sounds/a.m4a");
+    expect(FakeAudio.instances).toHaveLength(1);
   });
 
-  it("reuses one audio context", () => {
-    playTing();
-    playTing();
-    expect(FakeAudioContext.instances).toHaveLength(1);
+  it("resolves at once when a clip cannot play", async () => {
+    FakeAudio.failPlay = true;
+    await expect(playSound("/sounds/missing.m4a")).resolves.toBeUndefined();
   });
 
-  it("unlocks audio on the first gesture only", () => {
+  it("does nothing where media elements are missing", async () => {
+    vi.stubGlobal("Audio", undefined);
+    await expect(playSound("/sounds/a.m4a")).resolves.toBeUndefined();
+    expect(() => {
+      preloadSounds(["/sounds/a.m4a"]);
+      unlockAudio();
+    }).not.toThrow();
+  });
+
+  it("asks for a playback audio session so the ringer switch does not mute it", () => {
+    const session = { type: "auto" };
+    Object.defineProperty(navigator, "audioSession", {
+      value: session,
+      configurable: true,
+    });
+    void playSound("/sounds/a.m4a");
+    expect(session.type).toBe("playback");
+  });
+
+  it("unlocks every preloaded clip, muted, on the first gesture only", async () => {
+    preloadSounds(["/sounds/a.m4a", "/sounds/b.m4a"]);
+    expect(FakeAudio.instances.map((a) => a.load.mock.calls.length)).toEqual([
+      1, 1,
+    ]);
     const remove = installAudioUnlock();
     window.dispatchEvent(new Event("pointerdown"));
     window.dispatchEvent(new Event("pointerdown"));
-    const [ctx] = FakeAudioContext.instances;
-    expect(ctx?.buffersPlayed).toBe(1);
-    expect(ctx?.resume).toHaveBeenCalledTimes(1);
+    await settle();
+    for (const audio of FakeAudio.instances) {
+      expect(audio.plays).toEqual([{ muted: true }]);
+      expect(audio.pause).toHaveBeenCalledTimes(1);
+      expect(audio.muted).toBe(false);
+    }
     remove();
   });
 
-  it("does nothing where WebAudio is missing", () => {
-    vi.stubGlobal("AudioContext", undefined);
-    expect(() => {
-      unlockAudio();
-      playTing();
-    }).not.toThrow();
+  it("leaves a clip playing that was asked to play during an unlock", async () => {
+    preloadSounds(["/sounds/a.m4a"]);
+    unlockAudio();
+    void playSound("/sounds/a.m4a");
+    await settle();
+    expect(FakeAudio.instances[0]?.pause).not.toHaveBeenCalled();
   });
 });

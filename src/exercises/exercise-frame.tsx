@@ -11,10 +11,13 @@ import {
 import { BigButton } from "@/components/big-button";
 import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
+import { ConfettiBurst } from "@/components/confetti-burst";
 import {
+  encouragementFor,
   type FeedbackHighlights,
   feedbackView,
   type HighlightSpec,
+  praiseLineFor,
 } from "@/exercises/feedback";
 import type { InputFor } from "@/exercises/input";
 import {
@@ -26,6 +29,7 @@ import { attemptSeed } from "@/exercises/shuffle";
 import { newId } from "@/lib/id";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
+import type { VoiceLine } from "@/mascot/lines";
 import { Owl } from "@/mascot/owl";
 import { SpeechBubble } from "@/mascot/speech-bubble";
 import type { BasicExercise, Block, Concept } from "@/schema/content";
@@ -64,6 +68,17 @@ export type AnswerSlotProps<I> = {
   seed: string;
 };
 
+// Sounds of the feedback, supplied by the player (absent while the child has
+// sound off). Called inside the tap on "Kiểm tra", so audio may start there
+// (iOS only lets audio start from a user gesture). Each gets the line the
+// owl's bubble shows, so a spoken line matches it.
+export type FeedbackSounds = {
+  // The answer was accepted.
+  correct: (praise: VoiceLine) => void;
+  // The first wrong check of an attempt.
+  encourage: (line: VoiceLine) => void;
+};
+
 type ExerciseFrameProps<E extends BasicExercise> = {
   exercise: E;
   // Colours `hints.highlight` targets that name a concept.
@@ -71,9 +86,7 @@ type ExerciseFrameProps<E extends BasicExercise> = {
   onDone: (outcome: ExerciseOutcome) => void;
   // Draws the mascot at the answer card; the exercise-size owl unless replaced.
   renderMascot?: (expression: MascotExpression) => ReactNode;
-  // Runs inside the tap that got the answer accepted, so a sound may start
-  // there (iOS only lets audio start from a user gesture).
-  onCorrect?: () => void;
+  sounds?: FeedbackSounds;
   // An exercise the child already finished, shown again when they go back:
   // the correct answer in place, locked, with no bottom bar and no praise.
   finished?: boolean;
@@ -119,13 +132,6 @@ function toneOf(
   return filled ? "selected" : "idle";
 }
 
-// What the live region announces: the owl's line when it speaks, so screen
-// readers hear exactly what the bubble shows. The first tier has no bubble,
-// but a screen reader still needs to hear that the answer was not right.
-function statusText(speech: string | undefined, tier: number): string {
-  return speech ?? (tier > 0 ? "Thử lại nhé." : "");
-}
-
 // Shared frame for every basic exercise type: prompt, answer slot, the
 // "Kiểm tra" button and the three feedback tiers with their fallbacks. Key it
 // so that every attempt mounts a new frame: each mount starts from a fresh
@@ -135,7 +141,7 @@ export function ExerciseFrame<E extends BasicExercise>({
   concepts,
   onDone,
   renderMascot = renderExerciseOwl,
-  onCorrect,
+  sounds,
   finished = false,
   children,
 }: ExerciseFrameProps<E>) {
@@ -156,10 +162,15 @@ export function ExerciseFrame<E extends BasicExercise>({
   const reducedMotion = usePrefersReducedMotion();
   // Wrong checks whose shake already finished; a newer wrong check shakes.
   const [shaken, setShaken] = useState(0);
+  // A confetti burst over the answer card once it is accepted, unless the
+  // child prefers reduced motion (the owl's happy pose still shows).
+  const [celebrating, setCelebrating] = useState(false);
   const shaking = !reducedMotion && tier > 0 && state.wrongCount > shaken;
   const accepted = state.phase === "correct" || state.phase === "done";
   const tone = toneOf(state, tier, machine.canCheck);
-  const status = statusText(view.speech, tier);
+  // What the live region announces: the owl's line, so screen readers hear
+  // exactly what the bubble shows.
+  const status = view.speech ?? "";
   // A tapText answer area renders the prompt's passages as tappable
   // sentences, so the prompt leaves them out and hints on sentences (`part`
   // targets) are handed to the answer area with its own elements.
@@ -314,6 +325,7 @@ export function ExerciseFrame<E extends BasicExercise>({
                   setShaken(state.wrongCount);
               }}
             >
+              {celebrating && !reducedMotion && <ConfettiBurst />}
               {accepted && (
                 <Check
                   aria-hidden
@@ -375,7 +387,13 @@ export function ExerciseFrame<E extends BasicExercise>({
             phase={state.phase}
             canCheck={machine.canCheck}
             onCheck={() => {
-              if (machine.check()) onCorrect?.();
+              const firstCheck = state.wrongCount === 0;
+              if (machine.check()) {
+                setCelebrating(true);
+                sounds?.correct(praiseLineFor(seed));
+              } else if (firstCheck && machine.canCheck) {
+                sounds?.encourage(encouragementFor(seed));
+              }
             }}
             onRetype={machine.startRetype}
             onNext={() => onDone(machine.finish())}

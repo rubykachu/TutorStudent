@@ -1,54 +1,75 @@
-// The soft "ting" for a correct answer, synthesised with WebAudio so the app
-// ships no audio file and it plays offline.
-
-// Two sine partials a fifth apart (E6 + B6) read as a small bell.
-const TING_PARTIALS: readonly (readonly [hz: number, level: number])[] = [
-  [1318.5, 1],
-  [1975.5, 0.35],
-];
-const TING_VOLUME = 0.18;
-const TING_ATTACK_S = 0.008;
-const TING_DECAY_S = 0.6;
-// Exponential ramps cannot reach zero.
-const SILENT = 0.0001;
+// Short sound clips (the correct-answer jingle, the owl's voice lines),
+// played through HTMLAudioElement. Web Audio is silenced by the ringer switch
+// on iPhone and iPad; a media element in a "playback" audio session is not.
+// A clip that fails to load or play is skipped without an error.
 
 const UNLOCK_EVENTS = ["pointerdown", "touchend", "keydown"] as const;
 
-type AudioContextConstructor = new () => AudioContext;
+const clips = new Map<string, HTMLAudioElement>();
+// Clips asked to play for real; an unlock in flight leaves them playing.
+const playing = new WeakSet<HTMLAudioElement>();
 
-let context: AudioContext | null = null;
+// Safari 17+ lets a page pick an audio session; "playback" keeps sound on
+// when the ringer switch is on silent.
+function setPlaybackSession(): void {
+  const session = (navigator as { audioSession?: { type: string } })
+    .audioSession;
+  if (session) session.type = "playback";
+}
 
-function audioContext(): AudioContext | null {
-  if (context) return context;
-  if (typeof window === "undefined") return null;
-  // Safari before 14.1 only has the prefixed constructor.
-  const Ctor: AudioContextConstructor | undefined =
-    window.AudioContext ??
-    (window as { webkitAudioContext?: AudioContextConstructor })
-      .webkitAudioContext;
-  if (!Ctor) return null;
-  context = new Ctor();
-  return context;
+function clip(url: string): HTMLAudioElement | null {
+  if (typeof Audio === "undefined") return null;
+  let element = clips.get(url);
+  if (!element) {
+    element = new Audio(url);
+    element.preload = "auto";
+    clips.set(url, element);
+  }
+  return element;
+}
+
+// `play()` as a promise: older engines return nothing from it, and some
+// throw instead of rejecting.
+function start(element: HTMLAudioElement): Promise<void> {
+  try {
+    return Promise.resolve(element.play());
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
 
 export function resetAudioForTesting(): void {
-  context = null;
+  clips.clear();
 }
 
-// iOS Safari keeps audio suspended until it is resumed, and something is
-// played, inside a user gesture. Call from a tap handler.
+// Starts loading clips ahead of time so the first play is not delayed.
+export function preloadSounds(urls: readonly string[]): void {
+  for (const url of urls) clip(url)?.load();
+}
+
+// iOS lets a media element play on its own later only after it has played
+// inside a user gesture once. Call from a tap handler: every preloaded clip
+// plays muted for an instant and is rewound.
 export function unlockAudio(): void {
-  const ctx = audioContext();
-  if (!ctx) return;
-  if (ctx.state !== "running") void ctx.resume();
-  const source = ctx.createBufferSource();
-  source.buffer = ctx.createBuffer(1, 1, ctx.sampleRate);
-  source.connect(ctx.destination);
-  source.start(0);
+  setPlaybackSession();
+  for (const element of clips.values()) {
+    if (playing.has(element)) continue;
+    element.muted = true;
+    start(element)
+      .then(() => {
+        if (playing.has(element)) return;
+        element.pause();
+        element.currentTime = 0;
+      })
+      .catch(() => undefined)
+      .finally(() => {
+        element.muted = false;
+      });
+  }
 }
 
-// Unlocks audio on the next tap or key press anywhere, so the first "ting"
-// is not lost when it comes after an await. Returns the cleanup.
+// Unlocks audio on the next tap or key press anywhere, so a clip that plays
+// after an await is not lost. Returns the cleanup.
 export function installAudioUnlock(): () => void {
   const remove = () => {
     for (const type of UNLOCK_EVENTS)
@@ -63,29 +84,24 @@ export function installAudioUnlock(): () => void {
   return remove;
 }
 
-export function playTing(): void {
-  const ctx = audioContext();
-  if (!ctx) return;
-  if (ctx.state !== "running") void ctx.resume();
-  const start = ctx.currentTime;
-  const end = start + TING_DECAY_S;
-  const envelope = ctx.createGain();
-  envelope.gain.setValueAtTime(SILENT, start);
-  envelope.gain.exponentialRampToValueAtTime(
-    TING_VOLUME,
-    start + TING_ATTACK_S,
-  );
-  envelope.gain.exponentialRampToValueAtTime(SILENT, end);
-  envelope.connect(ctx.destination);
-  for (const [hz, level] of TING_PARTIALS) {
-    const oscillator = ctx.createOscillator();
-    oscillator.type = "sine";
-    oscillator.frequency.setValueAtTime(hz, start);
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(level, start);
-    oscillator.connect(gain);
-    gain.connect(envelope);
-    oscillator.start(start);
-    oscillator.stop(end);
-  }
+// Plays a clip from its start. Resolves once it has ended, or at once when it
+// cannot play (missing file, no audio support, blocked by the browser).
+export function playSound(url: string): Promise<void> {
+  const element = clip(url);
+  if (!element) return Promise.resolve();
+  setPlaybackSession();
+  return new Promise((resolve) => {
+    const done = () => {
+      playing.delete(element);
+      element.removeEventListener("ended", done);
+      element.removeEventListener("error", done);
+      resolve();
+    };
+    element.addEventListener("ended", done);
+    element.addEventListener("error", done);
+    playing.add(element);
+    element.muted = false;
+    element.currentTime = 0;
+    start(element).catch(done);
+  });
 }

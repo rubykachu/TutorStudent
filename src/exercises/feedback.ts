@@ -5,7 +5,12 @@ import {
 } from "@/exercises/machine";
 import { hashSeed } from "@/exercises/shuffle";
 import type { MascotExpression } from "@/mascot/expressions";
-import { OWL_LINES, OWL_PRAISE } from "@/mascot/lines";
+import {
+  ENCOURAGE_LINES,
+  OWL_LINES,
+  PRAISE_VOICE_LINES,
+  type VoiceLine,
+} from "@/mascot/lines";
 import type {
   BasicExercise,
   Concept,
@@ -46,15 +51,29 @@ export type FeedbackView = {
   reveal: boolean;
   mascot: MascotExpression;
   // What the owl says in its speech bubble (and the screen reader announces):
-  // a line at the second and third wrong checks and praise on a correct
-  // answer. Undefined while the owl stays silent, as at the first tier.
+  // encouragement at the first wrong check, a line at the second and third,
+  // and praise on a correct answer. Undefined while the owl stays silent.
   speech: string | undefined;
 };
 
-// Praise for one attempt: the same through every render of the attempt, and
-// usually different from one exercise or attempt to the next.
+function pick(lines: readonly VoiceLine[], seed: string): VoiceLine {
+  return lines[hashSeed(seed) % lines.length] as VoiceLine;
+}
+
+// Praise and encouragement for one attempt: the same through every render of
+// the attempt, and usually different from one exercise or attempt to the
+// next. The frame hands the same line to the sound player, so the voice says
+// what the bubble shows.
+export function praiseLineFor(seed: string): VoiceLine {
+  return pick(PRAISE_VOICE_LINES, seed);
+}
+
+export function encouragementFor(seed: string): VoiceLine {
+  return pick(ENCOURAGE_LINES, `${seed}:encourage`);
+}
+
 export function praiseFor(seed: string): string {
-  return OWL_PRAISE[hashSeed(seed) % OWL_PRAISE.length];
+  return praiseLineFor(seed).text;
 }
 
 function speechFor(
@@ -63,6 +82,8 @@ function speechFor(
   seed: string,
 ): string | undefined {
   switch (state.phase) {
+    case "wrong1":
+      return encouragementFor(seed).text;
     case "wrong2":
       return hints.hintVisualId === undefined
         ? OWL_LINES.hintMarks
@@ -82,7 +103,7 @@ function speechFor(
 const MASCOT: Record<Phase, MascotExpression> = {
   idle: "idle",
   answered: "idle",
-  wrong1: "idle",
+  wrong1: "cheer",
   wrong2: "hint",
   wrong3: "cheer",
   retype: "cheer",

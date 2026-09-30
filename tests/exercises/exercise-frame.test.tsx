@@ -4,9 +4,18 @@ import {
   type AnswerSlotProps,
   ExerciseFrame,
 } from "@/exercises/exercise-frame";
-import { praiseFor } from "@/exercises/feedback";
+import {
+  encouragementFor,
+  praiseFor,
+  praiseLineFor,
+} from "@/exercises/feedback";
 import type { ChoiceInput } from "@/exercises/input";
-import { OWL_LINE_MAX_WORDS, OWL_LINES, OWL_PRAISE } from "@/mascot/lines";
+import {
+  ENCOURAGE_LINES,
+  OWL_LINE_MAX_WORDS,
+  OWL_LINES,
+  OWL_PRAISE,
+} from "@/mascot/lines";
 import type { ChoiceExercise, Concept, Hints } from "@/schema/content";
 import { Highlight } from "@/visuals/shared/highlight";
 import { choiceExercise } from "./helpers";
@@ -65,13 +74,13 @@ function renderFrame(hints: Hints) {
     ],
   };
   const onDone = vi.fn();
-  const onCorrect = vi.fn();
+  const sounds = { correct: vi.fn(), encourage: vi.fn() };
   const view = render(
     <ExerciseFrame
       exercise={exercise}
       concepts={CONCEPTS}
       onDone={onDone}
-      onCorrect={onCorrect}
+      sounds={sounds}
       renderMascot={(expression) => (
         <span data-testid="mascot">{expression}</span>
       )}
@@ -81,7 +90,7 @@ function renderFrame(hints: Hints) {
   );
   const frame = view.container.querySelector("section");
   if (!frame) throw new Error("frame missing");
-  return { frame, onDone, onCorrect, container: view.container };
+  return { frame, onDone, sounds, container: view.container };
 }
 
 function choose(id: string) {
@@ -144,14 +153,15 @@ function liveRegion(container: HTMLElement) {
 }
 
 describe("ExerciseFrame owl speech", () => {
-  it("stays silent at tier one, then speaks the hint and reveal lines", () => {
+  it("encourages at tier one, then speaks the hint and reveal lines", () => {
     const { container } = renderFrame(HINTS_FALLBACK);
     expect(bubble(container)).toBeNull();
 
     choose("b");
     checkAnswer();
-    expect(bubble(container)).toBeNull();
-    expect(liveRegion(container)).toHaveTextContent("Thử lại nhé.");
+    const encouragement = bubble(container)?.textContent ?? "";
+    expect(ENCOURAGE_LINES.map((l) => l.text)).toContain(encouragement);
+    expect(liveRegion(container)).toHaveTextContent(encouragement);
 
     choose("b");
     checkAnswer();
@@ -187,9 +197,19 @@ describe("ExerciseFrame owl speech", () => {
   });
 
   it("keeps every line short", () => {
-    for (const line of [...Object.values(OWL_LINES), ...OWL_PRAISE]) {
+    for (const line of [
+      ...Object.values(OWL_LINES),
+      ...OWL_PRAISE,
+      ...ENCOURAGE_LINES.map((l) => l.text),
+    ]) {
       expect(line.split(/\s+/).length).toBeLessThanOrEqual(OWL_LINE_MAX_WORDS);
     }
+  });
+
+  it("picks lines from the voice lines, so the spoken clip matches", () => {
+    expect(praiseLineFor("ex.a#1").text).toBe(praiseFor("ex.a#1"));
+    expect(ENCOURAGE_LINES).toContainEqual(encouragementFor("ex.a#1"));
+    expect(encouragementFor("ex.a#1")).toEqual(encouragementFor("ex.a#1"));
   });
 
   it("picks the same praise for the same attempt and varies across attempts", () => {
@@ -251,7 +271,7 @@ describe("ExerciseFrame", () => {
     ).not.toBeNull();
     const part = container.querySelector("#co-so");
     expect(part).toHaveAttribute("data-highlighted");
-    expect(frame).toHaveAttribute("data-mascot", "idle");
+    expect(frame).toHaveAttribute("data-mascot", "cheer");
     // No yellow at the first tier: the answer card gets the orange dashed
     // border, a hinted part its concept's outline, and a hinted block that
     // names no concept the neutral slate ring.
@@ -378,15 +398,53 @@ describe("ExerciseFrame", () => {
     }
   });
 
-  it("calls onCorrect in the tap that gets the answer accepted", () => {
-    const { onCorrect } = renderFrame(HINTS_FALLBACK);
+  it("celebrates only the tap that gets the answer accepted", () => {
+    const { sounds, container } = renderFrame(HINTS_FALLBACK);
     choose("b");
     checkAnswer();
-    expect(onCorrect).not.toHaveBeenCalled();
+    expect(sounds.correct).not.toHaveBeenCalled();
+    expect(container.querySelector("[data-confetti]")).toBeNull();
     choose("b");
     choose("a");
     checkAnswer();
-    expect(onCorrect).toHaveBeenCalledTimes(1);
+    expect(sounds.correct).toHaveBeenCalledTimes(1);
+    // The praise it hands over is the one the bubble shows.
+    const [praise] = sounds.correct.mock.calls[0] ?? [];
+    expect(bubble(container)).toHaveTextContent(praise.text);
+    expect(container.querySelector("[data-confetti]")).toBeInTheDocument();
+  });
+
+  it("encourages out loud once per attempt, at the first wrong check only", () => {
+    const { sounds, container } = renderFrame(HINTS_FALLBACK);
+    for (let i = 0; i < 3; i++) {
+      choose("b");
+      checkAnswer();
+    }
+    fireEvent.click(screen.getByRole("button", { name: "Tự làm lại" }));
+    choose("c");
+    checkAnswer();
+    expect(sounds.encourage).toHaveBeenCalledTimes(1);
+    const [line] = sounds.encourage.mock.calls[0] ?? [];
+    expect(ENCOURAGE_LINES).toContainEqual(line);
+    expect(container.querySelector("[data-confetti]")).toBeNull();
+  });
+
+  it("celebrates without confetti under reduced motion", () => {
+    const original = window.matchMedia;
+    window.matchMedia = (query: string) => ({
+      ...original(query),
+      matches: query === "(prefers-reduced-motion: reduce)",
+    });
+    try {
+      const { sounds, container } = renderFrame(HINTS_FALLBACK);
+      choose("a");
+      checkAnswer();
+      expect(sounds.correct).toHaveBeenCalledTimes(1);
+      expect(container.querySelector("[data-confetti]")).toBeNull();
+      expect(screen.getByTestId("mascot")).toHaveTextContent("happy");
+    } finally {
+      window.matchMedia = original;
+    }
   });
 
   it("perches the owl on the answer card: 56px on a phone, 72px on a tablet", () => {

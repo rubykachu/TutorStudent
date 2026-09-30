@@ -4,6 +4,7 @@ import { type ReactNode, useState } from "react";
 import {
   type AnswerSlotProps,
   ExerciseFrame,
+  type FeedbackSounds,
   PromptBlock,
 } from "@/exercises/exercise-frame";
 import type { FeedbackHighlights } from "@/exercises/feedback";
@@ -38,7 +39,7 @@ type OpenEndedRunnerProps = {
   onDone: (result: OpenEndedResult) => void;
   concepts?: ReadonlyMap<string, Concept>;
   renderMascot?: (expression: MascotExpression) => ReactNode;
-  onCorrect?: () => void;
+  sounds?: FeedbackSounds;
 };
 
 type Stage = "steps" | "writing" | "checklist" | "finished";
@@ -71,7 +72,7 @@ export function OpenEndedRunner({
   onDone,
   concepts,
   renderMascot,
-  onCorrect,
+  sounds,
 }: OpenEndedRunnerProps) {
   const [outcomes, setOutcomes] = useState<ExerciseOutcome[]>([]);
   const [stage, setStage] = useState<Stage>(
@@ -137,7 +138,7 @@ export function OpenEndedRunner({
             concepts={concepts}
             onDone={completeStep}
             renderMascot={renderMascot}
-            onCorrect={onCorrect}
+            sounds={sounds}
           >
             {(slot) => renderStep(step, slot)}
           </ExerciseFrame>
