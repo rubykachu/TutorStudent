@@ -100,7 +100,8 @@ type Tone = "idle" | "selected" | "retry" | "correct";
 const TONE_CLASSES: Record<Tone, string> = {
   idle: "border-2 border-border bg-surface",
   selected: "border-3 border-primary bg-surface",
-  retry: "border-3 border-retry bg-retry-soft",
+  // Dashed so "try again" never rests on colour alone.
+  retry: "border-3 border-dashed border-retry bg-retry-soft",
   correct: "border-3 border-correct bg-correct-soft",
 };
 
@@ -206,7 +207,7 @@ export function ExerciseFrame<E extends BasicExercise>({
       type="button"
       data-hint-strip
       onClick={() => setInputWantedFor(null)}
-      className="flex min-h-touch w-full items-center justify-center gap-2 rounded-lg border-2 border-highlight bg-highlight/30 px-4 font-semibold motion-safe:transition-transform motion-safe:active:scale-97 lg:landscape:hidden"
+      className="flex min-h-touch w-full items-center justify-center gap-2 rounded-lg border-2 border-primary bg-surface px-4 text-primary font-semibold motion-safe:transition-transform motion-safe:active:scale-97 lg:landscape:hidden"
     >
       <Lightbulb aria-hidden className="size-6" />
       {state.phase === "wrong3" ? "Xem lời giải" : "Xem gợi ý"}

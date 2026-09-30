@@ -115,9 +115,13 @@ describe("NumericAnswer", () => {
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
     expect(isMarkedWrong(slot(container, "value"))).toBe(true);
-    expect(
-      highlightOf(screen.getByRole("button", { name: "Số mũ" })),
-    ).not.toBeNull();
+    const powerKey = highlightOf(screen.getByRole("button", { name: "Số mũ" }));
+    expect(powerKey).not.toBeNull();
+    // The same slate ring as a hint that names no concept, never yellow.
+    expect(powerKey?.querySelector("[data-halo]")).toHaveClass(
+      "border-concept-slate",
+    );
+    expect(frame.querySelector('[class*="highlight"]')).toBeNull();
   });
 
   it("reveals a decimal value with a comma", () => {

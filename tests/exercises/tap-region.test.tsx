@@ -95,8 +95,12 @@ describe("TapRegionAnswer", () => {
 
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    expect(region("square")).toHaveAttribute("data-highlighted");
-    expect(region("square")).toHaveClass("stroke-highlight");
+    // The mistake gets the orange dashed ring, never a hint or selection look.
+    expect(region("square")).toHaveAttribute("data-wrong");
+    expect(region("square")).not.toHaveAttribute("data-highlighted");
+    expect(region("square")).toHaveClass("stroke-retry");
+    expect(region("square")).not.toHaveClass("stroke-highlight");
+    expect(region("square")).toHaveAttribute("stroke-dasharray");
     expect(region("square")).toHaveAttribute("aria-pressed", "false");
     expect(region("circle")).not.toHaveAttribute("data-highlighted");
     expect(checkButton()).toBeDisabled();
@@ -104,7 +108,7 @@ describe("TapRegionAnswer", () => {
     tap("square");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
-    expect(region("square")).toHaveAttribute("data-highlighted");
+    expect(region("square")).toHaveAttribute("data-wrong");
 
     tap("square");
     checkAnswer();

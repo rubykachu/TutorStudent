@@ -22,14 +22,27 @@ describe("Formula", () => {
     expect(container.querySelector("[data-onclick]")).toBeNull();
   });
 
-  it("lets a hint light up a coloured part by its id", () => {
-    const { container } = render(
+  it("outlines a hinted part in its concept colour, never with the highlight fill", () => {
+    const { container, rerender } = render(
       <Formula
         tex="\htmlId{co-so}{\concept{blue}{2}}^{3}"
-        highlight={[{ id: "co-so", strong: false }]}
+        highlight={[{ id: "co-so", color: "blue", strong: false }]}
       />,
     );
-    expect(container.querySelector("#co-so")).toHaveClass("bg-highlight");
+    const part = container.querySelector("#co-so");
+    expect(part).toHaveAttribute("data-highlighted");
+    expect(part).toHaveClass("outline-3", "outline-concept-blue");
+    expect(part).not.toHaveClass("bg-highlight");
+
+    rerender(
+      <Formula
+        tex="\htmlId{co-so}{\concept{blue}{2}}^{3}"
+        highlight={[{ id: "co-so", color: "slate", strong: true }]}
+      />,
+    );
+    expect(part).toHaveClass("outline-5", "outline-concept-slate");
+    expect(part).not.toHaveClass("outline-3", "outline-concept-blue");
+    expect(part).toHaveAttribute("data-highlight-strong");
   });
 
   it("marks itself for the formula typography in globals.css", () => {

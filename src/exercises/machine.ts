@@ -42,8 +42,8 @@ export type MachineAction<I> =
   | { type: "retype" }
   | { type: "finish" };
 
-// 0: no feedback; 1: shake + highlight; 2: hint visual or stronger highlight;
-// 3: solution visual or revealed answer.
+// 0: no feedback; 1: shake + concept-coloured hint marks; 2: hint visual or
+// bolder hint marks; 3: solution visual or revealed answer.
 export type FeedbackTier = 0 | 1 | 2 | 3;
 
 export function initialMachineState<I>(): MachineState<I> {

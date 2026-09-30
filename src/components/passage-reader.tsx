@@ -43,8 +43,10 @@ function sentenceClass(
       "cursor-pointer px-0.5 py-2 motion-safe:transition-colors motion-safe:duration-100",
     );
   }
-  if (selected || spec) classes.push("bg-highlight");
-  if (spec && spec.color !== "highlight") {
+  // The highlight fill means "selected"; a hint is an underline in the
+  // concept's colour and never fills the sentence.
+  if (selected) classes.push("bg-highlight");
+  if (spec) {
     classes.push(
       `underline decoration-4 underline-offset-4 ${CONCEPT_CLASSES[spec.color].decoration}`,
     );

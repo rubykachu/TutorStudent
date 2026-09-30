@@ -9,11 +9,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import { RichText } from "@/components/rich-text";
-import {
-  AnswerHighlight,
-  surfaceFor,
-  WRONG_TONE,
-} from "@/exercises/answer-highlight";
+import { AnswerHighlight, WRONG_TONE } from "@/exercises/answer-highlight";
 import { DRAG_ACCESSIBILITY, useDragSensors } from "@/exercises/drag";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
@@ -207,17 +203,12 @@ type BlankProps = {
   reveal: boolean;
 };
 
-function blankTone(
-  text: string,
-  reveal: boolean,
-  wrong: boolean,
-  spec?: HighlightSpec,
-) {
+function blankTone(text: string, reveal: boolean, wrong: boolean) {
   if (reveal) return "border-2 border-correct bg-correct-soft";
   if (wrong) return WRONG_TONE;
   return text === ""
-    ? `border-2 border-dashed border-muted-foreground ${surfaceFor(spec)}`
-    : `border-2 border-primary ${surfaceFor(spec)}`;
+    ? "border-2 border-dashed border-muted-foreground bg-surface"
+    : "border-2 border-primary bg-surface";
 }
 
 function BankBlank({
@@ -241,7 +232,7 @@ function BankBlank({
         data-blank={id}
         data-wrong={wrong || undefined}
         onClick={onTap}
-        className={`inline-flex h-12 min-w-20 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, wrong, spec)} ${isOver ? "outline-3 outline-primary" : ""}`}
+        className={`inline-flex h-12 min-w-20 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, wrong)} ${isOver ? "outline-3 outline-primary" : ""}`}
       >
         <RichText text={text} />
       </button>
@@ -279,7 +270,7 @@ function TypedBlank({
           data-wrong={wrong || undefined}
           value={text}
           onChange={(event) => onType(event.target.value)}
-          className={`h-12 w-36 rounded-sm px-3 text-body md:text-body-lg ${blankTone(text, reveal, wrong, spec)}`}
+          className={`h-12 w-36 rounded-sm px-3 text-body md:text-body-lg ${blankTone(text, reveal, wrong)}`}
         />
       </label>
     </AnswerHighlight>

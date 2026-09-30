@@ -4,14 +4,22 @@ import {
   type Phase,
 } from "@/exercises/machine";
 import type { MascotExpression } from "@/mascot/expressions";
-import type { BasicExercise, Concept, TargetRef } from "@/schema/content";
-import type { HighlightColor } from "@/visuals/shared/highlight";
+import type {
+  BasicExercise,
+  Concept,
+  ConceptColor,
+  TargetRef,
+} from "@/schema/content";
+import { HINT_FALLBACK_COLOR } from "@/visuals/shared/highlight";
 
-export type HighlightSpec = { color: HighlightColor; strong: boolean };
+// How an authored hint target is drawn: a ring or underline in the colour of
+// the concept it names (a neutral colour when it names none), bolder at the
+// second tier when there is no hint visual.
+export type HighlightSpec = { color: ConceptColor; strong: boolean };
 
-// Authored hint targets (`hints.highlight`) to light up. The child's own
-// mistakes are never painted with the highlight colour, which would read as
-// a selection; they come separately as `FeedbackView.wrong`.
+// Authored hint targets (`hints.highlight`) to light up. Neither they nor the
+// child's own mistakes (which come separately as `FeedbackView.wrong`) are
+// ever painted with the highlight fill, which reads as a selection.
 export type FeedbackHighlights = {
   // Prompt blocks by position.
   blocks: ReadonlyMap<number, HighlightSpec>;
@@ -65,9 +73,9 @@ function buildHighlights(
   const parts = new Map<string, HighlightSpec>();
   const options = new Map<string, HighlightSpec>();
   for (const target of targets) {
-    const color: HighlightColor =
+    const color =
       (target.conceptId && concepts?.get(target.conceptId)?.color) ||
-      "highlight";
+      HINT_FALLBACK_COLOR;
     const spec = { color, strong };
     if (target.target === "block") blocks.set(target.index, spec);
     else if (target.target === "part") parts.set(target.id, spec);

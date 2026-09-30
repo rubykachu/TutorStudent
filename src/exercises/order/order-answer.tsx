@@ -10,11 +10,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import {
-  AnswerHighlight,
-  surfaceFor,
-  WRONG_TONE,
-} from "@/exercises/answer-highlight";
+import { AnswerHighlight, WRONG_TONE } from "@/exercises/answer-highlight";
 import { DRAG_ACCESSIBILITY, useDragSensors } from "@/exercises/drag";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
@@ -147,10 +143,10 @@ function SortableRow({
   const tone = reveal
     ? "border-3 border-correct bg-correct-soft"
     : picked
-      ? `border-3 border-primary ${surfaceFor(spec)}`
+      ? "border-3 border-primary bg-surface"
       : wrong
         ? WRONG_TONE
-        : `border-2 border-border ${surfaceFor(spec)}`;
+        : "border-2 border-border bg-surface";
 
   return (
     <li

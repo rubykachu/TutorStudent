@@ -22,8 +22,8 @@ function passageParagraphs(exercise: TapTextExercise) {
   );
 }
 
-// A hint mark is an underline, because a selected sentence already uses the
-// highlight background. A sentence the last check found wrong (and let go)
+// A hint mark is an underline in the concept's colour, because a selected
+// sentence already uses the highlight background. A sentence the last check found wrong (and let go)
 // gets a dashed orange underline instead.
 function markClass(mark: HighlightSpec | undefined, wrong: boolean): string {
   if (!mark) {
@@ -31,10 +31,7 @@ function markClass(mark: HighlightSpec | undefined, wrong: boolean): string {
       ? "underline decoration-dashed decoration-retry decoration-3 underline-offset-8"
       : "";
   }
-  const color =
-    mark.color === "highlight"
-      ? "decoration-foreground"
-      : CONCEPT_CLASSES[mark.color].decoration;
+  const color = CONCEPT_CLASSES[mark.color].decoration;
   const width = mark.strong ? "decoration-6" : "decoration-3";
   return `underline underline-offset-8 ${width} ${color}`;
 }

@@ -1,10 +1,15 @@
 "use client";
 
 import { createContext, type ReactNode, useContext } from "react";
+import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
-import type { HighlightColor } from "@/visuals/shared/highlight";
 
-export type RegionMark = { color: HighlightColor; strong: boolean };
+// A ring around a region: an authored hint in its concept colour, or a region
+// the last check found wrong, drawn as the orange dashed "try again" ring.
+// Neither uses the highlight fill, which means "currently selected".
+export type RegionMark =
+  | { tone: "hint"; color: ConceptColor; strong: boolean }
+  | { tone: "wrong" };
 
 // What a `tapRegion` answer hands to the visual it renders. Without it the
 // same visual draws its regions as plain, non-interactive shapes.
@@ -36,6 +41,8 @@ export function RegionProvider({
 // comfortably above the 48px touch minimum.
 const RING = 20;
 const RING_STRONG = 32;
+// Dash pattern of the "try again" ring, so a mistake never rests on colour.
+const RING_DASH = "14 10";
 
 type RegionSvgProps = {
   label: string;
@@ -73,8 +80,8 @@ function ringClass(
 ): string {
   if (interaction.revealed.has(id)) return "stroke-correct";
   if (mark) {
-    return mark.color === "highlight"
-      ? "stroke-highlight"
+    return mark.tone === "wrong"
+      ? "stroke-retry"
       : CONCEPT_CLASSES[mark.color].stroke;
   }
   // Foreground rather than primary: a blue concept shape would swallow a
@@ -101,6 +108,8 @@ export function Region({ id, label, children }: RegionProps) {
   const { disabled, onToggle } = interaction;
   const selected = interaction.selected.has(id);
   const mark = interaction.marks.get(id);
+  const strong = mark?.tone === "hint" && mark.strong;
+  const wrong = mark?.tone === "wrong" && !interaction.revealed.has(id);
   const toggle = () => {
     if (!disabled) onToggle(id);
   };
@@ -113,14 +122,16 @@ export function Region({ id, label, children }: RegionProps) {
       data-region={id}
       data-selected={selected || undefined}
       data-revealed={interaction.revealed.has(id) || undefined}
-      data-highlighted={mark !== undefined || undefined}
-      data-highlight-strong={mark?.strong || undefined}
+      data-highlighted={mark?.tone === "hint" || undefined}
+      data-highlight-strong={strong || undefined}
+      data-wrong={wrong || undefined}
       role="button"
       tabIndex={disabled ? -1 : 0}
       aria-label={label}
       aria-pressed={selected}
       aria-disabled={disabled || undefined}
-      strokeWidth={mark?.strong ? RING_STRONG : RING}
+      strokeWidth={strong ? RING_STRONG : RING}
+      strokeDasharray={wrong ? RING_DASH : undefined}
       strokeLinejoin="round"
       paintOrder="stroke"
       className={`${ringClass(interaction, id, mark)} outline-none focus-visible:stroke-ring **:[vector-effect:non-scaling-stroke] ${disabled ? "" : "cursor-pointer"}`}

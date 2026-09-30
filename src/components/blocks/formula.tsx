@@ -4,9 +4,14 @@ import "katex/dist/katex.min.css";
 import katex, { type TrustContext } from "katex";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import { CONCEPT_DATA_ATTR, isConceptColor, TEX_MACROS } from "@/lib/tex";
+import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 
-export type FormulaHighlight = { id: string; strong: boolean };
+export type FormulaHighlight = {
+  id: string;
+  color: ConceptColor;
+  strong: boolean;
+};
 
 // Content may use two HTML extensions: `\htmlId`, naming the parts a hint can
 // light up, and `\htmlData` carrying only a concept colour (what `\concept`
@@ -32,8 +37,10 @@ function renderTex(tex: string): string {
   });
 }
 
-const HIGHLIGHT_CLASSES = ["rounded-sm", "bg-highlight"];
-const STRONG_CLASSES = ["outline-3", "outline-foreground"];
+// A hinted part gets an outline in its concept's colour (an underline would
+// not reach KaTeX's inline-block pieces); the stronger hint thickens it.
+const HIGHLIGHT_CLASSES = ["rounded-sm", "outline-offset-2"];
+const OUTLINE_CLASSES = Object.values(CONCEPT_CLASSES).map((c) => c.outline);
 
 type FormulaProps = {
   tex: string;
@@ -59,14 +66,17 @@ export function Formula({ tex, highlight = [], className = "" }: FormulaProps) {
       const color = el.getAttribute(CONCEPT_DATA_ATTR) ?? "";
       if (isConceptColor(color)) el.classList.add(CONCEPT_CLASSES[color].text);
     }
-    const marks = new Map(highlight.map((h) => [h.id, h.strong]));
+    const marks = new Map(highlight.map((h) => [h.id, h]));
     for (const el of root.querySelectorAll<HTMLElement>("[id]")) {
-      const strong = marks.get(el.id);
-      const lit = strong !== undefined;
+      const mark = marks.get(el.id);
+      const lit = mark !== undefined;
       el.toggleAttribute("data-highlighted", lit);
+      el.toggleAttribute("data-highlight-strong", mark?.strong === true);
       for (const cls of HIGHLIGHT_CLASSES) el.classList.toggle(cls, lit);
-      for (const cls of STRONG_CLASSES)
-        el.classList.toggle(cls, strong === true);
+      el.classList.toggle("outline-3", lit && !mark.strong);
+      el.classList.toggle("outline-5", lit && mark.strong);
+      el.classList.remove(...OUTLINE_CLASSES);
+      if (mark) el.classList.add(CONCEPT_CLASSES[mark.color].outline);
     }
   }, [highlight]);
 

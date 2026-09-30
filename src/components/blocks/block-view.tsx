@@ -52,7 +52,7 @@ export function BlockView({
             tex={block.tex}
             highlight={[...parts].map(([id, spec]) => ({
               id,
-              strong: spec.strong,
+              ...spec,
             }))}
           />
         </div>

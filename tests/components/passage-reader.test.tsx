@@ -89,7 +89,7 @@ describe("PassageReader in reading mode", () => {
 
   it("lights up hinted sentences with the hint colour and strength", () => {
     const highlight = new Map<string, HighlightSpec>([
-      ["s1", { color: "highlight", strong: false }],
+      ["s1", { color: "slate", strong: false }],
       ["s2", { color: "pink", strong: true }],
     ]);
     const { container } = render(
@@ -97,11 +97,13 @@ describe("PassageReader in reading mode", () => {
     );
     const plain = sentence(container, "s1");
     expect(plain).toHaveAttribute("data-highlighted", "true");
-    expect(plain).toHaveClass("bg-highlight");
+    expect(plain).toHaveClass("underline", "decoration-concept-slate");
+    expect(plain).not.toHaveClass("bg-highlight");
     expect(plain).not.toHaveAttribute("data-highlight-strong");
 
     const concept = sentence(container, "s2");
     expect(concept).toHaveClass("decoration-concept-pink", "outline-3");
+    expect(concept).not.toHaveClass("bg-highlight");
     expect(concept).toHaveAttribute("data-highlight-strong", "true");
 
     expect(sentence(container, "s3")).not.toHaveAttribute("data-highlighted");

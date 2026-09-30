@@ -2,11 +2,7 @@
 
 import { Keyboard } from "lucide-react";
 import { type KeyboardEvent, useState } from "react";
-import {
-  AnswerHighlight,
-  surfaceFor,
-  WRONG_TONE,
-} from "@/exercises/answer-highlight";
+import { AnswerHighlight, WRONG_TONE } from "@/exercises/answer-highlight";
 import {
   type AnswerSlotProps,
   COLLAPSED_INPUT_CLASS,
@@ -20,6 +16,7 @@ import {
   type PadKey,
 } from "@/exercises/number-pad";
 import type { NumericExercise } from "@/schema/content";
+import { HINT_FALLBACK_COLOR } from "@/visuals/shared/highlight";
 import {
   applyPadKey,
   EMPTY_NUMERIC,
@@ -33,7 +30,11 @@ type NumericAnswerProps = {
 };
 
 const NO_COMMA: ReadonlySet<PadKey> = new Set(["comma"]);
-const POWER_KEY_HINT: HighlightSpec = { color: "highlight", strong: false };
+// The same ring as an authored hint that names no concept.
+const POWER_KEY_HINT: HighlightSpec = {
+  color: HINT_FALLBACK_COLOR,
+  strong: false,
+};
 
 function revealedInput(exercise: NumericExercise): NumericInput {
   const { answer } = exercise;
@@ -126,8 +127,8 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
               : missed
                 ? WRONG_TONE
                 : focused
-                  ? `border-3 border-primary ${surfaceFor(spec)}`
-                  : `border-2 border-border ${surfaceFor(spec)}`
+                  ? "border-3 border-primary bg-surface"
+                  : "border-2 border-border bg-surface"
           }`}
         >
           {text}

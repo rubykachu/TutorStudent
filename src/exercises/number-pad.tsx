@@ -2,7 +2,7 @@
 
 import { Delete } from "lucide-react";
 import type { ReactNode } from "react";
-import { AnswerHighlight, surfaceFor } from "@/exercises/answer-highlight";
+import { AnswerHighlight } from "@/exercises/answer-highlight";
 import type { HighlightSpec } from "@/exercises/feedback";
 
 export const DIGITS = [
@@ -101,7 +101,7 @@ export function NumberPad({
           ariaLabel: "Số mũ",
           pressed: powerActive,
           size: "h-full w-16 lg:landscape:w-15",
-          tone: `${powerActive ? "border-3 border-primary" : "border-2 border-border"} ${surfaceFor(powerHighlight)}`,
+          tone: `${powerActive ? "border-3 border-primary" : "border-2 border-border"} bg-surface`,
         })}
       </AnswerHighlight>
       {key("0", "0", { size: "col-span-3 h-16 w-full lg:landscape:h-15" })}

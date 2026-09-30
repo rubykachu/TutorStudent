@@ -183,6 +183,17 @@ describe("ExerciseFrame", () => {
     const part = container.querySelector("#co-so");
     expect(part).toHaveAttribute("data-highlighted");
     expect(frame).toHaveAttribute("data-mascot", "idle");
+    // No yellow at the first tier: the answer card gets the orange dashed
+    // border, a hinted part its concept's outline, and a hinted block that
+    // names no concept the neutral slate ring.
+    expect(answerArea(container)).toHaveClass("border-dashed", "border-retry");
+    expect(part).toHaveClass("outline-3", "outline-concept-blue");
+    const blockRing = screen
+      .getByText("Chọn cách viết đúng.")
+      .closest("[data-highlighted]")
+      ?.querySelector("[data-halo]");
+    expect(blockRing).toHaveClass("border-concept-slate");
+    expect(frame.querySelector('[class*="highlight"]')).toBeNull();
 
     choose("b");
     checkAnswer();
@@ -191,7 +202,8 @@ describe("ExerciseFrame", () => {
     expect(
       screen.getByText("Chọn cách viết đúng.").closest("[data-highlighted]"),
     ).toHaveAttribute("data-highlight-strong");
-    expect(part).toHaveClass("outline-3");
+    expect(part).toHaveClass("outline-5");
+    expect(frame.querySelector('[class*="highlight"]')).toBeNull();
     expect(frame).toHaveAttribute("data-mascot", "hint");
 
     choose("b");

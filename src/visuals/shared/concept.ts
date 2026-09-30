@@ -11,6 +11,7 @@ export const CONCEPT_CLASSES: Readonly<
       text: string;
       border: string;
       decoration: string;
+      outline: string;
     }
   >
 > = {
@@ -20,6 +21,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-blue",
     border: "border-concept-blue",
     decoration: "decoration-concept-blue",
+    outline: "outline-concept-blue",
   },
   violet: {
     fill: "fill-concept-violet",
@@ -27,6 +29,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-violet",
     border: "border-concept-violet",
     decoration: "decoration-concept-violet",
+    outline: "outline-concept-violet",
   },
   pink: {
     fill: "fill-concept-pink",
@@ -34,6 +37,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-pink",
     border: "border-concept-pink",
     decoration: "decoration-concept-pink",
+    outline: "outline-concept-pink",
   },
   amber: {
     fill: "fill-concept-amber",
@@ -41,6 +45,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-amber",
     border: "border-concept-amber",
     decoration: "decoration-concept-amber",
+    outline: "outline-concept-amber",
   },
   teal: {
     fill: "fill-concept-teal",
@@ -48,6 +53,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-teal",
     border: "border-concept-teal",
     decoration: "decoration-concept-teal",
+    outline: "outline-concept-teal",
   },
   sky: {
     fill: "fill-concept-sky",
@@ -55,6 +61,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-sky",
     border: "border-concept-sky",
     decoration: "decoration-concept-sky",
+    outline: "outline-concept-sky",
   },
   lime: {
     fill: "fill-concept-lime",
@@ -62,6 +69,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-lime",
     border: "border-concept-lime",
     decoration: "decoration-concept-lime",
+    outline: "outline-concept-lime",
   },
   slate: {
     fill: "fill-concept-slate",
@@ -69,6 +77,7 @@ export const CONCEPT_CLASSES: Readonly<
     text: "text-concept-slate",
     border: "border-concept-slate",
     decoration: "decoration-concept-slate",
+    outline: "outline-concept-slate",
   },
 };
 

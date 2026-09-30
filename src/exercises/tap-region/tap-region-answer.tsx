@@ -6,7 +6,7 @@ import type { TapRegionInput } from "@/exercises/input";
 import { toggleId } from "@/exercises/selection";
 import type { TapRegionExercise } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
-import { RegionProvider } from "@/visuals/shared/region";
+import { type RegionMark, RegionProvider } from "@/visuals/shared/region";
 
 export type TapRegionAnswerProps = {
   exercise: TapRegionExercise;
@@ -17,15 +17,15 @@ const NONE: ReadonlySet<string> = new Set();
 
 // Regions draw every mark as a ring around the shape, never as a fill that
 // could pass for a selection: a region the last check found wrong (and let
-// go) gets the plain ring, and an authored hint on the same region wins.
+// go) gets the orange dashed ring, and an authored hint on the same region
+// wins with its concept-coloured ring.
 function regionMarks(
   highlight: ReadonlyMap<string, HighlightSpec>,
   wrong: ReadonlySet<string>,
-): ReadonlyMap<string, HighlightSpec> {
-  if (wrong.size === 0) return highlight;
-  const marks = new Map<string, HighlightSpec>();
-  for (const id of wrong) marks.set(id, { color: "highlight", strong: false });
-  for (const [id, spec] of highlight) marks.set(id, spec);
+): ReadonlyMap<string, RegionMark> {
+  const marks = new Map<string, RegionMark>();
+  for (const id of wrong) marks.set(id, { tone: "wrong" });
+  for (const [id, spec] of highlight) marks.set(id, { tone: "hint", ...spec });
   return marks;
 }
 

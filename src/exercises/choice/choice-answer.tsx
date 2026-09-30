@@ -2,11 +2,7 @@
 
 import { Check } from "lucide-react";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
-import {
-  AnswerHighlight,
-  surfaceFor,
-  WRONG_TONE,
-} from "@/exercises/answer-highlight";
+import { AnswerHighlight, WRONG_TONE } from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { ChoiceInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
@@ -117,10 +113,10 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
                   on
                     ? reveal
                       ? "border-3 border-correct bg-correct-soft"
-                      : `border-3 border-primary ${surfaceFor(spec)}`
+                      : "border-3 border-primary bg-surface"
                     : missed
                       ? WRONG_TONE
-                      : `border-2 border-border ${surfaceFor(spec)}`
+                      : "border-2 border-border bg-surface"
                 }`}
               >
                 <Marker multiple={exercise.multiple} on={on} reveal={reveal} />

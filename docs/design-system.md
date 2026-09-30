@@ -47,7 +47,7 @@ Chỉ giao diện sáng. Mọi cặp chữ/nền đã kiểm tra tương phản 
 | `--color-correct-soft` | `#F0FDF4` | Nền ô đúng; chữ trên nền này dùng `#166534` (6.81) |
 | `--color-retry` | `#C2410C` | Viền/biểu tượng sai — "thử lại" (5.18 với trắng) |
 | `--color-retry-soft` | `#FFF7ED` | Nền ô sai; chữ trên nền này dùng `#9A3412` (6.88) |
-| `--color-highlight` | `#FDE68A` | Nền tô sáng phần liên quan ở nấc gợi ý 1 |
+| `--color-highlight` | `#FDE68A` | Nền của thứ đang được chọn (câu đang chọn); không dùng cho gợi ý hay lỗi |
 | `--color-destructive` | `#DC2626` | **Chỉ** thao tác nguy hiểm ở trang phụ huynh/quản trị (thu hồi mã, xoá). Không bao giờ dùng trong giao diện trẻ |
 
 ### Màu khái niệm
@@ -119,11 +119,11 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 | Chưa trả lời | `--color-border` 2px | `--color-surface` | — | — |
 | Đã chọn | `--color-primary` 3px | `--color-surface` | — | — |
 | Đúng | `--color-correct` 3px + dấu ✓ | `--color-correct-soft` | vui | "ting" nhẹ |
-| Sai lần 1 | `--color-retry` 3px + rung | `--color-retry-soft` | — | không |
+| Sai lần 1 | `--color-retry` 3px nét đứt + rung | `--color-retry-soft` | — | không |
 | Sai lần 2 | như lần 1 | như lần 1 | gợi ý, chỉ vào visual gợi ý | không |
 | Sai lần 3 | như lần 1 | như lần 1 | cổ vũ, visual lời giải chạy | không |
 
-Nấc 1 tô sáng phần liên quan bằng `--color-highlight` hoặc màu khái niệm tương ứng, không thêm chữ.
+Nấc 1 không tô vàng, không thêm chữ: thẻ trả lời rung và có viền cam nét đứt; phần trả lời sai có viền cam nét đứt (vùng chạm: vòng cam nét đứt). Gợi ý tác giả trỏ vào đề (khối, phần công thức, câu) và phím "mũ" được viền/gạch chân bằng màu khái niệm của đích gợi ý, không có khái niệm thì `--color-concept-slate`. Nấc 2 khi không có visual gợi ý: cùng viền đó, dày hơn. `--color-highlight` chỉ dành cho trạng thái đang chọn.
 
 ## 8. Linh vật
 
