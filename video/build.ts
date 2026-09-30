@@ -10,6 +10,7 @@ import {
 import { alignWords } from "./lib/align";
 import { layNarration, probeDuration } from "./lib/audio";
 import { buildSite } from "./lib/compose";
+import { captionIssues, checkProject } from "./lib/consistency";
 import { writeManifest } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
 import { encodeVideo, extractPoster, renderSite } from "./lib/render";
@@ -44,6 +45,13 @@ async function main() {
       `script.json must quote the lesson word for word:\n${verbatim.join("\n")}`,
     );
   }
+  // On-screen rule text is checked before any voice or render work.
+  const onScreen = checkProject(lessonId, name, { captions: false }).issues;
+  if (onScreen.length > 0) {
+    throw new Error(
+      `index.html shows rule text that is off:\n${onScreen.join("\n")}`,
+    );
+  }
   const engine = ttsEngine(script.engine);
   const renders = path.join(projectDir, "renders");
   mkdirSync(renders, { recursive: true });
@@ -76,7 +84,14 @@ async function main() {
       (posterScene.end - posterScene.start) * script.poster.at,
     path.join(outDir, `${name}.jpg`),
   );
-  writeFileSync(path.join(outDir, `${name}.vtt`), buildVtt(timeline));
+  const vtt = buildVtt(timeline);
+  writeFileSync(path.join(outDir, `${name}.vtt`), vtt);
+  const captionProblems = captionIssues(script, vtt);
+  if (captionProblems.length > 0) {
+    throw new Error(
+      `the captions do not match script.json:\n${captionProblems.join("\n")}`,
+    );
+  }
 
   const duration = Math.round(probeDuration(mp4) * 100) / 100;
   const megabytes = statSync(mp4).size / 1_000_000;
