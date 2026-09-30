@@ -7,7 +7,7 @@
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
   "status": "published",
-  "reviewedHash": "62af8fda2837b125625b453b98c20552282444024132d851b83d79f988138256",
+  "reviewedHash": "3adef91373498e1f6316b9841f40048e8d8b61226a6ed657525ad2f1322e2227",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -5024,5 +5024,22 @@
         "model": "VieNeu-TTS v3 Turbo"
       }
     }
-  ]
+  ],
+  "overview": {
+    "hook": {
+      "text": "Bạn thân của bạn khác gì hàng trăm nghìn người còn lại? Một con cáo sẽ kể cho bạn nghe bí mật của tình bạn."
+    },
+    "summary": "Trên Trái Đất, hoàng tử bé gặp một con cáo có cuộc sống đơn điệu. Cáo giải thích “cảm hoá” nghĩa là “làm cho gần gũi hơn”, để cả hai trở thành duy nhất trên đời với nhau. Hoàng tử bé kiên nhẫn ngồi gần cáo mỗi ngày, và cả hai trở thành bạn thân. Lúc chia tay, cáo buồn đến muốn khóc nhưng không hối tiếc, vì màu lúa mì sẽ làm nó nhớ hoàng tử bé. Khi từ biệt, cáo tặng cậu một bí mật: “người ta chỉ thấy rõ với trái tim”.",
+    "goals": [
+      "biết ai đang nói trong từng lời thoại",
+      "hiểu “cảm hoá” nghĩa là gì",
+      "nhận ra cảm xúc của cáo qua lời nói của nó",
+      "nhận biết biện pháp so sánh, lời thoại được lặp lại, từ ghép và từ láy"
+    ],
+    "whyItMatters": "Đọc kĩ câu chuyện này giúp bạn hiểu vì sao tình bạn cần thời gian và sự quan tâm.",
+    "narration": {
+      "audioUrl": "narration/neu-cau-muon-co-mot-nguoi-ban/overview.m4a",
+      "vttUrl": "narration/neu-cau-muon-co-mot-nguoi-ban/overview.vtt"
+    }
+  }
 }
