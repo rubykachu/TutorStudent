@@ -1,3 +1,5 @@
+> Archived: one-off product review of 2026-09-30 against the owner's six criteria; its findings were fixed; kept for history only.
+
 # Review sản phẩm theo 6 tiêu chí của chủ dự án (đêm 2026-09-29 → sáng 2026-09-30)
 
 Nguồn: video + ảnh `.shots/evidence/morning-report/{ipad,phone}/`, chạy thử live ở 390×844, 820×1180, 1180×820.

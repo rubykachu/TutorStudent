@@ -1,6 +1,8 @@
+> Archived: task list of the finished "Học được" milestone, done in the order of plan-hoc-duoc.md; kept for history only.
+
 # Todo: mốc "Học được"
 
-Làm tuần tự theo `tasks/plan.md`. Lệnh verify chung ("gate"): `pnpm lint && pnpm typecheck && pnpm test && pnpm content:check`.
+Làm tuần tự theo `plan-hoc-duoc.md`. Lệnh verify chung ("gate"): `pnpm lint && pnpm typecheck && pnpm test && pnpm content:check`.
 
 ## 1. Scaffold dự án + design tokens
 `create-next-app@16` (`--biome --app --src-dir --use-pnpm --ts --tailwind`) vào repo hiện có. Giữ `AGENTS.md` do Next sinh; `CLAUDE.md` giữ dòng `@AGENTS.md`. `@types/node` 22; Biome bản mới nhất, bật `css.parser.tailwindDirectives`. shadcn init (Radix): gán hex design-system vào biến của shadcn, xoá block `.dark`. Font Baloo 2 + Be Vietnam Pro (`latin`, `vietnamese`). Token màu/khoảng cách/bo góc/bóng vào `globals.css`. `src/lib/config.ts`, `src/lib/time.ts` (`now()`), `src/lib/id.ts` (dùng `crypto.getRandomValues`). `next.config.ts`: `allowedDevOrigins` cho LAN. Vitest 5 (`vite`, `@vitejs/plugin-react`, `jsdom`, setup stub `matchMedia`, `@vitest/coverage-v8` với threshold 90% cho `src/{schema,srs,progress,exercises/grade}`). Playwright (`ipad` WebKit 820×1180 touch, `phone` 390×844; `playwright install webkit`). Script `dev` `--hostname 0.0.0.0`.

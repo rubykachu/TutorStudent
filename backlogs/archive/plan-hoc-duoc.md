@@ -1,3 +1,5 @@
+> Archived: plan of the finished "Học được" milestone (the app, two lessons, eight exercise types, spaced review); kept for history only.
+
 # Implementation Plan: mốc "Học được"
 
 Nguồn yêu cầu: `docs/spec.md` (mục "Tiêu chí thành công", mốc "Học được"), giao diện theo `docs/design-system.md`. Các mốc sau nằm trong `backlogs/milestones.md`.
