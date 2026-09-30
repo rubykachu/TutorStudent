@@ -2,9 +2,7 @@
   "terms": [
     {
       "term": "luỹ thừa",
-      "forbidden": [
-        "lũy thừa"
-      ]
+      "forbidden": ["lũy thừa"]
     },
     {
       "term": "cơ số",
@@ -26,9 +24,7 @@
     },
     {
       "term": "thừa số",
-      "forbidden": [
-        "nhân tử"
-      ],
+      "forbidden": ["nhân tử"],
       "color": "blue"
     },
     {
@@ -134,9 +130,7 @@
     },
     {
       "term": "tập hợp",
-      "forbidden": [
-        "tập họp"
-      ],
+      "forbidden": ["tập họp"],
       "color": "teal"
     },
     {
@@ -151,9 +145,7 @@
     },
     {
       "term": "kí hiệu",
-      "forbidden": [
-        "ký hiệu"
-      ]
+      "forbidden": ["ký hiệu"]
     },
     {
       "term": "liệt kê",

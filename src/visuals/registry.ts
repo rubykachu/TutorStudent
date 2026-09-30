@@ -17,6 +17,21 @@ import {
   solvePowerIs,
 } from "@/visuals/math/luy-thua/validators";
 import {
+  LESSON_SLUG as CONG_TRU_SLUG,
+  VISUAL_SPECS as CONG_TRU_SPECS,
+  TAP_PARTS_REGIONS,
+} from "@/visuals/math/phep-cong-phep-tru/catalog";
+import {
+  columnStep,
+  solveColumnStep,
+} from "@/visuals/math/phep-cong-phep-tru/column-validators";
+import {
+  pairRound,
+  shiftRound,
+  solvePairRound,
+  solveShiftRound,
+} from "@/visuals/math/phep-cong-phep-tru/pair-validators";
+import {
   INTERACTIVE_KINDS,
   mulTableRegions,
   LESSON_SLUG as NHAN_CHIA_SLUG,
@@ -35,20 +50,6 @@ import {
   solutions as nhanSolutions,
   validators as nhanValidators,
 } from "@/visuals/math/phep-nhan-phep-chia/validators-nhan";
-  LESSON_SLUG as CONG_TRU_SLUG,
-  VISUAL_SPECS as CONG_TRU_SPECS,
-  TAP_PARTS_REGIONS,
-} from "@/visuals/math/phep-cong-phep-tru/catalog";
-import {
-  columnStep,
-  solveColumnStep,
-} from "@/visuals/math/phep-cong-phep-tru/column-validators";
-import {
-  pairRound,
-  shiftRound,
-  solvePairRound,
-  solveShiftRound,
-} from "@/visuals/math/phep-cong-phep-tru/pair-validators";
 import {
   pickMatches,
   solvePickMatches,
@@ -157,7 +158,7 @@ const nhanChiaEntries: Record<string, VisualEntry> = Object.fromEntries(
     };
     return [`${NHAN_CHIA_SLUG}.visual.${key}`, entry];
   }),
-  );
+);
 
 // Entries of "phep-cong-phep-tru": one per item of its catalog. The pictures
 // the child acts on (pick a pair, choose a shift, fill a column) are
