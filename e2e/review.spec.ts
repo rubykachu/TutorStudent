@@ -65,9 +65,17 @@ test("review asks the missed card first and again at the end", async ({
   await answerRight(page);
   await expectNoRecap(page);
 
+  // Two cards, three questions: the count includes the re-ask, and the
+  // lesson progress (one of two sections, half a sticker) is shown too.
   await expect(
-    page.getByRole("heading", { name: "Ôn xong 3 câu!" }),
+    page.getByRole("heading", { name: "Ôn xong rồi!" }),
   ).toBeVisible();
+  await expect(page.getByText("Bạn vừa ôn 3 câu. Giỏi lắm!")).toBeVisible();
+  await expect(page.getByText("Xong 1/2 phần")).toBeVisible();
+  await expect(
+    page.locator('[data-review-step="end"] [data-sticker-fill]'),
+  ).toHaveAttribute("data-sticker-fill", "1/2");
+  await expectNoHorizontalScroll(page);
   await page.getByRole("link", { name: "Về bài" }).tap();
 
   // Review can start again right away.

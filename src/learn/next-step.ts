@@ -20,27 +20,55 @@ export type StudyProgress = {
   stickers: readonly Pick<StickerRecord, "lessonId">[];
 };
 
-// Position (0-based) of the section to study next in a lesson: the unfinished
-// section the child touched most recently, so "Học tiếp" resumes where they
-// were, else the first section not done yet. Null once every section is done.
+// Position (0-based) of the section to study next in a lesson: the first
+// section not done yet, in lesson order, whether started or not. Sections are
+// never locked, so a child may have started a later one; "Học tiếp" still
+// sends them back to the earliest gap. Null once every section is done.
 export function nextSectionIndex(
   sections: readonly { id: string }[],
   records: readonly SectionRecord[],
 ): number | null {
   const recordOf = new Map(records.map((r) => [r.sectionId, r]));
-  let resume: { index: number; at: string } | null = null;
-  for (const [index, section] of sections.entries()) {
-    const record = recordOf.get(section.id);
-    if (record?.state !== "in_progress") continue;
-    if (!resume || record.updatedAt > resume.at) {
-      resume = { index, at: record.updatedAt };
-    }
-  }
-  if (resume) return resume.index;
   const first = sections.findIndex(
     (section) => recordOf.get(section.id)?.state !== "done",
   );
   return first >= 0 ? first : null;
+}
+
+// Position of a section the child left half-way that comes after the one to
+// study next (the most recently touched one if several), so "Học tiếp" can
+// mention it on a second line. Null when there is none.
+export function pausedSectionIndex(
+  sections: readonly { id: string }[],
+  records: readonly SectionRecord[],
+): number | null {
+  const next = nextSectionIndex(sections, records);
+  if (next === null) return null;
+  const recordOf = new Map(records.map((r) => [r.sectionId, r]));
+  let paused: { index: number; at: string } | null = null;
+  for (const [index, section] of sections.entries()) {
+    const record = recordOf.get(section.id);
+    if (index <= next || record?.state !== "in_progress") continue;
+    if (!paused || record.updatedAt > paused.at) {
+      paused = { index, at: record.updatedAt };
+    }
+  }
+  return paused?.index ?? null;
+}
+
+// Sections of a lesson that fill its sticker with colour: every section once
+// the sticker is earned, else the sections done.
+export function stickerFill(
+  sections: readonly { id: string }[],
+  records: readonly Pick<SectionRecord, "sectionId" | "state">[],
+  earned: boolean,
+): { done: number; total: number } {
+  const total = sections.length;
+  if (earned) return { done: total, total };
+  const done = new Set(
+    records.filter((r) => r.state === "done").map((r) => r.sectionId),
+  );
+  return { done: sections.filter((s) => done.has(s.id)).length, total };
 }
 
 // Latest moment the child answered or moved through each lesson.
@@ -64,6 +92,8 @@ export type ContinueTarget = {
   lesson: LessonSummary;
   // 0-based position of the section to open in `lesson.sections`.
   sectionIndex: number;
+  // 0-based position of a later section left half-way, else null.
+  pausedIndex: number | null;
   // False for a lesson the child never opened: the card says "Bắt đầu".
   started: boolean;
 };
@@ -73,11 +103,11 @@ function targetIn(
   progress: StudyProgress,
   started: boolean,
 ): ContinueTarget | null {
-  const sectionIndex = nextSectionIndex(
-    lesson.sections,
-    progress.sections.filter((s) => s.lessonId === lesson.id),
-  );
-  return sectionIndex === null ? null : { lesson, sectionIndex, started };
+  const records = progress.sections.filter((s) => s.lessonId === lesson.id);
+  const sectionIndex = nextSectionIndex(lesson.sections, records);
+  if (sectionIndex === null) return null;
+  const pausedIndex = pausedSectionIndex(lesson.sections, records);
+  return { lesson, sectionIndex, pausedIndex, started };
 }
 
 // Where the home "Học tiếp" card leads, among the lessons the child can see

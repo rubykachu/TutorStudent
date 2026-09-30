@@ -7,7 +7,7 @@ import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
 import { SUBJECT_STYLES } from "@/components/subject-style";
 import type { LessonIndex } from "@/content";
-import { nextSectionIndex } from "@/learn/next-step";
+import { nextSectionIndex, stickerFill } from "@/learn/next-step";
 import { HOME_PATH, reviewPath, sectionPath, subjectPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import type { ProfileRecord, SectionState } from "@/progress/db";
@@ -51,6 +51,8 @@ function LessonBody({
   const next = nextSectionIndex(lesson.sections, progress.sections);
   const stateOf = new Map(progress.sections.map((s) => [s.sectionId, s.state]));
   const earned = progress.sticker !== undefined;
+  const fill = stickerFill(lesson.sections, progress.sections, earned);
+  const left = fill.total - fill.done;
   const scope = {
     now: now(),
     lessonId: lesson.id,
@@ -143,14 +145,22 @@ function LessonBody({
         <Sticker
           visualId={lesson.sticker.visualId}
           name={lesson.sticker.name}
-          earned={earned}
+          done={fill.done}
+          total={fill.total}
           className="size-20 shrink-0"
         />
-        <p>
-          {earned
-            ? `Bạn đã nhận sticker “${lesson.sticker.name}”.`
-            : `Học xong mọi phần để nhận sticker “${lesson.sticker.name}”.`}
-        </p>
+        {/* The sticker name on its own line, so no line ends on a lone
+            "sticker" and a long name wraps as a whole. */}
+        <div className="flex min-w-0 flex-col gap-1">
+          <p className="text-balance">
+            {earned
+              ? "Bạn đã nhận sticker"
+              : fill.done === 0
+                ? "Học xong mọi phần để nhận sticker"
+                : `Còn ${left} phần nữa là có\u00a0sticker`}
+          </p>
+          <p className="font-semibold">{`“${lesson.sticker.name}”`}</p>
+        </div>
       </section>
     </>
   );

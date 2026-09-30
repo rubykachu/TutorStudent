@@ -30,7 +30,7 @@ describe("ContinueCard", () => {
   it("links straight into the next section of a started lesson", () => {
     render(
       <ContinueCard
-        target={{ lesson, sectionIndex: 1, started: true }}
+        target={{ lesson, sectionIndex: 1, pausedIndex: null, started: true }}
         subject={math}
       />,
     );
@@ -46,7 +46,7 @@ describe("ContinueCard", () => {
   it("says Bắt đầu học for a lesson never opened", () => {
     render(
       <ContinueCard
-        target={{ lesson, sectionIndex: 0, started: false }}
+        target={{ lesson, sectionIndex: 0, pausedIndex: null, started: false }}
         subject={math}
       />,
     );
@@ -55,5 +55,21 @@ describe("ContinueCard", () => {
       "href",
       "/lessons/luy-thua/sections/luy-thua.section.mot",
     );
+  });
+
+  it("mentions a later section left half-way under the one to study", () => {
+    render(
+      <ContinueCard
+        target={{ lesson, sectionIndex: 0, pausedIndex: 1, started: true }}
+        subject={math}
+      />,
+    );
+    const card = screen.getByRole("link", { name: /^Học tiếp/ });
+    expect(card).toHaveAttribute(
+      "href",
+      "/lessons/luy-thua/sections/luy-thua.section.mot",
+    );
+    expect(card).toHaveTextContent("Phần 1: ");
+    expect(card).toHaveTextContent("Đang dở: Phần 2");
   });
 });

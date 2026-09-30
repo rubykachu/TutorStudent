@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   continueTarget,
   nextSectionIndex,
+  pausedSectionIndex,
   type StudyProgress,
+  stickerFill,
   subjectStatus,
 } from "@/learn/next-step";
 import type { SectionState } from "@/progress/db";
@@ -73,12 +75,20 @@ describe("nextSectionIndex", () => {
     expect(nextSectionIndex(sections, [])).toBe(0);
   });
 
-  it("resumes the unfinished section touched most recently", () => {
+  it("goes back to the first unfinished section even when a later one was touched last", () => {
     const records = [
       record("m1", 1, "in_progress", 1),
       record("m1", 3, "in_progress", 5),
     ];
-    expect(nextSectionIndex(sections, records)).toBe(2);
+    expect(nextSectionIndex(sections, records)).toBe(0);
+  });
+
+  it("goes to an untouched earlier section before a started later one", () => {
+    const records = [
+      record("m1", 1, "done", 1),
+      record("m1", 3, "in_progress", 5),
+    ];
+    expect(nextSectionIndex(sections, records)).toBe(1);
   });
 
   it("goes to the first section not done when none is in progress", () => {
@@ -89,6 +99,55 @@ describe("nextSectionIndex", () => {
   it("is null once every section is done", () => {
     const records = [1, 2, 3].map((n) => record("m1", n, "done", n));
     expect(nextSectionIndex(sections, records)).toBeNull();
+  });
+});
+
+describe("pausedSectionIndex", () => {
+  const sections = lesson("m1", "math", 1, 4).sections;
+
+  it("names the later section left half-way, the latest if several", () => {
+    const records = [
+      record("m1", 1, "done", 1),
+      record("m1", 3, "in_progress", 5),
+      record("m1", 4, "in_progress", 3),
+    ];
+    expect(pausedSectionIndex(sections, records)).toBe(2);
+  });
+
+  it("is null when the section to study is the one in progress", () => {
+    const records = [record("m1", 2, "in_progress", 5)];
+    expect(
+      pausedSectionIndex(sections, [record("m1", 1, "done", 1), ...records]),
+    ).toBeNull();
+    expect(pausedSectionIndex(sections, [])).toBeNull();
+  });
+});
+
+describe("stickerFill", () => {
+  const sections = lesson("m1", "math", 1, 4).sections;
+
+  it("counts the sections done, ignoring those in progress", () => {
+    const records = [
+      record("m1", 1, "done", 1),
+      record("m1", 3, "done", 2),
+      record("m1", 4, "in_progress", 3),
+    ];
+    expect(stickerFill(sections, records, false)).toEqual({
+      done: 2,
+      total: 4,
+    });
+  });
+
+  it("is full once the sticker is earned", () => {
+    expect(stickerFill(sections, [], true)).toEqual({ done: 4, total: 4 });
+  });
+
+  it("ignores records of sections the lesson no longer has", () => {
+    const records = [{ sectionId: "gone", state: "done" as const }];
+    expect(stickerFill(sections, records, false)).toEqual({
+      done: 0,
+      total: 4,
+    });
   });
 });
 
@@ -107,7 +166,13 @@ describe("continueTarget", () => {
       ...EMPTY,
       sections: [record("m1", 1, "done", 1), record("v1", 2, "in_progress", 9)],
     });
-    expect(target).toMatchObject({ sectionIndex: 1, started: true });
+    // Sections are not locked: part 2 was started first, yet part 1 is the
+    // first gap, so it comes first and part 2 is named as left half-way.
+    expect(target).toMatchObject({
+      sectionIndex: 0,
+      pausedIndex: 1,
+      started: true,
+    });
     expect(target?.lesson.id).toBe("v1");
   });
 
@@ -126,7 +191,11 @@ describe("continueTarget", () => {
       sections: [1, 2, 3].map((n) => record("m1", n, "done", n)),
       stickers: [{ lessonId: "m1" }],
     });
-    expect(target).toMatchObject({ sectionIndex: 0, started: false });
+    expect(target).toMatchObject({
+      sectionIndex: 0,
+      pausedIndex: null,
+      started: false,
+    });
     expect(target?.lesson.id).toBe("m2");
   });
 

@@ -12,6 +12,8 @@ import { ExerciseFrame } from "@/exercises/exercise-frame";
 import type { ExerciseOutcome } from "@/exercises/machine";
 import { BlockStage } from "@/learn/block-stage";
 import { DoneScreen } from "@/learn/done-screen";
+import { LessonProgressCard } from "@/learn/lesson-progress-card";
+import { stickerFill } from "@/learn/next-step";
 import { useCorrectSound } from "@/learn/use-correct-sound";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
@@ -67,6 +69,9 @@ export function ReviewPlayer({
   const { lesson } = index;
   const { familyId, childId } = scope;
   const [session, setSession] = useState<ReviewSession | null>(null);
+  // Sections of the lesson done, for the progress shown when review ends;
+  // reviewing never changes it, so it is read once with the cards.
+  const [sectionsDone, setSectionsDone] = useState(0);
   const onCorrect = useCorrectSound(childId);
 
   // Cards are chosen once, from the memory states at the moment the session
@@ -89,6 +94,13 @@ export function ReviewPlayer({
         recentExerciseIds: recent,
         random,
       }).filter((pick) => basicExercise(index, pick.exerciseId));
+      setSectionsDone(
+        stickerFill(
+          lesson.sections,
+          progress.sections,
+          progress.sticker !== undefined,
+        ).done,
+      );
       // A re-ask avoids what the child met moments ago or while learning.
       setSession(
         startSession(picks, [
@@ -100,7 +112,7 @@ export function ReviewPlayer({
     return () => {
       live = false;
     };
-  }, [db, familyId, childId, lesson.id, index, random]);
+  }, [db, familyId, childId, lesson.id, lesson.sections, index, random]);
 
   const item = session ? currentItem(session) : undefined;
   // While a question is on screen, fetch the visuals of its hints, of the
@@ -174,9 +186,7 @@ export function ReviewPlayer({
         <DoneScreen
           stepAttr={{ name: "data-review-step", value: "end" }}
           owl={answered > 0 ? "happy" : "idle"}
-          title={
-            answered > 0 ? `Ôn xong ${answered} câu!` : "Chưa có thẻ nào để ôn"
-          }
+          title={answered > 0 ? "Ôn xong rồi!" : "Chưa có thẻ nào để ôn"}
           actions={
             <>
               {answered > 0 && <BigButton onClick={onAgain}>Ôn tiếp</BigButton>}
@@ -191,11 +201,23 @@ export function ReviewPlayer({
             </>
           }
         >
-          <p className="max-w-md">
-            {answered > 0
-              ? `Bạn vừa ôn lại bài “${lesson.title}”. Giỏi lắm!`
-              : "Học một phần của bài trước rồi ôn nhé."}
-          </p>
+          {answered > 0 ? (
+            <>
+              {/* Every question asked counts, re-asks included, so the
+                  number matches what the child just went through. */}
+              <p
+                className="max-w-md text-balance"
+                data-review-answered={answered}
+              >
+                {`Bạn vừa ôn ${answered} câu. Giỏi lắm!`}
+              </p>
+              <LessonProgressCard lesson={lesson} done={sectionsDone} />
+            </>
+          ) : (
+            <p className="max-w-md text-balance">
+              Học một phần của bài trước rồi ôn nhé.
+            </p>
+          )}
         </DoneScreen>
       </>
     );

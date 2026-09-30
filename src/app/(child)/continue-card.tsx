@@ -10,8 +10,9 @@ type ContinueCardProps = { target: ContinueTarget; subject: Subject };
 // The home screen's main action: one tap straight into the next section to
 // study, instead of subject → lesson → section.
 export function ContinueCard({ target, subject }: ContinueCardProps) {
-  const { lesson, sectionIndex, started } = target;
+  const { lesson, sectionIndex, pausedIndex, started } = target;
   const section = lesson.sections[sectionIndex];
+  const paused = pausedIndex === null ? undefined : pausedIndex + 1;
   if (!section) return null;
   const style = SUBJECT_STYLES[subject.color];
   const Icon = style.icon;
@@ -40,6 +41,14 @@ export function ContinueCard({ target, subject }: ContinueCardProps) {
         <span className="text-muted-foreground">
           {`Phần ${sectionIndex + 1}: ${section.title}`}
         </span>
+        {paused !== undefined && (
+          <span
+            className="text-caption text-muted-foreground"
+            data-continue-paused={paused}
+          >
+            {`Đang dở: Phần ${paused}`}
+          </span>
+        )}
       </div>
       <span
         aria-hidden

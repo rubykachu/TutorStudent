@@ -111,6 +111,7 @@ function HomeLessons({
       <StickerStrip
         lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
         earnedLessonIds={earned}
+        sections={progress.sections}
       />
     </>
   );

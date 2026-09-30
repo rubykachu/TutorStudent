@@ -214,6 +214,10 @@ describe("SectionPlayer", () => {
     expect(
       screen.getByText("Còn 1 phần nữa là có sticker"),
     ).toBeInTheDocument();
+    // The sticker is half coloured: one of two sections done.
+    expect(
+      screen.getByRole("img", { name: "Sticker Ngôi sao, đã tô 1/2 phần" }),
+    ).toHaveAttribute("data-sticker-fill", "1/2");
     expect(screen.getByRole("link", { name: /Học phần tiếp/ })).toHaveAttribute(
       "href",
       `/lessons/${LESSON_ID}/sections/${LESSON_ID}.section.two`,

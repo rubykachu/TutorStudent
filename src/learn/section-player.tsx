@@ -18,6 +18,7 @@ import {
 } from "@/exercises/open-ended/open-ended-runner";
 import { BlockStage } from "@/learn/block-stage";
 import { DoneScreen } from "@/learn/done-screen";
+import { LessonProgressCard } from "@/learn/lesson-progress-card";
 import {
   resumeStepIndex,
   type SectionStep,
@@ -332,6 +333,7 @@ function SectionDone({
   completion: Finished;
 }) {
   const reducedMotion = usePrefersReducedMotion();
+  const total = lesson.sections.length;
   if (completion.lessonDone) {
     return (
       <DoneScreen
@@ -353,7 +355,8 @@ function SectionDone({
             <Sticker
               visualId={lesson.sticker.visualId}
               name={lesson.sticker.name}
-              earned
+              done={total}
+              total={total}
             />
           </motion.div>
         }
@@ -363,12 +366,17 @@ function SectionDone({
           </Link>
         }
       >
-        <p className="max-w-lg text-balance">{`Bạn học xong cả bài và nhận sticker “${lesson.sticker.name}”.`}</p>
+        {/* The sticker name on its own line, so "sticker" never ends a line
+            alone and a long name wraps as a whole. */}
+        <div className="flex max-w-lg flex-col gap-1 text-balance">
+          <p>Bạn học xong cả bài và nhận được sticker</p>
+          <p className="font-heading text-block font-bold md:text-block-lg">
+            {`“${lesson.sticker.name}”`}
+          </p>
+        </div>
       </DoneScreen>
     );
   }
-  const total = lesson.sections.length;
-  const left = total - completion.doneCount;
   return (
     <DoneScreen
       stepAttr={{ name: "data-section-step", value: "section-done" }}
@@ -394,44 +402,7 @@ function SectionDone({
       }
     >
       <p className="max-w-lg text-balance">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
-      <div
-        className="flex w-full max-w-lg items-center gap-4 rounded-lg bg-surface p-4 text-left shadow-card md:p-6"
-        data-sections-done={completion.doneCount}
-      >
-        <Sticker
-          visualId={lesson.sticker.visualId}
-          name={lesson.sticker.name}
-          earned={false}
-          className="size-16 shrink-0"
-        />
-        <div className="flex min-w-0 flex-col gap-2">
-          {/* Two short lines instead of one long one, and "có sticker" held
-            together, so no line ever ends on a lone word. */}
-          <p className="font-semibold">{`Xong ${completion.doneCount}/${total} phần`}</p>
-          <p className="text-balance">{`Còn ${left} phần nữa là có\u00a0sticker`}</p>
-          <SectionDots total={total} done={completion.doneCount} />
-        </div>
-      </div>
+      <LessonProgressCard lesson={lesson} done={completion.doneCount} />
     </DoneScreen>
-  );
-}
-
-// Finished sections of the lesson as a row of ticks: no percentages.
-function SectionDots({ total, done }: { total: number; done: number }) {
-  return (
-    <div aria-hidden className="flex flex-wrap gap-2">
-      {Array.from({ length: total }, (_, i) => (
-        <span
-          // Dots only mark position.
-          // biome-ignore lint/suspicious/noArrayIndexKey: static list
-          key={i}
-          className={`flex size-6 items-center justify-center rounded-full ${
-            i < done ? "bg-correct text-primary-foreground" : "bg-muted"
-          }`}
-        >
-          {i < done && <CircleCheck className="size-4" />}
-        </span>
-      ))}
-    </div>
   );
 }

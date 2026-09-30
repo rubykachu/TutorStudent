@@ -5,8 +5,16 @@ import { ReviewPlayer } from "@/learn/review-player";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { setNowForTesting } from "@/lib/time";
 import { type ChildScope, listAttempts, TutorDb } from "@/progress/db";
-import { recordAttempt } from "@/progress/record";
-import { CARD_A, CARD_B, choice, LESSON_ID, learnIndex } from "./helpers";
+import { completeSection, recordAttempt } from "@/progress/record";
+import {
+  CARD_A,
+  CARD_B,
+  choice,
+  LESSON_ID,
+  learnIndex,
+  learnLesson,
+  SECTION_ID,
+} from "./helpers";
 
 const scope: ChildScope = { familyId: LOCAL_FAMILY_ID, childId: "kid-1" };
 const AT = new Date("2026-03-02T01:00:00Z");
@@ -98,7 +106,9 @@ describe("ReviewPlayer", () => {
     tap("Kiểm tra");
     tap("Tiếp");
 
-    expect(await screen.findByText("Ôn xong 3 câu!")).toBeInTheDocument();
+    expect(await screen.findByText("Ôn xong rồi!")).toBeInTheDocument();
+    // Two cards, three questions: the re-ask counts too.
+    expect(screen.getByText("Bạn vừa ôn 3 câu. Giỏi lắm!")).toBeInTheDocument();
     const review = (await listAttempts(db, scope)).filter(
       (a) => a.context === "review",
     );
@@ -156,6 +166,43 @@ describe("ReviewPlayer", () => {
     );
     expect(await screen.findByText("Câu kho A")).toBeInTheDocument();
     expect(item()).toHaveAttribute("data-exercise", `${LESSON_ID}.ex.kho-a`);
+  });
+
+  it("ends with the lesson progress and its sticker coloured by sections done", async () => {
+    const [first] = learnLesson().sections;
+    const index = learnIndex({
+      sections: [first, { ...first, id: `${LESSON_ID}.section.two` }],
+    });
+    await completeSection(
+      db,
+      scope,
+      { lessonId: LESSON_ID, sectionId: SECTION_ID },
+      index.lesson.sections.map((s) => s.id),
+      AT,
+    );
+    render(
+      <ReviewPlayer
+        db={db}
+        index={index}
+        scope={scope}
+        onAgain={vi.fn()}
+        random={() => 0}
+      />,
+    );
+    await screen.findByText("Câu luyện A");
+    tap("Đúng");
+    tap("Kiểm tra");
+    tap("Tiếp");
+    await waitFor(() => expect(item()).toHaveAttribute("data-card", CARD_B));
+    tap("Đúng");
+    tap("Kiểm tra");
+    tap("Tiếp");
+    expect(await screen.findByText("Ôn xong rồi!")).toBeInTheDocument();
+    expect(screen.getByText("Bạn vừa ôn 2 câu. Giỏi lắm!")).toBeInTheDocument();
+    expect(screen.getByText("Xong 1/2 phần")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Sticker Ngôi sao, đã tô 1/2 phần" }),
+    ).toHaveAttribute("data-sticker-fill", "1/2");
   });
 
   it("says there is nothing to review before any card is opened", async () => {
