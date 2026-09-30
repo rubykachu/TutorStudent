@@ -6,7 +6,8 @@
   "order": 7,
   "title": "Thứ tự thực hiện các phép tính",
   "sourceRef": "Sách bài tập tr.24–26",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "99ac69420b46e1986b6a809ba949aa2d06e70a7870cb7a5fa196a0a41c36af8b",
   "overview": {
     "hook": {
       "text": "Nam và Lan cùng tính một hoá đơn nhưng ra hai số khác nhau: ai đúng?",
