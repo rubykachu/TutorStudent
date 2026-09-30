@@ -181,7 +181,7 @@ describe("section progress", () => {
     });
   });
 
-  it("rewinds a completed section and points at the next one to do", async () => {
+  it("rewinds a completed section and points at the first unfinished one", async () => {
     await saveSectionPosition(
       db,
       scope,
@@ -189,18 +189,19 @@ describe("section progress", () => {
       { phase: "practice", index: 3 },
       START,
     );
+    // Sections are not locked: finishing part 2 first sends the child back
+    // to part 1, the earliest gap, not on to part 3.
     expect(await completeSection(db, scope, two, sections, START)).toEqual({
       lessonDone: false,
-      nextSectionId: three.sectionId,
+      nextSectionId: one.sectionId,
     });
     expect(await read(two.sectionId)).toMatchObject({
       state: "done",
       position: { phase: "blocks", index: 0 },
     });
-    // After the last section, the first unfinished one is next.
-    expect(await completeSection(db, scope, three, sections, START)).toEqual({
+    expect(await completeSection(db, scope, one, sections, START)).toEqual({
       lessonDone: false,
-      nextSectionId: one.sectionId,
+      nextSectionId: three.sectionId,
     });
     expect(await listStickers(db, scope)).toEqual([]);
   });

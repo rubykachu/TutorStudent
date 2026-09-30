@@ -1,15 +1,25 @@
 import { Sticker } from "@/components/sticker";
+import { stickerFill } from "@/learn/next-step";
+import type { SectionProgressRecord } from "@/progress/db";
 import type { LessonSummary } from "@/schema/content";
 
 type StickerStripProps = {
   lessons: readonly LessonSummary[];
   earnedLessonIds: ReadonlySet<string>;
+  sections: readonly Pick<
+    SectionProgressRecord,
+    "lessonId" | "sectionId" | "state"
+  >[];
 };
 
 // Every sticker the child can collect from the lessons they see: earned ones
 // in colour, the rest as grey silhouettes that show what finishing a lesson
-// brings.
-export function StickerStrip({ lessons, earnedLessonIds }: StickerStripProps) {
+// brings, partly coloured by the sections already done.
+export function StickerStrip({
+  lessons,
+  earnedLessonIds,
+  sections,
+}: StickerStripProps) {
   if (lessons.length === 0) return null;
   const earned = lessons.filter((l) => earnedLessonIds.has(l.id)).length;
   return (
@@ -33,6 +43,11 @@ export function StickerStrip({ lessons, earnedLessonIds }: StickerStripProps) {
       <ul className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
         {lessons.map((lesson) => {
           const has = earnedLessonIds.has(lesson.id);
+          const fill = stickerFill(
+            lesson.sections,
+            sections.filter((s) => s.lessonId === lesson.id),
+            has,
+          );
           return (
             <li
               key={lesson.id}
@@ -42,7 +57,8 @@ export function StickerStrip({ lessons, earnedLessonIds }: StickerStripProps) {
               <Sticker
                 visualId={lesson.sticker.visualId}
                 name={lesson.sticker.name}
-                earned={has}
+                done={fill.done}
+                total={fill.total}
                 className="size-20 tall:size-24"
               />
               <span

@@ -105,8 +105,8 @@ export async function saveSectionPosition(
 
 export type SectionCompletion = {
   lessonDone: boolean;
-  // The next section still to do, after this one in lesson order, else the
-  // first unfinished one; null once the lesson is done.
+  // The first section not done yet, in lesson order (sections are never
+  // locked, so it may come before this one); null once the lesson is done.
   nextSectionId: string | null;
 };
 
@@ -142,12 +142,6 @@ export async function completeSection(
       await awardSticker(db, scope, ref.lessonId, now);
       return { lessonDone: true, nextSectionId: null };
     }
-    const after = lessonSectionIds.slice(
-      lessonSectionIds.indexOf(ref.sectionId) + 1,
-    );
-    return {
-      lessonDone: false,
-      nextSectionId: after.find((id) => !done.has(id)) ?? open[0],
-    };
+    return { lessonDone: false, nextSectionId: open[0] ?? null };
   });
 }

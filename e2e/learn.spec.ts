@@ -50,6 +50,10 @@ test("a child learns a section, resuming where they left off", async ({
   ).toBeVisible();
   await expect(page.getByText("Xong 1/2 phần")).toBeVisible();
   await expect(page.getByText("Còn 1 phần nữa là có sticker")).toBeVisible();
+  // One of two sections done: the sticker is half coloured.
+  await expect(
+    page.getByRole("img", { name: /^Sticker .*, đã tô 1\/2 phần$/ }),
+  ).toHaveAttribute("data-sticker-fill", "1/2");
   await expectNoHorizontalScroll(page);
   await page.getByRole("link", { name: "Về bài" }).tap();
   await expect(sectionLink).toHaveAttribute("data-state", "done");
@@ -57,4 +61,47 @@ test("a child learns a section, resuming where they left off", async ({
   await expect(
     page.locator(`[data-section="${NEXT_SECTION}"]`),
   ).toHaveAttribute("data-next", "true");
+  await expect(
+    page.getByRole("region", { name: "Sticker của bài" }).getByRole("img"),
+  ).toHaveAttribute("data-sticker-fill", "1/2");
+
+  // The home sticker strip shows the same progress.
+  await page.goto("/");
+  await expect(
+    page.locator('[data-sticker-lesson="fixture"] [data-sticker-fill]'),
+  ).toHaveAttribute("data-sticker-fill", "1/2");
+});
+
+test("Học tiếp goes back to the first unfinished section when a later one was started", async ({
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Na", "Cáo");
+  await page.goto("/lessons/fixture");
+  // Sections are not locked: the second one opens straight away.
+  await page.locator(`[data-section="${NEXT_SECTION}"]`).tap();
+  await expect(page).toHaveURL(new RegExp(`/sections/${NEXT_SECTION}$`));
+  await page.getByRole("button", { name: "Tiếp" }).tap();
+  await expect(page.locator("[data-section-stepper]")).toHaveAttribute(
+    "data-current",
+    "1",
+  );
+
+  // Home still sends the child to part 1, and names part 2 as left half-way.
+  await page.goto("/");
+  const continueCard = page.locator("[data-continue]");
+  await expect(continueCard).toHaveAttribute("data-continue", SECTION);
+  await expect(continueCard).toContainText("Phần 1: ");
+  await expect(continueCard).toContainText("Đang dở: Phần 2");
+  await expectNoHorizontalScroll(page);
+
+  // The lesson page marks part 1 as the one to continue.
+  await page.goto("/lessons/fixture");
+  await expect(page.locator(`[data-section="${SECTION}"]`)).toHaveAttribute(
+    "data-next",
+    "true",
+  );
+  const later = page.locator(`[data-section="${NEXT_SECTION}"]`);
+  await expect(later).toHaveAttribute("data-state", "in_progress");
+  await expect(later).not.toHaveAttribute("data-next");
 });

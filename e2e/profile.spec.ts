@@ -55,11 +55,13 @@ test("a first visit creates a profile that survives a reload", async ({
   await expect(page.getByRole("link", { name: /Ngữ văn/ })).toContainText(
     "Sắp có bài",
   );
-  // Every lesson's sticker waits, greyed, in the strip.
+  // Every lesson's sticker waits, greyed and not coloured at all yet, in the
+  // strip.
   await expect(page.locator("[data-sticker-lesson]")).toHaveCount(
     lessons.length,
   );
   await expect(page.locator('[data-sticker-earned="true"]')).toHaveCount(0);
+  await expect(page.locator("[data-sticker-colour]")).toHaveCount(0);
   await expectTouchTargets(page);
   await expectNoHorizontalScroll(page);
 
