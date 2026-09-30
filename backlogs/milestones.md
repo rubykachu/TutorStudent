@@ -48,16 +48,15 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 ## Trạng thái khi tạm dừng vì hết hạn mức (tối 2026-09-30)
 - Xong hoàn toàn (xuất bản, lời đọc, video, `lesson:walk` 0 lỗi trên ba thiết bị): Bài 1 `tap-hop`, Bài 7 `thu-tu-thuc-hien-phep-tinh` (cùng Luỹ thừa, bài cáo).
 - Bài 5 `phep-nhan-phep-chia`: nhánh `worktree-agent-a36c64bad7802c3d9`, commit "wip: paused…" (đang dựng visual song song).
-- Bài 4 `phep-cong-phep-tru`: nhánh `worktree-agent-a9710b34e396f6fe3`, đã sửa theo review vòng 1; việc tiếp: gate, shot, walk, review vòng 2.
+- Bài 4 `phep-cong-phep-tru`: nội dung xong, đã review tới vòng 4 (0 Nghiêm trọng), xuất bản, `lesson:walk` 0 lỗi, đã gộp main; còn lời đọc và video.
 - Chưa bắt đầu: Bài 3, Bài 2.
 - Chờ chủ dự án: lệnh `pnpm clean` + chuyển môi trường giọng đọc sang `video/.venv`.
 - Bài 5: visual chia (share, pack, đặt tính chia…) đã xong trong worktree. Việc app cần làm khi tiếp tục: truyền `params` của bài tập xuống visual `manipulate` (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề.
-- Bài 4: review vòng 2 nhóm 3 (section 13–18) đã có kết quả ở `.claude/worktrees/agent-a9710b34e396f6fe3/.shots/review/phep-cong-phep-tru/nhom-3.md` (3 Nghiêm trọng: `chon-uoc-luong-kt`, `chon-tong-sai`, `chon-cap-day-so-2` có hai đáp án đúng; 6 Nên sửa). Kiểm tra kết quả nhóm 1–2 cùng thư mục khi tiếp tục, rồi gộp vào `review.md`.
 
 ## Hàng đợi (làm lần lượt, mỗi lần một subagent)
 Quy ước: bài nào xong (đã gộp main) thì xoá file handover của bài đó.
 1. (Xong: `video/lib/consistency.ts`, `pnpm video:check`; 11 video đã dựng đều qua kiểm phụ đề; chưa video nào đánh `data-rule-text` vì không video nào hiện nguyên câu quy tắc trên màn.) Thêm kiểm tra tự động vào `video:build` (không tốn token): mỗi câu trong `script.json` phải có trong phụ đề thật (VTT) của video; chữ trên màn cuối/màn quy tắc phải khớp câu quy tắc của bài. Chỉ thêm kiểm tra, không đổi cách dựng hình, giọng, nhịp. Nếu kiểm tra buộc phải đổi gì ảnh hưởng chất lượng video (ví dụ cắt câu, đổi nhịp, bỏ hiệu ứng) thì dừng và báo chủ dự án trước.
-2. Bài 4 (theo `backlogs/handover-phep-cong-phep-tru.md` trong worktree bài 4).
+2. (Xong nội dung, review, gộp main: Bài 4 `phep-cong-phep-tru`, có màn hướng dẫn `match`, `manipulate`, `order`.) Việc kế: lời đọc và video của Bài 4.
 3. Bài 5 (theo `backlogs/handover-phep-nhan-phep-chia.md`).
 4. Bài 3, Bài 2.
 5. (Xong: `docs/lessons-learned/` với 19 mục và số đếm từ mọi vòng review; luật `content:check` mới `[check-expr]` theo `check.relation`, `[hint-answer]`, `[color-leak]`, `[guides]`, `[rule-sentence]`, `[textbook-copy]`; `lesson-author`, `lesson-review` đọc và cập nhật kho này.) Khi tiếp tục Bài 4, 5: merge main vào nhánh bài trước, chạy `content:check` với luật mới (câu "chắc chắn sai" của Bài 4 đặt `check: { "expr": …, "relation": "notEqual" }`, đánh `guide` cho màn hướng dẫn, `rule` cho note quy tắc).
