@@ -50,3 +50,12 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 - Bài 1 (`tap-hop`): nhánh `worktree-agent-a4090e1d78293321a`. Đã publish trong nhánh sau 3 vòng review; commit cuối "wip: tests in progress…" là test validator đang viết dở. Việc tiếp: hoàn thiện test, gate, gộp main, narration + video.
 - Chưa bắt đầu: Bài 5, 4, 3, 2.
 - Chờ chủ dự án: lệnh `pnpm clean` + chuyển môi trường giọng đọc sang `video/.venv`.
+
+## Trạng thái khi tạm dừng vì hết hạn mức (tối 2026-09-30)
+- Đã gộp main và xuất bản: Bài 1 `tap-hop`, Bài 7 `thu-tu-thuc-hien-phep-tinh` (cùng Luỹ thừa, bài cáo).
+- Nhánh `wip/bai7-media`: audio giới thiệu + video dở dang cho Bài 7 và Bài 1 (lesson.json đã đổi nên review hash lệch — cần build xong, review phần đổi, approve rồi mới gộp main). File media thật nằm ở `public/media/` (gitignored).
+- Bài 5 `phep-nhan-phep-chia`: nhánh `worktree-agent-a36c64bad7802c3d9`, commit "wip: paused…" (đang dựng visual song song).
+- Bài 4 `phep-cong-phep-tru`: nhánh `worktree-agent-a9710b34e396f6fe3`, đã sửa theo review vòng 1; việc tiếp: gate, shot, walk, review vòng 2.
+- Chưa bắt đầu: Bài 3, Bài 2.
+- Bài 5: visual chia (share, pack, đặt tính chia…) đã xong trong worktree. Việc app cần làm khi tiếp tục: truyền `params` của bài tập xuống visual `manipulate` (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề.
+- Bài 4: review vòng 2 nhóm 3 (section 13–18) đã có kết quả ở `.claude/worktrees/agent-a9710b34e396f6fe3/.shots/review/phep-cong-phep-tru/nhom-3.md` (3 Nghiêm trọng: `chon-uoc-luong-kt`, `chon-tong-sai`, `chon-cap-day-so-2` có hai đáp án đúng; 6 Nên sửa). Kiểm tra kết quả nhóm 1–2 cùng thư mục khi tiếp tục, rồi gộp vào `review.md`.
