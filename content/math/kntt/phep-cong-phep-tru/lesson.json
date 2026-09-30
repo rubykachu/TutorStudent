@@ -1,0 +1,4521 @@
+{
+  "id": "phep-cong-phep-tru",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 4,
+  "title": "Phép cộng và phép trừ số tự nhiên",
+  "sourceRef": "Sách bài tập tr.14–16",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Bạn đi chợ, mua kẹo 38 nghìn đồng và bánh 47 nghìn đồng. Làm sao nhẩm nhanh xem phải trả bao nhiêu?",
+      "visualId": "phep-cong-phep-tru.visual.hook-nham-nhanh"
+    },
+    "summary": "Bài này nói về phép cộng và phép trừ các số tự nhiên. Bạn học cách tính nhẩm nhanh nhờ tính chất của phép cộng, cách đặt tính, và cách tìm số chưa biết.",
+    "goals": [
+      "gọi đúng tên các số trong phép cộng và phép trừ",
+      "tính nhẩm nhanh bằng cách đổi chỗ và nhóm các số hạng",
+      "đặt tính cộng và trừ có nhớ, có mượn",
+      "tìm số chưa biết nhờ quan hệ giữa cộng và trừ"
+    ],
+    "whyItMatters": "Tính tiền, đo quãng đường hay tính điểm đều cần cộng trừ nhanh và đúng."
+  },
+  "concepts": [
+    {
+      "id": "phep-cong-phep-tru.concept.so-hang",
+      "name": "Số hạng",
+      "color": "blue"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.tong",
+      "name": "Tổng",
+      "color": "amber"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.so-bi-tru",
+      "name": "Số bị trừ",
+      "color": "violet"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.so-tru",
+      "name": "Số trừ",
+      "color": "pink"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.hieu",
+      "name": "Hiệu",
+      "color": "teal"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.giao-hoan",
+      "name": "Giao hoán",
+      "color": "sky"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.ket-hop",
+      "name": "Kết hợp",
+      "color": "lime"
+    },
+    {
+      "id": "phep-cong-phep-tru.concept.cong-voi-0",
+      "name": "Cộng với 0",
+      "color": "slate"
+    }
+  ],
+  "sections": [
+    {
+      "id": "phep-cong-phep-tru.section.y-nghia-cong",
+      "title": "Phép cộng và tên gọi",
+      "sourceRef": "Sách bài tập tr.14",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Gộp hai nhóm lại thì dùng phép cộng. Kết quả của phép cộng là tổng, còn hai số được cộng là số hạng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cong-ten",
+              "caption": "An có 25 nghìn đồng, mẹ cho thêm 11 nghìn đồng."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "phep-cong-phep-tru.visual.cong-thanh-bar",
+          "caption": "Hộp có 14 viên bi, bạn cho thêm 9 viên."
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-so-hang"],
+      "practiceIds": ["phep-cong-phep-tru.ex.cham-tong"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cong-ten-tom-tat",
+        "caption": "Kết quả của phép cộng là tổng, hai số được cộng là số hạng."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.y-nghia-tru",
+      "title": "Phép trừ và tên gọi",
+      "sourceRef": "Sách bài tập tr.14",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bớt đi một phần thì dùng phép trừ. Kết quả là hiệu, số ban đầu là số bị trừ, số bớt đi là số trừ."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.tru-ten",
+              "caption": "Có 36 nghìn đồng, tiêu 11 nghìn đồng thì còn 25 nghìn đồng."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "phep-cong-phep-tru.visual.tru-thanh-bar",
+          "caption": "Có 20 cái kẹo, ăn 8 cái thì còn 12 cái."
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-so-bi-tru"],
+      "practiceIds": ["phep-cong-phep-tru.ex.cham-so-tru"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tru-ten-tom-tat",
+        "caption": "Số bị trừ trừ đi số trừ thì được hiệu."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.giao-hoan",
+      "title": "Đổi chỗ các số hạng",
+      "sourceRef": "Sách bài tập tr.14",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đổi chỗ các số hạng thì tổng không đổi. Đó là tính chất giao hoán của phép cộng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.giao-hoan-doi-cho",
+              "caption": "Kẹo 8 nghìn đồng, vở 15 nghìn đồng: tính món nào trước, tổng tiền vẫn bằng nhau."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn cộng nhẩm 4 + 36, ta đổi chỗ thành 36 + 4 cho dễ."
+            },
+            {
+              "type": "formula",
+              "tex": "4 + 36 = 36 + 4 = 40"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-doi-cho"],
+      "practiceIds": ["phep-cong-phep-tru.ex.dien-doi-cho"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.giao-hoan-tom-tat",
+        "caption": "Đổi chỗ các số hạng thì tổng không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.ket-hop",
+      "title": "Nhóm các số hạng",
+      "sourceRef": "Sách bài tập tr.14",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cộng ba số thì nhóm hai số nào trước cũng được, tổng vẫn như nhau. Đó là tính chất kết hợp của phép cộng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.ket-hop-nhom",
+              "caption": "Bút 7 nghìn đồng, hai gói kẹo mỗi gói 5 nghìn đồng: cộng hai gói kẹo trước cho dễ."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai cách nhóm cho cùng một tổng, nên ta chọn cách nhóm cho dễ tính."
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{lime}{(7 + 5)} + 5 = 7 + \\concept{lime}{(5 + 5)} = 17"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm hai số có tổng tròn chục để nhóm chúng lại. Nhóm như vậy giúp bạn cộng nhẩm nhanh hơn."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.ket-hop-tu-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-nhom-truoc"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-nhom-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.ket-hop-tom-tat",
+        "caption": "Cộng ba số thì nhóm hai số nào trước cũng được, tổng vẫn như nhau."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.cong-voi-0",
+      "title": "Cộng với số 0",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.14",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cộng một số với 0 thì được chính số đó. Trừ đi 0 cũng vậy, số không đổi."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cong-0-vi",
+              "caption": "Ví có 12 nghìn đồng, thêm 0 đồng thì vẫn là 12 nghìn đồng."
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-cong-0"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-cong-0"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cong-0-tom-tat",
+        "caption": "Cộng một số với 0 hay trừ đi 0 thì số đó không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.ghep-tron",
+      "title": "Ghép cho tròn chục, tròn trăm",
+      "sourceRef": "Sách bài tập tr.15, 96",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm. Tính nhẩm sẽ nhanh hơn nhiều."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.ghep-tron-mau",
+              "caption": "Ba món giá 34, 268 và 66 nghìn đồng: ghép 34 với 66 để được 100."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm hai số có tổng tròn chục. Tìm được cặp như vậy thì bạn nhóm nhanh hơn."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.ghep-tron-tu-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-cap-tron"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-ghep-tron-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.ghep-tron-tom-tat",
+        "caption": "Ghép các số hạng thành số tròn chục hay tròn trăm rồi mới cộng."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.them-bot-cong",
+      "title": "Thêm vào số này, bớt ở số kia",
+      "sourceRef": "Sách bài tập tr.15, 96",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Cách này giúp có một số hạng tròn chục."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.them-bot-mau",
+              "caption": "Kẹo 38 nghìn đồng, bánh 47 nghìn đồng: lấy 2 của bánh cho kẹo, được 40 và 45."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chọn số chuyển k sao cho số hạng thứ hai thành số tròn chục. Nhờ vậy bạn cộng nhẩm được ngay."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.them-bot-tu-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-them-bot"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-them-bot-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.them-bot-tom-tat",
+        "caption": "Thêm vào số hạng này bao nhiêu, bớt ở số hạng kia bấy nhiêu thì tổng không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.them-bot-tru",
+      "title": "Phép trừ: cùng thêm hoặc cùng bớt",
+      "sourceRef": "Sách bài tập tr.15, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng thêm hoặc cùng bớt một số ở số bị trừ và số trừ thì hiệu không đổi. Cách này giúp số trừ thành số tròn."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.tru-them-mau",
+              "caption": "Bố 43 tuổi, con 15 tuổi. Năm năm nữa cả hai cùng thêm 5 tuổi, hiệu số tuổi vẫn là 28."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Dùng cách đó để làm tròn số trừ: 83 − 29 thêm 1 vào cả hai số thành 84 − 30."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.tru-them-tron"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-tru-them"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-tru-them-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tru-them-tom-tat",
+        "caption": "Cùng thêm hoặc cùng bớt một số ở cả hai số thì hiệu không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.dat-tinh-cong",
+      "title": "Đặt tính cộng",
+      "sourceRef": "Sách bài tập tr.14",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Rồi cộng từ hàng đơn vị sang bên trái."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cot-cong-khong-nho",
+              "caption": "An có 243 nghìn đồng, được thêm 15 nghìn đồng."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hàng nào cộng được 10 trở lên thì viết chữ số hàng đơn vị và nhớ 1 sang hàng bên trái."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cot-cong-co-nho",
+              "caption": "Hai lớp góp sách: 478 quyển và 256 quyển."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chọn chữ số viết và số nhớ của hàng đơn vị. Làm đúng thì bạn đặt tính cộng không sợ sai."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cot-cong-tu-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.cot-cong-kiem-tra"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-cot-cong-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
+        "caption": "Đặt các chữ số cùng hàng thẳng cột. Cộng từ hàng đơn vị, được 10 trở lên thì nhớ 1."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.dat-tinh-tru",
+      "title": "Đặt tính trừ",
+      "sourceRef": "Sách bài tập tr.14",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đặt tính trừ: số bị trừ ở trên, số trừ ở dưới, các chữ số cùng hàng thẳng cột. Trừ từ hàng đơn vị sang bên trái."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cot-tru-khong-muon",
+              "caption": "Có 586 nghìn đồng, tiêu 243 nghìn đồng thì còn lại bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chữ số trên nhỏ hơn chữ số dưới thì mượn 1 chục từ hàng bên trái. Hàng bên trái vì thế bớt đi 1."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cot-tru-co-muon",
+              "caption": "Kho có 532 thùng, xuất đi 247 thùng."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chọn chữ số viết và số mượn của hàng đơn vị. Nhớ mượn thì hàng bên trái bớt đi 1."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.cot-tru-tu-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.cot-tru-kiem-tra"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-cot-tru-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cot-tru-tom-tat",
+        "caption": "Chữ số trên nhỏ hơn chữ số dưới thì mượn 1 chục từ hàng bên trái."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.quan-he",
+      "title": "Cộng và trừ đi ngược nhau",
+      "sourceRef": "Sách bài tập tr.14, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Phép cộng và phép trừ đi ngược nhau. Có 36 − 11 = 25 thì có 25 + 11 = 36."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.quan-he-ba-so",
+              "caption": "Có 36 nghìn đồng, tiêu 11 nghìn đồng, còn 25 nghìn đồng. Cộng lại 25 và 11 được 36."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Dùng phép cộng để kiểm tra phép trừ. Số bị trừ bằng hiệu cộng số trừ."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.quan-he-kiem-tra"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-kiem-tra"],
+      "practiceIds": ["phep-cong-phep-tru.ex.dien-quan-he"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.quan-he-tom-tat",
+        "caption": "Số bị trừ bằng hiệu cộng số trừ. Có phép trừ thì viết được phép cộng để kiểm tra."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.tim-so-hang",
+      "title": "Tìm số hạng chưa biết",
+      "sourceRef": "Sách bài tập tr.14, 16, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tìm số hạng chưa biết thì lấy tổng trừ đi số hạng đã biết. Số hạng bằng tổng trừ số hạng kia."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.tim-so-hang-mau",
+              "caption": "Lan có x nghìn đồng, mẹ cho thêm 35 nghìn đồng thì Lan có 82 nghìn đồng."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thử lại bằng cách thay x vào phép cộng ban đầu."
+            },
+            {
+              "type": "formula",
+              "tex": "47 + 35 = 82"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-tim-x"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tim-x-cong-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tim-so-hang-tom-tat",
+        "caption": "Số hạng chưa biết bằng tổng trừ số hạng đã biết."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.tim-so-bi-tru",
+      "title": "Tìm số bị trừ chưa biết",
+      "sourceRef": "Sách bài tập tr.14, 16, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tìm số bị trừ chưa biết thì lấy hiệu cộng số trừ. Số bị trừ bằng hiệu cộng số trừ."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.tim-so-bi-tru-mau",
+              "caption": "Lan có x nghìn đồng, mua bút hết 18 nghìn đồng thì còn 27 nghìn đồng."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thử lại bằng cách thay x vào phép trừ ban đầu."
+            },
+            {
+              "type": "formula",
+              "tex": "45 - 18 = 27"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-tim-x-tru"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tim-x-tru-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tim-so-bi-tru-tom-tat",
+        "caption": "Số bị trừ chưa biết bằng hiệu cộng số trừ."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.tim-so-tru",
+      "title": "Tìm số trừ chưa biết",
+      "sourceRef": "Sách bài tập tr.14, 16, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tìm số trừ chưa biết thì lấy số bị trừ trừ đi hiệu. Số trừ bằng số bị trừ trừ hiệu."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.tim-so-tru-mau",
+              "caption": "Có 50 cái kẹo, cho Lan x cái thì còn 32 cái."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thử lại bằng cách thay x vào phép trừ ban đầu."
+            },
+            {
+              "type": "formula",
+              "tex": "50 - 18 = 32"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-tim-so-tru"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tim-x-so-tru-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tim-so-tru-tom-tat",
+        "caption": "Số trừ chưa biết bằng số bị trừ trừ hiệu."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.day-so",
+      "title": "Cộng một dãy số cách đều",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Các số cách đều nhau thì ghép số đầu với số cuối, rồi đến cặp kế tiếp. Mỗi cặp có cùng tổng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.day-so-mau",
+              "caption": "Năm chồng sách có 35, 37, 39, 41 và 43 quyển. Có tất cả bao nhiêu quyển?"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-cap-day-so"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tinh-day-so-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.day-so-tom-tat",
+        "caption": "Dãy số cách đều: ghép số đầu với số cuối, các cặp có cùng tổng."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.kiem-tra-nhanh",
+      "title": "Kiểm tra nhanh một phép cộng",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chữ số cuối của tổng chỉ phụ thuộc chữ số hàng đơn vị của các số hạng. Cộng các chữ số đó để đoán chữ số cuối của tổng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.chu-so-cuoi-mau",
+              "caption": "Tổng 23 + 14 + 35 có chữ số cuối là 2."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ước lượng: mỗi số hạng nhỏ hơn 100, có ba số hạng thì tổng nhỏ hơn 300."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.uoc-luong-mau"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.chon-chu-so-cuoi"],
+      "practiceIds": [
+        "phep-cong-phep-tru.ex.chu-so-cuoi-1",
+        "phep-cong-phep-tru.ex.chon-uoc-luong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.kiem-tra-tom-tat",
+        "caption": "Kiểm tra chữ số cuối của tổng. Rồi ước lượng xem tổng có quá lớn không."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.section.toan-thoi-gian",
+      "title": "Bài toán về thời gian đi học",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài toán nhiều bước: cộng thời gian của từng đoạn đường, rồi mới trừ để tìm giờ xuất phát."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.lo-trinh-mau",
+              "caption": "Nam đi bộ 8 phút, đi xe buýt 22 phút, chờ 2 phút rồi đi bộ thêm 8 phút."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn trừ phút mà phút không đủ, đổi 1 giờ thành 60 phút. Ví dụ 7 giờ 30 phút là 6 giờ 90 phút."
+            },
+            {
+              "type": "formula",
+              "tex": "90 - 40 = 50"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru.ex.tinh-tong-thoi-gian-kt"],
+      "practiceIds": ["phep-cong-phep-tru.ex.tim-gio-xuat-phat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.lo-trinh-tom-tat",
+        "caption": "Cộng các đoạn thời gian, rồi trừ để tìm giờ xuất phát."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "phep-cong-phep-tru.card.cong-ten-goi",
+      "sourceRef": "Sách bài tập tr.14",
+      "conceptIds": [
+        "phep-cong-phep-tru.concept.so-hang",
+        "phep-cong-phep-tru.concept.tong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cong-ten-tom-tat",
+        "caption": "Kết quả của phép cộng là tổng, hai số được cộng là số hạng."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.tru-ten-goi",
+      "sourceRef": "Sách bài tập tr.14",
+      "conceptIds": [
+        "phep-cong-phep-tru.concept.so-bi-tru",
+        "phep-cong-phep-tru.concept.so-tru",
+        "phep-cong-phep-tru.concept.hieu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tru-ten-tom-tat",
+        "caption": "Số bị trừ trừ đi số trừ thì được hiệu."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.giao-hoan",
+      "sourceRef": "Sách bài tập tr.14",
+      "conceptIds": ["phep-cong-phep-tru.concept.giao-hoan"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.giao-hoan-tom-tat",
+        "caption": "Đổi chỗ các số hạng thì tổng không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.ket-hop",
+      "sourceRef": "Sách bài tập tr.14",
+      "conceptIds": ["phep-cong-phep-tru.concept.ket-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.ket-hop-tom-tat",
+        "caption": "Cộng ba số thì nhóm hai số nào trước cũng được, tổng vẫn như nhau."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.cong-voi-0",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.14",
+      "conceptIds": ["phep-cong-phep-tru.concept.cong-voi-0"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cong-0-tom-tat",
+        "caption": "Cộng một số với 0 hay trừ đi 0 thì số đó không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.ghep-tron",
+      "sourceRef": "Sách bài tập tr.15, 96",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.ghep-tron-tom-tat",
+        "caption": "Ghép các số hạng thành số tròn chục hay tròn trăm rồi mới cộng."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.them-bot-cong",
+      "sourceRef": "Sách bài tập tr.15, 96",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.them-bot-tom-tat",
+        "caption": "Thêm vào số hạng này bao nhiêu, bớt ở số hạng kia bấy nhiêu thì tổng không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.them-bot-tru",
+      "sourceRef": "Sách bài tập tr.15, 97",
+      "conceptIds": ["phep-cong-phep-tru.concept.hieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tru-them-tom-tat",
+        "caption": "Cùng thêm hoặc cùng bớt một số ở cả hai số thì hiệu không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.dat-tinh-cong",
+      "sourceRef": "Sách bài tập tr.14",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
+        "caption": "Đặt các chữ số cùng hàng thẳng cột. Cộng từ hàng đơn vị, được 10 trở lên thì nhớ 1."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.dat-tinh-tru",
+      "sourceRef": "Sách bài tập tr.14",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.cot-tru-tom-tat",
+        "caption": "Chữ số trên nhỏ hơn chữ số dưới thì mượn 1 chục từ hàng bên trái."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.quan-he",
+      "sourceRef": "Sách bài tập tr.14, 97",
+      "conceptIds": [
+        "phep-cong-phep-tru.concept.so-bi-tru",
+        "phep-cong-phep-tru.concept.so-tru",
+        "phep-cong-phep-tru.concept.hieu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.quan-he-tom-tat",
+        "caption": "Số bị trừ bằng hiệu cộng số trừ. Có phép trừ thì viết được phép cộng để kiểm tra."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.tim-so-hang",
+      "sourceRef": "Sách bài tập tr.14, 16, 97",
+      "conceptIds": [
+        "phep-cong-phep-tru.concept.so-hang",
+        "phep-cong-phep-tru.concept.tong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tim-so-hang-tom-tat",
+        "caption": "Số hạng chưa biết bằng tổng trừ số hạng đã biết."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.tim-so-bi-tru",
+      "sourceRef": "Sách bài tập tr.14, 16, 97",
+      "conceptIds": [
+        "phep-cong-phep-tru.concept.so-bi-tru",
+        "phep-cong-phep-tru.concept.so-tru",
+        "phep-cong-phep-tru.concept.hieu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tim-so-bi-tru-tom-tat",
+        "caption": "Số bị trừ chưa biết bằng hiệu cộng số trừ."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.tim-so-tru",
+      "sourceRef": "Sách bài tập tr.14, 16, 97",
+      "conceptIds": [
+        "phep-cong-phep-tru.concept.so-bi-tru",
+        "phep-cong-phep-tru.concept.so-tru",
+        "phep-cong-phep-tru.concept.hieu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.tim-so-tru-tom-tat",
+        "caption": "Số trừ chưa biết bằng số bị trừ trừ hiệu."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.day-so",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.day-so-tom-tat",
+        "caption": "Dãy số cách đều: ghép số đầu với số cuối, các cặp có cùng tổng."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.chu-so-cuoi",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.chu-so-cuoi-tom-tat",
+        "caption": "Chữ số cuối của tổng bằng chữ số cuối của tổng các chữ số hàng đơn vị."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.uoc-luong",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.uoc-luong-tom-tat",
+        "caption": "Mỗi số hạng nhỏ hơn 100 và có ba số hạng thì tổng nhỏ hơn 300."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.card.toan-thoi-gian",
+      "sourceRef": "Sách bài tập tr.16, 97",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru.visual.lo-trinh-tom-tat",
+        "caption": "Cộng các đoạn thời gian, rồi trừ để tìm giờ xuất phát."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "phep-cong-phep-tru.ex.chon-so-hang",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số hạng của phép cộng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{18 + 7 = 25}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "18"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "11"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.cham-tong",
+      "type": "tapRegion",
+      "cardIds": ["phep-cong-phep-tru.card.cong-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tổng của phép cộng."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.cham-cong-14-9",
+      "answer": ["result"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tong-bi",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.cong-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hà có 17 cái kẹo, bạn cho thêm 6 cái. Hà có tất cả bao nhiêu cái kẹo?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 23
+      },
+      "check": {
+        "expr": "17+6"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-bar-cong-15-7",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-bar-cong-17-6"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-ten-tong",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru.card.cong-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{30 + 12 = 42}"
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Trong phép cộng này, số 42 gọi là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["tổng"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["tổng", "hiệu", "số hạng", "số trừ"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tong-cua",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.cong-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tổng của 15 và 8 bằng bao nhiêu?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "23"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "22"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "15+8"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-so-bi-tru",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Gọi tên số 27 trong phép trừ sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{27 - 9 = 18}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "số bị trừ"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "số trừ"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "hiệu"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "tổng"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.cham-so-tru",
+      "type": "tapRegion",
+      "cardIds": ["phep-cong-phep-tru.card.tru-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào số trừ của phép trừ."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.cham-tru-31-12",
+      "answer": ["second"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-hieu-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tru-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mai có 50 nghìn đồng, mua vở hết 35 nghìn đồng. Mai còn bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "50-35"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-bar-tru-45-20",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-bar-tru-50-35"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-ten-tru",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru.card.tru-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{45 - 18 = 27}"
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 45 gọi là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["số bị trừ"]
+        },
+        {
+          "type": "text",
+          "text": ", còn số 18 gọi là "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["số trừ"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["số bị trừ", "số trừ", "hiệu", "tổng"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.noi-ten-tru",
+      "type": "match",
+      "cardIds": ["phep-cong-phep-tru.card.tru-ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi số của phép trừ 60 − 25 = 35 với tên của nó."
+        }
+      ],
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "text",
+            "text": "35"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "số bị trừ"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "số trừ"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "hiệu"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-doi-cho",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào có cùng tổng với 9 + 26?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "26 + 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "26 + 19"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "9 + 62"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "29 + 9"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "9+26"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-doi-cho",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số thích hợp thay cho dấu ?."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{13 + 28 = 28 + ?}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 13
+      },
+      "check": {
+        "expr": "13+28-28"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-swap-16-25",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-swap-13-28"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-doi-cho-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số thích hợp thay cho dấu ?."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{45 + 19 = ? + 45}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 19
+      },
+      "check": {
+        "expr": "45+19-45"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tong-bang",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép tính có tổng bằng 7 + 25."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "25 + 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "5 + 27"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "7 + 52"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "25 + 17"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "7+25"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-doi-cho-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lan mua bút 12 nghìn đồng rồi vở 29 nghìn đồng, Bình mua vở trước rồi bút. Mỗi bạn trả bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 41
+      },
+      "check": {
+        "expr": "12+29"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-nhom-truoc",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn tính nhẩm 8 + 7 + 3, nên nhóm hai số nào trước cho dễ nhất?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "8 và 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "7 và 3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "8 và 3"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-nhom-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm bằng cách nhóm hai số hạng."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{5 + 8 + 5}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 18
+      },
+      "check": {
+        "expr": "5+8+5"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-4-7-6",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-5-8-5"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-nhom-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm bằng cách nhóm hai số hạng."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{6 + 19 + 4}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 29
+      },
+      "check": {
+        "expr": "6+19+4"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tong-nhom",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào có cùng tổng với 4 + (16 + 9)?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(4 + 16) + 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4 + 16 - 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(4 + 9) + 60"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "4 + 16 + 90"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "4+(16+9)"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tien-nhom",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn mua thước 12 nghìn đồng, bút 6 nghìn đồng và tẩy 4 nghìn đồng. Bạn trả tất cả bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 22
+      },
+      "check": {
+        "expr": "12+6+4"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-cong-0",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép tính có kết quả bằng 35."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "35 + 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "0 + 35"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "35 - 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "35 + 5"
+          }
+        }
+      ],
+      "answer": ["a", "b", "c"],
+      "multiple": true,
+      "check": {
+        "expr": "35"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cong-0",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.cong-voi-0"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{0 + 47}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 47
+      },
+      "check": {
+        "expr": "0+47"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tru-0",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.cong-voi-0"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{86 - 0}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 86
+      },
+      "check": {
+        "expr": "86-0"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-so-0",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.cong-voi-0"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số thích hợp thay cho dấu ?."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{58 + ? = 58}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "check": {
+        "expr": "58-58"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-ket-qua-0",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.cong-voi-0"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nam có 25 nghìn đồng trong ví, bố cho thêm 0 đồng. Ví của Nam có bao nhiêu nghìn đồng?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "26"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "250"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "25+0"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-cap-tron",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số nào có tổng tròn chục?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "18 + 22"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "18 + 25"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "25 + 32"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "32 + 19"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "40"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-ghep-tron-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.ghep-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm bằng cách ghép hai số."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{25 + 168 + 75}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 268
+      },
+      "check": {
+        "expr": "25+168+75"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-15-142-85",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-25-168-75"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-ghep-tron-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.ghep-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm bằng cách ghép hai số."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{46 + 29 + 54}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 129
+      },
+      "check": {
+        "expr": "46+29+54"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-nhieu-cap-tron",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.ghep-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả cặp số có tổng bằng 100."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "37 + 63"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "45 + 65"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "28 + 72"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "55 + 55"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "check": {
+        "expr": "100"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-ghep-tron-3",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.ghep-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm bằng cách ghép hai số."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{13 + 86 + 7}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 106
+      },
+      "check": {
+        "expr": "13+86+7"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-cap-cham",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru.card.ghep-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm hai số có tổng tròn chục."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.ghep-tron-cham",
+      "validatorId": "cap-tron",
+      "params": {
+        "unit": 10,
+        "n0": 16,
+        "n1": 38,
+        "n2": 24
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-them-bot",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào có cùng tổng với 29 + 46?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "30 + 45"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "30 + 46"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "29 + 56"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "19 + 36"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "29+46"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-them-bot-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 57 + 26 bằng cách lấy 3 của số hạng thứ hai cho số hạng thứ nhất."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{57 + 26}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 83
+      },
+      "check": {
+        "expr": "57+26"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-shift-47-25",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-shift-57-26"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-them-bot-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 49 + 35 bằng cách lấy 1 của số hạng thứ hai cho số hạng thứ nhất."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{49 + 35}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 84
+      },
+      "check": {
+        "expr": "49+35"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-them-bot",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số thích hợp thay cho dấu ?."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{38 + 27 = 40 + ?}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 25
+      },
+      "check": {
+        "expr": "38+27-40"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tong-them-bot",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép tính có tổng bằng 45 + 18."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "50 + 13"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "43 + 20"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "45 + 28"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "46 + 19"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "45+18"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chuyen-so-cham",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số chuyển k sao cho số hạng thứ hai thành số tròn chục."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.them-bot-cham",
+      "validatorId": "them-bot-tron",
+      "params": {
+        "a": 45,
+        "b": 38,
+        "unit": 10
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tru-them",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào có cùng hiệu với 64 − 38?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "66 - 40"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "66 - 38"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "64 - 40"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "62 - 40"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "64-38"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tru-them-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 91 − 38 bằng cách cùng thêm 2 vào cả hai số."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{91 - 38}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 53
+      },
+      "check": {
+        "expr": "91-38"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-shift-tru-71-18",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-shift-tru-91-38"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tru-them-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 75 − 29 bằng cách cùng thêm 1 vào cả hai số."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{75 - 29}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 46
+      },
+      "check": {
+        "expr": "75-29"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-tru-them",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số thích hợp thay cho dấu ?."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{84 - 47 = 87 - ?}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 50
+      },
+      "check": {
+        "expr": "87-(84-47)"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-hieu-tuoi",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.them-bot-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hôm nay Nam 11 tuổi, bố 40 tuổi. Sau 6 năm, hiệu số tuổi của hai bố con là bao nhiêu?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "29"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "35"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "23"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "17"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "40-11"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.cot-cong-kiem-tra",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cộng hàng đơn vị: chọn chữ số viết và số nhớ."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.cot-cong-kiem-tra-145-39",
+      "validatorId": "cot-tinh",
+      "params": {
+        "digit": 4,
+        "carry": 1
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cot-cong-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{357 + 68}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 425
+      },
+      "check": {
+        "expr": "357+68"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-cot-cong-247-85",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-cot-cong-357-68"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cot-cong-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi tính tổng của 486 và 237."
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 723
+      },
+      "check": {
+        "expr": "486+237"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.cot-cong-hang-chuc",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cộng hàng chục: nhớ thêm 1 từ hàng đơn vị. Chọn chữ số viết và số nhớ."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.cot-cong-hang-chuc-367-58",
+      "validatorId": "cot-tinh",
+      "params": {
+        "digit": 2,
+        "carry": 1
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cot-cong-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hôm qua cửa hàng bán 259 cái bánh, hôm nay bán 174 cái. Hai ngày bán tất cả bao nhiêu cái bánh?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 433
+      },
+      "check": {
+        "expr": "259+174"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-nho",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-cong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cộng hàng đơn vị: 9 + 6 = 15. Chữ số viết và số nhớ là bao nhiêu?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "viết 5, nhớ 1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "viết 1, nhớ 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "viết 15, nhớ 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "viết 5, nhớ 0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.cot-tru-kiem-tra",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trừ hàng đơn vị: chọn chữ số viết và số mượn."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.cot-tru-kiem-tra-725-48",
+      "validatorId": "cot-tinh",
+      "params": {
+        "digit": 7,
+        "carry": 1
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cot-tru-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{452 - 187}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 265
+      },
+      "check": {
+        "expr": "452-187"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-cot-tru-361-174",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-cot-tru-452-187"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cot-tru-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi tính hiệu của 913 và 465."
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 448
+      },
+      "check": {
+        "expr": "913-465"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.cot-tru-hang-chuc",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trừ hàng chục: hàng chục bị mượn mất 1. Chọn chữ số viết và số mượn."
+        }
+      ],
+      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-632-178",
+      "validatorId": "cot-tinh",
+      "params": {
+        "digit": 5,
+        "carry": 1
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-cot-tru-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bác có 820 nghìn đồng, mua quạt hết 345 nghìn đồng. Bác còn bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 475
+      },
+      "check": {
+        "expr": "820-345"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-muon",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hàng đơn vị: 3 − 8 không trừ được. Mượn 1 chục thì phải tính tiếp phép nào?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "13 - 8"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "3 - 8"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "18 - 8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "10 - 8"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-kiem-tra",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào kiểm tra đúng phép trừ 53 − 19 = 34?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "34 + 19 = 53"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "34 - 19 = 53"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "53 + 19 = 34"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "19 - 34 = 53"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-quan-he",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.quan-he"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết 64 − 27 = 37. Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{37 + 27}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 64
+      },
+      "check": {
+        "expr": "37+27"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-family-40-15-25",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-family-64-27-37"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-quan-he-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.quan-he"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết 91 − 45 = 46. Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{46 + 45}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 91
+      },
+      "check": {
+        "expr": "46+45"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-quan-he-nhieu",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.quan-he"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết 25 + 17 = 42. Chọn tất cả phép tính đúng."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "42 - 17 = 25"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "42 - 25 = 17"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "17 - 25 = 42"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "25 - 17 = 42"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-quan-he-3",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru.card.quan-he"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Biết 80 − 35 = 45. Vậy 45 + 35 = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["80"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["80", "10", "115", "45"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tim-x",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn tìm x, làm phép tính nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x + 28 = 61}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "61 - 28"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "61 + 28"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "28 - 6"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "61-28"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-cong-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-hang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x + 135 = 420}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 285
+      },
+      "check": {
+        "expr": "420-135"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-find-cong-118-350",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-find-cong-135-420"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-cong-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-hang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{76 + x = 153}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 77
+      },
+      "check": {
+        "expr": "153-76"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-cong-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-hang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hà mua vở hết 28 nghìn đồng và một cây bút, tất cả hết 43 nghìn đồng. Cây bút giá bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "43-28"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.sap-buoc-tim-x",
+      "type": "order",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-hang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tìm x theo đúng thứ tự."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x + 45 = 90}"
+        }
+      ],
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "formula",
+            "tex": "x + 45 = 90"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "formula",
+            "tex": "x = 90 - 45"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "formula",
+            "tex": "x = 45"
+          }
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tim-x-tru",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn tìm x, làm phép tính nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x - 15 = 40}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "40 cộng 15"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "40 trừ 15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "15 trừ 40"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-tru-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-bi-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x - 46 = 35}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 81
+      },
+      "check": {
+        "expr": "35+46"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-find-tru-29-40",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-find-tru-46-35"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-tru-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-bi-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x - 58 = 27}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 85
+      },
+      "check": {
+        "expr": "27+58"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-tru-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-bi-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mai tiêu hết 35 nghìn đồng thì còn 40 nghìn đồng. Lúc đầu Mai có bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 75
+      },
+      "check": {
+        "expr": "40+35"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.sap-buoc-tim-x-tru",
+      "type": "order",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-bi-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tìm x theo đúng thứ tự."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{x - 30 = 25}"
+        }
+      ],
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "formula",
+            "tex": "x - 30 = 25"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "formula",
+            "tex": "x = 25 + 30"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "formula",
+            "tex": "x = 55"
+          }
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tim-so-tru",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn tìm x, làm phép tính nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{72 - x = 45}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "72 trừ 45"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "72 cộng 45"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "45 trừ 72"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-so-tru-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{92 - x = 47}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 45
+      },
+      "check": {
+        "expr": "92-47"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-find-so-tru-70-30",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-find-so-tru-92-47"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-so-tru-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm x."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{85 - x = 36}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 49
+      },
+      "check": {
+        "expr": "85-36"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-x-so-tru-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "An có 60 nghìn đồng, mua quà hết một số tiền thì còn 25 nghìn đồng. An mua quà hết bao nhiêu nghìn đồng?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 35
+      },
+      "check": {
+        "expr": "60-25"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-x-bang-25",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.tim-so-tru"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả đẳng thức có x bằng 25."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "x + 15 = 40"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "x - 10 = 15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "60 - x = 30"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "x + 15 = 45"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-cap-day-so",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dãy 12, 14, 16, 18, 20. Ghép số đầu với số cuối thì tổng của cặp là bao nhiêu?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "32"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "34"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "12+20"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-day-so-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.day-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng bằng cách ghép cặp."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{11 + 13 + 15 + 17}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 56
+      },
+      "check": {
+        "expr": "11+13+15+17"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-day-21-27",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-day-11-17"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-day-so-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.day-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng bằng cách ghép cặp."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{20 + 22 + 24 + 26}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 92
+      },
+      "check": {
+        "expr": "20+22+24+26"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-cap-day-so-2",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.day-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dãy 30, 32, 34, 36, 38. Chọn tất cả cặp có tổng bằng tổng của số đầu và số cuối."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "30 + 38"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "32 + 36"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "34 + 38"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "30 + 36"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "68"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.sap-day-so",
+      "type": "order",
+      "cardIds": ["phep-cong-phep-tru.card.day-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tính tổng theo đúng thứ tự."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{14 + 16 + 18 + 20}"
+        }
+      ],
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "formula",
+            "tex": "14 + 20 = 34"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "formula",
+            "tex": "16 + 18 = 34"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "formula",
+            "tex": "34 + 34 = 68"
+          }
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-chu-so-cuoi",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ số cuối của tổng này là mấy?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{17 + 28 + 36}"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chu-so-cuoi-1",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.chu-so-cuoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ số cuối của tổng này là mấy?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{34 + 27 + 58}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "4+7+8-10"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-uoc-luong",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.uoc-luong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn An tính tổng năm số, mỗi số nhỏ hơn 100, và được 560. Kết quả này đúng hay sai?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Sai, vì tổng phải nhỏ hơn 500"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Đúng, vì 560 là số lớn"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Sai, vì 560 là số chẵn"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Đúng, vì có năm số hạng"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-tong-sai",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.chu-so-cuoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả kết quả có chữ số cuối đúng cho tổng 25 + 38 + 47."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "110"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "120"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "115"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "118"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chu-so-cuoi-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.chu-so-cuoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ số cuối của tổng này là mấy?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{46 + 19 + 75}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "check": {
+        "expr": "6+9+5-20"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-uoc-luong-2",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.uoc-luong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba số hạng đều nhỏ hơn 50. Tổng nào có thể đúng?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "140"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "175"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "160"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "200"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.dien-uoc-luong",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru.card.uoc-luong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Bốn số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["400"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["400", "100", "200", "300"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tong-thoi-gian-kt",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hà đi bộ 6 phút, đi xe buýt 18 phút, rồi đi bộ thêm 6 phút. Hà đi tất cả bao nhiêu phút?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "6+18+6"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tim-gio-xuat-phat",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.toan-thoi-gian"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lớp học bắt đầu lúc 7 giờ 30 phút, tức 6 giờ 90 phút, đường đi mất 40 phút. Phải ra khỏi nhà lúc 6 giờ mấy phút?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 50
+      },
+      "check": {
+        "expr": "90-40"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-bar-gio-80-30",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-bar-gio-90-40"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.tinh-tong-thoi-gian-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru.card.toan-thoi-gian"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sáng nay Lan đi bộ 9 phút, chờ xe 5 phút, đi xe 21 phút, rồi đi bộ 5 phút. Lan đi mất bao nhiêu phút?"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "9+5+21+5"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "phep-cong-phep-tru.ex.chon-gio-di",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru.card.toan-thoi-gian"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lớp học bắt đầu lúc 8 giờ 15 phút, tức 7 giờ 75 phút, đường đi mất 30 phút. Phải ra khỏi nhà lúc 7 giờ mấy phút?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "105"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "75-30"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    }
+  ],
+  "sticker": {
+    "name": "Nhà vô địch cộng trừ",
+    "visualId": "phep-cong-phep-tru.visual.sticker"
+  }
+}

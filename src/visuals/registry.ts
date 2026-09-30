@@ -17,6 +17,21 @@ import {
   solvePowerIs,
 } from "@/visuals/math/luy-thua/validators";
 import {
+  LESSON_SLUG as CONG_TRU_SLUG,
+  VISUAL_SPECS as CONG_TRU_SPECS,
+  TAP_PARTS_REGIONS,
+} from "@/visuals/math/phep-cong-phep-tru/catalog";
+import {
+  columnStep,
+  solveColumnStep,
+} from "@/visuals/math/phep-cong-phep-tru/column-validators";
+import {
+  pairRound,
+  shiftRound,
+  solvePairRound,
+  solveShiftRound,
+} from "@/visuals/math/phep-cong-phep-tru/pair-validators";
+import {
   LESSON_SLUG as THU_TU_SLUG,
   VISUAL_SPECS as THU_TU_SPECS,
   tapRegions,
@@ -76,8 +91,50 @@ const thuTuEntries: Record<string, VisualEntry> = Object.fromEntries(
   ]),
 );
 
+// Entries of "phep-cong-phep-tru": one per item of its catalog. The pictures
+// the child acts on (pick a pair, choose a shift, fill a column) are
+// interactive and carry the validator of the `manipulate` exercises built on
+// them.
+function congTruMeta(spec: (typeof CONG_TRU_SPECS)[string]): VisualMeta {
+  switch (spec.kind) {
+    case "tap-parts":
+      return { interactive: false, regions: TAP_PARTS_REGIONS };
+    case "pair-try":
+      return {
+        interactive: true,
+        validators: { "cap-tron": pairRound },
+        solutions: { "cap-tron": solvePairRound },
+      };
+    case "shift-try":
+      return {
+        interactive: true,
+        validators: { "them-bot-tron": shiftRound },
+        solutions: { "them-bot-tron": solveShiftRound },
+      };
+    case "column-try":
+      return {
+        interactive: true,
+        validators: { "cot-tinh": columnStep },
+        solutions: { "cot-tinh": solveColumnStep },
+      };
+    default:
+      return { interactive: false };
+  }
+}
+
+const congTruEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(CONG_TRU_SPECS).map(([key, spec]) => [
+    `${CONG_TRU_SLUG}.visual.${key}`,
+    {
+      ...congTruMeta(spec),
+      load: () => lessonExample(CONG_TRU_SLUG, (m) => m.fromSpec(spec)),
+    },
+  ]),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...thuTuEntries,
+  ...congTruEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -564,6 +621,8 @@ const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 
 const EXAMPLE_MODULES = lessonModules({
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
+  "phep-cong-phep-tru": () =>
+    import("@/visuals/math/phep-cong-phep-tru/examples"),
   "thu-tu-thuc-hien-phep-tinh": () =>
     import("@/visuals/math/thu-tu-thuc-hien-phep-tinh/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>

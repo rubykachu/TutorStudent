@@ -51,6 +51,9 @@ describe("visualRegistry", () => {
       "luy-thua-la": [{ base: 5, exponent: 3 }],
       "tong-so-mu": [{ total: 2 }, { total: 5 }, { total: 10 }],
       "hieu-so-mu": [{ rest: 0 }, { rest: 5 }],
+      "cap-tron": [{ unit: 10, n0: 4, n1: 9, n2: 6 }],
+      "them-bot-tron": [{ a: 38, b: 47, unit: 10 }],
+      "cot-tinh": [{ digit: 5, carry: 1 }],
     };
     for (const entry of Object.values(visualRegistry)) {
       for (const [id, solve] of Object.entries(entry.solutions ?? {})) {
