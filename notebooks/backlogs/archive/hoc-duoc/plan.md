@@ -2,7 +2,7 @@
 
 # Implementation Plan: mốc "Học được"
 
-Nguồn yêu cầu: `docs/spec.md` (mục "Tiêu chí thành công", mốc "Học được"), giao diện theo `docs/design-system.md`. Các mốc sau nằm trong `backlogs/milestones.md`.
+Nguồn yêu cầu: `docs/spec.md` (mục "Tiêu chí thành công", mốc "Học được"), giao diện theo `docs/design-system.md`. Các mốc sau nằm trong `notebooks/backlogs/index.md`.
 
 ## Tổng quan
 Dựng app Next.js chạy trên máy, iPad truy cập qua LAN. Trẻ chọn hồ sơ, học hai bài hoàn chỉnh (Toán — Luỹ thừa với số mũ tự nhiên; Ngữ văn — Nếu cậu muốn có một người bạn), làm đủ 8 dạng bài với phản hồi 3 nấc, ôn cách quãng bằng FSRS. Tiến độ chỉ lưu IndexedDB và **chỉ để thử** (IndexedDB tách theo origin; bản LAN không chuyển sang bản deploy). Đồng bộ R2, cổng mã gia đình, PWA, đo hiệu năng thuộc mốc "Go-live". Skill `lesson-author`, `lesson-visual`, `lesson-review` được viết sau khi engine và component ổn định, rồi dùng chính chúng để soạn hai bài.

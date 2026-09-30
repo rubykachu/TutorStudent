@@ -8,7 +8,7 @@
 
 ## Việc tiếp theo
 1. Trong worktree: `pnpm install`, dev server cổng riêng (vd 3230) với `CONTENT_INCLUDE_DRAFT=1`; `git merge main`.
-2. Sửa app cho `manipulate`: truyền `params` của bài tập xuống visual (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề (xem báo cáo trong `backlogs/milestones.md`). Thêm mẫu vào `samples` của registry test: chia `{ total: 29, people: 6 }` → `{ q: 4, r: 5 }`; thương-dư `{ dividend: 217, divisor: 15 }` → `{ q1: 1, q0: 4, r1: 0, r0: 7 }`.
+2. Sửa app cho `manipulate`: truyền `params` của bài tập xuống visual (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề (xem báo cáo trong `notebooks/backlogs/index.md`). Thêm mẫu vào `samples` của registry test: chia `{ total: 29, people: 6 }` → `{ q: 4, r: 5 }`; thương-dư `{ dividend: 217, divisor: 15 }` → `{ q1: 1, q0: 4, r1: 0, r0: 7 }`.
 3. Hoàn thiện các kind còn thiếu → `pnpm visual:shot phep-nhan-phep-chia` pass, đọc ảnh.
 4. Hoàn thiện `lesson.json` theo skill `lesson-author` (overview, câu chọn nhiều, ví dụ đời sống, không cắt chữ) → `pnpm content:check --stats` PASS → walk 0 lỗi.
 5. Review (Opus, ≤2 vòng đầy đủ rồi vòng phần đổi) → approve → lock → gate → gộp main.

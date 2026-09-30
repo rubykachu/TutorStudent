@@ -118,8 +118,7 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 │   ├── spec.md                   # tài liệu này
 │   ├── design-system.md          # design token, màu khái niệm, linh vật, component spec
 │   └── operations.md             # tạo bucket R2, CORS, lifecycle, token, Vercel, mã gia đình, cài PWA
-├── backlogs/                     # task theo feature/bug, ghi chú điều tra
-├── tasks/                        # plan.md, todo.md cho đợt làm hiện tại
+├── notebooks/backlogs/            # spec/plan/task theo feature/bug/bài: <tên>/{spec,plan,task}.md; index.md là hàng đợi; archive/ khi xong
 ├── sources/                      # tài liệu gốc (ảnh/PDF SGK) — .gitignore, không bao giờ commit
 │   └── <subject>/<lesson-slug>/
 ├── content/                      # nội dung đã biên soạn, commit vào git

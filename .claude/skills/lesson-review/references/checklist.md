@@ -116,4 +116,4 @@ Quy ước đã chốt. Không ghi thành phát hiện ở bất kỳ mức nào
 - Thiếu `hintVisualId` hay `solutionVisualId` (khung có cách hiện thay).
 - Nấc 1 tô cả câu đề (`target: "block"`) khi đề chỉ có một câu chữ.
 - Các cách viết trong `.claude/skills/lesson-author/references/pitfalls.md` (công thức xếp `gathered`, không chữ Việt trong TeX, phần trẻ phải chạm hay gọi tên không mang màu khái niệm).
-- Mục Góp ý và Nên sửa đã ghi trong `backlogs/lesson-<id bài>.md`.
+- Mục Góp ý và Nên sửa đã ghi trong `notebooks/backlogs/lesson-<id bài>/task.md`.

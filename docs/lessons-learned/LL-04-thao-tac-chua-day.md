@@ -22,4 +22,4 @@ Tác giả không biết bài nào (kể cả bài trước) đã dạy thao tá
 
 ## Trạng thái
 
-Đang áp dụng. Bài đã xuất bản còn thiếu màn hướng dẫn `match`, `order` cho môn Toán: xem `backlogs/lesson-tap-hop.md`.
+Đang áp dụng. Bài đã xuất bản còn thiếu màn hướng dẫn `match`, `order` cho môn Toán: xem `notebooks/backlogs/lesson-tap-hop/task.md`.

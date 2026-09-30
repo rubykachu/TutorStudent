@@ -11,7 +11,7 @@ Tài liệu chính:
 | `docs/design-system.md` | Màu, chữ, bố cục, phản hồi, linh vật |
 | `docs/learner.md` | Hồ sơ học tập của trẻ (dùng khi soạn bài) |
 | `docs/lessons-learned/index.md` | Lỗi nội dung đã gặp và cách phòng |
-| `backlogs/milestones.md` | Hàng đợi công việc và trạng thái |
+| `notebooks/backlogs/index.md` | Hàng đợi công việc và trạng thái (mỗi việc trỏ tới thư mục spec/plan/task) |
 | `CLAUDE.md` | Hướng dẫn cho Claude Code trong dự án |
 
 ## Chạy trên máy

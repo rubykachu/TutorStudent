@@ -60,7 +60,6 @@ Kept in `.claude/rules/` so each is stated once: `content.md` (ids, rule and gui
 
 ## Where state lives
 
-- `backlogs/milestones.md`: lesson status table, ordered queue, open follow-ups. `backlogs/handover-<lesson>.md`: one per lesson in progress, deleted when the lesson is merged. `backlogs/lesson-<lesson>.md`: non-blocking leftovers of a published lesson. `backlogs/archive/`: finished plans and reviews.
-- `tasks/`: the one active plan (`tasks/README.md`).
+- `notebooks/backlogs/index.md`: lesson status table, ordered queue, open follow-ups; each item links to its backlog folder. `notebooks/backlogs/<name>/{spec,plan,task}.md`: planning docs of one feature, bug or lesson (only the files it needs); for a lesson, `task.md` is the handover while in progress and the non-blocking leftovers after publishing. `notebooks/backlogs/archive/`: finished backlog folders.
 - `docs/learner.md`: the learner profile. `content/ids.lock.json`: published ids. Child progress: IndexedDB in the browser only.
 - Secrets: none in the repo; `.env*` is gitignored, `.env.example` documents names.
