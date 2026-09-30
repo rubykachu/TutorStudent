@@ -9,6 +9,7 @@ Quy tắc, định nghĩa hay ví dụ sai toán học hoặc sai văn bản.
 - `phep-cong-phep-tru` vòng 1, section `cot-tru`: quy tắc mượn khi trừ đặt tính sai ở hàng chục.
 - `tap-hop` vòng 2: định nghĩa dấu hiệu đặc trưng thiếu vế "chỉ các phần tử đó có".
 - `quan-he-chia-het-va-tinh-chat` vòng 1: hình quy tắc `chia-du-52-4` ghi "53 : 4 = 13" (số dư chỉ ở nhãn riêng); note `tong-chia-het` "không cần cộng vẫn biết tổng có chia hết hay không" (sai chiều ngược: 7 + 8 chia hết cho 5); quy tắc "Số 0 cũng là bội của mọi số" thiếu "khác 0"; câu `ex.dien-boi-3` in sẵn "các bội của 3 nhỏ hơn 16 là 3; 6; ..." bỏ số 0 ngay sau quy tắc nói 0 là bội.
+- `quan-he-chia-het-va-tinh-chat` vòng 2: bản sửa vòng 1 chỉ thêm "khác 0" vào câu bội, còn note `tim-uoc` "Số 1 và chính số đó luôn là ước của số đó" (0 không là ước của 0) vẫn thiếu; note `uoc-boi` "Từ một phép nhân ta tìm được hai ước" sai với 16 = 4 · 4. Khi sửa một điều kiện bị mất ("khác 0"), soát mọi câu "luôn", "mọi", "hai ..." của cả bài, không chỉ câu bị nêu.
 
 ## Nguyên nhân gốc
 
