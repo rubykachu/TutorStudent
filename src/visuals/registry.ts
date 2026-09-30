@@ -111,7 +111,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "luy-thua.visual.cham-luy-thua-3-mu-5": {
     interactive: false,
     regions: ["base", "exponent"],
-    load: () => lessonExample((m) => m.tapPower(3, 5)),
+    load: () => lessonExample("luy-thua", (m) => m.tapPower(3, 5)),
   },
   "luy-thua.visual.binh-phuong-lap-phuong": {
     interactive: true,
@@ -121,32 +121,38 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.tinh-3-mu-3-goi-y": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(3, 3, "hint")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(3, 3, "hint")),
   },
   "luy-thua.visual.tinh-3-mu-3": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(3, 3, "solution")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(3, 3, "solution")),
   },
   "luy-thua.visual.tinh-4-mu-3-goi-y": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(4, 3, "hint")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(4, 3, "hint")),
   },
   "luy-thua.visual.tinh-8-mu-2-goi-y": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(8, 2, "hint")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(8, 2, "hint")),
   },
   "luy-thua.visual.tinh-10-mu-3-goi-y": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(10, 3, "hint")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(10, 3, "hint")),
   },
   "luy-thua.visual.tinh-5-mu-3-goi-y": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(5, 3, "hint")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(5, 3, "hint")),
   },
   "luy-thua.visual.phan-tich-xep-gia-tri": {
     interactive: false,
     load: () =>
-      lessonExample((m) =>
+      lessonExample("luy-thua", (m) =>
         m.factorList([
           { base: 5, exponent: 2 },
           { base: 2, exponent: 3 },
@@ -158,7 +164,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "luy-thua.visual.phan-tich-binh-phuong": {
     interactive: false,
     load: () =>
-      lessonExample((m) =>
+      lessonExample("luy-thua", (m) =>
         m.factorList([
           { base: 9, exponent: 2 },
           { base: 3, exponent: 2 },
@@ -169,7 +175,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "luy-thua.visual.phan-tich-luy-thua-10": {
     interactive: false,
     load: () =>
-      lessonExample((m) =>
+      lessonExample("luy-thua", (m) =>
         m.factorList([
           { base: 10, exponent: 4 },
           { base: 10, exponent: 2 },
@@ -183,7 +189,8 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.tinh-4-mu-3": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(4, 3, "solution")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(4, 3, "solution")),
   },
   "luy-thua.visual.nhan-hai-luy-thua": {
     interactive: false,
@@ -201,19 +208,22 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.so-mu-0-goi-y": {
     interactive: false,
-    load: () => lessonExample((m) => m.zeroExponent("hint")),
+    load: () => lessonExample("luy-thua", (m) => m.zeroExponent("hint")),
   },
   "luy-thua.visual.so-mu-an-3": {
     interactive: false,
-    load: () => lessonExample((m) => m.hiddenExponentOne(3, [4, 1])),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.hiddenExponentOne(3, [4, 1])),
   },
   "luy-thua.visual.so-mu-an-10": {
     interactive: false,
-    load: () => lessonExample((m) => m.hiddenExponentOne(10, [2, 1, 4])),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.hiddenExponentOne(10, [2, 1, 4])),
   },
   "luy-thua.visual.so-mu-an-7": {
     interactive: false,
-    load: () => lessonExample((m) => m.hiddenExponentOne(7, [1, 3])),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.hiddenExponentOne(7, [1, 3])),
   },
   "luy-thua.visual.bot-luy-thua": {
     interactive: true,
@@ -229,51 +239,52 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.tong-hang-5-247": {
     interactive: false,
-    load: () => lessonExample((m) => m.placeValueSum(5247)),
+    load: () => lessonExample("luy-thua", (m) => m.placeValueSum(5247)),
   },
   "luy-thua.visual.dinh-nghia": {
     interactive: false,
-    load: () => ruleExample("DinhNghia"),
+    load: () => lessonExample("luy-thua", (m) => m.DinhNghia),
   },
   "luy-thua.visual.ket-ban-co": {
     interactive: false,
-    load: () => ruleExample("KetBanCo"),
+    load: () => lessonExample("luy-thua", (m) => m.KetBanCo),
   },
   "luy-thua.visual.quy-tac-so-mu-1": {
     interactive: false,
-    load: () => ruleExample("QuyTacSoMu1"),
+    load: () => lessonExample("luy-thua", (m) => m.QuyTacSoMu1),
   },
   "luy-thua.visual.bam-mu": {
     interactive: false,
-    load: () => ruleExample("BamMu"),
+    load: () => lessonExample("luy-thua", (m) => m.BamMu),
   },
   "luy-thua.visual.doc-binh-phuong": {
     interactive: false,
-    load: () => lessonExample((m) => m.squareAndCube(2)),
+    load: () => lessonExample("luy-thua", (m) => m.squareAndCube(2)),
   },
   "luy-thua.visual.tinh-tung-buoc": {
     interactive: false,
-    load: () => lessonExample((m) => m.repeatedProduct(2, 5, "solution")),
+    load: () =>
+      lessonExample("luy-thua", (m) => m.repeatedProduct(2, 5, "solution")),
   },
   "luy-thua.visual.quy-tac-nhan": {
     interactive: false,
-    load: () => ruleExample("QuyTacNhan"),
+    load: () => lessonExample("luy-thua", (m) => m.QuyTacNhan),
   },
   "luy-thua.visual.quy-tac-so-mu-an": {
     interactive: false,
-    load: () => ruleExample("QuyTacSoMuAn"),
+    load: () => lessonExample("luy-thua", (m) => m.QuyTacSoMuAn),
   },
   "luy-thua.visual.quy-tac-chia": {
     interactive: false,
-    load: () => ruleExample("QuyTacChia"),
+    load: () => lessonExample("luy-thua", (m) => m.QuyTacChia),
   },
   "luy-thua.visual.quy-tac-so-mu-0": {
     interactive: false,
-    load: () => lessonExample((m) => m.zeroExponent("solution")),
+    load: () => lessonExample("luy-thua", (m) => m.zeroExponent("solution")),
   },
   "luy-thua.visual.quy-tac-luy-thua-10": {
     interactive: false,
-    load: () => ruleExample("QuyTacLuyThua10"),
+    load: () => lessonExample("luy-thua", (m) => m.QuyTacLuyThua10),
   },
   "luy-thua.visual.quy-tac-tach-so": {
     interactive: false,
@@ -281,71 +292,71 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "luy-thua.visual.tom-tat-dinh-nghia": {
     interactive: false,
-    load: () => ruleExample("TomTatDinhNghia"),
+    load: () => lessonExample("luy-thua", (m) => m.TomTatDinhNghia),
   },
   "luy-thua.visual.tom-tat-binh-phuong": {
     interactive: false,
-    load: () => ruleExample("TomTatBinhPhuong"),
+    load: () => lessonExample("luy-thua", (m) => m.TomTatBinhPhuong),
   },
   "luy-thua.visual.tom-tat-nhan": {
     interactive: false,
-    load: () => ruleExample("TomTatNhan"),
+    load: () => lessonExample("luy-thua", (m) => m.TomTatNhan),
   },
   "luy-thua.visual.tom-tat-chia": {
     interactive: false,
-    load: () => ruleExample("TomTatChia"),
+    load: () => lessonExample("luy-thua", (m) => m.TomTatChia),
   },
   "luy-thua.visual.tom-tat-luy-thua-10": {
     interactive: false,
-    load: () => ruleExample("TomTatLuyThua10"),
+    load: () => lessonExample("luy-thua", (m) => m.TomTatLuyThua10),
   },
   "luy-thua.visual.the-viet-luy-thua": {
     interactive: false,
-    load: () => ruleExample("TheVietLuyThua"),
+    load: () => lessonExample("luy-thua", (m) => m.TheVietLuyThua),
   },
   "luy-thua.visual.the-co-so-so-mu": {
     interactive: false,
-    load: () => ruleExample("TheCoSoSoMu"),
+    load: () => lessonExample("luy-thua", (m) => m.TheCoSoSoMu),
   },
   "luy-thua.visual.the-so-mu-1": {
     interactive: false,
-    load: () => ruleExample("TheSoMu1"),
+    load: () => lessonExample("luy-thua", (m) => m.TheSoMu1),
   },
   "luy-thua.visual.the-binh-phuong": {
     interactive: false,
-    load: () => ruleExample("TheBinhPhuong"),
+    load: () => lessonExample("luy-thua", (m) => m.TheBinhPhuong),
   },
   "luy-thua.visual.the-lap-phuong": {
     interactive: false,
-    load: () => ruleExample("TheLapPhuong"),
+    load: () => lessonExample("luy-thua", (m) => m.TheLapPhuong),
   },
   "luy-thua.visual.the-tinh-gia-tri": {
     interactive: false,
-    load: () => ruleExample("TheTinhGiaTri"),
+    load: () => lessonExample("luy-thua", (m) => m.TheTinhGiaTri),
   },
   "luy-thua.visual.the-nhan-cung-co-so": {
     interactive: false,
-    load: () => ruleExample("TheNhanCungCoSo"),
+    load: () => lessonExample("luy-thua", (m) => m.TheNhanCungCoSo),
   },
   "luy-thua.visual.the-nhan-so-mu-1": {
     interactive: false,
-    load: () => ruleExample("TheNhanSoMu1"),
+    load: () => lessonExample("luy-thua", (m) => m.TheNhanSoMu1),
   },
   "luy-thua.visual.the-chia-cung-co-so": {
     interactive: false,
-    load: () => ruleExample("TheChiaCungCoSo"),
+    load: () => lessonExample("luy-thua", (m) => m.TheChiaCungCoSo),
   },
   "luy-thua.visual.the-so-mu-0": {
     interactive: false,
-    load: () => ruleExample("TheSoMu0"),
+    load: () => lessonExample("luy-thua", (m) => m.TheSoMu0),
   },
   "luy-thua.visual.the-luy-thua-10": {
     interactive: false,
-    load: () => ruleExample("TheLuyThua10"),
+    load: () => lessonExample("luy-thua", (m) => m.TheLuyThua10),
   },
   "luy-thua.visual.the-tong-luy-thua-10": {
     interactive: false,
-    load: () => ruleExample("TheTongLuyThua10"),
+    load: () => lessonExample("luy-thua", (m) => m.TheTongLuyThua10),
   },
   "luy-thua.visual.sticker": {
     interactive: false,
@@ -353,25 +364,29 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
 };
 
-type LessonExamples = typeof import("@/visuals/math/luy-thua/examples");
+// Each lesson's examples module (src/visuals/<subject>/<slug>/examples.tsx):
+// components and factories that several registry entries share, e.g. one
+// component drawn with different numbers. Listed statically so the bundler
+// splits each into its own chunk; a new lesson adds its slug here. The module
+// has no "use client", so the dev visual page (a server component) may call
+// its factories while loading a visual.
+type Loaders<T> = { [S in keyof T]: () => Promise<T[S]> };
+// Identity at runtime; types each slug's loader with its own module.
+const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 
-// Worked examples that share one component with different numbers.
-async function lessonExample(
-  pick: (examples: LessonExamples) => ComponentType<VisualProps>,
+const EXAMPLE_MODULES = lessonModules({
+  "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
+});
+type ExampleModules =
+  typeof EXAMPLE_MODULES extends Loaders<infer T> ? T : never;
+
+// `pick` returns an export of the lesson's examples module or calls one of its
+// factories: lessonExample("luy-thua", (m) => m.repeatedProduct(3, 3, "hint")).
+async function lessonExample<S extends keyof ExampleModules>(
+  slug: S,
+  pick: (examples: ExampleModules[S]) => ComponentType<VisualProps>,
 ): Promise<{ default: ComponentType<VisualProps> }> {
-  return { default: pick(await import("@/visuals/math/luy-thua/examples")) };
-}
-
-type RuleExamples = typeof import("@/visuals/math/luy-thua/rule-examples");
-
-// Labelled examples of rule screens and recaps; their sentences are in
-// lesson.json.
-async function ruleExample(
-  name: keyof RuleExamples,
-): Promise<{ default: ComponentType<VisualProps> }> {
-  return {
-    default: (await import("@/visuals/math/luy-thua/rule-examples"))[name],
-  };
+  return { default: pick(await EXAMPLE_MODULES[slug]()) };
 }
 
 // Own keys only, so a URL like /dev/visuals/constructor never resolves to an

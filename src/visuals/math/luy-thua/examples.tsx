@@ -8,9 +8,12 @@ import { type Mode, RepeatedProduct } from "./tinh-tung-buoc";
 import { SquareAndCube } from "./tom-tat-hinh";
 import { PlaceValueSum } from "./tong-hang";
 
-// Registry entries that reuse one component with fixed numbers. This module
-// is not a client module, so the dev visual page (a server component) may
-// call these factories while loading a visual.
+// Components shared by several registry entries: factories that draw one
+// component with fixed numbers, and the labelled examples of rule screens and
+// recaps. This module is not a client module, so the dev visual page (a
+// server component) may call these factories while loading a visual.
+
+export * from "./rule-examples";
 
 export function repeatedProduct(
   base: number,
