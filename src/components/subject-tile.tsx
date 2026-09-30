@@ -2,21 +2,21 @@ import { Clock } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 import { SUBJECT_STYLES } from "@/components/subject-style";
-import type { SubjectStatus } from "@/learn/next-step";
-import type { SubjectProgress } from "@/progress/summary";
+import type { SubjectProgress, SubjectStatus } from "@/learn/next-step";
 import type { Subject } from "@/schema/content";
 
 const RING_RADIUS = 22;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 
-// Lessons finished out of lessons available, as a ring rather than a
-// percentage (the child UI shows no scores).
+// Sections finished out of every section of the subject's lessons, as a ring
+// with a count of parts rather than a percentage (the child UI shows no
+// scores). It fills as each section is done, like the stickers.
 function ProgressRing({ done, total }: SubjectProgress) {
   const filled = total === 0 ? 0 : done / total;
   return (
     <div
       role="img"
-      aria-label={`Xong ${done} trên ${total} bài`}
+      aria-label={`Xong ${done} trên ${total} phần`}
       className="relative size-16 shrink-0 tall:size-20"
     >
       <svg viewBox="0 0 56 56" className="size-full -rotate-90" aria-hidden>
@@ -38,8 +38,14 @@ function ProgressRing({ done, total }: SubjectProgress) {
           strokeDashoffset={RING_CIRCUMFERENCE * (1 - filled)}
         />
       </svg>
-      <span className="absolute inset-0 flex items-center justify-center text-caption font-semibold">
-        {done}/{total}
+      <span
+        aria-hidden
+        className="absolute inset-0 flex flex-col items-center justify-center text-caption leading-none font-semibold"
+      >
+        <span>
+          {done}/{total}
+        </span>
+        <span className="mt-0.5 font-normal">phần</span>
       </span>
     </div>
   );

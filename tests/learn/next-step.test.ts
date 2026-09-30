@@ -5,6 +5,7 @@ import {
   pausedSectionIndex,
   type StudyProgress,
   stickerFill,
+  subjectProgress,
   subjectStatus,
 } from "@/learn/next-step";
 import type { SectionState } from "@/progress/db";
@@ -148,6 +149,28 @@ describe("stickerFill", () => {
       done: 0,
       total: 4,
     });
+  });
+});
+
+describe("subjectProgress", () => {
+  const lessons = [lesson("m1", "math", 1, 4), lesson("m2", "math", 2, 3)];
+
+  it("counts sections done across the subject's lessons, like the stickers", () => {
+    const progress = {
+      sections: [
+        record("m2", 1, "done", 1),
+        record("m2", 2, "in_progress", 2),
+        record("retired", 1, "done", 3),
+      ],
+      stickers: [{ lessonId: "m1" }, { lessonId: "retired" }],
+    };
+    // m1 is earned (4 of 4), m2 has one section done (1 of 3).
+    expect(subjectProgress(lessons, progress)).toEqual({ done: 5, total: 7 });
+  });
+
+  it("is zero of every section before studying", () => {
+    expect(subjectProgress(lessons, EMPTY)).toEqual({ done: 0, total: 7 });
+    expect(subjectProgress([], EMPTY)).toEqual({ done: 0, total: 0 });
   });
 });
 

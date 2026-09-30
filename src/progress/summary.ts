@@ -8,7 +8,6 @@ import type {
   AttemptRecord,
   SectionProgressRecord,
   SectionState,
-  StickerRecord,
 } from "@/progress/db";
 import type { ContentIndex, LessonSummary } from "@/schema/content";
 
@@ -83,20 +82,6 @@ export function lessonState(
   return states.some((s) => s !== "not_started")
     ? "in_progress"
     : "not_started";
-}
-
-export type SubjectProgress = { done: number; total: number };
-
-// Lessons with a sticker out of the lessons the child can see.
-export function subjectProgress(
-  lessons: readonly Pick<LessonSummary, "id">[],
-  stickers: readonly Pick<StickerRecord, "lessonId">[],
-): SubjectProgress {
-  const earned = new Set(stickers.map((s) => s.lessonId));
-  return {
-    done: lessons.filter((l) => earned.has(l.id)).length,
-    total: lessons.length,
-  };
 }
 
 // The owl's mood on the home screen: pleased after studying today, glad to

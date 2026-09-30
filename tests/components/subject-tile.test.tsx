@@ -12,12 +12,16 @@ const math: Subject = {
   defaultSeries: "kntt",
 };
 
-function renderTile(status: SubjectStatus, nudgeDays: number | null = null) {
+function renderTile(
+  status: SubjectStatus,
+  nudgeDays: number | null = null,
+  progress = { done: 0, total: 1 },
+) {
   render(
     <SubjectTile
       subject={math}
       href="/subjects/math"
-      progress={{ done: 0, total: 1 }}
+      progress={progress}
       status={status}
       nudgeDays={nudgeDays}
     />,
@@ -46,5 +50,24 @@ describe("SubjectTile", () => {
     expect(renderTile({ kind: "new", total: 1 }, 5)).toHaveTextContent(
       "5 ngày chưa học",
     );
+  });
+
+  it("shows sections done out of all sections in the ring, never a percentage", () => {
+    const tile = renderTile(
+      { kind: "learning", total: 2, sectionNumber: 2 },
+      null,
+      {
+        done: 3,
+        total: 11,
+      },
+    );
+    const ring = screen.getByRole("img", { name: "Xong 3 trên 11 phần" });
+    expect(ring).toHaveTextContent("3/11phần");
+    expect(tile).not.toHaveTextContent("%");
+  });
+
+  it("hides the ring for a subject with no lessons", () => {
+    renderTile({ kind: "empty" }, null, { done: 0, total: 0 });
+    expect(screen.queryByRole("img")).toBeNull();
   });
 });

@@ -5,7 +5,6 @@ import {
   lessonState,
   lessonsForSubject,
   subjectNudgeDays,
-  subjectProgress,
   vnDaysBetween,
 } from "@/progress/summary";
 import type { ContentIndex, LessonSummary, Subject } from "@/schema/content";
@@ -174,18 +173,6 @@ describe("lessonState", () => {
       ),
     ).toBe("done");
     expect(lessonState(powers, [], new Set(["powers"]))).toBe("done");
-  });
-});
-
-describe("subjectProgress", () => {
-  it("counts lessons with a sticker out of the lessons shown", () => {
-    const lessons = [lesson("powers", "math"), lesson("roots", "math")];
-    expect(
-      subjectProgress(lessons, [
-        { lessonId: "powers" },
-        { lessonId: "retired" },
-      ]),
-    ).toEqual({ done: 1, total: 2 });
   });
 });
 

@@ -9,7 +9,11 @@ import {
   SUBJECT_TILE_GRID,
   SubjectTile,
 } from "@/components/subject-tile";
-import { continueTarget, subjectStatus } from "@/learn/next-step";
+import {
+  continueTarget,
+  subjectProgress,
+  subjectStatus,
+} from "@/learn/next-step";
 import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
@@ -26,7 +30,6 @@ import {
   lastStudiedBySubject,
   lessonsForSubject,
   subjectNudgeDays,
-  subjectProgress,
 } from "@/progress/summary";
 import type { ContentIndex } from "@/schema/content";
 import { ContentError } from "./content-error";
@@ -100,7 +103,7 @@ function HomeLessons({
               <SubjectTile
                 subject={subject}
                 href={subjectPath(subject.id)}
-                progress={subjectProgress(lessons, progress.stickers)}
+                progress={subjectProgress(lessons, progress)}
                 status={subjectStatus(lessons, progress)}
                 nudgeDays={subjectNudgeDays(lastStudied.get(subject.id), today)}
               />

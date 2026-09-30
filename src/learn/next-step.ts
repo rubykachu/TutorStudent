@@ -71,6 +71,30 @@ export function stickerFill(
   return { done: sections.filter((s) => done.has(s.id)).length, total };
 }
 
+export type SubjectProgress = { done: number; total: number };
+
+// Sections done out of every section of a subject's lessons, counted the way
+// the stickers fill (a lesson with its sticker counts all its sections), so
+// the subject tile's ring and the stickers never disagree.
+export function subjectProgress(
+  lessons: readonly Pick<LessonSummary, "id" | "sections">[],
+  progress: Pick<StudyProgress, "sections" | "stickers">,
+): SubjectProgress {
+  const earned = new Set(progress.stickers.map((s) => s.lessonId));
+  let done = 0;
+  let total = 0;
+  for (const lesson of lessons) {
+    const fill = stickerFill(
+      lesson.sections,
+      progress.sections.filter((s) => s.lessonId === lesson.id),
+      earned.has(lesson.id),
+    );
+    done += fill.done;
+    total += fill.total;
+  }
+  return { done, total };
+}
+
 // Latest moment the child answered or moved through each lesson.
 function lastActiveByLesson(progress: StudyProgress): Map<string, string> {
   const latest = new Map<string, string>();

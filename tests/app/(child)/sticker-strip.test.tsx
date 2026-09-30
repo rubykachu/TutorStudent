@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { StickerStrip } from "@/app/(child)/sticker-strip";
+import { StickerStrip, stickerStripCaption } from "@/app/(child)/sticker-strip";
 import type { LessonSummary } from "@/schema/content";
 
 function lesson(id: string, name: string): LessonSummary {
@@ -45,6 +45,31 @@ describe("StickerStrip", () => {
       "data-sticker-earned",
       "true",
     );
-    expect(screen.getByText("Đã có 1/3")).toBeInTheDocument();
+    expect(
+      screen.getByText("Đã có 1/3 sticker · 1 đang tô màu"),
+    ).toBeInTheDocument();
   });
+
+  it.each([
+    [[{ done: 0, total: 3 }], "Học xong một bài là có sticker"],
+    [
+      [
+        { done: 1, total: 3 },
+        { done: 0, total: 2 },
+      ],
+      "Đã có 0/2 sticker · 1 đang tô màu",
+    ],
+    [
+      [
+        { done: 3, total: 3 },
+        { done: 0, total: 2 },
+      ],
+      "Đã có 1/2 sticker",
+    ],
+  ])(
+    "counts earned stickers and mentions those being coloured (%o)",
+    (fills, text) => {
+      expect(stickerStripCaption(fills)).toBe(text);
+    },
+  );
 });

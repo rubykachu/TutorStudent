@@ -10,10 +10,11 @@ import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 // cover.
 
 // Lessons the served index lists, so the checks follow published content.
-async function servedLessons(page: Page): Promise<{ subject: string }[]> {
+type ServedLesson = { subject: string; sections: unknown[] };
+
+async function servedLessons(page: Page): Promise<ServedLesson[]> {
   const response = await page.request.get("/content/index.json");
-  return ((await response.json()) as { lessons: { subject: string }[] })
-    .lessons;
+  return ((await response.json()) as { lessons: ServedLesson[] }).lessons;
 }
 
 test("a first visit creates a profile that survives a reload", async ({
@@ -30,7 +31,8 @@ test("a first visit creates a profile that survives a reload", async ({
   await createProfile(page, "Bé Na", "Cáo");
   await expect(page).toHaveURL(/\/$/);
   const lessons = await servedLessons(page);
-  const mathLessons = lessons.filter((l) => l.subject === "math").length;
+  const mathLessons = lessons.filter((l) => l.subject === "math");
+  const mathSections = mathLessons.reduce((n, l) => n + l.sections.length, 0);
 
   // No chain yet: an invitation, never "0 ngày".
   await expect(
@@ -49,9 +51,9 @@ test("a first visit creates a profile that survives a reload", async ({
   const math = page.locator('[data-subject="math"]');
   await expect(math).toBeVisible();
   await expect(
-    math.getByRole("img", { name: `Xong 0 trên ${mathLessons} bài` }),
+    math.getByRole("img", { name: `Xong 0 trên ${mathSections} phần` }),
   ).toBeVisible();
-  await expect(math).toContainText(`${mathLessons} bài · Chưa học`);
+  await expect(math).toContainText(`${mathLessons.length} bài · Chưa học`);
   await expect(page.getByRole("link", { name: /Ngữ văn/ })).toContainText(
     "Sắp có bài",
   );
@@ -81,7 +83,7 @@ test("a first visit creates a profile that survives a reload", async ({
   await expect(lesson).toHaveAttribute("href", "/lessons/fixture");
   await expect(lesson).toContainText("Chưa học");
   // Exactly the lessons in the served index: nothing else leaks into the list.
-  await expect(page.locator("[data-lesson]")).toHaveCount(mathLessons);
+  await expect(page.locator("[data-lesson]")).toHaveCount(mathLessons.length);
   await expectNoHorizontalScroll(page);
 
   await page.getByRole("link", { name: "Trang chủ" }).click();
