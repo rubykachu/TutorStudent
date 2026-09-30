@@ -2,7 +2,11 @@
 
 import { Eye } from "lucide-react";
 import { type KeyboardEvent, useId } from "react";
-import { ReadAloudButton, useReadAloud } from "@/components/read-aloud";
+import {
+  ReadAloudButton,
+  type ReadAloudLayout,
+  useReadAloud,
+} from "@/components/read-aloud";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { PassageBlock } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
@@ -25,6 +29,8 @@ export type PassageReaderProps = {
   passage: PassageBlock;
   // Sentence id -> how a hint lights it up.
   highlight?: ReadonlyMap<string, HighlightSpec>;
+  // Where the reading-mode "Nghe đọc" button goes; see ReadAloudLayout.
+  readAloudLayout?: ReadAloudLayout;
 } & SelectionProps;
 
 const NO_HIGHLIGHT: ReadonlyMap<string, HighlightSpec> = new Map();
@@ -181,6 +187,7 @@ function AnnotationCard({ entry, id }: { entry: IdentifiedNote; id?: string }) {
 export function PassageReader({
   passage,
   highlight = NO_HIGHLIGHT,
+  readAloudLayout = "labelled",
   ...selection
 }: PassageReaderProps) {
   const baseId = useId();
@@ -199,6 +206,13 @@ export function PassageReader({
     readAloud.reading === null
       ? undefined
       : allSentences[readAloud.reading]?.id;
+  const readButton = tapMode ? null : (
+    <ReadAloudButton
+      state={readAloud}
+      layout={readAloudLayout}
+      className={readAloudLayout === "labelled" ? "self-start" : ""}
+    />
+  );
 
   return (
     <figure
@@ -206,8 +220,8 @@ export function PassageReader({
       data-passage
       data-selectable={tapMode || undefined}
     >
-      {!tapMode && <ReadAloudButton state={readAloud} className="self-start" />}
-      {passage.paragraphs.map((paragraph) => {
+      {readAloudLayout === "labelled" && readButton}
+      {passage.paragraphs.map((paragraph, paragraphIndex) => {
         const notes = paragraph.sentences.flatMap(
           (sentence) => notesBySentence.get(sentence.id) ?? [],
         );
@@ -218,6 +232,9 @@ export function PassageReader({
             data-paragraph
           >
             <p className={`max-w-[60ch] ${tapMode ? "leading-tap" : ""}`}>
+              {readAloudLayout === "compact" &&
+                paragraphIndex === 0 &&
+                readButton}
               {paragraph.sentences.map((sentence, index) => {
                 const own = notesBySentence.get(sentence.id) ?? [];
                 return (

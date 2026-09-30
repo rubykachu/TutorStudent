@@ -1,4 +1,5 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
+import { patchFixtureLesson, withVietnameseVoice } from "./fixture-routes";
 import {
   answerRight,
   createProfile,
@@ -157,3 +158,73 @@ for (const screen of SCREENS) {
     });
   });
 }
+
+// A question and a passage, each with its read-aloud button, above four
+// options that wrap to two lines: taller than a phone screen together. The
+// frame must lift the whole answer card, last option included, above the
+// bottom bar, both when the exercise opens and once the praise bubble pushes
+// the card down.
+const LONG_CHOICE_ID = "fixture.ex.dem-cham";
+
+test("a long prompt with read-aloud keeps every option above the bottom bar on a phone", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "phone");
+  await withVietnameseVoice(page);
+  await patchFixtureLesson(page, (lesson) => {
+    const index = lesson.exercises.findIndex((e) => e.id === LONG_CHOICE_ID);
+    const long = (text: string) => ({ type: "text" as const, text });
+    lesson.exercises[index] = {
+      id: LONG_CHOICE_ID,
+      type: "choice",
+      cardIds: [],
+      difficulty: 1,
+      multiple: false,
+      hints: { highlight: [] },
+      prompt: [
+        {
+          type: "note",
+          text: "Minh nói việc Lan mang bài sang nhà “như là một món quà”. Điều đó cho thấy gì về hai bạn?",
+        },
+        {
+          type: "passage",
+          annotations: [],
+          paragraphs: [
+            {
+              sentences: [
+                {
+                  id: "p1",
+                  text: "Những ngày Lan nghỉ ốm, lớp học vắng hẳn đi.",
+                },
+                {
+                  id: "p2",
+                  text: "Còn khi thấy Minh mang vở sang, Lan vui như được nghe một bài hát hay.",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      options: [
+        { id: "a", content: long("Hai bạn quý nhau và luôn nghĩ đến nhau") },
+        { id: "b", content: long("Minh muốn được cô giáo khen trước cả lớp") },
+        { id: "c", content: long("Lan không thích đi học cùng các bạn khác") },
+        { id: "d", content: long("Minh thích tặng quà cho tất cả mọi người") },
+      ],
+      answer: ["a"],
+    };
+  });
+  await openSection(page);
+  const exercise = await reach(page, LONG_CHOICE_ID);
+  await expect(
+    exercise.locator('[data-read-aloud-layout="compact"]'),
+  ).toHaveCount(2);
+
+  await expectInViewAboveBar(page, "[data-answer-area]");
+  await expectNothingUnderBottomBar(page);
+
+  await exercise.locator('[data-option="a"]').tap();
+  await checkTo(exercise, "correct");
+  await expectInViewAboveBar(page, "[data-answer-area]");
+  await expectNothingUnderBottomBar(page);
+});

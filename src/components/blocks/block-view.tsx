@@ -4,7 +4,7 @@ import { Clapperboard } from "lucide-react";
 import { Formula } from "@/components/blocks/formula";
 import { VideoPlayer } from "@/components/blocks/video-player";
 import { PassageReader } from "@/components/passage-reader";
-import { ReadAloudText } from "@/components/read-aloud";
+import { type ReadAloudLayout, ReadAloudText } from "@/components/read-aloud";
 import { RichText } from "@/components/rich-text";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { SectionBlock, Video } from "@/schema/content";
@@ -23,6 +23,8 @@ export type BlockViewProps = {
   // visual's caption: drawn as body text above the example, the way a
   // group shows its note, instead of a grey caption under it.
   leadCaption?: boolean;
+  // Where a note's or a passage's read-aloud button goes; see ReadAloudLayout.
+  readAloudLayout?: ReadAloudLayout;
 };
 
 const NO_PARTS: ReadonlyMap<string, HighlightSpec> = new Map();
@@ -36,14 +38,15 @@ export function BlockView({
   parts = NO_PARTS,
   videos = [],
   leadCaption = false,
+  readAloudLayout = "labelled",
 }: BlockViewProps) {
   switch (block.type) {
     case "note":
-      // The speaker button sits above the sentence, aligned with it: at the
-      // start in a prompt, centred where the screen centres the note.
+      // A labelled speaker button sits above the sentence, aligned with it:
+      // at the start in a prompt, centred where the screen centres the note.
       return (
         <div data-block="note" className="flex flex-col items-start gap-3">
-          <ReadAloudText text={block.text} />
+          <ReadAloudText text={block.text} layout={readAloudLayout} />
         </div>
       );
     case "formula":
@@ -86,7 +89,11 @@ export function BlockView({
     case "passage":
       return (
         <div data-block="passage" className="w-full">
-          <PassageReader passage={block} highlight={parts} />
+          <PassageReader
+            passage={block}
+            highlight={parts}
+            readAloudLayout={readAloudLayout}
+          />
         </div>
       );
     case "image":
@@ -110,9 +117,15 @@ export function BlockView({
           className="flex w-full flex-col items-center gap-6 [&>[data-block=note]]:max-w-prose [&>[data-block=note]]:items-center [&>[data-block=note]]:text-center"
         >
           {block.children.map((child, i) => (
-            // Children have no ids; their order is fixed content.
-            // biome-ignore lint/suspicious/noArrayIndexKey: static list
-            <BlockView key={i} block={child} parts={parts} videos={videos} />
+            <BlockView
+              // Children have no ids; their order is fixed content.
+              // biome-ignore lint/suspicious/noArrayIndexKey: static list
+              key={i}
+              block={child}
+              parts={parts}
+              videos={videos}
+              readAloudLayout={readAloudLayout}
+            />
           ))}
         </div>
       );
