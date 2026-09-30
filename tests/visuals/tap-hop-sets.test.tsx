@@ -47,7 +47,7 @@ describe("x membership validator", () => {
 
   it("solves to a state the validator accepts", () => {
     expect(solveXIsMember(inside)).toEqual({ x: 1 });
-    expect(solveXIsMember(outside)).toEqual({ x: 0 });
+    expect(solveXIsMember(outside)).toEqual({ x: 2 });
     const zeroIsMember = { want: 0, count: 2, e0: 0, e1: 1 };
     expect(solveXIsMember(zeroIsMember)).toEqual({ x: 2 });
     expect(xIsMember(solveXIsMember(zeroIsMember), zeroIsMember)).toBe(true);

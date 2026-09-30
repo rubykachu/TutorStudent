@@ -100,7 +100,7 @@ export function LapGhepLietKe() {
                 {caption && (
                   <>
                     <ArrowUp aria-hidden className="size-4" />
-                    <span className="text-center font-body text-caption leading-tight font-semibold">
+                    <span className="-mx-6 w-24 text-center font-body text-caption leading-tight font-semibold">
                       {caption}
                     </span>
                   </>

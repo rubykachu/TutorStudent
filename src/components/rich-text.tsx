@@ -46,7 +46,7 @@ export function splitSuperscripts(text: string): TextPart[] {
 // from a fallback font at about half the size of the text around them. They
 // are set in the maths font instead, enlarged, so a child who is learning to
 // read them sees them as clearly as a digit.
-const SET_SIGNS = /([∈∉])/u;
+const SET_SIGNS = /([∈∉{}])/u;
 // A chip, blank or option that is one sign on its own ("{", ";", ","): drawn
 // large in the maths font so a comma and a semicolon never look alike.
 const SINGLE_SIGN = /^[^\p{L}\p{N}\s]$/u;
@@ -58,7 +58,7 @@ function withSetSigns(text: string, keyPrefix: number): ReactNode {
         // biome-ignore lint/suspicious/noArrayIndexKey: static list
         key={`${keyPrefix}-${j}`}
         data-set-sign
-        className="font-[KaTeX_Main] text-[1.3em] leading-none font-normal"
+        className="font-[KaTeX_Main] text-[1.5em] leading-none font-normal"
       >
         {piece}
       </span>

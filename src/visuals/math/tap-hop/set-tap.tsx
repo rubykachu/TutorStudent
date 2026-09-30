@@ -11,7 +11,7 @@ const ITEM_REGION_LABELS = {
   thuoc: "Cái thước",
   tay: "Cục tẩy",
 } as const;
-const CARD_WIDTH = 76;
+const CARD_WIDTH = 66;
 const CARD_TOP = 50;
 const CARD_HEIGHT = 130;
 const ICON_SCALE = 1.25;
@@ -36,7 +36,7 @@ export function HopCham() {
         strokeWidth={3}
       />
       {CASE_ITEMS.map((kind, i) => {
-        const left = 22 + i * 90;
+        const left = 30 + i * 90;
         return (
           <Region key={kind} id={kind} label={ITEM_REGION_LABELS[kind]}>
             <rect
@@ -80,7 +80,7 @@ export function DauHieuCham() {
   return (
     <RegionSvg
       label="Tập hợp A gồm các số x, với x là số chẵn nhỏ hơn 9"
-      viewBox="0 0 330 180"
+      viewBox="0 0 350 180"
       className="h-auto w-full max-w-sm"
     >
       <text
@@ -142,7 +142,7 @@ export function DauHieuCham() {
           {...decorative}
           x={10}
           y={110}
-          width={290}
+          width={280}
           height={60}
           rx={12}
           className="fill-muted"
@@ -160,7 +160,7 @@ export function DauHieuCham() {
         </text>
       </Region>
       <text
-        x={312}
+        x={330}
         y={140}
         textAnchor="middle"
         dominantBaseline="central"

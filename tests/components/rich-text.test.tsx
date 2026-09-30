@@ -42,7 +42,7 @@ describe("RichText", () => {
     );
     const signs = container.querySelectorAll("[data-set-sign]");
     expect([...signs].map((sign) => sign.textContent)).toEqual(["∈", "∉"]);
-    expect(signs[0]).toHaveClass("font-[KaTeX_Main]", "text-[1.3em]");
+    expect(signs[0]).toHaveClass("font-[KaTeX_Main]", "text-[1.5em]");
     expect(container).toHaveTextContent("Kí hiệu 2 ∈ A và 5 ∉ A.");
   });
 
