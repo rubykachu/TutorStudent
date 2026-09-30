@@ -388,7 +388,7 @@ export function EquationLabels({ op, a, b }: { op: Op; a: number; b: number }) {
 // EquationTap
 
 const TAP_BOX_H = 72;
-const TAP_PAD = 12;
+const TAP_PAD = 14;
 
 // The same equation with no names and no concept colours, for "tap the ...":
 // the three numbers are the regions "first", "second" and "result" in reading
@@ -400,7 +400,7 @@ export function EquationTap({ op, a, b }: { op: Op; a: number; b: number }) {
     maxFs: 44,
     minFs: 26,
     pad: TAP_PAD,
-    gap: 6,
+    gap: 8,
   });
   const cy = TAP_BOX_H / 2;
   const regions = [
@@ -419,6 +419,9 @@ export function EquationTap({ op, a, b }: { op: Op; a: number; b: number }) {
       textAnchor="middle"
       dominantBaseline="central"
       fontSize={fs}
+      // The enclosing region paints its selection ring with a stroke that
+      // the text would otherwise inherit and be smothered by.
+      stroke="none"
       className="fill-foreground font-heading font-bold"
     >
       {item.text}
@@ -447,7 +450,9 @@ export function EquationTap({ op, a, b }: { op: Op; a: number; b: number }) {
               width={item.width}
               height={TAP_BOX_H - 8}
               rx={14}
-              className="fill-muted"
+              // Light fill, yellow once the region is selected, so the number
+              // on top stays readable.
+              className="fill-muted [[data-selected]_&]:fill-highlight"
             />
             {plain(item)}
           </Region>

@@ -203,7 +203,7 @@
             },
             {
               "type": "formula",
-              "tex": "\\concept{lime}{(7 + 5)} + 5 = 7 + \\concept{lime}{(5 + 5)} = 17"
+              "tex": "\\begin{gathered}\\concept{lime}{(7 + 5)} + 5 = 17 \\\\ 7 + \\concept{lime}{(5 + 5)} = 17\\end{gathered}"
             }
           ]
         },
