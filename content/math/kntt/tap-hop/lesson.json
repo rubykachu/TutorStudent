@@ -7,7 +7,7 @@
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "e7d329fc866d1e84fa98ea2390588afd75b8080b360e8aab43e7abaf29cf6c1d",
+  "reviewedHash": "627d83e715099514d5245ae924ac46f9de4df45d86e8c5853bd53daec11d0f75",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",
@@ -98,7 +98,8 @@
               "type": "visual",
               "visualId": "tap-hop.visual.huong-dan-cham"
             }
-          ]
+          ],
+          "guide": "tapRegion"
         },
         {
           "type": "group",
@@ -111,7 +112,8 @@
               "type": "visual",
               "visualId": "tap-hop.visual.huong-dan-chip"
             }
-          ]
+          ],
+          "guide": "fillBlankBank"
         }
       ],
       "checkIds": ["tap-hop.ex.kt-thu-cham", "tap-hop.ex.kt-thu-dien"],
@@ -317,7 +319,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
+              "text": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần.",
+              "rule": true
             },
             {
               "type": "visual",

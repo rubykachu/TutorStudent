@@ -1,21 +1,17 @@
 # Review: Tập hợp (`tap-hop`)
 
 - Bài: `content/math/kntt/tap-hop/lesson.json`
-- Vòng: 7 - chỉ phần đổi (`pnpm content:diff`), section: `tap-hop.section.thuoc`; phần đổi là video `tap-hop.video.thuoc-khong-thuoc` (`durationSec` 56,5 thành 60,4; mốc clip `thuoc` kết thúc 29,673, `khong-thuoc` 30,073–50,042)
-- Nguồn đã đọc: `sources/math/tap-hop/` - không mở lại; lời video chỉ nói lại định nghĩa, cách viết và cách đọc đã có trong note, recap, caption của section thuoc (trang p5 đã đối chiếu ở vòng trước)
-- `content:check`: 1 lỗi (`review-hash`, hết sau lệnh cuối vòng), 0 cảnh báo
-- `lesson:walk`: không chạy lại trong vòng này (đã chạy, 0 lỗi); khung hình video soát bằng ffmpeg ở 26,8; 28; 41,9-42,3; 47; 49,5; 54; 58 s và ảnh poster
-- Kết luận: Đã xuất bản
-- Bản đã review: `e7d329fc866d1e84fa98ea2390588afd75b8080b360e8aab43e7abaf29cf6c1d` (`pnpm content:diff` so với bản này)
+- Vòng: 8 - chỉ phần đổi (`pnpm content:diff tap-hop --root content`), phần đổi: `guide: tapRegion` và `guide: fillBlankBank` trên hai màn của `tap-hop.section.thao-tac`; `rule: true` trên note của `tap-hop.section.liet-ke`
+- Nguồn đã đọc: `sources/math/tap-hop/` - không mở lại; chữ hiển thị không đổi
+- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 7 cảnh báo `[guides]` (match, manipulate, order)
+- `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng trước)
+- Bản đã review: `627d83e715099514d5245ae924ac46f9de4df45d86e8c5853bd53daec11d0f75` (`pnpm content:diff` so với bản này)
 
-Đã soát:
-- `thuoc-khong-thuoc.vtt` (58,9 s, 28 cue do 4 câu dài bị chia đôi) đủ 24 câu của `script.json` theo thứ tự, gồm "Viết chậm để tay nhớ." (cue 13) và "Viết chậm từng nét nhé." (cue 23); mọi chữ đúng nguyên văn.
-- Lời nêu quy tắc khớp note thuoc, khong-thuoc và recap card: "2 là một phần tử của tập hợp A", "5 không phải là phần tử của tập hợp A", "Có trong tập hợp thì thuộc", "Không có trong tập hợp thì không thuộc".
-- Màn cuối (cảnh `s06-nho`, 54 s và 58 s; ảnh poster) hiện "2 ∈ A" kèm chip "đọc: 2 thuộc A" và "5 ∉ A" kèm chip "đọc: 5 không thuộc A", khớp lời đọc "Ta đọc là: 2 thuộc A", "5 không thuộc A" và dạng recap `x ∈ A`, `x ∉ A`. Lỗi "2 ∈ A thuộc" của vòng trước đã hết.
-- Màn ở 26,8 s (2 ∈ A, chip "đọc: 2 thuộc A") và 47 s (5 ∉ A, chip "đọc: 5 không thuộc A", số 5 đứng ngoài khung A) khớp lời ở cùng thời điểm.
-- Clip: `thuoc` (10,271–29,673 s) phủ cue 5–13, từ "Số 2 nằm trong tập hợp A." đến "Viết chậm để tay nhớ.", đúng card `tap-hop.card.thuoc`; `khong-thuoc` (30,073–50,042 s) phủ cue 14–23, từ "Còn số 5 thì sao?" đến "Viết chậm từng nét nhé.", đúng card `tap-hop.card.khong-thuoc`. Mỗi clip không chứa lời của clip kia; đầu clip cách cue trước 0,2 s trở lên.
-- Video đã nằm trong section thuoc (khối `video` đầu section) và bản lock id đã đủ: hai mục Nên sửa về video chưa gắn, kịch bản lệch video của vòng trước đã hết.
-- Các mục khác cùng section thuoc không đổi chữ; recap còn khớp note.
+Đã soát đạt:
+- `guide: tapRegion` (blocks[0]): note "Bài tập chạm vùng... chạm lần nữa để bỏ chọn, bấm Kiểm tra" và visual `huong-dan-cham` dạy đúng thao tác chạm vùng. `guide: fillBlankBank` (blocks[1]): note "chạm một thẻ ở dưới, rồi chạm ô trống" và visual `huong-dan-chip` dạy điền từ ngân hàng thẻ.
+- `rule: true` trên note của `liet-ke`: câu "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần." trùng từng chữ với recap section và recap card `liet-ke`.
+- Cảnh báo `[guides]` về match, manipulate, order là khoảng trống có từ trước, không thuộc diff này.
 
 ## Nghiêm trọng
 

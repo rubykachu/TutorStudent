@@ -124,9 +124,13 @@ export const PassageBlockSchema = z.object({
   source: TextSchema.optional(),
 });
 
+// `rule: true` marks the sentence(s) a section teaches as its rule. The
+// content lint then requires recaps that restate the rule to repeat it word
+// for word, so the child meets one wording on the screen, recap and card.
 export const NoteBlockSchema = z.object({
   type: z.literal("note"),
   text: TextSchema,
+  rule: z.boolean().optional(),
 });
 
 export const VideoBlockSchema = z.object({
@@ -167,10 +171,28 @@ export const GroupChildSchema = z.discriminatedUnion("type", [
   ImageBlockSchema,
 ]);
 
+// Answer interactions a child must be shown how to use before the first
+// exercise that needs them: a tap on a picture region or passage sentence,
+// matching, ordering, dragging a manipulable visual, picking words from a
+// fill-in bank, and the power key of the numeric keypad.
+export const GUIDED_INTERACTIONS = [
+  "tapRegion",
+  "tapText",
+  "match",
+  "order",
+  "manipulate",
+  "fillBlankBank",
+  "numericPower",
+] as const;
+export const GuidedInteractionSchema = z.enum(GUIDED_INTERACTIONS);
+
 export const GroupBlockSchema = z.object({
   type: z.literal("group"),
   // A group of one is just that block.
   children: z.array(GroupChildSchema).min(2),
+  // Set on a screen that teaches how to answer with this interaction (a
+  // sentence saying what to tap plus a demo picture).
+  guide: GuidedInteractionSchema.optional(),
 });
 
 // A screen of a section: one block, or a group of blocks.
@@ -241,8 +263,43 @@ const exerciseBase = {
   difficulty: z.int().min(1).max(3),
 };
 
+// How the content lint verifies a choice from the values of its options:
+// - equal (default): the answers are exactly the options equal to `expr`;
+// - notEqual: the answers are exactly the options not equal to `expr`
+//   ("which result is wrong?");
+// - max / min: the answers are the options with the largest / smallest value;
+// - holds / fails: every option is a comparison such as "2^{3} = 8"; the
+//   answers are exactly the true / false ones.
+// Numeric exercises use `equal` only.
+export const CHECK_RELATIONS = [
+  "equal",
+  "notEqual",
+  "max",
+  "min",
+  "holds",
+  "fails",
+] as const;
+export const CheckRelationSchema = z.enum(CHECK_RELATIONS);
+export const RELATIONS_WITH_EXPR: readonly CheckRelation[] = [
+  "equal",
+  "notEqual",
+];
+
 // Expression the content lint recomputes to verify the stated answer.
-export const CheckSchema = z.object({ expr: TextSchema });
+export const CheckSchema = z
+  .object({
+    expr: TextSchema.optional(),
+    relation: CheckRelationSchema.optional(),
+  })
+  .refine(
+    (check) =>
+      RELATIONS_WITH_EXPR.includes(check.relation ?? "equal") ===
+      (check.expr !== undefined),
+    {
+      message:
+        "check.expr is required for relation equal/notEqual and not allowed for max/min/holds/fails",
+    },
+  );
 
 export const ChoiceExerciseSchema = z.object({
   ...exerciseBase,
@@ -560,12 +617,15 @@ export type SubjectsFile = z.infer<typeof SubjectsFileSchema>;
 export type Concept = z.infer<typeof ConceptSchema>;
 export type ConceptColor = z.infer<typeof ConceptColorSchema>;
 export type Block = z.infer<typeof BlockSchema>;
+export type NoteBlock = z.infer<typeof NoteBlockSchema>;
 export type GroupBlock = z.infer<typeof GroupBlockSchema>;
 export type SectionBlock = z.infer<typeof SectionBlockSchema>;
 export type RecapBlock = z.infer<typeof RecapBlockSchema>;
 export type PassageBlock = z.infer<typeof PassageBlockSchema>;
 export type FormulaBlock = z.infer<typeof FormulaBlockSchema>;
 export type Item = z.infer<typeof ItemSchema>;
+export type CheckRelation = z.infer<typeof CheckRelationSchema>;
+export type GuidedInteraction = z.infer<typeof GuidedInteractionSchema>;
 export type TargetRef = z.infer<typeof TargetRefSchema>;
 export type Hints = z.infer<typeof HintsSchema>;
 export type ChoiceExercise = z.infer<typeof ChoiceExerciseSchema>;

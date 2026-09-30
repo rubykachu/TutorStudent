@@ -7,7 +7,7 @@
   "title": "Thứ tự thực hiện các phép tính",
   "sourceRef": "Sách bài tập tr.24–26",
   "status": "published",
-  "reviewedHash": "d56403fe9531b17094d3f209b90f6f3f9dd89a853b526c42fcdac30f8c5490f1",
+  "reviewedHash": "28c55f77d0ddb235cafcad062122a25c881bbdd8c60d724fb08964045b657ba7",
   "overview": {
     "hook": {
       "text": "Nam và Lan cùng tính một hoá đơn nhưng ra hai số khác nhau: ai đúng?",
@@ -84,7 +84,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Hoá đơn thật: hai vở giá 2 · 8 = 16 nghìn đồng, rồi cộng tiền bút. Có cả nhân và cộng thì làm nhân trước, cộng sau."
+              "text": "Hoá đơn thật: hai vở giá 2 · 8 = 16 nghìn đồng, rồi cộng tiền bút. Có cả nhân và cộng thì làm nhân trước, cộng sau.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -155,7 +156,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Chỉ có cộng và trừ thì tính từ trái sang phải, từng phép một."
+              "text": "Chỉ có cộng và trừ thì tính từ trái sang phải, từng phép một.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -188,7 +190,8 @@
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.huong-dan-cham-phep-tinh"
             }
-          ]
+          ],
+          "guide": "tapRegion"
         },
         {
           "type": "visual",
@@ -215,7 +218,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+              "text": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -258,7 +262,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhân số có hai chữ số: tách thành chục và đơn vị, nhân từng phần rồi cộng lại."
+              "text": "Nhân số có hai chữ số: tách thành chục và đơn vị, nhân từng phần rồi cộng lại.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -287,7 +292,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Chỉ có nhân và chia thì tính từ trái sang phải, từng phép một."
+              "text": "Chỉ có nhân và chia thì tính từ trái sang phải, từng phép một.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -506,7 +512,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Có luỹ thừa thì tính luỹ thừa trước, rồi nhân, chia, cuối cùng cộng, trừ."
+              "text": "Có luỹ thừa thì tính luỹ thừa trước, rồi nhân, chia, cuối cùng cộng, trừ.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -668,7 +675,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Vế phải là phần bên phải dấu =. Tính vế phải trước, rồi làm ngược: cộng thì trừ, nhân thì chia."
+              "text": "Vế phải là phần bên phải dấu =. Tính vế phải trước, rồi làm ngược: cộng thì trừ, nhân thì chia.",
+              "rule": true
             },
             {
               "type": "visual",

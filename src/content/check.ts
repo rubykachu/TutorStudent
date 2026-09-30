@@ -8,6 +8,7 @@ import {
   type Block,
   type GlossaryFile,
   GlossaryFileSchema,
+  type GuidedInteraction,
   type IdsLock,
   IdsLockSchema,
   type Lesson,
@@ -25,6 +26,7 @@ import {
 } from "./index";
 import { lintLesson } from "./lint";
 import { checkGlossaryFile } from "./lint/glossary";
+import { guidesBySection } from "./lint/guides";
 
 // Pure content validation: everything `content:check` enforces beyond the zod
 // schema. Reading files is the loader's job, so tests can feed mutated content.
@@ -53,6 +55,9 @@ export type RawLessonFile = RawFile & {
   dir: string[];
   // Verbatim source text of the lesson's reading passages, when provided.
   sourcePassage?: string;
+  // Text layers of the lesson's textbook pages (sources/<subject>/<lesson>/
+  // p*.txt), joined; absent when none were imported.
+  sourceText?: string;
 };
 
 export type RawGlossaryFile = RawFile & { subject: string };
@@ -652,6 +657,39 @@ function checkLock(
   }
 }
 
+// Interactions taught by guide screens of the lessons that come before
+// `lesson` in the app's order: subjects as listed in subjects.json, then
+// lessons by `order` within a subject. Guides are taught once for the app.
+function priorGuides(
+  lessons: readonly CheckedLesson[],
+  lesson: Lesson,
+  fixture: boolean,
+  subjects: SubjectsFile | undefined,
+): Set<GuidedInteraction> {
+  const guides = new Set<GuidedInteraction>();
+  if (fixture) return guides;
+  const ids = subjects?.subjects.map((s) => s.id) ?? [];
+  const rank = (l: Lesson): [number, number] => {
+    const i = ids.indexOf(l.subject);
+    return [i < 0 ? ids.length : i, l.order];
+  };
+  const [subject, order] = rank(lesson);
+  for (const other of lessons) {
+    if (other.fixture) continue;
+    const [otherSubject, otherOrder] = rank(other.lesson);
+    if (
+      otherSubject > subject ||
+      (otherSubject === subject && otherOrder >= order)
+    ) {
+      continue;
+    }
+    for (const section of guidesBySection(other.lesson)) {
+      for (const interaction of section) guides.add(interaction);
+    }
+  }
+  return guides;
+}
+
 export function checkContent(
   raw: RawContent,
   catalog: VisualCatalog,
@@ -688,6 +726,13 @@ export function checkContent(
           "Published lesson has no overview; the child starts it without knowing what it teaches",
       });
     }
+  }
+
+  // Linted once every lesson is parsed: a lesson may rely on guide screens
+  // of earlier lessons of its subject.
+  for (const file of raw.lessons) {
+    const lesson = lessons.find((l) => l.file === file.file)?.lesson;
+    if (!lesson) continue;
     issues.push(
       ...lintLesson({
         file: file.file,
@@ -695,6 +740,8 @@ export function checkContent(
         fixture: file.fixture,
         glossary: glossaries.get(lesson.subject),
         sourcePassage: file.sourcePassage,
+        sourceText: file.sourceText,
+        priorGuides: priorGuides(lessons, lesson, file.fixture, subjects),
       }),
     );
   }

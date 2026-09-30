@@ -53,3 +53,14 @@ export const MIN_EXERCISES_PER_CARD = 3;
 // lesson's value is said in one sentence.
 export const MAX_OVERVIEW_SUMMARY_SENTENCES = 5;
 export const MAX_OVERVIEW_WHY_SENTENCES = 1;
+
+// A recap sentence sharing at least this share of words with a rule sentence
+// (Dice coefficient over distinct lower-case words) restates that rule, and
+// must then repeat it word for word.
+export const RULE_REWORD_MIN_SIMILARITY = 0.6;
+
+// Textbook copying: a lesson text of at least this many words is reported
+// when this share of its word 5-grams also occurs in the textbook text layer.
+export const COPY_NGRAM = 5;
+export const COPY_MIN_WORDS = 8;
+export const COPY_MAX_SHARE = 0.5;

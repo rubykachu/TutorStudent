@@ -1,4 +1,4 @@
-import type { GlossaryFile, Lesson } from "@/schema/content";
+import type { GlossaryFile, GuidedInteraction, Lesson } from "@/schema/content";
 import type { Issue, IssuePath } from "../check";
 
 export type LintRule =
@@ -18,7 +18,12 @@ export type LintRule =
   | "practice"
   | "review-bank"
   | "placeholder"
-  | "overview";
+  | "overview"
+  | "hint-answer"
+  | "color-leak"
+  | "guides"
+  | "rule-sentence"
+  | "textbook-copy";
 
 export type Finding = Issue & { rule: LintRule };
 
@@ -31,7 +36,19 @@ export type LintInput = {
   glossary?: GlossaryFile;
   // Content of `source-passage.txt` next to lesson.json, when present.
   sourcePassage?: string;
+  // Text layers (`p<page>.txt`) of the lesson's textbook pages under
+  // sources/<subject>/<lesson>/, when present.
+  sourceText?: string;
+  // Interactions already taught by guide screens of lessons that come
+  // earlier in the app (subject order of subjects.json, then `order`).
+  priorGuides?: ReadonlySet<GuidedInteraction>;
 };
+
+// Pointer from a finding to the lessons-learned entry that explains the
+// recurring error behind the rule (docs/lessons-learned/<id>-*.md).
+export function learned(id: string): string {
+  return ` (lessons-learned ${id})`;
+}
 
 export type LintReporter = (
   path: IssuePath,

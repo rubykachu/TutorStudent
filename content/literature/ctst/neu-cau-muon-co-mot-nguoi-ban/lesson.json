@@ -7,7 +7,7 @@
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
   "status": "published",
-  "reviewedHash": "1009ae631078b18130b711311b6b8401746600bcdf366afc300cda06e743469c",
+  "reviewedHash": "2c9eeab4aaf238379ef6af16ee10c3774a3e850ad321a7a77fe1a7c51e98e237",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -329,7 +329,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”."
+              "text": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -348,7 +349,8 @@
               "type": "visual",
               "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-cham-cau"
             }
-          ]
+          ],
+          "guide": "tapText"
         },
         {
           "type": "group",
@@ -361,7 +363,8 @@
               "type": "visual",
               "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-dien"
             }
-          ]
+          ],
+          "guide": "fillBlankBank"
         }
       ],
       "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich"],
@@ -733,7 +736,8 @@
               "type": "visual",
               "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-noi"
             }
-          ]
+          ],
+          "guide": "match"
         }
       ],
       "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.buoc-chan-goi-ra"],
@@ -907,7 +911,8 @@
               "type": "visual",
               "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-xep"
             }
-          ]
+          ],
+          "guide": "order"
         }
       ],
       "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.can-kien-nhan"],
@@ -1303,7 +1308,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Từ ghép gồm hai hoặc nhiều tiếng ghép lại, các tiếng đều có nghĩa, như “lúa mì”, “cánh đồng”. Từ láy gồm các tiếng có âm đầu hoặc vần (hoặc cả tiếng) lặp lại, như “buồn bã”, “lung linh”."
+              "text": "Từ ghép gồm hai hoặc nhiều tiếng ghép lại, các tiếng đều có nghĩa, như “lúa mì”, “cánh đồng”. Từ láy gồm các tiếng có âm đầu hoặc vần (hoặc cả tiếng) lặp lại, như “buồn bã”, “lung linh”.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -1392,7 +1398,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-hoa",
-        "caption": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: “làm cho gần gũi hơn”."
+        "caption": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”."
       }
     },
     {
