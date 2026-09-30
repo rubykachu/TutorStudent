@@ -13,7 +13,8 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 5 `phep-nhan-phep-chia` | draft, only in worktree branch `worktree-agent-a36c64bad7802c3d9` (`.claude/worktrees/agent-a36c64bad7802c3d9`) | not done |
 | Toán | Bài 6 `luy-thua` | published | done |
 | Toán | Bài 7 `thu-tu-thuc-hien-phep-tinh` | published | done |
-| Toán | Bài 2, Bài 3 | not started | not done |
+| Toán | Bài 2, Bài 3 | on hold (owner, 01/10/2026: Bài 8 and later come first because the child's class is there) | not done |
+| Toán | Bài 8 (SBT print page 30), Bài 9 (33), Bài 10 (35), Bài 11 (38) | not started | not done |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
 
@@ -21,13 +22,15 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
-1. Narration and video for Bài 4 `phep-cong-phep-tru` (`pnpm narration:build`, `pnpm video:build`; skill `lesson-video`).
-2. Bài 5 `phep-nhan-phep-chia`: continue from [`lesson-phep-nhan-phep-chia/task.md`](lesson-phep-nhan-phep-chia/task.md).
-3. Bài 3, then Bài 2 (`lesson-author`, one subagent at a time; add easy-to-hard guiding steps where the workbook is hard).
-4. Remove the remaining `[guides]` warnings of `content:check` (9, in `tap-hop` and `luy-thua`) by adding guide screens; see [`lesson-tap-hop/task.md`](lesson-tap-hop/task.md).
-5. First Địa lí lesson once the owner supplies pages: TopoJSON boundaries from Vietnam's point of view, `tapRegion` on maps.
-6. Go-live: two R2 buckets (private, public), app and admin tokens, `snapshots/` lifecycle 180 days, CORS on the public bucket (`docs/operations.md`, to be written); `BlobStore` with R2 and in-memory adapters; `/api/session`, `/api/parent-session`, `/api/sync`, `proxy.ts`, family/epoch/isAdmin checks, PIN lock; Dexie to R2 sync engine (If-Match, snapshots, 1 MB limit, queue, `merge`, progress migration by `retired`); performance measurement (Lighthouse, iPad trace); `/unlock`, `/install`, PWA with `@serwist/turbopack`, precache of all content; `pnpm admin` and skill `tutor-admin`; Vercel project (account `rubykachu`), env vars, deploy; upload `public/media/` and back up the narration caches (README, "Dọn dẹp và Go-live"). Each write outside this machine needs the owner's go-ahead.
-7. Later: AI feedback for open-ended writing (`AiReviewer` with a Gemini adapter, `/api/feedback`, per-family quota, self-tick fallback); quick-update channel for content (JSON schema to prompt, admin paste page, `/api/content`, overlays from R2).
+1. Feedback section B for Bài 4 `phep-cong-phep-tru`: one narration voice per lesson (female "Mỹ Duyên" or male "Hải Đăng"), the video opening-line rule, then narration and videos ([`feedback-2026-10-01/task.md`](feedback-2026-10-01/task.md), items 13–15; skill `lesson-video`).
+2. Bài 5 `phep-nhan-phep-chia`: continue from [`lesson-phep-nhan-phep-chia/task.md`](lesson-phep-nhan-phep-chia/task.md), publish, then narration and videos.
+3. Bài 8 (SBT print page 30), then Bài 9 (print page 33): author, review, publish, narration and videos, one subagent at a time.
+4. Bài 10 (print page 35), then Bài 11 (print page 38).
+5. Bài 3, then Bài 2 (on hold until the owner resumes them; add easy-to-hard guiding steps where the workbook is hard).
+6. Remove the remaining `[guides]` warnings of `content:check` (9, in `tap-hop` and `luy-thua`) by adding guide screens; see [`lesson-tap-hop/task.md`](lesson-tap-hop/task.md).
+7. First Địa lí lesson once the owner supplies pages: TopoJSON boundaries from Vietnam's point of view, `tapRegion` on maps.
+8. Go-live: two R2 buckets (private, public), app and admin tokens, `snapshots/` lifecycle 180 days, CORS on the public bucket (`docs/operations.md`, to be written); `BlobStore` with R2 and in-memory adapters; `/api/session`, `/api/parent-session`, `/api/sync`, `proxy.ts`, family/epoch/isAdmin checks, PIN lock; Dexie to R2 sync engine (If-Match, snapshots, 1 MB limit, queue, `merge`, progress migration by `retired`); performance measurement (Lighthouse, iPad trace); `/unlock`, `/install`, PWA with `@serwist/turbopack`, precache of all content; `pnpm admin` and skill `tutor-admin`; Vercel project (account `rubykachu`), env vars, deploy; upload `public/media/` and back up the narration caches (README, "Dọn dẹp và Go-live"). Each write outside this machine needs the owner's go-ahead.
+9. Later: AI feedback for open-ended writing (`AiReviewer` with a Gemini adapter, `/api/feedback`, per-family quota, self-tick fallback); quick-update channel for content (JSON schema to prompt, admin paste page, `/api/content`, overlays from R2).
 
 ## Open follow-ups
 
