@@ -14,7 +14,7 @@ Bài đã qua 3 vòng review, 0 lỗi Nghiêm trọng (`content/math/kntt/tap-ho
 
 ## Màn hướng dẫn thao tác (cảnh báo `[guides]`, lessons-learned LL-04)
 
-Môn Toán chưa có màn hướng dẫn `match` và `order`; bài này là bài Toán đầu tiên nên cần hai màn đó (mẫu: `huong-dan-noi`, `huong-dan-xep` của bài Ngữ văn), đặt ở section `thao-tac` hay trước câu đầu tiên dùng chúng (`ex.noi-tap-hop-phan-tu` thuộc card của section 1, `ex.xep-ghep-tap-hop`). Làm xong thì cảnh báo của `luy-thua` và `thu-tu-thuc-hien-phep-tinh` cũng hết.
+Môn Toán chưa có màn hướng dẫn `match` và `order`; bài này là bài Toán đầu tiên nên cần hai màn đó (mẫu: `huong-dan-noi`, `huong-dan-xep` của bài Ngữ văn), đặt ở section `thao-tac` hay trước câu đầu tiên dùng chúng (`ex.noi-tap-hop-phan-tu` thuộc card của section đầu `tap-hop-la-gi`, `ex.xep-ghep-tap-hop`). Làm xong thì cảnh báo của `luy-thua` và `thu-tu-thuc-hien-phep-tinh` cũng hết.
 
 Câu `manipulate` gặp hình mà trẻ chưa thấy ở màn khám phá: `ex.chon-do-dung`, `ex.viet-ngoac-mo`, `ex.viet-ngoac-dong`, `ex.dat-cham-phay-bai`, `ex.chon-x-thuoc` (màn đổi x `chon-x-tu-do` ở section sau), `ex.chon-x-khong-thuoc`. Đề có câu dặn thao tác; cần một màn `guide: "manipulate"` chung hoặc cho mỗi hình một màn khám phá trước.
 

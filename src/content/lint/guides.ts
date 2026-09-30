@@ -129,7 +129,7 @@ export function lintGuides(input: LintInput): Finding[] {
   for (const { section, path, interaction } of unguided.values()) {
     report(
       path,
-      `${interaction} exercise comes before any guide screen for it in this or an earlier lesson; add a group with "guide": "${interaction}" in section ${section} or earlier${learned("LL-04")}`,
+      `${interaction} exercise comes before any guide screen for it in this or an earlier lesson; add a group with "guide": "${interaction}" in section "${lesson.sections[section]?.id}" or earlier${learned("LL-04")}`,
       "warning",
     );
   }
