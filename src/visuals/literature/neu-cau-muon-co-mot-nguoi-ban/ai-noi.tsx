@@ -38,7 +38,7 @@ export default function AiNoi() {
   const [shown, setShown] = useState<readonly number[]>([]);
   const done = shown.length === LINES.length;
   return (
-    <div className="flex w-full max-w-md flex-col gap-3">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-3">
       <p
         className={`rounded-xl px-3 py-2 text-body font-semibold ${done ? "bg-muted" : ""}`}
         aria-live="polite"
