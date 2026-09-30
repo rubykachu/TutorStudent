@@ -44,3 +44,9 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 | 4. Phép cộng và phép trừ số tự nhiên | 14–16 | 15–17 | 96–98 | 97–99 |
 | 3. Thứ tự trong tập hợp các số tự nhiên | 11–13 | 12–14 | 96 | 97 |
 | 2. Cách ghi số tự nhiên | 7–10 | 8–11 | 94–96 | 95–97 |
+
+## Trạng thái khi tạm dừng (chiều 2026-09-30)
+- Bài 7 (`thu-tu-thuc-hien-phep-tinh`): nhánh `worktree-agent-a3f5bf1fc622fc13e` (worktree `.claude/worktrees/agent-a3f5bf1fc622fc13e`). Đã soạn, có overview, review vòng 1 xong và đã sửa; đang viết lại vài section (S4, S8, S11). Chưa publish. Việc tiếp: review vòng 2 (Opus), approve, lock, walk, gộp main, narration + video.
+- Bài 1 (`tap-hop`): nhánh `worktree-agent-a4090e1d78293321a`. Đã publish trong nhánh sau 3 vòng review; commit cuối "wip: tests in progress…" là test validator đang viết dở. Việc tiếp: hoàn thiện test, gate, gộp main, narration + video.
+- Chưa bắt đầu: Bài 5, 4, 3, 2.
+- Chờ chủ dự án: lệnh `pnpm clean` + chuyển môi trường giọng đọc sang `video/.venv`.
