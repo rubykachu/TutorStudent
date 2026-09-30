@@ -12,7 +12,7 @@
   "title": "Phép nhân và phép chia số tự nhiên",
   "sourceRef": "Sách bài tập tr.17–20",
   "status": "published",
-  "reviewedHash": "d570c3a630fc17ed93ec56d1685cbbde97d80930f2dea8a59f8135fc84de192d",
+  "reviewedHash": "cdcdfbaca0c4b189089d5eaac965ec7d9d02b03919668f31bcf5f12e3b17ba8a",
   "overview": {
     "hook": {
       "text": "Mẹ nhờ bạn tính tiền 24 gói bánh, mỗi gói 37 nghìn đồng. Làm sao để nhân chia nhanh mà không sai?"
@@ -4264,12 +4264,12 @@
       "url": "video/phep-nhan-phep-chia/chia-co-du.mp4",
       "vttUrl": "video/phep-nhan-phep-chia/chia-co-du.vtt",
       "posterUrl": "video/phep-nhan-phep-chia/chia-co-du.jpg",
-      "durationSec": 58.9,
+      "durationSec": 58.7,
       "clips": [
         {
           "id": "chia-co-du",
           "start": 8.81,
-          "end": 41.061,
+          "end": 40.853,
           "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"]
         }
       ],

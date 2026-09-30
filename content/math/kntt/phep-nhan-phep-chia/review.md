@@ -1,28 +1,13 @@
 # Review: Phép nhân và phép chia số tự nhiên (`phep-nhan-phep-chia`)
 
 - Bài: `content/math/kntt/phep-nhan-phep-chia/lesson.json`
-- Vòng: 4 - chỉ phần đổi (`pnpm content:diff`), section: nhan-hai-chu-so, chia-het, chia-co-du
-- Nguồn đã đọc: `sources/math/phep-nhan-phep-chia/` - không thêm kiến thức mới ở vòng này; ba mục đổi chỉ thay số hay nhiễu trong phạm vi đã khớp nguồn ở vòng 2 (sbt-p17, sbt-p18)
-- `content:check`: 0 lỗi, 0 cảnh báo của bài
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-nhan-phep-chia/` (đã xem `ipad/104-s9-04-exercise-chon-tich-rieng-2.png`)
+- Vòng: 5 - chỉ phần đổi (`pnpm content:diff`): `overview.narration`, 3 khối video và 3 mục `videos[]`, section: nhan-cong-lap, chia-co-du, ket-hop
+- Nguồn đã đọc: không cần trang nguồn mới; lời đọc và video chỉ nhắc lại note, caption, recap của chính bài
+- `content:check`: 0 lỗi; `video:check`: đạt cả ba video
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-nhan-phep-chia/`
 - Kết luận: Đã xuất bản
-- Bản đã review: `d570c3a630fc17ed93ec56d1685cbbde97d80930f2dea8a59f8135fc84de192d` (`pnpm content:diff` so với bản này)
+- Bản đã review: `cdcdfbaca0c4b189089d5eaac965ec7d9d02b03919668f31bcf5f12e3b17ba8a` (`pnpm content:diff` so với bản này)
 
-Đã tự giải ba mục đổi. `chon-tich-rieng-2`: 64 · 3 = 192, tích riêng thứ hai lùi sang trái một cột (khớp note và recap của card `nhan-hai-chu-so`); chỉ đáp án a đúng, b và c sai vị trí cột, d sai cách viết. `tim-so-chia-30-5`: 30 : 5 = 6, khớp `answer` và `check`; số 30 : 5 không trùng ví dụ card, recap hay bài khác trong section, số chia 6 không trùng `tim-so-bi-chia` (42). Bỏ `tim-so-chia-36-4` đã tránh trùng "36 : 4 = 9" ở `chon-nhieu-chia-dung`. `chon-nhieu-du-2`: 32 : 5 dư 2 và 22 : 4 dư 2 đúng, 19 : 6 dư 1 và 25 : 7 dư 4 sai; đúng hai đáp án, khớp `multiple: true`, không còn 27 : 5 (dư 2) lẫn trong nhiễu. Không còn tham chiếu tới id `tim-so-chia-36-4` ở `content/`, `src/`.
+Lời đọc giới thiệu và ba video (giọng Hải Đăng) đã soát từng câu: đúng toán, gọi bé là "bạn", khớp quy ước "a · b là a được lấy b lần" (6 · 4, 5 · 3, 36 · 25, 4 · 5 trong 23 = 4 · 5 + 3) và câu quy tắc của bài; câu mở đầu, một giọng, Whisper khớp từ 97,5% trở lên.
 
-## Nghiêm trọng
-
-Không có.
-
-## Nên sửa
-
-### 1. Nhiễu d của `chon-tich-rieng-2` vô lý, loại được bằng mẹo
-
-- Vị trí: `$.exercises[36].options[3]` (`phep-nhan-phep-chia.ex.chon-tich-rieng-2`)
-- Nguồn: —
-- Vấn đề: "Viết 19, nhớ 2 sang cột bên trái" mâu thuẫn với đề (đề đã cho 64 · 3 = 192) và là đáp án duy nhất không bắt đầu bằng "Viết 192", nên trẻ loại được không cần hiểu cột (LL-14). Không gây đáp án đúng thứ hai.
-- Sửa: thay bằng lỗi có thật về vị trí cột, vd "Viết 192, lùi sang trái hai cột", hoặc lỗi về cách viết vẫn giữ "Viết 192".
-
-## Góp ý
-
-Không có.
+Đã sửa: (1) `chia-co-du`: "Còn 3 cái, ít hơn 4 bạn" so cái với bạn, đổi thành "Còn 3 cái, không đủ cho 4 bạn"; (2) `nhom-thua-so`: toán tử nằm trong ngoặc và khung xanh sát nhau hơn toán tử bên ngoài, làm "(2 · 3) · 5 = 2 · (3 · 5)" và "9 · (4 · 25)" giãn không đều; khung xanh nay có lề âm bù phần đệm và khoảng cách bên trong bằng bên ngoài. Dựng lại hai video, xem lại các khung: chữ rõ, dải phụ đề trống, không hiện kết quả trước khi đọc.
