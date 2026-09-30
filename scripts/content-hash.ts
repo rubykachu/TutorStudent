@@ -7,22 +7,29 @@ import { computeReviewedHash } from "@/content/lint/review-hash";
 import { DEFAULT_CONTENT_ROOT, readContentRoot } from "@/content/load";
 import { REQUIRE_OWNER_APPROVAL } from "@/lib/config";
 import { visualRegistry } from "@/visuals/registry";
+import { markReviewed, REVIEW_FILE } from "./lib/review-baseline";
 
-// Usage: content-hash <lessonId> [--root <dir>] [--approve]
-// Prints the review hash of a lesson. With --approve (run by the review once
-// no blocking finding is left) it writes `reviewedHash` and publishes the
-// lesson, unless REQUIRE_OWNER_APPROVAL leaves publishing to the admin.
+// Usage: content-hash <lessonId> [--root <dir>] [--mark | --approve]
+// Prints the review hash of a lesson. --mark (run when a review round ends
+// with blocking findings) records the hash in the lesson's review.md, so the
+// next round can diff against this version (`pnpm content:diff`). --approve
+// (run once no blocking finding is left) records it too, writes
+// `reviewedHash` and publishes the lesson, unless REQUIRE_OWNER_APPROVAL
+// leaves publishing to the admin.
 const { values, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     root: { type: "string" },
+    mark: { type: "boolean", default: false },
     approve: { type: "boolean", default: false },
   },
 });
 const root = values.root ? path.resolve(values.root) : DEFAULT_CONTENT_ROOT;
 const lessonId = positionals[0];
 if (lessonId === undefined) {
-  console.error("Usage: content-hash <lessonId> [--root <dir>] [--approve]");
+  console.error(
+    "Usage: content-hash <lessonId> [--root <dir>] [--mark | --approve]",
+  );
   process.exit(2);
 }
 
@@ -35,8 +42,18 @@ if (!checked) {
 }
 const hash = computeReviewedHash(checked.lesson);
 
+const mark = () => {
+  const marked = markReviewed(checked.file, hash);
+  console.log(
+    marked
+      ? `content:hash: recorded the reviewed version in ${REVIEW_FILE}`
+      : `content:hash: no ${REVIEW_FILE} next to the lesson; reviewed version not recorded`,
+  );
+};
+
 if (!values.approve) {
   console.log(hash);
+  if (values.mark) mark();
   process.exit(0);
 }
 
@@ -71,6 +88,7 @@ spawnSync(path.join(process.cwd(), "node_modules", ".bin", "biome"), [
   "--write",
   absolute,
 ]);
+mark();
 console.log(
   `content:hash: ${checked.lesson.id} reviewedHash=${hash}${REQUIRE_OWNER_APPROVAL ? " (awaiting admin to publish)" : ", status=published"}`,
 );

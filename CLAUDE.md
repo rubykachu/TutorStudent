@@ -21,7 +21,8 @@ pnpm lint && pnpm typecheck && pnpm test   # gate before every commit
 pnpm test:e2e                     # Playwright, ipad + phone
 pnpm content:check [--stats] [--root <dir>]
 pnpm content:lock                 # add new lesson ids to ids.lock.json
-pnpm content:hash <lesson> [--approve]     # review hash; --approve publishes
+pnpm content:hash <lesson> [--mark|--approve]  # review hash; --mark records it in review.md, --approve also publishes
+pnpm content:diff <lesson>        # what changed since the last reviewed version
 pnpm visual:shot <lesson|all|mascot>       # screenshots into .shots/<lesson>/
 pnpm lesson:walk <lesson>         # walk every section on 3 screens; .shots/walk/<lesson>/
 CONTENT_INCLUDE_DRAFT=1 pnpm dev  # also serve draft lessons (never in a build)

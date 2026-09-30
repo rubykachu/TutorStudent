@@ -185,3 +185,81 @@ describe("content-hash", { timeout: 30_000 }, () => {
     expect(run("content-hash.ts", "khong-co", "--root", root).code).toBe(1);
   });
 });
+
+describe("content-diff", { timeout: 30_000 }, () => {
+  const git = (...args: string[]) =>
+    spawnSync("git", ["-c", "user.name=t", "-c", "user.email=t@t", ...args], {
+      cwd: root,
+      encoding: "utf8",
+    });
+  const commit = (message: string) => {
+    git("add", "-A");
+    git("commit", "-q", "-m", message);
+  };
+  const reviewFile = () => path.join(path.dirname(lessonFile), "review.md");
+  const writeReview = () =>
+    writeFileSync(
+      reviewFile(),
+      "# Review\n\n- Kết luận: Chưa đạt\n\n## Nghiêm trọng\n",
+    );
+
+  beforeEach(() => {
+    git("init", "-q");
+    commit("draft");
+  });
+
+  it("diffs against the version recorded by --mark, found in git history", () => {
+    writeReview();
+    const marked = run("content-hash.ts", "bai-moi", "--root", root, "--mark");
+    expect(marked.code).toBe(0);
+    const hash = marked.out.split("\n")[0];
+    const review = readFileSync(reviewFile(), "utf8").split("\n");
+    expect(review[3]).toBe(
+      `- Bản đã review: \`${hash}\` (\`pnpm content:diff\` so với bản này)`,
+    );
+    // Not committed yet: nothing changed since the review.
+    expect(run("content-diff.ts", "bai-moi", "--root", root).out).toContain(
+      "No change",
+    );
+    commit("review round 1");
+
+    const lesson = readLesson();
+    lesson.sections[0].recap.caption = "Câu nhớ mới.";
+    writeFileSync(lessonFile, JSON.stringify(lesson));
+    const { code, out } = run("content-diff.ts", "bai-moi", "--root", root);
+    expect(code).toBe(0);
+    expect(out).toContain(`changed section ${lesson.sections[0].id} recap`);
+    expect(out).toContain("  + caption: Câu nhớ mới.");
+    expect(out).toContain(`  ${lesson.sections[0].id} (`);
+  });
+
+  it("falls back to the last approved version and records it on approve", () => {
+    writeReview();
+    expect(
+      run("content-hash.ts", "bai-moi", "--root", root, "--approve").code,
+    ).toBe(0);
+    expect(readFileSync(reviewFile(), "utf8")).toContain("- Bản đã review: `");
+    rmSync(reviewFile());
+    commit("approved");
+
+    const lesson = readLesson();
+    lesson.title = "Bài mẫu đã sửa";
+    writeFileSync(lessonFile, JSON.stringify(lesson));
+    const { out } = run("content-diff.ts", "bai-moi", "--root", root);
+    expect(out).toContain("last approved version");
+    expect(out).toContain("changed lesson\n  - title: ");
+  });
+
+  it("fails when the recorded version was never committed", () => {
+    writeReview();
+    const lesson = readLesson();
+    lesson.title = "Bài mẫu vòng một";
+    writeFileSync(lessonFile, JSON.stringify(lesson));
+    run("content-hash.ts", "bai-moi", "--root", root, "--mark");
+    lesson.title = "Bài mẫu đã sửa";
+    writeFileSync(lessonFile, JSON.stringify(lesson));
+    const { code, err } = run("content-diff.ts", "bai-moi", "--root", root);
+    expect(code).toBe(1);
+    expect(err).toContain("commit lesson.json after each review round");
+  });
+});

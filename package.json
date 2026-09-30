@@ -20,6 +20,7 @@
     "content:lock": "tsx scripts/content-lock.ts",
     "content:emit": "tsx scripts/content-emit.ts",
     "content:hash": "tsx scripts/content-hash.ts",
+    "content:diff": "tsx scripts/content-diff.ts",
     "visual:shot": "tsx scripts/visual-shot.ts",
     "lesson:walk": "tsx scripts/lesson-walk.ts",
     "video:build": "tsx video/build.ts"
