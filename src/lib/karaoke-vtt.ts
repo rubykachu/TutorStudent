@@ -42,3 +42,22 @@ export function parseKaraokeCue(text: string, cueStart: number): TimedWord[] {
   }
   return words;
 }
+
+const CUE_TIMING =
+  /^(\d{2,}):(\d{2}):(\d{2})\.(\d{3})\s+-->\s+\d{2,}:\d{2}:\d{2}\.\d{3}/;
+
+// Every word of a whole karaoke WebVTT file, in order, with its start time;
+// for pages that highlight a whole text in step with an audio file rather
+// than one cue at a time.
+export function parseKaraokeVtt(vtt: string): TimedWord[] {
+  const words: TimedWord[] = [];
+  for (const block of vtt.replace(/\r\n?/g, "\n").split(/\n{2,}/)) {
+    const lines = block.split("\n");
+    const at = lines.findIndex((line) => CUE_TIMING.test(line));
+    const timing = at === -1 ? null : lines[at]?.match(CUE_TIMING);
+    if (!timing) continue;
+    const text = lines.slice(at + 1).join(" ");
+    words.push(...parseKaraokeCue(text, parseTime(timing)));
+  }
+  return words;
+}

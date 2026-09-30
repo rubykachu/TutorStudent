@@ -344,6 +344,7 @@ describe("lessonSections", () => {
     sourceRef: "tr. 1",
     sections: sections.map((s) => ({ id: s, title: s, minutes: 5 })),
     cardCount: 0,
+    hasOverview: false,
     sticker: { name: "Sao", visualId: `${id}.visual.sao` },
   });
 

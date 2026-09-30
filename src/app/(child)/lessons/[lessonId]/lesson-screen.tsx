@@ -1,17 +1,25 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { BookOpenText, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { bigButtonClassName } from "@/components/big-button";
 import { ReviewButton } from "@/components/review-button";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
 import { SUBJECT_STYLES } from "@/components/subject-style";
 import type { LessonIndex } from "@/content";
+import { LessonOverviewView } from "@/learn/lesson-overview";
 import { nextSectionIndex, stickerFill } from "@/learn/next-step";
 import { HOME_PATH, reviewPath, sectionPath, subjectPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import type { ProfileRecord, SectionState } from "@/progress/db";
-import { useContentIndex, useLessonProgress } from "@/progress/hooks";
+import {
+  setOverviewSeen,
+  useContentIndex,
+  useLessonProgress,
+} from "@/progress/hooks";
 import { countForgetting, countOpened } from "@/srs/select";
 import { LessonGate } from "./lesson-gate";
 
@@ -45,10 +53,49 @@ function LessonBody({
   const { lesson } = index;
   const progress = useLessonProgress(profile.id, lesson.id);
   const subject = useSubject(lesson.subject);
+  const router = useRouter();
+  // null: follow the stored state (the overview opens on the first visit);
+  // true / false: the child opened or closed it on this visit.
+  const [overviewOpen, setOverviewOpen] = useState<boolean | null>(null);
   if (!progress) return null;
 
   const style = subject ? SUBJECT_STYLES[subject.color] : undefined;
   const next = nextSectionIndex(lesson.sections, progress.sections);
+  const { overview } = lesson;
+  if (overview && (overviewOpen ?? !progress.overviewSeen)) {
+    const nextSection = next === null ? undefined : lesson.sections[next];
+    const started = progress.sections.some((s) => s.state !== "not_started");
+    return (
+      <>
+        <BackLink subjectId={lesson.subject} />
+        <LessonOverviewView
+          lesson={{ title: lesson.title, overview }}
+          startLabel={
+            nextSection === undefined
+              ? "Xem các phần của bài"
+              : started
+                ? "Học tiếp"
+                : "Bắt đầu học"
+          }
+          onStart={() => {
+            void setOverviewSeen(profile.id, lesson.id);
+            if (nextSection)
+              router.push(sectionPath(lesson.id, nextSection.id));
+            else setOverviewOpen(false);
+          }}
+          onBrowse={
+            nextSection === undefined
+              ? undefined
+              : () => {
+                  void setOverviewSeen(profile.id, lesson.id);
+                  setOverviewOpen(false);
+                }
+          }
+        />
+      </>
+    );
+  }
+
   const stateOf = new Map(progress.sections.map((s) => [s.sectionId, s.state]));
   const earned = progress.sticker !== undefined;
   const fill = stickerFill(lesson.sections, progress.sections, earned);
@@ -68,6 +115,18 @@ function LessonBody({
         </h1>
         <p className="text-caption text-muted-foreground">{lesson.sourceRef}</p>
       </header>
+
+      {overview && (
+        <button
+          type="button"
+          data-overview-open
+          onClick={() => setOverviewOpen(true)}
+          className={bigButtonClassName("secondary", "md:w-fit")}
+        >
+          <BookOpenText aria-hidden className="size-6" />
+          Giới thiệu bài
+        </button>
+      )}
 
       {countOpened(scope) > 0 && (
         <ReviewButton
@@ -168,7 +227,9 @@ function LessonBody({
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   return (
-    <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">
+    // The overview ends in the sticky bottom bar, which brings its own
+    // bottom padding.
+    <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10 has-[[data-lesson-overview]]:pb-0">
       <LessonGate lessonId={lessonId}>
         {(index, profile) => <LessonBody index={index} profile={profile} />}
       </LessonGate>

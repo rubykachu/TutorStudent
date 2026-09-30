@@ -4,6 +4,7 @@ import {
   formatVttTime,
   karaokeCueText,
   parseKaraokeCue,
+  parseKaraokeVtt,
 } from "@/lib/karaoke-vtt";
 
 describe("formatVttTime", () => {
@@ -37,5 +38,38 @@ describe("karaoke cues", () => {
       { text: "đầu", start: 2 },
       { text: "tiên", start: 2 },
     ]);
+  });
+});
+
+describe("parseKaraokeVtt", () => {
+  it("reads every word of every cue, in order, with its start time", () => {
+    const vtt = [
+      "WEBVTT",
+      "",
+      "1",
+      "00:00:01.000 --> 00:00:02.000",
+      karaokeCueText([
+        { text: "Mẹ", start: 1 },
+        { text: "mua", start: 1.4 },
+      ]),
+      "",
+      "2",
+      "00:00:03.000 --> 00:00:04.500",
+      karaokeCueText([
+        { text: "hai", start: 3 },
+        { text: "túi.", start: 3.5 },
+      ]),
+      "",
+    ].join("\r\n");
+    expect(parseKaraokeVtt(vtt)).toEqual([
+      { text: "Mẹ", start: 1 },
+      { text: "mua", start: 1.4 },
+      { text: "hai", start: 3 },
+      { text: "túi.", start: 3.5 },
+    ]);
+  });
+
+  it("finds nothing in a file without cues", () => {
+    expect(parseKaraokeVtt("WEBVTT\n\n")).toEqual([]);
   });
 });

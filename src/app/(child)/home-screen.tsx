@@ -93,7 +93,11 @@ function HomeLessons({
   return (
     <>
       {target && targetSubject && (
-        <ContinueCard target={target} subject={targetSubject} />
+        <ContinueCard
+          target={target}
+          subject={targetSubject}
+          overviewSeen={progress.overviewsSeen.includes(target.lesson.id)}
+        />
       )}
       <ul className={SUBJECT_TILE_GRID}>
         {index.subjects.map((subject) => {

@@ -17,6 +17,7 @@ function lesson(id: string, name: string): LessonSummary {
       minutes: 5,
     })),
     cardCount: 1,
+    hasOverview: false,
     sticker: { name, visualId: "fixture.visual.star-sticker" },
   };
 }

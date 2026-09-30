@@ -113,6 +113,7 @@ describe("summarizeLesson", () => {
         },
       ],
       cardCount: 3,
+      hasOverview: true,
       sticker: {
         name: "Ngôi sao chăm chỉ",
         visualId: "fixture.visual.star-sticker",

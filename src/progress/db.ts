@@ -260,6 +260,35 @@ export async function getSetting(
   return record?.value;
 }
 
+// Per-child settings that record the lesson overviews a child has already
+// been through: `overviewSeen:<lessonId>` = true.
+const OVERVIEW_SEEN_PREFIX = "overviewSeen:";
+
+export async function markOverviewSeen(
+  db: TutorDb,
+  scope: ChildScope,
+  lessonId: string,
+): Promise<void> {
+  await setSetting(db, scope, `${OVERVIEW_SEEN_PREFIX}${lessonId}`, true);
+}
+
+// Ids of the lessons whose overview this child has seen.
+export async function listOverviewsSeen(
+  db: TutorDb,
+  scope: ChildScope,
+): Promise<string[]> {
+  const records = await db.settings
+    .where("[familyId+childId+key]")
+    .between(
+      [...scopeKey(scope), OVERVIEW_SEEN_PREFIX],
+      [...scopeKey(scope), `${OVERVIEW_SEEN_PREFIX}\uffff`],
+    )
+    .toArray();
+  return records
+    .filter((r) => r.value === true)
+    .map((r) => r.key.slice(OVERVIEW_SEEN_PREFIX.length));
+}
+
 export async function setSetting(
   db: TutorDb,
   scope: ChildScope,

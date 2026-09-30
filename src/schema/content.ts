@@ -541,6 +541,9 @@ export const LessonSummarySchema = z.object({
     }),
   ),
   cardCount: z.int().nonnegative(),
+  // The lesson opens with an overview, so home leads a child who has not
+  // seen it there before the first section.
+  hasOverview: z.boolean(),
   // Shown on home, earned or greyed, without loading the whole lesson.
   sticker: LessonSchema.shape.sticker,
 });

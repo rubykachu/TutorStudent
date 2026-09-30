@@ -2,14 +2,24 @@ import { Play } from "lucide-react";
 import Link from "next/link";
 import { SUBJECT_STYLES } from "@/components/subject-style";
 import type { ContinueTarget } from "@/learn/next-step";
-import { sectionPath } from "@/lib/routes";
+import { lessonPath, sectionPath } from "@/lib/routes";
 import type { Subject } from "@/schema/content";
 
-type ContinueCardProps = { target: ContinueTarget; subject: Subject };
+type ContinueCardProps = {
+  target: ContinueTarget;
+  subject: Subject;
+  // The child has already been through this lesson's overview.
+  overviewSeen: boolean;
+};
 
 // The home screen's main action: one tap straight into the next section to
-// study, instead of subject → lesson → section.
-export function ContinueCard({ target, subject }: ContinueCardProps) {
+// study, instead of subject → lesson → section. A lesson whose overview the
+// child has not seen yet opens on that overview first.
+export function ContinueCard({
+  target,
+  subject,
+  overviewSeen,
+}: ContinueCardProps) {
   const { lesson, sectionIndex, pausedIndex, started } = target;
   const section = lesson.sections[sectionIndex];
   const paused = pausedIndex === null ? undefined : pausedIndex + 1;
@@ -19,7 +29,11 @@ export function ContinueCard({ target, subject }: ContinueCardProps) {
   const label = started ? "Học tiếp" : "Bắt đầu học";
   return (
     <Link
-      href={sectionPath(lesson.id, section.id)}
+      href={
+        lesson.hasOverview && !overviewSeen
+          ? lessonPath(lesson.id)
+          : sectionPath(lesson.id, section.id)
+      }
       data-continue={section.id}
       aria-label={`${label}: ${lesson.title}, phần ${sectionIndex + 1}: ${section.title}`}
       className={`${style.border} flex min-h-28 items-center gap-4 rounded-lg border-3 bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:gap-5 md:p-6 tall:min-h-36`}

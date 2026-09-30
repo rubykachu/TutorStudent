@@ -179,6 +179,7 @@ describe("child progress", () => {
         sections: [section],
         stickers: [],
         activityDays: [],
+        overviewsSeen: [],
       }),
     );
 

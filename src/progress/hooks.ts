@@ -20,9 +20,11 @@ import {
   getSetting,
   listActivityDays,
   listAttempts,
+  listOverviewsSeen,
   listProfiles,
   listSectionProgress,
   listStickers,
+  markOverviewSeen,
   type ProfileRecord,
   putProfile,
   type SectionProgressRecord,
@@ -131,6 +133,8 @@ export type ChildProgress = {
   stickers: StickerRecord[];
   // Vietnam day keys the child studied on, oldest first.
   activityDays: string[];
+  // Lessons whose overview the child has been through.
+  overviewsSeen: string[];
 };
 
 export async function readChildProgress(
@@ -138,13 +142,15 @@ export async function readChildProgress(
   childId: string,
 ): Promise<ChildProgress> {
   const scope = childScope(childId);
-  const [attempts, sections, stickers, activityDays] = await Promise.all([
-    listAttempts(db, scope),
-    listSectionProgress(db, scope),
-    listStickers(db, scope),
-    listActivityDays(db, scope),
-  ]);
-  return { attempts, sections, stickers, activityDays };
+  const [attempts, sections, stickers, activityDays, overviewsSeen] =
+    await Promise.all([
+      listAttempts(db, scope),
+      listSectionProgress(db, scope),
+      listStickers(db, scope),
+      listActivityDays(db, scope),
+      listOverviewsSeen(db, scope),
+    ]);
+  return { attempts, sections, stickers, activityDays, overviewsSeen };
 }
 
 export function useChildProgress(childId: string): ChildProgress | undefined {
@@ -178,6 +184,8 @@ export type LessonProgress = {
   sticker: StickerRecord | undefined;
   // Answers given in review sessions of this lesson, oldest first.
   reviewAttempts: AttemptRecord[];
+  // The child has been through the lesson's overview.
+  overviewSeen: boolean;
 };
 
 export async function readLessonProgress(
@@ -186,7 +194,7 @@ export async function readLessonProgress(
   lessonId: string,
 ): Promise<LessonProgress> {
   const scope = childScope(childId);
-  const [sections, cardStates, sticker, attempts] = await Promise.all([
+  const [sections, cardStates, sticker, attempts, seen] = await Promise.all([
     getSectionProgress(db, scope, lessonId),
     getCardStates(db, scope, lessonId),
     db.stickers.get([scope.familyId, scope.childId, lessonId]),
@@ -194,13 +202,22 @@ export async function readLessonProgress(
       .where("[familyId+childId+lessonId]")
       .equals([scope.familyId, scope.childId, lessonId])
       .sortBy("at"),
+    listOverviewsSeen(db, scope),
   ]);
   return {
     sections,
     cardStates,
     sticker,
     reviewAttempts: attempts.filter((a) => a.context === "review"),
+    overviewSeen: seen.includes(lessonId),
   };
+}
+
+export async function setOverviewSeen(
+  childId: string,
+  lessonId: string,
+): Promise<void> {
+  await markOverviewSeen(appDb(), childScope(childId), lessonId);
 }
 
 export function useLessonProgress(

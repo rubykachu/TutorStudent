@@ -23,15 +23,39 @@ const lesson: LessonSummary = {
     { id: "luy-thua.section.hai", title: "Bình phương", minutes: 8 },
   ],
   cardCount: 2,
+  hasOverview: false,
   sticker: { name: "Sao", visualId: "fixture.visual.star-sticker" },
 };
 
 describe("ContinueCard", () => {
+  it("opens a lesson on its overview until the child has seen it", () => {
+    const withOverview = { ...lesson, hasOverview: true };
+    const target = {
+      lesson: withOverview,
+      sectionIndex: 0,
+      pausedIndex: null,
+      started: false,
+    };
+    const { rerender } = render(
+      <ContinueCard target={target} subject={math} overviewSeen={false} />,
+    );
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      "/lessons/luy-thua",
+    );
+    rerender(<ContinueCard target={target} subject={math} overviewSeen />);
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      "/lessons/luy-thua/sections/luy-thua.section.mot",
+    );
+  });
+
   it("links straight into the next section of a started lesson", () => {
     render(
       <ContinueCard
         target={{ lesson, sectionIndex: 1, pausedIndex: null, started: true }}
         subject={math}
+        overviewSeen={false}
       />,
     );
     const card = screen.getByRole("link", { name: /^Học tiếp/ });
@@ -48,6 +72,7 @@ describe("ContinueCard", () => {
       <ContinueCard
         target={{ lesson, sectionIndex: 0, pausedIndex: null, started: false }}
         subject={math}
+        overviewSeen={false}
       />,
     );
     const card = screen.getByRole("link", { name: /^Bắt đầu học/ });
@@ -62,6 +87,7 @@ describe("ContinueCard", () => {
       <ContinueCard
         target={{ lesson, sectionIndex: 0, pausedIndex: 1, started: true }}
         subject={math}
+        overviewSeen={false}
       />,
     );
     const card = screen.getByRole("link", { name: /^Học tiếp/ });

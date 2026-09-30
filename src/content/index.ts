@@ -142,6 +142,7 @@ export function summarizeLesson(lesson: Lesson): LessonSummary {
       minutes: s.minutes,
     })),
     cardCount: lesson.cards.length,
+    hasOverview: lesson.overview !== undefined,
     sticker: lesson.sticker,
   };
 }

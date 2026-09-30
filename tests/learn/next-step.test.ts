@@ -30,6 +30,7 @@ function lesson(
       minutes: 5,
     })),
     cardCount: 1,
+    hasOverview: false,
     sticker: { name: "Sao", visualId: "fixture.visual.star-sticker" },
   };
 }
