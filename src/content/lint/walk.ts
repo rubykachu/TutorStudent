@@ -16,6 +16,9 @@ const TEXT_KEYS = new Set([
   "bank",
   "accept",
   "sourceRef",
+  "summary",
+  "goals",
+  "whyItMatters",
 ]);
 
 // Machine values: ids, references, enums, URLs, TeX and expressions.
@@ -47,6 +50,7 @@ const NON_TEXT_KEYS = new Set([
   "url",
   "vttUrl",
   "posterUrl",
+  "audioUrl",
   "validatorId",
   "src",
   "tex",

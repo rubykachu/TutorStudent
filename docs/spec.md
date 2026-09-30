@@ -183,7 +183,10 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 ```
 Subject      { id: "math" | "literature" | "geography" | …, name, color, series[] }
 Lesson       { id, subject, series, grade: 6, order, title, sourceRef (vd "SGK tr.22–24"),
-               status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker }
+               status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker,
+               videos?, overview? }
+Overview     { hook: { text, visualId? }, summary, goals[2..4], whyItMatters,
+               narration?: { audioUrl, vttUrl } }        # màn giới thiệu trước phần đầu tiên
 Concept      { id, name, color }                 # tên token màu khái niệm (design-system.md)
 Section      { id, title, sourceRef, minutes, blocks: SectionBlock[], checkIds[], practiceIds[], recap: RecapBlock }
 SectionBlock = Block | group { children: (note | formula | visual | image)[] }   # mỗi phần tử là một màn
@@ -206,6 +209,7 @@ Video        { id, lessonId, url, vttUrl, posterUrl, durationSec, clips[{ id, st
 - Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap là một `visual` có `caption`: câu cần nhớ nằm ở `caption`, màn recap hiện nó thành chữ thân bài phía trên ví dụ (schema còn nhận recap `formula` để bài fixture thử đường hiển thị đó; lint chặn ở bài thật).
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.
 - `Card.recap` chỉ hiện sau câu ôn trẻ trả lời sai ở lần đầu (kể cả lần hỏi lại), khi câu đã kết thúc (trạng thái `done`, tức sau cả vòng gợi ý và nhập lại); câu đúng ngay thì sang câu kế luôn. Tóm tắt không tự ẩn, không bỏ qua bằng chạm ngoài nút: chỉ nút "Tiếp" mới đi tiếp. `Section.recap` hiện ở cuối phần.
+- `overview` là màn giới thiệu bài, trẻ thấy trước khi vào phần đầu tiên: `hook` mở bài bằng một tình huống đời thường mà bài giải thích (Ngữ văn: đoạn gợi tò mò về câu chuyện), có thể kèm hình; `summary` nói bài học gì (Ngữ văn: tóm tắt câu chuyện 3–5 câu ngắn); `goals` 2–4 ý nối tiếp câu dẫn "Học xong bài này, bạn sẽ:" do màn hình in sẵn; `whyItMatters` một câu về giá trị thật của bài. `narration` là bản đọc giọng người (`pnpm narration:build`) kèm WebVTT karaoke. Mọi chữ của `overview` qua cùng luật lint như lời bài học; lint giới hạn `summary` tối đa 5 câu, `whyItMatters` 1 câu. Schema để `overview` tuỳ chọn, `content:check` cảnh báo bài đã xuất bản còn thiếu.
 - `openEnded` không gắn card (không vào phiên ôn); các bước con tự chấm của nó có thể gắn card. `openEnded` tính là 1 exercise nhưng không tính vào số dạng bài khác nhau.
 
 Quy tắc:

@@ -47,3 +47,9 @@ export const MAX_RECAP_SENTENCES = 2;
 // draw a different exercise each time a card comes back, so a card needs
 // its practice exercise plus a few in the review bank.
 export const MIN_EXERCISES_PER_CARD = 3;
+
+// The overview a child sees before the first section: a literature story
+// summary runs 3–5 short sentences (other subjects need fewer), and the
+// lesson's value is said in one sentence.
+export const MAX_OVERVIEW_SUMMARY_SENTENCES = 5;
+export const MAX_OVERVIEW_WHY_SENTENCES = 1;

@@ -17,7 +17,8 @@ export type LintRule =
   | "screens"
   | "practice"
   | "review-bank"
-  | "placeholder";
+  | "placeholder"
+  | "overview";
 
 export type Finding = Issue & { rule: LintRule };
 

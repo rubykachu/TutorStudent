@@ -677,6 +677,17 @@ export function checkContent(
     checkLesson(file, lesson, subjects, catalog, (path, message) =>
       issues.push({ severity: "error", file: file.file, path, message }),
     );
+    // Optional while lessons are being given one; every published lesson
+    // should open with it.
+    if (!file.fixture && lesson.status === "published" && !lesson.overview) {
+      issues.push({
+        severity: "warning",
+        file: file.file,
+        path: ["overview"],
+        message:
+          "Published lesson has no overview; the child starts it without knowing what it teaches",
+      });
+    }
     issues.push(
       ...lintLesson({
         file: file.file,

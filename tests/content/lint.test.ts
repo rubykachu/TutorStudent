@@ -403,6 +403,46 @@ describe("length", () => {
   });
 });
 
+describe("overview", () => {
+  function withOverview(
+    change: (overview: NonNullable<Lesson["overview"]>) => void,
+  ): LintInput {
+    const input = fixtureInput();
+    const overview = input.lesson.overview;
+    if (!overview) throw new Error("the fixture has an overview");
+    change(overview);
+    return input;
+  }
+
+  it("runs the text rules over every overview string", () => {
+    const input = withOverview((overview) => {
+      overview.goals[1] = "Hello the world";
+    });
+    expect(findings(input, "vietnamese")).toMatchObject([
+      { path: ["overview", "goals", 1] },
+    ]);
+    expect(findings(input, "fields")).toEqual([]);
+  });
+
+  it("limits the summary to five sentences", () => {
+    const input = withOverview((overview) => {
+      overview.summary = "Một câu. Hai câu. Ba câu. Bốn câu. Năm câu. Sáu câu.";
+    });
+    expect(findings(input, "overview")).toMatchObject([
+      { path: ["overview", "summary"], message: expect.stringContaining("6") },
+    ]);
+  });
+
+  it("says why the lesson matters in one sentence", () => {
+    const input = withOverview((overview) => {
+      overview.whyItMatters = "Bài này có ích. Rất có ích.";
+    });
+    expect(findings(input, "overview")).toMatchObject([
+      { path: ["overview", "whyItMatters"] },
+    ]);
+  });
+});
+
 describe("recap", () => {
   const RECAP_PATH = ["sections", 1, "recap", "caption"];
 

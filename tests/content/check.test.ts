@@ -51,6 +51,44 @@ function escapeRegExp(text: string): string {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+describe("lesson overview", () => {
+  function overviewWarnings(result: CheckResult) {
+    return result.issues.filter((issue) => issue.path.join(".") === "overview");
+  }
+
+  function withoutOverview(status: "draft" | "published") {
+    const raw = asRealLesson(fixtureContent());
+    const data = lessonData(raw) as Record<string, unknown>;
+    delete data.overview;
+    data.status = status;
+    return raw;
+  }
+
+  it("warns when a published lesson has no overview", () => {
+    expect(overviewWarnings(check(withoutOverview("published")))).toEqual([
+      expect.objectContaining({
+        severity: "warning",
+        message: expect.stringContaining("no overview"),
+      }),
+    ]);
+  });
+
+  it("lets a draft go without one", () => {
+    expect(overviewWarnings(check(withoutOverview("draft")))).toEqual([]);
+  });
+
+  it("rejects fewer than two goals", () => {
+    const raw = fixtureContent();
+    const overview = (
+      lessonData(raw) as unknown as { overview: { goals: string[] } }
+    ).overview;
+    overview.goals = ["biết một điều"];
+    expect(errors(check(raw))).toContainEqual(
+      expect.stringContaining("$.overview.goals"),
+    );
+  });
+});
+
 describe("checkContent on the fixture", () => {
   it("reports no issues", () => {
     const result = check();

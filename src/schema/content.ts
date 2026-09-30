@@ -443,6 +443,31 @@ export const VideoSchema = z.object({
   }),
 });
 
+// What a child sees before the first section: why the lesson is worth their
+// time, in words from everyday life rather than the textbook's.
+export const LessonOverviewSchema = z.object({
+  // Opens the overview: an everyday situation the lesson explains, or for a
+  // literature lesson a teaser of the story.
+  hook: z.object({
+    text: TextSchema,
+    visualId: VisualIdSchema.optional(),
+  }),
+  // Literature: the story in 3–5 short sentences; other subjects: what the
+  // lesson covers.
+  summary: TextSchema,
+  // Each item completes the lead-in "Học xong bài này, bạn sẽ:" that the
+  // screen prints (`OVERVIEW_GOALS_LEAD`), e.g. "biết lũy thừa là gì".
+  goals: z.array(TextSchema).min(2).max(4),
+  // One sentence of real value the lesson brings.
+  whyItMatters: TextSchema,
+  // A human-like reading of the overview (`pnpm narration:build`), with
+  // one WebVTT timestamp per word so the screen highlights the word being
+  // read (`src/lib/karaoke-vtt.ts`).
+  narration: z
+    .object({ audioUrl: MediaPathSchema, vttUrl: MediaPathSchema })
+    .optional(),
+});
+
 export const LESSON_STATUSES = ["draft", "published"] as const;
 
 export const LessonSchema = z.object({
@@ -465,6 +490,7 @@ export const LessonSchema = z.object({
   exercises: z.array(ExerciseSchema).min(1),
   sticker: z.object({ name: TextSchema, visualId: VisualIdSchema }),
   videos: z.array(VideoSchema).optional(),
+  overview: LessonOverviewSchema.optional(),
 });
 
 export const IdsLockSchema = z.object({
@@ -555,6 +581,7 @@ export type Exercise = z.infer<typeof ExerciseSchema>;
 export type Card = z.infer<typeof CardSchema>;
 export type Section = z.infer<typeof SectionSchema>;
 export type Video = z.infer<typeof VideoSchema>;
+export type LessonOverview = z.infer<typeof LessonOverviewSchema>;
 export type Lesson = z.infer<typeof LessonSchema>;
 export type LessonStatus = Lesson["status"];
 export type IdsLock = z.infer<typeof IdsLockSchema>;

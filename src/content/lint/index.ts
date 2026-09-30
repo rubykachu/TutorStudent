@@ -4,6 +4,7 @@ import { lintGlossary } from "./glossary";
 import { lintLength } from "./length";
 import { lintNfc } from "./nfc";
 import { lintNumbers } from "./numbers";
+import { lintOverview } from "./overview";
 import { lintPassage } from "./passage";
 import { lintPlaceholder } from "./placeholder";
 import { lintPractice } from "./practice";
@@ -54,6 +55,7 @@ export function lintLesson(input: LintInput): Finding[] {
     ...lintCheckExpr(input),
     ...lintPassage(input),
     ...lintReviewHash(input),
+    ...lintOverview(input),
     ...lintAuthoring(input),
   ];
 }
