@@ -272,21 +272,24 @@ export function ExerciseFrame<E extends BasicExercise>({
     </button>
   ) : null;
 
-  // A tall prompt (a question and a passage) can push the answer area under the sticky bottom bar on a
-  // phone, leaving options the child must tap half hidden behind it. Once
+  // A tall prompt (a question and a passage) can push the answer area under
+  // the sticky bottom bar on a phone, or on a landscape tablet where a
+  // passage runs the full width above the answer, leaving options the child
+  // must tap half hidden behind it. Once
   // the answer is on screen, the page scrolls just enough to lift the whole
   // answer area, every option included, above the bar. The answer card
   // comes first: the prompt's top may leave the screen (the child scrolls
   // back to reread it), but the card's own top, with the owl and its
   // bubble, never does, so a card taller than the screen shows from its
   // start. A prompt visual that grows after it loads is followed for a
-  // moment, like the feedback visual above, and so is the praise bubble
-  // that appears above the answer once it is accepted and pushes it down.
+  // moment, like the feedback visual above, and so is the owl's bubble
+  // that appears above the answer after each check and pushes it down.
   const frameRef = useRef<HTMLElement>(null);
   const columnRef = useRef<HTMLDivElement>(null);
-  // Changes when the answer area first shows and again when it is accepted,
-  // each time restarting the follow window.
-  const liftKey = nonce === null ? null : accepted ? "accepted" : "answer";
+  // Changes when the answer area first shows, after each wrong check and
+  // when it is accepted, each time restarting the follow window.
+  const liftKey =
+    nonce === null ? null : accepted ? "accepted" : `answer-${tier}`;
   useEffect(() => {
     const frame = frameRef.current;
     const column = columnRef.current;

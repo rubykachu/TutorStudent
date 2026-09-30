@@ -93,7 +93,7 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 - Vùng chạm ≥ 48×48px; nút chính cao 64px iPad / 56px điện thoại.
 - Ngoại lệ vùng chạm trong dòng chữ (`tapText`, `PassageReader`): ở chế độ chạm, line-height ≥ 2.3 (dòng ≥ 48px), chạm chọn cả câu, câu đang chọn có nền `--color-highlight`.
 - Viewport mục tiêu: iPad dọc 820×1180, ngang 1180×820; điện thoại 390×844. Không cuộn ngang. Tôn trọng `env(safe-area-inset-*)` khi chạy PWA toàn màn hình.
-- Nội dung học: một cột, rộng tối đa 720px, căn giữa. iPad ngang: màn học rộng tối đa 960px, bài tập chia hai cột 2:3 (đề và hình gợi ý bên trái, ô trả lời bên phải). Cú đậu ở góc trên phải thẻ trả lời ở mọi khổ, không chiếm cột riêng. Visual rộng hơn cột thì tự thu nhỏ vừa cột.
+- Nội dung học: một cột, rộng tối đa 720px, căn giữa. iPad ngang: màn học rộng tối đa 960px, bài tập chia hai cột (đề và hình gợi ý bên trái, ô trả lời bên phải) khi khung bài tập rộng từ 50rem, cột đề rộng ít nhất 26rem, khung hẹp hơn thì giữ một cột; đề có đoạn văn đọc hiểu hoặc câu hỏi dài thì giữ một cột, đề trải hết bề ngang phía trên ô trả lời. Cú đậu ở góc trên phải thẻ trả lời ở mọi khổ, không chiếm cột riêng. Visual rộng hơn cột thì tự thu nhỏ vừa cột.
 - Nút "Tiếp" / "Kiểm tra" cố định đáy màn hình, trong vùng ngón cái.
 - Màn một khối (giải thích, nhắc lại, xong phần, ôn xong): nội dung căn giữa theo chiều dọc giữa đầu màn và thanh nút, không để khoảng trống lớn phía trên nút. iPad dọc (biến thể `tall:` = rộng ≥ 768px và cao ≥ 992px): visual phóng 1.3×, ô môn cao hơn, linh vật màn xong lớn hơn.
 - Kéo thả (dnd-kit): có phương án thay thế chạm-để-chọn rồi chạm-để-đặt cho mọi thao tác kéo.
