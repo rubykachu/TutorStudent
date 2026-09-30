@@ -1,7 +1,8 @@
 # Bàn giao: Bài 8 `quan-he-chia-het-va-tinh-chat` (Quan hệ chia hết và tính chất)
 
 ## Trạng thái
-- Đang soạn (`status: draft`). Chưa review, chưa duyệt: một reviewer mới làm bước đó.
+- Nội dung đã xuất bản (`status: published`, hash đã duyệt, id đã khoá). Review 4 vòng: vòng 1 (8 Nghiêm trọng), vòng 2 (3), vòng 3 (1), vòng 4 (0 Nghiêm trọng, 0 Nên sửa, 1 Góp ý).
+- Tiếp theo: lời đọc (`overview` narration) và video bài giảng theo skill `lesson-video` (chưa làm; bài chưa có `videos`). Sửa nội dung sau này phải review lại (hash).
 - Soạn đêm 01/10/2026 thay cho buổi hỏi đáp đầu vào vì chủ dự án đang ngủ; các giả định ở mục "Giả định".
 
 ## Nguồn (sách bài tập, `sources/math/quan-he-chia-het-va-tinh-chat/`, không commit)
@@ -35,9 +36,9 @@ Hình: `src/visuals/math/quan-he-chia-het-va-tinh-chat/` (danh mục `catalog.ts
 - `src/visuals/shared/math-parts.tsx`: `Tint`, `Hole`, `Legend`, `MATH_LINE` chuyển từ `parts-nhan.tsx` của Bài 5 (vẫn re-export).
 
 ## Việc tiếp theo
-1. Reviewer mới (Opus, vòng 1) đọc `docs/lessons-learned/index.md`, đối chiếu ảnh nguồn `sbt-p30` tới `sbt-p32` và lời giải `sbt-p104`, `sbt-p105`.
-2. Sau khi sửa lỗi Nghiêm trọng: `pnpm content:lock`, rồi lời đọc và video.
-3. Điểm cần soi kỹ: chữ `m` trong câu quy tắc section 8 đến 11 (trẻ chưa gặp biến `m`); section 11 và 13 khó với trẻ yếu nhân chia; hình `hops` ở bước đầu chỉ có trục trống (giống hình `skip` của Bài 5); câu hỏi đáp án nhiều lựa chọn trong section 12 chỉ dùng ước của số chia để kết luận đúng.
+1. Lời đọc và ba hoặc nhiều video theo `lesson-video` (Sonnet, một subagent một lần).
+2. Góp ý còn mở: hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án của `dien-du-14-7` là "không chia hết" (không lộ đáp án).
+3. Các mục ở "Để lại" bên dưới.
 
 ## Vòng 1 review đã sửa (02/10/2026)
 - Cả 8 Nghiêm trọng và Nên sửa 1–8, 10–13, 15–28 đã sửa; Góp ý 1–11, 14–17 đã sửa.
