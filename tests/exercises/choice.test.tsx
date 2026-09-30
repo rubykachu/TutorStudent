@@ -52,6 +52,66 @@ describe("ChoiceAnswer", () => {
     expect(frame).toHaveAttribute("data-phase", "correct");
   });
 
+  it("reads as a multi-select: stated up front, with checkbox markers", () => {
+    const { container } = renderExercise(choiceExercise(["a", "b"]));
+    const fieldset = container.querySelector("fieldset");
+    expect(fieldset).toHaveAttribute("data-multiple");
+    expect(fieldset?.querySelector("legend")).toHaveTextContent(
+      "Chọn tất cả đáp án đúng",
+    );
+    const marker = (id: string) =>
+      option(id).querySelector("[data-choice-marker]");
+    expect(marker("a")).toHaveAttribute("data-choice-marker", "checkbox");
+    tap("a");
+    expect(marker("a")?.querySelector("svg")).not.toBeNull();
+    cleanup();
+
+    const single = renderExercise(choiceExercise(["a"]));
+    expect(single.container.querySelector("fieldset")).not.toHaveAttribute(
+      "data-multiple",
+    );
+    expect(option("a").querySelector("[data-choice-marker]")).toHaveAttribute(
+      "data-choice-marker",
+      "radio",
+    );
+  });
+
+  it("keeps the right picks of a multi-select through a wrong check", () => {
+    const { frame, container } = renderExercise(choiceExercise(["a", "b"]));
+    tap("a");
+    tap("c");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-tier", "1");
+    // Only the wrong pick is marked and let go; the right one stays ticked.
+    expect(isMarkedWrong(option("c"))).toBe(true);
+    expect(option("c")).toHaveAttribute("aria-pressed", "false");
+    expect(option("a")).toHaveAttribute("aria-pressed", "true");
+    expect(isMarkedWrong(option("a"))).toBe(false);
+
+    // A right pick alone is still incomplete: nothing is marked wrong.
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-tier", "2");
+    expect(container.querySelector("[data-wrong]")).toBeNull();
+    expect(option("a")).toHaveAttribute("aria-pressed", "true");
+
+    tap("b");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-phase", "correct");
+  });
+
+  it("reveals every right option of a multi-select at the third check", () => {
+    const { frame, container } = renderExercise(choiceExercise(["a", "b"]));
+    for (let i = 0; i < 3; i++) {
+      if (checkButton().hasAttribute("disabled")) tap("c");
+      checkAnswer();
+    }
+    expect(frame).toHaveAttribute("data-tier", "3");
+    expect(container.querySelector("[data-reveal]")).not.toBeNull();
+    expect(option("a")).toHaveAttribute("aria-pressed", "true");
+    expect(option("b")).toHaveAttribute("aria-pressed", "true");
+    expect(option("c")).toHaveAttribute("aria-pressed", "false");
+  });
+
   it("renders formula options with KaTeX", () => {
     const exercise: ChoiceExercise = {
       ...choiceExercise(["a"]),

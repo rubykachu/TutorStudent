@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { Check, ListChecks } from "lucide-react";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { AnswerHighlight, WRONG_TONE } from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
@@ -86,11 +86,24 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
   }
 
   return (
-    <fieldset className="flex flex-col gap-4" data-reveal={reveal || undefined}>
-      {/* Told up front so the child knows whether one tap is enough. */}
-      <legend className="mb-4 text-caption text-muted-foreground">
-        {exercise.multiple ? "Chọn tất cả đáp án đúng" : "Chọn một đáp án"}
-      </legend>
+    <fieldset
+      className="flex flex-col gap-4"
+      data-reveal={reveal || undefined}
+      data-multiple={exercise.multiple || undefined}
+    >
+      {/* Told up front so the child knows whether one tap is enough; "pick
+        several" is easy to miss, so it is written bolder, with the checkbox
+        mark its options use. */}
+      {exercise.multiple ? (
+        <legend className="mb-4 flex items-center gap-2 font-semibold text-foreground">
+          <ListChecks aria-hidden className="size-6 shrink-0 text-primary" />
+          Chọn tất cả đáp án đúng
+        </legend>
+      ) : (
+        <legend className="mb-4 text-caption text-muted-foreground">
+          Chọn một đáp án
+        </legend>
+      )}
       <div
         ref={gridRef}
         className={`grid gap-3 ${long ? "" : SHORT_OPTION_COLUMNS}`}
@@ -150,6 +163,7 @@ function Marker({
   return (
     <span
       aria-hidden
+      data-choice-marker={multiple ? "checkbox" : "radio"}
       className={`flex size-7 shrink-0 items-center justify-center border-2 ${shape} ${fill}`}
     >
       {on && <Check className="size-5" strokeWidth={3} />}
