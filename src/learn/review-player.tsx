@@ -18,7 +18,7 @@ import { now } from "@/lib/time";
 import { type ChildScope, listAttempts, type TutorDb } from "@/progress/db";
 import { readLessonProgress } from "@/progress/hooks";
 import { recordAttempt } from "@/progress/record";
-import type { BasicExercise, RecapBlock } from "@/schema/content";
+import type { BasicExercise } from "@/schema/content";
 import { selectReview } from "@/srs/select";
 import {
   answerCurrent,
@@ -32,7 +32,7 @@ import {
   sectionExerciseIds,
   startSession,
 } from "@/srs/session";
-import { findVisual } from "@/visuals/registry";
+import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
 
 type ReviewPlayerProps = {
   db: TutorDb;
@@ -51,16 +51,6 @@ function basicExercise(
 ): BasicExercise | undefined {
   const exercise = findExercise(index, exerciseId);
   return exercise && exercise.type !== "openEnded" ? exercise : undefined;
-}
-
-// Starts loading a recap's visual while its question is still on screen, so
-// the recap is drawn at once if the answer is missed.
-function preloadRecap(recap: RecapBlock | undefined): void {
-  if (recap?.type !== "visual") return;
-  // A failed preload is not an error yet: the recap loads again when drawn.
-  findVisual(recap.visualId)
-    ?.load()
-    .catch(() => undefined);
 }
 
 // One on-demand review session of a lesson: the cards closest to being
@@ -113,8 +103,19 @@ export function ReviewPlayer({
   }, [db, familyId, childId, lesson.id, index, random]);
 
   const item = session ? currentItem(session) : undefined;
-  const upcomingRecap = item && index.cardById.get(item.cardId)?.recap;
-  useEffect(() => preloadRecap(upcomingRecap), [upcomingRecap]);
+  // While a question is on screen, fetch the visuals of its hints, of the
+  // card recap shown if it is missed, and of the next question.
+  const upcoming = session?.items[session.current + 1];
+  const upcomingVisuals = item
+    ? visualIdsIn([
+        findExercise(index, item.exerciseId),
+        index.cardById.get(item.cardId)?.recap,
+        upcoming && findExercise(index, upcoming.exerciseId),
+      ]).join(" ")
+    : "";
+  useEffect(() => {
+    if (upcomingVisuals) preloadVisuals(upcomingVisuals.split(" "));
+  }, [upcomingVisuals]);
 
   if (!session) return null;
 

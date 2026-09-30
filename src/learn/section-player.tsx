@@ -3,7 +3,7 @@
 import { ChevronRight, CircleCheck, X } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
 import { SectionStepper } from "@/components/section-stepper";
@@ -41,6 +41,7 @@ import {
 } from "@/progress/record";
 import { saveOpenEndedWriting } from "@/progress/writing";
 import type { Lesson, OpenEndedExercise, Section } from "@/schema/content";
+import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
 
 type SectionPlayerProps = {
   db: TutorDb;
@@ -78,6 +79,14 @@ export function SectionPlayer({
   const { familyId, childId } = scope;
   const { phase, index: itemIndex } = step.position;
   const onCorrect = useCorrectSound(childId);
+
+  // Fetches what the child may see next while this screen is read: the hint
+  // and solution visuals of this exercise, the next screen, and the sticker
+  // after the last one, so none of them waits behind a placeholder.
+  useEffect(() => {
+    const next = steps[stepIndex + 1];
+    preloadVisuals(visualIdsIn([steps[stepIndex], next ?? lesson.sticker]));
+  }, [steps, stepIndex, lesson.sticker]);
 
   // Saving on every step change also marks the section started on first open.
   // A layout effect starts the save during commit, before the step can be
