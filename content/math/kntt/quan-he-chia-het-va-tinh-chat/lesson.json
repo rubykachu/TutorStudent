@@ -12,7 +12,7 @@
   "title": "Quan hệ chia hết và tính chất",
   "sourceRef": "Sách bài tập tr.30–32",
   "status": "published",
-  "reviewedHash": "8d6599cef67e41b739a8094ab81c3ef28b899d788d0d3e9d490082632d660a4b",
+  "reviewedHash": "6533223e3633161386e077e46b504c08215313643c7a1d3b159bcc42d6e0fcd4",
   "overview": {
     "hook": {
       "text": "Mẹ có 24 cái bánh và muốn xếp đều vào các hộp, không thừa cái nào. Hộp bao nhiêu cái thì vừa hết?"
@@ -4082,12 +4082,12 @@
       "url": "video/quan-he-chia-het-va-tinh-chat/chia-het.mp4",
       "vttUrl": "video/quan-he-chia-het-va-tinh-chat/chia-het.vtt",
       "posterUrl": "video/quan-he-chia-het-va-tinh-chat/chia-het.jpg",
-      "durationSec": 57.23,
+      "durationSec": 57.3,
       "clips": [
         {
           "id": "chia-deu",
-          "start": 12.381,
-          "end": 34.288,
+          "start": 12.423,
+          "end": 34.33,
           "cardIds": ["quan-he-chia-het-va-tinh-chat.card.chia-deu"]
         }
       ],
@@ -4103,12 +4103,12 @@
       "url": "video/quan-he-chia-het-va-tinh-chat/uoc-boi.mp4",
       "vttUrl": "video/quan-he-chia-het-va-tinh-chat/uoc-boi.vtt",
       "posterUrl": "video/quan-he-chia-het-va-tinh-chat/uoc-boi.jpg",
-      "durationSec": 61.4,
+      "durationSec": 65.9,
       "clips": [
         {
           "id": "uoc-boi",
-          "start": 11.539,
-          "end": 39.776,
+          "start": 12.354,
+          "end": 40.591,
           "cardIds": ["quan-he-chia-het-va-tinh-chat.card.uoc-boi"]
         }
       ],
@@ -4124,18 +4124,18 @@
       "url": "video/quan-he-chia-het-va-tinh-chat/tinh-chat-tong.mp4",
       "vttUrl": "video/quan-he-chia-het-va-tinh-chat/tinh-chat-tong.vtt",
       "posterUrl": "video/quan-he-chia-het-va-tinh-chat/tinh-chat-tong.jpg",
-      "durationSec": 73.8,
+      "durationSec": 77.83,
       "clips": [
         {
           "id": "tong-chia-het",
-          "start": 16.027,
-          "end": 34.736,
+          "start": 18.2,
+          "end": 38.77,
           "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-chia-het"]
         },
         {
           "id": "tong-khong-chia-het",
-          "start": 35.136,
-          "end": 57.056,
+          "start": 39.17,
+          "end": 61.09,
           "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-khong-chia-het"]
         }
       ],

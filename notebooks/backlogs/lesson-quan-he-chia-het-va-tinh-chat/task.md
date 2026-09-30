@@ -1,8 +1,8 @@
 # Bàn giao: Bài 8 `quan-he-chia-het-va-tinh-chat` (Quan hệ chia hết và tính chất)
 
 ## Trạng thái
-- Nội dung đã xuất bản (`status: published`, hash đã duyệt, id đã khoá). Review 4 vòng: vòng 1 (8 Nghiêm trọng), vòng 2 (3), vòng 3 (1), vòng 4 (0 Nghiêm trọng, 0 Nên sửa, 1 Góp ý).
-- Lời đọc và 3 video đã dựng (02/10/2026), chưa review. Việc tiếp theo: vòng review chỉ phần đổi (subagent mới, `model: "sonnet"`, diff chỉ có 3 khối video trong `lesson.json` và `overview.narration`), rồi `pnpm content:lock` (khoá id 3 video), `pnpm lesson:walk quan-he-chia-het-va-tinh-chat`, ghi lại `reviewedHash`. `content:check` hiện báo `[review-hash]` là đúng.
+- Nội dung đã xuất bản (`status: published`, hash đã duyệt, id đã khoá). Review 5 vòng: vòng 1 (8 Nghiêm trọng), vòng 2 (3), vòng 3 (1), vòng 4 (0 Nghiêm trọng, 0 Nên sửa, 1 Góp ý), vòng 5 (video và lời đọc: 0 Nghiêm trọng, 4 Nên sửa đã sửa, 3 Góp ý).
+- Lời đọc và 3 video đã dựng và đã review vòng 5 (chỉ phần đổi, 0 Nghiêm trọng, 4 Nên sửa về lời video đã sửa và dựng lại, 02/10/2026). Id 3 video đã khoá, `reviewedHash` đã ghi, `content:check` 0 lỗi, `lesson:walk` 0 lỗi.
 - Soạn đêm 01/10/2026 thay cho buổi hỏi đáp đầu vào vì chủ dự án đang ngủ; các giả định ở mục "Giả định".
 
 ## Nguồn (sách bài tập, `sources/math/quan-he-chia-het-va-tinh-chat/`, không commit)
@@ -15,10 +15,10 @@
 ## Lời đọc và video
 - Giọng: `my-duyen` (Mỹ Duyên), khai ở `video/projects/quan-he-chia-het-va-tinh-chat/media.json`. Lý do: Bài 5, 6, 7 đều Hải Đăng nên xen giọng nữ cho bé đỡ nhàm; bài mở đầu một mạch kiến thức mới (chia đều, ước, bội), nhẹ nhàng, không có lý do riêng để giữ giọng nam.
 - Video (id `quan-he-chia-het-va-tinh-chat.video.<tên>`, gắn ở đầu section):
-  - `chia-het` 57,2 s, section `chia-deu`, clip `chia-deu` cho card `chia-deu`.
-  - `uoc-boi` 61,4 s, section `uoc-boi`, clip `uoc-boi` cho card `uoc-boi`.
-  - `tinh-chat-tong` 73,8 s, section `tong-chia-het`, hai clip: `tong-chia-het` (card `tong-chia-het`) và `tong-khong-chia-het` (card `tong-khong-chia-het`, dạy luôn ở video này vì mỗi section chỉ một video).
-- Lời đọc tổng quan 51 s. `pnpm video:check` đạt. Whisper: mọi câu >= 97% trừ một câu của `tinh-chat-tong`: "Mỗi nhóm xếp vừa các túi 6 cái." 96,9% (nghe thành "cắt túi"), cần nghe lại.
+  - `chia-het` 57,3 s, section `chia-deu`, clip `chia-deu` cho card `chia-deu`.
+  - `uoc-boi` 65,9 s, section `uoc-boi`, clip `uoc-boi` cho card `uoc-boi`.
+  - `tinh-chat-tong` 77,8 s, section `tong-chia-het`, hai clip: `tong-chia-het` (card `tong-chia-het`) và `tong-khong-chia-het` (card `tong-khong-chia-het`, dạy luôn ở video này vì mỗi section chỉ một video).
+- Lời đọc tổng quan 51 s. `pnpm video:check` đạt. Whisper: mọi câu >= 97%. Vòng 5 đổi lời: "Bạn cú xếp đều ..." (hai video đầu, tránh nhầm "Bạn" với "Bạn cú"), `uoc-boi` dùng nguyên văn câu "mỗi thừa số khác 0 là một ước của tích", `tinh-chat-tong` bỏ cách nói "xếp vừa các túi 6 cái" (khó hiểu) dùng "xếp đều vào các túi, mỗi túi 6 cái". Độ dài nay: `chia-het` 57,3 s, `uoc-boi` 65,9 s, `tinh-chat-tong` 77,8 s.
 - Chưa có video cho hiệu (section `hieu-chia-het`, `hieu-khong-chia-het`) và các section sau; làm thêm nếu chủ dự án muốn.
 
 ## Giả định (không hỏi được chủ dự án)
@@ -44,8 +44,8 @@ Hình: `src/visuals/math/quan-he-chia-het-va-tinh-chat/` (danh mục `catalog.ts
 - `src/visuals/shared/math-parts.tsx`: `Tint`, `Hole`, `Legend`, `MATH_LINE` chuyển từ `parts-nhan.tsx` của Bài 5 (vẫn re-export).
 
 ## Việc tiếp theo
-1. Review phần đổi (3 video, lời đọc), khoá id, walk (xem mục "Trạng thái").
-2. Góp ý còn mở: hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án của `dien-du-14-7` là "không chia hết" (không lộ đáp án).
+1. Góp ý còn mở: hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án của `dien-du-14-7` là "không chia hết" (không lộ đáp án).
+2. Caption hình `tong-12-18-6` còn cách nói "xếp vừa các túi 6 cái" (Góp ý vòng 5, đổi lesson.json nên cần review lại).
 3. Các mục ở "Để lại" bên dưới.
 
 ## Vòng 1 review đã sửa (02/10/2026)

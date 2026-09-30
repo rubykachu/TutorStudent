@@ -177,11 +177,11 @@
           pop("#u1", W(sid, "24"), { from: 0.6 });
           pop("#u2", W(sid, "bằng"), { from: 0.6 });
           pop("#u3", W(sid, "6"), { from: 0.6 });
-          pop("#u4", W(sid, "nhân"), { from: 0.6 });
+          pop("#u4", W(sid, "nhân", 2), { from: 0.6 });
           pop("#u5", W(sid, "4"), { from: 0.6 });
-          pop("#u6", W(sid, "ước"), { from: 0.6 });
-          pop("#u7", W(sid, "ước") + 0.3, { from: 0.6 });
-          pose(bird, "happy", W(sid, "ước"));
+          pop("#u6", W(sid, "6", 3), { from: 0.6 });
+          pop("#u7", W(sid, "4", 3), { from: 0.6 });
+          pose(bird, "happy", W(sid, "ước", 2));
         }
 
         // ---------- s05: remember ----------

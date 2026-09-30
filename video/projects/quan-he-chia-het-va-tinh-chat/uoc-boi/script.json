@@ -8,7 +8,7 @@
       "sentences": [
         { "text": "Chào bạn! Hôm nay ta học ước và bội.", "opening": true },
         { "text": "Bạn cú có 18 cái bánh." },
-        { "text": "Bạn xếp đều vào các hộp, mỗi hộp 6 cái." }
+        { "text": "Bạn cú xếp đều vào các hộp, mỗi hộp 6 cái." }
       ]
     },
     {
@@ -35,7 +35,10 @@
     {
       "id": "s04-tich",
       "sentences": [
-        { "text": "Phép nhân cũng cho ta ước." },
+        {
+          "text": "Trong một phép nhân, mỗi thừa số khác 0 là một ước của tích.",
+          "rule": true
+        },
         { "text": "24 bằng 6 nhân 4, là 6 được lấy 4 lần." },
         { "text": "Nên 6 và 4 đều là ước của 24." }
       ]

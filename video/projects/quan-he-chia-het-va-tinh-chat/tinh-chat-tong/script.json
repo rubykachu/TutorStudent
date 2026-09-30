@@ -12,7 +12,7 @@
         },
         { "text": "Bạn cú có hai nhóm kẹo." },
         { "text": "Nhóm một có 12 cái, nhóm hai có 18 cái." },
-        { "text": "Mỗi nhóm xếp vừa các túi 6 cái." }
+        { "text": "Mỗi nhóm xếp đều vào các túi, mỗi túi 6 cái, không thừa." }
       ]
     },
     {
@@ -20,7 +20,7 @@
       "sentences": [
         { "text": "12 chia hết cho 6, 18 cũng chia hết cho 6." },
         { "text": "Gộp hai nhóm lại thành 30 cái." },
-        { "text": "30 cũng xếp vừa các túi 6 cái." },
+        { "text": "30 cái cũng xếp đều vào các túi, mỗi túi 6 cái." },
         {
           "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó.",
           "rule": true
