@@ -7,7 +7,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "69f14934d8cf8d2187820ee91d1f52c28e82279114e9e0c7f7022f23f35163ff",
+  "reviewedHash": "6d70be20a52e49589012f682aaa396c06158e641c2ae3833ec3406520db334d8",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -27,6 +27,10 @@
       "sourceRef": "SGK tr.22",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "luy-thua.video.luy-thua-la-gi"
+        },
         {
           "type": "visual",
           "visualId": "luy-thua.visual.ban-co",
@@ -226,6 +230,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "luy-thua.video.nhan-cung-co-so"
+        },
+        {
           "type": "visual",
           "visualId": "luy-thua.visual.nhan-hai-luy-thua",
           "caption": "Gộp hai nhóm thừa số 3 thành một nhóm."
@@ -291,6 +299,10 @@
       "sourceRef": "SGK tr.24",
       "minutes": 3,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "luy-thua.video.chia-cung-co-so"
+        },
         {
           "type": "visual",
           "visualId": "luy-thua.visual.chia-hai-luy-thua",
@@ -2714,5 +2726,82 @@
   "sticker": {
     "name": "Bàn cờ hạt thóc",
     "visualId": "luy-thua.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "luy-thua.video.luy-thua-la-gi",
+      "lessonId": "luy-thua",
+      "url": "video/luy-thua/luy-thua-la-gi.mp4",
+      "vttUrl": "video/luy-thua/luy-thua-la-gi.vtt",
+      "posterUrl": "video/luy-thua/luy-thua-la-gi.jpg",
+      "durationSec": 67.13,
+      "clips": [
+        {
+          "id": "viet-gon",
+          "start": 20.164,
+          "end": 41.78,
+          "cardIds": ["luy-thua.card.viet-luy-thua"]
+        },
+        {
+          "id": "co-so-so-mu",
+          "start": 42.18,
+          "end": 51.2,
+          "cardIds": ["luy-thua.card.co-so-so-mu"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "luy-thua.video.nhan-cung-co-so",
+      "lessonId": "luy-thua",
+      "url": "video/luy-thua/nhan-cung-co-so.mp4",
+      "vttUrl": "video/luy-thua/nhan-cung-co-so.vtt",
+      "posterUrl": "video/luy-thua/nhan-cung-co-so.jpg",
+      "durationSec": 63.13,
+      "clips": [
+        {
+          "id": "nhan-cung-co-so",
+          "start": 18.702,
+          "end": 46.152,
+          "cardIds": ["luy-thua.card.nhan-cung-co-so"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "luy-thua.video.chia-cung-co-so",
+      "lessonId": "luy-thua",
+      "url": "video/luy-thua/chia-cung-co-so.mp4",
+      "vttUrl": "video/luy-thua/chia-cung-co-so.vtt",
+      "posterUrl": "video/luy-thua/chia-cung-co-so.jpg",
+      "durationSec": 72.97,
+      "clips": [
+        {
+          "id": "chia-cung-co-so",
+          "start": 10.934,
+          "end": 36.49,
+          "cardIds": ["luy-thua.card.chia-cung-co-so"]
+        },
+        {
+          "id": "so-mu-0",
+          "start": 36.89,
+          "end": 59.205,
+          "cardIds": ["luy-thua.card.so-mu-0"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

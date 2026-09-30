@@ -1,0 +1,114 @@
+{
+  "title": "Nhân hai luỹ thừa cùng cơ số",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s04-ket-qua",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-hai-chuoi",
+      "sentences": [
+        {
+          "text": "Bạn cú có hai chuỗi hạt."
+        },
+        {
+          "text": "Mỗi hạt là một thừa số 3."
+        },
+        {
+          "text": "Chuỗi thứ nhất có hai hạt."
+        },
+        {
+          "text": "Chuỗi thứ hai có bốn hạt."
+        }
+      ]
+    },
+    {
+      "id": "s02-viet",
+      "sentences": [
+        {
+          "text": "Hai thừa số 3 là 3 mũ 2."
+        },
+        {
+          "text": "Bốn thừa số 3 là 3 mũ 4."
+        },
+        {
+          "text": "Số mũ cho biết có mấy thừa số."
+        }
+      ]
+    },
+    {
+      "id": "s03-noi",
+      "sentences": [
+        {
+          "text": "Bây giờ, ta nhân 3 mũ 2 với 3 mũ 4."
+        },
+        {
+          "text": "Hai chuỗi hạt nối lại thành một chuỗi."
+        },
+        {
+          "text": "Đếm xem có mấy thừa số nhé."
+        },
+        {
+          "text": "Hai thừa số thêm bốn thừa số là sáu thừa số."
+        }
+      ]
+    },
+    {
+      "id": "s04-ket-qua",
+      "sentences": [
+        {
+          "text": "Sáu thừa số 3 là 3 mũ 6."
+        },
+        {
+          "text": "Vậy 3 mũ 2 nhân 3 mũ 4 bằng 3 mũ 6."
+        },
+        {
+          "text": "Cơ số vẫn là 3. Số mũ là 2 cộng 4, bằng 6."
+        }
+      ]
+    },
+    {
+      "id": "s05-quy-tac",
+      "sentences": [
+        {
+          "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+        }
+      ]
+    },
+    {
+      "id": "s06-thu",
+      "sentences": [
+        {
+          "text": "Thử nhé: 9 mũ 4 nhân 9 mũ 6."
+        },
+        {
+          "text": "Giữ cơ số 9. Cộng số mũ: 4 cộng 6 bằng 10."
+        },
+        {
+          "text": "Kết quả là 9 mũ 10."
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "nhan-cung-co-so",
+      "from": "s03-noi",
+      "to": "s05-quy-tac",
+      "cardIds": ["luy-thua.card.nhan-cung-co-so"]
+    }
+  ]
+}

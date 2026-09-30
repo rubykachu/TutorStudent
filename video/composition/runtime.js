@@ -53,6 +53,8 @@ window.LV = (() => {
   const beads = (parent, count, label) => {
     const row = make("div", "beads", parent);
     for (let i = 0; i < count; i++) {
+      // A multiplication dot between beads: the beads are factors.
+      if (i > 0) make("span", "bead-dot", row, "·");
       const bead = make(
         "div",
         "bead",

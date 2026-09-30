@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Chia hai luỹ thừa cùng cơ số và số mũ 0" (lesson luy-thua):
+  beads crossed out, 2⁵ : 2³ = 2², the rule, then 2³ : 2³ = 2⁰ = 1.
+  Built by `pnpm video:build luy-thua chia-cung-co-so`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Chia hai luỹ thừa cùng cơ số</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .cond { color: var(--color-muted-foreground); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="beads-layer" class="scene layer">
+          <div id="quotient" class="row math" style="top: 50px"></div>
+          <div id="five" class="row" style="top: 190px"></div>
+          <div id="label-5" class="row math" style="top: 330px"></div>
+          <div id="result-3" class="row" style="top: 320px"><span class="math pill"></span></div>
+          <div id="exp-3" class="row tag exp" style="top: 450px">5 − 3 = 2</div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="rule-4" class="row math big" style="top: 70px"></div>
+          <div id="keep-4" class="row tag base" style="top: 260px">giữ nguyên cơ số</div>
+          <div id="sub-4" class="row tag exp" style="top: 335px">lấy m trừ n</div>
+          <div id="cond-4" class="row math small cond" style="top: 420px; gap: 64px"><span id="c4a">a ≠ 0</span><span id="c4b">m ≥ n</span></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="self-5" class="row math" style="top: 40px"></div>
+          <div id="three" class="row" style="top: 150px"></div>
+          <div id="line-5a" class="row math" style="top: 290px"></div>
+          <div id="line-5b" class="row math" style="top: 400px"></div>
+          <div id="result-5" class="row" style="top: 320px"><span class="math big pill"></span></div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="rule-6" class="row" style="top: 110px"><span class="math big pill"></span></div>
+          <div id="cond-6" class="row tag base" style="top: 320px">cơ số khác 0</div>
+          <div id="ex-6" class="row math" style="top: 410px"></div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="rule-7a" class="row math big" style="top: 60px"></div>
+          <div id="cond-7a" class="row math small cond" style="top: 200px; gap: 64px"><span>a ≠ 0</span><span>m ≥ n</span></div>
+          <div id="rule-7b" class="row" style="top: 300px"><span class="math big pill"></span></div>
+          <div id="cond-7b" class="row math small cond" style="top: 450px">a ≠ 0</div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, end, W, pow, op, beads, owl, pop, rise, fade, hide, cross, pose, scenes, finish } = window.LV;
+        const div = op(":");
+        const eq = op("=");
+
+        // ---------- DOM ----------
+        beads($("#five"), 5, "2");
+        beads($("#three"), 3, "2");
+        $("#quotient").innerHTML = `${pow("2", "5")}${div}${pow("2", "3")}`;
+        $("#label-5").innerHTML = pow("2", "5");
+        $("#result-3 .pill").innerHTML = `${pow("2", "5")}${div}${pow("2", "3")}${eq}${pow("2", "2")}`;
+        $("#rule-4").innerHTML = `${pow("a", "m")}${div}${pow("a", "n")}${eq}${pow("a", "m − n")}`;
+        $("#self-5").innerHTML = `${pow("2", "3")}${div}${pow("2", "3")}`;
+        $("#line-5a").innerHTML = `${pow("2", "3")}${div}${pow("2", "3")}${eq}<span id="d5">${pow("2", "3 − 3")}</span><span id="z5">${eq}${pow("2", "0")}</span>`;
+        $("#line-5b").innerHTML = `${pow("2", "3")}${div}${pow("2", "3")}${eq}<span id="one5">1</span>`;
+        $("#result-5 .pill").innerHTML = `${pow("2", "0")}${eq}1`;
+        $("#rule-6 .pill").innerHTML = `${pow("a", "0")}${eq}1`;
+        $("#ex-6").innerHTML = `${pow("9", "0")}${eq}1`;
+        $("#rule-7a").innerHTML = `${pow("a", "m")}${div}${pow("a", "n")}${eq}${pow("a", "m − n")}`;
+        $("#rule-7b .pill").innerHTML = `${pow("a", "0")}${eq}1`;
+        const five = $$("#five .bead");
+        const three = $$("#three .bead");
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s4", "s04-quy-tac"],
+          ["#s5", "s05-chia-chinh-no"],
+          ["#s6", "s06-quy-uoc"],
+          ["#s7", "s07-nho"],
+        ]);
+        {
+          // The five beads stay on screen for the first three scenes.
+          const el = $("#beads-layer");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, 0);
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s03-ket-qua") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: five beads, 2⁵ ----------
+        {
+          const sid = "s01-nam-hat";
+          hide([...$$("#five .beads > *"), "#label-5", "#quotient", "#result-3", "#exp-3"]);
+          pose(bird, "happy", W(sid, "cú"));
+          pop($$("#five .beads > *"), W(sid, "hạt"), { stagger: 0.08 });
+          pop("#label-5", W(sid, "là", 2));
+          tl.fromTo(five, { scale: 1 }, { scale: 1.15, duration: 0.2, yoyo: true, repeat: 1, stagger: 0.1, immediateRender: false }, W(sid, "biết"));
+        }
+
+        // ---------- s02: dividing by 2³ crosses out three beads ----------
+        {
+          const sid = "s02-gach";
+          pose(bird, "idle", start(sid));
+          rise("#quotient", W(sid, "chia", 1));
+          fade("#label-5", W(sid, "chia", 1));
+          cross(five.slice(2), W(sid, "gạch"));
+          tl.fromTo(five.slice(0, 2), { scale: 1 }, { scale: 1.2, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "còn"));
+        }
+
+        // ---------- s03: 2⁵ : 2³ = 2² ----------
+        {
+          const sid = "s03-ket-qua";
+          fade("#quotient", start(sid));
+          pop("#result-3", W(sid, "bằng", 1), { from: 0.5 });
+          rise("#exp-3", W(sid, "trừ"));
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+
+        // ---------- s04: the rule ----------
+        {
+          const sid = "s04-quy-tac";
+          hide(["#keep-4", "#sub-4", "#c4a", "#c4b"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule-4", start(sid) + 0.2, { from: 0.6 });
+          rise("#c4a", W(sid, "khác"));
+          rise("#keep-4", W(sid, "giữ"));
+          rise("#sub-4", W(sid, "trừ"));
+          rise("#c4b", W(sid, "lớn"));
+        }
+
+        // ---------- s05: a power divided by itself ----------
+        {
+          const sid = "s05-chia-chinh-no";
+          hide([...$$("#three .beads > *"), "#line-5a", "#d5", "#z5", "#line-5b", "#result-5"]);
+          rise("#self-5", W(sid, "chia", 1));
+          pop($$("#three .beads > *"), W(sid, "chia", 1) + 0.3, { stagger: 0.08 });
+          cross(three, W(sid, "gạch"));
+          tl.set("#line-5a", { autoAlpha: 1 }, W(sid, "trừ") - 0.1);
+          rise($$("#line-5a > .pow, #line-5a > .op").slice(0, 4), W(sid, "trừ") - 0.1);
+          rise("#d5", W(sid, "trừ"));
+          rise("#z5", W(sid, "bằng", 1));
+          rise("#line-5b", W(sid, "được"));
+          fade(["#line-5a", "#line-5b"], W(sid, "vậy") - 0.3, 0.3);
+          pop("#result-5", W(sid, "vậy"), { from: 0.4 });
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+
+        // ---------- s06: the convention ----------
+        {
+          const sid = "s06-quy-uoc";
+          hide(["#cond-6", "#ex-6"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule-6", start(sid) + 0.2, { from: 0.6 });
+          rise("#cond-6", W(sid, "khác"));
+          rise("#ex-6", W(sid, "ví"));
+        }
+
+        // ---------- s07: remember ----------
+        {
+          const sid = "s07-nho";
+          hide(["#rule-7b", "#cond-7a", "#cond-7b"]);
+          rise("#rule-7a", W(sid, "chia"));
+          rise("#cond-7a", W(sid, "khác", 1));
+          pop("#rule-7b", W(sid, "quy"), { from: 0.5 });
+          rise("#cond-7b", W(sid, "khác", 2));
+          pose(bird, "cheer", W(sid, "quy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+{
+  "title": "Luỹ thừa là gì?",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s04-viet-gon",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-ban-co",
+      "sentences": [
+        {
+          "text": "Cùng bạn cú nghe chuyện bàn cờ và hạt thóc nhé."
+        },
+        {
+          "text": "Ngày xưa, có một bàn cờ vua với 64 ô."
+        },
+        {
+          "text": "Ô đầu tiên có 1 hạt thóc."
+        },
+        {
+          "text": "Mỗi ô sau có số hạt gấp đôi ô trước."
+        }
+      ]
+    },
+    {
+      "id": "s02-gap-doi",
+      "sentences": [
+        {
+          "text": "Ô thứ hai có 2 hạt."
+        },
+        {
+          "text": "Ô thứ ba có 4 hạt."
+        },
+        {
+          "text": "Còn ô thứ tư có 8 hạt."
+        }
+      ]
+    },
+    {
+      "id": "s03-phep-nhan",
+      "sentences": [
+        {
+          "text": "Tám hạt bằng hai nhân hai nhân hai."
+        },
+        {
+          "text": "Càng về sau, phép nhân càng dài."
+        }
+      ]
+    },
+    {
+      "id": "s04-viet-gon",
+      "sentences": [
+        {
+          "text": "Nhân nhiều số hai như thế, ta viết gọn thành một luỹ thừa."
+        },
+        {
+          "text": "Hai nhân hai nhân hai viết gọn là 2 mũ 3."
+        },
+        {
+          "text": "Số 3 nhỏ ở trên cho biết có ba thừa số 2."
+        }
+      ]
+    },
+    {
+      "id": "s05-dinh-nghia",
+      "sentences": [
+        {
+          "text": "a mũ n là tích của n thừa số, thừa số nào cũng bằng số a."
+        }
+      ]
+    },
+    {
+      "id": "s06-co-so-so-mu",
+      "sentences": [
+        {
+          "text": "Trong a mũ n, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
+        },
+        {
+          "text": "Với 2 mũ 3, cơ số là 2, số mũ là 3."
+        }
+      ]
+    },
+    {
+      "id": "s07-o-cuoi",
+      "sentences": [
+        {
+          "text": "Ô cuối là ô thứ 64, nên số hạt là tích của 63 thừa số 2."
+        },
+        {
+          "text": "Viết gọn là 2 mũ 63."
+        },
+        {
+          "text": "Nhiều thóc đến thế, nhà vua không có đủ để thưởng!"
+        },
+        {
+          "text": "Luỹ thừa giúp ta viết phép nhân dài thật gọn."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "viet-gon",
+      "from": "s03-phep-nhan",
+      "to": "s05-dinh-nghia",
+      "cardIds": ["luy-thua.card.viet-luy-thua"]
+    },
+    {
+      "id": "co-so-so-mu",
+      "from": "s06-co-so-so-mu",
+      "to": "s06-co-so-so-mu",
+      "cardIds": ["luy-thua.card.co-so-so-mu"]
+    }
+  ]
+}

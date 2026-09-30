@@ -79,7 +79,10 @@
     "luy-thua.section.so-mu-0",
     "luy-thua.section.so-mu-1",
     "luy-thua.section.tinh-gia-tri",
-    "luy-thua.section.tong-luy-thua-10"
+    "luy-thua.section.tong-luy-thua-10",
+    "luy-thua.video.chia-cung-co-so",
+    "luy-thua.video.luy-thua-la-gi",
+    "luy-thua.video.nhan-cung-co-so"
   ],
   "retired": {
     "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3"

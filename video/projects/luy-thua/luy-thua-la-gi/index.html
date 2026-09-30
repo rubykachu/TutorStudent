@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Luỹ thừa là gì?" (lesson luy-thua): the chessboard grains,
+  repeated multiplication written as a power, cơ số and số mũ.
+  Built by `pnpm video:build luy-thua luy-thua-la-gi`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Luỹ thừa là gì?</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      #board { left: 250px; top: 120px; width: 384px; height: 384px; }
+      #tray { left: 720px; top: 150px; width: 330px; height: 330px; }
+      #final-board { left: 250px; top: 130px; width: 288px; height: 288px; }
+      #final-label { left: 250px; top: 50px; width: 288px; text-align: center; }
+      #pile { left: 250px; top: 130px; width: 288px; height: 288px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="title" class="row title" style="top: 40px">Luỹ thừa là gì?</div>
+        </section>
+        <section id="board-layer" class="scene layer">
+          <div id="board" class="abs board"></div>
+          <div id="tray" class="abs tray"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="eight" class="row math big" style="top: 150px"></div>
+          <div id="long" class="row math small" style="top: 360px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="three-twos" class="row math big" style="top: 90px"></div>
+          <div id="brace-4" class="abs brace" style="left: 470px; top: 225px; width: 340px"></div>
+          <div id="count-4" class="row tag exp" style="top: 262px">3 thừa số</div>
+          <div id="power-4" class="row" style="top: 350px"><span class="math big pill"></span></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="an" class="row math big" style="top: 70px"></div>
+          <div id="product" class="row math" style="top: 250px"></div>
+          <div id="brace-5" class="abs brace" style="left: 505px; top: 345px; width: 420px"></div>
+          <div id="count-5" class="row tag exp" style="top: 385px">n thừa số</div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="an-6" class="abs math big" style="left: 300px; top: 150px"></div>
+          <div id="an-base" class="abs tag base" style="left: 250px; top: 330px">cơ số</div>
+          <div id="an-exp" class="abs tag exp" style="left: 425px; top: 150px">số mũ</div>
+          <div id="p-6" class="abs math big" style="left: 820px; top: 150px"></div>
+          <div id="p-base" class="abs tag base" style="left: 770px; top: 330px">cơ số</div>
+          <div id="p-exp" class="abs tag exp" style="left: 940px; top: 150px">số mũ</div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="final-label" class="abs title">Ô thứ 64</div>
+          <div id="final-board" class="abs board"></div>
+          <div id="pile" class="abs"></div>
+          <div id="last-product" class="abs math small" style="left: 640px; top: 150px"></div>
+          <div id="brace-7" class="abs brace" style="left: 648px; top: 225px; width: 470px"></div>
+          <div id="count-7" class="abs tag exp" style="left: 740px; top: 265px">63 thừa số</div>
+          <div id="power-7" class="abs" style="left: 760px; top: 350px"><span class="math big pill"></span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, end, W, WE, make, pow, op, owl, pop, rise, fade, hide, pose, scenes, finish, color, light } = window.LV;
+        const dot = op("·");
+
+        // ---------- DOM ----------
+        const squares = (board) =>
+          Array.from({ length: 64 }, (_, i) =>
+            make("div", `sq${(Math.floor(i / 8) + i) % 2 ? " dark" : ""}`, board),
+          );
+        const boardSquares = squares($("#board"));
+        const finalSquares = squares($("#final-board"));
+        // Grains in the tray: 1, 2, 4 and 8 of them, spread on a loose grid.
+        const GRAIN_SPOTS = [
+          [150, 155], [95, 110], [205, 200], [210, 105], [90, 205], [150, 70], [150, 245], [255, 155],
+        ];
+        const grains = GRAIN_SPOTS.map(([x, y], i) => {
+          const g = make("div", "grain", $("#tray"));
+          Object.assign(g.style, { left: `${x}px`, top: `${y}px`, transform: `rotate(${(i * 47) % 180 - 60}deg)` });
+          return g;
+        });
+        const labels = [1, 2, 3, 4].map((n) => make("div", "row title", $("#board-layer"), `Ô thứ ${n}`));
+        labels.forEach((l) => { l.style.top = "40px"; });
+        const counts = [1, 2, 4, 8].map((n) => {
+          const c = make("div", "abs title", $("#board-layer"), `${n} hạt`);
+          Object.assign(c.style, { left: "720px", top: "488px", width: "330px", textAlign: "center" });
+          return c;
+        });
+
+        $("#eight").innerHTML = `<span id="e8">8</span>${op("=")}<span class="two">2</span><span class="dot">${dot}</span><span class="two">2</span><span class="dot">${dot}</span><span class="two">2</span>`;
+        $$("#eight .two").forEach((el) => { el.style.color = "var(--color-concept-blue)"; });
+        $("#long").innerHTML = `${Array.from({ length: 12 }, () => `<span class="lt"><span class="pow"><span class="b">2</span></span>${dot}</span>`).join("")}<span class="lt">…</span>`;
+        $("#three-twos").innerHTML = `<span class="pow"><span class="b">2</span></span>${dot}<span class="pow"><span class="b">2</span></span>${dot}<span class="pow"><span class="b">2</span></span>`;
+        $("#power-4 .pill").innerHTML = `<span class="pow"><span class="b">2</span><span class="e" id="exp-4">3</span></span>`;
+        $("#an").innerHTML = pow("a", "n");
+        $("#product").innerHTML = `${op("=")}<span class="pa">${pow("a", "")}</span>${dot}<span class="pa">${pow("a", "")}</span>${dot}<span>…</span>${dot}<span class="pa">${pow("a", "")}</span>`;
+        $("#an-6").innerHTML = pow("a", "n");
+        $("#p-6").innerHTML = pow("2", "3");
+        $("#last-product").innerHTML = `<span class="pow"><span class="b">2</span></span>${dot}<span class="pow"><span class="b">2</span></span>${dot}<span>…</span>${dot}<span class="pow"><span class="b">2</span></span>`;
+        $("#power-7 .pill").innerHTML = pow("2", "63");
+        // A heap of grains poured over the board for the last square.
+        // Seeded, so every render scatters the grains the same way.
+        let seed = 7;
+        const scatter = () => {
+          seed = (seed * 16807) % 2147483647;
+          return seed / 2147483647;
+        };
+        const pile = Array.from({ length: 70 }, (_, i) => {
+          const g = make("div", "grain", $("#pile"));
+          Object.assign(g.style, { left: `${10 + scatter() * 250}px`, top: `${10 + scatter() * 260}px`, transform: `rotate(${scatter() * 180}deg)` });
+          return g;
+        });
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-ban-co"],
+          ["#s3", "s03-phep-nhan"],
+          ["#s4", "s04-viet-gon"],
+          ["#s5", "s05-dinh-nghia"],
+          ["#s6", "s06-co-so-so-mu"],
+          ["#s7", "s07-o-cuoi"],
+        ]);
+        // The board stays on screen through the first two scenes.
+        {
+          const el = $("#board-layer");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, W("s01-ban-co", "bàn") - 0.2);
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s02-gap-doi") - 0.3);
+        }
+        hide([...grains, ...labels, ...counts, ...pile]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: the board and the first grain ----------
+        {
+          const sid = "s01-ban-co";
+          fade("#title", W(sid, "ô", 2) - 0.3);
+          pop("#board", W(sid, "bàn"), { from: 0.8 });
+          pop("#tray", W(sid, "bàn") + 0.3, { from: 0.8 });
+          light(boardSquares[0], W(sid, "ô", 2));
+          rise(labels[0], W(sid, "ô", 2));
+          pose(bird, "happy", W(sid, "cú"));
+          pose(bird, "idle", W(sid, "ngày"));
+          pop(grains[0], W(sid, "hạt", 2), { from: 0.2 });
+          rise(counts[0], W(sid, "hạt", 2));
+          // "gấp đôi": the next square blinks as a hint of what comes.
+          tl.fromTo(boardSquares[1], { backgroundColor: getComputedStyle(boardSquares[1]).backgroundColor }, { backgroundColor: color("highlight"), duration: 0.2, yoyo: true, repeat: 3, immediateRender: false }, W(sid, "gấp"));
+        }
+
+        // ---------- s02: doubling, square by square ----------
+        {
+          const sid = "s02-gap-doi";
+          [1, 2, 3].forEach((n) => {
+            const t = W(sid, "ô", n);
+            light(boardSquares[n - 1], t, false);
+            light(boardSquares[n], t);
+            fade(labels[n - 1], t - 0.1, 0.1);
+            rise(labels[n], t);
+            // Square and count change together, so no wrong pair shows.
+            fade(counts[n - 1], t - 0.1, 0.1);
+            rise(counts[n], t);
+            const have = 2 ** (n - 1);
+            pop(grains.slice(have, have * 2), W(sid, "hạt", n), { from: 0.2, stagger: 0.06 });
+          });
+        }
+
+        // ---------- s03: eight grains as a product ----------
+        {
+          const sid = "s03-phep-nhan";
+          const parts = $$("#eight > span");
+          hide(parts);
+          pop(parts[0], W(sid, "tám"));
+          pop(parts[1], W(sid, "bằng"));
+          const twos = $$("#eight .two");
+          const dots = $$("#eight .dot");
+          [1, 2, 3].forEach((n) => {
+            pop(twos[n - 1], W(sid, "hai", n), { from: 0.3 });
+            if (n > 1) pop(dots[n - 2], W(sid, "nhân", n - 1));
+          });
+          const long = $$("#long .lt");
+          const from = W(sid, "càng");
+          const to = WE(sid, "dài");
+          rise(long, from, { y: 20, stagger: (to - from) / long.length });
+        }
+
+        // ---------- s04: written short as 2³ ----------
+        {
+          const sid = "s04-viet-gon";
+          const twos = $$("#three-twos .pow");
+          hide(["#brace-4", "#count-4", "#power-4", "#exp-4"]);
+          rise("#three-twos", start(sid) + 0.2);
+          [2, 3, 4].forEach((n, i) => {
+            tl.fromTo(twos[i], { scale: 1 }, { scale: 1.25, duration: 0.2, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "hai", n));
+          });
+          tl.fromTo("#exp-4", { scale: 1 }, { scale: 1.5, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "nhỏ"));
+          tl.fromTo("#brace-4", { autoAlpha: 0, scaleX: 0 }, { autoAlpha: 1, scaleX: 1, duration: 0.4, immediateRender: false }, W(sid, "nhỏ"));
+          rise("#count-4", W(sid, "ba") + 0.2);
+          pop("#power-4", W(sid, "2"), { from: 0.4 });
+          pop("#exp-4", W(sid, "3"), { from: 0.2, ease: "back.out(3)" });
+          pose(bird, "happy", W(sid, "3"));
+        }
+
+        // ---------- s05: aⁿ, n factors equal to số a ----------
+        {
+          const sid = "s05-dinh-nghia";
+          hide(["#product", "#brace-5", "#count-5"]);
+          pose(bird, "idle", start(sid) + 0.1);
+          pop("#an", W(sid, "a"), { from: 0.4 });
+          rise("#product", W(sid, "tích"));
+          tl.fromTo("#brace-5", { autoAlpha: 0, scaleX: 0 }, { autoAlpha: 1, scaleX: 1, duration: 0.4, immediateRender: false }, W(sid, "n", 2));
+          rise("#count-5", W(sid, "n", 2) + 0.15);
+          tl.fromTo($$("#product .pa"), { scale: 1 }, { scale: 1.2, duration: 0.25, yoyo: true, repeat: 1, stagger: 0.15, immediateRender: false }, W(sid, "bằng"));
+        }
+
+        // ---------- s06: cơ số and số mũ ----------
+        {
+          const sid = "s06-co-so-so-mu";
+          hide(["#an-base", "#an-exp", "#p-6", "#p-base", "#p-exp"]);
+          pop("#an-6", start(sid) + 0.2, { from: 0.6 });
+          rise("#an-base", W(sid, "cơ", 1), { y: -20 });
+          rise("#an-exp", W(sid, "mũ", 2), { y: 20 });
+          pop("#p-6", W(sid, "với"), { from: 0.6 });
+          rise("#p-base", W(sid, "cơ", 2), { y: -20 });
+          rise("#p-exp", W(sid, "mũ", 4), { y: 20 });
+          pose(bird, "happy", W(sid, "mũ", 4));
+        }
+
+        // ---------- s07: the last square ----------
+        {
+          const sid = "s07-o-cuoi";
+          hide(["#final-label", "#last-product", "#brace-7", "#count-7", "#power-7"]);
+          pose(bird, "idle", start(sid) + 0.1);
+          pop("#final-board", start(sid) + 0.2, { from: 0.8 });
+          light(finalSquares[63], W(sid, "ô", 1));
+          rise("#final-label", W(sid, "ô", 1));
+          rise("#last-product", W(sid, "tích"));
+          tl.fromTo("#brace-7", { autoAlpha: 0, scaleX: 0 }, { autoAlpha: 1, scaleX: 1, duration: 0.4, immediateRender: false }, W(sid, "63"));
+          rise("#count-7", W(sid, "63") + 0.15);
+          pop("#power-7", W(sid, "2", 2), { from: 0.4 });
+          pop(pile, W(sid, "nhiều"), { from: 0.1, stagger: 0.02 });
+          pose(bird, "cheer", W(sid, "nhiều"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

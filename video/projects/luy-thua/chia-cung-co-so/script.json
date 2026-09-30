@@ -1,0 +1,123 @@
+{
+  "title": "Chia hai luỹ thừa cùng cơ số và số mũ 0",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s03-ket-qua",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-nam-hat",
+      "sentences": [
+        {
+          "text": "Bạn cú có năm hạt."
+        },
+        {
+          "text": "Mỗi hạt là một thừa số 2."
+        },
+        {
+          "text": "Năm thừa số 2 là 2 mũ 5."
+        },
+        {
+          "text": "Số mũ 5 cho biết có năm thừa số."
+        }
+      ]
+    },
+    {
+      "id": "s02-gach",
+      "sentences": [
+        {
+          "text": "Bây giờ, ta chia 2 mũ 5 cho 2 mũ 3."
+        },
+        {
+          "text": "Chia cho 2 mũ 3 là gạch đi ba thừa số 2."
+        },
+        {
+          "text": "Còn lại hai thừa số 2."
+        }
+      ]
+    },
+    {
+      "id": "s03-ket-qua",
+      "sentences": [
+        {
+          "text": "Vậy 2 mũ 5 chia 2 mũ 3 bằng 2 mũ 2."
+        },
+        {
+          "text": "Số mũ là 5 trừ 3, bằng 2."
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Chia hai luỹ thừa cùng cơ số, khác 0: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+        },
+        {
+          "text": "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai."
+        }
+      ]
+    },
+    {
+      "id": "s05-chia-chinh-no",
+      "sentences": [
+        {
+          "text": "Nếu chia 2 mũ 3 cho chính nó thì sao?"
+        },
+        {
+          "text": "Gạch đi cả ba thừa số, không còn thừa số nào."
+        },
+        {
+          "text": "Số mũ là 3 trừ 3, bằng 0."
+        },
+        {
+          "text": "Mà một số khác 0 chia cho chính nó thì được 1."
+        },
+        {
+          "text": "Vậy 2 mũ 0 bằng 1."
+        }
+      ]
+    },
+    {
+      "id": "s06-quy-uoc",
+      "sentences": [
+        {
+          "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+        },
+        {
+          "text": "Ví dụ, 9 mũ 0 bằng 1."
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé."
+        },
+        {
+          "text": "Chia hai luỹ thừa cùng cơ số, khác 0: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+        },
+        {
+          "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chia-cung-co-so",
+      "from": "s02-gach",
+      "to": "s04-quy-tac",
+      "cardIds": ["luy-thua.card.chia-cung-co-so"]
+    },
+    {
+      "id": "so-mu-0",
+      "from": "s05-chia-chinh-no",
+      "to": "s06-quy-uoc",
+      "cardIds": ["luy-thua.card.so-mu-0"]
+    }
+  ]
+}

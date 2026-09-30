@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Nhân hai luỹ thừa cùng cơ số" (lesson luy-thua): two strings
+  of beads join into one, 3² · 3⁴ = 3⁶, then the rule and one try.
+  Built by `pnpm video:build luy-thua nhan-cung-co-so`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Nhân hai luỹ thừa cùng cơ số</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .group { position: absolute; top: 190px; }
+      .bar { position: absolute; left: 0; right: 0; top: 112px; height: 6px; border-radius: 3px; background: var(--color-concept-slate); }
+      .under { position: absolute; top: 330px; width: 260px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="beads-layer" class="scene layer">
+          <div id="product" class="row math" style="top: 50px"></div>
+          <div id="group-a" class="group"><div class="bar"></div></div>
+          <div id="group-b" class="group"><div class="bar"></div></div>
+          <div id="join-dot" class="abs bead-dot" style="top: 190px; height: 96px">·</div>
+          <div id="label-a" class="under math"></div>
+          <div id="label-b" class="under math"></div>
+          <div id="sum" class="row tag exp" style="top: 340px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="result-4" class="row" style="top: 90px"><span class="math big pill"></span></div>
+          <div id="base-4" class="row tag base" style="top: 290px">cơ số 3</div>
+          <div id="exp-4" class="row tag exp" style="top: 370px"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="rule-5" class="row math big" style="top: 90px"></div>
+          <div id="keep-5" class="row tag base" style="top: 290px">giữ nguyên cơ số</div>
+          <div id="add-5" class="row tag exp" style="top: 370px">cộng các số mũ</div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="try-6" class="row math big" style="top: 70px"></div>
+          <div id="base-6" class="row tag base" style="top: 270px">cơ số 9</div>
+          <div id="exp-6" class="row tag exp" style="top: 350px"></div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="rule-7" class="row" style="top: 150px"><span class="math big pill"></span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, end, W, pow, op, beads, owl, pop, rise, fade, hide, pose, scenes, finish } = window.LV;
+        const dot = op("·");
+        const eq = op("=");
+
+        // ---------- DOM ----------
+        // Beads are 96px with a 40px multiplication dot between them. Apart, the two strings sit 120px
+        // from each other; joined, they close to one even row.
+        const BEAD = 96;
+        const GAP = 40;
+        const width = (n) => n * BEAD + (n - 1) * GAP;
+        const APART = 120;
+        const left = (1280 - (width(2) + APART + width(4))) / 2;
+        const joinedLeft = (1280 - width(6)) / 2;
+        $("#join-dot").style.left = `${joinedLeft + width(2)}px`;
+        const groupA = $("#group-a");
+        const groupB = $("#group-b");
+        beads(groupA, 2, "3");
+        beads(groupB, 4, "3");
+        groupA.style.left = `${left}px`;
+        groupB.style.left = `${left + width(2) + APART}px`;
+        $("#label-a").style.left = `${left + width(2) / 2 - 130}px`;
+        $("#label-b").style.left = `${left + width(2) + APART + width(4) / 2 - 130}px`;
+        $("#label-a").innerHTML = pow("3", "2");
+        $("#label-b").innerHTML = pow("3", "4");
+        $("#product").innerHTML = `${pow("3", "2")}${dot}${pow("3", "4")}`;
+        $("#sum").innerHTML = `<span id="sum-terms">2 + 4</span> <span id="sum-total">= 6</span>`;
+        $("#result-4 .pill").innerHTML = `${pow("3", "2")}${dot}${pow("3", "4")}${eq}<span id="r4">${pow("3", "6")}</span>`;
+        $("#exp-4").innerHTML = `số mũ 2 + 4 = 6`;
+        $("#rule-5").innerHTML = `${pow("a", "m")}${dot}${pow("a", "n")}${eq}${pow("a", "m+n")}`;
+        $("#try-6").innerHTML = `${pow("9", "4")}${dot}${pow("9", "6")}${eq}<span id="q6">?</span><span id="r6">${pow("9", "10")}</span>`;
+        $("#r6").style.display = "none";
+        $("#exp-6").innerHTML = `4 + 6 = 10`;
+        $("#rule-7 .pill").innerHTML = `${pow("a", "m")}${dot}${pow("a", "n")}${eq}${pow("a", "m+n")}`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s4", "s04-ket-qua"],
+          ["#s5", "s05-quy-tac"],
+          ["#s6", "s06-thu"],
+          ["#s7", "s07-nho"],
+        ]);
+        {
+          // The bead strings stay on screen for the first three scenes.
+          const el = $("#beads-layer");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, 0);
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s03-noi") - 0.3);
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: two strings of beads ----------
+        {
+          const sid = "s01-hai-chuoi";
+          hide([...$$(".beads > *"), ...$$(".bar"), "#join-dot", "#label-a", "#label-b", "#product", "#sum"]);
+          pose(bird, "happy", W(sid, "cú"));
+          // Both strings show at "hai chuỗi hạt", then each lights up in turn.
+          pop($$(".beads > *"), W(sid, "chuỗi"), { stagger: 0.06 });
+          rise($$(".bar"), W(sid, "chuỗi") + 0.4);
+          const pulse = (targets, t) =>
+            tl.fromTo(targets, { scale: 1 }, { scale: 1.18, duration: 0.22, yoyo: true, repeat: 1, stagger: 0.1, immediateRender: false }, t);
+          pulse($$("#group-a .bead"), W(sid, "hạt", 3));
+          pulse($$("#group-b .bead"), W(sid, "hạt", 4));
+        }
+
+        // ---------- s02: each string as a power ----------
+        {
+          const sid = "s02-viet";
+          pose(bird, "idle", start(sid));
+          pop("#label-a", W(sid, "là", 1));
+          pop("#label-b", W(sid, "là", 2));
+          tl.fromTo($$("#label-a .e, #label-b .e"), { scale: 1 }, { scale: 1.4, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "mũ", 3));
+          tl.fromTo($$(".bead"), { scale: 1 }, { scale: 1.15, duration: 0.2, yoyo: true, repeat: 1, stagger: 0.08, immediateRender: false }, W(sid, "thừa", 3));
+        }
+
+        // ---------- s03: multiply, the strings join ----------
+        {
+          const sid = "s03-noi";
+          rise("#product", W(sid, "nhân"));
+          fade(["#label-a", "#label-b"], W(sid, "nối") - 0.3, 0.3);
+          const shiftA = joinedLeft - left;
+          const shiftB = joinedLeft + width(2) + GAP - (left + width(2) + APART);
+          tl.to(groupA, { x: shiftA, duration: 0.9, ease: "power2.inOut" }, W(sid, "nối"));
+          tl.to(groupB, { x: shiftB, duration: 0.9, ease: "power2.inOut" }, W(sid, "nối"));
+          tl.to($("#group-a .bar"), { right: -GAP, duration: 0.9, ease: "power2.inOut" }, W(sid, "nối"));
+          pop("#join-dot", W(sid, "nối") + 0.9, { from: 0.3 });
+          tl.fromTo($$(".bead"), { scale: 1 }, { scale: 1.15, duration: 0.2, yoyo: true, repeat: 1, stagger: 0.12, immediateRender: false }, W(sid, "đếm"));
+          hide(["#sum-terms", "#sum-total"]);
+          tl.set("#sum", { autoAlpha: 1 }, W(sid, "thêm") - 0.1);
+          rise("#sum-terms", W(sid, "thêm") - 0.1);
+          pop("#sum-total", W(sid, "sáu"), { from: 0.3 });
+          pose(bird, "happy", W(sid, "sáu"));
+        }
+
+        // ---------- s04: 3² · 3⁴ = 3⁶ ----------
+        {
+          const sid = "s04-ket-qua";
+          hide(["#r4", "#base-4", "#exp-4"]);
+          pose(bird, "idle", start(sid));
+          rise("#result-4", start(sid) + 0.2);
+          pop("#r4", W(sid, "bằng", 1), { from: 0.3 });
+          rise("#base-4", W(sid, "cơ"));
+          rise("#exp-4", W(sid, "mũ", 5));
+        }
+
+        // ---------- s05: the rule ----------
+        {
+          const sid = "s05-quy-tac";
+          hide(["#keep-5", "#add-5"]);
+          pop("#rule-5", start(sid) + 0.2, { from: 0.6 });
+          rise("#keep-5", W(sid, "giữ"));
+          rise("#add-5", W(sid, "cộng"));
+        }
+
+        // ---------- s06: one try ----------
+        {
+          const sid = "s06-thu";
+          hide(["#base-6", "#exp-6"]);
+          pop("#try-6", W(sid, "thử"), { from: 0.6 });
+          rise("#base-6", W(sid, "giữ"));
+          rise("#exp-6", W(sid, "cộng", 1));
+          tl.set("#q6", { display: "none" }, W(sid, "kết"));
+          tl.set("#r6", { display: "inline-block" }, W(sid, "kết"));
+          pop("#r6", W(sid, "kết"), { from: 0.3 });
+          pose(bird, "happy", W(sid, "kết"));
+        }
+
+        // ---------- s07: remember ----------
+        {
+          const sid = "s07-nho";
+          pop("#rule-7", start(sid) + 0.2, { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

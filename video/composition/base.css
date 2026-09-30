@@ -131,7 +131,16 @@ body {
 }
 .beads {
   display: flex;
-  gap: 16px;
+}
+.bead-dot {
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font:
+    800 44px / 1 "Baloo 2",
+    sans-serif;
+  color: var(--color-foreground);
 }
 /* The number stays whole above the slash of a crossed bead. */
 .bead .num {
