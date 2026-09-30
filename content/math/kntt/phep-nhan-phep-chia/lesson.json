@@ -1,0 +1,4223 @@
+{
+  "id": "phep-nhan-phep-chia",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 5,
+  "number": 5,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
+  "title": "Phép nhân và phép chia số tự nhiên",
+  "sourceRef": "Sách bài tập tr.17–20",
+  "status": "published",
+  "reviewedHash": "d570c3a630fc17ed93ec56d1685cbbde97d80930f2dea8a59f8135fc84de192d",
+  "overview": {
+    "hook": {
+      "text": "Mẹ nhờ bạn tính tiền 24 gói bánh, mỗi gói 37 nghìn đồng. Làm sao để nhân chia nhanh mà không sai?"
+    },
+    "summary": "Bài này ôn phép nhân và phép chia số tự nhiên. Bạn nhân nhẩm nhờ các tính chất, đặt tính nhân và chia từng bước, rồi giải bài toán có phép chia dư.",
+    "goals": [
+      "nhân nhẩm nhanh nhờ tính chất giao hoán, kết hợp và phân phối",
+      "đặt tính nhân và đặt tính chia đúng từng bước",
+      "viết phép chia có dư: số bị chia bằng số chia nhân thương cộng số dư",
+      "tìm lỗi sai và giải bài toán có phép chia dư"
+    ],
+    "whyItMatters": "Nhân chia đúng giúp bạn tính tiền, chia đồ và kiểm tra bài toán mà không sợ sai."
+  },
+  "concepts": [
+    {
+      "id": "phep-nhan-phep-chia.concept.thua-so",
+      "name": "Thừa số",
+      "color": "blue"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.tich",
+      "name": "Tích",
+      "color": "amber"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.so-bi-chia",
+      "name": "Số bị chia",
+      "color": "blue"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.so-chia",
+      "name": "Số chia",
+      "color": "violet"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.thuong",
+      "name": "Thương",
+      "color": "amber"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.so-du",
+      "name": "Số dư",
+      "color": "pink"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.bang-nhan",
+      "name": "Bảng nhân",
+      "color": "violet"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.tong-bang-nhau",
+      "name": "Tổng các số hạng bằng nhau",
+      "color": "slate"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.tich-rieng",
+      "name": "Tích riêng",
+      "color": "teal"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.so-nho",
+      "name": "Số nhớ",
+      "color": "sky"
+    },
+    {
+      "id": "phep-nhan-phep-chia.concept.dat-tinh-chia",
+      "name": "Đặt tính chia",
+      "color": "lime"
+    }
+  ],
+  "sections": [
+    {
+      "id": "phep-nhan-phep-chia.section.nhan-cong-lap",
+      "title": "Phép nhân là cộng nhiều lần",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.nhan-hop-banh",
+          "caption": "Có 4 hộp bánh, mỗi hộp 6 cái."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Phép nhân là cộng nhiều số bằng nhau. Số 6 được lấy 4 lần thì viết là 6 · 4: số đứng trước là số được cộng, số đứng sau là số lần lấy."
+            },
+            {
+              "type": "formula",
+              "tex": "6 + 6 + 6 + 6 = 6 \\cdot 4"
+            },
+            {
+              "type": "formula",
+              "tex": "= 24"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bấm + hoặc − để xếp lưới 3 hàng, mỗi hàng 5 chấm. Xếp lưới giúp bạn thấy phép nhân là cộng các hàng bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.xep-luoi-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-tong-7"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tinh-ba-keo"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.nhan-cong-lap-tom-tat",
+        "caption": "Phép nhân là cộng nhiều số bằng nhau. Số được cộng viết trước, số lần lấy viết sau."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.bang-nhan",
+      "title": "Ôn bảng nhân",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bảng nhân cho biết tích của hai số từ 1 đến 9. Mỗi hộp có 6 cái bút, mua 9 hộp thì tra hàng 6, cột 9 được 6 · 9 = 54."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.bang-nhan-day-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong mỗi hàng của bảng nhân, ô sau hơn ô trước đúng bằng số của hàng. Ở hàng 6 ta có 6, 12, 18, 24, 30."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.bang-nhan-nhay-cach"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.cham-tich-42"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tinh-tuan-ngay"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.bang-nhan-tom-tat",
+        "caption": "Trong mỗi hàng của bảng nhân, ô sau hơn ô trước đúng bằng số của hàng. Thuộc các ô khó từ 6 đến 9 thì nhân và chia ít sai."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.ten-goi",
+      "title": "Gọi tên các số trong phép nhân và phép chia",
+      "sourceRef": "Sách bài tập tr.17",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong phép nhân, các số nhân với nhau gọi là thừa số, kết quả gọi là tích. Mua 4 gói bánh, mỗi gói 15 nghìn đồng, thì 15 · 4 = 60 nghìn đồng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.ten-goi-nhan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong 40 : 8 = 5, số 40 là số bị chia, số 8 là số chia, số 5 là thương. Chia đều 40 cái kẹo cho 8 bạn, mỗi bạn được 5 cái."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.ten-goi-chia"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.noi-ten-24-6"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.dien-ten-7-4"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.ten-goi-tom-tat",
+        "caption": "Thừa số nhân thừa số bằng tích. Số bị chia chia cho số chia bằng thương."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.giao-hoan",
+      "title": "Đổi chỗ các thừa số",
+      "sourceRef": "Sách bài tập tr.17",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.giao-hoan-ghe",
+          "caption": "Phòng học có 3 hàng ghế, mỗi hàng 7 ghế."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đổi chỗ các thừa số thì tích không đổi. Đó là tính chất giao hoán của phép nhân."
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{blue}{7} \\cdot \\concept{blue}{3} = \\concept{blue}{3} \\cdot \\concept{blue}{7} = \\concept{amber}{21}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đổi chỗ để thừa số một chữ số đứng sau thì nhân nhẩm dễ hơn. Ví dụ 2 · 35 = 35 · 2 = 70, tức là lấy 35 hai lần."
+            },
+            {
+              "type": "formula",
+              "tex": "2 \\cdot 35 = 35 \\cdot 2 = 70"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-5-8"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.dien-7-9"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.giao-hoan-tom-tat",
+        "caption": "Đổi chỗ các thừa số thì tích không đổi."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.ket-hop",
+      "title": "Nhóm các thừa số cho dễ nhẩm",
+      "sourceRef": "Sách bài tập tr.17, 19",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân ba số thì nhóm hai số nào lại trước cũng được, tích không đổi. Đó là tính chất kết hợp của phép nhân."
+            },
+            {
+              "type": "formula",
+              "tex": "(2 \\cdot 3) \\cdot 5 = 2 \\cdot (3 \\cdot 5)"
+            },
+            {
+              "type": "formula",
+              "tex": "= 30"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.ket-hop-36-25",
+          "caption": "Mua 25 khay trứng, mỗi khay 36 quả. Tách 36 thành 9 · 4, rồi nhóm 4 · 25."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tìm hai thừa số nhân ra số tròn, như 4 · 25 = 100 hay 8 · 125 = 1 000, rồi nhóm chúng lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.cap-so-tron"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-tich-tron-tram"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tinh-thung-sua"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.ket-hop-tom-tat",
+        "caption": "Nhóm các thừa số cho ra số tròn rồi mới nhân."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.phan-phoi",
+      "title": "Nhân một số với một tổng",
+      "sourceRef": "Sách bài tập tr.18, 19",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.phan-phoi-goi-banh",
+          "caption": "Mua 12 gói bánh, mỗi gói 3 cái."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn nhân một số với một tổng, ta nhân số đó với từng số trong ngoặc rồi cộng lại. Đó là tính chất phân phối của phép nhân đối với phép cộng."
+            },
+            {
+              "type": "formula",
+              "tex": "3 \\cdot (10 + 2)"
+            },
+            {
+              "type": "formula",
+              "tex": "= 3 \\cdot 10 + 3 \\cdot 2"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Dùng để nhân nhẩm: tách một thừa số thành chục và đơn vị, nhân từng phần rồi cộng lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.phan-phoi-26-12"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tính 14 · 12: bấm + hoặc − để tách 12 thành chục và đơn vị. Tách đúng giúp bạn nhân từng phần dễ hơn rồi cộng lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.phan-phoi-tach"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-cach-viet-4-23"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tinh-tui-keo"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.phan-phoi-tom-tat",
+        "caption": "Muốn nhân một số với một tổng, ta nhân số đó với từng số trong ngoặc rồi cộng lại."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.nhan-gan-tron",
+      "title": "Nhân với số gần số tròn chục, tròn trăm",
+      "sourceRef": "Sách bài tập tr.19",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân với số gần số tròn chục hay tròn trăm, như 19 hay 98, thì viết số đó thành hiệu. Ví dụ 19 = 20 − 1, nên nhân với 20 rồi trừ một lần thừa số kia."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.gan-tron-12-19"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.gan-tron-35-98",
+          "caption": "Có 98 hộp bút, mỗi hộp 35 cái."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Lỗi hay gặp là viết 15 · 19 = 15 · 20 − 1, chỉ nhân với số đầu trong ngoặc. Phải nhân 15 với cả hai số trong ngoặc."
+            },
+            {
+              "type": "formula",
+              "tex": "15 \\cdot (20 - 1)"
+            },
+            {
+              "type": "formula",
+              "tex": "= 15 \\cdot 20 - 15 \\cdot 1"
+            },
+            {
+              "type": "formula",
+              "tex": "= 300 - 15 = 285"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-cach-viet-15-99"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.mua-banh-6-49"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.gan-tron-tom-tat",
+        "caption": "Viết số gần số tròn thành hiệu. Nhân thừa số kia với cả hai số trong hiệu rồi trừ."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.nhan-mot-chu-so",
+      "title": "Đặt tính nhân với số có một chữ số",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.18",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.nhan-cot-38-6",
+          "caption": "Mua 6 hộp bút, mỗi hộp 38 cái."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đặt tính: viết các chữ số thẳng hàng rồi nhân từ phải sang trái. Tích từ 10 trở lên thì viết hàng đơn vị, nhớ hàng chục sang cột bên trái, riêng cột cuối viết cả tích."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.nhan-cot-54-7-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bấm chữ số đúng cho từng ô của tích. Làm từng ô từ phải sang trái giúp bạn nhớ cộng số nhớ."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.nhan-cot-26-4-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-viet-nho-8-7"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tinh-46-7"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.nhan-mot-chu-so-tom-tat",
+        "caption": "Nhân từ phải sang trái, tích từ 10 trở lên thì viết hàng đơn vị và nhớ hàng chục. Ở cột cuối thì viết cả tích."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.nhan-hai-chu-so",
+      "title": "Đặt tính nhân với số có hai chữ số",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.18",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.nhan-cot-36-24",
+          "caption": "Mua 24 gói bánh, mỗi gói 36 nghìn đồng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân với số có hai chữ số thì có hai tích riêng, rồi cộng chúng lại. Tích riêng thứ hai viết lùi sang trái một cột, vì đó là số chục; chữ số 0 mờ chỉ giữ chỗ."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.nhan-cot-47-13-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bấm chữ số đúng cho từng ô. Làm xong tích riêng thứ nhất rồi mới sang tích riêng thứ hai."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.nhan-cot-23-14-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-tich-rieng-2"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tinh-35-26"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.nhan-hai-chu-so-tom-tat",
+        "caption": "Nhân với số có hai chữ số: có hai tích riêng, tích riêng thứ hai lùi một cột, rồi cộng."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.uoc-luong",
+      "title": "Ước lượng để kiểm tra tích",
+      "sourceRef": "Sách bài tập tr.20",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.uoc-luong-62-8",
+          "caption": "Mua 8 cái áo, mỗi áo 62 nghìn đồng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn biết tích có hợp lí không, lấy số tròn chục liền trước và số tròn chục liền sau của thừa số, rồi nhân. Tích thật nằm giữa hai kết quả đó."
+            },
+            {
+              "type": "formula",
+              "tex": "60 \\cdot 8 < 62 \\cdot 8 < 70 \\cdot 8"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cách này còn giúp so sánh hai tích mà không cần tính. 30 · 40 và 20 · 60 cùng bằng 1 200, nên 29 · 40 nhỏ hơn 21 · 60."
+            },
+            {
+              "type": "formula",
+              "tex": "29 \\cdot 40 < 30 \\cdot 40 = 1\\,200"
+            },
+            {
+              "type": "formula",
+              "tex": "1\\,200 = 20 \\cdot 60 < 21 \\cdot 60"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-khoang-48-9"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.chon-tich-53-7"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.uoc-luong-tom-tat",
+        "caption": "Nhân với số tròn chục liền trước và liền sau của thừa số. Tích thật nằm giữa hai kết quả."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.chia-het",
+      "title": "Phép chia hết và phép nhân",
+      "sourceRef": "Sách bài tập tr.17",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.chia-deu-24-6",
+          "caption": "Chia đều 24 cái kẹo cho 6 bạn. Mỗi vòng phát 6 cái, phát 4 vòng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Phép chia hết là chia đều mà không thừa. Số bị chia bằng số chia nhân thương."
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{blue}{24} : \\concept{violet}{6} = \\concept{amber}{4}"
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{blue}{24} = \\concept{violet}{6} \\cdot \\concept{amber}{4}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm số chia, lấy số bị chia chia cho thương. Muốn tìm số bị chia, lấy số chia nhân thương."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.gia-dinh-6-4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-kiem-tra-28-4"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.chia-56-8"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.chia-het-tom-tat",
+        "caption": "Phép chia hết: số bị chia bằng số chia nhân thương."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.chia-co-du",
+      "title": "Phép chia có dư",
+      "sourceRef": "Sách bài tập tr.17",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.chia-keo-23-4",
+          "caption": "Chia đều 23 cái kẹo cho 4 bạn."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia mà còn thừa thì gọi là phép chia có dư. Phần còn lại là số dư và luôn nhỏ hơn số chia."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.ten-goi-chia-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số bị chia bằng số chia nhân thương, cộng số dư."
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{blue}{38} = \\concept{violet}{7} \\cdot \\concept{amber}{5} + \\concept{pink}{3}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bấm Chia một vòng để phát cho mỗi bạn một cái kẹo. Dừng khi số kẹo còn lại ít hơn số bạn, đó là số dư."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.chia-keo-17-5-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-du-26-4"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.chia-keo-29-6"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.chia-co-du-tom-tat",
+        "caption": "Số bị chia bằng số chia nhân thương cộng số dư. Số dư nhỏ hơn số chia."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.kiem-tra-chia",
+      "title": "Kiểm tra số dư và tìm thương",
+      "sourceRef": "Sách bài tập tr.17, 19",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Lan chia 37 cái kẹo cho 5 bạn, ghi mỗi bạn 6 cái, dư 7. Số dư phải nhỏ hơn số chia, nếu bằng hay lớn hơn thì còn chia tiếp được."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.kiem-tra-du-37-5"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Làm đúng thì Lan phát 7 vòng, mỗi vòng 5 cái, dư 2. Muốn kiểm tra phép chia có dư, lấy số chia nhân thương rồi cộng số dư: kết quả phải bằng số bị chia."
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{violet}{5} \\cdot \\concept{amber}{7} + \\concept{pink}{2} = \\concept{blue}{37}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Biết số bị chia, số chia và số dư thì muốn tìm thương, trừ số dư rồi chia cho số chia."
+            },
+            {
+              "type": "formula",
+              "tex": "(\\concept{blue}{37} - \\concept{pink}{2}) : \\concept{violet}{5} = \\concept{amber}{7}"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-du-dung-34-8"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.tim-so-bi-chia-8-6-5"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.kiem-tra-chia-tom-tat",
+        "caption": "Số dư nhỏ hơn số chia; số bị chia bằng số chia nhân thương cộng số dư. Muốn tìm thương, trừ số dư rồi chia cho số chia."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.dat-tinh-chia",
+      "title": "Đặt tính chia",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17, 18",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.chia-cot-95-4",
+          "caption": "Chia đều 95 quyển vở cho 4 lớp."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đặt tính chia từ trái sang phải: chia, nhân, trừ rồi hạ chữ số kế."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.chia-cot-268-12"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bấm chữ số đúng cho từng bước: chia, nhân, trừ. Làm từng bước giúp bạn không quên hạ chữ số."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.chia-cot-75-6-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.sap-luot-chia"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.chia-154-12"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.dat-tinh-chia-tom-tat",
+        "caption": "Lặp lại: chia, nhân, trừ, hạ. Số dư cuối cùng nhỏ hơn số chia."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.bai-toan-chia",
+      "title": "Bài toán có phép chia dư",
+      "sourceRef": "Sách bài tập tr.20",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.xep-xe-50-12",
+          "caption": "50 học sinh đi tham quan, mỗi xe chở tối đa 12 bạn."
+        },
+        {
+          "type": "visual",
+          "visualId": "phep-nhan-phep-chia.visual.mua-vo-100-12",
+          "caption": "Có 100 nghìn đồng, mỗi quyển vở giá 12 nghìn đồng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Còn dư mà vẫn phải xếp hết thì lấy thương cộng 1. Chỉ lấy các nhóm đủ thì lấy thương."
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{blue}{50} = \\concept{violet}{12} \\cdot \\concept{amber}{4} + \\concept{pink}{2}"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-ban-30-4"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.chon-thung-150-24"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.bai-toan-chia-tom-tat",
+        "caption": "Còn dư mà vẫn phải xếp hết thì lấy thương cộng 1. Chỉ lấy các nhóm đủ thì lấy thương."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.section.tim-loi-sai",
+      "title": "Tìm lỗi sai trong bài làm",
+      "sourceRef": "Sách bài tập tr.18, 19",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ba lỗi hay gặp là quên số nhớ khi nhân, số dư bằng hay lớn hơn số chia, và quên chữ số 0 ở thương."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.loi-sai-ba"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Soát phép chia có dư: số dư nhỏ hơn số chia, và số chia nhân thương cộng số dư bằng số bị chia."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-phep-chia.visual.loi-sai-soat"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-nhan-phep-chia.ex.chon-loi-43-6"],
+      "practiceIds": ["phep-nhan-phep-chia.ex.loi-nhan-38-7"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.tim-loi-sai-tom-tat",
+        "caption": "Soát ba chỗ: số nhớ khi nhân, số dư nhỏ hơn số chia, chữ số 0 ở thương."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "phep-nhan-phep-chia.card.nhan-cong-lap",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17",
+      "conceptIds": ["phep-nhan-phep-chia.concept.tong-bang-nhau"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.nhan-cong-lap-tom-tat",
+        "caption": "Phép nhân là cộng nhiều số bằng nhau. Số được cộng viết trước, số lần lấy viết sau."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.bang-nhan",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17",
+      "conceptIds": ["phep-nhan-phep-chia.concept.bang-nhan"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.bang-nhan-tom-tat",
+        "caption": "Trong mỗi hàng của bảng nhân, ô sau hơn ô trước đúng bằng số của hàng. Thuộc các ô khó từ 6 đến 9 thì nhân và chia ít sai."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.ten-goi",
+      "sourceRef": "Sách bài tập tr.17",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.thua-so",
+        "phep-nhan-phep-chia.concept.tich",
+        "phep-nhan-phep-chia.concept.so-bi-chia",
+        "phep-nhan-phep-chia.concept.so-chia",
+        "phep-nhan-phep-chia.concept.thuong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.ten-goi-tom-tat",
+        "caption": "Thừa số nhân thừa số bằng tích. Số bị chia chia cho số chia bằng thương."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.giao-hoan",
+      "sourceRef": "Sách bài tập tr.17",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.thua-so",
+        "phep-nhan-phep-chia.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.giao-hoan-tom-tat",
+        "caption": "Đổi chỗ các thừa số thì tích không đổi."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.ket-hop",
+      "sourceRef": "Sách bài tập tr.17, 19",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.thua-so",
+        "phep-nhan-phep-chia.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.ket-hop-tom-tat",
+        "caption": "Nhóm các thừa số cho ra số tròn rồi mới nhân."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.phan-phoi",
+      "sourceRef": "Sách bài tập tr.18, 19",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.phan-phoi-tom-tat",
+        "caption": "Muốn nhân một số với một tổng, ta nhân số đó với từng số trong ngoặc rồi cộng lại."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.nhan-gan-tron",
+      "sourceRef": "Sách bài tập tr.19",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.gan-tron-tom-tat",
+        "caption": "Viết số gần số tròn thành hiệu. Nhân thừa số kia với cả hai số trong hiệu rồi trừ."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.nhan-mot-chu-so",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.18",
+      "conceptIds": ["phep-nhan-phep-chia.concept.so-nho"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.nhan-mot-chu-so-tom-tat",
+        "caption": "Nhân từ phải sang trái, tích từ 10 trở lên thì viết hàng đơn vị và nhớ hàng chục. Ở cột cuối thì viết cả tích."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.nhan-hai-chu-so",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.18",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.tich-rieng",
+        "phep-nhan-phep-chia.concept.so-nho"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.nhan-hai-chu-so-tom-tat",
+        "caption": "Nhân với số có hai chữ số: có hai tích riêng, tích riêng thứ hai lùi một cột, rồi cộng."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.uoc-luong",
+      "sourceRef": "Sách bài tập tr.20",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.uoc-luong-tom-tat",
+        "caption": "Nhân với số tròn chục liền trước và liền sau của thừa số. Tích thật nằm giữa hai kết quả."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.chia-het",
+      "sourceRef": "Sách bài tập tr.17",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.so-bi-chia",
+        "phep-nhan-phep-chia.concept.so-chia",
+        "phep-nhan-phep-chia.concept.thuong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.chia-het-tom-tat",
+        "caption": "Phép chia hết: số bị chia bằng số chia nhân thương."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.chia-co-du",
+      "sourceRef": "Sách bài tập tr.17",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.so-bi-chia",
+        "phep-nhan-phep-chia.concept.so-chia",
+        "phep-nhan-phep-chia.concept.thuong",
+        "phep-nhan-phep-chia.concept.so-du"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.chia-co-du-tom-tat",
+        "caption": "Số bị chia bằng số chia nhân thương cộng số dư. Số dư nhỏ hơn số chia."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.kiem-tra-chia",
+      "sourceRef": "Sách bài tập tr.17, 19",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.so-bi-chia",
+        "phep-nhan-phep-chia.concept.so-chia",
+        "phep-nhan-phep-chia.concept.thuong",
+        "phep-nhan-phep-chia.concept.so-du"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.kiem-tra-chia-tom-tat",
+        "caption": "Số dư nhỏ hơn số chia; số bị chia bằng số chia nhân thương cộng số dư. Muốn tìm thương, trừ số dư rồi chia cho số chia."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.dat-tinh-chia",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.17, 18",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.so-bi-chia",
+        "phep-nhan-phep-chia.concept.so-chia",
+        "phep-nhan-phep-chia.concept.thuong",
+        "phep-nhan-phep-chia.concept.so-du",
+        "phep-nhan-phep-chia.concept.dat-tinh-chia"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.dat-tinh-chia-tom-tat",
+        "caption": "Lặp lại: chia, nhân, trừ, hạ. Số dư cuối cùng nhỏ hơn số chia."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.bai-toan-chia",
+      "sourceRef": "Sách bài tập tr.20",
+      "conceptIds": [
+        "phep-nhan-phep-chia.concept.thuong",
+        "phep-nhan-phep-chia.concept.so-du"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.bai-toan-chia-tom-tat",
+        "caption": "Còn dư mà vẫn phải xếp hết thì lấy thương cộng 1. Chỉ lấy các nhóm đủ thì lấy thương."
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.card.tim-loi-sai",
+      "sourceRef": "Sách bài tập tr.18, 19",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-phep-chia.visual.tim-loi-sai-tom-tat",
+        "caption": "Soát ba chỗ: số nhớ khi nhân, số dư nhỏ hơn số chia, chữ số 0 ở thương."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-tong-7",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn phép nhân bằng 7 + 7 + 7."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "7+7+7"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-ba-keo",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-cong-lap"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một bao có 8 viên kẹo, mua 5 bao. Hỏi có tất cả bao nhiêu viên kẹo?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.tinh-ba-keo-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.tinh-ba-keo-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "8·5"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-6-nhan-3",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-cong-lap"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả cách viết có kết quả bằng 6 · 3."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "6 + 6 + 6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "12 + 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "6 + 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "3 + 3 + 3"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "6·3"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.xep-luoi-4-7",
+      "type": "manipulate",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-cong-lap"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp lưới có 4 hàng, mỗi hàng 7 chấm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "visualId": "phep-nhan-phep-chia.visual.xep-luoi",
+      "validatorId": "luoi",
+      "params": {
+        "rows": 4,
+        "cols": 7
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.cham-tich-42",
+      "type": "tapRegion",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả phép nhân có tích bằng 42."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "visualId": "phep-nhan-phep-chia.visual.bang-nhan-cham",
+      "answer": ["r6c7", "r7c6"]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-tuan-ngay",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.bang-nhan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi tuần có 7 ngày. Hỏi 8 tuần có bao nhiêu ngày?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.tinh-tuan-ngay-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.tinh-tuan-ngay-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 56
+      },
+      "check": {
+        "expr": "7·8"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-tich-36",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.bang-nhan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép nhân có tích bằng 36."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot 7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot 5"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "36"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.noi-tich",
+      "type": "match",
+      "cardIds": ["phep-nhan-phep-chia.card.bang-nhan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi phép nhân với tích của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 7"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot 8"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "9 \\cdot 9"
+          }
+        },
+        {
+          "id": "l4",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot 9"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "49"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "48"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "81"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "text",
+            "text": "72"
+          }
+        },
+        {
+          "id": "r5",
+          "content": {
+            "type": "text",
+            "text": "56"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        },
+        {
+          "left": "l4",
+          "right": "r4"
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.noi-ten-24-6",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối tên với số trong phép chia 24 : 6 = 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "số bị chia"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "số chia"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "text",
+            "text": "thương"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-ten-7-4",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{a}{7} \\cdot \\htmlId{b}{4} = \\htmlId{c}{28}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "a"
+          },
+          {
+            "target": "part",
+            "id": "b"
+          },
+          {
+            "target": "part",
+            "id": "c"
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Trong phép nhân 7 · 4 = 28, số 7 và số 4 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["thừa số"]
+        },
+        {
+          "type": "text",
+          "text": ", còn số 28 là "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["tích"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["thừa số", "tích", "thương", "số chia"]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-thuong-45-9",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong phép chia 45 : 9 = 5, số nào là thương?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "54"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "45:9"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-ten-63-9",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.ten-goi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{a}{63} : \\htmlId{b}{9} = \\htmlId{c}{7}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "a"
+          },
+          {
+            "target": "part",
+            "id": "b"
+          },
+          {
+            "target": "part",
+            "id": "c"
+          }
+        ]
+      },
+      "difficulty": 2,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Trong phép chia 63 : 9 = 7, số bị chia là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["63"]
+        },
+        {
+          "type": "text",
+          "text": ", số chia là "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["9"]
+        },
+        {
+          "type": "text",
+          "text": ", thương là "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["7"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["63", "9", "7", "36"]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-5-8",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn phép tính có kết quả bằng 8 · 5."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot 8"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot 8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot 4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "8·5"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-7-9",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lớp A xếp 7 hàng, mỗi hàng 9 bạn, lớp B xếp 9 hàng, mỗi hàng 7 bạn. Hai lớp có số bạn bằng nhau, điền số thích hợp vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.dien-7-9-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.dien-7-9-giai"
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "9 · 7 = 7 · "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["9"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-nham-2-45",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đổi chỗ các thừa số để tính nhẩm 2 · 45. Kết quả bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 90
+      },
+      "check": {
+        "expr": "2·45"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.noi-doi-cho",
+      "type": "match",
+      "cardIds": ["phep-nhan-phep-chia.card.giao-hoan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối hai phép nhân có cùng kết quả."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 9"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot 8"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 5"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "formula",
+            "tex": "9 \\cdot 4"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot 6"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot 7"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 7"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-tich-tron-tram",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn cặp thừa số có tích bằng 100."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "50 \\cdot 2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "25 \\cdot 2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "50 \\cdot 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "20 \\cdot 4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "100"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-thung-sua",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi thùng sữa có 28 hộp, cửa hàng bán 25 thùng. Hỏi đã bán bao nhiêu hộp sữa?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.tinh-thung-sua-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.tinh-thung-sua-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 700
+      },
+      "check": {
+        "expr": "28·25"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-125-24",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 125 · 24 bằng cách nhóm 125 · 8. Kết quả bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 3000
+      },
+      "check": {
+        "expr": "125·24"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-tach-16-25",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả cách viết bằng 16 · 25."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 4 \\cdot 25"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot 2 \\cdot 25"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "16 \\cdot 2 \\cdot 5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "10 \\cdot 6 \\cdot 25"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "16·25"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.sap-buoc-32-25",
+      "type": "order",
+      "cardIds": ["phep-nhan-phep-chia.card.ket-hop"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tính 32 · 25 theo đúng thứ tự."
+        },
+        {
+          "type": "formula",
+          "tex": "32 \\cdot 25"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Tách 32 = 8 · 4"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Nhóm 4 · 25 = 100"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Nhân 8 · 100 = 800"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-cach-viet-4-23",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn biểu thức bằng 4 · (20 + 3)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 20 + 4 \\cdot 3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 20 + 3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 20 \\cdot 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "20 + 4 \\cdot 3"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "4·(20+3)"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-tui-keo",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.phan-phoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi túi có 5 cái kẹo, mua 13 túi. Hỏi có tất cả bao nhiêu cái kẹo?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.tinh-tui-keo-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.tinh-tui-keo-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 65
+      },
+      "check": {
+        "expr": "5·13"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-6-24",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.phan-phoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số thích hợp vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "6 · (20 + 4) = 6 · 20 + 6 · "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["4"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-7-13",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.phan-phoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả biểu thức bằng 7 · (10 + 3)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 10 + 7 \\cdot 3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 13"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "7 \\cdot 10 + 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "10 + 7 \\cdot 3"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "7·(10+3)"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-5-31",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.phan-phoi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 5 · 31 bằng cách tách 31 = 30 + 1. Kết quả bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 155
+      },
+      "check": {
+        "expr": "5·31"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-cach-viet-15-99",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn biểu thức bằng 15 · 99."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "15 \\cdot (100 - 1)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "15 \\cdot (100 + 1)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "15 \\cdot 100 - 1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "15 \\cdot 100 - 15 \\cdot 9"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "15·99"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.mua-banh-6-49",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-gan-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một cái bánh giá 6 nghìn đồng. Mua 49 cái bánh thì hết bao nhiêu nghìn đồng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.mua-banh-6-49-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.mua-banh-6-49-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 294
+      },
+      "check": {
+        "expr": "6·49"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-14-99",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-gan-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhẩm 14 · 99. Kết quả bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 1386
+      },
+      "check": {
+        "expr": "14·99"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-12-98",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-gan-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số thích hợp vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "12 · 98 = 12 · (100 − 2) = 1 200 − 12 · "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["2"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-tinh-9-98",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-gan-tron"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn cách tính nhanh 9 · 98."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "9 \\cdot 100 - 9 \\cdot 2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "9 \\cdot 100 - 2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "9 \\cdot 100 + 9 \\cdot 2"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "9 \\cdot 90 + 8"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "9·98"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-viet-nho-8-7",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính 48 · 7, ở cột đơn vị có 8 · 7 = 56. Viết chữ số nào và nhớ chữ số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Viết 6, nhớ 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Viết 5, nhớ 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Viết 56, nhớ 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Viết 8, nhớ 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-46-7",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-mot-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi tính 46 · 7."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.tinh-46-7-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.tinh-46-7-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 322
+      },
+      "check": {
+        "expr": "46·7"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.nhan-cot-57-6",
+      "type": "manipulate",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-mot-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính 57 · 6 rồi điền từng chữ số của tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "phep-nhan-phep-chia.visual.nhan-cot",
+      "validatorId": "tich-cot",
+      "params": {
+        "a": 57,
+        "b": 6
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.mua-but-18-9",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-mot-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hộp có 18 cái bút. Mua 9 hộp thì có bao nhiêu cái bút?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 162
+      },
+      "check": {
+        "expr": "18·9"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.sap-buoc-67-5",
+      "type": "order",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-mot-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước đặt tính 67 · 5 theo đúng thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Nhân 7 · 5 = 35, viết 5 và nhớ 3"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Nhân 6 · 5 = 30, cộng 3 được 33"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Viết 33 trước số 5, tích là 335"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-tich-rieng-2",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi nhân 64 · 32, tích riêng thứ hai là 64 · 3 = 192. Viết nó thế nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Viết 192, lùi sang trái một cột"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Viết 192, thẳng cột với tích riêng thứ nhất"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Viết 192, lùi sang phải một cột"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Viết 19, nhớ 2 sang cột bên trái"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tinh-35-26",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một lớp có 35 học sinh, trường có 26 lớp như vậy. Hỏi trường có bao nhiêu học sinh?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.tinh-35-26-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.tinh-35-26-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 910
+      },
+      "check": {
+        "expr": "35·26"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.nhan-cot-54-13",
+      "type": "manipulate",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính 54 · 13 rồi điền từng chữ số của tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "phep-nhan-phep-chia.visual.nhan-cot",
+      "validatorId": "tich-cot",
+      "params": {
+        "a": 54,
+        "b": 13
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.rap-phim-15-32",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một rạp có 15 hàng ghế, mỗi hàng 32 ghế. Hỏi rạp có bao nhiêu ghế?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 480
+      },
+      "check": {
+        "expr": "32·15"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-45-32",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.nhan-hai-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số thích hợp vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "segments": [
+        {
+          "type": "text",
+          "text": "45 · 32 = 45 · 2 + 45 · "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["30"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-khoang-48-9",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tích 48 · 9 nằm giữa hai số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "360 và 450"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "450 và 540"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "36 và 45"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "3 600 và 4 500"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-tich-53-7",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.uoc-luong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tích 53 · 7 là một trong bốn số sau. Chọn số đúng mà không cần đặt tính."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.chon-tich-53-7-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.chon-tich-53-7-giai"
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "271"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "371"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "471"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "3 710"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "53·7"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-nho-hon-500",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.uoc-luong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả tích nhỏ hơn 500."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "41 \\cdot 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "46 \\cdot 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "63 \\cdot 9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "74 \\cdot 9"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.so-sanh-38-50",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.uoc-luong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh 38 · 50 với 52 · 40 mà không cần tính. Chọn kết luận đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "38 · 50 nhỏ hơn 52 · 40"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "38 · 50 lớn hơn 52 · 40"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "38 · 50 bằng 52 · 40"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-kiem-tra-28-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép nhân nào giúp kiểm tra 28 : 4 = 7?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 7 = 28"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 28 = 7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "7 + 4 = 28"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "28 - 4 = 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chia-56-8",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có 56 cái bánh chia đều cho 8 bạn. Hỏi mỗi bạn được bao nhiêu cái bánh?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.chia-56-8-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.chia-56-8-giai"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "56:8"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tim-so-bi-chia",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số bị chia, biết số chia là 7 và thương là 6."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 42
+      },
+      "check": {
+        "expr": "7·6"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-48-6",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số thích hợp vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "6 · 8 = 48 nên 48 : 6 = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["8"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tim-so-chia-30-5",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số chia, biết số bị chia là 30 và thương là 5."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "30:5"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-chia-dung",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép chia đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "54 : 9 = 6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "36 : 4 = 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "27 : 3 = 8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "32 : 8 = 5"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-du-26-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 26 cái kẹo cho 4 bạn, mỗi bạn được 6 cái. Còn lại mấy cái kẹo?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "26-4·6"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chia-keo-29-6",
+      "type": "manipulate",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 29 cái kẹo cho 6 bạn. Điền số kẹo mỗi bạn nhận và số kẹo còn dư."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.chia-keo-29-6-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.chia-keo-29-6-giai"
+      },
+      "difficulty": 1,
+      "visualId": "phep-nhan-phep-chia.visual.chia-keo",
+      "validatorId": "chia",
+      "params": {
+        "total": 29,
+        "people": 6
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.du-41-7",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 41 cho 7. Số dư là bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "41-7·5"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-du-47-9",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số dư vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "47 : 9 = 5 dư "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["2"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-du-2",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-co-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép chia có số dư là 2."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "32 : 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "22 : 4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "19 : 6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "25 : 7"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-du-dung-34-8",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép chia 34 : 8 nào ghi đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "34 : 8 = 4 dư 2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "34 : 8 = 3 dư 10"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "34 : 8 = 4 dư 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "34 : 8 = 4 dư 8"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tim-so-bi-chia-8-6-5",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.kiem-tra-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một phép chia có số chia là 8, thương là 6 và số dư là 5. Tìm số bị chia."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 53
+      },
+      "check": {
+        "expr": "8·6+5"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tim-thuong-50-2-6",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.kiem-tra-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số bị chia là 50, số chia là 6, số dư là 2. Tìm thương."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "(50-2):6"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.tim-loi-61-9",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.kiem-tra-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lê viết 61 : 9 = 5 dư 16. Lỗi sai của Lê là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số dư 16 lớn hơn số chia 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Thương 5 phải là 4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số bị chia phải là 45"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Phép chia này không có lỗi"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.dien-41-6-6",
+      "type": "fillBlank",
+      "cardIds": ["phep-nhan-phep-chia.card.kiem-tra-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số dư vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "41 = 6 · 6 + "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["5"]
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.sap-luot-chia",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước của một lượt chia theo đúng thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Chia"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Nhân"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Trừ"
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Hạ chữ số kế"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chia-154-12",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.dat-tinh-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi chia 154 cho 12. Thương là bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.chia-154-12-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.chia-154-12-giai"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "(154-10):12"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chia-cot-217-15",
+      "type": "manipulate",
+      "cardIds": ["phep-nhan-phep-chia.card.dat-tinh-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính 217 : 15 rồi điền thương và số dư."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "phep-nhan-phep-chia.visual.chia-cot",
+      "validatorId": "thuong-du",
+      "params": {
+        "dividend": 217,
+        "divisor": 15
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.du-185-15",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.dat-tinh-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt tính rồi chia 185 cho 15. Số dư là bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "185-15·12"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chia-vo-96-8",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.dat-tinh-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có 96 quyển vở chia đều cho 8 bạn. Hỏi mỗi bạn được mấy quyển vở?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "96:8"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-ban-30-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có 30 học sinh, mỗi bàn ngồi 4 bạn. Cần ít nhất mấy bàn?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "(30-2):4+1"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-thung-150-24",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.bai-toan-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi thùng chứa 24 chai nước, cần chở 150 chai nước. Hỏi cần ít nhất mấy thùng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-phep-chia.visual.chon-thung-150-24-goi-y",
+        "solutionVisualId": "phep-nhan-phep-chia.visual.chon-thung-150-24-giai"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "(150-6):24+1"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.mua-so-90-13",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.bai-toan-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một quyển sổ giá 13 nghìn đồng. Có 90 nghìn đồng thì mua được nhiều nhất mấy quyển sổ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "(90-12):13"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-them-1",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.bai-toan-chia"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả bài toán mà đáp án bằng thương cộng 1."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Xe 8 chỗ, cần chở 45 người. Cần ít nhất mấy xe?"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Có 50 nghìn đồng, bút giá 7 nghìn đồng. Mua được nhiều nhất mấy cái bút?"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Mỗi hàng 6 ghế, có 33 người. Cần ít nhất mấy hàng ghế?"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Đóng 30 cái bánh vào hộp 7 cái. Đầy được mấy hộp?"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-loi-43-6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lê viết 43 : 6 = 6 dư 7. Lỗi sai của Lê là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số dư 7 lớn hơn số chia 6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Thương 6 phải là 8"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6 · 6 + 7 không bằng 43"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Phép chia này đúng"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.loi-nhan-38-7",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.tim-loi-sai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lê tính 38 · 7 = 216. Lỗi sai của Lê nằm ở đâu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Quên cộng số nhớ 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tính sai 8 · 7 thành 46"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Đặt sai vị trí hai thừa số"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Phép tính của Lê đúng"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.sua-58-4",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.tim-loi-sai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lê tính 58 · 4 = 202. Kết quả đúng của 58 · 4 là bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 232
+      },
+      "check": {
+        "expr": "58·4"
+      }
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.chon-nhieu-chia-sai",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.tim-loi-sai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép chia ghi sai."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "47 : 5 = 9 dư 2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "47 : 5 = 8 dư 7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "52 : 6 = 8 dư 4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "52 : 6 = 7 dư 10"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-phep-chia.ex.loi-thuong-458-9",
+      "type": "choice",
+      "cardIds": ["phep-nhan-phep-chia.card.tim-loi-sai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lê chia 458 : 9 được thương 5, dư 8. Lỗi sai của Lê là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Thương phải là 50, không phải 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số dư phải là 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Thương đúng, số dư sai"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Phép chia của Lê đúng"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    }
+  ],
+  "sticker": {
+    "name": "Nhà vô địch nhân chia",
+    "visualId": "phep-nhan-phep-chia.visual.sticker"
+  }
+}

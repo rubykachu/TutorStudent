@@ -24,23 +24,28 @@
     },
     {
       "term": "thừa số",
-      "forbidden": ["nhân tử"]
+      "forbidden": ["nhân tử"],
+      "color": "blue"
     },
     {
       "term": "tích",
-      "forbidden": []
+      "forbidden": [],
+      "color": "amber"
     },
     {
       "term": "thương",
-      "forbidden": []
+      "forbidden": [],
+      "color": "amber"
     },
     {
       "term": "số bị chia",
-      "forbidden": []
+      "forbidden": [],
+      "color": "blue"
     },
     {
       "term": "số chia",
-      "forbidden": []
+      "forbidden": [],
+      "color": "violet"
     },
     {
       "term": "số hạng",
@@ -89,10 +94,31 @@
     {
       "term": "bảng nhân",
       "forbidden": [],
-      "prerequisite": "tiểu học"
+      "prerequisite": "tiểu học",
+      "color": "violet"
     },
     {
       "term": "nhân số có hai chữ số",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "tổng các số hạng bằng nhau",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "tích riêng",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "số nhớ",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "đặt tính chia",
       "forbidden": [],
       "prerequisite": "tiểu học"
     },
@@ -122,16 +148,54 @@
       "color": "slate",
       "prerequisite": "tiểu học"
     },
-    { "term": "tập hợp", "forbidden": ["tập họp"], "color": "teal" },
-    { "term": "phần tử", "forbidden": [], "color": "amber" },
-    { "term": "dấu hiệu đặc trưng", "forbidden": [], "color": "lime" },
-    { "term": "kí hiệu", "forbidden": ["ký hiệu"] },
-    { "term": "liệt kê", "forbidden": [] },
-    { "term": "mở ngoặc nhọn", "forbidden": [] },
-    { "term": "đóng ngoặc nhọn", "forbidden": [] },
-    { "term": "dấu chấm phẩy", "forbidden": [] },
-    { "term": "thuộc", "forbidden": [] },
-    { "term": "không thuộc", "forbidden": [] }
+    {
+      "term": "tập hợp",
+      "forbidden": ["tập họp"],
+      "color": "teal"
+    },
+    {
+      "term": "phần tử",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "dấu hiệu đặc trưng",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "kí hiệu",
+      "forbidden": ["ký hiệu"]
+    },
+    {
+      "term": "liệt kê",
+      "forbidden": []
+    },
+    {
+      "term": "mở ngoặc nhọn",
+      "forbidden": []
+    },
+    {
+      "term": "đóng ngoặc nhọn",
+      "forbidden": []
+    },
+    {
+      "term": "dấu chấm phẩy",
+      "forbidden": []
+    },
+    {
+      "term": "thuộc",
+      "forbidden": []
+    },
+    {
+      "term": "không thuộc",
+      "forbidden": []
+    },
+    {
+      "term": "số dư",
+      "forbidden": [],
+      "color": "pink"
+    }
   ],
   "names": []
 }

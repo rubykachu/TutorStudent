@@ -27,6 +27,7 @@ Mỗi dòng là việc tự soát trước khi gọi review; triệu chứng, v�
 - Tự giải từng nhiễu theo đúng câu chữ đề, nhất là đề "chắc chắn sai", "lớn nhất", câu Ngữ văn xếp loại từ, và bài `order`/`fillBlank` có thể có thứ tự đúng khác (LL-01).
 - Hình nấc 2, chú thích lề `passage` và chữ in sẵn trong `segments` của `fillBlank` không được cho biết kết quả của đề (LL-02).
 - Màu trong visual và video: cách làm sai không mang màu của cách làm đúng (LL-03).
+- Phép nhân "n nhóm, mỗi nhóm m" viết một thứ tự duy nhất cả bài (m · n: m được lấy n lần, như tiểu học), kể cả đề, hình, caption, lời giải; chỉ section giao hoán mới đổi chỗ (LL-05).
 - Số của câu kho ôn khác cả số trong recap, ví dụ màn quy tắc và trạng thái đầu của hình tương tác (LL-07).
 - Đọc lại mỗi đề như trẻ chỉ thấy đúng màn đó: đủ dữ kiện, một tên chỉ một tập hợp, "bạn" không lẫn với trẻ (LL-10).
 - Thuật ngữ, quy tắc dùng trong đề, nhiễu, gợi ý phải đã dạy ở section trước; câu kho ôn gắn card cần ý dạy ở section sau thì đổi card (LL-09).

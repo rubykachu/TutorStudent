@@ -173,4 +173,44 @@ describe("ManipulateAnswer", () => {
       screen.getByRole("button", { name: "Thêm một chấm" }),
     ).toBeDisabled();
   });
+
+  it("hands the exercise's params to the visual so it draws the task's numbers", async () => {
+    const grid: ManipulateExercise = {
+      ...squareExercise(),
+      visualId: "phep-nhan-phep-chia.visual.xep-luoi",
+      validatorId: "luoi",
+      params: { rows: 3, cols: 5 },
+    };
+    renderExercise(grid);
+    expect(
+      await screen.findByText("Đề bài: 3 hàng, mỗi hàng 5 chấm"),
+    ).toBeInTheDocument();
+  });
+
+  it("draws the plates and pile of a sharing task from its params", async () => {
+    const share: ManipulateExercise = {
+      ...squareExercise(),
+      visualId: "phep-nhan-phep-chia.visual.chia-keo",
+      validatorId: "chia",
+      params: { total: 29, people: 6 },
+    };
+    renderExercise(share);
+    expect(
+      await screen.findByText("Đã xếp 0 cái, có 29 cái."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /^6 bạn/ })).toBeInTheDocument();
+  });
+
+  it("draws the column of a multiplication task from its params", async () => {
+    const column: ManipulateExercise = {
+      ...squareExercise(),
+      visualId: "phep-nhan-phep-chia.visual.nhan-cot",
+      validatorId: "tich-cot",
+      params: { a: 47, b: 13 },
+    };
+    renderExercise(column);
+    expect(
+      await screen.findByRole("img", { name: "Đặt tính 47 nhân 13" }),
+    ).toBeInTheDocument();
+  });
 });
