@@ -3,6 +3,7 @@
 import { Clapperboard } from "lucide-react";
 import { Formula } from "@/components/blocks/formula";
 import { PassageReader } from "@/components/passage-reader";
+import { RichText } from "@/components/rich-text";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { SectionBlock, Video } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
@@ -36,7 +37,11 @@ export function BlockView({
 }: BlockViewProps) {
   switch (block.type) {
     case "note":
-      return <p data-block="note">{block.text}</p>;
+      return (
+        <p data-block="note">
+          <RichText text={block.text} />
+        </p>
+      );
     case "formula":
       return (
         <div
@@ -63,13 +68,13 @@ export function BlockView({
               data-lead-caption
               className="max-w-prose text-center text-foreground"
             >
-              {block.caption}
+              <RichText text={block.caption} />
             </figcaption>
           )}
           <RegistryVisual id={block.visualId} />
           {block.caption && !leadCaption && (
             <figcaption className="text-center text-caption text-muted-foreground">
-              {block.caption}
+              <RichText text={block.caption} />
             </figcaption>
           )}
         </figure>

@@ -8,6 +8,7 @@ import {
 } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
+import { RichText } from "@/components/rich-text";
 import {
   AnswerHighlight,
   surfaceFor,
@@ -38,6 +39,17 @@ function revealedBlanks(exercise: FillBlankExercise): Blanks {
 
 const CHIP_DRAG_PREFIX = "chip:";
 
+// The last word before a blank, with an operator or punctuation just before
+// it ("2 · " in "5 247 = 5 · 10³ + 2 · ▢"), is kept on the blank's line:
+// a line ending in "2 ·" with the blank alone below reads as two sentences.
+const TAIL_BEFORE_BLANK = /(\S+\s+[^\p{L}\p{N}\s]+\s*|\S+\s*)$/u;
+
+export function splitBeforeBlank(text: string): { head: string; tail: string } {
+  const match = TAIL_BEFORE_BLANK.exec(text);
+  if (!match) return { head: text, tail: "" };
+  return { head: text.slice(0, match.index), tail: match[0] };
+}
+
 export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
   const { value, onChange, disabled, highlight, wrong, reveal, seed } = slot;
   const blanks = reveal ? revealedBlanks(exercise) : (value?.blanks ?? {});
@@ -66,11 +78,24 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
   }
 
   let blankNumber = 0;
-  const sentence = exercise.segments.map((segment, index) => {
+  const { segments } = exercise;
+  const tailOf = (index: number) => {
+    const before = segments[index - 1];
+    return before?.type === "text" ? splitBeforeBlank(before.text).tail : "";
+  };
+  const sentence = segments.map((segment, index) => {
     if (segment.type === "text") {
-      // Segments have no ids; their order is fixed content.
-      // biome-ignore lint/suspicious/noArrayIndexKey: static list
-      return <span key={index}>{segment.text}</span>;
+      const text =
+        segments[index + 1]?.type === "blank"
+          ? splitBeforeBlank(segment.text).head
+          : segment.text;
+      return (
+        // Segments have no ids; their order is fixed content.
+        // biome-ignore lint/suspicious/noArrayIndexKey: static list
+        <span key={index}>
+          <RichText text={text} />
+        </span>
+      );
     }
     blankNumber += 1;
     const text = ownValue(blanks, segment.id) ?? "";
@@ -83,7 +108,7 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
       disabled,
       reveal,
     };
-    return bank ? (
+    const blank = bank ? (
       <BankBlank
         key={segment.id}
         {...common}
@@ -102,6 +127,13 @@ export function FillBlankAnswer({ exercise, slot }: FillBlankAnswerProps) {
         {...common}
         onType={(typed) => setBlank(segment.id, typed)}
       />
+    );
+    const tail = tailOf(index);
+    return (
+      <span key={segment.id} className="whitespace-nowrap">
+        {tail && <RichText text={tail} />}
+        {blank}
+      </span>
     );
   });
 
@@ -192,9 +224,9 @@ function BankBlank({
         data-blank={id}
         data-wrong={wrong || undefined}
         onClick={onTap}
-        className={`inline-flex h-12 min-w-24 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, wrong, spec)} ${isOver ? "outline-3 outline-primary" : ""}`}
+        className={`inline-flex h-12 min-w-20 items-center justify-center rounded-sm px-3 font-semibold ${blankTone(text, reveal, wrong, spec)} ${isOver ? "outline-3 outline-primary" : ""}`}
       >
-        {text}
+        <RichText text={text} />
       </button>
     </AnswerHighlight>
   );
@@ -275,7 +307,7 @@ function BankChip({
           : "border-2 border-border bg-surface"
       }`}
     >
-      {word}
+      <RichText text={word} />
     </button>
   );
 }

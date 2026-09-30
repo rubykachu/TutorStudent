@@ -1,4 +1,5 @@
 import { Formula } from "@/components/blocks/formula";
+import { RichText } from "@/components/rich-text";
 import type { Item } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
 
@@ -6,9 +7,15 @@ import { RegistryVisual } from "@/visuals/registry-visual";
 export function ItemContent({ content }: { content: Item["content"] }) {
   switch (content.type) {
     case "text":
-      return <span>{content.text}</span>;
+      return (
+        <span>
+          <RichText text={content.text} />
+        </span>
+      );
     case "formula":
-      return <Formula tex={content.tex} />;
+      // A formula option is one expression: breaking it at an operator
+      // ("4 · 4 · 4 ·" then "4") reads as two answers.
+      return <Formula tex={content.tex} className="whitespace-nowrap" />;
     case "visual":
       return (
         <span className="block w-full">

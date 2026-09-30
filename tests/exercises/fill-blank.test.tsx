@@ -1,5 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { splitBeforeBlank } from "@/exercises/fill-blank/fill-blank-answer";
 import { fillBlankExercise, NO_HINTS } from "./helpers";
 import {
   checkAnswer,
@@ -131,5 +132,25 @@ describe("FillBlankAnswer typed", () => {
     startRetype();
     expect(input()).toHaveValue("");
     expect(input()).toBeEnabled();
+  });
+});
+
+describe("splitBeforeBlank", () => {
+  it("keeps the last word and the operator before it with the blank", () => {
+    expect(splitBeforeBlank("5 247 = 5 · 10³ + 2 · ")).toEqual({
+      head: "5 247 = 5 · 10³ + ",
+      tail: "2 · ",
+    });
+  });
+
+  it("keeps a plain last word with the blank", () => {
+    expect(splitBeforeBlank("Số mũ là ")).toEqual({
+      head: "Số mũ ",
+      tail: "là ",
+    });
+  });
+
+  it("leaves text of spaces alone", () => {
+    expect(splitBeforeBlank(" ")).toEqual({ head: " ", tail: "" });
   });
 });
