@@ -1,6 +1,7 @@
-import { expect, type Locator, type Page, test } from "@playwright/test";
+import { expect, type Locator, type Page } from "@playwright/test";
 import { pairItems } from "./flows";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
+import { test } from "./test";
 
 // /dev/exercises renders every fixture exercise whose type has an answer
 // component inside the real ExerciseFrame.

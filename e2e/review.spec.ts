@@ -1,4 +1,4 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import {
   answerRight,
   answerWrongOnce,
@@ -9,6 +9,7 @@ import {
   openFixtureLesson,
 } from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
+import { test } from "./test";
 
 const MISSED_CARD = "fixture.card.nhan-lap";
 const MISSED_EXERCISE = "fixture.ex.dem-cham";

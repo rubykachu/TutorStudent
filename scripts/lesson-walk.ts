@@ -34,6 +34,7 @@ import {
   expectNothingUnderBottomBar,
 } from "../e2e/layout";
 import { findOverlaps } from "../e2e/overlap";
+import { SILENCE_MEDIA_SCRIPT } from "../e2e/silence";
 import { TARGET_DEVICES, TEST_BASE_URL } from "../e2e/targets";
 import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 
@@ -795,6 +796,7 @@ async function walkDevice(
   // tsx compiles with esbuild keepNames, which wraps nested functions in a
   // `__name` helper; functions sent to page.evaluate need it too.
   await context.addInitScript("globalThis.__name = (target) => target;");
+  await context.addInitScript(SILENCE_MEDIA_SCRIPT);
   const outDir = path.join(outRoot, device);
   mkdirSync(outDir, { recursive: true });
   const page = await context.newPage();

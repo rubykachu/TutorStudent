@@ -1,4 +1,4 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 import {
   answerRight,
   answersFor,
@@ -8,6 +8,7 @@ import {
   exerciseId,
   openFixtureLesson,
 } from "./flows";
+import { test } from "./test";
 
 const SECTION = "fixture.section.phep-nhan";
 // A number-pad exercise with a known wrong answer.

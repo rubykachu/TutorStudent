@@ -15,6 +15,7 @@ import {
   VISUAL_FRAME_ATTR,
 } from "@/visuals/shared/markers";
 import { findOverlaps } from "../e2e/overlap";
+import { SILENCE_MEDIA_SCRIPT } from "../e2e/silence";
 import {
   TARGET_DEVICES,
   type TargetDeviceName,
@@ -284,6 +285,7 @@ async function main() {
       // tsx compiles with esbuild keepNames, which wraps nested functions in
       // a `__name` helper; functions sent to page.evaluate need it too.
       await context.addInitScript("globalThis.__name = (target) => target;");
+      await context.addInitScript(SILENCE_MEDIA_SCRIPT);
       const page = await context.newPage();
       for (const shot of shots) {
         results.push(await shoot(page, shot, name as TargetDeviceName, outDir));

@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test } from "./test";
 
 // The dev server runs with CONTENT_INCLUDE_FIXTURE=1, so the emitted static
 // content lists the fixture lesson and serves it whole.

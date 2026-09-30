@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page, test } from "@playwright/test";
+import { expect, type Locator, type Page } from "@playwright/test";
 import { patchFixtureLesson } from "./fixture-routes";
 import {
   answerRight,
@@ -11,6 +11,7 @@ import {
   expectNoHorizontalScroll,
   expectNothingUnderBottomBar,
 } from "./layout";
+import { test } from "./test";
 
 // After a wrong check the child must see the hint visual (second check), the
 // solution visual or the revealed answer (third check) at once, on every
