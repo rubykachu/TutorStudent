@@ -59,6 +59,8 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 
 **Quy tắc đọc được và nhớ được.** Định nghĩa hay quy tắc chỉ nằm trong `caption` xám, màn chỉ có một `note` hay một `formula`, recap là công thức trần không nhãn: Nghiêm trọng (trẻ nhớ sai hoặc bỏ qua).
 
+**Section ngắn, một ý.** `content:check` đã chặn section quá 4 màn hay quá 4 bài tập. Section gộp hai quy tắc cần nhớ riêng (recap phải có hai câu mới đủ), hay `minutes` lệch xa số màn nhân khoảng 40 giây: Nên sửa.
+
 **Người học chậm theo kịp.** Thiếu ví dụ mẫu trước câu tự làm, thao tác nhập mới chưa được dạy trước câu đầu dùng nó, câu chuyện mở đầu không có kết, câu luyện tập phải tính nhẩm quá 2 phép: Nên sửa. Card không có câu ôn nào ngoài `practiceIds` khác số với câu luyện tập: Nên sửa.
 
 **Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.

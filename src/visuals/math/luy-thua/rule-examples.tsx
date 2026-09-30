@@ -113,6 +113,12 @@ export function QuyTacSoMu1() {
         <span>=</span>
         <span className="text-concept-blue">{a}</span>
       </Line>
+      {/* Read the other way too: a number is its own power with exponent 1. */}
+      <Line>
+        <span className="text-concept-blue">5</span>
+        <span>=</span>
+        <PowerText base={5} exponent={1} />
+      </Line>
     </Example>
   );
 }
@@ -348,8 +354,8 @@ export function TomTatDinhNghia() {
   );
 }
 
-// Pictures left out so the two sentences, both names and a worked value fit
-// a phone screen; the pictures are on the rule screen before.
+// Both names under one base, without values: the section that follows
+// teaches how to work the value out.
 export function TomTatBinhPhuong() {
   return (
     <Example>
@@ -358,18 +364,15 @@ export function TomTatBinhPhuong() {
           <PowerText base={3} exponent={2} />
           <span>=</span>
           <FactorRow base={3} count={2} />
-          <span>=</span>
-          <span>9</span>
         </Line>
         <p>3 bình phương</p>
       </div>
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center">
         <Line>
           <PowerText base={3} exponent={3} />
           <span>=</span>
           <FactorRow base={3} count={3} />
         </Line>
-        <ValueSteps base={3} exponent={3} />
         <p>3 lập phương</p>
       </div>
     </Example>
@@ -384,24 +387,14 @@ export function TomTatNhan() {
         <Powers
           operator="·"
           items={[
-            [5, 3],
-            [5, ""],
+            [3, 2],
+            [3, 3],
           ]}
         />
         <span>=</span>
-        <Powers
-          operator="·"
-          items={[
-            [5, 3],
-            [5, 1],
-          ]}
-        />
-      </Line>
-      <Line>
+        <PowerText base={3} exponent="2 + 3" />
         <span>=</span>
-        <PowerText base={5} exponent="3 + 1" />
-        <span>=</span>
-        <PowerText base={5} exponent={4} />
+        <PowerText base={3} exponent={5} />
       </Line>
       <PowerLegend />
     </Example>
@@ -413,10 +406,18 @@ export function TomTatChia() {
     <Example>
       <DivisionRule />
       <Line>
-        <PowerText base={a} exponent={0} />
-        <span>= 1</span>
+        <Powers
+          operator=":"
+          items={[
+            [5, 6],
+            [5, 2],
+          ]}
+        />
+        <span>=</span>
+        <PowerText base={5} exponent="6 − 2" />
+        <span>=</span>
+        <PowerText base={5} exponent={4} />
       </Line>
-      <p>(với {a} ≠ 0)</p>
       <PowerLegend />
     </Example>
   );
@@ -477,15 +478,12 @@ function PlaceValueSum({ value }: { value: number }) {
   );
 }
 
+// Recap of writing a number as a sum of powers of 10: a number without a
+// zero digit, so the picture shows only what its one sentence says.
 export function TomTatLuyThua10() {
   return (
     <Example>
-      <Line>
-        <PowerText base={10} exponent={3} />
-        <span>=</span>
-        <ZerosInColour value={formatInteger(1000)} />
-      </Line>
-      <PlaceValueSum value={6084} />
+      <PlaceValueRecap value={2736} />
     </Example>
   );
 }

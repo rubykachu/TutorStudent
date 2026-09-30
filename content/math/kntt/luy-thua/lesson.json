@@ -7,7 +7,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "5aed419a349b30e6ef09d7a90f19d107e75e8b92df3d01688ec69c47ff62bfbd",
+  "reviewedHash": "69f14934d8cf8d2187820ee91d1f52c28e82279114e9e0c7f7022f23f35163ff",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -24,8 +24,8 @@
     {
       "id": "luy-thua.section.luy-thua-la-gi",
       "title": "Luỹ thừa là gì?",
-      "sourceRef": "SGK tr.22–23",
-      "minutes": 11,
+      "sourceRef": "SGK tr.22",
+      "minutes": 5,
       "blocks": [
         {
           "type": "visual",
@@ -59,19 +59,6 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
-            },
-            {
-              "type": "visual",
-              "visualId": "luy-thua.visual.the-co-so-so-mu"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "children": [
-            {
-              "type": "note",
               "text": "Ô cuối là ô thứ 64, nên số hạt là tích của 63 thừa số 2."
             },
             {
@@ -83,24 +70,39 @@
               "text": "Nhiều thóc đến thế, nhà vua không có đủ để thưởng!"
             }
           ]
-        },
-        {
-          "type": "visual",
-          "visualId": "luy-thua.visual.tao-luy-thua",
-          "caption": "Đổi cơ số và số mũ, rồi xem phép nhân thay đổi."
-        },
+        }
+      ],
+      "checkIds": ["luy-thua.ex.tim-o-16-hat", "luy-thua.ex.chon-tich-5-mu-4"],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-dinh-nghia",
+        "caption": "aⁿ (đọc là “a mũ n”) là tích của n thừa số, thừa số nào cũng bằng a."
+      }
+    },
+    {
+      "id": "luy-thua.section.co-so-so-mu",
+      "title": "Cơ số và số mũ",
+      "sourceRef": "SGK tr.22",
+      "minutes": 5,
+      "blocks": [
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
+              "text": "Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
             },
             {
               "type": "visual",
-              "visualId": "luy-thua.visual.quy-tac-so-mu-1"
+              "visualId": "luy-thua.visual.the-co-so-so-mu"
             }
           ]
+        },
+        {
+          "type": "visual",
+          "visualId": "luy-thua.visual.tao-luy-thua",
+          "caption": "Đổi cơ số và số mũ, rồi xem phép nhân thay đổi."
         },
         {
           "type": "group",
@@ -117,25 +119,47 @@
           ]
         }
       ],
-      "checkIds": ["luy-thua.ex.tim-o-16-hat", "luy-thua.ex.cham-co-so"],
-      "practiceIds": [
-        "luy-thua.ex.viet-gon-3-mu-4",
-        "luy-thua.ex.chon-tich-5-mu-4",
-        "luy-thua.ex.tao-5-mu-3",
-        "luy-thua.ex.cham-so-mu",
-        "luy-thua.ex.viet-9-mu-1"
-      ],
+      "checkIds": ["luy-thua.ex.cham-co-so", "luy-thua.ex.viet-4-mu-3"],
+      "practiceIds": ["luy-thua.ex.tao-5-mu-3", "luy-thua.ex.viet-gon-3-mu-4"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-dinh-nghia",
+        "visualId": "luy-thua.visual.the-co-so-so-mu",
         "caption": "Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
+      }
+    },
+    {
+      "id": "luy-thua.section.so-mu-1",
+      "title": "Số mũ 1",
+      "sourceRef": "SGK tr.23",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
+            },
+            {
+              "type": "visual",
+              "visualId": "luy-thua.visual.quy-tac-so-mu-1"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["luy-thua.ex.tinh-6-mu-1"],
+      "practiceIds": ["luy-thua.ex.viet-9-mu-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-so-mu-1",
+        "caption": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
       }
     },
     {
       "id": "luy-thua.section.binh-phuong-lap-phuong",
       "title": "Bình phương và lập phương",
       "sourceRef": "SGK tr.23",
-      "minutes": 8,
+      "minutes": 5,
       "blocks": [
         {
           "type": "group",
@@ -154,7 +178,25 @@
           "type": "visual",
           "visualId": "luy-thua.visual.binh-phuong-lap-phuong",
           "caption": "Chọn cơ số, rồi bấm “Bình phương” hoặc “Lập phương”."
-        },
+        }
+      ],
+      "checkIds": ["luy-thua.ex.doc-6-mu-2", "luy-thua.ex.hinh-vuong-16"],
+      "practiceIds": [
+        "luy-thua.ex.binh-phuong-8",
+        "luy-thua.ex.chon-10-lap-phuong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-binh-phuong",
+        "caption": "a² đọc là “a bình phương”, a³ đọc là “a lập phương”."
+      }
+    },
+    {
+      "id": "luy-thua.section.tinh-gia-tri",
+      "title": "Tính giá trị luỹ thừa",
+      "sourceRef": "SGK tr.23",
+      "minutes": 3,
+      "blocks": [
         {
           "type": "group",
           "children": [
@@ -169,25 +211,19 @@
           ]
         }
       ],
-      "checkIds": ["luy-thua.ex.doc-6-mu-2", "luy-thua.ex.hinh-vuong-16"],
-      "practiceIds": [
-        "luy-thua.ex.tinh-3-mu-3",
-        "luy-thua.ex.ghep-binh-phuong",
-        "luy-thua.ex.lap-phuong-4",
-        "luy-thua.ex.xep-gia-tri",
-        "luy-thua.ex.chon-10-lap-phuong"
-      ],
+      "checkIds": ["luy-thua.ex.buoc-tiep-6-mu-4"],
+      "practiceIds": ["luy-thua.ex.tinh-3-mu-3"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-binh-phuong",
-        "caption": "a² đọc là “a bình phương”, a³ đọc là “a lập phương”. Tính giá trị luỹ thừa: nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số, tới khi hết thừa số."
+        "visualId": "luy-thua.visual.the-tinh-gia-tri",
+        "caption": "Tính giá trị luỹ thừa: nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số, tới khi hết thừa số."
       }
     },
     {
       "id": "luy-thua.section.nhan-cung-co-so",
       "title": "Nhân hai luỹ thừa cùng cơ số",
       "sourceRef": "SGK tr.23",
-      "minutes": 8,
+      "minutes": 4,
       "blocks": [
         {
           "type": "visual",
@@ -211,7 +247,22 @@
           "type": "visual",
           "visualId": "luy-thua.visual.ghep-luy-thua",
           "caption": "Chọn hai số mũ, rồi bấm “Ghép lại”."
-        },
+        }
+      ],
+      "checkIds": ["luy-thua.ex.chon-2-mu-7"],
+      "practiceIds": ["luy-thua.ex.nhan-7"],
+      "recap": {
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-nhan",
+        "caption": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+      }
+    },
+    {
+      "id": "luy-thua.section.nhan-so-mu-1",
+      "title": "Nhân với số không ghi số mũ",
+      "sourceRef": "SGK tr.23",
+      "minutes": 3,
+      "blocks": [
         {
           "type": "group",
           "children": [
@@ -226,25 +277,19 @@
           ]
         }
       ],
-      "checkIds": ["luy-thua.ex.chon-2-mu-7"],
-      "practiceIds": [
-        "luy-thua.ex.nhan-7",
-        "luy-thua.ex.ghep-2-mu-5",
-        "luy-thua.ex.dien-quy-tac",
-        "luy-thua.ex.nhan-3-mu-4-voi-3",
-        "luy-thua.ex.chon-phep-dung"
-      ],
+      "checkIds": ["luy-thua.ex.so-mu-thua-so-don"],
+      "practiceIds": ["luy-thua.ex.nhan-3-mu-4-voi-3"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-nhan",
-        "caption": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ. Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹."
+        "visualId": "luy-thua.visual.the-nhan-so-mu-1",
+        "caption": "Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹."
       }
     },
     {
       "id": "luy-thua.section.chia-cung-co-so",
       "title": "Chia hai luỹ thừa cùng cơ số",
       "sourceRef": "SGK tr.24",
-      "minutes": 8,
+      "minutes": 3,
       "blocks": [
         {
           "type": "visual",
@@ -263,7 +308,22 @@
               "visualId": "luy-thua.visual.quy-tac-chia"
             }
           ]
-        },
+        }
+      ],
+      "checkIds": ["luy-thua.ex.chon-6-mu-3"],
+      "practiceIds": ["luy-thua.ex.chia-9"],
+      "recap": {
+        "type": "visual",
+        "visualId": "luy-thua.visual.tom-tat-chia",
+        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+      }
+    },
+    {
+      "id": "luy-thua.section.so-mu-0",
+      "title": "Số mũ 0",
+      "sourceRef": "SGK tr.24",
+      "minutes": 3,
+      "blocks": [
         {
           "type": "group",
           "children": [
@@ -284,32 +344,26 @@
           "caption": "Chọn hai số mũ và xem thương thay đổi."
         }
       ],
-      "checkIds": ["luy-thua.ex.chon-6-mu-3"],
-      "practiceIds": [
-        "luy-thua.ex.chia-9",
-        "luy-thua.ex.ghep-thuong",
-        "luy-thua.ex.chia-luy-thua-10",
-        "luy-thua.ex.mu-0-bang",
-        "luy-thua.ex.thuong-2-mu-0"
-      ],
+      "checkIds": ["luy-thua.ex.chon-luy-thua-bang-1"],
+      "practiceIds": ["luy-thua.ex.mu-0-bang"],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-chia",
-        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+        "visualId": "luy-thua.visual.the-so-mu-0",
+        "caption": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
       }
     },
     {
       "id": "luy-thua.section.luy-thua-cua-10",
       "title": "Luỹ thừa của 10",
       "sourceRef": "SGK tr.23",
-      "minutes": 7,
+      "minutes": 3,
       "blocks": [
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1."
+              "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau."
             },
             {
               "type": "visual",
@@ -321,13 +375,28 @@
           "type": "visual",
           "visualId": "luy-thua.visual.luy-thua-cua-10",
           "caption": "Bấm − và + để đổi số mũ, rồi đếm các chữ số 0."
-        },
+        }
+      ],
+      "checkIds": ["luy-thua.ex.viet-1000"],
+      "practiceIds": ["luy-thua.ex.tinh-10-mu-5"],
+      "recap": {
+        "type": "visual",
+        "visualId": "luy-thua.visual.the-luy-thua-10",
+        "caption": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau."
+      }
+    },
+    {
+      "id": "luy-thua.section.tong-luy-thua-10",
+      "title": "Viết số thành tổng luỹ thừa của 10",
+      "sourceRef": "SGK tr.23",
+      "minutes": 3,
+      "blocks": [
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại."
+              "text": "Viết số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, riêng chữ số hàng đơn vị giữ nguyên."
             },
             {
               "type": "visual",
@@ -340,18 +409,12 @@
           ]
         }
       ],
-      "checkIds": ["luy-thua.ex.viet-1000"],
-      "practiceIds": [
-        "luy-thua.ex.tao-10-000",
-        "luy-thua.ex.tinh-10-mu-5",
-        "luy-thua.ex.ghep-luy-thua-10",
-        "luy-thua.ex.tach-5-247",
-        "luy-thua.ex.chon-tong-3-062"
-      ],
+      "checkIds": ["luy-thua.ex.chon-luy-thua-hang-tram"],
+      "practiceIds": ["luy-thua.ex.tach-5-247"],
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.tom-tat-luy-thua-10",
-        "caption": "Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1. Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại."
+        "caption": "Viết số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, riêng chữ số hàng đơn vị giữ nguyên."
       }
     }
   ],
@@ -463,7 +526,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.the-luy-thua-10",
-        "caption": "Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1."
+        "caption": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau."
       }
     },
     {
@@ -473,7 +536,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.the-tong-luy-thua-10",
-        "caption": "Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại. Hàng có chữ số 0 thì số hạng bằng 0, nên không cần viết."
+        "caption": "Viết số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, riêng chữ số hàng đơn vị giữ nguyên. Hàng có chữ số 0 thì số hạng bằng 0, nên không cần viết."
       }
     }
   ],
@@ -773,6 +836,67 @@
       "difficulty": 2
     },
     {
+      "id": "luy-thua.ex.viet-4-mu-3",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết luỹ thừa có cơ số 4 và số mũ 3."
+        }
+      ],
+      "answer": {
+        "kind": "power",
+        "base": 4,
+        "exponent": 3
+      },
+      "check": {
+        "expr": "4^3"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "luy-thua.visual.bam-mu"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "luy-thua.ex.tinh-6-mu-1",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Luỹ thừa này bằng bao nhiêu?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{blue}{6}^{\\htmlId{so-mu}{\\concept{violet}{1}}}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6^1"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "so-mu",
+            "conceptId": "luy-thua.concept.so-mu"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
       "id": "luy-thua.ex.viet-9-mu-1",
       "type": "numeric",
       "cardIds": ["luy-thua.card.so-mu-1"],
@@ -932,6 +1056,63 @@
           {
             "target": "block",
             "index": 0,
+            "conceptId": "luy-thua.concept.co-so"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "luy-thua.ex.buoc-tiep-6-mu-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đã tính xong bước đầu. Bước tiếp theo là gì?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{co-so}{\\concept{blue}{6}}^{\\concept{violet}{4}} = \\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6}"
+        },
+        {
+          "type": "formula",
+          "tex": "6 \\cdot 6 = 36"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "36 \\cdot 6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "36 \\cdot 36"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "36 \\cdot 4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "36·6"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "co-so",
             "conceptId": "luy-thua.concept.co-so"
           }
         ]
@@ -1462,7 +1643,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Nhân hai luỹ thừa cùng cơ số: cơ số "
+          "text": "Nhân hai luỹ thừa cùng cơ số: "
         },
         {
           "type": "blank",
@@ -1471,22 +1652,53 @@
         },
         {
           "type": "text",
-          "text": ", các số mũ "
+          "text": " cơ số, "
         },
         {
           "type": "blank",
           "id": "so-mu",
-          "accept": ["cộng lại"]
+          "accept": ["cộng"]
         },
         {
           "type": "text",
-          "text": "."
+          "text": " các số mũ."
         }
       ],
-      "bank": ["nhân lên", "cộng lại", "trừ đi", "giữ nguyên"],
+      "bank": ["nhân", "cộng", "trừ", "giữ nguyên"],
       "hints": {
         "highlight": [],
         "hintVisualId": "luy-thua.visual.nhan-hai-luy-thua"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "luy-thua.ex.so-mu-thua-so-don",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong tích này, số 2 không ghi số mũ có số mũ là bao nhiêu?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{blue}{2}^{\\concept{violet}{4}} \\cdot \\htmlId{thua-so-don}{\\concept{blue}{2}}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 1
+      },
+      "check": {
+        "expr": "1"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "thua-so-don"
+          }
+        ]
       },
       "difficulty": 1
     },
@@ -1913,6 +2125,50 @@
       "difficulty": 2
     },
     {
+      "id": "luy-thua.ex.chon-luy-thua-bang-1",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Luỹ thừa nào bằng 1?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{6}^{\\concept{violet}{0}}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{6}^{\\concept{violet}{1}}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{6}^{\\concept{violet}{2}}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "6^0"
+      },
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "luy-thua.visual.so-mu-0-goi-y"
+      },
+      "difficulty": 1
+    },
+    {
       "id": "luy-thua.ex.mu-0-bang",
       "type": "numeric",
       "cardIds": ["luy-thua.card.so-mu-0"],
@@ -2273,6 +2529,58 @@
         ]
       },
       "difficulty": 2
+    },
+    {
+      "id": "luy-thua.ex.chon-luy-thua-hang-tram",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi viết số này thành tổng, chữ số 3 được nhân với luỹ thừa nào của 10?"
+        },
+        {
+          "type": "formula",
+          "tex": "6\\,\\htmlId{hang-tram}{3}51"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{10}^{\\concept{violet}{2}}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{10}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{10}^{\\concept{violet}{3}}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "10^2"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "hang-tram"
+          }
+        ]
+      },
+      "difficulty": 1
     },
     {
       "id": "luy-thua.ex.tach-5-247",

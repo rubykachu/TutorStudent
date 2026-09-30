@@ -1,4 +1,5 @@
 import type { z } from "zod";
+import { MAX_SECTION_EXERCISES, MAX_SECTION_SCREENS } from "@/lib/config";
 import {
   type Block,
   type GlossaryFile,
@@ -466,6 +467,19 @@ function checkLesson(
   const topLevelIds = new Set(lesson.exercises.map((e) => e.id));
   const placed = new Map<string, IssuePath>();
   lesson.sections.forEach((section, i) => {
+    if (section.blocks.length > MAX_SECTION_SCREENS) {
+      report(
+        ["sections", i, "blocks"],
+        `Section has ${section.blocks.length} screens (max ${MAX_SECTION_SCREENS}); split it into shorter sections`,
+      );
+    }
+    const exerciseCount = section.checkIds.length + section.practiceIds.length;
+    if (exerciseCount > MAX_SECTION_EXERCISES) {
+      report(
+        ["sections", i],
+        `Section has ${exerciseCount} exercises in checkIds and practiceIds (max ${MAX_SECTION_EXERCISES}); split it or move practice beyond one per card to the review bank`,
+      );
+    }
     for (const key of ["checkIds", "practiceIds"] as const) {
       section[key].forEach((id, j) => {
         const path: IssuePath = ["sections", i, key, j];

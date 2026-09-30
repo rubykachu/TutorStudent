@@ -28,15 +28,9 @@
         },
         { "type": "formula", "tex": "3 + 3 = 2 \\cdot 3 = 6" }
       ],
-      "checkIds": [
-        "fixture.ex.chon-phep-nhan",
-        "fixture.ex.cham-hinh-tron",
-        "fixture.ex.xep-hinh-vuong"
-      ],
+      "checkIds": ["fixture.ex.xep-hinh-vuong"],
       "practiceIds": [
         "fixture.ex.dem-cham",
-        "fixture.ex.ghep-phep-nhan",
-        "fixture.ex.tao-sau-cham",
         "fixture.ex.viet-luy-thua",
         "fixture.ex.sap-xep"
       ],
@@ -78,7 +72,7 @@
         },
         { "type": "note", "text": "Đọc chậm từng câu nhé." }
       ],
-      "checkIds": ["fixture.ex.dien-tu"],
+      "checkIds": ["fixture.ex.dien-tu", "fixture.ex.cham-hinh-tron"],
       "practiceIds": ["fixture.ex.cham-cau", "fixture.ex.viet-ve-ban"],
       "recap": {
         "type": "visual",
