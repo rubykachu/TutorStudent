@@ -27,36 +27,58 @@ function borderOf(color: ConceptColor | undefined): string {
     : CONCEPT_CLASSES[DIALOGUE_COLOR].border;
 }
 
+function countBy(who: Character): number {
+  return LINES.filter((line) => line.who === who).length;
+}
+
 // "Who is speaking?": every speech bubble is a button that turns over to show
-// the fox or the prince.
+// the fox or the prince. The instruction and purpose sit in the lesson's
+// group note; this picture only counts progress and closes with a summary.
 export default function AiNoi() {
   const [shown, setShown] = useState<readonly number[]>([]);
+  const done = shown.length === LINES.length;
   return (
-    <ul className="flex w-full max-w-md flex-col gap-2">
-      {LINES.map((line, i) => {
-        const open = shown.includes(i);
-        const color = open ? CHARACTERS[line.who].color : undefined;
-        return (
-          <li key={line.text}>
-            <button
-              type="button"
-              aria-pressed={open}
-              onClick={() =>
-                setShown((list) => (list.includes(i) ? list : [...list, i]))
-              }
-              className={`flex min-h-touch w-full items-center gap-3 rounded-xl border-2 bg-surface px-3 py-1 text-left motion-safe:transition-transform motion-safe:active:scale-97 ${borderOf(color)}`}
-            >
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-muted font-heading text-block">
-                {open ? <Face who={line.who} className="size-10" /> : "?"}
-              </span>
-              <span className="flex flex-col">
-                <span className="text-body">“{line.text}”</span>
-                {open && <Speaker who={line.who} />}
-              </span>
-            </button>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="flex w-full max-w-md flex-col gap-3">
+      <p
+        className={`rounded-xl px-3 py-2 text-body font-semibold ${done ? "bg-muted" : ""}`}
+        aria-live="polite"
+      >
+        {done
+          ? `Đã xem đủ ${LINES.length} lời thoại: cáo nói ${countBy("fox")} câu, hoàng tử bé nói ${countBy("prince")} câu.`
+          : `Đã xem ${shown.length}/${LINES.length}`}
+      </p>
+      <ul className="flex flex-col gap-2">
+        {LINES.map((line, i) => {
+          const open = shown.includes(i);
+          const color = open ? CHARACTERS[line.who].color : undefined;
+          return (
+            <li key={line.text}>
+              <button
+                type="button"
+                aria-pressed={open}
+                onClick={() =>
+                  setShown((list) => (list.includes(i) ? list : [...list, i]))
+                }
+                className={`flex min-h-touch w-full items-center gap-3 rounded-xl border-2 bg-surface px-3 py-1 text-left motion-safe:transition-transform motion-safe:active:scale-97 ${borderOf(color)}`}
+              >
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-muted font-heading text-block">
+                  {open ? <Face who={line.who} className="size-10" /> : "?"}
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-body">“{line.text}”</span>
+                  {open ? (
+                    <Speaker who={line.who} />
+                  ) : (
+                    <span className="text-caption text-muted-foreground">
+                      Chạm để xem ai nói
+                    </span>
+                  )}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

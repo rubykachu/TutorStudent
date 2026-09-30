@@ -172,9 +172,21 @@
           ]
         },
         {
-          "type": "visual",
-          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.ai-noi",
-          "caption": "Chạm vào từng bóng nói để xem ai đang nói."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào từng lời thoại để biết ai nói câu đó."
+            },
+            {
+              "type": "note",
+              "text": "Biết ai đang nói giúp bạn hiểu câu chuyện."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.ai-noi"
+            }
+          ]
         }
       ],
       "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.htb-dang-buon"],
