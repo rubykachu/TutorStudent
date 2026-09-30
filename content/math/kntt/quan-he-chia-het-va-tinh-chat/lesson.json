@@ -244,7 +244,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong một phép nhân, mỗi thừa số là một ước của tích. Ví dụ 24 = 6 · 4 nên 6 và 4 đều là ước của 24."
+              "text": "Trong một phép nhân, mỗi thừa số khác 0 là một ước của tích. Ví dụ 24 = 6 · 4 nên 6 và 4 đều là ước của 24."
             },
             {
               "type": "formula",
@@ -1899,7 +1899,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả ước của 14."
+          "text": "Chọn tất cả ước của 22."
         }
       ],
       "hints": {
@@ -2791,13 +2791,13 @@
       }
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.tong-30-4",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.tong-35-4",
       "type": "choice",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-khong-chia-het"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tổng 30 + 4 có chia hết cho 6 không?"
+          "text": "Tổng 35 + 4 có chia hết cho 7 không?"
         }
       ],
       "hints": {
@@ -2814,21 +2814,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Không, vì 4 không chia hết cho 6"
+            "text": "Không, vì 4 không chia hết cho 7"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Có, vì 30 chia hết cho 6"
+            "text": "Có, vì 35 chia hết cho 7"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không, vì 30 không chia hết cho 6"
+            "text": "Không, vì 35 không chia hết cho 7"
           }
         }
       ],
@@ -3762,7 +3762,7 @@
       "multiple": false
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.dien-du-20-6",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.dien-du-14-7",
       "type": "fillBlank",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.so-du"],
       "prompt": [
