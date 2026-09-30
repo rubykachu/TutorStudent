@@ -1,14 +1,16 @@
 # Review: Phép cộng và phép trừ số tự nhiên (`phep-cong-phep-tru`)
 
 - Bài: `content/math/kntt/phep-cong-phep-tru/lesson.json`
-- Vòng: 4 - chỉ phần đổi (`pnpm content:diff`), section: them-bot-cong, dat-tinh-cong, quan-he
-- Nguồn đã đọc: `sources/math/phep-cong-phep-tru/` - đối chiếu nội dung vòng trước (sbt-p14, p15, p16, p96, p97); vòng này chỉ đổi chữ quy tắc, recap và một nhiễu, không thêm kiến thức mới
+- Vòng: 5 - chỉ phần đổi (`pnpm content:diff`): lời đọc giới thiệu, 3 video (`ghep-tron`, `dat-tinh-tru`, `tim-so-hang`) và khối video đầu 3 section
+- Nguồn đã đọc: không có trang SGK mới; đối chiếu câu quy tắc với `note` của bài và kịch bản `video/projects/phep-cong-phep-tru/*/script.json`
 - `content:check`: 0 lỗi của bài
-- `lesson:walk`: không chạy lại ở vòng này (chỉ đổi chữ, không đổi bố cục); ảnh vòng trước trong `.shots/walk/phep-cong-phep-tru/`
-- Kết luận: Đã ghi reviewedHash, chờ quản trị viên đặt published (0 lỗi Nghiêm trọng; điều phối chạy `--approve`)
-- Bản đã review: `ba8c88e269b09e75e1a90d47e0925a4efaa8f8dea72124a725155bb5cb4a3cb2` (`pnpm content:diff` so với bản này)
+- `lesson:walk`: 0 FAIL (chạy sau khi duyệt)
+- Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
+- Bản đã review: `6f20fc9922347e381090955650b76cd8fa686ee295a29efed686071029505639` (`pnpm content:diff` so với bản này)
 
-Đã soát: quy tắc them-bot-cong (nay khớp `tinh-them-bot-1`, hai hình gợi ý/lời giải và recap, hết mâu thuẫn "gần tròn chục hơn"); recap section và card dat-tinh-cong khớp nhau và khớp hai câu quy tắc đứng trước (thứ tự cộng, nhớ 1); recap them-bot-cong, quan-he khớp note. `ex.chon-kiem-tra` tự giải 53 − 19 = 34: a (34 + 19 = 53) đúng; b (53 + 19 = 72), c (53 + 34 = 87, ghi 97), d (34 + 53 = 87, ghi 19) đều sai; d khác cấu trúc a nên hết bẫy một chữ số. `ex.chon-them-bot` (29 + 46 = 75): chỉ a đúng. Số không trùng trong ba section.
+Đã soát: mọi câu của 3 kịch bản và lời đọc giới thiệu. Toán đúng: 34 + 66 = 100, 100 + 268 = 368 (34 + 268 + 66), 45 + 55 = 100, 100 + 27 = 127; 532 - 247 = 285 (2 thành 12 - 7 = 5, chục còn 2 mượn thành 12 - 4 = 8, trăm còn 4 - 2 = 2) và 285 + 247 = 532; 82 - 35 = 47, 47 + 35 = 82, 60 - 18 = 42. Câu đầu có chữ "bạn", một giọng (Mỹ Duyên) cho cả bài, `pnpm video:check` đạt. Câu `rule` khớp `note`; hình không hiện kết quả trước khi được đọc (368, 285, 47, 42 hiện sau lời). Lời đọc giới thiệu khớp `hook`, `summary`, `goals`, `whyItMatters`.
+
+Âm thanh: các câu Whisper khớp dưới 97% (giá "nghìn đồng", "ba" so với "3", "60-18") đều là cách Whisper viết số, không phải đọc sai; nghe lại bằng Whisper của pipeline cho cùng kết quả ("35.000 đồng" = "35 nghìn đồng"). Bộ chuẩn hoá `video/lib/text.ts` nay đọc "35.000" thành "35 nghìn" và "60-18" thành "60 trừ 18" (test `reads Whisper's written thousands and minus as spoken words`); chữ thật sai không bị che vì các chữ khác vẫn so từng âm.
 
 ## Nghiêm trọng
 
@@ -16,7 +18,11 @@ Không có.
 
 ## Nên sửa
 
-Không có.
+### 1. Phụ đề `ghep-tron` viết "cú" thay vì "cứ" (đã sửa)
+
+- Vị trí: `video/projects/phep-cong-phep-tru/ghep-tron/script.json`, câu "Bạn cứ mua ba món hàng."
+- Vấn đề: phụ đề hiện sai chính tả "Bạn cú mua ba món hàng."
+- Sửa: đổi thành "cứ", dựng lại video; Whisper nghe "Bạn cứ mua 3 món hàng." khớp 100%.
 
 ## Góp ý
 

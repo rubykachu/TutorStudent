@@ -12,7 +12,7 @@
   "title": "Phép cộng và phép trừ số tự nhiên",
   "sourceRef": "Sách bài tập tr.14–16",
   "status": "published",
-  "reviewedHash": "ba8c88e269b09e75e1a90d47e0925a4efaa8f8dea72124a725155bb5cb4a3cb2",
+  "reviewedHash": "6f20fc9922347e381090955650b76cd8fa686ee295a29efed686071029505639",
   "overview": {
     "hook": {
       "text": "Bạn đi chợ, mua kẹo 38 nghìn đồng và bánh 47 nghìn đồng. Làm sao nhẩm nhanh xem phải trả bao nhiêu?",
@@ -4824,12 +4824,12 @@
       "url": "video/phep-cong-phep-tru/ghep-tron.mp4",
       "vttUrl": "video/phep-cong-phep-tru/ghep-tron.vtt",
       "posterUrl": "video/phep-cong-phep-tru/ghep-tron.jpg",
-      "durationSec": 78.17,
+      "durationSec": 78.13,
       "clips": [
         {
           "id": "ghep-tron",
-          "start": 18.145,
-          "end": 50.947,
+          "start": 18.119,
+          "end": 50.92,
           "cardIds": ["phep-cong-phep-tru.card.ghep-tron"]
         }
       ],

@@ -1,4 +1,4 @@
-Archived: 01/10/2026, sections A and B done; leftovers in `../../video-opening-retrofit/task.md` and `../../lesson-phep-cong-phep-tru/task.md`.
+Archived: 01/10/2026, sections A and B done; leftovers in `../../video-opening-retrofit/task.md` and `../lesson-phep-cong-phep-tru/task.md`.
 
 # Góp ý của chủ dự án sau khi bé dùng thử (01/10/2026)
 

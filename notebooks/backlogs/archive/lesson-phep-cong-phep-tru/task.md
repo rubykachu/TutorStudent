@@ -1,3 +1,5 @@
+Archived: 01/10/2026, narration and videos reviewed (round 5), ids locked, walk clean; no leftovers.
+
 # Bài phep-cong-phep-tru: narration and videos to review
 
 Media made on 01/10/2026 with skill `lesson-video`. `lesson.json` was changed by the pipelines (`overview.narration`, `videos[]`) and by three video blocks placed first in their sections, so `pnpm content:check` reports `[review-hash]` until the review below resets `reviewedHash`. Ids of the three videos are not yet in `content/ids.lock.json` (`pnpm content:lock` refuses to run while the hash is stale).

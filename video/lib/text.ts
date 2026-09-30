@@ -79,6 +79,9 @@ function stripTones(text: string): string {
 // One written word (as in the script or a Whisper word) as plain tokens.
 export function wordTokens(word: string): string[] {
   const plain = stripTones(word)
+    // Whisper writes "35 nghìn" as "35.000" and "5 trừ 3" as "5-3".
+    .replace(/(\d)\.(?=\d{3}(?!\d))/g, "$1")
+    .replace(/(\d)-(?=\d)/g, "$1 tru ")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
   if (!plain) return [];
