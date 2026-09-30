@@ -230,8 +230,7 @@ export function ExerciseFrame<E extends BasicExercise>({
     </button>
   ) : null;
 
-  // A tall prompt (a question and a passage, each with its read-aloud
-  // button) can push the answer area under the sticky bottom bar on a
+  // A tall prompt (a question and a passage) can push the answer area under the sticky bottom bar on a
   // phone, leaving options the child must tap half hidden behind it. Once
   // the answer is on screen, the page scrolls just enough to lift the whole
   // answer area, every option included, above the bar. The answer card
@@ -460,9 +459,7 @@ type PromptBlockProps = {
 };
 
 // A prompt block inside the frame: the shared block renderer, lit up as a
-// whole when a hint targets the block. Its read-aloud buttons are compact,
-// at the start of their text, so the prompt stays short and the answer card
-// under it fits above the bottom bar on a phone.
+// whole when a hint targets the block.
 export function PromptBlock({
   block,
   blockHighlight,
@@ -475,7 +472,7 @@ export function PromptBlock({
       strong={blockHighlight?.strong}
       className="w-full flex-col"
     >
-      <BlockView block={block} parts={parts} readAloudLayout="compact" />
+      <BlockView block={block} parts={parts} />
     </Highlight>
   );
 }

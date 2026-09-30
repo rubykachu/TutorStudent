@@ -9,12 +9,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { OVERVIEW_GOALS_LEAD } from "@/content/overview";
 import { LessonOverviewView } from "@/learn/lesson-overview";
 import { karaokeCueText } from "@/lib/karaoke-vtt";
-import { stopReading } from "@/lib/speech";
 import type { LessonOverview } from "@/schema/content";
-import { fakeVoice, installSpeech } from "../lib/speech-mock";
 
 afterEach(() => {
-  stopReading();
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
@@ -65,30 +62,13 @@ describe("LessonOverviewView", () => {
     expect(onStart).toHaveBeenCalledOnce();
   });
 
-  it("reads itself with the device voice when it has no narration", () => {
-    const speech = installSpeech([fakeVoice("Linh", "vi-VN")]);
+  it("offers nothing to listen to when it has no narration", () => {
     const { container } = renderOverview();
-    fireEvent.click(screen.getByRole("button", { name: "Nghe đọc" }));
-    expect(speech.spoken.map((u) => u.text)).toEqual([
-      "Mẹ mua hai túi kẹo.",
-      "Bài này nói về phép nhân.",
-      OVERVIEW_GOALS_LEAD,
-      "biết phép nhân",
-      "tính nhanh",
-      "Phép nhân giúp bạn đếm nhanh.",
-    ]);
-    act(() => {
-      speech.startNext();
-      speech.endCurrent();
-      speech.startNext();
-    });
-    expect(container.querySelector("[data-reading]")).toHaveTextContent(
-      "Bài này nói về phép nhân.",
-    );
+    expect(container.querySelector("[data-overview-narration]")).toBeNull();
+    expect(container.querySelector("audio")).toBeNull();
   });
 
   it("plays the narration on request and lights up the word being said", async () => {
-    installSpeech([fakeVoice("Linh", "vi-VN")]);
     const words = [
       "Mẹ mua hai túi kẹo.",
       "Bài này nói về phép nhân.",
@@ -118,8 +98,6 @@ describe("LessonOverviewView", () => {
         vttUrl: "narration/phep-nhan/overview.vtt",
       },
     });
-    // The recorded voice replaces the device voice.
-    expect(screen.queryByRole("button", { name: "Nghe đọc" })).toBeNull();
     expect(fetchMock).toHaveBeenCalledWith(
       "/media/narration/phep-nhan/overview.vtt",
     );

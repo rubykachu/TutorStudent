@@ -12,17 +12,11 @@ import {
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
-import {
-  ReadAloudButton,
-  type ReadAloudState,
-  useReadAloud,
-} from "@/components/read-aloud";
 import { RichText } from "@/components/rich-text";
 import {
   type OverviewPart,
   type OverviewSentence,
   overviewParts,
-  overviewSentences,
   overviewWordCount,
 } from "@/content/overview";
 import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
@@ -33,11 +27,6 @@ import type { Lesson, LessonOverview } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
 
 type Narration = NonNullable<LessonOverview["narration"]>;
-
-// What is lit up while the overview is heard: a word of the narration, or a
-// sentence of the device voice's reading.
-type Reading = { word: number; sentence: number };
-const NOT_READING: Reading = { word: -1, sentence: -1 };
 
 // The narration's words with their times, or null while loading or when the
 // captions do not match the overview text word for word (the overview was
@@ -171,42 +160,34 @@ function NarrationPlayer({ state }: { state: NarrationState }) {
 }
 
 // One sentence of the overview, word by word so the narration can light up
-// the word being said; the device voice lights up the whole sentence.
+// the word being said (`reading`: its position in the overview, -1 for none).
 function SentenceText({
   sentence,
   reading,
 }: {
   sentence: OverviewSentence;
-  reading: Reading;
+  reading: number;
 }) {
-  const active = reading.sentence === sentence.index;
-  return (
-    <span
-      data-reading={active || undefined}
-      className={`box-decoration-clone rounded-sm ${active ? "bg-reading" : ""}`}
-    >
-      {sentence.words.map((word, i) => {
-        const at = sentence.firstWord + i;
-        return (
-          // Words of a fixed sentence never reorder.
-          // biome-ignore lint/suspicious/noArrayIndexKey: static list
-          <span key={i}>
-            {i > 0 && " "}
-            <span
-              data-word-reading={at === reading.word || undefined}
-              className={
-                at === reading.word
-                  ? "box-decoration-clone rounded-sm bg-reading"
-                  : undefined
-              }
-            >
-              <RichText text={word} />
-            </span>
-          </span>
-        );
-      })}
-    </span>
-  );
+  return sentence.words.map((word, i) => {
+    const at = sentence.firstWord + i;
+    return (
+      // Words of a fixed sentence never reorder.
+      // biome-ignore lint/suspicious/noArrayIndexKey: static list
+      <span key={i}>
+        {i > 0 && " "}
+        <span
+          data-word-reading={at === reading || undefined}
+          className={
+            at === reading
+              ? "box-decoration-clone rounded-sm bg-reading"
+              : undefined
+          }
+        >
+          <RichText text={word} />
+        </span>
+      </span>
+    );
+  });
 }
 
 function PartText({
@@ -214,7 +195,7 @@ function PartText({
   reading,
 }: {
   part: OverviewPart | undefined;
-  reading: Reading;
+  reading: number;
 }) {
   if (!part) return null;
   return part.sentences.map((sentence, i) => (
@@ -235,8 +216,8 @@ type LessonOverviewViewProps = {
 
 // The lesson's opening screen: why it matters, before any exercise. It
 // opens with an everyday situation (or the story's teaser), says what the
-// lesson covers and what the child will be able to do, and can be heard:
-// the recorded narration when the lesson has one, else the device voice.
+// lesson covers and what the child will be able to do, and can be heard
+// when the lesson has a recorded narration.
 export function LessonOverviewView({
   lesson,
   onStart,
@@ -245,27 +226,19 @@ export function LessonOverviewView({
 }: LessonOverviewViewProps) {
   const { overview } = lesson;
   const parts = useMemo(() => overviewParts(overview), [overview]);
-  const sentences = useMemo(() => overviewSentences(parts), [parts]);
   const narration = useNarration(overview.narration, overviewWordCount(parts));
-  const readAloud: ReadAloudState = useReadAloud(sentences.map((s) => s.text));
-  const reading: Reading = overview.narration
-    ? { word: narration.word, sentence: -1 }
-    : readAloud.reading === null
-      ? NOT_READING
-      : { word: -1, sentence: readAloud.reading };
+  const reading = narration.word;
   // The text being heard stays on screen: the page follows it down, and the
   // document's scroll-padding keeps it above the bottom bar.
   const rootRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   useEffect(() => {
-    if (reading.word < 0 && reading.sentence < 0) return;
-    rootRef.current
-      ?.querySelector("[data-word-reading], [data-reading]")
-      ?.scrollIntoView?.({
-        block: "nearest",
-        behavior: reducedMotion ? "auto" : "smooth",
-      });
-  }, [reading.word, reading.sentence, reducedMotion]);
+    if (reading < 0) return;
+    rootRef.current?.querySelector("[data-word-reading]")?.scrollIntoView?.({
+      block: "nearest",
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }, [reading, reducedMotion]);
   const find = (key: OverviewPart["key"], item = 0) =>
     parts.find((p) => p.key === key && p.item === item);
   const goals = parts.filter((p) => p.key === "goal");
@@ -286,11 +259,7 @@ export function LessonOverviewView({
         </div>
       </header>
 
-      {overview.narration ? (
-        <NarrationPlayer state={narration} />
-      ) : (
-        <ReadAloudButton state={readAloud} className="self-start" />
-      )}
+      {overview.narration && <NarrationPlayer state={narration} />}
 
       <section
         data-overview-part="hook"

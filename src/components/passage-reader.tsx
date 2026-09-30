@@ -2,11 +2,6 @@
 
 import { Eye } from "lucide-react";
 import { type KeyboardEvent, useId } from "react";
-import {
-  ReadAloudButton,
-  type ReadAloudLayout,
-  useReadAloud,
-} from "@/components/read-aloud";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { PassageBlock } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
@@ -29,8 +24,6 @@ export type PassageReaderProps = {
   passage: PassageBlock;
   // Sentence id -> how a hint lights it up.
   highlight?: ReadonlyMap<string, HighlightSpec>;
-  // Where the reading-mode "Nghe đọc" button goes; see ReadAloudLayout.
-  readAloudLayout?: ReadAloudLayout;
 } & SelectionProps;
 
 const NO_HIGHLIGHT: ReadonlyMap<string, HighlightSpec> = new Map();
@@ -50,14 +43,8 @@ function sentenceClass(
   selected: boolean,
   selectable: boolean,
   noted: boolean,
-  reading = false,
 ): string {
   const classes = ["box-decoration-clone rounded-sm"];
-  if (reading) {
-    classes.push(
-      "bg-reading motion-safe:transition-colors motion-safe:duration-150",
-    );
-  }
   if (selectable) {
     classes.push(
       "cursor-pointer px-0.5 py-2 motion-safe:transition-colors motion-safe:duration-100",
@@ -83,17 +70,9 @@ type SentenceViewProps = {
   // and their numbers follow it as badges.
   notes: readonly IdentifiedNote[];
   selection: SelectionProps;
-  // Being read aloud right now.
-  reading: boolean;
 };
 
-function SentenceView({
-  sentence,
-  spec,
-  notes,
-  selection,
-  reading,
-}: SentenceViewProps) {
+function SentenceView({ sentence, spec, notes, selection }: SentenceViewProps) {
   const noted = notes.length > 0;
   const noteIds = noted ? notes.map((entry) => entry.id).join(" ") : undefined;
   const common = {
@@ -101,14 +80,10 @@ function SentenceView({
     "data-highlighted": spec ? true : undefined,
     "data-highlight-strong": spec?.strong || undefined,
     "aria-describedby": noteIds,
-    "data-reading": reading || undefined,
   };
   if (!selection.selectable) {
     return (
-      <span
-        {...common}
-        className={sentenceClass(spec, false, false, noted, reading)}
-      >
+      <span {...common} className={sentenceClass(spec, false, false, noted)}>
         {sentence.text}
       </span>
     );
@@ -187,7 +162,6 @@ function AnnotationCard({ entry, id }: { entry: IdentifiedNote; id?: string }) {
 export function PassageReader({
   passage,
   highlight = NO_HIGHLIGHT,
-  readAloudLayout = "labelled",
   ...selection
 }: PassageReaderProps) {
   const baseId = useId();
@@ -198,21 +172,6 @@ export function PassageReader({
     notesBySentence.set(note.sentenceId, list);
   });
   const tapMode = selection.selectable === true;
-  // Reading mode offers "Nghe đọc": the passage is read sentence by sentence
-  // with the sentence being read lit up; tap mode keeps the page for picking.
-  const allSentences = passage.paragraphs.flatMap((p) => p.sentences);
-  const readAloud = useReadAloud(allSentences.map((s) => s.text));
-  const readingId =
-    readAloud.reading === null
-      ? undefined
-      : allSentences[readAloud.reading]?.id;
-  const readButton = tapMode ? null : (
-    <ReadAloudButton
-      state={readAloud}
-      layout={readAloudLayout}
-      className={readAloudLayout === "labelled" ? "self-start" : ""}
-    />
-  );
 
   return (
     <figure
@@ -220,8 +179,7 @@ export function PassageReader({
       data-passage
       data-selectable={tapMode || undefined}
     >
-      {readAloudLayout === "labelled" && readButton}
-      {passage.paragraphs.map((paragraph, paragraphIndex) => {
+      {passage.paragraphs.map((paragraph) => {
         const notes = paragraph.sentences.flatMap(
           (sentence) => notesBySentence.get(sentence.id) ?? [],
         );
@@ -232,9 +190,6 @@ export function PassageReader({
             data-paragraph
           >
             <p className={`max-w-[60ch] ${tapMode ? "leading-tap" : ""}`}>
-              {readAloudLayout === "compact" &&
-                paragraphIndex === 0 &&
-                readButton}
               {paragraph.sentences.map((sentence, index) => {
                 const own = notesBySentence.get(sentence.id) ?? [];
                 return (
@@ -245,7 +200,6 @@ export function PassageReader({
                       spec={highlight.get(sentence.id)}
                       notes={own}
                       selection={selection}
-                      reading={sentence.id === readingId}
                     />
                     {own.map((entry) => (
                       <span key={entry.id}>

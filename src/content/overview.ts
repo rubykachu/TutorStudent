@@ -2,8 +2,8 @@ import type { LessonOverview } from "@/schema/content";
 import { sentences } from "./lint/text";
 
 // The lesson overview as the text that is shown and read aloud, in reading
-// order. The overview screen, its read-aloud and the narration build
-// (`pnpm narration:build`) all walk this one sequence, so a word's position
+// order. The overview screen and the narration build
+// (`pnpm narration:build`) both walk this one sequence, so a word's position
 // here is also its position in the narration's karaoke captions.
 
 // Printed above the goals (each goal completes it) and read before them.

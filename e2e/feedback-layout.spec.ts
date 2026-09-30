@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
-import { patchFixtureLesson, withVietnameseVoice } from "./fixture-routes";
+import { patchFixtureLesson } from "./fixture-routes";
 import {
   answerRight,
   createProfile,
@@ -159,18 +159,17 @@ for (const screen of SCREENS) {
   });
 }
 
-// A question and a passage, each with its read-aloud button, above four
+// A question and a passage above four
 // options that wrap to two lines: taller than a phone screen together. The
 // frame must lift the whole answer card, last option included, above the
 // bottom bar, both when the exercise opens and once the praise bubble pushes
 // the card down.
 const LONG_CHOICE_ID = "fixture.ex.dem-cham";
 
-test("a long prompt with read-aloud keeps every option above the bottom bar on a phone", async ({
+test("a long prompt keeps every option above the bottom bar on a phone", async ({
   page,
 }, testInfo) => {
   test.skip(testInfo.project.name !== "phone");
-  await withVietnameseVoice(page);
   await patchFixtureLesson(page, (lesson) => {
     const index = lesson.exercises.findIndex((e) => e.id === LONG_CHOICE_ID);
     const long = (text: string) => ({ type: "text" as const, text });
@@ -216,10 +215,6 @@ test("a long prompt with read-aloud keeps every option above the bottom bar on a
   });
   await openSection(page);
   const exercise = await reach(page, LONG_CHOICE_ID);
-  await expect(
-    exercise.locator('[data-read-aloud-layout="compact"]'),
-  ).toHaveCount(2);
-
   await expectInViewAboveBar(page, "[data-answer-area]");
   await expectNothingUnderBottomBar(page);
 
