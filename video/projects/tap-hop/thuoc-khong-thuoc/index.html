@@ -2,7 +2,9 @@
 <!--
   Lesson video "Kí hiệu thuộc và không thuộc" (lesson tap-hop): with the set
   A = {1; 2; 3}, 2 is inside so "2 ∈ A", 5 is outside so "5 ∉ A"; both marks
-  are written stroke by stroke (∉ is ∈ plus a slash).
+  are written stroke by stroke (∉ is ∈ plus a slash). The recap shows each
+  statement with how it is read aloud, and sits clear of the centre where the
+  poster's play button is drawn.
   Built by `pnpm video:build tap-hop thuoc-khong-thuoc`, which injects
   window.TIMING (scene windows and spoken word times from script.json).
 -->
@@ -25,6 +27,8 @@
       .stmt { align-items: center; gap: 14px; font-size: 100px; }
       .word { font: 800 64px / 1 "Baloo 2", sans-serif; color: var(--color-concept-slate); }
       .small .glyph { height: 120px; }
+      .sum { flex-direction: column; gap: 14px; }
+      .sum .stmt { display: flex; }
     </style>
   </head>
   <body>
@@ -54,8 +58,14 @@
           <div id="read-k" class="row" style="top: 470px"><span class="chip" style="--c: var(--color-concept-slate)">đọc: 5 không thuộc A</span></div>
         </section>
         <section id="s6" class="scene layer">
-          <div id="sum-t" class="row math stmt small" style="top: 110px"><span class="el">2</span><span id="s-g-t"></span><span class="nm">A</span><span class="word">thuộc</span></div>
-          <div id="sum-k" class="row math stmt small" style="top: 300px"><span class="el">5</span><span id="s-g-k"></span><span class="nm">A</span><span class="word">không thuộc</span></div>
+          <div id="sum-t" class="row sum" style="top: 40px">
+            <div class="math stmt small"><span class="el">2</span><span id="s-g-t"></span><span class="nm">A</span></div>
+            <span class="chip" style="--c: var(--color-concept-amber)">đọc: 2 thuộc A</span>
+          </div>
+          <div id="sum-k" class="row sum" style="top: 420px">
+            <div class="math stmt small"><span class="el">5</span><span id="s-g-k"></span><span class="nm">A</span></div>
+            <span class="chip" style="--c: var(--color-concept-slate)">đọc: 5 không thuộc A</span>
+          </div>
         </section>
       </div>
       <div id="owl-layer" class="layer"></div>

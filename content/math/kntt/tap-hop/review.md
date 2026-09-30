@@ -1,18 +1,21 @@
 # Review: Tập hợp (`tap-hop`)
 
 - Bài: `content/math/kntt/tap-hop/lesson.json`
-- Vòng: 6 - chỉ phần đổi (`pnpm content:diff`), section: không section nào đổi chữ; phần đổi là `overview.narration` (audio, vtt) và hai video `tap-hop.video.tap-hop-la-gi`, `tap-hop.video.thuoc-khong-thuoc` kèm clip cho card `tap-hop`, `phan-tu`, `thuoc`, `khong-thuoc` (đối chiếu với section tap-hop-la-gi, ngoac-nhon, thuoc, khong-thuoc, xet-thuoc)
-- Nguồn đã đọc: `sources/math/tap-hop/` - không mở lại; lời video chỉ nói lại định nghĩa, cách viết và cách đọc đã có trong note, recap của bài (trang p5 đã đối chiếu ở vòng trước)
-- `content:check`: 1 lỗi (`review-hash`, hết sau lệnh cuối vòng), 1 cảnh báo (2 id video chưa có trong `ids.lock.json`)
-- `lesson:walk`: không chạy - diff không thêm khối nào lên màn (chưa có khối `video` trong section); khung hình video soát bằng ffmpeg (0,7–58 s của cả hai video)
+- Vòng: 7 - chỉ phần đổi (`pnpm content:diff`), section: `tap-hop.section.thuoc`; phần đổi là video `tap-hop.video.thuoc-khong-thuoc` (`durationSec` 56,5 thành 60,4; mốc clip `thuoc` kết thúc 29,673, `khong-thuoc` 30,073–50,042)
+- Nguồn đã đọc: `sources/math/tap-hop/` - không mở lại; lời video chỉ nói lại định nghĩa, cách viết và cách đọc đã có trong note, recap, caption của section thuoc (trang p5 đã đối chiếu ở vòng trước)
+- `content:check`: 1 lỗi (`review-hash`, hết sau lệnh cuối vòng), 0 cảnh báo
+- `lesson:walk`: không chạy lại trong vòng này (đã chạy, 0 lỗi); khung hình video soát bằng ffmpeg ở 26,8; 28; 41,9-42,3; 47; 49,5; 54; 58 s và ảnh poster
 - Kết luận: Đã xuất bản
-- Bản đã review: `1e53bf198ca38f424e6649f1c16344da885ef150c4df24fd47614bb2cc4102b5` (`pnpm content:diff` so với bản này)
+- Bản đã review: `e7d329fc866d1e84fa98ea2390588afd75b8080b360e8aab43e7abaf29cf6c1d` (`pnpm content:diff` so với bản này)
 
 Đã soát:
-- `overview.vtt` (39,5 s) đọc đúng nguyên văn `overview.hook.text`, `summary`, bốn `goals`, `whyItMatters`.
-- `tap-hop-la-gi`: lời đọc (`.vtt`) khớp `script.json` từng câu; định nghĩa tập hợp, phần tử khớp note và recap section tap-hop-la-gi; câu "đặt các phần tử vào giữa hai ngoặc nhọn" khớp note ngoac-nhon; ba nét của dấu {, dấu } là hình soi gương khớp caption `ve-mo-ngoac`, `ve-dong-ngoac`; hình dùng đúng nét của `src/visuals/math/tap-hop/glyphs`.
-- `thuoc-khong-thuoc`: "2 thuộc A" nghĩa là "2 là một phần tử của tập hợp A", "5 không phải là phần tử của tập hợp A" khớp note thuoc, khong-thuoc; cách vẽ ∉ (viết ∈ rồi thêm nét gạch chéo) khớp caption `ve-khong-thuoc`; câu nhớ "Có trong tập hợp thì thuộc…" khớp recap xet-thuoc.
-- Clip: `tap-hop` (0,7–14,0 s) giảng tập hợp, có đội bóng như recap card; `phan-tu` (14,4–22,8 s) giảng phần tử; `thuoc` (10,3–27,8 s) giảng 2 ∈ A và cách vẽ ∈; `khong-thuoc` (28,2–46,2 s) giảng 5 ∉ A và cách vẽ ∉. Cả bốn đúng card.
+- `thuoc-khong-thuoc.vtt` (58,9 s, 28 cue do 4 câu dài bị chia đôi) đủ 24 câu của `script.json` theo thứ tự, gồm "Viết chậm để tay nhớ." (cue 13) và "Viết chậm từng nét nhé." (cue 23); mọi chữ đúng nguyên văn.
+- Lời nêu quy tắc khớp note thuoc, khong-thuoc và recap card: "2 là một phần tử của tập hợp A", "5 không phải là phần tử của tập hợp A", "Có trong tập hợp thì thuộc", "Không có trong tập hợp thì không thuộc".
+- Màn cuối (cảnh `s06-nho`, 54 s và 58 s; ảnh poster) hiện "2 ∈ A" kèm chip "đọc: 2 thuộc A" và "5 ∉ A" kèm chip "đọc: 5 không thuộc A", khớp lời đọc "Ta đọc là: 2 thuộc A", "5 không thuộc A" và dạng recap `x ∈ A`, `x ∉ A`. Lỗi "2 ∈ A thuộc" của vòng trước đã hết.
+- Màn ở 26,8 s (2 ∈ A, chip "đọc: 2 thuộc A") và 47 s (5 ∉ A, chip "đọc: 5 không thuộc A", số 5 đứng ngoài khung A) khớp lời ở cùng thời điểm.
+- Clip: `thuoc` (10,271–29,673 s) phủ cue 5–13, từ "Số 2 nằm trong tập hợp A." đến "Viết chậm để tay nhớ.", đúng card `tap-hop.card.thuoc`; `khong-thuoc` (30,073–50,042 s) phủ cue 14–23, từ "Còn số 5 thì sao?" đến "Viết chậm từng nét nhé.", đúng card `tap-hop.card.khong-thuoc`. Mỗi clip không chứa lời của clip kia; đầu clip cách cue trước 0,2 s trở lên.
+- Video đã nằm trong section thuoc (khối `video` đầu section) và bản lock id đã đủ: hai mục Nên sửa về video chưa gắn, kịch bản lệch video của vòng trước đã hết.
+- Các mục khác cùng section thuoc không đổi chữ; recap còn khớp note.
 
 ## Nghiêm trọng
 
@@ -20,26 +23,7 @@ Không có.
 
 ## Nên sửa
 
-### 1. Hai video chưa được gắn vào section nào
-
-- Vị trí: `$.sections[0].blocks` (`tap-hop.section.tap-hop-la-gi`), `$.sections[4].blocks` (`tap-hop.section.thuoc`)
-- Nguồn: —
-- Vấn đề: `videos` có hai video nhưng không section nào có khối `{ "type": "video" }`, nên trẻ không xem được cả video trong bài; chỉ thấy các clip ở màn nhắc lại của thẻ ôn.
-- Sửa: thêm `{ "type": "video", "videoId": "tap-hop.video.tap-hop-la-gi" }` làm khối đầu của section tap-hop-la-gi và `{ "type": "video", "videoId": "tap-hop.video.thuoc-khong-thuoc" }` làm khối đầu của section thuoc, rồi `pnpm content:lock`, `pnpm lesson:walk tap-hop` và review phần đổi.
-
-### 2. Kịch bản `thuoc-khong-thuoc` lệch với video đã dựng
-
-- Vị trí: `video/projects/tap-hop/thuoc-khong-thuoc/script.json`, cảnh `s03-ve-thuoc` ("Viết chậm để tay nhớ.") và `s05-ve-khong` ("Viết chậm từng nét nhé.")
-- Nguồn: —
-- Vấn đề: hai câu này có trong kịch bản nhưng không có trong `public/media/video/tap-hop/thuoc-khong-thuoc.mp4` và `.vtt` (lời đọc nhảy từ "Ta đọc là: 2 thuộc A." ở 27,6 s sang "Còn số 5 thì sao?" ở 28,5 s; báo cáo lần dựng cũng không có hai câu). Video đang phát không sai kiến thức, nhưng kịch bản không còn là nguồn của video: lần dựng sau sẽ đổi thời lượng và mốc clip mà không ai review.
-- Sửa: chạy lại `pnpm video:build tap-hop thuoc-khong-thuoc` (mốc clip `thuoc`, `khong-thuoc` sẽ đổi), hoặc xoá hai câu khỏi `script.json` cho khớp video hiện có.
-
-### 3. Màn nhớ cuối video `thuoc-khong-thuoc` ghi "2 ∈ A thuộc"
-
-- Vị trí: `video/projects/tap-hop/thuoc-khong-thuoc/index.html`, `#sum-t`, `#sum-k` (cảnh `s06-nho`, khoảng 48–56 s)
-- Nguồn: —
-- Vấn đề: chữ "thuộc", "không thuộc" nằm liền sau "2 ∈ A", "5 ∉ A" trên cùng dòng, cùng cỡ, không có dấu ngăn, nên màn đọc thành "2 ∈ A thuộc", "5 ∉ A không thuộc", lệch cách đọc "2 thuộc A" vừa dạy và lệch dạng recap của bài ("x ∈ A: x là phần tử của A"). Lời đọc và chip "đọc: 2 thuộc A" trước đó đúng nên trẻ khó nhớ sai hẳn, vì vậy ghi Nên sửa.
-- Sửa: đổi thành "2 ∈ A: 2 thuộc A" và "5 ∉ A: 5 không thuộc A" (hoặc tách nhãn thành chip riêng dưới dòng), rồi dựng lại video.
+Không có.
 
 ## Góp ý
 
@@ -52,14 +36,14 @@ Không có.
 
 ### 2. Phụ đề ngắt dòng giữa một từ
 
-- Vị trí: `public/media/video/tap-hop/thuoc-khong-thuoc.vtt` cue 7–8 ("phần / tử"), cue 24–25 ("tập / hợp"); `tap-hop-la-gi.vtt` cue 29–30 ("của / bạn")
+- Vị trí: `public/media/video/tap-hop/thuoc-khong-thuoc.vtt` cue 7–8 ("phần / tử"), cue 26–27 ("tập / hợp")
 - Nguồn: —
 - Vấn đề: người học chậm đọc phụ đề từng dòng, từ bị tách hai dòng khó đọc hơn.
 - Sửa: báo người làm công cụ: bộ chia cue của `video:build` tránh ngắt giữa hai tiếng của một từ ghép, hoặc ưu tiên ngắt trước "của", "là".
 
 ### 3. Chấm số 2 của nét gạch chéo ∉ bị cắt ở mép trên
 
-- Vị trí: `video/projects/tap-hop/figures.tsx` (`Mark`, viewBox cao `GLYPH_HEIGHT`), video `thuoc-khong-thuoc` khoảng 39,8–40,2 s
+- Vị trí: `video/projects/tap-hop/figures.tsx` (`Mark`, viewBox cao `GLYPH_HEIGHT`), video `thuoc-khong-thuoc` khoảng 41,9–42,2 s
 - Nguồn: —
-- Vấn đề: chấm số của nét thứ hai nằm sát đỉnh viewBox nên chỉ hiện một phần trong lúc vẽ.
+- Vấn đề: chấm số của nét thứ hai nằm sát đỉnh viewBox nên chỉ hiện một phần trong lúc vẽ (vẫn còn ở bản dựng lại; chỉ thấy khoảng 0,3 s).
 - Sửa: nới viewBox thêm khoảng 16 đơn vị ở trên và dưới.

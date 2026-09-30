@@ -3,8 +3,8 @@
   "engine": "local",
   "voice": "Hải Đăng",
   "poster": {
-    "scene": "s03-ve-thuoc",
-    "at": 0.9
+    "scene": "s06-nho",
+    "at": 0.95
   },
   "scenes": [
     {

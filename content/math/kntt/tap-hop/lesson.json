@@ -7,7 +7,7 @@
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "1e53bf198ca38f424e6649f1c16344da885ef150c4df24fd47614bb2cc4102b5",
+  "reviewedHash": "e7d329fc866d1e84fa98ea2390588afd75b8080b360e8aab43e7abaf29cf6c1d",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",
@@ -3273,18 +3273,18 @@
       "url": "video/tap-hop/thuoc-khong-thuoc.mp4",
       "vttUrl": "video/tap-hop/thuoc-khong-thuoc.vtt",
       "posterUrl": "video/tap-hop/thuoc-khong-thuoc.jpg",
-      "durationSec": 56.5,
+      "durationSec": 60.4,
       "clips": [
         {
           "id": "thuoc",
           "start": 10.271,
-          "end": 27.754,
+          "end": 29.673,
           "cardIds": ["tap-hop.card.thuoc"]
         },
         {
           "id": "khong-thuoc",
-          "start": 28.154,
-          "end": 46.153,
+          "start": 30.073,
+          "end": 50.042,
           "cardIds": ["tap-hop.card.khong-thuoc"]
         }
       ],
