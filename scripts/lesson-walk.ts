@@ -16,6 +16,7 @@ import {
   type Lesson,
   LessonSchema,
   type ManipulateExercise,
+  type OpenEndedExercise,
 } from "@/schema/content";
 import { findVisual, type VisualState } from "@/visuals/registry";
 import {
@@ -37,8 +38,10 @@ import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 // Usage: lesson-walk <lessonId>
 // Walks every section of a lesson the way a child does, on each walk device:
 // every explanation screen, every exercise answered right (read from the
-// lesson the server serves), and the first exercise of each type, with and
-// without a hint visual, missed three times to see all feedback tiers. Screenshots go to .shots/walk/<lessonId>/<device>/.
+// lesson the server serves; an open-ended one step by step, then a sample
+// paragraph with every rubric line ticked), and the first exercise of each
+// type, with and without a hint visual, missed three times to see all
+// feedback tiers. Screenshots go to .shots/walk/<lessonId>/<device>/.
 // Fails when a feedback visual (hint or solution) is out of view, when the
 // hint is lost after the number pad is opened again, when the bottom bar
 // covers something the child must tap, or when anything sticks out of the
@@ -54,6 +57,10 @@ const DRAFT_ENV = { CONTENT_INCLUDE_DRAFT: "1" };
 const SETTLE_MS = 800;
 const MAX_STEPPER_TAPS = 100;
 const PROFILE = { name: "Bé Thử", avatar: "Cáo" };
+// Typed after an open-ended exercise's starter: a few plain sentences, so
+// the writing step has more than its opening and can be handed in.
+const WRITING_SAMPLE =
+  "Cáo thấy buồn bã và nhớ bạn. Nhìn cánh đồng lúa mì, cáo nhớ mái tóc vàng óng. Tiếng gió xào xạc làm cáo vui vui. Cáo mong bạn luôn nhớ lời dặn.";
 
 // The two E2E targets plus the iPad held in landscape.
 const WALK_DEVICES = {
@@ -574,10 +581,59 @@ class Walker {
   }
 
   private async walkExercise(where: string, exercise: Exercise) {
-    if (exercise.type === "openEnded") {
-      throw new Error(`${where}: open-ended exercises are not walked yet`);
-    }
     const area = this.page.locator(`[data-exercise="${exercise.id}"]`);
+    if (exercise.type === "openEnded") {
+      await this.walkOpenEnded(where, area, exercise);
+    } else {
+      await this.answerBasic(where, area, exercise);
+    }
+    await area.waitFor({ state: "detached" });
+  }
+
+  // An open-ended exercise: every graded step answered like a plain
+  // exercise, then the writing step filled with a sample paragraph and every
+  // rubric line ticked, as a child checking their own writing would.
+  private async walkOpenEnded(
+    where: string,
+    area: Locator,
+    exercise: OpenEndedExercise,
+  ) {
+    const total = exercise.steps.length;
+    for (const [i, step] of exercise.steps.entries()) {
+      const stepWhere = `${where}-step${i + 1}-${step.id.split(".").at(-1)}`;
+      await this.answerBasic(stepWhere, area, step);
+      // The next step replaces this one in the same frame, so wait for the
+      // step dots (or the writing step after the last) to move on.
+      await (i + 1 < total
+        ? area
+            .locator("[data-step-dots]")
+            .getByText(`Bước ${i + 2} trên ${total}`, { exact: true })
+        : area.locator("[data-writing-step]")
+      ).waitFor();
+    }
+    const writing = area.locator("[data-writing-step]");
+    await writing.waitFor();
+    await this.look(`${where}-writing`);
+    await writing
+      .locator("textarea")
+      .fill(`${exercise.writing.starter} ${WRITING_SAMPLE}`);
+    await this.look(`${where}-written`);
+    await writing.getByRole("button", { name: "Xong", exact: true }).tap();
+    const rubric = area.locator("[data-rubric]");
+    await rubric.waitFor();
+    for (const box of await rubric.getByRole("checkbox").all()) {
+      await box.check();
+    }
+    await this.look(`${where}-rubric`);
+    await rubric.getByRole("button", { name: "Hoàn thành", exact: true }).tap();
+  }
+
+  // Answers one auto-graded exercise shown in `area`, up to its "Tiếp".
+  private async answerBasic(
+    where: string,
+    area: Locator,
+    exercise: BasicExercise,
+  ) {
     const frame = area.locator("section[data-phase]");
     await frame.waitFor();
     await this.look(where);
@@ -607,7 +663,6 @@ class Walker {
     await area.locator('section[data-phase="correct"]').waitFor();
     await this.look(`${where}-correct`);
     await this.bottomButton("Tiếp").tap();
-    await area.waitFor({ state: "detached" });
   }
 }
 
