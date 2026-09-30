@@ -63,7 +63,7 @@ function SumLine({
         <SumOf term={fmt(size)} count={groups} />
         <span className="whitespace-nowrap">
           {"= "}
-          <Product factors={[groups, fmt(size)]} />
+          <Product factors={[fmt(size), groups]} />
         </span>
         <span className="whitespace-nowrap">
           {"= "}
@@ -122,7 +122,7 @@ function RepeatAddView({ spec, step }: { spec: Spec; step: number }) {
 }
 
 export function RepeatAdd({ spec }: { spec: Spec }) {
-  const label = `${spec.groups} ${spec.groupWord}, mỗi ${spec.groupWord} ${spec.size} ${spec.itemWord}, cộng lại thành ${spec.groups} ${TIMES} ${spec.size}`;
+  const label = `${spec.groups} ${spec.groupWord}, mỗi ${spec.groupWord} ${spec.size} ${spec.itemWord}, cộng lại thành ${spec.size} ${TIMES} ${spec.groups}`;
   if (spec.mode === "still") {
     return (
       <figure aria-label={label} className="w-full">

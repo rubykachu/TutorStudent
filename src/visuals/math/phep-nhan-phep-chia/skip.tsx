@@ -126,7 +126,7 @@ function JumpLine({ spec, jumps }: { spec: Spec; jumps: number }) {
   const unknown = spec.mode === "hint" && jumps === spec.hops;
   return (
     <p className={MATH_LINE}>
-      <Product factors={[jumps, spec.step]} />
+      <Product factors={[spec.step, jumps]} />
       <span className="whitespace-nowrap">
         {"= "}
         {unknown ? (
@@ -149,7 +149,7 @@ function SkipView({ spec, jumps }: { spec: Spec; jumps: number }) {
       <Legend
         items={[
           { color: "blue", name: "Mỗi bước nhảy" },
-          { color: "amber", name: "Nơi đáp" },
+          { color: "amber", name: "Chỗ dừng" },
         ]}
       />
     </div>

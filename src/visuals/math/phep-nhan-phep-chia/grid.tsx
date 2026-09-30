@@ -154,7 +154,7 @@ function GridBuilder({
           </span>
         </p>
         <p className={MATH_LINE}>
-          <Product factors={[rows, cols]} />
+          <Product factors={[cols, rows]} />
           <span className="whitespace-nowrap">
             {"= "}
             <Tint color="amber">{fmt(total)}</Tint>
@@ -164,7 +164,7 @@ function GridBuilder({
       {done && (
         <p className="rounded-lg bg-correct-soft px-4 py-2 text-center font-heading text-block font-semibold text-correct-soft-foreground">
           Xong rồi! <SumOf term={cols} count={rows} />
-          {` = ${rows} ${TIMES} ${cols} = ${fmt(total)}`}
+          {` = ${cols} ${TIMES} ${rows} = ${fmt(total)}`}
         </p>
       )}
       <div className="w-full" style={{ maxWidth: cols * CELL_PX }}>

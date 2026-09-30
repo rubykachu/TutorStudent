@@ -13,6 +13,8 @@ import { DotBlock, Hole, Legend, MATH_LINE, Product, Tint } from "./parts-nhan";
 type Spec = SpecOf<"swap">;
 
 const CELL = 32;
+// Width of one dot in the finished picture: both grids use the same size.
+const STILL_CELL = 28;
 const TURNED_STEP = 1;
 const PRODUCT_STEP = 2;
 
@@ -87,24 +89,32 @@ function TurningGrid({ spec, turned }: { spec: Spec; turned: boolean }) {
   );
 }
 
-// "r · c = c · r = n"; a hint stops at "?" in place of n.
+// "c · r = r · c = n" for r rows of c dots: c dots taken r times, then the
+// same dots counted the other way. A hint stops at "?" for the last factor.
 function Products({ spec }: { spec: Spec }) {
   const { rows, cols, mode } = spec;
+  const hint = mode === "hint";
   return (
     <p className={MATH_LINE}>
-      <Product factors={[rows, cols]} />
+      <Product factors={[cols, rows]} />
       <span className="whitespace-nowrap">
         {"= "}
-        <Product factors={[cols, rows]} />
-      </span>
-      <span className="whitespace-nowrap">
-        {"= "}
-        {mode === "hint" ? (
-          <Hole />
+        {hint ? (
+          <>
+            <Product factors={[rows]} />
+            {` ${TIMES} `}
+            <Hole />
+          </>
         ) : (
-          <Tint color="amber">{fmt(rows * cols)}</Tint>
+          <Product factors={[rows, cols]} />
         )}
       </span>
+      {!hint && (
+        <span className="whitespace-nowrap">
+          {"= "}
+          <Tint color="amber">{fmt(rows * cols)}</Tint>
+        </span>
+      )}
     </p>
   );
 }
@@ -135,7 +145,11 @@ function SwapSteps({ spec, step }: { spec: Spec; step: number }) {
       <TurningGrid spec={spec} turned={turned} />
       <Reveal
         shown={step >= PRODUCT_STEP}
-        placeholder={<p className={MATH_LINE}>… = … = ?</p>}
+        placeholder={
+          <p className={MATH_LINE}>
+            {spec.mode === "hint" ? "? · ? = ? · ?" : "? · ? = ? · ? = ?"}
+          </p>
+        }
       >
         <Products spec={spec} />
       </Reveal>
@@ -148,14 +162,15 @@ function SwapStill({ spec }: { spec: Spec }) {
   const { rows, cols } = spec;
   return (
     <div className="flex w-full flex-col items-center gap-3">
-      <div className="flex w-full items-start justify-center gap-4">
+      <div className="flex w-full items-end justify-center gap-4">
         {[
           [rows, cols],
           [cols, rows],
         ].map(([r, c]) => (
           <div
             key={`${r}-${c}`}
-            className="flex w-full max-w-40 flex-col items-center gap-2"
+            className="flex w-full flex-col items-center gap-2"
+            style={{ maxWidth: (c ?? cols) * STILL_CELL }}
           >
             <DotBlock
               rows={r ?? rows}

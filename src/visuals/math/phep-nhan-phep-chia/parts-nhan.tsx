@@ -53,11 +53,12 @@ export function Product({
   );
 }
 
-// "5 + 5 + 5": equal terms in the factor colour.
+// "5 + 5 + 5": equal terms. They are addends, not factors, so they carry no
+// concept colour unless the caller asks for one.
 export function SumOf({
   term,
   count,
-  color = "blue",
+  color,
 }: {
   term: ReactNode;
   count: number;
@@ -69,7 +70,7 @@ export function SumOf({
         // biome-ignore lint/suspicious/noArrayIndexKey: terms never reorder
         <Fragment key={i}>
           {i > 0 && " + "}
-          <Tint color={color}>{term}</Tint>
+          {color ? <Tint color={color}>{term}</Tint> : term}
         </Fragment>
       ))}
     </span>
