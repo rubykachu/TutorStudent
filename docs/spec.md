@@ -269,15 +269,19 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 ### 5.3 Phản hồi 3 nấc khi sai
 | Lần sai | Phản hồi |
 |---|---|
-| 1 | Ô trả lời rung nhẹ, viền cam. Các `hints.highlight` sáng lên theo màu khái niệm. Cú nói một câu động viên (bong bóng + giọng đọc, một lần mỗi lượt làm). |
+| 1 | Ô trả lời rung nhẹ, viền cam. Các `hints.highlight` sáng lên theo màu khái niệm. Cú nói một câu động viên (bong bóng + giọng đọc). |
 | 2 | Phát `hintVisualId` (animation tách bài toán thành hình). Không có visual → highlight đậm hơn. Linh vật biểu cảm "gợi ý". |
 | 3 | Phát `solutionVisualId` tới đáp án. Không có visual → mỗi dạng bài tự hiện đáp án đúng ngay trên vùng trả lời (`revealAnswer`), rồi xoá. Trẻ **phải tự nhập lại** đáp án mới qua. |
 
 `hintVisualId`/`solutionVisualId` không bắt buộc: chỉ làm cho câu mà hình giúp hiểu rõ hơn. Fallback trên dùng chung trong `ExerciseFrame`.
 
-Đúng: viền xanh lá + dấu ✓, pháo giấy trên thẻ trả lời (bỏ khi giảm chuyển động), nhạc vui ngắn; cứ 3 câu đúng trong một phiên thì cú đọc thành tiếng lời khen đang hiện trong bong bóng.
+Đúng: viền xanh lá + dấu ✓, pháo giấy trên thẻ trả lời (bỏ khi giảm chuyển động), nhạc vui ngắn rồi cú đọc lời khen đang hiện trong bong bóng — mọi lần đúng, kể cả đúng sau khi sai hay khi tự nhập lại. Sau khi đúng, cạnh "Tiếp" có nút phụ "Làm lại": làm lại bài từ đầu (xếp lại đáp án, lời khen mới) để luyện; lần làm lại không rating, không ghi là "đúng ngay lần đầu", không đổi tiến độ — kết quả được ghi vẫn là của lần làm đầu.
 
-Âm thanh: câu của cú nằm ở `src/mascot/lines.ts`; `pnpm sounds:build` tạo nhạc vui (ffmpeg) và giọng đọc từng câu (TTS chạy trên máy, kiểm bằng Whisper) vào `public/sounds/` kèm `manifest.json` (có commit; mỗi mục lưu sha256 của nguồn nên chỉ tạo lại câu đã đổi, và test báo lỗi khi sửa câu mà chưa build lại). Phát bằng `HTMLAudioElement` trong audio session "playback" để iPhone/iPad ở chế độ im lặng vẫn nghe; mở khoá ở lần chạm đầu. Mỗi con có công tắc "Âm thanh: bật/tắt" ở góc trang chủ.
+Âm thanh (`feedbackCue` trong `src/exercises/feedback.ts`): mỗi lần bấm "Kiểm tra" đều có tiếng. Sai lần 1: câu động viên. Sai lần 2, 3: tiếng "oops" trầm, nhẹ rồi câu của cú ở nấc đó. Sai khi đang tự nhập lại: chỉ tiếng "oops" (cú không nói). Đúng: nhạc vui rồi lời khen. Mọi câu hiện trong bong bóng đều có giọng đọc, và giọng đọc đúng câu đang hiện. Tiếng mới dừng tiếng đang phát, không chồng giọng.
+
+Tạo âm thanh: câu của cú nằm ở `src/mascot/lines.ts`; thông số ở `scripts/lib/sound-spec.ts`. `pnpm sounds:build` tạo nhạc vui và tiếng "oops" (ffmpeg) và giọng đọc (Gemini TTS `gemini-3.1-flash-tts-preview`, giọng "Sulafat": ấm, nhịp chậm sẵn, không cần giãn; mọi câu đọc trong một yêu cầu rồi cắt ở các khoảng lặng dài để cùng một giọng điệu; từng câu kiểm bằng Whisper phải khớp đúng từng chữ kể cả dấu thanh, không khớp thì đọc lại). Mọi file cùng một định dạng (AAC mono 44,1 kHz 96 kb/s) và cùng độ lớn: giọng −16 LUFS (EBU R128, một mức khuếch đại cố định, không nén), "oops" −20 LUFS, đỉnh thật dưới −1 dBFS. Ra `public/sounds/` kèm `manifest.json` (có commit): mỗi id một file, dùng chung mọi nơi; mỗi mục lưu sha256 của nguồn (chữ + engine + thông số), engine, độ khớp Whisper, LUFS và đỉnh, nên chỉ tạo lại câu đã đổi, và test báo lỗi khi sửa câu mà chưa build lại. Khoá API: `GEMINI_API_KEY` hoặc `~/.config/gemini/api_key`. Phát bằng `HTMLAudioElement` trong audio session "playback" để iPhone/iPad ở chế độ im lặng vẫn nghe; mở khoá ở lần chạm đầu.
+
+Công tắc âm thanh: một setting theo từng con (`soundEnabled`), một nút loa tròn 48px luôn ở đầu phải hàng trên cùng: header trình học phần và ôn bài, hàng trên của trang bài và trang môn, header trang chủ.
 
 ### 5.4 Ôn tập theo yêu cầu (`src/srs/`)
 Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài, lúc nào cũng được, bao nhiêu lần cũng được. Không có lịch, không khoá theo ngày, không giới hạn số lần. FSRS chỉ dùng để **ước lượng mức nhớ** của từng thẻ và chọn thẻ nào để hỏi.

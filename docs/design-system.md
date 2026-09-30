@@ -12,7 +12,7 @@ Nguồn duy nhất cho giao diện. Token định nghĩa ở `src/app/globals.cs
 1. **Một màn hình, một việc.** Không sidebar, không nhiều cột nội dung cùng lúc khi đang học.
 2. **Hình trước, chữ sau.** Chữ giải thích ≤ 2 câu mỗi khối.
 3. **Yên tĩnh khi học, vui khi xong.** Hiệu ứng mạnh chỉ ở khoảnh khắc thưởng (xong phần, nhận sticker).
-4. **Sai không đáng sợ.** Sai = cam + linh vật gợi ý, không đỏ, không âm thanh báo lỗi.
+4. **Sai không đáng sợ.** Sai = cam + linh vật gợi ý, không đỏ, không tiếng báo lỗi gắt (chỉ một tiếng "oops" trầm, nhẹ).
 5. **Màu mang nghĩa, nhưng không chỉ màu.** Mỗi khái niệm có màu + ký hiệu hình (tròn, vuông, tam giác…) để trẻ mù màu vẫn phân biệt.
 
 ## 2. Màu
@@ -119,12 +119,21 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 |---|---|---|---|---|
 | Chưa trả lời | `--color-border` 2px | `--color-surface` | — | — |
 | Đã chọn | `--color-primary` 3px | `--color-surface` | — | — |
-| Đúng | `--color-correct` 3px + dấu ✓ + pháo giấy ~1 giây (bỏ khi giảm chuyển động) | `--color-correct-soft` | vui, bong bóng khen | nhạc vui ngắn; cứ 3 câu đúng thì cú đọc lời khen |
-| Sai lần 1 | `--color-retry` 3px nét đứt + rung | `--color-retry-soft` | cổ vũ, bong bóng động viên | cú đọc câu động viên (một lần mỗi lượt làm) |
-| Sai lần 2 | như lần 1 | như lần 1 | gợi ý, chỉ vào visual gợi ý | không |
-| Sai lần 3 | như lần 1 | như lần 1 | cổ vũ, visual lời giải chạy | không |
+| Đúng | `--color-correct` 3px + dấu ✓ + pháo giấy ~1 giây (bỏ khi giảm chuyển động) | `--color-correct-soft` | vui, bong bóng khen | nhạc vui ngắn rồi cú đọc lời khen, mọi lần đúng |
+| Sai lần 1 | `--color-retry` 3px nét đứt + rung | `--color-retry-soft` | cổ vũ, bong bóng động viên | cú đọc câu động viên |
+| Sai lần 2 | như lần 1 | như lần 1 | gợi ý, chỉ vào visual gợi ý | "oops" nhẹ rồi cú đọc câu gợi ý |
+| Sai lần 3 | như lần 1 | như lần 1 | cổ vũ, visual lời giải chạy | "oops" nhẹ rồi cú đọc câu lời giải |
 
 Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bóng của cú: thẻ trả lời rung và có viền cam nét đứt; phần trả lời sai có viền cam nét đứt (vùng chạm: vòng cam nét đứt). Gợi ý tác giả trỏ vào đề (khối, phần công thức, câu) và phím "mũ" được viền/gạch chân bằng màu khái niệm của đích gợi ý, không có khái niệm thì `--color-concept-slate`. Nấc 2 khi không có visual gợi ý: cùng viền đó, dày hơn. `--color-highlight` chỉ dành cho trạng thái đang chọn.
+
+Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên trái) và "Tiếp" (chính, bên phải).
+
+### Âm thanh
+
+- Mọi lần kiểm đều có tiếng (bảng trên); mọi câu trong bong bóng đều có giọng đọc, đúng câu đang hiện. Không có bong bóng nào im lặng.
+- Một giọng cho mọi câu của cú, mọi file cùng độ lớn (giọng −16 LUFS, "oops" nhỏ hơn 4 LU) và không vỡ tiếng (đỉnh < −1 dBFS). Thông số ở `scripts/lib/sound-spec.ts`.
+- Không đọc chữ bằng giọng máy của trình duyệt.
+- Công tắc âm thanh: nút loa tròn 48px (`Volume2`/`VolumeX`, màu `--color-muted-foreground`), luôn ở đầu phải hàng trên cùng của màn hình; một setting cho mỗi con. Bật lại thì phát nhạc vui để xác nhận.
 
 ## 8. Linh vật
 
@@ -132,7 +141,7 @@ Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bó
 - Biểu cảm: `happy`, `hint`, `cheer`, `welcome` (vui khi gặp lại sau nhiều ngày không học — không trách), `idle`.
 - Kích thước: 96px trên trang chủ; cạnh bài tập 72px trên iPad dọc, 56px đậu ở góc trên phải thẻ trả lời trên điện thoại và iPad ngang (không chiếm hàng riêng, không nhận chạm). Không che nội dung bài.
 - Biểu cảm đổi bằng Motion (xoay đầu, chớp mắt, vỗ cánh ≤ 600ms).
-- Bong bóng lời cạnh bài tập: một câu ngắn (≤ 10 chữ) ở nấc 2, nấc 3 và khi đúng (lời khen chọn cố định theo lượt làm); nấc 1 không nói. Chữ ≥ 18px, nằm một hàng riêng phía trên thẻ trả lời, bên trái đầu cú, không che câu trả lời hay nút; vùng đọc cho trình đọc màn hình đọc đúng câu đó. Mọi câu nằm ở `src/mascot/lines.ts`.
+- Bong bóng lời cạnh bài tập: một câu ngắn (≤ 10 chữ) ở cả ba nấc và khi đúng (câu động viên và lời khen chọn cố định theo lượt làm), luôn kèm giọng đọc. Chữ ≥ 18px, nằm một hàng riêng phía trên thẻ trả lời, bên trái đầu cú, không che câu trả lời hay nút; vùng đọc cho trình đọc màn hình đọc đúng câu đó. Mọi câu nằm ở `src/mascot/lines.ts`.
 - Màu: `--color-mascot-body` `#C08457` (thân), `--color-mascot-shade` `#94603A` (tai, cánh), `--color-mascot-belly` `#FDF0DC` (mặt, bụng), `--color-mascot-beak` `#F59E0B` (mỏ, chân, lấp lánh). Chỉ trang trí, không mang chữ.
 - Trang chủ: `welcome` khi lần học cuối cách hôm nay ≥ 3 ngày; `happy` khi hôm nay đã học; còn lại `idle`.
 - `StreakFlame`: ngọn lửa `--color-streak` `#EA8A0C` trên nền `--color-streak-soft` `#FFF4E0`; lửa xám khi hôm nay chưa học. Đếm số ngày có học trong chuỗi (ngày nghỉ giữ chuỗi nhưng không cộng).
