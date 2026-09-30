@@ -131,6 +131,7 @@ Nấc 1 không tô vàng, không thêm chữ: thẻ trả lời rung và có vi�
 - Biểu cảm: `happy`, `hint`, `cheer`, `welcome` (vui khi gặp lại sau nhiều ngày không học — không trách), `idle`.
 - Kích thước: 96px trên trang chủ; cạnh bài tập 72px trên iPad dọc, 56px đậu ở góc trên phải thẻ trả lời trên điện thoại và iPad ngang (không chiếm hàng riêng, không nhận chạm). Không che nội dung bài.
 - Biểu cảm đổi bằng Motion (xoay đầu, chớp mắt, vỗ cánh ≤ 600ms).
+- Bong bóng lời cạnh bài tập: một câu ngắn (≤ 10 chữ) ở nấc 2, nấc 3 và khi đúng (lời khen chọn cố định theo lượt làm); nấc 1 không nói. Chữ ≥ 18px, nằm một hàng riêng phía trên thẻ trả lời, bên trái đầu cú, không che câu trả lời hay nút; vùng đọc cho trình đọc màn hình đọc đúng câu đó. Mọi câu nằm ở `src/mascot/lines.ts`.
 - Màu: `--color-mascot-body` `#C08457` (thân), `--color-mascot-shade` `#94603A` (tai, cánh), `--color-mascot-belly` `#FDF0DC` (mặt, bụng), `--color-mascot-beak` `#F59E0B` (mỏ, chân, lấp lánh). Chỉ trang trí, không mang chữ.
 - Trang chủ: `welcome` khi lần học cuối cách hôm nay ≥ 3 ngày; `happy` khi hôm nay đã học; còn lại `idle`.
 - `StreakFlame`: ngọn lửa `--color-streak` `#EA8A0C` trên nền `--color-streak-soft` `#FFF4E0`; lửa xám khi hôm nay chưa học. Đếm số ngày có học trong chuỗi (ngày nghỉ giữ chuỗi nhưng không cộng).

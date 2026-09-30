@@ -43,6 +43,45 @@ async function checkTo(exercise: Locator, phase: string) {
   );
 }
 
+// The owl's speech bubble is on screen and overlaps neither the answer card
+// nor any control a child might tap.
+async function expectBubbleClear(page: Page) {
+  const bubble = page.locator("[data-mascot-speech]");
+  await expect(bubble).toBeVisible();
+  // Let its fade-in and the frame's scrolling settle.
+  await expect
+    .poll(() => bubble.evaluate((el) => getComputedStyle(el).opacity))
+    .toBe("1");
+  const clash = await page.evaluate(() => {
+    const speech = document.querySelector("[data-mascot-speech]");
+    if (!speech) return ["bubble missing"];
+    const b = speech.getBoundingClientRect();
+    const overlaps = (r: DOMRect) =>
+      r.width > 0 &&
+      r.height > 0 &&
+      r.left < b.right &&
+      r.right > b.left &&
+      r.top < b.bottom &&
+      r.bottom > b.top;
+    const selector = [
+      "[data-answer-area]",
+      "button",
+      "a[href]",
+      "input",
+      "[role=button]",
+      "[tabindex]:not([tabindex='-1'])",
+    ].join(",");
+    const hits = [...document.querySelectorAll(selector)]
+      .filter((el) => overlaps(el.getBoundingClientRect()))
+      .map((el) => el.outerHTML.slice(0, 100));
+    if (b.left < 0 || b.right > window.innerWidth) hits.push("off screen");
+    const size = Number.parseFloat(getComputedStyle(speech).fontSize);
+    if (size < 18) hits.push(`text ${size}px`);
+    return hits;
+  });
+  expect(clash).toEqual([]);
+}
+
 async function expectFeedbackInView(page: Page, selector: string) {
   await expectInViewAboveBar(page, selector);
   await expectNothingUnderBottomBar(page);
@@ -80,6 +119,36 @@ for (const screen of SCREENS) {
       await checkTo(power, "wrong3");
       await expect(power.locator("[data-reveal]")).toBeVisible();
       await expectFeedbackInView(page, "[data-answer-area]");
+    });
+
+    test("the owl's bubble never covers the answer or a control", async ({
+      page,
+    }, testInfo) => {
+      test.skip(testInfo.project.name !== screen.project);
+      await openSection(page);
+
+      const dots = await reach(page, "fixture.ex.dem-cham");
+      await dots.locator('[data-pad-key="9"]').tap();
+      await checkTo(dots, "wrong1");
+      await expect(page.locator("[data-mascot-speech]")).toHaveCount(0);
+      await checkTo(dots, "wrong2");
+      await expectBubbleClear(page);
+      await checkTo(dots, "wrong3");
+      await expectBubbleClear(page);
+      await dots.getByRole("button", { name: "Tự làm lại" }).tap();
+      await expect(page.locator("[data-mascot-speech]")).toHaveCount(0);
+      await dots.locator('[data-pad-key="6"]').tap();
+      await checkTo(dots, "correct");
+      await expectBubbleClear(page);
+      await dots.getByRole("button", { name: "Tiếp" }).tap();
+      await expect(dots).toHaveCount(0);
+
+      const power = await reach(page, "fixture.ex.viet-luy-thua");
+      await power.locator('[data-pad-key="8"]').tap();
+      await checkTo(power, "wrong1");
+      await checkTo(power, "wrong2");
+      await checkTo(power, "wrong3");
+      await expectBubbleClear(page);
     });
   });
 }

@@ -4,7 +4,9 @@ import {
   type AnswerSlotProps,
   ExerciseFrame,
 } from "@/exercises/exercise-frame";
+import { praiseFor } from "@/exercises/feedback";
 import type { ChoiceInput } from "@/exercises/input";
+import { OWL_LINE_MAX_WORDS, OWL_LINES, OWL_PRAISE } from "@/mascot/lines";
 import type { ChoiceExercise, Concept, Hints } from "@/schema/content";
 import { Highlight } from "@/visuals/shared/highlight";
 import { choiceExercise } from "./helpers";
@@ -132,6 +134,73 @@ const HINTS_WITH_VISUALS: Hints = {
   hintVisualId: "fixture.visual.dot-grid",
   solutionVisualId: "fixture.visual.bead-merge",
 };
+
+function bubble(container: HTMLElement) {
+  return container.querySelector("[data-mascot-speech]");
+}
+
+function liveRegion(container: HTMLElement) {
+  return container.querySelector('[aria-live="polite"]');
+}
+
+describe("ExerciseFrame owl speech", () => {
+  it("stays silent at tier one, then speaks the hint and reveal lines", () => {
+    const { container } = renderFrame(HINTS_FALLBACK);
+    expect(bubble(container)).toBeNull();
+
+    choose("b");
+    checkAnswer();
+    expect(bubble(container)).toBeNull();
+    expect(liveRegion(container)).toHaveTextContent("Thử lại nhé.");
+
+    choose("b");
+    checkAnswer();
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.hintMarks);
+    expect(liveRegion(container)).toHaveTextContent(OWL_LINES.hintMarks);
+
+    choose("b");
+    checkAnswer();
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.reveal);
+    expect(liveRegion(container)).toHaveTextContent(OWL_LINES.reveal);
+    // Hidden from screen readers, which hear the live region instead.
+    expect(bubble(container)).toHaveAttribute("aria-hidden", "true");
+
+    fireEvent.click(screen.getByRole("button", { name: "Tự làm lại" }));
+    expect(bubble(container)).toBeNull();
+    choose("a");
+    checkAnswer();
+    const praise = bubble(container)?.textContent ?? "";
+    expect(OWL_PRAISE).toContain(praise);
+    expect(liveRegion(container)).toHaveTextContent(praise);
+  });
+
+  it("points at the hint and solution visuals when there are some", () => {
+    const { container } = renderFrame(HINTS_WITH_VISUALS);
+    choose("b");
+    checkAnswer();
+    choose("b");
+    checkAnswer();
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.hintVisual);
+    choose("b");
+    checkAnswer();
+    expect(bubble(container)).toHaveTextContent(OWL_LINES.solutionVisual);
+  });
+
+  it("keeps every line short", () => {
+    for (const line of [...Object.values(OWL_LINES), ...OWL_PRAISE]) {
+      expect(line.split(/\s+/).length).toBeLessThanOrEqual(OWL_LINE_MAX_WORDS);
+    }
+  });
+
+  it("picks the same praise for the same attempt and varies across attempts", () => {
+    expect(praiseFor("ex.a#1")).toBe(praiseFor("ex.a#1"));
+    const picked = new Set(
+      Array.from({ length: 40 }, (_, i) => praiseFor(`ex.${i}#nonce`)),
+    );
+    expect(picked.size).toBeGreaterThan(1);
+    for (const line of picked) expect(OWL_PRAISE).toContain(line);
+  });
+});
 
 describe("ExerciseFrame", () => {
   afterEach(() => {

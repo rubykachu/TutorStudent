@@ -1,5 +1,5 @@
 // FNV-1a: a stable 32-bit number from a seed string.
-function hashSeed(text: string): number {
+export function hashSeed(text: string): number {
   let hash = 0x811c9dc5;
   for (let i = 0; i < text.length; i++) {
     hash ^= text.charCodeAt(i);

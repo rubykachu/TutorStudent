@@ -27,6 +27,7 @@ import { newId } from "@/lib/id";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
 import { Owl } from "@/mascot/owl";
+import { SpeechBubble } from "@/mascot/speech-bubble";
 import type { BasicExercise, Block, Concept } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
 import { Highlight } from "@/visuals/shared/highlight";
@@ -115,15 +116,11 @@ function toneOf(
   return filled ? "selected" : "idle";
 }
 
-function statusText(
-  state: MachineState<unknown>,
-  tier: number,
-  reveal: boolean,
-): string {
-  if (state.phase === "correct" || state.phase === "done") return "Đúng rồi!";
-  if (reveal) return "Đây là đáp án. Em tự làm lại nhé.";
-  if (state.phase === "wrong3") return "Xem lời giải rồi tự làm lại nhé.";
-  return tier > 0 ? "Thử lại nhé." : "";
+// What the live region announces: the owl's line when it speaks, so screen
+// readers hear exactly what the bubble shows. The first tier has no bubble,
+// but a screen reader still needs to hear that the answer was not right.
+function statusText(speech: string | undefined, tier: number): string {
+  return speech ?? (tier > 0 ? "Thử lại nhé." : "");
 }
 
 // Shared frame for every basic exercise type: prompt, answer slot, the
@@ -147,14 +144,15 @@ export function ExerciseFrame<E extends BasicExercise>({
   const [nonce, setNonce] = useState<string | null>(null);
   useLayoutEffect(() => setNonce((kept) => kept ?? newId()), []);
   const { state, tier } = machine;
-  const view = feedbackView(exercise, state, concepts);
+  const seed = nonce === null ? exercise.id : attemptSeed(exercise.id, nonce);
+  const view = feedbackView(exercise, state, concepts, seed);
   const reducedMotion = usePrefersReducedMotion();
   // Wrong checks whose shake already finished; a newer wrong check shakes.
   const [shaken, setShaken] = useState(0);
   const shaking = !reducedMotion && tier > 0 && state.wrongCount > shaken;
   const accepted = state.phase === "correct" || state.phase === "done";
   const tone = toneOf(state, tier, machine.canCheck);
-  const status = statusText(state, tier, view.reveal);
+  const status = statusText(view.speech, tier);
   // A tapText answer area renders the prompt's passages as tappable
   // sentences, so the prompt leaves them out and hints on sentences (`part`
   // targets) are handed to the answer area with its own elements.
@@ -277,54 +275,66 @@ export function ExerciseFrame<E extends BasicExercise>({
           every size, so the card keeps the full width for its answer (a
           long product or a sentence with blanks stays on one line); the
           card's taller top padding keeps it off the answer, and the margin
-          above the column keeps it off the prompt. */}
+          above the column keeps it off the prompt. When the owl speaks, its
+          bubble takes a row of its own above the card, to the left of the
+          owl's head, so it never covers the answer or a control. */}
         <div
           className="relative mt-4 min-w-0 md:mt-6 lg:landscape:col-start-2 lg:landscape:row-span-2 lg:landscape:row-start-1 lg:landscape:mt-10"
           data-answer-column
         >
-          <div
-            ref={answerRef}
-            className={`relative min-w-0 rounded-xl px-4 pt-8 pb-4 md:px-6 md:pt-12 md:pb-6 lg:landscape:px-5 lg:landscape:pt-11 lg:landscape:pb-5 ${TONE_CLASSES[tone]} ${shaking ? "animate-shake" : ""}`}
-            data-answer-area
-            data-tone={tone}
-            data-shaking={shaking || undefined}
-            onAnimationEnd={(event) => {
-              // Animations inside the answer component bubble up here too.
-              if (event.target === event.currentTarget)
-                setShaken(state.wrongCount);
-            }}
-          >
-            {accepted && (
-              <Check
-                aria-hidden
-                className="absolute top-1 left-3 size-7 text-correct md:top-2 md:left-4 md:size-8"
-                strokeWidth={3}
-              />
-            )}
-            {/* A retype starts from a fresh answer component, not an edited one. */}
-            <div key={state.phase === "retype" ? "retype" : "first"}>
-              {nonce !== null &&
-                children({
-                  value: state.input,
-                  onChange: machine.setInput,
-                  disabled: accepted || state.phase === "wrong3",
-                  highlight: answerHighlight,
-                  wrong: view.wrong,
-                  feedbackVisual: view.visualId !== undefined,
-                  inputWanted,
-                  wantInput: () => setInputWantedFor(visualKey ?? null),
-                  feedbackStrip,
-                  reveal: view.reveal,
-                  seed: attemptSeed(exercise.id, nonce),
-                })}
+          {view.speech && (
+            <div
+              className="flex justify-end pr-19 pb-2 md:pr-24"
+              data-mascot-speech-row
+            >
+              <SpeechBubble text={view.speech} />
             </div>
-          </div>
-          {/* Decoration only: it never takes a tap meant for the answer. */}
-          <div
-            className="pointer-events-none absolute -top-8 right-3 md:-top-10 md:right-4"
-            data-mascot-slot
-          >
-            {renderMascot(view.mascot)}
+          )}
+          <div className="relative">
+            <div
+              ref={answerRef}
+              className={`relative min-w-0 rounded-xl px-4 pt-8 pb-4 md:px-6 md:pt-12 md:pb-6 lg:landscape:px-5 lg:landscape:pt-11 lg:landscape:pb-5 ${TONE_CLASSES[tone]} ${shaking ? "animate-shake" : ""}`}
+              data-answer-area
+              data-tone={tone}
+              data-shaking={shaking || undefined}
+              onAnimationEnd={(event) => {
+                // Animations inside the answer component bubble up here too.
+                if (event.target === event.currentTarget)
+                  setShaken(state.wrongCount);
+              }}
+            >
+              {accepted && (
+                <Check
+                  aria-hidden
+                  className="absolute top-1 left-3 size-7 text-correct md:top-2 md:left-4 md:size-8"
+                  strokeWidth={3}
+                />
+              )}
+              {/* A retype starts from a fresh answer component, not an edited one. */}
+              <div key={state.phase === "retype" ? "retype" : "first"}>
+                {nonce !== null &&
+                  children({
+                    value: state.input,
+                    onChange: machine.setInput,
+                    disabled: accepted || state.phase === "wrong3",
+                    highlight: answerHighlight,
+                    wrong: view.wrong,
+                    feedbackVisual: view.visualId !== undefined,
+                    inputWanted,
+                    wantInput: () => setInputWantedFor(visualKey ?? null),
+                    feedbackStrip,
+                    reveal: view.reveal,
+                    seed,
+                  })}
+              </div>
+            </div>
+            {/* Decoration only: it never takes a tap meant for the answer. */}
+            <div
+              className="pointer-events-none absolute -top-8 right-3 md:-top-10 md:right-4"
+              data-mascot-slot
+            >
+              {renderMascot(view.mascot)}
+            </div>
           </div>
         </div>
 

@@ -3,7 +3,9 @@ import {
   type MachineState,
   type Phase,
 } from "@/exercises/machine";
+import { hashSeed } from "@/exercises/shuffle";
 import type { MascotExpression } from "@/mascot/expressions";
+import { OWL_LINES, OWL_PRAISE } from "@/mascot/lines";
 import type {
   BasicExercise,
   Concept,
@@ -43,7 +45,39 @@ export type FeedbackView = {
   // the correct answer itself.
   reveal: boolean;
   mascot: MascotExpression;
+  // What the owl says in its speech bubble (and the screen reader announces):
+  // a line at the second and third wrong checks and praise on a correct
+  // answer. Undefined while the owl stays silent, as at the first tier.
+  speech: string | undefined;
 };
+
+// Praise for one attempt: the same through every render of the attempt, and
+// usually different from one exercise or attempt to the next.
+export function praiseFor(seed: string): string {
+  return OWL_PRAISE[hashSeed(seed) % OWL_PRAISE.length];
+}
+
+function speechFor(
+  state: MachineState<unknown>,
+  hints: BasicExercise["hints"],
+  seed: string,
+): string | undefined {
+  switch (state.phase) {
+    case "wrong2":
+      return hints.hintVisualId === undefined
+        ? OWL_LINES.hintMarks
+        : OWL_LINES.hintVisual;
+    case "wrong3":
+      return hints.solutionVisualId === undefined
+        ? OWL_LINES.reveal
+        : OWL_LINES.solutionVisual;
+    case "correct":
+    case "done":
+      return praiseFor(seed);
+    default:
+      return undefined;
+  }
+}
 
 const MASCOT: Record<Phase, MascotExpression> = {
   idle: "idle",
@@ -84,10 +118,12 @@ function buildHighlights(
   return { blocks, parts, options };
 }
 
+// `seed` is the attempt seed (`attemptSeed`), which picks the praise.
 export function feedbackView(
   exercise: BasicExercise,
   state: MachineState<unknown>,
   concepts?: ReadonlyMap<string, Concept>,
+  seed: string = exercise.id,
 ): FeedbackView {
   const tier = feedbackTier(state);
   const { hints } = exercise;
@@ -107,5 +143,6 @@ export function feedbackView(
     visualId,
     reveal: state.phase === "wrong3" && hints.solutionVisualId === undefined,
     mascot: MASCOT[state.phase],
+    speech: speechFor(state, hints, seed),
   };
 }
