@@ -513,6 +513,45 @@ describe("ExerciseFrame", () => {
     }
   });
 
+  it("lifts the answer again when the praise bubble pushes it under the bar", () => {
+    const scrollBy = vi.fn();
+    const originalScrollBy = window.scrollBy;
+    const originalRect = Element.prototype.getBoundingClientRect;
+    window.scrollBy = scrollBy as typeof window.scrollBy;
+    const tops: Record<string, [number, number]> = {
+      "section[data-phase]": [100, 700],
+      "[data-answer-area]": [300, 690],
+      "[data-bottom-bar]": [700, 800],
+    };
+    Element.prototype.getBoundingClientRect = function (this: Element) {
+      const hit = Object.entries(tops).find(([sel]) => this.matches(sel));
+      const [top, bottom] = hit?.[1] ?? [0, 0];
+      return {
+        top,
+        bottom,
+        left: 0,
+        right: 0,
+        width: 0,
+        height: bottom - top,
+        x: 0,
+        y: top,
+        toJSON: () => ({}),
+      };
+    };
+    try {
+      renderFrame(HINTS_FALLBACK);
+      expect(scrollBy).not.toHaveBeenCalled();
+      // The bubble above the answer adds 60px once the answer is accepted.
+      tops["[data-answer-area]"] = [360, 750];
+      choose("a");
+      checkAnswer();
+      expect(scrollBy).toHaveBeenCalledWith({ top: 50, behavior: "auto" });
+    } finally {
+      window.scrollBy = originalScrollBy;
+      Element.prototype.getBoundingClientRect = originalRect;
+    }
+  });
+
   it("shakes again on the next wrong check once the shake ended", () => {
     const { container } = renderFrame(HINTS_FALLBACK);
     choose("b");

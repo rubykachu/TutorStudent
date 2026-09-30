@@ -218,13 +218,16 @@ export function ExerciseFrame<E extends BasicExercise>({
   // of keys or options. Once the answer is on screen, the page scrolls just
   // enough to lift it above the bar, but never so far that the prompt's top
   // leaves the screen. A prompt visual that grows after it loads is followed
-  // for a moment, like the feedback visual above.
+  // for a moment, like the feedback visual above, and so is the praise bubble
+  // that appears above the answer once it is accepted and pushes it down.
   const frameRef = useRef<HTMLElement>(null);
-  const answerReady = nonce !== null;
+  // Changes when the answer area first shows and again when it is accepted,
+  // each time restarting the follow window.
+  const liftKey = nonce === null ? null : accepted ? "accepted" : "answer";
   useEffect(() => {
     const frame = frameRef.current;
     const answer = answerRef.current;
-    if (!answerReady || !frame || !answer) return;
+    if (liftKey === null || !frame || !answer) return;
     const liftAnswer = () => {
       const bar = frame.querySelector("[data-bottom-bar]");
       const barTop = bar?.getBoundingClientRect().top ?? window.innerHeight;
@@ -242,7 +245,7 @@ export function ExerciseFrame<E extends BasicExercise>({
       observer.disconnect();
       clearTimeout(stop);
     };
-  }, [answerReady]);
+  }, [liftKey]);
 
   return (
     <section
