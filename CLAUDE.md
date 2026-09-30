@@ -38,7 +38,7 @@ CONTENT_INCLUDE_DRAFT=1 pnpm dev  # also serve draft lessons (never in a build)
 - `lesson-visual` — build, register and screenshot a lesson's visuals.
 - `lesson-video` — lesson videos with local TTS narration, attached to `lesson.json`.
 - `lesson-review` — independent review before publishing; always in a fresh subagent, never by the session that wrote the lesson.
-- Models: authoring (`import-source`, `lesson-author`, `lesson-visual`, `lesson-video`, and their helper subagents) = Sonnet; review = Opus (every reviewer subagent is spawned with `model: "opus"`).
+- Models: authoring (`import-source`, `lesson-author`, `lesson-visual`, `lesson-video`, and their helper subagents) = Sonnet; review = Opus for full rounds 1–2, Sonnet from round 3 (diff-only rounds, video/narration reviews); set per spawn via the Agent `model` parameter.
 
 ## Boundaries
 
