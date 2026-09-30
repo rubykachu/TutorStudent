@@ -28,6 +28,7 @@ export function ManipulateAnswer({ exercise, slot }: ManipulateAnswerProps) {
     >
       <RegistryVisual
         id={exercise.visualId}
+        params={exercise.params}
         shownState={shownState}
         disabled={disabled}
         onStateChange={(state) => onChange({ type: "manipulate", state })}

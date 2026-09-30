@@ -79,6 +79,10 @@ export type VisualProps = {
   shownState?: VisualState;
   // Locks an interactive visual once its answer is accepted or shown.
   disabled?: boolean;
+  // The numbers of the `manipulate` exercise being answered, so a picture can
+  // draw the task's own numbers. Absent on a lesson screen; a visual that
+  // reads it falls back to a generic frame.
+  params?: Record<string, number>;
 };
 
 // Decides whether the reported state satisfies a `manipulate` exercise's params.

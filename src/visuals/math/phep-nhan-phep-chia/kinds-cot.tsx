@@ -1,4 +1,3 @@
-import type { ComponentType } from "react";
 import type { VisualProps } from "@/visuals/registry";
 import { ColMul } from "./col-mul";
 import ColMulFill from "./col-mul-fill";
@@ -20,7 +19,7 @@ export const cotKinds = {
     function ColMulTryVisual({ onStateChange }: VisualProps) {
       return <ColMulTry a={a} b={b} onStateChange={onStateChange} />;
     },
-  colMulFill: () => ColMulFill as ComponentType<VisualProps>,
+  colMulFill: () => ColMulFill,
   estimate: (spec) =>
     function EstimateVisual() {
       return <Estimate {...spec} />;

@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { formatInteger } from "@/lib/number-format";
 import type { ConceptColor } from "@/schema/content";
-import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
 
@@ -11,12 +10,6 @@ export const DIVIDEND_COLOR: ConceptColor = "blue";
 export const DIVISOR_COLOR: ConceptColor = "violet";
 export const QUOTIENT_COLOR: ConceptColor = "amber";
 export const REMAINDER_COLOR: ConceptColor = "pink";
-
-// Props of a `manipulate` visual. The numbers of the exercise (`params`) are
-// optional: the lesson host may pass them so the picture can show the
-// exercise's own numbers; without them the visual draws a generic frame and
-// the exercise text carries the numbers.
-export type FillProps = VisualProps & { params?: Record<string, number> };
 
 const EQUATION =
   "flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-heading text-body-lg font-bold md:text-title";

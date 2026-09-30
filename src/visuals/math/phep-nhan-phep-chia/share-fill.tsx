@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import type { VisualState } from "@/visuals/registry";
+import type { VisualProps, VisualState } from "@/visuals/registry";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
-import { type FillProps, QUOTIENT_COLOR, REMAINDER_COLOR } from "./chia-parts";
+import { QUOTIENT_COLOR, REMAINDER_COLOR } from "./chia-parts";
 import { SharePicture } from "./share-picture";
 
 const EMPTY: VisualState = { q: 0, r: 0 };
@@ -20,7 +20,7 @@ export default function ShareFill({
   onStateChange,
   shownState,
   disabled = false,
-}: FillProps) {
+}: VisualProps) {
   const total = params?.total;
   const people = params?.people ?? GENERIC_PEOPLE;
   const [state, setState] = useState<VisualState>(EMPTY);

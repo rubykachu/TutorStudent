@@ -1,11 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { VisualState } from "@/visuals/registry";
+import type { VisualProps, VisualState } from "@/visuals/registry";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import {
   DivisionEquation,
-  type FillProps,
   QUOTIENT_COLOR,
   REMAINDER_COLOR,
 } from "./chia-parts";
@@ -99,7 +98,7 @@ export default function ColDivFill({
   onStateChange,
   shownState,
   disabled = false,
-}: FillProps) {
+}: VisualProps) {
   const dividend = params?.dividend;
   const divisor = params?.divisor;
   const known = dividend !== undefined && divisor !== undefined;

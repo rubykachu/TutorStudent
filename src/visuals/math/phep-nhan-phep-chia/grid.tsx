@@ -78,10 +78,15 @@ function Progress({
 // a closing line; without one (the exercise) it never reveals the answer.
 function GridBuilder({
   target,
+  params,
   onStateChange,
   shownState,
   disabled = false,
 }: { target?: Target } & VisualProps) {
+  const task =
+    params?.rows !== undefined && params.cols !== undefined
+      ? { rows: params.rows, cols: params.cols }
+      : undefined;
   const [own, setOwn] = useState<Target>({
     rows: GRID_RANGE.min,
     cols: GRID_RANGE.min,
@@ -128,6 +133,11 @@ function GridBuilder({
           onChange={(value) => change({ rows, cols: value })}
         />
       </div>
+      {task && (
+        <p className="text-center text-body font-semibold md:text-body-lg">
+          {`Đề bài: ${task.rows} hàng, mỗi hàng ${task.cols} chấm`}
+        </p>
+      )}
       {target && <Progress rows={rows} cols={cols} target={target} />}
       <div className="flex flex-col items-center gap-1" aria-live="polite">
         <p className="text-body md:text-body-lg">

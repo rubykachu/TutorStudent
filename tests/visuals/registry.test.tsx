@@ -54,6 +54,8 @@ describe("visualRegistry", () => {
       "cap-tron": [{ unit: 10, n0: 4, n1: 9, n2: 6 }],
       "them-bot-tron": [{ a: 38, b: 47, unit: 10 }],
       "cot-tinh": [{ digit: 5, carry: 1 }],
+      chia: [{ total: 29, people: 6 }],
+      "thuong-du": [{ dividend: 217, divisor: 15 }],
       "ve-xong": [{ total: 3 }],
       "du-cham-phay": [{ gaps: 3 }],
       "chon-dung": [{ i0: 1, i1: 0, i2: 1 }],
