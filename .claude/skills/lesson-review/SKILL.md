@@ -11,7 +11,7 @@ Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ th
 ## Vai
 
 - **Điều phối**: phiên gọi skill (có thể là phiên soạn bài). Chỉ chạy lệnh, chia phần, mở subagent và chuyển kết quả; không phán nội dung, không bỏ phát hiện nào.
-- **Reviewer**, **Tổng hợp**: luôn là subagent mới, mở bằng Agent tool với `subagent_type: "general-purpose"` và `model: "opus"` (mọi reviewer song song lẫn Tổng hợp), không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
+- **Reviewer**, **Tổng hợp**: luôn là subagent mới, mở bằng Agent tool với `subagent_type: "general-purpose"`; model theo vòng: vòng 1 và 2 (soát toàn bài, gồm reviewer song song lẫn Tổng hợp) dùng `model: "opus"`, từ vòng 3 (chỉ phần đổi, kể cả review kịch bản video/lời đọc) dùng `model: "sonnet"`, không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
 
 ## Đầu vào
 
