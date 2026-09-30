@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi của bài
 - `lesson:walk`: 0 FAIL (chạy sau khi duyệt)
 - Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
-- Bản đã review: `6f20fc9922347e381090955650b76cd8fa686ee295a29efed686071029505639` (`pnpm content:diff` so với bản này)
+- Bản đã review: `9f08e16420dddbbbfb469c720f5d3e05ab04808e185be8a9c1cc55f2599ddd09` (`pnpm content:diff` so với bản này)
 
 Đã soát: mọi câu của 3 kịch bản và lời đọc giới thiệu. Toán đúng: 34 + 66 = 100, 100 + 268 = 368 (34 + 268 + 66), 45 + 55 = 100, 100 + 27 = 127; 532 - 247 = 285 (2 thành 12 - 7 = 5, chục còn 2 mượn thành 12 - 4 = 8, trăm còn 4 - 2 = 2) và 285 + 247 = 532; 82 - 35 = 47, 47 + 35 = 82, 60 - 18 = 42. Câu đầu có chữ "bạn", một giọng (Mỹ Duyên) cho cả bài, `pnpm video:check` đạt. Câu `rule` khớp `note`; hình không hiện kết quả trước khi được đọc (368, 285, 47, 42 hiện sau lời). Lời đọc giới thiệu khớp `hook`, `summary`, `goals`, `whyItMatters`.
 
@@ -18,11 +18,9 @@ Không có.
 
 ## Nên sửa
 
-### 1. Phụ đề `ghep-tron` viết "cú" thay vì "cứ" (đã sửa)
+### 1. Phụ đề `ghep-tron` "Bạn cú mua ba món hàng." (rút lại, không phải lỗi)
 
-- Vị trí: `video/projects/phep-cong-phep-tru/ghep-tron/script.json`, câu "Bạn cứ mua ba món hàng."
-- Vấn đề: phụ đề hiện sai chính tả "Bạn cú mua ba món hàng."
-- Sửa: đổi thành "cứ", dựng lại video; Whisper nghe "Bạn cứ mua 3 món hàng." khớp 100%.
+- Vòng này từng đổi "cú" thành "cứ". "Bạn cú" là tên linh vật cú dùng trong mọi video ("Bạn cú có tập hợp A."), nên câu gốc đúng; đã trả lại "Bạn cú" và dựng lại video.
 
 ## Góp ý
 
