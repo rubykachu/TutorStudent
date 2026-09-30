@@ -10,7 +10,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 |---|---|---|---|
 | Toán | Bài 1 `tap-hop` | published | done |
 | Toán | Bài 4 `phep-cong-phep-tru` | published | done (voice Mỹ Duyên; reviewed, archived in [`archive/lesson-phep-cong-phep-tru/task.md`](archive/lesson-phep-cong-phep-tru/task.md)) |
-| Toán | Bài 5 `phep-nhan-phep-chia` | draft, only in worktree branch `worktree-agent-a36c64bad7802c3d9` (`.claude/worktrees/agent-a36c64bad7802c3d9`) | not done |
+| Toán | Bài 5 `phep-nhan-phep-chia` | published (4 review rounds, ids locked) | not done |
 | Toán | Bài 6 `luy-thua` | published | done |
 | Toán | Bài 7 `thu-tu-thuc-hien-phep-tinh` | published | done |
 | Toán | Bài 2, Bài 3 | on hold (owner, 01/10/2026: Bài 8 and later come first because the child's class is there) | not done |
@@ -22,7 +22,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
-1. Bài 5 `phep-nhan-phep-chia`: continue from [`lesson-phep-nhan-phep-chia/task.md`](lesson-phep-nhan-phep-chia/task.md), publish, then narration and videos.
+1. Bài 5 `phep-nhan-phep-chia`: narration and videos, from [`lesson-phep-nhan-phep-chia/task.md`](lesson-phep-nhan-phep-chia/task.md) (content is published).
 2. Opening lines for the nine videos built before the opening-line rule: [`video-opening-retrofit/task.md`](video-opening-retrofit/task.md).
 3. Bài 8 (SBT print page 30), then Bài 9 (print page 33): author, review, publish, narration and videos, one subagent at a time.
 4. Bài 10 (print page 35), then Bài 11 (print page 38).
