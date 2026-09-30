@@ -8,7 +8,7 @@ import {
 import path from "node:path";
 
 // What `pnpm clean` removes: output that any command regenerates. Caches that
-// are expensive to rebuild (video/.cache narration takes, video/projects/**/audio,
+// are expensive to rebuild (the final sentence files of the narration cache,
 // the TTS environment) and everything authored stay.
 
 // Screenshots and run logs of visual:shot, lesson:walk and E2E runs.
@@ -17,6 +17,13 @@ const OUTPUT_DIRS = ["coverage", "test-results", "playwright-report"] as const;
 // Intermediate render trees of the video pipeline: video/projects/<lesson>/<video>/renders.
 const VIDEO_PROJECTS_DIR = path.join("video", "projects");
 const RENDERS_DIR = "renders";
+// Narration cache folders: <key>.wav is the sentence kept; the synthesis
+// attempts (<key>.take<n>.raw.wav, <key>.take<n>.wav) are intermediates.
+const NARRATION_CACHE_DIRS = [
+  path.join("video", ".cache", "narration"),
+  VIDEO_PROJECTS_DIR,
+] as const;
+const ATTEMPT_FILE = /\.take\d+(?:\.raw)?\.wav$/;
 const NEXT_DIR = ".next";
 // Written by `next dev` while it runs; names the server's process.
 const NEXT_DEV_LOCK = path.join(NEXT_DIR, "dev", "lock");
@@ -57,6 +64,22 @@ function rendersDirs(root: string): string[] {
   return found;
 }
 
+// Synthesis attempts inside every <base>/**/audio/ folder.
+function attemptFiles(base: string): string[] {
+  if (!existsSync(base)) return [];
+  const found: string[] = [];
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (path.basename(dir) === "audio" && ATTEMPT_FILE.test(entry.name))
+        found.push(full);
+    }
+  };
+  walk(base);
+  return found;
+}
+
 export function clean({ root, deep }: CleanOptions): CleanResult {
   const result: CleanResult = { removed: [], skipped: [] };
   const serverRunning = devServerRunning(root);
@@ -82,6 +105,9 @@ export function clean({ root, deep }: CleanOptions): CleanResult {
   }
   for (const dir of OUTPUT_DIRS) remove(path.join(root, dir));
   for (const dir of rendersDirs(root)) remove(dir);
+  for (const base of NARRATION_CACHE_DIRS) {
+    for (const file of attemptFiles(path.join(root, base))) remove(file);
+  }
 
   if (deep) {
     if (serverRunning) {

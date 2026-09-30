@@ -29,7 +29,10 @@ beforeEach(() => {
   touch(".shots/dev.log");
   touch("coverage/index.html");
   touch("video/projects/l/v/renders/site/index.html");
-  touch("video/projects/l/v/audio/s.wav");
+  touch("video/projects/l/v/audio/abc.wav");
+  touch("video/projects/l/v/audio/abc.take1.wav");
+  touch("video/projects/l/v/audio/abc.take2.raw.wav");
+  touch("video/.cache/narration/l/audio/abc.take1.wav");
   touch("video/projects/l/v/script.json");
   touch("video/.cache/narration/l/audio/s.wav");
   touch("content/subjects.json");
@@ -48,7 +51,10 @@ describe("clean", () => {
     expect(exists(".shots/dev.log")).toBe(false);
     expect(exists("coverage")).toBe(false);
     expect(exists("video/projects/l/v/renders")).toBe(false);
-    expect(exists("video/projects/l/v/audio/s.wav")).toBe(true);
+    expect(exists("video/projects/l/v/audio/abc.wav")).toBe(true);
+    expect(exists("video/projects/l/v/audio/abc.take1.wav")).toBe(false);
+    expect(exists("video/projects/l/v/audio/abc.take2.raw.wav")).toBe(false);
+    expect(exists("video/.cache/narration/l/audio/abc.take1.wav")).toBe(false);
     expect(exists("video/projects/l/v/script.json")).toBe(true);
     expect(exists("video/.cache/narration/l/audio/s.wav")).toBe(true);
     expect(exists("content/subjects.json")).toBe(true);

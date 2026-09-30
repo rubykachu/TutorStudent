@@ -76,8 +76,11 @@ export async function narrate(
         readFileSync(takeFile(line), "utf8"),
       );
       // Scored again, so a change to the normalisation reaches cached takes.
+      // The file is resolved here, not read from the cache entry, so a cache
+      // restored on another machine or path still finds its audio.
       best.set(line.key, {
         ...take,
+        file: path.join(audioDir, `${line.key}.wav`),
         matchRate: matchRate(line.spoken, take.transcript),
       });
     }
