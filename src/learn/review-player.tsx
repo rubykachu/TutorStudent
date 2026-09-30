@@ -208,7 +208,7 @@ export function ReviewPlayer({
     return (
       <>
         {header}
-        <div className="flex flex-1 flex-col" data-review-step="recap">
+        <div className="flex flex-1 flex-col gap-4" data-review-step="recap">
           {card && (
             <BlockStage
               block={card.recap}

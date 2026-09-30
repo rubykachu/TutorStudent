@@ -7,8 +7,20 @@
   "title": "Tên bài theo sách",
   "sourceRef": "SGK tr.1–2",
   "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Một tình huống ở nhà hoặc ở trường cần đúng kiến thức của bài này."
+    },
+    "summary": "Bài này giúp bạn hiểu một ý chính và dùng nó để giải bài tập.",
+    "goals": ["hiểu ý chính của bài", "làm được các bài tập cơ bản"],
+    "whyItMatters": "Kiến thức này giúp bạn làm các bài sau dễ hơn."
+  },
   "concepts": [
-    { "id": "bai-moi.concept.thua-so", "name": "Thừa số", "color": "blue" }
+    {
+      "id": "bai-moi.concept.thua-so",
+      "name": "Thừa số",
+      "color": "blue"
+    }
   ],
   "sections": [
     {
@@ -17,11 +29,17 @@
       "sourceRef": "SGK tr.1",
       "minutes": 3,
       "blocks": [
-        { "type": "visual", "visualId": "fixture.visual.dot-grid" },
+        {
+          "type": "visual",
+          "visualId": "fixture.visual.dot-grid"
+        },
         {
           "type": "group",
           "children": [
-            { "type": "note", "text": "Câu quy tắc cần nhớ." },
+            {
+              "type": "note",
+              "text": "Câu quy tắc cần nhớ."
+            },
             {
               "type": "formula",
               "tex": "\\concept{blue}{2} \\cdot \\concept{blue}{3} = 6"
@@ -56,20 +74,44 @@
       "type": "choice",
       "cardIds": [],
       "prompt": [
-        { "type": "note", "text": "Tích này bằng bao nhiêu?" },
+        {
+          "type": "note",
+          "text": "Tích này bằng bao nhiêu?"
+        },
         {
           "type": "formula",
           "tex": "\\htmlId{tich}{\\concept{blue}{2} \\cdot \\concept{blue}{4}}"
         }
       ],
       "options": [
-        { "id": "a", "content": { "type": "text", "text": "8" } },
-        { "id": "b", "content": { "type": "text", "text": "6" } }
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        }
       ],
       "answer": ["a"],
       "multiple": false,
-      "check": { "expr": "2·4" },
-      "hints": { "highlight": [{ "target": "part", "id": "tich" }] },
+      "check": {
+        "expr": "2·4"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "tich"
+          }
+        ]
+      },
       "difficulty": 1
     },
     {
@@ -77,31 +119,78 @@
       "type": "numeric",
       "cardIds": ["bai-moi.card.tich"],
       "prompt": [
-        { "type": "note", "text": "Tính tích sau." },
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
         {
           "type": "formula",
           "tex": "\\htmlId{tich}{\\concept{blue}{3} \\cdot \\concept{blue}{5}}"
         }
       ],
-      "answer": { "kind": "value", "value": 15 },
-      "check": { "expr": "3·5" },
-      "hints": { "highlight": [{ "target": "part", "id": "tich" }] },
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "3·5"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "tich"
+          }
+        ]
+      },
       "difficulty": 1
     },
     {
       "id": "bai-moi.ex.chon-tich",
       "type": "choice",
       "cardIds": ["bai-moi.card.tich"],
-      "prompt": [{ "type": "note", "text": "Tích nào bằng 12?" }],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tích nào bằng 12?"
+        }
+      ],
       "options": [
-        { "id": "a", "content": { "type": "formula", "tex": "3 \\cdot 4" } },
-        { "id": "b", "content": { "type": "formula", "tex": "2 \\cdot 5" } },
-        { "id": "c", "content": { "type": "formula", "tex": "4 \\cdot 4" } }
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot 4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 4"
+          }
+        }
       ],
       "answer": ["a"],
       "multiple": false,
-      "check": { "expr": "3·4" },
-      "hints": { "highlight": [{ "target": "block", "index": 0 }] },
+      "check": {
+        "expr": "3·4"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
       "difficulty": 2
     },
     {
@@ -109,15 +198,30 @@
       "type": "numeric",
       "cardIds": ["bai-moi.card.tich"],
       "prompt": [
-        { "type": "note", "text": "Tính tích sau." },
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
         {
           "type": "formula",
           "tex": "\\htmlId{tich}{\\concept{blue}{5} \\cdot \\concept{blue}{2}}"
         }
       ],
-      "answer": { "kind": "value", "value": 10 },
-      "check": { "expr": "5·2" },
-      "hints": { "highlight": [{ "target": "part", "id": "tich" }] },
+      "answer": {
+        "kind": "value",
+        "value": 10
+      },
+      "check": {
+        "expr": "5·2"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "tich"
+          }
+        ]
+      },
       "difficulty": 1
     }
   ],

@@ -15,6 +15,20 @@ export async function createProfile(page: Page, name: string, avatar: string) {
   ).toBeVisible();
 }
 
+// The fixture lesson's page with its list of sections. A child who has not
+// seen the lesson's overview meets it first; this passes it by its
+// "Xem các phần của bài" button.
+export async function openFixtureLesson(page: Page) {
+  await page.goto("/lessons/fixture");
+  const overview = page.locator("[data-lesson-overview]");
+  const sections = page.locator("[data-section]").first();
+  await expect(overview.or(sections)).toBeVisible();
+  if (await overview.isVisible()) {
+    await page.locator("[data-overview-browse]").tap();
+  }
+  await expect(sections).toBeVisible();
+}
+
 // The exercise currently on screen in the section player or a review.
 export function currentExercise(page: Page): Locator {
   return page.locator("[data-exercise]");

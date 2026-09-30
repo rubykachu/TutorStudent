@@ -32,7 +32,7 @@ export function DoneScreen({
   const reducedMotion = usePrefersReducedMotion();
   return (
     <div
-      className="flex flex-1 flex-col"
+      className="flex flex-1 flex-col gap-4"
       {...{ [stepAttr.name]: stepAttr.value }}
     >
       <motion.div

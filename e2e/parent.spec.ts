@@ -1,6 +1,11 @@
 import { readFile } from "node:fs/promises";
 import { expect, type Page, test } from "@playwright/test";
-import { createProfile, FIXTURE_LESSON_TITLE, finishSection } from "./flows";
+import {
+  createProfile,
+  FIXTURE_LESSON_TITLE,
+  finishSection,
+  openFixtureLesson,
+} from "./flows";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 
 const SECTION = "fixture.section.phep-nhan";
@@ -18,7 +23,7 @@ test("a parent sets a PIN and sees the child's progress after one section", asyn
 }) => {
   await page.goto("/profiles");
   await createProfile(page, "Bé Na", "Cáo");
-  await page.goto("/lessons/fixture");
+  await openFixtureLesson(page);
   await page.locator(`[data-section="${SECTION}"]`).tap();
   await finishSection(page, MISSED_EXERCISE);
   await expect(

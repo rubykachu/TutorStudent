@@ -230,27 +230,37 @@ export function ExerciseFrame<E extends BasicExercise>({
     </button>
   ) : null;
 
-  // A tall prompt (two lines of text above a formula) can push the bottom of
-  // the answer area under the sticky bottom bar on a short screen, where the
-  // child would have to discover that the page scrolls to reach the last row
-  // of keys or options. Once the answer is on screen, the page scrolls just
-  // enough to lift it above the bar, but never so far that the prompt's top
-  // leaves the screen. A prompt visual that grows after it loads is followed
-  // for a moment, like the feedback visual above, and so is the praise bubble
+  // A tall prompt (a question and a passage, each with its read-aloud
+  // button) can push the answer area under the sticky bottom bar on a
+  // phone, leaving options the child must tap half hidden behind it. Once
+  // the answer is on screen, the page scrolls just enough to lift the whole
+  // answer area, every option included, above the bar. The answer card
+  // comes first: the prompt's top may leave the screen (the child scrolls
+  // back to reread it), but the card's own top, with the owl and its
+  // bubble, never does, so a card taller than the screen shows from its
+  // start. A prompt visual that grows after it loads is followed for a
+  // moment, like the feedback visual above, and so is the praise bubble
   // that appears above the answer once it is accepted and pushes it down.
   const frameRef = useRef<HTMLElement>(null);
+  const columnRef = useRef<HTMLDivElement>(null);
   // Changes when the answer area first shows and again when it is accepted,
   // each time restarting the follow window.
   const liftKey = nonce === null ? null : accepted ? "accepted" : "answer";
   useEffect(() => {
     const frame = frameRef.current;
+    const column = columnRef.current;
     const answer = answerRef.current;
-    if (liftKey === null || !frame || !answer) return;
+    if (liftKey === null || !frame || !column || !answer) return;
     const liftAnswer = () => {
       const bar = frame.querySelector("[data-bottom-bar]");
       const barTop = bar?.getBoundingClientRect().top ?? window.innerHeight;
       const hidden = answer.getBoundingClientRect().bottom - barTop;
-      const room = frame.getBoundingClientRect().top;
+      // The owl perches above the card and may reach higher than the column.
+      const owl = column.querySelector("[data-mascot-slot]");
+      const room = Math.min(
+        column.getBoundingClientRect().top,
+        owl?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY,
+      );
       const lift = Math.min(hidden, room);
       if (lift > 0) window.scrollBy({ top: lift, behavior: "auto" });
     };
@@ -301,6 +311,7 @@ export function ExerciseFrame<E extends BasicExercise>({
           bubble takes a row of its own above the card, to the left of the
           owl's head, so it never covers the answer or a control. */}
         <div
+          ref={columnRef}
           className="relative mt-4 min-w-0 md:mt-6 lg:landscape:col-start-2 lg:landscape:row-span-2 lg:landscape:row-start-1 lg:landscape:mt-10"
           data-answer-column
         >
@@ -449,7 +460,9 @@ type PromptBlockProps = {
 };
 
 // A prompt block inside the frame: the shared block renderer, lit up as a
-// whole when a hint targets the block.
+// whole when a hint targets the block. Its read-aloud buttons are compact,
+// at the start of their text, so the prompt stays short and the answer card
+// under it fits above the bottom bar on a phone.
 export function PromptBlock({
   block,
   blockHighlight,
@@ -462,7 +475,7 @@ export function PromptBlock({
       strong={blockHighlight?.strong}
       className="w-full flex-col"
     >
-      <BlockView block={block} parts={parts} />
+      <BlockView block={block} parts={parts} readAloudLayout="compact" />
     </Highlight>
   );
 }

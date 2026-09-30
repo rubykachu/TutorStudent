@@ -65,6 +65,26 @@ const CONCEPTS: ReadonlyMap<string, Concept> = new Map([
   ],
 ]);
 
+// Stubs getBoundingClientRect: the first selector an element matches gives
+// its [top, bottom]; the entries are read at call time, so a test may move them.
+function mockRects(tops: Record<string, [number, number]>) {
+  Element.prototype.getBoundingClientRect = function (this: Element) {
+    const hit = Object.entries(tops).find(([sel]) => this.matches(sel));
+    const [top, bottom] = hit?.[1] ?? [0, 0];
+    return {
+      top,
+      bottom,
+      left: 0,
+      right: 0,
+      width: 0,
+      height: bottom - top,
+      x: 0,
+      y: top,
+      toJSON: () => ({}),
+    };
+  };
+}
+
 function renderFrame(hints: Hints) {
   const exercise: ChoiceExercise = {
     ...choiceExercise(["a"], hints),
@@ -530,41 +550,37 @@ describe("ExerciseFrame", () => {
     }
   });
 
-  it("lifts an answer area that ends under the bottom bar, keeping the prompt on screen", () => {
+  it("lifts the whole answer area above the bottom bar, keeping the card's top on screen", () => {
     const scrollBy = vi.fn();
     const originalScrollBy = window.scrollBy;
     const originalRect = Element.prototype.getBoundingClientRect;
     window.scrollBy = scrollBy as typeof window.scrollBy;
-    // Frame starts 100px down the page; the answer ends 40px below the bar.
+    // The answer card's column starts 280px down the screen, the owl 16px
+    // above it; the answer ends 40px below the bar.
     const tops: Record<string, [number, number]> = {
       "section[data-phase]": [100, 900],
+      "[data-answer-column]": [280, 740],
+      "[data-mascot-slot]": [264, 330],
       "[data-answer-area]": [300, 740],
       "[data-bottom-bar]": [700, 800],
     };
-    Element.prototype.getBoundingClientRect = function (this: Element) {
-      const hit = Object.entries(tops).find(([sel]) => this.matches(sel));
-      const [top, bottom] = hit?.[1] ?? [0, 0];
-      return {
-        top,
-        bottom,
-        left: 0,
-        right: 0,
-        width: 0,
-        height: bottom - top,
-        x: 0,
-        y: top,
-        toJSON: () => ({}),
-      };
-    };
+    mockRects(tops);
     try {
       renderFrame(HINTS_FALLBACK);
       expect(scrollBy).toHaveBeenCalledWith({ top: 40, behavior: "auto" });
 
+      // A tall prompt: lifting the last option above the bar scrolls the
+      // prompt's top off the screen, which is fine.
       scrollBy.mockClear();
-      tops["[data-answer-area]"] = [300, 950];
+      tops["[data-answer-area]"] = [300, 900];
       renderFrame(HINTS_FALLBACK);
-      // Never further than the frame's own top.
-      expect(scrollBy).toHaveBeenCalledWith({ top: 100, behavior: "auto" });
+      expect(scrollBy).toHaveBeenCalledWith({ top: 200, behavior: "auto" });
+
+      // A card taller than the screen shows from its start, owl included.
+      scrollBy.mockClear();
+      tops["[data-answer-area]"] = [300, 1400];
+      renderFrame(HINTS_FALLBACK);
+      expect(scrollBy).toHaveBeenCalledWith({ top: 264, behavior: "auto" });
     } finally {
       window.scrollBy = originalScrollBy;
       Element.prototype.getBoundingClientRect = originalRect;
@@ -578,24 +594,12 @@ describe("ExerciseFrame", () => {
     window.scrollBy = scrollBy as typeof window.scrollBy;
     const tops: Record<string, [number, number]> = {
       "section[data-phase]": [100, 700],
+      "[data-answer-column]": [280, 690],
+      "[data-mascot-slot]": [264, 330],
       "[data-answer-area]": [300, 690],
       "[data-bottom-bar]": [700, 800],
     };
-    Element.prototype.getBoundingClientRect = function (this: Element) {
-      const hit = Object.entries(tops).find(([sel]) => this.matches(sel));
-      const [top, bottom] = hit?.[1] ?? [0, 0];
-      return {
-        top,
-        bottom,
-        left: 0,
-        right: 0,
-        width: 0,
-        height: bottom - top,
-        x: 0,
-        y: top,
-        toJSON: () => ({}),
-      };
-    };
+    mockRects(tops);
     try {
       renderFrame(HINTS_FALLBACK);
       expect(scrollBy).not.toHaveBeenCalled();

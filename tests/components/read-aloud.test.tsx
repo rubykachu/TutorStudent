@@ -59,6 +59,22 @@ describe("read-aloud button", () => {
     expect(screen.getByRole("button", { name: "Nghe đọc" })).toBeVisible();
   });
 
+  it("shows a compact speaker at the start of the text in a prompt", () => {
+    const speech = installSpeech([fakeVoice("Linh", "vi-VN")]);
+    const { container } = render(
+      <BlockView block={NOTE} readAloudLayout="compact" />,
+    );
+    const button = screen.getByRole("button", { name: "Nghe đọc" });
+    expect(button).toHaveAttribute("data-read-aloud-layout", "compact");
+    expect(button).not.toHaveTextContent("Nghe đọc");
+    // Inside the sentence's paragraph, so the text wraps beside it instead
+    // of starting a line lower.
+    expect(button.parentElement).toBe(container.querySelector("p"));
+    fireEvent.click(button);
+    act(() => speech.startNext());
+    expect(screen.getByRole("button", { name: "Dừng đọc" })).toBeVisible();
+  });
+
   it("stops reading when the text leaves the screen", () => {
     const speech = installSpeech([fakeVoice("Linh", "vi-VN")]);
     const { unmount } = render(<BlockView block={NOTE} />);
@@ -91,6 +107,17 @@ describe("passage read-aloud", () => {
     });
     expect(container.querySelector('[data-sentence-id="b"]')).toHaveAttribute(
       "data-reading",
+    );
+  });
+
+  it("puts a compact speaker in the first paragraph", () => {
+    installSpeech([fakeVoice("Linh", "vi-VN")]);
+    const { container } = render(
+      <PassageReader passage={PASSAGE} readAloudLayout="compact" />,
+    );
+    const button = screen.getByRole("button", { name: "Nghe đọc" });
+    expect(button.parentElement).toBe(
+      container.querySelector("[data-paragraph] p"),
     );
   });
 
