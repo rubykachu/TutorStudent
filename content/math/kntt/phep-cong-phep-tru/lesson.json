@@ -75,7 +75,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Gộp hai nhóm lại thì dùng phép cộng. Kết quả của phép cộng là tổng, còn hai số được cộng là số hạng."
+              "text": "Gộp hai nhóm lại thì dùng phép cộng. Kết quả của phép cộng là tổng, còn hai số được cộng là số hạng.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -104,7 +105,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cong-ten-tom-tat",
-        "caption": "Kết quả của phép cộng là tổng, hai số được cộng là số hạng."
+        "caption": "Kết quả của phép cộng là tổng, còn hai số được cộng là số hạng."
       }
     },
     {
@@ -118,7 +119,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Bớt đi một phần thì dùng phép trừ. Kết quả là hiệu, số ban đầu là số bị trừ, số bớt đi là số trừ."
+              "text": "Bớt đi một phần thì dùng phép trừ. Kết quả là hiệu, số ban đầu là số bị trừ, số bớt đi là số trừ.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -140,6 +142,20 @@
               "caption": "Có 20 cái kẹo, ăn 8 cái thì còn 12 cái."
             }
           ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài nối: chạm một ô bên trái, rồi chạm ô hợp với nó bên phải. Cũng có thể kéo ô sang."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-noi"
+            }
+          ],
+          "guide": "match"
         }
       ],
       "checkIds": ["phep-cong-phep-tru.ex.chon-so-bi-tru"],
@@ -147,7 +163,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tru-ten-tom-tat",
-        "caption": "Số bị trừ trừ đi số trừ thì được hiệu."
+        "caption": "Kết quả là hiệu, số ban đầu là số bị trừ, số bớt đi là số trừ."
       }
     },
     {
@@ -161,7 +177,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Đổi chỗ các số hạng thì tổng không đổi. Đó là tính chất giao hoán của phép cộng."
+              "text": "Đổi chỗ các số hạng thì tổng không đổi. Đó là tính chất giao hoán của phép cộng.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -203,7 +220,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Cộng ba số, cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau. Đó là tính chất kết hợp của phép cộng."
+              "text": "Cộng ba số, cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau. Đó là tính chất kết hợp của phép cộng.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -248,12 +266,12 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.ket-hop-tom-tat",
-        "caption": "Cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau."
+        "caption": "Cộng ba số, cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau."
       }
     },
     {
       "id": "phep-cong-phep-tru.section.cong-voi-0",
-      "title": "Cộng với số 0",
+      "title": "Cộng với 0, trừ đi 0",
       "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.14",
       "minutes": 3,
       "blocks": [
@@ -262,7 +280,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Cộng một số với 0 thì được chính số đó. Trừ đi 0 cũng vậy, số không đổi."
+              "text": "Cộng một số với 0 thì được chính số đó. Trừ đi 0 cũng vậy, số không đổi.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -277,7 +296,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cong-0-tom-tat",
-        "caption": "Cộng một số với 0 hay trừ đi 0 thì số đó không đổi."
+        "caption": "Cộng một số với 0 thì được chính số đó. Trừ đi 0 cũng vậy, số không đổi."
       }
     },
     {
@@ -291,7 +310,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm. Tính nhẩm sẽ nhanh hơn nhiều."
+              "text": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm. Tính nhẩm sẽ nhanh hơn nhiều.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -312,6 +332,20 @@
               "visualId": "phep-cong-phep-tru.visual.ghep-tron-tu-lam"
             }
           ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài thao tác: chạm vào các số hay bấm nút như đề bài yêu cầu, rồi bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-cham-so"
+            }
+          ],
+          "guide": "manipulate"
         }
       ],
       "checkIds": ["phep-cong-phep-tru.ex.chon-cap-tron"],
@@ -319,7 +353,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.ghep-tron-tom-tat",
-        "caption": "Ghép các số hạng thành số tròn chục hay tròn trăm rồi mới cộng."
+        "caption": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm."
       }
     },
     {
@@ -333,7 +367,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Cách này giúp có một số hạng tròn chục."
+              "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Cách này giúp có một số hạng tròn chục: làm tròn số hạng nào gần tròn chục hơn.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -361,7 +396,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.them-bot-tom-tat",
-        "caption": "Thêm vào số hạng này bao nhiêu, bớt ở số hạng kia bấy nhiêu thì tổng không đổi."
+        "caption": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi."
       }
     },
     {
@@ -375,7 +410,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng thêm hoặc cùng bớt một số ở số bị trừ và số trừ thì hiệu không đổi. Cách này giúp số trừ thành số tròn chục."
+              "text": "Cùng thêm hoặc cùng bớt một số ở số bị trừ và số trừ thì hiệu không đổi. Cách này giúp số trừ thành số tròn chục.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -389,7 +425,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Dùng cách đó để làm tròn số trừ: thêm 1 vào cả hai số."
+              "text": "Số trừ lớn hơn số tròn chục một chút thì cùng bớt ở cả hai số."
             },
             {
               "type": "visual",
@@ -403,7 +439,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tru-them-tom-tat",
-        "caption": "Cùng thêm hoặc cùng bớt một số ở cả hai số thì hiệu không đổi."
+        "caption": "Cùng thêm hoặc cùng bớt một số ở số bị trừ và số trừ thì hiệu không đổi."
       }
     },
     {
@@ -417,7 +453,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Rồi cộng từ hàng đơn vị sang bên trái."
+              "text": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Rồi cộng từ hàng đơn vị sang bên trái.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -431,7 +468,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Hàng nào cộng được 10 trở lên thì viết chữ số hàng đơn vị và nhớ 1 sang hàng bên trái."
+              "text": "Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -459,7 +497,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
-        "caption": "Đặt các chữ số cùng hàng thẳng cột. Cộng từ hàng đơn vị, được 10 trở lên thì nhớ 1."
+        "caption": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
       }
     },
     {
@@ -487,7 +525,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Chữ số trên nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái. Chữ số trên thêm 10, hàng bên trái bớt đi 1."
+              "text": "Chữ số trên, sau khi đã bớt 1 nếu hàng đó cho mượn, nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái. Chữ số trên thêm 10, hàng bên trái bớt đi 1.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -515,7 +554,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-tru-tom-tat",
-        "caption": "Chữ số trên nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái. Chữ số trên thêm 10, hàng bên trái bớt đi 1."
+        "caption": "Chữ số trên, sau khi đã bớt 1 nếu hàng đó cho mượn, nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái. Chữ số trên thêm 10, hàng bên trái bớt đi 1."
       }
     },
     {
@@ -543,7 +582,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Dùng phép cộng để kiểm tra phép trừ. Số bị trừ bằng hiệu cộng số trừ."
+              "text": "Dùng phép cộng để kiểm tra phép trừ. Số bị trừ bằng hiệu cộng số trừ.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -557,7 +597,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.quan-he-tom-tat",
-        "caption": "Số bị trừ bằng hiệu cộng số trừ. Có phép trừ thì viết được phép cộng để kiểm tra."
+        "caption": "Dùng phép cộng để kiểm tra phép trừ. Số bị trừ bằng hiệu cộng số trừ."
       }
     },
     {
@@ -571,7 +611,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết."
+              "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -585,13 +626,27 @@
           "children": [
             {
               "type": "note",
-              "text": "Thử lại bằng cách thay x vào phép cộng ban đầu."
+              "text": "Thử lại bằng cách thay x vào phép cộng ban đầu. Vậy lúc đầu Lan có 47 nghìn đồng."
             },
             {
               "type": "formula",
               "tex": "47 + 35 = 82"
             }
           ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài xếp thứ tự: chạm một thẻ rồi chạm vào chỗ muốn đặt, hoặc kéo thẻ. Xếp xong thì bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-xep"
+            }
+          ],
+          "guide": "order"
         }
       ],
       "checkIds": ["phep-cong-phep-tru.ex.chon-tim-x"],
@@ -599,7 +654,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tim-so-hang-tom-tat",
-        "caption": "Số hạng chưa biết bằng tổng trừ đi số hạng đã biết."
+        "caption": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết."
       }
     },
     {
@@ -613,7 +668,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ."
+              "text": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -627,7 +683,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thử lại bằng cách thay x vào phép trừ ban đầu."
+              "text": "Thử lại bằng cách thay x vào phép trừ ban đầu. Vậy lúc đầu Lan có 45 nghìn đồng."
             },
             {
               "type": "formula",
@@ -641,7 +697,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tim-so-bi-tru-tom-tat",
-        "caption": "Số bị trừ chưa biết bằng hiệu cộng số trừ."
+        "caption": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ."
       }
     },
     {
@@ -655,7 +711,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu."
+              "text": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -669,7 +726,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thử lại bằng cách thay x vào phép trừ ban đầu."
+              "text": "Thử lại bằng cách thay x vào phép trừ ban đầu. Vậy đã cho Lan 18 cái kẹo."
             },
             {
               "type": "formula",
@@ -683,7 +740,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tim-so-tru-tom-tat",
-        "caption": "Số trừ chưa biết bằng số bị trừ trừ đi hiệu."
+        "caption": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu."
       }
     },
     {
@@ -697,7 +754,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Các số cách đều thì ghép số đầu với số cuối, rồi đến cặp kế tiếp, mỗi cặp có cùng tổng. Số ở giữa không có cặp thì để riêng rồi cộng sau."
+              "text": "Các số cách đều thì ghép số đầu với số cuối, rồi đến cặp kế tiếp, mỗi cặp có cùng tổng. Số ở giữa không có cặp thì để riêng rồi cộng sau.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -712,7 +770,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.day-so-tom-tat",
-        "caption": "Dãy số cách đều: ghép số đầu với số cuối, các cặp có cùng tổng, số ở giữa để riêng."
+        "caption": "Các số cách đều thì ghép số đầu với số cuối, rồi đến cặp kế tiếp, mỗi cặp có cùng tổng. Số ở giữa không có cặp thì để riêng rồi cộng sau."
       }
     },
     {
@@ -726,7 +784,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Cộng các chữ số hàng đơn vị của các số hạng. Chữ số cuối của kết quả đó là chữ số cuối của tổng, nếu không khớp thì tổng tính sai."
+              "text": "Cộng các chữ số hàng đơn vị của các số hạng, lấy chữ số cuối. So với chữ số cuối của kết quả đã tính: khác nhau thì kết quả đó sai.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -741,7 +800,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.chu-so-cuoi-tom-tat",
-        "caption": "Chữ số cuối của tổng bằng chữ số cuối của tổng các chữ số hàng đơn vị. Không khớp thì tổng tính sai."
+        "caption": "Cộng các chữ số hàng đơn vị của các số hạng, lấy chữ số cuối. So với chữ số cuối của kết quả đã tính: khác nhau thì kết quả đó sai."
       }
     },
     {
@@ -755,12 +814,13 @@
           "children": [
             {
               "type": "note",
-              "text": "Có mấy số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn bấy nhiêu trăm. Kết quả lớn hơn thế là tính sai."
+              "text": "Có mấy số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn bấy nhiêu trăm. Kết quả lớn hơn thế là tính sai.",
+              "rule": true
             },
             {
               "type": "visual",
               "visualId": "phep-cong-phep-tru.visual.uoc-luong-mau",
-              "caption": "Ba món hàng giá 68, 74 và 91 nghìn đồng, món nào cũng dưới 100 nghìn đồng."
+              "caption": "Ba món hàng giá 68, 74 và 91 nghìn đồng. Người bán tính 323 nghìn đồng. Tổng phải nhỏ hơn 300, nên 323 là sai."
             }
           ]
         }
@@ -770,7 +830,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.uoc-luong-tom-tat",
-        "caption": "Mỗi số hạng nhỏ hơn 100 và có ba số hạng thì tổng nhỏ hơn 300."
+        "caption": "Có mấy số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn bấy nhiêu trăm. Kết quả lớn hơn thế là tính sai."
       }
     },
     {
@@ -784,12 +844,13 @@
           "children": [
             {
               "type": "note",
-              "text": "Bài toán nhiều bước: cộng thời gian các đoạn đường, rồi trừ đi để tìm giờ xuất phát. Lớp vào học lúc 7 giờ 30 phút."
+              "text": "Bài toán nhiều bước: cộng thời gian các đoạn đường, rồi trừ đi để tìm giờ xuất phát.",
+              "rule": true
             },
             {
               "type": "visual",
               "visualId": "phep-cong-phep-tru.visual.lo-trinh-mau",
-              "caption": "Nam đi bộ 8 phút, đi xe buýt 22 phút, chờ 2 phút rồi đi bộ thêm 8 phút: cả đường mất 40 phút."
+              "caption": "Nam đi bộ 8 phút, đi xe buýt 22 phút, chờ 2 phút rồi đi bộ thêm 8 phút: cả đường mất 40 phút. Lớp vào học lúc 7 giờ 30 phút."
             }
           ]
         },
@@ -798,7 +859,8 @@
           "children": [
             {
               "type": "note",
-              "text": "7 giờ 30 phút là 6 giờ 90 phút, vì 1 giờ là 60 phút. Lấy 90 − 40 = 50, nên Nam phải ra khỏi nhà lúc 6 giờ 50 phút."
+              "text": "Phút không đủ để trừ thì đổi 1 giờ thành 60 phút. 7 giờ 30 phút là 6 giờ 90 phút, nên Nam ra khỏi nhà lúc 6 giờ 50 phút.",
+              "rule": true
             },
             {
               "type": "formula",
@@ -812,7 +874,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.lo-trinh-tom-tat",
-        "caption": "Cộng các đoạn thời gian, rồi lấy giờ vào học trừ đi. Phút không đủ thì đổi 1 giờ thành 60 phút."
+        "caption": "Bài toán nhiều bước: cộng thời gian các đoạn đường, rồi trừ đi để tìm giờ xuất phát. Phút không đủ để trừ thì đổi 1 giờ thành 60 phút."
       }
     }
   ],
@@ -827,7 +889,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cong-ten-tom-tat",
-        "caption": "Kết quả của phép cộng là tổng, hai số được cộng là số hạng."
+        "caption": "Kết quả của phép cộng là tổng, còn hai số được cộng là số hạng."
       }
     },
     {
@@ -841,7 +903,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tru-ten-tom-tat",
-        "caption": "Số bị trừ trừ đi số trừ thì được hiệu."
+        "caption": "Kết quả là hiệu, số ban đầu là số bị trừ, số bớt đi là số trừ."
       }
     },
     {
@@ -861,7 +923,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.ket-hop-tom-tat",
-        "caption": "Cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau."
+        "caption": "Cộng ba số, cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau."
       }
     },
     {
@@ -871,7 +933,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cong-0-tom-tat",
-        "caption": "Cộng một số với 0 hay trừ đi 0 thì số đó không đổi."
+        "caption": "Cộng một số với 0 thì được chính số đó. Trừ đi 0 cũng vậy, số không đổi."
       }
     },
     {
@@ -881,7 +943,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.ghep-tron-tom-tat",
-        "caption": "Ghép các số hạng thành số tròn chục hay tròn trăm rồi mới cộng."
+        "caption": "Đổi chỗ và nhóm các số hạng để hai số ghép lại thành số tròn chục hoặc tròn trăm."
       }
     },
     {
@@ -891,7 +953,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.them-bot-tom-tat",
-        "caption": "Thêm vào số hạng này bao nhiêu, bớt ở số hạng kia bấy nhiêu thì tổng không đổi."
+        "caption": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi."
       }
     },
     {
@@ -901,7 +963,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tru-them-tom-tat",
-        "caption": "Cùng thêm hoặc cùng bớt một số ở cả hai số thì hiệu không đổi."
+        "caption": "Cùng thêm hoặc cùng bớt một số ở số bị trừ và số trừ thì hiệu không đổi."
       }
     },
     {
@@ -911,7 +973,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
-        "caption": "Đặt các chữ số cùng hàng thẳng cột. Cộng từ hàng đơn vị, được 10 trở lên thì nhớ 1."
+        "caption": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
       }
     },
     {
@@ -921,7 +983,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-tru-tom-tat",
-        "caption": "Chữ số trên nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái. Chữ số trên thêm 10, hàng bên trái bớt đi 1."
+        "caption": "Chữ số trên, sau khi đã bớt 1 nếu hàng đó cho mượn, nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái. Chữ số trên thêm 10, hàng bên trái bớt đi 1."
       }
     },
     {
@@ -935,7 +997,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.quan-he-tom-tat",
-        "caption": "Số bị trừ bằng hiệu cộng số trừ. Có phép trừ thì viết được phép cộng để kiểm tra."
+        "caption": "Dùng phép cộng để kiểm tra phép trừ. Số bị trừ bằng hiệu cộng số trừ."
       }
     },
     {
@@ -948,7 +1010,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tim-so-hang-tom-tat",
-        "caption": "Số hạng chưa biết bằng tổng trừ đi số hạng đã biết."
+        "caption": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết."
       }
     },
     {
@@ -962,7 +1024,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tim-so-bi-tru-tom-tat",
-        "caption": "Số bị trừ chưa biết bằng hiệu cộng số trừ."
+        "caption": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ."
       }
     },
     {
@@ -976,7 +1038,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.tim-so-tru-tom-tat",
-        "caption": "Số trừ chưa biết bằng số bị trừ trừ đi hiệu."
+        "caption": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu."
       }
     },
     {
@@ -986,7 +1048,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.day-so-tom-tat",
-        "caption": "Dãy số cách đều: ghép số đầu với số cuối, các cặp có cùng tổng, số ở giữa để riêng."
+        "caption": "Các số cách đều thì ghép số đầu với số cuối, rồi đến cặp kế tiếp, mỗi cặp có cùng tổng. Số ở giữa không có cặp thì để riêng rồi cộng sau."
       }
     },
     {
@@ -996,7 +1058,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.chu-so-cuoi-tom-tat",
-        "caption": "Chữ số cuối của tổng bằng chữ số cuối của tổng các chữ số hàng đơn vị. Không khớp thì tổng tính sai."
+        "caption": "Cộng các chữ số hàng đơn vị của các số hạng, lấy chữ số cuối. So với chữ số cuối của kết quả đã tính: khác nhau thì kết quả đó sai."
       }
     },
     {
@@ -1006,7 +1068,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.uoc-luong-tom-tat",
-        "caption": "Mỗi số hạng nhỏ hơn 100 và có ba số hạng thì tổng nhỏ hơn 300."
+        "caption": "Có mấy số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn bấy nhiêu trăm. Kết quả lớn hơn thế là tính sai."
       }
     },
     {
@@ -1016,7 +1078,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.lo-trinh-tom-tat",
-        "caption": "Cộng các đoạn thời gian, rồi lấy giờ vào học trừ đi. Phút không đủ thì đổi 1 giờ thành 60 phút."
+        "caption": "Bài toán nhiều bước: cộng thời gian các đoạn đường, rồi trừ đi để tìm giờ xuất phát. Phút không đủ để trừ thì đổi 1 giờ thành 60 phút."
       }
     }
   ],
@@ -1139,13 +1201,13 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{pt}{30 + 12 = 42}"
+          "tex": "\\htmlId{pt}{26 + 13 = 39}"
         }
       ],
       "segments": [
         {
           "type": "text",
-          "text": "Trong phép cộng này, số 42 gọi là "
+          "text": "Trong phép cộng này, số 39 gọi là "
         },
         {
           "type": "blank",
@@ -1716,15 +1778,15 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{pt}{8 + 5 + 5}"
+          "tex": "\\htmlId{pt}{3 + 9 + 1}"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 18
+        "value": 13
       },
       "check": {
-        "expr": "8+5+5"
+        "expr": "3+9+1"
       },
       "hints": {
         "highlight": [
@@ -1734,7 +1796,7 @@
           }
         ],
         "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-6-3-7",
-        "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-8-5-5"
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-3-9-1"
       },
       "difficulty": 1
     },
@@ -1831,7 +1893,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn mua thước 12 nghìn đồng, bút 6 nghìn đồng và tẩy 4 nghìn đồng. Bạn trả tất cả bao nhiêu nghìn đồng?"
+          "text": "Bạn mua thước 12 nghìn đồng, bút 8 nghìn đồng và tẩy 2 nghìn đồng. Bạn trả tất cả bao nhiêu nghìn đồng?"
         }
       ],
       "answer": {
@@ -1839,7 +1901,7 @@
         "value": 22
       },
       "check": {
-        "expr": "12+6+4"
+        "expr": "12+8+2"
       },
       "hints": {
         "highlight": [
@@ -2382,7 +2444,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính nhẩm 49 + 35 bằng cách lấy 5 của số hạng thứ nhất cho số hạng thứ hai."
+          "text": "Tính nhẩm 49 + 35 bằng cách lấy 1 của số hạng thứ hai cho số hạng thứ nhất."
         },
         {
           "type": "formula",
@@ -2417,7 +2479,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{pt}{36 + 28 = 34 + ?}"
+          "tex": "\\htmlId{pt}{47 + 26 = 43 + ?}"
         }
       ],
       "answer": {
@@ -2425,7 +2487,7 @@
         "value": 30
       },
       "check": {
-        "expr": "36+28-34"
+        "expr": "47+26-43"
       },
       "hints": {
         "highlight": [
@@ -2505,8 +2567,8 @@
       "visualId": "phep-cong-phep-tru.visual.them-bot-cham",
       "validatorId": "them-bot-tron",
       "params": {
-        "a": 45,
-        "b": 38,
+        "a": 52,
+        "b": 27,
         "unit": 10
       },
       "hints": {
@@ -3008,13 +3070,13 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trừ hàng chục: hàng chục đã cho mượn nên bớt đi 1. Chọn chữ số viết và số mượn."
+          "text": "Trừ ở hàng chục: hàng chục đã cho mượn nên bớt đi 1. Chọn chữ số viết và số mượn."
         }
       ],
-      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-632-178",
+      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-541-246",
       "validatorId": "cot-tinh",
       "params": {
-        "digit": 5,
+        "digit": 9,
         "carry": 1
       },
       "hints": {
@@ -3135,14 +3197,14 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "53 + 34 = 87"
+            "tex": "53 + 34 = 97"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "19 + 15 = 34"
+            "tex": "34 + 19 = 54"
           }
         }
       ],
@@ -3156,7 +3218,10 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "check": {
+        "relation": "holds"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-quan-he",
@@ -3272,7 +3337,10 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "check": {
+        "relation": "holds"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-quan-he-3",
@@ -3343,7 +3411,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "28 + 61"
+            "tex": "28 + 28"
           }
         }
       ],
@@ -3464,7 +3532,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{pt}{x + 45 = 92}"
+          "tex": "\\htmlId{pt}{x + 45 = 93}"
         }
       ],
       "items": [
@@ -3472,21 +3540,21 @@
           "id": "s1",
           "content": {
             "type": "formula",
-            "tex": "x + 45 = 92"
+            "tex": "x + 45 = 93"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "formula",
-            "tex": "x = 92 - 45"
+            "tex": "x = 93 - 45"
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "formula",
-            "tex": "x = 47"
+            "tex": "x = 48"
           }
         }
       ],
@@ -4005,7 +4073,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Dãy 30, 32, 34, 36, 38. Chọn tất cả cặp có tổng bằng 30 + 38."
+          "text": "Dãy 30, 32, 34, 36, 38. Chọn tất cả cặp có tổng bằng 68."
         }
       ],
       "options": [
@@ -4225,7 +4293,7 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "120"
+            "text": "124"
           }
         },
         {
@@ -4243,7 +4311,7 @@
           }
         }
       ],
-      "answer": ["c", "d"],
+      "answer": ["b", "c", "d"],
       "multiple": true,
       "hints": {
         "highlight": [
@@ -4253,7 +4321,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "check": {
+        "expr": "110",
+        "relation": "notEqual"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chu-so-cuoi-2",
@@ -4394,7 +4466,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "399"
+            "text": "360"
           }
         }
       ],
@@ -4408,7 +4480,10 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "check": {
+        "relation": "max"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-uoc-luong",
@@ -4601,8 +4676,8 @@
             "index": 0
           }
         ],
-        "hintVisualId": "phep-cong-phep-tru.visual.hint-bar-gio-70-25",
-        "solutionVisualId": "phep-cong-phep-tru.visual.giai-bar-gio-80-35"
+        "hintVisualId": "phep-cong-phep-tru.visual.hint-gio-70-25",
+        "solutionVisualId": "phep-cong-phep-tru.visual.giai-gio-80-35"
       },
       "difficulty": 2
     },
@@ -4695,15 +4770,15 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nam đi bộ 5 phút rồi đi xe 20 phút, lớp vào học lúc 7 giờ 15 phút, tức 6 giờ 75 phút. Nam phải ra khỏi nhà lúc 6 giờ mấy phút?"
+          "text": "Lan đi bộ 7 phút rồi đi xe 18 phút, lớp vào học lúc 7 giờ 5 phút, tức 6 giờ 65 phút. Lan phải ra khỏi nhà lúc 6 giờ mấy phút?"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 50
+        "value": 40
       },
       "check": {
-        "expr": "75-(5+20)"
+        "expr": "65-(7+18)"
       },
       "hints": {
         "highlight": [

@@ -260,9 +260,9 @@ describe("FactFamily with names", () => {
     expect(text).toContain("Số trừ");
     expect(text).toContain("Hiệu");
     expect(text).not.toContain("Số hạng");
-    // Additions read (hiệu) + (số trừ) and (số trừ) + (hiệu) = (số bị trừ).
+    // One subtraction, then the addition that checks it: (hiệu) + (số trừ) = (số bị trừ).
+    expect(text).toContain("64−27=37");
     expect(text).toContain("37+27=64");
-    expect(text).toContain("27+37=64");
     expect(
       container.querySelectorAll("p.text-block .text-concept-teal").length,
     ).toBeGreaterThan(0);
@@ -274,7 +274,7 @@ describe("FactFamily with names", () => {
       <FactFamily total={64} p1={27} p2={37} mode="hint" names="difference" />,
     );
     playToEnd();
-    expect(document.body.textContent).toContain("64−37=?");
+    expect(document.body.textContent).toContain("37+27=?");
     vi.useRealTimers();
   });
 });

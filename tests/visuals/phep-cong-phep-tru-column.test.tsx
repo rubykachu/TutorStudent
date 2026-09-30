@@ -94,7 +94,7 @@ describe("ColumnTry", () => {
         onStateChange={onStateChange}
       />,
     );
-    expect(screen.getByText("0 − 1 − 6")).toBeInTheDocument();
+    expect(screen.getByText("0 không bớt được 1")).toBeInTheDocument();
     for (let i = 0; i < 3; i++) {
       fireEvent.click(screen.getByRole("button", { name: "Tăng chữ số viết" }));
     }

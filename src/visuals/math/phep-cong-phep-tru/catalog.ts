@@ -1,3 +1,4 @@
+import type { EquationToken } from "./equations";
 import type { Op, StepsMode } from "./types";
 
 // Every picture of the lesson that is drawn from numbers: the registry builds
@@ -47,7 +48,13 @@ export type VisualSpec =
       names?: "sum" | "difference";
     }
   | { kind: "check-sum"; a: number; b: number; mode: StepsMode }
-  | { kind: "last-digit"; numbers: readonly number[] }
+  | { kind: "last-digit"; numbers: readonly number[]; claimed?: number }
+  | {
+      kind: "equations";
+      label: string;
+      rows: readonly (readonly EquationToken[])[];
+    }
+  | { kind: "guide"; gesture: "match" | "tap" | "order" }
   | { kind: "upper-bound"; numbers: readonly number[]; limit: number };
 
 // Region ids of a "tap a part of the equation" picture, in drawing order.
@@ -57,7 +64,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "cham-cong-16-7": { kind: "tap-parts", op: "add", a: 16, b: 7 },
   "cong-ten": { kind: "labels", op: "add", a: 32, b: 15 },
   "cong-thanh-bar": { kind: "bar", op: "add", a: 14, b: 9, mode: "full" },
-  "cong-ten-tom-tat": { kind: "labels", op: "add", a: 28, b: 14 },
+  "cong-ten-tom-tat": { kind: "labels", op: "add", a: 28, b: 13 },
   "hint-bar-cong-15-7": { kind: "bar", op: "add", a: 15, b: 7, mode: "hint" },
   "giai-bar-cong-17-6": { kind: "bar", op: "add", a: 17, b: 6, mode: "full" },
   "cham-tru-31-12": { kind: "tap-parts", op: "sub", a: 31, b: 12 },
@@ -71,10 +78,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "hint-swap-16-25": { kind: "swap", a: 16, b: 25, mode: "hint" },
   "giai-swap-13-28": { kind: "swap", a: 13, b: 28, mode: "full" },
   "ket-hop-tom-tat": {
-    kind: "regroup",
-    numbers: [9, 4, 6],
-    groups: [[1, 2]],
-    mode: "still",
+    kind: "equations",
+    label: "Hai cách nhóm ba số 3, 7 và 5 cho cùng tổng 15",
+    rows: [
+      [{ text: "(3 + 7)", color: "lime" }, { text: "+ 5 = 15" }],
+      [{ text: "3 +" }, { text: "(7 + 5)", color: "lime" }, { text: "= 15" }],
+    ],
   },
   "ket-hop-nhom": {
     kind: "regroup",
@@ -89,9 +98,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     groups: [[1, 2]],
     mode: "hint",
   },
-  "giai-regroup-8-5-5": {
+  "giai-regroup-3-9-1": {
     kind: "regroup",
-    numbers: [8, 5, 5],
+    numbers: [3, 9, 1],
     groups: [[1, 2]],
     mode: "full",
   },
@@ -126,9 +135,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "them-bot-tom-tat": {
     kind: "shift",
     op: "add",
-    a: 28,
-    b: 35,
-    delta: 5,
+    a: 27,
+    b: 46,
+    delta: -3,
     mode: "still",
   },
   "them-bot-mau": {
@@ -156,7 +165,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     delta: 4,
     mode: "full",
   },
-  "them-bot-cham": { kind: "shift-try", a: 45, b: 38, unit: 10 },
+  "them-bot-cham": { kind: "shift-try", a: 52, b: 27, unit: 10 },
   "tru-them-tom-tat": {
     kind: "shift",
     op: "sub",
@@ -176,9 +185,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tru-them-tron": {
     kind: "shift",
     op: "sub",
-    a: 83,
-    b: 29,
-    delta: 1,
+    a: 67,
+    b: 24,
+    delta: -4,
     mode: "still",
   },
   "hint-shift-tru-71-18": {
@@ -302,11 +311,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     b: 187,
     mode: "full",
   },
-  "cot-tru-hang-chuc-632-178": {
+  "cot-tru-hang-chuc-541-246": {
     kind: "column-try",
     op: "sub",
-    a: 632,
-    b: 178,
+    a: 541,
+    b: 246,
     column: 1,
   },
   "quan-he-tom-tat": {
@@ -395,8 +404,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tim-so-tru-tom-tat": {
     kind: "find",
     form: "subRight",
-    a: 60,
-    t: 25,
+    a: 80,
+    t: 35,
     mode: "still",
   },
   "tim-so-tru-mau": {
@@ -456,7 +465,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "full",
   },
-  "chu-so-cuoi-tom-tat": { kind: "last-digit", numbers: [19, 26, 42] },
+  "chu-so-cuoi-tom-tat": {
+    kind: "last-digit",
+    numbers: [19, 26, 42],
+    claimed: 86,
+  },
   "chu-so-cuoi-mau": { kind: "last-digit", numbers: [23, 14, 35] },
   "uoc-luong-tom-tat": {
     kind: "upper-bound",
@@ -464,7 +477,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     limit: 100,
   },
   "uoc-luong-mau": { kind: "upper-bound", numbers: [68, 74, 91], limit: 100 },
-  "lo-trinh-tom-tat": { kind: "bar", op: "sub", a: 90, b: 40, mode: "still" },
+  "lo-trinh-tom-tat": {
+    kind: "equations",
+    label: "Cộng các đoạn, đổi giờ thành phút, rồi trừ",
+    rows: [
+      [{ text: "12 + 18 = 30" }],
+      [{ text: "9 giờ 20 phút = 8 giờ 80 phút" }],
+      [{ text: "80 − 30 = 50" }],
+      [{ text: "Ra khỏi nhà lúc 8 giờ 50 phút" }],
+    ],
+  },
   "lo-trinh-mau": {
     kind: "regroup",
     numbers: [8, 22, 2, 8],
@@ -474,8 +496,28 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "full",
   },
-  "hint-bar-gio-70-25": { kind: "bar", op: "sub", a: 70, b: 25, mode: "hint" },
-  "giai-bar-gio-80-35": { kind: "bar", op: "sub", a: 80, b: 35, mode: "full" },
+  "hint-gio-70-25": {
+    kind: "equations",
+    label: "Cộng các đoạn, đổi giờ thành phút, rồi trừ",
+    rows: [
+      [{ text: "4 + 21 = 25" }],
+      [{ text: "9 giờ 10 phút = 8 giờ 70 phút" }],
+      [{ text: "70 − 25 = ?" }],
+    ],
+  },
+  "giai-gio-80-35": {
+    kind: "equations",
+    label: "Hà phải ra khỏi nhà lúc 7 giờ 45 phút",
+    rows: [
+      [{ text: "10 + 25 = 35" }],
+      [{ text: "8 giờ 20 phút = 7 giờ 80 phút" }],
+      [{ text: "80 − 35 = 45" }],
+      [{ text: "Ra khỏi nhà lúc 7 giờ 45 phút" }],
+    ],
+  },
+  "huong-dan-noi": { kind: "guide", gesture: "match" },
+  "huong-dan-cham-so": { kind: "guide", gesture: "tap" },
+  "huong-dan-xep": { kind: "guide", gesture: "order" },
   "hook-nham-nhanh": {
     kind: "shift",
     op: "add",

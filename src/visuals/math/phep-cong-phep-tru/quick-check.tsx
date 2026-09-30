@@ -17,7 +17,14 @@ function unitsDigit(value: number): number {
 
 // The addends with their last digit underlined in slate, then the sum of those digits
 // and the digit the sum ends in.
-export function LastDigit({ numbers }: { numbers: readonly number[] }) {
+export function LastDigit({
+  numbers,
+  claimed,
+}: {
+  numbers: readonly number[];
+  // A result somebody worked out, to compare its last digit.
+  claimed?: number;
+}) {
   const digits = numbers.map(unitsDigit);
   const digitSum = digits.reduce((total, digit) => total + digit, 0);
   const amber = CONCEPT_CLASSES.amber.text;
@@ -56,6 +63,20 @@ export function LastDigit({ numbers }: { numbers: readonly number[] }) {
         </span>
         <span className={amber}>{unitsDigit(digitSum)}</span>
       </p>
+      {claimed !== undefined && (
+        <p className={EQUATION_LINE}>
+          <span className="text-body font-normal md:text-body-lg">
+            {`Kết quả ${formatNumber(claimed)}: cuối ${unitsDigit(claimed)}`}
+          </span>
+          <span>
+            {unitsDigit(claimed) === unitsDigit(digitSum) ? "=" : "≠"}
+          </span>
+          <span className={amber}>{unitsDigit(digitSum)}</span>
+          <span className="text-body font-normal md:text-body-lg">
+            {unitsDigit(claimed) === unitsDigit(digitSum) ? "" : "sai"}
+          </span>
+        </p>
+      )}
     </figure>
   );
 }

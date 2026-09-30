@@ -116,7 +116,7 @@ function BorrowMark({
 }
 
 function borrowChip(borrowed: number, lent: number): string | null {
-  if (borrowed === 0) return null;
+  if (borrowed === 0) return lent > 0 ? "−1" : null;
   return lent > 0 ? "−1 +10" : "+10";
 }
 
@@ -399,7 +399,12 @@ function workingSum(op: Op, model: ColumnModel, column: number): string {
       .filter((t): t is number => t !== null)
       .join(" + ");
   }
-  return `${calc.a ?? 0}${calc.carryIn > 0 ? " − 1" : ""} − ${calc.b ?? 0}`;
+  // A place that lent 1 to its right shows what is left of its digit.
+  if (calc.carryIn > 0) {
+    const digit = calc.a ?? 0;
+    return digit > 0 ? `${digit} − 1 = ${digit - 1}` : "0 không bớt được 1";
+  }
+  return `${calc.a ?? 0} − ${calc.b ?? 0}`;
 }
 
 // Guided practice on one place of a column calculation: the places to its
@@ -461,7 +466,7 @@ export function ColumnTry({
       working,
     };
   });
-  if (op === "add") {
+  if (op === "add" && model.lead > 0) {
     const last = model.columns.length;
     columns.push({
       place: last,
@@ -470,7 +475,7 @@ export function ColumnTry({
       carry: handedOn(last - 1) > 0,
       reduced: null,
       chip: null,
-      result: model.lead > 0 ? { kind: "pending" } : { kind: "blank" },
+      result: { kind: "pending" },
       working: false,
     });
   }

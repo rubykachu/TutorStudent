@@ -2,7 +2,9 @@ import type { ComponentType } from "react";
 import type { VisualProps } from "@/visuals/registry";
 import type { VisualSpec } from "./catalog";
 import { Column, ColumnTry } from "./column";
+import { Equations } from "./equations";
 import { CheckBySum, FactFamily, FindX } from "./find";
+import { GuideMatch, GuideOrder, GuideTap } from "./guides";
 import {
   BarModel,
   EquationLabels,
@@ -18,6 +20,12 @@ import { Shift, ShiftTry } from "./shift";
 // One registry entry per `VisualSpec` of the catalog: a component drawn with
 // fixed numbers. This module is not a client module, so the dev visual page
 // (a server component) may call `fromSpec` while loading a visual.
+
+const GUIDES = {
+  match: GuideMatch,
+  tap: GuideTap,
+  order: GuideOrder,
+} as const;
 
 export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
   switch (spec.kind) {
@@ -110,11 +118,19 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
       };
     }
     case "last-digit": {
-      const { numbers } = spec;
+      const { numbers, claimed } = spec;
       return function LastDigitPicture() {
-        return <LastDigit numbers={numbers} />;
+        return <LastDigit numbers={numbers} claimed={claimed} />;
       };
     }
+    case "equations": {
+      const { rows, label } = spec;
+      return function EquationRows() {
+        return <Equations rows={rows} label={label} />;
+      };
+    }
+    case "guide":
+      return GUIDES[spec.gesture];
     case "upper-bound": {
       const { numbers, limit } = spec;
       return function UpperBoundPicture() {

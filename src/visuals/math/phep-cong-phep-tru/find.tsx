@@ -358,9 +358,9 @@ const FAMILY_ROLES: Record<
   },
 };
 
-// A total split into two parts, and the four equations that family gives:
-// two additions, two subtractions. 3 steps (the bar, the additions, the
-// subtractions); "hint" leaves the result of the last subtraction as "?".
+// A total split into two parts, and the equations that family gives (four for
+// "sum" names, two for "difference" names). 3 steps (the bar, the first rows,
+// the second rows); "hint" leaves the result of the last row as "?".
 export function FactFamily({
   total,
   p1,
@@ -375,16 +375,13 @@ export function FactFamily({
     text: n(value),
     color: role.color,
   });
-  const additions: Token[][] = [
-    [part(p1, roles.p1), part(p2, roles.p2)],
-    [part(p2, roles.p2), part(p1, roles.p1)],
-  ].map(([x, y]) => [
-    x as Token,
+  const addition = (x: Token, y: Token, hidden: boolean): Token[] => [
+    x,
     { text: "+" },
-    y as Token,
+    y,
     { text: "=" },
-    part(total, roles.whole),
-  ]);
+    hidden ? { text: "?" } : part(total, roles.whole),
+  ];
   // The subtractions always read: whole in violet, the part taken away in
   // pink, what is left in teal.
   const subtract = (taken: number, rest: number, hidden: boolean): Token[] => [
@@ -394,10 +391,21 @@ export function FactFamily({
     { text: "=" },
     hidden ? { text: "?" } : { text: n(rest), color: "teal" },
   ];
-  const subtractions = [
-    subtract(p1, p2, false),
-    subtract(p2, p1, mode === "hint"),
-  ];
+  // "difference" names: one subtraction, then the addition that checks it
+  // (difference + subtrahend = minuend), so each number keeps one name.
+  // "sum" names: both additions, then both subtractions.
+  const checking = names === "difference";
+  const firstRows = checking
+    ? [subtract(p1, p2, false)]
+    : [
+        addition(part(p1, roles.p1), part(p2, roles.p2), false),
+        addition(part(p2, roles.p2), part(p1, roles.p1), false),
+      ];
+  const secondRows = checking
+    ? [addition(part(p2, roles.p2), part(p1, roles.p1), mode === "hint")]
+    : [subtract(p1, p2, false), subtract(p2, p1, mode === "hint")];
+  const placeholder = (sign: string) =>
+    (checking ? [0] : [0, 1]).map(() => [{ text: `? ${sign} ? = ?` }]);
 
   const bar = (
     <SplitBar
@@ -433,8 +441,8 @@ export function FactFamily({
         className="flex w-full flex-col items-center gap-4"
       >
         {bar}
-        {lines(additions)}
-        {lines(subtractions)}
+        {lines(firstRows)}
+        {lines(secondRows)}
       </figure>
     );
   }
@@ -446,21 +454,15 @@ export function FactFamily({
           {bar}
           <Reveal
             shown={step >= ADDITION_STEP}
-            placeholder={lines([
-              [{ text: "? + ? = ?" }],
-              [{ text: "? + ? = ?" }],
-            ])}
+            placeholder={lines(placeholder(checking ? "−" : "+"))}
           >
-            {lines(additions)}
+            {lines(firstRows)}
           </Reveal>
           <Reveal
             shown={step >= SUBTRACTION_STEP}
-            placeholder={lines([
-              [{ text: "? − ? = ?" }],
-              [{ text: "? − ? = ?" }],
-            ])}
+            placeholder={lines(placeholder(checking ? "+" : "−"))}
           >
-            {lines(subtractions)}
+            {lines(secondRows)}
           </Reveal>
         </div>
       )}
