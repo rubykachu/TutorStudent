@@ -1,0 +1,81 @@
+{
+  "entries": [
+    {
+      "id": "correct-jingle",
+      "file": "correct-jingle.m4a",
+      "sha256": "0db136c3f056eb000ed57cf81886d0535fd19021dc3b1ee4a919bcfadcbca7dc"
+    },
+    {
+      "id": "encourage-lam-duoc",
+      "file": "encourage-lam-duoc.m4a",
+      "sha256": "07c4b65e793e9d47114f05bf46e45376a8f3b8c9219c65f1b02f5344654fe76c",
+      "text": "Bạn làm được mà, cố lên!",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "encourage-sap-dung",
+      "file": "encourage-sap-dung.m4a",
+      "sha256": "6d7930a3b2a0044228ef9116dbec7b3da31fb94e79faf7ef834f359f3fe48e48",
+      "text": "Thử lại nhé, bạn sắp đúng rồi!",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "encourage-binh-tinh",
+      "file": "encourage-binh-tinh.m4a",
+      "sha256": "811c9e653ee70c54db4647eb9958ad7172ca20d9b20f5124c204cb22b8a589b1",
+      "text": "Bình tĩnh nghĩ lại nhé, bạn giỏi mà!",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "encourage-lan-nua",
+      "file": "encourage-lan-nua.m4a",
+      "sha256": "b3239993045e8924b64b9e80f174cc41009ff0fad43f3d30fb629df91d23a70b",
+      "text": "Gần đúng rồi, thử thêm lần nữa nhé!",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "praise-gioi-qua",
+      "file": "praise-gioi-qua.m4a",
+      "sha256": "85937516506abe62937e1e3a85239c5019eeeabc98701d7463d4341ffcc8d649",
+      "text": "Đúng rồi, giỏi quá!",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "praise-chinh-xac",
+      "file": "praise-chinh-xac.m4a",
+      "sha256": "13d763aebce13a32b766c37336f8e45d810430dfc531f8c8b371c437f2853eb4",
+      "text": "Chính xác! Bạn làm tốt lắm.",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "praise-tuyet-voi",
+      "file": "praise-tuyet-voi.m4a",
+      "sha256": "c4c93dc098d830f2d2ebc1eb089fb13564d8a9b4f036efaf38acfdb9ef27a986",
+      "text": "Tuyệt vời, đúng rồi!",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "praise-cu-the",
+      "file": "praise-cu-the.m4a",
+      "sha256": "5a2ccba907c34228dd47341dbcf91c32bf870d310a97a00fb180e4eee36ff55b",
+      "text": "Đúng rồi! Cứ thế nhé.",
+      "voice": "Hải Đăng",
+      "match": 1
+    },
+    {
+      "id": "praise-hay-lam",
+      "file": "praise-hay-lam.m4a",
+      "sha256": "b251c9bf5f1781fdd1e1baa0e41ef3aa35070efcaa1bb2073594421ce550a3cf",
+      "text": "Hay lắm, bạn làm đúng rồi!",
+      "voice": "Hải Đăng",
+      "match": 1
+    }
+  ]
+}

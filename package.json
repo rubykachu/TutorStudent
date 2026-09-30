@@ -23,7 +23,8 @@
     "content:diff": "tsx scripts/content-diff.ts",
     "visual:shot": "tsx scripts/visual-shot.ts",
     "lesson:walk": "tsx scripts/lesson-walk.ts",
-    "video:build": "tsx video/build.ts"
+    "video:build": "tsx video/build.ts",
+    "sounds:build": "tsx scripts/sounds-build.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
