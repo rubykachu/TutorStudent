@@ -4,6 +4,8 @@ import { parseArgs } from "node:util";
 import { loadSubjects } from "@/content/load";
 import { LessonIdSchema } from "@/schema/content";
 import {
+  BOOK_PREFIX,
+  type Book,
   importPages,
   missingPopplerTools,
   POPPLER_INSTALL,
@@ -13,15 +15,16 @@ import {
 } from "./lib/pdf-pages";
 
 // Usage: sources-import <pdf> --pages X-Y --subject <id> --series <id>
-//          --slug <slug> [--offset <n>] [--force]
+//          --slug <slug> [--book sgk|sbt] [--offset <n>] [--force]
 // Renders the printed pages X-Y of a textbook PDF to
 // sources/<subject>/<slug>/p<page>.png at RENDER_DPI, plus p<page>.txt when
-// the page has a text layer. --offset is the PDF page index minus the printed
+// the page has a text layer; --book sbt (workbook) names them sbt-p<page>.
+// --offset is the PDF page index minus the printed
 // page number (front matter), so file names match the pages sourceRef cites.
 // Refuses to overwrite existing files without --force. Subject and series
 // must be listed in content/subjects.json.
 const USAGE =
-  "Usage: pnpm sources:import <pdf> --pages X-Y --subject <id> --series <id> --slug <slug> [--offset <n>] [--force]";
+  "Usage: pnpm sources:import <pdf> --pages X-Y --subject <id> --series <id> --slug <slug> [--book sgk|sbt] [--offset <n>] [--force]";
 
 function fail(message: string, code = 1): never {
   console.error(`sources:import: ${message}`);
@@ -35,6 +38,7 @@ const { values, positionals } = parseArgs({
     subject: { type: "string" },
     series: { type: "string" },
     slug: { type: "string" },
+    book: { type: "string", default: "sgk" },
     offset: { type: "string", default: "0" },
     force: { type: "boolean", default: false },
   },
@@ -68,6 +72,13 @@ if (!known.series.some((s) => s.id === series)) {
     2,
   );
 }
+const book = values.book;
+if (!Object.hasOwn(BOOK_PREFIX, book)) {
+  fail(
+    `--book "${book}" is not one of ${Object.keys(BOOK_PREFIX).join(", ")}`,
+    2,
+  );
+}
 const offset = Number(values.offset);
 if (!Number.isInteger(offset))
   fail(`--offset "${values.offset}" is not a whole number`, 2);
@@ -80,6 +91,7 @@ try {
     pages: parsePageRange(pages),
     offset,
     outDir,
+    book: book as Book,
     force: values.force,
   });
 } catch (error) {

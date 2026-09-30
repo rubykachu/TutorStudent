@@ -78,11 +78,17 @@ describe.skipIf(!hasPoppler)("importPages", () => {
   });
   afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
-  const options = (pages: string, offset = 0, force = false) => ({
+  const options = (
+    pages: string,
+    offset = 0,
+    force = false,
+    book: "sgk" | "sbt" = "sgk",
+  ) => ({
     pdf,
     pages: parsePageRange(pages),
     offset,
     outDir,
+    book,
     force,
   });
 
@@ -108,6 +114,14 @@ describe.skipIf(!hasPoppler)("importPages", () => {
     );
     expect(existsSync(path.join(outDir, "p3.txt"))).toBe(false);
     expect(pages[2]?.text).toBeUndefined();
+  });
+
+  it("names workbook pages apart from textbook pages", () => {
+    importPages(options("2"));
+    const [page] = importPages(options("2", 0, false, "sbt"));
+    expect(page?.image).toBe(path.join(outDir, "sbt-p2.png"));
+    expect(existsSync(path.join(outDir, "p2.png"))).toBe(true);
+    expect(existsSync(path.join(outDir, "sbt-p2.txt"))).toBe(true);
   });
 
   it("refuses pages outside the PDF", () => {

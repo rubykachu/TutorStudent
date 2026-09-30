@@ -22,6 +22,12 @@ const POPPLER_TOOLS = ["pdfinfo", "pdftoppm", "pdftotext"] as const;
 
 export type PageRange = { first: number; last: number };
 
+// Which book the pages come from. Workbook (sách bài tập) pages get their own
+// file prefix, so a lesson can hold textbook and workbook pages with the same
+// printed number; sourceRef cites them as "SBT tr.<n>".
+export const BOOK_PREFIX = { sgk: "p", sbt: "sbt-p" } as const;
+export type Book = keyof typeof BOOK_PREFIX;
+
 // "12" or "12-15"; pages count from 1.
 export function parsePageRange(text: string): PageRange {
   const match = /^(\d+)(?:-(\d+))?$/.exec(text.trim());
@@ -67,6 +73,7 @@ export type ImportOptions = {
   // positive): printed page 26 is PDF page 26 + offset.
   offset: number;
   outDir: string;
+  book: Book;
   force: boolean;
 };
 
@@ -83,14 +90,17 @@ export type ImportedPage = {
 export function plannedFiles(options: ImportOptions): string[] {
   const files: string[] = [];
   for (let page = options.pages.first; page <= options.pages.last; page++) {
-    files.push(path.join(options.outDir, `p${page}.png`));
-    files.push(path.join(options.outDir, `p${page}.txt`));
+    const base = path.join(
+      options.outDir,
+      `${BOOK_PREFIX[options.book]}${page}`,
+    );
+    files.push(`${base}.png`, `${base}.txt`);
   }
   return files;
 }
 
 export function importPages(options: ImportOptions): ImportedPage[] {
-  const { pdf, pages, offset, outDir, force } = options;
+  const { pdf, pages, offset, outDir, book, force } = options;
   const count = pdfPageCount(pdf);
   if (pages.first + offset < 1 || pages.last + offset > count) {
     throw new Error(
@@ -108,7 +118,7 @@ export function importPages(options: ImportOptions): ImportedPage[] {
   for (let page = pages.first; page <= pages.last; page++) {
     const pdfPage = page + offset;
     const at = String(pdfPage);
-    const base = path.join(outDir, `p${page}`);
+    const base = path.join(outDir, `${BOOK_PREFIX[book]}${page}`);
     // pdftoppm appends ".png" to the prefix it is given.
     run("pdftoppm", [
       "-png",
