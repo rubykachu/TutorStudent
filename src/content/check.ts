@@ -14,6 +14,7 @@ import {
   type Lesson,
   LessonSchema,
   type SectionBlock,
+  type Subject,
   type SubjectsFile,
   SubjectsFileSchema,
 } from "@/schema/content";
@@ -69,7 +70,13 @@ export type RawContent = {
   lessons: RawLessonFile[];
 };
 
-export type CheckedLesson = { file: string; fixture: boolean; lesson: Lesson };
+export type CheckedLesson = {
+  file: string;
+  fixture: boolean;
+  lesson: Lesson;
+  // The lesson's entry in subjects.json; absent for an unknown subject.
+  subject?: Subject;
+};
 
 export type CheckResult = {
   issues: Issue[];
@@ -711,7 +718,12 @@ export function checkContent(
   for (const file of raw.lessons) {
     const lesson = parseFile(file, LessonSchema, issues);
     if (!lesson) continue;
-    lessons.push({ file: file.file, fixture: file.fixture, lesson });
+    lessons.push({
+      file: file.file,
+      fixture: file.fixture,
+      lesson,
+      subject: subjects?.subjects.find((s) => s.id === lesson.subject),
+    });
     checkLesson(file, lesson, subjects, catalog, (path, message) =>
       issues.push({ severity: "error", file: file.file, path, message }),
     );
@@ -731,13 +743,15 @@ export function checkContent(
   // Linted once every lesson is parsed: a lesson may rely on guide screens
   // of earlier lessons of its subject.
   for (const file of raw.lessons) {
-    const lesson = lessons.find((l) => l.file === file.file)?.lesson;
-    if (!lesson) continue;
+    const checked = lessons.find((l) => l.file === file.file);
+    if (!checked) continue;
+    const { lesson, subject } = checked;
     issues.push(
       ...lintLesson({
         file: file.file,
         lesson,
         fixture: file.fixture,
+        subject,
         glossary: glossaries.get(lesson.subject),
         sourcePassage: file.sourcePassage,
         sourceText: file.sourceText,

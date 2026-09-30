@@ -2,33 +2,39 @@ import { BookOpen, Calculator, Globe, type LucideIcon } from "lucide-react";
 import type { Subject } from "@/schema/content";
 
 type SubjectColor = Subject["color"];
+type SubjectIcon = Subject["icon"];
 
-// Keyed by the subject's colour token, the closed set a subject may use, so
-// adding a colour to the schema fails type-checking here until it is styled.
-// Class names are spelled out in full because Tailwind only generates
-// utilities it can find as literal strings in the source.
-export const SUBJECT_STYLES: Readonly<
-  Record<
-    SubjectColor,
-    { bg: string; text: string; border: string; icon: LucideIcon }
-  >
+// Keyed by the palette token and icon name a subject picks in
+// content/subjects.json, the closed sets of the schema, so adding one to the
+// schema fails type-checking here until it is styled. Class names are
+// spelled out in full because Tailwind only generates utilities it can find
+// as literal strings in the source.
+const COLOR_CLASSES: Readonly<
+  Record<SubjectColor, { bg: string; text: string; border: string }>
 > = {
-  math: {
-    bg: "bg-subject-math",
-    text: "text-subject-math",
-    border: "border-subject-math",
-    icon: Calculator,
+  blue: {
+    bg: "bg-subject-blue",
+    text: "text-subject-blue",
+    border: "border-subject-blue",
   },
-  literature: {
-    bg: "bg-subject-literature",
-    text: "text-subject-literature",
-    border: "border-subject-literature",
-    icon: BookOpen,
+  terracotta: {
+    bg: "bg-subject-terracotta",
+    text: "text-subject-terracotta",
+    border: "border-subject-terracotta",
   },
-  geography: {
-    bg: "bg-subject-geography",
-    text: "text-subject-geography",
-    border: "border-subject-geography",
-    icon: Globe,
+  teal: {
+    bg: "bg-subject-teal",
+    text: "text-subject-teal",
+    border: "border-subject-teal",
   },
 };
+
+const ICONS: Readonly<Record<SubjectIcon, LucideIcon>> = {
+  calculator: Calculator,
+  "book-open": BookOpen,
+  globe: Globe,
+};
+
+export function subjectStyle(subject: Pick<Subject, "color" | "icon">) {
+  return { ...COLOR_CLASSES[subject.color], icon: ICONS[subject.icon] };
+}

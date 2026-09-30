@@ -31,13 +31,6 @@ export const UNITS = [
   "ml",
 ] as const;
 
-// Subjects whose `numeric` exercises must carry a `check.expr`.
-export const CHECK_EXPR_SUBJECTS = ["math"] as const;
-
-// Subjects whose passages are verbatim source texts: each lesson needs a
-// `source-passage.txt` next to lesson.json to compare them against.
-export const VERBATIM_PASSAGE_SUBJECTS = ["literature"] as const;
-
 // A recap is read in a few seconds after a wrong answer or at a section's
 // end: its caption (the sentence to remember) holds at most this many
 // sentences, next to one labelled example.

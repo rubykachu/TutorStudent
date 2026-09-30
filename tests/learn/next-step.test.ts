@@ -39,7 +39,14 @@ function subject(id: string): Subject {
   return {
     id,
     name: id,
-    color: "math",
+    color: "blue",
+    icon: "calculator",
+    language: "vi",
+    rules: {
+      checkExpr: false,
+      verbatimPassage: false,
+      requiresOpenEnded: false,
+    },
     series: [{ id: "kntt", name: "Kết nối" }],
     defaultSeries: "kntt",
   };

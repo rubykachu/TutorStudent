@@ -1,6 +1,5 @@
 import type { ChoiceExercise, Item } from "@/schema/content";
 import { flattenExercises } from "../index";
-import { CHECK_EXPR_SUBJECTS } from "./config";
 import { comparisonValue, evaluateExpr, itemValue, sameNumber } from "./expr";
 import { forbiddenOperators } from "./symbols";
 import {
@@ -105,9 +104,7 @@ function lintChoice(
 
 export function lintCheckExpr(input: LintInput): Finding[] {
   const { findings, report } = findingCollector(input.file, "check-expr");
-  const required = (CHECK_EXPR_SUBJECTS as readonly string[]).includes(
-    input.lesson.subject,
-  );
+  const required = input.subject?.rules.checkExpr ?? false;
 
   for (const { exercise, path } of flattenExercises(input.lesson)) {
     if (exercise.type !== "numeric" && exercise.type !== "choice") continue;

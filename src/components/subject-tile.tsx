@@ -1,7 +1,7 @@
 import { Clock } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
-import { SUBJECT_STYLES } from "@/components/subject-style";
+import { subjectStyle } from "@/components/subject-style";
 import type { SubjectProgress, SubjectStatus } from "@/learn/next-step";
 import type { Subject } from "@/schema/content";
 
@@ -94,7 +94,7 @@ export function SubjectTile({
   nudgeDays,
   href,
 }: SubjectTileProps) {
-  const style = SUBJECT_STYLES[subject.color];
+  const style = subjectStyle(subject);
   const Icon = style.icon;
   const subtitle = subjectSubtitle(status);
   return (

@@ -46,12 +46,12 @@ function describeCriterion(c: Criterion): string {
 }
 
 if (values.stats) {
-  for (const { file, fixture, lesson } of lessons) {
+  for (const { file, fixture, lesson, subject } of lessons) {
     const stats = lessonStats(lesson, visualRegistry);
     console.log(`${lesson.id} (${file}): ${describeStats(stats)}`);
     // The fixture is test content, not held to the lesson minimums.
     if (fixture) continue;
-    for (const criterion of lessonCriteria(lesson, stats)) {
+    for (const criterion of lessonCriteria(subject, stats)) {
       console.log(describeCriterion(criterion));
     }
   }

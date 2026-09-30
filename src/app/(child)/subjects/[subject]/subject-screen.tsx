@@ -4,7 +4,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { PageTopBar } from "@/components/page-top-bar";
 import { StateBadge } from "@/components/state-badge";
-import { SUBJECT_STYLES } from "@/components/subject-style";
+import { subjectStyle } from "@/components/subject-style";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
 import { useChildProgress, useContentIndex } from "@/progress/hooks";
@@ -73,7 +73,7 @@ function LessonList({
 
 export function SubjectScreen({ subject }: { subject: Subject }) {
   const profile = useRequiredProfile();
-  const style = SUBJECT_STYLES[subject.color];
+  const style = subjectStyle(subject);
   const Icon = style.icon;
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">

@@ -3,21 +3,42 @@
     {
       "id": "math",
       "name": "Toán",
-      "color": "math",
+      "color": "blue",
+      "icon": "calculator",
+      "language": "vi",
+      "rules": {
+        "checkExpr": true,
+        "verbatimPassage": false,
+        "requiresOpenEnded": false
+      },
       "series": [{ "id": "kntt", "name": "Kết nối tri thức với cuộc sống" }],
       "defaultSeries": "kntt"
     },
     {
       "id": "literature",
       "name": "Ngữ văn",
-      "color": "literature",
+      "color": "terracotta",
+      "icon": "book-open",
+      "language": "vi",
+      "rules": {
+        "checkExpr": false,
+        "verbatimPassage": true,
+        "requiresOpenEnded": true
+      },
       "series": [{ "id": "ctst", "name": "Chân trời sáng tạo" }],
       "defaultSeries": "ctst"
     },
     {
       "id": "geography",
       "name": "Địa lí",
-      "color": "geography",
+      "color": "teal",
+      "icon": "globe",
+      "language": "vi",
+      "rules": {
+        "checkExpr": false,
+        "verbatimPassage": false,
+        "requiresOpenEnded": false
+      },
       "series": [{ "id": "kntt", "name": "Kết nối tri thức với cuộc sống" }],
       "defaultSeries": "kntt"
     }

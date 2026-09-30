@@ -6,7 +6,10 @@ import type { LessonSummary, Subject } from "@/schema/content";
 const math: Subject = {
   id: "math",
   name: "Toán",
-  color: "math",
+  color: "blue",
+  icon: "calculator",
+  language: "vi",
+  rules: { checkExpr: false, verbatimPassage: false, requiresOpenEnded: false },
   series: [{ id: "kntt", name: "Kết nối" }],
   defaultSeries: "kntt",
 };

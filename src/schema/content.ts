@@ -59,8 +59,30 @@ export const CONCEPT_COLORS = [
 ] as const;
 export const ConceptColorSchema = z.enum(CONCEPT_COLORS);
 
-export const SUBJECT_COLORS = ["math", "literature", "geography"] as const;
+// Palette of subject accents (`--color-subject-<token>` in globals.css) and
+// icons (mapped to components in components/subject-style.ts). A subject
+// picks one of each in content/subjects.json; adding a palette entry or icon
+// means extending these lists, the CSS token and the style map together.
+export const SUBJECT_COLORS = ["blue", "terracotta", "teal"] as const;
 export const SubjectColorSchema = z.enum(SUBJECT_COLORS);
+
+export const SUBJECT_ICONS = ["calculator", "book-open", "globe"] as const;
+export const SubjectIconSchema = z.enum(SUBJECT_ICONS);
+
+// `vi` lessons are checked against the Vietnamese spelling and reading-level
+// rules; other languages skip them.
+export const SUBJECT_LANGUAGES = ["vi", "en"] as const;
+export const SubjectLanguageSchema = z.enum(SUBJECT_LANGUAGES);
+
+// Authoring rules that only some subjects follow.
+export const SubjectRulesSchema = z.object({
+  // `numeric` exercises carry `check.expr`, recomputed by content:check.
+  checkExpr: z.boolean(),
+  // Passages are verbatim source texts compared with `source-passage.txt`.
+  verbatimPassage: z.boolean(),
+  // Every lesson ends with at least one openEnded (writing) exercise.
+  requiresOpenEnded: z.boolean(),
+});
 
 export const SeriesSchema = z.object({
   id: LessonIdSchema,
@@ -71,6 +93,9 @@ export const SubjectSchema = z.object({
   id: LessonIdSchema,
   name: TextSchema,
   color: SubjectColorSchema,
+  icon: SubjectIconSchema,
+  language: SubjectLanguageSchema,
+  rules: SubjectRulesSchema,
   series: z.array(SeriesSchema).min(1),
   // A new child profile starts on this series for the subject.
   defaultSeries: LessonIdSchema,

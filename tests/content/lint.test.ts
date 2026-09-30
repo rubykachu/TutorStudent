@@ -16,7 +16,12 @@ import {
   LessonSchema,
 } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
-import { fixtureContent, fixtureFile, readSkeleton } from "./helpers";
+import {
+  fixtureContent,
+  fixtureFile,
+  readSkeleton,
+  subjectOf,
+} from "./helpers";
 
 const FILE = "lesson.json";
 
@@ -28,6 +33,7 @@ function fixtureInput(): LintInput {
     file: FILE,
     lesson: LessonSchema.parse(file.data),
     fixture: true,
+    subject: subjectOf("math"),
     glossary: GlossaryFileSchema.parse(glossary?.data),
     sourcePassage: file.sourcePassage,
   };
@@ -42,6 +48,7 @@ function skeletonInput(): LintInput {
     file: FILE,
     lesson: LessonSchema.parse(readSkeleton()),
     fixture: false,
+    subject: subjectOf("math"),
     glossary: GlossaryFileSchema.parse(glossary?.data),
   };
 }
@@ -560,7 +567,7 @@ describe("check-expr", () => {
     expect(findings(input, "check-expr")).toMatchObject([
       { path: ["exercises", 2] },
     ]);
-    input.lesson.subject = "literature";
+    input.subject = subjectOf("literature");
     expect(findings(input, "check-expr")).toEqual([]);
   });
 
@@ -872,7 +879,7 @@ describe("passage", () => {
     const input = fixtureInput();
     delete input.sourcePassage;
     expect(messages(input, "passage")).toEqual([]);
-    input.lesson.subject = "literature";
+    input.subject = subjectOf("literature");
     expect(messages(input, "passage")).toEqual([
       "Passages need source-passage.txt next to lesson.json",
     ]);

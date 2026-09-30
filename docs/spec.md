@@ -123,7 +123,7 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 ├── sources/                      # tài liệu gốc (ảnh/PDF SGK) — .gitignore, không bao giờ commit
 │   └── <subject>/<lesson-slug>/
 ├── content/                      # nội dung đã biên soạn, commit vào git
-│   ├── subjects.json             # danh sách môn, bộ sách, màu môn
+│   ├── subjects.json             # môn: màu, icon, ngôn ngữ vi/en, cờ luật (rules), bộ sách
 │   ├── ids.lock.json             # mọi id đã publish + map retired (xem "Id bất biến")
 │   ├── glossary/<subject>.json   # thuật ngữ chuẩn + từ đồng nghĩa cấm dùng, theo môn
 │   └── <subject>/<series>/<lesson-slug>/
@@ -181,7 +181,9 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 ### 5.1 Mô hình nội dung (zod, `src/schema/content.ts`)
 
 ```
-Subject      { id: "math" | "literature" | "geography" | …, name, color, series[] }
+Subject      { id, name, color (token bảng màu), icon, language: "vi" | "en",
+               rules: { checkExpr, verbatimPassage, requiresOpenEnded }, series[], defaultSeries }
+             # cấu hình theo môn chỉ nằm ở content/subjects.json; luật chữ tiếng Việt (âm tiết, số, độ dài câu) chỉ áp cho môn language "vi"
 Lesson       { id, subject, series, grade: 6, order, title, sourceRef (vd "SGK tr.22–24"),
                status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker,
                videos?, overview? }
@@ -233,13 +235,13 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Độ dài: câu ≤ 25 âm tiết (không đếm công thức; tách câu có danh sách viết tắt như "tr.", "SGK"); `note` ≤ 2 câu.
 - Recap và card (ngưỡng trong `src/content/lint/config.ts`): `caption` của `Section.recap` và `Card.recap` ≤ 2 câu; mỗi card có ≥ 3 exercise (tính cả bước của `openEnded`) để phiên ôn đổi được câu hỏi.
 - Luật soạn bài (bỏ qua bài fixture, vốn để thử mọi đường hiển thị): recap không phải `visual` có `caption` → fail; card có hơn 1 câu trong `practiceIds` của các section → fail; màn chỉ một `note` hay một `formula` ngoài `group` → cảnh báo; câu trong kho ôn có cùng tập số trong đề với câu luyện tập của card → cảnh báo; visual `fixture.*` (chỗ giữ tạm trong khung bài mới) → cảnh báo khi `draft`, fail khi `published`, và `content:hash --approve` từ chối.
-- Toán: `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài Toán bắt buộc `check.expr` cho mọi `numeric`. `choice` chọn cách so qua `check.relation`: `equal` (mặc định), `notEqual` ("kết quả nào sai"), `max`/`min` (không cần `expr`), `holds`/`fails` khi mỗi lựa chọn là một phép so sánh; mọi lựa chọn được tính, nhiễu cũng thoả → fail; `choice` Toán mà mọi lựa chọn là phép so sánh tính được thì bắt buộc có `check`.
+- Môn có `rules.checkExpr` (hiện là Toán): `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài của môn đó bắt buộc `check.expr` cho mọi `numeric`. `choice` chọn cách so qua `check.relation`: `equal` (mặc định), `notEqual` ("kết quả nào sai"), `max`/`min` (không cần `expr`), `holds`/`fails` khi mỗi lựa chọn là một phép so sánh; mọi lựa chọn được tính, nhiễu cũng thoả → fail; `choice` Toán mà mọi lựa chọn là phép so sánh tính được thì bắt buộc có `check`.
 - Gợi ý và màu: `hints.highlight` trỏ vào lựa chọn, vùng hay câu nằm trong `answer` → fail; trong `choice`, tập màu khái niệm của các đáp án tách hẳn tập màu của các nhiễu → fail.
 - Hướng dẫn thao tác: `group` có `guide` (`tapRegion`, `tapText`, `match`, `order`, `manipulate`, `fillBlankBank`, `numericPower`) là màn dạy thao tác; câu đầu tiên dùng thao tác mà chưa có màn đó ở section trước hay cùng section, hay ở bài đứng trước trong thứ tự app (môn theo `subjects.json`, rồi `order`) → cảnh báo.
 - Câu quy tắc: `note` có `rule: true` phải được recap của section lặp nguyên văn; câu recap (section, card) giống quá nửa số từ của câu quy tắc mà không nguyên văn → fail.
 - Chép sách: có lớp chữ `sources/<môn>/<bài>/p*.txt` thì chữ của bài trùng từ nửa số cụm 5 từ với sách → cảnh báo.
 - Mỗi luật trên trỏ tới mục tương ứng trong `docs/lessons-learned/` (lỗi đã gặp nhiều lần mà luật sinh ra để chặn).
-- Ngữ văn: mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
+- Môn có `rules.verbatimPassage` (hiện là Ngữ văn): mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
 - Cổng review: bài `published` phải có `reviewedHash` bằng hash nội dung hiện tại (đã chuẩn hoá, không tính `status`/`reviewedHash`); sửa bài sau review → fail cho tới khi review lại.
 
 **Lớp review độc lập** (skill `lesson-review`, chạy trong subagent mới, không phải agent đã soạn bài):

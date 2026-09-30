@@ -18,9 +18,14 @@ import { lintRuleSentence } from "./rule-sentence";
 import { lintScreens } from "./screens";
 import { lintSymbols } from "./symbols";
 import { lintTextbookCopy } from "./textbook-copy";
-import { type Finding, findingCollector, type LintInput } from "./types";
+import {
+  type Finding,
+  findingCollector,
+  isVietnamese,
+  type LintInput,
+} from "./types";
 import { lintVietnamese } from "./vietnamese";
-import { collectStrings } from "./walk";
+import { collectStrings, type LessonStrings } from "./walk";
 
 // Automated wording, notation and answer checks of one parsed lesson.
 
@@ -40,6 +45,20 @@ function lintAuthoring(input: LintInput): Finding[] {
   ];
 }
 
+// Spelling, number format and reading level written for Vietnamese; a subject
+// taught in another language skips them.
+function lintVietnameseRules(
+  input: LintInput,
+  strings: LessonStrings,
+): Finding[] {
+  if (!isVietnamese(input)) return [];
+  return [
+    ...lintNumbers(input, strings),
+    ...lintVietnamese(input, strings),
+    ...lintLength(input, strings),
+  ];
+}
+
 export function lintLesson(input: LintInput): Finding[] {
   const strings = collectStrings(input.lesson);
   const fields = findingCollector(input.file, "fields");
@@ -53,10 +72,8 @@ export function lintLesson(input: LintInput): Finding[] {
     ...fields.findings,
     ...lintNfc(input, strings),
     ...lintSymbols(input, strings),
-    ...lintNumbers(input, strings),
     ...lintGlossary(input, strings),
-    ...lintVietnamese(input, strings),
-    ...lintLength(input, strings),
+    ...lintVietnameseRules(input, strings),
     ...lintRecap(input),
     ...lintCardExercises(input),
     ...lintCheckExpr(input),

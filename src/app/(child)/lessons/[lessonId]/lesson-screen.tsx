@@ -10,7 +10,7 @@ import { ReviewButton } from "@/components/review-button";
 import { RichText } from "@/components/rich-text";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
-import { SUBJECT_STYLES } from "@/components/subject-style";
+import { subjectStyle } from "@/components/subject-style";
 import type { LessonIndex } from "@/content";
 import { LessonOverviewView } from "@/learn/lesson-overview";
 import { nextSectionIndex, stickerFill } from "@/learn/next-step";
@@ -61,7 +61,7 @@ function LessonBody({
   const [overviewOpen, setOverviewOpen] = useState<boolean | null>(null);
   if (!progress) return null;
 
-  const style = subject ? SUBJECT_STYLES[subject.color] : undefined;
+  const style = subject ? subjectStyle(subject) : undefined;
   const next = nextSectionIndex(lesson.sections, progress.sections);
   const { overview } = lesson;
   if (overview && (overviewOpen ?? !progress.overviewSeen)) {

@@ -1,7 +1,6 @@
 import type { PassageBlock, SectionBlock } from "@/schema/content";
 import type { IssuePath } from "../check";
 import { flattenExercises } from "../index";
-import { VERBATIM_PASSAGE_SUBJECTS } from "./config";
 import { nfc } from "./text";
 import { type Finding, findingCollector, type LintInput } from "./types";
 
@@ -48,9 +47,7 @@ function passageBlocks(
 
 export function lintPassage(input: LintInput): Finding[] {
   const { findings, report } = findingCollector(input.file, "passage");
-  const required = (VERBATIM_PASSAGE_SUBJECTS as readonly string[]).includes(
-    input.lesson.subject,
-  );
+  const required = input.subject?.rules.verbatimPassage ?? false;
   const passages = passageBlocks(input);
   if (passages.length === 0) return findings;
   if (input.sourcePassage === undefined) {
