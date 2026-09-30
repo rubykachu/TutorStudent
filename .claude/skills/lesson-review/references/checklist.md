@@ -57,7 +57,7 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 
 **Mỗi dòng FAIL của walk**: Nên sửa, ghi kèm tên ảnh. FAIL do bố cục của app (không do nội dung bài) ghi ở Góp ý để báo người làm app, không chặn bài.
 
-**Quy tắc đọc được và nhớ được.** Định nghĩa hay quy tắc chỉ nằm trong `caption` xám, màn chỉ có một `note` hay một `formula`, recap là công thức trần không nhãn: Nghiêm trọng (trẻ nhớ sai hoặc bỏ qua).
+**Quy tắc đọc được và nhớ được.** Định nghĩa hay quy tắc chỉ nằm trong `caption` xám, hay màn chỉ có một `note` hoặc một `formula` (`content:check` cảnh báo `[screens]`): Nghiêm trọng (trẻ nhớ sai hoặc bỏ qua). Recap không phải visual có `caption` thì `content:check` đã báo lỗi.
 
 **Section ngắn, một ý.** `content:check` đã chặn section quá 4 màn hay quá 4 bài tập. Section gộp hai quy tắc cần nhớ riêng (recap phải có hai câu mới đủ), hay `minutes` lệch xa số màn nhân khoảng 40 giây: Nên sửa.
 
