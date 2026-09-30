@@ -20,6 +20,7 @@ import {
 } from "@/schema/content";
 import { findVisual, type VisualState } from "@/visuals/registry";
 import {
+  DECORATIVE_ATTR,
   STATE_KEY_ATTR,
   STATE_SET_ATTR,
   STATE_STEP_ATTR,
@@ -514,6 +515,7 @@ class Walker {
     }
     for (const overlap of await this.page.evaluate(findOverlaps, {
       scope: "main",
+      decorativeAttr: DECORATIVE_ATTR,
     })) {
       this.report("fail", where, `${overlap} (${file})`);
     }

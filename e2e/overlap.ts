@@ -7,17 +7,25 @@
 export type OverlapOptions = {
   // CSS selector of the element whose content is checked.
   scope: string;
+  // Attribute marking backdrops and duplicate layers (a greyed copy under
+  // its coloured twin); text inside one is not compared.
+  decorativeAttr: string;
 };
 
 // Runs in the browser, so it must not reference anything outside itself.
 // Returns one line per problem found, empty when the screen is clean:
-// - two runs of text whose glyph boxes cross (text boxes of one wrapped
-//   run, lines that only touch through their leading, and text passing
-//   under a fixed or sticky bar are left out);
+// - two runs of text whose ink boxes cross (an ink box is the vertical
+//   extent the glyphs really fill, not the taller font content area; text
+//   boxes of one wrapped run, lines that only touch through their leading, and text passing
+//   under a fixed or sticky bar, and a TeX overlay such as the slash of
+//   \notin drawn over its symbol, are left out);
 // - two hint rings (every `[data-highlighted]` element: its halo, its
 //   outline, or else its own box) that cross, unless one holds the other;
 // - a hint ring painted over text outside the element it marks.
-export function findOverlaps({ scope }: OverlapOptions): string[] {
+export function findOverlaps({
+  scope,
+  decorativeAttr,
+}: OverlapOptions): string[] {
   // Glyph boxes are the font's content area, taller than the ink; lines
   // set tighter than that touch by a few px without any ink meeting, so
   // text counts as covered only past this share of the shorter box.
@@ -38,7 +46,8 @@ export function findOverlaps({ scope }: OverlapOptions): string[] {
     y: Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top),
   });
   const hidden = (el: Element) =>
-    el.closest(".sr-only, .katex-mathml, [data-halo]") !== null ||
+    el.closest(`.sr-only, .katex-mathml, [data-halo], [${decorativeAttr}]`) !==
+      null ||
     !el.checkVisibility({ opacityProperty: true, visibilityProperty: true });
 
   // Fixed and sticky bars (the bottom bar) float over content scrolling
@@ -57,6 +66,41 @@ export function findOverlaps({ scope }: OverlapOptions): string[] {
     return layer;
   };
 
+  // The font's content area (what a text box measures) is often far taller
+  // than the glyphs: a "+" or a "·" fills a small part of it. Shrinks a
+  // text box vertically to the ink of its text, keeping the same proportion
+  // of the box whatever the scale (SVG text is drawn scaled).
+  const canvas = document.createElement("canvas").getContext("2d");
+  const inkOf = (box: Box, owner: Element, text: string): Box => {
+    if (!canvas) return box;
+    const style = getComputedStyle(owner);
+    canvas.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const m = canvas.measureText(text.trim());
+    const content = m.fontBoundingBoxAscent + m.fontBoundingBoxDescent;
+    if (!(content > 0)) return box;
+    const height = box.bottom - box.top;
+    return {
+      left: box.left,
+      right: box.right,
+      top:
+        box.top +
+        ((m.fontBoundingBoxAscent - m.actualBoundingBoxAscent) / content) *
+          height,
+      bottom:
+        box.top +
+        ((m.fontBoundingBoxAscent + m.actualBoundingBoxDescent) / content) *
+          height,
+    };
+  };
+
+  // TeX builds a negated symbol (\notin) as the symbol plus a slash set in a
+  // `.llap`/`.rlap` box that is drawn over it by design; `.mrel` is the
+  // relation that holds both.
+  const overlaysSymbolOf = (overlay: Glyph, symbol: Glyph) => {
+    const box = overlay.owner.closest(".llap, .rlap");
+    return !!box && !!box.closest(".mrel")?.contains(symbol.owner);
+  };
+
   const glyphs: Glyph[] = [];
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const svgTexts = new Set<Element>();
@@ -69,7 +113,11 @@ export function findOverlaps({ scope }: OverlapOptions): string[] {
       if (svgTexts.has(svgText)) continue;
       svgTexts.add(svgText);
       glyphs.push({
-        box: svgText.getBoundingClientRect(),
+        box: inkOf(
+          svgText.getBoundingClientRect(),
+          svgText,
+          svgText.textContent ?? "",
+        ),
         node,
         owner,
         layer: layerOf(owner),
@@ -80,7 +128,12 @@ export function findOverlaps({ scope }: OverlapOptions): string[] {
     range.selectNodeContents(node);
     for (const r of range.getClientRects()) {
       if (r.width < 1 || r.height < 1) continue;
-      glyphs.push({ box: r, node, owner, layer: layerOf(owner) });
+      glyphs.push({
+        box: inkOf(r, owner, node.textContent ?? ""),
+        node,
+        owner,
+        layer: layerOf(owner),
+      });
     }
   }
 
@@ -90,6 +143,7 @@ export function findOverlaps({ scope }: OverlapOptions): string[] {
       const a = glyphs[i];
       const b = glyphs[j];
       if (!a || !b || a.node === b.node || a.layer !== b.layer) continue;
+      if (overlaysSymbolOf(a, b) || overlaysSymbolOf(b, a)) continue;
       const { x, y } = crossing(a.box, b.box);
       const shorter = Math.min(
         a.box.bottom - a.box.top,
