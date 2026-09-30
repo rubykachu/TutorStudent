@@ -1,12 +1,22 @@
 # Review: Luỹ thừa với số mũ tự nhiên (`luy-thua`)
 
-- Bài: `content/math/kntt/luy-thua/lesson.json`
+- Bài: `content/math/kntt/luy-thua/lesson.json` 
 - Nguồn đã đọc: `sources/math/luy-thua/` - p22, p23-24
-- `content:check`: 1 lỗi, 0 cảnh báo của bài (`$.reviewedHash: Lesson changed after its review`: cổng review, không tính là phát hiện)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/luy-thua/` (chạy với `WALK_BASE_URL=http://192.168.0.27:3001` sau `CONTENT_INCLUDE_FIXTURE=1 pnpm content:emit`). Visual recap của 12 card xem thêm qua `/dev/visuals/<visualId>` trên phone.
-- Kết luận: Đạt: 0 lỗi Nghiêm trọng (2 mục Nên sửa, 2 mục Góp ý); tác giả đã thêm card `so-mu-0` và `nhan-so-mu-1` vào `cardIds` của `ghep-thuong` (Nên sửa 1, phần card) và card `nhan-so-mu-1` vào `cardIds` của `chon-phep-dung` (cùng dạng lỗi), rồi chạy `content:hash luy-thua --approve` (reviewedHash ghi, status published). Các mục còn lại ghi trong `backlogs/lesson-luy-thua.md`.
+- `content:check`: 0 lỗi, 2 cảnh báo của bài (`$.reviewedHash` lệch và 2 id chưa có trong `ids.lock.json`: cổng review, không tính là phát hiện)
+- `lesson:walk`: không chạy (bài nháp chưa được phục vụ). Trục "Trải nghiệm trên màn" soát trên ảnh chụp từng visual tại `/dev/visuals/<visualId>` (phone 390px, 59 visual, gồm `tom-tat-dinh-nghia`, `phan-tich-xep-gia-tri`, `so-mu-an-7`), cộng ảnh cũ trong `.shots/walk/luy-thua/` cho phần 1–2.
+- Kết luận: Đạt: 0 lỗi Nghiêm trọng, 1 mục Nên sửa (recap phần 1 không nhắc a¹ = a: tác giả giữ recap một câu theo yêu cầu, a¹ = a nằm ở màn quy tắc và recap card `so-mu-1`; ghi trong `backlogs/lesson-luy-thua.md`), 0 Góp ý. Đã chạy `content:hash luy-thua --approve` (reviewedHash ghi, status published).
 
-Đã tự giải toàn bộ 45 exercise trước khi đọc `answer`: mỗi câu có đúng một đáp án (đúng một tập đáp án với `chon-phep-dung`); đáp án nhiễu phản ánh lỗi hay gặp (nhân cơ số với số mũ, đảo cơ số và số mũ, nhân số mũ thay vì cộng, nhân hoặc chia cơ số, chia số mũ, bỏ qua hàng có chữ số 0). Định nghĩa, cách đọc, quy tắc nhân, chia, quy ước a⁰ = 1 và a¹ = a khớp tr.22–24; câu quy tắc ở màn quy tắc, recap phần và recap card trùng từng chữ cho mọi quy tắc; recap card chia đã có điều kiện m ≥ n ở cả `caption` lẫn visual. Hình gợi ý nấc 2 (`tinh-*-goi-y`, `so-mu-0-goi-y`, `so-mu-an-*`, `phan-tich*`, `tong-hang-5-247`, `so-mu-1`, `nhan-hai-luy-thua`, `chia-hai-luy-thua`) đều dừng ở "?" hoặc dùng số khác đề. Hình chạm (`cham-luy-thua`, `cham-luy-thua-3-mu-5`) vẽ cơ số và số mũ cùng màu chữ, không lộ đáp án. Mỗi card có ít nhất một câu ôn ngoài `practiceIds`. Các mục đã ghi trong `backlogs/lesson-luy-thua.md` (`chon-phep-dung`, `xep-gia-tri`, câu số mũ ẩn, hàng đơn vị, trật tự câu `dien-quy-tac`, nấc 1 tô cả câu, cỡ ký tự mũ Unicode) không ghi lại.
+Đã tự giải cả 47 exercise trước khi đọc `answer`: mỗi câu có đúng một đáp án (đúng một tập {a, b} với `chon-phep-dung`); nhiễu phản ánh lỗi hay gặp (nhân cơ số với số mũ, đảo cơ số và số mũ, nhân số mũ thay vì cộng, nhân cơ số, nhân thay vì chia, bỏ hàng có chữ số 0). Định nghĩa, cách đọc, quy tắc nhân, chia, quy ước a⁰ = 1 và a¹ = a khớp tr.22–24. Hình gợi ý nấc 2 đều dừng ở "?" hoặc dùng số khác đề; mỗi card có ít nhất một câu ôn ngoài `practiceIds`.
+
+Kiểm lại các mục vừa sửa theo `backlogs/lesson-luy-thua.md`:
+- `chon-phep-dung`: đạt. Bốn lựa chọn chỉ còn quy tắc nhân (2³ · 2² = 2⁶ nhân số mũ, 3³ · 3² = 9⁵ nhân cơ số là nhiễu); hình gợi ý `nhan-hai-luy-thua` (3² · 3⁴, dừng ở "?") chạm đúng quy tắc; `cardIds` chỉ còn `nhan-cung-co-so`.
+- `xep-gia-tri`: đạt. 2³ = 8, 3² = 9, 4² = 16, 5² = 25, mỗi luỹ thừa tối đa 2 phép nhân; hình `phan-tich-xep-gia-tri` viết mỗi luỹ thừa thành tích, không ghi giá trị, không theo thứ tự đúng.
+- `ghep-thuong`: đạt. Ba cặp chỉ dùng quy tắc chia (2⁶ : 2² = 2⁴, 2⁷ : 2⁴ = 2³, 2⁷ : 2² = 2⁵), nhiễu 2⁸ là lỗi cộng số mũ; hình gợi ý `chia-hai-luy-thua` (2⁵ : 2³) dùng số khác đề.
+- `chia-luy-thua-10`: đạt. Đề "Viết kết quả dưới dạng luỹ thừa của 10.", đáp án 10³ (sát HĐ3c tr.24), chỉ còn một phép trừ số mũ.
+- Câu "Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹." (note phần nhân, recap phần, recap card `nhan-so-mu-1`): đạt, ví dụ 5 = 5¹ nối với a¹ = a; visual `quy-tac-so-mu-an` và `tom-tat-nhan` vẽ 5³ · 5 = 5³ · 5¹ = 5⁴.
+- Câu mới `tinh-8-mu-1` (card `so-mu-1`): đạt; hình gợi ý `so-mu-1` dùng 5¹ = 5, không lộ 8.
+- Câu mới `chon-7-nhan-7-mu-3` (card `nhan-so-mu-1`): đạt; nhiễu 7³ (bỏ quên thừa số 7) và 49³ (nhân cơ số); hình `so-mu-an-7` khoanh 7 = 7¹ rồi dừng ở "1 + 3 = ? thừa số".
+- Mọi `caption` recap (phần và card) ≤ 2 câu; recap phần 1 là một câu + visual `tom-tat-dinh-nghia` có nhãn "Cơ số", "Số mũ", "5 thừa số".
 
 ## Nghiêm trọng
 
@@ -14,32 +24,13 @@ Không có.
 
 ## Nên sửa
 
-### 1. `ghep-thuong` kiểm ba quy tắc nhưng chỉ gắn card và hình gợi ý của quy tắc chia
+### 1. Recap phần 1 bỏ mất quy tắc a¹ = a mà phần này dạy và luyện
 
-- Vị trí: `$.exercises[31].cardIds`, `$.exercises[31].hints.hintVisualId` (`luy-thua.ex.ghep-thuong`)
-- Nguồn: tr.24, `p23-24.png` (quy tắc chia, quy ước a⁰ = 1); tr.23 (a¹ = a)
-- Vấn đề: cặp 2⁶ : 2⁶ = 1 cần quy ước số mũ 0, cặp 2⁶ : 2 = 2⁵ cần quy tắc số không ghi số mũ có số mũ 1. Câu chỉ gắn `luy-thua.card.chia-cung-co-so`, nên trẻ nối sai hai cặp này ở lượt ôn sẽ thấy recap card chia (không có a⁰ = 1, không có số mũ 1), và hình gợi ý `chia-hai-luy-thua` (2⁵ : 2³) không chạm hai chỗ đó. Recap trẻ được nhắc không khớp quy tắc trẻ vừa làm sai. Cùng dạng với mục `chon-phep-dung` trong backlog.
-- Sửa: thêm `luy-thua.card.so-mu-0` và `luy-thua.card.nhan-so-mu-1` vào `cardIds`; hoặc đổi hai cặp đó thành phép chia thường (vd 2⁶ : 2³ = 2³, 2⁵ : 2³ = 2², đổi cột phải cho khớp) để câu chỉ kiểm quy tắc chia, rồi để quy ước số mũ 0 cho `mu-0-bang`, `thuong-2-mu-0`.
-
-### 2. `chia-luy-thua-10` bắt tính nhẩm 3 phép
-
-- Vị trí: `$.exercises[32]` (`luy-thua.ex.chia-luy-thua-10`), câu luyện tập của `$.sections[3]`
-- Nguồn: tr.24, `p23-24.png` (HĐ3c viết thương 10⁷ : 10⁴ dưới dạng luỹ thừa của 10)
-- Vấn đề: trẻ phải trừ số mũ (8 − 5 = 3) rồi tính 10³ bằng hai phép nhân (10 · 10 = 100, 100 · 10 = 1 000): 3 phép, quá ngưỡng 2 phép cho người học chậm. Quy tắc đếm chữ số 0 của luỹ thừa của 10 chỉ được dạy ở phần sau (`luy-thua-cua-10`), nên ở chỗ này trẻ chưa có đường tắt. Câu cũng không có hình gợi ý nấc 2 cho bước tính giá trị.
-- Sửa: đổi đề thành "Viết kết quả dưới dạng luỹ thừa của 10." với đáp án `{ kind: "power", base: 10, exponent: 3 }` (sát HĐ3c); hoặc giữ đề tính số nhưng chuyển câu sang phần `luy-thua-cua-10` (sau quy tắc đếm chữ số 0).
+- Vị trí: `$.sections[0].recap` (`luy-thua.section.luy-thua-la-gi`), visual `luy-thua.visual.tom-tat-dinh-nghia`
+- Nguồn: tr.23, `p23-24.png` ("Chú ý. Ta có a¹ = a")
+- Vấn đề: phần 1 dạy riêng quy tắc số mũ 1 (group "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số." + `quy-tac-so-mu-1`) và có câu luyện tập `viet-9-mu-1` cho nó, nhưng recap mới chỉ còn câu cơ số/số mũ và hình 2⁵ = 2 · 2 · 2 · 2 · 2; cả `caption` lẫn visual không còn a¹ = a (bản trước có dòng 6¹ = 6). Recap là màn cuối trẻ mang theo khi rời phần, nên lệch với nội dung phần. Phần 3 lại dựa vào quy tắc này ("5 = 5¹"). Giới hạn 2 câu vẫn còn chỗ cho một câu nữa.
+- Sửa: thêm câu thứ hai vào `caption`: "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số." và thêm một dòng ví dụ có nhãn (vd 6¹ = 6) vào `tom-tat-dinh-nghia`. Nếu cố ý giữ recap một câu thì ghi rõ lựa chọn đó vào backlog để vòng review sau không ghi lại.
 
 ## Góp ý
 
-### 1. `tach-5-247` ngắt dòng giữa "2 ·" và ô trống trên phone
-
-- Vị trí: `$.exercises[42].segments` (`luy-thua.ex.tach-5-247`)
-- Nguồn: —
-- Vấn đề: ảnh `phone/118-s5-08-exercise-tach-5-247.png`: dòng đầu kết thúc ở "+ 2 ·", ô trống thứ hai xuống dòng. Trẻ vẫn làm được, nhưng số hạng "2 · 10²" bị tách làm hai dòng. Lỗi bố cục của khung `fillBlank` (không giữ chữ đứng trước ô trống cùng dòng với ô), không do nội dung bài.
-- Sửa: báo người làm app để khung giữ đoạn chữ ngay trước ô trống dính với ô; không cần sửa bài.
-
-### 2. Hạt bị gạch trong hình chia và số mũ 0 khó đọc số bên trong
-
-- Vị trí: visual `luy-thua.visual.quy-tac-so-mu-0` (`$.sections[3].blocks[2].children[1]`), `luy-thua.visual.chia-hai-luy-thua` (`$.sections[3].blocks[0]`)
-- Nguồn: —
-- Vấn đề: ảnh `phone/090-s4-03-block-end.png`: số 2 trong hạt xanh nhạt bị nét gạch đè gần hết. Công thức ngay dưới vẫn ghi rõ 2³ : 2³, nên không chặn hiểu bài.
-- Sửa: giữ số 2 đọc được sau khi gạch (nét gạch mảnh hơn hoặc chéo lệch khỏi số), trong `src/visuals/shared/bead-group`.
+Không có.

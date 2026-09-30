@@ -7,7 +7,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "c112c16cd98fcbfb3804684227794e5564a35849f61c9d4c698e4ddeb7b10b38",
+  "reviewedHash": "5aed419a349b30e6ef09d7a90f19d107e75e8b92df3d01688ec69c47ff62bfbd",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -127,8 +127,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "luy-thua.visual.tom-tat-luy-thua",
-        "caption": "aⁿ là tích của n thừa số, thừa số nào cũng bằng a. Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số. Đọc aⁿ là “a mũ n” hoặc “a luỹ thừa n”. Số mũ bằng 1 thì luỹ thừa bằng chính cơ số."
+        "visualId": "luy-thua.visual.tom-tat-dinh-nghia",
+        "caption": "Trong aⁿ, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
       }
     },
     {
@@ -217,7 +217,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số không ghi số mũ thì có số mũ là 1."
+              "text": "Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹."
             },
             {
               "type": "visual",
@@ -237,7 +237,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.tom-tat-nhan",
-        "caption": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ. Số không ghi số mũ thì có số mũ là 1."
+        "caption": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ. Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹."
       }
     },
     {
@@ -295,7 +295,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.tom-tat-chia",
-        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai. Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
       }
     },
     {
@@ -351,7 +351,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.tom-tat-luy-thua-10",
-        "caption": "Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1. Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại. Hàng có chữ số 0 thì số hạng bằng 0, nên không cần viết."
+        "caption": "Với luỹ thừa của 10, số mũ bằng số chữ số 0 đứng sau chữ số 1. Viết một số thành tổng: nhân mỗi chữ số với luỹ thừa của 10 ở hàng của nó, rồi cộng lại."
       }
     }
   ],
@@ -433,7 +433,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.the-nhan-so-mu-1",
-        "caption": "Số không ghi số mũ thì có số mũ là 1."
+        "caption": "Số không ghi số mũ thì có số mũ là 1, như 5 = 5¹."
       }
     },
     {
@@ -797,6 +797,39 @@
       "difficulty": 2
     },
     {
+      "id": "luy-thua.ex.tinh-8-mu-1",
+      "type": "numeric",
+      "cardIds": ["luy-thua.card.so-mu-1"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Luỹ thừa này bằng bao nhiêu?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\concept{blue}{8}^{\\htmlId{so-mu}{\\concept{violet}{1}}}"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "8^1"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "so-mu",
+            "conceptId": "luy-thua.concept.so-mu"
+          }
+        ],
+        "hintVisualId": "luy-thua.visual.so-mu-1"
+      },
+      "difficulty": 1
+    },
+    {
       "id": "luy-thua.ex.viet-gon-10",
       "type": "numeric",
       "cardIds": ["luy-thua.card.viet-luy-thua"],
@@ -1077,10 +1110,10 @@
           }
         },
         {
-          "id": "hai-mu-bon",
+          "id": "bon-mu-hai",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{2}^{\\concept{violet}{4}}"
+            "tex": "\\concept{blue}{4}^{\\concept{violet}{2}}"
           }
         },
         {
@@ -1093,7 +1126,7 @@
       ],
       "hints": {
         "highlight": [],
-        "hintVisualId": "luy-thua.visual.phan-tich"
+        "hintVisualId": "luy-thua.visual.phan-tich-xep-gia-tri"
       },
       "difficulty": 3
     },
@@ -1493,10 +1526,7 @@
     {
       "id": "luy-thua.ex.chon-phep-dung",
       "type": "choice",
-      "cardIds": [
-        "luy-thua.card.nhan-cung-co-so",
-        "luy-thua.card.nhan-so-mu-1"
-      ],
+      "cardIds": ["luy-thua.card.nhan-cung-co-so"],
       "prompt": [
         {
           "type": "note",
@@ -1529,7 +1559,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{5} \\cdot \\concept{blue}{5}^{\\concept{violet}{2}} = \\concept{blue}{5}^{\\concept{violet}{3}}"
+            "tex": "\\concept{blue}{8}^{\\concept{violet}{2}} \\cdot \\concept{blue}{8}^{\\concept{violet}{4}} = \\concept{blue}{8}^{\\concept{violet}{6}}"
           }
         }
       ],
@@ -1611,6 +1641,59 @@
         "hintVisualId": "luy-thua.visual.so-mu-an-10"
       },
       "difficulty": 3
+    },
+    {
+      "id": "luy-thua.ex.chon-7-nhan-7-mu-3",
+      "type": "choice",
+      "cardIds": ["luy-thua.card.nhan-so-mu-1"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tích này bằng luỹ thừa nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{thua-so-don}{\\concept{blue}{7}} \\cdot \\concept{blue}{7}^{\\concept{violet}{3}}"
+        }
+      ],
+      "options": [
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{7}^{\\concept{violet}{3}}"
+          }
+        },
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{7}^{\\concept{violet}{4}}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{49}^{\\concept{violet}{3}}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "7·7^3"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "thua-so-don"
+          }
+        ],
+        "hintVisualId": "luy-thua.visual.so-mu-an-7"
+      },
+      "difficulty": 2
     },
     {
       "id": "luy-thua.ex.chon-6-mu-3",
@@ -1711,11 +1794,7 @@
     {
       "id": "luy-thua.ex.ghep-thuong",
       "type": "match",
-      "cardIds": [
-        "luy-thua.card.chia-cung-co-so",
-        "luy-thua.card.so-mu-0",
-        "luy-thua.card.nhan-so-mu-1"
-      ],
+      "cardIds": ["luy-thua.card.chia-cung-co-so"],
       "prompt": [
         {
           "type": "note",
@@ -1731,26 +1810,26 @@
           }
         },
         {
-          "id": "chia-mu-6",
+          "id": "chia-7-mu-4",
           "content": {
             "type": "formula",
-            "tex": "{\\concept{blue}{2}^{\\concept{violet}{6}} : \\concept{blue}{2}^{\\concept{violet}{6}}}"
+            "tex": "{\\concept{blue}{2}^{\\concept{violet}{7}} : \\concept{blue}{2}^{\\concept{violet}{4}}}"
           }
         },
         {
-          "id": "chia-2",
+          "id": "chia-7-mu-2",
           "content": {
             "type": "formula",
-            "tex": "{\\concept{blue}{2}^{\\concept{violet}{6}} : \\concept{blue}{2}}"
+            "tex": "{\\concept{blue}{2}^{\\concept{violet}{7}} : \\concept{blue}{2}^{\\concept{violet}{2}}}"
           }
         }
       ],
       "right": [
         {
-          "id": "mot",
+          "id": "mu-4",
           "content": {
-            "type": "text",
-            "text": "1"
+            "type": "formula",
+            "tex": "\\concept{blue}{2}^{\\concept{violet}{4}}"
           }
         },
         {
@@ -1768,10 +1847,10 @@
           }
         },
         {
-          "id": "mu-4",
+          "id": "mu-8",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{2}^{\\concept{violet}{4}}"
+            "tex": "\\concept{blue}{2}^{\\concept{violet}{8}}"
           }
         }
       ],
@@ -1781,11 +1860,11 @@
           "right": "mu-4"
         },
         {
-          "left": "chia-mu-6",
-          "right": "mot"
+          "left": "chia-7-mu-4",
+          "right": "mu-3"
         },
         {
-          "left": "chia-2",
+          "left": "chia-7-mu-2",
           "right": "mu-5"
         }
       ],
@@ -1802,7 +1881,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính thương này, rồi viết kết quả là một số."
+          "text": "Viết kết quả dưới dạng luỹ thừa của 10."
         },
         {
           "type": "formula",
@@ -1810,8 +1889,9 @@
         }
       ],
       "answer": {
-        "kind": "value",
-        "value": 1000
+        "kind": "power",
+        "base": 10,
+        "exponent": 3
       },
       "check": {
         "expr": "10^8:10^5"

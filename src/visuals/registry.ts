@@ -143,14 +143,14 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => lessonExample((m) => m.repeatedProduct(5, 3, "hint")),
   },
-  "luy-thua.visual.phan-tich": {
+  "luy-thua.visual.phan-tich-xep-gia-tri": {
     interactive: false,
     load: () =>
       lessonExample((m) =>
         m.factorList([
           { base: 5, exponent: 2 },
           { base: 2, exponent: 3 },
-          { base: 2, exponent: 4 },
+          { base: 4, exponent: 2 },
           { base: 3, exponent: 2 },
         ]),
       ),
@@ -210,6 +210,10 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "luy-thua.visual.so-mu-an-10": {
     interactive: false,
     load: () => lessonExample((m) => m.hiddenExponentOne(10, [2, 1, 4])),
+  },
+  "luy-thua.visual.so-mu-an-7": {
+    interactive: false,
+    load: () => lessonExample((m) => m.hiddenExponentOne(7, [1, 3])),
   },
   "luy-thua.visual.bot-luy-thua": {
     interactive: true,
@@ -275,9 +279,9 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => import("@/visuals/math/luy-thua/tach-so"),
   },
-  "luy-thua.visual.tom-tat-luy-thua": {
+  "luy-thua.visual.tom-tat-dinh-nghia": {
     interactive: false,
-    load: () => import("@/visuals/math/luy-thua/cac-phan"),
+    load: () => ruleExample("TomTatDinhNghia"),
   },
   "luy-thua.visual.tom-tat-binh-phuong": {
     interactive: false,

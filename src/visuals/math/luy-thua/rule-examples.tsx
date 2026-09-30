@@ -333,6 +333,21 @@ export function QuyTacLuyThua10() {
 // ---------------------------------------------------------------------------
 // Recaps: one sentence and one labelled example each.
 
+// One labelled power: 2⁵ with its parts named and the five factors it
+// stands for.
+export function TomTatDinhNghia() {
+  return (
+    <Example>
+      <PowerAnatomy base={2} exponent={5} />
+      <Line>
+        <span>=</span>
+        <FactorRow base={2} count={5} />
+      </Line>
+      <FactorCount count={5} />
+    </Example>
+  );
+}
+
 // Pictures left out so the two sentences, both names and a worked value fit
 // a phone screen; the pictures are on the rule screen before.
 export function TomTatBinhPhuong() {
