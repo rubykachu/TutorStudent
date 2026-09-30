@@ -49,7 +49,10 @@ test("a parent sets a PIN and sees the child's progress after one section", asyn
   const wrong = page.locator(`[data-parent-wrong="${MISSED_EXERCISE}"]`);
   await expect(wrong).toContainText("Có tất cả bao nhiêu chấm?");
   await expect(wrong).toContainText("Sai 3 lần trong 1 lượt làm");
-  await expect(page.locator("[data-parent-card]").first()).toBeVisible();
+  // Cards were just practised, so none is below the forgetting threshold yet.
+  await expect(
+    page.getByRole("region", { name: "Thẻ hay quên" }),
+  ).toContainText("chưa có thẻ nào con sắp quên");
   await expect(
     page.getByRole("region", { name: "Bài viết của con" }),
   ).toContainText("Con chưa viết bài nào.");
