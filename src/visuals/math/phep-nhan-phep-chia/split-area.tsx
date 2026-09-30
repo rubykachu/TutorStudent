@@ -129,7 +129,7 @@ function AreaFigure({
       role="img"
       aria-label={label}
       viewBox={`0 0 ${WIDTH} ${y0 + height + bottom}`}
-      className="h-auto w-full max-w-sm"
+      className="h-auto w-full max-w-72"
     >
       <defs>
         <pattern

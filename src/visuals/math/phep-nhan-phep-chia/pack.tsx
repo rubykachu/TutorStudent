@@ -115,7 +115,7 @@ function PackPicture({
       aria-label={`${step.filled} ${words} đã đủ ${per} ${itemWord}${step.leftover && remainder > 0 ? `, còn ${remainder} ${itemWord} đặt riêng` : ""}`}
       viewBox={`0 0 ${WIDTH} ${height}`}
       className="h-auto w-full"
-      style={{ maxWidth: WIDTH * Math.max(0.95, Math.min(1.25, 200 / height)) }}
+      style={{ maxWidth: WIDTH * Math.max(1, Math.min(1.25, 200 / height)) }}
     >
       {Array.from({ length: cells }, (_, index) => {
         const isLeftover = index === full;

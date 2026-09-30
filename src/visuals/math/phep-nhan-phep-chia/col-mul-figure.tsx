@@ -47,6 +47,10 @@ const COMPACT: Metrics = {
   wideScale: 1.1,
 };
 
+// The hands-on screen, where a whole keypad must fit under the picture on a
+// phone.
+const TIGHT: Metrics = { ...NORMAL, phoneScale: 0.6, wideScale: 0.7 };
+
 type Box = { x: number; y: number; w: number; h: number };
 
 export type FigureProps = {
@@ -63,6 +67,7 @@ export type FigureProps = {
   // Every digit in the foreground colour, when no legend explains the colours.
   mono?: boolean;
   compact?: boolean;
+  tight?: boolean;
   label: string;
 };
 
@@ -182,9 +187,10 @@ export function ColMulFigure({
   override = NO_OVERRIDE,
   mono = false,
   compact = false,
+  tight = false,
   label,
 }: FigureProps) {
-  const m = compact ? COMPACT : NORMAL;
+  const m = compact ? COMPACT : tight ? TIGHT : NORMAL;
   const { boxes, lines, signBox, width, height } = layoutOf(plan, m);
   const paint = (color: ConceptColor) =>
     mono ? "fill-foreground" : CONCEPT_CLASSES[color].fill;

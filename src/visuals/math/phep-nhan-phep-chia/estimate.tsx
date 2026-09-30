@@ -314,7 +314,7 @@ function Picture({
       role="img"
       aria-label={label}
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-      className="h-auto w-full max-w-[22rem]"
+      className="h-auto w-full max-w-[20rem]"
     >
       <FactorAxis numbers={numbers} />
       <line

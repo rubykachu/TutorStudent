@@ -317,18 +317,21 @@ describe("estimate and mistakes visuals", () => {
     expect(within(figure).getByText("282")).toBeInTheDocument();
   });
 
-  it("names the three mistakes", async () => {
+  it("shows one mistake at a time, picked with three buttons", async () => {
     const Visual = await load("loi-sai-ba");
     render(<Visual />);
-    for (const name of [
-      "Quên số nhớ",
-      "Số dư lớn hơn số chia",
-      "Quên chữ số 0 ở thương",
-    ]) {
+    const tabs: [string, string][] = [
+      ["Số nhớ", "Quên số nhớ"],
+      ["Số dư", "Số dư lớn hơn số chia"],
+      ["Chữ số 0", "Quên chữ số 0 ở thương"],
+    ];
+    for (const [tab, heading] of tabs) {
+      fireEvent.click(screen.getByRole("button", { name: tab }));
       expect(
-        screen.getByRole("heading", { name: new RegExp(name) }),
+        screen.getByRole("heading", { name: new RegExp(heading) }),
       ).toBeInTheDocument();
+      expect(screen.getAllByText("Sai")).toHaveLength(1);
+      expect(screen.getAllByRole("heading")).toHaveLength(1);
     }
-    expect(screen.getAllByText("Sai")).toHaveLength(3);
   });
 });

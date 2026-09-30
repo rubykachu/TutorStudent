@@ -72,6 +72,7 @@ export function ColMulTry({
   return (
     <div className="flex w-full flex-col items-center gap-1">
       <ColMulFigure
+        tight
         plan={plan}
         shown={shown}
         lit={wrong ? new Set() : lit}

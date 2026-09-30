@@ -39,7 +39,7 @@ function TurningGrid({ spec, turned }: { spec: Spec; turned: boolean }) {
           : `Lưới ${gridWords(rows, cols)}`
       }
       viewBox={`0 0 ${side} ${side}`}
-      className="h-auto w-full max-w-72"
+      className="h-auto w-full max-w-56"
     >
       {[
         { count: rows, length: cols, shown: !turned },
