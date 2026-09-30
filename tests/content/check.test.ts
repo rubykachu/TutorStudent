@@ -9,6 +9,7 @@ import {
   lessonStats,
 } from "@/content/check";
 import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
+import { MAX_SECTION_EXERCISES, MAX_SECTION_SCREENS } from "@/lib/config";
 import type { Lesson } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
 import {
@@ -325,6 +326,37 @@ describe("cards and sections", () => {
     if (!section) throw new Error("no section");
     section.checkIds = [];
     expectError(check(raw), `${LESSON_FILE} $.sections[0].checkIds`, "");
+  });
+
+  it("reports a section with more screens than the limit", () => {
+    const raw = fixtureContent();
+    const [section] = lessonData(raw).sections;
+    if (!section) throw new Error("no section");
+    const blocks = section.blocks as unknown[];
+    while (blocks.length <= MAX_SECTION_SCREENS) blocks.push(blocks[0]);
+    expectError(
+      check(raw),
+      `${LESSON_FILE} $.sections[0].blocks`,
+      `Section has ${MAX_SECTION_SCREENS + 1} screens (max ${MAX_SECTION_SCREENS})`,
+    );
+  });
+
+  it("reports a section with more checks and practice than the limit", () => {
+    const raw = fixtureContent();
+    const [first, second] = lessonData(raw).sections;
+    if (!first || !second) throw new Error("no sections");
+    // Moving one exercise over keeps every id placed once.
+    const moved = (second.checkIds as string[]).pop() ?? "";
+    (first.checkIds as string[]).push(moved);
+    const count =
+      (first.checkIds as string[]).length +
+      (first.practiceIds as string[]).length;
+    expect(count).toBe(MAX_SECTION_EXERCISES + 1);
+    expectError(
+      check(raw),
+      `${LESSON_FILE} $.sections[0]`,
+      `Section has ${count} exercises in checkIds and practiceIds (max ${MAX_SECTION_EXERCISES})`,
+    );
   });
 
   it("reports an openEnded exercise that carries cards", () => {

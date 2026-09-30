@@ -45,3 +45,10 @@ export const STREAK_REST_DAYS_PER_WEEK = 1;
 // The home owl says "good to see you again" once the child comes back after
 // at least this many Vietnam days without studying.
 export const MASCOT_WELCOME_AFTER_DAYS = 3;
+
+// A section stays a few minutes long for a child who tires quickly: at most
+// this many explanation screens (entries of `blocks`, a group counts as one)
+// and this many exercises (checks and practice together), before its recap.
+// `content:check` reports a section over either limit.
+export const MAX_SECTION_SCREENS = 4;
+export const MAX_SECTION_EXERCISES = 4;

@@ -32,7 +32,7 @@ Mỗi hồ sơ con khai báo bộ sách cho từng môn. Nội dung chỉ có ch
 
 ### User stories chính
 1. Trẻ mở app → chọn hồ sơ (máy nhớ lựa chọn cuối) → chọn môn/bài để học. Bài đã học có nút **"Ôn bài này"**, bấm lúc nào cũng được; app hỏi những thẻ bé đang dễ quên nhất (~5 phút). Không có lịch ôn bắt buộc.
-2. Trẻ chọn bài → app dẫn qua từng **phần** (~8 phút): animation giải thích → 2–3 câu kiểm tra hiểu → luyện tập → nhắc lại bằng hình. App nhớ vị trí đang dừng.
+2. Trẻ chọn bài → app dẫn qua từng **phần** (3–6 phút, tối đa 4 màn giải thích và 4 bài tập): animation giải thích → câu kiểm tra hiểu → luyện tập → nhắc lại bằng hình. App nhớ vị trí đang dừng.
 3. Trẻ trả lời sai → gợi ý 3 nấc (xem "Phản hồi 3 nấc khi sai"). Không chữ đỏ, không đồng hồ đếm ngược.
 4. Trẻ lâu chưa học một môn → app nhắc nhẹ ("Toán 4 ngày chưa học"), không ép.
 5. Trẻ viết đoạn văn → có khung gợi ý, có thể đọc chính tả thay vì gõ → AI nhận xét dạng checklist tô màu.
@@ -200,6 +200,7 @@ Hints        { highlight: TargetRef[], hintVisualId?, solutionVisualId? }
 Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, cardIds[] }], voice }
 ```
 
+- Một section dài vài phút: tối đa 4 màn giải thích (`blocks`, một `group` tính là một màn) và 4 bài tập (`checkIds` cộng `practiceIds`), rồi tới recap; ngưỡng là `MAX_SECTION_SCREENS`, `MAX_SECTION_EXERCISES` trong `src/lib/config.ts`. Bài dài hơn chia thành nhiều section, mỗi section một ý và recap một câu.
 - Section hiện mỗi phần tử của `blocks` trên một màn. `group` gom ≥ 2 khối ngắn, tĩnh lên cùng một màn theo thứ tự: câu quy tắc (`note`, chữ thân bài) rồi ví dụ có nhãn (`formula`/`visual`/`image`). Không lồng `group`, không chứa `passage`/`video`; chỉ dùng trong `Section.blocks` (đề bài tập vốn đã hiện mọi khối trên một màn, nên chỉ số `block` của gợi ý vẫn đếm khối đề). Lint, `content:check` và review đọc được chữ trong `group` như mọi khối khác.
 - Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap vẫn là một `visual`/`formula`; câu cần nhớ của recap là `caption` của visual, màn recap hiện nó thành chữ thân bài phía trên ví dụ.
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.
@@ -209,7 +210,7 @@ Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, c
 Quy tắc:
 - Id duy nhất toàn cục, dạng `<lesson-slug>.<kind>.<name>`.
 - Kiến thức và bài tập **biên soạn lại**, không chép câu chữ/hình SGK. Văn bản đọc hiểu Ngữ văn giữ nguyên văn kèm nguồn trích.
-- `content:check` kiểm tra: schema hợp lệ; id tham chiếu tồn tại; `visualId` có trong registry; mỗi card có ≥ 1 exercise nằm trong `practiceIds` của một section (nếu không, card không bao giờ được mở); mỗi section có ≥ 1 check; id bất biến (dưới đây); overlay trên R2 hợp lệ với schema và nội dung hiện tại. `content:check --stats` in số phần, card, exercise, dạng bài, visual tương tác (registry khai `interactive`) của từng bài.
+- `content:check` kiểm tra: schema hợp lệ; id tham chiếu tồn tại; `visualId` có trong registry; mỗi card có ≥ 1 exercise nằm trong `practiceIds` của một section (nếu không, card không bao giờ được mở); mỗi section có ≥ 1 check và không vượt ngưỡng số màn, số bài tập ở trên; id bất biến (dưới đây); overlay trên R2 hợp lệ với schema và nội dung hiện tại. `content:check --stats` in số phần, card, exercise, dạng bài, visual tương tác (registry khai `interactive`) của từng bài.
 
 #### Id bất biến
 - Card, exercise, section, lesson id **không đổi sau khi publish** vì tiến độ (FSRS, sticker, vị trí học) gắn vào chúng.

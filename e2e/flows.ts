@@ -70,9 +70,6 @@ export const FIXTURE_ANSWERS: Record<
   string,
   { right: Answerer; wrong?: Answerer; fix?: Answerer }
 > = {
-  "fixture.ex.chon-phep-nhan": {
-    right: (ex) => ex.locator('[data-option="a"]').tap(),
-  },
   "fixture.ex.cham-hinh-tron": {
     right: (ex) => ex.locator('[data-region="circle"]').tap(),
   },
