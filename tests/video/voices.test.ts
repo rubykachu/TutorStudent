@@ -27,7 +27,10 @@ function script(...scenes: Sentence[][]) {
   });
 }
 
-const OPENING: Sentence = { text: "Chào bạn! Hôm nay ta học phép cộng.", opening: true };
+const OPENING: Sentence = {
+  text: "Chào bạn! Hôm nay ta học phép cộng.",
+  opening: true,
+};
 
 describe("voices", () => {
   it("lists each voice once with an engine preset and a gender", () => {

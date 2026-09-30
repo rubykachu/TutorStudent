@@ -1,0 +1,117 @@
+{
+  "title": "Đặt tính trừ có mượn",
+  "engine": "local",
+  "poster": {
+    "scene": "s05-tram",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học đặt tính trừ có mượn.",
+          "opening": true
+        },
+        {
+          "text": "Kho có 532 thùng, xuất đi 247 thùng."
+        },
+        {
+          "text": "Còn lại bao nhiêu thùng?"
+        }
+      ]
+    },
+    {
+      "id": "s02-dat",
+      "sentences": [
+        {
+          "text": "Số bị trừ ở trên, số trừ ở dưới, các chữ số cùng hàng thẳng cột."
+        },
+        {
+          "text": "Ta trừ từ hàng đơn vị sang bên trái."
+        }
+      ]
+    },
+    {
+      "id": "s03-don-vi",
+      "sentences": [
+        {
+          "text": "Hàng đơn vị: 2 trừ 7 không được."
+        },
+        {
+          "text": "Chữ số trên, sau khi đã bớt 1 nếu hàng đó cho mượn, nhỏ hơn chữ số dưới thì mượn 1 ở hàng bên trái.",
+          "rule": true
+        },
+        {
+          "text": "Chữ số trên thêm 10, hàng bên trái bớt đi 1.",
+          "rule": true
+        },
+        {
+          "text": "Mượn 1 ở hàng chục, 2 thành 12."
+        },
+        {
+          "text": "12 trừ 7 bằng 5."
+        }
+      ]
+    },
+    {
+      "id": "s04-chuc",
+      "sentences": [
+        {
+          "text": "Hàng chục còn 2."
+        },
+        {
+          "text": "2 trừ 4 vẫn không được."
+        },
+        {
+          "text": "Lại mượn 1 ở hàng trăm, 2 thành 12."
+        },
+        {
+          "text": "12 trừ 4 bằng 8."
+        }
+      ]
+    },
+    {
+      "id": "s05-tram",
+      "sentences": [
+        {
+          "text": "Hàng trăm còn 4."
+        },
+        {
+          "text": "4 trừ 2 bằng 2."
+        },
+        {
+          "text": "Vậy 532 trừ 247 bằng 285."
+        }
+      ]
+    },
+    {
+      "id": "s06-thu",
+      "sentences": [
+        {
+          "text": "Thử lại bằng phép cộng: 285 cộng 247 bằng 532."
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Chữ số trên thêm 10, hàng bên trái bớt đi 1.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "dat-tinh-tru",
+      "from": "s02-dat",
+      "to": "s05-tram",
+      "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"]
+    }
+  ]
+}

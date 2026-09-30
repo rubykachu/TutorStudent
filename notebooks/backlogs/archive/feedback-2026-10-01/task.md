@@ -1,3 +1,5 @@
+Archived: 01/10/2026, sections A and B done; leftovers in `../../video-opening-retrofit/task.md` and `../../lesson-phep-cong-phep-tru/task.md`.
+
 # Góp ý của chủ dự án sau khi bé dùng thử (01/10/2026)
 
 Ảnh minh hoạ: các tệp `NN.png` trong thư mục này (số ảnh ghi trong ngoặc).
@@ -17,8 +19,8 @@
 11. [x] Bài điền: đặt thẻ vào ô trống làm chữ rớt dòng, nội dung nhảy vị trí (26, 27). Ô trống phải giữ chỗ đủ rộng từ đầu.
 12. [x] Chạm sticker không có hiệu ứng, âm thanh; chưa tạo sức hút sưu tầm (28). Thêm hiệu ứng, âm thanh, và màn chi tiết (tên, bài, tiến độ, cách nhận).
 
-## B. Video và giọng đọc
-13. Bài 4 `phep-cong-phep-tru` chưa có video, lời đọc giới thiệu.
-14. Mọi video mở đầu bằng câu chào/giới thiệu ("Ở bài này chúng ta sẽ học…") và vài giây đệm trước nội dung, để bé không mất mấy chữ đầu. Ghi thành luật trong skill `lesson-video` và kiểm tự động được (câu đầu của `script.json` là câu mở đầu).
-15. Thêm giọng nữ để đỡ nhàm chán giọng nam: agent chọn 2–3 ứng viên, tạo mẫu nghe thử (cùng một đoạn), chủ dự án chọn. Sau khi chọn, ghi giọng vào cấu hình; bài nào dùng giọng nào do skill quyết định theo quy tắc rõ ràng.
-    - Chủ dự án đã chọn (01/10/2026), sau khi nghe 11 giọng nữ VieNeu và một bản nhân bản giọng: giọng nữ là preset VieNeu "Mỹ Duyên" (giọng miền Nam), giọng nam giữ "Hải Đăng". Agent chọn giọng cho từng bài theo không khí của bài. Mỗi bài dùng đúng một giọng cho lời đọc giới thiệu và mọi video, không xen nam và nữ trong một bài. Giọng khai một lần cho cả bài; lệnh dựng lời đọc và video đọc từ đó; kiểm tra tự động báo lỗi khi một bài có kịch bản dùng giọng khác. Các bài đã có video đều dùng Hải Đăng, không phải đọc lại.
+## B. Video và giọng đọc — xong 3/3
+13. [x] Bài 4 `phep-cong-phep-tru` chưa có video, lời đọc giới thiệu. Xong: lời đọc giới thiệu và 3 video (`ghep-tron`, `dat-tinh-tru`, `tim-so-hang`) giọng Mỹ Duyên; chờ reviewer kiểm (`lesson-phep-cong-phep-tru/task.md`).
+14. [x] Mọi video mở đầu bằng câu chào/giới thiệu ("Ở bài này chúng ta sẽ học…") và vài giây đệm trước nội dung, để bé không mất mấy chữ đầu. Ghi thành luật trong skill `lesson-video` và kiểm tự động được (câu đầu của `script.json` là câu mở đầu). Xong: cờ `opening` trên câu đầu, `PAUSE.leadIn` = 1 s, kiểm trong `pnpm video:check` và `tests/video/voices.test.ts`; 9 video cũ nằm trong `openingExempt`, làm lại ở `video-opening-retrofit/task.md`.
+15. [x] Thêm giọng nữ để đỡ nhàm chán giọng nam: agent chọn 2–3 ứng viên, tạo mẫu nghe thử (cùng một đoạn), chủ dự án chọn. Sau khi chọn, ghi giọng vào cấu hình; bài nào dùng giọng nào do skill quyết định theo quy tắc rõ ràng.
+    - Chủ dự án đã chọn (01/10/2026), sau khi nghe 11 giọng nữ VieNeu và một bản nhân bản giọng: giọng nữ là preset VieNeu "Mỹ Duyên" (giọng miền Nam), giọng nam giữ "Hải Đăng". Agent chọn giọng cho từng bài theo không khí của bài. Mỗi bài dùng đúng một giọng cho lời đọc giới thiệu và mọi video, không xen nam và nữ trong một bài. Giọng khai một lần cho cả bài; lệnh dựng lời đọc và video đọc từ đó; kiểm tra tự động báo lỗi khi một bài có kịch bản dùng giọng khác. Các bài đã có video đều dùng Hải Đăng, không phải đọc lại. Xong: giọng khai trong `video/projects/<bài>/media.json`, danh sách giọng ở `video/voices.ts`, luật chọn giọng trong skill `lesson-video`.

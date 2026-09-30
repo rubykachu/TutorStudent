@@ -25,7 +25,11 @@
       "đặt tính cộng và trừ có nhớ, có mượn",
       "tìm số chưa biết nhờ quan hệ giữa cộng và trừ"
     ],
-    "whyItMatters": "Tính tiền, đo quãng đường hay tính điểm đều cần cộng trừ nhanh và đúng."
+    "whyItMatters": "Tính tiền, đo quãng đường hay tính điểm đều cần cộng trừ nhanh và đúng.",
+    "narration": {
+      "audioUrl": "narration/phep-cong-phep-tru/overview.m4a",
+      "vttUrl": "narration/phep-cong-phep-tru/overview.vtt"
+    }
   },
   "concepts": [
     {
@@ -312,6 +316,10 @@
       "minutes": 3,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "phep-cong-phep-tru.video.ghep-tron"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -513,6 +521,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "phep-cong-phep-tru.video.dat-tinh-tru"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -612,6 +624,10 @@
       "sourceRef": "Sách bài tập tr.14, 16, 97",
       "minutes": 3,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-cong-phep-tru.video.tim-so-hang"
+        },
         {
           "type": "group",
           "children": [
@@ -4800,5 +4816,70 @@
   "sticker": {
     "name": "Nhà vô địch cộng trừ",
     "visualId": "phep-cong-phep-tru.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "phep-cong-phep-tru.video.ghep-tron",
+      "lessonId": "phep-cong-phep-tru",
+      "url": "video/phep-cong-phep-tru/ghep-tron.mp4",
+      "vttUrl": "video/phep-cong-phep-tru/ghep-tron.vtt",
+      "posterUrl": "video/phep-cong-phep-tru/ghep-tron.jpg",
+      "durationSec": 78.17,
+      "clips": [
+        {
+          "id": "ghep-tron",
+          "start": 18.145,
+          "end": 50.947,
+          "cardIds": ["phep-cong-phep-tru.card.ghep-tron"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.video.dat-tinh-tru",
+      "lessonId": "phep-cong-phep-tru",
+      "url": "video/phep-cong-phep-tru/dat-tinh-tru.mp4",
+      "vttUrl": "video/phep-cong-phep-tru/dat-tinh-tru.vtt",
+      "posterUrl": "video/phep-cong-phep-tru/dat-tinh-tru.jpg",
+      "durationSec": 90.1,
+      "clips": [
+        {
+          "id": "dat-tinh-tru",
+          "start": 15.157,
+          "end": 72.726,
+          "cardIds": ["phep-cong-phep-tru.card.dat-tinh-tru"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru.video.tim-so-hang",
+      "lessonId": "phep-cong-phep-tru",
+      "url": "video/phep-cong-phep-tru/tim-so-hang.mp4",
+      "vttUrl": "video/phep-cong-phep-tru/tim-so-hang.vtt",
+      "posterUrl": "video/phep-cong-phep-tru/tim-so-hang.jpg",
+      "durationSec": 83.9,
+      "clips": [
+        {
+          "id": "tim-so-hang",
+          "start": 18.545,
+          "end": 63.085,
+          "cardIds": ["phep-cong-phep-tru.card.tim-so-hang"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }
