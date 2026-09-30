@@ -35,7 +35,7 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 | Size and variety | `content:check --stats` | lesson minimums from `docs/spec.md` |
 | Layout walk | `pnpm lesson:walk <lesson>` | visits every screen on 3 devices, reports overlapping or clipped text; `e2e/overlap.ts` holds the overlap test, `tests/overlap.test.ts` proves it |
 | Visual shots | `pnpm visual:shot <lesson>` | every visual and hint at each device into `.shots/` |
-| Video | `pnpm video:check` | subtitles contain every scripted sentence; on-screen rule text equals the lesson's rule sentence |
+| Video | `pnpm video:check`, `tests/video/voices.test.ts` | subtitles contain every scripted sentence; on-screen rule text equals the lesson's rule sentence; the first sentence is the flagged opening line and captions start after the lead-in; one known voice per lesson |
 | Shared sounds | `tests/lib/sound-manifest.test.ts` | `public/sounds/manifest.json` hashes match files |
 | Unit, component | `pnpm test` (Vitest; `tests/` mirrors `src/`) | coverage thresholds in `vitest.config.ts` |
 | E2E | `pnpm test:e2e` (`e2e/`) | `ipad` and `phone` targets in `e2e/targets.ts` |
@@ -46,6 +46,7 @@ Adding a lint rule: create `src/content/lint/<rule>.ts`, register it in `lint/in
 ## Media pipeline
 
 - `video/`: `pnpm video:build <lesson> <name>` reads `video/projects/<lesson>/<name>/script.json` and `index.html` (HyperFrames), narrates each sentence (local VieNeu voice, checked against Whisper, slowed), lays karaoke subtitles, renders H.264, writes `public/media/video/<lesson>/` and `videos[]` in `lesson.json`. `pnpm narration:build <lesson>` does the same for the lesson overview into `public/media/narration/`.
+- One voice per lesson: `video/projects/<lesson>/media.json` names it (`video/voices.ts` lists the allowed voices with engine preset and gender); the overview narration and every video of the lesson read it, `script.json` has no voice. Rules for choosing it and for the opening line of each video: skill `lesson-video`.
 - TTS and Whisper run in the arm64 Python env `video/.venv` with models in `video/.hf` (setup: `video/requirements.txt`; paths in `video/config.ts`).
 - Caches: sentence takes in `video/projects/**/audio/` and `video/.cache/`, intermediates in `renders/`; none is in git. `pnpm clean` removes the regenerable parts.
 - `public/media/` (video, narration) is gitignored and uploaded to the media bucket at go-live (`NEXT_PUBLIC_MEDIA_BASE_URL` switches the client to it). `public/sounds/` (shared app sounds, `pnpm sounds:build`) is committed.

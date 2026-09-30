@@ -1,7 +1,6 @@
 {
   "title": "Nhân hai luỹ thừa cùng cơ số",
   "engine": "local",
-  "voice": "Hải Đăng",
   "poster": {
     "scene": "s04-ket-qua",
     "at": 0.9
@@ -10,6 +9,10 @@
     {
       "id": "s01-hai-chuoi",
       "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta nhân hai luỹ thừa cùng cơ số.",
+          "opening": true
+        },
         {
           "text": "Bạn cú có hai chuỗi hạt."
         },

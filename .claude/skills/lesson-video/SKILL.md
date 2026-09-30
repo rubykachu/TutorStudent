@@ -1,6 +1,6 @@
 ---
 name: lesson-video
-description: Làm video bài giảng 60–90 giây cho một bài đã xuất bản - viết kịch bản tiếng Việt cho người học chậm, đọc bằng giọng TTS chạy trên máy (VieNeu "Hải Đăng"), kiểm từng câu bằng Whisper, dựng hình HyperFrames theo màu của bài, phụ đề karaoke WebVTT, cắt clip theo card, rồi gắn video vào đầu phần tương ứng trong lesson.json. Dùng khi người dùng nói "làm video cho bài", "tạo video bài giảng", "làm lại video", "thêm video vào bài", hoặc khi một môn vừa xong bài và cần video.
+description: Làm video bài giảng 60–90 giây cho một bài đã xuất bản - viết kịch bản tiếng Việt cho người học chậm, đọc bằng giọng TTS chạy trên máy (VieNeu, mỗi bài một giọng: "Hải Đăng" hoặc "Mỹ Duyên"), kiểm từng câu bằng Whisper, dựng hình HyperFrames theo màu của bài, phụ đề karaoke WebVTT, cắt clip theo card, rồi gắn video vào đầu phần tương ứng trong lesson.json. Dùng khi người dùng nói "làm video cho bài", "tạo video bài giảng", "làm lại video", "thêm video vào bài", hoặc khi một môn vừa xong bài và cần video.
 model: sonnet
 ---
 
@@ -14,13 +14,28 @@ Mỗi video là một thư mục `video/projects/<id bài>/<tên>/` (commit): `s
 pnpm video:build <id bài> <tên>
 ```
 
-Lệnh tổng hợp giọng từng câu, cho mlx-whisper nghe lại và so với kịch bản (bỏ dấu thanh, dấu câu; câu dưới 97% tự đọc lại, tối đa 3 lần), chậm lại `atempo 0.9`, lấy mốc thời gian từng chữ, dựng hình bằng HyperFrames, nén H.264 720p (≤ 10 MB/phút), rồi ghi `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và mục `videos[]` trong `lesson.json` (id `<id bài>.video.<tên>`, clip theo card). Câu đã đọc được giữ trong `audio/` nên sửa hình không đọc lại. Thiết lập và mọi thông số: `video/config.ts`; Python arm64 và model: `video/spikes/vieneu/`.
+Lệnh tổng hợp giọng từng câu, cho mlx-whisper nghe lại và so với kịch bản (bỏ dấu thanh, dấu câu; câu dưới 97% tự đọc lại, tối đa 3 lần), chậm lại `atempo 0.9`, lấy mốc thời gian từng chữ, dựng hình bằng HyperFrames, nén H.264 720p (≤ 10 MB/phút), rồi ghi `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và mục `videos[]` trong `lesson.json` (id `<id bài>.video.<tên>`, clip theo card). Câu đã đọc được giữ trong `audio/` nên sửa hình không đọc lại. Thiết lập và mọi thông số: `video/config.ts`; Python arm64 và model: `video/requirements.txt`.
+
+## Giọng: mỗi bài một giọng
+
+Giọng khai **một lần cho cả bài** trong `video/projects/<id bài>/media.json` (`{ "voice": "<id giọng>" }`); `pnpm narration:build` (lời đọc giới thiệu) và `pnpm video:build` (mọi video) đều đọc từ đó, `script.json` không có trường giọng. Một bài không xen giọng nam và nữ. Danh sách giọng hợp lệ (id, preset của engine, giới tính) chỉ ở `video/voices.ts`: `hai-dang` (nam, "Hải Đăng"), `my-duyen` (nữ, "Mỹ Duyên", giọng miền Nam). `pnpm video:check` báo lỗi khi bài thiếu `media.json`, khai giọng lạ, hay video đã dựng được đọc bằng giọng khác giọng của bài.
+
+Chọn giọng theo không khí của bài, lúc dựng video đầu tiên của bài, rồi giữ nguyên:
+
+- Bài nhẹ nhàng, kể chuyện, động viên (văn, bài mở đầu một mạch kiến thức, bài bé hay sợ): `my-duyen`.
+- Bài sôi nổi, dồn dập, nhiều bước thủ tục (quy tắc, thứ tự tính, luyện nhanh): tuỳ ý, hai giọng đều được.
+- Xen kẽ giữa các bài liền nhau để bé đỡ nhàm: xem giọng của bài trước trong `media.json` và chọn giọng kia khi không có lý do riêng.
+- Ghi lý do chọn vào `task.md` của bài. Đổi giọng một bài đã có video nghĩa là đọc lại mọi video và lời đọc của bài đó (giọng là một phần khoá cache câu), nên không đổi khi không cần.
+
+## Câu mở đầu và quãng đệm
+
+Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi bé là "bạn", nói video nói về gì: "Chào bạn! Hôm nay ta ghép số cho tròn để tính nhẩm nhanh." Câu đó là câu đầu tiên của cảnh đầu tiên, đánh `"opening": true`, không phải câu `rule` hay `quote`, ngắn (≤ 15 chữ). Trước câu đầu luôn có `PAUSE.leadIn` (1 giây) im lặng (phụ đề chưa hiện), để bé không mất mấy chữ đầu. Build và `pnpm video:check` dừng khi câu đầu không có cờ `opening`, không có chữ "bạn", hay phụ đề đầu bắt đầu trước quãng đệm; cờ `opening` ở câu khác cũng là lỗi. Video dựng trước khi có luật này được liệt kê trong `openingExempt` của `media.json` của bài; dựng lại video nào thì thêm câu mở đầu và xoá tên nó khỏi danh sách.
 
 ## Quy trình
 
 1. **Chỉ bài đã `published`.** Đọc `lesson.json`: phần (section), câu quy tắc (`note`, `caption`), card, màu khái niệm; xem visual của bài trong `src/visuals/<môn>/<bài>/` và ảnh `.shots/<bài>/`.
 2. **Chọn video.** Mỗi video giảng một ý của một phần, 60–90 giây; đặt ở đầu phần đó. Một phần có tối đa một video (`MAX_SECTION_VIDEOS`); video không tính vào số màn của phần.
-3. **Viết `script.json`** từ `.claude/skills/lesson-video/templates/script.example.json`, theo `.claude/skills/lesson-video/references/script-rules.md`: câu quy tắc đánh `rule`, câu trích văn bản đánh `quote`; build kiểm nguyên văn. Chữ quy tắc hiện trên màn thì đánh `data-rule-text` lên phần tử đó (chữ phải là câu `note`/`caption` của bài, hoặc kí hiệu trong "X đọc là Y" như "2 ∈ A").
+3. **Chọn giọng của bài** nếu bài chưa có `media.json` (mục "Giọng"), rồi **viết `script.json`**, câu đầu là câu mở đầu (mục "Câu mở đầu"), từ `.claude/skills/lesson-video/templates/script.example.json`, theo `.claude/skills/lesson-video/references/script-rules.md`: câu quy tắc đánh `rule`, câu trích văn bản đánh `quote`; build kiểm nguyên văn. Chữ quy tắc hiện trên màn thì đánh `data-rule-text` lên phần tử đó (chữ phải là câu `note`/`caption` của bài, hoặc kí hiệu trong "X đọc là Y" như "2 ∈ A").
 4. **Viết `index.html`** từ `.claude/skills/lesson-video/templates/index.example.html`, theo `.claude/skills/lesson-video/references/composition.md`: hình trước, chữ ít, vào đúng lúc chữ được đọc.
 5. **Dựng:** `pnpm video:build <id bài> <tên>`. Bài có nhiều video thì chạy tối đa 2 lệnh cùng lúc (Bash `run_in_background`); TTS ăn CPU nên không chạy 3. Hai lệnh cùng ghi `videos[]` của `lesson.json` lúc kết thúc: xong cả hai thì kiểm đủ hai mục, thiếu thì dựng lại video đó (câu đã đọc được giữ nên nhanh). Build tự kiểm không tốn token: mỗi câu `script.json` phải có trong `.vtt` (báo câu thiếu/thừa theo số thứ tự) và chữ `data-rule-text` phải khớp bài; chạy lại trên video đã dựng, không dựng lại: `pnpm video:check [<id bài> [<tên>]]`. Đọc cuối log: dòng "listen to this sentence" là câu cần người nghe duyệt (thường Whisper nghe nhầm chứ không phải giọng sai). `renders/report.json` có lời Whisper nghe được và tỉ lệ khớp từng câu.
 6. **Tự xem.** Skill `webapp-evidence:vision` tạo contact sheet từ mp4 (hoặc `ffmpeg -ss <giây> -i <mp4> -frames:v 1 x.png`), đọc từng ảnh: chữ rõ, không bị cắt, màu đúng khái niệm, dải dưới cùng trống cho phụ đề, hình khớp lời ở mốc trong `.vtt`. Sửa `index.html` rồi dựng lại.
