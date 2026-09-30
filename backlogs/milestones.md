@@ -30,3 +30,16 @@ Tiêu chí hoàn thành của từng mốc nằm ở `docs/spec.md`, mục "Tiê
 
 ## Ý tưởng chờ bàn (chưa chốt)
 - Bài tập bổ trợ ngoài sách giáo khoa cho từng môn, cùng phong cách hướng dẫn và luyện tập. Nhu cầu thực tế: trẻ lớp 6 vẫn sai phép nhân/chia đã học ở tiểu học, không thuộc bài nào của lớp 6. Hướng đã nêu để cân nhắc: mạch "Nền tảng" theo môn (dùng lại toàn bộ hệ thống bài học), bài tập sinh số tự động cho phép tính, bài kiểm tra đầu vào tìm kỹ năng hổng. Chưa quyết cách tổ chức cho các môn khác.
+
+## Hàng đợi soạn bài Toán 6 tập 1 (chủ dự án yêu cầu 2026-09-30)
+Nguồn: `/Users/minhtang/Documents/MyLe/NhaKy/Toan6-tap1.pdf` — đây là **Sách bài tập** Toán 6 KNTT tập 1 (có "Kiến thức cần nhớ", ví dụ, đề bài và phần lời giải cuối sách). Trang in = trang PDF − 1.
+Thứ tự: Bài 7 trước (bé yếu nhất), sau đó Bài 5, 4, 3, 2 (song song theo worktree). Bé đã học hết chương 1, đang ôn tập chương.
+Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ dễ tới khó (kiến thức nền của bài trước được phép, ghi `sourceRef` rõ). Dùng phần lời giải làm đáp án đối chiếu.
+
+| Bài | Trang in (đề) | Trang PDF (đề) | Trang in (lời giải) | Trang PDF (lời giải) |
+|---|---|---|---|---|
+| 7. Thứ tự thực hiện các phép tính | 24–26 | 25–27 | 102–103 | 103–104 |
+| 5. Phép nhân và phép chia số tự nhiên | 17–20 | 18–21 | 98–100 | 99–101 |
+| 4. Phép cộng và phép trừ số tự nhiên | 14–16 | 15–17 | 96–98 | 97–99 |
+| 3. Thứ tự trong tập hợp các số tự nhiên | 11–13 | 12–14 | 96 | 97 |
+| 2. Cách ghi số tự nhiên | 7–10 | 8–11 | 94–96 | 95–97 |
