@@ -1,7 +1,5 @@
 # Bẫy khi soạn bài
 
-Rút từ bài `content/math/kntt/luy-thua/`.
-
 ## Màn hình
 
 - KaTeX không ngắt dòng ở `\qquad`: hai công thức dài đặt cạnh nhau sẽ tràn màn hình điện thoại. Xếp dọc bằng `\begin{gathered} … \\ … \end{gathered}`.

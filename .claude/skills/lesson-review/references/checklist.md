@@ -55,13 +55,13 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm trong visual (màn quy tắc, recap) chỉ thấy ở đây nên soát theo cả bốn trục trên.
 
-**Mỗi dòng FAIL của walk**: Nên sửa, ghi kèm tên ảnh. FAIL do bố cục của app (không do nội dung bài) ghi ở Góp ý để báo người làm app, không chặn bài.
+**Mỗi dòng FAIL của walk** do nội dung bài: Nghiêm trọng (trẻ không làm được bài), ghi kèm tên ảnh. FAIL do bố cục của app: Góp ý để báo người làm app, không chặn bài.
 
-**Quy tắc đọc được và nhớ được.** Định nghĩa hay quy tắc chỉ nằm trong `caption` xám, hay màn chỉ có một `note` hoặc một `formula` (`content:check` cảnh báo `[screens]`): Nghiêm trọng (trẻ nhớ sai hoặc bỏ qua). Recap không phải visual có `caption` thì `content:check` đã báo lỗi.
+**Quy tắc đọc được và nhớ được.** Định nghĩa hay quy tắc chỉ nằm trong `caption` xám: Nghiêm trọng (trẻ nhớ sai hoặc bỏ qua).
 
 **Section ngắn, một ý.** `content:check` đã chặn section quá 4 màn hay quá 4 bài tập. Section gộp hai quy tắc cần nhớ riêng (recap phải có hai câu mới đủ), hay `minutes` lệch xa số màn nhân khoảng 40 giây: Nên sửa.
 
-**Người học chậm theo kịp.** Thiếu ví dụ mẫu trước câu tự làm, thao tác nhập mới chưa được dạy trước câu đầu dùng nó, câu chuyện mở đầu không có kết, câu luyện tập phải tính nhẩm quá 2 phép: Nên sửa. Card không có câu ôn nào ngoài `practiceIds` khác số với câu luyện tập: Nên sửa.
+**Người học chậm theo kịp.** Vi phạm một luật trong mục "Sư phạm cho người học chậm" của `.claude/skills/lesson-author/SKILL.md` mà `content:check` không kiểm (ví dụ mẫu trước câu tự làm, dạy thao tác nhập trước lần dùng đầu, câu chuyện có kết, số nhỏ): Nên sửa.
 
 **Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.
 
@@ -81,9 +81,9 @@ Luật cố định. Không ghi phát hiện trái với luật này, kể cả 
 
 Ví dụ từ bài `luy-thua`:
 - `chon-tich-5-mu-4` (5⁴ bằng tích nào): đạt khi nấc 1 tô `co-so` và `so-mu` trong đề bằng màu khái niệm; lộ đáp án nếu tô lựa chọn `5 · 5 · 5 · 5`.
-- `dien-ten` (điền "cơ số", "số mũ" cho 8³): đạt khi nấc 1 tô 8 và 3 trong đề, không `conceptId`; lộ đáp án nếu tô bằng màu xanh, tím, hoặc nếu nấc 2 là hình `cac-phan` có nhãn "Cơ số", "Số mũ".
-- `xep-gia-tri` (xếp 2³, 3², 2⁴, 5² từ bé đến lớn): đạt khi nấc 1 trống và nấc 2 `phan-tich` viết mỗi luỹ thừa thành tích, không ghi giá trị, không theo thứ tự đúng; lộ vị trí nếu nấc 1 tô cặp 2³ và 3².
-- `tinh-3-mu-4` (tính 3⁴): nấc 2 làm 3 · 3 = 9 rồi dừng ở 9 · 3 = ?; hiện 81 là lộ kết quả. `mu-0-bang` (5⁰ bằng bao nhiêu): nấc 2 dùng số khác đề, 2³ : 2³, và dừng ở 8 : 8 = ?.
+- `dien-ten` (điền "cơ số", "số mũ" cho 8³): đạt khi nấc 1 tô 8 và 3 trong đề, không `conceptId`; lộ đáp án nếu tô bằng màu xanh, tím, hoặc nếu nấc 2 là hình có nhãn "Cơ số", "Số mũ".
+- `xep-gia-tri` (xếp 2³, 3², 4², 5² từ bé đến lớn): đạt khi nấc 1 trống và nấc 2 `phan-tich-xep-gia-tri` viết mỗi luỹ thừa thành tích, không ghi giá trị, không theo thứ tự đúng; lộ vị trí nếu nấc 1 tô cặp 2³ và 3².
+- `tinh-3-mu-3` (tính 3³): nấc 2 làm 3 · 3 = 9 rồi dừng ở 9 · 3 = ?; hiện 27 là lộ kết quả. `mu-0-bang` (5⁰ bằng bao nhiêu): nấc 2 dùng số khác đề, 2³ : 2³, và dừng ở 8 : 8 = ?.
 
 ## Không bắt lỗi
 

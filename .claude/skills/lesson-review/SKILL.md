@@ -5,7 +5,7 @@ description: Review độc lập một bài học đã soạn (content/**/lesson
 
 # Review bài học
 
-Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ thấy bài. Không sửa `lesson.json`: tác giả sửa, rồi review lại từ đầu.
+Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ thấy bài. Không sửa nội dung `lesson.json` (bước 6 chỉ ghi `reviewedHash`, `status` qua lệnh): tác giả sửa, rồi review lại từ đầu.
 
 ## Chỉ chạy trong subagent mới
 
@@ -19,9 +19,9 @@ Người soạn đọc lại bài của mình thường bỏ sót chính lỗi m
 
 ## Quy trình
 
-1. Chạy `pnpm content:check --root <ROOT>`. Mỗi `error` thuộc `LESSON` là một lỗi Nghiêm trọng; vẫn review tiếp.
+1. Chạy `pnpm content:check --root <ROOT>`. Với dòng thuộc `LESSON`: mọi `error` (trừ `[review-hash]`, bước 6 xoá nó) và cảnh báo `[placeholder]`, `[screens]` là Nghiêm trọng; cảnh báo `[review-bank]` là Nên sửa; bỏ qua "not in ids.lock.json". Vẫn review tiếp.
 2. Đọc hết `LESSON`. Với mỗi `sourceRef` (bài, section, card), mở đúng trang ảnh và đọc, không đoán nội dung trang. Không có ảnh nguồn: ghi lỗi Nghiêm trọng "thiếu nguồn", vẫn soát phạm vi theo chương trình lớp 6.
-3. Chạy `pnpm lesson:walk <id bài>` (tự mở server phục vụ cả bài `draft`) và đọc ảnh trong `.shots/walk/<id bài>/` cho trục "Trải nghiệm trên màn".
+3. `ROOT` là `content/`: chạy `pnpm lesson:walk <id bài>` (tự mở server phục vụ cả bài `draft`) và đọc ảnh trong `.shots/walk/<id bài>/` cho trục "Trải nghiệm trên màn". `ROOT` khác: walk chỉ đọc `content/`, nên bỏ bước này và ghi "không chạy" ở dòng `lesson:walk` của `review.md`.
 4. Soát mọi section, card và exercise theo năm trục và "Luật gợi ý 3 nấc" trong `references/checklist.md`; bỏ qua mọi mục trong "Không bắt lỗi" của file đó. Với mỗi exercise, tự giải trước khi đọc `answer`. Soát hết bài, không dừng ở lỗi đầu tiên.
 5. Ghi `review.md` cạnh `LESSON` theo `templates/review.md` (ghi đè bản cũ). Không chép dài chữ SGK: trỏ trang là đủ.
 6. Không còn lỗi Nghiêm trọng: chạy `pnpm content:hash <id bài> --root <ROOT> --approve`. Lệnh từ chối nếu `content:check` còn lỗi; nếu không, ghi `reviewedHash` và đặt `status: published`, trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật (khi đó quản trị viên đặt `published`). Còn lỗi Nghiêm trọng: không chạy lệnh, bài giữ `draft`.

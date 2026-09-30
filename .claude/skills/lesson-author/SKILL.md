@@ -5,7 +5,7 @@ description: Soạn một bài học từ ảnh SGK trong sources/<môn>/<bài>/
 
 # Soạn bài học
 
-Đầu ra: `content/<subject>/<series>/<slug>/lesson.json` chạy `pnpm content:check` không lỗi, đủ visual, `review.md` không còn lỗi Nghiêm trọng, `status: published`. Bài mẫu đã xuất bản: `content/math/kntt/luy-thua/`.
+Đầu ra: `content/<subject>/<series>/<slug>/lesson.json` chạy `pnpm content:check` không lỗi, đủ visual, `review.md` không còn lỗi Nghiêm trọng, `status: published` (hoặc chỉ có `reviewedHash` khi `REQUIRE_OWNER_APPROVAL` bật). Bài mẫu đã xuất bản: `content/math/kntt/luy-thua/`.
 
 ## Đọc trước
 
@@ -19,15 +19,14 @@ description: Soạn một bài học từ ảnh SGK trong sources/<môn>/<bài>/
 
 Bài viết cho trẻ lớp 6 học chậm, hay quên. Mọi bài theo các luật sau.
 
-- **Mẫu → cùng làm → tự làm.** Mỗi ý: một màn ví dụ mẫu giải trọn, rồi một màn trẻ thao tác có hướng dẫn (visual tương tác), rồi mới tới câu kiểm tra và luyện tập.
+- **Mẫu → cùng làm → tự làm.** Ý mới có ví dụ mẫu giải trọn trước câu tự làm đầu tiên; ý chính có thêm màn trẻ thao tác có hướng dẫn (visual tương tác, số tối thiểu theo `--stats`).
 - **Quy tắc là câu để nhớ, không phải chú thích.** Định nghĩa, quy tắc, quy ước viết thành 1–2 câu trong `note` của một `group`, cùng ví dụ có nhãn (`formula` hay `visual`) ngay dưới. Câu bài học luôn nằm trong JSON để lint và review đọc được; visual không chứa câu bài học, chỉ nhãn ngắn. `caption` xám chỉ dùng cho hướng dẫn thao tác hay nhận xét ngắn.
 - **Số nhỏ.** Câu luyện tập và ôn tính nhẩm được trong tối đa 2 phép tính (3³ = 27 được, 3⁴ = 81 thì không). Ví dụ mẫu được dài hơn khi có hình từng bước.
-- **Dạy thao tác nhập trước lần dùng đầu.** Thao tác cần dạy: phím "mũ" của `numeric` dạng luỹ thừa, nối cặp của `match` (kéo hay chạm), sắp xếp của `order`, chạm vùng của `tapRegion`. Mỗi thao tác dạy một lần cho cả app: bài đầu tiên dùng nó (tìm trong `content/` xem bài nào đã dạy) đặt một màn hướng dẫn ngắn ngay trước câu section đầu tiên dùng nó, với số khác câu đó. Câu chỉ có trong kho ôn chỉ dùng thao tác đã dạy. Các dạng khác không cần màn này.
+- **Dạy thao tác nhập trước lần dùng đầu.** Thao tác cần dạy: phím "mũ" của `numeric` dạng luỹ thừa, nối cặp của `match` (kéo hay chạm), sắp xếp của `order`, chạm vùng của `tapRegion`. Mỗi thao tác dạy một lần cho cả app: trước khi dùng, tìm trong `content/**/lesson.json` màn hướng dẫn thao tác đó (vd `luy-thua.visual.bam-mu` dạy phím mũ); chưa có thì bài này đặt một màn hướng dẫn ngắn ngay trước câu section đầu tiên dùng nó, với số khác câu đó. Câu chỉ có trong kho ôn chỉ dùng thao tác đã dạy. Các dạng khác không cần màn này.
 - **Câu chuyện mở đầu phải có kết** trong cùng section, bằng kiến thức vừa học.
 - **`minutes` tính từ số màn**: khoảng 40 giây mỗi màn (block, câu hỏi, recap), làm tròn phút.
-- **Recap = một câu + một ví dụ có nhãn**: một `visual` vẽ ví dụ có nhãn (ký hiệu ● Cơ số ▲ Số mũ hay tương đương), câu cần nhớ đặt ở `caption` của nó (màn recap hiện caption thành chữ thân bài phía trên hình). Không để công thức trần.
-- **Section ngắn: ≤ 4 màn, ≤ 4 bài tập.** Mỗi section tối đa 4 phần tử `blocks` và 4 câu trong `checkIds` cộng `practiceIds`, rồi tới recap; `content:check` báo lỗi khi vượt. Ý dài hơn thì tách section, mỗi section một ý và recap một câu.
-- **Recap ≤ 2 câu, card ≥ 3 câu hỏi.** `caption` của mọi `Section.recap`/`Card.recap` tối đa 2 câu và mỗi card có ít nhất 3 exercise trong `cardIds`; `content:check` báo lỗi khi thiếu.
+- **Recap = một `visual` vẽ ví dụ có nhãn** (ký hiệu ● Cơ số ▲ Số mũ hay tương đương), câu cần nhớ ở `caption` (≤ 2 câu; màn recap hiện nó thành chữ thân bài phía trên hình).
+- **Section ngắn, card đủ câu.** Section ≤ 4 màn và ≤ 4 câu `checkIds` + `practiceIds`; card ≥ 3 exercise, đúng 1 câu trong `practiceIds`. Ý dài hơn thì tách section, mỗi section một ý.
 - **Luyện tập và kho ôn khác số.** Câu kho ôn của card (ngoài `practiceIds`) khác số với câu luyện tập và với ví dụ trên màn quy tắc, để phiên ôn không hỏi lại đúng câu vừa làm.
 
 ## Quy trình
@@ -39,15 +38,15 @@ Sửa bài đã có: bỏ bước 1–4, sửa theo bước 5–9, rồi làm ti
 3. **Biên soạn lại.** Viết định nghĩa, ví dụ, bài tập bằng lời và số của mình, không chép câu hay hình SGK. Riêng khối `passage` giữ nguyên văn.
 4. **Dựng khung.** Chép `templates/lesson.skeleton.json` vào thư mục bài, thay mọi `bai-moi` bằng slug, đặt `subject`, `series`, `title`, `sourceRef` và `order` = số bài trong SGK (Bài 6 → 6): app xếp bài và gợi ý bài kế trong môn theo `order`, nên không trùng bài khác cùng môn, bộ sách. Các `visualId` `fixture.*` chỉ giữ chỗ để khung qua `content:check`; bước 9 thay hết (`content:check` cảnh báo `[placeholder]`, `content:hash --approve` từ chối khi còn).
 5. **Khái niệm.** Tên và màu lấy theo `content/glossary/<subject>.json`; chưa có term thì thêm vào đó kèm `color`. Mỗi khái niệm giữ một màu ở mọi công thức, visual, highlight.
-6. **Chia phần.** Mỗi section một ý chính, `sourceRef` trỏ đúng trang. Mỗi phần tử của `blocks` là đúng một màn hình, nên không có màn chỉ một `note` hay một `formula`: màn quy tắc là một `group` gồm `note` (câu quy tắc) rồi `formula`/`visual` (ví dụ có nhãn), xem các `group` trong `content/math/kntt/luy-thua/lesson.json`. Sau phần giải thích: 1–2 câu `checkIds` (không tính điểm nhớ) và một câu `practiceIds` cho mỗi card của section (lần gặp đầu của card), tổng không quá 4 câu. Chia card ngay lúc này: section có tối đa 4 − số câu `checkIds` card, và bài cần ≥ 8 card, nên bài 3 section cần khoảng 3 card mỗi section (1 câu kiểm tra + 3 câu luyện tập).
-7. **Card và bài tập.** Đạt số tối thiểu ở `docs/spec.md` mục "Tiêu chí thành công". Mỗi card chỉ có 1 câu trong `practiceIds`; các câu ôn còn lại chỉ nằm trong `exercises` (xem luật "Luyện tập và kho ôn khác số"). `openEnded` của Ngữ văn chia thành các bước nhỏ tự chấm, đặt trước bước viết.
+6. **Chia phần.** Mỗi section một ý, `sourceRef` đúng trang. Mỗi phần tử của `blocks` là một màn; màn quy tắc là `group` gồm `note` rồi `formula`/`visual`, xem bài mẫu. Sau phần giải thích: 1–2 câu `checkIds` (`cardIds: []`, không tính điểm nhớ) và một câu `practiceIds` cho mỗi card của section (lần gặp đầu của card). Chia card ngay lúc này: section có tối đa 4 − số câu `checkIds` card, bài cần ≥ 8 card, nên bài 3 section cần khoảng 3 card mỗi section (1 câu kiểm tra + 3 câu luyện tập).
+7. **Card và bài tập.** Đủ để mọi dòng tiêu chí của `pnpm content:check --stats` là `PASS`. Câu ôn còn lại của card chỉ nằm trong `exercises`. `openEnded` của Ngữ văn chia thành các bước nhỏ tự chấm, đặt trước bước viết.
 8. **Chi tiết từng câu.**
-   - Bài Toán: đặt `check.expr` cho mọi `numeric` và `choice`; lint tính lại đáp án và báo lỗi khi có lựa chọn nhiễu cũng ra giá trị đó.
-   - `order.items` viết theo đúng thứ tự; không cần tự đảo vị trí đáp án vì app xáo lựa chọn, cột phải `match`, ngân hàng từ và mục `order` mỗi lần làm.
+   - Bài Toán: đặt `check.expr` cho mọi `numeric` (bắt buộc) và cho `choice` có lựa chọn là số hay biểu thức tính được; lint tính lại đáp án và báo lỗi khi lựa chọn nhiễu cũng ra giá trị đó.
+   - `order.items` viết theo thứ tự đúng; app tự xáo mọi lựa chọn khi hiện.
    - `hints` theo luật 3 nấc trong checklist review. Câu nào hình giúp hiểu rõ hơn thì đặt `hintVisualId`, `solutionVisualId`.
 9. **Visual.** Dùng skill `lesson-visual` cho mọi `visualId` mới và mọi chỗ giữ `fixture.*` (cả sticker), kèm vai trò của từng hình (giải thích, tương tác, vùng chạm, gợi ý nấc 2, lời giải nấc 3) và bộ số của nó.
-10. **Kiểm tự động.** `pnpm format` (Biome xếp lại JSON viết tay, nếu không `pnpm lint` báo lỗi định dạng), rồi `pnpm content:check --stats` tới khi bài 0 lỗi, 0 cảnh báo và mọi dòng tiêu chí là `PASS`. Chỉ cảnh báo "not in ids.lock.json" được phép tới bước 13.
-11. **Chạy thử bài.** `pnpm lesson:walk <slug>` đi hết mọi section ở 820×1180, 390×844 và 1180×820, trả lời đúng mọi câu theo `lesson.json`, câu đầu của mỗi dạng thì sai đủ 3 nấc, chụp vào `.shots/walk/<slug>/`, và báo FAIL khi hình gợi ý hay lời giải nằm ngoài màn hoặc thanh dưới che chỗ cần chạm. Đọc từng ảnh: chữ rõ, công thức không vỡ, gợi ý đúng luật. Xem tay thì chạy `CONTENT_INCLUDE_DRAFT=1 pnpm dev` (bài `draft` được phục vụ trên máy, không bao giờ vào bản build), không cần đổi `status`.
+10. **Kiểm tự động.** `pnpm format` (Biome xếp lại JSON viết tay, nếu không `pnpm lint` báo lỗi định dạng), rồi `pnpm content:check --stats` tới khi bài 0 lỗi (trừ `[review-hash]` khi sửa bài đã `published`, bước 12 xoá nó), 0 cảnh báo (trừ "not in ids.lock.json", tới bước 13) và mọi dòng tiêu chí là `PASS`.
+11. **Chạy thử bài.** `pnpm lesson:walk <slug>` (đi hết bài ở iPad dọc, điện thoại, iPad ngang; câu đầu của mỗi dạng sai đủ 3 nấc) tới khi 0 FAIL. Walk dùng lại server đang chạy ở cổng test (`TEST_PORT`, mặc định 3100) hay ở `WALK_BASE_URL`; server đó báo 404 hay phục vụ bản cũ của bài thì tắt nó rồi chạy lại để walk tự mở server mới. Đọc từng ảnh trong `.shots/walk/<slug>/`: chữ rõ, công thức không vỡ, gợi ý đúng luật. Xem tay: `CONTENT_INCLUDE_DRAFT=1 pnpm dev` (bài `draft` không bao giờ vào bản build).
 12. **Review.** Dùng skill `lesson-review` (skill tự mở subagent mới). Sửa mọi lỗi Nghiêm trọng và các mục Nên sửa hợp lý khác, rồi review lại. Lặp tới khi còn 0 Nghiêm trọng. Chỉ mục không chặn mới được ghi vào `backlogs/lesson-<slug>.md`.
 13. **Khoá id.** `pnpm content:lock` khi id đã ổn định (sau khi review đạt). Id đã khoá không được đổi hay xoá: tiến độ của trẻ gắn vào nó. Buộc phải đổi thì khai trong `retired` của `content/ids.lock.json`.
 14. **Báo lại.** Gửi kết quả `--stats`, đường dẫn `review.md`, việc còn trong backlog.
