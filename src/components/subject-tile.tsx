@@ -14,38 +14,42 @@ const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 function ProgressRing({ done, total }: SubjectProgress) {
   const filled = total === 0 ? 0 : done / total;
   return (
+    // The count sits inside the ring and its unit just below, so neither
+    // touches the ring's stroke.
     <div
       role="img"
       aria-label={`Xong ${done} trên ${total} phần`}
-      className="relative size-16 shrink-0 tall:size-20"
+      className="flex shrink-0 flex-col items-center gap-1"
     >
-      <svg viewBox="0 0 56 56" className="size-full -rotate-90" aria-hidden>
-        <circle
-          cx={28}
-          cy={28}
-          r={RING_RADIUS}
-          className="fill-none stroke-primary-foreground/30"
-          strokeWidth={6}
-        />
-        <circle
-          cx={28}
-          cy={28}
-          r={RING_RADIUS}
-          className="fill-none stroke-primary-foreground"
-          strokeWidth={6}
-          strokeLinecap="round"
-          strokeDasharray={RING_CIRCUMFERENCE}
-          strokeDashoffset={RING_CIRCUMFERENCE * (1 - filled)}
-        />
-      </svg>
-      <span
-        aria-hidden
-        className="absolute inset-0 flex flex-col items-center justify-center text-caption leading-none font-semibold"
-      >
-        <span>
+      <div className="relative size-16 tall:size-20">
+        <svg viewBox="0 0 56 56" className="size-full -rotate-90" aria-hidden>
+          <circle
+            cx={28}
+            cy={28}
+            r={RING_RADIUS}
+            className="fill-none stroke-primary-foreground/30"
+            strokeWidth={6}
+          />
+          <circle
+            cx={28}
+            cy={28}
+            r={RING_RADIUS}
+            className="fill-none stroke-primary-foreground"
+            strokeWidth={6}
+            strokeLinecap="round"
+            strokeDasharray={RING_CIRCUMFERENCE}
+            strokeDashoffset={RING_CIRCUMFERENCE * (1 - filled)}
+          />
+        </svg>
+        <span
+          aria-hidden
+          className="absolute inset-0 flex items-center justify-center text-caption font-semibold"
+        >
           {done}/{total}
         </span>
-        <span className="mt-0.5 font-normal">phần</span>
+      </div>
+      <span aria-hidden className="text-caption leading-none">
+        phần
       </span>
     </div>
   );
