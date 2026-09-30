@@ -42,6 +42,8 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 **Đề nói rõ trẻ phải làm gì**, và ghi "chọn tất cả" khi `multiple: true`. Đề mơ hồ: Nên sửa.
 
+**Không cắt chữ bằng "…".** Chữ nào của bài (note, đề, lựa chọn, caption, nhãn visual) kết thúc bằng "…" mà không phải trích nguyên văn `passage`: Nên sửa.
+
 **Từ Hán Việt khó** như "tương ứng", "hiển nhiên": chỉ Góp ý, kèm từ thay thế. Thuật ngữ trong SGK và glossary (`content/glossary/<subject>.json`) như "thừa số", "cơ số" là chuẩn, không ghi.
 
 ## 4. Nhất quán
@@ -67,6 +69,12 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 **Người học chậm theo kịp.** Vi phạm một luật trong mục "Sư phạm cho người học chậm" của `.claude/skills/lesson-author/SKILL.md` mà `content:check` không kiểm (ví dụ mẫu trước câu tự làm, dạy thao tác nhập trước lần dùng đầu, câu chuyện có kết, số nhỏ, `overview` đúng luật, section Toán hay Địa lí thiếu ví dụ đời sống): Nên sửa.
 
 **Video xem được.** Walk báo FAIL ở màn video (thiếu tệp, nút phát nhỏ, không có phụ đề): Nghiêm trọng. Cảnh báo "video did not play here" trên máy không giải mã được H.264 (Chromium của walk): bỏ qua.
+
+**Màn tương tác nói rõ làm gì và để làm gì.** Thiếu dòng việc phải làm hay dòng lý do ở đầu màn (hướng dẫn chỉ nằm ở `caption` xám nhỏ), hoặc visual không hiện tiến độ và không có lời kết khi làm xong: Nên sửa.
+
+**Có câu chọn nhiều đáp án.** Bài có dưới 2 câu `multiple: true` dù có chỗ tự nhiên để hỏi nhiều đáp án: Nên sửa.
+
+**Đã xem ảnh walk mọi màn, cả điện thoại lẫn iPad.** Chữ chồng nhau, bị cắt, cột hẹp hay hình nhỏ lọt thỏm: Nghiêm trọng nếu do nội dung bài, Góp ý nếu do bố cục app.
 
 **Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.
 
