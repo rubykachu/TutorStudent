@@ -60,3 +60,5 @@ Quy ước: bài nào xong (đã gộp main) thì xoá file handover của bài 
 2. Bài 4 (theo `backlogs/handover-phep-cong-phep-tru.md` trong worktree bài 4).
 3. Bài 5 (theo `backlogs/handover-phep-nhan-phep-chia.md`).
 4. Bài 3, Bài 2.
+5. (Xong: `docs/lessons-learned/` với 19 mục và số đếm từ mọi vòng review; luật `content:check` mới `[check-expr]` theo `check.relation`, `[hint-answer]`, `[color-leak]`, `[guides]`, `[rule-sentence]`, `[textbook-copy]`; `lesson-author`, `lesson-review` đọc và cập nhật kho này.) Khi tiếp tục Bài 4, 5: merge main vào nhánh bài trước, chạy `content:check` với luật mới (câu "chắc chắn sai" của Bài 4 đặt `check: { "expr": …, "relation": "notEqual" }`, đánh `guide` cho màn hướng dẫn, `rule` cho note quy tắc).
+6. Màn hướng dẫn `match`, `order`, `manipulate` cho môn Toán (xem `backlogs/lesson-tap-hop.md`), rồi xoá các cảnh báo `[guides]` còn lại.
