@@ -73,7 +73,7 @@ function Line({ spec, jumps }: { spec: Spec; jumps: number }) {
             {...decorative}
             x1={x(target)}
             x2={x(target)}
-            y1={FLAG_Y + 12}
+            y1={FLAG_Y + 42}
             y2={LINE_Y - 12}
             className="stroke-concept-lime"
             strokeWidth={3}

@@ -5,6 +5,7 @@ import { type Browser, chromium, type Page } from "@playwright/test";
 import katex from "katex";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { findOverlaps } from "../e2e/overlap";
+import { NOT_DIVIDES_MACRO, TEX_MACROS } from "../src/lib/tex";
 import { DECORATIVE_ATTR } from "../src/visuals/shared/markers";
 
 let browser: Browser;
@@ -100,6 +101,20 @@ describe("findOverlaps leaves by-design layouts alone", () => {
     ).replaceAll(/url\([^)]*\)/g, "none");
     const issues = await overlapsIn(
       `<style>${css}</style><p style="font-size:40px">${katex.renderToString("B \\notin 5")}</p>`,
+    );
+    expect(issues).toEqual([]);
+  });
+
+  it('ignores the slash over the "does not divide" sign', async () => {
+    const css = readFileSync(
+      "node_modules/katex/dist/katex.min.css",
+      "utf8",
+    ).replaceAll(/url\([^)]*\)/g, "none");
+    const tex = katex.renderToString(`40 ${NOT_DIVIDES_MACRO} 6`, {
+      macros: { ...TEX_MACROS },
+    });
+    const issues = await overlapsIn(
+      `<style>${css}</style><p style="font-size:40px">${tex}</p>`,
     );
     expect(issues).toEqual([]);
   });

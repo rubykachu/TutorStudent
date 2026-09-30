@@ -352,25 +352,25 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tong-chia-het-tom-tat": {
     kind: "sumBars",
-    a: 10,
-    b: 15,
-    m: 5,
+    a: 6,
+    b: 9,
+    m: 3,
     op: "plus",
     mode: "still",
   },
-  "tong-goi-y-15-20": {
+  "tong-goi-y-8-12": {
     kind: "sumBars",
-    a: 15,
-    b: 20,
-    m: 5,
+    a: 8,
+    b: 12,
+    m: 4,
     op: "plus",
     mode: "hint",
   },
-  "tong-giai-24-36": {
+  "tong-giai-10-15": {
     kind: "sumBars",
-    a: 24,
-    b: 36,
-    m: 12,
+    a: 10,
+    b: 15,
+    m: 5,
     op: "plus",
     mode: "steps",
   },
@@ -429,9 +429,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "plus",
     mode: "still",
   },
-  "hieu-30-12-6": {
+  "hieu-24-12-6": {
     kind: "sumBars",
-    a: 30,
+    a: 24,
     b: 12,
     m: 6,
     op: "minus",
@@ -439,12 +439,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hieu-chia-het-ba-dong": {
     kind: "rows",
-    label: "30 và 12 chia hết cho 6 nên hiệu chia hết cho 6",
+    label: "24 và 12 chia hết cho 6 nên hiệu chia hết cho 6",
     rows: [
-      { tex: "30 \\chiahet \\concept{violet}{6}" },
+      { tex: "24 \\chiahet \\concept{violet}{6}" },
       { tex: "12 \\chiahet \\concept{violet}{6}" },
       {
-        tex: "(30 - 12) \\chiahet \\concept{violet}{6}",
+        tex: "(24 - 12) \\chiahet \\concept{violet}{6}",
         tag: { text: "hiệu chia hết", color: "teal" },
       },
     ],
@@ -464,10 +464,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "minus",
     mode: "still",
   },
-  "hieu-30-14-6": {
+  "hieu-24-10-6": {
     kind: "sumBars",
-    a: 30,
-    b: 14,
+    a: 24,
+    b: 10,
     m: 6,
     op: "minus",
     mode: "steps",
@@ -475,15 +475,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "hieu-khong-ba-dong": {
     kind: "rows",
     label:
-      "30 chia hết cho 6, 14 không chia hết cho 6 nên hiệu không chia hết cho 6",
+      "24 chia hết cho 6, 10 không chia hết cho 6 nên hiệu không chia hết cho 6",
     rows: [
-      { tex: "30 \\chiahet 6", tag: { text: "chia hết", color: "teal" } },
+      { tex: "24 \\chiahet 6", tag: { text: "chia hết", color: "teal" } },
       {
-        tex: "14 \\khongchiahet 6",
+        tex: "10 \\khongchiahet 6",
         tag: { text: "không chia hết", color: "pink" },
       },
       {
-        tex: "(30 - 14) \\khongchiahet 6",
+        tex: "(24 - 10) \\khongchiahet 6",
         tag: { text: "hiệu không chia hết", color: "pink" },
       },
     ],

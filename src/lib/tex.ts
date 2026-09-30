@@ -10,14 +10,16 @@ export const CONCEPT_MACRO = "\\concept";
 
 // Divisibility relations as Vietnamese textbooks print them: "a ⋮ b" reads "a
 // chia hết cho b", and the same sign struck through reads "không chia hết".
-// The content lint recognises both names (`comparisonValue`).
+// The strike is a slash laid over the dots (`\mathrlap`), not `\not`, whose
+// slash is as wide as an equals sign and would reach the next number. The
+// content lint recognises both names (`comparisonValue`).
 export const DIVIDES_MACRO = "\\chiahet";
 export const NOT_DIVIDES_MACRO = "\\khongchiahet";
 
 export const TEX_MACROS: Readonly<Record<string, string>> = {
   [CONCEPT_MACRO]: "\\htmlData{concept=#1}{#2}",
   [DIVIDES_MACRO]: "\\mathrel{\\vdots}",
-  [NOT_DIVIDES_MACRO]: "\\mathrel{\\not\\vdots}",
+  [NOT_DIVIDES_MACRO]: "\\mathrel{\\mathrlap{/}\\vdots}",
 };
 
 // The data attribute KaTeX writes for the macro above.

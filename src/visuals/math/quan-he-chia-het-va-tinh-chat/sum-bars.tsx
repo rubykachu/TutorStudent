@@ -27,6 +27,7 @@ function BagRow({ count, m }: { count: number; m: number }) {
           count={m}
           size={m}
           tone="bag"
+          compact
           label={`Túi ${i + 1}: ${m} cái`}
         />
       ))}
@@ -35,6 +36,7 @@ function BagRow({ count, m }: { count: number; m: number }) {
           count={left}
           size={m}
           tone="left"
+          compact
           label={`Còn thừa ${left} cái`}
         />
       )}
@@ -53,7 +55,7 @@ function Operand({
 }) {
   return (
     <div className="flex w-full flex-col items-center gap-1">
-      <p className="text-center text-body font-semibold">{`${label}: ${count}`}</p>
+      <p className="text-center text-caption font-semibold">{`${label}: ${count}`}</p>
       <BagRow count={count} m={m} />
     </div>
   );
@@ -75,14 +77,14 @@ function Equations({ spec }: { spec: Spec }) {
       : { a: `${a}`, b: `${b}`, r: `${result}` };
   const relation = result % m === 0 ? "\\chiahet" : "\\khongchiahet";
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-0.5">
       <Formula
         tex={`${paint.a} ${sign} ${paint.b} = ${paint.r}`}
-        className="text-block md:text-block-lg"
+        className="text-body-lg md:text-block"
       />
       <Formula
         tex={`${paint.r} ${relation} \\concept{violet}{${m}}`}
-        className="text-block md:text-block-lg"
+        className="text-body-lg md:text-block"
       />
     </div>
   );
@@ -100,7 +102,7 @@ function SumBarsView({ spec, step }: { spec: Spec; step: number }) {
     { color: "pink", name: "Còn thừa" },
   ] as const;
   return (
-    <div className="flex w-full flex-col items-center gap-4">
+    <div className="flex w-full flex-col items-center gap-2">
       <Operand label={labels[0]} count={a} m={m} />
       <Reveal
         shown={all || step >= 1}

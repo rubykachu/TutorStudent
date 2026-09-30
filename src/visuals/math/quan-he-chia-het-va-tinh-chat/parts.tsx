@@ -102,17 +102,22 @@ export function BagBox({
   size,
   tone,
   label,
+  compact = false,
 }: {
   count: number;
   size: number;
   tone: BoxTone;
   label: string;
+  // Smaller dots, for pictures that stack several rows of bags.
+  compact?: boolean;
 }) {
   const columns = Math.min(bagColumns(size), Math.max(count, 1));
   return (
     <div
       className={`rounded-xl border-2 p-1.5 ${BOX_TONES[tone]}`}
-      style={{ width: `calc(${columns} * 1.25rem + 1.25rem)` }}
+      style={{
+        width: `calc(${columns} * ${compact ? 0.85 : 1.25}rem + ${compact ? 1 : 1.25}rem)`,
+      }}
     >
       {tone === "pending" ? (
         <p

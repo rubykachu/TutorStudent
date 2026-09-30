@@ -512,8 +512,8 @@
       "blocks": [
         {
           "type": "visual",
-          "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-30-12-6",
-          "caption": "Bớt 12 cái khỏi 30 cái, các túi đều 6 cái."
+          "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-24-12-6",
+          "caption": "Bớt 12 cái khỏi 24 cái, các túi đều 6 cái."
         },
         {
           "type": "group",
@@ -559,8 +559,8 @@
       "blocks": [
         {
           "type": "visual",
-          "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-30-14-6",
-          "caption": "Bớt 14 cái khỏi 30 cái, các túi đều 6 cái."
+          "visualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-24-10-6",
+          "caption": "Bớt 10 cái khỏi 24 cái, các túi đều 6 cái."
         },
         {
           "type": "group",
@@ -2510,7 +2510,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.tong-goi-y-15-20"
+        "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.tong-goi-y-8-12"
       },
       "difficulty": 2,
       "options": [
@@ -2550,13 +2550,13 @@
       }
     },
     {
-      "id": "quan-he-chia-het-va-tinh-chat.ex.mua-hop-24-36",
+      "id": "quan-he-chia-het-va-tinh-chat.ex.mua-hop-10-15",
       "type": "numeric",
       "cardIds": ["quan-he-chia-het-va-tinh-chat.card.tong-chia-het"],
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ xếp 24 cái bánh và 36 cái bánh vào các hộp 12 cái, cả hai đều vừa hết. Mẹ dùng tất cả bao nhiêu hộp?"
+          "text": "Mẹ xếp 10 cái bánh và 15 cái bánh vào các hộp 5 cái, cả hai đều vừa hết. Mẹ dùng tất cả bao nhiêu hộp?"
         }
       ],
       "hints": {
@@ -2566,7 +2566,7 @@
             "index": 0
           }
         ],
-        "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.tong-giai-24-36"
+        "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.tong-giai-10-15"
       },
       "difficulty": 2,
       "answer": {
@@ -2574,7 +2574,7 @@
         "value": 5
       },
       "check": {
-        "expr": "(24+36):12"
+        "expr": "(10+15):5"
       }
     },
     {
