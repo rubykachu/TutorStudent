@@ -3,6 +3,7 @@
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
 import { Fragment, useId, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
@@ -94,6 +95,9 @@ type ChipRowProps = {
 // sum in amber.
 function ChipRow({ numbers, groups, arranged, summed, scope }: ChipRowProps) {
   const transition = useVisualTransition();
+  // With reduced motion nothing slides: the DOM is final as soon as it renders.
+  const reducedMotion = usePrefersReducedMotion();
+  const plain = scope === undefined || reducedMotion;
   const dense = numbers.length >= DENSE_FROM;
   const segments = arranged
     ? arrangedSegments(numbers.length, groups)
@@ -103,8 +107,8 @@ function ChipRow({ numbers, groups, arranged, summed, scope }: ChipRowProps) {
     return (
       <motion.span
         key={index}
-        layout={scope !== undefined}
-        layoutId={scope === undefined ? undefined : `${scope}-${index}`}
+        layout={!plain}
+        layoutId={plain ? undefined : `${scope}-${index}`}
         transition={transition}
         className="inline-flex"
       >
@@ -126,10 +130,10 @@ function ChipRow({ numbers, groups, arranged, summed, scope }: ChipRowProps) {
             chip(segment.index)
           ) : (
             <motion.span
-              initial={scope === undefined ? false : { opacity: 0 }}
+              initial={plain ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={transition}
-              className={`relative inline-flex items-center gap-1.5 rounded-2xl border-2 px-2 py-1.5 ${CONCEPT_CLASSES.lime.border}`}
+              className={`relative inline-flex items-center gap-1.5 rounded-2xl border-2 px-2 pt-4 pb-1.5 ${CONCEPT_CLASSES.lime.border}`}
             >
               <ConceptMark
                 color="lime"
@@ -137,9 +141,7 @@ function ChipRow({ numbers, groups, arranged, summed, scope }: ChipRowProps) {
               />
               {summed ? (
                 <motion.span
-                  initial={
-                    scope === undefined ? false : { opacity: 0, scale: 0.8 }
-                  }
+                  initial={plain ? false : { opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={transition}
                   className="inline-flex"

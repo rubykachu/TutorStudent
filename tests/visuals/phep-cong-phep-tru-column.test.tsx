@@ -118,6 +118,15 @@ describe("ColumnTry", () => {
   });
 });
 
+describe("Column borrow chips", () => {
+  it("shows -1 +10 on a place that lends and borrows, +10 on one that only borrows", () => {
+    // 532 − 247: units borrow only, tens lend and borrow, hundreds only lend.
+    render(<Column op="sub" a={532} b={247} mode="still" />);
+    expect(screen.getByText("+10")).toBeInTheDocument();
+    expect(screen.getByText("−1 +10")).toBeInTheDocument();
+  });
+});
+
 describe("Column", () => {
   const modes: StepsMode[] = ["still", "full", "hint"];
   const cases = [

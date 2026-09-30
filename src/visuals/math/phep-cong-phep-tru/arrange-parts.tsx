@@ -99,7 +99,7 @@ export function NumberChip({
     <span
       className={`inline-flex min-w-12 items-center justify-center rounded-xl border-2 bg-surface font-heading font-bold tabular-nums ${classes.border} ${classes.text} ${
         dense
-          ? "px-2 py-1 text-body"
+          ? "px-2 py-1 text-block"
           : "px-3 py-1.5 text-title md:text-title-lg"
       }`}
     >
@@ -109,7 +109,7 @@ export function NumberChip({
 }
 
 // A number that fades and drops in whenever its value changes.
-export function Swap({ value }: { value: string }) {
+export function FadeNumber({ value }: { value: string }) {
   const transition = useVisualTransition();
   return (
     <motion.span

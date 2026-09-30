@@ -2,7 +2,8 @@
 
 import { ArrowDownUp } from "lucide-react";
 import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { ConceptColor } from "@/schema/content";
 import {
   formatNumber,
@@ -253,6 +254,7 @@ function NameTag({
   return (
     <g>
       <rect
+        {...decorative}
         x={left}
         y={y}
         width={width}
@@ -348,7 +350,7 @@ export function EquationLabels({ op, a, b }: { op: Op; a: number; b: number }) {
         );
       })}
       {placeTags(above).map((tag) => (
-        <g key={`above-${tag.role.name}`}>
+        <Fragment key={`above-${tag.role.name}`}>
           <NameTag role={tag.role} cx={tag.cx} y={tagTop} width={tag.width} />
           {tag.targets.map((target) => (
             <Arrow
@@ -358,10 +360,10 @@ export function EquationLabels({ op, a, b }: { op: Op; a: number; b: number }) {
               color={tag.role.color}
             />
           ))}
-        </g>
+        </Fragment>
       ))}
       {placeTags(below).map((tag) => (
-        <g key={`below-${tag.role.name}`}>
+        <Fragment key={`below-${tag.role.name}`}>
           <NameTag
             role={tag.role}
             cx={tag.cx}
@@ -376,7 +378,7 @@ export function EquationLabels({ op, a, b }: { op: Op; a: number; b: number }) {
               color={tag.role.color}
             />
           ))}
-        </g>
+        </Fragment>
       ))}
     </svg>
   );
@@ -471,25 +473,35 @@ const PENDING_OPACITY = 0.35;
 const BAR_PAD = 20;
 const BAR_AVAIL = VIEW_W - 2 * BAR_PAD;
 const BAR_H = 40;
-const BAR_LABEL_FS = 20;
-const BAR_LABEL_Y = 18;
-const BAR_TOP = 30;
-const BRACE_Y = BAR_TOP + BAR_H + 10;
+const BAR_LABEL_FS = 24;
+const RESULT_LABEL_FS = 30;
+// Text boxes are taller than their digits, so labels keep a clear band of
+// their own above, below and beside every bar.
+const BAR_LABEL_Y = 16;
+const BAR_TOP = 48;
+const BRACE_Y = BAR_TOP + BAR_H + 12;
 const BRACE_DEPTH = 12;
-const SEGMENT_SLACK = 14;
+const BRACE_LABEL_Y = BRACE_Y + BRACE_DEPTH + 26;
+const SEGMENT_SLACK = 16;
+// A brace stops this far short of a neighbouring shape.
+const BRACE_INSET = 4;
 
+// `backing` marks a layer that sits on top of or under a bar by design.
 function SvgReveal({
   shown,
   pending = false,
+  backing = false,
   children,
 }: {
   shown: boolean;
   pending?: boolean;
+  backing?: boolean;
   children: ReactNode;
 }) {
   const transition = useVisualTransition();
   return (
     <motion.g
+      {...(backing ? decorative : {})}
       initial={false}
       animate={{ opacity: shown ? 1 : pending ? PENDING_OPACITY : 0 }}
       transition={transition}
@@ -507,7 +519,7 @@ function segmentWidths(
   total: number,
 ): [number, number] {
   const min = labels.map(
-    (label) => label.length * BAR_LABEL_FS * GLYPH_EM + SEGMENT_SLACK,
+    (label) => label.length * RESULT_LABEL_FS * GLYPH_EM + SEGMENT_SLACK,
   );
   const sum = values[0] + values[1];
   const raw = values.map((value, i) =>
@@ -517,16 +529,27 @@ function segmentWidths(
   return [(raw[0] ?? 0) * scale, (raw[1] ?? 0) * scale];
 }
 
-function Brace({ x0, x1, y }: { x0: number; x1: number; y: number }) {
+function Brace({
+  x0,
+  x1,
+  y,
+  color,
+}: {
+  x0: number;
+  x1: number;
+  y: number;
+  color: ConceptColor;
+}) {
   const mid = (x0 + x1) / 2;
   const r = 7;
   return (
     <path
+      {...decorative}
       d={`M${x0},${y} v${BRACE_DEPTH - r} q0,${r} ${r},${r} H${mid - r} q${r},0 ${r},${r} q0,-${r} ${r},-${r} H${x1 - r} q${r},0 ${r},-${r} v-${BRACE_DEPTH - r}`}
       fill="none"
       strokeWidth={3}
       strokeLinecap="round"
-      className={CONCEPT_CLASSES.amber.stroke}
+      className={CONCEPT_CLASSES[color].stroke}
     />
   );
 }
@@ -557,8 +580,6 @@ function BarLabel({
     </text>
   );
 }
-
-const RESULT_LABEL_FS = 26;
 
 function AddBars({
   a,
@@ -606,10 +627,10 @@ function AddBars({
         {formatNumber(b)}
       </BarLabel>
       <SvgReveal shown={braceShown} pending>
-        <Brace x0={xa} x1={xb + wb} y={BRACE_Y} />
+        <Brace x0={xa} x1={xb + wb} y={BRACE_Y} color="amber" />
         <BarLabel
           x={mid}
-          y={BRACE_Y + BRACE_DEPTH + 26}
+          y={BRACE_LABEL_Y}
           color="amber"
           size={RESULT_LABEL_FS}
         >
@@ -644,6 +665,7 @@ function SubBars({
   return (
     <>
       <rect
+        {...decorative}
         x={BAR_PAD}
         y={BAR_TOP}
         width={BAR_AVAIL}
@@ -662,10 +684,10 @@ function SubBars({
         rx={6}
         className={CONCEPT_CLASSES.pink.fill}
       />
-      <BarLabel x={cutX + wb / 2} y={lowerTop + lowerH + 18} color="pink">
+      <BarLabel x={cutX + wb / 2} y={lowerTop + lowerH + 24} color="pink">
         {formatNumber(b)}
       </BarLabel>
-      <SvgReveal shown={cutShown}>
+      <SvgReveal shown={cutShown} backing>
         <rect
           x={BAR_PAD}
           y={BAR_TOP}
@@ -702,10 +724,10 @@ function SubBars({
         />
       </SvgReveal>
       <SvgReveal shown={cutShown} pending>
-        <Brace x0={BAR_PAD} x1={cutX} y={BRACE_Y} />
+        <Brace x0={BAR_PAD} x1={cutX - BRACE_INSET} y={BRACE_Y} color="teal" />
         <BarLabel
           x={BAR_PAD + wr / 2}
-          y={BRACE_Y + BRACE_DEPTH + 26}
+          y={BRACE_LABEL_Y}
           color="teal"
           size={RESULT_LABEL_FS}
         >
@@ -734,7 +756,7 @@ function BarFigure({
   const value = resultOf(op, a, b);
   const answerShown = showAnswer && step >= BAR_RESULT_STEP;
   const answer = answerShown ? formatNumber(value) : "?";
-  const height = op === "add" ? 136 : 160;
+  const height = op === "add" ? 164 : 182;
   const Bars = op === "add" ? AddBars : SubBars;
   return (
     <div className="flex w-full flex-col items-center gap-4">
@@ -831,9 +853,11 @@ function Chip({
   startX?: number;
 }) {
   const transition = useVisualTransition();
+  // Reduced motion draws the final place at once, so nothing is mid-slide.
+  const reduced = usePrefersReducedMotion();
   return (
     <motion.span
-      initial={startX === 0 ? false : { x: startX }}
+      initial={startX === 0 || reduced ? false : { x: startX }}
       animate={{ x: 0 }}
       transition={transition}
       style={{ width }}
@@ -898,15 +922,22 @@ function SwapFigure({
         <Total>= {total}</Total>
       </div>
       <div className="flex min-h-touch items-center justify-center gap-3">
-        <Reveal shown={secondShown}>
-          <span className="flex items-center gap-2 text-body text-concept-sky md:text-body-lg">
-            <ConceptMark color="sky" className="size-5" />
-            <ArrowDownUp aria-hidden className="size-6" />
-            <span className="text-foreground">Đổi chỗ</span>
-          </span>
-        </Reveal>
+        <div
+          style={{ width: wa + wb + PLUS_BOX_PX }}
+          className="flex justify-center"
+        >
+          <Reveal shown={secondShown}>
+            <span className="flex items-center gap-2 text-body text-concept-sky md:text-body-lg">
+              <ConceptMark color="sky" className="size-5" />
+              <ArrowDownUp aria-hidden className="size-6" />
+              <span className="text-foreground">Đổi chỗ</span>
+            </span>
+          </Reveal>
+        </div>
         <Reveal shown={equalShown}>
-          <span className="font-heading text-title font-bold">=</span>
+          <span className="inline-block min-w-16 text-left font-heading text-title font-bold">
+            =
+          </span>
         </Reveal>
       </div>
       <Reveal

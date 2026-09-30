@@ -13,11 +13,11 @@ import {
   BAR_FILL,
   DeltaToken,
   EQUATION_LINE,
+  FadeNumber,
   NamedMark,
   NumberChip,
   OP_SIGN,
   RoundBadge,
-  Swap,
 } from "./arrange-parts";
 import { shiftRound } from "./pair-validators";
 import { formatNumber, type Op, type StepsMode } from "./types";
@@ -81,7 +81,7 @@ function AddPicture({
                 <DeltaToken value={token} />
               </Reveal>
               <NumberChip color="blue">
-                <Swap value={formatNumber(value)} />
+                <FadeNumber value={formatNumber(value)} />
               </NumberChip>
             </div>
           </div>
@@ -120,7 +120,7 @@ function BarRow({
         <span
           className={`font-heading text-block font-bold tabular-nums ${CONCEPT_CLASSES[color].text}`}
         >
-          <Swap value={formatNumber(value)} />
+          <FadeNumber value={formatNumber(value)} />
         </span>
         <Reveal shown={showToken}>
           <DeltaToken value={token} />
@@ -298,7 +298,7 @@ export function Shift({ op, a, b, delta, mode }: ShiftProps) {
         aria-label={label}
         className="flex w-full flex-col items-center gap-3"
       >
-        <Picture op={op} a={a} b={b} delta={delta} moved={false} />
+        <ResultLine op={op} a={a} b={b} hidden={false} />
         <ArrowDown aria-hidden className="size-5 text-muted-foreground" />
         <Picture op={op} a={a} b={b} delta={delta} moved />
         <ResultLine op={op} a={a2} b={b2} hidden={false} />

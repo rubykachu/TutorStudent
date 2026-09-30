@@ -67,8 +67,9 @@ type GridColumn = {
   // Sub: the top digit after lending or borrowing, drawn above the crossed
   // original; null while the top digit stands as it is.
   reduced: number | null;
-  // Sub: the "+10" chip beside the reduced top digit.
-  chip: boolean;
+  // Sub: chip above the reduced top digit: "+10" for a place that only
+  // borrows, "−1 +10" for one that also lent a ten to the place on its right.
+  chip: string | null;
   result: ResultCell;
   working: boolean;
 };
@@ -96,17 +97,28 @@ function CarryBadge() {
   );
 }
 
-function BorrowMark({ value, chip }: { value: number | null; chip: boolean }) {
+function BorrowMark({
+  value,
+  chip,
+}: {
+  value: number | null;
+  chip: string | null;
+}) {
   return (
-    <span className="inline-flex items-center gap-1 text-body font-bold tabular-nums">
-      {chip && (
-        <span className="rounded-md border-2 border-muted-foreground px-1 text-caption">
-          +10
+    <span className="inline-flex flex-col items-center text-body font-bold leading-tight tabular-nums">
+      {chip !== null && (
+        <span className="whitespace-nowrap rounded-md border-2 border-muted-foreground px-1 text-caption">
+          {chip}
         </span>
       )}
       {value === null ? null : formatNumber(value)}
     </span>
   );
+}
+
+function borrowChip(borrowed: number, lent: number): string | null {
+  if (borrowed === 0) return null;
+  return lent > 0 ? "−1 +10" : "+10";
 }
 
 function ColumnGrid({
@@ -132,7 +144,7 @@ function ColumnGrid({
       {ordered.map((col) => (
         <div
           key={`top-${col.place}`}
-          className={`h-10 ${cellClass(col.working, "top")}`}
+          className={`${op === "sub" ? "h-14" : "h-10"} ${cellClass(col.working, "top")}`}
         >
           <Reveal shown={op === "add" ? col.carry : col.reduced !== null}>
             {op === "add" ? (
@@ -293,7 +305,7 @@ function columnsAt(
         reducedNow && (bin > 0 || own > 0)
           ? (calc.a ?? 0) - bin + 10 * own
           : null,
-      chip: own > 0,
+      chip: borrowChip(own, bin),
       result,
       working: highlight && step >= 1 && place === step - 1 && place < active,
     };
@@ -305,7 +317,7 @@ function columnsAt(
       b: null,
       carry: !hidden && columns.length - 1 < step,
       reduced: null,
-      chip: false,
+      chip: null,
       result:
         finalStep && !hidden
           ? { kind: "digit", digit: lead }
@@ -440,7 +452,7 @@ export function ColumnTry({
         op === "sub" && (bin > 0 || took > 0)
           ? (c.a ?? 0) - bin + 10 * took
           : null,
-      chip: op === "sub" && took > 0,
+      chip: op === "sub" ? borrowChip(took, bin) : null,
       result,
       working,
     };
@@ -453,7 +465,7 @@ export function ColumnTry({
       b: null,
       carry: handedOn(last - 1) > 0,
       reduced: null,
-      chip: false,
+      chip: null,
       result: model.lead > 0 ? { kind: "pending" } : { kind: "blank" },
       working: false,
     });
