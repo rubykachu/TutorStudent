@@ -1,5 +1,6 @@
 import {
   copyFileSync,
+  existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
@@ -8,7 +9,8 @@ import {
 } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
-import { createElement } from "react";
+import { pathToFileURL } from "node:url";
+import { createElement, type ReactElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Owl } from "@/mascot/owl";
 import { COMPOSITION_DIR, GLOBALS_CSS, RENDER } from "../config";
@@ -99,12 +101,34 @@ function owlScript(): string {
   return `window.OWL_SVG = ${JSON.stringify(markup)};\n`;
 }
 
+// Pictures a lesson's videos share with its visuals, such as its characters:
+// the optional `video/projects/<lessonId>/figures.tsx` default-exports a map
+// of name to React element, drawn once to static markup as window.FIGURES so
+// the video draws them exactly as the app does.
+export const FIGURES_FILE = "figures.tsx";
+
+async function figuresScript(lessonDir: string): Promise<string> {
+  const file = path.join(lessonDir, FIGURES_FILE);
+  if (!existsSync(file)) return "window.FIGURES = {};\n";
+  const figures = (await import(pathToFileURL(file).href)).default as Record<
+    string,
+    ReactElement
+  >;
+  const markup = Object.fromEntries(
+    Object.entries(figures).map(([name, element]) => [
+      name,
+      renderToStaticMarkup(element),
+    ]),
+  );
+  return `window.FIGURES = ${JSON.stringify(markup)};\n`;
+}
+
 // Writes the render folder for one video and returns its path.
-export function buildSite(
+export async function buildSite(
   projectDir: string,
   site: string,
   timing: { duration: number },
-): string {
+): Promise<string> {
   rmSync(site, { recursive: true, force: true });
   mkdirSync(site, { recursive: true });
   const html = readFileSync(path.join(projectDir, "index.html"), "utf8");
@@ -140,6 +164,10 @@ export function buildSite(
     `${tokensCss()}${copyFonts(site)}`,
   );
   writeFileSync(path.join(site, "owl.js"), owlScript());
+  writeFileSync(
+    path.join(site, "figures.js"),
+    await figuresScript(path.dirname(projectDir)),
+  );
   console.log(
     `video: composition at ${path.relative(process.cwd(), site)} (${RENDER.width}×${RENDER.height})`,
   );

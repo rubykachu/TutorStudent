@@ -1,0 +1,121 @@
+{
+  "title": "Cảm hoá nghĩa là gì?",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s04-duy-nhat",
+    "at": 0.8
+  },
+  "scenes": [
+    {
+      "id": "s01-cau-hoi",
+      "sentences": [
+        {
+          "text": "Cáo nói: “Mình chưa được cảm hoá”.",
+          "quote": true
+        },
+        {
+          "text": "Hoàng tử bé nghe cáo nói một từ lạ."
+        },
+        {
+          "text": "Cậu hỏi: “Cảm hoá” nghĩa là gì?",
+          "quote": true
+        },
+        {
+          "text": "Cậu hỏi đi hỏi lại tới ba lần."
+        }
+      ]
+    },
+    {
+      "id": "s02-giai-thich",
+      "sentences": [
+        {
+          "text": "Cáo nói, cảm hoá nghĩa là “làm cho gần gũi hơn”.",
+          "quote": true
+        },
+        {
+          "text": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt.",
+          "rule": true
+        },
+        {
+          "text": "Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-tram-nghin",
+      "sentences": [
+        {
+          "text": "Lúc đầu, hai bạn chưa quen nhau."
+        },
+        {
+          "text": "Với cáo, cậu chỉ là “một cậu bé giống như cả trăm nghìn cậu bé”.",
+          "quote": true
+        },
+        {
+          "text": "Cáo nói: “mình không cần đến bạn”.",
+          "quote": true
+        },
+        {
+          "text": "Với cậu, cáo cũng chỉ là “một con cáo giống như cả trăm nghìn con cáo”.",
+          "quote": true
+        },
+        {
+          "text": "Chưa cảm hoá thì chỉ là một trong trăm nghìn.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-duy-nhat",
+      "sentences": [
+        {
+          "text": "Nhưng nếu được cảm hoá thì sao?"
+        },
+        {
+          "text": "Cáo nói: “tụi mình sẽ cần đến nhau”.",
+          "quote": true
+        },
+        {
+          "text": "“Lúc đó bạn đối với mình sẽ là duy nhất trên đời.”",
+          "quote": true
+        },
+        {
+          "text": "Đã cảm hoá thì là duy nhất trên đời.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt.",
+          "rule": true
+        },
+        {
+          "text": "Đã cảm hoá thì là duy nhất trên đời.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "nghia-cam-hoa",
+      "from": "s01-cau-hoi",
+      "to": "s02-giai-thich",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-cam-hoa"]
+    },
+    {
+      "id": "duy-nhat",
+      "from": "s03-tram-nghin",
+      "to": "s04-duy-nhat",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.duy-nhat"]
+    }
+  ]
+}

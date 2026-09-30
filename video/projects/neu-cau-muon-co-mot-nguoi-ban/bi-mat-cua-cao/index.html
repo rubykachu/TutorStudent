@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Lời chia tay và bí mật của cáo" (lesson
+  neu-cau-muon-co-mot-nguoi-ban): the fox is sad at the farewell but keeps
+  the colour of the wheat, gives its secret "người ta chỉ thấy rõ với trái
+  tim", and the prince repeats it to remember.
+  Built by `pnpm video:build neu-cau-muon-co-mot-nguoi-ban bi-mat-cua-cao`,
+  which injects window.TIMING (scene windows and spoken word times).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Lời chia tay và bí mật của cáo</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .fox { --c: var(--color-concept-pink); }
+      .prince { --c: var(--color-concept-amber); }
+      .field { position: absolute; left: 300px; top: 350px; width: 680px; height: 170px; }
+      .icon { position: absolute; width: 200px; height: 200px; }
+      .line.narrow { left: 330px; width: 820px; font-size: 38px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="line-1" class="line" style="top: 370px"><span class="dash">–</span> A!… Mình sẽ khóc mất.</div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="sad-2" class="abs chip" style="left: 330px; top: 270px">buồn, muốn khóc</div>
+          <div id="calm-2" class="abs chip fox" style="left: 690px; top: 270px">không hối tiếc</div>
+          <svg id="field-2" aria-hidden="true" class="field" viewBox="0 0 680 170"></svg>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="line-3" class="line" style="top: 50px"><span class="dash">–</span> Đây là bí mật của mình.</div>
+          <svg id="gift-3" aria-hidden="true" class="icon" style="left: 540px; top: 200px" viewBox="0 0 100 100">
+            <rect x="14" y="40" width="72" height="50" rx="6" class="fill-concept-pink" />
+            <rect x="8" y="28" width="84" height="16" rx="5" class="fill-concept-pink" />
+            <rect x="44" y="28" width="12" height="62" class="fill-concept-amber" />
+            <path d="M50 28 C40 10 22 14 30 26 Z M50 28 C60 10 78 14 70 26 Z" class="fill-concept-amber" />
+          </svg>
+          <svg id="heart-3" aria-hidden="true" class="icon" style="left: 400px; top: 220px" viewBox="0 0 100 100">
+            <path d="M50 88 C20 66 8 50 8 32 C8 18 19 10 30 10 C40 10 46 16 50 24 C54 16 60 10 70 10 C81 10 92 18 92 32 C92 50 80 66 50 88Z" class="fill-concept-pink" />
+          </svg>
+          <svg id="eye-3" aria-hidden="true" class="icon" style="left: 690px; top: 220px" viewBox="0 0 100 100">
+            <path d="M6 50 Q50 12 94 50 Q50 88 6 50Z" class="fill-surface stroke-foreground" stroke-width="4" />
+            <circle cx="50" cy="50" r="13" class="fill-foreground" />
+            <line id="eye-slash" x1="18" y1="84" x2="82" y2="16" class="stroke-muted-foreground" stroke-width="7" stroke-linecap="round" />
+          </svg>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="line-4a" class="line narrow" style="top: 50px"><span class="dash">–</span> <span id="said-4a" class="mark">Điều cốt lõi vô hình trong mắt trần.</span></div>
+          <div id="line-4b" class="line narrow" style="top: 180px"><span class="dash">–</span> <span id="said-4b" class="mark">Điều cốt lõi vô hình trong mắt trần</span> <span class="dash">–</span> hoàng tử bé lặp lại, để cho nhớ.</div>
+          <div id="stress-4" class="abs chip" style="left: 400px; top: 420px">nhấn mạnh</div>
+          <div id="remember-4" class="abs chip" style="left: 700px; top: 420px">nhớ lâu</div>
+        </section>
+        <section id="s5" class="scene layer">
+          <svg id="heart-5" aria-hidden="true" class="icon" style="left: 540px; top: 130px" viewBox="0 0 100 100">
+            <path d="M50 88 C20 66 8 50 8 32 C8 18 19 10 30 10 C40 10 46 16 50 24 C54 16 60 10 70 10 C81 10 92 18 92 32 C92 50 80 66 50 88Z" class="fill-concept-pink" />
+          </svg>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, W, owl, figure, pop, rise, fade, hide, tint, pose, scenes, finish } = window.LV;
+
+        // ---------- DOM ----------
+        const face = (parent, names, left, top, size = 180) =>
+          figure(parent, names, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
+        const fox1 = face($("#s1"), ["fox-calm", "fox-sad"], 360, 110);
+        const prince1 = face($("#s1"), ["prince-calm", "prince-sad"], 720, 110);
+        const fox2 = face($("#s2"), ["fox-sad", "fox-happy"], 360, 60);
+        const prince2 = face($("#s2"), ["prince-sad"], 740, 60);
+        const fox3 = face($("#s3"), ["fox-calm"], 300, 200);
+        const prince3 = face($("#s3"), ["prince-calm"], 800, 200);
+        const fox4 = face($("#s4"), ["fox-calm"], 180, 40, 120);
+        const prince4 = face($("#s4"), ["prince-calm"], 180, 190, 120);
+        const fox5 = face($("#s5"), ["fox-happy"], 320, 150);
+        const prince5 = face($("#s5"), ["prince-happy"], 780, 150);
+        // A field of wheat: stalks with golden ears, drawn once.
+        const stalks = Array.from({ length: 14 }, (_, i) => {
+          const x = 30 + i * 47;
+          const ears = [0, 1, 2, 3]
+            .map((k) => `<ellipse cx="${x + (k % 2 ? 7 : -7)}" cy="${30 + k * 16}" rx="8" ry="13" class="fill-concept-amber" />`)
+            .join("");
+          return `<g class="stalk"><line x1="${x}" y1="170" x2="${x}" y2="24" class="stroke-concept-amber" stroke-width="4" />${ears}</g>`;
+        });
+        $("#field-2").innerHTML = stalks.join("");
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-chia-tay"],
+          ["#s2", "s02-mau-lua-mi"],
+          ["#s3", "s03-bi-mat"],
+          ["#s4", "s04-lap-lai"],
+          ["#s5", "s05-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: the farewell ----------
+        {
+          const sid = "s01-chia-tay";
+          hide(["#line-1"]);
+          pop([fox1.wrap, prince1.wrap], start(sid) + 0.2, { from: 0.6 });
+          tl.to(prince1.wrap, { left: 900, duration: 1.4, ease: "power2.inOut" }, W(sid, "ra"));
+          rise("#line-1", W(sid, "cáo", 2));
+          pose(fox1, "fox-sad", W(sid, "khóc"));
+          pose(prince1, "prince-sad", W(sid, "buồn"));
+        }
+
+        // ---------- s02: the colour of the wheat ----------
+        {
+          const sid = "s02-mau-lua-mi";
+          hide(["#sad-2", "#calm-2", ...$$("#field-2 .stalk")]);
+          pop([fox2.wrap, prince2.wrap], start(sid) + 0.2, { from: 0.6 });
+          rise($$("#field-2 .stalk"), W(sid, "lúa"), { stagger: 0.06, y: 60 });
+          pose(fox2, "fox-happy", W(sid, "được", 2));
+          pose(bird, "happy", W(sid, "được", 2));
+          tl.fromTo(prince2.wrap, { scale: 1 }, { scale: 1.15, duration: 0.3, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "tóc"));
+          rise("#sad-2", W(sid, "buồn"));
+          rise("#calm-2", W(sid, "hối"));
+          tl.fromTo($$("#field-2 .stalk"), { y: 0 }, { y: -10, duration: 0.3, yoyo: true, repeat: 1, stagger: 0.04, immediateRender: false }, W(sid, "nhớ"));
+        }
+
+        // ---------- s03: the secret ----------
+        {
+          const sid = "s03-bi-mat";
+          hide(["#line-3", "#gift-3", "#heart-3", "#eye-3", "#eye-slash"]);
+          pose(bird, "idle", start(sid));
+          pop([fox3.wrap, prince3.wrap], start(sid) + 0.2, { from: 0.6 });
+          pop("#gift-3", W(sid, "quà"), { from: 0.3 });
+          fade([fox3.wrap, prince3.wrap, "#gift-3"], W(sid, "đây") - 0.3, 0.3);
+          rise("#line-3", W(sid, "đây"));
+          pop("#heart-3", W(sid, "trái"), { from: 0.3 });
+          pop("#eye-3", W(sid, "mắt"), { from: 0.3 });
+          tl.fromTo("#eye-slash", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, immediateRender: false }, W(sid, "mắt", 2));
+          tl.fromTo("#heart-3", { scale: 1 }, { scale: 1.12, duration: 0.3, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "quan"));
+        }
+
+        // ---------- s04: repeating the fox's words ----------
+        {
+          const sid = "s04-lap-lai";
+          hide(["#line-4b", prince4.wrap, "#stress-4", "#remember-4"]);
+          pop(fox4.wrap, start(sid) + 0.2);
+          rise("#line-4a", start(sid) + 0.2);
+          pop(prince4.wrap, W(sid, "lặp"));
+          rise("#line-4b", W(sid, "lặp"));
+          tint(["#said-4a", "#said-4b"], W(sid, "lời", 2));
+          rise("#stress-4", W(sid, "nhấn"));
+          rise("#remember-4", W(sid, "nhớ", 2));
+        }
+
+        // ---------- s05: remember ----------
+        {
+          const sid = "s05-nho";
+          hide([fox5.wrap, prince5.wrap, "#heart-5"]);
+          pop([fox5.wrap, prince5.wrap], W(sid, "nhớ"));
+          pop("#heart-5", W(sid, "trái"), { from: 0.3 });
+          pose(bird, "cheer", W(sid, "trái"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

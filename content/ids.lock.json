@@ -176,7 +176,10 @@
     "neu-cau-muon-co-mot-nguoi-ban.section.lap-lai",
     "neu-cau-muon-co-mot-nguoi-ban.section.so-sanh",
     "neu-cau-muon-co-mot-nguoi-ban.section.tu-ghep-tu-lay",
-    "neu-cau-muon-co-mot-nguoi-ban.section.viet-doan-van"
+    "neu-cau-muon-co-mot-nguoi-ban.section.viet-doan-van",
+    "neu-cau-muon-co-mot-nguoi-ban.video.ai-dang-noi",
+    "neu-cau-muon-co-mot-nguoi-ban.video.bi-mat-cua-cao",
+    "neu-cau-muon-co-mot-nguoi-ban.video.cam-hoa-la-gi"
   ],
   "retired": {
     "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3"

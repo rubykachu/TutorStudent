@@ -56,7 +56,7 @@ async function main() {
 
   const narration = path.join(renders, "narration.wav");
   layNarration(narration, timeline.sentences, timeline.duration);
-  const site = buildSite(
+  const site = await buildSite(
     projectDir,
     path.join(renders, "site"),
     compositionTiming(timeline),

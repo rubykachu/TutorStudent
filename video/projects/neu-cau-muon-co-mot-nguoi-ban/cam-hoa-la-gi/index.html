@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Cảm hoá nghĩa là gì?" (lesson neu-cau-muon-co-mot-nguoi-ban):
+  the prince asks, the fox explains "làm cho gần gũi hơn", and taming turns
+  one of a hundred thousand into the only one in the world.
+  Built by `pnpm video:build neu-cau-muon-co-mot-nguoi-ban cam-hoa-la-gi`,
+  which injects window.TIMING (scene windows and spoken word times).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Cảm hoá nghĩa là gì?</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .taming { --c: var(--color-concept-lime); }
+      .ask { font: 800 110px / 1 "Baloo 2", sans-serif; color: var(--color-concept-lime); }
+      .crowd { position: absolute; left: 290px; top: 70px; width: 700px; display: grid; grid-template-columns: repeat(10, 70px); gap: 0; }
+      .crowd .figure-wrap { position: relative; width: 66px; height: 66px; }
+      .link { position: absolute; height: 10px; border-radius: 5px; background: var(--color-concept-lime); transform-origin: left center; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="word-1" class="abs chip taming" style="left: 700px; top: 190px; font-size: 56px">Cảm hoá</div>
+          <div id="asks-1" class="abs" style="left: 700px; top: 320px; display: flex; gap: 40px">
+            <span class="ask">?</span><span class="ask">?</span><span class="ask">?</span>
+          </div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="close-2" class="row" style="top: 360px"><span class="chip taming">làm cho gần gũi hơn</span></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="princes-3" class="crowd"></div>
+          <div id="foxes-3" class="crowd"></div>
+          <div id="one-of-3" class="row" style="top: 430px"><span class="chip">một trong trăm nghìn</span></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="link-4" class="link" style="left: 560px; top: 225px; width: 160px"></div>
+          <div id="only-4" class="row" style="top: 400px"><span class="pill title">duy nhất trên đời</span></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="word-5" class="row" style="top: 50px"><span class="chip taming" style="font-size: 52px">Cảm hoá</span></div>
+          <div id="link-5" class="link" style="left: 560px; top: 265px; width: 160px"></div>
+          <div id="only-5" class="row" style="top: 420px"><span class="pill title">duy nhất trên đời</span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, W, owl, figure, pop, rise, fade, hide, pose, scenes, finish } = window.LV;
+
+        // ---------- DOM ----------
+        const face = (parent, names, left, top, size = 180) =>
+          figure(parent, names, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
+        const fox1 = face($("#s1"), ["fox-calm"], 230, 150);
+        const prince1 = face($("#s1"), ["prince-calm"], 450, 150);
+        const fox3 = face($("#s3"), ["fox-calm"], 330, 150);
+        const prince3 = face($("#s3"), ["prince-calm"], 770, 150);
+        const fox2 = face($("#s2"), ["fox-calm", "fox-happy"], 240, 110);
+        const prince2 = face($("#s2"), ["prince-calm", "prince-happy"], 860, 110);
+        const crowd = (parent, name) =>
+          Array.from({ length: 30 }, () => figure(parent, [name], {}).wrap);
+        const princes = crowd($("#princes-3"), "prince-calm");
+        const foxes = crowd($("#foxes-3"), "fox-calm");
+        const fox4 = face($("#s4"), ["fox-calm", "fox-happy"], 370, 140);
+        const prince4 = face($("#s4"), ["prince-calm", "prince-happy"], 730, 140);
+        const fox5 = face($("#s5"), ["fox-happy"], 370, 180);
+        const prince5 = face($("#s5"), ["prince-happy"], 730, 180);
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-cau-hoi"],
+          ["#s2", "s02-giai-thich"],
+          ["#s3", "s03-tram-nghin"],
+          ["#s4", "s04-duy-nhat"],
+          ["#s5", "s05-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: a strange word, asked three times ----------
+        {
+          const sid = "s01-cau-hoi";
+          const asks = $$("#asks-1 .ask");
+          hide([prince1.wrap, "#word-1", ...asks]);
+          pop(fox1.wrap, start(sid) + 0.2);
+          pop("#word-1", W(sid, "cảm"));
+          pop(prince1.wrap, W(sid, "hoàng"));
+          pop(asks[0], W(sid, "hỏi", 1));
+          pop(asks[1], W(sid, "hỏi", 3));
+          pop(asks[2], W(sid, "ba"));
+        }
+
+        // ---------- s02: "làm cho gần gũi hơn": the two come closer ----------
+        {
+          const sid = "s02-giai-thich";
+          hide(["#close-2"]);
+          pop([fox2.wrap, prince2.wrap], start(sid) + 0.2, { from: 0.6 });
+          pop("#close-2", W(sid, "gần"));
+          tl.to(fox2.wrap, { left: 430, duration: 1.6, ease: "power2.inOut" }, W(sid, "tình"));
+          tl.to(prince2.wrap, { left: 670, duration: 1.6, ease: "power2.inOut" }, W(sid, "tình"));
+          pose(fox2, "fox-happy", W(sid, "tốt", 2));
+          pose(prince2, "prince-happy", W(sid, "tốt", 2));
+          pose(bird, "happy", W(sid, "tốt", 2));
+          tl.fromTo("#close-2 .chip", { scale: 1 }, { scale: 1.15, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "gọn"));
+        }
+
+        // ---------- s03: one of a hundred thousand ----------
+        {
+          const sid = "s03-tram-nghin";
+          hide([...princes, ...foxes, "#one-of-3"]);
+          pose(bird, "idle", start(sid));
+          pop([fox3.wrap, prince3.wrap], start(sid) + 0.2, { from: 0.6 });
+          fade([fox3.wrap, prince3.wrap], W(sid, "cậu") - 0.3, 0.3);
+          pop(princes, W(sid, "cậu"), { stagger: 0.03, from: 0.3 });
+          fade(princes, W(sid, "với", 2) - 0.3, 0.3);
+          pop(foxes, W(sid, "với", 2), { stagger: 0.03, from: 0.3 });
+          rise("#one-of-3", W(sid, "chưa", 2));
+        }
+
+        // ---------- s04: the only one in the world ----------
+        {
+          const sid = "s04-duy-nhat";
+          hide([fox4.wrap, prince4.wrap, "#link-4", "#only-4"]);
+          pop([fox4.wrap, prince4.wrap], start(sid) + 0.2, { from: 0.6 });
+          tl.fromTo("#link-4", { autoAlpha: 0, scaleX: 0 }, { autoAlpha: 1, scaleX: 1, duration: 0.5, immediateRender: false }, W(sid, "cần"));
+          pose(fox4, "fox-happy", W(sid, "cần"));
+          pose(prince4, "prince-happy", W(sid, "cần"));
+          pop("#only-4", W(sid, "duy"), { from: 0.5 });
+          pose(bird, "cheer", W(sid, "duy"));
+        }
+
+        // ---------- s05: remember ----------
+        {
+          const sid = "s05-nho";
+          hide(["#word-5", fox5.wrap, prince5.wrap, "#link-5", "#only-5"]);
+          pose(bird, "happy", W(sid, "nhớ"));
+          rise("#word-5", W(sid, "cảm"));
+          pop([fox5.wrap, prince5.wrap, "#link-5"], start(sid) + 0.2);
+          pop("#only-5", W(sid, "đã"), { from: 0.5 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

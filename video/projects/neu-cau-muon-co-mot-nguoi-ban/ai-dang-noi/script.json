@@ -1,0 +1,116 @@
+{
+  "title": "Cáo và hoàng tử bé gặp nhau: ai đang nói?",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s03-minh-la-cao",
+    "at": 0.5
+  },
+  "scenes": [
+    {
+      "id": "s01-mo-dau",
+      "sentences": [
+        {
+          "text": "Cùng bạn cú đọc cuộc gặp của cáo và hoàng tử bé nhé."
+        },
+        {
+          "text": "Một hôm, hoàng tử bé gặp một con cáo."
+        },
+        {
+          "text": "Bài đọc gồm nhiều lời thoại của cáo và hoàng tử bé.",
+          "rule": true
+        },
+        {
+          "text": "Mỗi lời thoại mở đầu bằng dấu gạch ngang.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s02-ban-la-ai",
+      "sentences": [
+        {
+          "text": "Đọc dòng này nhé: “Bạn là ai?”, hoàng tử bé hỏi.",
+          "quote": true
+        },
+        {
+          "text": "Lời người kể chuyện là: hoàng tử bé hỏi."
+        },
+        {
+          "text": "Vậy người đang nói là hoàng tử bé."
+        }
+      ]
+    },
+    {
+      "id": "s03-minh-la-cao",
+      "sentences": [
+        {
+          "text": "Dòng tiếp theo: “Mình là cáo”, con cáo trả lời.",
+          "quote": true
+        },
+        {
+          "text": "Lời người kể chuyện là: con cáo trả lời."
+        },
+        {
+          "text": "Vậy người đang nói là cáo."
+        },
+        {
+          "text": "Thế là hai bạn bắt đầu làm quen."
+        }
+      ]
+    },
+    {
+      "id": "s04-cach-tim",
+      "sentences": [
+        {
+          "text": "Muốn biết ai đang nói, hãy tìm lời người kể chuyện như “con cáo nói”, “hoàng tử bé hỏi”.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Bạn thử nhé."
+        },
+        {
+          "text": "“Mình đi tìm con người”, hoàng tử bé nói.",
+          "quote": true
+        },
+        {
+          "text": "Ai đang nói?"
+        },
+        {
+          "text": "Bạn hãy tìm lời người kể chuyện nhé."
+        },
+        {
+          "text": "Lời người kể chuyện là: hoàng tử bé nói."
+        },
+        {
+          "text": "Đúng rồi, hoàng tử bé đang nói."
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Lời người kể chuyện như “con cáo nói”, “hoàng tử bé hỏi” cho biết ai đang nói.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ai-noi",
+      "from": "s02-ban-la-ai",
+      "to": "s04-cach-tim",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"]
+    }
+  ]
+}

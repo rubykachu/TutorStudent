@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Cáo và hoàng tử bé gặp nhau: ai đang nói?" (lesson
+  neu-cau-muon-co-mot-nguoi-ban): each line of dialogue starts with a dash,
+  and the narrator's words ("con cáo nói", "hoàng tử bé hỏi") tell who speaks.
+  Built by `pnpm video:build neu-cau-muon-co-mot-nguoi-ban ai-dang-noi`, which
+  injects window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Ai đang nói?</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .fox { --c: var(--color-concept-pink); }
+      .prince { --c: var(--color-concept-amber); }
+      .narrator { --c: var(--color-concept-blue); }
+      .big-dash { color: var(--color-concept-blue); font: 800 44px / 1 "Baloo 2", sans-serif; }
+      .ask { font: 800 150px / 1 "Baloo 2", sans-serif; color: var(--color-concept-blue); }
+      .arrow { font: 800 56px / 1 "Baloo 2", sans-serif; color: var(--color-muted-foreground); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="title-1" class="row title" style="top: 36px">Ai đang nói?</div>
+          <div id="fox-name-1" class="abs chip fox" style="left: 420px; top: 360px">Cáo</div>
+          <div id="prince-name-1" class="abs chip prince" style="left: 700px; top: 360px">Hoàng tử bé</div>
+          <div id="line-1a" class="line" style="top: 150px"><span class="dash">–</span> Bạn là ai?</div>
+          <div id="line-1b" class="line" style="top: 280px"><span class="dash">–</span> Mình là cáo</div>
+          <div id="dash-label" class="row" style="top: 430px"><span class="chip narrator">dấu gạch ngang</span></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="line-2" class="line" style="top: 110px"><span class="dash">–</span> Bạn là ai? <span class="dash">–</span> <span id="said-2" class="mark">Hoàng tử bé hỏi.</span></div>
+          <div id="narr-2" class="row" style="top: 230px"><span class="chip narrator">lời người kể chuyện</span></div>
+          <div id="who-2" class="abs chip prince" style="left: 700px; top: 395px">Hoàng tử bé</div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="line-3" class="line" style="top: 110px"><span class="dash">–</span> Mình là cáo <span class="dash">–</span> <span id="said-3" class="mark">con cáo trả lời.</span></div>
+          <div id="narr-3" class="row" style="top: 230px"><span class="chip narrator">lời người kể chuyện</span></div>
+          <div id="who-3" class="abs chip fox" style="left: 700px; top: 395px">Cáo</div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="head-4" class="row" style="top: 30px"><span class="chip narrator">lời người kể chuyện</span></div>
+          <div id="rule-4a" class="abs chip narrator" style="left: 330px; top: 170px">con cáo nói</div>
+          <div id="arrow-4a" class="abs arrow" style="left: 640px; top: 168px">→</div>
+          <div id="rule-4b" class="abs chip narrator" style="left: 290px; top: 360px">hoàng tử bé hỏi</div>
+          <div id="arrow-4b" class="abs arrow" style="left: 640px; top: 358px">→</div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="line-5" class="line" style="top: 110px; left: 120px; width: 1040px; font-size: 40px"><span class="dash">–</span> Mình đi tìm con người. <span class="dash">–</span> <span id="said-5" class="mark">Hoàng tử bé nói.</span></div>
+          <div id="ask-5" class="row ask" style="top: 280px">?</div>
+          <div id="who-5" class="abs chip prince" style="left: 700px; top: 395px">Hoàng tử bé</div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="head-6" class="row" style="top: 30px"><span class="chip narrator">lời người kể chuyện</span></div>
+          <div id="rule-6a" class="abs chip narrator" style="left: 330px; top: 170px">con cáo nói</div>
+          <div id="arrow-6a" class="abs arrow" style="left: 640px; top: 168px">→</div>
+          <div id="rule-6b" class="abs chip narrator" style="left: 290px; top: 360px">hoàng tử bé hỏi</div>
+          <div id="arrow-6b" class="abs arrow" style="left: 640px; top: 358px">→</div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, W, owl, figure, pop, rise, fade, hide, tint, pose, scenes, finish } = window.LV;
+
+        // ---------- DOM ----------
+        const face = (scene, name, left, top, size = 180) =>
+          figure($(scene), [name], { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
+        const fox1 = face("#s1", "fox-happy", 400, 150);
+        const prince1 = face("#s1", "prince-happy", 720, 150);
+        const prince2 = face("#s2", "prince-calm", 490, 320);
+        const fox3 = face("#s3", "fox-calm", 490, 320);
+        const fox4 = face("#s4", "fox-calm", 740, 110, 160);
+        const prince4 = face("#s4", "prince-calm", 740, 300, 160);
+        const prince5 = face("#s5", "prince-happy", 490, 320);
+        const fox6 = face("#s6", "fox-happy", 740, 110, 160);
+        const prince6 = face("#s6", "prince-happy", 740, 300, 160);
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        // ---------- scene windows ----------
+        scenes([
+          ["#s1", "s01-mo-dau"],
+          ["#s2", "s02-ban-la-ai"],
+          ["#s3", "s03-minh-la-cao"],
+          ["#s4", "s04-cach-tim"],
+          ["#s5", "s05-thu"],
+          ["#s6", "s06-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: the fox, the prince, and lines that start with a dash ----------
+        {
+          const sid = "s01-mo-dau";
+          hide([fox1.wrap, prince1.wrap, "#fox-name-1", "#prince-name-1", "#line-1a", "#line-1b", "#dash-label"]);
+          pose(bird, "happy", W(sid, "cú"));
+          pop([fox1.wrap, "#fox-name-1"], W(sid, "cáo"));
+          pop([prince1.wrap, "#prince-name-1"], W(sid, "hoàng"));
+          pose(bird, "idle", W(sid, "bài"));
+          fade([fox1.wrap, prince1.wrap, "#fox-name-1", "#prince-name-1"], W(sid, "bài") - 0.3);
+          rise("#line-1a", W(sid, "lời"));
+          rise("#line-1b", W(sid, "lời") + 0.4);
+          tl.fromTo($$("#s1 .dash"), { scale: 1 }, { scale: 1.8, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "gạch"));
+          rise("#dash-label", W(sid, "gạch"));
+        }
+
+        // ---------- s02 / s03: the narrator's words name the speaker ----------
+        const speaker = (sid, scene, faceObj) => {
+          hide([`#narr-${scene}`, `#who-${scene}`, faceObj.wrap]);
+          rise(`#line-${scene}`, start(sid) + 0.2);
+          tint(`#said-${scene}`, W(sid, "người"));
+          rise(`#narr-${scene}`, W(sid, "người"));
+          pop([faceObj.wrap, `#who-${scene}`], W(sid, "vậy"));
+          pose(bird, "happy", W(sid, "vậy"));
+          pose(bird, "idle", start(sid));
+        };
+        speaker("s02-ban-la-ai", 2, prince2);
+        speaker("s03-minh-la-cao", 3, fox3);
+
+        // ---------- s04 / s06: the rule, narrator's words to speaker ----------
+        const rule = (sid, scene, fox, prince, headAt, foxWord, princeWord) => {
+          hide([`#head-${scene}`, `#rule-${scene}a`, `#arrow-${scene}a`, fox.wrap, `#rule-${scene}b`, `#arrow-${scene}b`, prince.wrap]);
+          rise(`#head-${scene}`, headAt);
+          rise([`#rule-${scene}a`, `#arrow-${scene}a`], W(sid, foxWord[0], foxWord[1]));
+          pop(fox.wrap, W(sid, foxWord[0], foxWord[1]) + 0.3);
+          rise([`#rule-${scene}b`, `#arrow-${scene}b`], W(sid, princeWord[0], princeWord[1]));
+          pop(prince.wrap, W(sid, princeWord[0], princeWord[1]) + 0.3);
+        };
+        rule("s04-cach-tim", 4, fox4, prince4, W("s04-cach-tim", "người"), ["con", 1], ["hoàng", 1]);
+        pose(bird, "idle", start("s04-cach-tim"));
+
+        // ---------- s05: try one ----------
+        {
+          const sid = "s05-thu";
+          hide(["#line-5", "#ask-5", "#who-5", prince5.wrap]);
+          rise("#line-5", W(sid, "mình"));
+          pop("#ask-5", W(sid, "ai"), { from: 0.3 });
+          tint("#said-5", W(sid, "người", 2));
+          fade("#ask-5", W(sid, "đúng") - 0.3);
+          pop([prince5.wrap, "#who-5"], W(sid, "đúng"));
+          pose(bird, "cheer", W(sid, "đúng"));
+        }
+
+        // ---------- s06: remember ----------
+        rule("s06-nho", 6, fox6, prince6, start("s06-nho") + 0.2, ["con", 1], ["hoàng", 1]);
+        pose(bird, "happy", W("s06-nho", "nhớ"));
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

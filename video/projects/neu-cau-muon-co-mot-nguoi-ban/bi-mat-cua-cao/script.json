@@ -1,0 +1,128 @@
+{
+  "title": "Lời chia tay và bí mật của cáo",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s03-bi-mat",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chia-tay",
+      "sentences": [
+        {
+          "text": "Cứ thế, hoàng tử bé cảm hoá con cáo.",
+          "quote": true
+        },
+        {
+          "text": "Đến lúc hoàng tử bé phải ra đi."
+        },
+        {
+          "text": "Cáo nói: “Mình sẽ khóc mất”.",
+          "quote": true
+        },
+        {
+          "text": "Cáo buồn lắm."
+        }
+      ]
+    },
+    {
+      "id": "s02-mau-lua-mi",
+      "sentences": [
+        {
+          "text": "Hoàng tử bé nói: “Vậy thì bạn chẳng được gì cả”.",
+          "quote": true
+        },
+        {
+          "text": "Cáo đáp: “Mình được chứ”, “bởi vì còn có màu lúa mì”.",
+          "quote": true
+        },
+        {
+          "text": "Lúa mì vàng óng, giống mái tóc của hoàng tử bé."
+        },
+        {
+          "text": "Chia tay, cáo buồn đến muốn khóc, nhưng không hối tiếc.",
+          "rule": true
+        },
+        {
+          "text": "Màu lúa mì sẽ làm cáo nhớ bạn.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-bi-mat",
+      "sentences": [
+        {
+          "text": "Lúc vĩnh biệt, cáo tặng bạn một món quà."
+        },
+        {
+          "text": "Món quà ấy là một bí mật."
+        },
+        {
+          "text": "Cáo nói: “Đây là bí mật của mình”.",
+          "quote": true
+        },
+        {
+          "text": "“Rất đơn giản: người ta chỉ thấy rõ với trái tim.”",
+          "quote": true
+        },
+        {
+          "text": "“Điều cốt lõi vô hình trong mắt trần.”",
+          "quote": true
+        },
+        {
+          "text": "Điều quan trọng nhất, chỉ nhìn bằng mắt thì không thấy."
+        }
+      ]
+    },
+    {
+      "id": "s04-lap-lai",
+      "sentences": [
+        {
+          "text": "Hoàng tử bé lặp lại lời ấy, “để cho nhớ”.",
+          "quote": true
+        },
+        {
+          "text": "Lời thoại được lặp lại để nhấn mạnh điều quan trọng và giúp người đọc nhớ lâu.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Hãy nhìn bằng trái tim nhé."
+        },
+        {
+          "text": "Bí mật của cáo: người ta chỉ thấy rõ với trái tim.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cam-xuc-chia-tay",
+      "from": "s01-chia-tay",
+      "to": "s02-mau-lua-mi",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cam-xuc-chia-tay"]
+    },
+    {
+      "id": "bai-hoc",
+      "from": "s03-bi-mat",
+      "to": "s03-bi-mat",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"]
+    },
+    {
+      "id": "lap-lai",
+      "from": "s04-lap-lai",
+      "to": "s04-lap-lai",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.lap-lai"]
+    }
+  ]
+}

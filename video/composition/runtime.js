@@ -1,5 +1,5 @@
 // Shared runtime of lesson video compositions (HyperFrames + GSAP).
-// Loaded after gsap.min.js, owl.js and the page's window.TIMING (injected by
+// Loaded after gsap.min.js, owl.js, figures.js and the page's window.TIMING (injected by
 // `pnpm video:build`), before the page's own choreography. Every time comes
 // from TIMING, never the wall clock, so a render is the same every time:
 // the renderer seeks the one paused timeline frame by frame.
@@ -85,6 +85,21 @@ window.LV = (() => {
     return { wrap, layers };
   };
 
+  // A lesson figure (window.FIGURES, from the lesson's figures.tsx), one
+  // layer per variant such as a mood, only the first shown; `pose` switches.
+  const figure = (parent, names, style) => {
+    const wrap = make("div", "figure-wrap", parent);
+    Object.assign(wrap.style, style);
+    const layers = {};
+    names.forEach((name, i) => {
+      const svg = window.FIGURES?.[name];
+      if (!svg) throw new Error(`[figures] no figure ${name}`);
+      layers[name] = make("div", "owl-pose", wrap, svg);
+      if (i > 0) layers[name].style.opacity = "0";
+    });
+    return { wrap, layers };
+  };
+
   // ---------- tweens ----------
   const pop = (target, t, o = {}) =>
     tl.fromTo(
@@ -165,6 +180,9 @@ window.LV = (() => {
       t,
     );
   };
+  // Puts a colour token behind a word or line (the part being talked about).
+  const tint = (target, t, token = "highlight") =>
+    tl.to(target, { backgroundColor: color(token), duration: 0.3 }, t);
   // Switches the owl to a pose with a small hop.
   const pose = (o, name, t) => {
     Object.entries(o.layers).forEach(([key, layer]) => {
@@ -228,11 +246,13 @@ window.LV = (() => {
     op,
     beads,
     owl,
+    figure,
     pop,
     rise,
     fade,
     hide,
     cross,
+    tint,
     pose,
     scenes,
     finish,

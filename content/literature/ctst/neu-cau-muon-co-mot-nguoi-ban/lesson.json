@@ -7,7 +7,7 @@
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
   "status": "published",
-  "reviewedHash": "032208afd71c617383f7d2e02b9e5b6f166a50a15bad6a4edf3af15973bfa578",
+  "reviewedHash": "bc4a79c2ca5c78b118ea49e682d7eb317d93b48632fe062d05689509cdafada1",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -52,6 +52,10 @@
       "sourceRef": "SGK tr.21",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "neu-cau-muon-co-mot-nguoi-ban.video.ai-dang-noi"
+        },
         {
           "type": "visual",
           "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.boi-canh",
@@ -158,12 +162,12 @@
             {
               "sentenceId": "l2-1",
               "label": "Theo dõi",
-              "text": "Mỗi lời thoại là của ai: cáo hay hoàng tử bé?"
+              "text": "Tìm lời người kể chuyện: ai nói câu này?"
             },
             {
               "sentenceId": "l8-2",
               "label": "Theo dõi",
-              "text": "Để ý từ “cảm hoá”: từ này sẽ còn quay lại nhiều lần."
+              "text": "Lần đầu gặp từ “cảm hoá”. Nhớ từ này nhé."
             }
           ]
         },
@@ -187,6 +191,10 @@
       "sourceRef": "SGK tr.21–22",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "neu-cau-muon-co-mot-nguoi-ban.video.cam-hoa-la-gi"
+        },
         {
           "type": "passage",
           "paragraphs": [
@@ -295,12 +303,12 @@
             {
               "sentenceId": "l11-1",
               "label": "Theo dõi",
-              "text": "Để ý: hoàng tử bé sẽ hỏi câu này nhiều lần."
+              "text": "Đếm xem hoàng tử bé hỏi câu này mấy lần."
             },
             {
               "sentenceId": "l16-2",
               "label": "Theo dõi",
-              "text": "Đây là lời cáo giải thích từ “cảm hoá”."
+              "text": "Cáo giải thích “cảm hoá” ở câu này. Đọc chậm nhé."
             }
           ]
         },
@@ -402,7 +410,7 @@
             {
               "sentenceId": "l18-6",
               "label": "Theo dõi",
-              "text": "Chú ý chữ “nếu”: cáo đang nói điều sẽ xảy ra khi được cảm hoá."
+              "text": "Tìm chữ “nếu”: điều gì sẽ xảy ra khi được cảm hoá?"
             }
           ]
         },
@@ -559,12 +567,12 @@
             {
               "sentenceId": "l22-1",
               "label": "Theo dõi",
-              "text": "Cáo hỏi liền mấy câu: cáo đang tò mò."
+              "text": "Đếm xem sau câu này, cáo hỏi liền mấy câu."
             },
             {
               "sentenceId": "l29-1",
               "label": "Theo dõi",
-              "text": "Vì sao cáo thở dài?"
+              "text": "Cáo thở dài. Đọc lại hai câu trước để biết vì sao."
             }
           ]
         },
@@ -632,12 +640,12 @@
             {
               "sentenceId": "l31-1",
               "label": "Theo dõi",
-              "text": "Đơn điệu: cứ lặp lại một kiểu, nên buồn chán."
+              "text": "“Đơn điệu”: lặp lại, buồn chán. Tìm những việc cứ lặp lại."
             },
             {
               "sentenceId": "l31-6",
               "label": "Theo dõi",
-              "text": "Tiếng bước chân của hoàng tử bé khác các bước chân khác thế nào?"
+              "text": "So sánh bước chân của bạn với các bước chân khác."
             }
           ]
         },
@@ -693,7 +701,7 @@
             {
               "sentenceId": "l31-13",
               "label": "Theo dõi",
-              "text": "Cánh đồng lúa mì trước và sau khi cáo được cảm hoá khác nhau ra sao?"
+              "text": "Lúa mì chưa gợi nhớ gì. Đọc tiếp: sau này ra sao?"
             }
           ]
         },
@@ -818,7 +826,7 @@
             {
               "sentenceId": "l33-1",
               "label": "Theo dõi",
-              "text": "Cáo xin hoàng tử bé điều gì?"
+              "text": "Tìm điều cáo xin hoàng tử bé trong câu này."
             }
           ]
         },
@@ -862,12 +870,12 @@
             {
               "sentenceId": "l37-1",
               "label": "Theo dõi",
-              "text": "Kiên nhẫn: bền bỉ, chịu khó chờ đợi, không vội."
+              "text": "“Kiên nhẫn”: bền bỉ, không vội. Đọc tiếp cách cảm hoá."
             },
             {
               "sentenceId": "l37-2",
               "label": "Theo dõi",
-              "text": "Cáo chỉ cách cảm hoá: đọc từng việc phải làm."
+              "text": "Đếm từng việc cáo bảo hoàng tử bé làm."
             }
           ]
         },
@@ -980,12 +988,12 @@
             {
               "sentenceId": "l39-1",
               "label": "Theo dõi",
-              "text": "Cáo sắp phải xa bạn: để ý cảm xúc của cáo."
+              "text": "Đọc câu này: cáo đang vui hay buồn?"
             },
             {
               "sentenceId": "l45-1",
               "label": "Theo dõi",
-              "text": "Cáo được gì từ tình bạn này?"
+              "text": "Tìm điều cáo vẫn còn sau khi bạn đi."
             }
           ]
         },
@@ -1026,7 +1034,7 @@
             {
               "sentenceId": "l47-3",
               "label": "Theo dõi",
-              "text": "Cáo hẹn tặng một món quà. Đó là gì? Đọc tiếp nhé."
+              "text": "Cáo hẹn tặng quà. Đọc tiếp để biết món quà là gì."
             }
           ]
         }
@@ -1045,6 +1053,10 @@
       "sourceRef": "SGK tr.24–25",
       "minutes": 6,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "neu-cau-muon-co-mot-nguoi-ban.video.bi-mat-cua-cao"
+        },
         {
           "type": "passage",
           "paragraphs": [
@@ -1085,7 +1097,7 @@
             {
               "sentenceId": "l49-2",
               "label": "Theo dõi",
-              "text": "Vì sao bông hồng của hoàng tử bé khác những bông hồng này?"
+              "text": "Đọc câu này: vì sao những bông hồng kia chưa là gì?"
             }
           ]
         },
@@ -1141,12 +1153,12 @@
             {
               "sentenceId": "l52-3",
               "label": "Theo dõi",
-              "text": "Đây là bí mật cáo tặng hoàng tử bé."
+              "text": "Đây là bí mật cáo tặng. Đọc to câu này."
             },
             {
               "sentenceId": "l52-4",
               "label": "Theo dõi",
-              "text": "Cốt lõi: phần chính, quan trọng nhất. Mắt trần: cái nhìn thường, chưa thấu hiểu."
+              "text": "“Cốt lõi”: quan trọng nhất. “Mắt trần”: cái nhìn thường."
             }
           ]
         },
@@ -1202,7 +1214,7 @@
             {
               "sentenceId": "l57-1",
               "label": "Theo dõi",
-              "text": "Hoàng tử bé nhắc lại những lời nào của cáo?"
+              "text": "Câu này lặp lại lời cáo. Tìm câu cáo nói trước đó."
             }
           ],
           "source": "Ăng-toan đơ Xanh-tơ Ê-xu-pe-ri, Hoàng tử bé, Nguyễn Tấn Đại dịch, NXB Hội Nhà văn, Hà Nội, 2005, tr. 68 – 75; Nguyễn Tấn Đại hiệu đính bản dịch, 2020"
@@ -4929,5 +4941,88 @@
   "sticker": {
     "name": "Chú cáo nhỏ",
     "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.video.ai-dang-noi",
+      "lessonId": "neu-cau-muon-co-mot-nguoi-ban",
+      "url": "video/neu-cau-muon-co-mot-nguoi-ban/ai-dang-noi.mp4",
+      "vttUrl": "video/neu-cau-muon-co-mot-nguoi-ban/ai-dang-noi.vtt",
+      "posterUrl": "video/neu-cau-muon-co-mot-nguoi-ban/ai-dang-noi.jpg",
+      "durationSec": 62.13,
+      "clips": [
+        {
+          "id": "ai-noi",
+          "start": 13.774,
+          "end": 39.793,
+          "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.video.cam-hoa-la-gi",
+      "lessonId": "neu-cau-muon-co-mot-nguoi-ban",
+      "url": "video/neu-cau-muon-co-mot-nguoi-ban/cam-hoa-la-gi.mp4",
+      "vttUrl": "video/neu-cau-muon-co-mot-nguoi-ban/cam-hoa-la-gi.vtt",
+      "posterUrl": "video/neu-cau-muon-co-mot-nguoi-ban/cam-hoa-la-gi.jpg",
+      "durationSec": 62.77,
+      "clips": [
+        {
+          "id": "nghia-cam-hoa",
+          "start": 0.7,
+          "end": 23.135,
+          "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-cam-hoa"]
+        },
+        {
+          "id": "duy-nhat",
+          "start": 23.535,
+          "end": 51.871,
+          "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.duy-nhat"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.video.bi-mat-cua-cao",
+      "lessonId": "neu-cau-muon-co-mot-nguoi-ban",
+      "url": "video/neu-cau-muon-co-mot-nguoi-ban/bi-mat-cua-cao.mp4",
+      "vttUrl": "video/neu-cau-muon-co-mot-nguoi-ban/bi-mat-cua-cao.vtt",
+      "posterUrl": "video/neu-cau-muon-co-mot-nguoi-ban/bi-mat-cua-cao.jpg",
+      "durationSec": 63.03,
+      "clips": [
+        {
+          "id": "cam-xuc-chia-tay",
+          "start": 0.7,
+          "end": 27.121,
+          "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cam-xuc-chia-tay"]
+        },
+        {
+          "id": "bai-hoc",
+          "start": 27.521,
+          "end": 45.417,
+          "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"]
+        },
+        {
+          "id": "lap-lai",
+          "start": 45.817,
+          "end": 53.912,
+          "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.lap-lai"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }
