@@ -17,11 +17,11 @@ Lệnh tổng hợp giọng từng câu, cho mlx-whisper nghe lại và so với
 
 1. **Chỉ bài đã `published`.** Đọc `lesson.json`: phần (section), câu quy tắc (`note`, `caption`), card, màu khái niệm; xem visual của bài trong `src/visuals/<môn>/<bài>/` và ảnh `.shots/<bài>/`.
 2. **Chọn video.** Mỗi video giảng một ý của một phần, 60–90 giây; đặt ở đầu phần đó. Một phần có tối đa một video (`MAX_SECTION_VIDEOS`); video không tính vào số màn của phần.
-3. **Viết `script.json`** từ `templates/script.example.json`, theo `references/script-rules.md`. Kịch bản phải qua được review: câu nêu quy tắc đọc đúng nguyên văn câu trong bài.
+3. **Viết `script.json`** từ `templates/script.example.json`, theo `references/script-rules.md`: câu quy tắc đánh `rule`, câu trích văn bản đánh `quote`; build kiểm nguyên văn.
 4. **Viết `index.html`** từ `templates/index.example.html`, theo `references/composition.md`: hình trước, chữ ít, vào đúng lúc chữ được đọc.
 5. **Dựng:** `pnpm video:build <id bài> <tên>`. Đọc cuối log: dòng "listen to this sentence" là câu cần người nghe duyệt (thường Whisper nghe nhầm chứ không phải giọng sai). `renders/report.json` có lời Whisper nghe được và tỉ lệ khớp từng câu.
 6. **Tự xem.** Skill `webapp-evidence:vision` tạo contact sheet từ mp4 (hoặc `ffmpeg -ss <giây> -i <mp4> -frames:v 1 x.png`), đọc từng ảnh: chữ rõ, không bị cắt, màu đúng khái niệm, dải dưới cùng trống cho phụ đề, hình khớp lời ở mốc trong `.vtt`. Sửa `index.html` rồi dựng lại.
-7. **Gắn vào bài:** thêm `{ "type": "video", "videoId": "<id bài>.video.<tên>" }` làm khối đầu của phần; `pnpm content:lock` thêm id mới. Bài đổi nội dung nên phải review lại (skill `lesson-review`, subagent mới), rồi `pnpm lesson:walk <id bài>`.
+7. **Gắn vào bài:** thêm `{ "type": "video", "videoId": "<id bài>.video.<tên>" }` làm khối đầu của phần; `pnpm content:lock` thêm id mới. Bài đổi nội dung nên phải review lại: vòng chỉ phần đổi của skill `lesson-review` (diff chỉ có video và khối video), reviewer soát lời dẫn, chuyển cảnh, số và clip; câu quy tắc, câu trích đã được build kiểm. Rồi `pnpm lesson:walk <id bài>`.
 8. **Commit** kịch bản, `index.html`, `lesson.json`; không commit `public/media/`, `audio/`, `renders/` (đã gitignore).
 
 ## Phát trong app

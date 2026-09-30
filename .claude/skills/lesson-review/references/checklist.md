@@ -28,7 +28,7 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 **Rubric `openEnded` làm được ở lớp 6** và khớp đề: yêu cầu quá sức hoặc lệch đề là Nên sửa.
 
-**Lời video khớp bài.** Bài có `videos`: đọc kịch bản `video/projects/<id bài>/<tên video>/script.json` (tên video là phần cuối của id video). Câu nói sai kiến thức, hoặc câu nêu quy tắc mà khác câu quy tắc trong `note`/`caption` của bài (được đọc `aⁿ` thành "a mũ n", dấu ngoặc thành dấu phẩy, chữ cái đứng một mình thành "số a" vì TTS và Whisper hay nuốt chữ cái trơ trọi, theo `docs/spec.md` mục Video): Nghiêm trọng. Clip (`videos[].clips`) gắn vào card mà đoạn đó không giảng: Nên sửa.
+**Lời video khớp bài.** Bài có `videos`: đọc kịch bản `video/projects/<id bài>/<tên video>/script.json` (tên video là phần cuối của id video). Câu đánh `rule`, `quote` đã được `video:build` so nguyên văn với bài và `source-passage.txt`; chỉ soát câu nêu quy tắc hay trích văn bản mà thiếu dấu đó (Nghiêm trọng), lời dẫn, chuyển cảnh và số: câu nói sai kiến thức hay sai văn bản là Nghiêm trọng. Clip (`videos[].clips`) gắn vào card mà đoạn đó không giảng: Nên sửa.
 
 ## 3. Ngôn từ lớp 6
 

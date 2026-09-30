@@ -53,10 +53,12 @@
       "id": "s04-quy-tac",
       "sentences": [
         {
-          "text": "Chia hai luỹ thừa cùng cơ số, khác 0: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+          "text": "Chia hai luỹ thừa cùng cơ số, khác 0: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai.",
+          "rule": true
         },
         {
-          "text": "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai."
+          "text": "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai.",
+          "rule": true
         }
       ]
     },
@@ -84,7 +86,8 @@
       "id": "s06-quy-uoc",
       "sentences": [
         {
-          "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+          "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0.",
+          "rule": true
         },
         {
           "text": "Ví dụ, 9 mũ 0 bằng 1."
@@ -98,10 +101,12 @@
           "text": "Nhớ nhé."
         },
         {
-          "text": "Chia hai luỹ thừa cùng cơ số, khác 0: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+          "text": "Chia hai luỹ thừa cùng cơ số, khác 0: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai.",
+          "rule": true
         },
         {
-          "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0."
+          "text": "Quy ước: số mũ bằng 0 thì luỹ thừa bằng 1, với cơ số khác 0.",
+          "rule": true
         }
       ]
     }

@@ -20,6 +20,7 @@ import {
   compositionTiming,
   schedule,
 } from "./lib/timeline";
+import { checkVerbatim } from "./lib/verbatim";
 import { ttsEngine } from "./tts";
 
 // Usage: pnpm video:build <lessonId> <name>
@@ -37,6 +38,12 @@ async function main() {
   }
   const projectDir = path.join(PROJECTS_DIR, lessonId, name);
   const script = readScript(path.join(projectDir, "script.json"));
+  const verbatim = checkVerbatim(script, lessonId);
+  if (verbatim.length > 0) {
+    throw new Error(
+      `script.json must quote the lesson word for word:\n${verbatim.join("\n")}`,
+    );
+  }
   const engine = ttsEngine(script.engine);
   const renders = path.join(projectDir, "renders");
   mkdirSync(renders, { recursive: true });

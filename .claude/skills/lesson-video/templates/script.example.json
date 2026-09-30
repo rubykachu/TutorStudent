@@ -73,7 +73,8 @@
       "id": "s05-quy-tac",
       "sentences": [
         {
-          "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+          "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.",
+          "rule": true
         }
       ]
     },
@@ -98,7 +99,8 @@
           "text": "Bạn nhớ nhé."
         },
         {
-          "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
+          "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.",
+          "rule": true
         }
       ]
     }

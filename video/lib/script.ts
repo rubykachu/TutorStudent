@@ -12,6 +12,12 @@ const SentenceSchema = z.object({
   // Respelling for the voice when `text` reads badly aloud. It must have the
   // same number of words, since caption words take their timing from it.
   say: z.string().trim().min(1).optional(),
+  // States a rule or definition: `text` must be a note or caption of the
+  // lesson word for word (video/lib/verbatim.ts).
+  rule: z.literal(true).optional(),
+  // Cites the reading passage: the part in quotation marks (or all of
+  // `text`) must be in the lesson's source-passage.txt.
+  quote: z.literal(true).optional(),
 });
 
 const SceneSchema = z.object({

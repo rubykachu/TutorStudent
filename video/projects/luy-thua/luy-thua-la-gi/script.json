@@ -67,7 +67,8 @@
       "id": "s05-dinh-nghia",
       "sentences": [
         {
-          "text": "a mũ n là tích của n thừa số, thừa số nào cũng bằng số a."
+          "text": "a mũ n là tích của n thừa số, thừa số nào cũng bằng số a.",
+          "rule": true
         }
       ]
     },
@@ -75,7 +76,8 @@
       "id": "s06-co-so-so-mu",
       "sentences": [
         {
-          "text": "Trong a mũ n, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số."
+          "text": "Trong a mũ n, cơ số a là thừa số được nhân lặp lại, số mũ n là số thừa số.",
+          "rule": true
         },
         {
           "text": "Với 2 mũ 3, cơ số là 2, số mũ là 3."
