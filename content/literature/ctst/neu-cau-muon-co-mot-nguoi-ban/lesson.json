@@ -184,7 +184,7 @@
       "id": "neu-cau-muon-co-mot-nguoi-ban.section.cam-hoa-la-gi",
       "title": "“Cảm hoá” nghĩa là gì?",
       "sourceRef": "SGK tr.21–22",
-      "minutes": 4,
+      "minutes": 5,
       "blocks": [
         {
           "type": "passage",
@@ -326,6 +326,19 @@
             {
               "type": "visual",
               "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-cham-cau"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài tập điền từ: chạm một từ ở dưới, rồi chạm vào chỗ trống để đặt từ đó vào."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-dien"
             }
           ]
         }
@@ -1258,7 +1271,7 @@
       "id": "neu-cau-muon-co-mot-nguoi-ban.section.tu-ghep-tu-lay",
       "title": "Từ ghép và từ láy",
       "sourceRef": "SGK tr.26",
-      "minutes": 5,
+      "minutes": 4,
       "blocks": [
         {
           "type": "group",
@@ -1277,19 +1290,6 @@
           "type": "visual",
           "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cham-tu",
           "caption": "Chạm vào từng từ để xem đó là từ ghép hay từ láy."
-        },
-        {
-          "type": "group",
-          "children": [
-            {
-              "type": "note",
-              "text": "Bài tập điền từ: chạm một từ ở dưới, rồi chạm vào chỗ trống để đặt từ đó vào."
-            },
-            {
-              "type": "visual",
-              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-dien"
-            }
-          ]
         }
       ],
       "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.chon-tu-lay"],
@@ -1300,14 +1300,14 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép: các tiếng ghép lại theo nghĩa, như “tiếng nhạc”. Từ láy: các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”."
+        "caption": "Từ ghép: các tiếng có quan hệ với nhau về nghĩa, như “tiếng nhạc”. Từ láy: các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”."
       }
     },
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.section.viet-doan-van",
       "title": "Viết về cáo sau khi chia tay",
       "sourceRef": "SGK tr.26",
-      "minutes": 3,
+      "minutes": 6,
       "blocks": [
         {
           "type": "group",
@@ -3217,7 +3217,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các việc hoàng tử bé cần làm để cảm hoá cáo, theo lời cáo dặn."
+          "text": "Xếp theo đúng thứ tự: các việc cáo dặn trước, rồi đến kết quả."
         }
       ],
       "items": [
@@ -4742,6 +4742,10 @@
         {
           "type": "note",
           "text": "Tưởng tượng và viết đoạn văn từ 5 đến 7 câu, tả cảm xúc của cáo sau khi chia tay hoàng tử bé."
+        },
+        {
+          "type": "note",
+          "text": "Trong đoạn văn, dùng ít nhất 2 từ ghép và 2 từ láy."
         }
       ],
       "steps": [

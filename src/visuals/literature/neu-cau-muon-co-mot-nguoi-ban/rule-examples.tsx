@@ -272,7 +272,9 @@ export function SoSanhBuocChan() {
 export function SoSanhChoTrong() {
   return (
     <Example>
-      <Label>Từ nào nối hai sự vật có nét giống nhau?</Label>
+      <Label className="text-center">
+        Cáo dùng từ nào để nối bước chân của bạn với tiếng nhạc?
+      </Label>
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Chip>bước chân của bạn</Chip>
         <Chip color={SIMILE_COLOR}>?</Chip>
@@ -467,7 +469,7 @@ export function TuGhepTuLay() {
           title="Từ ghép"
           color={COMPOUND_COLOR}
           words={[{ parts: ["tiếng", "nhạc"] }, { parts: ["thời", "gian"] }]}
-          label="ghép theo nghĩa"
+          label="các tiếng có quan hệ về nghĩa"
         />
         <WordColumn
           title="Từ láy"
@@ -509,7 +511,7 @@ export function GoiYTuGhep() {
         title="Từ ghép"
         color={COMPOUND_COLOR}
         words={[{ parts: ["sân", "trường"] }, { parts: ["bút", "chì"] }]}
-        label="mỗi tiếng đều góp nghĩa"
+        label="các tiếng có quan hệ về nghĩa"
       />
     </Example>
   );
