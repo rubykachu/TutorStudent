@@ -126,7 +126,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "compare",
     source: "10-4+3",
     leftLabel: "Đúng thứ tự",
-    wrongLabel: "Sai: cộng trước",
+    wrongLabel: "Sai: làm 4 + 3 trước",
     wrongTone: "wrong",
     wrongAt: 3,
   },
@@ -159,12 +159,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tinh-cong-tru-1-goi-y": {
     kind: "steps",
-    source: "30-8+5",
+    source: "8+14-5",
     mode: "hint",
   },
   "tinh-cong-tru-1-giai": {
     kind: "steps",
-    source: "24-9+6",
+    source: "9+15-6",
     mode: "full",
   },
   "sap-buoc-cong-tru-goi-y": {
@@ -193,14 +193,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chia-hoi-nguoc": {
     kind: "divide",
-    dividend: 56,
-    divisor: 8,
+    dividend: 54,
+    divisor: 6,
     mode: "still",
   },
   "nhan-7-8-goi-y": {
     kind: "times",
-    factor: 6,
-    last: 7,
+    factor: 7,
+    last: 8,
     mode: "hint",
   },
   "nhan-7-8-giai": {
@@ -211,8 +211,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chia-63-9-goi-y": {
     kind: "divide",
-    dividend: 56,
-    divisor: 8,
+    dividend: 63,
+    divisor: 9,
     mode: "hint",
   },
   "chia-63-9-giai": {
@@ -223,8 +223,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "nhan-9-6-goi-y": {
     kind: "times",
-    factor: 8,
-    last: 7,
+    factor: 9,
+    last: 6,
     mode: "hint",
   },
   "nhan-9-6-giai": {
@@ -296,7 +296,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "compare",
     source: "48:6·2",
     leftLabel: "Đúng thứ tự",
-    wrongLabel: "Sai: nhân trước",
+    wrongLabel: "Sai: làm 6 · 2 trước",
     wrongTone: "wrong",
     wrongAt: 3,
   },
@@ -367,7 +367,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "compare",
     source: "20-4·3",
     leftLabel: "Đúng thứ tự",
-    wrongLabel: "Sai: trừ trước nhân",
+    wrongLabel: "Sai: làm 20 − 4 trước",
     wrongTone: "wrong",
     wrongAt: 1,
   },
@@ -400,12 +400,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tinh-hon-hop-1-goi-y": {
     kind: "steps",
-    source: "40-3·6+8:2",
+    source: "40-3·6+5",
     mode: "hint",
   },
   "tinh-hon-hop-1-giai": {
     kind: "steps",
-    source: "30-4·5+12:3",
+    source: "30-4·5+6",
     mode: "full",
   },
   "chon-phep-lam-truoc-goi-y": {
@@ -598,7 +598,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "compare",
     source: "2·3^2",
     leftLabel: "Đúng thứ tự",
-    wrongLabel: "Sai: nhân 2 · 3 trước",
+    wrongLabel: "Sai: làm 2 · 3 trước",
     wrongTone: "wrong",
     wrongSource: "6^2",
   },
@@ -679,13 +679,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chu-bo-dau-nhan": {
     kind: "letters",
-    display: "ab",
-    expanded: "a · b",
-    values: [
-      ["a", 5],
-      ["b", 7],
-    ],
-    source: "5·7",
+    display: "2x",
+    expanded: "2 · x",
+    values: [["x", 4]],
+    source: "2·4",
     mode: "still",
   },
   "chu-tung-buoc": {
@@ -863,7 +860,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tinh-day-du-1-giai": {
     kind: "steps",
-    source: "3·2^3+4·5-2·6",
+    source: "3·2^3+5·4-2·7",
     mode: "full",
   },
   "tinh-day-du-2-goi-y": {
@@ -883,7 +880,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tinh-day-du-3-giai": {
     kind: "steps",
-    source: "3·2^5+4·5-27·2+9",
+    source: "3·2^3+5·4-14·2+9",
     mode: "full",
   },
   "tinh-ngoac-day-du-goi-y": {
@@ -910,26 +907,28 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "findx",
     coef: 3,
     add: 5,
-    rhs: "2·4+12",
+    rhs: "2·10",
     mode: "still",
   },
   "tim-x-kiem-tra-giai": {
-    kind: "steps",
-    source: "(19-4):3",
-    mode: "full",
+    kind: "findx",
+    coef: 2,
+    add: 6,
+    rhs: "14",
+    mode: "still",
   },
   "tim-x-1-goi-y": {
     kind: "findx",
     coef: 4,
-    add: 6,
-    rhs: "3·2^2+8",
+    add: 4,
+    rhs: "4·2^2+9:3",
     mode: "hint",
   },
   "tim-x-1-giai": {
     kind: "findx",
-    coef: 4,
-    add: 8,
-    rhs: "2·3^2+10",
+    coef: 5,
+    add: 5,
+    rhs: "2·3^2+6:3",
     mode: "still",
   },
   "tim-x-2-goi-y": {
@@ -941,9 +940,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tim-x-2-giai": {
     kind: "findx",
-    coef: 5,
-    add: 5,
-    rhs: "2·3^2+6:3",
+    coef: 6,
+    add: 8,
+    rhs: "2·3^2+14",
     mode: "still",
   },
   "tim-x-3-giai": {

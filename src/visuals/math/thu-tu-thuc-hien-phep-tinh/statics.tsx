@@ -14,7 +14,7 @@ import {
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import { BRACKET_COLORS, ExprSvg } from "./expr-svg";
-import { expressionValue, parseExpression } from "./expression";
+import { displayText, expressionValue, parseExpression } from "./expression";
 import { ExprSteps, type StepsMode, spokenExpression } from "./steps";
 
 // Hand-drawn pictures of the lesson that are not one expression worked out
@@ -61,16 +61,34 @@ function Bill() {
   );
 }
 
-function Child({ name, firstAt }: { name: string; firstAt?: number }) {
+function Child({
+  name,
+  firstAt,
+  verdict,
+}: {
+  name: string;
+  firstAt?: number;
+  // Once both totals are on screen: who did it right.
+  verdict?: "right" | "wrong";
+}) {
   return (
     <Card className="w-full">
-      <p className="font-heading text-block font-bold">{name}</p>
+      <p className="flex items-center gap-2 font-heading text-block font-bold">
+        {verdict === "right" && (
+          <Check aria-hidden className="size-5 text-correct" />
+        )}
+        {verdict === "wrong" && (
+          <X aria-hidden className="size-5 text-muted-foreground" />
+        )}
+        {name}
+      </p>
       <ExprSteps
         source={BILL_SOURCE}
         mode="still"
         firstAt={firstAt}
         legend={false}
         unit={0.6}
+        tone={verdict === "wrong" ? "wrong" : "normal"}
       />
     </Card>
   );
@@ -79,7 +97,7 @@ function Child({ name, firstAt }: { name: string; firstAt?: number }) {
 // Two children add up the same bill in different orders and get two totals.
 export function HoaDonHaiBan() {
   return (
-    <StepPlayer steps={4} label="Hai bạn tính cùng một hóa đơn">
+    <StepPlayer steps={4} label="Hai bạn tính cùng một hoá đơn">
       {(step) => (
         <div className="flex w-full flex-col items-center gap-3">
           <Bill />
@@ -88,13 +106,17 @@ export function HoaDonHaiBan() {
               shown={step >= 1}
               placeholder={<Card className="h-full min-h-24">Nam</Card>}
             >
-              <Child name="Nam" />
+              <Child name="Nam" verdict={step >= 3 ? "right" : undefined} />
             </Reveal>
             <Reveal
               shown={step >= 2}
               placeholder={<Card className="h-full min-h-24">Lan</Card>}
             >
-              <Child name="Lan" firstAt={BILL_PLUS_AT} />
+              <Child
+                name="Lan"
+                firstAt={BILL_PLUS_AT}
+                verdict={step >= 3 ? "wrong" : undefined}
+              />
             </Reveal>
           </div>
           <Reveal
@@ -324,15 +346,17 @@ export function TimSoChuaBiet({
     <div className="flex w-full flex-col items-center gap-2">
       <p className={BIG_LINE}>
         <span className="italic">
-          {coef}x + {add} = ?
+          {coef}x + {add} = {displayText(parseExpression(rhs))}
         </span>
       </p>
-      <ExprSteps
-        source={rhs}
-        mode={hint ? "hint" : "still"}
-        legend={false}
-        unit={0.56}
-      />
+      {parseExpression(rhs).length > 1 && (
+        <ExprSteps
+          source={rhs}
+          mode={hint ? "hint" : "still"}
+          legend={false}
+          unit={0.56}
+        />
+      )}
       {!hint && (
         <Rows
           hint={false}

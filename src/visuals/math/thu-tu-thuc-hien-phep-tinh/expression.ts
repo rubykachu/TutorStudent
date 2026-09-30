@@ -260,3 +260,25 @@ export function calculations(source: string): Calculation[] {
     line.operation ? [line.operation.calculation] : [],
   );
 }
+
+const SUPERSCRIPTS = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+
+function tokenDisplay(token: Token): string {
+  switch (token.kind) {
+    case "num":
+      return String(token.value);
+    case "op":
+      return ` ${{ "+": "+", "-": "−", "·": "·", ":": ":" }[token.op]} `;
+    case "pow":
+      return `${token.base}${[...String(token.exponent)].map((c) => SUPERSCRIPTS[Number(c)]).join("")}`;
+    case "open":
+      return token.bracket;
+    case "close":
+      return CLOSER[token.bracket];
+  }
+}
+
+// An expression as plain text the way the textbook prints it: "2 · 3² + 10".
+export function displayText(tokens: readonly Token[]): string {
+  return tokens.map(tokenDisplay).join("").replace(/\s+/g, " ").trim();
+}

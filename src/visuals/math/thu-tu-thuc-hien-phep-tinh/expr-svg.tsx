@@ -32,10 +32,10 @@ const FS = 48;
 const DIGIT_W = FS * 0.6;
 const EXPONENT_FS = FS * 0.62;
 const SIGN_W = FS * 1.05;
-const BRACKET_W = FS * 0.42;
-const BOX_PAD = 9;
+const BRACKET_W = FS * 0.55;
+const BOX_PAD = 10;
 const BUBBLE_R = 30;
-const BUBBLE_W = BUBBLE_R * 2 + 12;
+const BUBBLE_W = BUBBLE_R * 2 + 44;
 // Height from the baseline centre to the top of a number, plus room.
 const HALF_H = FS * 0.78;
 
