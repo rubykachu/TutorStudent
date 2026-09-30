@@ -3912,12 +3912,12 @@
       "url": "video/thu-tu-thuc-hien-phep-tinh/ngoac-long.mp4",
       "vttUrl": "video/thu-tu-thuc-hien-phep-tinh/ngoac-long.vtt",
       "posterUrl": "video/thu-tu-thuc-hien-phep-tinh/ngoac-long.jpg",
-      "durationSec": 60.63,
+      "durationSec": 69.57,
       "clips": [
         {
           "id": "ngoac-long",
           "start": 11.37,
-          "end": 59.226,
+          "end": 68.162,
           "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.ngoac-long"]
         }
       ],

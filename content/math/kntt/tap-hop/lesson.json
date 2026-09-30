@@ -7,7 +7,7 @@
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "635a17237df8369db1965799c1168c8d3d31cbef0783db3064ac543263f1bc30",
+  "reviewedHash": "9cb337aa834caaa053559224381849f924ac2e407846bc45a1b76c5ead4226ba",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",
@@ -32,6 +32,10 @@
       "sourceRef": "Sách bài tập tr.5",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop.video.tap-hop-la-gi"
+        },
         {
           "type": "visual",
           "visualId": "tap-hop.visual.hop-but",
@@ -213,6 +217,10 @@
       "sourceRef": "Sách bài tập tr.5",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop.video.thuoc-khong-thuoc"
+        },
         {
           "type": "visual",
           "visualId": "tap-hop.visual.thuoc-hop-but",
