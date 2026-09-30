@@ -1,0 +1,4993 @@
+{
+  "id": "neu-cau-muon-co-mot-nguoi-ban",
+  "subject": "literature",
+  "series": "ctst",
+  "grade": 6,
+  "order": 1,
+  "title": "Nếu cậu muốn có một người bạn…",
+  "sourceRef": "SGK tr.21–26",
+  "status": "draft",
+  "concepts": [
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
+      "name": "Cáo",
+      "color": "pink"
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.hoang-tu-be",
+      "name": "Hoàng tử bé",
+      "color": "amber"
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cam-hoa",
+      "name": "Cảm hoá",
+      "color": "lime"
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.loi-thoai",
+      "name": "Lời thoại",
+      "color": "blue"
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.so-sanh",
+      "name": "So sánh",
+      "color": "sky"
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.tu-ghep",
+      "name": "Từ ghép",
+      "color": "teal"
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.concept.tu-lay",
+      "name": "Từ láy",
+      "color": "violet"
+    }
+  ],
+  "sections": [
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.cao-xuat-hien",
+      "title": "Cáo xuất hiện",
+      "sourceRef": "SGK tr.21",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.boi-canh",
+          "caption": "Chuyện gì xảy ra ngay trước khi cáo xuất hiện? Xem từng bước nhé."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài đọc gồm nhiều lời thoại của cáo và hoàng tử bé. Mỗi lời thoại mở đầu bằng dấu gạch ngang."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau"
+            },
+            {
+              "type": "note",
+              "text": "Muốn biết ai đang nói, hãy tìm lời dẫn như “con cáo nói”, “hoàng tử bé hỏi”."
+            }
+          ]
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l1-1",
+                  "text": "Thế rồi một con cáo xuất hiện:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l2-1",
+                  "text": "– Xin chào – con cáo nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l3-1",
+                  "text": "– Xin chào – hoàng tử bé lịch sự trả lời rồi quay người lại nhưng không nhìn thấy gì."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l4-1",
+                  "text": "– Mình ở đây – giọng nói vang lên – dưới cây táo…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l5-1",
+                  "text": "– Bạn là ai? – Hoàng tử bé hỏi."
+                },
+                {
+                  "id": "l5-2",
+                  "text": "– Bạn dễ thương quá…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l6-1",
+                  "text": "– Mình là cáo – con cáo trả lời."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l7-1",
+                  "text": "– Lại đây chơi với mình đi – hoàng tử bé đề nghị nó."
+                },
+                {
+                  "id": "l7-2",
+                  "text": "– Mình buồn quá…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l8-1",
+                  "text": "– Mình không thể chơi với bạn được – con cáo nói."
+                },
+                {
+                  "id": "l8-2",
+                  "text": "– Mình chưa được cảm hoá."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l2-1",
+              "label": "Theo dõi",
+              "text": "Mỗi lời thoại là của ai: cáo hay hoàng tử bé?"
+            },
+            {
+              "sentenceId": "l8-2",
+              "label": "Theo dõi",
+              "text": "Để ý từ “cảm hoá”: từ này sẽ còn quay lại nhiều lần."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.ai-noi",
+          "caption": "Chạm vào từng bóng nói để xem ai đang nói."
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.htb-dang-buon"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.ai-noi-chua-cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau",
+        "caption": "Lời thoại mở đầu bằng dấu gạch ngang. Lời dẫn như “con cáo nói” cho biết ai đang nói."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.cam-hoa-la-gi",
+      "title": "“Cảm hoá” nghĩa là gì?",
+      "sourceRef": "SGK tr.21–22",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l9-1",
+                  "text": "– À! Xin lỗi! – Hoàng tử bé thốt lên."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l10-1",
+                  "text": "Nhưng sực nhớ ra, cậu hỏi lại:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l11-1",
+                  "text": "– “Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l12-1",
+                  "text": "– Bạn không phải người ở đây – con cáo nói – bạn đi tìm gì vậy?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l13-1",
+                  "text": "– Mình đi tìm con người. – Hoàng tử bé nói."
+                },
+                {
+                  "id": "l13-2",
+                  "text": "– “Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l14-1",
+                  "text": "– Con người – con cáo nói – họ có súng và họ đi săn."
+                },
+                {
+                  "id": "l14-2",
+                  "text": "Thật là phiền toái!"
+                },
+                {
+                  "id": "l14-3",
+                  "text": "Họ còn nuôi gà nữa."
+                },
+                {
+                  "id": "l14-4",
+                  "text": "Đó là chuyện được nhất ở họ."
+                },
+                {
+                  "id": "l14-5",
+                  "text": "Bạn có tìm gà không?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l15-1",
+                  "text": "– Không, mình đi tìm bạn bè."
+                },
+                {
+                  "id": "l15-2",
+                  "text": "“Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l16-1",
+                  "text": "– Đó là thứ bị lãng quên lâu lắm rồi."
+                },
+                {
+                  "id": "l16-2",
+                  "text": "Nó có nghĩa là “làm cho gần gũi hơn…”."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l17-1",
+                  "text": "– Làm cho gần gũi hơn?"
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l11-1",
+              "label": "Theo dõi",
+              "text": "Đếm xem hoàng tử bé hỏi nghĩa của từ “cảm hoá” mấy lần."
+            },
+            {
+              "sentenceId": "l16-2",
+              "label": "Theo dõi",
+              "text": "Đây là lời cáo giải thích từ “cảm hoá”."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-hoa"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài tập chạm câu: chạm vào câu em chọn, câu đó sẽ tô vàng. Chạm lần nữa để bỏ chọn, rồi bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-cham-cau"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.ex.dem-lan-hoi",
+        "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich"
+      ],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.nghia-cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-hoa",
+        "caption": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.duy-nhat",
+      "title": "Từ trăm nghìn đến duy nhất",
+      "sourceRef": "SGK tr.22",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l18-1",
+                  "text": "– Chứ sao – con cáo lên giọng."
+                },
+                {
+                  "id": "l18-2",
+                  "text": "– Bạn đối với mình mới chỉ là một cậu bé giống như cả trăm nghìn cậu bé."
+                },
+                {
+                  "id": "l18-3",
+                  "text": "Và mình không cần đến bạn."
+                },
+                {
+                  "id": "l18-4",
+                  "text": "Còn bạn cũng chẳng cần gì đến mình."
+                },
+                {
+                  "id": "l18-5",
+                  "text": "Mình đối với bạn chỉ là một con cáo giống như cả trăm nghìn con cáo."
+                },
+                {
+                  "id": "l18-6",
+                  "text": "Nhưng, nếu bạn cảm hoá mình, tụi mình sẽ cần đến nhau."
+                },
+                {
+                  "id": "l18-7",
+                  "text": "Lúc đó bạn đối với mình sẽ là duy nhất trên đời."
+                },
+                {
+                  "id": "l18-8",
+                  "text": "Mình đối với bạn sẽ là duy nhất trên đời…"
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l18-6",
+              "label": "Theo dõi",
+              "text": "Chú ý chữ “nếu”: cáo đang nói điều sẽ xảy ra khi được cảm hoá."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tram-nghin",
+          "caption": "Bấm “Cảm hoá” để xem một con cáo trở nên khác biệt thế nào."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chưa cảm hoá, cáo chỉ giống như trăm nghìn con cáo khác. Đã cảm hoá, hai bạn cần đến nhau và là duy nhất với nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.duy-nhat"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.cham-neu-cam-hoa"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.truoc-khi-cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.duy-nhat",
+        "caption": "Chưa cảm hoá thì chỉ là một trong trăm nghìn. Đã cảm hoá thì là duy nhất trên đời."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.hanh-tinh-khac",
+      "title": "Cáo tò mò về hành tinh khác",
+      "sourceRef": "SGK tr.22",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l19-1",
+                  "text": "– Mình bắt đầu hiểu rồi."
+                },
+                {
+                  "id": "l19-2",
+                  "text": "Có một bông hoa…"
+                },
+                {
+                  "id": "l19-3",
+                  "text": "Mình nghĩ là nó đã cảm hoá mình…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l20-1",
+                  "text": "– Có thể lắm."
+                },
+                {
+                  "id": "l20-2",
+                  "text": "Trên Trái Đất người ta thấy đủ thứ chuyện…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l21-1",
+                  "text": "– Ồ! Không phải trên Trái Đất – hoàng tử bé nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l22-1",
+                  "text": "Con cáo tỏ ra rất tò mò:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l23-1",
+                  "text": "– Trên một hành tinh khác?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l24-1",
+                  "text": "– Đúng vậy."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l25-1",
+                  "text": "– Có thợ săn trên hành tinh đó không?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l26-1",
+                  "text": "– Không."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l27-1",
+                  "text": "– Chuyện này, đúng là thú vị!"
+                },
+                {
+                  "id": "l27-2",
+                  "text": "Còn gà?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l28-1",
+                  "text": "– Không."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l29-1",
+                  "text": "– Chẳng có gì là hoàn hảo – con cáo thở dài."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l30-1",
+                  "text": "Nhưng rồi nó quay lại với ý nghĩ lúc nãy:"
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l22-1",
+              "label": "Theo dõi",
+              "text": "Cáo hỏi liền mấy câu: cáo đang tò mò."
+            },
+            {
+              "sentenceId": "l29-1",
+              "label": "Theo dõi",
+              "text": "Vì sao cáo thở dài?"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.hanh-tinh",
+          "caption": "Cáo nghe hai câu trả lời. Xem cáo vui hay tiếc sau mỗi câu."
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.thu-vi-vi-sao"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.vi-sao-tho-dai"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.hanh-tinh-tom-tat",
+        "caption": "Cáo vui vì hành tinh ấy không có thợ săn, nhưng thở dài vì ở đó cũng không có gà."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.doi-khac",
+      "title": "Cuộc sống của cáo sẽ đổi khác",
+      "sourceRef": "SGK tr.22–23",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-1",
+                  "text": "– Cuộc sống của mình thật đơn điệu."
+                },
+                {
+                  "id": "l31-2",
+                  "text": "Mình săn gà, con người săn mình."
+                },
+                {
+                  "id": "l31-3",
+                  "text": "Mọi con gà đều giống nhau, mọi con người đều giống nhau."
+                },
+                {
+                  "id": "l31-4",
+                  "text": "Cho nên mình hơi chán."
+                },
+                {
+                  "id": "l31-5",
+                  "text": "Bởi vậy, nếu bạn cảm hoá mình, xem như đời mình đã được chiếu sáng."
+                },
+                {
+                  "id": "l31-6",
+                  "text": "Mình sẽ biết thêm một tiếng chân khác hẳn mọi bước chân khác."
+                },
+                {
+                  "id": "l31-7",
+                  "text": "Những bước chân khác chỉ khiến mình trốn vào lòng đất."
+                },
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l31-6",
+              "label": "Theo dõi",
+              "text": "Tiếng bước chân của hoàng tử bé khác các bước chân khác thế nào?"
+            }
+          ]
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-9",
+                  "text": "Và nhìn xem!"
+                },
+                {
+                  "id": "l31-10",
+                  "text": "Bạn thấy không, cánh đồng lúa mì đằng kia?"
+                },
+                {
+                  "id": "l31-11",
+                  "text": "Mình không ăn bánh mì."
+                },
+                {
+                  "id": "l31-12",
+                  "text": "Lúa mì chả có ích gì cho mình."
+                },
+                {
+                  "id": "l31-13",
+                  "text": "Những đồng lúa mì chẳng gợi nhớ gì cho mình cả."
+                },
+                {
+                  "id": "l31-14",
+                  "text": "Mà như vậy thì buồn quá!"
+                },
+                {
+                  "id": "l31-15",
+                  "text": "Nhưng bạn có mái tóc vàng óng."
+                },
+                {
+                  "id": "l31-16",
+                  "text": "Nếu bạn cảm hoá mình thì thật là tuyệt vời!"
+                },
+                {
+                  "id": "l31-17",
+                  "text": "Lúa mì vàng óng ả sẽ làm mình nhớ đến bạn."
+                },
+                {
+                  "id": "l31-18",
+                  "text": "Và mình sẽ thấy thích tiếng gió trên đồng lúa mì..."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l31-13",
+              "label": "Theo dõi",
+              "text": "Cánh đồng lúa mì trước và sau khi cáo được cảm hoá khác nhau ra sao?"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.truoc-sau",
+          "caption": "Bấm “Chưa cảm hoá” rồi “Đã cảm hoá” để so sánh."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài tập nối: chạm một ô bên trái, rồi chạm ô hợp với nó bên phải. Cũng có thể kéo ô sang."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-noi"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.buoc-chan-goi-ra"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.noi-doi-khac"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.truoc-sau-tom-tat",
+        "caption": "Được cảm hoá, đời cáo như được chiếu sáng: bước chân bạn như tiếng nhạc, lúa mì làm cáo nhớ bạn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.so-sanh",
+      "title": "Biện pháp so sánh",
+      "sourceRef": "SGK tr.23, tr.26",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "So sánh là đặt hai sự vật có nét giống nhau cạnh nhau, để câu văn gợi hình, gợi cảm hơn. Từ so sánh hay gặp: như, như là, giống như."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-tac-dung",
+          "caption": "Xem vì sao cáo ví bước chân của bạn với tiếng nhạc."
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-so-sanh"],
+      "practiceIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.ex.so-sanh-voi-gi",
+        "neu-cau-muon-co-mot-nguoi-ban.ex.tac-dung-tieng-nhac"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh",
+        "caption": "So sánh đặt hai sự vật có nét giống nhau cạnh nhau, thường nối bằng “như”, “như là”. Nhờ vậy câu văn gợi hình, gợi cảm hơn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.cach-cam-hoa",
+      "title": "Làm sao để cảm hoá?",
+      "sourceRef": "SGK tr.23",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l32-1",
+                  "text": "Con cáo ngừng lời và nhìn hoàng tử bé chăm chú."
+                },
+                {
+                  "id": "l32-2",
+                  "text": "Nó nói:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l33-1",
+                  "text": "– Bạn làm ơn... cảm hoá mình đi!"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l34-1",
+                  "text": "– Mình muốn lắm – hoàng tử bé trả lời – nhưng mình không có thời gian."
+                },
+                {
+                  "id": "l34-2",
+                  "text": "Mình còn phải đi kiếm bạn bè và tìm hiểu nhiều thứ."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l35-1",
+                  "text": "– Người ta chỉ hiểu những gì họ đã cảm hoá."
+                },
+                {
+                  "id": "l35-2",
+                  "text": "[...] Nếu muốn có một người bạn, hãy cảm hoá mình đi!"
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l33-1",
+              "label": "Theo dõi",
+              "text": "Cáo xin hoàng tử bé điều gì?"
+            }
+          ]
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l36-1",
+                  "text": "– Cần phải làm sao? – Hoàng tử bé hỏi."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l37-1",
+                  "text": "– Cần phải rất kiên nhẫn – con cáo trả lời."
+                },
+                {
+                  "id": "l37-2",
+                  "text": "– Trước tiên bạn ngồi xa mình một chút, như thế, trên cỏ."
+                },
+                {
+                  "id": "l37-3",
+                  "text": "Mình sẽ liếc nhìn bạn còn bạn thì không nói gì cả."
+                },
+                {
+                  "id": "l37-4",
+                  "text": "Lời nói là nguồn gốc của mọi sự hiểu lầm."
+                },
+                {
+                  "id": "l37-5",
+                  "text": "Nhưng mỗi ngày, bạn có thể ngồi xích lại gần hơn..."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l37-2",
+              "label": "Theo dõi",
+              "text": "Cáo chỉ cách cảm hoá: đọc từng việc phải làm."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.xich-lai-gan",
+          "caption": "Bấm “Ngày sau” để xem hoàng tử bé ngồi xích lại gần cáo."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài tập xếp thứ tự: chạm một thẻ rồi chạm vào chỗ muốn đặt, hoặc kéo thẻ. Xếp xong thì bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-xep"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.can-kien-nhan"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.xep-cach-cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.xich-lai-gan-tom-tat",
+        "caption": "Muốn cảm hoá phải rất kiên nhẫn: mỗi ngày ngồi xích lại gần nhau hơn một chút."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.chia-tay",
+      "title": "Lúc chia tay",
+      "sourceRef": "SGK tr.23–24",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l38-1",
+                  "text": "[...] Cứ thế, hoàng tử bé cảm hoá con cáo."
+                },
+                {
+                  "id": "l38-2",
+                  "text": "Khi gần đến lúc phải ra đi, con cáo nói:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l39-1",
+                  "text": "– A!… Mình sẽ khóc mất."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l40-1",
+                  "text": "– Lỗi do bạn đó – hoàng tử bé nói – mình không muốn làm bạn đau lòng chút nào, nhưng bạn lại muốn mình cảm hoá bạn…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l41-1",
+                  "text": "– Tất nhiên rồi – con cáo nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l42-1",
+                  "text": "– Nhưng bạn sẽ khóc – hoàng tử bé nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l43-1",
+                  "text": "– Tất nhiên rồi – con cáo nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l44-1",
+                  "text": "– Vậy thì bạn chẳng được gì cả."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l45-1",
+                  "text": "– Mình được chứ – con cáo nói – bởi vì còn có màu lúa mì."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l39-1",
+              "label": "Theo dõi",
+              "text": "Cáo sắp phải xa bạn: để ý cảm xúc của cáo."
+            },
+            {
+              "sentenceId": "l45-1",
+              "label": "Theo dõi",
+              "text": "Cáo được gì từ tình bạn này?"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-xuc-cao",
+          "caption": "Xem cảm xúc của cáo thay đổi qua từng lời nói."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l46-1",
+                  "text": "Sau đó nó nói thêm:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l47-1",
+                  "text": "– Hãy thăm lại vườn hoa hồng đi!"
+                },
+                {
+                  "id": "l47-2",
+                  "text": "Bạn sẽ hiểu rằng bông hoa của bạn là duy nhất trên đời."
+                },
+                {
+                  "id": "l47-3",
+                  "text": "Rồi khi bạn quay lại vĩnh biệt mình, mình sẽ tặng bạn một bí mật làm quà."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l47-3",
+              "label": "Theo dõi",
+              "text": "Cáo hẹn tặng một món quà. Đó là gì? Đọc tiếp nhé."
+            }
+          ]
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.cao-se-khoc"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.khong-hoi-tiec"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-xuc-tom-tat",
+        "caption": "Chia tay, cáo buồn đến muốn khóc, nhưng không hối tiếc. Màu lúa mì sẽ làm cáo nhớ bạn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.bi-mat",
+      "title": "Vườn hồng và bí mật của cáo",
+      "sourceRef": "SGK tr.24–25",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l48-1",
+                  "text": "Hoàng tử bé đi thăm lại vườn hoa hồng:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l49-1",
+                  "text": "– Các bạn chẳng giống bông hồng của tôi chút nào, các bạn chưa là gì cả – cậu nói với chúng."
+                },
+                {
+                  "id": "l49-2",
+                  "text": "– Chẳng ai cảm hoá các bạn và các bạn chẳng cảm hoá ai."
+                },
+                {
+                  "id": "l49-3",
+                  "text": "Các bạn giống như bạn cáo của tôi ngày trước."
+                },
+                {
+                  "id": "l49-4",
+                  "text": "Hồi đó bạn ấy chỉ là một con cáo như cả trăm ngàn con khác."
+                },
+                {
+                  "id": "l49-5",
+                  "text": "Nhưng tôi đã biến bạn ấy thành bạn của tôi, và bây giờ bạn ấy trở thành duy nhất trên đời."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l49-2",
+              "label": "Theo dõi",
+              "text": "Vì sao bông hồng của hoàng tử bé khác những bông hồng này?"
+            }
+          ]
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l50-1",
+                  "text": "[...] Rồi cậu quay lại chỗ con cáo:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l51-1",
+                  "text": "– Vĩnh biệt – cậu nói..."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l52-1",
+                  "text": "– Vĩnh biệt – con cáo nói."
+                },
+                {
+                  "id": "l52-2",
+                  "text": "– Đây là bí mật của mình."
+                },
+                {
+                  "id": "l52-3",
+                  "text": "Rất đơn giản: người ta chỉ thấy rõ với trái tim."
+                },
+                {
+                  "id": "l52-4",
+                  "text": "Điều cốt lõi vô hình trong mắt trần."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l53-1",
+                  "text": "– Điều cốt lõi vô hình trong mắt trần – hoàng tử bé lặp lại, để cho nhớ."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l52-3",
+              "label": "Theo dõi",
+              "text": "Đây là bí mật cáo tặng hoàng tử bé."
+            }
+          ]
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l54-1",
+                  "text": "– Chính thời gian mà bạn bỏ ra cho bông hồng của bạn đã khiến bông hồng của bạn trở nên quan trọng đến thế."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l55-1",
+                  "text": "– Chính thời gian mà mình bỏ ra cho bông hồng của mình… – Hoàng tử bé lặp lại, để cho nhớ."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l56-1",
+                  "text": "– Con người đã quên mất sự thật này – con cáo nói."
+                },
+                {
+                  "id": "l56-2",
+                  "text": "– Nhưng bạn thì không được quên."
+                },
+                {
+                  "id": "l56-3",
+                  "text": "Bạn có trách nhiệm mãi mãi với những gì bạn đã cảm hoá."
+                },
+                {
+                  "id": "l56-4",
+                  "text": "Bạn có trách nhiệm với bông hồng của bạn…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l57-1",
+                  "text": "– Mình có trách nhiệm với bông hồng của mình… – Hoàng tử bé lặp lại, để cho nhớ."
+                }
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "sentenceId": "l57-1",
+              "label": "Theo dõi",
+              "text": "Hoàng tử bé nhắc lại những lời nào của cáo?"
+            }
+          ],
+          "source": "Ăng-toan đơ Xanh-tơ Ê-xu-pe-ri, Hoàng tử bé, Nguyễn Tấn Đại dịch, NXB Hội Nhà văn, Hà Nội, 2005, tr. 68 – 75; Nguyễn Tấn Đại hiệu đính bản dịch, 2020"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cáo để lại cho hoàng tử bé những bài học về tình bạn. Hãy nhìn bằng trái tim, dành thời gian cho bạn và có trách nhiệm với bạn."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.bai-hoc"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.ex.cham-lap-lai-de-nho",
+        "neu-cau-muon-co-mot-nguoi-ban.ex.hong-khac-biet"
+      ],
+      "practiceIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.ex.bi-mat-la-gi",
+        "neu-cau-muon-co-mot-nguoi-ban.ex.noi-nghia-tu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.bai-hoc",
+        "caption": "Bí mật của cáo: người ta chỉ thấy rõ với trái tim. Thời gian dành cho bạn và trách nhiệm với bạn làm nên tình bạn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.lap-lai",
+      "title": "Những lời được lặp lại",
+      "sourceRef": "SGK tr.26",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong bài, nhiều lời thoại được nhắc lại nhiều lần. Lặp lại giúp nhấn mạnh điều quan trọng và giúp người đọc nhớ lâu."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-lap-lai"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.lap-lai-tac-dung",
+          "caption": "Xem mỗi lời lặp lại cho ta biết điều gì."
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.cham-tat-nhien"],
+      "practiceIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.hoi-di-hoi-lai"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-lap-lai",
+        "caption": "Lời thoại được lặp lại để nhấn mạnh điều quan trọng và giúp người đọc nhớ lâu."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.tu-ghep-tu-lay",
+      "title": "Từ ghép và từ láy",
+      "sourceRef": "SGK tr.26",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “mái tóc”, “bông hoa”. Từ láy gồm các tiếng giống nhau về âm hoặc vần, như “buồn bã”, “lung linh”."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cham-tu",
+          "caption": "Chạm vào từng từ để xem đó là từ ghép hay từ láy."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài tập điền từ: chạm một từ ở dưới, rồi chạm vào chỗ trống để đặt từ đó vào."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-dien"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.chon-tu-lay"],
+      "practiceIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.ex.tu-lay-trong-cau",
+        "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tu-ghep"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
+        "caption": "Từ ghép: các tiếng ghép lại theo nghĩa, như “mái tóc”. Từ láy: các tiếng giống nhau về âm hoặc vần, như “buồn bã”."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.section.viet-doan-van",
+      "title": "Viết về cáo sau khi chia tay",
+      "sourceRef": "SGK tr.26",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Em sẽ viết một đoạn văn từ 5 đến 7 câu, tả cảm xúc của cáo sau khi chia tay hoàng tử bé. Trước khi viết, hãy trả lời vài câu nhỏ để tìm ý."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.dan-y"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đọc câu mẫu dưới đây. Câu có từ láy “ngẩn ngơ” và từ ghép “đường mòn”."
+            },
+            {
+              "type": "visual",
+              "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cau-mau"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["neu-cau-muon-co-mot-nguoi-ban.ex.viet-cam-xuc-cao"],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.dan-y",
+        "caption": "Đoạn văn tả cáo sau khi chia tay cần có nỗi buồn, điều làm cáo nhớ bạn và niềm vui còn lại. Nhớ dùng từ ghép, từ láy."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.ai-noi",
+      "sourceRef": "SGK tr.21",
+      "conceptIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
+        "neu-cau-muon-co-mot-nguoi-ban.concept.hoang-tu-be",
+        "neu-cau-muon-co-mot-nguoi-ban.concept.loi-thoai"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau",
+        "caption": "Lời dẫn như “con cáo nói”, “hoàng tử bé hỏi” cho biết ai đang nói."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.nghia-cam-hoa",
+      "sourceRef": "SGK tr.21–22",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-hoa",
+        "caption": "Cảm hoá là dùng tình cảm tốt đẹp làm cho ai đó thay đổi theo hướng tốt. Cáo nói gọn: “làm cho gần gũi hơn”."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.duy-nhat",
+      "sourceRef": "SGK tr.22",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.duy-nhat",
+        "caption": "Chưa cảm hoá thì chỉ là một trong trăm nghìn. Đã cảm hoá thì là duy nhất trên đời."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.hanh-tinh-khac",
+      "sourceRef": "SGK tr.22",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.cao"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.hanh-tinh-tom-tat",
+        "caption": "Cáo vui vì hành tinh ấy không có thợ săn, nhưng thở dài vì ở đó cũng không có gà."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.doi-khac",
+      "sourceRef": "SGK tr.22–23",
+      "conceptIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
+        "neu-cau-muon-co-mot-nguoi-ban.concept.cam-hoa"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.truoc-sau-tom-tat",
+        "caption": "Được cảm hoá, đời cáo như được chiếu sáng: bước chân bạn như tiếng nhạc, lúa mì làm cáo nhớ bạn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.so-sanh",
+      "sourceRef": "SGK tr.23, tr.26",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.so-sanh"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-buoc-chan",
+        "caption": "Bước chân của bạn được so sánh với tiếng nhạc, nối bằng từ “như là”."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.tac-dung-so-sanh",
+      "sourceRef": "SGK tr.23, tr.26",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.so-sanh"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-tac-dung-tom-tat",
+        "caption": "So sánh bước chân bạn “như là tiếng nhạc” cho thấy cáo sẽ vui mừng, háo hức khi bạn đến."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.cach-cam-hoa",
+      "sourceRef": "SGK tr.23",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.cam-hoa"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.xich-lai-gan-tom-tat",
+        "caption": "Muốn cảm hoá phải rất kiên nhẫn: mỗi ngày ngồi xích lại gần nhau hơn một chút."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.cam-xuc-chia-tay",
+      "sourceRef": "SGK tr.23–24",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.cao"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.cam-xuc-tom-tat",
+        "caption": "Chia tay, cáo buồn đến muốn khóc, nhưng không hối tiếc. Màu lúa mì sẽ làm cáo nhớ bạn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc",
+      "sourceRef": "SGK tr.24–25",
+      "conceptIds": [
+        "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
+        "neu-cau-muon-co-mot-nguoi-ban.concept.cam-hoa"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.bai-hoc",
+        "caption": "Bí mật của cáo: người ta chỉ thấy rõ với trái tim. Thời gian và trách nhiệm với bạn làm nên tình bạn."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.nghia-tu",
+      "sourceRef": "SGK tr.24, tr.26",
+      "conceptIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.nghia-tu",
+        "caption": "Cốt lõi là phần chính, quan trọng hơn cả. Mắt trần là cái nhìn thường, chưa gắn bó, thấu hiểu."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.lap-lai",
+      "sourceRef": "SGK tr.26",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.loi-thoai"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-lap-lai",
+        "caption": "Lời thoại được lặp lại để nhấn mạnh điều quan trọng và giúp người đọc nhớ lâu."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.tu-lay",
+      "sourceRef": "SGK tr.26",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.tu-lay"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
+        "caption": "Từ láy gồm các tiếng giống nhau về âm hoặc vần, như “buồn bã”, “lung linh”."
+      }
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep",
+      "sourceRef": "SGK tr.26",
+      "conceptIds": ["neu-cau-muon-co-mot-nguoi-ban.concept.tu-ghep"],
+      "recap": {
+        "type": "visual",
+        "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
+        "caption": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “mái tóc”, “bông hoa”."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.htb-dang-buon",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lúc gặp cáo, hoàng tử bé đang cảm thấy thế nào?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l7-1",
+                  "text": "– Lại đây chơi với mình đi – hoàng tử bé đề nghị nó."
+                },
+                {
+                  "id": "l7-2",
+                  "text": "– Mình buồn quá…"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "buon",
+          "content": {
+            "type": "text",
+            "text": "Buồn"
+          }
+        },
+        {
+          "id": "vui",
+          "content": {
+            "type": "text",
+            "text": "Vui vẻ"
+          }
+        },
+        {
+          "id": "so",
+          "content": {
+            "type": "text",
+            "text": "Sợ hãi"
+          }
+        },
+        {
+          "id": "gian",
+          "content": {
+            "type": "text",
+            "text": "Tức giận"
+          }
+        }
+      ],
+      "answer": ["buon"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l7-2"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.ai-noi-chua-cam-hoa",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ai nói những lời thoại dưới đây?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l8-1",
+                  "text": "– Mình không thể chơi với bạn được – con cáo nói."
+                },
+                {
+                  "id": "l8-2",
+                  "text": "– Mình chưa được cảm hoá."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "cao",
+          "content": {
+            "type": "text",
+            "text": "Cáo"
+          }
+        },
+        {
+          "id": "htb",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé"
+          }
+        }
+      ],
+      "answer": ["cao"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l8-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.ai-noi-xin-chao",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong câu dưới đây, ai nói “Xin chào”?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l3-1",
+                  "text": "– Xin chào – hoàng tử bé lịch sự trả lời rồi quay người lại nhưng không nhìn thấy gì."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "htb",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé"
+          }
+        },
+        {
+          "id": "cao",
+          "content": {
+            "type": "text",
+            "text": "Cáo"
+          }
+        }
+      ],
+      "answer": ["htb"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l3-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.ai-hoi-hanh-tinh",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ai hỏi “Trên một hành tinh khác?”"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l21-1",
+                  "text": "– Ồ! Không phải trên Trái Đất – hoàng tử bé nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l22-1",
+                  "text": "Con cáo tỏ ra rất tò mò:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l23-1",
+                  "text": "– Trên một hành tinh khác?"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "cao",
+          "content": {
+            "type": "text",
+            "text": "Cáo"
+          }
+        },
+        {
+          "id": "htb",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé"
+          }
+        }
+      ],
+      "answer": ["cao"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l22-1"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.ai-noi-loi-do-ban",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ai nói “Lỗi do bạn đó”?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l39-1",
+                  "text": "– A!… Mình sẽ khóc mất."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l40-1",
+                  "text": "– Lỗi do bạn đó – hoàng tử bé nói – mình không muốn làm bạn đau lòng chút nào, nhưng bạn lại muốn mình cảm hoá bạn…"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "htb",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé"
+          }
+        },
+        {
+          "id": "cao",
+          "content": {
+            "type": "text",
+            "text": "Cáo"
+          }
+        }
+      ],
+      "answer": ["htb"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l40-1"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dem-lan-hoi",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong đoạn vừa đọc, hoàng tử bé phải hỏi mấy lần thì cáo mới giải thích từ “cảm hoá”?"
+        }
+      ],
+      "options": [
+        {
+          "id": "mot",
+          "content": {
+            "type": "text",
+            "text": "1 lần"
+          }
+        },
+        {
+          "id": "hai",
+          "content": {
+            "type": "text",
+            "text": "2 lần"
+          }
+        },
+        {
+          "id": "ba",
+          "content": {
+            "type": "text",
+            "text": "3 lần"
+          }
+        },
+        {
+          "id": "bon",
+          "content": {
+            "type": "text",
+            "text": "4 lần"
+          }
+        }
+      ],
+      "answer": ["ba"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-giai-thich",
+      "type": "tapText",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào câu cáo giải thích “cảm hoá” nghĩa là gì."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l15-1",
+                  "text": "– Không, mình đi tìm bạn bè."
+                },
+                {
+                  "id": "l15-2",
+                  "text": "“Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l16-1",
+                  "text": "– Đó là thứ bị lãng quên lâu lắm rồi."
+                },
+                {
+                  "id": "l16-2",
+                  "text": "Nó có nghĩa là “làm cho gần gũi hơn…”."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l17-1",
+                  "text": "– Làm cho gần gũi hơn?"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l16-2"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l15-2"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.nghia-cam-hoa",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-cam-hoa"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Theo lời cáo, “cảm hoá” nghĩa là gì?"
+        }
+      ],
+      "options": [
+        {
+          "id": "gan-gui",
+          "content": {
+            "type": "text",
+            "text": "Làm cho gần gũi hơn"
+          }
+        },
+        {
+          "id": "so-hai",
+          "content": {
+            "type": "text",
+            "text": "Làm cho sợ hãi hơn"
+          }
+        },
+        {
+          "id": "di-san",
+          "content": {
+            "type": "text",
+            "text": "Đi săn giỏi hơn"
+          }
+        },
+        {
+          "id": "quen",
+          "content": {
+            "type": "text",
+            "text": "Quên đi một người bạn"
+          }
+        }
+      ],
+      "answer": ["gan-gui"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-nghia-cam-hoa",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-cam-hoa"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ đúng cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Cáo giải thích: cảm hoá là làm cho "
+        },
+        {
+          "type": "blank",
+          "id": "gan-gui",
+          "accept": ["gần gũi"]
+        },
+        {
+          "type": "text",
+          "text": " hơn."
+        }
+      ],
+      "bank": ["gần gũi", "xa lạ", "buồn bã"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viec-giong-cam-hoa",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-cam-hoa"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Việc nào giống với “cảm hoá” nhất?"
+        }
+      ],
+      "options": [
+        {
+          "id": "choi-cung",
+          "content": {
+            "type": "text",
+            "text": "Ngày nào cũng chơi cùng nhau, dần dần hai bạn thân thiết"
+          }
+        },
+        {
+          "id": "mot-lan",
+          "content": {
+            "type": "text",
+            "text": "Gặp nhau một lần rồi không bao giờ gặp lại"
+          }
+        },
+        {
+          "id": "duoi-di",
+          "content": {
+            "type": "text",
+            "text": "Đuổi một chú chó lạ ra khỏi sân"
+          }
+        },
+        {
+          "id": "tranh-nhau",
+          "content": {
+            "type": "text",
+            "text": "Tranh nhau một món đồ chơi"
+          }
+        }
+      ],
+      "answer": ["choi-cung"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-neu-cam-hoa",
+      "type": "tapText",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào câu cho biết điều sẽ xảy ra nếu hoàng tử bé cảm hoá cáo."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l18-2",
+                  "text": "– Bạn đối với mình mới chỉ là một cậu bé giống như cả trăm nghìn cậu bé."
+                },
+                {
+                  "id": "l18-3",
+                  "text": "Và mình không cần đến bạn."
+                },
+                {
+                  "id": "l18-4",
+                  "text": "Còn bạn cũng chẳng cần gì đến mình."
+                },
+                {
+                  "id": "l18-5",
+                  "text": "Mình đối với bạn chỉ là một con cáo giống như cả trăm nghìn con cáo."
+                },
+                {
+                  "id": "l18-6",
+                  "text": "Nhưng, nếu bạn cảm hoá mình, tụi mình sẽ cần đến nhau."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l18-6"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l18-5"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.truoc-khi-cam-hoa",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.duy-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi chưa được cảm hoá, cáo thấy hoàng tử bé là ai?"
+        }
+      ],
+      "options": [
+        {
+          "id": "tram-nghin",
+          "content": {
+            "type": "text",
+            "text": "Một cậu bé giống như cả trăm nghìn cậu bé"
+          }
+        },
+        {
+          "id": "duy-nhat",
+          "content": {
+            "type": "text",
+            "text": "Người bạn duy nhất trên đời"
+          }
+        },
+        {
+          "id": "tho-san",
+          "content": {
+            "type": "text",
+            "text": "Một người thợ săn"
+          }
+        },
+        {
+          "id": "nuoi-ga",
+          "content": {
+            "type": "text",
+            "text": "Một người nuôi gà"
+          }
+        }
+      ],
+      "answer": ["tram-nghin"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.sau-khi-cam-hoa",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.duy-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nếu được cảm hoá, cáo và hoàng tử bé sẽ là gì đối với nhau?"
+        }
+      ],
+      "options": [
+        {
+          "id": "duy-nhat",
+          "content": {
+            "type": "text",
+            "text": "Là duy nhất trên đời đối với nhau"
+          }
+        },
+        {
+          "id": "nhu-moi-nguoi",
+          "content": {
+            "type": "text",
+            "text": "Vẫn giống như mọi người khác"
+          }
+        },
+        {
+          "id": "khong-can",
+          "content": {
+            "type": "text",
+            "text": "Không cần đến nhau"
+          }
+        },
+        {
+          "id": "tho-san",
+          "content": {
+            "type": "text",
+            "text": "Là thợ săn và con mồi"
+          }
+        }
+      ],
+      "answer": ["duy-nhat"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-can-den-nhau",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.duy-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ đúng cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Cáo nói: nếu bạn cảm hoá mình, tụi mình sẽ "
+        },
+        {
+          "type": "blank",
+          "id": "can-den",
+          "accept": ["cần đến"]
+        },
+        {
+          "type": "text",
+          "text": " nhau."
+        }
+      ],
+      "bank": ["cần đến", "quên", "sợ"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.thu-vi-vi-sao",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cáo nói “Chuyện này, đúng là thú vị!” sau khi biết điều gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l25-1",
+                  "text": "– Có thợ săn trên hành tinh đó không?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l26-1",
+                  "text": "– Không."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l27-1",
+                  "text": "– Chuyện này, đúng là thú vị!"
+                },
+                {
+                  "id": "l27-2",
+                  "text": "Còn gà?"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "khong-tho-san",
+          "content": {
+            "type": "text",
+            "text": "Hành tinh ấy không có thợ săn"
+          }
+        },
+        {
+          "id": "khong-ga",
+          "content": {
+            "type": "text",
+            "text": "Hành tinh ấy không có gà"
+          }
+        },
+        {
+          "id": "bong-hoa",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé có một bông hoa"
+          }
+        },
+        {
+          "id": "trai-dat",
+          "content": {
+            "type": "text",
+            "text": "Trái Đất có đủ thứ chuyện"
+          }
+        }
+      ],
+      "answer": ["khong-tho-san"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l25-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.vi-sao-tho-dai",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.hanh-tinh-khac"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vì sao cáo thở dài: “Chẳng có gì là hoàn hảo”?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l27-1",
+                  "text": "– Chuyện này, đúng là thú vị!"
+                },
+                {
+                  "id": "l27-2",
+                  "text": "Còn gà?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l28-1",
+                  "text": "– Không."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l29-1",
+                  "text": "– Chẳng có gì là hoàn hảo – con cáo thở dài."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "ca-hai",
+          "content": {
+            "type": "text",
+            "text": "Vì ở đó không có thợ săn, nhưng cũng không có gà"
+          }
+        },
+        {
+          "id": "ghet-htb",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo không thích hoàng tử bé"
+          }
+        },
+        {
+          "id": "nhieu-tho-san",
+          "content": {
+            "type": "text",
+            "text": "Vì ở đó có nhiều thợ săn"
+          }
+        }
+      ],
+      "answer": ["ca-hai"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l27-2"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-hanh-tinh",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.hanh-tinh-khac"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ đúng cho mỗi chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Hành tinh ấy không có thợ săn nên cáo thấy "
+        },
+        {
+          "type": "blank",
+          "id": "thu-vi",
+          "accept": ["thú vị"]
+        },
+        {
+          "type": "text",
+          "text": ", nhưng ở đó cũng không có "
+        },
+        {
+          "type": "blank",
+          "id": "ga",
+          "accept": ["gà"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["thú vị", "gà", "sợ hãi", "hoa"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cao-tiec",
+      "type": "tapText",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.hanh-tinh-khac"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào câu cho thấy cáo tiếc khi nghe câu trả lời về gà."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l27-1",
+                  "text": "– Chuyện này, đúng là thú vị!"
+                },
+                {
+                  "id": "l27-2",
+                  "text": "Còn gà?"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l28-1",
+                  "text": "– Không."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l29-1",
+                  "text": "– Chẳng có gì là hoàn hảo – con cáo thở dài."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l29-1"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l27-2"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.buoc-chan-goi-ra",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi đã được cảm hoá, nghe tiếng bước chân của hoàng tử bé, cáo sẽ làm gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-7",
+                  "text": "Những bước chân khác chỉ khiến mình trốn vào lòng đất."
+                },
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "ra-hang",
+          "content": {
+            "type": "text",
+            "text": "Ra khỏi hang"
+          }
+        },
+        {
+          "id": "tron",
+          "content": {
+            "type": "text",
+            "text": "Trốn vào lòng đất"
+          }
+        },
+        {
+          "id": "san-ga",
+          "content": {
+            "type": "text",
+            "text": "Đi săn gà"
+          }
+        },
+        {
+          "id": "ngu",
+          "content": {
+            "type": "text",
+            "text": "Ngủ tiếp trong hang"
+          }
+        }
+      ],
+      "answer": ["ra-hang"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-8"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.noi-doi-khac",
+      "type": "match",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.doi-khac"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi đã được cảm hoá, cáo sẽ thấy mỗi điều này thế nào? Nối cho đúng."
+        }
+      ],
+      "left": [
+        {
+          "id": "buoc-chan",
+          "content": {
+            "type": "text",
+            "text": "Bước chân của bạn"
+          }
+        },
+        {
+          "id": "lua-mi",
+          "content": {
+            "type": "text",
+            "text": "Lúa mì vàng óng"
+          }
+        },
+        {
+          "id": "tieng-gio",
+          "content": {
+            "type": "text",
+            "text": "Tiếng gió trên đồng"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "tieng-nhac",
+          "content": {
+            "type": "text",
+            "text": "Như tiếng nhạc"
+          }
+        },
+        {
+          "id": "nho-ban",
+          "content": {
+            "type": "text",
+            "text": "Làm cáo nhớ bạn"
+          }
+        },
+        {
+          "id": "thich",
+          "content": {
+            "type": "text",
+            "text": "Cáo thấy thích"
+          }
+        },
+        {
+          "id": "tron",
+          "content": {
+            "type": "text",
+            "text": "Làm cáo trốn đi"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "buoc-chan",
+          "right": "tieng-nhac"
+        },
+        {
+          "left": "lua-mi",
+          "right": "nho-ban"
+        },
+        {
+          "left": "tieng-gio",
+          "right": "thich"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.lua-mi-truoc",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.doi-khac"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi chưa được cảm hoá, những đồng lúa mì làm cáo thấy thế nào?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-11",
+                  "text": "Mình không ăn bánh mì."
+                },
+                {
+                  "id": "l31-12",
+                  "text": "Lúa mì chả có ích gì cho mình."
+                },
+                {
+                  "id": "l31-13",
+                  "text": "Những đồng lúa mì chẳng gợi nhớ gì cho mình cả."
+                },
+                {
+                  "id": "l31-14",
+                  "text": "Mà như vậy thì buồn quá!"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "buon",
+          "content": {
+            "type": "text",
+            "text": "Chẳng gợi nhớ gì, nên cáo thấy buồn"
+          }
+        },
+        {
+          "id": "vui",
+          "content": {
+            "type": "text",
+            "text": "Rất vui, vì cáo thích ăn bánh mì"
+          }
+        },
+        {
+          "id": "nho-ban",
+          "content": {
+            "type": "text",
+            "text": "Làm cáo nhớ đến hoàng tử bé"
+          }
+        },
+        {
+          "id": "so",
+          "content": {
+            "type": "text",
+            "text": "Làm cáo sợ hãi"
+          }
+        }
+      ],
+      "answer": ["buon"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-13"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.vi-sao-don-dieu",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.doi-khac"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vì sao cáo thấy cuộc sống của mình đơn điệu?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-1",
+                  "text": "– Cuộc sống của mình thật đơn điệu."
+                },
+                {
+                  "id": "l31-2",
+                  "text": "Mình săn gà, con người săn mình."
+                },
+                {
+                  "id": "l31-3",
+                  "text": "Mọi con gà đều giống nhau, mọi con người đều giống nhau."
+                },
+                {
+                  "id": "l31-4",
+                  "text": "Cho nên mình hơi chán."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "giong-nhau",
+          "content": {
+            "type": "text",
+            "text": "Vì ngày nào cũng săn gà, bị người săn, mà gà và người đều giống nhau"
+          }
+        },
+        {
+          "id": "nhieu-ban",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo có quá nhiều bạn"
+          }
+        },
+        {
+          "id": "hanh-tinh",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo sống trên một hành tinh khác"
+          }
+        },
+        {
+          "id": "lua-mi",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo không có cánh đồng lúa mì"
+          }
+        }
+      ],
+      "answer": ["giong-nhau"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-3"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cau-so-sanh",
+      "type": "tapText",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào câu có biện pháp so sánh."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-6",
+                  "text": "Mình sẽ biết thêm một tiếng chân khác hẳn mọi bước chân khác."
+                },
+                {
+                  "id": "l31-7",
+                  "text": "Những bước chân khác chỉ khiến mình trốn vào lòng đất."
+                },
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l31-8"],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.so-sanh-voi-gi",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.so-sanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong câu dưới đây, bước chân của hoàng tử bé được so sánh với gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "tieng-nhac",
+          "content": {
+            "type": "text",
+            "text": "Tiếng nhạc"
+          }
+        },
+        {
+          "id": "long-dat",
+          "content": {
+            "type": "text",
+            "text": "Lòng đất"
+          }
+        },
+        {
+          "id": "cai-hang",
+          "content": {
+            "type": "text",
+            "text": "Cái hang"
+          }
+        },
+        {
+          "id": "tieng-gio",
+          "content": {
+            "type": "text",
+            "text": "Tiếng gió"
+          }
+        }
+      ],
+      "answer": ["tieng-nhac"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-8",
+            "conceptId": "neu-cau-muon-co-mot-nguoi-ban.concept.so-sanh"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.tac-dung-tieng-nhac",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tac-dung-so-sanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cáo nói bước chân của bạn gọi cáo ra “như là tiếng nhạc”. Điều đó cho thấy gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-7",
+                  "text": "Những bước chân khác chỉ khiến mình trốn vào lòng đất."
+                },
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "vui",
+          "content": {
+            "type": "text",
+            "text": "Cáo sẽ vui mừng, háo hức khi nghe bạn đến"
+          }
+        },
+        {
+          "id": "choi-nhac",
+          "content": {
+            "type": "text",
+            "text": "Hoàng tử bé biết chơi nhạc"
+          }
+        },
+        {
+          "id": "so",
+          "content": {
+            "type": "text",
+            "text": "Cáo sợ tiếng bước chân của bạn"
+          }
+        },
+        {
+          "id": "on-ao",
+          "content": {
+            "type": "text",
+            "text": "Bước chân của bạn rất ồn ào"
+          }
+        }
+      ],
+      "answer": ["vui"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-7"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-tu-so-sanh",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.so-sanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ so sánh cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, "
+        },
+        {
+          "type": "blank",
+          "id": "nhu-la",
+          "accept": ["như là"]
+        },
+        {
+          "type": "text",
+          "text": " tiếng nhạc."
+        }
+      ],
+      "bank": ["như là", "nhưng", "bởi vì"],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.noi-phan-so-sanh",
+      "type": "match",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.so-sanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi phần của phép so sánh với tên gọi của nó."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "left": [
+        {
+          "id": "buoc-chan",
+          "content": {
+            "type": "text",
+            "text": "bước chân của bạn"
+          }
+        },
+        {
+          "id": "nhu-la",
+          "content": {
+            "type": "text",
+            "text": "như là"
+          }
+        },
+        {
+          "id": "tieng-nhac",
+          "content": {
+            "type": "text",
+            "text": "tiếng nhạc"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "duoc-so-sanh",
+          "content": {
+            "type": "text",
+            "text": "Sự vật được so sánh"
+          }
+        },
+        {
+          "id": "tu-so-sanh",
+          "content": {
+            "type": "text",
+            "text": "Từ so sánh"
+          }
+        },
+        {
+          "id": "dung-de-so-sanh",
+          "content": {
+            "type": "text",
+            "text": "Sự vật dùng để so sánh"
+          }
+        },
+        {
+          "id": "loi-dan",
+          "content": {
+            "type": "text",
+            "text": "Lời dẫn"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "buoc-chan",
+          "right": "duoc-so-sanh"
+        },
+        {
+          "left": "nhu-la",
+          "right": "tu-so-sanh"
+        },
+        {
+          "left": "tieng-nhac",
+          "right": "dung-de-so-sanh"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-8"
+          }
+        ]
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.bo-so-sanh",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tac-dung-so-sanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nếu bỏ phần “như là tiếng nhạc”, câu văn mất đi điều gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "hinh-anh",
+          "content": {
+            "type": "text",
+            "text": "Hình ảnh tiếng nhạc, cho thấy niềm vui của cáo"
+          }
+        },
+        {
+          "id": "ai-noi",
+          "content": {
+            "type": "text",
+            "text": "Lời dẫn cho biết ai đang nói"
+          }
+        },
+        {
+          "id": "cai-hang",
+          "content": {
+            "type": "text",
+            "text": "Chi tiết cái hang của cáo"
+          }
+        },
+        {
+          "id": "khong-mat",
+          "content": {
+            "type": "text",
+            "text": "Không mất đi điều gì cả"
+          }
+        }
+      ],
+      "answer": ["hinh-anh"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-8",
+            "conceptId": "neu-cau-muon-co-mot-nguoi-ban.concept.so-sanh"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-buoc-chan-khac",
+      "type": "tapText",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tac-dung-so-sanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào câu cho thấy bước chân của người khác làm cáo sợ."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l31-6",
+                  "text": "Mình sẽ biết thêm một tiếng chân khác hẳn mọi bước chân khác."
+                },
+                {
+                  "id": "l31-7",
+                  "text": "Những bước chân khác chỉ khiến mình trốn vào lòng đất."
+                },
+                {
+                  "id": "l31-8",
+                  "text": "Còn bước chân của bạn sẽ gọi mình ra khỏi hang, như là tiếng nhạc."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l31-7"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l31-6"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.can-kien-nhan",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Theo cáo, muốn cảm hoá thì cần phải thế nào?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l37-1",
+                  "text": "– Cần phải rất kiên nhẫn – con cáo trả lời."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "kien-nhan",
+          "content": {
+            "type": "text",
+            "text": "Rất kiên nhẫn"
+          }
+        },
+        {
+          "id": "noi-nhieu",
+          "content": {
+            "type": "text",
+            "text": "Nói thật nhiều"
+          }
+        },
+        {
+          "id": "tang-qua",
+          "content": {
+            "type": "text",
+            "text": "Tặng thật nhiều quà"
+          }
+        },
+        {
+          "id": "vo-vang",
+          "content": {
+            "type": "text",
+            "text": "Làm thật vội vàng"
+          }
+        }
+      ],
+      "answer": ["kien-nhan"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l37-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.xep-cach-cam-hoa",
+      "type": "order",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cach-cam-hoa"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các việc hoàng tử bé cần làm để cảm hoá cáo, theo lời cáo dặn."
+        }
+      ],
+      "items": [
+        {
+          "id": "ngoi-xa",
+          "content": {
+            "type": "text",
+            "text": "Ngồi xa cáo một chút, trên cỏ"
+          }
+        },
+        {
+          "id": "im-lang",
+          "content": {
+            "type": "text",
+            "text": "Không nói gì, để cáo liếc nhìn"
+          }
+        },
+        {
+          "id": "xich-lai",
+          "content": {
+            "type": "text",
+            "text": "Mỗi ngày ngồi xích lại gần hơn"
+          }
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.vi-sao-khong-noi",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cach-cam-hoa"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vì sao cáo dặn hoàng tử bé đừng nói gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l37-3",
+                  "text": "Mình sẽ liếc nhìn bạn còn bạn thì không nói gì cả."
+                },
+                {
+                  "id": "l37-4",
+                  "text": "Lời nói là nguồn gốc của mọi sự hiểu lầm."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "hieu-lam",
+          "content": {
+            "type": "text",
+            "text": "Vì lời nói là nguồn gốc của mọi sự hiểu lầm"
+          }
+        },
+        {
+          "id": "on-ao",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo không thích tiếng ồn"
+          }
+        },
+        {
+          "id": "ngu",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo đang buồn ngủ"
+          }
+        },
+        {
+          "id": "tho-san",
+          "content": {
+            "type": "text",
+            "text": "Vì sợ thợ săn nghe thấy"
+          }
+        }
+      ],
+      "answer": ["hieu-lam"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l37-4"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chua-co-thoi-gian",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cach-cam-hoa"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lúc đầu, vì sao hoàng tử bé chưa cảm hoá cáo?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l33-1",
+                  "text": "– Bạn làm ơn... cảm hoá mình đi!"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l34-1",
+                  "text": "– Mình muốn lắm – hoàng tử bé trả lời – nhưng mình không có thời gian."
+                },
+                {
+                  "id": "l34-2",
+                  "text": "Mình còn phải đi kiếm bạn bè và tìm hiểu nhiều thứ."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "thoi-gian",
+          "content": {
+            "type": "text",
+            "text": "Vì cậu nói mình không có thời gian"
+          }
+        },
+        {
+          "id": "khong-thich",
+          "content": {
+            "type": "text",
+            "text": "Vì cậu không thích cáo"
+          }
+        },
+        {
+          "id": "so-cao",
+          "content": {
+            "type": "text",
+            "text": "Vì cậu sợ cáo"
+          }
+        },
+        {
+          "id": "da-co-ban",
+          "content": {
+            "type": "text",
+            "text": "Vì cậu đã có rất nhiều bạn"
+          }
+        }
+      ],
+      "answer": ["thoi-gian"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l34-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cao-se-khoc",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi sắp chia tay, cáo cảm thấy thế nào?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l38-2",
+                  "text": "Khi gần đến lúc phải ra đi, con cáo nói:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l39-1",
+                  "text": "– A!… Mình sẽ khóc mất."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "buon",
+          "content": {
+            "type": "text",
+            "text": "Buồn, muốn khóc"
+          }
+        },
+        {
+          "id": "vui",
+          "content": {
+            "type": "text",
+            "text": "Vui mừng"
+          }
+        },
+        {
+          "id": "gian",
+          "content": {
+            "type": "text",
+            "text": "Giận hoàng tử bé"
+          }
+        },
+        {
+          "id": "so",
+          "content": {
+            "type": "text",
+            "text": "Sợ hãi"
+          }
+        }
+      ],
+      "answer": ["buon"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l39-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.khong-hoi-tiec",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cam-xuc-chia-tay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cáo có hối tiếc vì đã để hoàng tử bé cảm hoá không? Chọn câu có căn cứ đúng."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l44-1",
+                  "text": "– Vậy thì bạn chẳng được gì cả."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l45-1",
+                  "text": "– Mình được chứ – con cáo nói – bởi vì còn có màu lúa mì."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không. Cáo nói: “Mình được chứ”."
+          }
+        },
+        {
+          "id": "co-khoc",
+          "content": {
+            "type": "text",
+            "text": "Có. Cáo nói: “Mình sẽ khóc mất.”"
+          }
+        },
+        {
+          "id": "co-loi",
+          "content": {
+            "type": "text",
+            "text": "Có. Cáo trách: “Lỗi do bạn đó.”"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l45-1"
+          }
+        ]
+      },
+      "difficulty": 3
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.mau-lua-mi",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cam-xuc-chia-tay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi hoàng tử bé đi rồi, vì sao màu lúa mì vẫn làm cáo vui?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l45-1",
+                  "text": "– Mình được chứ – con cáo nói – bởi vì còn có màu lúa mì."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "toc-vang",
+          "content": {
+            "type": "text",
+            "text": "Vì màu lúa mì làm cáo nhớ đến mái tóc vàng của bạn"
+          }
+        },
+        {
+          "id": "banh-mi",
+          "content": {
+            "type": "text",
+            "text": "Vì cáo thích ăn bánh mì"
+          }
+        },
+        {
+          "id": "gio",
+          "content": {
+            "type": "text",
+            "text": "Vì trên đồng lúa mì có nhiều gió"
+          }
+        },
+        {
+          "id": "ga",
+          "content": {
+            "type": "text",
+            "text": "Vì đồng lúa mì có nhiều gà"
+          }
+        }
+      ],
+      "answer": ["toc-vang"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l45-1"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-cao-buon",
+      "type": "tapText",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.cam-xuc-chia-tay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào câu cho thấy cáo buồn khi sắp chia tay."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l38-1",
+                  "text": "[...] Cứ thế, hoàng tử bé cảm hoá con cáo."
+                },
+                {
+                  "id": "l38-2",
+                  "text": "Khi gần đến lúc phải ra đi, con cáo nói:"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l39-1",
+                  "text": "– A!… Mình sẽ khóc mất."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l40-1",
+                  "text": "– Lỗi do bạn đó – hoàng tử bé nói – mình không muốn làm bạn đau lòng chút nào, nhưng bạn lại muốn mình cảm hoá bạn…"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l39-1"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l38-2"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-lap-lai-de-nho",
+      "type": "tapText",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào hai câu hoàng tử bé lặp lại lời cáo để cho nhớ."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l53-1",
+                  "text": "– Điều cốt lõi vô hình trong mắt trần – hoàng tử bé lặp lại, để cho nhớ."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l54-1",
+                  "text": "– Chính thời gian mà bạn bỏ ra cho bông hồng của bạn đã khiến bông hồng của bạn trở nên quan trọng đến thế."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l55-1",
+                  "text": "– Chính thời gian mà mình bỏ ra cho bông hồng của mình… – Hoàng tử bé lặp lại, để cho nhớ."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l53-1", "l55-1"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l54-1"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.hong-khac-biet",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vì sao bông hồng của hoàng tử bé khác hẳn những bông hồng trong vườn?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l49-2",
+                  "text": "– Chẳng ai cảm hoá các bạn và các bạn chẳng cảm hoá ai."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "cam-hoa",
+          "content": {
+            "type": "text",
+            "text": "Vì cậu và bông hồng ấy đã cảm hoá nhau"
+          }
+        },
+        {
+          "id": "dep-hon",
+          "content": {
+            "type": "text",
+            "text": "Vì bông hồng ấy to và đẹp hơn"
+          }
+        },
+        {
+          "id": "mau-khac",
+          "content": {
+            "type": "text",
+            "text": "Vì bông hồng ấy có màu khác"
+          }
+        },
+        {
+          "id": "trai-dat",
+          "content": {
+            "type": "text",
+            "text": "Vì bông hồng ấy mọc trên Trái Đất"
+          }
+        }
+      ],
+      "answer": ["cam-hoa"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l49-2"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.bi-mat-la-gi",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bí mật cáo tặng hoàng tử bé là gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l52-1",
+                  "text": "– Vĩnh biệt – con cáo nói."
+                },
+                {
+                  "id": "l52-2",
+                  "text": "– Đây là bí mật của mình."
+                },
+                {
+                  "id": "l52-3",
+                  "text": "Rất đơn giản: người ta chỉ thấy rõ với trái tim."
+                },
+                {
+                  "id": "l52-4",
+                  "text": "Điều cốt lõi vô hình trong mắt trần."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "trai-tim",
+          "content": {
+            "type": "text",
+            "text": "Người ta chỉ thấy rõ với trái tim"
+          }
+        },
+        {
+          "id": "doi-mat",
+          "content": {
+            "type": "text",
+            "text": "Người ta chỉ thấy rõ bằng đôi mắt"
+          }
+        },
+        {
+          "id": "di-nhieu",
+          "content": {
+            "type": "text",
+            "text": "Phải đi thật nhiều nơi"
+          }
+        },
+        {
+          "id": "loi-noi",
+          "content": {
+            "type": "text",
+            "text": "Lời nói giúp mọi người hiểu nhau"
+          }
+        }
+      ],
+      "answer": ["trai-tim"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l52-3"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.noi-nghia-tu",
+      "type": "match",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi từ với nghĩa của nó."
+        }
+      ],
+      "left": [
+        {
+          "id": "cot-loi",
+          "content": {
+            "type": "text",
+            "text": "cốt lõi"
+          }
+        },
+        {
+          "id": "mat-tran",
+          "content": {
+            "type": "text",
+            "text": "mắt trần"
+          }
+        },
+        {
+          "id": "don-dieu",
+          "content": {
+            "type": "text",
+            "text": "đơn điệu"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "quan-trong",
+          "content": {
+            "type": "text",
+            "text": "Phần chính, quan trọng nhất"
+          }
+        },
+        {
+          "id": "nhin-thuong",
+          "content": {
+            "type": "text",
+            "text": "Cái nhìn thường, chưa thấu hiểu"
+          }
+        },
+        {
+          "id": "lap-lai",
+          "content": {
+            "type": "text",
+            "text": "Lặp lại một kiểu, buồn chán"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "cot-loi",
+          "right": "quan-trong"
+        },
+        {
+          "left": "mat-tran",
+          "right": "nhin-thuong"
+        },
+        {
+          "left": "don-dieu",
+          "right": "lap-lai"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.thoi-gian-bo-ra",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Theo cáo, điều gì khiến bông hồng trở nên quan trọng với hoàng tử bé?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l54-1",
+                  "text": "– Chính thời gian mà bạn bỏ ra cho bông hồng của bạn đã khiến bông hồng của bạn trở nên quan trọng đến thế."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "thoi-gian",
+          "content": {
+            "type": "text",
+            "text": "Thời gian cậu đã bỏ ra cho bông hồng"
+          }
+        },
+        {
+          "id": "mau-sac",
+          "content": {
+            "type": "text",
+            "text": "Màu sắc rực rỡ của bông hồng"
+          }
+        },
+        {
+          "id": "vuon-hong",
+          "content": {
+            "type": "text",
+            "text": "Cả vườn hồng trên Trái Đất"
+          }
+        },
+        {
+          "id": "cao-tang",
+          "content": {
+            "type": "text",
+            "text": "Món quà cáo tặng"
+          }
+        }
+      ],
+      "answer": ["thoi-gian"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l54-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-trach-nhiem",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ đúng cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Cáo dặn: bạn có "
+        },
+        {
+          "type": "blank",
+          "id": "trach-nhiem",
+          "accept": ["trách nhiệm"]
+        },
+        {
+          "type": "text",
+          "text": " mãi mãi với những gì bạn đã cảm hoá."
+        }
+      ],
+      "bank": ["trách nhiệm", "thời gian", "bí mật"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-kien-nhan",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ hợp nghĩa cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Muốn thả diều bay cao, em phải thật "
+        },
+        {
+          "type": "blank",
+          "id": "kien-nhan",
+          "accept": ["kiên nhẫn"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["kiên nhẫn", "đơn điệu", "cốt lõi"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-don-dieu",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.nghia-tu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ hợp nghĩa cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Ngày nào cũng chỉ ăn một món, bữa ăn thật "
+        },
+        {
+          "type": "blank",
+          "id": "don-dieu",
+          "accept": ["đơn điệu"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["đơn điệu", "kiên nhẫn", "cốt lõi"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.cham-tat-nhien",
+      "type": "tapText",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào hai lời thoại cáo nói giống hệt nhau."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l40-1",
+                  "text": "– Lỗi do bạn đó – hoàng tử bé nói – mình không muốn làm bạn đau lòng chút nào, nhưng bạn lại muốn mình cảm hoá bạn…"
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l41-1",
+                  "text": "– Tất nhiên rồi – con cáo nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l42-1",
+                  "text": "– Nhưng bạn sẽ khóc – hoàng tử bé nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l43-1",
+                  "text": "– Tất nhiên rồi – con cáo nói."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l44-1",
+                  "text": "– Vậy thì bạn chẳng được gì cả."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "answer": ["l41-1", "l43-1"],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l42-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.hoi-di-hoi-lai",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cáo chưa trả lời, hoàng tử bé vẫn hỏi lại lần hai, lần ba. Điều đó cho thấy gì?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l15-1",
+                  "text": "– Không, mình đi tìm bạn bè."
+                },
+                {
+                  "id": "l15-2",
+                  "text": "“Cảm hoá” nghĩa là gì?"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "muon-biet",
+          "content": {
+            "type": "text",
+            "text": "Cậu rất muốn biết nghĩa của từ này"
+          }
+        },
+        {
+          "id": "tre-cao",
+          "content": {
+            "type": "text",
+            "text": "Cậu muốn trêu chọc cáo"
+          }
+        },
+        {
+          "id": "da-biet",
+          "content": {
+            "type": "text",
+            "text": "Cậu đã biết nghĩa rồi"
+          }
+        },
+        {
+          "id": "khong-nghe",
+          "content": {
+            "type": "text",
+            "text": "Cậu không muốn nghe cáo nói"
+          }
+        }
+      ],
+      "answer": ["muon-biet"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l15-2",
+            "conceptId": "neu-cau-muon-co-mot-nguoi-ban.concept.loi-thoai"
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.lap-lai-de-nho",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vì sao hoàng tử bé lặp lại lời cáo?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l52-4",
+                  "text": "Điều cốt lõi vô hình trong mắt trần."
+                }
+              ]
+            },
+            {
+              "sentences": [
+                {
+                  "id": "l53-1",
+                  "text": "– Điều cốt lõi vô hình trong mắt trần – hoàng tử bé lặp lại, để cho nhớ."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "de-nho",
+          "content": {
+            "type": "text",
+            "text": "Để cho nhớ"
+          }
+        },
+        {
+          "id": "tre-cao",
+          "content": {
+            "type": "text",
+            "text": "Để trêu cáo"
+          }
+        },
+        {
+          "id": "khong-hieu",
+          "content": {
+            "type": "text",
+            "text": "Vì cậu không nghe rõ"
+          }
+        },
+        {
+          "id": "ke-lai",
+          "content": {
+            "type": "text",
+            "text": "Để kể cho bông hồng"
+          }
+        }
+      ],
+      "answer": ["de-nho"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l53-1"
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.tac-dung-lap-lai",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Việc lặp lại lời thoại giúp gì cho người đọc?"
+        }
+      ],
+      "options": [
+        {
+          "id": "nhan-manh",
+          "content": {
+            "type": "text",
+            "text": "Nhấn mạnh điều quan trọng, giúp nhớ lâu"
+          }
+        },
+        {
+          "id": "ngan-hon",
+          "content": {
+            "type": "text",
+            "text": "Làm bài đọc ngắn hơn"
+          }
+        },
+        {
+          "id": "nguoi-ke",
+          "content": {
+            "type": "text",
+            "text": "Cho biết ai là người kể chuyện"
+          }
+        },
+        {
+          "id": "kho-hieu",
+          "content": {
+            "type": "text",
+            "text": "Làm câu văn khó hiểu hơn"
+          }
+        }
+      ],
+      "answer": ["nhan-manh"],
+      "multiple": false,
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tu-lay",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Từ nào là từ láy?"
+        }
+      ],
+      "options": [
+        {
+          "id": "to-mo",
+          "content": {
+            "type": "text",
+            "text": "tò mò"
+          }
+        },
+        {
+          "id": "lua-mi",
+          "content": {
+            "type": "text",
+            "text": "lúa mì"
+          }
+        },
+        {
+          "id": "trai-tim",
+          "content": {
+            "type": "text",
+            "text": "trái tim"
+          }
+        },
+        {
+          "id": "hanh-tinh",
+          "content": {
+            "type": "text",
+            "text": "hành tinh"
+          }
+        }
+      ],
+      "answer": ["to-mo"],
+      "multiple": false,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.tu-lay-trong-cau",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-lay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong câu dưới đây, từ nào là từ láy?"
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l32-1",
+                  "text": "Con cáo ngừng lời và nhìn hoàng tử bé chăm chú."
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "cham-chu",
+          "content": {
+            "type": "text",
+            "text": "chăm chú"
+          }
+        },
+        {
+          "id": "ngung-loi",
+          "content": {
+            "type": "text",
+            "text": "ngừng lời"
+          }
+        },
+        {
+          "id": "hoang-tu",
+          "content": {
+            "type": "text",
+            "text": "hoàng tử"
+          }
+        },
+        {
+          "id": "con-cao",
+          "content": {
+            "type": "text",
+            "text": "con cáo"
+          }
+        }
+      ],
+      "answer": ["cham-chu"],
+      "multiple": false,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tu-ghep",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Từ nào là từ ghép?"
+        }
+      ],
+      "options": [
+        {
+          "id": "canh-dong",
+          "content": {
+            "type": "text",
+            "text": "cánh đồng"
+          }
+        },
+        {
+          "id": "to-mo",
+          "content": {
+            "type": "text",
+            "text": "tò mò"
+          }
+        },
+        {
+          "id": "gan-gui",
+          "content": {
+            "type": "text",
+            "text": "gần gũi"
+          }
+        },
+        {
+          "id": "cham-chu",
+          "content": {
+            "type": "text",
+            "text": "chăm chú"
+          }
+        }
+      ],
+      "answer": ["canh-dong"],
+      "multiple": false,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tat-ca-tu-lay",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-lay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các từ láy."
+        }
+      ],
+      "options": [
+        {
+          "id": "to-mo",
+          "content": {
+            "type": "text",
+            "text": "tò mò"
+          }
+        },
+        {
+          "id": "gan-gui",
+          "content": {
+            "type": "text",
+            "text": "gần gũi"
+          }
+        },
+        {
+          "id": "bong-hoa",
+          "content": {
+            "type": "text",
+            "text": "bông hoa"
+          }
+        },
+        {
+          "id": "thoi-gian",
+          "content": {
+            "type": "text",
+            "text": "thời gian"
+          }
+        }
+      ],
+      "answer": ["to-mo", "gan-gui"],
+      "multiple": true,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-tu-lay",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-lay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ láy cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Con cáo tỏ ra rất "
+        },
+        {
+          "type": "blank",
+          "id": "to-mo",
+          "accept": ["tò mò"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["tò mò", "lúa mì", "trái tim"],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tat-ca-tu-ghep",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các từ ghép."
+        }
+      ],
+      "options": [
+        {
+          "id": "trai-tim",
+          "content": {
+            "type": "text",
+            "text": "trái tim"
+          }
+        },
+        {
+          "id": "hanh-tinh",
+          "content": {
+            "type": "text",
+            "text": "hành tinh"
+          }
+        },
+        {
+          "id": "to-mo",
+          "content": {
+            "type": "text",
+            "text": "tò mò"
+          }
+        },
+        {
+          "id": "cham-chu",
+          "content": {
+            "type": "text",
+            "text": "chăm chú"
+          }
+        }
+      ],
+      "answer": ["trai-tim", "hanh-tinh"],
+      "multiple": true,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.dien-tu-ghep",
+      "type": "fillBlank",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ ghép cho chỗ trống."
+        }
+      ],
+      "segments": [
+        {
+          "type": "text",
+          "text": "Hoàng tử bé đi thăm lại vườn "
+        },
+        {
+          "type": "blank",
+          "id": "hoa-hong",
+          "accept": ["hoa hồng"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["hoa hồng", "gần gũi", "tò mò"],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-cam-xuc-cao",
+      "type": "openEnded",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tưởng tượng và viết đoạn văn từ 5 đến 7 câu, tả cảm xúc của cáo sau khi chia tay hoàng tử bé."
+        }
+      ],
+      "steps": [
+        {
+          "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-buoc-cam-xuc",
+          "type": "choice",
+          "cardIds": [],
+          "prompt": [
+            {
+              "type": "note",
+              "text": "Ngay sau khi chia tay, cáo cảm thấy thế nào?"
+            },
+            {
+              "type": "passage",
+              "paragraphs": [
+                {
+                  "sentences": [
+                    {
+                      "id": "l39-1",
+                      "text": "– A!… Mình sẽ khóc mất."
+                    }
+                  ]
+                }
+              ],
+              "annotations": []
+            }
+          ],
+          "options": [
+            {
+              "id": "buon-nho",
+              "content": {
+                "type": "text",
+                "text": "Buồn và nhớ bạn"
+              }
+            },
+            {
+              "id": "vui",
+              "content": {
+                "type": "text",
+                "text": "Vui như mọi ngày"
+              }
+            },
+            {
+              "id": "gian",
+              "content": {
+                "type": "text",
+                "text": "Giận hoàng tử bé"
+              }
+            },
+            {
+              "id": "quen",
+              "content": {
+                "type": "text",
+                "text": "Quên bạn ngay"
+              }
+            }
+          ],
+          "answer": ["buon-nho"],
+          "multiple": false,
+          "hints": {
+            "highlight": [
+              {
+                "target": "part",
+                "id": "l39-1"
+              }
+            ]
+          },
+          "difficulty": 1
+        },
+        {
+          "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-buoc-nho-ban",
+          "type": "tapText",
+          "cardIds": [],
+          "prompt": [
+            {
+              "type": "note",
+              "text": "Chạm vào câu cho biết điều gì sẽ làm cáo nhớ đến bạn."
+            },
+            {
+              "type": "passage",
+              "paragraphs": [
+                {
+                  "sentences": [
+                    {
+                      "id": "l31-15",
+                      "text": "Nhưng bạn có mái tóc vàng óng."
+                    },
+                    {
+                      "id": "l31-16",
+                      "text": "Nếu bạn cảm hoá mình thì thật là tuyệt vời!"
+                    },
+                    {
+                      "id": "l31-17",
+                      "text": "Lúa mì vàng óng ả sẽ làm mình nhớ đến bạn."
+                    },
+                    {
+                      "id": "l31-18",
+                      "text": "Và mình sẽ thấy thích tiếng gió trên đồng lúa mì..."
+                    }
+                  ]
+                }
+              ],
+              "annotations": []
+            }
+          ],
+          "answer": ["l31-17"],
+          "hints": {
+            "highlight": [
+              {
+                "target": "part",
+                "id": "l31-15"
+              }
+            ]
+          },
+          "difficulty": 1
+        },
+        {
+          "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-buoc-tu-lay",
+          "type": "fillBlank",
+          "cardIds": [],
+          "prompt": [
+            {
+              "type": "note",
+              "text": "Chọn từ láy cho chỗ trống."
+            }
+          ],
+          "segments": [
+            {
+              "type": "text",
+              "text": "Cáo ngồi "
+            },
+            {
+              "type": "blank",
+              "id": "lang-le",
+              "accept": ["lặng lẽ"]
+            },
+            {
+              "type": "text",
+              "text": " nhìn theo bạn."
+            }
+          ],
+          "bank": ["lặng lẽ", "cánh đồng", "trái tim"],
+          "hints": {
+            "highlight": [],
+            "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay"
+          },
+          "difficulty": 1
+        },
+        {
+          "id": "neu-cau-muon-co-mot-nguoi-ban.ex.viet-buoc-tu-ghep",
+          "type": "fillBlank",
+          "cardIds": [],
+          "prompt": [
+            {
+              "type": "note",
+              "text": "Chọn từ ghép cho chỗ trống."
+            }
+          ],
+          "segments": [
+            {
+              "type": "text",
+              "text": "Gió thổi trên "
+            },
+            {
+              "type": "blank",
+              "id": "canh-dong",
+              "accept": ["cánh đồng"]
+            },
+            {
+              "type": "text",
+              "text": " vàng óng."
+            }
+          ],
+          "bank": ["cánh đồng", "tò mò", "lặng lẽ"],
+          "hints": {
+            "highlight": [],
+            "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep"
+          },
+          "difficulty": 1
+        }
+      ],
+      "writing": {
+        "starter": "Hoàng tử bé đi rồi, cáo ngồi một mình bên cánh đồng lúa mì.",
+        "rubric": [
+          "Viết từ 5 đến 7 câu.",
+          "Kể được cáo buồn và nhớ bạn sau khi chia tay.",
+          "Nhắc đến màu lúa mì hoặc tiếng gió làm cáo nhớ bạn.",
+          "Có ít nhất 2 từ ghép.",
+          "Có ít nhất 2 từ láy."
+        ]
+      },
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 3
+    }
+  ],
+  "sticker": {
+    "name": "Chú cáo nhỏ",
+    "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.sticker"
+  }
+}

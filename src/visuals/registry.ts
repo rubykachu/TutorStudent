@@ -362,6 +362,188 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: false,
     load: () => import("@/visuals/math/luy-thua/sticker"),
   },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.boi-canh": {
+    interactive: false,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/boi-canh"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.ai-noi": {
+    interactive: true,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/ai-noi"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.tram-nghin": {
+    interactive: true,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/tram-nghin"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.hanh-tinh": {
+    interactive: false,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/hanh-tinh"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.truoc-sau": {
+    interactive: true,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/truoc-sau"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-tac-dung": {
+    interactive: false,
+    load: () =>
+      import(
+        "@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/so-sanh-tac-dung"
+      ),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.xich-lai-gan": {
+    interactive: true,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/xich-lai-gan"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.cam-xuc-cao": {
+    interactive: false,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/cam-xuc-cao"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.lap-lai-tac-dung": {
+    interactive: false,
+    load: () =>
+      import(
+        "@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/lap-lai-tac-dung"
+      ),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.cham-tu": {
+    interactive: true,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/cham-tu"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.sticker": {
+    interactive: false,
+    load: () =>
+      import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/sticker"),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.LoiThoaiMau),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-cham-cau": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.HuongDanChamCau),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-noi": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.HuongDanNoi),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-xep": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.HuongDanXep),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.huong-dan-dien": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.HuongDanDien),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.cam-hoa": {
+    interactive: false,
+    load: () => lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.CamHoa),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.duy-nhat": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.DuyNhat),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.hanh-tinh-tom-tat": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.HanhTinhTomTat),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.truoc-sau-tom-tat": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.TruocSauTomTat),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) =>
+        m.comparisonParts("Mặt trăng", "như", "quả bóng", "tròn"),
+      ),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-buoc-chan": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) =>
+        m.comparisonParts(
+          "Bước chân của bạn",
+          "như là",
+          "tiếng nhạc",
+          "sẽ gọi mình ra khỏi hang,",
+        ),
+      ),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.so-sanh-tac-dung-tom-tat": {
+    interactive: false,
+    load: () =>
+      lessonExample(
+        "neu-cau-muon-co-mot-nguoi-ban",
+        (m) => m.SoSanhTacDungTomTat,
+      ),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.dau-hieu-so-sanh": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.DauHieuSoSanh),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.xich-lai-gan-tom-tat": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.XichLaiGanTomTat),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.cam-xuc-tom-tat": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.CamXucTomTat),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.bai-hoc": {
+    interactive: false,
+    load: () => lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.BaiHoc),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.nghia-tu": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.NghiaTu),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.loi-lap-lai": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.LoiLapLai),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.TuGhepTuLay),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-lay": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.GoiYTuLay),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.goi-y-tu-ghep": {
+    interactive: false,
+    load: () =>
+      lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.GoiYTuGhep),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.dan-y": {
+    interactive: false,
+    load: () => lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.DanY),
+  },
+  "neu-cau-muon-co-mot-nguoi-ban.visual.cau-mau": {
+    interactive: false,
+    load: () => lessonExample("neu-cau-muon-co-mot-nguoi-ban", (m) => m.CauMau),
+  },
 };
 
 // Each lesson's examples module (src/visuals/<subject>/<slug>/examples.tsx):
@@ -376,6 +558,8 @@ const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 
 const EXAMPLE_MODULES = lessonModules({
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
+  "neu-cau-muon-co-mot-nguoi-ban": () =>
+    import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
 type ExampleModules =
   typeof EXAMPLE_MODULES extends Loaders<infer T> ? T : never;

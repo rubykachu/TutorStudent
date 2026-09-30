@@ -1,13 +1,16 @@
 {
   "terms": [
     { "term": "nhân vật", "forbidden": [] },
-    { "term": "lời thoại", "forbidden": [] },
+    { "term": "lời thoại", "forbidden": [], "color": "blue" },
     { "term": "người kể chuyện", "forbidden": ["người dẫn truyện"] },
-    { "term": "so sánh", "forbidden": [] },
-    { "term": "từ ghép", "forbidden": [] },
-    { "term": "từ láy", "forbidden": [] },
+    { "term": "so sánh", "forbidden": [], "color": "sky" },
+    { "term": "từ ghép", "forbidden": [], "color": "teal" },
+    { "term": "từ láy", "forbidden": [], "color": "violet" },
     { "term": "đoạn văn", "forbidden": [] },
-    { "term": "văn bản", "forbidden": [] }
+    { "term": "văn bản", "forbidden": [] },
+    { "term": "cáo", "forbidden": [], "color": "pink" },
+    { "term": "hoàng tử bé", "forbidden": [], "color": "amber" },
+    { "term": "cảm hoá", "forbidden": ["cảm hóa"], "color": "lime" }
   ],
   "names": []
 }
