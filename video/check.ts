@@ -1,11 +1,11 @@
 import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { PROJECTS_DIR } from "./config";
-import { checkProject } from "./lib/consistency";
+import { checkLessonVoice, checkProject } from "./lib/consistency";
 
 // Usage: pnpm video:check [<lessonId> [<name>]]
 // Runs the consistency checks of `pnpm video:build` (script sentences in the
-// captions, on-screen rule text) on videos already built, without voice or
+// captions, on-screen rule text, opening line, one voice per lesson) on videos already built, without voice or
 // render work. Exits 1 when a video fails.
 
 const dirs = (dir: string) =>
@@ -19,6 +19,12 @@ function main() {
     ),
   );
   let failed = 0;
+  for (const l of new Set(targets.map(([l]) => l))) {
+    const issues = checkLessonVoice(l);
+    console.log(`${issues.length > 0 ? "FAIL" : "ok"} ${l} (voice)`);
+    for (const issue of issues) console.log(`  - ${issue}`);
+    if (issues.length > 0) failed++;
+  }
   for (const [l, n] of targets) {
     const r = checkProject(l, n, { captions: true });
     const status = r.issues.length > 0 ? "FAIL" : r.skipped ? "SKIP" : "ok";
@@ -30,7 +36,7 @@ function main() {
   }
   if (targets.length === 0) console.log("video: no projects to check");
   if (failed > 0) {
-    console.error(`video: ${failed} of ${targets.length} videos failed`);
+    console.error(`video: ${failed} check(s) failed`);
     process.exit(1);
   }
 }

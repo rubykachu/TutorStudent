@@ -12,7 +12,6 @@ function script(...scenes: string[][]): VideoScript {
   return {
     title: "t",
     engine: "local",
-    voice: "v",
     poster: { scene: "a", at: 0 },
     scenes: scenes.map((sentences, i) => ({
       id: `s${i + 1}`,

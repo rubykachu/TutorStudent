@@ -2,11 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { OVERVIEW_GOALS_LEAD } from "@/content/overview";
 import type { LessonOverview } from "@/schema/content";
-import {
-  NARRATION_VOICE,
-  narrationPaths,
-  narrationScript,
-} from "../../video/lib/narration";
+import { narrationPaths, narrationScript } from "../../video/lib/narration";
 import { VideoScriptSchema } from "../../video/lib/script";
 
 const OVERVIEW: LessonOverview = {
@@ -18,9 +14,9 @@ const OVERVIEW: LessonOverview = {
 
 describe("narrationScript", () => {
   it("reads the overview part by part, one sentence per line, in screen order", () => {
-    const script = narrationScript("Phép nhân", OVERVIEW);
+    const script = narrationScript("Phép nhân", OVERVIEW, "local");
     expect(VideoScriptSchema.parse(script)).toEqual(script);
-    expect(script.voice).toBe(NARRATION_VOICE);
+    expect(script.engine).toBe("local");
     expect(
       script.scenes.map((s) => [s.id, s.sentences.map((x) => x.text)]),
     ).toEqual([
@@ -35,7 +31,11 @@ describe("narrationScript", () => {
 
   it("refuses text the voice would misread and the highlight could not map", () => {
     expect(() =>
-      narrationScript("Luỹ thừa", { ...OVERVIEW, summary: "Ta có 2³ = 8." }),
+      narrationScript(
+        "Luỹ thừa",
+        { ...OVERVIEW, summary: "Ta có 2³ = 8." },
+        "local",
+      ),
     ).toThrow(/say it in words/);
   });
 });

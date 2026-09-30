@@ -7,6 +7,7 @@ import { LessonSchema } from "@/schema/content";
 import { MATCH_THRESHOLD, MEDIA_DIR, RENDER, VIDEO_DIR } from "./config";
 import { alignWords } from "./lib/align";
 import { ffmpeg, layNarration } from "./lib/audio";
+import { lessonVoice } from "./lib/lesson-media";
 import { writeNarration } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
 import { narrationPaths, narrationScript } from "./lib/narration";
@@ -14,7 +15,7 @@ import { buildVtt, schedule } from "./lib/timeline";
 import { ttsEngine } from "./tts";
 
 // Usage: pnpm narration:build <lessonId>
-// Reads the lesson's overview aloud with the video pipeline's voice (each
+// Reads the lesson's overview aloud with the lesson's voice (video/projects/<lessonId>/media.json) (each
 // sentence synthesized, slowed, and checked against the text by Whisper),
 // writes public/media/narration/<lessonId>/overview.{m4a,vtt} with one
 // caption timestamp per word, and records both on `overview.narration`.
@@ -35,10 +36,16 @@ async function main() {
   const lesson = LessonSchema.parse(file.data);
   if (!lesson.overview) throw new Error(`Lesson "${lessonId}" has no overview`);
 
-  const script = narrationScript(lesson.title, lesson.overview);
-  const engine = ttsEngine(script.engine);
+  const voice = lessonVoice(lessonId).spec;
+  const script = narrationScript(lesson.title, lesson.overview, voice.engine);
+  const engine = ttsEngine(voice.engine);
   const workDir = path.join(VIDEO_DIR, ".cache", "narration", lessonId);
-  const takes = await narrate(script, engine, path.join(workDir, "audio"));
+  const takes = await narrate(
+    script,
+    engine,
+    voice.preset,
+    path.join(workDir, "audio"),
+  );
   const words = takes.map((t) =>
     alignWords(t.text, t.spoken, t.words, t.duration),
   );

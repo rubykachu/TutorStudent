@@ -10,7 +10,8 @@ import {
 import { alignWords } from "./lib/align";
 import { layNarration, probeDuration } from "./lib/audio";
 import { buildSite } from "./lib/compose";
-import { captionIssues, checkProject } from "./lib/consistency";
+import { captionIssues, checkProject, openingIssues } from "./lib/consistency";
+import { lessonVoice, readLessonMedia } from "./lib/lesson-media";
 import { writeManifest } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
 import { encodeVideo, extractPoster, renderSite } from "./lib/render";
@@ -52,11 +53,30 @@ async function main() {
       `index.html shows rule text that is off:\n${onScreen.join("\n")}`,
     );
   }
+  const lessonMedia = readLessonMedia(lessonId);
+  const opening = openingIssues(
+    script,
+    lessonMedia.openingExempt?.includes(name),
+  );
+  if (opening.length > 0) {
+    throw new Error(`the opening line is off:\n${opening.join("\n")}`);
+  }
+  const voice = lessonVoice(lessonId).spec;
+  if (script.engine !== voice.engine) {
+    throw new Error(
+      `script.json engine "${script.engine}" is not the lesson's voice engine "${voice.engine}"`,
+    );
+  }
   const engine = ttsEngine(script.engine);
   const renders = path.join(projectDir, "renders");
   mkdirSync(renders, { recursive: true });
 
-  const takes = await narrate(script, engine, path.join(projectDir, "audio"));
+  const takes = await narrate(
+    script,
+    engine,
+    voice.preset,
+    path.join(projectDir, "audio"),
+  );
   const words = takes.map((t) =>
     alignWords(t.text, t.spoken, t.words, t.duration),
   );
@@ -111,7 +131,7 @@ async function main() {
     posterUrl: `${media}.jpg`,
     durationSec: duration,
     clips: buildClips(script, timeline),
-    voice: engine.voice(script.voice),
+    voice: engine.voice(voice.preset),
   });
 
   const report = {
