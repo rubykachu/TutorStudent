@@ -113,7 +113,14 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
     : mediaUrl(video.url);
 
   return (
-    <div data-block="video" data-video={video.id} className="w-full">
+    // On a short, wide screen (a landscape tablet) the 16:9 picture would fill
+    // the width and push the captions button under the bottom bar, so the
+    // block is narrowed until picture, button and bar fit one screen.
+    <div
+      data-block="video"
+      data-video={video.id}
+      className="mx-auto w-full max-w-[max(20rem,calc((100dvh-26rem)*16/9))]"
+    >
       <div className="relative w-full overflow-hidden rounded-lg bg-foreground">
         <video
           ref={videoRef}
