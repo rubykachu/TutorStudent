@@ -29,8 +29,8 @@
           <div id="line-1" class="line" style="top: 370px"><span class="dash">–</span> A!… Mình sẽ khóc mất.</div>
         </section>
         <section id="s2" class="scene layer">
-          <div id="sad-2" class="abs chip" style="left: 330px; top: 270px">buồn, muốn khóc</div>
-          <div id="calm-2" class="abs chip fox" style="left: 690px; top: 270px">không hối tiếc</div>
+          <div id="sad-2" class="abs chip" style="left: 110px; top: 270px">buồn, muốn khóc</div>
+          <div id="calm-2" class="abs chip fox" style="left: 510px; top: 270px">không hối tiếc</div>
           <svg id="field-2" aria-hidden="true" class="field" viewBox="0 0 680 170"></svg>
         </section>
         <section id="s3" class="scene layer">
@@ -79,9 +79,9 @@
         const face = (parent, names, left, top, size = 180) =>
           figure(parent, names, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
         const fox1 = face($("#s1"), ["fox-calm", "fox-sad"], 360, 110);
-        const prince1 = face($("#s1"), ["prince-calm", "prince-sad"], 720, 110);
+        const prince1 = face($("#s1"), ["prince-calm"], 720, 110);
         const fox2 = face($("#s2"), ["fox-sad", "fox-happy"], 360, 60);
-        const prince2 = face($("#s2"), ["prince-sad"], 740, 60);
+        const prince2 = face($("#s2"), ["prince-calm"], 740, 60);
         const fox3 = face($("#s3"), ["fox-calm"], 300, 200);
         const prince3 = face($("#s3"), ["prince-calm"], 800, 200);
         const fox4 = face($("#s4"), ["fox-calm"], 180, 40, 120);
@@ -117,7 +117,6 @@
           tl.to(prince1.wrap, { left: 900, duration: 1.4, ease: "power2.inOut" }, W(sid, "ra"));
           rise("#line-1", W(sid, "cáo", 2));
           pose(fox1, "fox-sad", W(sid, "khóc"));
-          pose(prince1, "prince-sad", W(sid, "buồn"));
         }
 
         // ---------- s02: the colour of the wheat ----------
@@ -126,11 +125,11 @@
           hide(["#sad-2", "#calm-2", ...$$("#field-2 .stalk")]);
           pop([fox2.wrap, prince2.wrap], start(sid) + 0.2, { from: 0.6 });
           rise($$("#field-2 .stalk"), W(sid, "lúa"), { stagger: 0.06, y: 60 });
-          pose(fox2, "fox-happy", W(sid, "được", 2));
-          pose(bird, "happy", W(sid, "được", 2));
           tl.fromTo(prince2.wrap, { scale: 1 }, { scale: 1.15, duration: 0.3, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "tóc"));
           rise("#sad-2", W(sid, "buồn"));
           rise("#calm-2", W(sid, "hối"));
+          pose(fox2, "fox-happy", W(sid, "hối"));
+          pose(bird, "happy", W(sid, "hối"));
           tl.fromTo($$("#field-2 .stalk"), { y: 0 }, { y: -10, duration: 0.3, yoyo: true, repeat: 1, stagger: 0.04, immediateRender: false }, W(sid, "nhớ"));
         }
 

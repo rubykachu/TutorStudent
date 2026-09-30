@@ -7,7 +7,7 @@
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
   "status": "published",
-  "reviewedHash": "bc4a79c2ca5c78b118ea49e682d7eb317d93b48632fe062d05689509cdafada1",
+  "reviewedHash": "62af8fda2837b125625b453b98c20552282444024132d851b83d79f988138256",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -167,7 +167,7 @@
             {
               "sentenceId": "l8-2",
               "label": "Theo dõi",
-              "text": "Lần đầu gặp từ “cảm hoá”. Nhớ từ này nhé."
+              "text": "Lần đầu gặp từ “cảm hoá”. Đọc to từ này nhé."
             }
           ]
         },
@@ -306,9 +306,9 @@
               "text": "Đếm xem hoàng tử bé hỏi câu này mấy lần."
             },
             {
-              "sentenceId": "l16-2",
+              "sentenceId": "l17-1",
               "label": "Theo dõi",
-              "text": "Cáo giải thích “cảm hoá” ở câu này. Đọc chậm nhé."
+              "text": "Nghĩ xem: “gần gũi hơn” là thế nào?"
             }
           ]
         },
@@ -408,9 +408,9 @@
           ],
           "annotations": [
             {
-              "sentenceId": "l18-6",
+              "sentenceId": "l18-7",
               "label": "Theo dõi",
-              "text": "Tìm chữ “nếu”: điều gì sẽ xảy ra khi được cảm hoá?"
+              "text": "Đếm xem cáo nói “duy nhất trên đời” mấy lần."
             }
           ]
         },
@@ -567,7 +567,7 @@
             {
               "sentenceId": "l22-1",
               "label": "Theo dõi",
-              "text": "Đếm xem sau câu này, cáo hỏi liền mấy câu."
+              "text": "Đếm xem sau câu này, cáo hỏi mấy câu."
             },
             {
               "sentenceId": "l29-1",
@@ -645,7 +645,7 @@
             {
               "sentenceId": "l31-6",
               "label": "Theo dõi",
-              "text": "So sánh bước chân của bạn với các bước chân khác."
+              "text": "So sánh bước chân hoàng tử bé với các bước chân khác."
             }
           ]
         },
@@ -988,12 +988,12 @@
             {
               "sentenceId": "l39-1",
               "label": "Theo dõi",
-              "text": "Đọc câu này: cáo đang vui hay buồn?"
+              "text": "Đọc to câu này bằng giọng của cáo."
             },
             {
               "sentenceId": "l45-1",
               "label": "Theo dõi",
-              "text": "Tìm điều cáo vẫn còn sau khi bạn đi."
+              "text": "Tìm điều cáo vẫn còn khi hoàng tử bé đi."
             }
           ]
         },
@@ -1158,7 +1158,7 @@
             {
               "sentenceId": "l52-4",
               "label": "Theo dõi",
-              "text": "“Cốt lõi”: quan trọng nhất. “Mắt trần”: cái nhìn thường."
+              "text": "“Mắt trần”: mắt nhìn thường. Thay “cốt lõi” bằng “quan trọng nhất”."
             }
           ]
         },
@@ -4997,7 +4997,7 @@
       "url": "video/neu-cau-muon-co-mot-nguoi-ban/bi-mat-cua-cao.mp4",
       "vttUrl": "video/neu-cau-muon-co-mot-nguoi-ban/bi-mat-cua-cao.vtt",
       "posterUrl": "video/neu-cau-muon-co-mot-nguoi-ban/bi-mat-cua-cao.jpg",
-      "durationSec": 63.03,
+      "durationSec": 63.17,
       "clips": [
         {
           "id": "cam-xuc-chia-tay",
@@ -5008,13 +5008,13 @@
         {
           "id": "bai-hoc",
           "start": 27.521,
-          "end": 45.417,
+          "end": 45.547,
           "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"]
         },
         {
           "id": "lap-lai",
-          "start": 45.817,
-          "end": 53.912,
+          "start": 45.947,
+          "end": 54.042,
           "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.lap-lai"]
         }
       ],

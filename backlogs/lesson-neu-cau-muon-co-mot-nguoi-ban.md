@@ -15,3 +15,8 @@ Bài đã xuất bản (`published`, `content/literature/ctst/neu-cau-muon-co-mo
 - Bước `viet-buoc-cam-xuc` hỏi "Ngay sau khi chia tay" nhưng câu căn cứ là lúc sắp chia tay; đổi thành "Lúc chia tay".
 - Bài chưa có câu 8 tr.26 (cáo có phải nhân vật truyện đồng thoại không), câu 1 mục "Nghĩa của từ ngữ" (yếu tố "hoá" trong "cảm hoá": các từ như "tự động hoá"), và bài đặt câu với "cốt lõi".
 - Câu trong kho ôn (không nằm trong section) không được walk chạy qua. Đề có đoạn trích dài như `lua-mi-truoc`, `vi-sao-don-dieu`, `mau-lua-mi` có thể phải cuộn trên điện thoại trong phiên ôn; walk chỉ kiểm bố cục trong phần học.
+- Recap và card `doi-khac`, `cam-xuc-chia-tay`, hai mục của `noi-doi-khac` và câu `rule` "Màu lúa mì sẽ làm cáo nhớ bạn." (video `bi-mat-cua-cao`, cảnh `s02-mau-lua-mi`) gọi hoàng tử bé là "bạn", dễ nghe như nói với trẻ. Đổi thành "hoàng tử bé" cùng lúc ở recap và kịch bản (build kiểm nguyên văn), rồi `pnpm video:build` lại.
+
+## Chờ chủ dự án nghe duyệt
+
+- Whisper nghe lệch, cần nghe tai: `bi-mat-cua-cao` "Màu lúa mì sẽ làm cáo nhớ bạn." (nghe thành "như bạn", giây ~26), "mắt trần" (nghe thành "mắt chân", giây ~41); `cam-hoa-la-gi` "Chưa cảm hoá thì…" (nghe thành "Chứ", giây ~37). Tệp: `public/media/video/neu-cau-muon-co-mot-nguoi-ban/`.
