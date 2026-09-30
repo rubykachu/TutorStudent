@@ -24,8 +24,9 @@ export type AttemptInput = ChildScope & {
 
 // Comprehension checks only confirm the child followed the explanation; they
 // come before the card is practiced, so they must not shape its memory state.
+// A skipped question was not answered, so it says nothing about the card.
 function isRated(context: AttemptContext): boolean {
-  return context !== "check";
+  return context === "practice" || context === "review";
 }
 
 // Logs the answer, updates the memory state of every card the exercise trains

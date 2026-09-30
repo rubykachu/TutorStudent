@@ -229,7 +229,12 @@ export type WrongExercise = {
 export function topWrongExercises(
   attempts: readonly Pick<
     AttemptRecord,
-    "exerciseId" | "lessonId" | "firstTryCorrect" | "wrongCount" | "at"
+    | "exerciseId"
+    | "lessonId"
+    | "firstTryCorrect"
+    | "wrongCount"
+    | "at"
+    | "context"
   >[],
   now: Date,
   windowDays: number = PARENT_WRONG_WINDOW_DAYS,
@@ -238,6 +243,8 @@ export function topWrongExercises(
   const since = now.getTime() - windowDays * MS_PER_DAY;
   const byExercise = new Map<string, WrongExercise>();
   for (const attempt of attempts) {
+    // A skipped question was not answered, so it is not a mistake.
+    if (attempt.context === "skipped") continue;
     if (attempt.firstTryCorrect && attempt.wrongCount === 0) continue;
     if (Date.parse(attempt.at) < since) continue;
     const entry = byExercise.get(attempt.exerciseId) ?? {
@@ -259,6 +266,48 @@ export function topWrongExercises(
         b.misses - a.misses ||
         b.lastAt.localeCompare(a.lastAt),
     )
+    .slice(0, count);
+}
+
+// ---------------------------------------------------------------------------
+// Questions the child skipped
+
+export type SkippedExercise = {
+  exerciseId: string;
+  lessonId: string;
+  // Times skipped in the window.
+  skips: number;
+  lastAt: string;
+};
+
+// Questions skipped with "Bỏ qua" in the last `windowDays`, most skipped
+// first, then the most recent.
+export function skippedExercises(
+  attempts: readonly Pick<
+    AttemptRecord,
+    "exerciseId" | "lessonId" | "at" | "context"
+  >[],
+  now: Date,
+  windowDays: number = PARENT_WRONG_WINDOW_DAYS,
+  count: number = PARENT_TOP_COUNT,
+): SkippedExercise[] {
+  const since = now.getTime() - windowDays * MS_PER_DAY;
+  const byExercise = new Map<string, SkippedExercise>();
+  for (const attempt of attempts) {
+    if (attempt.context !== "skipped") continue;
+    if (Date.parse(attempt.at) < since) continue;
+    const entry = byExercise.get(attempt.exerciseId) ?? {
+      exerciseId: attempt.exerciseId,
+      lessonId: attempt.lessonId,
+      skips: 0,
+      lastAt: attempt.at,
+    };
+    entry.skips += 1;
+    if (attempt.at > entry.lastAt) entry.lastAt = attempt.at;
+    byExercise.set(attempt.exerciseId, entry);
+  }
+  return [...byExercise.values()]
+    .sort((a, b) => b.skips - a.skips || b.lastAt.localeCompare(a.lastAt))
     .slice(0, count);
 }
 

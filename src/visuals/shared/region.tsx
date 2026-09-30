@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, type ReactNode, useContext } from "react";
+import { useTapSound } from "@/lib/feedback-sounds";
 import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 
@@ -103,6 +104,7 @@ type RegionProps = {
 
 export function Region({ id, label, children }: RegionProps) {
   const interaction = useContext(RegionContext);
+  const playTap = useTapSound();
   if (!interaction) return <g data-region={id}>{children}</g>;
 
   const { disabled, onToggle } = interaction;
@@ -111,7 +113,9 @@ export function Region({ id, label, children }: RegionProps) {
   const strong = mark?.tone === "hint" && mark.strong;
   const wrong = mark?.tone === "wrong" && !interaction.revealed.has(id);
   const toggle = () => {
-    if (!disabled) onToggle(id);
+    if (disabled) return;
+    playTap();
+    onToggle(id);
   };
 
   return (

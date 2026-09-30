@@ -2,8 +2,10 @@ import { describe, expect, it } from "vitest";
 import {
   PARENT_RECENT_DAYS,
   PARENT_TOP_COUNT,
+  PARENT_WRONG_WINDOW_DAYS,
   STUDY_ATTEMPT_FLOOR_SECONDS,
 } from "@/lib/config";
+import type { AttemptContext } from "@/progress/db";
 import {
   cardConceptNames,
   dayKeyOf,
@@ -13,6 +15,7 @@ import {
   promptSummary,
   recentStudyDays,
   shorten,
+  skippedExercises,
   studySecondsByDay,
   topForgettingCards,
   topWrongExercises,
@@ -259,9 +262,26 @@ describe("topWrongExercises", () => {
     wrongCount: number,
     at: string,
     firstTryCorrect = wrongCount === 0,
+    context: AttemptContext = "practice",
   ) {
-    return { exerciseId, lessonId: "l", firstTryCorrect, wrongCount, at };
+    return {
+      exerciseId,
+      lessonId: "l",
+      firstTryCorrect,
+      wrongCount,
+      at,
+      context,
+    };
   }
+
+  it("leaves a skipped question out: it was not answered, so it is no mistake", () => {
+    expect(
+      topWrongExercises(
+        [attempt("l.ex.a", 0, daysAgo(1), false, "skipped")],
+        now,
+      ),
+    ).toEqual([]);
+  });
 
   it("ranks questions missed in the window by wrong checks, then misses, then recency", () => {
     const top = topWrongExercises(
@@ -331,6 +351,39 @@ describe("topWrongExercises", () => {
     const top = topWrongExercises(attempts, now);
     expect(top).toHaveLength(PARENT_TOP_COUNT);
     expect(top[0]?.exerciseId).toBe("l.ex.q8");
+  });
+});
+
+describe("skippedExercises", () => {
+  const now = new Date("2026-09-30T02:00:00Z");
+  const daysAgo = (days: number) =>
+    new Date(now.getTime() - days * 86_400_000).toISOString();
+  const skip = (
+    exerciseId: string,
+    at: string,
+    context: AttemptContext = "skipped",
+  ) => ({
+    exerciseId,
+    lessonId: "l",
+    at,
+    context,
+  });
+
+  it("lists questions skipped in the window, most skipped first, ignoring answered ones", () => {
+    const list = skippedExercises(
+      [
+        skip("l.ex.a", daysAgo(1)),
+        skip("l.ex.b", daysAgo(2)),
+        skip("l.ex.b", daysAgo(3)),
+        skip("l.ex.c", daysAgo(1), "practice"),
+        skip("l.ex.d", daysAgo(PARENT_WRONG_WINDOW_DAYS + 1)),
+      ],
+      now,
+    );
+    expect(list.map((item) => [item.exerciseId, item.skips])).toEqual([
+      ["l.ex.b", 2],
+      ["l.ex.a", 1],
+    ]);
   });
 });
 

@@ -17,6 +17,7 @@ import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { MatchInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
+import { useTapSound } from "@/lib/feedback-sounds";
 import type { Item, MatchExercise } from "@/schema/content";
 import { Highlight } from "@/visuals/shared/highlight";
 import {
@@ -239,7 +240,10 @@ export function MatchAnswer({ exercise, slot }: MatchAnswerProps) {
     );
   }
 
+  const playTap = useTapSound();
+
   function tap(tapped: Armed) {
+    playTap();
     const result = tapItem(own, armed, tapped);
     setArmedItem(result.armed);
     if (result.pairs !== own) commit(result.pairs);

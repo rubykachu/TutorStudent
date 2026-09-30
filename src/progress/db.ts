@@ -24,7 +24,14 @@ export type ProfileRecord = {
 
 export type CardStateRecord = ChildScope & LessonCardState;
 
-export const ATTEMPT_CONTEXTS = ["practice", "check", "review"] as const;
+// `skipped`: the child chose "Bỏ qua" (in a check, practice or review
+// question); it is logged but never rated.
+export const ATTEMPT_CONTEXTS = [
+  "practice",
+  "check",
+  "review",
+  "skipped",
+] as const;
 export type AttemptContext = (typeof ATTEMPT_CONTEXTS)[number];
 
 export type AttemptRecord = ChildScope & {

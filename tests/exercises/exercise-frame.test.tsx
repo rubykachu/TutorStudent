@@ -92,7 +92,10 @@ function renderFrame(hints: Hints) {
     ],
   };
   const onDone = vi.fn();
-  const sounds = { play: vi.fn<(clipIds: readonly string[]) => void>() };
+  const sounds = {
+    play: vi.fn<(clipIds: readonly string[]) => void>(),
+    tap: vi.fn<() => void>(),
+  };
   const view = render(
     <ExerciseFrame
       exercise={exercise}

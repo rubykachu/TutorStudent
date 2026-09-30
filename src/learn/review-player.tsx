@@ -15,7 +15,9 @@ import { DoneScreen } from "@/learn/done-screen";
 import { LessonProgressCard } from "@/learn/lesson-progress-card";
 import { stickerFill } from "@/learn/next-step";
 import { PlayerHeader } from "@/learn/player-header";
+import { ScreenBadge } from "@/learn/screen-badge";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
+import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { type ChildScope, listAttempts, type TutorDb } from "@/progress/db";
@@ -33,6 +35,7 @@ import {
   type ReviewSession,
   recentExerciseIds,
   sectionExerciseIds,
+  skipCurrent,
   startSession,
 } from "@/srs/session";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
@@ -152,7 +155,14 @@ export function ReviewPlayer({
       childId={childId}
       progress={
         session.items.length > 0 && (item || recap)
-          ? { total: session.items.length, current: onScreen }
+          ? {
+              total: session.items.length,
+              current: onScreen,
+              labels: session.items.map((_, i) => `Câu ${i + 1}`),
+              reached: Math.max(live, onScreen),
+              onSelect: (i) =>
+                setViewing(i >= live || (recap && i === recap.at) ? null : i),
+            }
           : undefined
       }
       onBack={canGoBack ? () => setViewing((viewing ?? live) - 1) : undefined}
@@ -168,9 +178,7 @@ export function ReviewPlayer({
       data-exercise={viewedExercise.id}
       data-exercise-type={viewedExercise.type}
     >
-      <p className="text-caption font-semibold text-muted-foreground">
-        {viewedItem.reask ? "Hỏi lại" : "Ôn bài"}
-      </p>
+      <ScreenBadge kind={viewedItem.reask ? "reask" : "review"} />
       <ExerciseFrame
         key={`answered-${viewing}`}
         exercise={viewedExercise}
@@ -210,6 +218,7 @@ export function ReviewPlayer({
       <>
         {header}
         <div className="flex flex-1 flex-col gap-4" data-review-step="recap">
+          <ScreenBadge kind="review" />
           {card && (
             <BlockStage
               block={card.recap}
@@ -286,6 +295,23 @@ export function ReviewPlayer({
   if (!exercise) return null;
 
   const finish = async (outcome: ExerciseOutcome) => {
+    if (outcome.skipped) {
+      await recordAttempt(
+        db,
+        {
+          ...scope,
+          lessonId: lesson.id,
+          exerciseId: exercise.id,
+          cardIds: exercise.cardIds,
+          context: "skipped",
+          firstTryCorrect: false,
+          wrongCount: outcome.wrongCount,
+        },
+        now(),
+      );
+      setSession(skipCurrent(session));
+      return;
+    }
     if (isRated(item)) {
       await recordAttempt(
         db,
@@ -312,7 +338,7 @@ export function ReviewPlayer({
   };
 
   return (
-    <>
+    <FeedbackSoundsProvider sounds={sounds}>
       {header}
       {viewed}
       {/* Kept mounted while an answered question is shown, so the question
@@ -330,21 +356,20 @@ export function ReviewPlayer({
           data-exercise={exercise.id}
           data-exercise-type={exercise.type}
         >
-          <p className="text-caption font-semibold text-muted-foreground">
-            {item.reask ? "Hỏi lại" : "Ôn bài"}
-          </p>
+          <ScreenBadge kind={item.reask ? "reask" : "review"} />
           <ExerciseFrame
             // The same exercise can come back as a re-ask; each ask starts fresh.
             key={session.current}
             exercise={exercise}
             concepts={index.conceptById}
             sounds={sounds}
+            skippable
             onDone={finish}
           >
             {(slot) => renderAnswer(exercise, slot)}
           </ExerciseFrame>
         </div>
       </div>
-    </>
+    </FeedbackSoundsProvider>
   );
 }

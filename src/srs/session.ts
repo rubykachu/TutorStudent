@@ -114,6 +114,13 @@ export function answerCurrent(
   return { ...next, items: [...session.items, reask] };
 }
 
+// Moves past the current item without an answer ("Bỏ qua"): no recap, no
+// re-ask, nothing rated.
+export function skipCurrent(session: ReviewSession): ReviewSession {
+  if (!currentItem(session)) return session;
+  return { ...session, current: session.current + 1, recap: null };
+}
+
 // Exercises of the most recent review of a lesson, for `selectReview` to
 // avoid. A session rates at most REVIEW_SESSION_SIZE answers, so the last
 // that many review answers cover it.

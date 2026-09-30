@@ -1,5 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
+import { JINGLE_ID } from "@/lib/sound-manifest";
 import {
   tapRegions,
   VISUAL_SPECS,
@@ -105,6 +107,8 @@ describe("TryIt", () => {
   function regionOf(name: string) {
     return screen.getByRole("button", { name });
   }
+  const nextButton = () =>
+    screen.getByRole("button", { name: /Tiếp theo|Xem kết quả/ });
 
   it("works out a tapped operation only when the rules put it next", () => {
     const onStateChange = vi.fn();
@@ -115,16 +119,47 @@ describe("TryIt", () => {
     expect(screen.getByText("Chưa phải. Thử phép khác.")).toBeTruthy();
 
     fireEvent.click(regionOf("Phép nhân"));
+    fireEvent.click(nextButton());
     expect(onStateChange).toHaveBeenLastCalledWith({ done: 1 });
     fireEvent.click(regionOf("Phép cộng"));
+    fireEvent.click(nextButton());
     expect(onStateChange).toHaveBeenLastCalledWith({ done: 2 });
     expect(screen.getByText("Xong rồi.")).toBeTruthy();
+  });
+
+  it("stays on a right tap, shows it is right and plays the jingle, then moves on only when the child taps", () => {
+    const play = vi.fn();
+    const onStateChange = vi.fn();
+    render(
+      <FeedbackSoundsProvider sounds={{ play, tap: vi.fn() }}>
+        <TryIt source="8+6·2" onStateChange={onStateChange} />
+      </FeedbackSoundsProvider>,
+    );
+
+    fireEvent.click(regionOf("Phép nhân"));
+    const status = screen.getByText(/Đúng rồi! 6 · 2 = 12/);
+    expect(
+      status
+        .closest("[data-try-it-status]")
+        ?.getAttribute("data-try-it-status"),
+    ).toBe("correct");
+    expect(play).toHaveBeenCalledWith([JINGLE_ID]);
+    // Nothing advanced by itself: the tapped operation is marked right and
+    // the other operations no longer take a tap.
+    expect(onStateChange).not.toHaveBeenCalled();
+    expect(regionOf("Phép nhân").getAttribute("data-revealed")).toBe("true");
+    expect(regionOf("Phép cộng").getAttribute("aria-disabled")).toBe("true");
+
+    fireEvent.click(nextButton());
+    expect(onStateChange).toHaveBeenLastCalledWith({ done: 1 });
+    expect(screen.queryByText(/Đúng rồi!/)).toBeNull();
   });
 
   it("starts over", () => {
     const onStateChange = vi.fn();
     render(<TryIt source="8+6·2" onStateChange={onStateChange} />);
     fireEvent.click(regionOf("Phép nhân"));
+    fireEvent.click(nextButton());
     fireEvent.click(screen.getByRole("button", { name: "Làm lại" }));
     expect(onStateChange).toHaveBeenLastCalledWith({ done: 0 });
     expect(regionOf("Phép nhân")).toBeTruthy();

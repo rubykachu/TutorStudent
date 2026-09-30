@@ -17,6 +17,7 @@ import type { HighlightSpec } from "@/exercises/feedback";
 import type { OrderInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
 import { seededShuffle } from "@/exercises/shuffle";
+import { useTapSound } from "@/lib/feedback-sounds";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { Item, OrderExercise } from "@/schema/content";
 
@@ -58,7 +59,10 @@ export function OrderAnswer({ exercise, slot }: OrderAnswerProps) {
     onChange({ type: "order", order: next });
   }
 
+  const playTap = useTapSound();
+
   function tap(id: string) {
+    playTap();
     if (picked === null) setPicked(id);
     else {
       if (picked !== id) move(picked, id);

@@ -1,6 +1,6 @@
 import "fake-indexeddb/auto";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { SectionPlayer } from "@/learn/section-player";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { setNowForTesting } from "@/lib/time";
@@ -23,6 +23,9 @@ import {
   learnLesson,
   SECTION_ID,
 } from "./helpers";
+
+const push = vi.fn();
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push }) }));
 
 const scope: ChildScope = { familyId: LOCAL_FAMILY_ID, childId: "kid-1" };
 const AT = new Date("2026-03-02T01:00:00Z");
@@ -95,9 +98,9 @@ describe("SectionPlayer", () => {
     expect(screen.getByText("Khối thứ hai")).toBeInTheDocument();
     tap("Tiếp");
 
-    expect(screen.getByText("Kiểm tra nhanh")).toBeInTheDocument();
+    expect(screen.getByText("Bài tập · Kiểm tra nhanh")).toBeInTheDocument();
     await answer("Câu kiểm tra", ["Sai", "Đúng"]);
-    expect(screen.getByText("Luyện tập")).toBeInTheDocument();
+    expect(screen.getByText("Bài tập · Luyện tập")).toBeInTheDocument();
     await answer("Câu luyện A", ["Sai", "Đúng"]);
     await answer("Câu luyện B", ["Đúng"]);
 
@@ -149,7 +152,7 @@ describe("SectionPlayer", () => {
     expect(screen.getByText("Câu ví dụ")).toBeInTheDocument();
     expect(screen.getByText("Bước 1 trên 5")).toBeInTheDocument();
     tap("Tiếp");
-    expect(screen.getByText("Kiểm tra nhanh")).toBeInTheDocument();
+    expect(screen.getByText("Bài tập · Kiểm tra nhanh")).toBeInTheDocument();
     // Let the saved position land before the database is dropped.
     await waitFor(async () =>
       expect(await sectionRecord()).toMatchObject({
@@ -333,5 +336,66 @@ describe("SectionPlayer", () => {
         }),
       );
     });
+  });
+});
+
+describe("SectionPlayer screens", () => {
+  it("labels an explanation screen as theory, not as an exercise", async () => {
+    renderPlayer();
+    expect(screen.getByText("Lý thuyết")).toBeInTheDocument();
+    expect(screen.queryByText(/Bài tập/)).toBeNull();
+    await waitFor(async () => expect(await sectionRecord()).toBeDefined());
+  });
+
+  it("skips an exercise: moves on, logs it as skipped and rates nothing", async () => {
+    renderPlayer({ phase: "practice", index: 0 });
+    expect(screen.getByText("Câu luyện A")).toBeInTheDocument();
+    tap("Bỏ qua");
+    expect(await screen.findByText("Câu luyện B")).toBeInTheDocument();
+    const attempts = await listAttempts(db, scope);
+    expect(
+      attempts.map((a) => [a.exerciseId, a.context, a.firstTryCorrect]),
+    ).toEqual([[`${LESSON_ID}.ex.luyen-a`, "skipped", false]]);
+    expect(await getCardStates(db, scope, LESSON_ID)).toEqual([]);
+  });
+
+  it("jumps back with a dot of a screen already visited, and forward again with the current dot", async () => {
+    renderPlayer();
+    // Nothing visited yet besides the first screen.
+    expect(
+      screen.getByRole("button", { name: "Lý thuyết 1" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Lý thuyết 2" })).toBeNull();
+    tap("Tiếp");
+    tap("Tiếp");
+    expect(screen.getByText("Câu kiểm tra")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Câu 2" })).toBeNull();
+
+    tap("Lý thuyết 1");
+    expect(screen.getByText("Khối thứ nhất")).toBeInTheDocument();
+    tap("Câu 1");
+    expect(await screen.findByText("Câu kiểm tra")).toBeVisible();
+    await waitFor(async () =>
+      expect(await sectionRecord()).toMatchObject({
+        position: { phase: "check", index: 0 },
+      }),
+    );
+  });
+
+  it("goes back to the lesson introduction from the first screen", async () => {
+    const [first] = learnLesson().sections;
+    if (!first) throw new Error("section missing");
+    push.mockClear();
+    renderPlayer(SECTION_START, {
+      overview: {
+        hook: { text: "Mở đầu" },
+        summary: "Tóm tắt",
+        goals: ["Mục tiêu một", "Mục tiêu hai"],
+        whyItMatters: "Vì sao",
+      },
+    });
+    tap("Quay lại");
+    expect(push).toHaveBeenCalledWith(`/lessons/${LESSON_ID}?intro=1`);
+    await waitFor(async () => expect(await sectionRecord()).toBeDefined());
   });
 });

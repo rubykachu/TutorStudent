@@ -169,10 +169,32 @@ describe("splitAfterBlank", () => {
   });
 });
 
+describe("FillBlankAnswer blank width", () => {
+  it("reserves room for every bank word, so a placed word never resizes the blank", () => {
+    renderExercise(fillBlankExercise(["Lan"], NO_HINTS, BANK));
+    const sizers = blank().querySelectorAll("[data-blank-sizer]");
+    expect([...sizers].map((el) => el.textContent)).toEqual(BANK);
+    // The sizers are hidden from assistive technology and from view.
+    for (const sizer of sizers) {
+      expect(sizer).toHaveAttribute("aria-hidden", "true");
+      expect(sizer).toHaveClass("invisible");
+    }
+    tap("Minh");
+    fireEvent.click(blank());
+    expect(blank().querySelectorAll("[data-blank-sizer]")).toHaveLength(
+      BANK.length,
+    );
+  });
+});
+
 describe("FillBlankAnswer line breaking", () => {
   it("keeps the word before a blank and the full stop after it on one unbreakable line", () => {
     renderExercise(fillBlankExercise(["Lan"], NO_HINTS, BANK));
     const unit = blank().closest(".whitespace-nowrap");
-    expect(unit?.textContent).toMatch(/^là .*\.$/);
+    const shown = unit?.cloneNode(true) as HTMLElement;
+    // The invisible words that size the blank are not part of the sentence.
+    for (const sizer of shown.querySelectorAll("[data-blank-sizer]"))
+      sizer.remove();
+    expect(shown.textContent).toMatch(/^là .*\.$/);
   });
 });
