@@ -2737,28 +2737,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{2}^{\\concept{violet}{5}}"
+            "tex": "2^{6}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{5}^{\\concept{violet}{2}}"
+            "tex": "6^{2}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{2}^{\\concept{violet}{3}}"
+            "tex": "2^{3}"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{3}^{\\concept{violet}{2}}"
+            "tex": "3^{2}"
           }
         }
       ],
@@ -2785,14 +2785,14 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{4}^{\\concept{violet}{0}}"
+            "tex": "\\concept{blue}{8}^{\\concept{violet}{0}}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\concept{blue}{4}^{\\concept{violet}{1}}"
+            "tex": "\\concept{blue}{8}^{\\concept{violet}{1}}"
           }
         },
         {

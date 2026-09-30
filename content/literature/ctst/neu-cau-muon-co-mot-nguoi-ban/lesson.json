@@ -7,7 +7,7 @@
   "title": "Nếu cậu muốn có một người bạn…",
   "sourceRef": "SGK tr.21–26",
   "status": "published",
-  "reviewedHash": "3adef91373498e1f6316b9841f40048e8d8b61226a6ed657525ad2f1322e2227",
+  "reviewedHash": "0582a0674472c23e8c2c01f00adb5f106bf8f4a92788dbfed1f5c7014314e12d",
   "concepts": [
     {
       "id": "neu-cau-muon-co-mot-nguoi-ban.concept.cao",
@@ -5070,6 +5070,10 @@
           {
             "target": "part",
             "id": "l56-2"
+          },
+          {
+            "target": "part",
+            "id": "l56-4"
           }
         ]
       },
