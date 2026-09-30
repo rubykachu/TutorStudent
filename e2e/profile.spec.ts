@@ -38,15 +38,12 @@ test("a first visit creates a profile that survives a reload", async ({
   await expect(
     page.getByText("Bắt đầu chuỗi ngày học hôm nay nhé"),
   ).toBeVisible();
-  // The main action starts the first lesson's first section in one tap.
+  // The main action starts the first lesson, on its overview first.
   const start = page.locator("[data-continue]");
   await expect(start).toHaveAccessibleName(
     new RegExp(`^Bắt đầu học: ${FIXTURE_LESSON_TITLE}, phần 1`),
   );
-  await expect(start).toHaveAttribute(
-    "href",
-    "/lessons/fixture/sections/fixture.section.phep-nhan",
-  );
+  await expect(start).toHaveAttribute("href", "/lessons/fixture");
 
   const math = page.locator('[data-subject="math"]');
   await expect(math).toBeVisible();
@@ -54,8 +51,11 @@ test("a first visit creates a profile that survives a reload", async ({
     math.getByRole("img", { name: `Xong 0 trên ${mathSections} phần` }),
   ).toBeVisible();
   await expect(math).toContainText(`${mathLessons.length} bài · Chưa học`);
+  const literatureLessons = lessons.filter((l) => l.subject === "literature");
   await expect(page.getByRole("link", { name: /Ngữ văn/ })).toContainText(
-    "Sắp có bài",
+    literatureLessons.length === 0
+      ? "Sắp có bài"
+      : `${literatureLessons.length} bài · Chưa học`,
   );
   // Every lesson's sticker waits, greyed and not coloured at all yet, in the
   // strip.

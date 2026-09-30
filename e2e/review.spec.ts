@@ -6,6 +6,7 @@ import {
   currentExercise,
   exerciseId,
   finishSection,
+  openFixtureLesson,
 } from "./flows";
 import { expectNoHorizontalScroll } from "./layout";
 
@@ -32,7 +33,7 @@ test("review asks the missed card first and again at the end", async ({
 }) => {
   await page.goto("/profiles");
   await createProfile(page, "Bé Na", "Cáo");
-  await page.goto("/lessons/fixture");
+  await openFixtureLesson(page);
   await expect(page.locator("[data-review-button]")).toHaveCount(0);
   await page.locator('[data-section="fixture.section.phep-nhan"]').tap();
   await finishSection(page, MISSED_EXERCISE);
