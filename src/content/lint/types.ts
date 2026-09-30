@@ -9,6 +9,8 @@ export type LintRule =
   | "glossary"
   | "vietnamese"
   | "length"
+  | "recap"
+  | "card-exercises"
   | "check-expr"
   | "passage"
   | "review-hash";

@@ -42,6 +42,7 @@ describe("indexLesson", () => {
       "fixture.ex.tao-sau-cham",
     ]);
     expect(index.exerciseIdsByCard.get("fixture.card.doc-hieu")).toEqual([
+      "fixture.ex.dien-tu",
       "fixture.ex.cham-cau",
       "fixture.ex.chon-y-chinh",
     ]);

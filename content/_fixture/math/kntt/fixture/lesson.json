@@ -290,7 +290,7 @@
     {
       "id": "fixture.ex.dien-tu",
       "type": "fillBlank",
-      "cardIds": [],
+      "cardIds": ["fixture.card.doc-hieu"],
       "prompt": [{ "type": "note", "text": "Chọn tên còn thiếu trong câu." }],
       "segments": [
         { "type": "text", "text": "Minh chép bài giúp " },

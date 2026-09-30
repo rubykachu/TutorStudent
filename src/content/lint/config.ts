@@ -37,3 +37,13 @@ export const CHECK_EXPR_SUBJECTS = ["math"] as const;
 // Subjects whose passages are verbatim source texts: each lesson needs a
 // `source-passage.txt` next to lesson.json to compare them against.
 export const VERBATIM_PASSAGE_SUBJECTS = ["literature"] as const;
+
+// A recap is read in a few seconds after a wrong answer or at a section's
+// end: its caption (the sentence to remember) holds at most this many
+// sentences, next to one labelled example.
+export const MAX_RECAP_SENTENCES = 2;
+
+// Exercises that train each card (openEnded steps included). Review sessions
+// draw a different exercise each time a card comes back, so a card needs
+// its practice exercise plus a few in the review bank.
+export const MIN_EXERCISES_PER_CARD = 3;

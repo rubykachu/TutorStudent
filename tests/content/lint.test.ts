@@ -2,6 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { checkContent, formatIssue } from "@/content/check";
 import { lintLesson } from "@/content/lint";
+import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
 import { evaluateExpr, textValue, texValue } from "@/content/lint/expr";
 import { computeReviewedHash } from "@/content/lint/review-hash";
 import { sentences, syllableCount } from "@/content/lint/text";
@@ -353,6 +354,65 @@ describe("length", () => {
     expect(messages(withNote("Ví dụ: một câu. Hai câu."), "length")).toEqual(
       [],
     );
+  });
+});
+
+describe("recap", () => {
+  const RECAP_PATH = ["sections", 1, "recap", "caption"];
+
+  it("limits section and card recap captions to two sentences", () => {
+    const input = fixtureInput();
+    const sectionRecap = input.lesson.sections[1]?.recap;
+    const cardRecap = input.lesson.cards[2]?.recap;
+    if (sectionRecap?.type !== "visual" || cardRecap?.type !== "visual") {
+      throw new Error("fixture visual recaps moved");
+    }
+    sectionRecap.caption = "Một câu. Hai câu! Ba câu?";
+    cardRecap.caption = "Một câu… Hai câu. Ba câu.";
+    expect(findings(input, "recap")).toMatchObject([
+      { path: RECAP_PATH, message: expect.stringContaining("3 sentences") },
+      {
+        path: ["cards", 2, "recap", "caption"],
+        message: expect.stringContaining("3 sentences"),
+      },
+    ]);
+  });
+
+  it("counts sentences like a reader: decimals, abbreviations, quotes", () => {
+    const input = fixtureInput();
+    const recap = input.lesson.sections[1]?.recap;
+    if (recap?.type !== "visual") throw new Error("fixture recap moved");
+    recap.caption = "Đọc 2,5 là “hai phẩy năm”. Xem SGK tr. 22 nhé.";
+    expect(messages(input, "recap")).toEqual([]);
+  });
+
+  it("skips formula recaps, which have no caption", () => {
+    const input = fixtureInput();
+    expect(input.lesson.sections[0]?.recap.type).toBe("formula");
+    expect(messages(input, "recap")).toEqual([]);
+  });
+});
+
+describe("card-exercises", () => {
+  it("requires the minimum number of exercises per card, steps included", () => {
+    const input = fixtureInput();
+    const found = input.lesson.exercises.find(
+      (e) => e.id === "fixture.ex.chon-luy-thua",
+    );
+    if (!found) throw new Error("fixture exercise moved");
+    found.cardIds = [];
+    expect(findings(input, "card-exercises")).toMatchObject([
+      {
+        path: ["cards", 1],
+        severity: "error",
+        message: `Card "fixture.card.luy-thua" needs at least ${MIN_EXERCISES_PER_CARD} exercises, has ${MIN_EXERCISES_PER_CARD - 1}`,
+      },
+    ]);
+  });
+
+  it("counts an openEnded step towards its card", () => {
+    // fixture.card.doc-hieu reaches the minimum only with its openEnded step.
+    expect(messages(fixtureInput(), "card-exercises")).toEqual([]);
   });
 });
 

@@ -209,7 +209,7 @@ Video        { id, lessonId, url, vttUrl, durationSec, clips[{ id, start, end, c
 Quy tắc:
 - Id duy nhất toàn cục, dạng `<lesson-slug>.<kind>.<name>`.
 - Kiến thức và bài tập **biên soạn lại**, không chép câu chữ/hình SGK. Văn bản đọc hiểu Ngữ văn giữ nguyên văn kèm nguồn trích.
-- `content:check` kiểm tra: schema hợp lệ; id tham chiếu tồn tại; `visualId` có trong registry; mỗi card có ≥ 2 exercise và ≥ 1 exercise nằm trong `practiceIds` của một section (nếu không, card không bao giờ được mở); mỗi section có ≥ 1 check; id bất biến (dưới đây); overlay trên R2 hợp lệ với schema và nội dung hiện tại. `content:check --stats` in số phần, card, exercise, dạng bài, visual tương tác (registry khai `interactive`) của từng bài.
+- `content:check` kiểm tra: schema hợp lệ; id tham chiếu tồn tại; `visualId` có trong registry; mỗi card có ≥ 1 exercise nằm trong `practiceIds` của một section (nếu không, card không bao giờ được mở); mỗi section có ≥ 1 check; id bất biến (dưới đây); overlay trên R2 hợp lệ với schema và nội dung hiện tại. `content:check --stats` in số phần, card, exercise, dạng bài, visual tương tác (registry khai `interactive`) của từng bài.
 
 #### Id bất biến
 - Card, exercise, section, lesson id **không đổi sau khi publish** vì tiến độ (FSRS, sticker, vị trí học) gắn vào chúng.
@@ -225,6 +225,7 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Thuật ngữ theo `content/glossary/<subject>.json` (`{ terms: [{ term, forbidden[], color? }], names[] }`, `names` là tên riêng không phải âm tiết tiếng Việt): cấm từ đồng nghĩa không chuẩn; `Concept.name` khớp `term` thì `Concept.color` phải khớp `color` (nhất quán màu giữa các bài).
 - Chặn tiếng Anh theo allowlist: mọi token chữ phải là âm tiết tiếng Việt hợp lệ (kiểm theo quy tắc âm đầu + vần + dấu) hoặc có trong glossary / danh sách tên riêng.
 - Độ dài: câu ≤ 25 âm tiết (không đếm công thức; tách câu có danh sách viết tắt như "tr.", "SGK"); `note` ≤ 2 câu.
+- Recap và card (ngưỡng trong `src/content/lint/config.ts`): `caption` của `Section.recap` và `Card.recap` ≤ 2 câu; mỗi card có ≥ 3 exercise (tính cả bước của `openEnded`) để phiên ôn đổi được câu hỏi.
 - Toán: `numeric`/`choice` có `check.expr` (vd `"2^3·2^2"`, parser nhỏ hỗ trợ `· : ^ ( )`); script tính lại và so với đáp án. Bài Toán bắt buộc `check.expr` cho mọi `numeric`.
 - Ngữ văn: mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.
 - Cổng review: bài `published` phải có `reviewedHash` bằng hash nội dung hiện tại (đã chuẩn hoá, không tính `status`/`reviewedHash`); sửa bài sau review → fail cho tới khi review lại.

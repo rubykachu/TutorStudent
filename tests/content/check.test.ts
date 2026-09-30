@@ -8,6 +8,7 @@ import {
   formatPath,
   lessonStats,
 } from "@/content/check";
+import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
 import type { Lesson } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
 import {
@@ -298,14 +299,13 @@ describe("cards and sections", () => {
     );
   });
 
-  it("reports a card with fewer than two exercises", () => {
+  it("reports a card with fewer exercises than the lint minimum", () => {
     const raw = fixtureContent();
     exercise(raw, "fixture.ex.chon-luy-thua").cardIds = [];
-    exercise(raw, "fixture.ex.sap-xep").cardIds = [];
     expectError(
       check(raw),
       `${LESSON_FILE} $.cards[1]`,
-      "needs at least 2 exercises, has 1",
+      `needs at least ${MIN_EXERCISES_PER_CARD} exercises, has 2`,
     );
   });
 

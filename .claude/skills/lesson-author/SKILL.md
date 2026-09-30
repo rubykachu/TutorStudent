@@ -26,6 +26,7 @@ Bài viết cho trẻ lớp 6 học chậm, hay quên. Mọi bài theo các lu�
 - **Câu chuyện mở đầu phải có kết** trong cùng section, bằng kiến thức vừa học.
 - **`minutes` tính từ số màn**: khoảng 40 giây mỗi màn (block, câu hỏi, recap), làm tròn phút.
 - **Recap = một câu + một ví dụ có nhãn**: một `visual` vẽ ví dụ có nhãn (ký hiệu ● Cơ số ▲ Số mũ hay tương đương), câu cần nhớ đặt ở `caption` của nó (màn recap hiện caption thành chữ thân bài phía trên hình). Không để công thức trần.
+- **Recap ≤ 2 câu, card ≥ 3 câu hỏi.** `caption` của mọi `Section.recap`/`Card.recap` tối đa 2 câu và mỗi card có ít nhất 3 exercise trong `cardIds`; `content:check` báo lỗi khi thiếu.
 - **Luyện tập và kho ôn khác số.** Mỗi card có ít nhất một câu ngoài `practiceIds`, khác số với câu luyện tập và với ví dụ trên màn quy tắc, để phiên ôn không hỏi lại đúng câu vừa làm.
 
 ## Quy trình

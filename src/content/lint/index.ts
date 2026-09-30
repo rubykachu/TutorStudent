@@ -1,9 +1,11 @@
+import { lintCardExercises } from "./card-exercises";
 import { lintCheckExpr } from "./check-expr";
 import { lintGlossary } from "./glossary";
 import { lintLength } from "./length";
 import { lintNfc } from "./nfc";
 import { lintNumbers } from "./numbers";
 import { lintPassage } from "./passage";
+import { lintRecap } from "./recap";
 import { lintReviewHash } from "./review-hash";
 import { lintSymbols } from "./symbols";
 import { type Finding, findingCollector, type LintInput } from "./types";
@@ -29,6 +31,8 @@ export function lintLesson(input: LintInput): Finding[] {
     ...lintGlossary(input, strings),
     ...lintVietnamese(input, strings),
     ...lintLength(input, strings),
+    ...lintRecap(input),
+    ...lintCardExercises(input),
     ...lintCheckExpr(input),
     ...lintPassage(input),
     ...lintReviewHash(input),

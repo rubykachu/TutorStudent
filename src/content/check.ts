@@ -523,13 +523,9 @@ function checkLesson(
   const index = indexLesson(lesson);
   const practiced = practiceExerciseIds(lesson);
   lesson.cards.forEach((card, i) => {
+    // How many exercises a card needs is the content lint's card-exercises
+    // rule; here only whether any of them opens the card.
     const exerciseIds = index.exerciseIdsByCard.get(card.id) ?? [];
-    if (exerciseIds.length < 2) {
-      report(
-        ["cards", i],
-        `Card "${card.id}" needs at least 2 exercises, has ${exerciseIds.length}`,
-      );
-    }
     if (!exerciseIds.some((id) => practiced.has(id))) {
       report(
         ["cards", i],
