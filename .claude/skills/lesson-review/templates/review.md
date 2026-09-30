@@ -1,6 +1,7 @@
 # Review: <tiêu đề bài> (`<id bài>`)
 
 - Bài: `<đường dẫn lesson.json>`
+- Vòng: <số> - <toàn bài, <số> reviewer song song + tổng hợp | chỉ phần đổi (`pnpm content:diff`), section: <id>>
 - Nguồn đã đọc: `sources/<subject>/<id bài>/` - <các trang đã đọc, vd p22, p23-24> | không có
 - `content:check`: <số> lỗi, <số> cảnh báo của bài
 - `lesson:walk`: <số> FAIL, <số> cảnh báo, ảnh trong `.shots/walk/<id bài>/`

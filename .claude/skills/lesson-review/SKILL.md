@@ -5,27 +5,55 @@ description: Review độc lập một bài học đã soạn (content/**/lesson
 
 # Review bài học
 
-Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ thấy bài. Không sửa nội dung `lesson.json` (bước 6 chỉ ghi `reviewedHash`, `status` qua lệnh): tác giả sửa, rồi review lại từ đầu.
+Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ thấy bài. Reviewer không sửa `lesson.json` (chỉ ghi `reviewedHash`, `status` qua lệnh): tác giả sửa rồi gọi vòng sau.
 
-## Chỉ chạy trong subagent mới
+## Vai
 
-Người soạn đọc lại bài của mình thường bỏ sót chính lỗi mình tạo. Phiên hiện tại đã soạn hay sửa bài này (hoặc không chắc) thì không tự review: dùng Agent tool (`general-purpose`) mở subagent mới với prompt "Dùng skill lesson-review cho `<đường dẫn lesson.json>`", rồi chuyển kết quả cho người dùng.
+- **Điều phối**: phiên gọi skill (có thể là phiên soạn bài). Chỉ chạy lệnh, chia phần, mở subagent và chuyển kết quả; không phán nội dung, không bỏ phát hiện nào.
+- **Reviewer**, **Tổng hợp**: luôn là subagent mới (Agent tool, `general-purpose`), không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
 
 ## Đầu vào
 
-- `LESSON`: đường dẫn `lesson.json`. `ROOT`: thư mục cha gần nhất của `LESSON` có `subjects.json` (thường là `content/`).
-- Ảnh nguồn: `sources/<subject>/<id bài>/p<trang>.png` (hoặc `.jpg`); `p23-24.png` chứa hai trang.
-- Ý nghĩa từng trường: `src/schema/content.ts`. Luật kiểm duyệt và phản hồi 3 nấc khi sai: `docs/spec.md`, mục "Kiểm duyệt nội dung" và "Phản hồi 3 nấc khi sai".
+- `LESSON`: đường dẫn `lesson.json`. `ROOT`: thư mục cha gần nhất có `subjects.json` (thường `content/`).
+- Ảnh nguồn: `sources/<subject>/<id bài>/p<trang>.png` (hoặc `.jpg`; `p23-24.png` chứa hai trang).
+- Trường: `src/schema/content.ts`. Luật: `docs/spec.md` mục "Kiểm duyệt nội dung", "Phản hồi 3 nấc khi sai". Tiêu chí và mức lỗi: `references/checklist.md`.
 
-## Quy trình
+## Vòng review
 
-1. Chạy `pnpm content:check --root <ROOT>`. Với dòng thuộc `LESSON`: mọi `error` (trừ `[review-hash]`, bước 6 xoá nó) và cảnh báo `[placeholder]`, `[screens]` là Nghiêm trọng; cảnh báo `[review-bank]` là Nên sửa; bỏ qua "not in ids.lock.json". Vẫn review tiếp.
-2. Đọc hết `LESSON`. Với mỗi `sourceRef` (bài, section, card), mở đúng trang ảnh và đọc, không đoán nội dung trang. Không có ảnh nguồn: ghi lỗi Nghiêm trọng "thiếu nguồn", vẫn soát phạm vi theo chương trình lớp 6.
-3. `ROOT` là `content/`: chạy `pnpm lesson:walk <id bài>` (tự mở server phục vụ cả bài `draft`) và đọc ảnh trong `.shots/walk/<id bài>/` cho trục "Trải nghiệm trên màn". `ROOT` khác: walk chỉ đọc `content/`, nên bỏ bước này và ghi "không chạy" ở dòng `lesson:walk` của `review.md`.
-4. Soát mọi section, card và exercise theo năm trục và "Luật gợi ý 3 nấc" trong `references/checklist.md`; bỏ qua mọi mục trong "Không bắt lỗi" của file đó. Với mỗi exercise, tự giải trước khi đọc `answer`. Soát hết bài, không dừng ở lỗi đầu tiên.
-5. Ghi `review.md` cạnh `LESSON` theo `templates/review.md` (ghi đè bản cũ). Không chép dài chữ SGK: trỏ trang là đủ.
-6. Không còn lỗi Nghiêm trọng: chạy `pnpm content:hash <id bài> --root <ROOT> --approve`. Lệnh từ chối nếu `content:check` còn lỗi; nếu không, ghi `reviewedHash` và đặt `status: published`, trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật (khi đó quản trị viên đặt `published`). Còn lỗi Nghiêm trọng: không chạy lệnh, bài giữ `draft`.
-7. Ghi kết quả bước 6 vào dòng "Kết luận" của `review.md`, rồi báo người gọi: số phát hiện theo từng mức, kết luận, đường dẫn `review.md`.
+Số vòng ghi ở dòng "Vòng" của `review.md` cũ (chưa có: vòng 1).
+
+- **Vòng 1–2: toàn bài**, song song (dưới đây).
+- **Từ vòng 3: chỉ phần đổi.** Không review toàn bài lần thứ ba.
+
+Mỗi vòng kết thúc bằng một trong hai lệnh, cả hai ghi dòng "Bản đã review" (hash) vào `review.md` để vòng sau so với bản này:
+- 0 Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --approve` (từ chối nếu `content:check` còn lỗi; ghi `reviewedHash`, đặt `published` trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật).
+- Còn Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --mark`; bài giữ `draft`.
+
+Sau đó tác giả commit `lesson.json` và `review.md` **trước khi sửa**: `pnpm content:diff` đọc bản đã review từ lịch sử git (`scripts/lib/review-baseline.ts`).
+
+## Vòng toàn bài
+
+Điều phối:
+1. `pnpm content:check --root <ROOT>`; `ROOT` là `content/` thì thêm `pnpm lesson:walk <id bài>` (ảnh trong `.shots/walk/<id bài>/`; `ROOT` khác thì ghi "không chạy").
+2. Chia section thành nhóm liên tiếp: ≤ 4 section thì 1 nhóm, nhiều hơn thì 3 nhóm gần bằng nhau. Card, exercise theo section có nó trong `checkIds`/`practiceIds` hay luyện card của nó; câu kho ôn theo card.
+3. Mở song song mỗi nhóm một **Reviewer** (một lượt gọi Agent nhiều tool), kèm kết quả bước 1 và tệp ghi `.shots/review/<id bài>/nhom-<n>.md`.
+4. Xong cả nhóm: mở một **Tổng hợp**.
+
+Reviewer:
+- Đọc toàn bộ glossary của môn, mọi `note` quy tắc, `recap` của cả bài (để nhất quán), rồi chỉ soát phần của nhóm: mở đúng trang ảnh của từng `sourceRef` (không đoán nội dung trang; thiếu ảnh là Nghiêm trọng "thiếu nguồn"), ảnh walk của các section đó.
+- Soát theo năm trục và "Luật gợi ý 3 nấc" của checklist, bỏ qua mục "Không bắt lỗi". Tự giải mỗi exercise trước khi đọc `answer`. Soát hết, không dừng ở lỗi đầu.
+- Ghi phát hiện theo khuôn mục của `templates/review.md` vào tệp nhóm.
+
+Tổng hợp:
+- Chỉ đọc các tệp nhóm và mọi câu quy tắc (`note`), `recap`, `caption`, thuật ngữ của cả bài; tìm mâu thuẫn giữa các phần (một quy tắc hai cách nói, một khái niệm hai tên hay hai màu, recap lệch note).
+- Gộp mọi phát hiện (bỏ trùng, giữ mức cao hơn) và phát hiện của mình vào `review.md` cạnh `LESSON` theo `templates/review.md` (ghi đè bản cũ; không chép dài chữ SGK, trỏ trang là đủ), chạy lệnh cuối vòng, ghi kết quả vào dòng "Kết luận".
+
+## Vòng chỉ phần đổi
+
+Điều phối chạy `pnpm content:diff <id bài> --root <ROOT>` (liệt kê mục thêm, bớt, đổi kèm chữ, và section cần đọc lại), `content:check`, `lesson:walk`, rồi mở **một Reviewer** mới kèm kết quả đó. Reviewer đó:
+- Soát mọi mục trong diff theo checklist, và soát các mục khác **cùng section** xem bản sửa có làm hỏng chúng không (recap còn khớp note, câu kiểm tra và câu luyện tập không trùng hình, nhiễu không thành đáp án đúng).
+- Mục thuộc bài tập hay card: đọc ảnh walk và trang nguồn của section đó. Diff chỉ có video: theo "Lời video khớp bài" trong checklist.
+- Làm luôn việc của Tổng hợp: ghi `review.md` (phạm vi ghi ở dòng "Vòng"), chạy lệnh cuối vòng.
 
 ## Mức độ
 
@@ -33,4 +61,6 @@ Người soạn đọc lại bài của mình thường bỏ sót chính lỗi m
 - **Nên sửa**: bài vẫn dùng được nhưng kém hiệu quả hoặc thiếu nhất quán.
 - **Góp ý**: tuỳ tác giả, như từ Hán Việt khó.
 
-Mức của từng loại lỗi ghi trong checklist. Phân vân giữa hai mức thì chọn mức cao hơn và nêu lý do. Cách sửa đề xuất phải theo được luật của bài: không đề xuất điều mà `.claude/skills/lesson-author/references/pitfalls.md` cấm (như chữ Việt trong `\text{}`).
+Mức từng loại lỗi ghi trong checklist; phân vân thì chọn mức cao hơn và nêu lý do. Cách sửa đề xuất phải theo được luật của bài: không đề xuất điều `.claude/skills/lesson-author/references/pitfalls.md` cấm.
+
+Báo người gọi: vòng, số phát hiện theo mức, kết luận, đường dẫn `review.md`.

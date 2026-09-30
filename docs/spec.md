@@ -240,6 +240,10 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Nhất quán: một khái niệm một từ, một màu trong bài và giữa các bài; gợi ý nấc 1 không lộ đáp án; `hints` khớp đúng phần trẻ có thể sai.
 - Mỗi kết luận kèm trích dẫn: vị trí trong `lesson.json` + trang nguồn (ảnh nguồn png hoặc jpg đặt tên theo trang, vd `sources/math/luy-thua/p22.png`; `review.md` chỉ trích vị trí, không chép dài chữ SGK). Kết quả ghi `review.md` với mức Nghiêm trọng / Nên sửa / Góp ý.
 
+**Vòng review** (chi tiết trong skill `lesson-review`):
+- Vòng 1–2 soát toàn bài, song song: bài > 4 section chia 3 nhóm section liên tiếp, mỗi nhóm một reviewer mới (đọc trang nguồn của nhóm, cả glossary và mọi recap); rồi một subagent tổng hợp mới chỉ đọc phát hiện đã gộp cùng mọi câu quy tắc, recap, thuật ngữ để bắt mâu thuẫn giữa các phần, và ghi một `review.md`.
+- Từ vòng 3 chỉ soát phần đổi: `pnpm content:diff <bài>` so với bản đã review (hash ghi trong `review.md` bởi `content:hash --mark`/`--approve`, nội dung đọc lại từ lịch sử git, nên commit bài sau mỗi vòng); một reviewer mới soát diff và các mục cùng section.
+
 **Cổng xuất bản:** `draft` → review hết lỗi Nghiêm trọng → skill ghi `reviewedHash` và đặt `published`. Bật `REQUIRE_OWNER_APPROVAL` trong config thì skill chỉ ghi `reviewedHash`, quản trị viên đặt `published`. App chỉ hiển thị bài `published`; bài `_fixture` chỉ có khi `CONTENT_INCLUDE_FIXTURE=1` (dev, test).
 
 ### 5.2 Tám dạng bài tập (`src/exercises/`)
