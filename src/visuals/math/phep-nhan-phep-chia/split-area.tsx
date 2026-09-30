@@ -271,7 +271,7 @@ function AreaFigure({
                 fontSize={LABEL_SIZE}
                 className={`${CONCEPT_CLASSES[color].fill} font-heading font-bold`}
               >
-                {down ? `${MINUS}${strip.written}` : strip.written}
+                {down ? `bớt ${strip.written}` : strip.written}
               </text>
             </Fragment>
           );

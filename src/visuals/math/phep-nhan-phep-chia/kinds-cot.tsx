@@ -24,7 +24,10 @@ export const cotKinds = {
     function EstimateVisual() {
       return <Estimate {...spec} />;
     },
-  mistakes: () => Mistakes,
+  mistakes: ({ mode }) =>
+    function MistakesVisual() {
+      return <Mistakes mode={mode} />;
+    },
 } satisfies Pick<
   Factories,
   "colMul" | "colMulTry" | "colMulFill" | "estimate" | "mistakes"

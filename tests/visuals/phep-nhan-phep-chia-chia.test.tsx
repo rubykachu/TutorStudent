@@ -216,11 +216,13 @@ describe("sharing and packing steps", () => {
     const up = packSteps(50, 12, "up", "steps", {
       groupWord: "xe",
       itemWord: "học sinh",
+      perVerb: "chở",
     });
     expect(up.at(-1)?.caption).toBe("Còn 2 học sinh, cần thêm 1 xe. Cần 5 xe.");
     const down = packSteps(100, 12, "down", "steps", {
       groupWord: "quyển vở",
       itemWord: "nghìn đồng",
+      perVerb: "giá",
     });
     expect(down.at(-1)?.caption).toBe(
       "Còn 4 nghìn đồng, chưa đủ mua thêm 1 quyển vở. Mua được 8 quyển vở.",
@@ -236,6 +238,7 @@ describe("sharing and packing steps", () => {
     const steps = packSteps(38, 9, "up", "hint", {
       groupWord: "thùng",
       itemWord: "chai",
+      perVerb: "chứa",
     });
     expect(steps.at(-1)?.caption).toContain("Cần ? thùng");
     expect(steps.at(-1)?.decided).toBe(false);

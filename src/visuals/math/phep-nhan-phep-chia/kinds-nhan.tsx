@@ -46,7 +46,13 @@ export const nhanKinds = {
     },
   steps: (spec) =>
     function StepsVisual() {
-      return <CalcSteps lines={spec.lines} />;
+      return (
+        <CalcSteps
+          lines={spec.lines}
+          groupName={spec.groupName}
+          still={spec.still}
+        />
+      );
     },
   pairs: (spec) =>
     function PairsVisual() {

@@ -33,7 +33,7 @@ export default function ShareTry({
   let message: string;
   if (!canDeal) message = remainderCaption(left, people);
   else if (rounds === 0) {
-    message = `Có ${total} cái, chia cho ${people} bạn. Chạm "Chia một vòng": mỗi bạn nhận 1 cái.`;
+    message = `Có ${total} cái, chia cho ${people} bạn. Bấm "Chia một vòng": mỗi bạn nhận 1 cái.`;
   } else message = roundCaption(rounds, left, 1);
 
   return (

@@ -28,14 +28,22 @@ export const chiaKinds = {
       return <FactFamily a={spec.a} b={spec.b} />;
     },
   remCheck: (spec) => {
-    const { dividend, divisor, q, r, ok } = spec;
+    const { dividend, divisor, q, r, ok, quotientLine } = spec;
     if (remainderCheck({ dividend, divisor, q, r }).ok !== ok) {
       throw new Error(
         `remCheck ${dividend} : ${divisor} = ${q} dư ${r}: "ok" is ${ok} but the check says otherwise`,
       );
     }
     return function RemCheckVisual() {
-      return <RemCheck dividend={dividend} divisor={divisor} q={q} r={r} />;
+      return (
+        <RemCheck
+          dividend={dividend}
+          divisor={divisor}
+          q={q}
+          r={r}
+          quotientLine={quotientLine}
+        />
+      );
     };
   },
   colDiv: (spec) =>

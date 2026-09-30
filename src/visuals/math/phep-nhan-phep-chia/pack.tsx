@@ -19,6 +19,7 @@ import {
   capitalize,
   type PackGoal,
   type PackStep,
+  type PackWords,
   packResult,
   packSteps,
 } from "./pack-logic";
@@ -39,8 +40,6 @@ const MAX_COLS = 5;
 // Above this many items per group a box shows only its count.
 const MAX_DRAWN_PER_GROUP = 60;
 const MAX_DOT_PITCH = 12;
-
-type PackWords = { groupWord: string; itemWord: string };
 
 type PackSpec = PackWords & { total: number; per: number; goal: PackGoal };
 
@@ -251,14 +250,15 @@ export default function Pack({
   mode,
   groupWord,
   itemWord,
+  perVerb,
 }: PackProps) {
   const spec = useMemo<PackSpec>(
-    () => ({ total, per, goal, groupWord, itemWord }),
-    [total, per, goal, groupWord, itemWord],
+    () => ({ total, per, goal, groupWord, itemWord, perVerb }),
+    [total, per, goal, groupWord, itemWord, perVerb],
   );
   const steps = useMemo(
-    () => packSteps(total, per, goal, mode, { groupWord, itemWord }),
-    [total, per, goal, mode, groupWord, itemWord],
+    () => packSteps(total, per, goal, mode, { groupWord, itemWord, perVerb }),
+    [total, per, goal, mode, groupWord, itemWord, perVerb],
   );
   const name = `Xếp ${total} ${itemWord} vào các ${groupWord}, mỗi ${groupWord} ${per} ${itemWord}`;
 

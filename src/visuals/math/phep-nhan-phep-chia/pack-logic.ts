@@ -5,7 +5,13 @@ import type { Mode } from "./catalog";
 
 export type PackGoal = "up" | "down";
 
-export type PackWords = { groupWord: string; itemWord: string };
+// `perVerb` is what a group does with its items in the story: a coach
+// "chở", a shelf "chứa", a notebook "giá" (a price).
+export type PackWords = {
+  groupWord: string;
+  itemWord: string;
+  perVerb: string;
+};
 
 export function packResult(total: number, per: number, goal: PackGoal) {
   const full = Math.floor(total / per);
@@ -55,7 +61,7 @@ export function packSteps(
   words: PackWords,
 ): PackStep[] {
   const { full, remainder } = packResult(total, per, goal);
-  const { groupWord, itemWord } = words;
+  const { groupWord, itemWord, perVerb } = words;
   const left = (filled: number) => total - filled * per;
   if (mode === "still") {
     return [
@@ -73,7 +79,7 @@ export function packSteps(
       filled: 0,
       leftover: false,
       decided: false,
-      caption: `Có ${total} ${itemWord}. Mỗi ${groupWord} đựng ${per} ${itemWord}.`,
+      caption: `Có ${total} ${itemWord}. Mỗi ${groupWord} ${perVerb} ${per} ${itemWord}.`,
       equation: false,
     },
   ];

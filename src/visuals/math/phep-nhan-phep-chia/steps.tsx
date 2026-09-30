@@ -80,39 +80,55 @@ function PendingRow() {
 
 // Lines of a calculation, one more on every step. The last line is the
 // result, except in a hint, where it ends in "?" and stays unfinished.
-export function CalcSteps({ lines }: { lines: SpecOf<"steps">["lines"] }) {
+// `groupName` names the parenthesised group in the legend; `still` draws every
+// line at once, with no step to press.
+export function CalcSteps({
+  lines,
+  groupName = "Nhóm tính trước",
+  still = false,
+}: {
+  lines: SpecOf<"steps">["lines"];
+  groupName?: string;
+  still?: boolean;
+}) {
   const last = lines[lines.length - 1] ?? "";
   const hint = last.endsWith(UNFINISHED);
   const hasGroup = lines.some((line) => splitGroup(line).length > 1);
   const legend = [
-    ...(hasGroup ? [{ color: "lime" as const, name: "Nhóm tính trước" }] : []),
+    ...(hasGroup ? [{ color: "lime" as const, name: groupName }] : []),
     ...(hint ? [] : [{ color: "amber" as const, name: "Kết quả" }]),
   ];
+  const label = `Tính từng bước: ${lines.join(", ")}`;
+  const draw = (step: number) => (
+    <div className="flex w-full flex-col items-center gap-3">
+      <div className="flex flex-col gap-2">
+        {lines.map((line, i) => (
+          <Reveal
+            key={line}
+            shown={step >= i}
+            placeholder={i === 0 ? undefined : <PendingRow />}
+          >
+            <Row
+              line={line}
+              first={i === 0}
+              result={!hint && i === lines.length - 1}
+            />
+          </Reveal>
+        ))}
+      </div>
+      {legend.length > 0 && <Legend items={legend} />}
+    </div>
+  );
+  if (still) {
+    return (
+      <figure aria-label={label} className="w-full">
+        {draw(lines.length)}
+      </figure>
+    );
+  }
   return (
-    <StepPlayer
-      steps={lines.length}
-      label={`Tính từng bước: ${lines.join(", ")}`}
-    >
-      {(step) => (
-        <div className="flex w-full flex-col items-center gap-3">
-          <div className="flex flex-col gap-2">
-            {lines.map((line, i) => (
-              <Reveal
-                key={line}
-                shown={step >= i}
-                placeholder={i === 0 ? undefined : <PendingRow />}
-              >
-                <Row
-                  line={line}
-                  first={i === 0}
-                  result={!hint && i === lines.length - 1}
-                />
-              </Reveal>
-            ))}
-          </div>
-          {legend.length > 0 && <Legend items={legend} />}
-        </div>
-      )}
+    <StepPlayer steps={lines.length} label={label}>
+      {draw}
     </StepPlayer>
   );
 }

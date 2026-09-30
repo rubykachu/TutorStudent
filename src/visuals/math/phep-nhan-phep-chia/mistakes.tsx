@@ -14,6 +14,11 @@ const WRONG_RING =
 const CHIP = `inline-flex min-h-8 items-center px-3 text-caption font-semibold text-retry-soft-foreground rounded-full ${WRONG_RING}`;
 const MATH = "font-heading text-title font-bold tabular-nums";
 
+// A calculation that must not break across lines: "4 · 6 = 24".
+function Calc({ children }: { children: ReactNode }) {
+  return <span className="whitespace-nowrap">{children}</span>;
+}
+
 function Card({
   name,
   reason,
@@ -21,7 +26,7 @@ function Card({
   children,
 }: {
   name: string;
-  reason: string;
+  reason: ReactNode;
   right: ReactNode;
   children: ReactNode;
 }) {
@@ -56,8 +61,16 @@ function ForgotCarry() {
   return (
     <Card
       name="Quên số nhớ"
-      reason="Bài làm ra 242 vì quên cộng số nhớ 4 vào 4 · 6 = 24."
-      right="Đúng: 4 · 6 = 24, cộng 4 được 28. Tích là 282."
+      reason={
+        <>
+          Bài làm ra 242 vì quên cộng số nhớ 4 vào <Calc>4 · 6 = 24</Calc>.
+        </>
+      }
+      right={
+        <>
+          Đúng: <Calc>4 · 6 = 24</Calc>, cộng 4 được 28. Tích là 282.
+        </>
+      }
     >
       <ColMulFigure
         plan={FORGOT_CARRY}
@@ -80,8 +93,12 @@ function RemainderTooBig() {
   return (
     <Card
       name="Số dư lớn hơn số chia"
-      reason="Số dư 6 không nhỏ hơn số chia 5."
-      right="Đúng: 36 : 5 = 7 dư 1, vì 5 · 7 + 1 = 36."
+      reason="Số dư 6 lớn hơn số chia 5."
+      right={
+        <>
+          Đúng: <Calc>36 : 5 = 7 dư 1</Calc>, vì <Calc>5 · 7 + 1 = 36</Calc>.
+        </>
+      }
     >
       <BigEquation>
         36 : 5 = 6{" "}
@@ -98,14 +115,14 @@ function RemainderTooBig() {
 }
 
 // Long division 367 : 9 as the wrong answer wrote it: quotient 4 with the
-// place of the 0 left empty.
+// place of the 0 left empty, stopping where the 7 is brought down.
 const DIGIT_W = 34;
 const ROW_H = 40;
 const PAD = 6;
 const BAR_X = PAD + 3 * DIGIT_W + 8;
 const QUOTIENT_X = BAR_X + 8;
 const LONG_DIVISION_WIDTH = QUOTIENT_X + 2 * DIGIT_W + PAD;
-const LONG_DIVISION_HEIGHT = 5 * ROW_H + 2 * PAD;
+const LONG_DIVISION_HEIGHT = 3 * ROW_H + 2 * PAD;
 
 function Digit({
   x,
@@ -199,13 +216,6 @@ function MissingZeroPicture() {
       <Digit x={columnX(2)} row={2}>
         7
       </Digit>
-      <Digit x={columnX(2)} row={3}>
-        0
-      </Digit>
-      <Rule x1={PAD + DIGIT_W} x2={PAD + 3 * DIGIT_W} row={4} />
-      <Digit x={columnX(2)} row={4}>
-        7
-      </Digit>
     </svg>
   );
 }
@@ -215,7 +225,12 @@ function MissingZero() {
     <Card
       name="Quên chữ số 0 ở thương"
       reason="7 nhỏ hơn 9 nên thương ở hàng đơn vị là 0. Thiếu số 0 thì thương chỉ còn 4."
-      right="Đúng: 367 : 9 = 40 dư 7, vì 9 · 40 + 7 = 367."
+      right={
+        <>
+          Đúng: <Calc>367 : 9 = 40 dư 7</Calc>, vì <Calc>9 · 40 + 7 = 367</Calc>
+          .
+        </>
+      }
     >
       <MissingZeroPicture />
     </Card>
@@ -230,7 +245,7 @@ const MISTAKES = [
 
 // One mistake at a time, picked with three buttons, so the picture stays inside
 // a phone screen.
-export function Mistakes() {
+function MistakeTabs() {
   const [picked, setPicked] = useState(0);
   const { Picture } = MISTAKES[picked] ?? MISTAKES[0];
   return (
@@ -256,4 +271,52 @@ export function Mistakes() {
       <Picture />
     </div>
   );
+}
+
+// The three mistakes on one screen: the wrong line in the orange ring and the
+// right one after it.
+const SUMMARY = [
+  { name: "Quên số nhớ", wrong: "47 · 6 = 242", right: "47 · 6 = 282" },
+  {
+    name: "Số dư lớn hơn số chia",
+    wrong: "36 : 5 = 6 dư 6",
+    right: "36 : 5 = 7 dư 1",
+  },
+  {
+    name: "Quên chữ số 0 ở thương",
+    wrong: "367 : 9 = 4 dư 7",
+    right: "367 : 9 = 40 dư 7",
+  },
+] as const;
+
+function MistakeSummary() {
+  return (
+    <ul className="flex w-full max-w-xl flex-col gap-3">
+      {SUMMARY.map(({ name, wrong, right }) => (
+        <li
+          key={name}
+          className="flex flex-col items-center gap-1 rounded-xl border-2 border-border bg-surface p-2"
+        >
+          <p className="text-caption font-semibold">{name}</p>
+          <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-heading text-body-lg font-bold md:text-title">
+            <span
+              className={`${WRONG_RING} whitespace-nowrap px-2`}
+              role="img"
+              aria-label={`${wrong}, sai`}
+            >
+              {wrong}
+            </span>
+            <span className="flex items-center gap-1 whitespace-nowrap text-correct-soft-foreground">
+              <Check aria-hidden className="size-5 shrink-0 text-correct" />
+              {right}
+            </span>
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function Mistakes({ mode }: { mode: "tabs" | "summary" }) {
+  return mode === "summary" ? <MistakeSummary /> : <MistakeTabs />;
 }

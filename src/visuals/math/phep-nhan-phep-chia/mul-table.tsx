@@ -5,7 +5,7 @@ import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { decorative } from "@/visuals/shared/markers";
 import { Region, RegionSvg } from "@/visuals/shared/region";
 import type { SpecOf } from "./catalog";
-import { fmt } from "./logic-nhan";
+import { fmt, TIMES } from "./logic-nhan";
 import { Legend } from "./parts-nhan";
 
 // Width of the drawing; rows and columns share it, so a 9 x 9 table is about
@@ -25,10 +25,16 @@ function inMark(mark: Mark | undefined, row: number, col: number): boolean {
   return row === mark.row;
 }
 
-// Rows and columns that carry the shape that goes with the violet band.
-function markedHeader(mark: Mark | undefined, n: number): boolean {
+// Headers that carry the shape that goes with the violet band: a marked row
+// only has its left header, the hard block has both.
+function markedHeader(
+  mark: Mark | undefined,
+  n: number,
+  side: "row" | "column",
+): boolean {
   if (mark === undefined) return false;
-  return mark === "hard" ? n >= 6 : n === mark.row;
+  if (mark === "hard") return n >= 6;
+  return side === "row" && n === mark.row;
 }
 
 // A table of products: header row and column of factors, one cell per pair.
@@ -50,10 +56,12 @@ function Table({
   const cellW = WIDTH / (count + 1);
   const cellH = Math.min(cellW, MAX_CELL_HEIGHT);
   const height = cellH * (count + 1);
-  const fontSize = count >= 8 ? 20 : 26;
+  // A tappable cell names its pair ("6 · 7"), not the product the child is
+  // looking for.
+  const fontSize = tap ? 20 : count >= 8 ? 20 : 26;
   const gap = tap ? GAP_TAP : GAP_STATIC;
   const label = tap
-    ? `Bảng nhân từ ${spec.from} đến ${spec.to}, chạm vào ô tích`
+    ? `Bảng nhân từ ${spec.from} đến ${spec.to}, chạm vào ô phép nhân`
     : `Bảng nhân từ ${spec.from} đến ${spec.to}`;
 
   function box(row: number, col: number) {
@@ -89,7 +97,7 @@ function Table({
         <g key={`top-${n}`}>
           <rect {...decorative} {...box(0, i + 1)} className="fill-muted" />
           {text(0, i + 1, String(n), CONCEPT_CLASSES.blue.fill)}
-          {markedHeader(mark, n) && (
+          {markedHeader(mark, n, "column") && (
             <ConceptShape
               {...decorative}
               color="violet"
@@ -104,7 +112,7 @@ function Table({
         <g key={`left-${n}`}>
           <rect {...decorative} {...box(i + 1, 0)} className="fill-muted" />
           {text(i + 1, 0, String(n), CONCEPT_CLASSES.blue.fill)}
-          {markedHeader(mark, n) && (
+          {markedHeader(mark, n, "row") && (
             <ConceptShape
               {...decorative}
               color="violet"
@@ -131,14 +139,19 @@ function Table({
                 className={`${fill} ${tap ? "" : "stroke-border"}`}
                 strokeWidth={tap ? undefined : 1}
               />
-              {text(r + 1, c + 1, fmt(row * col), "fill-foreground")}
+              {text(
+                r + 1,
+                c + 1,
+                tap ? `${row} ${TIMES} ${col}` : fmt(row * col),
+                "fill-foreground",
+              )}
             </>
           );
           return tap ? (
             <Region
               key={`r${row}c${col}`}
               id={`r${row}c${col}`}
-              label={`${row} nhân ${col} bằng ${row * col}`}
+              label={`${row} nhân ${col}`}
             >
               {cell}
             </Region>
@@ -172,5 +185,9 @@ export function MulTable({ spec }: { spec: SpecOf<"mulTable"> }) {
 }
 
 export function MulTableTap({ spec }: { spec: SpecOf<"mulTableTap"> }) {
-  return <Table spec={spec} tap />;
+  return (
+    <div className="flex w-full justify-center">
+      <Table spec={spec} tap />
+    </div>
+  );
 }

@@ -16,6 +16,8 @@ export type RemCheckProps = {
   divisor: number;
   q: number;
   r: number;
+  // Also show how the quotient follows from the rest: (dividend - r) : divisor.
+  quotientLine?: boolean;
 };
 
 // A division with remainder is right when divisor · q + r gives back the
@@ -107,9 +109,7 @@ function ConceptShapeCell({
       width={width}
       height={BAR_H}
       rx={4}
-      className={
-        over ? "fill-retry-soft stroke-retry" : `${fill} stroke-transparent`
-      }
+      className={`${fill} ${over ? "stroke-retry" : "stroke-transparent"}`}
       strokeWidth={2}
       strokeDasharray={over ? "4 3" : undefined}
     />
@@ -169,7 +169,8 @@ function message({ dividend, divisor, q, r }: RemCheckProps): string {
   }
   if (!smaller) {
     const extra = Math.floor(r / divisor);
-    return `Chưa đúng: số dư ${r} không nhỏ hơn số chia ${divisor}, có thể chia thêm ${extra} lần nữa.`;
+    const compare = r === divisor ? "bằng" : "lớn hơn";
+    return `Chưa đúng: số dư ${r} ${compare} số chia ${divisor}, có thể chia thêm ${extra} lần nữa.`;
   }
   return `Đúng: số dư ${r} nhỏ hơn số chia ${divisor}, và ${divisor} · ${q} + ${r} = ${formatInteger(dividend)}.`;
 }
@@ -177,7 +178,7 @@ function message({ dividend, divisor, q, r }: RemCheckProps): string {
 // Checks a division with remainder: the equation divisor · q + r = dividend
 // and the remainder against the divisor, on bars of equal unit length.
 export default function RemCheck(props: RemCheckProps) {
-  const { dividend, divisor, q, r } = props;
+  const { dividend, divisor, q, r, quotientLine = false } = props;
   const { rebuilt, ok } = remainderCheck(props);
   const Icon = ok ? Check : X;
   const tone = ok
@@ -206,6 +207,18 @@ export default function RemCheck(props: RemCheckProps) {
         <span>=</span>
         <Term color={DIVIDEND_COLOR} value={rebuilt} />
       </p>
+      {quotientLine && (
+        <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-heading text-body-lg font-bold md:text-title">
+          <span>(</span>
+          <Term color={DIVIDEND_COLOR} value={dividend} />
+          <span>−</span>
+          <Term color={REMAINDER_COLOR} value={r} />
+          <span>) :</span>
+          <Term color={DIVISOR_COLOR} value={divisor} />
+          <span>=</span>
+          <Term color={QUOTIENT_COLOR} value={q} />
+        </p>
+      )}
       <Bars divisor={divisor} r={r} />
       <p
         className={`flex w-full items-start gap-2 rounded-lg border-2 px-3 py-2 text-caption md:text-body ${tone}`}

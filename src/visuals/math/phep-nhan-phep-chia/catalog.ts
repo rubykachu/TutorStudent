@@ -57,8 +57,15 @@ export type VisualSpec =
   // Three numbers a, b and a · b with the four equations they give.
   | { kind: "factFamily"; a: number; b: number }
   // Calculation lines revealed one per step. A line ending in "?" is the
-  // unfinished last step of a hint.
-  | { kind: "steps"; lines: readonly string[] }
+  // unfinished last step of a hint. `groupName` is the legend of the
+  // parenthesised group (default "Nhóm tính trước"); `still` shows every line
+  // at once.
+  | {
+      kind: "steps";
+      lines: readonly string[];
+      groupName?: string;
+      still?: boolean;
+    }
   // Factor pairs whose product is a round number.
   | { kind: "pairs"; pairs: readonly (readonly [number, number])[] }
   // Area model of a · (p1 + p2 + ...): rectangle with `a` rows split into
@@ -105,6 +112,8 @@ export type VisualSpec =
       q: number;
       r: number;
       ok: boolean;
+      // Adds the line (dividend − r) : divisor = q.
+      quotientLine?: boolean;
     }
   // Long division written out: divide, multiply, subtract, bring down.
   | { kind: "colDiv"; dividend: number; divisor: number; mode: Mode }
@@ -124,10 +133,14 @@ export type VisualSpec =
       mode: Mode;
       groupWord: string;
       itemWord: string;
+      // What a group does with its items: "chở", "chứa", "giá".
+      perVerb: string;
     }
   // Three worked examples marked wrong: a forgotten carry, a remainder not
-  // smaller than the divisor, a missing zero in the quotient.
-  | { kind: "mistakes" }
+  // smaller than the divisor, a missing zero in the quotient. "tabs" shows one
+  // at a time with its picture; "summary" lists the three wrong lines with the
+  // right ones on one screen.
+  | { kind: "mistakes"; mode: "tabs" | "summary" }
   | { kind: "sticker" };
 
 export type SpecKind = VisualSpec["kind"];
@@ -174,7 +187,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tinh-ba-keo-goi-y": {
     kind: "repeatAdd",
     groups: 3,
-    size: 7,
+    size: 9,
     groupWord: "bao",
     itemWord: "viên kẹo",
     mode: "hint",
@@ -212,7 +225,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tinh-tuan-ngay-goi-y": {
     kind: "skip",
     step: 9,
-    hops: 4,
+    hops: 3,
     mode: "hint",
   },
   "tinh-tuan-ngay-giai": {
@@ -224,14 +237,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "ten-goi-nhan": {
     kind: "tags",
     form: "mul",
-    a: 25,
-    b: 2,
+    a: 15,
+    b: 4,
   },
   "ten-goi-chia": {
     kind: "tags",
     form: "div",
-    a: 36,
-    b: 12,
+    a: 40,
+    b: 8,
   },
   "dien-7-9-goi-y": {
     kind: "swap",
@@ -270,6 +283,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       "= 260 + 52",
       "= 312",
     ],
+    groupName: "Số được tách",
   },
   "phan-phoi-tach": {
     kind: "splitTry",
@@ -294,11 +308,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     parts: [20, -1],
     mode: "steps",
   },
-  "mua-sach-49-goi-y": {
+  "mua-banh-6-49-goi-y": {
     kind: "steps",
     lines: ["8 · 29", "= 8 · (30 − 1)", "= 8 · 30 − 8 · 1", "= 240 − ?"],
+    groupName: "Số được tách",
   },
-  "mua-sach-49-giai": {
+  "mua-banh-6-49-giai": {
     kind: "steps",
     lines: [
       "6 · 49",
@@ -307,6 +322,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       "= 300 − 6",
       "= 294",
     ],
+    groupName: "Số được tách",
   },
   "nhan-cot-54-7-xong": {
     kind: "colMul",
@@ -459,6 +475,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "hint",
     groupWord: "thùng",
     itemWord: "chai",
+    perVerb: "chứa",
   },
   "chon-thung-150-24-giai": {
     kind: "pack",
@@ -468,9 +485,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "solution",
     groupWord: "thùng",
     itemWord: "chai",
+    perVerb: "chứa",
   },
   "loi-sai-ba": {
     kind: "mistakes",
+    mode: "tabs",
   },
   "loi-sai-soat": {
     kind: "remCheck",
@@ -505,7 +524,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "ten-goi-tom-tat": {
     kind: "tags",
     form: "both",
-    a: 6,
+    a: 8,
     b: 4,
   },
   "giao-hoan-ghe": {
@@ -520,19 +539,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     cols: 5,
     mode: "still",
   },
-  "ket-hop-44-25": {
+  "ket-hop-36-25": {
     kind: "steps",
-    lines: [
-      "44 · 25",
-      "= 11 · 4 · 25",
-      "= 11 · (4 · 25)",
-      "= 11 · 100",
-      "= 1 100",
-    ],
+    lines: ["36 · 25", "= 9 · 4 · 25", "= 9 · (4 · 25)", "= 9 · 100", "= 900"],
   },
   "ket-hop-tom-tat": {
     kind: "steps",
     lines: ["18 · 25", "= 9 · 2 · 25", "= 9 · (2 · 25)", "= 9 · 50", "= 450"],
+    still: true,
   },
   "phan-phoi-goi-banh": {
     kind: "splitArea",
@@ -555,6 +569,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       "= 3 500 − 70",
       "= 3 430",
     ],
+    groupName: "Số được tách",
   },
   "gan-tron-tom-tat": {
     kind: "splitArea",
@@ -627,11 +642,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "kiem-tra-chia-tom-tat": {
     kind: "remCheck",
-    dividend: 47,
-    divisor: 9,
-    q: 5,
-    r: 2,
+    dividend: 59,
+    divisor: 7,
+    q: 8,
+    r: 3,
     ok: true,
+    quotientLine: true,
   },
   "chia-cot-95-4": {
     kind: "colDiv",
@@ -653,6 +669,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     groupWord: "xe",
     itemWord: "học sinh",
+    perVerb: "chở",
   },
   "mua-vo-100-12": {
     kind: "pack",
@@ -662,6 +679,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     groupWord: "quyển vở",
     itemWord: "nghìn đồng",
+    perVerb: "giá",
   },
   "bai-toan-chia-tom-tat": {
     kind: "pack",
@@ -671,9 +689,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
     groupWord: "hộp",
     itemWord: "cái bánh",
+    perVerb: "đựng",
   },
   "tim-loi-sai-tom-tat": {
     kind: "mistakes",
+    mode: "summary",
   },
   sticker: {
     kind: "sticker",
