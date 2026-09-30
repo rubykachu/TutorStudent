@@ -195,6 +195,20 @@
       "term": "số dư",
       "forbidden": [],
       "color": "pink"
+    },
+    {
+      "term": "chia hết",
+      "forbidden": []
+    },
+    {
+      "term": "ước",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "bội",
+      "forbidden": [],
+      "color": "blue"
     }
   ],
   "names": []
