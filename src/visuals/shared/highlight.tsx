@@ -47,6 +47,8 @@ export function Highlight({
       <motion.span
         {...decorative}
         aria-hidden
+        // Paints a little past its content on purpose; layout checks skip it.
+        data-halo
         className={`pointer-events-none absolute -z-10 rounded-sm ${paint}`}
         initial={false}
         animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 0.9 }}

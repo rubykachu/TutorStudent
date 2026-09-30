@@ -7,6 +7,7 @@ import {
   type Page,
   webkit,
 } from "@playwright/test";
+import { lessonContentUrl } from "@/content";
 import { readContentRoot } from "@/content/load";
 import { lessonPath, PROFILES_PATH, sectionPath } from "@/lib/routes";
 import {
@@ -35,11 +36,13 @@ import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 
 // Usage: lesson-walk <lessonId>
 // Walks every section of a lesson the way a child does, on each walk device:
-// every explanation screen, every exercise answered right (read from
-// lesson.json), and the first exercise of each type missed three times to
-// see all feedback tiers. Screenshots go to .shots/walk/<lessonId>/<device>/.
-// Fails when a feedback visual (hint or solution) is out of view or the
-// bottom bar covers something the child must tap. Drafts are walked too: a
+// every explanation screen, every exercise answered right (read from the
+// lesson the server serves), and the first exercise of each type, with and
+// without a hint visual, missed three times to see all feedback tiers. Screenshots go to .shots/walk/<lessonId>/<device>/.
+// Fails when a feedback visual (hint or solution) is out of view, when the
+// hint is lost after the number pad is opened again, when the bottom bar
+// covers something the child must tap, or when anything sticks out of the
+// answer card, an exercise column or the screen sideways. Drafts are walked too: a
 // server it starts serves them (CONTENT_INCLUDE_DRAFT=1); WALK_BASE_URL
 // points it at another running server instead.
 
@@ -76,6 +79,14 @@ type Finding = {
 function usage(): never {
   console.error("Usage: pnpm lesson:walk <lessonId>");
   process.exit(2);
+}
+
+// The lesson as the server serves it, so answers match the screens even
+// while lesson.json has edits the server does not serve yet.
+async function servedLesson(lessonId: string): Promise<Lesson | undefined> {
+  const response = await fetch(`${BASE_URL}${lessonContentUrl(lessonId)}`);
+  if (!response.ok) return undefined;
+  return LessonSchema.parse(await response.json());
 }
 
 function readLesson(lessonId: string): Lesson {
@@ -292,6 +303,77 @@ async function nudgeAway(exercise: Locator) {
 type TextReport = { horizontalScroll: boolean; smallText: string[] };
 
 // Runs in the browser, so it must not reference anything outside itself.
+// Elements that stick out sideways: of the answer card or an exercise column
+// (a visual too wide for its column), or of the screen. Content inside a
+// scrolling or clipping box is that box's business and is skipped, as are
+// highlight halos (painted a few px past their content on purpose) and
+// fixed-position helpers such as screen-reader live regions; only the
+// outermost element of an overflow is named.
+function measureOverflow(): string[] {
+  const SLACK_PX = 1;
+  const issues: string[] = [];
+  const name = (el: Element) => {
+    const marks = ["data-visual-fit", "data-block", "data-option", "data-slot"]
+      .map(
+        (attr) => el.getAttribute(attr) && `${attr}=${el.getAttribute(attr)}`,
+      )
+      .filter(Boolean);
+    const text = el.textContent?.trim().slice(0, 24) ?? "";
+    return `<${el.tagName.toLowerCase()}${marks.length ? ` ${marks.join(" ")}` : ""}> "${text}"`;
+  };
+  const clippedWithin = (el: Element, box: Element | null) => {
+    for (let p = el.parentElement; p && p !== box; p = p.parentElement) {
+      if (getComputedStyle(p).overflowX !== "visible") return true;
+    }
+    return false;
+  };
+  const fixedWithin = (el: Element, box: Element | null) => {
+    for (let p: Element | null = el; p && p !== box; p = p.parentElement) {
+      if (getComputedStyle(p).position === "fixed") return true;
+    }
+    return false;
+  };
+  const check = (
+    box: Element | null,
+    left: number,
+    right: number,
+    what: string,
+  ) => {
+    const reported: Element[] = [];
+    const scope = box ?? document.querySelector("main");
+    if (!scope) return;
+    for (const el of scope.querySelectorAll("*")) {
+      if (el.closest(".sr-only, [data-halo]")) continue;
+      if (fixedWithin(el, box)) continue;
+      if (reported.some((outer) => outer.contains(el))) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) continue;
+      if (r.left >= left - SLACK_PX && r.right <= right + SLACK_PX) continue;
+      if (clippedWithin(el, box)) continue;
+      reported.push(el);
+      const by = Math.round(Math.max(left - r.left, r.right - right));
+      issues.push(`${name(el)} sticks out of ${what} by ${by}px`);
+    }
+  };
+  const boxes = [
+    ...document.querySelectorAll("[data-answer-area]"),
+    ...document.querySelectorAll(
+      "[data-exercise-layout] > :not([data-answer-column])",
+    ),
+  ];
+  for (const box of boxes) {
+    const r = box.getBoundingClientRect();
+    if (r.width === 0) continue;
+    const what = box.hasAttribute("data-answer-area")
+      ? "the answer card"
+      : "its exercise column";
+    check(box, r.left, r.right, what);
+  }
+  check(null, 0, document.documentElement.clientWidth, "the screen");
+  return issues;
+}
+
+// Runs in the browser, so it must not reference anything outside itself.
 function measureText({ minTextPx }: { minTextPx: number }): TextReport {
   const smallText: string[] = [];
   for (const el of document.querySelectorAll("main *")) {
@@ -388,7 +470,10 @@ class Walker {
       minTextPx: MIN_TEXT_PX,
     });
     if (text.horizontalScroll) {
-      this.report("warn", where, `page scrolls sideways (${file})`);
+      this.report("fail", where, `page scrolls sideways (${file})`);
+    }
+    for (const overflow of await this.page.evaluate(measureOverflow)) {
+      this.report("fail", where, `${overflow} (${file})`);
     }
     for (const small of new Set(text.smallText)) {
       this.report(
@@ -460,6 +545,34 @@ class Walker {
 
   private readonly missedTypes = new Set<string>();
 
+  // Where the number pad stepped aside for the hint, the child may open it
+  // again: the hint must then stay reachable, as a strip right above the pad
+  // or still in full. Tapping the strip brings the hint back for the next
+  // tier.
+  private async reopenPad(where: string, area: Locator) {
+    const open = area.locator("[data-open-pad]");
+    if (!(await open.isVisible())) return;
+    await open.tap();
+    const strip = area.locator("[data-hint-strip]");
+    await this.look(`${where}-pad`);
+    const target = (await strip.isVisible())
+      ? "[data-hint-strip]"
+      : "[data-feedback-visual]";
+    try {
+      await expectInViewAboveBar(this.page, target);
+    } catch (error) {
+      this.report(
+        "fail",
+        `${where}-pad`,
+        `hint lost after opening the pad: ${received(error)}`,
+      );
+    }
+    if (await strip.isVisible()) {
+      await strip.tap();
+      await area.locator("[data-feedback-visual]").waitFor();
+    }
+  }
+
   private async walkExercise(where: string, exercise: Exercise) {
     if (exercise.type === "openEnded") {
       throw new Error(`${where}: open-ended exercises are not walked yet`);
@@ -468,8 +581,12 @@ class Walker {
     const frame = area.locator("section[data-phase]");
     await frame.waitFor();
     await this.look(where);
-    if (!this.missedTypes.has(exercise.type)) {
-      this.missedTypes.add(exercise.type);
+    // Missed on purpose: the first exercise of each type, with and without a
+    // hint visual, so every feedback layout (the pad giving way to a hint
+    // included) is seen.
+    const missKind = `${exercise.type}:${exercise.hints.hintVisualId ? "visual" : "plain"}`;
+    if (!this.missedTypes.has(missKind)) {
+      this.missedTypes.add(missKind);
       await enterWrong(area, exercise);
       const check = area.getByRole("button", { name: "Kiểm tra" });
       for (const tier of [1, 2, 3]) {
@@ -480,6 +597,7 @@ class Walker {
         // Tier 1 only lights up the question; tiers 2 and 3 show a visual
         // or the answer.
         await this.look(`${where}-wrong${tier}`, { feedback: tier > 1 });
+        if (tier === 2) await this.reopenPad(`${where}-wrong2`, area);
       }
       await this.bottomButton("Tự làm lại").tap();
       await area.locator('section[data-phase="retype"]').waitFor();
@@ -541,7 +659,7 @@ async function walkDevice(
 async function main() {
   const lessonId = process.argv[2];
   if (!lessonId) usage();
-  const lesson = readLesson(lessonId);
+  const local = readLesson(lessonId);
   const outRoot = path.join(SHOTS_DIR, lessonId);
   rmSync(outRoot, { recursive: true, force: true });
 
@@ -551,6 +669,12 @@ async function main() {
     process.exit(2);
   }
   const server = external ? undefined : await ensureServer("/", DRAFT_ENV);
+  const lesson = (await servedLesson(lessonId)) ?? local;
+  if (JSON.stringify(lesson) !== JSON.stringify(local)) {
+    console.log(
+      `lesson:walk ${lessonId}: the server serves another version than lesson.json (not emitted or not approved yet); walking the served one`,
+    );
+  }
   const findings: Finding[] = [];
   const browsers = new Map<string, Browser>();
   try {
