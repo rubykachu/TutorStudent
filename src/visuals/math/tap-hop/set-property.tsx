@@ -1,0 +1,215 @@
+"use client";
+
+import { ArrowUp, ArrowUpDown } from "lucide-react";
+import type { ReactNode } from "react";
+import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
+import { Reveal } from "@/visuals/shared/reveal";
+import { StepPlayer } from "@/visuals/shared/step-player";
+import {
+  Element,
+  Figure,
+  ListLine,
+  MATH_LINE,
+  PropertyLine,
+  SetName,
+  Tag,
+} from "./set-parts";
+
+// Figures of the second way to write a set, by its characteristic property
+// after the vertical bar, and of moving between the two ways.
+
+const LIME = CONCEPT_CLASSES.lime.text;
+
+export function DauHieuViDu() {
+  return (
+    <Figure label="Tập hợp E gồm các số x, với x là số tự nhiên lớn hơn 2 và nhỏ hơn 6">
+      <PropertyLine
+        name="E"
+        property="x là số tự nhiên lớn hơn 2 và nhỏ hơn 6"
+      />
+      <ul className="flex flex-col items-start gap-1">
+        <li>
+          <Tag color="amber">x: thay cho mỗi phần tử</Tag>
+        </li>
+        <li className="text-caption font-semibold">
+          <span className="font-heading text-block font-bold">|</span> vạch đứng
+        </li>
+        <li>
+          <Tag color="lime">dấu hiệu đặc trưng</Tag>
+        </li>
+      </ul>
+    </Figure>
+  );
+}
+
+const READING_CAPTIONS = [
+  "",
+  "F gồm các số x",
+  "mà x là số tự nhiên nhỏ hơn 3",
+  "",
+] as const;
+
+// Reading "F = { x | x là số tự nhiên nhỏ hơn 3 }" in two parts, then listing.
+export function DocDauHieu() {
+  return (
+    <StepPlayer steps={4} label="Đọc tập hợp F theo dấu hiệu đặc trưng">
+      {(step) => (
+        <div className="flex w-full flex-col items-center gap-3">
+          <PropertyLine
+            name="F"
+            property="x là số tự nhiên nhỏ hơn 3"
+            emphasis={step === 1 ? "x" : step === 2 ? "property" : undefined}
+          />
+          <p className="min-h-7 text-center text-body font-semibold">
+            {READING_CAPTIONS[step]}
+          </p>
+          <Reveal
+            shown={step >= 3}
+            placeholder={
+              <p className={MATH_LINE}>
+                <Element>x</Element> có thể là ?
+              </p>
+            }
+          >
+            <p className={MATH_LINE}>
+              <span>x có thể là</span>
+              <span>
+                <Element>0</Element>, <Element>1</Element>, <Element>2</Element>
+              </span>
+            </p>
+          </Reveal>
+          <Reveal
+            shown={step >= 3}
+            placeholder={
+              <p className={MATH_LINE}>
+                <SetName>F</SetName> = {"{ ? }"}
+              </p>
+            }
+          >
+            <ListLine name="F" elements={[0, 1, 2]} />
+          </Reveal>
+          <Reveal shown={step >= 3}>
+            <Tag color="amber">0 cũng là số tự nhiên</Tag>
+          </Reveal>
+        </div>
+      )}
+    </StepPlayer>
+  );
+}
+
+export function TheDauHieu() {
+  return (
+    <Figure label="Dấu hiệu đặc trưng của các số x là số chẵn, viết sau vạch đứng">
+      <div className="flex items-baseline justify-center gap-2 pb-14 font-heading text-block font-bold md:text-block-lg">
+        <span>{"{"}</span>
+        <Element>x</Element>
+        <span>|</span>
+        <span className="relative">
+          <span className={LIME}>x là số chẵn</span>
+          <span className="absolute top-full left-1/2 flex -translate-x-1/2 flex-col items-center font-body whitespace-nowrap">
+            <ArrowUp aria-hidden className={`size-4 ${LIME}`} />
+            <Tag color="lime">dấu hiệu đặc trưng</Tag>
+          </span>
+        </span>
+        <span>{"}"}</span>
+      </div>
+    </Figure>
+  );
+}
+
+function WayCard({
+  header,
+  children,
+}: {
+  header: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex w-full max-w-md flex-col items-center gap-1 rounded-2xl border-2 border-border bg-surface p-3">
+      <span className="text-caption font-semibold text-muted-foreground">
+        {header}
+      </span>
+      {children}
+    </div>
+  );
+}
+
+// Two rows for the same set joined by a double arrow. `property` is the whole
+// phrase after the bar in the second row.
+function TwoWays({
+  elements,
+  property,
+  label,
+}: {
+  elements: readonly number[];
+  property: string;
+  label?: string;
+}) {
+  return (
+    <Figure
+      label={`Cùng một tập hợp viết hai cách: liệt kê ${elements.join(", ")} và nêu dấu hiệu ${property}`}
+    >
+      <WayCard header="Liệt kê">
+        <ListLine elements={elements} />
+      </WayCard>
+      <div className="flex items-center gap-3">
+        <ArrowUpDown aria-hidden className="size-8" />
+        {label && <Tag color="lime">{label}</Tag>}
+      </div>
+      <WayCard header="Nêu dấu hiệu đặc trưng">
+        <PropertyLine property={property} />
+      </WayCard>
+    </Figure>
+  );
+}
+
+export function HaiCachViDu() {
+  return (
+    <TwoWays
+      elements={[5, 6, 7, 8]}
+      property="x là số tự nhiên lớn hơn 4 và nhỏ hơn 9"
+    />
+  );
+}
+
+export function TheHaiCach() {
+  return <TwoWays elements={[1, 3, 5]} property="x là số lẻ nhỏ hơn 6" />;
+}
+
+export function TheDoiCach() {
+  return (
+    <TwoWays
+      elements={[7, 8, 9]}
+      property="x là số tự nhiên lớn hơn 6 và nhỏ hơn 10"
+      label="tìm dấu hiệu đặc trưng"
+    />
+  );
+}
+
+// From a listed set to its characteristic property.
+export function DoiTuLietKe() {
+  return (
+    <StepPlayer steps={3} label="Từ liệt kê sang nêu dấu hiệu đặc trưng">
+      {(step) => (
+        <div className="flex w-full flex-col items-center gap-3">
+          <ListLine name="C" elements={[1, 3, 5, 7, 9]} />
+          <Reveal
+            shown={step >= 1}
+            placeholder={<Tag color="lime">dấu hiệu đặc trưng: ?</Tag>}
+            className="text-center"
+          >
+            <Tag color="lime">
+              dấu hiệu đặc trưng: đều là số lẻ, đều nhỏ hơn 10
+            </Tag>
+          </Reveal>
+          <Reveal
+            shown={step >= 2}
+            placeholder={<PropertyLine name="C" property="?" />}
+          >
+            <PropertyLine name="C" property="x là số lẻ nhỏ hơn 10" />
+          </Reveal>
+        </div>
+      )}
+    </StepPlayer>
+  );
+}

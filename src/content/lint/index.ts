@@ -1,6 +1,9 @@
 import { lintCardExercises } from "./card-exercises";
 import { lintCheckExpr } from "./check-expr";
+import { lintColorLeak } from "./color-leak";
 import { lintGlossary } from "./glossary";
+import { lintGuides } from "./guides";
+import { lintHintAnswer } from "./hint-answer";
 import { lintLength } from "./length";
 import { lintNfc } from "./nfc";
 import { lintNumbers } from "./numbers";
@@ -11,8 +14,10 @@ import { lintPractice } from "./practice";
 import { lintRecap, lintRecapForm } from "./recap";
 import { lintReviewBank } from "./review-bank";
 import { lintReviewHash } from "./review-hash";
+import { lintRuleSentence } from "./rule-sentence";
 import { lintScreens } from "./screens";
 import { lintSymbols } from "./symbols";
+import { lintTextbookCopy } from "./textbook-copy";
 import { type Finding, findingCollector, type LintInput } from "./types";
 import { lintVietnamese } from "./vietnamese";
 import { collectStrings } from "./walk";
@@ -30,6 +35,8 @@ function lintAuthoring(input: LintInput): Finding[] {
     ...lintRecapForm(input),
     ...lintReviewBank(input),
     ...lintPlaceholder(input),
+    ...lintGuides(input),
+    ...lintRuleSentence(input),
   ];
 }
 
@@ -53,6 +60,9 @@ export function lintLesson(input: LintInput): Finding[] {
     ...lintRecap(input),
     ...lintCardExercises(input),
     ...lintCheckExpr(input),
+    ...lintHintAnswer(input),
+    ...lintColorLeak(input),
+    ...lintTextbookCopy(input, strings),
     ...lintPassage(input),
     ...lintReviewHash(input),
     ...lintOverview(input),

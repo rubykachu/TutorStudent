@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tập hợp là gì? Cái hộp đựng phần tử" (lesson tap-hop): a pencil
+  box is a set and pen, ruler and eraser are its elements; then the braces
+  { } are written stroke by stroke around them.
+  Built by `pnpm video:build tap-hop tap-hop-la-gi`, which injects
+  window.TIMING (scene windows and spoken word times from script.json).
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <title>Tập hợp là gì? Cái hộp đựng phần tử</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .setbox { position: absolute; top: 70px; height: 250px; border: 7px solid var(--color-border); border-radius: 36px; background: var(--color-surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
+      .setbox .cap { font: 700 34px / 1 "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .items { display: flex; gap: 14px; align-items: center; justify-content: center; }
+      .it { padding: 6px 22px 8px; border: 5px solid var(--color-concept-amber); border-radius: 20px; background: var(--color-surface); font: 700 42px / 1.2 "Be Vietnam Pro", sans-serif; }
+      .dot { width: 58px; height: 58px; border-radius: 50%; background: var(--color-concept-amber); }
+      .tags { position: absolute; left: 0; width: 1280px; top: 380px; display: flex; justify-content: center; gap: 28px; }
+      .tag-set::before { content: "■ "; }
+      .tag-el::before { content: "◆ "; }
+      .glyph { height: 200px; width: auto; display: block; }
+      .glyph .badge { opacity: 0; }
+      .bk { color: var(--color-concept-teal); }
+      .el { color: var(--color-concept-amber); }
+      .line-row { align-items: center; gap: 10px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="sets" class="scene layer">
+          <div id="box1" class="setbox" style="left: 200px; width: 470px">
+            <span class="cap">hộp bút</span>
+            <div class="items">
+              <span id="it-but" class="it">bút</span>
+              <span id="it-thuoc" class="it">thước</span>
+              <span id="it-tay" class="it">tẩy</span>
+            </div>
+          </div>
+          <div id="box2" class="setbox" style="left: 710px; width: 370px">
+            <span class="cap">đội bóng</span>
+            <div class="items"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+          <div class="tags">
+            <span id="tag-set" class="chip tag-set" style="--c: var(--color-concept-teal)">tập hợp</span>
+            <span id="tag-el" class="chip tag-el" style="--c: var(--color-concept-amber)">phần tử</span>
+          </div>
+        </section>
+        <section id="write" class="scene layer">
+          <div id="ex" class="row math line-row" style="top: 170px">
+            <span id="brace-l" class="bk"></span>
+            <span id="elements"><span class="el">bút</span> ; <span class="el">thước</span> ; <span class="el">tẩy</span></span>
+            <span id="brace-r" class="bk"></span>
+          </div>
+          <div class="row" style="top: 410px">
+            <span id="lab-set" class="chip tag-set" style="--c: var(--color-concept-teal)">tập hợp</span>
+            <span id="lab-el" class="chip tag-el" style="--c: var(--color-concept-amber)">phần tử</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, $$, start, end, W, owl, pop, rise, hide, tint, pose, color, finish } = window.LV;
+
+        // ---------- DOM ----------
+        $("#brace-l").innerHTML = window.FIGURES["glyph-ngoac-nhon-mo"];
+        $("#brace-r").innerHTML = window.FIGURES["glyph-ngoac-nhon-dong"];
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+        const teal = color("concept-teal");
+
+        // A stroke of a mark is inked like a pen: its numbered start dot shows,
+        // the stroke draws, the dot goes.
+        const strokes = new Map();
+        const prepare = (svg) => {
+          const paths = $$(".stroke", svg);
+          paths.forEach((p) => {
+            const len = p.getTotalLength();
+            p.style.strokeDasharray = `${len} ${len}`;
+            p.style.strokeDashoffset = `${len}`;
+            p.style.opacity = "0";
+          });
+          strokes.set(svg, paths);
+        };
+        const ink = (svg, i, t, d = 0.9) => {
+          const path = strokes.get(svg)[i];
+          const badge = $$(".badge", svg)[i];
+          const len = path.getTotalLength();
+          tl.to(badge, { opacity: 1, duration: 0.2 }, t);
+          tl.set(path, { opacity: 1 }, t + 0.2);
+          tl.fromTo(path, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease: "power1.inOut", immediateRender: false }, t + 0.2);
+          tl.to(badge, { opacity: 0, duration: 0.2 }, t + 0.2 + d);
+        };
+        const svgL = $("#brace-l svg");
+        const svgR = $("#brace-r svg");
+        prepare(svgL);
+        prepare(svgR);
+
+        // ---------- layers ----------
+        {
+          const el = $("#sets");
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, 0);
+          tl.to(el, { autoAlpha: 0, duration: 0.3 }, end("s03-phan-tu") - 0.3);
+          const write = $("#write");
+          tl.fromTo(write, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, immediateRender: false }, start("s04-viet"));
+        }
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: the pencil box ----------
+        {
+          const sid = "s01-hop-but";
+          hide(["#box1", "#box2", "#it-but", "#it-thuoc", "#it-tay", "#tag-set", "#tag-el"]);
+          pose(bird, "happy", W(sid, "cú"));
+          pop("#box1", start(sid) + 0.2, { from: 0.7 });
+          pop("#it-but", W(sid, "bút", 2), { from: 0.4 });
+          pop("#it-thuoc", W(sid, "thước"), { from: 0.4 });
+          pop("#it-tay", W(sid, "tẩy"), { from: 0.4 });
+          tl.to("#box1", { borderColor: teal, duration: 0.4 }, W(sid, "tập"));
+          rise("#tag-set", W(sid, "tập"));
+        }
+
+        // ---------- s02: a set is a group ----------
+        {
+          const sid = "s02-tap-hop";
+          pose(bird, "idle", start(sid));
+          pop("#box2", W(sid, "đội"), { from: 0.7 });
+          tl.to("#box2", { borderColor: teal, duration: 0.4 }, W(sid, "đội"));
+          tl.fromTo("#box1", { scale: 1 }, { scale: 1.04, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "nhóm"));
+        }
+
+        // ---------- s03: each thing is an element ----------
+        {
+          const sid = "s03-phan-tu";
+          pose(bird, "idle", start(sid));
+          rise("#tag-el", W(sid, "phần", 1));
+          tint("#it-but", W(sid, "bút"));
+          tint("#it-thuoc", W(sid, "thước"));
+          tint("#it-tay", W(sid, "tẩy"));
+        }
+
+        // ---------- s04: write the set ----------
+        {
+          const sid = "s04-viet";
+          hide(["#elements", "#lab-set", "#lab-el"]);
+          rise("#elements", start(sid) + 0.4);
+          tl.fromTo("#elements", { scale: 1 }, { scale: 1.06, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, W(sid, "giữa"));
+        }
+
+        // ---------- s05: the opening brace, three strokes ----------
+        {
+          const sid = "s05-mo";
+          ink(svgL, 0, W(sid, "một"));
+          ink(svgL, 1, W(sid, "hai"));
+          ink(svgL, 2, W(sid, "ba"));
+        }
+
+        // ---------- s06: the closing brace is its mirror image ----------
+        {
+          const sid = "s06-dong";
+          ink(svgR, 0, W(sid, "soi") - 0.3, 0.7);
+          ink(svgR, 1, W(sid, "gương") + 0.6, 0.7);
+          ink(svgR, 2, W(sid, "viết") + 0.6, 0.7);
+        }
+
+        // ---------- s07: remember ----------
+        {
+          const sid = "s07-nho";
+          pose(bird, "cheer", W(sid, "nhớ"));
+          rise("#lab-set", W(sid, "tập"));
+          rise("#lab-el", W(sid, "phần"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

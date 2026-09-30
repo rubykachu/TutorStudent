@@ -1,0 +1,132 @@
+{
+  "title": "Ngoặc tròn, vuông, nhọn: hộp trong hộp",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s05-tron",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-ba-loai",
+      "sentences": [
+        {
+          "text": "Bạn cú gặp biểu thức có nhiều ngoặc."
+        },
+        {
+          "text": "Có ba loại ngoặc: ngoặc tròn, ngoặc vuông, ngoặc nhọn.",
+          "rule": true
+        },
+        {
+          "text": "Mỗi loại ngoặc có một màu riêng."
+        },
+        {
+          "text": "Ta sẽ mở từng hộp một."
+        }
+      ]
+    },
+    {
+      "id": "s02-hop",
+      "sentences": [
+        {
+          "text": "Các ngoặc giống những chiếc hộp."
+        },
+        {
+          "text": "Ngoặc tròn là hộp nhỏ nhất."
+        },
+        {
+          "text": "Ngoặc vuông là hộp vừa."
+        },
+        {
+          "text": "Ngoặc nhọn là hộp lớn."
+        },
+        {
+          "text": "Như quà trong hộp nhỏ, hộp nhỏ trong hộp vừa, hộp vừa trong hộp lớn.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-mo",
+      "sentences": [
+        {
+          "text": "Muốn lấy quà, phải mở hộp nhỏ nhất trước."
+        },
+        {
+          "text": "Vậy ta làm ngoặc tròn trước."
+        },
+        {
+          "text": "Rồi làm ngoặc vuông."
+        },
+        {
+          "text": "Cuối cùng làm ngoặc nhọn."
+        }
+      ]
+    },
+    {
+      "id": "s04-qua",
+      "sentences": [
+        {
+          "text": "Bạn cú mua hai phần quà."
+        },
+        {
+          "text": "Mỗi phần có hộp bút 5 nghìn đồng."
+        },
+        {
+          "text": "Và 3 gói kẹo, mỗi gói 2 nghìn đồng."
+        },
+        {
+          "text": "Túi đựng quà là 10 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s05-tron",
+      "sentences": [
+        {
+          "text": "Trong ngoặc tròn: 3 nhân 2 bằng 6."
+        },
+        {
+          "text": "Trong ngoặc vuông: 5 cộng 6 bằng 11."
+        }
+      ]
+    },
+    {
+      "id": "s06-nhon",
+      "sentences": [
+        {
+          "text": "Trong ngoặc nhọn: 10 cộng 2 nhân 11."
+        },
+        {
+          "text": "2 nhân 11 bằng 22."
+        },
+        {
+          "text": "10 cộng 22 bằng 32."
+        },
+        {
+          "text": "Cả hai phần quà và túi hết 32 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Như quà trong hộp nhỏ, hộp nhỏ trong hộp vừa, hộp vừa trong hộp lớn.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ngoac-long",
+      "from": "s02-hop",
+      "to": "s07-nho",
+      "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.ngoac-long"]
+    }
+  ]
+}

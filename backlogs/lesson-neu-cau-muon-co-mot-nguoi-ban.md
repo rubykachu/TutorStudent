@@ -20,3 +20,7 @@ Bài đã xuất bản (`published`, `content/literature/ctst/neu-cau-muon-co-mo
 ## Chờ chủ dự án nghe duyệt
 
 - Whisper nghe lệch, cần nghe tai: `bi-mat-cua-cao` "Màu lúa mì sẽ làm cáo nhớ bạn." (nghe thành "như bạn", giây ~26), "mắt trần" (nghe thành "mắt chân", giây ~41); `cam-hoa-la-gi` "Chưa cảm hoá thì…" (nghe thành "Chứ", giây ~37). Tệp: `public/media/video/neu-cau-muon-co-mot-nguoi-ban/`.
+
+## Từ các luật lessons-learned (30/09/2026)
+
+- Recap `cao-xuat-hien`, `so-sanh`, `bi-mat`, `lap-lai` (và card `ai-noi`, `so-sanh`, `lap-lai`) nói lại ý của note bằng lời khác nên các note đó chưa đánh `rule` (LL-05). Thống nhất câu rồi đánh `rule: true` nếu muốn luật kiểm.

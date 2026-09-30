@@ -54,6 +54,13 @@ describe("visualRegistry", () => {
       "cap-tron": [{ unit: 10, n0: 4, n1: 9, n2: 6 }],
       "them-bot-tron": [{ a: 38, b: 47, unit: 10 }],
       "cot-tinh": [{ digit: 5, carry: 1 }],
+      "ve-xong": [{ total: 3 }],
+      "du-cham-phay": [{ gaps: 3 }],
+      "chon-dung": [{ i0: 1, i1: 0, i2: 1 }],
+      "x-thuoc": [
+        { want: 1, count: 3, e0: 2, e1: 4, e2: 6 },
+        { want: 0, count: 3, e0: 0, e1: 1, e2: 2 },
+      ],
     };
     for (const entry of Object.values(visualRegistry)) {
       for (const [id, solve] of Object.entries(entry.solutions ?? {})) {

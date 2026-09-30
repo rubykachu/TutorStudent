@@ -12,6 +12,7 @@ Self-study app for a Vietnamese grade 6 child (Next.js PWA, iPad first). Product
 - `src/visuals/registry.ts` — `visualId` → component, with `interactive`, `regions`, validators; primitives in `src/visuals/shared/`, lesson visuals in `src/visuals/<subject>/<slug>/`.
 - `src/app/(child)/` — child screens; `src/app/dev/` — visual, exercise and mascot galleries.
 - `docs/learner.md` — the learner profile every lesson is written for.
+- `docs/lessons-learned/` — recurring content errors from review history (index, counts, how each is prevented); `lesson-author` and `lesson-review` read `index.md` first and add or bump entries.
 - `tests/` mirrors `src/`; `e2e/` runs on the `ipad` and `phone` targets in `e2e/targets.ts`.
 
 ## Commands
@@ -38,7 +39,7 @@ CONTENT_INCLUDE_DRAFT=1 pnpm dev  # also serve draft lessons (never in a build)
 - `lesson-visual` — build, register and screenshot a lesson's visuals.
 - `lesson-video` — lesson videos with local TTS narration, attached to `lesson.json`.
 - `lesson-review` — independent review before publishing; always in a fresh subagent, never by the session that wrote the lesson.
-- Models: authoring (`import-source`, `lesson-author`, `lesson-visual`, `lesson-video`, and their helper subagents) = Sonnet; review = Opus (every reviewer subagent is spawned with `model: "opus"`).
+- Models: authoring (`import-source`, `lesson-author`, `lesson-visual`, `lesson-video`, and their helper subagents) = Sonnet; review = Opus for full rounds 1–2, Sonnet from round 3 (diff-only rounds, video/narration reviews); set per spawn via the Agent `model` parameter.
 
 ## Boundaries
 

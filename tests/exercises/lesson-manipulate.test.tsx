@@ -41,6 +41,21 @@ function steppers(container: HTMLElement): HTMLElement[] {
   return [...container.querySelectorAll<HTMLElement>(`[${STATE_KEY_ATTR}]`)];
 }
 
+// Keys reported by buttons that set one value directly (`key=value` markers).
+function setKeys(container: HTMLElement): string[] {
+  return [
+    ...new Set(
+      [...container.querySelectorAll<HTMLElement>(`[${STATE_SET_ATTR}]`)].map(
+        (el) => (el.getAttribute(STATE_SET_ATTR) ?? "").split("=")[0] ?? "",
+      ),
+    ),
+  ];
+}
+
+function hasControls(container: HTMLElement): boolean {
+  return steppers(container).length > 0 || setKeys(container).length > 0;
+}
+
 function stepperValue(stepper: HTMLElement): number {
   return Number(stepper.getAttribute(STATE_VALUE_ATTR));
 }
@@ -71,7 +86,21 @@ function driveTo(area: HTMLElement, state: VisualState) {
     const stepper = area.querySelector<HTMLElement>(
       `[${STATE_KEY_ATTR}="${key}"]`,
     );
-    if (!stepper) continue;
+    if (!stepper) {
+      // A visual that advances one step per tap marks only its next control:
+      // tap "<key>=1", then "<key>=2", up to the target.
+      if (setKeys(area).includes(key)) {
+        for (let value = 1; value <= target; value++) {
+          const next = area.querySelector<HTMLElement>(
+            `[${STATE_SET_ATTR}="${key}=${value}"]`,
+          );
+          if (!next) throw new Error(`no control for ${key}=${value}`);
+          fireEvent.click(next);
+        }
+        driven += 1;
+      }
+      continue;
+    }
     driven += 1;
     if (stepperValue(stepper) === target) {
       const up = stepButton(stepper, "up");
@@ -97,6 +126,26 @@ function shownValues(area: HTMLElement): Record<string, number> {
   );
 }
 
+// One step off the solved state: a stepper moves by one, otherwise a control
+// that sets a value directly is tapped (an unpressed one, else any enabled).
+function nudgeAway(area: HTMLElement) {
+  const first = steppers(area)[0];
+  if (first) {
+    const up = stepButton(first, "up");
+    fireEvent.click(up.disabled ? stepButton(first, "down") : up);
+    return;
+  }
+  const unpressed = area.querySelector<HTMLElement>(
+    `[${STATE_SET_ATTR}][aria-pressed="false"]`,
+  );
+  const any = area.querySelector<HTMLElement>(
+    `[${STATE_SET_ATTR}]:not([disabled])`,
+  );
+  const target = unpressed ?? any;
+  if (!target) throw new Error("no control to go wrong");
+  fireEvent.click(target);
+}
+
 // The solved state restricted to the keys the visual has a stepper for.
 function expectedValues(
   area: HTMLElement,
@@ -116,7 +165,7 @@ async function renderReady(exercise: ManipulateExercise) {
   if (!area) throw new Error("answer area missing");
   // The visual loads on first use.
   await screen.findAllByRole("button");
-  await expect.poll(() => steppers(area).length).toBeGreaterThan(0);
+  await expect.poll(() => hasControls(area)).toBe(true);
   return { ...view, area };
 }
 
@@ -135,7 +184,11 @@ describe("manipulate exercises of the served lessons", () => {
         // Only values the child sets are changed; the others (the grains of a
         // chessboard square) follow from them and the validator may ignore them.
         const { area } = await renderReady(exercise);
-        const controlled = Object.keys(expectedValues(area, solved));
+        const keys = new Set([
+          ...steppers(area).map((s) => s.getAttribute(STATE_KEY_ATTR)),
+          ...setKeys(area),
+        ]);
+        const controlled = Object.keys(solved).filter((key) => keys.has(key));
         expect(controlled.length).toBeGreaterThan(0);
         for (const key of controlled) {
           for (const delta of [-1, 1]) {
@@ -165,10 +218,7 @@ describe("manipulate exercises of the served lessons", () => {
         const { frame, area } = await renderReady(exercise);
         // One step off the solved state.
         driveTo(area, solved);
-        const first = steppers(area)[0];
-        if (!first) throw new Error("no stepper");
-        const up = stepButton(first, "up");
-        fireEvent.click(up.disabled ? stepButton(first, "down") : up);
+        nudgeAway(area);
         checkAnswer();
         checkAnswer();
         checkAnswer();
@@ -177,7 +227,7 @@ describe("manipulate exercises of the served lessons", () => {
           expect(shownValues(area)).toEqual(expectedValues(area, solved));
         }
         startRetype();
-        await expect.poll(() => steppers(area).length).toBeGreaterThan(0);
+        await expect.poll(() => hasControls(area)).toBe(true);
         driveTo(area, solved);
         const submitted = shownValues(area);
         checkAnswer();

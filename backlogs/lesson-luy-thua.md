@@ -12,3 +12,10 @@ Bài đã `published` (xem `content/math/kntt/luy-thua/review.md`). Mọi câu b
 - Câu kết section `luy-thua-la-gi` ("nhà vua không có đủ để thưởng") nhắc nhà vua lần đầu vì phần mở đầu (caption `ban-co` và cảnh `s01-ban-co` của video "Luỹ thừa là gì?") chưa kể chuyện nhà vua hứa thưởng thóc. Sửa cả hai cùng lúc; video đổi thời lượng thì bài phải review lại.
 - Ảnh bìa của ba video: nút phát che công thức chính; chọn khung `poster` trong `script.json` có chỗ trống ở giữa.
 - `minutes` của section có video chưa tính thời lượng video (60–75 giây); cần chốt luật có cộng hay không.
+
+## Từ các luật lessons-learned (30/09/2026)
+
+- Nên sửa (review vòng 13): màn `guide: "numericPower"` (`bam-mu`) ở section `co-so-so-mu`, nhưng câu kho ôn `ex.viet-gon-10` của card `viet-luy-thua` (section đầu) đã bắt nhập luỹ thừa. Chuyển màn hướng dẫn lên section đầu (cảnh báo `[guides]`, LL-04).
+- Cảnh báo `[guides]` về `match`, `order`: hết khi bài `tap-hop` có hai màn hướng dẫn đó.
+- Góp ý: recap section `chia-cung-co-so` thiếu câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai" mà note và card có.
+- Recap section `luy-thua-la-gi` chèn "(đọc là “a mũ n”)" vào câu định nghĩa nên note đó chưa đánh `rule` (LL-05).

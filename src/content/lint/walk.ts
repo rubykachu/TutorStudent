@@ -55,6 +55,8 @@ const NON_TEXT_KEYS = new Set([
   "src",
   "tex",
   "expr",
+  "relation",
+  "guide",
   "engine",
   "voiceName",
   "model",

@@ -1,4 +1,5 @@
 import { RegistryVisual } from "@/visuals/registry-visual";
+import { decorative } from "@/visuals/shared/markers";
 
 type StickerProps = {
   visualId: string;
@@ -46,7 +47,8 @@ export function Sticker({
     >
       <div aria-hidden className="grid w-full">
         {ratio < 1 && (
-          <div className={`${layer} opacity-40 grayscale`}>
+          // The grey silhouette is a backdrop of the coloured copy.
+          <div {...decorative} className={`${layer} opacity-40 grayscale`}>
             <RegistryVisual id={visualId} />
           </div>
         )}

@@ -318,7 +318,7 @@ describe("hint targets", () => {
     const tapText = exercise(raw, "fixture.ex.cham-cau").hints as {
       highlight: Record<string, unknown>[];
     };
-    tapText.highlight = [{ target: "part", id: "s2" }];
+    tapText.highlight = [{ target: "part", id: "s1" }];
     const tapRegion = exercise(raw, "fixture.ex.cham-hinh-tron").hints as {
       highlight: Record<string, unknown>[];
     };

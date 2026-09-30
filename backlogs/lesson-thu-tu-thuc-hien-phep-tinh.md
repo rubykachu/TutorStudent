@@ -17,3 +17,8 @@ Các mục Nên sửa và Góp ý còn lại sau các vòng review, không chặ
 - `overview.summary` còn dài 3 câu và chưa nhắc biểu thức chứa chữ.
 - Hình gợi ý `tim-x-1-goi-y`, `tim-x-2-goi-y` dùng đẳng thức không có nghiệm tự nhiên; lời giải `tim-x-kiem-tra-giai` lặp dòng "2x + 6 = 14".
 - Chú thích màn cùng làm dùng cụm "để tính ra nó", đọc hơi vấp.
+
+## Từ các luật lessons-learned (30/09/2026)
+
+- Cảnh báo `[guides]` về `match` (`ex.noi-dau-voi-ten`) và `order` (`ex.sap-buoc-cong-tru`): hết khi bài `tap-hop` có hai màn hướng dẫn đó (LL-04).
+- Recap `dau-phep-tinh`, `hon-hop`, `ngoac-long` và card `tinh-day-du` nói gọn quy tắc bằng lời khác note nên các note đó chưa đánh `rule` (LL-05). Thống nhất câu rồi đánh `rule: true` nếu muốn luật kiểm.

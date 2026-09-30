@@ -7,20 +7,24 @@
   "title": "Thứ tự thực hiện các phép tính",
   "sourceRef": "Sách bài tập tr.24–26",
   "status": "published",
-  "reviewedHash": "99ac69420b46e1986b6a809ba949aa2d06e70a7870cb7a5fa196a0a41c36af8b",
+  "reviewedHash": "28c55f77d0ddb235cafcad062122a25c881bbdd8c60d724fb08964045b657ba7",
   "overview": {
     "hook": {
       "text": "Nam và Lan cùng tính một hoá đơn nhưng ra hai số khác nhau: ai đúng?",
       "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hoa-don-hai-ban"
     },
-    "summary": "Bài này dạy thứ tự làm các phép tính trong một biểu thức. Bạn sẽ tính khi chỉ có cộng, trừ, khi chỉ có nhân, chia, rồi khi có ngoặc và luỹ thừa. Bạn cũng dùng thứ tự đó để tìm số chưa biết.",
+    "summary": "Bài này dạy thứ tự làm các phép tính trong một biểu thức, kể cả biểu thức có ngoặc, luỹ thừa và chữ. Bạn cũng dùng thứ tự đó để tìm số chưa biết.",
     "goals": [
       "biết phép tính nào làm trước, phép tính nào làm sau",
       "tính đúng biểu thức có dấu ngoặc và luỹ thừa",
       "tính giá trị biểu thức có chứa chữ",
       "tìm số chưa biết trong một đẳng thức"
     ],
-    "whyItMatters": "Nhờ có thứ tự chung, ai tính cùng một biểu thức cũng ra cùng một kết quả, nhất là khi tính tiền."
+    "whyItMatters": "Nhờ có thứ tự chung, ai tính cùng một biểu thức cũng ra cùng một kết quả, nhất là khi tính tiền.",
+    "narration": {
+      "audioUrl": "narration/thu-tu-thuc-hien-phep-tinh/overview.m4a",
+      "vttUrl": "narration/thu-tu-thuc-hien-phep-tinh/overview.vtt"
+    }
   },
   "concepts": [
     {
@@ -67,6 +71,10 @@
       "minutes": 3,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "thu-tu-thuc-hien-phep-tinh.video.hoa-don"
+        },
+        {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hoa-don-hai-ban",
           "caption": "Hai bạn tính cùng một hoá đơn nhưng ra hai số khác nhau."
@@ -76,7 +84,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Hoá đơn thật: hai vở giá 2 · 8 = 16 nghìn đồng, rồi cộng tiền bút. Có cả nhân và cộng thì làm nhân trước, cộng sau."
+              "text": "Hoá đơn thật: hai vở giá 2 · 8 = 16 nghìn đồng, rồi cộng tiền bút. Có cả nhân và cộng thì làm nhân trước, cộng sau.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -147,7 +156,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Chỉ có cộng và trừ thì tính từ trái sang phải, từng phép một."
+              "text": "Chỉ có cộng và trừ thì tính từ trái sang phải, từng phép một.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -180,7 +190,8 @@
               "type": "visual",
               "visualId": "thu-tu-thuc-hien-phep-tinh.visual.huong-dan-cham-phep-tinh"
             }
-          ]
+          ],
+          "guide": "tapRegion"
         },
         {
           "type": "visual",
@@ -207,7 +218,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7."
+              "text": "Thuộc bảng nhân thì chia nhanh: biết 6 · 7 = 42 thì biết 42 : 6 = 7.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -250,7 +262,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhân số có hai chữ số: tách thành chục và đơn vị, nhân từng phần rồi cộng lại."
+              "text": "Nhân số có hai chữ số: tách thành chục và đơn vị, nhân từng phần rồi cộng lại.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -279,7 +292,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Chỉ có nhân và chia thì tính từ trái sang phải, từng phép một."
+              "text": "Chỉ có nhân và chia thì tính từ trái sang phải, từng phép một.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -326,6 +340,10 @@
       "sourceRef": "Sách bài tập tr.24",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "thu-tu-thuc-hien-phep-tinh.video.hon-hop"
+        },
         {
           "type": "group",
           "children": [
@@ -434,6 +452,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "thu-tu-thuc-hien-phep-tinh.video.ngoac-long"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -490,7 +512,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Có luỹ thừa thì tính luỹ thừa trước, rồi nhân, chia, cuối cùng cộng, trừ."
+              "text": "Có luỹ thừa thì tính luỹ thừa trước, rồi nhân, chia, cuối cùng cộng, trừ.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -652,7 +675,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Vế phải là phần bên phải dấu =. Tính vế phải trước, rồi làm ngược: cộng thì trừ, nhân thì chia."
+              "text": "Vế phải là phần bên phải dấu =. Tính vế phải trước, rồi làm ngược: cộng thì trừ, nhân thì chia.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -3846,5 +3870,70 @@
   "sticker": {
     "name": "Nhà vô địch thứ tự",
     "visualId": "thu-tu-thuc-hien-phep-tinh.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.video.hoa-don",
+      "lessonId": "thu-tu-thuc-hien-phep-tinh",
+      "url": "video/thu-tu-thuc-hien-phep-tinh/hoa-don.mp4",
+      "vttUrl": "video/thu-tu-thuc-hien-phep-tinh/hoa-don.vtt",
+      "posterUrl": "video/thu-tu-thuc-hien-phep-tinh/hoa-don.jpg",
+      "durationSec": 60.73,
+      "clips": [
+        {
+          "id": "hoa-don",
+          "start": 13.745,
+          "end": 51.485,
+          "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.hoa-don"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.video.hon-hop",
+      "lessonId": "thu-tu-thuc-hien-phep-tinh",
+      "url": "video/thu-tu-thuc-hien-phep-tinh/hon-hop.mp4",
+      "vttUrl": "video/thu-tu-thuc-hien-phep-tinh/hon-hop.vtt",
+      "posterUrl": "video/thu-tu-thuc-hien-phep-tinh/hon-hop.jpg",
+      "durationSec": 62.33,
+      "clips": [
+        {
+          "id": "hon-hop",
+          "start": 13.331,
+          "end": 60.904,
+          "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.hon-hop"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "thu-tu-thuc-hien-phep-tinh.video.ngoac-long",
+      "lessonId": "thu-tu-thuc-hien-phep-tinh",
+      "url": "video/thu-tu-thuc-hien-phep-tinh/ngoac-long.mp4",
+      "vttUrl": "video/thu-tu-thuc-hien-phep-tinh/ngoac-long.vtt",
+      "posterUrl": "video/thu-tu-thuc-hien-phep-tinh/ngoac-long.jpg",
+      "durationSec": 69.57,
+      "clips": [
+        {
+          "id": "ngoac-long",
+          "start": 11.37,
+          "end": 68.162,
+          "cardIds": ["thu-tu-thuc-hien-phep-tinh.card.ngoac-long"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

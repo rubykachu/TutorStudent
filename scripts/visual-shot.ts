@@ -210,7 +210,10 @@ async function shoot(
   for (let step = 0; step < result.steps; step++) {
     const issues = [
       ...(await page.evaluate(findLayoutIssues, selectors)),
-      ...(await page.evaluate(findOverlaps, { scope: selectors.frame })),
+      ...(await page.evaluate(findOverlaps, {
+        scope: selectors.frame,
+        decorativeAttr: DECORATIVE_ATTR,
+      })),
     ];
     const prefix = result.steps > 1 ? `step ${step + 1}: ` : "";
     result.issues.push(...issues.map((issue) => `${prefix}${issue}`));
