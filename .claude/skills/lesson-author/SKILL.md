@@ -1,6 +1,7 @@
 ---
 name: lesson-author
 description: Soạn một bài học từ ảnh SGK trong sources/<môn>/<bài>/ thành content/<môn>/<bộ sách>/<bài>/lesson.json và đưa tới xuất bản - đọc trang nguồn, biên soạn lại, chia phần, viết card và bài tập, gọi lesson-visual làm hình, lesson-review duyệt, rồi chạy thử bài trên trình duyệt. Dùng khi người dùng nói "soạn bài", "soạn bài mới", "nạp bài mới", "biên soạn bài từ SGK", "thêm bài học", hoặc sửa nội dung một bài đã có.
+model: sonnet
 ---
 
 # Soạn bài học
@@ -31,6 +32,8 @@ Bài viết cho trẻ lớp 6 học chậm, hay quên. Mọi bài theo các lu�
 
 ## Quy trình
 
+Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`; subagent review luôn `model: "opus"`.
+
 Sửa bài đã có: bỏ bước 1–4, sửa theo bước 5–9, rồi làm tiếp từ bước 10. Bài đã `published` phải review lại vì `reviewedHash` lệch.
 
 1. **Đọc nguồn.** Mở mọi ảnh `sources/<subject>/<slug>/p<trang>.png` (hoặc `.jpg`; `p23-24.png` chứa hai trang). Ghi kiến thức, ví dụ, bài tập theo trang. Chỉ lấy phần thuộc bài này, bỏ phần của bài liền trước hay liền sau in chung trang.
@@ -47,6 +50,6 @@ Sửa bài đã có: bỏ bước 1–4, sửa theo bước 5–9, rồi làm ti
 9. **Visual.** Dùng skill `lesson-visual` cho mọi `visualId` mới và mọi chỗ giữ `fixture.*` (cả sticker), kèm vai trò của từng hình (giải thích, tương tác, vùng chạm, gợi ý nấc 2, lời giải nấc 3) và bộ số của nó.
 10. **Kiểm tự động.** `pnpm format` (Biome xếp lại JSON viết tay, nếu không `pnpm lint` báo lỗi định dạng), rồi `pnpm content:check --stats` tới khi bài 0 lỗi (trừ `[review-hash]` khi sửa bài đã `published`, bước 12 xoá nó), 0 cảnh báo (trừ "not in ids.lock.json", tới bước 13) và mọi dòng tiêu chí là `PASS`.
 11. **Chạy thử bài.** `pnpm lesson:walk <slug>` (đi hết bài ở iPad dọc, điện thoại, iPad ngang; câu đầu của mỗi dạng sai đủ 3 nấc) tới khi 0 FAIL. Walk dùng lại server đang chạy ở cổng test (`TEST_PORT`, mặc định 3100) hay ở `WALK_BASE_URL`; server đó báo 404 hay phục vụ bản cũ của bài thì tắt nó rồi chạy lại để walk tự mở server mới. Đọc từng ảnh trong `.shots/walk/<slug>/`: chữ rõ, công thức không vỡ, gợi ý đúng luật. Xem tay: `CONTENT_INCLUDE_DRAFT=1 pnpm dev` (bài `draft` không bao giờ vào bản build).
-12. **Review.** Dùng skill `lesson-review` (phiên này điều phối, reviewer là subagent mới). Hết mỗi vòng, commit `lesson.json` và `review.md` trước khi sửa (vòng sau so bản đã review từ git). Sửa mọi lỗi Nghiêm trọng và các mục Nên sửa hợp lý khác, rồi gọi vòng sau: tối đa 2 vòng toàn bài, từ vòng 3 chỉ review phần đổi (`pnpm content:diff <slug>`). Lặp tới khi còn 0 Nghiêm trọng. Chỉ mục không chặn mới được ghi vào `backlogs/lesson-<slug>.md`.
+12. **Review.** Dùng skill `lesson-review` (phiên này điều phối; mọi reviewer là subagent mới mở với `model: "opus"`). Hết mỗi vòng, commit `lesson.json` và `review.md` trước khi sửa (vòng sau so bản đã review từ git). Sửa mọi lỗi Nghiêm trọng và các mục Nên sửa hợp lý khác, rồi gọi vòng sau: tối đa 2 vòng toàn bài, từ vòng 3 chỉ review phần đổi (`pnpm content:diff <slug>`). Lặp tới khi còn 0 Nghiêm trọng. Chỉ mục không chặn mới được ghi vào `backlogs/lesson-<slug>.md`.
 13. **Khoá id.** `pnpm content:lock` khi id đã ổn định (sau khi review đạt). Id đã khoá không được đổi hay xoá: tiến độ của trẻ gắn vào nó. Buộc phải đổi thì khai trong `retired` của `content/ids.lock.json`.
 14. **Báo lại.** Gửi kết quả `--stats`, đường dẫn `review.md`, việc còn trong backlog.

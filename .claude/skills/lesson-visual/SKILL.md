@@ -1,6 +1,7 @@
 ---
 name: lesson-visual
 description: Viết visual cho một bài học (hình giải thích, animation từng bước, hình tương tác, vùng chạm, hình gợi ý và lời giải) trong src/visuals/<môn>/<bài>/, đăng ký vào registry, rồi chụp ảnh và tự xem từng ảnh. Dùng khi người dùng nói "làm animation cho bài", "vẽ hình cho bài", "làm visual", "thêm hình gợi ý", hoặc khi content:check báo visualId chưa có trong registry.
+model: sonnet
 ---
 
 # Visual bài học

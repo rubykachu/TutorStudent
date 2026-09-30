@@ -1,6 +1,7 @@
 ---
 name: lesson-review
 description: Review độc lập một bài học đã soạn (content/**/lesson.json) trước khi xuất bản - đối chiếu ảnh nguồn SGK, kiểm đúng kiến thức, ngôn từ lớp 6 và tính nhất quán, ghi review.md, rồi ghi reviewedHash và đặt published khi không còn lỗi Nghiêm trọng. Dùng khi người dùng nói "review bài", "kiểm duyệt bài học", "duyệt bài", "xuất bản bài", "publish bài", hoặc ngay sau khi soạn hay sửa nội dung một bài.
+model: opus
 ---
 
 # Review bài học
@@ -10,7 +11,7 @@ Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ th
 ## Vai
 
 - **Điều phối**: phiên gọi skill (có thể là phiên soạn bài). Chỉ chạy lệnh, chia phần, mở subagent và chuyển kết quả; không phán nội dung, không bỏ phát hiện nào.
-- **Reviewer**, **Tổng hợp**: luôn là subagent mới (Agent tool, `general-purpose`), không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
+- **Reviewer**, **Tổng hợp**: luôn là subagent mới, mở bằng Agent tool với `subagent_type: "general-purpose"` và `model: "opus"` (mọi reviewer song song lẫn Tổng hợp), không phải phiên đã soạn hay sửa bài, vì người soạn hay bỏ sót chính lỗi mình tạo. Prompt ghi rõ vai, `LESSON`, phạm vi, tệp ghi kết quả, và "đọc `.claude/skills/lesson-review/SKILL.md`".
 
 ## Đầu vào
 

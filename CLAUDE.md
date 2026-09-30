@@ -33,6 +33,7 @@ CONTENT_INCLUDE_DRAFT=1 pnpm dev  # also serve draft lessons (never in a build)
 - `lesson-author` — new lesson from `sources/` to published `lesson.json`, or content edits to an existing one.
 - `lesson-visual` — build, register and screenshot a lesson's visuals.
 - `lesson-review` — independent review before publishing; always in a fresh subagent, never by the session that wrote the lesson.
+- Models: authoring (`lesson-author`, `lesson-visual`, `lesson-video`, and their helper subagents) = Sonnet; review = Opus (every reviewer subagent is spawned with `model: "opus"`).
 
 ## Boundaries
 
