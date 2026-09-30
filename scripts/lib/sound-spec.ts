@@ -1,4 +1,4 @@
-import { JINGLE_ID, OOPS_ID } from "@/lib/sound-manifest";
+import { JINGLE_ID, OOPS_ID, TAP_ID } from "@/lib/sound-manifest";
 
 // Everything `pnpm sounds:build` makes its clips from, in one place. A clip's
 // manifest hash covers the settings that shape it, so editing a number here
@@ -59,6 +59,19 @@ export type ToneSpec = {
 };
 
 export const TONES: Record<string, ToneSpec> = {
+  // Choosing an option, chip or region: one short, soft wooden click (a
+  // mid note that dies away in a few hundredths of a second), quieter than
+  // the voice so a run of taps never tires the ear.
+  [TAP_ID]: {
+    durationS: 0.12,
+    notes: [[880, 0]],
+    noteLevel: 0.5,
+    overtone: 0.5,
+    noteDecay: 55,
+    attack: 1500,
+    fadeOutS: 0.04,
+    lufs: MASTERING.voiceLufs - 6,
+  },
   // A correct answer: a bright rising arpeggio (C6 E6 G6 C7), then a quiet
   // shimmer.
   [JINGLE_ID]: {
