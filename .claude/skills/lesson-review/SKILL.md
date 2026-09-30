@@ -16,12 +16,13 @@ Tìm lỗi mà `pnpm content:check` không bắt được, trước khi trẻ th
 ## Đầu vào
 
 - `LESSON`: đường dẫn `lesson.json`. `ROOT`: thư mục cha gần nhất có `subjects.json` (thường `content/`).
-- Ảnh nguồn: `sources/<subject>/<id bài>/p<trang>.png` (hoặc `.jpg`; `p23-24.png` chứa hai trang).
+- `<id bài>` là slug của bài (tên thư mục chứa `lesson.json`).
+- Ảnh nguồn: `sources/<subject>/<id bài>/p<trang>.png` (`sbt-p<trang>.png`: trang sách bài tập) (hoặc `.jpg`; `p23-24.png` chứa hai trang).
 - Trường: `src/schema/content.ts`. Luật: `docs/spec.md` mục "Kiểm duyệt nội dung", "Phản hồi 3 nấc khi sai". Tiêu chí và mức lỗi: `references/checklist.md`.
 
 ## Vòng review
 
-Số vòng ghi ở dòng "Vòng" của `review.md` cũ (chưa có: vòng 1).
+Vòng này = số ở dòng "Vòng" của `review.md` cũ + 1 (chưa có `review.md`: vòng 1).
 
 - **Vòng 1–2: toàn bài**, song song (dưới đây).
 - **Từ vòng 3: chỉ phần đổi.** Không review toàn bài lần thứ ba.
@@ -43,11 +44,11 @@ Sau đó tác giả commit `lesson.json` và `review.md` **trước khi sửa**:
 Reviewer:
 - Đọc toàn bộ glossary của môn, mọi `note` quy tắc, `recap` của cả bài (để nhất quán), rồi chỉ soát phần của nhóm: mở đúng trang ảnh của từng `sourceRef` (không đoán nội dung trang; thiếu ảnh là Nghiêm trọng "thiếu nguồn"), ảnh walk của các section đó.
 - Soát theo năm trục và "Luật gợi ý 3 nấc" của checklist, bỏ qua mục "Không bắt lỗi". Tự giải mỗi exercise trước khi đọc `answer`. Soát hết, không dừng ở lỗi đầu.
-- Ghi phát hiện theo khuôn mục của `templates/review.md` vào tệp nhóm.
+- Ghi phát hiện theo khuôn mục của `.claude/skills/lesson-review/templates/review.md` vào tệp nhóm.
 
 Tổng hợp:
 - Chỉ đọc các tệp nhóm và mọi câu quy tắc (`note`), `recap`, `caption`, thuật ngữ của cả bài; tìm mâu thuẫn giữa các phần (một quy tắc hai cách nói, một khái niệm hai tên hay hai màu, recap lệch note).
-- Gộp mọi phát hiện (bỏ trùng, giữ mức cao hơn) và phát hiện của mình vào `review.md` cạnh `LESSON` theo `templates/review.md` (ghi đè bản cũ; không chép dài chữ SGK, trỏ trang là đủ), chạy lệnh cuối vòng, ghi kết quả vào dòng "Kết luận".
+- Gộp mọi phát hiện (bỏ trùng, giữ mức cao hơn) và phát hiện của mình vào `review.md` cạnh `LESSON` theo `.claude/skills/lesson-review/templates/review.md` (ghi đè bản cũ; không chép dài chữ SGK, trỏ trang là đủ), chạy lệnh cuối vòng, ghi kết quả vào dòng "Kết luận".
 
 ## Vòng chỉ phần đổi
 
