@@ -3,11 +3,12 @@
 import { Combine, Split } from "lucide-react";
 import { useState } from "react";
 import type { VisualProps } from "@/visuals/registry";
+import { ACTION_BUTTON } from "@/visuals/shared/action-button";
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { PowerText } from "@/visuals/shared/power-text";
 import { Reveal } from "@/visuals/shared/reveal";
-import { ACTION_BUTTON, FactorCount, MATH_LINE } from "./parts";
+import { FactorCount, MATH_LINE } from "./parts";
 import { MULTIPLY_EXPONENT } from "./validators";
 
 const BASE = 2;

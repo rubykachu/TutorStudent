@@ -85,9 +85,6 @@ export function PowerLegend() {
 export const MATH_LINE =
   "flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 font-heading text-title font-bold md:text-title-lg";
 
-export const ACTION_BUTTON =
-  "inline-flex min-h-touch items-center justify-center gap-1 whitespace-nowrap rounded-lg border-2 border-border bg-surface px-3 font-semibold md:gap-2 md:px-4 text-foreground disabled:opacity-40 motion-safe:transition-transform motion-safe:active:scale-97";
-
 // A labelled example made of several parts (a picture, lines of maths, the
 // colour legend), stacked with even space. Its sentence is the note or
 // caption in lesson.json that goes with it.

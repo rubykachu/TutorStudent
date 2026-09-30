@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react";
 import { useState } from "react";
 import { formatInteger } from "@/lib/number-format";
 import type { VisualProps } from "@/visuals/registry";
+import { ACTION_BUTTON } from "@/visuals/shared/action-button";
 import { decorative, stateStep, stateStepper } from "@/visuals/shared/markers";
 import {
   BOARD_SIZE,
@@ -12,7 +13,7 @@ import {
   grainsOn,
   SQUARE_COUNT,
 } from "./grains";
-import { ACTION_BUTTON, FactorCount, FactorRow, MATH_LINE } from "./parts";
+import { FactorCount, FactorRow, MATH_LINE } from "./parts";
 
 const CELL = 20;
 const BOARD = BOARD_SIZE * CELL;
