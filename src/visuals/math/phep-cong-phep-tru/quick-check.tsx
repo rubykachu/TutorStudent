@@ -15,12 +15,13 @@ function unitsDigit(value: number): number {
   return value % 10;
 }
 
-// The addends with their last digit in amber, then the sum of those digits
+// The addends with their last digit underlined in slate, then the sum of those digits
 // and the digit the sum ends in.
 export function LastDigit({ numbers }: { numbers: readonly number[] }) {
   const digits = numbers.map(unitsDigit);
   const digitSum = digits.reduce((total, digit) => total + digit, 0);
   const amber = CONCEPT_CLASSES.amber.text;
+  const slate = CONCEPT_CLASSES.slate.text;
   return (
     <figure
       className="flex w-full max-w-md flex-col items-center gap-4"
@@ -35,17 +36,19 @@ export function LastDigit({ numbers }: { numbers: readonly number[] }) {
               {i > 0 && <span aria-hidden>+</span>}
               <span>
                 {text.slice(0, -1)}
-                <span className={amber}>{text.slice(-1)}</span>
+                <span className={`${slate} underline underline-offset-4`}>
+                  {text.slice(-1)}
+                </span>
               </span>
             </span>
           );
         })}
       </p>
-      <NamedMark color="amber" name="Chữ số hàng đơn vị" />
+      <NamedMark color="slate" name="Chữ số hàng đơn vị" />
       <p className={EQUATION_LINE}>
-        <span className={amber}>{digits.join(" + ")}</span>
+        <span className={slate}>{digits.join(" + ")}</span>
         <span>=</span>
-        <span className={amber}>{digitSum}</span>
+        <span className={slate}>{digitSum}</span>
       </p>
       <p className={EQUATION_LINE}>
         <span className="text-body font-normal md:text-body-lg">

@@ -1,7 +1,11 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { VISUAL_STEP_MS } from "@/lib/config";
-import { FactFamily, FindX } from "@/visuals/math/phep-cong-phep-tru/find";
+import {
+  CheckBySum,
+  FactFamily,
+  FindX,
+} from "@/visuals/math/phep-cong-phep-tru/find";
 import {
   pairRound,
   shiftRound,
@@ -243,5 +247,82 @@ describe("still mode shows everything", () => {
   it("FindX prints x", () => {
     render(<FindX form="add" a={135} t={420} mode="still" />);
     expect(document.body.textContent).toContain("285");
+  });
+});
+
+describe("FactFamily with names", () => {
+  it("names the pieces of a subtraction and colours each equation by role", () => {
+    const { container } = render(
+      <FactFamily total={64} p1={27} p2={37} mode="still" names="difference" />,
+    );
+    const text = container.textContent ?? "";
+    expect(text).toContain("Số bị trừ");
+    expect(text).toContain("Số trừ");
+    expect(text).toContain("Hiệu");
+    expect(text).not.toContain("Số hạng");
+    // Additions read (hiệu) + (số trừ) and (số trừ) + (hiệu) = (số bị trừ).
+    expect(text).toContain("37+27=64");
+    expect(text).toContain("27+37=64");
+    expect(
+      container.querySelectorAll("p.text-block .text-concept-teal").length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("keeps the last result hidden in hint mode", () => {
+    vi.useFakeTimers();
+    render(
+      <FactFamily total={64} p1={27} p2={37} mode="hint" names="difference" />,
+    );
+    playToEnd();
+    expect(document.body.textContent).toContain("64−37=?");
+    vi.useRealTimers();
+  });
+});
+
+describe("CheckBySum", () => {
+  it.each(MODES)("renders in %s mode", (mode) => {
+    render(<CheckBySum a={83} b={29} mode={mode} />);
+  });
+
+  it("shows the subtraction, the add-back line and a tick in still mode", () => {
+    const { container } = render(<CheckBySum a={83} b={29} mode="still" />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("83−29=54");
+    expect(text).toContain("54+29=83");
+    expect(screen.getByText("Đúng")).toBeInTheDocument();
+  });
+
+  it("leaves the final sum as ? with no tick in hint mode", () => {
+    vi.useFakeTimers();
+    render(<CheckBySum a={83} b={29} mode="hint" />);
+    playToEnd();
+    const text = document.body.textContent ?? "";
+    expect(text).toContain("54+29=?");
+    expect(text).not.toContain("54+29=83");
+    expect(screen.queryByText("Đúng")).toBeNull();
+    vi.useRealTimers();
+  });
+
+  it("ends with the tick in full mode", () => {
+    vi.useFakeTimers();
+    render(<CheckBySum a={83} b={29} mode="full" />);
+    playToEnd();
+    expect(document.body.textContent).toContain("54+29=83");
+    expect(screen.getByText("Đúng")).toBeInTheDocument();
+    vi.useRealTimers();
+  });
+});
+
+describe("Regroup total line colours", () => {
+  it("paints group sums as addends (blue) and only the total amber", () => {
+    const { container } = render(
+      <Regroup numbers={[34, 268, 66]} groups={[[0, 2]]} mode="still" />,
+    );
+    const line = container.querySelector("figure > p");
+    expect(line?.textContent).toBe("268+100=368");
+    expect(line?.querySelectorAll(".text-concept-blue")).toHaveLength(2);
+    expect(line?.querySelectorAll(".text-concept-amber")).toHaveLength(1);
+    // The sums inside the brackets stay amber.
+    expect(container.querySelectorAll(".text-concept-amber").length).toBe(2);
   });
 });

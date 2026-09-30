@@ -178,14 +178,11 @@ function TotalLine({
   hidden: boolean;
 }) {
   const grouped = new Set(groups.flat());
+  // Every term is an addend here, group sums included, so all are blue; only
+  // the total after "=" is amber.
   const terms = [
-    ...numbers.flatMap((n, i) =>
-      grouped.has(i) ? [] : [{ value: n, color: "blue" as const }],
-    ),
-    ...groups.map((g) => ({
-      value: sumOf(numbers, g),
-      color: "amber" as const,
-    })),
+    ...numbers.filter((_, i) => !grouped.has(i)),
+    ...groups.map((g) => sumOf(numbers, g)),
   ];
   const total = numbers.reduce((a, b) => a + b, 0);
   return (
@@ -194,8 +191,8 @@ function TotalLine({
         // biome-ignore lint/suspicious/noArrayIndexKey: terms never reorder
         <Fragment key={i}>
           {i > 0 && <span>+</span>}
-          <span className={CONCEPT_CLASSES[term.color].text}>
-            {formatNumber(term.value)}
+          <span className={CONCEPT_CLASSES.blue.text}>
+            {formatNumber(term)}
           </span>
         </Fragment>
       ))}

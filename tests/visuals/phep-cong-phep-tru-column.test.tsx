@@ -103,6 +103,15 @@ describe("ColumnTry", () => {
     expect(screen.getByText("Đúng rồi.")).toBeInTheDocument();
   });
 
+  it("keeps the working digit as ? until the child changes something", () => {
+    render(<ColumnTry op="add" a={58} b={27} column={0} />);
+    const grid = screen.getByRole("img");
+    expect(grid.textContent).toContain("?");
+    expect(grid.querySelector(".text-concept-amber")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Tăng chữ số viết" }));
+    expect(grid.querySelector(".text-concept-amber")?.textContent).toBe("1");
+  });
+
   it("shows a given state read only", () => {
     render(
       <ColumnTry

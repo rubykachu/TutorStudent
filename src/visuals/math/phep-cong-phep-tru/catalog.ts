@@ -38,7 +38,15 @@ export type VisualSpec =
       t: number;
       mode: StepsMode;
     }
-  | { kind: "family"; total: number; p1: number; p2: number; mode: StepsMode }
+  | {
+      kind: "family";
+      total: number;
+      p1: number;
+      p2: number;
+      mode: StepsMode;
+      names?: "sum" | "difference";
+    }
+  | { kind: "check-sum"; a: number; b: number; mode: StepsMode }
   | { kind: "last-digit"; numbers: readonly number[] }
   | { kind: "upper-bound"; numbers: readonly number[]; limit: number };
 
@@ -46,15 +54,15 @@ export type VisualSpec =
 export const TAP_PARTS_REGIONS = ["first", "second", "result"] as const;
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
-  "cham-cong-14-9": { kind: "tap-parts", op: "add", a: 14, b: 9 },
-  "cong-ten": { kind: "labels", op: "add", a: 25, b: 11 },
+  "cham-cong-16-7": { kind: "tap-parts", op: "add", a: 16, b: 7 },
+  "cong-ten": { kind: "labels", op: "add", a: 32, b: 15 },
   "cong-thanh-bar": { kind: "bar", op: "add", a: 14, b: 9, mode: "full" },
-  "cong-ten-tom-tat": { kind: "labels", op: "add", a: 30, b: 12 },
+  "cong-ten-tom-tat": { kind: "labels", op: "add", a: 28, b: 14 },
   "hint-bar-cong-15-7": { kind: "bar", op: "add", a: 15, b: 7, mode: "hint" },
   "giai-bar-cong-17-6": { kind: "bar", op: "add", a: 17, b: 6, mode: "full" },
   "cham-tru-31-12": { kind: "tap-parts", op: "sub", a: 31, b: 12 },
   "tru-ten-tom-tat": { kind: "labels", op: "sub", a: 40, b: 15 },
-  "tru-ten": { kind: "labels", op: "sub", a: 36, b: 11 },
+  "tru-ten": { kind: "labels", op: "sub", a: 47, b: 15 },
   "tru-thanh-bar": { kind: "bar", op: "sub", a: 20, b: 8, mode: "full" },
   "hint-bar-tru-45-20": { kind: "bar", op: "sub", a: 45, b: 20, mode: "hint" },
   "giai-bar-tru-50-35": { kind: "bar", op: "sub", a: 50, b: 35, mode: "full" },
@@ -74,21 +82,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     groups: [[1, 2]],
     mode: "full",
   },
-  "ket-hop-tu-lam": { kind: "pair-try", numbers: [4, 9, 6], unit: 10 },
-  "hint-regroup-4-7-6": {
+  "ket-hop-tu-lam": { kind: "pair-try", numbers: [9, 4, 6], unit: 10 },
+  "hint-regroup-6-3-7": {
     kind: "regroup",
-    numbers: [3, 9, 7],
-    groups: [[0, 2]],
+    numbers: [6, 3, 7],
+    groups: [[1, 2]],
     mode: "hint",
   },
-  "giai-regroup-5-8-5": {
+  "giai-regroup-8-5-5": {
     kind: "regroup",
-    numbers: [5, 8, 5],
-    groups: [[0, 2]],
+    numbers: [8, 5, 5],
+    groups: [[1, 2]],
     mode: "full",
   },
-  "cong-0-tom-tat": { kind: "zero", n: 9 },
-  "cong-0-vi": { kind: "zero", n: 12 },
+  "cong-0-tom-tat": { kind: "zero", n: 4 },
+  "cong-0-vi": { kind: "zero", n: 5 },
   "ghep-tron-tom-tat": {
     kind: "regroup",
     numbers: [58, 137, 42],
@@ -101,7 +109,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     groups: [[0, 2]],
     mode: "full",
   },
-  "ghep-tron-tu-lam": { kind: "pair-try", numbers: [27, 45, 13], unit: 10 },
+  "ghep-tron-tu-lam": { kind: "pair-try", numbers: [35, 128, 65], unit: 100 },
   "hint-regroup-15-142-85": {
     kind: "regroup",
     numbers: [15, 142, 85],
@@ -120,15 +128,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "add",
     a: 28,
     b: 35,
-    delta: -2,
+    delta: 5,
     mode: "still",
   },
   "them-bot-mau": {
     kind: "shift",
     op: "add",
-    a: 38,
-    b: 47,
-    delta: -2,
+    a: 46,
+    b: 38,
+    delta: 2,
     mode: "full",
   },
   "them-bot-tu-lam": { kind: "shift-try", a: 36, b: 28, unit: 10 },
@@ -137,7 +145,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "add",
     a: 47,
     b: 25,
-    delta: -3,
+    delta: 5,
     mode: "hint",
   },
   "giai-shift-57-26": {
@@ -145,7 +153,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     op: "add",
     a: 57,
     b: 26,
-    delta: -3,
+    delta: 4,
     mode: "full",
   },
   "them-bot-cham": { kind: "shift-try", a: 45, b: 38, unit: 10 },
@@ -307,15 +315,24 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     p1: 25,
     p2: 47,
     mode: "still",
+    names: "difference",
   },
-  "quan-he-ba-so": { kind: "family", total: 36, p1: 11, p2: 25, mode: "full" },
-  "quan-he-kiem-tra": { kind: "bar", op: "sub", a: 50, b: 18, mode: "still" },
+  "quan-he-ba-so": {
+    kind: "family",
+    total: 52,
+    p1: 17,
+    p2: 35,
+    mode: "full",
+    names: "difference",
+  },
+  "quan-he-kiem-tra": { kind: "check-sum", a: 50, b: 18, mode: "still" },
   "hint-family-40-15-25": {
     kind: "family",
     total: 40,
     p1: 15,
     p2: 25,
     mode: "hint",
+    names: "difference",
   },
   "giai-family-64-27-37": {
     kind: "family",
@@ -323,6 +340,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     p1: 27,
     p2: 37,
     mode: "full",
+    names: "difference",
   },
   "tim-so-hang-tom-tat": {
     kind: "find",
@@ -438,24 +456,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "full",
   },
-  "kiem-tra-tom-tat": { kind: "last-digit", numbers: [19, 26, 42] },
-  "chu-so-cuoi-mau": { kind: "last-digit", numbers: [23, 14, 35] },
-  "uoc-luong-mau": { kind: "upper-bound", numbers: [68, 74, 91], limit: 100 },
   "chu-so-cuoi-tom-tat": { kind: "last-digit", numbers: [19, 26, 42] },
+  "chu-so-cuoi-mau": { kind: "last-digit", numbers: [23, 14, 35] },
   "uoc-luong-tom-tat": {
     kind: "upper-bound",
     numbers: [45, 82, 67],
     limit: 100,
   },
-  "lo-trinh-tom-tat": {
-    kind: "regroup",
-    numbers: [10, 15, 5, 20],
-    groups: [
-      [0, 3],
-      [1, 2],
-    ],
-    mode: "still",
-  },
+  "uoc-luong-mau": { kind: "upper-bound", numbers: [68, 74, 91], limit: 100 },
+  "lo-trinh-tom-tat": { kind: "bar", op: "sub", a: 90, b: 40, mode: "still" },
   "lo-trinh-mau": {
     kind: "regroup",
     numbers: [8, 22, 2, 8],
@@ -465,8 +474,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "full",
   },
-  "hint-bar-gio-80-30": { kind: "bar", op: "sub", a: 80, b: 30, mode: "hint" },
-  "giai-bar-gio-90-40": { kind: "bar", op: "sub", a: 90, b: 40, mode: "full" },
+  "hint-bar-gio-70-25": { kind: "bar", op: "sub", a: 70, b: 25, mode: "hint" },
+  "giai-bar-gio-80-35": { kind: "bar", op: "sub", a: 80, b: 35, mode: "full" },
   "hook-nham-nhanh": {
     kind: "shift",
     op: "add",

@@ -49,7 +49,6 @@ const PALETTE: Readonly<
 const SIGN: Record<Op, string> = { add: "+", sub: "−" };
 const CELL_WIDTH: Record<Op, string> = { add: "3.5rem", sub: "4.25rem" };
 const SIGN_WIDTH = "2.5rem";
-const CARRY_COLOR: ConceptColor = "amber";
 const DIGIT = "font-heading text-title font-bold tabular-nums";
 
 type ResultCell =
@@ -87,12 +86,12 @@ function cellClass(working: boolean, edge: Edge): string {
   return `flex items-center justify-center border-x-2 ${edges} ${tone}`;
 }
 
+// Neutral like the borrow chips: the carry is a helper, not a concept of the
+// lesson, so it never shares a colour or shape with "Tổng".
 function CarryBadge() {
   return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-md border-2 px-1 text-caption font-bold ${CONCEPT_CLASSES[CARRY_COLOR].border} ${CONCEPT_CLASSES[CARRY_COLOR].text}`}
-    >
-      <ConceptMark color={CARRY_COLOR} className="size-3" />1
+    <span className="rounded-md border-2 border-muted-foreground px-1 text-caption font-bold">
+      1
     </span>
   );
 }
@@ -416,15 +415,19 @@ export function ColumnTry({
   disabled = false,
 }: ColumnTryProps) {
   const [own, setOwn] = useState(START);
+  // The working digit stays a dim "?" until the child changes something.
+  const [touched, setTouched] = useState(false);
   const digit = shownState?.digit ?? own.digit;
   const carry = shownState?.carry ?? own.carry;
   const locked = disabled || shownState !== undefined;
+  const answered = touched || shownState !== undefined;
   const model = columnModel(op, a, b);
   const calc = model.columns[column];
   const palette = PALETTE[op];
 
   function update(next: { digit: number; carry: number }) {
     setOwn(next);
+    setTouched(true);
     onStateChange?.(next);
   }
 
@@ -439,8 +442,9 @@ export function ColumnTry({
     const working = place === column;
     let result: ResultCell = { kind: "blank" };
     if (place < column) result = { kind: "digit", digit: c.digit };
-    else if (working) result = { kind: "digit", digit };
-    else if (place < model.active) result = { kind: "pending" };
+    else if (working) {
+      result = answered ? { kind: "digit", digit } : { kind: "pending" };
+    } else if (place < model.active) result = { kind: "pending" };
     const bin = place >= 1 ? handedOn(place - 1) : 0;
     const took = handedOn(place);
     return {
@@ -474,7 +478,8 @@ export function ColumnTry({
   const expected = calc
     ? { digit: calc.digit, carry: calc.carryOut }
     : { digit: 0, carry: 0 };
-  const right = digit === expected.digit && carry === expected.carry;
+  const right =
+    answered && digit === expected.digit && carry === expected.carry;
   const carryName = op === "add" ? "Số nhớ" : "Số mượn";
   const label = `${describe(op, a, b)}, làm cột thứ ${column + 1} từ phải sang`;
 
@@ -495,7 +500,6 @@ export function ColumnTry({
         <NumberStepper
           label={carryName}
           stateKey="carry"
-          color={op === "add" ? CARRY_COLOR : undefined}
           value={carry}
           min={0}
           max={1}

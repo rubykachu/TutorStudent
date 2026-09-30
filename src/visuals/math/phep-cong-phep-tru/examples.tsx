@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 import type { VisualProps } from "@/visuals/registry";
 import type { VisualSpec } from "./catalog";
 import { Column, ColumnTry } from "./column";
-import { FactFamily, FindX } from "./find";
+import { CheckBySum, FactFamily, FindX } from "./find";
 import {
   BarModel,
   EquationLabels,
@@ -96,9 +96,17 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
       };
     }
     case "family": {
-      const { total, p1, p2, mode } = spec;
+      const { total, p1, p2, mode, names } = spec;
       return function Family() {
-        return <FactFamily total={total} p1={p1} p2={p2} mode={mode} />;
+        return (
+          <FactFamily total={total} p1={p1} p2={p2} mode={mode} names={names} />
+        );
+      };
+    }
+    case "check-sum": {
+      const { a, b, mode } = spec;
+      return function CheckSum() {
+        return <CheckBySum a={a} b={b} mode={mode} />;
       };
     }
     case "last-digit": {

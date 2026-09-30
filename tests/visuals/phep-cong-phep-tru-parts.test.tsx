@@ -49,6 +49,20 @@ describe("static pictures", () => {
     expect(container.textContent).toContain("7−0=7");
   });
 
+  it.each([
+    [5, 5],
+    [8, 8],
+    [12, 8],
+  ])("draws min(n, 8) slate coins per wallet for n = %i", (n, coins) => {
+    const { container } = render(<ZeroWallet n={n} />);
+    // Three wallets, each with `coins` coins and one dashed slot for 0.
+    expect(
+      container.querySelectorAll("circle.fill-concept-slate"),
+    ).toHaveLength(3 * coins);
+    expect(container.querySelectorAll("circle.fill-none")).toHaveLength(3);
+    expect(container.innerHTML).not.toContain("fill-concept-amber");
+  });
+
   it("renders the sticker", () => {
     const { getByRole } = render(<Sticker />);
     expect(getByRole("img")).toBeInTheDocument();

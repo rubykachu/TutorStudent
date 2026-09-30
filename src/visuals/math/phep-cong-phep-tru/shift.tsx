@@ -3,6 +3,7 @@
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import type { ConceptColor } from "@/schema/content";
 import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { useVisualTransition } from "@/visuals/shared/motion";
@@ -224,6 +225,15 @@ function describe({ op, a, b, delta }: Omit<ShiftProps, "mode">): string {
     : `Cùng ${delta > 0 ? "thêm" : "bớt"} ${formatNumber(Math.abs(delta))} cho cả hai số của ${before}: thành ${after}, hiệu không đổi`;
 }
 
+// Concept colours of the three numbers of each operation's line.
+const RESULT_COLORS: Record<
+  Op,
+  { first: ConceptColor; second: ConceptColor; result: ConceptColor }
+> = {
+  add: { first: "blue", second: "blue", result: "amber" },
+  sub: { first: "violet", second: "pink", result: "teal" },
+};
+
 function ResultLine({
   op,
   a,
@@ -236,15 +246,20 @@ function ResultLine({
   hidden: boolean;
 }) {
   const result = outcome(op, a, b);
+  const colors = RESULT_COLORS[op];
   return (
     <p className={EQUATION_LINE}>
-      <span className={CONCEPT_CLASSES.blue.text}>{formatNumber(a)}</span>
+      <span className={CONCEPT_CLASSES[colors.first].text}>
+        {formatNumber(a)}
+      </span>
       <span>{OP_SIGN[op]}</span>
-      <span className={CONCEPT_CLASSES.blue.text}>{formatNumber(b)}</span>
+      <span className={CONCEPT_CLASSES[colors.second].text}>
+        {formatNumber(b)}
+      </span>
       <span>=</span>
       <span
         className={
-          hidden ? "text-muted-foreground" : CONCEPT_CLASSES.amber.text
+          hidden ? "text-muted-foreground" : CONCEPT_CLASSES[colors.result].text
         }
       >
         {hidden ? "?" : formatNumber(result)}

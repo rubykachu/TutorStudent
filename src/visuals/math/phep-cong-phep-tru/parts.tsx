@@ -1014,7 +1014,7 @@ export function Swap({
 // ZeroWallet
 
 // Coins drawn per wallet at most; a bigger n still reads from its equation.
-const MAX_COINS = 6;
+const MAX_COINS = 8;
 const COIN_R = 10;
 const COIN_STEP = 26;
 const WALLET_PAD = 10;
@@ -1061,7 +1061,7 @@ function Wallet({ coins, slotFirst }: { coins: number; slotFirst: boolean }) {
             cx={cx}
             cy={WALLET_H / 2}
             r={COIN_R}
-            className="fill-concept-amber stroke-surface"
+            className="fill-concept-slate stroke-surface"
             strokeWidth={1.5}
           />
         );

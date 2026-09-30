@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import type { ConceptColor } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -334,24 +335,58 @@ type FactFamilyProps = {
   p1: number;
   p2: number;
   mode: StepsMode;
+  // "sum": the parts are addends of the total (default). "difference": the
+  // total is a minuend, p1 the subtrahend and p2 the difference.
+  names?: "sum" | "difference";
+};
+
+type Role = { color: ConceptColor; name: string };
+
+const FAMILY_ROLES: Record<
+  "sum" | "difference",
+  { whole: Role; p1: Role; p2: Role }
+> = {
+  sum: {
+    whole: { color: "amber", name: "Tổng" },
+    p1: { color: "blue", name: "Số hạng" },
+    p2: { color: "blue", name: "Số hạng" },
+  },
+  difference: {
+    whole: { color: "violet", name: "Số bị trừ" },
+    p1: { color: "pink", name: "Số trừ" },
+    p2: { color: "teal", name: "Hiệu" },
+  },
 };
 
 // A total split into two parts, and the four equations that family gives:
 // two additions, two subtractions. 3 steps (the bar, the additions, the
 // subtractions); "hint" leaves the result of the last subtraction as "?".
-export function FactFamily({ total, p1, p2, mode }: FactFamilyProps) {
+export function FactFamily({
+  total,
+  p1,
+  p2,
+  mode,
+  names = "sum",
+}: FactFamilyProps) {
   const n = formatNumber;
+  const roles = FAMILY_ROLES[names];
   const label = `Bốn phép tính của ${n(p1)}, ${n(p2)} và ${n(total)}`;
+  const part = (value: number, role: Role): Token => ({
+    text: n(value),
+    color: role.color,
+  });
   const additions: Token[][] = [
-    [p1, p2],
-    [p2, p1],
+    [part(p1, roles.p1), part(p2, roles.p2)],
+    [part(p2, roles.p2), part(p1, roles.p1)],
   ].map(([x, y]) => [
-    { text: n(x ?? 0), color: "blue" },
+    x as Token,
     { text: "+" },
-    { text: n(y ?? 0), color: "blue" },
+    y as Token,
     { text: "=" },
-    { text: n(total), color: "amber" },
+    part(total, roles.whole),
   ]);
+  // The subtractions always read: whole in violet, the part taken away in
+  // pink, what is left in teal.
   const subtract = (taken: number, rest: number, hidden: boolean): Token[] => [
     { text: n(total), color: "violet" },
     { text: "−" },
@@ -367,19 +402,15 @@ export function FactFamily({ total, p1, p2, mode }: FactFamilyProps) {
   const bar = (
     <SplitBar
       whole={{
-        color: "amber",
-        name: "Tổng",
+        ...roles.whole,
         text: n(total),
         unknown: false,
         value: total,
       }}
-      parts={[p1, p2].map((value) => ({
-        color: "blue",
-        name: "Số hạng",
-        text: n(value),
-        unknown: false,
-        value,
-      }))}
+      parts={[
+        { ...roles.p1, text: n(p1), unknown: false, value: p1 },
+        { ...roles.p2, text: n(p2), unknown: false, value: p2 },
+      ]}
     />
   );
   const lines = (rows: Token[][]) => (
@@ -431,6 +462,88 @@ export function FactFamily({ total, p1, p2, mode }: FactFamilyProps) {
           >
             {lines(subtractions)}
           </Reveal>
+        </div>
+      )}
+    </StepPlayer>
+  );
+}
+
+const CHECK_STEP = 1;
+const CHECK_RESULT_STEP = 2;
+
+type CheckBySumProps = {
+  // a − b = c, with a >= b.
+  a: number;
+  b: number;
+  mode: StepsMode;
+};
+
+// Checking a subtraction by adding back: "a − b = c", then "c + b = a" with a
+// tick. 3 steps (the subtraction, the check line, its result with the tick);
+// "hint" leaves the final "a" as "?" and shows no tick, "still" shows it all.
+export function CheckBySum({ a, b, mode }: CheckBySumProps) {
+  const n = formatNumber;
+  const c = a - b;
+  const label = `Thử lại phép trừ ${n(a)} − ${n(b)} = ${n(c)} bằng phép cộng`;
+  const subtraction: Token[] = [
+    { text: n(a), color: "violet" },
+    { text: "−" },
+    { text: n(b), color: "pink" },
+    { text: "=" },
+    { text: n(c), color: "teal" },
+  ];
+  const check = (hidden: boolean): Token[] => [
+    { text: n(c), color: "teal" },
+    { text: "+" },
+    { text: n(b), color: "pink" },
+    { text: "=" },
+    hidden ? { text: "?" } : { text: n(a), color: "violet" },
+  ];
+  const legend = (
+    <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+      <NamedMark color="violet" name="Số bị trừ" />
+      <NamedMark color="pink" name="Số trừ" />
+      <NamedMark color="teal" name="Hiệu" />
+    </div>
+  );
+  const tick = (
+    <span className="inline-flex items-center text-correct">
+      <Check aria-hidden className="size-7" strokeWidth={3} />
+      <span className="sr-only">Đúng</span>
+    </span>
+  );
+  const checkLine = (hidden: boolean) => (
+    <div className="flex items-center justify-center gap-2">
+      <Tokens tokens={check(hidden)} />
+      {hidden ? <span aria-hidden className="size-7" /> : tick}
+    </div>
+  );
+
+  if (mode === "still") {
+    return (
+      <figure
+        aria-label={label}
+        className="flex w-full flex-col items-center gap-3"
+      >
+        <Tokens tokens={subtraction} />
+        {checkLine(false)}
+        {legend}
+      </figure>
+    );
+  }
+
+  return (
+    <StepPlayer steps={CHECK_RESULT_STEP + 1} label={label}>
+      {(step) => (
+        <div className="flex w-full flex-col items-center gap-4">
+          <Tokens tokens={subtraction} />
+          <Reveal
+            shown={step >= CHECK_STEP}
+            placeholder={<p className={EQUATION_LINE}>? + ? = ?</p>}
+          >
+            {checkLine(mode === "hint" || step < CHECK_RESULT_STEP)}
+          </Reveal>
+          {legend}
         </div>
       )}
     </StepPlayer>
