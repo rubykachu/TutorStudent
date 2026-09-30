@@ -40,10 +40,17 @@ export function xIsMember(
   return (membersOf(params).includes(x) ? 1 : 0) === params.want;
 }
 
+// For "not an element", prefers a number squeezed between two elements, so
+// the one-step neighbours of the solution are elements and the answer is seen
+// as a single, deliberate choice.
 export function solveXIsMember(params: Record<string, number>): VisualState {
   const members = membersOf(params);
   if (params.want === 1) return { x: members[0] ?? 0 };
-  let x = 0;
-  while (members.includes(x)) x++;
-  return { x };
+  const outside = (n: number) => n >= 0 && !members.includes(n);
+  const top = Math.max(0, ...members) + 1;
+  const all = Array.from({ length: top + 1 }, (_, n) => n).filter(outside);
+  const squeezed = all.find(
+    (n) => members.includes(n - 1) && members.includes(n + 1),
+  );
+  return { x: squeezed ?? all[0] ?? 0 };
 }
