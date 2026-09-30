@@ -163,7 +163,7 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 ├── scripts/                      # content-check, content-lock, content-prompt, visual-shot, admin CLI
 ├── video/                        # pipeline video (chạy trên máy, không deploy)
 │   ├── tts/                      # adapter TTS: local (mặc định), gemini, edge
-│   ├── spikes/                   # thử nghiệm công cụ, không dùng trong build
+│   ├── .venv, .python, .hf       # Python arm64, model TTS/whisper (gitignore; cài ở requirements.txt)
 │   └── projects/<lesson>/<video>/  # kịch bản, audio, render — phần nặng gitignore
 ├── tests/                        # unit/component/API test (song song cấu trúc src/)
 ├── e2e/                          # Playwright
@@ -389,7 +389,7 @@ Code dùng một interface `BlobStore { get(key) → { body, etag } | null; put(
 
 ### 5.11 Video (bổ sung, không chặn go-live)
 - Mỗi video là `video/projects/<id bài>/<tên>/` gồm `script.json` (lời đọc theo cảnh, clip theo card) và `index.html` (hình HyperFrames); một lệnh `pnpm video:build <id bài> <tên>` dựng ra `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và ghi `Video` vào `lesson.json`. Thông số ở `video/config.ts`; quy trình ở skill `lesson-video`. Âm thanh trung gian và bản render nằm trong `audio/`, `renders/` của dự án (gitignore); câu đã đọc được giữ lại nên sửa hình không đọc lại.
-- Lớp TTS chung `video/tts/` (interface `TtsEngine`): hiện chỉ có `local` (mặc định; VieNeu-TTS v3 Turbo, Apache-2.0, chạy ONNX trên CPU bằng Python arm64 riêng của pipeline — Python mặc định của máy chạy qua Rosetta; giọng "Hải Đăng"; cách cài ở `video/spikes/vieneu/`). Engine khác (vd Gemini) thêm bằng một adapter khi cần. Mỗi video ghi `voice = { engine, voiceName, model }`; một video dùng đúng một giọng.
+- Lớp TTS chung `video/tts/` (interface `TtsEngine`): hiện chỉ có `local` (mặc định; VieNeu-TTS v3 Turbo, Apache-2.0, chạy ONNX trên CPU bằng Python arm64 riêng của pipeline — Python mặc định của máy chạy qua Rosetta; giọng "Hải Đăng"; cách cài ở `video/requirements.txt`, môi trường ở `video/.venv`, model ở `video/.hf`). Engine khác (vd Gemini) thêm bằng một adapter khi cần. Mỗi video ghi `voice = { engine, voiceName, model }`; một video dùng đúng một giọng.
 - Kịch bản cho người học chậm: câu ngắn, tránh chữ cái đơn đứng một mình (viết "số a" thay vì "a") vì TTS và Whisper hay nhầm. Câu quy tắc đánh `rule` phải bằng nguyên văn một `note`/`caption` của bài (hay một câu của nó), chỉ khác cách đọc ký hiệu (`aⁿ` → "a mũ n", ngoặc → phẩy, "số a"); câu trích văn bản đánh `quote` phải nằm nguyên văn trong `source-passage.txt`. `video:build` dừng khi lệch; `pnpm test` kiểm lại mọi kịch bản đã commit.
 - Sau khi tổng hợp từng câu: giảm tốc bằng `ffmpeg atempo` 0.9, mlx-whisper phiên âm ngược; câu khớp kịch bản dưới 97% (so ký tự sau khi bỏ dấu thanh, dấu câu, đọc số thành chữ, gộp "tr"/"ch" của giọng Bắc) tự sinh lại, tối đa 3 lần, rồi báo để nghe duyệt.
 - Mốc thời gian từng chữ lấy từ mlx-whisper, gióng về chữ của kịch bản → WebVTT karaoke (mỗi chữ một mốc, `src/lib/karaoke-vtt.ts`). Phụ đề không in vào hình: app vẽ, bật sẵn, tắt được; dải dưới của hình để trống cho phụ đề.
