@@ -244,7 +244,7 @@ function BankBlank({
         // placing or removing a word never changes the blank's width and the
         // sentence never reflows. Every bank word sits invisibly in the same
         // grid cell as the word shown; the cell takes the widest.
-        className={`inline-grid h-12 min-w-20 items-center justify-items-center rounded-sm px-5 font-semibold ${blankTone(text, reveal, wrong)} ${isOver ? "outline-3 outline-primary" : ""}`}
+        className={`inline-grid h-12 min-w-20 content-center items-center justify-items-center rounded-sm px-5 font-semibold ${blankTone(text, reveal, wrong)} ${isOver ? "outline-3 outline-primary" : ""}`}
       >
         <span className="col-start-1 row-start-1 whitespace-nowrap">
           {/* An empty blank still holds a (zero-width) character, so the

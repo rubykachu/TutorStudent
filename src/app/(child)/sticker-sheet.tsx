@@ -112,7 +112,7 @@ export function StickerSheet({
           {lesson.sticker.name}
         </h2>
         <div className="flex flex-col gap-1">
-          <p className="font-semibold">{lessonHeading(lesson)}</p>
+          <p className="font-semibold">{lesson.title}</p>
           {placement && (
             <p className="text-caption text-muted-foreground">{placement}</p>
           )}

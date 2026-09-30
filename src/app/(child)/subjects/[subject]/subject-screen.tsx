@@ -5,11 +5,7 @@ import Link from "next/link";
 import { PageTopBar } from "@/components/page-top-bar";
 import { StateBadge } from "@/components/state-badge";
 import { subjectStyle } from "@/components/subject-style";
-import {
-  lessonHeading,
-  lessonPlacement,
-  subjectHeading,
-} from "@/lib/lesson-label";
+import { lessonPlacement, subjectHeading } from "@/lib/lesson-label";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
 import { useChildProgress, useContentIndex } from "@/progress/hooks";
@@ -61,7 +57,7 @@ function LessonList({
             >
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <h2 className="break-words text-block font-semibold md:text-block-lg">
-                  {lessonHeading(lesson)}
+                  {lesson.title}
                 </h2>
                 {lessonPlacement(lesson) && (
                   <p

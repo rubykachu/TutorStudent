@@ -31,6 +31,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Open follow-ups
 
+- Owner feedback of 01/10/2026: [`feedback-2026-10-01/task.md`](feedback-2026-10-01/task.md). Section A (screens and experience, items 1–12) is done ([`plan.md`](feedback-2026-10-01/plan.md)); section B (video and voice, items 13–15) is open and is the same work as queue item 1 plus the voice and opening-line rules.
 - Non-blocking leftovers per published lesson: [`lesson-luy-thua/task.md`](lesson-luy-thua/task.md), [`lesson-neu-cau-muon-co-mot-nguoi-ban/task.md`](lesson-neu-cau-muon-co-mot-nguoi-ban/task.md), [`lesson-tap-hop/task.md`](lesson-tap-hop/task.md), [`lesson-thu-tu-thuc-hien-phep-tinh/task.md`](lesson-thu-tu-thuc-hien-phep-tinh/task.md).
 - Owner: listen to and approve the voices of the existing videos; check seeking and subtitles on a real iPad Safari; decide the media bucket domain (Cloudflare domain or temporary `r2.dev`).
 - Idea, not decided: supplementary exercises outside the textbook, because the child still makes mistakes on primary-school multiplication and division. Options raised: a per-subject "foundations" strand reusing the lesson system, auto-generated arithmetic drills, an entry test that finds gaps.
