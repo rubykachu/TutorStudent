@@ -12,6 +12,7 @@ Một lựa chọn nhiễu cũng thoả đề, đáp án ghi sai, hoặc bài `o
 - `tap-hop` vòng 1, `ex.kt-ghep-hai-phan-tu`, `ex.xep-ghep-tap-hop`: liệt kê phần tử theo thứ tự khác vẫn đúng nhưng bị chấm sai.
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 1, `ex.chon-tu-ghep`: "chăm chú" xếp được vào cả từ ghép; vòng 4, `ex.cham-cao-buon`: câu `l40-1` cũng cho thấy cáo buồn.
 - `phep-nhan-phep-chia` vòng 2, `ex.dien-7-9`: lần sửa vòng 1 đảo đề `7 · 9 = 9 · ___` thành `9 · 7 = 7 · ___` nhưng giữ `accept: ["7"]`, nên đáp án đúng 9 bị chấm sai; lời giải của chính câu ra 9. `fillBlank` Toán không có `check`, máy không bắt.
+- `phep-nhan-phep-chia` vòng 3, `ex.chon-tich-rieng-2`: nhiễu mới "Viết 1 920, thẳng cột với tích riêng thứ nhất" chính là cách viết 0 mờ mà note và hình mẫu vừa dạy, nên trùng đáp án đúng.
 
 ## Nguyên nhân gốc
 
