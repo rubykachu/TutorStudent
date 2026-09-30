@@ -367,7 +367,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Cách này giúp có một số hạng tròn chục: làm tròn số hạng nào gần tròn chục hơn.",
+              "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Cách này giúp có một số hạng tròn chục.",
               "rule": true
             },
             {
@@ -497,7 +497,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
-        "caption": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
+        "caption": "Rồi cộng từ hàng đơn vị sang bên trái. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
       }
     },
     {
@@ -973,7 +973,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
-        "caption": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
+        "caption": "Rồi cộng từ hàng đơn vị sang bên trái. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
       }
     },
     {
@@ -3204,7 +3204,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "34 + 19 = 54"
+            "tex": "34 + 53 = 19"
           }
         }
       ],
