@@ -74,12 +74,12 @@ Người dùng muốn dùng thử sản phẩm sớm để góp ý, E2E làm sau
 - [x] 14a. Skill `lesson-review` (+ kiểm bằng lỗi cài cố ý, 3 lần)
 - [x] 14. Skill `lesson-author` + `lesson-visual` + `CLAUDE.md`
 - [x] 15. Bài Toán — Luỹ thừa với số mũ tự nhiên
-- [ ] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn
+- [ ] 16. Bài Ngữ văn — Nếu cậu muốn có một người bạn (chờ chủ dự án duyệt `source-passage.txt` với ảnh nguồn)
 
 **Checkpoint D:** hai bài `published`, `content:check --stats` đạt tiêu chí, `review.md` sạch lỗi Nghiêm trọng; người dùng xem thử trên iPad.
 
 ### Hoàn thiện
-- [ ] 17. E2E + bố cục + kiểm skill tác giả (soạn bài mẫu) trong git worktree riêng
+- [x] 17. E2E + bố cục + kiểm skill tác giả (soạn bài mẫu) trong git worktree riêng
 
 **Checkpoint cuối:** mọi tiêu chí mốc "Học được"; commit; đề xuất session mới cho mốc "Go-live".
 
