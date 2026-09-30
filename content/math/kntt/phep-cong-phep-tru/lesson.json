@@ -6,7 +6,8 @@
   "order": 4,
   "title": "Phép cộng và phép trừ số tự nhiên",
   "sourceRef": "Sách bài tập tr.14–16",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "1881f900935138ca0a4a6764865ae4d0641b87f3aa6d2bef21188a56bc3641cc",
   "overview": {
     "hook": {
       "text": "Bạn đi chợ, mua kẹo 38 nghìn đồng và bánh 47 nghìn đồng. Làm sao nhẩm nhanh xem phải trả bao nhiêu?",

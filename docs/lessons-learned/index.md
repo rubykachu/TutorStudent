@@ -73,4 +73,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `tap-hop` | Toán | 3 | 3 (vòng 4 lại có 1, hết ở vòng 5) | 7 |
 | `luy-thua` | Toán | không còn ghi nhận | không còn ghi nhận | 12 |
 | `thu-tu-thuc-hien-phep-tinh` | Toán | 4 | 3 (video: vòng 4 có 2, vòng 5 có 1) | 5 |
-| `phep-cong-phep-tru` (nháp) | Toán | 3 | chưa (vòng 2 còn 2) | 2 |
+| `phep-cong-phep-tru` | Toán | 3 | 4 (vòng 2 có 3, vòng 3 có 1) | 4 |
