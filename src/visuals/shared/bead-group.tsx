@@ -12,7 +12,13 @@ const GROUP_GAP = 36;
 const PADDING = 4;
 const BAR_HEIGHT = 5;
 const BAR_OFFSET = 8;
-const CROSSED_OPACITY = 0.35;
+// A crossed bead keeps only a pale disc, so its number (drawn in the text
+// colour over it) reads at full contrast.
+const CROSSED_OPACITY = 0.3;
+const SLASH_WIDTH = 3;
+// Outline in the surface colour around a crossed bead's number, cutting the
+// slash where it passes under the digits so they stay whole.
+const CROSSED_TEXT_HALO = 5;
 // Drawn at natural size (`scale` 1) this stays above the 16px text floor
 // down to a 0.8× shrink, which a row of 7 beads reaches on a phone.
 const BEAD_TEXT_SIZE = 20;
@@ -29,7 +35,8 @@ type BeadGroupProps = {
   // When true the groups slide together into one row, e.g. 2³ · 2² → 2⁵.
   merged: boolean;
   // How many beads, counted from the end, are crossed out, e.g. the three
-  // factors 2⁵ : 2³ takes away. Crossed beads fade and get a slash.
+  // factors 2⁵ : 2³ takes away. Crossed beads fade and get a slash drawn
+  // under their number, which stays legible.
   crossed?: number;
   label: string;
   // Draws beads at this many times their natural 44px size instead of
@@ -115,9 +122,9 @@ export function BeadGroup({
             }}
             transition={transition}
           >
-            {/* Only the bead's disc fades; its label switches to the text
-                colour so a crossed-out factor stays readable, and the slash
-                over it stays fully visible. */}
+            {/* Only the bead's disc fades. The slash lies over the disc but
+                under the label, and the label switches to the text colour with
+                a surface-coloured halo, so a crossed-out factor stays readable. */}
             <motion.g
               {...(bead.text ? decorative : {})}
               initial={false}
@@ -131,18 +138,6 @@ export function BeadGroup({
                 r={BEAD_RADIUS}
               />
             </motion.g>
-            {bead.text && (
-              <text
-                x={cx}
-                y={cy}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize={BEAD_TEXT_SIZE}
-                className={`font-heading font-bold ${isCrossed ? "fill-foreground" : "fill-primary-foreground"}`}
-              >
-                {bead.text}
-              </text>
-            )}
             {isCrossed && (
               <line
                 {...decorative}
@@ -150,10 +145,27 @@ export function BeadGroup({
                 y1={cy + BEAD_RADIUS}
                 x2={cx + BEAD_RADIUS}
                 y2={cy - BEAD_RADIUS}
-                strokeWidth={4}
+                strokeWidth={SLASH_WIDTH}
                 strokeLinecap="round"
                 className="stroke-foreground"
               />
+            )}
+            {bead.text && (
+              <text
+                x={cx}
+                y={cy}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={BEAD_TEXT_SIZE}
+                {...(isCrossed && {
+                  strokeWidth: CROSSED_TEXT_HALO,
+                  strokeLinejoin: "round" as const,
+                  paintOrder: "stroke",
+                })}
+                className={`font-heading font-bold ${isCrossed ? "fill-foreground stroke-surface" : "fill-primary-foreground"}`}
+              >
+                {bead.text}
+              </text>
             )}
           </motion.g>
         );

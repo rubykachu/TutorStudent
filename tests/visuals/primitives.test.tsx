@@ -107,6 +107,24 @@ describe("BeadGroup crossed", () => {
       true,
     ]);
   });
+
+  it("draws a crossed bead's number above its slash, in the text colour", () => {
+    const { container } = render(
+      <BeadGroup
+        groups={[{ color: "blue", count: 2, text: "2" }]}
+        merged
+        crossed={1}
+        label="Hai hạt"
+      />,
+    );
+    const crossed = container.querySelector("[data-crossed]");
+    const children = [...(crossed?.children ?? [])].map((c) => c.tagName);
+    // Disc, then slash, then number on top.
+    expect(children).toEqual(["g", "line", "text"]);
+    const text = crossed?.querySelector("text");
+    expect(text).toHaveClass("fill-foreground", "stroke-surface");
+    expect(Number(text?.getAttribute("font-size"))).toBeGreaterThanOrEqual(20);
+  });
 });
 
 describe("NumberStepper", () => {
