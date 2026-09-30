@@ -14,7 +14,7 @@
 - Còn việc: review vòng 2 đầy đủ (Opus), rồi `pnpm content:hash --approve`, `pnpm content:lock`.
 
 ## Sau review vòng 2
-- Đã sửa 3 Nghiêm trọng (đáp án `dien-7-9`, thuật ngữ "số tròn chục liền trước/liền sau" thay "làm tròn", nhãn fact-family không gãy ở iPad dọc) và các Nên sửa 1-12 trừ mục ghi ở "Chưa sửa vòng 2" dưới đây; Góp ý 3-9 đã sửa. Id đổi (chưa khoá): `mua-vo-100-15` thành `mua-so-90-13`, `du-163-15` thành `du-185-15`, `chia-cot-268-12-xong` thành `chia-cot-268-12`. Thêm câu `tim-so-chia-36-4`. Hình diện tích xoay: cạnh ngang là thừa số thứ nhất, số hàng là tổng hay hiệu được tách.
+- Đã sửa 3 Nghiêm trọng (đáp án `dien-7-9`, thuật ngữ "số tròn chục liền trước/liền sau" thay "làm tròn", nhãn fact-family không gãy ở iPad dọc) và các Nên sửa 1-12 trừ mục ghi ở "Chưa sửa vòng 2" dưới đây; Góp ý 3-9 đã sửa. Id đổi (chưa khoá): `mua-vo-100-15` thành `mua-so-90-13`, `du-163-15` thành `du-185-15`, `chia-cot-268-12-xong` thành `chia-cot-268-12`. Thêm câu `tim-so-chia-30-5`. Hình diện tích xoay: cạnh ngang là thừa số thứ nhất, số hàng là tổng hay hiệu được tách.
 - Còn việc: review vòng 3 (Sonnet, chỉ phần `pnpm content:diff`), rồi `pnpm content:hash --approve`, `pnpm content:lock`.
 
 ## Chưa sửa vòng 2
