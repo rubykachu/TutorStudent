@@ -20,7 +20,7 @@ function Column({ part }: { part: Part }) {
       >
         {part.value}
       </span>
-      <span className="flex items-center gap-1 text-caption text-muted-foreground">
+      <span className="flex items-center gap-1 whitespace-nowrap text-caption text-muted-foreground">
         <ConceptMark color={part.color} className="size-4" />
         {part.tag}
       </span>
@@ -132,7 +132,7 @@ export default function FactFamily({ a, b }: { a: number; b: number }) {
           value={b}
         />
       </svg>
-      <ul className="grid w-full grid-cols-1 gap-x-6 gap-y-2 md:grid-cols-2">
+      <ul className="grid w-full grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2">
         <Equation left={factorA} sign="·" middle={factorB} result={product} />
         {!same && (
           <Equation left={factorB} sign="·" middle={factorA} result={product} />

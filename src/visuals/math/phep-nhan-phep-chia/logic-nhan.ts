@@ -52,27 +52,27 @@ export function classifySplit(total: number, first: number): SplitKind {
 
 // --- Area model of a · (p1 + p2 ...) -----------------------------------------
 
-// One column strip of the rectangle. A "keep" strip is part of the answer; a
+// One band of rows of the rectangle. A "keep" strip is part of the answer; a
 // "drop" strip is taken away again, as the 1 in 12 · (20 − 1).
 export type Strip = {
   kind: "keep" | "drop";
-  // Column where the strip starts and how many columns it covers.
+  // Row where the band starts and how many rows it covers.
   start: number;
   width: number;
-  // The width as written in the expression, for the bracket above the strip.
+  // The height as written in the expression, for the bracket beside the band.
   written: number;
-  // a · written width.
+  // a · written height.
   product: number;
 };
 
 export type AreaModel = {
   strips: Strip[];
-  // Columns of the whole rectangle (the positive parts together).
-  columns: number;
+  // Rows of the whole rectangle (the positive parts together).
+  rows: number;
   total: number;
 };
 
-// Positive parts lay out left to right; a negative part is cut off the right
+// Positive parts lay out top to bottom; a negative part is cut off the bottom
 // end of the last positive one.
 export function areaModel(a: number, parts: readonly number[]): AreaModel {
   const positives = parts.filter((p) => p > 0);
@@ -80,7 +80,7 @@ export function areaModel(a: number, parts: readonly number[]): AreaModel {
   const cut = negatives.reduce((sum, p) => sum - p, 0);
   const last = positives[positives.length - 1] ?? 0;
   if (cut >= last) throw new Error("A taken-away part must be narrower");
-  const columns = positives.reduce((sum, p) => sum + p, 0);
+  const rows = positives.reduce((sum, p) => sum + p, 0);
   const strips: Strip[] = [];
   let start = 0;
   positives.forEach((written, i) => {
@@ -88,7 +88,7 @@ export function areaModel(a: number, parts: readonly number[]): AreaModel {
     strips.push({ kind: "keep", start, width, written, product: a * written });
     start += width;
   });
-  let dropStart = columns - cut;
+  let dropStart = rows - cut;
   for (const p of negatives) {
     strips.push({
       kind: "drop",
@@ -101,7 +101,7 @@ export function areaModel(a: number, parts: readonly number[]): AreaModel {
   }
   return {
     strips,
-    columns,
+    rows,
     total: a * parts.reduce((sum, p) => sum + p, 0),
   };
 }

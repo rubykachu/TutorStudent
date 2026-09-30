@@ -42,17 +42,17 @@ describe("split of a factor", () => {
 });
 
 describe("area model", () => {
-  it("lays positive parts side by side and adds their products", () => {
+  it("stacks positive parts as bands of rows and adds their products", () => {
     const model = areaModel(3, [10, 2]);
-    expect(model.columns).toBe(12);
+    expect(model.rows).toBe(12);
     expect(model.total).toBe(36);
     expect(model.strips.map((s) => s.product)).toEqual([30, 6]);
     expect(productSum(model.strips)).toBe("30 + 6");
   });
 
-  it("cuts a taken-away part off the right end of the whole", () => {
+  it("cuts a taken-away part off the bottom end of the whole", () => {
     const model = areaModel(12, [20, -1]);
-    expect(model.columns).toBe(20);
+    expect(model.rows).toBe(20);
     expect(model.total).toBe(228);
     expect(model.strips).toMatchObject([
       { kind: "keep", start: 0, width: 19, written: 20, product: 240 },

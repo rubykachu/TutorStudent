@@ -103,7 +103,11 @@
             },
             {
               "type": "formula",
-              "tex": "6 + 6 + 6 + 6 = 6 \\cdot 4 = 24"
+              "tex": "6 + 6 + 6 + 6 = 6 \\cdot 4"
+            },
+            {
+              "type": "formula",
+              "tex": "= 24"
             }
           ]
         },
@@ -140,7 +144,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bảng nhân cho biết tích của hai số từ 1 đến 9. Mỗi hộp có 6 cái bút, mua 9 hộp thì tra hàng 6, cột 9 được 6 · 9 = 54."
+              "text": "Bảng nhân cho biết tích của hai số từ 1 đến 9. Mỗi hộp có 6 cái bút, mua 9 hộp thì tra hàng 6, cột 9 được 6 · 9 = 54."
             },
             {
               "type": "visual",
@@ -181,7 +185,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong phép nhân, các số nhân với nhau gọi là thừa số, kết quả gọi là tích. Mua 4 gói bánh, mỗi gói 15 nghìn đồng, thì 15 · 4 = 60 nghìn đồng."
+              "text": "Trong phép nhân, các số nhân với nhau gọi là thừa số, kết quả gọi là tích. Mua 4 gói bánh, mỗi gói 15 nghìn đồng, thì 15 · 4 = 60 nghìn đồng."
             },
             {
               "type": "visual",
@@ -194,7 +198,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong 40 : 8 = 5, số 40 là số bị chia, số 8 là số chia, số 5 là thương. Chia đều 40 cái kẹo cho 8 bạn, mỗi bạn được 5 cái."
+              "text": "Trong 40 : 8 = 5, số 40 là số bị chia, số 8 là số chia, số 5 là thương. Chia đều 40 cái kẹo cho 8 bạn, mỗi bạn được 5 cái."
             },
             {
               "type": "visual",
@@ -240,7 +244,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đổi chỗ để thừa số một chữ số đứng sau thì nhân nhẩm dễ hơn. Ví dụ 2 · 35 = 35 · 2 = 70, tức là lấy 35 hai lần."
+              "text": "Đổi chỗ để thừa số một chữ số đứng sau thì nhân nhẩm dễ hơn. Ví dụ 2 · 35 = 35 · 2 = 70, tức là lấy 35 hai lần."
             },
             {
               "type": "formula",
@@ -272,21 +276,25 @@
             },
             {
               "type": "formula",
-              "tex": "(2 \\cdot 3) \\cdot 5 = 2 \\cdot (3 \\cdot 5) = 30"
+              "tex": "(2 \\cdot 3) \\cdot 5 = 2 \\cdot (3 \\cdot 5)"
+            },
+            {
+              "type": "formula",
+              "tex": "= 30"
             }
           ]
         },
         {
           "type": "visual",
           "visualId": "phep-nhan-phep-chia.visual.ket-hop-36-25",
-          "caption": "Mua 25 khay trứng, mỗi khay 36 quả. Tách 36 thành 9 · 4, rồi nhóm 4 · 25."
+          "caption": "Mua 25 khay trứng, mỗi khay 36 quả. Tách 36 thành 9 · 4, rồi nhóm 4 · 25."
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Tìm hai thừa số nhân ra số tròn, như 4 · 25 = 100 hay 8 · 125 = 1 000, rồi nhóm chúng lại."
+              "text": "Tìm hai thừa số nhân ra số tròn, như 4 · 25 = 100 hay 8 · 125 = 1 000, rồi nhóm chúng lại."
             },
             {
               "type": "visual",
@@ -349,7 +357,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bấm + hoặc − để tách 12 thành chục và đơn vị. Tách đúng giúp bạn nhân từng phần dễ hơn rồi cộng lại."
+              "text": "Tính 14 · 12: bấm + hoặc − để tách 12 thành chục và đơn vị. Tách đúng giúp bạn nhân từng phần dễ hơn rồi cộng lại."
             },
             {
               "type": "visual",
@@ -377,7 +385,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhân với số gần số tròn chục hay tròn trăm, như 19 hay 98, thì viết số đó thành hiệu. Ví dụ 19 = 20 − 1, nên nhân với 20 rồi trừ một lần thừa số kia."
+              "text": "Nhân với số gần số tròn chục hay tròn trăm, như 19 hay 98, thì viết số đó thành hiệu. Ví dụ 19 = 20 − 1, nên nhân với 20 rồi trừ một lần thừa số kia."
             },
             {
               "type": "visual",
@@ -395,19 +403,19 @@
           "children": [
             {
               "type": "note",
-              "text": "Lỗi hay gặp là chỉ nhân với số đầu trong ngoặc. Phải nhân thừa số kia với cả hai số trong ngoặc."
+              "text": "Lỗi hay gặp là viết 15 · 19 = 15 · 20 − 1, chỉ nhân với số đầu trong ngoặc. Phải nhân 15 với cả hai số trong ngoặc."
             },
             {
               "type": "formula",
-              "tex": "12 \\cdot (20 - 1)"
+              "tex": "15 \\cdot (20 - 1)"
             },
             {
               "type": "formula",
-              "tex": "= 12 \\cdot 20 - 12 \\cdot 1"
+              "tex": "= 15 \\cdot 20 - 15 \\cdot 1"
             },
             {
               "type": "formula",
-              "tex": "= 240 - 12 = 228"
+              "tex": "= 300 - 15 = 285"
             }
           ]
         }
@@ -528,7 +536,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn biết tích có hợp lí không, làm tròn thừa số xuống rồi lên, rồi nhân. Tích thật nằm giữa hai kết quả đó."
+              "text": "Muốn biết tích có hợp lí không, lấy số tròn chục liền trước và số tròn chục liền sau của thừa số, rồi nhân. Tích thật nằm giữa hai kết quả đó."
             },
             {
               "type": "formula",
@@ -541,15 +549,15 @@
           "children": [
             {
               "type": "note",
-              "text": "Cách này còn giúp so sánh hai tích mà không cần tính. Ví dụ 29 · 40 nhỏ hơn 30 · 40, còn 21 · 60 lớn hơn 20 · 60."
+              "text": "Cách này còn giúp so sánh hai tích mà không cần tính. 30 · 40 và 20 · 60 cùng bằng 1 200, nên 29 · 40 nhỏ hơn 21 · 60."
             },
             {
               "type": "formula",
-              "tex": "29 \\cdot 40 < 30 \\cdot 40"
+              "tex": "29 \\cdot 40 < 30 \\cdot 40 = 1\\,200"
             },
             {
               "type": "formula",
-              "tex": "= 20 \\cdot 60 < 21 \\cdot 60"
+              "tex": "1\\,200 = 20 \\cdot 60 < 21 \\cdot 60"
             }
           ]
         }
@@ -559,7 +567,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-phep-chia.visual.uoc-luong-tom-tat",
-        "caption": "Làm tròn thừa số xuống và lên rồi nhân. Tích thật nằm giữa hai kết quả."
+        "caption": "Nhân với số tròn chục liền trước và liền sau của thừa số. Tích thật nằm giữa hai kết quả."
       }
     },
     {
@@ -571,7 +579,7 @@
         {
           "type": "visual",
           "visualId": "phep-nhan-phep-chia.visual.chia-deu-24-6",
-          "caption": "Chia đều 24 cái kẹo cho 6 bạn."
+          "caption": "Chia đều 24 cái kẹo cho 6 bạn. Mỗi vòng phát 6 cái, phát 4 vòng."
         },
         {
           "type": "group",
@@ -695,7 +703,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn kiểm tra phép chia có dư, lấy số chia nhân thương rồi cộng số dư. Kết quả phải bằng số bị chia."
+              "text": "Làm đúng thì Lan phát 7 vòng, mỗi vòng 5 cái, dư 2. Muốn kiểm tra phép chia có dư, lấy số chia nhân thương rồi cộng số dư: kết quả phải bằng số bị chia."
             },
             {
               "type": "formula",
@@ -745,7 +753,7 @@
             },
             {
               "type": "visual",
-              "visualId": "phep-nhan-phep-chia.visual.chia-cot-268-12-xong"
+              "visualId": "phep-nhan-phep-chia.visual.chia-cot-268-12"
             }
           ]
         },
@@ -796,7 +804,7 @@
             },
             {
               "type": "formula",
-              "tex": "50 = 12 \\cdot 4 + 2"
+              "tex": "\\concept{blue}{50} = \\concept{violet}{12} \\cdot \\concept{amber}{4} + \\concept{pink}{2}"
             }
           ]
         }
@@ -833,7 +841,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Soát bài bằng phép thử: lấy số chia nhân thương rồi cộng số dư. Kết quả phải bằng số bị chia."
+              "text": "Soát phép chia có dư: số dư nhỏ hơn số chia, và số chia nhân thương cộng số dư bằng số bị chia."
             },
             {
               "type": "visual",
@@ -964,7 +972,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-phep-chia.visual.uoc-luong-tom-tat",
-        "caption": "Làm tròn thừa số xuống và lên rồi nhân. Tích thật nằm giữa hai kết quả."
+        "caption": "Nhân với số tròn chục liền trước và liền sau của thừa số. Tích thật nằm giữa hai kết quả."
       }
     },
     {
@@ -1059,7 +1067,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn phép nhân bằng 7 + 7 + 7."
+          "text": "Chọn phép nhân bằng 7 + 7 + 7."
         }
       ],
       "hints": {
@@ -1143,7 +1151,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả cách viết có kết quả bằng 6 · 3."
+          "text": "Chọn tất cả cách viết có kết quả bằng 6 · 3."
         }
       ],
       "hints": {
@@ -1435,7 +1443,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nối tên với số trong phép chia 24 : 6 = 4."
+          "text": "Nối tên với số trong phép chia 24 : 6 = 4."
         }
       ],
       "hints": {
@@ -1572,7 +1580,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trong phép chia 45 : 9 = 5, số nào là thương?"
+          "text": "Trong phép chia 45 : 9 = 5, số nào là thương?"
         }
       ],
       "hints": {
@@ -1693,7 +1701,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn phép tính có kết quả bằng 8 · 5."
+          "text": "Chọn phép tính có kết quả bằng 8 · 5."
         }
       ],
       "hints": {
@@ -1717,7 +1725,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "8 + 5"
+            "tex": "5 \\cdot 5"
           }
         },
         {
@@ -1731,7 +1739,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "5 + 5"
+            "tex": "8 \\cdot 4"
           }
         }
       ],
@@ -1748,7 +1756,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lớp A xếp 7 hàng, mỗi hàng 9 bạn, lớp B xếp 9 hàng, mỗi hàng 7 bạn. Điền số thích hợp vào chỗ trống."
+          "text": "Lớp A xếp 7 hàng, mỗi hàng 9 bạn, lớp B xếp 9 hàng, mỗi hàng 7 bạn. Hai lớp có số bạn bằng nhau, điền số thích hợp vào chỗ trống."
         }
       ],
       "hints": {
@@ -1770,7 +1778,7 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["7"]
+          "accept": ["9"]
         }
       ]
     },
@@ -1781,7 +1789,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đổi chỗ các thừa số để tính nhẩm 2 · 45. Kết quả bằng bao nhiêu?"
+          "text": "Đổi chỗ các thừa số để tính nhẩm 2 · 45. Kết quả bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -1979,7 +1987,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính nhẩm 125 · 24 bằng cách nhóm 125 · 8. Kết quả bằng bao nhiêu?"
+          "text": "Tính nhẩm 125 · 24 bằng cách nhóm 125 · 8. Kết quả bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -2006,7 +2014,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả cách viết bằng 16 · 25."
+          "text": "Chọn tất cả cách viết bằng 16 · 25."
         }
       ],
       "hints": {
@@ -2061,7 +2069,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các bước tính 32 · 25 theo đúng thứ tự."
+          "text": "Xếp các bước tính 32 · 25 theo đúng thứ tự."
         },
         {
           "type": "formula",
@@ -2082,21 +2090,21 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "Tách 32 = 8 · 4"
+            "text": "Tách 32 = 8 · 4"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Nhóm 4 · 25 = 100"
+            "text": "Nhóm 4 · 25 = 100"
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "Nhân 8 · 100 = 800"
+            "text": "Nhân 8 · 100 = 800"
           }
         }
       ]
@@ -2108,7 +2116,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn biểu thức bằng 4 · (20 + 3)."
+          "text": "Chọn biểu thức bằng 4 · (20 + 3)."
         }
       ],
       "hints": {
@@ -2223,7 +2231,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả biểu thức bằng 7 · (10 + 3)."
+          "text": "Chọn tất cả biểu thức bằng 7 · (10 + 3)."
         }
       ],
       "hints": {
@@ -2278,7 +2286,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính nhẩm 5 · 31 bằng cách tách 31 = 30 + 1. Kết quả bằng bao nhiêu?"
+          "text": "Tính nhẩm 5 · 31 bằng cách tách 31 = 30 + 1. Kết quả bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -2305,7 +2313,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn biểu thức bằng 15 · 99."
+          "text": "Chọn biểu thức bằng 15 · 99."
         }
       ],
       "hints": {
@@ -2343,7 +2351,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "15 \\cdot 10 - 9"
+            "tex": "15 \\cdot 100 - 15 \\cdot 9"
           }
         }
       ],
@@ -2389,7 +2397,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính nhẩm 14 · 99. Kết quả bằng bao nhiêu?"
+          "text": "Tính nhẩm 14 · 99. Kết quả bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -2447,7 +2455,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn cách tính nhanh 9 · 98."
+          "text": "Chọn cách tính nhanh 9 · 98."
         }
       ],
       "hints": {
@@ -2478,7 +2486,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "9 \\cdot 98 + 9"
+            "tex": "9 \\cdot 100 + 9 \\cdot 2"
           }
         },
         {
@@ -2502,7 +2510,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ở cột đơn vị, 8 · 7 = 56. Viết chữ số nào và nhớ chữ số nào?"
+          "text": "Đặt tính 48 · 7, ở cột đơn vị có 8 · 7 = 56. Viết chữ số nào và nhớ chữ số nào?"
         }
       ],
       "hints": {
@@ -2554,7 +2562,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt tính rồi tính 46 · 7."
+          "text": "Đặt tính rồi tính 46 · 7."
         }
       ],
       "hints": {
@@ -2583,7 +2591,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt tính 57 · 6 rồi điền từng chữ số của tích."
+          "text": "Đặt tính 57 · 6 rồi điền từng chữ số của tích."
         }
       ],
       "hints": {
@@ -2636,7 +2644,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các bước đặt tính 67 · 5 theo đúng thứ tự."
+          "text": "Xếp các bước đặt tính 67 · 5 theo đúng thứ tự."
         }
       ],
       "hints": {
@@ -2653,14 +2661,14 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "Nhân 7 · 5 = 35, viết 5 và nhớ 3"
+            "text": "Nhân 7 · 5 = 35, viết 5 và nhớ 3"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Nhân 6 · 5 = 30, cộng 3 được 33"
+            "text": "Nhân 6 · 5 = 30, cộng 3 được 33"
           }
         },
         {
@@ -2679,7 +2687,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Khi nhân 64 · 32, tích riêng thứ hai là 64 · 3 = 192. Viết nó thế nào?"
+          "text": "Khi nhân 64 · 32, tích riêng thứ hai là 64 · 3 = 192. Viết nó thế nào?"
         }
       ],
       "hints": {
@@ -2717,7 +2725,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Viết 19, bỏ chữ số 2"
+            "text": "Viết 1 920, thẳng cột với tích riêng thứ nhất"
           }
         }
       ],
@@ -2760,7 +2768,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt tính 54 · 13 rồi điền từng chữ số của tích."
+          "text": "Đặt tính 54 · 13 rồi điền từng chữ số của tích."
         }
       ],
       "hints": {
@@ -2844,7 +2852,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tích 48 · 9 nằm giữa hai số nào?"
+          "text": "Tích 48 · 9 nằm giữa hai số nào?"
         }
       ],
       "hints": {
@@ -2896,7 +2904,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tích 53 · 7 là một trong bốn số sau. Chọn số đúng mà không cần đặt tính."
+          "text": "Tích 53 · 7 là một trong bốn số sau. Chọn số đúng mà không cần đặt tính."
         }
       ],
       "hints": {
@@ -2977,7 +2985,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "47 \\cdot 9"
+            "tex": "46 \\cdot 9"
           }
         },
         {
@@ -3005,7 +3013,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "So sánh 38 · 50 với 52 · 40 mà không cần tính. Chọn kết luận đúng."
+          "text": "So sánh 38 · 50 với 52 · 40 mà không cần tính. Chọn kết luận đúng."
         }
       ],
       "hints": {
@@ -3022,21 +3030,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "38 · 50 nhỏ hơn 52 · 40"
+            "text": "38 · 50 nhỏ hơn 52 · 40"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "38 · 50 lớn hơn 52 · 40"
+            "text": "38 · 50 lớn hơn 52 · 40"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "38 · 50 bằng 52 · 40"
+            "text": "38 · 50 bằng 52 · 40"
           }
         }
       ],
@@ -3050,7 +3058,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phép nhân nào giúp kiểm tra 28 : 4 = 7?"
+          "text": "Phép nhân nào giúp kiểm tra 28 : 4 = 7?"
         }
       ],
       "hints": {
@@ -3067,14 +3075,14 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "7 \\cdot 4 = 28"
+            "tex": "4 \\cdot 7 = 28"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "28 \\cdot 7 = 4"
+            "tex": "4 \\cdot 28 = 7"
           }
         },
         {
@@ -3186,6 +3194,33 @@
       ]
     },
     {
+      "id": "phep-nhan-phep-chia.ex.tim-so-chia-36-4",
+      "type": "numeric",
+      "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số chia, biết số bị chia là 36 và thương là 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "36:4"
+      }
+    },
+    {
       "id": "phep-nhan-phep-chia.ex.chon-nhieu-chia-dung",
       "type": "choice",
       "cardIds": ["phep-nhan-phep-chia.card.chia-het"],
@@ -3209,7 +3244,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "45 : 9 = 5"
+            "tex": "54 : 9 = 6"
           }
         },
         {
@@ -3405,7 +3440,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "17 : 5"
+            "tex": "27 : 5"
           }
         },
         {
@@ -3440,7 +3475,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phép chia 34 : 8 nào ghi đúng?"
+          "text": "Phép chia 34 : 8 nào ghi đúng?"
         }
       ],
       "hints": {
@@ -3457,28 +3492,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "34 : 8 = 4 dư 2"
+            "text": "34 : 8 = 4 dư 2"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "34 : 8 = 3 dư 10"
+            "text": "34 : 8 = 3 dư 10"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "34 : 8 = 4 dư 3"
+            "text": "34 : 8 = 4 dư 3"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "34 : 8 = 4 dư 8"
+            "text": "34 : 8 = 4 dư 8"
           }
         }
       ],
@@ -3546,7 +3581,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lê viết 61 : 9 = 5 dư 16. Lỗi sai của Lê là gì?"
+          "text": "Lê viết 61 : 9 = 5 dư 16. Lỗi sai của Lê là gì?"
         }
       ],
       "hints": {
@@ -3708,7 +3743,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt tính 217 : 15 rồi điền thương và số dư."
+          "text": "Đặt tính 217 : 15 rồi điền thương và số dư."
         }
       ],
       "hints": {
@@ -3728,13 +3763,13 @@
       }
     },
     {
-      "id": "phep-nhan-phep-chia.ex.du-163-15",
+      "id": "phep-nhan-phep-chia.ex.du-185-15",
       "type": "numeric",
       "cardIds": ["phep-nhan-phep-chia.card.dat-tinh-chia"],
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt tính rồi chia 163 cho 15. Số dư là bao nhiêu?"
+          "text": "Đặt tính rồi chia 185 cho 15. Số dư là bao nhiêu?"
         }
       ],
       "hints": {
@@ -3748,10 +3783,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 13
+        "value": 5
       },
       "check": {
-        "expr": "163-15·10"
+        "expr": "185-15·12"
       }
     },
     {
@@ -3866,13 +3901,13 @@
       }
     },
     {
-      "id": "phep-nhan-phep-chia.ex.mua-vo-100-15",
+      "id": "phep-nhan-phep-chia.ex.mua-so-90-13",
       "type": "numeric",
       "cardIds": ["phep-nhan-phep-chia.card.bai-toan-chia"],
       "prompt": [
         {
           "type": "note",
-          "text": "Một quyển vở giá 15 nghìn đồng. Có 100 nghìn đồng thì mua được nhiều nhất mấy quyển vở?"
+          "text": "Một quyển sổ giá 13 nghìn đồng. Có 90 nghìn đồng thì mua được nhiều nhất mấy quyển sổ?"
         }
       ],
       "hints": {
@@ -3889,7 +3924,7 @@
         "value": 6
       },
       "check": {
-        "expr": "(100-10):15"
+        "expr": "(90-12):13"
       }
     },
     {
@@ -3951,7 +3986,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lê viết 43 : 6 = 6 dư 7. Lỗi sai của Lê là gì?"
+          "text": "Lê viết 43 : 6 = 6 dư 7. Lỗi sai của Lê là gì?"
         }
       ],
       "hints": {
@@ -3982,7 +4017,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "6 · 6 + 7 không bằng 43"
+            "text": "6 · 6 + 7 không bằng 43"
           }
         },
         {
@@ -4003,7 +4038,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lê tính 38 · 7 = 216. Lỗi sai của Lê nằm ở đâu?"
+          "text": "Lê tính 38 · 7 = 216. Lỗi sai của Lê nằm ở đâu?"
         }
       ],
       "hints": {
@@ -4027,7 +4062,7 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Tính sai 8 · 7 thành 46"
+            "text": "Tính sai 8 · 7 thành 46"
           }
         },
         {
@@ -4055,7 +4090,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lê tính 58 · 4 = 202. Kết quả đúng của 58 · 4 là bao nhiêu?"
+          "text": "Lê tính 58 · 4 = 202. Kết quả đúng của 58 · 4 là bao nhiêu?"
         }
       ],
       "hints": {
@@ -4099,28 +4134,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "47 : 5 = 9 dư 2"
+            "text": "47 : 5 = 9 dư 2"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "47 : 5 = 8 dư 7"
+            "text": "47 : 5 = 8 dư 7"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "52 : 6 = 8 dư 4"
+            "text": "52 : 6 = 8 dư 4"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "52 : 6 = 7 dư 10"
+            "text": "52 : 6 = 7 dư 10"
           }
         }
       ],
@@ -4134,7 +4169,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lê chia 458 : 9 được thương 5, dư 8. Lỗi sai của Lê là gì?"
+          "text": "Lê chia 458 : 9 được thương 5, dư 8. Lỗi sai của Lê là gì?"
         }
       ],
       "hints": {

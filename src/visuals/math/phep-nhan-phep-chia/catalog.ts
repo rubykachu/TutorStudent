@@ -68,9 +68,9 @@ export type VisualSpec =
     }
   // Factor pairs whose product is a round number.
   | { kind: "pairs"; pairs: readonly (readonly [number, number])[] }
-  // Area model of a · (p1 + p2 + ...): rectangle with `a` rows split into
-  // columns of the listed widths. A negative width is the part taken away
-  // from the whole, as in 12 · (20 − 1).
+  // Area model of a · (p1 + p2 + ...): rectangle of rows with `a` cells each,
+  // the rows split into bands of the listed heights. A negative height is the
+  // band taken away from the whole, as in 12 · (20 − 1).
   | { kind: "splitArea"; a: number; parts: readonly number[]; mode: Mode }
   // Hands-on screen: the child splits `b` into tens and ones for a · b and sees
   // the two partial products. Reports progress and a closing line.
@@ -441,11 +441,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     r: 7,
     ok: false,
   },
-  "chia-cot-268-12-xong": {
+  "chia-cot-268-12": {
     kind: "colDiv",
     dividend: 268,
     divisor: 12,
-    mode: "still",
+    mode: "steps",
   },
   "chia-cot-75-6-cung-lam": {
     kind: "colDivTry",
@@ -454,8 +454,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chia-154-12-goi-y": {
     kind: "colDiv",
-    dividend: 87,
-    divisor: 5,
+    dividend: 175,
+    divisor: 14,
     mode: "hint",
   },
   "chia-154-12-giai": {
@@ -556,8 +556,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "phan-phoi-tom-tat": {
     kind: "splitArea",
-    a: 4,
-    parts: [10, 3],
+    a: 6,
+    parts: [10, 4],
     mode: "still",
   },
   "gan-tron-35-98": {
@@ -637,8 +637,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chia-co-du-tom-tat": {
     kind: "tags",
     form: "divRem",
-    a: 43,
-    b: 8,
+    a: 46,
+    b: 7,
   },
   "kiem-tra-chia-tom-tat": {
     kind: "remCheck",

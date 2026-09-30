@@ -457,3 +457,15 @@ export function sentenceFor(
       return `Hạ: hạ chữ số ${s.bring}, được ${s.remainder * 10 + (s.bring ?? 0)}`;
   }
 }
+
+// What the walk says before the first round: a divisor with more digits than
+// the first digit of the dividend takes a longer first partial number.
+export function openingSentence(division: Division): string {
+  const first = division.steps[0] as DivisionStep;
+  if (first.end === 0) {
+    return `Chia ${division.dividend} cho ${division.divisor} từng chữ số một.`;
+  }
+  const count = first.end + 1;
+  const digit = division.digits[0];
+  return `${digit} nhỏ hơn ${division.divisor} nên lấy ${count === 2 ? "hai" : count} chữ số đầu: ${first.partial}.`;
+}

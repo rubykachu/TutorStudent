@@ -10,6 +10,7 @@ import {
   buildFigure,
   type Division,
   divide,
+  openingSentence,
   progressEnd,
   sentenceFor,
   walkEvent,
@@ -80,7 +81,7 @@ function Walk({ division, hint }: { division: Division; hint: boolean }) {
         const isEnd = event.phase === "end";
         let text: string;
         if (event.phase === "start") {
-          text = `Chia ${division.dividend} cho ${division.divisor} từng chữ số một.`;
+          text = openingSentence(division);
         } else if (event.phase === "end") {
           text = `Hết chữ số để hạ. Thương là ${division.quotient}, số dư là ${division.remainder}.`;
         } else {

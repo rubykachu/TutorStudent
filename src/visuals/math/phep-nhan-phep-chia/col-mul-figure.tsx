@@ -258,13 +258,11 @@ export function ColMulFigure({
         ]
       : [],
   );
-  // Shifted partial products start with dim 0s in the lowest places, once the
-  // row has begun.
+  // Shifted partial products have dim 0s in the lowest places from the start,
+  // so a row still waiting for its digits shows where it is shifted.
   const shiftZeros = plan.bDigits.flatMap((_, row) =>
     Array.from({ length: row }, (_, column) => ({ row, column })),
   );
-  const started = (row: number) =>
-    partials.some((p) => p.id.startsWith(`p${row}c`) && shown.has(p.id));
 
   return (
     <svg
@@ -324,7 +322,7 @@ export function ColMulFigure({
       {partials.map((p) => product(p.id, p.digit))}
       {shiftZeros.map(({ row, column }) => {
         const b = boxes.get(cellId.shift(row, column));
-        return b && started(row)
+        return b
           ? fixedAt(
               b,
               "0",

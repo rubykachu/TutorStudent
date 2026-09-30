@@ -27,11 +27,11 @@ const STEP_OPTIONS = 4;
 const WIDTH = 340;
 const LEFT = 24;
 const RIGHT = WIDTH - 24;
-const FACTOR_AXIS_Y = 64;
+const FACTOR_AXIS_Y = 48;
 const FACTOR_LOW_X = 70;
 const FACTOR_HIGH_X = 270;
-const PRODUCT_AXIS_Y = 220;
-const HEIGHT = 302;
+const PRODUCT_AXIS_Y = 204;
+const HEIGHT = 286;
 const SLOT_WIDTH = 64;
 const LANE_GAP = 84;
 const NUMBER_SIZE = 22;
@@ -43,7 +43,7 @@ const DIGIT_EM = 0.62;
 
 const NUMBER = "font-bold tabular-nums";
 const SENTENCE =
-  "min-h-[3.4rem] max-w-prose text-center text-body md:text-body-lg";
+  "min-h-[6rem] max-w-prose text-center text-body md:min-h-[3.4rem] md:text-body-lg";
 
 type Props = EstimateNumbers & { mode: Mode };
 
@@ -94,8 +94,8 @@ function Glow({ x, y, width }: { x: number; y: number; width: number }) {
   );
 }
 
-// "Làm tròn" on its own line: a in blue between the two numbers it is
-// rounded to.
+// The factor on its own line: a in blue between the tens (or hundreds) just
+// below and just above it.
 function FactorAxis({ numbers }: { numbers: EstimateNumbers }) {
   const { a, lowA, highA } = numbers;
   const x =
@@ -113,8 +113,8 @@ function FactorAxis({ numbers }: { numbers: EstimateNumbers }) {
         className="stroke-muted-foreground"
       />
       {[
-        { at: FACTOR_LOW_X, value: lowA, caption: "làm tròn xuống" },
-        { at: FACTOR_HIGH_X, value: highA, caption: "làm tròn lên" },
+        { at: FACTOR_LOW_X, value: lowA, caption: "liền trước" },
+        { at: FACTOR_HIGH_X, value: highA, caption: "liền sau" },
       ].map(({ at, value, caption }) => (
         <Fragment key={caption}>
           <line
@@ -394,11 +394,11 @@ function sentence(
   const result = (value: number) => (hint ? "?" : formatInteger(value));
   switch (step) {
     case STEP_ROUND:
-      return `${a} nằm giữa ${lowA} và ${highA}. Làm tròn xuống: ${lowA}. Làm tròn lên: ${highA}.`;
+      return `${a} nằm giữa hai số tròn chục ${lowA} và ${highA}.`;
     case STEP_LOW:
-      return `Làm tròn xuống: ${lowA} · ${b} = ${result(bounds.low)}`;
+      return `Số tròn chục liền trước: ${lowA} · ${b} = ${result(bounds.low)}`;
     case STEP_HIGH:
-      return `Làm tròn lên: ${highA} · ${b} = ${result(bounds.high)}`;
+      return `Số tròn chục liền sau: ${highA} · ${b} = ${result(bounds.high)}`;
     case STEP_ZONE:
       return `Tích ${a} · ${b} nằm giữa ${formatInteger(bounds.low)} và ${formatInteger(bounds.high)}.`;
     default: {

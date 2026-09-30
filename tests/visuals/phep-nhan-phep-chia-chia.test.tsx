@@ -7,6 +7,7 @@ import {
   digitsOf,
   divide,
   fillPlaces,
+  openingSentence,
   progressEnd,
   readNumber,
   sentenceFor,
@@ -26,6 +27,20 @@ import {
   solutions,
   validators,
 } from "@/visuals/math/phep-nhan-phep-chia/validators-chia";
+
+describe("long division opening", () => {
+  it("takes one digit when it reaches the divisor", () => {
+    expect(openingSentence(divide(95, 4))).toBe(
+      "Chia 95 cho 4 từng chữ số một.",
+    );
+  });
+
+  it("takes the first two digits when one is smaller than the divisor", () => {
+    expect(openingSentence(divide(268, 12))).toBe(
+      "2 nhỏ hơn 12 nên lấy hai chữ số đầu: 26.",
+    );
+  });
+});
 
 describe("long division", () => {
   it.each([

@@ -25,19 +25,22 @@ import {
 } from "./logic-nhan";
 import { Hole, MATH_LINE, Product, Tint } from "./parts-nhan";
 
-// Geometry of the area model, in viewBox units.
+// Geometry of the area model, in viewBox units. Each row holds `a` cells, so
+// the width is the first factor; the second factor is the number of rows.
 const WIDTH = 400;
 const LEFT = 56;
-const RIGHT = 24;
+const RIGHT = 88;
 const TOP = 52;
-const BOTTOM = 44;
+const BOTTOM = 12;
 const MAX_WIDTH = WIDTH - LEFT - RIGHT;
-const MAX_HEIGHT = 140;
+const MAX_HEIGHT = 170;
 // The hands-on screen also holds steppers and two lines of feedback.
-const TRY_HEIGHT = 96;
+const TRY_HEIGHT = 130;
 const LABEL_SIZE = 22;
 const BRACKET_TICK = 7;
 const BRACKET_INSET = 2;
+const BRACKET_GAP = 12;
+const LABEL_GAP = 10;
 
 const SPLIT_STAGE = 1;
 const AREA_STAGE = 2;
@@ -71,24 +74,14 @@ function partColor(parts: readonly number[], i: number): ConceptColor {
   return PART_COLORS[before % PART_COLORS.length] ?? "teal";
 }
 
-function Bracket({
-  x1,
-  x2,
-  y,
-  down = false,
-}: {
-  x1: number;
-  x2: number;
-  y: number;
-  down?: boolean;
-}) {
-  const tick = down ? -BRACKET_TICK : BRACKET_TICK;
+// Bracket over a stretch of the top edge; its ticks point at the rectangle.
+function Bracket({ x1, x2, y }: { x1: number; x2: number; y: number }) {
   const a = x1 + BRACKET_INSET;
   const b = x2 - BRACKET_INSET;
   return (
     <path
       {...decorative}
-      d={`M ${a} ${y + tick} V ${y} H ${b} V ${y + tick}`}
+      d={`M ${a} ${y + BRACKET_TICK} V ${y} H ${b} V ${y + BRACKET_TICK}`}
       className="fill-none stroke-muted-foreground"
       strokeWidth={2.5}
       strokeLinejoin="round"
@@ -96,9 +89,34 @@ function Bracket({
   );
 }
 
-// Rectangle of `a` rows whose columns are cut into parts. Stage 0 shows the
-// whole rectangle; from stage 1 the parts are tinted and named. A part that is
-// taken away is hatched and named below the rectangle.
+// Bracket beside a stretch of rows. `side` is -1 on the left edge and 1 on the
+// right edge; its ticks point at the rectangle.
+function RowBracket({
+  y1,
+  y2,
+  x,
+  side,
+}: {
+  y1: number;
+  y2: number;
+  x: number;
+  side: -1 | 1;
+}) {
+  const tick = -side * BRACKET_TICK;
+  return (
+    <path
+      {...decorative}
+      d={`M ${x + tick} ${y1 + BRACKET_INSET} H ${x} V ${y2 - BRACKET_INSET} H ${x + tick}`}
+      className="fill-none stroke-muted-foreground"
+      strokeWidth={2.5}
+      strokeLinejoin="round"
+    />
+  );
+}
+
+// Rectangle of rows with `a` cells each, the rows cut into parts. Stage 0
+// shows the whole rectangle; from stage 1 the parts are tinted and named. A
+// part that is taken away is hatched and named on the right.
 function AreaFigure({
   a,
   model,
@@ -114,21 +132,18 @@ function AreaFigure({
 }) {
   const patternId = useId().replace(/:/g, "");
   const transition = useVisualTransition();
-  const { strips, columns } = model;
-  const unitX = MAX_WIDTH / columns;
-  const unitY = Math.min(unitX, maxHeight / a);
-  const width = columns * unitX;
-  const height = a * unitY;
-  const x0 = LEFT;
+  const { strips, rows } = model;
+  const unit = Math.min(MAX_WIDTH / a, maxHeight / rows);
+  const width = a * unit;
+  const height = rows * unit;
+  const x0 = LEFT + (MAX_WIDTH - width) / 2;
   const y0 = TOP;
   const split = stage >= SPLIT_STAGE;
-  const drops = strips.filter((s) => s.kind === "drop");
-  const bottom = drops.length > 0 ? BOTTOM : 12;
   return (
     <svg
       role="img"
       aria-label={label}
-      viewBox={`0 0 ${WIDTH} ${y0 + height + bottom}`}
+      viewBox={`0 0 ${WIDTH} ${y0 + height + BOTTOM}`}
       className="h-auto w-full max-w-72"
     >
       <defs>
@@ -171,10 +186,10 @@ function AreaFigure({
             <rect
               {...decorative}
               key={`${strip.kind}-${strip.start}`}
-              x={x0 + strip.start * unitX}
-              y={y0}
-              width={strip.width * unitX}
-              height={height}
+              x={x0}
+              y={y0 + strip.start * unit}
+              width={width}
+              height={strip.width * unit}
               fill={strip.kind === "drop" ? `url(#${patternId})` : undefined}
               strokeDasharray={strip.kind === "drop" ? "6 4" : undefined}
               className={
@@ -188,12 +203,12 @@ function AreaFigure({
         })}
       </motion.g>
       <g {...decorative}>
-        {Array.from({ length: columns - 1 }, (_, i) => (
+        {Array.from({ length: a - 1 }, (_, i) => (
           <line
             // biome-ignore lint/suspicious/noArrayIndexKey: grid lines are fixed by position
             key={`v${i}`}
-            x1={x0 + (i + 1) * unitX}
-            x2={x0 + (i + 1) * unitX}
+            x1={x0 + (i + 1) * unit}
+            x2={x0 + (i + 1) * unit}
             y1={y0}
             y2={y0 + height}
             className="stroke-surface"
@@ -201,53 +216,47 @@ function AreaFigure({
             opacity={0.8}
           />
         ))}
-        {Array.from({ length: a - 1 }, (_, i) => (
+        {Array.from({ length: rows - 1 }, (_, i) => (
           <line
             // biome-ignore lint/suspicious/noArrayIndexKey: grid lines are fixed by position
             key={`h${i}`}
             x1={x0}
             x2={x0 + width}
-            y1={y0 + (i + 1) * unitY}
-            y2={y0 + (i + 1) * unitY}
+            y1={y0 + (i + 1) * unit}
+            y2={y0 + (i + 1) * unit}
             className="stroke-surface"
             strokeWidth={1}
             opacity={0.8}
           />
         ))}
       </g>
-      {/* Rows: the factor a. */}
-      <path
-        {...decorative}
-        d={`M ${x0 - 14 - BRACKET_TICK} ${y0 + BRACKET_INSET} H ${x0 - 14} V ${y0 + height - BRACKET_INSET} H ${x0 - 14 - BRACKET_TICK}`}
-        className="fill-none stroke-muted-foreground"
-        strokeWidth={2.5}
-        strokeLinejoin="round"
-      />
+      {/* Cells in a row: the factor a. */}
+      <Bracket x1={x0} x2={x0 + width} y={y0 - BRACKET_GAP} />
       <text
-        x={x0 - 26}
-        y={y0 + height / 2}
-        textAnchor="end"
-        dominantBaseline="central"
+        x={x0 + width / 2}
+        y={y0 - BRACKET_GAP - 12}
+        textAnchor="middle"
         fontSize={LABEL_SIZE}
         className={`${CONCEPT_CLASSES.blue.fill} font-heading font-bold`}
       >
         {a}
       </text>
-      {/* Stage 0 names the whole width, later stages name each part. */}
+      {/* Stage 0 names all the rows, later stages name each part. */}
       <motion.g
         initial={false}
         animate={{ opacity: split ? 0 : 1 }}
         transition={transition}
       >
-        <Bracket x1={x0} x2={x0 + width} y={y0 - 12} />
+        <RowBracket x={x0 - BRACKET_GAP} y1={y0} y2={y0 + height} side={-1} />
         <text
-          x={x0 + width / 2}
-          y={y0 - 24}
-          textAnchor="middle"
+          x={x0 - BRACKET_GAP - LABEL_GAP}
+          y={y0 + height / 2}
+          textAnchor="end"
+          dominantBaseline="central"
           fontSize={LABEL_SIZE}
           className="fill-foreground font-heading font-bold"
         >
-          {columns}
+          {rows}
         </text>
       </motion.g>
       <motion.g
@@ -257,21 +266,22 @@ function AreaFigure({
       >
         {strips.map((strip) => {
           const color = stripColor(strips, strip);
-          const down = strip.kind === "drop";
-          const from = x0 + strip.start * unitX;
-          const to = from + (down ? strip.width : strip.written) * unitX;
-          const y = down ? y0 + height + 12 : y0 - 12;
+          const drop = strip.kind === "drop";
+          const from = y0 + strip.start * unit;
+          const to = from + (drop ? strip.width : strip.written) * unit;
+          const x = drop ? x0 + width + BRACKET_GAP : x0 - BRACKET_GAP;
           return (
             <Fragment key={`${strip.kind}-${strip.start}`}>
-              <Bracket x1={from} x2={to} y={y} down={down} />
+              <RowBracket x={x} y1={from} y2={to} side={drop ? 1 : -1} />
               <text
-                x={(from + to) / 2}
-                y={down ? y + 28 : y - 12}
-                textAnchor="middle"
+                x={drop ? x + LABEL_GAP : x - LABEL_GAP}
+                y={(from + to) / 2}
+                textAnchor={drop ? "start" : "end"}
+                dominantBaseline="central"
                 fontSize={LABEL_SIZE}
                 className={`${CONCEPT_CLASSES[color].fill} font-heading font-bold`}
               >
-                {down ? `bớt ${strip.written}` : strip.written}
+                {drop ? `bớt ${strip.written}` : strip.written}
               </text>
             </Fragment>
           );
@@ -345,7 +355,7 @@ function WrittenExpression({
 }
 
 function describeArea(a: number, parts: readonly number[]): string {
-  return `Hình chữ nhật ${a} hàng, tách thành ${writtenParts(parts)} cột`;
+  return `Hình chữ nhật mỗi hàng ${a} ô, số hàng tách thành ${writtenParts(parts)}`;
 }
 
 function SplitAreaView({
@@ -486,7 +496,7 @@ export function SplitTry({
         model={model}
         stage={SPLIT_STAGE}
         maxHeight={TRY_HEIGHT}
-        label={`Hình chữ nhật ${a} hàng, tách ${b} thành ${first} và ${second}`}
+        label={`Hình chữ nhật mỗi hàng ${a} ô, tách ${b} hàng thành ${first} và ${second}`}
       />
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap justify-center gap-x-6">

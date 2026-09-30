@@ -330,7 +330,11 @@ describe("estimate and mistakes visuals", () => {
       expect(
         screen.getByRole("heading", { name: new RegExp(heading) }),
       ).toBeInTheDocument();
-      expect(screen.getAllByText("Sai")).toHaveLength(1);
+      expect(
+        screen
+          .getAllByText("Sai")
+          .filter((el) => !el.closest('[aria-hidden="true"]')),
+      ).toHaveLength(1);
       expect(screen.getAllByRole("heading")).toHaveLength(1);
     }
   });

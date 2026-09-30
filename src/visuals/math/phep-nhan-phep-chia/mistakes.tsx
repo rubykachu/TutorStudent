@@ -244,10 +244,10 @@ const MISTAKES = [
 ] as const;
 
 // One mistake at a time, picked with three buttons, so the picture stays inside
-// a phone screen.
+// a phone screen. The three pictures share one grid cell, so the block keeps
+// the height of the tallest and the buttons stay where they are.
 function MistakeTabs() {
   const [picked, setPicked] = useState(0);
-  const { Picture } = MISTAKES[picked] ?? MISTAKES[0];
   return (
     <div className="flex w-full max-w-xl flex-col gap-3">
       <fieldset className="flex justify-center gap-2">
@@ -268,7 +268,18 @@ function MistakeTabs() {
           </button>
         ))}
       </fieldset>
-      <Picture />
+      <div className="grid">
+        {MISTAKES.map(({ tab, Picture }, index) => (
+          <div
+            key={tab}
+            className={`col-start-1 row-start-1 ${picked === index ? "" : "invisible"}`}
+            aria-hidden={picked === index ? undefined : true}
+            inert={picked !== index}
+          >
+            <Picture />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
