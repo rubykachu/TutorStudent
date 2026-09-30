@@ -118,7 +118,16 @@ function useNarration(
         setWord(-1);
         setProgress(0);
       }}
-    />
+    >
+      {/* The page itself shows the words being said; the track carries
+        the same captions for assistive technology. */}
+      <track
+        kind="captions"
+        src={mediaUrl(narration.vttUrl)}
+        srcLang="vi"
+        label="Tiếng Việt"
+      />
+    </audio>
   ) : null;
   return { playing, progress, word: playing ? word : -1, toggle, audio };
 }
