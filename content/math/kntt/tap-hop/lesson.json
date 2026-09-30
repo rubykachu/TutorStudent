@@ -3225,6 +3225,66 @@
       "dùng kí hiệu thuộc và không thuộc",
       "viết một tập hợp bằng hai cách"
     ],
-    "whyItMatters": "Viết đúng tập hợp là bước đầu để học các bài về số tự nhiên sau này."
-  }
+    "whyItMatters": "Viết đúng tập hợp là bước đầu để học các bài về số tự nhiên sau này.",
+    "narration": {
+      "audioUrl": "narration/tap-hop/overview.m4a",
+      "vttUrl": "narration/tap-hop/overview.vtt"
+    }
+  },
+  "videos": [
+    {
+      "id": "tap-hop.video.tap-hop-la-gi",
+      "lessonId": "tap-hop",
+      "url": "video/tap-hop/tap-hop-la-gi.mp4",
+      "vttUrl": "video/tap-hop/tap-hop-la-gi.vtt",
+      "posterUrl": "video/tap-hop/tap-hop-la-gi.jpg",
+      "durationSec": 61.07,
+      "clips": [
+        {
+          "id": "tap-hop",
+          "start": 0.7,
+          "end": 14.049,
+          "cardIds": ["tap-hop.card.tap-hop"]
+        },
+        {
+          "id": "phan-tu",
+          "start": 14.449,
+          "end": 22.818,
+          "cardIds": ["tap-hop.card.phan-tu"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "tap-hop.video.thuoc-khong-thuoc",
+      "lessonId": "tap-hop",
+      "url": "video/tap-hop/thuoc-khong-thuoc.mp4",
+      "vttUrl": "video/tap-hop/thuoc-khong-thuoc.vtt",
+      "posterUrl": "video/tap-hop/thuoc-khong-thuoc.jpg",
+      "durationSec": 56.5,
+      "clips": [
+        {
+          "id": "thuoc",
+          "start": 10.271,
+          "end": 27.754,
+          "cardIds": ["tap-hop.card.thuoc"]
+        },
+        {
+          "id": "khong-thuoc",
+          "start": 28.154,
+          "end": 46.153,
+          "cardIds": ["tap-hop.card.khong-thuoc"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

@@ -1,0 +1,135 @@
+{
+  "title": "Tập hợp là gì? Cái hộp đựng phần tử",
+  "engine": "local",
+  "voice": "Hải Đăng",
+  "poster": {
+    "scene": "s03-phan-tu",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-hop-but",
+      "sentences": [
+        {
+          "text": "Bạn cú có một hộp bút."
+        },
+        {
+          "text": "Trong hộp có bút, thước và tẩy."
+        },
+        {
+          "text": "Cả nhóm đồ trong hộp là một tập hợp."
+        }
+      ]
+    },
+    {
+      "id": "s02-tap-hop",
+      "sentences": [
+        {
+          "text": "Tập hợp là một nhóm các thứ gom lại.",
+          "rule": true
+        },
+        {
+          "text": "Các bạn trong đội bóng cũng là một tập hợp."
+        }
+      ]
+    },
+    {
+      "id": "s03-phan-tu",
+      "sentences": [
+        {
+          "text": "Bút là một phần tử."
+        },
+        {
+          "text": "Thước là một phần tử."
+        },
+        {
+          "text": "Tẩy là một phần tử."
+        },
+        {
+          "text": "Mỗi thứ trong nhóm là một phần tử.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-viet",
+      "sentences": [
+        {
+          "text": "Bây giờ ta viết tập hợp ra giấy."
+        },
+        {
+          "text": "Muốn viết một tập hợp, ta đặt các phần tử vào giữa hai ngoặc nhọn.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s05-mo",
+      "sentences": [
+        {
+          "text": "Ta viết dấu mở ngoặc nhọn trước."
+        },
+        {
+          "text": "Nét một: móc phía trên, kéo xuống."
+        },
+        {
+          "text": "Nét hai: nhọn sang trái ở giữa."
+        },
+        {
+          "text": "Nét ba: kéo xuống rồi móc phía dưới."
+        }
+      ]
+    },
+    {
+      "id": "s06-dong",
+      "sentences": [
+        {
+          "text": "Dấu đóng ngoặc nhọn là hình soi gương."
+        },
+        {
+          "text": "Ta viết nó ở cuối."
+        },
+        {
+          "text": "Có đủ hai dấu, tập hợp mới xong."
+        },
+        {
+          "text": "Bây giờ tập hợp của bạn đã viết xong."
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Tập hợp là một nhóm các thứ gom lại.",
+          "rule": true
+        },
+        {
+          "text": "Mỗi thứ trong nhóm là một phần tử.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tap-hop",
+      "from": "s01-hop-but",
+      "to": "s02-tap-hop",
+      "cardIds": [
+        "tap-hop.card.tap-hop"
+      ]
+    },
+    {
+      "id": "phan-tu",
+      "from": "s03-phan-tu",
+      "to": "s03-phan-tu",
+      "cardIds": [
+        "tap-hop.card.phan-tu"
+      ]
+    }
+  ]
+}
