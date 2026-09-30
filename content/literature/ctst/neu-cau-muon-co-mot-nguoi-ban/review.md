@@ -2,72 +2,53 @@
 
 - Bài: `content/literature/ctst/neu-cau-muon-co-mot-nguoi-ban/lesson.json`
 - Nguồn đã đọc: `sources/literature/neu-cau-muon-co-mot-nguoi-ban/` - p21, p22, p23-24, p25-26; đối chiếu thêm `footnotes.txt`, `source-citation.txt`, `source-passage.txt`
-- `content:check`: 0 lỗi, 0 cảnh báo của bài (bỏ qua "not in ids.lock.json"); `--stats` đạt mọi tiêu chí
+- `content:check`: 0 lỗi, 0 cảnh báo của bài (bỏ qua "not in ids.lock.json")
 - `lesson:walk`: 0 FAIL, 0 cảnh báo ở 3 khổ (ipad, phone, ipad-landscape), ảnh trong `.shots/walk/neu-cau-muon-co-mot-nguoi-ban/`
-- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng, lỗi này chờ chủ dự án quyết định chứ tác giả không tự sửa được. Chưa xuất bản: chờ chủ dự án duyệt văn bản (`source-passage.txt`); bài giữ `draft`, không ghi `reviewedHash`.
+- Kết luận: Chưa đạt: còn 2 lỗi Nghiêm trọng (1 lỗi tác giả sửa được, 1 lỗi chờ chủ dự án quyết định). Chưa xuất bản: chờ chủ dự án duyệt văn bản (`source-passage.txt`); bài giữ `draft`, không ghi `reviewedHash`.
 
-Cả 115 câu trong các khối `passage` khớp `source-passage.txt` và SGK tr.21-25. Câu trích lại trong đề bài tập trùng từng chữ với câu cùng id trong section. Chú thích và nguồn trích khớp tr.21, 22, 24, 25. Đáp án của mọi exercise đều có câu làm căn cứ trong văn bản. Không highlight nào lộ đáp án. Hình gợi ý từ ghép, từ láy dùng từ nằm ngoài bài tập, còn `so-sanh-cho-trong` dừng ở "?".
+Các khối `passage` ghép lại khớp từng chữ với `source-passage.txt` và SGK tr.21-25 (đoạn l31 được tách thành hai khối, không mất câu nào). Câu trích lại trong đề bài tập trùng với câu cùng id trong section. Chú thích và nguồn trích khớp tr.21, 22, 24, 25. Tôi đã tự giải cả 56 exercise và 4 bước của `viet-cam-xuc-cao` trước khi đọc `answer`. Trừ phát hiện Nghiêm trọng 2, mọi đáp án đều khớp và có câu làm căn cứ trong văn bản. Không highlight nào lộ đáp án. Các hình gợi ý từ ghép, từ láy dùng từ nằm ngoài bài tập; `so-sanh-cho-trong` dừng ở "?", nhãn đã bám câu của cáo. Các lỗi Nên sửa và Góp ý ở vòng trước đã được sửa: đề viết nêu yêu cầu từ ghép, từ láy; `minutes` của section viết là 6; một cách diễn đạt định nghĩa từ ghép; màn hướng dẫn điền từ đã chuyển lên section `cam-hoa-la-gi`; đề `xep-cach-cam-hoa` đã tách việc cáo dặn và kết quả.
 
 ## Nghiêm trọng
 
-### 1. Định nghĩa từ ghép, từ láy không có trong các trang nguồn (chờ chủ dự án)
+### 1. Câu chạm "cáo buồn" có hai câu đúng (tác giả sửa được)
+
+- Vị trí: `$.exercises[35]` (`cham-cao-buon`), `prompt[1]` và `answer`
+- Nguồn: tr.23, `p23-24.png`
+- Vấn đề: đề hỏi "Chạm vào câu cho thấy cáo buồn khi sắp chia tay.", đáp án chỉ có `l39-1` ("A!… Mình sẽ khóc mất."). Đoạn trích trong đề còn có `l40-1`: "mình không muốn làm bạn đau lòng chút nào". Câu này cũng cho thấy cáo buồn, và "đau lòng" lại là từ duy nhất trong đoạn gọi thẳng tên nỗi buồn. Trẻ chạm `l40-1` thì bị chấm sai, dù có căn cứ trong văn bản. Tôi phân vân giữa Nên sửa và Nghiêm trọng vì `l39-1` rõ hơn, nhưng chọn mức cao hơn: trẻ có lý do chính đáng để chọn `l40-1`.
+- Sửa: chọn một trong hai cách:
+  - bỏ đoạn `l40-1` khỏi `prompt[1]`, giữ `l38-1`, `l38-2`, `l39-1`;
+  - hoặc đổi đề thành "Chạm vào lời cáo nói cho thấy cáo buồn khi sắp chia tay." (khi đó `l40-1` là lời hoàng tử bé nên bị loại một cách rõ ràng).
+
+### 2. Định nghĩa từ ghép, từ láy không có trong các trang nguồn (chờ chủ dự án)
 
 - Vị trí: `$.sections[10]` (`tu-ghep-tu-lay`: note định nghĩa, recap, hình `tu-ghep-tu-lay`, hình tương tác `cham-tu`), `$.cards[12]` (`tu-lay`), `$.cards[13]` (`tu-ghep`), hình gợi ý `goi-y-tu-lay`, `goi-y-tu-ghep`, hình `cau-mau`, cùng các bài tập phân loại từ dựa trên định nghĩa đó (`chon-tu-lay`, `tu-lay-trong-cau`, `chon-tu-ghep`, `chon-tat-ca-tu-lay`, `chon-tu-lay-tieng-gio`, `chon-tat-ca-tu-ghep`, `tu-ghep-vuon-hong`, `viet-buoc-tu-lay`, `viet-buoc-tu-ghep`)
 - Nguồn: tr.26, `p25-26.png`
-- Vấn đề: ở tr.26, mục "Từ ghép và từ láy" chỉ có đề câu 5 (viết đoạn văn có ít nhất 2 từ ghép và 2 từ láy). Trong tr.21-26 không có định nghĩa từ ghép, từ láy; ví dụ "lung linh", "tiếng nhạc" cũng không lấy từ trang nào. Bài viết đúng với kiến thức phổ thông, nhưng không có trang nào để đối chiếu cách SGK định nghĩa hai khái niệm. Chính định nghĩa này là điều trẻ phải nhớ qua recap, và cũng là tiêu chí để chấm mọi câu phân loại từ.
-- Sửa: tác giả không tự gỡ được lỗi này trong phạm vi các trang hiện có. Muốn xếp một từ vào loại nào thì phải có tiêu chí, mà tiêu chí đó không nằm ở trang nào. Chỉ gỡ được theo một trong hai cách, cả hai đều do chủ dự án quyết định:
+- Vấn đề: ở tr.26, mục "Từ ghép và từ láy" chỉ có đề câu 5 (viết đoạn văn có ít nhất 2 từ ghép và 2 từ láy). Các trang tr.21-26 không định nghĩa từ ghép, từ láy; các ví dụ "buồn bã", "lung linh", "tiếng nhạc" cũng không lấy từ trang nào. Nội dung bài đúng với kiến thức phổ thông, nhưng không có trang nào để đối chiếu cách SGK định nghĩa hai khái niệm này. Trẻ phải nhớ chính định nghĩa đó qua recap, và mọi câu phân loại từ đều chấm theo nó.
+- Sửa: tác giả không tự gỡ được lỗi này với các trang hiện có, vì tiêu chí phân loại từ không nằm ở trang nào. Chủ dự án chọn một trong hai cách:
   - bổ sung ảnh trang "Tri thức tiếng Việt" (trang định nghĩa từ ghép, từ láy) vào `sources/literature/neu-cau-muon-co-mot-nguoi-ban/`; sau đó tác giả trỏ `sourceRef` của section và card tới trang đó, rồi soát lại câu chữ định nghĩa và ví dụ theo trang;
-  - hoặc quyết định rõ rằng bài được dùng kiến thức đã học ở tiểu học cho phần này. Quyết định này là đổi luật nội dung, không phải việc tác giả tự sửa.
+  - hoặc quyết định rõ rằng bài được dùng kiến thức đã học ở tiểu học cho phần này. Đây là thay đổi luật nội dung nên chủ dự án quyết định, tác giả không tự làm.
 
 ## Nên sửa
 
-### 1. Đề bài viết không nêu yêu cầu từ ghép, từ láy mà rubric lại chấm
+### 1. Ví dụ từ ghép "tiếng nhạc" dễ gây tranh cãi
 
-- Vị trí: `$.exercises[55].prompt[0]`, `$.exercises[55].writing.rubric[3]`, `rubric[4]` (`viet-cam-xuc-cao`)
-- Nguồn: tr.26, `p25-26.png` (câu 5: "có sử dụng ít nhất 2 từ ghép và 2 từ láy")
-- Vấn đề: màn viết (ảnh `139-...-writing.png`) chỉ ghi "Tưởng tượng và viết đoạn văn từ 5 đến 7 câu, tả cảm xúc của cáo sau khi chia tay hoàng tử bé." Trẻ chỉ gặp yêu cầu "Có ít nhất 2 từ ghép", "Có ít nhất 2 từ láy" ở màn tự chấm, tức là sau khi đã viết xong. Recap của section có nhắc "Nhớ dùng từ ghép, từ láy" nhưng recap hiện sau bài tập. Rubric vì thế lệch với đề.
-- Sửa: tác giả sửa được. Thêm vào `prompt` một câu, ví dụ: "Trong đoạn văn, dùng ít nhất 2 từ ghép và 2 từ láy."
-
-### 2. `minutes` của section viết đoạn văn quá thấp
-
-- Vị trí: `$.sections[11].minutes` (`viet-doan-van`)
+- Vị trí: `$.sections[10].blocks[0]` (note), `$.sections[10].recap.caption`, `$.cards[13].recap.caption`, hình `tu-ghep-tu-lay` (cột "Từ ghép": tiếng + nhạc)
 - Nguồn: —
-- Vấn đề: section ghi 3 phút, nhưng có 2 màn giải thích, bài `openEnded` gồm 4 bước nhỏ, màn viết, màn tự chấm, rồi recap: khoảng 9 màn, tức khoảng 6 phút theo mức 40 giây mỗi màn, chưa kể thời gian viết 5 đến 7 câu. Trẻ học chậm sẽ thấy phần này dài hơn nhiều so với con số hiển thị.
-- Sửa: tác giả sửa được. Đặt `minutes` tối thiểu 6.
-
-### 3. Hình gợi ý so sánh nêu khái niệm chung không có ở trang nguồn
-
-- Vị trí: hình `so-sanh-cho-trong`, nhãn "Từ nào nối hai sự vật có nét giống nhau?" (`$.exercises[24].hints.hintVisualId`, `dien-tu-so-sanh`)
-- Nguồn: tr.26, `p25-26.png`
-- Vấn đề: phần so sánh đã được viết lại để bám câu 3 tr.26 và không còn định nghĩa chung. Riêng nhãn này vẫn đưa vào cách hiểu chung "hai sự vật có nét giống nhau", một ý trang nguồn không nêu. Nhãn nằm ở gợi ý chứ không ở màn quy tắc nên tôi không xếp mức Nghiêm trọng. Tôi phân vân giữa Góp ý và Nên sửa, và chọn mức cao hơn vì đây là chỗ duy nhất trong phần so sánh còn vượt khỏi trang nguồn.
-- Sửa: tác giả sửa được. Đổi nhãn thành câu bám đúng câu của cáo, ví dụ: "Cáo dùng từ nào để nối bước chân của bạn với tiếng nhạc?"
+- Vấn đề: "tiếng nhạc" là ví dụ đầu tiên của từ ghép trong note và recap, tức là ví dụ trẻ sẽ nhớ. Nhiều cách phân tích lại xếp "tiếng nhạc" (cũng như "tiếng gió", "tiếng chim") vào cụm từ chứ không coi là một từ. Chính bài này cũng dùng "tiếng gió" làm lựa chọn nhiễu ở `chon-tu-lay-tieng-gio` mà không xếp nó là từ ghép. Ví dụ nằm ở ranh giới giữa từ và cụm từ thì không hợp để làm mẫu cho người học chậm.
+- Sửa: tác giả sửa được. Thay "tiếng nhạc" bằng một từ ghép rõ ràng có trong văn bản, như "lúa mì", "hoa hồng" hoặc "trái tim" (các từ bài tập đã coi là từ ghép), ở cả note, hai recap và hình `tu-ghep-tu-lay`. Nếu chủ dự án bổ sung trang "Tri thức tiếng Việt" (Nghiêm trọng 2), ưu tiên dùng ví dụ của trang đó.
 
 ## Góp ý
 
-### 1. Định nghĩa từ ghép được diễn đạt theo ba cách
-
-- Vị trí: `$.sections[10].blocks[0]` (note: "có quan hệ với nhau về nghĩa"), hình `tu-ghep-tu-lay` và recap (`$.sections[10].recap.caption`: "ghép theo nghĩa", "ghép lại theo nghĩa"), hình `goi-y-tu-ghep` ("mỗi tiếng đều góp nghĩa")
-- Nguồn: —
-- Vấn đề: cùng một quy tắc được nói bằng ba cách. Riêng từ láy thì đã thống nhất là "giống âm đầu hoặc vần".
-- Sửa: dùng một cách diễn đạt ở mọi chỗ, lấy theo trang "Tri thức tiếng Việt" khi có (xem Nghiêm trọng 1).
-
-### 2. Màn hướng dẫn điền từ nằm ở section không có câu điền từ
-
-- Vị trí: `$.sections[10].blocks[2]` (hình `huong-dan-dien`)
-- Nguồn: —
-- Vấn đề: section `tu-ghep-tu-lay` giờ chỉ có câu `choice`. Tám câu `fillBlank` của bài (`dien-nghia-cam-hoa`, `dien-can-den-nhau`, `dien-hanh-tinh`, `dien-tu-so-sanh`, `dien-so-sanh-voi`, `dien-trach-nhiem`, `dien-kien-nhan`, `dien-don-dieu`) đều nằm trong kho ôn của các card thuộc section 2 đến 9. Vì vậy phiên ôn có thể đưa ra câu điền từ trước khi trẻ tới màn hướng dẫn. Thao tác điền từ không thuộc nhóm bắt buộc phải có màn hướng dẫn.
-- Sửa: chuyển màn này lên section `cam-hoa-la-gi` (đang có 3 màn), hoặc bỏ.
-
-### 3. `xep-cach-cam-hoa`: một mục là kết quả chứ không phải việc cáo dặn
-
-- Vị trí: `$.exercises[29].prompt[0]`, `$.exercises[29].items[2]` (`xep-cach-cam-hoa`)
-- Nguồn: tr.23, `p23-24.png`
-- Vấn đề: đề ghi "Xếp các việc hoàng tử bé cần làm để cảm hoá cáo, theo lời cáo dặn", nhưng mục "Hoàng tử bé cảm hoá được cáo" là kết quả (câu l38-1), không phải việc cáo dặn.
-- Sửa: đổi đề thành "Xếp theo đúng thứ tự: hai việc cáo dặn rồi đến kết quả", hoặc thay mục thứ ba bằng một việc có trong lời cáo.
-
-### 4. Một số yêu cầu của SGK tr.26 chưa có trong bài
+### 1. Một số yêu cầu của SGK tr.26 chưa có trong bài
 
 - Vị trí: —
 - Nguồn: tr.26, `p25-26.png`
-- Vấn đề: bài chưa có câu 8 (cáo có phải nhân vật truyện đồng thoại không) và câu 1 mục "Nghĩa của từ ngữ" (yếu tố "hoá" trong "cảm hoá").
-- Sửa: tuỳ tác giả. Có thể thêm một bài tập về các từ có yếu tố "hoá" nếu muốn bài bám đủ phần thực hành.
+- Vấn đề: bài chưa có câu 8 (cáo có phải nhân vật truyện đồng thoại không), câu 1 mục "Nghĩa của từ ngữ" (yếu tố "hoá" trong "cảm hoá"), và trong câu 2 mới luyện đặt câu với "kiên nhẫn", "đơn điệu", chưa có "cốt lõi".
+- Sửa: tuỳ tác giả. Có thể thêm một câu điền từ với "cốt lõi", và một bài tập về các từ có yếu tố "hoá" nếu muốn bài bám đủ phần thực hành.
+
+### 2. Dấu câu trong các lựa chọn của `khong-hoi-tiec` chưa thống nhất
+
+- Vị trí: `$.exercises[33].options` (`khong-hoi-tiec`)
+- Nguồn: —
+- Vấn đề: lựa chọn đúng ghi `“Mình được chứ”.` (dấu chấm ngoài ngoặc), hai lựa chọn còn lại ghi `“Mình sẽ khóc mất.”`, `“Lỗi do bạn đó.”` (dấu chấm trong ngoặc). Khác biệt nhỏ nhưng làm lựa chọn đúng trông khác hẳn hai lựa chọn kia.
+- Sửa: dùng cùng một kiểu ở cả ba lựa chọn.

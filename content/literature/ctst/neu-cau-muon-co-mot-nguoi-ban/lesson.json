@@ -1278,7 +1278,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “tiếng nhạc”, “thời gian”. Từ láy gồm các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”, “lung linh”."
+              "text": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “lúa mì”, “hoa hồng”. Từ láy gồm các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”, “lung linh”."
             },
             {
               "type": "visual",
@@ -1300,7 +1300,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép: các tiếng có quan hệ với nhau về nghĩa, như “tiếng nhạc”. Từ láy: các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”."
+        "caption": "Từ ghép: các tiếng có quan hệ với nhau về nghĩa, như “lúa mì”. Từ láy: các tiếng giống nhau về âm đầu hoặc vần, như “buồn bã”."
       }
     },
     {
@@ -1493,7 +1493,7 @@
       "recap": {
         "type": "visual",
         "visualId": "neu-cau-muon-co-mot-nguoi-ban.visual.tu-ghep-tu-lay",
-        "caption": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “tiếng nhạc”, “thời gian”."
+        "caption": "Từ ghép gồm các tiếng ghép lại, có quan hệ với nhau về nghĩa, như “lúa mì”, “hoa hồng”."
       }
     }
   ],
@@ -3519,14 +3519,14 @@
           "id": "co-khoc",
           "content": {
             "type": "text",
-            "text": "Có. Cáo nói: “Mình sẽ khóc mất.”"
+            "text": "Có. Cáo nói: “Mình sẽ khóc mất”."
           }
         },
         {
           "id": "co-loi",
           "content": {
             "type": "text",
-            "text": "Có. Cáo trách: “Lỗi do bạn đó.”"
+            "text": "Có. Cáo trách: “Lỗi do bạn đó”."
           }
         }
       ],
@@ -3652,14 +3652,6 @@
                 {
                   "id": "l39-1",
                   "text": "– A!… Mình sẽ khóc mất."
-                }
-              ]
-            },
-            {
-              "sentences": [
-                {
-                  "id": "l40-1",
-                  "text": "– Lỗi do bạn đó – hoàng tử bé nói – mình không muốn làm bạn đau lòng chút nào, nhưng bạn lại muốn mình cảm hoá bạn…"
                 }
               ]
             }
@@ -4506,10 +4498,10 @@
       ],
       "options": [
         {
-          "id": "lua-mi",
+          "id": "trai-tim",
           "content": {
             "type": "text",
-            "text": "lúa mì"
+            "text": "trái tim"
           }
         },
         {
@@ -4534,7 +4526,7 @@
           }
         }
       ],
-      "answer": ["lua-mi"],
+      "answer": ["trai-tim"],
       "multiple": false,
       "hints": {
         "highlight": [],
@@ -4643,17 +4635,17 @@
       ],
       "options": [
         {
-          "id": "trai-tim",
-          "content": {
-            "type": "text",
-            "text": "trái tim"
-          }
-        },
-        {
           "id": "hanh-tinh",
           "content": {
             "type": "text",
             "text": "hành tinh"
+          }
+        },
+        {
+          "id": "thoi-gian",
+          "content": {
+            "type": "text",
+            "text": "thời gian"
           }
         },
         {
@@ -4671,7 +4663,7 @@
           }
         }
       ],
-      "answer": ["trai-tim", "hanh-tinh"],
+      "answer": ["hanh-tinh", "thoi-gian"],
       "multiple": true,
       "hints": {
         "highlight": [],
@@ -4680,7 +4672,7 @@
       "difficulty": 2
     },
     {
-      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.tu-ghep-vuon-hong",
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.tu-ghep-bi-mat",
       "type": "choice",
       "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.tu-ghep"],
       "prompt": [
@@ -4694,8 +4686,8 @@
             {
               "sentences": [
                 {
-                  "id": "l48-1",
-                  "text": "Hoàng tử bé đi thăm lại vườn hoa hồng:"
+                  "id": "l52-2",
+                  "text": "– Đây là bí mật của mình."
                 }
               ]
             }
@@ -4705,28 +4697,28 @@
       ],
       "options": [
         {
-          "id": "hoa-hong",
+          "id": "bi-mat",
           "content": {
             "type": "text",
-            "text": "hoa hồng"
+            "text": "bí mật"
           }
         },
         {
-          "id": "di",
+          "id": "day",
           "content": {
             "type": "text",
-            "text": "đi"
+            "text": "đây"
           }
         },
         {
-          "id": "vuon",
+          "id": "minh",
           "content": {
             "type": "text",
-            "text": "vườn"
+            "text": "mình"
           }
         }
       ],
-      "answer": ["hoa-hong"],
+      "answer": ["bi-mat"],
       "multiple": false,
       "hints": {
         "highlight": [],

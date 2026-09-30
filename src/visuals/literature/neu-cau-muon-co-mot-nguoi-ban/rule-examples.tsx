@@ -468,7 +468,7 @@ export function TuGhepTuLay() {
         <WordColumn
           title="Từ ghép"
           color={COMPOUND_COLOR}
-          words={[{ parts: ["tiếng", "nhạc"] }, { parts: ["thời", "gian"] }]}
+          words={[{ parts: ["lúa", "mì"] }, { parts: ["hoa", "hồng"] }]}
           label="các tiếng có quan hệ về nghĩa"
         />
         <WordColumn
