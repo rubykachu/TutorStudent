@@ -310,7 +310,12 @@ export function TheThuoc() {
 export function TheKhongThuoc() {
   return (
     <SymbolCard
-      {...memberCard("khong-thuoc", 5, "không thuộc", "kí hiệu ∈ và gạch chéo")}
+      {...memberCard(
+        "khong-thuoc",
+        5,
+        "không thuộc",
+        "kí hiệu thuộc và gạch chéo",
+      )}
     />
   );
 }

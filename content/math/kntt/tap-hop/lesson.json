@@ -190,7 +190,7 @@
         {
           "type": "visual",
           "visualId": "tap-hop.visual.ve-cham-phay",
-          "caption": "Dấu chấm phẩy có chấm ở trên, phẩy ở dưới."
+          "caption": "Vẽ dấu chấm phẩy theo từng nét trên giấy nháp: chấm ở trên, rồi nét phẩy ở dưới."
         },
         {
           "type": "visual",
@@ -233,12 +233,12 @@
         {
           "type": "visual",
           "visualId": "tap-hop.visual.ve-thuoc",
-          "caption": "Kí hiệu ∈ là chữ C, thêm một gạch ngang ở giữa."
+          "caption": "Vẽ kí hiệu ∈ theo từng nét trên giấy nháp: nét một là chữ C, nét hai là gạch ngang."
         },
         {
           "type": "visual",
           "visualId": "tap-hop.visual.tap-net-thuoc",
-          "caption": "Chạm các chấm theo thứ tự để vẽ kí hiệu ∈: đúng thứ tự nét thì viết gọn hơn."
+          "caption": "Chạm các chấm theo thứ tự để vẽ kí hiệu ∈: đúng thứ tự nét thì viết gọn hơn."
         }
       ],
       "checkIds": ["tap-hop.ex.kt-cham-thuoc"],
@@ -271,17 +271,17 @@
         {
           "type": "visual",
           "visualId": "tap-hop.visual.ve-khong-thuoc",
-          "caption": "Kí hiệu ∉ là kí hiệu ∈ thêm một nét gạch chéo."
+          "caption": "Vẽ kí hiệu ∉ theo từng nét trên giấy nháp: viết kí hiệu ∈ rồi thêm một nét gạch chéo."
         },
         {
           "type": "visual",
           "visualId": "tap-hop.visual.tap-net-khong-thuoc",
-          "caption": "Chạm các chấm theo thứ tự để vẽ kí hiệu ∉: đúng thứ tự nét thì viết gọn hơn."
+          "caption": "Chạm các chấm theo thứ tự để vẽ kí hiệu ∉: đúng thứ tự nét thì viết gọn hơn."
         },
         {
           "type": "visual",
           "visualId": "tap-hop.visual.chon-x-tu-do",
-          "caption": "Đổi x rồi xem kí hiệu hiện ra: x nằm trong A thì ∈, không thì ∉."
+          "caption": "Đổi x rồi xem kí hiệu hiện ra: x nằm trong A thì ∈, không thì ∉."
         }
       ],
       "checkIds": ["tap-hop.ex.kt-cham-khong-thuoc"],
@@ -369,7 +369,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có thể mô tả tập hợp bằng dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Viết E = {x | x là số tự nhiên nhỏ hơn 5}, phần sau vạch đứng | là dấu hiệu đó."
+              "text": "Có thể mô tả tập hợp bằng dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Viết E = {x | x là số tự nhiên lớn hơn 2 và nhỏ hơn 6}, phần sau vạch đứng | là dấu hiệu đó."
             },
             {
               "type": "visual",
@@ -2718,12 +2718,12 @@
       "multiple": true
     },
     {
-      "id": "tap-hop.ex.chon-tat-ca-cuoi-tuan",
+      "id": "tap-hop.ex.chon-tat-ca-mau-co",
       "cardIds": ["tap-hop.card.phan-tu"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các phần tử của tập hợp các ngày cuối tuần."
+          "text": "Chọn tất cả các phần tử của tập hợp các màu trên lá cờ Việt Nam."
         }
       ],
       "hints": {
@@ -2741,28 +2741,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "thứ Bảy"
+            "text": "màu đỏ"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Chủ nhật"
+            "text": "màu vàng"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "thứ Sáu"
+            "text": "màu xanh"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "tháng Bảy"
+            "text": "màu tím"
           }
         }
       ],
