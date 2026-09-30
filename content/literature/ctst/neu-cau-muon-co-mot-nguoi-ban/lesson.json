@@ -4948,6 +4948,132 @@
         "highlight": []
       },
       "difficulty": 3
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tat-ca-loi-cao",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.ai-noi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả lời thoại của cáo."
+        }
+      ],
+      "options": [
+        {
+          "id": "tat-nhien",
+          "content": {
+            "type": "text",
+            "text": "– Tất nhiên rồi – con cáo nói."
+          }
+        },
+        {
+          "id": "se-khoc",
+          "content": {
+            "type": "text",
+            "text": "– Nhưng bạn sẽ khóc – hoàng tử bé nói."
+          }
+        },
+        {
+          "id": "kien-nhan",
+          "content": {
+            "type": "text",
+            "text": "– Cần phải rất kiên nhẫn – con cáo trả lời."
+          }
+        },
+        {
+          "id": "lam-sao",
+          "content": {
+            "type": "text",
+            "text": "– Cần phải làm sao? – Hoàng tử bé hỏi."
+          }
+        }
+      ],
+      "answer": ["tat-nhien", "kien-nhan"],
+      "multiple": true,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "neu-cau-muon-co-mot-nguoi-ban.visual.loi-thoai-mau"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "neu-cau-muon-co-mot-nguoi-ban.ex.chon-tat-ca-loi-dan",
+      "type": "choice",
+      "cardIds": ["neu-cau-muon-co-mot-nguoi-ban.card.bai-hoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả điều cáo dặn hoàng tử bé."
+        },
+        {
+          "type": "passage",
+          "paragraphs": [
+            {
+              "sentences": [
+                {
+                  "id": "l56-1",
+                  "text": "– Con người đã quên mất sự thật này – con cáo nói."
+                },
+                {
+                  "id": "l56-2",
+                  "text": "– Nhưng bạn thì không được quên."
+                },
+                {
+                  "id": "l56-3",
+                  "text": "Bạn có trách nhiệm mãi mãi với những gì bạn đã cảm hoá."
+                },
+                {
+                  "id": "l56-4",
+                  "text": "Bạn có trách nhiệm với bông hồng của bạn…"
+                }
+              ]
+            }
+          ],
+          "annotations": []
+        }
+      ],
+      "options": [
+        {
+          "id": "khong-quen",
+          "content": {
+            "type": "text",
+            "text": "Không được quên sự thật mà con người đã quên"
+          }
+        },
+        {
+          "id": "trach-nhiem",
+          "content": {
+            "type": "text",
+            "text": "Có trách nhiệm với bông hồng của mình"
+          }
+        },
+        {
+          "id": "tim-ban-moi",
+          "content": {
+            "type": "text",
+            "text": "Đi tìm thêm thật nhiều bạn mới"
+          }
+        },
+        {
+          "id": "ve-voi-nguoi",
+          "content": {
+            "type": "text",
+            "text": "Quay về sống cùng con người"
+          }
+        }
+      ],
+      "answer": ["khong-quen", "trach-nhiem"],
+      "multiple": true,
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "l56-2"
+          }
+        ]
+      },
+      "difficulty": 2
     }
   ],
   "sticker": {

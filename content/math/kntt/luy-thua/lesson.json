@@ -2721,6 +2721,102 @@
         ]
       },
       "difficulty": 3
+    },
+    {
+      "id": "luy-thua.ex.chon-co-so-2",
+      "type": "choice",
+      "cardIds": ["luy-thua.card.co-so-so-mu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các luỹ thừa có cơ số 2."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{2}^{\\concept{violet}{5}}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{5}^{\\concept{violet}{2}}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{2}^{\\concept{violet}{3}}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{3}^{\\concept{violet}{2}}"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "luy-thua.visual.dinh-nghia"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "luy-thua.ex.chon-bang-1-nhieu",
+      "type": "choice",
+      "cardIds": ["luy-thua.card.so-mu-0"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các luỹ thừa bằng 1."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{4}^{\\concept{violet}{0}}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{4}^{\\concept{violet}{1}}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{9}^{\\concept{violet}{0}}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\concept{blue}{9}^{\\concept{violet}{1}}"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "luy-thua.visual.so-mu-0-goi-y"
+      },
+      "difficulty": 2
     }
   ],
   "sticker": {
