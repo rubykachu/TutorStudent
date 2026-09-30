@@ -477,7 +477,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "ngoac-long-tom-tat": {
     kind: "steps",
-    source: "{3+2·[6-(1+2)]}",
+    source: "{2+[6-(1+2)]}",
     mode: "still",
   },
   "chon-phep-ngoac-long-hinh": {
@@ -712,27 +712,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tong-hop-tung-buoc": {
     kind: "steps",
-    source: "2·4^3+6·3-12·5+7",
+    source: "2·3^2+4·5-6",
     mode: "full",
   },
   "tong-hop-ve-phai": {
     kind: "steps",
-    source: "3·2^2+2·(1+3)",
+    source: "3·2^2+8",
     mode: "still",
   },
   "tong-hop-tom-tat": {
     kind: "steps",
-    source: "4·3^2-5·2+6",
+    source: "4·3^2-7",
     mode: "still",
   },
   "tong-hop-tom-tat-chon": {
     kind: "steps",
-    source: "5·2^3-4·6:3",
+    source: "30-2^3:4",
     mode: "still",
   },
   "tong-hop-tom-tat-tim-so": {
     kind: "steps",
-    source: "2·4^2-3·5",
+    source: "2·4^2-5",
     mode: "still",
   },
   "tinh-day-du-kiem-tra-goi-y": {

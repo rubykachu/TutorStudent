@@ -77,7 +77,7 @@ export function TryIt({
       {history.map((line, i) => (
         <Row key={spokenExpression(line.tokens)} line={line} first={i === 0} />
       ))}
-      <div className="flex items-center gap-2">
+      <div className="flex w-full min-w-0 items-center justify-center gap-2">
         <span
           aria-hidden
           className={`font-heading text-title font-bold ${history.length === 0 ? "invisible" : ""}`}

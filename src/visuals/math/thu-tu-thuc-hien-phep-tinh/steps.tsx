@@ -82,6 +82,8 @@ function Legend() {
 
 // Text size of a line by how many lines share the picture: long worked
 // examples shrink so they still fit above the bottom bar.
+const ROWS_SHOWN = 4;
+
 export function lineUnit(lines: number): number {
   if (lines <= 3) return 0.75;
   if (lines === 4) return 0.64;
@@ -104,7 +106,7 @@ export function Row({
   return (
     // The little sum sits beside the line, or under it when the line is wide.
     <div className="flex w-full flex-wrap items-center justify-center gap-x-5">
-      <div className="flex items-center gap-2">
+      <div className="flex min-w-0 max-w-full items-center gap-2">
         <span
           aria-hidden
           className={`font-heading text-title font-bold ${first ? "invisible" : ""}`}
@@ -146,6 +148,7 @@ export function ExprSteps({
   mode,
   firstAt,
   legend = true,
+  unit: unitOverride,
 }: {
   source: string;
   mode: StepsMode;
@@ -154,6 +157,8 @@ export function ExprSteps({
   // Token index of an operation to do first against the rules, to show what
   // a wrong order gives.
   firstAt?: number;
+  // Text size of each line, where the picture sits in a smaller box.
+  unit?: number;
 }) {
   const all = expressionLines(
     source,
@@ -165,7 +170,7 @@ export function ExprSteps({
   // A hint ends on the line whose operation is the last one.
   const lines = hint ? all.slice(0, -1) : all;
   const label = `Tính ${spokenExpression(all[0]?.tokens ?? [])} từng bước`;
-  const unit = lineUnit(all.length);
+  const unit = unitOverride ?? lineUnit(all.length);
 
   if (mode === "still") {
     return (
@@ -186,28 +191,44 @@ export function ExprSteps({
     );
   }
 
+  // A long worked example shows a window of rows that follows the step, so
+  // it fits the space a picture gets: the row being worked, the ones just
+  // before it and the next one still to come.
+  const windowed = lines.length > ROWS_SHOWN;
+  const rowUnit = unitOverride ?? lineUnit(Math.min(lines.length, ROWS_SHOWN));
   return (
     <StepPlayer steps={lines.length} label={label}>
-      {(step) => (
-        <div className="flex w-full flex-col items-center gap-2">
-          {lines.map((line, i) => (
-            <Reveal
-              key={spokenExpression(line.tokens)}
-              shown={step >= i}
-              placeholder={<Pending />}
-              className="w-full"
-            >
-              <Row
-                line={line}
-                first={i === 0}
-                unit={unit}
-                hideResult={hint && i === lines.length - 1}
-              />
-            </Reveal>
-          ))}
-          {legend && <Legend />}
-        </div>
-      )}
+      {(step) => {
+        const start = windowed
+          ? Math.min(
+              Math.max(step - (ROWS_SHOWN - 2), 0),
+              lines.length - ROWS_SHOWN,
+            )
+          : 0;
+        return (
+          <div className="flex w-full flex-col items-center gap-2">
+            {lines.slice(start, start + ROWS_SHOWN).map((line, k) => {
+              const i = start + k;
+              return (
+                <Reveal
+                  key={spokenExpression(line.tokens)}
+                  shown={step >= i}
+                  placeholder={<Pending />}
+                  className="w-full"
+                >
+                  <Row
+                    line={line}
+                    first={i === 0}
+                    unit={rowUnit}
+                    hideResult={hint && i === lines.length - 1}
+                  />
+                </Reveal>
+              );
+            })}
+            {legend && <Legend />}
+          </div>
+        );
+      }}
     </StepPlayer>
   );
 }

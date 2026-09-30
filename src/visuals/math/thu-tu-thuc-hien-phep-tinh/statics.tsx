@@ -33,7 +33,7 @@ function Card({
 }) {
   return (
     <div
-      className={`flex flex-col items-center gap-2 rounded-2xl border-2 border-border bg-surface p-3 ${className}`}
+      className={`flex min-w-0 flex-col items-center gap-2 rounded-2xl border-2 border-border bg-surface p-3 ${className}`}
     >
       {children}
     </div>
@@ -49,10 +49,7 @@ const BILL_PLUS_AT = 3;
 
 function Bill() {
   return (
-    <Card className="w-full max-w-md items-stretch">
-      <p className="text-center font-heading text-block font-bold md:text-block-lg">
-        Hóa đơn
-      </p>
+    <Card className="w-full max-w-md items-stretch gap-1 py-2">
       <p className="flex items-center gap-3 text-body md:text-body-lg">
         <BookOpen aria-hidden className="size-6 shrink-0" />2 vở, mỗi vở 8 nghìn
         đồng
@@ -73,6 +70,7 @@ function Child({ name, firstAt }: { name: string; firstAt?: number }) {
         mode="still"
         firstAt={firstAt}
         legend={false}
+        unit={0.6}
       />
     </Card>
   );
@@ -85,7 +83,7 @@ export function HoaDonHaiBan() {
       {(step) => (
         <div className="flex w-full flex-col items-center gap-3">
           <Bill />
-          <div className="grid w-full gap-3 sm:grid-cols-2">
+          <div className="grid w-full grid-cols-2 gap-2">
             <Reveal
               shown={step >= 1}
               placeholder={<Card className="h-full min-h-24">Nam</Card>}
@@ -411,13 +409,13 @@ export function SoSanhThuTu({
   wrongLabel: string;
 }) {
   return (
-    <div className="grid w-full gap-3 sm:grid-cols-2">
+    <div className="grid w-full grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2">
       <Card>
         <p className="flex items-center gap-2 font-heading text-block font-bold">
           <ConceptMark color="amber" className="size-4" />
           Đúng thứ tự
         </p>
-        <ExprSteps source={source} mode="still" legend={false} />
+        <ExprSteps source={source} mode="still" legend={false} unit={0.55} />
       </Card>
       <Card>
         <p className="flex items-center gap-2 font-heading text-block font-bold">
@@ -429,6 +427,7 @@ export function SoSanhThuTu({
           mode="still"
           firstAt={wrongAt}
           legend={false}
+          unit={0.55}
         />
       </Card>
     </div>
