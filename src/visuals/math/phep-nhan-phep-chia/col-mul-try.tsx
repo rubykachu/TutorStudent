@@ -70,7 +70,7 @@ export function ColMulTry({
   const closing = `Xong rồi! ${formatInteger(a)} · ${formatInteger(b)} = ${formatInteger(plan.product)}`;
 
   return (
-    <div className="flex w-full flex-col items-center gap-2">
+    <div className="flex w-full flex-col items-center gap-1.5">
       <ColMulFigure
         plan={plan}
         shown={shown}
@@ -89,7 +89,7 @@ export function ColMulTry({
           feedback?.tone === "wrong" && !reducedMotion ? SHAKE : { x: 0 }
         }
         transition={{ duration: SHAKE_SECONDS, ease: "easeInOut" }}
-        className={`min-h-12 max-w-prose rounded-lg px-3 text-center text-body ${
+        className={`min-h-10 max-w-prose rounded-lg px-3 text-center text-body ${
           feedback?.tone === "wrong"
             ? "border-2 border-dashed border-retry bg-retry-soft text-retry-soft-foreground"
             : ""
@@ -98,7 +98,7 @@ export function ColMulTry({
       >
         {feedback?.text}
       </motion.p>
-      <fieldset className="grid w-full max-w-xl grid-cols-5 gap-3 md:grid-cols-10">
+      <fieldset className="grid w-full max-w-xl grid-cols-5 gap-2 md:grid-cols-10">
         <legend className="sr-only">Chữ số từ 0 đến 9</legend>
         {DIGITS.map((digit) => (
           <button

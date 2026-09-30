@@ -1,7 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { cellId, planMultiplication } from "./col-mul-digits";
 import { ColMulFigure } from "./col-mul-figure";
 
@@ -222,12 +222,38 @@ function MissingZero() {
   );
 }
 
+const MISTAKES = [
+  { tab: "Số nhớ", Picture: ForgotCarry },
+  { tab: "Số dư", Picture: RemainderTooBig },
+  { tab: "Chữ số 0", Picture: MissingZero },
+] as const;
+
+// One mistake at a time, picked with three buttons, so the picture stays inside
+// a phone screen.
 export function Mistakes() {
+  const [picked, setPicked] = useState(0);
+  const { Picture } = MISTAKES[picked] ?? MISTAKES[0];
   return (
-    <div className="flex w-full max-w-xl flex-col gap-4">
-      <ForgotCarry />
-      <RemainderTooBig />
-      <MissingZero />
+    <div className="flex w-full max-w-xl flex-col gap-3">
+      <fieldset className="flex justify-center gap-2">
+        <legend className="sr-only">Chọn một lỗi sai để xem</legend>
+        {MISTAKES.map(({ tab }, index) => (
+          <button
+            key={tab}
+            type="button"
+            aria-pressed={picked === index}
+            onClick={() => setPicked(index)}
+            className={`min-h-touch rounded-full border-2 px-4 text-body font-semibold ${
+              picked === index
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-surface text-foreground"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </fieldset>
+      <Picture />
     </div>
   );
 }

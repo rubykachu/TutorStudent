@@ -4,6 +4,11 @@
   "series": "kntt",
   "grade": 6,
   "order": 5,
+  "number": 5,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
   "title": "Phép nhân và phép chia số tự nhiên",
   "sourceRef": "Sách bài tập tr.17–20",
   "status": "draft",
@@ -3029,26 +3034,29 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "28 \\cdot 4 = 112"
+            "tex": "28 \\cdot 7 = 4"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "28 + 4 = 32"
+            "tex": "7 + 4 = 28"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "7 + 4 = 11"
+            "tex": "28 - 4 = 7"
           }
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
     },
     {
       "id": "phep-nhan-phep-chia.ex.chia-56-8",
@@ -3187,7 +3195,10 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      }
     },
     {
       "id": "phep-nhan-phep-chia.ex.chon-du-23-4",

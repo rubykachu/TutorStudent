@@ -1,14 +1,12 @@
 # Bàn giao: Bài 5 `phep-nhan-phep-chia` (Phép nhân và phép chia số tự nhiên)
 
 ## Trạng thái
-- Worktree `.claude/worktrees/agent-a36c64bad7802c3d9`, nhánh `worktree-agent-a36c64bad7802c3d9`: commit `0d0f6b2` (khung `lesson.json` nháp + catalog visual) và `e4aa074` (wip lúc dừng).
-- Nguồn: sách bài tập tr.17–20 (PDF 18–21), lời giải tr.98–100 (PDF 99–101), đã nạp vào `sources/math/phep-nhan-phep-chia/`.
-- Visual: đang dựng song song theo nhóm "kind". Nhóm phép chia (share, pack, remCheck, factFamily, colDiv, colDivTry, shareTry, shareFill, colDivFill — 9 kind) đã xong và qua test riêng. Các nhóm kind khác (nhân, lưới, tính chất…) chưa có báo cáo — kiểm file trong `src/visuals/math/phep-nhan-phep-chia/` và `pnpm visual:shot phep-nhan-phep-chia` để biết kind nào còn thiếu.
-- Chưa: walk, review, approve, lock, overview hoàn chỉnh.
+- Worktree `.claude/worktrees/agent-a36c64bad7802c3d9`, nhánh `worktree-agent-a36c64bad7802c3d9`. Đã gộp `main`, đã truyền `params` của `manipulate` xuống visual (có test), đã thêm `number`/`chapter`, `content:check` 0 lỗi.
+- Nguồn: sách bài tập tr.17–20 (PDF 18–21), lời giải tr.98–100 (PDF 99–101), trong `sources/math/phep-nhan-phep-chia/` ở cây chính.
+- Server worktree chạy cổng 3230 (`TEST_PORT=3230` cho `pnpm visual:shot`, `WALK_BASE_URL=http://localhost:3230` cho walk); sau khi sửa `lesson.json` chạy `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+- Còn lại của tác giả: visual:shot pass, walk 0 FAIL và xem ảnh walk. Chưa review, chưa `content:lock`, còn `status: draft`.
 
 ## Việc tiếp theo
-1. Trong worktree: `pnpm install`, dev server cổng riêng (vd 3230) với `CONTENT_INCLUDE_DRAFT=1`; `git merge main`.
-2. Sửa app cho `manipulate`: truyền `params` của bài tập xuống visual (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề (xem báo cáo trong `notebooks/backlogs/index.md`). Thêm mẫu vào `samples` của registry test: chia `{ total: 29, people: 6 }` → `{ q: 4, r: 5 }`; thương-dư `{ dividend: 217, divisor: 15 }` → `{ q1: 1, q0: 4, r1: 0, r0: 7 }`.
-3. Hoàn thiện các kind còn thiếu → `pnpm visual:shot phep-nhan-phep-chia` pass, đọc ảnh.
-4. Hoàn thiện `lesson.json` theo skill `lesson-author` (overview, câu chọn nhiều, ví dụ đời sống, không cắt chữ) → `pnpm content:check --stats` PASS → walk 0 lỗi.
-5. Review (Opus, ≤2 vòng đầy đủ rồi vòng phần đổi) → approve → lock → gate → gộp main.
+1. Kiểm `pnpm visual:shot phep-nhan-phep-chia` và `pnpm lesson:walk phep-nhan-phep-chia` (xem ảnh trong `.shots/`); sửa lỗi còn lại.
+2. Gate (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`) rồi commit.
+3. Review bằng subagent mới (Opus, vòng 1 và 2 đầy đủ) rồi approve, `pnpm content:lock`, gộp vào main.
