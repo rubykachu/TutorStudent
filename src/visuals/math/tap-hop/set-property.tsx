@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUp, ArrowUpDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -13,34 +13,12 @@ import {
   PropertyLine,
   SetName,
   Tag,
-  Words,
 } from "./set-parts";
 
 // Figures of the second way to write a set, by its characteristic property
 // after the vertical bar, and of moving between the two ways.
 
 const LIME = CONCEPT_CLASSES.lime.text;
-
-// A piece of a written set with an optional short label under it.
-function Column({
-  children,
-  label,
-}: {
-  children: ReactNode;
-  label?: ReactNode;
-}) {
-  return (
-    <div className="flex max-w-full flex-col items-center gap-1">
-      <span className="font-heading text-block font-bold md:text-block-lg">
-        {children}
-      </span>
-      {label}
-    </div>
-  );
-}
-
-const ANATOMY_ROW =
-  "flex w-full flex-wrap items-start justify-center gap-x-2 gap-y-2";
 
 export function DauHieuViDu() {
   return (
@@ -122,14 +100,18 @@ export function DocDauHieu() {
 export function TheDauHieu() {
   return (
     <Figure label="Dấu hiệu đặc trưng của các số x là số chẵn, viết sau vạch đứng">
-      <div className={ANATOMY_ROW}>
-        <Column>
-          {"{"} <Element>x</Element> |
-        </Column>
-        <Column label={<Tag color="lime">dấu hiệu đặc trưng</Tag>}>
+      <div className="flex items-baseline justify-center gap-2 pb-14 font-heading text-block font-bold md:text-block-lg">
+        <span>{"{"}</span>
+        <Element>x</Element>
+        <span>|</span>
+        <span className="relative">
           <span className={LIME}>x là số chẵn</span>
-        </Column>
-        <Column>{"}"}</Column>
+          <span className="absolute top-full left-1/2 flex -translate-x-1/2 flex-col items-center font-body whitespace-nowrap">
+            <ArrowUp aria-hidden className={`size-4 ${LIME}`} />
+            <Tag color="lime">dấu hiệu đặc trưng</Tag>
+          </span>
+        </span>
+        <span>{"}"}</span>
       </div>
     </Figure>
   );
@@ -158,12 +140,10 @@ function TwoWays({
   elements,
   property,
   label,
-  propertyOnly = false,
 }: {
   elements: readonly number[];
   property: string;
   label?: string;
-  propertyOnly?: boolean;
 }) {
   return (
     <Figure
@@ -177,13 +157,7 @@ function TwoWays({
         {label && <Tag color="lime">{label}</Tag>}
       </div>
       <WayCard header="Nêu dấu hiệu đặc trưng">
-        {propertyOnly ? (
-          <p className={MATH_LINE}>
-            <Words text={property} className={LIME} />
-          </p>
-        ) : (
-          <PropertyLine property={property} />
-        )}
+        <PropertyLine property={property} />
       </WayCard>
     </Figure>
   );
@@ -208,7 +182,6 @@ export function TheDoiCach() {
       elements={[7, 8, 9]}
       property="x là số tự nhiên lớn hơn 6 và nhỏ hơn 10"
       label="tìm dấu hiệu đặc trưng"
-      propertyOnly
     />
   );
 }

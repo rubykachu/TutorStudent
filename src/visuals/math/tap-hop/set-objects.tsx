@@ -110,12 +110,12 @@ const TEAM = ["Nam", "Mai", "Sơn"] as const;
 export function ViDuTapHop() {
   return (
     <Figure label="Ba tập hợp: hộp bút, đội bóng, các ngày trong tuần">
-      <SetBox name="hộp bút">
+      <SetBox name="đồ trong hộp bút">
         {CASE_ITEMS.map((kind) => (
           <Chip key={kind}>{ITEM_LABELS[kind]}</Chip>
         ))}
       </SetBox>
-      <SetBox name="đội bóng">
+      <SetBox name="các bạn trong đội bóng">
         {TEAM.map((name) => (
           <Chip key={name} round>
             {name}

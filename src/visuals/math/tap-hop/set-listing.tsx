@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUp } from "lucide-react";
 import type { ReactNode } from "react";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -20,23 +21,24 @@ import {
 // Figures of the two ways a set is written that start from its elements:
 // listing them, and checking whether something belongs.
 
-const BUILD_LINE =
-  "flex flex-wrap items-baseline justify-center gap-x-2 font-heading text-title font-bold md:text-title-lg";
-
 type BuildPiece = {
   id: string;
   shownAt: number;
-  piece: ReactNode;
+  glyph: ReactNode;
+  // What stands in for the piece until its step: a dim "?" for an element, the
+  // faint symbol itself for braces and separators.
   pending: ReactNode;
-  // Starts with ";", which sits right after the previous element.
-  joined?: boolean;
+  // Name of the symbol, written right under it with a short arrow.
+  caption?: string;
+  // Symbols share one column width so the line spaces evenly.
+  symbol?: boolean;
 };
 
 const BUILD_PIECES: readonly BuildPiece[] = [
   {
     id: "name",
     shownAt: 0,
-    piece: (
+    glyph: (
       <span>
         <SetName>A</SetName> =
       </span>
@@ -46,78 +48,66 @@ const BUILD_PIECES: readonly BuildPiece[] = [
   {
     id: "open",
     shownAt: 0,
-    piece: <span>{"{"}</span>,
-    pending: <span>{"{"}</span>,
+    glyph: "{",
+    pending: "{",
+    caption: "mở ngoặc nhọn",
+    symbol: true,
   },
+  { id: "first", shownAt: 1, glyph: <Element>2</Element>, pending: "?" },
   {
-    id: "first",
-    shownAt: 1,
-    piece: <Element>2</Element>,
-    pending: <span>?</span>,
-  },
-  {
-    id: "second",
+    id: "first-separator",
     shownAt: 2,
-    piece: (
-      <span>
-        ; <Element>4</Element>
-      </span>
-    ),
-    pending: <span>; ?</span>,
-    joined: true,
+    glyph: ";",
+    pending: ";",
+    caption: "dấu chấm phẩy",
+    symbol: true,
   },
+  { id: "second", shownAt: 2, glyph: <Element>4</Element>, pending: "?" },
   {
-    id: "third",
+    id: "second-separator",
     shownAt: 3,
-    piece: (
-      <span>
-        ; <Element>6</Element>
-      </span>
-    ),
-    pending: <span>; ?</span>,
-    joined: true,
+    glyph: ";",
+    pending: ";",
+    symbol: true,
   },
+  { id: "third", shownAt: 3, glyph: <Element>6</Element>, pending: "?" },
   {
     id: "close",
     shownAt: 4,
-    piece: <span>{"}"}</span>,
-    pending: <span>?</span>,
+    glyph: "}",
+    pending: "}",
+    caption: "đóng ngoặc nhọn",
+    symbol: true,
   },
 ];
 
-const BUILD_LEGEND: readonly { shownAt: number; name: string }[] = [
-  { shownAt: 0, name: "mở ngoặc nhọn" },
-  { shownAt: 2, name: "dấu chấm phẩy" },
-  { shownAt: 4, name: "đóng ngoặc nhọn" },
-];
-
-// "A = { 2 ; 4 ; 6 }" written piece by piece; pieces still to come wait as "?".
+// "A = { 2 ; 4 ; 6 }" written piece by piece; elements still to come wait as
+// "?", each symbol carries its name underneath.
 export function LapGhepLietKe() {
   return (
     <StepPlayer steps={5} label="Viết tập hợp A bằng cách liệt kê từng phần tử">
       {(step) => (
-        <div className="flex w-full flex-col items-center gap-4">
-          <div className={BUILD_LINE}>
-            {BUILD_PIECES.map(({ id, shownAt, piece, pending, joined }) => (
+        <div className="flex w-full items-start justify-center gap-x-1 font-heading text-block font-bold md:text-block-lg">
+          {BUILD_PIECES.map(
+            ({ id, shownAt, glyph, pending, caption, symbol }) => (
               <Reveal
                 key={id}
                 shown={step >= shownAt}
-                placeholder={pending}
-                className={joined ? "-ml-2" : ""}
+                placeholder={<span>{pending}</span>}
+                className={`flex flex-col items-center ${symbol ? "w-12" : ""} ${caption ? "min-h-28" : ""}`}
               >
-                {piece}
+                <span>{glyph}</span>
+                {caption && (
+                  <>
+                    <ArrowUp aria-hidden className="size-4" />
+                    <span className="text-center font-body text-caption leading-tight font-semibold">
+                      {caption}
+                    </span>
+                  </>
+                )}
               </Reveal>
-            ))}
-          </div>
-          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-            {BUILD_LEGEND.map(({ shownAt, name }) => (
-              <li key={name}>
-                <Reveal shown={step >= shownAt}>
-                  <span className="text-caption font-semibold">{name}</span>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+            ),
+          )}
         </div>
       )}
     </StepPlayer>
@@ -161,8 +151,8 @@ export function ViDuLietKe() {
 
 export function TheLietKe() {
   return (
-    <Figure label="Tập hợp K gồm các phần tử 1, 7, 8 viết trong dấu ngoặc nhọn">
-      <ListLine name="K" elements={[1, 7, 8]} />
+    <Figure label="Tập hợp E gồm các phần tử 1, 7, 8 viết trong dấu ngoặc nhọn">
+      <ListLine name="E" elements={[1, 7, 8]} />
       <ul className="flex flex-col gap-1 text-caption font-semibold">
         <li>
           <span className="font-heading text-block font-bold">{"{ }"}</span> bao

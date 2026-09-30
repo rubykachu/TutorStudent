@@ -1,7 +1,7 @@
 import { Hand } from "lucide-react";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
-import { Glyph, type GlyphKey } from "./glyphs";
+import type { GlyphKey } from "./glyphs";
 import { SymbolCard, type SymbolCardData } from "./symbol-card";
 import {
   element,
@@ -177,55 +177,43 @@ const CHIP =
 const SLOT =
   "inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg border-2 px-1";
 
-const BANK: readonly { key: GlyphKey; picked?: boolean }[] = [
-  { key: OPEN },
-  { key: CLOSE, picked: true },
-  { key: SEMICOLON },
+const BANK: readonly { value: number; picked?: boolean }[] = [
+  { value: 5 },
+  { value: 7, picked: true },
+  { value: 9 },
 ];
 
-// How the fill-in question works: a sentence with a filled and an empty slot,
-// the row of mark chips to pick from with one chip picked, and a hand on it.
+// How the fill-in question works: a sentence with an empty slot, the row of
+// chips to pick from with one chip picked, and a hand on it.
 export function HuongDanChip() {
   return (
     <div
       role="img"
-      aria-label="Bài điền kí hiệu: chạm một kí hiệu ở dưới, rồi chạm ô trống để đặt vào"
+      aria-label="Bài điền vào ô trống: chạm một thẻ ở dưới, rồi chạm ô trống để đặt vào. Ví dụ: Một tuần có mấy ngày"
       className="flex w-full flex-col items-center gap-5"
     >
       <div
         aria-hidden
         className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-heading text-title font-bold md:text-title-lg"
       >
-        <span className={CONCEPT_CLASSES.teal.text}>A</span>
-        <span>=</span>
-        <span className={`${SLOT} border-foreground bg-surface`}>
-          <Glyph name={OPEN} sizeClass="h-9" />
-        </span>
-        <span className={CONCEPT_CLASSES.amber.text}>1</span>
-        <Glyph name={SEMICOLON} />
-        <span className={CONCEPT_CLASSES.amber.text}>2</span>
+        <span>Một tuần có</span>
         <span className={`${SLOT} border-dashed border-muted-foreground`} />
+        <span>ngày.</span>
       </div>
       <div aria-hidden className="flex items-start justify-center gap-4">
-        {BANK.map(({ key, picked }) => (
-          <div key={key} className="flex flex-col items-center gap-1">
+        {BANK.map(({ value, picked }) => (
+          <div key={value} className="flex flex-col items-center gap-1">
             <span
-              className={`${CHIP} ${picked ? "border-primary bg-primary" : "border-border bg-surface"}`}
+              className={`${CHIP} font-heading text-title font-bold tabular-nums ${picked ? "border-primary bg-primary text-primary-foreground" : "border-border bg-surface"}`}
             >
-              <Glyph
-                name={key}
-                sizeClass="h-9"
-                className={
-                  picked ? "stroke-primary-foreground" : "stroke-foreground"
-                }
-              />
+              {value}
             </span>
             {picked ? <Hand className="size-8 text-primary" /> : null}
           </div>
         ))}
       </div>
       <p aria-hidden className="text-center text-body font-semibold">
-        Chạm kí hiệu, rồi chạm ô trống
+        Chạm thẻ, rồi chạm ô trống
       </p>
     </div>
   );
@@ -322,7 +310,7 @@ export function TheThuoc() {
 export function TheKhongThuoc() {
   return (
     <SymbolCard
-      {...memberCard("khong-thuoc", 5, "không thuộc", "dấu ∈ và gạch chéo")}
+      {...memberCard("khong-thuoc", 5, "không thuộc", "kí hiệu ∈ và gạch chéo")}
     />
   );
 }

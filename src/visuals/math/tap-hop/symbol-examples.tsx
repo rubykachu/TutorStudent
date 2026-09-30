@@ -35,10 +35,14 @@ export function tapNet(
   return Example;
 }
 
-// A row of `count` numbers whose gaps the child fills with ";".
-export function datChamPhay(count: number): ComponentType<VisualProps> {
+// A set of `count` consecutive numbers from `first`, in braces, whose gaps the
+// child fills with ";".
+export function datChamPhay(
+  count: number,
+  first: number,
+): ComponentType<VisualProps> {
   function Example(props: VisualProps) {
-    return <SemicolonGaps count={count} {...props} />;
+    return <SemicolonGaps count={count} first={first} {...props} />;
   }
   return Example;
 }

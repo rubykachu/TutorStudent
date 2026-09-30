@@ -153,7 +153,7 @@ export function StrokeFigure({
     >
       <g {...decorative}>
         {strokes.map((stroke, i) =>
-          i < drawn || (showPending && i !== active) ? null : (
+          i !== drawn ? null : (
             <path
               key={`guide-${stroke.d}`}
               d={stroke.d}
@@ -161,8 +161,13 @@ export function StrokeFigure({
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={stroke.dot ? 10 : 5}
-              strokeDasharray={stroke.dot ? undefined : "0.1 9"}
-              strokeDashoffset={stroke.dot ? undefined : 4.5}
+              pathLength={stroke.guideSteps}
+              strokeDasharray={
+                stroke.dot ? undefined : stroke.guideSteps ? "0.01 1" : "0.1 9"
+              }
+              strokeDashoffset={
+                stroke.dot || stroke.guideSteps ? undefined : 4.5
+              }
               className="stroke-muted-foreground opacity-60"
             />
           ),

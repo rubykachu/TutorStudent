@@ -326,13 +326,13 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "tap-hop.visual.dat-cham-phay": {
     interactive: true,
-    load: () => lessonExample("tap-hop", (m) => m.datChamPhay(3)),
+    load: () => lessonExample("tap-hop", (m) => m.datChamPhay(3, 1)),
   },
   "tap-hop.visual.dat-cham-phay-bon": {
     interactive: true,
     validators: { "du-cham-phay": gapsFilled },
     solutions: { "du-cham-phay": solveGapsFilled },
-    load: () => lessonExample("tap-hop", (m) => m.datChamPhay(4)),
+    load: () => lessonExample("tap-hop", (m) => m.datChamPhay(4, 5)),
   },
   "tap-hop.visual.cham-ngoac": {
     interactive: false,
@@ -356,10 +356,10 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   },
   "tap-hop.visual.cham-dau-ngan": {
     interactive: false,
-    regions: ["phay", "cham", "cham-phay", "hai-cham"],
+    regions: ["nho-hon", "phay", "cham-phay", "bang"],
     load: () =>
       lessonExample("tap-hop", (m) =>
-        m.symbolTap(["phay", "cham", "cham-phay", "hai-cham"]),
+        m.symbolTap(["nho-hon", "phay", "cham-phay", "bang"]),
       ),
   },
   "tap-hop.visual.cham-ki-hieu-thuoc": {

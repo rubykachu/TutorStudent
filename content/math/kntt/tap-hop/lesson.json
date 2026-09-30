@@ -68,10 +68,7 @@
         }
       ],
       "checkIds": ["tap-hop.ex.kt-phan-tu-hop-but"],
-      "practiceIds": [
-        "tap-hop.ex.nhom-la-tap-hop",
-        "tap-hop.ex.ngay-trong-tuan"
-      ],
+      "practiceIds": ["tap-hop.ex.nhom-la-tap-hop", "tap-hop.ex.mua-trong-nam"],
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.tom-tat-tap-hop",
@@ -81,7 +78,7 @@
     {
       "id": "tap-hop.section.thao-tac",
       "title": "Cách chạm và điền kí hiệu",
-      "sourceRef": "Sách bài tập tr.5–6 (cách làm bài tập)",
+      "sourceRef": "Hướng dẫn cách làm bài tập, không lấy từ sách",
       "minutes": 3,
       "blocks": [
         {
@@ -89,7 +86,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bài chạm vùng: chạm vào hình em chọn, hình đó hiện vòng sáng. Chạm lần nữa để bỏ chọn, rồi bấm “Kiểm tra”."
+              "text": "Bài chạm vùng: chạm vào hình bạn chọn, hình đó hiện vòng sáng. Chạm lần nữa để bỏ chọn, rồi bấm “Kiểm tra”."
             },
             {
               "type": "visual",
@@ -102,7 +99,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bài điền kí hiệu: chạm một kí hiệu ở dưới, rồi chạm ô trống để đặt vào. Chạm ô đã điền để lấy ra."
+              "text": "Bài điền: chạm một thẻ ở dưới (từ hay kí hiệu), rồi chạm ô trống để đặt vào. Chạm ô đã điền để lấy ra."
             },
             {
               "type": "visual",
@@ -116,7 +113,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.huong-dan-cham",
-        "caption": "Bài chạm vùng: chạm hình để chọn. Bài điền: chạm kí hiệu rồi chạm ô trống."
+        "caption": "Bài chạm vùng: chạm hình để chọn. Bài điền: chạm thẻ rồi chạm ô trống."
       }
     },
     {
@@ -247,7 +244,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-thuoc",
-        "caption": "x ∈ A đọc là x thuộc A: x là phần tử của A."
+        "caption": "x ∈ A: x là phần tử của A."
       }
     },
     {
@@ -290,7 +287,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-khong-thuoc",
-        "caption": "x ∉ A đọc là x không thuộc A: x không phải là phần tử của A."
+        "caption": "x ∉ A: x không phải là phần tử của A."
       }
     },
     {
@@ -322,7 +319,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-liet-ke",
-        "caption": "Liệt kê là viết các phần tử trong { }, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
+        "caption": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
       }
     },
     {
@@ -340,7 +337,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn biết x có thuộc A không, hãy xem x có là phần tử của A không. Có thì viết x ∈ A, không thì viết x ∉ A."
+              "text": "Muốn biết x có thuộc A không, xem x có nằm trong A hay có đúng điều mô tả A không. Có thì viết x ∈ A, không thì viết x ∉ A."
             },
             {
               "type": "visual",
@@ -354,13 +351,13 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-xet-thuoc",
-        "caption": "Xem x có là phần tử của A không: có thì x ∈ A, không thì x ∉ A."
+        "caption": "Có trong A thì x ∈ A, không có thì x ∉ A."
       }
     },
     {
       "id": "tap-hop.section.dau-hieu-dac-trung",
       "title": "Nêu dấu hiệu đặc trưng",
-      "sourceRef": "Sách bài tập tr.5–6 (kiến thức cần nhớ 2; ví dụ; chú ý; bài 1.5)",
+      "sourceRef": "Sách bài tập tr.5–6 (kiến thức cần nhớ 2; ví dụ; bài 1.5)",
       "minutes": 3,
       "blocks": [
         {
@@ -368,7 +365,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có thể mô tả tập hợp bằng cách nêu dấu hiệu đặc trưng, tức là điều chung của mọi phần tử. Viết E = {x | x là …}, phần sau vạch đứng | là dấu hiệu đặc trưng."
+              "text": "Có thể mô tả tập hợp bằng dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Viết E = {x | x là …}, phần sau vạch đứng | là dấu hiệu đó."
             },
             {
               "type": "visual",
@@ -386,7 +383,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-dau-hieu",
-        "caption": "Dấu hiệu đặc trưng là điều chung của mọi phần tử, viết sau vạch đứng |."
+        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Nó viết sau vạch đứng | trong ngoặc nhọn."
       }
     },
     {
@@ -430,7 +427,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-tap-hop",
-        "caption": "Tập hợp là một nhóm các thứ gom lại, như các đồ trong hộp bút."
+        "caption": "Tập hợp là một nhóm các thứ gom lại, như các bạn trong đội bóng."
       }
     },
     {
@@ -480,7 +477,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-thuoc",
-        "caption": "x ∈ A đọc là x thuộc A: x là phần tử của A."
+        "caption": "x ∈ A: x là phần tử của A."
       }
     },
     {
@@ -490,7 +487,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-khong-thuoc",
-        "caption": "x ∉ A đọc là x không thuộc A: x không phải là phần tử của A."
+        "caption": "x ∉ A: x không phải là phần tử của A."
       }
     },
     {
@@ -500,7 +497,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-liet-ke",
-        "caption": "Liệt kê là viết các phần tử trong { }, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
+        "caption": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần."
       }
     },
     {
@@ -510,7 +507,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-xet-thuoc",
-        "caption": "Xem x có là phần tử của A không: có thì x ∈ A, không thì x ∉ A."
+        "caption": "Có trong A thì x ∈ A, không có thì x ∉ A."
       }
     },
     {
@@ -520,7 +517,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-dau-hieu",
-        "caption": "Dấu hiệu đặc trưng là điều chung của mọi phần tử, viết sau vạch đứng |."
+        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Nó viết sau vạch đứng | trong ngoặc nhọn."
       }
     },
     {
@@ -533,7 +530,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-doi-cach",
-        "caption": "Nhìn các phần tử, tìm dấu hiệu đặc trưng rồi viết sau vạch đứng |."
+        "caption": "Nhìn các phần tử, tìm dấu hiệu đặc trưng rồi viết sau vạch đứng | trong ngoặc nhọn."
       }
     }
   ],
@@ -607,7 +604,7 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "các bạn trong đội bóng"
+            "text": "các món trong bữa sáng"
           }
         },
         {
@@ -629,7 +626,7 @@
       "multiple": false
     },
     {
-      "id": "tap-hop.ex.ngay-trong-tuan",
+      "id": "tap-hop.ex.mua-trong-nam",
       "cardIds": ["tap-hop.card.phan-tu"],
       "prompt": [
         {
@@ -711,7 +708,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "một số tự nhiên"
+            "text": "một đồ trong cặp"
           }
         }
       ],
@@ -908,7 +905,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tổ của Lan có ba bạn đánh số 1, 2, 3. Cách nào viết đúng tập hợp các số đó?"
+          "text": "Tổ của Lan có ba bạn đánh số 4, 7, 9. Cách nào viết đúng tập hợp các số đó?"
         }
       ],
       "hints": {
@@ -926,21 +923,21 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} \\}"
+            "tex": "\\{ \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} \\}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "( \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} )"
+            "tex": "( \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} )"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "[ \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} ]"
+            "tex": "[ \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} ]"
           }
         }
       ],
@@ -1238,7 +1235,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ba bạn trong đội được đánh số áo. Chạm vào dấu viết giữa hai số áo khi ghi tập hợp."
+          "text": "Ba bạn đeo số áo 3, 8 và 10. Khi ghi tập hợp các số áo, chạm vào dấu viết giữa hai số."
         }
       ],
       "hints": {
@@ -1278,21 +1275,21 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\{ \\concept{amber}{4} ; \\concept{amber}{5} ; \\concept{amber}{6} \\}"
+            "tex": "\\{ \\concept{amber}{4} \\, {\\Large ;} \\, \\concept{amber}{5} \\, {\\Large ;} \\, \\concept{amber}{6} \\}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\{ \\concept{amber}{4} , \\concept{amber}{5} , \\concept{amber}{6} \\}"
+            "tex": "\\{ \\concept{amber}{4} \\, {\\Large ,} \\, \\concept{amber}{5} \\, {\\Large ,} \\, \\concept{amber}{6} \\}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\{ \\concept{amber}{4} . \\concept{amber}{5} . \\concept{amber}{6} \\}"
+            "tex": "\\{ \\concept{amber}{4} \\, {\\Large .} \\, \\concept{amber}{5} \\, {\\Large .} \\, \\concept{amber}{6} \\}"
           }
         }
       ],
@@ -1464,7 +1461,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn dấu thích hợp cho chỗ trống."
+          "text": "Chọn kí hiệu thích hợp cho chỗ trống."
         },
         {
           "type": "formula",
@@ -1504,7 +1501,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đổi x để có x thuộc tập hợp A."
+          "text": "Bấm − hoặc + để đổi x, sao cho x thuộc tập hợp A."
         },
         {
           "type": "formula",
@@ -1654,7 +1651,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn dấu thích hợp cho chỗ trống."
+          "text": "Chọn kí hiệu thích hợp cho chỗ trống."
         },
         {
           "type": "formula",
@@ -1694,7 +1691,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đổi x để có x không thuộc tập hợp A."
+          "text": "Bấm − hoặc + để đổi x, sao cho x không thuộc tập hợp A."
         },
         {
           "type": "formula",
@@ -2078,7 +2075,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\{ \\concept{amber}{3} ; \\concept{amber}{4} ; \\concept{amber}{4} \\}"
+            "tex": "\\{ \\concept{amber}{343} \\}"
           }
         }
       ],
@@ -2087,7 +2084,7 @@
     },
     {
       "id": "tap-hop.ex.dem-chu-cai-nha-trang",
-      "cardIds": ["tap-hop.card.liet-ke", "tap-hop.card.phan-tu"],
+      "cardIds": ["tap-hop.card.liet-ke"],
       "prompt": [
         {
           "type": "note",
@@ -2212,7 +2209,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Q là tập hợp các số nhà có hai chữ số trong phố của Nam. Số nhà nào thuộc Q?"
+          "text": "Phố của Nam có nhà số 9, 64 và 200. Số nhà nào thuộc tập hợp Q các số nhà có hai chữ số?"
         }
       ],
       "hints": {
@@ -2316,7 +2313,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "K là tập hợp các số tự nhiên có ba chữ số. Chọn dấu cho mỗi chỗ trống."
+          "text": "K là tập hợp các số tự nhiên có ba chữ số. Chọn kí hiệu cho mỗi chỗ trống."
         }
       ],
       "hints": {
@@ -2332,7 +2329,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "305 "
+          "text": "610 "
         },
         {
           "type": "blank",
@@ -2341,7 +2338,7 @@
         },
         {
           "type": "text",
-          "text": " K và 48 "
+          "text": " K và 95 "
         },
         {
           "type": "blank",
@@ -2361,7 +2358,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho hai tập hợp A và B. Chọn dấu cho mỗi chỗ trống."
+          "text": "Cho hai tập hợp A và B. Chọn kí hiệu cho mỗi chỗ trống."
         },
         {
           "type": "formula",
@@ -2436,7 +2433,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho tập hợp B gồm hai phần tử x và y. Dòng nào đúng?"
+          "text": "Cho tập hợp R gồm hai phần tử h và k. Dòng nào đúng?"
         }
       ],
       "hints": {
@@ -2454,21 +2451,21 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\concept{amber}{y} \\in \\concept{teal}{B}"
+            "tex": "\\concept{amber}{k} \\in \\concept{teal}{R}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\concept{amber}{x} \\notin \\concept{teal}{B}"
+            "tex": "\\concept{amber}{h} \\notin \\concept{teal}{R}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\concept{amber}{z} \\in \\concept{teal}{B}"
+            "tex": "\\concept{amber}{u} \\in \\concept{teal}{R}"
           }
         }
       ],
@@ -2481,7 +2478,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đội bóng chọn các bạn có số áo là số chẵn nhỏ hơn 9. Chạm vào dấu hiệu đặc trưng của các số áo."
+          "text": "Các bạn đeo số áo 0, 2, 4, 6, 8 được viết thành tập hợp A. Chạm vào dấu hiệu đặc trưng của A."
         }
       ],
       "hints": {
@@ -2789,6 +2786,13 @@
             "type": "text",
             "text": "x là số tự nhiên lớn hơn 2 và nhỏ hơn 6"
           }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "x là số tự nhiên nhỏ hơn 7"
+          }
         }
       ],
       "answer": ["a"],
@@ -2880,7 +2884,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho tập hợp H = {x | x là số chẵn lớn hơn 0 và nhỏ hơn 7}. Viết H bằng cách liệt kê, theo thứ tự từ bé đến lớn."
+          "text": "Cho tập hợp H = {x | x là số chẵn lớn hơn 3 và nhỏ hơn 10}. Viết H bằng cách liệt kê, theo thứ tự từ bé đến lớn."
         }
       ],
       "hints": {
@@ -2910,7 +2914,7 @@
         {
           "type": "blank",
           "id": "o2",
-          "accept": ["2"]
+          "accept": ["4"]
         },
         {
           "type": "text",
@@ -2928,7 +2932,7 @@
         {
           "type": "blank",
           "id": "o4",
-          "accept": ["4"]
+          "accept": ["6"]
         },
         {
           "type": "text",
@@ -2946,7 +2950,7 @@
         {
           "type": "blank",
           "id": "o6",
-          "accept": ["6"]
+          "accept": ["8"]
         },
         {
           "type": "text",
@@ -2958,7 +2962,7 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", ";", "0", "2", "4", "6", "8"]
+      "bank": ["{", "}", ";", "10", "4", "6", "8"]
     },
     {
       "id": "tap-hop.ex.chon-dau-hieu-so-le",

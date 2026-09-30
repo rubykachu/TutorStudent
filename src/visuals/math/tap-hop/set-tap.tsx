@@ -80,7 +80,7 @@ export function DauHieuCham() {
   return (
     <RegionSvg
       label="Tập hợp A gồm các số x, với x là số chẵn nhỏ hơn 9"
-      viewBox="0 0 340 180"
+      viewBox="0 0 330 180"
       className="h-auto w-full max-w-sm"
     >
       <text

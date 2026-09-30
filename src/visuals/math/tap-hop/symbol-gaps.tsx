@@ -15,10 +15,11 @@ function gapKey(index: number): string {
 // its gap holds a ";".
 export function SemicolonGaps({
   count,
+  first,
   onStateChange,
   shownState,
   disabled = false,
-}: VisualProps & { count: number }) {
+}: VisualProps & { count: number; first: number }) {
   const gaps = count - 1;
   const [own, setOwn] = useState<VisualState>({});
   const shown = shownState !== undefined;
@@ -37,18 +38,19 @@ export function SemicolonGaps({
   }
 
   return (
-    <fieldset className="m-0 flex w-full min-w-0 items-center justify-center gap-1 border-0 p-0">
-      <legend className="sr-only">{`Dãy ${count} số, giữa hai số cạnh nhau có một ô trống`}</legend>
+    <fieldset className="m-0 flex w-full min-w-0 items-center justify-center gap-0.5 border-0 p-0">
+      <legend className="sr-only">{`Tập hợp ${count} số từ ${first}, giữa hai số cạnh nhau có một ô trống`}</legend>
+      <Glyph name="ngoac-nhon-mo" sizeClass="h-14" />
       {Array.from({ length: count }, (_, i) => (
         <Fragment key={gapKey(i)}>
           <span
-            className={`px-1 font-heading text-title font-bold tabular-nums md:text-title-lg ${CONCEPT_CLASSES.amber.text}`}
+            className={`px-0.5 font-heading text-title font-bold tabular-nums md:text-title-lg ${CONCEPT_CLASSES.amber.text}`}
           >
-            {i + 1}
+            {first + i}
           </span>
           {i < gaps ? (
             <GapButton
-              between={[i + 1, i + 2]}
+              between={[first + i, first + i + 1]}
               filled={state[gapKey(i)] === 1}
               disabled={locked}
               marker={stateSet(gapKey(i), 1 - (state[gapKey(i)] ?? 0))}
@@ -57,6 +59,7 @@ export function SemicolonGaps({
           ) : null}
         </Fragment>
       ))}
+      <Glyph name="ngoac-nhon-dong" sizeClass="h-14" />
     </fieldset>
   );
 }

@@ -149,11 +149,11 @@ describe("tracing a mark", () => {
 
 describe("semicolon gaps", () => {
   it("has one gap fewer than numbers and toggles a semicolon in a gap", () => {
-    const Row = datChamPhay(4);
+    const Row = datChamPhay(4, 5);
     const onStateChange = vi.fn();
     render(<Row onStateChange={onStateChange} />);
     expect(screen.getAllByRole("button")).toHaveLength(3);
-    const first = screen.getByRole("button", { name: "Ô trống giữa 1 và 2" });
+    const first = screen.getByRole("button", { name: "Ô trống giữa 5 và 6" });
     fireEvent.click(first);
     expect(onStateChange).toHaveBeenLastCalledWith({ g0: 1, g1: 0, g2: 0 });
     expect(first).toHaveAttribute("aria-pressed", "true");
@@ -163,7 +163,7 @@ describe("semicolon gaps", () => {
   });
 
   it("shows a given state and ignores taps when locked", () => {
-    const Row = datChamPhay(3);
+    const Row = datChamPhay(3, 1);
     const onStateChange = vi.fn();
     render(<Row shownState={{ g0: 1, g1: 1 }} onStateChange={onStateChange} />);
     const gap = screen.getByRole("button", { name: "Ô trống giữa 2 và 3" });

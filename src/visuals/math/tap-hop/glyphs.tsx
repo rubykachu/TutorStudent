@@ -16,6 +16,10 @@ export type Stroke = {
   // Where the numbered start dot sits, beside the start so it never covers the
   // ink; by default behind the start, on the line the pen arrives along.
   badge?: readonly [number, number];
+  // Number of evenly spaced guide dots along the stroke, for a stroke that
+  // doubles back (a point), so one dot lands exactly on the point instead of
+  // two meeting beside it.
+  guideSteps?: number;
 };
 
 export type GlyphKey =
@@ -66,6 +70,7 @@ const OPEN_BRACE: readonly Stroke[] = [
   {
     d: "M 62 62 C 62 70 54 74 34 80 C 54 86 62 90 62 98",
     badge: [90, 62],
+    guideSteps: 8,
   },
   { d: "M 62 98 L 62 118 C 62 136 70 146 92 146", badge: [90, 98] },
 ];

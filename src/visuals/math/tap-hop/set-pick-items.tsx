@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
-import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { stateSet } from "@/visuals/shared/markers";
 
 const CARD =
@@ -32,12 +31,9 @@ export function PickItems({
 
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
-      <fieldset className="min-h-24 min-w-0 rounded-2xl border-2 border-concept-teal border-dashed bg-surface p-3">
-        <legend className="sr-only">Hộp</legend>
-        <p className="mb-2 flex items-center gap-2 font-heading text-block font-bold text-concept-teal">
-          <ConceptMark color="teal" className="size-5" />
-          hộp
-        </p>
+      <fieldset className="min-h-24 min-w-0 rounded-2xl border-2 border-muted-foreground border-dashed bg-muted p-3">
+        <legend className="sr-only">Hộp bút</legend>
+        <p className="mb-2 font-heading text-block font-bold">hộp bút</p>
         <div className="flex flex-wrap gap-2">
           {items.map(
             (item, i) =>

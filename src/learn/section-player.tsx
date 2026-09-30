@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
+import { RichText } from "@/components/rich-text";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
 import { renderAnswer, renderStep } from "@/exercises/answers";
@@ -221,7 +222,7 @@ export function SectionPlayer({
         onBack={shown > 0 ? back : undefined}
       />
       <h1 className="text-block font-semibold md:text-block-lg">
-        {section.title}
+        <RichText text={section.title} />
       </h1>
       {viewedStep && (
         <StepView
