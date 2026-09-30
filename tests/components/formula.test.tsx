@@ -31,7 +31,11 @@ describe("Formula", () => {
     );
     const part = container.querySelector("#co-so");
     expect(part).toHaveAttribute("data-highlighted");
-    expect(part).toHaveClass("outline-3", "outline-concept-blue");
+    expect(part).toHaveClass(
+      "outline-3",
+      "-outline-offset-3",
+      "outline-concept-blue",
+    );
     expect(part).not.toHaveClass("bg-highlight");
 
     rerender(
@@ -40,7 +44,7 @@ describe("Formula", () => {
         highlight={[{ id: "co-so", color: "slate", strong: true }]}
       />,
     );
-    expect(part).toHaveClass("outline-5", "outline-concept-slate");
+    expect(part).toHaveClass("outline-4", "outline-concept-slate");
     expect(part).not.toHaveClass("outline-3", "outline-concept-blue");
     expect(part).toHaveAttribute("data-highlight-strong");
   });

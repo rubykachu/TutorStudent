@@ -38,8 +38,13 @@ function renderTex(tex: string): string {
 }
 
 // A hinted part gets an outline in its concept's colour (an underline would
-// not reach KaTeX's inline-block pieces); the stronger hint thickens it.
-const HIGHLIGHT_CLASSES = ["rounded-sm", "outline-offset-2"];
+// not reach KaTeX's inline-block pieces); the stronger hint thickens it. The
+// outline is drawn inward, inside the side padding every named part keeps
+// (globals.css), so the rings of two neighbouring parts, such as a base and
+// its exponent, never cross, and lighting one up moves nothing.
+const HIGHLIGHT_CLASSES = ["rounded-sm"];
+const RING_CLASSES = ["outline-3", "-outline-offset-3"];
+const STRONG_RING_CLASSES = ["outline-4", "-outline-offset-4"];
 const OUTLINE_CLASSES = Object.values(CONCEPT_CLASSES).map((c) => c.outline);
 
 type FormulaProps = {
@@ -73,8 +78,12 @@ export function Formula({ tex, highlight = [], className = "" }: FormulaProps) {
       el.toggleAttribute("data-highlighted", lit);
       el.toggleAttribute("data-highlight-strong", mark?.strong === true);
       for (const cls of HIGHLIGHT_CLASSES) el.classList.toggle(cls, lit);
-      el.classList.toggle("outline-3", lit && !mark.strong);
-      el.classList.toggle("outline-5", lit && mark.strong);
+      for (const cls of RING_CLASSES) {
+        el.classList.toggle(cls, lit && !mark.strong);
+      }
+      for (const cls of STRONG_RING_CLASSES) {
+        el.classList.toggle(cls, lit && mark.strong);
+      }
       el.classList.remove(...OUTLINE_CLASSES);
       if (mark) el.classList.add(CONCEPT_CLASSES[mark.color].outline);
     }

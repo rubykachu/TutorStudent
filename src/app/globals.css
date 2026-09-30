@@ -249,3 +249,15 @@
   font-family: var(--font-body), KaTeX_Main, serif;
   font-weight: 600;
 }
+
+/*
+ * Parts a hint can light up (`\htmlId`) keep room around them for the hint
+ * outline, which Formula draws inward: 4px for the strong outline plus 1px
+ * clear of the glyph. The room is there whether lit or not, so a hint never
+ * shifts the formula, and two lit neighbours never cross. Padding above and
+ * below an inline part changes no line height, so it only gives the outline
+ * air over the digits.
+ */
+.formula .katex [id] {
+  padding: 4px 5px;
+}
