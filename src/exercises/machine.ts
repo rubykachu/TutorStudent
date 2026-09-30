@@ -15,7 +15,10 @@ import type { BasicExercise } from "@/schema/content";
 // A correct check from any wrong phase also goes to `correct`. After the third
 // wrong check the answer is shown (visual or revealed answer); the child must
 // then enter it again from an empty answer area before the exercise counts as
-// finished.
+// finished. From `correct` the child may also play the exercise again
+// ("Làm lại"): back to `idle` with a clean slate, for practice only. The
+// outcome of the first accepted play is kept and is what `finish` reports,
+// so a replay never changes a rating or the child's progress.
 export type Phase =
   | "idle"
   | "answered"
@@ -38,7 +41,9 @@ export type MachineState<I> = {
   // was shown. Stays put through the accepting check, so whatever keys the
   // answer area by it keeps the answer the child just entered on screen.
   retypes: number;
-  // How the accepted play went; null until an answer is accepted.
+  // Times the child played the exercise again after it was accepted.
+  replays: number;
+  // How the first accepted play went; null until an answer is accepted.
   outcome: ExerciseOutcome | null;
 };
 
@@ -46,6 +51,7 @@ export type MachineAction<I> =
   | { type: "input"; input: I | null }
   | { type: "check"; result: GradeResult }
   | { type: "retype" }
+  | { type: "replay" }
   | { type: "finish" };
 
 // 0: no feedback; 1: shake + concept-coloured hint marks; 2: hint visual or
@@ -60,6 +66,7 @@ export function initialMachineState<I>(): MachineState<I> {
     wrongTargets: [],
     retypeMissed: false,
     retypes: 0,
+    replays: 0,
     outcome: null,
   };
 }
@@ -140,6 +147,13 @@ export function exerciseReducer<I extends ExerciseInput>(
         retypeMissed: false,
         retypes: state.retypes + 1,
       };
+    case "replay":
+      if (state.phase !== "correct") return state;
+      return {
+        ...initialMachineState<I>(),
+        replays: state.replays + 1,
+        outcome: state.outcome,
+      };
     case "finish":
       return state.phase === "correct" ? { ...state, phase: "done" } : state;
   }
@@ -161,7 +175,7 @@ export function feedbackTier<I>(state: MachineState<I>): FeedbackTier {
 }
 
 // Only a correct answer with no wrong check before it counts as recalled; it
-// becomes the SRS rating (Good vs Again).
+// becomes the SRS rating (Good vs Again). Replays never change it.
 export function isFirstTryCorrect<I>(state: MachineState<I>): boolean {
   return state.outcome?.firstTryCorrect === true;
 }
@@ -181,7 +195,10 @@ export type ExerciseMachine<I> = {
   // nothing to check.
   check: () => MachineState<I> | null;
   startRetype: () => void;
-  // Moves `correct` to `done` and returns the outcome to record.
+  // Plays an accepted exercise again, unrated.
+  replay: () => void;
+  // Moves `correct` to `done` and returns the outcome to record: that of the
+  // first accepted play.
   finish: () => ExerciseOutcome;
 };
 
@@ -219,6 +236,7 @@ export function useExerciseMachine<E extends BasicExercise>(
   }, [exercise, state]);
 
   const startRetype = useCallback(() => dispatch({ type: "retype" }), []);
+  const replay = useCallback(() => dispatch({ type: "replay" }), []);
 
   const finish = useCallback((): ExerciseOutcome => {
     dispatch({ type: "finish" });
@@ -238,6 +256,7 @@ export function useExerciseMachine<E extends BasicExercise>(
     setInput,
     check,
     startRetype,
+    replay,
     finish,
   };
 }

@@ -459,6 +459,38 @@ describe("ExerciseFrame", () => {
     expect(sounds.play).toHaveBeenCalledTimes(5);
   });
 
+  it("lets the child play an accepted exercise again, unrated", () => {
+    const { frame, onDone, sounds, container } = renderFrame(HINTS_FALLBACK);
+    choose("b");
+    checkAnswer();
+    choose("a");
+    checkAnswer();
+    const firstSeed = lastSlot?.seed;
+    expect(screen.getByRole("button", { name: /Tiếp/ })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "Làm lại" }));
+
+    // A clean slate: nothing chosen, no feedback, a new arrangement.
+    expect(frame).toHaveAttribute("data-phase", "idle");
+    expect(frame).toHaveAttribute("data-tier", "0");
+    expect(option("a")).toHaveAttribute("aria-pressed", "false");
+    expect(bubble(container)).toBeNull();
+    expect(container.querySelector("[data-confetti]")).toBeNull();
+    expect(lastSlot?.seed).not.toBe(firstSeed);
+
+    // Right on the first try this time, with the full celebration...
+    choose("a");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-phase", "correct");
+    expect(sounds.play.mock.calls.at(-1)?.[0][0]).toBe(JINGLE_ID);
+    // ...but the outcome recorded is still that of the first play.
+    fireEvent.click(screen.getByRole("button", { name: /Tiếp/ }));
+    expect(onDone).toHaveBeenCalledOnce();
+    expect(onDone).toHaveBeenCalledWith({
+      firstTryCorrect: false,
+      wrongCount: 1,
+    });
+  });
+
   it("celebrates without confetti under reduced motion", () => {
     const original = window.matchMedia;
     window.matchMedia = (query: string) => ({

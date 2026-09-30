@@ -188,7 +188,14 @@ export function ExerciseFrame<E extends BasicExercise>({
   const [nonce, setNonce] = useState<string | null>(null);
   useLayoutEffect(() => setNonce((kept) => kept ?? newId()), []);
   const { state, tier } = machine;
-  const seed = nonce === null ? exercise.id : attemptSeed(exercise.id, nonce);
+  // A replay is a new attempt: new arrangement, new praise.
+  const seed =
+    nonce === null
+      ? exercise.id
+      : attemptSeed(
+          exercise.id,
+          state.replays === 0 ? nonce : `${nonce}.${state.replays}`,
+        );
   const feedback = feedbackView(exercise, state, concepts, seed);
   const view = finished
     ? { ...feedback, reveal: true, speech: undefined }
@@ -378,11 +385,11 @@ export function ExerciseFrame<E extends BasicExercise>({
                   strokeWidth={3}
                 />
               )}
-              {/* A retype starts from a fresh answer component, not an edited
-                one. The key changes only when a retype starts, never when an
+              {/* A retype or a replay starts from a fresh answer component,
+                not an edited one. The key changes only then, never when an
                 answer is accepted: a remount then would redraw an interactive
                 visual, which keeps its own state, back at its start. */}
-              <div key={state.retypes}>
+              <div key={`${state.replays}:${state.retypes}`}>
                 {nonce !== null &&
                   children({
                     value: state.input,
@@ -438,6 +445,12 @@ export function ExerciseFrame<E extends BasicExercise>({
               sounds?.play(feedbackCue(exercise, next, seed));
             }}
             onRetype={machine.startRetype}
+            onReplay={() => {
+              machine.replay();
+              setCelebrating(false);
+              setShaken(0);
+              setInputWantedFor(null);
+            }}
             onNext={() => onDone(machine.finish())}
           />
         </BottomBar>
@@ -451,6 +464,7 @@ type FrameButtonProps = {
   canCheck: boolean;
   onCheck: () => void;
   onRetype: () => void;
+  onReplay: () => void;
   onNext: () => void;
 };
 
@@ -459,14 +473,23 @@ function FrameButton({
   canCheck,
   onCheck,
   onRetype,
+  onReplay,
   onNext,
 }: FrameButtonProps) {
   if (phase === "correct") {
+    // Practice, not a test: the child may play an accepted exercise again,
+    // unrated, before moving on.
     return (
-      <BigButton onClick={onNext}>
-        Tiếp
-        <ChevronRight aria-hidden className="size-6" />
-      </BigButton>
+      <div className="grid grid-cols-2 gap-3">
+        <BigButton variant="secondary" onClick={onReplay} data-replay>
+          <RotateCcw aria-hidden className="size-6" />
+          Làm lại
+        </BigButton>
+        <BigButton onClick={onNext}>
+          Tiếp
+          <ChevronRight aria-hidden className="size-6" />
+        </BigButton>
+      </div>
     );
   }
   if (phase === "wrong3") {

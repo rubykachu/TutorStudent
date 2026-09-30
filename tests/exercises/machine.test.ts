@@ -127,6 +127,32 @@ describe("exerciseReducer", () => {
   });
 });
 
+describe("replay", () => {
+  it("starts an accepted exercise over but keeps the first outcome", () => {
+    const accepted = run(pick("b"), WRONG, pick("a"), RIGHT);
+    const again = exerciseReducer(accepted, { type: "replay" });
+    expect(again.phase).toBe("idle");
+    expect(again.input).toBeNull();
+    expect(again.wrongCount).toBe(0);
+    expect(again.replays).toBe(1);
+    expect(again.outcome).toEqual({ firstTryCorrect: false, wrongCount: 1 });
+
+    // A first-try answer in the replay changes nothing that is recorded.
+    const replayed = [pick("a"), RIGHT, { type: "finish" } as Action].reduce(
+      exerciseReducer,
+      again,
+    );
+    expect(replayed.phase).toBe("done");
+    expect(isFirstTryCorrect(replayed)).toBe(false);
+    expect(replayed.outcome).toEqual({ firstTryCorrect: false, wrongCount: 1 });
+  });
+
+  it("only replays an accepted exercise", () => {
+    const wrong = run(pick("b"), WRONG);
+    expect(exerciseReducer(wrong, { type: "replay" })).toBe(wrong);
+  });
+});
+
 describe("useExerciseMachine", () => {
   it("grades the entered input and reports the outcome", () => {
     const { result } = renderHook(() =>
