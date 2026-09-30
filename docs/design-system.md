@@ -48,6 +48,7 @@ Chỉ giao diện sáng. Mọi cặp chữ/nền đã kiểm tra tương phản 
 | `--color-retry` | `#C2410C` | Viền/biểu tượng sai — "thử lại" (5.18 với trắng) |
 | `--color-retry-soft` | `#FFF7ED` | Nền ô sai; chữ trên nền này dùng `#9A3412` (6.88) |
 | `--color-highlight` | `#FDE68A` | Nền của thứ đang được chọn (câu đang chọn); không dùng cho gợi ý hay lỗi |
+| `--color-reading` | `#BAE6FD` | Nền của câu/chữ đang được đọc to ("Nghe đọc", lời giới thiệu bài); chữ vẫn `--foreground` |
 | `--color-destructive` | `#DC2626` | **Chỉ** thao tác nguy hiểm ở trang phụ huynh/quản trị (thu hồi mã, xoá). Không bao giờ dùng trong giao diện trẻ |
 
 ### Màu khái niệm

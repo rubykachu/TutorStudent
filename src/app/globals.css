@@ -88,6 +88,9 @@
   --color-retry-soft: #fff7ed;
   --color-retry-soft-foreground: #9a3412;
   --color-highlight: #fde68a;
+  /* The sentence or word being read aloud; kept apart from the selection
+     yellow so reading along never looks like an answer being picked. */
+  --color-reading: #bae6fd;
 
   /* Lessons reference these by name (Concept.color); each pairs with a shape. */
   --color-concept-blue: #2563eb;

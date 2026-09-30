@@ -4,6 +4,7 @@ import { Clapperboard } from "lucide-react";
 import { Formula } from "@/components/blocks/formula";
 import { VideoPlayer } from "@/components/blocks/video-player";
 import { PassageReader } from "@/components/passage-reader";
+import { ReadAloudText } from "@/components/read-aloud";
 import { RichText } from "@/components/rich-text";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { SectionBlock, Video } from "@/schema/content";
@@ -38,10 +39,12 @@ export function BlockView({
 }: BlockViewProps) {
   switch (block.type) {
     case "note":
+      // The speaker button sits above the sentence, aligned with it: at the
+      // start in a prompt, centred where the screen centres the note.
       return (
-        <p data-block="note">
-          <RichText text={block.text} />
-        </p>
+        <div data-block="note" className="flex flex-col items-start gap-3">
+          <ReadAloudText text={block.text} />
+        </div>
       );
     case "formula":
       return (
@@ -104,7 +107,7 @@ export function BlockView({
       return (
         <div
           data-block="group"
-          className="flex w-full flex-col items-center gap-6 [&>[data-block=note]]:max-w-prose [&>[data-block=note]]:text-center"
+          className="flex w-full flex-col items-center gap-6 [&>[data-block=note]]:max-w-prose [&>[data-block=note]]:items-center [&>[data-block=note]]:text-center"
         >
           {block.children.map((child, i) => (
             // Children have no ids; their order is fixed content.
