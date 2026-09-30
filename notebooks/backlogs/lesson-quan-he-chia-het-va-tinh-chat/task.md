@@ -38,3 +38,16 @@ Hình: `src/visuals/math/quan-he-chia-het-va-tinh-chat/` (danh mục `catalog.ts
 1. Reviewer mới (Opus, vòng 1) đọc `docs/lessons-learned/index.md`, đối chiếu ảnh nguồn `sbt-p30` tới `sbt-p32` và lời giải `sbt-p104`, `sbt-p105`.
 2. Sau khi sửa lỗi Nghiêm trọng: `pnpm content:lock`, rồi lời đọc và video.
 3. Điểm cần soi kỹ: chữ `m` trong câu quy tắc section 8 đến 11 (trẻ chưa gặp biến `m`); section 11 và 13 khó với trẻ yếu nhân chia; hình `hops` ở bước đầu chỉ có trục trống (giống hình `skip` của Bài 5); câu hỏi đáp án nhiều lựa chọn trong section 12 chỉ dùng ước của số chia để kết luận đúng.
+
+## Vòng 1 review đã sửa (02/10/2026)
+- Cả 8 Nghiêm trọng và Nên sửa 1–8, 10–13, 15–28 đã sửa; Góp ý 1–11, 14–17 đã sửa.
+- Cách nói số chia trong sáu quy tắc tính chất: "chia hết cho một số ... cho số đó", không dùng chữ m. Note, recap section, recap card khớp từng chữ. Quy tắc số dư giới thiệu a, b, q, r ngay trong note.
+- Chưa có video, lời đọc hay glossary video nào cần đồng bộ. Glossary môn thêm "chia hết", "ước", "bội".
+- Kiểm: content:check 0 lỗi, visual:shot 152/152 đã xem ảnh, lesson:walk do điều phối chạy.
+
+## Để lại
+- Nên sửa 9 (màu Số hạng xanh dương trùng Số bị chia, Tổng cam trùng Thương): màu của "số hạng", "tổng" do glossary môn giữ và bài khác đang dùng; đổi chỉ trong bài này bị lint chặn, đổi glossary ảnh hưởng bài đã xuất bản. Đã sửa phần của bài: hình bước nhảy dùng xanh dương cho số bị chia, chỗ dừng trung tính.
+- Nên sửa 14, riêng section `nhom-so-hang`: không có tình huống đời sống tự nhiên cho việc đặt thừa số chung của luỹ thừa.
+- Góp ý 11 (nấc 1 tô cả đề) còn ở `tim-tui-40-16`, `mua-hop-10-20`, `du-tong-30-4`: đề một khối, không chặn; chỉ `chon-so-hang-khong-7` đã tách công thức.
+- Góp ý 12 (khái niệm của card hiệu): thêm "Hiệu" màu teal trùng màu thẻ "chia hết" của hình; giữ nguyên.
+- Góp ý 13 (chú giải "Thừa số" cho hình `tim-uoc-18`): thuật ngữ đã học ở Bài 5, giữ nguyên.
