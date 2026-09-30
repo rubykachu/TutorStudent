@@ -58,3 +58,4 @@ Yêu cầu: bám sách; chỗ nào khó thì thêm các bước dẫn dắt từ
 - Bài 4 `phep-cong-phep-tru`: nhánh `worktree-agent-a9710b34e396f6fe3`, đã sửa theo review vòng 1; việc tiếp: gate, shot, walk, review vòng 2.
 - Chưa bắt đầu: Bài 3, Bài 2.
 - Bài 5: visual chia (share, pack, đặt tính chia…) đã xong trong worktree. Việc app cần làm khi tiếp tục: truyền `params` của bài tập xuống visual `manipulate` (`VisualProps`, `RegistryVisual`, `ManipulateAnswer`) để `shareFill`, `colDivFill`, `colMulFill`, `gridFill` vẽ đúng số của đề.
+- Bài 4: review vòng 2 nhóm 3 (section 13–18) đã có kết quả ở `.claude/worktrees/agent-a9710b34e396f6fe3/.shots/review/phep-cong-phep-tru/nhom-3.md` (3 Nghiêm trọng: `chon-uoc-luong-kt`, `chon-tong-sai`, `chon-cap-day-so-2` có hai đáp án đúng; 6 Nên sửa). Kiểm tra kết quả nhóm 1–2 cùng thư mục khi tiếp tục, rồi gộp vào `review.md`.
