@@ -453,7 +453,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Rồi cộng từ hàng đơn vị sang bên trái.",
+              "text": "Đặt tính thì viết các chữ số cùng hàng thẳng cột. Cộng từ hàng đơn vị sang bên trái.",
               "rule": true
             },
             {
@@ -497,7 +497,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
-        "caption": "Rồi cộng từ hàng đơn vị sang bên trái. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
+        "caption": "Cộng từ hàng đơn vị sang bên trái. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
       }
     },
     {
@@ -973,7 +973,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru.visual.cot-cong-tom-tat",
-        "caption": "Rồi cộng từ hàng đơn vị sang bên trái. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
+        "caption": "Cộng từ hàng đơn vị sang bên trái. Hàng nào cộng được 10 trở lên thì viết chữ số cuối của kết quả, nhớ 1 sang hàng bên trái."
       }
     },
     {
