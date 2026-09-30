@@ -74,7 +74,7 @@ export function StickerStrip({
               className="size-20 tall:size-24"
             />
             <span
-              className={`line-clamp-2 text-caption ${earned ? "font-semibold" : "text-muted-foreground"}`}
+              className={`break-words text-caption ${earned ? "font-semibold" : "text-muted-foreground"}`}
             >
               {lesson.sticker.name}
             </span>

@@ -55,7 +55,7 @@ function LessonList({
               className="flex min-h-24 items-center gap-4 rounded-lg border-2 border-border bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6"
             >
               <div className="flex min-w-0 flex-1 flex-col gap-1">
-                <h2 className="text-block font-semibold md:text-block-lg">
+                <h2 className="break-words text-block font-semibold md:text-block-lg">
                   {lesson.title}
                 </h2>
                 <p className="text-caption text-muted-foreground">

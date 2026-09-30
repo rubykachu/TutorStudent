@@ -66,7 +66,7 @@ export function ParentDashboard() {
                 className={`flex min-h-touch min-w-0 flex-1 items-center justify-center gap-2 rounded-md px-3 font-semibold ${active ? "bg-surface shadow-card" : "text-muted-foreground"}`}
               >
                 <Avatar avatar={p.avatar} className="size-8 shrink-0" />
-                <span className="truncate">{p.name}</span>
+                <span className="min-w-0 break-words">{p.name}</span>
               </button>
             );
           })}

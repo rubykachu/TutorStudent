@@ -18,7 +18,7 @@ export function ProfilePicker({ profiles, onPick }: ProfilePickerProps) {
             className="flex h-full w-full flex-col items-center gap-3 rounded-lg border-2 border-border bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6"
           >
             <Avatar avatar={profile.avatar} className="size-24 md:size-28" />
-            <span className="line-clamp-2 w-full break-words text-center text-block font-bold font-heading md:text-block-lg">
+            <span className="w-full break-words text-center text-block font-bold font-heading md:text-block-lg">
               {profile.name}
             </span>
           </button>
