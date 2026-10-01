@@ -1,8 +1,4 @@
-import type {
-  AttemptRecord,
-  SectionProgressRecord,
-  StickerRecord,
-} from "@/progress/db";
+import type { AttemptRecord, SectionProgressRecord } from "@/progress/db";
 import { lessonState, lessonsForSubject } from "@/progress/summary";
 import type { ContentIndex, LessonSummary } from "@/schema/content";
 
@@ -17,7 +13,6 @@ type SectionRecord = Pick<
 export type StudyProgress = {
   attempts: readonly Pick<AttemptRecord, "lessonId" | "at">[];
   sections: readonly SectionRecord[];
-  stickers: readonly Pick<StickerRecord, "lessonId">[];
 };
 
 // Position (0-based) of the section to study next in a lesson: the first
@@ -57,7 +52,8 @@ export function pausedSectionIndex(
 }
 
 // Sections of a lesson that fill its sticker with colour: every section once
-// the sticker is earned, else the sections done.
+// the sticker is earned, else the sections done. Only for drawing the sticker;
+// whether a lesson is finished is read from the section records alone.
 export function stickerFill(
   sections: readonly { id: string }[],
   records: readonly Pick<SectionRecord, "sectionId" | "state">[],
@@ -73,21 +69,19 @@ export function stickerFill(
 
 export type SubjectProgress = { done: number; total: number };
 
-// Sections done out of every section of a subject's lessons, counted the way
-// the stickers fill (a lesson with its sticker counts all its sections), so
-// the subject tile's ring and the stickers never disagree.
+// Sections done out of every section of a subject's lessons. A lesson whose
+// progress was reset counts as not started even though its sticker stays.
 export function subjectProgress(
   lessons: readonly Pick<LessonSummary, "id" | "sections">[],
-  progress: Pick<StudyProgress, "sections" | "stickers">,
+  progress: Pick<StudyProgress, "sections">,
 ): SubjectProgress {
-  const earned = new Set(progress.stickers.map((s) => s.lessonId));
   let done = 0;
   let total = 0;
   for (const lesson of lessons) {
     const fill = stickerFill(
       lesson.sections,
       progress.sections.filter((s) => s.lessonId === lesson.id),
-      earned.has(lesson.id),
+      false,
     );
     done += fill.done;
     total += fill.total;
@@ -148,12 +142,10 @@ export function continueTarget(
   const lessons = index.subjects.flatMap((subject) =>
     lessonsForSubject(index, subject.id, series[subject.id]),
   );
-  const stickers = new Set(progress.stickers.map((s) => s.lessonId));
   const unfinished = (lesson: LessonSummary) =>
     lessonState(
       lesson,
       progress.sections.filter((s) => s.lessonId === lesson.id),
-      stickers,
     ) !== "done";
   const lastActive = lastActiveByLesson(progress);
   const byRecency = lessons
@@ -192,12 +184,10 @@ export function subjectStatus(
   progress: StudyProgress,
 ): SubjectStatus {
   if (lessons.length === 0) return { kind: "empty" };
-  const stickers = new Set(progress.stickers.map((s) => s.lessonId));
   const stateOf = (lesson: LessonSummary) =>
     lessonState(
       lesson,
       progress.sections.filter((s) => s.lessonId === lesson.id),
-      stickers,
     );
   const total = lessons.length;
   const lastActive = lastActiveByLesson(progress);

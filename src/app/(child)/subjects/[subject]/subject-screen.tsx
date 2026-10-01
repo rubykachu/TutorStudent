@@ -42,7 +42,6 @@ function LessonList({
     );
   }
 
-  const stickers = new Set(progress.stickers.map((s) => s.lessonId));
   const tint = subjectStyle(subject).text;
   return (
     <ul className="flex flex-col gap-4">
@@ -50,7 +49,6 @@ function LessonList({
         const state = lessonState(
           lesson,
           progress.sections.filter((s) => s.lessonId === lesson.id),
-          stickers,
         );
         return (
           <li key={lesson.id}>

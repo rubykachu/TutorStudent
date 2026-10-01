@@ -401,7 +401,7 @@ describe("lessonSections", () => {
     sticker: { name: "Sao", visualId: `${id}.visual.sao` },
   });
 
-  it("counts finished sections, and a sticker as every section done", () => {
+  it("counts finished sections only, and flags a kept sticker", () => {
     const rows = lessonSections(
       [
         lesson("a", ["a.section.1", "a.section.2"]),
@@ -417,7 +417,7 @@ describe("lessonSections", () => {
       rows.map(({ lesson: l, ...rest }) => ({ id: l.id, ...rest })),
     ).toEqual([
       { id: "a", done: 1, total: 2, sticker: false },
-      { id: "b", done: 1, total: 1, sticker: true },
+      { id: "b", done: 0, total: 1, sticker: true },
     ]);
   });
 });

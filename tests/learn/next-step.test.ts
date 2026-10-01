@@ -66,7 +66,7 @@ function record(
   };
 }
 
-const EMPTY: StudyProgress = { attempts: [], sections: [], stickers: [] };
+const EMPTY: StudyProgress = { attempts: [], sections: [] };
 
 const index: ContentIndex = {
   subjects: [subject("math"), subject("literature")],
@@ -163,22 +163,23 @@ describe("stickerFill", () => {
 describe("subjectProgress", () => {
   const lessons = [lesson("m1", "math", 1, 4), lesson("m2", "math", 2, 3)];
 
-  it("counts sections done across the subject's lessons, like the stickers", () => {
+  it("counts sections done across the subject's lessons", () => {
     const progress = {
       sections: [
-        record("m2", 1, "done", 1),
-        record("m2", 2, "in_progress", 2),
-        record("retired", 1, "done", 3),
+        record("m1", 1, "done", 1),
+        record("m1", 2, "done", 2),
+        record("m2", 1, "done", 3),
+        record("m2", 2, "in_progress", 4),
+        record("retired", 1, "done", 5),
       ],
-      stickers: [{ lessonId: "m1" }, { lessonId: "retired" }],
     };
-    // m1 is earned (4 of 4), m2 has one section done (1 of 3).
-    expect(subjectProgress(lessons, progress)).toEqual({ done: 5, total: 7 });
+    // m1 has two sections done, m2 one; the retired lesson is not counted.
+    expect(subjectProgress(lessons, progress)).toEqual({ done: 3, total: 7 });
   });
 
   it("never counts more sections done than the subject has", () => {
-    // Repeated records of one section, records of a section the lesson no
-    // longer has, and a sticker with section records on top of it.
+    // Repeated records of one section and records of a section the lesson no
+    // longer has.
     const progress = {
       sections: [
         record("m1", 1, "done", 1),
@@ -189,7 +190,6 @@ describe("subjectProgress", () => {
         record("m2", 2, "done", 6),
         record("m2", 3, "done", 7),
       ],
-      stickers: [{ lessonId: "m2" }, { lessonId: "m2" }],
     };
     expect(subjectProgress(lessons, progress)).toEqual({ done: 4, total: 7 });
   });
@@ -238,7 +238,6 @@ describe("continueTarget", () => {
     const target = continueTarget(index, series, {
       ...EMPTY,
       sections: [1, 2, 3].map((n) => record("m1", n, "done", n)),
-      stickers: [{ lessonId: "m1" }],
     });
     expect(target).toMatchObject({
       sectionIndex: 0,
@@ -248,9 +247,11 @@ describe("continueTarget", () => {
     expect(target?.lesson.id).toBe("m2");
   });
 
-  it("is null when every lesson has its sticker", () => {
-    const stickers = index.lessons.map((l) => ({ lessonId: l.id }));
-    expect(continueTarget(index, series, { ...EMPTY, stickers })).toBeNull();
+  it("is null when every section of every lesson is done", () => {
+    const sections = index.lessons.flatMap((l) =>
+      l.sections.map((_s, i) => record(l.id, i + 1, "done", i)),
+    );
+    expect(continueTarget(index, series, { ...EMPTY, sections })).toBeNull();
   });
 
   it("ignores lessons of another series", () => {
@@ -285,7 +286,7 @@ describe("subjectStatus", () => {
   it("counts finished lessons when none is in progress", () => {
     const status = subjectStatus(math, {
       ...EMPTY,
-      stickers: [{ lessonId: "m1" }],
+      sections: [1, 2, 3].map((n) => record("m1", n, "done", n)),
     });
     expect(status).toEqual({ kind: "progress", done: 1, total: 2 });
   });

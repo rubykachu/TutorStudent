@@ -68,14 +68,12 @@ export function lessonsForSubject(
     .sort((a, b) => a.order - b.order);
 }
 
-// A sticker means every section was finished, even if section records were
-// later lost, so it wins over the per-section states.
+// Only the section records decide: a sticker is a title the child keeps, and
+// stays after the lesson's progress is reset to relearn it.
 export function lessonState(
-  lesson: Pick<LessonSummary, "id" | "sections">,
+  lesson: Pick<LessonSummary, "sections">,
   sections: readonly Pick<SectionProgressRecord, "sectionId" | "state">[],
-  stickerLessonIds: ReadonlySet<string>,
 ): SectionState {
-  if (stickerLessonIds.has(lesson.id)) return "done";
   const stateOf = new Map(sections.map((s) => [s.sectionId, s.state]));
   const states = lesson.sections.map((s) => stateOf.get(s.id) ?? "not_started");
   if (states.length > 0 && states.every((s) => s === "done")) return "done";

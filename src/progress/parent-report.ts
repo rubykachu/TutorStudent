@@ -321,8 +321,8 @@ export type LessonSections = {
   sticker: boolean;
 };
 
-// Finished sections per lesson. A sticker means every section was finished,
-// even if section records were later lost, so it counts them all as done.
+// Finished sections per lesson, from the section records alone; `sticker` says
+// whether the child earned the title, which stays after a lesson is reset.
 export function lessonSections(
   lessons: readonly LessonSummary[],
   sections: readonly Pick<SectionProgressRecord, "sectionId" | "state">[],
@@ -339,9 +339,28 @@ export function lessonSections(
       lesson,
       total,
       sticker,
-      done: sticker
-        ? total
-        : lesson.sections.filter((s) => done.has(s.id)).length,
+      done: lesson.sections.filter((s) => done.has(s.id)).length,
     };
   });
+}
+
+type LessonRecords = {
+  sections: readonly Pick<SectionProgressRecord, "lessonId">[];
+  attempts: readonly Pick<AttemptRecord, "lessonId">[];
+  cardStates: readonly Pick<LessonCardState, "lessonId">[];
+  writings: readonly { exerciseId: string }[];
+};
+
+// Whether the child has anything recorded for a lesson that a reset would
+// erase (the sticker is not counted: a reset keeps it).
+export function lessonHasProgress(
+  lessonId: string,
+  records: LessonRecords,
+): boolean {
+  return (
+    records.sections.some((s) => s.lessonId === lessonId) ||
+    records.attempts.some((a) => a.lessonId === lessonId) ||
+    records.cardStates.some((c) => c.lessonId === lessonId) ||
+    records.writings.some((w) => lessonIdOfContentId(w.exerciseId) === lessonId)
+  );
 }

@@ -142,41 +142,28 @@ describe("lessonState", () => {
   const two = "powers.section.two";
 
   it("is not started without progress", () => {
-    expect(lessonState(powers, [], new Set())).toBe("not_started");
+    expect(lessonState(powers, [])).toBe("not_started");
     expect(
-      lessonState(
-        powers,
-        [{ sectionId: one, state: "not_started" }],
-        new Set(),
-      ),
+      lessonState(powers, [{ sectionId: one, state: "not_started" }]),
     ).toBe("not_started");
   });
 
   it("is in progress once any section moved", () => {
+    expect(lessonState(powers, [{ sectionId: one, state: "done" }])).toBe(
+      "in_progress",
+    );
     expect(
-      lessonState(powers, [{ sectionId: one, state: "done" }], new Set()),
-    ).toBe("in_progress");
-    expect(
-      lessonState(
-        powers,
-        [{ sectionId: two, state: "in_progress" }],
-        new Set(),
-      ),
+      lessonState(powers, [{ sectionId: two, state: "in_progress" }]),
     ).toBe("in_progress");
   });
 
-  it("is done when every section is done or a sticker was earned", () => {
+  it("is done when every section is done", () => {
     expect(
-      lessonState(
-        powers,
-        [
-          { sectionId: one, state: "done" },
-          { sectionId: two, state: "done" },
-        ],
-        new Set(),
-      ),
+      lessonState(powers, [
+        { sectionId: one, state: "done" },
+        { sectionId: two, state: "done" },
+      ]),
     ).toBe("done");
-    expect(lessonState(powers, [], new Set(["powers"]))).toBe("done");
   });
 });
 

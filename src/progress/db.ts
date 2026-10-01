@@ -269,7 +269,7 @@ export async function getSetting(
 
 // Per-child settings that record the lesson overviews a child has already
 // been through: `overviewSeen:<lessonId>` = true.
-const OVERVIEW_SEEN_PREFIX = "overviewSeen:";
+export const OVERVIEW_SEEN_PREFIX = "overviewSeen:";
 
 export async function markOverviewSeen(
   db: TutorDb,
