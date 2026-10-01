@@ -4,6 +4,7 @@
 - Vòng: <số> - <toàn bài, <số> reviewer song song + tổng hợp | chỉ phần đổi (`pnpm content:diff`), section: <id>>
 - Nguồn đã đọc: `sources/<subject>/<id bài>/` - <các trang đã đọc, vd p22, p23-24> | không có
 - `content:check`: <số> lỗi, <số> cảnh báo của bài
+- Đọc hiểu (Haiku, lượt 1): <số Hiểu rõ> / <số Hiểu mơ hồ> / <số Khó hiểu>; tệp `.shots/review/<id bài>/doc-hieu.md` | không chạy (chữ không đổi)
 - `lesson:walk`: <số> FAIL, <số> cảnh báo, ảnh trong `.shots/walk/<id bài>/`
 - Kết luận: <Đã xuất bản | Đã ghi reviewedHash, chờ quản trị viên đặt published | Chưa đạt: còn <số> lỗi Nghiêm trọng>
 

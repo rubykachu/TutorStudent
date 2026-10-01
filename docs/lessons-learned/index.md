@@ -39,6 +39,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | [LL-22](LL-22-thieu-cong-cu-tren-man.md) | Câu bảo tra cứu mà màn không có thứ để tra | Bài tập | Người | checklist trục 5 "Người học chậm theo kịp" |
 | [LL-23](LL-23-de-sach-lech-nguyen-van.md) | Đề sách ở bài ôn tập lệch nguyên văn | Khớp nguồn | Người | checklist trục 1 "Bài ôn tập" |
 | [LL-24](LL-24-meo-sai-o-dang-bai-khac.md) | Mẹo sai ở số biên hay ở dạng bài khác trong cùng bài | Đúng kiến thức | Người | checklist trục 2 "Mẹo đúng với mọi đầu vào" |
+| [LL-25](LL-25-chu-kho-hieu-voi-be.md) | Chữ đúng nhưng bé lớp 6 đọc không hiểu | Ngôn từ | Haiku đọc hiểu + tác giả viết lại | `lesson-review` mục "Đọc hiểu" |
 
 ## Số lần gặp
 
@@ -70,6 +71,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
 | LL-24 | 5 | 0 | 0 | 5 |
+| LL-25 | 0 | 0 | 0 | 0 |
 
 LL-17, LL-01 và LL-08 nhiều Nghiêm trọng nhất; LL-07, LL-10, LL-12, LL-05 gặp nhiều nhất.
 

@@ -28,7 +28,7 @@ Vòng này = số ở dòng "Vòng" của `review.md` cũ + 1 (chưa có `review
 - **Vòng 1–2: toàn bài**, song song (dưới đây).
 - **Từ vòng 3: chỉ phần đổi.** Không review toàn bài lần thứ ba.
 
-Mỗi vòng kết thúc bằng một trong hai lệnh, cả hai ghi dòng "Bản đã review" (hash) vào `review.md` để vòng sau so với bản này:
+Bài mới hoặc bài có chữ đổi chạy thêm lượt "Đọc hiểu" (mục dưới) trước lệnh `--approve`. Mỗi vòng kết thúc bằng một trong hai lệnh, cả hai ghi dòng "Bản đã review" (hash) vào `review.md` để vòng sau so với bản này:
 - 0 Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --approve` (từ chối nếu `content:check` còn lỗi; ghi `reviewedHash`, đặt `published` trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật). Bài vừa được duyệt và id đã ổn định thì khoá id của đúng bài này: `pnpm content:lock <id bài>` (không chạy không kèm id).
 - Còn Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --mark`; bài giữ `draft`.
 
@@ -57,6 +57,46 @@ Tổng hợp:
 - Soát mọi mục trong diff theo checklist, và soát các mục khác **cùng section** xem bản sửa có làm hỏng chúng không (recap còn khớp note, câu kiểm tra và câu luyện tập không trùng hình, nhiễu không thành đáp án đúng).
 - Mục thuộc bài tập hay card: đọc sheet walk của section đó (lọc như trên; mở từng ảnh chỉ để phóng to) và trang nguồn. Diff chỉ có video: theo "Lời video khớp bài" trong checklist.
 - Làm luôn việc của Tổng hợp: ghi `review.md` (phạm vi ghi ở dòng "Vòng"), chạy lệnh cuối vòng.
+
+## Đọc hiểu (bắt buộc với bài mới hoặc bài có chữ đổi)
+
+Chữ đúng và ngắn chưa chắc bé lớp 6 đọc là hiểu. Lượt này cho một model rẻ đóng vai bé đọc từng chữ bé thấy, để lộ câu rối trước khi duyệt. Nó không soát đúng sai kiến thức (việc của reviewer) và không thay luật `[vietnamese]`, `[length]`.
+
+**Vị trí trong luồng:** sau khi vòng toàn bài (1–2) hết Nghiêm trọng, **trước** lệnh `content:hash --approve`:
+1. Lượt Haiku 1 trên toàn bài.
+2. Tác giả viết lại mọi mục không "Hiểu rõ".
+3. Lượt Haiku 2 chỉ trên các mục vừa viết lại. Mục nào vẫn không "Hiểu rõ": tác giả viết lại lần nữa và Haiku đọc lại (tối đa 3 lượt tổng cộng); sau lượt 3 còn mục nào thì ghi vào `review.md` mục Nên sửa kèm lý do, không chặn duyệt.
+4. Chữ đã đổi nên chạy một vòng chỉ phần đổi (Sonnet, mục "Vòng chỉ phần đổi") cho phần viết lại rồi mới `--approve`.
+
+Vòng chỉ phần đổi về sau (mọi lần chữ của bài đổi): lấy mục chữ đổi từ `pnpm content:diff`, chạy lượt Haiku chỉ trên các mục đó trước `--approve`. Bài cũ không đổi chữ không chạy lượt này.
+
+**Việc của Haiku:** mở bằng Agent tool, `subagent_type: "general-purpose"`, `model: "haiku"`, phiên mới, một subagent cho cả bài. Prompt chỉ gồm: bé là học sinh lớp 6 đọc chậm, mỗi câu phải hiểu ngay từ lần đọc đầu, chỉ có chữ trên màn để hiểu (không thầy cô, không SGK); đường dẫn `LESSON`; tệp ghi kết quả; nhãn và khuôn ghi dưới đây; đọc theo từng section và ghi tệp sau mỗi section. Không đưa review, checklist, hay đáp án để khỏi tốn ngữ cảnh. Chữ bé thấy gồm: `overview` (hook, summary, goals, whyItMatters), tên section, `prompt`, các lựa chọn, `explain`, `wrong`, `hints`, `note`, `caption`, `recap`, `tip`. Chữ của `formula`, `tex` và nhãn hình không đưa vào.
+
+**Nhãn** (chỉ ba nhãn, mỗi mục một nhãn):
+- **Hiểu rõ**: đọc một lần là hiểu.
+- **Hiểu mơ hồ**: hiểu đại ý nhưng còn chỗ phải đoán.
+- **Khó hiểu**: không biết câu nói gì hoặc muốn hỏi lại.
+
+**Tệp kết quả** `.shots/review/<id bài>/doc-hieu.md` (`doc-hieu-2.md`, `doc-hieu-3.md` cho lượt sau), mỗi lượt một tệp:
+
+```
+# Đọc hiểu: <id bài> - lượt <n>
+
+## <id section>
+- `<JSON path>` | Hiểu rõ
+- `<JSON path>` | Hiểu mơ hồ | <lý do, tối đa 10 chữ> | "<chữ gốc>"
+- `<JSON path>` | Khó hiểu | <lý do, tối đa 10 chữ> | "<chữ gốc>"
+
+Tổng: <số Hiểu rõ> / <số Hiểu mơ hồ> / <số Khó hiểu>
+```
+
+Mục "Hiểu rõ" chỉ ghi đường dẫn, không chép chữ, để tệp ngắn. Haiku không đề xuất cách sửa.
+
+**Tác giả viết lại** mọi mục không "Hiểu rõ": tiếng Việt nói hằng ngày, câu ngắn, có từ nối ("vì vậy", "nên", "còn", "sau đó") để ý nối nhau, không dùng từ chuyên môn ngoài những từ bài đã dạy, giữ nguyên ý và số liệu. Sửa trong `lesson.json`; câu `note` có `rule: true` đổi thì recap lặp nguyên văn phải đổi theo. Chạy `pnpm content:check`. Lượt Haiku sau chỉ nhận danh sách đường dẫn các mục đã viết lại.
+
+**Giữ rẻ:** theo từng section, chỉ chữ cần đọc, không gửi kèm cả bài, chỉ đọc lại mục đã viết lại; không mở Opus hay Sonnet cho việc này.
+
+**Rút kinh nghiệm:** điều phối ghi tổng ba nhãn của lượt 1 vào `review.md` (dòng "Đọc hiểu"). Mỗi mục "Khó hiểu" của lượt 1 tăng cột Nên sửa của LL-25 và mỗi mục "Hiểu mơ hồ" tăng cột Góp ý, trong bảng "Số lần gặp" của `docs/lessons-learned/index.md`; kiểu câu rối lặp lại (phủ định kép, từ chuyên môn chưa dạy, câu thiếu từ nối) thêm làm ví dụ vào `LL-25-chu-kho-hieu-voi-be.md`.
 
 ## Review mẹo (`tips.json`)
 
