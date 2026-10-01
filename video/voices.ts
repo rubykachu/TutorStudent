@@ -32,7 +32,7 @@ export type VoiceSpec = {
 // narrations are then rebuilt with `pnpm narration:build <lesson>`.
 export const GEMINI_NARRATORS = {
   male: "Achird",
-  female: "Sulafat",
+  female: "Vindemiatrix",
 } as const satisfies Record<VoiceGender, string>;
 
 export const VOICES = {

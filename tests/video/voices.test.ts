@@ -54,7 +54,8 @@ describe("voices", () => {
         preset: GEMINI_NARRATORS[spec.gender],
       });
     }
-    expect(GEMINI_NARRATORS.female).toBe("Sulafat");
+    expect(GEMINI_NARRATORS.female).toBe("Vindemiatrix");
+    expect(GEMINI_NARRATORS.male).toBe("Achird");
     expect(GEMINI_NARRATORS.male).not.toBe(GEMINI_NARRATORS.female);
   });
 
@@ -123,9 +124,9 @@ describe("narrationVoiceIssues", () => {
     voice: { engine, voiceName },
   });
   it("accepts the narration voice and, after a quota fallback, the video voice", () => {
-    expect(narrationVoiceIssues(media, recorded("gemini", "Sulafat"))).toEqual(
-      [],
-    );
+    expect(
+      narrationVoiceIssues(media, recorded("gemini", GEMINI_NARRATORS.female)),
+    ).toEqual([]);
     expect(narrationVoiceIssues(media, recorded("local", "Mỹ Duyên"))).toEqual(
       [],
     );
