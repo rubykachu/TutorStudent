@@ -106,6 +106,15 @@ describe("sound", () => {
     remove();
   });
 
+  it("loads a clip once, so a later screen's preload never cuts it off while it plays", () => {
+    preloadSounds(["/sounds/a.m4a"]);
+    void playSound("/sounds/a.m4a");
+    preloadSounds(["/sounds/a.m4a", "/sounds/b.m4a"]);
+    const [a, b] = FakeAudio.instances;
+    expect(a?.load).toHaveBeenCalledTimes(1);
+    expect(b?.load).toHaveBeenCalledTimes(1);
+  });
+
   it("leaves a clip playing that was asked to play during an unlock", async () => {
     preloadSounds(["/sounds/a.m4a"]);
     unlockAudio();

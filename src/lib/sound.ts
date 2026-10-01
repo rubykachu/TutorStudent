@@ -6,6 +6,11 @@
 const UNLOCK_EVENTS = ["pointerdown", "touchend", "keydown"] as const;
 
 const clips = new Map<string, HTMLAudioElement>();
+// Clips already asked to load. Loading again would reset an element, which
+// cuts off a clip that is playing: every screen under a child's profile
+// preloads when it mounts, and a link's press sounds just as the next
+// screen mounts.
+const loaded = new Set<HTMLAudioElement>();
 // Clips asked to play for real, each with what ends its play; an unlock in
 // flight leaves them playing.
 const playing = new Map<HTMLAudioElement, () => void>();
@@ -42,11 +47,19 @@ function start(element: HTMLAudioElement): Promise<void> {
 export function resetAudioForTesting(): void {
   clips.clear();
   playing.clear();
+  loaded.clear();
 }
 
-// Starts loading clips ahead of time so the first play is not delayed.
+// Starts loading clips ahead of time so the first play is not delayed. A clip
+// is loaded once; asking again (the next screen mounting) leaves it alone,
+// so a press sound still playing is never cut off.
 export function preloadSounds(urls: readonly string[]): void {
-  for (const url of urls) clip(url)?.load();
+  for (const url of urls) {
+    const element = clip(url);
+    if (!element || loaded.has(element)) continue;
+    loaded.add(element);
+    element.load();
+  }
 }
 
 // iOS lets a media element play on its own later only after it has played
