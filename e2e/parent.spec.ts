@@ -84,3 +84,115 @@ test("a parent sets a PIN and sees the child's progress after one section", asyn
   await page.getByRole("button", { name: "Khoá lại" }).click();
   await expect(page.getByLabel("Nhập PIN")).toBeVisible();
 });
+
+// Earns the sticker of the fixture lesson without playing its second section.
+async function earnFixtureSticker(page: Page) {
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const open = indexedDB.open("tutor");
+        open.onerror = () => reject(open.error);
+        open.onsuccess = () => {
+          const db = open.result;
+          const tx = db.transaction(["profiles", "stickers"], "readwrite");
+          const profiles = tx.objectStore("profiles").getAll();
+          profiles.onsuccess = () => {
+            const [profile] = profiles.result;
+            tx.objectStore("stickers").put({
+              familyId: profile.familyId,
+              childId: profile.id,
+              lessonId: "fixture",
+              at: new Date().toISOString(),
+            });
+          };
+          tx.oncomplete = () => {
+            db.close();
+            resolve();
+          };
+          tx.onerror = () => reject(tx.error);
+        };
+      }),
+  );
+}
+
+test("a parent starts a lesson over; the child finds it fresh and keeps the sticker", async ({
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Na", "Cáo");
+  await openFixtureLesson(page);
+  await page.locator(`[data-section="${SECTION}"]`).tap();
+  await finishSection(page, MISSED_EXERCISE);
+  await expect(
+    page.getByRole("heading", { name: "Xong phần này!" }),
+  ).toBeVisible();
+  await earnFixtureSticker(page);
+
+  await page.goto("/parent");
+  await submitPin(page, "PIN mới", "Tiếp tục");
+  await submitPin(page, "Nhập lại PIN để xác nhận", "Lưu PIN");
+  const row = page.locator('[data-parent-lesson="fixture"]');
+  await expect(row).toContainText("Xong 1/2 phần · có sticker");
+  const wrong = page.locator(`[data-parent-wrong="${MISSED_EXERCISE}"]`);
+  await expect(wrong).toBeVisible();
+
+  // Step 1 says what is lost; closing erases nothing.
+  await row.getByRole("button", { name: "Học lại bài này" }).tap();
+  const dialog = page.getByRole("dialog", { name: "Học lại bài này" });
+  await expect(dialog).toContainText("Sticker con đã nhận vẫn được giữ");
+  await expectNoHorizontalScroll(page);
+  await expectTouchTargets(page);
+  await dialog.getByRole("button", { name: "Hủy" }).tap();
+  await expect(dialog).toBeHidden();
+  await expect(row).toContainText("Xong 1/2 phần");
+
+  // Step 2 asks again; only its confirm button erases.
+  await row.getByRole("button", { name: "Học lại bài này" }).tap();
+  await dialog.getByRole("button", { name: "Tiếp tục" }).tap();
+  await expect(dialog).toContainText("Việc này không hoàn tác được");
+  await expectNoHorizontalScroll(page);
+  await expectTouchTargets(page);
+  await dialog.getByRole("button", { name: "Xoá và học lại" }).tap();
+  await expect(dialog).toBeHidden();
+  await expect(page.getByRole("status")).toContainText(
+    "Đã cho Bé Na học lại bài",
+  );
+
+  // The page refreshed: no progress, no missed question, sticker kept.
+  await expect(row).toContainText("Xong 0/2 phần · có sticker");
+  await expect(
+    row.getByRole("button", { name: "Học lại bài này" }),
+  ).toHaveCount(0);
+  await expect(wrong).toHaveCount(0);
+  await expect(row.locator("[data-sticker-earned]")).toHaveAttribute(
+    "data-sticker-earned",
+    "true",
+  );
+  await expectNoHorizontalScroll(page);
+  await expectTouchTargets(page);
+
+  // Home: the lesson is the one to start, the subject shows no progress, and
+  // the sticker is still on the shelf.
+  await page.goto("/");
+  await expect(page.locator("[data-continue]")).toHaveAccessibleName(
+    new RegExp(`^Bắt đầu học: ${FIXTURE_LESSON_TITLE}, phần 1`),
+  );
+  const math = page.locator('[data-subject="math"]');
+  await expect(
+    math.getByRole("img", { name: /^Xong 0 trên \d+ phần$/ }),
+  ).toBeVisible();
+  await expect(math).toContainText("Chưa học");
+  await expect(
+    page.locator('[data-shelf-sticker="fixture"] [data-sticker-earned="true"]'),
+  ).toBeVisible();
+
+  // The lesson opens on its overview again, then lists section 1 as new.
+  await page.goto("/lessons/fixture");
+  await expect(page.locator("[data-lesson-overview]")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Bắt đầu học" })).toBeVisible();
+  await page.locator("[data-overview-browse]").tap();
+  await expect(page.locator(`[data-section="${SECTION}"]`)).toHaveAttribute(
+    "data-state",
+    "not_started",
+  );
+});
