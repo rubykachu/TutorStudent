@@ -1,4 +1,7 @@
+"use client";
+
 import type { ButtonHTMLAttributes } from "react";
+import { useTapSound } from "@/lib/feedback-sounds";
 
 export type BigButtonVariant = "primary" | "secondary";
 
@@ -22,17 +25,25 @@ type BigButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: BigButtonVariant;
 };
 
-// The main call to action: 56px tall on phones, 64px on tablets.
+// The main call to action: 56px tall on phones, 64px on tablets. Inside a
+// player it clicks like every other tap target ("Kiểm tra", "Bỏ qua",
+// "Tiếp theo"); elsewhere, or with sound off, it stays silent.
 export function BigButton({
   variant = "primary",
   className,
   type = "button",
+  onClick,
   ...rest
 }: BigButtonProps) {
+  const playTap = useTapSound();
   return (
     <button
       type={type}
       className={bigButtonClassName(variant, className)}
+      onClick={(event) => {
+        playTap();
+        onClick?.(event);
+      }}
       {...rest}
     />
   );

@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
+import { PlayerHeader } from "@/learn/player-header";
 import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import type { BasicExercise } from "@/schema/content";
 import {
@@ -94,5 +95,34 @@ describe("tap sound on ordering", () => {
     const { sounds } = renderWith(orderExercise(["x", "y", "z"]));
     tap("x");
     expect(sounds.tap).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("tap sound on action buttons", () => {
+  it("clicks on Kiểm tra and on Bỏ qua", () => {
+    const { sounds } = renderWith(choiceExercise(["a"]), { skippable: true });
+    tap("b");
+    fireEvent.click(screen.getByRole("button", { name: "Kiểm tra" }));
+    expect(sounds.tap).toHaveBeenCalledTimes(2);
+    fireEvent.click(screen.getByRole("button", { name: /Bỏ qua/ }));
+    expect(sounds.tap).toHaveBeenCalledTimes(3);
+  });
+
+  it("clicks on Quay lại in the player header", () => {
+    const sounds = { play: vi.fn(), tap: vi.fn() };
+    const onBack = vi.fn();
+    render(
+      <FeedbackSoundsProvider sounds={sounds}>
+        <PlayerHeader
+          lessonId="fixture"
+          childId="child"
+          progress={{ current: 1, total: 3 }}
+          onBack={onBack}
+        />
+      </FeedbackSoundsProvider>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: /Quay lại/ }));
+    expect(sounds.tap).toHaveBeenCalledTimes(1);
+    expect(onBack).toHaveBeenCalledTimes(1);
   });
 });
