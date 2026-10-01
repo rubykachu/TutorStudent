@@ -1,19 +1,20 @@
 # Review: Luỹ thừa với số mũ tự nhiên (`luy-thua`)
 
 - Bài: `content/math/kntt/luy-thua/lesson.json`
-- Vòng: 16 - chỉ phần đổi (explain của 55 câu)
-- Nguồn đã đọc: không mở lại ảnh nguồn (diff chỉ thêm `explain`; quy tắc, recap, note, đề không đổi)
-- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 1 cảnh báo `[guides]` đã có từ trước (`exercises[12]`); các cảnh báo khác thuộc bài khác
-- `lesson:walk`: không chạy (điều phối chạy; vòng này chỉ thêm lời giải thích)
-- Kết luận: 0 lỗi Nghiêm trọng, 1 Nên sửa, 2 Góp ý; lệnh cuối vòng (`content:hash`) do điều phối chạy
-- Bản đã review: `3b93af88951c6301782ffedd15f1321eb7397695fba3756a276f94cce3ee6a83` (`pnpm content:diff` so với bản này)
+- Vòng: 17 - chỉ phần đổi (`pnpm content:diff`), section: `luy-thua.section.luy-thua-la-gi`, `luy-thua.section.tinh-gia-tri`
+- Nguồn đã đọc: không mở lại ảnh nguồn (diff chỉ đổi chỗ xếp câu `chon-tich-5-mu-4` và chữ của `buoc-tiep-6-mu-4`; quy tắc, recap, note không đổi)
+- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 0 cảnh báo của bài; cảnh báo `[guides]` (LL-04) đã hết
+- Đọc hiểu (Haiku): lượt 1 là 3 / 1 / 0; đề viết lại theo Góp ý của reviewer ("lấy 36 nhân tiếp với cơ số"), lượt 2 báo mơ hồ chỉ vì không biết bài đã dạy "cơ số" ở section `co-so-so-mu`; giữ nguyên
+- `lesson:walk`: 0 FAIL; đã xem ảnh 070-081 (section "Tính giá trị luỹ thừa", cả hai câu, nhánh sai và gợi ý), `.shots/walk/luy-thua/ipad/`
+- Kết luận: 0 Nghiêm trọng, 0 Nên sửa; Góp ý về đề đã áp dụng; đã duyệt và khoá id
+- Bản đã review: `90420213de40378d94b4f058082c5de339c5dd3fd7eca5f6cab54b2b8110ce4b` (`pnpm content:diff` so với bản này)
 
-Đã soát đạt (cả 55 câu, từ đầu):
-- Số có nhóm nghìn: in từng chuỗi `text`, `wrong`, `tex` của mọi `explain` bằng script (U+202F thành "_"); mọi số 4 chữ số trở lên (1_000, 10_000, 100_000, 1_000_000, 5_247, 3_062, 3_602, 30_062, 7_000, 7_409) đủ chữ số, không còn dấu cách hẹp đứng đầu chuỗi, không còn số 4 chữ số trở lên viết liền; `tex` dùng `\,` khớp `text`.
-- Toán: tự giải từng câu so với đề và `answer`; mọi phép tính trong `text`, `tex`, `wrong` tính lại đúng (vd 3_062 = 3·10³ + 6·10 + 2; hai tổng nhiễu bằng 3_602 và 30_062; 2³ < 3² < 4² < 5² là 8, 9, 16, 25); `wrong` không bác đáp án đúng, `optionId` khớp nội dung.
-- Từ ngữ: khớp câu `rule: true` và caption recap của từng section; section "Luỹ thừa là gì?" không dùng "cơ số/số mũ" trong `text` (chỉ "thừa số", "luỹ thừa"); không có "Đúng rồi", nhãn a/b/c, "phương án", "ở trên"; mọi `explain` tối đa 3 câu.
-- `tex`: cú pháp cân ngoặc, cơ số blue và số mũ violet đúng chỗ, khớp `text`.
-- Nhiễu dễ chọn nhầm của câu `choice` đều có `wrong`.
+Đã soát đạt:
+- Chuyển `luy-thua.ex.chon-tich-5-mu-4` sang đầu `checkIds` của `tinh-gia-tri`: câu dùng "cơ số/số mũ" (gợi ý tô `co-so`, `so-mu`) nay đứng sau section `co-so-so-mu` đã dạy hai từ đó; màn guide `numericPower` (section `co-so-so-mu`) đứng trước mọi câu nhập luỹ thừa, hết cảnh báo `[guides]`. Câu hợp section mới: bước viết 5⁴ thành tích 5·5·5·5 là bước đầu của quy tắc "nhân hai thừa số đầu, rồi lấy kết quả nhân tiếp với cơ số"; `explain` dùng đúng "thừa số", "số mũ".
+- Tự giải `chon-tich-5-mu-4`: 5⁴ = 5·5·5·5 = 625; 5·4 = 20; 4·4·4·4·4 = 4⁵ = 1024. Đúng một đáp án (a); `wrong` khớp b, c.
+- Tự giải `buoc-tiep-6-mu-4`: tích 6·6·6·6, đã có 6·6 = 36. Mọi thừa số của tích đều là 6, nên "nhân 36 với thêm một thừa số của tích" chỉ cho 36·6 = 216 (a). 36·36 = 1296 cũng bằng 6⁴ nhưng 36 không phải thừa số của tích, đề nay loại được (hết LL-10, LL-01); 36·4 sai vì 4 là số mũ. Đúng một đáp án; `explain.wrong` đúng và không bác đáp án đúng.
+- Cả hai section còn đủ: `luy-thua-la-gi` còn `tim-o-16-hat` (manipulate), recap khớp note định nghĩa; `tinh-gia-tri` có 2 câu kiểm tra + `tinh-3-mu-3` luyện, recap khớp câu `rule: true` word-for-word.
+- LL-07: không câu nào khác trong bài dùng 5⁴, 6⁴, 625, 1296, 216; số trong `explain.tex` (36, 216) khớp phép tính.
 
 ## Nghiêm trọng
 
@@ -21,23 +22,13 @@ Không có.
 
 ## Nên sửa
 
-### 1. `dien-quy-tac`: lời giải thích của câu nhân nhắc quy tắc chia, section chia dạy sau
-
-- Vị trí: `$.exercises[28].explain.text` (`luy-thua.ex.dien-quy-tac`), section "Nhân hai luỹ thừa cùng cơ số"
-- Nguồn: —
-- Vấn đề: "Trừ số mũ là quy tắc của phép chia" dùng kiến thức của section "Chia hai luỹ thừa cùng cơ số" (card sau); đến đây trẻ chưa học phép chia luỹ thừa nên câu này gây rối thay vì giải thích. Nhiễu "nhân" (dễ nhầm "nhân các số mũ") cũng chưa được nói tới.
-- Sửa: "Nhân hai luỹ thừa cùng cơ số thì giữ nguyên cơ số, còn các số mũ cộng lại, không nhân và không trừ. Ví dụ 3 + 4 = 7 nên 2³ · 2⁴ = 2⁷." (`tex` giữ nguyên)
+Không có.
 
 ## Góp ý
 
-### 1. `chon-tich-5-mu-4`: câu `wrong` cho phương án 4·4·4·4·4 hơi vòng
+### 1. `buoc-tiep-6-mu-4`: đề dùng "thừa số của tích", quy tắc bài dùng "cơ số", và câu đề dài
 
-- Vị trí: `$.exercises[3].explain.wrong[1].text` (`luy-thua.ex.chon-tich-5-mu-4`)
-- Vấn đề: "4 là số thừa số, còn thừa số là 5" lặp từ "thừa số" nên khó đọc với trẻ chậm.
-- Sửa: "Số được nhân lặp lại là 5, không phải 4; số 4 chỉ cho biết có 4 thừa số."
-
-### 2. `nhan-ba-luy-thua-10`: "thừa số" chỉ ba luỹ thừa, dễ lẫn với thừa số trong luỹ thừa
-
-- Vị trí: `$.exercises[33].explain.text` (`luy-thua.ex.nhan-ba-luy-thua-10`)
-- Vấn đề: "Ba thừa số cùng cơ số 10" gọi 10², 10, 10⁴ là thừa số, trong khi bài vừa dạy thừa số là số được nhân lặp lại trong một luỹ thừa.
-- Sửa: "Số 10 ở giữa không ghi số mũ nên là 10¹. Nhân ba luỹ thừa cùng cơ số 10: giữ nguyên cơ số và cộng các số mũ, 2 + 1 + 4 = 7."
+- Vị trí: `$.exercises[15].prompt[0].text` (`luy-thua.ex.buoc-tiep-6-mu-4`)
+- Nguồn: —
+- Vấn đề: quy tắc của section nói "lấy kết quả nhân tiếp với cơ số", còn đề nói "nhân 36 với thêm một thừa số của tích" (LL-05, nói một việc hai cách); câu có mệnh đề chen giữa nên bé chậm phải đọc hai lần (LL-25). Không sai kiến thức, chỉ cần khớp quy tắc cho gọn.
+- Sửa: "Đã tính xong bước đầu. Bước tiếp theo là lấy 36 nhân tiếp với cơ số. Đó là phép nào?" (36·6 vẫn là đáp án duy nhất: 6 là cơ số, 4 là số mũ, 36 là kết quả vừa tính). Khi đó `explain.text` đổi "một thừa số 6 của tích" thành "cơ số 6"; `wrong[0]`: "36 là kết quả vừa tính, không phải cơ số; cơ số là 6."; `wrong[1]`: "Số 4 là số mũ, không phải cơ số; cơ số là 6." Gợi ý tô `co-so` giữ nguyên, nay khớp hẳn với đề.

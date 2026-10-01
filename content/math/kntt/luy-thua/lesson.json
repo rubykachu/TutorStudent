@@ -12,7 +12,7 @@
   "title": "Luỹ thừa với số mũ tự nhiên",
   "sourceRef": "SGK tr.22–24",
   "status": "published",
-  "reviewedHash": "3b93af88951c6301782ffedd15f1321eb7397695fba3756a276f94cce3ee6a83",
+  "reviewedHash": "90420213de40378d94b4f058082c5de339c5dd3fd7eca5f6cab54b2b8110ce4b",
   "concepts": [
     {
       "id": "luy-thua.concept.co-so",
@@ -81,7 +81,7 @@
           ]
         }
       ],
-      "checkIds": ["luy-thua.ex.tim-o-16-hat", "luy-thua.ex.chon-tich-5-mu-4"],
+      "checkIds": ["luy-thua.ex.tim-o-16-hat"],
       "practiceIds": [],
       "recap": {
         "type": "visual",
@@ -225,7 +225,10 @@
           ]
         }
       ],
-      "checkIds": ["luy-thua.ex.buoc-tiep-6-mu-4"],
+      "checkIds": [
+        "luy-thua.ex.chon-tich-5-mu-4",
+        "luy-thua.ex.buoc-tiep-6-mu-4"
+      ],
       "practiceIds": ["luy-thua.ex.tinh-3-mu-3"],
       "recap": {
         "type": "visual",
@@ -1187,7 +1190,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đã tính xong bước đầu. Bước tiếp theo là gì?"
+          "text": "Đã tính xong bước đầu. Bước tiếp theo, lấy 36 nhân tiếp với cơ số, là phép nào?"
         },
         {
           "type": "formula",
@@ -1237,16 +1240,16 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Tính luỹ thừa là nhân từng thừa số một. Đã có 6 · 6 = 36, nên lấy 36 nhân tiếp với một thừa số 6, cứ thế tới khi hết 4 thừa số.",
+        "text": "Tính luỹ thừa là nhân từng thừa số một. Đã có 6 · 6 = 36, nên lấy 36 nhân tiếp với cơ số 6, cứ thế tới khi hết 4 thừa số.",
         "tex": "\\begin{aligned} 6 \\cdot 6 &= 36 \\\\ 36 \\cdot 6 &= 216 \\end{aligned}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Ở bước này ta lấy kết quả nhân tiếp với cơ số 6, chưa nhân 36 với 36."
+            "text": "36 là kết quả vừa tính, không phải cơ số; cơ số là 6."
           },
           {
             "optionId": "c",
-            "text": "Số 4 là số mũ, cho biết có 4 thừa số; số đem nhân tiếp là cơ số 6."
+            "text": "Số 4 là số mũ, không phải cơ số; cơ số là 6."
           }
         ]
       }

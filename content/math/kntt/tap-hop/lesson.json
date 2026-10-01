@@ -12,7 +12,7 @@
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "2e9312f00cdf152de6a0c33f8469e631402cdc05110118dd6639bad5b1f273cf",
+  "reviewedHash": "589834e7f7306fbabe52a96bd17534ecb1989d592963c174b7f9f594a217676f",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",
@@ -35,7 +35,7 @@
       "id": "tap-hop.section.tap-hop-la-gi",
       "title": "Tập hợp và phần tử",
       "sourceRef": "Sách bài tập tr.5",
-      "minutes": 5,
+      "minutes": 3,
       "blocks": [
         {
           "type": "video",
@@ -71,19 +71,62 @@
               "visualId": "tap-hop.visual.vi-du-phan-tu"
             }
           ]
+        }
+      ],
+      "checkIds": ["tap-hop.ex.kt-phan-tu-hop-but"],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop.visual.tom-tat-tap-hop",
+        "caption": "Tập hợp là một nhóm các thứ gom lại. Mỗi thứ trong nhóm là một phần tử."
+      }
+    },
+    {
+      "id": "tap-hop.section.chon-va-noi",
+      "title": "Chọn phần tử và nối ô",
+      "sourceRef": "Sách bài tập tr.5",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài thao tác: chạm vào hình hoặc số mà đề bài bảo chạm, rồi bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-cham-so"
+            }
+          ],
+          "guide": "manipulate"
         },
         {
           "type": "visual",
           "visualId": "tap-hop.visual.chon-hop-but",
           "caption": "Chạm đồ vật để bỏ vào hộp bút: chỉ đồ dùng học tập mới thuộc hộp."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài nối: chạm một ô bên trái, rồi chạm ô đúng cặp với nó bên phải. Cũng có thể kéo ô sang."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-noi"
+            }
+          ],
+          "guide": "match"
         }
       ],
-      "checkIds": ["tap-hop.ex.kt-phan-tu-hop-but"],
+      "checkIds": ["tap-hop.ex.kt-thu-noi"],
       "practiceIds": ["tap-hop.ex.nhom-la-tap-hop", "tap-hop.ex.mua-trong-nam"],
       "recap": {
         "type": "visual",
-        "visualId": "tap-hop.visual.tom-tat-tap-hop",
-        "caption": "Tập hợp là một nhóm các thứ gom lại. Mỗi thứ trong nhóm là một phần tử."
+        "visualId": "phep-cong-phep-tru.visual.huong-dan-cham-so",
+        "caption": "Bài thao tác: chạm vào hình hoặc số mà đề bài bảo chạm, rồi bấm “Kiểm tra”. Bài nối: chạm ô bên trái, rồi ô đúng cặp với nó bên phải."
       }
     },
     {
@@ -332,6 +375,20 @@
               "visualId": "tap-hop.visual.vi-du-liet-ke"
             }
           ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài xếp thứ tự: chạm một thẻ rồi chạm vào chỗ muốn đặt, hoặc kéo thẻ. Xếp xong thì bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-xep"
+            }
+          ],
+          "guide": "order"
         }
       ],
       "checkIds": ["tap-hop.ex.kt-ghep-hai-phan-tu"],
@@ -983,6 +1040,78 @@
       "bank": ["phần tử", "tập hợp"],
       "explain": {
         "text": "Mỗi thứ trong nhóm là một phần tử. Chỉ cả nhóm gom lại mới gọi là tập hợp."
+      }
+    },
+    {
+      "id": "tap-hop.ex.kt-thu-noi",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi món với chỗ chứa nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "match",
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "chiếc bút"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "quả cam"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "hộp bút"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "rổ trái cây"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "tủ quần áo"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        }
+      ],
+      "explain": {
+        "text": "Chiếc bút nằm trong hộp bút. Quả cam nằm trong rổ trái cây. Mỗi món nối với chỗ chứa nó."
       }
     },
     {

@@ -19,7 +19,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 | tap-hop#5 | Mục "Chú ý" (kí hiệu ℕ, viết gọn {x ∈ ℕ \| …}) chưa có trong bài | bỏ: nội dung mới cần cách đọc, ví dụ và câu luyện | |
 | tap-hop#6 | Bài 1.6, 1.7 của sách chưa lấy (phân số, 2k + 1) | bỏ: chương chưa dạy phân số, 2k + 1 cần biến k | |
 | tap-hop#7 | Dấu ; xuất hiện ở ví dụ section ngoặc nhọn trước khi section dấu chấm phẩy dạy nó | bỏ: phải dựng lại ví dụ của nhiều hình, không chỉ đổi chữ | |
-| tap-hop#8 | 9 cảnh báo `[guides]` (match, manipulate, order): thiếu màn hướng dẫn thao tác | bỏ: cần màn và hình hướng dẫn mới, là mục riêng của hàng đợi chung | |
+| tap-hop#8 | 9 cảnh báo `[guides]` (match, manipulate, order): thiếu màn hướng dẫn thao tác | sửa: tách section đầu, thêm section `chon-va-noi` (guide manipulate, match, câu thử `kt-thu-noi`) và guide order ở `liet-ke`, dùng lại hình `huong-dan-*` của `phep-cong-phep-tru` | đã sửa, review vòng 11 đạt (0 Nghiêm trọng), đã duyệt; hết cảnh báo |
 | tap-hop#9 | Recap 7 section không lặp nguyên văn note, chưa đánh `rule` | bỏ: đổi câu quy tắc kéo theo lời video | |
 | tap-hop#10 | Lời đọc tổng quan chưa dựng lại được (không có mô hình giọng, không có mạng) | bỏ: dựng media | |
 | tap-hop#11 | 3 Góp ý của vòng 8 về video `thuoc-khong-thuoc` (chữ C "quay sang phải", phụ đề ngắt giữa từ, chấm số bị cắt) | bỏ: video và công cụ video | |
@@ -49,7 +49,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| luy-thua#1 | Màn `guide: numericPower` ở section `co-so-so-mu` nằm sau câu nhập luỹ thừa đầu tiên (cảnh báo `[guides]`) | bỏ: chuyển lên section đầu làm dùng "cơ số", "số mũ" trước khi dạy; cần màn hướng dẫn mới, chủ dự án quyết | |
+| luy-thua#1 | Màn `guide: numericPower` ở section `co-so-so-mu` nằm sau câu nhập luỹ thừa đầu tiên (cảnh báo `[guides]`) | sửa: giữ màn ở `co-so-so-mu`, chuyển câu `chon-tich-5-mu-4` (dùng "cơ số", "số mũ") sang `tinh-gia-tri` | đã sửa, review vòng 17 đạt (0 Nghiêm trọng), đã duyệt; hết cảnh báo |
 | luy-thua#2 | Recap section `chia-cung-co-so` thiếu câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai" của note | sửa |  đã sửa, review vòng 14 đạt (0 Nghiêm trọng), đã duyệt |
 | luy-thua#3 | Lựa chọn 2³ của `chon-co-so-2` trùng trạng thái đầu của hình `tao-luy-thua` | sửa: 2⁹ và 9² |  đã sửa, review vòng 14 đạt (0 Nghiêm trọng), đã duyệt |
 | luy-thua#4 | Câu kiểm tra `viet-4-mu-3`, `viet-1000`, `chon-2-mu-7` có đáp án nằm sẵn trên màn giải thích | bỏ: câu kiểm tra không tính điểm nhớ, tác giả đã chọn giữ | |
@@ -57,7 +57,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 | luy-thua#6 | Hạt gạch khó đọc (`bead-group.tsx` dùng chung); khung `fillBlank` ngắt dòng; chữ số mũ Unicode nhỏ; nấc 1 tô cả đề | bỏ: việc của app hoặc visual dùng chung; nấc 1 tô cả đề là quy ước cho phép | |
 | luy-thua#7 | Câu "nhà vua không có đủ để thưởng" nhắc nhà vua trước khi kể; ảnh bìa video che công thức; `minutes` chưa tính video | bỏ: sửa phải đổi video, hoặc cần chốt luật | |
 | luy-thua#8 | Recap `luy-thua-la-gi` chèn "(đọc là “a mũ n”)" nên note chưa đánh `rule` | bỏ: đánh `rule` kéo theo lời video | |
-| luy-thua#9 | Cảnh báo `[guides]` match, order | bỏ: cùng mục tap-hop#8 | |
+| luy-thua#9 | Cảnh báo `[guides]` match, order | sửa: hết khi có hai màn của tap-hop#8 | đã xong |
 
 ## `thu-tu-thuc-hien-phep-tinh`
 
@@ -139,3 +139,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 Cập nhật khi từng bài xong (commit, review, duyệt, khoá).
 
 Kết quả 02/10/2026: 76 mục kiểm kê (có mục gộp nhiều chỗ nhỏ cùng loại): 23 sửa và đã duyệt, 1 đã sửa từ trước, 52 bỏ kèm lý do. Chín bài đổi (`tap-hop`, `phep-cong-phep-tru`, `phep-nhan-phep-chia`, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `quan-he-chia-het-va-tinh-chat`, `dau-hieu-chia-het`, `so-nguyen-to`, `neu-cau-muon-co-mot-nguoi-ban`), mỗi bài một reviewer vòng chỉ phần đổi, 0 Nghiêm trọng, đã `content:hash --approve` và `content:lock`; `uoc-chung-uoc-chung-lon-nhat` không có mục nào sửa được. `content:check` 0 lỗi (9 cảnh báo `[guides]` có từ trước). `lesson:walk`: 0 lỗi ở tám bài; `phep-nhan-phep-chia` báo 4 lỗi "bottom bar covers" ở `tinh-tuan-ngay-correct` (iPad), cũng báo đúng như vậy ở bản trước mọi thay đổi này, nên không do lần sửa này; cần người giữ app xem lời giải `tinh-tuan-ngay` dưới thanh nút.
+
+## Bổ sung: câu mơ hồ `luy-thua.ex.buoc-tiep-6-mu-4`
+
+36 · 36 cũng bằng 6⁴ nên đề "Bước tiếp theo là gì?" có hai cách hiểu (LL-10). Đã đổi đề thành "lấy 36 nhân tiếp với cơ số", sửa `explain` và `wrong`; chỉ còn 36 · 6 đúng. Review vòng 17 đạt.
