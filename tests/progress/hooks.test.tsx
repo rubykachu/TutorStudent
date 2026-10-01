@@ -27,6 +27,7 @@ import {
   resetLessonsForTesting,
   setActiveProfile,
   setSoundEnabled,
+  updateProfile,
   useActiveProfile,
   useChildProgress,
   useContentIndex,
@@ -169,6 +170,49 @@ describe("profiles and the active child", () => {
     await waitFor(() =>
       expect(active.result.current).toEqual({ status: "none" }),
     );
+  });
+});
+
+describe("updateProfile", () => {
+  it("changes only the name and avatar: id, series, creation time, progress and the active child stay", async () => {
+    setNowForTesting(() => new Date("2026-03-01T02:00:00Z"));
+    const na = await createProfile({ name: "Bé Na", avatar: "cat" }, subjects);
+    const bin = await createProfile({ name: "Bin", avatar: "bear" }, subjects);
+    await setActiveProfile(na.id);
+    const scope = { familyId: LOCAL_FAMILY_ID, childId: na.id };
+    await awardSticker(
+      appDb(),
+      scope,
+      "powers",
+      new Date("2026-03-02T02:00:00Z"),
+    );
+    await markActivityDay(appDb(), scope, "2026-03-02");
+    const progressBefore = await readChildProgress(appDb(), na.id);
+
+    const updated = await updateProfile(na.id, {
+      name: "  Na Na  ",
+      avatar: "fox",
+    });
+
+    expect(updated).toEqual({ ...na, name: "Na Na", avatar: "fox" });
+    expect(await appDb().profiles.get(na.id)).toEqual(updated);
+    expect(await appDb().profiles.get(bin.id)).toEqual(bin);
+    expect(await readChildProgress(appDb(), na.id)).toEqual(progressBefore);
+    expect(progressBefore.stickers).toHaveLength(1);
+    const active = renderHook(() => useActiveProfile());
+    await waitFor(() =>
+      expect(active.result.current).toEqual({
+        status: "ready",
+        profile: updated,
+      }),
+    );
+  });
+
+  it("does nothing for a profile that does not exist", async () => {
+    expect(await updateProfile("missing", { name: "X", avatar: "cat" })).toBe(
+      null,
+    );
+    expect(await appDb().profiles.count()).toBe(0);
   });
 });
 

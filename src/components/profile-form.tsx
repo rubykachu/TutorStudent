@@ -1,7 +1,13 @@
 "use client";
 
 import { type FormEvent, useEffect, useId, useState } from "react";
-import { AVATARS, Avatar, type AvatarId } from "@/components/avatar";
+import {
+  AVATARS,
+  Avatar,
+  type AvatarId,
+  DEFAULT_AVATAR,
+  isAvatarId,
+} from "@/components/avatar";
 import { BigButton } from "@/components/big-button";
 import { avatarSoundUrls, playAvatarSound } from "@/lib/avatar-sounds";
 import { PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
@@ -11,12 +17,23 @@ import type { NewProfile } from "@/progress/hooks";
 type ProfileFormProps = {
   onSubmit: (profile: NewProfile) => void;
   submitting: boolean;
+  // The profile being edited; empty for a new child.
+  initial?: NewProfile;
+  submitLabel?: string;
 };
 
-export function ProfileForm({ onSubmit, submitting }: ProfileFormProps) {
+export function ProfileForm({
+  onSubmit,
+  submitting,
+  initial,
+  submitLabel = "Bắt đầu học",
+}: ProfileFormProps) {
   const nameId = useId();
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState<AvatarId>(AVATARS[0].id);
+  const [name, setName] = useState(initial?.name ?? "");
+  // An id from a newer app version shows the default face, as `Avatar` does.
+  const [avatar, setAvatar] = useState<AvatarId>(
+    initial && isAvatarId(initial.avatar) ? initial.avatar : DEFAULT_AVATAR,
+  );
   const trimmed = name.trim();
 
   // Each avatar says its own sound when chosen, so they load up front.
@@ -77,7 +94,7 @@ export function ProfileForm({ onSubmit, submitting }: ProfileFormProps) {
       </fieldset>
 
       <BigButton type="submit" disabled={!trimmed || submitting}>
-        Bắt đầu học
+        {submitLabel}
       </BigButton>
     </form>
   );

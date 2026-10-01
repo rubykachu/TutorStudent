@@ -40,4 +40,34 @@ describe("ProfileForm", () => {
       expect(radio).toHaveAttribute("data-own-sound");
     }
   });
+
+  it("starts from the profile being edited and submits its changes with the given label", () => {
+    const onSubmit = vi.fn();
+    render(
+      <ProfileForm
+        initial={{ name: "Bé Na", avatar: "panda" }}
+        submitLabel="Lưu"
+        onSubmit={onSubmit}
+        submitting={false}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "Gấu trúc" })).toBeChecked();
+    fireEvent.change(screen.getByLabelText("Bạn tên là gì?"), {
+      target: { value: " Na " },
+    });
+    fireEvent.click(screen.getByRole("radio", { name: "Gà con" }));
+    fireEvent.click(screen.getByRole("button", { name: "Lưu" }));
+    expect(onSubmit).toHaveBeenCalledWith({ name: "Na", avatar: "chick" });
+  });
+
+  it("shows the default face selected for an avatar id this version does not know", () => {
+    render(
+      <ProfileForm
+        initial={{ name: "Bé Na", avatar: "dragon" }}
+        onSubmit={vi.fn()}
+        submitting={false}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "Mèo" })).toBeChecked();
+  });
 });

@@ -81,8 +81,8 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| quan-he-chia-het-va-tinh-chat#1 | Hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án `dien-du-14-7` là "không chia hết" | sửa: hình gợi ý riêng cho `dien-du-14-7` | |
-| quan-he-chia-het-va-tinh-chat#2 | Caption `tong-12-18-6` "xếp vừa các túi 6 cái" | sửa | |
+| quan-he-chia-het-va-tinh-chat#1 | Hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án `dien-du-14-7` là "không chia hết" | sửa: hình gợi ý riêng cho `dien-du-14-7` |  đã sửa, review vòng 7 đạt (0 phát hiện), đã duyệt |
+| quan-he-chia-het-va-tinh-chat#2 | Caption `tong-12-18-6` "xếp vừa các túi 6 cái" | sửa |  đã sửa, review vòng 7 đạt (0 phát hiện), đã duyệt |
 | quan-he-chia-het-va-tinh-chat#3 | Màu "Số hạng" xanh dương trùng "Số bị chia", "Tổng" cam trùng "Thương" | bỏ: màu do glossary chung giữ, bài khác đang dùng | |
 | quan-he-chia-het-va-tinh-chat#4 | `nhom-so-hang` thiếu tình huống đời sống | bỏ: không có tình huống tự nhiên | |
 | quan-he-chia-het-va-tinh-chat#5 | Nấc 1 tô cả đề ở `tim-tui-40-16`, `mua-hop-10-20`, `du-tong-30-4`; card hiệu thêm "Hiệu" teal; chú giải "Thừa số" cho `tim-uoc-18` | bỏ: đề một khối, đã chốt giữ nguyên ở các vòng trước | |

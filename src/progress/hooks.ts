@@ -127,6 +127,27 @@ export async function createProfile(
   return profile;
 }
 
+// Renames a child or changes their avatar. Only the profile record changes:
+// its id is the `childId` of every progress record, so progress stays attached
+// and the active child does not move. Resolves to null for an unknown id.
+export async function updateProfile(
+  id: string,
+  input: NewProfile,
+): Promise<ProfileRecord | null> {
+  const db = appDb();
+  return db.transaction("rw", db.profiles, async () => {
+    const profile = await db.profiles.get(id);
+    if (!profile) return null;
+    const updated = {
+      ...profile,
+      name: input.name.trim(),
+      avatar: input.avatar,
+    };
+    await putProfile(db, updated);
+    return updated;
+  });
+}
+
 export type ChildProgress = {
   attempts: AttemptRecord[];
   sections: SectionProgressRecord[];

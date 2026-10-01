@@ -212,9 +212,10 @@ describe("the cosmos on the profile picker and the done screen", () => {
           },
         ]}
         onPick={() => undefined}
+        onEdit={() => undefined}
       />,
     );
-    const card = screen.getByRole("button", { name: /An/ });
+    const card = screen.getByRole("listitem");
     expect(card).toHaveClass("isolate", "overflow-hidden");
     expect(container.querySelector("[data-panel-art]")).not.toBeNull();
   });

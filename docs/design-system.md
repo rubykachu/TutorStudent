@@ -166,6 +166,7 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 - Trang chủ: `welcome` khi lần học cuối cách hôm nay ≥ 3 ngày; `happy` khi hôm nay đã học; còn lại `idle`.
 - Màu `--color-streak` `#EA8A0C` và `--color-streak-soft` `#FFF4E0` (lửa, chuỗi ngày) chỉ còn ở trang phụ huynh và khung nhắc ở phần giới thiệu bài; trang chủ của bé không còn chip chuỗi ngày.
 - Trang chủ: avatar bé chọn hiện cạnh "Chào <tên>!" và trong nút "Đổi hồ sơ". Chạm vào avatar cạnh lời chào thì phát tiếng riêng của avatar đó; nút "Đổi hồ sơ" chỉ còn avatar (tên nút vẫn có cho trình đọc màn hình) ở điện thoại để "Chào <tên>!" nằm một dòng, từ 640px thì có chữ. Bạn cú vẫn là linh vật ở mọi nơi khác; ở trang chủ cú cao 80px (`MASCOT_SIZES.home`), một hàng với câu nói, không còn chip nào bên cạnh (hộp nhạc đã bỏ).
+- Màn chọn hồ sơ: mỗi bé là một thẻ (`PanelArt` nền) gồm nút lớn avatar + tên để chọn, và dưới nó nút nhỏ "Sửa" (biểu tượng bút chì, chữ phụ `--color-muted-foreground`, cao 48px) mở form sửa. Hai nút là anh em trong thẻ, không lồng nhau; "Sửa" lấy tên bé làm mô tả (`aria-describedby`) nên nút chọn vẫn giữ tên bé làm tên. Form sửa là form tạo hồ sơ, tiêu đề "Sửa hồ sơ", nút "Lưu", "Quay lại" ở dưới.
 
 ## 9. Component chính
 
@@ -186,7 +187,7 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 | `ConceptChip` | Chip màu khái niệm + ký hiệu hình |
 | `StickerShelf` | Lưới danh hiệu đầu trang chủ (hai hàng) và bộ sưu tập đủ sticker (bảng `Sheet`), xem mục Danh hiệu trên trang chủ |
 | `PanelArt`, `SubjectTileArt`, `CosmosHorizon` | Nền vũ trụ trên thẻ, bảng, ô môn và cuối trang, xem mục Nền vũ trụ |
-| `Avatar` | Hình SVG phẳng trên đĩa nền nhạt: mặt thú (mèo, gấu, thỏ, cáo, gấu trúc, gà con), người nhện (mặt nạ đỏ có mạng nhện, mắt trắng viền đen, áo xanh; thiết kế riêng, không chép logo) và xe đua (nhìn ngang, thân đỏ, cánh gió, vạch trắng). Màu lấy từ token `--color-avatar-*`, chỉ để trang trí, không mang chữ. Hiện ở chọn/tạo hồ sơ (tiêu đề "Chọn hình đại diện"), cạnh lời chào và trong nút "Đổi hồ sơ" trên trang chủ. Mỗi avatar có một tiếng ngắn riêng, phát khi chọn trong form (mỗi lần chạm, kể cả chọn lại) và khi chạm avatar ở trang chủ; bảng id avatar → id tiếng chỉ ở `AVATAR_CLIP_IDS` (`src/lib/sound-manifest.ts`), công tắc âm thanh của bé được tôn trọng (form tạo hồ sơ chưa có bé nên mặc định bật) |
+| `Avatar` | Hình SVG phẳng trên đĩa nền nhạt: mặt thú (mèo, gấu, thỏ, cáo, gấu trúc, gà con), người nhện (mặt nạ đỏ có mạng nhện, mắt trắng viền đen, áo xanh; thiết kế riêng, không chép logo) và xe đua (nhìn ngang, thân đỏ, cánh gió, vạch trắng). Màu lấy từ token `--color-avatar-*`, chỉ để trang trí, không mang chữ. Hiện ở chọn/tạo/sửa hồ sơ (tiêu đề "Chọn hình đại diện"), cạnh lời chào và trong nút "Đổi hồ sơ" trên trang chủ. Mỗi avatar có một tiếng ngắn riêng, phát khi chọn trong form (mỗi lần chạm, kể cả chọn lại) và khi chạm avatar ở trang chủ; bảng id avatar → id tiếng chỉ ở `AVATAR_CLIP_IDS` (`src/lib/sound-manifest.ts`), công tắc âm thanh của bé được tôn trọng (form tạo hồ sơ chưa có bé nên mặc định bật) |
 | `Sheet` | Khung bảng trượt lên (điện thoại) hoặc giữa màn (máy tính bảng): nền mờ, đóng bằng chạm ngoài, Escape và nút "Đóng" |
 | `SectionCardArt`, `LessonCardArt` | Bầu trời riêng của thẻ phần (trang bài) và thẻ bài (trang môn), xem mục Nền vũ trụ |
 

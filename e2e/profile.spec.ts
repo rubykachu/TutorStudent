@@ -1,5 +1,9 @@
 import { expect, type Page } from "@playwright/test";
-import { createProfile, FIXTURE_LESSON_TITLE } from "./flows";
+import {
+  createProfile,
+  FIXTURE_LESSON_TITLE,
+  openFixtureLesson,
+} from "./flows";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 import { test } from "./test";
 
@@ -130,6 +134,81 @@ test("switching between two children from the home corner", async ({
   await page.reload();
   await expect(
     page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+  ).toBeVisible();
+});
+
+// A second child, added from the picker, so a test can tell whose record an
+// edit touched.
+async function addSecondChild(page: Page) {
+  await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
+  await page.getByRole("button", { name: "Thêm bạn mới" }).click();
+  await createProfile(page, "Bin", "Gấu");
+}
+
+test("renaming a child and changing the avatar keeps their progress", async ({
+  page,
+}) => {
+  await page.goto("/profiles");
+  await createProfile(page, "Bé Na", "Mèo");
+  await addSecondChild(page);
+
+  // Bé Na starts a section, so there is progress to keep.
+  await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
+  await page.getByRole("button", { name: "Bé Na" }).click();
+  await openFixtureLesson(page);
+  await page.locator('[data-section="fixture.section.phep-nhan"]').tap();
+  await page.getByRole("button", { name: "Tiếp" }).tap();
+  await page.goto("/");
+  await expect(page.locator('[data-subject="math"]')).toContainText(
+    "Đang học phần 1",
+  );
+
+  await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Ai đang học đấy?" }),
+  ).toBeVisible();
+  await expectNoHorizontalScroll(page);
+  await expectTouchTargets(page);
+
+  await page
+    .locator("li", { has: page.getByRole("button", { name: "Bé Na" }) })
+    .getByRole("button", { name: "Sửa" })
+    .click();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Sửa hồ sơ" }),
+  ).toBeVisible();
+  await expect(page.getByLabel("Bạn tên là gì?")).toHaveValue("Bé Na");
+  await expect(page.getByRole("radio", { name: "Mèo" })).toBeChecked();
+  await expectNoHorizontalScroll(page);
+  await expectTouchTargets(page);
+
+  await page.getByLabel("Bạn tên là gì?").fill("Na Na");
+  await page.getByText("Xe đua", { exact: true }).click();
+  await page.getByRole("button", { name: "Lưu" }).click();
+
+  // Back on the list the card shows the change; the other child is untouched.
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Ai đang học đấy?" }),
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Bin" })).toBeVisible();
+  await page.getByRole("button", { name: "Na Na" }).click();
+
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Chào Na Na!" }),
+  ).toBeVisible();
+  await expect(
+    page.locator('header [data-avatar="racecar"]').first(),
+  ).toBeVisible();
+  await expect(page.locator('[data-subject="math"]')).toContainText(
+    "Đang học phần 1",
+  );
+  await expect(page.locator("[data-continue]")).toHaveAccessibleName(
+    /^Học tiếp: /,
+  );
+
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Chào Na Na!" }),
   ).toBeVisible();
 });
 

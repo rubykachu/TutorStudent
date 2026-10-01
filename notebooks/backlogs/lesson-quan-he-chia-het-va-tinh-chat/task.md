@@ -45,9 +45,7 @@ Hình: `src/visuals/math/quan-he-chia-het-va-tinh-chat/` (danh mục `catalog.ts
 - `src/visuals/shared/math-parts.tsx`: `Tint`, `Hole`, `Legend`, `MATH_LINE` chuyển từ `parts-nhan.tsx` của Bài 5 (vẫn re-export).
 
 ## Việc tiếp theo
-1. Góp ý còn mở: hình gợi ý `so-du-goi-y-15-10` kết luận "chia hết cho 5" trong khi đáp án của `dien-du-14-7` là "không chia hết" (không lộ đáp án).
-2. Caption hình `tong-12-18-6` còn cách nói "xếp vừa các túi 6 cái" (Góp ý vòng 5, đổi lesson.json nên cần review lại).
-3. Các mục ở "Để lại" bên dưới.
+Không còn việc chặn. Hình gợi ý của `dien-du-14-7` và caption `tong-12-18-6` đã sửa (review vòng 7, 02/10/2026). Phần còn lại là các mục ở "Để lại" bên dưới, kiểm kê và quyết định từng mục tại `notebooks/backlogs/fix-earlier-lessons/task.md`.
 
 ## Vòng 1 review đã sửa (02/10/2026)
 - Cả 8 Nghiêm trọng và Nên sửa 1–8, 10–13, 15–28 đã sửa; Góp ý 1–11, 14–17 đã sửa.
