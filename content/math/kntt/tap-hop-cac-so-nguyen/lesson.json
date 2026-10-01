@@ -16,14 +16,14 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với số âm. Sáng mùa đông ở Sa Pa, nhiệt kế chỉ 2 độ dưới 0, bạn ghi nhiệt độ đó bằng số nào?"
     },
-    "summary": "Bài này dạy số nguyên âm, tập hợp các số nguyên và cách biểu diễn chúng trên trục số. Bạn học so sánh, sắp xếp các số nguyên và tìm số đối của một số.",
+    "summary": "Trong bài này, bạn làm quen với số nguyên âm và các số nguyên. Sau đó bạn tìm chỗ của chúng trên trục số. Cuối cùng, bạn so sánh, sắp xếp chúng và tìm số đối của một số.",
     "goals": [
       "đọc và viết được số nguyên âm, số nguyên dương",
-      "biểu diễn được số nguyên trên trục số",
+      "đặt được điểm của một số nguyên lên trục số",
       "so sánh và sắp xếp được các số nguyên",
-      "tìm được số đối của một số nguyên"
+      "tìm được số đối của một số nguyên, ví dụ số đối của 5 là −5"
     ],
-    "whyItMatters": "Bạn dùng số âm khi xem nhiệt kế vào ngày lạnh dưới 0 độ C, hay khi bấm thang máy xuống tầng hầm gửi xe."
+    "whyItMatters": "Bạn dùng số âm khi xem nhiệt kế ngày lạnh dưới 0 độ C, và cả khi bấm thang máy xuống tầng hầm."
   },
   "concepts": [
     {
@@ -165,7 +165,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào số ghi nợ 50 nghìn đồng. Nợ là điều trái ngược với có."
+              "text": "Cùng làm: chạm vào số nói bạn đang nợ 50 nghìn đồng. Nợ và có là hai điều trái ngược nhau."
             },
             {
               "type": "visual",
@@ -252,7 +252,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Mỗi số nguyên thuộc đúng một trong ba nhóm: số nguyên âm, số 0 hoặc số nguyên dương. Mỗi hàng của hình là một nhóm."
+              "text": "Số nguyên nào cũng ở trong một nhóm, và chỉ một nhóm, trong ba nhóm: số nguyên âm, số 0 và số nguyên dương. Mỗi hàng của hình là một nhóm."
             },
             {
               "type": "visual",
@@ -265,7 +265,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Gộp các số nguyên âm, số 0 và các số nguyên dương lại, ta được tập hợp các số nguyên, kí hiệu ℤ.",
+              "text": "Xếp chung các số nguyên âm, số 0 và các số nguyên dương vào một nhóm lớn. Nhóm lớn đó gọi là tập hợp các số nguyên, kí hiệu ℤ.",
               "rule": true
             },
             {
@@ -287,7 +287,7 @@
             },
             {
               "type": "note",
-              "text": "Dấu ∈ đọc là thuộc."
+              "text": "Dấu ∈ đọc là thuộc, nghĩa là có trong tập hợp. Vậy 5 ∈ ℤ là số 5 có trong tập hợp ℤ, và −5 ∈ ℤ cũng vậy."
             }
           ]
         },
@@ -310,7 +310,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan",
-        "caption": "Gộp các số nguyên âm, số 0 và các số nguyên dương lại, ta được tập hợp các số nguyên, kí hiệu ℤ."
+        "caption": "Xếp chung các số nguyên âm, số 0 và các số nguyên dương vào một nhóm lớn. Nhóm lớn đó gọi là tập hợp các số nguyên, kí hiệu ℤ."
       }
     },
     {
@@ -324,7 +324,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt kế giống một trục số đặt đứng. Xoay nằm ngang, ta có trục số: hai vạch liền nhau cách nhau 1 đơn vị."
+              "text": "Nhiệt kế giống một trục số dựng đứng, nên nếu xoay nhiệt kế thành hàng ngang thì ta có trục số. Trên trục số, hai vạch liền nhau cách nhau 1 đơn vị."
             },
             {
               "type": "visual",
@@ -370,7 +370,7 @@
     },
     {
       "id": "tap-hop-cac-so-nguyen.section.diem-bieu-dien",
-      "title": "Đọc điểm trên trục số",
+      "title": "Điểm trên trục số là số nào",
       "sourceRef": "Sách bài tập tr.47 (kiến thức cần nhớ 4), tr.49 (bài 3.3 và bài 3.4), lời giải tr.111",
       "minutes": 4,
       "blocks": [
@@ -379,7 +379,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số 3 nằm sau gốc O, cách O 3 đơn vị. Số −3 nằm trước gốc O, cũng cách O 3 đơn vị.",
+              "text": "Từ gốc O đi sang phải 3 đơn vị thì tới số 3. Còn từ gốc O đi sang trái 3 đơn vị thì tới số −3.",
               "rule": true
             },
             {
@@ -405,8 +405,8 @@
           "type": "tip",
           "id": "tap-hop-cac-so-nguyen.tip.dem-buoc",
           "kind": "tránh sai",
-          "title": "Đọc điểm trên trục số",
-          "text": "Muốn đọc một điểm, hãy đếm số đơn vị từ gốc O tới điểm đó. Mỗi đơn vị là một khoảng giữa hai vạch liền nhau, nên chỉ đếm khoảng, không đếm vạch. Điểm ở bên trái O thì số có dấu −.",
+          "title": "Điểm trên trục số là số nào",
+          "text": "Muốn biết một điểm là số nào, hãy đếm xem từ gốc O đến điểm đó có mấy đơn vị. Mỗi đơn vị là một khoảng giữa hai vạch liền nhau, nên chỉ đếm khoảng, không đếm vạch. Nếu điểm ở bên trái O thì số đó có dấu − đằng trước.",
           "visualId": "tap-hop-cac-so-nguyen.visual.dem-buoc"
         }
       ],
@@ -415,12 +415,12 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.diem-q-p-xong",
-        "caption": "Số 3 nằm sau gốc O, cách O 3 đơn vị. Số −3 nằm trước gốc O, cũng cách O 3 đơn vị."
+        "caption": "Từ gốc O đi sang phải 3 đơn vị thì tới số 3. Còn từ gốc O đi sang trái 3 đơn vị thì tới số −3."
       }
     },
     {
       "id": "tap-hop-cac-so-nguyen.section.so-doi",
-      "title": "Hai số đối nhau",
+      "title": "Số đối của một số",
       "sourceRef": "Sách bài tập tr.47 (kiến thức cần nhớ 4), tr.49 (bài 3.5), lời giải tr.111 (bài 3.9, số đối)",
       "minutes": 5,
       "blocks": [
@@ -429,7 +429,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Con kiến đứng ở gốc O. Đi 4 đơn vị sang phải thì dừng ở 4, đi 4 đơn vị sang trái thì dừng ở −4."
+              "text": "Con kiến đứng ở gốc O. Nó đi sang phải 4 đơn vị thì dừng ở số 4, còn đi sang trái 4 đơn vị thì dừng ở số −4."
             },
             {
               "type": "visual",
@@ -442,7 +442,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0.",
+              "text": "Hai số đối nhau thì cách gốc O bằng nhau nhưng ở hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0.",
               "rule": true
             },
             {
@@ -456,7 +456,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào số đối của 3. Số đối của 3 cách gốc O 3 đơn vị, ở bên kia gốc O."
+              "text": "Cùng làm: chạm vào số đối của 3. Số đối của 3 cũng cách gốc O 3 đơn vị, nhưng ở bên trái gốc O."
             },
             {
               "type": "visual",
@@ -482,12 +482,12 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-doi-5",
-        "caption": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0."
+        "caption": "Hai số đối nhau thì cách gốc O bằng nhau nhưng ở hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0."
       }
     },
     {
       "id": "tap-hop-cac-so-nguyen.section.so-sanh-truc",
-      "title": "So sánh bằng trục số",
+      "title": "Dùng trục số để so sánh",
       "sourceRef": "Sách bài tập tr.47 (kiến thức cần nhớ 5)",
       "minutes": 4,
       "blocks": [
@@ -496,7 +496,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Với hai điểm trên trục số, điểm nằm trước, bên trái, biểu diễn số nhỏ hơn. Điểm nằm sau, bên phải, biểu diễn số lớn hơn.",
+              "text": "Hãy so hai điểm bất kì trên trục số. Điểm ở bên trái biểu diễn số nhỏ hơn, còn điểm ở bên phải biểu diễn số lớn hơn.",
               "rule": true
             },
             {
@@ -510,7 +510,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào số lớn hơn −2. Số lớn hơn −2 nằm sau −2 trên trục số."
+              "text": "Cùng làm: chạm vào số lớn hơn −2. Số lớn hơn −2 thì ở bên phải −2 trên trục số."
             },
             {
               "type": "visual",
@@ -545,7 +545,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-sanh-xong",
-        "caption": "Với hai điểm trên trục số, điểm nằm trước, bên trái, biểu diễn số nhỏ hơn. Điểm nằm sau, bên phải, biểu diễn số lớn hơn."
+        "caption": "Hãy so hai điểm bất kì trên trục số. Điểm ở bên trái biểu diễn số nhỏ hơn, còn điểm ở bên phải biểu diễn số lớn hơn."
       }
     },
     {
@@ -573,7 +573,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào số nhỏ hơn 0. Số nhỏ hơn 0 nằm trước gốc O."
+              "text": "Cùng làm: chạm vào số nhỏ hơn 0. Số nhỏ hơn 0 thì ở bên trái gốc O."
             },
             {
               "type": "visual",
@@ -677,7 +677,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trên trục số, đọc các điểm từ trái sang phải thì được các số từ bé đến lớn.",
+              "text": "Trên trục số, hãy đọc các điểm theo hướng từ trái sang phải. Các số đọc được sẽ lớn dần lên, từ bé đến lớn.",
               "rule": true
             },
             {
@@ -700,7 +700,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.xep-hang-xong",
-        "caption": "Trên trục số, đọc các điểm từ trái sang phải thì được các số từ bé đến lớn."
+        "caption": "Trên trục số, hãy đọc các điểm theo hướng từ trái sang phải. Các số đọc được sẽ lớn dần lên, từ bé đến lớn."
       }
     },
     {
@@ -799,7 +799,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan",
-        "caption": "Gộp các số nguyên âm, số 0 và các số nguyên dương lại, ta được tập hợp các số nguyên, kí hiệu ℤ."
+        "caption": "Xếp chung các số nguyên âm, số 0 và các số nguyên dương vào một nhóm lớn. Nhóm lớn đó gọi là tập hợp các số nguyên, kí hiệu ℤ."
       }
     },
     {
@@ -819,7 +819,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.diem-q-p-xong",
-        "caption": "Số 3 nằm sau gốc O, cách O 3 đơn vị. Số −3 nằm trước gốc O, cũng cách O 3 đơn vị."
+        "caption": "Từ gốc O đi sang phải 3 đơn vị thì tới số 3. Còn từ gốc O đi sang trái 3 đơn vị thì tới số −3."
       }
     },
     {
@@ -829,7 +829,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-doi-5",
-        "caption": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0."
+        "caption": "Hai số đối nhau thì cách gốc O bằng nhau nhưng ở hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0."
       }
     },
     {
@@ -842,7 +842,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-sanh-xong",
-        "caption": "Với hai điểm trên trục số, điểm nằm trước, bên trái, biểu diễn số nhỏ hơn. Điểm nằm sau, bên phải, biểu diễn số lớn hơn."
+        "caption": "Hãy so hai điểm bất kì trên trục số. Điểm ở bên trái biểu diễn số nhỏ hơn, còn điểm ở bên phải biểu diễn số lớn hơn."
       }
     },
     {
@@ -882,7 +882,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.xep-hang-xong",
-        "caption": "Trên trục số, đọc các điểm từ trái sang phải thì được các số từ bé đến lớn."
+        "caption": "Trên trục số, hãy đọc các điểm theo hướng từ trái sang phải. Các số đọc được sẽ lớn dần lên, từ bé đến lớn."
       }
     },
     {
@@ -2150,7 +2150,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Điểm biểu diễn số −4 nằm ở phía nào của gốc O?"
+          "text": "Điểm của số −4 ở bên nào của gốc O?"
         }
       ],
       "hints": {
@@ -2167,28 +2167,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Trước gốc O, về bên trái"
+            "text": "Bên trái gốc O"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Sau gốc O, về bên phải"
+            "text": "Bên phải gốc O"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Đúng ở gốc O"
+            "text": "Ngay tại gốc O"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Số âm nằm trước gốc O, về bên trái. Vậy điểm biểu diễn −4 nằm trước gốc O.",
+        "text": "Số âm ở bên trái gốc O. Vì vậy điểm biểu diễn −4 ở bên trái gốc O.",
         "wrong": [
           {
             "optionId": "b",
@@ -2208,7 +2208,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bấm mũi tên để đưa điểm A tới số −2 trên trục số."
+          "text": "Bấm mũi tên để điểm A đi tới vạch số −2 trên trục số."
         }
       ],
       "hints": {
@@ -2226,7 +2226,7 @@
         "p0": -2
       },
       "explain": {
-        "text": "Số âm nằm trước gốc O, nên điểm A đi sang trái. Đi 2 đơn vị từ gốc O thì tới −2."
+        "text": "Số âm ở bên trái gốc O, nên điểm A đi sang trái. Đi 2 đơn vị từ gốc O thì tới −2."
       }
     },
     {
@@ -2380,20 +2380,20 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Điểm N nằm trước gốc O và cách gốc O 2 đơn vị. Vậy N biểu diễn số −2.",
+        "text": "Điểm N ở bên trái gốc O, cách gốc O 2 đơn vị. Vì vậy N biểu diễn số −2.",
         "tex": "\\concept{amber}{-2}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số 2 nằm sau gốc O, còn điểm N nằm trước gốc O."
+            "text": "Số 2 ở bên phải gốc O, còn điểm N ở bên trái gốc O."
           },
           {
             "optionId": "c",
-            "text": "Từ gốc O đến N là 2 đơn vị, không phải 3 đơn vị."
+            "text": "Điểm N cách gốc O 2 đơn vị, không phải 3 đơn vị, nên N không phải số −3."
           },
           {
             "optionId": "d",
-            "text": "Từ gốc O đến N là 2 đơn vị, không phải 1 đơn vị."
+            "text": "Điểm N cách gốc O 2 đơn vị, không phải 1 đơn vị, nên N không phải số −1."
           }
         ]
       },
@@ -2791,7 +2791,7 @@
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số 8 chính là số đã cho. Số đối của 8 phải nằm ở bên kia gốc O."
+            "text": "Số 8 chính là số đã cho, còn số đối của 8 phải ở bên trái gốc O."
           },
           {
             "optionId": "c",
@@ -2799,7 +2799,7 @@
           },
           {
             "optionId": "d",
-            "text": "Số −7 cách gốc O 7 đơn vị, không phải 8 đơn vị."
+            "text": "Số −7 cách gốc O 7 đơn vị, nhưng số đối của 8 phải cách gốc O 8 đơn vị."
           }
         ]
       },
@@ -2814,7 +2814,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nối mỗi số với số đối của nó."
+          "text": "Nối mỗi số với số đối của nó. Số đối là số ở bên kia gốc O và cách O bằng nhau."
         }
       ],
       "hints": {
@@ -3038,7 +3038,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Dùng trục số để chọn phép so sánh đúng."
+          "text": "Nhìn trục số, rồi chọn phép so sánh đúng."
         },
         {
           "type": "visual",
@@ -3080,7 +3080,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Số −4 nằm trước số 1 trên trục số. Điểm nằm trước biểu diễn số nhỏ hơn, nên −4 nhỏ hơn 1.",
+        "text": "Số −4 ở bên trái số 1 trên trục số. Điểm ở bên trái biểu diễn số nhỏ hơn, nên −4 nhỏ hơn 1.",
         "tex": "\\concept{blue}{-4} < \\concept{violet}{1}",
         "wrong": [
           {
@@ -3139,11 +3139,11 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Điểm B nằm sau điểm A trên trục số. Điểm nằm sau biểu diễn số lớn hơn, nên số của B lớn hơn.",
+        "text": "Điểm B ở bên phải điểm A trên trục số. Điểm ở bên phải biểu diễn số lớn hơn, nên số của B lớn hơn.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Điểm A cách gốc O xa hơn, nhưng nó nằm trước điểm B nên số của A nhỏ hơn."
+            "text": "Điểm A cách gốc O xa hơn, nhưng nó ở bên trái điểm B nên số của A nhỏ hơn."
           }
         ]
       }
