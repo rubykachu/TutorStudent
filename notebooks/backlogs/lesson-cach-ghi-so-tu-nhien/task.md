@@ -1,8 +1,8 @@
 # Bàn giao: Bài 2 `cach-ghi-so-tu-nhien` (Cách ghi số tự nhiên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`) đã đủ 17 section, 89 câu, 83 hình; `content:check --stats` 0 lỗi, không `[guides]`; `lesson:walk` 0 FAIL, 0 cảnh báo; đang review vòng 1 (3 reviewer Opus song song).
-- Việc tiếp theo: sửa theo review vòng 1 và 2 (Opus), đọc hiểu bằng Haiku, vòng chỉ phần đổi, `content:hash --approve`, `content:lock`.
+- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`), 17 section. Vòng 1 xong (13 Nghiêm trọng, sửa ở `48b36fa`); kiểm lại: `content:check` 0 lỗi, `lesson:walk` 0 FAIL, `visual:shot` 176/176 (đã sửa đĩa số đồng hồ chạm ở `12ec29a`). Đang chạy review vòng 2 (3 reviewer Opus, kết quả ở `.shots/review/cach-ghi-so-tu-nhien/r2-nhom-<n>.md`, rồi Tổng hợp).
+- Việc tiếp theo: Tổng hợp vòng 2 -> sửa -> đọc hiểu Haiku -> vòng 3+ chỉ phần đổi (Sonnet) tới 0 Nghiêm trọng -> `content:hash --approve`, `content:lock`, `content:emit`.
 - Không làm trong lượt này: lời đọc tổng quan và video (người sau dựng media; xem "Việc còn lại").
 
 ## Nguồn (sách bài tập, `sources/math/cach-ghi-so-tu-nhien/`, không commit)
