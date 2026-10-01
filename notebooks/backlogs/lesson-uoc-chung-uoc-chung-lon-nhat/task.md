@@ -58,3 +58,6 @@ Khái niệm mới trong `content/glossary/math.json`: "ước chung" (teal), "�
 
 ## Kiểm tra chưa làm
 - `pnpm visual:shot` bản cuối sau khi sửa `plates` và `exp-table` (đã xem ảnh lần chụp trước và sheet walk, không có lỗi).
+
+## Giải thích sau mỗi câu (02/10/2026)
+- Đã thêm `explain` cho cả 65 câu chấm được (`wrong` cho câu `choice` có nhiễu dễ chọn nhầm), đã xoá bài khỏi `content/legacy-lessons.json`. Review phần đổi vòng 5: 0 Nghiêm trọng; 2 Nên sửa (màu `\concept` của ƯCLN trong `tex`) và 3 Góp ý đã sửa. Đã `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures.
