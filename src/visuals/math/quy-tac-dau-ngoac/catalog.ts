@@ -97,6 +97,10 @@ const inside = (terms: readonly number[]) => `(${terms.map(sg).join("\\ ")})`;
 const flipped = (terms: readonly number[]) =>
   terms.map((n) => sg(-n)).join("\\ ");
 
+// A long line broken in two, so it never leaves the screen of a phone.
+const steps = (first: string, second: string) =>
+  `\\begin{gathered} ${first} \\\\ ${second} \\end{gathered}`;
+
 const LEGEND_SIGNS = [
   { color: NEGATIVE, name: "Số hạng âm" },
   { color: POSITIVE, name: "Số hạng dương" },
@@ -111,13 +115,13 @@ const group = (lead: "+" | "-" | "", ...terms: number[]): Piece => ({
 
 // Worked example of the whole method (the lesson's last method section).
 const WHOLE_ROWS = [
-  { tex: "(-6) + (13 - 11) - (-5 - 3 + 9)" },
+  { tex: steps("(-6) + (13 - 11)", "- (-5 - 3 + 9)") },
   {
-    tex: "= -6 + 13 - 11 + 5 + 3 - 9",
+    tex: steps("= -6 + 13 - 11", "+ 5 + 3 - 9"),
     tag: tag("bỏ ngoặc: giữ dấu +, đổi dấu −", NOTE),
   },
   {
-    tex: "= (-6 - 9) + (13 + 3) + (5 - 11)",
+    tex: steps("= (-6 - 9) + (13 + 3)", "+ (5 - 11)"),
     tag: tag("đổi chỗ, rồi nhóm số hạng", NOTE),
   },
   { tex: "= -15 + 16 + (-6)" },
@@ -146,9 +150,9 @@ const REASONABLE_ROWS = [
 ] as const satisfies readonly Row[];
 
 const PAIR_ROWS = [
-  { tex: "(-3) + (-2) + (-1) + 0 + 1 + 2 + 3" },
+  { tex: steps("(-3) + (-2) + (-1)", "+ 0 + 1 + 2 + 3") },
   {
-    tex: "= [(-3) + 3] + [(-2) + 2] + [(-1) + 1] + 0",
+    tex: steps("= [(-3) + 3] + [(-2) + 2]", "+ [(-1) + 1] + 0"),
     tag: tag("ghép các cặp số đối", NOTE),
   },
   { tex: "= 0 + 0 + 0 + 0" },
@@ -438,7 +442,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "nhom-cong-vi-du": rows("Đặt ngoặc có dấu + đứng trước: dấu giữ nguyên", [
     {
-      tex: "8 - 3 + 5 - 2 = (8 - 3) + (5 - 2)",
+      tex: steps("8 - 3 + 5 - 2", "= (8 - 3) + (5 - 2)"),
       tag: tag("hai nhóm, dấu giữ nguyên", NOTE),
     },
     {
@@ -596,9 +600,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "goi-y-ghep-doi": lines(
     "Ghép các cặp số đối nhau, rồi cộng các số còn lại",
     [
-      { tex: "(-2) + (-1) + 0 + 1 + 2 + 3 + 4" },
+      { tex: steps("(-2) + (-1) + 0", "+ 1 + 2 + 3 + 4") },
       {
-        tex: "= [(-2) + 2] + [(-1) + 1] + 0 + 3 + 4",
+        tex: steps("= [(-2) + 2] + [(-1) + 1]", "+ 0 + 3 + 4"),
         tag: tag("ghép cặp số đối", NOTE),
       },
       { tex: "= 0 + 0 + 0 + 3 + 4" },
