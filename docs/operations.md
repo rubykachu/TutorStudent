@@ -8,8 +8,68 @@ Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2,
 
 - Production: `https://nhaky.vercel.app` (project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ cũ `https://tutor-delta-pink.vercel.app` vẫn chạy; địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket.
 - Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS cho hai origin: `https://nhaky.vercel.app` và `https://tutor-delta-pink.vercel.app`.
-- Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Quản lý mã gia đình".
-- Deploy lại chỉ bản đã commit: tạo worktree sạch từ `HEAD` (`git worktree add --detach ../tutor-deploy HEAD`), `pnpm install --frozen-lockfile` ở đó, `npx vercel link --yes --project tutor`, `npx vercel deploy --prod`, rồi `git worktree remove --force ../tutor-deploy`. Không deploy từ cây chính khi còn thay đổi chưa commit.
+- Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Đổi mã gia đình".
+- Deploy lại: `pnpm deploy:prod` (chi tiết ở "Đưa bài mới lên production"). Lệnh luôn dựng từ một worktree sạch của `HEAD`, nên thay đổi chưa commit ở cây chính (kể cả việc dở của agent khác) không bao giờ lên mạng.
+
+## Đưa bài mới lên production
+
+Hai thứ đi ra ngoài máy theo hai đường khác nhau: nội dung bài (đã commit) đi theo bản deploy Vercel; video, phụ đề, ảnh bìa và lời đọc (`public/media/`, không nằm trong git) đi theo bucket R2. Vì vậy phải tải media trước, deploy sau: app không bao giờ trỏ tới tệp chưa có trên bucket. Bước 3 và 4 ghi ra ngoài máy, chỉ chạy khi chủ dự án đồng ý cho bản phát hành này; agent soạn bài chỉ làm bước 1 và 2 rồi báo bài đã sẵn sàng và hỏi có chạy tiếp không.
+
+Cấu hình đích (bucket, project, địa chỉ app, tên tệp env) nằm một chỗ: `scripts/lib/release-config.ts`.
+
+Điều kiện chung, kiểm một lần trước bước 3: `npx wrangler whoami` đăng nhập đúng tài khoản Cloudflare của chủ dự án (chưa thì `npx wrangler login`); `npx vercel whoami` là `rubykachu`; `.env.production.local` có `FAMILY_CODES` và `NEXT_PUBLIC_MEDIA_BASE_URL` (dùng cho kiểm nhanh sau deploy và để bỏ qua tệp đã giống hệt trên bucket).
+
+### 1. Soạn, review, xuất bản bài
+
+Theo skill `lesson-author` và `lesson-review`. Xong bước này khi:
+
+- Bài `published` (có `reviewedHash`, review thuộc subagent mới, 0 lỗi Nghiêm trọng) và id đã khoá: `pnpm content:lock <bài>`.
+- `pnpm content:check` báo 0 lỗi (bài mới không được còn cảnh báo `[review-hash]` hay "not in ids.lock.json").
+- Đã commit: `git status --short -- content src` không còn dòng nào của bài này. Bước 4 chỉ đưa lên bản đã commit.
+
+Kiểm: `pnpm content:check --stats`; `CONTENT_INCLUDE_DRAFT= pnpm content:emit` rồi bài có trong `public/content/index.json` (hay xem trên `pnpm build` ở worktree riêng). Nhớ chạy lại `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` để dev server của chủ dự án vẫn thấy bài nháp.
+
+### 2. Video và lời đọc
+
+Theo skill `lesson-video` (và `pnpm narration:build <bài>` cho phần giới thiệu). Xong bước này khi:
+
+- Bài đã `published` (bước 1) trước khi dựng video; video và lời đọc đã review (vòng review phần đổi của `lesson-video`).
+- `pnpm video:check` ok và `pnpm content:check` 0 lỗi sau khi `videos[]` và `overview.narration` được ghi vào `lesson.json`; thay đổi `lesson.json` đó đã commit.
+- Media của bài có đủ dưới `public/media/video/<bài>/` và `public/media/narration/<bài>/`.
+
+Kiểm: `pnpm lesson:walk <bài>` xem sheet màn tổng quan và video; `pnpm media:upload <bài> --dry-run` liệt kê đúng các tệp của bài.
+
+### 3. Tải media của bài lên R2 (ghi ra ngoài máy)
+
+```bash
+pnpm media:upload <bài> --dry-run      # xem trước: tệp nào sẽ tải, tệp nào đã giống hệt
+pnpm media:upload <bài>...             # tải thật (nhiều bài: cách nhau dấu cách)
+pnpm media:upload --all                # mọi bài có media (trừ bài fixture); dùng khi dựng lại bucket
+```
+
+Lệnh tải từng tệp dưới `public/media/video/<bài>/` và `public/media/narration/<bài>/` bằng `wrangler r2 object put --remote` vào bucket `tutor-media`, giữ nguyên đường dẫn, đặt `Content-Type` theo đuôi tệp (`.mp4` video/mp4, `.vtt` text/vtt, `.jpg` image/jpeg, `.m4a` audio/mp4) và `Cache-Control: public,max-age=3600`. Tệp nào có MD5 trùng `ETag` của đối tượng đang phục vụ ở `NEXT_PUBLIC_MEDIA_BASE_URL` thì bỏ qua (kiểm bằng `HEAD` công khai, không cần khoá). Không đọc được địa chỉ đó thì tải hết tệp của bài. Đuôi tệp lạ làm lệnh dừng; thêm đuôi vào `MEDIA_CONTENT_TYPES` rồi chạy lại.
+
+Kiểm:
+
+```bash
+pnpm media:upload <bài> --dry-run      # phải báo "0 to upload"
+curl -sI -H 'Range: bytes=0-99' "$(grep ^NEXT_PUBLIC_MEDIA_BASE_URL .env.production.local | cut -d= -f2)/video/<bài>/<tên>.mp4" | grep -iE 'HTTP|content-type|content-range'
+```
+
+Cần thấy `206`, `video/mp4`, `content-range: bytes 0-99/...`.
+
+### 4. Deploy lên Vercel (ghi ra ngoài máy)
+
+```bash
+pnpm deploy:prod --dry-run   # in các bước, không chạy gì
+pnpm deploy:prod
+```
+
+Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính có thay đổi chưa commit vẫn được, phần đó không lên), theo thứ tự: `pnpm install --frozen-lockfile`, `npx vercel link --yes --project tutor`, `npx vercel deploy --prod`, xoá worktree (kể cả khi một bước lỗi), rồi chạy kiểm nhanh ở bước 5. Trước khi chạy: `git log -1 --stat` đúng là commit chứa bài; media của bài đã lên bucket (bước 3). Build trên Vercel chạy `pnpm build` nên `content:check` phải 0 lỗi, nếu không bản deploy hỏng và bản cũ vẫn chạy.
+
+### 5. Kiểm nhanh sau deploy
+
+`pnpm deploy:prod` tự chạy năm kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã đầu của `FAMILY_CODES` trong `.env.production.local` được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`. Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
 
 ## Biến môi trường
 
@@ -235,7 +295,7 @@ Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN
 7. Làm xong một phần, tải lại trang: tiến độ còn (IndexedDB trên máy này). Vào `/parent` đặt PIN, xem báo cáo.
 8. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
 
-## Quản lý mã gia đình
+## Đổi mã gia đình
 
 Mọi thay đổi biến môi trường chỉ có hiệu lực ở bản deploy mới, nên sau mỗi lệnh dưới cần `npx vercel deploy --prod` (hoặc push một commit). Sửa một biến Sensitive: xoá rồi thêm lại.
 
@@ -263,7 +323,10 @@ Giới hạn thử sai (5 lần trong 10 phút cho mỗi địa chỉ mạng) đ
 | Bài mới không hiện sau khi push | Bài chưa `published` (chỉ bài đã qua review mới được đưa ra) | `pnpm content:check`; xem trạng thái trong `notebooks/backlogs/index.md` |
 | Cần quay về bản trước | Bản mới hỏng | Vercel, Deployments, bản cũ, "Promote to Production"; hoặc `npx vercel rollback` |
 
-## Thêm bài mới hay video mới sau này
+## Thêm video cho bài cũ
 
-- Bài mới: soạn, review, `pnpm content:lock <bài>`, commit, rồi bước 5 (đẩy mã). Vercel tự build nếu đã nối repo ở bước 6.
-- Video hay lời đọc mới: sau khi dựng trên máy, tải riêng các tệp mới lên bằng lệnh ở bước 3 (chỉ thêm, không dựng lại và không ghi đè tệp cũ trừ khi chủ dự án muốn), rồi push. Không cần đổi biến môi trường.
+Bài đã lên mạng, nay dựng thêm video hay dựng lại lời đọc: nội dung bài không đổi hình thức phát hành, chỉ `lesson.json` (danh sách `videos[]`, `overview.narration`) và `public/media/` đổi.
+
+1. Dựng trên máy theo `lesson-video` (chỉ bài nêu tên; không dựng lại media của bài khác), review phần đổi, `pnpm video:check` ok và `pnpm content:check` 0 lỗi. Commit phần `lesson.json` đổi.
+2. Tải media: `pnpm media:upload <bài> --dry-run`, rồi `pnpm media:upload <bài>`. Tệp cũ giống hệt thì bị bỏ qua; tệp dựng lại có nội dung khác sẽ ghi đè bản trên bucket, nên chỉ chạy khi chủ dự án muốn thay bản cũ.
+3. `pnpm deploy:prod` để `lesson.json` mới lên mạng (cần vì tên video nằm trong `lesson.json`), rồi kiểm theo bước 5 ở trên. Không cần đổi biến môi trường.

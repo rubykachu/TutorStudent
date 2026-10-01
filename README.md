@@ -60,7 +60,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 
 - `pnpm clean` xoá những gì lệnh nào cũng dựng lại được; giữ nguyên nội dung, bản đọc đã chốt và môi trường giọng đọc. Dừng dev server trước khi dùng `--deep`.
 - Bản đọc từng câu của video (`video/projects/**/audio/`, `video/.cache/`) không nằm trong git và giữ dạng WAV vì pipeline đọc trực tiếp file WAV. Lúc Go-live, sao lưu cây này cùng `public/media/` lên một bucket R2 private để máy khác dựng lại vẫn dùng đúng bản đọc cũ (ví dụ `rclone copy video/.cache r2:<bucket-private>/video-cache`, tương tự cho `audio/`). Đây là bước làm tay; không có mã nào tự upload, và mỗi lần ghi lên R2 phải hỏi chủ dự án.
-- Đưa media lên bucket công khai và đặt `NEXT_PUBLIC_MEDIA_BASE_URL`: các bước kèm lệnh ở `docs/operations.md`; skill `lesson-video`, mục "Lên go-live", giải thích vì sao không cần dựng lại gì.
+- Đưa media lên bucket công khai và đặt `NEXT_PUBLIC_MEDIA_BASE_URL`: các bước kèm lệnh ở `docs/operations.md`; mỗi bài mới đi theo mục "Đưa bài mới lên production" (`pnpm media:upload`, `pnpm deploy:prod`); không cần dựng lại gì vì `lesson.json` chỉ ghi đường dẫn tương đối.
 
 ## Lệnh thường dùng
 
@@ -82,6 +82,8 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm video:build <bài> <video>` / `pnpm video:check` | Dựng video / kiểm video đã dựng |
 | `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài, bằng giọng Gemini của bài (nam/nữ theo `media.json`); cần key ở `~/.config/gemini/api_key*`; hết hạn mức thì đọc lại cả bài bằng giọng VieNeu |
 | `pnpm sounds:build` | Âm thanh dùng chung của app (chỉ khi đổi câu thoại) |
+| `pnpm media:upload <bài>… \| --all [--dry-run]` | Tải media của bài (`public/media/video\|narration/<bài>/`) lên bucket R2 với `Content-Type` đúng, bỏ qua tệp đã giống hệt; ghi ra ngoài máy, chỉ chạy khi chủ dự án đồng ý |
+| `pnpm deploy:prod [--dry-run]` | Deploy `HEAD` lên Vercel production từ worktree sạch rồi kiểm nhanh (chuyển về mở khoá, 401, đăng nhập, index 200, media 206); ghi ra ngoài máy, chỉ chạy khi chủ dự án đồng ý. Quy trình đầy đủ: `docs/operations.md`, "Đưa bài mới lên production" |
 | `pnpm clean [--deep]` | Xoá ảnh chụp, log, coverage, `renders/` và các bản đọc thử; `--deep` xoá thêm `.next/` khi không có dev server |
 
 ## Cấu trúc
@@ -95,7 +97,7 @@ src/progress/       lưu tiến độ trên máy (Dexie)
 src/srs/            ôn tập theo mức nhớ (FSRS)
 video/              dựng video và lời đọc (chạy trên máy)
 public/sounds/      âm thanh dùng chung (commit)
-public/media/       video, lời đọc của từng bài (không commit; upload lên R2 khi Go-live)
+public/media/       video, lời đọc của từng bài (không commit; `pnpm media:upload` đưa lên R2)
 sources/            ảnh trang sách (không commit)
 scripts/            công cụ kiểm tra, nạp nguồn, chụp ảnh
 e2e/, tests/        kiểm thử

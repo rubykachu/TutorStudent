@@ -52,11 +52,6 @@ Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi b�
 
 `src/components/blocks/video-player.tsx`: video có `checkpoints` (ghi bởi build từ câu `checkpoint`) tự dừng ở mỗi điểm và hiện nút "Xem tiếp" và "Xem lại đoạn này" dưới khung hình (`video-checkpoint.tsx`; không đặt tên "Tiếp" vì đó là nút rời màn của phần); clip theo card không dừng. Không tự phát, nút phát lớn, phụ đề bật sẵn (chữ lớn, tô chữ đang đọc), `playsInline` cho iPad. Thẻ ôn có clip thì màn nhắc lại có nút "Xem lại đoạn video". Đường dẫn file ghép với `NEXT_PUBLIC_MEDIA_BASE_URL` (mặc định `/media`, tức `public/media`).
 
-## Lên go-live (chưa làm, hỏi trước khi chạy)
+## Đưa lên production
 
-Tải tệp lên bucket media không cần dựng lại, vì `lesson.json` chỉ ghi đường dẫn tương đối:
-
-1. Hỏi chủ dự án trước khi ghi lên R2 (ghi ra ngoài máy).
-2. Sao nguyên cây `public/media/` lên gốc bucket media, giữ đường dẫn, ví dụ `rclone copy public/media r2:<R2_MEDIA_BUCKET>` hoặc `aws s3 sync public/media s3://<R2_MEDIA_BUCKET> --endpoint-url https://<R2_ACCOUNT_ID>.r2.cloudflarestorage.com`, với `Content-Type` `video/mp4`, `text/vtt`, `image/jpeg`.
-3. Bucket bật CORS cho domain app (phụ đề `<track>` tải qua CORS, player đặt `crossOrigin="anonymous"`).
-4. Đặt `NEXT_PUBLIC_MEDIA_BASE_URL=https://<domain media>` trên Vercel và deploy lại.
+Khi bài và media của nó đã xong (video và lời đọc đã review, `pnpm video:check` ok, `lesson.json` đã commit): báo chủ dự án rằng bài sẵn sàng lên production và hỏi có chạy tải media rồi deploy không. Chỉ chạy khi chủ dự án đồng ý cho bản phát hành này (cả hai lệnh ghi ra ngoài máy): `pnpm media:upload <bài> --dry-run`, `pnpm media:upload <bài>`, rồi `pnpm deploy:prod`, theo `docs/operations.md` "Đưa bài mới lên production". Thêm video cho bài đã có trên mạng: mục "Thêm video cho bài cũ" của tài liệu đó.
