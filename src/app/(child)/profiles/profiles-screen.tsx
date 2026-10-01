@@ -8,6 +8,8 @@ import { BigButton } from "@/components/big-button";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { ProfileForm } from "@/components/profile-form";
 import { ProfilePicker } from "@/components/profile-picker";
+import { openGrades } from "@/content/grades";
+import { DEFAULT_GRADE } from "@/lib/config";
 import { HOME_PATH, PARENT_PATH } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
 import {
@@ -15,6 +17,7 @@ import {
   type NewProfile,
   setActiveProfile,
   updateProfile,
+  useContentIndex,
   useProfiles,
 } from "@/progress/hooks";
 import type { Subject } from "@/schema/content";
@@ -43,6 +46,10 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
   const profiles = useProfiles();
   const [mode, setMode] = useState<Mode>({ kind: "pick" });
   const [busy, setBusy] = useState(false);
+  // Until the content index is read, only the default grade can be chosen.
+  const content = useContentIndex();
+  const pickableGrades =
+    content.status === "ready" ? openGrades(content.index) : [DEFAULT_GRADE];
 
   async function handleCreate(input: NewProfile) {
     setBusy(true);
@@ -88,7 +95,11 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
           <h1 className="text-title font-bold md:text-title-lg">
             Chào bạn mới!
           </h1>
-          <ProfileForm onSubmit={handleCreate} submitting={busy} />
+          <ProfileForm
+            onSubmit={handleCreate}
+            submitting={busy}
+            openGrades={pickableGrades}
+          />
           {hasProfiles && <BackButton onClick={backToPicker} />}
         </>
       )}
@@ -98,7 +109,12 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
           <ProfileForm
             // A fresh form per child, so one child's name never carries over.
             key={editing.id}
-            initial={{ name: editing.name, avatar: editing.avatar }}
+            initial={{
+              name: editing.name,
+              avatar: editing.avatar,
+              grade: editing.grade,
+            }}
+            openGrades={pickableGrades}
             submitLabel="Lưu"
             onSubmit={(input) => handleEdit(editing.id, input)}
             submitting={busy}

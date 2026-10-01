@@ -26,6 +26,7 @@ import {
   resetContentIndexForTesting,
   resetLessonsForTesting,
   setActiveProfile,
+  setProfileGrade,
   setSoundEnabled,
   updateProfile,
   useActiveProfile,
@@ -52,7 +53,7 @@ const subjects: Subject[] = [
       verbatimPassage: false,
       requiresOpenEnded: false,
     },
-    series: [{ id: "kntt", name: "Kết nối" }],
+    series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
     defaultSeries: "kntt",
   },
   {
@@ -66,7 +67,7 @@ const subjects: Subject[] = [
       verbatimPassage: false,
       requiresOpenEnded: false,
     },
-    series: [{ id: "ctst", name: "Chân trời" }],
+    series: [{ id: "ctst", name: "Chân trời", grade: 6 }],
     defaultSeries: "ctst",
   },
 ];
@@ -83,7 +84,7 @@ afterEach(async () => {
 describe("buildProfile", () => {
   it("trims the name and starts every subject on its default series", () => {
     const profile = buildProfile(
-      { name: "  Bé Na ", avatar: "fox" },
+      { name: "  Bé Na ", avatar: "fox", grade: 6 },
       subjects,
       new Date("2026-03-01T02:00:00Z"),
     );
@@ -92,6 +93,7 @@ describe("buildProfile", () => {
       familyId: LOCAL_FAMILY_ID,
       name: "Bé Na",
       avatar: "fox",
+      grade: 6,
       series: { math: "kntt", literature: "ctst" },
       createdAt: "2026-03-01T02:00:00.000Z",
     });
@@ -115,7 +117,7 @@ describe("profiles and the active child", () => {
     const active = renderHook(() => useActiveProfile());
 
     let na = await act(() =>
-      createProfile({ name: "Bé Na", avatar: "cat" }, subjects),
+      createProfile({ name: "Bé Na", avatar: "cat", grade: 6 }, subjects),
     );
     await waitFor(() =>
       expect(active.result.current).toEqual({ status: "ready", profile: na }),
@@ -123,7 +125,7 @@ describe("profiles and the active child", () => {
 
     setNowForTesting(() => new Date("2026-03-02T02:00:00Z"));
     const bin = await act(() =>
-      createProfile({ name: "Bin", avatar: "bear" }, subjects),
+      createProfile({ name: "Bin", avatar: "bear", grade: 6 }, subjects),
     );
     await waitFor(() =>
       expect(profiles.result.current?.map((p) => p.name)).toEqual([
@@ -160,7 +162,11 @@ describe("profiles and the active child", () => {
     );
 
     const stranger = {
-      ...buildProfile({ name: "Cam", avatar: "fox" }, subjects, new Date()),
+      ...buildProfile(
+        { name: "Cam", avatar: "fox", grade: 6 },
+        subjects,
+        new Date(),
+      ),
       familyId: "other",
     };
     await act(async () => {
@@ -176,8 +182,14 @@ describe("profiles and the active child", () => {
 describe("updateProfile", () => {
   it("changes only the name and avatar: id, series, creation time, progress and the active child stay", async () => {
     setNowForTesting(() => new Date("2026-03-01T02:00:00Z"));
-    const na = await createProfile({ name: "Bé Na", avatar: "cat" }, subjects);
-    const bin = await createProfile({ name: "Bin", avatar: "bear" }, subjects);
+    const na = await createProfile(
+      { name: "Bé Na", avatar: "cat", grade: 6 },
+      subjects,
+    );
+    const bin = await createProfile(
+      { name: "Bin", avatar: "bear", grade: 6 },
+      subjects,
+    );
     await setActiveProfile(na.id);
     const scope = { familyId: LOCAL_FAMILY_ID, childId: na.id };
     await awardSticker(
@@ -192,6 +204,7 @@ describe("updateProfile", () => {
     const updated = await updateProfile(na.id, {
       name: "  Na Na  ",
       avatar: "fox",
+      grade: 6,
     });
 
     expect(updated).toEqual({ ...na, name: "Na Na", avatar: "fox" });
@@ -208,10 +221,27 @@ describe("updateProfile", () => {
     );
   });
 
-  it("does nothing for a profile that does not exist", async () => {
-    expect(await updateProfile("missing", { name: "X", avatar: "cat" })).toBe(
-      null,
+  it("moves a child to another grade without touching name, avatar or progress", async () => {
+    const na = await createProfile(
+      { name: "Na", avatar: "cat", grade: 6 },
+      subjects,
     );
+    const scope = { familyId: LOCAL_FAMILY_ID, childId: na.id };
+    await markActivityDay(appDb(), scope, "2026-03-02");
+    const progressBefore = await readChildProgress(appDb(), na.id);
+
+    const moved = await setProfileGrade(na.id, 7);
+
+    expect(moved).toEqual({ ...na, grade: 7 });
+    expect(await appDb().profiles.get(na.id)).toEqual(moved);
+    expect(await readChildProgress(appDb(), na.id)).toEqual(progressBefore);
+    expect(await setProfileGrade("missing", 7)).toBe(null);
+  });
+
+  it("does nothing for a profile that does not exist", async () => {
+    expect(
+      await updateProfile("missing", { name: "X", avatar: "cat", grade: 6 }),
+    ).toBe(null);
     expect(await appDb().profiles.count()).toBe(0);
   });
 });

@@ -40,8 +40,8 @@ const math: Subject = {
   language: "vi",
   rules: { checkExpr: false, verbatimPassage: false, requiresOpenEnded: false },
   series: [
-    { id: "kntt", name: "Kết nối" },
-    { id: "cd", name: "Cánh diều" },
+    { id: "kntt", name: "Kết nối", grade: 6 },
+    { id: "cd", name: "Cánh diều", grade: 6 },
   ],
   defaultSeries: "kntt",
 };
@@ -119,20 +119,29 @@ describe("lessonsForSubject", () => {
   };
 
   it("lists the chosen series in textbook order", () => {
-    expect(lessonsForSubject(index, "math", "kntt").map((l) => l.id)).toEqual([
-      "powers",
-      "roots",
-    ]);
-    expect(lessonsForSubject(index, "math", "cd").map((l) => l.id)).toEqual([
-      "other-series",
-    ]);
+    expect(
+      lessonsForSubject(index, "math", {
+        grade: 6,
+        series: { math: "kntt" },
+      }).map((l) => l.id),
+    ).toEqual(["powers", "roots"]);
+    expect(
+      lessonsForSubject(index, "math", {
+        grade: 6,
+        series: { math: "cd" },
+      }).map((l) => l.id),
+    ).toEqual(["other-series"]);
   });
 
   it("falls back to the subject's default series", () => {
     expect(
-      lessonsForSubject(index, "math", undefined).map((l) => l.id),
+      lessonsForSubject(index, "math", { grade: 6, series: {} }).map(
+        (l) => l.id,
+      ),
     ).toEqual(["powers", "roots"]);
-    expect(lessonsForSubject(index, "unknown", undefined)).toEqual([]);
+    expect(
+      lessonsForSubject(index, "unknown", { grade: 6, series: {} }),
+    ).toEqual([]);
   });
 });
 

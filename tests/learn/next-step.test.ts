@@ -47,7 +47,7 @@ function subject(id: string): Subject {
       verbatimPassage: false,
       requiresOpenEnded: false,
     },
-    series: [{ id: "kntt", name: "Kết nối" }],
+    series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
     defaultSeries: "kntt",
   };
 }
@@ -201,17 +201,17 @@ describe("subjectProgress", () => {
 });
 
 describe("continueTarget", () => {
-  const series = { math: "kntt", literature: "kntt" };
+  const learner = { grade: 6, series: { math: "kntt", literature: "kntt" } };
 
   it("offers the first lesson in subject and textbook order to a new child", () => {
-    const target = continueTarget(index, series, EMPTY);
+    const target = continueTarget(index, learner, EMPTY);
     expect(target?.lesson.id).toBe("m1");
     expect(target?.sectionIndex).toBe(0);
     expect(target?.started).toBe(false);
   });
 
   it("resumes the unfinished lesson studied most recently", () => {
-    const target = continueTarget(index, series, {
+    const target = continueTarget(index, learner, {
       ...EMPTY,
       sections: [record("m1", 1, "done", 1), record("v1", 2, "in_progress", 9)],
     });
@@ -226,7 +226,7 @@ describe("continueTarget", () => {
   });
 
   it("counts answers as activity too", () => {
-    const target = continueTarget(index, series, {
+    const target = continueTarget(index, learner, {
       ...EMPTY,
       sections: [record("v1", 1, "in_progress", 1)],
       attempts: [{ lessonId: "m1", at: "2026-03-02T02:00:00.000Z" }],
@@ -235,7 +235,7 @@ describe("continueTarget", () => {
   });
 
   it("moves on to the next lesson of the subject after finishing one", () => {
-    const target = continueTarget(index, series, {
+    const target = continueTarget(index, learner, {
       ...EMPTY,
       sections: [1, 2, 3].map((n) => record("m1", n, "done", n)),
     });
@@ -251,16 +251,20 @@ describe("continueTarget", () => {
     const sections = index.lessons.flatMap((l) =>
       l.sections.map((_s, i) => record(l.id, i + 1, "done", i)),
     );
-    expect(continueTarget(index, series, { ...EMPTY, sections })).toBeNull();
+    expect(continueTarget(index, learner, { ...EMPTY, sections })).toBeNull();
   });
 
-  it("ignores lessons of another series", () => {
+  it("falls back to the default series when the chosen one is not of the grade", () => {
     const target = continueTarget(
       index,
-      { math: "other", literature: "kntt" },
+      { grade: 6, series: { math: "other", literature: "kntt" } },
       EMPTY,
     );
-    expect(target?.lesson.id).toBe("v1");
+    expect(target?.lesson.id).toBe("m1");
+  });
+
+  it("offers nothing in a grade no subject has lessons for", () => {
+    expect(continueTarget(index, { ...learner, grade: 7 }, EMPTY)).toBeNull();
   });
 });
 

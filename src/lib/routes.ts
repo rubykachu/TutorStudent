@@ -2,6 +2,7 @@
 
 export const HOME_PATH = "/";
 export const PROFILES_PATH = "/profiles";
+export const GRADES_PATH = "/grades";
 
 export function subjectPath(subjectId: string): string {
   return `/subjects/${encodeURIComponent(subjectId)}`;

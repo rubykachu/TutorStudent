@@ -1,3 +1,4 @@
+import { type Learner, seriesForGrade } from "@/content/grades";
 import {
   MASCOT_WELCOME_AFTER_DAYS,
   SUBJECT_NUDGE_AFTER_DAYS,
@@ -54,15 +55,19 @@ export function lastStudiedBySubject(
   return latest;
 }
 
-// Lessons a child sees for a subject: those of the series chosen in the
-// profile (the subject's default when unset), in textbook order.
+// Lessons a child sees for a subject: those of the series they study in
+// their grade (see `seriesForGrade`), in textbook order. None when the
+// subject has no series for the grade.
 export function lessonsForSubject(
   index: ContentIndex,
   subjectId: string,
-  series: string | undefined,
+  learner: Learner,
 ): LessonSummary[] {
   const subject = index.subjects.find((s) => s.id === subjectId);
-  const chosen = series ?? subject?.defaultSeries;
+  const chosen =
+    subject &&
+    seriesForGrade(subject, learner.grade, learner.series[subjectId]);
+  if (!chosen) return [];
   return index.lessons
     .filter((l) => l.subject === subjectId && l.series === chosen)
     .sort((a, b) => a.order - b.order);

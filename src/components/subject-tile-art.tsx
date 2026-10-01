@@ -95,6 +95,89 @@ const SCENES: Readonly<Record<SubjectColor, (clip: string) => ReactNode>> = {
       />
     </>
   ),
+  amber: () => (
+    <>
+      <path d="M178 200L262 82L346 200Z" fill="currentColor" opacity={0.13} />
+      <path
+        d="M262 82L300 200M262 82L224 200"
+        stroke="currentColor"
+        strokeWidth="3"
+        opacity={0.1}
+      />
+      <circle
+        cx="262"
+        cy="128"
+        r="104"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeDasharray="3 9"
+        opacity={0.2}
+      />
+      <circle cx="154" cy="46" r="14" fill="currentColor" opacity={0.11} />
+      <circle
+        cx="154"
+        cy="46"
+        r="22"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        opacity={0.14}
+      />
+      <path
+        d="M214 34h12M220 28v12M120 140h10M125 135v10M304 48h10M309 43v10"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity={0.16}
+      />
+    </>
+  ),
+  violet: () => (
+    <>
+      <circle cx="262" cy="136" r="18" fill="currentColor" opacity={0.15} />
+      <ellipse
+        cx="262"
+        cy="136"
+        rx="88"
+        ry="26"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="5"
+        opacity={0.12}
+      />
+      <ellipse
+        cx="262"
+        cy="136"
+        rx="88"
+        ry="26"
+        transform="rotate(60 262 136)"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="5"
+        opacity={0.12}
+      />
+      <ellipse
+        cx="262"
+        cy="136"
+        rx="88"
+        ry="26"
+        transform="rotate(-60 262 136)"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="5"
+        opacity={0.12}
+      />
+      <circle cx="160" cy="48" r="9" fill="currentColor" opacity={0.12} />
+      <path
+        d="M120 120h12M126 114v12M214 30h10M219 25v10M306 40h10M311 35v10"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity={0.16}
+      />
+    </>
+  ),
 };
 
 // The scene of each subject colour, in the order lesson cards cycle through

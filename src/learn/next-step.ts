@@ -1,3 +1,4 @@
+import type { Learner } from "@/content/grades";
 import type { AttemptRecord, SectionProgressRecord } from "@/progress/db";
 import { lessonState, lessonsForSubject } from "@/progress/summary";
 import type { ContentIndex, LessonSummary } from "@/schema/content";
@@ -129,18 +130,18 @@ function targetIn(
 }
 
 // Where the home "Học tiếp" card leads, among the lessons the child can see
-// (the profile's series of each subject):
+// (the series of each subject the profile studies in its grade):
 // 1. the unfinished lesson studied most recently;
 // 2. after finishing a lesson, the next unfinished one of the same subject;
 // 3. otherwise the first unfinished lesson, in subject then textbook order.
 // Null when there is no lesson left to study.
 export function continueTarget(
   index: ContentIndex,
-  series: Readonly<Record<string, string>>,
+  learner: Learner,
   progress: StudyProgress,
 ): ContinueTarget | null {
   const lessons = index.subjects.flatMap((subject) =>
-    lessonsForSubject(index, subject.id, series[subject.id]),
+    lessonsForSubject(index, subject.id, learner),
   );
   const unfinished = (lesson: LessonSummary) =>
     lessonState(

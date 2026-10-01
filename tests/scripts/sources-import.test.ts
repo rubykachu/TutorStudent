@@ -175,8 +175,8 @@ describe("sources-import CLI", () => {
       const pdf = path.join(tmpdir(), `tutor-cli-${process.pid}.pdf`);
       writeFileSync(pdf, tinyPdf(1, []));
       try {
-        expect(run(pdf, ...args({ subject: "history" })).err).toMatch(
-          /--subject "history" is not one of math, literature, geography/,
+        expect(run(pdf, ...args({ subject: "chemistry" })).err).toMatch(
+          /--subject "chemistry" is not one of math, literature, geography, history, science/,
         );
         expect(run(pdf, ...args({ series: "ctst" })).err).toMatch(
           /--series "ctst" is not a math series/,

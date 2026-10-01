@@ -93,7 +93,7 @@ export async function setActiveProfile(id: string | null): Promise<void> {
   await setSetting(appDb(), DEVICE_SCOPE, ACTIVE_PROFILE_KEY, id);
 }
 
-export type NewProfile = { name: string; avatar: string };
+export type NewProfile = { name: string; avatar: string; grade: number };
 
 // A new child starts on each subject's default series; there is no series
 // picker until some subject offers more than one.
@@ -107,6 +107,7 @@ export function buildProfile(
     familyId: LOCAL_FAMILY_ID,
     name: input.name.trim(),
     avatar: input.avatar,
+    grade: input.grade,
     series: Object.fromEntries(subjects.map((s) => [s.id, s.defaultSeries])),
     createdAt: createdAt.toISOString(),
   };
@@ -127,7 +128,23 @@ export async function createProfile(
   return profile;
 }
 
-// Renames a child or changes their avatar. Only the profile record changes:
+// Moves a child to another grade; nothing else about the profile or its
+// progress changes. Resolves to null for an unknown id.
+export async function setProfileGrade(
+  id: string,
+  grade: number,
+): Promise<ProfileRecord | null> {
+  const db = appDb();
+  return db.transaction("rw", db.profiles, async () => {
+    const profile = await db.profiles.get(id);
+    if (!profile) return null;
+    const updated = { ...profile, grade };
+    await putProfile(db, updated);
+    return updated;
+  });
+}
+
+// Renames a child or changes their avatar or grade. Only the profile record changes:
 // its id is the `childId` of every progress record, so progress stays attached
 // and the active child does not move. Resolves to null for an unknown id.
 export async function updateProfile(
@@ -142,6 +159,7 @@ export async function updateProfile(
       ...profile,
       name: input.name.trim(),
       avatar: input.avatar,
+      grade: input.grade,
     };
     await putProfile(db, updated);
     return updated;

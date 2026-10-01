@@ -1,5 +1,5 @@
 import { Dexie, type Table } from "dexie";
-import { LOCAL_FAMILY_ID } from "@/lib/config";
+import { DEFAULT_GRADE, LOCAL_FAMILY_ID } from "@/lib/config";
 import type { LessonCardState } from "@/srs/select";
 
 // Local-first progress store. Every record carries the family and child it
@@ -17,7 +17,11 @@ export type ProfileRecord = {
   familyId: string;
   name: string;
   avatar: string;
-  // Subject id -> series id the child studies for that subject.
+  // The school year the child studies (1 to 12); home shows that grade's
+  // subjects.
+  grade: number;
+  // Subject id -> series id the child studies for that subject (used where
+  // that series is of the child's grade).
   series: Record<string, string>;
   createdAt: string;
 };
@@ -124,6 +128,16 @@ export class TutorDb extends Dexie {
       writings: "id, [familyId+childId]",
       settings: "[familyId+childId+key]",
     });
+    // Profiles saved before grades existed move to the default grade; their
+    // progress records are not touched.
+    this.version(2).upgrade((tx) =>
+      tx
+        .table<Partial<ProfileRecord>>("profiles")
+        .toCollection()
+        .modify((profile) => {
+          profile.grade ??= DEFAULT_GRADE;
+        }),
+    );
   }
 }
 

@@ -11,7 +11,9 @@
         "verbatimPassage": false,
         "requiresOpenEnded": false
       },
-      "series": [{ "id": "kntt", "name": "Kết nối tri thức với cuộc sống" }],
+      "series": [
+        { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
+      ],
       "defaultSeries": "kntt"
     },
     {
@@ -25,7 +27,7 @@
         "verbatimPassage": true,
         "requiresOpenEnded": true
       },
-      "series": [{ "id": "ctst", "name": "Chân trời sáng tạo" }],
+      "series": [{ "id": "ctst", "name": "Chân trời sáng tạo", "grade": 6 }],
       "defaultSeries": "ctst"
     },
     {
@@ -39,7 +41,41 @@
         "verbatimPassage": false,
         "requiresOpenEnded": false
       },
-      "series": [{ "id": "kntt", "name": "Kết nối tri thức với cuộc sống" }],
+      "series": [
+        { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
+      ],
+      "defaultSeries": "kntt"
+    },
+    {
+      "id": "history",
+      "name": "Lịch sử",
+      "color": "amber",
+      "icon": "landmark",
+      "language": "vi",
+      "rules": {
+        "checkExpr": false,
+        "verbatimPassage": false,
+        "requiresOpenEnded": false
+      },
+      "series": [
+        { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
+      ],
+      "defaultSeries": "kntt"
+    },
+    {
+      "id": "science",
+      "name": "Khoa học tự nhiên",
+      "color": "violet",
+      "icon": "flask-conical",
+      "language": "vi",
+      "rules": {
+        "checkExpr": false,
+        "verbatimPassage": false,
+        "requiresOpenEnded": false
+      },
+      "series": [
+        { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
+      ],
       "defaultSeries": "kntt"
     }
   ]

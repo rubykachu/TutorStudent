@@ -1,4 +1,4 @@
-import { Clock } from "lucide-react";
+import { Clock, Lock } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 import { subjectStyle } from "@/components/subject-style";
@@ -62,7 +62,7 @@ function ProgressRing({ done, total }: SubjectProgress) {
 export function subjectSubtitle(status: SubjectStatus): string[] {
   switch (status.kind) {
     case "empty":
-      return ["Sắp có bài"];
+      return ["Sắp ra mắt"];
     case "new":
       return [`${status.total} bài`, "Chưa học"];
     case "learning":
@@ -100,20 +100,38 @@ export function SubjectTile({
   const style = subjectStyle(subject);
   const Icon = style.icon;
   const subtitle = subjectSubtitle(status);
-  return (
-    <Link
-      href={href}
-      data-subject={subject.id}
-      // One row on phones (icon, text, ring); on tablets the text drops below
-      // the icon and ring so three tiles fit side by side.
-      className={`${style.bg} relative isolate grid h-full overflow-hidden min-h-28 grid-cols-[auto_1fr_auto] items-center gap-4 rounded-lg p-4 text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:row-span-5 md:grid-cols-[auto_1fr] md:grid-rows-subgrid md:gap-y-0 md:p-5 tall:p-6`}
-    >
-      <SubjectTileArt color={subject.color} />
-      <span className="order-1 flex size-14 items-center justify-center rounded-full bg-primary-foreground/20 md:col-start-1 md:row-start-1 tall:size-20">
+  // A subject with no published lesson is locked: the tile shows a lock and
+  // does not lead anywhere, so there is no empty page to land on.
+  const locked = status.kind === "empty";
+  // One row on phones (icon, text, ring); on tablets the text drops below
+  // the icon and ring so three tiles fit side by side.
+  const layout =
+    "relative isolate grid h-full overflow-hidden min-h-28 grid-cols-[auto_1fr_auto] items-center gap-4 rounded-lg p-4 md:row-span-5 md:grid-cols-[auto_1fr] md:grid-rows-subgrid md:gap-y-0 md:p-5 tall:p-6";
+  const content = (
+    <>
+      {!locked && <SubjectTileArt color={subject.color} />}
+      <span
+        className={`order-1 flex size-14 items-center justify-center rounded-full md:col-start-1 md:row-start-1 tall:size-20 ${
+          locked ? `bg-muted ${style.text}` : "bg-primary-foreground/20"
+        }`}
+      >
         <Icon aria-hidden className="size-8 tall:size-11" strokeWidth={2.25} />
       </span>
       <div className="order-3 justify-self-end md:col-start-2 md:row-start-1">
-        {progress.total > 0 && <ProgressRing {...progress} />}
+        {locked ? (
+          <span
+            data-lock
+            className="flex size-12 items-center justify-center rounded-full bg-muted text-muted-foreground tall:size-14"
+          >
+            <Lock
+              aria-hidden
+              className="size-6 tall:size-7"
+              strokeWidth={2.25}
+            />
+          </span>
+        ) : (
+          progress.total > 0 && <ProgressRing {...progress} />
+        )}
       </div>
       <div className="order-2 flex min-w-0 flex-col items-start gap-2 md:contents">
         <h2 className="text-block font-bold md:col-span-2 md:row-start-3 md:mt-4 md:self-end md:text-block-lg tall:text-title-lg">
@@ -139,6 +157,26 @@ export function SubjectTile({
           </p>
         )}
       </div>
+    </>
+  );
+  if (locked) {
+    return (
+      <div
+        data-subject={subject.id}
+        data-locked
+        className={`${layout} border-2 border-border bg-surface text-foreground`}
+      >
+        {content}
+      </div>
+    );
+  }
+  return (
+    <Link
+      href={href}
+      data-subject={subject.id}
+      className={`${layout} ${style.bg} text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none`}
+    >
+      {content}
     </Link>
   );
 }

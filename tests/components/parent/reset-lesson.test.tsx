@@ -42,6 +42,7 @@ const NA: ProfileRecord = {
   familyId: LOCAL_FAMILY_ID,
   name: "Bé Na",
   avatar: "fox",
+  grade: 6,
   series: { math: "kntt" },
   createdAt: NOW.toISOString(),
 };
@@ -62,7 +63,7 @@ function stubContent() {
           verbatimPassage: false,
           requiresOpenEnded: false,
         },
-        series: [{ id: "kntt", name: "Kết nối" }],
+        series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
         defaultSeries: "kntt",
       },
     ],

@@ -79,6 +79,10 @@
   --color-subject-terracotta: #b4533f;
   /* Teal rather than green so a subject never reads as "correct". */
   --color-subject-teal: #0f766e;
+  /* Old gold for history, deeper and browner than the "Mẹo" gold; violet for
+     natural science. Each keeps white text above 4.5:1. */
+  --color-subject-amber: #8a5a00;
+  --color-subject-violet: #6d28d9;
 
   --color-correct: #15803d;
   --color-correct-soft: #f0fdf4;

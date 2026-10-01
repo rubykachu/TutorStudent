@@ -1,6 +1,7 @@
 import "fake-indexeddb/auto";
+import { Dexie } from "dexie";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { LOCAL_FAMILY_ID } from "@/lib/config";
+import { DEFAULT_GRADE, LOCAL_FAMILY_ID } from "@/lib/config";
 import {
   awardSticker,
   type ChildScope,
@@ -65,7 +66,12 @@ describe("activity days", () => {
 
 describe("profiles", () => {
   it("lists a family's children oldest first", async () => {
-    const base = { familyId: LOCAL_FAMILY_ID, avatar: "fox", series: {} };
+    const base = {
+      familyId: LOCAL_FAMILY_ID,
+      avatar: "fox",
+      grade: 6,
+      series: {},
+    };
     await putProfile(db, {
       ...base,
       id: "kid-2",
@@ -184,5 +190,47 @@ describe("settings", () => {
     await setSetting(db, sibling, "sound", true);
     expect(await getSetting(db, scope, "sound")).toBe(false);
     expect(await getSetting(db, sibling, "sound")).toBe(true);
+  });
+});
+
+describe("grade migration", () => {
+  it("moves a profile saved before grades existed to the default grade and leaves its progress alone", async () => {
+    // The first schema, written the way an old install left it.
+    const old = new Dexie(DB_NAME);
+    old.version(1).stores({
+      profiles: "id, familyId",
+      stickers: "[familyId+childId+lessonId], [familyId+childId]",
+    });
+    await old.table("profiles").bulkPut([
+      {
+        id: "kid-1",
+        familyId: LOCAL_FAMILY_ID,
+        name: "An",
+        avatar: "fox",
+        series: { math: "kntt" },
+        createdAt: "2026-03-01T00:00:00.000Z",
+      },
+      {
+        id: "kid-2",
+        familyId: LOCAL_FAMILY_ID,
+        name: "Bin",
+        avatar: "cat",
+        grade: 7,
+        series: {},
+        createdAt: "2026-03-02T00:00:00.000Z",
+      },
+    ]);
+    await old.table("stickers").put({ ...scope, lessonId: "l1", at: "t" });
+    old.close();
+
+    const profiles = await listProfiles(db, LOCAL_FAMILY_ID);
+    expect(profiles.map((p) => [p.name, p.grade])).toEqual([
+      ["An", DEFAULT_GRADE],
+      ["Bin", 7],
+    ]);
+    expect(profiles[0]?.series).toEqual({ math: "kntt" });
+    expect((await listStickers(db, scope)).map((r) => r.lessonId)).toEqual([
+      "l1",
+    ]);
   });
 });

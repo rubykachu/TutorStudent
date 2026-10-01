@@ -72,7 +72,7 @@ describe("loadContent", () => {
   it("returns published lessons and hides drafts", () => {
     writeRealLesson("published");
     const content = loadContent({ root, includeFixture: false });
-    expect(content.subjects).toHaveLength(3);
+    expect(content.subjects).toHaveLength(5);
     expect(content.lessons).toEqual([
       expect.objectContaining({ fixture: false }),
     ]);
@@ -124,6 +124,8 @@ describe("buildContentIndex", () => {
       "math",
       "literature",
       "geography",
+      "history",
+      "science",
     ]);
     expect(hidden.lessons).toEqual([]);
 
@@ -153,6 +155,8 @@ describe("loadSubjects", () => {
     expect(loadSubjects(root).map((s) => s.defaultSeries)).toEqual([
       "kntt",
       "ctst",
+      "kntt",
+      "kntt",
       "kntt",
     ]);
   });

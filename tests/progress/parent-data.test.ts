@@ -29,6 +29,7 @@ const profile: ProfileRecord = {
   familyId: LOCAL_FAMILY_ID,
   name: "Bé Na",
   avatar: "fox",
+  grade: 6,
   series: { math: "kntt" },
   createdAt: NOW.toISOString(),
 };

@@ -271,11 +271,11 @@ describe("references", () => {
       `${LESSON_FILE} $.series`,
       'Subject "math" has no series "ctst"',
     );
-    lessonData(unknown).subject = "history";
+    lessonData(unknown).subject = "chemistry";
     expectError(
       check(unknown),
       `${LESSON_FILE} $.subject`,
-      'Unknown subject "history"',
+      'Unknown subject "chemistry"',
     );
   });
 });
@@ -888,7 +888,7 @@ describe("a subject added only in subjects.json", () => {
         verbatimPassage: false,
         requiresOpenEnded: false,
       },
-      series: [{ id: "main", name: "Main" }],
+      series: [{ id: "main", name: "Main", grade: 6 }],
       defaultSeries: "main",
     });
     raw.glossaries.push({

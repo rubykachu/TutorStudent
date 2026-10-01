@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { AVATARS } from "@/components/avatar";
 import { ProfileForm } from "@/components/profile-form";
@@ -14,7 +14,9 @@ afterEach(() => playSequence.mockClear());
 
 describe("ProfileForm", () => {
   it("titles the avatar choice 'Chọn hình đại diện'", () => {
-    render(<ProfileForm onSubmit={vi.fn()} submitting={false} />);
+    render(
+      <ProfileForm onSubmit={vi.fn()} submitting={false} openGrades={[6]} />,
+    );
     expect(
       screen.getByRole("group", { name: "Chọn hình đại diện" }),
     ).toBeInTheDocument();
@@ -22,7 +24,9 @@ describe("ProfileForm", () => {
   });
 
   it("plays each avatar's own sound when it is chosen, again on a repeat tap", () => {
-    render(<ProfileForm onSubmit={vi.fn()} submitting={false} />);
+    render(
+      <ProfileForm onSubmit={vi.fn()} submitting={false} openGrades={[6]} />,
+    );
     for (const { id, label } of AVATARS) {
       fireEvent.click(screen.getByRole("radio", { name: label }));
       expect(playSequence).toHaveBeenLastCalledWith([
@@ -35,8 +39,11 @@ describe("ProfileForm", () => {
   });
 
   it("marks the radios as making their own sound, so no button press doubles it", () => {
-    render(<ProfileForm onSubmit={vi.fn()} submitting={false} />);
-    for (const radio of screen.getAllByRole("radio")) {
+    render(
+      <ProfileForm onSubmit={vi.fn()} submitting={false} openGrades={[6]} />,
+    );
+    const avatars = screen.getByRole("group", { name: "Chọn hình đại diện" });
+    for (const radio of within(avatars).getAllByRole("radio")) {
       expect(radio).toHaveAttribute("data-own-sound");
     }
   });
@@ -45,10 +52,11 @@ describe("ProfileForm", () => {
     const onSubmit = vi.fn();
     render(
       <ProfileForm
-        initial={{ name: "Bé Na", avatar: "panda" }}
+        initial={{ name: "Bé Na", avatar: "panda", grade: 6 }}
         submitLabel="Lưu"
         onSubmit={onSubmit}
         submitting={false}
+        openGrades={[6]}
       />,
     );
     expect(screen.getByRole("radio", { name: "Gấu trúc" })).toBeChecked();
@@ -57,17 +65,54 @@ describe("ProfileForm", () => {
     });
     fireEvent.click(screen.getByRole("radio", { name: "Gà con" }));
     fireEvent.click(screen.getByRole("button", { name: "Lưu" }));
-    expect(onSubmit).toHaveBeenCalledWith({ name: "Na", avatar: "chick" });
+    expect(onSubmit).toHaveBeenCalledWith({
+      name: "Na",
+      avatar: "chick",
+      grade: 6,
+    });
   });
 
   it("shows the default face selected for an avatar id this version does not know", () => {
     render(
       <ProfileForm
-        initial={{ name: "Bé Na", avatar: "dragon" }}
+        initial={{ name: "Bé Na", avatar: "dragon", grade: 6 }}
         onSubmit={vi.fn()}
         submitting={false}
+        openGrades={[6]}
       />,
     );
     expect(screen.getByRole("radio", { name: "Mèo" })).toBeChecked();
+  });
+
+  it("lets the child pick only open grades, and submits the one chosen", () => {
+    const onSubmit = vi.fn();
+    render(
+      <ProfileForm
+        onSubmit={onSubmit}
+        submitting={false}
+        openGrades={[6, 7]}
+      />,
+    );
+    const grades = screen.getByRole("group", { name: "Bạn học lớp mấy?" });
+    expect(within(grades).getAllByRole("radio")).toHaveLength(12);
+    // Grade 6 is where a new child starts.
+    expect(within(grades).getByRole("radio", { name: "Lớp 6" })).toBeChecked();
+    for (const locked of [1, 5, 8, 12]) {
+      expect(
+        within(grades).getByRole("radio", {
+          name: `Lớp ${locked}, sắp ra mắt`,
+        }),
+      ).toBeDisabled();
+    }
+    fireEvent.click(within(grades).getByRole("radio", { name: "Lớp 7" }));
+    fireEvent.change(screen.getByLabelText("Bạn tên là gì?"), {
+      target: { value: "Na" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Bắt đầu học" }));
+    expect(onSubmit).toHaveBeenCalledWith({
+      name: "Na",
+      avatar: expect.any(String),
+      grade: 7,
+    });
   });
 });

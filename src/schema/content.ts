@@ -65,10 +65,22 @@ export const ConceptColorSchema = z.enum(CONCEPT_COLORS);
 // icons (mapped to components in components/subject-style.ts). A subject
 // picks one of each in content/subjects.json; adding a palette entry or icon
 // means extending these lists, the CSS token and the style map together.
-export const SUBJECT_COLORS = ["blue", "terracotta", "teal"] as const;
+export const SUBJECT_COLORS = [
+  "blue",
+  "terracotta",
+  "teal",
+  "amber",
+  "violet",
+] as const;
 export const SubjectColorSchema = z.enum(SUBJECT_COLORS);
 
-export const SUBJECT_ICONS = ["calculator", "book-open", "globe"] as const;
+export const SUBJECT_ICONS = [
+  "calculator",
+  "book-open",
+  "globe",
+  "landmark",
+  "flask-conical",
+] as const;
 export const SubjectIconSchema = z.enum(SUBJECT_ICONS);
 
 // `vi` lessons are checked against the Vietnamese spelling and reading-level
@@ -86,9 +98,22 @@ export const SubjectRulesSchema = z.object({
   requiresOpenEnded: z.boolean(),
 });
 
+// The school years the app can host: Vietnamese grades 1 to 12.
+export const GRADE_MIN = 1;
+export const GRADE_MAX = 12;
+export const GRADES: readonly number[] = Array.from(
+  { length: GRADE_MAX - GRADE_MIN + 1 },
+  (_, i) => GRADE_MIN + i,
+);
+export const GradeSchema = z.int().min(GRADE_MIN).max(GRADE_MAX);
+
+// A series (one textbook set) belongs to one grade, so a subject teaches
+// several grades by listing a series for each; a lesson's grade is its
+// series' grade.
 export const SeriesSchema = z.object({
   id: LessonIdSchema,
   name: TextSchema,
+  grade: GradeSchema,
 });
 
 export const SubjectSchema = z.object({

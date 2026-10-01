@@ -43,7 +43,7 @@ function subject(color: Subject["color"]): Subject {
       verbatimPassage: false,
       requiresOpenEnded: false,
     },
-    series: [{ id: "kntt", name: "Kết nối" }],
+    series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
     defaultSeries: "kntt",
   };
 }
@@ -207,6 +207,7 @@ describe("the cosmos on the profile picker and the done screen", () => {
             familyId: "f",
             name: "An",
             avatar: "cat",
+            grade: 6,
             series: {},
             createdAt: "",
           },

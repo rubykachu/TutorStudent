@@ -36,6 +36,10 @@ export const LOCAL_FAMILY_ID = "local";
 // since the child last studied it.
 export const SUBJECT_NUDGE_AFTER_DAYS = 3;
 
+// The grade a profile starts on, and the one a profile saved before grades
+// existed is moved to.
+export const DEFAULT_GRADE = 6;
+
 // Longest child name the profile form accepts, so it fits the home greeting.
 export const PROFILE_NAME_MAX_LENGTH = 20;
 

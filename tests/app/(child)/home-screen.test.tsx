@@ -52,6 +52,7 @@ async function openHomeOf(avatar: string) {
     familyId: LOCAL_FAMILY_ID,
     name: "Bin",
     avatar,
+    grade: 6,
     series: {},
     createdAt: "2026-01-01T00:00:00.000Z",
   });
@@ -185,7 +186,7 @@ async function openHomeWithStickers(lessons: number, earned: number) {
           verbatimPassage: false,
           requiresOpenEnded: false,
         },
-        series: [{ id: "kntt", name: "Kết nối" }],
+        series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
         defaultSeries: "kntt",
       },
     ],
@@ -269,4 +270,115 @@ describe("HomeScreen sticker shelf", () => {
       expect(document.querySelector("[data-shelf-empty]")).toBeNull();
     },
   );
+});
+
+function subjectOf(
+  id: string,
+  name: string,
+  series: [string, number][],
+): ContentIndex["subjects"][number] {
+  return {
+    id,
+    name,
+    color: "blue",
+    icon: "calculator",
+    language: "vi",
+    rules: {
+      checkExpr: false,
+      verbatimPassage: false,
+      requiresOpenEnded: false,
+    },
+    series: series.map(([sid, grade]) => ({ id: sid, name: sid, grade })),
+    defaultSeries: series[0]?.[0] ?? "",
+  };
+}
+
+// Five grade 6 subjects of which only math and literature have a lesson, and
+// a grade 7 series of math with none.
+function gradeSixIndex(): ContentIndex {
+  const literature = {
+    ...summary(1),
+    id: "lit-01",
+    subject: "literature",
+    series: "ctst",
+  };
+  return {
+    subjects: [
+      subjectOf("math", "Toán", [
+        ["kntt", 6],
+        ["kntt-7", 7],
+      ]),
+      subjectOf("literature", "Ngữ văn", [["ctst", 6]]),
+      subjectOf("geography", "Địa lí", [["kntt", 6]]),
+      subjectOf("history", "Lịch sử", [["kntt", 6]]),
+      subjectOf("science", "Khoa học tự nhiên", [["kntt", 6]]),
+    ],
+    lessons: [summary(1), literature],
+  };
+}
+
+async function openHomeOfGrade(grade: number, index: ContentIndex) {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async () => new Response(JSON.stringify(index))),
+  );
+  await appDb().profiles.put({
+    id: "kid-1",
+    familyId: LOCAL_FAMILY_ID,
+    name: "Bin",
+    avatar: "fox",
+    grade,
+    series: {},
+    createdAt: "2026-01-01T00:00:00.000Z",
+  });
+  await setActiveProfile("kid-1");
+  return render(<HomeScreen />);
+}
+
+describe("HomeScreen grade and locked subjects", () => {
+  it("shows the five subjects of grade 6, three of them locked and not tappable", async () => {
+    await openHomeOfGrade(6, gradeSixIndex());
+    await screen.findByText("Toán");
+    const tiles = [...document.querySelectorAll("[data-subject]")];
+    expect(tiles.map((t) => t.getAttribute("data-subject"))).toEqual([
+      "math",
+      "literature",
+      "geography",
+      "history",
+      "science",
+    ]);
+    const locked = tiles.filter((t) => t.hasAttribute("data-locked"));
+    expect(locked.map((t) => t.getAttribute("data-subject"))).toEqual([
+      "geography",
+      "history",
+      "science",
+    ]);
+    for (const tile of locked) {
+      expect(tile.tagName).not.toBe("A");
+      expect(tile).toHaveTextContent("Sắp ra mắt");
+    }
+    for (const id of ["math", "literature"]) {
+      const tile = document.querySelector(`[data-subject="${id}"]`);
+      expect(tile?.tagName).toBe("A");
+      expect(tile).not.toHaveAttribute("data-locked");
+    }
+  });
+
+  it("names the grade in the header and links it to the grade screen", async () => {
+    await openHomeOfGrade(6, gradeSixIndex());
+    const chip = await screen.findByRole("link", { name: "Lớp 6, đổi lớp" });
+    expect(chip).toHaveAttribute("href", "/grades");
+    expect(chip).toHaveTextContent("Lớp 6");
+  });
+
+  it("shows the subjects of the child's grade, locked until they have a lesson", async () => {
+    await openHomeOfGrade(7, gradeSixIndex());
+    await screen.findByRole("link", { name: "Lớp 7, đổi lớp" });
+    await waitFor(() =>
+      expect(document.querySelector("[data-subject]")).not.toBeNull(),
+    );
+    const tiles = [...document.querySelectorAll("[data-subject]")];
+    expect(tiles.map((t) => t.getAttribute("data-subject"))).toEqual(["math"]);
+    expect(tiles[0]).toHaveAttribute("data-locked");
+  });
 });

@@ -227,7 +227,7 @@ describe("SectionBlockSchema", () => {
 });
 
 describe("SubjectsFileSchema", () => {
-  it("accepts content/subjects.json with the three subjects", () => {
+  it("accepts content/subjects.json with its five subjects", () => {
     const subjects = SubjectsFileSchema.parse(
       readJson("content/subjects.json"),
     );
@@ -235,6 +235,8 @@ describe("SubjectsFileSchema", () => {
       ["math", "kntt"],
       ["literature", "ctst"],
       ["geography", "kntt"],
+      ["history", "kntt"],
+      ["science", "kntt"],
     ]);
   });
 });

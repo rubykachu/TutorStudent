@@ -9,6 +9,7 @@ function profile(id: string, name: string): ProfileRecord {
     familyId: "f",
     name,
     avatar: "cat",
+    grade: 6,
     series: {},
     createdAt: "",
   };

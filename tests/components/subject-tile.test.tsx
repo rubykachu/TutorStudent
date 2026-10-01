@@ -11,7 +11,7 @@ const math: Subject = {
   icon: "calculator",
   language: "vi",
   rules: { checkExpr: false, verbatimPassage: false, requiresOpenEnded: false },
-  series: [{ id: "kntt", name: "Kết nối" }],
+  series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
   defaultSeries: "kntt",
 };
 
@@ -32,9 +32,21 @@ function renderTile(
   return screen.getByRole("link", { name: /Toán/ });
 }
 
+function renderLocked() {
+  const { container } = render(
+    <SubjectTile
+      subject={math}
+      href="/subjects/math"
+      progress={{ done: 0, total: 0 }}
+      status={{ kind: "empty" }}
+      nudgeDays={null}
+    />,
+  );
+  return container.querySelector("[data-subject]") as HTMLElement;
+}
+
 describe("SubjectTile", () => {
   it.each<[SubjectStatus, string]>([
-    [{ kind: "empty" }, "Sắp có bài"],
     [{ kind: "new", total: 2 }, "2 bài · Chưa học"],
     [
       { kind: "learning", total: 1, sectionNumber: 2 },
@@ -69,8 +81,20 @@ describe("SubjectTile", () => {
     expect(tile).not.toHaveTextContent("%");
   });
 
-  it("hides the ring for a subject with no lessons", () => {
-    renderTile({ kind: "empty" }, null, { done: 0, total: 0 });
+  it("locks a subject with no lessons: a lock and 'Sắp ra mắt', no link", () => {
+    const tile = renderLocked();
+    expect(tile).toHaveAttribute("data-locked");
+    expect(tile.tagName).not.toBe("A");
+    expect(screen.queryByRole("link")).toBeNull();
+    expect(tile.querySelector("[data-lock]")).not.toBeNull();
+    expect(tile).toHaveTextContent("Toán");
+    expect(tile).toHaveTextContent("Sắp ra mắt");
     expect(screen.queryByRole("img")).toBeNull();
+  });
+
+  it("does not lock a subject that has lessons", () => {
+    const tile = renderTile({ kind: "new", total: 2 });
+    expect(tile).not.toHaveAttribute("data-locked");
+    expect(tile.querySelector("[data-lock]")).toBeNull();
   });
 });

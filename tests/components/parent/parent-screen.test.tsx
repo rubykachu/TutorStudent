@@ -174,7 +174,7 @@ describe("ParentScreen dashboard", () => {
             verbatimPassage: false,
             requiresOpenEnded: false,
           },
-          series: [{ id: "kntt", name: "Kết nối" }],
+          series: [{ id: "kntt", name: "Kết nối", grade: 6 }],
           defaultSeries: "kntt",
         },
       ],
@@ -200,6 +200,7 @@ describe("ParentScreen dashboard", () => {
       familyId: LOCAL_FAMILY_ID,
       name: "Bé Na",
       avatar: "fox",
+      grade: 6,
       series: { math: "kntt" },
       createdAt: START.toISOString(),
     });

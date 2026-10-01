@@ -10,9 +10,10 @@ import {
 } from "@/components/avatar";
 import { BigButton } from "@/components/big-button";
 import { avatarSoundUrls, playAvatarSound } from "@/lib/avatar-sounds";
-import { PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
+import { DEFAULT_GRADE, PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
 import { preloadSounds } from "@/lib/sound";
 import type { NewProfile } from "@/progress/hooks";
+import { GRADES } from "@/schema/content";
 
 type ProfileFormProps = {
   onSubmit: (profile: NewProfile) => void;
@@ -20,6 +21,9 @@ type ProfileFormProps = {
   // The profile being edited; empty for a new child.
   initial?: NewProfile;
   submitLabel?: string;
+  // Grades a child can pick (those with published lessons); the others show
+  // locked.
+  openGrades: readonly number[];
 };
 
 export function ProfileForm({
@@ -27,6 +31,7 @@ export function ProfileForm({
   submitting,
   initial,
   submitLabel = "Bắt đầu học",
+  openGrades,
 }: ProfileFormProps) {
   const nameId = useId();
   const [name, setName] = useState(initial?.name ?? "");
@@ -34,6 +39,7 @@ export function ProfileForm({
   const [avatar, setAvatar] = useState<AvatarId>(
     initial && isAvatarId(initial.avatar) ? initial.avatar : DEFAULT_AVATAR,
   );
+  const [grade, setGrade] = useState(initial?.grade ?? DEFAULT_GRADE);
   const trimmed = name.trim();
 
   // Each avatar says its own sound when chosen, so they load up front.
@@ -41,7 +47,7 @@ export function ProfileForm({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (trimmed && !submitting) onSubmit({ name: trimmed, avatar });
+    if (trimmed && !submitting) onSubmit({ name: trimmed, avatar, grade });
   }
 
   return (
@@ -90,6 +96,40 @@ export function ProfileForm({
               <span className="text-caption">{option.label}</span>
             </label>
           ))}
+        </div>
+      </fieldset>
+
+      <fieldset className="flex flex-col gap-3">
+        <legend className="mb-3 font-heading text-block font-semibold md:text-block-lg">
+          Bạn học lớp mấy?
+        </legend>
+        <div className="grid grid-cols-6 gap-2 md:gap-3">
+          {GRADES.map((option) => {
+            const open = openGrades.includes(option);
+            return (
+              <label
+                key={option}
+                data-grade-option={option}
+                className={`flex min-h-touch items-center justify-center rounded-lg border-2 font-heading font-bold text-block md:text-block-lg ${
+                  open
+                    ? "cursor-pointer border-border bg-surface transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none has-checked:border-primary has-checked:bg-primary has-checked:text-primary-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring"
+                    : "border-border bg-muted text-muted-foreground"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="grade"
+                  value={option}
+                  checked={grade === option}
+                  disabled={!open}
+                  onChange={() => setGrade(option)}
+                  className="sr-only"
+                  aria-label={`Lớp ${option}${open ? "" : ", sắp ra mắt"}`}
+                />
+                <span aria-hidden>{option}</span>
+              </label>
+            );
+          })}
         </div>
       </fieldset>
 

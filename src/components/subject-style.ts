@@ -1,4 +1,11 @@
-import { BookOpen, Calculator, Globe, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  Calculator,
+  FlaskConical,
+  Globe,
+  Landmark,
+  type LucideIcon,
+} from "lucide-react";
 import type { Subject } from "@/schema/content";
 
 type SubjectColor = Subject["color"];
@@ -27,12 +34,24 @@ const COLOR_CLASSES: Readonly<
     text: "text-subject-teal",
     border: "border-subject-teal",
   },
+  amber: {
+    bg: "bg-subject-amber",
+    text: "text-subject-amber",
+    border: "border-subject-amber",
+  },
+  violet: {
+    bg: "bg-subject-violet",
+    text: "text-subject-violet",
+    border: "border-subject-violet",
+  },
 };
 
 const ICONS: Readonly<Record<SubjectIcon, LucideIcon>> = {
   calculator: Calculator,
   "book-open": BookOpen,
   globe: Globe,
+  landmark: Landmark,
+  "flask-conical": FlaskConical,
 };
 
 export function subjectStyle(subject: Pick<Subject, "color" | "icon">) {

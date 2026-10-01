@@ -29,11 +29,7 @@ function LessonList({
   if (content.status === "error") return <ContentError />;
   if (content.status === "loading" || !progress) return null;
 
-  const lessons = lessonsForSubject(
-    content.index,
-    subject.id,
-    profile.series[subject.id],
-  );
+  const lessons = lessonsForSubject(content.index, subject.id, profile);
   if (lessons.length === 0) {
     return (
       <p className="rounded-lg bg-surface p-6 text-center text-muted-foreground shadow-card">

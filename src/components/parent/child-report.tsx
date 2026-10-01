@@ -200,7 +200,7 @@ function LessonsProgress({
     .map((subject) => ({
       subject,
       rows: lessonSections(
-        lessonsForSubject(index, subject.id, profile.series[subject.id]),
+        lessonsForSubject(index, subject.id, profile),
         data.sections,
         data.stickers,
       ),

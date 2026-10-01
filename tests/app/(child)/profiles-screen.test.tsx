@@ -43,6 +43,7 @@ async function seedProfile(id: string, name: string, avatar: string) {
     familyId: LOCAL_FAMILY_ID,
     name,
     avatar,
+    grade: 6,
     series: { math: "kntt" },
     createdAt: `2026-01-0${id === "na" ? 1 : 2}T00:00:00.000Z`,
   });
@@ -94,6 +95,7 @@ describe("ProfilesScreen: editing a profile", () => {
       id: "na",
       name: "Na Na",
       avatar: "racecar",
+      grade: 6,
       series: { math: "kntt" },
     });
     expect((await readChildProgress(appDb(), "na")).activityDays).toEqual([

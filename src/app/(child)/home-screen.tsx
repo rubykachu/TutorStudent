@@ -1,5 +1,6 @@
 "use client";
 
+import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AVATARS, Avatar } from "@/components/avatar";
@@ -10,6 +11,7 @@ import {
   SUBJECT_TILE_GRID,
   SubjectTile,
 } from "@/components/subject-tile";
+import { subjectsOfGrade } from "@/content/grades";
 import { ChildSounds } from "@/learn/child-sounds";
 import {
   continueTarget,
@@ -18,7 +20,7 @@ import {
 } from "@/learn/next-step";
 import { avatarClipId, useSayClip } from "@/lib/avatar-sounds";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
-import { PROFILES_PATH, subjectPath } from "@/lib/routes";
+import { GRADES_PATH, PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
 import { OWL_TAP_LINE } from "@/mascot/lines";
@@ -103,22 +105,23 @@ function HomeLessons({
   progress: ChildProgress;
 }) {
   const lessonsOf = (subjectId: string) =>
-    lessonsForSubject(index, subjectId, profile.series[subjectId]);
+    lessonsForSubject(index, subjectId, profile);
   const lastStudied = lastStudiedBySubject(
     index.lessons,
     progress.attempts,
     progress.sections,
   );
   const today = now();
-  const target = continueTarget(index, profile.series, progress);
+  const target = continueTarget(index, profile, progress);
   const targetSubject =
     target && index.subjects.find((s) => s.id === target.lesson.subject);
+  const subjects = subjectsOfGrade(index.subjects, profile.grade);
   const sounds = useFeedbackSoundsContext();
   return (
     <>
       <StickerShelf
         childId={profile.id}
-        lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
+        lessons={subjects.flatMap((s) => lessonsOf(s.id))}
         stickers={progress.stickers}
         sections={progress.sections}
         sounds={sounds}
@@ -131,7 +134,7 @@ function HomeLessons({
         />
       )}
       <ul className={SUBJECT_TILE_GRID}>
-        {index.subjects.map((subject) => {
+        {subjects.map((subject) => {
           const lessons = lessonsOf(subject.id);
           return (
             <li key={subject.id} className={SUBJECT_TILE_CELL}>
@@ -218,6 +221,15 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
         </div>
         {/* The sound switch ends the row, where every screen keeps it. */}
         <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href={GRADES_PATH}
+            aria-label={`Lớp ${profile.grade}, đổi lớp`}
+            data-grade-chip
+            className="flex h-12 shrink-0 items-center justify-center gap-1.5 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+          >
+            <GraduationCap aria-hidden className="size-5 shrink-0" />
+            <span aria-hidden>Lớp {profile.grade}</span>
+          </Link>
           <Link
             href={PROFILES_PATH}
             // Avatar only on a phone, so the greeting keeps one line; the name
