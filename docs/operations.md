@@ -4,6 +4,13 @@ Sổ tay cho chủ dự án. Bản đầu tiên là bản "dùng được ngay":
 
 Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2, Vercel, GitHub), nên mỗi bước cần chủ dự án đồng ý trước khi chạy; tài khoản nào dùng cho bước nào ghi ngay trong bước.
 
+## Bản đang chạy
+
+- Production: `https://tutor-delta-pink.vercel.app` (project Vercel `tutor`, tài khoản `rubykachu`; địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket).
+- Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin production ở trên.
+- Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Quản lý mã gia đình".
+- Deploy lại chỉ bản đã commit: tạo worktree sạch từ `HEAD` (`git worktree add --detach ../tutor-deploy HEAD`), `pnpm install --frozen-lockfile` ở đó, `npx vercel link --yes --project tutor`, `npx vercel deploy --prod`, rồi `git worktree remove --force ../tutor-deploy`. Không deploy từ cây chính khi còn thay đổi chưa commit.
+
 ## Biến môi trường
 
 | Tên | Bắt buộc | Đặt ở đâu | Ý nghĩa |
