@@ -1,0 +1,83 @@
+{
+  "title": "Xếp gạch tìm số nguyên tố",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-nguyen-to",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-xep",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta xếp gạch để tìm số nguyên tố.",
+          "opening": true
+        },
+        {
+          "text": "Mẹ xếp 8 viên gạch thành hình chữ nhật. Cách một: một hàng, 8 nhân 1."
+        },
+        { "text": "Cách hai: hai hàng, mỗi hàng 4 viên, 4 nhân 2." },
+        {
+          "text": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách.",
+          "rule": true
+        },
+        { "text": "Mỗi thừa số trong các tích là một ước.", "rule": true },
+        { "text": "Vậy 8 có bốn ước: 1, 2, 4 và 8." }
+      ]
+    },
+    {
+      "id": "s02-nguyen-to",
+      "sentences": [
+        { "text": "Giờ ta xếp 11 viên gạch: chỉ có một cách." },
+        { "text": "Nên 11 chỉ có hai ước: 1 và 11." },
+        {
+          "text": "Ta gọi một số tự nhiên là số nguyên tố khi nó lớn hơn 1 và chỉ chia hết cho 1 và cho chính nó.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-hop-so",
+      "sentences": [
+        { "text": "Xếp 9 viên gạch: một hàng 9 viên, hoặc ba hàng 3 viên." },
+        {
+          "text": "Hình vuông cũng là một hình chữ nhật, nên 9 có ba ước: 1, 3 và 9."
+        },
+        {
+          "text": "Ta gọi một số tự nhiên là hợp số khi nó lớn hơn 1 và có từ ba ước trở lên.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s04-so-1",
+      "sentences": [
+        { "text": "Còn 1 viên gạch? Chỉ có một cách xếp." },
+        {
+          "text": "Số 1 chỉ có một ước nên không phải số nguyên tố, cũng không phải hợp số.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "uoc",
+      "from": "s01-xep",
+      "to": "s01-xep",
+      "cardIds": ["so-nguyen-to.card.uoc"]
+    },
+    {
+      "id": "nguyen-to",
+      "from": "s02-nguyen-to",
+      "to": "s02-nguyen-to",
+      "cardIds": ["so-nguyen-to.card.nguyen-to"]
+    },
+    {
+      "id": "hop-so",
+      "from": "s03-hop-so",
+      "to": "s04-so-1",
+      "cardIds": ["so-nguyen-to.card.hop-so"]
+    }
+  ]
+}

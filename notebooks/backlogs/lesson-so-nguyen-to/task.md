@@ -1,9 +1,9 @@
 # Bàn giao: Bài 10 `so-nguyen-to` (Số nguyên tố)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bài đã xuất bản (`status: published`) sau 3 vòng review (vòng 1: 9 Nghiêm trọng; vòng 2: 4; vòng 3: 0, 1 Nên sửa, 4 Góp ý); đã `content:hash --approve`, `content:lock`. Chưa có lời đọc và video.
+- Cập nhật cuối: 01/10/2026. Bài đã xuất bản (`status: published`) sau 3 vòng review (vòng 1: 9 Nghiêm trọng; vòng 2: 4; vòng 3: 0, 1 Nên sửa, 4 Góp ý); đã `content:hash --approve`, `content:lock`. Lời đọc và 3 video đã dựng (01/10/2026), chờ review phần đổi.
 - Đã chạy ở bước xuất bản: `pnpm content:check` 0 lỗi; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo; `pnpm lint`, `pnpm typecheck`, `pnpm test` (2 150 test) đạt; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` ở cây chính.
-- Bước kế tiếp: lời đọc tổng quan và 3 video (skill `lesson-video`). Bài 11 section 5 (`nhac-thua-so`) giờ có thể căn chỉnh với bài này.
+- Bước kế tiếp: vòng review chỉ phần đổi (câu chào mới ở `overview.hook`, 3 khối video; reviewer là subagent mới, `model: "sonnet"`), rồi `pnpm content:hash --approve`, `pnpm content:lock` (thêm 3 id video), `pnpm lesson:walk so-nguyen-to`. Bài 11 section 5 (`nhac-thua-so`) giờ có thể căn chỉnh với bài này.
 
 ## Việc còn lại sau review vòng 3 (không chặn)
 - Nên sửa: màn chạm `chon-nt-bang` (section 4: 21, 23, 27, 29, 33, 39; đáp án 23, 29) trùng bốn số và tập đáp án với `chon-nt-2-7` (section 2); đổi sang 33, 37, 39, 45, 49, 73 (đáp án 37 và 73) ở lần sửa bài kế tiếp (sửa bài đã xuất bản đổi hash, cần review lại phần đổi).
@@ -66,4 +66,12 @@ Màu: số nguyên tố sky (✚), hợp số pink (◆), ước violet, chữ s
 - Màn mở đầu của section 6 dài trên điện thoại (quy tắc 2 câu, cây, tích, chú giải, chú thích): trẻ phải cuộn xuống để thấy chú thích cuối; không có chữ chồng hay bị cắt theo walk.
 
 ## Lời đọc và video
-Chưa làm. Theo `.claude/skills/lesson-video`: chọn giọng (Bài 9 dùng Hải Đăng, Bài 8 dùng Mỹ Duyên), ý chính gợi ý cho 3 video: đếm ước bằng hình chữ nhật và định nghĩa số nguyên tố (section 1–3); phân tích bằng sơ đồ cây và sơ đồ cột (section 6–7); viết số thành tổng hai số nguyên tố (section 10–12).
+- Giọng: `my-duyen` (`video/projects/so-nguyen-to/media.json`, không cờ miễn trừ). Bài 9 dùng Hải Đăng nên xen sang giọng nữ; không có lý do riêng để giữ giọng nam.
+- Lời đọc tổng quan: đọc bằng Gemini `Vindemiatrix` (không hết hạn mức, không rơi về VieNeu), 47,4 s, 12 câu đều khớp ≥ 97,3%. Câu đầu của `overview.hook` thêm câu chào: "Chào bạn! Hôm nay ta xếp gạch để tìm số nguyên tố." (đổi nội dung, đổi review hash).
+- Video (`video/projects/so-nguyen-to/<tên>/`, đều VieNeu Mỹ Duyên, câu đầu là câu chào `opening`):
+  - `xep-gach` (79,7 s, đầu phần 1 `dem-uoc`): xếp gạch 8, 11, 9, 1 thành hình chữ nhật, đọc ước, số nguyên tố, hợp số, số 1; clip `uoc`, `nguyen-to`, `hop-so` cho thẻ cùng tên.
+  - `tra-bang` (60,5 s, đầu phần 4 `bang-so-nguyen-to`): tra bảng cho 59 (có), 77 và 91 (không có); clip `tra-bang` cho thẻ `bang`.
+  - `phan-tich` (71,7 s, đầu phần 6 `phan-tich-cay`): sơ đồ cây của 12 và sơ đồ cột của 60; clip `cay`, `cot` cho thẻ cùng tên.
+- Mỗi phần chỉ có một video nên video sơ đồ cột đặt chung ở phần 6; phần 7 chưa có video riêng.
+- Whisper: câu thấp nhất 96,7% ("Ta tìm 59/77 trong bảng": Whisper nghe "bảng" thành "bản", giọng Mỹ Duyên miền Nam nuốt âm cuối "ng"; đã đọc lại 3 lần, các từ khác khớp hết); còn lại ≥ 97,2%.
+- Chưa làm: video cho phần 10–12 (viết số thành tổng hai số nguyên tố) và phần 7 riêng.

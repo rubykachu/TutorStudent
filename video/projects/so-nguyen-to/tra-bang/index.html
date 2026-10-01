@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tra bảng số nguyên tố" (lesson so-nguyen-to): the 25 primes
+  below 100 as tiles (sky), a search sweeps through them for 59 (found: prime),
+  77 and 91 (not found: composite, pink). Built by
+  `pnpm video:build so-nguyen-to tra-bang`, which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tra bảng số nguyên tố</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .pt { position: absolute; width: 88px; height: 72px; display: flex; align-items: center; justify-content: center; border-radius: 16px; background: var(--color-surface); border: 5px solid var(--color-concept-sky); font: 800 46px / 1 "Baloo 2", sans-serif; color: var(--color-foreground); }
+      .shift { padding-left: 240px; }
+      .arr { font: 800 56px / 1 "Baloo 2", sans-serif; color: var(--color-muted-foreground); }
+      .num { display: inline-block; padding: 6px 30px 10px; border-radius: 24px; background: var(--color-highlight); font: 800 64px / 1 "Baloo 2", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <div id="head" class="row" style="top: 22px"></div>
+        <div id="table" class="abs" style="left: 0; top: 0"></div>
+        <section id="s1" class="scene layer"></section>
+        <section id="s2" class="scene layer">
+          <div id="a" class="row shift" style="top: 395px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="b" class="row shift" style="top: 395px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="c" class="row shift" style="top: 395px"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="d1" class="row shift" style="top: 385px"></div>
+          <div id="d2" class="row shift" style="top: 455px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, WE, color, owl, pop, hide, pose, scenes, finish } = window.LV;
+        const chip = (id, c, html) => `<span id="${id}" class="chip" style="--c: var(--color-concept-${c})">${html}</span>`;
+        const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+        const ROWS = [9, 9, 7];
+
+        // ---------- DOM ----------
+        $("#head").innerHTML = chip("hd", "sky", "✚ bảng số nguyên tố");
+        {
+          const box = $("#table");
+          let k = 0;
+          ROWS.forEach((count, r) => {
+            const left = (1280 - (count * 100 - 12)) / 2;
+            for (let c = 0; c < count; c++, k++) {
+              const t = document.createElement("div");
+              t.id = `t${k}`;
+              t.className = "pt";
+              t.style.cssText = `left:${left + c * 100}px;top:${92 + r * 86}px`;
+              t.textContent = PRIMES[k];
+              box.append(t);
+            }
+          });
+        }
+        const tile = (n) => `#t${PRIMES.indexOf(n)}`;
+        const all = PRIMES.map((_, i) => `#t${i}`);
+        $("#a").innerHTML = `<span id="a-n" class="num">59</span>${chip("a-v", "sky", "✚ số nguyên tố")}`;
+        $("#b").innerHTML = `<span id="b-n" class="num">77</span>${chip("b-x", "slate", "✘ không có trong bảng")}${chip("b-v", "pink", "◆ hợp số")}`;
+        $("#c").innerHTML = `<span id="c-n" class="num">91</span>${chip("c-x", "slate", "✘ không có trong bảng")}${chip("c-v", "pink", "◆ hợp số")}`;
+        $("#d1").innerHTML = `<span class="chip" id="d-ax" style="--c: var(--color-foreground)">có trong bảng</span><span id="d-ar1" class="arr">→</span>${chip("d-a", "sky", "✚ số nguyên tố")}`;
+        $("#d2").innerHTML = `<span class="chip" id="d-bx" style="--c: var(--color-foreground)">lớn hơn 1, không có trong bảng</span><span id="d-ar2" class="arr">→</span>${chip("d-b", "pink", "◆ hợp số")}`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+
+        scenes([["#s1", "s01-bang"], ["#s2", "s02-co"], ["#s3", "s03-khong"], ["#s4", "s04-thu"], ["#s5", "s05-nho"]]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // The search: lights each tile in turn between t0 and t1; the tile
+        // `stay` (if any) stays lit, as the number found.
+        const sweep = (t0, t1, stay) => {
+          const last = stay === undefined ? PRIMES.length - 1 : PRIMES.indexOf(stay);
+          const dt = (t1 - t0) / (last + 1);
+          for (let i = 0; i <= last; i++) {
+            tl.set(`#t${i}`, { backgroundColor: color("highlight") }, t0 + i * dt);
+            if (i < last || stay === undefined) tl.set(`#t${i}`, { backgroundColor: color("surface") }, t0 + (i + 1) * dt);
+          }
+        };
+
+        // ---------- s01: the table ----------
+        {
+          const sid = "s01-bang";
+          hide(["#hd", ...all]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#hd", W(sid, "bảng"), { from: 0.6 });
+          pop(all, W(sid, "bảng"), { from: 0.4, stagger: 0.07 });
+          pose(bird, "idle", W(sid, "muốn"));
+        }
+
+        // ---------- s02: 59 is in the table ----------
+        {
+          const sid = "s02-co";
+          hide(["#a-n", "#a-v"]);
+          pop("#a-n", W(sid, "59"), { from: 0.4 });
+          sweep(W(sid, "tìm"), WE(sid, "bảng"), 59);
+          tl.fromTo(tile(59), { scale: 1 }, { scale: 1.25, yoyo: true, repeat: 1, duration: 0.25 }, W(sid, "59", 3));
+          pop("#a-v", W(sid, "nguyên"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nguyên"));
+          tl.set(tile(59), { backgroundColor: color("surface") }, WE(sid, "tố") + 0.8);
+        }
+
+        // ---------- s03: 77 is not ----------
+        {
+          const sid = "s03-khong";
+          hide(["#b-n", "#b-x", "#b-v"]);
+          pose(bird, "idle", start(sid));
+          pop("#b-n", W(sid, "77"), { from: 0.4 });
+          sweep(W(sid, "tìm"), WE(sid, "bảng"));
+          pop("#b-x", W(sid, "không"), { from: 0.6 });
+          pop("#b-v", W(sid, "hợp"), { from: 0.6 });
+        }
+
+        // ---------- s04: try 91 ----------
+        {
+          const sid = "s04-thu";
+          hide(["#c-n", "#c-x", "#c-v"]);
+          pose(bird, "idle", start(sid));
+          pop("#c-n", W(sid, "91"), { from: 0.4 });
+          sweep(W(sid, "có"), WE(sid, "bảng"));
+          pop("#c-x", W(sid, "không", 2), { from: 0.6 });
+          pop("#c-v", W(sid, "là"), { from: 0.6 });
+        }
+
+        // ---------- s05: remember ----------
+        {
+          const sid = "s05-nho";
+          hide(["#d-a", "#d-ax", "#d-b", "#d-bx", "#d-ar1", "#d-ar2"]);
+          pose(bird, "cheer", W(sid, "nhớ"));
+          pop("#d-ax", W(sid, "có"), { from: 0.6 });
+          pop(["#d-ar1", "#d-a"], W(sid, "số"), { from: 0.6 });
+          pop("#d-bx", W(sid, "lớn"), { from: 0.6 });
+          pop(["#d-ar2", "#d-b"], W(sid, "hợp"), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

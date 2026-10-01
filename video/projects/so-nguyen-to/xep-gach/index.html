@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Xếp gạch tìm số nguyên tố" (lesson so-nguyen-to): square bricks
+  (amber, the product) arranged into rectangles for 8, 11, 9 and 1; each
+  arrangement gives a product and the divisors (violet) are read from it; 11
+  is prime (sky, ✚), 9 is composite (pink, ◆), 1 is neither. Built by
+  `pnpm video:build so-nguyen-to xep-gach`, which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Xếp gạch tìm số nguyên tố</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .brk { position: absolute; border-radius: 10px; background: color-mix(in srgb, var(--color-concept-amber) 22%, var(--color-surface)); border: 5px solid var(--color-concept-amber); }
+      .lab { position: absolute; font: 800 52px / 1 "Baloo 2", sans-serif; color: var(--color-concept-amber); padding: 8px 26px 12px; border-radius: 24px; background: var(--color-highlight); white-space: nowrap; }
+      .tiles { display: flex; gap: 12px; align-items: center; }
+      .dg { display: inline-flex; align-items: center; justify-content: center; min-width: 84px; height: 84px; padding: 0 10px; border-radius: 18px; background: var(--color-surface); border: 6px solid var(--color-concept-violet); font: 800 56px / 1 "Baloo 2", sans-serif; color: var(--color-concept-violet); }
+      .shift { padding-left: 240px; }
+      .note { font: 700 36px / 1.3 "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="a-row" class="abs" style="left: 270px; top: 50px"></div>
+          <div id="a-grid" class="abs" style="left: 270px; top: 170px"></div>
+          <div id="a-tiles" class="row shift" style="top: 400px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="b-row" class="abs" style="left: 120px; top: 150px"></div>
+          <div id="b-tiles" class="row shift" style="top: 400px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="c-row" class="abs" style="left: 310px; top: 40px"></div>
+          <div id="c-grid" class="abs" style="left: 310px; top: 140px"></div>
+          <div id="c-tiles" class="row shift" style="top: 400px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="d-row" class="abs" style="left: 520px; top: 50px"></div>
+          <div id="d-no" class="row" style="top: 260px"></div>
+          <div id="d-tiles" class="row shift" style="top: 400px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, pose, scenes, finish } = window.LV;
+        const chip = (id, c, html) => `<span id="${id}" class="chip" style="--c: var(--color-concept-${c})">${html}</span>`;
+        const tiles = (prefix, list) =>
+          `${chip(`${prefix}c`, "violet", `ước của ${list[0]}`)}<div class="tiles">${list.slice(1).map((d, i) => `<span id="${prefix}${i}" class="dg">${d}</span>`).join("")}</div>`;
+        // A block of square bricks: `cols` by `rows`, ids <id>-0, <id>-1, ...
+        const bricks = (parent, id, cols, rows, size) => {
+          const box = $(parent);
+          for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+              const b = document.createElement("div");
+              b.className = `brk ${id}`;
+              b.style.cssText = `left:${c * (size + 8)}px;top:${r * (size + 8)}px;width:${size}px;height:${size}px`;
+              box.append(b);
+            }
+          }
+          return cols * (size + 8) - 8;
+        };
+        // The product beside a block of bricks, centred on the block.
+        const label = (parent, id, text, left, height) => {
+          const l = document.createElement("div");
+          l.id = id;
+          l.className = "lab";
+          l.style.cssText = `left:${left}px;top:${(height - 76) / 2}px`;
+          l.textContent = text;
+          $(parent).append(l);
+        };
+        const block = (parent, id, cols, rows, size, text) => {
+          const w = bricks(parent, id, cols, rows, size);
+          label(parent, `${id}-l`, text, w + 40, rows * (size + 8) - 8);
+        };
+        const ids = (p, n) => Array.from({ length: n }, (_, i) => `#${p}${i}`);
+
+        // ---------- DOM ----------
+        // 8 bricks: one row of 8, then 2 rows of 4.
+        block("#a-row", "a1", 8, 1, 80, "8 · 1");
+        block("#a-grid", "a2", 4, 2, 80, "4 · 2");
+        $("#a-tiles").innerHTML = tiles("a", [8, 1, 2, 4, 8]);
+        // 11 bricks in one row.
+        block("#b-row", "b1", 11, 1, 70, "11 · 1");
+        $("#b-tiles").innerHTML = `${tiles("b", [11, 1, 11])}${chip("b-chip", "sky", "✚ số nguyên tố")}`;
+        // 9 bricks: one row of 9, then 3 rows of 3.
+        block("#c-row", "c1", 9, 1, 66, "9 · 1");
+        block("#c-grid", "c2", 3, 3, 66, "3 · 3");
+        $("#c-tiles").innerHTML = `${tiles("c", [9, 1, 3, 9])}${chip("c-chip", "pink", "◆ hợp số")}`;
+        // One brick.
+        block("#d-row", "d1", 1, 1, 130, "1 · 1");
+        $("#d-no").innerHTML = `${chip("d-n1", "slate", "✘ không phải số nguyên tố")}${chip("d-n2", "slate", "✘ không phải hợp số")}`;
+        $("#d-tiles").innerHTML = tiles("d", [1, 1]);
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+
+        scenes([["#s1", "s01-xep"], ["#s2", "s02-nguyen-to"], ["#s3", "s03-hop-so"], ["#s4", "s04-so-1"]]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: 8 bricks, two ways, the divisors ----------
+        {
+          const sid = "s01-xep";
+          hide([".a1", ".a2", "#a1-l", "#a2-l", "#ac", ...ids("a", 4)]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop(".a1", W(sid, "gạch"), { from: 0.4, stagger: 0.1 });
+          pop("#a1-l", W(sid, "nhân"), { from: 0.6 });
+          pop(".a2", W(sid, "hai", 2), { from: 0.4, stagger: 0.1 });
+          pop("#a2-l", W(sid, "nhân", 2), { from: 0.6 });
+          pop("#ac", W(sid, "ước", 1), { from: 0.6 });
+          pose(bird, "idle", W(sid, "ước", 1));
+          pop("#a0", W(sid, "1", 2), { from: 0.4 });
+          pop("#a1", W(sid, "2", 2), { from: 0.4 });
+          pop("#a2", W(sid, "4", 3), { from: 0.4 });
+          pop("#a3", W(sid, "8", 4), { from: 0.4 });
+        }
+
+        // ---------- s02: 11 bricks, one way, prime ----------
+        {
+          const sid = "s02-nguyen-to";
+          hide([".b1", "#b1-l", "#bc", "#b-chip", ...ids("b", 2)]);
+          pose(bird, "idle", start(sid));
+          pop(".b1", W(sid, "11"), { from: 0.4, stagger: 0.1 });
+          pop("#b1-l", W(sid, "cách"), { from: 0.6 });
+          pop("#bc", W(sid, "ước"), { from: 0.6 });
+          pop("#b0", W(sid, "1"), { from: 0.4 });
+          pop("#b1", W(sid, "11", 3), { from: 0.4 });
+          pop("#b-chip", W(sid, "nguyên"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nguyên"));
+        }
+
+        // ---------- s03: 9 bricks, two ways, composite ----------
+        {
+          const sid = "s03-hop-so";
+          hide([".c1", ".c2", "#c1-l", "#c2-l", "#cc", "#c-chip", ...ids("c", 3)]);
+          pose(bird, "idle", start(sid));
+          pop(".c1", W(sid, "một"), { from: 0.4, stagger: 0.1 });
+          pop("#c1-l", W(sid, "hàng"), { from: 0.6 });
+          pop(".c2", W(sid, "ba"), { from: 0.4, stagger: 0.1 });
+          pop("#c2-l", W(sid, "3"), { from: 0.6 });
+          pop("#cc", W(sid, "ước"), { from: 0.6 });
+          pop("#c0", W(sid, "1"), { from: 0.4 });
+          pop("#c1", W(sid, "3", 2), { from: 0.4 });
+          pop("#c2", W(sid, "9", 4), { from: 0.4 });
+          pop("#c-chip", W(sid, "hợp"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "hợp"));
+        }
+
+        // ---------- s04: one brick ----------
+        {
+          const sid = "s04-so-1";
+          hide([".d1", "#d1-l", "#d-n1", "#d-n2", "#dc", "#d0"]);
+          pose(bird, "idle", start(sid));
+          pop(".d1", W(sid, "viên"), { from: 0.4 });
+          pop("#d1-l", W(sid, "cách"), { from: 0.6 });
+          pop("#dc", W(sid, "1", 2), { from: 0.6 });
+          pop("#d0", W(sid, "ước"), { from: 0.4 });
+          pop("#d-n1", W(sid, "không"), { from: 0.6 });
+          pop("#d-n2", W(sid, "không", 2), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "title": "Tra bảng số nguyên tố",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-co",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-bang",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tra bảng số nguyên tố.",
+          "opening": true
+        },
+        {
+          "text": "Muốn biết số nhỏ hơn 100 có là số nguyên tố không, ta tra bảng số nguyên tố.",
+          "rule": true
+        },
+        { "text": "Bảng chỉ ghi các số nguyên tố nhỏ hơn 100." }
+      ]
+    },
+    {
+      "id": "s02-co",
+      "sentences": [
+        { "text": "Phòng học của Lan là số 59." },
+        { "text": "Ta tìm 59 trong bảng." },
+        { "text": "59 có trong bảng, nên 59 là số nguyên tố." }
+      ]
+    },
+    {
+      "id": "s03-khong",
+      "sentences": [
+        { "text": "Xe buýt là số 77." },
+        { "text": "Ta tìm 77 trong bảng." },
+        { "text": "77 lớn hơn 1 và không có trong bảng, nên 77 là hợp số." }
+      ]
+    },
+    {
+      "id": "s04-thu",
+      "sentences": [
+        { "text": "Thử nhé: 91 có trong bảng không?" },
+        { "text": "Không có. Vậy 91 là hợp số." }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé: có trong bảng là số nguyên tố." },
+        { "text": "Số lớn hơn 1 mà không có trong bảng là hợp số." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tra-bang",
+      "from": "s02-co",
+      "to": "s03-khong",
+      "cardIds": ["so-nguyen-to.card.bang"]
+    }
+  ]
+}

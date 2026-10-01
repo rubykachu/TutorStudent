@@ -15,7 +15,7 @@
   "reviewedHash": "8ba05addac880b845be68fca535822a94679360901681b53f12992e5a6d2aa5f",
   "overview": {
     "hook": {
-      "text": "Bạn xếp 11 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 11 viên, vì 11 là số nguyên tố."
+      "text": "Chào bạn! Hôm nay ta xếp gạch để tìm số nguyên tố. Bạn xếp 11 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 11 viên, vì 11 là số nguyên tố."
     },
     "summary": "Bài này dạy số nguyên tố và hợp số. Bạn học cách viết một số thành tích các thừa số nguyên tố.",
     "goals": [
@@ -24,7 +24,16 @@
       "phân tích một số ra thừa số nguyên tố",
       "viết một số thành tổng các số nguyên tố"
     ],
-    "whyItMatters": "Số nguyên tố là viên gạch xây nên mọi số lớn hơn 1, giúp bạn kiểm tra chia hết nhanh hơn."
+    "whyItMatters": "Số nguyên tố là viên gạch xây nên mọi số lớn hơn 1, giúp bạn kiểm tra chia hết nhanh hơn.",
+    "narration": {
+      "audioUrl": "narration/so-nguyen-to/overview.m4a",
+      "vttUrl": "narration/so-nguyen-to/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -70,6 +79,10 @@
       "sourceRef": "Ôn Bài 8 (quan hệ chia hết); sách bài tập tr.37",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "so-nguyen-to.video.xep-gach"
+        },
         {
           "type": "group",
           "children": [
@@ -228,6 +241,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "so-nguyen-to.video.tra-bang"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -343,6 +360,10 @@
       "sourceRef": "Sách bài tập tr.35–36",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "so-nguyen-to.video.phan-tich"
+        },
         {
           "type": "group",
           "children": [
@@ -3854,5 +3875,88 @@
   "sticker": {
     "name": "Thợ săn số nguyên tố",
     "visualId": "so-nguyen-to.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "so-nguyen-to.video.xep-gach",
+      "lessonId": "so-nguyen-to",
+      "url": "video/so-nguyen-to/xep-gach.mp4",
+      "vttUrl": "video/so-nguyen-to/xep-gach.vtt",
+      "posterUrl": "video/so-nguyen-to/xep-gach.jpg",
+      "durationSec": 79.73,
+      "clips": [
+        {
+          "id": "uoc",
+          "start": 0.7,
+          "end": 31.179,
+          "cardIds": ["so-nguyen-to.card.uoc"]
+        },
+        {
+          "id": "nguyen-to",
+          "start": 31.579,
+          "end": 47.967,
+          "cardIds": ["so-nguyen-to.card.nguyen-to"]
+        },
+        {
+          "id": "hop-so",
+          "start": 48.367,
+          "end": 78.322,
+          "cardIds": ["so-nguyen-to.card.hop-so"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "so-nguyen-to.video.tra-bang",
+      "lessonId": "so-nguyen-to",
+      "url": "video/so-nguyen-to/tra-bang.mp4",
+      "vttUrl": "video/so-nguyen-to/tra-bang.vtt",
+      "posterUrl": "video/so-nguyen-to/tra-bang.jpg",
+      "durationSec": 60.5,
+      "clips": [
+        {
+          "id": "tra-bang",
+          "start": 16.635,
+          "end": 41.993,
+          "cardIds": ["so-nguyen-to.card.bang"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "so-nguyen-to.video.phan-tich",
+      "lessonId": "so-nguyen-to",
+      "url": "video/so-nguyen-to/phan-tich.mp4",
+      "vttUrl": "video/so-nguyen-to/phan-tich.vtt",
+      "posterUrl": "video/so-nguyen-to/phan-tich.jpg",
+      "durationSec": 71.7,
+      "clips": [
+        {
+          "id": "cay",
+          "start": 13.378,
+          "end": 36.886,
+          "cardIds": ["so-nguyen-to.card.cay"]
+        },
+        {
+          "id": "cot",
+          "start": 37.286,
+          "end": 70.28,
+          "cardIds": ["so-nguyen-to.card.cot"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

@@ -1,0 +1,67 @@
+{
+  "title": "Phân tích ra thừa số nguyên tố",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-cay",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-thua-so",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tách một số thành các số nguyên tố.",
+          "opening": true
+        },
+        {
+          "text": "Muốn phân tích số lớn hơn 1 ra thừa số nguyên tố, ta viết nó thành tích của các số nguyên tố.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s02-cay",
+      "sentences": [
+        { "text": "Mẹ xếp 12 cái bánh vào 4 hộp, mỗi hộp 3 cái." },
+        { "text": "Vậy 12 bằng 3 nhân 4." },
+        {
+          "text": "Ta tách một số thành hai thừa số, rồi tách tiếp tới khi mọi thừa số là số nguyên tố.",
+          "rule": true
+        },
+        { "text": "3 là số nguyên tố, nên giữ lại. 4 bằng 2 nhân 2." },
+        { "text": "Vậy 12 bằng 2 nhân 2 nhân 3." }
+      ]
+    },
+    {
+      "id": "s03-cot",
+      "sentences": [
+        { "text": "Cách thứ hai là sơ đồ cột. Ta phân tích số 60." },
+        {
+          "text": "Muốn phân tích một số bằng sơ đồ cột, ta chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết.",
+          "rule": true
+        },
+        {
+          "text": "Ta chia tiếp thương tới khi được 1, các số chia là các thừa số nguyên tố.",
+          "rule": true
+        },
+        { "text": "60 chia 2 được 30. 30 chia 2 được 15." },
+        { "text": "15 chia 3 được 5. 5 chia 5 được 1." },
+        { "text": "Vậy 60 bằng 2 nhân 2 nhân 3 nhân 5." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cay",
+      "from": "s02-cay",
+      "to": "s02-cay",
+      "cardIds": ["so-nguyen-to.card.cay"]
+    },
+    {
+      "id": "cot",
+      "from": "s03-cot",
+      "to": "s03-cot",
+      "cardIds": ["so-nguyen-to.card.cot"]
+    }
+  ]
+}
