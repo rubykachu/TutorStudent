@@ -838,6 +838,409 @@
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-tom-tat",
         "caption": "Muốn rút gọn phân số về phân số tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng."
       }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.viet-tu-uclnn",
+      "title": "Viết hai số từ ƯCLN",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức bổ sung)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cắt dải 12 dm và dải 18 dm thành các đoạn 6 dm. Dải 12 dm được 2 đoạn, dải 18 dm được 3 đoạn."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-cat-12-18"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vì vậy 12 bằng 6 nhân 2 và 18 bằng 6 nhân 3. Hai số 2 và 3 chỉ có ước chung là 1."
+            },
+            {
+              "type": "formula",
+              "tex": "\\begin{gathered} 12 = \\concept{amber}{6} \\cdot 2 \\\\ 18 = \\concept{amber}{6} \\cdot 3 \\end{gathered}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Với 12 và 24, nếu chọn 6 thì được 2 và 4, mà 2 và 4 còn chung ước 2. Vì vậy 6 chưa là ƯCLN, ƯCLN của 12 và 24 là 12."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-12-24"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Gọi d là ƯCLN của hai số a và b. Khi đó a bằng d nhân m, b bằng d nhân n, và m, n chỉ có ước chung là 1.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-chu-cai"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.viet-20-30"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.viet-21-35"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-chu-cai",
+        "caption": "Gọi d là ƯCLN của hai số a và b. Khi đó a bằng d nhân m, b bằng d nhân n, và m, n chỉ có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.cap-so-gioi-han",
+      "title": "Tìm cặp số khi biết ƯCLN",
+      "sourceRef": "Sách bài tập tr.40 (bài 2.41), lời giải tr.108",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tìm các cặp số khác nhau, khác 0, không vượt quá 20, có ƯCLN là 5. Mỗi số phải chia hết cho 5, tức là 5 nhân với 1, 2, 3 hay 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-5-20-bang"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm hai số có ƯCLN là d, ta lấy d nhân m và d nhân n. Hai số m và n chỉ được có ước chung là 1.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-5-20-chon"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân từng cặp nhận được với 5 để có các cặp số cần tìm."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-5-20-nhan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào tất cả các cặp số khác 0, không vượt quá 12, có ƯCLN là 4. Mỗi số phải chia hết cho 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-chon-4-12"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.cap-uclnn-7"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.cap-9-30"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-5-20-xong",
+        "caption": "Muốn tìm hai số có ƯCLN là d, ta lấy d nhân m và d nhân n. Hai số m và n chỉ được có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.cap-so-tong",
+      "title": "Tìm hai số khi biết tổng",
+      "sourceRef": "Sách bài tập tr.40 (bài 2.42), lời giải tr.108",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai dải băng, dải a ngắn hơn dải b, dài tổng cộng 48 dm. Đoạn dài nhất cắt vừa hết cả hai dải là 6 dm, nên a bằng 6 nhân m và b bằng 6 nhân n."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-6"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Biết tổng của hai số và ƯCLN của chúng là d thì m cộng n bằng tổng đó chia cho d.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-chon"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân mỗi cặp nhận được với 6 để có hai độ dài, rồi thử lại tổng."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-nhan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Khi m cộng n bằng 10, chạm vào các cặp m và n chỉ có ước chung là 1. Mỗi cặp có m nhỏ hơn n."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-chon-10"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.tong-m-n-30"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.tong-28-uclnn-4"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-xong",
+        "caption": "Biết tổng của hai số và ƯCLN của chúng là d thì m cộng n bằng tổng đó chia cho d."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.cap-so-tich",
+      "title": "Tìm hai số khi biết tích",
+      "sourceRef": "Sách bài tập tr.40 (bài 2.43), lời giải tr.108",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tấm bìa xếp từ 48 ô vuông, gồm a hàng, mỗi hàng b ô, và a nhỏ hơn b. Hai số a và b có ƯCLN là 2."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-48-2"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nếu ƯCLN của hai số là d thì tích của hai số bằng d nhân d nhân m nhân n.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Các cặp m, n có tích là 12 là 1 và 12, 2 và 6, 3 và 4. Chọn cặp chỉ có ước chung là 1 rồi nhân mỗi số với 2."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-48-chon"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các cặp m và n có tích bằng 18 mà chỉ có ước chung là 1."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-chon-18"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.tich-m-n-100"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.tich-200-uclnn-5"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-48-xong",
+        "caption": "Nếu ƯCLN của hai số là d thì tích của hai số bằng d nhân d nhân m nhân n."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.cung-so-du",
+      "title": "Cùng số dư thì hiệu chia hết",
+      "sourceRef": "Sách bài tập tr.38 (ví dụ 1), lời giải tr.39",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia 17 cái kẹo và 29 cái kẹo vào các túi 4 cái, cả hai lần đều thừa 1 cái. Bỏ cái kẹo thừa đi thì 16 và 28 đều chia hết cho 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-17-29"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai số chia cho a được cùng số dư thì hiệu của chúng chia hết cho a. Hiệu của hai số chia hết cho a thì hai số được cùng số dư.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-hieu"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "uoc-chung-uoc-chung-lon-nhat.tip.cung-so-du",
+          "kind": "làm nhanh",
+          "title": "Cùng số dư hay không",
+          "text": "Muốn biết hai số chia cho a có cùng số dư không, lấy số lớn trừ số bé. Hiệu chia hết cho a thì hai số cùng số dư.",
+          "tex": "19 - 4 = 15, \\quad 15 \\chiahet 5"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các cặp số chia cho 5 được cùng số dư. Lấy số lớn trừ số bé rồi xem hiệu có chia hết cho 5 không."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-chon-5"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.cung-du-6"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.cung-du-7"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-hieu",
+        "caption": "Hai số chia cho a được cùng số dư thì hiệu của chúng chia hết cho a. Hiệu của hai số chia hết cho a thì hai số được cùng số dư."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.so-du-lon-nhat",
+      "title": "Số lớn nhất cho cùng số dư",
+      "sourceRef": "Sách bài tập tr.38 (ví dụ 1), lời giải tr.39",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia 25 cái kẹo và 43 cái kẹo vào các túi bằng nhau thì hai lần đều thừa số kẹo như nhau. Số kẹo mỗi túi là ước của hiệu 43 trừ 25."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-lon-25-43"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ba gói kẹo có 29, 53 và 89 cái, cũng chia vào các túi bằng nhau và thừa số kẹo như nhau. Ta tính hai hiệu của các số liền nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-lon-29-53-89"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Xếp các số từ bé đến lớn. Số lớn nhất để các số chia cho nó có cùng số dư là ƯCLN của các hiệu hai số liền nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-thu-lai"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số a trong các số dưới đây để chia 25 và 43 cho a được cùng số dư. Xem a có là ước của hiệu 43 trừ 25 không."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-lon-chon-25-43"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.so-du-31-55"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.so-du-14-26-50"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-thu-lai",
+        "caption": "Xếp các số từ bé đến lớn. Số lớn nhất để các số chia cho nó có cùng số dư là ƯCLN của các hiệu hai số liền nhau."
+      }
     }
   ],
   "cards": [
@@ -989,6 +1392,66 @@
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-tom-tat",
         "caption": "Muốn rút gọn phân số về phân số tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức bổ sung)",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-chu-cai",
+        "caption": "Gọi d là ƯCLN của hai số a và b. Khi đó a bằng d nhân m, b bằng d nhân n, và m, n chỉ có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han",
+      "sourceRef": "Sách bài tập tr.40 (bài 2.41), lời giải tr.108",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-5-20-xong",
+        "caption": "Muốn tìm hai số có ƯCLN là d, ta lấy d nhân m và d nhân n. Hai số m và n chỉ được có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong",
+      "sourceRef": "Sách bài tập tr.40 (bài 2.42), lời giải tr.108",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-xong",
+        "caption": "Biết tổng của hai số và ƯCLN của chúng là d thì m cộng n bằng tổng đó chia cho d."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich",
+      "sourceRef": "Sách bài tập tr.40 (bài 2.43), lời giải tr.108",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-48-xong",
+        "caption": "Nếu ƯCLN của hai số là d thì tích của hai số bằng d nhân d nhân m nhân n."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.cung-so-du",
+      "sourceRef": "Sách bài tập tr.38 (ví dụ 1), lời giải tr.39",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-hieu",
+        "caption": "Hai số chia cho a được cùng số dư thì hiệu của chúng chia hết cho a. Hiệu của hai số chia hết cho a thì hai số được cùng số dư."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat",
+      "sourceRef": "Sách bài tập tr.38 (ví dụ 1), lời giải tr.39",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-thu-lai",
+        "caption": "Xếp các số từ bé đến lớn. Số lớn nhất để các số chia cho nó có cùng số dư là ƯCLN của các hiệu hai số liền nhau."
       }
     }
   ],
@@ -4381,6 +4844,1388 @@
       "explain": {
         "text": "ƯCLN của 33 và 55 là 11. Chia cả tử và mẫu cho 11. Mẫu mới là 55 : 11 = 5.",
         "tex": "\\dfrac{33}{55} = \\dfrac{33 : \\concept{amber}{11}}{55 : \\concept{amber}{11}} = \\dfrac{3}{5}"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.viet-20-30",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết ƯCLN(20, 30) = 10."
+        },
+        {
+          "type": "note",
+          "text": "Viết 20 và 30 thành 10 nhân một số. Hai số nhân đó là hai số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2 và 3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4 và 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "1 và 2"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "5 và 6"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Ta tìm số nhân để 10 nhân với nó được 20, rồi được 30. 10 nhân 2 bằng 20, 10 nhân 3 bằng 30, và 2 với 3 chỉ có ước chung là 1.",
+        "tex": "20 = \\concept{amber}{10} \\cdot 2, \\quad 30 = \\concept{amber}{10} \\cdot 3",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "4 và 6 ứng với 5 nhân 4 và 5 nhân 6, là số nhân với 5 chứ không phải với 10."
+          },
+          {
+            "optionId": "c",
+            "text": "10 nhân 1 bằng 10, không phải 20."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.viet-21-35",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết ƯCLN(21, 35) = 7 và 21 bằng 7 nhân 3. Hỏi 35 bằng 7 nhân mấy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-goi-y-15-20",
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.viet-21-35"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "35:7"
+      },
+      "explain": {
+        "text": "Ta tìm số nhân để 7 nhân với nó bằng 35. Cộng dần 7 cho tới 35: 7, 14, 21, 28, 35. Có 5 số nên 35 bằng 7 nhân 5.",
+        "tex": "35 = \\concept{amber}{7} \\cdot 5"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-cap-chung-1",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp số chỉ có ước chung là 1."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3 và 4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4 và 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5 và 9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "6 và 9"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Hai số chỉ có ước chung là 1 khi không có số nào lớn hơn 1 chia hết cho cả hai số. 3 và 4, 5 và 9 là như vậy.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "4 và 6 cùng chia hết cho 2."
+          },
+          {
+            "optionId": "d",
+            "text": "6 và 9 cùng chia hết cho 3."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.viet-ucln-4",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số a và b có ƯCLN là 4."
+        },
+        {
+          "type": "note",
+          "text": "Biết a bằng 4 nhân 3 và b bằng 4 nhân 5. Tính b."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 20
+      },
+      "check": {
+        "expr": "4·5"
+      },
+      "explain": {
+        "text": "b bằng ƯCLN nhân một số, ở đây là 4 nhân 5. Cộng 4 năm lần được 20.",
+        "tex": "b = \\concept{amber}{4} \\cdot 5 = 20"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-viet-tu-uclnn",
+      "type": "fillBlank",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Nếu ƯCLN của hai số là d thì mỗi số bằng d nhân một số, và hai số nhân đó chỉ có ước chung là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["1"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["1", "2", "d"],
+      "explain": {
+        "text": "Nếu hai số nhân còn chung một ước lớn hơn 1 thì ƯCLN của hai số phải lớn hơn d. Vì vậy hai số nhân chỉ có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cap-uclnn-7",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn cặp số có ƯCLN là 7."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "14 và 21"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "14 và 28"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "21 và 42"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "28 và 42"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Cả hai số cùng chia hết cho 7 vẫn chưa đủ. Phải viết thành 7 nhân m và 7 nhân n, với m, n chỉ có ước chung là 1. Ở đây 14 là 7 nhân 2 và 21 là 7 nhân 3.",
+        "tex": "14 = \\concept{amber}{7} \\cdot 2, \\quad 21 = \\concept{amber}{7} \\cdot 3",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "28 chia hết cho 14 nên ƯCLN là 14."
+          },
+          {
+            "optionId": "c",
+            "text": "42 chia hết cho 21 nên ƯCLN là 21."
+          },
+          {
+            "optionId": "d",
+            "text": "28 bằng 14 nhân 2 và 42 bằng 14 nhân 3 nên ƯCLN là 14."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cap-9-30",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số khác nhau, khác 0, không vượt quá 30 và có ƯCLN là 9. Có bao nhiêu cặp số như vậy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-goi-y-6-24",
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.cap-9-30-giai"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      },
+      "explain": {
+        "text": "Các số chia hết cho 9 và không quá 30 là 9, 18 và 27. Ba số này ghép đôi được 3 cặp, và cặp nào cũng có ƯCLN là 9.",
+        "tex": "9 = 9 \\cdot 1, \\quad 18 = 9 \\cdot 2, \\quad 27 = 9 \\cdot 3"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-cap-uclnn-4",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp số không vượt quá 20 có ƯCLN là 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4 và 12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "8 và 16"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "12 và 16"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "12 và 18"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Viết mỗi số thành 4 nhân một số rồi xem hai số nhân có chỉ chung ước 1 không. 4 và 12 là 4 nhân 1 và 4 nhân 3, 12 và 16 là 4 nhân 3 và 4 nhân 4.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "8 và 16 là 4 nhân 2 và 4 nhân 4, mà 2 và 4 còn chung ước 2."
+          },
+          {
+            "optionId": "d",
+            "text": "18 không chia hết cho 4."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dai-bang-4-8",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đoạn dài nhất cắt vừa hết cả hai dải băng là 4 dm. Dải ngắn dài 8 dm."
+        },
+        {
+          "type": "note",
+          "text": "Dải dài hơn nhưng không quá 16 dm. Dải dài dài bao nhiêu dm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "4·3"
+      },
+      "explain": {
+        "text": "Dải dài là 4 nhân m, với m lớn hơn 2 và chỉ chung ước 1 với 2. Dải không quá 16 dm nên m chỉ có thể là 3 hoặc 4, mà 4 chung ước 2 với 2, nên m bằng 3.",
+        "tex": "12 = \\concept{amber}{4} \\cdot 3"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.xep-cap-3-12",
+      "type": "order",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tìm các cặp số có ƯCLN là 3 và không vượt quá 12 theo thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Các số chia hết cho 3 và không quá 12 là 3, 6, 9, 12"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Viết chúng là 3 nhân 1, 3 nhân 2, 3 nhân 3, 3 nhân 4"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Chọn hai số nhân chỉ có ước chung là 1, bỏ cặp 2 và 4"
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Nhân các cặp còn lại với 3 để được các cặp số"
+          }
+        }
+      ],
+      "explain": {
+        "text": "Ta liệt kê các số chia hết cho 3 rồi viết chúng là 3 nhân một số. Sau đó chọn các số nhân chỉ có ước chung là 1 và nhân lại với 3."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-m-n-30",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số a và b có ƯCLN là 5 và tổng là 30. Viết a bằng 5 nhân m và b bằng 5 nhân n."
+        },
+        {
+          "type": "note",
+          "text": "Tính m cộng n."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "30:5"
+      },
+      "explain": {
+        "text": "Đặt 5 ra ngoài ngoặc thì tổng bằng 5 nhân (m cộng n). Vậy m cộng n bằng 30 chia 5, tức là 6.",
+        "tex": "\\concept{amber}{5} \\cdot (m + n) = 30"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-28-uclnn-4",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp a và b có a nhỏ hơn b, tổng là 28 và ƯCLN là 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-goi-y-36-9",
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-28-giai"
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4 và 24"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "8 và 20"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "10 và 18"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7 và 21"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "explain": {
+        "text": "Cả hai cặp đều có tổng 28 và ƯCLN là 4. 4 và 24 là 4 nhân 1 và 4 nhân 6. 8 và 20 là 4 nhân 2 và 4 nhân 5, các cặp số nhân đều chỉ chung ước 1.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "10 và 18 cùng chia hết cho 2, ƯCLN là 2 chứ không phải 4."
+          },
+          {
+            "optionId": "d",
+            "text": "21 chia hết cho 7 nên ƯCLN của 7 và 21 là 7."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-40-uclnn-8",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số khác nhau có ƯCLN là 8 và tổng là 40. Có bao nhiêu cặp số như vậy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "check": {
+        "expr": "2"
+      },
+      "explain": {
+        "text": "m cộng n bằng 40 chia 8 bằng 5. Các cặp m, n chỉ chung ước 1 là 1 và 4, 2 và 3, nên có 2 cặp.",
+        "tex": "m + n = 40 : \\concept{amber}{8} = 5"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-64-uclnn-16",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số a và b có a nhỏ hơn b, ƯCLN là 16 và tổng là 64. Tìm a."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 16
+      },
+      "check": {
+        "expr": "16·1"
+      },
+      "explain": {
+        "text": "m cộng n bằng 64 chia 16 bằng 4. Vì a nhỏ hơn b nên m nhỏ hơn n, chỉ có 1 và 3, nên a bằng 16 nhân 1.",
+        "tex": "m + n = 64 : \\concept{amber}{16} = 4"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-tong-uclnn",
+      "type": "fillBlank",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Biết tổng của hai số và ƯCLN của chúng là d thì m cộng n bằng tổng đó chia cho "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["d"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["d", "m", "n"],
+      "explain": {
+        "text": "Vì tổng bằng d nhân (m cộng n), nên muốn có m cộng n ta chia tổng cho d.",
+        "tex": "\\concept{amber}{d} \\cdot (m + n) = a + b"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tich-m-n-100",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số a và b có ƯCLN là 5 và tích là 100. Viết a bằng 5 nhân m và b bằng 5 nhân n."
+        },
+        {
+          "type": "note",
+          "text": "Tính m nhân n."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "100:25"
+      },
+      "explain": {
+        "text": "a nhân b bằng 5 nhân 5 nhân m nhân n, tức là 25 nhân m nhân n. Vậy m nhân n bằng 100 chia 25, tức là 4.",
+        "tex": "\\concept{amber}{5} \\cdot \\concept{amber}{5} \\cdot m \\cdot n = 100"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tich-200-uclnn-5",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tấm bìa xếp từ 200 ô vuông, gồm a hàng, mỗi hàng b ô, và a nhỏ hơn b."
+        },
+        {
+          "type": "note",
+          "text": "ƯCLN của a và b là 5. Tìm b."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-goi-y-90-3",
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-200-giai"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "5·8"
+      },
+      "explain": {
+        "text": "25 nhân m nhân n bằng 200 nên m nhân n bằng 8. Cặp m, n chỉ chung ước 1 và m nhỏ hơn n là 1 và 8, còn 2 và 4 chung ước 2. Vậy b bằng 5 nhân 8.",
+        "tex": "b = \\concept{amber}{5} \\cdot 8 = 40"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tich-108-uclnn-3",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp a và b có a nhỏ hơn b, tích là 108 và ƯCLN là 3."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3 và 36"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9 và 12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6 và 18"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "4 và 27"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "explain": {
+        "text": "Cả hai cặp đều có tích 108 và ƯCLN là 3. 3 và 36 là 3 nhân 1 và 3 nhân 12. 9 và 12 là 3 nhân 3 và 3 nhân 4, các cặp số nhân đều chỉ chung ước 1.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "6 và 18 cùng chia hết cho 6 nên ƯCLN là 6."
+          },
+          {
+            "optionId": "d",
+            "text": "4 và 27 chỉ có ước chung là 1 nên ƯCLN là 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tich-180-uclnn-6",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số khác nhau có ƯCLN là 6 và tích là 180. Tìm số lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "6·5"
+      },
+      "explain": {
+        "text": "36 nhân m nhân n bằng 180 nên m nhân n bằng 5. Chỉ có 1 và 5, nên hai số là 6 nhân 1 và 6 nhân 5, số lớn là 30.",
+        "tex": "36 \\cdot m \\cdot n = 180"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-tich-d-d",
+      "type": "fillBlank",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Nếu ƯCLN của hai số là 5 thì tích của hai số bằng "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["25"]
+        },
+        {
+          "type": "text",
+          "text": " nhân m nhân n."
+        }
+      ],
+      "bank": ["5", "10", "25"],
+      "explain": {
+        "text": "Hai số là 5 nhân m và 5 nhân n. Nhân chúng lại được 5 nhân 5 nhân m nhân n, tức là 25 nhân m nhân n.",
+        "tex": "(5 \\cdot m) \\cdot (5 \\cdot n) = 25 \\cdot m \\cdot n"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cung-du-6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số nào chia cho 6 được cùng số dư?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "14 và 26"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "13 và 22"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "15 và 20"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "17 và 25"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Lấy số lớn trừ số bé, hiệu chia hết cho 6 thì hai số có cùng số dư. 26 trừ 14 bằng 12, mà 12 chia hết cho 6.",
+        "tex": "26 - 14 = 12 \\chiahet \\concept{teal}{6}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "22 trừ 13 bằng 9, không chia hết cho 6."
+          },
+          {
+            "optionId": "d",
+            "text": "25 trừ 17 bằng 8, không chia hết cho 6."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cung-du-7",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cung-so-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp số chia cho 7 được cùng số dư."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "9 và 23"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "10 và 18"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "12 và 40"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "15 và 21"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Lấy số lớn trừ số bé rồi xem hiệu có chia hết cho 7 không. 23 trừ 9 bằng 14 và 40 trừ 12 bằng 28, cả hai đều chia hết cho 7.",
+        "tex": "\\begin{gathered} 23 - 9 = 14 \\chiahet 7 \\\\ 40 - 12 = 28 \\chiahet 7 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "18 trừ 10 bằng 8, không chia hết cho 7."
+          },
+          {
+            "optionId": "d",
+            "text": "21 trừ 15 bằng 6, không chia hết cho 7."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-cung-du",
+      "type": "fillBlank",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cung-so-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Hai số chia cho a được cùng số dư thì "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["hiệu"]
+        },
+        {
+          "type": "text",
+          "text": " của chúng chia hết cho a."
+        }
+      ],
+      "bank": ["hiệu", "tổng", "tích"],
+      "explain": {
+        "text": "Bỏ số dư đi thì cả hai số đều chia hết cho a. Hai số cùng chia hết cho a thì hiệu của chúng cũng chia hết cho a."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.so-cung-du-20",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cung-so-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số x lớn hơn 20 và nhỏ hơn 32."
+        },
+        {
+          "type": "note",
+          "text": "Chia 20 và x cho 6 được cùng số dư. Tìm x."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 26
+      },
+      "check": {
+        "expr": "20+6"
+      },
+      "explain": {
+        "text": "Hiệu của x và 20 phải chia hết cho 6. Vì x nằm giữa 20 và 32 nên hiệu nhỏ hơn 12, vậy hiệu là 6 và x bằng 20 cộng 6.",
+        "tex": "x = 20 + 6 = 26"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cung-du-30",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cung-so-du"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 30 chia cho 4 được số dư 2. Số nào sau đây chia cho 4 cũng được số dư 2?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "18"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "27"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "31"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Lấy 30 trừ số đó, hiệu chia hết cho 4 thì cùng số dư. 30 trừ 18 bằng 12, mà 12 chia hết cho 4.",
+        "tex": "30 - 18 = 12 \\chiahet \\concept{teal}{4}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "30 trừ 25 bằng 5, không chia hết cho 4."
+          },
+          {
+            "optionId": "d",
+            "text": "31 trừ 30 bằng 1, không chia hết cho 4."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.so-du-31-55",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 31 và 55 cho a được cùng số dư. Tìm số a lớn nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 24
+      },
+      "check": {
+        "expr": "55-31"
+      },
+      "explain": {
+        "text": "a phải là ước của hiệu 55 trừ 31 bằng 24. Ước lớn nhất của 24 là chính 24.",
+        "tex": "55 - 31 = 24"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.so-du-14-26-50",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 14, 26 và 50 cho a được cùng số dư. Tìm số a lớn nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-lon-goi-y-15-33-63",
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-lon-14-26-50-giai"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "12"
+      },
+      "explain": {
+        "text": "Hai hiệu là 26 trừ 14 bằng 12 và 50 trừ 26 bằng 24. a lớn nhất là ƯCLN của 12 và 24, mà 24 chia hết cho 12 nên ƯCLN là 12.",
+        "tex": "\\begin{gathered} 26 - 14 = 12 \\\\ 50 - 26 = 24 \\end{gathered}"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-a-26-50",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 26 và 50 cho a được cùng số dư. Chọn tất cả các số a."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "50 trừ 26 bằng 24, nên a phải là ước của 24. Trong bốn số, chỉ 4 và 6 là ước của 24.",
+        "tex": "50 - 26 = 24",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "24 không chia hết cho 5."
+          },
+          {
+            "optionId": "d",
+            "text": "24 không chia hết cho 9."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.so-du-11-41-71",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chia 11, 41 và 71 cho a được cùng số dư. Tìm số a lớn nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "30"
+      },
+      "explain": {
+        "text": "Hai hiệu là 41 trừ 11 bằng 30 và 71 trừ 41 bằng 30. Hai hiệu bằng nhau nên a lớn nhất là chính 30.",
+        "tex": "\\begin{gathered} 41 - 11 = 30 \\\\ 71 - 41 = 30 \\end{gathered}"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-uclnn-hieu",
+      "type": "fillBlank",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Xếp các số từ bé đến lớn. Số lớn nhất để các số chia cho nó có cùng số dư là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["ƯCLN"]
+        },
+        {
+          "type": "text",
+          "text": " của các hiệu hai số liền nhau."
+        }
+      ],
+      "bank": ["ƯCLN", "ƯC", "tổng"],
+      "explain": {
+        "text": "Số đó phải là ước của mọi hiệu, và số lớn nhất như vậy là ƯCLN của các hiệu."
       }
     }
   ],
