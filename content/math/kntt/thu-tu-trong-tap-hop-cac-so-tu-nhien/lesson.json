@@ -105,6 +105,15 @@
               "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem"
             }
           ]
+        },
+        {
+          "type": "tip",
+          "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.dem-tu-goc-o",
+          "kind": "tránh sai",
+          "title": "Đếm từ gốc O",
+          "text": "Gốc O ứng với số 0, nên đứng ở gốc là chưa đi đơn vị nào. Hãy đếm các bước từ vạch này sang vạch kế, đừng đếm vạch gốc.",
+          "tex": "0 \\to 1 \\to 2 \\to 3",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dem-buoc"
         }
       ],
       "checkIds": [
@@ -614,10 +623,10 @@
       }
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.tap-hop-so",
-      "title": "Tập hợp các số trong một đoạn",
-      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
-      "minutes": 5,
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.phan-tia-so",
+      "title": "Hai điểm chia tia số thành ba phần",
+      "sourceRef": "Sách bài tập tr.11 (ví dụ b), tr.12 (lời giải)",
+      "minutes": 3,
       "blocks": [
         {
           "type": "group",
@@ -651,6 +660,34 @@
           "children": [
             {
               "type": "note",
+              "text": "Cùng làm: A biểu diễn số 5, B biểu diễn số 10. Chạm vào các số có điểm biểu diễn thuộc đoạn AB."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-doan-ab-5-10"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-phan-nao-7"],
+      "practiceIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.phan-nao-12"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doan-ab-xong",
+        "caption": "Điểm của số x thuộc đoạn AB khi x ở giữa hai số của A và B, kể cả hai số đó."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.tap-hop-so",
+      "title": "Tập hợp các số trong một đoạn",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ c), tr.13 (bài 1.27)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
               "text": "ℕ là tập hợp mọi số tự nhiên, ℕ* là tập hợp các số tự nhiên khác 0."
             },
             {
@@ -671,18 +708,38 @@
               "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.m-liet-ke"
             }
           ]
+        },
+        {
+          "type": "tip",
+          "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.dem-phan-tu",
+          "kind": "làm nhanh",
+          "title": "Đếm phần tử từ a đến b",
+          "text": "Từ a đến b, kể cả hai đầu, có b trừ a rồi cộng 1 số. Điều kiện là a nhỏ hơn hoặc bằng b. Đừng chỉ lấy b trừ a, vì như vậy thiếu một số.",
+          "tex": "16 - 11 + 1 = 6"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào các số thuộc tập hợp các số tự nhiên x mà x ≥ 3 và x ≤ 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-phan-tu-3-6"
+            }
+          ]
         }
       ],
-      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-phan-nao-7"],
+      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-liet-ke-3-6"],
       "practiceIds": [
-        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.phan-nao-12",
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dem-phan-tu-3-7",
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nsao-0"
       ],
       "recap": {
         "type": "visual",
-        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doan-ab-xong",
-        "caption": "Điểm của số x thuộc đoạn AB khi x ở giữa hai số của A và B, kể cả hai số đó."
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.m-liet-ke",
+        "caption": "M gồm các số tự nhiên x mà 5 ≤ x ≤ 10, tức là M = {5; 6; 7; 8; 9; 10}."
       }
     }
   ],
@@ -858,7 +915,7 @@
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so",
-      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "sourceRef": "Sách bài tập tr.11 (ví dụ b), tr.12 (lời giải)",
       "conceptIds": [
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
@@ -866,12 +923,12 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doan-ab-xong",
-        "caption": "Hai điểm A và B chia tia số thành ba phần: đoạn OA, đoạn AB và phần còn lại."
+        "caption": "Điểm của số x thuộc đoạn AB khi x ở giữa hai số của A và B, kể cả hai số đó."
       }
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.tap-hop-doan",
-      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ c), tr.13 (bài 1.27)",
       "conceptIds": [
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.tap-hop",
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.dau-hieu-dac-trung"
@@ -884,7 +941,7 @@
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.n-nsao",
-      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ c), tr.13 (bài 1.27)",
       "conceptIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.tap-hop"],
       "recap": {
         "type": "visual",
@@ -1423,11 +1480,11 @@
       "answer": ["e", "f", "g"],
       "multiple": true,
       "explain": {
-        "text": "Mỗi vạch là 5 đơn vị. Điểm D cách gốc O 10 đơn vị, còn E, F và G cách 25, 30 và 45 đơn vị, đều nhiều hơn 20.",
+        "text": "Mỗi vạch là 5 đơn vị. Điểm D cách gốc O 15 đơn vị, còn E, F và G cách 25, 30 và 45 đơn vị, đều nhiều hơn 20.",
         "wrong": [
           {
             "optionId": "d",
-            "text": "Điểm D cách gốc O đúng 10 đơn vị, chưa tới 20."
+            "text": "Điểm D cách gốc O đúng 15 đơn vị, chưa tới 20."
           }
         ]
       },
@@ -4371,6 +4428,144 @@
         ]
       },
       "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-doan-ab-dau",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm A biểu diễn số 4, điểm B biểu diễn số 9. Chọn tất cả các số có điểm biểu diễn thuộc đoạn AB."
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-4-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        }
+      ],
+      "answer": ["a", "b", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Đoạn AB tính cả hai đầu, nên 4 và 9 đều thuộc đoạn. Số 7 ở giữa nên cũng thuộc. Số 12 lớn hơn 9 nên nằm ngoài đoạn.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "12 lớn hơn 9, nên điểm của 12 nằm ở phần còn lại."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-liet-ke-3-6",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Liệt kê các phần tử của tập hợp sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N} \\mid 3 ≤ x ≤ 6\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{3; 4; 5; 6\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{4; 5\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{3; 4; 5\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{4; 5; 6\\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Dấu ≤ cho phép x bằng 3 và bằng 6, nên cả hai số đó thuộc tập hợp. Các số ở giữa là 4 và 5.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Bỏ mất hai đầu: số 3 và số 6 vẫn thuộc vì dấu ≤ cho phép x bằng chúng."
+          },
+          {
+            "optionId": "c",
+            "text": "Thiếu số 6: x nhỏ hơn hoặc bằng 6 nên số 6 vẫn thuộc."
+          },
+          {
+            "optionId": "d",
+            "text": "Thiếu số 3: x lớn hơn hoặc bằng 3 nên số 3 vẫn thuộc."
+          }
+        ]
+      },
+      "difficulty": 1
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dem-phan-tu-3-7",

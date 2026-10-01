@@ -271,6 +271,46 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     label: "Tia số có ba điểm A, B, C",
   },
+  "dem-buoc": {
+    kind: "line",
+    from: 0,
+    to: 10,
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "arrow",
+        from: 0,
+        to: 1,
+        tag: "1",
+      },
+      {
+        type: "arrow",
+        from: 1,
+        to: 2,
+        tag: "2",
+      },
+      {
+        type: "arrow",
+        from: 2,
+        to: 3,
+        tag: "3",
+      },
+      {
+        type: "point",
+        at: 3,
+        name: "A",
+        color: "amber",
+      },
+    ],
+    mode: "still",
+    label:
+      "Từ gốc O đi ba bước, mỗi bước một đơn vị, tới điểm A biểu diễn số 3",
+  },
   "vach-5": {
     kind: "line",
     from: 0,
@@ -344,7 +384,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     from: 0,
     to: 70,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 50, 60, 70],
+    labelAt: [0, 10, 40, 50],
     layers: [
       {
         type: "point",
@@ -565,7 +605,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         type: "point",
-        at: 10,
+        at: 15,
         name: "D",
         color: "amber",
         ask: true,
@@ -600,7 +640,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     from: 0,
     to: 80,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 50, 60, 70, 80],
+    labelAt: [0, 10, 20, 30, 60, 70, 80],
     layers: [
       {
         type: "point",
@@ -625,7 +665,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     from: 0,
     to: 80,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 50, 60, 70, 80],
+    labelAt: [0, 10, 20, 30, 60],
     layers: [
       {
         type: "point",
@@ -688,7 +728,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     from: 0,
     to: 80,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 50, 60, 70, 80],
+    labelAt: [0, 10, 20, 30, 40, 70, 80],
     layers: [
       {
         type: "point",
@@ -1458,6 +1498,40 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label:
       "Đoạn AB gồm điểm A biểu diễn 5, điểm B biểu diễn 10 và các điểm ở giữa",
   },
+  "chon-doan-ab-5-10": {
+    kind: "chips",
+    items: ["3", "7", "10", "14"],
+    wants: [1, 2],
+    done: "Bạn chọn đúng: 7 ở giữa 5 và 10, còn 10 là đầu đoạn nên cũng thuộc đoạn AB.",
+  },
+  "phan-4-9": {
+    kind: "line",
+    from: 0,
+    to: 12,
+    labelAt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "point",
+        at: 4,
+        name: "A",
+        color: "amber",
+      },
+      {
+        type: "point",
+        at: 9,
+        name: "B",
+        color: "amber",
+      },
+    ],
+    mode: "still",
+    label: "Tia số có điểm A biểu diễn số 4 và điểm B biểu diễn số 9",
+  },
   "n-nsao": {
     kind: "rows",
     label: "Tập hợp các số tự nhiên và tập hợp các số tự nhiên khác 0",
@@ -1498,33 +1572,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "phan-4-9": {
-    kind: "line",
-    from: 0,
-    to: 12,
-    labelAt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    layers: [
-      {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
-      },
-      {
-        type: "point",
-        at: 4,
-        name: "A",
-        color: "amber",
-      },
-      {
-        type: "point",
-        at: 9,
-        name: "B",
-        color: "amber",
-      },
-    ],
-    mode: "still",
-    label: "Tia số có điểm A biểu diễn số 4 và điểm B biểu diễn số 9",
+  "chon-phan-tu-3-6": {
+    kind: "chips",
+    items: ["2", "3", "6", "7"],
+    wants: [1, 2],
+    done: "Bạn chọn đúng: 3 và 6 là hai đầu nên cũng thuộc tập hợp.",
   },
   sticker: {
     kind: "sticker",
