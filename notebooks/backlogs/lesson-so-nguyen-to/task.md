@@ -8,8 +8,7 @@
 - 02/10/2026: đã thêm `explain` cho cả 65 câu (xoá khỏi `content/legacy-lessons.json`); review phần đổi vòng 5 (1 Nghiêm trọng đã sửa) và vòng 6 (0 Nghiêm trọng), đã `content:hash --approve`. Không đổi `videos[]` hay `overview.narration`.
 
 ## Việc còn lại sau review vòng 3 (không chặn)
-- Nên sửa: màn chạm `chon-nt-bang` (section 4: 21, 23, 27, 29, 33, 39; đáp án 23, 29) trùng bốn số và tập đáp án với `chon-nt-2-7` (section 2); đổi sang 33, 37, 39, 45, 49, 73 (đáp án 37 và 73) ở lần sửa bài kế tiếp (sửa bài đã xuất bản đổi hash, cần review lại phần đổi).
-- Góp ý: `bang-100` ở iPad ngang chữ khoảng 14,5px và dấu ✚ nhỏ do `max-h-[32vh]`; `viet-28` có hai so sánh trong một câu và trùng 28 với `cay-thieu-28`; caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám; note ngoại lệ section 5 đứng trước hình ví dụ 51 mà hai thứ chưa nối nhau.
+- Đã sửa ở vòng 7 (02/10/2026): màn chạm `chon-nt-bang` (chips 33, 39, 45, 49, 73, 79), đề `viet-28`, note ngoại lệ trước hình 51. Còn mở (kiểm kê và lý do: `notebooks/backlogs/fix-earlier-lessons/task.md`): `bang-100` ở iPad ngang chữ khoảng 14,5px và dấu ✚ nhỏ do `max-h-[32vh]`; caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám.
 
 ## Đã sửa theo review vòng 1 và 2
 - Định nghĩa số nguyên tố, hợp số, phân tích ra thừa số nguyên tố viết bằng lời của bài; nhãn kết luận của hình `xep-11` giữ điều kiện "lớn hơn 1"; hợp số luôn nói "từ ba ước trở lên"; số nguyên tố nối với "chỉ có hai ước" ở caption `ngto-dau`; số 1 luôn là "không phải số nguyên tố, cũng không phải hợp số".

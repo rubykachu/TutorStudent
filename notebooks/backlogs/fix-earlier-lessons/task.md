@@ -101,10 +101,10 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| so-nguyen-to#1 | Màn chạm `chon-nt-bang` (section 4) trùng bốn số và đáp án 23, 29 với `chon-nt-2-7` | sửa: 33, 37, 39, 45, 49, 73 (đáp án 37, 73) | |
-| so-nguyen-to#2 | `viet-28` có hai so sánh ("ít hơn" và "ít nhất") trong một câu hỏi | sửa phần chữ; giữ số 28 (id đã khoá, 28 còn ở `cay-thieu-28`, không đổi được id) | |
-| so-nguyen-to#3 | Caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám, hình không có hàng | bỏ: hình là một chuỗi suy luận về số 65, thêm hàng 80 làm loãng chuỗi; dấu hiệu chia hết cho 2 đã học ở Bài 9 và reviewer xếp Góp ý | |
-| so-nguyen-to#4 | Note ngoại lệ (77) đứng trước hình 51 mà hai thứ không nối nhau | sửa | |
+| so-nguyen-to#1 | Màn chạm `chon-nt-bang` (section 4) trùng bốn số và đáp án 23, 29 với `chon-nt-2-7` | sửa: 33, 37, 39, 45, 49, 73 (đáp án 37, 73) |  đã sửa, review vòng 7 đạt (0 phát hiện Nghiêm trọng, Nên sửa), đã duyệt (chips 33, 39, 45, 49, 73, 79; đáp án 73, 79) |
+| so-nguyen-to#2 | `viet-28` có hai so sánh ("ít hơn" và "ít nhất") trong một câu hỏi | sửa phần chữ; giữ số 28 (id đã khoá, 28 còn ở `cay-thieu-28`, không đổi được id) |  đã sửa, review vòng 7 đạt (0 phát hiện Nghiêm trọng, Nên sửa), đã duyệt |
+| so-nguyen-to#3 | Caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám, hình không có hàng | bỏ: hình là một chuỗi suy luận về số 65, thêm hàng 80 làm loãng chuỗi; dấu hiệu chia hết cho 2 đã học ở Bài 9 và reviewer xếp Góp ý | còn mở trong `review.md` |
+| so-nguyen-to#4 | Note ngoại lệ (77) đứng trước hình 51 mà hai thứ không nối nhau | sửa |  đã sửa, review vòng 7 đạt (0 phát hiện Nghiêm trọng, Nên sửa), đã duyệt |
 | so-nguyen-to#5 | `bang-100` trên iPad ngang: chữ khoảng 14,5px, dấu ✚ khoảng 5px do `max-h-[32vh]` | bỏ: nâng giới hạn có thể che dòng "Số 1", cần thử trên iPad; nút "Bảng số nguyên tố" dùng chung đã ở backlog app | |
 | so-nguyen-to#6 | Video: 2 giây màn trống ở `phan-tich`, "4 bằng 2 nhân 2" chưa nói hợp số; chưa có video phần 7 và 10 đến 12 | bỏ: video | |
 | so-nguyen-to#7 | Việc của app: bố cục màn khi bảng đẩy câu hỏi, chip section 9 xuống dòng lệch trái, dấu khái niệm trong nhãn | bỏ: việc của app | |
