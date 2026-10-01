@@ -1,9 +1,11 @@
 # Bàn giao: Bài 3 `thu-tu-trong-tap-hop-cac-so-tu-nhien` (Thứ tự trong tập hợp các số tự nhiên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Đang soạn (bản nháp, `status: draft`). Bước hiện tại: `lesson.json` đã qua `content:check --stats` (0 lỗi), đang sửa hình sau `visual:shot`.
-- Việc tiếp theo: `visual:shot` sạch, `lesson:walk` 0 FAIL, review vòng 1 và 2 (Opus), đọc hiểu (Haiku), `content:hash --approve`, `content:lock`.
+- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`), 14 section, 18 card, 83 câu. Review vòng 1 xong (10 Nghiêm trọng), bản sửa ở `71cbd51`; lỗi vòng 1 đã ghi vào `docs/lessons-learned/` (`cf3ec11`).
+- Đã kiểm lại bản sửa vòng 1 (cây tạm, cổng 3320): `content:check` của bài 0 lỗi, `visual:shot` 156/156, `lesson:walk` 0 FAIL, 0 cảnh báo. Ba reviewer Opus của vòng 2 (nhóm 1: `tia-so`..`dau-nho-lon`; nhóm 2: `dau-bang`..`lien-tiep`; nhóm 3: `bac-cau`..`dem-phan-tu`) ghi vào `.shots/review/<id bài>/nhom-<n>.md`; chưa chạy Tổng hợp.
+- Việc tiếp theo: Tổng hợp (Opus) ghi `review.md` vòng 2, sửa, Haiku đọc hiểu, vòng 3+ (Sonnet, `content:diff`) tới 0 Nghiêm trọng, rồi `content:hash --approve`, `content:lock`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
 - Không làm trong lượt này: lời đọc tổng quan và video.
+- Còn lại ngoài bài: `content/glossary/math.json` có sửa chưa commit của bài khác (bỏ 6 thuật ngữ trùng "chữ số"..., thêm "ℤ"); không thuộc bài này, chưa commit. Bản `71cbd51` có 6 thuật ngữ trùng nên `content:check` ở cây sạch báo lỗi trùng, còn cây chính (có sửa) 0 lỗi.
 
 ## Nguồn (sách bài tập, `sources/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/`, không commit)
 - Đề: tr.11–13 in (PDF 12–14), tệp `sbt-p11.png` … `sbt-p13.png`. Lời giải: tr.96 in (PDF 97), tệp `sbt-p96.png` (đầu trang là Bài 3, nửa sau là Bài 4).
