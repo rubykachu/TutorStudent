@@ -1217,7 +1217,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Chia 25 và 43 cho cùng một số được cùng số dư",
     lines: [
       { color: "slate", tex: "43 - 25 = 18" },
-      { color: "teal", text: "Số mỗi túi là ước của 18" },
+      { color: "teal", text: "Mỗi túi: ước của 18" },
       { color: "amber", text: "Nhiều nhất là 18 cái" },
       {
         color: "lime",
@@ -1237,7 +1237,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     lines: [
       { color: "slate", tex: "53 - 29 = 24" },
       { color: "slate", tex: "89 - 53 = 36" },
-      { color: "teal", text: "Số mỗi túi là ước chung của 24 và 36" },
+      { color: "teal", text: "Ước chung của 24 và 36" },
       { color: "amber", text: "Nhiều nhất: ƯCLN(24, 36) = 12" },
     ],
     mode: "steps",

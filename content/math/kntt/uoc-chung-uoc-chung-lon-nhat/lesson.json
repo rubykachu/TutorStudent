@@ -4903,7 +4903,7 @@
       "multiple": false,
       "explain": {
         "text": "Ta tìm số nhân để 10 nhân với nó được 20, rồi được 30. 10 nhân 2 bằng 20, 10 nhân 3 bằng 30, và 2 với 3 chỉ có ước chung là 1.",
-        "tex": "20 = \\concept{amber}{10} \\cdot 2, \\quad 30 = \\concept{amber}{10} \\cdot 3",
+        "tex": "\\begin{gathered} 20 = \\concept{amber}{10} \\cdot 2 \\\\ 30 = \\concept{amber}{10} \\cdot 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -5141,7 +5141,7 @@
       "multiple": false,
       "explain": {
         "text": "Cả hai số cùng chia hết cho 7 vẫn chưa đủ. Phải viết thành 7 nhân m và 7 nhân n, với m, n chỉ có ước chung là 1. Ở đây 14 là 7 nhân 2 và 21 là 7 nhân 3.",
-        "tex": "14 = \\concept{amber}{7} \\cdot 2, \\quad 21 = \\concept{amber}{7} \\cdot 3",
+        "tex": "\\begin{gathered} 14 = \\concept{amber}{7} \\cdot 2 \\\\ 21 = \\concept{amber}{7} \\cdot 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -5188,7 +5188,7 @@
       },
       "explain": {
         "text": "Các số chia hết cho 9 và không quá 30 là 9, 18 và 27. Ba số này ghép đôi được 3 cặp, và cặp nào cũng có ƯCLN là 9.",
-        "tex": "9 = 9 \\cdot 1, \\quad 18 = 9 \\cdot 2, \\quad 27 = 9 \\cdot 3"
+        "tex": "\\begin{gathered} 9 = 9 \\cdot 1 \\\\ 18 = 9 \\cdot 2 \\\\ 27 = 9 \\cdot 3 \\end{gathered}"
       }
     },
     {
