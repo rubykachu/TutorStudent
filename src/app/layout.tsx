@@ -6,7 +6,7 @@ import {
   APPLE_TOUCH_ICON,
   FAVICON_SVG_PATH,
   SHARE_DESCRIPTION,
-  SHARE_IMAGE,
+  SHARE_IMAGE_TAG,
   SHARE_TITLE,
   SITE_URL,
   THEME_COLOR,
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: SHARE_TITLE,
     description: SHARE_DESCRIPTION,
-    images: [SHARE_IMAGE],
+    images: [SHARE_IMAGE_TAG],
   },
   twitter: {
     card: "summary_large_image",
     title: SHARE_TITLE,
     description: SHARE_DESCRIPTION,
-    images: [SHARE_IMAGE],
+    images: [SHARE_IMAGE_TAG],
   },
   // Private family app: keep it out of search engines. A link preview still
   // works with noindex.

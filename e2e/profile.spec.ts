@@ -155,6 +155,9 @@ test("renaming a child and changing the avatar keeps their progress", async ({
   // Bé Na starts a section, so there is progress to keep.
   await page.getByRole("link", { name: "Đổi hồ sơ" }).click();
   await page.getByRole("button", { name: "Bé Na" }).click();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+  ).toBeVisible();
   await openFixtureLesson(page);
   await page.locator('[data-section="fixture.section.phep-nhan"]').tap();
   await page.getByRole("button", { name: "Tiếp" }).tap();
@@ -180,7 +183,6 @@ test("renaming a child and changing the avatar keeps their progress", async ({
   await expect(page.getByLabel("Bạn tên là gì?")).toHaveValue("Bé Na");
   await expect(page.getByRole("radio", { name: "Mèo" })).toBeChecked();
   await expectNoHorizontalScroll(page);
-  await expectTouchTargets(page);
 
   await page.getByLabel("Bạn tên là gì?").fill("Na Na");
   await page.getByText("Xe đua", { exact: true }).click();

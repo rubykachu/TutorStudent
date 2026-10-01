@@ -58,6 +58,13 @@ export const SHARE_IMAGE = {
   height: 630,
   alt: "Bạn cú của Tutor giữa bầu trời sao, cạnh chữ Tutor: tự học lớp 6",
 } as const;
+// The image as the metadata API takes it.
+export const SHARE_IMAGE_TAG = {
+  url: SHARE_IMAGE.path,
+  width: SHARE_IMAGE.width,
+  height: SHARE_IMAGE.height,
+  alt: SHARE_IMAGE.alt,
+} as const;
 export const SHARE_TITLE = "Tutor: tự học lớp 6 cùng bạn cú";
 export const SHARE_DESCRIPTION =
   "Học bài cùng bạn cú: hình động dễ hiểu, bài tập vui và ôn lại đúng lúc để nhớ lâu.";
