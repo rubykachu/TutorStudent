@@ -118,6 +118,7 @@ export function ClockPick() {
               fontSize={17}
               fontWeight={700}
               className="fill-foreground font-heading"
+              stroke="none"
             >
               {toRoman(hour)}
             </text>

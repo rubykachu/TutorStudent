@@ -375,6 +375,7 @@ export function PlacesPick({ spec }: { spec: PlacesPickSpec }) {
             fontSize={32}
             fontWeight={700}
             className="fill-concept-blue font-heading"
+            stroke="none"
           >
             {digit}
           </text>

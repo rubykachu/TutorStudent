@@ -91,12 +91,12 @@ export function Slots({
       </div>
       {guided && met && !shown && (
         <DoneLine data-slots-done>
-          Xong rồi! Hàng nào không có thì viết chữ số 0.
+          Xong rồi! Từ hàng lớn nhất, hàng nào thiếu thì viết chữ số 0.
         </DoneLine>
       )}
       {guided && shown && (
         <ShownLine data-slots-shown>
-          Hàng nào không có thì viết chữ số 0.
+          Từ hàng lớn nhất, hàng nào thiếu thì viết chữ số 0.
         </ShownLine>
       )}
     </div>
