@@ -1715,7 +1715,7 @@
         "expr": "45:9"
       },
       "explain": {
-        "text": "Thương là kết quả của phép chia, đứng sau dấu bằng. Ở 45 : 9 = 5, số 5 là thương.",
+        "text": "Thương là kết quả của phép chia. Ở 45 : 9 = 5, số 5 là thương.",
         "tex": "\\concept{blue}{45} : \\concept{violet}{9} = \\concept{amber}{5}",
         "wrong": [
           {
@@ -2087,7 +2087,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "25 · 2 = 50, muốn được 100 thì phải là 25 · 4."
+            "text": "25 · 2 = 50, phải lấy 25 thêm hai lần nữa thì 25 · 4 mới bằng 100."
           },
           {
             "optionId": "c",
@@ -3090,7 +3090,7 @@
         "b": 13
       },
       "explain": {
-        "text": "Nhân với 3 được tích riêng thứ nhất là 162. Nhân với 1 chục được tích riêng thứ hai là 54, viết lùi sang trái một cột. Cộng hai tích riêng được 702.",
+        "text": "Nhân với 3 được tích riêng thứ nhất là 162. Nhân với 1 chục là 54 · 10 = 540: viết 54 lùi sang trái một cột, chữ số 0 mờ giữ chỗ. Cộng hai tích riêng được 702.",
         "tex": "\\begin{aligned} 54 \\cdot 3 &= \\concept{teal}{162} \\\\ 54 \\cdot 10 &= \\concept{teal}{540} \\\\ 162 + 540 &= 702 \\end{aligned}"
       }
     },
@@ -3221,7 +3221,7 @@
           },
           {
             "optionId": "c",
-            "text": "36 và 45 là tích của 4 · 9 và 5 · 9, còn 48 là 4 chục mấy nên phải nhân 40 và 50."
+            "text": "36 và 45 là tích của 4 · 9 và 5 · 9; 48 gồm 4 chục nên phải nhân 40 và 50."
           }
         ]
       }
@@ -3353,16 +3353,16 @@
       "answer": ["a", "b"],
       "multiple": true,
       "explain": {
-        "text": "Ước lượng bằng số tròn chục. Thừa số nhỏ hơn 50 thì tích nhỏ hơn 50 · 9 = 450, tức là nhỏ hơn 500.",
+        "text": "Ước lượng bằng số tròn chục. Thừa số nhỏ hơn 50 khi nhân với 9 thì tích nhỏ hơn 50 · 9 = 450, tức là nhỏ hơn 500.",
         "tex": "\\begin{aligned} 41 \\cdot 9 &< 50 \\cdot 9 = 450 \\\\ 46 \\cdot 9 &< 50 \\cdot 9 = 450 \\\\ 63 \\cdot 9 &> 60 \\cdot 9 = 540 \\\\ 74 \\cdot 9 &> 70 \\cdot 9 = 630 \\end{aligned}",
         "wrong": [
           {
             "optionId": "c",
-            "text": "63 lớn hơn 60 nên 63 · 9 lớn hơn 60 · 9 = 540."
+            "text": "63 lớn hơn 60 nên 63 · 9 lớn hơn 60 · 9 = 540, mà 540 đã lớn hơn 500."
           },
           {
             "optionId": "d",
-            "text": "74 lớn hơn 70 nên 74 · 9 lớn hơn 70 · 9 = 630."
+            "text": "74 lớn hơn 70 nên 74 · 9 lớn hơn 70 · 9 = 630, mà 630 đã lớn hơn 500."
           }
         ]
       }
@@ -3490,7 +3490,7 @@
           },
           {
             "optionId": "d",
-            "text": "28 − 4 = 24 chứ không phải 7, và phép trừ không kiểm tra được phép chia."
+            "text": "28 − 4 = 24 chứ không phải 7. Muốn kiểm tra phép chia hết, ta nhân số chia với thương."
           }
         ]
       }
@@ -3590,7 +3590,7 @@
         }
       ],
       "explain": {
-        "text": "Lấy tích chia cho một thừa số thì được thừa số còn lại. 6 · 8 = 48 nên 48 : 6 = 8.",
+        "text": "Số bị chia bằng số chia nhân thương: 48 = 6 · 8. Vì vậy 48 : 6 = 8.",
         "tex": "\\begin{gathered} \\concept{violet}{6} \\cdot \\concept{amber}{8} = \\concept{blue}{48} \\\\ \\concept{blue}{48} : \\concept{violet}{6} = \\concept{amber}{8} \\end{gathered}"
       }
     },
@@ -3749,7 +3749,7 @@
         "expr": "26-4·6"
       },
       "explain": {
-        "text": "Mỗi bạn được 6 cái, 4 bạn đã nhận 4 · 6 = 24 cái. Số kẹo còn lại là 26 − 24 = 2 cái.",
+        "text": "Mỗi vòng phát cho mỗi bạn 1 cái, 4 bạn là 4 cái một vòng. Phát 6 vòng hết 4 · 6 = 24 cái, còn lại 26 − 24 = 2 cái.",
         "tex": "26 - 4 \\cdot 6 = 26 - 24 = 2",
         "wrong": [
           {
@@ -3822,7 +3822,7 @@
         "expr": "41-7·5"
       },
       "explain": {
-        "text": "Tìm lần nhân lớn nhất mà 7 nhân lên không vượt quá 41: 7 · 5 = 35, còn 7 · 6 = 42 đã vượt. Số dư là 41 − 35 = 6.",
+        "text": "Tìm xem 7 nhân mấy thì gần 41 nhất mà không vượt: 7 · 5 = 35, còn 7 · 6 = 42 đã quá 41. Số dư là 41 − 35 = 6.",
         "tex": "\\concept{blue}{41} = \\concept{violet}{7} \\cdot \\concept{amber}{5} + \\concept{pink}{6}"
       }
     },
@@ -4056,7 +4056,7 @@
       },
       "explain": {
         "text": "Bỏ số dư 2 đi thì 48 chia hết cho 6. Thương là 48 : 6 = 8, kiểm tra 6 · 8 + 2 = 50.",
-        "tex": "(\\concept{blue}{50} - \\concept{pink}{2}) : \\concept{violet}{6} = 48 : \\concept{violet}{6} = \\concept{amber}{8}"
+        "tex": "(\\concept{blue}{50} - \\concept{pink}{2}) : \\concept{violet}{6} = \\concept{blue}{48} : \\concept{violet}{6} = \\concept{amber}{8}"
       }
     },
     {
@@ -4523,7 +4523,7 @@
       "answer": ["a", "c"],
       "multiple": true,
       "explain": {
-        "text": "Còn dư mà vẫn phải chở hết thì lấy thương cộng 1. Ở bài xe và bài hàng ghế, 45 : 8 và 33 : 6 đều còn dư, nên cần thêm một xe, một hàng. Hai bài còn lại chỉ lấy các nhóm đủ nên lấy thương.",
+        "text": "Còn dư mà vẫn phải chở hay xếp hết thì lấy thương cộng 1. Ở bài xe và bài hàng ghế, 45 : 8 và 33 : 6 đều còn dư, nên cần thêm một xe, một hàng. Hai bài còn lại chỉ lấy các nhóm đủ nên lấy thương.",
         "tex": "\\begin{gathered} 45 = 8 \\cdot 5 + 5 \\quad \\to \\quad 5 + 1 = 6 \\\\ 33 = 6 \\cdot 5 + 3 \\quad \\to \\quad 5 + 1 = 6 \\end{gathered}",
         "wrong": [
           {
