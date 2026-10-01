@@ -94,6 +94,16 @@ import {
   VISUAL_SPECS as THU_TU_SPECS,
   tapRegions,
 } from "@/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog";
+import {
+  INTERACTIVE_KINDS as COMMON_INTERACTIVE_KINDS,
+  LESSON_SLUG as COMMON_SLUG,
+  VISUAL_SPECS as COMMON_SPECS,
+  VALIDATOR_IDS as COMMON_VALIDATOR_IDS,
+} from "@/visuals/math/uoc-chung-uoc-chung-lon-nhat/catalog";
+import {
+  solutions as commonSolutions,
+  validators as commonValidators,
+} from "@/visuals/math/uoc-chung-uoc-chung-lon-nhat/logic";
 
 // State an interactive visual reports while the child manipulates it.
 export type VisualState = Record<string, number>;
@@ -322,6 +332,37 @@ const primeEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "uoc-chung-uoc-chung-lon-nhat": one per item of its catalog. The
+// strip screen has its own validator; the pick screens reuse "chon-dung".
+const commonPickValidators = {
+  "cat-vua-het": commonValidators["cat-vua-het"],
+  "chon-dung": pickMatches,
+};
+const commonPickSolutions = {
+  "cat-vua-het": commonSolutions["cat-vua-het"],
+  "chon-dung": solvePickMatches,
+};
+
+const commonEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(COMMON_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in COMMON_VALIDATOR_IDS
+        ? COMMON_VALIDATOR_IDS[spec.kind as keyof typeof COMMON_VALIDATOR_IDS]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: COMMON_INTERACTIVE_KINDS.has(spec.kind),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: commonPickValidators[validatorId] },
+            solutions: { [validatorId]: commonPickSolutions[validatorId] },
+          }),
+      load: () => lessonExample(COMMON_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${COMMON_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...primeEntries,
   ...thuTuEntries,
@@ -329,6 +370,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...congTruEntries,
   ...divisibilityEntries,
   ...signEntries,
+  ...commonEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -1106,6 +1148,8 @@ const EXAMPLE_MODULES = lessonModules({
   "dau-hieu-chia-het": () =>
     import("@/visuals/math/dau-hieu-chia-het/examples"),
   "so-nguyen-to": () => import("@/visuals/math/so-nguyen-to/examples"),
+  "uoc-chung-uoc-chung-lon-nhat": () =>
+    import("@/visuals/math/uoc-chung-uoc-chung-lon-nhat/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
