@@ -115,17 +115,17 @@ const group = (lead: "+" | "-" | "", ...terms: number[]): Piece => ({
 
 // Worked example of the whole method (the lesson's last method section).
 const WHOLE_ROWS = [
-  { tex: steps("(-6) + (13 - 11)", "- (-5 - 3 + 9)") },
+  { tex: steps("(-4) + (8 - 5)", "- (-3 + 6)") },
   {
-    tex: steps("= -6 + 13 - 11", "+ 5 + 3 - 9"),
+    tex: "= -4 + 8 - 5 + 3 - 6",
     tag: tag("bỏ ngoặc: giữ dấu +, đổi dấu −", NOTE),
   },
   {
-    tex: steps("= (-6 - 9) + (13 + 3)", "+ (5 - 11)"),
-    tag: tag("đổi chỗ, rồi nhóm số hạng", NOTE),
+    tex: steps("= (8 + 3)", "- (4 + 5 + 6)"),
+    tag: tag("đổi chỗ, nhóm số hạng", NOTE),
   },
-  { tex: "= -15 + 16 + (-6)" },
-  { tex: "= \\concept{pink}{-5}", tag: tag("giá trị của tổng", SUM) },
+  { tex: "= 11 - 15" },
+  { tex: "= \\concept{pink}{-4}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
 // Rows shared by a worked example and its still recap.
