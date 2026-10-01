@@ -384,6 +384,10 @@
               "rule": true
             },
             {
+              "type": "note",
+              "text": "Thừa số viết không có số mũ thì số mũ là 1, như 3 = 3¹. Không có thừa số chung thì ƯCLN bằng 1."
+            },
+            {
               "type": "visual",
               "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-36-60-xong"
             }
@@ -412,10 +416,6 @@
             {
               "type": "note",
               "text": "Cùng làm với 20 và 30. Mỗi thừa số chung lấy với số mũ nhỏ nhất, rồi nhân lại."
-            },
-            {
-              "type": "note",
-              "text": "Thừa số viết không có số mũ thì số mũ là 1, như 3 = 3¹. Không có thừa số chung thì ƯCLN bằng 1."
             },
             {
               "type": "visual",
@@ -609,11 +609,7 @@
           "children": [
             {
               "type": "note",
-              "text": "An mua 22 bút, Bình mua 33 bút, theo hộp có số bút như nhau. Mỗi hộp có từ 2 bút trở lên."
-            },
-            {
-              "type": "note",
-              "text": "Số bút trong một hộp là ước chung của 22 và 33."
+              "text": "An mua 22 bút, Bình mua 33 bút, theo hộp có số bút như nhau, mỗi hộp từ 2 bút trở lên. Số bút trong một hộp là ước chung của 22 và 33."
             },
             {
               "type": "visual",
