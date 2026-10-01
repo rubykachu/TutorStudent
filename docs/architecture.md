@@ -24,7 +24,7 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 - `exercises/` the eight basic exercise types (`choice`, `numeric`, `fill-blank`, `match`, `order`, `tap-region`, `tap-text`, `manipulate`) and `open-ended` (a sequence of steps), `grade/`, 3-level hints, feedback.
 - `visuals/` `registry.ts` maps `visualId` to a component with `interactive`, `regions` and validators; shared primitives in `shared/`; lesson visuals in `<subject>/<lesson>/`.
 - `learn/` section player, review player, overview, next-step logic. `srs/` FSRS scheduling and review selection.
-- `progress/` Dexie store (IndexedDB, per browser), streak, parent report and PIN. `mascot/` owl and its lines. `music/` the music box: song list and unlock rule (`songs.ts`), player hook, sheet, chip and reward card. `lib/` config, shared sounds (`sound.ts`, `sound-manifest.ts`), media URLs, formatting.
+- `progress/` Dexie store (IndexedDB, per browser), streak, parent report and PIN. `mascot/` owl and its lines. `music/` the songs a sticker's sheet can play (`songs.ts`, the one list) and the player hook. `lib/` config, shared sounds (`sound.ts`, `sound-manifest.ts`), media URLs, formatting.
 - `components/` shared UI; `subject-style.ts` maps a subject's colour token and icon name to classes and components.
 
 ## Automated checks and where they live
@@ -52,7 +52,7 @@ Adding a lint rule: create `src/content/lint/<rule>.ts`, register it in `lint/in
 - Gemini keys: every `~/.config/gemini/api_key*` file (or `GEMINI_API_KEY`), used in turn per request by the one client `video/tts/gemini.ts` (also used by `pnpm sounds:build`); a rate-limited key rests while the others serve. Keys are never in the repo. Rules for choosing it and for the opening line of each video: skill `lesson-video`.
 - TTS and Whisper run in the arm64 Python env `video/.venv` with models in `video/.hf` (setup: `video/requirements.txt`; paths in `video/config.ts`).
 - Caches: sentence takes in `video/projects/**/audio/` and `video/.cache/`, intermediates in `renders/`; none is in git. `pnpm clean` removes the regenerable parts.
-- `public/media/` (video, narration) is gitignored and uploaded to the media bucket at go-live (`NEXT_PUBLIC_MEDIA_BASE_URL` switches the client to it). `public/sounds/` (shared app sounds, `pnpm sounds:build`) is committed; clips imported from other files (`file` entries: wrong answer, finish, leaving, music box songs) are made from `assets/sounds/`, also committed.
+- `public/media/` (video, narration) is gitignored and uploaded to the media bucket at go-live (`NEXT_PUBLIC_MEDIA_BASE_URL` switches the client to it). `public/sounds/` (shared app sounds, `pnpm sounds:build`) is committed; clips imported from other files (`file` entries: wrong answer, finish, leaving, the sticker sheet's songs) are made from `assets/sounds/`, also committed.
 
 ## Content authoring pipeline
 
