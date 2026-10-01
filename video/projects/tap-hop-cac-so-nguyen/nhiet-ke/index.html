@@ -1,0 +1,223 @@
+<!doctype html>
+<!--
+  Lesson video "Nhiệt độ dưới 0 và số âm" (lesson tap-hop-cac-so-nguyen): a
+  thermometer whose column drops below 0; the temperature is written with a
+  minus sign and read "âm". Negative numbers are pink, positive lime, zero
+  slate, as in the lesson.
+  Built by `pnpm video:build tap-hop-cac-so-nguyen nhiet-ke`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Nhiệt độ dưới 0 và số âm</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .pink {
+        --c: var(--color-concept-pink);
+      }
+      .lime {
+        --c: var(--color-concept-lime);
+      }
+      .chip {
+        font-size: 38px;
+      }
+      .num {
+        display: inline-block;
+        padding: 6px 30px 10px;
+        border-radius: 26px;
+        font:
+          800 66px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+        color: var(--c);
+        background: color-mix(in srgb, var(--c) 14%, var(--color-surface));
+      }
+      .plain {
+        font:
+          800 56px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+      }
+      .arrow {
+        font:
+          800 64px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-concept-slate);
+      }
+      .rrow {
+        position: absolute;
+        left: 540px;
+        width: 720px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="thermo" class="layer"></div>
+        <section id="s1" class="scene layer">
+          <div id="a1" class="rrow" style="top: 120px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="b1" class="rrow" style="top: 110px"></div>
+          <div id="b2" class="rrow" style="top: 260px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="c1" class="rrow" style="top: 40px"></div>
+          <div id="c2" class="rrow" style="top: 150px"></div>
+          <div id="c3" class="rrow" style="top: 290px"></div>
+          <div id="c4" class="rrow" style="top: 400px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="d1" class="rrow" style="top: 90px"></div>
+          <div id="d2" class="rrow" style="top: 250px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, color, owl, pop, hide, fade, pose, scenes, tl, finish } =
+          window.LV;
+        const MINUS = "−";
+        const chip = (c, html) =>
+          `<span class="chip ${c}" style="--c: var(--color-concept-${c})">${html}</span>`;
+        const num = (c, html, id) =>
+          `<span ${id ? `id="${id}"` : ""} class="num ${c}">${html}</span>`;
+
+        // ---------- the thermometer: column and scale from 6 to -6 ----------
+        const Y0 = 272;
+        const STEP = 38;
+        const y = (v) => Y0 - v * STEP;
+        const TUBE_TOP = y(6) - 14;
+        const TUBE_BOTTOM = y(-6) + 14;
+        let ticks = "";
+        for (let v = 6; v >= -6; v--) {
+          const c = v > 0 ? "lime" : v < 0 ? "pink" : "slate";
+          const label = v < 0 ? `${MINUS}${-v}` : `${v}`;
+          ticks += `<line x1="346" x2="${v === 0 ? 378 : 366}" y1="${y(v)}" y2="${y(v)}" stroke="var(--color-foreground)" stroke-width="${v === 0 ? 5 : 3}"/>
+            <text x="388" y="${y(v) + 11}" font-family="Baloo 2" font-weight="800" font-size="32" fill="var(--color-concept-${c})">${label}</text>`;
+        }
+        $("#thermo").innerHTML = `<svg width="1280" height="720" viewBox="0 0 1280 720">
+          <rect id="zone-up" x="236" y="${TUBE_TOP}" width="250" height="${Y0 - TUBE_TOP}" rx="18" fill="var(--color-concept-lime)" opacity="0.14"/>
+          <rect id="zone-down" x="236" y="${Y0}" width="250" height="${TUBE_BOTTOM - Y0}" rx="18" fill="var(--color-concept-pink)" opacity="0.14"/>
+          <rect x="300" y="${TUBE_TOP}" width="46" height="${TUBE_BOTTOM - TUBE_TOP}" rx="23" fill="var(--color-surface)" stroke="var(--color-foreground)" stroke-width="4"/>
+          <rect id="hg" x="311" y="${y(2)}" width="24" height="${TUBE_BOTTOM - 8 - y(2)}" rx="12" fill="var(--color-foreground)"/>
+          ${ticks}
+          <rect id="ring" x="376" y="${y(-3) - 22}" width="104" height="44" rx="22" fill="none" stroke="var(--color-concept-pink)" stroke-width="5"/>
+        </svg>`;
+        const mercury = { v: 2 };
+        const draw = () => {
+          const top = y(mercury.v);
+          $("#hg").setAttribute("y", top);
+          $("#hg").setAttribute("height", TUBE_BOTTOM - 8 - top);
+        };
+        const lower = (to, t, d) =>
+          tl.to(mercury, { v: to, duration: d, ease: "power2.inOut", onUpdate: draw }, t);
+
+        // ---------- the right-hand column of each scene ----------
+        const html = (id, h) => ($(id).innerHTML = h);
+        html("#a1", chip("slate", "Sa Pa, buổi sáng") + `<span class="plain">độ C</span>`);
+        html("#b1", `<span id="q" class="num pink">?</span>`);
+        html(
+          "#b2",
+          chip("pink", `${"▼"} số âm`) + `<span class="num pink">${MINUS}3</span>`,
+        );
+        html("#c1", num("slate", "3 độ dưới 0") + `<span class="arrow">→</span>` + num("pink", `${MINUS}3`));
+        html("#c2", `<span class="plain">đọc là</span>` + chip("pink", "âm ba"));
+        html("#c3", num("slate", "6 độ dưới 0") + `<span class="arrow">→</span>` + num("pink", `${MINUS}6`));
+        html("#c4", `<span class="plain">đọc là</span>` + chip("pink", "âm sáu"));
+        html("#d1", num("lime", "5") + chip("lime", "▲ trên 0: chỉ viết số"));
+        html("#d2", chip("pink", `▼ dưới 0: dấu ${MINUS}, đọc là âm`));
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-ghi"],
+          ["#s3", "s03-doc"],
+          ["#s4", "s04-tren"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+        window.gsap.set("#ring", { autoAlpha: 0 });
+
+        {
+          const sid = "s01-mo";
+          hide(["#a1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#a1", W(sid, "nhiệt", 1), { from: 0.6 });
+          pose(bird, "idle", W(sid, "bạn"));
+          lower(-1.5, W(sid, "tụt"), 1.6);
+        }
+        {
+          const sid = "s02-ghi";
+          hide(["#b1", "#b2"]);
+          pose(bird, "idle", start(sid));
+          lower(-3, start(sid) + 0.2, 1.2);
+          tl.fromTo(
+            "#ring",
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.3, immediateRender: false },
+            W(sid, "3"),
+          );
+          pop("#b1", W(sid, "đoán"), { from: 0.6 });
+          fade("#b1", W(sid, "ghi", 2) - 0.1);
+          pop("#b2", W(sid, "âm"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "âm"));
+        }
+        {
+          const sid = "s03-doc";
+          hide(["#c1", "#c2", "#c3", "#c4"]);
+          pose(bird, "idle", start(sid));
+          pop("#c1", W(sid, "3"), { from: 0.6 });
+          pop("#c2", W(sid, "đọc"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "âm"));
+          lower(-6, W(sid, "6"), 1.4);
+          tl.to("#ring", { autoAlpha: 0, duration: 0.3 }, W(sid, "6"));
+          pop("#c3", W(sid, "6"), { from: 0.6 });
+          pop("#c4", W(sid, "âm", 2), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "âm", 2));
+        }
+        {
+          const sid = "s04-tren";
+          hide(["#d1", "#d2"]);
+          pose(bird, "idle", start(sid));
+          lower(5, start(sid) + 0.3, 1.6);
+          pop("#d1", W(sid, "viết"), { from: 0.6 });
+          pop("#d2", W(sid, "nhớ"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "title": "Nhiệt độ dưới 0 và số âm",
+  "engine": "local",
+  "poster": { "scene": "s03-doc", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta đọc nhiệt độ dưới 0.",
+          "opening": true
+        },
+        { "text": "Bạn cú nhìn nhiệt kế ở Sa Pa." },
+        { "text": "Cột nhiệt kế tụt xuống dưới số 0." }
+      ]
+    },
+    {
+      "id": "s02-ghi",
+      "sentences": [
+        { "text": "Cột dừng ở 3 vạch dưới số 0." },
+        {
+          "text": "Bạn thử đoán xem: ghi nhiệt độ này bằng số nào?",
+          "pause": "ask"
+        },
+        {
+          "text": "Nhiệt độ dưới 0 độ C được ghi bằng số âm, có dấu − đằng trước.",
+          "say": "Nhiệt độ dưới 0 độ C được ghi bằng số âm, có dấu trừ đằng trước.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s03-doc",
+      "sentences": [
+        {
+          "text": "3 độ dưới 0 viết là −3 và đọc là âm ba.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Bạn cú thử với 6 độ dưới 0." },
+        {
+          "text": "Ta viết −6 và đọc là âm sáu.",
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s04-tren",
+      "sentences": [
+        { "text": "Nhiệt độ trên 0 chỉ viết số, như 5." },
+        {
+          "text": "Nhớ nhé: dưới 0 thì có dấu − và đọc là âm.",
+          "say": "Nhớ nhé: dưới 0 thì có dấu trừ và đọc là âm."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "nhiet-do",
+      "from": "s02-ghi",
+      "to": "s03-doc",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.nhiet-do"]
+    }
+  ]
+}

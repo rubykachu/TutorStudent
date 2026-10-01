@@ -1,0 +1,63 @@
+{
+  "title": "Trục số có số âm",
+  "engine": "local",
+  "poster": { "scene": "s04-di", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta làm quen với trục số.",
+          "opening": true
+        },
+        { "text": "Bạn cú xoay nhiệt kế nằm ngang." },
+        { "text": "Hai vạch liền nhau cách nhau 1 đơn vị." }
+      ]
+    },
+    {
+      "id": "s02-goc",
+      "sentences": [
+        {
+          "text": "Trục số có gốc O, điểm O biểu diễn số 0.",
+          "say": "Trục số có gốc ô, điểm ô biểu diễn số 0.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Gốc chia trục số làm hai bên.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-hai-ben",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: số dương nằm bên nào?",
+          "pause": "ask"
+        },
+        {
+          "text": "Số dương nằm sau O, bên phải; số âm nằm trước O, bên trái.",
+          "say": "Số dương nằm sau ô, bên phải; số âm nằm trước ô, bên trái.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Số 3 nằm bên phải gốc." },
+        { "text": "Số −3 nằm bên trái gốc.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s04-di",
+      "sentences": [
+        { "text": "Bạn cú đi từ gốc sang trái 3 vạch." },
+        { "text": "Cú dừng ở số −3, đọc là âm ba." },
+        { "text": "Nhớ nhé: trái là số âm, phải là số dương." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "truc-so",
+      "from": "s02-goc",
+      "to": "s04-di",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.truc-so"]
+    }
+  ]
+}

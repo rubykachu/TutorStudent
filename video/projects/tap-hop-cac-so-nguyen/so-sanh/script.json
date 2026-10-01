@@ -1,0 +1,60 @@
+{
+  "title": "So sánh số trên trục số",
+  "engine": "local",
+  "poster": { "scene": "s03-so", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta so sánh số trên trục số.",
+          "opening": true
+        },
+        { "text": "Bạn cú có hai số: −3 và 2." },
+        {
+          "text": "Bạn thử đoán xem: số nào lớn hơn?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s02-luat",
+      "sentences": [
+        { "text": "Ta nhìn hai điểm trên trục số." },
+        {
+          "text": "Điểm ở bên trái biểu diễn số nhỏ hơn, còn điểm ở bên phải biểu diễn số lớn hơn.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s03-so",
+      "sentences": [
+        { "text": "Điểm −3 nằm bên trái điểm 2." },
+        {
+          "text": "Số −3 nằm trước số 2 nên −3 nhỏ hơn 2.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Vậy 2 lớn hơn −3.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s04-doi",
+      "sentences": [
+        { "text": "Ngoài đời, −3 độ C lạnh hơn 2 độ C." },
+        { "text": "Nhớ nhé: bên trái nhỏ hơn, bên phải lớn hơn." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "so-sanh-truc",
+      "from": "s02-luat",
+      "to": "s04-doi",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.so-sanh-truc"]
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+<!doctype html>
+<!--
+  Lesson video "So sánh số trên trục số" (lesson tap-hop-cac-so-nguyen): the
+  points -3 and 2 on the number line; the left point is the smaller number
+  (blue), the right point the larger (violet): -3 < 2, and outside, -3 degrees
+  C is colder than 2 degrees C.
+  Built by `pnpm video:build tap-hop-cac-so-nguyen so-sanh`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>So sánh số trên trục số</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .blue {
+        --c: var(--color-concept-blue);
+      }
+      .violet {
+        --c: var(--color-concept-violet);
+      }
+      .amber {
+        --c: var(--color-concept-amber);
+      }
+      .chip {
+        font-size: 38px;
+      }
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      .cmp {
+        position: absolute;
+        left: 0;
+        width: 1280px;
+        top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 36px;
+        font:
+          800 104px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+      }
+      .cmp .n {
+        padding: 2px 34px 8px;
+        border-radius: 28px;
+        color: var(--c);
+        background: color-mix(in srgb, var(--c) 14%, var(--color-surface));
+      }
+      .cmp .sign {
+        color: var(--color-foreground);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="axis" class="layer"></div>
+        <section id="s1" class="scene layer"></section>
+        <section id="s2" class="scene layer"></section>
+        <section id="s3" class="scene layer"></section>
+        <section id="s4" class="scene layer"></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, color, owl, pop, hide, fade, pose, scenes, tl, finish } =
+          window.LV;
+        const MINUS = "−";
+        const AX = 300;
+        const X = (v) => 690 + v * 92;
+        const g = window.gsap;
+        const tag = (id, c, html, x, top) =>
+          `<div id="${id}" class="tag chip ${c}" style="--c: var(--color-concept-${c}); left: ${x}px; top: ${top}px">${html}</div>`;
+        const cmp = (id, left, sign, right) =>
+          `<div id="${id}" class="cmp"><span class="n ${left[0]}" style="--c: var(--color-concept-${left[0]})">${left[1]}</span><span class="sign">${sign}</span><span class="n ${right[0]}" style="--c: var(--color-concept-${right[0]})">${right[1]}</span></div>`;
+
+        // ---------- the number line with its numbers, from -5 to 5 ----------
+        let ticks = "";
+        for (let v = -5; v <= 5; v++) {
+          ticks += `<line x1="${X(v)}" x2="${X(v)}" y1="${AX - 18}" y2="${AX + 18}" stroke="var(--color-foreground)" stroke-width="${v === 0 ? 6 : 4}"/>
+            <text x="${X(v)}" y="${AX + 66}" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="40" fill="var(--color-concept-slate)">${v < 0 ? MINUS + -v : v}</text>`;
+        }
+        $("#axis").innerHTML = `<svg width="1280" height="720" viewBox="0 0 1280 720">
+          <line x1="${X(-5.6)}" x2="${X(5.6)}" y1="${AX}" y2="${AX}" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M ${X(-5.6) + 4} ${AX} l 20 -14 M ${X(-5.6) + 4} ${AX} l 20 14 M ${X(5.6) - 4} ${AX} l -20 -14 M ${X(5.6) - 4} ${AX} l -20 14" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          ${ticks}
+          <circle id="dl" cx="${X(-3)}" cy="${AX}" r="19" fill="var(--color-concept-amber)" stroke="var(--color-surface)" stroke-width="4"/>
+          <circle id="dr" cx="${X(2)}" cy="${AX}" r="19" fill="var(--color-concept-amber)" stroke="var(--color-surface)" stroke-width="4"/>
+          <path id="arc" d="M ${X(-3) + 10} ${AX - 34} Q ${(X(-3) + X(2)) / 2} ${AX - 120} ${X(2) - 14} ${AX - 38}" fill="none" stroke="var(--color-concept-slate)" stroke-width="6" stroke-linecap="round"/>
+          <path id="arc-head" d="M ${X(2) - 14} ${AX - 38} l -22 -4 M ${X(2) - 14} ${AX - 38} l -6 -22" stroke="var(--color-concept-slate)" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>`;
+
+        // ---------- per-scene elements ----------
+        const el = (id, h) => $(id).insertAdjacentHTML("beforeend", h);
+        el("#s1", cmp("c0", ["amber", MINUS + "3"], "?", ["amber", "2"]));
+        el("#s2", cmp("c1", ["amber", MINUS + "3"], "?", ["amber", "2"]));
+        el("#s2", tag("tl", "blue", "◀ trái: số nhỏ hơn", X(-2.6), 440));
+        el("#s2", tag("tr", "violet", "phải: số lớn hơn ▶", X(2.6), 440));
+        el("#s3", cmp("c2", ["blue", MINUS + "3"], "&lt;", ["violet", "2"]));
+        el("#s3", cmp("c3", ["violet", "2"], "&gt;", ["blue", MINUS + "3"]));
+        el("#s4", tag("w1", "blue", `${MINUS}3 độ C`, X(-3), 400));
+        el("#s4", tag("w2", "violet", "2 độ C", X(2), 400));
+        el("#s4", tag("w3", "blue", "lạnh hơn", X(-0.5), 480));
+        el("#s4", tag("w4", "blue", "trái = nhỏ hơn", X(-2.6), 480));
+        el("#s4", tag("w5", "violet", "phải = lớn hơn", X(2.6), 480));
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "380px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-luat"],
+          ["#s3", "s03-so"],
+          ["#s4", "s04-doi"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+        g.set(["#dl", "#dr", "#arc", "#arc-head"], { autoAlpha: 0 });
+        g.set(["#dl", "#dr"], { svgOrigin: `${X(-3)} ${AX}` });
+
+        const left = $("#dl");
+        const right = $("#dr");
+        const recolor = (node, token, t) =>
+          tl.to(node, { fill: color(token), duration: 0.3 }, t);
+
+        {
+          const sid = "s01-mo";
+          hide(["#c0"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          g.set("#dr", { svgOrigin: `${X(2)} ${AX}` });
+          pop("#dl", W(sid, "3"), { from: 0.4 });
+          pop("#dr", W(sid, "2"), { from: 0.4 });
+          pop("#c0", W(sid, "3"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-luat";
+          hide(["#c1", "#tl", "#tr"]);
+          pose(bird, "idle", start(sid));
+          fade("#c0", start(sid) - 0.0, 0.2);
+          pop("#c1", start(sid) + 0.2, { from: 0.6 });
+          fade("#c1", W(sid, "trái") - 0.1, 0.25);
+          recolor(left, "concept-blue", W(sid, "nhỏ"));
+          recolor(right, "concept-violet", W(sid, "lớn"));
+          pop("#tl", W(sid, "trái"), { from: 0.6 });
+          pop("#tr", W(sid, "phải"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "lớn"));
+        }
+        {
+          const sid = "s03-so";
+          hide(["#c2", "#c3"]);
+          pose(bird, "idle", start(sid));
+          fade(["#tl", "#tr"], start(sid), 0.2);
+          tl.to(["#arc", "#arc-head"], { autoAlpha: 1, duration: 0.4 }, W(sid, "nằm"));
+          pop("#c2", W(sid, "nhỏ"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nhỏ"));
+          fade("#c2", W(sid, "vậy") - 0.1, 0.25);
+          pop("#c3", W(sid, "lớn"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "lớn"));
+        }
+        {
+          const sid = "s04-doi";
+          hide(["#w1", "#w2", "#w3", "#w4", "#w5"]);
+          pose(bird, "idle", start(sid));
+          fade("#c3", start(sid), 0.2);
+          tl.to(["#arc", "#arc-head"], { autoAlpha: 0, duration: 0.3 }, start(sid));
+          pop("#w1", W(sid, "3"), { from: 0.6 });
+          pop("#w2", W(sid, "2"), { from: 0.6 });
+          pop("#w3", W(sid, "lạnh"), { from: 0.6 });
+          fade(["#w1", "#w2", "#w3"], W(sid, "nhớ") - 0.1, 0.25);
+          pop("#w4", W(sid, "nhớ"), { from: 0.6 });
+          pop("#w5", W(sid, "nhớ"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

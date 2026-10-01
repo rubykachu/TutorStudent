@@ -24,7 +24,16 @@
       "so sánh và sắp xếp được các số nguyên",
       "tìm được số đối của một số nguyên, ví dụ số đối của 5 là −5"
     ],
-    "whyItMatters": "Bạn dùng số âm khi xem nhiệt kế ngày lạnh dưới 0 độ C, và cả khi bấm thang máy xuống tầng hầm."
+    "whyItMatters": "Bạn dùng số âm khi xem nhiệt kế ngày lạnh dưới 0 độ C, và cả khi bấm thang máy xuống tầng hầm.",
+    "narration": {
+      "audioUrl": "narration/tap-hop-cac-so-nguyen/overview.m4a",
+      "vttUrl": "narration/tap-hop-cac-so-nguyen/overview.vtt",
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
   },
   "concepts": [
     {
@@ -75,6 +84,10 @@
       "sourceRef": "Sách bài tập tr.47 (kiến thức cần nhớ 1), tr.48 (ví dụ 1)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop-cac-so-nguyen.video.nhiet-ke"
+        },
         {
           "type": "group",
           "children": [
@@ -321,6 +334,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "tap-hop-cac-so-nguyen.video.truc-so"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -492,6 +509,10 @@
       "sourceRef": "Sách bài tập tr.47 (kiến thức cần nhớ 5)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop-cac-so-nguyen.video.so-sanh"
+        },
         {
           "type": "group",
           "children": [
@@ -4504,5 +4525,106 @@
   "sticker": {
     "name": "Huy hiệu số nguyên",
     "visualId": "tap-hop-cac-so-nguyen.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "tap-hop-cac-so-nguyen.video.nhiet-ke",
+      "lessonId": "tap-hop-cac-so-nguyen",
+      "url": "video/tap-hop-cac-so-nguyen/nhiet-ke.mp4",
+      "vttUrl": "video/tap-hop-cac-so-nguyen/nhiet-ke.vtt",
+      "posterUrl": "video/tap-hop-cac-so-nguyen/nhiet-ke.jpg",
+      "durationSec": 39.5,
+      "clips": [
+        {
+          "id": "nhiet-do",
+          "start": 9.693,
+          "end": 30.768,
+          "cardIds": ["tap-hop-cac-so-nguyen.card.nhiet-do"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 20.99,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 30.468,
+          "from": 20.99
+        }
+      ]
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.video.truc-so",
+      "lessonId": "tap-hop-cac-so-nguyen",
+      "url": "video/tap-hop-cac-so-nguyen/truc-so.mp4",
+      "vttUrl": "video/tap-hop-cac-so-nguyen/truc-so.vtt",
+      "posterUrl": "video/tap-hop-cac-so-nguyen/truc-so.jpg",
+      "durationSec": 39.7,
+      "clips": [
+        {
+          "id": "truc-so",
+          "start": 9.542,
+          "end": 38.29,
+          "cardIds": ["tap-hop-cac-so-nguyen.card.truc-so"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 15.963,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 28.883,
+          "from": 15.963
+        }
+      ]
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.video.so-sanh",
+      "lessonId": "tap-hop-cac-so-nguyen",
+      "url": "video/tap-hop-cac-so-nguyen/so-sanh.mp4",
+      "vttUrl": "video/tap-hop-cac-so-nguyen/so-sanh.vtt",
+      "posterUrl": "video/tap-hop-cac-so-nguyen/so-sanh.jpg",
+      "durationSec": 36.8,
+      "clips": [
+        {
+          "id": "so-sanh-truc",
+          "start": 11.052,
+          "end": 35.39,
+          "cardIds": ["tap-hop-cac-so-nguyen.card.so-sanh-truc"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 18.432,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 27.883,
+          "from": 18.432
+        }
+      ]
+    }
+  ]
 }

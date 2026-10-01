@@ -64,7 +64,7 @@ describe("textTokens", () => {
     );
   });
 
-  it("reads a minus sign before a digit as \"âm\", not as a subtraction", () => {
+  it('reads a minus sign before a digit as "âm", not as a subtraction', () => {
     expect(textTokens("−3")).toEqual(["am", "ba"]);
     expect(textTokens("âm 3")).toEqual(textTokens("−3"));
     expect(textTokens("-3")).toEqual(textTokens("âm ba"));

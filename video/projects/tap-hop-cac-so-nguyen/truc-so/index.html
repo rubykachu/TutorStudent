@@ -1,0 +1,258 @@
+<!doctype html>
+<!--
+  Lesson video "Trục số có số âm" (lesson tap-hop-cac-so-nguyen): a
+  thermometer turned on its side becomes the number line; the origin O is 0,
+  positive numbers (lime) lie to the right, negative numbers (pink) to the
+  left; a point (amber) is placed at -3.
+  Built by `pnpm video:build tap-hop-cac-so-nguyen truc-so`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Trục số có số âm</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .pink {
+        --c: var(--color-concept-pink);
+      }
+      .lime {
+        --c: var(--color-concept-lime);
+      }
+      .slate {
+        --c: var(--color-concept-slate);
+      }
+      .chip {
+        font-size: 38px;
+      }
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      #q1,
+      #q2 {
+        font:
+          800 110px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-concept-slate);
+      }
+      #pt-label {
+        font:
+          800 56px / 1 "Baloo 2",
+          sans-serif;
+        padding: 4px 26px 8px;
+        border-radius: 22px;
+        color: var(--color-concept-pink);
+        background: color-mix(
+          in srgb,
+          var(--color-concept-pink) 14%,
+          var(--color-surface)
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="axis" class="layer"></div>
+        <section id="s1" class="scene layer"></section>
+        <section id="s2" class="scene layer"></section>
+        <section id="s3" class="scene layer"></section>
+        <section id="s4" class="scene layer"></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, $$, start, W, owl, pop, hide, fade, pose, scenes, tl, finish } =
+          window.LV;
+        const MINUS = "−";
+        const AX = 280;
+        const X = (v) => 690 + v * 92;
+        const tag = (id, c, html, x, top) =>
+          `<div id="${id}" class="tag chip ${c}" style="--c: var(--color-concept-${c}); left: ${x}px; top: ${top}px">${html}</div>`;
+
+        // ---------- the number line, drawn once and revealed in parts ----------
+        let ticks = "";
+        let labels = "";
+        for (let v = -5; v <= 5; v++) {
+          const c = v > 0 ? "lime" : v < 0 ? "pink" : "slate";
+          ticks += `<line id="tk${v}" x1="${X(v)}" x2="${X(v)}" y1="${AX - 18}" y2="${AX + 18}" stroke="var(--color-foreground)" stroke-width="${v === 0 ? 6 : 4}"/>`;
+          labels += `<text id="lb${v}" x="${X(v)}" y="${AX + 66}" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="40" fill="var(--color-concept-${c})">${v < 0 ? MINUS + -v : v}</text>`;
+        }
+        $("#axis").innerHTML = `<svg width="1280" height="720" viewBox="0 0 1280 720">
+          <rect id="band-pos" x="${X(0)}" y="${AX - 78}" width="${X(5.7) - X(0)}" height="156" rx="20" fill="var(--color-concept-lime)" fill-opacity="0.14"/>
+          <rect id="band-neg" x="${X(-5.7)}" y="${AX - 78}" width="${X(0) - X(-5.7)}" height="156" rx="20" fill="var(--color-concept-pink)" fill-opacity="0.14"/>
+          <g id="tube">
+            <rect x="${X(0) - 23}" y="${AX - 190}" width="46" height="380" rx="23" fill="var(--color-surface)" stroke="var(--color-foreground)" stroke-width="4"/>
+            <rect x="${X(0) - 11}" y="${AX - 20}" width="22" height="198" rx="11" fill="var(--color-foreground)"/>
+            ${[-150, -110, -70, -30, 10, 50, 90, 130, 170].map((d) => `<line x1="${X(0) + 23}" x2="${X(0) + 38}" y1="${AX + d}" y2="${AX + d}" stroke="var(--color-foreground)" stroke-width="3"/>`).join("")}
+          </g>
+          <g id="line">
+            <line x1="${X(-5.6)}" x2="${X(5.6)}" y1="${AX}" y2="${AX}" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M ${X(-5.6) + 4} ${AX} l 20 -14 M ${X(-5.6) + 4} ${AX} l 20 14 M ${X(5.6) - 4} ${AX} l -20 -14 M ${X(5.6) - 4} ${AX} l -20 14" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </g>
+          ${ticks}
+          ${labels}
+          <path id="brace" d="M ${X(0)} ${AX - 40} v -10 h ${X(1) - X(0)} v 10" fill="none" stroke="var(--color-concept-slate)" stroke-width="5"/>
+          <circle id="origin" cx="${X(0)}" cy="${AX}" r="17" fill="var(--color-concept-slate)"/>
+          <line id="divider" x1="${X(0)}" x2="${X(0)}" y1="${AX - 110}" y2="${AX + 26}" stroke="var(--color-concept-slate)" stroke-width="4" stroke-dasharray="10 10"/>
+          <circle id="pt" cx="${X(0)}" cy="${AX}" r="18" fill="var(--color-concept-amber)" stroke="var(--color-surface)" stroke-width="4"/>
+        </svg>`;
+
+        // ---------- per-scene tags ----------
+        const el = (id, h) => $(id).insertAdjacentHTML("beforeend", h);
+        el("#s1", tag("u1", "slate", "1 đơn vị", (X(0) + X(1)) / 2, AX - 125));
+        el("#s2", tag("o1", "slate", "gốc O · số 0", X(0), AX - 150));
+        el("#s2", tag("lf", "slate", "◀ bên trái", X(-3), 110));
+        el("#s2", tag("rt", "slate", "bên phải ▶", X(3), 110));
+        el("#s3", `<div id="q1" class="tag" style="left: ${X(-3)}px; top: 60px">?</div>`);
+        el("#s3", `<div id="q2" class="tag" style="left: ${X(3)}px; top: 60px">?</div>`);
+        el("#s3", tag("sp", "lime", "▶ số dương", X(3), 110));
+        el("#s3", tag("sn", "pink", "◀ số âm", X(-3), 110));
+        el("#s3", tag("p3", "lime", "3", X(3), AX - 150));
+        el("#s3", tag("m3", "pink", MINUS + "3", X(-3), AX - 150));
+        el(
+          "#s4",
+          `<div id="pt-label" class="tag" style="left: ${X(-3)}px; top: 90px">${MINUS}3 · âm ba</div>`,
+        );
+        el("#s4", tag("nl", "pink", "◀ trái: số âm", X(-2.6), 440));
+        el("#s4", tag("nr", "lime", "phải: số dương ▶", X(2.6), 440));
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "380px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-goc"],
+          ["#s3", "s03-hai-ben"],
+          ["#s4", "s04-di"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        const parts = (from, to) => {
+          const out = [];
+          for (let v = from; v <= to; v++) out.push(v);
+          return out;
+        };
+        const ids = (prefix, vs) => vs.map((v) => `#${prefix}${v}`);
+        const g = window.gsap;
+        g.set(
+          [
+            "#line",
+            "#band-pos",
+            "#band-neg",
+            "#brace",
+            "#origin",
+            "#divider",
+            "#pt",
+            ...ids("tk", parts(-5, 5)),
+            ...ids("lb", parts(-5, 5)),
+          ],
+          { autoAlpha: 0 },
+        );
+        g.set(["#tube", "#origin", "#pt", "#brace"], { svgOrigin: `${X(0)} ${AX}` });
+
+        {
+          const sid = "s01-mo";
+          hide(["#u1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#tube", W(sid, "chào"), { from: 0.5 });
+          pose(bird, "idle", W(sid, "bạn"));
+          tl.to(
+            "#tube",
+            { rotation: 90, duration: 1.0, ease: "power2.inOut", svgOrigin: `${X(0)} ${AX}` },
+            W(sid, "nằm"),
+          );
+          tl.to("#tube", { autoAlpha: 0, duration: 0.4 }, W(sid, "ngang") + 0.5);
+          tl.to("#line", { autoAlpha: 1, duration: 0.4 }, W(sid, "ngang") + 0.4);
+          tl.to(
+            ids("tk", parts(-5, 5)),
+            { autoAlpha: 1, duration: 0.25, stagger: 0.07 },
+            W(sid, "vạch"),
+          );
+          tl.to("#brace", { autoAlpha: 1, duration: 0.3 }, W(sid, "1"));
+          pop("#u1", W(sid, "1"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-goc";
+          hide(["#o1", "#lf", "#rt"]);
+          pose(bird, "idle", start(sid));
+          fade(["#u1"], start(sid), 0.2);
+          tl.to("#brace", { autoAlpha: 0, duration: 0.3 }, start(sid));
+          tl.to("#origin", { autoAlpha: 1, duration: 0.3 }, W(sid, "gốc"));
+          pop("#o1", W(sid, "gốc"), { from: 0.6 });
+          tl.to("#lb0", { autoAlpha: 1, duration: 0.3 }, W(sid, "0"));
+          tl.to("#divider", { autoAlpha: 1, duration: 0.3 }, W(sid, "chia"));
+          pop("#lf", W(sid, "hai"), { from: 0.6 });
+          pop("#rt", W(sid, "bên"), { from: 0.6 });
+        }
+        {
+          const sid = "s03-hai-ben";
+          hide(["#q1", "#q2", "#sp", "#sn", "#p3", "#m3"]);
+          pose(bird, "idle", start(sid));
+          fade(["#lf", "#rt", "#o1"], start(sid), 0.2);
+          pop(["#q1", "#q2"], W(sid, "đoán"), { from: 0.5, stagger: 0.15 });
+          fade(["#q1", "#q2"], W(sid, "dương", 2) - 0.2);
+          tl.to("#band-pos", { autoAlpha: 1, duration: 0.4 }, W(sid, "dương", 2));
+          tl.to(ids("lb", parts(1, 5)), { autoAlpha: 1, duration: 0.3, stagger: 0.1 }, W(sid, "dương", 2));
+          pop("#sp", W(sid, "dương", 2), { from: 0.6 });
+          tl.to("#band-neg", { autoAlpha: 1, duration: 0.4 }, W(sid, "âm"));
+          tl.to(ids("lb", parts(-5, -1)), { autoAlpha: 1, duration: 0.3, stagger: 0.1 }, W(sid, "âm"));
+          pop("#sn", W(sid, "âm"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "âm"));
+          fade(["#sp", "#sn"], W(sid, "3") - 0.1, 0.25);
+          tl.set("#pt", { x: X(3) - X(0), autoAlpha: 1 }, W(sid, "3"));
+          pop("#p3", W(sid, "3"), { from: 0.6 });
+          fade("#p3", W(sid, "3", 2) - 0.1, 0.25);
+          tl.set("#pt", { x: X(-3) - X(0) }, W(sid, "3", 2));
+          pop("#m3", W(sid, "3", 2), { from: 0.6 });
+        }
+        {
+          const sid = "s04-di";
+          hide(["#pt-label", "#nl", "#nr"]);
+          pose(bird, "idle", start(sid));
+          fade("#m3", start(sid), 0.2);
+          tl.fromTo(
+            "#pt",
+            { x: 0 },
+            { x: X(-3) - X(0), duration: 1.5, ease: "steps(3)", immediateRender: false },
+            W(sid, "sang"),
+          );
+          tl.set("#pt", { x: 0, autoAlpha: 1 }, start(sid));
+          pop("#pt-label", W(sid, "dừng"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "dừng"));
+          pop("#nl", W(sid, "nhớ"), { from: 0.6 });
+          pop("#nr", W(sid, "nhớ"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>
