@@ -342,12 +342,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("phần 8 lớn hơn: dấu −", NEGATIVE),
     },
     {
-      tex: "(-9) + 5 = -(9 - 5) = \\concept{pink}{-4}",
-      tag: tag("phần 9 lớn hơn: dấu −", NEGATIVE),
+      tex: "(-5) + 2 = -(5 - 2) = \\concept{pink}{-3}",
+      tag: tag("phần 5 lớn hơn: dấu −", NEGATIVE),
     },
   ]),
   "cung-3-cong-am5": tryWalk(3, -2, "Điểm đã đi sang trái 5 đơn vị, tới −2."),
-  "goi-y-6-am9": walk(6, [-9], SUM, "hint"),
+  "goi-y-4-am7": walk(4, [-7], SUM, "hint"),
 
   // 8. Trừ đi một số dương
   "nhiet-4-giam-6": walk(4, [-6], DIFFERENCE),
@@ -366,7 +366,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "cung-1-tru-4": tryWalk(1, -3, "Điểm đã đi sang trái 4 đơn vị, tới −3."),
-  "goi-y-2-tru-7": walk(2, [-7], DIFFERENCE, "hint"),
+  "goi-y-2-tru-6": walk(2, [-6], DIFFERENCE, "hint"),
 
   // 9. Trừ đi một số âm
   "xoa-no-5": walk(-5, [5], DIFFERENCE),

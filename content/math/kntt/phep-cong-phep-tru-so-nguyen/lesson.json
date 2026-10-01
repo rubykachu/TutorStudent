@@ -1,0 +1,3849 @@
+{
+  "id": "phep-cong-phep-tru-so-nguyen",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 14,
+  "number": 14,
+  "chapter": {
+    "numeral": "III",
+    "name": "Số nguyên"
+  },
+  "title": "Phép cộng và phép trừ số nguyên",
+  "sourceRef": "Sách bài tập tr.50–52",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ học cộng và trừ số nguyên. Sáng sớm ở Sa Pa nhiệt kế chỉ 3 độ dưới 0, đến trưa trời ấm lên 5 độ. Bạn tính xem trưa nhiệt độ là bao nhiêu?"
+    },
+    "summary": "Bài này dạy cộng và trừ hai số nguyên bằng cách đi sang phải hoặc sang trái trên trục số. Sau đó bạn nhớ quy tắc và tính nhanh nhiều số.",
+    "goals": [
+      "cộng được hai số nguyên bằng cách đi trên trục số",
+      "nhớ quy tắc cộng hai số cùng dấu và hai số khác dấu",
+      "trừ được hai số nguyên bằng cách cộng với số đối",
+      "tính nhanh tổng nhiều số nguyên"
+    ],
+    "whyItMatters": "Bạn dùng cộng và trừ số nguyên để tính nhiệt độ ngày lạnh, hay số tiền còn lại sau khi thu và chi."
+  },
+  "concepts": [
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.duong",
+      "name": "Số nguyên dương",
+      "color": "lime"
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.am",
+      "name": "Số nguyên âm",
+      "color": "pink"
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.so-0",
+      "name": "Số 0",
+      "color": "slate"
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.so-doi",
+      "name": "Số đối",
+      "color": "sky"
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.so-hang",
+      "name": "Số hạng",
+      "color": "blue"
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.tong",
+      "name": "Tổng",
+      "color": "amber"
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.concept.hieu",
+      "name": "Hiệu",
+      "color": "teal"
+    }
+  ],
+  "sections": [
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.phan-dau",
+      "title": "Phần dấu và phần số tự nhiên",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 1), tr.51 (bài 3.8)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiệt kế chỉ −3 độ, tức là 3 độ dưới 0. Số −3 gồm dấu − và số 3."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi số nguyên gồm hai phần: phần dấu và phần số tự nhiên.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn nợ 5 nghìn đồng thì ghi −5. Dấu − cho biết bạn đang nợ, số 5 cho biết nợ bao nhiêu."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-no"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.phan-dau-cua-so"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.phan-so-cua-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-vi-du",
+        "caption": "Mỗi số nguyên gồm hai phần: phần dấu và phần số tự nhiên."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.so-doi",
+      "title": "Số đối của một số",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 2), tr.51 (bài 3.9 và bài 3.10)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trên trục số, 5 và −5 cách gốc O bằng nhau nhưng nằm hai bên gốc. Ta nói 5 và −5 là hai số đối nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.so-doi-truc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số đối của số dương là số âm, và số đối của số âm là số dương.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.so-doi-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số đối của −5 viết là −(−5). Vì số đối của số âm là số dương nên −(−5) = 5."
+            },
+            {
+              "type": "formula",
+              "tex": "-(\\concept{pink}{-5}) = \\concept{lime}{5}"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.so-doi-cua-am-9"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.so-doi-cua-23"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.so-doi-vi-du",
+        "caption": "Số đối của số dương là số âm, và số đối của số âm là số dương."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.cong-so-duong",
+      "title": "Cộng với số dương: đi sang phải",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Sáng sớm nhiệt kế chỉ −3 độ. Đến trưa trời ấm lên 5 độ, nên nhiệt độ trưa là (−3) + 5."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.phai-am3-cong5"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cộng với một số dương thì đi sang phải bấy nhiêu đơn vị trên trục số.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-duong-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên phải 3 lần để tính (−5) + 3. Làm vậy bạn thấy ngay tổng nằm ở đâu."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-am5-cong3"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.nhiet-do-am-ap-len"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am6-cong4"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-duong-vi-du",
+        "caption": "Cộng với một số dương thì đi sang phải bấy nhiêu đơn vị trên trục số."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.cong-so-am",
+      "title": "Cộng với số âm: đi sang trái",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thang máy đang ở tầng 2 và đi xuống 5 tầng. Tầng hầm ghi bằng số âm, nên tầng cuối là 2 + (−5)."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.trai-2-cong-am5"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cộng với một số âm thì đi sang trái bấy nhiêu đơn vị trên trục số.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-am-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 4 lần để tính 1 + (−4). Bạn sẽ thấy tổng là một số âm."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-1-cong-am4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.no-tien-an"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-2-cong-am6"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-am-vi-du",
+        "caption": "Cộng với một số âm thì đi sang trái bấy nhiêu đơn vị trên trục số."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.tong-so-doi",
+      "title": "Tổng bằng 0 và cộng với 0",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thang máy ở tầng 4 đi xuống 4 tầng thì về mặt đất, tức là tầng 0. Vậy 4 + (−4) = 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.quay-ve-goc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tổng của hai số đối nhau luôn bằng 0.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cộng với 0 thì số không đổi.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-voi-0-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 5 lần để tính 5 + (−5). Điểm sẽ về đúng gốc O."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-5-cong-am5"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.chon-tong-bang-0"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.so-cong-am9"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-va-0",
+        "caption": "Tổng của hai số đối nhau luôn bằng 0. Cộng với 0 thì số không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.cung-dau",
+      "title": "Cộng hai số cùng dấu",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn nợ cô bán hàng 3 nghìn đồng, hôm sau nợ thêm 4 nghìn đồng. Nợ tất cả là (−3) + (−4) nghìn đồng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.no-3-no-4"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn cộng hai số âm, ta cộng hai phần số tự nhiên rồi đặt dấu − trước kết quả.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-dau-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 4 lần để tính (−2) + (−4). Hai số cùng là số âm, nên điểm đi xa hơn về bên trái."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-am2-am4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am5-am2"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am8-am5"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-dau-vi-du",
+        "caption": "Muốn cộng hai số âm, ta cộng hai phần số tự nhiên rồi đặt dấu − trước kết quả."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.khac-dau",
+      "title": "Cộng hai số khác dấu",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3), tr.51 (ví dụ 1)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "An được cho 7 nghìn đồng, rồi chi 4 nghìn đồng. Tiền còn lại là 7 + (−4) nghìn đồng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.thu-7-chi-4"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn cộng hai số khác dấu không đối nhau, ta lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Rồi đặt trước hiệu dấu của số có phần số tự nhiên lớn hơn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 5 lần để tính 3 + (−5). Phần 5 lớn hơn phần 3, nên tổng mang dấu −."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-3-cong-am5"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "phep-cong-phep-tru-so-nguyen.tip.dau-truoc",
+          "kind": "tránh sai",
+          "title": "Cộng hai số khác dấu",
+          "text": "Trước khi tính, hãy xem số nào ở xa 0 hơn. Kết quả mang dấu của số đó. Sau đó lấy phần số tự nhiên lớn trừ phần nhỏ.",
+          "tex": "(-8) + 5 = -(8 - 5) = -3"
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-7-cong-am10"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am9-cong4"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
+        "caption": "Muốn cộng hai số khác dấu không đối nhau, ta lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Rồi đặt trước hiệu dấu của số có phần số tự nhiên lớn hơn."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.tru-so-duong",
+      "title": "Trừ đi một số dương",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 4)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Sáng nhiệt độ là 4 độ, chiều giảm 6 độ. Nhiệt độ chiều là 4 − 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.nhiet-4-giam-6"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn trừ một số, ta cộng với số đối của số đó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 4 lần để tính 1 − 4. Trừ 4 cũng là đi sang trái 4, giống 1 + (−4) ở phần trước."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-1-tru-4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.chon-phep-tru-dung"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-3-tru-8"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-vi-du",
+        "caption": "Muốn trừ một số, ta cộng với số đối của số đó."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.tru-so-am",
+      "title": "Trừ đi một số âm",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 4), tr.51 (ví dụ 1)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hà đang nợ 5 nghìn đồng, tức là Hà có −5 nghìn. Mẹ xoá món nợ 5 nghìn, nghĩa là trừ đi −5, và Hà về 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.xoa-no-5"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trừ đi một số âm thì đi sang phải, giống cộng với số dương.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-am-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên phải 3 lần để tính 1 − (−3). Trừ −3 cũng là cộng với 3."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-1-tru-am3"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "phep-cong-phep-tru-so-nguyen.tip.hai-dau-lien-nhau",
+          "kind": "hiểu nhanh",
+          "title": "Hai dấu đứng liền nhau",
+          "text": "Khi dấu phép tính đứng liền dấu của số, hãy nhìn hai dấu đó. Hai dấu giống nhau thì thành dấu +, hai dấu khác nhau thì thành dấu −.",
+          "tex": "\\begin{gathered} 6 - (-2) = 6 + 2 \\\\ 6 + (-2) = 6 - 2 \\end{gathered}"
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-4-tru-am3"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-2-tru-am6"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-am-vi-du",
+        "caption": "Trừ đi một số âm thì đi sang phải, giống cộng với số dương."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.tinh-chat",
+      "title": "Đổi chỗ và nhóm các số hạng",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 5, 6), tr.51 (ví dụ 2), tr.52 (bài 3.18 và bài 3.19)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tuần này An thu 8 nghìn, chi 3 nghìn, chi 8 nghìn rồi thu 5 nghìn. Tiền còn lại là 8 + (−3) + (−8) + 5."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.ghep-so-doi"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong một tổng, ta có thể đổi chỗ các số hạng và nhóm chúng một cách tuỳ ý.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.ghep-so-doi-xong"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "phep-cong-phep-tru-so-nguyen.tip.ghep-so-doi",
+          "kind": "làm nhanh",
+          "title": "Tính tổng nhiều số",
+          "text": "Tìm các cặp số đối nhau và ghép chúng trước, vì mỗi cặp bằng 0. Rồi ghép các số cùng dấu với nhau.",
+          "tex": "\\begin{aligned} 6 + (-4) + (-6) + (-3) &= [6 + (-6)] + [(-4) + (-3)] \\\\ &= 0 + (-7) = -7 \\end{aligned}"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 3 lần, rồi trái 4 lần để tính 5 + (−3) + (−4). Hai số âm lần lượt kéo điểm sang trái."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-5-tru-3-tru-4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.chon-cap-doi-trong-tong"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-9-am4-am9-3"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.ghep-so-doi-xong",
+        "caption": "Trong một tổng, ta có thể đổi chỗ các số hạng và nhóm chúng một cách tuỳ ý."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.gia-tri-bieu-thuc",
+      "title": "Giá trị của biểu thức",
+      "sourceRef": "Sách bài tập tr.51 (ví dụ 1), tr.52 (bài 3.15)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Biểu thức A = x + (−4) − 6 có chữ x. Khi x = −3, thay x bằng −3 rồi tính, ta được giá trị của A."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.gia-tri-x-am3"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tính giá trị biểu thức, ta thay chữ bằng số rồi tính từ trái sang phải.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.gia-tri-x-12"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: x = 5. Bấm mũi tên trái 4 lần, rồi trái 6 lần để tính 5 + (−4) − 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-5-bieu-thuc"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.gia-tri-b-x-2"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.gia-tri-a-x-am4"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.gia-tri-x-12",
+        "caption": "Muốn tính giá trị biểu thức, ta thay chữ bằng số rồi tính từ trái sang phải."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.section.bai-toan-thuc-te",
+      "title": "Bài toán đời sống",
+      "sourceRef": "Sách bài tập tr.52 (bài 3.16 và bài 3.17)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ở Sa Pa ban ngày nhiệt độ là −4 độ. Ban đêm nhiệt độ giảm 3 độ, nên nhiệt độ ban đêm là (−4) − 3."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.sapa-dem"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thu vào và tăng lên ghi bằng số dương, chi ra và giảm đi ghi bằng số âm.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-doi-song"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tài khoản có 50 nghìn đồng, rồi có ba lần giao dịch: −20, 35 và −45 nghìn. Ta cộng lần lượt để tính số tiền còn lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.tai-khoan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: thang máy ở tầng 3 và xuống 6 tầng. Bấm mũi tên trái 6 lần để tìm tầng cuối."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-3-thang-may"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.thang-may-tang-2"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tien-cua-nam"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-doi-song",
+        "caption": "Thu vào và tăng lên ghi bằng số dương, chi ra và giảm đi ghi bằng số âm."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.phan-dau",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 1), tr.51 (bài 3.8)",
+      "conceptIds": [
+        "phep-cong-phep-tru-so-nguyen.concept.duong",
+        "phep-cong-phep-tru-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-vi-du",
+        "caption": "Mỗi số nguyên gồm hai phần: phần dấu và phần số tự nhiên."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.so-doi",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 2), tr.51 (bài 3.9 và bài 3.10)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.so-doi"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.so-doi-vi-du",
+        "caption": "Số đối của số dương là số âm, và số đối của số âm là số dương."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.cong-so-duong",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.duong"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-duong-vi-du",
+        "caption": "Cộng với một số dương thì đi sang phải bấy nhiêu đơn vị trên trục số."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.cong-so-am",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.am"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-am-vi-du",
+        "caption": "Cộng với một số âm thì đi sang trái bấy nhiêu đơn vị trên trục số."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.tong-so-doi",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "conceptIds": [
+        "phep-cong-phep-tru-so-nguyen.concept.so-doi",
+        "phep-cong-phep-tru-so-nguyen.concept.so-0"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-va-0",
+        "caption": "Tổng của hai số đối nhau luôn bằng 0. Cộng với 0 thì số không đổi."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.cung-dau",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.am"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-dau-vi-du",
+        "caption": "Muốn cộng hai số âm, ta cộng hai phần số tự nhiên rồi đặt dấu − trước kết quả."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.khac-dau",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 3), tr.51 (ví dụ 1)",
+      "conceptIds": [
+        "phep-cong-phep-tru-so-nguyen.concept.duong",
+        "phep-cong-phep-tru-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
+        "caption": "Muốn cộng hai số khác dấu không đối nhau, ta lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Rồi đặt trước hiệu dấu của số có phần số tự nhiên lớn hơn."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.tru-so-duong",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 4)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.so-doi"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-vi-du",
+        "caption": "Muốn trừ một số, ta cộng với số đối của số đó."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.tru-so-am",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 4), tr.51 (ví dụ 1)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.am"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-am-vi-du",
+        "caption": "Trừ đi một số âm thì đi sang phải, giống cộng với số dương."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.tinh-chat",
+      "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 5, 6), tr.51 (ví dụ 2), tr.52 (bài 3.18 và bài 3.19)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.tong"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.ghep-so-doi-xong",
+        "caption": "Trong một tổng, ta có thể đổi chỗ các số hạng và nhóm chúng một cách tuỳ ý."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.gia-tri-bieu-thuc",
+      "sourceRef": "Sách bài tập tr.51 (ví dụ 1), tr.52 (bài 3.15)",
+      "conceptIds": ["phep-cong-phep-tru-so-nguyen.concept.tong"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.gia-tri-x-12",
+        "caption": "Muốn tính giá trị biểu thức, ta thay chữ bằng số rồi tính từ trái sang phải."
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.card.bai-toan-thuc-te",
+      "sourceRef": "Sách bài tập tr.52 (bài 3.16 và bài 3.17)",
+      "conceptIds": [
+        "phep-cong-phep-tru-so-nguyen.concept.duong",
+        "phep-cong-phep-tru-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-doi-song",
+        "caption": "Thu vào và tăng lên ghi bằng số dương, chi ra và giảm đi ghi bằng số âm."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.phan-dau-cua-so",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số −8 có phần dấu là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số −8 có dấu − đứng trước, nên phần dấu là dấu − (âm). Phần còn lại, số 8, là phần số tự nhiên.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu + là phần dấu của số dương như 8. Số −8 có dấu −."
+          },
+          {
+            "optionId": "c",
+            "text": "Số nguyên nào cũng có phần dấu, dù ta thường không viết dấu + của số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Dấu − (âm)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Dấu + (dương)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Không có phần dấu"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.phan-so-cua-so",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.phan-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm phần số tự nhiên của số nguyên sau."
+        },
+        {
+          "type": "formula",
+          "tex": "-14"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Bỏ dấu − đi thì còn lại số 14. Đó là phần số tự nhiên của −14.",
+        "tex": "\\concept{pink}{-14} \\to 14"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 14
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "14"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.dien-dau-va-so",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.phan-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số −6 có dấu −, ta đọc là âm. Phần còn lại sau dấu là 6, đó là phần số tự nhiên."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số −6 có dấu "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["âm"]
+        },
+        {
+          "type": "text",
+          "text": ", phần số tự nhiên là "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["6"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["âm", "dương", "6", "−6"]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-dau-tru",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.phan-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số có phần dấu là dấu −."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số có dấu − đứng trước thì phần dấu là dấu −: đó là −4 và −12. Còn 7 và 25 là số dương nên có dấu +.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 7 là số dương, phần dấu là dấu +."
+          },
+          {
+            "optionId": "d",
+            "text": "Số 25 là số dương, phần dấu là dấu +."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-12"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "25"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.so-doi-cua-am-9",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số đối của −9 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số đối của một số âm là số dương có cùng phần số tự nhiên. Vậy số đối của −9 là 9.",
+        "tex": "\\concept{pink}{-9} \\to \\concept{lime}{9}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "−9 là chính số đã cho, không phải số đối của nó."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 0 chỉ là số đối của chính nó."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "-9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-1"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "9"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.so-doi-cua-23",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số đối của số sau."
+        },
+        {
+          "type": "formula",
+          "tex": "23"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số đối của số dương là số âm có cùng phần số tự nhiên. Thêm dấu − vào 23 ta được −23.",
+        "tex": "\\concept{lime}{23} \\to \\concept{pink}{-23}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -23
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-23"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.noi-so-doi",
+      "type": "match",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi số với số đối của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số đối nhau có cùng phần số tự nhiên và khác dấu. Số dương nối với số âm, số âm nối với số dương."
+      },
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "6"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "-11"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "20"
+          }
+        },
+        {
+          "id": "l4",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "formula",
+            "tex": "-6"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "formula",
+            "tex": "11"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "formula",
+            "tex": "-20"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "formula",
+            "tex": "3"
+          }
+        },
+        {
+          "id": "r5",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        },
+        {
+          "left": "l4",
+          "right": "r4"
+        }
+      ]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.dien-so-doi",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số đối của số dương có dấu −, nên là số âm. Ví dụ số đối của 5 là −5."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số đối của một số dương là số "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["âm"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["âm", "dương", "0"]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-so-am-doi",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số là số nguyên âm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số đối của số dương là số âm: số đối của 8 là −8 và số đối của 12 là −12. Số đối của −3 và −9 là 3 và 9, là số dương.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số đối của −3 là 3, là số dương."
+          },
+          {
+            "optionId": "d",
+            "text": "Số đối của −9 là 9, là số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "số đối của 8"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "số đối của −3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "số đối của 12"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "số đối của −9"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.nhiet-do-am-ap-len",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lúc 6 giờ nhiệt độ là −2 độ. Đến 9 giờ trời ấm lên 4 độ."
+        },
+        {
+          "type": "note",
+          "text": "Nhiệt độ lúc 9 giờ là bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ấm lên 4 độ là cộng với 4, nên đi sang phải 4 đơn vị từ −2. Ta tới 2.",
+        "tex": "\\concept{pink}{-2} + 4 = \\concept{lime}{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "−6 là đi sang trái. Ấm lên thì đi sang phải."
+          },
+          {
+            "optionId": "d",
+            "text": "−2 là nhiệt độ lúc đầu. Sau khi ấm lên 4 độ, điểm đã đi sang phải."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "-6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-2"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "-2+4"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am6-cong4",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-6)+4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-am2-cong6"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng với 4 là đi sang phải 4 đơn vị từ −6. Ta tới −2.",
+        "tex": "(-6) + 4 = \\concept{pink}{-2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -2
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-6)+4"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.di-phai-tu-am4",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính (−4) + 3. Bấm mũi tên để đưa điểm tới tổng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng với 3 là đi sang phải 3 đơn vị. Từ −4 đi 3 đơn vị thì tới −1."
+      },
+      "visualId": "phep-cong-phep-tru-so-nguyen.visual.thu-am4",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": -1
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tong-bang-1",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các phép tính có tổng bằng 1."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng với số dương là đi sang phải. Từ −2 đi 3 đơn vị tới 1, và 0 + 1 cũng bằng 1.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "(−4) + 4 = 0: đi sang phải 4 từ −4 chỉ tới 0."
+          },
+          {
+            "optionId": "d",
+            "text": "(−1) + 3 = 2: đi sang phải 3 từ −1 tới 2, không phải 1."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-2)+3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-4)+4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "0+1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-1)+3"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "check": {
+        "expr": "1"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.no-tien-an",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "An có 3 nghìn đồng. An mua món giá 5 nghìn đồng và ghi nợ phần còn thiếu."
+        },
+        {
+          "type": "note",
+          "text": "Số tiền của An bây giờ là bao nhiêu nghìn đồng? (Số âm là đang nợ.)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Mua 5 nghìn là cộng với −5, tức đi sang trái 5 đơn vị từ 3. Ta tới −2, nghĩa là An còn nợ 2 nghìn đồng.",
+        "tex": "3 + (-5) = \\concept{pink}{-2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đi sang trái 5 đơn vị từ 3 đã qua số 0, nên kết quả là số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "−8 là cộng 3 với 5 rồi đặt dấu −. Nhưng đi sang trái 5 từ 3 chỉ tới −2."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "8"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "3+(-5)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-2-cong-am6",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-am"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "2+(-6)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-3-am6"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng với −6 là đi sang trái 6 đơn vị từ 2. Ta tới −4.",
+        "tex": "2 + (-6) = \\concept{pink}{-4}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -4
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "2+(-6)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.di-trai-tu-am2",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-am"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính (−2) + (−3). Bấm mũi tên để đưa điểm tới tổng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng với −3 là đi sang trái 3 đơn vị. Từ −2 đi 3 đơn vị thì tới −5."
+      },
+      "visualId": "phep-cong-phep-tru-so-nguyen.visual.thu-am2",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": -5
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tong-am",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-am"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các phép tính có kết quả là số âm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đi sang trái qua số 0 thì kết quả là số âm: 1 + (−4) = −3 và (−3) + (−2) = −5.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "3 + (−1) = 2: đi sang trái 1 từ 3 vẫn còn là số dương."
+          },
+          {
+            "optionId": "c",
+            "text": "(−2) + 5 = 3: cộng với số dương là đi sang phải."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "3+(-1)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "1+(-4)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-2)+5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-3)+(-2)"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tong-bang-0",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tổng nào bằng 0?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số đối nhau cộng lại bằng 0. Số 8 và −8 là hai số đối nhau.",
+        "tex": "8 + (-8) = \\concept{slate}{0}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai số âm cộng lại ra số âm: (−8) + (−8) = −16."
+          },
+          {
+            "optionId": "d",
+            "text": "Cộng với 0 thì số không đổi, nên (−8) + 0 vẫn là −8."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "8+(-8)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-8)+(-8)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "8+8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-8)+0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.so-cong-am9",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tong-so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào cộng với −9 thì được tổng bằng 0?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn tổng bằng 0, ta lấy số đối của −9. Số đối của −9 là 9.",
+        "tex": "(-9) + 9 = \\concept{slate}{0}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "9"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.so-cong-13",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tong-so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào cộng với 13 thì được tổng bằng 0?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn tổng bằng 0, ta lấy số đối của 13. Số đối của 13 là −13.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "13 + 13 = 26, không phải 0."
+          },
+          {
+            "optionId": "d",
+            "text": "Số −31 có phần số tự nhiên là 31. Hai số đối nhau phải có cùng phần số tự nhiên."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-13"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "13"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-31"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "-13"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.dien-tong-doi",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tong-so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "−6 và 6 là hai số đối nhau nên tổng bằng 0. Cộng với 0 thì số không đổi, nên (−6) + 0 = −6."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Tổng của −6 và 6 bằng "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["0"]
+        },
+        {
+          "type": "text",
+          "text": ". Còn (−6) + 0 bằng "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−6", "-6"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["0", "6", "−6"]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.ve-goc-tu-am3",
+      "type": "manipulate",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tong-so-doi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính (−3) + 3. Bấm mũi tên để đưa điểm tới tổng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "−3 và 3 là hai số đối nhau. Đi sang phải 3 đơn vị từ −3 thì về gốc O, tức là 0."
+      },
+      "visualId": "phep-cong-phep-tru-so-nguyen.visual.thu-am3",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": 0
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am5-am2",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-5)+(-2)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số cùng là số âm: cộng 5 với 2 được 7, rồi đặt dấu −. Vậy kết quả là −7.",
+        "tex": "(-5) + (-2) = -(5 + 2) = \\concept{pink}{-7}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "−3 là hiệu của 5 và 2. Hai số cùng dấu thì ta cộng, không trừ."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai số âm cộng lại vẫn là số âm, nên phải đặt dấu −."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "3"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "(-5)+(-2)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am8-am5",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cung-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-8)+(-5)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-am1-am3"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng 8 với 5 được 13, rồi đặt dấu − trước kết quả.",
+        "tex": "(-8) + (-5) = -(8 + 5) = \\concept{pink}{-13}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -13
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-8)+(-5)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tong-am9",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cung-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tổng bằng −9."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng hai phần số tự nhiên rồi đặt dấu −: 4 + 5 = 9 và 3 + 6 = 9.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "(−5) + (−5) = −10, vì 5 + 5 = 10."
+          },
+          {
+            "optionId": "d",
+            "text": "(−2) + (−9) = −11, vì 2 + 9 = 11."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-4)+(-5)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-3)+(-6)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-5)+(-5)"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-2)+(-9)"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "-9"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.hung-no-tien",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cung-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hùng nợ 12 nghìn đồng, rồi nợ thêm 15 nghìn đồng."
+        },
+        {
+          "type": "note",
+          "text": "Số tiền của Hùng bây giờ là bao nhiêu nghìn đồng? (Số âm là nợ.)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nợ 12 là −12 và nợ 15 là −15. Cộng 12 với 15 được 27, rồi đặt dấu −: −27.",
+        "tex": "(-12) + (-15) = -(12 + 15) = \\concept{pink}{-27}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -27
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-12)+(-15)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.noi-tong-cung-dau",
+      "type": "match",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cung-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi phép tính với kết quả."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số âm: cộng hai phần số tự nhiên rồi đặt dấu −, nên (−4) + (−3) = −7 và (−6) + (−2) = −8. Hai số dương cộng như thường: 5 + 3 = 8."
+      },
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "(-4)+(-3)"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "5+3"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "(-6)+(-2)"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "formula",
+            "tex": "-7"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "formula",
+            "tex": "8"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "formula",
+            "tex": "-8"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "formula",
+            "tex": "-1"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-7-cong-am10",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "7+(-10)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Phần 10 lớn hơn phần 7 và có dấu −, nên kết quả mang dấu −. Lấy 10 − 7 = 3, vậy kết quả là −3.",
+        "tex": "7 + (-10) = -(10 - 7) = \\concept{pink}{-3}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số có phần lớn hơn là −10, nên kết quả phải là số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "17 là tổng của 7 và 10. Hai số khác dấu thì ta trừ hai phần số, không cộng."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "17"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-17"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "7+(-10)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am9-cong4",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-9)+4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-4-am7"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Phần 9 lớn hơn phần 4 và có dấu −, nên kết quả mang dấu −. Lấy 9 − 4 = 5, được −5.",
+        "tex": "(-9) + 4 = -(9 - 4) = \\concept{pink}{-5}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -5
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-9)+4"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am6-cong15",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-6)+15"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Phần 15 lớn hơn phần 6 và có dấu +, nên kết quả mang dấu +. Lấy 15 − 6 = 9.",
+        "tex": "(-6) + 15 = +(15 - 6) = \\concept{lime}{9}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-6)+15"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tong-duong",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các phép tính có kết quả là số dương."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Kết quả mang dấu của số có phần số tự nhiên lớn hơn: (−2) + 9 = 7 và 6 + (−1) = 5 đều là số dương.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "(−8) + 3 = −5, vì phần 8 lớn hơn và có dấu −."
+          },
+          {
+            "optionId": "d",
+            "text": "4 + (−10) = −6, vì phần 10 lớn hơn và có dấu −."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-8)+3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-2)+9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "6+(-1)"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "4+(-10)"
+          }
+        }
+      ],
+      "answer": ["b", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.xep-tong-khac-dau",
+      "type": "order",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các tổng sau từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính từng tổng: −5, −1, 0 và 5. Xếp từ bé đến lớn: số âm trước, rồi 0, rồi số dương.",
+        "tex": "-5 < -1 < 0 < 5"
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "formula",
+            "tex": "4+(-9)"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "formula",
+            "tex": "2+(-3)"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "formula",
+            "tex": "(-6)+6"
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "formula",
+            "tex": "(-3)+8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-phep-tru-dung",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lúc 8 giờ nhiệt độ là 1 độ, đến 10 giờ giảm 4 độ. Phép tính nào dưới đây đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Giảm 4 độ là trừ 4, cũng là cộng với −4. Từ 1 đi sang trái 4 đơn vị thì tới −3.",
+        "tex": "1 - 4 = 1 + (-4) = \\concept{pink}{-3}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đi sang trái 4 từ 1 đã qua số 0, nên kết quả là số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "1 + 4 là đi sang phải và bằng 5, không phải phép tính của đề."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "1-4=-3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "1-4=3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "1+4=-3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "1-4=-5"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-3-tru-8",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hiệu sau."
+        },
+        {
+          "type": "formula",
+          "tex": "3-8"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-2-tru-6"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ 8 là cộng với −8, tức đi sang trái 8 đơn vị từ 3. Ta tới −5.",
+        "tex": "3 - 8 = 3 + (-8) = \\concept{pink}{-5}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -5
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "3-8"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am2-tru-5",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hiệu sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-2)-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "(−2) − 5 = (−2) + (−5). Hai số âm cộng nhau: 2 + 5 = 7, đặt dấu − được −7.",
+        "tex": "(-2) - 5 = (-2) + (-5) = \\concept{pink}{-7}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -7
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-2)-5"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.dien-tru-thanh-cong",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ 9 là cộng với số đối của 9, tức −9. Đi sang trái 9 đơn vị từ 7 thì tới −2."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "7 − 9 = 7 + ("
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−9", "-9"]
+        },
+        {
+          "type": "text",
+          "text": ") = "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−2", "-2"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−9", "9", "−2", "2"]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.noi-tru-thanh-cong",
+      "type": "match",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-duong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi phép trừ với phép cộng bằng nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ đi một số thì bằng cộng với số đối của số đó. Số đối của 7 là −7, của 6 là −6 và của 1 là −1."
+      },
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "4-7"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "(-2)-6"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "9-1"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "formula",
+            "tex": "4+(-7)"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "formula",
+            "tex": "(-2)+(-6)"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "formula",
+            "tex": "9+(-1)"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "formula",
+            "tex": "4+7"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-4-tru-am3",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hiệu sau."
+        },
+        {
+          "type": "formula",
+          "tex": "4-(-3)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ đi −3 là cộng với số đối của −3, tức là cộng với 3. Vậy 4 − (−3) = 4 + 3 = 7.",
+        "tex": "4 - (-3) = 4 + 3 = \\concept{lime}{7}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "4 − 3 = 1 là trừ đi số dương 3, không phải số âm −3."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "1"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-1"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "4-(-3)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-2-tru-am6",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-am"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hiệu sau."
+        },
+        {
+          "type": "formula",
+          "tex": "2-(-6)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-3-tru-am2"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ −6 là cộng với 6: đi sang phải 6 đơn vị từ 2. Ta tới 8.",
+        "tex": "2 - (-6) = 2 + 6 = \\concept{lime}{8}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "2-(-6)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am3-tru-am5",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-am"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hiệu sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-3)-(-5)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ −5 là cộng với 5. Đi sang phải 5 đơn vị từ −3 thì tới 2.",
+        "tex": "(-3) - (-5) = (-3) + 5 = \\concept{lime}{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-3)-(-5)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-hieu-bang-6",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-am"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các phép tính có kết quả bằng 6."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "1 − (−5) = 1 + 5 = 6, và 8 − 2 = 6.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "5 − (−2) = 5 + 2 = 7, không phải 6."
+          },
+          {
+            "optionId": "d",
+            "text": "(−1) − 5 = (−1) + (−5) = −6, là số âm."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "1-(-5)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "8-2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "5-(-2)"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-1)-5"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-cap-doi-trong-tong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong tổng sau, hai số hạng nào cộng lại bằng 0?"
+        },
+        {
+          "type": "formula",
+          "tex": "6+(-5)+(-6)+2"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số đối nhau cộng lại bằng 0. Số 6 và số −6 là hai số đối nhau, nên ta ghép chúng trước.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "(−5) + 2 = −3, không phải 0."
+          },
+          {
+            "optionId": "d",
+            "text": "6 + (−5) = 1, không phải 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "6 và (−6)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "(−5) và 2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6 và 2"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "6 và (−5)"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-9-am4-am9-3",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tinh-chat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "9+(-4)+(-9)+3"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-ghep"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ghép 9 với −9 được 0. Còn (−4) + 3 = −1, nên tổng là −1.",
+        "tex": "[9 + (-9)] + [(-4) + 3] = \\concept{slate}{0} + (\\concept{pink}{-1}) = -1"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -1
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "9+(-4)+(-9)+3"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am8-5-8-am3",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tinh-chat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-8)+5+8+(-3)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ghép −8 với 8 được 0. Còn 5 + (−3) = 2, nên tổng là 2.",
+        "tex": "[(-8) + 8] + [5 + (-3)] = 0 + 2 = \\concept{lime}{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-8)+5+8+(-3)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.dien-ghep-tong",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tinh-chat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cặp (−6) và 6 bằng 0. Cặp 7 và (−4) bằng 3, nên tổng là 0 + 3 = 3."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "(−6) + 7 + 6 + (−4) = [(−6) + 6] + [7 + (−4)] = 0 + "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["3"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["3", "−3", "11", "−11"]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tong-bang-0-ba-so",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tinh-chat"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tổng bằng 0."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "5 + (−2) + (−3) = 5 + (−5) = 0 và 4 + (−6) + 2 = 6 + (−6) = 0.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "7 + (−3) + (−3) = 7 + (−6) = 1, không phải 0."
+          },
+          {
+            "optionId": "d",
+            "text": "(−4) + 4 = 0 nhưng còn (−1), nên tổng là −1."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "5+(-2)+(-3)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4+(-6)+2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "7+(-3)+(-3)"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-4)+(-1)+4"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.gia-tri-b-x-2",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho biểu thức B = x + (−5). Khi x = 2 thì B bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thay x bằng 2 ta được 2 + (−5). Đi sang trái 5 đơn vị từ 2 thì tới −3.",
+        "tex": "2 + (-5) = \\concept{pink}{-3}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cộng với −5 là đi sang trái, nên kết quả nhỏ hơn 2."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2+(-5)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.gia-tri-a-x-am4",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.gia-tri-bieu-thuc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho biểu thức A = x + 6 − 9. Tính giá trị của A khi x = −4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-bieu-thuc"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thay x bằng −4: A = (−4) + 6 − 9. Tính từ trái sang phải: 2 − 9 = −7.",
+        "tex": "(-4) + 6 - 9 = 2 - 9 = \\concept{pink}{-7}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -7
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-4+6-9"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.gia-tri-m-x-2",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.gia-tri-bieu-thuc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho biểu thức M = x − (−3) − 8. Tính giá trị của M khi x = 2."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thay x bằng 2: M = 2 − (−3) − 8 = 2 + 3 − 8. Tính từ trái sang phải: 5 − 8 = −3.",
+        "tex": "2 - (-3) - 8 = 5 - 8 = \\concept{pink}{-3}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -3
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "2-(-3)-8"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.dien-bang-x-y",
+      "type": "fillBlank",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.gia-tri-bieu-thuc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "(−6) + 4: đi sang phải 4 từ −6 tới −2. (−6) − 4 = (−6) + (−4) = −10."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Khi x = −6 và y = 4 thì x + y = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−2", "-2"]
+        },
+        {
+          "type": "text",
+          "text": " và x − y = "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−10", "-10"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−2", "−10", "2", "10"]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-bieu-thuc-am",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.gia-tri-bieu-thuc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các biểu thức có giá trị âm khi x = −2."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thay x bằng −2: x + 1 = −1 và x − 3 = −5 đều là số âm.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "(−2) + 5 = 3 là số dương."
+          },
+          {
+            "optionId": "d",
+            "text": "4 − (−2) = 4 + 2 = 6 là số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "x+1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "x-3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "x+5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "4-x"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.thang-may-tang-2",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Thang máy ở tầng 2 đi xuống 6 tầng."
+        },
+        {
+          "type": "note",
+          "text": "Thang máy đến tầng nào? (Tầng hầm ghi bằng số âm.)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đi xuống là cộng với số âm: 2 + (−6) = −4. Vậy thang máy tới tầng hầm 4, ghi là −4.",
+        "tex": "2 + (-6) = \\concept{pink}{-4}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đi xuống 6 tầng từ tầng 2 phải qua mặt đất, nên số tầng là số âm."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "8"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2+(-6)"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tien-cua-nam",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.bai-toan-thuc-te"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nam có 4 nghìn đồng, chi 9 nghìn đồng (ghi nợ phần còn thiếu), rồi mẹ cho thêm 3 nghìn đồng."
+        },
+        {
+          "type": "note",
+          "text": "Số tiền của Nam bây giờ là bao nhiêu nghìn đồng? (Số âm là nợ.)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Chi 9 là −9 và mẹ cho 3 là +3. Tính từ trái sang phải: 4 + (−9) = −5, rồi (−5) + 3 = −2.",
+        "tex": "4 + (-9) + 3 = -5 + 3 = \\concept{pink}{-2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -2
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "4+(-9)+3"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.nhiet-do-toi",
+      "type": "numeric",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.bai-toan-thuc-te"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Buổi sáng nhiệt độ là 1 độ, buổi tối giảm 6 độ. Nhiệt độ buổi tối là bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Giảm 6 độ là trừ 6, cũng là cộng với −6. Đi sang trái 6 đơn vị từ 1 thì tới −5.",
+        "tex": "1 - 6 = 1 + (-6) = \\concept{pink}{-5}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -5
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "1-6"
+      }
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.ex.chon-tinh-huong-no",
+      "type": "choice",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.bai-toan-thuc-te"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tình huống mà cuối cùng Nam còn nợ."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Còn nợ nghĩa là kết quả là số âm: 6 + (−9) = −3 và (−5) + (−2) = −7. Hai tình huống còn lại cho 2 và 0.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 + (−4) = 2: Nam vẫn còn 2 nghìn đồng."
+          },
+          {
+            "optionId": "d",
+            "text": "Xoá nợ 3 nghìn thì Nam hết nợ, kết quả là 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Nam có 6 nghìn đồng và chi 9 nghìn đồng."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Nam có 6 nghìn đồng và chi 4 nghìn đồng."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Nam nợ 5 nghìn đồng rồi nợ thêm 2 nghìn đồng."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Nam nợ 3 nghìn đồng rồi được xoá nợ 3 nghìn đồng."
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    }
+  ],
+  "sticker": {
+    "name": "Huy hiệu cộng trừ số nguyên",
+    "visualId": "phep-cong-phep-tru-so-nguyen.visual.sticker"
+  }
+}
