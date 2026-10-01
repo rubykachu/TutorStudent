@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useMemo } from "react";
 import { hashSeed } from "@/exercises/shuffle";
 
 // Pieces of one burst and how long it lasts; long enough to feel like a
@@ -20,8 +21,9 @@ const COLORS = [
 
 // A deterministic spread (angle, distance, spin) per piece, so a render on
 // the server and one on the client agree and tests see the same burst.
-function piece(i: number) {
-  const r = (salt: string) => (hashSeed(`${i}:${salt}`) % 1000) / 1000;
+function piece(i: number, variant: number) {
+  const r = (salt: string) =>
+    (hashSeed(`${i}:${salt}:${variant}`) % 1000) / 1000;
   const angle = (i / PIECES) * Math.PI * 2 + r("a") * 0.4;
   const distance = 90 + r("d") * 110;
   return {
@@ -30,24 +32,41 @@ function piece(i: number) {
     y: Math.sin(angle) * distance * 0.7 - 40,
     fall: 60 + r("f") * 60,
     rotate: (r("r") - 0.5) * 720,
-    color: COLORS[i % COLORS.length],
+    // Each variant starts the colour wheel at a different place.
+    color: COLORS[(i + variant) % COLORS.length],
     round: i % 3 === 0,
   };
 }
 
-const BURST = Array.from({ length: PIECES }, (_, i) => piece(i));
+function burst(variant: number) {
+  return Array.from({ length: PIECES }, (_, i) => piece(i, variant));
+}
+
+// Where a variant's burst starts, off the centre of the parent: a few pixels
+// each way, so repeated bursts do not stack on one spot.
+function origin(variant: number) {
+  const r = (salt: string) => (hashSeed(`o:${salt}:${variant}`) % 1000) / 1000;
+  return variant === 0
+    ? { x: 0, y: 0 }
+    : { x: (r("x") - 0.5) * 120, y: (r("y") - 0.5) * 50 };
+}
 
 // Confetti bursting from the centre of its positioned parent. Decoration
-// only: it never takes a tap and is hidden from screen readers. Callers skip
-// it when the child prefers reduced motion.
-export function ConfettiBurst() {
+// only: it never takes a tap and is hidden from screen readers. `variant`
+// changes the spread, colours and starting spot (0 is the first burst).
+// Callers skip it when the child prefers reduced motion.
+export function ConfettiBurst({ variant = 0 }: { variant?: number }) {
+  const pieces = useMemo(() => burst(variant), [variant]);
+  const { x, y } = origin(variant);
   return (
     <div
       aria-hidden
       data-confetti
+      data-confetti-variant={variant}
+      style={{ transform: `translate(${x}px, ${y}px)` }}
       className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center overflow-visible"
     >
-      {BURST.map((p, i) => (
+      {pieces.map((p, i) => (
         <motion.span
           // Pieces never reorder.
           // biome-ignore lint/suspicious/noArrayIndexKey: static list

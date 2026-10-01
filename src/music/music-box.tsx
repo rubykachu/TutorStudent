@@ -2,7 +2,9 @@
 
 import { ChevronRight, Lock, Music, Play, Square, VolumeX } from "lucide-react";
 import { useState } from "react";
+import { PulseRing } from "@/components/looping-celebration";
 import { Sheet } from "@/components/sheet";
+import { PlayingBars } from "./playing-bars";
 import { SONGS, type Song, sectionsToUnlock, unlockedCount } from "./songs";
 import { useMusicPlayer } from "./use-music-player";
 
@@ -67,7 +69,7 @@ function SongRow({
         onClick={onToggle}
         // The song is the sound; no button press on top of it.
         data-own-sound
-        className="flex min-h-16 w-full items-center gap-3 rounded-lg border-2 border-border bg-surface p-3 text-left disabled:text-muted-foreground motion-safe:transition-transform motion-safe:active:scale-[0.97]"
+        className="relative flex min-h-16 w-full items-center gap-3 rounded-lg border-2 border-border bg-surface p-3 text-left disabled:text-muted-foreground motion-safe:transition-transform motion-safe:active:scale-[0.97]"
       >
         <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-concept-violet text-primary-foreground">
           {playing ? (
@@ -77,11 +79,14 @@ function SongRow({
           )}
         </span>
         <span className="min-w-0 flex-1 font-semibold">{song.title}</span>
+        {playing && <PlayingBars />}
         {isNew && (
           <span className="rounded-full bg-concept-violet px-3 py-0.5 text-caption font-semibold text-primary-foreground">
             Mới
           </span>
         )}
+        {/* A song just won glows until the child plays it. */}
+        {isNew && !playing && <PulseRing />}
       </button>
     </li>
   );
@@ -198,7 +203,7 @@ export function MusicReward({
         data-music-reward
         aria-haspopup="dialog"
         onClick={() => setOpen(true)}
-        className="flex w-full max-w-lg items-center gap-3 rounded-lg bg-concept-violet/10 p-3 text-left motion-safe:transition-transform motion-safe:active:scale-[0.97]"
+        className="relative flex w-full max-w-lg items-center gap-3 rounded-lg bg-concept-violet/10 p-3 text-left motion-safe:transition-transform motion-safe:active:scale-[0.97]"
       >
         <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-surface">
           <Music aria-hidden className="size-6 text-concept-violet" />
@@ -217,6 +222,7 @@ export function MusicReward({
           aria-hidden
           className="size-6 shrink-0 text-muted-foreground"
         />
+        <PulseRing />
       </button>
       {open && (
         <MusicBoxSheet

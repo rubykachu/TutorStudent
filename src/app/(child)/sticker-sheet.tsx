@@ -5,7 +5,10 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { bigButtonClassName } from "@/components/big-button";
-import { ConfettiBurst } from "@/components/confetti-burst";
+import {
+  LoopingConfetti,
+  LoopingMotion,
+} from "@/components/looping-celebration";
 import { Sticker } from "@/components/sticker";
 import { lessonHeading, lessonPlacement } from "@/lib/lesson-label";
 import { lessonPath } from "@/lib/routes";
@@ -42,8 +45,8 @@ export function stickerHowToEarn(
 
 // A sheet with everything about one sticker: its picture (a silhouette
 // while not earned), name, lesson, progress, how to earn it and a button to
-// open the lesson. An earned sticker opens with confetti (none under reduced
-// motion).
+// open the lesson. An earned sticker bounces gently and bursts with confetti
+// every few seconds while the sheet is open (still under reduced motion).
 export function StickerSheet({
   lesson,
   fill,
@@ -62,6 +65,15 @@ export function StickerSheet({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+
+  const stickerPicture = (
+    <Sticker
+      visualId={lesson.sticker.visualId}
+      name={lesson.sticker.name}
+      done={fill.done}
+      total={fill.total}
+    />
+  );
 
   return (
     <div
@@ -104,12 +116,11 @@ export function StickerSheet({
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 12 }}
           >
-            <Sticker
-              visualId={lesson.sticker.visualId}
-              name={lesson.sticker.name}
-              done={fill.done}
-              total={fill.total}
-            />
+            {earned ? (
+              <LoopingMotion>{stickerPicture}</LoopingMotion>
+            ) : (
+              stickerPicture
+            )}
           </motion.div>
           <h2 className="font-heading font-bold text-title md:text-title-lg">
             {lesson.sticker.name}
@@ -149,12 +160,12 @@ export function StickerSheet({
         {/* The confetti of an earned sticker bursts from the picture. It sits
           beside the scrolling panel, not in it, so the panel does not clip it,
           and never takes a tap. */}
-        {earned && !reducedMotion && (
+        {earned && (
           <div
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-6 h-40 md:h-48"
           >
-            <ConfettiBurst />
+            <LoopingConfetti />
           </div>
         )}
       </div>

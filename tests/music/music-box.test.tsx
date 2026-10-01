@@ -35,6 +35,21 @@ afterEach(async () => {
 
 const [FIRST, SECOND] = SONGS;
 
+const original = window.matchMedia;
+afterEach(() => {
+  window.matchMedia = original;
+});
+
+function preferReducedMotion() {
+  window.matchMedia = (query: string) =>
+    ({
+      matches: true,
+      media: query,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+    }) as unknown as MediaQueryList;
+}
+
 describe("music box", () => {
   it("captions the chip with how many songs are open", () => {
     expect(musicBoxCaption(0)).toBe("Hộp nhạc");
@@ -148,5 +163,67 @@ describe("music reward", () => {
     fireEvent.click(screen.getByRole("button", { name: /Mở hộp nhạc/ }));
     const row = document.querySelector(`[data-song="${FIRST?.id}"]`);
     expect(row?.textContent).toContain("Mới");
+  });
+
+  it("shows dancing bars on the song that plays, and only on it", async () => {
+    render(<MusicBoxSheet childId="kid" doneSections={7} onClose={vi.fn()} />);
+    const first = await screen.findByRole("button", { name: FIRST?.title });
+    await waitFor(() => expect(first).toBeEnabled());
+    expect(document.querySelector("[data-playing-bars]")).toBeNull();
+
+    fireEvent.click(first);
+    const bars = document.querySelectorAll("[data-playing-bars]");
+    expect(bars).toHaveLength(1);
+    expect(bars[0]).toHaveAttribute("data-playing-bars", "dancing");
+    expect(first.contains(bars[0] ?? null)).toBe(true);
+
+    fireEvent.click(first);
+    expect(document.querySelector("[data-playing-bars]")).toBeNull();
+  });
+
+  it("keeps the playing bars still under reduced motion", async () => {
+    preferReducedMotion();
+    render(<MusicBoxSheet childId="kid" doneSections={7} onClose={vi.fn()} />);
+    const first = await screen.findByRole("button", { name: FIRST?.title });
+    await waitFor(() => expect(first).toBeEnabled());
+    fireEvent.click(first);
+    expect(document.querySelector("[data-playing-bars]")).toHaveAttribute(
+      "data-playing-bars",
+      "static",
+    );
+  });
+
+  it("makes the new-song reward row and the new song glow, until it plays", async () => {
+    render(
+      <MusicReward
+        childId="kid"
+        doneSections={1}
+        songs={FIRST ? [FIRST] : []}
+      />,
+    );
+    const reward = document.querySelector("[data-music-reward]");
+    expect(reward?.querySelector("[data-pulse-ring]")).not.toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /Mở hộp nhạc/ }));
+    const row = document.querySelector(`[data-song="${FIRST?.id}"]`);
+    expect(row?.querySelector("[data-pulse-ring='pulsing']")).not.toBeNull();
+    const button = await screen.findByRole("button", { name: FIRST?.title });
+    await waitFor(() => expect(button).toBeEnabled());
+    fireEvent.click(button);
+    expect(row?.querySelector("[data-pulse-ring]")).toBeNull();
+  });
+
+  it("shows a steady ring instead of a pulse under reduced motion", () => {
+    preferReducedMotion();
+    render(
+      <MusicReward
+        childId="kid"
+        doneSections={1}
+        songs={FIRST ? [FIRST] : []}
+      />,
+    );
+    expect(document.querySelector("[data-pulse-ring]")).toHaveAttribute(
+      "data-pulse-ring",
+      "static",
+    );
   });
 });

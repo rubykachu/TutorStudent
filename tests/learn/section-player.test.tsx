@@ -211,8 +211,8 @@ describe("SectionPlayer", () => {
     tap("Xong phần");
     // Another section is still open: no sticker, and it is offered next.
     expect(await screen.findByText("Xong phần này!")).toBeInTheDocument();
-    // No sticker yet, so no celebration.
-    expect(document.querySelector("[data-confetti]")).toBeNull();
+    // The finished section is celebrated too, with confetti around the owl.
+    expect(document.querySelector("[data-confetti]")).not.toBeNull();
     // Praise names the section; progress says how far the sticker is.
     expect(
       screen.getByText("Bạn vừa học xong “Phần một”. Giỏi lắm!"),

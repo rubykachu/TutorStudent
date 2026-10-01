@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import { BottomBar } from "@/components/bottom-bar";
+import { LoopingConfetti } from "@/components/looping-celebration";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
 import { Owl } from "@/mascot/owl";
@@ -14,6 +15,8 @@ type DoneScreenProps = {
   // Drawn above the title; the owl in `owl` mood when left out.
   art?: ReactNode;
   owl?: MascotExpression;
+  // Confetti around the art, bursting again every few seconds while open.
+  celebrate?: boolean;
   children?: ReactNode;
   actions: ReactNode;
 };
@@ -26,10 +29,15 @@ export function DoneScreen({
   title,
   art,
   owl = "happy",
+  celebrate = false,
   children,
   actions,
 }: DoneScreenProps) {
   const reducedMotion = usePrefersReducedMotion();
+  const picture = art ?? (
+    // Home size, a little larger where a tall tablet leaves room.
+    <Owl expression={owl} size="home" className="tall:size-36" />
+  );
   return (
     <div
       className="flex flex-1 flex-col gap-4"
@@ -45,9 +53,13 @@ export function DoneScreen({
             : { type: "spring", stiffness: 260, damping: 16 }
         }
       >
-        {art ?? (
-          // Home size, a little larger where a tall tablet leaves room.
-          <Owl expression={owl} size="home" className="tall:size-36" />
+        {celebrate ? (
+          <div className="relative">
+            {picture}
+            <LoopingConfetti />
+          </div>
+        ) : (
+          picture
         )}
         <h1 className="text-title font-bold md:text-title-lg">{title}</h1>
         {children}

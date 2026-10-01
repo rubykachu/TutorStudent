@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
+import { LoopingMotion } from "@/components/looping-celebration";
 import { RichText } from "@/components/rich-text";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
@@ -504,12 +505,14 @@ function SectionDone({
                   : { type: "spring", stiffness: 260, damping: 12 }
               }
             >
-              <Sticker
-                visualId={lesson.sticker.visualId}
-                name={lesson.sticker.name}
-                done={total}
-                total={total}
-              />
+              <LoopingMotion>
+                <Sticker
+                  visualId={lesson.sticker.visualId}
+                  name={lesson.sticker.name}
+                  done={total}
+                  total={total}
+                />
+              </LoopingMotion>
             </motion.div>
             <StickerEarnedCelebration />
           </div>
@@ -536,6 +539,7 @@ function SectionDone({
     <DoneScreen
       stepAttr={{ name: "data-section-step", value: "section-done" }}
       title="Xong phần này!"
+      celebrate
       actions={
         <>
           {completion.nextSectionId && (
