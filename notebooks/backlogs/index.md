@@ -42,6 +42,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Open follow-ups
 
+- Fix the open review findings of the ten earlier published lessons (owner request 02/10/2026): inventory with fix-now and skipped items in [`fix-earlier-lessons/task.md`](fix-earlier-lessons/task.md).
 - Bài 11: add the book's extra knowledge (a = d·m, b = d·n), câu 2.41–2.43 and example 1 (owner approved adding): [`lesson-uoc-chung-uoc-chung-lon-nhat/task.md`](lesson-uoc-chung-uoc-chung-lon-nhat/task.md).
 - "Mẹo hay" `tips.json` for Bài 8 to 11.
 - `explain` for the chapter I lessons (owner will ask later).
