@@ -2,7 +2,8 @@
 
 ## Trạng thái
 - Cập nhật cuối: 02/10/2026. Bài đã duyệt: `status: published`, `reviewedHash` ghi, id đã khoá (`content:lock`), `content:emit` xong. 19 section. Review: vòng 1 (13 Nghiêm trọng), vòng 2 (8), vòng 3 chỉ phần đổi (0). Đọc hiểu Haiku ba lượt: `47/28/0`, `6/10/8`, `7/14/0`.
-- Việc tiếp theo: làm các mục "Việc còn lại" dưới đây; media (lời đọc tổng quan, video) do người sau dựng.
+- Media xong (02/10/2026): giọng Mỹ Duyên (`video/projects/cach-ghi-so-tu-nhien/media.json`; Bài 1 là Hải Đăng, Bài 3 sẽ là Hải Đăng, xen kẽ), lời đọc tổng quan đọc bằng Gemini Vindemiatrix (không hết hạn mức, không phải VieNeu), ba video 48 đến 66 giây gắn đầu section `hang` (`cac-hang`, 2 điểm dừng), `gia-tri` (`gia-tri-chu-so`, 3 điểm dừng) và `chu-la-ma` (`dong-ho-la-ma`, 2 điểm dừng). Review vòng 4 (chỉ video và lời đọc, Sonnet): 0 Nghiêm trọng, 2 Nên sửa đã sửa; `content:hash --approve` và `content:lock` đã chạy lại.
+- Việc tiếp theo: các mục "Việc còn lại" dưới đây. Chưa tải media lên và chưa deploy (cần chủ dự án đồng ý, theo `.claude/skills/lesson-video/SKILL.md` mục "Đưa lên production").
 
 ## Nguồn (sách bài tập, `sources/math/cach-ghi-so-tu-nhien/`, không commit)
 - Đề: tr.7–10 in (PDF 8–11), tệp `sbt-p7.png` … `sbt-p10.png`. Lời giải: tr.94–95 (đầu tr.94 là Bài 1, phần Bài 2 bắt đầu từ giữa trang; tr.96 là Bài 3, 4), tệp `sbt-p94.png`, `sbt-p95.png`, `sbt-p96.png`.
@@ -28,6 +29,7 @@ Cơ bản: 1 `so-tu-nhien` (ℕ, ℕ*), 2 `chu-so` (mười chữ số, chữ s�
 - Chạy `lesson:walk` và `visual:shot` trong `git worktree` tạm (cổng 3310, `pnpm install --offline`, chép `.next/dev/cache`, `public/media` là symlink), đã gỡ sau khi xong.
 
 ## Việc còn lại
-- Media: lời đọc tổng quan và video (chưa làm, ngoài phạm vi lượt soạn).
+- Người thật nghe lại (reviewer và Whisper không nghe được cách đọc chữ cái): bốn câu của `dong-ho-la-ma` có chữ I, V, X, IV, IX (ba câu có `say` "i-vê", "i-ích"), và tên "Bạn cú" trong `cac-hang`, `gia-tri-chu-so` (Whisper nghe "cứu"); bé cần nghe một cách đọc duy nhất cho mỗi ký hiệu. Nếu sai thì sửa `say` rồi `pnpm video:build cach-ghi-so-tu-nhien dong-ho-la-ma` (chỉ câu đổi được đọc lại).
+- Góp ý còn lại của vòng 4 (`review.md`): phụ đề lời đọc tổng quan tô chữ "000" và "đồng" cùng lúc (cue 4); video `dong-ho-la-ma` chưa giải nghĩa "thành phần" (chữ của bài chỉ giải nghĩa ở note thứ hai).
 - Nên sửa của vòng 3 (`review.md`, không chặn duyệt): thiếu ví dụ cho ca "đi tiếp" và "không có chữ số nào" của quy tắc viết thêm chữ số; hình `tong-chu-so-vd` không nêu đề "tổng bằng 3"; ví dụ XXIX lặp ở note, màn chạm và recap; nhãn hình và `explain` còn từ cũ ("tách thành phần", "bỏ số 0", "dời"); `gia-tri-v` và `cham-la-ma-5` hỏi cùng một điều; quy tắc số bé nhất khác nhau rơi vế "cho đủ số chữ số"; `doi-vi-thanh-iv` lặp ca của `doi-1-que`; 14 mục còn "Hiểu mơ hồ" ở lượt đọc hiểu 3. Sửa chữ nào của bài thì chạy `pnpm content:diff`, lượt Haiku trên mục đổi, vòng chỉ phần đổi, rồi `content:hash --approve` lại.
 - Lưu trữ: sau khi hết các mục trên, `git mv` thư mục này vào `notebooks/backlogs/archive/` kèm dòng "Archived: ...".

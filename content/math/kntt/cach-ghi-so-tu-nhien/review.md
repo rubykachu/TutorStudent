@@ -7,7 +7,7 @@
 - Đọc hiểu (Haiku, chữ ba video): lượt 1 29 / 5 / 1 (tệp `.shots/review/cach-ghi-so-tu-nhien/doc-hieu-video.md`); câu "Khó hiểu" ("nhích") viết lại thành "chạy", lượt 2 trên câu đó và câu kết `gia-tri-chu-so` viết lại: 2 / 0 / 0. Lời đọc tổng quan: chữ không đổi nên không chạy
 - `lesson:walk`: 0 FAIL; khối video hiện đúng ở đầu ba section (ipad, phone) và không làm hỏng phần còn lại của section
 - Kết luận: Đạt: 0 Nghiêm trọng; 2 Nên sửa và Góp ý 1, 3 đã xử lý sau vòng (mục "Đã xử lý"), còn 3 Góp ý và 3 nhóm mục chưa kiểm được vì chưa nghe âm thanh (cuối tệp)
-- Bản đã review: `199d109696e637ca7f300f47b994674ac8885397e134cda61606824717b4045e` (`pnpm content:diff` so với bản này)
+- Bản đã review: `8987b09aa2a000b40e775488d17dbeed3abf15596c97ac63d07de720f8b93b29` (`pnpm content:diff` so với bản này)
 
 Vòng 3 (chỉ phần đổi, toàn bài): 0 Nghiêm trọng, 8 Nên sửa, 10 Góp ý; cả 8 lỗi Nghiêm trọng của vòng 2 đã sửa dứt.
 
