@@ -5801,12 +5801,12 @@
       "url": "video/cach-ghi-so-tu-nhien/dong-ho-la-ma.mp4",
       "vttUrl": "video/cach-ghi-so-tu-nhien/dong-ho-la-ma.vtt",
       "posterUrl": "video/cach-ghi-so-tu-nhien/dong-ho-la-ma.jpg",
-      "durationSec": 58.57,
+      "durationSec": 58.47,
       "clips": [
         {
           "id": "chu-la-ma",
           "start": 12.229,
-          "end": 57.141,
+          "end": 57.062,
           "cardIds": ["cach-ghi-so-tu-nhien.card.chu-la-ma"]
         }
       ],
