@@ -592,7 +592,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Ô đầu có 1 hạt, mỗi ô sau gấp đôi ô trước nên số hạt là 1, 2, 4, 8, 16. Ô có 16 hạt là ô thứ 5, vì từ ô đầu phải gấp đôi 4 lần.",
+        "tex": "16 = 2 \\cdot 2 \\cdot 2 \\cdot 2 = 2^{4}"
+      }
     },
     {
       "id": "luy-thua.ex.cham-co-so",
@@ -615,7 +619,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Trong luỹ thừa, cơ số là thừa số được nhân lặp lại. Ở đây số 6 được nhân lặp lại 4 lần nên 6 là cơ số, còn số 4 nhỏ phía trên là số mũ.",
+        "tex": "\\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6} = \\concept{blue}{6}^{\\concept{violet}{4}}"
+      }
     },
     {
       "id": "luy-thua.ex.viet-gon-3-mu-4",
@@ -647,7 +655,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tích có 4 thừa số, thừa số nào cũng bằng 3. Vậy cơ số là 3 và số mũ là 4, nên viết gọn thành 3⁴.",
+        "tex": "\\concept{blue}{3} \\cdot \\concept{blue}{3} \\cdot \\concept{blue}{3} \\cdot \\concept{blue}{3} = \\concept{blue}{3}^{\\concept{violet}{4}}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-tich-5-mu-4",
@@ -705,7 +717,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Luỹ thừa 5⁴ là tích của 4 thừa số, thừa số nào cũng bằng 5. Số 5 là số được nhân lặp lại, số 4 cho biết có bao nhiêu thừa số.",
+        "tex": "\\concept{blue}{5}^{\\concept{violet}{4}} = \\concept{blue}{5} \\cdot \\concept{blue}{5} \\cdot \\concept{blue}{5} \\cdot \\concept{blue}{5}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "5 · 4 chỉ có hai thừa số; số mũ 4 cho biết có 4 thừa số 5, không phải số đem nhân với 5."
+          },
+          {
+            "optionId": "c",
+            "text": "Phải lặp lại số 5, không phải số 4: 4 là số thừa số, còn thừa số là 5."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.tao-5-mu-3",
@@ -741,7 +767,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cơ số là thừa số được nhân lặp lại nên đặt cơ số 5. Số mũ là số thừa số nên đặt số mũ 3 để được ba thừa số 5.",
+        "tex": "\\concept{blue}{5}^{\\concept{violet}{3}} = \\concept{blue}{5} \\cdot \\concept{blue}{5} \\cdot \\concept{blue}{5}"
+      }
     },
     {
       "id": "luy-thua.ex.cham-so-mu",
@@ -764,7 +794,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số mũ là số nhỏ viết phía trên bên phải, cho biết có bao nhiêu thừa số. Ở đây số 5 là số mũ, nên có 5 thừa số 3 được nhân với nhau.",
+        "tex": "\\concept{blue}{3}^{\\concept{violet}{5}} = \\concept{blue}{3} \\cdot \\concept{blue}{3} \\cdot \\concept{blue}{3} \\cdot \\concept{blue}{3} \\cdot \\concept{blue}{3}"
+      }
     },
     {
       "id": "luy-thua.ex.dien-ten",
@@ -817,7 +851,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong luỹ thừa 8³, số 8 là thừa số được nhân lặp lại nên gọi là cơ số. Số 3 cho biết có 3 thừa số 8 nên gọi là số mũ.",
+        "tex": "\\concept{blue}{8}^{\\concept{violet}{3}} = \\concept{blue}{8} \\cdot \\concept{blue}{8} \\cdot \\concept{blue}{8}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-bang-7",
@@ -861,7 +899,21 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.so-mu-1"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số, nên 7¹ = 7.",
+        "tex": "\\concept{blue}{7}^{\\concept{violet}{1}} = \\concept{blue}{7}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "1⁷ là tích của 7 thừa số 1 nên bằng 1, không bằng 7."
+          },
+          {
+            "optionId": "c",
+            "text": "7² = 7 · 7 = 49; số mũ là 2 nên luỹ thừa không còn bằng cơ số."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.viet-4-mu-3",
@@ -890,7 +942,11 @@
         ],
         "hintVisualId": "luy-thua.visual.bam-mu"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Luỹ thừa viết cơ số trước, rồi số mũ nhỏ ở phía trên bên phải. Cơ số là 4 và số mũ là 3 nên viết 4³, tức là 4 · 4 · 4.",
+        "tex": "\\concept{blue}{4}^{\\concept{violet}{3}} = \\concept{blue}{4} \\cdot \\concept{blue}{4} \\cdot \\concept{blue}{4}"
+      }
     },
     {
       "id": "luy-thua.ex.tinh-6-mu-1",
@@ -922,7 +978,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số. Vậy 6¹ = 6.",
+        "tex": "\\concept{blue}{6}^{\\concept{violet}{1}} = \\concept{blue}{6}"
+      }
     },
     {
       "id": "luy-thua.ex.viet-9-mu-1",
@@ -946,7 +1006,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.so-mu-1"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số. Muốn viết 9 thành luỹ thừa có cơ số 9 thì chọn số mũ 1, vì 9¹ = 9.",
+        "tex": "\\concept{blue}{9} = \\concept{blue}{9}^{\\concept{violet}{1}}"
+      }
     },
     {
       "id": "luy-thua.ex.tinh-8-mu-1",
@@ -979,7 +1043,11 @@
         ],
         "hintVisualId": "luy-thua.visual.so-mu-1"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số mũ bằng 1 thì luỹ thừa bằng chính cơ số. Vậy 8¹ = 8.",
+        "tex": "\\concept{blue}{8}^{\\concept{violet}{1}} = \\concept{blue}{8}"
+      }
     },
     {
       "id": "luy-thua.ex.viet-gon-10",
@@ -1011,7 +1079,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tích có 5 thừa số, thừa số nào cũng bằng 10. Vậy cơ số là 10 và số mũ là 5, nên viết gọn thành 10⁵.",
+        "tex": "\\concept{blue}{10} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10} = \\concept{blue}{10}^{\\concept{violet}{5}}"
+      }
     },
     {
       "id": "luy-thua.ex.doc-6-mu-2",
@@ -1061,7 +1133,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số mũ 2 đọc là “bình phương”, nên 6² đọc là “6 bình phương”. Số mũ 3 mới đọc là “lập phương”.",
+        "tex": "\\concept{blue}{6}^{\\concept{violet}{2}}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "“2 mũ 6” là luỹ thừa có cơ số 2; còn 6² có cơ số 6 và số mũ 2."
+          },
+          {
+            "optionId": "b",
+            "text": "“Lập phương” dành cho số mũ 3, còn 6² có số mũ là 2."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.hinh-vuong-16",
@@ -1088,7 +1174,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số ô của hình vuông là cạnh nhân cạnh, tức là bình phương của số ô một cạnh. Hình vuông cạnh 4 ô có 4 · 4 = 16 ô, nên chọn cơ số 4.",
+        "tex": "\\concept{blue}{4}^{\\concept{violet}{2}} = \\concept{blue}{4} \\cdot \\concept{blue}{4} = 16"
+      }
     },
     {
       "id": "luy-thua.ex.buoc-tiep-6-mu-4",
@@ -1145,7 +1235,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tính luỹ thừa là nhân từng thừa số một. Đã có 6 · 6 = 36, nên lấy 36 nhân tiếp với thừa số 6 còn lại; mỗi bước chỉ thêm một thừa số.",
+        "tex": "\\begin{aligned} 6 \\cdot 6 &= 36 \\\\ 36 \\cdot 6 &= 216 \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cách vừa học nhân tiếp với từng thừa số 6, không nhân kết quả 36 với chính nó."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 4 là số mũ, cho biết có 4 thừa số; số đem nhân tiếp là cơ số 6."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.tinh-3-mu-3",
@@ -1179,7 +1283,11 @@
         "hintVisualId": "luy-thua.visual.tinh-3-mu-3-goi-y",
         "solutionVisualId": "luy-thua.visual.tinh-3-mu-3"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính từng bước: nhân hai thừa số đầu, rồi nhân kết quả với thừa số còn lại. 3 · 3 = 9, rồi 9 · 3 = 27.",
+        "tex": "\\begin{aligned} \\concept{blue}{3}^{\\concept{violet}{3}} &= \\concept{blue}{3} \\cdot \\concept{blue}{3} \\cdot \\concept{blue}{3} \\\\ &= 9 \\cdot 3 = 27 \\end{aligned}"
+      }
     },
     {
       "id": "luy-thua.ex.ghep-binh-phuong",
@@ -1262,7 +1370,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.phan-tich-binh-phuong"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Bình phương của một số là số đó nhân với chính nó: 3² = 3 · 3 = 9, 5² = 5 · 5 = 25 và 9² = 9 · 9 = 81. Số 6 chỉ là 3 · 2, còn 3² là 3 · 3.",
+        "tex": "\\begin{aligned} \\concept{blue}{3}^{\\concept{violet}{2}} &= 9 \\\\ \\concept{blue}{5}^{\\concept{violet}{2}} &= 25 \\\\ \\concept{blue}{9}^{\\concept{violet}{2}} &= 81 \\end{aligned}"
+      }
     },
     {
       "id": "luy-thua.ex.lap-phuong-4",
@@ -1291,7 +1403,11 @@
         "hintVisualId": "luy-thua.visual.tinh-4-mu-3-goi-y",
         "solutionVisualId": "luy-thua.visual.tinh-4-mu-3"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "4 lập phương là 4³, tức là tích của ba thừa số 4. 4 · 4 = 16, rồi 16 · 4 = 64.",
+        "tex": "\\concept{blue}{4}^{\\concept{violet}{3}} = \\concept{blue}{4} \\cdot \\concept{blue}{4} \\cdot \\concept{blue}{4} = 16 \\cdot 4 = 64"
+      }
     },
     {
       "id": "luy-thua.ex.xep-gia-tri",
@@ -1337,7 +1453,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.phan-tich-xep-gia-tri"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính giá trị từng luỹ thừa rồi so sánh. 2³ = 8, 3² = 9, 4² = 16 và 5² = 25, nên xếp từ bé đến lớn là 8, 9, 16, 25.",
+        "tex": "\\begin{aligned} \\concept{blue}{2}^{\\concept{violet}{3}} &= 8 \\\\ \\concept{blue}{3}^{\\concept{violet}{2}} &= 9 \\\\ \\concept{blue}{4}^{\\concept{violet}{2}} &= 16 \\\\ \\concept{blue}{5}^{\\concept{violet}{2}} &= 25 \\end{aligned}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-10-lap-phuong",
@@ -1386,7 +1506,21 @@
         ],
         "hintVisualId": "luy-thua.visual.tinh-10-mu-3-goi-y"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "10 lập phương là 10³, tích của ba thừa số 10. 10 · 10 = 100, rồi 100 · 10 =  000.",
+        "tex": "\\concept{blue}{10}^{\\concept{violet}{3}} = \\concept{blue}{10} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10} = 1\\,000",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "30 là 10 · 3; nhưng số mũ 3 cho biết có ba thừa số 10, không phải nhân 10 với 3."
+          },
+          {
+            "optionId": "c",
+            "text": "100 là 10 · 10 = 10², chỉ có hai thừa số 10; lập phương cần ba thừa số."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.chon-6-lap-phuong",
@@ -1434,7 +1568,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "6 lập phương có cơ số là 6 và số mũ là 3, nên viết là 6³.",
+        "tex": "\\concept{blue}{6}^{\\concept{violet}{3}} = \\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6² là 6 bình phương, số mũ 2; lập phương có số mũ 3."
+          },
+          {
+            "optionId": "c",
+            "text": "3⁶ có cơ số 3 và số mũ 6, đảo hai số của 6³."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.dien-7-binh-phuong",
@@ -1469,7 +1617,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "7² là tích của hai thừa số 7. Vậy 7 · 7 = 49.",
+        "tex": "\\concept{blue}{7}^{\\concept{violet}{2}} = \\concept{blue}{7} \\cdot \\concept{blue}{7} = 49"
+      }
     },
     {
       "id": "luy-thua.ex.tinh-5-mu-3",
@@ -1502,7 +1654,11 @@
         ],
         "hintVisualId": "luy-thua.visual.tinh-5-mu-3-goi-y"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "5³ là tích của ba thừa số 5. 5 · 5 = 25, rồi 25 · 5 = 125.",
+        "tex": "\\concept{blue}{5}^{\\concept{violet}{3}} = \\concept{blue}{5} \\cdot \\concept{blue}{5} \\cdot \\concept{blue}{5} = 25 \\cdot 5 = 125"
+      }
     },
     {
       "id": "luy-thua.ex.binh-phuong-8",
@@ -1530,7 +1686,11 @@
         ],
         "hintVisualId": "luy-thua.visual.tinh-8-mu-2-goi-y"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "8 bình phương là 8², tích của hai thừa số 8. Vậy 8 · 8 = 64.",
+        "tex": "\\concept{blue}{8}^{\\concept{violet}{2}} = \\concept{blue}{8} \\cdot \\concept{blue}{8} = 64"
+      }
     },
     {
       "id": "luy-thua.ex.chon-2-mu-7",
@@ -1588,7 +1748,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai luỹ thừa cùng cơ số 2 nên giữ nguyên cơ số và cộng các số mũ: 3 + 4 = 7. Vậy tích là 2⁷.",
+        "tex": "\\concept{blue}{2}^{\\concept{violet}{3}} \\cdot \\concept{blue}{2}^{\\concept{violet}{4}} = \\concept{blue}{2}^{\\concept{violet}{3 + 4}} = \\concept{blue}{2}^{\\concept{violet}{7}}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Cơ số không bị nhân lên: nhân hai luỹ thừa cùng cơ số thì cơ số vẫn là 2."
+          },
+          {
+            "optionId": "b",
+            "text": "Số mũ phải cộng chứ không nhân: 3 + 4 = 7, không phải 12."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.nhan-7",
@@ -1626,7 +1800,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai luỹ thừa cùng cơ số 7 nên giữ nguyên cơ số và cộng các số mũ: 2 + 5 = 7. Vậy tích là 7⁷.",
+        "tex": "\\concept{blue}{7}^{\\concept{violet}{2}} \\cdot \\concept{blue}{7}^{\\concept{violet}{5}} = \\concept{blue}{7}^{\\concept{violet}{2 + 5}} = \\concept{blue}{7}^{\\concept{violet}{7}}"
+      }
     },
     {
       "id": "luy-thua.ex.ghep-2-mu-5",
@@ -1656,7 +1834,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhân hai luỹ thừa cùng cơ số thì cộng các số mũ, nên hai số mũ phải có tổng bằng 5. Ví dụ 2 + 3 = 5, nên 2² · 2³ = 2⁵.",
+        "tex": "\\concept{blue}{2}^{\\concept{violet}{2}} \\cdot \\concept{blue}{2}^{\\concept{violet}{3}} = \\concept{blue}{2}^{\\concept{violet}{2 + 3}} = \\concept{blue}{2}^{\\concept{violet}{5}}"
+      }
     },
     {
       "id": "luy-thua.ex.dien-quy-tac",
@@ -1697,7 +1879,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.nhan-hai-luy-thua"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân hai luỹ thừa cùng cơ số thì giữ nguyên cơ số, còn các số mũ cộng lại. Trừ số mũ là quy tắc của phép chia, không phải của phép nhân.",
+        "tex": "\\concept{blue}{2}^{\\concept{violet}{3}} \\cdot \\concept{blue}{2}^{\\concept{violet}{4}} = \\concept{blue}{2}^{\\concept{violet}{3 + 4}}"
+      }
     },
     {
       "id": "luy-thua.ex.so-mu-thua-so-don",
@@ -1728,7 +1914,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số không ghi số mũ thì có số mũ là 1. Vậy số 2 ở đây là 2¹, nên số mũ là 1.",
+        "tex": "\\concept{blue}{2} = \\concept{blue}{2}^{\\concept{violet}{1}}"
+      }
     },
     {
       "id": "luy-thua.ex.nhan-3-mu-4-voi-3",
@@ -1761,7 +1951,11 @@
         ],
         "hintVisualId": "luy-thua.visual.so-mu-an-3"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số 3 không ghi số mũ nên là 3¹. Hai luỹ thừa cùng cơ số 3: giữ nguyên cơ số và cộng các số mũ, 4 + 1 = 5.",
+        "tex": "\\concept{blue}{3}^{\\concept{violet}{4}} \\cdot \\concept{blue}{3} = \\concept{blue}{3}^{\\concept{violet}{4}} \\cdot \\concept{blue}{3}^{\\concept{violet}{1}} = \\concept{blue}{3}^{\\concept{violet}{4 + 1}} = \\concept{blue}{3}^{\\concept{violet}{5}}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-phep-dung",
@@ -1812,6 +2006,20 @@
       "difficulty": 3,
       "check": {
         "relation": "holds"
+      },
+      "explain": {
+        "text": "Nhân hai luỹ thừa cùng cơ số thì giữ nguyên cơ số và cộng các số mũ. 4² · 4³ = 4⁵ và 8² · 8⁴ = 8⁶ đều làm đúng như vậy.",
+        "tex": "\\begin{aligned} \\concept{blue}{4}^{\\concept{violet}{2}} \\cdot \\concept{blue}{4}^{\\concept{violet}{3}} &= \\concept{blue}{4}^{\\concept{violet}{5}} \\\\ \\concept{blue}{8}^{\\concept{violet}{2}} \\cdot \\concept{blue}{8}^{\\concept{violet}{4}} &= \\concept{blue}{8}^{\\concept{violet}{6}} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Số mũ phải cộng: 3 + 2 = 5, nên tích là 2⁵, không phải 2⁶."
+          },
+          {
+            "optionId": "d",
+            "text": "Cơ số phải giữ nguyên là 3, không nhân lên thành 9: tích là 3⁵."
+          }
+        ]
       }
     },
     {
@@ -1850,7 +2058,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cùng cơ số 6 thì giữ nguyên cơ số và cộng các số mũ: 3 + 4 = 7. Vậy tích là 6⁷.",
+        "tex": "\\concept{blue}{6}^{\\concept{violet}{3}} \\cdot \\concept{blue}{6}^{\\concept{violet}{4}} = \\concept{blue}{6}^{\\concept{violet}{3 + 4}} = \\concept{blue}{6}^{\\concept{violet}{7}}"
+      }
     },
     {
       "id": "luy-thua.ex.nhan-ba-luy-thua-10",
@@ -1883,7 +2095,11 @@
         ],
         "hintVisualId": "luy-thua.visual.so-mu-an-10"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Số 10 ở giữa không ghi số mũ nên là 10¹. Ba thừa số cùng cơ số 10: giữ nguyên cơ số và cộng các số mũ, 2 + 1 + 4 = 7.",
+        "tex": "\\concept{blue}{10}^{\\concept{violet}{2}} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10}^{\\concept{violet}{4}} = \\concept{blue}{10}^{\\concept{violet}{2 + 1 + 4}} = \\concept{blue}{10}^{\\concept{violet}{7}}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-7-nhan-7-mu-3",
@@ -1936,7 +2152,21 @@
         ],
         "hintVisualId": "luy-thua.visual.so-mu-an-7"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số 7 không ghi số mũ nên là 7¹. Giữ nguyên cơ số 7 và cộng các số mũ: 1 + 3 = 4, nên tích là 7⁴.",
+        "tex": "\\concept{blue}{7} \\cdot \\concept{blue}{7}^{\\concept{violet}{3}} = \\concept{blue}{7}^{\\concept{violet}{1}} \\cdot \\concept{blue}{7}^{\\concept{violet}{3}} = \\concept{blue}{7}^{\\concept{violet}{1 + 3}} = \\concept{blue}{7}^{\\concept{violet}{4}}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "7³ quên mất số mũ 1 của số 7; phải cộng 1 + 3 = 4."
+          },
+          {
+            "optionId": "c",
+            "text": "Cơ số không bị nhân lên: tích hai luỹ thừa cùng cơ số vẫn có cơ số 7."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.chon-6-mu-3",
@@ -1994,7 +2224,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cùng cơ số 6 thì giữ nguyên cơ số và lấy số mũ thứ nhất trừ số mũ thứ hai: 5 − 2 = 3. Vậy thương là 6³.",
+        "tex": "\\concept{blue}{6}^{\\concept{violet}{5}} : \\concept{blue}{6}^{\\concept{violet}{2}} = \\concept{blue}{6}^{\\concept{violet}{5 - 2}} = \\concept{blue}{6}^{\\concept{violet}{3}}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số mũ phải trừ: 5 − 2 = 3. Cộng số mũ là quy tắc của phép nhân."
+          },
+          {
+            "optionId": "c",
+            "text": "Cơ số không bị chia: cơ số vẫn là 6; chỉ có số mũ trừ nhau."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.chia-9",
@@ -2032,7 +2276,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cùng cơ số 9 thì giữ nguyên cơ số và lấy số mũ thứ nhất trừ số mũ thứ hai: 8 − 3 = 5. Vậy thương là 9⁵.",
+        "tex": "\\concept{blue}{9}^{\\concept{violet}{8}} : \\concept{blue}{9}^{\\concept{violet}{3}} = \\concept{blue}{9}^{\\concept{violet}{8 - 3}} = \\concept{blue}{9}^{\\concept{violet}{5}}"
+      }
     },
     {
       "id": "luy-thua.ex.ghep-thuong",
@@ -2115,7 +2363,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.chia-hai-luy-thua"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Giữ nguyên cơ số 2 rồi lấy số mũ thứ nhất trừ số mũ thứ hai. 6 − 2 = 4, 7 − 4 = 3 và 7 − 2 = 5, nên các thương là 2⁴, 2³ và 2⁵.",
+        "tex": "\\begin{aligned} \\concept{blue}{2}^{\\concept{violet}{6}} : \\concept{blue}{2}^{\\concept{violet}{2}} &= \\concept{blue}{2}^{\\concept{violet}{4}} \\\\ \\concept{blue}{2}^{\\concept{violet}{7}} : \\concept{blue}{2}^{\\concept{violet}{4}} &= \\concept{blue}{2}^{\\concept{violet}{3}} \\\\ \\concept{blue}{2}^{\\concept{violet}{7}} : \\concept{blue}{2}^{\\concept{violet}{2}} &= \\concept{blue}{2}^{\\concept{violet}{5}} \\end{aligned}"
+      }
     },
     {
       "id": "luy-thua.ex.chia-luy-thua-10",
@@ -2153,7 +2405,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cùng cơ số 10 thì giữ nguyên cơ số và lấy số mũ thứ nhất trừ số mũ thứ hai: 8 − 5 = 3. Vậy thương là 10³.",
+        "tex": "\\concept{blue}{10}^{\\concept{violet}{8}} : \\concept{blue}{10}^{\\concept{violet}{5}} = \\concept{blue}{10}^{\\concept{violet}{8 - 5}} = \\concept{blue}{10}^{\\concept{violet}{3}}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-luy-thua-bang-1",
@@ -2197,7 +2453,21 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.so-mu-0-goi-y"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Quy ước: luỹ thừa có số mũ 0 thì bằng 1 (cơ số khác 0). Vậy 6⁰ = 1.",
+        "tex": "\\concept{blue}{6}^{\\concept{violet}{0}} = 1",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6¹ có số mũ 1 nên bằng chính cơ số, tức là 6."
+          },
+          {
+            "optionId": "c",
+            "text": "6² = 6 · 6 = 36, không phải 1."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.mu-0-bang",
@@ -2230,7 +2500,11 @@
         ],
         "hintVisualId": "luy-thua.visual.so-mu-0-goi-y"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Quy ước: luỹ thừa có số mũ 0 thì bằng 1 (cơ số khác 0). Vậy 5⁰ = 1.",
+        "tex": "\\concept{blue}{5}^{\\concept{violet}{0}} = 1"
+      }
     },
     {
       "id": "luy-thua.ex.thuong-2-mu-0",
@@ -2260,7 +2534,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Chia hai luỹ thừa cùng cơ số thì trừ các số mũ. Muốn được số mũ 0 thì hai số mũ phải bằng nhau, ví dụ 3 − 3 = 0, nên 2³ : 2³ = 2⁰.",
+        "tex": "\\concept{blue}{2}^{\\concept{violet}{3}} : \\concept{blue}{2}^{\\concept{violet}{3}} = \\concept{blue}{2}^{\\concept{violet}{3 - 3}} = \\concept{blue}{2}^{\\concept{violet}{0}} = 1"
+      }
     },
     {
       "id": "luy-thua.ex.tinh-thuong-3",
@@ -2297,7 +2575,11 @@
           }
         ]
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Giữ nguyên cơ số 3 và lấy số mũ thứ nhất trừ số mũ thứ hai: 5 − 3 = 2. Vậy thương là 3², tức là 3 · 3 = 9.",
+        "tex": "\\concept{blue}{3}^{\\concept{violet}{5}} : \\concept{blue}{3}^{\\concept{violet}{3}} = \\concept{blue}{3}^{\\concept{violet}{5 - 3}} = \\concept{blue}{3}^{\\concept{violet}{2}} = 9"
+      }
     },
     {
       "id": "luy-thua.ex.chon-bang-1",
@@ -2351,7 +2633,21 @@
         ],
         "hintVisualId": "luy-thua.visual.so-mu-0-goi-y"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Quy ước: luỹ thừa có số mũ 0 thì bằng 1 (cơ số khác 0). Vậy 7⁰ = 1.",
+        "tex": "\\concept{blue}{7}^{\\concept{violet}{0}} = 1",
+        "wrong": [
+          {
+            "optionId": "khong",
+            "text": "Số mũ 0 không làm luỹ thừa bằng 0; quy ước là luỹ thừa bằng 1."
+          },
+          {
+            "optionId": "bay",
+            "text": "7 là 7¹ (số mũ 1); còn số mũ 0 thì luỹ thừa bằng 1."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.viet-1000",
@@ -2384,7 +2680,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số  000 là chữ số 1 và 3 chữ số 0 theo sau. Vậy  000 là 10³.",
+        "tex": "1\\,000 = \\concept{blue}{10}^{\\concept{violet}{3}}"
+      }
     },
     {
       "id": "luy-thua.ex.tao-10-000",
@@ -2411,7 +2711,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau. 1 000 có 4 chữ số 0, nên số mũ là 4.",
+        "tex": "10\\,000 = \\concept{blue}{10}^{\\concept{violet}{4}}"
+      }
     },
     {
       "id": "luy-thua.ex.tinh-10-mu-5",
@@ -2443,7 +2747,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau. Số mũ là 5 nên viết chữ số 1 rồi 5 chữ số 0, được 10 000.",
+        "tex": "\\concept{blue}{10}^{\\concept{violet}{5}} = 100\\,000"
+      }
     },
     {
       "id": "luy-thua.ex.ghep-luy-thua-10",
@@ -2526,7 +2834,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.phan-tich-luy-thua-10"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số mũ cho biết có bao nhiêu chữ số 0 sau chữ số 1. Vậy 10² là 100, 10³ là  000 và 10⁴ là 1 000.",
+        "tex": "\\begin{aligned} \\concept{blue}{10}^{\\concept{violet}{2}} &= 100 \\\\ \\concept{blue}{10}^{\\concept{violet}{3}} &= 1\\,000 \\\\ \\concept{blue}{10}^{\\concept{violet}{4}} &= 10\\,000 \\end{aligned}"
+      }
     },
     {
       "id": "luy-thua.ex.viet-1-000-000",
@@ -2559,7 +2871,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số  00 000 là chữ số 1 và 6 chữ số 0 theo sau. Vậy số mũ là 6 và số đó là 10⁶.",
+        "tex": "1\\,000\\,000 = \\concept{blue}{10}^{\\concept{violet}{6}}"
+      }
     },
     {
       "id": "luy-thua.ex.chon-luy-thua-hang-tram",
@@ -2611,7 +2927,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Chữ số 3 đứng ở hàng trăm, mà một trăm là 10². Vậy chữ số 3 được nhân với 10².",
+        "tex": "3 \\cdot 100 = 3 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "10 là giá trị của hàng chục; chữ số 3 đứng ở hàng trăm."
+          },
+          {
+            "optionId": "c",
+            "text": "10³ là  000, giá trị của hàng nghìn; chữ số 3 đứng ở hàng trăm."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.tach-5-247",
@@ -2652,7 +2982,11 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.tong-hang-5-247"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Mỗi chữ số nhân với luỹ thừa của 10 ở hàng của nó. Chữ số 5 ở hàng nghìn,  000 là 10³; chữ số 2 ở hàng trăm, 100 là 10².",
+        "tex": "5\\,247 = 5 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 2 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}} + 4 \\cdot \\concept{blue}{10} + 7"
+      }
     },
     {
       "id": "luy-thua.ex.chon-tong-3-062",
@@ -2704,7 +3038,21 @@
           }
         ]
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Chữ số 3 ở hàng nghìn nên nhân với 10³, chữ số 6 ở hàng chục nên nhân với 10. Chữ số 2 ở hàng đơn vị giữ nguyên, còn hàng trăm có chữ số 0 nên không cần viết.",
+        "tex": "3\\,062 = 3 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 6 \\cdot \\concept{blue}{10} + 2",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ số 6 ở hàng chục nên nhân với 10, không phải 10²; tổng này bằng  602."
+          },
+          {
+            "optionId": "c",
+            "text": "Chữ số 3 ở hàng nghìn nên nhân với 10³, không phải 10⁴; tổng này bằng 3 062."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.tinh-tong-7-409",
@@ -2739,7 +3087,11 @@
           }
         ]
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính từng số hạng rồi cộng lại: 7 · 10³ =  000 và 4 · 10² = 400, còn 9 là hàng đơn vị. Vậy  000 + 400 + 9 =  409.",
+        "tex": "7 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 4 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}} + 9 = 7\\,000 + 400 + 9 = 7\\,409"
+      }
     },
     {
       "id": "luy-thua.ex.chon-co-so-2",
@@ -2787,7 +3139,21 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.dinh-nghia"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cơ số là số được nhân lặp lại, viết lớn ở phía dưới. 2⁶ và 2⁹ đều có cơ số 2.",
+        "tex": "\\concept{blue}{2}^{\\concept{violet}{6}} \\quad \\concept{blue}{2}^{\\concept{violet}{9}}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Trong 6² cơ số là 6, còn 2 là số mũ."
+          },
+          {
+            "optionId": "d",
+            "text": "Trong 9² cơ số là 9, còn 2 là số mũ."
+          }
+        ]
+      }
     },
     {
       "id": "luy-thua.ex.chon-bang-1-nhieu",
@@ -2835,7 +3201,21 @@
         "highlight": [],
         "hintVisualId": "luy-thua.visual.so-mu-0-goi-y"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Luỹ thừa có số mũ 0 thì bằng 1 (cơ số khác 0), nên 8⁰ = 1 và 9⁰ = 1.",
+        "tex": "\\concept{blue}{8}^{\\concept{violet}{0}} = 1 \\quad \\concept{blue}{9}^{\\concept{violet}{0}} = 1",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "8¹ có số mũ 1 nên bằng chính cơ số, tức là 8."
+          },
+          {
+            "optionId": "d",
+            "text": "9¹ có số mũ 1 nên bằng chính cơ số, tức là 9."
+          }
+        ]
+      }
     }
   ],
   "sticker": {
