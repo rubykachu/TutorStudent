@@ -37,6 +37,12 @@ import {
   solvePowerIs,
 } from "@/visuals/math/luy-thua/validators";
 import {
+  INTERACTIVE_KINDS as REVIEW_INTERACTIVE_KINDS,
+  LESSON_SLUG as REVIEW_SLUG,
+  VISUAL_SPECS as REVIEW_SPECS,
+  VALIDATOR_IDS as REVIEW_VALIDATOR_IDS,
+} from "@/visuals/math/on-tap-chuong-2/catalog";
+import {
   LESSON_SLUG as CONG_TRU_SLUG,
   VISUAL_SPECS as CONG_TRU_SPECS,
   TAP_PARTS_REGIONS,
@@ -92,7 +98,6 @@ import {
   solveXIsMember,
   xIsMember,
 } from "@/visuals/math/tap-hop/set-validators";
-
 import {
   gapsFilled,
   solveGapsFilled,
@@ -406,6 +411,28 @@ const multipleEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "on-tap-chuong-2": one per item of its catalog. Its pick screens
+// reuse "chon-dung".
+const reviewEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(REVIEW_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in REVIEW_VALIDATOR_IDS
+        ? REVIEW_VALIDATOR_IDS[spec.kind as keyof typeof REVIEW_VALIDATOR_IDS]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: REVIEW_INTERACTIVE_KINDS.has(spec.kind),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: pickMatches },
+            solutions: { [validatorId]: solvePickMatches },
+          }),
+      load: () => lessonExample(REVIEW_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${REVIEW_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...primeEntries,
   ...thuTuEntries,
@@ -415,6 +442,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...signEntries,
   ...commonEntries,
   ...multipleEntries,
+  ...reviewEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -1196,6 +1224,7 @@ const EXAMPLE_MODULES = lessonModules({
     import("@/visuals/math/uoc-chung-uoc-chung-lon-nhat/examples"),
   "boi-chung-boi-chung-nho-nhat": () =>
     import("@/visuals/math/boi-chung-boi-chung-nho-nhat/examples"),
+  "on-tap-chuong-2": () => import("@/visuals/math/on-tap-chuong-2/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
