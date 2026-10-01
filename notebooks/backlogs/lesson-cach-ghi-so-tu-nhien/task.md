@@ -2,6 +2,7 @@
 
 ## Trạng thái
 - Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`), 17 section. Vòng 1 xong (13 Nghiêm trọng, sửa ở `48b36fa`); kiểm lại: `content:check` 0 lỗi, `lesson:walk` 0 FAIL, `visual:shot` 176/176 (đã sửa đĩa số đồng hồ chạm ở `12ec29a`). Đang chạy review vòng 2 (3 reviewer Opus, kết quả ở `.shots/review/cach-ghi-so-tu-nhien/r2-nhom-<n>.md`, rồi Tổng hợp).
+- Vòng 2 đã sửa (`a287f44`; section `them-lon-be` tách thành `them-lon-nhat` và `them-be-nhat`, nay 19 section), chờ Đọc hiểu Haiku và vòng 3.
 - Việc tiếp theo: Tổng hợp vòng 2 -> sửa -> đọc hiểu Haiku -> vòng 3+ chỉ phần đổi (Sonnet) tới 0 Nghiêm trọng -> `content:hash --approve`, `content:lock`, `content:emit`.
 - Không làm trong lượt này: lời đọc tổng quan và video (người sau dựng media; xem "Việc còn lại").
 
