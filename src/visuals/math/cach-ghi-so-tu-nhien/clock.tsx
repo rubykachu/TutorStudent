@@ -65,11 +65,17 @@ export function Clock({ spec }: { spec: ClockSpec }) {
         y1={CENTER}
         x2={hand.x}
         y2={hand.y}
-        className="stroke-concept-sky"
+        className="stroke-concept-lime"
         strokeWidth={7}
         strokeLinecap="round"
       />
-      <circle cx={CENTER} cy={CENTER} r={6} className="fill-foreground" />
+      <circle
+        {...decorative}
+        cx={CENTER}
+        cy={CENTER}
+        r={6}
+        className="fill-foreground"
+      />
     </svg>
   );
 }

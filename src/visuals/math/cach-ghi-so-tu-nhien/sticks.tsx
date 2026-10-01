@@ -95,7 +95,7 @@ export function Sticks({ spec }: { spec: SticksSpec }) {
               className={
                 accent.has(index)
                   ? "stroke-concept-amber"
-                  : "stroke-concept-sky"
+                  : "stroke-concept-lime"
               }
               strokeWidth={6}
               strokeLinecap="round"

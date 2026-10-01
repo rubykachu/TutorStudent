@@ -372,6 +372,35 @@
       "prerequisite": "tiểu học"
     },
     {
+      "term": "chữ số",
+      "forbidden": [],
+      "color": "blue"
+    },
+    {
+      "term": "hàng",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "giá trị của chữ số",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "số La Mã",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "chữ số viết thêm",
+      "forbidden": [],
+      "color": "sky"
+    },
+    {
+      "term": "hệ thập phân",
+      "forbidden": []
+    },
+    {
       "term": "số hoàn hảo",
       "forbidden": []
     },

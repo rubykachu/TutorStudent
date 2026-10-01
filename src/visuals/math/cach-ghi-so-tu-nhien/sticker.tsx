@@ -91,7 +91,7 @@ export default function Sticker() {
           className="stroke-surface"
         />
         <ConceptShape
-          color="sky"
+          color="lime"
           cx={76}
           cy={24}
           r={7}

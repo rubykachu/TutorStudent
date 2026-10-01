@@ -55,12 +55,12 @@
     {
       "id": "cach-ghi-so-tu-nhien.concept.so-la-ma",
       "name": "Số La Mã",
-      "color": "sky"
+      "color": "lime"
     },
     {
       "id": "cach-ghi-so-tu-nhien.concept.chu-so-them",
       "name": "Chữ số viết thêm",
-      "color": "lime"
+      "color": "sky"
     }
   ],
   "sections": [

@@ -396,20 +396,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "doc-la-ma-tom-tat": {
     kind: "lines",
-    label: "Đọc số XXI",
+    label: "Đọc số XXV",
     rows: [
       {
-        tex: "\\concept{sky}{\\mathrm{XXV}} = \\mathrm{X} + \\mathrm{X} + \\mathrm{V}",
+        tex: "\\concept{lime}{\\mathrm{XXV}} = \\mathrm{X} + \\mathrm{X} + \\mathrm{V}",
         tag: {
           text: "tách thành phần",
-          color: "sky",
+          color: "lime",
         },
       },
       {
         tex: "= 10 + 10 + 5 = 25",
         tag: {
           text: "cộng lại",
-          color: "sky",
+          color: "lime",
         },
       },
     ],
@@ -420,10 +420,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Đọc số XVII",
     rows: [
       {
-        tex: "\\concept{sky}{\\mathrm{XVII}} = \\mathrm{X} + \\mathrm{V} + \\mathrm{I} + \\mathrm{I}",
+        tex: "\\concept{lime}{\\mathrm{XVII}} = \\mathrm{X} + \\mathrm{V} + \\mathrm{I} + \\mathrm{I}",
         tag: {
           text: "tách thành phần",
-          color: "sky",
+          color: "lime",
         },
       },
       {
@@ -433,7 +433,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "= 17",
         tag: {
           text: "cộng lại",
-          color: "sky",
+          color: "lime",
         },
       },
     ],
@@ -453,14 +453,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "27 = 20 + 7",
         tag: {
           text: "chục và đơn vị",
-          color: "sky",
+          color: "lime",
         },
       },
       {
-        tex: "= \\mathrm{XX} + \\mathrm{VII} = \\concept{sky}{\\mathrm{XXVII}}",
+        tex: "= \\mathrm{XX} + \\mathrm{VII} = \\concept{lime}{\\mathrm{XXVII}}",
         tag: {
           text: "chục trước, đơn vị sau",
-          color: "sky",
+          color: "lime",
         },
       },
     ],
@@ -492,17 +492,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "15 = 10 + 5",
         tag: {
           text: "chục và đơn vị",
-          color: "sky",
+          color: "lime",
         },
       },
       {
         tex: "= \\mathrm{X} + \\mathrm{V}",
       },
       {
-        tex: "= \\concept{sky}{\\mathrm{XV}}",
+        tex: "= \\concept{lime}{\\mathrm{XV}}",
         tag: {
           text: "chục trước, đơn vị sau",
-          color: "sky",
+          color: "lime",
         },
       },
     ],
@@ -692,14 +692,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "614 \\to 6\\,140",
         tag: {
           text: "thêm 0 vào cuối: gấp 10 lần",
-          color: "lime",
+          color: "sky",
         },
       },
       {
         tex: "614 \\to 1\\,614",
         tag: {
           text: "thêm 1 vào đầu: tăng 1 000",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -709,17 +709,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Thêm chữ số 0 vào cuối số 253",
     rows: [
       {
-        tex: "253 \\to \\concept{lime}{2\\,530}",
+        tex: "253 \\to \\concept{sky}{2\\,530}",
         tag: {
           text: "thêm 0 vào cuối",
-          color: "lime",
+          color: "sky",
         },
       },
       {
         tex: "2\\,530 = 253 \\cdot 10",
         tag: {
           text: "gấp 10 lần",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -729,17 +729,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Thêm chữ số 1 vào đầu số 253",
     rows: [
       {
-        tex: "253 \\to \\concept{lime}{1\\,253}",
+        tex: "253 \\to \\concept{sky}{1\\,253}",
         tag: {
           text: "thêm 1 vào đầu",
-          color: "lime",
+          color: "sky",
         },
       },
       {
         tex: "1\\,253 = 1\\,000 + 253",
         tag: {
           text: "tăng 1 000",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -755,17 +755,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 5 vào số 2 713",
     rows: [
       {
-        tex: "\\concept{lime}{5}\\,2\\,713 = 52\\,713",
+        tex: "\\concept{sky}{5}\\,2\\,713 = 52\\,713",
         tag: {
           text: "số lớn nhất",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "2\\,\\concept{lime}{5}\\,713 = 25\\,713",
+        tex: "2\\,\\concept{sky}{5}\\,713 = 25\\,713",
         tag: {
           text: "số bé nhất",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -776,17 +776,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 5 vào số 2 713 để được số lớn nhất",
     rows: [
       {
-        tex: "\\concept{lime}{5} > 2",
+        tex: "\\concept{sky}{5} > 2",
         tag: {
           text: "chữ số đầu tiên bé hơn 5 là 2",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "\\concept{lime}{5}\\,2\\,713 = 52\\,713",
+        tex: "\\concept{sky}{5}\\,2\\,713 = 52\\,713",
         tag: {
           text: "viết 5 trước chữ số 2",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -797,17 +797,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 5 vào số 2 713 để được số bé nhất",
     rows: [
       {
-        tex: "\\concept{lime}{5} < 7",
+        tex: "\\concept{sky}{5} < 7",
         tag: {
           text: "chữ số đầu tiên lớn hơn 5 là 7",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "2\\,\\concept{lime}{5}\\,713 = 25\\,713",
+        tex: "2\\,\\concept{sky}{5}\\,713 = 25\\,713",
         tag: {
           text: "viết 5 trước chữ số 7",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -823,24 +823,24 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 6 vào số 935 để được số lớn nhất",
     rows: [
       {
-        tex: "\\concept{lime}{6} < 9",
+        tex: "\\concept{sky}{6} < 9",
         tag: {
           text: "9 lớn hơn 6: đi tiếp",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "\\concept{lime}{6} > 3",
+        tex: "\\concept{sky}{6} > 3",
         tag: {
           text: "3 bé hơn 6: dừng",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "9\\,\\concept{lime}{6}\\,35 = 9\\,635",
+        tex: "9\\,\\concept{sky}{6}\\,35 = 9\\,635",
         tag: {
           text: "viết 6 trước chữ số 3",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -851,24 +851,24 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 4 vào số 8 152 để được số lớn nhất",
     rows: [
       {
-        tex: "\\concept{lime}{4} < 8",
+        tex: "\\concept{sky}{4} < 8",
         tag: {
           text: "8 lớn hơn 4: đi tiếp",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "\\concept{lime}{4} > 1",
+        tex: "\\concept{sky}{4} > 1",
         tag: {
           text: "1 bé hơn 4: dừng",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "8\\,\\concept{lime}{4}\\,152 = 84\\,152",
+        tex: "8\\,\\concept{sky}{4}\\,152 = 84\\,152",
         tag: {
           text: "viết 4 trước chữ số 1",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -884,24 +884,24 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 5 vào số 7 308 để được số lớn nhất",
     rows: [
       {
-        tex: "\\concept{lime}{5} < 7",
+        tex: "\\concept{sky}{5} < 7",
         tag: {
           text: "7 lớn hơn 5: đi tiếp",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "\\concept{lime}{5} > 3",
+        tex: "\\concept{sky}{5} > 3",
         tag: {
           text: "3 bé hơn 5: dừng",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "7\\,\\concept{lime}{5}\\,308 = 75\\,308",
+        tex: "7\\,\\concept{sky}{5}\\,308 = 75\\,308",
         tag: {
           text: "viết 5 trước chữ số 3",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
@@ -917,31 +917,31 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 6 vào số 358 để được số bé nhất",
     rows: [
       {
-        tex: "\\concept{lime}{6} > 3",
+        tex: "\\concept{sky}{6} > 3",
         tag: {
           text: "3 bé hơn 6: đi tiếp",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "\\concept{lime}{6} > 5",
+        tex: "\\concept{sky}{6} > 5",
         tag: {
           text: "5 bé hơn 6: đi tiếp",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "\\concept{lime}{6} < 8",
+        tex: "\\concept{sky}{6} < 8",
         tag: {
           text: "8 lớn hơn 6: dừng",
-          color: "lime",
+          color: "sky",
         },
       },
       {
-        tex: "35\\,\\concept{lime}{6}\\,8 = 3\\,568",
+        tex: "35\\,\\concept{sky}{6}\\,8 = 3\\,568",
         tag: {
           text: "viết 6 trước chữ số 8",
-          color: "lime",
+          color: "sky",
         },
       },
     ],
