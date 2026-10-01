@@ -353,9 +353,12 @@ export function ExerciseFrame<E extends BasicExercise>({
   // The explanation is read before "Tiếp", and its visual (steps, buttons)
   // loads and grows after it appears. Lift the page so the whole panel sits
   // above the bar, but never so far that the panel's top leaves the screen
-  // (a panel taller than the screen shows from its start). Followed while the
-  // visual settles, like the lift of the answer card above; `scrollBy` with
-  // `auto` so a smooth scroll in progress is not cut short.
+  // (a panel taller than the screen shows from its start) or, while the
+  // answer is only revealed (third miss, skip), that the revealed answer or
+  // the solution visual does: those the child must still see. An accepted
+  // answer may scroll away. Followed while the visual settles, like the lift
+  // of the answer card above; `scrollBy` with `auto` so a smooth scroll in
+  // progress is not cut short.
   const showsExplanation = explanation !== null;
   useEffect(() => {
     const frame = frameRef.current;
@@ -365,9 +368,15 @@ export function ExerciseFrame<E extends BasicExercise>({
       const bar = frame.querySelector("[data-bottom-bar]");
       const barTop = bar?.getBoundingClientRect().top ?? window.innerHeight;
       const box = panel.getBoundingClientRect();
+      const revealed = accepted
+        ? [Number.POSITIVE_INFINITY]
+        : [visualRef.current, answerRef.current].flatMap((el) =>
+            el ? [el.getBoundingClientRect().top] : [],
+          );
       const lift = Math.min(
         box.bottom - barTop,
         box.top - EXPLANATION_TOP_GAP_PX,
+        ...revealed,
       );
       if (lift > 0) window.scrollBy({ top: lift, behavior: "auto" });
     };
@@ -380,7 +389,7 @@ export function ExerciseFrame<E extends BasicExercise>({
       observer.disconnect();
       clearTimeout(stop);
     };
-  }, [showsExplanation]);
+  }, [showsExplanation, accepted]);
 
   return (
     <section

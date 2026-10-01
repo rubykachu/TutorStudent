@@ -699,6 +699,38 @@ describe("ExerciseFrame", () => {
     }
   });
 
+  it("keeps the revealed answer on screen when lifting the explanation after the third miss", () => {
+    const scrollBy = vi.fn();
+    const originalScrollBy = window.scrollBy;
+    const originalRect = Element.prototype.getBoundingClientRect;
+    window.scrollBy = scrollBy as typeof window.scrollBy;
+    const tops: Record<string, [number, number]> = {
+      "section[data-phase]": [100, 700],
+      "[data-answer-column]": [120, 400],
+      "[data-mascot-slot]": [104, 170],
+      "[data-answer-area]": [140, 400],
+      "[data-explanation-slot]": [500, 2000],
+      "[data-bottom-bar]": [700, 800],
+    };
+    mockRects(tops);
+    try {
+      renderFrame(HINTS_FALLBACK);
+      for (let i = 0; i < 3; i++) {
+        choose("b");
+        checkAnswer();
+      }
+      // The answer's top is 140px down: the page may not move further.
+      expect(scrollBy).toHaveBeenCalledWith({ top: 140, behavior: "auto" });
+      expect(scrollBy).not.toHaveBeenCalledWith({
+        top: 484,
+        behavior: "auto",
+      });
+    } finally {
+      window.scrollBy = originalScrollBy;
+      Element.prototype.getBoundingClientRect = originalRect;
+    }
+  });
+
   it("shakes again on the next wrong check once the shake ended", () => {
     const { container } = renderFrame(HINTS_FALLBACK);
     choose("b");
