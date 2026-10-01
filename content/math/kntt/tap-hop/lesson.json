@@ -601,7 +601,16 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Tập hợp là cả nhóm đồ trong hộp bút. Mỗi món trong nhóm, như chiếc thước, là một phần tử.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cả nhóm bút, thước, tẩy mới là tập hợp; chiếc thước chỉ là một món trong nhóm."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.nhom-la-tap-hop",
@@ -646,7 +655,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Tập hợp là một nhóm nhiều thứ gom lại. Các món trong bữa sáng là một nhóm nhiều món, nên là tập hợp.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Một chiếc áo chỉ là một thứ, chưa phải một nhóm nhiều thứ."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 7 là một số, không phải một nhóm nhiều thứ."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.mua-trong-nam",
@@ -691,7 +713,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Các mùa trong năm là xuân, hạ, thu, đông; mỗi mùa là một phần tử. Mùa thu là một mùa, nên là phần tử.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tháng Chín là một tháng, không phải một mùa."
+          },
+          {
+            "optionId": "c",
+            "text": "Thứ Sáu là một ngày trong tuần, không phải một mùa."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.gom-nhom-hop",
@@ -736,7 +771,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cả nhóm vở, sách và hộp bút gom lại là một tập hợp. Mỗi món riêng, như quyển vở, là một phần tử.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Phần tử là một món riêng trong cặp, không phải cả nhóm."
+          },
+          {
+            "optionId": "c",
+            "text": "Câu hỏi hỏi cả nhóm đồ, còn đây chỉ là một món trong nhóm."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.noi-tap-hop-phan-tu",
@@ -805,7 +853,10 @@
           "left": "l2",
           "right": "r1"
         }
-      ]
+      ],
+      "explain": {
+        "text": "Cả nhóm các thứ gom lại là tập hợp, còn mỗi thứ trong nhóm là phần tử. Ví dụ cả hộp bút là tập hợp, mỗi cây bút là phần tử. Số tự nhiên là tên một loại số, không phải tên gọi của cả nhóm hay của mỗi thứ trong nhóm."
+      }
     },
     {
       "id": "tap-hop.ex.dem-ban-trong-to",
@@ -832,6 +883,9 @@
       },
       "check": {
         "expr": "4"
+      },
+      "explain": {
+        "text": "Mỗi bạn trong tổ là một phần tử của tập hợp. Đếm các bạn Nam, Mai, Hà và Sơn thì được 4 bạn, nên tập hợp có 4 phần tử."
       }
     },
     {
@@ -862,6 +916,9 @@
         "i3": 0,
         "i4": 1,
         "i5": 1
+      },
+      "explain": {
+        "text": "Đồ dùng học tập gồm thước, tẩy, vở và bút, nên bốn thứ này được bỏ vào hộp. Quả bóng và cái đĩa không dùng để học nên không thuộc tập hợp này."
       }
     },
     {
@@ -884,7 +941,10 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.hop-cham",
-      "answer": ["thuoc"]
+      "answer": ["thuoc"],
+      "explain": {
+        "text": "Trong hộp có ba món: bút, thước và tẩy. Thước là món dùng để đo độ dài; nó là một phần tử của tập hợp đồ trong hộp."
+      }
     },
     {
       "id": "tap-hop.ex.kt-thu-dien",
@@ -920,7 +980,10 @@
           "text": "."
         }
       ],
-      "bank": ["phần tử", "tập hợp"]
+      "bank": ["phần tử", "tập hợp"],
+      "explain": {
+        "text": "Mỗi thứ trong nhóm là một phần tử. Chỉ cả nhóm gom lại mới gọi là tập hợp."
+      }
     },
     {
       "id": "tap-hop.ex.kt-ngoac-dung",
@@ -965,7 +1028,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Muốn viết một tập hợp, ta đặt các phần tử vào giữa hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy.",
+        "tex": "\\{ \\concept{amber}{4} ; \\concept{amber}{7} ; \\concept{amber}{9} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Ngoặc tròn ( ) không phải ngoặc nhọn, nên không dùng để viết tập hợp."
+          },
+          {
+            "optionId": "c",
+            "text": "Ngoặc vuông [ ] cũng không phải ngoặc nhọn."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.kt-cham-ngoac-mo",
@@ -987,7 +1064,10 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.cham-ngoac",
-      "answer": ["ngoac-nhon-mo"]
+      "answer": ["ngoac-nhon-mo"],
+      "explain": {
+        "text": "Dấu mở ngoặc nhọn là dấu { , đứng ở đầu tập hợp. Dấu đóng ngoặc nhọn } đứng ở cuối, còn ( và [ là ngoặc tròn và ngoặc vuông."
+      }
     },
     {
       "id": "tap-hop.ex.viet-ngoac-mo",
@@ -1012,6 +1092,9 @@
       "validatorId": "ve-xong",
       "params": {
         "total": 3
+      },
+      "explain": {
+        "text": "Chạm các chấm theo thứ tự 1, 2, 3 thì vẽ ra dấu { . Dấu này đọc là mở ngoặc nhọn và đứng ở đầu tập hợp."
       }
     },
     {
@@ -1037,6 +1120,9 @@
       "validatorId": "ve-xong",
       "params": {
         "total": 3
+      },
+      "explain": {
+        "text": "Chạm các chấm theo thứ tự 1, 2, 3 thì vẽ ra dấu } , hình soi gương của dấu { . Dấu này đọc là đóng ngoặc nhọn và đứng ở cuối tập hợp."
       }
     },
     {
@@ -1089,7 +1175,24 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Dấu { đọc là mở ngoặc nhọn, và nó đứng ở đầu tập hợp.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu } là hình soi gương của dấu { và đọc là đóng ngoặc nhọn."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu ( là ngoặc tròn, không phải ngoặc nhọn."
+          },
+          {
+            "optionId": "d",
+            "text": "Dấu [ là ngoặc vuông, không phải ngoặc nhọn."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dien-ngoac-mo",
@@ -1125,7 +1228,11 @@
           "text": " 4 ; 5 }"
         }
       ],
-      "bank": ["{", "}", "(", "["]
+      "bank": ["{", "}", "(", "["],
+      "explain": {
+        "text": "Tập hợp bắt đầu bằng dấu mở ngoặc nhọn { và kết thúc bằng dấu đóng ngoặc nhọn }. Tập hợp B còn thiếu dấu { ở đầu.",
+        "tex": "\\concept{teal}{B} = \\{ \\concept{amber}{4} ; \\concept{amber}{5} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-doc-dong-ngoac",
@@ -1177,7 +1284,24 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Dấu } đọc là đóng ngoặc nhọn, và nó đứng ở cuối tập hợp.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Dấu { là hình soi gương của dấu } và đọc là mở ngoặc nhọn."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu ) là ngoặc tròn, không phải ngoặc nhọn."
+          },
+          {
+            "optionId": "d",
+            "text": "Dấu ] là ngoặc vuông, không phải ngoặc nhọn."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dien-ngoac-dong",
@@ -1209,7 +1333,11 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", ")", "]"]
+      "bank": ["{", "}", ")", "]"],
+      "explain": {
+        "text": "Tập hợp bắt đầu bằng dấu { và kết thúc bằng dấu } . Tập hợp C còn thiếu dấu } ở cuối.",
+        "tex": "\\concept{teal}{C} = \\{ \\concept{amber}{7} ; \\concept{amber}{8} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.dien-hai-ngoac",
@@ -1250,7 +1378,11 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", "(", ")"]
+      "bank": ["{", "}", "(", ")"],
+      "explain": {
+        "text": "Mỗi tập hợp cần đủ hai dấu: { ở đầu và } ở cuối. Với D, ta đặt { trước số 2 và } sau số 3.",
+        "tex": "\\concept{teal}{D} = \\{ \\concept{amber}{2} ; \\concept{amber}{3} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.kt-dau-giua",
@@ -1272,7 +1404,11 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.cham-dau-giua",
-      "answer": ["cham-phay"]
+      "answer": ["cham-phay"],
+      "explain": {
+        "text": "Giữa hai phần tử ta viết dấu chấm phẩy. Ta không dùng dấu phẩy, vì số thập phân như 2,5 đã có dấu phẩy.",
+        "tex": "\\{ \\concept{amber}{3} ; \\concept{amber}{8} ; \\concept{amber}{10} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-viet-dung",
@@ -1317,7 +1453,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Giữa hai phần tử của tập hợp phải viết dấu chấm phẩy.",
+        "tex": "\\{ \\concept{amber}{4} ; \\concept{amber}{5} ; \\concept{amber}{6} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu phẩy dễ lẫn với số thập phân như 2,5, nên không dùng để ngăn các phần tử."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu chấm không dùng để ngăn các phần tử của tập hợp."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dat-cham-phay-bai",
@@ -1342,6 +1492,9 @@
       "validatorId": "du-cham-phay",
       "params": {
         "gaps": 3
+      },
+      "explain": {
+        "text": "Hai phần tử đứng cạnh nhau phải cách nhau bằng một dấu chấm phẩy. Bốn số có ba khoảng trống ở giữa, nên cần đặt ba dấu chấm phẩy."
       }
     },
     {
@@ -1387,7 +1540,11 @@
           "text": " 8 }"
         }
       ],
-      "bank": [";", ",", "."]
+      "bank": [";", ",", "."],
+      "explain": {
+        "text": "Giữa hai phần tử viết dấu chấm phẩy, nên cả hai chỗ trống đều là dấu chấm phẩy. Dấu phẩy không dùng vì số thập phân như 2,5 đã có dấu phẩy.",
+        "tex": "\\concept{teal}{E} = \\{ \\concept{amber}{2} ; \\concept{amber}{5} ; \\concept{amber}{8} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.cham-dau-cham-phay",
@@ -1409,7 +1566,10 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.cham-dau-ngan",
-      "answer": ["cham-phay"]
+      "answer": ["cham-phay"],
+      "explain": {
+        "text": "Dấu chấm phẩy có một chấm ở trên và một nét phẩy ở dưới. Dấu phẩy chỉ có nét phẩy, không có chấm ở trên. Dấu < và dấu = là dấu so sánh, không dùng để ngăn các phần tử."
+      }
     },
     {
       "id": "tap-hop.ex.kt-cham-thuoc",
@@ -1431,7 +1591,10 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.cham-ki-hieu-thuoc",
-      "answer": ["thuoc"]
+      "answer": ["thuoc"],
+      "explain": {
+        "text": "Bút là một phần tử của tập hợp các đồ trong hộp, nên ta viết kí hiệu thuộc ∈. Các dấu còn lại là dấu bằng, dấu chấm phẩy và dấu mở ngoặc nhọn, không nói phần tử nằm trong tập hợp."
+      }
     },
     {
       "id": "tap-hop.ex.doc-thuoc",
@@ -1476,7 +1639,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Dòng a ∈ B đọc là a thuộc B: phần tử a đứng trước kí hiệu, tập hợp B đứng sau.",
+        "tex": "\\concept{amber}{a} \\in \\concept{teal}{B}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Ở dòng này tập hợp B đứng trước kí hiệu ∈, nhưng phần tử phải đứng trước."
+          },
+          {
+            "optionId": "c",
+            "text": "Dòng a = B đọc là a bằng B, không phải a thuộc B."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dien-thuoc",
@@ -1516,7 +1693,11 @@
           "text": " A"
         }
       ],
-      "bank": ["∈", "=", "{"]
+      "bank": ["∈", "=", "{"],
+      "explain": {
+        "text": "Số 5 có trong ngoặc nhọn của A, nên 5 là phần tử của A. Với phần tử của tập hợp, ta viết kí hiệu thuộc ∈.",
+        "tex": "\\concept{amber}{5} \\in \\concept{teal}{A}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-x-thuoc",
@@ -1550,6 +1731,10 @@
         "e1": 4,
         "e2": 6,
         "e3": 8
+      },
+      "explain": {
+        "text": "x thuộc A khi x là một trong các phần tử 2, 4, 6, 8. Chọn x bằng một trong bốn số đó đều được.",
+        "tex": "\\concept{amber}{x} \\in \\concept{teal}{A}"
       }
     },
     {
@@ -1595,7 +1780,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số 6 là phần tử của C, nên viết 6 ∈ C: phần tử đứng trước kí hiệu thuộc, tập hợp đứng sau.",
+        "tex": "\\concept{amber}{6} \\in \\concept{teal}{C}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dòng này để tập hợp C đứng trước kí hiệu ∈, nhưng phần tử phải đứng trước."
+          },
+          {
+            "optionId": "c",
+            "text": "Dòng này viết dấu bằng, không nói 6 là một phần tử của C."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.kt-cham-khong-thuoc",
@@ -1617,7 +1816,10 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.cham-ki-hieu-khong-thuoc",
-      "answer": ["khong-thuoc"]
+      "answer": ["khong-thuoc"],
+      "explain": {
+        "text": "Quả cam không phải đồ trong hộp bút, nên ta viết kí hiệu không thuộc ∉. Kí hiệu này là dấu ∈ thêm một nét gạch chéo."
+      }
     },
     {
       "id": "tap-hop.ex.viet-khong-thuoc",
@@ -1666,7 +1868,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Trong B chỉ có các phần tử 2, 4, 6, không có số 5. Nên 5 không phải là phần tử của B, ta viết 5 ∉ B.",
+        "tex": "\\concept{amber}{5} \\notin \\concept{teal}{B}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dòng này đọc là 5 thuộc B, mà trong B không có số 5."
+          },
+          {
+            "optionId": "c",
+            "text": "Dòng này để tập hợp B đứng trước kí hiệu, nhưng phần tử phải đứng trước."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dien-khong-thuoc",
@@ -1706,7 +1922,11 @@
           "text": " D"
         }
       ],
-      "bank": ["∈", "∉", "="]
+      "bank": ["∈", "∉", "="],
+      "explain": {
+        "text": "Trong D chỉ có các phần tử 1, 3, 9, không có số 4. Nên 4 không thuộc D, ta viết 4 ∉ D.",
+        "tex": "\\concept{amber}{4} \\notin \\concept{teal}{D}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-x-khong-thuoc",
@@ -1739,6 +1959,10 @@
         "e0": 1,
         "e1": 3,
         "e2": 5
+      },
+      "explain": {
+        "text": "x không thuộc A khi x không phải một trong các phần tử 1, 3, 5. Số nào khác ba số đó, ví dụ 2 hay 4, đều được.",
+        "tex": "\\concept{amber}{x} \\notin \\concept{teal}{A}"
       }
     },
     {
@@ -1801,7 +2025,11 @@
           "left": "l2",
           "right": "r1"
         }
-      ]
+      ],
+      "explain": {
+        "text": "Kí hiệu ∈ đọc là thuộc. Kí hiệu ∉ có thêm nét gạch chéo nên đọc là không thuộc.",
+        "tex": "\\concept{amber}{a} \\in \\concept{teal}{B},\\quad \\concept{amber}{a} \\notin \\concept{teal}{B}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-doc-khong-thuoc",
@@ -1846,7 +2074,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Dòng m ∉ P đọc là m không thuộc P: phần tử m đứng trước kí hiệu, tập hợp P đứng sau.",
+        "tex": "\\concept{amber}{m} \\notin \\concept{teal}{P}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dòng m ∈ P không có gạch chéo, nên đọc là m thuộc P."
+          },
+          {
+            "optionId": "c",
+            "text": "Dòng này để tập hợp P đứng trước kí hiệu, nhưng phần tử phải đứng trước."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.kt-ghep-hai-phan-tu",
@@ -1914,7 +2156,11 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", ";", "5", "8", "("]
+      "bank": ["{", "}", ";", "5", "8", "("],
+      "explain": {
+        "text": "Tập hợp viết giữa hai ngoặc nhọn, hai phần tử cách nhau bằng dấu chấm phẩy. Viết số bé trước thì được K = { 5 ; 8 }.",
+        "tex": "\\concept{teal}{K} = \\{ \\concept{amber}{5} ; \\concept{amber}{8} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.ghep-ba-phan-tu",
@@ -2001,7 +2247,11 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", ";", "3", "5", "9", ","]
+      "bank": ["{", "}", ";", "3", "5", "9", ","],
+      "explain": {
+        "text": "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Viết từ bé đến lớn thì được C = { 3 ; 5 ; 9 }.",
+        "tex": "\\concept{teal}{C} = \\{ \\concept{amber}{3} ; \\concept{amber}{5} ; \\concept{amber}{9} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.xep-ghep-tap-hop",
@@ -2058,7 +2308,11 @@
             "text": "}"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Ta xếp dấu { ở đầu, rồi số bé 4, dấu chấm phẩy, số 9 và cuối cùng là dấu } . Dấu chấm phẩy đứng giữa hai phần tử.",
+        "tex": "\\concept{teal}{D} = \\{ \\concept{amber}{4} ; \\concept{amber}{9} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-chu-so-343",
@@ -2103,7 +2357,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Các chữ số của 343 là 3, 4 và 3, nhưng mỗi phần tử chỉ viết một lần. Nên tập hợp chỉ có hai phần tử là 3 và 4.",
+        "tex": "\\{ \\concept{amber}{3} ; \\concept{amber}{4} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 3 bị viết hai lần, mà mỗi phần tử chỉ viết một lần."
+          },
+          {
+            "optionId": "c",
+            "text": "343 là cả một số, còn phần tử phải là từng chữ số: 3 và 4."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dem-chu-cai-nha-trang",
@@ -2130,6 +2398,10 @@
       },
       "check": {
         "expr": "6"
+      },
+      "explain": {
+        "text": "Các chữ cái của NHA TRANG là N, H, A, T, R, A, N, G. Chữ A và chữ N xuất hiện hai lần nhưng mỗi phần tử chỉ tính một lần, nên T có 6 phần tử.",
+        "tex": "\\concept{teal}{T} = \\{ \\concept{amber}{N} ; \\concept{amber}{H} ; \\concept{amber}{A} ; \\concept{amber}{T} ; \\concept{amber}{R} ; \\concept{amber}{G} \\}"
       }
     },
     {
@@ -2224,7 +2496,10 @@
         "tháng Tám",
         "tháng Chín",
         "tháng Tư"
-      ]
+      ],
+      "explain": {
+        "text": "Quý Ba gồm ba tháng: tháng Bảy, tháng Tám, tháng Chín, viết theo thứ tự trong năm và cách nhau bằng dấu chấm phẩy. Tháng Tư không thuộc quý Ba nên không viết vào."
+      }
     },
     {
       "id": "tap-hop.ex.kt-xet-hai-chu-so",
@@ -2269,7 +2544,20 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số thuộc Q phải có đúng hai chữ số. Chỉ số 64 có hai chữ số.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Số 9 chỉ có một chữ số."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 200 có ba chữ số."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.xet-ba-chu-so",
@@ -2328,7 +2616,20 @@
         }
       ],
       "answer": ["b", "c", "d"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Xem từng số có đúng ba chữ số không: 305, 999 và 100 đều có ba chữ số nên thuộc K. Số 100 là số nhỏ nhất và 999 là số lớn nhất có ba chữ số.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Số 48 chỉ có hai chữ số."
+          },
+          {
+            "optionId": "e",
+            "text": "Số 7 chỉ có một chữ số."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dien-dau-xet-so",
@@ -2373,7 +2674,11 @@
           "text": " K"
         }
       ],
-      "bank": ["∈", "∉"]
+      "bank": ["∈", "∉"],
+      "explain": {
+        "text": "Số thuộc K phải có ba chữ số. Số 610 có ba chữ số nên thuộc K, còn 95 chỉ có hai chữ số nên không thuộc K.",
+        "tex": "\\concept{amber}{610} \\in \\concept{teal}{K},\\quad \\concept{amber}{95} \\notin \\concept{teal}{K}"
+      }
     },
     {
       "id": "tap-hop.ex.xet-hai-tap",
@@ -2448,7 +2753,11 @@
           "text": " B"
         }
       ],
-      "bank": ["∈", "∉"]
+      "bank": ["∈", "∉"],
+      "explain": {
+        "text": "Xem chữ đó có trong ngoặc nhọn của tập hợp không. Chữ p có trong cả A và B, còn chữ q chỉ có trong B.",
+        "tex": "\\concept{amber}{p} \\in \\concept{teal}{A},\\; \\concept{amber}{p} \\in \\concept{teal}{B},\\; \\concept{amber}{q} \\notin \\concept{teal}{A},\\; \\concept{amber}{q} \\in \\concept{teal}{B}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-dong-dung",
@@ -2493,7 +2802,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "R chỉ có hai phần tử là h và k, nên k ∈ R.",
+        "tex": "\\concept{amber}{k} \\in \\concept{teal}{R}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "h là một phần tử của R, nên phải viết h ∈ R, không phải ∉."
+          },
+          {
+            "optionId": "c",
+            "text": "Chữ u không có trong R, nên không viết u ∈ R được."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.kt-cham-dau-hieu",
@@ -2515,7 +2838,10 @@
       "difficulty": 1,
       "type": "tapRegion",
       "visualId": "tap-hop.visual.cham-dau-hieu",
-      "answer": ["dau-hieu"]
+      "answer": ["dau-hieu"],
+      "explain": {
+        "text": "Dấu hiệu đặc trưng là phần viết sau vạch đứng |, nói điều mà mọi phần tử đều có. Các số 0, 2, 4, 6, 8 đều là số chẵn nhỏ hơn 9."
+      }
     },
     {
       "id": "tap-hop.ex.liet-ke-tu-dau-hieu",
@@ -2560,7 +2886,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Các số tự nhiên nhỏ hơn 4 là 0, 1, 2, 3. Số 0 cũng là số tự nhiên, còn số 4 không nhỏ hơn 4.",
+        "tex": "\\concept{teal}{B} = \\{ \\concept{amber}{0} ; \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cách này thiếu số 0, mà 0 cũng là số tự nhiên nhỏ hơn 4."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 4 không nhỏ hơn 4, nên không thuộc B."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.dien-liet-ke-tu-dau",
@@ -2646,7 +2986,11 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", ";", "5", "6", "7", "8", "9"]
+      "bank": ["{", "}", ";", "5", "6", "7", "8", "9"],
+      "explain": {
+        "text": "Số lớn hơn 5 và nhỏ hơn 9 thì không lấy 5 và 9. Còn lại các số 6, 7, 8, viết từ bé đến lớn.",
+        "tex": "\\concept{teal}{D} = \\{ \\concept{amber}{6} ; \\concept{amber}{7} ; \\concept{amber}{8} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.dem-phan-tu-dau-hieu",
@@ -2673,6 +3017,10 @@
       },
       "check": {
         "expr": "7"
+      },
+      "explain": {
+        "text": "Các số tự nhiên nhỏ hơn 7 là 0, 1, 2, 3, 4, 5, 6. Đếm cả số 0 thì có 7 phần tử.",
+        "tex": "\\{ \\concept{amber}{0} ; \\concept{amber}{1} ; \\concept{amber}{2} ; \\concept{amber}{3} ; \\concept{amber}{4} ; \\concept{amber}{5} ; \\concept{amber}{6} \\}"
       }
     },
     {
@@ -2732,7 +3080,20 @@
         }
       ],
       "answer": ["a", "b", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số thuộc G phải lớn hơn 10 và nhỏ hơn 14, tức là 11, 12 hoặc 13. Hai số 10 và 14 ở hai đầu không tính.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "Số 14 không nhỏ hơn 14, nên không thuộc G."
+          },
+          {
+            "optionId": "e",
+            "text": "Số 9 không lớn hơn 10, nên không thuộc G."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.chon-tat-ca-mau-co",
@@ -2784,7 +3145,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Lá cờ Việt Nam có nền màu đỏ và ngôi sao màu vàng, nên hai màu này là phần tử của tập hợp. Màu xanh và màu tím không có trên lá cờ.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Lá cờ Việt Nam không có màu xanh."
+          },
+          {
+            "optionId": "d",
+            "text": "Lá cờ Việt Nam không có màu tím."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.chon-tat-ca-thuoc",
@@ -2847,7 +3221,21 @@
         }
       ],
       "answer": ["a", "c", "d"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số thuộc A là số có trong ngoặc nhọn của A: 2, 5 và 8. Hai số 4 và 9 không có trong A.",
+        "tex": "\\concept{teal}{A} = \\{ \\concept{amber}{2} ; \\concept{amber}{5} ; \\concept{amber}{8} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 4 không có trong A."
+          },
+          {
+            "optionId": "e",
+            "text": "Số 9 không có trong A."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.chon-tat-ca-khong-thuoc",
@@ -2910,7 +3298,21 @@
         }
       ],
       "answer": ["b", "d"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số không thuộc C là số không có trong ngoặc nhọn của C: 5 và 8. Các số 4, 6, 7 có trong C nên thuộc C.",
+        "tex": "\\concept{teal}{C} = \\{ \\concept{amber}{4} ; \\concept{amber}{6} ; \\concept{amber}{7} \\}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Số 4 có trong C, nên 4 thuộc C."
+          },
+          {
+            "optionId": "e",
+            "text": "Số 7 có trong C, nên 7 thuộc C."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.kt-hai-cach",
@@ -2955,7 +3357,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Liệt kê là viết ra từng phần tử trong ngoặc nhọn, như { 2 ; 4 ; 6 }. Hai cách còn lại có vạch đứng | và chỉ nêu dấu hiệu chung của các phần tử.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cách này nêu dấu hiệu đặc trưng, không viết ra từng phần tử."
+          },
+          {
+            "optionId": "c",
+            "text": "Cách này cũng nêu dấu hiệu đặc trưng, không viết ra từng phần tử."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.chon-dau-hieu-3456",
@@ -3011,7 +3426,25 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Các số 3, 4, 5, 6 đều lớn hơn 2 và nhỏ hơn 7. Hai số 2 và 7 ở hai đầu không thuộc P.",
+        "tex": "\\concept{teal}{P} = \\{ \\concept{amber}{3} ; \\concept{amber}{4} ; \\concept{amber}{5} ; \\concept{amber}{6} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cách này chỉ có 4 và 5, thiếu 3 và 6."
+          },
+          {
+            "optionId": "c",
+            "text": "Cách này chỉ có 3, 4, 5, thiếu số 6."
+          },
+          {
+            "optionId": "d",
+            "text": "Cách này còn lấy thêm 0, 1 và 2, mà P không có các số này."
+          }
+        ]
+      }
     },
     {
       "id": "tap-hop.ex.noi-hai-cach",
@@ -3091,7 +3524,10 @@
           "left": "l3",
           "right": "r1"
         }
-      ]
+      ],
+      "explain": {
+        "text": "Số chẵn lớn hơn 0 và nhỏ hơn 8 là 2, 4, 6. Số tự nhiên lớn hơn 0 và nhỏ hơn 4 là 1, 2, 3. Số tự nhiên lớn hơn 4 và nhỏ hơn 8 là 5, 6, 7."
+      }
     },
     {
       "id": "tap-hop.ex.dien-liet-ke-chan",
@@ -3177,7 +3613,11 @@
           "accept": ["}"]
         }
       ],
-      "bank": ["{", "}", ";", "10", "4", "6", "8"]
+      "bank": ["{", "}", ";", "10", "4", "6", "8"],
+      "explain": {
+        "text": "Số chẵn lớn hơn 3 và nhỏ hơn 10 là 4, 6, 8. Số 10 là số chẵn nhưng không nhỏ hơn 10, nên không viết vào.",
+        "tex": "\\concept{teal}{H} = \\{ \\concept{amber}{4} ; \\concept{amber}{6} ; \\concept{amber}{8} \\}"
+      }
     },
     {
       "id": "tap-hop.ex.chon-dau-hieu-so-le",
@@ -3222,7 +3662,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Các số lẻ nhỏ hơn 9 là 1, 3, 5, 7. Số 9 không nhỏ hơn 9 nên không thuộc tập hợp.",
+        "tex": "\\{ \\concept{amber}{1} ; \\concept{amber}{3} ; \\concept{amber}{5} ; \\concept{amber}{7} \\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tập hợp này có số 9, mà 9 không nhỏ hơn 9."
+          },
+          {
+            "optionId": "c",
+            "text": "Đây là các số chẵn, không phải số lẻ."
+          }
+        ]
+      }
     }
   ],
   "sticker": {
