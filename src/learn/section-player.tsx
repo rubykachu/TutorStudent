@@ -42,12 +42,9 @@ import { introPath, lessonPath, sectionPath } from "@/lib/routes";
 import { LESSON_END_ID } from "@/lib/sound-manifest";
 import { now } from "@/lib/time";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
-import { MusicReward } from "@/music/music-box";
-import { countDoneSections, newlyUnlocked, type Song } from "@/music/songs";
 import {
   type ChildScope,
   getSectionProgress,
-  listSectionProgress,
   type SectionPosition,
   type TutorDb,
 } from "@/progress/db";
@@ -70,13 +67,9 @@ type SectionPlayerProps = {
   initialPosition: SectionPosition;
 };
 
-// A finished section, how many sections of its lesson are done with it, and
-// the music box state it left: all finished sections of the child, and the
-// songs this one won.
+// A finished section and how many sections of its lesson are done with it.
 type Finished = SectionCompletion & {
   doneCount: number;
-  doneSections: number;
-  newSongs: readonly Song[];
 };
 
 // The finish fanfare of a section.
@@ -153,7 +146,6 @@ export function SectionPlayer({
     }
     setSaving(true);
     const sectionIds = lesson.sections.map((s) => s.id);
-    const doneBefore = countDoneSections(await listSectionProgress(db, scope));
     const result = await completeSection(
       db,
       scope,
@@ -165,14 +157,9 @@ export function SectionPlayer({
     const done = new Set(
       records.filter((r) => r.state === "done").map((r) => r.sectionId),
     );
-    const doneSections = countDoneSections(
-      await listSectionProgress(db, scope),
-    );
     setCompletion({
       ...result,
       doneCount: sectionIds.filter((id) => done.has(id)).length,
-      doneSections,
-      newSongs: newlyUnlocked(doneBefore, doneSections),
     });
   };
 
@@ -206,7 +193,6 @@ export function SectionPlayer({
             lesson={lesson}
             section={section}
             completion={completion}
-            childId={childId}
           />
         </ButtonSounds>
       </FeedbackSoundsProvider>
@@ -466,22 +452,13 @@ function SectionDone({
   lesson,
   section,
   completion,
-  childId,
 }: {
   lesson: Lesson;
   section: Section;
   completion: Finished;
-  childId: string;
 }) {
   const reducedMotion = usePrefersReducedMotion();
   const total = lesson.sections.length;
-  const reward = (
-    <MusicReward
-      childId={childId}
-      doneSections={completion.doneSections}
-      songs={completion.newSongs}
-    />
-  );
   if (completion.lessonDone) {
     return (
       <DoneScreen
@@ -531,7 +508,6 @@ function SectionDone({
             {`“${lesson.sticker.name}”`}
           </p>
         </div>
-        {reward}
       </DoneScreen>
     );
   }
@@ -563,7 +539,6 @@ function SectionDone({
       <SectionDoneSound />
       <p className="max-w-2xl text-balance">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
       <LessonProgressCard lesson={lesson} done={completion.doneCount} />
-      {reward}
     </DoneScreen>
   );
 }

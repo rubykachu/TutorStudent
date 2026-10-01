@@ -94,27 +94,3 @@ export function LoopingMotion({
     </motion.div>
   );
 }
-
-// A soft pulsing ring over its positioned parent that draws the eye to a
-// reward without moving the layout (opacity and scale only, never takes a
-// tap). A steady ring under reduced motion, so it still reads as highlighted.
-export function PulseRing({
-  className = "rounded-lg",
-}: {
-  className?: string;
-}) {
-  const reducedMotion = usePrefersReducedMotion();
-  const ring = `pointer-events-none absolute inset-0 border-2 border-concept-violet ${className}`;
-  if (reducedMotion) {
-    return <span aria-hidden data-pulse-ring="static" className={ring} />;
-  }
-  return (
-    <motion.span
-      aria-hidden
-      data-pulse-ring="pulsing"
-      className={ring}
-      animate={{ opacity: [0.2, 0.9, 0.2], scale: [1, 1.025, 1] }}
-      transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity }}
-    />
-  );
-}

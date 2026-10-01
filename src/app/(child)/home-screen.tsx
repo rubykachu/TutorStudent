@@ -19,8 +19,6 @@ import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
 import { Owl } from "@/mascot/owl";
-import { MusicBoxChip } from "@/music/music-box";
-import { countDoneSections } from "@/music/songs";
 import type { ProfileRecord } from "@/progress/db";
 import {
   type ChildProgress,
@@ -36,7 +34,7 @@ import {
 import type { ContentIndex } from "@/schema/content";
 import { ContentError } from "./content-error";
 import { ContinueCard } from "./continue-card";
-import { StickerStrip } from "./sticker-strip";
+import { StickerShelf } from "./sticker-shelf";
 import { useRequiredProfile } from "./use-required-profile";
 
 // What the owl says next to its expression on the home screen.
@@ -46,36 +44,15 @@ const OWL_SPEECH: Partial<Record<MascotExpression, string>> = {
 };
 const DEFAULT_SPEECH = "Hôm nay mình học môn nào?";
 
-function OwlGreeting({
-  childId,
-  progress,
-}: {
-  childId: string;
-  progress: ChildProgress;
-}) {
+function OwlGreeting({ progress }: { progress: ChildProgress }) {
   const today = vnDayKey(now());
   const expression = homeMascotExpression(progress.activityDays, today);
   return (
-    // Phones put the music box on its own full-width row under the owl and
-    // its words; tablets keep it beside the owl.
-    <section
-      className="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-3"
-      aria-label="Bạn cú"
-    >
-      <Owl
-        expression={expression}
-        size="home"
-        className="md:row-span-2 md:self-center"
-      />
-      <p className="font-semibold md:self-end">
+    <section className="flex items-center gap-3" aria-label="Bạn cú">
+      <Owl expression={expression} size="home" />
+      <p className="font-semibold">
         {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
       </p>
-      <div className="col-span-2 md:col-span-1 md:col-start-2 md:self-start md:justify-self-start">
-        <MusicBoxChip
-          childId={childId}
-          doneSections={countDoneSections(progress.sections)}
-        />
-      </div>
     </section>
   );
 }
@@ -100,10 +77,15 @@ function HomeLessons({
   const target = continueTarget(index, profile.series, progress);
   const targetSubject =
     target && index.subjects.find((s) => s.id === target.lesson.subject);
-  const earned = new Set(progress.stickers.map((s) => s.lessonId));
   const sounds = useFeedbackSoundsContext();
   return (
     <>
+      <StickerShelf
+        lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
+        stickers={progress.stickers}
+        sections={progress.sections}
+        sounds={sounds}
+      />
       {target && targetSubject && (
         <ContinueCard
           target={target}
@@ -127,12 +109,6 @@ function HomeLessons({
           );
         })}
       </ul>
-      <StickerStrip
-        lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
-        earnedLessonIds={earned}
-        sections={progress.sections}
-        sounds={sounds}
-      />
     </>
   );
 }
@@ -147,7 +123,7 @@ function HomeBody({
   const content = useContentIndex();
   return (
     <>
-      <OwlGreeting childId={profile.id} progress={progress} />
+      <OwlGreeting progress={progress} />
       {content.status === "error" && <ContentError />}
       {content.status === "ready" && (
         <HomeLessons

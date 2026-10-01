@@ -9,7 +9,6 @@ import {
   TAP_ID,
   WRONG_ID,
 } from "@/lib/sound-manifest";
-import { SONGS } from "@/music/songs";
 import { GEMINI_TTS_MODEL } from "../../video/tts/gemini";
 
 // Everything `pnpm sounds:build` makes its clips from, in one place. A clip's
@@ -141,15 +140,9 @@ export type FileSpec = {
   trimSilence: boolean;
   // A fade-out that ends the clip without a click; 0 for none.
   fadeOutS: number;
-  // Played only when the child asks for it (a song), so never preloaded.
-  music: boolean;
 };
 
 export const ASSETS_SOUNDS_DIR = path.join(process.cwd(), "assets", "sounds");
-
-// Songs are quieter than the owl's voice, so they never drown it out or tire
-// the ear; iOS ignores a media element's volume, so the loudness is set here.
-const MUSIC_LUFS = MASTERING.voiceLufs - 6;
 
 export const FILES: Record<string, FileSpec> = {
   // A section is finished: a short, bright fanfare, as loud as the correct
@@ -159,7 +152,6 @@ export const FILES: Record<string, FileSpec> = {
     lufs: MASTERING.voiceLufs,
     trimSilence: true,
     fadeOutS: 0,
-    music: false,
   },
   // A wrong answer after the first: a soft buzz, quieter than the voice so
   // it never scolds.
@@ -168,7 +160,6 @@ export const FILES: Record<string, FileSpec> = {
     lufs: MASTERING.voiceLufs - 4,
     trimSilence: true,
     fadeOutS: 0,
-    music: false,
   },
   // Leaving a section or review.
   [LEAVE_ID]: {
@@ -176,20 +167,7 @@ export const FILES: Record<string, FileSpec> = {
     lufs: MASTERING.voiceLufs - 2,
     trimSilence: true,
     fadeOutS: 0,
-    music: false,
   },
-  ...Object.fromEntries(
-    SONGS.map((song) => [
-      song.id,
-      {
-        source: song.source,
-        lufs: MUSIC_LUFS,
-        trimSilence: true,
-        fadeOutS: 0.4,
-        music: true,
-      } satisfies FileSpec,
-    ]),
-  ),
 };
 
 // An ffmpeg `aevalsrc` expression for a tone's samples.

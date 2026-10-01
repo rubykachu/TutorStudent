@@ -10,7 +10,6 @@ import {
   soundUrl,
 } from "@/lib/sound-manifest";
 import { STICKER_EARNED_LINE } from "@/mascot/lines";
-import { SONGS } from "@/music/songs";
 import { type ChildScope, TutorDb } from "@/progress/db";
 import { setSoundEnabled } from "@/progress/hooks";
 import type { Lesson } from "@/schema/content";
@@ -20,8 +19,6 @@ vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
 vi.mock("@/lib/sound", () => ({
   playSequence: vi.fn(async () => undefined),
   playSound: vi.fn(async () => undefined),
-  playMusic: vi.fn(async () => undefined),
-  stopMusic: vi.fn(),
   preloadSounds: vi.fn(),
   installAudioUnlock: vi.fn(() => () => undefined),
 }));
@@ -70,39 +67,11 @@ const played = () =>
   vi.mocked(sound.playSequence).mock.calls.map((call) => call[0]);
 
 describe("finishing a section", () => {
-  it("plays the finish fanfare alone once, and awards the first song", async () => {
+  it("plays the finish fanfare alone once", async () => {
     renderAtRecap(twoSections());
     await finishSection();
     expect(await screen.findByText("Xong phần này!")).toBeInTheDocument();
     await waitFor(() => expect(played()).toEqual([[soundUrl(LESSON_END_ID)]]));
-    const reward = document.querySelector("[data-music-reward]");
-    expect(reward?.textContent).toContain(SONGS[0]?.title);
-    // Nothing plays until the child opens the music box and taps a song.
-    expect(sound.playMusic).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole("button", { name: /Mở hộp nhạc/ }));
-    const song = await screen.findByRole("button", { name: SONGS[0]?.title });
-    await waitFor(() => expect(song).toBeEnabled());
-    fireEvent.click(song);
-    expect(sound.playMusic).toHaveBeenCalledWith(soundUrl(SONGS[0]?.id ?? ""));
-  });
-
-  it("offers no song when this section opens none", async () => {
-    // Four sections are already done (two songs open), so the fifth opens
-    // nothing new.
-    for (const id of ["a", "b", "c", "d"]) {
-      await db.sectionProgress.put({
-        ...scope,
-        lessonId: "other",
-        sectionId: `other.${id}`,
-        state: "done",
-        position: { phase: "blocks", index: 0 },
-        updatedAt: "2026-01-01T00:00:00.000Z",
-      });
-    }
-    renderAtRecap(twoSections());
-    await finishSection();
-    expect(await screen.findByText("Xong phần này!")).toBeInTheDocument();
-    expect(document.querySelector("[data-music-reward]")).toBeNull();
   });
 
   it("plays the fanfare then the owl's congratulation when the sticker is won, never both at once", async () => {
@@ -114,7 +83,6 @@ describe("finishing a section", () => {
         [soundUrl(LESSON_END_ID), soundUrl(STICKER_EARNED_LINE.id)],
       ]),
     );
-    expect(document.querySelector("[data-music-reward]")).not.toBeNull();
   });
 
   it("is silent with sound off", async () => {

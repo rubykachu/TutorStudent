@@ -58,8 +58,11 @@ test("a first visit creates a profile that survives a reload", async ({
       ? "Sắp có bài"
       : `${literatureLessons.length} bài · Chưa học`,
   );
-  // Every lesson's sticker waits, greyed and not coloured at all yet, in the
-  // strip.
+  // Nothing earned yet: the shelf at the top says so and shows the next
+  // sticker; the whole collection behind "Xem tất cả" has every lesson's
+  // sticker, greyed and not coloured at all yet.
+  await expect(page.locator("[data-shelf-empty]")).toBeVisible();
+  await page.getByRole("button", { name: /Xem tất cả/ }).tap();
   await expect(page.locator("[data-sticker-lesson]")).toHaveCount(
     lessons.length,
   );

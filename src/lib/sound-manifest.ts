@@ -23,10 +23,8 @@ export type SoundEntry = {
   // (case and punctuation aside, tone marks included), else how close it
   // came (0–1).
   match?: number;
-  // Imported clips: the file in assets/sounds/ it was made from, and whether
-  // it is music (played only on request, so never preloaded).
+  // Imported clips: the file in assets/sounds/ it was made from.
   source?: string;
-  music?: true;
   // Measured on the delivered file: integrated loudness (LUFS) and true
   // peak (dBFS).
   lufs: number;
@@ -60,10 +58,7 @@ export function soundUrl(id: string): string | undefined {
   return entry && `${SOUNDS_DIR_URL}/${entry.file}`;
 }
 
-// Every clip played in answer to what the child does, for preloading. Music
-// is left out: it is fetched when the child asks for a song.
+// Every clip, for preloading.
 export function allSoundUrls(): string[] {
-  return [...byId.values()]
-    .filter((entry) => !entry.music)
-    .map((entry) => `${SOUNDS_DIR_URL}/${entry.file}`);
+  return [...byId.values()].map((entry) => `${SOUNDS_DIR_URL}/${entry.file}`);
 }

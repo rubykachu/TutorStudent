@@ -28,7 +28,7 @@ describe("Owl", () => {
     const svg = owl(container);
     expect(svg).toHaveAttribute("data-mascot", expression);
     expect(svg).toHaveAttribute("aria-hidden", "true");
-    expect(svg).toHaveClass("size-24");
+    expect(svg).toHaveClass("size-20");
     const eyes = svg.querySelector("[data-mascot-eyes]");
     expect(eyes).toHaveAttribute(
       "data-mascot-eyes",

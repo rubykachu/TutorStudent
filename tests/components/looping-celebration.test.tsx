@@ -4,7 +4,6 @@ import {
   beatDelayMs,
   LoopingConfetti,
   LoopingMotion,
-  PulseRing,
 } from "@/components/looping-celebration";
 import { StickerEarnedCelebration } from "@/learn/sticker-celebration";
 import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
@@ -107,35 +106,15 @@ describe("StickerEarnedCelebration sounds", () => {
   });
 });
 
-describe("LoopingMotion and PulseRing", () => {
-  it("loop while motion is allowed", () => {
-    const { container } = render(
-      <>
-        <LoopingMotion>x</LoopingMotion>
-        <div className="relative">
-          <PulseRing />
-        </div>
-      </>,
-    );
+describe("LoopingMotion", () => {
+  it("loops while motion is allowed", () => {
+    const { container } = render(<LoopingMotion>x</LoopingMotion>);
     expect(container.querySelector("[data-looping='bounce']")).not.toBeNull();
-    expect(container.querySelector("[data-pulse-ring]")).toHaveAttribute(
-      "data-pulse-ring",
-      "pulsing",
-    );
   });
 
-  it("hold still under reduced motion", () => {
+  it("holds still under reduced motion", () => {
     preferReducedMotion();
-    const { container } = render(
-      <>
-        <LoopingMotion>x</LoopingMotion>
-        <PulseRing />
-      </>,
-    );
+    const { container } = render(<LoopingMotion>x</LoopingMotion>);
     expect(container.querySelector("[data-looping]")).toBeNull();
-    expect(container.querySelector("[data-pulse-ring]")).toHaveAttribute(
-      "data-pulse-ring",
-      "static",
-    );
   });
 });

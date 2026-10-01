@@ -14,7 +14,6 @@ import {
   WRONG_ID,
 } from "@/lib/sound-manifest";
 import { VOICE_LINES } from "@/mascot/lines";
-import { SONGS } from "@/music/songs";
 import manifest from "../../public/sounds/manifest.json";
 import {
   FILES,
@@ -66,7 +65,7 @@ describe("sound manifest", () => {
 
   it("has every imported clip made from its current source file and settings", () => {
     expect(Object.keys(FILES).sort()).toEqual(
-      [LESSON_END_ID, WRONG_ID, LEAVE_ID, ...SONGS.map((s) => s.id)].sort(),
+      [LESSON_END_ID, WRONG_ID, LEAVE_ID].sort(),
     );
     for (const [id, spec] of Object.entries(FILES)) {
       const entry = entries.get(id);
@@ -74,18 +73,13 @@ describe("sound manifest", () => {
       expect(entry?.source, id).toBe(spec.source);
       expect(entry?.sha256, id).toBe(sha256(fileSource(spec)));
       expect(onDisk(entry?.file ?? ""), id).toBe(true);
-      expect(Boolean(entry?.music), id).toBe(spec.music);
     }
   });
 
-  it("makes every song quieter than a voice line and preloads none", () => {
-    for (const song of SONGS) {
-      const entry = entries.get(song.id);
-      expect(entry?.music, song.id).toBe(true);
-      expect(entry?.lufs, song.id).toBeLessThan(MASTERING.voiceLufs - 3);
-      expect(allSoundUrls()).not.toContain(soundUrl(song.id));
+  it("preloads every clip", () => {
+    for (const entry of entries.values()) {
+      expect(allSoundUrls()).toContain(soundUrl(entry.id));
     }
-    expect(allSoundUrls()).toContain(soundUrl(LESSON_END_ID));
   });
 
   it("keeps every clip at one loudness and clear of clipping", () => {

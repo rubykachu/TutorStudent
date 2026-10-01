@@ -32,8 +32,7 @@ import { master, renderFile, renderTone } from "./lib/tone-render";
 // Makes the app's own clips into public/sounds/ and records them in
 // public/sounds/manifest.json: the tones (taps and the correct-answer
 // jingle), synthesised by ffmpeg, the clips imported from assets/sounds/
-// (finish, wrong answer, leaving, the music box songs) and every owl voice
-// line in
+// (finish, wrong answer, leaving) and every owl voice line in
 // src/mascot/lines.ts, spoken by VOICE_ENGINE and checked with Whisper. All
 // of them are brought to one loudness and encoded in one format (MASTERING
 // in scripts/lib/sound-spec.ts). Only clips whose source changed are made
@@ -262,7 +261,6 @@ async function main() {
       kind: "file",
       sha256: hash,
       source: spec.source,
-      ...(spec.music ? { music: true as const } : {}),
       ...loudness,
     });
   }

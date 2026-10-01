@@ -71,10 +71,10 @@ test("a child learns a section, resuming where they left off", async ({
     page.getByRole("region", { name: "Sticker của bài" }).getByRole("img"),
   ).toHaveAttribute("data-sticker-fill", "1/2");
 
-  // The home sticker strip shows the same progress.
+  // The home sticker shelf shows the same progress on the next sticker.
   await page.goto("/");
   await expect(
-    page.locator('[data-sticker-lesson="fixture"] [data-sticker-fill]'),
+    page.locator('[data-shelf-sticker="fixture"] [data-sticker-fill]'),
   ).toHaveAttribute("data-sticker-fill", "1/2");
 });
 
