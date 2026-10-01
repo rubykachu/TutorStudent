@@ -616,15 +616,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Bút bán theo hộp, hộp nào cũng có số bút như nhau, từ 2 bút trở lên."
-            },
-            {
-              "type": "note",
-              "text": "An mua trọn một số hộp được 22 bút, Bình mua trọn một số hộp được 33 bút. Vậy số bút trong một hộp là ước chung của 22 và 33."
+              "text": "Bút bán theo hộp, hộp nào cũng có số bút như nhau, từ 2 bút trở lên. An mua trọn một số hộp được 22 bút, Bình mua trọn một số hộp được 33 bút."
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-22-33"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-22-33",
+              "caption": "Vậy số bút trong một hộp là ước chung của 22 và 33."
             }
           ]
         },
