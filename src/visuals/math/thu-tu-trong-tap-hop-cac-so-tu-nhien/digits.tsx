@@ -18,17 +18,18 @@ const WIDTH = 340;
 const GROUP_GAP = 10;
 const MAX_PITCH = 42;
 const BOX_INSET = 2;
-const HEAD_HEIGHT = 26;
+const HEAD_HEIGHT = 34;
 const BOX_HEIGHT = 46;
 const ROW_HEIGHT = HEAD_HEIGHT + BOX_HEIGHT;
 const ROW_GAP = 26;
 const SECOND_ROW = ROW_HEIGHT + ROW_GAP;
 const HEIGHT = SECOND_ROW + ROW_HEIGHT + 4;
 const BAND_PAD = 4;
-const FONT = 16;
+const FONT = 19;
+const TITLE_FONT = 24;
 const DIGIT_FONT = 28;
 const MARK_RADIUS = 8;
-const TITLE_X = 22;
+const TITLE_X = 24;
 const DONE_OPACITY = 0.35;
 const NARROW_SPACE = " ";
 
@@ -123,7 +124,7 @@ function Row({
         x={TITLE_X}
         y={top + HEAD_HEIGHT / 2 - 2}
         dominantBaseline="central"
-        fontSize={FONT + 4}
+        fontSize={TITLE_FONT}
         stroke="none"
         className={`font-heading font-bold tabular-nums ${titleColor ? CONCEPT_CLASSES[titleColor].fill : "fill-foreground"}`}
       >
@@ -247,16 +248,19 @@ function Picture({ spec, step }: { spec: DigitsSpec; step: number }) {
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="h-auto w-full max-w-sm"
       >
-        <SvgFade opacity={scanning ? 1 : 0}>
-          <rect
-            {...decorative}
-            x={bandX}
-            y={HEAD_HEIGHT - BAND_PAD}
-            width={bandWidth}
-            height={SECOND_ROW + ROW_HEIGHT - HEAD_HEIGHT + 2 * BAND_PAD}
-            rx={10}
-            className="fill-highlight"
-          />
+        <SvgFade opacity={scanning ? 1 : 0} backdrop>
+          {[0, SECOND_ROW].map((rowTop) => (
+            <rect
+              {...decorative}
+              key={rowTop}
+              x={bandX}
+              y={rowTop + HEAD_HEIGHT - BAND_PAD}
+              width={bandWidth}
+              height={BOX_HEIGHT + 2 * BAND_PAD}
+              rx={10}
+              className="fill-highlight"
+            />
+          ))}
         </SvgFade>
         <Row
           digits={a}

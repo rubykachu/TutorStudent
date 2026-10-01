@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { Line } from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/line";
 import {
   datDiem,
+  dotOffsets,
   labelClearance,
   lineTapRegions,
   packRows,
@@ -12,8 +13,10 @@ import {
   tagWidth,
   tickValues,
   tickX,
+  tryDotRadius,
   VIEW_WIDTH,
   validators,
+  visibleLabels,
 } from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/line-logic";
 import { LineTap } from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/line-tap";
 import { LineTry } from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/line-try";
@@ -84,8 +87,8 @@ describe("layout", () => {
     expect(gaps[0]).toBeCloseTo(gaps[2] as number, 6);
   });
 
-  it("keeps the numbers of every kind of line apart in a 320 wide drawing", () => {
-    expect(VIEW_WIDTH).toBeLessThanOrEqual(360);
+  it("keeps the numbers of every kind of line apart in a drawing that fits a 296px frame at 16px", () => {
+    expect(VIEW_WIDTH).toBeLessThanOrEqual(296);
     for (const spec of [ten, fifty, twelve]) {
       const points = spec.layers.flatMap((layer) =>
         layer.type === "point" ? [layer.at] : [],
@@ -126,6 +129,45 @@ describe("layout", () => {
       });
       expect(plan.height).toBeGreaterThan(plan.axisY);
     }
+  });
+});
+
+describe("crowded lines", () => {
+  it("drops a plain number that would touch the number of a point next to it", () => {
+    const spec = {
+      from: 0,
+      to: 80,
+      step: 5,
+      labelAt: [0, 10, 20, 30, 40, 50, 60, 70, 80],
+    };
+    const shown = visibleLabels(spec, [45]);
+    expect(shown).toContain(45);
+    expect(shown).not.toContain(40);
+    expect(shown).not.toContain(50);
+    expect(shown).toContain(30);
+    expect(visibleLabels(spec, [])).toEqual(spec.labelAt);
+  });
+
+  it("keeps every number when nothing is next to a point", () => {
+    expect(visibleLabels({ from: 0, to: 10 }, [5])).toHaveLength(11);
+  });
+
+  it("sets points that share a tick side by side, clear of each other", () => {
+    const radius = tryDotRadius({ from: 0, to: 12 });
+    const [a = 0, b = 0] = dotOffsets([0, 0], radius);
+    expect(b - a).toBeGreaterThanOrEqual(radius * 2);
+    expect(dotOffsets([3, 5], radius)).toEqual([0, 0]);
+    const three = dotOffsets([2, 2, 2], radius);
+    expect(three[1]).toBe(0);
+    expect((three[2] ?? 0) - (three[1] ?? 0)).toBeGreaterThanOrEqual(
+      radius * 2,
+    );
+  });
+
+  it("keeps dots of neighbouring ticks apart on a 17 tick line", () => {
+    const spec = { from: 0, to: 80, step: 5 };
+    const radius = tryDotRadius(spec);
+    expect(radius * 2).toBeLessThanOrEqual(tickX(spec, 5) - tickX(spec, 0));
   });
 });
 

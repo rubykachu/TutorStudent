@@ -15,14 +15,16 @@ import type { BarsSpec } from "./types";
 // dashed stub with a "?" (never as a bar, so no height gives the value away).
 
 const WIDTH = 330;
-const TOP = 40;
+const TOP = 44;
 const PLOT_HEIGHT = 180;
 const BASE = TOP + PLOT_HEIGHT;
 // Space kept between two bars: every region stays this far from the next.
 const BAR_GAP = 12;
-const FONT = 16;
-const LABEL_LINE = 18;
-const CHAR_WIDTH = 8.6;
+// Text is shown at about 0.9 of its size on the narrowest card (296px for
+// the 330-wide drawing), so 19 keeps it above 16px.
+const FONT = 19;
+const LABEL_LINE = 22;
+const CHAR_WIDTH = 10.2;
 const MARK_RADIUS = 8;
 const STUB_HEIGHT = 40;
 const PENDING_OPACITY = 0.5;
@@ -34,11 +36,16 @@ const PLAIN_BAR = "fill-muted-foreground";
 
 // Opacity fade of a group inside an SVG (`Reveal` is HTML, so it cannot sit in
 // a drawing); only opacity moves, and reduced motion jumps to the end.
+// A `backdrop` fade holds only shapes painted under or around the content
+// (bars, highlights), so the layout check does not compare it with its
+// siblings.
 export function SvgFade({
   opacity,
+  backdrop = false,
   children,
 }: {
   opacity: number;
+  backdrop?: boolean;
   children: ReactNode;
 }) {
   const transition = useVisualTransition();
@@ -48,6 +55,7 @@ export function SvgFade({
       animate={{ opacity }}
       transition={transition}
       aria-hidden={opacity === 0 || undefined}
+      {...(backdrop ? decorative : {})}
     >
       {children}
     </motion.g>
@@ -78,7 +86,7 @@ function Chart({ spec, shown }: ChartProps) {
     { length: Math.floor(max / gridEvery) + 1 },
     (_, i) => i * gridEvery,
   );
-  const axisWidth = 12 + String(max).length * 9;
+  const axisWidth = 12 + String(max).length * 11;
   const slot = (WIDTH - axisWidth) / count;
   const barWidth = slot - BAR_GAP;
   const lines = items.map((item) => labelLines(item.label, slot));
@@ -137,7 +145,7 @@ function Chart({ spec, shown }: ChartProps) {
         {unit ? (
           <text
             x={0}
-            y={10}
+            y={11}
             dominantBaseline="central"
             fontSize={FONT}
             stroke="none"
@@ -157,7 +165,7 @@ function Chart({ spec, shown }: ChartProps) {
           const barClass = mark ? CONCEPT_CLASSES[mark.color].fill : PLAIN_BAR;
           const top = yOf(item.value);
           const bar = (
-            <SvgFade opacity={visible ? 1 : 0}>
+            <SvgFade opacity={visible ? 1 : 0} backdrop>
               <rect
                 {...decorative}
                 x={x}
@@ -169,6 +177,22 @@ function Chart({ spec, shown }: ChartProps) {
               />
             </SvgFade>
           );
+          const value =
+            withheld || !showsValue(values, i) ? null : (
+              <SvgFade opacity={visible ? 1 : 0}>
+                <text
+                  x={centre}
+                  y={top - 12}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={FONT}
+                  stroke="none"
+                  className={TEXT}
+                >
+                  {item.value}
+                </text>
+              </SvgFade>
+            );
           return (
             <g key={item.label}>
               {withheld ? null : tap ? (
@@ -183,6 +207,7 @@ function Chart({ spec, shown }: ChartProps) {
                     fill="transparent"
                   />
                   {bar}
+                  {value}
                 </Region>
               ) : (
                 bar
@@ -211,21 +236,7 @@ function Chart({ spec, shown }: ChartProps) {
                   ?
                 </text>
               </SvgFade>
-              {withheld || !showsValue(values, i) ? null : (
-                <SvgFade opacity={visible ? 1 : 0}>
-                  <text
-                    x={centre}
-                    y={top - 10}
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    fontSize={FONT}
-                    stroke="none"
-                    className={TEXT}
-                  >
-                    {item.value}
-                  </text>
-                </SvgFade>
-              )}
+              {tap ? null : value}
               {lines[i]?.map((word, row) => (
                 <text
                   key={word}

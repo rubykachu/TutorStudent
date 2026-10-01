@@ -16,7 +16,6 @@ import {
   LABEL_DROP,
   type LineGeometry,
   type LinePlan,
-  labelledTicks,
   nameY,
   planLine,
   TEXT_SIZE,
@@ -25,6 +24,7 @@ import {
   tickValues,
   tickX,
   VIEW_WIDTH,
+  visibleLabels,
 } from "./line-logic";
 import type { LineLayer, LineSpec } from "./types";
 
@@ -36,8 +36,8 @@ import type { LineLayer, LineSpec } from "./types";
 const TEXT = "font-heading font-bold";
 const PLAIN_NUMBER = `${TEXT} fill-muted-foreground`;
 const TICK_HALF = 7;
-const BAND_HALF = 6;
-const BAND_OPACITY = 0.35;
+const BAND_HALF = 9;
+const BAND_OPACITY = 0.55;
 const ARROW_HEAD = 7;
 
 // The text that stands under a tick instead of its plain number.
@@ -70,10 +70,7 @@ export function LineAxis({
   children?: ReactNode;
 }) {
   const { axisY } = plan;
-  const labelled = new Set([
-    ...labelledTicks(geometry),
-    ...(marks?.keys() ?? []),
-  ]);
+  const labelled = new Set(visibleLabels(geometry, [...(marks?.keys() ?? [])]));
   return (
     <>
       {behind}

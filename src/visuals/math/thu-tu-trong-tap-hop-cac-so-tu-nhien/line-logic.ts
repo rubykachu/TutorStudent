@@ -32,17 +32,18 @@ export function labelledTicks(spec: LineGeometry): number[] {
 }
 
 // ---------------------------------------------------------------------------
-// Layout, in the units of the drawing's viewBox. The width is narrow so the
-// text keeps at least its drawn size on a 390px phone.
+// Layout, in the units of the drawing's viewBox. The drawing is 288 wide so
+// that, in the narrowest frame a picture gets on a 390px phone (about 296px,
+// inside a tip or recap card), the 16-unit text is still drawn at 16px or more.
 
-export const VIEW_WIDTH = 320;
+export const VIEW_WIDTH = 288;
 export const TEXT_SIZE = 16;
 // Widest a bold digit or letter is at `TEXT_SIZE`, rounded up.
 export const CHAR_WIDTH = 9;
-export const X_FIRST = 26;
-export const X_LAST = 286;
-export const ARROW_TIP = 312;
-export const AXIS_START = 8;
+export const X_FIRST = 22;
+export const X_LAST = 256;
+export const ARROW_TIP = 280;
+export const AXIS_START = 6;
 // Marker radius of a plain point, and of a point the child taps.
 export const DOT_RADIUS = 9;
 export const TRY_DOT_RADIUS = 11;
@@ -50,6 +51,8 @@ export const TAP_DOT_RADIUS = 14;
 // Offsets from the axis.
 export const LABEL_DROP = 26;
 const TAG_SHAPE = 16;
+const LABEL_GAP = 2;
+const MIN_DOT_RADIUS = 7;
 const MARGIN = 4;
 const ROW_GAP = 6;
 const NAME_ROW = 22;
@@ -88,6 +91,51 @@ export function labelClearance(
     worst = Math.min(worst, gap - wide);
   }
   return worst;
+}
+
+// Numbers to write under the ticks: those of `labelAt` and every tick in
+// `marked` (a point's own number, always kept). A plain number that would
+// touch the number of a marked tick next to it is left out.
+export function visibleLabels(
+  spec: LineGeometry,
+  marked: readonly number[],
+): number[] {
+  const width = (value: number) => String(value).length * CHAR_WIDTH;
+  const touches = (tick: number) =>
+    marked.some(
+      (other) =>
+        other !== tick &&
+        Math.abs(tickX(spec, tick) - tickX(spec, other)) <
+          (width(tick) + width(other)) / 2 + LABEL_GAP,
+    );
+  const markedSet = new Set(marked);
+  return tickValues(spec).filter((tick) =>
+    markedSet.has(tick)
+      ? true
+      : labelledTicks(spec).includes(tick) && !touches(tick),
+  );
+}
+
+// Radius of the dot of a point the child moves: as big as a tick's spacing
+// allows, so dots on neighbouring ticks never touch.
+export function tryDotRadius(spec: LineGeometry): number {
+  const count = tickValues(spec).length;
+  if (count < 2) return TRY_DOT_RADIUS;
+  const room = (X_LAST - X_FIRST) / (count - 1) / 2 - 1;
+  return Math.min(TRY_DOT_RADIUS, Math.max(room, MIN_DOT_RADIUS));
+}
+
+// Sideways shift of each point so that points sharing a tick sit side by
+// side instead of on top of each other (0 for a point alone on its tick).
+export function dotOffsets(
+  values: readonly number[],
+  radius: number,
+): number[] {
+  return values.map((value, i) => {
+    const group = values.filter((other) => other === value).length;
+    const rank = values.slice(0, i).filter((other) => other === value).length;
+    return (rank - (group - 1) / 2) * (radius * 2 + 2);
+  });
 }
 
 // First-fit packing of horizontal intervals into rows: the row of each

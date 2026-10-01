@@ -15,11 +15,12 @@ import { stateStep, stateStepper } from "@/visuals/shared/markers";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import { LineAxis, lineViewBox, NamedDot, numberMark } from "./line";
 import {
+  dotOffsets,
   nameY,
   planLine,
-  TRY_DOT_RADIUS,
   tickValues,
   tickX,
+  tryDotRadius,
 } from "./line-logic";
 import type { LineTrySpec } from "./types";
 
@@ -97,13 +98,14 @@ export function LineTry({
     },
   });
 
+  const radius = tryDotRadius(spec);
   const plan = planLine(
     { ...spec, layers: [] },
     {
-      dotRadius: TRY_DOT_RADIUS,
-      nameRows: Math.max(names.length - 1, 0),
+      dotRadius: radius,
     },
   );
+  const offsets = dotOffsets(values, radius);
   const marks = new Map(
     values.map((value) => [value, numberMark(POINT_COLOR, String(value))]),
   );
@@ -122,13 +124,11 @@ export function LineTry({
         <LineAxis geometry={spec} plan={plan} marks={marks}>
           {names.map((name, i) => {
             const value = values[i] ?? first;
-            // Points sharing a tick stack their names.
-            const rank = values.slice(0, i).filter((v) => v === value).length;
             return (
               <motion.g
                 key={name}
                 initial={false}
-                animate={{ x: tickX(spec, value) }}
+                animate={{ x: tickX(spec, value) + (offsets[i] ?? 0) }}
                 transition={transition}
               >
                 <NamedDot
@@ -136,8 +136,8 @@ export function LineTry({
                   y={plan.axisY}
                   color={POINT_COLOR}
                   name={name}
-                  radius={TRY_DOT_RADIUS}
-                  nameAt={nameY(plan, TRY_DOT_RADIUS, rank)}
+                  radius={radius}
+                  nameAt={nameY(plan, radius, 0)}
                 />
               </motion.g>
             );

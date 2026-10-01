@@ -285,20 +285,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         type: "arrow",
         from: 0,
-        to: 1,
-        tag: "1",
-      },
-      {
-        type: "arrow",
-        from: 1,
-        to: 2,
-        tag: "2",
-      },
-      {
-        type: "arrow",
-        from: 2,
         to: 3,
-        tag: "3",
+        tag: "3 bước",
       },
       {
         type: "point",
