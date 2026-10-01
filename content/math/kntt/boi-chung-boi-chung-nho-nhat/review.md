@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi của bài ngoài `[review-hash]` (bình thường lúc này), 0 cảnh báo của bài sau `content:lock`
 - `lesson:walk`: xem dòng Kết luận
 - Kết luận: 0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý (giữ nguyên). Không đổi `say` hay dựng lại câu nào.
-- Bản đã review: `7e84565d6a82bb6ab36ca31c0253e028f75070358243ad35cf0e485eb25afd20` (`pnpm content:diff` so với bản này)
+- Bản đã review: `bb7e5f1f8f45b5aecb0cfa46fa5fb2d5c9072b8600b23b7c612b65021fd0c00a` (`pnpm content:diff` so với bản này)
 - Bản đã review: (điều phối viên ghi bằng `content:hash`)
 
 ## Vòng 4: lời đọc và video

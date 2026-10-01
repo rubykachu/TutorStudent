@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi của bài ngoài `[review-hash]` (bình thường lúc này) và cảnh báo id chưa khoá (khoá sau khi duyệt)
 - `lesson:walk`: 0 FAIL, 0 cảnh báo (ipad, phone, ipad-landscape); đã xem sheet các khối video của phần 1 và 11 (phone): nút phát, poster, phụ đề "Chào bạn!..." hiện đúng, poster `so-mu` hiện a = 3, b = 4
 - Kết luận: 0 Nghiêm trọng, 2 Nên sửa (đã sửa), 1 Góp ý (giữ nguyên); đã `--approve` và `content:lock`
-- Bản đã review: `4d208b10ab9923b344daffc2287dba24d4a02c4bb740818e17a57b2d6ff17f7a` (`pnpm content:diff` so với bản này)
+- Bản đã review: `d1342dcfd3bcac315a35e0da82e30ec8b645c94f960d5c7a05b1442cd424731e` (`pnpm content:diff` so với bản này)
 
 Đã soát và đạt:
 - Câu quy tắc của ba video (`rule`) khớp từng chữ `note` của section (`pnpm video:check` qua, `data-rule-text` 0 phần tử vì video không đưa chữ quy tắc lên màn). Màu: xám slate cho sự kiện chia hết, hồng BCNN, hổ phách ƯCLN, xanh trời thừa số nguyên tố, tím số mũ; khớp màu khái niệm của bài.
