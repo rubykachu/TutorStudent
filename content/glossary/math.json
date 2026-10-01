@@ -430,6 +430,14 @@
       "term": "số đối",
       "forbidden": [],
       "color": "sky"
+    },
+    {
+      "term": "phần dấu",
+      "forbidden": []
+    },
+    {
+      "term": "phần số tự nhiên",
+      "forbidden": []
     }
   ],
   "names": [
