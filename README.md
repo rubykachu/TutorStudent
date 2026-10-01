@@ -76,7 +76,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm visual:shot <bài>` | Chụp từng hình của bài; ghi sheet `sheet-<thiết bị>-NN.png` |
 | `pnpm shots:sheet <thư mục\|tệp\|mẫu>… [--cols N] [--out <tiền tố>] [--width PX] [--height PX]` | Ghép ảnh chụp thành contact sheet, mỗi ô in tên tệp, tự chia nhiều sheet; đọc một sheet thay cho nhiều ảnh (cần `ffmpeg`) |
 | `pnpm video:build <bài> <video>` / `pnpm video:check` | Dựng video / kiểm video đã dựng |
-| `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài |
+| `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài, bằng giọng Gemini của bài (nam/nữ theo `media.json`); cần key ở `~/.config/gemini/api_key*`; hết hạn mức thì đọc lại cả bài bằng giọng VieNeu |
 | `pnpm sounds:build` | Âm thanh dùng chung của app (chỉ khi đổi câu thoại) |
 | `pnpm clean [--deep]` | Xoá ảnh chụp, log, coverage, `renders/` và các bản đọc thử; `--deep` xoá thêm `.next/` khi không có dev server |
 

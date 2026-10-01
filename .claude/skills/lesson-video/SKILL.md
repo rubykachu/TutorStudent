@@ -20,6 +20,8 @@ Lệnh tổng hợp giọng từng câu, cho mlx-whisper nghe lại và so với
 
 Giọng khai **một lần cho cả bài** trong `video/projects/<id bài>/media.json` (`{ "voice": "<id giọng>" }`); `pnpm narration:build` (lời đọc giới thiệu) và `pnpm video:build` (mọi video) đều đọc từ đó, `script.json` không có trường giọng. Một bài không xen giọng nam và nữ. Danh sách giọng hợp lệ (id, preset của engine, giới tính) chỉ ở `video/voices.ts`: `hai-dang` (nam, "Hải Đăng"), `my-duyen` (nữ, "Mỹ Duyên", giọng miền Nam). `pnpm video:check` báo lỗi khi bài thiếu `media.json`, khai giọng lạ, hay video đã dựng được đọc bằng giọng khác giọng của bài.
 
+Lời đọc giới thiệu (`pnpm narration:build <id bài>`) đọc bằng Gemini TTS, không phải VieNeu; video vẫn VieNeu. Giọng Gemini cùng giới tính với giọng bài (`narration` trong `video/voices.ts`; tên giọng theo giới tính ở `GEMINI_NARRATORS`, đổi một dòng ở đó là đổi cho mọi bài cùng giới tính, rồi chạy lại lệnh cho từng bài). Lệnh đọc cả phần giới thiệu trong một request, cắt thành câu theo mốc chữ của Whisper, kiểm từng câu (≥ 97%, câu lỗi đọc lại riêng cùng giọng). Key Gemini nằm ở `~/.config/gemini/api_key*` (mọi file `api_key*` đều dùng, xoay vòng); không in, không commit. Hết hạn mức mọi key thì lệnh tự đọc lại **cả** lời giới thiệu bằng giọng VieNeu của bài và cảnh báo (không bao giờ trộn hai engine trong một lời đọc); giọng đã đọc ghi ở `overview.narration.voice`, chạy lại lệnh sau khi hạn mức hồi để về giọng Gemini. Chạy lệnh gọi Gemini thật là ghi ra ngoài máy: theo `.claude/rules/agents.md`, hỏi chủ dự án trước.
+
 Chọn giọng theo không khí của bài, lúc dựng video đầu tiên của bài, rồi giữ nguyên:
 
 - Bài nhẹ nhàng, kể chuyện, động viên (văn, bài mở đầu một mạch kiến thức, bài bé hay sợ): `my-duyen`.
