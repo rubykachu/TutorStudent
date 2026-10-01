@@ -20,7 +20,7 @@
     "goals": [
       "cộng được hai số nguyên bằng cách đi trên trục số",
       "nhớ quy tắc cộng hai số cùng dấu và hai số khác dấu",
-      "trừ được hai số nguyên bằng cách đổi thành phép cộng",
+      "trừ được hai số nguyên bằng cách đi sang trái hoặc sang phải trên trục số",
       "tính nhanh tổng nhiều số nguyên"
     ],
     "whyItMatters": "Bạn dùng cộng và trừ số nguyên để tính nhiệt độ ngày lạnh, hay số tiền còn lại sau khi thu và chi."
@@ -74,7 +74,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt kế chỉ −2 độ nghĩa là trời lạnh, thấp hơn mức 0 độ là 2 độ. Số −2 gồm dấu − và phần số tự nhiên 2."
+              "text": "Nhiệt kế chỉ −2 độ, nghĩa là trời lạnh hơn 0 độ. Số −2 gồm dấu − và phần số tự nhiên 2."
             },
             {
               "type": "visual",
@@ -87,7 +87,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một số nguyên như −2 hay 9 được tách thành hai phần: phần dấu đứng trước và phần số tự nhiên đứng sau. Số dương có dấu +, nhưng ta thường không viết dấu này.",
+              "text": "Một số nguyên như −2 hay 9 được tách thành hai phần: phần dấu đứng trước và phần số tự nhiên đứng sau. Số dương có dấu +, ví dụ 9 là +9, nhưng ta thường bỏ dấu + đi.",
               "rule": true
             },
             {
@@ -115,7 +115,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-vi-du",
-        "caption": "Một số nguyên như −2 hay 9 được tách thành hai phần: phần dấu đứng trước và phần số tự nhiên đứng sau. Số dương có dấu +, nhưng ta thường không viết dấu này."
+        "caption": "Một số nguyên như −2 hay 9 được tách thành hai phần: phần dấu đứng trước và phần số tự nhiên đứng sau. Số dương có dấu +, ví dụ 9 là +9, nhưng ta thường bỏ dấu + đi."
       }
     },
     {
@@ -129,7 +129,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có 5 nghìn đồng ghi 5, nợ 5 nghìn đồng ghi −5. Hai số này ở hai bên gốc O (điểm 0) và cùng cách gốc 5 đơn vị, nên là hai số đối nhau."
+              "text": "Có 5 nghìn đồng ghi 5, nợ 5 nghìn đồng ghi −5. Hai số này ở hai bên điểm 0 và cùng cách điểm 0 là 5 đơn vị, nên là hai số đối nhau."
             },
             {
               "type": "visual",
@@ -156,7 +156,7 @@
           "children": [
             {
               "type": "note",
-              "text": "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Để ghi số đối, ta thêm dấu − đứng trước và đặt số trong ngoặc: −(−5) = 5."
+              "text": "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Ta ghi số đối của −5 là −(−5), vậy −(−5) = 5."
             },
             {
               "type": "formula",
@@ -404,7 +404,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai số âm cộng nhau: cộng hai phần số tự nhiên (hai số sau dấu −), rồi viết dấu − ở trước.",
+              "text": "Hai số âm cộng nhau: cộng hai phần số tự nhiên của chúng, rồi viết dấu − ở trước. Ví dụ (−3) + (−4) thì lấy 3 + 4 = 7, được −7.",
               "rule": true
             },
             {
@@ -432,7 +432,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-dau-vi-du",
-        "caption": "Hai số âm cộng nhau: cộng hai phần số tự nhiên (hai số sau dấu −), rồi viết dấu − ở trước."
+        "caption": "Hai số âm cộng nhau: cộng hai phần số tự nhiên của chúng, rồi viết dấu − ở trước. Ví dụ (−3) + (−4) thì lấy 3 + 4 = 7, được −7."
       }
     },
     {
@@ -459,7 +459,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cộng hai số khác dấu mà không đối nhau: trừ hai phần số tự nhiên, lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó.",
+              "text": "Cộng hai số khác dấu, khi hai phần số tự nhiên không bằng nhau: lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó.",
               "rule": true
             },
             {
@@ -486,7 +486,7 @@
           "id": "phep-cong-phep-tru-so-nguyen.tip.dau-truoc",
           "kind": "tránh sai",
           "title": "Cộng hai số khác dấu",
-          "text": "Khi cộng hai số khác dấu, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau. Gặp phép trừ thì đổi thành cộng với số đối trước.",
+          "text": "Khi cộng hai số khác dấu, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau. Gặp phép trừ thì đổi thành phép cộng trước, rồi mới dùng mẹo.",
           "tex": "\\begin{gathered} 2 + (-9) \\\\ = -(9 - 2) \\\\ = -7 \\end{gathered}"
         }
       ],
@@ -495,7 +495,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Cộng hai số khác dấu mà không đối nhau: trừ hai phần số tự nhiên, lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó."
+        "caption": "Cộng hai số khác dấu, khi hai phần số tự nhiên không bằng nhau: lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó."
       }
     },
     {
@@ -564,7 +564,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hà đang nợ 5 nghìn đồng, tức là Hà có −5 nghìn. Mẹ nói Hà không cần trả món nợ 5 nghìn nữa, nghĩa là trừ đi −5, và Hà về 0."
+              "text": "Hà đang nợ 5 nghìn đồng, tức là có −5 nghìn. Mẹ cho Hà khỏi trả món nợ −5 đó, tức là trừ đi −5, nên Hà về 0."
             },
             {
               "type": "visual",
@@ -604,7 +604,7 @@
           "id": "phep-cong-phep-tru-so-nguyen.tip.hai-dau-lien-nhau",
           "kind": "làm nhanh",
           "title": "Cộng hoặc trừ đi một số âm",
-          "text": "Dấu cộng hay trừ đứng liền dấu − trong ngoặc thì gộp lại thành một dấu. Hai dấu giống nhau thành +, hai dấu khác nhau thành −. Ví dụ 6 − (−2) có hai dấu − nên thành 6 + 2.",
+          "text": "Hai dấu đứng liền nhau thì gộp lại thành một dấu. Hai dấu giống nhau thành +, hai dấu khác nhau thành −. Ví dụ 6 − (−2): hai dấu − nên thành 6 + 2.",
           "tex": "\\begin{gathered} 6 - (-2) = 6 + 2 = 8 \\\\ 3 + (-4) = 3 - 4 = -1 \\end{gathered}"
         }
       ],
@@ -654,7 +654,7 @@
           "id": "phep-cong-phep-tru-so-nguyen.tip.ghep-so-doi",
           "kind": "làm nhanh",
           "title": "Tổng có hai số đối nhau",
-          "text": "Nếu trong tổng có hai số đối nhau, hãy cộng hai số đó với nhau trước, được 0. Rồi cộng các số còn lại. Có phép trừ thì đổi thành cộng với số đối trước.",
+          "text": "Nếu trong tổng có hai số đối nhau, như 4 và −4, hãy cộng chúng trước, được 0. Rồi cộng các số còn lại. Có phép trừ thì đổi thành phép cộng trước.",
           "tex": "\\begin{gathered} 6 + (-4) + (-6) \\\\ = [6 + (-6)] + (-4) \\\\ = 0 + (-4) = -4 \\end{gathered}"
         },
         {
@@ -814,7 +814,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-vi-du",
-        "caption": "Một số nguyên như −2 hay 9 được tách thành hai phần: phần dấu đứng trước và phần số tự nhiên đứng sau. Số dương có dấu +, nhưng ta thường không viết dấu này."
+        "caption": "Một số nguyên như −2 hay 9 được tách thành hai phần: phần dấu đứng trước và phần số tự nhiên đứng sau. Số dương có dấu +, ví dụ 9 là +9, nhưng ta thường bỏ dấu + đi."
       }
     },
     {
@@ -877,7 +877,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.cung-dau-vi-du",
-        "caption": "Hai số âm cộng nhau: cộng hai phần số tự nhiên (hai số sau dấu −), rồi viết dấu − ở trước."
+        "caption": "Hai số âm cộng nhau: cộng hai phần số tự nhiên của chúng, rồi viết dấu − ở trước. Ví dụ (−3) + (−4) thì lấy 3 + 4 = 7, được −7."
       }
     },
     {
@@ -890,7 +890,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Cộng hai số khác dấu mà không đối nhau: trừ hai phần số tự nhiên, lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó."
+        "caption": "Cộng hai số khác dấu, khi hai phần số tự nhiên không bằng nhau: lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó."
       }
     },
     {
