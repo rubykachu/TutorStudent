@@ -99,7 +99,7 @@ function List() {
     <div className="flex w-full flex-col items-center gap-2">
       <Legend items={[{ color: "sky", name: TITLE }]} />
       <ul
-        className="grid w-full max-w-[360px] gap-1.5"
+        className="grid w-full max-w-[440px] gap-1.5"
         style={{ gridTemplateColumns: `repeat(${LIST_COLS}, minmax(0, 1fr))` }}
       >
         {primesBelow(TABLE_LIMIT).map((n) => (
