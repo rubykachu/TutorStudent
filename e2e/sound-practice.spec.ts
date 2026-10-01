@@ -13,9 +13,14 @@ import { test } from "./test";
 const SECTION = "fixture.section.phep-nhan";
 // A number-pad exercise with a known wrong answer.
 const EXERCISE = "fixture.ex.dem-cham";
+// Every button tap plays this press sound; the sequences below are the
+// feedback that follows a check, so the press is left out of them.
+const PRESS_SOUND = "/sounds/button.m4a";
 
 // Records every clip the page asks to play instead of playing it, and ends
-// each at once, so a sequence (tone, then line) runs through.
+// each at once, so a sequence (tone, then line) runs through. `muted` reads
+// what the app set even though the silencer mutes the element for real, so the
+// silent unlock is told apart from a real play.
 async function recordSounds(page: Page) {
   await page.addInitScript(() => {
     const played: string[] = [];
@@ -85,7 +90,8 @@ test("every check makes a sound, and an accepted exercise can be replayed unrate
   const exercise = await reachExercise(page, EXERCISE);
   const frame = exercise.locator("section[data-phase]");
   const { wrong, right } = answersFor(EXERCISE);
-  const since = async (from: number) => (await played(page)).slice(from);
+  const since = async (from: number) =>
+    (await played(page)).slice(from).filter((url) => url !== PRESS_SOUND);
 
   let before = (await played(page)).length;
   await wrong?.(exercise);
