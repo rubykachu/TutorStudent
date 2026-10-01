@@ -1,11 +1,12 @@
 # Bàn giao: Bài 3 `thu-tu-trong-tap-hop-cac-so-tu-nhien` (Thứ tự trong tập hợp các số tự nhiên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`), 14 section, 18 card, 83 câu. Review vòng 1 xong (10 Nghiêm trọng), bản sửa ở `71cbd51`; lỗi vòng 1 đã ghi vào `docs/lessons-learned/` (`cf3ec11`).
+- Cập nhật cuối: 02/10/2026. (Dòng này là trạng thái lúc soạn; hiện đã `published`, xem dòng "Media xong".) 14 section, 18 card, 83 câu. Review vòng 1 xong (10 Nghiêm trọng), bản sửa ở `71cbd51`; lỗi vòng 1 đã ghi vào `docs/lessons-learned/` (`cf3ec11`).
 - Review vòng 2 xong (`86997dd`): 1 Nghiêm trọng (câu "ba khúc" của `phan-tia-so` còn gần nguyên ví dụ b sách), 21 Nên sửa, 18 Góp ý; hash đã review trong `review.md`. Đang sửa (subagent Sonnet): mục 1–22 và Góp ý rẻ; mục 40 (màu slate của khái niệm so sánh số nhiều chữ số) bỏ vì cần sửa glossary dùng chung.
 - Kiểm bản vòng 1 (cây tạm cổng 3320, cây `scratchpad/bai3/wt`): `content:check` của bài 0 lỗi, `visual:shot` 156/156, `lesson:walk` 0 FAIL.
 - Việc tiếp theo: vòng 3 chỉ phần đổi (Sonnet, `pnpm content:diff`) tới 0 Nghiêm trọng, rồi Haiku đọc hiểu (lượt 1 trên toàn bài, viết lại mục không "Hiểu rõ", lượt 2), một vòng chỉ phần đổi cho chữ viết lại, `content:hash --approve`, `content:lock`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
-- Không làm trong lượt này: lời đọc tổng quan và video.
+- Media xong (02/10/2026), bài `status: published` với `reviewedHash` ghi ở `review.md`, id video đã khoá: giọng Hải Đăng (`video/projects/thu-tu-trong-tap-hop-cac-so-tu-nhien/media.json`, không cờ miễn; Bài 2 là Mỹ Duyên nên xen kẽ), lời đọc tổng quan đọc bằng Gemini Achird (model `gemini-3.1-flash-tts-preview`, một key hết hạn mức, key còn lại đọc được; không rơi về VieNeu), ba video 45 đến 49 giây gắn đầu section `ben-trai` (`ben-trai-tren-tia-so`, 2 điểm dừng), `cung-chu-so` (`so-tung-cap-chu-so`, 2 điểm dừng) và `lien-tiep` (`lien-truoc-lien-sau`, 2 điểm dừng). Review vòng 4 (chỉ video và lời đọc, Sonnet): 0 Nghiêm trọng, 1 Nên sửa và 3 Góp ý đã xử lý (câu kết, poster, điểm dừng); Haiku đọc hiểu chữ ba video 27 / 3 / 0 (ba mục mơ hồ chỉ vì tên "Bạn cú"); `lesson:walk` 0 FAIL; `content:check` 0 lỗi 0 cảnh báo.
+- Chưa tải media lên và chưa deploy (cần chủ dự án đồng ý, theo `.claude/skills/lesson-video/SKILL.md` mục "Đưa lên production").
 - Còn lại ngoài bài: `content/glossary/math.json` có sửa chưa commit của bài khác (bỏ 6 thuật ngữ trùng "chữ số"..., thêm "ℤ"); không thuộc bài này, chưa commit. Bản `71cbd51` có 6 thuật ngữ trùng nên `content:check` ở cây sạch báo lỗi trùng, còn cây chính (có sửa) 0 lỗi.
 
 ## Nguồn (sách bài tập, `sources/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/`, không commit)
@@ -40,3 +41,8 @@
 - Ví dụ c ở sách ("mô tả tập hợp M các số có điểm biểu diễn thuộc đoạn AB") và bài 1.27 có chữ "chẵn": bài này chưa dạy "số chẵn" nên dùng điều kiện x < 5, x ≤ 6 cho phép so sánh ℕ với ℕ* (giữ ý chính của bài 1.27: số 0).
 - Đoạn AB tính cả hai đầu (theo lời giải ví dụ c của sách); mọi câu hỏi "thuộc đoạn nào" chỉ hỏi số ở giữa, câu có đầu mút (số 4 và số 9) dạy rõ ở `chon-nhieu-doan-ab-dau`.
 - Chữ `T2`..`CN` trong nhãn biểu đồ cột có giải thích ở màn đầu của section.
+
+## Việc còn lại (media)
+- Người thật nghe lại hai câu mà Whisper nghe khác chữ (reviewer và Whisper không nghe được cách đọc đúng): "Số liền trước của số a cộng 1 là số a" trong `lien-truoc-lien-sau` (Whisper nghe "A tộng 1", khớp 0,974) và "Bạn cú đặt điểm A ở số 3" trong `ben-trai-tren-tia-so` (nghe "đắt"). Nếu sai thì sửa `say` hoặc dựng lại đúng câu đó: `pnpm video:build thu-tu-trong-tap-hop-cac-so-tu-nhien <tên>` (chỉ câu đổi được đọc lại). Tên "Bạn cú" cũng cần nghe một lần.
+- Hai câu "Xe đạp giá 6 218 nghìn đồng" và "Xe đạp điện giá 6 247 nghìn đồng" (`so-tung-cap-chu-so`) khớp 89,6% và 91,2%: Whisper viết số thành "6.218.000 đồng", đúng nghĩa; cũng nên nghe một lần.
+- Lời đọc tổng quan và ba video chỉ dạy một ý mỗi video; các section khác (tia số, đếm phần tử từ a đến b) chưa có video.
