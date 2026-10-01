@@ -48,23 +48,23 @@ export const INTERACTIVE_KINDS: ReadonlySet<SpecKind> = new Set(["chips"]);
 export const VALIDATOR_IDS = { chips: "chon-dung" } as const;
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
-  "xep-12": {
+  "xep-20": {
     kind: "rects",
-    n: 12,
+    n: 20,
     ways: [
-      [1, 12],
-      [2, 6],
-      [3, 4],
+      [1, 20],
+      [2, 10],
+      [4, 5],
     ],
     mode: "steps",
   },
-  "xep-12-xong": {
+  "xep-20-xong": {
     kind: "rects",
-    n: 12,
+    n: 20,
     ways: [
-      [1, 12],
-      [2, 6],
-      [3, 4],
+      [1, 20],
+      [2, 10],
+      [4, 5],
     ],
     mode: "still",
   },
@@ -137,8 +137,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-nt-2-7": {
     kind: "chips",
-    items: ["20", "23", "24", "25", "27", "31"],
-    wants: [1, 5],
+    items: ["21", "22", "23", "25", "27", "29"],
+    wants: [2, 5],
     done: "Bạn đã chọn đủ các số nguyên tố.",
   },
   "chon-nt-bank": {
@@ -562,9 +562,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     hide: [],
     mode: "steps",
   },
-  "cot-105": {
+  "cot-195": {
     kind: "column",
-    n: 105,
+    n: 195,
     hide: [],
     mode: "steps",
   },
@@ -586,15 +586,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     hide: [],
     mode: "solution",
   },
-  "cot-thieu-150": {
+  "cot-thieu-330": {
     kind: "column",
-    n: 150,
+    n: 330,
     hide: [3],
     mode: "still",
   },
-  "giai-cot-150": {
+  "giai-cot-330": {
     kind: "column",
-    n: 150,
+    n: 330,
     hide: [],
     mode: "solution",
   },
@@ -735,7 +735,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "2,\\ 4,\\ 6,\\ 8,\\ 10",
-        tag: { text: "Số chẵn: chia hết cho 2", color: "slate" },
+        tag: { text: "Số chẵn", color: "slate" },
       },
       { tex: "1,\\ 3,\\ 5,\\ 7,\\ 9" },
     ],
@@ -772,13 +772,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-chan-hs": {
     kind: "chips",
-    items: ["2", "4", "6", "9", "12", "13"],
-    wants: [1, 2, 4],
+    items: ["2", "9", "16", "21", "26", "34"],
+    wants: [2, 4, 5],
     done: "Bạn đã chọn đủ các số chẵn là hợp số.",
   },
-  "chon-chan-lon": {
+  "chon-hs-chan-bank": {
     kind: "chips",
-    items: ["2", "3", "14", "15", "16", "17"],
+    items: ["2", "3", "64", "65", "68", "69"],
   },
   "le-le": {
     kind: "rows",
@@ -790,15 +790,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "3 + 5 = 8",
-        tag: { text: "Lẻ cộng lẻ là chẵn", color: "slate" },
+        tag: { text: "Số chẵn: tổng của hai số lẻ", color: "slate" },
       },
       {
         tex: "7 + 11 = 18",
-        tag: { text: "Lẻ cộng lẻ là chẵn", color: "slate" },
+        tag: { text: "Số chẵn: tổng của hai số lẻ", color: "slate" },
       },
       {
-        tex: "2 + 19 = 21",
-        tag: { text: "2 cộng số lẻ: tổng là số lẻ", color: "sky" },
+        tex: "\\concept{sky}{2} + \\concept{sky}{19} = 21",
       },
     ],
   },
@@ -812,7 +811,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\concept{sky}{23}",
         tag: {
-          text: "23 có trong bảng: số nguyên tố",
+          text: "Số nguyên tố: 23 có trong bảng",
           color: "sky",
         },
       },
@@ -846,27 +845,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
   },
-  "viet-20": {
+  "viet-74": {
     kind: "lines",
-    label: "20 viết thành tổng của hai số nguyên tố",
+    label: "74 viết thành tổng của hai số nguyên tố",
     rows: [
       {
-        tex: "20 - 2 = 18",
+        tex: "74 - 2 = 72",
         tag: {
-          text: "18 là hợp số: bỏ",
+          text: "Hợp số: bỏ",
           color: "pink",
         },
         muted: true,
       },
       {
-        tex: "20 - 3 = 17",
+        tex: "74 - 3 = 71",
         tag: {
-          text: "17 là số nguyên tố",
+          text: "Số nguyên tố: giữ",
           color: "sky",
         },
       },
       {
-        tex: "20 = \\concept{sky}{3} + \\concept{sky}{17}",
+        tex: "74 = \\concept{sky}{3} + \\concept{sky}{71}",
         tag: {
           text: "Tổng hai số nguyên tố",
           color: "amber",
@@ -875,27 +874,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
   },
-  "viet-20-xong": {
+  "viet-74-xong": {
     kind: "lines",
-    label: "20 viết thành tổng của hai số nguyên tố",
+    label: "74 viết thành tổng của hai số nguyên tố",
     rows: [
       {
-        tex: "20 - 2 = 18",
+        tex: "74 - 2 = 72",
         tag: {
-          text: "18 là hợp số: bỏ",
+          text: "Hợp số: bỏ",
           color: "pink",
         },
         muted: true,
       },
       {
-        tex: "20 - 3 = 17",
+        tex: "74 - 3 = 71",
         tag: {
-          text: "17 là số nguyên tố",
+          text: "Số nguyên tố: giữ",
           color: "sky",
         },
       },
       {
-        tex: "20 = \\concept{sky}{3} + \\concept{sky}{17}",
+        tex: "74 = \\concept{sky}{3} + \\concept{sky}{71}",
         tag: {
           text: "Tổng hai số nguyên tố",
           color: "amber",
@@ -1000,14 +999,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "10 \\cdot 3 \\chiahet 5",
         tag: {
-          text: "Thừa số 10 chia hết cho 5",
+          text: "Tích có thừa số 10: chia hết cho 5",
           color: "amber",
         },
       },
       {
         tex: "5 \\cdot 8 \\chiahet 5",
         tag: {
-          text: "Thừa số 5 chia hết cho 5",
+          text: "Tích có thừa số 5: chia hết cho 5",
           color: "amber",
         },
       },
@@ -1026,12 +1025,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "goi-y-xep-21": {
-    kind: "rects",
-    n: 21,
-    ways: [
-      [1, 21],
-      [3, 7],
+  "goi-y-xet-69": {
+    kind: "lines",
+    label: "Số 69 là hợp số vì chia hết cho 3",
+    rows: [
+      {
+        tex: "6 + 9 = 15",
+        tag: { text: "Tổng các chữ số", color: "lime" },
+      },
+      { tex: "69 \\chiahet 3" },
+      { tex: "69 > 3" },
+      {
+        tex: "\\concept{pink}{69}",
+        tag: { text: "Hợp số", color: "pink" },
+      },
     ],
     mode: "hint",
   },
@@ -1050,15 +1057,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     hide: [],
     mode: "hint",
   },
-  "cot-thieu-54": {
+  "cot-thieu-78": {
     kind: "column",
-    n: 54,
+    n: 78,
     hide: [2],
     mode: "still",
   },
-  "giai-cot-54": {
+  "giai-cot-78": {
     kind: "column",
-    n: 54,
+    n: 78,
     hide: [],
     mode: "solution",
   },

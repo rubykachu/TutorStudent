@@ -16,7 +16,10 @@ const CAPTION_HEIGHT = 32;
 
 // What the verdict row says once the divisors are listed.
 const VERDICTS = {
-  prime: { text: "Chỉ chia hết cho 1 và chính nó: số nguyên tố", color: "sky" },
+  prime: {
+    text: "Lớn hơn 1, chỉ chia hết cho 1 và chính nó: số nguyên tố",
+    color: "sky",
+  },
   composite: { text: "Có từ ba ước trở lên: hợp số", color: "pink" },
 } as const;
 

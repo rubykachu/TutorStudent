@@ -93,6 +93,17 @@ describe("catalog", () => {
     }
   });
 
+  it("no tag or verdict label starts with a digit, which would read as a sum beside its mark", () => {
+    const labels: string[] = [];
+    for (const s of Object.values(VISUAL_SPECS)) {
+      if (s.kind === "rows" || s.kind === "lines") {
+        for (const row of s.rows) if (row.tag) labels.push(row.tag.text);
+      }
+    }
+    expect(labels.length).toBeGreaterThan(10);
+    expect(labels.filter((text) => /^\d/.test(text))).toEqual([]);
+  });
+
   it("every rectangle layout uses all the squares", () => {
     for (const s of Object.values(VISUAL_SPECS)) {
       if (s.kind !== "rects") continue;
@@ -111,13 +122,17 @@ describe("catalog", () => {
 
 describe("rectangles", () => {
   it("draws every way with its caption and product, then the divisors", () => {
-    render(<Rects spec={spec("xep-12-xong", "rects")} />);
-    expect(screen.getByText("2 hàng, mỗi hàng 6 ô")).toBeTruthy();
-    expect(screen.getByText("Các ước của 12")).toBeTruthy();
+    render(<Rects spec={spec("xep-20-xong", "rects")} />);
+    expect(screen.getByText("2 hàng, mỗi hàng 10 ô")).toBeTruthy();
+    expect(screen.getByText("Các ước của 20")).toBeTruthy();
   });
 
   it("states the verdict of a prime and of a composite", () => {
-    const { unmount } = render(<Rects spec={spec("xep-11", "rects")} />);
+    const { container, unmount } = render(
+      <Rects spec={{ ...spec("xep-11", "rects"), mode: "still" }} />,
+    );
+    // The label must keep the "greater than 1" condition: 1 is not prime.
+    expect(container.textContent).toContain("Lớn hơn 1, chỉ chia hết cho");
     unmount();
     render(<Rects spec={{ ...spec("xep-9", "rects"), mode: "still" }} />);
     expect(screen.getByText("Có từ ba ước trở lên: hợp số")).toBeTruthy();
@@ -140,7 +155,7 @@ describe("prime tables, tree and column", () => {
       25,
     );
     expect(
-      screen.getByText("Số 1 không là số nguyên tố, cũng không là hợp số."),
+      screen.getByText("Số 1 không phải số nguyên tố, cũng không phải hợp số."),
     ).toBeTruthy();
   });
 
@@ -167,7 +182,7 @@ describe("prime tables, tree and column", () => {
 
   it("names the colour of the divisors in a legend instead of marking each one", () => {
     const { container } = render(
-      <Column spec={spec("cot-thieu-150", "column")} />,
+      <Column spec={spec("cot-thieu-330", "column")} />,
     );
     expect(screen.getByText("Số chia: số nguyên tố")).toBeTruthy();
     // One legend mark only: none beside a divisor.

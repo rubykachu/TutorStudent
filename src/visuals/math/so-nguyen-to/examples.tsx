@@ -4,8 +4,8 @@ import { Lines, Rows } from "@/visuals/shared/formula-rows";
 import { Chips } from "@/visuals/shared/pick-chips";
 import type { VisualSpec } from "./catalog";
 import { Column } from "./column";
-import { Rects } from "./rects";
 import { PrimeTable } from "./prime-table";
+import { Rects } from "./rects";
 import Sticker from "./sticker";
 import { Tree } from "./tree";
 

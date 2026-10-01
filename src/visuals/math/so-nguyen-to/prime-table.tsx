@@ -10,11 +10,17 @@ import { isPrime, primesBelow, TABLE_LIMIT } from "./logic";
 const COLS = 10;
 const CELL_W = 36;
 const CELL_H = 32;
-const FONT = 20;
+const FONT = 18;
 // Three digits ("100") would touch the cell edges at the usual size, so
 // they are squeezed to this width.
-const THREE_DIGITS_WIDTH = 31;
-const MARK = 4;
+const THREE_DIGITS_WIDTH = 28;
+// Radius of the concept mark and its distance from the cell corner. The mark
+// sits above and right of the digits, clear of them, so it never reads as a
+// "+" before or after a number.
+const MARK = 3;
+const MARK_INSET = 5;
+// Digits sit a little below the middle of the cell, away from the mark.
+const DIGITS_DROP = 2;
 const NUMBERS = Array.from({ length: TABLE_LIMIT }, (_, i) => i + 1);
 const WIDTH = COLS * CELL_W;
 const HEIGHT = (TABLE_LIMIT / COLS) * CELL_H;
@@ -45,7 +51,7 @@ function Cell({ n }: { n: number }) {
       />
       <text
         x={x + CELL_W / 2}
-        y={y + CELL_H / 2}
+        y={y + CELL_H / 2 + DIGITS_DROP}
         textAnchor="middle"
         dominantBaseline="central"
         fontSize={FONT}
@@ -60,8 +66,8 @@ function Cell({ n }: { n: number }) {
         <ConceptShape
           {...decorative}
           color="sky"
-          cx={x + CELL_W - MARK - 2}
-          cy={y + MARK + 2}
+          cx={x + CELL_W - MARK_INSET}
+          cy={y + MARK_INSET}
           r={MARK}
         />
       )}
@@ -78,7 +84,7 @@ function Grid() {
         role="img"
         aria-label={TITLE}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        className="h-auto w-full max-w-[460px]"
+        className="h-auto max-h-[50vh] w-full max-w-[460px]"
       >
         {NUMBERS.map((n) => (
           <Cell key={n} n={n} />
@@ -86,7 +92,7 @@ function Grid() {
       </svg>
       <Legend items={[{ color: "sky", name: "Số nguyên tố" }]} />
       <p className="text-center text-caption">
-        Số 1 không là số nguyên tố, cũng không là hợp số.
+        Số 1 không phải số nguyên tố, cũng không phải hợp số.
       </p>
     </div>
   );

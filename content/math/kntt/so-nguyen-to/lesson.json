@@ -14,7 +14,7 @@
   "status": "draft",
   "overview": {
     "hook": {
-      "text": "Bạn xếp 7 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 7 viên, vì 7 là số nguyên tố."
+      "text": "Bạn xếp 11 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 11 viên, vì 11 là số nguyên tố."
     },
     "summary": "Bài này dạy số nguyên tố và hợp số. Bạn học cách viết một số thành tích các thừa số nguyên tố.",
     "goals": [
@@ -52,11 +52,6 @@
       "color": "lime"
     },
     {
-      "id": "so-nguyen-to.concept.thua-so",
-      "name": "Thừa số",
-      "color": "blue"
-    },
-    {
       "id": "so-nguyen-to.concept.tich",
       "name": "Tích",
       "color": "amber"
@@ -84,7 +79,7 @@
             },
             {
               "type": "visual",
-              "visualId": "so-nguyen-to.visual.xep-12"
+              "visualId": "so-nguyen-to.visual.xep-20"
             }
           ]
         },
@@ -111,7 +106,7 @@
       "practiceIds": ["so-nguyen-to.ex.chon-uoc-14"],
       "recap": {
         "type": "visual",
-        "visualId": "so-nguyen-to.visual.xep-12-xong",
+        "visualId": "so-nguyen-to.visual.xep-20-xong",
         "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
       }
     },
@@ -139,7 +134,7 @@
         {
           "type": "visual",
           "visualId": "so-nguyen-to.visual.ngto-dau",
-          "caption": "2, 3, 5, 7 chỉ chia hết cho 1 và cho chính nó."
+          "caption": "2, 3, 5, 7 chỉ chia hết cho 1 và cho chính nó, tức là chỉ có hai ước."
         },
         {
           "type": "group",
@@ -180,7 +175,7 @@
             {
               "type": "visual",
               "visualId": "so-nguyen-to.visual.xep-9",
-              "caption": "Xếp 9 viên gạch vuông: có hai cách, nên 9 có từ ba ước trở lên."
+              "caption": "Xếp 9 viên gạch vuông: có hai cách. Hình vuông cũng là một hình chữ nhật, nên 9 có từ ba ước trở lên."
             }
           ]
         },
@@ -208,7 +203,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các hợp số. Hợp số có nhiều hơn hai ước."
+              "text": "Chạm vào các hợp số. Hợp số có từ ba ước trở lên."
             },
             {
               "type": "visual",
@@ -250,7 +245,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tra 59: 59 có trong bảng, nên 59 là số nguyên tố. Tra 77: 77 không có trong bảng và lớn hơn 1, nên 77 là hợp số."
+              "text": "Phòng học của Lan số 59: 59 có trong bảng, nên 59 là số nguyên tố. Xe buýt số 77: 77 lớn hơn 1 và không có trong bảng, nên 77 là hợp số."
             },
             {
               "type": "visual",
@@ -301,14 +296,23 @@
             {
               "type": "visual",
               "visualId": "so-nguyen-to.visual.xet-65",
-              "caption": "Số 65 tận cùng là 5, chia hết cho 5. Số 80 tận cùng là 0, chia hết cho 2."
+              "caption": "Số 65 tận cùng là 5, chia hết cho 5. Số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2."
             }
           ]
         },
         {
-          "type": "visual",
-          "visualId": "so-nguyen-to.visual.xet-51",
-          "caption": "Số nhà của Nam là 51. Cộng các chữ số được 6, chia hết cho 3. Số không chia hết cho 2, 3, 5 chưa chắc là số nguyên tố."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số không chia hết cho 2, 3, 5 chưa chắc là số nguyên tố. Số 77 không chia hết cho 2, 3, 5, nhưng 77 = 7 · 11 nên 77 vẫn là hợp số."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.xet-51",
+              "caption": "Số nhà của Nam là 51. Cộng các chữ số được 6, chia hết cho 3."
+            }
+          ]
         },
         {
           "type": "group",
@@ -357,12 +361,13 @@
           "children": [
             {
               "type": "note",
-              "text": "Mẹ xếp 12 cái bánh vào 4 hộp, mỗi hộp 3 cái: 12 = 3 · 4. Ta tách một số thành hai thừa số, rồi tách tiếp tới khi mọi thừa số là số nguyên tố.",
+              "text": "Ta tách một số thành hai thừa số, rồi tách tiếp tới khi mọi thừa số là số nguyên tố.",
               "rule": true
             },
             {
               "type": "visual",
-              "visualId": "so-nguyen-to.visual.cay-12"
+              "visualId": "so-nguyen-to.visual.cay-12",
+              "caption": "Mẹ xếp 12 cái bánh vào 4 hộp, mỗi hộp 3 cái: 12 = 3 · 4."
             }
           ]
         },
@@ -423,17 +428,17 @@
           "children": [
             {
               "type": "note",
-              "text": "Xem sơ đồ cột của 105. Số 105 không chia hết cho 2, nhưng chia hết cho 3 nên số chia đầu tiên là 3."
+              "text": "Xem sơ đồ cột của 195. Số 195 không chia hết cho 2, nhưng chia hết cho 3 nên số chia đầu tiên là 3."
             },
             {
               "type": "visual",
-              "visualId": "so-nguyen-to.visual.cot-105"
+              "visualId": "so-nguyen-to.visual.cot-195"
             }
           ]
         }
       ],
       "checkIds": ["so-nguyen-to.ex.cot-thieu-36"],
-      "practiceIds": ["so-nguyen-to.ex.cot-thieu-150"],
+      "practiceIds": ["so-nguyen-to.ex.cot-thieu-330"],
       "recap": {
         "type": "visual",
         "visualId": "so-nguyen-to.visual.cot-60-xong",
@@ -465,7 +470,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hà xếp 72 viên bi vào 8 túi, mỗi túi 9 viên: 72 = 9 · 8 = 2 · 2 · 2 · 3 · 3. Số 2 lặp lại ba lần, số 3 lặp lại hai lần."
+              "text": "Hà xếp 72 viên bi vào 8 túi, mỗi túi 9 viên: 72 = 9 · 8 = 3 · 3 · 2 · 2 · 2 = 2 · 2 · 2 · 3 · 3. Số 2 lặp lại ba lần, số 3 lặp lại hai lần."
             },
             {
               "type": "visual",
@@ -585,7 +590,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các số chẵn là hợp số. Số 2 không phải hợp số."
+              "text": "Chạm vào các số chẵn là hợp số. Biết số chẵn lớn hơn 2 là hợp số, bạn nhận ra hợp số mà không cần tìm ước."
             },
             {
               "type": "visual",
@@ -681,7 +686,7 @@
             },
             {
               "type": "visual",
-              "visualId": "so-nguyen-to.visual.viet-20"
+              "visualId": "so-nguyen-to.visual.viet-74"
             },
             {
               "type": "visual",
@@ -694,7 +699,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có thể viết một số thành tổng của ba số nguyên tố. Một số nguyên tố có thể được dùng nhiều lần, như 9 = 2 + 2 + 5."
+              "text": "Nhiều số viết được thành tổng của ba số nguyên tố. Một số nguyên tố có thể được dùng nhiều lần, như 9 = 2 + 2 + 5."
             },
             {
               "type": "visual",
@@ -707,11 +712,11 @@
           ]
         }
       ],
-      "checkIds": ["so-nguyen-to.ex.viet-30"],
+      "checkIds": ["so-nguyen-to.ex.viet-28"],
       "practiceIds": ["so-nguyen-to.ex.viet-40"],
       "recap": {
         "type": "visual",
-        "visualId": "so-nguyen-to.visual.viet-20-xong",
+        "visualId": "so-nguyen-to.visual.viet-74-xong",
         "caption": "Muốn viết một số thành tổng hai số nguyên tố, ta thử từng số nguyên tố trong bảng. Số còn lại phải là số nguyên tố."
       }
     },
@@ -726,7 +731,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số.",
+              "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Nếu số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số.",
               "rule": true
             },
             {
@@ -746,7 +751,7 @@
       "recap": {
         "type": "visual",
         "visualId": "so-nguyen-to.visual.tong-hs-1-xong",
-        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số."
+        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Nếu số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số."
       }
     }
   ],
@@ -757,7 +762,7 @@
       "conceptIds": ["so-nguyen-to.concept.uoc"],
       "recap": {
         "type": "visual",
-        "visualId": "so-nguyen-to.visual.xep-12-xong",
+        "visualId": "so-nguyen-to.visual.xep-20-xong",
         "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
       }
     },
@@ -809,7 +814,7 @@
       "id": "so-nguyen-to.card.cay",
       "sourceRef": "Sách bài tập tr.35–36",
       "conceptIds": [
-        "so-nguyen-to.concept.thua-so",
+        "so-nguyen-to.concept.nguyen-to",
         "so-nguyen-to.concept.tich"
       ],
       "recap": {
@@ -821,7 +826,7 @@
     {
       "id": "so-nguyen-to.card.cot",
       "sourceRef": "Sách bài tập tr.35–36",
-      "conceptIds": ["so-nguyen-to.concept.thua-so"],
+      "conceptIds": ["so-nguyen-to.concept.nguyen-to"],
       "recap": {
         "type": "visual",
         "visualId": "so-nguyen-to.visual.cot-60-xong",
@@ -832,7 +837,7 @@
       "id": "so-nguyen-to.card.luy-thua",
       "sourceRef": "Sách bài tập tr.36",
       "conceptIds": [
-        "so-nguyen-to.concept.thua-so",
+        "so-nguyen-to.concept.nguyen-to",
         "so-nguyen-to.concept.tich"
       ],
       "recap": {
@@ -883,7 +888,7 @@
       "conceptIds": ["so-nguyen-to.concept.nguyen-to"],
       "recap": {
         "type": "visual",
-        "visualId": "so-nguyen-to.visual.viet-20-xong",
+        "visualId": "so-nguyen-to.visual.viet-74-xong",
         "caption": "Muốn viết một số thành tổng hai số nguyên tố, ta thử từng số nguyên tố trong bảng. Số còn lại phải là số nguyên tố."
       }
     },
@@ -894,7 +899,7 @@
       "recap": {
         "type": "visual",
         "visualId": "so-nguyen-to.visual.tong-hs-1-xong",
-        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số."
+        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Nếu số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số."
       }
     }
   ],
@@ -1035,7 +1040,7 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.dien-uoc-20-4",
+      "id": "so-nguyen-to.ex.dien-uoc-32-8",
       "type": "fillBlank",
       "cardIds": ["so-nguyen-to.card.uoc"],
       "prompt": [
@@ -1051,7 +1056,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "20 chia hết cho 4, nên 4 là "
+          "text": "32 chia hết cho 8, nên 8 là "
         },
         {
           "type": "blank",
@@ -1060,7 +1065,7 @@
         },
         {
           "type": "text",
-          "text": " của 20."
+          "text": " của 32."
         }
       ],
       "bank": ["ước", "bội"]
@@ -1210,6 +1215,10 @@
         {
           "type": "note",
           "text": "Chạm vào tất cả các số nguyên tố."
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.bang-nt"
         }
       ],
       "hints": {
@@ -1233,7 +1242,7 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.dien-29",
+      "id": "so-nguyen-to.ex.dien-31",
       "type": "fillBlank",
       "cardIds": ["so-nguyen-to.card.nguyen-to"],
       "prompt": [
@@ -1249,7 +1258,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Số 29 chỉ có hai ước là 1 và 29, nên 29 là "
+          "text": "Số 31 lớn hơn 1 và chỉ chia hết cho 1 và cho 31, nên 31 là "
         },
         {
           "type": "blank",
@@ -1264,13 +1273,13 @@
       "bank": ["số nguyên tố", "hợp số"]
     },
     {
-      "id": "so-nguyen-to.ex.xep-5-cach",
+      "id": "so-nguyen-to.ex.xep-13-cach",
       "type": "choice",
       "cardIds": ["so-nguyen-to.card.nguyen-to"],
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ có 5 viên gạch vuông. Mẹ có mấy cách xếp chúng thành hình chữ nhật?"
+          "text": "Mẹ có 13 viên gạch vuông. Mẹ có mấy cách xếp chúng thành hình chữ nhật?"
         },
         {
           "type": "note",
@@ -1312,7 +1321,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "5"
+            "text": "13"
           }
         }
       ],
@@ -1421,6 +1430,10 @@
         {
           "type": "note",
           "text": "Chạm vào tất cả các hợp số."
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.bang-nt"
         }
       ],
       "hints": {
@@ -1516,7 +1529,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Số 25 có các ước 1, 5 và 25. Số 25 có nhiều hơn hai ước, nên 25 là "
+          "text": "Số 25 có các ước 1, 5 và 25, tức là có từ ba ước trở lên, nên 25 là "
         },
         {
           "type": "blank",
@@ -1874,7 +1887,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "so-nguyen-to.visual.goi-y-xep-21"
+        "hintVisualId": "so-nguyen-to.visual.goi-y-xet-69"
       },
       "difficulty": 2,
       "options": [
@@ -1903,11 +1916,11 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "49"
+            "text": "37"
           }
         }
       ],
-      "answer": ["b", "c", "d"],
+      "answer": ["b", "c"],
       "multiple": true
     },
     {
@@ -2125,17 +2138,17 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.tich-42",
+      "id": "so-nguyen-to.ex.tich-66",
       "type": "numeric",
       "cardIds": ["so-nguyen-to.card.cay"],
       "prompt": [
         {
           "type": "note",
-          "text": "Phân tích 42 ra thừa số nguyên tố. Tìm thừa số còn thiếu."
+          "text": "Phân tích 66 ra thừa số nguyên tố. Tìm thừa số còn thiếu."
         },
         {
           "type": "formula",
-          "tex": "42 = 2 \\cdot 3 \\cdot ?"
+          "tex": "66 = 2 \\cdot 3 \\cdot ?"
         }
       ],
       "hints": {
@@ -2149,10 +2162,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 7
+        "value": 11
       },
       "check": {
-        "expr": "42:(2·3)"
+        "expr": "66:(2·3)"
       }
     },
     {
@@ -2284,7 +2297,7 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.cot-thieu-150",
+      "id": "so-nguyen-to.ex.cot-thieu-330",
       "type": "numeric",
       "cardIds": ["so-nguyen-to.card.cot"],
       "prompt": [
@@ -2294,7 +2307,7 @@
         },
         {
           "type": "visual",
-          "visualId": "so-nguyen-to.visual.cot-thieu-150"
+          "visualId": "so-nguyen-to.visual.cot-thieu-330"
         }
       ],
       "hints": {
@@ -2305,7 +2318,7 @@
           }
         ],
         "hintVisualId": "so-nguyen-to.visual.goi-y-cot-90",
-        "solutionVisualId": "so-nguyen-to.visual.giai-cot-150"
+        "solutionVisualId": "so-nguyen-to.visual.giai-cot-330"
       },
       "difficulty": 3,
       "answer": {
@@ -2313,11 +2326,11 @@
         "value": 3
       },
       "check": {
-        "expr": "75:25"
+        "expr": "165:55"
       }
     },
     {
-      "id": "so-nguyen-to.ex.cot-thieu-54",
+      "id": "so-nguyen-to.ex.cot-thieu-78",
       "type": "numeric",
       "cardIds": ["so-nguyen-to.card.cot"],
       "prompt": [
@@ -2327,7 +2340,7 @@
         },
         {
           "type": "visual",
-          "visualId": "so-nguyen-to.visual.cot-thieu-54"
+          "visualId": "so-nguyen-to.visual.cot-thieu-78"
         }
       ],
       "hints": {
@@ -2338,15 +2351,15 @@
           }
         ],
         "hintVisualId": "so-nguyen-to.visual.goi-y-cot-90",
-        "solutionVisualId": "so-nguyen-to.visual.giai-cot-54"
+        "solutionVisualId": "so-nguyen-to.visual.giai-cot-78"
       },
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 27
+        "value": 39
       },
       "check": {
-        "expr": "54:2"
+        "expr": "78:2"
       }
     },
     {
@@ -2607,7 +2620,7 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.phan-tich-4-9",
+      "id": "so-nguyen-to.ex.phan-tich-4-49",
       "type": "choice",
       "cardIds": ["so-nguyen-to.card.luy-thua"],
       "prompt": [
@@ -2617,7 +2630,7 @@
         },
         {
           "type": "formula",
-          "tex": "4 \\cdot 9"
+          "tex": "4 \\cdot 49"
         }
       ],
       "hints": {
@@ -2634,28 +2647,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "2^{2} \\cdot 3^{2}"
+            "tex": "2^{2} \\cdot 7^{2}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot 3^{2}"
+            "tex": "4 \\cdot 7^{2}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 3^{2}"
+            "tex": "2 \\cdot 7^{2}"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "2^{2} \\cdot 3"
+            "tex": "2^{2} \\cdot 7"
           }
         }
       ],
@@ -2694,7 +2707,7 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.tinh-3-2-7",
+      "id": "so-nguyen-to.ex.tinh-3-2-11",
       "type": "numeric",
       "cardIds": ["so-nguyen-to.card.luy-thua"],
       "prompt": [
@@ -2704,7 +2717,7 @@
         },
         {
           "type": "formula",
-          "tex": "3^{2} \\cdot 7"
+          "tex": "3^{2} \\cdot 11"
         }
       ],
       "hints": {
@@ -2718,10 +2731,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 63
+        "value": 99
       },
       "check": {
-        "expr": "3^2·7"
+        "expr": "3^2·11"
       }
     },
     {
@@ -2735,7 +2748,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\overline{9a}"
+          "tex": "\\htmlId{so}{\\overline{9a}}"
         },
         {
           "type": "visual",
@@ -2745,8 +2758,8 @@
       "hints": {
         "highlight": [
           {
-            "target": "block",
-            "index": 0
+            "target": "part",
+            "id": "so"
           }
         ]
       },
@@ -2795,7 +2808,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\overline{5a}"
+          "tex": "\\htmlId{so}{\\overline{5a}}"
         },
         {
           "type": "note",
@@ -2809,8 +2822,8 @@
       "hints": {
         "highlight": [
           {
-            "target": "block",
-            "index": 0
+            "target": "part",
+            "id": "so"
           }
         ]
       },
@@ -2859,7 +2872,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\overline{1a}"
+          "tex": "\\htmlId{so}{\\overline{1a}}"
         },
         {
           "type": "visual",
@@ -2869,8 +2882,8 @@
       "hints": {
         "highlight": [
           {
-            "target": "block",
-            "index": 0
+            "target": "part",
+            "id": "so"
           }
         ]
       },
@@ -2901,7 +2914,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\overline{4a}"
+          "tex": "\\htmlId{so}{\\overline{4a}}"
         },
         {
           "type": "visual",
@@ -2911,8 +2924,8 @@
       "hints": {
         "highlight": [
           {
-            "target": "block",
-            "index": 0
+            "target": "part",
+            "id": "so"
           }
         ]
       },
@@ -3076,13 +3089,13 @@
       "bank": ["chẵn", "lẻ"]
     },
     {
-      "id": "so-nguyen-to.ex.chon-chan-lon",
+      "id": "so-nguyen-to.ex.chon-hs-chan-bank",
       "type": "manipulate",
       "cardIds": ["so-nguyen-to.card.so-2"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chạm vào tất cả các số chẵn lớn hơn 2."
+          "text": "Chạm vào tất cả các hợp số chẵn."
         }
       ],
       "hints": {
@@ -3094,7 +3107,7 @@
         ]
       },
       "difficulty": 2,
-      "visualId": "so-nguyen-to.visual.chon-chan-lon",
+      "visualId": "so-nguyen-to.visual.chon-hs-chan-bank",
       "validatorId": "chon-dung",
       "params": {
         "i0": 0,
@@ -3286,7 +3299,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả số viết được thành tổng của 2 và một số nguyên tố."
+          "text": "Chọn tất cả số viết được thành tổng của số 2 và một số nguyên tố."
         },
         {
           "type": "visual",
@@ -3307,7 +3320,7 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "9"
+            "text": "43"
           }
         },
         {
@@ -3367,17 +3380,17 @@
       "bank": ["chẵn", "lẻ"]
     },
     {
-      "id": "so-nguyen-to.ex.viet-30",
+      "id": "so-nguyen-to.ex.viet-28",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Hà chia 30 viên bi thành hai nhóm, số bi mỗi nhóm là số nguyên tố. Nhóm thứ nhất có 7 viên."
+          "text": "Hà chia 28 viên bi thành hai nhóm, số bi mỗi nhóm là số nguyên tố. Thử từ số nguyên tố nhỏ nhất."
         },
         {
           "type": "note",
-          "text": "Nhóm thứ hai có bao nhiêu viên?"
+          "text": "Nhóm ít bi hơn có thể có ít nhất bao nhiêu viên?"
         },
         {
           "type": "visual",
@@ -3395,10 +3408,10 @@
       "difficulty": 1,
       "answer": {
         "kind": "value",
-        "value": 23
+        "value": 5
       },
       "check": {
-        "expr": "30-7"
+        "expr": "28-23"
       }
     },
     {
@@ -3412,7 +3425,7 @@
         },
         {
           "type": "note",
-          "text": "Số hạng đầu tiên nào làm số còn lại cũng là số nguyên tố?"
+          "text": "Số nguyên tố nhỏ nhất nào mà 40 trừ đi số đó vẫn được một số nguyên tố?"
         },
         {
           "type": "visual",
@@ -3780,7 +3793,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Hai số hạng đều chia hết cho 5, nên tổng chia hết cho 5. Tổng lớn hơn 5, nên tổng là "
+          "text": "Trong tổng 55 + 30, hai số hạng đều chia hết cho 5 và tổng lớn hơn 5, nên tổng là "
         },
         {
           "type": "blank",
