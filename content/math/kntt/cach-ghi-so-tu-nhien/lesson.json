@@ -25,7 +25,16 @@
       "đọc và viết số La Mã đến 30",
       "tìm và liệt kê số theo điều kiện về chữ số"
     ],
-    "whyItMatters": "Bạn đọc đúng giá 25 000 đồng nhờ biết hàng của từng chữ số, và đọc được giờ trên đồng hồ ghi số La Mã."
+    "whyItMatters": "Bạn đọc đúng giá 25 000 đồng nhờ biết hàng của từng chữ số, và đọc được giờ trên đồng hồ ghi số La Mã.",
+    "narration": {
+      "audioUrl": "narration/cach-ghi-so-tu-nhien/overview.m4a",
+      "vttUrl": "narration/cach-ghi-so-tu-nhien/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
