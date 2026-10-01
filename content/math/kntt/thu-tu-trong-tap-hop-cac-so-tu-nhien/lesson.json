@@ -413,7 +413,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.doi-loi-thanh-dau",
           "kind": "hiểu nhanh",
           "title": "Đổi lời thành dấu",
-          "text": "“Tối đa 8 người” nghĩa là nhiều nhất 8 người, nên dùng n ≤ 8. “Từ 10 tuổi trở lên” (t là số tuổi) nghĩa là 10 tuổi hoặc lớn hơn, nên dùng t ≥ 10. Cả hai cách nói đều tính cả số đề cho.",
+          "text": "“Tối đa 8 người” nghĩa là nhiều nhất 8 người, nên dùng n ≤ 8. “Từ 10 tuổi trở lên” (t là số tuổi) nghĩa là 10 tuổi hoặc lớn hơn, nên dùng t ≥ 10. Cả hai cách nói đều tính luôn số 8 và số 10.",
           "tex": "\\begin{gathered} n ≤ 8 \\\\ t ≥ 10 \\end{gathered}"
         },
         {
