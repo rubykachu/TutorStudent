@@ -1,0 +1,58 @@
+{
+  "title": "Cắt dải băng thành các đoạn bằng nhau",
+  "engine": "local",
+  "poster": { "scene": "s03-cat4", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta cắt hai dải băng thành các đoạn bằng nhau.",
+          "opening": true
+        },
+        { "text": "Dải thứ nhất dài 12. Dải thứ hai dài 18." }
+      ]
+    },
+    {
+      "id": "s02-cat3",
+      "sentences": [
+        { "text": "Ta cắt mỗi dải thành các đoạn dài 3." },
+        { "text": "Dải 12 được 4 đoạn, vừa hết." },
+        { "text": "Dải 18 được 6 đoạn, cũng vừa hết." },
+        {
+          "text": "Vì 12 và 18 đều chia hết cho 3 nên 3 là ước của cả hai số.",
+          "rule": true
+        }
+      ]
+    },
+    {
+      "id": "s03-cat4",
+      "sentences": [
+        { "text": "Giờ ta thử cắt thành các đoạn dài 4." },
+        { "text": "Dải 12 được 3 đoạn, vừa hết." },
+        { "text": "Dải 18 được 4 đoạn, còn thừa 2." },
+        { "text": "Còn thừa, nên 4 không là ước của 18." }
+      ]
+    },
+    {
+      "id": "s04-uc",
+      "sentences": [
+        {
+          "text": "Một số là ước của tất cả các số đã cho thì gọi là ước chung của các số đó.",
+          "rule": true
+        },
+        { "text": "Vậy 3 là một ước chung của 12 và 18." },
+        { "text": "Còn 4 thì không." },
+        { "text": "Nhớ nhé: cắt vừa hết cả hai dải thì đó là ước chung." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "uoc-chung",
+      "from": "s02-cat3",
+      "to": "s04-uc",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uoc-chung"]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Chia đều vào nhiều đĩa nhất" (lesson
+  uoc-chung-uoc-chung-lon-nhat): 18 oranges (lime circles) and 30 tangerines
+  (slate squares) shared into plates; 6 plates leave nothing over, 9 plates
+  leave 3 tangerines; the most plates is the greatest common divisor (amber).
+  Built by `pnpm video:build uoc-chung-uoc-chung-lon-nhat chia-vao-dia`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Chia đều vào nhiều đĩa nhất</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .lime { --c: var(--color-concept-lime); }
+      .slate { --c: var(--color-concept-slate); }
+      .teal { --c: var(--color-concept-teal); }
+      .amber { --c: var(--color-concept-amber); }
+      .chip { font-size: 36px; }
+      .cam, .quyt { display: inline-block; width: 24px; height: 24px; flex: none; }
+      .cam { border-radius: 50%; background: var(--color-concept-lime); }
+      .quyt { border-radius: 6px; background: var(--color-concept-slate); }
+      .big .cam, .big .quyt { width: 34px; height: 34px; }
+      .dots { position: absolute; display: flex; gap: 6px; flex-wrap: wrap; }
+      .plate { position: absolute; border: 5px solid var(--color-foreground); border-radius: 26px; background: var(--color-surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+      .plate .r { display: flex; gap: 4px; }
+      .tray { position: absolute; border: 5px dashed var(--color-muted-foreground); border-radius: 18px; padding: 10px 14px; display: flex; gap: 6px; background: none; }
+      .note { position: absolute; font: 800 36px / 1.2 "Be Vietnam Pro", sans-serif; white-space: nowrap; }
+      .ok { color: var(--color-correct); }
+      .no { color: var(--color-muted-foreground); }
+      .am { color: var(--color-concept-amber); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer"><div id="z1" class="layer"></div></section>
+        <section id="s2" class="scene layer"><div id="z2" class="layer"></div></section>
+        <section id="s3" class="scene layer"><div id="z3" class="layer"></div></section>
+        <section id="s4" class="scene layer">
+          <div id="r1" class="row" style="top: 90px; padding-left: 130px"></div>
+          <div id="r2" class="row" style="top: 230px; padding-left: 130px"></div>
+          <div id="r3" class="row" style="top: 370px; padding-left: 130px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, pose, scenes, finish } = window.LV;
+        const chip = (id, c, html) => `<span id="${id}" class="chip ${c}">${html}</span>`;
+        const cams = (n) => '<span class="cam"></span>'.repeat(n);
+        const quyts = (n) => '<span class="quyt"></span>'.repeat(n);
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        // ---------- s01: the fruit ----------
+        el($("#z1"), `
+          <div id="c1" class="abs" style="left:260px;top:60px">${chip("c1c", "lime", "● 18 quả cam")}</div>
+          <div id="d1" class="dots big" style="left:260px;top:140px;width:780px">${cams(18)}</div>
+          <div id="c2" class="abs" style="left:260px;top:220px">${chip("c2c", "slate", "■ 30 quả quýt")}</div>
+          <div id="d2" class="dots big" style="left:260px;top:300px;width:620px">${quyts(30)}</div>`);
+
+        // A row of plates, each with `a` oranges over `b` tangerines.
+        const plates = (host, n, w, gap, x0, top, h, a, b) => {
+          const ids = [];
+          for (let i = 0; i < n; i++) {
+            const id = `${host.id}-p${i}`;
+            ids.push(`#${id}`);
+            el(host, `<div id="${id}" class="plate" style="left:${x0 + i * (w + gap)}px;top:${top}px;width:${w}px;height:${h}px"><div class="r">${cams(a)}</div><div class="r">${quyts(b)}</div></div>`);
+          }
+          return ids;
+        };
+        const six = plates($("#z2"), 6, 150, 15, 250, 130, 130, 3, 5);
+        el($("#z2"), `
+          <div id="t6" class="abs" style="left:250px;top:50px">${chip("t6c", "teal", "6 đĩa")}</div>
+          <div id="e1" class="abs" style="left:250px;top:300px">${chip("e1c", "lime", "● mỗi đĩa 3 quả cam")}</div>
+          <div id="e2" class="abs" style="left:250px;top:380px">${chip("e2c", "slate", "■ mỗi đĩa 5 quả quýt")}</div>
+          <div id="ok6" class="note ok" style="left:780px;top:330px">✓ không thừa quả nào</div>`);
+
+        const nine = plates($("#z3"), 9, 100, 10, 250, 90, 130, 2, 3);
+        el($("#z3"), `
+          <div id="t9" class="abs" style="left:250px;top:20px">${chip("t9c", "teal", "9 đĩa")}</div>
+          <div id="tray" class="tray" style="left:250px;top:250px">${quyts(3)}</div>
+          <div id="left9" class="note no" style="left:420px;top:262px">✕ quýt còn thừa 3</div>
+          <div id="uc" class="abs" style="left:250px;top:380px"><span class="math pill" style="font-size:52px">ƯC(18, 30) = <span id="u1">1</span><span id="u2">, 2</span><span id="u3">, 3</span><span id="u4">, <span class="am">6</span></span></span></div>`);
+
+        $("#r1").innerHTML = chip("g1", "lime", "● 18 quả cam") + chip("g2", "slate", "■ 30 quả quýt");
+        $("#r2").innerHTML = `<span id="gp" class="math pill"><span class="am">ƯCLN</span>(18, 30) = <span class="am">6</span></span>`;
+        $("#r3").innerHTML = chip("g3", "amber", "nhiều nhất 6 đĩa");
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+
+        scenes([["#s1", "s01-mo"], ["#s2", "s02-sau"], ["#s3", "s03-chin"], ["#s4", "s04-nhat"]]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-mo";
+          hide(["#c1c", "#d1", "#c2c", "#d2"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop(["#c1c", "#d1"], W(sid, "đồ"), { from: 0.7 });
+          pop(["#c2c", "#d2"], W(sid, "nhất"), { from: 0.7 });
+          pose(bird, "idle", W(sid, "mẹ", 2));
+        }
+        {
+          const sid = "s02-sau";
+          hide([...six, "#t6c", "#e1c", "#e2c", "#ok6"]);
+          pose(bird, "idle", start(sid));
+          pop(["#t6c", ...six], W(sid, "6"), { from: 0.5, stagger: 0.1 });
+          pop("#e1c", W(sid, "3"), { from: 0.6 });
+          pop("#e2c", W(sid, "5"), { from: 0.6 });
+          pop("#ok6", W(sid, "không"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "chia", 2));
+        }
+        {
+          const sid = "s03-chin";
+          hide([...nine, "#t9c", "#tray", "#left9", "#u1", "#u2", "#u3", "#u4", "#uc"]);
+          pose(bird, "idle", start(sid));
+          pop(["#t9c", ...nine], W(sid, "9"), { from: 0.5, stagger: 0.08 });
+          pop(["#tray", "#left9"], W(sid, "thừa"), { from: 0.6 });
+          pop("#uc", W(sid, "ước"), { from: 0.7 });
+          pop("#u1", W(sid, "1"), { from: 0.6 });
+          pop("#u2", W(sid, "2", 2), { from: 0.6 });
+          pop("#u3", W(sid, "3", 2), { from: 0.6 });
+          pop("#u4", W(sid, "6"), { from: 0.6 });
+        }
+        {
+          const sid = "s04-nhat";
+          hide(["#g1", "#g2", "#gp", "#g3"]);
+          pose(bird, "idle", start(sid));
+          pop(["#g1", "#g2"], W(sid, "loại"), { from: 0.6 });
+          pop("#gp", W(sid, "phần", 2), { from: 0.6 });
+          pop("#g3", W(sid, "vậy"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "vậy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

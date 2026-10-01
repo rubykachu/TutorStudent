@@ -1,0 +1,60 @@
+{
+  "title": "Chia đều vào nhiều đĩa nhất",
+  "engine": "local",
+  "poster": { "scene": "s02-sau", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta chia đều đồ vật vào nhiều đĩa nhất.",
+          "opening": true
+        },
+        { "text": "Mẹ có 18 quả cam và 30 quả quýt." },
+        { "text": "Mẹ muốn chia đều vào các đĩa, không thừa quả nào." }
+      ]
+    },
+    {
+      "id": "s02-sau",
+      "sentences": [
+        { "text": "Thử chia vào 6 đĩa." },
+        { "text": "Mỗi đĩa có 3 quả cam." },
+        { "text": "Mỗi đĩa có 5 quả quýt." },
+        { "text": "Không thừa quả nào, nên chia được." }
+      ]
+    },
+    {
+      "id": "s03-chin",
+      "sentences": [
+        { "text": "Thử chia vào 9 đĩa thì sao?" },
+        { "text": "Cam vừa hết, mỗi đĩa 2 quả." },
+        { "text": "Nhưng quýt còn thừa 3 quả, nên không được." },
+        { "text": "Số đĩa phải là ước chung của 18 và 30." },
+        { "text": "Các ước chung là 1, 2, 3 và 6." }
+      ]
+    },
+    {
+      "id": "s04-nhat",
+      "sentences": [
+        {
+          "text": "Chia đều các loại đồ vật vào các phần như nhau, không thừa.",
+          "rule": true
+        },
+        {
+          "text": "Số phần nhiều nhất là ƯCLN của số đồ vật mỗi loại.",
+          "say": "Số phần nhiều nhất là ước-chung-lớn-nhất của số đồ vật mỗi loại.",
+          "rule": true
+        },
+        { "text": "Vậy nhiều nhất chia được 6 đĩa." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chia-deu",
+      "from": "s02-sau",
+      "to": "s04-nhat",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.chia-deu-nhieu-nhat"]
+    }
+  ]
+}

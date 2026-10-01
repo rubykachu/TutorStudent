@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Cắt dải băng thành các đoạn bằng nhau" (lesson
+  uoc-chung-uoc-chung-lon-nhat): two strips (12 and 18) cut into pieces of 3,
+  which fit, then pieces of 4, which leave 2 over; a cut that fits both is a
+  common divisor (teal). Pieces are slate, what is left over lime, as in the
+  lesson. Built by `pnpm video:build uoc-chung-uoc-chung-lon-nhat cat-dai-bang`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Cắt dải băng thành các đoạn bằng nhau</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .strip { position: absolute; height: 84px; }
+      .whole { position: absolute; height: 84px; border: 5px solid var(--color-muted-foreground); border-radius: 16px; background: var(--color-surface); }
+      .piece { position: absolute; top: 0; height: 84px; border: 5px solid var(--color-concept-slate); border-radius: 16px; background: var(--color-surface); display: flex; align-items: center; justify-content: space-evenly; padding: 0 6px; }
+      .piece.left { border-color: var(--color-concept-lime); border-style: dashed; }
+      .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--color-concept-slate); flex: none; }
+      .left .dot { background: var(--color-concept-lime); }
+      .len { position: absolute; width: 130px; text-align: right; font: 800 44px / 84px "Baloo 2", sans-serif; }
+      .len small { font: 700 26px "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .verdict { position: absolute; font: 800 36px / 84px "Be Vietnam Pro", sans-serif; white-space: nowrap; }
+      .verdict.ok { color: var(--color-correct); }
+      .verdict.no { color: var(--color-concept-lime); }
+      .teal { --c: var(--color-concept-teal); }
+      .lime { --c: var(--color-concept-lime); }
+      .chip { font-size: 40px; }
+      .tealtxt { color: var(--color-concept-teal); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer"><div id="z1" class="layer"></div></section>
+        <section id="s2" class="scene layer"><div id="z2" class="layer"></div></section>
+        <section id="s3" class="scene layer"><div id="z3" class="layer"></div></section>
+        <section id="s4" class="scene layer">
+          <div id="r1" class="row" style="top: 90px"></div>
+          <div id="r2" class="row" style="top: 250px"></div>
+          <div id="r3" class="row" style="top: 380px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish } = window.LV;
+        const UNIT = 40; // px per dm
+        const X0 = 320;
+        const chip = (id, cls, html) => `<span id="${id}" class="chip ${cls}">${html}</span>`;
+
+        // A strip of `total` units at row `top`: the whole strip, then its
+        // pieces of `d` (the rest dashed lime). Returns the node ids.
+        const strip = (host, tag, top, total, d, cut) => {
+          const wrap = document.createElement("div");
+          wrap.className = "layer";
+          wrap.innerHTML = `<div id="${tag}-len" class="len" style="left:${X0 - 150}px;top:${top}px">${total}<small> dm</small></div>`;
+          const whole = document.createElement("div");
+          whole.id = `${tag}-whole`;
+          whole.className = "whole";
+          whole.style.cssText = `left:${X0}px;top:${top}px;width:${total * UNIT - 6}px`;
+          wrap.append(whole);
+          const pieces = [];
+          if (cut) {
+            const n = Math.floor(total / d);
+            const rest = total % d;
+            for (let i = 0; i < n + (rest ? 1 : 0); i++) {
+              const size = i < n ? d : rest;
+              const p = document.createElement("div");
+              p.id = `${tag}-p${i}`;
+              p.className = `piece${i < n ? "" : " left"}`;
+              p.style.cssText = `left:${X0 + i * d * UNIT}px;top:${top}px;width:${size * UNIT - 6}px`;
+              p.innerHTML = '<span class="dot"></span>'.repeat(size);
+              wrap.append(p);
+              pieces.push(p.id);
+            }
+            const v = document.createElement("div");
+            v.id = `${tag}-v`;
+            v.className = `verdict ${rest ? "no" : "ok"}`;
+            v.style.cssText = `left:${X0 + total * UNIT + 14}px;top:${top}px`;
+            v.textContent = rest ? `còn thừa ${rest}` : "vừa hết ✓";
+            wrap.append(v);
+          }
+          host.append(wrap);
+          return { whole: `#${tag}-whole`, len: `#${tag}-len`, pieces: pieces.map((p) => `#${p}`), verdict: `#${tag}-v` };
+        };
+
+        const a1 = strip($("#z1"), "a", 130, 12, 3, false);
+        const b1 = strip($("#z1"), "b", 290, 18, 3, false);
+        const a2 = strip($("#z2"), "c", 130, 12, 3, true);
+        const b2 = strip($("#z2"), "d", 290, 18, 3, true);
+        const a3 = strip($("#z3"), "e", 130, 12, 4, true);
+        const b3 = strip($("#z3"), "f", 290, 18, 4, true);
+        $("#r2").innerHTML = chip("c3", "teal", "✓ 3 cắt vừa hết cả hai dải");
+        $("#r1").innerHTML = `<span id="uc" class="math pill"><span class="tealtxt">3</span> là ước chung của 12 và 18</span>`;
+        $("#r3").innerHTML = chip("c4", "lime", "✕ 4 còn thừa, không là ước chung");
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+
+        scenes([["#s1", "s01-mo"], ["#s2", "s02-cat3"], ["#s3", "s03-cat4"], ["#s4", "s04-uc"]]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: two whole strips ----------
+        {
+          const sid = "s01-mo";
+          hide([a1.whole, a1.len, b1.whole, b1.len]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop([a1.whole, a1.len], start(sid) + 0.3, { from: 0.6 });
+          pop([b1.whole, b1.len], W(sid, "hai", 2), { from: 0.6 });
+          pose(bird, "idle", W(sid, "dải", 2));
+        }
+
+        // ---------- s02: pieces of 3 fit ----------
+        const cutScene = (sid, a, b, word) => {
+          const all = [...a.pieces, ...b.pieces, a.verdict, b.verdict];
+          hide(all);
+          pose(bird, "idle", window.LV.start(sid));
+          // The whole strips stand until the cut, then give way to the pieces.
+          tl.fromTo([a.whole, b.whole], { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3, immediateRender: false }, W(sid, word));
+          pop(a.pieces, W(sid, word), { from: 0.4, stagger: 0.12 });
+          pop(b.pieces, W(sid, word) + 0.3, { from: 0.4, stagger: 0.1 });
+        };
+        {
+          const sid = "s02-cat3";
+          cutScene(sid, a2, b2, "cắt");
+          pop(a2.verdict, W(sid, "vừa"), { from: 0.5 });
+          pop(b2.verdict, W(sid, "cũng"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "ước"));
+        }
+        // ---------- s03: pieces of 4 leave 2 ----------
+        {
+          const sid = "s03-cat4";
+          cutScene(sid, a3, b3, "cắt");
+          pop(a3.verdict, W(sid, "vừa"), { from: 0.5 });
+          pop(b3.verdict, W(sid, "thừa"), { from: 0.5 });
+          tl.to(b3.pieces[b3.pieces.length - 1], { scale: 1.12, yoyo: true, repeat: 1, duration: 0.3 }, W(sid, "thừa"));
+        }
+        // ---------- s04: common divisor ----------
+        {
+          const sid = "s04-uc";
+          hide(["#c3", "#uc", "#c4"]);
+          pose(bird, "idle", window.LV.start(sid));
+          pop("#uc", W(sid, "ước", 2), { from: 0.6 });
+          pop("#c3", W(sid, "vậy"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "vậy"));
+          pop("#c4", W(sid, "còn"), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

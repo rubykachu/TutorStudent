@@ -15,7 +15,7 @@
   "reviewedHash": "73928f5b4c305bee70185d4b56b69065c03b4ada9dd0945fc5928a665feca294",
   "overview": {
     "hook": {
-      "text": "Mẹ có 18 quả cam và 30 quả quýt, muốn chia đều vào các đĩa như nhau, không thừa quả nào. Nhiều nhất chia được bao nhiêu đĩa?"
+      "text": "Chào bạn! Hôm nay ta tìm số đĩa nhiều nhất để chia đều. Mẹ có 18 quả cam và 30 quả quýt, muốn chia đều vào các đĩa như nhau, không thừa quả nào. Nhiều nhất chia được bao nhiêu đĩa?"
     },
     "summary": "Bài này dạy tìm các số cùng là ước của hai hay nhiều số. Bạn tìm ước chung lớn nhất rồi dùng nó để chia đều và rút gọn phân số.",
     "goals": [
@@ -24,7 +24,16 @@
       "dùng ước chung lớn nhất để chia đều đồ vật",
       "rút gọn phân số về dạng tối giản"
     ],
-    "whyItMatters": "Biết ước chung lớn nhất giúp bạn chia đồ vật thật đều mà không thừa cái nào."
+    "whyItMatters": "Biết ước chung lớn nhất giúp bạn chia đồ vật thật đều mà không thừa cái nào.",
+    "narration": {
+      "audioUrl": "narration/uoc-chung-uoc-chung-lon-nhat/overview.m4a",
+      "vttUrl": "narration/uoc-chung-uoc-chung-lon-nhat/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Achird",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -65,6 +74,10 @@
       "sourceRef": "Sách bài tập tr.38",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.cat-dai-bang"
+        },
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-12-18-3",
@@ -379,6 +392,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.phan-tich-uclnn"
+        },
+        {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-36-60",
           "caption": "Muốn biết đoạn dài nhất cắt vừa hết dải 36 dm và dải 60 dm, ta tìm ƯCLN(36, 60). Viết 36 và 60 thành tích các thừa số nguyên tố, rồi so từng cột."
@@ -552,6 +569,10 @@
       "sourceRef": "Sách bài tập tr.38, 39",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.chia-vao-dia"
+        },
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.dia-18-30",
@@ -3816,5 +3837,70 @@
   "sticker": {
     "name": "Thợ cắt dải băng",
     "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.cat-dai-bang",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/cat-dai-bang.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/cat-dai-bang.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/cat-dai-bang.jpg",
+      "durationSec": 50.63,
+      "clips": [
+        {
+          "id": "uoc-chung",
+          "start": 9.167,
+          "end": 49.202,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uoc-chung"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.phan-tich-uclnn",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/phan-tich-uclnn.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/phan-tich-uclnn.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/phan-tich-uclnn.jpg",
+      "durationSec": 49.6,
+      "clips": [
+        {
+          "id": "uclnn-phan-tich",
+          "start": 9.814,
+          "end": 48.175,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.chia-vao-dia",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/chia-vao-dia.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/chia-vao-dia.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/chia-vao-dia.jpg",
+      "durationSec": 47,
+      "clips": [
+        {
+          "id": "chia-deu",
+          "start": 11.567,
+          "end": 45.598,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.chia-deu-nhieu-nhat"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

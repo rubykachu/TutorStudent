@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tìm ước chung lớn nhất bằng thừa số nguyên tố" (lesson
+  uoc-chung-uoc-chung-lon-nhat): 36 = 2² · 3² and 60 = 2² · 3 · 5 side by side,
+  one column per prime; the shared primes (2 and 3) keep their smallest
+  exponent and multiply to 12, the amber greatest common divisor. Primes are
+  sky with ✚ and exponents violet with ▲, as in Bài 10 and the lesson's table.
+  Built by `pnpm video:build uoc-chung-uoc-chung-lon-nhat phan-tich-uclnn`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tìm ước chung lớn nhất bằng thừa số nguyên tố</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .ps { color: var(--color-concept-sky); }
+      .ev { color: var(--color-concept-violet); font-size: 0.6em; vertical-align: 0.75em; }
+      .am { color: var(--color-concept-amber); }
+      .whole { position: absolute; height: 70px; border: 5px solid var(--color-muted-foreground); border-radius: 16px; background: var(--color-surface); }
+      .wl { position: absolute; width: 200px; text-align: right; font: 800 50px / 70px "Baloo 2", sans-serif; }
+      .wl small { font: 700 26px "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .sky { --c: var(--color-concept-sky); }
+      .violet { --c: var(--color-concept-violet); }
+      .chip { font-size: 36px; }
+      .fl { position: absolute; left: 0; width: 1280px; text-align: center; padding-left: 130px; }
+      .fl > span { display: inline-block; }
+      .cell { position: absolute; width: 150px; height: 70px; display: flex; align-items: center; justify-content: center; font: 800 52px / 1 "Baloo 2", sans-serif; border: 4px solid transparent; border-radius: 14px; }
+      .cell.lab { width: 270px; justify-content: flex-end; padding-right: 14px; font: 700 30px "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .cell.hd { color: var(--color-concept-sky); }
+      .cell .empty { width: 26px; height: 26px; border-radius: 7px; border: 3px dashed var(--color-muted-foreground); opacity: 0.6; }
+      .cell.shared { border-color: var(--color-concept-sky); background: color-mix(in srgb, var(--color-concept-sky) 15%, transparent); }
+      .tick { color: var(--color-concept-sky); }
+      .mn { color: var(--color-concept-violet); }
+      .res { font-size: 76px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer"><div id="z1" class="layer"></div></section>
+        <section id="s2" class="scene layer">
+          <div id="fa" class="fl math" style="top: 120px"></div>
+          <div id="fb" class="fl math" style="top: 250px"></div>
+          <div id="lg" class="row" style="top: 400px; padding-left: 130px"></div>
+        </section>
+        <section id="s3" class="scene layer"><div id="tb" class="layer"></div></section>
+        <section id="s4" class="scene layer">
+          <div id="k" class="row" style="top: 100px; padding-left: 130px"></div>
+          <div id="rs" class="fl math" style="top: 270px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish } = window.LV;
+        const chip = (id, c, html) => `<span id="${id}" class="chip ${c}">${html}</span>`;
+        const p = (n) => `<span class="ps">${n}</span>`;
+        const pe = (n, e) => `<span class="ps">${n}</span><span class="ev">${e}</span>`;
+
+        // ---------- DOM ----------
+        // Whole strips of 36 and 60 on one scale (10 px per unit).
+        $("#z1").innerHTML = `
+          <div id="ttl" class="row" style="top: 40px; padding-left: 130px"><span class="math pill" style="font-size:60px"><span class="am">ƯCLN</span>(36, 60)</span></div>
+          <div id="n36" class="wl" style="left:120px;top:200px">36</div>
+          <div id="w36" class="whole" style="left:340px;top:200px;width:354px"></div>
+          <div id="n60" class="wl" style="left:120px;top:340px">60</div>
+          <div id="w60" class="whole" style="left:340px;top:340px;width:594px"></div>`;
+        $("#fa").innerHTML = `<span><span id="a0">36 =</span> <span id="a1">${pe(2, 2)}</span> <span id="ao" class="op">·</span> <span id="a2">${pe(3, 2)}</span></span>`;
+        $("#fb").innerHTML = `<span><span id="b0">60 =</span> <span id="b1">${pe(2, 2)}</span> <span id="bo" class="op">·</span> <span id="b2">${p(3)}</span> <span id="bo2" class="op">·</span> <span id="b3">${p(5)}</span></span>`;
+        $("#lg").innerHTML = chip("l1", "sky", "✚ thừa số nguyên tố") + chip("l2", "violet", "▲ số mũ");
+
+        // The table: one column per prime, as in the lesson's picture.
+        {
+          const tb = $("#tb");
+          const cols = [560, 730, 900];
+          const rows = [40, 130, 220, 310, 400];
+          const cell = (id, cls, x, y, html) => {
+            const d = document.createElement("div");
+            d.id = id;
+            d.className = `cell ${cls}`;
+            d.style.cssText = `left:${x}px;top:${y}px`;
+            d.innerHTML = html;
+            tb.append(d);
+          };
+          const empty = '<span class="empty"></span>';
+          cell("lh", "lab", 250, rows[0], "Thừa số");
+          cell("l36", "lab", 250, rows[1], "36 =");
+          cell("l60", "lab", 250, rows[2], "60 =");
+          cell("lc", "lab", 250, rows[3], "Chung");
+          cell("lm", "lab", 250, rows[4], "Số mũ nhỏ nhất");
+          [2, 3, 5].forEach((n, i) => {
+            cell(`h${i}`, "hd", cols[i], rows[0], n);
+          });
+          [pe(2, 2), pe(3, 2), empty].forEach((h, i) => {
+            cell(`x${i}`, "", cols[i], rows[1], h);
+          });
+          [pe(2, 2), p(3), p(5)].forEach((h, i) => {
+            cell(`y${i}`, "", cols[i], rows[2], h);
+          });
+          cell("t0", "tick", cols[0], rows[3], "✓");
+          cell("t1", "tick", cols[1], rows[3], "✓");
+          cell("m0", "mn", cols[0], rows[4], "2");
+          cell("m1", "mn", cols[1], rows[4], "1");
+        }
+        $("#k").innerHTML = chip("k1", "sky", "✚ thừa số chung") + chip("k2", "violet", "▲ số mũ nhỏ nhất");
+        $("#rs").innerHTML = `<span id="rsp" class="pill"><span id="rs1">${pe(2, 2)}</span> <span id="rs2"><span class="op">·</span> ${p(3)}</span> <span id="rs3"><span class="op">=</span> <span class="am">12</span></span></span>`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+
+        scenes([["#s1", "s01-mo"], ["#s2", "s02-viet"], ["#s3", "s03-so"], ["#s4", "s04-nhan"]]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- s01: two strips ----------
+        {
+          const sid = "s01-mo";
+          hide(["#ttl", "#n36", "#w36", "#n60", "#w60"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#ttl", W(sid, "ước"), { from: 0.6 });
+          pop(["#n36", "#w36"], W(sid, "36"), { from: 0.6 });
+          pop(["#n60", "#w60"], W(sid, "60"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "cần"));
+        }
+
+        // ---------- s02: write each number as primes ----------
+        {
+          const sid = "s02-viet";
+          hide(["#a0", "#a1", "#ao", "#a2", "#b0", "#b1", "#bo", "#b2", "#bo2", "#b3", "#l1", "#l2"]);
+          pose(bird, "idle", start(sid));
+          pop("#l1", start(sid) + 0.3, { from: 0.6 });
+          pop("#l2", start(sid) + 0.6, { from: 0.6 });
+          pop("#a0", start(sid) + 0.9, { from: 0.6 });
+          pop("#a1", W(sid, "2"), { from: 0.4 });
+          pop(["#ao", "#a2"], W(sid, "nhân"), { from: 0.5 });
+          pop("#b0", start(sid) + 1.2, { from: 0.6 });
+          pop("#b1", W(sid, "2", 4), { from: 0.4 });
+          pop(["#bo", "#b2"], W(sid, "nhân", 2), { from: 0.5 });
+          pop(["#bo2", "#b3"], W(sid, "nhân", 3), { from: 0.5 });
+        }
+
+        // ---------- s03: compare the columns ----------
+        {
+          const sid = "s03-so";
+          const all = ["#lh", "#h0", "#h1", "#h2", "#l36", "#x0", "#x1", "#x2", "#l60", "#y0", "#y1", "#y2", "#lc", "#t0", "#t1", "#lm", "#m0", "#m1"];
+          hide(all);
+          pose(bird, "idle", start(sid));
+          pop(["#lh", "#h0", "#h1", "#h2"], W(sid, "cột"), { from: 0.6 });
+          pop(["#l36", "#x0", "#x1", "#x2", "#l60", "#y0", "#y1", "#y2"], W(sid, "thừa"), { from: 0.6 });
+          const mark = (ids, t) => tl.to(ids, { borderColor: window.LV.color("concept-sky"), backgroundColor: "rgba(3, 105, 161, 0.15)", duration: 0.3 }, t);
+          mark(["#h0", "#x0", "#y0"], W(sid, "2"));
+          pop(["#lc", "#t0"], W(sid, "hai"), { from: 0.6 });
+          pop(["#lm", "#m0"], W(sid, "nhỏ"), { from: 0.6 });
+          mark(["#h1", "#x1", "#y1"], W(sid, "3"));
+          pop("#t1", W(sid, "hai", 2), { from: 0.6 });
+          pop("#m1", W(sid, "nhỏ", 2), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nhỏ", 2));
+          tl.to(["#h2", "#x2", "#y2"], { opacity: 0.35, duration: 0.3 }, W(sid, "5"));
+        }
+
+        // ---------- s04: multiply the shared powers ----------
+        {
+          const sid = "s04-nhan";
+          hide(["#k1", "#k2", "#rsp", "#rs1", "#rs2", "#rs3"]);
+          pose(bird, "idle", start(sid));
+          pop("#k1", W(sid, "chung"), { from: 0.6 });
+          pop("#k2", W(sid, "nhỏ"), { from: 0.6 });
+          pop(["#rsp", "#rs1"], W(sid, "2"), { from: 0.5 });
+          pop("#rs2", W(sid, "nhân", 2), { from: 0.5 });
+          pop("#rs3", W(sid, "bằng"), { from: 0.5 });
+          pose(bird, "cheer", W(sid, "vậy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

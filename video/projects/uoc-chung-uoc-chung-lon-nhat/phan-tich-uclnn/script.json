@@ -1,0 +1,57 @@
+{
+  "title": "Tìm ước chung lớn nhất bằng thừa số nguyên tố",
+  "engine": "local",
+  "poster": { "scene": "s03-so", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm ước chung lớn nhất bằng thừa số nguyên tố.",
+          "opening": true
+        },
+        { "text": "Ta cần đoạn dài nhất cắt vừa hết dải 36 và dải 60." }
+      ]
+    },
+    {
+      "id": "s02-viet",
+      "sentences": [
+        {
+          "text": "Viết mỗi số thành tích các thừa số nguyên tố.",
+          "rule": true
+        },
+        { "text": "36 bằng 2 mũ 2 nhân 3 mũ 2." },
+        { "text": "60 bằng 2 mũ 2 nhân 3 nhân 5." }
+      ]
+    },
+    {
+      "id": "s03-so",
+      "sentences": [
+        { "text": "Ta so từng cột thừa số nguyên tố." },
+        { "text": "Thừa số 2 có ở cả hai số. Số mũ nhỏ nhất là 2." },
+        { "text": "Thừa số 3 cũng có ở cả hai số. Số mũ nhỏ nhất là 1." },
+        { "text": "Thừa số 5 chỉ có ở 60, nên bỏ đi." }
+      ]
+    },
+    {
+      "id": "s04-nhan",
+      "sentences": [
+        {
+          "text": "Lấy các thừa số nguyên tố chung của mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN.",
+          "say": "Lấy các thừa số nguyên tố chung của mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ước-chung-lớn-nhất.",
+          "rule": true
+        },
+        { "text": "2 mũ 2 nhân 3 bằng 12." },
+        { "text": "Vậy ước chung lớn nhất của 36 và 60 là 12." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "uclnn-phan-tich",
+      "from": "s02-viet",
+      "to": "s04-nhan",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich"]
+    }
+  ]
+}
