@@ -28,6 +28,11 @@ export type MeetTrySpec = {
   goal?: boolean;
 };
 
+// "Xe B" read after a comma is "xe B".
+function lowerFirst(text: string): string {
+  return text.charAt(0).toLocaleLowerCase("vi") + text.slice(1);
+}
+
 function Places({
   values,
   other,
@@ -113,7 +118,7 @@ export function MeetTry({
         {same ? (
           <Tint color="lime">{`Cả hai cùng ở ${p * a} ${unit}`}</Tint>
         ) : (
-          `${names[0]} ở ${p * a} ${unit}, ${names[1]} ở ${q * b} ${unit}`
+          `${names[0]} ở ${p * a} ${unit}, ${lowerFirst(names[1])} ở ${q * b} ${unit}`
         )}
       </p>
       {goal && (

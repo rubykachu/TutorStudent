@@ -3,8 +3,8 @@ import { decorative } from "@/visuals/shared/markers";
 
 const COLUMN = 11;
 const LEFT = 22;
-const TOP_Y = 36;
-const BOTTOM_Y = 56;
+const TOP_Y = 40;
+const BOTTOM_Y = 60;
 // Two rows of marks over the same six places: the top row every 2 places,
 // the bottom row every 3. Only place 6 has a mark in both rows.
 const TOP = [2, 4, 6] as const;
@@ -28,9 +28,9 @@ export default function Sticker() {
       <g {...decorative}>
         <circle cx={50} cy={50} r={48} className="fill-highlight" />
         <rect
-          x={8}
-          y={22}
-          width={84}
+          x={10}
+          y={24}
+          width={80}
           height={52}
           rx={10}
           className="fill-surface stroke-concept-violet"
@@ -39,8 +39,8 @@ export default function Sticker() {
         <line
           x1={xOf(MEET)}
           x2={xOf(MEET)}
-          y1={28}
-          y2={68}
+          y1={30}
+          y2={70}
           className="stroke-concept-lime"
           strokeWidth={2}
           strokeDasharray="3 2"
@@ -51,7 +51,7 @@ export default function Sticker() {
             color="sky"
             cx={xOf(place)}
             cy={TOP_Y}
-            r={4}
+            r={5.5}
           />
         ))}
         {BOTTOM.map((place) => (
@@ -60,14 +60,14 @@ export default function Sticker() {
             color="amber"
             cx={xOf(place)}
             cy={BOTTOM_Y}
-            r={4}
+            r={5.5}
           />
         ))}
         <ConceptShape
           color="pink"
           cx={xOf(MEET)}
-          cy={84}
-          r={9}
+          cy={(TOP_Y + BOTTOM_Y) / 2}
+          r={7}
           className="stroke-surface"
           strokeWidth={2}
         />
