@@ -557,7 +557,7 @@ function SectionDone({
       }
     >
       <SectionDoneSound />
-      <p className="max-w-lg text-balance">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
+      <p className="max-w-2xl text-balance">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
       <LessonProgressCard lesson={lesson} done={completion.doneCount} />
       {reward}
     </DoneScreen>

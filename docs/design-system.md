@@ -12,7 +12,7 @@ Nguồn duy nhất cho giao diện. Token định nghĩa ở `src/app/globals.cs
 1. **Một màn hình, một việc.** Không sidebar, không nhiều cột nội dung cùng lúc khi đang học.
 2. **Hình trước, chữ sau.** Chữ giải thích ≤ 2 câu mỗi khối.
 3. **Yên tĩnh khi học, vui khi xong.** Hiệu ứng mạnh chỉ ở khoảnh khắc thưởng (xong phần, nhận sticker).
-4. **Sai không đáng sợ.** Sai = cam + linh vật gợi ý, không đỏ, không tiếng báo lỗi gắt (chỉ một tiếng "oops" trầm, nhẹ).
+4. **Sai không đáng sợ.** Sai = cam + linh vật gợi ý, không đỏ, không tiếng báo lỗi gắt (chỉ một tiếng sai ngắn, nhỏ hơn giọng).
 5. **Màu mang nghĩa, nhưng không chỉ màu.** Mỗi khái niệm có màu + ký hiệu hình (tròn, vuông, tam giác…) để trẻ mù màu vẫn phân biệt.
 
 ## 2. Màu
@@ -122,8 +122,8 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 | Đã chọn | `--color-primary` 3px | `--color-surface` | — | — |
 | Đúng | `--color-correct` 3px + dấu ✓ + pháo giấy ~1 giây (bỏ khi giảm chuyển động) | `--color-correct-soft` | vui, bong bóng khen | nhạc vui ngắn rồi cú đọc lời khen, mọi lần đúng |
 | Sai lần 1 | `--color-retry` 3px nét đứt + rung | `--color-retry-soft` | cổ vũ, bong bóng động viên | cú đọc câu động viên |
-| Sai lần 2 | như lần 1 | như lần 1 | gợi ý, chỉ vào visual gợi ý | "oops" nhẹ rồi cú đọc câu gợi ý |
-| Sai lần 3 | như lần 1 | như lần 1 | cổ vũ, visual lời giải chạy | "oops" nhẹ rồi cú đọc câu lời giải |
+| Sai lần 2 | như lần 1 | như lần 1 | gợi ý, chỉ vào visual gợi ý | tiếng sai nhẹ rồi cú đọc câu gợi ý |
+| Sai lần 3 | như lần 1 | như lần 1 | cổ vũ, visual lời giải chạy | tiếng sai nhẹ rồi cú đọc câu lời giải |
 
 Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bóng của cú: thẻ trả lời rung và có viền cam nét đứt; phần trả lời sai có viền cam nét đứt (vùng chạm: vòng cam nét đứt). Gợi ý tác giả trỏ vào đề (khối, phần công thức, câu) và phím "mũ" được viền/gạch chân bằng màu khái niệm của đích gợi ý, không có khái niệm thì `--color-concept-slate`. Nấc 2 khi không có visual gợi ý: cùng viền đó, dày hơn. `--color-highlight` chỉ dành cho trạng thái đang chọn.
 
@@ -132,10 +132,12 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 ### Âm thanh
 
 - Mọi lần kiểm đều có tiếng (bảng trên); mọi câu trong bong bóng đều có giọng đọc, đúng câu đang hiện. Không có bong bóng nào im lặng.
-- Một giọng cho mọi câu của cú, mọi file cùng độ lớn (giọng −16 LUFS, "oops" nhỏ hơn 4 LU) và không vỡ tiếng (đỉnh < −1 dBFS). Thông số ở `scripts/lib/sound-spec.ts`.
+- Một giọng cho mọi câu của cú, mọi file cùng độ lớn (giọng −16 LUFS; tiếng sai nhỏ hơn giọng 4 LU, nhạc hộp nhạc nhỏ hơn 6 LU) và không vỡ tiếng (đỉnh < −1 dBFS). Thông số ở `scripts/lib/sound-spec.ts`.
 - Không đọc chữ bằng giọng máy của trình duyệt.
 - Hai tiếng chạm, khác nhau: chọn đáp án, thẻ, vùng là tiếng click gỗ sáng (`tap`); mọi nút và liên kết khác trên màn của bé (Kiểm tra, Bỏ qua, Quay lại, nút về, ô môn, liên kết quay lại trang bài) là một nốt tròn, mềm, nhỏ hơn (`button`: một nốt sin D5 vào êm, trượt cao độ nhẹ rồi tắt dần, không có mép cắt). Tiếng nút do `ButtonSounds` (`src/lib/feedback-sounds.tsx`) phát cho mọi nút bên dưới nó, nên nút mới tự có tiếng; vùng tự lo tiếng (đáp án, hình tương tác, công tắc loa, sticker) gắn `data-own-sound`. Mọi màn của bé (kể cả màn xong phần) nằm dưới `ButtonSounds`. Tiếng nút phát ngay trong lượt chạm và không bị cắt khi màn kế tiếp mở: clip chỉ `load()` một lần (`preloadSounds` trong `src/lib/sound.ts`), vì nạp lại một clip đang phát sẽ dừng nó. Trang phụ huynh và trang chọn hồ sơ im lặng.
-- Nhận sticker (xong cả bài, `StickerEarnedCelebration`): pháo giấy cùng nhạc vui rồi cú đọc "Chúc mừng bạn! Bạn vừa nhận được một sticker mới!" (`sticker-earned`), chỉ một lần, theo công tắc âm thanh, bỏ pháo khi giảm chuyển động. Mở lại sticker đã nhận ở dải sticker trang chủ: pháo giấy trên bảng chi tiết và nhạc vui, không có lời chúc mừng.
+- Âm thanh nhập từ file ngoài (loại `file` của `pnpm sounds:build`): nguồn nằm ở `assets/sounds/` (có trong git để build lặp lại được), cắt khoảng lặng đầu, chuẩn hoá độ lớn như mọi clip và ghi sha256 vào `manifest.json`. Gồm tiếng sai (`wrong-answer`; vẫn 3 nấc: nấc 1 chỉ có giọng cú, nấc 2 và 3 có tiếng sai rồi giọng), tiếng xong phần (`lesson-end`), tiếng tạm biệt (`leave`) và các bài trong hộp nhạc.
+- Xong phần (`SectionDone` trong `src/learn/section-player.tsx`): phát `lesson-end` một lần. Hai tiếng ăn mừng không bao giờ chồng nhau: ở màn nhận sticker (xong cả bài, `StickerEarnedCelebration`) pháo giấy đi cùng `lesson-end` rồi cú đọc "Chúc mừng bạn! Bạn vừa nhận được một sticker mới!" (`sticker-earned`) nối tiếp bằng `playSequence`; tiếng nhạc vui "đúng" không phát ở đây. Chỉ một lần, theo công tắc âm thanh, bỏ pháo khi giảm chuyển động. Mở lại sticker đã nhận ở dải sticker trang chủ: pháo giấy trên bảng chi tiết và nhạc vui, không có lời chúc mừng.
+- Nút × (thoát phần hoặc ôn) phát `leave` thay cho tiếng nút (`data-own-sound` + `FeedbackSounds.leave`, chạy qua `playSequence` nên dừng giọng cú đang đọc). Clip sống ở module `src/lib/sound.ts` và chỉ `load()` một lần nên vẫn phát hết sau khi màn kế tiếp mở.
 - Công tắc âm thanh: nút loa tròn 48px (`Volume2`/`VolumeX`, màu `--color-muted-foreground`), luôn ở đầu phải hàng trên cùng của màn hình; một setting cho mỗi con. Bật lại thì phát nhạc vui để xác nhận.
 
 ## 8. Linh vật
@@ -147,7 +149,8 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 - Bong bóng lời cạnh bài tập: một câu ngắn (≤ 10 chữ) ở cả ba nấc và khi đúng (câu động viên và lời khen chọn cố định theo lượt làm), luôn kèm giọng đọc. Chữ ≥ 18px, nằm một hàng riêng phía trên thẻ trả lời, bên trái đầu cú, không che câu trả lời hay nút; vùng đọc cho trình đọc màn hình đọc đúng câu đó. Mọi câu nằm ở `src/mascot/lines.ts`.
 - Màu: `--color-mascot-body` `#C08457` (thân), `--color-mascot-shade` `#94603A` (tai, cánh), `--color-mascot-belly` `#FDF0DC` (mặt, bụng), `--color-mascot-beak` `#F59E0B` (mỏ, chân, lấp lánh). Chỉ trang trí, không mang chữ.
 - Trang chủ: `welcome` khi lần học cuối cách hôm nay ≥ 3 ngày; `happy` khi hôm nay đã học; còn lại `idle`.
-- `StreakFlame`: ngọn lửa `--color-streak` `#EA8A0C` trên nền `--color-streak-soft` `#FFF4E0`; lửa xám khi hôm nay chưa học. Đếm số ngày có học trong chuỗi (ngày nghỉ giữ chuỗi nhưng không cộng).
+- Màu `--color-streak` `#EA8A0C` và `--color-streak-soft` `#FFF4E0` (lửa, chuỗi ngày) chỉ còn ở trang phụ huynh và khung nhắc ở phần giới thiệu bài; trang chủ của bé không còn chip chuỗi ngày.
+- Trang chủ: bên dưới (điện thoại) hoặc cạnh (máy tính bảng) bạn cú là chip "Hộp nhạc · n bài" (xem mục Hộp nhạc bên dưới); avatar bé chọn hiện cạnh "Chào <tên>!" và trong nút "Đổi hồ sơ". Bạn cú vẫn là linh vật ở mọi nơi khác.
 
 ## 9. Component chính
 
@@ -164,8 +167,10 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 | `PassageReader` | Hiển thị văn bản đọc hiểu, chạm từng câu để chọn, ghi chú "Theo dõi" dạng thẻ nhỏ bên lề (iPad) hoặc dưới đoạn (điện thoại) |
 | `ConceptChip` | Chip màu khái niệm + ký hiệu hình |
 | `StickerBook` | Lưới sticker đã nhận, sticker chưa nhận hiện bóng xám |
-| `StreakFlame` | Số ngày học liên tục + biểu tượng, hiển thị ngày nghỉ còn lại trong tuần |
-| `Avatar` | Mặt thú SVG phẳng (mèo, gấu, thỏ, cáo, gấu trúc, gà con) trên đĩa nền nhạt; màu lấy từ token `--color-avatar-*`, chỉ để trang trí, không mang chữ |
+| `Avatar` | Hình SVG phẳng trên đĩa nền nhạt: mặt thú (mèo, gấu, thỏ, cáo, gấu trúc, gà con), người nhện (mặt nạ đỏ có mạng nhện, mắt trắng viền đen, áo xanh; thiết kế riêng, không chép logo) và xe đua (nhìn ngang, thân đỏ, cánh gió, vạch trắng). Màu lấy từ token `--color-avatar-*`, chỉ để trang trí, không mang chữ. Hiện ở chọn/tạo hồ sơ, cạnh lời chào và trong nút "Đổi hồ sơ" trên trang chủ |
+| `MusicBoxChip`, `MusicBoxSheet`, `MusicReward` | Hộp nhạc (`src/music/`), xem mục Hộp nhạc |
+| `Sheet` | Khung bảng trượt lên (điện thoại) hoặc giữa màn (máy tính bảng): nền mờ, đóng bằng chạm ngoài, Escape và nút "Đóng" |
+| `SectionCardArt` | Góc "đa vũ trụ" nhạt ở thẻ phần của trang bài, xem mục Nền vũ trụ |
 
 Biểu tượng: Lucide (SVG). Không dùng emoji làm biểu tượng giao diện.
 
@@ -207,3 +212,15 @@ Một lớp nền "đa vũ trụ" rất nhạt phía sau mọi màn của bé (t
 - Tương phản: độ mờ mỗi hình ≤ 0.16 (vầng tinh vân ≤ 8%). Điểm tối nhất của nền (nơi hình chồng nhau, đo trên ảnh chụp chỉ còn nền ở 820×1180, 390×844, 1180×820) giữ `--color-muted-foreground` ≥ 4.6:1 và `--color-foreground` ≥ 7.6:1. Tăng độ mờ hay thêm hình thì đo lại.
 - Nhẹ: một khối div gradient và vài SVG tĩnh, không ảnh, không script; không chuyển động nên không có gì để tắt khi giảm chuyển động.
 - Thanh dưới cố định (`bar-surface`) phủ màu nền phẳng ngang cả màn nên nền vũ trụ không hiện sau nó.
+
+- Thẻ phần của trang bài ("Các phần của bài", `SectionCardArt` trong `src/components/section-card-art.tsx`): mỗi thẻ có một góc phải-trên riêng, lặp theo thứ tự thẻ: hành tinh có vành đai (tím), hành tinh sọc trên quỹ đạo nét đứt (xanh ngọc), mặt trăng có hố và đốm sao (hổ phách), hành tinh nhỏ trên quỹ đạo nghiêng (xanh trời). Tranh chiếm cột phải của thẻ (rộng 56px điện thoại, 64px máy tính bảng) chính là cột chứa mũi tên `›`; cột chữ kết thúc đúng chỗ tranh bắt đầu nên không bao giờ có chữ nằm dưới tranh, và hành tinh nằm ở phần trên, phía trên mũi tên. Thẻ cắt tranh theo góc bo (`overflow-hidden`).
+- Tranh thẻ chỉ là SVG tĩnh, `aria-hidden`, không chữ, không chuyển động nên không có gì để tắt khi giảm chuyển động. Mỗi hình là màu khái niệm ở độ mờ ≤ 0.16 trên nền thẻ trắng, nằm ngoài vùng chữ nên tương phản chữ (`--color-foreground`, `--color-muted-foreground` trên `--color-surface`) không đổi (≥ 7.6:1 và ≥ 4.6:1).
+
+## 13. Hộp nhạc
+
+Nhạc là phần thưởng SAU khi học, không bao giờ phát trong lúc làm bài. Code ở `src/music/`.
+
+- Danh sách bài ở một nơi: `SONGS` trong `src/music/songs.ts` (id, tên tiếng Việt, tên file nguồn trong `assets/sounds/`). Thêm bài: chép file vào `assets/sounds/`, thêm một mục, chạy `pnpm sounds:build`, commit kết quả. Bài được làm cùng loại clip `file` ở −22 LUFS (nhỏ hơn giọng 6 LU; iOS bỏ qua `volume` của thẻ audio nên độ lớn đặt khi làm file), cắt khoảng lặng đầu, tắt dần 0,4 giây ở cuối và không được tải trước.
+- Luật mở khoá cũng ở `songs.ts`: bài đầu mở khi xong 1 phần (`FIRST_SONG_AFTER_SECTIONS`), rồi thêm một bài sau mỗi 3 phần xong (`SECTIONS_PER_EXTRA_SONG`): ba bài mở ở mốc 1, 4 và 7 phần, tức trong hai bài học đầu. Số bài đã mở suy ra từ số bản ghi tiến độ phần ở trạng thái `done` của bé (Dexie `sectionProgress`), không lưu trạng thái riêng, nên làm lại phần đã xong không mở thêm gì.
+- Chip trang chủ "Hộp nhạc · n bài" (`MusicBoxChip`, thay chip chuỗi ngày; chưa có bài nào thì chỉ "Hộp nhạc") mở bảng `MusicBoxSheet`: bài đã mở là nút nghe/dừng (biểu tượng phát/dừng trong đĩa tím), bài chưa mở xám, có khoá và dòng "Học xong thêm n phần để mở". Chạm bài khác thì bài đang phát dừng (một bài một lúc, qua `playMusic` trong `src/lib/sound.ts`); đóng bảng, rời màn hay tắt loa thì nhạc dừng; giọng cú bắt đầu cũng dừng nhạc. Tắt âm thanh của bé thì nút nghe bị khoá và bảng nói "Bật loa ở góc màn hình để nghe nhạc".
+- Màn xong phần: sau tiếng `lesson-end`, nếu phần vừa xong mở thêm bài thì hiện một hàng thưởng gọn (`MusicReward`, cao khoảng 64px để nội dung vẫn nằm trọn trên thanh dưới) "Bài nhạc mới: “…”" kèm "Mở hộp nhạc"; chạm là mở bảng trên, bài mới có nhãn "Mới". Không tự phát nhạc: bé phải chạm. Màn nhận sticker cũng có hàng này khi phần cuối mở bài mới.

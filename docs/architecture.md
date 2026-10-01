@@ -24,7 +24,7 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 - `exercises/` the eight basic exercise types (`choice`, `numeric`, `fill-blank`, `match`, `order`, `tap-region`, `tap-text`, `manipulate`) and `open-ended` (a sequence of steps), `grade/`, 3-level hints, feedback.
 - `visuals/` `registry.ts` maps `visualId` to a component with `interactive`, `regions` and validators; shared primitives in `shared/`; lesson visuals in `<subject>/<lesson>/`.
 - `learn/` section player, review player, overview, next-step logic. `srs/` FSRS scheduling and review selection.
-- `progress/` Dexie store (IndexedDB, per browser), streak, parent report and PIN. `mascot/` owl and its lines. `lib/` config, shared sounds (`sound.ts`, `sound-manifest.ts`), media URLs, formatting.
+- `progress/` Dexie store (IndexedDB, per browser), streak, parent report and PIN. `mascot/` owl and its lines. `music/` the music box: song list and unlock rule (`songs.ts`), player hook, sheet, chip and reward card. `lib/` config, shared sounds (`sound.ts`, `sound-manifest.ts`), media URLs, formatting.
 - `components/` shared UI; `subject-style.ts` maps a subject's colour token and icon name to classes and components.
 
 ## Automated checks and where they live
@@ -38,7 +38,7 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 | Contact sheets | `pnpm shots:sheet <dir\|file\|pattern>… [--cols N] [--out <stem>]` (`scripts/lib/contact-sheet.ts`, `tests/scripts/contact-sheet.test.ts`) | tiles screenshots or video frames into `<stem>-NN.png` sheets (ffmpeg), file name on each tile, split to keep each sheet near 1600px; reviewers read sheets, not single files |
 | Silent browsers | `e2e/silence.ts`, used by `e2e/test.ts`, `lesson:walk`, `visual:shot` | every media element is really muted with volume 0 on first play, while `muted` still reads back what the app set |
 | Video | `pnpm video:check`, `tests/video/voices.test.ts` | subtitles contain every scripted sentence; on-screen rule text equals the lesson's rule sentence; the first sentence is the flagged opening line and captions start after the lead-in; one known voice per lesson |
-| Shared sounds | `tests/lib/sound-manifest.test.ts` | `public/sounds/manifest.json` hashes match files |
+| Shared sounds | `tests/lib/sound-manifest.test.ts` | `public/sounds/manifest.json` hashes match the tones, voice lines and imported source files in `assets/sounds/` |
 | Unit, component | `pnpm test` (Vitest; `tests/` mirrors `src/`) | coverage thresholds in `vitest.config.ts` |
 | E2E | `pnpm test:e2e` (`e2e/`) | `ipad` and `phone` targets in `e2e/targets.ts` |
 | Gate | `pnpm lint && pnpm typecheck && pnpm test && pnpm content:check` | run before every commit |
@@ -51,7 +51,7 @@ Adding a lint rule: create `src/content/lint/<rule>.ts`, register it in `lint/in
 - One voice per lesson: `video/projects/<lesson>/media.json` names it (`video/voices.ts` lists the allowed voices with engine preset and gender); the overview narration and every video of the lesson read it, `script.json` has no voice. Rules for choosing it and for the opening line of each video: skill `lesson-video`.
 - TTS and Whisper run in the arm64 Python env `video/.venv` with models in `video/.hf` (setup: `video/requirements.txt`; paths in `video/config.ts`).
 - Caches: sentence takes in `video/projects/**/audio/` and `video/.cache/`, intermediates in `renders/`; none is in git. `pnpm clean` removes the regenerable parts.
-- `public/media/` (video, narration) is gitignored and uploaded to the media bucket at go-live (`NEXT_PUBLIC_MEDIA_BASE_URL` switches the client to it). `public/sounds/` (shared app sounds, `pnpm sounds:build`) is committed.
+- `public/media/` (video, narration) is gitignored and uploaded to the media bucket at go-live (`NEXT_PUBLIC_MEDIA_BASE_URL` switches the client to it). `public/sounds/` (shared app sounds, `pnpm sounds:build`) is committed; clips imported from other files (`file` entries: wrong answer, finish, leaving, music box songs) are made from `assets/sounds/`, also committed.
 
 ## Content authoring pipeline
 
