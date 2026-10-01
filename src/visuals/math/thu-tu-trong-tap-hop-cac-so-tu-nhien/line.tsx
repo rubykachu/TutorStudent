@@ -39,6 +39,12 @@ const TICK_HALF = 7;
 const BAND_HALF = 9;
 const BAND_OPACITY = 0.55;
 const ARROW_HEAD = 7;
+// The "//" of a broken axis: two slanted strokes between the start of the ray
+// and its first tick.
+const BREAK_X = 11;
+const BREAK_GAP = 5;
+const BREAK_HALF = 9;
+const BREAK_SLANT = 3;
 
 // The text that stands under a tick instead of its plain number.
 export type TickMark = { text: string; className: string };
@@ -98,6 +104,20 @@ export function LineAxis({
             strokeWidth={2}
           />
         ))}
+        {geometry.broken && (
+          <>
+            {[BREAK_X, BREAK_X + BREAK_GAP].map((x) => (
+              <line
+                key={x}
+                x1={x - BREAK_SLANT}
+                y1={axisY + BREAK_HALF}
+                x2={x + BREAK_SLANT}
+                y2={axisY - BREAK_HALF}
+                strokeWidth={2.5}
+              />
+            ))}
+          </>
+        )}
       </g>
       {tickValues(geometry)
         .filter((tick) => labelled.has(tick))
@@ -233,24 +253,34 @@ function Arrow({
   x2,
   y,
   color,
+  head,
 }: {
   x1: number;
   x2: number;
   y: number;
   color?: ConceptColor;
+  head?: "end";
 }) {
   const [left, right] = x1 < x2 ? [x1, x2] : [x2, x1];
+  const oneWay = head === "end";
   const paint = color ? CONCEPT_CLASSES[color].stroke : "stroke-foreground";
   const fill = color ? CONCEPT_CLASSES[color].fill : "fill-foreground";
   return (
     <g className={paint} strokeWidth={2.5} strokeLinecap="round">
-      <line x1={left + ARROW_HEAD} y1={y} x2={right - ARROW_HEAD} y2={y} />
-      <polygon
-        points={`${left},${y} ${left + ARROW_HEAD * 1.6},${y - ARROW_HEAD / 1.4} ${left + ARROW_HEAD * 1.6},${y + ARROW_HEAD / 1.4}`}
-        className={fill}
-        strokeWidth={1}
-        strokeLinejoin="round"
+      <line
+        x1={oneWay ? left : left + ARROW_HEAD}
+        y1={y}
+        x2={right - ARROW_HEAD}
+        y2={y}
       />
+      {!oneWay && (
+        <polygon
+          points={`${left},${y} ${left + ARROW_HEAD * 1.6},${y - ARROW_HEAD / 1.4} ${left + ARROW_HEAD * 1.6},${y + ARROW_HEAD / 1.4}`}
+          className={fill}
+          strokeWidth={1}
+          strokeLinejoin="round"
+        />
+      )}
       <polygon
         points={`${right},${y} ${right - ARROW_HEAD * 1.6},${y - ARROW_HEAD / 1.4} ${right - ARROW_HEAD * 1.6},${y + ARROW_HEAD / 1.4}`}
         className={fill}
@@ -418,6 +448,7 @@ function LineFigure({ spec, step }: { spec: LineSpec; step: number }) {
               x2={x(layer.to)}
               y={y}
               color={layer.color}
+              head={layer.head}
             />
             <text
               x={tagCentre}

@@ -43,19 +43,22 @@ export type LineLayer =
       tag?: string;
     }
   // A double arrow above the line between two values: the distance, with the
-  // words of the distance as its tag ("3 đơn vị").
+  // words of the distance as its tag ("3 đơn vị"). `head: "end"` draws the head
+  // at `to` only, for a direction ("sang phải thì số lớn dần").
   | {
       type: "arrow";
       from: number;
       to: number;
       tag: string;
       color?: ConceptColor;
+      head?: "end";
     };
 
 // The line itself: a ray pointing right with a tick at `from`,
 // `from + step`, … up to `to`; `labelAt` lists the ticks that carry their
-// number (default: all of them). A figure for the lesson screens, the hints
-// and the solutions.
+// number (default: all of them). `broken` marks an axis that does not start at
+// the origin with the usual "//" break before the first tick. A figure for the
+// lesson screens, the hints and the solutions.
 //
 // In "hint" mode the layers before `hintLayers` play as usual; each later
 // `point` or `dots` layer shows only as a dimmed "?" at its place (its name
@@ -66,6 +69,7 @@ export type LineSpec = {
   to: number;
   step?: number;
   labelAt?: readonly number[];
+  broken?: boolean;
   layers: readonly LineLayer[];
   mode: PlayMode;
   hintLayers?: number;

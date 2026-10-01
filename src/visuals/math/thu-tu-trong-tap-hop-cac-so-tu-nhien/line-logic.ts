@@ -11,6 +11,9 @@ export type LineGeometry = {
   to: number;
   step?: number;
   labelAt?: readonly number[];
+  // The axis does not start at the origin: draw a "//" break before the first
+  // tick.
+  broken?: boolean;
 };
 
 // ---------------------------------------------------------------------------

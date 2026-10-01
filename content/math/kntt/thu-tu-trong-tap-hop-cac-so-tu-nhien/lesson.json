@@ -84,7 +84,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tia số bắt đầu ở gốc O, ứng với số 0. Ở bài này hai vạch liền nhau cách nhau 1 đơn vị."
+              "text": "Tia số bắt đầu ở gốc O, ứng với số 0. Trên tia số này, hai vạch liền nhau cách nhau 1 đơn vị."
             },
             {
               "type": "note",
@@ -122,7 +122,7 @@
       ],
       "checkIds": [
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-diem-b",
-        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-dem-vach-c"
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-dem-vach-c-5"
       ],
       "practiceIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-diem-a-9"],
       "recap": {
@@ -138,16 +138,25 @@
       "minutes": 3,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5",
-          "caption": "Bấm Bước tiếp: hai vạch liền nhau cách nhau 5 đơn vị, nên điểm K ở vạch thứ 4 biểu diễn số 20."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tia số này chỉ ghi hai số 0 và 10. Từ 0 tới 10 có 2 bước, nên mỗi bước dài 5 đơn vị."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5",
+              "caption": "Bấm Bước tiếp: điểm K cách gốc O 4 bước, mỗi bước 5 đơn vị, nên K biểu diễn số 20."
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Hai vạch liền nhau trên tia số luôn cách nhau một số đơn vị như nhau. Muốn đọc điểm, tìm số đơn vị giữa hai vạch rồi đếm từ gốc O.",
+              "text": "Muốn đọc điểm, xem hai số đã ghi để biết hai vạch liền nhau cách nhau mấy đơn vị. Rồi đếm từng bước từ gốc O: mỗi bước thêm số đơn vị vừa tìm.",
               "rule": true
             },
             {
@@ -175,7 +184,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5-xong",
-        "caption": "Hai vạch liền nhau trên tia số luôn cách nhau một số đơn vị như nhau. Muốn đọc điểm, tìm số đơn vị giữa hai vạch rồi đếm từ gốc O."
+        "caption": "Muốn đọc điểm, xem hai số đã ghi để biết hai vạch liền nhau cách nhau mấy đơn vị. Rồi đếm từng bước từ gốc O: mỗi bước thêm số đơn vị vừa tìm."
       }
     },
     {
@@ -202,7 +211,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thị trấn còn cách cột bao nhiêu km, thì số của thị trấn bằng số của cột cộng số km đó. Số km còn lại bằng số của thị trấn trừ số của cột.",
+              "text": "Số của điểm thị trấn bằng số của cột cộng số km còn phải đi. Số km còn phải đi bằng số của điểm thị trấn trừ số của cột.",
               "rule": true
             },
             {
@@ -216,7 +225,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bạn đi qua cột km 30, còn 20 km nữa tới thị trấn. Chạm vào số của thị trấn."
+              "text": "Cùng làm: bạn đi qua cột km 30, còn 20 km nữa tới thị trấn. Chạm vào số mà điểm thị trấn biểu diễn."
             },
             {
               "type": "visual",
@@ -230,7 +239,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-km-xong",
-        "caption": "Thị trấn còn cách cột bao nhiêu km, thì số của thị trấn bằng số của cột cộng số km đó. Số km còn lại bằng số của thị trấn trừ số của cột."
+        "caption": "Số của điểm thị trấn bằng số của cột cộng số km còn phải đi. Số km còn phải đi bằng số của điểm thị trấn trừ số của cột."
       }
     },
     {
@@ -288,7 +297,7 @@
       ],
       "checkIds": [
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-ben-trai-6-2",
-        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-xep-9-2-6"
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-xep-16-7-11"
       ],
       "practiceIds": [
         "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-trai-nhat-17-9-24"
@@ -323,7 +332,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn.",
+              "text": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn.",
               "rule": true
             },
             {
@@ -337,7 +346,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.doc-dau",
           "kind": "hiểu nhanh",
           "title": "Đọc dấu < và >",
-          "text": "Với dấu < và >, đầu nhọn luôn chỉ về số nhỏ hơn, còn phần mở rộng quay về số lớn hơn. Dấu ≤ và ≥ thì khác: hai số bằng nhau vẫn đúng.",
+          "text": "Với dấu < và >, đầu nhọn luôn chỉ về số nhỏ hơn, còn phần miệng mở quay về số lớn hơn.",
           "tex": "\\begin{gathered} 3 < 8 \\\\ 8 > 3 \\end{gathered}",
           "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8"
         },
@@ -363,7 +372,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8",
-        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
+        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
       }
     },
     {
@@ -377,7 +386,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng.",
+              "text": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng.",
               "rule": true
             },
             {
@@ -391,7 +400,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thang máy chở tối đa 8 người. Gọi n là số người trong thang, ta viết n ≤ 8: thang trống hay đủ 8 người đều được."
+              "text": "Thang máy chở tối đa 8 người. Gọi n là số người trong thang, ta viết n ≤ 8: thang trống hay đủ 8 người đều được."
             },
             {
               "type": "visual",
@@ -404,15 +413,15 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.doi-loi-thanh-dau",
           "kind": "hiểu nhanh",
           "title": "Đổi lời thành dấu",
-          "text": "Gặp “tối đa 8 người” thì dùng n ≤ 8. Gặp “từ 100 cm trở lên” thì dùng h ≥ 100. Cả hai cách nói đều tính cả số đề cho.",
-          "tex": "\\begin{gathered} n ≤ 8 \\\\ h ≥ 100 \\end{gathered}"
+          "text": "Gặp “tối đa 8 người” thì dùng n ≤ 8. Gặp “từ 10 tuổi trở lên” (t là số tuổi) thì dùng t ≥ 10. Cả hai cách nói đều tính cả số đề cho.",
+          "tex": "\\begin{gathered} n ≤ 8 \\\\ t ≥ 10 \\end{gathered}"
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào mọi số x thoả x ≤ 4."
+              "text": "Cùng làm: chạm vào mọi số x thoả x ≤ 4."
             },
             {
               "type": "visual",
@@ -431,7 +440,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong",
-        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
       }
     },
     {
@@ -500,16 +509,25 @@
       "minutes": 4,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-6218-6247",
-          "caption": "Bấm Bước tiếp: 6 218 và 6 247 cùng có 4 chữ số, ta so từng cặp từ trái sang phải."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Xe đạp giá 6 218 nghìn đồng, xe đạp điện giá 6 247 nghìn đồng. Hai giá cùng có 4 chữ số, nên ta so từng cặp chữ số."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-6218-6247",
+              "caption": "Bấm Bước tiếp: ở cặp khác nhau đầu tiên, 1 nhỏ hơn 4, nên xe đạp rẻ hơn."
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải. Gặp cặp khác nhau đầu tiên thì dừng lại: cặp đó cho biết số nào lớn hơn.",
+              "text": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải. Ở cặp khác nhau đầu tiên, số nào có chữ số lớn hơn thì lớn hơn.",
               "rule": true
             },
             {
@@ -547,7 +565,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-4276-4291",
-        "caption": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải. Gặp cặp khác nhau đầu tiên thì dừng lại: cặp đó cho biết số nào lớn hơn."
+        "caption": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải. Ở cặp khác nhau đầu tiên, số nào có chữ số lớn hơn thì lớn hơn."
       }
     },
     {
@@ -653,6 +671,14 @@
             {
               "type": "visual",
               "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-0"
+            },
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào số liền trước của 31."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-lien-truoc-31"
             }
           ]
         },
@@ -683,21 +709,29 @@
       "minutes": 3,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-keo",
-          "caption": "Bấm Bước tiếp: Nam có 3 viên kẹo, Lan có 5 viên, Hà có 8 viên."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nam có 3 viên kẹo, Lan có 5 viên, Hà có 8 viên. Bấm Bước tiếp để so từng cặp."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-keo"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c.",
+              "text": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c.",
               "rule": true
             },
             {
               "type": "note",
-              "text": "Nam ít kẹo hơn Lan, Lan lại ít kẹo hơn Hà, nên Nam ít kẹo hơn Hà. Với dấu ≤ cũng vậy."
+              "text": "Nam ít kẹo hơn Lan, Lan lại ít kẹo hơn Hà, nên Nam ít kẹo hơn Hà. Với dấu ≤ cũng vậy."
             },
             {
               "type": "visual",
@@ -726,12 +760,12 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-xong",
-        "caption": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c."
+        "caption": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c."
       }
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.phan-tia-so",
-      "title": "Hai điểm cắt tia số làm ba khúc",
+      "title": "Hai điểm cắt tia số thành ba phần",
       "sourceRef": "Sách bài tập tr.11 (ví dụ b), tr.12 (lời giải)",
       "minutes": 3,
       "blocks": [
@@ -744,7 +778,7 @@
             },
             {
               "type": "note",
-              "text": "Hai điểm A và B cắt tia số làm ba khúc: đoạn OA, đoạn AB và phần còn lại."
+              "text": "A và B cắt tia số thành ba phần. Từ O tới A là đoạn OA, từ A tới B là đoạn AB, phần sau B là phần còn lại."
             },
             {
               "type": "visual",
@@ -757,12 +791,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Muốn biết điểm biểu diễn số x ở phần nào, so x với a và b.",
+              "text": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Điểm biểu diễn số x ở đoạn OA khi x ≤ a, ở đoạn AB khi a ≤ x ≤ b, ở phần còn lại khi x > b.",
               "rule": true
             },
             {
               "type": "note",
-              "text": "a ≤ x ≤ b đọc là: x lớn hơn hoặc bằng a và nhỏ hơn hoặc bằng b."
+              "text": "a ≤ x ≤ b đọc là: x lớn hơn hoặc bằng a và nhỏ hơn hoặc bằng b."
             },
             {
               "type": "visual",
@@ -789,7 +823,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.ba-phan-rows",
-        "caption": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Muốn biết điểm biểu diễn số x ở phần nào, so x với a và b."
+        "caption": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Điểm biểu diễn số x ở đoạn OA khi x ≤ a, ở đoạn AB khi a ≤ x ≤ b, ở phần còn lại khi x > b."
       }
     },
     {
@@ -816,7 +850,11 @@
           "children": [
             {
               "type": "note",
-              "text": "M là tập hợp các số tự nhiên x mà 6 ≤ x ≤ 12. Đọc là: x lớn hơn hoặc bằng 6 và nhỏ hơn hoặc bằng 12."
+              "text": "M là tập hợp các số tự nhiên x mà 6 ≤ x ≤ 12. Đọc là: x lớn hơn hoặc bằng 6 và nhỏ hơn hoặc bằng 12."
+            },
+            {
+              "type": "note",
+              "text": "Kí hiệu x ∈ ℕ đọc là x thuộc ℕ, nghĩa là x là số tự nhiên. Vạch đứng đọc là “mà”."
             },
             {
               "type": "visual",
@@ -829,7 +867,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Liệt kê các số x từ a đến b: dấu ≤ thì lấy cả a và b, dấu < thì bỏ số đó. Số 0 có trong ℕ, không có trong ℕ*.",
+              "text": "Liệt kê các số x từ a đến b: số đứng cạnh dấu ≤ thì lấy, số đứng cạnh dấu < thì bỏ. Số 0 có trong ℕ, không có trong ℕ*.",
               "rule": true
             },
             {
@@ -843,7 +881,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào các phần tử của tập hợp các số tự nhiên x mà 3 ≤ x ≤ 6."
+              "text": "Cùng làm: chạm vào các phần tử của tập hợp các số tự nhiên x mà 3 ≤ x ≤ 6."
             },
             {
               "type": "visual",
@@ -860,13 +898,13 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.liet-ke-mau",
-        "caption": "Liệt kê các số x từ a đến b: dấu ≤ thì lấy cả a và b, dấu < thì bỏ số đó. Số 0 có trong ℕ, không có trong ℕ*."
+        "caption": "Liệt kê các số x từ a đến b: số đứng cạnh dấu ≤ thì lấy, số đứng cạnh dấu < thì bỏ. Số 0 có trong ℕ, không có trong ℕ*."
       }
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.dem-phan-tu",
       "title": "Đếm các số từ a đến b",
-      "sourceRef": "Sách bài tập tr.11 (ví dụ c), tr.13 (bài 1.27)",
+      "sourceRef": "Sách bài tập tr.11 (ví dụ c), tr.13 (bài 1.27): liệt kê rồi đếm",
       "minutes": 4,
       "blocks": [
         {
@@ -874,11 +912,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Thang máy chở từ 3 đến 8 người. Số người n thoả 3 ≤ n ≤ 8, nên n là 3, 4, 5, 6, 7 hoặc 8."
+              "text": "Cô giáo chia lớp thành các nhóm, mỗi nhóm có từ 3 đến 8 học sinh. Số học sinh n của một nhóm thoả 3 ≤ n ≤ 8: n là 3, 4, 5, 6, 7 hoặc 8."
             },
             {
               "type": "visual",
-              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.thang-3-8"
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.nhom-3-8"
             }
           ]
         },
@@ -951,7 +989,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5-xong",
-        "caption": "Hai vạch liền nhau trên tia số luôn cách nhau một số đơn vị như nhau."
+        "caption": "Muốn đọc điểm, xem hai số đã ghi để biết hai vạch liền nhau cách nhau mấy đơn vị. Rồi đếm từng bước từ gốc O: mỗi bước thêm số đơn vị vừa tìm."
       }
     },
     {
@@ -963,7 +1001,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-km-xong",
-        "caption": "Thị trấn còn cách cột bao nhiêu km, thì số của thị trấn bằng số của cột cộng số km đó."
+        "caption": "Số của điểm thị trấn bằng số của cột cộng số km còn phải đi. Số km còn phải đi bằng số của điểm thị trấn trừ số của cột."
       }
     },
     {
@@ -989,7 +1027,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8",
-        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
+        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
       }
     },
     {
@@ -1002,7 +1040,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-9-4",
-        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
+        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
       }
     },
     {
@@ -1012,7 +1050,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong",
-        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
       }
     },
     {
@@ -1022,7 +1060,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong",
-        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
       }
     },
     {
@@ -1046,7 +1084,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-4276-4291",
-        "caption": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải."
+        "caption": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải. Ở cặp khác nhau đầu tiên, số nào có chữ số lớn hơn thì lớn hơn."
       }
     },
     {
@@ -1096,7 +1134,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-xong",
-        "caption": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c."
+        "caption": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c."
       }
     },
     {
@@ -1109,7 +1147,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.ba-phan-rows",
-        "caption": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Muốn biết điểm biểu diễn số x ở phần nào, so x với a và b."
+        "caption": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Điểm biểu diễn số x ở đoạn OA khi x ≤ a, ở đoạn AB khi a ≤ x ≤ b, ở phần còn lại khi x > b."
       }
     },
     {
@@ -1122,7 +1160,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.liet-ke-mau",
-        "caption": "Liệt kê các số x từ a đến b: dấu ≤ thì lấy cả a và b, dấu < thì bỏ số đó."
+        "caption": "Liệt kê các số x từ a đến b: số đứng cạnh dấu ≤ thì lấy, số đứng cạnh dấu < thì bỏ."
       }
     },
     {
@@ -1137,7 +1175,7 @@
     },
     {
       "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.dem-phan-tu",
-      "sourceRef": "Sách bài tập tr.11 (ví dụ c), tr.13 (bài 1.27)",
+      "sourceRef": "Sách bài tập tr.11 (ví dụ c), tr.13 (bài 1.27): liệt kê rồi đếm",
       "conceptIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.tap-hop"],
       "recap": {
         "type": "visual",
@@ -1198,7 +1236,7 @@
         "expr": "7"
       },
       "explain": {
-        "text": "Đi từ gốc O sang phải 7 đơn vị thì tới điểm biểu diễn số 7. Điểm B ở vạch thứ 7 tính từ gốc O, nên B biểu diễn số 7.",
+        "text": "Đi từ gốc O sang phải 7 đơn vị thì tới điểm biểu diễn số 7. Điểm B cách gốc O 7 bước, nên B biểu diễn số 7.",
         "wrong": [
           {
             "optionId": "a",
@@ -1213,7 +1251,7 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-dem-vach-c",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-dem-vach-c-5",
       "cardIds": [],
       "prompt": [
         {
@@ -1222,7 +1260,7 @@
         },
         {
           "type": "visual",
-          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-c-4"
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-c-5"
         }
       ],
       "hints": {
@@ -1239,39 +1277,39 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "3"
+            "text": "4"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "4"
+            "text": "5"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "5"
+            "text": "6"
           }
         }
       ],
       "answer": ["b"],
       "multiple": false,
       "check": {
-        "expr": "4"
+        "expr": "5"
       },
       "explain": {
-        "text": "Hai vạch liền nhau cách nhau 1 đơn vị. Đếm từ gốc O tới điểm C được 4 bước, nên C cách gốc O 4 đơn vị và biểu diễn số 4.",
+        "text": "Hai vạch liền nhau cách nhau 1 đơn vị. Đếm từ gốc O tới điểm C được 5 bước, nên C cách gốc O 5 đơn vị và biểu diễn số 5.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "3 là đếm thiếu một bước."
+            "text": "4 là đếm thiếu một bước."
           },
           {
             "optionId": "c",
-            "text": "5 là đếm cả vạch gốc O, trong khi gốc O ứng với số 0 và chưa đi đơn vị nào."
+            "text": "6 là đếm cả vạch gốc O, trong khi gốc O ứng với số 0 và chưa đi đơn vị nào."
           }
         ]
       },
@@ -1309,18 +1347,18 @@
         "expr": "9"
       },
       "explain": {
-        "text": "Từ gốc O đi tới vạch 5, rồi thêm 4 vạch nữa tới điểm A. Điểm A cách gốc O 9 đơn vị nên biểu diễn số 9.",
+        "text": "Từ gốc O đi 5 bước tới vạch 5, rồi đi thêm 4 bước nữa tới điểm A. Điểm A cách gốc O 9 đơn vị nên biểu diễn số 9.",
         "tex": "5 + 4 = 9"
       },
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-diem-7",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-diem-10",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien"],
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt điểm A để nó biểu diễn số 7. Bấm nút + để đẩy điểm A đi từng vạch."
+          "text": "Đặt điểm A để nó biểu diễn số 10. Bấm nút + để đẩy điểm A đi từng bước."
         }
       ],
       "hints": {
@@ -1335,10 +1373,10 @@
       "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem",
       "validatorId": "dat-diem",
       "params": {
-        "p0": 7
+        "p0": 10
       },
       "explain": {
-        "text": "Muốn tới điểm biểu diễn số 7, đi từ gốc O sang phải 7 đơn vị. Mỗi lần bấm + điểm A đi một vạch, nên bấm bảy lần."
+        "text": "Muốn tới điểm biểu diễn số 10, đi từ gốc O sang phải 10 đơn vị. Mỗi lần bấm + điểm A đi một bước, nên bấm mười lần."
       },
       "difficulty": 1
     },
@@ -1368,12 +1406,12 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cach-goc-9",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cach-goc-2",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien"],
       "prompt": [
         {
           "type": "note",
-          "text": "Điểm biểu diễn số 9 cách gốc O mấy đơn vị?"
+          "text": "Điểm biểu diễn số 2 cách gốc O mấy đơn vị?"
         }
       ],
       "hints": {
@@ -1390,39 +1428,39 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "8"
+            "text": "1"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "9"
+            "text": "2"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "10"
+            "text": "3"
           }
         }
       ],
       "answer": ["b"],
       "multiple": false,
       "check": {
-        "expr": "9"
+        "expr": "2"
       },
       "explain": {
-        "text": "Đi từ gốc O sang phải 9 đơn vị thì tới điểm biểu diễn số 9. Vậy điểm đó cách gốc O 9 đơn vị.",
+        "text": "Đi từ gốc O sang phải 2 đơn vị thì tới điểm biểu diễn số 2. Vậy điểm đó cách gốc O 2 đơn vị.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Điểm biểu diễn số 9 phải cách gốc O đúng 9 đơn vị, không phải 8."
+            "text": "Điểm biểu diễn số 2 phải cách gốc O đúng 2 đơn vị, không phải 1."
           },
           {
             "optionId": "c",
-            "text": "Điểm cách gốc O 10 đơn vị biểu diễn số 10, không phải số 9."
+            "text": "Điểm cách gốc O 3 đơn vị biểu diễn số 3, không phải số 2."
           }
         ]
       },
@@ -1479,7 +1517,7 @@
         "expr": "40"
       },
       "explain": {
-        "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm P ở vạch thứ 8, đếm cách 5 từ gốc O: 5, 10, 15, 20, 25, 30, 35, 40.",
+        "text": "Điểm P cách gốc O 8 bước, mỗi bước 5 đơn vị. Đếm cách 5 từ gốc O: 5, 10, 15, 20, 25, 30, 35, 40.",
         "wrong": [
           {
             "optionId": "a",
@@ -1499,7 +1537,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm Q biểu diễn số mấy?"
+          "text": "Điểm Q biểu diễn số mấy?"
         },
         {
           "type": "visual",
@@ -1525,17 +1563,17 @@
         "expr": "35"
       },
       "explain": {
-        "text": "Đếm cách 5 từ gốc O: 5, 10, 15, 20, 25, 30, 35. Điểm Q ở vạch thứ 7 nên biểu diễn số 35."
+        "text": "Từ 0 tới 10 có 2 bước, nên mỗi bước dài 5 đơn vị. Điểm Q cách gốc O 7 bước, đếm cách 5: 5, 10, 15, 20, 25, 30, 35."
       },
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-diem-5-40",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-diem-5-45",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt điểm A để nó biểu diễn số 40. Mỗi lần bấm nút +, điểm A đi 5 đơn vị."
+          "text": "Đặt điểm A để nó biểu diễn số 45. Mỗi lần bấm nút +, điểm A đi 5 đơn vị."
         }
       ],
       "hints": {
@@ -1550,20 +1588,20 @@
       "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem-5",
       "validatorId": "dat-diem",
       "params": {
-        "p0": 40
+        "p0": 45
       },
       "explain": {
-        "text": "Hai vạch liền nhau cách nhau 5 đơn vị, nên mỗi lần bấm điểm A đi thêm 5 đơn vị. Đếm cách 5 tới 40 thì bấm tám lần."
+        "text": "Hai vạch liền nhau cách nhau 5 đơn vị, nên mỗi lần bấm điểm A đi thêm 5 đơn vị. Đếm cách 5 tới 45 thì bấm chín lần."
       },
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cham-diem-35",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cham-diem-55",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
       "prompt": [
         {
           "type": "note",
-          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Chạm vào điểm biểu diễn số 35."
+          "text": "Chạm vào điểm biểu diễn số 55."
         }
       ],
       "hints": {
@@ -1575,24 +1613,24 @@
         ]
       },
       "type": "tapRegion",
-      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cham-diem-35",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cham-diem-55",
       "answer": ["b"],
       "explain": {
-        "text": "Từ vạch 20 đếm tiếp 25, 30, 35. Điểm B đứng trên vạch đó, còn A ở vạch 15 và C ở vạch 45."
+        "text": "Từ 0 tới 10 có 2 bước, nên mỗi bước dài 5 đơn vị. Đếm cách 5 từ vạch 20: 25, 30, 35, 40, 45, 50, 55. Điểm B đứng trên vạch 55, còn A ở vạch 30 và C ở vạch 45."
       },
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-xa",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-xa-15",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
       "prompt": [
         {
           "type": "note",
-          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Chọn tất cả các điểm cách gốc O nhiều hơn 20 đơn vị."
+          "text": "Chọn tất cả các điểm cách gốc O nhiều hơn 15 đơn vị."
         },
         {
           "type": "visual",
-          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bon-diem-k-n"
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bon-diem-5-60"
         }
       ],
       "hints": {
@@ -1634,18 +1672,18 @@
           }
         }
       ],
-      "answer": ["l", "m"],
+      "answer": ["k", "n"],
       "multiple": true,
       "explain": {
-        "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm L cách gốc O 35 đơn vị, điểm M cách 40 đơn vị, cả hai nhiều hơn 20.",
+        "text": "Từ 0 tới 10 có 2 bước, nên mỗi bước dài 5 đơn vị. Điểm K cách gốc O 50 đơn vị, điểm N cách 60 đơn vị, cả hai nhiều hơn 15.",
         "wrong": [
           {
-            "optionId": "k",
-            "text": "Điểm K cách gốc O đúng 15 đơn vị, chưa tới 20."
+            "optionId": "l",
+            "text": "Điểm L cách gốc O chỉ 5 đơn vị, chưa tới 15."
           },
           {
-            "optionId": "n",
-            "text": "Điểm N cách gốc O đúng 20 đơn vị, không nhiều hơn 20."
+            "optionId": "m",
+            "text": "Điểm M cách gốc O đúng 15 đơn vị, không nhiều hơn 15."
           }
         ]
       },
@@ -1685,7 +1723,7 @@
         "expr": "40+25"
       },
       "explain": {
-        "text": "Thị trấn còn ở phía trước nên số của thị trấn bằng số của cột cộng với số km còn lại. Ta tính 40 cộng 25.",
+        "text": "Thị trấn còn ở phía trước nên số của điểm thị trấn bằng số của cột cộng với số km còn phải đi. Ta tính 40 cộng 25.",
         "tex": "40 + 25 = 65"
       },
       "difficulty": 1
@@ -1725,7 +1763,7 @@
         "expr": "45+30"
       },
       "explain": {
-        "text": "Thị trấn còn ở phía trước nên số của thị trấn bằng số của cột cộng với số km còn lại. Ta tính 45 cộng 30.",
+        "text": "Thị trấn còn ở phía trước nên số của điểm thị trấn bằng số của cột cộng với số km còn phải đi. Ta tính 45 cộng 30.",
         "tex": "45 + 30 = 75"
       },
       "difficulty": 1
@@ -1764,7 +1802,7 @@
         "expr": "20+15"
       },
       "explain": {
-        "text": "Trạm nghỉ còn ở phía trước nên số của trạm nghỉ bằng 20 cộng 15.",
+        "text": "Trạm nghỉ còn ở phía trước nên số của điểm trạm nghỉ bằng 20 cộng 15.",
         "tex": "20 + 15 = 35"
       },
       "difficulty": 1
@@ -1804,7 +1842,7 @@
         "expr": "70-55"
       },
       "explain": {
-        "text": "Số km còn lại bằng số của thị trấn trừ số của cột cây số. Ta tính 70 trừ 55.",
+        "text": "Số km còn phải đi bằng số của điểm thị trấn trừ số của cột. Ta tính 70 trừ 55.",
         "tex": "70 - 55 = 15"
       },
       "difficulty": 2
@@ -1819,7 +1857,7 @@
         },
         {
           "type": "note",
-          "text": "Phép tính nào cho số biểu diễn thị trấn trên tia số?"
+          "text": "Phép tính nào cho số mà điểm thị trấn biểu diễn?"
         }
       ],
       "hints": {
@@ -1850,7 +1888,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "35 \\cdot 25"
+            "tex": "25 + 25"
           }
         }
       ],
@@ -1868,7 +1906,7 @@
           },
           {
             "optionId": "c",
-            "text": "Quãng đường còn lại được cộng thêm vào, không nhân."
+            "text": "Cột đã ở số 35, nên phải cộng 25 vào số 35, không cộng 25 vào chính 25."
           }
         ]
       },
@@ -1922,12 +1960,12 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-xep-9-2-6",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-xep-16-7-11",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các số 9, 2 và 6 theo vị trí điểm biểu diễn trên tia số, từ trái sang phải."
+          "text": "Xếp các số 16, 7 và 11 theo vị trí điểm biểu diễn trên tia số: thẻ trên cùng là số nằm bên trái nhất."
         }
       ],
       "hints": {
@@ -1944,26 +1982,26 @@
           "id": "i1",
           "content": {
             "type": "text",
-            "text": "2"
+            "text": "7"
           }
         },
         {
           "id": "i2",
           "content": {
             "type": "text",
-            "text": "6"
+            "text": "11"
           }
         },
         {
           "id": "i3",
           "content": {
             "type": "text",
-            "text": "9"
+            "text": "16"
           }
         }
       ],
       "explain": {
-        "text": "Số nhỏ nằm bên trái, số lớn nằm bên phải. Vì vậy từ trái sang phải là 2, rồi 6, rồi 9."
+        "text": "Số nhỏ nằm bên trái, số lớn nằm bên phải. Vì vậy từ trái sang phải là 7, rồi 11, rồi 16."
       },
       "difficulty": 1
     },
@@ -2492,7 +2530,7 @@
       ],
       "bank": ["<", ">"],
       "explain": {
-        "text": "Số 23 nhỏ hơn số 32 vì chữ số hàng chục 2 nhỏ hơn 3. Nên ta viết dấu nhỏ hơn."
+        "text": "Đếm từ 0, ta gặp 23 trước 32, nên điểm biểu diễn số 23 nằm bên trái điểm biểu diễn số 32. Vậy 23 nhỏ hơn 32, ta viết dấu nhỏ hơn."
       },
       "difficulty": 1
     },
@@ -2582,7 +2620,7 @@
         "relation": "holds"
       },
       "explain": {
-        "text": "Nam cao 142 cm, nhiều hơn Lan là 138 cm. Vậy 142 lớn hơn 138, viết 142 > 138.",
+        "text": "Nam cao 142 cm, cao hơn Lan (138 cm). Vậy 142 lớn hơn 138, viết 142 > 138.",
         "wrong": [
           {
             "optionId": "b",
@@ -3778,7 +3816,7 @@
         "expr": "39+1"
       },
       "explain": {
-        "text": "Số liền sau của một số bằng số đó cộng 1. Số 39 cộng 1 bằng 40.",
+        "text": "Số liền sau của a là a + 1. Vậy số liền sau của 39 là 39 + 1 = 40.",
         "tex": "39 + 1 = 40"
       },
       "difficulty": 1
@@ -3809,7 +3847,7 @@
         "expr": "199+1"
       },
       "explain": {
-        "text": "Cộng 1 vào 199: chữ số 9 ở hàng đơn vị thành 0 và nhớ 1. Cứ thế, 199 cộng 1 bằng 200.",
+        "text": "Cộng 1 vào 199: hàng đơn vị 9 thành 0, nhớ 1. Hàng chục cũng là 9 nên thành 0, nhớ 1 sang hàng trăm: 1 thành 2. Vậy 199 + 1 = 200.",
         "tex": "199 + 1 = 200"
       },
       "difficulty": 2
@@ -4280,12 +4318,12 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.xep-3-ban",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.xep-minh-tu-long",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bac-cau"],
       "prompt": [
         {
           "type": "note",
-          "text": "An thấp hơn Bình, còn Chi cao hơn Bình. Xếp ba bạn từ thấp đến cao."
+          "text": "Minh cao hơn Tú, còn Tú cao hơn Long. Xếp ba bạn từ thấp đến cao."
         }
       ],
       "hints": {
@@ -4302,26 +4340,26 @@
           "id": "i1",
           "content": {
             "type": "text",
-            "text": "An"
+            "text": "Long"
           }
         },
         {
           "id": "i2",
           "content": {
             "type": "text",
-            "text": "Bình"
+            "text": "Tú"
           }
         },
         {
           "id": "i3",
           "content": {
             "type": "text",
-            "text": "Chi"
+            "text": "Minh"
           }
         }
       ],
       "explain": {
-        "text": "An thấp hơn Bình, và Chi cao hơn Bình. Theo bắc cầu, thứ tự từ thấp đến cao là An, Bình, Chi."
+        "text": "Minh cao hơn Tú, và Tú cao hơn Long. Theo bắc cầu, thứ tự từ thấp đến cao là Long, Tú, Minh."
       },
       "difficulty": 1
     },
@@ -4627,16 +4665,16 @@
       "difficulty": 1
     },
     {
-      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-doan-ab",
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-doan-4-10",
       "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Điểm A biểu diễn số 2, điểm B biểu diễn số 7. Chọn tất cả các số có điểm biểu diễn thuộc đoạn AB."
+          "text": "Điểm A biểu diễn số 4, điểm B biểu diễn số 10. Chọn tất cả các số có điểm biểu diễn thuộc đoạn AB."
         },
         {
           "type": "visual",
-          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-2-7"
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-4-10"
         }
       ],
       "hints": {
@@ -4653,7 +4691,7 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "1"
+            "text": "3"
           }
         },
         {
@@ -4667,29 +4705,29 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "6"
+            "text": "9"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "9"
+            "text": "11"
           }
         }
       ],
       "answer": ["b", "c"],
       "multiple": true,
       "explain": {
-        "text": "Các số trong đoạn AB lớn hơn hoặc bằng 2 và nhỏ hơn hoặc bằng 7. Hai số 4 và 6 thoả điều đó. Số 1 nhỏ hơn 2 còn số 9 lớn hơn 7.",
+        "text": "Các số trong đoạn AB lớn hơn hoặc bằng 4 và nhỏ hơn hoặc bằng 10. Hai số 4 và 9 thoả điều đó. Số 3 nhỏ hơn 4 còn số 11 lớn hơn 10.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "1 nhỏ hơn 2, nên điểm biểu diễn số 1 nằm ngoài đoạn AB."
+            "text": "3 nhỏ hơn 4, nên điểm biểu diễn số 3 nằm ngoài đoạn AB."
           },
           {
             "optionId": "d",
-            "text": "9 lớn hơn 7, nên điểm biểu diễn số 9 nằm ngoài đoạn AB."
+            "text": "11 lớn hơn 10, nên điểm biểu diễn số 11 nằm ngoài đoạn AB."
           }
         ]
       },
@@ -4954,7 +4992,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "\\{6; 7; 8; 9\\}"
+            "tex": "\\{4; 5; 6; 7; 8; 9\\}"
           }
         }
       ],
@@ -4973,7 +5011,7 @@
           },
           {
             "optionId": "d",
-            "text": "Thiếu số 5: x lớn hơn hoặc bằng 5 nên số 5 vẫn thuộc."
+            "text": "Thừa số 4: số 4 nhỏ hơn 5 nên không thoả x ≥ 5."
           }
         ]
       },
@@ -5321,8 +5359,8 @@
         "expr": "7-3+1"
       },
       "explain": {
-        "text": "Các số tự nhiên từ 3 đến 7 là 3, 4, 5, 6 và 7. Đếm được 5 số, cả hai đầu 3 và 7 đều tính.",
-        "tex": "\\{3; 4; 5; 6; 7\\}"
+        "text": "Liệt kê các số từ 3 đến 7 rồi đếm được 5 số, cả hai đầu đều tính. Lấy 7 trừ 3 rồi cộng 1 cũng được 5.",
+        "tex": "\\begin{gathered} \\{3; 4; 5; 6; 7\\} \\\\ 7 - 3 + 1 = 5 \\end{gathered}"
       },
       "difficulty": 2
     },
@@ -5356,8 +5394,8 @@
         "expr": "9-6+1"
       },
       "explain": {
-        "text": "Các số tự nhiên từ 6 đến 9 là 6, 7, 8 và 9. Đếm được 4 số, cả hai đầu 6 và 9 đều tính.",
-        "tex": "\\{6; 7; 8; 9\\}"
+        "text": "Liệt kê các số từ 6 đến 9 rồi đếm được 4 số, cả hai đầu đều tính. Lấy 9 trừ 6 rồi cộng 1 cũng được 4.",
+        "tex": "\\begin{gathered} \\{6; 7; 8; 9\\} \\\\ 9 - 6 + 1 = 4 \\end{gathered}"
       },
       "difficulty": 1
     },
@@ -5391,8 +5429,8 @@
         "expr": "6+1"
       },
       "explain": {
-        "text": "ℕ có cả số 0, nên các số x ≤ 6 là 0, 1, 2, 3, 4, 5 và 6. Đếm được 7 số.",
-        "tex": "\\{0; 1; 2; 3; 4; 5; 6\\}"
+        "text": "ℕ có cả số 0, nên các số x ≤ 6 là 0, 1, 2, 3, 4, 5 và 6. Đếm được 7 số, và 6 trừ 0 rồi cộng 1 cũng là 7.",
+        "tex": "\\begin{gathered} \\{0; 1; 2; 3; 4; 5; 6\\} \\\\ 6 - 0 + 1 = 7 \\end{gathered}"
       },
       "difficulty": 2
     },

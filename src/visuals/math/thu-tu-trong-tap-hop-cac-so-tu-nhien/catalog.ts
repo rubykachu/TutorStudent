@@ -141,7 +141,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
     label: "Tia số có điểm B, số của B chưa biết",
   },
-  "doc-c-4": {
+  "doc-c-5": {
     kind: "line",
     from: 0,
     to: 10,
@@ -155,7 +155,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         type: "point",
-        at: 4,
+        at: 5,
         name: "C",
         color: "amber",
         ask: true,
@@ -313,17 +313,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "slate",
       },
       {
-        type: "span",
+        type: "arrow",
         from: 0,
-        to: 5,
-        color: "amber",
-        tag: "5 đơn vị",
+        to: 10,
+        tag: "2 bước",
       },
       {
-        type: "span",
-        from: 5,
-        to: 10,
-        color: "amber",
+        type: "arrow",
+        from: 0,
+        to: 5,
         tag: "5 đơn vị",
       },
       {
@@ -331,12 +329,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         at: 20,
         name: "K",
         color: "amber",
-        tag: "4 vạch",
+        tag: "4 bước",
       },
     ],
     mode: "steps",
     label:
-      "Hai vạch liền nhau cách nhau 5 đơn vị: điểm K ở vạch thứ 4 nên biểu diễn số 20",
+      "Từ 0 tới 10 có 2 bước nên mỗi bước dài 5 đơn vị: điểm K cách gốc O 4 bước nên biểu diễn số 20",
   },
   "vach-5-xong": {
     kind: "line",
@@ -352,10 +350,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "slate",
       },
       {
-        type: "span",
+        type: "arrow",
         from: 0,
         to: 5,
-        color: "amber",
         tag: "5 đơn vị",
       },
       {
@@ -363,12 +360,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         at: 25,
         name: "A",
         color: "amber",
-        tag: "5 vạch",
+        tag: "5 bước",
       },
     ],
     mode: "still",
     label:
-      "Hai vạch liền nhau cách nhau 5 đơn vị: điểm A ở vạch thứ 5 nên biểu diễn số 25",
+      "Hai vạch liền nhau cách nhau 5 đơn vị: điểm A cách gốc O 5 bước nên biểu diễn số 25",
   },
   "dat-diem-5": {
     kind: "lineTry",
@@ -444,11 +441,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "slate",
       },
       {
-        type: "span",
+        type: "arrow",
         from: 0,
-        to: 5,
-        color: "amber",
-        tag: "5 đơn vị",
+        to: 10,
+        tag: "2 bước",
       },
       {
         type: "point",
@@ -460,7 +456,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "hint",
     hintLayers: 2,
-    label: "Hai vạch liền nhau cách nhau 5 đơn vị, điểm M chưa biết số",
+    label: "Từ 0 tới 10 có 2 bước, điểm M chưa biết số",
   },
   "giai-vach-5-35": {
     kind: "line",
@@ -476,17 +472,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "slate",
       },
       {
-        type: "span",
+        type: "arrow",
         from: 0,
-        to: 5,
-        color: "amber",
-        tag: "5 đơn vị",
+        to: 10,
+        tag: "2 bước",
       },
       {
-        type: "span",
-        from: 5,
-        to: 10,
-        color: "amber",
+        type: "arrow",
+        from: 0,
+        to: 5,
         tag: "5 đơn vị",
       },
       {
@@ -494,25 +488,26 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         at: 35,
         name: "Q",
         color: "amber",
-        tag: "7 vạch",
+        tag: "7 bước",
       },
     ],
     mode: "steps",
-    label: "Đếm cách 5 từ gốc O tới điểm Q ở vạch thứ 7, được số 35",
+    label:
+      "Từ 0 tới 10 có 2 bước nên mỗi bước dài 5 đơn vị: đếm cách 5 từ gốc O 7 bước tới điểm Q, được số 35",
   },
-  "cham-diem-35": {
+  "cham-diem-55": {
     kind: "lineTap",
     from: 0,
-    to: 50,
+    to: 60,
     step: 5,
     labelAt: [0, 10, 20],
     points: [
       {
-        at: 15,
+        at: 30,
         name: "A",
       },
       {
-        at: 35,
+        at: 55,
         name: "B",
       },
       {
@@ -520,12 +515,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         name: "C",
       },
     ],
-    label: "Tia số có hai vạch liền nhau cách nhau 5 đơn vị và ba điểm A, B, C",
+    label: "Tia số có ba điểm A, B, C",
   },
-  "bon-diem-k-n": {
+  "bon-diem-5-60": {
     kind: "line",
     from: 0,
-    to: 50,
+    to: 60,
     step: 5,
     labelAt: [0, 10],
     layers: [
@@ -537,36 +532,35 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         type: "point",
-        at: 15,
+        at: 50,
         name: "K",
         color: "amber",
         ask: true,
       },
       {
         type: "point",
-        at: 35,
+        at: 5,
         name: "L",
         color: "amber",
         ask: true,
       },
       {
         type: "point",
-        at: 40,
+        at: 15,
         name: "M",
         color: "amber",
         ask: true,
       },
       {
         type: "point",
-        at: 20,
+        at: 60,
         name: "N",
         color: "amber",
         ask: true,
       },
     ],
     mode: "still",
-    label:
-      "Tia số có hai vạch liền nhau cách nhau 5 đơn vị và bốn điểm K, L, M, N",
+    label: "Tia số ghi các số 0 và 10, có bốn điểm K, L, M, N chưa biết số",
   },
   "cot-km": {
     kind: "line",
@@ -862,6 +856,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         from: 3,
         to: 8,
         tag: "sang phải thì số lớn dần",
+        head: "end",
       },
     ],
     mode: "steps",
@@ -891,6 +886,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         from: 3,
         to: 8,
         tag: "sang phải thì số lớn dần",
+        head: "end",
       },
     ],
     mode: "still",
@@ -986,14 +982,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "5 ≤ 5",
         tag: {
-          text: "5 bằng 5",
+          text: "Hai số bằng nhau",
           color: "slate",
         },
       },
       {
         tex: "5 ≥ 5",
         tag: {
-          text: "5 bằng 5",
+          text: "Hai số bằng nhau",
           color: "slate",
         },
       },
@@ -1256,9 +1252,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Số quyển giảm dần từ thứ Sáu đến Chủ nhật",
     rows: [
       {
-        tex: "10 > 4 > 1",
+        tex: "10 > 4",
         tag: {
-          text: "Giảm dần",
+          text: "T6 nhiều hơn T7",
+          color: "slate",
+        },
+      },
+      {
+        tex: "4 > 1",
+        tag: {
+          text: "T7 nhiều hơn CN",
           color: "slate",
         },
       },
@@ -1268,7 +1271,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "chips",
     items: ["T3", "T4", "T5", "T6"],
     wants: [1],
-    done: "Bạn chọn đúng: cột T4 thấp nhất, chỉ có 9 quyển.",
+    done: "Bạn chọn đúng: trong bốn ngày T3, T4, T5, T6, cột T4 thấp nhất, chỉ có 9 quyển.",
   },
   "clb-doc": {
     kind: "bars",
@@ -1337,6 +1340,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "line",
     from: 22,
     to: 28,
+    broken: true,
     layers: [
       {
         type: "point",
@@ -1409,6 +1413,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "still",
     label: "Số 0 là số tự nhiên nhỏ nhất, số liền sau của 0 là 1",
+  },
+  "chon-lien-truoc-31": {
+    kind: "chips",
+    items: ["29", "30", "32"],
+    wants: [1],
+    done: "Bạn chọn đúng: 31 = 30 + 1, nên số liền trước của 31 là 30.",
   },
   "bac-cau-keo": {
     kind: "lines",
@@ -1542,7 +1552,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
     label:
-      "Điểm A biểu diễn 6 và điểm B biểu diễn 12 cắt tia số làm đoạn OA, đoạn AB và phần còn lại",
+      "Điểm A biểu diễn 6 và điểm B biểu diễn 12 cắt tia số thành đoạn OA, đoạn AB và phần còn lại",
   },
   "ba-phan-rows": {
     kind: "rows",
@@ -1552,21 +1562,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "x ≤ a",
         tag: {
           text: "Đoạn OA",
-          color: "amber",
+          color: "blue",
         },
       },
       {
         tex: "a ≤ x ≤ b",
         tag: {
           text: "Đoạn AB, kể cả A và B",
-          color: "amber",
+          color: "teal",
         },
       },
       {
         tex: "x > b",
         tag: {
           text: "Phần còn lại",
-          color: "amber",
+          color: "slate",
         },
       },
     ],
@@ -1632,6 +1642,34 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "still",
     label: "Tia số có điểm A biểu diễn số 2 và điểm B biểu diễn số 7",
+  },
+  "phan-4-10": {
+    kind: "line",
+    from: 0,
+    to: 12,
+    labelAt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "point",
+        at: 4,
+        name: "A",
+        color: "amber",
+      },
+      {
+        type: "point",
+        at: 10,
+        name: "B",
+        color: "amber",
+      },
+    ],
+    mode: "still",
+    label: "Tia số có điểm A biểu diễn số 4 và điểm B biểu diễn số 10",
   },
   "phan-5-11": {
     kind: "line",
@@ -1703,7 +1741,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "liet-ke-mau": {
     kind: "rows",
-    label: "Các số tự nhiên nhỏ hơn 4 trong ℕ và trong ℕ*",
+    label:
+      "Các số tự nhiên nhỏ hơn 4 trong ℕ và trong ℕ*, và các số từ 11 đến 13",
     rows: [
       {
         tex: "\\{x \\in \\mathbb{N} \\mid x < 4\\} = \\{0; 1; 2; 3\\}",
@@ -1719,6 +1758,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
           color: "teal",
         },
       },
+      {
+        tex: "\\{x \\in \\mathbb{N} \\mid 11 ≤ x < 14\\} = \\{11; 12; 13\\}",
+        tag: {
+          text: "Có số 11, không có số 14",
+          color: "teal",
+        },
+        gapBefore: true,
+      },
     ],
   },
   "chon-phan-tu-3-6": {
@@ -1727,7 +1774,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     wants: [1, 2],
     done: "Bạn chọn đúng: 3 và 6 là hai đầu nên cũng thuộc tập hợp.",
   },
-  "thang-3-8": {
+  "nhom-3-8": {
     kind: "line",
     from: 0,
     to: 10,
@@ -1741,7 +1788,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Số người n từ 3 đến 8 có 6 số: 3, 4, 5, 6, 7 và 8",
+    label: "Số học sinh n từ 3 đến 8 có 6 số: 3, 4, 5, 6, 7 và 8",
   },
   "dem-rows": {
     kind: "rows",
