@@ -59,6 +59,10 @@ describe("visualRegistry", () => {
       "ve-xong": [{ total: 3 }],
       "du-cham-phay": [{ gaps: 3 }],
       "chon-dung": [{ i0: 1, i1: 0, i2: 1 }],
+      "gap-nhau": [
+        { p: 4, q: 6, first: 1 },
+        { p: 4, q: 5, first: 0 },
+      ],
       tui: [
         { total: 24, fits: 1 },
         { total: 25, fits: 0 },

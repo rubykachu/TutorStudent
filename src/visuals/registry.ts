@@ -8,6 +8,16 @@ import {
   squareOf,
 } from "@/visuals/_fixture/dot-square-validators";
 import {
+  INTERACTIVE_KINDS as MULTIPLE_INTERACTIVE_KINDS,
+  LESSON_SLUG as MULTIPLE_SLUG,
+  VISUAL_SPECS as MULTIPLE_SPECS,
+  VALIDATOR_IDS as MULTIPLE_VALIDATOR_IDS,
+} from "@/visuals/math/boi-chung-boi-chung-nho-nhat/catalog";
+import {
+  solutions as multipleSolutions,
+  validators as multipleValidators,
+} from "@/visuals/math/boi-chung-boi-chung-nho-nhat/logic";
+import {
   INTERACTIVE_KINDS as SIGN_INTERACTIVE_KINDS,
   LESSON_SLUG as SIGN_SLUG,
   VISUAL_SPECS as SIGN_SPECS,
@@ -363,6 +373,39 @@ const commonEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "boi-chung-boi-chung-nho-nhat": one per item of its catalog. The
+// rounds screen has its own validator; the pick screens reuse "chon-dung".
+const multiplePickValidators = {
+  "gap-nhau": multipleValidators["gap-nhau"],
+  "chon-dung": pickMatches,
+};
+const multiplePickSolutions = {
+  "gap-nhau": multipleSolutions["gap-nhau"],
+  "chon-dung": solvePickMatches,
+};
+
+const multipleEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(MULTIPLE_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in MULTIPLE_VALIDATOR_IDS
+        ? MULTIPLE_VALIDATOR_IDS[
+            spec.kind as keyof typeof MULTIPLE_VALIDATOR_IDS
+          ]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: MULTIPLE_INTERACTIVE_KINDS.has(spec.kind),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: multiplePickValidators[validatorId] },
+            solutions: { [validatorId]: multiplePickSolutions[validatorId] },
+          }),
+      load: () => lessonExample(MULTIPLE_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${MULTIPLE_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...primeEntries,
   ...thuTuEntries,
@@ -371,6 +414,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...divisibilityEntries,
   ...signEntries,
   ...commonEntries,
+  ...multipleEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -1150,6 +1194,8 @@ const EXAMPLE_MODULES = lessonModules({
   "so-nguyen-to": () => import("@/visuals/math/so-nguyen-to/examples"),
   "uoc-chung-uoc-chung-lon-nhat": () =>
     import("@/visuals/math/uoc-chung-uoc-chung-lon-nhat/examples"),
+  "boi-chung-boi-chung-nho-nhat": () =>
+    import("@/visuals/math/boi-chung-boi-chung-nho-nhat/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
