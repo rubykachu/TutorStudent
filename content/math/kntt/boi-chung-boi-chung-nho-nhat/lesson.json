@@ -67,7 +67,7 @@
         {
           "type": "visual",
           "visualId": "boi-chung-boi-chung-nho-nhat.visual.xe-6-8",
-          "caption": "Hai xe cùng rời bến lúc 0 phút. Xe A rời bến ở các phút 6, 12, 18 và cứ thế tiếp, đó là các bội của 6. Xe B rời bến ở các phút 8, 16, 24 và cứ thế tiếp, đó là các bội của 8. Các phút 24 và 48 có ở cả hai hàng."
+          "caption": "Mỗi phút xe A rời bến là một bội của 6, mỗi phút xe B rời bến là một bội của 8. Các phút 24 và 48 có ở cả hai hàng."
         },
         {
           "type": "group",
@@ -632,7 +632,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: lớp xếp hàng 3 và hàng 4 đều dư 1 bạn. Lớp có từ 40 đến 55 bạn, hỏi lớp có bao nhiêu bạn?"
+              "text": "Cùng làm: lớp xếp mỗi hàng 3 bạn thì dư 1 bạn, xếp mỗi hàng 4 bạn thì cũng dư 1 bạn. Lớp có từ 40 đến 55 bạn, hỏi lớp có bao nhiêu bạn?"
             },
             {
               "type": "visual",
@@ -673,7 +673,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Rồi nhân cả tử số lẫn mẫu số của mỗi phân số với cùng một số.",
+              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Sau đó nhân cả tử số lẫn mẫu số của mỗi phân số với cùng một số.",
               "rule": true
             },
             {
@@ -1237,7 +1237,7 @@
       },
       "explain": {
         "text": "Liệt kê bội của 6 và của 10 rồi chọn số nhỏ nhất có ở cả hai danh sách. Số 30 là bội chung đầu tiên.",
-        "tex": "\\begin{aligned} \\mathrm{B}(6) &: 6,\\ 12,\\ 18,\\ 24,\\ \\concept{pink}{30} \\\\ \\mathrm{B}(10) &: 10,\\ 20,\\ \\concept{pink}{30} \\end{aligned}",
+        "tex": "6 \\cdot 5 = 10 \\cdot 3 = \\concept{pink}{30}",
         "wrong": [
           {
             "optionId": "a",
@@ -1579,7 +1579,7 @@
       },
       "explain": {
         "text": "Số bút phải là bội của 5 và số vở phải là bội của 8, mà hai số bằng nhau. Số ít nhất là BCNN(5, 8) = 40.",
-        "tex": "\\begin{aligned} \\mathrm{B}(8) &: 8,\\ 16,\\ 24,\\ 32,\\ \\concept{pink}{40} \\\\ 40 : 5 &= 8 \\end{aligned}"
+        "tex": "5 \\cdot 8 = 8 \\cdot 5 = \\concept{pink}{40}"
       }
     },
     {
@@ -3638,7 +3638,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một đội xếp hàng 5 và xếp hàng 6 đều dư 2 người. Đội có từ 50 đến 70 người."
+          "text": "Một đội xếp mỗi hàng 5 người thì dư 2 người, xếp mỗi hàng 6 người thì cũng dư 2 người. Đội có từ 50 đến 70 người."
         },
         {
           "type": "note",

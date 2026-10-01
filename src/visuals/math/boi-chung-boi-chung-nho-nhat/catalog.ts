@@ -548,7 +548,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hang-3-4": {
     kind: "lines",
-    label: "Xếp hàng 3 và hàng 4 đều dư 1 bạn, lớp có từ 40 đến 55 bạn",
+    label: "Xếp mỗi hàng 3 bạn và mỗi hàng 4 bạn đều dư 1 bạn, lớp có từ 40 đến 55 bạn",
     mode: "steps",
     rows: [
       {
@@ -564,7 +564,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hang-goi-y-4-5": {
     kind: "lines",
-    label: "Xếp hàng 4 và hàng 5 đều dư 1 người, đội có từ 30 đến 50 người",
+    label: "Xếp mỗi hàng 4 người và mỗi hàng 5 người đều dư 1 người, đội có từ 30 đến 50 người",
     mode: "hint",
     rows: [
       {
@@ -580,7 +580,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hang-giai-5-6": {
     kind: "lines",
-    label: "Xếp hàng 5 và hàng 6 đều dư 2 người, đội có từ 50 đến 70 người",
+    label: "Xếp mỗi hàng 5 người và mỗi hàng 6 người đều dư 2 người, đội có từ 50 đến 70 người",
     mode: "steps",
     rows: [
       {
