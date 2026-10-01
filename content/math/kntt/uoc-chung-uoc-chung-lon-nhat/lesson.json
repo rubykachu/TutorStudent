@@ -5625,7 +5625,7 @@
         "expr": "3·8"
       },
       "explain": {
-        "text": "Hai số là 3 nhân m và 3 nhân n. Nhân chúng lại được 9 nhân m nhân n, mà tích là 72 nên m nhân n bằng 8. Chỉ cặp 1 và 8 có m, n chỉ chung ước 1, nên b là 3 nhân 8.",
+        "text": "Hai số là 3 nhân m và 3 nhân n. Nhân chúng lại được 9 nhân m nhân n, mà tích là 72 nên m nhân n bằng 8. Chỉ cặp 1 và 8 là hai số chỉ chung ước 1, nên b, số lớn, là 3 nhân 8.",
         "tex": "b = \\concept{amber}{3} \\cdot 8 = 24"
       }
     },
