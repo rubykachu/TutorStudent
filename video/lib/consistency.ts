@@ -174,7 +174,12 @@ export function pacingIssues(script: VideoScript): string[] {
   }
   flat.forEach((sentence, i) => {
     const count = sentence.text.split(/\s+/).length;
-    if (count > PACING.maxWordsPerSentence) {
+    // A rule or quote copies the lesson word for word, whatever its length.
+    if (
+      count > PACING.maxWordsPerSentence &&
+      !sentence.rule &&
+      !sentence.quote
+    ) {
       issues.push(
         `sentence ${i + 1} (${sentence.scene}) has ${count} words (max ${PACING.maxWordsPerSentence}): one idea per sentence`,
       );

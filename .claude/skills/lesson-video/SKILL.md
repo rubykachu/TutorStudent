@@ -6,6 +6,8 @@ model: sonnet
 
 # Video bài giảng
 
+Video mới ngắn (45–75 giây, tối đa 16 câu) và có nhịp cho bé chậm: hỏi rồi mới mở, dừng nghĩ sau điều quan trọng, và điểm dừng để bé tự bấm "Tiếp". Luật ở `references/script-rules.md`, mục "Nhịp cho bé chậm"; build và `pnpm video:check` chặn video mới vi phạm.
+
 `<id bài>` là slug của bài (tên thư mục chứa `lesson.json`).
 
 Mỗi video là một thư mục `video/projects/<id bài>/<tên>/` (commit): `script.json` (lời đọc) và `index.html` (hình). Một lệnh dựng tất cả:
@@ -14,7 +16,7 @@ Mỗi video là một thư mục `video/projects/<id bài>/<tên>/` (commit): `s
 pnpm video:build <id bài> <tên>
 ```
 
-Lệnh tổng hợp giọng từng câu, cho mlx-whisper nghe lại và so với kịch bản (bỏ dấu thanh, dấu câu; câu dưới 97% tự đọc lại, tối đa 3 lần), chậm lại `atempo 0.9`, lấy mốc thời gian từng chữ, dựng hình bằng HyperFrames, nén H.264 720p (≤ 10 MB/phút), rồi ghi `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và mục `videos[]` trong `lesson.json` (id `<id bài>.video.<tên>`, clip theo card). Câu đã đọc được giữ trong `audio/` nên sửa hình không đọc lại. Thiết lập và mọi thông số: `video/config.ts`; Python arm64 và model: `video/requirements.txt`.
+Lệnh tổng hợp giọng từng câu, cho mlx-whisper nghe lại và so với kịch bản (bỏ dấu thanh, dấu câu; câu dưới 97% tự đọc lại, tối đa 3 lần), chậm lại `atempo 0.9`, lấy mốc thời gian từng chữ, dựng hình bằng HyperFrames, nén H.264 720p (≤ 10 MB/phút), rồi ghi `public/media/video/<id bài>/<tên>.{mp4,vtt,jpg}` và mục `videos[]` trong `lesson.json` (id `<id bài>.video.<tên>`, clip theo card). Câu đã đọc được giữ trong `audio/` nên sửa hình hay đổi `pause`/`checkpoint` không đọc lại (cờ nhịp không nằm trong khoá cache câu). Video dựng trước luật nhịp nằm trong `video/pacing-exempt.json`; dựng lại chúng là quyết định riêng của chủ dự án, rồi xoá dòng của video đó khỏi danh sách. Thiết lập và mọi thông số: `video/config.ts`; Python arm64 và model: `video/requirements.txt`.
 
 ## Giọng: mỗi bài một giọng
 
@@ -38,8 +40,8 @@ Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi b�
 ## Quy trình
 
 1. **Chỉ bài đã `published`.** Đọc `lesson.json`: phần (section), câu quy tắc (`note`, `caption`), card, màu khái niệm; xem visual của bài trong `src/visuals/<môn>/<bài>/` và contact sheet `.shots/<bài>/sheet-*-NN.png` (chạy `pnpm visual:shot <bài>` nếu chưa có).
-2. **Chọn video.** Mỗi video giảng một ý của một phần, 60–90 giây; đặt ở đầu phần đó. Một phần có tối đa một video (`MAX_SECTION_VIDEOS`); video không tính vào số màn của phần.
-3. **Chọn giọng của bài** nếu bài chưa có `media.json` (mục "Giọng"), rồi **viết `script.json`**, câu đầu là câu mở đầu (mục "Câu mở đầu"), từ `.claude/skills/lesson-video/templates/script.example.json`, theo `.claude/skills/lesson-video/references/script-rules.md`: câu quy tắc đánh `rule`, câu trích văn bản đánh `quote`; build kiểm nguyên văn. Chữ quy tắc hiện trên màn thì đánh `data-rule-text` lên phần tử đó (chữ phải là câu `note`/`caption` của bài, hoặc kí hiệu trong "X đọc là Y" như "2 ∈ A").
+2. **Chọn video.** Mỗi video giảng một ý của một phần, 45–75 giây (ít ý hơn thì ngắn hơn); đặt ở đầu phần đó. Một phần có tối đa một video (`MAX_SECTION_VIDEOS`); video không tính vào số màn của phần.
+3. **Chọn giọng của bài** nếu bài chưa có `media.json` (mục "Giọng"), rồi **viết `script.json`**, câu đầu là câu mở đầu (mục "Câu mở đầu"), từ `.claude/skills/lesson-video/templates/script.example.json`, theo `.claude/skills/lesson-video/references/script-rules.md`: câu quy tắc đánh `rule`, câu trích văn bản đánh `quote`; build kiểm nguyên văn. Đánh thêm `pause` (`think`, `ask`) và `checkpoint` theo mục "Nhịp cho bé chậm". Chữ quy tắc hiện trên màn thì đánh `data-rule-text` lên phần tử đó (chữ phải là câu `note`/`caption` của bài, hoặc kí hiệu trong "X đọc là Y" như "2 ∈ A").
 4. **Viết `index.html`** từ `.claude/skills/lesson-video/templates/index.example.html`, theo `.claude/skills/lesson-video/references/composition.md`: hình trước, chữ ít, vào đúng lúc chữ được đọc.
 5. **Dựng:** `pnpm video:build <id bài> <tên>`. Bài có nhiều video thì chạy tối đa 2 lệnh cùng lúc (Bash `run_in_background`); TTS ăn CPU nên không chạy 3. Hai lệnh cùng ghi `videos[]` của `lesson.json` lúc kết thúc: xong cả hai thì kiểm đủ hai mục, thiếu thì dựng lại video đó (câu đã đọc được giữ nên nhanh). Build tự kiểm không tốn token: mỗi câu `script.json` phải có trong `.vtt` (báo câu thiếu/thừa theo số thứ tự) và chữ `data-rule-text` phải khớp bài; chạy lại trên video đã dựng, không dựng lại: `pnpm video:check [<id bài> [<tên>]]`. Đọc cuối log: dòng "listen to this sentence" là câu cần người nghe duyệt (thường Whisper nghe nhầm chứ không phải giọng sai). `renders/report.json` có lời Whisper nghe được và tỉ lệ khớp từng câu.
 6. **Tự xem.** Cắt khung hình rồi ghép sheet: `ffmpeg -v error -i <mp4> -vf fps=1/2 -start_number 0 video/projects/<bài>/<tên>/renders/frames/f-%03d.png && pnpm shots:sheet video/projects/<bài>/<tên>/renders/frames` (khung `f-NNN` ở giây NNN×2; thêm `-vf fps=1` cho đoạn cần mịn hơn). Đọc các sheet, không đọc từng khung; mở riêng một khung chỉ khi cần phóng to. Soát: chữ rõ, không bị cắt, màu đúng khái niệm, dải dưới cùng trống cho phụ đề, hình khớp lời ở mốc trong `.vtt`. Sửa `index.html` rồi dựng lại.
@@ -48,7 +50,7 @@ Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi b�
 
 ## Phát trong app
 
-`src/components/blocks/video-player.tsx`: không tự phát, nút phát lớn, phụ đề bật sẵn (chữ lớn, tô chữ đang đọc), `playsInline` cho iPad. Thẻ ôn có clip thì màn nhắc lại có nút "Xem lại đoạn video". Đường dẫn file ghép với `NEXT_PUBLIC_MEDIA_BASE_URL` (mặc định `/media`, tức `public/media`).
+`src/components/blocks/video-player.tsx`: video có `checkpoints` (ghi bởi build từ câu `checkpoint`) tự dừng ở mỗi điểm và hiện nút "Tiếp" và "Xem lại đoạn này" (`checkpoint-overlay.tsx`); clip theo card không dừng. Không tự phát, nút phát lớn, phụ đề bật sẵn (chữ lớn, tô chữ đang đọc), `playsInline` cho iPad. Thẻ ôn có clip thì màn nhắc lại có nút "Xem lại đoạn video". Đường dẫn file ghép với `NEXT_PUBLIC_MEDIA_BASE_URL` (mặc định `/media`, tức `public/media`).
 
 ## Lên go-live (chưa làm, hỏi trước khi chạy)
 

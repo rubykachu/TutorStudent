@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -80,6 +80,13 @@ describe("pacingIssues", () => {
         .fill("a")
         .join(" ");
     expect(pacingIssues(long).join("\n")).toContain("one idea per sentence");
+    const quoted = GOOD();
+    const rule = quoted.scenes[1]?.sentences[1];
+    if (rule)
+      rule.text = Array(PACING.maxWordsPerSentence + 3)
+        .fill("a")
+        .join(" ");
+    expect(pacingIssues(quoted)).toEqual([]);
   });
 
   it("wants a pause after every rule sentence but the last, and an ask", () => {
@@ -201,6 +208,21 @@ describe("pauseGapIssues", () => {
     expect(
       pauseGapIssues(s, vtt("00:00:02.500 --> 00:00:03.000"))[0],
     ).toContain('"ask"');
+  });
+});
+
+describe("the script template", () => {
+  it("is a valid script that follows the pacing rules", () => {
+    const template = VideoScriptSchema.parse(
+      JSON.parse(
+        readFileSync(
+          ".claude/skills/lesson-video/templates/script.example.json",
+          "utf8",
+        ),
+      ),
+    );
+    expect(pacingIssues(template)).toEqual([]);
+    expect(checkpointIssues(template)).toEqual([]);
   });
 });
 

@@ -2,7 +2,7 @@
   "title": "Nhân hai luỹ thừa cùng cơ số",
   "engine": "local",
   "poster": {
-    "scene": "s04-ket-qua",
+    "scene": "s02-noi",
     "at": 0.9
   },
   "scenes": [
@@ -17,86 +17,54 @@
           "text": "Bạn cú có hai chuỗi hạt."
         },
         {
-          "text": "Mỗi hạt là một thừa số 3."
+          "text": "Chuỗi thứ nhất có hai hạt 3."
         },
         {
-          "text": "Chuỗi thứ nhất có hai hạt."
-        },
-        {
-          "text": "Chuỗi thứ hai có bốn hạt."
+          "text": "Chuỗi thứ hai có bốn hạt 3.",
+          "checkpoint": true
         }
       ]
     },
     {
-      "id": "s02-viet",
+      "id": "s02-noi",
       "sentences": [
         {
-          "text": "Hai thừa số 3 là 3 mũ 2."
+          "text": "Nối hai chuỗi lại thành một chuỗi."
         },
         {
-          "text": "Bốn thừa số 3 là 3 mũ 4."
+          "text": "Bạn thử đoán xem: có mấy hạt 3?",
+          "pause": "ask"
         },
         {
-          "text": "Số mũ cho biết có mấy thừa số."
+          "text": "Hai thêm bốn là sáu hạt.",
+          "pause": "think"
+        },
+        {
+          "text": "Vậy 3 mũ 2 nhân 3 mũ 4 bằng 3 mũ 6.",
+          "checkpoint": true
         }
       ]
     },
     {
-      "id": "s03-noi",
-      "sentences": [
-        {
-          "text": "Bây giờ, ta nhân 3 mũ 2 với 3 mũ 4."
-        },
-        {
-          "text": "Hai chuỗi hạt nối lại thành một chuỗi."
-        },
-        {
-          "text": "Đếm xem có mấy thừa số nhé."
-        },
-        {
-          "text": "Hai thừa số thêm bốn thừa số là sáu thừa số."
-        }
-      ]
-    },
-    {
-      "id": "s04-ket-qua",
-      "sentences": [
-        {
-          "text": "Sáu thừa số 3 là 3 mũ 6."
-        },
-        {
-          "text": "Vậy 3 mũ 2 nhân 3 mũ 4 bằng 3 mũ 6."
-        },
-        {
-          "text": "Cơ số vẫn là 3. Số mũ là 2 cộng 4, bằng 6."
-        }
-      ]
-    },
-    {
-      "id": "s05-quy-tac",
+      "id": "s03-quy-tac",
       "sentences": [
         {
           "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.",
-          "rule": true
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Thử nhé: 9 mũ 4 nhân 9 mũ 6.",
+          "pause": "ask"
+        },
+        {
+          "text": "Kết quả là 9 mũ 10.",
+          "pause": "think"
         }
       ]
     },
     {
-      "id": "s06-thu",
-      "sentences": [
-        {
-          "text": "Thử nhé: 9 mũ 4 nhân 9 mũ 6."
-        },
-        {
-          "text": "Giữ cơ số 9. Cộng số mũ: 4 cộng 6 bằng 10."
-        },
-        {
-          "text": "Kết quả là 9 mũ 10."
-        }
-      ]
-    },
-    {
-      "id": "s07-nho",
+      "id": "s04-nho",
       "sentences": [
         {
           "text": "Bạn nhớ nhé."
@@ -111,8 +79,8 @@
   "clips": [
     {
       "id": "nhan-cung-co-so",
-      "from": "s03-noi",
-      "to": "s05-quy-tac",
+      "from": "s02-noi",
+      "to": "s03-quy-tac",
       "cardIds": ["luy-thua.card.nhan-cung-co-so"]
     }
   ]

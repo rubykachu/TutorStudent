@@ -2,7 +2,7 @@
 
 Người xem là trẻ lớp 6 học chậm, xem trên iPad, nghe giọng TTS.
 
-- Câu ngắn (≤ 15 chữ), một ý một câu, từ quen thuộc; thuật ngữ đúng glossary (`content/glossary/<môn>.json`).
+- Câu ngắn (video mới: ≤ 12 chữ), một ý một câu, từ quen thuộc; thuật ngữ đúng glossary (`content/glossary/<môn>.json`).
 - Câu nêu quy tắc, định nghĩa: chép nguyên văn một `note`/`caption` của bài (hay một câu của nó) và đặt `"rule": true`. Chỉ được khác: `aⁿ` → "a mũ n", dấu ngoặc → dấu phẩy, chữ cái đứng một mình → "số a" (TTS và Whisper hay nuốt chữ cái trơ trọi).
 - Câu trích văn bản đọc hiểu đặt `"quote": true`: phần trong ngoặc kép “…” (không có ngoặc thì cả câu) phải nằm nguyên văn trong `source-passage.txt`.
 - `pnpm video:build` dừng khi câu `rule`/`quote` lệch bài (`video/lib/verbatim.ts`); `pnpm test` cũng kiểm lại mọi kịch bản đã commit.
@@ -12,5 +12,16 @@ Người xem là trẻ lớp 6 học chậm, xem trên iPad, nghe giọng TTS.
 - Kể theo một câu chuyện có kết, hình trước lời sau: ví dụ cụ thể (bàn cờ, chuỗi hạt) → phép tính → quy tắc → một ví dụ thử → câu "Nhớ nhé".
 - Mỗi cảnh (`scenes[]`) là một bước hình, 1–5 câu. Id `sNN-<tên>` dùng trong `index.html`.
 - `clips[]`: đoạn cảnh `from`–`to` giảng một card; trẻ xem lại đoạn đó khi ôn sai card.
-- Độ dài: khoảng 20–24 câu cho 60–90 giây (tốc độ 0.9 và các quãng nghỉ trong `PAUSE` của `video/config.ts`).
+- Độ dài: video cũ khoảng 20–24 câu cho 60–90 giây. Video mới ngắn hơn: **45–75 giây, tối đa 16 câu, ít ý hơn** (một video chỉ giảng một ý của phần, mỗi ý một cảnh); bé chậm, khó tập trung nên một video dài hay nhiều ý là quá tải (tốc độ 0.9 và các quãng nghỉ trong `PAUSE` của `video/config.ts`).
 - Giọng miền Bắc đọc "tr" như "ch" và "d" như "gi", Whisper ghi "trừ" thành "chữ", "dải" thành "giải": đã chuẩn hoá trong `video/lib/text.ts`, không cần đổi lời.
+
+## Nhịp cho bé chậm (video mới)
+
+Người lớn xem còn phải dừng lại nghĩ; bé chậm không theo kịp nếu mọi thứ liền nhau. Video mới (không nằm trong `video/pacing-exempt.json`) theo các luật dưới đây, `pnpm video:build` và `pnpm video:check` báo lỗi khi vi phạm (hằng số ở `PACING` và `PAUSE` của `video/config.ts`).
+
+- **Một ý một câu, ≤ 12 chữ.** Câu dài tách ra (câu `rule` và `quote` chép nguyên văn bài nên không bị giới hạn chữ).
+- **Hỏi rồi mới mở:** trước khi lộ đáp án hay quy tắc, hỏi bé tự đoán: "Bạn thử đoán xem: 6 nhân 9 bằng mấy?" đánh `"pause": "ask"` (im lặng ≥ 3 giây), rồi mới nói đáp án. Có ít nhất một câu `ask`, và câu cuối video không phải `ask`.
+- **Dừng nghĩ sau mỗi điều quan trọng vừa lộ:** mọi câu `"rule": true` (trừ câu cuối video) đánh `"pause": "think"` (im lặng ≥ 2 giây); nên đặt cả sau kết quả của ví dụ chính. Build đổi cờ `pause` thành khoảng lặng thật sau câu đó (lấy giá trị lớn hơn giữa quãng nghỉ thường và `PAUSE.think`/`PAUSE.ask`), và `video:check` đối chiếu phụ đề đã dựng.
+- **Điểm dừng cho bé tự điều khiển:** đánh `"checkpoint": true` vào câu cuối của một ý (không phải câu cuối video). Từ 1 đến 4 điểm dừng, hai điểm cách nhau ≥ 3 câu. Trong app, video tự dừng ngay sau câu đó và hiện nút "Tiếp" cùng "Xem lại đoạn này" (phát lại từ điểm dừng trước); bé bấm mới đi tiếp. Build ghi `checkpoints` vào `videos[]` của `lesson.json`; video không có cờ thì chạy liền như cũ. Clip theo card (ôn lại) không dừng.
+- Phần hình cũng phải chờ: khi lời im lặng vì `pause`, hình giữ nguyên kết quả vừa hiện, không đổi cảnh trong khoảng đó.
+- Video đã dựng trước các luật này được liệt kê trong `video/pacing-exempt.json` (mỗi dòng `<id bài>/<tên>`). Dựng lại một video theo luật mới là quyết định riêng của chủ dự án (đọc lại giọng, đổi video và phụ đề); khi làm thì xoá dòng của nó khỏi danh sách để luật áp dụng. Không thêm video mới vào danh sách để qua kiểm tra.
