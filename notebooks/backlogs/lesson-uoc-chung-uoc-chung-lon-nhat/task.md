@@ -1,11 +1,12 @@
 # Bàn giao: Bài 11 `uoc-chung-uoc-chung-lon-nhat` (Ước chung. Ước chung lớn nhất)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bài `status: draft`, đã sửa xong theo review vòng 1 (8 Nghiêm trọng, Nên sửa 1-19, Góp ý trừ 6, 7, 9), chưa review vòng 2, chưa `content:hash --approve`, chưa `content:lock`, chưa có lời đọc tổng quan và video.
-- Đã sửa: quy tắc section 10 (ước chung, không phải bội chung), viết lại định nghĩa ƯCLN, quy tắc section 6, 8, 11 và câu điền `dien-tim-uclnn`; note "chia dần" đầy đủ ở section 5 (recap thêm định nghĩa số nguyên tố); tách phần phân số thành 2 section (`phan-so-toi-gian`, `rut-gon-phan-so`) với nhắc kiến thức nền, glossary `phân số`, `tử`, `mẫu`, `rút gọn phân số` (`prerequisite: tiểu học`); đổi bộ số theo bảng Nên sửa 16 (id theo số đã đổi tên đồng bộ); thêm 5 câu mới (`chia-nhom-16-28`, `hoan-hao-15`, `tu-mau-4-15`, `uc-lon-hon-1-32-40`, `dien-rut-gon`; tổng 65 câu, 13 section, 13 card). Hình: `CutTry` không hiện kết luận khi làm bài, báo trạng thái đầu và có độ dài bắt đầu (`start`); `cutBars` có cờ `greatest`; hàng Ư(n) của `ucLists` chỉ tô cam một ƯCLN; viền "Một đoạn" màu slate.
-- Kiểm: `content:check` 0 lỗi của bài (chỉ cảnh báo id chưa khoá), `visual:shot` 152/152 đạt, `lesson:walk` 0 failure (3 khổ màn hình, đã xem sheet điện thoại), `typecheck`, `lint`, `test` đạt.
-- Cố ý chưa làm: Góp ý 7 (nấc 1 tô số mũ riêng, cần tách đề thành formula có `\htmlId` hay thêm hình nấc 2), Góp ý 9 (đổi chỗ màn chạm và màn cùng làm ở section 6), phần "Không có thừa số chung thì ƯCLN bằng 1" của Góp ý 11 (hết chỗ trên màn; ƯCLN bằng 1 đã có ở hình `tg-5-7`). `sourceRef` section 5 ghi "Sách bài tập tr.38 (kiến thức cần nhớ 3)" vì dấu "Kiến thức nền" chỉ được lint chấp nhận cho thuật ngữ có `prerequisite` trong glossary.
-- Việc kế tiếp: review vòng 2 (Opus), rồi `content:lock`, lời đọc tổng quan và video (skill `lesson-video`). Việc căn chỉnh section 5 với bài Số nguyên tố sau khi bài đó xuất bản giữ nguyên như mục dưới.
+- Cập nhật cuối: 01/10/2026. Bài `status: draft`, đã sửa xong theo review vòng 2 (Nghiêm trọng 1-4, Nên sửa 1-15, Góp ý trừ 14), chưa review vòng 3 (diff-only, Sonnet), chưa `content:hash --approve`, chưa `content:lock`, chưa có lời đọc tổng quan và video.
+- Vòng 2 đã sửa: note màn chạm ƯCLN (20 và 24); section 5 tự diễn đạt lại định nghĩa số nguyên tố (note thường) và phân tích (rule duy nhất, recap một quy tắc); câu điền số hoàn hảo, câu rút gọn phân số có điều kiện số chia; một cách nói cho ước chung (section 10), quy tắc "các loại đồ vật", "số nhỏ nhất", hộp và túi mua trọn; bảng đổi số của Nên sửa 9 (đổi id, hình lời giải đồng bộ); bỏ màn `hh-28`; phản ví dụ 2/8 ở section phân số tối giản; glossary thêm "phân số tối giản", "số hoàn hảo".
+- Màu khái niệm: ƯC teal, ƯCLN amber, số nguyên tố sky (khớp glossary), thừa số nguyên tố blue, số mũ violet, phân số tối giản pink; đồ vật, chấm dải băng, "Còn thừa" dùng slate, lime. Khái niệm "Phân số" và "Rút gọn phân số" bỏ (card phân số dùng "Phân số tối giản" để giữ dấu kiến thức nền tiểu học).
+- Cố ý không làm: Góp ý 14 (câu số hoàn hảo đáp án "là" cần cộng 5 số hạng, quá 2 phép tính của LL-18). Note không viết "2/8" (lint cấm "số/số" trong chữ) nên câu về phân số của Mai viết bằng lời, phân số nằm ở khối công thức.
+- Kiểm: `content:check` 0 lỗi của bài, `visual:shot` 150/150, `lesson:walk` 0 failure (điện thoại, iPad dọc, iPad ngang; đã xem sheet các section 2-6, 8-13), `lint`, `typecheck` đạt; `test` đạt trừ `tests/video/voices.test.ts` (thay đổi của việc khác trong cây).
+- Việc kế tiếp: review vòng 3, rồi `content:lock`, lời đọc tổng quan và video (skill `lesson-video`). Việc căn chỉnh section 5 với bài Số nguyên tố sau khi bài đó xuất bản giữ nguyên như mục dưới.
 
 ## Nguồn (sách bài tập, `sources/math/uoc-chung-uoc-chung-lon-nhat/`, không commit)
 - Đề: tr.38–40 in (PDF 39–41), tệp `sbt-p38.png`, `sbt-p39.png`, `sbt-p40.png`. Bài 12 "Bội chung. Bội chung nhỏ nhất" bắt đầu ở tr.41.
@@ -24,7 +25,7 @@
 
 ## Phụ thuộc Bài 10 (`so-nguyen-to`, đang soạn song song, chưa xuất bản)
 - Phương pháp phân tích ra thừa số nguyên tố cần "số nguyên tố" và "phân tích ra thừa số nguyên tố". Bài này dạy tối thiểu tại chỗ ở một section nhắc lại (`nhac-thua-so`), không liên kết id hay nội dung của Bài 10, hình `ladder` là của riêng bài này.
-- Việc bắt buộc sau khi Bài 10 xuất bản: chạy một vòng diff-only căn chỉnh section 5 (`nhac-thua-so`) với Bài 10: định nghĩa "số nguyên tố", cách viết phân tích, cách gọi "thừa số nguyên tố" và màu khái niệm (Bài 10 dùng màu sky cho "số nguyên tố"; ở đây thừa số nguyên tố đang mang màu "cơ số", xanh dương). Các review của Bài 11 đã xét section 5 tự thân, không đối chiếu bản nháp Bài 10.
+- Việc bắt buộc sau khi Bài 10 xuất bản: chạy một vòng diff-only căn chỉnh section 5 (`nhac-thua-so`) với Bài 10: định nghĩa "số nguyên tố", cách viết phân tích, cách gọi "thừa số nguyên tố" và màu khái niệm (Bài 10 dùng màu sky cho "số nguyên tố"; ở đây số nguyên tố cũng sky, thừa số nguyên tố blue). Các review của Bài 11 đã xét section 5 tự thân, không đối chiếu bản nháp Bài 10.
 - Khi Bài 10 xuất bản, đối chiếu: định nghĩa số nguyên tố, cách viết phân tích, cách gọi "thừa số nguyên tố", màu khái niệm; có thể bỏ section `nhac-thua-so` nếu trùng. Bài này không thêm term "số nguyên tố" vào `content/glossary/math.json`.
 
 ## Cấu trúc bài (12 section, 12 card, 60 bài tập, 75 hình)
@@ -39,7 +40,7 @@ Khái niệm mới trong `content/glossary/math.json`: "ước chung" (teal), "�
 ## Để reviewer soi kĩ
 - Đáp án và nhiễu: mọi số đã tính bằng chương trình khi dựng; tập trung vào lời đề (LL-01, LL-10), nhất là `hoan-hao-8`, `hoan-hao-12` (lựa chọn đều mở bằng "Có/Không"), `uc-la-uoc-cua`, `chon-uclnn-18-30` và các câu "nhiều nhất" (`dia-12-20`, `but-vo-20-30`) nơi một ước chung nhỏ hơn cũng thoả điều kiện chia đều.
 - Section 12 dùng phân số (tử, mẫu, rút gọn) là kiến thức tiểu học không khai `prerequisite` trong glossary; xem có thuộc phạm vi bài không (LL-09), hay chuyển sang bài phân số sau.
-- Section 5 lặp phần của Bài 10: so định nghĩa số nguyên tố, cách viết phân tích, màu (ở đây thừa số nguyên tố mang màu của "cơ số", xanh dương; Bài 10 dùng màu sky cho "số nguyên tố") sau khi Bài 10 xuất bản.
+- Section 5 lặp phần của Bài 10: so định nghĩa số nguyên tố, cách viết phân tích, màu (ở đây số nguyên tố sky như glossary, thừa số nguyên tố blue) sau khi Bài 10 xuất bản.
 - Hình chia dần (`ladder`) và Bài 10 `sơ đồ cột` cùng ý; có thể gộp về `shared/` khi cả hai đã xuất bản.
 - Section 11 không có ví dụ đời sống (số hoàn hảo thuần số, như `luy-thua-10` của Bài 9); câu mẫu 28 có 4 phép cộng nhưng chỉ trong hình từng bước.
 - Câu `order` (`xep-uclnn-6-8`, `xep-chia-dan-18`, `xep-uclnn-12-30`) chỉ có một thứ tự đúng; kiểm lại.
