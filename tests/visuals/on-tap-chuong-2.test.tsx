@@ -56,6 +56,24 @@ describe("chapter II review pictures", () => {
     }
   });
 
+  it("the common divisor and common multiple pictures list what the maths gives", () => {
+    const numbers = (key: string, row: number) => {
+      const spec = VISUAL_SPECS[key];
+      if (spec?.kind !== "rows") throw new Error(`${key} is not a rows spec`);
+      return (spec.rows[row]?.tex.match(/\d+/g) ?? []).map(Number);
+    };
+    const divisorsOf = (n: number) =>
+      Array.from({ length: n }, (_, i) => i + 1).filter((d) => n % d === 0);
+    const common = divisorsOf(8).filter((d) => 12 % d === 0);
+    expect(numbers("uc-8-12", 0)).toEqual(common);
+    expect(numbers("uc-8-12", 1)).toEqual([Math.max(...common)]);
+    // The first four common multiples of 6 and 9 are the multiples of 18.
+    expect(numbers("bc-6-9", 0)).toEqual([18, 36, 54, 72]);
+    expect(numbers("bc-6-9", 1)).toEqual([18]);
+    expect(numbers("uc-bc-tom-tat", 0)).toEqual(common);
+    expect(numbers("uc-bc-tom-tat", 2)).toEqual([18, 36, 54]);
+  });
+
   it("the sticker names the chapter", () => {
     const { getByRole } = render(<Sticker />);
     expect(getByRole("img").getAttribute("aria-label")).toContain("chương hai");

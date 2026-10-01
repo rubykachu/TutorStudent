@@ -59,11 +59,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "19 \\khongchiahet 6",
-        tag: { text: "19 không chia hết cho 6", color: "pink" },
+        tag: { text: "19 không chia hết cho 6", color: "slate" },
       },
       {
         tex: "12 + 19 = 31 \\khongchiahet 6",
-        tag: { text: "Tổng không chia hết cho 6", color: "pink" },
+        tag: { text: "Tổng không chia hết cho 6", color: "slate" },
         gapBefore: true,
       },
     ],
@@ -83,7 +83,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "2 + 5 = 7 \\khongchiahet 3",
         tag: {
           text: "2 và 5 không chia hết cho 3, tổng 7 không chia hết cho 3",
-          color: "pink",
+          color: "slate",
         },
         gapBefore: true,
       },
@@ -136,7 +136,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "7\\,20\\concept{teal}{3} \\khongchiahet 5",
-        tag: { text: "Chữ số tận cùng là 3", color: "pink" },
+        tag: { text: "Chữ số tận cùng là 3", color: "slate" },
         gapBefore: true,
       },
     ],
@@ -185,11 +185,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "1,\\ \\concept{sky}{13}",
-        tag: { text: "Ước của 13", color: "violet" },
+        tag: { text: "Ước của 13", color: "slate" },
       },
       {
         tex: "1,\\ 3,\\ \\concept{pink}{9}",
-        tag: { text: "Ước của 9", color: "violet" },
+        tag: { text: "Ước của 9", color: "slate" },
       },
     ],
     legend: [
@@ -223,7 +223,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tn2-goi-y": {
     kind: "lines",
-    label: "Thử với bốn số khác",
+    label: "Thử với ba số khác",
     rows: [
       {
         tex: "1\\,350 \\chiahet 2",
@@ -275,19 +275,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tich-chia-het": {
     kind: "rows",
-    label: "Một tích chia hết cho mỗi thừa số",
+    label: "Một tích chia hết cho số mà một thừa số chia hết",
     rows: [
       {
-        tex: "3 \\cdot 5 \\cdot 8 \\chiahet 3",
-        tag: { text: "Có thừa số 3", color: "blue" },
-      },
-      {
         tex: "3 \\cdot 5 \\cdot 8 \\chiahet 5",
-        tag: { text: "Có thừa số 5", color: "blue" },
+        tag: { text: "Thừa số 5 chia hết cho 5", color: "slate" },
       },
       {
-        tex: "3 \\cdot 5 \\cdot 8 \\chiahet 8",
-        tag: { text: "Có thừa số 8", color: "blue" },
+        tex: "4 \\cdot 9 \\cdot 7 \\chiahet 3",
+        tag: { text: "Thừa số 9 chia hết cho 3", color: "slate" },
+      },
+      {
+        tex: "7 \\cdot 6 \\cdot 11 \\chiahet 2",
+        tag: { text: "Thừa số 6 chia hết cho 2", color: "slate" },
       },
     ],
   },
@@ -297,11 +297,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "3 \\cdot 5 \\cdot 6 \\chiahet 5",
-        tag: { text: "Có thừa số 5", color: "blue" },
+        tag: { text: "Có thừa số 5", color: "slate" },
       },
       {
         tex: "25 \\cdot 11 \\chiahet 5",
-        tag: { text: "25 = 5 · 5", color: "blue" },
+        tag: { text: "25 = 5 · 5", color: "slate" },
       },
       {
         tex: "3 \\cdot 5 \\cdot 6 + 25 \\cdot 11 \\chiahet 5",
@@ -318,17 +318,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Thử với một tổng khác",
     rows: [
       {
-        tex: "7 \\cdot 8 \\cdot 9 \\chiahet 2",
-        tag: { text: "Có thừa số chẵn 8", color: "blue" },
+        tex: "4 \\cdot 6 \\cdot 7 \\chiahet 3",
+        tag: { text: "Thừa số 6 chia hết cho 3", color: "slate" },
       },
       {
-        tex: "10 \\cdot 11 \\cdot 13 \\chiahet 2",
-        tag: { text: "Có thừa số chẵn 10", color: "blue" },
+        tex: "9 \\cdot 10 \\cdot 11 \\chiahet 3",
+        tag: { text: "Thừa số 9 chia hết cho 3", color: "slate" },
       },
       {
-        tex: "7 \\cdot 8 \\cdot 9 + 10 \\cdot 11 \\cdot 13 \\chiahet 2",
+        tex: "4 \\cdot 6 \\cdot 7 + 9 \\cdot 10 \\cdot 11 \\chiahet 3",
         tag: {
-          text: "Tổng chia hết cho 2 và lớn hơn 2: hợp số",
+          text: "Tổng chia hết cho 3 và lớn hơn 3: hợp số",
           color: "pink",
         },
       },
@@ -345,7 +345,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "15 \\khongchiahet 2",
-        tag: { text: "15 không chia hết cho 2", color: "pink" },
+        tag: { text: "15 không chia hết cho 2", color: "slate" },
       },
       {
         tex: "30 \\chiahet 2",
@@ -353,7 +353,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "40 + 15 + 30 = 85 \\khongchiahet 2",
-        tag: { text: "Tổng không chia hết cho 2", color: "pink" },
+        tag: { text: "Tổng không chia hết cho 2", color: "slate" },
         gapBefore: true,
       },
     ],
@@ -369,7 +369,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "7\\,23\\concept{teal}{5} \\khongchiahet 2",
-        tag: { text: "Chữ số tận cùng là 5", color: "pink" },
+        tag: { text: "Chữ số tận cùng là 5", color: "slate" },
       },
     ],
   },
@@ -386,12 +386,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "120 \\chiahet 2" },
       {
         tex: "305 \\khongchiahet 2",
-        tag: { text: "305 có chữ số tận cùng là 5", color: "teal" },
+        tag: { text: "305 có chữ số tận cùng là 5", color: "slate" },
       },
       { tex: "40 \\chiahet 2" },
       {
         tex: "120 + 305 + 40 \\khongchiahet 2",
-        tag: { text: "Tổng không chia hết cho 2", color: "pink" },
+        tag: { text: "Tổng không chia hết cho 2", color: "slate" },
       },
     ],
     mode: "hint",
@@ -440,12 +440,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "20 \\khongchiahet 3",
-        tag: { text: "20 không chia hết cho 3", color: "pink" },
+        tag: { text: "20 không chia hết cho 3", color: "slate" },
         gapBefore: true,
       },
       {
         tex: "20 \\khongchiahet 9",
-        tag: { text: "20 cũng không chia hết cho 9", color: "pink" },
+        tag: { text: "20 cũng không chia hết cho 9", color: "slate" },
       },
     ],
   },
@@ -457,11 +457,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "12 \\chiahet 3" },
       {
         tex: "10 \\khongchiahet 3",
-        tag: { text: "10 không chia hết cho 3", color: "pink" },
+        tag: { text: "10 không chia hết cho 3", color: "slate" },
       },
       {
         tex: "9 + 12 + 10 = 31 \\khongchiahet 3",
-        tag: { text: "Tổng không chia hết cho 3", color: "pink" },
+        tag: { text: "Tổng không chia hết cho 3", color: "slate" },
         gapBefore: true,
       },
     ],
@@ -479,7 +479,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "60 \\chiahet 3", tag: { text: "6 + 0 = 6", color: "lime" } },
       {
         tex: "120 + 301 + 60 \\khongchiahet 3",
-        tag: { text: "Tổng không chia hết cho 3", color: "pink" },
+        tag: { text: "Tổng không chia hết cho 3", color: "slate" },
       },
     ],
     mode: "hint",
@@ -490,7 +490,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "B \\khongchiahet 3",
-        tag: { text: "B không chia hết cho 3", color: "pink" },
+        tag: { text: "B không chia hết cho 3", color: "slate" },
       },
       {
         tex: "9 = 3 \\cdot 3",
@@ -631,51 +631,74 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "hint",
   },
-  "uc-12-18": {
+  "uc-8-12": {
     kind: "rows",
-    label: "Ước chung và ƯCLN của 12 và 18",
+    label: "Ước chung và ƯCLN của 8 và 12",
     rows: [
       {
-        tex: "1,\\ 2,\\ 3,\\ 6",
-        tag: { text: "Ước chung của 12 và 18", color: "teal" },
+        tex: "1,\\ 2,\\ 4",
+        tag: { text: "Ước chung của 8 và 12", color: "teal" },
       },
-      { tex: "6", tag: { text: "ƯCLN(12, 18)", color: "amber" } },
+      { tex: "4", tag: { text: "ƯCLN(8, 12)", color: "amber" } },
       {
-        tex: "6 = 1 \\cdot 6 = 2 \\cdot 3",
-        tag: { text: "Ước của 6 là 1, 2, 3, 6", color: "violet" },
+        tex: "4 = 1 \\cdot 4 = 2 \\cdot 2",
+        tag: { text: "Ước của 4 là 1, 2, 4", color: "violet" },
       },
     ],
   },
-  "bc-4-6": {
+  "bc-6-9": {
     kind: "rows",
-    label: "Bội chung và BCNN của 4 và 6",
+    label: "Bội chung và BCNN của 6 và 9",
     rows: [
       {
-        tex: "12,\\ 24,\\ 36,\\ 48,\\ \\ldots",
-        tag: { text: "Bội chung của 4 và 6", color: "lime" },
+        tex: "18,\\ 36,\\ 54,\\ 72,\\ \\ldots",
+        tag: { text: "Bội chung của 6 và 9", color: "lime" },
       },
-      { tex: "12", tag: { text: "BCNN(4, 6)", color: "pink" } },
+      { tex: "18", tag: { text: "BCNN(6, 9)", color: "pink" } },
       {
-        tex: "12 \\cdot 1,\\ 12 \\cdot 2,\\ 12 \\cdot 3,\\ \\ldots",
-        tag: { text: "Bội của 12", color: "blue" },
+        tex: "18 \\cdot 1,\\ 18 \\cdot 2,\\ 18 \\cdot 3,\\ \\ldots",
+        tag: { text: "Bội của 18", color: "slate" },
       },
     ],
   },
-  "uc-bc-12-18": {
+  "uc-bc-6-9": {
     kind: "rows",
     label: "ƯCLN là ước của BCNN",
     rows: [
       {
-        tex: "12 \\chiahet 6,\\ 18 \\chiahet 6",
-        tag: { text: "6 là ước của 12 và 18", color: "amber" },
+        tex: "6 \\chiahet 3",
+        tag: { text: "ƯCLN(6, 9) = 3 là ước của 6", color: "amber" },
       },
       {
-        tex: "36 \\chiahet 12,\\ 36 \\chiahet 18",
-        tag: { text: "36 là bội của 12 và 18", color: "pink" },
+        tex: "18 \\chiahet 6",
+        tag: { text: "BCNN(6, 9) = 18 là bội của 6", color: "pink" },
       },
       {
-        tex: "36 \\chiahet 6",
-        tag: { text: "Nên 6 là ước của 36", color: "violet" },
+        tex: "18 \\chiahet 3",
+        tag: { text: "Nên ƯCLN là ước của BCNN", color: "violet" },
+      },
+    ],
+  },
+  "uc-bc-tom-tat": {
+    kind: "rows",
+    label: "Ước chung là ước của ƯCLN, bội chung là bội của BCNN",
+    rows: [
+      {
+        tex: "1,\\ 2,\\ 4",
+        tag: { text: "Ước chung của 8 và 12", color: "teal" },
+      },
+      {
+        tex: "4",
+        tag: { text: "Ước chung đều là ước của ƯCLN", color: "amber" },
+      },
+      {
+        tex: "18,\\ 36,\\ 54,\\ \\ldots",
+        tag: { text: "Bội chung của 6 và 9", color: "lime" },
+        gapBefore: true,
+      },
+      {
+        tex: "18",
+        tag: { text: "Bội chung đều là bội của BCNN", color: "pink" },
       },
     ],
   },
@@ -683,6 +706,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Thử với a = 4, b = 10, c = 20",
     rows: [
+      { tex: "a = 4,\\ b = 10,\\ c = 20" },
       { tex: "4 \\khongchiahet 20" },
       { tex: "10 \\khongchiahet 20" },
       { tex: "20", tag: { text: "BCNN(4, 10)", color: "pink" } },
@@ -713,6 +737,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "rows",
     label: "Xếp hàng còn dư",
     rows: [
+      { tex: "", tag: { text: "n là số em", color: "slate" } },
       {
         tex: "n - 3 \\chiahet 4",
         tag: { text: "Bớt 3 em, xếp hàng 4 vừa hết", color: "teal" },
@@ -738,6 +763,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Thử với một bài tương tự",
     rows: [
+      {
+        tex: "",
+        tag: {
+          text: "Xếp hàng 4 hay hàng 6 đều thừa 3 em, số em từ 100 đến 120",
+          color: "slate",
+        },
+      },
       { tex: "12", tag: { text: "BCNN(4, 6)", color: "pink" } },
       {
         tex: "n - 3 = 96,\\ 108,\\ 120,\\ \\ldots",
@@ -807,15 +839,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Thử với hai số khác",
     rows: [
       {
-        tex: "\\min(4, b) = 3",
-        tag: { text: "Thừa số 2: số mũ nhỏ nhất", color: "amber" },
+        tex: "5^{6},\\ 5^{b}",
+        tag: { text: "Số mũ nhỏ nhất là 4", color: "amber" },
       },
-      { tex: "b = 3" },
+      { tex: "b = 4" },
       {
-        tex: "\\max(a, 2) = 5",
-        tag: { text: "Thừa số 3: số mũ lớn nhất", color: "pink" },
+        tex: "7^{a},\\ 7^{3}",
+        tag: { text: "Số mũ lớn nhất là 7", color: "pink" },
       },
-      { tex: "a = 5" },
+      { tex: "a = 7" },
     ],
     mode: "hint",
   },
@@ -835,8 +867,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chia-luy-thua": {
     kind: "rows",
-    label: "Chia hai luỹ thừa cùng cơ số",
+    label: "Nhân và chia hai luỹ thừa cùng cơ số",
     rows: [
+      { tex: "2^{3} \\cdot 2^{2} = 2^{3 + 2} = 2^{5}" },
       { tex: "2^{5} : 2^{2} = 2^{5 - 2} = 2^{3}" },
       { tex: "3^{4} : 3 = 3^{4 - 1} = 3^{3}" },
     ],
@@ -862,13 +895,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Cộng hai phân số khác mẫu",
     rows: [
-      { tex: "\\frac{1}{4} + \\frac{1}{6}" },
+      { tex: "\\dfrac{1}{4} + \\dfrac{1}{6}" },
       {
-        tex: "= \\frac{1 \\cdot 3}{4 \\cdot 3} + \\frac{1 \\cdot 2}{6 \\cdot 2} = \\frac{3}{12} + \\frac{2}{12}",
-        tag: { text: "Quy đồng với mẫu số chung 12", color: "blue" },
+        tex: "12 : 4 = 3,\\ 12 : 6 = 2",
+        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
       },
       {
-        tex: "= \\frac{5}{12}",
+        tex: "= \\dfrac{1 \\cdot 3}{4 \\cdot 3} + \\dfrac{1 \\cdot 2}{6 \\cdot 2}",
+        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
+      },
+      {
+        tex: "= \\dfrac{3}{12} + \\dfrac{2}{12} = \\dfrac{5}{12}",
         tag: { text: "Cộng hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -878,13 +915,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Trừ hai phân số khác mẫu",
     rows: [
-      { tex: "\\frac{5}{6} - \\frac{3}{4}" },
+      { tex: "\\dfrac{5}{6} - \\dfrac{3}{4}" },
       {
-        tex: "= \\frac{5 \\cdot 2}{6 \\cdot 2} - \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{10}{12} - \\frac{9}{12}",
-        tag: { text: "Quy đồng với mẫu số chung 12", color: "blue" },
+        tex: "12 : 6 = 2,\\ 12 : 4 = 3",
+        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
       },
       {
-        tex: "= \\frac{1}{12}",
+        tex: "= \\dfrac{5 \\cdot 2}{6 \\cdot 2} - \\dfrac{3 \\cdot 3}{4 \\cdot 3}",
+        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
+      },
+      {
+        tex: "= \\dfrac{10}{12} - \\dfrac{9}{12} = \\dfrac{1}{12}",
         tag: { text: "Trừ hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -894,13 +935,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Thử với một tổng khác",
     rows: [
-      { tex: "12", tag: { text: "BCNN(6, 4)", color: "pink" } },
+      { tex: "24", tag: { text: "BCNN(8, 12)", color: "pink" } },
       {
-        tex: "\\frac{5}{6} = \\frac{10}{12},\\ \\frac{3}{4} = \\frac{9}{12}",
+        tex: "\\dfrac{3}{8} = \\dfrac{9}{24},\\ \\dfrac{5}{12} = \\dfrac{10}{24}",
         tag: { text: "Quy đồng", color: "blue" },
       },
       {
-        tex: "\\frac{5}{6} + \\frac{3}{4} = \\frac{10}{12} + \\frac{9}{12} = \\frac{19}{12}",
+        tex: "\\dfrac{3}{8} + \\dfrac{5}{12} = \\dfrac{9}{24} + \\dfrac{10}{24} = \\dfrac{19}{24}",
       },
     ],
     mode: "hint",
@@ -911,11 +952,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       { tex: "20", tag: { text: "BCNN(10, 4)", color: "pink" } },
       {
-        tex: "\\frac{7}{10} = \\frac{14}{20},\\ \\frac{1}{4} = \\frac{5}{20}",
+        tex: "\\dfrac{7}{10} = \\dfrac{14}{20},\\ \\dfrac{1}{4} = \\dfrac{5}{20}",
         tag: { text: "Quy đồng", color: "blue" },
       },
       {
-        tex: "\\frac{7}{10} - \\frac{1}{4} = \\frac{14}{20} - \\frac{5}{20} = \\frac{9}{20}",
+        tex: "\\dfrac{7}{10} - \\dfrac{1}{4} = \\dfrac{14}{20} - \\dfrac{5}{20} = \\dfrac{9}{20}",
       },
     ],
     mode: "hint",
@@ -925,24 +966,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Đổi chỗ và nhóm các thừa số",
     rows: [
       {
-        tex: "7 \\cdot 4 \\cdot 25 = 7 \\cdot 25 \\cdot 4",
+        tex: "8 \\cdot 7 \\cdot 125 = 7 \\cdot 8 \\cdot 125",
         tag: { text: "Đổi chỗ các thừa số", color: "teal" },
       },
       {
-        tex: "= (7 \\cdot 25) \\cdot 4",
+        tex: "= 7 \\cdot (8 \\cdot 125)",
         tag: { text: "Nhóm hai thừa số", color: "blue" },
       },
-      { tex: "= 175 \\cdot 4 = 700" },
+      { tex: "= 7 \\cdot 1\\,000 = 7\\,000" },
     ],
     mode: "steps",
-  },
-  "nhan-111": {
-    kind: "rows",
-    label: "Nhân 111 111 111 với một chữ số",
-    rows: [
-      { tex: "111\\,111\\,111 \\cdot 7 = 777\\,777\\,777" },
-      { tex: "111\\,111\\,111 \\cdot 2 = 222\\,222\\,222" },
-    ],
   },
   "tn261-goi-y": {
     kind: "lines",
@@ -1013,7 +1046,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "15 \\khongchiahet 2",
-        tag: { text: "15 không chia hết cho 2", color: "pink" },
+        tag: { text: "15 không chia hết cho 2", color: "slate" },
       },
       {
         tex: "30 \\chiahet 2",
@@ -1021,7 +1054,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "40 + 15 + 30 = 85 \\khongchiahet 2",
-        tag: { text: "Tổng không chia hết cho 2", color: "pink" },
+        tag: { text: "Tổng không chia hết cho 2", color: "slate" },
         gapBefore: true,
       },
     ],
@@ -1149,13 +1182,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Cộng hai phân số khác mẫu",
     rows: [
-      { tex: "\\frac{1}{4} + \\frac{1}{6}" },
+      { tex: "\\dfrac{1}{4} + \\dfrac{1}{6}" },
       {
-        tex: "= \\frac{1 \\cdot 3}{4 \\cdot 3} + \\frac{1 \\cdot 2}{6 \\cdot 2} = \\frac{3}{12} + \\frac{2}{12}",
-        tag: { text: "Quy đồng với mẫu số chung 12", color: "blue" },
+        tex: "12 : 4 = 3,\\ 12 : 6 = 2",
+        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
       },
       {
-        tex: "= \\frac{5}{12}",
+        tex: "= \\dfrac{1 \\cdot 3}{4 \\cdot 3} + \\dfrac{1 \\cdot 2}{6 \\cdot 2}",
+        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
+      },
+      {
+        tex: "= \\dfrac{3}{12} + \\dfrac{2}{12} = \\dfrac{5}{12}",
         tag: { text: "Cộng hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -1165,13 +1202,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Trừ hai phân số khác mẫu",
     rows: [
-      { tex: "\\frac{5}{6} - \\frac{3}{4}" },
+      { tex: "\\dfrac{5}{6} - \\dfrac{3}{4}" },
       {
-        tex: "= \\frac{5 \\cdot 2}{6 \\cdot 2} - \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{10}{12} - \\frac{9}{12}",
-        tag: { text: "Quy đồng với mẫu số chung 12", color: "blue" },
+        tex: "12 : 6 = 2,\\ 12 : 4 = 3",
+        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
       },
       {
-        tex: "= \\frac{1}{12}",
+        tex: "= \\dfrac{5 \\cdot 2}{6 \\cdot 2} - \\dfrac{3 \\cdot 3}{4 \\cdot 3}",
+        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
+      },
+      {
+        tex: "= \\dfrac{10}{12} - \\dfrac{9}{12} = \\dfrac{1}{12}",
         tag: { text: "Trừ hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -1182,14 +1223,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Đổi chỗ và nhóm các thừa số",
     rows: [
       {
-        tex: "7 \\cdot 4 \\cdot 25 = 7 \\cdot 25 \\cdot 4",
+        tex: "8 \\cdot 7 \\cdot 125 = 7 \\cdot 8 \\cdot 125",
         tag: { text: "Đổi chỗ các thừa số", color: "teal" },
       },
       {
-        tex: "= (7 \\cdot 25) \\cdot 4",
+        tex: "= 7 \\cdot (8 \\cdot 125)",
         tag: { text: "Nhóm hai thừa số", color: "blue" },
       },
-      { tex: "= 175 \\cdot 4 = 700" },
+      { tex: "= 7 \\cdot 1\\,000 = 7\\,000" },
     ],
     mode: "still",
   },

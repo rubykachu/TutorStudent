@@ -61,8 +61,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó.",
-              "rule": true
+              "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó."
             },
             {
               "type": "visual",
@@ -75,7 +74,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một số hạng không chia hết cho số đó, các số hạng khác chia hết, thì tổng không chia hết cho số đó.",
+              "text": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó.",
               "rule": true
             },
             {
@@ -102,8 +101,8 @@
           "id": "on-tap-chuong-2.tip.tim-khang-dinh-sai",
           "kind": "tránh sai",
           "title": "Tìm khẳng định sai",
-          "text": "Khẳng định có chữ luôn hay đều chỉ sai khi có một ví dụ làm nó sai. Thử vài số nhỏ để tìm ví dụ đó.",
-          "tex": "2 + 4 = 6 \\chiahet 3"
+          "text": "Khẳng định có chữ “luôn” hay “đều” sai khi có một ví dụ làm nó sai. Thử vài số nhỏ để tìm ví dụ đó.",
+          "tex": "\\begin{gathered} 2 \\khongchiahet 3,\\ 4 \\khongchiahet 3 \\\\ 2 + 4 = 6 \\chiahet 3 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -113,8 +112,8 @@
       "practiceIds": ["on-tap-chuong-2.ex.tn1"],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.tong-12-18",
-        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Một số hạng không chia hết cho số đó, các số hạng khác chia hết, thì tổng không chia hết cho số đó."
+        "visualId": "on-tap-chuong-2.visual.tong-12-19",
+        "caption": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
       }
     },
     {
@@ -128,7 +127,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9.",
+              "text": "Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9. Số có tổng các chữ số không chia hết cho 9 thì không chia hết cho 9.",
               "rule": true
             },
             {
@@ -142,7 +141,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số có chữ số tận cùng là 0 hoặc 5 thì chia hết cho 5.",
+              "text": "Số có chữ số tận cùng là 0 hoặc 5 thì chia hết cho 5. Số có chữ số tận cùng là 1, 2, 3, 4, 6, 7, 8 hoặc 9 thì không chia hết cho 5.",
               "rule": true
             },
             {
@@ -169,8 +168,8 @@
           "id": "on-tap-chuong-2.tip.chia-het-9",
           "kind": "làm nhanh",
           "title": "Chia hết cho 9",
-          "text": "Gạch các chữ số 9 và các cặp chữ số có tổng bằng 9. Cộng các chữ số còn lại: tổng chia hết cho 9 thì số đó chia hết cho 9.",
-          "tex": "7 + 2 = 9,\\ 3 + 6 = 9 \\Rightarrow 7\\,236 \\chiahet 9"
+          "text": "Gạch các chữ số 9 và các cặp chữ số có tổng bằng 9, mỗi chữ số chỉ gạch một lần. Cộng các chữ số còn lại: tổng chia hết cho 9 thì số đó chia hết cho 9. Gạch hết thì số đó chia hết cho 9.",
+          "tex": "\\begin{gathered} 7 + 2 = 9,\\ 3 + 6 = 9 \\\\ 7\\,236 \\chiahet 9 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -241,8 +240,8 @@
           "id": "on-tap-chuong-2.tip.loai-hop-so-nhanh",
           "kind": "làm nhanh",
           "title": "Loại hợp số nhanh",
-          "text": "Số lớn hơn 5 có chữ số tận cùng là 0, 2, 4, 5, 6 hoặc 8 thì là hợp số. Số còn lại: cộng các chữ số để thử chia hết cho 3.",
-          "tex": "3\\,576 \\chiahet 2;\\quad 1 + 1 + 4 + 3 = 9 \\chiahet 3"
+          "text": "Số lớn hơn 5 có chữ số tận cùng là 0, 2, 4, 5, 6 hoặc 8 thì là hợp số. Số lớn hơn 3 có tổng các chữ số chia hết cho 3 cũng là hợp số. Không loại được thì chưa chắc là số nguyên tố.",
+          "tex": "\\begin{gathered} 4\\,718 \\chiahet 2 \\\\ 2\\,133:\\ 2 + 1 + 3 + 3 = 9 \\chiahet 3 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -259,8 +258,8 @@
     },
     {
       "id": "on-tap-chuong-2.section.tong-hop-so",
-      "title": "Nhắc lại Bài 8 và Bài 10: tổng là hợp số",
-      "sourceRef": "Ôn tập chương II, bài 2.56 (sách bài tập tr.45, lời giải tr.110); ôn Bài 8 và Bài 10",
+      "title": "Nhắc lại Bài 9 và Bài 10: tổng là hợp số",
+      "sourceRef": "Ôn tập chương II, bài 2.56 (sách bài tập tr.45, lời giải tr.110); ôn Bài 9 và Bài 10",
       "minutes": 5,
       "blocks": [
         {
@@ -268,7 +267,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một tổng chia hết cho một số lớn hơn 1 và nhỏ hơn tổng thì tổng đó là hợp số.",
+              "text": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Nếu số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số.",
               "rule": true
             },
             {
@@ -282,8 +281,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một tích chia hết cho mỗi thừa số của nó.",
-              "rule": true
+              "text": "Trong một tích, nếu có một thừa số chia hết cho một số thì tích chia hết cho số đó."
             },
             {
               "type": "visual",
@@ -302,14 +300,14 @@
       ],
       "checkIds": [
         "on-tap-chuong-2.ex.so-hang-chia-7",
-        "on-tap-chuong-2.ex.tong-91",
+        "on-tap-chuong-2.ex.tong-119",
         "on-tap-chuong-2.ex.bai-2-56a"
       ],
       "practiceIds": ["on-tap-chuong-2.ex.bai-2-56b"],
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tong-hs-vi-du-xong",
-        "caption": "Một tổng chia hết cho một số lớn hơn 1 và nhỏ hơn tổng thì tổng đó là hợp số. Một tích chia hết cho mỗi thừa số của nó."
+        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Nếu số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số."
       }
     },
     {
@@ -323,7 +321,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một số hạng không chia hết cho số đó, các số hạng khác chia hết, thì tổng không chia hết cho số đó.",
+              "text": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó.",
               "rule": true
             },
             {
@@ -337,8 +335,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số có chữ số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2. Số có chữ số tận cùng là 1, 3, 5, 7 hoặc 9 thì không chia hết cho 2.",
-              "rule": true
+              "text": "Số có chữ số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2. Số có chữ số tận cùng là 1, 3, 5, 7 hoặc 9 thì không chia hết cho 2."
             },
             {
               "type": "visual",
@@ -382,14 +379,14 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tong-3-so-hang-xong",
-        "caption": "Một số hạng không chia hết cho số đó, các số hạng khác chia hết, thì tổng không chia hết cho số đó. Số có chữ số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2."
+        "caption": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
       }
     },
     {
       "id": "on-tap-chuong-2.section.tong-dau-hieu-3-9",
-      "title": "Nhắc lại Bài 9: tổng, chia hết cho 3 và cho 9",
-      "sourceRef": "Ôn tập chương II, bài 2.59 c, d (sách bài tập tr.46, lời giải tr.110); ôn Bài 9",
-      "minutes": 5,
+      "title": "Nhắc lại Bài 8 và Bài 9: tổng, chia hết cho 3 và cho 9",
+      "sourceRef": "Ôn tập chương II, bài 2.59 c, d (sách bài tập tr.46, lời giải tr.110); ôn Bài 8 và Bài 9",
+      "minutes": 6,
       "blocks": [
         {
           "type": "group",
@@ -404,6 +401,14 @@
               "visualId": "on-tap-chuong-2.visual.chia-3-216"
             }
           ]
+        },
+        {
+          "type": "tip",
+          "id": "on-tap-chuong-2.tip.chia-het-3",
+          "kind": "làm nhanh",
+          "title": "Chia hết cho 3",
+          "text": "Gạch các chữ số 0, 3, 6, 9. Cộng các chữ số còn lại: tổng chia hết cho 3 thì số đó chia hết cho 3. Gạch hết thì số đó chia hết cho 3.",
+          "tex": "1\\,836:\\ 1 + 8 = 9 \\chiahet 3"
         },
         {
           "type": "group",
@@ -424,7 +429,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một số hạng không chia hết cho 3, các số hạng khác chia hết, thì tổng không chia hết cho 3."
+              "text": "Tổng có đúng một số hạng không chia hết cho 3, các số hạng còn lại đều chia hết cho 3. Khi đó tổng không chia hết cho 3."
             },
             {
               "type": "visual",
@@ -487,6 +492,10 @@
               "text": "Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa. Số thừa số bằng nhau là số mũ."
             },
             {
+              "type": "note",
+              "text": "Ví dụ: 72 quả trứng xếp đều vào 8 vỉ, mỗi vỉ 9 quả, nên 72 = 8 · 9. Tách 8 = 2 · 2 · 2 và 9 = 3 · 3 thì được các thừa số nguyên tố."
+            },
+            {
               "type": "visual",
               "visualId": "on-tap-chuong-2.visual.viet-gon-72"
             }
@@ -494,7 +503,7 @@
         }
       ],
       "checkIds": [
-        "on-tap-chuong-2.ex.lam-truoc-12-binh",
+        "on-tap-chuong-2.ex.lam-truoc-9-binh",
         "on-tap-chuong-2.ex.dien-46",
         "on-tap-chuong-2.ex.bai-2-57a"
       ],
@@ -516,8 +525,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Khi a chia hết cho b, ta gọi b là một ước của a, còn a là một bội của b. Ví dụ 18 chia hết cho 6 nên 6 là ước của 18, còn 18 là bội của 6.",
-              "rule": true
+              "text": "Khi a chia hết cho b, ta gọi b là một ước của a, còn a là một bội của b. Ví dụ 18 chia hết cho 6 nên 6 là ước của 18, còn 18 là bội của 6."
             },
             {
               "type": "visual",
@@ -530,8 +538,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước.",
-              "rule": true
+              "text": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
             },
             {
               "type": "visual",
@@ -544,7 +551,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các ước của 8. Ước của 8 là số mà 8 chia hết cho nó."
+              "text": "Chạm vào các ước của 8, tức là các số mà 8 chia hết cho nó. Tìm đủ ước giúp bạn không sót số n nào ở bài 2.62."
             },
             {
               "type": "visual",
@@ -557,7 +564,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1 để tìm n."
+              "text": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1, đừng quên ước 1 cho n = 0.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -575,7 +583,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tim-n-8-xong",
-        "caption": "Khi a chia hết cho b, ta gọi b là một ước của a, còn a là một bội của b. Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách."
+        "caption": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1, đừng quên ước 1 cho n = 0."
       }
     },
     {
@@ -594,7 +602,7 @@
             },
             {
               "type": "visual",
-              "visualId": "on-tap-chuong-2.visual.uc-12-18"
+              "visualId": "on-tap-chuong-2.visual.uc-8-12"
             }
           ]
         },
@@ -608,7 +616,7 @@
             },
             {
               "type": "visual",
-              "visualId": "on-tap-chuong-2.visual.bc-4-6"
+              "visualId": "on-tap-chuong-2.visual.bc-6-9"
             }
           ]
         },
@@ -617,11 +625,11 @@
           "children": [
             {
               "type": "note",
-              "text": "ƯCLN là ước của cả hai số, còn BCNN là bội của cả hai số. Vì vậy ƯCLN là ước của BCNN."
+              "text": "ƯCLN là ước của số thứ nhất, còn số thứ nhất là ước của BCNN. Vì vậy ƯCLN là ước của BCNN."
             },
             {
               "type": "visual",
-              "visualId": "on-tap-chuong-2.visual.uc-bc-12-18"
+              "visualId": "on-tap-chuong-2.visual.uc-bc-6-9"
             }
           ]
         }
@@ -634,7 +642,7 @@
       "practiceIds": ["on-tap-chuong-2.ex.tn6"],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.uc-bc-12-18",
+        "visualId": "on-tap-chuong-2.visual.uc-bc-tom-tat",
         "caption": "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Bội chung của hai số đều là bội của BCNN của hai số đó."
       }
     },
@@ -642,7 +650,7 @@
       "id": "on-tap-chuong-2.section.bcnn-bai-toan",
       "title": "Nhắc lại Bài 12: tìm số trong một khoảng",
       "sourceRef": "Ôn tập chương II, bài 2.58 (sách bài tập tr.45, lời giải tr.110); ôn Bài 12",
-      "minutes": 5,
+      "minutes": 6,
       "blocks": [
         {
           "type": "group",
@@ -663,8 +671,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chia cho nhiều số đều dư như nhau thì bớt số dư đi, số còn lại chia hết cho các số đó.",
-              "rule": true
+              "text": "Chia cho nhiều số đều dư như nhau thì bớt số dư đi, số còn lại chia hết cho các số đó."
             },
             {
               "type": "visual",
@@ -673,11 +680,19 @@
           ]
         },
         {
+          "type": "tip",
+          "id": "on-tap-chuong-2.tip.nho-cong-so-du",
+          "kind": "tránh sai",
+          "title": "Nhớ cộng lại số dư",
+          "text": "Bội chung tìm được là số sau khi đã bớt số dư. Nhớ cộng lại số dư: bội chung 36, dư 2 thì số cần tìm là 36 + 2.",
+          "tex": "36 + 2 = 38"
+        },
+        {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các bội chung của 4 và 6. Bội chung là số chia hết cho cả hai số."
+              "text": "Chạm vào các bội chung của 4 và 6, là các số chia hết cho cả hai số. Biết các bội chung giúp bạn chọn đúng số học sinh trong khoảng đề cho."
             },
             {
               "type": "visual",
@@ -694,8 +709,8 @@
       "practiceIds": ["on-tap-chuong-2.ex.bai-2-58"],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.thua-xep",
-        "caption": "Số chia hết cho nhiều số là bội chung của các số đó. Chia cho nhiều số đều dư như nhau thì bớt số dư đi, số còn lại chia hết cho các số đó."
+        "visualId": "on-tap-chuong-2.visual.khoang-bcnn-xong",
+        "caption": "Số chia hết cho nhiều số là bội chung của các số đó. Ta tìm BCNN, liệt kê các bội của nó rồi chọn số nằm trong khoảng đề cho."
       }
     },
     {
@@ -737,7 +752,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Biết ƯCLN và BCNN, ta so từng thừa số nguyên tố. Số mũ nhỏ nhất là số mũ trong ƯCLN, số mũ lớn nhất là số mũ trong BCNN."
+              "text": "Với mỗi thừa số nguyên tố, số mũ nhỏ nhất trong các số là số mũ trong ƯCLN. Số mũ lớn nhất là số mũ trong BCNN."
             },
             {
               "type": "visual",
@@ -759,8 +774,8 @@
     },
     {
       "id": "on-tap-chuong-2.section.tim-so-con-lai",
-      "title": "Nhắc lại Bài 12: ƯCLN nhân BCNN",
-      "sourceRef": "Ôn tập chương II, bài 2.60 (sách bài tập tr.46, lời giải tr.110); ôn Bài 12",
+      "title": "Nhắc lại Bài 5, Bài 6 và Bài 12: ƯCLN nhân BCNN",
+      "sourceRef": "Ôn tập chương II, bài 2.60 (sách bài tập tr.46, lời giải tr.110); ôn Bài 5, Bài 6 và Bài 12",
       "minutes": 5,
       "blocks": [
         {
@@ -784,6 +799,19 @@
               "type": "note",
               "text": "Biết tích và một thừa số thì chia tích cho thừa số đó để tìm thừa số còn lại.",
               "rule": true
+            },
+            {
+              "type": "formula",
+              "tex": "216 : 12 = 18"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ."
             },
             {
               "type": "note",
@@ -826,7 +854,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Rồi nhân cả tử lẫn mẫu của mỗi phân số với cùng một số.",
+              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Lấy mẫu số chung chia cho mẫu của từng phân số, rồi nhân cả tử lẫn mẫu của phân số đó với kết quả.",
               "rule": true
             },
             {
@@ -840,7 +868,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai phân số cùng mẫu thì cộng hoặc trừ hai tử, giữ nguyên mẫu."
+              "text": "Nhắc lại kiến thức tiểu học: hai phân số cùng mẫu thì cộng hoặc trừ hai tử, giữ nguyên mẫu."
             },
             {
               "type": "visual",
@@ -858,7 +886,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.quy-dong-vi-du-xong",
-        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Rồi nhân cả tử lẫn mẫu của mỗi phân số với cùng một số."
+        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Lấy mẫu số chung chia cho mẫu của từng phân số, rồi nhân cả tử lẫn mẫu của phân số đó với kết quả."
       }
     },
     {
@@ -916,7 +944,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tong-12-19",
-        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó."
+        "caption": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó. Khi đó tổng không chia hết cho số đó."
       }
     },
     {
@@ -928,8 +956,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.chia-5-7205",
-        "caption": "Số có chữ số tận cùng là 0 hoặc 5 thì chia hết cho 5."
+        "visualId": "on-tap-chuong-2.visual.chia-9-4536-xong",
+        "caption": "Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9."
       }
     },
     {
@@ -947,12 +975,12 @@
     },
     {
       "id": "on-tap-chuong-2.card.tong-hop-so",
-      "sourceRef": "Ôn tập chương II, bài 2.56 (sách bài tập tr.45, lời giải tr.110); ôn Bài 8 và Bài 10",
+      "sourceRef": "Ôn tập chương II, bài 2.56 (sách bài tập tr.45, lời giải tr.110); ôn Bài 9 và Bài 10",
       "conceptIds": ["on-tap-chuong-2.concept.hop-so"],
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tong-hs-vi-du-xong",
-        "caption": "Một tổng chia hết cho một số lớn hơn 1 và nhỏ hơn tổng thì tổng đó là hợp số."
+        "caption": "Nếu các số hạng của một tổng đều chia hết cho một số thì tổng chia hết cho số đó. Nếu số đó lớn hơn 1 và tổng lớn hơn số đó thì tổng là hợp số."
       }
     },
     {
@@ -962,12 +990,12 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.chia-2-tan-cung",
-        "caption": "Số có chữ số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2."
+        "caption": "Số có chữ số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2. Số có chữ số tận cùng là 1, 3, 5, 7 hoặc 9 thì không chia hết cho 2."
       }
     },
     {
       "id": "on-tap-chuong-2.card.tong-dau-hieu-3-9",
-      "sourceRef": "Ôn tập chương II, bài 2.59 c, d (sách bài tập tr.46, lời giải tr.110); ôn Bài 9",
+      "sourceRef": "Ôn tập chương II, bài 2.59 c, d (sách bài tập tr.46, lời giải tr.110); ôn Bài 8 và Bài 9",
       "conceptIds": ["on-tap-chuong-2.concept.tong-chu-so"],
       "recap": {
         "type": "visual",
@@ -1001,7 +1029,7 @@
       "conceptIds": [],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.bc-4-6",
+        "visualId": "on-tap-chuong-2.visual.bc-6-9",
         "caption": "Bội chung của hai số đều là bội của BCNN của hai số đó."
       }
     },
@@ -1011,8 +1039,8 @@
       "conceptIds": [],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.khoang-bcnn-xong",
-        "caption": "Số chia hết cho nhiều số là bội chung của các số đó."
+        "visualId": "on-tap-chuong-2.visual.thua-xep",
+        "caption": "Chia cho nhiều số đều dư như nhau thì bớt số dư đi, số còn lại chia hết cho các số đó."
       }
     },
     {
@@ -1024,13 +1052,13 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "on-tap-chuong-2.visual.mu-bcnn",
-        "caption": "Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN."
+        "visualId": "on-tap-chuong-2.visual.mu-tim-b-xong",
+        "caption": "Lấy các thừa số nguyên tố chung của mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN. Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN."
       }
     },
     {
       "id": "on-tap-chuong-2.card.tim-so-con-lai",
-      "sourceRef": "Ôn tập chương II, bài 2.60 (sách bài tập tr.46, lời giải tr.110); ôn Bài 12",
+      "sourceRef": "Ôn tập chương II, bài 2.60 (sách bài tập tr.46, lời giải tr.110); ôn Bài 5, Bài 6 và Bài 12",
       "conceptIds": [],
       "recap": {
         "type": "visual",
@@ -1045,7 +1073,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tru-vi-du-xong",
-        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung."
+        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Lấy mẫu số chung chia cho mẫu của từng phân số, rồi nhân cả tử lẫn mẫu của phân số đó với kết quả."
       }
     },
     {
@@ -1055,7 +1083,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.giao-hoan-ket-hop-xong",
-        "caption": "Đổi chỗ các thừa số thì tích không đổi."
+        "caption": "Đổi chỗ các thừa số thì tích không đổi. Nhân ba số thì nhóm hai số nào lại trước cũng được, tích không đổi."
       }
     }
   ],
@@ -1151,11 +1179,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Quy tắc không cho kết luận khi cả hai số hạng không chia hết."
+            "text": "Khi cả hai số hạng đều không chia hết, phải tính tổng mới biết."
           },
           {
             "optionId": "c",
-            "text": "Ước của 9 không liên quan: ta hỏi tổng 2 + 7 có chia hết cho 9 không."
+            "text": "Số nhỏ hơn 9 vẫn có thể cộng thành số chia hết cho 9, như 2 + 7 = 9."
           }
         ]
       },
@@ -1179,7 +1207,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không, vì 9 chỉ chia hết cho 1, 3 và 9"
+            "text": "Không, vì 2 và 7 đều nhỏ hơn 9"
           }
         }
       ],
@@ -1275,7 +1303,7 @@
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -1352,7 +1380,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Không chia hết cho cả 9 và 5"
+            "text": "Không chia hết cho 9, cũng không chia hết cho 5"
           }
         }
       ],
@@ -1520,7 +1548,7 @@
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -1624,7 +1652,7 @@
       "bookRef": "SBT câu hỏi 2",
       "difficulty": 3,
       "explain": {
-        "text": "Loại các số chia hết cho 2, 3 hoặc 5. 2 020 và 3 576 là số chẵn, còn 1 143 có tổng các chữ số là 9 nên chia hết cho 3. Số còn lại là 461.",
+        "text": "Loại các số chia hết cho 2, 3 hoặc 5. 2 020 và 3 576 là số chẵn, còn 1 143 có tổng các chữ số là 9 nên chia hết cho 3. Ba số kia là hợp số, nên trong bốn lựa chọn chỉ 461 có thể là số nguyên tố.",
         "tex": "461:\\ 4 + 6 + 1 = 11 \\khongchiahet 3",
         "wrong": [
           {
@@ -1696,7 +1724,7 @@
       "bookRef": "SBT câu hỏi 3",
       "difficulty": 2,
       "explain": {
-        "text": "2 335 có chữ số tận cùng là 5 nên chia hết cho 5. Số này lớn hơn 5 nên là hợp số.",
+        "text": "2 335 có chữ số tận cùng là 5 nên chia hết cho 5. Số này lớn hơn 5 nên là hợp số, còn ba số kia chưa có dấu hiệu nào cho thấy là hợp số.",
         "tex": "2\\,335 \\chiahet 5",
         "wrong": [
           {
@@ -1709,7 +1737,7 @@
           },
           {
             "optionId": "d",
-            "text": "499 không chia hết cho 2, 3, 5 và cũng không chia hết cho các số nguyên tố nhỏ hơn 22."
+            "text": "499 không chia hết cho 2, 3 hay 5, nên chưa thể kết luận nó là hợp số."
           }
         ]
       },
@@ -1757,7 +1785,7 @@
         },
         {
           "type": "formula",
-          "tex": "2 \\cdot 7 \\cdot 12 + 49 \\cdot 53"
+          "tex": "3 \\cdot 14 \\cdot 5 + 21 \\cdot 8"
         }
       ],
       "hints": {
@@ -1770,16 +1798,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "2 · 7 · 12 có thừa số 7. 49 · 53 có 49 = 7 · 7 nên cũng có thừa số 7.",
-        "tex": "2 \\cdot \\underline{7} \\cdot 12 \\chiahet 7,\\quad 49 \\cdot 53 = 7 \\cdot 7 \\cdot 53 \\chiahet 7",
+        "text": "3 · 14 · 5 có thừa số 14 chia hết cho 7. 21 · 8 có thừa số 21 chia hết cho 7.",
+        "tex": "\\begin{gathered} 3 \\cdot 14 \\cdot 5 \\chiahet 7 \\\\ 21 \\cdot 8 \\chiahet 7 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "49 = 7 · 7 nên 49 · 53 cũng chia hết cho 7."
+            "text": "21 · 8 có thừa số 21 chia hết cho 7 nên cũng chia hết cho 7."
           },
           {
             "optionId": "c",
-            "text": "2 · 7 · 12 có thừa số 7 nên cũng chia hết cho 7."
+            "text": "3 · 14 · 5 có thừa số 14 chia hết cho 7 nên cũng chia hết cho 7."
           }
         ]
       },
@@ -1796,14 +1824,14 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Chỉ 2 · 7 · 12 chia hết cho 7"
+            "text": "Chỉ 3 · 14 · 5 chia hết cho 7"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Chỉ 49 · 53 chia hết cho 7"
+            "text": "Chỉ 21 · 8 chia hết cho 7"
           }
         },
         {
@@ -1818,12 +1846,12 @@
       "multiple": false
     },
     {
-      "id": "on-tap-chuong-2.ex.tong-91",
+      "id": "on-tap-chuong-2.ex.tong-119",
       "cardIds": ["on-tap-chuong-2.card.tong-hop-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Số 91 bằng 70 + 21, là tổng của hai số chia hết cho 7. Số 91 là số nguyên tố hay hợp số?"
+          "text": "Số 119 bằng 70 + 49, là tổng của hai số chia hết cho 7. Số 119 là số nguyên tố hay hợp số?"
         }
       ],
       "hints": {
@@ -1836,8 +1864,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "70 và 21 đều chia hết cho 7 nên 91 chia hết cho 7. Vì 91 lớn hơn 7 nên 91 có thêm ước 7, và là hợp số.",
-        "tex": "91 = 70 + 21 = 7 \\cdot 13",
+        "text": "70 và 49 đều chia hết cho 7 nên 119 chia hết cho 7. Vì 119 lớn hơn 7 nên 119 có thêm ước 7, và là hợp số.",
+        "tex": "119 = 70 + 49 = 7 \\cdot 17",
         "wrong": [
           {
             "optionId": "b",
@@ -1845,7 +1873,7 @@
           },
           {
             "optionId": "c",
-            "text": "Số lẻ vẫn có thể là hợp số, ví dụ 9 hoặc 91."
+            "text": "Số lẻ vẫn có thể là hợp số, ví dụ 9 hoặc 119."
           }
         ]
       },
@@ -1887,6 +1915,10 @@
         {
           "type": "formula",
           "tex": "2 \\cdot 7 \\cdot 12 + 49 \\cdot 53"
+        },
+        {
+          "type": "note",
+          "text": "Chọn câu trả lời có cả kết luận và lý do đều đúng."
         }
       ],
       "hints": {
@@ -1902,7 +1934,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Hai số hạng 2 · 7 · 12 và 49 · 53 đều chia hết cho 7, nên tổng chia hết cho 7. Tổng lớn hơn 7 nên là hợp số.",
-        "tex": "2 \\cdot 7 \\cdot 12 \\chiahet 7,\\ 49 \\cdot 53 \\chiahet 7",
+        "tex": "\\begin{gathered} 2 \\cdot 7 \\cdot 12 \\chiahet 7 \\\\ 49 \\cdot 53 \\chiahet 7 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -1963,6 +1995,10 @@
         {
           "type": "formula",
           "tex": "3 \\cdot 4 \\cdot 5 + 2\\,020 \\cdot 2\\,021 \\cdot 2\\,022"
+        },
+        {
+          "type": "note",
+          "text": "Chọn câu trả lời có cả kết luận và lý do đều đúng."
         }
       ],
       "hints": {
@@ -1978,7 +2014,7 @@
       "difficulty": 3,
       "explain": {
         "text": "3 · 4 · 5 có thừa số chẵn 4, và 2 020 · 2 021 · 2 022 có thừa số chẵn 2 020. Hai số hạng đều chia hết cho 2 nên tổng chia hết cho 2 và lớn hơn 2, là hợp số.",
-        "tex": "3 \\cdot 4 \\cdot 5 \\chiahet 2,\\ 2\\,020 \\cdot 2\\,021 \\cdot 2\\,022 \\chiahet 2",
+        "tex": "\\begin{gathered} 3 \\cdot 4 \\cdot 5 \\chiahet 2 \\\\ 2\\,020 \\cdot 2\\,021 \\cdot 2\\,022 \\chiahet 2 \\end{gathered}",
         "wrong": [
           {
             "optionId": "a",
@@ -1990,7 +2026,7 @@
           },
           {
             "optionId": "d",
-            "text": "Tổng chia hết cho 2 và lớn hơn 2 thì là hợp số, dù là tổng của hai số chẵn."
+            "text": "Tổng của hai số chẵn là số chẵn, nên chia hết cho 2; tổng lớn hơn 2 nên là hợp số."
           }
         ]
       },
@@ -2108,12 +2144,12 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Chỉ một số hạng không chia hết cho 2, các số hạng khác chia hết, nên tổng không chia hết cho 2.",
+        "text": "Có đúng một số hạng không chia hết cho 2, hai số hạng còn lại chia hết, nên tổng không chia hết cho 2.",
         "tex": "40 + 15 + 30 = 85 \\khongchiahet 2",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Chỉ cần một số hạng không chia hết là tổng không chia hết, dù các số hạng khác chia hết."
+            "text": "Hai số hạng chia hết chưa đủ: còn một số hạng không chia hết cho 2 nên tổng không chia hết cho 2."
           },
           {
             "optionId": "c",
@@ -2127,7 +2163,7 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Không, vì có một số hạng không chia hết cho 2"
+            "text": "Không, vì chỉ một số hạng không chia hết cho 2, các số hạng kia chia hết"
           }
         },
         {
@@ -2159,6 +2195,10 @@
         {
           "type": "note",
           "text": "chia hết cho 2 không?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn câu trả lời có cả kết luận và lý do đều đúng."
         }
       ],
       "hints": {
@@ -2173,12 +2213,12 @@
       "bookRef": "SBT 2.59a",
       "difficulty": 3,
       "explain": {
-        "text": "27 220 và 510 có chữ số tận cùng là 0 nên chia hết cho 2. 31 005 có chữ số tận cùng là 5 nên không chia hết cho 2, và tổng không chia hết cho 2.",
-        "tex": "27\\,220 \\chiahet 2,\\ 510 \\chiahet 2,\\ 31\\,005 \\khongchiahet 2",
+        "text": "27 220 và 510 có chữ số tận cùng là 0 nên chia hết cho 2. 31 005 có chữ số tận cùng là 5 nên không chia hết cho 2. Tổng có đúng một số hạng không chia hết cho 2, nên tổng không chia hết cho 2.",
+        "tex": "\\begin{gathered} 27\\,220 \\chiahet 2 \\\\ 510 \\chiahet 2 \\\\ 31\\,005 \\khongchiahet 2 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Chỉ cần một số hạng không chia hết cho 2 thì tổng đã không chia hết cho 2."
+            "text": "Chỉ có 31 005 không chia hết cho 2, hai số hạng kia chia hết, nên tổng không chia hết cho 2."
           },
           {
             "optionId": "c",
@@ -2186,7 +2226,7 @@
           },
           {
             "optionId": "d",
-            "text": "Không cần tính tổng: một số hạng không chia hết cho 2 là đủ để kết luận."
+            "text": "A không tận cùng là 0: tổng có đúng một số hạng không chia hết cho 2 thì không chia hết cho 2."
           }
         ]
       },
@@ -2235,6 +2275,10 @@
         {
           "type": "note",
           "text": "chia hết cho 5 không?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn câu trả lời có cả kết luận và lý do đều đúng."
         }
       ],
       "hints": {
@@ -2250,7 +2294,7 @@
       "difficulty": 3,
       "explain": {
         "text": "27 220, 31 005 và 510 có chữ số tận cùng là 0, 5 và 0, nên đều chia hết cho 5. Các số hạng đều chia hết cho 5 thì tổng chia hết cho 5.",
-        "tex": "27\\,220 \\chiahet 5,\\ 31\\,005 \\chiahet 5,\\ 510 \\chiahet 5",
+        "tex": "\\begin{gathered} 27\\,220 \\chiahet 5 \\\\ 31\\,005 \\chiahet 5 \\\\ 510 \\chiahet 5 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -2258,7 +2302,7 @@
           },
           {
             "optionId": "c",
-            "text": "Chia hết cho 2 không làm tổng không chia hết cho 5."
+            "text": "Chia hết cho 2 không liên quan tới chia hết cho 5. Ba số hạng đều tận cùng là 0 hoặc 5 nên tổng chia hết cho 5."
           },
           {
             "optionId": "d",
@@ -2319,16 +2363,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cộng các chữ số, tổng chia hết cho 3 thì số đó chia hết cho 3. 31 005 có tổng 9 và 510 có tổng 6.",
-        "tex": "3 + 1 + 0 + 0 + 5 = 9 \\chiahet 3,\\quad 5 + 1 + 0 = 6 \\chiahet 3",
+        "text": "Cộng các chữ số, tổng chia hết cho 3 thì số đó chia hết cho 3. 4 521 có tổng 12 và 7 305 có tổng 15.",
+        "tex": "\\begin{gathered} 4 + 5 + 2 + 1 = 12 \\chiahet 3 \\\\ 7 + 3 + 0 + 5 = 15 \\chiahet 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
-            "text": "2 + 7 + 2 + 2 + 0 = 13, không chia hết cho 3."
+            "text": "3 + 8 + 5 + 0 = 16, không chia hết cho 3."
           },
           {
             "optionId": "d",
-            "text": "1 + 2 + 3 + 4 = 10, không chia hết cho 3."
+            "text": "2 + 1 + 2 + 3 = 8, không chia hết cho 3."
           }
         ]
       },
@@ -2338,28 +2382,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "31 005"
+            "text": "4 521"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "510"
+            "text": "7 305"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "27 220"
+            "text": "3 850"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "1 234"
+            "text": "2 123"
           }
         }
       ],
@@ -2372,7 +2416,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một số không chia hết cho 3. Số đó có chia hết cho 9 không?"
+          "text": "Số bi của An không chia hết cho 3. Số bi đó có chia hết cho 9 không?"
         }
       ],
       "hints": {
@@ -2435,6 +2479,10 @@
         {
           "type": "note",
           "text": "chia hết cho 3 không?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn câu trả lời có cả kết luận và lý do đều đúng."
         }
       ],
       "hints": {
@@ -2449,8 +2497,8 @@
       "bookRef": "SBT 2.59c",
       "difficulty": 3,
       "explain": {
-        "text": "31 005 có tổng các chữ số là 9 và 510 có tổng là 6 nên cả hai chia hết cho 3. 27 220 có tổng là 13 nên không chia hết cho 3, và tổng không chia hết cho 3.",
-        "tex": "31\\,005 \\chiahet 3,\\ 510 \\chiahet 3,\\ 27\\,220 \\khongchiahet 3",
+        "text": "31 005 có tổng các chữ số là 9 và 510 có tổng là 6 nên cả hai chia hết cho 3. 27 220 có tổng là 13 nên không chia hết cho 3. Tổng có đúng một số hạng không chia hết cho 3, nên tổng không chia hết cho 3.",
+        "tex": "\\begin{gathered} 31\\,005 \\chiahet 3 \\\\ 510 \\chiahet 3 \\\\ 27\\,220 \\khongchiahet 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -2511,6 +2559,10 @@
         {
           "type": "note",
           "text": "chia hết cho 9 không?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn câu trả lời có cả kết luận và lý do đều đúng."
         }
       ],
       "hints": {
@@ -2525,12 +2577,12 @@
       "bookRef": "SBT 2.59d",
       "difficulty": 3,
       "explain": {
-        "text": "Theo câu trước, A không chia hết cho 3. Số chia hết cho 9 thì chia hết cho 3, nên A không chia hết cho 9.",
-        "tex": "A \\khongchiahet 3 \\Rightarrow A \\khongchiahet 9",
+        "text": "27 220 không chia hết cho 3, còn 31 005 và 510 chia hết cho 3, nên A không chia hết cho 3. Số chia hết cho 9 thì chia hết cho 3, nên A không chia hết cho 9.",
+        "tex": "\\begin{gathered} A \\khongchiahet 3 \\\\ A \\khongchiahet 9 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Một số hạng chia hết cho 9 chưa đủ: các số hạng còn lại cũng phải chia hết cho 9."
+            "text": "Một số hạng chia hết cho 9 chưa đủ để biết tổng có chia hết cho 9 không."
           },
           {
             "optionId": "c",
@@ -2577,7 +2629,7 @@
       "multiple": false
     },
     {
-      "id": "on-tap-chuong-2.ex.lam-truoc-12-binh",
+      "id": "on-tap-chuong-2.ex.lam-truoc-9-binh",
       "cardIds": ["on-tap-chuong-2.card.phan-tich-so"],
       "prompt": [
         {
@@ -2586,7 +2638,7 @@
         },
         {
           "type": "formula",
-          "tex": "12^{2} : 6 + 2 \\cdot 7"
+          "tex": "9^{2} : 3 + 2 \\cdot 5"
         }
       ],
       "hints": {
@@ -2599,12 +2651,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Có luỹ thừa thì tính luỹ thừa trước. Vậy làm 12² trước, rồi chia và nhân, cuối cùng cộng.",
-        "tex": "12^{2} : 6 + 2 \\cdot 7 = 144 : 6 + 14",
+        "text": "Có luỹ thừa thì tính luỹ thừa trước. Vậy làm 9² trước, rồi chia và nhân, cuối cùng cộng.",
+        "tex": "\\begin{gathered} 9^{2} : 3 + 2 \\cdot 5 \\\\ = 81 : 3 + 10 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Phép chia dùng kết quả của 12², nên phải tính 12² trước."
+            "text": "Phép chia dùng kết quả của 9², nên phải tính 9² trước."
           },
           {
             "optionId": "c",
@@ -2622,28 +2674,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "12²"
+            "text": "9²"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "12² : 6"
+            "text": "9² : 3"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "2 · 7"
+            "text": "2 · 5"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "6 + 2"
+            "text": "3 + 2"
           }
         }
       ],
@@ -2654,6 +2706,10 @@
       "id": "on-tap-chuong-2.ex.dien-46",
       "cardIds": ["on-tap-chuong-2.card.phan-tich-so"],
       "prompt": [
+        {
+          "type": "note",
+          "text": "Mẹ xếp đều 46 cái bánh vào 2 đĩa."
+        },
         {
           "type": "note",
           "text": "Tìm số nguyên tố còn thiếu trong phép phân tích sau."
@@ -2667,7 +2723,7 @@
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 2
           }
         ]
       },
@@ -2711,7 +2767,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Tính luỹ thừa trước: 12² = 144. Rồi chia và nhân: 144 : 6 = 24 và 2 · 7 = 14, cộng được 38. Chia 38 cho 2 được 19, là số nguyên tố, nên 38 = 2 · 19.",
-        "tex": "12^{2} : 6 + 2 \\cdot 7 = 144 : 6 + 14 = 38 = 2 \\cdot 19"
+        "tex": "\\begin{gathered} 12^{2} : 6 + 2 \\cdot 7 \\\\ = 144 : 6 + 14 \\\\ = 24 + 14 = 38 \\\\ = 2 \\cdot 19 \\end{gathered}"
       },
       "type": "fillBlank",
       "segments": [
@@ -2730,7 +2786,7 @@
         },
         {
           "type": "blank",
-          "id": "b3",
+          "id": "b2",
           "accept": ["19"]
         }
       ]
@@ -2761,7 +2817,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Tính luỹ thừa trước: 4² = 16 và 3² = 9. Rồi nhân, chia: 5 · 16 = 80 và 36 : 9 = 4, nên 80 − 4 = 76. Phân tích 76 = 2 · 2 · 19 = 2² · 19.",
-        "tex": "5 \\cdot 4^{2} - 36 : 3^{2} = 80 - 4 = 76 = 2^{2} \\cdot 19",
+        "tex": "\\begin{gathered} 5 \\cdot 4^{2} - 36 : 3^{2} \\\\ = 5 \\cdot 16 - 36 : 9 \\\\ = 80 - 4 = 76 \\\\ = 2^{2} \\cdot 19 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -2830,7 +2886,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Viết 6 thành tích của hai số: 6 = 1 · 6 = 2 · 3. Các thừa số 1, 2, 3 và 6 là ước của 6, nên 2, 3 và 6 được chọn.",
+        "text": "Viết 6 thành tích của hai số: 6 = 1 · 6 = 2 · 3. Các ước của 6 là 1, 2, 3 và 6, nên chọn 1, 3 và 6. Đừng quên số 1, vì 1 là ước của mọi số.",
         "tex": "6 = 1 \\cdot 6 = 2 \\cdot 3",
         "wrong": [
           {
@@ -2845,7 +2901,7 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "2"
+            "text": "1"
           }
         },
         {
@@ -2879,7 +2935,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "10 chia hết cho (n + 1). Vậy n + 1 là gì của 10?"
+          "text": "10 chia hết cho (n + 1), như 10 cái bánh chia đều cho (n + 1) bạn. Vậy n + 1 là gì của 10?"
         }
       ],
       "hints": {
@@ -2958,7 +3014,7 @@
       "difficulty": 1,
       "explain": {
         "text": "n cộng 1 bằng 3 thì n bằng 3 trừ 1.",
-        "tex": "n + 1 = 3 \\Rightarrow n = 3 - 1 = 2"
+        "tex": "n = 3 - 1 = 2"
       },
       "type": "numeric",
       "answer": {
@@ -2979,7 +3035,7 @@
         },
         {
           "type": "formula",
-          "tex": "6 \\chiahet (n + 1)"
+          "tex": "6 \\chiahet (n + 1)."
         },
         {
           "type": "note",
@@ -2999,7 +3055,7 @@
       "difficulty": 3,
       "explain": {
         "text": "6 chia hết cho n + 1 nên n + 1 là một ước của 6. Các ước của 6 là 1, 2, 3 và 6, nên n bằng 0, 1, 2 hoặc 5.",
-        "tex": "n + 1 = 1,\\ 2,\\ 3,\\ 6 \\Rightarrow n = 0,\\ 1,\\ 2,\\ 5"
+        "tex": "\\begin{gathered} n + 1 = 1,\\ 2,\\ 3,\\ 6 \\\\ n = 0,\\ 1,\\ 2,\\ 5 \\end{gathered}"
       },
       "type": "manipulate",
       "visualId": "on-tap-chuong-2.visual.chon-n-6",
@@ -3020,14 +3076,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các ước chung của 12 và 18."
+          "text": "Có 12 cái bút và 18 quyển vở. Chia đều bút và vở thành các phần như nhau, không thừa."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số phần có thể chia, tức là các ước chung của 12 và 18."
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -3314,14 +3374,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Các hàng 10, 12 và 15 người đều thừa 5 em. Bớt 5 em thì mọi hàng vừa hết, hỏi số em còn lại là gì của 10, 12 và 15?"
+          "text": "Xếp thành hàng 10, hàng 12 hay hàng 15 người thì lần nào cũng thừa 5 em. Bớt 5 em đi thì xếp vừa hết."
+        },
+        {
+          "type": "note",
+          "text": "Số em còn lại là gì của 10, 12 và 15?"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -3372,6 +3436,10 @@
       "prompt": [
         {
           "type": "note",
+          "text": "Bớt 5 em ở cả hai đầu khoảng: từ 200 − 5 = 195 đến 300 − 5 = 295."
+        },
+        {
+          "type": "note",
           "text": "Trong các số sau, số nào là bội của 60 và nằm trong khoảng từ 195 đến 295?"
         }
       ],
@@ -3379,7 +3447,7 @@
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -3457,8 +3525,8 @@
       "bookRef": "SBT 2.58",
       "difficulty": 3,
       "explain": {
-        "text": "Bớt 5 em thì xếp hàng 10, 12 hay 15 đều vừa hết. Số em còn lại là bội chung của 10, 12 và 15, mà BCNN(10, 12, 15) = 60. Số em còn lại là 240, nên có 240 + 5 = 245 học sinh.",
-        "tex": "n - 5 = 240 \\Rightarrow n = 245"
+        "text": "Gọi n là số học sinh. Bớt 5 em thì xếp hàng 10, 12 hay 15 đều vừa hết, nên n − 5 là bội chung của 10, 12 và 15. BCNN(10, 12, 15) = 60 và bội của 60 trong khoảng từ 195 đến 295 là 240, nên n = 240 + 5 = 245.",
+        "tex": "\\begin{gathered} n - 5 = 240 \\\\ n = 240 + 5 = 245 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
@@ -3492,8 +3560,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số mũ nhỏ nhất của 4 và b bằng 3. Số 4 lớn hơn 3, nên số còn lại b phải bằng 3.",
-        "tex": "\\min(4, b) = 3 \\Rightarrow b = 3"
+        "text": "Số mũ nhỏ nhất của 4 và b bằng 3. Số 4 lớn hơn 3, nên số còn lại b phải bằng 3."
       },
       "type": "numeric",
       "answer": {
@@ -3527,8 +3594,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số mũ lớn nhất của a và 2 bằng 5. Số 2 nhỏ hơn 5, nên số còn lại a phải bằng 5.",
-        "tex": "\\max(a, 2) = 5 \\Rightarrow a = 5"
+        "text": "Số mũ lớn nhất của a và 2 bằng 5. Số 2 nhỏ hơn 5, nên số còn lại a phải bằng 5."
       },
       "type": "numeric",
       "answer": {
@@ -3573,7 +3639,7 @@
         },
         {
           "type": "formula",
-          "tex": "2^{3} \\cdot 3^{6}"
+          "tex": "2^{3} \\cdot 3^{6}."
         },
         {
           "type": "note",
@@ -3596,8 +3662,8 @@
       "bookRef": "SBT 2.63",
       "difficulty": 3,
       "explain": {
-        "text": "Thừa số 2: số mũ nhỏ nhất của 3 và b là 2, nên b = 2. Thừa số 3: số mũ lớn nhất của a và 5 là 6, nên a = 6.",
-        "tex": "\\min(3, b) = 2 \\Rightarrow b = 2;\\quad \\max(a, 5) = 6 \\Rightarrow a = 6"
+        "text": "Thừa số 2 có số mũ 3 và b, số mũ nhỏ nhất là 2, nên b = 2. Thừa số 3 có số mũ a và 5, số mũ lớn nhất là 6, nên a = 6.",
+        "tex": "\\begin{gathered} b = 2 \\\\ a = 6 \\end{gathered}"
       },
       "type": "fillBlank",
       "segments": [
@@ -3612,11 +3678,11 @@
         },
         {
           "type": "text",
-          "text": ";  b = "
+          "text": " và b = "
         },
         {
           "type": "blank",
-          "id": "b3",
+          "id": "b2",
           "accept": ["2"]
         }
       ]
@@ -3709,7 +3775,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Nhân hai luỹ thừa cùng cơ số thì giữ nguyên cơ số và cộng các số mũ. Thừa số 3 có số mũ 2 + 4 = 6.",
+        "text": "Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ. Thừa số 3 có số mũ 2 + 4 = 6.",
         "tex": "3^{2} \\cdot 3^{4} = 3^{2 + 4} = 3^{6}"
       },
       "type": "numeric",
@@ -3739,7 +3805,7 @@
         },
         {
           "type": "formula",
-          "tex": "3^{2} \\cdot 5"
+          "tex": "3^{2} \\cdot 5."
         },
         {
           "type": "note",
@@ -3747,7 +3813,7 @@
         },
         {
           "type": "formula",
-          "tex": "2^{3} \\cdot 3^{2} \\cdot 5"
+          "tex": "2^{3} \\cdot 3^{2} \\cdot 5,"
         },
         {
           "type": "note",
@@ -3770,8 +3836,8 @@
       "bookRef": "SBT 2.60",
       "difficulty": 3,
       "explain": {
-        "text": "Tích hai số bằng ƯCLN nhân BCNN, tức là 2³ · 3⁶ · 5⁴. Chia tích cho số đã biết 2³ · 3² · 5, ta được 3⁴ · 5³.",
-        "tex": "2^{3} \\cdot 3^{6} \\cdot 5^{4} : (2^{3} \\cdot 3^{2} \\cdot 5) = 3^{4} \\cdot 5^{3}",
+        "text": "Tích hai số bằng ƯCLN nhân BCNN, tức là 2³ · 3⁶ · 5⁴. Chia từng thừa số cho số đã biết: thừa số 2 mất vì 2³ : 2³ = 1. Số còn lại là 3⁴ · 5³.",
+        "tex": "\\begin{gathered} 2^{3} : 2^{3} = 1 \\\\ 3^{6} : 3^{2} = 3^{4} \\\\ 5^{4} : 5 = 5^{3} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -3873,7 +3939,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\frac{9}{14} \\quad \\frac{8}{21}"
+          "tex": "\\dfrac{9}{14} \\quad \\dfrac{8}{21}"
         }
       ],
       "hints": {
@@ -3887,7 +3953,7 @@
       "difficulty": 2,
       "explain": {
         "text": "42 : 14 = 3 nên nhân cả tử và mẫu của phân số thứ nhất với 3. 42 : 21 = 2 nên nhân cả tử và mẫu của phân số thứ hai với 2.",
-        "tex": "\\frac{9 \\cdot 3}{14 \\cdot 3} = \\frac{27}{42},\\quad \\frac{8 \\cdot 2}{21 \\cdot 2} = \\frac{16}{42}",
+        "tex": "\\begin{gathered} \\dfrac{9 \\cdot 3}{14 \\cdot 3} = \\dfrac{27}{42} \\\\ \\dfrac{8 \\cdot 2}{21 \\cdot 2} = \\dfrac{16}{42} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -3909,28 +3975,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\frac{27}{42} \\quad \\frac{16}{42}"
+            "tex": "\\dfrac{27}{42} \\quad \\dfrac{16}{42}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\frac{9}{42} \\quad \\frac{8}{42}"
+            "tex": "\\dfrac{9}{42} \\quad \\dfrac{8}{42}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\frac{27}{42} \\quad \\frac{8}{42}"
+            "tex": "\\dfrac{27}{42} \\quad \\dfrac{8}{42}"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "\\frac{18}{42} \\quad \\frac{16}{42}"
+            "tex": "\\dfrac{18}{42} \\quad \\dfrac{16}{42}"
           }
         }
       ],
@@ -3947,7 +4013,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\frac{9}{14} + \\frac{8}{21}"
+          "tex": "\\dfrac{9}{14} + \\dfrac{8}{21}"
         }
       ],
       "hints": {
@@ -3963,7 +4029,7 @@
       "difficulty": 3,
       "explain": {
         "text": "BCNN(14, 21) = 42, nên quy đồng hai phân số với mẫu số chung 42. Cộng hai tử, giữ nguyên mẫu: 27 + 16 = 43.",
-        "tex": "\\frac{9}{14} + \\frac{8}{21} = \\frac{27}{42} + \\frac{16}{42} = \\frac{43}{42}",
+        "tex": "\\begin{gathered} \\dfrac{9}{14} + \\dfrac{8}{21} = \\dfrac{27}{42} + \\dfrac{16}{42} \\\\ = \\dfrac{43}{42} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -3985,28 +4051,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\frac{43}{42}"
+            "tex": "\\dfrac{43}{42}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\frac{17}{35}"
+            "tex": "\\dfrac{17}{35}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\frac{17}{42}"
+            "tex": "\\dfrac{17}{42}"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "\\frac{35}{42}"
+            "tex": "\\dfrac{35}{42}"
           }
         }
       ],
@@ -4023,7 +4089,7 @@
         },
         {
           "type": "formula",
-          "tex": "\\frac{13}{15} - \\frac{7}{12}"
+          "tex": "\\dfrac{13}{15} - \\dfrac{7}{12}"
         }
       ],
       "hints": {
@@ -4039,7 +4105,7 @@
       "difficulty": 3,
       "explain": {
         "text": "BCNN(15, 12) = 60, nên quy đồng hai phân số với mẫu số chung 60. Trừ hai tử, giữ nguyên mẫu: 52 − 35 = 17.",
-        "tex": "\\frac{13}{15} - \\frac{7}{12} = \\frac{52}{60} - \\frac{35}{60} = \\frac{17}{60}",
+        "tex": "\\begin{gathered} \\dfrac{13}{15} - \\dfrac{7}{12} = \\dfrac{52}{60} - \\dfrac{35}{60} \\\\ = \\dfrac{17}{60} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -4051,7 +4117,7 @@
           },
           {
             "optionId": "d",
-            "text": "Phải quy đồng rồi mới trừ hai tử."
+            "text": "Mới đổi mẫu thành 60 mà chưa nhân cả tử, nên chưa đúng."
           }
         ]
       },
@@ -4061,28 +4127,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "\\frac{17}{60}"
+            "tex": "\\dfrac{17}{60}"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "\\frac{6}{3}"
+            "tex": "\\dfrac{6}{3}"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "\\frac{45}{60}"
+            "tex": "\\dfrac{45}{60}"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "\\frac{6}{60}"
+            "tex": "\\dfrac{6}{60}"
           }
         }
       ],
@@ -4116,7 +4182,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Phép cộng cho kết quả khác phép nhân."
+            "text": "Nhân với 9 rồi cộng a khác nhân với a rồi nhân với 9."
           },
           {
             "optionId": "c",
@@ -4137,7 +4203,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "12\\,345\\,679 + 9 + a"
+            "tex": "12\\,345\\,679 \\cdot 9 + a"
           }
         },
         {
@@ -4157,7 +4223,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính tích sau."
+          "text": "Tích sau bằng số nào?"
         },
         {
           "type": "formula",
@@ -4174,14 +4240,56 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Nhân từng chữ số, nhớ sang hàng bên cạnh. Kết quả là số có chín chữ số 1.",
-        "tex": "12\\,345\\,679 \\cdot 9 = 111\\,111\\,111"
+        "text": "Nhân từng cột và nhớ: 9 · 9 = 81, viết 1 nhớ 8. 7 · 9 = 63, thêm 8 là 71, viết 1 nhớ 7. Cứ thế mọi cột đều ra 1.",
+        "tex": "12\\,345\\,679 \\cdot 9 = 111\\,111\\,111",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Ở hàng chục phải ra 1: 7 · 9 = 63, thêm 8 là 71, viết 1."
+          },
+          {
+            "optionId": "c",
+            "text": "Cột cuối ra 1 · 9 + 2 = 11, phải viết cả 11, nên tích có chín chữ số."
+          },
+          {
+            "optionId": "d",
+            "text": "Cột cuối ra 11, viết 11, không viết 10."
+          }
+        ]
       },
-      "type": "numeric",
-      "answer": {
-        "kind": "value",
-        "value": 111111111
-      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "111\\,111\\,111"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "111\\,111\\,101"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "11\\,111\\,111"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "101\\,111\\,111"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
       "check": {
         "expr": "12345679·9"
       }
@@ -4243,7 +4351,7 @@
         },
         {
           "type": "note",
-          "text": "Bắt đầu từ biểu thức sau, sắp xếp các dòng biến đổi theo thứ tự đúng."
+          "text": "Bắt đầu từ biểu thức sau, sắp xếp các bước giải thích theo thứ tự đúng."
         },
         {
           "type": "formula",
@@ -4254,7 +4362,7 @@
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 5
           }
         ],
         "hintVisualId": "on-tap-chuong-2.visual.tn261-goi-y"
@@ -4262,8 +4370,7 @@
       "bookRef": "SBT 2.61",
       "difficulty": 3,
       "explain": {
-        "text": "Đổi chỗ thừa số 9 và a, rồi nhóm 12 345 679 với 9 trước. Vì 12 345 679 · 9 = 111 111 111, nên nhân với a được số có chín chữ số a.",
-        "tex": "\\begin{aligned} 12\\,345\\,679 \\cdot a \\cdot 9 &= 12\\,345\\,679 \\cdot 9 \\cdot a \\\\ &= (12\\,345\\,679 \\cdot 9) \\cdot a \\\\ &= 111\\,111\\,111 \\cdot a \\\\ &= \\overline{aaa\\,aaa\\,aaa} \\end{aligned}"
+        "text": "Đổi chỗ thừa số 9 và a, rồi nhóm 12 345 679 với 9 trước. Vì 12 345 679 · 9 = 111 111 111, nên nhân với a được số có chín chữ số a."
       },
       "type": "order",
       "items": [
@@ -4306,7 +4413,7 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta ôn lại cả chương II. Khi bạn chia 24 cái kẹo đều cho các bạn mà không còn thừa, bạn đã dùng chia hết, ước và bội."
     },
-    "summary": "Bài này ôn lại các bài 8 đến 12 của chương II: chia hết, dấu hiệu chia hết, số nguyên tố, ƯCLN và BCNN. Mỗi câu đều có phần nhắc lại và từng bước dẫn.",
+    "summary": "Bài này ôn chương II, từ Bài 8 đến Bài 12, kèm vài quy tắc của Bài 5, 6 và 7. Bạn sẽ ôn chia hết, dấu hiệu chia hết, số nguyên tố, ƯCLN và BCNN. Mỗi câu đều có phần nhắc lại và từng bước dẫn.",
     "goals": [
       "nhớ lại các quy tắc của chương II và biết chúng ở bài nào",
       "làm các câu trắc nghiệm về chia hết và số nguyên tố",
