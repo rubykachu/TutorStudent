@@ -112,7 +112,18 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 
 - Chỉ animate `transform` và `opacity`.
 - `prefers-reduced-motion: reduce` → bỏ rung, bỏ nảy, chuyển cảnh bằng fade; animation giải thích vẫn chạy nhưng dạng từng bước bấm "Tiếp".
-- Không chuyển động nền (nền vũ trụ ở mục 12 đứng yên), không hiệu ứng lặp vô hạn trong lúc học (trừ linh vật chớp mắt ≥ 4 giây/lần).
+- Không chuyển động nền (nền vũ trụ ở mục 12 đứng yên), không hiệu ứng lặp vô hạn trong lúc học (trừ linh vật chớp mắt ≥ 4 giây/lần), và trừ màn thưởng ở mục dưới.
+
+### Màn thưởng lặp hiệu ứng
+
+Màn thưởng (xong phần, nhận sticker, bảng sticker đã nhận, Hộp nhạc) giữ hiệu ứng chạy suốt lúc còn mở, để bé kịp nhìn. Mọi thứ nằm ở `src/components/looping-celebration.tsx`, màn không tự đặt timer:
+
+- `LoopingConfetti`: pháo giấy nổ khi màn mở, rồi nổ lại sau mỗi 2,5–4 giây (`useCelebrationBeat`, khoảng nghỉ lấy từ số lượt nên lặp lại được), mỗi lượt đổi vị trí và màu (`variant` của `ConfettiBurst`). Mỗi lúc chỉ một đợt (28 mảnh, lượt mới thay lượt cũ), chỉ `transform` và `opacity`, `pointer-events: none`, ngừng khi màn đóng. Dùng ở màn xong phần (`DoneScreen` với `celebrate`), màn nhận sticker (`StickerEarnedCelebration`) và bảng sticker đã nhận.
+- `LoopingMotion`: bao một hình để nó nảy nhẹ (`bounce`) hoặc đung đưa (`float`) mãi. Dùng cho sticker ở màn nhận sticker và bảng sticker đã nhận.
+- `PulseRing`: viền tím nhấp nháy nhẹ (opacity, scale) trên hàng thưởng "Bài nhạc mới" và trên bài vừa mở trong Hộp nhạc cho đến khi bé nghe bài đó. Cha phải `relative`.
+- Hộp nhạc: bài đang phát có ba thanh equalizer (`PlayingBars`, `scaleY`) cạnh tên.
+- Âm thanh không lặp theo hiệu ứng: tiếng chúc mừng vẫn phát đúng một lần (`usePlayOnce`).
+- Giảm chuyển động: không có vòng lặp nào. Pháo giấy và nảy tắt, thanh equalizer đứng yên ở độ cao cố định, `PulseRing` thành viền tĩnh, nên màn vẫn đọc là "đang thưởng". `pnpm lesson:walk` chạy với giảm chuyển động nên ảnh chụp là khung tĩnh.
 
 ## 7. Phản hồi bài tập (3 nấc)
 
