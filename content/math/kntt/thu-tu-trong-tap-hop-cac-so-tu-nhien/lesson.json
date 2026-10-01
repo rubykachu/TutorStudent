@@ -24,7 +24,16 @@
       "tìm số liền trước và số liền sau",
       "viết tập hợp các số nằm trong một đoạn"
     ],
-    "whyItMatters": "Bạn so thứ tự các số khi chọn món đồ rẻ hơn, hay khi xem cột cây số để biết còn xa không."
+    "whyItMatters": "Bạn so thứ tự các số khi chọn món đồ rẻ hơn, hay khi xem cột cây số để biết còn xa không.",
+    "narration": {
+      "audioUrl": "narration/thu-tu-trong-tap-hop-cac-so-tu-nhien/overview.m4a",
+      "vttUrl": "narration/thu-tu-trong-tap-hop-cac-so-tu-nhien/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Achird",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
