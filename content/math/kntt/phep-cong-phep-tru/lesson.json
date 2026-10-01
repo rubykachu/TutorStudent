@@ -1163,7 +1163,17 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số được cộng với nhau là số hạng, còn kết quả là tổng. Trong phép cộng này, 18 và 7 là hai số hạng.",
+        "tex": "\\concept{blue}{18} + \\concept{blue}{7} = \\concept{amber}{25}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "25 là kết quả của phép cộng nên gọi là tổng, không phải số hạng."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.cham-tong",
@@ -1185,7 +1195,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Kết quả của phép cộng là tổng. Trong phép cộng này, tổng là số đứng sau dấu bằng.",
+        "tex": "\\concept{blue}{16} + \\concept{blue}{7} = \\concept{amber}{23}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tong-bi",
@@ -1214,7 +1228,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-bar-cong-15-7",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-bar-cong-17-6"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Hà được cho thêm kẹo, tức là gộp hai nhóm lại, nên dùng phép cộng. 17 + 6 = 23, vậy Hà có tất cả 23 cái kẹo.",
+        "tex": "\\concept{blue}{17} + \\concept{blue}{6} = \\concept{amber}{23}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-ten-tong",
@@ -1254,7 +1272,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "39 là kết quả của phép cộng 26 + 13, nên 39 gọi là tổng. Còn 26 và 13 là số hạng.",
+        "tex": "\\concept{blue}{26} + \\concept{blue}{13} = \\concept{amber}{39}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tong-cua",
@@ -1309,7 +1331,17 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tổng là kết quả của phép cộng, nên ta cộng hai số 15 và 8. 15 + 8 = 23.",
+        "tex": "\\concept{blue}{15} + \\concept{blue}{8} = \\concept{amber}{23}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "7 là hiệu 15 − 8, còn tổng thì phải cộng hai số."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-so-bi-tru",
@@ -1365,7 +1397,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số ban đầu là số bị trừ, số bớt đi là số trừ, kết quả là hiệu. Trong phép trừ này, 27 là số ban đầu nên là số bị trừ.",
+        "tex": "\\concept{violet}{27} - \\concept{pink}{9} = \\concept{teal}{18}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số trừ là số bớt đi, tức là 9."
+          },
+          {
+            "optionId": "c",
+            "text": "Hiệu là kết quả của phép trừ, tức là 18."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.cham-so-tru",
@@ -1387,7 +1433,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số bớt đi là số trừ. Nó đứng sau dấu trừ, trong phép này là 12.",
+        "tex": "\\concept{violet}{31} - \\concept{pink}{12} = \\concept{teal}{19}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-hieu-tien",
@@ -1416,7 +1466,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-bar-tru-45-20",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-bar-tru-50-35"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Mai tiêu hết 35 nghìn đồng là bớt đi một phần tiền, nên dùng phép trừ. 50 − 35 = 15, vậy Mai còn 15 nghìn đồng.",
+        "tex": "\\concept{violet}{50} - \\concept{pink}{35} = \\concept{teal}{15}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-ten-tru",
@@ -1465,7 +1519,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số ban đầu 45 là số bị trừ, số bớt đi 18 là số trừ. Còn 27 là kết quả nên gọi là hiệu.",
+        "tex": "\\concept{violet}{45} - \\concept{pink}{18} = \\concept{teal}{27}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.noi-ten-tru",
@@ -1545,7 +1603,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "60 là số ban đầu nên là số bị trừ, 25 là số bớt đi nên là số trừ. 35 là kết quả của phép trừ nên là hiệu.",
+        "tex": "\\concept{violet}{60} - \\concept{pink}{25} = \\concept{teal}{35}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-doi-cho",
@@ -1600,7 +1662,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Đổi chỗ hai số hạng thì tổng không đổi. Vậy 9 + 26 = 26 + 9 = 35.",
+        "tex": "9 + 26 = 26 + 9 = 35",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "26 + 19 đã đổi số 9 thành 19 chứ không chỉ đổi chỗ, nên tổng thành 45."
+          },
+          {
+            "optionId": "c",
+            "text": "62 là số khác 26, nên 9 + 62 = 71 chứ không phải 35."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-doi-cho",
@@ -1633,7 +1709,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-swap-16-25",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-swap-13-28"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Đổi chỗ các số hạng thì tổng không đổi. Hai vế đều có số hạng 28, nên số còn lại là 13.",
+        "tex": "13 + 28 = 28 + 13"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-doi-cho-2",
@@ -1664,7 +1744,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Đổi chỗ các số hạng thì tổng không đổi. Hai vế đều có số hạng 45, nên số còn lại là 19.",
+        "tex": "45 + 19 = 19 + 45"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tong-bang",
@@ -1719,7 +1803,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Đổi chỗ các số hạng thì tổng không đổi, nên cần giữ đúng ba số 7, 25 và 3. Hai phép tính 25 + 7 + 3 và 3 + 25 + 7 đều bằng 35.",
+        "tex": "7 + 25 + 3 = 25 + 7 + 3 = 3 + 25 + 7 = 35",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "52 là số khác 25, nên 7 + 52 + 3 = 62 chứ không phải 35."
+          },
+          {
+            "optionId": "d",
+            "text": "13 là số khác 3, nên 7 + 25 + 13 = 45 chứ không phải 35."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-doi-cho-tien",
@@ -1746,7 +1844,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Lan và Bình mua cùng hai món, chỉ đổi thứ tự mua, nên tổng tiền không đổi. Mỗi bạn trả 12 + 29 = 41 nghìn đồng.",
+        "tex": "12 + 29 = 29 + 12 = 41"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-nhom-truoc",
@@ -1791,7 +1893,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "7 + 3 = 10 là số tròn chục, nên nhóm 7 và 3 trước. Sau đó 8 + 10 = 18 rất dễ nhẩm.",
+        "tex": "8 + 7 + 3 = 8 + \\concept{lime}{(7 + 3)} = 8 + 10 = 18",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "8 + 7 = 15 không tròn chục, nên cộng tiếp với 3 khó nhẩm hơn."
+          },
+          {
+            "optionId": "c",
+            "text": "8 + 3 = 11 không tròn chục, nên cộng tiếp với 7 khó nhẩm hơn."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-nhom-1",
@@ -1824,7 +1940,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-6-3-7",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-3-9-1"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "9 + 1 = 10 là số tròn chục, nên nhóm hai số này trước. Sau đó 3 + 10 = 13.",
+        "tex": "3 + 9 + 1 = 3 + \\concept{lime}{(9 + 1)} = 3 + 10 = 13"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-nhom-2",
@@ -1855,7 +1975,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "6 + 4 = 10 là số tròn chục, nên nhóm hai số này trước. Sau đó 19 + 10 = 29.",
+        "tex": "19 + 6 + 4 = 19 + \\concept{lime}{(6 + 4)} = 19 + 10 = 29"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tong-nhom",
@@ -1910,7 +2034,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng ba số, cộng hai số đầu trước hay hai số sau trước thì tổng vẫn như nhau. Phép (4 + 16) + 9 chỉ đổi chỗ dấu ngoặc, vẫn giữ ba số 4, 16 và 9.",
+        "tex": "4 + \\concept{lime}{(16 + 9)} = \\concept{lime}{(4 + 16)} + 9 = 29",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Dấu trừ biến phép cộng 9 thành phép trừ 9, nên kết quả nhỏ đi."
+          },
+          {
+            "optionId": "d",
+            "text": "(4 + 6) đã đổi số 16 thành 6, nên tổng thành 19."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tien-nhom",
@@ -1937,7 +2075,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhóm 8 và 2 trước vì 8 + 2 = 10 là số tròn chục. Sau đó 12 + 10 = 22, nên bạn trả 22 nghìn đồng.",
+        "tex": "12 + 8 + 2 = 12 + \\concept{lime}{(8 + 2)} = 12 + 10 = 22"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-cong-0",
@@ -1992,7 +2134,17 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng một số với 0 thì được chính số đó, trừ đi 0 cũng vậy. Nên 35 + 0, 0 + 35 và 35 − 0 đều bằng 35.",
+        "tex": "35 + 0 = 0 + 35 = 35 - 0 = 35",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "35 + 5 = 40, vì phép này thêm 5 chứ không phải thêm 0."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cong-0",
@@ -2023,7 +2175,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng một số với 0 thì được chính số đó, dù 0 đứng trước hay đứng sau. Vậy 0 + 47 = 47.",
+        "tex": "0 + 47 = 47"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tru-0",
@@ -2054,7 +2210,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Trừ đi 0 là không bớt đi gì, nên số không đổi. Vậy 86 − 0 = 86.",
+        "tex": "86 - 0 = 86"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-so-0",
@@ -2085,7 +2245,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tổng bằng đúng số hạng đã biết, nghĩa là không thêm gì vào. Số hạng chưa biết là 58 − 58 = 0.",
+        "tex": "58 + 0 = 58"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-ket-qua-0",
@@ -2140,7 +2304,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Bố cho thêm 0 đồng nghĩa là không cho thêm gì, nên ví vẫn có 25 nghìn đồng. Vậy 25 + 0 = 25.",
+        "tex": "25 + 0 = 25",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "0 là số tiền bố cho thêm, không phải số tiền trong ví."
+          },
+          {
+            "optionId": "c",
+            "text": "26 là 25 thêm 1, nhưng bố cho thêm 0 chứ không phải 1."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-cap-tron",
@@ -2195,7 +2373,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số có hàng đơn vị cộng lại thành 10 thì tổng tròn chục. Ở 18 + 22 có 8 + 2 = 10, nên tổng là 40.",
+        "tex": "18 + 22 = 40",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "8 + 5 = 13 nên tổng 18 + 25 = 43 không tròn chục."
+          },
+          {
+            "optionId": "d",
+            "text": "2 + 9 = 11 nên tổng 32 + 19 = 51 không tròn chục."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-ghep-tron-1",
@@ -2228,7 +2420,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-15-142-85",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-25-168-75"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "25 + 75 = 100 là số tròn trăm, nên ghép hai số này trước. Sau đó 100 + 168 = 268.",
+        "tex": "25 + 168 + 75 = \\concept{lime}{(25 + 75)} + 168 = 100 + 168 = 268"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-ghep-tron-2",
@@ -2259,7 +2455,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "46 + 54 = 100 là số tròn trăm, nên ghép hai số này trước. Sau đó 100 + 29 = 129.",
+        "tex": "46 + 29 + 54 = \\concept{lime}{(46 + 54)} + 29 = 100 + 29 = 129"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-nhieu-cap-tron",
@@ -2314,7 +2514,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng hàng đơn vị rồi hàng chục: 37 + 63 có 7 + 3 = 10 và 30 + 60 = 90, được 100. Tương tự 28 + 72 = 100.",
+        "tex": "37 + 63 = 100, \\quad 28 + 72 = 100",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "45 + 65 = 110, vượt quá 100."
+          },
+          {
+            "optionId": "d",
+            "text": "55 + 55 = 110, vượt quá 100."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-ghep-tron-3",
@@ -2345,7 +2559,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "13 + 7 = 20 là số tròn chục, nên ghép hai số này trước. Sau đó 20 + 86 = 106.",
+        "tex": "13 + 86 + 7 = \\concept{lime}{(13 + 7)} + 86 = 20 + 86 = 106"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-cap-cham",
@@ -2373,7 +2591,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số có hàng đơn vị cộng lại thành 10 thì tổng tròn chục: 6 + 4 = 10 nên 16 + 24 = 40. Hai cặp còn lại có tổng 54 và 62, không tròn chục.",
+        "tex": "16 + 24 = 40"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-them-bot",
@@ -2428,7 +2650,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. 29 thêm 1 thành 30, nên 46 bớt 1 còn 45.",
+        "tex": "29 + 46 = (29 + 1) + (46 - 1) = 30 + 45 = 75",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chỉ thêm 1 ở 29 mà không bớt ở 46, nên tổng tăng 1, thành 76."
+          },
+          {
+            "optionId": "c",
+            "text": "Thêm 10 ở 46 mà không bớt ở số hạng kia, nên tổng tăng 10, thành 85."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-them-bot-1",
@@ -2461,7 +2697,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-shift-47-25",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-shift-57-26"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Bớt 4 ở 57 còn 53, thêm 4 vào 26 được 30 là số tròn chục. Tổng không đổi: 53 + 30 = 83.",
+        "tex": "57 + 26 = (57 - 4) + (26 + 4) = 53 + 30 = 83"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-them-bot-2",
@@ -2492,7 +2732,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Thêm 1 vào 49 được 50 là số tròn chục, bớt 1 ở 35 còn 34. Tổng không đổi: 50 + 34 = 84.",
+        "tex": "49 + 35 = (49 + 1) + (35 - 1) = 50 + 34 = 84"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-them-bot",
@@ -2523,7 +2767,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "58 thêm 2 thành 60, nên số hạng kia phải bớt 2 để tổng không đổi. Số cần tìm là 37 − 2 = 35.",
+        "tex": "58 + 37 = (58 + 2) + (37 - 2) = 60 + 35"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tong-them-bot",
@@ -2578,7 +2826,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Phép 50 + 13 thêm 5 bớt 5, phép 43 + 20 bớt 2 thêm 2.",
+        "tex": "45 + 18 = 50 + 13 = 43 + 20 = 63",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Thêm 10 ở 18 mà không bớt ở 45, nên tổng tăng 10, thành 73."
+          },
+          {
+            "optionId": "d",
+            "text": "Thêm 1 ở cả hai số hạng, nên tổng tăng 2, thành 65."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chuyen-so-cham",
@@ -2605,7 +2867,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Số hạng thứ hai 27 cần thêm 3 để thành 30, tròn chục. Vậy chuyển 3 từ số hạng thứ nhất sang: 52 còn 49, tổng vẫn không đổi.",
+        "tex": "52 + 27 = (52 - 3) + (27 + 3) = 49 + 30 = 79"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tru-them",
@@ -2660,7 +2926,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cùng thêm hoặc cùng bớt một số ở số bị trừ và số trừ thì hiệu không đổi. Ở đây 64 và 38 cùng thêm 2 thành 66 và 40.",
+        "tex": "\\concept{violet}{64} - \\concept{pink}{38} = \\concept{violet}{66} - \\concept{pink}{40} = \\concept{teal}{26}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chỉ thêm 2 ở số bị trừ mà không thêm ở số trừ, nên hiệu tăng 2, thành 28."
+          },
+          {
+            "optionId": "c",
+            "text": "Chỉ thêm 2 ở số trừ mà không thêm ở số bị trừ, nên hiệu giảm 2, thành 24."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tru-them-1",
@@ -2693,7 +2973,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-shift-tru-71-18",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-shift-tru-91-38"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cùng thêm 2 vào cả hai số thì hiệu không đổi: 91 thành 93, 38 thành 40 là số tròn chục. Khi đó 93 − 40 = 53.",
+        "tex": "91 - 38 = (91 + 2) - (38 + 2) = 93 - 40 = 53"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tru-them-2",
@@ -2724,7 +3008,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Cùng bớt 2 ở cả hai số thì hiệu không đổi: 74 thành 72, 32 thành 30 là số tròn chục. Khi đó 72 − 30 = 42.",
+        "tex": "74 - 32 = (74 - 2) - (32 - 2) = 72 - 30 = 42"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-tru-them",
@@ -2755,7 +3043,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số bị trừ tăng từ 84 lên 87, tức là thêm 3. Để hiệu không đổi, số trừ cũng phải thêm 3, nên số cần tìm là 47 + 3 = 50.",
+        "tex": "84 - 47 = (84 + 3) - (47 + 3) = 87 - 50"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-hieu-tuoi",
@@ -2810,7 +3102,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai bố con cùng thêm 6 tuổi nên hiệu số tuổi không đổi, vẫn là 40 − 11 = 29. Kiểm tra: sau 6 năm bố 46 tuổi, Nam 17 tuổi và 46 − 17 = 29.",
+        "tex": "40 - 11 = 46 - 17 = 29",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "35 là 46 − 11, lấy tuổi bố sau 6 năm trừ tuổi Nam hôm nay, hai tuổi này không cùng lúc."
+          },
+          {
+            "optionId": "c",
+            "text": "23 là 40 − 17, lấy tuổi bố hôm nay trừ tuổi Nam sau 6 năm, hai tuổi này không cùng lúc."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.cot-cong-kiem-tra",
@@ -2836,7 +3142,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ở hàng đơn vị, 5 + 9 = 14. Viết chữ số cuối là 4 và nhớ 1 sang hàng chục.",
+        "tex": "5 + 9 = 14"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cot-cong-1",
@@ -2869,7 +3179,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-cot-cong-247-85",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-cot-cong-357-68"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng từ hàng đơn vị: 7 + 8 = 15, viết 5 nhớ 1. Hàng chục có thêm 1 nhớ: 5 + 6 + 1 = 12, viết 2 nhớ 1. Hàng trăm: 3 + 1 = 4, nên tổng là 425.",
+        "tex": "357 + 68 = 425"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cot-cong-2",
@@ -2896,7 +3210,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng từ hàng đơn vị: 6 + 7 = 13, viết 3 nhớ 1. Hàng chục có thêm 1 nhớ: 8 + 3 + 1 = 12, viết 2 nhớ 1. Hàng trăm: 4 + 2 + 1 = 7, nên tổng là 723.",
+        "tex": "486 + 237 = 723"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.cot-cong-hang-chuc",
@@ -2922,7 +3240,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ở hàng chục có thêm 1 nhớ từ hàng đơn vị: 6 + 5 + 1 = 12. Viết chữ số cuối là 2 và nhớ 1 sang hàng trăm.",
+        "tex": "6 + 5 + 1 = 12"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cot-cong-tien",
@@ -2949,7 +3271,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Gộp hai ngày bán lại nên dùng phép cộng 259 + 174. Hàng đơn vị: 9 + 4 = 13, viết 3 nhớ 1. Hàng chục: 5 + 7 + 1 = 13, viết 3 nhớ 1; hàng trăm: 2 + 1 + 1 = 4, vậy hai ngày bán 433 cái bánh.",
+        "tex": "259 + 174 = 433"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-nho",
@@ -3001,7 +3327,25 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "15 là 1 chục và 5 đơn vị. Viết 5 ở hàng đơn vị và nhớ 1 sang hàng chục.",
+        "tex": "9 + 6 = 15",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ số cuối 5 mới là chữ số viết, còn 1 chục là số nhớ."
+          },
+          {
+            "optionId": "c",
+            "text": "Mỗi hàng chỉ viết một chữ số, nên không viết cả 15 ở hàng đơn vị."
+          },
+          {
+            "optionId": "d",
+            "text": "Quên nhớ 1 thì mất 1 chục của kết quả."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.cot-tru-kiem-tra",
@@ -3027,7 +3371,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ở hàng đơn vị, 5 nhỏ hơn 8 nên mượn 1 chục. Chữ số trên thêm 10 thành 15, và 15 − 8 = 7, viết 7.",
+        "tex": "15 - 8 = 7"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cot-tru-1",
@@ -3060,7 +3408,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-cot-tru-361-174",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-cot-tru-452-187"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Hàng đơn vị: 2 − 7 không trừ được, mượn 1 chục, 12 − 7 = 5. Hàng chục bớt 1 còn 4, 4 − 8 không trừ được, mượn 1 trăm, 14 − 8 = 6. Hàng trăm bớt 1 còn 3, 3 − 1 = 2, nên hiệu là 265.",
+        "tex": "452 - 187 = 265"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cot-tru-2",
@@ -3087,7 +3439,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Hàng đơn vị: 3 − 5 không trừ được, mượn 1 chục, 13 − 5 = 8. Hàng chục bớt 1 còn 0, 0 − 6 không trừ được, mượn 1 trăm, 10 − 6 = 4. Hàng trăm bớt 1 còn 8, 8 − 4 = 4, nên hiệu là 448.",
+        "tex": "913 - 465 = 448"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.cot-tru-hang-chuc",
@@ -3113,7 +3469,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Hàng chục đã cho mượn nên 4 bớt 1 còn 3. 3 nhỏ hơn 7 nên mượn 1 trăm, 13 − 7 = 6, viết 6 và mượn 1.",
+        "tex": "13 - 7 = 6"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-cot-tru-tien",
@@ -3140,7 +3500,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Mua quạt là bớt tiền đi nên dùng phép trừ 820 − 345. Hàng đơn vị mượn 1 chục: 10 − 5 = 5. Hàng chục còn 1 nên mượn 1 trăm: 11 − 4 = 7; hàng trăm còn 7: 7 − 3 = 4.",
+        "tex": "820 - 345 = 475"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-muon",
@@ -3192,7 +3556,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Mượn 1 chục là thêm 10 vào chữ số trên: 3 thành 13. Khi đó tính 13 − 8 = 5.",
+        "tex": "13 - 8 = 5",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "3 − 8 là phép chưa trừ được, nên mới phải mượn."
+          },
+          {
+            "optionId": "d",
+            "text": "10 − 8 bỏ mất chữ số 3, trong khi phải thêm 10 vào 3."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-kiem-tra",
@@ -3247,6 +3625,20 @@
       "difficulty": 1,
       "check": {
         "relation": "holds"
+      },
+      "explain": {
+        "text": "Số bị trừ bằng hiệu cộng số trừ. Vậy để kiểm tra 53 − 19 = 34, ta cộng hiệu với số trừ: 34 + 19 = 53.",
+        "tex": "\\concept{teal}{34} + \\concept{pink}{19} = \\concept{violet}{53}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "53 + 19 = 72, không bằng 34."
+          },
+          {
+            "optionId": "d",
+            "text": "34 + 53 = 87, không bằng 19."
+          }
+        ]
       }
     },
     {
@@ -3280,7 +3672,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-family-40-15-25",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-family-64-27-37"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Dùng phép cộng để kiểm tra phép trừ: hiệu cộng số trừ bằng số bị trừ. Vì 64 − 27 = 37 nên 37 + 27 = 64.",
+        "tex": "\\concept{teal}{37} + \\concept{pink}{27} = \\concept{violet}{64}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-quan-he-2",
@@ -3311,7 +3707,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Dùng phép cộng để kiểm tra phép trừ: hiệu cộng số trừ bằng số bị trừ. Vì 91 − 45 = 46 nên 46 + 45 = 91.",
+        "tex": "\\concept{teal}{46} + \\concept{pink}{45} = \\concept{violet}{91}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-quan-he-nhieu",
@@ -3366,6 +3766,20 @@
       "difficulty": 1,
       "check": {
         "relation": "holds"
+      },
+      "explain": {
+        "text": "Biết tổng 42 và một số hạng, lấy tổng trừ số hạng đó thì được số hạng còn lại. Vậy 42 − 17 = 25 và 42 − 25 = 17.",
+        "tex": "42 - 17 = 25, \\quad 42 - 25 = 17",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "17 nhỏ hơn 25 nên không trừ được 17 − 25."
+          },
+          {
+            "optionId": "d",
+            "text": "25 − 17 = 8, không phải 42, vì tổng 42 phải là số bị trừ."
+          }
+        ]
       }
     },
     {
@@ -3402,7 +3816,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Dùng phép cộng để kiểm tra phép trừ: hiệu cộng số trừ bằng số bị trừ. Vậy 45 + 35 bằng số bị trừ 80.",
+        "tex": "\\concept{teal}{45} + \\concept{pink}{35} = \\concept{violet}{80}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tim-x",
@@ -3454,7 +3872,17 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết. Tổng là 61, số hạng đã biết là 28, nên làm phép tính 61 − 28.",
+        "tex": "x + 28 = 61, \\quad x = 61 - 28",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "61 + 28 cho số lớn hơn tổng 61, trong khi x nhỏ hơn 61."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-cong-1",
@@ -3487,7 +3915,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-find-cong-118-350",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-find-cong-135-420"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết: x = 420 − 135 = 285. Kiểm tra: 285 + 135 = 420.",
+        "tex": "x + 135 = 420, \\quad x = 420 - 135 = 285"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-cong-2",
@@ -3518,7 +3950,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn tìm số hạng chưa biết, lấy tổng trừ đi số hạng đã biết: x = 153 − 76 = 77. Kiểm tra: 76 + 77 = 153.",
+        "tex": "76 + x = 153, \\quad x = 153 - 76 = 77"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-cong-tien",
@@ -3545,7 +3981,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Giá vở cộng giá bút bằng 43 nghìn đồng, nên giá bút là số hạng chưa biết. Lấy tổng trừ số hạng đã biết: 43 − 28 = 15.",
+        "tex": "28 + x = 43, \\quad x = 43 - 28 = 15"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.sap-buoc-tim-x",
@@ -3592,7 +4032,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Bước đầu là chép lại đề bài. Số hạng chưa biết bằng tổng trừ số hạng đã biết, nên viết x = 93 − 45 rồi mới tính ra 48.",
+        "tex": "\\begin{aligned} x + 45 &= 93 \\\\ x &= 93 - 45 \\\\ x &= 48 \\end{aligned}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tim-x-tru",
@@ -3641,7 +4085,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ. Hiệu là 40, số trừ là 15, nên x = 40 + 15.",
+        "tex": "x - 15 = 40, \\quad x = 40 + 15",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số bị trừ phải lớn hơn hiệu, mà 40 − 15 nhỏ hơn 40."
+          },
+          {
+            "optionId": "c",
+            "text": "15 nhỏ hơn 40 nên không trừ được 15 − 40."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-tru-1",
@@ -3674,7 +4132,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-find-tru-29-40",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-find-tru-46-35"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ: x = 35 + 46 = 81. Kiểm tra: 81 − 46 = 35.",
+        "tex": "x - 46 = 35, \\quad x = 35 + 46 = 81"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-tru-2",
@@ -3705,7 +4167,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn tìm số bị trừ chưa biết, lấy hiệu cộng số trừ: x = 27 + 58 = 85. Kiểm tra: 85 − 58 = 27.",
+        "tex": "x - 58 = 27, \\quad x = 27 + 58 = 85"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-tru-tien",
@@ -3732,7 +4198,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số tiền lúc đầu trừ 35 nghìn đồng thì còn 40 nghìn đồng, nên số tiền lúc đầu là số bị trừ chưa biết. Lấy hiệu cộng số trừ: 40 + 35 = 75.",
+        "tex": "x - 35 = 40, \\quad x = 40 + 35 = 75"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.sap-buoc-tim-x-tru",
@@ -3779,7 +4249,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Bước đầu là chép lại đề bài. Số bị trừ chưa biết bằng hiệu cộng số trừ, nên viết x = 25 + 30 rồi mới tính ra 55.",
+        "tex": "\\begin{aligned} x - 30 &= 25 \\\\ x &= 25 + 30 \\\\ x &= 55 \\end{aligned}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tim-so-tru",
@@ -3828,7 +4302,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu. Số bị trừ là 72, hiệu là 45, nên x = 72 − 45.",
+        "tex": "72 - x = 45, \\quad x = 72 - 45",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "72 + 45 cho số lớn hơn 72, trong khi số trừ nhỏ hơn số bị trừ."
+          },
+          {
+            "optionId": "c",
+            "text": "45 nhỏ hơn 72 nên không trừ được 45 − 72."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-so-tru-1",
@@ -3861,7 +4349,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-find-so-tru-70-30",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-find-so-tru-92-47"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu: x = 92 − 47 = 45. Kiểm tra: 92 − 45 = 47.",
+        "tex": "92 - x = 47, \\quad x = 92 - 47 = 45"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-so-tru-2",
@@ -3892,7 +4384,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn tìm số trừ chưa biết, lấy số bị trừ trừ đi hiệu: x = 85 − 36 = 49. Kiểm tra: 85 − 49 = 36.",
+        "tex": "85 - x = 36, \\quad x = 85 - 36 = 49"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-x-so-tru-tien",
@@ -3919,7 +4415,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Số tiền An mua quà là số trừ chưa biết. Lấy số bị trừ trừ đi hiệu: 70 − 28 = 42.",
+        "tex": "70 - x = 28, \\quad x = 70 - 28 = 42"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-x-bang-25",
@@ -3971,7 +4471,17 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Giải từng đẳng thức bằng quy tắc tìm số hạng, số bị trừ, số trừ. Ba đẳng thức a, b, c đều cho x = 25.",
+        "tex": "\\begin{aligned} x + 15 = 40 &\\Rightarrow x = 40 - 15 = 25 \\\\ x - 10 = 15 &\\Rightarrow x = 15 + 10 = 25 \\\\ 60 - x = 35 &\\Rightarrow x = 60 - 35 = 25 \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "x + 15 = 45 thì x = 45 − 15 = 30, không phải 25."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-cap-day-so",
@@ -4026,7 +4536,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Các số cách đều thì ghép số đầu với số cuối. Số đầu 12 và số cuối 20 có tổng 12 + 20 = 32.",
+        "tex": "12 + 20 = 14 + 18 = 32",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "30 là 14 + 16, hai số liền nhau, không phải số đầu và số cuối."
+          },
+          {
+            "optionId": "d",
+            "text": "28 là 12 + 16, không phải số đầu và số cuối."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-day-so-1",
@@ -4059,7 +4583,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-regroup-day-21-27",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-regroup-day-11-17"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ghép số đầu với số cuối: 11 + 17 = 28, rồi cặp kế tiếp 13 + 15 = 28. Hai cặp cùng tổng 28, nên tổng cả dãy là 28 + 28 = 56.",
+        "tex": "(11 + 17) + (13 + 15) = 28 + 28 = 56"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-day-so-2",
@@ -4090,7 +4618,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ghép số đầu với số cuối: 20 + 26 = 46, rồi cặp kế tiếp 22 + 24 = 46. Hai cặp cùng tổng 46, nên tổng cả dãy là 46 + 46 = 92.",
+        "tex": "(20 + 26) + (22 + 24) = 46 + 46 = 92"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-cap-day-so-2",
@@ -4145,7 +4677,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Ghép số đầu với số cuối, rồi đến cặp kế tiếp: mỗi cặp có cùng tổng. Vậy 30 + 38 = 68 và 32 + 36 = 68.",
+        "tex": "30 + 38 = 32 + 36 = 68",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "34 + 38 = 72, lớn hơn 68."
+          },
+          {
+            "optionId": "d",
+            "text": "30 + 36 = 66, nhỏ hơn 68."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.sap-day-so",
@@ -4192,7 +4738,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ghép số đầu với số cuối là 14 + 20, rồi cặp kế tiếp là 16 + 18. Hai cặp cùng tổng 34, nên tính 34 + 34 = 68.",
+        "tex": "\\begin{aligned} (14 + 20) + (16 + 18) \\\\ 34 + 34 \\\\ 68 \\end{aligned}"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-chu-so-cuoi",
@@ -4256,7 +4806,21 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Chỉ cần cộng các chữ số hàng đơn vị của các số hạng: 7 + 8 + 6 = 21. Chữ số cuối của 21 là 1, nên chữ số cuối của tổng là 1.",
+        "tex": "7 + 8 + 6 = 21",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 là chữ số hàng chục của 28, không phải chữ số hàng đơn vị."
+          },
+          {
+            "optionId": "c",
+            "text": "7 chỉ là chữ số cuối của số hạng đầu, chưa cộng cả ba số."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chu-so-cuoi-1",
@@ -4295,7 +4859,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng các chữ số hàng đơn vị của các số hạng: 4 + 7 + 8 = 19. Chữ số cuối của 19 là 9, nên chữ số cuối của tổng là 9.",
+        "tex": "4 + 7 + 8 = 19"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-tong-sai",
@@ -4351,6 +4919,16 @@
       "check": {
         "expr": "110",
         "relation": "notEqual"
+      },
+      "explain": {
+        "text": "Chữ số cuối của tổng bằng chữ số cuối của 5 + 8 + 7 = 20, tức là 0. Kết quả nào không tận cùng bằng 0 thì chắc chắn sai: 124, 115 và 118.",
+        "tex": "5 + 8 + 7 = 20",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "110 tận cùng bằng 0, khớp với chữ số cuối cần có, nên không bị loại."
+          }
+        ]
       }
     },
     {
@@ -4390,7 +4968,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng các chữ số hàng đơn vị của các số hạng: 6 + 9 + 5 = 20. Chữ số cuối của 20 là 0, nên chữ số cuối của tổng là 0.",
+        "tex": "6 + 9 + 5 = 20"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-chu-so-cuoi-3",
@@ -4454,7 +5036,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng các chữ số hàng đơn vị của các số hạng: 2 + 9 + 4 = 15. Chữ số cuối của 15 là 5, nên chữ số cuối của tổng là 5.",
+        "tex": "2 + 9 + 4 = 15",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "4 chỉ là chữ số cuối của số hạng thứ ba, chưa cộng cả ba số."
+          },
+          {
+            "optionId": "c",
+            "text": "9 chỉ là chữ số cuối của số hạng thứ hai, chưa cộng cả ba số."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-uoc-luong-kt",
@@ -4509,6 +5105,16 @@
       "difficulty": 1,
       "check": {
         "relation": "max"
+      },
+      "explain": {
+        "text": "Bốn số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn 4 trăm, tức là nhỏ hơn 400. Chỉ 450 lớn hơn 400 nên chắc chắn sai.",
+        "tex": "4 \\cdot 100 = 400",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "380 nhỏ hơn 400 nên ước lượng chưa loại được nó."
+          }
+        ]
       }
     },
     {
@@ -4561,7 +5167,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Năm số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn 5 trăm, tức là nhỏ hơn 500. 560 lớn hơn 500 nên kết quả này sai.",
+        "tex": "5 \\cdot 100 = 500",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đúng hay sai không phụ thuộc số lớn hay nhỏ, mà do so với 500."
+          },
+          {
+            "optionId": "d",
+            "text": "Có năm số hạng nên tổng nhỏ hơn 500, mà 560 lớn hơn 500."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-uoc-luong-2",
@@ -4613,7 +5233,17 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba số hạng, mỗi số nhỏ hơn 50, thì tổng nhỏ hơn 3 lần 50, tức là nhỏ hơn 150. Trong các số đã cho, chỉ 140 nhỏ hơn 150.",
+        "tex": "3 \\cdot 50 = 150",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "160 lớn hơn 150 nên chắc chắn sai."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.dien-uoc-luong",
@@ -4649,7 +5279,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Mỗi số hạng nhỏ hơn 100, nên bốn số hạng cộng lại nhỏ hơn 4 trăm, tức là 400. Có mấy số hạng thì tổng nhỏ hơn bấy nhiêu trăm.",
+        "tex": "4 \\cdot 100 = 400"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tong-thoi-gian-kt",
@@ -4676,7 +5310,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Các đoạn đường nối tiếp nhau nên cộng thời gian của cả ba đoạn. Nhóm hai đoạn đi bộ: 6 + 6 = 12, rồi 12 + 18 = 30 phút.",
+        "tex": "6 + 18 + 6 = 30"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-gio-xuat-phat",
@@ -4705,7 +5343,11 @@
         "hintVisualId": "phep-cong-phep-tru.visual.hint-gio-70-25",
         "solutionVisualId": "phep-cong-phep-tru.visual.giai-gio-80-35"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng thời gian đi đường trước: 10 + 25 = 35 phút. 8 giờ 20 phút là 7 giờ 80 phút, nên 80 − 35 = 45, Hà ra khỏi nhà lúc 7 giờ 45 phút.",
+        "tex": "80 - (10 + 25) = 45"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tinh-tong-thoi-gian-2",
@@ -4732,7 +5374,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng thời gian của cả bốn đoạn. Ghép cho tròn chục: 9 + 21 = 30 và 5 + 5 = 10, rồi 30 + 10 = 40 phút.",
+        "tex": "9 + 5 + 21 + 5 = \\concept{lime}{(9 + 21)} + \\concept{lime}{(5 + 5)} = 40"
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.chon-gio-di",
@@ -4787,7 +5433,17 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường đi mất 28 phút nên giờ ra khỏi nhà là 75 phút trừ đi 28 phút. 75 − 28 = 47, tức là ra khỏi nhà lúc 7 giờ 47 phút.",
+        "tex": "75 - 28 = 47",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "103 là 75 + 28, nhưng ra khỏi nhà phải sớm hơn giờ vào học nên dùng phép trừ."
+          }
+        ]
+      }
     },
     {
       "id": "phep-cong-phep-tru.ex.tim-gio-hai-buoc",
@@ -4814,7 +5470,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Đi bộ và đi xe mất 7 + 18 = 25 phút. Lớp vào học lúc 6 giờ 65 phút, nên 65 − 25 = 40, Lan ra khỏi nhà lúc 6 giờ 40 phút.",
+        "tex": "65 - (7 + 18) = 40"
+      }
     }
   ],
   "sticker": {
