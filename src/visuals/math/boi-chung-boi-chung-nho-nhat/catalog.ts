@@ -707,18 +707,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     cards: [
       {
         color: "amber",
-        heading: "Chia đều",
+        heading: "Chia đều: tìm ƯCLN",
         story:
           "Chia 12 quả cam và 18 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau.",
-        tool: "Số đĩa là ước của 12 và 18: tìm ƯCLN.",
         result: "ƯCLN(12, 18) = 6",
       },
       {
         color: "pink",
-        heading: "Lặp lại",
+        heading: "Lặp lại: tìm BCNN",
         story:
-          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần, cùng rời bến lúc 0 phút.",
-        tool: "Lúc hai xe cùng rời bến là bội của 12 và 18: tìm BCNN.",
+          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần. Hỏi lúc hai xe cùng rời bến lần nữa.",
         result: "BCNN(12, 18) = 36",
       },
     ],
@@ -730,18 +728,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     cards: [
       {
         color: "amber",
-        heading: "Chia đều",
+        heading: "Chia đều: tìm ƯCLN",
         story:
           "Chia 12 quả cam và 18 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau.",
-        tool: "Số đĩa là ước của 12 và 18: tìm ƯCLN.",
         result: "ƯCLN(12, 18) = 6",
       },
       {
         color: "pink",
-        heading: "Lặp lại",
+        heading: "Lặp lại: tìm BCNN",
         story:
-          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần, cùng rời bến lúc 0 phút.",
-        tool: "Lúc hai xe cùng rời bến là bội của 12 và 18: tìm BCNN.",
+          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần. Hỏi lúc hai xe cùng rời bến lần nữa.",
         result: "BCNN(12, 18) = 36",
       },
     ],
