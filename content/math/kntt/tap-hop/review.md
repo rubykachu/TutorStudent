@@ -1,17 +1,18 @@
 # Review: Tập hợp (`tap-hop`)
 
 - Bài: `content/math/kntt/tap-hop/lesson.json`
-- Vòng: 8 - chỉ phần đổi (`pnpm content:diff tap-hop --root content`), phần đổi: `guide: tapRegion` và `guide: fillBlankBank` trên hai màn của `tap-hop.section.thao-tac`; `rule: true` trên note của `tap-hop.section.liet-ke`
-- Nguồn đã đọc: `sources/math/tap-hop/` - không mở lại; chữ hiển thị không đổi
-- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 7 cảnh báo `[guides]` (match, manipulate, order)
-- `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
-- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng trước)
-- Bản đã review: `3419644f8022f8d283885510f6084bd61d9e04ad526e87128c142780327302fe` (`pnpm content:diff` so với bản này)
+- Vòng: 9 - chỉ phần đổi (`pnpm content:diff tap-hop --root content`), section: `tap-hop.section.dau-hieu-dac-trung`, `tap-hop.section.dau-cham-phay`
+- Nguồn đã đọc: `sources/math/tap-hop/` - không có trên máy này; phần đổi chỉ là chữ diễn đạt, đối chiếu với note, recap, glossary và mã visual
+- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 8 cảnh báo `[guides]` có từ trước (match, manipulate, order)
+- `lesson:walk`: không chạy (vòng này chỉ đổi chữ, không đổi hình, không đổi đáp án)
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng 8)
+- Bản đã review: `f748b612d68bf94eb31fdf7ebaaf7e173605358b9ef5887be54d4c3938f8f957` (`pnpm content:diff` so với bản này)
 
-Đã soát đạt:
-- `guide: tapRegion` (blocks[0]): note "Bài tập chạm vùng... chạm lần nữa để bỏ chọn, bấm Kiểm tra" và visual `huong-dan-cham` dạy đúng thao tác chạm vùng. `guide: fillBlankBank` (blocks[1]): note "chạm một thẻ ở dưới, rồi chạm ô trống" và visual `huong-dan-chip` dạy điền từ ngân hàng thẻ.
-- `rule: true` trên note của `liet-ke`: câu "Liệt kê là viết hết các phần tử trong hai ngoặc nhọn, giữa hai phần tử có dấu chấm phẩy. Mỗi phần tử chỉ viết một lần." trùng từng chữ với recap section và recap card `liet-ke`.
-- Cảnh báo `[guides]` về match, manipulate, order là khoảng trống có từ trước, không thuộc diff này.
+Đã soát đạt (4 mục trong diff, 2 section):
+- `kt-dau-giua`: "số áo ba, tám và mười" bỏ được chuỗi "3, 8 và 10" dễ lẫn với dấu phẩy `phay` trong ô chọn; đề vẫn một cách hiểu (dấu viết giữa hai số). Visual `cham-dau-giua` chỉ vẽ các thẻ dấu, không in số nên không lệch chữ; đáp án `cham-phay` và nấc 1 (`block`) không đổi, không lộ đáp án. Số áo viết bằng chữ không làm trái luật định dạng số của `content:check`.
+- Định nghĩa dấu hiệu đặc trưng "phần tử nào cũng có, còn những thứ khác thì không có" giống nhau từng chữ ở note, recap section và recap card `dau-hieu`; cách nói này đúng cả với tập không phải số. Note này không đặt `rule: true` nên không buộc recap nhắc nguyên văn, nhưng ba chỗ vẫn khớp. Hai vế "phần tử nào cũng có" và "thứ khác thì không có" không phủ định kép.
+- "Nó được viết sau vạch đứng |" ở recap section và recap card khớp note ("phần sau vạch đứng | là dấu hiệu đó"); visual `dau-hieu-vi-du`, `doc-dau-hieu`, `the-dau-hieu` (`set-property.tsx`) chỉ dùng "dấu hiệu đặc trưng", "vạch đứng", không còn chữ "số khác" nào lệch. Kịch bản video không chứa câu định nghĩa cũ.
+- Các mục còn lại của hai section không bị bản sửa làm hỏng: `kt-cham-dau-hieu` (chạm `dau-hieu`, đề nói "số áo" của tập A, không dùng chữ đã đổi), `liet-ke-tu-dau-hieu` (đáp án a duy nhất, nhiễu loại bỏ 0 hay thêm 4), `chon-viet-dung` (đáp án a duy nhất), note và visual `dau-cham-phay`. `content:check` không báo `[length]`, `[recap]`, `[rule-sentence]`, `[vietnamese]` cho bài.
 
 ## Nghiêm trọng
 

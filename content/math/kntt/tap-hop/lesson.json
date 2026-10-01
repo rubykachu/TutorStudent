@@ -12,7 +12,7 @@
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "3419644f8022f8d283885510f6084bd61d9e04ad526e87128c142780327302fe",
+  "reviewedHash": "f748b612d68bf94eb31fdf7ebaaf7e173605358b9ef5887be54d4c3938f8f957",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",
@@ -386,7 +386,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có thể mô tả tập hợp bằng dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Viết E = {x | x là số tự nhiên lớn hơn 2 và nhỏ hơn 6}, phần sau vạch đứng | là dấu hiệu đó."
+              "text": "Có thể mô tả tập hợp bằng dấu hiệu đặc trưng: phần tử nào cũng có, còn những thứ khác thì không có. Viết E = {x | x là số tự nhiên lớn hơn 2 và nhỏ hơn 6}, phần sau vạch đứng | là dấu hiệu đó."
             },
             {
               "type": "visual",
@@ -405,7 +405,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-dau-hieu",
-        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Nó viết sau vạch đứng | trong ngoặc nhọn."
+        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, còn những thứ khác thì không có. Nó được viết sau vạch đứng | trong ngoặc nhọn."
       }
     },
     {
@@ -540,7 +540,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop.visual.the-dau-hieu",
-        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, số khác thì không có. Nó viết sau vạch đứng | trong ngoặc nhọn."
+        "caption": "Dấu hiệu đặc trưng: phần tử nào cũng có, còn những thứ khác thì không có. Nó được viết sau vạch đứng | trong ngoặc nhọn."
       }
     },
     {
@@ -1258,7 +1258,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ba bạn đeo số áo 3, 8 và 10. Khi ghi tập hợp các số áo, chạm vào dấu viết giữa hai số."
+          "text": "Ba bạn đeo số áo ba, tám và mười. Khi ghi tập hợp các số áo, chạm vào dấu viết giữa hai số."
         }
       ],
       "hints": {

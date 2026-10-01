@@ -12,9 +12,9 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| tap-hop#1 | Recap xét thuộc "Có trong A thì x ∈ A, không có thì x ∉ A." ngắt "A." xuống dòng riêng trên điện thoại | sửa: khoảng trắng không ngắt giữa kí hiệu và tên tập hợp | |
-| tap-hop#2 | `kt-dau-giua`: "3, 8 và 10" có dấu phẩy ngay trong câu hỏi về dấu viết giữa hai số | sửa | |
-| tap-hop#3 | Định nghĩa dấu hiệu đặc trưng nói "số khác", chỉ hợp với tập số; "Nó viết sau" thiếu "được" | sửa (note, caption section và recap card) | |
+| tap-hop#1 | Recap xét thuộc "Có trong A thì x ∈ A, không có thì x ∉ A." ngắt "A." xuống dòng riêng trên điện thoại | đã sửa từ trước: kí hiệu và tên tập hợp đã nối bằng khoảng trắng không ngắt, không làm gì thêm | đã xong từ trước |
+| tap-hop#2 | `kt-dau-giua`: "3, 8 và 10" có dấu phẩy ngay trong câu hỏi về dấu viết giữa hai số | sửa |  đã sửa, review vòng 9 đạt, đã duyệt |
+| tap-hop#3 | Định nghĩa dấu hiệu đặc trưng nói "số khác", chỉ hợp với tập số; "Nó viết sau" thiếu "được" | sửa (note, caption section và recap card) |  đã sửa, review vòng 9 đạt, đã duyệt |
 | tap-hop#4 | Hình `cham-dau-hieu` trên iPad tách tập hợp thành hai dòng, dồn trái | bỏ: lỗi bố cục theo thiết bị, cần chỉnh và xem ảnh iPad riêng | |
 | tap-hop#5 | Mục "Chú ý" (kí hiệu ℕ, viết gọn {x ∈ ℕ \| …}) chưa có trong bài | bỏ: nội dung mới cần cách đọc, ví dụ và câu luyện | |
 | tap-hop#6 | Bài 1.6, 1.7 của sách chưa lấy (phân số, 2k + 1) | bỏ: chương chưa dạy phân số, 2k + 1 cần biến k | |
@@ -103,7 +103,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 |---|---|---|---|
 | so-nguyen-to#1 | Màn chạm `chon-nt-bang` (section 4) trùng bốn số và đáp án 23, 29 với `chon-nt-2-7` | sửa: 33, 37, 39, 45, 49, 73 (đáp án 37, 73) | |
 | so-nguyen-to#2 | `viet-28` có hai so sánh ("ít hơn" và "ít nhất") trong một câu hỏi | sửa phần chữ; giữ số 28 (id đã khoá, 28 còn ở `cay-thieu-28`, không đổi được id) | |
-| so-nguyen-to#3 | Caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám, hình không có hàng | sửa: thêm hàng `80 ⋮ 2` vào hình | |
+| so-nguyen-to#3 | Caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám, hình không có hàng | bỏ: hình là một chuỗi suy luận về số 65, thêm hàng 80 làm loãng chuỗi; dấu hiệu chia hết cho 2 đã học ở Bài 9 và reviewer xếp Góp ý | |
 | so-nguyen-to#4 | Note ngoại lệ (77) đứng trước hình 51 mà hai thứ không nối nhau | sửa | |
 | so-nguyen-to#5 | `bang-100` trên iPad ngang: chữ khoảng 14,5px, dấu ✚ khoảng 5px do `max-h-[32vh]` | bỏ: nâng giới hạn có thể che dòng "Số 1", cần thử trên iPad; nút "Bảng số nguyên tố" dùng chung đã ở backlog app | |
 | so-nguyen-to#6 | Video: 2 giây màn trống ở `phan-tich`, "4 bằng 2 nhân 2" chưa nói hợp số; chưa có video phần 7 và 10 đến 12 | bỏ: video | |
