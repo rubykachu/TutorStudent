@@ -17,7 +17,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 8 `quan-he-chia-het-va-tinh-chat` | published (reviewed in 5 rounds, 01/10/2026; handover [`lesson-quan-he-chia-het-va-tinh-chat/task.md`](lesson-quan-he-chia-het-va-tinh-chat/task.md)) | done (voice Mỹ Duyên, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: no videos yet for the difference and later sections, `hieu-*` colour and `nhom-so-hang` example notes, caption wording of `tong-12-18-6`) |
 | Toán | Bài 9 `dau-hieu-chia-het` (SBT print pages 33–34, solutions 105–106) | published (reviewed in 4 rounds, 01/10/2026, ids locked; handover [`lesson-dau-hieu-chia-het/task.md`](lesson-dau-hieu-chia-het/task.md)) | done (voice Hải Đăng, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: 5 non-blocking Góp ý in `review.md`, owner to listen to one `tim-chu-so` sentence) |
 | Toán | Bài 10 `so-nguyen-to` (SBT print pages 35–37, solutions 106–107) | draft, being authored (handover [`lesson-so-nguyen-to/task.md`](lesson-so-nguyen-to/task.md)) | not done |
-| Toán | Bài 11 (SBT print page 38) | not started | not done |
+| Toán | Bài 11 `uoc-chung-uoc-chung-lon-nhat` (SBT print pages 38–40, solutions 107–108) | draft, being authored (handover [`lesson-uoc-chung-uoc-chung-lon-nhat/task.md`](lesson-uoc-chung-uoc-chung-lon-nhat/task.md)) | not done |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
 
