@@ -297,35 +297,6 @@
       "prerequisite": "tiểu học"
     },
     {
-      "term": "chữ số",
-      "forbidden": [],
-      "color": "blue"
-    },
-    {
-      "term": "hàng",
-      "forbidden": [],
-      "color": "violet"
-    },
-    {
-      "term": "giá trị của chữ số",
-      "forbidden": [],
-      "color": "pink"
-    },
-    {
-      "term": "số La Mã",
-      "forbidden": [],
-      "color": "sky"
-    },
-    {
-      "term": "chữ số viết thêm",
-      "forbidden": [],
-      "color": "lime"
-    },
-    {
-      "term": "hệ thập phân",
-      "forbidden": []
-    },
-    {
       "term": "tia số",
       "forbidden": []
     },
