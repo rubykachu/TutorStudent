@@ -13,6 +13,7 @@ Một lựa chọn nhiễu cũng thoả đề, đáp án ghi sai, hoặc bài `o
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 1, `ex.chon-tu-ghep`: "chăm chú" xếp được vào cả từ ghép; vòng 4, `ex.cham-cao-buon`: câu `l40-1` cũng cho thấy cáo buồn.
 - `phep-nhan-phep-chia` vòng 2, `ex.dien-7-9`: lần sửa vòng 1 đảo đề `7 · 9 = 9 · ___` thành `9 · 7 = 7 · ___` nhưng giữ `accept: ["7"]`, nên đáp án đúng 9 bị chấm sai; lời giải của chính câu ra 9. `fillBlank` Toán không có `check`, máy không bắt.
 - `phep-nhan-phep-chia` vòng 3, `ex.chon-tich-rieng-2`: nhiễu mới "Viết 1 920, thẳng cột với tích riêng thứ nhất" chính là cách viết 0 mờ mà note và hình mẫu vừa dạy, nên trùng đáp án đúng.
+- `dau-hieu-chia-het` vòng 1, `ex.xep-1530`, `ex.xep-tong-3410`: bài `order` có các bước độc lập (xét chia hết cho 5 và xét chia hết cho 3; xét từng số hạng của tổng), đổi chỗ vẫn đúng mà chỉ chấm một thứ tự; `xep-1530` còn ngược với thứ tự đề nêu ("cả 3 và 5"). Mỗi bước của bài `order` phải dùng kết quả của bước trước; bước nào không dùng thì gộp vào bước khác hoặc đổi dạng bài.
 
 ## Nguyên nhân gốc
 

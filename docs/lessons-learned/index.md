@@ -37,7 +37,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 01/10/2026 của 7 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 01/10/2026 của 8 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
@@ -53,15 +53,15 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-11 | 4 | 4 | 7 | 15 |
 | LL-06 | 0 | 11 | 2 | 13 |
 | LL-02 | 3 | 4 | 5 | 12 |
-| LL-01 | 10 | 1 | 0 | 11 |
+| LL-01 | 12 | 1 | 0 | 13 |
 | LL-03 | 2 | 6 | 2 | 10 |
-| LL-17 | 9 | 3 | 3 | 15 |
+| LL-17 | 12 | 3 | 3 | 18 |
 | LL-04 | 0 | 5 | 2 | 7 |
 | LL-18 | 0 | 3 | 1 | 4 |
 | LL-08 | 4 | 0 | 1 | 5 |
 | LL-13 | 0 | 1 | 0 | 1 |
 
-LL-01 ít lần nhưng nhiều Nghiêm trọng nhất, kế đến LL-17; LL-10, LL-19, LL-07, LL-12 gặp nhiều nhất.
+LL-01 và LL-17 ít lần nhưng nhiều Nghiêm trọng nhất; LL-10, LL-19, LL-07, LL-12 gặp nhiều nhất.
 
 ## Lỗi Nghiêm trọng ở vòng 1 theo bài
 
@@ -76,3 +76,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-cong-phep-tru` | Toán | 3 | 4 (vòng 2 có 3, vòng 3 có 1) | 4 |
 | `phep-nhan-phep-chia` | Toán | 4 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
 | `quan-he-chia-het-va-tinh-chat` | Toán | 8 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
+| `dau-hieu-chia-het` | Toán | 5 | chưa | 1 |
