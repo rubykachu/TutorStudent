@@ -208,15 +208,18 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "cong-ngoac-vi-du": rows("Ngoặc có dấu + đứng trước: các dấu giữ nguyên", [
     {
-      tex: `5 + ${inside([3, -2])} = 5\\ ${sg(3)}\\ ${sg(-2)}`,
+      tex: steps(`5 + ${inside([3, -2])}`, `= 5\\ ${sg(3)}\\ ${sg(-2)}`),
       tag: tag("+3 và −2 giữ nguyên", NOTE),
     },
     {
-      tex: `7 + ${inside([-4, 1])} = 7\\ ${sg(-4)}\\ ${sg(1)}`,
+      tex: steps(`7 + ${inside([-4, 1])}`, `= 7\\ ${sg(-4)}\\ ${sg(1)}`),
       tag: tag("−4 và +1 giữ nguyên", NOTE),
     },
     {
-      tex: `10 + ${inside([6, -9, 2])} = 10\\ ${sg(6)}\\ ${sg(-9)}\\ ${sg(2)}`,
+      tex: steps(
+        `10 + ${inside([6, -9, 2])}`,
+        `= 10\\ ${sg(6)}\\ ${sg(-9)}\\ ${sg(2)}`,
+      ),
       tag: tag("cả ba số giữ nguyên", NOTE),
     },
   ]),
@@ -247,15 +250,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "tru-ngoac-vi-du": rows("Ngoặc có dấu − đứng trước: mọi số hạng đổi dấu", [
     {
-      tex: `9 - ${inside([4, 3])} = 9\\ ${flipped([4, 3])}`,
+      tex: steps(`9 - ${inside([4, 3])}`, `= 9\\ ${flipped([4, 3])}`),
       tag: tag("+4 thành −4, +3 thành −3", NOTE),
     },
     {
-      tex: `7 - ${inside([2, 1, 3])} = 7\\ ${flipped([2, 1, 3])}`,
+      tex: steps(`7 - ${inside([2, 1, 3])}`, `= 7\\ ${flipped([2, 1, 3])}`),
       tag: tag("cả ba số đổi thành âm", NOTE),
     },
     {
-      tex: `10 - ${inside([5, 5])} = 10\\ ${flipped([5, 5])}`,
+      tex: steps(`10 - ${inside([5, 5])}`, `= 10\\ ${flipped([5, 5])}`),
       tag: tag("hai số đổi thành âm", NOTE),
     },
   ]),
@@ -293,15 +296,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "tru-so-am-vi-du": rows("Số hạng âm trong ngoặc đổi thành số hạng dương", [
     {
-      tex: `8 - ${inside([6, -2])} = 8\\ ${flipped([6, -2])}`,
+      tex: steps(`8 - ${inside([6, -2])}`, `= 8\\ ${flipped([6, -2])}`),
       tag: tag("+6 thành −6, −2 thành +2", NOTE),
     },
     {
-      tex: `9 - ${inside([-4, 1])} = 9\\ ${flipped([-4, 1])}`,
+      tex: steps(`9 - ${inside([-4, 1])}`, `= 9\\ ${flipped([-4, 1])}`),
       tag: tag("−4 thành +4, +1 thành −1", NOTE),
     },
     {
-      tex: `12 - ${inside([-3, -5])} = 12\\ ${flipped([-3, -5])}`,
+      tex: steps(`12 - ${inside([-3, -5])}`, `= 12\\ ${flipped([-3, -5])}`),
       tag: tag("cả hai số âm thành dương", NOTE),
     },
   ]),
@@ -562,7 +565,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "goi-y-tong-hop": lines(
     "Bỏ ngoặc rồi nhóm các số hạng",
     [
-      { tex: "(-2) + (9 - 4) - (1 - 5 + 2)" },
+      { tex: steps("(-2) + (9 - 4)", "- (1 - 5 + 2)") },
       { tex: "= -2 + 9 - 4 - 1 + 5 - 2", tag: tag("bỏ ngoặc", NOTE) },
       { tex: "= 5" },
     ],

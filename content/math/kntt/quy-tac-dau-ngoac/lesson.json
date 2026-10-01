@@ -3298,6 +3298,60 @@
       }
     },
     {
+      "id": "quy-tac-dau-ngoac.ex.xep-gia-tri-bo-ngoac",
+      "type": "order",
+      "cardIds": ["quy-tac-dau-ngoac.card.tinh-hop-li"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc, tính rồi xếp các tổng sau từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc rồi tính từng tổng: 9 − (4 + 8) = −3, 4 − (9 − 3) = −2, 7 − (2 + 3) = 2 và 6 − (−1) = 7. Xếp từ bé đến lớn là −3, −2, 2, 7.",
+        "tex": "-3 < -2 < 2 < 7"
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "formula",
+            "tex": "9 - (4 + 8)"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "formula",
+            "tex": "4 - (9 - 3)"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "formula",
+            "tex": "7 - (2 + 3)"
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "formula",
+            "tex": "6 - (-1)"
+          }
+        }
+      ]
+    },
+    {
       "id": "quy-tac-dau-ngoac.ex.chon-bang-0",
       "type": "choice",
       "cardIds": ["quy-tac-dau-ngoac.card.tinh-hop-li"],
