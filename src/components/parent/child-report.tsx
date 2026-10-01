@@ -2,7 +2,7 @@
 
 import { useLiveQuery } from "dexie-react-hooks";
 import { Circle, CircleCheck, Download, Flame } from "lucide-react";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useCallback, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { Formula } from "@/components/blocks/formula";
 import { Sticker } from "@/components/sticker";
@@ -26,6 +26,7 @@ import {
   cardConceptNames,
   type DayStudy,
   type ForgettingCard,
+  lessonHasProgress,
   lessonIdOfContentId,
   lessonSections,
   promptSummary,
@@ -47,6 +48,7 @@ import {
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
 } from "./format";
+import { ResetLessonDialog } from "./reset-lesson-dialog";
 
 const CARD = "flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-card md:p-6";
 
@@ -180,6 +182,8 @@ function Stat({
 // ---------------------------------------------------------------------------
 // Lessons
 
+type LessonIndexRow = { id: string; title: string };
+
 function LessonsProgress({
   index,
   profile,
@@ -189,6 +193,9 @@ function LessonsProgress({
   profile: ProfileRecord;
   data: ParentData;
 }) {
+  const [resetting, setResetting] = useState<LessonIndexRow | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
+  const closeReset = useCallback(() => setResetting(null), []);
   const subjects = index.subjects
     .map((subject) => ({
       subject,
@@ -201,6 +208,14 @@ function LessonsProgress({
     .filter((s) => s.rows.length > 0);
   return (
     <Panel label="Tiến độ bài học" title="Tiến độ bài học">
+      {notice && (
+        <p
+          role="status"
+          className="rounded-sm bg-muted px-3 py-2 font-semibold"
+        >
+          {notice}
+        </p>
+      )}
       {subjects.length === 0 && <Empty>Chưa có bài học nào.</Empty>}
       {subjects.map(({ subject, rows }) => (
         <div key={subject.id} className="flex flex-col gap-3">
@@ -215,7 +230,8 @@ function LessonsProgress({
                 <Sticker
                   visualId={lesson.sticker.visualId}
                   name={lesson.sticker.name}
-                  done={done}
+                  // A kept sticker stays in colour after a reset.
+                  done={sticker ? total : done}
                   total={total}
                   className="size-12 shrink-0"
                 />
@@ -238,12 +254,39 @@ function LessonsProgress({
                       {sticker ? " · có sticker" : ""}
                     </span>
                   </div>
+                  {lessonHasProgress(lesson.id, data) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setNotice(null);
+                        setResetting({ id: lesson.id, title: lesson.title });
+                      }}
+                      className="flex min-h-12 items-center self-start rounded-sm px-1 font-semibold text-destructive underline underline-offset-4"
+                    >
+                      Học lại bài này
+                    </button>
+                  )}
                 </div>
               </li>
             ))}
           </ul>
         </div>
       ))}
+      {resetting && (
+        <ResetLessonDialog
+          childId={profile.id}
+          childName={profile.name}
+          lessonId={resetting.id}
+          lessonTitle={resetting.title}
+          onClose={closeReset}
+          onDone={() => {
+            setNotice(
+              `Đã cho ${profile.name} học lại bài “${resetting.title}”. Sticker vẫn được giữ.`,
+            );
+            setResetting(null);
+          }}
+        />
+      )}
     </Panel>
   );
 }
