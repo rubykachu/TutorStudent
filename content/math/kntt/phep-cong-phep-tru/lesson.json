@@ -1197,7 +1197,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Kết quả của phép cộng là tổng. Trong phép cộng này, tổng là số đứng sau dấu bằng.",
+        "text": "Kết quả của phép cộng là tổng, nên tổng ở đây là 23. Hai số được cộng là 16 và 7, gọi là số hạng.",
         "tex": "\\concept{blue}{16} + \\concept{blue}{7} = \\concept{amber}{23}"
       }
     },
@@ -1404,11 +1404,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số trừ là số bớt đi, tức là 9."
+            "text": "9 là số bớt đi nên là số trừ, không phải số bị trừ."
           },
           {
             "optionId": "c",
-            "text": "Hiệu là kết quả của phép trừ, tức là 18."
+            "text": "18 là kết quả của phép trừ nên là hiệu, không phải số bị trừ."
           }
         ]
       }
@@ -2247,7 +2247,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Tổng bằng đúng số hạng đã biết, nghĩa là không thêm gì vào. Số hạng chưa biết là 58 − 58 = 0.",
+        "text": "Tổng bằng đúng số hạng đã biết, nghĩa là không thêm gì vào. Cộng một số với 0 thì được chính số đó, nên số cần tìm là 0.",
         "tex": "58 + 0 = 58"
       }
     },
@@ -2828,7 +2828,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. Phép 50 + 13 thêm 5 bớt 5, phép 43 + 20 bớt 2 thêm 2.",
+        "text": "Thêm vào số hạng này bao nhiêu thì bớt ở số hạng kia bấy nhiêu, tổng không đổi. 50 + 13: 45 thêm 5, 18 bớt 5. 43 + 20: 45 bớt 2, 18 thêm 2.",
         "tex": "45 + 18 = 50 + 13 = 43 + 20 = 63",
         "wrong": [
           {
@@ -3768,7 +3768,7 @@
         "relation": "holds"
       },
       "explain": {
-        "text": "Biết tổng 42 và một số hạng, lấy tổng trừ số hạng đó thì được số hạng còn lại. Vậy 42 − 17 = 25 và 42 − 25 = 17.",
+        "text": "Phép cộng và phép trừ đi ngược nhau. 25 cộng 17 được 42, nên 42 trừ 17 thì về lại 25. 17 cộng 25 được 42, nên 42 trừ 25 thì về lại 17.",
         "tex": "42 - 17 = 25, \\quad 42 - 25 = 17",
         "wrong": [
           {
@@ -4473,7 +4473,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Giải từng đẳng thức bằng quy tắc tìm số hạng, số bị trừ, số trừ. Ba đẳng thức a, b, c đều cho x = 25.",
+        "text": "Giải từng đẳng thức bằng quy tắc tìm số hạng, số bị trừ, số trừ. Ba đẳng thức có x = 25 là x + 15 = 40, x − 10 = 15 và 60 − x = 35.",
         "tex": "\\begin{aligned} x + 15 = 40 &\\Rightarrow x = 40 - 15 = 25 \\\\ x - 10 = 15 &\\Rightarrow x = 15 + 10 = 25 \\\\ 60 - x = 35 &\\Rightarrow x = 60 - 35 = 25 \\end{aligned}",
         "wrong": [
           {
@@ -4741,7 +4741,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Ghép số đầu với số cuối là 14 + 20, rồi cặp kế tiếp là 16 + 18. Hai cặp cùng tổng 34, nên tính 34 + 34 = 68.",
-        "tex": "\\begin{aligned} (14 + 20) + (16 + 18) \\\\ 34 + 34 \\\\ 68 \\end{aligned}"
+        "tex": "\\begin{aligned} 14 + 16 + 18 + 20 &= (14 + 20) + (16 + 18) \\\\ &= 34 + 34 \\\\ &= 68 \\end{aligned}"
       }
     },
     {
@@ -4813,7 +4813,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "2 là chữ số hàng chục của 28, không phải chữ số hàng đơn vị."
+            "text": "2 là chữ số đầu của 21, còn chữ số cuối của 21 mới là 1."
           },
           {
             "optionId": "c",
@@ -4921,12 +4921,12 @@
         "relation": "notEqual"
       },
       "explain": {
-        "text": "Chữ số cuối của tổng bằng chữ số cuối của 5 + 8 + 7 = 20, tức là 0. Kết quả nào không tận cùng bằng 0 thì chắc chắn sai: 124, 115 và 118.",
+        "text": "Chữ số cuối của tổng bằng chữ số cuối của 5 + 8 + 7 = 20, tức là 0. Kết quả nào có chữ số cuối khác 0 thì chắc chắn sai: 124, 115 và 118.",
         "tex": "5 + 8 + 7 = 20",
         "wrong": [
           {
             "optionId": "a",
-            "text": "110 tận cùng bằng 0, khớp với chữ số cuối cần có, nên không bị loại."
+            "text": "110 có chữ số cuối là 0, khớp với chữ số cuối cần có, nên không bị loại."
           }
         ]
       }
@@ -5108,7 +5108,7 @@
       },
       "explain": {
         "text": "Bốn số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn 4 trăm, tức là nhỏ hơn 400. Chỉ 450 lớn hơn 400 nên chắc chắn sai.",
-        "tex": "4 \\cdot 100 = 400",
+        "tex": "100 + 100 + 100 + 100 = 400",
         "wrong": [
           {
             "optionId": "b",
@@ -5170,15 +5170,19 @@
       "difficulty": 2,
       "explain": {
         "text": "Năm số hạng, mỗi số nhỏ hơn 100, thì tổng nhỏ hơn 5 trăm, tức là nhỏ hơn 500. 560 lớn hơn 500 nên kết quả này sai.",
-        "tex": "5 \\cdot 100 = 500",
+        "tex": "100 + 100 + 100 + 100 + 100 = 500",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Đúng hay sai không phụ thuộc số lớn hay nhỏ, mà do so với 500."
+            "text": "560 lớn chưa đủ để kết luận đúng; phải so với 500, mà 560 lớn hơn 500 nên sai."
           },
           {
             "optionId": "d",
             "text": "Có năm số hạng nên tổng nhỏ hơn 500, mà 560 lớn hơn 500."
+          },
+          {
+            "optionId": "c",
+            "text": "Chẵn hay lẻ không quyết định tổng đúng hay sai; 560 sai vì lớn hơn 500."
           }
         ]
       }
@@ -5235,8 +5239,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ba số hạng, mỗi số nhỏ hơn 50, thì tổng nhỏ hơn 3 lần 50, tức là nhỏ hơn 150. Trong các số đã cho, chỉ 140 nhỏ hơn 150.",
-        "tex": "3 \\cdot 50 = 150",
+        "text": "Ba số hạng, mỗi số nhỏ hơn 50, thì tổng nhỏ hơn 50 + 50 + 50 = 150. Trong các số đã cho, chỉ 140 nhỏ hơn 150.",
+        "tex": "50 + 50 + 50 = 150",
         "wrong": [
           {
             "optionId": "c",
@@ -5282,7 +5286,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Mỗi số hạng nhỏ hơn 100, nên bốn số hạng cộng lại nhỏ hơn 4 trăm, tức là 400. Có mấy số hạng thì tổng nhỏ hơn bấy nhiêu trăm.",
-        "tex": "4 \\cdot 100 = 400"
+        "tex": "100 + 100 + 100 + 100 = 400"
       }
     },
     {
@@ -5313,7 +5317,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Các đoạn đường nối tiếp nhau nên cộng thời gian của cả ba đoạn. Nhóm hai đoạn đi bộ: 6 + 6 = 12, rồi 12 + 18 = 30 phút.",
-        "tex": "6 + 18 + 6 = 30"
+        "tex": "6 + 18 + 6 = \\concept{lime}{(6 + 6)} + 18 = 12 + 18 = 30"
       }
     },
     {
