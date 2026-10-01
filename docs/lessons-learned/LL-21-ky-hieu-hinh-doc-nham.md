@@ -7,6 +7,7 @@ Một ký hiệu trang trí hay ký hiệu khái niệm (dấu hình của màu 
 ## Ví dụ thật
 
 - `so-nguyen-to` vòng 1, mọi hình kind `column` (`cot-60`, recap `cot-60-xong`, `cot-thieu-150`, lời giải…): `ConceptMark` màu sky (hình thập) đứng ngay trước mỗi số chia, nên sơ đồ cột hiện "150 | ✚2", "75 | ✚?", đọc thành "+2" trong một sơ đồ của phép chia. Hình cây cùng bài đặt dấu nhỏ ở góc và có chú giải, hình cột thì không. Ảnh walk `phone/081-s7-05-exercise-cot-thieu-150.png`.
+- `on-tap-chuong-2` vòng 2: công thức ví dụ viết "số:" rồi phép tính (`1\,836:\ 1 + 8 = 9 \chiahet 3` ở `tip.chia-het-3`, `2\,133:\ ...` ở `tip.loai-hop-so-nhanh`, `461:\ ...` ở `explain` của `ex.tn2`, `30 < n < 50:\ n = 36,\ 48` ở hình `khoang-bcnn`). KaTeX in ":" có khoảng trắng như phép chia nên đọc thành "1 836 chia 1 cộng 8". Mẫu này do chính câu "Sửa" của review vòng 1 đề xuất. Trong TeX, ":" chỉ dùng cho phép chia; số đang xét và phép tính về nó đặt hai dòng (`gathered`) hoặc nói số trong `text`.
 
 ## Nguyên nhân gốc
 

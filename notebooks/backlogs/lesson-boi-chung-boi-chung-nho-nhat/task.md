@@ -1,10 +1,11 @@
 # Bàn giao: Bài 12 `boi-chung-boi-chung-nho-nhat` (Bội chung. Bội chung nhỏ nhất)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bản nháp hoàn chỉnh (`status: draft`), chưa review, chưa lời đọc tổng quan, chưa video, chưa `content:lock`.
-- 13 section, 13 card, 67 bài tập (6 dạng: `choice`, `numeric`, `fillBlank`, `order`, `match`, `manipulate`), 63 hình, 8 hình tương tác, 6 mẹo. `explain` có ở cả 67 câu (`wrong` cho các nhiễu dễ chọn nhầm).
-- Kiểm: `content:check --stats` 0 lỗi, mọi dòng tiêu chí `PASS`, bài không có cảnh báo `[guides]` (còn đúng một cảnh báo "ids chưa khoá", xoá ở bước `content:lock` sau review); `visual:shot` 126/126; `lesson:walk` 0 failure, 0 warning (điện thoại, iPad dọc, iPad ngang); đã xem sheet hình (điện thoại và iPad) và sheet walk (điện thoại).
-- Việc tiếp theo: review bằng subagent mới (Opus, vòng 1), sửa theo review, `content:hash --approve`, `content:lock`, rồi lời đọc tổng quan và 2–3 video (giọng chưa chọn: Bài 11 là Hải Đăng, Bài 10 là Mỹ Duyên).
+- Cập nhật cuối: 01/10/2026 (dừng giữa chừng vì máy tắt). Bản `draft`, chưa khoá id, chưa lời đọc, chưa video.
+- Review: vòng 1 (8 Nghiêm trọng, 28 Nên sửa, 18 Góp ý) đã sửa hết và commit (`fix(lesson): Bài 12 fixes after review round 1`, kèm sửa `chon-bcnn-nhieu` ngắn lại cho thanh nút không che). Vòng 2 (toàn bài, Opus, 3 reviewer + Tổng hợp) xong: `review.md` hiện là của vòng 2, còn **5 Nghiêm trọng** chưa sửa, 16 Nên sửa, 20 Góp ý; hash đã `--mark`. Không có subagent nào đang chạy.
+- 5 Nghiêm trọng vòng 2 còn phải sửa theo mục "Sửa" của `review.md`: (1) section 13 quy tắc/recap/caption/mẹo `chon-cong-cu` thiếu "nhiều nhất" ở vế ƯCLN; (2) mẹo `boi-so-lon` sai với ba số (viết lại theo "số lớn nhất", ví dụ 8 và 6); (3) câu đầu quy tắc section 9 đứng một mình thành khẳng định sai (gộp một câu 23 âm tiết); (4) màn `gap-rang-6-4` và note bánh răng nói trái nhau ("đã qua n răng" thay bằng "dấu về chỗ cũ sau n răng"); (5) mẹo `chung-rieng` bị cắt "= 36" trên điện thoại.
+- Việc tiếp theo: sửa 5 Nghiêm trọng và các Nên sửa hợp lý bằng một subagent tác giả (Sonnet), commit, rồi vòng 3 chỉ phần đổi (`pnpm content:diff boi-chung-boi-chung-nho-nhat`, một reviewer Sonnet), `lesson:walk` (worktree tạm, `TEST_PORT=3130`, `pnpm install --offline`, symlink `public/media`, xoá sau khi xong). Khi 0 Nghiêm trọng: `pnpm content:hash boi-chung-boi-chung-nho-nhat --approve`, `pnpm content:lock boi-chung-boi-chung-nho-nhat`, gate, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`, rồi cập nhật `notebooks/backlogs/index.md` (Bài 12 published; việc tiếp: lời đọc và video; Ôn tập chương II phải soát lại các câu BCNN theo Bài 12) và tệp này.
+- Số mới ở vòng 1 cần reviewer vòng 3 soát lại: `chon-bc-4-15-nho-hon-200`, `ba-chu-so-7-9`, `dien-bc-56`, `khong-la-bc-4-9`, `dien-bcnn-28`, `hai-chu-so-8-10`, `tim-loi-bcnn-3-4-8`, `chon-dang-24-40`, `hang-2-3-5-du-1`; hình bánh răng mới `gears.tsx`.
 
 ## Nguồn (sách bài tập, `sources/math/boi-chung-boi-chung-nho-nhat/`, không commit)
 - Đề: tr.41–43 in (PDF 42–44), tệp `sbt-p41.png`, `sbt-p42.png`, `sbt-p43.png`. "Ôn tập chương II" bắt đầu ở tr.44.

@@ -13,6 +13,7 @@ Câu quy tắc trên màn, recap của section, recap của card và video dùng
 - `phep-nhan-phep-chia` vòng 1: note section 1 đặt luật "cộng 4 số 6 thì viết là 4 · 6" (số lần đứng trước, ngược quy ước tiểu học 6 × 4), trong khi `ten-goi` viết "2 gói, mỗi gói 25" thành 25 · 2 và các hình đặt tính cũng theo thứ tự ngược lại. Quy ước viết phép nhân a · b phải chốt một lần cho cả bài, kể cả caption và hình.
 - `quan-he-chia-het-va-tinh-chat` vòng 1: sáu quy tắc tính chất gọi số chia theo ba cách ("cho m", "cho một số ... cho số đó", b); `m` chưa từng được giới thiệu mà nằm nguyên trong recap ba card; "một số" vừa là số chia (section `tong-chia-het`) vừa là một số của hiệu (section `hieu-khong-chia-het`, "Một số chia hết cho m, số kia ..."). Cách gọi số chia (chữ đại diện hay lời) phải chốt một lần cho cả bài như quy ước viết phép nhân.
 - `quan-he-chia-het-va-tinh-chat` vòng 2: ví dụ thêm ở vòng 1 "52 quyển vở chia đều cho 4 tổ thì mỗi tổ 13 quyển" đi với hình `52 = 4 · 13` (4 nhóm mỗi nhóm 13 phải viết 13 · 4), trong khi cả bài đặt số chia là cỡ một nhóm. Ví dụ thêm lúc sửa bài cũng phải theo quy ước phép nhân và cùng kiểu chia (theo cỡ nhóm hay theo số nhóm) với phần còn lại.
+- `on-tap-chuong-2` vòng 2, section `so-mu-uclnn-bcnn`: câu nối thêm khi sửa Góp ý vòng 1 "Với mỗi thừa số nguyên tố, số mũ nhỏ nhất trong các số là số mũ trong ƯCLN" bỏ chữ "chung" của quy tắc Bài 11 ngay trên, nên với 12 và 10 bé đưa cả thừa số 5 vào ƯCLN. Câu nói lại quy tắc cho gọn vẫn phải giữ mọi điều kiện của câu gốc.
 
 ## Nguyên nhân gốc
 
