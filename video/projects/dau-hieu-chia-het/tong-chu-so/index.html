@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Cộng các chữ số" (lesson dau-hieu-chia-het): the digit sum
+  of 5 976 is 27, divisible by 9; the digit sum of 2 415 is 12, divisible by
+  3 but not 9. Lesson colour: tổng các chữ số lime (with a plus sign), the
+  lesson's divisibility sign for "chia hết cho". Built by
+  `pnpm video:build dau-hieu-chia-het tong-chu-so`, which injects window.TIMING
+  (scene windows and spoken word times).
+-->
+<html lang="vi">
+  <head>
+    <title>Cộng các chữ số</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tiles { display: flex; gap: 12px; }
+      .dg { display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 120px; border-radius: 20px; background: var(--color-surface); border: 6px solid var(--color-border); font: 800 76px / 1 "Baloo 2", sans-serif; color: var(--color-foreground); }
+      .dg.t { border-color: var(--color-concept-teal); color: var(--color-concept-teal); }
+      .dg.p { border-color: var(--color-concept-pink); color: var(--color-concept-pink); }
+      .dg.l { border-color: var(--color-concept-lime); color: var(--color-foreground); }
+      .dg.q { border-style: dashed; border-color: var(--color-concept-pink); color: var(--color-concept-pink); }
+      .dg.sm { width: 74px; height: 92px; font-size: 56px; border-width: 5px; border-radius: 16px; }
+      .dv { display: inline-block; height: 1em; width: 0.5em; vertical-align: -0.1em; overflow: visible; }
+      .cb { color: var(--color-concept-blue); } .cv { color: var(--color-concept-violet); } .ca { color: var(--color-concept-amber); } .cp { color: var(--color-concept-pink); } .ct { color: var(--color-concept-teal); } .cl { color: var(--color-concept-lime); }
+      .shift { padding-left: 240px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="a1" class="row" style="top: 100px"></div>
+          <div id="a2" class="row" style="top: 270px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="b0" class="row" style="top: 100px"></div>
+          <div id="b1" class="row" style="top: 260px"></div>
+          <div id="b2" class="row" style="top: 100px"></div>
+          <div id="b3" class="row" style="top: 260px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="c0" class="row" style="top: 90px"></div>
+          <div id="c1" class="row" style="top: 220px"></div>
+          <div id="c2" class="row" style="top: 380px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="d1" class="row" style="top: 90px"></div>
+          <div id="d2" class="row" style="top: 230px"></div>
+          <div id="d3" class="row" style="top: 370px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish } = window.LV;
+        // The lesson's sign "chia hết cho": three dots; crossed by a slash when not.
+        const dv = (not) =>
+          `<svg class="dv" viewBox="0 0 30 60"><g fill="currentColor"><circle cx="15" cy="10" r="6"/><circle cx="15" cy="30" r="6"/><circle cx="15" cy="50" r="6"/></g>${not ? '<line x1="0" y1="62" x2="30" y2="-2" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>' : ""}</svg>`;
+        const chip = (id, c, html) => `<span id="${id}" class="chip" style="--c: var(--color-concept-${c})">${html}</span>`;
+        // Digit tiles: one tile per [digit, class] pair, ids <prefix>0, <prefix>1, ...
+        const tiles = (prefix, list, small) =>
+          `<div class="tiles">${list.map(([d, c], i) => `<span id="${prefix}${i}" class="dg ${c || ""}${small ? " sm" : ""}">${d}</span>`).join("")}</div>`;
+
+        // ---------- DOM ----------
+        // A digit sum "a + b + c + d = total": digits <id>0.., plus signs <id>p0.., <id>e, <id>t.
+        const sum = (id, parts, total) =>
+          `<span class="math small cl">${parts.map((p, i) => `${i ? `<span id="${id}p${i - 1}" class="op">+</span>` : ""}<span id="${id}${i}">${p}</span>`).join("")}<span id="${id}e" class="op">=</span><span id="${id}t" class="pill">${total}</span></span>`;
+        const sumIds = (id, n) => [...Array.from({ length: n }, (_, i) => `#${id}${i}`), ...Array.from({ length: n - 1 }, (_, i) => `#${id}p${i}`), `#${id}e`, `#${id}t`];
+        const verdict = (id, a, b, not) =>
+          `<span id="${id}" class="math pill"><span>${a}</span> <span class="${not ? "cp" : ""}">${dv(not)}</span> <span>${b}</span></span>`;
+        $("#a1").innerHTML = tiles("g", [["5"], ["9"], ["7"], ["6"]]);
+        $("#a2").innerHTML = `${chip("g-chip", "lime", "✚ tổng các chữ số")}${sum("gs", ["5", "9", "7", "6"], "27")}`;
+        $("#b0").innerHTML = sum("hs", ["5", "9", "7", "6"], "27");
+        $("#b1").innerHTML = `${verdict("h1", "27", "9", false)}<span id="ha" class="math small">→</span>${verdict("h2", "5 976", "9", false)}`;
+        $("#b2").innerHTML = sum("is", ["2", "4", "1", "5"], "12");
+        $("#b3").innerHTML = `${verdict("i1", "12", "9", true)}<span id="ia" class="math small">→</span>${verdict("i2", "2 415", "9", true)}`;
+        $("#c0").innerHTML = sum("js", ["2", "4", "1", "5"], "12");
+        $("#c1").innerHTML = `${verdict("j1", "12", "3", false)}<span id="ja" class="math small">→</span>${verdict("j2", "2 415", "3", false)}`;
+        $("#c2").innerHTML = `<span id="j3" class="math small"><span>2 415</span> <span class="cp">${dv(true)}</span> <span>9</span></span>`;
+        $("#d1").innerHTML = chip("n1", "lime", "✚ cộng các chữ số, xét tổng");
+        $("#d2").innerHTML = `<span id="n2" class="math small"><span class="cl">tổng</span> ${dv(false)} <span>9</span> <span>→</span> <span>số</span> ${dv(false)} <span>9</span></span>`;
+        $("#d3").innerHTML = `<span id="n3" class="math small"><span class="cl">tổng</span> ${dv(false)} <span>3</span> <span>→</span> <span>số</span> ${dv(false)} <span>3</span></span>`;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "390px" });
+
+        scenes([["#s1", "s01-tong"], ["#s2", "s02-chin"], ["#s3", "s03-ba"], ["#s4", "s04-nho"]]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+        const ids = (p, n) => Array.from({ length: n }, (_, i) => `#${p}${i}`);
+        // Pops a digit sum part by part as it is read: digit tokens, then "cộng" signs, "bằng", total.
+        const readSum = (sid, p, digits, plusNth, total) => {
+          digits.forEach(([tok, nth], i) => {
+            pop(`#${p}${i}`, W(sid, tok, nth), { from: 0.4 });
+            if (i) pop(`#${p}p${i - 1}`, W(sid, "cộng", plusNth + i - 1), { from: 0.4 });
+          });
+          pop(`#${p}e`, W(sid, "bằng", 1), { from: 0.4 });
+          pop(`#${p}t`, W(sid, total, 1), { from: 0.6 });
+        };
+
+        // ---------- s01: add the digits of 5 976 ----------
+        {
+          const sid = "s01-tong";
+          hide(["#g-chip", ...ids("g", 4), ...sumIds("gs", 4)]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop(ids("g", 4), W(sid, "976"), { from: 0.4, stagger: 0.12 });
+          pop("#g-chip", W(sid, "tổng"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "5", 2));
+          readSum(sid, "gs", [["5", 2], ["9", 2], ["7", 1], ["6", 1]], 2, "27");
+        }
+
+        // ---------- s02: by 9 ----------
+        {
+          const sid = "s02-chin";
+          pose(bird, "idle", start(sid));
+          hide(["#h1", "#ha", "#h2", ...sumIds("is", 4), "#i1", "#ia", "#i2"]);
+          pop("#h1", W(sid, "hết", 1), { from: 0.6 });
+          pose(bird, "happy", W(sid, "hết", 1));
+          pop("#ha", W(sid, "vậy"), { from: 0.6 });
+          pop("#h2", W(sid, "hết", 4), { from: 0.6 });
+          // 2 415 replaces 5 976.
+          tl.to(["#b0", "#b1"], { autoAlpha: 0, duration: 0.3 }, W(sid, "giờ") - 0.1);
+          readSum(sid, "is", [["2", 2], ["4", 1], ["1", 1], ["5", 2]], 1, "12");
+          pop("#i1", W(sid, "không", 3), { from: 0.6 });
+          pop("#ia", W(sid, "nên"), { from: 0.6 });
+          pop("#i2", W(sid, "không", 4), { from: 0.6 });
+        }
+
+        // ---------- s03: by 3 ----------
+        {
+          const sid = "s03-ba";
+          pose(bird, "idle", start(sid));
+          hide(["#j1", "#ja", "#j2", "#j3"]);
+          pop("#j1", W(sid, "hết", 1), { from: 0.6 });
+          pop("#ja", W(sid, "vậy"), { from: 0.6 });
+          pop("#j2", W(sid, "hết", 4), { from: 0.6 });
+          pose(bird, "happy", W(sid, "hết", 4));
+          pop("#j3", W(sid, "không", 1), { from: 0.6 });
+        }
+
+        // ---------- s04: remember ----------
+        {
+          const sid = "s04-nho";
+          hide(["#n1", "#n2", "#n3"]);
+          pose(bird, "cheer", W(sid, "nhớ"));
+          pop("#n1", W(sid, "cộng"), { from: 0.6 });
+          pop("#n2", W(sid, "tổng", 2), { from: 0.6 });
+          pop("#n3", W(sid, "tổng", 3), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

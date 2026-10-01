@@ -1,0 +1,90 @@
+{
+  "title": "Tìm chữ số còn thiếu",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-tim",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-de",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm chữ số còn thiếu.",
+          "opening": true
+        },
+        {
+          "text": "Đề cho số 38 và chữ số a chưa biết."
+        },
+        {
+          "text": "Số đó chia hết cho 9. Hãy tìm chữ số a."
+        }
+      ]
+    },
+    {
+      "id": "s02-xet",
+      "sentences": [
+        {
+          "text": "Muốn tìm chữ số chưa biết, ta xem đề cho số chia hết cho mấy.",
+          "rule": true
+        },
+        {
+          "text": "Đề cho 9, nên ta xét tổng các chữ số."
+        }
+      ]
+    },
+    {
+      "id": "s03-tong",
+      "sentences": [
+        {
+          "text": "Tổng các chữ số là 3 cộng 8 cộng a, bằng 11 cộng a."
+        },
+        {
+          "text": "Chữ số a từ 0 đến 9."
+        },
+        {
+          "text": "Nên 11 cộng a nằm từ 11 đến 20."
+        },
+        {
+          "text": "Từ 11 đến 20, chỉ có 18 chia hết cho 9."
+        }
+      ]
+    },
+    {
+      "id": "s04-tim",
+      "sentences": [
+        {
+          "text": "Vậy 11 cộng a bằng 18, nên a bằng 7."
+        },
+        {
+          "text": "Số cần tìm là 387."
+        },
+        {
+          "text": "Thử lại: 3 cộng 8 cộng 7 bằng 18, chia hết cho 9."
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Chia hết cho 9 hay 3 thì xét tổng các chữ số."
+        },
+        {
+          "text": "Chia hết cho 2 hay 5 thì xét chữ số tận cùng."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tim-chu-so",
+      "from": "s02-xet",
+      "to": "s04-tim",
+      "cardIds": ["dau-hieu-chia-het.card.tim-chu-so"]
+    }
+  ]
+}

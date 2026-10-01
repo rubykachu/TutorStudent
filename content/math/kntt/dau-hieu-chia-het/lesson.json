@@ -24,7 +24,11 @@
       "tìm chữ số còn thiếu để số chia hết cho một số cho trước",
       "xét tổng và hiệu có chia hết hay không mà không cần tính"
     ],
-    "whyItMatters": "Biết các dấu hiệu giúp bạn kiểm tra nhanh một phép chia, không cần đặt tính."
+    "whyItMatters": "Biết các dấu hiệu giúp bạn kiểm tra nhanh một phép chia, không cần đặt tính.",
+    "narration": {
+      "audioUrl": "narration/dau-hieu-chia-het/overview.m4a",
+      "vttUrl": "narration/dau-hieu-chia-het/overview.vtt"
+    }
   },
   "concepts": [
     {
@@ -55,6 +59,10 @@
       "sourceRef": "Sách bài tập tr.33",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "dau-hieu-chia-het.video.tan-cung"
+        },
         {
           "type": "group",
           "children": [
@@ -269,6 +277,10 @@
       "sourceRef": "Sách bài tập tr.33",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "dau-hieu-chia-het.video.tong-chu-so"
+        },
         {
           "type": "visual",
           "visualId": "dau-hieu-chia-het.visual.hop-27-9",
@@ -614,6 +626,10 @@
       "sourceRef": "Sách bài tập tr.33–34",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "dau-hieu-chia-het.video.tim-chu-so"
+        },
         {
           "type": "visual",
           "visualId": "dau-hieu-chia-het.visual.tim-38a",
@@ -4561,5 +4577,82 @@
   "sticker": {
     "name": "Nhà vô địch dấu hiệu",
     "visualId": "dau-hieu-chia-het.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "dau-hieu-chia-het.video.tan-cung",
+      "lessonId": "dau-hieu-chia-het",
+      "url": "video/dau-hieu-chia-het/tan-cung.mp4",
+      "vttUrl": "video/dau-hieu-chia-het/tan-cung.vtt",
+      "posterUrl": "video/dau-hieu-chia-het/tan-cung.jpg",
+      "durationSec": 63.37,
+      "clips": [
+        {
+          "id": "chia-het-2",
+          "start": 16.88,
+          "end": 33.386,
+          "cardIds": ["dau-hieu-chia-het.card.chia-het-2"]
+        },
+        {
+          "id": "chia-het-5",
+          "start": 33.786,
+          "end": 52.047,
+          "cardIds": ["dau-hieu-chia-het.card.chia-het-5"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "dau-hieu-chia-het.video.tong-chu-so",
+      "lessonId": "dau-hieu-chia-het",
+      "url": "video/dau-hieu-chia-het/tong-chu-so.mp4",
+      "vttUrl": "video/dau-hieu-chia-het/tong-chu-so.vtt",
+      "posterUrl": "video/dau-hieu-chia-het/tong-chu-so.jpg",
+      "durationSec": 66.63,
+      "clips": [
+        {
+          "id": "chia-het-9",
+          "start": 16.877,
+          "end": 41.974,
+          "cardIds": ["dau-hieu-chia-het.card.chia-het-9"]
+        },
+        {
+          "id": "chia-het-3",
+          "start": 42.374,
+          "end": 54.151,
+          "cardIds": ["dau-hieu-chia-het.card.chia-het-3"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "dau-hieu-chia-het.video.tim-chu-so",
+      "lessonId": "dau-hieu-chia-het",
+      "url": "video/dau-hieu-chia-het/tim-chu-so.mp4",
+      "vttUrl": "video/dau-hieu-chia-het/tim-chu-so.vtt",
+      "posterUrl": "video/dau-hieu-chia-het/tim-chu-so.jpg",
+      "durationSec": 55.5,
+      "clips": [
+        {
+          "id": "tim-chu-so",
+          "start": 11.89,
+          "end": 45.118,
+          "cardIds": ["dau-hieu-chia-het.card.tim-chu-so"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

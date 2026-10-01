@@ -1,0 +1,100 @@
+{
+  "title": "Cộng các chữ số",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-chin",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-tong",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta xét chia hết cho 9 và cho 3.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú muốn xét số 5 976."
+        },
+        {
+          "text": "Tổng các chữ số của một số là kết quả cộng tất cả các chữ số của số đó.",
+          "rule": true
+        },
+        {
+          "text": "5 cộng 9 cộng 7 cộng 6 bằng 27."
+        }
+      ]
+    },
+    {
+      "id": "s02-chin",
+      "sentences": [
+        {
+          "text": "27 chia hết cho 9."
+        },
+        {
+          "text": "Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9.",
+          "rule": true
+        },
+        {
+          "text": "Vậy 5 976 chia hết cho 9."
+        },
+        {
+          "text": "Giờ xét số 2 415: 2 cộng 4 cộng 1 cộng 5 bằng 12."
+        },
+        {
+          "text": "Số có tổng các chữ số không chia hết cho 9 thì không chia hết cho 9.",
+          "rule": true
+        },
+        {
+          "text": "12 không chia hết cho 9, nên 2 415 cũng không."
+        }
+      ]
+    },
+    {
+      "id": "s03-ba",
+      "sentences": [
+        {
+          "text": "Còn số 3 thì sao? 12 chia hết cho 3."
+        },
+        {
+          "text": "Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3.",
+          "rule": true
+        },
+        {
+          "text": "Vậy 2 415 chia hết cho 3 nhưng không chia hết cho 9."
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Cộng các chữ số, rồi xét tổng."
+        },
+        {
+          "text": "Tổng chia hết cho 9 thì số chia hết cho 9."
+        },
+        {
+          "text": "Tổng chia hết cho 3 thì số chia hết cho 3."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chia-het-9",
+      "from": "s02-chin",
+      "to": "s02-chin",
+      "cardIds": ["dau-hieu-chia-het.card.chia-het-9"]
+    },
+    {
+      "id": "chia-het-3",
+      "from": "s03-ba",
+      "to": "s03-ba",
+      "cardIds": ["dau-hieu-chia-het.card.chia-het-3"]
+    }
+  ]
+}
