@@ -63,3 +63,8 @@ Khái niệm mới trong `content/glossary/math.json`: "chữ số tận cùng" 
 - Whisper dưới 97% ở lần dựng đầu là cách Whisper viết số ("4 376" thành "4376", "5 976" thành "5.976", "2 415" thành "2.415"); `video/lib/text.ts` nay coi số có nhóm nghìn viết bằng dấu cách, dấu chấm hay liền như nhau, nên mọi câu từ 98,1% trở lên.
 - Hình: chỉ dùng lại kí hiệu "chia hết" ba chấm của Bài 8 và màu của bài (tận cùng teal ■, tổng các chữ số lime ✚), chữ số trong ô; đã xem khung hình từng 2 giây của cả ba video (không chồng chữ, chữ số hiện đúng lúc đọc, dải dưới trống).
 - Review vòng 5 và `lesson:walk` đã chạy (xem mục Trạng thái). Sửa trong vòng này: câu "Đề cho số 38 và chữ số a chưa biết" của `tim-chu-so` thành "Đề cho số có ba chữ số: 3, 8 và chữ số a chưa biết" (số cần tìm là 38a, "số đó" phải chỉ đúng nó); câu mở đầu của `tong-chu-so` đổi "ta xét" thành "ta học dấu hiệu" vì giọng đọc nuốt "xét" thành "sẽ" ở cả 4 lần đọc.
+
+## Giải thích sau mỗi câu (02/10/2026)
+- Mọi câu chấm được (82) có `explain`; bài đã xoá khỏi `content/legacy-lessons.json`, nên câu mới thiếu `explain` là lỗi.
+- Review vòng 6 (chỉ phần đổi, Sonnet): 2 Nghiêm trọng (lý do `wrong` của `tan-cung-5` nói "chưa chắc chia hết cho 5" với số tận cùng 8; `chon-lap-2-5` nói số duy nhất là 250), 3 Nên sửa, 3 Góp ý; đã sửa hết. Vòng 7: 0 phát hiện. Không đổi chữ nào khác của bài, không đụng `videos[]` và `overview.narration`.
+- `content:hash --approve`, `content:lock` (0 id mới), `lesson:walk` 0 FAIL 0 cảnh báo.
