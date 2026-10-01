@@ -446,7 +446,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("hai nhóm, dấu giữ nguyên", NOTE),
     },
     {
-      tex: "6 - 9 + 4 + 1 = 6 + (-9 + 4 + 1)",
+      tex: steps("6 - 9 + 4 + 1", "= 6 + (-9 + 4 + 1)"),
       tag: tag("nhóm ba số cuối", NOTE),
     },
   ]),
