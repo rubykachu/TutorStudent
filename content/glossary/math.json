@@ -223,7 +223,54 @@
     {
       "term": "dấu hiệu chia hết",
       "forbidden": []
+    },
+    {
+      "term": "số nguyên tố",
+      "forbidden": [],
+      "color": "sky"
+    },
+    {
+      "term": "hợp số",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "phân tích ra thừa số nguyên tố",
+      "forbidden": []
+    },
+    {
+      "term": "sơ đồ cây",
+      "forbidden": []
+    },
+    {
+      "term": "sơ đồ cột",
+      "forbidden": []
+    },
+    {
+      "term": "bảng số nguyên tố",
+      "forbidden": []
+    },
+    {
+      "term": "số chẵn",
+      "forbidden": [],
+      "color": "slate",
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "số lẻ",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "ước chung",
+      "forbidden": [],
+      "color": "teal"
+    },
+    {
+      "term": "ước chung lớn nhất",
+      "forbidden": [],
+      "color": "amber"
     }
   ],
-  "names": []
+  "names": ["ƯC", "ƯCLN", "Ư"]
 }

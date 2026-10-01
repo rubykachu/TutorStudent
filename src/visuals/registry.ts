@@ -71,6 +71,12 @@ import {
   validators as divisibilityValidators,
 } from "@/visuals/math/quan-he-chia-het-va-tinh-chat/logic";
 import {
+  INTERACTIVE_KINDS as PRIME_INTERACTIVE_KINDS,
+  LESSON_SLUG as PRIME_SLUG,
+  VISUAL_SPECS as PRIME_SPECS,
+  VALIDATOR_IDS as PRIME_VALIDATOR_IDS,
+} from "@/visuals/math/so-nguyen-to/catalog";
+import {
   pickMatches,
   solvePickMatches,
   solveXIsMember,
@@ -294,7 +300,30 @@ const signEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "so-nguyen-to": one per item of its catalog. The pick screens
+// reuse "chon-dung".
+const primeEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(PRIME_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in PRIME_VALIDATOR_IDS
+        ? PRIME_VALIDATOR_IDS[spec.kind as keyof typeof PRIME_VALIDATOR_IDS]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: PRIME_INTERACTIVE_KINDS.has(spec.kind),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: pickMatches },
+            solutions: { [validatorId]: solvePickMatches },
+          }),
+      load: () => lessonExample(PRIME_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${PRIME_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
+  ...primeEntries,
   ...thuTuEntries,
   ...nhanChiaEntries,
   ...congTruEntries,
@@ -1076,6 +1105,7 @@ const EXAMPLE_MODULES = lessonModules({
     import("@/visuals/math/quan-he-chia-het-va-tinh-chat/examples"),
   "dau-hieu-chia-het": () =>
     import("@/visuals/math/dau-hieu-chia-het/examples"),
+  "so-nguyen-to": () => import("@/visuals/math/so-nguyen-to/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });

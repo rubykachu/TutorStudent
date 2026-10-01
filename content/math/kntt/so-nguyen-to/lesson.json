@@ -1,0 +1,3618 @@
+{
+  "id": "so-nguyen-to",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 10,
+  "number": 10,
+  "chapter": {
+    "numeral": "II",
+    "name": "Tính chia hết trong tập hợp các số tự nhiên"
+  },
+  "title": "Số nguyên tố",
+  "sourceRef": "Sách bài tập tr.35–37",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Bạn xếp 7 viên gạch nhỏ thành hình chữ nhật có từ 2 hàng trở lên. Xếp cách nào cũng không được, vì 7 là số nguyên tố."
+    },
+    "summary": "Bài này dạy số nguyên tố và hợp số. Bạn học cách viết một số thành tích các thừa số nguyên tố.",
+    "goals": [
+      "nhận ra số nguyên tố và hợp số",
+      "dùng dấu hiệu chia hết để biết một số là hợp số",
+      "phân tích một số ra thừa số nguyên tố",
+      "viết một số thành tổng các số nguyên tố"
+    ],
+    "whyItMatters": "Số nguyên tố là viên gạch xây nên mọi số, giúp bạn kiểm tra chia hết nhanh hơn."
+  },
+  "concepts": [
+    {
+      "id": "so-nguyen-to.concept.uoc",
+      "name": "Ước",
+      "color": "violet"
+    },
+    {
+      "id": "so-nguyen-to.concept.nguyen-to",
+      "name": "Số nguyên tố",
+      "color": "sky"
+    },
+    {
+      "id": "so-nguyen-to.concept.hop-so",
+      "name": "Hợp số",
+      "color": "pink"
+    },
+    {
+      "id": "so-nguyen-to.concept.tan-cung",
+      "name": "Chữ số tận cùng",
+      "color": "teal"
+    },
+    {
+      "id": "so-nguyen-to.concept.tong-cs",
+      "name": "Tổng các chữ số",
+      "color": "lime"
+    },
+    {
+      "id": "so-nguyen-to.concept.thua-so",
+      "name": "Thừa số",
+      "color": "blue"
+    },
+    {
+      "id": "so-nguyen-to.concept.tich",
+      "name": "Tích",
+      "color": "amber"
+    },
+    {
+      "id": "so-nguyen-to.concept.so-chan",
+      "name": "Số chẵn",
+      "color": "slate"
+    }
+  ],
+  "sections": [
+    {
+      "id": "so-nguyen-to.section.dem-uoc",
+      "title": "Đếm các ước",
+      "sourceRef": "Sách bài tập tr.35, 37",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.xep-16"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.xep-8",
+          "caption": "Mẹ xếp 8 viên gạch vuông thành hình chữ nhật: có hai cách xếp."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các ước của 10. Thử chia 10 cho từng số để không bỏ sót ước."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-uoc-10"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.uoc-21"],
+      "practiceIds": ["so-nguyen-to.ex.chon-uoc-14"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.xep-16-xong",
+        "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.so-nguyen-to",
+      "title": "Số nguyên tố",
+      "sourceRef": "Sách bài tập tr.35, 37",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.xep-11",
+              "caption": "Xếp 11 viên gạch vuông: chỉ có một cách, nên 11 chỉ có hai ước."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.ngto-dau",
+          "caption": "Mỗi số nguyên tố chỉ có hai ước là 1 và chính nó."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số nguyên tố. Tìm ước của từng số để biết số nào chỉ có hai ước."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-nt-2-7"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.nt-13"],
+      "practiceIds": ["so-nguyen-to.ex.chon-nt-nhieu-1"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.ngto-dau",
+        "caption": "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.hop-so",
+      "title": "Hợp số",
+      "sourceRef": "Sách bài tập tr.35, 37",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hợp số là số tự nhiên lớn hơn 1, có nhiều hơn hai ước.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.xep-9",
+              "caption": "Xếp 9 viên gạch vuông: có hai cách, nên 9 có nhiều hơn hai ước."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.so-sanh-nt-hs"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số 1 chỉ có một ước là 1. Vậy số 1 không phải số nguyên tố, cũng không phải hợp số."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.uoc-cua-1"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các hợp số. Hợp số có nhiều hơn hai ước."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-hs-1"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.hs-gach-10"],
+      "practiceIds": ["so-nguyen-to.ex.chon-hs-nhieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.so-sanh-nt-hs",
+        "caption": "Hợp số là số tự nhiên lớn hơn 1, có nhiều hơn hai ước."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.bang-so-nguyen-to",
+      "title": "Bảng số nguyên tố",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Gạch các bội của 2, 3, 5 và 7, trừ chính các số đó. Số không bị gạch là số nguyên tố."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.sang-100"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn biết số nhỏ hơn 100 có là số nguyên tố không, ta tra bảng số nguyên tố.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.bang-100"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số nguyên tố. Tra bảng rồi chạm, không cần thử chia."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-nt-bang"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.nha-57"],
+      "practiceIds": ["so-nguyen-to.ex.tra-bang-nhieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.bang-100",
+        "caption": "Muốn biết số nhỏ hơn 100 có là số nguyên tố không, ta tra bảng số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.dau-hieu-hop-so",
+      "title": "Dùng dấu hiệu chia hết",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số chia hết cho 2, 3 hoặc 5 mà lớn hơn số chia đó thì là hợp số.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.xet-65"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.xet-51",
+          "caption": "Số nhà của Nam là 51. Cộng các chữ số được 6, chia hết cho 3."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các hợp số. Xét chữ số tận cùng hoặc cộng các chữ số để biết."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-hs-dh"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.dh-63"],
+      "practiceIds": ["so-nguyen-to.ex.dh-nhieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.xet-65-xong",
+        "caption": "Số chia hết cho 2, 3 hoặc 5 mà lớn hơn số chia đó thì là hợp số."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.phan-tich-cay",
+      "title": "Phân tích bằng sơ đồ cây",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Phân tích một số ra thừa số nguyên tố là viết số đó thành tích các thừa số nguyên tố. Ta tách số đó thành hai thừa số, rồi tách tiếp tới khi mọi thừa số là số nguyên tố.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.cay-12",
+              "caption": "Mẹ xếp 12 cái bánh vào 4 hộp, mỗi hộp 3 cái, nên 12 = 3 · 4. Số 4 lại tách được thành 2 · 2."
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.cay-30",
+          "caption": "30 = 2 · 15, rồi 15 = 3 · 5. Vậy 30 = 2 · 3 · 5."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Xem sơ đồ cây của 18. Các số ở cuối mỗi nhánh đều là số nguyên tố."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.cay-18"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.cay-thieu-28"],
+      "practiceIds": ["so-nguyen-to.ex.cay-thieu-45"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.cay-12-xong",
+        "caption": "Phân tích một số ra thừa số nguyên tố là viết số đó thành tích các thừa số nguyên tố. Ta tách số đó thành hai thừa số, rồi tách tiếp tới khi mọi thừa số là số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.phan-tich-cot",
+      "title": "Phân tích bằng sơ đồ cột",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.cot-60"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.cot-84",
+          "caption": "Cột của 84: chia cho 2, 2, 3, 7. Chọn số chia bằng dấu hiệu chia hết."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Xem sơ đồ cột của 105. Số 105 không chia hết cho 2, nhưng chia hết cho 3 nên số chia đầu tiên là 3."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.cot-105"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.cot-thieu-36"],
+      "practiceIds": ["so-nguyen-to.ex.cot-thieu-150"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.cot-60-xong",
+        "caption": "Chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.viet-luy-thua",
+      "title": "Viết gọn bằng luỹ thừa",
+      "sourceRef": "Sách bài tập tr.36",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa. Số lần lặp lại là số mũ.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.gon-60"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hà có 72 viên bi, và 72 = 2 · 2 · 2 · 3 · 3. Số 2 lặp lại ba lần, số 3 lặp lại hai lần."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.gon-72"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Phân tích 6 · 6 · 5 ra thừa số nguyên tố. Tách mỗi số 6 thành 2 · 3 rồi viết gọn."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.gon-6-6-5"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.gon-2-2-5"],
+      "practiceIds": ["so-nguyen-to.ex.chon-phan-tich-100"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.gon-72-xong",
+        "caption": "Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa. Số lần lặp lại là số mũ."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.tim-chu-so-a",
+      "title": "Tìm chữ số a",
+      "sourceRef": "Sách bài tập tr.36",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm chữ số a để số có hai chữ số là số nguyên tố, ta thử từng chữ số a. Ta tra bảng số nguyên tố để biết số nào là số nguyên tố.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.thu-3a",
+              "caption": "Số 3a có chữ số hàng chục là 3, chữ số hàng đơn vị là a."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các chữ số a để số 6a là số nguyên tố. Thử từng chữ số rồi tra bảng cho chắc."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-a-6"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.a-9a"],
+      "practiceIds": ["so-nguyen-to.ex.a-5a"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.thu-3a",
+        "caption": "Muốn tìm chữ số a để số có hai chữ số là số nguyên tố, ta thử từng chữ số a. Ta tra bảng số nguyên tố để biết số nào là số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.so-2",
+      "title": "Số 2 đặc biệt",
+      "sourceRef": "Kiến thức nền (tiểu học); ví dụ 2 tr.35",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số chẵn là số chia hết cho 2. Số lẻ là số không chia hết cho 2."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chan-le"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số 2 là số nguyên tố chẵn duy nhất. Các số chẵn lớn hơn 2 đều là hợp số.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chan-nt"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số chẵn là hợp số. Số 2 không phải hợp số."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.chon-chan-hs"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.nt-chan"],
+      "practiceIds": ["so-nguyen-to.ex.lop-38"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.chan-nt",
+        "caption": "Số 2 là số nguyên tố chẵn duy nhất. Các số chẵn lớn hơn 2 đều là hợp số."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.tong-hai-nguyen-to",
+      "title": "Tổng của hai số nguyên tố",
+      "sourceRef": "Kiến thức nền (tiểu học); ví dụ 2 tr.35, bài 2.29 tr.37",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tổng của hai số lẻ là số chẵn. Muốn tổng của hai số nguyên tố là số lẻ, một số hạng phải là số 2.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.le-le"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số 25 là số lẻ nên một số hạng phải là 2. Thử 25 = 2 + 23, vì 23 có trong bảng."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.tong-25"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số 27 cũng là số lẻ. Thử 27 = 2 + 25, nhưng 25 là hợp số nên 27 không viết được."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.tong-27"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.le-le-tong"],
+      "practiceIds": ["so-nguyen-to.ex.tong-21"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.le-le",
+        "caption": "Tổng của hai số lẻ là số chẵn. Muốn tổng của hai số nguyên tố là số lẻ, một số hạng phải là số 2."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.viet-tong",
+      "title": "Viết số thành tổng các số nguyên tố",
+      "sourceRef": "Sách bài tập tr.37",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn viết một số thành tổng hai số nguyên tố, ta thử từng số nguyên tố trong bảng. Số còn lại phải là số nguyên tố.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.viet-20"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Có thể viết một số thành tổng của ba số nguyên tố. Một số nguyên tố được dùng lại nhiều lần."
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.viet-9-ba"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.viet-30"],
+      "practiceIds": ["so-nguyen-to.ex.viet-40"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.viet-20-xong",
+        "caption": "Muốn viết một số thành tổng hai số nguyên tố, ta thử từng số nguyên tố trong bảng. Số còn lại phải là số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.section.tong-hop-so",
+      "title": "Tổng là hợp số",
+      "sourceRef": "Sách bài tập tr.37",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Các số hạng cùng chia hết cho một số thì tổng chia hết cho số đó. Tổng lớn hơn số đó thì tổng là hợp số.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "so-nguyen-to.visual.tong-hs-1"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.tong-hs-2",
+          "caption": "Số hạng nào cũng chia hết cho 5, nên tổng chia hết cho 5."
+        }
+      ],
+      "checkIds": ["so-nguyen-to.ex.hs-tong-keo"],
+      "practiceIds": ["so-nguyen-to.ex.hs-tong-nhieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.tong-hs-1-xong",
+        "caption": "Các số hạng cùng chia hết cho một số thì tổng chia hết cho số đó. Tổng lớn hơn số đó thì tổng là hợp số."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "so-nguyen-to.card.uoc",
+      "sourceRef": "Sách bài tập tr.35, 37",
+      "conceptIds": ["so-nguyen-to.concept.uoc"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.xep-16-xong",
+        "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.nguyen-to",
+      "sourceRef": "Sách bài tập tr.35, 37",
+      "conceptIds": ["so-nguyen-to.concept.nguyen-to"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.ngto-dau",
+        "caption": "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.hop-so",
+      "sourceRef": "Sách bài tập tr.35, 37",
+      "conceptIds": ["so-nguyen-to.concept.hop-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.so-sanh-nt-hs",
+        "caption": "Hợp số là số tự nhiên lớn hơn 1, có nhiều hơn hai ước."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.bang",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "conceptIds": ["so-nguyen-to.concept.nguyen-to"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.bang-100",
+        "caption": "Muốn biết số nhỏ hơn 100 có là số nguyên tố không, ta tra bảng số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.dau-hieu",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "conceptIds": [
+        "so-nguyen-to.concept.hop-so",
+        "so-nguyen-to.concept.tan-cung",
+        "so-nguyen-to.concept.tong-cs"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.xet-65-xong",
+        "caption": "Số chia hết cho 2, 3 hoặc 5 mà lớn hơn số chia đó thì là hợp số."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.cay",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "conceptIds": [
+        "so-nguyen-to.concept.thua-so",
+        "so-nguyen-to.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.cay-12-xong",
+        "caption": "Phân tích một số ra thừa số nguyên tố là viết số đó thành tích các thừa số nguyên tố. Ta tách số đó thành hai thừa số, rồi tách tiếp tới khi mọi thừa số là số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.cot",
+      "sourceRef": "Sách bài tập tr.35–36",
+      "conceptIds": ["so-nguyen-to.concept.thua-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.cot-60-xong",
+        "caption": "Chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.luy-thua",
+      "sourceRef": "Sách bài tập tr.36",
+      "conceptIds": [
+        "so-nguyen-to.concept.thua-so",
+        "so-nguyen-to.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.gon-72-xong",
+        "caption": "Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa. Số lần lặp lại là số mũ."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.chu-so-a",
+      "sourceRef": "Sách bài tập tr.36",
+      "conceptIds": ["so-nguyen-to.concept.nguyen-to"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.thu-3a",
+        "caption": "Muốn tìm chữ số a để số có hai chữ số là số nguyên tố, ta thử từng chữ số a. Ta tra bảng số nguyên tố để biết số nào là số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.so-2",
+      "sourceRef": "Kiến thức nền (tiểu học); ví dụ 2 tr.35",
+      "conceptIds": [
+        "so-nguyen-to.concept.nguyen-to",
+        "so-nguyen-to.concept.so-chan"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.chan-nt",
+        "caption": "Số 2 là số nguyên tố chẵn duy nhất. Các số chẵn lớn hơn 2 đều là hợp số."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.tong",
+      "sourceRef": "Kiến thức nền (tiểu học); ví dụ 2 tr.35, bài 2.29 tr.37",
+      "conceptIds": [
+        "so-nguyen-to.concept.nguyen-to",
+        "so-nguyen-to.concept.so-chan"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.le-le",
+        "caption": "Tổng của hai số lẻ là số chẵn. Muốn tổng của hai số nguyên tố là số lẻ, một số hạng phải là số 2."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.viet-tong",
+      "sourceRef": "Sách bài tập tr.37",
+      "conceptIds": ["so-nguyen-to.concept.nguyen-to"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.viet-20-xong",
+        "caption": "Muốn viết một số thành tổng hai số nguyên tố, ta thử từng số nguyên tố trong bảng. Số còn lại phải là số nguyên tố."
+      }
+    },
+    {
+      "id": "so-nguyen-to.card.tong-hop-so",
+      "sourceRef": "Sách bài tập tr.37",
+      "conceptIds": ["so-nguyen-to.concept.hop-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "so-nguyen-to.visual.tong-hs-1-xong",
+        "caption": "Các số hạng cùng chia hết cho một số thì tổng chia hết cho số đó. Tổng lớn hơn số đó thì tổng là hợp số."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "so-nguyen-to.ex.uoc-21",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là ước của 21?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-uoc-14",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.uoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả ước của 14."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "10"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-uoc-18",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.uoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các ước của 18."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-uoc-18",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 1,
+        "i1": 1,
+        "i2": 0,
+        "i3": 1,
+        "i4": 1,
+        "i5": 0,
+        "i6": 1
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-uoc-20-4",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.uoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "20 chia hết cho 4, nên 4 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["ước"]
+        },
+        {
+          "type": "text",
+          "text": " của 20."
+        }
+      ],
+      "bank": ["ước", "bội"]
+    },
+    {
+      "id": "so-nguyen-to.ex.xep-gach-15",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.uoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mẹ xếp 15 viên gạch vuông thành hình chữ nhật có 3 hàng bằng nhau."
+        },
+        {
+          "type": "note",
+          "text": "Mỗi hàng có bao nhiêu viên?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "so-nguyen-to.visual.goi-y-xep-10",
+        "solutionVisualId": "so-nguyen-to.visual.giai-xep-15"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "15:3"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.nt-13",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là số nguyên tố?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "21"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        }
+      ],
+      "answer": ["d"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-nt-nhieu-1",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.nguyen-to"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "17"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "19"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-nt-bank",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.nguyen-to"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-nt-bank",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 1,
+        "i1": 0,
+        "i2": 0,
+        "i3": 1,
+        "i4": 0,
+        "i5": 1
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-29",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.nguyen-to"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 29 chỉ có hai ước là 1 và 29, nên 29 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["số nguyên tố"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["số nguyên tố", "hợp số"]
+    },
+    {
+      "id": "so-nguyen-to.ex.xep-7-cach",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.nguyen-to"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho 7 hình vuông đơn vị. Có mấy cách xếp chúng thành hình chữ nhật?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.hs-gach-10",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mẹ xếp 10 viên gạch vuông thành hình chữ nhật có 2 hàng bằng nhau."
+        },
+        {
+          "type": "note",
+          "text": "Số 10 là số nguyên tố hay hợp số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên tố"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hợp số"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-hs-nhieu",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "14"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "19"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "21"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "23"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-hs-bank",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-hs-bank",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 1,
+        "i1": 0,
+        "i2": 1,
+        "i3": 0,
+        "i4": 1,
+        "i5": 0
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.xep-12-cach",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho 12 hình vuông đơn vị. Có mấy cách xếp chúng thành hình chữ nhật?"
+        },
+        {
+          "type": "note",
+          "text": "Xoay hình chữ nhật thì vẫn tính là một cách."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-25-hs",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 25 có các ước 1, 5 và 25. Số 25 có nhiều hơn hai ước, nên 25 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["hợp số"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["hợp số", "số nguyên tố"]
+    },
+    {
+      "id": "so-nguyen-to.ex.chi-mot-uoc",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào chỉ có một ước?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.nha-57",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nhà của Hà là 57. Số 57 là số nguyên tố hay hợp số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên tố"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hợp số"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.tra-bang-nhieu",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.bang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "41"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "51"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "53"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "55"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-nt-bang-2",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.bang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-nt-bang-2",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 1,
+        "i1": 0,
+        "i2": 1,
+        "i3": 0,
+        "i4": 0,
+        "i5": 1
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.nt-lon-nhat",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.bang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nguyên tố lớn nhất nhỏ hơn 100 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "93"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "95"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "97"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "99"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-91",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.bang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 91 không có trong bảng số nguyên tố, nên 91 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["hợp số"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["hợp số", "số nguyên tố"]
+    },
+    {
+      "id": "so-nguyen-to.ex.dh-63",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là hợp số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "31"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "61"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "63"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "71"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.dh-nhieu",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "23"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "27"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "35"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "47"
+          }
+        }
+      ],
+      "answer": ["b", "c"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.noi-dh",
+      "type": "match",
+      "cardIds": ["so-nguyen-to.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi số với số mà nó chia hết."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "35"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "text",
+            "text": "27"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "text",
+            "text": "11"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r3"
+        },
+        {
+          "left": "l3",
+          "right": "r2"
+        }
+      ]
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-hs-dh-2",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-hs-dh-2",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 0,
+        "i1": 1,
+        "i2": 0,
+        "i3": 1,
+        "i4": 0,
+        "i5": 1
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-130",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.dau-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 130 có chữ số tận cùng là 0, nên 130 chia hết cho 2. Vì 130 lớn hơn 2, nên 130 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["hợp số"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["hợp số", "số nguyên tố"]
+    },
+    {
+      "id": "so-nguyen-to.ex.cay-thieu-28",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số ở ô có dấu ? trong sơ đồ cây."
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.cay-thieu-28"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "so-nguyen-to.visual.goi-y-cay-40",
+        "solutionVisualId": "so-nguyen-to.visual.giai-cay-28"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "28:4"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.cay-thieu-45",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.cay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số ở ô có dấu ? trong sơ đồ cây."
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.cay-thieu-45"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "so-nguyen-to.visual.goi-y-cay-40",
+        "solutionVisualId": "so-nguyen-to.visual.giai-cay-45"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "45:5"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.tich-42",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.cay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phân tích 42 ra thừa số nguyên tố. Tìm thừa số còn thiếu."
+        },
+        {
+          "type": "formula",
+          "tex": "42 = 2 \\cdot 3 \\cdot ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "42:(2·3)"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.xep-cay-50",
+      "type": "order",
+      "cardIds": ["so-nguyen-to.card.cay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước phân tích 50 bằng sơ đồ cây, từ trên xuống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "50 = 5 · 10"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "10 = 2 · 5"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "50 = 5 · 2 · 5"
+          }
+        }
+      ]
+    },
+    {
+      "id": "so-nguyen-to.ex.cach-viet-15",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.cay"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cách viết nào là phân tích 15 ra thừa số nguyên tố?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3 · 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "1 · 15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "1 · 3 · 5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "3 + 5 + 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.cot-thieu-36",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số ở ô có dấu ? trong sơ đồ cột."
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.cot-thieu-36"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "so-nguyen-to.visual.goi-y-cot-90",
+        "solutionVisualId": "so-nguyen-to.visual.giai-cot-36"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 18
+      },
+      "check": {
+        "expr": "36:2"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.cot-thieu-150",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.cot"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số chia ở ô có dấu ? trong sơ đồ cột."
+        },
+        {
+          "type": "visual",
+          "visualId": "so-nguyen-to.visual.cot-thieu-150"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "so-nguyen-to.visual.goi-y-cot-90",
+        "solutionVisualId": "so-nguyen-to.visual.giai-cot-150"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "75:25"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.chia-bi-54",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.cot"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mẹ chia đều 54 viên bi cho 2 bạn. Mỗi bạn được bao nhiêu viên?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 27
+      },
+      "check": {
+        "expr": "54:2"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.chia-dau-75",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.cot"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phân tích 75 bằng sơ đồ cột. Số chia đầu tiên là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.tich-28",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.cot"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phân tích 28 ra thừa số nguyên tố. Tìm thừa số còn thiếu."
+        },
+        {
+          "type": "formula",
+          "tex": "28 = 2 \\cdot 2 \\cdot ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "28:(2·2)"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.gon-2-2-5",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết gọn tích sau bằng luỹ thừa."
+        },
+        {
+          "type": "formula",
+          "tex": "2 \\cdot 2 \\cdot 5 \\cdot 5 \\cdot 5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 5^{3}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2^{3} \\cdot 5^{2}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 5^{3}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 5^{2}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2·2·5·5·5"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-phan-tich-100",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.luy-thua"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cách viết nào là phân tích 100 ra thừa số nguyên tố?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 5^{2}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "10^{2}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 25"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 50"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.gon-2-2-3-3-3",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.luy-thua"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết gọn tích sau bằng luỹ thừa."
+        },
+        {
+          "type": "formula",
+          "tex": "2 \\cdot 2 \\cdot 3 \\cdot 3 \\cdot 3"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 3^{3}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2^{3} \\cdot 3^{2}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 3^{2}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "2^{3} \\cdot 3^{3}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2·2·3·3·3"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.tinh-2-3-5",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.luy-thua"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị của tích."
+        },
+        {
+          "type": "formula",
+          "tex": "2^{3} \\cdot 5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "2^3·5"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.tinh-3-2-7",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.luy-thua"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị của tích."
+        },
+        {
+          "type": "formula",
+          "tex": "3^{2} \\cdot 7"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 63
+      },
+      "check": {
+        "expr": "3^2·7"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.a-9a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ số a nào để số 9a là số nguyên tố?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.a-5a",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.chu-so-a"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nhà của Lan là 5a và là số nguyên tố."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả chữ số a có thể."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["a", "d"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-a-1",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.chu-so-a"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả chữ số a để số 1a là số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-a-1",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 0,
+        "i1": 1,
+        "i2": 0,
+        "i3": 1,
+        "i4": 0,
+        "i5": 0,
+        "i6": 0,
+        "i7": 1,
+        "i8": 0,
+        "i9": 1
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.a-4a-hop-so",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.chu-so-a"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả chữ số a để số 4a là hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.nt-chan",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nguyên tố nào là số chẵn?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.lop-38",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.so-2"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Lớp có 38 bạn, xếp được thành 2 hàng bằng nhau."
+        },
+        {
+          "type": "note",
+          "text": "Số 38 là số nguyên tố hay hợp số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên tố"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hợp số"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-chan",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.so-2"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 2 là số nguyên tố "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["chẵn"]
+        },
+        {
+          "type": "text",
+          "text": " duy nhất."
+        }
+      ],
+      "bank": ["chẵn", "lẻ"]
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-chan-lon",
+      "type": "manipulate",
+      "cardIds": ["so-nguyen-to.card.so-2"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các số chẵn lớn hơn 2."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "so-nguyen-to.visual.chon-chan-lon",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 0,
+        "i1": 0,
+        "i2": 1,
+        "i3": 0,
+        "i4": 1,
+        "i5": 0
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.chon-hs-chan",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.so-2"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "14"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "17"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "22"
+          }
+        }
+      ],
+      "answer": ["a", "c", "d"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.le-le-tong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tổng của hai số lẻ là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số chẵn"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số lẻ"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.tong-21",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hà có 21 viên kẹo, chia thành hai nhóm. Một nhóm có 2 viên."
+        },
+        {
+          "type": "note",
+          "text": "Số kẹo của nhóm kia là số nguyên tố. Nhóm kia có bao nhiêu viên?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 19
+      },
+      "check": {
+        "expr": "21-2"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.tong-35-khong",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 35 có viết được thành tổng của hai số nguyên tố không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Được, vì 35 = 2 + 33 và 33 là số nguyên tố"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Không được, vì 35 = 2 + 33 mà 33 là hợp số"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Được, vì tổng của hai số nguyên tố luôn là số lẻ"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.tong-voi-2",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số viết được thành tổng của 2 và một số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "11"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        }
+      ],
+      "answer": ["a", "c", "d"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-le-le",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Tổng của hai số lẻ là số "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["chẵn"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["chẵn", "lẻ"]
+    },
+    {
+      "id": "so-nguyen-to.ex.viet-30",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hà chia 30 viên bi thành hai nhóm, số bi mỗi nhóm là số nguyên tố. Nhóm thứ nhất có 7 viên."
+        },
+        {
+          "type": "note",
+          "text": "Nhóm thứ hai có bao nhiêu viên?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 23
+      },
+      "check": {
+        "expr": "30-7"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.viet-40",
+      "type": "numeric",
+      "cardIds": ["so-nguyen-to.card.viet-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết 40 thành tổng của hai số nguyên tố. Số nguyên tố thứ nhất là 3."
+        },
+        {
+          "type": "note",
+          "text": "Số nguyên tố thứ hai là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 37
+      },
+      "check": {
+        "expr": "40-3"
+      }
+    },
+    {
+      "id": "so-nguyen-to.ex.noi-tong",
+      "type": "match",
+      "cardIds": ["so-nguyen-to.card.viet-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi số với cách viết nó thành tổng hai số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "18"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "5 + 7"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "7 + 11"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "11 + 13"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "text",
+            "text": "3 + 17"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ]
+    },
+    {
+      "id": "so-nguyen-to.ex.viet-ba-17",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.viet-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả cách viết 17 thành tổng của ba số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3 + 7 + 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5 + 5 + 7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "2 + 5 + 10"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "1 + 7 + 9"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.viet-50",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.viet-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số nào đều là số nguyên tố và có tổng bằng 50?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "13 và 37"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9 và 41"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "15 và 35"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "1 và 49"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.hs-tong-keo",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hà có 2 túi kẹo, mỗi túi 9 viên, và 4 túi khác, mỗi túi 5 viên."
+        },
+        {
+          "type": "formula",
+          "tex": "9 \\cdot 2 + 5 \\cdot 4"
+        },
+        {
+          "type": "note",
+          "text": "Số kẹo của Hà là số nguyên tố hay hợp số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên tố"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hợp số"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "so-nguyen-to.ex.hs-tong-nhieu",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.tong-hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả tổng là hợp số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 5 + 6 \\cdot 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 3 + 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot 5 + 6 \\cdot 7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "10 + 3"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "so-nguyen-to.ex.dien-tong-5",
+      "type": "fillBlank",
+      "cardIds": ["so-nguyen-to.card.tong-hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": []
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Hai số hạng đều chia hết cho 5, nên tổng chia hết cho 5. Tổng lớn hơn 5, nên tổng là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["hợp số"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["hợp số", "số nguyên tố"]
+    },
+    {
+      "id": "so-nguyen-to.ex.hs-tong-2",
+      "type": "choice",
+      "cardIds": ["so-nguyen-to.card.tong-hop-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tổng sau là số nguyên tố hay hợp số?"
+        },
+        {
+          "type": "formula",
+          "tex": "7 \\cdot 8 + 5 \\cdot 6"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên tố"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hợp số"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    }
+  ],
+  "sticker": {
+    "name": "Thợ săn số nguyên tố",
+    "visualId": "so-nguyen-to.visual.sticker"
+  }
+}
