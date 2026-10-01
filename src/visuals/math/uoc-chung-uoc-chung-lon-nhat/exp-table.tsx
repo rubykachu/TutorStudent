@@ -68,7 +68,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
           aria-label={label}
           className="grid w-full gap-1.5"
           style={{
-            gridTemplateColumns: `minmax(4.5rem, auto) repeat(${primes.length}, minmax(3.25rem, 1fr))`,
+            gridTemplateColumns: `minmax(4.5rem, auto) repeat(${primes.length}, minmax(2.75rem, 1fr))`,
           }}
         >
           <Row head="Thừa số">
