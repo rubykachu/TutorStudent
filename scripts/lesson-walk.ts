@@ -418,7 +418,11 @@ function measureText({ minTextPx }: { minTextPx: number }): TextReport {
   const smallText: string[] = [];
   for (const el of document.querySelectorAll("main *")) {
     const ownText = [...el.childNodes].some(
-      (node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim(),
+      // KaTeX pads stacked parts (fractions, multi-line formulas) with
+      // zero-width spaces; they hold no readable text.
+      (node) =>
+        node.nodeType === Node.TEXT_NODE &&
+        node.textContent?.replace(/\u200b/g, "").trim(),
     );
     if (!ownText || el.closest(".sr-only")) continue;
     const rect = el.getBoundingClientRect();
