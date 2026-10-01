@@ -12,6 +12,7 @@ import {
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { DotGrid } from "@/visuals/shared/dot-grid";
 import { FormulaRow, Lines, Rows } from "@/visuals/shared/formula-rows";
+import { GuidedStepProvider, useGuided } from "@/visuals/shared/guided-step";
 import { Highlight } from "@/visuals/shared/highlight";
 import {
   DECORATIVE_ATTR,
@@ -20,7 +21,6 @@ import {
   STATE_VALUE_ATTR,
 } from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
-import { GuidedStepProvider, useGuided } from "@/visuals/shared/guided-step";
 import { Chips } from "@/visuals/shared/pick-chips";
 import { Reveal } from "@/visuals/shared/reveal";
 
