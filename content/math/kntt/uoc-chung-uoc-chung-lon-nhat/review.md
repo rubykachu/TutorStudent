@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường), 0 cảnh báo
 - `lesson:walk`: không chạy ở vòng này; đã đọc `explain` trực tiếp từ JSON, đối chiếu validator (`cat-vua-het`) và các chip của `chon-uc-14-21`, `chon-uc-18-27` trong `src/visuals/math/uoc-chung-uoc-chung-lon-nhat/`
 - Kết luận: Không còn lỗi Nghiêm trọng (0 Nghiêm trọng, 2 Nên sửa, 3 Góp ý); đã ghi "Bản đã review" bằng `--mark`, chưa `--approve`
-- Bản đã review: `d338aad4cbe652893ebe813d9f53e40ec90adf9a8567c1d1634c7169e51a445e` (`pnpm content:diff` so với bản này)
+- Bản đã review: `95a594974c4cefb160102629cd327300539df6bc86a325a5afdbcfc5e1d00008` (`pnpm content:diff` so với bản này)
 
 Đã soát: 65 `explain` (text, tex, wrong), kèm các note quy tắc của 12 section.
 
