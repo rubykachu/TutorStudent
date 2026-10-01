@@ -71,7 +71,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
 | LL-24 | 11 | 1 | 2 | 14 |
-| LL-25 | 0 | 7 | 109 | 116 |
+| LL-25 | 0 | 8 | 134 | 142 |
 
 LL-17, LL-08 và LL-01 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-12 gặp nhiều nhất.
 
