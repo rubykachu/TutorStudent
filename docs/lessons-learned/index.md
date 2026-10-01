@@ -96,4 +96,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `cach-ghi-so-tu-nhien` | Toán | 13 | 3 (vòng 2 còn 8) | 3 |
 | `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | 3 (vòng 2 còn 1) | 3 |
 | `tap-hop-cac-so-nguyen` | Toán | 4 | 3 (vòng 2 còn 1) | 3 |
-| `phep-cong-phep-tru-so-nguyen` | Toán | 8 | đang soạn lại (vòng 2 còn 4, vòng 3 còn 1) | 3 |
+| `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1) | 4 |
