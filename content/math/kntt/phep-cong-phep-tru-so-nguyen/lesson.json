@@ -459,7 +459,7 @@
           "kind": "tránh sai",
           "title": "Cộng hai số khác dấu",
           "text": "Trước khi tính, hãy xem số nào ở xa 0 hơn. Kết quả mang dấu của số đó. Sau đó lấy phần số tự nhiên lớn trừ phần nhỏ.",
-          "tex": "(-8) + 5 = -(8 - 5) = -3"
+          "tex": "\\begin{gathered} (-8) + 5 \\\\ = -(8 - 5) \\\\ = -3 \\end{gathered}"
         }
       ],
       "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-7-cong-am10"],
@@ -626,8 +626,8 @@
           "id": "phep-cong-phep-tru-so-nguyen.tip.ghep-so-doi",
           "kind": "làm nhanh",
           "title": "Tính tổng nhiều số",
-          "text": "Tìm các cặp số đối nhau và ghép chúng trước, vì mỗi cặp bằng 0. Rồi ghép các số cùng dấu với nhau.",
-          "tex": "\\begin{aligned} 6 + (-4) + (-6) + (-3) &= [6 + (-6)] + [(-4) + (-3)] \\\\ &= 0 + (-7) = -7 \\end{aligned}"
+          "text": "Tìm hai số đối nhau và ghép chúng trước, vì tổng của chúng bằng 0. Rồi cộng các số còn lại.",
+          "tex": "\\begin{gathered} 6 + (-4) + (-6) \\\\ = [6 + (-6)] + (-4) \\\\ = 0 + (-4) = -4 \\end{gathered}"
         },
         {
           "type": "group",
