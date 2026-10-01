@@ -29,8 +29,8 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| phep-cong-phep-tru#1 | Dữ kiện "lớp vào học lúc 7 giờ 30 phút" chỉ nằm ở caption xám của màn đầu `toan-thoi-gian` | sửa: đưa vào một note | |
-| phep-cong-phep-tru#2 | Số gần trùng giữa các câu: `chon-gio-di` và `tim-gio-xuat-phat` cùng đáp án 7 giờ 45; `cot-tru-hang-chuc` (541 − 246) gần ví dụ 532 − 247; `dien-them-bot` (47 + 26) gần hình gợi ý 47 + 25 | sửa cả ba | |
+| phep-cong-phep-tru#1 | Dữ kiện "lớp vào học lúc 7 giờ 30 phút" chỉ nằm ở caption xám của màn đầu `toan-thoi-gian` | sửa: đưa vào một note |  đã sửa, review vòng 6 đạt (0 Nghiêm trọng), đã duyệt |
+| phep-cong-phep-tru#2 | Số gần trùng giữa các câu: `chon-gio-di` và `tim-gio-xuat-phat` cùng đáp án 7 giờ 45; `cot-tru-hang-chuc` (541 − 246) gần ví dụ 532 − 247; `dien-them-bot` (47 + 26) gần hình gợi ý 47 + 25 | sửa cả ba |  đã sửa, review vòng 6 đạt (0 Nghiêm trọng), đã duyệt; còn Góp ý nhỏ: đáp án 35 của `dien-them-bot` trùng số hạng 35 của `tinh-them-bot-2` |
 | phep-cong-phep-tru#3 | Câu quy tắc mượn dài; "chữ số cuối của kết quả" ở `dat-tinh-cong` dễ lẫn | bỏ: là câu `rule` chép nguyên văn trong kịch bản video | |
 
 ## `phep-nhan-phep-chia`
