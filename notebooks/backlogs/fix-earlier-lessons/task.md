@@ -37,7 +37,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| phep-nhan-phep-chia#1 | Nhiễu d của `chon-tich-rieng-2` ("Viết 19, nhớ 2 sang cột bên trái") là lựa chọn duy nhất không mở đầu bằng "Viết 192", đoán được bằng mẹo | sửa: "Viết 192, lùi sang trái hai cột" | |
+| phep-nhan-phep-chia#1 | Nhiễu d của `chon-tich-rieng-2` ("Viết 19, nhớ 2 sang cột bên trái") là lựa chọn duy nhất không mở đầu bằng "Viết 192", đoán được bằng mẹo | sửa: "Viết 192, lùi sang trái hai cột" |  đã sửa, review vòng 6 đạt (0 phát hiện), đã duyệt |
 | phep-nhan-phep-chia#2 | `so-sanh-38-50`: chưa có hình gợi ý nấc 2 (hình từng bước chỉ vẽ chuỗi "=") | bỏ: cần loại hình so sánh mới | |
 | phep-nhan-phep-chia#3 | "thừa số", "tích" dùng ở section 3 trước khi nhắc lại | bỏ: là câu quy tắc, đổi kéo theo `[rule-sentence]` và lời đọc | |
 | phep-nhan-phep-chia#4 | "1 000" và "1000" trong hình; phím "mũ"; `h-visual-frame` của `visual:shot` | bỏ: việc của app dùng chung | |

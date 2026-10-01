@@ -11,7 +11,7 @@
 - Đã review (vòng 5, chỉ phần đổi): sửa câu "Còn 3 cái, không đủ cho 4 bạn" ở `chia-co-du` và khoảng cách toán tử quanh khung xanh ở `nhom-thua-so`; hash đã duyệt, id khoá, `lesson:walk` 0 lỗi. Bàn giao này giữ lại vì còn việc tồn ở dưới.
 
 ## Việc tiếp theo
-1. Còn một ý Nên sửa nhỏ chưa làm (sửa sẽ đổi hash, cần review diff): nhiễu d của `chon-tich-rieng-2` ("Viết 19, nhớ 2 sang cột bên trái") là lựa chọn duy nhất không mở đầu bằng "Viết 192", đề xuất "Viết 192, lùi sang trái hai cột".
+Không còn việc chặn. Nhiễu d của `chon-tich-rieng-2` đã sửa thành "Viết 192, lùi sang trái hai cột" (review vòng 6). Các mục "Chưa sửa" bên dưới là việc của app dùng chung hay hình mới; kiểm kê và quyết định từng mục: `notebooks/backlogs/fix-earlier-lessons/task.md`.
 
 ## Lịch sử sửa
 ## Sau review vòng 1
