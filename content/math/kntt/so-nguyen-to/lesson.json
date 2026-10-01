@@ -12,7 +12,7 @@
   "title": "Số nguyên tố",
   "sourceRef": "Sách bài tập tr.35–37",
   "status": "published",
-  "reviewedHash": "4a99b800d2143e034f15cb190a6bf2465383c8bdfbe93113f46043276212bc74",
+  "reviewedHash": "9c611ec783a95cf78d1e8fe58600066471374f48aa4a1766c9b71d3e78ea2dd4",
   "overview": {
     "hook": {
       "text": "Chào bạn! Hôm nay ta xếp gạch để tìm số nguyên tố. Bạn xếp 11 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 11 viên, vì 11 là số nguyên tố."
@@ -1090,7 +1090,7 @@
       },
       "explain": {
         "text": "Viết 18 thành tích hai thừa số, mỗi thừa số trong các tích đó là một ước. Vậy 1, 2, 6, 9 và 18 là ước của 18. Hai số 4 và 12 không có trong tích nào, vì 18 không chia hết cho chúng.",
-        "tex": "18 = 1 \\cdot 18 = 2 \\cdot 9 = 3 \\cdot 6"
+        "tex": "18 = 1 \\cdot 18 = 2 \\cdot 9 = 6 \\cdot 3"
       }
     },
     {
@@ -2596,7 +2596,7 @@
         "expr": "165:55"
       },
       "explain": {
-        "text": "Số ở hàng dưới là thương của số hàng trên cho số chia. 165 chia cho số chia được 55, mà 165 : 55 = 3 nên số chia là 3. Số 3 là số nguyên tố nhỏ nhất mà 165 chia hết.",
+        "text": "Mỗi hàng, ta chia số hàng trên cho số chia để được số hàng dưới. 165 chia cho số chia được 55, mà 165 : 55 = 3 nên số chia là 3. Số 3 là số nguyên tố nhỏ nhất mà 165 chia hết.",
         "tex": "165 : 3 = 55"
       }
     },
@@ -4302,7 +4302,7 @@
       "answer": ["a", "c"],
       "multiple": true,
       "explain": {
-        "text": "Tính từng tổng rồi xét các số hạng. 36 + 40 = 76, cả hai số hạng chia hết cho 2 nên tổng là hợp số. 30 + 63 = 93, cả hai chia hết cho 3 nên tổng là hợp số.",
+        "text": "Tính từng tổng rồi xét các số hạng. 36 + 40 = 76, cả hai số hạng chia hết cho 2 và 76 lớn hơn 2 nên tổng là hợp số. 30 + 63 = 93, cả hai chia hết cho 3 và 93 lớn hơn 3 nên tổng là hợp số.",
         "tex": "4 \\cdot 9 + 8 \\cdot 5 = 36 + 40 = 76, \\quad 6 \\cdot 5 + 9 \\cdot 7 = 30 + 63 = 93",
         "wrong": [
           {
