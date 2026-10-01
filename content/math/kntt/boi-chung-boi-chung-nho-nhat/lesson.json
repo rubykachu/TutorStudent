@@ -4214,28 +4214,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Hai đèn cứ 8 giây và 14 giây nháy một lần. Sau bao lâu hai đèn lại cùng nháy?"
+            "text": "Hai đèn nháy mỗi 8 giây và 14 giây. Sau bao lâu lại cùng nháy?"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Chia 18 quả cam và 24 quả quýt vào các đĩa như nhau, không thừa quả nào. Chia được nhiều nhất bao nhiêu đĩa?"
+            "text": "Chia 18 cam và 24 quýt vào các đĩa như nhau, không thừa. Nhiều nhất mấy đĩa?"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Hai xe buýt cứ 10 phút và 15 phút rời bến một lần. Sau bao lâu lại cùng rời bến?"
+            "text": "Hai xe rời bến mỗi 10 và 15 phút. Sau bao lâu lại cùng rời bến?"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Cắt hai dải băng 12 dm và 20 dm thành các đoạn bằng nhau, vừa hết. Mỗi đoạn dài nhất bao nhiêu đề-xi-mét?"
+            "text": "Cắt hai dải 12 dm và 20 dm thành đoạn bằng nhau, vừa hết. Mỗi đoạn dài nhất mấy dm?"
           }
         }
       ],
