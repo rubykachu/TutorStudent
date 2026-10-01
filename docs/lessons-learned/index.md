@@ -47,7 +47,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 3 | 24 | 20 | 47 |
+| LL-10 | 4 | 24 | 20 | 48 |
 | LL-19 | 2 | 8 | 25 | 35 |
 | LL-12 | 4 | 14 | 26 | 44 |
 | LL-07 | 1 | 25 | 20 | 46 |
@@ -89,7 +89,7 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-nhan-phep-chia` | Toán | 4 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
 | `quan-he-chia-het-va-tinh-chat` | Toán | 8 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
 | `dau-hieu-chia-het` | Toán | 5 | chưa (vòng 2 còn 2, vòng 3 còn 1) | 3 |
-| `uoc-chung-uoc-chung-lon-nhat` | Toán | 8 | chưa (vòng 2 còn 4) | 2 |
+| `uoc-chung-uoc-chung-lon-nhat` | Toán | 8 | ≤ 5 (vòng 2 còn 4; vòng 6, 6 phần bổ sung, có 1) | 6 |
 | `so-nguyen-to` | Toán | 9 | 3 (vòng 2 còn 4; video: vòng 4 có 1, sửa ngay) | 4 |
 | `on-tap-chuong-2` | Toán | 8 | chưa (vòng 2 còn 7, vòng 3 còn 1) | 3 |
 | `boi-chung-boi-chung-nho-nhat` | Toán | 8 | chưa (vòng 2 còn 5) | 2 |
