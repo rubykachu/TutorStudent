@@ -4,14 +4,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
-import { ConceptMark, ConceptShape } from "@/visuals/shared/concept-mark";
+import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
+import { ConceptMark } from "@/visuals/shared/concept-mark";
 import {
   DoneLine,
   isLessonScreen,
   ShownLine,
   useGuidedGoal,
 } from "@/visuals/shared/guided-feedback";
-import { decorative, stateStep, stateStepper } from "@/visuals/shared/markers";
+import { stateStep, stateStepper } from "@/visuals/shared/markers";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import {
   LineAxis,
@@ -30,8 +31,10 @@ import {
 // A number line with one point the child walks: it starts on a given tick,
 // and each press of an arrow button moves it one tick left or right (a tick
 // is too narrow to tap). State is { p0 }, the tick the point stands on,
-// reported from the start. The start stays marked in blue, the point in
-// amber, and a line under the buttons says how far the point has walked.
+// reported from the start. The start stays written in blue under its tick;
+// the point is blue too (the number it started from), and turns amber on the
+// tick of the lesson screen's goal (the sum). A line under the buttons says
+// how far the point has walked.
 
 export type HopTrySpec = LineRange & {
   label: string;
@@ -42,8 +45,7 @@ export type HopTrySpec = LineRange & {
 };
 
 const START_COLOR = "blue";
-const POINT_COLOR = "amber";
-const START_MARK_RADIUS = 6;
+const RESULT_COLOR = "amber";
 const BUTTON =
   "inline-flex size-touch shrink-0 items-center justify-center rounded-lg border-2 border-border bg-surface text-foreground disabled:opacity-40 motion-safe:transition-transform motion-safe:active:scale-97";
 
@@ -92,11 +94,12 @@ export function HopTry({
     },
   });
 
+  const pointColor = guided && value === goal ? RESULT_COLOR : START_COLOR;
   const radius = tryDotRadius(spec);
   const plan = planLine({ names: false, arrowRows: 0, zoneTags: false });
   const marks = new Map([
     [start, numberMark(START_COLOR, start)],
-    [value, numberMark(POINT_COLOR, value)],
+    [value, numberMark(pointColor, value)],
   ]);
 
   return (
@@ -108,27 +111,12 @@ export function HopTry({
         className="h-auto w-full max-w-md"
       >
         <LineAxis range={spec} plan={plan} marks={marks}>
-          <g {...decorative}>
-            <ConceptShape
-              color={START_COLOR}
-              cx={tickX(spec, start)}
-              cy={plan.axisY}
-              r={START_MARK_RADIUS}
-              className="stroke-surface"
-              strokeWidth={2}
-            />
-          </g>
           <motion.g
             initial={false}
             animate={{ x: tickX(spec, value) }}
             transition={transition}
           >
-            <NamedDot
-              x={0}
-              y={plan.axisY}
-              color={POINT_COLOR}
-              radius={radius}
-            />
+            <NamedDot x={0} y={plan.axisY} color={pointColor} radius={radius} />
           </motion.g>
         </LineAxis>
       </svg>
@@ -137,7 +125,7 @@ export function HopTry({
         {...stateStepper(KEY, value)}
       >
         <legend className="mx-auto flex items-center gap-2 text-caption text-muted-foreground">
-          <ConceptMark color={POINT_COLOR} className="size-4" />
+          <ConceptMark color={pointColor} className="size-4" />
           Điểm đang đi
         </legend>
         <div className="flex items-center gap-2">
@@ -153,7 +141,7 @@ export function HopTry({
           </button>
           <output
             aria-live="polite"
-            className="min-w-14 text-center font-heading text-title font-bold text-concept-amber tabular-nums"
+            className={`min-w-14 text-center font-heading text-title font-bold tabular-nums ${CONCEPT_CLASSES[pointColor].text}`}
           >
             {signed(value)}
           </output>

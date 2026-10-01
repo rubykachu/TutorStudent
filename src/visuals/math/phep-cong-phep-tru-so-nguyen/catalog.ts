@@ -35,13 +35,21 @@ export const VALIDATOR_IDS = { hopTry: "dat-diem" } as const;
 // Colours of the concepts of the lesson, as the layers of a picture use them.
 const POSITIVE = "lime";
 const NEGATIVE = "pink";
-const ZERO = "slate";
 const OPPOSITE = "sky";
 const FIRST = "blue";
+// The colour of a label that names a step ("đổi chỗ các số") or a case
+// ("đứng yên") rather than a concept of the lesson. It is the one concept
+// colour the lesson leaves unused, and its marker (a triangle) cannot be
+// read as a sign, unlike the cross of sky or the bar of slate.
+const NOTE = "violet";
 const SUM = "amber";
 const DIFFERENCE = "teal";
 
 type Mode = "steps" | "hint" | "still";
+
+// The name written over the first point of a walk; the last point carries
+// the name of the result ("tổng" or "hiệu").
+const START_NAME = "đầu";
 
 const word = (hop: number) =>
   hop > 0 ? `sang phải ${hop}` : `sang trái ${-hop}`;
@@ -65,8 +73,14 @@ function walk(
   const positions = positionsOf(start, hops);
   const range = hopRange(positions);
   const layers: LineLayer[] = [];
-  if (start !== 0) layers.push({ type: "origin", step: 0 });
-  layers.push({ type: "point", at: start, color: FIRST, step: 0 });
+  if (!positions.includes(0)) layers.push({ type: "origin", step: 0 });
+  layers.push({
+    type: "point",
+    at: start,
+    name: START_NAME,
+    color: FIRST,
+    step: 0,
+  });
   const spans: { low: number; high: number; row: number }[] = [];
   hops.forEach((hop, i) => {
     const from = positions[i] ?? start;
@@ -91,6 +105,7 @@ function walk(
     layers.push({
       type: "point",
       at: to,
+      ...(last ? { name: result === SUM ? "tổng" : "hiệu" } : {}),
       color: last ? result : FIRST,
       step: 2 * i + 2,
     });
@@ -160,18 +175,18 @@ const LEGEND_SIGNS = [
 // Worked example: pair the opposite numbers first, then add the rest.
 const PAIR_ROWS = [
   { tex: "8 + (-3) + (-8) + 5" },
-  { tex: "= 8 + (-8) + (-3) + 5", tag: tag("đổi chỗ các số", FIRST) },
+  { tex: "= 8 + (-8) + (-3) + 5", tag: tag("đổi chỗ các số", NOTE) },
   {
-    tex: "= [8 + (-8)] + [(-3) + 5]",
-    tag: tag("nhóm cặp số đối nhau", OPPOSITE),
+    tex: "\\begin{gathered} = [8 + (-8)] \\\\ + [(-3) + 5] \\end{gathered}",
+    tag: tag("nhóm cặp số đối nhau", NOTE),
   },
   { tex: "= \\concept{slate}{0} + \\concept{lime}{2}" },
-  { tex: "= \\concept{lime}{2}", tag: tag("kết quả", SUM) },
+  { tex: "= \\concept{lime}{2}", tag: tag("An còn 2 nghìn đồng", SUM) },
 ] as const satisfies readonly Row[];
 
 // A = x + (-4) - 6 for x = 12.
 const VALUE_ROWS = [
-  { tex: "A = 12 + (-4) - 6", tag: tag("thay x bằng 12", FIRST) },
+  { tex: "A = 12 + (-4) - 6", tag: tag("thay x bằng 12", NOTE) },
   { tex: "= 8 - 6" },
   { tex: "= \\concept{lime}{2}", tag: tag("giá trị của A", SUM) },
 ] as const satisfies readonly Row[];
@@ -179,22 +194,34 @@ const VALUE_ROWS = [
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // 1. Phần dấu và phần số tự nhiên
   "dau-va-so": rows(
-    "Số −3 có dấu − và số 3, số 5 có dấu + và số 5",
+    "Số −2 có dấu − và phần số tự nhiên 2, số 9 có dấu + và phần số tự nhiên 9",
     [
       {
-        tex: "\\concept{pink}{-3}",
-        tag: tag("dấu −, số 3", NEGATIVE),
+        tex: "\\concept{pink}{-2}",
+        tag: tag("dấu −, phần số tự nhiên 2", NEGATIVE),
       },
-      { tex: "\\concept{lime}{5}", tag: tag("dấu +, số 5", POSITIVE) },
+      {
+        tex: "\\concept{lime}{9}",
+        tag: tag("dấu +, phần số tự nhiên 9", POSITIVE),
+      },
     ],
     LEGEND_SIGNS,
   ),
   "dau-va-so-vi-du": rows(
     "Ba số nguyên, mỗi số gồm phần dấu và phần số tự nhiên",
     [
-      { tex: "\\concept{pink}{-7}", tag: tag("dấu −, số 7", NEGATIVE) },
-      { tex: "\\concept{lime}{12}", tag: tag("dấu +, số 12", POSITIVE) },
-      { tex: "\\concept{pink}{-20}", tag: tag("dấu −, số 20", NEGATIVE) },
+      {
+        tex: "\\concept{pink}{-7}",
+        tag: tag("dấu −, phần số tự nhiên 7", NEGATIVE),
+      },
+      {
+        tex: "\\concept{lime}{12}",
+        tag: tag("dấu +, phần số tự nhiên 12", POSITIVE),
+      },
+      {
+        tex: "\\concept{pink}{-20}",
+        tag: tag("dấu −, phần số tự nhiên 20", NEGATIVE),
+      },
     ],
     LEGEND_SIGNS,
   ),
@@ -240,19 +267,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "so-doi-vi-du": rows("Mỗi số và số đối của nó", [
     {
       tex: "\\concept{lime}{5} \\to \\concept{pink}{-5}",
-      tag: tag("số đối của 5", OPPOSITE),
+      tag: tag("số đối của 5", NOTE),
     },
     {
       tex: "\\concept{pink}{-5} \\to \\concept{lime}{5}",
-      tag: tag("số đối của −5", OPPOSITE),
+      tag: tag("số đối của −5", NOTE),
     },
     {
       tex: "\\concept{lime}{12} \\to \\concept{pink}{-12}",
-      tag: tag("số đối của 12", OPPOSITE),
+      tag: tag("số đối của 12", NOTE),
     },
     {
-      tex: "\\concept{pink}{-18} \\to \\concept{lime}{18}",
-      tag: tag("số đối của −18", OPPOSITE),
+      tex: "\\concept{pink}{-16} \\to \\concept{lime}{16}",
+      tag: tag("số đối của −16", NOTE),
     },
   ]),
 
@@ -269,7 +296,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ]),
   "cung-am5-cong3": tryWalk(-5, -2, "Điểm đã đi sang phải 3 đơn vị, tới −2."),
   "thu-am4": tryWalk(-4),
-  "goi-y-am2-cong6": walk(-2, [6], SUM, "hint"),
+  "goi-y-am5-cong2": walk(-5, [2], SUM, "hint"),
 
   // 4. Cộng với số âm
   "trai-2-cong-am5": walk(2, [-5], SUM),
@@ -288,32 +315,33 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tong-doi-vi-du": rows("Tổng của hai số đối nhau bằng 0", [
     {
       tex: "5 + (-5) = \\concept{slate}{0}",
-      tag: tag("5 và −5 đối nhau", OPPOSITE),
+      tag: tag("5 và −5 đối nhau", NOTE),
     },
     {
       tex: "(-7) + 7 = \\concept{slate}{0}",
-      tag: tag("−7 và 7 đối nhau", OPPOSITE),
+      tag: tag("−7 và 7 đối nhau", NOTE),
     },
     {
       tex: "12 + (-12) = \\concept{slate}{0}",
-      tag: tag("12 và −12 đối nhau", OPPOSITE),
+      tag: tag("12 và −12 đối nhau", NOTE),
     },
   ]),
   "cong-voi-0-vi-du": rows("Cộng với 0 thì số không đổi", [
-    { tex: "(-4) + \\concept{slate}{0} = -4", tag: tag("đứng yên", ZERO) },
-    { tex: "\\concept{slate}{0} + 9 = 9", tag: tag("đứng yên", ZERO) },
+    { tex: "(-4) + \\concept{slate}{0} = -4", tag: tag("đứng yên", NOTE) },
+    { tex: "\\concept{slate}{0} + 9 = 9", tag: tag("đứng yên", NOTE) },
   ]),
-  "tong-doi-va-0": rows("Tổng hai số đối bằng 0, cộng với 0 thì số không đổi", [
-    {
-      tex: "5 + (-5) = \\concept{slate}{0}",
-      tag: tag("hai số đối nhau", OPPOSITE),
-    },
-    {
-      tex: "(-4) + \\concept{slate}{0} = -4",
-      tag: tag("cộng với 0", ZERO),
-    },
-  ]),
-  "cung-5-cong-am5": tryWalk(5, 0, "Điểm đã về gốc O, tổng bằng 0."),
+  "dung-yen-tai-3": {
+    kind: "line",
+    from: -5,
+    to: 5,
+    label: "Trục số: điểm ở 3, cộng 0 thì điểm vẫn ở 3",
+    layers: [
+      { type: "origin" },
+      { type: "point", at: 3, name: START_NAME, color: FIRST },
+    ],
+    mode: "still",
+  },
+  "cung-am2-cong2": tryWalk(-2, 0, "Điểm đã về gốc O, tổng bằng 0."),
   "thu-am3": tryWalk(-3),
 
   // 6. Cộng hai số cùng dấu
@@ -329,11 +357,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
     {
       tex: "3 + 4 = \\concept{lime}{7}",
-      tag: tag("hai số dương", POSITIVE),
+      tag: tag("hai số dương, cộng như thường", POSITIVE),
     },
   ]),
   "cung-am2-am4": tryWalk(-2, -6, "Điểm đã đi sang trái 4 đơn vị, tới −6."),
-  "goi-y-am1-am3": walk(-1, [-3], SUM, "hint"),
+  "goi-y-am8-am5": lines(
+    "Cộng hai số âm: cộng hai phần số tự nhiên rồi đặt dấu −",
+    [
+      { tex: "(-8) + (-5)" },
+      { tex: "= -(8 + 5)", tag: tag("cộng 8 với 5, đặt dấu −", NOTE) },
+      { tex: "= -13" },
+    ],
+    "hint",
+  ),
 
   // 7. Cộng hai số khác dấu
   "thu-7-chi-4": walk(7, [-4], SUM),
@@ -352,7 +388,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "cung-3-cong-am5": tryWalk(3, -2, "Điểm đã đi sang trái 5 đơn vị, tới −2."),
-  "goi-y-4-am7": walk(4, [-7], SUM, "hint"),
+  "goi-y-am9-cong4": lines(
+    "Cộng hai số khác dấu: lấy phần lớn trừ phần nhỏ, dấu của số xa gốc O hơn",
+    [
+      { tex: "(-9) + 4" },
+      { tex: "= -(9 - 4)", tag: tag("phần 9 lớn hơn: dấu −", NOTE) },
+      { tex: "= -5" },
+    ],
+    "hint",
+  ),
 
   // 8. Trừ đi một số dương
   "nhiet-4-giam-6": walk(4, [-6], DIFFERENCE),
@@ -371,7 +415,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "cung-1-tru-4": tryWalk(1, -3, "Điểm đã đi sang trái 4 đơn vị, tới −3."),
-  "goi-y-2-tru-6": walk(2, [-6], DIFFERENCE, "hint"),
+  "goi-y-2-tru-7": lines(
+    "Trừ đi một số là cộng với số đối của nó",
+    [
+      { tex: "2 - 7" },
+      { tex: "= 2 + (-7)", tag: tag("trừ 7 là cộng với −7", NOTE) },
+      { tex: "= -5" },
+    ],
+    "hint",
+  ),
 
   // 9. Trừ đi một số âm
   "xoa-no-5": walk(-5, [5], DIFFERENCE),
@@ -390,17 +442,25 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "cung-1-tru-am3": tryWalk(1, 4, "Điểm đã đi sang phải 3 đơn vị, tới 4."),
-  "goi-y-3-tru-am2": walk(3, [2], DIFFERENCE, "hint"),
+  "goi-y-tru-am6": lines(
+    "Trừ đi một số âm là cộng với số dương",
+    [
+      { tex: "2 - (-6)" },
+      { tex: "= 2 + 6", tag: tag("trừ −6 là cộng với 6", NOTE) },
+      { tex: "= 8" },
+    ],
+    "hint",
+  ),
 
   // 10. Giao hoán, kết hợp
   "ghep-so-doi": lines("Ghép các số đối nhau trước", PAIR_ROWS, "steps"),
   "ghep-so-doi-xong": lines("Ghép các số đối nhau trước", PAIR_ROWS, "still"),
-  "cung-5-tru-3-tru-4": tryWalk(5, -2, "Điểm đã tới −2, tổng bằng −2."),
+  "cung-0-cong-am2": tryWalk(0, -2, "Điểm đã tới −2, tổng bằng −2."),
   "goi-y-ghep": lines(
     "Ghép các số đối nhau trước, với số khác",
     [
       { tex: "6 + (-2) + (-6) + 1" },
-      { tex: "= 6 + (-6) + (-2) + 1", tag: tag("ghép cặp số đối", OPPOSITE) },
+      { tex: "= 6 + (-6) + (-2) + 1", tag: tag("ghép cặp số đối", NOTE) },
       { tex: "= 0 + (-1)" },
     ],
     "hint",
@@ -410,11 +470,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "gia-tri-x-am3": lines(
     "Tính A = x + (−4) − 6 khi x = −3",
     [
-      { tex: "A = (-3) + (-4) - 6", tag: tag("thay x bằng −3", FIRST) },
+      { tex: "A = (-3) + (-4) - 6", tag: tag("thay x bằng −3", NOTE) },
       { tex: "= -7 - 6" },
       {
         tex: "= -7 + (-6)",
-        tag: tag("trừ là cộng với số đối", OPPOSITE),
+        tag: tag("trừ là cộng với số đối", NOTE),
       },
       { tex: "= \\concept{pink}{-13}", tag: tag("giá trị của A", SUM) },
     ],
@@ -429,7 +489,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "goi-y-bieu-thuc": lines(
     "Tính B = x + 2 − 5 khi x = 1",
     [
-      { tex: "B = 1 + 2 - 5", tag: tag("thay x bằng 1", FIRST) },
+      { tex: "B = 1 + 2 - 5", tag: tag("thay x bằng 1", NOTE) },
       { tex: "= 3 - 5" },
       { tex: "= -2" },
     ],
@@ -439,12 +499,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // 12. Bài toán đời sống
   "sapa-dem": walk(-4, [-3], DIFFERENCE),
   "tai-khoan": lines(
-    "Tài khoản có 50 nghìn đồng, thu và chi lần lượt 20, 35, 45 nghìn",
+    "Ví có 50 nghìn đồng, tiêu 20 nghìn, được cho 35 nghìn, tiêu 45 nghìn",
     [
-      { tex: "50 + (-20) + 35 + (-45)" },
-      { tex: "= 30 + 35 + (-45)", tag: tag("tính từ trái sang phải", FIRST) },
+      {
+        tex: "50 + (-20) + 35 + (-45)",
+        tag: tag("tiêu là số âm, được cho là số dương", NOTE),
+      },
+      { tex: "= 30 + 35 + (-45)", tag: tag("tính từ trái sang phải", NOTE) },
       { tex: "= 65 + (-45)" },
-      { tex: "= \\concept{lime}{20}", tag: tag("còn 20 nghìn đồng", SUM) },
+      { tex: "= \\concept{lime}{20}", tag: tag("Lan còn 20 nghìn đồng", SUM) },
     ],
     "steps",
   ),

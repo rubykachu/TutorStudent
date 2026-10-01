@@ -9,6 +9,7 @@ import {
   hopRange,
   labelsFor,
   minApart,
+  minApartNamed,
   positionsOf,
 } from "@/visuals/math/phep-cong-phep-tru-so-nguyen/logic";
 
@@ -47,19 +48,25 @@ describe("the catalog", () => {
     ([, spec]) => spec.kind === "line",
   );
 
-  it("keeps the numbers of every walk apart so they never touch", () => {
+  it("keeps the numbers and names of every walk apart so they never touch", () => {
     for (const [key, spec] of lines) {
       if (spec.kind !== "line") continue;
-      const marked = spec.layers
-        ?.filter((layer) => layer.type === "point")
-        .map((layer) => layer.at)
-        .sort((a, b) => a - b);
-      const apart = minApart(spec);
-      for (let i = 1; i < (marked?.length ?? 0); i++) {
-        const gap = (marked?.[i] ?? 0) - (marked?.[i - 1] ?? 0);
-        expect(gap === 0 || gap >= apart, `${key}: points ${marked}`).toBe(
-          true,
-        );
+      // A hint never draws its last step, so its result point is not there.
+      const last = Math.max(0, ...(spec.layers ?? []).map((l) => l.step ?? 0));
+      const points = (spec.layers ?? [])
+        .filter((layer) => layer.type === "point")
+        .filter((layer) => spec.mode !== "hint" || (layer.step ?? 0) !== last)
+        .sort((a, b) => a.at - b.at);
+      for (let i = 1; i < points.length; i++) {
+        const before = points[i - 1];
+        const after = points[i];
+        if (!before || !after || before.at === after.at) continue;
+        const named = before.name !== undefined && after.name !== undefined;
+        const needed = named ? minApartNamed(spec) : minApart(spec);
+        expect(
+          after.at - before.at,
+          `${key}: points ${before.at}, ${after.at}`,
+        ).toBeGreaterThanOrEqual(needed);
       }
     }
   });

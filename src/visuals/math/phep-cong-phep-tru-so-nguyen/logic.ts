@@ -52,7 +52,13 @@ export function labelsFor(
 }
 
 // How far apart (in ticks) two marked ticks must stand so their numbers do
-// not touch.
+// not touch, and so the names written over two points ("đầu", "tổng") do not.
 export function minApart(range: LineRange): number {
   return Math.ceil(NUMBER_WIDTH / tickGap(range));
+}
+
+const NAME_WIDTH = 44;
+
+export function minApartNamed(range: LineRange): number {
+  return Math.ceil(NAME_WIDTH / tickGap(range));
 }
