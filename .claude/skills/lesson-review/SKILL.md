@@ -58,6 +58,14 @@ Tổng hợp:
 - Mục thuộc bài tập hay card: đọc sheet walk của section đó (lọc như trên; mở từng ảnh chỉ để phóng to) và trang nguồn. Diff chỉ có video: theo "Lời video khớp bài" trong checklist.
 - Làm luôn việc của Tổng hợp: ghi `review.md` (phạm vi ghi ở dòng "Vòng"), chạy lệnh cuối vòng.
 
+## Review mẹo (`tips.json`)
+
+Tệp `tips.json` của một bài (xem `lesson-author`, mục "Thêm mẹo cho bài đã xuất bản") có review riêng, không đụng `lesson.json` và `review.md` của bài; mọi vòng của nó review toàn tệp (tệp nhỏ), không dùng `content:diff`. Điều phối chạy `pnpm content:check`, rồi mở **một Reviewer** mới (`model: "sonnet"` vì tệp nhỏ; `opus` khi mẹo là kiến thức mới nặng). Reviewer:
+- Đọc glossary của môn, các `note` quy tắc của bài (mẹo không được nói trái quy tắc của bài) và `docs/learner.md`.
+- Với từng mẹo theo mục "Mẹo đúng với mọi đầu vào" của checklist: tự tính trên ≥ 5 đầu vào gồm số biên, ghi bảng "mẹo → các số đã thử → kết quả" vào tệp review; kiểm `kind`, độ dài, lớp 6, và mẹo có hợp dạng bài trong bài.
+- Ghi `tips-review.md` cạnh `tips.json` theo khuôn `templates/review.md` (tệp là `tips.json`, vị trí là JSON path của mẹo, vd `$.tips[0]`) và mức Nghiêm trọng, Nên sửa, Góp ý của checklist, kèm bảng các số đã thử.
+- 0 Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --tips --approve` (ghi `reviewedHash`, đặt `published` cho tệp mẹo), rồi `pnpm content:lock <id bài>`. Còn Nghiêm trọng: tệp giữ `draft`, tác giả sửa rồi gọi vòng sau. Sửa mẹo sau khi duyệt đổi hash của tệp mẹo nên cần review lại.
+
 ## Mức độ
 
 - **Nghiêm trọng**: chặn xuất bản. Trẻ học sai hoặc nhớ sai (định nghĩa, quy tắc, recap, cách đọc), không làm được bài, hoặc bài vi phạm luật nội dung. Ghi vào backlog không thay cho việc sửa.

@@ -28,6 +28,10 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 **Rubric `openEnded` làm được ở lớp 6** và khớp đề: yêu cầu quá sức hoặc lệch đề là Nên sửa.
 
+**Giải thích (`explain`) đúng và giải thích được.** Đọc `explain` của mọi câu như bé: thấy vì sao đáp án đúng chưa, và làm được câu tương tự chưa. Giải thích nói sai kiến thức, hay một lý do trong `wrong` nói sai (vd bảo phương án đúng là sai): Nghiêm trọng. Chỉ lặp lại đáp án ("Đáp án là 18") hay chỉ phán đúng sai mà không nêu lý do: Nên sửa. Dài hơn 3 câu hay dùng từ chưa học: Nên sửa. Câu có phương án nhiễu hay bị chọn nhầm mà `explain` không có `wrong` cho nó (khi lý do đáng nói): Góp ý. Câu thiếu `explain` ở bài mới: `content:check` đã báo lỗi, không ghi lại.
+
+**Mẹo (`tip`, và `tips.json`) đúng với mọi đầu vào.** Với mỗi mẹo, tự thử trên ít nhất 5 đầu vào khác nhau của dạng bài đó, gồm số biên (0, 1, số tròn chục, số một chữ số, số chẵn và lẻ, số lớn nhất bài dùng) và ghi các số đã thử vào review. Mẹo cho kết quả sai ở một đầu vào thuộc dạng bài (không nói điều kiện trong `text`), hoặc mẹo suy ra điều sai (vd "số có chữ số tận cùng chẵn thì chia hết cho 4"): Nghiêm trọng. Mẹo dùng kiến thức chưa học ở lớp 6 hay chưa dạy trong bài: Nghiêm trọng (trục 1). Mẹo đúng nhưng `kind` sai nhãn (mẹo tránh sai gắn "làm nhanh"), `title` không nêu dạng bài, hay không có ví dụ tính (`tex`) khi mẹo cần ví dụ: Nên sửa.
+
 **Lời video khớp bài.** Bài có `videos`: đọc kịch bản `video/projects/<id bài>/<tên video>/script.json` (tên video là phần cuối của id video). Câu đánh `rule`, `quote` đã được `video:build` so nguyên văn với bài và `source-passage.txt`; chỉ soát câu nêu quy tắc hay trích văn bản mà thiếu dấu đó (Nghiêm trọng), lời dẫn, chuyển cảnh và số: câu nói sai kiến thức hay sai văn bản là Nghiêm trọng. Clip (`videos[].clips`) gắn vào card mà đoạn đó không giảng: Nên sửa.
 
 ## 3. Ngôn từ lớp 6
@@ -35,6 +39,8 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 **Không phủ định kép**: Nghiêm trọng. Trẻ 11 tuổi dễ hiểu ngược.
 - Không đạt: "Chạm vào hình không phải là không tròn.", "Câu nào không sai?", "Không có bạn nào chưa làm bài."
 - Đạt: "Chạm vào hình tròn.", "Câu nào đúng?"
+
+**Tổng quan nối bài với đời sống.** `overview.hook` mở bằng tình huống cụ thể, và `overview.whyItMatters` (một câu) nêu một tình huống đời sống mà kiến thức này có mặt cùng việc nó giúp làm được (vd "Bạn dùng phép nhân khi đi chợ để biết ba gói kẹo giá bốn nghìn hết bao nhiêu tiền."). Câu chung chung ("giúp bạn học tốt các bài sau", "rất quan trọng"), tình huống bé không gặp hay không dùng kiến thức bài này: Nên sửa. Tình huống sai sự thật hay dạy bé hiểu sai: Nghiêm trọng (trục 2). Lint chỉ kiểm overview có mặt, đủ trường và ngắn.
 
 **Không đánh đố.** Đáp án đúng dựa vào mẹo chữ, chi tiết gài bẫy hoặc cách đọc lắt léo: Nghiêm trọng.
 
@@ -67,6 +73,10 @@ Soát trên contact sheet của `pnpm lesson:walk` (mỗi ô một ảnh, in tê
 **Section ngắn, một ý.** `content:check` đã chặn section quá 4 màn hay quá 4 bài tập. Section gộp hai quy tắc cần nhớ riêng (recap phải có hai câu mới đủ), hay `minutes` lệch xa số màn nhân khoảng 40 giây: Nên sửa.
 
 **Người học chậm theo kịp.** Vi phạm một luật trong mục "Sư phạm cho người học chậm" của `.claude/skills/lesson-author/SKILL.md` mà `content:check` không kiểm (ví dụ mẫu trước câu tự làm, dạy thao tác nhập trước lần dùng đầu, câu chuyện có kết, số nhỏ, `overview` đúng luật, section Toán hay Địa lí thiếu ví dụ đời sống): Nên sửa.
+
+**Mẹo có mặt khi dạng bài có mẹo thật, không gượng.** Dạng bài có mẹo làm nhanh, hiểu nhanh hay tránh sai rõ ràng, đúng và hợp lớp 6 (nhân với 9, 11; chia hết cho 2, 3, 5, 9; kiểm phép chia bằng phép nhân…) mà bài không có `tip`: Nên sửa. Mẹo gượng (chỉ nhắc lại quy tắc bằng chữ khác, mẹo cho dạng bài không có mẹo, nhiều mẹo cho một ý): Nên sửa. Mẹo đặt trước khi dạy cách làm bình thường: Nên sửa.
+
+**Nhịp video cho bé chậm** (video mới, không nằm trong `video/pacing-exempt.json`; `video:check` đã kiểm số câu, độ dài câu, cờ `pause`, `checkpoint`): đọc kịch bản như bé. Mỗi câu một ý; câu hỏi "Bạn thử đoán xem…" có thật sự hỏi điều bé đoán được trước khi hình hiện kết quả (hình không hiện đáp án trước lúc đọc xong quãng dừng, đối chiếu `index.html`); quãng dừng nghĩ đặt sau điều quan trọng chứ không rải đều; điểm dừng đặt hết một ý trọn vẹn, để "Xem lại đoạn này" phát lại đúng một ý. Hình hiện đáp án trước khi hỏi, hay điểm dừng cắt giữa một ý: Nên sửa. Video dồn nhiều ý đến mức bé chậm không theo kịp: Nên sửa.
 
 **Video xem được.** Walk báo FAIL ở màn video (thiếu tệp, nút phát nhỏ, không có phụ đề): Nghiêm trọng. Cảnh báo "video did not play here" trên máy không giải mã được H.264 (Chromium của walk): bỏ qua.
 

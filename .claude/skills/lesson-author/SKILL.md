@@ -26,7 +26,20 @@ Bài mới mà chưa có nguồn trong `sources/<môn>/<slug>/` hay còn thiếu
 
 Bài viết cho trẻ lớp 6 học chậm, hay quên. Mọi bài theo các luật sau.
 
-- **Tổng quan bài (`overview`, bắt buộc).** `hook`: câu đầu tiên là câu chào gọi bé là "bạn" ("Chào bạn! Ở bài này, chúng ta sẽ …"; lời đọc giới thiệu mở bằng câu này, `pnpm narration:build` từ chối khi thiếu chữ "bạn"; bài đã có lời đọc trước luật được miễn trong `media.json`), rồi một câu mở gần đời sống của trẻ (môn khô như Toán, Địa lí: một tình huống ở nhà, ở chợ, trên đường đi học cần đúng kiến thức bài này). `summary`: Ngữ văn kể lại truyện trong 3–5 câu; môn khác nói bài học gì trong 1–2 câu. `goals`: 2–4 mục, mỗi mục đọc tiếp được sau "Học xong bài này, bạn sẽ:" (màn hình in sẵn câu dẫn này) (không lặp cụm đó trong mục). `whyItMatters`: một câu. `narration` do `pnpm narration:build` ghi, không viết tay; việc ghi làm đổi review hash nên sau đó chạy một vòng review phần đổi rồi duyệt lại. Chữ trong overview viết số mũ, kí hiệu bằng lời (build từ chối ² và TeX).
+- **Tổng quan bài (`overview`, bắt buộc với bài mới; `content:check` báo lỗi khi bài đã `published` thiếu nó).** Tổng quan phải nối bài với đời sống hằng ngày: kiến thức này nằm ở đâu quanh bé và dùng để làm gì (vd "+ − × :" để đi chợ, đếm và trả tiền). `hook`: câu đầu tiên là câu chào gọi bé là "bạn" ("Chào bạn! Ở bài này, chúng ta sẽ …"; lời đọc giới thiệu mở bằng câu này, `pnpm narration:build` từ chối khi thiếu chữ "bạn"; bài đã có lời đọc trước luật được miễn trong `media.json`), rồi một câu mở là tình huống cụ thể ở nhà, ở chợ, trên đường đi học cần đúng kiến thức bài này (Ngữ văn: tình huống bé từng gặp giống chuyện trong bài). `summary`: Ngữ văn kể lại truyện trong 3–5 câu; môn khác nói bài học gì trong 1–2 câu. `goals`: 2–4 mục, mỗi mục đọc tiếp được sau "Học xong bài này, bạn sẽ:" (màn hình in sẵn câu dẫn này) (không lặp cụm đó trong mục). `whyItMatters`: **một câu nêu một tình huống đời sống cụ thể mà kiến thức này có mặt và việc nó giúp làm được**, vd "Bạn dùng phép nhân khi đi chợ để biết ba gói kẹo giá bốn nghìn hết bao nhiêu tiền." Không viết câu chung chung kiểu "giúp bạn học tốt các bài sau" hay "rất quan trọng": tình huống phải có người, vật, việc làm cụ thể mà bé hình dung ra. Máy chỉ kiểm được overview có mặt, đủ trường và ngắn; tình huống có cụ thể và đúng không là việc của reviewer (checklist trục 3). `narration` do `pnpm narration:build` ghi, không viết tay; việc ghi làm đổi review hash nên sau đó chạy một vòng review phần đổi rồi duyệt lại. Chữ trong overview viết số mũ, kí hiệu bằng lời (build từ chối ² và TeX).
+- **Giải thích sau mỗi câu (`explain`, bắt buộc với bài mới).** Sau khi bé trả lời (đúng, hết nấc 3, hay bỏ qua) app hiện khung "Giải thích" ngay dưới câu hỏi rồi mới tới nút "Tiếp". Mọi câu chấm được có `explain` (câu ôn, câu luyện tập, câu kiểm tra, từng bước của `openEnded`; chính câu `openEnded` thì không), `content:check` báo lỗi từng câu thiếu. Hình dạng:
+
+  ```json
+  "explain": {
+    "text": "Tối đa 3 câu: vì sao đáp án đúng.",
+    "tex": "14 = 1 \\cdot 14 = 2 \\cdot 7",
+    "visualId": "<bài>.visual.<tên>",
+    "wrong": [{ "optionId": "b", "text": "Một câu: vì sao phương án này sai." }]
+  }
+  ```
+
+  Chỉ `text` bắt buộc. `text` ≤ 3 câu, giọng bình tĩnh, nói thẳng lý do chứ không phán đúng sai (không "Đúng rồi!": cú đã khen); nêu cách nghĩ để bé tự làm được câu tương tự, không chỉ lặp đáp án. Ví dụ "Chọn tất cả các ước của 14": `text` "Tìm ước bằng cách viết 14 thành tích hai thừa số. Mỗi thừa số trong các tích đó là một ước.", `tex` `14 = 1 \cdot 14 = 2 \cdot 7`. `tex` là một công thức hay một dòng tính chứa lý lẽ (nhiều dòng: `\begin{aligned} … \\ … \end{aligned}`; trong JSON mỗi dấu `\` viết đôi), tô màu khái niệm đúng như bài. `visualId` chỉ khi hình mới chở được lý do; đừng dùng đúng hình lời giải của nấc 3 (khung tự bỏ hình đang hiện). `wrong` chỉ cho `choice`, chỉ cho phương án bé dễ chọn nhầm (không phải mọi phương án, không phải phương án đúng), mỗi lý do một câu. Câu cũ của bài đã xuất bản chưa có `explain` thì app tự hiện lời giải (hình lời giải và đáp án); bài nào nằm trong `content/legacy-lessons.json` thì được miễn hay chỉ bị cảnh báo, bài mới không được thêm mình vào danh sách đó.
+- **Mẹo (`tip`) khi dạng bài có mẹo thật.** Mẹo là cách làm nhanh, hiểu nhanh hay tránh sai cho một dạng bài (vd nhân với 9: nhân 10 rồi bớt một lần; chia hết cho 3: cộng các chữ số; kiểm tra phép chia bằng phép nhân). Chủ dự án đánh giá cao mẹo; nhưng chỉ viết khi dạng bài có mẹo đúng, không gượng cho đủ số. Mỗi khối `tip` là một màn của section (tính vào giới hạn 4 màn): `kind` ("làm nhanh", "hiểu nhanh", "tránh sai"), `title` là tên dạng bài (≤ 8 chữ, vd "Nhân với 9"), `text` ≤ 3 câu nói mẹo, `tex` là công thức hay ví dụ tính bằng mẹo, `visualId` khi có hình. Đặt mẹo sau phần giải thích đã dạy cách làm bình thường, và trước câu tự làm của dạng đó. Mẹo phải đúng với **mọi** số thuộc dạng bài, kể cả số biên (0, 1, số lớn, số chẵn/lẻ); thử mẹo trên ít nhất 5 số khác nhau, gồm số biên, trước khi viết; mẹo chỉ đúng một số trường hợp thì nói rõ điều kiện trong `text` ("khi số tận cùng là 5") hoặc bỏ. Dùng kiến thức lớp 6, không dùng thứ chưa học. Trang "Mẹo hay" của bài (`/lessons/<id>/tips`, nút "Mẹo hay" ở trang bài) gom mọi khối `tip` của bài và các mẹo ở `tips.json`.
 - **Mẫu → cùng làm → tự làm.** Ý mới có ví dụ mẫu giải trọn trước câu tự làm đầu tiên; ý chính có thêm màn trẻ thao tác có hướng dẫn (visual tương tác, số tối thiểu theo `--stats`).
 - **Ví dụ đời sống ở mọi section Toán, Địa lí**: ít nhất một ví dụ hay câu hỏi lấy từ đời sống hằng ngày (tiền, đồ ăn, quãng đường, thời tiết…), số vẫn nhỏ.
 - **Quy tắc là câu để nhớ, không phải chú thích.** Định nghĩa, quy tắc, quy ước viết thành 1–2 câu trong `note` của một `group`, cùng ví dụ có nhãn (`formula` hay `visual`) ngay dưới. Note nêu quy tắc mang `"rule": true`; recap section lặp nguyên văn một câu của nó, recap card lặp nguyên văn câu hay một vế của câu đó (luật `[rule-sentence]`, LL-05). Câu bài học luôn nằm trong JSON để lint và review đọc được; visual không chứa câu bài học, chỉ nhãn ngắn. `caption` xám chỉ dùng cho hướng dẫn thao tác hay nhận xét ngắn.
@@ -50,10 +63,11 @@ Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`. Sửa
 3. **Biên soạn lại.** Viết định nghĩa, ví dụ, bài tập bằng lời và số của mình, không chép câu hay hình SGK. Riêng khối `passage` giữ nguyên văn. Bài tập theo các dạng bài của sách; có trang đáp án (SBT) thì đối chiếu đáp án với nó.
 4. **Dựng khung.** Chép `.claude/skills/lesson-author/templates/lesson.skeleton.json` vào thư mục bài, thay mọi `bai-moi` bằng slug, đặt `subject`, `series`, `title`, `sourceRef` và `order` = số bài trong SGK (Bài 6 → 6): app xếp bài và gợi ý bài kế trong môn theo `order`, nên không trùng bài khác cùng môn, bộ sách. Các `visualId` `fixture.*` chỉ giữ chỗ để khung qua `content:check`; bước 9 thay hết (`content:check` cảnh báo `[placeholder]`, `content:hash --approve` từ chối khi còn).
 5. **Khái niệm.** Tên và màu lấy theo `content/glossary/<subject>.json`; chưa có term thì thêm vào đó kèm `color`. Mỗi khái niệm giữ một màu ở mọi công thức, visual, highlight.
-6. **Chia phần.** Mỗi section một ý, `sourceRef` đúng trang. Mỗi phần tử của `blocks` là một màn; màn quy tắc là `group` gồm `note` rồi `formula`/`visual`, xem bài mẫu. Sau phần giải thích: 1–2 câu `checkIds` (`cardIds: []`, không tính điểm nhớ) và một câu `practiceIds` cho mỗi card của section (lần gặp đầu của card). Chia card ngay lúc này: section có tối đa 4 − số câu `checkIds` card, bài cần ≥ 8 card, nên bài 3 section cần khoảng 3 card mỗi section (1 câu kiểm tra + 3 câu luyện tập).
+6. **Chia phần.** Mỗi section một ý, `sourceRef` đúng trang. Mỗi phần tử của `blocks` là một màn; màn quy tắc là `group` gồm `note` rồi `formula`/`visual`, xem bài mẫu. Mẹo của dạng bài đặt thành khối `tip` ngay sau phần giải thích (mục "Mẹo"). Sau phần giải thích: 1–2 câu `checkIds` (`cardIds: []`, không tính điểm nhớ) và một câu `practiceIds` cho mỗi card của section (lần gặp đầu của card). Chia card ngay lúc này: section có tối đa 4 − số câu `checkIds` card, bài cần ≥ 8 card, nên bài 3 section cần khoảng 3 card mỗi section (1 câu kiểm tra + 3 câu luyện tập).
 7. **Card và bài tập.** Đủ để mọi dòng tiêu chí của `pnpm content:check --stats` là `PASS`. Câu ôn còn lại của card chỉ nằm trong `exercises`. `openEnded` của Ngữ văn chia thành các bước nhỏ tự chấm, đặt trước bước viết.
 8. **Chi tiết từng câu.**
    - Môn có `rules.checkExpr` trong `content/subjects.json` (hiện là Toán): đặt `check.expr` cho mọi `numeric` (bắt buộc) và `check` cho `choice` có lựa chọn là số, biểu thức hay phép so sánh tính được: `relation` `equal` (mặc định), `notEqual` cho đề "kết quả nào sai", `max`/`min` cho "lớn nhất"/"nhỏ nhất" (không có `expr`), `holds`/`fails` khi mỗi lựa chọn là một phép so sánh. Lint tính mọi lựa chọn và báo lỗi khi nhiễu cũng thoả đề (LL-01).
+   - `explain` cho mọi câu (mục "Giải thích sau mỗi câu"): viết khi đã chốt đáp án, và đọc lại nó như bé: có hiểu vì sao chưa?
    - `order.items` viết theo thứ tự đúng; app tự xáo mọi lựa chọn khi hiện.
    - `hints` theo luật 3 nấc trong checklist review. Câu nào hình giúp hiểu rõ hơn thì đặt `hintVisualId`, `solutionVisualId`.
 9. **Visual.** Dùng skill `lesson-visual` cho mọi `visualId` mới và mọi chỗ giữ `fixture.*` (cả sticker), kèm vai trò của từng hình (giải thích, tương tác, vùng chạm, gợi ý nấc 2, lời giải nấc 3) và bộ số của nó.
@@ -64,6 +78,33 @@ Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`. Sửa
 14. **Video và lời đọc** (nếu đã chọn làm ngay; bài đã `published`). `pnpm narration:build <slug>` đọc `overview` bằng giọng Gemini cùng giới tính với giọng bài, rồi `pnpm content:check` (`overview.narration` không nằm trong hash nên lời đọc không đòi review lại). Video theo skill `lesson-video` (bước 7 của nó gồm review phần đổi). Chỉ dựng media của bài dưới `public/media/`, không dựng lại `public/sounds/`. Xong chạy lại `pnpm lesson:walk <slug>`, chỉ cần xem sheet của màn tổng quan và video.
 15. **Rút kinh nghiệm.** Đọc các `review.md` của bài: mỗi Nghiêm trọng thuộc mục nào của `docs/lessons-learned/index.md`. Reviewer đã tăng số đếm; tác giả thêm dòng "Lỗi Nghiêm trọng ở vòng 1 theo bài" cho bài này. Lỗi lặp ở từ 2 bài trở lên mà chưa có mục: thêm mục mới; kiểm được bằng máy thì đề xuất luật `content:check` (trong `src/content/lint/`, lời báo trỏ id mục) với người dùng, rồi ghi vào `notebooks/backlogs/index.md` nếu chưa làm ngay.
 16. **Báo lại.** Gửi kết quả `--stats`, đường dẫn `review.md`, việc còn trong backlog, mục lessons-learned đã thêm hay tăng số.
+
+## Thêm mẹo cho bài đã xuất bản (`tips.json`)
+
+Bài đã `published` nhận mẹo mà không đụng `lesson.json`, nên không đổi `reviewedHash`, video hay lời đọc của bài. Mẹo nằm ở `content/<môn>/<bộ sách>/<slug>/tips.json`:
+
+```json
+{
+  "lessonId": "<slug>",
+  "status": "draft",
+  "tips": [
+    {
+      "id": "<slug>.tip.<tên>",
+      "kind": "làm nhanh",
+      "title": "Tên dạng bài",
+      "text": "Mẹo nói trong ≤ 3 câu.",
+      "tex": "9 \\cdot 7 = 70 - 7 = 63"
+    }
+  ]
+}
+```
+
+Mỗi mẹo cùng hình dạng và cùng luật với khối `tip` trong section (mục "Mẹo"); id có dạng `<slug>.tip.<tên>`, không trùng id khối `tip` của bài. Quy trình:
+
+1. Viết `tips.json` với `status: "draft"`, thử từng mẹo trên ≥ 5 số gồm số biên, rồi `pnpm content:check` tới 0 lỗi (`[tips]`: độ dài, luật chữ như mọi chữ của bài, hình có trong registry).
+2. Review riêng tệp mẹo bằng `lesson-review` (mục "Review mẹo"), reviewer là subagent mới. Đạt thì `pnpm content:hash <slug> --tips --approve` (ghi `reviewedHash`, đặt `published` cho tệp mẹo; không đổi bài), rồi `pnpm content:lock <slug>` khoá id mẹo.
+3. Sửa mẹo sau khi duyệt đổi hash của tệp mẹo, `content:check` báo lỗi tới khi review và `--approve` lại. Bài vẫn giữ nguyên.
+4. `pnpm lesson:walk <slug>` đi cả trang "Mẹo hay" của bài.
 
 ## Nhiều bài một lúc
 

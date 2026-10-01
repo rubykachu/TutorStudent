@@ -9,6 +9,7 @@ Người học mà mọi bài trong app viết cho. Skill `import-source` đọc
 - Thích vừa nghe vừa đọc (lời đọc, video có phụ đề giúp trẻ theo kịp).
 - Mạnh: tiếng Anh.
 - Linh vật cú gọi trẻ là "bạn".
+- Cần được giải thích vì sao đúng sau mỗi câu (không chỉ đúng hay sai), thấy bài nối với đời sống, và có mẹo cho từng dạng bài; xem video theo nhịp của mình, nên video có quãng dừng nghĩ và điểm dừng bé tự bấm (cập nhật 2026-10-01).
 
 ## Tiến độ (cập nhật 2026-09-30)
 

@@ -5,11 +5,12 @@ Read this first in a new session. Product rules and content model: `docs/spec.md
 ## Data flow
 
 ```
-content/**/lesson.json  (+ subjects.json, glossary/, ids.lock.json)
+content/**/lesson.json  (+ tips.json per lesson, subjects.json, glossary/, ids.lock.json, legacy-lessons.json)
    | pnpm content:check   zod schema + lint (src/content/lint) + ids + review-hash gate
    | pnpm content:emit    only published lessons (CONTENT_INCLUDE_DRAFT=1 adds drafts,
    v                      CONTENT_INCLUDE_FIXTURE=1 the test lesson)
-public/content/index.json + <lessonId>.json   (gitignored, rebuilt by dev and build)
+public/content/index.json + <lessonId>.json + <lessonId>.tips.json   (gitignored, rebuilt by dev and build;
+                                                                      the tips list only for a lesson with tips)
    | fetched by the client
    v
 src/app (child screens) -> src/learn players -> src/exercises -> src/progress (Dexie)
@@ -20,9 +21,10 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 ## App modules (`src/`)
 
 - `app/(child)/` home, subjects, lessons, profiles; `app/parent/` PIN-gated report; `app/dev/` galleries of visuals, exercises and mascot.
-- `schema/` zod schemas. `content/` loader, index, `check.ts`, `stats.ts`, `lint/` rules.
-- `exercises/` the eight basic exercise types (`choice`, `numeric`, `fill-blank`, `match`, `order`, `tap-region`, `tap-text`, `manipulate`) and `open-ended` (a sequence of steps), `grade/`, 3-level hints, feedback.
+- `schema/` zod schemas. `content/` loader, index, `check.ts`, `stats.ts`, `tips.ts` (a lesson's tips from its `tip` blocks and its `tips.json`), `lint/` rules.
+- `exercises/` explanation shown after every answer (`explanation.ts` picks the authored `explain` or derives one from the solution visual and accepted answer; `explanation-panel.tsx`), the eight basic exercise types (`choice`, `numeric`, `fill-blank`, `match`, `order`, `tap-region`, `tap-text`, `manipulate`) and `open-ended` (a sequence of steps), `grade/`, 3-level hints, feedback.
 - `visuals/` `registry.ts` maps `visualId` to a component with `interactive`, `regions` and validators; shared primitives in `shared/`; lesson visuals in `<subject>/<lesson>/`.
+- `components/blocks/` `block-view.tsx` (one renderer for every block), `tip-card.tsx` (a tip), `video-player.tsx` and `video-checkpoint.tsx` (where a video waits for the child). `app/(child)/lessons/[lessonId]/tips/` the lesson's "Mẹo hay" page (`learn/use-lesson-tips.ts` fetches its list).
 - `learn/` section player, review player, overview, next-step logic. `srs/` FSRS scheduling and review selection.
 - `progress/` Dexie store (IndexedDB, per browser), streak, parent report and PIN. `mascot/` owl and its lines. `music/` the songs a sticker's sheet can play (`songs.ts`, the one list) and the player hook. `lib/` config, shared sounds (`sound.ts`, `sound-manifest.ts`), media URLs, formatting.
 - `components/` shared UI; `subject-style.ts` maps a subject's colour token and icon name to classes and components.
@@ -32,12 +34,14 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 | Check | Run | Guards |
 |---|---|---|
 | Content lint | `pnpm content:check` (`src/content/lint/*.ts`) | Findings end in `[rule]` and `(lessons-learned LL-nn)`; ids and the rule-to-entry table are in `docs/lessons-learned/index.md` |
+| Explain, tips, overview gate | `content:check` (`[explain]`, `[tips]`), `content/legacy-lessons.json`, `tests/content/explain-required.test.ts` | every gradable exercise of a lesson not listed as legacy has `explain` (a lesson marked `"warn"` gets one warning until its explanations are written, then leaves the list); `tips.json` has its own review hash and ids; a new published lesson needs an overview |
 | Size and variety | `content:check --stats` | lesson minimums from `docs/spec.md` |
 | Layout walk | `pnpm lesson:walk <lesson>` | visits every screen on 3 devices, reports overlapping or clipped text; `e2e/overlap.ts` holds the overlap test, `tests/overlap.test.ts` proves it; writes a contact sheet series per device next to its shots |
 | Visual shots | `pnpm visual:shot <lesson>` | every visual and hint at each device into `.shots/`, plus a contact sheet series per device |
 | Contact sheets | `pnpm shots:sheet <dir\|file\|pattern>… [--cols N] [--out <stem>]` (`scripts/lib/contact-sheet.ts`, `tests/scripts/contact-sheet.test.ts`) | tiles screenshots or video frames into `<stem>-NN.png` sheets (ffmpeg), file name on each tile, split to keep each sheet near 1600px; reviewers read sheets, not single files |
 | Silent browsers | `e2e/silence.ts`, used by `e2e/test.ts`, `lesson:walk`, `visual:shot` | every media element is really muted with volume 0 on first play, while `muted` still reads back what the app set |
 | Video | `pnpm video:check`, `tests/video/voices.test.ts` | subtitles contain every scripted sentence; on-screen rule text equals the lesson's rule sentence; the first sentence is the flagged opening line and captions start after the lead-in; one known voice per lesson |
+| Video pacing | `pnpm video:check`, `video/pacing-exempt.json`, `tests/video/pacing.test.ts` | a video not in the exempt list (every new video) is short, flags key reveals with `pause`, asks before it reveals, and marks `checkpoint` sentences the player stops at; the built captions keep the silence each `pause` promises |
 | Shared sounds | `tests/lib/sound-manifest.test.ts`, `tests/lib/avatar-sounds.test.tsx` | `public/sounds/manifest.json` hashes match the tones, voice lines and imported source files in `assets/sounds/`; every avatar has its own clip (`AVATAR_CLIP_IDS`), and a downloaded clip names its source URL and licence in `scripts/lib/sound-spec.ts` |
 | Unit, component | `pnpm test` (Vitest; `tests/` mirrors `src/`) | coverage thresholds in `vitest.config.ts` |
 | E2E | `pnpm test:e2e` (`e2e/`) | `ipad` and `phone` targets in `e2e/targets.ts` |
@@ -56,7 +60,7 @@ Adding a lint rule: create `src/content/lint/<rule>.ts`, register it in `lint/in
 
 ## Content authoring pipeline
 
-`import-source` (PDF pages to `sources/`) then `lesson-author` (lesson.json; calls `lesson-visual` for figures, runs `lesson:walk`) then `lesson-review` (fresh subagent; writes `review.md`, sets `reviewedHash`, publishes; then `pnpm content:lock <lesson>` locks that lesson's ids and only those) then `lesson-author` again for `lesson-video` and narration. Skills live in `.claude/skills/`; which model runs each step is in `.claude/rules/agents.md`. Recurring review errors go to `docs/lessons-learned/`, which author and reviewer read first.
+`import-source` (PDF pages to `sources/`) then `lesson-author` (lesson.json with overview, tips and an explanation per exercise; calls `lesson-visual` for figures, runs `lesson:walk`) then `lesson-review` (fresh subagent; writes `review.md`, sets `reviewedHash`, publishes; then `pnpm content:lock <lesson>` locks that lesson's ids and only those) then `lesson-author` again for `lesson-video` and narration. A published lesson gains tips without a new lesson review: `tips.json` beside `lesson.json`, reviewed on its own (`lesson-review`, `pnpm content:hash <lesson> --tips --approve`). Skills live in `.claude/skills/`; which model runs each step is in `.claude/rules/agents.md`. Recurring review errors go to `docs/lessons-learned/`, which author and reviewer read first.
 
 ## Conventions
 

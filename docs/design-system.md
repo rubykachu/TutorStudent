@@ -48,6 +48,7 @@ Chỉ giao diện sáng. Mọi cặp chữ/nền đã kiểm tra tương phản 
 | `--color-retry` | `#C2410C` | Viền/biểu tượng sai — "thử lại" (5.18 với trắng) |
 | `--color-retry-soft` | `#FFF7ED` | Nền ô sai; chữ trên nền này dùng `#9A3412` (6.88) |
 | `--color-highlight` | `#FDE68A` | Nền của thứ đang được chọn (câu đang chọn); không dùng cho gợi ý hay lỗi |
+| `--color-tip` | `#A16207` | Viền và nhãn của thẻ mẹo (4.92 với chữ trắng); chữ trên nền `--color-tip-soft` (`#FEFCE8`) dùng `--color-tip-soft-foreground` `#713F12` (8.38). Vàng đậm, tách khỏi cam của "thử lại" và vàng sáng của thứ đang chọn |
 | `--color-reading` | `#BAE6FD` | Nền của chữ đang được đọc trong lời giới thiệu bài; chữ vẫn `--foreground` |
 | `--color-destructive` | `#DC2626` | **Chỉ** thao tác nguy hiểm ở trang phụ huynh/quản trị (thu hồi mã, xoá). Không bao giờ dùng trong giao diện trẻ |
 
@@ -138,6 +139,8 @@ Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bó
 
 Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên trái) và "Tiếp" (chính, bên phải).
 
+**Khung "Giải thích"** (`ExplanationPanel`): hiện ngay dưới thẻ trả lời mỗi khi đáp án đã lộ (đúng, sau lần sai thứ 3, sau "Bỏ qua", xem lại câu đã xong), nằm trong luồng trang, trên thanh nút cố định để "Tiếp" luôn bấm được. Thẻ nền `--color-surface`, viền `--color-primary` mờ 3px, tiêu đề "Giải thích" (Baloo, `--color-primary`, biểu tượng bóng đèn); đã có `explain` thì hiện chữ, công thức và hình, `wrong` thành các dòng "phương án — lý do" (phương án tô nền `--color-retry-soft`, chữ `--color-retry-soft-foreground`, không đỏ); chưa có thì tiêu đề "Lời giải" với hình lời giải và dòng "Đáp án". Chữ tối đa 3 câu, vì vậy không cuộn dài. Sau "Bỏ qua" cú im lặng.
+
 ### Âm thanh
 
 - Mọi lần kiểm đều có tiếng (bảng trên); mọi câu trong bong bóng đều có giọng đọc, đúng câu đang hiện. Không có bong bóng nào im lặng.
@@ -172,6 +175,9 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 | `SectionStepper` | Chấm tiến độ các khối trong một phần (không số, không phần trăm); chấm của màn đã qua bấm được, có tên |
 | `ScreenBadge` | Nhãn loại màn ở đầu mỗi màn của player: Lý thuyết (xanh), Bài tập (vàng), Ôn tập (tím) |
 | `StickerSheet` | Bảng chi tiết một sticker: hình (bóng xám nếu chưa nhận), tên, bài, tiến độ, cách nhận, nút mở bài |
+| `TipCard` | Thẻ mẹo (`src/components/blocks/tip-card.tsx`): viền 3px `--color-tip`, nền `--color-tip-soft`, nhãn tròn đặc "Mẹo làm nhanh" (tia chớp) / "Mẹo hiểu nhanh" (bóng đèn) / "Mẹo tránh sai" (khiên) — loại mẹo luôn có cả chữ lẫn biểu tượng —, tên dạng bài in đậm (Baloo), câu mẹo, công thức trong ô trắng, hình trong ô trắng. Là một màn của player (không bọc thêm thẻ) và là mỗi thẻ ở trang "Mẹo hay" |
+| `ExplanationPanel` | Khung "Giải thích" / "Lời giải" dưới câu đã trả lời, xem mục 7 |
+| `CheckpointVeil`, `CheckpointControls` | Video dừng ở điểm dừng: lớp phủ `--color-foreground` mờ 70% với dấu tạm dừng tròn trên hình, và dưới hình hai nút lớn cao 56/64px xếp dọc: "Xem tiếp" (chính) và "Xem lại đoạn này" (phụ), nhãn "Dừng lại một chút · Đoạn n/N". Nút không đặt tên "Tiếp" để không lẫn với nút rời màn |
 | `ExerciseFrame` | Khung chung cho 8 dạng bài: đề, vùng trả lời, nút "Kiểm tra", vùng gợi ý, trạng thái 3 nấc |
 | `NumberPad` | Khối số 3 cột (phím 0 trải ngang hàng cuối) + cột phụ Xoá / "mũ" / "," — phím "," chỉ hiện khi đáp án có số thập phân; phím 64px (60px ở iPad ngang). Khi nấc 2/3 có hình, bàn phím tạm ẩn để hình vào đúng chỗ, chạm ô đáp số để mở lại |
 | `PassageReader` | Hiển thị văn bản đọc hiểu, chạm từng câu để chọn, ghi chú "Theo dõi" dạng thẻ nhỏ bên lề (iPad) hoặc dưới đoạn (điện thoại) |
