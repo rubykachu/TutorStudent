@@ -728,7 +728,7 @@
           },
           {
             "optionId": "c",
-            "text": "Phải lặp lại số 5, không phải số 4: 4 là số thừa số, còn thừa số là 5."
+            "text": "Số được nhân lặp lại là 5, không phải 4; số 4 chỉ cho biết có 4 thừa số."
           }
         ]
       }
@@ -1881,7 +1881,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân hai luỹ thừa cùng cơ số thì giữ nguyên cơ số, còn các số mũ cộng lại. Trừ số mũ là quy tắc của phép chia, không phải của phép nhân.",
+        "text": "Nhân hai luỹ thừa cùng cơ số thì giữ nguyên cơ số, còn các số mũ cộng lại, không nhân và không trừ. Ví dụ 3 + 4 = 7 nên 2³ · 2⁴ = 2⁷.",
         "tex": "\\concept{blue}{2}^{\\concept{violet}{3}} \\cdot \\concept{blue}{2}^{\\concept{violet}{4}} = \\concept{blue}{2}^{\\concept{violet}{3 + 4}}"
       }
     },
@@ -2097,7 +2097,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Số 10 ở giữa không ghi số mũ nên là 10¹. Ba thừa số cùng cơ số 10: giữ nguyên cơ số và cộng các số mũ, 2 + 1 + 4 = 7.",
+        "text": "Số 10 ở giữa không ghi số mũ nên là 10¹. Nhân ba luỹ thừa cùng cơ số 10: giữ nguyên cơ số và cộng các số mũ, 2 + 1 + 4 = 7.",
         "tex": "\\concept{blue}{10}^{\\concept{violet}{2}} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10}^{\\concept{violet}{4}} = \\concept{blue}{10}^{\\concept{violet}{2 + 1 + 4}} = \\concept{blue}{10}^{\\concept{violet}{7}}"
       }
     },
