@@ -3,8 +3,8 @@
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { FormulaRow, Pending } from "@/visuals/shared/formula-rows";
-import { Legend } from "@/visuals/shared/math-parts";
 import { decorative } from "@/visuals/shared/markers";
+import { Legend } from "@/visuals/shared/math-parts";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";

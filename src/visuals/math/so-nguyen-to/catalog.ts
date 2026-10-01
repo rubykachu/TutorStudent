@@ -1,5 +1,4 @@
-import type { Mode } from "@/visuals/shared/formula-rows";
-import type { LinesSpec, RowsSpec } from "@/visuals/shared/formula-rows";
+import type { LinesSpec, Mode, RowsSpec } from "@/visuals/shared/formula-rows";
 import type { ChipsSpec } from "@/visuals/shared/pick-chips";
 import type { TreeNode } from "./logic";
 

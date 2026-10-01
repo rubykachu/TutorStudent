@@ -2,8 +2,8 @@
 
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
-import { Legend } from "@/visuals/shared/math-parts";
 import { decorative } from "@/visuals/shared/markers";
+import { Legend } from "@/visuals/shared/math-parts";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";
 import { isPrime, SIEVE_LIMIT, SIEVE_PRIMES } from "./logic";
@@ -12,9 +12,11 @@ const COLS = 10;
 const CELL_W = 36;
 const CELL_H = 32;
 const FONT = 20;
-// Three digits ("100") would touch the cell edges at the usual size.
-const SMALL_FONT = 16;
+// Three digits ("100") would touch the cell edges at the usual size, so
+// they are squeezed to this width.
+const THREE_DIGITS_WIDTH = 31;
 const MARK = 4;
+const NUMBERS = Array.from({ length: SIEVE_LIMIT }, (_, i) => i + 1);
 const WIDTH = COLS * CELL_W;
 const HEIGHT = (SIEVE_LIMIT / COLS) * CELL_H;
 
@@ -65,7 +67,9 @@ function Cell({ n, step }: { n: number; step: number }) {
         y={y + CELL_H / 2}
         textAnchor="middle"
         dominantBaseline="central"
-        fontSize={n >= SIEVE_LIMIT ? SMALL_FONT : FONT}
+        fontSize={FONT}
+        textLength={n >= SIEVE_LIMIT ? THREE_DIGITS_WIDTH : undefined}
+        lengthAdjust="spacingAndGlyphs"
         fontWeight={prime ? 700 : 500}
         className={`font-heading tabular-nums ${text}`}
         opacity={crossed ? 0.55 : 1}
@@ -114,8 +118,8 @@ function Table({ step }: { step: number }) {
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="h-auto w-full max-w-[300px]"
       >
-        {Array.from({ length: SIEVE_LIMIT }, (_, i) => (
-          <Cell key={i + 1} n={i + 1} step={step} />
+        {NUMBERS.map((n) => (
+          <Cell key={n} n={n} step={step} />
         ))}
       </svg>
       <p className="text-center text-caption font-semibold" aria-live="polite">

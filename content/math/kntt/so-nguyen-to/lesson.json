@@ -14,7 +14,7 @@
   "status": "draft",
   "overview": {
     "hook": {
-      "text": "Bạn xếp 7 viên gạch nhỏ thành hình chữ nhật có từ 2 hàng trở lên. Xếp cách nào cũng không được, vì 7 là số nguyên tố."
+      "text": "Bạn xếp 7 viên gạch thành hình chữ nhật có ít nhất 2 hàng, mỗi hàng ít nhất 2 viên. Xếp cách nào cũng không được, vì 7 là số nguyên tố."
     },
     "summary": "Bài này dạy số nguyên tố và hợp số. Bạn học cách viết một số thành tích các thừa số nguyên tố.",
     "goals": [
@@ -445,7 +445,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hà có 72 viên bi, và 72 = 2 · 2 · 2 · 3 · 3. Số 2 lặp lại ba lần, số 3 lặp lại hai lần."
+              "text": "Hà có 72 viên bi. Số 2 lặp lại ba lần, số 3 lặp lại hai lần."
             },
             {
               "type": "visual",
