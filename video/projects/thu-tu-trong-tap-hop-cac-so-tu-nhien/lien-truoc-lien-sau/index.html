@@ -148,13 +148,13 @@
     <script src="runtime.js"></script>
     <script>
       (() => {
-        const { $, color, tl, start, W, owl, pop, fade, hide, pose, scenes, finish } =
+        const { $, tl, start, W, owl, pop, fade, hide, pose, scenes, finish } =
           window.LV;
         const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
 
         // Three places side by side: before, the number, after.
         const left = (i) => 420 + i * 260;
-        const tile = (host, id, i, text, cls, extra = "") =>
+        const tile = (host, id, i, text, cls) =>
           el(host, `<div id="${id}" class="tile ${cls}" style="left: ${left(i)}px">${text}</div>`);
         const tag = (host, id, i, text, cls) =>
           el(host, `<div id="${id}" class="tag ${cls}" style="left: ${left(i) - 35}px">${text}</div>`);

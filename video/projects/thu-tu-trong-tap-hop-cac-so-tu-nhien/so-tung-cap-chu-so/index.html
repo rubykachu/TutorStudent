@@ -201,21 +201,21 @@
         const rows = (host, p) => {
           el(host, `<div id="${p}w1" class="who" style="top: ${TOP1 + 40}px">Xe đạp</div>`);
           el(host, `<div id="${p}w2" class="who" style="top: ${TOP2 + 22}px">Xe đạp điện</div>`);
-          ROW1.forEach((d, i) =>
-            el(host, `<div id="${p}a${i}" class="tile" style="left: ${left(i)}px; top: ${TOP1}px">${d}</div>`),
-          );
-          ROW2.forEach((d, i) =>
-            el(host, `<div id="${p}b${i}" class="tile" style="left: ${left(i)}px; top: ${TOP2}px">${d}</div>`),
-          );
+          ROW1.forEach((d, i) => {
+            el(host, `<div id="${p}a${i}" class="tile" style="left: ${left(i)}px; top: ${TOP1}px">${d}</div>`);
+          });
+          ROW2.forEach((d, i) => {
+            el(host, `<div id="${p}b${i}" class="tile" style="left: ${left(i)}px; top: ${TOP2}px">${d}</div>`);
+          });
         };
         const pairBox = (host, id, i) =>
           el(host, `<div id="${id}" class="pairbox" style="left: ${left(i) - 15}px"></div>`);
         const mark = (host, id, i, sym) =>
           el(host, `<div id="${id}" class="mark" style="left: ${left(i)}px; top: 252px">${sym}</div>`);
         const names = (host, p) =>
-          NAMES.forEach((n, i) =>
-            el(host, `<div id="${p}n${i}" class="nm" style="left: ${left(i) - 15}px">${n}</div>`),
-          );
+          NAMES.forEach((n, i) => {
+            el(host, `<div id="${p}n${i}" class="nm" style="left: ${left(i) - 15}px">${n}</div>`);
+          });
         const tint = (token) => {
           const hex = (name) =>
             [0, 2, 4].map((k) =>
@@ -245,9 +245,13 @@
         // ---------- s02: pair by pair from the left ----------
         rows($("#z2"), "b");
         names($("#z2"), "b");
-        [0, 1, 2].forEach((i) => pairBox($("#z2"), `bx${i}`, i));
+        [0, 1, 2].forEach((i) => {
+          pairBox($("#z2"), `bx${i}`, i);
+        });
         // Boxes sit behind the tiles: move them first in the DOM.
-        [0, 1, 2].forEach((i) => $("#z2").prepend($(`#bx${i}`)));
+        [0, 1, 2].forEach((i) => {
+          $("#z2").prepend($(`#bx${i}`));
+        });
         el($("#z2"), `<div id="bgo" class="arr"></div><div id="bgoh" class="arrh"></div>`);
         el($("#z2"), `<div id="bq" class="sign" style="color: var(--color-foreground)">?</div>`);
         mark($("#z2"), "be0", 0, "=");
