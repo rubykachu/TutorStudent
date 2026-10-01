@@ -54,6 +54,9 @@ test("Bỏ qua moves past an exercise without answering it", async ({ page }) =>
   const exercise = page.locator("[data-section-step=exercise]");
   await expect(exercise).toHaveAttribute("data-context", "check");
   await page.getByRole("button", { name: "Bỏ qua" }).tap();
+  // The answer shows first, with "Tiếp" alone in the bar; it then moves on.
+  await expect(page.getByRole("button", { name: "Bỏ qua" })).toHaveCount(0);
+  await page.getByRole("button", { name: "Tiếp", exact: true }).tap();
   await expect(exercise).toHaveAttribute("data-context", "practice");
   await expect(page.locator("[data-section-stepper]")).toHaveAttribute(
     "data-current",
@@ -65,8 +68,10 @@ test("placing a word in a blank never moves the sentence", async ({ page }) => {
   await page.goto("/profiles");
   await createProfile(page, "Bé Na", "Cáo");
   await page.goto(`/lessons/fixture/sections/${READING}`);
-  await page.getByRole("button", { name: "Tiếp" }).tap();
-  await page.getByRole("button", { name: "Tiếp" }).tap();
+  // The passage, its note and the section's tip come before the exercise.
+  for (let i = 0; i < 3; i++) {
+    await page.getByRole("button", { name: "Tiếp" }).tap();
+  }
   const exercise = page.locator('[data-exercise="fixture.ex.dien-tu"]');
   const blank = exercise.locator("[data-blank]");
   const sentence = exercise.locator("[data-answer-area] p");

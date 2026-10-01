@@ -11,7 +11,7 @@ function exercise(page: Page, id: string): Locator {
 }
 
 async function expectAccepted(card: Locator) {
-  await expect(card.locator("section")).toHaveAttribute(
+  await expect(card.locator("section[data-phase]")).toHaveAttribute(
     "data-phase",
     "correct",
   );
