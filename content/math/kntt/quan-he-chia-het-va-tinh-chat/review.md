@@ -7,7 +7,6 @@
 - `lesson:walk`: không chạy (điều phối đã chụp riêng hình mới `so-du-goi-y-15-7` ở iPad và điện thoại, từng bước 1 và 2 cùng trạng thái cuối; reviewer đã xem các ảnh đó)
 - Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 0 Góp ý
 - Bản đã review: `0ea4ba2120df39e921563ad6ded982791bb19b6cf195fe57e6dcb0fbf5c9c7fe` (`pnpm content:diff` so với bản này)
-- Bản đã review: ghi bởi `pnpm content:hash`
 
 ## Phần đổi đã soát
 
