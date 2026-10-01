@@ -12,6 +12,7 @@
 - `phep-nhan-phep-chia` vòng 1: cộng lặp, đặt tính nhân (số nhớ, tích riêng) và đặt tính chia là kiến thức tiểu học nhưng `sourceRef` ghi thẳng trang SBT, thiếu "Kiến thức nền (tiểu học)" và glossary thiếu `prerequisite`; hình diện tích `gan-tron-12-19` gắn nhãn "−1" đứng riêng (cách viết số nguyên âm, chương 3) cho phần bớt đi.
 - `phep-nhan-phep-chia` vòng 2, section `uoc-luong`: "làm tròn xuống / làm tròn lên" không có ở tr.20 và không có trong glossary; trẻ học "làm tròn" là về số gần nhất nên dễ nhớ "47 làm tròn là 40". Cùng bài đã có từ "số tròn chục" (section `nhan-gan-tron`) để nói ý đó.
 - `quan-he-chia-het-va-tinh-chat` vòng 1, `ex.chon-nhieu-tong-mu-5`: loại (9 + 9³), (9² + 9⁴) cần "tích hai số không chia hết cho 5 thì không chia hết cho 5" (chưa dạy) hoặc tính 9⁴ = 6 561; section chỉ dạy cách chứng tỏ một tổng chia hết, không dạy cách chứng tỏ không chia hết.
+- `uoc-chung-uoc-chung-lon-nhat` vòng 1, section `phan-so-toi-gian`: "phân số", "tử", "mẫu", "rút gọn" (tiểu học) dùng ngay trong đề `rut-gon-18-24`, `mau-toi-gian-24-36` mà không nhắc lại, glossary không có `prerequisite`, `sourceRef` thiếu "Kiến thức nền (tiểu học)". Trang nguồn có "phân số tối giản" chưa đủ: các từ nền mà khái niệm mới dựa vào cũng phải theo ngoại lệ kiến thức nền.
 
 ## Nguyên nhân gốc
 

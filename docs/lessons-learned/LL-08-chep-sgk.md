@@ -11,6 +11,7 @@
 - `luy-thua` (review ở commit `efe9635`): câu "phép nâng lên luỹ thừa" sát câu sách.
 - `phep-nhan-phep-chia` vòng 1: ví dụ tên gọi 25 · 2 = 50, 36 : 12 = 3 chép sơ đồ "Kiến thức cần nhớ" của SBT; ví dụ mẫu `ket-hop-44-25` là bài tập 1.39 b) kèm đúng lời giải sách.
 - `quan-he-chia-het-va-tinh-chat` vòng 1, section `uoc-boi`: định nghĩa "Nếu a chia hết cho b thì b là ước của a và a là bội của b" chỉ bỏ "ta nói" so với câu SBT tr.30; bài không có lớp chữ `p*.txt` nên `[textbook-copy]` không chạy.
+- `uoc-chung-uoc-chung-lon-nhat` vòng 1: định nghĩa ƯCLN chỉ thêm "viết tắt là", quy tắc section `uclnn-phan-tich` và `uc-tu-uclnn` giữ nguyên các cụm của "Kiến thức cần nhớ" mục 3, 4 tr.38 ("mỗi thừa số lấy với số mũ nhỏ nhất", "Tích đó là ƯCLN cần tìm"); section `so-hoan-hao` chép định nghĩa, bộ số 10, 28 và lời giải câu 2.38. Câu trong khung "Kiến thức cần nhớ" là chỗ dễ chép nhất vì đã gọn sẵn: viết lại theo cách làm (động từ, thứ tự bước), không chỉ đổi vài chữ.
 
 ## Nguyên nhân gốc
 
