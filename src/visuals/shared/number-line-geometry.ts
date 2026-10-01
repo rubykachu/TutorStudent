@@ -23,10 +23,11 @@ export function tickValues({ from, to }: LineRange): number[] {
 
 // ---------------------------------------------------------------------------
 // Layout, in the units of the drawing's viewBox. The drawing is 320 wide so
-// that text of `TEXT_SIZE` keeps at least 16px on a 390px phone.
+// that text of `TEXT_SIZE` keeps at least 16px at 95% of that width, as in a
+// narrow card.
 
 export const VIEW_WIDTH = 320;
-export const TEXT_SIZE = 16;
+export const TEXT_SIZE = 17;
 export const X_FIRST = 38;
 export const X_LAST = 282;
 export const AXIS_LEFT = 6;
@@ -38,7 +39,7 @@ export const LABEL_DROP = 28;
 export const NAME_RISE = 22;
 // Height of one row of arrows above the axis (line and its tag), and of the
 // row of zone tags under the numbers.
-export const ARROW_ROW = 44;
+export const ARROW_ROW = 48;
 export const ZONE_ROW = 34;
 const TOP_PAD = 14;
 const BOTTOM_PAD = 16;

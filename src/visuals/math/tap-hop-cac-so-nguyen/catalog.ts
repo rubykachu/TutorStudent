@@ -133,9 +133,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-4-duoi-0": {
     kind: "chips",
-    items: ["4", "−4", "−40", "0"],
+    items: ["6", "−6", "−60", "0"],
     wants: [1],
-    done: "4 độ dưới 0 viết là −4.",
+    done: "6 độ dưới 0 viết là −6.",
   },
   "nhiet-ke-doc": {
     kind: "scale",
@@ -147,7 +147,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "nhiet-ke-goi-y": {
     kind: "scale",
-    ...THERMOMETER,
+    theme: "thermometer",
+    from: -3,
+    to: 3,
+    zero: "0 °C",
     level: -2,
     label: "Nhiệt kế khác: cột nhiệt độ dừng ở vạch thứ hai dưới số 0",
     marks: [
@@ -162,7 +165,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "nhiet-ke-doc-giai": {
     kind: "scale",
-    ...THERMOMETER,
+    theme: "thermometer",
+    from: -4,
+    to: 4,
+    zero: "0 °C",
     level: -4,
     label: "Nhiệt kế: cột nhiệt độ dừng ở vạch thứ tư dưới số 0, là âm 4 độ C",
     marks: [{ at: -4, text: "−4 °C", color: NEGATIVE, step: 1 }],
@@ -361,15 +367,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "doc-diem-mnpq": {
     kind: "line",
     from: -6,
-    to: 4,
+    to: 5,
     labelAt: [0, 1],
     label:
-      "Trục số từ âm 6 đến 4 với bốn điểm M, N, P, Q; chỉ số 0 và số 1 có ghi số",
+      "Trục số từ âm 6 đến 5 với bốn điểm M, N, P, Q; chỉ số 0 và số 1 có ghi số",
     layers: [
-      { type: "point", at: 3, name: "M", color: POINT, hideNumber: true },
+      { type: "point", at: 4, name: "M", color: POINT, hideNumber: true },
       { type: "point", at: -2, name: "N", color: POINT, hideNumber: true },
       { type: "point", at: -6, name: "P", color: POINT, hideNumber: true },
-      { type: "point", at: -4, name: "Q", color: POINT, hideNumber: true },
+      { type: "point", at: -5, name: "Q", color: POINT, hideNumber: true },
     ],
     mode: "still",
   },
@@ -379,9 +385,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     labelAt: [0],
     label: "Trục số từ âm 5 đến 5 với ba điểm A, B, C; chỉ số 0 có ghi số",
     layers: [
-      { type: "point", at: 2, name: "A", color: POINT, hideNumber: true },
+      { type: "point", at: 5, name: "A", color: POINT, hideNumber: true },
       { type: "point", at: -1, name: "B", color: POINT, hideNumber: true },
-      { type: "point", at: -4, name: "C", color: POINT, hideNumber: true },
+      { type: "point", at: -2, name: "C", color: POINT, hideNumber: true },
     ],
     mode: "still",
   },
@@ -391,10 +397,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     labelAt: [0],
     label: "Trục số từ âm 5 đến 5 với bốn điểm A, B, C, D; chỉ số 0 có ghi số",
     points: [
-      { at: -3, name: "A" },
-      { at: 3, name: "B" },
+      { at: -5, name: "A" },
+      { at: 5, name: "B" },
       { at: -1, name: "C" },
-      { at: 2, name: "D" },
+      { at: 4, name: "D" },
     ],
   },
   "dem-buoc": {
@@ -407,7 +413,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "doc-diem-giai": {
     kind: "line",
     from: -6,
-    to: 4,
+    to: 5,
     label: "Điểm N cách gốc O hai đơn vị về bên trái, nên N biểu diễn số âm 2",
     layers: [
       { type: "origin" },

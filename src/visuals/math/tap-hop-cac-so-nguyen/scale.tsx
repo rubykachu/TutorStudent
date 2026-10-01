@@ -48,10 +48,13 @@ export type ScaleSpec = {
 };
 
 const VIEW_WIDTH = 320;
-const TEXT_SIZE = 16;
-const GAP = 27;
+const TEXT_SIZE = 17;
+// A tick's number needs about 1.6 times its font size in height.
+const GAP = 28;
 const TOP = 22;
+// Room under the lowest tick: the thermometer has its bulb there.
 const BOTTOM = 46;
+const BOTTOM_PLAIN = 22;
 const AXIS_X = 76;
 const NUMBER_X = 62;
 const ART_LEFT = 94;
@@ -77,8 +80,13 @@ export function scaleY(spec: Pick<ScaleSpec, "from" | "to">, value: number) {
   return TOP + (spec.to - value) * GAP;
 }
 
-export function scaleHeight(spec: Pick<ScaleSpec, "from" | "to">): number {
-  return scaleY(spec, spec.from) + BOTTOM;
+export function scaleHeight(
+  spec: Pick<ScaleSpec, "from" | "to" | "theme">,
+): number {
+  return (
+    scaleY(spec, spec.from) +
+    (spec.theme === "thermometer" ? BOTTOM : BOTTOM_PLAIN)
+  );
 }
 
 function Art({ spec }: { spec: ScaleSpec }) {
@@ -254,7 +262,7 @@ function Frame({ spec, step }: { spec: ScaleSpec; step: number }) {
       viewBox={`0 0 ${VIEW_WIDTH} ${scaleHeight(spec)}`}
       role="img"
       aria-label={spec.label}
-      className="h-auto w-full max-w-sm"
+      className="h-auto w-full max-w-[19rem]"
     >
       <Art spec={spec} />
       <Axis spec={spec} />

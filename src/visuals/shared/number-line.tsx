@@ -42,7 +42,8 @@ const ARROW_HEAD = 7;
 const BAND_HALF = 15;
 const BAND_OPACITY = 0.2;
 const TAG_SHAPE = 16;
-const CHAR_WIDTH = 9;
+const CHAR_WIDTH = 9.6;
+const ARROW_START_GAP = 7;
 
 export type LineLayer =
   // The origin O: a ring on 0 with its name above.
@@ -218,14 +219,18 @@ export function LineAxis({
 // but is hidden (and out of reach of screen readers).
 export function Layer({
   shown,
+  backdrop = false,
   children,
 }: {
   shown: boolean;
+  // A band behind the axis: the overlap check skips it.
+  backdrop?: boolean;
   children: ReactNode;
 }) {
   const transition = useVisualTransition();
   return (
     <motion.g
+      {...(backdrop ? decorative : {})}
       initial={false}
       animate={{ opacity: shown ? 1 : 0 }}
       transition={transition}
@@ -349,9 +354,11 @@ function ArrowMark({
   layer: Extract<LineLayer, { type: "arrow" }>;
   names: boolean;
 }) {
-  const from = tickX(range, layer.from);
+  const direction = layer.to >= layer.from ? 1 : -1;
+  // The arrow starts a little after its first tick, so two arrows leaving the
+  // same tick (the origin) never join into one line.
+  const from = tickX(range, layer.from) + direction * ARROW_START_GAP;
   const to = tickX(range, layer.to);
-  const direction = to >= from ? 1 : -1;
   const above = names ? NAME_RISE + DOT_RADIUS + 6 : 12;
   const y = plan.axisY - above - (layer.row ?? 0) * ARROW_ROW - 8;
   const colorClass = layer.color ? CONCEPT_CLASSES[layer.color] : undefined;
@@ -376,14 +383,14 @@ function ArrowMark({
       {layer.color ? (
         <Tag
           x={(from + to) / 2}
-          y={y - 14}
+          y={y - 22}
           text={layer.tag}
           color={layer.color}
         />
       ) : (
         <text
           x={(from + to) / 2}
-          y={y - 14}
+          y={y - 22}
           textAnchor="middle"
           dominantBaseline="central"
           fontSize={TEXT_SIZE}
@@ -397,6 +404,19 @@ function ArrowMark({
   );
 }
 
+// The span of a zone in the drawing: from half a tick before `from` to half a
+// tick after `to`, kept inside the axis.
+function zoneSpan(
+  range: LineRange,
+  layer: Extract<LineLayer, { type: "zone" }>,
+) {
+  const half = tickGap(range) / 2;
+  return {
+    left: Math.max(AXIS_LEFT, tickX(range, layer.from) - half),
+    right: Math.min(AXIS_RIGHT, tickX(range, layer.to) + half),
+  };
+}
+
 function ZoneBand({
   range,
   plan,
@@ -406,27 +426,37 @@ function ZoneBand({
   plan: LinePlan;
   layer: Extract<LineLayer, { type: "zone" }>;
 }) {
-  const half = tickGap(range) / 2;
-  const left = Math.max(AXIS_LEFT, tickX(range, layer.from) - half);
-  const right = Math.min(AXIS_RIGHT, tickX(range, layer.to) + half);
+  const { left, right } = zoneSpan(range, layer);
   return (
-    <>
-      <rect
-        x={left}
-        y={plan.axisY - BAND_HALF}
-        width={right - left}
-        height={BAND_HALF * 2}
-        rx={6}
-        className={CONCEPT_CLASSES[layer.color].fill}
-        opacity={BAND_OPACITY}
-      />
-      <Tag
-        x={(left + right) / 2}
-        y={plan.axisY + LABEL_DROP + 14 + ZONE_ROW / 2}
-        text={layer.tag}
-        color={layer.color}
-      />
-    </>
+    <rect
+      x={left}
+      y={plan.axisY - BAND_HALF}
+      width={right - left}
+      height={BAND_HALF * 2}
+      rx={6}
+      className={CONCEPT_CLASSES[layer.color].fill}
+      opacity={BAND_OPACITY}
+    />
+  );
+}
+
+function ZoneTag({
+  range,
+  plan,
+  layer,
+}: {
+  range: LineRange;
+  plan: LinePlan;
+  layer: Extract<LineLayer, { type: "zone" }>;
+}) {
+  const { left, right } = zoneSpan(range, layer);
+  return (
+    <Tag
+      x={(left + right) / 2}
+      y={plan.axisY + LABEL_DROP + 14 + ZONE_ROW / 2}
+      text={layer.tag}
+      color={layer.color}
+    />
   );
 }
 
@@ -476,7 +506,7 @@ function LineFrame({ spec, step }: { spec: NumberLineSpec; step: number }) {
         behind={layers.map((layer, i) =>
           layer.type === "zone" ? (
             // biome-ignore lint/suspicious/noArrayIndexKey: layers never reorder
-            <Layer key={i} shown={visible(layer)}>
+            <Layer key={i} shown={visible(layer)} backdrop>
               <ZoneBand range={spec} plan={plan} layer={layer} />
             </Layer>
           ) : null,
@@ -506,6 +536,14 @@ function LineFrame({ spec, step }: { spec: NumberLineSpec; step: number }) {
                   color={layer.color}
                   name={layer.name}
                 />
+              </Layer>
+            );
+          }
+          if (layer.type === "zone") {
+            return (
+              // biome-ignore lint/suspicious/noArrayIndexKey: layers never reorder
+              <Layer key={i} shown={visible(layer)}>
+                <ZoneTag range={spec} plan={plan} layer={layer} />
               </Layer>
             );
           }
