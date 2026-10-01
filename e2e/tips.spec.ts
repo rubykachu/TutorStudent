@@ -36,7 +36,10 @@ test("the lesson's Mẹo hay page lists its section tip and its tips file", asyn
   await openFixtureLesson(page);
   await expectControlsApart(page);
   await page.locator("[data-tips-open]").tap();
-  await expect(page).toHaveURL(/\/lessons\/fixture\/tips$/);
+  // The first visit compiles the page in the dev server.
+  await expect(page).toHaveURL(/\/lessons\/fixture\/tips$/, {
+    timeout: 30_000,
+  });
   await expect(
     page.getByRole("heading", { level: 1, name: "Mẹo hay" }),
   ).toBeVisible();

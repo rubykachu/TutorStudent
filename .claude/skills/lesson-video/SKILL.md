@@ -6,7 +6,7 @@ model: sonnet
 
 # Video bài giảng
 
-Video mới ngắn (45–75 giây, tối đa 16 câu) và có nhịp cho bé chậm: hỏi rồi mới mở, dừng nghĩ sau điều quan trọng, và điểm dừng để bé tự bấm "Tiếp". Luật ở `references/script-rules.md`, mục "Nhịp cho bé chậm"; build và `pnpm video:check` chặn video mới vi phạm.
+Video mới ngắn (45–75 giây, tối đa 16 câu) và có nhịp cho bé chậm: hỏi rồi mới mở, dừng nghĩ sau điều quan trọng, và điểm dừng để bé tự bấm "Xem tiếp". Luật ở `references/script-rules.md`, mục "Nhịp cho bé chậm"; build và `pnpm video:check` chặn video mới vi phạm.
 
 `<id bài>` là slug của bài (tên thư mục chứa `lesson.json`).
 
@@ -50,7 +50,7 @@ Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi b�
 
 ## Phát trong app
 
-`src/components/blocks/video-player.tsx`: video có `checkpoints` (ghi bởi build từ câu `checkpoint`) tự dừng ở mỗi điểm và hiện nút "Tiếp" và "Xem lại đoạn này" (`checkpoint-overlay.tsx`); clip theo card không dừng. Không tự phát, nút phát lớn, phụ đề bật sẵn (chữ lớn, tô chữ đang đọc), `playsInline` cho iPad. Thẻ ôn có clip thì màn nhắc lại có nút "Xem lại đoạn video". Đường dẫn file ghép với `NEXT_PUBLIC_MEDIA_BASE_URL` (mặc định `/media`, tức `public/media`).
+`src/components/blocks/video-player.tsx`: video có `checkpoints` (ghi bởi build từ câu `checkpoint`) tự dừng ở mỗi điểm và hiện nút "Xem tiếp" và "Xem lại đoạn này" dưới khung hình (`video-checkpoint.tsx`; không đặt tên "Tiếp" vì đó là nút rời màn của phần); clip theo card không dừng. Không tự phát, nút phát lớn, phụ đề bật sẵn (chữ lớn, tô chữ đang đọc), `playsInline` cho iPad. Thẻ ôn có clip thì màn nhắc lại có nút "Xem lại đoạn video". Đường dẫn file ghép với `NEXT_PUBLIC_MEDIA_BASE_URL` (mặc định `/media`, tức `public/media`).
 
 ## Lên go-live (chưa làm, hỏi trước khi chạy)
 

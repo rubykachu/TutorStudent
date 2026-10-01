@@ -217,9 +217,13 @@ export function ExerciseFrame<E extends BasicExercise>({
     concepts,
     seed,
   );
+  // After "Bỏ qua" the owl stays silent: its lines for a wrong check ("bạn tự
+  // làm lại nhé") would not fit a child who chose to move on.
   const view = finished
     ? { ...feedback, reveal: true, speech: undefined }
-    : feedback;
+    : skipped
+      ? { ...feedback, speech: undefined }
+      : feedback;
   const reducedMotion = usePrefersReducedMotion();
   // Wrong checks whose shake already finished; a newer wrong check shakes.
   const [shaken, setShaken] = useState(0);

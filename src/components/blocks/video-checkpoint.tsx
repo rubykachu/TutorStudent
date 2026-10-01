@@ -30,8 +30,10 @@ export type CheckpointControlsProps = {
   onReplay: () => void;
 };
 
-// "Tiếp" goes on; "Xem lại đoạn này" plays the last part again. The child
-// sets the pace, so nothing starts by itself.
+// "Xem tiếp" goes on; "Xem lại đoạn này" plays the last part again. The child
+// sets the pace, so nothing starts by itself. It is not worded "Tiếp", which
+// is the section's own button at the bottom of the screen that leaves the
+// video.
 export function CheckpointControls({
   index,
   total,
@@ -51,7 +53,7 @@ export function CheckpointControls({
         </span>
       </p>
       <BigButton data-checkpoint-continue onClick={onContinue}>
-        Tiếp
+        Xem tiếp
         <ChevronRight aria-hidden className="size-6" />
       </BigButton>
       <BigButton variant="secondary" data-checkpoint-replay onClick={onReplay}>

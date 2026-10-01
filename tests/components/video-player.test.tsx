@@ -109,22 +109,22 @@ describe("checkpoints", () => {
   it("pauses where playback crosses a checkpoint and waits for the child", () => {
     const element = setup();
     at(element, 9);
-    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
     at(element, 10.2);
     expect(element.pause).toHaveBeenCalled();
     expect(element.currentTime).toBe(10);
-    expect(screen.getByRole("button", { name: "Tiếp" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Xem tiếp" })).toBeVisible();
     expect(screen.getByText("Đoạn 1/2")).toBeVisible();
   });
 
-  it("goes on past the checkpoint with Tiếp, and stops at the next one", () => {
+  it("goes on past the checkpoint with Xem tiếp, and stops at the next one", () => {
     const element = setup();
     at(element, 10.2);
-    fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
+    fireEvent.click(screen.getByRole("button", { name: "Xem tiếp" }));
     expect(element.play).toHaveBeenCalled();
-    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
     at(element, 10.4);
-    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
     at(element, 25.1);
     expect(screen.getByText("Đoạn 2/2")).toBeVisible();
   });
@@ -147,13 +147,13 @@ describe("checkpoints", () => {
     fireEvent.seeked(element);
     at(element, 30.2);
     expect(element.pause).not.toHaveBeenCalled();
-    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
   });
 
   it("ignores checkpoints while a clip plays", () => {
     const element = setup(WITH_STOPS, { ...VIDEO.clips[0], end: 40 } as never);
     at(element, 10.2);
-    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
   });
 
   it("leaves a video without checkpoints alone", () => {
