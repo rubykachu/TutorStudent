@@ -36,6 +36,22 @@ export default function Sticker() {
           className="fill-surface stroke-concept-violet"
           strokeWidth={2.5}
         />
+        <rect
+          x={14}
+          y={TOP_Y - 8}
+          width={72}
+          height={16}
+          rx={8}
+          className="fill-concept-sky/15"
+        />
+        <rect
+          x={14}
+          y={BOTTOM_Y - 8}
+          width={72}
+          height={16}
+          rx={8}
+          className="fill-concept-amber/20"
+        />
         <line
           x1={xOf(MEET)}
           x2={xOf(MEET)}
