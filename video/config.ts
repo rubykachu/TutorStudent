@@ -34,7 +34,34 @@ export const TTS_TEMPERATURE = 0.8;
 
 // Silence in seconds: before the first sentence, between sentences, between
 // scenes, and after the last sentence.
-export const PAUSE = { leadIn: 1, sentence: 0.8, scene: 1.3, tail: 2 };
+export const PAUSE = {
+  leadIn: 1,
+  sentence: 0.8,
+  scene: 1.3,
+  tail: 2,
+  // After a sentence flagged `pause: "think"` (a key reveal) or
+  // `pause: "ask"` (a question the child should try before the answer
+  // shows): the silence after it is at least this long.
+  think: 2,
+  ask: 3,
+};
+
+// Pacing of a new video, for a slow, low-focus child (checked by
+// `pacingIssues`; videos listed in `pacing-exempt.json` predate it).
+export const PACING = {
+  maxSentences: 16,
+  maxWordsPerSentence: 12,
+  minCheckpoints: 1,
+  maxCheckpoints: 4,
+  // Sentences between two checkpoints, at least.
+  minSentencesBetweenCheckpoints: 3,
+};
+// The player stops this long after a checkpoint sentence ends; the next
+// sentence must start at least CHECKPOINT_MARGIN later still.
+export const CHECKPOINT_AFTER = 0.3;
+export const CHECKPOINT_MARGIN = 0.3;
+// Videos built before the pacing rules, one "<lesson>/<name>" each.
+export const PACING_EXEMPT_FILE = path.join(VIDEO_DIR, "pacing-exempt.json");
 // A caption shows at most this many words, so it fits two lines on a phone.
 export const CAPTION_MAX_WORDS = 7;
 // A clip starts a little before its first word and ends after its last.

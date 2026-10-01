@@ -10,13 +10,21 @@ import {
 import { alignWords } from "./lib/align";
 import { layNarration, probeDuration } from "./lib/audio";
 import { buildSite } from "./lib/compose";
-import { captionIssues, checkProject, openingIssues } from "./lib/consistency";
+import {
+  captionIssues,
+  checkProject,
+  checkpointIssues,
+  openingIssues,
+  pacingExemptVideos,
+  pacingIssues,
+} from "./lib/consistency";
 import { lessonVoice, readLessonMedia } from "./lib/lesson-media";
 import { writeManifest } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
 import { encodeVideo, extractPoster, renderSite } from "./lib/render";
 import { readScript } from "./lib/script";
 import {
+  buildCheckpoints,
   buildClips,
   buildVtt,
   compositionTiming,
@@ -44,6 +52,17 @@ async function main() {
   if (verbatim.length > 0) {
     throw new Error(
       `script.json must quote the lesson word for word:\n${verbatim.join("\n")}`,
+    );
+  }
+  const pacing = [
+    ...checkpointIssues(script),
+    ...(pacingExemptVideos().has(`${lessonId}/${name}`)
+      ? []
+      : pacingIssues(script)),
+  ];
+  if (pacing.length > 0) {
+    throw new Error(
+      `the script's pacing is off (see the lesson-video skill):\n${pacing.join("\n")}`,
     );
   }
   // On-screen rule text is checked before any voice or render work.
@@ -80,7 +99,11 @@ async function main() {
   const words = takes.map((t) =>
     alignWords(t.text, t.spoken, t.words, t.duration),
   );
-  const timeline = schedule(takes, words);
+  const timeline = schedule(
+    takes,
+    words,
+    script.scenes.flatMap((scene) => scene.sentences.map((s) => s.pause)),
+  );
 
   const narration = path.join(renders, "narration.wav");
   layNarration(narration, timeline.sentences, timeline.duration);
@@ -123,6 +146,7 @@ async function main() {
   }
 
   const media = `video/${lessonId}/${name}`;
+  const checkpoints = buildCheckpoints(script, timeline);
   const file = writeManifest(lessonId, {
     id: `${lessonId}.video.${name}`,
     lessonId,
@@ -132,6 +156,7 @@ async function main() {
     durationSec: duration,
     clips: buildClips(script, timeline),
     voice: engine.voice(voice.preset),
+    ...(checkpoints ? { checkpoints } : {}),
   });
 
   const report = {

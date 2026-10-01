@@ -2,7 +2,13 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { parseKaraokeVtt } from "@/lib/karaoke-vtt";
 import type { LessonOverview } from "@/schema/content";
-import { MEDIA_DIR, PAUSE, PROJECTS_DIR } from "../config";
+import {
+  MEDIA_DIR,
+  PACING,
+  PACING_EXEMPT_FILE,
+  PAUSE,
+  PROJECTS_DIR,
+} from "../config";
 import { voiceSpec } from "../voices";
 import { type LessonMedia, readLessonMedia } from "./lesson-media";
 import { narrationPaths, narrationScript } from "./narration";
@@ -128,6 +134,122 @@ export function openingIssues(
       issues.push("the opening line must not be a rule or a quote");
     }
   }
+  return issues;
+}
+
+// Videos built before the pacing rules, from video/pacing-exempt.json. A
+// video rebuilt to follow them is deleted from the list.
+export function pacingExemptVideos(): ReadonlySet<string> {
+  const data = JSON.parse(readFileSync(PACING_EXEMPT_FILE, "utf8")) as {
+    videos: string[];
+  };
+  return new Set(data.videos);
+}
+
+const flatSentences = (script: VideoScript) =>
+  script.scenes.flatMap((scene) =>
+    scene.sentences.map((sentence) => ({ scene: scene.id, ...sentence })),
+  );
+
+// Rules of any video: a checkpoint stops the player after its sentence, so
+// the video cannot end on one.
+export function checkpointIssues(script: VideoScript): string[] {
+  const flat = flatSentences(script);
+  const last = flat.at(-1);
+  return last?.checkpoint
+    ? [`the last sentence cannot be a checkpoint: "${last.text}"`]
+    : [];
+}
+
+// Pacing of a new video for a slow, low-focus child: short, one idea per
+// sentence, a pause after each key reveal, a question before a reveal, and
+// stops where the child sets the pace.
+export function pacingIssues(script: VideoScript): string[] {
+  const flat = flatSentences(script);
+  const issues: string[] = [];
+  if (flat.length > PACING.maxSentences) {
+    issues.push(
+      `${flat.length} sentences (max ${PACING.maxSentences}): fewer ideas per video`,
+    );
+  }
+  flat.forEach((sentence, i) => {
+    const count = sentence.text.split(/\s+/).length;
+    if (count > PACING.maxWordsPerSentence) {
+      issues.push(
+        `sentence ${i + 1} (${sentence.scene}) has ${count} words (max ${PACING.maxWordsPerSentence}): one idea per sentence`,
+      );
+    }
+    const isLast = i === flat.length - 1;
+    if (sentence.rule && !sentence.pause && !isLast) {
+      issues.push(
+        `sentence ${i + 1} (${sentence.scene}) states a rule and needs a "pause" so the child can think: "${sentence.text}"`,
+      );
+    }
+    if (sentence.pause === "ask" && isLast) {
+      issues.push(`the last sentence cannot be an "ask" (nothing to reveal)`);
+    }
+  });
+  if (!flat.some((s) => s.pause === "ask")) {
+    issues.push(
+      'no sentence is flagged `pause: "ask"`: ask the child to guess ("Bạn thử đoán xem…") before the reveal',
+    );
+  }
+  const stops = flat.flatMap((s, i) => (s.checkpoint ? [i] : []));
+  if (
+    stops.length < PACING.minCheckpoints ||
+    stops.length > PACING.maxCheckpoints
+  ) {
+    issues.push(
+      `${stops.length} checkpoints (need ${PACING.minCheckpoints} to ${PACING.maxCheckpoints})`,
+    );
+  }
+  stops.forEach((at, k) => {
+    const before = stops[k - 1];
+    if (
+      before !== undefined &&
+      at - before < PACING.minSentencesBetweenCheckpoints
+    ) {
+      issues.push(
+        `checkpoints after sentences ${before + 1} and ${at + 1} are less than ${PACING.minSentencesBetweenCheckpoints} sentences apart`,
+      );
+    }
+  });
+  return issues;
+}
+
+// The built captions leave at least the flagged silence after each sentence
+// with a `pause`: from the start of its last word to the start of the next
+// sentence's first word is at least the pause (the last word's own length
+// only adds slack).
+export function pauseGapIssues(script: VideoScript, vtt: string): string[] {
+  const timed = parseKaraokeVtt(vtt).flatMap((w) =>
+    captionTokens(w.text).map((token) => ({ token, start: w.start })),
+  );
+  const tokens = timed.map((t) => t.token);
+  const flat = flatSentences(script);
+  const issues: string[] = [];
+  let at = 0;
+  const spans = flat.map((sentence) => {
+    const words = captionTokens(sentence.text);
+    const found = findSequence(tokens, words, at);
+    if (found === -1) return undefined;
+    at = found + words.length;
+    return { first: found, last: found + words.length - 1 };
+  });
+  flat.forEach((sentence, i) => {
+    if (!sentence.pause) return;
+    const here = spans[i];
+    const next = spans[i + 1];
+    if (!here || !next) return;
+    const gap =
+      (timed[next.first]?.start ?? 0) - (timed[here.last]?.start ?? 0);
+    const need = PAUSE[sentence.pause];
+    if (gap < need) {
+      issues.push(
+        `sentence ${i + 1} (${sentence.scene}) is flagged "${sentence.pause}" but the next sentence starts ${gap.toFixed(1)} s after its last word began (needs ${need} s)`,
+      );
+    }
+  });
   return issues;
 }
 
@@ -344,13 +466,21 @@ export function checkProject(
       );
     }
   }
+  result.issues.push(...checkpointIssues(script));
+  if (!pacingExemptVideos().has(`${lessonId}/${name}`)) {
+    result.issues.push(...pacingIssues(script));
+  }
   result.ruleTextCount = ruleTextsOnScreen(html).length;
   result.issues.push(...onScreenIssues(html, lesson.data));
   if (captions) {
     const vtt = vttFile(lessonId, name);
     if (existsSync(vtt)) {
       const text = readFileSync(vtt, "utf8");
-      result.issues.push(...captionIssues(script, text), ...leadInIssues(text));
+      result.issues.push(
+        ...captionIssues(script, text),
+        ...leadInIssues(text),
+        ...pauseGapIssues(script, text),
+      );
     } else {
       result.skipped = "no built captions";
     }

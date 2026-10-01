@@ -2,6 +2,7 @@
 
 import { Captions, CaptionsOff, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { CheckpointOverlay } from "@/components/blocks/checkpoint-overlay";
 import { parseKaraokeCue, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import type { Video } from "@/schema/content";
@@ -30,6 +31,75 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
   const [captionsOn, setCaptionsOn] = useState(true);
   const [cue, setCue] = useState<TimedWord[]>([]);
   const [spoken, setSpoken] = useState(-1);
+  // Checkpoints stop the whole video only; a clip is already a short piece.
+  const checkpoints = clip ? undefined : video.checkpoints;
+  // Index of the checkpoint the video waits at, or null while it plays.
+  const [stop, setStop] = useState<number | null>(null);
+  // Where playback was at the last look, to tell playing across a checkpoint
+  // from jumping past it.
+  const lastTime = useRef(0);
+  const seeking = useRef(false);
+
+  // Pauses the video when playback crosses a checkpoint. Run every frame
+  // while playing and on `timeupdate`; a jump (seek) never counts.
+  const checkCheckpoint = () => {
+    const element = videoRef.current;
+    if (!element || !checkpoints || seeking.current) return;
+    const t = element.currentTime;
+    const before = lastTime.current;
+    lastTime.current = t;
+    const at = checkpoints.findIndex((c) => c.at > before && c.at <= t);
+    const hit = checkpoints[at];
+    if (!hit) return;
+    element.pause();
+    element.currentTime = hit.at;
+    lastTime.current = hit.at;
+    setStop(at);
+  };
+  const checkRef = useRef(checkCheckpoint);
+  checkRef.current = checkCheckpoint;
+
+  useEffect(() => {
+    const element = videoRef.current;
+    if (!element || !checkpoints) return;
+    let frame = 0;
+    const tick = () => {
+      checkRef.current();
+      if (!element.paused) frame = requestAnimationFrame(tick);
+    };
+    const onPlaying = () => {
+      setStop(null);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(tick);
+    };
+    const onSeeking = () => {
+      seeking.current = true;
+    };
+    const onSeeked = () => {
+      seeking.current = false;
+      lastTime.current = element.currentTime;
+    };
+    element.addEventListener("play", onPlaying);
+    element.addEventListener("seeking", onSeeking);
+    element.addEventListener("seeked", onSeeked);
+    return () => {
+      cancelAnimationFrame(frame);
+      element.removeEventListener("play", onPlaying);
+      element.removeEventListener("seeking", onSeeking);
+      element.removeEventListener("seeked", onSeeked);
+    };
+  }, [checkpoints]);
+
+  const resumeAt = (time: number | undefined) => {
+    const element = videoRef.current;
+    if (!element) return;
+    if (time !== undefined) {
+      element.currentTime = time;
+      lastTime.current = time;
+    }
+    setStop(null);
+    void element.play();
+  };
 
   // The track stays "hidden" (not `default`, which WebKit draws) so its cues
   // load and fire events without the browser drawing them over ours.
@@ -103,6 +173,7 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
   };
 
   const onTimeUpdate = () => {
+    checkCheckpoint();
     const element = videoRef.current;
     if (clip && element && element.currentTime >= clip.end) element.pause();
   };
@@ -157,7 +228,15 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
             </span>
           </button>
         )}
-        {captionsOn && cue.length > 0 && (
+        {stop !== null && checkpoints && (
+          <CheckpointOverlay
+            index={stop}
+            total={checkpoints.length}
+            onContinue={() => resumeAt(undefined)}
+            onReplay={() => resumeAt(checkpoints[stop]?.from)}
+          />
+        )}
+        {captionsOn && cue.length > 0 && stop === null && (
           <p
             data-video-caption
             aria-hidden

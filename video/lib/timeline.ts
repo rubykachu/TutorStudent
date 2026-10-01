@@ -1,9 +1,16 @@
 import { formatVttTime, karaokeCueText } from "@/lib/karaoke-vtt";
 import type { Video } from "@/schema/content";
-import { CAPTION_MAX_WORDS, CLIP_PAD, PAUSE, RENDER } from "../config";
+import {
+  CAPTION_MAX_WORDS,
+  CHECKPOINT_AFTER,
+  CHECKPOINT_MARGIN,
+  CLIP_PAD,
+  PAUSE,
+  RENDER,
+} from "../config";
 import type { TimedWord } from "./align";
 import type { SentenceTake } from "./narrate";
-import type { VideoScript } from "./script";
+import type { Pause, VideoScript } from "./script";
 import { anchorKey } from "./text";
 
 export type PlacedSentence = {
@@ -24,16 +31,23 @@ export type Timeline = {
 
 const round = (t: number) => Math.round(t * 1000) / 1000;
 
-// Lays the sentences end to end with the pauses from PAUSE.
+// Lays the sentences end to end with the pauses from PAUSE. `pauses[i]` is
+// the script's `pause` flag of sentence i: the silence after it is the longer
+// of the usual gap and that pause.
 export function schedule(
   takes: readonly SentenceTake[],
   words: readonly TimedWord[][],
+  pauses: readonly (Pause | undefined)[] = [],
 ): Timeline {
   let at = PAUSE.leadIn;
   const sentences: PlacedSentence[] = takes.map((take, i) => {
     const previous = takes[i - 1];
-    if (previous)
-      at += previous.sceneId === take.sceneId ? PAUSE.sentence : PAUSE.scene;
+    if (previous) {
+      const usual =
+        previous.sceneId === take.sceneId ? PAUSE.sentence : PAUSE.scene;
+      const flag = pauses[i - 1];
+      at += flag ? Math.max(usual, PAUSE[flag]) : usual;
+    }
     const start = at;
     at += take.duration;
     return {
@@ -122,6 +136,40 @@ export function buildClips(
       cardIds: clip.cardIds,
     };
   });
+}
+
+// Where the player stops: just after each sentence flagged `checkpoint`.
+// `from` is where "Xem lại đoạn này" restarts, the previous stop (0 for the
+// first). Undefined when no sentence is flagged, so a video without
+// checkpoints records none.
+export function buildCheckpoints(
+  script: VideoScript,
+  timeline: Timeline,
+): Video["checkpoints"] {
+  const flat = script.scenes.flatMap((scene) => scene.sentences);
+  const out: NonNullable<Video["checkpoints"]> = [];
+  flat.forEach((sentence, i) => {
+    if (!sentence.checkpoint) return;
+    const placed = timeline.sentences[i];
+    const next = timeline.sentences[i + 1];
+    if (!placed || !next) {
+      throw new Error(
+        `Sentence ${i + 1} is the last one and cannot be a checkpoint`,
+      );
+    }
+    const at = round(placed.end + CHECKPOINT_AFTER);
+    if (at > next.start - CHECKPOINT_MARGIN) {
+      throw new Error(
+        `Checkpoint after sentence ${i + 1} leaves less than ${CHECKPOINT_MARGIN} s before the next sentence; add a pause`,
+      );
+    }
+    out.push({
+      id: `cp-${String(out.length + 1).padStart(2, "0")}`,
+      at,
+      from: out.at(-1)?.at ?? 0,
+    });
+  });
+  return out.length > 0 ? out : undefined;
 }
 
 // `window.TIMING` of a composition: every scene's window and spoken words,

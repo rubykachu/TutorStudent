@@ -22,6 +22,12 @@ const SentenceSchema = z.object({
   // The greeting that opens the video; only the first sentence of the first
   // scene (see `openingIssues` in video/lib/consistency.ts).
   opening: z.literal(true).optional(),
+  // Silence the build leaves after the sentence (at least PAUSE.think or
+  // PAUSE.ask): "think" after a key reveal, "ask" after a question the child
+  // should try before the answer shows.
+  pause: z.enum(["think", "ask"]).optional(),
+  // The player stops after this sentence until the child presses "Tiếp".
+  checkpoint: z.literal(true).optional(),
 });
 
 const SceneSchema = z.object({
@@ -89,6 +95,7 @@ export const VideoScriptSchema = z
     });
   });
 
+export type Pause = NonNullable<z.infer<typeof SentenceSchema>["pause"]>;
 export type VideoScript = z.infer<typeof VideoScriptSchema>;
 
 export function readScript(file: string): VideoScript {

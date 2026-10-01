@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { BlockView } from "@/components/blocks/block-view";
 import { VideoPlayer } from "@/components/blocks/video-player";
 import { CardClip } from "@/learn/card-clip";
@@ -81,6 +81,85 @@ describe("VideoPlayer", () => {
     video.currentTime = 20;
     fireEvent.timeUpdate(video);
     expect(paused).toBe(true);
+  });
+});
+
+describe("checkpoints", () => {
+  const WITH_STOPS: Video = {
+    ...VIDEO,
+    checkpoints: [
+      { id: "cp-01", at: 10, from: 0 },
+      { id: "cp-02", at: 25, from: 10 },
+    ],
+  };
+
+  function setup(video: Video = WITH_STOPS, clip?: Video["clips"][number]) {
+    const { container } = render(<VideoPlayer video={video} clip={clip} />);
+    const element = videoElement(container);
+    element.pause = vi.fn();
+    element.play = vi.fn(() => Promise.resolve());
+    fireEvent.play(element);
+    return element;
+  }
+  const at = (element: HTMLVideoElement, time: number) => {
+    element.currentTime = time;
+    fireEvent.timeUpdate(element);
+  };
+
+  it("pauses where playback crosses a checkpoint and waits for the child", () => {
+    const element = setup();
+    at(element, 9);
+    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    at(element, 10.2);
+    expect(element.pause).toHaveBeenCalled();
+    expect(element.currentTime).toBe(10);
+    expect(screen.getByRole("button", { name: "Tiếp" })).toBeVisible();
+    expect(screen.getByText("Đoạn 1/2")).toBeVisible();
+  });
+
+  it("goes on past the checkpoint with Tiếp, and stops at the next one", () => {
+    const element = setup();
+    at(element, 10.2);
+    fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
+    expect(element.play).toHaveBeenCalled();
+    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    at(element, 10.4);
+    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+    at(element, 25.1);
+    expect(screen.getByText("Đoạn 2/2")).toBeVisible();
+  });
+
+  it("restarts the part from its start with Xem lại đoạn này", () => {
+    const element = setup();
+    at(element, 10.2);
+    at(element, 25.1);
+    fireEvent.click(screen.getByRole("button", { name: /Xem lại đoạn này/ }));
+    expect(element.currentTime).toBe(10);
+    expect(element.play).toHaveBeenCalled();
+    at(element, 25.2);
+    expect(screen.getByText("Đoạn 2/2")).toBeVisible();
+  });
+
+  it("does not stop when the child seeks past a checkpoint", () => {
+    const element = setup();
+    element.currentTime = 30;
+    fireEvent.seeking(element);
+    fireEvent.seeked(element);
+    at(element, 30.2);
+    expect(element.pause).not.toHaveBeenCalled();
+    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+  });
+
+  it("ignores checkpoints while a clip plays", () => {
+    const element = setup(WITH_STOPS, { ...VIDEO.clips[0], end: 40 } as never);
+    at(element, 10.2);
+    expect(screen.queryByRole("button", { name: "Tiếp" })).toBeNull();
+  });
+
+  it("leaves a video without checkpoints alone", () => {
+    const element = setup(VIDEO);
+    at(element, 10.2);
+    expect(element.pause).not.toHaveBeenCalled();
   });
 });
 
