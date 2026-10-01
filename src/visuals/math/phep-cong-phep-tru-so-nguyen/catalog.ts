@@ -186,6 +186,7 @@ const PAIR_ROWS = [
 
 // A = x + (-4) - 6 for x = 12.
 const VALUE_ROWS = [
+  { tex: "A = x + (-4) - 6" },
   { tex: "A = 12 + (-4) - 6", tag: tag("thay x bằng 12", NOTE) },
   { tex: "= 8 - 6" },
   { tex: "= \\concept{lime}{2}", tag: tag("giá trị của A", SUM) },
@@ -326,18 +327,24 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("12 và −12 đối nhau", NOTE),
     },
   ]),
-  "cong-voi-0-vi-du": rows("Cộng với 0 thì số không đổi", [
-    { tex: "(-4) + \\concept{slate}{0} = -4", tag: tag("đứng yên", NOTE) },
-    { tex: "\\concept{slate}{0} + 9 = 9", tag: tag("đứng yên", NOTE) },
-  ]),
-  "dung-yen-tai-3": {
+  "cong-voi-0-vi-du": rows(
+    "Cộng một số với 0, hay cộng 0 với một số, thì được chính số đó",
+    [
+      { tex: "(-4) + \\concept{slate}{0} = -4", tag: tag("đứng yên", NOTE) },
+      {
+        tex: "\\concept{slate}{0} + 9 = 9",
+        tag: tag("từ 0 sang phải 9", POSITIVE),
+      },
+    ],
+  ),
+  "dung-yen-tai-4": {
     kind: "line",
     from: -5,
     to: 5,
-    label: "Trục số: điểm ở 3, cộng 0 thì điểm vẫn ở 3",
+    label: "Trục số: điểm ở 4, cộng 0 thì điểm vẫn ở 4",
     layers: [
       { type: "origin" },
-      { type: "point", at: 3, name: START_NAME, color: FIRST },
+      { type: "point", at: 4, name: "đầu và tổng", color: FIRST },
     ],
     mode: "still",
   },
@@ -362,10 +369,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ]),
   "cung-am2-am4": tryWalk(-2, -6, "Điểm đã đi sang trái 4 đơn vị, tới −6."),
   "goi-y-am8-am5": lines(
-    "Cộng hai số âm: cộng hai phần số tự nhiên rồi đặt dấu −",
+    "Cộng hai số âm: cộng hai phần số tự nhiên rồi viết dấu − ở trước",
     [
       { tex: "(-8) + (-5)" },
-      { tex: "= -(8 + 5)", tag: tag("cộng 8 với 5, đặt dấu −", NOTE) },
+      { tex: "= -(8 + 5)", tag: tag("cộng 8 với 5, viết dấu − ở trước", NOTE) },
       { tex: "= -13" },
     ],
     "hint",
@@ -376,23 +383,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "khac-dau-vi-du": rows("Cộng hai số khác dấu", [
     {
       tex: steps("7 + (-4)", "= +(7 - 4) = \\concept{lime}{3}"),
-      tag: tag("phần 7 lớn hơn: dấu +", POSITIVE),
+      tag: tag("mang dấu của 7", POSITIVE),
     },
     {
       tex: steps("3 + (-8)", "= -(8 - 3) = \\concept{pink}{-5}"),
-      tag: tag("phần 8 lớn hơn: dấu −", NEGATIVE),
+      tag: tag("mang dấu của −8", NEGATIVE),
     },
     {
       tex: steps("(-5) + 2", "= -(5 - 2) = \\concept{pink}{-3}"),
-      tag: tag("phần 5 lớn hơn: dấu −", NEGATIVE),
+      tag: tag("mang dấu của −5", NEGATIVE),
     },
   ]),
-  "cung-3-cong-am5": tryWalk(3, -2, "Điểm đã đi sang trái 5 đơn vị, tới −2."),
+  "cung-2-cong-am3": tryWalk(2, -1, "Điểm đã đi sang trái 3 đơn vị, tới −1."),
   "goi-y-am9-cong4": lines(
-    "Cộng hai số khác dấu: lấy phần lớn trừ phần nhỏ, dấu của số xa gốc O hơn",
+    "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần nhỏ, tổng mang dấu của số có phần số tự nhiên lớn hơn",
     [
       { tex: "(-9) + 4" },
-      { tex: "= -(9 - 4)", tag: tag("phần 9 lớn hơn: dấu −", NOTE) },
+      { tex: "= -(9 - 4)", tag: tag("mang dấu của −9", NEGATIVE) },
       { tex: "= -5" },
     ],
     "hint",
@@ -499,11 +506,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // 12. Bài toán đời sống
   "sapa-dem": walk(-4, [-3], DIFFERENCE),
   "tai-khoan": lines(
-    "Ví có 50 nghìn đồng, tiêu 20 nghìn, được cho 35 nghìn, tiêu 45 nghìn",
+    "Ví có 50 nghìn đồng, chi ra 20 nghìn, thu vào 35 nghìn, chi ra 45 nghìn",
     [
       {
         tex: "50 + (-20) + 35 + (-45)",
-        tag: tag("tiêu là số âm, được cho là số dương", NOTE),
+        tag: tag("chi ra là số âm, thu vào là số dương", NOTE),
       },
       { tex: "= 30 + 35 + (-45)", tag: tag("tính từ trái sang phải", NOTE) },
       { tex: "= 65 + (-45)" },
