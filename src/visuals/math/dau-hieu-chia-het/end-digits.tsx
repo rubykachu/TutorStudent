@@ -40,7 +40,7 @@ export function EndDigits({ spec }: { spec: SpecOf<"endDigits"> }) {
   return (
     <figure
       aria-label={`Chữ số tận cùng của số chia hết cho ${listDivisors(divisors)}`}
-      className="flex w-full max-w-md flex-col items-center gap-3"
+      className="mx-auto flex w-full max-w-md flex-col items-center gap-3"
     >
       <ul className="flex w-full flex-col gap-3">
         {divisors.map((divisor) => (

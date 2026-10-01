@@ -9,7 +9,9 @@ import { stateStep, stateStepper } from "@/visuals/shared/markers";
 type NumberStepperProps = {
   // Visible name, e.g. "Cơ số"; buttons are spoken as "Giảm cơ số".
   label: string;
-  value: number;
+  // `undefined` shows "?" until the first tap, which goes to `min`; the
+  // visual state marker reads it as one below `min`.
+  value: number | undefined;
   min: number;
   max: number;
   onChange: (value: number) => void;
@@ -37,11 +39,12 @@ export function NumberStepper({
   stateKey,
 }: NumberStepperProps) {
   const name = label.toLocaleLowerCase("vi");
+  const current = value ?? min - 1;
   const valueColor = color ? CONCEPT_CLASSES[color].text : "text-foreground";
   return (
     <fieldset
       className="flex flex-col items-center gap-1"
-      {...stateStepper(stateKey, value)}
+      {...stateStepper(stateKey, current)}
     >
       <legend className="mx-auto flex items-center gap-2 text-caption text-muted-foreground">
         {color && <ConceptMark color={color} className="size-4" />}
@@ -53,8 +56,8 @@ export function NumberStepper({
           className={BUTTON}
           aria-label={`Giảm ${name}`}
           {...stateStep(stateKey, "down")}
-          disabled={disabled || value <= min}
-          onClick={() => onChange(Math.max(min, value - 1))}
+          disabled={disabled || current <= min}
+          onClick={() => onChange(Math.max(min, current - 1))}
         >
           <Minus aria-hidden className="size-5" />
         </button>
@@ -62,15 +65,15 @@ export function NumberStepper({
           aria-live="polite"
           className={`min-w-9 text-center font-heading text-title font-bold tabular-nums ${valueColor}`}
         >
-          {value}
+          {value ?? "?"}
         </output>
         <button
           type="button"
           className={BUTTON}
           aria-label={`Tăng ${name}`}
           {...stateStep(stateKey, "up")}
-          disabled={disabled || value >= max}
-          onClick={() => onChange(Math.min(max, value + 1))}
+          disabled={disabled || current >= max}
+          onClick={() => onChange(Math.min(max, current + 1))}
         >
           <Plus aria-hidden className="size-5" />
         </button>

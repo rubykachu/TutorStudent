@@ -141,11 +141,42 @@ describe("DigitBox", () => {
       />,
     );
     expect(
-      screen.getByRole("img", { name: "Số 7005, chữ số ở ô trống là 0" }),
+      screen.getByRole("img", {
+        name: "Số 7?05, chưa chọn chữ số ở ô trống",
+      }),
     ).toBeInTheDocument();
     expect(screen.queryByText(/chia hết cho/)).toBeNull();
     expect(screen.queryByText(/Đã tìm/)).toBeNull();
     expect(screen.queryByText(/Bạn đã tìm đủ/)).toBeNull();
+  });
+
+  it("starts an exercise's box as a question mark and the first tap picks 0", () => {
+    const onStateChange = vi.fn();
+    render(
+      <DigitBox
+        before="84"
+        after=""
+        divisors={[2, 5]}
+        goal={false}
+        params={{
+          before: 84,
+          after: 0,
+          afterLen: 0,
+          divisor: 2,
+          divisor2: 5,
+          fits: 1,
+        }}
+        onStateChange={onStateChange}
+      />,
+    );
+    expect(onStateChange).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("button", { name: "Giảm chữ số ở ô trống" }),
+    ).toBeDisabled();
+    fireEvent.click(
+      screen.getByRole("button", { name: "Tăng chữ số ở ô trống" }),
+    );
+    expect(onStateChange).toHaveBeenLastCalledWith({ d: 0 });
   });
 
   it("draws a number with no digits before the box, and the revealed answer read-only", () => {

@@ -25,8 +25,9 @@ const toDigits = (text: string) => [...text].map(Number);
 // A number with one digit left open: the child picks the digit with − and +.
 // Reports { d }. With `goal` on a lesson screen it also shows whether the
 // number divides, how many fitting digits were found and a closing line. In
-// an exercise (`params` present) the task's own numbers replace the spec's
-// and nothing is revealed: a verdict or a count would give the answer away.
+// an exercise (`params` present) the task's own numbers replace the spec's,
+// nothing is revealed (a verdict or a count would give the answer away) and
+// the box starts as "?", so no digit counts as chosen before the first tap.
 export function DigitBox({
   before: specBefore,
   after: specAfter,
@@ -37,7 +38,9 @@ export function DigitBox({
   shownState,
   disabled = false,
 }: DigitBoxProps) {
-  const [own, setOwn] = useState<number>(DIGIT_RANGE.min);
+  const [own, setOwn] = useState<number | undefined>(
+    params ? undefined : DIGIT_RANGE.min,
+  );
   const [tried, setTried] = useState<readonly number[]>([DIGIT_RANGE.min]);
   const digit = shownState?.d ?? own;
   const locked = disabled || shownState !== undefined;
@@ -55,7 +58,7 @@ export function DigitBox({
 
   const fitting = fittingDigits(beforeNum, afterNum, afterLen, divisors);
   const found = fitting.filter((d) => tried.includes(d)).length;
-  const fits = fitting.includes(digit);
+  const fits = digit !== undefined && fitting.includes(digit);
   const showCheck = goal && params === undefined;
   const who = divisors.length > 1 ? "cả " : "";
 
@@ -70,7 +73,11 @@ export function DigitBox({
     <div className="flex w-full flex-col items-center gap-4">
       <div
         role="img"
-        aria-label={`Số ${before}${digit}${after}, chữ số ở ô trống là ${digit}`}
+        aria-label={
+          digit === undefined
+            ? `Số ${before}?${after}, chưa chọn chữ số ở ô trống`
+            : `Số ${before}${digit}${after}, chữ số ở ô trống là ${digit}`
+        }
         className="flex flex-wrap justify-center gap-1.5"
       >
         {toDigits(before).map((d, i) => (

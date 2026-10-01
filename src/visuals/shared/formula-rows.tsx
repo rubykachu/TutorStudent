@@ -23,7 +23,8 @@ export type Mode = "steps" | "still" | "hint" | "solution";
 export type LegendItem = { color: ConceptColor; name: string };
 
 // A row of a picture: a formula and, beside it, a short tag in a concept
-// colour saying what it shows.
+// colour saying what it shows. An empty `tex` leaves only the tag (a closing
+// sentence with no formula of its own).
 export type Row = {
   tex: string;
   tag?: { text: string; color: ConceptColor };
@@ -32,6 +33,8 @@ export type Row = {
   // A side fact that the next row uses ("vì ..."): smaller, in a dashed box,
   // so it does not read as a link of the chain of equalities.
   aside?: boolean;
+  // Drawn dimmed: a case shown only to say why it is left out.
+  muted?: boolean;
 };
 
 // Formulas stacked, each with an optional tag; the legend names the colours.
@@ -80,7 +83,12 @@ export function FormulaRow({ row }: { row: Row }) {
   }
   return (
     <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-      <Formula tex={row.tex} className="text-block md:text-block-lg" />
+      {row.tex !== "" && (
+        <Formula
+          tex={row.tex}
+          className={`text-block md:text-block-lg ${row.muted ? "text-muted-foreground" : ""}`}
+        />
+      )}
       {row.tag && <TagChip text={row.tag.text} color={row.tag.color} />}
     </div>
   );

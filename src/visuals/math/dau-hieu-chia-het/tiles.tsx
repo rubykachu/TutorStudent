@@ -25,7 +25,8 @@ export function DigitTile({
   tone = "plain",
   size = "big",
 }: {
-  digit: number;
+  // `undefined` draws a "?" (the box before any digit is picked).
+  digit: number | undefined;
   tone?: TileTone;
   size?: keyof typeof SIZES;
 }) {
@@ -34,7 +35,7 @@ export function DigitTile({
       aria-hidden
       className={`flex flex-col items-center justify-center gap-0.5 rounded-lg border-2 font-heading font-bold tabular-nums ${TONES[tone]} ${SIZES[size]}`}
     >
-      {digit}
+      {digit ?? "?"}
       {tone === "concept" ? (
         <ConceptMark color="teal" className="size-3.5" />
       ) : (

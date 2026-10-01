@@ -128,6 +128,10 @@ export type BagsSpec = {
   bag: string;
   mode: Mode;
   openTotal?: boolean;
+  // Writes the number of bags as plain text: a lesson whose own concepts use
+  // the bag-count colour for something else keeps the picture from teaching
+  // two meanings for one colour.
+  plainBagCount?: boolean;
 };
 
 // `total` items packed into bags of `size`: full bags and what is left over.
@@ -139,11 +143,24 @@ export function packBags(
 }
 
 // What the colours of a bag picture stand for; `bag` names the container.
-export function bagLegend(bag: string) {
-  return [
+// "Còn thừa" is listed only when something is left over.
+export function bagLegend(bag: string, hasLeft = true) {
+  const items: { color: ConceptColor; name: string }[] = [
     { color: "violet", name: `Một ${bag}` },
-    { color: "pink", name: "Còn thừa" },
-  ] as const;
+  ];
+  if (hasLeft) items.push({ color: "pink", name: "Còn thừa" });
+  return items;
+}
+
+// The number of bags, tinted in its concept colour unless `plain`.
+function BagCount({
+  value,
+  plain,
+}: {
+  value: number | string;
+  plain: boolean;
+}) {
+  return plain ? value : <Tint color="amber">{value}</Tint>;
 }
 
 // The bags of a number: `shown` full bags, then the left-over box. `pending`
@@ -219,6 +236,7 @@ function Equation({
   left,
   hideLeft,
   open,
+  plain,
 }: {
   total: number;
   size: number;
@@ -226,6 +244,7 @@ function Equation({
   left: number;
   hideLeft: boolean;
   open: boolean;
+  plain: boolean;
 }) {
   return (
     <p className={MATH_LINE}>
@@ -234,7 +253,7 @@ function Equation({
         {"= "}
         <Tint color="violet">{size}</Tint>
         {" · "}
-        <Tint color="amber">{open ? "q" : bags}</Tint>
+        <BagCount value={open ? "q" : bags} plain={plain} />
         {(left > 0 || hideLeft) && (
           <>
             {" + "}
@@ -247,7 +266,8 @@ function Equation({
 }
 
 function BagsView({ spec, step }: { spec: BagsSpec; step: number }) {
-  const { total, size, thing, bag, unit, mode, openTotal } = spec;
+  const { total, size, thing, bag, unit, mode, openTotal, plainBagCount } =
+    spec;
   const { bags, left } = packBags(total, size);
   const hint = mode === "hint";
   const final = mode === "still" || step >= bags;
@@ -277,6 +297,7 @@ function BagsView({ spec, step }: { spec: BagsSpec; step: number }) {
             left={left}
             hideLeft={hint}
             open={openTotal === true}
+            plain={plainBagCount === true}
           />
         ) : shown === 0 ? (
           <p className={MATH_LINE}>
@@ -292,7 +313,7 @@ function BagsView({ spec, step }: { spec: BagsSpec; step: number }) {
           <p className={MATH_LINE}>
             <Tint color="violet">{size}</Tint>
             {" · "}
-            <Tint color="amber">{shown}</Tint>
+            <BagCount value={shown} plain={plainBagCount === true} />
             <span className="whitespace-nowrap">{`= ${size * shown}`}</span>
           </p>
         )}
@@ -302,7 +323,7 @@ function BagsView({ spec, step }: { spec: BagsSpec; step: number }) {
           {left === 0 ? "Không còn thừa" : `Còn thừa ${left} ${unit}`}
         </p>
       )}
-      <Legend items={bagLegend(bag)} />
+      <Legend items={bagLegend(bag, left > 0 || hint)} />
     </div>
   );
 }
