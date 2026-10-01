@@ -93,12 +93,15 @@ export function findOverlaps({
     };
   };
 
-  // TeX builds a negated symbol (\notin) as the symbol plus a slash set in a
-  // `.llap`/`.rlap` box that is drawn over it by design; `.mrel` is the
-  // relation that holds both.
+  // TeX builds a negated symbol (\notin, \neq) as the symbol plus a slash set
+  // in a `.llap`/`.rlap` box that is drawn over it by design. The slash may
+  // sit in the relation that holds the symbol (\notin) or in one beside it
+  // (\neq puts it in front of the "="), so any slash overlay of a formula
+  // counts as drawn over that formula's own symbols.
   const overlaysSymbolOf = (overlay: Glyph, symbol: Glyph) => {
     const box = overlay.owner.closest(".llap, .rlap");
-    return !!box && !!box.closest(".mrel")?.contains(symbol.owner);
+    const formula = box?.closest(".katex-html");
+    return !!formula && formula.contains(symbol.owner);
   };
 
   const glyphs: Glyph[] = [];

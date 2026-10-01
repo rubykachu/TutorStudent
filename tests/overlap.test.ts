@@ -118,4 +118,15 @@ describe("findOverlaps leaves by-design layouts alone", () => {
     );
     expect(issues).toEqual([]);
   });
+
+  it("ignores the slash over the equals sign of a not-equal (\\neq)", async () => {
+    const css = readFileSync(
+      "node_modules/katex/dist/katex.min.css",
+      "utf8",
+    ).replaceAll(/url\([^)]*\)/g, "none");
+    const issues = await overlapsIn(
+      `<style>${css}</style><p style="font-size:40px">${katex.renderToString("2^{3} = 8 \\neq 2 \\cdot 3 = 6")}</p>`,
+    );
+    expect(issues).toEqual([]);
+  });
 });
