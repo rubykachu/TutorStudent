@@ -4200,12 +4200,12 @@
       "url": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.mp4",
       "vttUrl": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.vtt",
       "posterUrl": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.jpg",
-      "durationSec": 63.53,
+      "durationSec": 64.47,
       "clips": [
         {
           "id": "khac-dau",
           "start": 12.014,
-          "end": 62.107,
+          "end": 63.055,
           "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"]
         }
       ],
@@ -4222,7 +4222,7 @@
         },
         {
           "id": "cp-02",
-          "at": 56.791,
+          "at": 57.739,
           "from": 38.748
         }
       ]

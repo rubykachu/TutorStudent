@@ -286,9 +286,9 @@
           pop("#b3g", W(sid, "lấy"), { from: 0.6 });
           pop(["#b3d", "#b3n"], W(sid, "được"), { from: 0.6, stagger: 0.2 });
           pop("#big3", W(sid, "lớn"), { from: 0.6 });
-          pop("#b3s", W(sid, "âm"), { from: 0.6 });
-          tl.set("#b3n", { autoAlpha: 0 }, W(sid, "âm"));
-          tl.set("#b3r", { autoAlpha: 1 }, W(sid, "âm"));
+          pop("#b3s", W(sid, "âm", 2), { from: 0.6 });
+          tl.set("#b3n", { autoAlpha: 0 }, W(sid, "âm", 2));
+          tl.set("#b3r", { autoAlpha: 1 }, W(sid, "âm", 2));
           fade("#big3", W(sid, "vậy") - 0.3, 0.2);
           pop("#ar3", W(sid, "vậy"), { from: 0.9 });
           pop("#t3", W(sid, "vậy"), { from: 0.6 });

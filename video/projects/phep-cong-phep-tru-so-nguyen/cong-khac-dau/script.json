@@ -41,7 +41,7 @@
       "sentences": [
         { "text": "Giờ ta thử 3 cộng −8." },
         {
-          "text": "Bạn thử đoán xem: tổng mang dấu nào?",
+          "text": "Bạn thử đoán xem: tổng là số dương hay số âm?",
           "pause": "ask"
         },
         { "text": "Lấy 8 trừ 3, được 5." },
