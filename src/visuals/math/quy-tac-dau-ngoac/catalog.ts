@@ -92,7 +92,7 @@ const flipTry = (
 // A signed term as the pictures write it: the sign belongs to the number, so
 // both take the colour of the sign (green plus, pink minus).
 const sg = (n: number) =>
-  n < 0 ? `\\concept{pink}{-${-n}}` : `\\concept{lime}{+${n}}`;
+  n < 0 ? `\\concept{pink}{{-}${-n}}` : `\\concept{lime}{{+}${n}}`;
 const inside = (terms: readonly number[]) => `(${terms.map(sg).join("\\ ")})`;
 const flipped = (terms: readonly number[]) =>
   terms.map((n) => sg(-n)).join("\\ ");
