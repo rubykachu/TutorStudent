@@ -17,6 +17,7 @@
 - `on-tap-chuong-2` vòng 1: `explain` của `ex.tn3` "499 không chia hết cho các số nguyên tố nhỏ hơn 22" dựa vào cách thử tới căn bậc hai (Bài 10 chỉ dạy tra bảng dưới 100); `explain` của `tim-b-mu-nho`, `tim-a-mu-lon`, `bai-2-63` và hình gợi ý `tn263-goi-y` dùng ký hiệu `\min`, `\max` của lớp trên. Lời giải thích và hình gợi ý cũng chỉ được dùng ký hiệu, cách thử đã dạy; viết bằng chữ của quy tắc ("số mũ nhỏ nhất").
 - `thu-tu-trong-tap-hop-cac-so-tu-nhien` vòng 1, section `tap-hop-so`: kí hiệu `{x ∈ ℕ | 3 ≤ x ≤ 6}` và dấu kép `3 ≤ x ≤ 6` dùng trong 7 đề, chỉ hiện trong hình mẫu mà không câu nào dạy cách đọc ("5 ≤ x" phải đọc ngược thành "x lớn hơn hoặc bằng 5"); Bài 1 chỉ dạy dấu hiệu đặc trưng viết bằng chữ. Kí hiệu mới lấy từ lời giải sách cũng phải có câu dạy cách đọc trước câu đầu tiên dùng nó.
 - `tap-hop-cac-so-nguyen` vòng 1: câu kho ôn `dien-so-lien-sau` (số liền sau của −8) gắn card `tap-hop-z` (section 4) nhưng cần thứ tự số âm hay trục số dạy ở section 5–10, và `explain` "hơn số đó 1 đơn vị" là phép cộng số nguyên của bài sau. Khái niệm "liền sau" quen từ số tự nhiên dễ được coi là đã dạy, dù với số âm nó dựa vào thứ tự mới.
+- `phep-cong-phep-tru-so-nguyen` vòng 3, `tip.dau-truoc` (phần cộng hai số khác dấu): câu "Gặp phép trừ thì đổi thành phép cộng trước" do câu "Sửa" của vòng 2 thêm vào, đặt ở phần đứng trước phần dạy phép trừ nên dùng kiến thức chưa dạy. Mẹo nói cách làm của dạng bài khác phải đặt sau phần dạy dạng đó.
 
 ## Nguyên nhân gốc
 

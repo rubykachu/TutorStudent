@@ -43,22 +43,22 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 02/10/2026 của 16 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 02/10/2026 của 16 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
 | LL-10 | 5 | 31 | 23 | 59 |
 | LL-19 | 2 | 8 | 26 | 36 |
-| LL-12 | 9 | 16 | 29 | 54 |
-| LL-07 | 1 | 36 | 28 | 65 |
-| LL-15 | 5 | 13 | 9 | 27 |
+| LL-12 | 9 | 16 | 30 | 55 |
+| LL-07 | 1 | 36 | 30 | 67 |
+| LL-15 | 5 | 14 | 9 | 28 |
 | LL-16 | 0 | 27 | 4 | 31 |
-| LL-05 | 9 | 26 | 14 | 49 |
-| LL-09 | 12 | 12 | 3 | 27 |
+| LL-05 | 9 | 28 | 15 | 52 |
+| LL-09 | 13 | 12 | 3 | 28 |
 | LL-14 | 1 | 10 | 10 | 21 |
 | LL-11 | 4 | 5 | 7 | 16 |
 | LL-06 | 1 | 15 | 5 | 21 |
-| LL-02 | 7 | 7 | 10 | 24 |
+| LL-02 | 7 | 8 | 10 | 25 |
 | LL-01 | 17 | 1 | 0 | 18 |
 | LL-03 | 2 | 6 | 2 | 10 |
 | LL-17 | 43 | 4 | 3 | 50 |
@@ -70,7 +70,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-21 | 4 | 2 | 0 | 6 |
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
-| LL-24 | 11 | 1 | 2 | 14 |
+| LL-24 | 11 | 1 | 3 | 15 |
 | LL-25 | 0 | 8 | 134 | 142 |
 
 LL-17, LL-08 và LL-01 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-12 gặp nhiều nhất.
@@ -96,4 +96,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `cach-ghi-so-tu-nhien` | Toán | 13 | 3 (vòng 2 còn 8) | 3 |
 | `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | 3 (vòng 2 còn 1) | 3 |
 | `tap-hop-cac-so-nguyen` | Toán | 4 | 3 (vòng 2 còn 1) | 3 |
-| `phep-cong-phep-tru-so-nguyen` | Toán | 8 | đang soạn lại (vòng 2 còn 4) | 2 |
+| `phep-cong-phep-tru-so-nguyen` | Toán | 8 | đang soạn lại (vòng 2 còn 4, vòng 3 còn 1) | 3 |
