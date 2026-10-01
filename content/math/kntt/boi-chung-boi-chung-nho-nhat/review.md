@@ -1,13 +1,46 @@
 # Review: Bội chung. Bội chung nhỏ nhất (`boi-chung-boi-chung-nho-nhat`)
 
 - Bài: `content/math/kntt/boi-chung-boi-chung-nho-nhat/lesson.json`
-- Vòng: 3 - chỉ phần đổi, 1 reviewer
-- Nguồn đã đọc: `sources/math/boi-chung-boi-chung-nho-nhat/` - sbt-p41, sbt-p42, sbt-p43, sbt-p108, sbt-p109 (đối chiếu qua nội dung đã review ở vòng 1 và 2; vòng này không có kiến thức mới ngoài trang nguồn) và `sources/math/uoc-chung-uoc-chung-lon-nhat/` sbt-p39 (câu quy tắc Bài 11 đối chiếu bằng `content/math/kntt/uoc-chung-uoc-chung-lon-nhat/lesson.json`)
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (108 id chưa khoá)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/boi-chung-boi-chung-nho-nhat/`
+- Vòng: 4 - chỉ phần đổi (`pnpm content:diff`): lời đọc giới thiệu (Gemini, Vindemiatrix), 3 khối `video` ở đầu section `boi-chung`, `liet-ke-bcnn`, `bcnn-phan-tich`; soát lại 5 chỗ đã sửa sau vòng 3
+- Nguồn đã đọc: không đọc lại trang nào: diff không đổi chữ hay số của bài ngoài phần video và lời đọc
+- `content:check`: 0 lỗi của bài ngoài `[review-hash]` (bình thường lúc này), 0 cảnh báo của bài sau `content:lock`
+- `lesson:walk`: xem dòng Kết luận
+- Kết luận: 0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý (giữ nguyên). Không đổi `say` hay dựng lại câu nào.
+- Bản đã review: `7e84565d6a82bb6ab36ca31c0253e028f75070358243ad35cf0e485eb25afd20` (`pnpm content:diff` so với bản này)
 - Bản đã review: (điều phối viên ghi bằng `content:hash`)
-- Kết luận: 0 Nghiêm trọng, 2 Nên sửa, 3 Góp ý. Không còn lỗi chặn xuất bản. Điều phối viên áp luôn cả 2 Nên sửa và 3 Góp ý theo đúng câu Sửa dưới đây (chỉ đổi số hay chữ, `content:check` 0 lỗi, tính lại BCNN(20, 25) = 100 và BCNN(18, 27) = 54) rồi chạy lệnh cuối vòng.
-- Bản đã review: `d789fa03a4871eb6a20e45f33738502eff0e101db2707799c50444a1b5ddbef5` (`pnpm content:diff` so với bản này)
+
+## Vòng 4: lời đọc và video
+
+Đã tự xem contact sheet 2 giây một khung của cả 3 video (thêm khung rời ở 29,8 s, 30,4 s, 31,0 s của `xe-buyt` để kiểm mốc), đọc `.vtt`, `report.json` và nghe lại lời đọc giới thiệu bằng Whisper.
+
+- Mở đầu: cả 3 video mở bằng "Chào bạn!" (`opening`), lời đọc giới thiệu mở bằng "Chào bạn!", cách đệm 1 giây im lặng trước câu đầu; `pnpm video:check`: ok cả bài và 3 video.
+- Nhịp: mỗi video có câu `ask` (khoảng lặng sau đạt `video:check`), mọi câu `rule` đều `think`, 2 điểm dừng mỗi video ở cuối một ý (`xe-buyt` 14,2 s sau đề bài và 46,3 s sau "Bội chung viết tắt là BC"; `liet-ke` 41,1 s sau quy tắc và 60,3 s sau "24 không chia hết cho 9"; `phan-tich` 18,3 s sau hai phân tích và 44,1 s sau quy tắc). Cả 6 điểm cách nhau từ 3 câu trở lên, không điểm nào ở câu cuối video.
+- Toán và chữ: bội 6 và 8 đến 48 (chung 24, 48); bội 9 (9, 18, 27, 36) và 12 (12, 24, 36), BCNN 36; 12 = 2² · 3, 18 = 2 · 3², số mũ lớn nhất 2 và 2, 4 · 9 = 36. Xưng "bạn", câu ngắn, thuật ngữ đúng glossary, màu: bội chung lime, BCNN pink, số nguyên tố sky, số mũ violet, ƯCLN không xuất hiện.
+- Hình khớp lời: đáp án chưa hiện trước khi nói (24 và 48 được khoanh sau "Phút 24" ở 30,7 s, 36 sau "Số 36", ✗ của 24 sau "24 không chia hết", khoanh số mũ sau "là 2"); dải dưới trống cho phụ đề; chữ rõ, không chồng.
+- Whisper: "Xe B cứ 8 phút…" 96,8% chỉ khác dấu thanh ("xe bề"); cùng chữ B ở "Xe B rời bến…" nghe đúng "bê", và lời đọc giới thiệu nghe đúng "xe B". "Bội chung viết tắt là BC." 95,8%: `spoken` đã là "bê-xê" nên chữ cái rõ, Whisper chỉ nghe "bội" thành "mỗi"; cả hai là lỗi nghe của Whisper (cũng nghe "bộ trung" ở các câu khác), không phải giọng đọc sai. Giữ nguyên, không thêm `say`.
+- Lời đọc giới thiệu: 12 câu, 59,4 giây, đúng chữ `overview` (đã có `whyItMatters` mới), nghe lại đúng từng câu (Whisper chỉ nghe "bội chung" thành "bộ trung" và "vỉ" thành "vì").
+
+## Vòng 4: 5 chỗ sửa sau vòng 3
+
+- `rang-goi-y-20-25` (hình gợi ý của `rang-9-6-vong`): BCNN(20, 25) = 100, 100 : 20 = 5, 100 : 25 = 4; cặp 20 và 25 không là đề của câu nào trong bài, nên không lộ `bcnn-16-20` (80) và cũng không lộ đáp số 3 của `rang-9-6-vong`. Id cũ không còn ở `src/` và `tests/`.
+- `overview.whyItMatters`: một câu, một cách đọc (số bút ít nhất để bằng số vở); "vỉ" và "xếp" đã dùng ở câu `mua-but-vo-5-8` (section `liet-ke-bcnn`).
+- `xe-18-27`: 18 = 2 · 3², 27 = 3³, BCNN = 2 · 3³ = 54 (đúng với `answer` 54 và `check.expr`); `explain` 2 câu; không còn gần `bus-15-20`.
+- Mẹo `chon-cong-cu`: nói theo chiều chia hết, vế ƯCLN có "lớn nhất", vế BCNN không nói "nhỏ nhất"; đúng với mọi câu của section `ucln-hay-bcnn` (`chon-dang-24-40`, `hai-chu-so-8-10`, `chon-3-11-tu-50-den-100`, `chon-bcnn-nhieu`).
+- Lựa chọn c của `chon-bcnn-nhieu`: 18 và 30 (BCNN 90), cặp không trùng câu nào khác; đáp án a, c vẫn đúng, b và d vẫn là ƯCLN.
+
+## Góp ý
+
+### 1. Nhãn "(BC)" hiện trước câu "Bội chung viết tắt là BC"
+
+- Vị trí: `video/projects/boi-chung-boi-chung-nho-nhat/xe-buyt/index.html` (`#gta`)
+- Vấn đề: chip "bội chung (BC)" hiện ở 40 s theo chữ "gọi", câu nói về chữ viết tắt ở 44 s.
+- Sửa: tuỳ tác giả; không chặn, không dựng lại.
+
+### 2. `liet-ke`: 41 giây đầu chưa có điểm dừng
+
+- Vị trí: `video/projects/boi-chung-boi-chung-nho-nhat/liet-ke/script.json`
+- Vấn đề: điểm dừng đầu là câu quy tắc ở 41,1 s; trước đó đã có một câu `ask` và `think` nên bé có nhịp nghĩ. Không thể thêm điểm dừng ở "Số 36 có ở cả hai hàng" vì cách câu quy tắc dưới 3 câu.
+- Sửa: giữ nguyên.
 
 ## Kết quả kiểm 5 lỗi Nghiêm trọng của vòng 2
 

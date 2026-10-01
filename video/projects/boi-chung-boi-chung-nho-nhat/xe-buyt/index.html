@@ -143,7 +143,7 @@
     <script src="runtime.js"></script>
     <script>
       (() => {
-        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish } =
+        const { $, start, W, owl, pop, hide, pose, scenes, finish } =
           window.LV;
         const chip = (id, c, html) =>
           `<span id="${id}" class="chip ${c}">${html}</span>`;
@@ -166,24 +166,24 @@
           `<div class="lbl blue" style="left: 150px; top: 124px">xe A</div><div class="lbl teal" style="left: 150px; top: 274px">xe B</div>`,
         );
         el(z2, `<div class="axis" style="top: 217px"></div>`);
-        [24, 48].forEach((m) =>
+        [24, 48].forEach((m) => {
           el(
             z2,
             `<div id="bd${m}" class="band" style="left: ${X(m)}px; top: 100px"></div>`,
-          ),
-        );
-        rowA.forEach((m) =>
+          );
+        });
+        rowA.forEach((m) => {
           el(
             z2,
             `<div id="ma${m}" class="mk a blue" style="left: ${X(m)}px; top: 150px">${m}</div>`,
-          ),
-        );
-        rowB.forEach((m) =>
+          );
+        });
+        rowB.forEach((m) => {
           el(
             z2,
             `<div id="mb${m}" class="mk b teal" style="left: ${X(m)}px; top: 300px">${m}</div>`,
-          ),
-        );
+          );
+        });
         el(
           z2,
           `<div id="tg24" class="tg lime" style="left: ${X(24) - 160}px; top: 370px">✓ cả hai xe</div><div id="tg48" class="tg lime" style="left: ${X(48) - 190}px; top: 370px">✓ cả hai xe</div>`,
@@ -233,12 +233,13 @@
             "#tg48",
           ]);
           pose(bird, "idle", start(sid));
-          const span = (a, b, ids) =>
-            ids.forEach((id, i) =>
+          const span = (a, b, ids) => {
+            ids.forEach((id, i) => {
               pop(id, a + ((b - a) * i) / Math.max(ids.length - 1, 1), {
                 from: 0.5,
-              }),
-            );
+              });
+            });
+          };
           // The markers appear while the sentence is read, then wait.
           span(
             W(sid, "xe"),

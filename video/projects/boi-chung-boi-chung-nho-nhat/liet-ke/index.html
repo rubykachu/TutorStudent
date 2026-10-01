@@ -175,18 +175,18 @@
           z2,
           `<div id="bd36" class="band" style="left: ${X(36) - 20}px; top: 100px"></div>`,
         );
-        rowA.forEach((m) =>
+        rowA.forEach((m) => {
           el(
             z2,
             `<div id="ma${m}" class="mk a blue" style="left: ${m === 36 ? X(36) - 20 : X(m)}px; top: 150px">${m}</div>`,
-          ),
-        );
-        rowB.forEach((m) =>
+          );
+        });
+        rowB.forEach((m) => {
           el(
             z2,
             `<div id="mb${m}" class="mk b teal" style="left: ${m === 36 ? X(36) - 20 : X(m)}px; top: 300px">${m}</div>`,
-          ),
-        );
+          );
+        });
         el(
           z2,
           `<div id="tg36" class="tg pink" style="left: ${X(36) - 320}px; top: 385px">✓ có ở cả hai hàng</div>`,
