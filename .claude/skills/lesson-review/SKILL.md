@@ -37,13 +37,13 @@ Sau đó tác giả commit `lesson.json` và `review.md` **trước khi sửa**:
 ## Vòng toàn bài
 
 Điều phối:
-1. `pnpm content:check --root <ROOT>`; `ROOT` là `content/` thì thêm `pnpm lesson:walk <id bài>` (ảnh trong `.shots/walk/<id bài>/`; `ROOT` khác thì ghi "không chạy").
+1. `pnpm content:check --root <ROOT>`; `ROOT` là `content/` thì thêm `pnpm lesson:walk <id bài>` (walk ghi contact sheet `sheet-NN.png` mỗi thiết bị vào `.shots/walk/<id bài>/<thiết bị>/`, mỗi ô in tên ảnh; `ROOT` khác thì ghi "không chạy").
 2. Chia section thành nhóm liên tiếp: ≤ 4 section thì 1 nhóm, nhiều hơn thì 3 nhóm gần bằng nhau. Card, exercise theo section có nó trong `checkIds`/`practiceIds` hay luyện card của nó; câu kho ôn theo card.
 3. Mở song song mỗi nhóm một **Reviewer** (một lượt gọi Agent nhiều tool), kèm kết quả bước 1 và tệp ghi `.shots/review/<id bài>/nhom-<n>.md`.
 4. Xong cả nhóm: mở một **Tổng hợp**.
 
 Reviewer:
-- Đọc toàn bộ glossary của môn, mọi `note` quy tắc, `recap` của cả bài (để nhất quán), rồi chỉ soát phần của nhóm: mở đúng trang ảnh của từng `sourceRef` (không đoán nội dung trang; thiếu ảnh là Nghiêm trọng "thiếu nguồn"), ảnh walk của các section đó.
+- Đọc toàn bộ glossary của môn, mọi `note` quy tắc, `recap` của cả bài (để nhất quán), rồi chỉ soát phần của nhóm: mở đúng trang ảnh của từng `sourceRef` (không đoán nội dung trang; thiếu ảnh là Nghiêm trọng "thiếu nguồn"), rồi đọc contact sheet walk của các section đó (tên ảnh có dạng `<số>-s<phần>-…`, chọn sheet theo phần; cần lọc thì `pnpm shots:sheet '<thư mục thiết bị>/*-s2-*.png' --out <thư mục thiết bị>/sheet-s2`). Đọc sheet, không đọc từng ảnh; chỉ mở một ảnh khi ô của nó cho thấy điều đáng phóng to (chữ nhỏ, nghi chồng hay cắt).
 - Soát theo năm trục và "Luật gợi ý 3 nấc" của checklist, bỏ qua mục "Không bắt lỗi". Tự giải mỗi exercise trước khi đọc `answer`. Soát hết, không dừng ở lỗi đầu.
 - Ghi phát hiện theo khuôn mục của `.claude/skills/lesson-review/templates/review.md` vào tệp nhóm.
 
@@ -55,7 +55,7 @@ Tổng hợp:
 
 Điều phối chạy `pnpm content:diff <id bài> --root <ROOT>` (liệt kê mục thêm, bớt, đổi kèm chữ, và section cần đọc lại), `content:check`, `lesson:walk`, rồi mở **một Reviewer** mới kèm kết quả đó. Reviewer đó:
 - Soát mọi mục trong diff theo checklist, và soát các mục khác **cùng section** xem bản sửa có làm hỏng chúng không (recap còn khớp note, câu kiểm tra và câu luyện tập không trùng hình, nhiễu không thành đáp án đúng).
-- Mục thuộc bài tập hay card: đọc ảnh walk và trang nguồn của section đó. Diff chỉ có video: theo "Lời video khớp bài" trong checklist.
+- Mục thuộc bài tập hay card: đọc sheet walk của section đó (lọc như trên; mở từng ảnh chỉ để phóng to) và trang nguồn. Diff chỉ có video: theo "Lời video khớp bài" trong checklist.
 - Làm luôn việc của Tổng hợp: ghi `review.md` (phạm vi ghi ở dòng "Vòng"), chạy lệnh cuối vòng.
 
 ## Mức độ

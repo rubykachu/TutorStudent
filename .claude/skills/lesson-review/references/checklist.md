@@ -58,7 +58,7 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 ## 5. Trải nghiệm trên màn
 
-Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm trong visual (màn quy tắc, recap) chỉ thấy ở đây nên soát theo cả bốn trục trên.
+Soát trên contact sheet của `pnpm lesson:walk` (mỗi ô một ảnh, in tên ảnh; mở riêng một ảnh chỉ khi cần phóng to), không chỉ trên JSON; chữ nằm trong visual (màn quy tắc, recap) chỉ thấy ở đây nên soát theo cả bốn trục trên.
 
 **Mỗi dòng FAIL của walk** do nội dung bài: Nghiêm trọng (trẻ không làm được bài), ghi kèm tên ảnh. FAIL do bố cục của app: Góp ý để báo người làm app, không chặn bài.
 
@@ -74,7 +74,7 @@ Soát trên ảnh của `pnpm lesson:walk`, không chỉ trên JSON; chữ nằm
 
 **Có câu chọn nhiều đáp án.** Bài có dưới 2 câu `multiple: true` dù có chỗ tự nhiên để hỏi nhiều đáp án: Nên sửa.
 
-**Đã xem ảnh walk mọi màn, cả điện thoại lẫn iPad.** Chữ chồng nhau, bị cắt, cột hẹp hay hình nhỏ lọt thỏm: Nghiêm trọng nếu do nội dung bài, Góp ý nếu do bố cục app.
+**Đã xem sheet walk mọi màn, cả điện thoại lẫn iPad.** Chữ chồng nhau, bị cắt, cột hẹp hay hình nhỏ lọt thỏm: Nghiêm trọng nếu do nội dung bài, Góp ý nếu do bố cục app.
 
 **Chữ và số rõ.** Chữ hay số dưới 16px (walk ghi cảnh báo), hình từng bước để hàng trống thay vì hàng "?" mờ: Nên sửa.
 
