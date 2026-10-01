@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường vì bài vừa sửa), 0 cảnh báo
 - `lesson:walk`: không chạy (điều phối không chạy ở vòng này); đã xem ảnh `phep-cong-phep-tru.visual.cot-tru-hang-chuc-651-278` bản iPad và điện thoại
 - Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý
-- Bản đã review: `1415b222b53e1a7879dc7512dc3d2f3cc5a0c36f9ccd63b90c38dbfe8b604fc2` (`pnpm content:diff` so với bản này)
+- Bản đã review: `c3e54bd94652454f6994ab2b7a275d58e41925fc4c04d4003c35e01e61b42d55` (`pnpm content:diff` so với bản này)
 
 Đã soát (tự giải, độc lập với diff):
 - `toan-thoi-gian` màn đầu: dữ kiện "Lớp vào học lúc 7 giờ 30 phút" nay là `note` trong cùng group, kèm "Ta tìm giờ Nam ra khỏi nhà"; caption chỉ còn dữ kiện đường đi (8 + 22 + 2 + 8 = 40). Màn sau (7 giờ 30 = 6 giờ 90, 90 - 40 = 50, ra khỏi nhà 6 giờ 50) và recap vẫn khớp. Group có 3 khối, không vượt giới hạn.
@@ -127,3 +127,45 @@ Không có.
 - Sửa: tuỳ tác giả.
 
 Mục lessons-learned: Nghiêm trọng mới (1): chữ cái lựa chọn trong lời giải thích khi màn không hiện chữ cái. Gần nhất là LL-22 (câu nhắc thứ màn không có); phiên ghi `docs/lessons-learned/` quyết định (reviewer vòng này chỉ được sửa `review.md`).
+
+---
+
+# Vòng 8 - chỉ phần đổi: bản sửa vòng 7 (commit febc13d)
+
+- Bài: `content/math/kntt/phep-cong-phep-tru/lesson.json`
+- Vòng: 8 - chỉ phần đổi (`git diff 42a69d7 febc13d`): 20 chỗ sửa `explain` của 17 câu, không đổi gì ngoài `explain`
+- Nguồn đã đọc: không có - đối chiếu bằng tự tính với đề, lựa chọn, đáp án, `items` của câu `order`, `segments` của câu `fillBlank` và các `note` quy tắc của bài (đã có "đi ngược nhau", "Cộng một số với 0 thì được chính số đó")
+- `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường vì bài vừa đổi), 0 cảnh báo của bài
+- `lesson:walk`: không chạy (reviewer chỉ đọc nội dung)
+- Kết luận: Đạt về nội dung: 0 Nghiêm trọng, 0 Nên sửa, 1 Góp ý (còn lại từ vòng 7: 1 Góp ý tô màu, tuỳ tác giả)
+
+Đối chiếu từng phát hiện vòng 7 (đều đã giải quyết):
+
+- Nghiêm trọng 1 `chon-x-bang-25`: `text` không còn chữ a, b, c; liệt kê x + 15 = 40, x - 10 = 15, 60 - x = 35, đúng 3 đẳng thức đáp án (40 - 15 = 25, 15 + 10 = 25, 60 - 35 = 25); không nhắc d. Đã quét mọi `explain` của bài: không còn chữ cái lựa chọn trong `text`.
+- Nên sửa 1 `chon-quan-he-nhieu`: dùng "đi ngược nhau" đúng lời note của section `quan-he`; 25 + 17 = 42 và 17 + 25 = 42 đúng; không dùng quy tắc tìm số hạng.
+- Nên sửa 2 `dien-so-0`: dùng "Cộng một số với 0 thì được chính số đó", đúng lời note `cong-voi-0`; `check.expr` 58-58 giữ nguyên, đáp án 0.
+- Nên sửa 3-6 (bốn câu ước lượng): quét `explain` toàn bài không còn `\cdot`, "lần", "nhân"; `tex` 100 + 100 + 100 + 100 = 400, năm số 100 cộng lại = 500, 50 + 50 + 50 = 150 đúng; `chon-uoc-luong-2` nói "nhỏ hơn 50 + 50 + 50 = 150", chỉ 140 < 150 trong 140, 175, 160, 200.
+- Nên sửa 7 `chon-uoc-luong`: b, c, d đều là lý do thật của phương án đó và cùng kết luận "560 > 500 nên sai"; hết mâu thuẫn, c có lời.
+- Nên sửa 8 `chon-tong-them-bot`: 45 + 5 = 50, 18 - 5 = 13; 45 - 2 = 43, 18 + 2 = 20; khớp phương án a, b.
+- Nên sửa 9 `cham-tong`: tổng định nghĩa là kết quả của phép cộng, không còn theo vị trí.
+- Góp ý 1-5 vòng 7: `tận cùng` đã đổi thành `chữ số cuối` ở cả `text` lẫn `wrong`; `tinh-tong-thoi-gian-kt` có bước (6 + 6) + 18 tô lime, khớp `text`; `sap-day-so` khớp 3 `items` (14 + 20) + (16 + 18), 34 + 34, 68; `chon-chu-so-cuoi` b đúng (21 có chữ số đầu là 2); `chon-so-bi-tru` b, c đúng với số 9 và 18.
+
+LL-20 (bản sửa làm hỏng chỗ khác): mọi `text` ≤ 3 câu, không "Đúng rồi", số tính lại đều đúng, `tex` của `sap-day-so` và `tinh-tong-thoi-gian-kt` biên dịch qua `content:check`; recap, câu kiểm tra, câu luyện tập cùng section không bị ảnh hưởng (diff chỉ chạm `explain`).
+
+## Nghiêm trọng
+
+Không có.
+
+## Nên sửa
+
+Không có.
+
+## Góp ý
+
+### 1. `ex.chon-so-bi-tru`: lý do `wrong` của "hiệu" nói về 18, câu hỏi hỏi về 27
+
+- Vị trí: `exercises[phep-cong-phep-tru.ex.chon-so-bi-tru].explain.wrong[1].text`
+- Vấn đề: bé chọn "hiệu" cho 27; lời "18 là kết quả của phép trừ nên là hiệu, không phải số bị trừ" đúng nhưng nói về số 18, bé phải tự nối về 27.
+- Sửa: "Hiệu là kết quả của phép trừ, tức là 18; 27 là số ban đầu nên không phải hiệu." (tuỳ tác giả)
+
+Mục lessons-learned: không có Nghiêm trọng mới; không đổi số đếm.

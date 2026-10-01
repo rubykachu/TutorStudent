@@ -12,7 +12,7 @@
   "title": "Phép cộng và phép trừ số tự nhiên",
   "sourceRef": "Sách bài tập tr.14–16",
   "status": "published",
-  "reviewedHash": "1415b222b53e1a7879dc7512dc3d2f3cc5a0c36f9ccd63b90c38dbfe8b604fc2",
+  "reviewedHash": "c3e54bd94652454f6994ab2b7a275d58e41925fc4c04d4003c35e01e61b42d55",
   "overview": {
     "hook": {
       "text": "Bạn đi chợ, mua kẹo 38 nghìn đồng và bánh 47 nghìn đồng. Làm sao nhẩm nhanh xem phải trả bao nhiêu?",
@@ -1408,7 +1408,7 @@
           },
           {
             "optionId": "c",
-            "text": "18 là kết quả của phép trừ nên là hiệu, không phải số bị trừ."
+            "text": "Hiệu là kết quả của phép trừ, tức là 18; còn 27 là số ban đầu nên không phải hiệu."
           }
         ]
       }
