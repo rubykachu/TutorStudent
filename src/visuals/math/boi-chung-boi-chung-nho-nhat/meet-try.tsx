@@ -3,6 +3,7 @@
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
+import { ConceptMark } from "@/visuals/shared/concept-mark";
 import { Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { lcm, multiplesUpTo, ROUND_RANGE } from "./logic";
@@ -43,16 +44,24 @@ function Places({
   return (
     <ul
       aria-label={`Các mốc: ${values.join(", ")}`}
-      className="flex flex-wrap gap-1.5"
+      className="flex flex-wrap justify-center gap-1.5"
     >
-      {values.map((value) => (
-        <li
-          key={value}
-          className={`flex h-12 min-w-11 items-center justify-center rounded-lg border-2 px-1 font-heading text-block font-bold tabular-nums ${other.includes(value) ? "border-concept-lime bg-concept-lime/15" : "border-border bg-surface"}`}
-        >
-          {value}
-        </li>
-      ))}
+      {values.map((value) => {
+        const shared = other.includes(value);
+        return (
+          <li
+            key={value}
+            className={`flex h-14 min-w-11 flex-col items-center justify-center gap-0.5 rounded-lg border-2 px-1 font-heading text-block font-bold tabular-nums ${shared ? "border-concept-lime bg-concept-lime/15" : "border-border bg-surface"}`}
+          >
+            {value}
+            {shared ? (
+              <ConceptMark color="lime" className="size-3.5" />
+            ) : (
+              <span className="size-3.5" />
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }
