@@ -168,6 +168,11 @@ describe("openingIssues", () => {
     const s = script([OPENING], [{ text: "Chào bạn nhé.", opening: true }]);
     expect(openingIssues(s)).toHaveLength(1);
   });
+  it("names the narration in its messages when it checks one", () => {
+    expect(
+      openingIssues(script([{ text: "Hôm nay." }]), false, "narration")[0],
+    ).toMatch(/narration/);
+  });
   it("lets an exempt video stay without one, but not carry one", () => {
     expect(openingIssues(script([{ text: "Bạn cú có hạt." }]), true)).toEqual(
       [],

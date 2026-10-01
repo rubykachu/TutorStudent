@@ -33,6 +33,8 @@ Chọn giọng theo không khí của bài, lúc dựng video đầu tiên của
 
 Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi bé là "bạn", nói video nói về gì: "Chào bạn! Hôm nay ta ghép số cho tròn để tính nhẩm nhanh." Câu đó là câu đầu tiên của cảnh đầu tiên, đánh `"opening": true`, không phải câu `rule` hay `quote`, ngắn (≤ 15 chữ). Trước câu đầu luôn có `PAUSE.leadIn` (1 giây) im lặng (phụ đề chưa hiện), để bé không mất mấy chữ đầu. Build và `pnpm video:check` dừng khi câu đầu không có cờ `opening`, không có chữ "bạn", hay phụ đề đầu bắt đầu trước quãng đệm; cờ `opening` ở câu khác cũng là lỗi. Video dựng trước khi có luật này được liệt kê trong `openingExempt` của `media.json` của bài; dựng lại video nào thì thêm câu mở đầu và xoá tên nó khỏi danh sách.
 
+**Lời đọc giới thiệu** (`overview.narration`) cũng mở đầu bằng câu chào gọi bé là "bạn": câu đầu tiên của `overview.hook` (chữ trên màn tổng quan chính là chữ được đọc), ví dụ "Chào bạn! Ở bài này, chúng ta sẽ …", ngắn, không phải câu quy tắc hay câu trích. `pnpm narration:build` đánh dấu câu đó là `opening` và dừng trước khi đọc nếu nó không có chữ "bạn"; quãng đệm `PAUSE.leadIn` im lặng trước câu đầu như video, và `pnpm video:check` báo lỗi khi phụ đề lời đọc bắt đầu trước quãng đệm. Luật chỉ áp cho lời đọc viết từ nay; bài đã có lời đọc trước luật có `"narrationOpeningExempt": true` trong `media.json`, giữ nguyên chữ và âm thanh; viết lại lời đọc bài nào thì thêm câu chào và xoá cờ đó.
+
 ## Quy trình
 
 1. **Chỉ bài đã `published`.** Đọc `lesson.json`: phần (section), câu quy tắc (`note`, `caption`), card, màu khái niệm; xem visual của bài trong `src/visuals/<môn>/<bài>/` và contact sheet `.shots/<bài>/sheet-*-NN.png` (chạy `pnpm visual:shot <bài>` nếu chưa có).

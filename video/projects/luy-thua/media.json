@@ -1,4 +1,5 @@
 {
   "voice": "hai-dang",
-  "openingExempt": ["chia-cung-co-so", "luy-thua-la-gi", "nhan-cung-co-so"]
+  "openingExempt": ["chia-cung-co-so", "luy-thua-la-gi", "nhan-cung-co-so"],
+  "narrationOpeningExempt": true
 }

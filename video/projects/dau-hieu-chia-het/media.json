@@ -1,1 +1,4 @@
-{ "voice": "hai-dang" }
+{
+  "voice": "hai-dang",
+  "narrationOpeningExempt": true
+}

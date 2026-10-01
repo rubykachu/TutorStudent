@@ -28,11 +28,16 @@ export function narrationScript(
           `Overview sentence cannot be narrated as written (say it in words): "${sentence.text}"`,
         );
       }
-      return { text: sentence.text };
+      const line: { text: string; opening?: true } = { text: sentence.text };
+      return line;
     }),
   }));
   const first = scenes[0];
-  if (!first) throw new Error("The overview has no text");
+  const opening = first?.sentences[0];
+  if (!first || !opening) throw new Error("The overview has no text");
+  // The first sentence of the overview is the narration's opening line (see
+  // `narrationOpeningIssues`).
+  opening.opening = true;
   return {
     title: lessonTitle,
     engine,

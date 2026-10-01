@@ -1,7 +1,16 @@
 // @vitest-environment node
+
+import { existsSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { OVERVIEW_GOALS_LEAD } from "@/content/overview";
 import type { LessonOverview } from "@/schema/content";
+import { PROJECTS_DIR } from "../../video/config";
+import {
+  checkLessonNarration,
+  narrationOpeningIssues,
+} from "../../video/lib/consistency";
+import { readLessonMedia } from "../../video/lib/lesson-media";
 import {
   narrationPaths,
   narrationScript,
@@ -10,6 +19,10 @@ import {
 import { VideoScriptSchema } from "../../video/lib/script";
 import { GeminiQuotaError } from "../../video/tts/gemini-keys";
 import { VOICES } from "../../video/voices";
+
+const lessonsWithMedia = readdirSync(PROJECTS_DIR).filter((f) =>
+  existsSync(path.join(PROJECTS_DIR, f, "media.json")),
+);
 
 const OVERVIEW: LessonOverview = {
   hook: { text: "Mẹ mua hai túi kẹo. Có bao nhiêu cái?" },
@@ -43,6 +56,62 @@ describe("narrationScript", () => {
         "local",
       ),
     ).toThrow(/say it in words/);
+  });
+});
+
+describe("narration opening line", () => {
+  it("flags the first sentence of the overview, and only it", () => {
+    const script = narrationScript("Phép nhân", OVERVIEW, "local");
+    const flagged = script.scenes.flatMap((s) =>
+      s.sentences.filter((x) => x.opening),
+    );
+    expect(flagged).toEqual([{ text: "Mẹ mua hai túi kẹo.", opening: true }]);
+  });
+
+  it("accepts an overview whose first sentence greets the child as bạn", () => {
+    const overview = {
+      ...OVERVIEW,
+      hook: { text: "Chào bạn! Mẹ mua hai túi kẹo." },
+    };
+    expect(narrationOpeningIssues("Phép nhân", overview)).toEqual([]);
+  });
+
+  it("refuses an overview that does not greet the child", () => {
+    expect(narrationOpeningIssues("Phép nhân", OVERVIEW)[0]).toMatch(/"bạn"/);
+  });
+
+  it("lets an exempt lesson keep an overview without a greeting", () => {
+    expect(narrationOpeningIssues("Phép nhân", OVERVIEW, true)).toEqual([]);
+  });
+});
+
+describe("narration opening of committed lessons", () => {
+  it("passes for every lesson that has a narration or is exempt", () => {
+    for (const lessonId of lessonsWithMedia) {
+      expect(checkLessonNarration(lessonId)).toEqual([]);
+    }
+  });
+
+  it("exempts exactly the lessons narrated before the rule", () => {
+    const exempt = lessonsWithMedia.filter(
+      (id) => readLessonMedia(id).narrationOpeningExempt,
+    );
+    expect(exempt.sort()).toEqual(
+      [
+        "dau-hieu-chia-het",
+        "luy-thua",
+        "neu-cau-muon-co-mot-nguoi-ban",
+        "phep-cong-phep-tru",
+        "phep-nhan-phep-chia",
+        "quan-he-chia-het-va-tinh-chat",
+        "tap-hop",
+        "thu-tu-thuc-hien-phep-tinh",
+      ].sort(),
+    );
+  });
+
+  it("does not fail a lesson that has no narration yet", () => {
+    expect(checkLessonNarration("so-nguyen-to")).toEqual([]);
   });
 });
 

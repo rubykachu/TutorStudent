@@ -1,9 +1,11 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { parseKaraokeVtt } from "@/lib/karaoke-vtt";
+import type { LessonOverview } from "@/schema/content";
 import { MEDIA_DIR, PAUSE, PROJECTS_DIR } from "../config";
 import { voiceSpec } from "../voices";
 import { type LessonMedia, readLessonMedia } from "./lesson-media";
+import { narrationPaths, narrationScript } from "./narration";
 import type { VideoScript } from "./script";
 import { readScript } from "./script";
 import { findLesson, ruleTexts, spokenForm } from "./verbatim";
@@ -21,6 +23,9 @@ import { findLesson, ruleTexts, spokenForm } from "./verbatim";
 //    what the video is about, and the captions start after the lead-in.
 // 4. Voice: the lesson declares one voice (media.json); the videos recorded
 //    in lesson.json used that voice and the script names the same engine.
+// 5. Narration opening: the overview narration starts with a greeting to the
+//    child and its captions start after the lead-in (lessons narrated before
+//    the rule are exempt in media.json).
 
 // Words of a text as compared: NFC, typography and known symbol readings
 // unified (spokenForm), lower case, no punctuation.
@@ -85,14 +90,18 @@ export function captionIssues(script: VideoScript, vtt: string): string[] {
 // nowhere else; it is a greeting to the child, so it says "bạn", and it is
 // not a rule or a quote. A video listed in `openingExempt` of the lesson's
 // media.json predates the rule and must not carry the flag.
-export function openingIssues(script: VideoScript, exempt = false): string[] {
+export function openingIssues(
+  script: VideoScript,
+  exempt = false,
+  subject: "video" | "narration" = "video",
+): string[] {
   const issues: string[] = [];
   const first = script.scenes[0]?.sentences[0];
   script.scenes.forEach((scene, i) => {
     scene.sentences.forEach((sentence, j) => {
       if (sentence.opening && (i > 0 || j > 0)) {
         issues.push(
-          `${scene.id}: only the first sentence of the video may be flagged "opening"`,
+          `${scene.id}: only the first sentence of the ${subject} may be flagged "opening"`,
         );
       }
     });
@@ -100,14 +109,14 @@ export function openingIssues(script: VideoScript, exempt = false): string[] {
   if (exempt) {
     if (first?.opening) {
       issues.push(
-        'the video has an opening sentence: remove it from "openingExempt" in media.json',
+        `the ${subject} has an opening sentence: remove it from "openingExempt" in media.json`,
       );
     }
     return issues;
   }
   if (!first?.opening) {
     issues.push(
-      'the first sentence must be the opening line: a greeting that says what the video is about, flagged "opening": true',
+      `the first sentence must be the opening line: a greeting that says what the ${subject} is about, flagged "opening": true`,
     );
   } else {
     if (!captionTokens(first.text).includes("bạn")) {
@@ -120,6 +129,23 @@ export function openingIssues(script: VideoScript, exempt = false): string[] {
     }
   }
   return issues;
+}
+
+// The overview narration reads the overview text as written, so its opening
+// line is the overview's first sentence: it must greet the child as "bạn"
+// (`narrationScript` flags it `opening`). A lesson whose media.json sets
+// `narrationOpeningExempt` was narrated before the rule and is left as it is.
+export function narrationOpeningIssues(
+  lessonTitle: string,
+  overview: LessonOverview,
+  exempt = false,
+): string[] {
+  if (exempt) return [];
+  return openingIssues(
+    narrationScript(lessonTitle, overview, "local"),
+    false,
+    "narration",
+  );
 }
 
 // The first caption starts after the lead-in silence, so the child does not
@@ -371,4 +397,24 @@ export function checkLessonVoice(lessonId: string): string[] {
     ...voiceIssues(media, videos, projects),
     ...narrationVoiceIssues(media, narration),
   ];
+}
+
+// Checks of a lesson's overview narration, only once the lesson has one: the
+// overview opens with a greeting to the child, and the built captions start
+// after the lead-in. Lessons not yet narrated pass; the rule applies when the
+// narration is written.
+export function checkLessonNarration(lessonId: string): string[] {
+  const data = findLesson(lessonId)?.data as
+    | { title: string; overview?: LessonOverview }
+    | undefined;
+  const overview = data?.overview;
+  if (!data || !overview?.narration) return [];
+  const issues: string[] = [];
+  const media = readMedia(lessonId, issues);
+  if (!media) return issues;
+  if (media.narrationOpeningExempt) return [];
+  issues.push(...narrationOpeningIssues(data.title, overview));
+  const vtt = path.join(MEDIA_DIR, narrationPaths(lessonId).vttUrl);
+  if (existsSync(vtt)) issues.push(...leadInIssues(readFileSync(vtt, "utf8")));
+  return issues;
 }

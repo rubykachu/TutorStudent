@@ -1,4 +1,5 @@
 {
   "voice": "hai-dang",
-  "openingExempt": ["tap-hop-la-gi", "thuoc-khong-thuoc"]
+  "openingExempt": ["tap-hop-la-gi", "thuoc-khong-thuoc"],
+  "narrationOpeningExempt": true
 }

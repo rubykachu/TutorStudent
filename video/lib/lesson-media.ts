@@ -15,6 +15,10 @@ export const LessonMediaSchema = z
     // Videos built before the opening-line rule (see `openingIssues`); each
     // is left as it is until it is rebuilt with an opening sentence.
     openingExempt: z.array(z.string()).optional(),
+    // The overview narration was written before it had to open with a
+    // greeting to the child (see `narrationOpeningIssues`); it is left as it
+    // is until the narration is rewritten with one. Remove the flag then.
+    narrationOpeningExempt: z.literal(true).optional(),
   })
   .strict();
 

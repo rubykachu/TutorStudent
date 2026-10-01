@@ -7,7 +7,8 @@ import { type LessonOverview, LessonSchema } from "@/schema/content";
 import { MATCH_THRESHOLD, MEDIA_DIR, RENDER, VIDEO_DIR } from "./config";
 import { alignWords } from "./lib/align";
 import { ffmpeg, layNarration } from "./lib/audio";
-import { lessonVoice } from "./lib/lesson-media";
+import { narrationOpeningIssues } from "./lib/consistency";
+import { lessonVoice, readLessonMedia } from "./lib/lesson-media";
 import { writeNarration } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
 import {
@@ -28,6 +29,10 @@ import type { EngineVoice } from "./voices";
 // timestamp per word and records both, with the voice that read them, on
 // `overview.narration`. Unchanged sentences are not synthesized again (cache
 // in video/.cache/).
+// The first sentence of the overview is the opening line and must greet the
+// child as "bạn"; the build stops before synthesis otherwise (lessons narrated
+// before the rule are exempt in media.json). The captions start after the
+// lead-in silence (PAUSE.leadIn), like a video's.
 // A narration is read by one voice from start to end: when every Gemini key
 // is out of quota the whole narration is read again by the lesson's video
 // voice (local VieNeu), and a warning says so; the sentences Gemini had
@@ -48,6 +53,16 @@ async function main() {
   const lesson = LessonSchema.parse(file.data);
   if (!lesson.overview) throw new Error(`Lesson "${lessonId}" has no overview`);
 
+  const opening = narrationOpeningIssues(
+    lesson.title,
+    lesson.overview,
+    readLessonMedia(lessonId).narrationOpeningExempt,
+  );
+  if (opening.length > 0) {
+    throw new Error(
+      `the overview must open with a greeting to the child (first sentence of overview.hook); nothing synthesized:\n${opening.join("\n")}`,
+    );
+  }
   const spec = lessonVoice(lessonId).spec;
   const workDir = path.join(VIDEO_DIR, ".cache", "narration", lessonId);
   const readWith = (voice: EngineVoice) =>
