@@ -93,3 +93,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `so-nguyen-to` | Toán | 9 | 3 (vòng 2 còn 4; video: vòng 4 có 1, sửa ngay) | 4 |
 | `on-tap-chuong-2` | Toán | 8 | chưa (vòng 2 còn 7, vòng 3 còn 1) | 3 |
 | `boi-chung-boi-chung-nho-nhat` | Toán | 8 | chưa (vòng 2 còn 5) | 2 |
+| `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | chưa | 1 |
