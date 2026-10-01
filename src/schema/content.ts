@@ -677,7 +677,8 @@ export const LessonSchema = z.object({
   id: LessonIdSchema,
   subject: LessonIdSchema,
   series: LessonIdSchema,
-  grade: z.literal(6),
+  // Must equal the grade of its series in content/subjects.json (content:check).
+  grade: GradeSchema,
   // Position among the lessons of the book; fractional for a review lesson
   // (12.5 sits after Bài 12 and before Bài 13).
   order: z.number().nonnegative(),

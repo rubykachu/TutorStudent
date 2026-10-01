@@ -149,6 +149,8 @@ export const COLLAPSED_INPUT_CLASS = "hidden lg:landscape:block";
 // A lesson visual loads on first use and grows after it mounts; the frame
 // keeps it in view while it settles, then leaves scrolling to the child.
 const FOLLOW_VISUAL_MS = 1500;
+// Space kept above the explanation panel when the page is lifted to show it.
+const EXPLANATION_TOP_GAP_PX = 16;
 
 function renderExerciseOwl(expression: MascotExpression): ReactNode {
   return <Owl expression={expression} size="exercise" />;
@@ -288,17 +290,6 @@ export function ExerciseFrame<E extends BasicExercise>({
     };
   }, [inViewKey, visualKey, reducedMotion]);
 
-  // The explanation is read before "Tiếp": bring it into view when it
-  // appears, once the answer area has been lifted above the bar.
-  const showsExplanation = explanation !== null;
-  useEffect(() => {
-    if (!showsExplanation) return;
-    explanationRef.current?.scrollIntoView?.({
-      block: "nearest",
-      behavior: reducedMotion ? "auto" : "smooth",
-    });
-  }, [showsExplanation, reducedMotion]);
-
   const feedbackStrip = inputWanted ? (
     // Stacked layouts only: the two-column layout keeps the visual in view.
     <button
@@ -358,6 +349,38 @@ export function ExerciseFrame<E extends BasicExercise>({
       clearTimeout(stop);
     };
   }, [liftKey]);
+
+  // The explanation is read before "Tiếp", and its visual (steps, buttons)
+  // loads and grows after it appears. Lift the page so the whole panel sits
+  // above the bar, but never so far that the panel's top leaves the screen
+  // (a panel taller than the screen shows from its start). Followed while the
+  // visual settles, like the lift of the answer card above; `scrollBy` with
+  // `auto` so a smooth scroll in progress is not cut short.
+  const showsExplanation = explanation !== null;
+  useEffect(() => {
+    const frame = frameRef.current;
+    const panel = explanationRef.current;
+    if (!showsExplanation || !frame || !panel) return;
+    const liftExplanation = () => {
+      const bar = frame.querySelector("[data-bottom-bar]");
+      const barTop = bar?.getBoundingClientRect().top ?? window.innerHeight;
+      const box = panel.getBoundingClientRect();
+      const lift = Math.min(
+        box.bottom - barTop,
+        box.top - EXPLANATION_TOP_GAP_PX,
+      );
+      if (lift > 0) window.scrollBy({ top: lift, behavior: "auto" });
+    };
+    liftExplanation();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(liftExplanation);
+    observer.observe(panel);
+    const stop = setTimeout(() => observer.disconnect(), FOLLOW_VISUAL_MS);
+    return () => {
+      observer.disconnect();
+      clearTimeout(stop);
+    };
+  }, [showsExplanation]);
 
   return (
     <section

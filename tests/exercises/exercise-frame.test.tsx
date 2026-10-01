@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   type AnswerSlotProps,
@@ -657,6 +657,42 @@ describe("ExerciseFrame", () => {
       choose("a");
       checkAnswer();
       expect(scrollBy).toHaveBeenCalledWith({ top: 50, behavior: "auto" });
+    } finally {
+      window.scrollBy = originalScrollBy;
+      Element.prototype.getBoundingClientRect = originalRect;
+    }
+  });
+
+  it("lifts the explanation above the bottom bar once an answer is accepted, keeping its top on screen", () => {
+    const scrollBy = vi.fn();
+    const originalScrollBy = window.scrollBy;
+    const originalRect = Element.prototype.getBoundingClientRect;
+    window.scrollBy = scrollBy as typeof window.scrollBy;
+    // The answer card is clear of the bar, so only the explanation lifts.
+    const tops: Record<string, [number, number]> = {
+      "section[data-phase]": [100, 700],
+      "[data-answer-column]": [280, 400],
+      "[data-mascot-slot]": [264, 330],
+      "[data-answer-area]": [300, 400],
+      "[data-explanation-slot]": [500, 1100],
+      "[data-bottom-bar]": [700, 800],
+    };
+    mockRects(tops);
+    try {
+      renderFrame(HINTS_FALLBACK);
+      choose("a");
+      checkAnswer();
+      // Ends 400px below the bar.
+      expect(scrollBy).toHaveBeenCalledWith({ top: 400, behavior: "auto" });
+      cleanup();
+
+      // A panel taller than the screen shows from its start, 16px below the top.
+      scrollBy.mockClear();
+      tops["[data-explanation-slot]"] = [500, 2000];
+      renderFrame(HINTS_FALLBACK);
+      choose("a");
+      checkAnswer();
+      expect(scrollBy).toHaveBeenCalledWith({ top: 484, behavior: "auto" });
     } finally {
       window.scrollBy = originalScrollBy;
       Element.prototype.getBoundingClientRect = originalRect;

@@ -278,6 +278,16 @@ describe("references", () => {
       'Unknown subject "chemistry"',
     );
   });
+
+  it("reports a lesson whose grade differs from the grade of its series", () => {
+    const raw = fixtureContent();
+    lessonData(raw).grade = 7;
+    expectError(
+      check(raw),
+      `${LESSON_FILE} $.grade`,
+      'Lesson grade 7 differs from grade 6 of series "kntt"',
+    );
+  });
 });
 
 describe("hint targets", () => {

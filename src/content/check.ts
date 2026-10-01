@@ -501,11 +501,19 @@ function checkLesson(
   if (subjects) {
     const subject = subjects.subjects.find((s) => s.id === lesson.subject);
     if (!subject) report(["subject"], `Unknown subject "${lesson.subject}"`);
-    else if (!subject.series.some((s) => s.id === lesson.series)) {
-      report(
-        ["series"],
-        `Subject "${subject.id}" has no series "${lesson.series}"`,
-      );
+    else {
+      const series = subject.series.find((s) => s.id === lesson.series);
+      if (!series) {
+        report(
+          ["series"],
+          `Subject "${subject.id}" has no series "${lesson.series}"`,
+        );
+      } else if (series.grade !== lesson.grade) {
+        report(
+          ["grade"],
+          `Lesson grade ${lesson.grade} differs from grade ${series.grade} of series "${series.id}"`,
+        );
+      }
     }
   }
 

@@ -56,9 +56,9 @@ test("a first visit creates a profile that survives a reload", async ({
   ).toBeVisible();
   await expect(math).toContainText(`${mathLessons.length} bài · Chưa học`);
   const literatureLessons = lessons.filter((l) => l.subject === "literature");
-  await expect(page.getByRole("link", { name: /Ngữ văn/ })).toContainText(
+  await expect(page.locator('[data-subject="literature"]')).toContainText(
     literatureLessons.length === 0
-      ? "Sắp có bài"
+      ? "Sắp ra mắt"
       : `${literatureLessons.length} bài · Chưa học`,
   );
   // Nothing earned yet: the sticker grid at the top shows every sticker grey
