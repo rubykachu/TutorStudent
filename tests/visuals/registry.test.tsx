@@ -59,6 +59,10 @@ describe("visualRegistry", () => {
       "ve-xong": [{ total: 3 }],
       "du-cham-phay": [{ gaps: 3 }],
       "chon-dung": [{ i0: 1, i1: 0, i2: 1 }],
+      "viet-so": [
+        { n: 2054, len: 4 },
+        { n: 305, len: 3 },
+      ],
       "gap-nhau": [
         { p: 4, q: 6, first: 1 },
         { p: 4, q: 5, first: 0 },

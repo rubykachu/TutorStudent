@@ -18,6 +18,17 @@ import {
   validators as multipleValidators,
 } from "@/visuals/math/boi-chung-boi-chung-nho-nhat/logic";
 import {
+  INTERACTIVE_KINDS as NUMBER_INTERACTIVE_KINDS,
+  LESSON_SLUG as NUMBER_SLUG,
+  VISUAL_SPECS as NUMBER_SPECS,
+  VALIDATOR_IDS as NUMBER_VALIDATOR_IDS,
+  regionsOf as numberRegions,
+} from "@/visuals/math/cach-ghi-so-tu-nhien/catalog";
+import {
+  solutions as numberSolutions,
+  validators as numberValidators,
+} from "@/visuals/math/cach-ghi-so-tu-nhien/logic";
+import {
   INTERACTIVE_KINDS as SIGN_INTERACTIVE_KINDS,
   LESSON_SLUG as SIGN_SLUG,
   VISUAL_SPECS as SIGN_SPECS,
@@ -433,7 +444,42 @@ const reviewEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "cach-ghi-so-tu-nhien": one per item of its catalog. The pick
+// screens reuse "chon-dung"; the number-writing slots have their own
+// validator; the pictures a `tapRegion` exercise taps declare their regions.
+const numberPickValidators = {
+  "chon-dung": pickMatches,
+  "viet-so": numberValidators["viet-so"],
+};
+const numberPickSolutions = {
+  "chon-dung": solvePickMatches,
+  "viet-so": numberSolutions["viet-so"],
+};
+
+const numberEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(NUMBER_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in NUMBER_VALIDATOR_IDS
+        ? NUMBER_VALIDATOR_IDS[spec.kind as keyof typeof NUMBER_VALIDATOR_IDS]
+        : undefined;
+    const regions = numberRegions(spec);
+    const entry: VisualEntry = {
+      interactive: NUMBER_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: numberPickValidators[validatorId] },
+            solutions: { [validatorId]: numberPickSolutions[validatorId] },
+          }),
+      load: () => lessonExample(NUMBER_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${NUMBER_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
+  ...numberEntries,
   ...primeEntries,
   ...thuTuEntries,
   ...nhanChiaEntries,
@@ -1211,6 +1257,8 @@ type Loaders<T> = { [S in keyof T]: () => Promise<T[S]> };
 const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 
 const EXAMPLE_MODULES = lessonModules({
+  "cach-ghi-so-tu-nhien": () =>
+    import("@/visuals/math/cach-ghi-so-tu-nhien/examples"),
   "tap-hop": () => import("@/visuals/math/tap-hop/examples"),
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
   "phep-cong-phep-tru": () =>

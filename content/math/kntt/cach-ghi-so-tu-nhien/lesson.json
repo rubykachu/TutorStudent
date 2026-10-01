@@ -1,0 +1,5550 @@
+{
+  "id": "cach-ghi-so-tu-nhien",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 2,
+  "number": 2,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
+  "title": "Cách ghi số tự nhiên",
+  "sourceRef": "Sách bài tập tr.7–10, lời giải tr.94–95",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách ghi số. Bạn đọc giá 25 000 đồng ở cửa hàng hay số nhà 128 trên đường đi học. Bạn muốn biết mỗi chữ số trong đó có nghĩa là gì.",
+      "visualId": "cach-ghi-so-tu-nhien.visual.hook-gia-tien"
+    },
+    "summary": "Bài này nói về cách ghi số tự nhiên. Bạn học các hàng, giá trị của mỗi chữ số, cách viết số thành tổng, và cách đọc, viết số La Mã đến 30.",
+    "goals": [
+      "nói được chữ số nằm ở hàng nào",
+      "tìm giá trị của mỗi chữ số trong một số",
+      "viết một số thành tổng giá trị các chữ số",
+      "đọc và viết số La Mã đến 30"
+    ],
+    "whyItMatters": "Bạn đọc đúng giá tiền, số nhà và giờ trên đồng hồ số La Mã nhờ biết mỗi chữ số đứng ở hàng nào."
+  },
+  "concepts": [
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.tap-hop",
+      "name": "Tập hợp",
+      "color": "teal"
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.phan-tu",
+      "name": "Phần tử",
+      "color": "amber"
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.chu-so",
+      "name": "Chữ số",
+      "color": "blue"
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.hang",
+      "name": "Hàng",
+      "color": "violet"
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.gia-tri",
+      "name": "Giá trị của chữ số",
+      "color": "pink"
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.so-la-ma",
+      "name": "Số La Mã",
+      "color": "sky"
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.concept.chu-so-them",
+      "name": "Chữ số viết thêm",
+      "color": "lime"
+    }
+  ],
+  "sections": [
+    {
+      "id": "cach-ghi-so-tu-nhien.section.so-tu-nhien",
+      "title": "Số tự nhiên và tập hợp ℕ",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 1, 2)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tập hợp các số tự nhiên kí hiệu là ℕ. Số 0 là số tự nhiên bé nhất.",
+              "rule": true
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{teal}{\\mathbb{N}} = \\{0; 1; 2; 3; \\ldots\\}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bỏ số 0 khỏi ℕ thì được tập hợp ℕ*.",
+              "rule": true
+            },
+            {
+              "type": "formula",
+              "tex": "\\concept{teal}{\\mathbb{N}^{\\ast}} = \\{1; 2; 3; \\ldots\\}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số thuộc ℕ*. Làm vậy bạn nhớ số 0 không thuộc ℕ*."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-n-sao"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.n-khac-n-sao"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.dien-thuoc-n"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.n-tom-tat",
+        "caption": "Tập hợp các số tự nhiên kí hiệu là ℕ. Bỏ số 0 khỏi ℕ thì được tập hợp ℕ*."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.chu-so",
+      "title": "Mười chữ số",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số tự nhiên viết bằng các chữ số từ 0 đến 9. Số có hai chữ số trở lên thì chữ số đầu tiên bên trái phải khác 0.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chu-so-vi-du",
+              "caption": "Số 4 073 viết bằng bốn chữ số: 4, 0, 7 và 3."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đếm các chữ số để biết số có mấy chữ số. Số nhà 128 có ba chữ số."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.so-nha-128"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số có ba chữ số. Làm vậy bạn quen đếm chữ số của một số."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-ba-chu-so"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.dem-chu-so-2905"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.chon-ba-chu-so-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.chu-so-tom-tat",
+        "caption": "Số tự nhiên viết bằng các chữ số từ 0 đến 9. Số có hai chữ số trở lên thì chữ số đầu tiên bên trái phải khác 0."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.hang",
+      "title": "Các hàng của một số",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vị trí của mỗi chữ số trong một số gọi là hàng. Từ phải sang trái là hàng đơn vị, hàng chục, hàng trăm, hàng nghìn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.hang-vi-du",
+              "caption": "Hôm nay bạn đi được 4 273 bước."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào từng chữ số để xem nó đứng ở hàng nào. Biết hàng giúp bạn đọc đúng số tiền và số nhà."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.hang-kham-pha"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.cham-hang-tram"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.cham-hang-chuc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.hang-tom-tat",
+        "caption": "Vị trí của mỗi chữ số trong một số gọi là hàng."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.muoi-don-vi",
+      "title": "Mười đơn vị của một hàng",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cứ 10 đơn vị của một hàng thì bằng 1 đơn vị của hàng liền bên trái.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.doi-hang"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn đổi 10 tờ 10 nghìn đồng lấy 1 tờ 100 nghìn đồng. Đổi tiền cũng giống đổi hàng."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.doi-tien"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các cách viết bằng 1 trăm. Làm vậy bạn nhớ cách đổi giữa các hàng."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-bang-1-tram"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.muoi-tram-bang-nghin"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.nam-tram-bang-chuc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.doi-hang-tom-tat",
+        "caption": "Cứ 10 đơn vị của một hàng thì bằng 1 đơn vị của hàng liền bên trái."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.gia-tri",
+      "title": "Giá trị của chữ số",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3), bài 1.17 tr.10",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Giá trị của một chữ số bằng chữ số đó nhân với 1, 10, 100, 1 000 theo hàng nó đứng.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.gia-tri-mau",
+              "caption": "Hôm nay bạn đi được 3 507 bước."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào từng chữ số để xem giá trị. Chữ số 0 có giá trị bằng 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.gia-tri-kham-pha"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào giá trị của chữ số 6 trong số 3 650. Làm vậy bạn nhớ giá trị phụ thuộc hàng."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-gia-tri-6"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.gia-tri-7-trong-7214"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.gia-tri-4-trong-3482"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.gia-tri-tom-tat",
+        "caption": "Giá trị của một chữ số bằng chữ số đó nhân với 1, 10, 100, 1 000 theo hàng nó đứng."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.tong-gia-tri",
+      "title": "Viết số thành tổng giá trị các chữ số",
+      "sourceRef": "Sách bài tập tr.7–8 (kiến thức cần nhớ 3; ví dụ 1), bài 1.18 tr.10",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi số tự nhiên bằng tổng giá trị các chữ số của nó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.tong-mau",
+              "caption": "Số nhà của bạn Lan là 534."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn có 2 tờ 1 000 đồng, 5 tờ 100 đồng và 4 tờ 10 đồng. Mỗi loại tờ ứng với một hàng của số."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.tong-tien"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "cach-ghi-so-tu-nhien.tip.viet-so-tu-tong",
+          "kind": "tránh sai",
+          "title": "Viết số từ tổng giá trị",
+          "text": "Hàng nào không có số hạng thì viết chữ số 0 ở hàng đó. Ở ví dụ dưới thiếu hàng trăm, nên hàng trăm là 0.",
+          "tex": "3 \\cdot 1\\,000 + 7 \\cdot 10 + 2 = 3\\,072"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài thao tác: bấm + hoặc − để đổi chữ số, rồi bấm “Kiểm tra”. Bây giờ hãy viết số bằng tổng bên dưới."
+            },
+            {
+              "type": "formula",
+              "tex": "2 \\cdot 1\\,000 + 5 \\cdot 10 + 4"
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.viet-so-4"
+            }
+          ],
+          "guide": "manipulate"
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.tong-cua-6275"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.viet-so-5032"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.tong-tom-tat",
+        "caption": "Mỗi số tự nhiên bằng tổng giá trị các chữ số của nó."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.chu-la-ma",
+      "title": "Chữ số La Mã",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chữ I, V, X có giá trị 1, 5, 10. Hai cụm IV và IX có giá trị 4 và 9.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.la-ma-thanh-phan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiều đồng hồ treo tường ghi giờ bằng số La Mã. Kim giờ đang chỉ vào chữ IV, nghĩa là 4 giờ."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.dong-ho-4"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào số La Mã có giá trị 9. Làm vậy bạn không nhầm IV với IX."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-la-ma-9"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.gia-tri-iv"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.cham-la-ma-9"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.la-ma-tom-tat",
+        "caption": "Chữ I, V, X có giá trị 1, 5, 10. Hai cụm IV và IX có giá trị 4 và 9."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.doc-so-la-ma",
+      "title": "Đọc số La Mã",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4), bài 1.19 tr.10",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Giá trị của số La Mã bằng tổng giá trị các thành phần của nó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.doc-xvii"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "cach-ghi-so-tu-nhien.tip.i-truoc-i-sau",
+          "kind": "tránh sai",
+          "title": "Phân biệt IV và VI",
+          "text": "Chữ I đứng trước V hoặc X thì trừ đi 1: IV là 4, IX là 9. Chữ I đứng sau thì cộng thêm 1: VI là 6, XI là 11.",
+          "tex": "\\begin{gathered} \\mathrm{IV} = 5 - 1 = 4 \\\\ \\mathrm{VI} = 5 + 1 = 6 \\end{gathered}"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào giá trị của số La Mã XXVIII. Bạn tách thành phần rồi cộng lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-xxviii"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.doc-xii"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.doc-xxiii"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.doc-la-ma-tom-tat",
+        "caption": "Giá trị của số La Mã bằng tổng giá trị các thành phần của nó."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.viet-so-la-ma",
+      "title": "Viết số La Mã",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4), bài 1.20 tr.10",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn viết số La Mã, tách số thành chục và đơn vị rồi viết chục trước, đơn vị sau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.la-ma-chuc-don-vi"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ số 15: 15 gồm 10 và 5, viết là X rồi V. Ghép lại ta được số La Mã XV."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.viet-xv"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thế kỉ 21 là thế kỉ bạn đang sống. Chạm vào cách viết đúng số 21 bằng số La Mã."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-viet-21"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.chon-viet-13"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.viet-22"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.viet-la-ma-tom-tat",
+        "caption": "Muốn viết số La Mã, tách số thành chục và đơn vị rồi viết chục trước, đơn vị sau."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.que-tinh",
+      "title": "Bài vui với que tính",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4), bài 1.21 tr.10",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn chơi trò xếp que tính. 12 que xếp thành một phép cộng sai, bạn phải đổi chỗ đúng 1 que."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.que-goc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cách 1: đổi chữ I của IV ra sau chữ V. Cách 2: đổi chữ I của XI ra trước chữ X."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.que-cach-1"
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.que-cach-2"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các phép cộng đúng. Đọc số La Mã rồi cộng."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-phep-dung"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.chon-phep-cong-dung"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.doi-1-que"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.que-tom-tat",
+        "caption": "Đổi chỗ 1 que của IV + V = XI để phép cộng đúng."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.lon-be-nhat",
+      "title": "Số lớn nhất, bé nhất có cùng số chữ số",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.10)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số lớn nhất có một số chữ số cho trước thì tất cả các chữ số đều là 9.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.lon-nhat-vd"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số bé nhất có từ hai chữ số trở lên thì chữ số đầu là 1, các chữ số sau đều là 0.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.be-nhat-vd"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "cach-ghi-so-tu-nhien.tip.cong-1-len",
+          "kind": "hiểu nhanh",
+          "title": "Từ số lớn nhất sang số bé nhất",
+          "text": "Cộng 1 vào số lớn nhất có n chữ số thì được số bé nhất có n + 1 chữ số. Ví dụ ở dưới: 999 cộng 1 được số bé nhất có bốn chữ số.",
+          "tex": "999 + 1 = 1\\,000"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào số bé nhất có ba chữ số. Làm vậy bạn nhớ chữ số đầu là 1, các chữ số sau là 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-be-nhat-3"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.lon-nhat-4-chu-so"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.be-nhat-4-chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.lon-be-tom-tat",
+        "caption": "Số lớn nhất có một số chữ số cho trước thì tất cả các chữ số đều là 9. Số bé nhất có từ hai chữ số trở lên thì chữ số đầu là 1, các chữ số sau đều là 0."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.chu-so-khac-nhau",
+      "title": "Số có các chữ số khác nhau",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.11)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn viết số lớn nhất có các chữ số khác nhau, ta viết các chữ số từ lớn đến bé.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.khac-nhau-lon"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn viết số bé nhất, chữ số đầu là 1, rồi đến 0, rồi các chữ số tăng dần.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.khac-nhau-be"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào số bé nhất có ba chữ số khác nhau. Số đó bắt đầu bằng 1, rồi đến 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-khac-nhau-3"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.lon-nhat-khac-nhau-3"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.lon-nhat-khac-nhau-5"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.khac-nhau-tom-tat",
+        "caption": "Muốn viết số lớn nhất có các chữ số khác nhau, ta viết các chữ số từ lớn đến bé. Muốn viết số bé nhất, chữ số đầu là 1, rồi đến 0, rồi các chữ số tăng dần."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.them-dau-cuoi",
+      "title": "Viết thêm chữ số vào đầu hoặc cuối",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.14)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Viết thêm chữ số 0 vào bên phải một số tự nhiên khác 0 thì số đó gấp lên 10 lần.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.them-0-vd"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Viết thêm chữ số 1 vào bên trái số có ba chữ số thì số đó tăng thêm 1 000.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.them-1-vd"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "cach-ghi-so-tu-nhien.tip.nhan-10-100-1000",
+          "kind": "làm nhanh",
+          "title": "Nhân với 10, 100, 1 000",
+          "text": "Muốn nhân một số khác 0 với 10, 100 hoặc 1 000, viết thêm 1, 2 hoặc 3 chữ số 0 vào bên phải số đó. Ví dụ ở dưới nhân 35 với 100.",
+          "tex": "35 \\cdot 100 = 3\\,500"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào số nhận được khi viết thêm chữ số 0 vào bên phải số 47. Làm vậy bạn nhớ số mới gấp 10 lần."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-them-0-47"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.them-0-38"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.them-1-482"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.them-dau-cuoi-tom-tat",
+        "caption": "Viết thêm chữ số 0 vào bên phải một số tự nhiên khác 0 thì số đó gấp lên 10 lần. Viết thêm chữ số 1 vào bên trái số có ba chữ số thì số đó tăng thêm 1 000."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.them-lon-be",
+      "title": "Viết thêm chữ số để được số lớn nhất, bé nhất",
+      "sourceRef": "Sách bài tập tr.9–10 (bài 1.15 và bài 1.16)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn số lớn nhất, viết chữ số thêm vào trước chữ số đầu tiên bé hơn nó. Không có chữ số nào bé hơn thì viết ở cuối.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.them-lon-vd"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn số bé nhất, viết chữ số thêm vào trước chữ số đầu tiên lớn hơn nó. Chữ số thêm khác 0; không có chữ số nào lớn hơn thì viết ở cuối.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.them-be-vd"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.them-4-vao-8152"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.them-5-vao-7308"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.them-lon-nho-tom-tat",
+        "caption": "Muốn số lớn nhất, viết chữ số thêm vào trước chữ số đầu tiên bé hơn nó. Muốn số bé nhất, viết chữ số thêm vào trước chữ số đầu tiên lớn hơn nó."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.so-hai-chu-so",
+      "title": "Tìm số có hai chữ số theo đề",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.8 và bài 1.9)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm số có hai chữ số theo đề, thử lần lượt các chữ số hàng chục từ 1 đến 9. Với mỗi chữ số đó, tìm chữ số hàng đơn vị hợp với đề.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.hai-chu-so-vd"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "cach-ghi-so-tu-nhien.tip.liet-ke-co-thu-tu",
+          "kind": "tránh sai",
+          "title": "Liệt kê có thứ tự",
+          "text": "Viết các số theo thứ tự, chữ số hàng chục tăng dần. Cách này giúp bạn không sót số nào và không viết trùng số nào.",
+          "tex": "15, \\quad 26, \\quad 37, \\quad 48, \\quad 59"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số có chữ số hàng chục gấp 2 lần chữ số hàng đơn vị. Thử từng số một."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-chuc-gap-2"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.chon-hon-2"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.dem-hon-7"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.hai-chu-so-tom-tat",
+        "caption": "Muốn tìm số có hai chữ số theo đề, thử lần lượt các chữ số hàng chục từ 1 đến 9. Với mỗi chữ số đó, tìm chữ số hàng đơn vị hợp với đề."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.tap-cac-chu-so",
+      "title": "Tập các chữ số của một số",
+      "sourceRef": "Sách bài tập tr.8–9 (ví dụ 2; bài 1.12)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tập các chữ số của một số gồm các chữ số khác nhau có trong số đó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.tap-chu-so-vd"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số có ba chữ số mà tập các chữ số là {0; 2; 5} có đủ ba chữ số đó, mỗi chữ số một lần.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.lap-so-025"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số có tập các chữ số là {1; 4}. Mỗi số phải có cả chữ số 1 và chữ số 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-tap-14"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.tap-chu-so-4044"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.chon-so-tap-136"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.tap-chu-so-tom-tat",
+        "caption": "Tập các chữ số của một số gồm các chữ số khác nhau có trong số đó. Số có ba chữ số mà tập các chữ số là {0; 2; 5} có đủ ba chữ số đó, mỗi chữ số một lần."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.section.tong-chu-so",
+      "title": "Liệt kê số theo tổng các chữ số",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.13)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn liệt kê số có ba chữ số theo tổng các chữ số, chọn chữ số hàng trăm trước. Với mỗi chữ số đó, tìm các cặp chữ số hàng chục và hàng đơn vị còn thiếu.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.tong-chu-so-vd"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các số có ba chữ số mà tổng các chữ số bằng 5. Cộng các chữ số của từng số."
+            },
+            {
+              "type": "visual",
+              "visualId": "cach-ghi-so-tu-nhien.visual.chon-tong-5"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "cach-ghi-so-tu-nhien.ex.dem-tong-2"
+      ],
+      "practiceIds": [
+        "cach-ghi-so-tu-nhien.ex.chon-tong-4"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.tong-chu-so-tom-tat",
+        "caption": "Muốn liệt kê số có ba chữ số theo tổng các chữ số, chọn chữ số hàng trăm trước. Với mỗi chữ số đó, tìm các cặp chữ số hàng chục và hàng đơn vị còn thiếu."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "cach-ghi-so-tu-nhien.card.so-tu-nhien",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 1, 2)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.tap-hop"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.n-tom-tat",
+        "caption": "Tập hợp các số tự nhiên kí hiệu là ℕ. Bỏ số 0 khỏi ℕ thì được tập hợp ℕ*."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.chu-so",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.chu-so-tom-tat",
+        "caption": "Số tự nhiên viết bằng các chữ số từ 0 đến 9. Số có hai chữ số trở lên thì chữ số đầu tiên bên trái phải khác 0."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.hang",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.hang"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.hang-tom-tat",
+        "caption": "Vị trí của mỗi chữ số trong một số gọi là hàng."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.muoi-don-vi",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.hang"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.doi-hang-tom-tat",
+        "caption": "Cứ 10 đơn vị của một hàng thì bằng 1 đơn vị của hàng liền bên trái."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.gia-tri",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3), bài 1.17 tr.10",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.gia-tri",
+        "cach-ghi-so-tu-nhien.concept.hang"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.gia-tri-tom-tat",
+        "caption": "Giá trị của một chữ số bằng chữ số đó nhân với 1, 10, 100, 1 000 theo hàng nó đứng."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.tong-gia-tri",
+      "sourceRef": "Sách bài tập tr.7–8 (kiến thức cần nhớ 3; ví dụ 1), bài 1.18 tr.10",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.gia-tri",
+        "cach-ghi-so-tu-nhien.concept.chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.tong-tom-tat",
+        "caption": "Mỗi số tự nhiên bằng tổng giá trị các chữ số của nó."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.chu-la-ma",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.so-la-ma"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.la-ma-tom-tat",
+        "caption": "Chữ I, V, X có giá trị 1, 5, 10. Hai cụm IV và IX có giá trị 4 và 9."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.doc-so-la-ma",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4), bài 1.19 tr.10",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.so-la-ma"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.doc-la-ma-tom-tat",
+        "caption": "Giá trị của số La Mã bằng tổng giá trị các thành phần của nó."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.viet-so-la-ma",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4), bài 1.20 tr.10",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.so-la-ma"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.viet-la-ma-tom-tat",
+        "caption": "Muốn viết số La Mã, tách số thành chục và đơn vị rồi viết chục trước, đơn vị sau."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.que-tinh",
+      "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4), bài 1.21 tr.10",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.so-la-ma"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.que-tom-tat",
+        "caption": "Đổi chỗ 1 que của IV + V = XI để phép cộng đúng."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.lon-be-nhat",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.10)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.lon-be-tom-tat",
+        "caption": "Số lớn nhất có một số chữ số cho trước thì tất cả các chữ số đều là 9. Số bé nhất có từ hai chữ số trở lên thì chữ số đầu là 1, các chữ số sau đều là 0."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.chu-so-khac-nhau",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.11)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.khac-nhau-tom-tat",
+        "caption": "Muốn viết số lớn nhất có các chữ số khác nhau, ta viết các chữ số từ lớn đến bé. Muốn viết số bé nhất, chữ số đầu là 1, rồi đến 0, rồi các chữ số tăng dần."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.them-dau-cuoi",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.14)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so-them"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.them-dau-cuoi-tom-tat",
+        "caption": "Viết thêm chữ số 0 vào bên phải một số tự nhiên khác 0 thì số đó gấp lên 10 lần. Viết thêm chữ số 1 vào bên trái số có ba chữ số thì số đó tăng thêm 1 000."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.them-lon-be",
+      "sourceRef": "Sách bài tập tr.9–10 (bài 1.15 và bài 1.16)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so-them"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.them-lon-nho-tom-tat",
+        "caption": "Muốn số lớn nhất, viết chữ số thêm vào trước chữ số đầu tiên bé hơn nó. Muốn số bé nhất, viết chữ số thêm vào trước chữ số đầu tiên lớn hơn nó."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.so-hai-chu-so",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.8 và bài 1.9)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so",
+        "cach-ghi-so-tu-nhien.concept.phan-tu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.hai-chu-so-tom-tat",
+        "caption": "Muốn tìm số có hai chữ số theo đề, thử lần lượt các chữ số hàng chục từ 1 đến 9. Với mỗi chữ số đó, tìm chữ số hàng đơn vị hợp với đề."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.tap-cac-chu-so",
+      "sourceRef": "Sách bài tập tr.8–9 (ví dụ 2; bài 1.12)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.tap-hop",
+        "cach-ghi-so-tu-nhien.concept.chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.tap-chu-so-tom-tat",
+        "caption": "Tập các chữ số của một số gồm các chữ số khác nhau có trong số đó. Số có ba chữ số mà tập các chữ số là {0; 2; 5} có đủ ba chữ số đó, mỗi chữ số một lần."
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.card.tong-chu-so",
+      "sourceRef": "Sách bài tập tr.9 (bài 1.13)",
+      "conceptIds": [
+        "cach-ghi-so-tu-nhien.concept.chu-so",
+        "cach-ghi-so-tu-nhien.concept.tap-hop"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "cach-ghi-so-tu-nhien.visual.tong-chu-so-tom-tat",
+        "caption": "Muốn liệt kê số có ba chữ số theo tổng các chữ số, chọn chữ số hàng trăm trước. Với mỗi chữ số đó, tìm các cặp chữ số hàng chục và hàng đơn vị còn thiếu."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.n-khac-n-sao",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào thuộc ℕ nhưng không thuộc ℕ*?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "ℕ* là ℕ bỏ số 0, nên mọi số khác 0 đều thuộc cả hai tập. Chỉ số 0 thuộc ℕ mà không thuộc ℕ*.",
+        "tex": "0 \\in \\mathbb{N}, \\quad 0 \\notin \\mathbb{N}^{\\ast}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 1 thuộc cả ℕ lẫn ℕ*."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dien-thuoc-n",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-tu-nhien"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn kí hiệu ∈ hoặc ∉ cho đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 12 "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "∈"
+          ]
+        },
+        {
+          "type": "text",
+          "text": " ℕ*."
+        }
+      ],
+      "bank": [
+        "∈",
+        "∉"
+      ],
+      "explain": {
+        "text": "Số 12 khác 0 nên có trong ℕ*. Có trong tập hợp thì viết ∈.",
+        "tex": "12 \\in \\mathbb{N}^{\\ast}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-thuoc-n-sao",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-tu-nhien"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số thuộc ℕ*."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "21"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "50"
+          }
+        }
+      ],
+      "answer": [
+        "b",
+        "c",
+        "d"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "ℕ* gồm các số tự nhiên khác 0. Vậy 9, 21 và 50 thuộc ℕ*, còn 0 thì không.",
+        "tex": "9, 21, 50 \\in \\mathbb{N}^{\\ast}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Số 0 bị bỏ khỏi ℕ* nên không thuộc ℕ*."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.ro-cam-trong",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-tu-nhien"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Rổ cam nhà bạn đã hết, bạn đếm được 0 quả. Số 0 thuộc tập hợp nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "chỉ ℕ"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "chỉ ℕ*"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "cả ℕ và ℕ*"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "không thuộc tập nào"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Số 0 là số tự nhiên, nên thuộc ℕ. Nhưng ℕ* đã bỏ số 0, nên 0 không thuộc ℕ*.",
+        "tex": "0 \\in \\mathbb{N}, \\quad 0 \\notin \\mathbb{N}^{\\ast}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "ℕ* bỏ số 0, nên 0 không thuộc ℕ*."
+          },
+          {
+            "optionId": "d",
+            "text": "Số 0 vẫn là số tự nhiên nên thuộc ℕ."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.so-be-nhat-n-sao",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-tu-nhien"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số tự nhiên bé nhất thuộc ℕ* là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 1
+      },
+      "check": {
+        "expr": "1"
+      },
+      "explain": {
+        "text": "ℕ* bắt đầu từ 1 vì đã bỏ số 0. Nên số bé nhất của ℕ* là 1.",
+        "tex": "\\mathbb{N}^{\\ast} = \\{1; 2; 3; \\ldots\\}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-chu-so-2905",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 2 905 có mấy chữ số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "4"
+      },
+      "explain": {
+        "text": "Đếm từng chữ số: 2, 9, 0 và 5. Số này có bốn chữ số.",
+        "tex": "2, 9, 0, 5"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-ba-chu-so-so",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số tự nhiên có ba chữ số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "305"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "54"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "1 200"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "987"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "d"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Số có ba chữ số thì nằm giữa 100 và 999. Hai số đó là 305 và 987.",
+        "tex": "305, \\quad 987",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 54 chỉ có hai chữ số."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 1 200 có bốn chữ số."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-chu-so-12000",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một ổ bánh mì giá 12 000 đồng. Số 12 000 có mấy chữ số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "5"
+      },
+      "explain": {
+        "text": "Đếm các chữ số: 1, 2, 0, 0 và 0. Số tiền này có năm chữ số, kể cả ba chữ số 0.",
+        "tex": "1, 2, 0, 0, 0"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.viet-dung-so",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả cách viết đúng một số tự nhiên."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "508"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "052"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7 040"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "003"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Số có từ hai chữ số trở lên thì chữ số đầu tiên bên trái phải khác 0. Nên chỉ 508 và 7 040 là cách viết đúng.",
+        "tex": "508, \\quad 7\\,040",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ số đầu tiên của 052 là 0, nên cách viết này sai."
+          },
+          {
+            "optionId": "d",
+            "text": "Chữ số đầu tiên của 003 là 0, nên cách viết này sai."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dung-bon-chu-so",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào có đúng bốn chữ số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "305"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4 060"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "12 000"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "98"
+          }
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Đếm chữ số của từng số: 305 có ba, 98 có hai, 12 000 có năm. Chỉ 4 060 có đúng bốn chữ số.",
+        "tex": "4, 0, 6, 0",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Số 12 000 có năm chữ số."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.cham-hang-tram",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào chữ số hàng trăm của số 5 618."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-hang",
+        "solutionVisualId": "cach-ghi-so-tu-nhien.visual.giai-hang-5618"
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.cham-hang-5618",
+      "answer": [
+        "d1"
+      ],
+      "explain": {
+        "text": "Từ bên phải sang trái là hàng đơn vị, hàng chục, hàng trăm. Chữ số thứ ba từ phải sang là 6, nên 6 ở hàng trăm.",
+        "tex": "5\\,618"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.cham-hang-chuc",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.hang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào chữ số hàng chục của số 7 305."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-hang",
+        "solutionVisualId": "cach-ghi-so-tu-nhien.visual.giai-hang-7305"
+      },
+      "difficulty": 2,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.cham-hang-7305",
+      "answer": [
+        "d2"
+      ],
+      "explain": {
+        "text": "Hàng chục là hàng thứ hai tính từ bên phải. Chữ số ở đó là 0, nghĩa là số này không có chục.",
+        "tex": "7\\,305"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chu-so-hang-chuc-3851",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.hang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ số hàng chục của số 3 851 là chữ số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-hang"
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "5"
+      },
+      "explain": {
+        "text": "Hàng chục là hàng thứ hai từ bên phải. Trong 3 851 chữ số đó là 5.",
+        "tex": "3\\,8\\,\\mathbf{5}\\,1"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.hang-cua-chu-so-9",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.hang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ số 9 của số 1 928 đứng ở hàng nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-hang"
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "hàng đơn vị"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "hàng chục"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "hàng trăm"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "hàng nghìn"
+          }
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Đếm từ bên phải: 8 ở hàng đơn vị, 2 ở hàng chục, 9 ở hàng trăm. Vậy chữ số 9 ở hàng trăm.",
+        "tex": "1\\,9\\,2\\,8",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hàng chục là chữ số 2, không phải chữ số 9."
+          },
+          {
+            "optionId": "d",
+            "text": "Hàng nghìn là chữ số 1, đứng đầu bên trái."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dien-hang-4-trong-2460",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.hang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-hang"
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Trong số 2 460, chữ số 4 đứng ở hàng "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "trăm"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": [
+        "đơn vị",
+        "chục",
+        "trăm",
+        "nghìn"
+      ],
+      "explain": {
+        "text": "Đếm từ bên phải: 0 ở hàng đơn vị, 6 ở hàng chục, 4 ở hàng trăm. Vậy chữ số 4 đứng ở hàng trăm.",
+        "tex": "2\\,4\\,6\\,0"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.muoi-tram-bang-nghin",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "10 trăm bằng bao nhiêu nghìn?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 1
+      },
+      "check": {
+        "expr": "1"
+      },
+      "explain": {
+        "text": "Cứ 10 đơn vị của một hàng bằng 1 đơn vị của hàng liền bên trái. Hàng liền bên trái của hàng trăm là hàng nghìn, nên 10 trăm bằng 1 nghìn.",
+        "tex": "10 \\cdot 100 = 1\\,000"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.nam-tram-bang-chuc",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.muoi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "5 trăm bằng bao nhiêu chục?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 50
+      },
+      "check": {
+        "expr": "5·10"
+      },
+      "explain": {
+        "text": "1 trăm bằng 10 chục, nên 5 trăm bằng 5 lần 10 chục. 5 · 10 = 50, vậy 5 trăm bằng 50 chục.",
+        "tex": "5 \\cdot 10 = 50"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.ba-muoi-chuc",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.muoi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "30 chục bằng bao nhiêu trăm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "30:10"
+      },
+      "explain": {
+        "text": "Cứ 10 chục thì bằng 1 trăm. 30 chia 10 bằng 3, vậy 30 chục bằng 3 trăm.",
+        "tex": "30 : 10 = 3"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.tien-1000-doi-10000",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.muoi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn có 20 tờ 1 000 đồng. Bạn đổi được mấy tờ 10 000 đồng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "check": {
+        "expr": "20:10"
+      },
+      "explain": {
+        "text": "Cứ 10 tờ 1 000 đồng đổi được 1 tờ 10 000 đồng. 20 tờ thì đổi được 20 chia 10 bằng 2 tờ.",
+        "tex": "20 : 10 = 2"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.hang-lien-ben-trai",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.muoi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cứ 10 đơn vị của một hàng thì bằng 1 đơn vị của hàng nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "hàng liền bên trái"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "hàng liền bên phải"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "hàng đơn vị"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "hàng trăm"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Ví dụ 10 chục bằng 1 trăm: hàng trăm nằm liền bên trái hàng chục. Quy tắc này đúng với mọi hàng.",
+        "tex": "10 \\cdot 10 = 100",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "10 chục là 1 trăm, mà hàng trăm nằm bên trái hàng chục, không phải bên phải."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gia-tri-7-trong-7214",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong số 7 214, chữ số 7 có giá trị bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "70"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "700"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7 000"
+          }
+        }
+      ],
+      "answer": [
+        "d"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "7·1000"
+      },
+      "explain": {
+        "text": "Chữ số 7 đứng ở hàng nghìn, nên giá trị của nó là 7 nhân 1 000. Vậy giá trị là 7 000.",
+        "tex": "7 \\cdot 1\\,000 = 7\\,000",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Chữ số 7 chỉ có giá trị 7 khi nó đứng ở hàng đơn vị."
+          },
+          {
+            "optionId": "c",
+            "text": "700 là giá trị khi chữ số 7 đứng ở hàng trăm."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gia-tri-4-trong-3482",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong số 3 482, chữ số 4 có giá trị bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-gia-tri",
+        "solutionVisualId": "cach-ghi-so-tu-nhien.visual.giai-gia-tri-3482"
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 400
+      },
+      "check": {
+        "expr": "4·100"
+      },
+      "explain": {
+        "text": "Chữ số 4 đứng ở hàng trăm, nên giá trị của nó là 4 nhân 100. Vậy giá trị là 400.",
+        "tex": "4 \\cdot 100 = 400"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gia-tri-2-trong-12560",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong số 12 560, chữ số 2 có giá trị bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-gia-tri-5"
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 2000
+      },
+      "check": {
+        "expr": "2·1000"
+      },
+      "explain": {
+        "text": "Đếm từ bên phải: 0, 6, 5 rồi đến 2, nên chữ số 2 ở hàng nghìn. Giá trị của nó là 2 nhân 1 000, bằng 2 000.",
+        "tex": "2 \\cdot 1\\,000 = 2\\,000"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gia-tri-chu-so-5-trong-5056",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 5 056 có hai chữ số 5. Chọn tất cả giá trị của các chữ số 5 đó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "5 000"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "500"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "50"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Chữ số 5 đầu tiên ở hàng nghìn nên có giá trị 5 000. Chữ số 5 thứ hai ở hàng chục nên có giá trị 50.",
+        "tex": "5\\,056 = 5 \\cdot 1\\,000 + 5 \\cdot 10 + 6",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hàng trăm của số này là chữ số 0, không phải chữ số 5."
+          },
+          {
+            "optionId": "d",
+            "text": "Chữ số hàng đơn vị là 6, không phải 5."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dien-gia-tri-8-trong-4826",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Trong số 4 826, chữ số 8 có giá trị bằng "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "800"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "explain": {
+        "text": "Chữ số 8 ở hàng trăm, nên giá trị là 8 nhân 100. Vậy giá trị của nó là 800.",
+        "tex": "8 \\cdot 100 = 800"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.tong-cua-6275",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 6 275 bằng tổng nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot 1\\,000 + 2 \\cdot 100 + 7 \\cdot 10 + 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot 100 + 2 \\cdot 10 + 7 + 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "6 + 2 + 7 + 5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot 1\\,000 + 2 \\cdot 10 + 7 \\cdot 100 + 5"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "6275"
+      },
+      "explain": {
+        "text": "Chữ số 6 ở hàng nghìn, 2 ở hàng trăm, 7 ở hàng chục, 5 ở hàng đơn vị. Mỗi chữ số nhân với giá trị hàng của nó rồi cộng lại.",
+        "tex": "6 \\cdot 1\\,000 + 2 \\cdot 100 + 7 \\cdot 10 + 5",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "6 + 2 + 7 + 5 chỉ cộng các chữ số, chưa nhân với giá trị của hàng."
+          },
+          {
+            "optionId": "d",
+            "text": "Ở dòng này chữ số 2 và 7 đứng sai hàng."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.viet-so-5032",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết tổng sau thành một số."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{5 \\cdot 1\\,000 + 3 \\cdot 10 + 2}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 5032
+      },
+      "check": {
+        "expr": "5·1000+3·10+2"
+      },
+      "explain": {
+        "text": "Tổng có 5 nghìn, 3 chục và 2 đơn vị, nhưng không có hàng trăm. Hàng trăm phải viết chữ số 0, nên số đó là 5 032.",
+        "tex": "5 \\cdot 1\\,000 + 0 \\cdot 100 + 3 \\cdot 10 + 2 = 5\\,032"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.tim-chu-so-hang-tram-6345",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm chữ số thay cho dấu hỏi chấm."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{6\\,345 = 6 \\cdot 1\\,000 + ? \\cdot 100 + 4 \\cdot 10 + 5}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      },
+      "explain": {
+        "text": "Số 6 345 có chữ số 3 ở hàng trăm. Vậy dấu hỏi chấm là 3.",
+        "tex": "6\\,345 = 6 \\cdot 1\\,000 + 3 \\cdot 100 + 4 \\cdot 10 + 5"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.viet-so-3405",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt chữ số vào các ô để được số bằng tổng sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\htmlId{pt}{3 \\cdot 1\\,000 + 4 \\cdot 100 + 5}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "part",
+            "id": "pt"
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "manipulate",
+      "visualId": "cach-ghi-so-tu-nhien.visual.viet-so-4",
+      "validatorId": "viet-so",
+      "params": {
+        "n": 3405,
+        "len": 4
+      },
+      "explain": {
+        "text": "Tổng có 3 nghìn, 4 trăm và 5 đơn vị, nhưng không có chục. Hàng chục viết 0, nên số đó là 3 405.",
+        "tex": "3 \\cdot 1\\,000 + 4 \\cdot 100 + 0 \\cdot 10 + 5 = 3\\,405"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-tong-bang-4060",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả tổng bằng 4 060."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 1\\,000 + 6 \\cdot 10"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 1\\,000 + 0 \\cdot 100 + 6 \\cdot 10 + 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot 1\\,000 + 6 \\cdot 100"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "4 + 0 + 6 + 0"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "expr": "4060"
+      },
+      "explain": {
+        "text": "Số 4 060 có 4 nghìn và 6 chục. Số hạng có chữ số 0 bằng 0, nên thêm vào hay bớt đi đều không đổi tổng.",
+        "tex": "4\\,060 = 4 \\cdot 1\\,000 + 6 \\cdot 10",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Dòng này có 6 trăm, nên tổng là 4 600 chứ không phải 4 060."
+          },
+          {
+            "optionId": "d",
+            "text": "4 + 0 + 6 + 0 chỉ cộng các chữ số, bằng 10."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-tien-3250",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-gia-tri"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn có 3 tờ 1 000 đồng, 2 tờ 100 đồng và 5 tờ 10 đồng. Bạn có bao nhiêu đồng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 3250
+      },
+      "check": {
+        "expr": "3·1000+2·100+5·10"
+      },
+      "explain": {
+        "text": "Mỗi loại tờ ứng với một hàng. Số tiền là 3 nghìn, 2 trăm và 5 chục cộng lại.",
+        "tex": "3 \\cdot 1\\,000 + 2 \\cdot 100 + 5 \\cdot 10 = 3\\,250"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gia-tri-iv",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số La Mã IV có giá trị bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "IV là một cụm có giá trị 4. Chữ I đứng trước chữ V nên lấy 5 bớt 1.",
+        "tex": "\\mathrm{IV} = 5 - 1 = 4",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 là giá trị của VI, chữ I đứng sau chữ V."
+          },
+          {
+            "optionId": "d",
+            "text": "9 là giá trị của IX, không phải của IV."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.cham-la-ma-9",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào số La Mã có giá trị 9 trên mặt đồng hồ."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-la-ma",
+        "solutionVisualId": "cach-ghi-so-tu-nhien.visual.giai-dong-ho-9"
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.cham-dong-ho-ix",
+      "answer": [
+        "h9"
+      ],
+      "explain": {
+        "text": "Số 9 viết là IX: chữ I đứng trước chữ X, lấy 10 bớt 1. Trên đồng hồ, số IX nằm bên trái, chỗ kim giờ chỉ 9 giờ.",
+        "tex": "\\mathrm{IX} = 10 - 1 = 9"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chu-gia-tri-10",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chữ nào trong các chữ sau có giá trị 10?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "I"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "V"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "X"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "IV"
+          }
+        }
+      ],
+      "answer": [
+        "c"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Các chữ I, V, X có giá trị 1, 5, 10. Vậy chữ X có giá trị 10.",
+        "tex": "\\mathrm{X} = 10",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ V có giá trị 5, chỉ bằng một nửa của 10."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.thanh-phan-lon-hon-4",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả thành phần có giá trị lớn hơn 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "I"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "IV"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "V"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "IX"
+          }
+        }
+      ],
+      "answer": [
+        "c",
+        "d"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Giá trị của I, IV, V, IX lần lượt là 1, 4, 5, 9. Chỉ V và IX lớn hơn 4.",
+        "tex": "1, \\quad 4, \\quad 5, \\quad 9",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "IV có giá trị đúng bằng 4, không lớn hơn 4."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dien-gia-tri-ix",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Cụm IX có giá trị bằng "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "9"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "explain": {
+        "text": "Trong cụm IX, chữ I đứng trước chữ X nên lấy 10 bớt 1. Vậy giá trị là 9.",
+        "tex": "\\mathrm{IX} = 10 - 1 = 9"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.doc-gio-x",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Kim giờ của đồng hồ treo tường chỉ vào chữ X. Bây giờ là mấy giờ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 10
+      },
+      "check": {
+        "expr": "10"
+      },
+      "explain": {
+        "text": "Chữ X có giá trị 10. Kim giờ chỉ vào X nghĩa là 10 giờ.",
+        "tex": "\\mathrm{X} = 10"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.doc-xii",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đọc số La Mã sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{XII}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "12"
+      },
+      "explain": {
+        "text": "Tách XII thành X, I, I rồi cộng giá trị: 10 + 1 + 1.",
+        "tex": "\\mathrm{XII} = 10 + 1 + 1 = 12"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.doc-xxiii",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.doc-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đọc số La Mã sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{XXIII}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 23
+      },
+      "check": {
+        "expr": "23"
+      },
+      "explain": {
+        "text": "Tách XXIII thành X, X, I, I, I rồi cộng giá trị: 10 + 10 + 1 + 1 + 1.",
+        "tex": "\\mathrm{XXIII} = 10 + 10 + 1 + 1 + 1 = 23"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.doc-xviii",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.doc-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đọc số La Mã sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{XVIII}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 18
+      },
+      "check": {
+        "expr": "18"
+      },
+      "explain": {
+        "text": "Tách XVIII thành X, V, I, I, I rồi cộng giá trị: 10 + 5 + 1 + 1 + 1.",
+        "tex": "\\mathrm{XVIII} = 10 + 5 + 1 + 1 + 1 = 18"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.doc-gio-xi",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.doc-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đồng hồ treo tường có kim giờ chỉ vào số sau. Bây giờ là mấy giờ?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{XI}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 11
+      },
+      "check": {
+        "expr": "11"
+      },
+      "explain": {
+        "text": "XI là X rồi đến I, nên chữ I đứng sau và được cộng thêm: 10 + 1. Vậy bây giờ là 11 giờ.",
+        "tex": "\\mathrm{XI} = 10 + 1 = 11"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-la-ma-lon-hon-20",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.doc-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số La Mã có giá trị lớn hơn 20."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XXII}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XIX}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XXV}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XVI}"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Đọc từng số: XXII là 22, XIX là 19, XXV là 25, XVI là 16. Chỉ 22 và 25 lớn hơn 20.",
+        "tex": "22, \\quad 19, \\quad 25, \\quad 16",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "XIX = 10 + 9 = 19, bé hơn 20."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.la-ma-bang-14",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.doc-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số La Mã nào có giá trị 14?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XIV}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XVI}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XXIV}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XI}"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "XIV gồm X và cụm IV: 10 + 4 = 14. Các số còn lại có giá trị khác.",
+        "tex": "\\mathrm{XIV} = 10 + 4 = 14",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "XVI là 10 + 5 + 1 = 16."
+          },
+          {
+            "optionId": "c",
+            "text": "XXIV là 10 + 10 + 4 = 24."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-viet-13",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 13 viết bằng số La Mã như thế nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XIII}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XIIII}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{IIIX}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XVI}"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "13 gồm 10 và 3. Viết 10 là X, viết 3 là III, rồi ghép lại: XIII.",
+        "tex": "13 = 10 + 3 = \\mathrm{X} + \\mathrm{III} = \\mathrm{XIII}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Chục phải viết trước, đơn vị viết sau, nên không viết III trước X."
+          },
+          {
+            "optionId": "d",
+            "text": "XVI là 16, không phải 13."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.viet-22",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.viet-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Gõ số La Mã vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 22 viết bằng số La Mã là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "XXII"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "explain": {
+        "text": "22 gồm 20 và 2. Viết 20 là XX, viết 2 là II, rồi ghép lại.",
+        "tex": "22 = 20 + 2 = \\mathrm{XX} + \\mathrm{II} = \\mathrm{XXII}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.ghep-23",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.viet-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 23 gồm 20 và 3. Chọn hai thành phần để viết số 23 bằng số La Mã."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 23 viết là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "XX"
+          ]
+        },
+        {
+          "type": "text",
+          "text": " "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": [
+            "III"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": [
+        "X",
+        "XX",
+        "III",
+        "IV",
+        "II",
+        "XXX"
+      ],
+      "explain": {
+        "text": "Chục viết trước: 20 là XX. Đơn vị viết sau: 3 là III.",
+        "tex": "23 = 20 + 3 = \\mathrm{XX} + \\mathrm{III}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.viet-lop-6",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.viet-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn đang học lớp 6. Gõ số La Mã vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số 6 viết bằng số La Mã là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "VI"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "explain": {
+        "text": "6 gồm 5 và 1. Viết 5 là V, viết 1 là I, chữ I đứng sau chữ V.",
+        "tex": "6 = 5 + 1 = \\mathrm{V} + \\mathrm{I} = \\mathrm{VI}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.viet-30",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.viet-so-la-ma"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 30 viết bằng số La Mã như thế nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XXX}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XXIX}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XIX}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{XXV}"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "30 gồm ba chục, mỗi chục viết là X. Vậy 30 viết là XXX.",
+        "tex": "30 = 10 + 10 + 10 = \\mathrm{XXX}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "XXIX là 20 + 9 = 29."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-phep-cong-dung",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả phép cộng đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{III} + \\mathrm{V} = \\mathrm{VIII}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{VII} + \\mathrm{II} = \\mathrm{IX}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{VI} + \\mathrm{IV} = \\mathrm{XI}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{IX} + \\mathrm{I} = \\mathrm{XI}"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Đọc từng số rồi cộng: 3 + 5 = 8 và 7 + 2 = 9, nên hai phép đầu đúng. Còn 6 + 4 = 10 và 9 + 1 = 10, nhưng XI là 11.",
+        "tex": "3 + 5 = 8, \\quad 7 + 2 = 9",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "6 + 4 = 10, mà XI là 11."
+          },
+          {
+            "optionId": "d",
+            "text": "9 + 1 = 10, mà XI là 11."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.doi-1-que",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.que-tinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "12 que xếp thành IV + V = XI là phép cộng sai. Chọn tất cả phép cộng đúng có thể có khi đổi chỗ đúng 1 que."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.que-goc"
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{VI} + \\mathrm{V} = \\mathrm{XI}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{IV} + \\mathrm{V} = \\mathrm{IX}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{IV} + \\mathrm{V} = \\mathrm{XI}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathrm{VI} + \\mathrm{V} = \\mathrm{IX}"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "VI + V = XI đúng vì 6 + 5 = 11, và IV + V = IX đúng vì 4 + 5 = 9. Phép IV + V = XI là phép sai ban đầu, còn VI + V = IX có 6 + 5 = 11 không bằng 9.",
+        "tex": "6 + 5 = 11, \\quad 4 + 5 = 9",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "4 + 5 = 9 nhưng XI là 11, nên phép cộng này sai."
+          },
+          {
+            "optionId": "d",
+            "text": "6 + 5 = 11 nhưng IX là 9, nên phép cộng này sai."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.ix-cong-v",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.que-tinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép cộng sau đúng hay sai?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{IX} + \\mathrm{V} = \\mathrm{XIV}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "đúng"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "sai"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "IX là 9, V là 5 và XIV là 14. Vì 9 + 5 = 14 nên phép cộng đúng.",
+        "tex": "9 + 5 = 14",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai vế đều bằng 14, nên phép cộng này đúng."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.vii-cong-v",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.que-tinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép cộng sau đúng hay sai?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{VII} + \\mathrm{V} = \\mathrm{XI}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "đúng"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "sai"
+          }
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "VII là 7, V là 5 nên tổng là 12. Mà XI là 11, nên phép cộng sai.",
+        "tex": "7 + 5 = 12 \\neq 11",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "7 + 5 = 12, không bằng 11."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.vi-cong-iv",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.que-tinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính giá trị của vế trái."
+        },
+        {
+          "type": "formula",
+          "tex": "\\mathrm{VI} + \\mathrm{IV}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 10
+      },
+      "check": {
+        "expr": "10"
+      },
+      "explain": {
+        "text": "VI là 6 và IV là 4. Cộng lại được 10.",
+        "tex": "6 + 4 = 10"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.lon-nhat-4-chu-so",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số tự nhiên lớn nhất có bốn chữ số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 9999
+      },
+      "check": {
+        "expr": "9999"
+      },
+      "explain": {
+        "text": "Số lớn nhất thì tất cả chữ số đều là 9. Số có bốn chữ số nên viết bốn chữ số 9.",
+        "tex": "9\\,999"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.be-nhat-4-chu-so",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.lon-be-nhat"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số tự nhiên bé nhất có bốn chữ số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 1000
+      },
+      "check": {
+        "expr": "1000"
+      },
+      "explain": {
+        "text": "Số bé nhất có chữ số đầu là 1, rồi đến các chữ số 0. Số có bốn chữ số nên là 1, 0, 0, 0.",
+        "tex": "1\\,000"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.lon-nhat-7-chu-so",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.lon-be-nhat"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số tự nhiên lớn nhất có bảy chữ số."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 9999999
+      },
+      "check": {
+        "expr": "9999999"
+      },
+      "explain": {
+        "text": "Số lớn nhất thì tất cả chữ số đều là 9. Số có bảy chữ số nên viết bảy chữ số 9.",
+        "tex": "9\\,999\\,999"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.be-nhat-5-chu-so",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.lon-be-nhat"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là số bé nhất có năm chữ số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "10 000"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "99 999"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "10 001"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "1 000"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Số bé nhất có năm chữ số bắt đầu bằng 1, rồi đến bốn chữ số 0. Đó là 10 000.",
+        "tex": "10\\,000",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "99 999 là số lớn nhất có năm chữ số."
+          },
+          {
+            "optionId": "d",
+            "text": "1 000 chỉ có bốn chữ số."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.so-nha-lon-nhat",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.lon-be-nhat"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nhà trong một con ngõ nhỏ có nhiều nhất ba chữ số. Số nhà lớn nhất có thể là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 999
+      },
+      "check": {
+        "expr": "999"
+      },
+      "explain": {
+        "text": "Số lớn nhất có ba chữ số là số có ba chữ số 9. Vậy số nhà lớn nhất là 999.",
+        "tex": "999"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.lon-nhat-khac-nhau-3",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là số lớn nhất có ba chữ số khác nhau?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "999"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "987"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "897"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "978"
+          }
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Các chữ số phải khác nhau, nên viết 9 rồi 8 rồi 7 từ trái sang phải. Số đó là 987.",
+        "tex": "9 > 8 > 7 \\to 987",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "999 có ba chữ số giống nhau, không phải ba chữ số khác nhau."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.lon-nhat-khac-nhau-5",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so-khac-nhau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số tự nhiên lớn nhất có năm chữ số khác nhau."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 98765
+      },
+      "check": {
+        "expr": "98765"
+      },
+      "explain": {
+        "text": "Viết các chữ số từ lớn đến bé: 9, 8, 7, 6, 5. Số đó là 98 765.",
+        "tex": "9 > 8 > 7 > 6 > 5 \\to 98\\,765"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.be-nhat-khac-nhau-5",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so-khac-nhau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số tự nhiên bé nhất có năm chữ số khác nhau."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 10234
+      },
+      "check": {
+        "expr": "10234"
+      },
+      "explain": {
+        "text": "Chữ số đầu là 1, rồi đến 0, rồi các chữ số tăng dần là 2, 3, 4. Số đó là 10 234.",
+        "tex": "1, 0, 2, 3, 4 \\to 10\\,234"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.lon-nhat-khac-nhau-6",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so-khac-nhau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết số tự nhiên lớn nhất có sáu chữ số khác nhau."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 987654
+      },
+      "check": {
+        "expr": "987654"
+      },
+      "explain": {
+        "text": "Viết các chữ số từ lớn đến bé: 9, 8, 7, 6, 5, 4. Số đó là 987 654.",
+        "tex": "9 > 8 > 7 > 6 > 5 > 4 \\to 987\\,654"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.lon-nhat-khac-nhau-2",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.chu-so-khac-nhau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là số lớn nhất có hai chữ số khác nhau?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "99"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "98"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "89"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "97"
+          }
+        }
+      ],
+      "answer": [
+        "b"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Viết 9 trước, chữ số sau phải khác 9 và lớn nhất, đó là 8. Số đó là 98.",
+        "tex": "9 > 8 \\to 98",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "99 có hai chữ số giống nhau."
+          },
+          {
+            "optionId": "d",
+            "text": "97 bé hơn 98, vì chữ số thứ hai 7 bé hơn 8."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-0-38",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 0 vào bên phải số 38. Bạn được số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 380
+      },
+      "check": {
+        "expr": "380"
+      },
+      "explain": {
+        "text": "Viết thêm chữ số 0 vào bên phải thì mỗi chữ số lùi sang trái một hàng. Số 38 thành 380, gấp 10 lần.",
+        "tex": "38 \\to 380 = 38 \\cdot 10"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-1-482",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-dau-cuoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 1 vào bên trái số 482. Bạn được số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1 482"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4 821"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "483"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "10 482"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "1000+482"
+      },
+      "explain": {
+        "text": "Chữ số 1 đứng bên trái số có ba chữ số, nên ở hàng nghìn. Số mới là 1 000 + 482 = 1 482.",
+        "tex": "1\\,000 + 482 = 1\\,482",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "4 821 là viết thêm chữ số 1 vào bên phải."
+          },
+          {
+            "optionId": "d",
+            "text": "10 482 có năm chữ số, nhiều hơn một chữ số so với đáp án đúng."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gia-25-them-0",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-dau-cuoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Giá một hộp bút là 25 nghìn đồng. Bạn viết nhầm thêm chữ số 0 vào bên phải số 25: số mới là bao nhiêu nghìn đồng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 250
+      },
+      "check": {
+        "expr": "25·10"
+      },
+      "explain": {
+        "text": "Viết thêm chữ số 0 vào bên phải thì số gấp lên 10 lần. 25 nghìn thành 250 nghìn đồng.",
+        "tex": "25 \\to 250 = 25 \\cdot 10"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-1-306",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-dau-cuoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 1 vào bên trái số 306. Bạn được số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 1306
+      },
+      "check": {
+        "expr": "1000+306"
+      },
+      "explain": {
+        "text": "Chữ số 1 ở hàng nghìn nên cộng thêm 1 000 vào số 306. Số mới là 1 306.",
+        "tex": "1\\,000 + 306 = 1\\,306"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.gap-10-lan-64",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-dau-cuoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào gấp 10 lần số 64?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "640"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6 400"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "604"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "164"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "64·10"
+      },
+      "explain": {
+        "text": "Gấp 10 lần thì viết thêm chữ số 0 vào bên phải. Số 64 thành 640.",
+        "tex": "64 \\cdot 10 = 640",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 400 gấp 100 lần số 64, vì viết thêm hai chữ số 0."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-4-vao-8152",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 4 vào số 8 152 để được số lớn nhất. Chạm vào chỗ viết chữ số 4."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-them-lon",
+        "solutionVisualId": "cach-ghi-so-tu-nhien.visual.giai-them-8152"
+      },
+      "difficulty": 1,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.chen-8152",
+      "answer": [
+        "g1"
+      ],
+      "explain": {
+        "text": "Đọc các chữ số từ trái sang phải. Chữ số 8 lớn hơn 4 nên đi tiếp, chữ số 1 bé hơn 4 nên viết 4 trước chữ số 1.",
+        "tex": "84\\,152"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-5-vao-7308",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-lon-be"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 5 vào số 7 308 để được số lớn nhất. Chạm vào chỗ viết chữ số 5."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-them-lon",
+        "solutionVisualId": "cach-ghi-so-tu-nhien.visual.giai-them-7308"
+      },
+      "difficulty": 2,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.chen-7308",
+      "answer": [
+        "g1"
+      ],
+      "explain": {
+        "text": "Chữ số 7 lớn hơn 5 nên đi tiếp. Chữ số 3 là chữ số đầu tiên bé hơn 5, nên viết 5 trước chữ số 3.",
+        "tex": "75\\,308"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-4-vao-2915",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-lon-be"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn Nam muốn viết thêm chữ số 4 vào số nhà 2 915 để số nhà bé nhất. Chạm vào chỗ viết chữ số 4."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-them-be"
+      },
+      "difficulty": 2,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.chen-2915",
+      "answer": [
+        "g1"
+      ],
+      "explain": {
+        "text": "Chữ số 2 bé hơn 4 nên đi tiếp. Chữ số 9 là chữ số đầu tiên lớn hơn 4, nên viết 4 trước chữ số 9.",
+        "tex": "2\\,\\mathbf{4}\\,915 = 24\\,915"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-1-vao-9863",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-lon-be"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 1 vào số 9 863 để được số lớn nhất. Chạm vào chỗ viết chữ số 1."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "cach-ghi-so-tu-nhien.visual.goi-y-them-lon"
+      },
+      "difficulty": 2,
+      "type": "tapRegion",
+      "visualId": "cach-ghi-so-tu-nhien.visual.chen-9863",
+      "answer": [
+        "g4"
+      ],
+      "explain": {
+        "text": "Cả bốn chữ số 9, 8, 6, 3 đều lớn hơn 1, nên không có chữ số nào bé hơn 1. Khi đó viết chữ số 1 ở cuối số.",
+        "tex": "98\\,631"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-7-vao-4215",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-lon-be"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 7 vào số 4 215 để được số lớn nhất. Số đó là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 74215
+      },
+      "check": {
+        "expr": "74215"
+      },
+      "explain": {
+        "text": "Chữ số đầu tiên là 4, bé hơn 7. Nên viết 7 ngay trước chữ số 4, được 74 215.",
+        "tex": "7\\,4215 \\to 74\\,215"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.them-3-vao-5124",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.them-lon-be"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết thêm chữ số 3 vào số 5 124 để được số bé nhất. Số đó là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 35124
+      },
+      "check": {
+        "expr": "35124"
+      },
+      "explain": {
+        "text": "Chữ số đầu tiên là 5, lớn hơn 3. Nên viết 3 ngay trước chữ số 5, được 35 124.",
+        "tex": "3\\,5124 \\to 35\\,124"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-hon-2",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số có hai chữ số mà chữ số hàng đơn vị hơn chữ số hàng chục là 2."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "35"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "53"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Lấy chữ số hàng đơn vị trừ chữ số hàng chục phải được 2. Số 13 có 3 − 1 = 2, số 35 có 5 − 3 = 2.",
+        "tex": "3 - 1 = 2, \\quad 5 - 3 = 2",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Ở số 53 chữ số hàng đơn vị bé hơn chữ số hàng chục."
+          },
+          {
+            "optionId": "d",
+            "text": "Ở số 45 chữ số hàng đơn vị chỉ hơn 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-hon-7",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-hai-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có bao nhiêu số có hai chữ số mà chữ số hàng đơn vị hơn chữ số hàng chục là 7?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "check": {
+        "expr": "2"
+      },
+      "explain": {
+        "text": "Hàng chục là 1 thì hàng đơn vị là 8, hàng chục là 2 thì hàng đơn vị là 9. Hàng chục từ 3 trở lên thì hàng đơn vị lớn hơn 9, không được. Có hai số là 18 và 29.",
+        "tex": "18, \\quad 29"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-chuc-gap-3",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-hai-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số có hai chữ số mà chữ số hàng chục gấp 3 lần chữ số hàng đơn vị."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "31"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "62"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "93"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Chữ số hàng đơn vị là 1, 2 hoặc 3 thì chữ số hàng chục là 3, 6 hoặc 9. Đó là các số 31, 62 và 93.",
+        "tex": "3 = 3 \\cdot 1, \\quad 6 = 3 \\cdot 2, \\quad 9 = 3 \\cdot 3",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "Ở số 13 chữ số hàng đơn vị mới gấp 3 lần chữ số hàng chục."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.tap-hop-gap-2",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-hai-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Gọi B là tập hợp các số có hai chữ số mà chữ số hàng đơn vị gấp 2 lần chữ số hàng chục. Tập hợp nào viết đúng B?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{12; 24; 36; 48\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{21; 42; 63; 84\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{12; 24; 36\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{11; 22; 33; 44\\}"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Hàng chục là 1, 2, 3, 4 thì hàng đơn vị là 2, 4, 6, 8. Hàng chục là 5 thì hàng đơn vị là 10, không được.",
+        "tex": "\\{12; 24; 36; 48\\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Trong tập hợp này chữ số hàng chục gấp 2 lần hàng đơn vị, ngược với đề."
+          },
+          {
+            "optionId": "c",
+            "text": "Còn thiếu số 48."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.so-nha-hang-chuc-gap-3",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.so-hai-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nhà của bạn Mai có hai chữ số, chữ số hàng chục gấp 3 lần chữ số hàng đơn vị. Tổng hai chữ số là 4, vậy số nhà là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 31
+      },
+      "check": {
+        "expr": "31"
+      },
+      "explain": {
+        "text": "Các số có hàng chục gấp 3 lần hàng đơn vị là 31, 62 và 93. Chỉ số 31 có tổng hai chữ số là 4.",
+        "tex": "3 + 1 = 4"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.tap-chu-so-4044",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập các chữ số của số 4 044 là tập hợp nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0; 4\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{4\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0; 4; 8\\}"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Số 4 044 chỉ có hai chữ số khác nhau là 4 và 0. Mỗi chữ số chỉ viết một lần trong tập hợp.",
+        "tex": "4\\,044 \\to \\{0; 4\\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số này còn có chữ số 0."
+          },
+          {
+            "optionId": "d",
+            "text": "Số này không có chữ số 8."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-so-tap-136",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tap-cac-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số có ba chữ số mà tập các chữ số là {1; 3; 6}."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "136"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "361"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "613"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "663"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Số phải có đủ ba chữ số 1, 3 và 6, mỗi chữ số một lần. Ba số 136, 361 và 613 đều như vậy.",
+        "tex": "\\{1; 3; 6\\}",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "Số 663 không có chữ số 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-so-tap-078",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tap-cac-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có bao nhiêu số có ba chữ số mà tập các chữ số là {0; 7; 8}?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "4"
+      },
+      "explain": {
+        "text": "Hàng trăm không là 0 nên là 7 hoặc 8. Hàng trăm là 7 thì có 708 và 780, hàng trăm là 8 thì có 807 và 870. Có 4 số.",
+        "tex": "\\{708; 780; 807; 870\\}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-so-tap-29",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tap-cac-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số có tập các chữ số là {2; 9}."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "292"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9 922"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "239"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "99"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Số phải chỉ có chữ số 2 và chữ số 9, và có đủ cả hai. Hai số 292 và 9 922 như vậy.",
+        "tex": "\\{2; 9\\}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Số 239 có thêm chữ số 3."
+          },
+          {
+            "optionId": "d",
+            "text": "Số 99 không có chữ số 2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.mat-khau-3-6",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tap-cac-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mật khẩu của một chiếc cặp có hai chữ số, mỗi chữ số là 3 hoặc 6. Có bao nhiêu mật khẩu như vậy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "4"
+      },
+      "explain": {
+        "text": "Liệt kê theo hàng chục: hàng chục là 3 thì có 33 và 36, hàng chục là 6 thì có 63 và 66. Có 4 mật khẩu.",
+        "tex": "\\{33; 36; 63; 66\\}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-tong-2",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có bao nhiêu số có ba chữ số mà tổng các chữ số bằng 2?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      },
+      "explain": {
+        "text": "Hàng trăm là 1 thì hai chữ số còn lại có tổng 1, được 101 và 110. Hàng trăm là 2 thì hai chữ số còn lại là 0, được 200. Có 3 số.",
+        "tex": "\\{101; 110; 200\\}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.chon-tong-4",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả số có ba chữ số mà tổng các chữ số bằng 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "202"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "121"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "304"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "410"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "explain": {
+        "text": "Cộng các chữ số của từng số: 2 + 0 + 2 = 4 và 1 + 2 + 1 = 4. Hai số 202 và 121 có tổng bằng 4.",
+        "tex": "2 + 0 + 2 = 4, \\quad 1 + 2 + 1 = 4",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "3 + 0 + 4 = 7, không phải 4."
+          },
+          {
+            "optionId": "d",
+            "text": "4 + 1 + 0 = 5, không phải 4."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.dem-tong-5-hang-tram-3",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có bao nhiêu số có ba chữ số, hàng trăm là 3 và tổng các chữ số bằng 5?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      },
+      "explain": {
+        "text": "Hàng trăm là 3 nên hai chữ số còn lại có tổng bằng 2. Các cặp là 0 và 2, 1 và 1, 2 và 0, được 302, 311 và 320.",
+        "tex": "\\{302; 311; 320\\}"
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.tap-hop-tong-2",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp nào liệt kê đúng các số có ba chữ số mà tổng các chữ số bằng 2?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{101; 110; 200\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{101; 110\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{002; 011; 020; 101; 110; 200\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{101; 110; 200; 020\\}"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "explain": {
+        "text": "Ba số 101, 110, 200 đều có tổng các chữ số bằng 2. Một số có ba chữ số thì chữ số hàng trăm không được là 0.",
+        "tex": "\\{101; 110; 200\\}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Còn thiếu số 200."
+          },
+          {
+            "optionId": "c",
+            "text": "Các số như 011 có chữ số hàng trăm là 0, không phải số có ba chữ số."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.ex.so-nha-tong-1",
+      "cardIds": [
+        "cach-ghi-so-tu-nhien.card.tong-chu-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nhà của một cửa hàng có ba chữ số và tổng các chữ số bằng 1. Số nhà đó là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 100
+      },
+      "check": {
+        "expr": "100"
+      },
+      "explain": {
+        "text": "Chữ số hàng trăm không được là 0, nên ít nhất là 1. Tổng bằng 1 nên hai chữ số còn lại đều là 0, được số 100.",
+        "tex": "1 + 0 + 0 = 1"
+      }
+    }
+  ],
+  "sticker": {
+    "name": "Huy chương ghi số",
+    "visualId": "cach-ghi-so-tu-nhien.visual.sticker"
+  }
+}

@@ -297,6 +297,35 @@
       "prerequisite": "tiểu học"
     },
     {
+      "term": "chữ số",
+      "forbidden": [],
+      "color": "blue"
+    },
+    {
+      "term": "hàng",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "giá trị của chữ số",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "số La Mã",
+      "forbidden": [],
+      "color": "sky"
+    },
+    {
+      "term": "chữ số viết thêm",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "hệ thập phân",
+      "forbidden": []
+    },
+    {
       "term": "số hoàn hảo",
       "forbidden": []
     },
@@ -321,5 +350,5 @@
       "prerequisite": "tiểu học"
     }
   ],
-  "names": ["ƯC", "ƯCLN", "Ư", "BC", "BCNN", "B", "II"]
+  "names": ["ƯC", "ƯCLN", "Ư", "BC", "BCNN", "B", "II", "ℕ", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX"]
 }
