@@ -81,6 +81,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm shots:sheet <thư mục\|tệp\|mẫu>… [--cols N] [--out <tiền tố>] [--width PX] [--height PX]` | Ghép ảnh chụp thành contact sheet, mỗi ô in tên tệp, tự chia nhiều sheet; đọc một sheet thay cho nhiều ảnh (cần `ffmpeg`) |
 | `pnpm video:build <bài> <video>` / `pnpm video:check` | Dựng video / kiểm video đã dựng |
 | `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài, bằng giọng Gemini của bài (nam/nữ theo `media.json`); cần key ở `~/.config/gemini/api_key*`; hết hạn mức thì đọc lại cả bài bằng giọng VieNeu |
+| `pnpm brand:images` | Vẽ lại icon cú mèo (app, Màn hình chính, favicon) và ảnh xem trước link vào `public/brand/` từ `assets/brand/owl.svg` (chỉ khi đổi cú, màu hoặc chữ trên ảnh) |
 | `pnpm sounds:build` | Âm thanh dùng chung của app (chỉ khi đổi câu thoại) |
 | `pnpm media:upload <bài>… \| --all [--dry-run]` | Tải media của bài (`public/media/video\|narration/<bài>/`) lên bucket R2 với `Content-Type` đúng, bỏ qua tệp đã giống hệt; ghi ra ngoài máy, chỉ chạy khi chủ dự án đồng ý |
 | `pnpm deploy:prod [--dry-run]` | Deploy `HEAD` lên Vercel production từ worktree sạch rồi kiểm nhanh (chuyển về mở khoá, 401, đăng nhập, index 200, media 206); ghi ra ngoài máy, chỉ chạy khi chủ dự án đồng ý. Quy trình đầy đủ: `docs/operations.md`, "Đưa bài mới lên production" |

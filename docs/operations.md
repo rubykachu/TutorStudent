@@ -282,6 +282,16 @@ curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/dev/mascot"
 
 Cần thấy `307` về `/unlock?next=%2F` cùng `x-robots-tag: noindex, nofollow`, tiếp theo `401` cho `/content/index.json` khi chưa có cookie, và `307` cho `/dev/mascot` (sau khi có cookie thì là 404).
 
+Manifest, icon và ảnh xem trước link phải tải được không cần cookie (trình thu thập của Zalo, Facebook không có cookie), còn file khác trong cùng thư mục vẫn bị chặn:
+
+```bash
+curl -s -o /dev/null -w '%{http_code} %{content_type}\n' "$APP_ORIGIN/manifest.webmanifest" "$APP_ORIGIN/brand/share.png" "$APP_ORIGIN/brand/icon-512.png"
+curl -sL "$APP_ORIGIN/" | grep -oE '<meta property="og:(image|title|locale)"[^>]*>'
+curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/brand/other.png"
+```
+
+Cần thấy `200 application/manifest+json`, `200 image/png` hai lần; ba thẻ `og:` với `og:image` là `https://nhaky.vercel.app/brand/share.png`; rồi `401` cho file khác.
+
 ## Kiểm trên iPad Safari
 
 Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN`.
@@ -293,7 +303,10 @@ Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN
 5. Video của bài: bấm phát, hình hiện trước khi phát (poster), phụ đề từng từ chạy đúng nhịp. Kéo thanh tua giữa video và nhảy đến chỗ khác: video tiếp tục từ đó, không treo (kiểm `Range`). Xoay ngang rồi dọc: video vẫn đúng khung. Video dừng ở chỗ hỏi bé ("Xem tiếp") đúng như đã thiết kế.
 6. Tiếng: làm một câu đúng và một câu sai nghe tiếng thưởng và tiếng sai; bấm cú mèo nghe tiếng; tắt rồi bật nút tiếng. Thử cả khi gạt công tắc chuông sang im lặng: tiếng của app vẫn phát (đã đặt phiên âm thanh "playback").
 7. Làm xong một phần, tải lại trang: tiến độ còn (IndexedDB trên máy này). Vào `/parent` đặt PIN, xem báo cáo.
-8. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
+8. Thêm vào Màn hình chính (làm sau cùng, vì app ở đó có dữ liệu riêng, tách khỏi Safari): trong Safari bấm nút Chia sẻ, chọn "Thêm vào Màn hình chính". Tên gợi ý là "Tutor", biểu tượng là cú mèo trên nền xanh, không phải chữ cái hay ảnh chụp trang. Bấm "Thêm".
+9. Mở app từ biểu tượng mới: toàn màn hình, không có thanh địa chỉ của Safari, thanh trạng thái sáng. Lần đầu hỏi mã gia đình (cookie của Safari không sang đây): gõ mã, vào trang "Chào bạn mới!" vì hồ sơ tạo trong Safari không có ở đây. Tạo hồ sơ, đóng app, mở lại: vào thẳng, không hỏi mã. Cần mạng như mở trong Safari (chưa có chế độ offline).
+10. Gửi link `APP_ORIGIN` cho chính mình bằng Zalo, Messenger hoặc iMessage: hiện thẻ có ảnh cú mèo cạnh chữ Tutor, tiêu đề "Tutor: tự học lớp 6 cùng bạn cú" và mô tả tiếng Việt. Facebook lưu thẻ cũ rất lâu: sau khi đổi ảnh hay chữ, dán link vào Sharing Debugger của Facebook (developers.facebook.com/tools/debug) và bấm "Scrape Again".
+11. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
 
 ## Đổi mã gia đình
 
