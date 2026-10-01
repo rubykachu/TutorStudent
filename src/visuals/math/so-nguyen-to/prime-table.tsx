@@ -84,7 +84,7 @@ function Grid() {
         role="img"
         aria-label={TITLE}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        className="h-auto max-h-[50vh] w-full max-w-[460px]"
+        className="h-auto max-h-[32vh] w-full max-w-[460px]"
       >
         {NUMBERS.map((n) => (
           <Cell key={n} n={n} />
