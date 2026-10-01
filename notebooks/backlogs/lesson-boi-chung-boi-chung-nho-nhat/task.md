@@ -1,9 +1,9 @@
 # Bàn giao: Bài 12 `boi-chung-boi-chung-nho-nhat` (Bội chung. Bội chung nhỏ nhất)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. **Đã xuất bản** (`status: published`, id đã khoá, `lesson:walk` 0 FAIL). Lời đọc và 3 video đã dựng (xem mục "Lời đọc và video"), chờ review vòng chỉ phần đổi.
+- Cập nhật cuối: 01/10/2026. **Đã xuất bản** (`status: published`, id đã khoá, `lesson:walk` 0 FAIL). Lời đọc và 3 video đã dựng (xem mục "Lời đọc và video") và đã review vòng 4 chỉ phần đổi (0 Nghiêm trọng, 2 Góp ý giữ nguyên), đã `content:hash --approve` và `content:lock`.
 - Review: vòng 1 (8 Nghiêm trọng), vòng 2 (5 Nghiêm trọng, 16 Nên sửa, 20 Góp ý) và vòng 3 chỉ phần đổi (Sonnet, 0 Nghiêm trọng, 2 Nên sửa, 3 Góp ý) đã sửa hết phần Nghiêm trọng và Nên sửa; vòng 3 đã áp luôn 2 Nên sửa và 3 Góp ý. Còn bỏ ngỏ (Góp ý vòng 2, không chặn): 3, 4, 6, 7, 10, 16, 20; việc của app: nhãn ô đếm thiếu đơn vị ("1 chuyến") và phép kiểm `solveMeet` nằm trong `ROUND_RANGE` cho mọi bài dùng `gap-nhau`.
-- Việc tiếp theo: review vòng chỉ phần đổi (subagent mới, Sonnet) cho 3 khối `video` và `overview.narration`, rồi `pnpm content:lock boi-chung-boi-chung-nho-nhat` (đang báo 3 id video chưa khoá) và `pnpm lesson:walk`; sửa nội dung bài sau khi xuất bản đổi hash nên cần review lại. Ôn tập chương II (`on-tap-chuong-2`) phải soát lại các câu BCNN theo Bài 12 (cặp số, cách nói quy tắc "nhiều nhất" của ƯCLN, mẹo `chon-cong-cu`).
+- Việc tiếp theo: tải media lên R2 và deploy (`pnpm media:upload boi-chung-boi-chung-nho-nhat`, `pnpm deploy:prod`) khi chủ dự án đồng ý; chưa lưu trữ thư mục này vì còn Góp ý vòng 2 bỏ ngỏ và việc của app ở trên. `on-tap-chuong-2` đã soát lại theo Bài 12 (vòng 5).
 - Số mới ở vòng 1 cần reviewer vòng 3 soát lại: `chon-bc-4-15-nho-hon-200`, `ba-chu-so-7-9`, `dien-bc-56`, `khong-la-bc-4-9`, `dien-bcnn-28`, `hai-chu-so-8-10`, `tim-loi-bcnn-3-4-8`, `chon-dang-24-40`, `hang-2-3-5-du-1`; hình bánh răng mới `gears.tsx`.
 
 ## Lời đọc và video (01/10/2026)
@@ -15,7 +15,7 @@
   - `phan-tich` (phần `bcnn-phan-tich`), 56,6 giây, 10 câu, dừng ở 18,3 s và 44,1 s: 12 = 2² · 3 và 18 = 2 · 3², khoanh số mũ lớn nhất mỗi cột, BCNN 36.
 - Whisper dưới 97% (đều do Whisper nghe chữ cái): `xe-buyt` "Xe B cứ 8 phút có một chuyến." 96,8% (nghe "xe bề"), "Bội chung viết tắt là BC." 95,8% (nghe "mỗi trung"; câu quy tắc giữ nguyên văn nên không đổi chữ).
 - Số dùng trong video (9 và 12, 12 và 18, 6 và 8) là ví dụ của hình trong bài; không dùng số của bài tập tự làm (10 và 15, 20 và 30, 4 và 6).
-- Chưa chạy `lesson:walk` sau khi gắn video.
+- `lesson:walk` sau khi gắn video: 0 failures, 0 cảnh báo (01/10/2026). Whisper `Xe B…` và `Bội chung viết tắt là BC.`: chữ cái rõ (`spoken` đã là "bê-xê", chữ B ở câu khác nghe đúng), giữ nguyên, không thêm `say`.
 
 ## Nguồn (sách bài tập, `sources/math/boi-chung-boi-chung-nho-nhat/`, không commit)
 - Đề: tr.41–43 in (PDF 42–44), tệp `sbt-p41.png`, `sbt-p42.png`, `sbt-p43.png`. "Ôn tập chương II" bắt đầu ở tr.44.
