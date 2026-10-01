@@ -11,7 +11,8 @@
   },
   "title": "Dấu hiệu chia hết",
   "sourceRef": "Sách bài tập tr.33–34",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "aba13db65c55e1c752300744c2222c97c402d1558c6474aa9cf6a1388b181346",
   "overview": {
     "hook": {
       "text": "Mẹ nhờ bạn xem 135 nghìn đồng đổi hết ra tờ 5 nghìn đồng được không. Chỉ cần nhìn chữ số tận cùng là bạn biết ngay."
@@ -2069,7 +2070,7 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Không, vì 5 884 có chữ số tận cùng là 4"
+            "text": "Có, vì 5 884 có chữ số tận cùng là 4"
           }
         },
         {
