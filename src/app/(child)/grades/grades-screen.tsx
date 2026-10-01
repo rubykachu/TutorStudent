@@ -17,7 +17,7 @@ import { ContentError } from "../content-error";
 import { useRequiredProfile } from "../use-required-profile";
 
 const TILE =
-  "relative flex min-h-36 flex-col items-center justify-center gap-1 rounded-lg border-2 p-3 text-center md:min-h-44";
+  "relative flex min-h-32 flex-col items-center justify-center gap-1 rounded-lg border-2 p-3 text-center md:min-h-44";
 
 function GradeTile({
   grade,
@@ -45,7 +45,7 @@ function GradeTile({
       <span className="font-heading font-bold text-title leading-none md:text-title-lg">
         {grade}
       </span>
-      <span className="font-semibold text-caption">Lớp {grade}</span>
+      <span className="sr-only">Lớp {grade}</span>
       {open ? (
         current && (
           <span
@@ -56,10 +56,17 @@ function GradeTile({
           </span>
         )
       ) : (
-        <span className="inline-flex items-center gap-1 text-caption text-muted-foreground">
-          <Lock aria-hidden className="size-4 shrink-0" />
-          Sắp ra mắt
-        </span>
+        <>
+          <span
+            data-lock
+            className="absolute top-2 right-2 flex size-7 items-center justify-center rounded-full bg-muted text-muted-foreground"
+          >
+            <Lock aria-hidden className="size-4" strokeWidth={2.5} />
+          </span>
+          <span className="whitespace-nowrap text-caption text-muted-foreground">
+            Sắp ra mắt
+          </span>
+        </>
       )}
     </>
   );

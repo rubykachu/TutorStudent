@@ -1,5 +1,6 @@
 "use client";
 
+import { Lock } from "lucide-react";
 import { type FormEvent, useEffect, useId, useState } from "react";
 import {
   AVATARS,
@@ -113,7 +114,7 @@ export function ProfileForm({
                 className={`flex min-h-touch items-center justify-center rounded-lg border-2 font-heading font-bold text-block md:text-block-lg ${
                   open
                     ? "cursor-pointer border-border bg-surface transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none has-checked:border-primary has-checked:bg-primary has-checked:text-primary-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring"
-                    : "border-border bg-muted text-muted-foreground"
+                    : "relative border-border border-dashed bg-muted text-muted-foreground"
                 }`}
               >
                 <input
@@ -127,6 +128,14 @@ export function ProfileForm({
                   aria-label={`Lớp ${option}${open ? "" : ", sắp ra mắt"}`}
                 />
                 <span aria-hidden>{option}</span>
+                {!open && (
+                  <Lock
+                    aria-hidden
+                    data-lock
+                    className="absolute top-1 right-1 size-3"
+                    strokeWidth={2.5}
+                  />
+                )}
               </label>
             );
           })}

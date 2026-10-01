@@ -215,21 +215,23 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
       <header className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
           <AvatarButton avatar={profile.avatar} childId={profile.id} />
-          <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
-            Chào {profile.name}!
-          </h1>
+          <div className="flex min-w-0 flex-col items-start gap-1">
+            <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
+              Chào {profile.name}!
+            </h1>
+            <Link
+              href={GRADES_PATH}
+              aria-label={`Lớp ${profile.grade}, đổi lớp`}
+              data-grade-chip
+              className="flex min-h-touch w-fit shrink-0 items-center justify-center gap-1.5 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+            >
+              <GraduationCap aria-hidden className="size-5 shrink-0" />
+              <span aria-hidden>Lớp {profile.grade}</span>
+            </Link>
+          </div>
         </div>
         {/* The sound switch ends the row, where every screen keeps it. */}
         <div className="flex shrink-0 items-center gap-2">
-          <Link
-            href={GRADES_PATH}
-            aria-label={`Lớp ${profile.grade}, đổi lớp`}
-            data-grade-chip
-            className="flex h-12 shrink-0 items-center justify-center gap-1.5 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
-          >
-            <GraduationCap aria-hidden className="size-5 shrink-0" />
-            <span aria-hidden>Lớp {profile.grade}</span>
-          </Link>
           <Link
             href={PROFILES_PATH}
             // Avatar only on a phone, so the greeting keeps one line; the name
