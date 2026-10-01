@@ -46,7 +46,7 @@ export function Ladder({ spec }: { spec: LadderSpec }) {
   const { n, mode } = spec;
   const hint = mode === "hint";
   const rows = ladderRows(n);
-  const label = `Phân tích ${n} ra thừa số nguyên tố bằng cách chia dần`;
+  const label = `Phân tích ${n} ra thừa số nguyên tố bằng sơ đồ cột`;
   const draw = (step: number) => (
     <div className="flex w-full flex-col items-center gap-4">
       <ul className="flex flex-col" aria-label={`Các bước chia ${n}`}>
@@ -57,7 +57,7 @@ export function Ladder({ spec }: { spec: LadderSpec }) {
                 <span className="min-w-16 border-foreground border-r-4 py-0.5 pr-3 text-right">
                   {value}
                 </span>
-                <span className="min-w-12 py-0.5 pl-3 text-concept-blue">
+                <span className="min-w-12 py-0.5 pl-3 text-concept-sky">
                   {prime ?? ""}
                 </span>
               </div>
@@ -77,7 +77,7 @@ export function Ladder({ spec }: { spec: LadderSpec }) {
           </div>
         </Reveal>
       </div>
-      <Legend items={[{ color: "blue", name: "Thừa số nguyên tố" }]} />
+      <Legend items={[{ color: "sky", name: "Số chia: số nguyên tố" }]} />
     </div>
   );
   if (mode === "still") {

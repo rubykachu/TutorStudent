@@ -70,10 +70,10 @@ export function texInt(n: number): string {
   return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\\,");
 }
 
-// "p^{e}" in TeX, with the base painted blue (prime factor) and the exponent
+// "p^{e}" in TeX, with the base painted sky (prime number) and the exponent
 // violet (exponent); exponent 1 is left out.
 export function texPower(p: number, e: number): string {
-  const base = `\\concept{blue}{${p}}`;
+  const base = `\\concept{sky}{${p}}`;
   return e === 1 ? base : `${base}^{\\concept{violet}{${e}}}`;
 }
 
@@ -87,7 +87,7 @@ export function texFactorisation(n: number): string {
 // "2 · 2 · 3 · 3": the prime factors written one by one.
 export function texFactorList(n: number): string {
   return primeFactors(n)
-    .map((p) => `\\concept{blue}{${p}}`)
+    .map((p) => `\\concept{sky}{${p}}`)
     .join(" \\cdot ");
 }
 

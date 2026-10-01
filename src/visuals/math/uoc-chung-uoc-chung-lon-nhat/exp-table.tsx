@@ -21,7 +21,7 @@ export type ExpTableSpec = { numbers: readonly number[]; mode: Mode };
 function Power({ p, e }: { p: number; e: number }) {
   return (
     <span className="whitespace-nowrap">
-      <span className="text-concept-blue">{p}</span>
+      <span className="text-concept-sky">{p}</span>
       {e > 1 && <sup className="text-body text-concept-violet">{e}</sup>}
     </span>
   );
@@ -73,7 +73,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
         >
           <Row head="Thừa số">
             {primes.map((p) => (
-              <span key={p} className={`${CELL} text-concept-blue`}>
+              <span key={p} className={`${CELL} text-concept-sky`}>
                 {p}
               </span>
             ))}
@@ -86,7 +86,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                 return (
                   <span
                     key={p}
-                    className={`${CELL} ${picked && isShared ? "border-2 border-concept-blue bg-concept-blue/15" : "border-2 border-transparent"} ${picked && !isShared ? "opacity-50" : ""}`}
+                    className={`${CELL} ${picked && isShared ? "border-2 border-concept-sky bg-concept-sky/15" : "border-2 border-transparent"} ${picked && !isShared ? "opacity-50" : ""}`}
                   >
                     {e > 0 ? <Power p={p} e={e} /> : <EmptySlot />}
                   </span>
@@ -104,7 +104,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                 {shared.includes(p) && (
                   <Check
                     aria-label={`${p} có ở mọi số`}
-                    className="size-6 text-concept-blue"
+                    className="size-6 text-concept-sky"
                     strokeWidth={3}
                   />
                 )}
@@ -135,7 +135,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
         </div>
         <Legend
           items={[
-            { color: "blue", name: "Thừa số nguyên tố" },
+            { color: "sky", name: "Số nguyên tố" },
             { color: "violet", name: "Số mũ" },
             ...(done
               ? [{ color: "amber" as const, name: "Ước chung lớn nhất" }]

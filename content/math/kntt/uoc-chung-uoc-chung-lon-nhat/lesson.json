@@ -43,9 +43,9 @@
       "color": "sky"
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.concept.thua-so-nguyen-to",
-      "name": "Thừa số nguyên tố",
-      "color": "blue"
+      "id": "uoc-chung-uoc-chung-lon-nhat.concept.hop-so",
+      "name": "Hợp số",
+      "color": "pink"
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.concept.so-mu",
@@ -55,7 +55,7 @@
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.concept.phan-so-toi-gian",
       "name": "Phân số tối giản",
-      "color": "pink"
+      "color": "blue"
     }
   ],
   "sections": [
@@ -301,7 +301,7 @@
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.nhac-thua-so",
-      "title": "Nhắc lại: phân tích ra thừa số nguyên tố",
+      "title": "Nhắc lại Bài 10: phân tích ra thừa số nguyên tố",
       "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "minutes": 5,
       "blocks": [
@@ -310,12 +310,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Một số lớn hơn 1 mà chỉ chia hết cho 1 và cho chính nó thì gọi là số nguyên tố. Ví dụ 2, 3, 5, 7 và 11 là các số nguyên tố."
+              "text": "Ta gọi một số tự nhiên là số nguyên tố khi nó lớn hơn 1 và chỉ chia hết cho 1 và cho chính nó. Ta gọi một số tự nhiên là hợp số khi nó lớn hơn 1 và có từ ba ước trở lên."
             },
             {
               "type": "visual",
               "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.sn-vi-du",
-              "caption": "7 cái kẹo chỉ chia đều được vào 1 túi hoặc 7 túi. 6 cái kẹo còn chia đều được vào 2 túi hoặc 3 túi."
+              "caption": "7 cái kẹo chỉ chia đều được vào 1 túi hoặc 7 túi. 6 cái kẹo chia đều được vào 1, 2, 3 hoặc 6 túi."
             }
           ]
         },
@@ -324,7 +324,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chia dần: chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố; nhân chúng lại thì được số ban đầu."
+              "text": "Muốn phân tích một số bằng sơ đồ cột, ta chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết. Ta chia tiếp thương tới khi được 1, các số chia là các thừa số nguyên tố."
             },
             {
               "type": "visual",
@@ -337,12 +337,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Với một số lớn hơn 1, ta viết nó thành tích mà mọi thừa số đều là số nguyên tố. Đó là phân tích số ấy ra thừa số nguyên tố.",
+              "text": "Muốn phân tích số lớn hơn 1 ra thừa số nguyên tố, ta viết nó thành tích của các số nguyên tố.",
               "rule": true
             },
             {
               "type": "note",
-              "text": "Thừa số nào lặp lại thì viết bằng luỹ thừa, như 36 = 2² · 3²."
+              "text": "Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa. Số thừa số bằng nhau là số mũ."
             },
             {
               "type": "visual",
@@ -369,7 +369,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-36-xong",
-        "caption": "Với một số lớn hơn 1, ta viết nó thành tích mà mọi thừa số đều là số nguyên tố. Đó là phân tích số ấy ra thừa số nguyên tố."
+        "caption": "Muốn phân tích số lớn hơn 1 ra thừa số nguyên tố, ta viết nó thành tích của các số nguyên tố. Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa."
       }
     },
     {
@@ -865,12 +865,12 @@
       "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "conceptIds": [
         "uoc-chung-uoc-chung-lon-nhat.concept.so-nguyen-to",
-        "uoc-chung-uoc-chung-lon-nhat.concept.thua-so-nguyen-to"
+        "uoc-chung-uoc-chung-lon-nhat.concept.hop-so"
       ],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-36-xong",
-        "caption": "Với một số lớn hơn 1, ta viết nó thành tích mà mọi thừa số đều là số nguyên tố. Đó là phân tích số ấy ra thừa số nguyên tố."
+        "caption": "Muốn phân tích số lớn hơn 1 ra thừa số nguyên tố, ta viết nó thành tích của các số nguyên tố. Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa."
       }
     },
     {
@@ -878,7 +878,7 @@
       "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "conceptIds": [
         "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat",
-        "uoc-chung-uoc-chung-lon-nhat.concept.thua-so-nguyen-to",
+        "uoc-chung-uoc-chung-lon-nhat.concept.so-nguyen-to",
         "uoc-chung-uoc-chung-lon-nhat.concept.so-mu"
       ],
       "recap": {
@@ -892,7 +892,7 @@
       "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "conceptIds": [
         "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat",
-        "uoc-chung-uoc-chung-lon-nhat.concept.thua-so-nguyen-to",
+        "uoc-chung-uoc-chung-lon-nhat.concept.so-nguyen-to",
         "uoc-chung-uoc-chung-lon-nhat.concept.so-mu"
       ],
       "recap": {
@@ -2006,7 +2006,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Với một số lớn hơn 1, ta viết nó thành "
+          "text": "Muốn phân tích số lớn hơn 1 ra thừa số nguyên tố, ta viết nó thành "
         },
         {
           "type": "blank",
@@ -2015,7 +2015,7 @@
         },
         {
           "type": "text",
-          "text": " mà mọi thừa số đều là số nguyên tố. Đó là phân tích số ấy ra thừa số nguyên tố."
+          "text": " của các số nguyên tố."
         }
       ],
       "bank": ["tích", "tổng", "thương"]
@@ -2027,7 +2027,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các bước chia dần để phân tích 45 ra thừa số nguyên tố."
+          "text": "Xếp các bước phân tích 45 ra thừa số nguyên tố bằng sơ đồ cột."
         }
       ],
       "hints": {

@@ -976,6 +976,7 @@
     "uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich",
     "uoc-chung-uoc-chung-lon-nhat.card.uoc-chung",
     "uoc-chung-uoc-chung-lon-nhat.card.uoc-chung-lon-nhat",
+    "uoc-chung-uoc-chung-lon-nhat.concept.hop-so",
     "uoc-chung-uoc-chung-lon-nhat.concept.phan-so-toi-gian",
     "uoc-chung-uoc-chung-lon-nhat.concept.so-mu",
     "uoc-chung-uoc-chung-lon-nhat.concept.so-nguyen-to",
@@ -1062,6 +1063,7 @@
     "uoc-chung-uoc-chung-lon-nhat.section.uoc-chung-lon-nhat"
   ],
   "retired": {
-    "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3"
+    "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3",
+    "uoc-chung-uoc-chung-lon-nhat.concept.thua-so-nguyen-to": "uoc-chung-uoc-chung-lon-nhat.concept.so-nguyen-to"
   }
 }

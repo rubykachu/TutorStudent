@@ -254,23 +254,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "sn-vi-du": {
     kind: "rows",
-    label: "Một số nguyên tố và một số không nguyên tố",
+    label: "Một số nguyên tố và một hợp số",
     rows: [
       {
-        tex: "7 = 1 \\cdot 7",
+        tex: "\\concept{sky}{7} = 1 \\cdot 7",
         tag: {
-          text: "7 chỉ chia hết cho 1 và 7",
+          text: "7 chỉ chia hết cho 1 và cho 7, nên 7 là số nguyên tố",
           color: "sky",
         },
       },
       {
-        tex: "6 = 2 \\cdot 3",
+        tex: "\\concept{pink}{6} = 2 \\cdot 3",
         tag: {
-          text: "6 còn chia hết cho 2 và 3, nên 6 không là số nguyên tố",
-          color: "slate",
+          text: "6 có bốn ước, nên 6 là hợp số",
+          color: "pink",
         },
         gapBefore: true,
       },
+    ],
+    legend: [
+      { color: "sky", name: "Số nguyên tố" },
+      { color: "pink", name: "Hợp số" },
     ],
   },
   "chia-dan-12": {
@@ -768,7 +772,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     lines: [
       {
         tex: "\\dfrac{5}{7}",
-        color: "pink",
+        color: "blue",
       },
       {
         text: "ƯC(5, 7) = {1}",
@@ -782,7 +786,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
     legend: [
       {
-        color: "pink",
+        color: "blue",
         name: "Phân số tối giản",
       },
       {
@@ -852,7 +856,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "\\dfrac{20 : 4}{28 : 4} = \\dfrac{5}{7}",
         tag: {
           text: "Phân số tối giản",
-          color: "pink",
+          color: "blue",
         },
       },
     ],
