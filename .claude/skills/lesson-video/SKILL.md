@@ -6,7 +6,7 @@ model: sonnet
 
 # Video bài giảng
 
-Video mới ngắn (45–75 giây, tối đa 16 câu) và có nhịp cho bé chậm: hỏi rồi mới mở, dừng nghĩ sau điều quan trọng, và điểm dừng để bé tự bấm "Xem tiếp". Luật ở `references/script-rules.md`, mục "Nhịp cho bé chậm"; build và `pnpm video:check` chặn video mới vi phạm.
+Video mới ngắn (45–75 giây, tối đa 16 câu) và có nhịp cho bé chậm: hỏi rồi mới mở, dừng nghĩ sau điều quan trọng, và điểm dừng để bé tự bấm "Xem tiếp". Luật ở `references/script-rules.md`, mục "Nhịp cho bé chậm"; build và `pnpm video:check` chặn video mới vi phạm. Quãng lặng (`think` 1 giây, `ask` 1,5 giây, giữa cảnh 1,3 giây) luôn trong 1–1,5 giây: lặng dài hơn thì bé tưởng video đứng.
 
 `<id bài>` là slug của bài (tên thư mục chứa `lesson.json`).
 

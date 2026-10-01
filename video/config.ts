@@ -32,6 +32,10 @@ export const MATCH_THRESHOLD = 0.97;
 export const MAX_REGENERATIONS = 3;
 export const TTS_TEMPERATURE = 0.8;
 
+// Longest silence the child should wait between two sentences or scenes: a
+// longer one reads as a frozen video and costs file size. Every entry of
+// PAUSE except leadIn and tail stays within it (tested).
+export const PAUSE_MAX = 1.5;
 // Silence in seconds: before the first sentence, between sentences, between
 // scenes, and after the last sentence.
 export const PAUSE = {
@@ -41,9 +45,10 @@ export const PAUSE = {
   tail: 2,
   // After a sentence flagged `pause: "think"` (a key reveal) or
   // `pause: "ask"` (a question the child should try before the answer
-  // shows): the silence after it is at least this long.
-  think: 2,
-  ask: 3,
+  // shows): the silence after it is at least this long (longer of it and
+  // the usual gap). Both within 1 to PAUSE_MAX seconds.
+  think: 1,
+  ask: 1.5,
 };
 
 // Pacing of a new video, for a slow, low-focus child (checked by

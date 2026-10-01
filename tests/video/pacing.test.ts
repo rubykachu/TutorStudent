@@ -6,6 +6,7 @@ import {
   CHECKPOINT_AFTER,
   PACING,
   PAUSE,
+  PAUSE_MAX,
   PROJECTS_DIR,
 } from "../../video/config";
 import {
@@ -142,15 +143,18 @@ describe("schedule with pauses", () => {
     const paced = schedule(takes, [[], [], []], ["ask", "think"]);
     expect(plain.sentences[1]?.start).toBe(PAUSE.leadIn + 2 + PAUSE.sentence);
     expect(paced.sentences[1]?.start).toBe(PAUSE.leadIn + 2 + PAUSE.ask);
-    // think (2 s) is longer than the scene gap (1.3 s)
+    // at a scene change the longer of the scene gap and think wins
     expect(paced.sentences[2]?.start).toBe(
-      (paced.sentences[1]?.end ?? 0) + PAUSE.think,
+      (paced.sentences[1]?.end ?? 0) + Math.max(PAUSE.scene, PAUSE.think),
     );
   });
 
-  it("keeps think within 1.5 to 2.5 seconds", () => {
-    expect(PAUSE.think).toBeGreaterThanOrEqual(1.5);
-    expect(PAUSE.think).toBeLessThanOrEqual(2.5);
+  it("keeps every pause between sentences and scenes within 1 to 1.5 seconds", () => {
+    for (const seconds of [PAUSE.think, PAUSE.ask, PAUSE.scene]) {
+      expect(seconds).toBeGreaterThanOrEqual(1);
+      expect(seconds).toBeLessThanOrEqual(PAUSE_MAX);
+    }
+    expect(PAUSE.ask).toBeGreaterThanOrEqual(PAUSE.think);
   });
 });
 
