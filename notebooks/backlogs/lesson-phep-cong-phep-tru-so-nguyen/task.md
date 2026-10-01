@@ -1,9 +1,9 @@
 # Bàn giao: Bài 14 `phep-cong-phep-tru-so-nguyen` (Phép cộng và phép trừ số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Đã duyệt và xuất bản: review vòng 1 (Opus, 8 Nghiêm trọng), vòng 2 (Opus, 4), vòng 3 (Sonnet, chỉ phần đổi, 1), vòng 4 (Sonnet, chỉ phần đổi, 0); `reviewedHash` ghi, `published`; id đã khoá (`content:lock`, 97 id); `content:emit` chạy với bản nháp. 13 phần, 13 thẻ, 60 câu, 6 dạng câu, 13 hình bấm mũi tên, 3 mẹo; `content:check --stats` 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures 0 cảnh báo.
+- Cập nhật cuối: 02/10/2026 (thêm lời đọc và 3 video, xem mục "Lời đọc và video"). Đã duyệt và xuất bản: review vòng 1 (Opus, 8 Nghiêm trọng), vòng 2 (Opus, 4), vòng 3 (Sonnet, chỉ phần đổi, 1), vòng 4 (Sonnet, chỉ phần đổi, 0); `reviewedHash` ghi, `published`; id đã khoá (`content:lock`, 97 id); `content:emit` chạy với bản nháp. 13 phần, 13 thẻ, 60 câu, 6 dạng câu, 13 hình bấm mũi tên, 3 mẹo; `content:check --stats` 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures 0 cảnh báo.
 - Đọc hiểu (Haiku): lượt 1 toàn bài 100/25/1 (Hiểu rõ / mơ hồ / khó), lượt 2 trên 23 mục viết lại 6/15/2, lượt 3 trên 14 mục 7/7/0, lượt trên mục đổi sau vòng 3 5/4/3; các mục còn "Hiểu mơ hồ" là thuật ngữ cần bài dạy (phần số tự nhiên, kí hiệu −(−5), quy tắc cộng khác dấu), ghi ở Nên sửa của `review.md`.
-- Việc còn lại: (1) lời đọc tổng quan và video chưa làm (không thuộc đợt này; làm theo skill `lesson-video` khi chủ dự án muốn, rồi `pnpm media:upload` và deploy cần chủ dự án đồng ý); (2) Nên sửa và Góp ý còn mở trong `review.md` (3 Nên sửa, 5 Góp ý của vòng 4: mẹo `dau-truoc` còn nói "phần lớn trừ phần nhỏ" lệch "phần số tự nhiên", hai note phần 1 và 2 còn "Hiểu mơ hồ", hình quy tắc phần 8 có kết quả −5, −3 trùng đáp án hai câu của phần; màn cùng làm cho phần cộng với 0 chưa có); (3) việc của app, không thuộc bài: bàn phím `numeric` luôn có phím "mũ" kể cả ở bài không dùng luỹ thừa; hình `rows` xếp nhãn lúc bên phải lúc bên dưới; chữ trong note bị ngắt dòng giữa phép tính trên điện thoại. Khi đã làm xong các việc này, lưu trữ thư mục này theo `.claude/rules/agents.md`.
+- Việc còn lại: (1) `pnpm media:upload phep-cong-phep-tru-so-nguyen` và deploy chưa chạy, cần chủ dự án đồng ý (lời đọc và video đã làm xong ở máy, xem mục "Lời đọc và video"); (2) Nên sửa và Góp ý còn mở trong `review.md` (3 Nên sửa, 5 Góp ý của vòng 4: mẹo `dau-truoc` còn nói "phần lớn trừ phần nhỏ" lệch "phần số tự nhiên", hai note phần 1 và 2 còn "Hiểu mơ hồ", hình quy tắc phần 8 có kết quả −5, −3 trùng đáp án hai câu của phần; màn cùng làm cho phần cộng với 0 chưa có); (3) việc của app, không thuộc bài: bàn phím `numeric` luôn có phím "mũ" kể cả ở bài không dùng luỹ thừa; hình `rows` xếp nhãn lúc bên phải lúc bên dưới; chữ trong note bị ngắt dòng giữa phép tính trên điện thoại. Khi đã làm xong các việc này, lưu trữ thư mục này theo `.claude/rules/agents.md`.
 - Sửa chữ bài sau này: chạy `pnpm content:diff phep-cong-phep-tru-so-nguyen`, Haiku đọc hiểu các mục đổi, một vòng review chỉ phần đổi, rồi `pnpm content:hash phep-cong-phep-tru-so-nguyen --approve`.
 
 ## Nguồn (sách bài tập, `sources/math/phep-cong-phep-tru-so-nguyen/`, không commit)
@@ -36,5 +36,14 @@
 - Chỉ mẹo nào đúng với mọi đầu vào mới viết, đã thử bằng chương trình tạm (không commit).
 - Không dạy tính chất kết hợp, giao hoán bằng chữ a, b, c ở dạng công thức đại số; dùng số cụ thể.
 - Mẹo `dau-truoc` nói chỉ dùng cho hai số khác dấu mà không đối nhau; phép trừ đổi thành phép cộng trước thì mới dùng (câu này nằm ở mẹo `ghep-so-doi`, sau phần trừ).
-- Lời đọc và video: chủ dự án nói không làm trong đợt này; bài chưa có `overview.narration` và khối `video`.
 - Quy ước thang máy: mặt đất là tầng 0, tầng hầm ghi bằng số âm, nhắc lại ở mọi màn dùng nó.
+
+## Lời đọc và video (02/10/2026)
+- Giọng bài: `my-duyen` (Mỹ Duyên), khai trong `video/projects/phep-cong-phep-tru-so-nguyen/media.json`, không có cờ miễn. Lý do: Bài 13 đọc bằng Hải Đăng nên xen kẽ; bài dạy đi từng bước trên trục số, hợp giọng nhẹ nhàng.
+- Lời đọc tổng quan: Gemini TTS giọng Vindemiatrix (không cần đọc lại bằng VieNeu), 56,4 giây, mọi câu match ≥ 98,6%.
+- Ba video (giọng VieNeu Mỹ Duyên, 14 đến 15 câu, 60 đến 66 giây, mỗi video một ý, trục số dùng màu của bài, Whisper nghe "âm" đúng ở mọi số âm):
+  - `di-tren-truc-so` (đầu phần 3 `cong-so-duong`): (−3) + 5 = 2 đi sang phải, 2 + (−5) = −3 đi sang trái; hai clip cho card `cong-so-duong` và `cong-so-am`.
+  - `cong-khac-dau` (đầu phần 8 `khac-dau`): 7 + (−4) = 3 và 3 + (−8) = −5; lấy phần số tự nhiên lớn trừ phần nhỏ, tổng mang dấu của số có phần lớn hơn.
+  - `tru-la-cong-so-doi` (đầu phần 9 `tru-so-duong`): 4 − 6 = 4 + (−6) = −2 và 1 − 4 = 1 + (−4) = −3.
+- Review vòng 5 (Sonnet, chỉ phần đổi: ba khối video và lời đọc): 0 Nghiêm trọng, 2 Nên sửa, 1 Góp ý, cả ba đã sửa và dựng lại; Haiku đọc hiểu 44 câu kịch bản (39 hiểu rõ, còn lại là thuật ngữ nằm nguyên văn trong câu quy tắc). Đã `content:hash --approve`, `content:lock` (3 id video), `lesson:walk` 0 failures 0 cảnh báo, `content:emit` với bản nháp.
+- Chưa làm: tải media lên bucket (`pnpm media:upload`) và deploy, cần chủ dự án đồng ý. Sửa chữ bài hay kịch bản sau này: theo mục "Sửa chữ bài sau này" ở trên; dựng lại video là `pnpm video:build phep-cong-phep-tru-so-nguyen <tên>` (câu đã đọc được giữ trong `audio/`, không xoá).
