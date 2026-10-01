@@ -1,8 +1,7 @@
 "use client";
 
-import { Lock, Music, Play, Square, VolumeX } from "lucide-react";
+import { ChevronRight, Lock, Music, Play, Square, VolumeX } from "lucide-react";
 import { useState } from "react";
-import { BigButton } from "@/components/big-button";
 import { Sheet } from "@/components/sheet";
 import { SONGS, type Song, sectionsToUnlock, unlockedCount } from "./songs";
 import { useMusicPlayer } from "./use-music-player";
@@ -178,7 +177,7 @@ export function MusicBoxChip({
 }
 
 // Shown on the section-done screen when finishing the section won songs: a
-// reward card with a button to open the music box.
+// reward row that opens the music box.
 export function MusicReward({
   childId,
   doneSections,
@@ -192,20 +191,33 @@ export function MusicReward({
   if (songs.length === 0) return null;
   return (
     <>
-      <div
+      {/* One short row, so the done screen's content still fits above its
+          bottom bar. */}
+      <button
+        type="button"
         data-music-reward
-        className="flex w-full max-w-lg flex-col items-center gap-3 rounded-lg bg-concept-violet/10 p-4"
+        aria-haspopup="dialog"
+        onClick={() => setOpen(true)}
+        className="flex w-full max-w-lg items-center gap-3 rounded-lg bg-concept-violet/10 p-3 text-left motion-safe:transition-transform motion-safe:active:scale-[0.97]"
       >
-        <p className="font-semibold">
-          {songs.length === 1
-            ? `Bạn mở được bài nhạc mới: “${songs[0]?.title}”`
-            : `Bạn mở được ${songs.length} bài nhạc mới`}
-        </p>
-        <BigButton variant="secondary" onClick={() => setOpen(true)}>
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-surface">
           <Music aria-hidden className="size-6 text-concept-violet" />
-          Mở hộp nhạc
-        </BigButton>
-      </div>
+        </span>
+        <span className="flex min-w-0 flex-1 flex-col">
+          <span className="font-semibold">
+            {songs.length === 1
+              ? `Bài nhạc mới: “${songs[0]?.title}”`
+              : `${songs.length} bài nhạc mới`}
+          </span>
+          <span className="text-caption text-muted-foreground">
+            Mở hộp nhạc
+          </span>
+        </span>
+        <ChevronRight
+          aria-hidden
+          className="size-6 shrink-0 text-muted-foreground"
+        />
+      </button>
       {open && (
         <MusicBoxSheet
           childId={childId}

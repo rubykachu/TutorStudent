@@ -145,7 +145,7 @@ describe("music reward", () => {
       />,
     );
     expect(screen.getByText(new RegExp(FIRST?.title ?? ""))).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "Mở hộp nhạc" }));
+    fireEvent.click(screen.getByRole("button", { name: /Mở hộp nhạc/ }));
     const row = document.querySelector(`[data-song="${FIRST?.id}"]`);
     expect(row?.textContent).toContain("Mới");
   });

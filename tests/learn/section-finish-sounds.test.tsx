@@ -79,7 +79,7 @@ describe("finishing a section", () => {
     expect(reward?.textContent).toContain(SONGS[0]?.title);
     // Nothing plays until the child opens the music box and taps a song.
     expect(sound.playMusic).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole("button", { name: "Mở hộp nhạc" }));
+    fireEvent.click(screen.getByRole("button", { name: /Mở hộp nhạc/ }));
     const song = await screen.findByRole("button", { name: SONGS[0]?.title });
     await waitFor(() => expect(song).toBeEnabled());
     fireEvent.click(song);
