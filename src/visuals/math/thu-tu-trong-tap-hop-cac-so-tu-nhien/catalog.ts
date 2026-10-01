@@ -321,8 +321,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         type: "arrow",
         from: 0,
-        to: 5,
-        tag: "5 đơn vị",
+        to: 10,
+        tag: "10 đơn vị",
       },
       {
         type: "point",
@@ -352,8 +352,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         type: "arrow",
         from: 0,
-        to: 5,
-        tag: "5 đơn vị",
+        to: 10,
+        tag: "2 bước",
+      },
+      {
+        type: "arrow",
+        from: 0,
+        to: 10,
+        tag: "10 đơn vị",
       },
       {
         type: "point",
@@ -365,7 +371,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "still",
     label:
-      "Hai vạch liền nhau cách nhau 5 đơn vị: điểm A cách gốc O 5 bước nên biểu diễn số 25",
+      "Từ 0 tới 10 có 2 bước nên mỗi bước dài 5 đơn vị: điểm A cách gốc O 5 bước nên biểu diễn số 25",
   },
   "dat-diem-5": {
     kind: "lineTry",
@@ -480,8 +486,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         type: "arrow",
         from: 0,
-        to: 5,
-        tag: "5 đơn vị",
+        to: 10,
+        tag: "10 đơn vị",
       },
       {
         type: "point",
