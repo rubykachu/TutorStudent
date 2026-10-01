@@ -1134,13 +1134,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
           color: "blue",
         },
       },
-      {
-        tex: "\\begin{gathered} \\concept{teal}{B} = \\{102; 111; 120; \\\\ 201; 210; 300\\} \\end{gathered}",
-        tag: {
-          text: "tập hợp B có 6 số",
-          color: "teal",
-        },
-      },
     ],
     mode: "steps",
   },
