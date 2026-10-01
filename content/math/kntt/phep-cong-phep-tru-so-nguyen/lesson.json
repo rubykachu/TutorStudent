@@ -156,7 +156,7 @@
           "children": [
             {
               "type": "note",
-              "text": "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Ta viết số đối của −5 là −(−5), tức là đặt thêm dấu − ngoài ngoặc: −(−5) = 5."
+              "text": "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Ta viết số đối của −5 là −(−5), vậy −(−5) = 5."
             },
             {
               "type": "formula",
@@ -459,7 +459,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0.",
+              "text": "Cộng hai số khác dấu mà không đối nhau: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn.",
               "rule": true
             },
             {
@@ -486,7 +486,7 @@
           "id": "phep-cong-phep-tru-so-nguyen.tip.dau-truoc",
           "kind": "tránh sai",
           "title": "Cộng hai số khác dấu",
-          "text": "Khi cộng hai số khác dấu mà hai phần số tự nhiên không bằng nhau, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau.",
+          "text": "Khi cộng hai số khác dấu mà không đối nhau, hãy tìm dấu của tổng trước, rồi mới lấy phần lớn trừ phần nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau.",
           "tex": "\\begin{gathered} 2 + (-9) \\\\ = -(9 - 2) \\\\ = -7 \\end{gathered}"
         }
       ],
@@ -495,7 +495,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0."
+        "caption": "Cộng hai số khác dấu mà không đối nhau: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn."
       }
     },
     {
@@ -890,7 +890,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0."
+        "caption": "Cộng hai số khác dấu mà không đối nhau: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn."
       }
     },
     {
@@ -2358,7 +2358,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "−4 là lấy 7 trừ 3 rồi viết dấu − ở trước. Hai số âm thì ta cộng hai phần số tự nhiên, không trừ."
+            "text": "−4 là lấy 7 trừ 3 rồi viết dấu −. Nhưng hai số âm thì ta cộng 7 với 3, không trừ."
           },
           {
             "optionId": "c",
@@ -3732,7 +3732,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Thay x bằng −4: C = (−4) + 6 − 9. Tính từ trái sang phải: 2 − 9 = −7.",
+        "text": "Thay x bằng −4: C = (−4) + 6 − 9. Trước hết (−4) + 6 = 2, rồi 2 − 9 = −7.",
         "tex": "\\begin{gathered} (-4) + 6 - 9 \\\\ = 2 - 9 = \\concept{pink}{-7} \\end{gathered}"
       },
       "answer": {
