@@ -26,7 +26,7 @@ function Power({ p, e }: { p: number; e: number }) {
 }
 
 const CELL =
-  "flex min-h-12 items-center justify-center rounded-lg font-heading text-block font-bold tabular-nums";
+  "flex min-h-11 items-center justify-center rounded-lg font-heading text-block font-bold tabular-nums";
 
 // Tex of the result: the shared powers multiplied, then their value.
 function resultTex(numbers: readonly number[], shared: readonly number[]) {
@@ -84,7 +84,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
               <Reveal
                 key={p}
                 shown={picked}
-                className="flex min-h-12 items-center justify-center"
+                className="flex min-h-11 items-center justify-center"
               >
                 {shared.includes(p) ? (
                   <Check
@@ -104,7 +104,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                 key={p}
                 shown={smallest}
                 placeholder={<Pending />}
-                className="flex min-h-12 items-center justify-center"
+                className="flex min-h-11 items-center justify-center"
               >
                 {shared.includes(p) ? (
                   <span className={`${CELL} text-concept-violet`}>
@@ -152,7 +152,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
 function Row({ head, children }: { head: string; children: React.ReactNode }) {
   return (
     <>
-      <span className="flex min-h-12 items-center font-heading text-body font-bold">
+      <span className="flex min-h-11 items-center font-heading text-body font-bold">
         {head}
       </span>
       {children}

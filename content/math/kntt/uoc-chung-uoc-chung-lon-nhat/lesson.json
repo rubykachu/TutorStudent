@@ -432,12 +432,17 @@
       "id": "uoc-chung-uoc-chung-lon-nhat.section.uclnn-ba-so",
       "title": "ƯCLN của ba số",
       "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
-      "minutes": 4,
+      "minutes": 5,
       "blocks": [
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-18-24-30",
           "caption": "Ba dải 18 dm, 24 dm và 30 dm đều cắt vừa hết thành các đoạn 6 dm."
+        },
+        {
+          "type": "visual",
+          "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-18-24-30",
+          "caption": "Viết 18, 24 và 30 thành tích các thừa số nguyên tố, rồi so từng cột."
         },
         {
           "type": "group",
@@ -449,7 +454,7 @@
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-18-24-30"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-18-24-30-xong"
             }
           ]
         },
@@ -704,7 +709,7 @@
             },
             {
               "type": "formula",
-              "tex": "1 + 2 + 5 = 8 \\neq 10"
+              "tex": "1 + 2 + 5 = 8"
             }
           ]
         },
@@ -2694,7 +2699,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Biết ƯCLN(36, 60) = 12. Các ước chung của 36 và 60 là các ước của số nào?"
+          "text": "Biết ƯCLN(36, 60) = 12. Các ước chung của 36 và 60 chính là tất cả các ước của số nào?"
         }
       ],
       "hints": {
@@ -3258,7 +3263,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Không, vì 8 chia hết cho 4"
+            "text": "Có, vì 8 chia hết cho 4"
           }
         }
       ],
@@ -3343,7 +3348,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Không, vì 12 là số chẵn"
+            "text": "Có, vì 12 là số chẵn"
           }
         }
       ],
