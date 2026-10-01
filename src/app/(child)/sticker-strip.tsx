@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import { useState } from "react";
-import { ConfettiBurst } from "@/components/confetti-burst";
 import { Sticker } from "@/components/sticker";
 import { stickerFill } from "@/learn/next-step";
 import type { FeedbackSounds } from "@/lib/feedback-sounds";
@@ -121,9 +120,6 @@ export function StickerStrip({
                     className="size-20 tall:size-24"
                   />
                 </motion.span>
-                {animating && earned && !reducedMotion && (
-                  <ConfettiBurst key={tapped.count} />
-                )}
                 <span
                   className={`break-words text-caption ${earned ? "font-semibold" : "text-muted-foreground"}`}
                 >

@@ -123,11 +123,34 @@ describe("StickerStrip detail", () => {
   it("plays the jingle for an earned sticker and a click for a locked one, with sparkle only on the earned", () => {
     const sounds = strip(["a"]);
     fireEvent.click(screen.getByRole("button", { name: /^Sao/ }));
+    // Only the jingle: the owl's congratulation is for earning the sticker.
+    expect(sounds.play).toHaveBeenCalledTimes(1);
     expect(sounds.play).toHaveBeenCalledWith(["correct-jingle"]);
-    expect(document.querySelector("[data-confetti]")).not.toBeNull();
+    // The confetti bursts over the sheet, not under its backdrop.
+    const backdrop = document.querySelector("[data-sticker-sheet-backdrop]");
+    expect(backdrop?.querySelector("[data-confetti]")).not.toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Đóng" }));
     fireEvent.click(screen.getByRole("button", { name: /^Trăng/ }));
     expect(sounds.tap).toHaveBeenCalledTimes(1);
     expect(document.querySelector("[data-confetti]")).toBeNull();
+  });
+
+  it("shows no confetti under reduced motion, and none for a sticker not yet earned", () => {
+    const original = window.matchMedia;
+    window.matchMedia = (query: string) =>
+      ({
+        matches: true,
+        media: query,
+        addEventListener: () => undefined,
+        removeEventListener: () => undefined,
+      }) as unknown as MediaQueryList;
+    try {
+      const sounds = strip(["a"]);
+      fireEvent.click(screen.getByRole("button", { name: /^Sao/ }));
+      expect(document.querySelector("[data-confetti]")).toBeNull();
+      expect(sounds.play).toHaveBeenCalledWith(["correct-jingle"]);
+    } finally {
+      window.matchMedia = original;
+    }
   });
 });

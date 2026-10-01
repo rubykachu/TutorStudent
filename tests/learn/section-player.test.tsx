@@ -107,6 +107,8 @@ describe("SectionPlayer", () => {
     expect(screen.getByText("Nhớ nhé!")).toBeInTheDocument();
     tap("Xong phần");
     expect(await screen.findByText("Giỏi quá!")).toBeInTheDocument();
+    // Earning the sticker is celebrated with confetti.
+    expect(document.querySelector("[data-confetti]")).not.toBeNull();
 
     const attempts = await listAttempts(db, scope);
     expect(
@@ -209,6 +211,8 @@ describe("SectionPlayer", () => {
     tap("Xong phần");
     // Another section is still open: no sticker, and it is offered next.
     expect(await screen.findByText("Xong phần này!")).toBeInTheDocument();
+    // No sticker yet, so no celebration.
+    expect(document.querySelector("[data-confetti]")).toBeNull();
     // Praise names the section; progress says how far the sticker is.
     expect(
       screen.getByText("Bạn vừa học xong “Phần một”. Giỏi lắm!"),

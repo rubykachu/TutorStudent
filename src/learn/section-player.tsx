@@ -32,6 +32,7 @@ import {
   sectionSteps,
   stepLabels,
 } from "@/learn/section-steps";
+import { StickerEarnedCelebration } from "@/learn/sticker-celebration";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
 import { ButtonSounds, FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import { sectionHeading } from "@/lib/lesson-label";
@@ -177,14 +178,16 @@ export function SectionPlayer({
 
   if (completion) {
     return (
-      <>
-        <PlayerHeader lessonId={lesson.id} childId={childId} />
-        <SectionDone
-          lesson={lesson}
-          section={section}
-          completion={completion}
-        />
-      </>
+      <FeedbackSoundsProvider sounds={sounds}>
+        <ButtonSounds>
+          <PlayerHeader lessonId={lesson.id} childId={childId} />
+          <SectionDone
+            lesson={lesson}
+            section={section}
+            completion={completion}
+          />
+        </ButtonSounds>
+      </FeedbackSoundsProvider>
     );
   }
 
@@ -448,25 +451,32 @@ function SectionDone({
         stepAttr={{ name: "data-section-step", value: "sticker" }}
         title="Giỏi quá!"
         art={
-          <motion.div
-            className="w-48 md:w-64"
-            initial={
-              reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4 }
-            }
-            animate={reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-            transition={
-              reducedMotion
-                ? { duration: 0.3 }
-                : { type: "spring", stiffness: 260, damping: 12 }
-            }
-          >
-            <Sticker
-              visualId={lesson.sticker.visualId}
-              name={lesson.sticker.name}
-              done={total}
-              total={total}
-            />
-          </motion.div>
+          // The confetti sits beside the springing sticker, not in it, so it
+          // is not scaled with it.
+          <div className="relative">
+            <motion.div
+              className="w-48 md:w-64"
+              initial={
+                reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4 }
+              }
+              animate={
+                reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }
+              }
+              transition={
+                reducedMotion
+                  ? { duration: 0.3 }
+                  : { type: "spring", stiffness: 260, damping: 12 }
+              }
+            >
+              <Sticker
+                visualId={lesson.sticker.visualId}
+                name={lesson.sticker.name}
+                done={total}
+                total={total}
+              />
+            </motion.div>
+            <StickerEarnedCelebration />
+          </div>
         }
         actions={
           <Link href={lessonPath(lesson.id)} className={bigButtonClassName()}>
