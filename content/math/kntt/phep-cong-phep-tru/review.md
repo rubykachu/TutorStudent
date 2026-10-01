@@ -5,7 +5,8 @@
 - Nguồn đã đọc: không có - `sources/math/phep-cong-phep-tru/` không có trên máy; phần đổi chỉ là số liệu của câu và dữ kiện mẫu đã có trong bài nên đối chiếu bằng tự giải và `note` của bài
 - `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường vì bài vừa sửa), 0 cảnh báo
 - `lesson:walk`: không chạy (điều phối không chạy ở vòng này); đã xem ảnh `phep-cong-phep-tru.visual.cot-tru-hang-chuc-651-278` bản iPad và điện thoại
-- Kết luận: 0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý. Đạt; chờ điều phối chạy `pnpm content:hash phep-cong-phep-tru --root content --approve`.
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý
+- Bản đã review: `1415b222b53e1a7879dc7512dc3d2f3cc5a0c36f9ccd63b90c38dbfe8b604fc2` (`pnpm content:diff` so với bản này)
 
 Đã soát (tự giải, độc lập với diff):
 - `toan-thoi-gian` màn đầu: dữ kiện "Lớp vào học lúc 7 giờ 30 phút" nay là `note` trong cùng group, kèm "Ta tìm giờ Nam ra khỏi nhà"; caption chỉ còn dữ kiện đường đi (8 + 22 + 2 + 8 = 40). Màn sau (7 giờ 30 = 6 giờ 90, 90 - 40 = 50, ra khỏi nhà 6 giờ 50) và recap vẫn khớp. Group có 3 khối, không vượt giới hạn.
