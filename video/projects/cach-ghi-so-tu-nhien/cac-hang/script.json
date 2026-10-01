@@ -1,0 +1,53 @@
+{
+  "title": "Tên các hàng của một số",
+  "engine": "local",
+  "poster": { "scene": "s03-ten", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-so",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học tên các hàng của một số.",
+          "opening": true
+        },
+        { "text": "Bạn cú đi được 42 731 bước." },
+        { "text": "Số này có năm chữ số." },
+        {
+          "text": "Mỗi chữ số đứng ở một chỗ riêng, và tên của chỗ đó gọi là hàng.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s02-phai",
+      "sentences": [
+        { "text": "Ta đọc tên các hàng từ phải sang trái." },
+        { "text": "Chữ số 1 ở ngoài cùng bên phải." },
+        { "text": "Bạn thử đoán xem: hàng của nó tên là gì?", "pause": "ask" },
+        { "text": "Đó là hàng đơn vị." }
+      ]
+    },
+    {
+      "id": "s03-ten",
+      "sentences": [
+        {
+          "text": "Từ phải sang trái, các hàng lần lượt là đơn vị, chục, trăm, nghìn, chục nghìn, trăm nghìn và cứ thế.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        },
+        { "text": "Vậy chữ số 4 đứng ở hàng chục nghìn." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hang",
+      "from": "s01-so",
+      "to": "s03-ten",
+      "cardIds": ["cach-ghi-so-tu-nhien.card.hang"]
+    }
+  ]
+}

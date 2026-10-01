@@ -1,0 +1,301 @@
+<!doctype html>
+<!--
+  Lesson video "Số La Mã trên đồng hồ" (lesson cach-ghi-so-tu-nhien): a wall
+  clock with Roman numerals I to XII and a lime hour hand, as in the lesson's
+  clock picture; the five components I, V, X, IV, IX of a Roman numeral up to
+  30 as lime cards (số La Mã); the hand on IV is 4 o'clock, on IX 9 o'clock.
+  Built by `pnpm video:build cach-ghi-so-tu-nhien dong-ho-la-ma`, which
+  injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Số La Mã trên đồng hồ</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .lime {
+        --c: var(--color-concept-lime);
+      }
+      .face {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        border: 8px solid var(--color-foreground);
+        background: var(--color-surface);
+      }
+      .num {
+        position: absolute;
+        width: 84px;
+        height: 84px;
+        margin: -42px 0 0 -42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-foreground);
+        font:
+          800 40px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .hand {
+        position: absolute;
+        left: 192px;
+        top: 105px;
+        width: 16px;
+        height: 95px;
+        margin-left: -4px;
+        border-radius: 8px;
+        background: var(--color-concept-lime);
+        transform-origin: 8px 95px;
+      }
+      .minute {
+        position: absolute;
+        left: 195px;
+        top: 100px;
+        width: 10px;
+        height: 100px;
+        border-radius: 5px;
+        background: var(--color-muted-foreground);
+      }
+      .hub {
+        position: absolute;
+        left: 184px;
+        top: 184px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--color-foreground);
+      }
+      .rc {
+        position: absolute;
+        width: 160px;
+        height: 190px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 5px solid var(--color-concept-lime);
+        border-radius: 24px;
+        background: var(--color-surface);
+      }
+      .rc .r {
+        color: var(--color-concept-lime);
+        font:
+          800 72px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .rc .r::before {
+        content: "★";
+        font-size: 26px;
+        vertical-align: 26px;
+        margin-right: 6px;
+      }
+      .rc .v {
+        font:
+          800 48px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .slot {
+        position: absolute;
+        width: 160px;
+        height: 190px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 5px dashed var(--color-concept-lime);
+        border-radius: 24px;
+        color: var(--color-concept-lime);
+        font:
+          800 80px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .wide {
+        width: 330px;
+        flex-direction: row;
+        gap: 22px;
+        height: 130px;
+      }
+      .wide .r {
+        font-size: 80px;
+      }
+      .wide .v {
+        font-size: 50px;
+      }
+      .chip {
+        font-size: 38px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="k1" class="abs" style="left: 440px; top: 90px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="k3" class="abs" style="left: 300px; top: 90px"></div>
+          <div id="z3" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, color, tl, start, W, owl, pop, fade, hide, tint, pose, scenes, finish } =
+          window.LV;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+        const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+        // A wall clock (400 px wide), numerals I to XII, the hour hand on `hour`.
+        const clock = (host, p, hour) => {
+          const nums = ROMAN.map((r, i) => {
+            const a = ((i + 1) / 12) * 2 * Math.PI - Math.PI / 2;
+            return `<div id="${p}h${i + 1}" class="num" style="left: ${200 + 148 * Math.cos(a)}px; top: ${200 + 148 * Math.sin(a)}px">${r}</div>`;
+          }).join("");
+          el(
+            host,
+            `<div id="${p}face" class="face">${nums}<div class="minute"></div><div id="${p}hand" class="hand" style="transform: rotate(${hour * 30}deg)"></div><div class="hub"></div></div>`,
+          );
+        };
+        const pick = (id, t) => {
+          tint(id, t);
+          tl.to(id, { color: color("concept-lime"), duration: 0.3 }, t);
+        };
+        const unpick = (id, t) =>
+          tl.to(id, { backgroundColor: "rgba(0,0,0,0)", color: color("foreground"), duration: 0.3 }, t);
+
+        // ---------- s01: the clock, the hand on IV ----------
+        clock($("#k1"), "a", 0);
+
+        // ---------- s02: the five components ----------
+        const COMPS = [
+          ["I", 1],
+          ["V", 5],
+          ["X", 10],
+          ["IV", 4],
+          ["IX", 9],
+        ];
+        const cx = (i) => 300 + i * 190;
+        const z2 = $("#z2");
+        COMPS.forEach(([r, v], i) => {
+          el(z2, `<div id="bs${i}" class="slot" style="left: ${cx(i)}px; top: 140px">?</div>`);
+          el(
+            z2,
+            `<div id="bc${i}" class="rc" style="left: ${cx(i)}px; top: 140px"><span class="r">${r}</span><span id="bv${i}" class="v">= ${v}</span></div>`,
+          );
+        });
+        el(
+          z2,
+          `<div id="bk" class="abs" style="left: 330px; top: 400px"><span class="chip lime">★ IV và IX là cụm: một giá trị riêng</span></div>`,
+        );
+
+        // ---------- s03: the hand on IV, then on IX ----------
+        clock($("#k3"), "c", 4);
+        el(
+          $("#z3"),
+          `<div id="cc4" class="rc wide" style="left: 800px; top: 130px"><span class="r">IV</span><span class="v">= 4 giờ</span></div><div id="cc9" class="rc wide" style="left: 800px; top: 310px"><span class="r">IX</span><span class="v">= 9 giờ</span></div>`,
+        );
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+
+        scenes([
+          ["#s1", "s01-dong-ho"],
+          ["#s2", "s02-thanh-phan"],
+          ["#s3", "s03-chi-gio"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-dong-ho";
+          hide(["#aface"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#aface", W(sid, "chiếc"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "kim"));
+          // The hand swings from 12 to IV.
+          tl.fromTo(
+            "#ahand",
+            { rotation: 0 },
+            { rotation: 120, duration: 1, ease: "power2.inOut", immediateRender: false },
+            W(sid, "kim"),
+          );
+          pick("#ah4", W(sid, "iv"));
+        }
+        {
+          const sid = "s02-thanh-phan";
+          hide([
+            "#bk",
+            ...COMPS.flatMap((_, i) => [`#bs${i}`, `#bc${i}`, `#bv${i}`]),
+          ]);
+          pose(bird, "idle", start(sid));
+          // The question: five empty slots wait for the answer.
+          pop(COMPS.map((_, i) => `#bs${i}`), W(sid, "bạn"), { from: 0.5, stagger: 0.12 });
+          // The five components fill the slots as they are named.
+          ["i", "v", "x", "iv", "ix"].forEach((w, i) => {
+            pop(`#bc${i}`, W(sid, w), { from: 0.5 });
+            fade(`#bs${i}`, W(sid, w), 0.15);
+          });
+          // Their values show while "bằng" is read each time.
+          hide(COMPS.map((_, i) => `#bv${i}`));
+          COMPS.forEach((_, i) => {
+            pop(`#bv${i}`, W(sid, "bằng", i + 1), { from: 0.6 });
+          });
+          pose(bird, "happy", W(sid, "i", 2));
+          // IV and IX are clusters.
+          [3, 4].forEach((i) => {
+            tint(`#bc${i}`, W(sid, "cụm"));
+          });
+          pop("#bk", W(sid, "cụm"), { from: 0.6 });
+        }
+        {
+          const sid = "s03-chi-gio";
+          hide(["#cc4", "#cc9"]);
+          pose(bird, "idle", start(sid));
+          pick("#ch4", W(sid, "iv"));
+          pop("#cc4", W(sid, "4"), { from: 0.5 });
+          tl.to(
+            "#chand",
+            { rotation: 270, duration: 1, ease: "power2.inOut" },
+            W(sid, "nhích"),
+          );
+          unpick("#ch4", W(sid, "nhích"));
+          pick("#ch9", W(sid, "ix"));
+          pop("#cc9", W(sid, "9"), { from: 0.5 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+          tint(["#cc4", "#cc9"], W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

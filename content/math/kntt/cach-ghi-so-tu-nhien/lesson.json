@@ -192,6 +192,10 @@
       "minutes": 3,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "cach-ghi-so-tu-nhien.video.cac-hang"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -289,6 +293,10 @@
       "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 3), bài 1.17 tr.10",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "cach-ghi-so-tu-nhien.video.gia-tri-chu-so"
+        },
         {
           "type": "group",
           "children": [
@@ -425,6 +433,10 @@
       "sourceRef": "Sách bài tập tr.7 (kiến thức cần nhớ 4)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "cach-ghi-so-tu-nhien.video.dong-ho-la-ma"
+        },
         {
           "type": "group",
           "children": [
@@ -5701,5 +5713,111 @@
   "sticker": {
     "name": "Huy chương ghi số",
     "visualId": "cach-ghi-so-tu-nhien.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "cach-ghi-so-tu-nhien.video.cac-hang",
+      "lessonId": "cach-ghi-so-tu-nhien",
+      "url": "video/cach-ghi-so-tu-nhien/cac-hang.mp4",
+      "vttUrl": "video/cach-ghi-so-tu-nhien/cac-hang.vtt",
+      "posterUrl": "video/cach-ghi-so-tu-nhien/cac-hang.jpg",
+      "durationSec": 48.47,
+      "clips": [
+        {
+          "id": "hang",
+          "start": 0.7,
+          "end": 47.044,
+          "cardIds": ["cach-ghi-so-tu-nhien.card.hang"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 18.459,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 42.537,
+          "from": 18.459
+        }
+      ]
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.video.gia-tri-chu-so",
+      "lessonId": "cach-ghi-so-tu-nhien",
+      "url": "video/cach-ghi-so-tu-nhien/gia-tri-chu-so.mp4",
+      "vttUrl": "video/cach-ghi-so-tu-nhien/gia-tri-chu-so.vtt",
+      "posterUrl": "video/cach-ghi-so-tu-nhien/gia-tri-chu-so.jpg",
+      "durationSec": 65.87,
+      "clips": [
+        {
+          "id": "gia-tri",
+          "start": 16.221,
+          "end": 64.439,
+          "cardIds": ["cach-ghi-so-tu-nhien.card.gia-tri"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 15.521,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 37.886,
+          "from": 15.521
+        },
+        {
+          "id": "cp-03",
+          "at": 59.71,
+          "from": 37.886
+        }
+      ]
+    },
+    {
+      "id": "cach-ghi-so-tu-nhien.video.dong-ho-la-ma",
+      "lessonId": "cach-ghi-so-tu-nhien",
+      "url": "video/cach-ghi-so-tu-nhien/dong-ho-la-ma.mp4",
+      "vttUrl": "video/cach-ghi-so-tu-nhien/dong-ho-la-ma.vtt",
+      "posterUrl": "video/cach-ghi-so-tu-nhien/dong-ho-la-ma.jpg",
+      "durationSec": 58.57,
+      "clips": [
+        {
+          "id": "chu-la-ma",
+          "start": 12.229,
+          "end": 57.141,
+          "cardIds": ["cach-ghi-so-tu-nhien.card.chu-la-ma"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 11.529,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 41.232,
+          "from": 11.529
+        }
+      ]
+    }
+  ]
 }

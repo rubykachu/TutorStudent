@@ -1,0 +1,240 @@
+<!doctype html>
+<!--
+  Lesson video "Tên các hàng của một số" (lesson cach-ghi-so-tu-nhien): the
+  number 42 731 as in the lesson's places picture, digits in blue tiles
+  (chữ số), the name of each place in violet (hàng), read from the right.
+  Built by `pnpm video:build cach-ghi-so-tu-nhien cac-hang`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tên các hàng của một số</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .blue {
+        --c: var(--color-concept-blue);
+      }
+      .violet {
+        --c: var(--color-concept-violet);
+      }
+      .slate {
+        --c: var(--color-concept-slate);
+      }
+      .tile {
+        position: absolute;
+        top: 170px;
+        width: 120px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid var(--color-concept-blue);
+        border-radius: 22px;
+        background: color-mix(
+          in srgb,
+          var(--color-concept-blue) 15%,
+          var(--color-surface)
+        );
+        color: var(--color-concept-blue);
+        font:
+          800 96px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .nm {
+        position: absolute;
+        top: 342px;
+        width: 150px;
+        text-align: center;
+        color: var(--color-concept-violet);
+        font:
+          800 34px / 1.15 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .nm .mk {
+        display: block;
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+      .slot {
+        position: absolute;
+        top: 350px;
+        width: 130px;
+        height: 70px;
+        border: 5px dashed var(--color-concept-violet);
+        border-radius: 18px;
+      }
+      .ask {
+        position: absolute;
+        top: 342px;
+        width: 150px;
+        text-align: center;
+        color: var(--color-concept-violet);
+        font:
+          800 64px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .chip {
+        font-size: 38px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="a0" class="row" style="top: 54px; left: 100px">
+            <span id="c0" class="chip slate">Bạn cú đi được … bước</span>
+          </div>
+          <div id="z1" class="layer"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="a2" class="row" style="top: 54px; left: 100px">
+            <span id="c2" class="chip slate">← đọc từ phải sang trái</span>
+          </div>
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="a3" class="row" style="top: 54px; left: 100px">
+            <span id="c3" class="chip slate">← đọc từ phải sang trái</span>
+          </div>
+          <div id="z3" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, color, tl, start, W, owl, pop, fade, hide, tint, pose, scenes, finish } =
+          window.LV;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        // The number 42 731: five tiles, a wider gap after the first two.
+        const DIGITS = [4, 2, 7, 3, 1];
+        const NAMES = ["chục<br>nghìn", "nghìn", "trăm", "chục", "đơn vị"];
+        const tileLeft = (i) => 365 + i * 150 + (i >= 2 ? 40 : 0);
+        const tiles = (host, p) => {
+          DIGITS.forEach((d, i) => {
+            el(
+              host,
+              `<div id="${p}t${i}" class="tile" style="left: ${tileLeft(i)}px">${d}</div>`,
+            );
+          });
+        };
+        const names = (host, p) => {
+          NAMES.forEach((n, i) => {
+            el(
+              host,
+              `<div id="${p}n${i}" class="nm" style="left: ${tileLeft(i) - 15}px"><span class="mk">▲</span>${n}</div>`,
+            );
+          });
+        };
+        // The tile being talked about: yellow with a dark border.
+        const pick = (id, t) => {
+          tint(id, t);
+          tl.to(id, { borderColor: color("foreground"), duration: 0.3 }, t);
+        };
+
+        // ---------- s01: the number, five digits, a place for each ----------
+        $("#c0").innerHTML = "Bạn cú đi được 42 731 bước";
+        tiles($("#z1"), "a");
+        DIGITS.forEach((_, i) => {
+          el(
+            $("#z1"),
+            `<div id="as${i}" class="slot" style="left: ${tileLeft(i) - 5}px"></div>`,
+          );
+        });
+        el(
+          $("#z1"),
+          `<div id="ah" class="abs" style="left: 520px; top: 450px"><span class="chip violet">▲ hàng</span></div><div id="a5" class="abs" style="left: 700px; top: 450px"><span class="chip blue">● 5 chữ số</span></div>`,
+        );
+
+        // ---------- s02: reading from the right, the first place ----------
+        tiles($("#z2"), "b");
+        names($("#z2"), "b");
+        el($("#z2"), `<div id="bq" class="ask" style="left: ${tileLeft(4) - 15}px">?</div>`);
+
+        // ---------- s03: every place named ----------
+        tiles($("#z3"), "c");
+        names($("#z3"), "c");
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+
+        scenes([
+          ["#s1", "s01-so"],
+          ["#s2", "s02-phai"],
+          ["#s3", "s03-ten"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-so";
+          hide(["#c0", "#ah", "#a5", ...DIGITS.map((_, i) => `#as${i}`)]);
+          hide(DIGITS.map((_, i) => `#at${i}`));
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#c0", W(sid, "bạn", 2), { from: 0.6 });
+          DIGITS.forEach((_, i) => {
+            pop(`#at${i}`, W(sid, "42") + i * 0.18, { from: 0.5 });
+          });
+          pose(bird, "idle", W(sid, "số"));
+          pop("#a5", W(sid, "năm"), { from: 0.5 });
+          DIGITS.forEach((_, i) => {
+            pop(`#as${i}`, W(sid, "chỗ") + i * 0.12, { from: 0.6 });
+          });
+          pop("#ah", W(sid, "hàng", 2), { from: 0.5 });
+        }
+        {
+          const sid = "s02-phai";
+          hide(["#c2", "#bq", ...NAMES.map((_, i) => `#bn${i}`)]);
+          pose(bird, "idle", start(sid));
+          pop("#c2", W(sid, "ta"), { from: 0.6 });
+          pick("#bt4", W(sid, "1"));
+          pop("#bq", W(sid, "bạn"), { from: 0.4 });
+          pose(bird, "happy", W(sid, "đó"));
+          fade("#bq", W(sid, "đó"), 0.2);
+          pop("#bn4", W(sid, "đơn"), { from: 0.5 });
+        }
+        {
+          const sid = "s03-ten";
+          hide(["#c3", ...NAMES.map((_, i) => `#cn${i}`)]);
+          pose(bird, "idle", start(sid));
+          pop("#c3", start(sid) + 0.2, { from: 0.6 });
+          pop("#cn4", W(sid, "đơn"), { from: 0.5 });
+          pop("#cn3", W(sid, "chục"), { from: 0.5 });
+          pop("#cn2", W(sid, "trăm"), { from: 0.5 });
+          pop("#cn1", W(sid, "nghìn"), { from: 0.5 });
+          pop("#cn0", W(sid, "chục", 2), { from: 0.5 });
+          pick("#ct0", W(sid, "vậy"));
+          pose(bird, "cheer", W(sid, "vậy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

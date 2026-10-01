@@ -1,0 +1,80 @@
+{
+  "title": "Số La Mã trên đồng hồ",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-chi-gio",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-dong-ho",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta đọc số La Mã trên đồng hồ.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú nhìn chiếc đồng hồ treo tường."
+        },
+        {
+          "text": "Kim giờ đang chỉ vào số IV.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s02-thanh-phan",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: số La Mã có mấy thành phần?",
+          "pause": "ask"
+        },
+        {
+          "text": "Số La Mã đến 30 ghép từ năm thành phần: I, V, X, IV và IX.",
+          "rule": true,
+          "pause": "think",
+          "say": "Số La Mã đến 30 ghép từ năm thành phần: i, vê, ích, i-vê và i-ích."
+        },
+        {
+          "text": "I bằng 1, V bằng 5, X bằng 10, IV bằng 4, IX bằng 9, dù đứng ở đâu.",
+          "rule": true,
+          "pause": "think",
+          "say": "i bằng 1, vê bằng 5, ích bằng 10, i-vê bằng 4, i-ích bằng 9, dù đứng ở đâu."
+        },
+        {
+          "text": "IV và IX là cụm: hai chữ La Mã đứng liền nhau, tạo một giá trị riêng.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s03-chi-gio",
+      "sentences": [
+        {
+          "text": "Kim giờ chỉ vào IV, nên là 4 giờ."
+        },
+        {
+          "text": "Kim giờ nhích đến số IX.",
+          "say": "Kim giờ nhích đến số i-ích."
+        },
+        {
+          "text": "IX bằng 9, nên đó là 9 giờ.",
+          "say": "i-ích bằng 9, nên đó là 9 giờ."
+        },
+        {
+          "text": "Nhớ nhé: IV là 4, còn IX là 9."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chu-la-ma",
+      "from": "s02-thanh-phan",
+      "to": "s03-chi-gio",
+      "cardIds": ["cach-ghi-so-tu-nhien.card.chu-la-ma"]
+    }
+  ]
+}
