@@ -2,22 +2,22 @@ import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { decorative } from "@/visuals/shared/markers";
 
 const MEDAL = { x: 50, y: 44, r: 27 } as const;
-// The four digit tiles of the face, two by two.
+// The four tiles of the face, two by two, each marked with a dot.
 const TILE = 15;
 const TILES = [
-  { digit: 2, x: 34.5, y: 28.5 },
-  { digit: 3, x: 50.5, y: 28.5 },
-  { digit: 5, x: 34.5, y: 44.5 },
-  { digit: 9, x: 50.5, y: 44.5 },
+  { id: 1, x: 34.5, y: 28.5 },
+  { id: 2, x: 50.5, y: 28.5 },
+  { id: 3, x: 34.5, y: 44.5 },
+  { id: 4, x: 50.5, y: 44.5 },
 ] as const;
 
-// Lesson sticker: a gold medal on two ribbons with four digit tiles 2, 3, 5, 9
-// on its face.
+// Lesson sticker: a gold medal on two ribbons with four number tiles on its
+// face.
 export default function Sticker() {
   return (
     <svg
       role="img"
-      aria-label="Huy chương dấu hiệu chia hết, có bốn chữ số 2, 3, 5, 9"
+      aria-label="Huy chương dấu hiệu chia hết, có bốn ô số"
       viewBox="0 0 100 100"
       className="h-auto w-full max-w-32"
     >
@@ -42,15 +42,24 @@ export default function Sticker() {
           className="fill-concept-amber stroke-surface"
           strokeWidth={3}
         />
-        {TILES.map(({ digit, x, y }) => (
+        {TILES.map(({ id, x, y }) => (
           <rect
-            key={digit}
+            key={id}
             x={x}
             y={y}
             width={TILE}
             height={TILE}
             rx={3}
             className="fill-surface"
+          />
+        ))}
+        {TILES.map(({ id, x, y }) => (
+          <circle
+            key={id}
+            cx={x + TILE / 2}
+            cy={y + TILE / 2}
+            r={3}
+            className="fill-concept-teal"
           />
         ))}
         <ConceptShape
@@ -75,20 +84,6 @@ export default function Sticker() {
           className="stroke-surface"
         />
       </g>
-      {TILES.map(({ digit, x, y }) => (
-        <text
-          key={digit}
-          x={x + TILE / 2}
-          y={y + TILE / 2}
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize={13}
-          fontWeight={700}
-          className="fill-foreground"
-        >
-          {digit}
-        </text>
-      ))}
     </svg>
   );
 }

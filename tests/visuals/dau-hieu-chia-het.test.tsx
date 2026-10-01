@@ -255,9 +255,11 @@ describe("digit pictures", () => {
     expect(screen.getByLabelText(/cộng các chữ số/)).toBeInTheDocument();
   });
 
-  it("labels the sticker with its four digits", () => {
+  it("labels the sticker as a divisibility medal", () => {
     render(<Sticker />);
-    expect(screen.getByRole("img", { name: /2, 3, 5, 9/ })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /Huy chương dấu hiệu chia hết/ }),
+    ).toBeInTheDocument();
   });
 });
 

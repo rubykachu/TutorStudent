@@ -1699,7 +1699,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một nhóm bạn xếp thành các cặp 2 bạn thì vừa hết, và xếp thành các nhóm 5 bạn cũng vừa hết. Nhóm đó có ít nhất bao nhiêu bạn?"
+          "text": "Một đội múa xếp thành các cặp 2 bạn thì vừa hết, xếp thành các hàng 5 bạn cũng vừa hết. Đội múa có ít nhất bao nhiêu bạn?"
         }
       ],
       "hints": {
@@ -1810,7 +1810,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính tổng các chữ số của số 7 316."
+          "text": "Số nhà của Mai là 7 316. Tính tổng các chữ số của số nhà."
         }
       ],
       "hints": {
@@ -2762,6 +2762,58 @@
       ]
     },
     {
+      "id": "dau-hieu-chia-het.ex.chia-3-5-45",
+      "type": "choice",
+      "cardIds": ["dau-hieu-chia-het.card.cho-hai-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cô giáo chia đều số quyển vở cho 3 bạn thì vừa hết, chia đều cho 5 bạn cũng vừa hết. Cô có thể có bao nhiêu quyển vở?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "40"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "52"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
       "id": "dau-hieu-chia-het.ex.dem-2-3",
       "type": "numeric",
       "cardIds": ["dau-hieu-chia-het.card.cho-hai-so"],
@@ -3160,6 +3212,51 @@
       "multiple": true
     },
     {
+      "id": "dau-hieu-chia-het.ex.gop-tien-25-32",
+      "type": "choice",
+      "cardIds": ["dau-hieu-chia-het.card.tong-hieu"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nam có 25 nghìn đồng, Bình có 32 nghìn đồng, hai bạn gộp tiền rồi đổi hết ra tờ 5 nghìn đồng. Có đổi vừa hết không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Có, vì 25 chia hết cho 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Không, vì chỉ 25 chia hết cho 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Có, vì 32 chia hết cho 5"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
       "id": "dau-hieu-chia-het.ex.dien-hieu-5",
       "type": "fillBlank",
       "cardIds": ["dau-hieu-chia-het.card.tong-hieu"],
@@ -3517,7 +3614,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm chữ số d để số sau chia hết cho 9."
+          "text": "Số nhà của Lan là số ba chữ số sau và chia hết cho 9. Tìm chữ số d."
         },
         {
           "type": "formula",
@@ -3667,7 +3764,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bài trắc nghiệm có mỗi câu đúng được 6 điểm, mỗi câu sai bị trừ 3 điểm. Điểm nào bạn không thể đạt được?"
+          "text": "Bài trắc nghiệm có mỗi câu đúng được 6 điểm, mỗi câu sai bị trừ 3 điểm. Điểm cả bài nào không thể đạt được?"
         }
       ],
       "hints": {
@@ -4134,7 +4231,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Dùng các chữ số 1, 2 và 4, mỗi chữ số một lần, lập các số ba chữ số chia hết cho 2. Lập được bao nhiêu số?"
+          "text": "Lan dùng các chữ số 1, 2 và 4, mỗi chữ số một lần, lập mã số ba chữ số chia hết cho 2. Lan lập được bao nhiêu mã số?"
         }
       ],
       "hints": {
