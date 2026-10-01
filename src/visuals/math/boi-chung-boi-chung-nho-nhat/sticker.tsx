@@ -2,7 +2,7 @@ import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { decorative } from "@/visuals/shared/markers";
 
 const COLUMN = 12.5;
-const LEFT = 19.5;
+const LEFT = 17;
 const TOP_Y = 40;
 const BOTTOM_Y = 60;
 // Two rows of marks over the same six places: the top row every 2 places,
