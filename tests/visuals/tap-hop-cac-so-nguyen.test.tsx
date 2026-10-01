@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { VISUAL_STEP_MS } from "@/lib/config";
 import { VISUAL_SPECS } from "@/visuals/math/tap-hop-cac-so-nguyen/catalog";
 import { LineTap } from "@/visuals/math/tap-hop-cac-so-nguyen/line-tap";
 import { LineTry } from "@/visuals/math/tap-hop-cac-so-nguyen/line-try";
@@ -12,6 +13,7 @@ import {
   validators,
 } from "@/visuals/math/tap-hop-cac-so-nguyen/logic";
 import {
+  levelAt,
   Scale,
   scaleHeight,
   scaleY,
@@ -75,16 +77,16 @@ describe("LineTry", () => {
       />,
     );
     const leftA = screen.getByRole("button", {
-      name: "Sang trái một vạch, điểm A",
+      name: "Sang trái 1 đơn vị, điểm A",
     });
     for (let i = 0; i < 3; i++) fireEvent.click(leftA);
     expect(onStateChange).toHaveBeenLastCalledWith({ p0: -3, p1: 0 });
     fireEvent.click(
-      screen.getByRole("button", { name: "Sang phải một vạch, điểm A" }),
+      screen.getByRole("button", { name: "Sang phải 1 đơn vị, điểm A" }),
     );
     expect(onStateChange).toHaveBeenLastCalledWith({ p0: -2, p1: 0 });
     fireEvent.click(
-      screen.getByRole("button", { name: "Sang phải một vạch, điểm B" }),
+      screen.getByRole("button", { name: "Sang phải 1 đơn vị, điểm B" }),
     );
     expect(onStateChange).toHaveBeenLastCalledWith({ p0: -2, p1: 1 });
   });
@@ -92,7 +94,7 @@ describe("LineTry", () => {
   it("shows the value of a point with the minus sign", () => {
     render(<LineTry spec={spec} params={{}} />);
     fireEvent.click(
-      screen.getByRole("button", { name: "Sang trái một vạch, điểm A" }),
+      screen.getByRole("button", { name: "Sang trái 1 đơn vị, điểm A" }),
     );
     expect(screen.getAllByText("−1").length).toBeGreaterThan(0);
   });
@@ -100,7 +102,7 @@ describe("LineTry", () => {
   it("stops at both ends of the line", () => {
     render(<LineTry spec={spec} params={{}} />);
     const left = screen.getByRole("button", {
-      name: "Sang trái một vạch, điểm A",
+      name: "Sang trái 1 đơn vị, điểm A",
     });
     for (let i = 0; i < 8; i++) fireEvent.click(left);
     expect(left).toBeDisabled();
@@ -128,7 +130,7 @@ describe("LineTry", () => {
       "Trục số: điểm A ở −3, điểm B ở 4",
     );
     expect(
-      screen.getByRole("button", { name: "Sang phải một vạch, điểm A" }),
+      screen.getByRole("button", { name: "Sang phải 1 đơn vị, điểm A" }),
     ).toBeDisabled();
     expect(onStateChange).not.toHaveBeenCalled();
   });
@@ -138,12 +140,12 @@ describe("LineTry", () => {
     const first = render(<LineTry spec={guided} />);
     expect(screen.getByText("Đã đặt đúng 0/2 điểm")).toBeInTheDocument();
     const leftA = screen.getByRole("button", {
-      name: "Sang trái một vạch, điểm A",
+      name: "Sang trái 1 đơn vị, điểm A",
     });
     fireEvent.click(leftA);
     fireEvent.click(leftA);
     fireEvent.click(
-      screen.getByRole("button", { name: "Sang phải một vạch, điểm B" }),
+      screen.getByRole("button", { name: "Sang phải 1 đơn vị, điểm B" }),
     );
     expect(screen.getByText("Đã đặt đúng 2/2 điểm")).toBeInTheDocument();
     expect(screen.getByText("A ở −2, B ở 1.")).toBeInTheDocument();
@@ -231,6 +233,47 @@ describe("Scale", () => {
     expect(container.querySelector("[data-step-player]")).toBeNull();
     expect(container.textContent).toContain("−3 °C");
     expect(container.textContent).toContain("0 °C");
+  });
+
+  it("moves the thermometer column from step to step", () => {
+    const moving = {
+      ...spec,
+      level: 0,
+      levelSteps: [
+        { level: 3, step: 1 },
+        { level: -3, step: 2 },
+      ],
+    };
+    expect(levelAt(moving, 0)).toBe(0);
+    expect(levelAt(moving, 1)).toBe(3);
+    expect(levelAt(moving, 2)).toBe(-3);
+    expect(levelAt(spec, 2)).toBe(0);
+    expect(levelAt({ ...spec, level: -4 }, 1)).toBe(-4);
+  });
+
+  it("takes a mark away after its last step", () => {
+    const moving = {
+      ...spec,
+      marks: [
+        { at: 3, text: "3 °C", color: "lime", step: 1, until: 1 },
+        { at: -3, text: "−3 °C", color: "pink", step: 2 },
+      ],
+    } as const;
+    vi.useFakeTimers();
+    try {
+      const { container } = render(<Scale spec={moving} />);
+      const hidden = () =>
+        [...container.querySelectorAll(".invisible")].map(
+          (el) => el.textContent,
+        );
+      act(() => vi.advanceTimersByTime(VISUAL_STEP_MS));
+      expect(hidden()).not.toContain("3 °C");
+      act(() => vi.advanceTimersByTime(VISUAL_STEP_MS));
+      expect(hidden()).toContain("3 °C");
+      expect(hidden()).not.toContain("−3 °C");
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("hides the last step in a hint", () => {

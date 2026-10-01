@@ -15,12 +15,15 @@ import { StepPlayer } from "@/visuals/shared/step-player";
 
 export type ScaleTheme = "thermometer" | "building" | "sea";
 
-// A thing standing at a tick, with the words next to it.
+// A thing standing at a tick, with the words next to it. In a step-by-step
+// picture it shows from `step` and goes away after step `until`, so a
+// thermometer can read 3 °C first and −3 °C next without both marks on it.
 export type ScaleMark = {
   at: number;
   text: string;
   color: ConceptColor;
   step?: number;
+  until?: number;
 };
 
 // A tag at the far end of the scale ("above zero" at the top, "below zero" at
@@ -30,7 +33,11 @@ export type ScaleZone = {
   tag: string;
   color: ConceptColor;
   step?: number;
+  until?: number;
 };
+
+// Thermometer only: from `step` on, the column ends at `level`.
+export type ScaleLevel = { level: number; step: number };
 
 export type ScaleSpec = {
   theme: ScaleTheme;
@@ -40,8 +47,12 @@ export type ScaleSpec = {
   to: number;
   // What zero is called here ("0 °C", "mặt đất", "mực nước biển").
   zero: string;
-  // Thermometer only: where the column ends (0 when absent).
+  // Thermometer only: where the column ends (0 when absent); a still picture
+  // always uses it.
   level?: number;
+  // Thermometer only: where the column ends at each step, in step order, so a
+  // step-by-step picture can move the column between readings.
+  levelSteps?: readonly ScaleLevel[];
   marks: readonly ScaleMark[];
   zones?: readonly ScaleZone[];
   mode: "steps" | "still" | "hint";
@@ -72,7 +83,14 @@ function lastStep(spec: ScaleSpec): number {
     0,
     ...spec.marks.map(stepOf),
     ...(spec.zones ?? []).map(stepOf),
+    ...(spec.levelSteps ?? []).map(stepOf),
   );
+}
+
+// Where the thermometer column ends at `step`.
+export function levelAt(spec: ScaleSpec, step: number): number {
+  const reached = (spec.levelSteps ?? []).filter((entry) => entry.step <= step);
+  return reached.at(-1)?.level ?? spec.level ?? 0;
 }
 
 // Height in the drawing of tick `value`, the highest tick at the top.
@@ -89,13 +107,12 @@ export function scaleHeight(
   );
 }
 
-function Art({ spec }: { spec: ScaleSpec }) {
+function Art({ spec, level }: { spec: ScaleSpec; level: number }) {
   const { theme, from, to } = spec;
   const top = scaleY(spec, to);
   const zero = scaleY(spec, 0);
   const bottom = scaleY(spec, from);
   if (theme === "thermometer") {
-    const level = spec.level ?? 0;
     const column =
       level < 0
         ? "fill-concept-pink"
@@ -254,9 +271,12 @@ function Axis({ spec }: { spec: ScaleSpec }) {
 function Frame({ spec, step }: { spec: ScaleSpec; step: number }) {
   const last = lastStep(spec);
   const hint = spec.mode === "hint";
-  const visible = (item: { step?: number }) =>
+  const level = spec.mode === "still" ? (spec.level ?? 0) : levelAt(spec, step);
+  const visible = (item: { step?: number; until?: number }) =>
     spec.mode === "still" ||
-    (stepOf(item) <= step && !(hint && stepOf(item) === last));
+    (stepOf(item) <= step &&
+      (item.until === undefined || step <= item.until) &&
+      !(hint && stepOf(item) === last));
   return (
     <svg
       viewBox={`0 0 ${VIEW_WIDTH} ${scaleHeight(spec)}`}
@@ -264,7 +284,7 @@ function Frame({ spec, step }: { spec: ScaleSpec; step: number }) {
       aria-label={spec.label}
       className="h-auto w-full max-w-[19rem]"
     >
-      <Art spec={spec} />
+      <Art spec={spec} level={level} />
       <Axis spec={spec} />
       {(spec.zones ?? []).map((zone) => {
         const y =

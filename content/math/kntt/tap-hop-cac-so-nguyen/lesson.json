@@ -75,8 +75,17 @@
       "minutes": 4,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.nhiet-ke-buoc"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn nhìn đỉnh cột nhiệt kế để đọc nhiệt độ. Đỉnh cột chỉ tới số nào thì nhiệt kế chỉ số đó."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.nhiet-ke-buoc"
+            }
+          ]
         },
         {
           "type": "group",
@@ -105,7 +114,7 @@
             },
             {
               "type": "visual",
-              "visualId": "tap-hop-cac-so-nguyen.visual.chon-4-duoi-0"
+              "visualId": "tap-hop-cac-so-nguyen.visual.chon-6-duoi-0"
             }
           ]
         }
@@ -125,15 +134,24 @@
       "minutes": 4,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.tang-ham"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Toà nhà có tầng trên mặt đất và tầng hầm dưới mặt đất. Ta đếm tầng từ mặt đất, mặt đất là số 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.tang-ham"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Số dương và số âm dùng để chỉ hai điều trái ngược nhau, như trên và dưới, có và nợ.",
+              "text": "Hai điều trái ngược nhau, như trên và dưới hay có và nợ, được ghi bằng số dương và số âm.",
               "rule": true
             },
             {
@@ -161,7 +179,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.doi-lap",
-        "caption": "Số dương và số âm dùng để chỉ hai điều trái ngược nhau, như trên và dưới, có và nợ."
+        "caption": "Hai điều trái ngược nhau, như trên và dưới hay có và nợ, được ghi bằng số dương và số âm."
       }
     },
     {
@@ -171,15 +189,24 @@
       "minutes": 4,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.duong-am-khong"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiệt độ có thể ở trên 0, dưới 0 hoặc đúng 0 độ C. Mỗi trường hợp là một nhóm số khác nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.duong-am-khong"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Các số tự nhiên 1, 2, 3 và cứ thế tiếp còn gọi là các số nguyên dương. Các số −1, −2, −3 và cứ thế tiếp gọi là các số nguyên âm.",
+              "text": "Số nguyên dương là các số 1, 2, 3, 4 và lớn hơn nữa. Thêm dấu − đằng trước mỗi số đó, ta được số nguyên âm: −1, −2, −3, −4.",
               "rule": true
             },
             {
@@ -188,7 +215,7 @@
             },
             {
               "type": "note",
-              "text": "Số 0 đứng giữa hai nhóm: nó không phải số dương, cũng không phải số âm."
+              "text": "Số nguyên âm còn gọi gọn là số âm, số nguyên dương gọi gọn là số dương. Số 0 đứng giữa hai nhóm, không dương cũng không âm."
             }
           ]
         },
@@ -211,7 +238,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.duong-am-khong-xong",
-        "caption": "Các số tự nhiên 1, 2, 3 và cứ thế tiếp còn gọi là các số nguyên dương. Các số −1, −2, −3 và cứ thế tiếp gọi là các số nguyên âm."
+        "caption": "Số nguyên dương là các số 1, 2, 3, 4 và lớn hơn nữa. Thêm dấu − đằng trước mỗi số đó, ta được số nguyên âm: −1, −2, −3, −4."
       }
     },
     {
@@ -221,15 +248,24 @@
       "minutes": 4,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ba nhiệt độ −3 độ C, 0 độ C và 3 độ C nằm ở ba nhóm số khác nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Tập hợp các số nguyên ℤ gồm số 0, các số nguyên dương và các số nguyên âm.",
+              "text": "Gộp các số nguyên âm, số 0 và các số nguyên dương lại, ta được tập hợp các số nguyên, kí hiệu ℤ.",
               "rule": true
             },
             {
@@ -254,14 +290,27 @@
               "text": "Dấu ∈ đọc là thuộc."
             }
           ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào số là số nguyên nhưng không phải số tự nhiên. Số nguyên âm thì không phải số tự nhiên."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.chon-nguyen-khong-tu-nhien"
+            }
+          ]
         }
       ],
       "checkIds": ["tap-hop-cac-so-nguyen.ex.so-nguyen-khong-tu-nhien"],
-      "practiceIds": ["tap-hop-cac-so-nguyen.ex.dien-day-so-nguyen"],
+      "practiceIds": ["tap-hop-cac-so-nguyen.ex.noi-tinh-huong-nhom"],
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan",
-        "caption": "Tập hợp các số nguyên ℤ gồm số 0, các số nguyên dương và các số nguyên âm."
+        "caption": "Gộp các số nguyên âm, số 0 và các số nguyên dương lại, ta được tập hợp các số nguyên, kí hiệu ℤ."
       }
     },
     {
@@ -271,15 +320,24 @@
       "minutes": 4,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-ve"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiệt kế chính là một trục số đặt đứng. Xoay nằm ngang, ta có trục số: số 0 ở giữa, hai vạch liền nhau cách nhau 1 đơn vị."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-ve"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Trục số có gốc O ứng với số 0. Số dương nằm sau O, số âm nằm trước O.",
+              "text": "Trục số có gốc O, điểm O biểu diễn số 0. Số dương nằm sau O, bên phải; số âm nằm trước O, bên trái.",
               "rule": true
             },
             {
@@ -293,7 +351,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm mũi tên để đưa điểm A tới −3. Mỗi lần bấm, điểm A đi một vạch."
+              "text": "Cùng làm: bấm mũi tên để đưa điểm A tới −3. Mỗi lần bấm, điểm A đi 1 đơn vị."
             },
             {
               "type": "visual",
@@ -307,7 +365,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-xong",
-        "caption": "Trục số có gốc O ứng với số 0. Số dương nằm sau O, số âm nằm trước O."
+        "caption": "Trục số có gốc O, điểm O biểu diễn số 0. Số dương nằm sau O, bên phải; số âm nằm trước O, bên trái."
       }
     },
     {
@@ -321,7 +379,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Với số dương n, điểm biểu diễn n nằm sau gốc O và cách O n đơn vị. Điểm biểu diễn −n nằm trước gốc O và cách O n đơn vị.",
+              "text": "Số 3 nằm sau gốc O, cách O 3 đơn vị. Số −3 nằm trước gốc O, cũng cách O 3 đơn vị.",
               "rule": true
             },
             {
@@ -335,7 +393,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm mũi tên đưa điểm P tới −3 và điểm Q tới 2. Số dương đi sang phải, số âm đi sang trái."
+              "text": "Cùng làm: bấm mũi tên đưa điểm P tới −4 và điểm Q tới 2. Số dương đi sang phải, số âm đi sang trái."
             },
             {
               "type": "visual",
@@ -348,7 +406,7 @@
           "id": "tap-hop-cac-so-nguyen.tip.dem-buoc",
           "kind": "tránh sai",
           "title": "Đọc điểm trên trục số",
-          "text": "Muốn đọc một điểm, hãy đếm số bước đi từ gốc O tới điểm đó. Đừng đếm vạch của gốc O, và đi sang trái thì số có dấu −.",
+          "text": "Muốn đọc một điểm, hãy đếm số đơn vị từ gốc O tới điểm đó. Mỗi đơn vị là một khoảng giữa hai vạch liền nhau, nên chỉ đếm khoảng, không đếm vạch. Điểm ở bên trái O thì số có dấu −.",
           "visualId": "tap-hop-cac-so-nguyen.visual.dem-buoc"
         }
       ],
@@ -357,7 +415,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.diem-q-p-xong",
-        "caption": "Với số dương n, điểm biểu diễn n nằm sau gốc O và cách O n đơn vị. Điểm biểu diễn −n nằm trước gốc O và cách O n đơn vị."
+        "caption": "Số 3 nằm sau gốc O, cách O 3 đơn vị. Số −3 nằm trước gốc O, cũng cách O 3 đơn vị."
       }
     },
     {
@@ -371,7 +429,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Con kiến đứng ở gốc O. Đi 4 vạch sang phải thì dừng ở 4, đi 4 vạch sang trái thì dừng ở −4."
+              "text": "Con kiến đứng ở gốc O. Đi 4 đơn vị sang phải thì dừng ở 4, đi 4 đơn vị sang trái thì dừng ở −4."
             },
             {
               "type": "visual",
@@ -384,7 +442,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai số cách đều gốc O và nằm hai bên gốc O gọi là hai số đối nhau. Số đối của 5 là −5, số đối của −5 là 5.",
+              "text": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0.",
               "rule": true
             },
             {
@@ -398,11 +456,15 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào số đối của 6. Số đối của 6 cách gốc O 6 đơn vị, ở bên kia gốc O."
+              "text": "Cùng làm: chạm vào số đối của 3. Số đối của 3 cách gốc O 3 đơn vị, ở bên kia gốc O."
             },
             {
               "type": "visual",
-              "visualId": "tap-hop-cac-so-nguyen.visual.chon-doi-6"
+              "visualId": "tap-hop-cac-so-nguyen.visual.chon-doi-3-truc"
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.chon-doi-3"
             }
           ]
         },
@@ -411,7 +473,7 @@
           "id": "tap-hop-cac-so-nguyen.tip.tim-so-doi",
           "kind": "tránh sai",
           "title": "Tìm số đối",
-          "text": "Muốn tìm số đối, giữ nguyên số và đổi dấu. Riêng số 0 đổi dấu vẫn là 0, nên số đối của 0 là 0.",
+          "text": "Muốn tìm số đối của một số khác 0: số dương thì thêm dấu − đằng trước, số âm thì bỏ dấu −. Số đối của 0 vẫn là 0.",
           "tex": "\\begin{gathered} 7 \\leftrightarrow -7 \\\\ -12 \\leftrightarrow 12 \\\\ 0 \\leftrightarrow 0 \\end{gathered}"
         }
       ],
@@ -420,7 +482,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-doi-5",
-        "caption": "Hai số cách đều gốc O và nằm hai bên gốc O gọi là hai số đối nhau. Số đối của 5 là −5, số đối của −5 là 5."
+        "caption": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0."
       }
     },
     {
@@ -434,7 +496,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trên trục số, điểm nằm trước biểu diễn số nhỏ hơn, điểm nằm sau biểu diễn số lớn hơn.",
+              "text": "Với hai điểm trên trục số, điểm nằm trước, bên trái, biểu diễn số nhỏ hơn. Điểm nằm sau, bên phải, biểu diễn số lớn hơn.",
               "rule": true
             },
             {
@@ -449,6 +511,10 @@
             {
               "type": "note",
               "text": "Cùng làm: chạm vào số lớn hơn −2. Số lớn hơn −2 nằm sau −2 trên trục số."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.chon-lon-hon-am-2-truc"
             },
             {
               "type": "visual",
@@ -469,17 +535,17 @@
             },
             {
               "type": "note",
-              "text": "Số −3 nằm trước số 2 nên −3 nhỏ hơn 2."
+              "text": "Số −3 nằm trước số 2 nên −3 nhỏ hơn 2. Ngoài đời, −3 độ C lạnh hơn 2 độ C."
             }
           ]
         }
       ],
-      "checkIds": ["tap-hop-cac-so-nguyen.ex.chon-so-sanh-dung-6-3"],
+      "checkIds": ["tap-hop-cac-so-nguyen.ex.chon-so-sanh-dung-4-1"],
       "practiceIds": ["tap-hop-cac-so-nguyen.ex.diem-lon-hon-ab"],
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-sanh-xong",
-        "caption": "Trên trục số, điểm nằm trước biểu diễn số nhỏ hơn, điểm nằm sau biểu diễn số lớn hơn."
+        "caption": "Với hai điểm trên trục số, điểm nằm trước, bên trái, biểu diễn số nhỏ hơn. Điểm nằm sau, bên phải, biểu diễn số lớn hơn."
       }
     },
     {
@@ -493,7 +559,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Mọi số nguyên âm đều nhỏ hơn 0, nên nhỏ hơn mọi số nguyên dương.",
+              "text": "Số nguyên âm nằm trước số 0 trên trục số nên nhỏ hơn 0. Số 0 lại nhỏ hơn số dương, vì vậy số âm nhỏ hơn mọi số dương.",
               "rule": true
             },
             {
@@ -529,12 +595,12 @@
           ]
         }
       ],
-      "checkIds": ["tap-hop-cac-so-nguyen.ex.so-sanh-100-voi-0"],
+      "checkIds": ["tap-hop-cac-so-nguyen.ex.so-sanh-60-voi-0"],
       "practiceIds": ["tap-hop-cac-so-nguyen.ex.so-lon-hon-am-25-4"],
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.am-0-duong-xong",
-        "caption": "Mọi số nguyên âm đều nhỏ hơn 0, nên nhỏ hơn mọi số nguyên dương."
+        "caption": "Số nguyên âm nằm trước số 0 trên trục số nên nhỏ hơn 0. Số 0 lại nhỏ hơn số dương, vì vậy số âm nhỏ hơn mọi số dương."
       }
     },
     {
@@ -544,15 +610,24 @@
       "minutes": 5,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.lanh-hon"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trời −7 độ C lạnh hơn trời −2 độ C, vì −7 nằm thấp hơn −2 trên nhiệt kế. Vậy −7 nhỏ hơn −2."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.lanh-hon"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Với hai số âm, hãy bỏ dấu − rồi so sánh. Số nào còn lại lớn hơn thì số âm đó nhỏ hơn.",
+              "text": "Muốn so sánh hai số âm khác nhau, hãy bỏ dấu − của cả hai số rồi so sánh các số vừa nhận được. Số âm nào cho số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia.",
               "rule": true
             },
             {
@@ -579,7 +654,7 @@
           "id": "tap-hop-cac-so-nguyen.tip.so-sanh-hai-so-am",
           "kind": "tránh sai",
           "title": "So sánh hai số âm",
-          "text": "12 lớn hơn 2, nhưng −12 lại nhỏ hơn −2. Số âm có phần số càng lớn thì càng nhỏ, như nhiệt độ càng xuống sâu dưới 0 thì càng lạnh.",
+          "text": "12 lớn hơn 2, nhưng −12 lại nhỏ hơn −2. Muốn chắc, hãy nghĩ tới nhiệt kế: −12 độ C nằm thấp hơn −2 độ C nên lạnh hơn.",
           "tex": "\\begin{gathered} 12 > 2 \\\\ \\concept{blue}{-12} < \\concept{violet}{-2} \\end{gathered}"
         }
       ],
@@ -588,7 +663,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.bo-dau-xong",
-        "caption": "Với hai số âm, hãy bỏ dấu − rồi so sánh. Số nào còn lại lớn hơn thì số âm đó nhỏ hơn."
+        "caption": "Muốn so sánh hai số âm khác nhau, hãy bỏ dấu − của cả hai số rồi so sánh các số vừa nhận được. Số âm nào cho số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia."
       }
     },
     {
@@ -598,15 +673,25 @@
       "minutes": 5,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "tap-hop-cac-so-nguyen.visual.xep-hang"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trên trục số, đọc các điểm từ trái sang phải thì được các số từ bé đến lớn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.xep-hang"
+            }
+          ]
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "a ≤ b nghĩa là a < b hoặc a = b. a ≥ b nghĩa là a > b hoặc a = b.",
+              "text": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Phép so sánh a ≤ b đúng khi a nhỏ hơn b, và cũng đúng khi hai số bằng nhau.",
               "rule": true
             },
             {
@@ -620,19 +705,23 @@
           "id": "tap-hop-cac-so-nguyen.tip.xep-tu-be-den-lon",
           "kind": "làm nhanh",
           "title": "Xếp các số từ bé đến lớn",
-          "text": "Chia các số thành ba nhóm: số âm, số 0 và số dương. Trong nhóm số âm, số có phần số lớn nhất đứng đầu.",
-          "tex": "\\concept{pink}{-9} < \\concept{pink}{-4} < 0 < \\concept{lime}{3} < \\concept{lime}{8}"
+          "text": "Xếp số âm trước, rồi số 0, rồi số dương. Các số âm: số nào lớn hơn khi bỏ dấu − thì đứng trước.",
+          "tex": "\\concept{pink}{-9} < \\concept{pink}{-6} < \\concept{pink}{-4} < \\concept{slate}{0} < \\concept{lime}{3} < \\concept{lime}{8}"
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào các số nguyên x thỏa mãn điều kiện dưới đây. Số −2 không được chọn, còn số 1 thì được chọn."
+              "text": "Cùng làm: chạm vào các số nguyên x thoả mãn điều kiện dưới đây."
             },
             {
               "type": "formula",
               "tex": "-2 < x \\le 1"
+            },
+            {
+              "type": "note",
+              "text": "Điều kiện đọc là: x lớn hơn −2 và x nhỏ hơn hoặc bằng 1. Số −2 không được chọn, còn số 1 thì được chọn."
             },
             {
               "type": "visual",
@@ -649,7 +738,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.nho-hon-hoac-bang",
-        "caption": "a ≤ b nghĩa là a < b hoặc a = b. a ≥ b nghĩa là a > b hoặc a = b."
+        "caption": "Trên trục số, đọc các điểm từ trái sang phải thì được các số từ bé đến lớn. Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng."
       }
     }
   ],
@@ -674,7 +763,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.doi-lap",
-        "caption": "Số dương và số âm dùng để chỉ hai điều trái ngược nhau, như trên và dưới, có và nợ."
+        "caption": "Hai điều trái ngược nhau, như trên và dưới hay có và nợ, được ghi bằng số dương và số âm."
       }
     },
     {
@@ -688,7 +777,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.duong-am-khong-xong",
-        "caption": "Các số tự nhiên 1, 2, 3 và cứ thế tiếp còn gọi là các số nguyên dương. Các số −1, −2, −3 và cứ thế tiếp gọi là các số nguyên âm."
+        "caption": "Số nguyên dương là các số 1, 2, 3, 4 và lớn hơn nữa. Thêm dấu − đằng trước mỗi số đó, ta được số nguyên âm: −1, −2, −3, −4."
       }
     },
     {
@@ -698,7 +787,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan",
-        "caption": "Tập hợp các số nguyên ℤ gồm số 0, các số nguyên dương và các số nguyên âm."
+        "caption": "Gộp các số nguyên âm, số 0 và các số nguyên dương lại, ta được tập hợp các số nguyên, kí hiệu ℤ."
       }
     },
     {
@@ -708,7 +797,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-xong",
-        "caption": "Trục số có gốc O ứng với số 0. Số dương nằm sau O, số âm nằm trước O."
+        "caption": "Trục số có gốc O, điểm O biểu diễn số 0. Số dương nằm sau O, bên phải; số âm nằm trước O, bên trái."
       }
     },
     {
@@ -718,7 +807,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.diem-q-p-xong",
-        "caption": "Với số dương n, điểm biểu diễn n nằm sau gốc O và cách O n đơn vị. Điểm biểu diễn −n nằm trước gốc O và cách O n đơn vị."
+        "caption": "Số 3 nằm sau gốc O, cách O 3 đơn vị. Số −3 nằm trước gốc O, cũng cách O 3 đơn vị."
       }
     },
     {
@@ -728,7 +817,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-doi-5",
-        "caption": "Hai số cách đều gốc O và nằm hai bên gốc O gọi là hai số đối nhau. Số đối của 5 là −5, số đối của −5 là 5."
+        "caption": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O, như 5 và −5. Riêng số đối của 0 là chính số 0."
       }
     },
     {
@@ -741,7 +830,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.so-sanh-xong",
-        "caption": "Trên trục số, điểm nằm trước biểu diễn số nhỏ hơn, điểm nằm sau biểu diễn số lớn hơn."
+        "caption": "Với hai điểm trên trục số, điểm nằm trước, bên trái, biểu diễn số nhỏ hơn. Điểm nằm sau, bên phải, biểu diễn số lớn hơn."
       }
     },
     {
@@ -754,7 +843,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.am-0-duong-xong",
-        "caption": "Mọi số nguyên âm đều nhỏ hơn 0, nên nhỏ hơn mọi số nguyên dương."
+        "caption": "Số nguyên âm nằm trước số 0 trên trục số nên nhỏ hơn 0. Số 0 lại nhỏ hơn số dương, vì vậy số âm nhỏ hơn mọi số dương."
       }
     },
     {
@@ -768,7 +857,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.bo-dau-xong",
-        "caption": "Với hai số âm, hãy bỏ dấu − rồi so sánh. Số nào còn lại lớn hơn thì số âm đó nhỏ hơn."
+        "caption": "Muốn so sánh hai số âm khác nhau, hãy bỏ dấu − của cả hai số rồi so sánh các số vừa nhận được. Số âm nào cho số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia."
       }
     },
     {
@@ -781,7 +870,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.xep-hang-xong",
-        "caption": "Trên trục số, các số xếp từ trái sang phải thì lớn dần."
+        "caption": "Trên trục số, đọc các điểm từ trái sang phải thì được các số từ bé đến lớn."
       }
     },
     {
@@ -791,7 +880,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.nho-hon-hoac-bang",
-        "caption": "a ≤ b nghĩa là a < b hoặc a = b. a ≥ b nghĩa là a > b hoặc a = b."
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng."
       }
     }
   ],
@@ -927,20 +1016,20 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Cột nhiệt độ dừng ở vạch thứ tư dưới số 0. Nhiệt độ dưới 0 ghi bằng số âm, nên đây là −4.",
+        "text": "Đỉnh cột nằm dưới số 0 và cách số 0 bốn đơn vị. Nhiệt độ dưới 0 ghi bằng số âm, nên đây là −4.",
         "tex": "\\concept{pink}{-4}",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số 4 là nhiệt độ trên 0, còn cột nhiệt độ đang ở dưới số 0."
+            "text": "Số 4 là nhiệt độ trên 0, còn đỉnh cột đang ở dưới số 0."
           },
           {
             "optionId": "c",
-            "text": "Cột nhiệt độ đã đi qua vạch −3, nó dừng ở vạch kế tiếp."
+            "text": "Từ số 0 xuống tới đỉnh cột là 4 đơn vị, không phải 3 đơn vị."
           },
           {
             "optionId": "d",
-            "text": "Cột nhiệt độ chưa tới vạch −5, nó dừng ở vạch trước đó."
+            "text": "Từ số 0 xuống tới đỉnh cột là 4 đơn vị, không phải 5 đơn vị."
           }
         ]
       },
@@ -1072,9 +1161,9 @@
           "text": " tám."
         }
       ],
-      "bank": ["âm", "dương", "không"],
+      "bank": ["âm", "dương", "trừ"],
       "explain": {
-        "text": "Số có dấu − đằng trước là số âm. Vì vậy −8 đọc là âm tám."
+        "text": "Số có dấu − đằng trước đọc là âm, nên −8 đọc là âm tám. Chữ trừ dùng cho phép tính, không dùng để đọc số."
       }
     },
     {
@@ -1122,7 +1211,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "-33"
+            "tex": "-2"
           }
         }
       ],
@@ -1139,6 +1228,10 @@
           {
             "optionId": "c",
             "text": "Số 0 là đúng mặt đất, chưa xuống tầng nào."
+          },
+          {
+            "optionId": "d",
+            "text": "Số −2 là tầng hầm thứ hai, còn bãi xe ở tầng hầm thứ ba."
           }
         ]
       },
@@ -1321,13 +1414,13 @@
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.so-du-giam",
+      "id": "tap-hop-cac-so-nguyen.ex.so-chi-tieu",
       "type": "choice",
       "cardIds": ["tap-hop-cac-so-nguyen.card.so-am-doi-song"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tin nhắn của ngân hàng báo số dư của ông Tám thay đổi −35 000 đồng. Số dư của ông Tám thế nào?"
+          "text": "Mẹ ghi vào sổ chi tiêu: −35 000 đồng tiền chợ. Khoản ghi này cho biết điều gì?"
         }
       ],
       "hints": {
@@ -1344,36 +1437,36 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Tăng 35 000 đồng"
+            "text": "Mẹ đã tiêu 35 000 đồng"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Giảm 35 000 đồng"
+            "text": "Mẹ nhận thêm 35 000 đồng"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không đổi"
+            "text": "Mẹ không tiêu đồng nào"
           }
         }
       ],
-      "answer": ["b"],
+      "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Số âm chỉ hướng giảm, ngược với số dương chỉ hướng tăng. Vì vậy thay đổi −35 000 đồng là số dư giảm 35 000 đồng.",
+        "text": "Số âm chỉ điều ngược với số dương: chi tiêu là ngược với nhận tiền. Vì vậy −35 000 đồng là mẹ đã tiêu 35 000 đồng.",
         "wrong": [
           {
-            "optionId": "a",
-            "text": "Số dư tăng thì tin nhắn ghi số dương, không có dấu −."
+            "optionId": "b",
+            "text": "Nhận thêm tiền thì sổ ghi số dương, không có dấu −."
           },
           {
             "optionId": "c",
-            "text": "Số dư không đổi thì tin nhắn ghi 0."
+            "text": "Không tiêu đồng nào thì sổ ghi 0."
           }
         ]
       }
@@ -1495,7 +1588,7 @@
       "answer": ["c"],
       "multiple": false,
       "explain": {
-        "text": "Số nguyên âm là số có dấu − đằng trước. Trong bốn số, chỉ có −8 có dấu −.",
+        "text": "Số nguyên âm có dấu − đằng trước. Trong bốn số, chỉ có −8 có dấu −.",
         "tex": "\\concept{pink}{-8}",
         "wrong": [
           {
@@ -1531,36 +1624,36 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−6"
+            "type": "formula",
+            "tex": "-6"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "0"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "7"
+            "type": "formula",
+            "tex": "7"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "25"
+            "type": "formula",
+            "tex": "25"
           }
         }
       ],
       "answer": ["c", "d"],
       "multiple": true,
       "explain": {
-        "text": "Số nguyên dương là các số 1, 2, 3 và cứ thế tiếp. Hai số 7 và 25 là số nguyên dương.",
+        "text": "Số nguyên dương là các số 1, 2, 3, 4 và lớn hơn nữa. Hai số 7 và 25 là số nguyên dương.",
         "wrong": [
           {
             "optionId": "a",
@@ -1653,17 +1746,17 @@
         }
       ],
       "explain": {
-        "text": "Số có dấu − là số nguyên âm, số 1, 2, 3 và cứ thế tiếp là số nguyên dương. Số 0 đứng giữa hai nhóm."
+        "text": "Số có dấu − đằng trước là số nguyên âm, còn 1, 2, 3, 4 và lớn hơn nữa là số nguyên dương. Số 0 đứng giữa hai nhóm."
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.chon-nhieu-am-trong-day",
+      "id": "tap-hop-cac-so-nguyen.ex.chon-nhiet-do-am",
       "type": "choice",
       "cardIds": ["tap-hop-cac-so-nguyen.card.duong-am-khong"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số nguyên âm."
+          "text": "Sáng nay bốn thành phố có nhiệt độ (độ C) như dưới đây. Chọn tất cả nhiệt độ ghi bằng số nguyên âm."
         }
       ],
       "hints": {
@@ -1679,43 +1772,43 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−9"
+            "type": "formula",
+            "tex": "3"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "8"
+            "type": "formula",
+            "tex": "-2"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "−14"
+            "type": "formula",
+            "tex": "0"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "-5"
           }
         }
       ],
-      "answer": ["a", "c"],
+      "answer": ["b", "d"],
       "multiple": true,
       "explain": {
-        "text": "Số nguyên âm là số có dấu − đằng trước. Hai số −9 và −14 có dấu −.",
+        "text": "Số nguyên âm có dấu − đằng trước. Hai nhiệt độ −2 và −5 là số nguyên âm.",
         "wrong": [
           {
-            "optionId": "b",
-            "text": "Số 8 không có dấu −, nó là số nguyên dương."
+            "optionId": "a",
+            "text": "Số 3 là nhiệt độ trên 0, nên là số nguyên dương."
           },
           {
-            "optionId": "d",
+            "optionId": "c",
             "text": "Số 0 không có dấu −."
           }
         ]
@@ -1822,17 +1915,13 @@
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.dien-day-so-nguyen",
-      "type": "fillBlank",
+      "id": "tap-hop-cac-so-nguyen.ex.noi-tinh-huong-nhom",
+      "type": "match",
       "cardIds": ["tap-hop-cac-so-nguyen.card.tap-hop-z"],
       "prompt": [
         {
           "type": "note",
-          "text": "Các số nguyên đứng liền nhau từ nhỏ đến lớn."
-        },
-        {
-          "type": "note",
-          "text": "Chọn số điền vào hai chỗ trống."
+          "text": "Nối mỗi tình huống với nhóm của số ghi nó."
         }
       ],
       "hints": {
@@ -1840,42 +1929,72 @@
           {
             "target": "block",
             "index": 0
-          },
-          {
-            "target": "block",
-            "index": 1
           }
         ]
       },
       "difficulty": 1,
-      "segments": [
+      "left": [
         {
-          "type": "text",
-          "text": "−5; −4; "
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "Nhiệt độ 4 độ dưới 0"
+          }
         },
         {
-          "type": "blank",
-          "id": "b1",
-          "accept": ["−3"]
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "Đang đứng đúng mặt đất"
+          }
         },
         {
-          "type": "text",
-          "text": "; −2; −1; 0; "
-        },
-        {
-          "type": "blank",
-          "id": "b2",
-          "accept": ["1"]
-        },
-        {
-          "type": "text",
-          "text": "; 2"
+          "id": "l3",
+          "content": {
+            "type": "text",
+            "text": "Có 25 nghìn đồng"
+          }
         }
       ],
-      "bank": ["−3", "1", "3", "−6"],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "số nguyên âm"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "số 0"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "số nguyên dương"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        }
+      ],
       "explain": {
-        "text": "Các số nguyên liền nhau hơn kém nhau 1. Sau −4 là −3, và sau 0 là 1.",
-        "tex": "-5;\\ -4;\\ \\concept{pink}{-3};\\ -2;\\ -1;\\ 0;\\ \\concept{lime}{1};\\ 2"
+        "text": "Nhiệt độ dưới 0 ghi bằng số nguyên âm, còn có tiền ghi bằng số nguyên dương. Đứng đúng mặt đất là số 0, nhóm ở giữa."
       }
     },
     {
@@ -1901,29 +2020,29 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−3"
+            "type": "formula",
+            "tex": "-3"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "0"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "8"
+            "type": "formula",
+            "tex": "8"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "−12"
+            "type": "formula",
+            "tex": "-12"
           }
         }
       ],
@@ -1944,13 +2063,13 @@
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.dien-so-lien-sau",
-      "type": "fillBlank",
+      "id": "tap-hop-cac-so-nguyen.ex.chon-cau-dung-z",
+      "type": "choice",
       "cardIds": ["tap-hop-cac-so-nguyen.card.tap-hop-z"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn số điền vào chỗ trống."
+          "text": "Chọn câu đúng."
         }
       ],
       "hints": {
@@ -1962,24 +2081,54 @@
         ]
       },
       "difficulty": 2,
-      "segments": [
+      "options": [
         {
-          "type": "text",
-          "text": "Số liền sau của −8 là "
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Mọi số tự nhiên đều là số nguyên"
+          }
         },
         {
-          "type": "blank",
-          "id": "b1",
-          "accept": ["−7"]
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Mọi số nguyên đều là số tự nhiên"
+          }
         },
         {
-          "type": "text",
-          "text": "."
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số −5 là số tự nhiên"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Số 0 không phải số nguyên"
+          }
         }
       ],
-      "bank": ["−7", "−9", "8"],
+      "answer": ["a"],
+      "multiple": false,
       "explain": {
-        "text": "Số liền sau của một số nguyên hơn số đó 1 đơn vị. Vậy số liền sau của −8 là −7."
+        "text": "Các số tự nhiên 0, 1, 2, 3 và cứ thế tiếp đều nằm trong tập hợp ℤ. Số nguyên âm như −5 thì không phải số tự nhiên.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số nguyên âm là số nguyên nhưng không phải số tự nhiên."
+          },
+          {
+            "optionId": "c",
+            "text": "Số −5 có dấu −, nên là số nguyên âm."
+          },
+          {
+            "optionId": "d",
+            "text": "Số 0 là một nhóm của tập hợp ℤ, nằm giữa số nguyên âm và số nguyên dương."
+          }
+        ]
       }
     },
     {
@@ -2065,7 +2214,7 @@
         "p0": -2
       },
       "explain": {
-        "text": "Số âm nằm trước gốc O, nên điểm A đi sang trái. Đi hai vạch từ gốc O thì tới −2."
+        "text": "Số âm nằm trước gốc O, nên điểm A đi sang trái. Đi 2 đơn vị từ gốc O thì tới −2."
       }
     },
     {
@@ -2094,7 +2243,7 @@
         "p1": -1
       },
       "explain": {
-        "text": "Số 4 là số dương nên A đi sang phải bốn vạch. Số −1 là số âm nên B đi sang trái một vạch."
+        "text": "Số 4 là số dương nên A đi sang phải 4 đơn vị. Số −1 là số âm nên B đi sang trái 1 đơn vị."
       }
     },
     {
@@ -2120,29 +2269,29 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−5"
+            "type": "formula",
+            "tex": "-5"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "3"
+            "type": "formula",
+            "tex": "3"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "−1"
+            "type": "formula",
+            "tex": "-1"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "0"
           }
         }
       ],
@@ -2219,7 +2368,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Điểm N nằm trước gốc O và cách gốc O hai vạch. Vậy N biểu diễn số −2.",
+        "text": "Điểm N nằm trước gốc O và cách gốc O 2 đơn vị. Vậy N biểu diễn số −2.",
         "tex": "\\concept{amber}{-2}",
         "wrong": [
           {
@@ -2228,11 +2377,11 @@
           },
           {
             "optionId": "c",
-            "text": "Từ gốc O đến N chỉ có hai vạch, không phải ba vạch."
+            "text": "Từ gốc O đến N là 2 đơn vị, không phải 3 đơn vị."
           },
           {
             "optionId": "d",
-            "text": "Từ gốc O đến N có hai vạch, không phải một vạch."
+            "text": "Từ gốc O đến N là 2 đơn vị, không phải 1 đơn vị."
           }
         ]
       },
@@ -2331,7 +2480,7 @@
         }
       ],
       "explain": {
-        "text": "Điểm A nằm sau gốc O năm vạch nên là 5. Hai điểm B và C nằm trước gốc O, cách gốc O một vạch và hai vạch, nên là −1 và −2."
+        "text": "Điểm A nằm sau gốc O 5 đơn vị nên là 5. Hai điểm B và C nằm trước gốc O, cách gốc O 1 đơn vị và 2 đơn vị, nên là −1 và −2."
       }
     },
     {
@@ -2390,7 +2539,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Điểm M nằm sau gốc O và cách gốc O bốn vạch. Vậy M biểu diễn số 4.",
+        "text": "Điểm M nằm sau gốc O và cách gốc O 4 đơn vị. Vậy M biểu diễn số 4.",
         "tex": "\\concept{amber}{4}",
         "wrong": [
           {
@@ -2399,11 +2548,11 @@
           },
           {
             "optionId": "c",
-            "text": "Từ gốc O đến M có bốn vạch, không phải năm vạch."
+            "text": "Từ gốc O đến M là 4 đơn vị, không phải 5 đơn vị."
           },
           {
             "optionId": "d",
-            "text": "Từ gốc O đến M có bốn vạch, không phải ba vạch."
+            "text": "Từ gốc O đến M là 4 đơn vị, không phải 3 đơn vị."
           }
         ]
       },
@@ -2433,7 +2582,7 @@
       "visualId": "tap-hop-cac-so-nguyen.visual.tap-diem-abcd",
       "answer": ["a"],
       "explain": {
-        "text": "Số −5 là số âm nên nằm trước gốc O, cách gốc O năm vạch. Đó là điểm A."
+        "text": "Số −5 là số âm nên nằm trước gốc O, cách gốc O 5 đơn vị. Đó là điểm A."
       }
     },
     {
@@ -2493,7 +2642,84 @@
         "p2": 4
       },
       "explain": {
-        "text": "Hai số −5 và −1 là số âm nên A và B nằm trước gốc O. Số 4 là số dương nên C nằm sau gốc O bốn vạch."
+        "text": "Hai số −5 và −1 là số âm nên A và B nằm trước gốc O. Số 4 là số dương nên C nằm sau gốc O 4 đơn vị."
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.doc-muc-nuoc",
+      "type": "choice",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.diem-bieu-dien"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tàu ngầm ở vị trí như hình, mỗi đơn vị trên thước là 1 m. Độ cao của nó so với mực nước biển là số nào?"
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.muc-nuoc-tau-ngam"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-2"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Tàu ngầm nằm dưới mực nước biển và cách mực nước biển 3 đơn vị. Dưới mực nước biển ghi bằng số âm, nên độ cao là −3 m.",
+        "tex": "\\concept{amber}{-3}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 3 là 3 m trên mực nước biển, còn tàu ngầm đang ở dưới."
+          },
+          {
+            "optionId": "c",
+            "text": "Từ mực nước biển xuống tàu ngầm là 3 đơn vị, không phải 4 đơn vị."
+          },
+          {
+            "optionId": "d",
+            "text": "Từ mực nước biển xuống tàu ngầm là 3 đơn vị, không phải 2 đơn vị."
+          }
+        ]
+      },
+      "check": {
+        "expr": "-3"
       }
     },
     {
@@ -2541,27 +2767,27 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "-80"
+            "tex": "-7"
           }
         }
       ],
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Muốn tìm số đối, giữ nguyên số và đổi dấu. Vậy số đối của 8 là −8.",
+        "text": "Số dương thì thêm dấu − đằng trước. Vậy số đối của 8 là −8.",
         "tex": "8 \\leftrightarrow \\concept{sky}{-8}",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số 8 chưa đổi dấu nên chưa phải số đối."
+            "text": "Số 8 nằm cùng phía với 8, chưa phải số đối."
           },
           {
             "optionId": "c",
-            "text": "Chỉ số đối của 0 mới là 0."
+            "text": "Số 0 ở ngay gốc O, không nằm bên kia gốc O."
           },
           {
             "optionId": "d",
-            "text": "Số −80 có phần số 80, khác phần số 8."
+            "text": "Số −7 cách gốc O 7 đơn vị, không phải 8 đơn vị."
           }
         ]
       },
@@ -2656,7 +2882,7 @@
         }
       ],
       "explain": {
-        "text": "Số đối của một số có cùng phần số nhưng khác dấu. Số đối của 2 là −2, của −9 là 9 và của 11 là −11."
+        "text": "Số dương thì thêm dấu − đằng trước, số âm thì bỏ dấu −. Vậy 2 và −2, −9 và 9, 11 và −11 là các cặp số đối."
       }
     },
     {
@@ -2711,15 +2937,15 @@
       "answer": ["a", "b"],
       "multiple": true,
       "explain": {
-        "text": "Hai số đối nhau có cùng phần số và khác dấu. Hai cặp 3 và −3, −8 và 8 đúng như vậy.",
+        "text": "Hai số đối nhau cách đều gốc O và nằm hai bên gốc O. Hai cặp 3 và −3, −8 và 8 đúng như vậy.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "Hai số 2 và −3 có phần số khác nhau."
+            "text": "Số 2 cách gốc O 2 đơn vị còn −3 cách 3 đơn vị, nên không cách đều."
           },
           {
             "optionId": "d",
-            "text": "Hai số −10 và −10 giống hệt nhau, cùng dấu."
+            "text": "Hai số −10 và −10 ở cùng một chỗ, không nằm hai bên gốc O."
           }
         ]
       }
@@ -2790,17 +3016,21 @@
       ],
       "bank": ["13", "−13", "0", "−31"],
       "explain": {
-        "text": "Muốn tìm số đối, giữ nguyên số và đổi dấu. Đổi dấu −13 thì được 13."
+        "text": "Số âm thì bỏ dấu − để có số đối. Bỏ dấu − của −13 thì được 13."
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.chon-so-sanh-dung-6-3",
+      "id": "tap-hop-cac-so-nguyen.ex.chon-so-sanh-dung-4-1",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn phép so sánh đúng."
+          "text": "Dùng trục số để chọn phép so sánh đúng."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-tron"
         }
       ],
       "hints": {
@@ -2817,37 +3047,37 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "-6 < 3"
+            "tex": "-4 < 1"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "-6 > 3"
+            "tex": "-4 > 1"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "-6 = 3"
+            "tex": "-1 < -4"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Số −6 nằm trước số 3 trên trục số. Điểm nằm trước biểu diễn số nhỏ hơn, nên −6 nhỏ hơn 3.",
-        "tex": "\\concept{blue}{-6} < \\concept{violet}{3}",
+        "text": "Số −4 nằm trước số 1 trên trục số. Điểm nằm trước biểu diễn số nhỏ hơn, nên −4 nhỏ hơn 1.",
+        "tex": "\\concept{blue}{-4} < \\concept{violet}{1}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số 3 nằm sau −6 nên 3 lớn hơn −6, không phải nhỏ hơn."
+            "text": "Số 1 nằm sau −4 nên 1 lớn hơn −4, không phải nhỏ hơn."
           },
           {
             "optionId": "c",
-            "text": "Hai số này ở hai điểm khác nhau nên không bằng nhau."
+            "text": "Số −1 nằm sau −4 nên −1 lớn hơn −4, không phải nhỏ hơn."
           }
         ]
       },
@@ -2892,13 +3122,6 @@
             "type": "text",
             "text": "Điểm B"
           }
-        },
-        {
-          "id": "c",
-          "content": {
-            "type": "text",
-            "text": "Hai số bằng nhau"
-          }
         }
       ],
       "answer": ["b"],
@@ -2908,11 +3131,7 @@
         "wrong": [
           {
             "optionId": "a",
-            "text": "Điểm A nằm trước điểm B, nên số của A nhỏ hơn."
-          },
-          {
-            "optionId": "c",
-            "text": "Hai điểm ở hai chỗ khác nhau nên hai số khác nhau."
+            "text": "Điểm A cách gốc O xa hơn, nhưng nó nằm trước điểm B nên số của A nhỏ hơn."
           }
         ]
       }
@@ -2972,7 +3191,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn phép so sánh sai."
+          "text": "Dùng trục số để chọn phép so sánh sai."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-tron"
         }
       ],
       "hints": {
@@ -3010,14 +3233,14 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "-6 > -2"
+            "tex": "-4 > -2"
           }
         }
       ],
       "answer": ["d"],
       "multiple": false,
       "explain": {
-        "text": "Số nào nằm sau thì lớn hơn. Điểm −6 nằm trước −2, nên −6 nhỏ hơn −2 và phép so sánh −6 > −2 là sai.",
+        "text": "Điểm nằm sau biểu diễn số lớn hơn. Điểm −4 nằm trước −2 nên −4 nhỏ hơn −2, và −4 > −2 là phép so sánh sai.",
         "wrong": [
           {
             "optionId": "a",
@@ -3044,7 +3267,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số nhỏ hơn −1."
+          "text": "Dùng trục số để chọn tất cả các số nhỏ hơn −1."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.truc-so-tron"
         }
       ],
       "hints": {
@@ -3060,29 +3287,29 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−4"
+            "type": "formula",
+            "tex": "-4"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "0"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "−2"
+            "type": "formula",
+            "tex": "-2"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "1"
+            "type": "formula",
+            "tex": "1"
           }
         }
       ],
@@ -3103,7 +3330,46 @@
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.so-sanh-100-voi-0",
+      "id": "tap-hop-cac-so-nguyen.ex.dien-so-lien-sau",
+      "type": "fillBlank",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.so-sanh-truc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Số liền sau của −8 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−7"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−7", "−9", "8"],
+      "explain": {
+        "text": "Số liền sau nằm ngay bên phải trên trục số. Bên phải −8 là −7."
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.so-sanh-60-voi-0",
       "type": "choice",
       "cardIds": [],
       "prompt": [
@@ -3126,37 +3392,37 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "-100 < 0"
+            "tex": "-60 < 0"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "-100 > 0"
+            "tex": "-60 > 0"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "-100 = 0"
+            "tex": "-60 = 0"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Mọi số nguyên âm đều nhỏ hơn 0. Vì −100 là số nguyên âm nên −100 nhỏ hơn 0.",
-        "tex": "\\concept{blue}{-100} < 0",
+        "text": "Số nguyên âm nằm trước 0 nên nhỏ hơn 0. Vì −60 là số nguyên âm nên −60 nhỏ hơn 0.",
+        "tex": "\\concept{blue}{-60} < 0",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số lớn hơn 0 phải là số dương, còn −100 là số âm."
+            "text": "Số lớn hơn 0 phải là số dương, còn −60 là số âm."
           },
           {
             "optionId": "c",
-            "text": "Số −100 khác 0 nên không bằng 0."
+            "text": "Số −60 khác 0 nên không bằng 0."
           }
         ]
       },
@@ -3202,12 +3468,12 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Số âm luôn nhỏ hơn số dương. Vì vậy 4 lớn hơn −25.",
+        "text": "Số âm nhỏ hơn mọi số dương. Vì vậy 4 lớn hơn −25.",
         "tex": "\\concept{blue}{-25} < \\concept{violet}{4}",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số −25 là số âm, nó nhỏ hơn mọi số dương."
+            "text": "Số −25 là số âm, mà số âm nhỏ hơn mọi số dương."
           }
         ]
       },
@@ -3216,13 +3482,13 @@
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.chon-nhieu-nho-hon-1",
+      "id": "tap-hop-cac-so-nguyen.ex.chon-nhieu-nho-hon-2",
       "type": "choice",
       "cardIds": ["tap-hop-cac-so-nguyen.card.am-khong-duong"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số nhỏ hơn 1."
+          "text": "Chọn tất cả các số nhỏ hơn 2."
         }
       ],
       "hints": {
@@ -3238,44 +3504,44 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−19"
+            "type": "formula",
+            "tex": "-14"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "0"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "1"
+            "type": "formula",
+            "tex": "2"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "7"
+            "type": "formula",
+            "tex": "9"
           }
         }
       ],
       "answer": ["a", "b"],
       "multiple": true,
       "explain": {
-        "text": "Số nguyên âm và số 0 đều nhỏ hơn mọi số dương. Vậy −19 và 0 nhỏ hơn 1.",
+        "text": "Số âm nhỏ hơn mọi số dương, và số 0 cũng nhỏ hơn 2. Vậy −14 và 0 nhỏ hơn 2.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "Số 1 bằng 1, không nhỏ hơn 1."
+            "text": "Số 2 bằng 2, không nhỏ hơn 2."
           },
           {
             "optionId": "d",
-            "text": "Số 7 lớn hơn 1."
+            "text": "Số 9 lớn hơn 2."
           }
         ]
       }
@@ -3332,11 +3598,11 @@
       "answer": ["d"],
       "multiple": false,
       "explain": {
-        "text": "Số âm luôn nhỏ hơn số dương, nên 4 lớn hơn −4. Vì vậy 4 < −4 là phép so sánh sai.",
+        "text": "Số âm nhỏ hơn mọi số dương, nên 4 lớn hơn −4. Vì vậy 4 < −4 là phép so sánh sai.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số âm nhỏ hơn 0, nên −8 < 0 đúng."
+            "text": "Số nguyên âm nằm trước 0 nên nhỏ hơn 0, vậy −8 < 0 đúng."
           },
           {
             "optionId": "b",
@@ -3344,7 +3610,7 @@
           },
           {
             "optionId": "c",
-            "text": "Số âm nhỏ hơn số dương, nên −3 < 5 đúng."
+            "text": "Số âm nhỏ hơn mọi số dương, nên −3 < 5 đúng."
           }
         ]
       },
@@ -3440,7 +3706,7 @@
           },
           {
             "optionId": "c",
-            "text": "Hai số có phần số khác nhau nên không bằng nhau."
+            "text": "Bỏ dấu − thì hai số là 45 và 54, khác nhau nên không bằng nhau."
           }
         ]
       },
@@ -3486,12 +3752,12 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Bỏ dấu − thì 130 lớn hơn 120. Vậy số âm −130 nhỏ hơn −120.",
+        "text": "Bỏ dấu − thì 130 lớn hơn 120. Vậy −130 nhỏ hơn −120.",
         "tex": "\\concept{blue}{-130} < \\concept{violet}{-120}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số −120 có phần số nhỏ hơn nên lớn hơn −130."
+            "text": "Bỏ dấu − thì 120 nhỏ hơn 130, nên −120 lớn hơn −130."
           }
         ]
       },
@@ -3551,15 +3817,15 @@
       "answer": ["c"],
       "multiple": false,
       "explain": {
-        "text": "Trong các số âm, số có phần số lớn nhất là nhỏ nhất. Phần số 41 lớn nhất nên −41 nhỏ nhất.",
+        "text": "Trong các số âm, bỏ dấu − thì số nào lớn nhất là số nhỏ nhất. Bỏ dấu − thì 41 lớn nhất, nên −41 nhỏ nhất.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Phần số 14 nhỏ hơn 41 nên −14 lớn hơn −41."
+            "text": "Bỏ dấu − thì 14 nhỏ hơn 41, nên −14 lớn hơn −41."
           },
           {
             "optionId": "b",
-            "text": "Phần số 4 nhỏ nhất nên −4 lớn nhất trong ba số âm."
+            "text": "Bỏ dấu − thì 4 nhỏ nhất, nên −4 lớn nhất trong ba số âm."
           },
           {
             "optionId": "d",
@@ -3623,7 +3889,7 @@
       "answer": ["d"],
       "multiple": false,
       "explain": {
-        "text": "Bỏ dấu − thì 6 nhỏ hơn 3 là sai, vì 6 lớn hơn 3. Nên −6 nhỏ hơn −3, và −6 > −3 là phép so sánh sai.",
+        "text": "Bỏ dấu − thì 6 lớn hơn 3, nên −6 nhỏ hơn −3. Vì vậy −6 > −3 là phép so sánh sai.",
         "wrong": [
           {
             "optionId": "a",
@@ -3688,7 +3954,7 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Nhiệt độ càng thấp thì càng lạnh, tức là số càng nhỏ. Trong ba số âm, −8 nhỏ nhất.",
+        "text": "Nhiệt độ càng thấp thì càng lạnh, tức là số càng nhỏ. Bỏ dấu − thì 8 lớn nhất, nên −8 nhỏ nhất.",
         "tex": "\\concept{blue}{-8} < -3 < -1",
         "wrong": [
           {
@@ -3754,7 +4020,7 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Dấu ≤ đúng khi hai số nhỏ hơn hoặc bằng nhau. Hai số −2 và −2 bằng nhau nên −2 ≤ −2 đúng.",
+        "text": "a ≤ b đúng khi a nhỏ hơn b hoặc a bằng b. Hai số −2 và −2 bằng nhau nên −2 ≤ −2 đúng.",
         "wrong": [
           {
             "optionId": "a",
@@ -3831,7 +4097,7 @@
         }
       ],
       "explain": {
-        "text": "Xếp số âm trước, rồi số 0, rồi số dương. Trong các số âm, −8 có phần số lớn hơn nên nhỏ hơn −3.",
+        "text": "Xếp số âm trước, rồi số 0, rồi số dương. Trong các số âm, bỏ dấu − thì 8 lớn hơn 3, nên −8 đứng trước −3.",
         "tex": "\\concept{pink}{-8} < \\concept{pink}{-3} < 0 < \\concept{lime}{1} < \\concept{lime}{6}"
       }
     },
@@ -3842,7 +4108,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số nguyên x thỏa mãn điều kiện dưới đây."
+          "text": "Chọn tất cả các số nguyên x thoả mãn điều kiện dưới đây."
         },
         {
           "type": "formula",
@@ -3862,43 +4128,50 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−3"
+            "type": "formula",
+            "tex": "-3"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "−2"
+            "type": "formula",
+            "tex": "-2"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "0"
+            "type": "formula",
+            "tex": "-1"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "1"
+            "type": "formula",
+            "tex": "0"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "formula",
+            "tex": "1"
           }
         }
       ],
-      "answer": ["b", "c"],
+      "answer": ["b", "c", "d"],
       "multiple": true,
       "explain": {
-        "text": "Số x phải lớn hơn −3 và nhỏ hơn hoặc bằng 0. Hai số −2 và 0 thoả cả hai điều kiện.",
+        "text": "Số x phải lớn hơn −3 và nhỏ hơn hoặc bằng 0. Các số nguyên x là −2, −1 và 0, nên chọn cả ba số này.",
         "wrong": [
           {
             "optionId": "a",
             "text": "Số −3 không lớn hơn −3, nên không được chọn."
           },
           {
-            "optionId": "d",
+            "optionId": "e",
             "text": "Số 1 lớn hơn 0, nên không được chọn."
           }
         ]
@@ -3954,7 +4227,7 @@
         }
       ],
       "explain": {
-        "text": "Xếp số dương trước, rồi số 0 nếu có, rồi số âm. Trong các số âm, −2 lớn hơn −7.",
+        "text": "Xếp số dương trước, rồi số 0 nếu có, rồi số âm. Trong các số âm, bỏ dấu − thì 2 nhỏ hơn 7, nên −2 lớn hơn −7.",
         "tex": "5 > 1 > \\concept{pink}{-2} > \\concept{pink}{-7}"
       }
     },
@@ -3965,7 +4238,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trong các số −4; 0; 3; −9, số nào nhỏ nhất?"
+          "text": "Trong các số −5; 0; 2; −12, số nào nhỏ nhất?"
         }
       ],
       "hints": {
@@ -3982,7 +4255,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "-4"
+            "tex": "-5"
           }
         },
         {
@@ -3996,25 +4269,25 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "3"
+            "tex": "2"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "-9"
+            "tex": "-12"
           }
         }
       ],
       "answer": ["d"],
       "multiple": false,
       "explain": {
-        "text": "Số âm nhỏ hơn 0 và số dương. Trong hai số âm, −9 có phần số lớn hơn nên nhỏ hơn −4.",
+        "text": "Số âm nhỏ hơn 0 và nhỏ hơn mọi số dương. Trong hai số âm, bỏ dấu − thì 12 lớn hơn 5, nên −12 nhỏ hơn −5.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số −4 lớn hơn −9."
+            "text": "Bỏ dấu − thì 5 nhỏ hơn 12, nên −5 lớn hơn −12."
           },
           {
             "optionId": "b",
@@ -4022,7 +4295,7 @@
           },
           {
             "optionId": "c",
-            "text": "Số 3 là số dương, lớn hơn mọi số âm."
+            "text": "Số 2 là số dương, mà số âm nhỏ hơn mọi số dương."
           }
         ]
       },
@@ -4037,7 +4310,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Có bao nhiêu số nguyên x thỏa mãn điều kiện dưới đây?"
+          "text": "Có bao nhiêu số nguyên x thoả mãn điều kiện dưới đây?"
         },
         {
           "type": "formula",
@@ -4066,21 +4339,21 @@
       }
     },
     {
-      "id": "tap-hop-cac-so-nguyen.ex.chon-x-tan-cung-2",
+      "id": "tap-hop-cac-so-nguyen.ex.chon-x-tan-cung-5",
       "type": "choice",
       "cardIds": ["tap-hop-cac-so-nguyen.card.liet-ke"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số nguyên x thỏa mãn điều kiện dưới đây, trong đó x có chữ số tận cùng là 2."
+          "text": "Chọn tất cả các số nguyên x thoả mãn điều kiện dưới đây, trong đó x có chữ số tận cùng là 5."
         },
         {
           "type": "formula",
-          "tex": "-12 < x \\le 12"
+          "tex": "-15 < x \\le 15"
         },
         {
           "type": "note",
-          "text": "Số −12 và số −2 đều có chữ số tận cùng là 2."
+          "text": "Số −15 và số −5 đều có chữ số tận cùng là 5."
         }
       ],
       "hints": {
@@ -4096,40 +4369,51 @@
         {
           "id": "a",
           "content": {
-            "type": "text",
-            "text": "−12"
+            "type": "formula",
+            "tex": "-15"
           }
         },
         {
           "id": "b",
           "content": {
-            "type": "text",
-            "text": "−2"
+            "type": "formula",
+            "tex": "-5"
           }
         },
         {
           "id": "c",
           "content": {
-            "type": "text",
-            "text": "2"
+            "type": "formula",
+            "tex": "5"
           }
         },
         {
           "id": "d",
           "content": {
-            "type": "text",
-            "text": "12"
+            "type": "formula",
+            "tex": "15"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "formula",
+            "tex": "3"
           }
         }
       ],
       "answer": ["b", "c", "d"],
       "multiple": true,
       "explain": {
-        "text": "Số x phải lớn hơn −12 và nhỏ hơn hoặc bằng 12. Ba số −2, 2 và 12 có chữ số tận cùng là 2 và nằm trong khoảng đó.",
+        "text": "Số x phải lớn hơn −15 và nhỏ hơn hoặc bằng 15. Ba số −5, 5 và 15 có chữ số tận cùng là 5 và nằm trong khoảng đó.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số −12 không lớn hơn −12, nên không được chọn."
+            "text": "Số −15 không lớn hơn −15, nên không được chọn."
+          },
+          {
+            "optionId": "e",
+            "text": "Số 3 có chữ số tận cùng là 3, không phải 5."
           }
         ]
       }

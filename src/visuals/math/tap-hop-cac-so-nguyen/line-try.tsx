@@ -154,7 +154,7 @@ export function LineTry({
                 <button
                   type="button"
                   className={BUTTON}
-                  aria-label={`Sang trái một vạch, ${label}`}
+                  aria-label={`Sang trái 1 đơn vị, ${label}`}
                   {...stateStep(pointKey(i), "down")}
                   disabled={locked || value <= spec.from}
                   onClick={() => move(i, neighbour(spec, value, "down"))}
@@ -170,7 +170,7 @@ export function LineTry({
                 <button
                   type="button"
                   className={BUTTON}
-                  aria-label={`Sang phải một vạch, ${label}`}
+                  aria-label={`Sang phải 1 đơn vị, ${label}`}
                   {...stateStep(pointKey(i), "up")}
                   disabled={locked || value >= spec.to}
                   onClick={() => move(i, neighbour(spec, value, "up"))}

@@ -83,6 +83,22 @@ const WALK = (
   { type: "arrow", from: 0, to: at, tag, step },
 ];
 
+// Three temperatures, one from each group of the integers.
+const TEMPERATURE_GROUPS = [
+  {
+    tex: "\\concept{lime}{4}",
+    tag: { text: "Trên 0: số nguyên dương", color: POSITIVE },
+  },
+  {
+    tex: "\\concept{slate}{0}",
+    tag: { text: "Đúng 0: số 0", color: "slate" },
+  },
+  {
+    tex: "\\concept{pink}{-2}",
+    tag: { text: "Dưới 0: số nguyên âm", color: NEGATIVE },
+  },
+] as const;
+
 const ZONE_NEGATIVE = (tag: string, step: number, to = -1): LineLayer => ({
   type: "zone",
   from: -5,
@@ -103,16 +119,23 @@ const ZONE_POSITIVE = (tag: string, step: number): LineLayer => ({
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // 1. Temperature below zero.
+  // The column moves: it stands at 3, then goes down to −3, and each reading
+  // is written beside the top of the column.
   "nhiet-ke-buoc": {
     kind: "scale",
     ...THERMOMETER,
-    label: "Nhiệt kế: 3 độ C ở trên số 0 và âm 3 độ C ở dưới số 0",
+    label:
+      "Nhiệt kế: cột nhiệt độ dừng ở 3 thì nhiệt kế chỉ 3 độ C, hạ xuống dưới số 0 ba đơn vị thì chỉ âm 3 độ C",
+    levelSteps: [
+      { level: 3, step: 1 },
+      { level: -3, step: 2 },
+    ],
     marks: [
-      { at: 3, text: "3 °C", color: POSITIVE, step: 1 },
+      { at: 3, text: "3 °C", color: POSITIVE, step: 1, until: 1 },
       { at: -3, text: "−3 °C", color: NEGATIVE, step: 2 },
     ],
     zones: [
-      { side: "up", tag: "Trên 0", color: POSITIVE, step: 1 },
+      { side: "up", tag: "Trên 0", color: POSITIVE, step: 1, until: 1 },
       { side: "down", tag: "Dưới 0", color: NEGATIVE, step: 2 },
     ],
     mode: "steps",
@@ -120,18 +143,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "nhiet-ke-tom-tat": {
     kind: "scale",
     ...THERMOMETER,
-    label: "Nhiệt kế: 3 độ C ở trên số 0 và âm 3 độ C ở dưới số 0",
-    marks: [
-      { at: 3, text: "3 °C", color: POSITIVE },
-      { at: -3, text: "−3 °C", color: NEGATIVE },
-    ],
-    zones: [
-      { side: "up", tag: "Trên 0", color: POSITIVE },
-      { side: "down", tag: "Dưới 0", color: NEGATIVE },
-    ],
+    level: -3,
+    label: "Nhiệt kế: cột nhiệt độ dừng ở dưới số 0 ba đơn vị, chỉ âm 3 độ C",
+    marks: [{ at: -3, text: "−3 °C", color: NEGATIVE }],
+    zones: [{ side: "down", tag: "Dưới 0", color: NEGATIVE }],
     mode: "still",
   },
-  "chon-4-duoi-0": {
+  "chon-6-duoi-0": {
     kind: "chips",
     items: ["6", "−6", "−60", "0"],
     wants: [1],
@@ -141,7 +159,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "scale",
     ...THERMOMETER,
     level: -4,
-    label: "Nhiệt kế, cột nhiệt độ dừng ở vạch thứ tư dưới số 0",
+    label: "Nhiệt kế, cột nhiệt độ dừng ở dưới số 0 bốn đơn vị",
     marks: [],
     mode: "still",
   },
@@ -152,7 +170,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     to: 2,
     zero: "0 °C",
     level: -2,
-    label: "Nhiệt kế khác: cột nhiệt độ dừng ở vạch thứ hai dưới số 0",
+    label: "Nhiệt kế khác: cột nhiệt độ dừng ở dưới số 0 hai đơn vị",
     marks: [
       { at: 2, text: "2 °C", color: POSITIVE, step: 1 },
       { at: -2, text: "?", color: NEGATIVE, step: 2 },
@@ -170,7 +188,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     to: 4,
     zero: "0 °C",
     level: -4,
-    label: "Nhiệt kế: cột nhiệt độ dừng ở vạch thứ tư dưới số 0, là âm 4 độ C",
+    label: "Nhiệt kế: cột nhiệt độ dừng ở dưới số 0 bốn đơn vị, là âm 4 độ C",
     marks: [{ at: -4, text: "−4 °C", color: NEGATIVE, step: 1 }],
     zones: [{ side: "down", tag: "Dưới 0", color: NEGATIVE, step: 1 }],
     mode: "steps",
@@ -229,25 +247,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // 3. Positive integers, negative integers and 0.
   "duong-am-khong": {
-    kind: "line",
-    ...R5,
-    label: "Trục số: số nguyên âm ở bên trái số 0, số nguyên dương ở bên phải",
-    layers: [
-      { type: "origin" },
-      ZONE_NEGATIVE("Số nguyên âm", 1),
-      ZONE_POSITIVE("Số nguyên dương", 2),
-    ],
+    kind: "lines",
+    label:
+      "Ba nhiệt độ ở ba nhóm số: 4 độ C là số nguyên dương, 0 độ C là số 0, âm 2 độ C là số nguyên âm",
+    rows: TEMPERATURE_GROUPS,
     mode: "steps",
   },
   "duong-am-khong-xong": {
-    kind: "line",
-    ...R5,
-    label: "Trục số: số nguyên âm ở bên trái số 0, số nguyên dương ở bên phải",
-    layers: [
-      { type: "origin" },
-      ZONE_NEGATIVE("Số nguyên âm", 0),
-      ZONE_POSITIVE("Số nguyên dương", 0),
-    ],
+    kind: "lines",
+    label:
+      "Ba nhiệt độ ở ba nhóm số: 4 độ C là số nguyên dương, 0 độ C là số 0, âm 2 độ C là số nguyên âm",
+    rows: TEMPERATURE_GROUPS,
     mode: "still",
   },
   "chon-am-trong-day": {
@@ -258,6 +268,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
 
   // 4. The set of the integers.
+  "chon-nguyen-khong-tu-nhien": {
+    kind: "chips",
+    items: ["9", "−2", "0", "14"],
+    wants: [1],
+    done: "−2 là số nguyên nhưng không phải số tự nhiên.",
+  },
   "z-ba-phan": {
     kind: "rows",
     label: "Tập hợp các số nguyên gồm số nguyên âm, số 0 và số nguyên dương",
@@ -310,7 +326,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Trục số, điểm A cần đặt ở số âm 3",
     names: ["A"],
     goal: [-3],
-    done: "Điểm A ở −3, cách gốc O ba vạch về bên trái.",
+    done: "Điểm A ở −3, cách gốc O 3 đơn vị về bên trái.",
   },
   "dat-diem-1": {
     kind: "lineTry",
@@ -336,11 +352,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "line",
     ...R5,
     label:
-      "Điểm Q biểu diễn 3, cách gốc O 3 đơn vị về bên phải; điểm P biểu diễn âm 4, cách gốc O 4 đơn vị về bên trái",
+      "Điểm Q biểu diễn 3, cách gốc O 3 đơn vị về bên phải; điểm P biểu diễn âm 3, cách gốc O 3 đơn vị về bên trái",
     layers: [
       { type: "origin" },
       ...WALK(3, "Q", "3 đơn vị", 1),
-      ...WALK(-4, "P", "4 đơn vị", 2),
+      ...WALK(-3, "P", "3 đơn vị", 2),
     ],
     mode: "steps",
   },
@@ -348,34 +364,32 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "line",
     ...R5,
     label:
-      "Điểm Q biểu diễn 3, cách gốc O 3 đơn vị về bên phải; điểm P biểu diễn âm 4, cách gốc O 4 đơn vị về bên trái",
+      "Điểm Q biểu diễn 3, cách gốc O 3 đơn vị về bên phải; điểm P biểu diễn âm 3, cách gốc O 3 đơn vị về bên trái",
     layers: [
       { type: "origin" },
       ...WALK(3, "Q", "3 đơn vị", 0),
-      ...WALK(-4, "P", "4 đơn vị", 0),
+      ...WALK(-3, "P", "3 đơn vị", 0),
     ],
     mode: "still",
   },
   "dat-hai-diem-p-q": {
     kind: "lineTry",
     ...R5,
-    label: "Trục số, điểm P cần đặt ở số âm 3 và điểm Q ở số 2",
+    label: "Trục số, điểm P cần đặt ở số âm 4 và điểm Q ở số 2",
     names: ["P", "Q"],
-    goal: [-3, 2],
-    done: "P ở −3, trước gốc O. Q ở 2, sau gốc O.",
+    goal: [-4, 2],
+    done: "P ở −4, trước gốc O. Q ở 2, sau gốc O.",
   },
   "doc-diem-mnpq": {
     kind: "line",
-    from: -6,
-    to: 5,
+    ...R5,
     labelAt: [0, 1],
     label:
-      "Trục số từ âm 6 đến 5 với bốn điểm M, N, P, Q; chỉ số 0 và số 1 có ghi số",
+      "Trục số từ âm 5 đến 5 với ba điểm M, N, P; chỉ số 0 và số 1 có ghi số",
     layers: [
       { type: "point", at: 4, name: "M", color: POINT, hideNumber: true },
       { type: "point", at: -2, name: "N", color: POINT, hideNumber: true },
-      { type: "point", at: -6, name: "P", color: POINT, hideNumber: true },
-      { type: "point", at: -5, name: "Q", color: POINT, hideNumber: true },
+      { type: "point", at: -5, name: "P", color: POINT, hideNumber: true },
     ],
     mode: "still",
   },
@@ -406,8 +420,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "dem-buoc": {
     kind: "line",
     ...R5,
-    label: "Đếm ba bước từ gốc O sang trái tới điểm P, được số âm 3",
-    layers: [{ type: "origin" }, ...WALK(-3, "P", "3 bước", 0)],
+    label: "Đếm ba đơn vị từ gốc O sang trái tới điểm P, được số âm 3",
+    layers: [{ type: "origin" }, ...WALK(-3, "P", "3 đơn vị", 0)],
     mode: "still",
   },
   "doc-diem-giai": {
@@ -423,16 +437,28 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
   },
 
+  "muc-nuoc-tau-ngam": {
+    kind: "scale",
+    theme: "sea",
+    from: -4,
+    to: 3,
+    zero: "mực nước biển",
+    label:
+      "Thước đo độ cao so với mực nước biển, có một tàu ngầm ở dưới mực nước biển ba đơn vị",
+    marks: [{ at: -3, text: "Tàu ngầm", color: POINT }],
+    mode: "still",
+  },
+
   // 7. Opposite numbers.
   "kien-4": {
     kind: "line",
     ...R5,
     label:
-      "Con kiến đi 4 vạch sang phải từ gốc O dừng ở 4; đi 4 vạch sang trái dừng ở âm 4",
+      "Con kiến đi 4 đơn vị sang phải từ gốc O dừng ở 4; đi 4 đơn vị sang trái dừng ở âm 4",
     layers: [
       { type: "origin" },
-      ...WALK(4, "A", "4 vạch", 1),
-      ...WALK(-4, "B", "4 vạch", 2),
+      ...WALK(4, "Kiến", "4 đơn vị", 1),
+      ...WALK(-4, "Kiến", "4 đơn vị", 2),
     ],
     mode: "steps",
   },
@@ -448,11 +474,18 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "still",
   },
-  "chon-doi-6": {
+  "chon-doi-3-truc": {
+    kind: "line",
+    ...R5,
+    label: "Trục số có điểm biểu diễn số 3",
+    layers: [{ type: "origin" }, { type: "point", at: 3, color: POINT }],
+    mode: "still",
+  },
+  "chon-doi-3": {
     kind: "chips",
-    items: ["6", "−6", "0", "−16"],
+    items: ["3", "−3", "0", "−2"],
     wants: [1],
-    done: "Số đối của 6 là −6.",
+    done: "Số đối của 3 là −3.",
   },
 
   // 8. Comparing on the number line.
@@ -462,8 +495,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label:
       "Điểm A ở âm 3 nằm trước điểm B ở 2, nên âm 3 nhỏ hơn 2; đi sang phải thì số lớn dần",
     layers: [
-      { type: "point", at: -3, name: "A", color: POINT, step: 0 },
-      { type: "point", at: 2, name: "B", color: POINT, step: 1 },
+      { type: "point", at: -3, name: "A", color: SMALLER, step: 0 },
+      { type: "point", at: 2, name: "B", color: GREATER, step: 1 },
       {
         type: "arrow",
         from: -3,
@@ -480,17 +513,32 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label:
       "Điểm A ở âm 3 nằm trước điểm B ở 2, nên âm 3 nhỏ hơn 2; đi sang phải thì số lớn dần",
     layers: [
-      { type: "point", at: -3, name: "A", color: POINT },
-      { type: "point", at: 2, name: "B", color: POINT },
+      { type: "point", at: -3, name: "A", color: SMALLER },
+      { type: "point", at: 2, name: "B", color: GREATER },
       { type: "arrow", from: -3, to: 2, tag: "sang phải: lớn dần" },
     ],
     mode: "still",
   },
+  "chon-lon-hon-am-2-truc": {
+    kind: "line",
+    ...R5,
+    label: "Trục số có điểm biểu diễn số âm 2",
+    layers: [{ type: "origin" }, { type: "point", at: -2, color: POINT }],
+    mode: "still",
+  },
   "chon-lon-hon-am-2": {
     kind: "chips",
-    items: ["−5", "−3", "1", "−4"],
-    wants: [2],
-    done: "1 nằm sau −2 trên trục số nên 1 lớn hơn −2.",
+    items: ["−5", "−1", "−4", "−3"],
+    wants: [1],
+    done: "−1 nằm sau −2 trên trục số nên −1 lớn hơn −2.",
+  },
+  // The bare line of the pick screens that ask the child to compare on it.
+  "truc-so-tron": {
+    kind: "line",
+    ...R5,
+    label: "Trục số từ âm 5 đến 5",
+    layers: [{ type: "origin" }],
+    mode: "still",
   },
   "so-sanh-ab": {
     kind: "line",
@@ -549,7 +597,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "scale",
     theme: "thermometer",
     from: -8,
-    to: 2,
+    to: 0,
     zero: "0 °C",
     level: -7,
     label: "Nhiệt kế: âm 7 độ C ở thấp hơn âm 2 độ C, nên lạnh hơn",
@@ -559,21 +607,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     zones: [{ side: "down", tag: "Lạnh hơn", color: NEGATIVE, step: 2 }],
     mode: "steps",
-  },
-  "lanh-hon-xong": {
-    kind: "scale",
-    theme: "thermometer",
-    from: -8,
-    to: 2,
-    zero: "0 °C",
-    level: -7,
-    label: "Nhiệt kế: âm 7 độ C ở thấp hơn âm 2 độ C, nên lạnh hơn",
-    marks: [
-      { at: -2, text: "−2 °C", color: GREATER },
-      { at: -7, text: "−7 °C", color: SMALLER },
-    ],
-    zones: [{ side: "down", tag: "Lạnh hơn", color: NEGATIVE }],
-    mode: "still",
   },
   "bo-dau": {
     kind: "lines",

@@ -1,8 +1,8 @@
 # Bàn giao: Bài 13 `tap-hop-cac-so-nguyen` (Tập hợp các số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Đã soạn xong bản nháp (`status: draft`): 11 phần, 12 thẻ, 55 câu, 7 dạng câu, 13 hình tương tác, 4 khối mẹo; `content:check --stats` 0 lỗi, `visual:shot` 92/92. Chưa review. Không làm lời đọc và video trong đợt này.
-- Đã xong: `lesson:walk` 0 lỗi (3 thiết bị; hình gợi ý nhiệt kế rút còn −3..2 để không tràn thanh dưới). Việc tiếp theo: review vòng 1 và 2 (Opus, song song + Tổng hợp), lượt Đọc hiểu (Haiku), vòng chỉ phần đổi (Sonnet), rồi `content:hash --approve`, `content:lock`, `content:emit`.
+- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`): 11 phần, 12 thẻ, 57 câu, 7 dạng câu; đã sửa xong mọi phát hiện Nghiêm trọng và Nên sửa của review vòng 1 (câu quy tắc viết lại khác sách và recap lặp theo, số đối của 0 có câu quy ước, "bỏ dấu −" thay tên "phần số", một từ "đơn vị" cho khoảng cách, màn mở đầu có chữ, ví dụ đời sống và màn cùng làm đủ ở mọi phần, nhiệt kế có màn mẫu cột 3 rồi −3). Mẹo đã thử lại bằng chương trình trên mọi dạng bài gồm số biên. `content:check --stats` 0 lỗi cho bài, `visual:shot` 102/102, `lesson:walk` 0 lỗi (3 thiết bị).
+- Việc tiếp theo: review vòng 2 (Opus, chỉ phần đổi), lượt Đọc hiểu (Haiku), vòng chỉ phần đổi (Sonnet), rồi `content:hash --approve`, `content:lock`, `content:emit`. Không làm lời đọc và video trong đợt này.
 
 ## Nguồn (sách bài tập, `sources/math/tap-hop-cac-so-nguyen/`, không commit)
 - Đề: tr.47–49 in (PDF 48–50), tệp `sbt-p47.png`, `sbt-p48.png`, `sbt-p49.png`. Bài 14 bắt đầu ở tr.50.
