@@ -4,12 +4,18 @@ import { RotateCcw } from "lucide-react";
 import { useState } from "react";
 import type { VisualProps } from "@/visuals/registry";
 import { ACTION_BUTTON } from "@/visuals/shared/action-button";
+import {
+  DoneLine,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { DivisionEquation, Sentence } from "./chia-parts";
 import { remainderCaption, roundCaption } from "./share-logic";
 import { SharePicture } from "./share-picture";
 
 // Hands-on dealing: each press of "Chia một vòng" gives every plate one item,
 // until fewer items are left than plates; what remains is the remainder.
+// "Tiếp" waits until the dealing is over, or "Xem cách làm" deals it all.
 export default function ShareTry({
   total,
   people,
@@ -18,6 +24,19 @@ export default function ShareTry({
   const [rounds, setRounds] = useState(0);
   const left = total - rounds * people;
   const canDeal = left >= people;
+  const { shown } = useGuidedGoal({
+    met: !canDeal,
+    guided: true,
+    reveal: () => {
+      const all = Math.floor(total / people);
+      setRounds(all);
+      onStateChange?.({ rounds: all });
+    },
+  });
+  const outcome =
+    left > 0
+      ? `mỗi bạn nhận ${rounds} cái, còn dư ${left} cái`
+      : `mỗi bạn nhận ${rounds} cái, không dư`;
 
   function deal() {
     if (!canDeal) return;
@@ -78,6 +97,16 @@ export default function ShareTry({
           remainder={left}
           withRemainder={left > 0}
         />
+      )}
+      {!canDeal && !shown && (
+        <DoneLine
+          data-share-done
+        >{`Xong rồi! Chia hết các vòng: ${outcome}.`}</DoneLine>
+      )}
+      {!canDeal && shown && (
+        <ShownLine
+          data-share-shown
+        >{`Chia hết các vòng: ${outcome}.`}</ShownLine>
       )}
     </div>
   );

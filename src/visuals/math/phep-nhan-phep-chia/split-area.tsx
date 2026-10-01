@@ -6,6 +6,7 @@ import type { ConceptColor } from "@/schema/content";
 import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
+import { useGuidedGoal } from "@/visuals/shared/guided-feedback";
 import { decorative } from "@/visuals/shared/markers";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
@@ -462,6 +463,9 @@ export function SplitTry({
   const ones = b - tens;
   const parts = [first, second].filter((p) => p > 0);
   const model = areaModel(a, parts);
+  // "Tiếp" waits until b has been cut into tens and ones (once is enough), or
+  // "Xem cách làm" makes that cut.
+  useGuidedGoal({ met: reached, guided: true, reveal: () => change(tens) });
 
   function change(next: number) {
     const nextTried = new Set(tried).add(next);

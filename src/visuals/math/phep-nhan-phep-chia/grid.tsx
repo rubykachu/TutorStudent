@@ -3,6 +3,11 @@
 import { Check } from "lucide-react";
 import { useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
+import {
+  DoneLine,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import {
   fmt,
@@ -75,7 +80,8 @@ function Progress({
 // The dot grid the child builds with two steppers, and the three ways the
 // lesson writes it: in words, as a sum of equal rows and as a product.
 // With a `target` (the hands-on screen) it also reports progress and ends on
-// a closing line; without one (the exercise) it never reveals the answer.
+// a closing line, "Tiếp" waits until the grid is the target (or "Xem cách làm"
+// builds it); without one (the exercise) it never reveals the answer.
 function GridBuilder({
   target,
   params,
@@ -97,6 +103,13 @@ function GridBuilder({
   const done =
     target !== undefined && rows === target.rows && cols === target.cols;
   const total = rows * cols;
+  const { shown } = useGuidedGoal({
+    met: done,
+    guided: target !== undefined,
+    reveal: () => {
+      if (target) change(target);
+    },
+  });
 
   function change(next: Target) {
     setOwn(next);
@@ -161,11 +174,17 @@ function GridBuilder({
           </span>
         </p>
       </div>
-      {done && (
-        <p className="rounded-lg bg-correct-soft px-4 py-2 text-center font-heading text-block font-semibold text-correct-soft-foreground">
+      {done && !shown && (
+        <DoneLine data-grid-done>
           Xong rồi! <SumOf term={cols} count={rows} />
           {` = ${cols} ${TIMES} ${rows} = ${fmt(total)}`}
-        </p>
+        </DoneLine>
+      )}
+      {done && shown && (
+        <ShownLine data-grid-shown>
+          <SumOf term={cols} count={rows} />
+          {` = ${cols} ${TIMES} ${rows} = ${fmt(total)}`}
+        </ShownLine>
       )}
       <div className="w-full" style={{ maxWidth: cols * CELL_PX }}>
         <DotBlock

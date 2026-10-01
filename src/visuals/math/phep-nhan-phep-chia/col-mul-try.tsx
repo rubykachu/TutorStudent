@@ -3,10 +3,17 @@
 import { RotateCcw } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { formatInteger } from "@/lib/number-format";
+import { WRONG_ID } from "@/lib/sound-manifest";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { VisualProps } from "@/visuals/registry";
 import { ACTION_BUTTON } from "@/visuals/shared/action-button";
+import {
+  DoneLine,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { planMultiplication, tryCells, tryShown } from "./col-mul-digits";
 import { ColMulFigure, figureLabel } from "./col-mul-figure";
 
@@ -37,10 +44,22 @@ export function ColMulTry({
 
   const finished = done >= cells.length;
   const current = cells[done];
+  const sounds = useFeedbackSoundsContext();
+  // "Tiếp" waits until every cell is filled, or "Xem cách làm" fills them.
+  const { shown: revealed } = useGuidedGoal({
+    met: finished,
+    guided: true,
+    reveal: () => {
+      setDone(cells.length);
+      setFeedback(undefined);
+      onStateChange?.({ done: cells.length });
+    },
+  });
 
   function press(digit: number) {
     if (!current) return;
     if (digit !== current.digit) {
+      sounds?.play([WRONG_ID]);
       setFeedback({
         tone: "wrong",
         text: current.tip,
@@ -67,7 +86,7 @@ export function ColMulTry({
   const wrong = feedback?.tone === "wrong" && current ? current.id : undefined;
   const ringed = new Set(wrong ? [wrong] : []);
   const shown = tryShown(cells, done);
-  const closing = `Xong rồi! ${formatInteger(a)} · ${formatInteger(b)} = ${formatInteger(plan.product)}`;
+  const closing = `${revealed ? "" : "Xong rồi! "}${formatInteger(a)} · ${formatInteger(b)} = ${formatInteger(plan.product)}`;
 
   return (
     <div className="flex w-full flex-col items-center gap-1">
@@ -79,9 +98,17 @@ export function ColMulTry({
         ringed={ringed}
         label={figureLabel(plan, finished)}
       />
-      <p className="text-center text-body font-semibold" aria-live="polite">
-        {finished ? closing : `Ô sáng: ${current?.prompt ?? ""}`}
-      </p>
+      {finished ? (
+        revealed ? (
+          <ShownLine data-col-mul-shown>{closing}</ShownLine>
+        ) : (
+          <DoneLine data-col-mul-done>{closing}</DoneLine>
+        )
+      ) : (
+        <p className="text-center text-body font-semibold" aria-live="polite">
+          {`Ô sáng: ${current?.prompt ?? ""}`}
+        </p>
+      )}
       <motion.p
         // A new key replays the shake for each wrong digit.
         key={feedback?.shakes ?? 0}

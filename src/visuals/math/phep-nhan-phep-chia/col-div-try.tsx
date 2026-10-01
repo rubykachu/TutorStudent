@@ -3,9 +3,16 @@
 import { RotateCcw } from "lucide-react";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
+import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
+import { WRONG_ID } from "@/lib/sound-manifest";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { VisualProps } from "@/visuals/registry";
 import { ACTION_BUTTON } from "@/visuals/shared/action-button";
+import {
+  DoneLine,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { DivisionEquation, Sentence } from "./chia-parts";
 import { DivisionFigure } from "./division-figure";
 import {
@@ -88,12 +95,25 @@ export default function ColDivTry({
   const finished = position.step >= m;
   const done = position.step * ASKED_PHASES + position.phase;
   const current = division.steps[position.step];
+  const sounds = useFeedbackSoundsContext();
+  // "Tiếp" waits until every quotient digit is worked out, or "Xem cách làm"
+  // works them all out.
+  const { shown } = useGuidedGoal({
+    met: finished,
+    guided: true,
+    reveal: () => {
+      setPosition({ step: m, phase: 0, typed: 0 });
+      setWrong(0);
+      onStateChange?.({ done: total });
+    },
+  });
 
   function press(digit: number) {
     if (finished || !current) return;
     const expected = expectedDigits(current, position.phase);
     if (digit !== expected[position.typed]) {
       setWrong((n) => n + 1);
+      sounds?.play([WRONG_ID]);
       return;
     }
     setWrong(0);
@@ -130,7 +150,7 @@ export default function ColDivTry({
       : [],
   );
   const message = finished
-    ? "Xong rồi. Hết chữ số để hạ."
+    ? ""
     : current
       ? wrong > 0
         ? tip(division, current, position.phase)
@@ -154,7 +174,15 @@ export default function ColDivTry({
           finalRemainderStep={finished ? m - 1 : undefined}
         />
       </motion.div>
-      <Sentence tone={wrong > 0 ? "retry" : "neutral"}>{message}</Sentence>
+      {finished ? (
+        shown ? (
+          <ShownLine data-col-div-shown>Đã hết chữ số để hạ.</ShownLine>
+        ) : (
+          <DoneLine data-col-div-done>Xong rồi! Hết chữ số để hạ.</DoneLine>
+        )
+      ) : (
+        <Sentence tone={wrong > 0 ? "retry" : "neutral"}>{message}</Sentence>
+      )}
       <div className="flex w-full items-center justify-between gap-3">
         <p className="text-caption" aria-live="polite">
           Đã xong {done}/{total} bước
