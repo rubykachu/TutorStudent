@@ -4466,12 +4466,12 @@
       "url": "video/on-tap-chuong-2/khang-dinh-sai.mp4",
       "vttUrl": "video/on-tap-chuong-2/khang-dinh-sai.vtt",
       "posterUrl": "video/on-tap-chuong-2/khang-dinh-sai.jpg",
-      "durationSec": 53.1,
+      "durationSec": 47.6,
       "clips": [
         {
           "id": "tinh-chat-tong",
-          "start": 27.215,
-          "end": 51.693,
+          "start": 24.715,
+          "end": 46.193,
           "cardIds": ["on-tap-chuong-2.card.tinh-chat-tong"]
         }
       ],
@@ -4488,13 +4488,13 @@
         },
         {
           "id": "cp-02",
-          "at": 26.515,
+          "at": 24.015,
           "from": 10.4
         },
         {
           "id": "cp-03",
-          "at": 46.577,
-          "from": 26.515
+          "at": 42.077,
+          "from": 24.015
         }
       ]
     },
@@ -4504,12 +4504,12 @@
       "url": "video/on-tap-chuong-2/so-mu.mp4",
       "vttUrl": "video/on-tap-chuong-2/so-mu.vtt",
       "posterUrl": "video/on-tap-chuong-2/so-mu.jpg",
-      "durationSec": 59.4,
+      "durationSec": 54.4,
       "clips": [
         {
           "id": "so-mu-uclnn-bcnn",
           "start": 18.105,
-          "end": 57.984,
+          "end": 52.984,
           "cardIds": ["on-tap-chuong-2.card.so-mu-uclnn-bcnn"]
         }
       ],
@@ -4526,13 +4526,13 @@
         },
         {
           "id": "cp-02",
-          "at": 36.792,
+          "at": 34.292,
           "from": 17.405
         },
         {
           "id": "cp-03",
-          "at": 54.528,
-          "from": 36.792
+          "at": 49.528,
+          "from": 34.292
         }
       ]
     },
@@ -4542,12 +4542,12 @@
       "url": "video/on-tap-chuong-2/khoang-bcnn.mp4",
       "vttUrl": "video/on-tap-chuong-2/khoang-bcnn.vtt",
       "posterUrl": "video/on-tap-chuong-2/khoang-bcnn.jpg",
-      "durationSec": 69.6,
+      "durationSec": 65.1,
       "clips": [
         {
           "id": "bcnn-bai-toan",
           "start": 11.645,
-          "end": 68.168,
+          "end": 63.668,
           "cardIds": ["on-tap-chuong-2.card.bcnn-bai-toan"]
         }
       ],
@@ -4564,18 +4564,18 @@
         },
         {
           "id": "cp-02",
-          "at": 27.005,
+          "at": 24.505,
           "from": 10.945
         },
         {
           "id": "cp-03",
-          "at": 45.507,
-          "from": 27.005
+          "at": 42.007,
+          "from": 24.505
         },
         {
           "id": "cp-04",
-          "at": 64.661,
-          "from": 45.507
+          "at": 60.161,
+          "from": 42.007
         }
       ]
     }

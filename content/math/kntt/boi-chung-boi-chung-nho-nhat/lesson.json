@@ -4443,12 +4443,12 @@
       "url": "video/boi-chung-boi-chung-nho-nhat/liet-ke.mp4",
       "vttUrl": "video/boi-chung-boi-chung-nho-nhat/liet-ke.vtt",
       "posterUrl": "video/boi-chung-boi-chung-nho-nhat/liet-ke.jpg",
-      "durationSec": 71.37,
+      "durationSec": 66.97,
       "clips": [
         {
           "id": "liet-ke",
           "start": 10.151,
-          "end": 41.406,
+          "end": 39.206,
           "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"]
         }
       ],
@@ -4460,13 +4460,13 @@
       "checkpoints": [
         {
           "id": "cp-01",
-          "at": 41.106,
+          "at": 38.906,
           "from": 0
         },
         {
           "id": "cp-02",
-          "at": 60.257,
-          "from": 41.106
+          "at": 55.857,
+          "from": 38.906
         }
       ]
     },
@@ -4476,12 +4476,12 @@
       "url": "video/boi-chung-boi-chung-nho-nhat/xe-buyt.mp4",
       "vttUrl": "video/boi-chung-boi-chung-nho-nhat/xe-buyt.vtt",
       "posterUrl": "video/boi-chung-boi-chung-nho-nhat/xe-buyt.jpg",
-      "durationSec": 54.63,
+      "durationSec": 50.43,
       "clips": [
         {
           "id": "boi-chung",
           "start": 14.94,
-          "end": 53.214,
+          "end": 49.014,
           "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"]
         }
       ],
@@ -4498,7 +4498,7 @@
         },
         {
           "id": "cp-02",
-          "at": 46.321,
+          "at": 43.121,
           "from": 14.24
         }
       ]
@@ -4509,12 +4509,12 @@
       "url": "video/boi-chung-boi-chung-nho-nhat/phan-tich.mp4",
       "vttUrl": "video/boi-chung-boi-chung-nho-nhat/phan-tich.vtt",
       "posterUrl": "video/boi-chung-boi-chung-nho-nhat/phan-tich.jpg",
-      "durationSec": 56.63,
+      "durationSec": 52.73,
       "clips": [
         {
           "id": "phan-tich",
-          "start": 12.108,
-          "end": 55.214,
+          "start": 11.408,
+          "end": 51.314,
           "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"]
         }
       ],
@@ -4526,13 +4526,13 @@
       "checkpoints": [
         {
           "id": "cp-01",
-          "at": 18.341,
+          "at": 17.641,
           "from": 0
         },
         {
           "id": "cp-02",
-          "at": 44.134,
-          "from": 18.341
+          "at": 40.934,
+          "from": 17.641
         }
       ]
     }
