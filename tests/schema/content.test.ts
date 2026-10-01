@@ -78,6 +78,34 @@ describe("LessonSchema", () => {
   });
 });
 
+describe("review lesson fields", () => {
+  it("accepts kind review, a fractional order and no number", () => {
+    const lesson = { ...fixture(), kind: "review", order: 12.5 };
+    delete (lesson as Record<string, unknown>).number;
+    expect(LessonSchema.safeParse(lesson).error?.issues ?? []).toEqual([]);
+  });
+
+  it("rejects an unknown kind and a negative order", () => {
+    expect(
+      issuePaths(LessonSchema.safeParse({ ...fixture(), kind: "quiz" })),
+    ).toContain("kind");
+    expect(
+      issuePaths(LessonSchema.safeParse({ ...fixture(), order: -0.5 })),
+    ).toContain("order");
+  });
+
+  it("accepts bookRef on an exercise", () => {
+    expect(
+      ExerciseSchema.safeParse({
+        ...baseExercise,
+        type: "numeric",
+        answer: { kind: "value", value: 2 },
+        bookRef: "SBT 2.58",
+      }).success,
+    ).toBe(true);
+  });
+});
+
 describe("ExerciseSchema", () => {
   it("accepts value and power numeric answers with an optional check", () => {
     expect(

@@ -1,3 +1,4 @@
+import { lintBookRef } from "./book-ref";
 import { lintCardExercises } from "./card-exercises";
 import { lintCheckExpr } from "./check-expr";
 import { lintColorLeak } from "./color-leak";
@@ -82,6 +83,7 @@ export function lintLesson(input: LintInput): Finding[] {
     ...lintHintAnswer(input),
     ...lintColorLeak(input),
     ...lintTextbookCopy(input, strings),
+    ...lintBookRef(input),
     ...lintPassage(input),
     ...lintReviewHash(input),
     ...lintOverview(input),

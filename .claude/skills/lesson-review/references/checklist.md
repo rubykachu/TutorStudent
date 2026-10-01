@@ -13,6 +13,8 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 **Biên soạn lại, không chép.** Câu chữ trùng nguyên văn định nghĩa, ví dụ hay bài tập SGK (trừ khối `passage`): Nghiêm trọng.
 
+**Bài ôn tập (`kind: "review"`).** Thay cho "Biên soạn lại, không chép": đối chiếu từng câu có `bookRef` với ảnh nguồn. Lời đề, số và các lựa chọn phải y hệt sách (chỉ được khác dấu ";" hay "." cuối lựa chọn và nhãn ý a), b)); một câu lệnh của app như "Chọn đáp án đúng." được phép, đặt thành khối riêng ở cuối đề. Đáp án phải bằng lời giải ở trang đáp án của sách. Đề khác sách: Nghiêm trọng. Giải thích, phần nhắc lại, gợi ý, mẹo vẫn phải là lời của bài: chép chúng là Nghiêm trọng như ở bài thường.
+
 **`sourceRef` trỏ đúng trang** có nội dung đó: sai trang là Nên sửa.
 
 ## 2. Đúng kiến thức
@@ -121,6 +123,7 @@ Ví dụ từ bài `luy-thua`:
 ## Không bắt lỗi
 
 Quy ước đã chốt. Không ghi thành phát hiện ở bất kỳ mức nào:
+- Câu dài hơn giới hạn trong đề của câu có `bookRef` ở bài ôn tập (lời sách không rút gọn được).
 - Thứ tự lựa chọn `choice`, cột phải `match`, ngân hàng từ `fillBlank`, mục `order` trong JSON: app xáo mỗi lần làm.
 - Câu kiểm tra (`checkIds`) không gắn card.
 - Thiếu `hintVisualId` hay `solutionVisualId` (khung có cách hiện thay).

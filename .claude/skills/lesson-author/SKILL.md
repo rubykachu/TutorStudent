@@ -60,7 +60,7 @@ Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`. Sửa
 
 1. **Đọc nguồn.** Mở mọi ảnh `sources/<subject>/<slug>/p<trang>.png` (hoặc `.jpg`; `p23-24.png` chứa hai trang; `sbt-p<trang>.png` là trang sách bài tập). Ảnh là nguồn chính (hình, bảng, công thức, khung bên lề); `p<trang>.txt`, nếu có, chỉ để đối chiếu chữ. Ghi kiến thức, ví dụ, bài tập theo trang. Chỉ lấy phần thuộc bài này, bỏ phần của bài liền trước hay liền sau in chung trang.
 2. **Môn có `rules.verbatimPassage` (hiện là Ngữ văn): chép văn bản trước.** Chép văn bản đọc hiểu nguyên văn từ ảnh vào `source-passage.txt` cạnh `lesson.json`. Có `p<trang>.txt` thì so từng dòng: dòng nào ảnh và lớp chữ khác nhau thì giữ bản đọc từ ảnh (lớp chữ PDF hay vỡ dấu) và liệt kê các dòng đó khi xin duyệt. Rồi dừng chờ chủ dự án duyệt với ảnh; chưa duyệt thì chưa soạn tiếp.
-3. **Biên soạn lại.** Viết định nghĩa, ví dụ, bài tập bằng lời và số của mình, không chép câu hay hình SGK. Riêng khối `passage` giữ nguyên văn. Bài tập theo các dạng bài của sách; có trang đáp án (SBT) thì đối chiếu đáp án với nó.
+3. **Biên soạn lại.** Viết định nghĩa, ví dụ, bài tập bằng lời và số của mình, không chép câu hay hình SGK. Riêng khối `passage` giữ nguyên văn, và đề bài tập của bài ôn tập chương (mục "Bài ôn tập chương" bên dưới). Bài tập theo các dạng bài của sách; có trang đáp án (SBT) thì đối chiếu đáp án với nó.
 4. **Dựng khung.** Chép `.claude/skills/lesson-author/templates/lesson.skeleton.json` vào thư mục bài, thay mọi `bai-moi` bằng slug, đặt `subject`, `series`, `title`, `sourceRef` và `order` = số bài trong SGK (Bài 6 → 6): app xếp bài và gợi ý bài kế trong môn theo `order`, nên không trùng bài khác cùng môn, bộ sách. Các `visualId` `fixture.*` chỉ giữ chỗ để khung qua `content:check`; bước 9 thay hết (`content:check` cảnh báo `[placeholder]`, `content:hash --approve` từ chối khi còn).
 5. **Khái niệm.** Tên và màu lấy theo `content/glossary/<subject>.json`; chưa có term thì thêm vào đó kèm `color`. Mỗi khái niệm giữ một màu ở mọi công thức, visual, highlight.
 6. **Chia phần.** Mỗi section một ý, `sourceRef` đúng trang. Mỗi phần tử của `blocks` là một màn; màn quy tắc là `group` gồm `note` rồi `formula`/`visual`, xem bài mẫu. Mẹo của dạng bài đặt thành khối `tip` ngay sau phần giải thích (mục "Mẹo"). Sau phần giải thích: 1–2 câu `checkIds` (`cardIds: []`, không tính điểm nhớ) và một câu `practiceIds` cho mỗi card của section (lần gặp đầu của card). Chia card ngay lúc này: section có tối đa 4 − số câu `checkIds` card, bài cần ≥ 8 card, nên bài 3 section cần khoảng 3 card mỗi section (1 câu kiểm tra + 3 câu luyện tập).
@@ -78,6 +78,18 @@ Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`. Sửa
 14. **Video và lời đọc** (nếu đã chọn làm ngay; bài đã `published`). `pnpm narration:build <slug>` đọc `overview` bằng giọng Gemini cùng giới tính với giọng bài, rồi `pnpm content:check` (`overview.narration` không nằm trong hash nên lời đọc không đòi review lại). Video theo skill `lesson-video` (bước 7 của nó gồm review phần đổi). Chỉ dựng media của bài dưới `public/media/`, không dựng lại `public/sounds/`. Xong chạy lại `pnpm lesson:walk <slug>`, chỉ cần xem sheet của màn tổng quan và video.
 15. **Rút kinh nghiệm.** Đọc các `review.md` của bài: mỗi Nghiêm trọng thuộc mục nào của `docs/lessons-learned/index.md`. Reviewer đã tăng số đếm; tác giả thêm dòng "Lỗi Nghiêm trọng ở vòng 1 theo bài" cho bài này. Lỗi lặp ở từ 2 bài trở lên mà chưa có mục: thêm mục mới; kiểm được bằng máy thì đề xuất luật `content:check` (trong `src/content/lint/`, lời báo trỏ id mục) với người dùng, rồi ghi vào `notebooks/backlogs/index.md` nếu chưa làm ngay.
 16. **Báo lại.** Gửi kết quả `--stats`, đường dẫn `review.md`, việc còn trong backlog, mục lessons-learned đã thêm hay tăng số.
+
+## Bài ôn tập chương (`kind: "review"`)
+
+Dùng cho phần "Ôn tập chương" của sách. Bài này chép nguyên văn đề các bài tập của sách; đó là ngoại lệ duy nhất của luật "không chép" (ngoài `passage`).
+
+- `kind: "review"`, không có `number`, có `chapter`. `order` = số của bài cuối chương + 0,5 (bài cuối là Bài 12 thì `order` là 12.5), để bài đứng giữa bài cuối chương và bài đầu chương sau.
+- Mỗi bài tập của sách thành các câu trong `exercises`, chia theo từng ý a), b)... Câu nào lấy từ sách có `bookRef` (vd "SBT 2.58") và đề chép đúng lời, đúng số, đúng các lựa chọn của sách. Lời sách đặt trong khối `note` hay `formula` riêng; câu lệnh cho app ("Chọn đáp án đúng.") là khối `note` riêng ở cuối đề. Đáp án lấy từ trang lời giải của sách.
+- Chỉ đề được chép. Các bước, phần nhắc lại, `explain`, gợi ý và mẹo vẫn viết bằng lời của mình, như mọi bài khác. Luật máy: `[textbook-copy]` bỏ qua bài này, `[length]` không áp cho chữ trong đề của câu có `bookRef`, các luật khác vẫn áp; `bookRef` ở bài không phải ôn tập là lỗi `[book-ref]`.
+- Mẫu cho mỗi bài tập của sách, một section:
+  1. Các màn "Nhắc lại Bài X": quy tắc kèm ví dụ, lời của mình.
+  2. Các bước dẫn (`checkIds`): câu tự chứa đủ đề, từ dễ đến khó, không có `bookRef`. Các bước mang thẻ (card) của section để phiên ôn hỏi lại được.
+  3. Các ý của bài sách đặt cuối: mọi ý trừ ý cuối nằm trong `checkIds` sau các bước, ý cuối nằm trong `practiceIds`.
 
 ## Thêm mẹo cho bài đã xuất bản (`tips.json`)
 

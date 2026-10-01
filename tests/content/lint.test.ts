@@ -888,6 +888,76 @@ describe("textbook-copy", () => {
   });
 });
 
+function first(input: LintInput) {
+  const exercise = input.lesson.exercises[0];
+  if (!exercise) throw new Error("fixture has no exercise");
+  return exercise;
+}
+
+describe("review lessons", () => {
+  const LONG = `${Array.from({ length: 30 }, () => "một").join(" ")}.`;
+
+  // The fixture as a review lesson whose first exercise reproduces the book.
+  function reviewInput(): LintInput {
+    const input = fixtureInput();
+    input.lesson.kind = "review";
+    const first = input.lesson.exercises[0];
+    if (!first) throw new Error("fixture has no exercise");
+    first.bookRef = "SBT 2.58";
+    first.prompt = [{ type: "note", text: LONG }];
+    return input;
+  }
+
+  it("skips textbook-copy for a review lesson only", () => {
+    const text =
+      "Luỹ thừa bậc n của a là tích của n thừa số bằng nhau, mỗi thừa số bằng a.";
+    const input = withNote(text);
+    input.sourceText = `Định nghĩa. ${text} Ví dụ khác.`;
+    expect(findings(input, "textbook-copy")).toHaveLength(1);
+    input.lesson.kind = "review";
+    expect(findings(input, "textbook-copy")).toEqual([]);
+  });
+
+  it("book-ref: only a review lesson may carry bookRef", () => {
+    const input = fixtureInput();
+    expect(findings(input, "book-ref")).toEqual([]);
+    const first = input.lesson.exercises[0];
+    if (!first) throw new Error("fixture has no exercise");
+    first.bookRef = "SBT 2.58";
+    expect(findings(input, "book-ref")).toMatchObject([
+      {
+        path: ["exercises", 0, "bookRef"],
+        severity: "error",
+        message: expect.stringContaining("LL-08"),
+      },
+    ]);
+    input.lesson.kind = "review";
+    expect(findings(input, "book-ref")).toEqual([]);
+  });
+
+  it("exempts the book's prompt from the sentence limit, only inside a bookRef exercise", () => {
+    const input = reviewInput();
+    expect(messages(input, "length")).toEqual([]);
+    // Other rules still apply to the same text.
+    first(input).prompt = [{ type: "note", text: "Cân nặng 2.5 ki lô." }];
+    expect(messages(input, "numbers")).toEqual([
+      expect.stringContaining("comma"),
+    ]);
+    // Without bookRef the limit is back.
+    first(input).prompt = [{ type: "note", text: LONG }];
+    delete first(input).bookRef;
+    expect(messages(input, "length")).toEqual([
+      expect.stringContaining("30 syllables"),
+    ]);
+    // Outside the exercise wording the limit holds in a review lesson too.
+    const other = reviewInput();
+    withNote(LONG, other);
+    expect(messages(other, "length")).toEqual([
+      expect.stringContaining("30 syllables"),
+    ]);
+  });
+});
+
 describe("passage", () => {
   it("accepts passages that differ only in typography", () => {
     const input = fixtureInput();

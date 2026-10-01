@@ -31,6 +31,7 @@ const NON_TEXT_KEYS = new Set([
   "reviewedHash",
   "type",
   "kind",
+  "bookRef",
   "target",
   "color",
   "visualId",

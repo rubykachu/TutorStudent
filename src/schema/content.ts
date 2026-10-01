@@ -327,6 +327,10 @@ const exerciseBase = {
   id: ExerciseIdSchema,
   cardIds: z.array(CardIdSchema),
   prompt: z.array(BlockSchema).min(1),
+  // Where the prompt comes from in the book, e.g. "SBT 2.58": the prompt
+  // carries the book's own wording and numbers. Only a lesson with
+  // `kind: "review"` may use it.
+  bookRef: TextSchema.optional(),
   hints: HintsSchema,
   explain: ExplanationSchema.optional(),
   difficulty: z.int().min(1).max(3),
@@ -637,12 +641,23 @@ const lessonPlacement = {
   chapter: LessonChapterSchema.optional(),
 };
 
+// Kinds of lesson other than a regular one:
+// - review: the textbook's chapter review. It reproduces the book's exercises
+//   verbatim (see `bookRef` on an exercise), has no `number`, and sits between
+//   two numbered lessons through a fractional `order`.
+export const LESSON_KINDS = ["review"] as const;
+export const LessonKindSchema = z.enum(LESSON_KINDS);
+
 export const LessonSchema = z.object({
   id: LessonIdSchema,
   subject: LessonIdSchema,
   series: LessonIdSchema,
   grade: z.literal(6),
-  order: z.int().nonnegative(),
+  // Position among the lessons of the book; fractional for a review lesson
+  // (12.5 sits after Bài 12 and before Bài 13).
+  order: z.number().nonnegative(),
+  // Absent on a regular lesson.
+  kind: LessonKindSchema.optional(),
   ...lessonPlacement,
   title: TextSchema,
   sourceRef: TextSchema,
@@ -736,7 +751,7 @@ export const LessonSummarySchema = z.object({
   id: LessonIdSchema,
   subject: LessonIdSchema,
   series: LessonIdSchema,
-  order: z.int().nonnegative(),
+  order: z.number().nonnegative(),
   ...lessonPlacement,
   title: TextSchema,
   sourceRef: TextSchema,
@@ -764,6 +779,7 @@ export const ContentIndexSchema = z.object({
 });
 
 export type Subject = z.infer<typeof SubjectSchema>;
+export type LessonKind = z.infer<typeof LessonKindSchema>;
 export type LessonSummary = z.infer<typeof LessonSummarySchema>;
 export type ContentIndex = z.infer<typeof ContentIndexSchema>;
 export type SubjectsFile = z.infer<typeof SubjectsFileSchema>;

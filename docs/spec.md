@@ -183,10 +183,12 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 Subject      { id, name, color (token bảng màu), icon, language: "vi" | "en",
                rules: { checkExpr, verbatimPassage, requiresOpenEnded }, series[], defaultSeries }
              # cấu hình theo môn chỉ nằm ở content/subjects.json; luật chữ tiếng Việt (âm tiết, số, độ dài câu) chỉ áp cho môn language "vi"
-Lesson       { id, subject, series, grade: 6, order, number?, chapter?: { numeral, name }, title, sourceRef (vd "SGK tr.22–24"),
+Lesson       { id, subject, series, grade: 6, order, kind?: "review", number?, chapter?: { numeral, name }, title, sourceRef (vd "SGK tr.22–24"),
                status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker,
                videos?, overview? }
              # bài có thể có thêm `tips.json` cạnh `lesson.json` (xem TipsFile)
+             # `order` có thể là số thập phân: bài ôn tập chương (`kind: "review"`) đứng giữa hai bài có số, vd 12,5 sau Bài 12 và trước Bài 13; bài ôn tập không có `number`
+             # mọi dạng câu hỏi có thêm `bookRef?` (vd "SBT 2.58"): đề của câu lấy nguyên văn từ sách; chỉ bài `kind: "review"` được dùng
 Overview     { hook: { text, visualId? }, summary, goals[2..4], whyItMatters,
                narration?: { audioUrl, vttUrl } }        # màn giới thiệu trước phần đầu tiên
 Concept      { id, name, color }                 # tên token màu khái niệm (design-system.md)
@@ -245,7 +247,8 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 - Đánh số theo sách: `number` (Bài 4) và `chapter` (Chương I) là tuỳ chọn, chỉ điền khi sách in số; trang môn hiện "Chương I · Bài 4", tiêu đề bài "Bài 4: …", tiêu đề phần trong player "Phần n: …" (chữ dựng ở `src/lib/lesson-label.ts`).
 - Hướng dẫn thao tác: `group` có `guide` (`tapRegion`, `tapText`, `match`, `order`, `manipulate`, `fillBlankBank`, `numericPower`) là màn dạy thao tác; câu đầu tiên dùng thao tác mà chưa có màn đó ở section trước hay cùng section, hay ở bài đứng trước trong thứ tự app (môn theo `subjects.json`, rồi `order`) → cảnh báo.
 - Câu quy tắc: `note` có `rule: true` phải được recap của section lặp nguyên văn; câu recap (section, card) giống quá nửa số từ của câu quy tắc mà không nguyên văn → fail.
-- Chép sách: có lớp chữ `sources/<môn>/<bài>/p*.txt` thì chữ của bài trùng từ nửa số cụm 5 từ với sách → cảnh báo.
+- Chép sách: có lớp chữ `sources/<môn>/<bài>/p*.txt` thì chữ của bài trùng từ nửa số cụm 5 từ với sách → cảnh báo. Bài `kind: "review"` được miễn (xem bên dưới).
+- Bài ôn tập chương: `kind: "review"` là bài "Ôn tập chương" của sách, chép nguyên văn đề các bài tập của sách (câu nào chép thì có `bookRef`); phần nhắc lại, gợi ý, giải thích, mẹo vẫn là lời của bài. Luật `[book-ref]`: bài không có `kind: "review"` mà có câu mang `bookRef` → fail. Trong bài ôn tập, câu có `bookRef` không bị `[length]` (giới hạn 25 âm tiết, số câu của `note`) ở chữ trong `prompt`, `options`, `segments`, `left`, `right`, `items`; mọi luật khác (`[vietnamese]`, `[numbers]`, `[symbols]`, `[glossary]`, `[explain]`…) vẫn áp. Bài ôn tập không chạy `[textbook-copy]`.
 - Giải thích và tổng quan: `explain.text` và mỗi lý do trong `wrong` ≤ 3 câu; `wrong` chỉ ở `choice`, trỏ option có thật và không phải đáp án (`[explain]`); bài mới thiếu `explain` ở một câu chấm được → fail; bài `published` mới thiếu `overview` → fail (bài trong `legacy-lessons.json` chỉ cảnh báo). Tổng quan có nối với đời sống không chỉ review kiểm được (trục 3 của checklist): máy chỉ kiểm có mặt, đủ trường và `whyItMatters` một câu.
 - Mỗi luật trên trỏ tới mục tương ứng trong `docs/lessons-learned/` (lỗi đã gặp nhiều lần mà luật sinh ra để chặn).
 - Môn có `rules.verbatimPassage` (hiện là Ngữ văn): mọi khối `passage` (cả đoạn trích trong đề bài) nằm nguyên trong `source-passage.txt` (cạnh `lesson.json`) sau chuẩn hoá (NFC, dấu ngoặc kép, gạch nối, xuống dòng); lệch → fail. `source-passage.txt` do quản trị viên duyệt một lần với ảnh gốc.

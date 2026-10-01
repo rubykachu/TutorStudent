@@ -10,6 +10,8 @@ import type { LessonStrings } from "./walk";
 
 // Lessons retell the textbook in their own words and examples; a text that
 // shares most of its word runs with the textbook's text layer was copied.
+// A review lesson reproduces the book's exercises on purpose and is skipped
+// (see book-ref.ts).
 // Quoted words (“…”) are exempt: a lesson may quote a reading passage. Runs
 // only when sources/<subject>/<lesson>/p*.txt exist.
 
@@ -34,7 +36,7 @@ export function lintTextbookCopy(
   strings: LessonStrings,
 ): Finding[] {
   const { findings, report } = findingCollector(input.file, "textbook-copy");
-  if (!input.sourceText) return findings;
+  if (!input.sourceText || input.lesson.kind === "review") return findings;
   const source = new Set(grams(tokens(input.sourceText)));
   for (const { path, value } of strings.texts) {
     const words = tokens(value.replace(QUOTED, " "));
