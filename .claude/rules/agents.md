@@ -7,6 +7,7 @@ description: How agents work on this repo (always loaded)
 - Gate before every commit: `pnpm format && pnpm lint && pnpm typecheck && pnpm test`, plus `pnpm content:check` when content or schema changed. Small commits; never push.
 - Commit only your own paths when other agents share the tree; never `git add -A` then.
 - Ask before any write outside this machine: `git push`, deploys, R2 writes, external APIs. Never commit `.env*` or secrets.
+- Never kill processes by pattern (`pkill`, `killall`, `kill $(pgrep ...)`): another agent's server or build can match. Stop only PIDs you started yourself (keep the PID from the start command), and never the owner's dev server.
 - Do not stop or restart the owner's dev server. After `pnpm build`, run `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` so it keeps serving drafts.
 - Lesson work runs one subagent at a time, started from `notebooks/backlogs/lesson-<slug>/task.md` (the handover); archive the folder once the lesson is merged and its leftovers are done. A lesson's review always runs in a fresh subagent, never in the session that wrote it.
 - Models: authoring (`import-source`, `lesson-author`, `lesson-visual`, `lesson-video` and their helpers) uses Sonnet; review uses Opus for full rounds 1 and 2, Sonnet from round 3 (diff-only rounds, video and narration reviews). Set it per spawn with the Agent `model` parameter.

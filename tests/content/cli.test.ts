@@ -1,6 +1,12 @@
 // @vitest-environment node
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -107,6 +113,56 @@ describe("content-lock", () => {
     expect(check.out).toContain("0 errors, 0 warnings");
 
     expect(run("content-lock.ts", "--root", root).out).toContain("added 0 ids");
+  });
+
+  // A second real lesson, a copy of the first under another id.
+  function addLesson(id: string, patch: Record<string, unknown>) {
+    const copy = JSON.parse(
+      JSON.stringify(withoutPlaceholders(readSkeleton())).replaceAll(
+        "bai-moi",
+        id,
+      ),
+    );
+    const dir = path.join(root, "math", "kntt", id);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      path.join(dir, "lesson.json"),
+      JSON.stringify({ ...copy, order: 99, ...patch }),
+    );
+  }
+  const lockedIds = () => JSON.parse(readFileSync(lockFile(), "utf8")).ids;
+  const STALE = { status: "published", reviewedHash: "0".repeat(64) };
+
+  it("locks only the named lessons", () => {
+    addLesson("bai-khac", {});
+    const { code } = run("content-lock.ts", "bai-khac", "--root", root);
+    expect(code).toBe(0);
+    expect(lockedIds()).toContain("bai-khac.ex.chon-tich");
+    expect(lockedIds()).not.toContain("bai-moi.ex.chon-tich");
+  });
+
+  it("skips a lesson whose review is stale when locking every lesson", () => {
+    addLesson("bai-cu", STALE);
+    const { code, err, out } = run("content-lock.ts", "--root", root);
+    expect(code).toBe(0);
+    expect(err).toContain("skipped bai-cu");
+    expect(out).toContain("added");
+    expect(lockedIds()).toContain("bai-moi.ex.chon-tich");
+    expect(lockedIds()).not.toContain("bai-cu.ex.chon-tich");
+  });
+
+  it("ignores errors of lessons it is not asked to lock, refuses its own", () => {
+    addLesson("bai-cu", STALE);
+    expect(run("content-lock.ts", "bai-moi", "--root", root).code).toBe(0);
+    const named = run("content-lock.ts", "bai-cu", "--root", root);
+    expect(named.code).toBe(1);
+    expect(named.err).toContain("changed after its review");
+  });
+
+  it("refuses a lesson id that does not exist", () => {
+    const { code, err } = run("content-lock.ts", "khong-co", "--root", root);
+    expect(code).toBe(1);
+    expect(err).toContain('no valid lesson "khong-co"');
   });
 
   it("refuses to lock content that has errors", () => {

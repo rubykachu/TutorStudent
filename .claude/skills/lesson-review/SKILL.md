@@ -29,7 +29,7 @@ Vòng này = số ở dòng "Vòng" của `review.md` cũ + 1 (chưa có `review
 - **Từ vòng 3: chỉ phần đổi.** Không review toàn bài lần thứ ba.
 
 Mỗi vòng kết thúc bằng một trong hai lệnh, cả hai ghi dòng "Bản đã review" (hash) vào `review.md` để vòng sau so với bản này:
-- 0 Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --approve` (từ chối nếu `content:check` còn lỗi; ghi `reviewedHash`, đặt `published` trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật).
+- 0 Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --approve` (từ chối nếu `content:check` còn lỗi; ghi `reviewedHash`, đặt `published` trừ khi `REQUIRE_OWNER_APPROVAL` trong `src/lib/config.ts` bật). Bài vừa được duyệt và id đã ổn định thì khoá id của đúng bài này: `pnpm content:lock <id bài>` (không chạy không kèm id).
 - Còn Nghiêm trọng: `pnpm content:hash <id bài> --root <ROOT> --mark`; bài giữ `draft`.
 
 Sau đó tác giả commit `lesson.json` và `review.md` **trước khi sửa**: `pnpm content:diff` đọc bản đã review từ lịch sử git (`scripts/lib/review-baseline.ts`).

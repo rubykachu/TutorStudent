@@ -70,7 +70,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm content:check [--stats]` | Kiểm nội dung: schema, lint tiếng Việt, đáp án, id, cổng xuất bản |
 | `pnpm content:diff <bài>` | Liệt kê phần đổi so với bản đã review |
 | `pnpm content:hash <bài> --approve` | Ghi dấu đã review và xuất bản |
-| `pnpm content:lock` | Khoá id đã xuất bản (tiến độ của trẻ gắn vào id) |
+| `pnpm content:lock <bài>…` | Khoá id của các bài nêu tên (tiến độ của trẻ gắn vào id); không nêu bài thì khoá mọi bài, bỏ qua bài có `reviewedHash` cũ |
 | `pnpm sources:import <pdf> --pages X-Y …` | Cắt trang PDF thành ảnh (và lớp chữ) vào `sources/` |
 | `pnpm lesson:walk <bài>` | Đi hết bài ở 3 khổ màn hình, chụp ảnh, báo lỗi bố cục; ghi sheet `sheet-NN.png` mỗi thiết bị |
 | `pnpm visual:shot <bài>` | Chụp từng hình của bài; ghi sheet `sheet-<thiết bị>-NN.png` |

@@ -99,7 +99,7 @@ pnpm test:watch              # vitest
 pnpm test:e2e                # playwright test (project ipad + phone)
 pnpm test:r2                 # test tích hợp với bucket R2 dev thật (chỉ chạy tay, cần .env.local)
 pnpm content:check           # validate content/ + ids.lock + overlay trên R2 (nếu có biến môi trường R2)
-pnpm content:lock            # cập nhật content/ids.lock.json sau khi thêm id mới
+pnpm content:lock <lesson>…  # thêm id của các bài nêu tên vào content/ids.lock.json (không nêu: mọi bài, bỏ qua bài có reviewedHash cũ)
 pnpm content:hash <lesson>   # in reviewedHash của bài; --mark ghi bản đã review vào review.md; --approve ghi thêm hash và đặt published (skill lesson-review dùng)
 pnpm content:diff <lesson>   # liệt kê section, màn, card, bài tập, video đổi so với bản review gần nhất (vòng review thứ 3 trở đi)
 pnpm content:prompt <lesson> # in prompt sinh bài tập cho ChatGPT/Gemini

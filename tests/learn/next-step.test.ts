@@ -176,6 +176,24 @@ describe("subjectProgress", () => {
     expect(subjectProgress(lessons, progress)).toEqual({ done: 5, total: 7 });
   });
 
+  it("never counts more sections done than the subject has", () => {
+    // Repeated records of one section, records of a section the lesson no
+    // longer has, and a sticker with section records on top of it.
+    const progress = {
+      sections: [
+        record("m1", 1, "done", 1),
+        record("m1", 1, "done", 2),
+        record("m1", 9, "done", 3),
+        record("m2", 1, "done", 4),
+        record("m2", 1, "done", 5),
+        record("m2", 2, "done", 6),
+        record("m2", 3, "done", 7),
+      ],
+      stickers: [{ lessonId: "m2" }, { lessonId: "m2" }],
+    };
+    expect(subjectProgress(lessons, progress)).toEqual({ done: 4, total: 7 });
+  });
+
   it("is zero of every section before studying", () => {
     expect(subjectProgress(lessons, EMPTY)).toEqual({ done: 0, total: 7 });
     expect(subjectProgress([], EMPTY)).toEqual({ done: 0, total: 0 });
