@@ -26,6 +26,36 @@ function checkMediaBaseUrl(value: string | undefined): void {
 }
 checkMediaBaseUrl(process.env.NEXT_PUBLIC_MEDIA_BASE_URL);
 
+const YEAR_SECONDS = 365 * 24 * 60 * 60;
+
+// Files of `public/` get `max-age=0` from Next, so every sound and lesson
+// file would be asked for again on each load. `private` because every request
+// passes the family-code gate: only the child's browser keeps them.
+const CACHE_HEADERS = [
+  {
+    // A clip's URL carries its hash (`soundUrl`), so a changed clip is a new
+    // URL and the old one can be kept for good.
+    source: "/sounds/:path*",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: `private, max-age=${YEAR_SECONDS}, immutable`,
+      },
+    ],
+  },
+  {
+    // Lesson files keep their names across builds: served from cache for a
+    // minute, then from cache while the browser checks for a new one.
+    source: "/content/:path*",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: "private, max-age=60, stale-while-revalidate=86400",
+      },
+    ],
+  },
+];
+
 const nextConfig: NextConfig = {
   // A second dev server (the family-code e2e run) needs its own build folder:
   // two servers cannot share one.
@@ -38,6 +68,7 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      ...CACHE_HEADERS,
     ];
   },
 };

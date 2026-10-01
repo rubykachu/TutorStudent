@@ -11,6 +11,7 @@ import type { LessonSummary } from "@/schema/content";
 const ends = new Map<string, () => void>();
 vi.mock("@/lib/sound", () => ({
   preloadSounds: vi.fn(),
+  warmSounds: vi.fn(),
   stopMusic: vi.fn(),
   playMusic: vi.fn(
     (url: string) =>
@@ -84,6 +85,13 @@ describe("pickSong", () => {
 });
 
 describe("the sticker sheet's music button", () => {
+  it("loads the songs ahead without decoding them", async () => {
+    sheet(true);
+    await musicButton();
+    expect(sound.warmSounds).toHaveBeenCalledWith(songUrls);
+    expect(sound.preloadSounds).not.toHaveBeenCalled();
+  });
+
   it("plays a random song and stops it on a second press", async () => {
     sheet(true);
     const button = await musicButton();

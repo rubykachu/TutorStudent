@@ -181,5 +181,6 @@ function VideoView({
   const clip = block.clipId
     ? video.clips.find((c) => c.id === block.clipId)
     : undefined;
-  return <VideoPlayer video={video} clip={clip} />;
+  // The child is on this screen: fetch ahead so play starts at once.
+  return <VideoPlayer video={video} clip={clip} preload="auto" />;
 }

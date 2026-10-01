@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { BigButton, bigButtonClassName } from "@/components/big-button";
+import { VideoPreload } from "@/components/blocks/video-preload";
 import { BottomBar } from "@/components/bottom-bar";
 import { LoopingMotion } from "@/components/looping-celebration";
 import { RichText } from "@/components/rich-text";
@@ -34,6 +35,7 @@ import {
   stepLabels,
 } from "@/learn/section-steps";
 import { StickerEarnedCelebration } from "@/learn/sticker-celebration";
+import { upcomingVideo } from "@/learn/upcoming-video";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
 import { usePlayOnce } from "@/learn/use-play-once";
 import { ButtonSounds, FeedbackSoundsProvider } from "@/lib/feedback-sounds";
@@ -111,6 +113,7 @@ export function SectionPlayer({
   const { familyId, childId } = scope;
   const { phase, index: itemIndex } = step.position;
   const sounds = useFeedbackSounds(childId);
+  const upcoming = upcomingVideo(steps, stepIndex, lesson.videos ?? []);
 
   // Fetches what the child may see next while this screen is read: the hint
   // and solution visuals of this exercise, the next screen, and the sticker
@@ -286,6 +289,7 @@ export function SectionPlayer({
             {liveStep}
           </div>
         )}
+        {upcoming && <VideoPreload key={upcoming.id} video={upcoming} />}
       </ButtonSounds>
     </FeedbackSoundsProvider>
   );

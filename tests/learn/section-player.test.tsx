@@ -163,6 +163,59 @@ describe("SectionPlayer", () => {
     );
   });
 
+  it("fetches the next screen's video one screen ahead, one video at a time, and drops it on arrival", async () => {
+    const [first] = learnLesson().sections;
+    if (!first) throw new Error("section missing");
+    const clip = (id: string) =>
+      ({
+        id: `${LESSON_ID}.video.${id}`,
+        lessonId: LESSON_ID,
+        url: `video/${id}.mp4`,
+        vttUrl: `video/${id}.vtt`,
+        posterUrl: `video/${id}.jpg`,
+        durationSec: 60,
+        clips: [],
+        voice: { engine: "local", voiceName: "Hải Đăng", model: "vieneu" },
+      }) as never;
+    const videoBlock = (id: string) =>
+      ({ type: "video", videoId: `${LESSON_ID}.video.${id}` }) as const;
+    renderPlayer(SECTION_START, {
+      videos: [clip("a"), clip("b")],
+      sections: [
+        {
+          ...first,
+          blocks: [
+            { type: "note", text: "Mở đầu" },
+            videoBlock("a"),
+            videoBlock("b"),
+          ],
+        },
+      ],
+    });
+    const preloading = () =>
+      [...document.querySelectorAll("[data-video-preload]")].map((e) =>
+        e.getAttribute("data-video-preload"),
+      );
+    // On the note: the video after it is fetched, hidden.
+    expect(preloading()).toEqual([`${LESSON_ID}.video.a`]);
+    expect(document.querySelectorAll("video")).toHaveLength(1);
+    tap("Tiếp");
+    // On the first video: it fetches itself (auto); the second waits.
+    expect(preloading()).toEqual([]);
+    expect(
+      document
+        .querySelector("[data-block=video] video")
+        ?.getAttribute("preload"),
+    ).toBe("auto");
+    tap("Tiếp");
+    expect(preloading()).toEqual([]);
+    await waitFor(async () =>
+      expect(await sectionRecord()).toMatchObject({
+        position: { phase: "blocks", index: 2 },
+      }),
+    );
+  });
+
   it("resumes on the saved item and saves each move", async () => {
     renderPlayer({ phase: "practice", index: 1 });
     expect(screen.getByText("Câu luyện B")).toBeInTheDocument();

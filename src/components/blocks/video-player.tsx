@@ -1,6 +1,6 @@
 "use client";
 
-import { Captions, CaptionsOff, Play } from "lucide-react";
+import { Captions, CaptionsOff, LoaderCircle, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import {
   CheckpointControls,
@@ -16,6 +16,10 @@ type VideoPlayerProps = {
   video: Video;
   // Plays only this part of the video, e.g. the part that explains a card.
   clip?: VideoClip;
+  // How much the browser fetches before the child taps play: "auto" for a
+  // video the child is looking at, "metadata" (the default) otherwise. The
+  // video is only ever streamed, never saved on the device.
+  preload?: "metadata" | "auto";
 };
 
 // A clip replays from its start once the child presses play past its end.
@@ -27,10 +31,18 @@ const CLIP_END_SLACK_S = 0.05;
 // drawn by the page, large and with the spoken word highlighted, from the
 // karaoke timestamps in the WebVTT track; when the video goes native
 // fullscreen (where the page cannot draw) the browser shows the track itself.
-export function VideoPlayer({ video, clip }: VideoPlayerProps) {
+export function VideoPlayer({
+  video,
+  clip,
+  preload = "metadata",
+}: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const trackRef = useRef<HTMLTrackElement>(null);
   const [started, setStarted] = useState(false);
+  // True from the tap on play until the first frame runs, and again whenever
+  // playback stalls to buffer: the spinner shows over the poster, so a tap
+  // never meets a frozen picture.
+  const [waiting, setWaiting] = useState(false);
   const [captionsOn, setCaptionsOn] = useState(true);
   const [cue, setCue] = useState<TimedWord[]>([]);
   const [spoken, setSpoken] = useState(-1);
@@ -101,7 +113,7 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
       lastTime.current = time;
     }
     setStop(null);
-    void element.play();
+    Promise.resolve(element.play()).catch(() => undefined);
   };
 
   // The track stays "hidden" (not `default`, which WebKit draws) so its cues
@@ -165,6 +177,14 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
     };
   }, [cue]);
 
+  const play = () => {
+    setWaiting(true);
+    const element = videoRef.current;
+    if (!element) return;
+    // Older engines return nothing from `play()`.
+    Promise.resolve(element.play()).catch(() => setWaiting(false));
+  };
+
   const onPlay = () => {
     setStarted(true);
     const element = videoRef.current;
@@ -202,11 +222,15 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
           poster={mediaUrl(video.posterUrl)}
           controls={started}
           playsInline
-          preload="metadata"
+          preload={preload}
           // Captions come from the media store, which serves them to the app
           // with CORS once it is a separate domain.
           crossOrigin="anonymous"
           onPlay={onPlay}
+          onWaiting={() => setWaiting(true)}
+          onPlaying={() => setWaiting(false)}
+          onPause={() => setWaiting(false)}
+          onError={() => setWaiting(false)}
           onTimeUpdate={onTimeUpdate}
           className="block aspect-video w-full"
         >
@@ -218,18 +242,33 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
             label="Tiếng Việt"
           />
         </video>
-        {!started && (
+        {!started && !waiting && (
           <button
             type="button"
             aria-label="Phát video"
             data-video-play
-            onClick={() => videoRef.current?.play()}
+            onClick={play}
             className="absolute inset-0 flex items-center justify-center"
           >
             <span className="flex size-20 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card">
               <Play aria-hidden className="ml-1 size-10 fill-current" />
             </span>
           </button>
+        )}
+        {waiting && (
+          <span
+            role="status"
+            aria-label="Đang tải video"
+            data-video-spinner
+            className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          >
+            <span className="flex size-20 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card">
+              <LoaderCircle
+                aria-hidden
+                className="size-10 animate-spin motion-reduce:animate-none"
+              />
+            </span>
+          </span>
         )}
         {stop !== null && <CheckpointVeil />}
         {captionsOn && cue.length > 0 && stop === null && (

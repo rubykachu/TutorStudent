@@ -71,16 +71,30 @@ const byId = new Map(
   (manifest as SoundManifest).entries.map((entry) => [entry.id, entry]),
 );
 
+function clipUrl(entry: SoundEntry): string {
+  // The clip's hash in the query makes the URL change with the clip, which
+  // is what lets `/sounds/*` be cached for a year (`next.config.ts`).
+  return `${SOUNDS_DIR_URL}/${entry.file}?v=${entry.sha256.slice(0, 12)}`;
+}
+
 // URL of a clip by id, or undefined when the manifest has no such clip.
 export function soundUrl(id: string): string | undefined {
   const entry = byId.get(id);
-  return entry && `${SOUNDS_DIR_URL}/${entry.file}`;
+  return entry && clipUrl(entry);
 }
 
-// Every clip played in answer to what the child does, for preloading. Music
-// is left out: it is fetched when the child asks for a song.
+// The clips a tap makes sound with, decoded first so the first taps of a
+// session find them ready.
+const FIRST_IDS = [TAP_ID, BUTTON_ID, JINGLE_ID, LEAVE_ID];
+
+// Every clip played in answer to what the child does, for preloading, the
+// most used first. Music is left out: it is fetched when the child asks for
+// a song.
 export function allSoundUrls(): string[] {
-  return [...byId.values()]
-    .filter((entry) => !entry.music)
-    .map((entry) => `${SOUNDS_DIR_URL}/${entry.file}`);
+  const entries = [...byId.values()].filter((entry) => !entry.music);
+  const rank = (entry: SoundEntry) => {
+    const first = FIRST_IDS.indexOf(entry.id);
+    return first < 0 ? FIRST_IDS.length : first;
+  };
+  return entries.sort((a, b) => rank(a) - rank(b)).map(clipUrl);
 }

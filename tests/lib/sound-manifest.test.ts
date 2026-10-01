@@ -99,6 +99,13 @@ describe("sound manifest", () => {
     expect(allSoundUrls()).toContain(soundUrl(LESSON_END_ID));
   });
 
+  it("lists the tap and the button press first, so they decode first", () => {
+    expect(allSoundUrls().slice(0, 2)).toEqual([
+      soundUrl(TAP_ID),
+      soundUrl(BUTTON_ID),
+    ]);
+  });
+
   it("keeps every clip at one loudness and clear of clipping", () => {
     for (const entry of entries.values()) {
       expect(entry.peakDb, entry.id).toBeLessThan(MASTERING.maxPeakDb);
@@ -141,7 +148,14 @@ describe("sound manifest", () => {
         ...VOICE_LINES.map((l) => l.id),
       ].sort(),
     );
-    expect(soundUrl(JINGLE_ID)).toBe("/sounds/correct-jingle.m4a");
+    expect(soundUrl(JINGLE_ID)).toMatch(
+      /^\/sounds\/correct-jingle\.m4a\?v=[0-9a-f]{12}$/,
+    );
+    // The URL carries the clip's hash, so a year of caching never serves an
+    // outdated clip.
+    expect(soundUrl(JINGLE_ID)).toContain(
+      entries.get(JINGLE_ID)?.sha256.slice(0, 12),
+    );
     expect(soundUrl("no-such-clip")).toBeUndefined();
   });
 });

@@ -18,13 +18,40 @@ const EXERCISE = "fixture.ex.dem-cham";
 const PRESS_SOUND = "/sounds/button.m4a";
 
 // Records every clip the page asks to play instead of playing it, and ends
-// each at once, so a sequence (tone, then line) runs through. `muted` reads
-// what the app set even though the silencer mutes the element for real, so the
-// silent unlock is told apart from a real play.
+// each at once, so a sequence (tone, then line) runs through. Short clips play
+// as decoded buffers: the url of each is remembered from its fetch to its
+// decode, and a buffer started is a clip played. A media element (a song)
+// counts unless it is `muted` for the silent unlock; `muted` reads what the
+// app set even though the silencer mutes the element for real.
 async function recordSounds(page: Page) {
   await page.addInitScript(() => {
     const played: string[] = [];
     Object.assign(window, { __played: played });
+    const fetchedFrom = new WeakMap<ArrayBuffer, string>();
+    const decodedFrom = new WeakMap<AudioBuffer, string>();
+    const arrayBuffer = Response.prototype.arrayBuffer;
+    Response.prototype.arrayBuffer = async function (this: Response) {
+      const data = await arrayBuffer.call(this);
+      fetchedFrom.set(data, new URL(this.url).pathname);
+      return data;
+    };
+    const decode = BaseAudioContext.prototype.decodeAudioData;
+    BaseAudioContext.prototype.decodeAudioData = async function (
+      this: BaseAudioContext,
+      data: ArrayBuffer,
+    ) {
+      const url = fetchedFrom.get(data);
+      const buffer = await decode.call(this, data);
+      if (url) decodedFrom.set(buffer, url);
+      return buffer;
+    } as typeof decode;
+    AudioBufferSourceNode.prototype.start = function (
+      this: AudioBufferSourceNode,
+    ) {
+      const url = this.buffer && decodedFrom.get(this.buffer);
+      if (url) played.push(url);
+      setTimeout(() => this.dispatchEvent(new Event("ended")), 10);
+    };
     HTMLMediaElement.prototype.play = function (this: HTMLMediaElement) {
       if (!this.muted) played.push(new URL(this.src).pathname);
       setTimeout(() => this.dispatchEvent(new Event("ended")), 10);

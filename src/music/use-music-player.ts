@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { playMusic, preloadSounds, stopMusic } from "@/lib/sound";
+import { playMusic, stopMusic, warmSounds } from "@/lib/sound";
 import { soundUrl } from "@/lib/sound-manifest";
 import { useSoundEnabled } from "@/progress/hooks";
 import { pickSong, type Song } from "./songs";
@@ -15,7 +15,7 @@ export function useMusicPlayer(childId: string, songs: readonly Song[]) {
 
   useEffect(() => {
     if (enabled) {
-      preloadSounds(songs.flatMap((song) => soundUrl(song.id) ?? []));
+      warmSounds(songs.flatMap((song) => soundUrl(song.id) ?? []));
       return undefined;
     }
     stopMusic();
