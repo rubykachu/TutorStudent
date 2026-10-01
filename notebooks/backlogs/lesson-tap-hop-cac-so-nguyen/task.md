@@ -2,7 +2,7 @@
 
 ## Trạng thái
 - Cập nhật cuối: 02/10/2026. Đã soạn xong bản nháp (`status: draft`): 11 phần, 12 thẻ, 55 câu, 7 dạng câu, 13 hình tương tác, 4 khối mẹo; `content:check --stats` 0 lỗi, `visual:shot` 92/92. Chưa review. Không làm lời đọc và video trong đợt này.
-- Việc tiếp theo: `lesson:walk`, review vòng 1 và 2 (Opus, song song + Tổng hợp), lượt Đọc hiểu (Haiku), vòng chỉ phần đổi (Sonnet), rồi `content:hash --approve` và `content:lock`.
+- Đã xong: `lesson:walk` 0 lỗi (3 thiết bị; hình gợi ý nhiệt kế rút còn −3..2 để không tràn thanh dưới). Việc tiếp theo: review vòng 1 và 2 (Opus, song song + Tổng hợp), lượt Đọc hiểu (Haiku), vòng chỉ phần đổi (Sonnet), rồi `content:hash --approve`, `content:lock`, `content:emit`.
 
 ## Nguồn (sách bài tập, `sources/math/tap-hop-cac-so-nguyen/`, không commit)
 - Đề: tr.47–49 in (PDF 48–50), tệp `sbt-p47.png`, `sbt-p48.png`, `sbt-p49.png`. Bài 14 bắt đầu ở tr.50.

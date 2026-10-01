@@ -149,7 +149,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "scale",
     theme: "thermometer",
     from: -3,
-    to: 3,
+    to: 2,
     zero: "0 °C",
     level: -2,
     label: "Nhiệt kế khác: cột nhiệt độ dừng ở vạch thứ hai dưới số 0",
