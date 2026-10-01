@@ -23,6 +23,7 @@
 
 ## Phụ thuộc Bài 10 (`so-nguyen-to`, đang soạn song song, chưa xuất bản)
 - Phương pháp phân tích ra thừa số nguyên tố cần "số nguyên tố" và "phân tích ra thừa số nguyên tố". Bài này dạy tối thiểu tại chỗ ở một section nhắc lại (`nhac-thua-so`), không liên kết id hay nội dung của Bài 10, hình `ladder` là của riêng bài này.
+- Việc bắt buộc sau khi Bài 10 xuất bản: chạy một vòng diff-only căn chỉnh section 5 (`nhac-thua-so`) với Bài 10: định nghĩa "số nguyên tố", cách viết phân tích, cách gọi "thừa số nguyên tố" và màu khái niệm (Bài 10 dùng màu sky cho "số nguyên tố"; ở đây thừa số nguyên tố đang mang màu "cơ số", xanh dương). Các review của Bài 11 đã xét section 5 tự thân, không đối chiếu bản nháp Bài 10.
 - Khi Bài 10 xuất bản, đối chiếu: định nghĩa số nguyên tố, cách viết phân tích, cách gọi "thừa số nguyên tố", màu khái niệm; có thể bỏ section `nhac-thua-so` nếu trùng. Bài này không thêm term "số nguyên tố" vào `content/glossary/math.json`.
 
 ## Cấu trúc bài (12 section, 12 card, 60 bài tập, 75 hình)
