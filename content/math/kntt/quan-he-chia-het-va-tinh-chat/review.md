@@ -5,6 +5,7 @@
 - Nguồn đã đọc: không có (diff chỉ có `explain`; đối chiếu với đề, đáp án, câu quy tắc và quy ước của chính bài)
 - `content:check`: 0 lỗi, 0 cảnh báo của bài
 - Kết luận: 0 Nghiêm trọng
+- Bản đã review: `7624ee661b039fe196d26d8f2b7928a237ad41d22a7f248d81fd298592021e1d` (`pnpm content:diff` so với bản này)
 - Bản đã review: ghi bởi `pnpm content:hash`
 
 Đã soát: 68/68 `explain` về toán (số, số dư, tích, dãy ước và bội), khớp đáp án chấp nhận (`answer`, `accept`, `pairs`, thứ tự `order`, `params` của câu thao tác), khớp câu quy tắc của bài, `wrong` chỉ ở phương án không phải đáp án và đúng sự thật, không dựa mẹo sai với số khác, độ dài (≤ 3 câu, ≤ 25 âm tiết mỗi câu) và độ dễ đọc cho học sinh lớp 6.
