@@ -3148,7 +3148,7 @@
       "answer": ["a", "b"],
       "multiple": true,
       "explain": {
-        "text": "Số chia hết cho cả 3 và 5 phải tận cùng 0 hoặc 5 và có tổng các chữ số chia hết cho 3. 165 có tổng 12 và tận cùng 5, 240 có tổng 6 và tận cùng 0, nên cả hai chia hết cho cả 3 và 5.",
+        "text": "Số chia hết cho cả 3 và 5 phải tận cùng 0 hoặc 5 và có tổng các chữ số chia hết cho 3. 165 có tổng 12 và tận cùng 5, 240 có tổng 6 và tận cùng 0, nên cả hai đều đúng.",
         "wrong": [
           {
             "optionId": "c",
