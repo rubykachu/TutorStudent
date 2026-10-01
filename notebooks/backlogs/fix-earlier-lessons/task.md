@@ -92,7 +92,7 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| dau-hieu-chia-het#1 | `hop-banh-tui` lặp khung hình ví dụ `hop-6-7` (cùng 7 hộp, mỗi hộp được 2 túi) | sửa: 5 hộp | |
+| dau-hieu-chia-het#1 | `hop-banh-tui` lặp khung hình ví dụ `hop-6-7` (cùng 7 hộp, mỗi hộp được 2 túi) | sửa: 5 hộp |  đã sửa, review vòng 8 đạt (0 Nghiêm trọng), đã duyệt; còn 2 Góp ý nhỏ về số trùng (tích 5 · 8 ở explain với nhiễu của `chon-tich-3`; đáp án 10 với recap) |
 | dau-hieu-chia-het#2 | `lap-so-014` cùng đáp án 3 và cùng cách tách với hình ví dụ `lap-035` | bỏ: đổi bộ chữ số thì trùng đáp án 4 của `dem-so-124`, và id đã khoá | |
 | dau-hieu-chia-het#3 | Màu amber dùng cho "Tích" và cho nhãn khác; xanh dương vừa là tổng đồ vật vừa là "Thừa số" | bỏ: hai nghĩa ở section khác nhau, không cùng màn | |
 | dau-hieu-chia-het#4 | Whisper nghe "Đề cho số" thành "Đề chốt số" ở `tim-chu-so` | bỏ: âm thanh, chủ dự án nghe | |

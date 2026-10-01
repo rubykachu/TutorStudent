@@ -6,7 +6,7 @@
 - Lời đọc tổng quan và 3 video đã làm và review vòng 5 (chỉ phần đổi, 01/10/2026): 0 Nghiêm trọng, 2 Nên sửa trong kịch bản video đã sửa và dựng lại; `content:hash --approve`, `content:lock` (3 id video đã khoá), `content:check` 0 lỗi, `lesson:walk` 0 failure, gate đạt, `content:emit` bản có nháp đã chạy.
 
 ## Việc còn lại (không chặn)
-- Góp ý trong `content/math/kntt/dau-hieu-chia-het/review.md`: 5 mục (câu `tim-chu-so` Whisper nghe "Đề chốt số" 98,1% cần chủ dự án nghe thử; `lap-so-014` trùng đáp án 3 với hình ví dụ; `hop-banh-tui` lặp khung hình ví dụ; màu amber và xanh dương dùng cho hai nghĩa ở hai section khác nhau). Còn việc này nên giữ thư mục này chưa lưu trữ; làm xong thì `git mv` sang `notebooks/backlogs/archive/` theo luật `.claude/rules/agents.md`.
+- Góp ý còn mở (kiểm kê và lý do giữ: `notebooks/backlogs/fix-earlier-lessons/task.md`): câu `tim-chu-so` Whisper nghe "Đề chốt số" 98,1% cần chủ dự án nghe thử; `lap-so-014` trùng đáp án 3 với hình ví dụ; màu amber và xanh dương dùng cho hai nghĩa ở hai section khác nhau. `hop-banh-tui` đã sửa (5 hộp, vòng 8). Còn việc này nên giữ thư mục này chưa lưu trữ; làm xong thì `git mv` sang `notebooks/backlogs/archive/` theo luật `.claude/rules/agents.md`.
 
 ## Nguồn (sách bài tập, `sources/math/dau-hieu-chia-het/`, không commit)
 - Đề: tr.33–34 in (PDF 34–35), tệp `sbt-p33.png`, `sbt-p34.png`. Bài 10 "Số nguyên tố" bắt đầu ở tr.35.
