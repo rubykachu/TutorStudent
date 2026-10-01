@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import { formatInteger } from "@/lib/number-format";
 import {
   BagBox,
@@ -352,11 +353,83 @@ describe("Chips", () => {
     fireEvent.click(screen.getByRole("button", { name: "2" }));
     expect(onStateChange).toHaveBeenLastCalledWith({ i0: 1, i1: 0, i2: 0 });
     fireEvent.click(screen.getByRole("button", { name: "3" }));
-    fireEvent.click(screen.getByRole("button", { name: "4" }));
+    // Two are wanted, two are chosen, and they are not the right two.
     expect(screen.queryByText("Xong rồi!")).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "3" }));
+    fireEvent.click(screen.getByRole("button", { name: "4" }));
     expect(screen.getByText("Xong rồi!")).toBeInTheDocument();
     expect(screen.getByText("Đã chọn 2/2")).toBeInTheDocument();
+  });
+
+  it("never lets more chips be chosen than the screen asks for", () => {
+    render(<Chips items={["1", "2", "4", "5"]} wants={[2]} done="Đúng!" />);
+    for (const name of ["1", "2", "4"]) {
+      fireEvent.click(screen.getByRole("button", { name }));
+    }
+    // One wanted: each new pick replaces the one before, never "3/1".
+    expect(screen.queryByText(/3\/1/)).toBeNull();
+    expect(screen.getByRole("button", { name: "1" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    expect(screen.getByRole("button", { name: "2" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    expect(screen.getByRole("button", { name: "4" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+
+  it("marks a wrong pick gently, reveals nothing and lets the child try again", () => {
+    const sounds = {
+      play: vi.fn(),
+      tap: vi.fn(),
+      button: vi.fn(),
+      leave: vi.fn(),
+    };
+    const { container } = render(
+      <FeedbackSoundsProvider sounds={sounds}>
+        <Chips items={["1", "2", "4", "5"]} wants={[2]} done="Đúng!" />
+      </FeedbackSoundsProvider>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "1" }));
+    const wrong = screen.getByRole("button", { name: "1" });
+    expect(wrong).toHaveAttribute("data-wrong");
+    expect(wrong).toHaveClass("border-dashed", "border-retry");
+    expect(wrong).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByText(/Chưa đúng/)).toBeInTheDocument();
+    expect(sounds.play).toHaveBeenLastCalledWith(["wrong-answer"]);
+    // The right chip is not pointed at, and nothing is locked yet.
+    expect(screen.getByRole("button", { name: "4" })).not.toHaveAttribute(
+      "data-wrong",
+    );
+    expect(screen.getByRole("button", { name: "4" })).toBeEnabled();
+    expect(container.querySelector("[data-chips-done]")).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "4" }));
+    expect(container.querySelector("[data-wrong]")).toBeNull();
+    expect(screen.getByText("Đúng!")).toBeInTheDocument();
+    expect(sounds.play).toHaveBeenLastCalledWith(["correct-jingle"]);
+    expect(screen.getByRole("button", { name: "4" })).toHaveClass("bg-correct");
+    // A right answer stays on screen, locked.
+    expect(screen.getByRole("button", { name: "1" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "Xem cách làm" })).toBeNull();
+  });
+
+  it("shows the answer on request without claiming the child chose it", () => {
+    const { container } = render(
+      <Chips items={["1", "2", "4"]} wants={[1]} done="Đúng!" />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Xem cách làm" }));
+    expect(screen.getByRole("button", { name: "2" })).toHaveClass("bg-correct");
+    expect(screen.getByRole("button", { name: "1" })).not.toHaveClass(
+      "bg-correct",
+    );
+    expect(screen.queryByText("Đúng!")).toBeNull();
+    expect(container.querySelector("[data-chips-shown]")).not.toBeNull();
+    expect(screen.getByRole("button", { name: "2" })).toBeDisabled();
   });
 
   it("draws each thousands separator as a gap of its own and keeps the character in the text", () => {

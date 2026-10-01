@@ -614,11 +614,22 @@ class Walker {
     await this.look(where);
     const video = this.page.locator("[data-section-step] [data-block=video]");
     if ((await video.count()) > 0) await this.walkVideo(where, video.first());
+    await this.walkGuidedTask(where);
     const next = this.page.locator(`[data-section-step] [${STEP_NEXT_ATTR}]`);
     if ((await next.count()) === 0) return;
     // The step button leaves once the last step is on screen.
     while ((await next.count()) > 0) await next.tap();
     await this.look(`${where}-end`);
+  }
+
+  // A guided "cùng làm" screen keeps "Tiếp" off until the child has done the
+  // task, so the walk asks "Xem cách làm" (the way out a stuck child has) and
+  // shoots the screen with its answer shown.
+  private async walkGuidedTask(where: string) {
+    const show = this.page.locator("[data-section-step] [data-guided-show]");
+    if ((await show.count()) === 0) return;
+    await show.first().tap();
+    await this.look(`${where}-shown`);
   }
 
   // A video block: the lesson lists the video, its files are served, the
@@ -792,8 +803,6 @@ class Walker {
       await enterWrong(area, exercise);
       const check = area.getByRole("button", { name: "Kiểm tra" });
       for (const tier of [1, 2, 3]) {
-        // A wrong pick of a selection answer is let go after each check.
-        if (!(await check.isEnabled())) await enterWrong(area, exercise);
         await check.tap();
         await area.locator(`section[data-phase="wrong${tier}"]`).waitFor();
         // Tier 1 only lights up the question; tiers 2 and 3 show a visual

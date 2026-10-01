@@ -57,6 +57,10 @@ import {
 import { saveOpenEndedWriting } from "@/progress/writing";
 import type { Lesson, OpenEndedExercise, Section } from "@/schema/content";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
+import {
+  GuidedStepProvider,
+  useGuidedHold,
+} from "@/visuals/shared/guided-step";
 
 type SectionPlayerProps = {
   db: TutorDb;
@@ -327,13 +331,14 @@ function StepView({
       return (
         <div className="flex flex-1 flex-col gap-4" data-section-step="block">
           <ScreenBadge kind="theory" />
-          <BlockStage block={step.block} videos={lesson.videos} />
-          <BottomBar>
-            <BigButton onClick={onNext}>
-              Tiếp
-              <ChevronRight aria-hidden className="size-6" />
-            </BigButton>
-          </BottomBar>
+          {/* A guided screen's "Tiếp" waits until the child did the task
+            (or asked to see how); a screen looked at again never waits. */}
+          <GuidedStepProvider enabled={!finished}>
+            <BlockStage block={step.block} videos={lesson.videos} />
+            <BottomBar>
+              <NextButton onClick={onNext} />
+            </BottomBar>
+          </GuidedStepProvider>
         </div>
       );
     case "recap":
@@ -415,6 +420,17 @@ function StepView({
       );
     }
   }
+}
+
+// "Tiếp" of a theory screen, off while a guided task on it is unfinished.
+function NextButton({ onClick }: { onClick: () => void }) {
+  const held = useGuidedHold();
+  return (
+    <BigButton onClick={onClick} disabled={held}>
+      Tiếp
+      <ChevronRight aria-hidden className="size-6" />
+    </BigButton>
+  );
 }
 
 const NO_PARTS = new Map();

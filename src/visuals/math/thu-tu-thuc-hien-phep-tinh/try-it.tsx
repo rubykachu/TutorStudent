@@ -3,8 +3,9 @@
 import { Check, ChevronRight, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
-import { JINGLE_ID } from "@/lib/sound-manifest";
+import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import type { VisualProps } from "@/visuals/registry";
+import { ShowHowButton, useGuidedTask } from "@/visuals/shared/guided-step";
 import {
   type RegionInteraction,
   type RegionMark,
@@ -51,12 +52,16 @@ export function TryIt({
 
   const expected = nextOperation(tokens);
   const finished = expected === undefined;
+  // The screen's "Tiếp" waits until the child has worked the expression to
+  // its result, by themselves or after "Xem cách làm".
+  useGuidedTask(finished);
 
   function tap(id: string) {
     const index = operationIndices(tokens)[Number(id.slice(2)) - 1];
     if (index === undefined || expected === undefined || accepted) return;
     if (index !== expected.index) {
       setWrong(id);
+      sounds?.play([WRONG_ID]);
       return;
     }
     const operation = operationAt(tokens, index);
@@ -75,6 +80,31 @@ export function TryIt({
     setResultIndex(accepted.applied.resultIndex);
     setAccepted(null);
     onStateChange?.({ done: history.length + 1 });
+  }
+
+  // Works the rest of the expression out, one line per operation.
+  function showHow() {
+    const lines = [...history];
+    let current = tokens;
+    let currentResult = resultIndex;
+    let pending = accepted?.operation ?? nextOperation(current);
+    while (pending) {
+      const applied = applyOperation(current, pending);
+      lines.push({
+        tokens: current,
+        resultIndex: currentResult,
+        operation: pending,
+      });
+      current = applied.tokens;
+      currentResult = applied.resultIndex;
+      pending = nextOperation(current);
+    }
+    setHistory(lines);
+    setTokens(current);
+    setResultIndex(currentResult);
+    setWrong(undefined);
+    setAccepted(null);
+    onStateChange?.({ done: lines.length });
   }
 
   function restart() {
@@ -144,15 +174,18 @@ export function TryIt({
           <ChevronRight aria-hidden className="size-5" />
         </button>
       ) : (
-        <button
-          type="button"
-          onClick={restart}
-          disabled={history.length === 0}
-          className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50"
-        >
-          <RotateCcw aria-hidden className="size-5" />
-          Làm lại
-        </button>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={restart}
+            disabled={history.length === 0}
+            className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50"
+          >
+            <RotateCcw aria-hidden className="size-5" />
+            Làm lại
+          </button>
+          {!finished && <ShowHowButton onShow={showHow} />}
+        </div>
       )}
     </div>
   );

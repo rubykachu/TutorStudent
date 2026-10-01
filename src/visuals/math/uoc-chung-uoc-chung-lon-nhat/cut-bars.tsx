@@ -2,10 +2,13 @@
 
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
+import { JINGLE_ID } from "@/lib/sound-manifest";
 import type { ConceptColor } from "@/schema/content";
 import type { VisualProps, VisualState } from "@/visuals/registry";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import type { Mode } from "@/visuals/shared/formula-rows";
+import { ShowHowButton, useGuidedTask } from "@/visuals/shared/guided-step";
 import { decorative } from "@/visuals/shared/markers";
 import { Hole, Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
@@ -325,12 +328,19 @@ export function CutTry({
   const first = params?.start ?? start ?? PIECE_RANGE.min;
   const [own, setOwn] = useState<number>(first);
   const [tried, setTried] = useState<readonly number[]>([first]);
+  const sounds = useFeedbackSoundsContext();
+  const [shown, setShown] = useState(false);
   const d = shownState?.d ?? own;
   const locked = disabled || shownState !== undefined;
   const fits = totals.every((total) => total % d === 0);
   const best = d === gcdOf(totals);
   const finished = goal === "largest" ? fits && best : fits;
   const all = totals.length === 2 ? "cả hai" : "cả ba";
+  const lead = shown ? "" : "Xong rồi! ";
+  const largest = shown
+    ? `Đoạn dài nhất cắt vừa hết ${all} dải là ${d} ${UNIT}.`
+    : `${lead}${d} ${UNIT} là đoạn dài nhất cắt vừa hết ${all} dải.`;
+  useGuidedTask(goal === undefined || finished || shown);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: report the opening state once, on mount
   useEffect(() => {
@@ -342,6 +352,16 @@ export function CutTry({
     setTried((all) => (all.includes(next) ? all : [...all, next]));
     const state: VisualState = { d: next };
     onStateChange?.(state);
+    const done =
+      goal === "largest"
+        ? totals.every((total) => total % next === 0) && next === gcdOf(totals)
+        : totals.every((total) => total % next === 0);
+    if (goal !== undefined && done) sounds?.play([JINGLE_ID]);
+  }
+
+  function show() {
+    setShown(true);
+    setOwn(Math.max(gcdOf(totals), PIECE_RANGE.min));
   }
 
   return (
@@ -367,10 +387,11 @@ export function CutTry({
         <p className="flex items-center gap-2 rounded-lg bg-correct-soft px-4 py-2 text-center font-heading text-block font-semibold text-correct-soft-foreground">
           <Check aria-hidden className="size-5" />
           {goal === "largest"
-            ? `Xong rồi! ${d} ${UNIT} là đoạn dài nhất cắt vừa hết ${all} dải.`
-            : `Xong rồi! Đoạn ${d} ${UNIT} cắt vừa hết ${all} dải.`}
+            ? largest
+            : `${lead}Đoạn ${d} ${UNIT} cắt vừa hết ${all} dải.`}
         </p>
       )}
+      {goal && !finished && !locked && <ShowHowButton onShow={show} />}
       <Legend items={cutLegend(!fits, false)} />
     </div>
   );
