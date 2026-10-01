@@ -31,7 +31,7 @@
 - Số trong bài tự chọn, không dùng số của sách; chỉ giữ dạng bài.
 - Trẻ yếu nhân chia: mở bằng việc cắt dải băng thành các đoạn bằng nhau và xếp đồ vật đều vào các đĩa, mỗi bước một ý, số nhỏ.
 - Chưa dạy kí hiệu tập hợp để trẻ phải gõ: các danh sách ước chỉ để đọc và chạm chọn (hồ sơ người học: chưa viết được { }).
-- Không dạy kiến thức bổ sung (a, b), a = dm, b = dn và câu 2.41–2.43 (cần chữ cái m, n trẻ chưa gặp) và ví dụ 1 (số dư bằng nhau, cần hiệu chia hết, đoán là nâng cao); ghi ở đây để chủ dự án quyết định có bổ sung sau.
+- Kiến thức bổ sung (a = d·m, b = d·n), câu 2.41–2.43 và ví dụ 1 (số dư bằng nhau) đã được dạy ở 6 section cuối bài (chủ dự án đồng ý, 02/10/2026); kí hiệu ngắn (a, b) cho ƯCLN không dạy (bài dùng ƯCLN(a, b)). Chữ cái d, m, n chỉ vào bài sau số cụ thể (12 và 18 cắt thành đoạn 6).
 - Phân số tối giản và rút gọn (câu 2.40) có một section cuối bài; trẻ đã biết phân số từ tiểu học nhưng chương phân số của lớp 6 chưa tới, nên section chỉ dùng phân số có tử, mẫu nhỏ và dạy luật "tối giản" từ ƯCLN.
 - Số hoàn hảo (câu 2.38) có một section ngắn (luyện liệt kê ước); không dùng 496.
 
@@ -61,3 +61,10 @@ Khái niệm mới trong `content/glossary/math.json`: "ước chung" (teal), "�
 
 ## Giải thích sau mỗi câu (02/10/2026)
 - Đã thêm `explain` cho cả 65 câu chấm được (`wrong` cho câu `choice` có nhiễu dễ chọn nhầm), đã xoá bài khỏi `content/legacy-lessons.json`. Review phần đổi vòng 5: 0 Nghiêm trọng; 2 Nên sửa (màu `\concept` của ƯCLN trong `tex`) và 3 Góp ý đã sửa. Đã `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures.
+
+## Sáu section bổ sung cuối bài (02/10/2026)
+- Section 14 `viet-tu-uclnn` (ƯCLN là d thì hai số là d·m và d·n, m, n chỉ có ước chung là 1; mở bằng dải 12 và 18 cắt thành đoạn 6, rồi phản ví dụ 12 và 24); 15 `cap-so-gioi-han` (câu 2.41: các cặp không vượt quá giới hạn, quy ước cặp 5 và 10 với 10 và 5 chỉ tính một cặp); 16 `cap-so-tong` (câu 2.42, m + n = tổng : d); 17 `cap-so-tich` (câu 2.43, tích = d·d·m·n); 18 `cung-so-du` (ví dụ 1, phần 1: cùng số dư thì hiệu chia hết; có một khối `tip` "Tìm số cùng số dư"); 19 `so-du-lon-nhat` (ví dụ 1, phần 2: số lớn nhất là ƯCLN của các hiệu). Mỗi section một card cùng tên; tổng 19 section, 19 card, 95 bài tập; 35 hình mới trong `catalog.ts` (không đổi mã hình nào).
+- Đề sách có số đổi; câu 2.41 của sách bỏ sót cặp hai số bằng nhau (17; 17) nên mọi đề của bài ghi "hai số khác nhau".
+- Review vòng 6 (Sonnet, chỉ phần đổi): 1 Nghiêm trọng (câu đếm cặp không nói quy ước thứ tự, LL-10) đã sửa; vòng 7: 0 Nghiêm trọng, đã `--approve`, `content:lock` (43 id, kể cả khối `tip`), `lesson:walk` 0 failure, `visual:shot` 220/220, gate đạt. Đọc hiểu Haiku 3 lượt (`.shots/review/.../doc-hieu*.md`): lượt 1 tổng 163 / 10 / 0.
+- Chưa có video và lời đọc cho 6 section mới (chủ dự án chưa yêu cầu); `overview` chưa nhắc phần mới (đổi chữ tổng quan kéo theo thu lại lời đọc).
+- Nên sửa còn mở (ghi ở `review.md` vòng 7, không chặn): quy tắc `cap-so-tong` và `so-du-lon-nhat` vẫn bị Haiku xếp mơ hồ ("m cộng n là gì", "dư bằng nhau"); số ví dụ mẹo (20 chia 6) trùng câu `so-cung-du-20`; `cap-7-28` dùng ƯCLN 7 và số của câu kiểm tra `cap-uclnn-7`; `tich-144-uclnn-6` còn chia 144 cho 36; mẹo viết "2a, 3a" liền chữ; ba câu điền không còn lặp quy tắc mới; `explain` `tich-72-uclnn-3` viết lại sau lượt Haiku 3 chưa đọc lại.

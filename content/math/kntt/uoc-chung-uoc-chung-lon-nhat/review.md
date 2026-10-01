@@ -1,183 +1,177 @@
 # Review: Ước chung. Ước chung lớn nhất (`uoc-chung-uoc-chung-lon-nhat`)
 
 - Bài: `content/math/kntt/uoc-chung-uoc-chung-lon-nhat/lesson.json`
-- Vòng: 6 - chỉ phần đổi (`pnpm content:diff`), section: 6 section mới `viet-tu-uclnn`, `cap-so-gioi-han`, `cap-so-tong`, `cap-so-tich`, `cung-so-du`, `so-du-lon-nhat` (6 card cùng tên, 30 bài tập mới, 35 hình mới, 1 khối `tip`)
-- Nguồn đã đọc: `sources/math/uoc-chung-uoc-chung-lon-nhat/` - sbt-p38 (kiến thức bổ sung 5, 6; ví dụ 1), sbt-p39 (lời giải ví dụ 1), sbt-p40 (đề 2.41-2.43), sbt-p108 (lời giải 2.41-2.43)
+- Vòng: 7 - chỉ phần đổi (`pnpm content:diff`), các section mới sau sửa vòng 6: `viet-tu-uclnn`, `cap-so-gioi-han`, `cap-so-tong`, `cap-so-tich`, `cung-so-du`, `so-du-lon-nhat` (câu đổi số hay thêm, câu đổi chữ, 6 quy tắc và recap viết lại, 1 khối `tip` thay, hình đổi hay thêm trong `catalog.ts`)
+- Nguồn đã đọc: `sources/math/uoc-chung-uoc-chung-lon-nhat/` - sbt-p40 (đề 2.41-2.43: số 17 và 60, 96 và 16, 8 và 384); số mới của vòng này (7 và 28, 2 và 14, 36 và 4, 45 và 9, 56 và 14, 72 và 3, 144 và 6, 22 và 58, 21 và 45) không trùng số nào của sách; các trang sbt-p38, p39, p108 đã đối chiếu ở vòng 6, vòng này không đổi quan hệ với nguồn
 - `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường), 1 cảnh báo ("43 id(s) not in ids.lock.json")
-- Đọc hiểu (Haiku, lượt 1): chưa chạy, sẽ chạy sau vòng này (chữ của 6 section mới là chữ đổi)
-- `lesson:walk`: 0 FAIL ở lượt chạy trước, ảnh ở cây tạm (không nằm trong `.shots/walk/`); đã đọc sheet điện thoại của 6 section mới (`walk-phone-s14` đến `s19`) và sheet từng bước của hình mới (`phone-*`)
-- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng (1 Nghiêm trọng, 10 Nên sửa, 9 Góp ý); đã ghi "Bản đã review" bằng `--mark`, chưa `--approve`, chưa `content:lock`
-- Bản đã review: `ef444cbaac698034c403e1da58859fa0537f8aea143b4d3b25983100135c5ee2` (`pnpm content:diff` so với bản này)
+- Đọc hiểu (Haiku, lượt 1): 163 / 10 / 0; tệp `.shots/review/uoc-chung-uoc-chung-lon-nhat/doc-hieu.md` (dòng "Tổng cả bài" của tệp ghi 163 / 10 / 0; đếm lại từ các dòng của tệp ra 168 / 8 / 0, tức 8 mục Hiểu mơ hồ, nên số rút kinh nghiệm tính theo 8)
+- Đọc hiểu (Haiku, lượt 2): 0 / 8 / 1 trên 9 mục viết lại (`doc-hieu-2.md`); lượt 3: 3 Hiểu rõ / 5 Hiểu mơ hồ / 1 Khó hiểu trên 9 mục (`doc-hieu-3.md`; dòng "Tổng" của tệp ghi 2 Hiểu rõ nhưng liệt kê 3: quy tắc và recap `cap-so-tich`, explain `tich-144-uclnn-6`). Các mục còn lại sau lượt 3 ghi ở Nên sửa 4, 5 và 7 (quy tắc và recap `cap-so-tong`, quy tắc, recap và câu điền `so-du-lon-nhat`, explain `tich-72-uclnn-3`), không chặn duyệt
+- `lesson:walk`: 0 FAIL, `visual:shot` 220/220 (điều phối chạy sau sửa); đã đọc sheet điện thoại của 6 section mới (`walk-phone-s14` đến `s19`, tạo lúc 23:41, sau lần sửa `lesson.json` cuối lúc 23:31) và sheet từng bước của hình (`phone-viet`, `phone-cap`, `phone-tich`); ảnh nằm ở cây tạm của điều phối, không nằm trong `.shots/walk/`
+- Kết luận: Không còn lỗi Nghiêm trọng (0 Nghiêm trọng, 9 Nên sửa, 7 Góp ý); đã ghi "Bản đã review" bằng `--mark`, chưa `--approve`, chưa `content:lock` (người điều phối làm)
+- Bản đã review: `59714700b1fd4728c77b723b5a6263c4f112ed8e42e95671c1d2d51d431a43b3` (`pnpm content:diff` so với bản này)
 
-Đã soát: toàn bộ diff (6 section, 6 card, 30 bài tập, 35 hình trong `catalog.ts`, khối `tip`, 6 recap) theo 5 trục, "Luật gợi ý 3 nấc" và các mục lessons-learned LL-01, 05, 06, 07, 08, 09, 10, 14, 15, 17, 18, 19, 21, 24.
+Đã soát: toàn bộ diff theo checklist 5 trục, "Luật gợi ý 3 nấc" và LL-01, 02, 05, 06, 07, 09, 10, 14, 15, 17, 18, 19, 20, 25.
 
-- Toán: tự giải bằng chương trình (gcd, liệt kê cặp, số dư) mọi `answer`, từng nhiễu và từng lý do `wrong` của 30 bài tập; kiểm các cặp của hình `chips` (`wants` của `cap-chon-4-12`, `tong-chon-10`, `tich-chon-18`, `du-chon-5`, `du-lon-chon-25-43` đều đúng), số trong mọi hình `notation`/`lines`/`rows` (hình lời giải khớp số của đề; hình gợi ý nấc 2 dùng số khác đề và dừng ở "?"). Đáp án, nhiễu, `wrong` đều đúng; không có câu hai đáp án đúng ở dạng chọn.
-  - `cap-9-30` = 3 cặp (9-18, 9-27, 18-27); `chon-cap-uclnn-4` = {4 và 12, 12 và 16}; `tong-28-uclnn-4` = {4 và 24, 8 và 20}; `tong-40-uclnn-8` = 2 (8-32, 16-24); `tong-64-uclnn-16` a = 16 (16-48); `tich-200-uclnn-5` b = 40 (5-40); `tich-108-uclnn-3` = {3 và 36, 9 và 12}; `tich-180-uclnn-6` số lớn 30 (6-30); `cung-du-6` = 14 và 26; `cung-du-7` = {9 và 23, 12 và 40}; `so-cung-du-20` x = 26 (duy nhất trong 21..31); `cung-du-30` = 18; `so-du-31-55` a = 24; `so-du-14-26-50` a = 12; `chon-a-26-50` = {4, 6}; `so-du-11-41-71` a = 30.
-- Không chép: số của sách (17 và 60, 96 và 16, 384 và 8, 397; 509; 677, 480; 720) không có trong 6 section; chỉ ƯCLN 16 và 8 của hai câu ôn trùng với sách (xem Góp ý 6).
-- Kiến thức bổ sung (kí hiệu "nếu ƯCLN(a, b) = d thì a = dm, b = dn") được dạy bằng số cụ thể (12 và 18, 12 và 24) trước khi đưa chữ d, m, n; không dùng ký hiệu tập hợp hay (a, b). Quy tắc `rule` của 6 section đều đúng toán; recap lặp nguyên văn câu quy tắc.
+## Kết quả vòng 6 đã được xử lý
+
+| Mục vòng 6 | Kết quả |
+|---|---|
+| Nghiêm trọng 1 (đếm cặp có thứ tự hay không) | Đã sửa: quy ước "cặp 5 và 10 với cặp 10 và 5 chỉ tính là một cặp" dạy ở màn 3 của `cap-so-gioi-han`, lặp trong đề `cap-7-28` và `tong-45-uclnn-9`; đã đếm lại bằng chương trình (5 và 2 cặp không thứ tự). Không còn câu đếm cặp nào khác (`grep "Có bao nhiêu cặp"` còn đúng hai câu này) |
+| Nên sửa 1 (`chon-a-26-50`) | Đã sửa: `chon-a-22-58`, hiệu 36, đáp án 4 và 6 |
+| Nên sửa 2 (`chon-cap-uclnn-4`) | Đã sửa: `chon-cap-uclnn-2` (ƯCLN 2, không quá 14), đáp án 2 và 6, 4 và 6 |
+| Nên sửa 3 (`cung-du-30`) | Đã sửa: 27 thành 28, đáp án 18 chẵn nhưng 28 cũng chẵn nên không loại được bằng chẵn lẻ |
+| Nên sửa 4 (`tich-200`, `tich-180`) | Đã đổi: `tich-72-uclnn-3` (72 chia 9 là bảng nhân, đạt); `tich-144-uclnn-6` còn chia 144 cho 36 (Nên sửa 9) |
+| Nên sửa 5 ("số nhân") | Đã sửa: không còn "số nhân" trong `lesson.json` và `catalog.ts`, mọi câu dùng "m và n" |
+| Nên sửa 6 (`tip` nhắc lại quy tắc) | Đã thay bằng mẹo mới "Tìm số cùng số dư", đúng ở mọi đầu vào (bảng dưới); nhưng ví dụ của mẹo trùng số câu `so-cung-du-20` (Nên sửa 1) |
+| Nên sửa 7 (màu teal "Ước chung" ở `du-hieu`) | Đã sửa: hình `du-hieu` và `explain.tex` của `cung-du-6`, `cung-du-30` không còn teal; `conceptIds` của card còn `uoc-chung` (Góp ý 5) |
+| Nên sửa 8 (quy tắc `cap-so-gioi-han` thiếu giới hạn) | Đã sửa: "không quá giới hạn của đề" ở quy tắc, recap section và recap card (giống nguyên văn) |
+| Nên sửa 9 (không có tình huống đời sống) | Đã sửa: mở bằng dải băng dài không quá 20 dm |
+| Nên sửa 10 (`dai-bang-4-8`) | Đã sửa: "Dải còn lại dài hơn dải 8 dm ..." và "4 và 2 còn chung ước 2"; đáp án 12 đúng |
+| Góp ý 1, 2, 4, 5, 6, 9 | Đã sửa (hình gợi ý `viet-goi-y-16-24` dùng ƯCLN 8, "20 và 30", "16 và 26", chip 21 và 45, `cap-goi-y-6-24` bỏ, ƯCLN 14 và 9 thay 16 và 8, `cap-9-30` bỏ nên hết ngắt dòng `gathered`); nhiễu mới còn thiếu `wrong` (Góp ý 1) |
+| Góp ý 3, 7, 8 | Còn nguyên hay còn một phần: Góp ý 3, 6, 7 dưới đây |
+
+## Việc kiểm toán đã làm
+
+- Tự giải bằng chương trình Python (gcd, liệt kê cặp, số dư) mọi câu đã đổi: `cap-7-28` = 5 cặp (7-14, 7-21, 7-28, 14-21, 21-28; loại 14-28); `chon-cap-uclnn-2` đáp án {2 và 6, 4 và 6}, 4 và 8 (ƯCLN 4), 6 và 12 (ƯCLN 6) sai; `tong-36-uclnn-4` đáp án {4 và 32, 8 và 28} (còn 16 và 20 không có trong lựa chọn), 12 và 24 (ƯCLN 12), 6 và 30 (ƯCLN 6) sai; `tong-45-uclnn-9` = 2 (9-36, 18-27); `tong-56-uclnn-14` a = 14 (14 và 42); `tich-72-uclnn-3` b = 24 (duy nhất); `tich-144-uclnn-6` số lớn 24 (duy nhất); `cung-du-6` chỉ 14 và 26 (dư 2 và 2), 16 và 26 dư 4 và 2; `cung-du-30` chỉ 18 (dư 2); `chon-a-22-58` đáp án {4, 6}, 22 và 58 chia 5 dư 2 và 3, chia 8 dư 6 và 2; `viet-20-30` 2 và 3; `dai-bang-4-8` 12.
+- `wants` của hình `chips`: `du-lon-chon-21-45` (hiệu 24; chỉ 3, 4, 6, 8 cho cùng số dư: 0-0, 1-1, 3-3, 5-5; 5 dư 1 và 0, 9 dư 3 và 0) = chỉ số 0, 1, 3, 4 đúng; `du-chon-5` (12 và 27 dư 2-2, 8 và 33 dư 3-3; 14 và 23 dư 4-3, 17 và 31 dư 2-1) = chỉ số 0, 2 đúng; `cap-chon-4-12`, `tong-chon-10`, `tich-chon-18` không đổi và còn đúng.
+- Hình gợi ý nấc 2 dùng số khác đề và không hiện kết quả của đề: `viet-goi-y-16-24` (ƯCLN 8, không nêu 5), `cap-goi-y-6-18` (kết quả 3, đề cần 5), `tong-goi-y-42-7` (đề: 36 và 4), `tich-goi-y-160-4` (đề: 72 và 3). Hình lời giải khớp số của đề: `cap-7-28-giai` (5 cặp đúng), `tong-36-giai` (4-32, 8-28, 16-20; loại 3 và 6), `tich-72-giai` (9 · m · n = 72, m · n = 8, 3 và 24), `du-lon-14-26-50-giai`, `du-thu-lai` (29, 53, 89 chia 12 dư 5, hiệu 24 và 36).
+- Quy tắc viết lại đúng toán: tổng a + b = d(m + n) nên chia tổng cho d được m + n (48 chia 6 được 8, khớp hình `tong-48-6`); tích a · b = d · d · m · n (đúng cho mọi d, m, n nhưng câu mới không nói d là ƯCLN, xem Nên sửa 6); hiệu các số liền nhau có ƯCLN bằng ƯCLN của mọi hiệu nên số lớn nhất cho cùng số dư là ƯCLN của các hiệu (25 và 43 hiệu 18, 29-53-89 hiệu 24 và 36 ra 12). Recap section và recap card của cả 6 section giống nguyên văn câu `rule` (kiểm bằng chương trình). Câu `dien-uclnn-hieu` ghép lại giống nguyên văn quy tắc `so-du-lon-nhat`.
 
 ### Bảng mẹo `tip.cung-so-du` (section `cung-so-du`)
 
-Mẹo: "lấy số lớn trừ số bé, hiệu chia hết cho a thì hai số cùng số dư". Ghi số đã thử dưới dạng (số, số, a).
+Mẹo: "Muốn tìm số cùng số dư với một số khi chia cho a, cứ cộng thêm a, 2a, 3a. Số mới chia cho a vẫn dư như cũ." Ghi (số n, số chia a).
 
-| Đầu vào | Dư của từng số | Hiệu, chia hết? | Mẹo cho kết quả |
+| Đầu vào (n, a) | Dư của n | n + a, n + 2a, n + 3a (dư) | Kết quả |
 |---|---|---|---|
-| (19, 4, 5) | 4 và 4 | 15, có | đúng |
-| (0, 6, 3) biên số 0 | 0 và 0 | 6, có | đúng |
-| (7, 7, 4) hai số bằng nhau | 3 và 3 | 0, có | đúng |
-| (2, 9, 7) số bé hơn số chia | 2 và 2 | 7, có | đúng |
-| (1, 100, 9) số rất lệch | 1 và 1 | 99, có | đúng |
-| (13, 31, 6) | 1 và 1 | 18, có | đúng |
-| (10, 20, 1) số chia 1 | 0 và 0 | 10, có | đúng |
-| (50, 5, 15) số chia lớn | 5 và 5 | 45, có | đúng |
-| (3, 11, 4) | 3 và 3 | 8, có | đúng |
-| (14, 23, 5) khác dư | 4 và 3 | 9, không | đúng (khác dư) |
-| (15, 21, 7) khác dư | 1 và 0 | 6, không | đúng (khác dư) |
+| (20, 6) ví dụ của mẹo | 2 | 26, 32, 38 (2, 2, 2) | đúng |
+| (0, 3) biên số 0 | 0 | 3, 6, 9 (0, 0, 0) | đúng |
+| (7, 7) n bằng a | 0 | 14, 21, 28 (0, 0, 0) | đúng |
+| (2, 9) n bé hơn a | 2 | 11, 20, 29 (2, 2, 2) | đúng |
+| (1, 100) số chia lớn | 1 | 101, 201, 301 (1, 1, 1) | đúng |
+| (13, 5) lẻ, số chia lẻ | 3 | 18, 23, 28 (3, 3, 3) | đúng |
+| (10, 1) số chia 1 | 0 | 11, 12, 13 (0, 0, 0) | đúng |
+| (50, 15) số tròn chục | 5 | 65, 80, 95 (5, 5, 5) | đúng |
+| (99, 10) | 9 | 109, 119, 129 (9, 9, 9) | đúng |
+| (4, 2) số chẵn, số chia chẵn | 0 | 6, 8, 10 (0, 0, 0) | đúng |
 
-Mẹo đúng ở mọi đầu vào thử; điều kiện "hai số" nằm trong `text`; với ba số (`so-du-14-26-50`, `so-du-11-41-71`) mẹo áp cho từng cặp liền nhau, không mâu thuẫn quy tắc của `so-du-lon-nhat`. Mẹo không sai kiến thức nhưng bị trùng quy tắc (Nên sửa 6).
+Mẹo đúng ở mọi đầu vào thử (cộng thêm bội của a không đổi số dư). Còn hai điểm của mẹo ghi ở Nên sửa 1 (ví dụ trùng đề) và 8 (chữ "2a, 3a").
 
 ## Nghiêm trọng
 
-### 1. Hai câu đếm cặp không nói cặp có thứ tự hay không, "3" và "6" cùng có thể đúng
-
-- Vị trí: `$.exercises[cap-9-30].prompt[0].text` và `$.exercises[tong-40-uclnn-8].prompt[0].text` (`uoc-chung-uoc-chung-lon-nhat.ex.cap-9-30`, `uoc-chung-uoc-chung-lon-nhat.ex.tong-40-uclnn-8`); LL-10
-- Nguồn: tr.40, `sbt-p40.png` (2.41-2.43); tr.108, `sbt-p108.png` (lời giải 2.42 và 2.43 đếm cả (16; 80) lẫn (80; 16))
-- Vấn đề: đề "Hai số khác nhau ... Có bao nhiêu cặp số như vậy?" không nói 9 và 18 với 18 và 9 có tính là hai cặp không. Đáp án của bài là 3 (`cap-9-30`) và 2 (`tong-40-uclnn-8`), tính cặp không thứ tự; đếm có thứ tự như lời giải sách thì là 6 và 4. Màn dạy chỉ liệt kê "1 và 2 cho 5 và 10..." theo thứ tự bé trước, không nói quy ước đếm; hai câu `tong-28-uclnn-4`, `tong-64-uclnn-16`, `tich-200-uclnn-5` thì có "a nhỏ hơn b", riêng hai câu này không có. Bé trả lời 6 hay 4 bị chấm sai dù đọc đề hợp lý (cùng kiểu `so-nguyen-to` vòng 1, `ex.xep-7-cach`).
-- Sửa: thêm vào đề, trong một khối `note` thứ hai (note quá 2 câu bị `[length]`): "Cặp 9 và 18 với cặp 18 và 9 chỉ tính là một cặp." (và "8 và 32" với "32 và 8" ở `tong-40-uclnn-8`). Dạy quy ước ngay ở màn đầu section `cap-so-gioi-han` (chỗ "Tìm các cặp số khác nhau") bằng một câu cùng ý để mọi đề dùng nó đều đã được dạy.
+Không có.
 
 ## Nên sửa
 
-### 1. `chon-a-26-50` dùng lại số 26 và 50 của câu luyện `so-du-14-26-50` (LL-07)
+### 1. Ví dụ của mẹo `tip.cung-so-du` đúng là số của câu `so-cung-du-20` (LL-07)
 
-- Vị trí: `$.exercises[chon-a-26-50].prompt[0].text` (`uoc-chung-uoc-chung-lon-nhat.ex.chon-a-26-50`, card `so-du-lon-nhat`)
+- Vị trí: `$.sections[cung-so-du].blocks[2].tex` (`uoc-chung-uoc-chung-lon-nhat.tip.cung-so-du`) và `$.exercises[so-cung-du-20]`
 - Nguồn: —
-- Vấn đề: câu ôn hỏi 26 và 50 cho a; câu luyện của cùng card có 14, 26, 50 và `explain` của nó đã ghi "50 trừ 26 bằng 24". Làm xong câu luyện, bé chỉ việc nhớ hiệu 24 và ước của nó (4, 6 cũng là ước của 12 và 24). Phiên ôn hỏi lại đúng bộ số vừa luyện.
-- Sửa: đổi sang bộ số chưa dùng, ví dụ "Chia 22 và 58 cho a được cùng số dư. Chọn tất cả các số a." với hiệu 36 và lựa chọn 4, 5, 6, 8 (đúng 4 và 6; 22 và 58 chia cho 5 dư 2 và 3, chia cho 8 dư 6 và 2).
+- Vấn đề: mẹo viết `20 = 6 · 3 + 2` và `26 = 6 · 4 + 2`; câu kho ôn `so-cung-du-20` hỏi "Chia 20 và x cho 6 được cùng số dư, x lớn hơn 20 và nhỏ hơn 32" có đáp án 26. Bé đọc mẹo là có đáp án, không cần tự làm. (Ví dụ này do review vòng 6 gợi ý, nên lỗi thuộc bản gợi ý đó.)
+- Sửa: đổi ví dụ của mẹo sang số không xuất hiện ở section này, ví dụ `11 = 8 · 1 + 3` và `19 = 8 · 2 + 3`.
 
-### 2. `chon-cap-uclnn-4` lặp ƯCLN 4 và hai cặp của màn chạm `cap-chon-4-12` cùng section (LL-07)
+### 2. Câu luyện `cap-7-28` dùng cùng ƯCLN 7 và các số 14, 21, 28 với câu kiểm tra `cap-uclnn-7` (LL-07)
 
-- Vị trí: `$.exercises[chon-cap-uclnn-4].options` (`uoc-chung-uoc-chung-lon-nhat.ex.chon-cap-uclnn-4`) và `uoc-chung-uoc-chung-lon-nhat.visual.cap-chon-4-12`
+- Vị trí: `$.exercises[cap-7-28]` và `$.exercises[cap-uclnn-7]` (cùng section `cap-so-gioi-han`; ảnh `198-s15-05-exercise-cap-uclnn-7` rồi `200-s15-06-exercise-cap-7-28`)
 - Nguồn: —
-- Vấn đề: màn chạm có chips "4 và 12" (đúng) và "8 và 16" (sai), cũng với ƯCLN 4; câu ôn có đúng hai cặp này với cùng đúng sai. Bé chỉ cần nhớ màn trước thay vì viết thành 4 nhân m, 4 nhân n.
-- Sửa: đổi ƯCLN và giới hạn, ví dụ ƯCLN 2, không vượt quá 14, lựa chọn 2 và 6, 4 và 6 (đúng), 4 và 8, 6 và 12 (sai: ƯCLN 4 và 6). Soát lại `wrong` theo số mới.
+- Vấn đề: câu kiểm tra "Chọn cặp số có ƯCLN là 7" (đáp án 14 và 21; 14 và 28 có ƯCLN 14, 21 và 42 có ƯCLN 21) đứng ngay trước câu luyện đếm cặp có ƯCLN 7 từ 7, 14, 21, 28. Bé đã biết 14 và 21 nhận, 14 và 28 loại, nên chỉ còn ghép nốt các cặp, không phải tự lập lại bước viết 7 nhân m, 7 nhân n. Trước vòng này câu luyện dùng ƯCLN 9 nên không trùng.
+- Sửa: đổi `cap-7-28` sang ƯCLN 9 và giới hạn 36 (9, 18, 27, 36: cũng 5 cặp, loại 18 và 36), đổi câu quy ước thành "Cặp 9 và 18 với cặp 18 và 9 chỉ tính là một cặp." và soát lại hình lời giải, hình gợi ý.
 
-### 3. `cung-du-30`: ba nhiễu đều lẻ nên loại được bằng mẹo chẵn lẻ (LL-14)
+### 3. Ba câu điền chỗ trống không lặp câu quy tắc mới (LL-05, LL-20)
 
-- Vị trí: `$.exercises[cung-du-30].options` (`uoc-chung-uoc-chung-lon-nhat.ex.cung-du-30`)
+- Vị trí: `$.exercises[dien-tong-uclnn].segments`, `$.exercises[dien-tich-d-d].segments`, `$.exercises[dien-viet-tu-uclnn].segments` (so với quy tắc và recap của `cap-so-tong`, `cap-so-tich`, `viet-tu-uclnn`)
 - Nguồn: —
-- Vấn đề: 30 chia 4 dư 2, số chia 4 là số chẵn nên số cần tìm phải chẵn. Đáp án đúng 18 là số chẵn duy nhất trong 18, 25, 27, 31; bé chọn 18 không cần lấy hiệu. Ở `cung-du-6` (14 và 26 so với 13 và 22, 15 và 20) chẵn lẻ cũng loại được hai nhiễu (Góp ý 2).
-- Sửa: thay 27 bằng 28 (30 trừ 28 bằng 2, không chia hết cho 4), thêm `wrong` cho 28 ("30 trừ 28 bằng 2, không chia hết cho 4").
+- Vấn đề: `dien-tong-uclnn` còn đọc "Biết tổng của hai số và ƯCLN của chúng là d thì m cộng n bằng tổng đó chia cho ___" trong khi quy tắc, recap đã đổi thành "Biết tổng của hai số và ƯCLN là d. Chia tổng cho d thì được m cộng n, như 48 chia 6 được 8."; `dien-tich-d-d` còn "Nếu ƯCLN của hai số là 5 thì tích ... " trong khi quy tắc mới là "Hai số là d nhân m và d nhân n. Nhân chúng lại ..."; `dien-viet-tu-uclnn` được viết lại ở vòng này thành "Hai số có ƯCLN là d thì bằng d nhân m ..." khác quy tắc "Gọi d là ƯCLN của hai số a và b. Khi đó ...". Hai câu `dien-cung-du` và `dien-uclnn-hieu` thì lặp nguyên văn; bé gặp một quy tắc ba cách nói trong một section.
+- Sửa: viết lại câu điền để lặp nguyên văn câu quy tắc (sau khi sửa quy tắc ở Nên sửa 4, 5, 6), chỉ khoét một từ thành chỗ trống như `dien-cung-du`.
 
-### 4. `tich-200-uclnn-5`, `tich-180-uclnn-6` buộc chia cho 25 và 36 (LL-18)
+### 4. Quy tắc `so-du-lon-nhat` đổi "cùng số dư" thành "dư bằng nhau", lệch từ đã dạy và Haiku vẫn thấy mơ hồ (LL-05, LL-25)
 
-- Vị trí: `$.exercises[tich-200-uclnn-5]` và `$.exercises[tich-180-uclnn-6]`
+- Vị trí: `$.sections[so-du-lon-nhat].blocks[2].children[0].text`, `$.sections[so-du-lon-nhat].recap.caption`, `$.cards[so-du-lon-nhat].recap.caption`, `$.exercises[dien-uclnn-hieu].segments[0]` (đọc hiểu lượt 3: Hiểu mơ hồ, lý do "dư bằng nhau")
 - Nguồn: —
-- Vấn đề: bé yếu nhân chia phải 5 · 5 = 25, rồi 200 : 25 = 8, rồi 5 · 8 = 40 (ba phép, một phép chia cho số hai chữ số); câu kia 6 · 6 = 36, 180 : 36 = 5, 6 · 5 = 30. Luật "Số nhỏ" cho tối đa 2 phép nhẩm. Dạng bài đã đủ khó ở bước m nhân n rồi loại cặp.
-- Sửa: giữ dạng, đổi số cho phép chia gọn, ví dụ ƯCLN 3 và tích 72 (9 · m · n = 72, m · n = 8, chỉ 1 và 8 nhận, 2 và 4 loại, b = 24) và ƯCLN 6 và tích 144 (36 · m · n = 144, m · n = 4, chỉ 1 và 4, số lớn 24).
+- Vấn đề: tên section, đề của mọi câu, nhãn hình (`cùng số dư 5`) và section `cung-so-du` đều nói "cùng số dư" (từ glossary "số dư"); chỉ câu quy tắc nói "các số chia cho nó dư bằng nhau". Trên màn quy tắc cùng thấy "dư bằng nhau" ở chữ và "cùng số dư 5" ở thẻ hình (ảnh `250-s19-03-block`). Một khái niệm hai cách nói, mà cách mới cũng chưa làm bé hiểu rõ hơn.
+- Sửa: quay về "cùng số dư", và làm rõ bằng một vế ví dụ lấy từ màn một: "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó được cùng số dư là ƯCLN của các hiệu đó, như 25 và 43 có hiệu 18 nên số đó là 18." (recap, card và câu điền theo, soát `[length]`).
 
-### 5. "Số nhân" là tên thứ ba của m, n, trong khi bài đã dùng "m, n" và "thừa số" (LL-05, LL-25)
+### 5. Quy tắc và recap `cap-so-tong` không nói m, n là gì trong chính câu (LL-25, đọc hiểu lượt 3: Hiểu mơ hồ "m cộng n là gì")
 
-- Vị trí: `$.exercises[viet-20-30].prompt[1].text` ("Hai số nhân đó là hai số nào?") và `explain` (cả `wrong` của phương án b: "là số nhân với 5"); `$.exercises[viet-21-35].explain.text`; `$.exercises[dien-viet-tu-uclnn].segments[0].text` và `explain.text` ("hai số nhân"); `$.exercises[chon-cap-uclnn-4].explain.text`; `$.exercises[xep-cap-3-12]` mục `s3` và `explain.text`; `$.exercises[tong-28-uclnn-4].explain.text` và `$.exercises[tich-108-uclnn-3].explain.text` ("các cặp số nhân")
+- Vị trí: `$.sections[cap-so-tong].blocks[1].children[0].text`, `$.sections[cap-so-tong].recap.caption`, `$.cards[cap-so-tong].recap.caption`
 - Nguồn: —
-- Vấn đề: quy tắc và recap gọi hai số d nhân với là "m và n"; glossary và bài đã dạy "thừa số". Các câu bài tập lại gọi chúng "số nhân" (nghe như "số được nhân" hay số của phép nhân), một khái niệm hai tên; `viet-20-30` còn đứng sau màn quy tắc đã dùng m, n, và "là số nhân với 5" trong `wrong` dùng cùng cụm với nghĩa khác (nhân với 5).
-- Sửa: dùng "m và n" ở mọi câu đứng sau màn quy tắc, ví dụ "Viết 20 và 30 thành 10 nhân m và 10 nhân n. Chọn m và n."; `dien-viet-tu-uclnn`: "... mỗi số bằng d nhân một số, và hai số m, n chỉ có ước chung là ..." hoặc "hai số nhân cùng d" đổi hết thành "m và n".
+- Vấn đề: ví dụ số "48 chia 6 được 8" đã có nhưng chữ m, n chỉ được nói ở màn đầu ("a bằng 6 nhân m và b bằng 6 nhân n"); màn recap hiện lại câu này một mình nên bé ôn không biết "m cộng n" là gì. Ví dụ số không đủ khi chữ cái chưa được giải thích trong cùng câu (khác `cap-so-tich`, câu nêu "d nhân m và d nhân n" ngay trước thì Haiku hiểu rõ).
+- Sửa: nêu m, n trong câu, ví dụ "Hai số là d nhân m và d nhân n nên tổng của chúng chia cho d bằng m cộng n, như 48 chia 6 được 8." (tác giả cân độ dài; nhớ đổi recap section, recap card và câu điền).
 
-### 6. Khối `tip.cung-so-du` chỉ nhắc lại quy tắc ngay trên (mẹo gượng, LL-05)
+### 6. Quy tắc `cap-so-tich` bỏ điều kiện "ƯCLN là d" (LL-05, LL-20)
 
-- Vị trí: `$.sections[cung-so-du].blocks[2]` (`uoc-chung-uoc-chung-lon-nhat.tip.cung-so-du`)
+- Vị trí: `$.sections[cap-so-tich].blocks[1].children[0].text`, `$.sections[cap-so-tich].recap.caption`, `$.cards[cap-so-tich].recap.caption`
 - Nguồn: —
-- Vấn đề: mẹo (đúng ở mọi đầu vào, xem bảng) nói "lấy số lớn trừ số bé, hiệu chia hết cho a thì cùng số dư", gần y câu quy tắc ở màn trước ("hiệu chia hết cho a thì hai số được cùng số dư") và câu chỉ dẫn ở màn chạm sau ("lấy số lớn trừ số bé rồi xem hiệu có chia hết cho 5 không"). Bé gặp cùng một ý ba lần liên tiếp; checklist coi mẹo chỉ nhắc quy tắc bằng chữ khác là mẹo gượng.
-- Sửa: bỏ khối `tip`, hoặc đổi sang mẹo thật mới của dạng này, ví dụ "Muốn tìm số cùng số dư với 20 khi chia cho 6, cứ cộng thêm 6, 12, 18..." (đúng cho mọi số, `tex`: `20 + 6 = 26`; nhớ ghi "chia cho cùng một số" trong `text`) và khi đó thử lại mẹo trên ≥ 5 đầu vào gồm biên.
+- Vấn đề: câu cũ "Nếu ƯCLN của hai số là d thì tích ... bằng d nhân d nhân m nhân n"; câu mới "Hai số là d nhân m và d nhân n. Nhân chúng lại, tích bằng d nhân d nhân m nhân n." dễ hiểu hơn (Haiku lượt 3: Hiểu rõ) nhưng không còn nói d là ƯCLN, cũng không nói m, n chỉ có ước chung là 1. Công thức tích vẫn đúng cho mọi d, nhưng bé ôn bằng recap không biết d là gì và khi nào dùng, trong khi mọi bước sau của dạng bài (loại cặp m, n còn chung ước) dựa vào điều kiện đó. Cùng kiểu bản sửa bỏ điều kiện đã ghi ở LL-05 (`on-tap-chuong-2` vòng 2).
+- Sửa: giữ câu hai vế nhưng thêm điều kiện ở vế đầu: "Hai số có ƯCLN là d thì là d nhân m và d nhân n, với m, n chỉ có ước chung là 1. Nhân chúng lại, tích bằng d nhân d nhân m nhân n." (soát lại bằng Haiku vì chữ đổi).
 
-### 7. Hình `du-hieu` gắn nhãn "Ước chung" cho số chia a, trong khi 4 không là ước chung của 17 và 29 (LL-15)
+### 7. Giải thích `tich-72-uclnn-3` vẫn rối, và đã viết lại lần thứ tư sau lượt đọc hiểu cuối (LL-25)
 
-- Vị trí: `uoc-chung-uoc-chung-lon-nhat.visual.du-hieu` (`legend`, `\concept{teal}{4}`, tag "chia hết cho 4, hai số cùng dư 1"); recap và màn quy tắc của section `cung-so-du`; card `uoc-chung-uoc-chung-lon-nhat.card.cung-so-du` (`conceptIds`: `concept.uoc-chung`); `explain.tex` của `cung-du-6` và `cung-du-30` (`\concept{teal}{6}`, `\concept{teal}{4}`)
+- Vị trí: `$.exercises[tich-72-uclnn-3].explain.text` (đọc hiểu lượt 3: Khó hiểu, lý do "chỉ chung ước 1, b là gì")
 - Nguồn: —
-- Vấn đề: số 4 chia hết 12 (hiệu) và 16, 28 (sau khi bỏ số dư) nhưng không chia hết 17 hay 29, nên không là "ước chung" của hai số đó. Chú giải teal "Ước chung" ngay trên màn quy tắc và recap dạy bé hiểu a là ước chung của hai số (sai); vòng 5 đã ghi cùng kiểu lệch màu và lời (ƯCLN tô teal) ở `uc-lon-hon-1-32-40`, `chia-het-27-45`.
-- Sửa: bỏ `\concept{teal}` và `legend` ở `du-hieu` và ở các `explain.tex` kể trên (a chỉ là "số chia", không có màu khái niệm); đổi `conceptIds` của card `cung-so-du` sang khái niệm đúng hoặc bỏ nếu schema cho phép. Section `so-du-lon-nhat` (a là ước chung của các hiệu) giữ màu teal.
+- Vấn đề: bản được Haiku đọc ở lượt 3 là "... Chỉ cặp 1 và 8 có m, n chỉ chung ước 1, nên b là 3 nhân 8."; bản hiện tại đã đổi thành "... Chỉ cặp 1 và 8 là hai số chỉ chung ước 1, nên b, số lớn, là 3 nhân 8." (chưa qua Haiku vì đã đủ 3 lượt). Câu vẫn gói ba ý (loại cặp, chọn số lớn, tính b) bằng hai cụm "chỉ chung ước 1" và "b, số lớn," và không nói vì sao cặp 2 và 4 bị loại.
+- Sửa: tách thành các câu ngắn: "Các cặp m, n có tích 8 là 1 và 8, 2 và 4. Cặp 2 và 4 còn chung ước 2 nên bị loại, chỉ còn 1 và 8. Vậy hai số là 3 và 24, nên b bằng 24." (câu `tich-144-uclnn-6` cùng kiểu đã Hiểu rõ ở lượt 3, giữ nguyên.)
 
-### 8. Recap và quy tắc của `cap-so-gioi-han` thiếu bước chặn bởi giới hạn (LL-06)
+### 8. Mẹo viết "2a, 3a" liền chữ, bài chưa dạy cách viết này (LL-09, LL-19)
 
-- Vị trí: `$.sections[cap-so-gioi-han].blocks[1].children[0].text` và `$.sections[cap-so-gioi-han].recap.caption`, `$.cards[cap-so-gioi-han].recap.caption`
-- Nguồn: tr.40 (2.41), tr.108
-- Vấn đề: quy tắc "Muốn tìm hai số có ƯCLN là d, ta lấy d nhân m và d nhân n. Hai số m và n chỉ được có ước chung là 1." chỉ nói cách lập cặp, không nói bước đầu của dạng "không vượt quá N": liệt kê các số chia hết cho d và không quá N (d nhân 1, 2, ..., N chia d). Bước này chỉ có ở note ví dụ; bé ôn bằng recap sẽ không có cách chặn số cặp, trong khi đề của dạng này luôn có giới hạn.
-- Sửa: thêm vào câu quy tắc (và recap, nguyên văn) ý "Số d nhân m không được quá giới hạn của đề, nên chỉ lấy m trong các số 1, 2, 3... đến hết giới hạn chia cho d", giữ hai câu.
-
-### 9. Section `cap-so-gioi-han` không có tình huống đời sống (LL-16)
-
-- Vị trí: `$.sections[cap-so-gioi-han].blocks[0]` và `uoc-chung-uoc-chung-lon-nhat.visual.cap-5-20-bang`
+- Vị trí: `$.sections[cung-so-du].blocks[2].text` (`uoc-chung-uoc-chung-lon-nhat.tip.cung-so-du`)
 - Nguồn: —
-- Vấn đề: năm section còn lại mở bằng dải băng, tấm bìa hay túi kẹo; section này chỉ có số trần ("Tìm các cặp số khác nhau, khác 0, không vượt quá 20, có ƯCLN là 5"), trong khi bé yếu nhân chia và nhanh quên. Câu dải băng `dai-bang-4-8` chỉ nằm ở kho ôn.
-- Sửa: mở màn đầu bằng dải băng như section `viet-tu-uclnn`, ví dụ "Hai dải băng dài không quá 20 dm, đoạn dài nhất cắt vừa hết cả hai dải là 5 dm. Hai dải dài bao nhiêu dm?", rồi mới nêu "các cặp số".
+- Vấn đề: cả bài (kể cả quy tắc d nhân m) viết phép nhân bằng chữ "nhân" hay dấu chấm, chưa chỗ nào viết số liền chữ để nghĩa là nhân. Bé có thể đọc "2a" thành "2 và a". Đây là cách viết chưa dạy trong mẹo (phân vân giữa Nên sửa và Nghiêm trọng, chọn Nên sửa vì ví dụ `6 · 4 + 2` ngay dưới cho thấy ý đúng).
+- Sửa: "cứ cộng thêm a, hai lần a, ba lần a" hoặc "cộng thêm 1 lần, 2 lần, 3 lần số chia".
 
-### 10. `dai-bang-4-8`: "Dải dài dài bao nhiêu dm?" và "4 chung ước 2 với 2" (LL-19, LL-10)
+### 9. `tich-144-uclnn-6` còn phép chia cho số hai chữ số (LL-18)
 
-- Vị trí: `$.exercises[dai-bang-4-8].prompt[1].text` và `$.exercises[dai-bang-4-8].explain.text`
+- Vị trí: `$.exercises[tich-144-uclnn-6]`
 - Nguồn: —
-- Vấn đề: "Dải dài dài" lặp từ, bé có thể đọc là "dải dài, dài" hay sai một từ; "Dải dài hơn nhưng không quá 16 dm" đứng liền ngay trước. `explain` viết "4 chung ước 2 với 2", đọc ngược nghĩa (không nói 4 và 2 có ước chung lớn hơn 1).
-- Sửa: "Dải còn lại dài hơn dải 8 dm nhưng không quá 16 dm. Dải còn lại dài bao nhiêu dm?"; `explain`: "... mà 4 và 2 còn chung ước 2, nên m bằng 3."
+- Vấn đề: bé phải tính 6 · 6 = 36, rồi 144 chia 36 bằng 4, rồi 6 · 4: ba phép, trong đó một phép chia cho số hai chữ số không có trong bảng nhân. Đây là lỗi mục 4 của vòng 6 (`tich-180`: 180 chia 36) và bản gợi ý "144" của vòng 6 không khắc phục nó.
+- Sửa: giữ dạng, đổi số cho phép chia nằm trong bảng nhân, ví dụ ƯCLN 4 và tích 112 (16 · m · n = 112, m · n = 7, chỉ 1 và 7, số lớn 28).
 
 ## Góp ý
 
-### 1. `viet-21-35`: số ƯCLN trong hình gợi ý nấc 2 trùng đáp án (LL-02)
+### 1. Nhiễu mới thiếu lý do trong `wrong`
 
-- Vị trí: `uoc-chung-uoc-chung-lon-nhat.visual.viet-goi-y-15-20` và `$.exercises[viet-21-35].answer`
+- Vị trí: `$.exercises[cung-du-6].explain.wrong` (thiếu "16 và 26": 26 trừ 16 bằng 10, không chia hết cho 6), `$.exercises[viet-20-30].explain.wrong` (thiếu "1 và 2": 10 nhân 1 bằng 10, không phải 20), `$.exercises[cung-du-30].explain.wrong` (thiếu "31": 31 trừ 30 bằng 1, không chia hết cho 4)
 - Nguồn: —
-- Vấn đề: hình gợi ý "ƯCLN(15, 20) = 5, 15 = 5 · 3" có số 5 lớn nhất trên màn, đáp án của đề cũng là 5; bé điền 5 theo hình mà không tính.
-- Sửa: dùng hình gợi ý với ƯCLN khác 5, ví dụ ƯCLN(18, 30) = 6 (18 = 6 · 3).
+- Vấn đề: sau khi đổi nhiễu, mỗi câu có một nhiễu hay bị chọn không có lý do; vòng 6 đã đề nghị thêm `wrong` cho "16 và 26".
+- Sửa: thêm một câu `wrong` cho mỗi nhiễu trên.
 
-### 2. Nhiễu yếu ở `viet-20-30` (phương án "5 và 6") và `cung-du-6` (LL-14)
+### 2. Câu `cap-7-28`: hình gợi ý không có bước loại cặp, lời giải nói bước đó hai cách (LL-05)
 
-- Vị trí: `$.exercises[viet-20-30].options[3]`, `$.exercises[cung-du-6].options`
+- Vị trí: `uoc-chung-uoc-chung-lon-nhat.visual.cap-goi-y-6-18`, `uoc-chung-uoc-chung-lon-nhat.visual.cap-7-28-giai` (dòng "Bỏ cặp 2 và 4 vì còn chung ước 2") và `$.exercises[cap-7-28].explain.text` ("Cặp 14 và 28 có ƯCLN là 14 nên bị loại")
 - Nguồn: —
-- Vấn đề: "5 và 6" không ứng với lỗi nào (10 nhân 5, 10 nhân 6 là 50, 60); ở `cung-du-6` hai nhiễu cặp khác chẵn lẻ (13 và 22, 15 và 20) loại được ngay vì số chia 6 chẵn.
-- Sửa: "5 và 6" đổi thành "20 và 30" (bé lấy chính hai số, lỗi hay gặp); `cung-du-6` đổi "15 và 20" thành "16 và 26" (cùng chẵn, hiệu 10 không chia hết cho 6; thêm `wrong`: "26 trừ 16 bằng 10, không chia hết cho 6").
+- Vấn đề: hình gợi ý ví dụ 6, 12, 18 không loại cặp nào, nên bước khó của câu (m từ 1 đến 4, loại 2 và 4) chưa được gợi ý; lời giải loại theo m, n còn `explain` loại theo hai số.
+- Sửa: dùng ví dụ gợi ý có một cặp bị loại (ví dụ ƯCLN 6, không quá 24), và đặt `explain` cùng cách nói với hình ("2 và 4 còn chung ước 2, nên cặp 14 và 28 bị loại").
 
-### 3. Câu luyện `cap-9-30`, `tong-28-uclnn-4`, `tong-40-uclnn-8` không cần bước "loại cặp chung ước"
+### 3. Bước "loại cặp còn chung ước" chưa được rèn ở câu tổng
 
-- Vị trí: `$.sections[cap-so-gioi-han].practiceIds`, `$.sections[cap-so-tong].practiceIds`
-- Nguồn: tr.108 (2.42 có loại 2 và 4, 3 và 3)
-- Vấn đề: `cap-9-30` (m là 1, 2, 3) và hai câu tổng (m cộng n bằng 7 và 5) đều không có cặp nào bị loại; bé làm đúng chỉ bằng cách ghép đôi. Bước chính của dạng bài (loại cặp còn chung ước) chỉ được rèn ở `cap-uclnn-7`, `chon-cap-uclnn-4`, `xep-cap-3-12` và `tong-64-uclnn-16`.
-- Sửa: đổi `cap-9-30` sang ƯCLN 8, không vượt quá 32 (m từ 1 đến 4, loại 2 và 4: 5 cặp) và cho câu tổng một đề có m cộng n là hợp số, ví dụ tổng 27 và ƯCLN 3 (m cộng n bằng 9, loại 3 và 6; ba cặp 3-24, 6-21, 12-15). Khi đổi, soát lại hình gợi ý và lời giải theo số mới.
+- Vị trí: `$.exercises[tong-45-uclnn-9]`, `$.exercises[tong-56-uclnn-14]`
+- Nguồn: tr.108 (2.42)
+- Vấn đề: m cộng n bằng 5 (và 4) không có cặp nào bị loại ngoài cặp bằng nhau, nên bé làm đúng chỉ bằng cách ghép đôi (còn lại từ Góp ý 3 vòng 6; `cap-7-28` và `tong-36-uclnn-4` đã có bước loại).
+- Sửa: một câu tổng có m cộng n là hợp số, ví dụ tổng 54 và ƯCLN 6 (m cộng n bằng 9; loại 3 và 6).
 
-### 4. Số của câu ôn lặp ví dụ hay mẹo cùng section (LL-07)
+### 4. ƯCLN 3 của `tich-72-uclnn-3` trùng `tich-108-uclnn-3` cùng card (LL-07)
 
-- Vị trí: `uoc-chung-uoc-chung-lon-nhat.visual.du-lon-chon-25-43` (25 và 43 là ví dụ ở `du-lon-25-43`), `uoc-chung-uoc-chung-lon-nhat.visual.du-chon-5` (chip "19 và 31", số 19 của ví dụ `tip`)
+- Vị trí: `$.exercises[tich-72-uclnn-3]` và `$.exercises[tich-108-uclnn-3]` (card `cap-so-tich`)
 - Nguồn: —
-- Vấn đề: màn chạm của `so-du-lon-nhat` hỏi lại đúng 25 và 43 vừa giải ở màn một; bé chỉ nhớ "ước của 18". Màn chạm `du-chon-5` dùng 19 như ví dụ trong khối mẹo ngay trước.
-- Sửa: đổi màn chạm sang cặp khác (ví dụ 21 và 45, hiệu 24); đổi chip "19 và 31" thành "17 và 31" nếu giữ ví dụ mẹo.
+- Vấn đề: hai câu cùng ƯCLN 3 (tích 72 và 108); tuy số khác nhau, bé ôn lặp lại cùng một bước viết 3 nhân m.
+- Sửa: đổi một trong hai sang ƯCLN chưa dùng trong section (đã dùng 2, 3, 5, 6), giữ m nhân n chỉ có một cách phân tích ra hai số chỉ chung ước 1; tác giả tự giải lại câu mới.
 
-### 5. Hình gợi ý `cap-goi-y-6-24` nói "còn chung ước 12", màn dạy nói "2 và 4 còn chung ước 2" (LL-05)
+### 5. Card `cung-so-du` còn `conceptIds` là "Ước chung" dù section không còn tô khái niệm đó
 
-- Vị trí: `uoc-chung-uoc-chung-lon-nhat.visual.cap-goi-y-6-24` (`lines[1]`)
+- Vị trí: `$.cards[cung-so-du].conceptIds`
 - Nguồn: —
-- Vấn đề: cùng bước loại cặp, màn dạy lập lý do ở m và n, hình gợi ý lập lý do ở hai số (12 và 24); hai cách nói cho một bước.
-- Sửa: "Bỏ cặp 2 và 4 vì còn chung ước 2" (m và n).
+- Vấn đề: số chia a không phải ước chung của hai số; sau khi bỏ màu teal khỏi hình và lời giải, `conceptIds` của card không còn khớp phần nào được tô.
+- Sửa: bỏ hay đổi `conceptIds` nếu schema cho phép (vòng 6 đã đề nghị).
 
-### 6. `tong-64-uclnn-16`, `tong-40-uclnn-8` giữ ƯCLN của đề sách (LL-08)
-
-- Vị trí: `$.exercises[tong-64-uclnn-16].prompt[0].text`, `$.exercises[tong-40-uclnn-8].prompt[0].text`
-- Nguồn: tr.40 (2.42 có ƯCLN 16, 2.43 có ƯCLN 8)
-- Vấn đề: đề đã đổi tổng (64, 40) nên không chép, nhưng ƯCLN 16 của 2.42 và ƯCLN 8 giữ nguyên; luật không chép là giữ dạng, đổi số.
-- Sửa: đổi ƯCLN 16 thành 12 (tổng 60: m cộng n bằng 5) hoặc 14, ƯCLN 8 thành 9 (tổng 45: m cộng n bằng 5).
-
-### 7. Phần tổng quan chưa nhắc 6 phần mới
+### 6. Phần tổng quan chưa nhắc 6 phần mới (còn từ Góp ý 7 vòng 6)
 
 - Vị trí: `$.overview.goals`, `$.overview.summary`
 - Nguồn: —
-- Vấn đề: `goals` và `summary` chỉ có tìm ước chung, ƯCLN, chia đều, rút gọn; sáu section mới dạy thêm cách viết hai số từ ƯCLN, tìm cặp số khi biết giới hạn, tổng, tích và số lớn nhất cùng số dư. Đổi chữ tổng quan kéo theo thu lại lời đọc `overview.m4a` nên chỉ là góp ý.
-- Sửa: thêm một mục vào `goals` ("dùng ƯCLN để tìm hai số khi biết tổng, tích hay số dư") khi có đợt thu lời đọc lại.
+- Vấn đề: không đổi, vì đổi chữ tổng quan kéo theo thu lại lời đọc `overview.m4a`.
+- Sửa: thêm một mục vào `goals` khi có đợt thu lời đọc lại.
 
-### 8. Chữ a có hai nghĩa giữa các section
+### 7. Chữ a có hai nghĩa giữa các section (còn từ Góp ý 8 vòng 6)
 
 - Vị trí: `$.sections[viet-tu-uclnn..cap-so-tich]` (a, b là hai số) và `$.sections[cung-so-du]`, `$.sections[so-du-lon-nhat]` (a là số chia)
 - Nguồn: tr.38 (ví dụ 1 dùng a là số chia)
-- Vấn đề: cùng chữ a gọi hai thứ khác nhau; mỗi section tự nhất quán nên chỉ là góp ý.
-- Sửa: nếu muốn gọn, đổi số chia thành chữ khác (sách dùng a, nên cũng có thể giữ).
-
-### 9. Hai chi tiết nhỏ trên màn
-
-- Vị trí: `$.exercises[viet-20-30].explain.tex`, `$.exercises[cap-9-30].explain.tex` (`gathered` ba dòng xuống dòng giữa "9 ·" và "2" trên điện thoại, ảnh `201-s15-06-exercise-cap-9-30-correct` và `185-s14-05-exercise-viet-20-30-correct`); `$.exercises[cap-9-30].explain.tex` không tô amber 9 là ƯCLN như các `explain` khác
-- Nguồn: —
-- Vấn đề: khung `explain` xếp `gathered` ngang rồi ngắt dòng giữa phép tính (bố cục app, báo người làm app; cách viết `gathered` đã chốt trong `pitfalls.md`). Riêng chỗ `9 = 9 · 1` không tô màu ƯCLN.
-- Sửa: báo người làm app. Ở `cap-9-30` viết `9 = \concept{amber}{9} \cdot 1` cho nhất quán màu.
+- Vấn đề: không đổi; mỗi section tự nhất quán.
+- Sửa: nếu muốn gọn thì đổi chữ số chia, hoặc giữ vì sách dùng a.
