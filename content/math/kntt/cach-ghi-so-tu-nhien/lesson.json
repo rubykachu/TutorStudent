@@ -93,7 +93,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu bỏ số 0 ra khỏi ℕ thì ta được tập hợp mới, kí hiệu là ℕ*.",
+              "text": "Lấy số 0 ra khỏi ℕ, các số còn lại hợp thành tập mới, kí hiệu là ℕ*.",
               "rule": true
             },
             {
@@ -121,7 +121,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.n-tom-tat",
-        "caption": "Các số tự nhiên hợp lại thành một tập hợp, kí hiệu là ℕ. Nếu bỏ số 0 ra khỏi ℕ thì ta được tập hợp mới, kí hiệu là ℕ*."
+        "caption": "Các số tự nhiên hợp lại thành một tập hợp, kí hiệu là ℕ. Lấy số 0 ra khỏi ℕ, các số còn lại hợp thành tập mới, kí hiệu là ℕ*."
       }
     },
     {
@@ -135,8 +135,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Số tự nhiên được viết bằng các chữ số từ 0 đến 9. Nhưng số nào có từ hai chữ số trở lên thì không bắt đầu bằng chữ số 0.",
+              "text": "Số tự nhiên được viết bằng các chữ số từ 0 đến 9. Số nào có từ hai chữ số trở lên thì không bắt đầu bằng chữ số 0.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Chẳng hạn, không ai viết 07 mà viết 7. Còn số 0 chỉ có một chữ số nên vẫn viết 0."
             },
             {
               "type": "visual",
@@ -177,7 +181,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.chu-so-tom-tat",
-        "caption": "Số tự nhiên được viết bằng các chữ số từ 0 đến 9. Nhưng số nào có từ hai chữ số trở lên thì không bắt đầu bằng chữ số 0."
+        "caption": "Số tự nhiên được viết bằng các chữ số từ 0 đến 9. Số nào có từ hai chữ số trở lên thì không bắt đầu bằng chữ số 0."
       }
     },
     {
@@ -289,8 +293,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm giá trị của một chữ số, hãy lấy chữ số đó nhân với 1, 10, 100 và cứ thế, tuỳ hàng nó đứng. Hàng đơn vị nhân 1, hàng chục nhân 10, hàng trăm nhân 100; sang trái một hàng, số để nhân thêm một chữ số 0.",
+              "text": "Muốn tìm giá trị của một chữ số, hãy nhân nó với 1, 10, 100 và cứ thế. Chữ số ở hàng đơn vị nhân 1; sang trái một hàng thì số để nhân thêm một chữ số 0.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ, trong số 3 507, chữ số 5 ở hàng trăm nên có giá trị 5 · 100 = 500. Còn chữ số 7 ở hàng đơn vị nên có giá trị 7 · 1 = 7."
             },
             {
               "type": "visual",
@@ -339,7 +347,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.gia-tri-tom-tat",
-        "caption": "Muốn tìm giá trị của một chữ số, hãy lấy chữ số đó nhân với 1, 10, 100 và cứ thế, tuỳ hàng nó đứng. Hàng đơn vị nhân 1, hàng chục nhân 10, hàng trăm nhân 100; sang trái một hàng, số để nhân thêm một chữ số 0."
+        "caption": "Muốn tìm giá trị của một chữ số, hãy nhân nó với 1, 10, 100 và cứ thế. Chữ số ở hàng đơn vị nhân 1; sang trái một hàng thì số để nhân thêm một chữ số 0."
       }
     },
     {
@@ -421,8 +429,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Số La Mã đến 30 được ghép từ năm thành phần: ba chữ số La Mã I, V, X và hai cụm IV, IX. Giá trị của chúng lần lượt là 1, 5, 10, 4 và 9, và vẫn giữ nguyên dù chúng đứng ở đâu.",
+              "text": "Số La Mã đến 30 ghép từ năm thành phần: I, V, X, IV và IX. I bằng 1, V bằng 5, X bằng 10, IV bằng 4, IX bằng 9, dù đứng ở đâu.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Thành phần là mảnh nhỏ để ghép nên số La Mã. IV và IX là cụm: hai chữ La Mã đứng liền nhau, tạo một giá trị riêng."
             },
             {
               "type": "visual",
@@ -462,7 +474,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.la-ma-tom-tat",
-        "caption": "Số La Mã đến 30 được ghép từ năm thành phần: ba chữ số La Mã I, V, X và hai cụm IV, IX. Giá trị của chúng lần lượt là 1, 5, 10, 4 và 9, và vẫn giữ nguyên dù chúng đứng ở đâu."
+        "caption": "Số La Mã đến 30 ghép từ năm thành phần: I, V, X, IV và IX. I bằng 1, V bằng 5, X bằng 10, IV bằng 4, IX bằng 9, dù đứng ở đâu."
       }
     },
     {
@@ -476,8 +488,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn đọc số La Mã, trước hết hãy khoanh các cụm IV và IX nếu có. Sau đó cộng giá trị của các cụm đã khoanh với giá trị của các chữ số La Mã còn lại.",
+              "text": "Muốn đọc số La Mã, trước hết tìm cụm IV và IX trong số, nếu có thì gạch chân chúng. Sau đó cộng giá trị các cụm đã gạch chân với giá trị các chữ số La Mã còn lại.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Làm vậy vì IV bằng 4, không phải 1 + 5. Ví dụ, XXIX: gạch chân IX, rồi cộng 10 + 10 + 9 = 29."
             },
             {
               "type": "visual",
@@ -490,7 +506,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào giá trị của số La Mã XXIX. Làm vậy bạn quen khoanh cụm IX trước."
+              "text": "Chạm vào giá trị của số La Mã XXIX. Làm vậy bạn quen gạch chân cụm IX trước."
             },
             {
               "type": "visual",
@@ -504,7 +520,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.doc-la-ma-tom-tat",
-        "caption": "Muốn đọc số La Mã, trước hết hãy khoanh các cụm IV và IX nếu có. Sau đó cộng giá trị của các cụm đã khoanh với giá trị của các chữ số La Mã còn lại."
+        "caption": "Muốn đọc số La Mã, trước hết tìm cụm IV và IX trong số, nếu có thì gạch chân chúng. Sau đó cộng giá trị các cụm đã gạch chân với giá trị các chữ số La Mã còn lại."
       }
     },
     {
@@ -573,7 +589,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bạn chơi trò xếp que tính. 12 que xếp thành một phép cộng sai, bạn dời đúng 1 que để phép cộng thành đúng."
+              "text": "Bạn chơi trò xếp que tính. 12 que xếp thành một phép cộng sai, bạn chuyển đúng 1 que để phép cộng thành đúng."
             },
             {
               "type": "visual",
@@ -586,11 +602,15 @@
           "children": [
             {
               "type": "note",
-              "text": "Cách 1: dời que I cuối của III sang trước que V, được II + IV = VI. Cách 2: dời que I đó ra sau VI, được II + V = VII."
+              "text": "Cách 1: chuyển một que I từ III sang đặt trước V. III thành II, V thành IV, nên được II + IV = VI."
             },
             {
               "type": "visual",
               "visualId": "cach-ghi-so-tu-nhien.visual.que-cach-1"
+            },
+            {
+              "type": "note",
+              "text": "Cách 2: chuyển que I đó sang đặt sau VI. VI thành VII, nên được II + V = VII."
             },
             {
               "type": "visual",
@@ -603,7 +623,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các phép cộng đúng. Làm vậy bạn kiểm được phép cộng số La Mã trước khi dời que."
+              "text": "Chạm vào các phép cộng đúng. Làm vậy bạn kiểm được phép cộng số La Mã trước khi chuyển que."
             },
             {
               "type": "visual",
@@ -617,7 +637,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.que-tom-tat",
-        "caption": "Mỗi lần dời một que, hãy đọc lại số La Mã rồi cộng thử."
+        "caption": "Mỗi lần chuyển một que, hãy đọc lại số La Mã rồi cộng thử."
       }
     },
     {
@@ -709,8 +729,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Số bé nhất có các chữ số khác nhau (từ hai chữ số trở lên): viết 1, 0, 2, 3 và cứ thế cho đủ. Ví dụ: số bé nhất có bốn chữ số khác nhau là 1 023.",
+              "text": "Từ hai chữ số trở lên, số bé nhất có các chữ số khác nhau bắt đầu bằng 1, 0, 2, 3 và cứ thế.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Số không bắt đầu bằng 0 nên chữ số đầu là 1. Ví dụ, số bé nhất có bốn chữ số khác nhau là 1 023."
             },
             {
               "type": "visual",
@@ -737,7 +761,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.khac-nhau-tom-tat",
-        "caption": "Số lớn nhất có các chữ số khác nhau: viết các chữ số từ lớn đến bé, bắt đầu từ 9. Số bé nhất có các chữ số khác nhau (từ hai chữ số trở lên): viết 1, 0, 2, 3 và cứ thế cho đủ."
+        "caption": "Số lớn nhất có các chữ số khác nhau: viết các chữ số từ lớn đến bé, bắt đầu từ 9. Từ hai chữ số trở lên, số bé nhất có các chữ số khác nhau bắt đầu bằng 1, 0, 2, 3 và cứ thế."
       }
     },
     {
@@ -843,8 +867,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn viết thêm chữ số để được số lớn nhất, tìm từ trái sang chữ số đầu tiên bé hơn chữ số mới. Tìm thấy thì viết chữ số mới ngay trước chữ số đó, còn không thì viết nó ở tận cùng bên phải.",
+              "text": "Muốn viết thêm chữ số để được số lớn nhất, hãy so chữ số mới với từng chữ số cũ, từ trái sang phải. Viết chữ số mới ngay trước chữ số cũ đầu tiên bé hơn nó; không có thì viết ở tận cùng bên phải.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ, thêm 5 vào 2 713: chữ số 2 bé hơn 5 nên được 52 713. Còn thêm 5 vào 9 876: không chữ số nào bé hơn 5 nên được 98 765."
             },
             {
               "type": "visual",
@@ -871,7 +899,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.them-lon-tom-tat",
-        "caption": "Muốn viết thêm chữ số để được số lớn nhất, tìm từ trái sang chữ số đầu tiên bé hơn chữ số mới. Tìm thấy thì viết chữ số mới ngay trước chữ số đó, còn không thì viết nó ở tận cùng bên phải."
+        "caption": "Muốn viết thêm chữ số để được số lớn nhất, hãy so chữ số mới với từng chữ số cũ, từ trái sang phải. Viết chữ số mới ngay trước chữ số cũ đầu tiên bé hơn nó; không có thì viết ở tận cùng bên phải."
       }
     },
     {
@@ -885,8 +913,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn viết thêm chữ số khác 0 để được số bé nhất, tìm từ trái sang chữ số đầu tiên lớn hơn chữ số mới. Tìm thấy thì viết chữ số mới ngay trước chữ số đó, còn không thì viết nó ở tận cùng bên phải.",
+              "text": "Muốn viết thêm chữ số khác 0 để được số bé nhất, hãy so nó với từng chữ số cũ, từ trái sang phải. Viết chữ số mới ngay trước chữ số cũ đầu tiên lớn hơn nó; không có thì viết ở tận cùng bên phải.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ, thêm 5 vào 2 713: chữ số 7 lớn hơn 5 nên được 25 713. Còn thêm 5 vào 1 234: không chữ số nào lớn hơn 5 nên được 12 345."
             },
             {
               "type": "visual",
@@ -913,7 +945,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.them-be-tom-tat",
-        "caption": "Muốn viết thêm chữ số khác 0 để được số bé nhất, tìm từ trái sang chữ số đầu tiên lớn hơn chữ số mới. Tìm thấy thì viết chữ số mới ngay trước chữ số đó, còn không thì viết nó ở tận cùng bên phải."
+        "caption": "Muốn viết thêm chữ số khác 0 để được số bé nhất, hãy so nó với từng chữ số cũ, từ trái sang phải. Viết chữ số mới ngay trước chữ số cũ đầu tiên lớn hơn nó; không có thì viết ở tận cùng bên phải."
       }
     },
     {
@@ -1005,7 +1037,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chữ số lấy trong tập {5; 8} thì mỗi chữ số được dùng nhiều lần, và không cần dùng đủ cả 5 lẫn 8. Điều này khác với tập các chữ số của một số, nên ở đây số 55 cũng được."
+              "text": "Ở đây, các chữ số lấy từ tập {5; 8} và được dùng nhiều lần. Số 55 được, vì dùng chữ số 5 hai lần mà không cần chữ số 8."
             },
             {
               "type": "visual",
@@ -1046,8 +1078,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn liệt kê số ba chữ số theo tổng các chữ số, thử chữ số hàng trăm từ 1 đến 9, nhưng không quá tổng. Với mỗi chữ số hàng trăm, tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại.",
+              "text": "Muốn liệt kê số ba chữ số theo tổng, trước hết chọn chữ số hàng trăm, từ 1 đến 9 nhưng không quá tổng. Sau đó tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Phần còn lại là tổng trừ chữ số hàng trăm. Ví dụ, tổng là 3, hàng trăm là 1, phần còn lại là 3 trừ 1 bằng 2, nên ta có 102, 111, 120."
             },
             {
               "type": "visual",
@@ -1074,7 +1110,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.tong-chu-so-tom-tat",
-        "caption": "Muốn liệt kê số ba chữ số theo tổng các chữ số, thử chữ số hàng trăm từ 1 đến 9, nhưng không quá tổng. Với mỗi chữ số hàng trăm, tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại."
+        "caption": "Muốn liệt kê số ba chữ số theo tổng, trước hết chọn chữ số hàng trăm, từ 1 đến 9 nhưng không quá tổng. Sau đó tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại."
       }
     }
   ],
@@ -1086,7 +1122,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.n-tom-tat",
-        "caption": "Các số tự nhiên hợp lại thành một tập hợp, kí hiệu là ℕ. Nếu bỏ số 0 ra khỏi ℕ thì ta được tập hợp mới, kí hiệu là ℕ*."
+        "caption": "Các số tự nhiên hợp lại thành một tập hợp, kí hiệu là ℕ. Lấy số 0 ra khỏi ℕ, các số còn lại hợp thành tập mới, kí hiệu là ℕ*."
       }
     },
     {
@@ -1096,7 +1132,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.chu-so-tom-tat",
-        "caption": "Số tự nhiên được viết bằng các chữ số từ 0 đến 9. Nhưng số nào có từ hai chữ số trở lên thì không bắt đầu bằng chữ số 0."
+        "caption": "Số tự nhiên được viết bằng các chữ số từ 0 đến 9. Số nào có từ hai chữ số trở lên thì không bắt đầu bằng chữ số 0."
       }
     },
     {
@@ -1129,7 +1165,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.gia-tri-tom-tat",
-        "caption": "Muốn tìm giá trị của một chữ số, hãy lấy chữ số đó nhân với 1, 10, 100 và cứ thế, tuỳ hàng nó đứng. Hàng đơn vị nhân 1, hàng chục nhân 10, hàng trăm nhân 100; sang trái một hàng, số để nhân thêm một chữ số 0."
+        "caption": "Muốn tìm giá trị của một chữ số, hãy nhân nó với 1, 10, 100 và cứ thế. Chữ số ở hàng đơn vị nhân 1; sang trái một hàng thì số để nhân thêm một chữ số 0."
       }
     },
     {
@@ -1152,7 +1188,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.la-ma-tom-tat",
-        "caption": "Số La Mã đến 30 được ghép từ năm thành phần: ba chữ số La Mã I, V, X và hai cụm IV, IX. Giá trị của chúng lần lượt là 1, 5, 10, 4 và 9, và vẫn giữ nguyên dù chúng đứng ở đâu."
+        "caption": "Số La Mã đến 30 ghép từ năm thành phần: I, V, X, IV và IX. I bằng 1, V bằng 5, X bằng 10, IV bằng 4, IX bằng 9, dù đứng ở đâu."
       }
     },
     {
@@ -1162,7 +1198,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.doc-la-ma-tom-tat",
-        "caption": "Muốn đọc số La Mã, trước hết hãy khoanh các cụm IV và IX nếu có. Sau đó cộng giá trị của các cụm đã khoanh với giá trị của các chữ số La Mã còn lại."
+        "caption": "Muốn đọc số La Mã, trước hết tìm cụm IV và IX trong số, nếu có thì gạch chân chúng. Sau đó cộng giá trị các cụm đã gạch chân với giá trị các chữ số La Mã còn lại."
       }
     },
     {
@@ -1182,7 +1218,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.que-tom-tat",
-        "caption": "Mỗi lần dời một que, hãy đọc lại số La Mã rồi cộng thử."
+        "caption": "Mỗi lần chuyển một que, hãy đọc lại số La Mã rồi cộng thử."
       }
     },
     {
@@ -1202,7 +1238,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.khac-nhau-tom-tat",
-        "caption": "Số lớn nhất có các chữ số khác nhau: viết các chữ số từ lớn đến bé, bắt đầu từ 9. Số bé nhất có các chữ số khác nhau (từ hai chữ số trở lên): viết 1, 0, 2, 3 và cứ thế cho đủ."
+        "caption": "Số lớn nhất có các chữ số khác nhau: viết các chữ số từ lớn đến bé, bắt đầu từ 9. Từ hai chữ số trở lên, số bé nhất có các chữ số khác nhau bắt đầu bằng 1, 0, 2, 3 và cứ thế."
       }
     },
     {
@@ -1232,7 +1268,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.them-lon-tom-tat",
-        "caption": "Muốn viết thêm chữ số để được số lớn nhất, tìm từ trái sang chữ số đầu tiên bé hơn chữ số mới. Tìm thấy thì viết chữ số mới ngay trước chữ số đó, còn không thì viết nó ở tận cùng bên phải."
+        "caption": "Muốn viết thêm chữ số để được số lớn nhất, hãy so chữ số mới với từng chữ số cũ, từ trái sang phải. Viết chữ số mới ngay trước chữ số cũ đầu tiên bé hơn nó; không có thì viết ở tận cùng bên phải."
       }
     },
     {
@@ -1242,7 +1278,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.them-be-tom-tat",
-        "caption": "Muốn viết thêm chữ số khác 0 để được số bé nhất, tìm từ trái sang chữ số đầu tiên lớn hơn chữ số mới. Tìm thấy thì viết chữ số mới ngay trước chữ số đó, còn không thì viết nó ở tận cùng bên phải."
+        "caption": "Muốn viết thêm chữ số khác 0 để được số bé nhất, hãy so nó với từng chữ số cũ, từ trái sang phải. Viết chữ số mới ngay trước chữ số cũ đầu tiên lớn hơn nó; không có thì viết ở tận cùng bên phải."
       }
     },
     {
@@ -1281,7 +1317,7 @@
       "recap": {
         "type": "visual",
         "visualId": "cach-ghi-so-tu-nhien.visual.tong-chu-so-tom-tat",
-        "caption": "Muốn liệt kê số ba chữ số theo tổng các chữ số, thử chữ số hàng trăm từ 1 đến 9, nhưng không quá tổng. Với mỗi chữ số hàng trăm, tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại."
+        "caption": "Muốn liệt kê số ba chữ số theo tổng, trước hết chọn chữ số hàng trăm, từ 1 đến 9 nhưng không quá tổng. Sau đó tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại."
       }
     }
   ],
@@ -3239,7 +3275,7 @@
           },
           {
             "optionId": "d",
-            "text": "Khoanh cụm IX: số này gồm X, X, I, IX, bằng 10 + 10 + 1 + 9 = 30."
+            "text": "Gạch chân cụm IX: số này gồm X, X, I, IX, bằng 10 + 10 + 1 + 9 = 30."
           }
         ]
       }
@@ -3575,7 +3611,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "10 que xếp thành VI + I = V là phép cộng sai. Chọn tất cả phép cộng đúng có thể có khi dời đúng 1 que."
+          "text": "10 que xếp thành VI + I = V là phép cộng sai. Chọn tất cả phép cộng đúng có thể có khi chuyển đúng 1 que."
         }
       ],
       "hints": {
@@ -3637,7 +3673,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn dời chữ I của số VI sang trước chữ V. Bạn được số La Mã nào?"
+          "text": "Bạn chuyển chữ I của số VI sang trước chữ V. Bạn được số La Mã nào?"
         }
       ],
       "hints": {
@@ -3692,7 +3728,7 @@
           },
           {
             "optionId": "c",
-            "text": "VII có thêm một chữ I, mà dời que thì không thêm que."
+            "text": "VII có thêm một chữ I, mà chuyển que thì không thêm que."
           }
         ]
       }

@@ -402,7 +402,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\concept{lime}{\\mathrm{XXIX}} = \\mathrm{X} + \\mathrm{X} + \\mathrm{IX}",
         tag: {
-          text: "khoanh cụm IX trước",
+          text: "gạch chân cụm IX trước",
           color: "lime",
         },
       },
