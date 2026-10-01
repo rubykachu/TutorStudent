@@ -100,7 +100,7 @@ describe("summarizeLesson", () => {
       order: 0,
       title: "Bài mẫu: phép nhân và đọc hiểu",
       sourceRef: "Bài mẫu kiểm thử",
-      tipCount: 0,
+      tipCount: 1,
       sections: [
         {
           id: "fixture.section.phep-nhan",

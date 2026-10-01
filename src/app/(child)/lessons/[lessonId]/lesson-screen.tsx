@@ -1,6 +1,11 @@
 "use client";
 
-import { BookOpenText, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  BookOpenText,
+  ChevronLeft,
+  ChevronRight,
+  Lightbulb,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -23,6 +28,7 @@ import {
   reviewPath,
   sectionPath,
   subjectPath,
+  tipsPath,
 } from "@/lib/routes";
 import { now } from "@/lib/time";
 import type { ProfileRecord, SectionState } from "@/progress/db";
@@ -39,6 +45,14 @@ function useSubject(subjectId: string) {
   return content.status === "ready"
     ? content.index.subjects.find((s) => s.id === subjectId)
     : undefined;
+}
+
+// How many tips the lesson's "Mẹo hay" page lists (0 while the list loads).
+function useTipCount(lessonId: string): number {
+  const content = useContentIndex();
+  return content.status === "ready"
+    ? (content.index.lessons.find((l) => l.id === lessonId)?.tipCount ?? 0)
+    : 0;
 }
 
 function BackLink({ subjectId }: { subjectId: string }) {
@@ -64,6 +78,7 @@ function LessonBody({
   const { lesson } = index;
   const progress = useLessonProgress(profile.id, lesson.id);
   const subject = useSubject(lesson.subject);
+  const tipCount = useTipCount(lesson.id);
   const router = useRouter();
   // null: follow the stored state (the overview opens on the first visit);
   // true / false: the child opened or closed it on this visit.
@@ -151,6 +166,17 @@ function LessonBody({
           <BookOpenText aria-hidden className="size-6" />
           Giới thiệu bài
         </button>
+      )}
+
+      {tipCount > 0 && (
+        <Link
+          href={tipsPath(lesson.id)}
+          data-tips-open
+          className={bigButtonClassName("secondary", "md:w-fit")}
+        >
+          <Lightbulb aria-hidden className="size-6" />
+          Mẹo hay
+        </Link>
       )}
 
       {countOpened(scope) > 0 && (

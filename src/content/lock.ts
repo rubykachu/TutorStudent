@@ -45,14 +45,23 @@ export function planLock(input: {
 
   const targets =
     only.length === 0 ? real : real.filter((l) => only.includes(l.lesson.id));
-  const targetFiles = new Set(targets.map((l) => l.file));
-  const knownFiles = new Set(lessons.map((l) => l.file));
+  // A lesson's tips file belongs to the lesson: its findings count as the
+  // lesson's, and its ids are locked with it.
+  const filesOf = (l: CheckedLesson) => [
+    l.file,
+    ...(l.tipsFile === undefined ? [] : [l.tipsFile]),
+  ];
+  const targetFiles = new Set(targets.flatMap(filesOf));
+  const knownFiles = new Set(lessons.flatMap(filesOf));
   const stale = new Set<string>();
   for (const issue of issues.filter((i) => i.severity === "error")) {
     const inTarget = targetFiles.has(issue.file);
     const belongsToNoLesson = !knownFiles.has(issue.file);
     if (inTarget && issue.rule === "review-hash" && only.length === 0) {
-      stale.add(issue.file);
+      stale.add(
+        lessons.find((l) => filesOf(l).includes(issue.file))?.file ??
+          issue.file,
+      );
     } else if (inTarget || belongsToNoLesson) {
       errors.push(formatIssue(issue));
     }
@@ -60,8 +69,8 @@ export function planLock(input: {
 
   const locking = targets.filter((l) => !stale.has(l.file));
   const ids = new Set(lock.ids);
-  for (const { lesson } of locking) {
-    for (const { id } of declaredIds(lesson)) ids.add(id);
+  for (const { lesson, tips } of locking) {
+    for (const { id } of declaredIds(lesson, tips)) ids.add(id);
   }
   return {
     ids: [...ids].sort(),

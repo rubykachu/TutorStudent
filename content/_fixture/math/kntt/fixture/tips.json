@@ -1,0 +1,21 @@
+{
+  "lessonId": "fixture",
+  "status": "published",
+  "reviewedHash": "9e67ae9be5d0ae203e3fdfa349fd3dd3b602b67e73d50e3e60a386576b72c64f",
+  "tips": [
+    {
+      "id": "fixture.tip.hieu-luy-thua",
+      "kind": "hiểu nhanh",
+      "title": "Đọc luỹ thừa",
+      "text": "Số mũ cho biết có bao nhiêu thừa số bằng cơ số. Đọc \"2 mũ 3\" là ba thừa số 2.",
+      "tex": "2^{3} = 2 \\cdot 2 \\cdot 2"
+    },
+    {
+      "id": "fixture.tip.tranh-nhan-nham",
+      "kind": "tránh sai",
+      "title": "Luỹ thừa khác phép nhân",
+      "text": "2 mũ 3 không phải là 2 nhân 3. Viết ra các thừa số trước khi tính.",
+      "tex": "2^{3} = 8 \\neq 2 \\cdot 3 = 6"
+    }
+  ]
+}

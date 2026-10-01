@@ -103,6 +103,27 @@ describe("resumeStepIndex", () => {
 });
 
 describe("stepLabels", () => {
+  it("names a tip screen 'Mẹo' without counting it as theory", () => {
+    const { index, section: s } = section();
+    const steps = sectionSteps(s, index);
+    steps.splice(1, 0, {
+      kind: "block",
+      position: { phase: "blocks", index: 1 },
+      block: {
+        type: "tip",
+        id: `${LESSON_ID}.tip.mot`,
+        kind: "làm nhanh",
+        title: "Một mẹo",
+        text: "Một câu ngắn.",
+      },
+    });
+    expect(stepLabels(steps).slice(0, 3)).toEqual([
+      "Lý thuyết 1",
+      "Mẹo",
+      "Lý thuyết 2",
+    ]);
+  });
+
   it("names theory screens, counts every exercise as a question, and names the recap", () => {
     const { index, section: s } = section();
     expect(stepLabels(sectionSteps(s, index))).toEqual([

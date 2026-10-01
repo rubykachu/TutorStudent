@@ -4,6 +4,7 @@ import {
   type CheckResult,
   checkContent,
   collectVisualRefs,
+  declaredIds,
   formatIssue,
   formatPath,
 } from "@/content/check";
@@ -14,7 +15,6 @@ import {
   MAX_SECTION_SCREENS,
   MAX_SECTION_VIDEOS,
 } from "@/lib/config";
-import type { Lesson } from "@/schema/content";
 import { visualRegistry } from "@/visuals/registry";
 import {
   asRealLesson,
@@ -694,22 +694,9 @@ describe("ids.lock.json", () => {
   const lockIssues = (result: CheckResult) =>
     result.issues.filter((issue) => issue.rule === undefined);
   const allIds = () =>
-    check(asRealLesson(fixtureContent())).lessons.flatMap(({ lesson }) =>
-      collectIds(lesson),
+    check(asRealLesson(fixtureContent())).lessons.flatMap(({ lesson, tips }) =>
+      declaredIds(lesson, tips).map((d) => d.id),
     );
-
-  function collectIds(lesson: Lesson): string[] {
-    return [
-      lesson.id,
-      ...lesson.concepts.map((c) => c.id),
-      ...lesson.sections.map((s) => s.id),
-      ...lesson.cards.map((c) => c.id),
-      ...lesson.exercises.flatMap((e) => [
-        e.id,
-        ...(e.type === "openEnded" ? e.steps.map((s) => s.id) : []),
-      ]),
-    ];
-  }
 
   it("accepts a lock that covers the current ids", () => {
     const result = check(withLock({ ids: allIds(), retired: {} }));

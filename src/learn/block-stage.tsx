@@ -32,9 +32,16 @@ export function BlockStage({
       data-block-stage
     >
       {heading && <div className="text-center">{heading}</div>}
-      <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8 tall:p-12 [&>[data-block=note]]:items-center tall:[&>[data-block=note]]:text-block-lg tall:[&>[data-block=note]]:leading-normal tall:[&_[data-block=visual]>:not(figcaption)]:[zoom:1.3]">
-        <BlockView block={block} videos={videos} leadCaption={recap} />
-      </div>
+      {block.type === "tip" ? (
+        // A tip is a card of its own; a surface around it would nest cards.
+        <div className="flex flex-col items-center">
+          <BlockView block={block} />
+        </div>
+      ) : (
+        <div className="flex flex-col items-center rounded-xl bg-surface p-4 shadow-card md:p-8 tall:p-12 [&>[data-block=note]]:items-center tall:[&>[data-block=note]]:text-block-lg tall:[&>[data-block=note]]:leading-normal tall:[&_[data-block=visual]>:not(figcaption)]:[zoom:1.3]">
+          <BlockView block={block} videos={videos} leadCaption={recap} />
+        </div>
+      )}
     </div>
   );
 }

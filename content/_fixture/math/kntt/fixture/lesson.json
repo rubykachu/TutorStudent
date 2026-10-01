@@ -107,6 +107,13 @@
         {
           "type": "note",
           "text": "Đọc chậm từng câu nhé."
+        },
+        {
+          "type": "tip",
+          "id": "fixture.tip.doc-cau-hoi",
+          "kind": "hiểu nhanh",
+          "title": "Đọc câu hỏi trước",
+          "text": "Đọc câu hỏi trước khi đọc đoạn văn. Khi đọc, tìm ngay chỗ trả lời câu hỏi đó."
         }
       ],
       "checkIds": ["fixture.ex.dien-tu", "fixture.ex.cham-hinh-tron"],
@@ -196,6 +203,20 @@
           }
         ]
       },
+      "explain": {
+        "text": "Hai hàng, mỗi hàng ba chấm: đếm số chấm là lấy hai nhân ba.",
+        "tex": "2 \\cdot 3 = 3 + 3 = 6",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 cộng 3 chỉ đếm hai chấm và ba chấm, không phải hai hàng ba chấm."
+          },
+          {
+            "optionId": "c",
+            "text": "3 trừ 2 là bớt đi, còn ở đây ta gộp các hàng lại."
+          }
+        ]
+      },
       "difficulty": 1
     },
     {
@@ -246,6 +267,11 @@
         ],
         "hintVisualId": "fixture.visual.dot-grid",
         "solutionVisualId": "fixture.visual.dot-grid"
+      },
+      "explain": {
+        "text": "Mỗi hàng có ba chấm, có hai hàng. Hai lần ba chấm là sáu chấm.",
+        "tex": "2 \\cdot 3 = 6",
+        "visualId": "fixture.visual.dot-grid"
       },
       "difficulty": 1
     },
@@ -381,6 +407,10 @@
         ],
         "hintVisualId": "fixture.visual.bead-merge"
       },
+      "explain": {
+        "text": "Ba thừa số 2 nhân với nhau là luỹ thừa của 2. Số mũ là số thừa số.",
+        "tex": "2 \\cdot 2 \\cdot 2 = 2^{3}"
+      },
       "difficulty": 2
     },
     {
@@ -474,6 +504,16 @@
           }
         ]
       },
+      "explain": {
+        "text": "2 mũ 3 là ba thừa số 2 nhân với nhau, và bằng 8.",
+        "tex": "2^{3} = 2 \\cdot 2 \\cdot 2 = 8",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "2 nhân 3 chỉ có hai thừa số, còn 2 mũ 3 có ba thừa số 2."
+          }
+        ]
+      },
       "difficulty": 3
     },
     {
@@ -509,6 +549,9 @@
             "id": "ten-ban"
           }
         ]
+      },
+      "explain": {
+        "text": "Câu nói Minh giúp bạn nào, và tên bạn đó là Lan."
       },
       "difficulty": 1
     },

@@ -3,6 +3,7 @@
 import { Clapperboard, Eye } from "lucide-react";
 import type { ReactNode } from "react";
 import { Formula } from "@/components/blocks/formula";
+import { TipCard } from "@/components/blocks/tip-card";
 import { VideoPlayer } from "@/components/blocks/video-player";
 import { PassageReader } from "@/components/passage-reader";
 import { RichText } from "@/components/rich-text";
@@ -103,6 +104,8 @@ export function BlockView({
       );
     case "video":
       return <VideoView block={block} videos={videos} />;
+    case "tip":
+      return <TipCard tip={block} />;
     case "group":
       return (
         <div

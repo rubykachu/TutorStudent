@@ -88,6 +88,11 @@
   --color-retry-soft: #fff7ed;
   --color-retry-soft-foreground: #9a3412;
   --color-highlight: #fde68a;
+  /* A tip ("Mẹo"): a trick for one kind of problem. Gold, apart from the
+     orange of "try again" and the yellow of a selection. */
+  --color-tip: #a16207;
+  --color-tip-soft: #fefce8;
+  --color-tip-soft-foreground: #713f12;
   /* The sentence or word being read aloud; kept apart from the selection
      yellow so reading along never looks like an answer being picked. */
   --color-reading: #bae6fd;

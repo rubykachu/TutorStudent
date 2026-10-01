@@ -7,9 +7,9 @@ import {
   type Page,
   webkit,
 } from "@playwright/test";
-import { lessonContentUrl } from "@/content";
+import { lessonContentUrl, lessonTipsUrl } from "@/content";
 import { readContentRoot } from "@/content/load";
-import { lessonPath, PROFILES_PATH, sectionPath } from "@/lib/routes";
+import { lessonPath, PROFILES_PATH, sectionPath, tipsPath } from "@/lib/routes";
 import {
   type BasicExercise,
   type Exercise,
@@ -106,6 +106,12 @@ async function servedLesson(lessonId: string): Promise<Lesson | undefined> {
   const response = await fetch(`${BASE_URL}${lessonContentUrl(lessonId)}`);
   if (!response.ok) return undefined;
   return LessonSchema.parse(await response.json());
+}
+
+// Whether the server serves a "Mẹo hay" list for the lesson.
+async function servesTips(lessonId: string): Promise<boolean> {
+  const response = await fetch(`${BASE_URL}${lessonTipsUrl(lessonId)}`);
+  return response.ok;
 }
 
 function readLesson(lessonId: string): Lesson {
@@ -546,6 +552,26 @@ class Walker {
     return step.first().getAttribute("data-section-step");
   }
 
+  // The lesson's "Mẹo hay" page: every tip card on screen, nothing clipped.
+  async walkTips(lesson: Lesson) {
+    const response = await this.page.goto(`${BASE_URL}${tipsPath(lesson.id)}`);
+    if (!response?.ok()) {
+      this.report(
+        "fail",
+        "tips",
+        `${tipsPath(lesson.id)} returned ${response?.status()}`,
+      );
+      return;
+    }
+    await this.page.locator("[data-tips-list]").waitFor();
+    await this.look("tips");
+    const cards = this.page.locator("[data-tips-list] [data-block=tip]");
+    for (let i = 0; i < (await cards.count()); i++) {
+      await cards.nth(i).scrollIntoViewIfNeeded();
+      await this.look(`tips-${i + 1}`);
+    }
+  }
+
   async walkSection(lesson: Lesson, sectionIndex: number) {
     const section = lesson.sections[sectionIndex];
     if (!section) return;
@@ -790,6 +816,7 @@ async function walkDevice(
   browser: Browser,
   device: WalkDevice,
   lesson: Lesson,
+  hasTips: boolean,
   outRoot: string,
 ): Promise<Finding[]> {
   const { browserName: _, ...contextOptions } = WALK_DEVICES[device];
@@ -815,6 +842,7 @@ async function walkDevice(
         `${lessonPath(lesson.id)} returned ${response?.status()}; a draft needs a server started with CONTENT_INCLUDE_DRAFT=1`,
       );
     }
+    if (hasTips) await walker.walkTips(lesson);
     for (let i = 0; i < lesson.sections.length; i++) {
       await walker.walkSection(lesson, i);
     }
@@ -846,6 +874,7 @@ async function main() {
   }
   const server = external ? undefined : await ensureServer("/", DRAFT_ENV);
   const lesson = (await servedLesson(lessonId)) ?? local;
+  const hasTips = await servesTips(lessonId);
   if (JSON.stringify(lesson) !== JSON.stringify(local)) {
     console.log(
       `lesson:walk ${lessonId}: the server serves another version than lesson.json (not emitted or not approved yet); walking the served one`,
@@ -864,7 +893,7 @@ async function main() {
         const browser =
           await BROWSERS[WALK_DEVICES[device].browserName].launch();
         browsers.push(browser);
-        return walkDevice(browser, device, lesson, outRoot);
+        return walkDevice(browser, device, lesson, hasTips, outRoot);
       }),
     );
     findings = perDevice.flat();

@@ -196,6 +196,16 @@ export function servedLessons(root: string = DEFAULT_CONTENT_ROOT): Lesson[] {
   return loadContent({ root }).lessons.map(({ lesson }) => lesson);
 }
 
+// Ids of the served lessons that have tips, for the route params of their
+// "Mẹo hay" pages.
+export function servedTipLessonIds(
+  root: string = DEFAULT_CONTENT_ROOT,
+): string[] {
+  return loadContent({ root })
+    .lessons.filter(({ tips }) => tips.length > 0)
+    .map(({ lesson }) => lesson.id);
+}
+
 // Subjects alone, for build-time route params that do not need the lessons.
 export function loadSubjects(root: string = DEFAULT_CONTENT_ROOT): Subject[] {
   return parseOrThrow(

@@ -23,6 +23,11 @@ export function sectionPath(lessonId: string, sectionId: string): string {
   return `${lessonPath(lessonId)}/sections/${encodeURIComponent(sectionId)}`;
 }
 
+// The lesson's "Mẹo hay": every tip of the lesson in one list.
+export function tipsPath(lessonId: string): string {
+  return `${lessonPath(lessonId)}/tips`;
+}
+
 export function reviewPath(lessonId: string): string {
   return `${lessonPath(lessonId)}/review`;
 }
