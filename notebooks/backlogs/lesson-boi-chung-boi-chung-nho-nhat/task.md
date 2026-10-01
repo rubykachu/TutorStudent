@@ -1,10 +1,21 @@
 # Bàn giao: Bài 12 `boi-chung-boi-chung-nho-nhat` (Bội chung. Bội chung nhỏ nhất)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. **Đã xuất bản** (`status: published`, id đã khoá, `lesson:walk` 0 FAIL). Chưa lời đọc, chưa video.
+- Cập nhật cuối: 01/10/2026. **Đã xuất bản** (`status: published`, id đã khoá, `lesson:walk` 0 FAIL). Lời đọc và 3 video đã dựng (xem mục "Lời đọc và video"), chờ review vòng chỉ phần đổi.
 - Review: vòng 1 (8 Nghiêm trọng), vòng 2 (5 Nghiêm trọng, 16 Nên sửa, 20 Góp ý) và vòng 3 chỉ phần đổi (Sonnet, 0 Nghiêm trọng, 2 Nên sửa, 3 Góp ý) đã sửa hết phần Nghiêm trọng và Nên sửa; vòng 3 đã áp luôn 2 Nên sửa và 3 Góp ý. Còn bỏ ngỏ (Góp ý vòng 2, không chặn): 3, 4, 6, 7, 10, 16, 20; việc của app: nhãn ô đếm thiếu đơn vị ("1 chuyến") và phép kiểm `solveMeet` nằm trong `ROUND_RANGE` cho mọi bài dùng `gap-nhau`.
-- Việc tiếp theo: lời đọc (`pnpm narration:build`, skill `lesson-video`) rồi video; sửa nội dung bài sau khi xuất bản đổi hash nên cần review lại. Ôn tập chương II (`on-tap-chuong-2`) phải soát lại các câu BCNN theo Bài 12 (cặp số, cách nói quy tắc "nhiều nhất" của ƯCLN, mẹo `chon-cong-cu`).
+- Việc tiếp theo: review vòng chỉ phần đổi (subagent mới, Sonnet) cho 3 khối `video` và `overview.narration`, rồi `pnpm content:lock boi-chung-boi-chung-nho-nhat` (đang báo 3 id video chưa khoá) và `pnpm lesson:walk`; sửa nội dung bài sau khi xuất bản đổi hash nên cần review lại. Ôn tập chương II (`on-tap-chuong-2`) phải soát lại các câu BCNN theo Bài 12 (cặp số, cách nói quy tắc "nhiều nhất" của ƯCLN, mẹo `chon-cong-cu`).
 - Số mới ở vòng 1 cần reviewer vòng 3 soát lại: `chon-bc-4-15-nho-hon-200`, `ba-chu-so-7-9`, `dien-bc-56`, `khong-la-bc-4-9`, `dien-bcnn-28`, `hai-chu-so-8-10`, `tim-loi-bcnn-3-4-8`, `chon-dang-24-40`, `hang-2-3-5-du-1`; hình bánh răng mới `gears.tsx`.
+
+## Lời đọc và video (01/10/2026)
+- Giọng bài: `my-duyen` (nữ), khai ở `video/projects/boi-chung-boi-chung-nho-nhat/media.json`. Lý do: Bài 11 (`uoc-chung-uoc-chung-lon-nhat`) là Hải Đăng nên xen sang Mỹ Duyên; bài cũng là mạch kể chuyện (xe buýt, đèn nháy), không có lý do giữ nam.
+- Lời đọc giới thiệu: Gemini (giọng Vindemiatrix, `gemini-3.1-flash-tts-preview`), 59,4 giây, 12 câu, mọi câu từ 98,5% trở lên; câu đầu của `overview.hook` đã là "Chào bạn!".
+- Video (VieNeu Mỹ Duyên, mỗi video đặt đầu một phần, đã gắn khối `video`):
+  - `xe-buyt` (phần `boi-chung`), 54,6 giây, 11 câu, dừng ở 14,2 s và 46,3 s: hai xe buýt 6 và 8 phút, hai hàng bội trên một trục, bội chung 24 và 48 màu lime.
+  - `liet-ke` (phần `liet-ke-bcnn`), 71,4 giây, 13 câu, dừng ở 41,1 s và 60,3 s: bội của 9 và 12 trên một trục, BCNN 36 màu pink, rồi cách nhanh chỉ thử bội của số lớn.
+  - `phan-tich` (phần `bcnn-phan-tich`), 56,6 giây, 10 câu, dừng ở 18,3 s và 44,1 s: 12 = 2² · 3 và 18 = 2 · 3², khoanh số mũ lớn nhất mỗi cột, BCNN 36.
+- Whisper dưới 97% (đều do Whisper nghe chữ cái): `xe-buyt` "Xe B cứ 8 phút có một chuyến." 96,8% (nghe "xe bề"), "Bội chung viết tắt là BC." 95,8% (nghe "mỗi trung"; câu quy tắc giữ nguyên văn nên không đổi chữ).
+- Số dùng trong video (9 và 12, 12 và 18, 6 và 8) là ví dụ của hình trong bài; không dùng số của bài tập tự làm (10 và 15, 20 và 30, 4 và 6).
+- Chưa chạy `lesson:walk` sau khi gắn video.
 
 ## Nguồn (sách bài tập, `sources/math/boi-chung-boi-chung-nho-nhat/`, không commit)
 - Đề: tr.41–43 in (PDF 42–44), tệp `sbt-p41.png`, `sbt-p42.png`, `sbt-p43.png`. "Ôn tập chương II" bắt đầu ở tr.44.

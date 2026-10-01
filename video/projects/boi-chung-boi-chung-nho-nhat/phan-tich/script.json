@@ -1,0 +1,61 @@
+{
+  "title": "Tìm BCNN bằng thừa số nguyên tố",
+  "engine": "local",
+  "poster": { "scene": "s03-chon", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Ta tìm bội chung nhỏ nhất của 12 và 18.",
+          "opening": true
+        },
+        {
+          "text": "Viết mỗi số lớn hơn 1 thành tích các thừa số nguyên tố.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s02-phan-tich",
+      "sentences": [
+        { "text": "12 bằng 2 mũ 2 nhân 3." },
+        { "text": "18 bằng 2 nhân 3 mũ 2.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-chon",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: thừa số 2 lấy số mũ nào?",
+          "pause": "ask"
+        },
+        { "text": "Số mũ lớn nhất của 2 là 2." },
+        { "text": "Số mũ lớn nhất của 3 cũng là 2.", "pause": "think" },
+        {
+          "text": "Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN.",
+          "say": "Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là bội-chung-nhỏ-nhất.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s04-nhan",
+      "sentences": [
+        { "text": "2 mũ 2 nhân 3 mũ 2 bằng 4 nhân 9." },
+        { "text": "Vậy bội chung nhỏ nhất của 12 và 18 là 36." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "phan-tich",
+      "from": "s02-phan-tich",
+      "to": "s04-nhan",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"]
+    }
+  ]
+}

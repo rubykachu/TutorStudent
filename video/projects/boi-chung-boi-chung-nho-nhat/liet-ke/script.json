@@ -1,0 +1,63 @@
+{
+  "title": "Tìm BCNN bằng cách liệt kê",
+  "engine": "local",
+  "poster": { "scene": "s02-ds", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm bội chung nhỏ nhất.",
+          "opening": true
+        },
+        { "text": "Ta cần tìm bội chung nhỏ nhất của 9 và 12." }
+      ]
+    },
+    {
+      "id": "s02-ds",
+      "sentences": [
+        { "text": "Viết các bội của 9: 9, 18, 27, 36." },
+        { "text": "Viết các bội của 12: 12, 24, 36." },
+        {
+          "text": "Bạn thử đoán xem: số nào có ở cả hai hàng?",
+          "pause": "ask"
+        },
+        { "text": "Số 36 có ở cả hai hàng.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Muốn tìm BCNN, ta viết các bội khác 0 của từng số, rồi chọn số nhỏ nhất có ở mọi danh sách.",
+          "say": "Muốn tìm bội-chung-nhỏ-nhất, ta viết các bội khác 0 của từng số, rồi chọn số nhỏ nhất có ở mọi danh sách.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s04-nhanh",
+      "sentences": [
+        { "text": "Có cách nhanh hơn: chỉ viết bội của số lớn." },
+        { "text": "12 không chia hết cho 9." },
+        {
+          "text": "Bạn thử đoán xem: 24 có chia hết cho 9 không?",
+          "pause": "ask"
+        },
+        { "text": "24 không chia hết cho 9.", "checkpoint": true },
+        { "text": "36 chia hết cho 9, nên ta dừng lại." },
+        { "text": "Vậy bội chung nhỏ nhất của 9 và 12 là 36." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "liet-ke",
+      "from": "s02-ds",
+      "to": "s03-quy-tac",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"]
+    }
+  ]
+}

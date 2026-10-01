@@ -24,7 +24,16 @@
       "tính xem hai việc lặp lại bao lâu thì cùng xảy ra",
       "biết khi nào dùng bội chung nhỏ nhất, khi nào dùng ước chung lớn nhất"
     ],
-    "whyItMatters": "Bội chung nhỏ nhất giúp bạn mua ít nhất bao nhiêu bút vỉ 6 cái để bằng số vở xếp 8 quyển."
+    "whyItMatters": "Bội chung nhỏ nhất giúp bạn mua ít nhất bao nhiêu bút vỉ 6 cái để bằng số vở xếp 8 quyển.",
+    "narration": {
+      "audioUrl": "narration/boi-chung-boi-chung-nho-nhat/overview.m4a",
+      "vttUrl": "narration/boi-chung-boi-chung-nho-nhat/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -65,6 +74,10 @@
       "sourceRef": "Sách bài tập tr.41 (kiến thức cần nhớ 1), tr.42",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "boi-chung-boi-chung-nho-nhat.video.xe-buyt"
+        },
         {
           "type": "visual",
           "visualId": "boi-chung-boi-chung-nho-nhat.visual.xe-6-8",
@@ -189,6 +202,10 @@
       "sourceRef": "Sách bài tập tr.42 (bài 2.44), lời giải tr.108",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "boi-chung-boi-chung-nho-nhat.video.liet-ke"
+        },
         {
           "type": "visual",
           "visualId": "boi-chung-boi-chung-nho-nhat.visual.ds-4-10",
@@ -358,6 +375,10 @@
       "sourceRef": "Sách bài tập tr.41 (kiến thức cần nhớ 3), tr.42 (bài 2.46)",
       "minutes": 6,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "boi-chung-boi-chung-nho-nhat.video.phan-tich"
+        },
         {
           "type": "visual",
           "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-12-18",
@@ -4414,5 +4435,106 @@
   "sticker": {
     "name": "Người giữ nhịp",
     "visualId": "boi-chung-boi-chung-nho-nhat.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.video.liet-ke",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "url": "video/boi-chung-boi-chung-nho-nhat/liet-ke.mp4",
+      "vttUrl": "video/boi-chung-boi-chung-nho-nhat/liet-ke.vtt",
+      "posterUrl": "video/boi-chung-boi-chung-nho-nhat/liet-ke.jpg",
+      "durationSec": 71.37,
+      "clips": [
+        {
+          "id": "liet-ke",
+          "start": 10.151,
+          "end": 41.406,
+          "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 41.106,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 60.257,
+          "from": 41.106
+        }
+      ]
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.video.xe-buyt",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "url": "video/boi-chung-boi-chung-nho-nhat/xe-buyt.mp4",
+      "vttUrl": "video/boi-chung-boi-chung-nho-nhat/xe-buyt.vtt",
+      "posterUrl": "video/boi-chung-boi-chung-nho-nhat/xe-buyt.jpg",
+      "durationSec": 54.63,
+      "clips": [
+        {
+          "id": "boi-chung",
+          "start": 14.94,
+          "end": 53.214,
+          "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 14.24,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 46.321,
+          "from": 14.24
+        }
+      ]
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.video.phan-tich",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "url": "video/boi-chung-boi-chung-nho-nhat/phan-tich.mp4",
+      "vttUrl": "video/boi-chung-boi-chung-nho-nhat/phan-tich.vtt",
+      "posterUrl": "video/boi-chung-boi-chung-nho-nhat/phan-tich.jpg",
+      "durationSec": 56.63,
+      "clips": [
+        {
+          "id": "phan-tich",
+          "start": 12.108,
+          "end": 55.214,
+          "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 18.341,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 44.134,
+          "from": 18.341
+        }
+      ]
+    }
+  ]
 }

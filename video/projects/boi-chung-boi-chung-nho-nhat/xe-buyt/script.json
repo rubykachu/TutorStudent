@@ -1,0 +1,56 @@
+{
+  "title": "Hai xe buýt và bội chung",
+  "engine": "local",
+  "poster": { "scene": "s02-hang", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm bội chung của hai số.",
+          "opening": true
+        },
+        { "text": "Xe A cứ 6 phút có một chuyến." },
+        { "text": "Xe B cứ 8 phút có một chuyến." },
+        { "text": "Hai xe cùng rời bến lúc 0 phút.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s02-hang",
+      "sentences": [
+        { "text": "Xe A rời bến vào các phút là bội của 6." },
+        { "text": "Xe B rời bến vào các phút là bội của 8." },
+        {
+          "text": "Bạn thử đoán xem: phút nào cả hai xe cùng rời bến?",
+          "pause": "ask"
+        },
+        { "text": "Phút 24 và phút 48 có ở cả hai hàng.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-bc",
+      "sentences": [
+        {
+          "text": "Một số là bội của tất cả các số đã cho thì gọi là bội chung của các số đó.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Bội chung viết tắt là BC.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        },
+        { "text": "Vậy 24 và 48 là bội chung của 6 và 8." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "boi-chung",
+      "from": "s02-hang",
+      "to": "s03-bc",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"]
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+<!doctype html>
+<!--
+  Lesson video "Hai xe buýt và bội chung" (lesson boi-chung-boi-chung-nho-nhat):
+  bus A leaves every 6 minutes (blue circles), bus B every 8 (teal squares) on
+  one time axis, so 24 and 48 line up in both rows; common multiples are lime.
+  Built by `pnpm video:build boi-chung-boi-chung-nho-nhat xe-buyt`, which
+  injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Hai xe buýt và bội chung</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .blue {
+        --c: var(--color-concept-blue);
+      }
+      .teal {
+        --c: var(--color-concept-teal);
+      }
+      .lime {
+        --c: var(--color-concept-lime);
+      }
+      .slate {
+        --c: var(--color-concept-slate);
+      }
+      .chip {
+        font-size: 38px;
+      }
+      .mk {
+        position: absolute;
+        width: 66px;
+        height: 66px;
+        margin: -33px 0 0 -33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font:
+          800 38px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-surface);
+        background: var(--c);
+      }
+      .mk.a {
+        border-radius: 50%;
+      }
+      .mk.b {
+        border-radius: 14px;
+      }
+      .band {
+        position: absolute;
+        width: 96px;
+        height: 250px;
+        margin-left: -48px;
+        border-radius: 30px;
+        background: color-mix(
+          in srgb,
+          var(--color-concept-lime) 35%,
+          transparent
+        );
+        border: 5px solid var(--color-concept-lime);
+      }
+      .lbl {
+        position: absolute;
+        width: 150px;
+        text-align: right;
+        font:
+          800 40px / 1 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .axis {
+        position: absolute;
+        left: 330px;
+        width: 880px;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--color-muted-foreground);
+      }
+      .tg {
+        position: absolute;
+        font:
+          800 36px / 1 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--c);
+        white-space: nowrap;
+      }
+      .big {
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        margin: -65px 0 0 -65px;
+        border-radius: 50%;
+        background: var(--color-concept-lime);
+        color: var(--color-surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font:
+          800 70px / 1 "Baloo 2",
+          sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="a0" class="row" style="top: 30px"></div>
+          <div id="a1" class="row" style="top: 160px"></div>
+          <div id="a2" class="row" style="top: 270px"></div>
+          <div id="a3" class="row" style="top: 390px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="z3" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish } =
+          window.LV;
+        const chip = (id, c, html) =>
+          `<span id="${id}" class="chip ${c}">${html}</span>`;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        // ---------- s01: two buses ----------
+        $("#a0").innerHTML = chip("c0", "slate", "Hai xe buýt rời bến");
+        $("#a1").innerHTML = chip("c1", "blue", "● xe A: cứ 6 phút một chuyến");
+        $("#a2").innerHTML = chip("c2", "teal", "■ xe B: cứ 8 phút một chuyến");
+        $("#a3").innerHTML =
+          `<span id="z0" class="math pill small">0 phút</span>`;
+
+        // ---------- s02: both rows on one time axis (0 to 48 minutes) ----------
+        const X = (m) => 330 + (m * 880) / 48;
+        const rowA = [6, 12, 18, 24, 30, 36, 42, 48];
+        const rowB = [8, 16, 24, 32, 40, 48];
+        const z2 = $("#z2");
+        el(
+          z2,
+          `<div class="lbl blue" style="left: 150px; top: 124px">xe A</div><div class="lbl teal" style="left: 150px; top: 274px">xe B</div>`,
+        );
+        el(z2, `<div class="axis" style="top: 217px"></div>`);
+        [24, 48].forEach((m) =>
+          el(
+            z2,
+            `<div id="bd${m}" class="band" style="left: ${X(m)}px; top: 100px"></div>`,
+          ),
+        );
+        rowA.forEach((m) =>
+          el(
+            z2,
+            `<div id="ma${m}" class="mk a blue" style="left: ${X(m)}px; top: 150px">${m}</div>`,
+          ),
+        );
+        rowB.forEach((m) =>
+          el(
+            z2,
+            `<div id="mb${m}" class="mk b teal" style="left: ${X(m)}px; top: 300px">${m}</div>`,
+          ),
+        );
+        el(
+          z2,
+          `<div id="tg24" class="tg lime" style="left: ${X(24) - 160}px; top: 370px">✓ cả hai xe</div><div id="tg48" class="tg lime" style="left: ${X(48) - 190}px; top: 370px">✓ cả hai xe</div>`,
+        );
+
+        // ---------- s03: the common multiples ----------
+        const z3 = $("#z3");
+        el(
+          z3,
+          `
+          <div id="r1" class="abs" style="left: 300px; top: 40px">${chip("r1a", "blue", "● bội của 6")}</div>
+          <div id="r2" class="abs" style="left: 620px; top: 40px">${chip("r2a", "teal", "■ bội của 8")}</div>
+          <div id="g24" class="big" style="left: 500px; top: 250px">24</div>
+          <div id="g48" class="big" style="left: 720px; top: 250px">48</div>
+          <div id="gt" class="abs" style="left: 330px; top: 380px">${chip("gta", "lime", "✓ bội chung (BC)")}</div>`,
+        );
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-hang"],
+          ["#s3", "s03-bc"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-mo";
+          hide(["#c0", "#c1", "#c2", "#z0"]);
+          pop("#c0", start(sid) + 0.2, { from: 0.6 });
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#c1", W(sid, "xe"), { from: 0.5 });
+          pop("#c2", W(sid, "xe", 2), { from: 0.5 });
+          pose(bird, "idle", W(sid, "xe"));
+          pop("#z0", W(sid, "0"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-hang";
+          hide([
+            ...rowA.map((m) => `#ma${m}`),
+            ...rowB.map((m) => `#mb${m}`),
+            "#bd24",
+            "#bd48",
+            "#tg24",
+            "#tg48",
+          ]);
+          pose(bird, "idle", start(sid));
+          const span = (a, b, ids) =>
+            ids.forEach((id, i) =>
+              pop(id, a + ((b - a) * i) / Math.max(ids.length - 1, 1), {
+                from: 0.5,
+              }),
+            );
+          // The markers appear while the sentence is read, then wait.
+          span(
+            W(sid, "xe"),
+            W(sid, "6"),
+            rowA.map((m) => `#ma${m}`),
+          );
+          span(
+            W(sid, "xe", 2),
+            W(sid, "8"),
+            rowB.map((m) => `#mb${m}`),
+          );
+          pop(["#bd24", "#bd48"], W(sid, "24"), { from: 0.5 });
+          pop(["#tg24", "#tg48"], W(sid, "hai", 2), { from: 0.5 });
+          pose(bird, "happy", W(sid, "24"));
+        }
+        {
+          const sid = "s03-bc";
+          hide(["#r1a", "#r2a", "#g24", "#g48", "#gta"]);
+          pose(bird, "idle", start(sid));
+          pop("#gta", W(sid, "gọi"), { from: 0.6 });
+          pop(["#r1a", "#r2a"], W(sid, "bội"), { from: 0.5 });
+          pop(["#g24", "#g48"], W(sid, "vậy"), { from: 0.5, stagger: 0.25 });
+          pose(bird, "cheer", W(sid, "vậy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>
