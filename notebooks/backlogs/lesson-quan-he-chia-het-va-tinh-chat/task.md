@@ -3,6 +3,7 @@
 ## Trạng thái
 - Nội dung đã xuất bản (`status: published`, hash đã duyệt, id đã khoá). Review 5 vòng: vòng 1 (8 Nghiêm trọng), vòng 2 (3), vòng 3 (1), vòng 4 (0 Nghiêm trọng, 0 Nên sửa, 1 Góp ý), vòng 5 (video và lời đọc: 0 Nghiêm trọng, 4 Nên sửa đã sửa, 3 Góp ý).
 - Lời đọc và 3 video đã dựng và đã review vòng 5 (chỉ phần đổi, 0 Nghiêm trọng, 4 Nên sửa về lời video đã sửa và dựng lại, 02/10/2026). Id 3 video đã khoá, `reviewedHash` đã ghi, `content:check` 0 lỗi, `lesson:walk` 0 lỗi.
+- Giải thích sau mỗi câu (`explain`) đã có cho cả 68 câu (02/10/2026): review chỉ phần đổi 2 lượt (0 Nghiêm trọng; Nên sửa và Góp ý đã sửa, xem `review.md`), `reviewedHash` mới, `content:check` 0 lỗi, `lesson:walk` 0 lỗi; bài đã xoá khỏi `content/legacy-lessons.json`. Video, lời đọc và id không đổi.
 - Soạn đêm 01/10/2026 thay cho buổi hỏi đáp đầu vào vì chủ dự án đang ngủ; các giả định ở mục "Giả định".
 
 ## Nguồn (sách bài tập, `sources/math/quan-he-chia-het-va-tinh-chat/`, không commit)
