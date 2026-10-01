@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronRight, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import type { VisualProps } from "@/visuals/registry";
@@ -52,6 +52,12 @@ export function TryIt({
 
   const expected = nextOperation(tokens);
   const finished = expected === undefined;
+  // The worked lines can run below the fold: once the result is there, bring
+  // the end of the screen (the "Làm lại" button) above the bottom bar.
+  const endRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (finished) endRef.current?.scrollIntoView?.({ block: "nearest" });
+  }, [finished]);
 
   function tap(id: string) {
     const index = operationIndices(tokens)[Number(id.slice(2)) - 1];
@@ -129,7 +135,7 @@ export function TryIt({
   };
 
   return (
-    <div className="flex w-full flex-col items-center gap-3">
+    <div ref={endRef} className="flex w-full flex-col items-center gap-3">
       {history.map((line, i) => (
         <Row key={spokenExpression(line.tokens)} line={line} first={i === 0} />
       ))}
