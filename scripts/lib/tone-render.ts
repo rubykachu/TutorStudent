@@ -12,6 +12,11 @@ import {
 // Measuring, mastering and synthesising the app's tones, shared by `pnpm
 // sounds:build` and any script that auditions a tone.
 
+const MAX_MASTER_PASSES = 8;
+// Passes that may ask the limiter for more gain; later ones only fix a peak
+// that encoding pushed over the ceiling.
+const LIMITER_RETRIES = 3;
+
 export type Loudness = { lufs: number; peakDb: number };
 
 // EBU R128 loudness and true peak of a file. A clip shorter than the
@@ -43,43 +48,60 @@ export function measure(file: string): Loudness {
   return { lufs, peakDb: Number.isFinite(peakDb) ? peakDb : -70 };
 }
 
-// Brings a clip to `lufs` with one fixed gain (no compression or limiting,
-// which is what distorts short clips), lowered if the true peak would pass
+// Brings a clip to `lufs` with one fixed gain (no compression, which
+// distorts short clips), lowered if the true peak would pass
 // MASTERING.truePeakDb, then encodes it in the delivery format and measures
-// the delivered file.
+// the delivered file. A clip whose peaks are so sharp that the fixed gain
+// would leave it quieter than asked (a plosive onomatopoeia) gets the full
+// gain and a brief peak limiter instead, so every clip lands at one loudness.
+// Encoding can overshoot the ceiling by a fraction of a dB: the ceiling is
+// then lowered a little and the clip encoded again.
 export function master(input: string, lufs: number, file: string): Loudness {
   const before = measure(input);
-  const gain = Math.min(
-    lufs - before.lufs,
-    MASTERING.truePeakDb - before.peakDb,
-  );
-  ffmpeg([
-    "-i",
-    input,
-    "-af",
-    `volume=${gain.toFixed(2)}dB`,
-    "-ar",
-    String(MASTERING.sampleRate),
-    "-ac",
-    String(MASTERING.channels),
-    "-c:a",
-    MASTERING.codec,
-    "-b:a",
-    MASTERING.bitrate,
-    "-movflags",
-    "+faststart",
-    file,
-  ]);
-  const after = measure(file);
-  if (after.peakDb >= MASTERING.maxPeakDb) {
-    throw new Error(
-      `${file} peaks at ${after.peakDb} dBFS, over ${MASTERING.maxPeakDb}`,
-    );
+  let wanted = lufs - before.lufs;
+  let lowered = 0;
+  for (let pass = 0; pass < MAX_MASTER_PASSES; pass++) {
+    const ceiling = MASTERING.truePeakDb - lowered;
+    const limited = wanted > ceiling - before.peakDb;
+    const gain = limited ? wanted : ceiling - before.peakDb;
+    const limiter = limited
+      ? `,alimiter=limit=${(10 ** (ceiling / 20)).toFixed(4)}:level=0`
+      : "";
+    ffmpeg([
+      "-i",
+      input,
+      "-af",
+      `volume=${(limited ? gain : Math.min(wanted, gain)).toFixed(2)}dB${limiter}`,
+      "-ar",
+      String(MASTERING.sampleRate),
+      "-ac",
+      String(MASTERING.channels),
+      "-c:a",
+      MASTERING.codec,
+      "-b:a",
+      MASTERING.bitrate,
+      "-movflags",
+      "+faststart",
+      file,
+    ]);
+    const after = measure(file);
+    if (after.peakDb >= MASTERING.maxPeakDb) {
+      lowered += 1;
+      continue;
+    }
+    // The limiter took some loudness: ask for the difference and go again.
+    if (limited && lufs - after.lufs > 0.3 && pass < LIMITER_RETRIES) {
+      wanted += lufs - after.lufs;
+      continue;
+    }
+    return {
+      lufs: Math.round(after.lufs * 10) / 10,
+      peakDb: Math.round(after.peakDb * 10) / 10,
+    };
   }
-  return {
-    lufs: Math.round(after.lufs * 10) / 10,
-    peakDb: Math.round(after.peakDb * 10) / 10,
-  };
+  throw new Error(
+    `${file} cannot reach ${lufs} LUFS under ${MASTERING.maxPeakDb} dBFS`,
+  );
 }
 
 const TRIM_SILENCE =
