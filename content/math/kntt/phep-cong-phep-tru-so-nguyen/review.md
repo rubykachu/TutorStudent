@@ -1,7 +1,7 @@
 # Review: Phép cộng và phép trừ số nguyên (`phep-cong-phep-tru-so-nguyen`)
 
 - Bài: `content/math/kntt/phep-cong-phep-tru-so-nguyen/lesson.json`
-- Vòng: 4 - chỉ phần đổi (`pnpm content:diff`), section: các section có trong diff (7 section: phần 1, 2, 3, 7, 8, 12, 13; 1 reviewer duy nhất)
+- Vòng: 5 - chỉ phần đổi: video và lời đọc (`pnpm content:diff`: ba khối `video` và ba mục `videos[]` mới ở phần 1, 2, 3 theo id `cong-so-duong`, `khac-dau`, `tru-so-duong`; lời đọc tổng quan `overview.narration`); 1 reviewer duy nhất. Nội dung các vòng trước giữ nguyên bên dưới.
 - Nguồn đã đọc: `sources/math/phep-cong-phep-tru-so-nguyen/` - sbt-p50 (đối chiếu lại kiến thức cần nhớ 1 đến 3); p51, p52, p111 đã đọc ở vòng 3, các mục của chúng không đổi
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá)
 - Đọc hiểu (Haiku, lượt 1): 100 / 25 / 1 (lượt 2 trên 23 mục: 6 / 15 / 2; lượt 3 trên 14 mục: 7 / 7 / 0; lượt trên mục đổi sau vòng 3: 5 / 4 / 3); tệp `.shots/review/phep-cong-phep-tru-so-nguyen/doc-hieu.md`
@@ -122,3 +122,58 @@ Chỉ đếm phát hiện mới của vòng này, mỗi phát hiện một lần
 | LL-07 | 0 | 0 | 1 |
 
 Sinh từ bản sửa vòng 3 (LL-20, ghi kèm, chưa đếm ở bảng trên): Nên sửa 1. Tổng vòng này: 0 Nghiêm trọng, 3 Nên sửa, 5 Góp ý, trong đó mới 1 Nên sửa và 1 Góp ý; còn lại 2 Nên sửa và 4 Góp ý còn từ vòng 3 (Góp ý 1 là phần chưa sửa của Góp ý 2 vòng 3).
+
+## Vòng 5: video và lời đọc
+
+- Đã đọc: ba `script.json` và `index.html`, `renders/report.json` (heard từng câu), ba sheet khung hình mỗi video (và hai khung phóng to của video 3), ba tệp `.vtt` đã dựng, `overview.vtt` đối chiếu `overview.hook`, `summary`, `goals`, `whyItMatters`. `pnpm video:check phep-cong-phep-tru-so-nguyen`: ok (giọng, lời mở đầu của lời đọc, ba video).
+- Tính lại: (−3) + 5 = 2; 2 + (−5) = −3; 7 + (−4) = 7 − 4 = 3 (phần 7 lớn hơn, số dương); 3 + (−8) = −(8 − 3) = −5 (phần 8 lớn hơn, số âm); 4 − 6 = 4 + (−6) = −2; 1 − 4 = 1 + (−4) = −3. Mọi con số, mũi tên (độ dài 5, 5, 4, 8, 6, 4 vạch, đúng hướng), điểm đầu, điểm tổng/hiệu trên trục khớp lời và phép tính.
+- Số âm đọc "âm": mọi chỗ −n trong `heard` đều là "âm n"; không có chỗ nào đọc "trừ n".
+- Màu: số dương lime, số âm hồng, 0 slate, số đối sky, điểm đầu blue, tổng amber, hiệu teal, nhãn bước violet; đúng khái niệm của bài.
+- Hỏi rồi mới mở: cả 7 câu "Bạn thử đoán xem" đều đứng trước lúc hình hiện đáp án (đối chiếu mốc `.vtt` với `index.html`): hình chỉ có phép tính, điểm đầu và chip lựa chọn (`◀ ? ▶`, "số dương"/"số âm", "số đối của 4 là ?"); đáp án (mũi tên, điểm tổng, dấu "= …") hiện sau quãng dừng. Hai điểm dừng mỗi video đều đặt sau câu kết một ý ("Vậy … bằng …"), cách nhau ≥ 3 câu; không có điểm dừng cắt giữa ý.
+- Clip: `cong-so-duong`, `cong-so-am` (video 1), `khac-dau` (video 2), `tru-so-duong` (video 3) đều phủ đúng cảnh giảng card tương ứng. Mỗi video một ý (cộng với số dương và số âm bằng trục số; cộng khác dấu; trừ là cộng với số đối), 59,9 đến 66,1 giây, 14 và 15 câu.
+- Lời đọc tổng quan: `overview.vtt` khớp từng chữ với `hook` (câu đầu chào "bạn"), `summary`, bốn `goals` (sau câu "Học xong bài này, bạn sẽ:"), `whyItMatters`; không có chữ thừa hay thiếu; vtt dài 54,9 giây trong tệp m4a 56,4 giây; giọng Vindemiatrix khớp `voice` trong `lesson.json`.
+- Câu `rule` của ba video đã được build so nguyên văn; không có câu nêu quy tắc nào thiếu cờ.
+- Kết luận vòng 5: Đạt: 0 Nghiêm trọng, 2 Nên sửa, 1 Góp ý.
+
+### Nghiêm trọng
+
+Không có.
+
+### Nên sửa
+
+#### 1. Video "Cộng hai số khác dấu" nhắc lại quy tắc bằng "phần lớn hơn", bỏ chữ "số tự nhiên" (LL-05)
+
+- Vị trí: `video/projects/phep-cong-phep-tru-so-nguyen/cong-khac-dau/script.json` câu cuối cảnh `s04-nho` ("Nhớ nhé: tổng mang dấu của số có phần lớn hơn."); `index.html` các chip "phần lớn hơn: 7", "phần lớn hơn: 8" (cảnh `s02-vd`, `s03-am`) và "mang dấu của phần lớn hơn" (cảnh `s04-nho`); câu 8 và 12 "Phần 7 lớn hơn", "Phần 8 lớn hơn"
+- Vì sao: câu `rule` ngay trước nói "số có phần số tự nhiên lớn hơn"; câu nhắc và chip nói "phần lớn hơn" (cùng quy tắc, hai cách gọi). Vòng 3 và 4 đã bỏ đúng cụm "phần lớn" khỏi câu quy tắc và mẹo vì "phần lớn" thường mang nghĩa "đa số". Bé đọc phụ đề "số có phần lớn hơn" ở câu chốt dễ hiểu là "số lớn hơn".
+- Sửa: câu chốt chép nguyên câu quy tắc và đánh `"rule": true` (được miễn giới hạn 12 chữ): "Tổng mang dấu của số có phần số tự nhiên lớn hơn."; chip thành "phần số tự nhiên lớn hơn: 7" và "…: 8", "mang dấu của số có phần lớn hơn" thành "mang dấu của số có phần số tự nhiên lớn hơn" (kiểm không tràn khung, vẫn chừa dải dưới cho phụ đề); hai câu "Phần 7 lớn hơn" có thể giữ vì đã nói "Phần số tự nhiên của 7 là 7" ngay trước. Cần dựng lại video (quyết định của chủ dự án, vì đổi lời và giọng đọc).
+
+#### 2. Câu "Bạn cú dừng ở số 2." Whisper nghe thành "Bạn cứu dừng ở số 2" (LL-11)
+
+- Vị trí: `video/projects/phep-cong-phep-tru-so-nguyen/di-tren-truc-so/renders/report.json` câu 7 (match 0,952, 4 lần đọc, còn lại 13 câu đều match 1); `script.json` cảnh `s02-phai`
+- Vì sao: tên con cú bị đọc thành "cứu" thì bé nghe "bạn cứu dừng", sai tên linh vật ở đúng câu kết ví dụ chính; 13 câu "Bạn cú …" còn lại đều được nghe đúng, nên đây là lỗi của riêng take này.
+- Sửa: nghe lại câu (`audio/` của câu 7); nếu đúng là "cứu" thì đọc lại câu (đổi nhẹ `say`, ví dụ "Bạn cú dừng lại ở số 2." cùng số chữ trong `text` nếu đổi `text`) rồi dựng lại; nếu nghe đúng "cú" thì bỏ phát hiện này. Khi dựng lại video 1 thì làm chung với việc ở mục 1 nếu chủ dự án đồng ý.
+
+### Góp ý
+
+#### 1. Dòng kết quả có khoảng trống trước dấu "+" chưa hiện (LL-12)
+
+- Vị trí: `cong-khac-dau/index.html` cảnh `s02-vd` và `s03-am` (khung 12 đến 16 và 24 đến 26: "=   (7 − 4)", "=   (8 − 3)")
+- Vì sao: ô dành cho dấu "+" hay "−" đứng trống nên giữa "=" và "(" hở một quãng, bé tưởng thiếu chữ cho tới lúc dấu hiện ở "dương"/"âm".
+- Sửa: tuỳ tác giả; nếu sửa thì hiện dấu "?" ở ô đó cho tới khi đọc tới "dương"/"âm". Không chặn.
+
+### Bảng LL của vòng 5
+
+| Id LL | Nghiêm trọng | Nên sửa | Góp ý |
+|---|---|---|---|
+| LL-05 | 0 | 1 | 0 |
+| LL-11 | 0 | 1 | 0 |
+| LL-12 | 0 | 0 | 1 |
+
+Tổng vòng này: 0 Nghiêm trọng, 2 Nên sửa, 1 Góp ý. Không có phát hiện Nghiêm trọng nên không thêm hay tăng số ở `docs/lessons-learned/`.
+
+### Xử lý sau vòng 5
+
+- Nên sửa 1 (LL-05): câu chốt của video `cong-khac-dau` nay chép nguyên câu quy tắc "Tổng mang dấu của số có phần số tự nhiên lớn hơn." (`rule: true`); ba chip đổi thành "phần số tự nhiên lớn hơn" và "mang dấu của số có phần số tự nhiên lớn hơn"; đã dựng lại, `video:check` ok.
+- Nên sửa 2 (LL-11): câu đổi thành "Bạn cú dừng lại ở số 2." và đọc lại; mọi câu của video `di-tren-truc-so` nay match 1 và không còn câu cần nghe duyệt.
+- Góp ý 1 (LL-12): ô dấu chưa hiện của dòng kết quả hiện "?" cho tới khi đọc tới "dương" hoặc "âm".
+- Đọc hiểu (Haiku) trên 44 câu của ba kịch bản: 39 / 5 / 0 theo tổng của Haiku (bảng ghi 7 câu mơ hồ); câu mơ hồ do thuật ngữ nằm nguyên văn trong câu quy tắc của bài ("phần số tự nhiên", "không đối nhau", "mang dấu", "trừ một số") giữ nguyên; câu hỏi "tổng mang dấu nào?" đổi thành "tổng là số dương hay số âm?".

@@ -186,7 +186,7 @@
             scene,
             row(
               `b${k}`,
-              `${sym(`b${k}a`, "=")}<span id="b${k}s" style="color: ${concept(signKind)}">${signKind === "lime" ? "+" : MINUS}</span><span id="b${k}g">(${nat(big, `b${k}x`)}${sym(`b${k}m`, MINUS)}${nat(small, `b${k}y`)})</span>${sym(`b${k}d`, "=")}${swap(`<span id="b${k}n">${big - small}</span>`, `<span id="b${k}r" style="color: ${concept(signKind)}">${resultText}</span>`)}`,
+              `${sym(`b${k}a`, "=")}${swap(`<span id="b${k}q">?</span>`, `<span id="b${k}s" style="color: ${concept(signKind)}">${signKind === "lime" ? "+" : MINUS}</span>`)}<span id="b${k}g">(${nat(big, `b${k}x`)}${sym(`b${k}m`, MINUS)}${nat(small, `b${k}y`)})</span>${sym(`b${k}d`, "=")}${swap(`<span id="b${k}n">${big - small}</span>`, `<span id="b${k}r" style="color: ${concept(signKind)}">${resultText}</span>`)}`,
               true,
             ),
           );
@@ -206,7 +206,7 @@
         el("#s2", tag("t2", "pink", "sang trái 4", X(4.6), AX - 190));
         el("#s2", tag("p2x", "violet", "phần 7", centre("#a2a"), 128));
         el("#s2", tag("p2y", "violet", "phần 4", centre("#a2c"), 128));
-        el("#s2", tag("big2", "violet", "phần lớn hơn: 7", centre("#a2a"), 215));
+        el("#s2", tag("big2", "violet", "phần số tự nhiên lớn hơn: 7", centre("#a2a"), 215));
         el("#s2", tag("dif2", "violet", "lớn − nhỏ", 640, 170));
         // ---------- scene 3: 3 + (-8) ----------
         example("#s3", 3, 3, -8, 8, 3, `${MINUS}5`, "pink");
@@ -216,12 +216,12 @@
         el("#s3", tag("t3", "pink", "sang trái 8", X(-1), AX - 190));
         el("#s3", tag("o3", "lime", "số dương", 500, 170));
         el("#s3", tag("o4", "pink", "số âm", 780, 170));
-        el("#s3", tag("big3", "violet", "phần lớn hơn: 8", 480, 215));
+        el("#s3", tag("big3", "violet", "phần số tự nhiên lớn hơn: 8", 480, 215));
         // ---------- scene 4: the rule on both examples ----------
         el("#s4", row("e1", `${num(7, "")}${sym("", "+")}${num(-4, "", true)}${sym("", "=")}${num(3, "")}`));
         el("#s4", `<div id="e2" class="row fm" style="top: 230px">${num(3, "")}${sym("", "+")}${num(-8, "", true)}${sym("", "=")}${num(-5, "")}</div>`);
         $("#e1").style.top = "110px";
-        el("#s4", tag("rl", "violet", "mang dấu của phần lớn hơn", 640, 370));
+        el("#s4", tag("rl", "violet", "mang dấu của số có phần số tự nhiên lớn hơn", 640, 370));
 
         scenes([
           ["#s1", "s01-mo"],
@@ -260,6 +260,7 @@
           pop(["#b2d", "#b2n"], W(sid, "được"), { from: 0.6, stagger: 0.2 });
           pop("#big2", W(sid, "lớn", 3), { from: 0.6 });
           pop("#b2s", W(sid, "dương"), { from: 0.6 });
+          tl.set("#b2q", { autoAlpha: 0 }, W(sid, "dương"));
           tl.set("#b2n", { autoAlpha: 0 }, W(sid, "dương"));
           tl.set("#b2r", { autoAlpha: 1 }, W(sid, "dương"));
           fade("#big2", W(sid, "vậy") - 0.3, 0.2);
@@ -287,6 +288,7 @@
           pop(["#b3d", "#b3n"], W(sid, "được"), { from: 0.6, stagger: 0.2 });
           pop("#big3", W(sid, "lớn"), { from: 0.6 });
           pop("#b3s", W(sid, "âm", 2), { from: 0.6 });
+          tl.set("#b3q", { autoAlpha: 0 }, W(sid, "âm", 2));
           tl.set("#b3n", { autoAlpha: 0 }, W(sid, "âm", 2));
           tl.set("#b3r", { autoAlpha: 1 }, W(sid, "âm", 2));
           fade("#big3", W(sid, "vậy") - 0.3, 0.2);
@@ -303,8 +305,8 @@
           hide(["#e1", "#e2", "#rl"]);
           pose(bird, "idle", start(sid));
           fade("#axis", start(sid), 0.3);
-          pop("#e1", W(sid, "nhớ"), { from: 0.6 });
-          pop("#e2", W(sid, "nhớ"), { from: 0.6 });
+          pop("#e1", W(sid, "tổng"), { from: 0.6 });
+          pop("#e2", W(sid, "tổng"), { from: 0.6 });
           pop("#rl", W(sid, "dấu"), { from: 0.6 });
           pose(bird, "cheer", W(sid, "dấu"));
         }

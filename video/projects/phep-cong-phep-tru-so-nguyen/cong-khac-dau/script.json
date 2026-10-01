@@ -52,7 +52,10 @@
     {
       "id": "s04-nho",
       "sentences": [
-        { "text": "Nhớ nhé: tổng mang dấu của số có phần lớn hơn." }
+        {
+          "text": "Tổng mang dấu của số có phần số tự nhiên lớn hơn.",
+          "rule": true
+        }
       ]
     }
   ],

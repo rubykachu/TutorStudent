@@ -4161,18 +4161,18 @@
       "url": "video/phep-cong-phep-tru-so-nguyen/di-tren-truc-so.mp4",
       "vttUrl": "video/phep-cong-phep-tru-so-nguyen/di-tren-truc-so.vtt",
       "posterUrl": "video/phep-cong-phep-tru-so-nguyen/di-tren-truc-so.jpg",
-      "durationSec": 66.13,
+      "durationSec": 66.37,
       "clips": [
         {
           "id": "cong-so-duong",
           "start": 0.7,
-          "end": 34.432,
+          "end": 34.676,
           "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"]
         },
         {
           "id": "cong-so-am",
-          "start": 34.832,
-          "end": 64.705,
+          "start": 35.076,
+          "end": 64.95,
           "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-am"]
         }
       ],
@@ -4184,13 +4184,13 @@
       "checkpoints": [
         {
           "id": "cp-01",
-          "at": 34.132,
+          "at": 34.376,
           "from": 0
         },
         {
           "id": "cp-02",
-          "at": 58.95,
-          "from": 34.132
+          "at": 59.194,
+          "from": 34.376
         }
       ]
     },
@@ -4200,12 +4200,12 @@
       "url": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.mp4",
       "vttUrl": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.vtt",
       "posterUrl": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.jpg",
-      "durationSec": 64.47,
+      "durationSec": 64.43,
       "clips": [
         {
           "id": "khac-dau",
           "start": 12.014,
-          "end": 63.055,
+          "end": 63.018,
           "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"]
         }
       ],

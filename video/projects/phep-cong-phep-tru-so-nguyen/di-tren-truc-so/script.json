@@ -27,7 +27,7 @@
           "pause": "think"
         },
         { "text": "Bạn cú đi sang phải 5 vạch." },
-        { "text": "Bạn cú dừng ở số 2." },
+        { "text": "Bạn cú dừng lại ở số 2." },
         { "text": "Vậy −3 cộng 5 bằng 2.", "checkpoint": true }
       ]
     },
