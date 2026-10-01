@@ -147,6 +147,11 @@ const lines = (
 
 const tag = (text: string, color: ConceptColor) => ({ text, color });
 
+// A worked step on two lines, so a long chain of equalities never breaks in
+// the middle of a bracket on a narrow screen.
+const steps = (first: string, second: string) =>
+  `\\begin{gathered} ${first} \\\\ ${second} \\end{gathered}`;
+
 const LEGEND_SIGNS = [
   { color: NEGATIVE, name: "Số nguyên âm" },
   { color: POSITIVE, name: "Số nguyên dương" },
@@ -315,11 +320,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "no-3-no-4": walk(-3, [-4], SUM),
   "cung-dau-vi-du": rows("Cộng hai số cùng dấu", [
     {
-      tex: "(-3) + (-4) = -(3 + 4) = \\concept{pink}{-7}",
+      tex: steps("(-3) + (-4)", "= -(3 + 4) = \\concept{pink}{-7}"),
       tag: tag("hai số âm", NEGATIVE),
     },
     {
-      tex: "(-1) + (-2) = -(1 + 2) = \\concept{pink}{-3}",
+      tex: steps("(-1) + (-2)", "= -(1 + 2) = \\concept{pink}{-3}"),
       tag: tag("hai số âm", NEGATIVE),
     },
     {
@@ -334,15 +339,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "thu-7-chi-4": walk(7, [-4], SUM),
   "khac-dau-vi-du": rows("Cộng hai số khác dấu", [
     {
-      tex: "7 + (-4) = +(7 - 4) = \\concept{lime}{3}",
+      tex: steps("7 + (-4)", "= +(7 - 4) = \\concept{lime}{3}"),
       tag: tag("phần 7 lớn hơn: dấu +", POSITIVE),
     },
     {
-      tex: "3 + (-8) = -(8 - 3) = \\concept{pink}{-5}",
+      tex: steps("3 + (-8)", "= -(8 - 3) = \\concept{pink}{-5}"),
       tag: tag("phần 8 lớn hơn: dấu −", NEGATIVE),
     },
     {
-      tex: "(-5) + 2 = -(5 - 2) = \\concept{pink}{-3}",
+      tex: steps("(-5) + 2", "= -(5 - 2) = \\concept{pink}{-3}"),
       tag: tag("phần 5 lớn hơn: dấu −", NEGATIVE),
     },
   ]),
@@ -353,15 +358,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "nhiet-4-giam-6": walk(4, [-6], DIFFERENCE),
   "tru-vi-du": rows("Trừ đi một số là cộng với số đối của nó", [
     {
-      tex: "4 - 6 = 4 + (-6) = \\concept{pink}{-2}",
+      tex: steps("4 - 6", "= 4 + (-6) = \\concept{pink}{-2}"),
       tag: tag("sang trái 6", NEGATIVE),
     },
     {
-      tex: "(-3) - 4 = (-3) + (-4) = \\concept{pink}{-7}",
+      tex: steps("(-3) - 4", "= (-3) + (-4) = \\concept{pink}{-7}"),
       tag: tag("sang trái 4", NEGATIVE),
     },
     {
-      tex: "6 - 6 = 6 + (-6) = \\concept{slate}{0}",
+      tex: steps("6 - 6", "= 6 + (-6) = \\concept{slate}{0}"),
       tag: tag("sang trái 6", NEGATIVE),
     },
   ]),
@@ -372,15 +377,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "xoa-no-5": walk(-5, [5], DIFFERENCE),
   "tru-am-vi-du": rows("Trừ đi một số âm là cộng với số dương", [
     {
-      tex: "2 - (-5) = 2 + 5 = \\concept{lime}{7}",
+      tex: steps("2 - (-5)", "= 2 + 5 = \\concept{lime}{7}"),
       tag: tag("sang phải 5", POSITIVE),
     },
     {
-      tex: "(-3) - (-4) = (-3) + 4 = \\concept{lime}{1}",
+      tex: steps("(-3) - (-4)", "= (-3) + 4 = \\concept{lime}{1}"),
       tag: tag("sang phải 4", POSITIVE),
     },
     {
-      tex: "(-6) - (-6) = (-6) + 6 = \\concept{slate}{0}",
+      tex: steps("(-6) - (-6)", "= (-6) + 6 = \\concept{slate}{0}"),
       tag: tag("sang phải 6", POSITIVE),
     },
   ]),
