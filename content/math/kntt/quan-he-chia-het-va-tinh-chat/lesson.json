@@ -1285,7 +1285,7 @@
           },
           {
             "optionId": "c",
-            "text": "Viết như vậy là đảo hai số: số bị chia 35 phải đứng trước dấu."
+            "text": "Viết như vậy là đảo hai số: 7 bé hơn 35 nên 7 không chia hết cho 35."
           }
         ]
       },
@@ -1351,7 +1351,7 @@
           },
           {
             "optionId": "d",
-            "text": "Viết như vậy là đảo hai số: số bị chia 45 phải đứng trước dấu."
+            "text": "Viết như vậy là đảo hai số: 9 bé hơn 45 nên 9 không chia hết cho 45."
           }
         ]
       },
@@ -1824,7 +1824,17 @@
       },
       "explain": {
         "text": "54 = 9 · 6 nên 54 chia hết cho 9. Chia 54 cho 7 được số dư 5, chia cho 8 được số dư 6.",
-        "tex": "54 = 9 \\cdot 6"
+        "tex": "54 = 9 \\cdot 6",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "54 chia cho 7 dư 5 nên không chia hết."
+          },
+          {
+            "optionId": "c",
+            "text": "54 chia cho 8 dư 6 nên không chia hết."
+          }
+        ]
       },
       "difficulty": 1,
       "options": [
@@ -2869,7 +2879,7 @@
         "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.tong-goi-y-8-12"
       },
       "explain": {
-        "text": "Tổng chia hết cho 8 khi cả hai số hạng đều chia hết cho 8. Cặp 16 và 24, cặp 32 và 40 đều thoả điều kiện đó.",
+        "text": "Tổng chia hết cho 8 khi cả hai số hạng đều chia hết cho 8. Cặp 16 và 24, cặp 32 và 40 đều có cả hai số chia hết cho 8.",
         "tex": "16 = 8 \\cdot 2, \\quad 24 = 8 \\cdot 3",
         "wrong": [
           {
@@ -2939,7 +2949,7 @@
         "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.tong-giai-10-20"
       },
       "explain": {
-        "text": "10 và 20 đều chia hết cho 5 nên tổng chia hết cho 5. Số hộp là 10 : 5 = 2 cộng 20 : 5 = 4, tức 6 hộp.",
+        "text": "10 và 20 đều chia hết cho 5 nên tổng chia hết cho 5. Số hộp là 10 : 5 = 2 hộp và 20 : 5 = 4 hộp, tất cả 6 hộp.",
         "tex": "(10 + 20) : 5 = 2 + 4 = 6"
       },
       "difficulty": 2,
@@ -3440,7 +3450,7 @@
         ]
       },
       "explain": {
-        "text": "Hiệu chia hết cho 7 khi số bị trừ và số trừ đều chia hết cho 7. Cặp 42 và 14, cặp 56 và 21 đều thoả điều kiện đó.",
+        "text": "Hiệu chia hết cho 7 khi số bị trừ và số trừ đều chia hết cho 7. Cặp 42 và 14, cặp 56 và 21 đều có cả hai số chia hết cho 7.",
         "tex": "42 = 7 \\cdot 6, \\quad 14 = 7 \\cdot 2",
         "wrong": [
           {
@@ -3704,7 +3714,7 @@
         ]
       },
       "explain": {
-        "text": "48 chia hết cho 8, nên hiệu 48 − x chia hết cho 8 khi x chia hết cho 8. Nếu x không chia hết cho 8 thì hiệu không chia hết; trong bốn số chỉ có 30 như vậy.",
+        "text": "48 chia hết cho 8. Nên 48 − x chia hết cho 8 khi x chia hết cho 8. Nếu x không chia hết cho 8 thì hiệu không chia hết; trong bốn số chỉ có 30 như vậy.",
         "tex": "30 = 8 \\cdot 3 + 6",
         "wrong": [
           {
@@ -4215,7 +4225,7 @@
         "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.so-du-giai-12-9"
       },
       "explain": {
-        "text": "12 chia hết cho 2, 3, 4 và 6 nên 12 · q cũng vậy. Số dư 9 chỉ chia hết cho 3, nên a chia hết cho 3.",
+        "text": "12 chia hết cho 2, 3, 4 và 6 nên 12 · q cũng vậy. Trong bốn số 2, 3, 4, 6, chỉ có 3 là ước của số dư 9, nên a chia hết cho 3.",
         "tex": "a = 12 \\cdot q + 9",
         "wrong": [
           {
@@ -4584,7 +4594,7 @@
         "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.nhom-goi-y-2"
       },
       "explain": {
-        "text": "Đặt thừa số chung ra ngoài ngoặc: ở cả hai tổng, ngoặc (1 + 9) bằng 10. Tích có thừa số 10 nên chia hết cho 5.",
+        "text": "Đặt thừa số chung ra ngoài ngoặc: ở cả hai tổng, ngoặc (1 + 9) bằng 10. Ngoặc bằng 10, mà 10 chia hết cho 5 nên cả tích chia hết cho 5.",
         "tex": "9 + 9^{2} = 9 \\cdot 10, \\quad 9^{2} + 9^{3} = 9^{2} \\cdot 10",
         "wrong": [
           {
