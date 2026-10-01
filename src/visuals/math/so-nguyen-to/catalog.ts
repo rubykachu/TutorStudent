@@ -49,23 +49,23 @@ export const INTERACTIVE_KINDS: ReadonlySet<SpecKind> = new Set(["chips"]);
 export const VALIDATOR_IDS = { chips: "chon-dung" } as const;
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
-  "xep-16": {
+  "xep-12": {
     kind: "rects",
-    n: 16,
+    n: 12,
     ways: [
-      [1, 16],
-      [2, 8],
-      [4, 4],
+      [1, 12],
+      [2, 6],
+      [3, 4],
     ],
     mode: "steps",
   },
-  "xep-16-xong": {
+  "xep-12-xong": {
     kind: "rects",
-    n: 16,
+    n: 12,
     ways: [
-      [1, 16],
-      [2, 8],
-      [4, 4],
+      [1, 12],
+      [2, 6],
+      [3, 4],
     ],
     mode: "still",
   },
@@ -96,10 +96,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "giai-xep-15": {
     kind: "rects",
     n: 15,
-    ways: [
-      [1, 15],
-      [3, 5],
-    ],
+    ways: [[3, 5]],
     mode: "solution",
   },
   "chon-uoc-18": {
@@ -695,7 +692,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Các số 3a với a từ 0 đến 9",
     rows: [
       {
-        tex: "30,\\ 32,\\ 33,\\ 34,\\ 35,\\ 36,\\ 38,\\ 39",
+        tex: "30,\\ 32,\\ 33,\\ 34",
+        tag: {
+          text: "Hợp số, không có trong bảng",
+          color: "pink",
+        },
+      },
+      {
+        tex: "35,\\ 36,\\ 38,\\ 39",
         tag: {
           text: "Hợp số, không có trong bảng",
           color: "pink",

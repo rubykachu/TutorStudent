@@ -84,7 +84,7 @@
             },
             {
               "type": "visual",
-              "visualId": "so-nguyen-to.visual.xep-16"
+              "visualId": "so-nguyen-to.visual.xep-12"
             }
           ]
         },
@@ -111,7 +111,7 @@
       "practiceIds": ["so-nguyen-to.ex.chon-uoc-14"],
       "recap": {
         "type": "visual",
-        "visualId": "so-nguyen-to.visual.xep-16-xong",
+        "visualId": "so-nguyen-to.visual.xep-12-xong",
         "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
       }
     },
@@ -712,7 +712,7 @@
       "conceptIds": ["so-nguyen-to.concept.uoc"],
       "recap": {
         "type": "visual",
-        "visualId": "so-nguyen-to.visual.xep-16-xong",
+        "visualId": "so-nguyen-to.visual.xep-12-xong",
         "caption": "Muốn tìm các ước của một số khác 0, viết số đó thành tích của hai số theo mọi cách. Mỗi thừa số trong các tích là một ước."
       }
     },
@@ -1395,13 +1395,13 @@
       }
     },
     {
-      "id": "so-nguyen-to.ex.xep-12-cach",
+      "id": "so-nguyen-to.ex.xep-18-cach",
       "type": "choice",
       "cardIds": ["so-nguyen-to.card.hop-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Cho 12 hình vuông đơn vị. Có mấy cách xếp chúng thành hình chữ nhật?"
+          "text": "Cho 18 hình vuông đơn vị. Có mấy cách xếp chúng thành hình chữ nhật?"
         },
         {
           "type": "note",

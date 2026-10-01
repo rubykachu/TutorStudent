@@ -66,10 +66,12 @@ export function Column({ spec }: { spec: SpecOf<"column"> }) {
           <div className="min-h-10 w-full" aria-live="polite">
             <Reveal shown={previous !== undefined} placeholder={<Pending />}>
               {previous?.prime !== undefined && (
-                <Formula
-                  tex={`${previous.value} : ${previous.prime} = ${previous.value / previous.prime}`}
-                  className="text-block"
-                />
+                <p className="text-center">
+                  <Formula
+                    tex={`${previous.value} : ${previous.prime} = ${previous.value / previous.prime}`}
+                    className="text-block"
+                  />
+                </p>
               )}
             </Reveal>
           </div>

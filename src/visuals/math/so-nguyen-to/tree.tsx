@@ -4,6 +4,7 @@ import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { FormulaRow, Pending } from "@/visuals/shared/formula-rows";
 import { Legend } from "@/visuals/shared/math-parts";
+import { decorative } from "@/visuals/shared/markers";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";
@@ -67,6 +68,7 @@ function NodeShape({
     return (
       <g opacity={state === "pending" ? 0.4 : 1}>
         <circle
+          {...decorative}
           cx={x}
           cy={y}
           r={RADIUS}
@@ -91,6 +93,7 @@ function NodeShape({
   return (
     <g>
       <circle
+        {...decorative}
         cx={x}
         cy={y}
         r={RADIUS}
@@ -109,6 +112,7 @@ function NodeShape({
         {node.n}
       </text>
       <ConceptShape
+        {...decorative}
         color={color}
         cx={x + RADIUS - 2}
         cy={y - RADIUS + 2}
@@ -165,6 +169,7 @@ export function Tree({ spec }: { spec: SpecOf<"tree"> }) {
             const y2 = PAD + RADIUS + to.depth * ROW_H - RADIUS;
             return (
               <line
+                {...decorative}
                 key={`${from.index}-${to.index}`}
                 x1={from.x}
                 y1={y1}

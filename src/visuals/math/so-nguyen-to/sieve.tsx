@@ -3,6 +3,7 @@
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { Legend } from "@/visuals/shared/math-parts";
+import { decorative } from "@/visuals/shared/markers";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";
 import { isPrime, SIEVE_LIMIT, SIEVE_PRIMES } from "./logic";
@@ -10,8 +11,10 @@ import { isPrime, SIEVE_LIMIT, SIEVE_PRIMES } from "./logic";
 const COLS = 10;
 const CELL_W = 36;
 const CELL_H = 32;
-const FONT = 18;
-const MARK = 5;
+const FONT = 20;
+// Three digits ("100") would touch the cell edges at the usual size.
+const SMALL_FONT = 16;
+const MARK = 4;
 const WIDTH = COLS * CELL_W;
 const HEIGHT = (SIEVE_LIMIT / COLS) * CELL_H;
 
@@ -44,6 +47,7 @@ function Cell({ n, step }: { n: number; step: number }) {
   return (
     <g>
       <rect
+        {...decorative}
         x={x + 1}
         y={y + 1}
         width={CELL_W - 2}
@@ -61,7 +65,7 @@ function Cell({ n, step }: { n: number; step: number }) {
         y={y + CELL_H / 2}
         textAnchor="middle"
         dominantBaseline="central"
-        fontSize={FONT}
+        fontSize={n >= SIEVE_LIMIT ? SMALL_FONT : FONT}
         fontWeight={prime ? 700 : 500}
         className={`font-heading tabular-nums ${text}`}
         opacity={crossed ? 0.55 : 1}
@@ -71,6 +75,7 @@ function Cell({ n, step }: { n: number; step: number }) {
       {crossed && (
         <>
           <line
+            {...decorative}
             x1={x + 5}
             y1={y + CELL_H - 5}
             x2={x + CELL_W - 5}
@@ -79,18 +84,20 @@ function Cell({ n, step }: { n: number; step: number }) {
             strokeWidth={2}
           />
           <ConceptShape
+            {...decorative}
             color="pink"
-            cx={x + CELL_W - MARK - 3}
-            cy={y + MARK + 3}
+            cx={x + CELL_W - MARK - 2}
+            cy={y + MARK + 2}
             r={MARK}
           />
         </>
       )}
       {prime && (
         <ConceptShape
+          {...decorative}
           color="sky"
-          cx={x + CELL_W - MARK - 3}
-          cy={y + MARK + 3}
+          cx={x + CELL_W - MARK - 2}
+          cy={y + MARK + 2}
           r={MARK}
         />
       )}
@@ -100,21 +107,18 @@ function Cell({ n, step }: { n: number; step: number }) {
 
 function Table({ step }: { step: number }) {
   return (
-    <div className="flex w-full flex-col items-center gap-3">
+    <div className="flex w-full flex-col items-center gap-2">
       <svg
         role="img"
         aria-label={STEP_LABELS[step]}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        className="h-auto w-full max-w-md"
+        className="h-auto w-full max-w-[300px]"
       >
         {Array.from({ length: SIEVE_LIMIT }, (_, i) => (
           <Cell key={i + 1} n={i + 1} step={step} />
         ))}
       </svg>
-      <p
-        className="min-h-8 text-center text-caption font-semibold"
-        aria-live="polite"
-      >
+      <p className="text-center text-caption font-semibold" aria-live="polite">
         {STEP_LABELS[step]}
       </p>
       <Legend

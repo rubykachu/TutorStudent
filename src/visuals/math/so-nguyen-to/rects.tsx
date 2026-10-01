@@ -7,10 +7,12 @@ import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";
 import { divisorsOf, texList } from "./logic";
 
-const CELL = 22;
-const GAP = 3;
-// Height of the caption and the formula under a rectangle.
-const TEXT_HEIGHT = 76;
+const CELL = 14;
+const GAP = 2;
+// Widest a square may be drawn, in px, where the screen has room to spare.
+const MAX_CELL = 18;
+// Height of the caption line under a rectangle.
+const CAPTION_HEIGHT = 32;
 
 // What the verdict row says once the divisors are listed.
 const VERDICTS = {
@@ -24,22 +26,29 @@ function Arrangement({
   n,
   rows,
   perRow,
+  widest,
 }: {
   n: number;
   rows: number;
   perRow: number;
+  // Squares per row of the longest rectangle: all rectangles share one square
+  // size, so each is drawn as wide as its share of that row.
+  widest: number;
 }) {
   const width = perRow * (CELL + GAP) - GAP;
   const height = rows * (CELL + GAP) - GAP;
   const label = `${rows} hàng, mỗi hàng ${perRow} ô`;
   return (
-    <figure className="flex flex-col items-center gap-1">
+    <figure className="flex w-full flex-col items-center gap-1">
       <svg
         role="img"
         aria-label={label}
         viewBox={`0 0 ${width} ${height}`}
-        width={width}
-        style={{ maxWidth: "100%", height: "auto" }}
+        style={{
+          width: `${(perRow / widest) * 100}%`,
+          maxWidth: perRow * (MAX_CELL + GAP),
+          height: "auto",
+        }}
       >
         {Array.from({ length: rows * perRow }, (_, i) => (
           <rect
@@ -49,14 +58,19 @@ function Arrangement({
             y={Math.floor(i / perRow) * (CELL + GAP)}
             width={CELL}
             height={CELL}
-            rx={4}
+            rx={3}
             className="fill-highlight stroke-muted-foreground"
             strokeWidth={1.5}
           />
         ))}
       </svg>
-      <figcaption className="text-caption">{label}</figcaption>
-      <Formula tex={`${n} = ${perRow} \\cdot ${rows}`} className="text-block" />
+      <figcaption className="flex flex-wrap items-baseline justify-center gap-x-3">
+        <span className="text-caption">{label}</span>
+        <Formula
+          tex={`${n} = ${perRow} \\cdot ${rows}`}
+          className="whitespace-nowrap text-body-lg"
+        />
+      </figcaption>
     </figure>
   );
 }
@@ -68,6 +82,7 @@ export function Rects({ spec }: { spec: SpecOf<"rects"> }) {
   const { n, ways, mode, verdict } = spec;
   const hint = mode === "hint";
   const divisors = divisorsOf(n);
+  const widest = Math.max(...ways.map(([, perRow]) => perRow));
   const listStep = ways.length;
   const verdictStep = ways.length + 1;
   const total = ways.length + 1 + (verdict ? 1 : 0);
@@ -78,19 +93,23 @@ export function Rects({ spec }: { spec: SpecOf<"rects"> }) {
   const draw = (step: number) => {
     const still = mode === "still";
     return (
-      <div className="flex w-full flex-col items-center gap-4">
-        <ul className="flex flex-wrap items-start justify-center gap-4">
+      <div className="flex w-full flex-col items-center gap-3">
+        <ul className="flex w-full flex-col gap-3">
           {ways.map(([rows, perRow], i) => (
             <li
               key={`${rows}-${perRow}`}
               className="flex items-center justify-center"
               style={{
-                minWidth: Math.min(perRow * (CELL + GAP), 160),
-                minHeight: rows * (CELL + GAP) + TEXT_HEIGHT,
+                minHeight: rows * (MAX_CELL + GAP) + CAPTION_HEIGHT,
               }}
             >
               <Reveal shown={still || step >= i} placeholder={<Pending />}>
-                <Arrangement n={n} rows={rows} perRow={perRow} />
+                <Arrangement
+                  n={n}
+                  rows={rows}
+                  perRow={perRow}
+                  widest={widest}
+                />
               </Reveal>
             </li>
           ))}
