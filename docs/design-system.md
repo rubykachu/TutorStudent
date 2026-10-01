@@ -137,7 +137,7 @@ Màn thưởng (xong phần, nhận sticker, bảng sticker đã nhận) giữ h
 
 Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bóng của cú: thẻ trả lời rung và có viền cam nét đứt; phần trả lời sai có viền cam nét đứt (vùng chạm: vòng cam nét đứt). Gợi ý tác giả trỏ vào đề (khối, phần công thức, câu) và phím "mũ" được viền/gạch chân bằng màu khái niệm của đích gợi ý, không có khái niệm thì `--color-concept-slate`. Nấc 2 khi không có visual gợi ý: cùng viền đó, dày hơn. `--color-highlight` chỉ dành cho trạng thái đang chọn.
 
-Ô bé chọn mà sai ở nấc 1-3 giữ nguyên là đã chọn (dấu chọn còn) nhưng viền `--color-retry` nét đứt (`WRONG_PICK_TONE`); đáp án của bé không bao giờ bị máy bỏ chọn hay sửa. Chip của màn lý thuyết "cùng làm" (`Chips` có `wants`): đúng thì chip `--color-correct` nền đặc kèm dấu ✓, sai thì nền `--color-retry-soft`, viền cam nét đứt; nút phụ "Xem cách làm" (viền `--color-border`, biểu tượng mắt) nằm dưới chip khi chưa xong.
+Ô bé chọn mà sai ở nấc 1-3 giữ nguyên là đã chọn (dấu chọn còn) nhưng viền `--color-retry` nét đứt (`WRONG_PICK_TONE`); đáp án của bé không bao giờ bị máy bỏ chọn hay sửa. Chip của màn lý thuyết "cùng làm" (`Chips` có `wants`): đúng thì chip `--color-correct` nền đặc kèm dấu ✓, sai thì nền `--color-retry-soft`, viền cam nét đứt; nút phụ "Xem cách làm" (viền `--color-border`, biểu tượng mắt) nằm trong thanh dưới bên trái "Tiếp" (đang tắt) khi chưa xong, cùng cách xếp với nút "Bỏ qua" của bài tập.
 
 Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên trái) và "Tiếp" (chính, bên phải).
 

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import type { VisualProps, VisualState } from "@/visuals/registry";
-import { ShowHowButton, useGuidedTask } from "@/visuals/shared/guided-step";
+import { useGuidedTask } from "@/visuals/shared/guided-step";
 import { stateSet } from "@/visuals/shared/markers";
 
 const CHIP =
@@ -60,7 +60,7 @@ type Verdict = "none" | "wrong" | "right";
 // chosen the answer is judged at once. Right: the chips turn green, the
 // jingle plays and `done` is shown, and the screen's "Tiếp" works. Wrong: the
 // wrong picks are marked and the child tries again, with nothing revealed.
-// "Xem cách làm" shows the chips to pick and lets the child go on.
+// "Xem cách làm" (in the player's bar) shows the chips to pick.
 export function Chips({
   items,
   wants,
@@ -86,7 +86,6 @@ export function Chips({
   }
   const verdict = shown ? "none" : judge(picks);
   const accepted = verdict === "right" || shown;
-  useGuidedTask(wants === undefined || accepted);
 
   const chosen = shown && wants ? wants : picks;
   const state: VisualState =
@@ -119,6 +118,7 @@ export function Chips({
     setShown(true);
     setPicks(wants ?? []);
   }
+  useGuidedTask(wants === undefined || accepted, show);
 
   const tone = (i: number) =>
     (shown || verdict === "right") && picked(i)
@@ -182,7 +182,6 @@ export function Chips({
           Các số tô xanh là đáp án.
         </p>
       )}
-      {wants && !accepted && !locked && <ShowHowButton onShow={show} />}
     </div>
   );
 }

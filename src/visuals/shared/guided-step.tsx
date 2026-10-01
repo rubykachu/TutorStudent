@@ -1,13 +1,14 @@
 "use client";
 
-import { Eye } from "lucide-react";
 import {
   createContext,
   type ReactNode,
+  useCallback,
   useContext,
   useId,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -15,17 +16,28 @@ import {
 // the child has to do (pick the right chips, fix the cut, tap each operation)
 // before the screen's "Tiếp" works. The player wraps the screen in
 // `GuidedStepProvider`; each visual that is a task calls `useGuidedTask` with
-// whether it is finished (done right, or its answer shown). Outside a
+// whether it is finished (done right, or its answer shown) and a function
+// that shows how it is done. The player reads `useGuided` for its bar: "Tiếp"
+// stays off while a task is open, next to a small "Xem cách làm" that runs the
+// open tasks' show functions, the way out of a stuck child. Outside a
 // provider (an exercise, a gallery, an earlier screen looked at again) a task
 // is free and nothing waits.
 
 type Tasks = {
   set: (id: string, done: boolean) => void;
+  setShow: (id: string, show: () => void) => void;
   remove: (id: string) => void;
 };
 
+export type Guided = {
+  // A task of the screen is still open: "Tiếp" stays off.
+  held: boolean;
+  // Shows how every open task is done; each then counts as finished.
+  show: () => void;
+};
+
 const TasksContext = createContext<Tasks | null>(null);
-const HeldContext = createContext(false);
+const GuidedContext = createContext<Guided>({ held: false, show: () => {} });
 
 export function GuidedStepProvider({
   enabled = true,
@@ -36,36 +48,49 @@ export function GuidedStepProvider({
   children: ReactNode;
 }) {
   const [done, setDone] = useState<Readonly<Record<string, boolean>>>({});
+  const shows = useRef<Record<string, () => void>>({});
   const tasks = useMemo<Tasks>(
     () => ({
       set: (id, value) =>
         setDone((all) => (all[id] === value ? all : { ...all, [id]: value })),
-      remove: (id) =>
+      setShow: (id, show) => {
+        shows.current[id] = show;
+      },
+      remove: (id) => {
+        delete shows.current[id];
         setDone((all) => {
           const { [id]: _gone, ...rest } = all;
           return rest;
-        }),
+        });
+      },
     }),
     [],
   );
-  const held = enabled && Object.values(done).some((finished) => !finished);
+  const open = Object.keys(done).filter((id) => !done[id]);
+  const show = useCallback(() => {
+    for (const id of open) shows.current[id]?.();
+  }, [open]);
+  const guided = useMemo<Guided>(
+    () => ({ held: enabled && open.length > 0, show }),
+    [enabled, open.length, show],
+  );
   return (
     <TasksContext value={enabled ? tasks : null}>
-      <HeldContext value={held}>{children}</HeldContext>
+      <GuidedContext value={guided}>{children}</GuidedContext>
     </TasksContext>
   );
 }
 
-// Whether the screen still waits for the child: `Tiếp` stays off while true.
-export function useGuidedHold(): boolean {
-  return useContext(HeldContext);
+// What the player needs for its bar: whether "Tiếp" waits and how to show.
+export function useGuided(): Guided {
+  return useContext(GuidedContext);
 }
 
-// Registers the calling visual as a task of its screen, finished or not. A
-// task that was finished once stays finished (the child may keep playing with
-// it or start it over), so "Tiếp" never locks again. A layout effect, so the
-// screen waits from its first paint.
-export function useGuidedTask(finished: boolean): void {
+// Registers the calling visual as a task of its screen. A task that was
+// finished once stays finished (the child may keep playing with it or start
+// it over), so "Tiếp" never locks again. A layout effect, so the screen waits
+// from its first paint.
+export function useGuidedTask(finished: boolean, show: () => void): void {
   const tasks = useContext(TasksContext);
   const id = useId();
   const [reached, setReached] = useState(false);
@@ -73,21 +98,8 @@ export function useGuidedTask(finished: boolean): void {
   useLayoutEffect(() => {
     tasks?.set(id, reached);
   }, [tasks, id, reached]);
+  useLayoutEffect(() => {
+    tasks?.setShow(id, show);
+  });
   useLayoutEffect(() => () => tasks?.remove(id), [tasks, id]);
-}
-
-// The small way out of a task: shows how it is done, so a child who is stuck
-// can go on. The visual draws the answer and counts itself finished.
-export function ShowHowButton({ onShow }: { onShow: () => void }) {
-  return (
-    <button
-      type="button"
-      data-guided-show
-      onClick={onShow}
-      className="inline-flex min-h-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 text-caption font-semibold text-muted-foreground motion-safe:transition-transform motion-safe:active:scale-97"
-    >
-      <Eye aria-hidden className="size-5" />
-      Xem cách làm
-    </button>
-  );
 }

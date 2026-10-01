@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import type { VisualProps } from "@/visuals/registry";
-import { ShowHowButton, useGuidedTask } from "@/visuals/shared/guided-step";
+import { useGuidedTask } from "@/visuals/shared/guided-step";
 import {
   type RegionInteraction,
   type RegionMark,
@@ -52,9 +52,6 @@ export function TryIt({
 
   const expected = nextOperation(tokens);
   const finished = expected === undefined;
-  // The screen's "Tiếp" waits until the child has worked the expression to
-  // its result, by themselves or after "Xem cách làm".
-  useGuidedTask(finished);
 
   function tap(id: string) {
     const index = operationIndices(tokens)[Number(id.slice(2)) - 1];
@@ -106,6 +103,10 @@ export function TryIt({
     setAccepted(null);
     onStateChange?.({ done: lines.length });
   }
+
+  // The screen's "Tiếp" waits until the child has worked the expression to
+  // its result, by themselves or after "Xem cách làm".
+  useGuidedTask(finished, showHow);
 
   function restart() {
     setHistory([]);
@@ -174,18 +175,15 @@ export function TryIt({
           <ChevronRight aria-hidden className="size-5" />
         </button>
       ) : (
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <button
-            type="button"
-            onClick={restart}
-            disabled={history.length === 0}
-            className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50"
-          >
-            <RotateCcw aria-hidden className="size-5" />
-            Làm lại
-          </button>
-          {!finished && <ShowHowButton onShow={showHow} />}
-        </div>
+        <button
+          type="button"
+          onClick={restart}
+          disabled={history.length === 0}
+          className="inline-flex min-h-touch min-w-touch items-center justify-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold disabled:opacity-50"
+        >
+          <RotateCcw aria-hidden className="size-5" />
+          Làm lại
+        </button>
       )}
     </div>
   );

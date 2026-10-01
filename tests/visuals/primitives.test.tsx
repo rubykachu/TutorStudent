@@ -20,6 +20,7 @@ import {
   STATE_VALUE_ATTR,
 } from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
+import { GuidedStepProvider, useGuided } from "@/visuals/shared/guided-step";
 import { Chips } from "@/visuals/shared/pick-chips";
 import { Reveal } from "@/visuals/shared/reveal";
 
@@ -415,12 +416,24 @@ describe("Chips", () => {
     expect(screen.getByRole("button", { name: "4" })).toHaveClass("bg-correct");
     // A right answer stays on screen, locked.
     expect(screen.getByRole("button", { name: "1" })).toBeDisabled();
-    expect(screen.queryByRole("button", { name: "Xem cách làm" })).toBeNull();
   });
 
-  it("shows the answer on request without claiming the child chose it", () => {
+  it("shows the answer when the screen asks for it, without claiming the child chose it", () => {
+    function Screen() {
+      const { show } = useGuided();
+      return (
+        <>
+          <Chips items={["1", "2", "4"]} wants={[1]} done="Đúng!" />
+          <button type="button" onClick={show}>
+            Xem cách làm
+          </button>
+        </>
+      );
+    }
     const { container } = render(
-      <Chips items={["1", "2", "4"]} wants={[1]} done="Đúng!" />,
+      <GuidedStepProvider>
+        <Screen />
+      </GuidedStepProvider>,
     );
     fireEvent.click(screen.getByRole("button", { name: "Xem cách làm" }));
     expect(screen.getByRole("button", { name: "2" })).toHaveClass("bg-correct");

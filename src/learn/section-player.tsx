@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, CircleCheck } from "lucide-react";
+import { ChevronRight, CircleCheck, Eye } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -57,10 +57,7 @@ import {
 import { saveOpenEndedWriting } from "@/progress/writing";
 import type { Lesson, OpenEndedExercise, Section } from "@/schema/content";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
-import {
-  GuidedStepProvider,
-  useGuidedHold,
-} from "@/visuals/shared/guided-step";
+import { GuidedStepProvider, useGuided } from "@/visuals/shared/guided-step";
 
 type SectionPlayerProps = {
   db: TutorDb;
@@ -422,14 +419,30 @@ function StepView({
   }
 }
 
-// "Tiếp" of a theory screen, off while a guided task on it is unfinished.
+// "Tiếp" of a theory screen. While a guided task on it is open it is off, and
+// a small "Xem cách làm" beside it shows the answer and lets the child go on.
 function NextButton({ onClick }: { onClick: () => void }) {
-  const held = useGuidedHold();
-  return (
+  const { held, show } = useGuided();
+  const next = (
     <BigButton onClick={onClick} disabled={held}>
       Tiếp
       <ChevronRight aria-hidden className="size-6" />
     </BigButton>
+  );
+  if (!held) return next;
+  return (
+    <div className="grid grid-cols-[auto_1fr] gap-3">
+      <BigButton
+        variant="secondary"
+        onClick={show}
+        data-guided-show
+        className="px-5 text-muted-foreground"
+      >
+        <Eye aria-hidden className="size-6" />
+        Xem cách làm
+      </BigButton>
+      {next}
+    </div>
   );
 }
 

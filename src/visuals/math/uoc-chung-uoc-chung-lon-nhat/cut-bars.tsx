@@ -8,7 +8,7 @@ import type { ConceptColor } from "@/schema/content";
 import type { VisualProps, VisualState } from "@/visuals/registry";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import type { Mode } from "@/visuals/shared/formula-rows";
-import { ShowHowButton, useGuidedTask } from "@/visuals/shared/guided-step";
+import { useGuidedTask } from "@/visuals/shared/guided-step";
 import { decorative } from "@/visuals/shared/markers";
 import { Hole, Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
@@ -340,7 +340,6 @@ export function CutTry({
   const largest = shown
     ? `Đoạn dài nhất cắt vừa hết ${all} dải là ${d} ${UNIT}.`
     : `${lead}${d} ${UNIT} là đoạn dài nhất cắt vừa hết ${all} dải.`;
-  useGuidedTask(goal === undefined || finished || shown);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: report the opening state once, on mount
   useEffect(() => {
@@ -363,6 +362,7 @@ export function CutTry({
     setShown(true);
     setOwn(Math.max(gcdOf(totals), PIECE_RANGE.min));
   }
+  useGuidedTask(goal === undefined || finished || shown, show);
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
@@ -391,7 +391,6 @@ export function CutTry({
             : `${lead}Đoạn ${d} ${UNIT} cắt vừa hết ${all} dải.`}
         </p>
       )}
-      {goal && !finished && !locked && <ShowHowButton onShow={show} />}
       <Legend items={cutLegend(!fits, false)} />
     </div>
   );

@@ -1,19 +1,36 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { useState } from "react";
 import { describe, expect, it } from "vitest";
 import { TryIt } from "@/visuals/math/thu-tu-thuc-hien-phep-tinh/try-it";
 import { CutTry } from "@/visuals/math/uoc-chung-uoc-chung-lon-nhat/cut-bars";
 import {
   GuidedStepProvider,
-  useGuidedHold,
+  useGuided,
   useGuidedTask,
 } from "@/visuals/shared/guided-step";
 
+// What the player's bar does: "Tiếp" waits while held, and the show button
+// asks every open task to show how.
 function Held() {
-  return <output>{useGuidedHold() ? "waiting" : "free"}</output>;
+  const { held, show } = useGuided();
+  return (
+    <>
+      <output>{held ? "waiting" : "free"}</output>
+      <button type="button" onClick={show}>
+        Xem cách làm
+      </button>
+    </>
+  );
 }
 
-function Task({ finished }: { finished: boolean }) {
-  useGuidedTask(finished);
+function Task({
+  finished,
+  show = () => {},
+}: {
+  finished: boolean;
+  show?: () => void;
+}) {
+  useGuidedTask(finished, show);
   return null;
 }
 
@@ -40,6 +57,26 @@ describe("guided step", () => {
         <Held />
       </GuidedStepProvider>,
     );
+    expect(screen.getByText("free")).toBeInTheDocument();
+  });
+
+  it("shows how every open task is done when asked", () => {
+    function Showing() {
+      const [shown, setShown] = useState(false);
+      return (
+        <>
+          <Task finished={shown} show={() => setShown(true)} />
+          <Held />
+        </>
+      );
+    }
+    render(
+      <GuidedStepProvider>
+        <Showing />
+      </GuidedStepProvider>,
+    );
+    expect(screen.getByText("waiting")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Xem cách làm" }));
     expect(screen.getByText("free")).toBeInTheDocument();
   });
 
@@ -76,7 +113,6 @@ describe("try-it screen as a guided task", () => {
     fireEvent.click(screen.getByRole("button", { name: "Xem cách làm" }));
     expect(screen.getByText("Xong rồi.")).toBeInTheDocument();
     expect(screen.getByText("free")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Xem cách làm" })).toBeNull();
   });
 
   it("is free when the child works it out alone, and stays free after starting over", () => {
@@ -122,6 +158,5 @@ describe("cut screen as a guided task", () => {
       </GuidedStepProvider>,
     );
     expect(screen.getByText("free")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Xem cách làm" })).toBeNull();
   });
 });
