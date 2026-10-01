@@ -44,7 +44,7 @@ export function Column({ spec }: { spec: SpecOf<"column"> }) {
               <li key={i}>
                 <Reveal shown={i <= reach} placeholder={undefined}>
                   <span
-                    className={`block min-w-20 px-3 py-1 text-right ${NUMBER}`}
+                    className={`block min-w-20 px-3 py-0.5 text-right ${NUMBER}`}
                   >
                     {hide.includes(2 * i) ? <Hole /> : row.value}
                   </span>
@@ -58,7 +58,7 @@ export function Column({ spec }: { spec: SpecOf<"column"> }) {
               <li key={i}>
                 <Reveal shown={i <= reach} placeholder={undefined}>
                   <span
-                    className={`block min-w-16 px-3 py-1 ${NUMBER} ${CONCEPT_CLASSES.sky.text}`}
+                    className={`block min-w-16 px-3 py-0.5 ${NUMBER} ${CONCEPT_CLASSES.sky.text}`}
                   >
                     {row.prime === undefined ? (
                       // Keeps the row as tall as the numbers on its left.
