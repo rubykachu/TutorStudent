@@ -35,6 +35,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Open follow-ups
 
+- Owner feedback of 01/10/2026 (explanation after every answer, tips, overview tied to daily life, video pacing): [`feedback-2026-10-01-explain-tips-pacing/task.md`](feedback-2026-10-01-explain-tips-pacing/task.md). Next: `explain` for the four chapter II lessons, `tips.json` for Bài 8 to 11.
 - Owner feedback of 01/10/2026 (new sounds, avatars, section cards; the music box was dropped): [`feedback-2026-10-01-music-avatars/task.md`](feedback-2026-10-01-music-avatars/task.md).
 - Owner feedback of 01/10/2026 (sounds, stickers, background): [`feedback-2026-10-01-sounds-stickers-background/task.md`](feedback-2026-10-01-sounds-stickers-background/task.md).
 - Owner feedback of 01/10/2026 (sections A and B): [`archive/feedback-2026-10-01/task.md`](archive/feedback-2026-10-01/task.md). All of it is done and archived ([`archive/feedback-2026-10-01/task.md`](archive/feedback-2026-10-01/task.md)); the voice rule and the opening-line rule live in skill `lesson-video`.
