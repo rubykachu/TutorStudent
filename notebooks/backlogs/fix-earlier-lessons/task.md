@@ -65,11 +65,11 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 |---|---|---|---|
 | thu-tu-thuc-hien-phep-tinh#1 | mp4 `hoa-don` vẫn khoanh hồng cách làm sai của Lan | bỏ: dựng lại video | |
 | thu-tu-thuc-hien-phep-tinh#2 | Whisper nghe méo "ngoặc vuông", "ngoặc nhọn" ở video `ngoac-long` | bỏ: âm thanh, chủ dự án nghe | |
-| thu-tu-thuc-hien-phep-tinh#3 | Nhãn cột sai của `tong-hop-dong-viet-lai` là "Sai: cộng trước" | sửa: "Sai: làm 5 + 3 trước" | |
-| thu-tu-thuc-hien-phep-tinh#4 | Caption câu chuyện mua quà (ngoặc lồng) không nói 32 là số tiền gì | sửa | |
-| thu-tu-thuc-hien-phep-tinh#5 | `chon-nhieu-luy-thua-truoc` có lựa chọn `(1 + 2) · 3²` cần biết ngoặc trước luỹ thừa | sửa: đổi lựa chọn | |
-| thu-tu-thuc-hien-phep-tinh#6 | Hình gợi ý `tim-x-1-goi-y`, `tim-x-2-goi-y` dùng đẳng thức không có nghiệm tự nhiên | sửa | |
-| thu-tu-thuc-hien-phep-tinh#7 | Chú thích màn cùng làm dùng "để tính ra nó", đọc vấp | sửa (6 caption) | |
+| thu-tu-thuc-hien-phep-tinh#3 | Nhãn cột sai của `tong-hop-dong-viet-lai` là "Sai: cộng trước" | sửa: "Sai: làm 5 + 3 trước" |  đã sửa, review vòng 7 đạt (0 Nghiêm trọng), đã duyệt |
+| thu-tu-thuc-hien-phep-tinh#4 | Caption câu chuyện mua quà (ngoặc lồng) không nói 32 là số tiền gì | sửa |  đã sửa, review vòng 7 đạt (0 Nghiêm trọng), đã duyệt |
+| thu-tu-thuc-hien-phep-tinh#5 | `chon-nhieu-luy-thua-truoc` có lựa chọn `(1 + 2) · 3²` cần biết ngoặc trước luỹ thừa | sửa: đổi lựa chọn |  đã sửa, review vòng 7 đạt (0 Nghiêm trọng), đã duyệt; còn Góp ý: ba nhiễu của câu này đều không có luỹ thừa |
+| thu-tu-thuc-hien-phep-tinh#6 | Hình gợi ý `tim-x-1-goi-y`, `tim-x-2-goi-y` dùng đẳng thức không có nghiệm tự nhiên | sửa |  đã sửa, review vòng 7 đạt (0 Nghiêm trọng), đã duyệt |
+| thu-tu-thuc-hien-phep-tinh#7 | Chú thích màn cùng làm dùng "để tính ra nó", đọc vấp | sửa (6 caption) |  đã sửa, review vòng 7 đạt (0 Nghiêm trọng), đã duyệt |
 | thu-tu-thuc-hien-phep-tinh#8 | `overview.summary` dài 3 câu, chưa nhắc biểu thức chứa chữ | bỏ: lời đọc tổng quan đọc đúng chữ này | |
 | thu-tu-thuc-hien-phep-tinh#9 | Section `bieu-thuc-chu`, `tim-so-chua-biet` chưa có màn "cùng làm" | bỏ: cần visual tương tác mới | |
 | thu-tu-thuc-hien-phep-tinh#10 | Bài 1.64a, 1.67 của sách: `expression.ts` chưa nhận luỹ thừa của nhóm ngoặc | bỏ: tính năng app | |

@@ -1,5 +1,7 @@
 # Bài thu-tu-thuc-hien-phep-tinh: mục không chặn
 
+Đã sửa ở vòng 7 (caption, nhãn, hình gợi ý `tim-x-*`, một nhiễu); phần còn lại kiểm kê tại `notebooks/backlogs/fix-earlier-lessons/task.md`. Lời giải `tim-x-kiem-tra-giai` lặp dòng "2x + 6 = 14" vẫn mở.
+
 Các mục Nên sửa và Góp ý còn lại sau các vòng review, không chặn xuất bản.
 
 - Section `bieu-thuc-chu` chưa có màn "cùng làm" tương tác (trẻ chạm chữ để thay bằng số). Cần một visual mới.
@@ -11,12 +13,7 @@ Các mục Nên sửa và Góp ý còn lại sau các vòng review, không chặ
 - Màu concept `bang-nhan` và `nhan-hai-chu-so` (violet) trùng màu "số mũ" của bài luỹ thừa; hiện chưa hiện cho trẻ.
 - Phím "mũ" của bàn phím số hiện ở mọi câu số (việc của app).
 - Một số câu kho ôn dùng số gần với ví dụ trên màn quy tắc.
-- Nhãn cột sai của `tong-hop-dong-viet-lai` còn là "Sai: cộng trước"; đổi thành "Sai: làm 5 + 3 trước".
-- Caption câu chuyện mua quà (section ngoặc lồng) chưa nói 32 là số tiền gì.
-- `chon-nhieu-luy-thua-truoc` có lựa chọn `(1 + 2) · 3²` cần biết ngoặc trước luỹ thừa; thêm card `tinh-day-du` vào cardIds hoặc đổi lựa chọn.
 - `overview.summary` còn dài 3 câu và chưa nhắc biểu thức chứa chữ.
-- Hình gợi ý `tim-x-1-goi-y`, `tim-x-2-goi-y` dùng đẳng thức không có nghiệm tự nhiên; lời giải `tim-x-kiem-tra-giai` lặp dòng "2x + 6 = 14".
-- Chú thích màn cùng làm dùng cụm "để tính ra nó", đọc hơi vấp.
 
 ## Từ các luật lessons-learned (30/09/2026)
 
