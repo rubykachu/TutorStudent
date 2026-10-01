@@ -1582,8 +1582,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Tra bảng nhân: 7 · 8 = 56. Nếu quên, hãy nhớ dãy 5, 6, 7, 8: 56 = 7 · 8.",
-        "tex": "7 \\cdot 8 = \\concept{amber}{56}"
+        "text": "Theo bảng nhân, 7 · 8 = 56. Nếu quên, nhân đôi: 7 · 4 = 28, rồi 28 + 28 = 56.",
+        "tex": "7 \\cdot 8 = 7 \\cdot 4 + 7 \\cdot 4 = 28 + 28 = \\concept{amber}{56}"
       }
     },
     {
@@ -1656,7 +1656,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tra bảng nhân: 9 · 6 = 54. Cách nhẩm: 10 · 6 = 60, bớt đi một lần 6 thì còn 54.",
+        "text": "Theo bảng nhân, 9 · 6 = 54. Cách nhẩm: 10 · 6 = 60, bớt đi một lần 6 thì còn 54.",
         "tex": "9 \\cdot 6 = 10 \\cdot 6 - 6 = 60 - 6 = \\concept{amber}{54}"
       }
     },
@@ -2386,7 +2386,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Biểu thức có nhân hoặc chia thì làm phép nhân hoặc chia trước. Ba biểu thức đúng đều có nhân hoặc chia, được khoanh hồng.",
+        "text": "Biểu thức có nhân hoặc chia thì làm phép nhân hoặc chia trước. Ba biểu thức đúng đều có nhân hoặc chia, được tô hồng.",
         "tex": "\\begin{aligned} 8 + \\concept{pink}{2 \\cdot 5} \\\\ 9 - \\concept{pink}{6 : 3} \\\\ \\concept{pink}{12 : 4} \\cdot 3 \\end{aligned}",
         "wrong": [
           {
@@ -2691,7 +2691,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Phép tính trong ngoặc luôn làm đầu tiên. Ba biểu thức đúng đều có ngoặc, phép trong ngoặc được khoanh hồng.",
+        "text": "Phép tính trong ngoặc luôn làm đầu tiên. Ba biểu thức đúng đều có ngoặc, phép trong ngoặc được tô hồng.",
         "tex": "\\begin{aligned} 6 \\cdot \\concept{pink}{(2 + 3)} \\\\ \\concept{pink}{(9 - 4)} \\cdot 2 \\\\ 3 \\cdot 5 - \\concept{pink}{(8 - 6)} \\end{aligned}",
         "wrong": [
           {
@@ -3278,7 +3278,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Biểu thức có luỹ thừa thì làm luỹ thừa đầu tiên. Hai biểu thức đúng có 2² và 2³, được khoanh hồng.",
+        "text": "Biểu thức có luỹ thừa thì làm luỹ thừa đầu tiên. Hai biểu thức đúng có 2² và 2³, được tô hồng.",
         "tex": "\\begin{aligned} 4 + 3 \\cdot \\concept{pink}{2^{2}} \\\\ \\concept{pink}{2^{3}} - 6 : 3 \\end{aligned}",
         "wrong": [
           {
@@ -3378,8 +3378,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Luỹ thừa làm trước: 2³ = 8 và 3² = 9. Rồi nhân 5 · 8 = 40, cuối cùng trừ 40 − 9 = 31.",
-        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{2^{3}}-\\concept{pink}{3^{2}} \\\\ &= \\concept{pink}{5 \\cdot 8}-9 \\\\ &= \\concept{pink}{40-9} \\\\ &= \\concept{amber}{31} \\end{aligned}"
+        "text": "Luỹ thừa làm trước, từ trái sang phải: 2³ = 8 và 3² = 9. Rồi nhân 5 · 8 = 40, cuối cùng trừ 40 − 9 = 31.",
+        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{2^{3}}-3^{2} \\\\ &= 5 \\cdot 8-\\concept{pink}{3^{2}} \\\\ &= \\concept{pink}{5 \\cdot 8}-9 \\\\ &= \\concept{pink}{40-9} \\\\ &= \\concept{amber}{31} \\end{aligned}"
       }
     },
     {
@@ -3526,8 +3526,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Thay x bằng 3. Làm luỹ thừa và nhân trước: 3² = 9 và 2 · 3 = 6, rồi cộng được 15.",
-        "tex": "\\begin{aligned} &x^{2} + 2x \\quad (x = 3) \\\\ &= \\concept{pink}{3^{2}}+\\concept{pink}{2 \\cdot 3} \\\\ &= \\concept{pink}{9+6} \\\\ &= \\concept{amber}{15} \\end{aligned}"
+        "text": "Thay x bằng 3. Làm luỹ thừa trước: 3² = 9. Rồi nhân 2 · 3 = 6, cuối cùng cộng 9 + 6 = 15.",
+        "tex": "\\begin{aligned} &x^{2} + 2x \\quad (x = 3) \\\\ &= \\concept{pink}{3^{2}}+2 \\cdot 3 \\\\ &= 9+\\concept{pink}{2 \\cdot 3} \\\\ &= \\concept{pink}{9+6} \\\\ &= \\concept{amber}{15} \\end{aligned}"
       }
     },
     {
@@ -3626,7 +3626,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Làm luỹ thừa trước: 10² = 100. Rồi làm hai phép nhân 4 · 100 = 400 và 3 · 10 = 30, cuối cùng cộng từ trái sang phải được 436.",
-        "tex": "\\begin{aligned} &4 \\cdot \\concept{pink}{10^{2}}+3 \\cdot 10+6 \\\\ &= \\concept{pink}{4 \\cdot 100}+\\concept{pink}{3 \\cdot 10}+6 \\\\ &= \\concept{pink}{400+30}+6 \\\\ &= \\concept{pink}{430+6} \\\\ &= \\concept{amber}{436} \\end{aligned}"
+        "tex": "\\begin{aligned} &4 \\cdot \\concept{pink}{10^{2}}+3 \\cdot 10+6 \\\\ &= \\concept{pink}{4 \\cdot 100}+3 \\cdot 10+6 \\\\ &= 400+\\concept{pink}{3 \\cdot 10}+6 \\\\ &= \\concept{pink}{400+30}+6 \\\\ &= \\concept{pink}{430+6} \\\\ &= \\concept{amber}{436} \\end{aligned}"
       }
     },
     {
@@ -3963,7 +3963,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Làm luỹ thừa trước: 2³ = 8. Rồi làm cả ba phép nhân, cuối cùng cộng, trừ từ trái sang phải: 24 + 20 − 14 = 30.",
-        "tex": "\\begin{aligned} &3 \\cdot \\concept{pink}{2^{3}}+5 \\cdot 4-2 \\cdot 7 \\\\ &= \\concept{pink}{3 \\cdot 8}+\\concept{pink}{5 \\cdot 4}-\\concept{pink}{2 \\cdot 7} \\\\ &= \\concept{pink}{24+20}-14 \\\\ &= \\concept{pink}{44-14} \\\\ &= \\concept{amber}{30} \\end{aligned}"
+        "tex": "\\begin{aligned} &3 \\cdot \\concept{pink}{2^{3}}+5 \\cdot 4-2 \\cdot 7 \\\\ &= \\concept{pink}{3 \\cdot 8}+5 \\cdot 4-2 \\cdot 7 \\\\ &= 24+\\concept{pink}{5 \\cdot 4}-2 \\cdot 7 \\\\ &= 24+20-\\concept{pink}{2 \\cdot 7} \\\\ &= \\concept{pink}{24+20}-14 \\\\ &= \\concept{pink}{44-14} \\\\ &= \\concept{amber}{30} \\end{aligned}"
       }
     },
     {
@@ -4000,7 +4000,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Làm luỹ thừa trước: 1⁹ = 1 và 3² = 9. Rồi nhân từ trái sang phải, cuối cùng cộng, trừ từ trái sang phải được 100.",
-        "tex": "\\begin{aligned} &50-4 \\cdot \\concept{pink}{1^{9}}+2 \\cdot 3 \\cdot \\concept{pink}{3^{2}} \\\\ &= 50-\\concept{pink}{4 \\cdot 1}+\\concept{pink}{2 \\cdot 3} \\cdot 9 \\\\ &= 50-4+\\concept{pink}{6 \\cdot 9} \\\\ &= \\concept{pink}{50-4}+54 \\\\ &= \\concept{pink}{46+54} \\\\ &= \\concept{amber}{100} \\end{aligned}"
+        "tex": "\\begin{aligned} &50-4 \\cdot \\concept{pink}{1^{9}}+2 \\cdot 3 \\cdot 3^{2} \\\\ &= 50-4 \\cdot 1+2 \\cdot 3 \\cdot \\concept{pink}{3^{2}} \\\\ &= 50-\\concept{pink}{4 \\cdot 1}+2 \\cdot 3 \\cdot 9 \\\\ &= 50-4+\\concept{pink}{2 \\cdot 3} \\cdot 9 \\\\ &= 50-4+\\concept{pink}{6 \\cdot 9} \\\\ &= \\concept{pink}{50-4}+54 \\\\ &= \\concept{pink}{46+54} \\\\ &= \\concept{amber}{100} \\end{aligned}"
       }
     },
     {
@@ -4037,7 +4037,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Làm luỹ thừa trước: 2³ = 8. Rồi làm cả ba phép nhân, cuối cùng cộng, trừ từ trái sang phải được 25.",
-        "tex": "\\begin{aligned} &3 \\cdot \\concept{pink}{2^{3}}+5 \\cdot 4-14 \\cdot 2+9 \\\\ &= \\concept{pink}{3 \\cdot 8}+\\concept{pink}{5 \\cdot 4}-\\concept{pink}{14 \\cdot 2}+9 \\\\ &= \\concept{pink}{24+20}-28+9 \\\\ &= \\concept{pink}{44-28}+9 \\\\ &= \\concept{pink}{16+9} \\\\ &= \\concept{amber}{25} \\end{aligned}"
+        "tex": "\\begin{aligned} &3 \\cdot \\concept{pink}{2^{3}}+5 \\cdot 4-14 \\cdot 2+9 \\\\ &= \\concept{pink}{3 \\cdot 8}+5 \\cdot 4-14 \\cdot 2+9 \\\\ &= 24+\\concept{pink}{5 \\cdot 4}-14 \\cdot 2+9 \\\\ &= 24+20-\\concept{pink}{14 \\cdot 2}+9 \\\\ &= \\concept{pink}{24+20}-28+9 \\\\ &= \\concept{pink}{44-28}+9 \\\\ &= \\concept{pink}{16+9} \\\\ &= \\concept{amber}{25} \\end{aligned}"
       }
     },
     {
@@ -4073,8 +4073,8 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Làm từ ngoặc trong ra ngoài: ngoặc tròn, ngoặc vuông, rồi ngoặc nhọn. Sau đó làm luỹ thừa 2³, rồi nhân, cuối cùng cộng.",
-        "tex": "\\begin{aligned} &2^{3}+3 \\cdot \\{4+2 \\cdot [5 \\cdot \\concept{pink}{(7-4)}-9]\\} \\\\ &= 2^{3}+3 \\cdot \\{4+2 \\cdot [\\concept{pink}{5 \\cdot 3}-9]\\} \\\\ &= 2^{3}+3 \\cdot \\{4+2 \\cdot \\concept{pink}{[15-9]}\\} \\\\ &= 2^{3}+3 \\cdot \\{4+\\concept{pink}{2 \\cdot 6}\\} \\\\ &= 2^{3}+3 \\cdot \\concept{pink}{\\{4+12\\}} \\\\ &= \\concept{pink}{2^{3}}+\\concept{pink}{3 \\cdot 16} \\\\ &= \\concept{pink}{8+48} \\\\ &= \\concept{amber}{56} \\end{aligned}"
+        "text": "Làm từ ngoặc trong ra ngoài: ngoặc tròn 7 − 4 = 3, ngoặc vuông 5 · 3 − 9 = 6. Ngoặc nhọn là 4 + 2 · 6 = 16, rồi nhân 3 · 16 = 48. Cuối cùng 2³ = 8 và 8 + 48 = 56.",
+        "tex": "\\begin{aligned} &2^{3}+3 \\cdot \\{4+2 \\cdot [5 \\cdot \\concept{pink}{(7-4)}-9]\\} \\\\ &= 2^{3}+3 \\cdot \\{4+2 \\cdot [\\concept{pink}{5 \\cdot 3}-9]\\} \\\\ &= 2^{3}+3 \\cdot \\{4+2 \\cdot \\concept{pink}{[15-9]}\\} \\\\ &= 2^{3}+3 \\cdot \\{4+\\concept{pink}{2 \\cdot 6}\\} \\\\ &= 2^{3}+3 \\cdot \\concept{pink}{\\{4+12\\}} \\\\ &= \\concept{pink}{2^{3}}+3 \\cdot 16 \\\\ &= 8+\\concept{pink}{3 \\cdot 16} \\\\ &= \\concept{pink}{8+48} \\\\ &= \\concept{amber}{56} \\end{aligned}"
       }
     },
     {
@@ -4223,7 +4223,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Tính vế phải trước theo thứ tự: 2 · 3² + 6 : 3 = 18 + 2 = 20. Từ 5x + 5 = 20, làm ngược phép cộng: 5x = 20 − 5 = 15. Làm ngược phép nhân: x = 15 : 5 = 3.",
-        "tex": "\\begin{aligned} &2 \\cdot \\concept{pink}{3^{2}}+6:3 \\\\ &= \\concept{pink}{2 \\cdot 9}+\\concept{pink}{6:3} \\\\ &= \\concept{pink}{18+2} \\\\ &= \\concept{amber}{20} \\\\ 5x + 5 &= 20 \\\\ 5x &= 20 - 5 = 15 \\\\ x &= 15 : 5 = \\concept{amber}{3} \\end{aligned}"
+        "tex": "\\begin{aligned} &2 \\cdot \\concept{pink}{3^{2}}+6:3 \\\\ &= \\concept{pink}{2 \\cdot 9}+6:3 \\\\ &= 18+\\concept{pink}{6:3} \\\\ &= \\concept{pink}{18+2} \\\\ &= \\concept{amber}{20} \\\\ 5x + 5 &= 20 \\\\ 5x &= 20 - 5 = 15 \\\\ x &= 15 : 5 = \\concept{amber}{3} \\end{aligned}"
       }
     },
     {
@@ -4320,7 +4320,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Tính vế phải trước theo thứ tự: 5 · 2² + 9 : 3 = 20 + 3 = 23. Từ 3x + 5 = 23, làm ngược phép cộng: 3x = 23 − 5 = 18. Làm ngược phép nhân: x = 18 : 3 = 6.",
-        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{2^{2}}+9:3 \\\\ &= \\concept{pink}{5 \\cdot 4}+\\concept{pink}{9:3} \\\\ &= \\concept{pink}{20+3} \\\\ &= \\concept{amber}{23} \\\\ 3x + 5 &= 23 \\\\ 3x &= 23 - 5 = 18 \\\\ x &= 18 : 3 = \\concept{amber}{6} \\end{aligned}"
+        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{2^{2}}+9:3 \\\\ &= \\concept{pink}{5 \\cdot 4}+9:3 \\\\ &= 20+\\concept{pink}{9:3} \\\\ &= \\concept{pink}{20+3} \\\\ &= \\concept{amber}{23} \\\\ 3x + 5 &= 23 \\\\ 3x &= 23 - 5 = 18 \\\\ x &= 18 : 3 = \\concept{amber}{6} \\end{aligned}"
       }
     }
   ],
