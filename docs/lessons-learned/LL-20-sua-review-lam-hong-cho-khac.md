@@ -7,6 +7,7 @@ Tác giả sửa một mục review nhưng ghi vào nhầm khối (lệch chỉ 
 ## Ví dụ thật
 
 - `dau-hieu-chia-het` vòng 3, section `chia-het-3`: thêm dòng lý do cho màn chạm `chon-3-1410` (`blocks[3]`) nhưng ghi vào `blocks[2]`, màn hình tĩnh `ba-khac-chin`. Note "Dấu hiệu chia hết cho 3 khác dấu hiệu chia hết cho 9" bị mất, màn tĩnh bảo trẻ "Chạm vào các số", màn chạm thật vẫn thiếu dòng lý do.
+- `uoc-chung-uoc-chung-lon-nhat` vòng 2, section `uoc-chung-lon-nhat`: bảng đổi số của vòng 1 đổi màn chạm `chon-uclnn-8-12` sang 20 và 24; tác giả đổi id hình và lời kết `done` nhưng quên note ngay trên, nên note hỏi "8 và 12" còn hình khen "đúng ước chung lớn nhất của 20 và 24" (đáp án cùng là 4 nên walk không bắt). Khi đổi số theo bảng, tìm số cũ trong cả `lesson.json` lẫn `catalog.ts`, không chỉ trong mục có id.
 
 ## Nguyên nhân gốc
 

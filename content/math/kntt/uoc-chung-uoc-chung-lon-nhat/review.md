@@ -1,337 +1,290 @@
 # Review: Ước chung. Ước chung lớn nhất (`uoc-chung-uoc-chung-lon-nhat`)
 
 - Bài: `content/math/kntt/uoc-chung-uoc-chung-lon-nhat/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
 - Nguồn đã đọc: `sources/math/uoc-chung-uoc-chung-lon-nhat/` - p38-40, p107-108
-- `content:check`: 0 lỗi, 0 cảnh báo của bài (trừ cảnh báo id chưa khoá: 89)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/uoc-chung-uoc-chung-lon-nhat/`
-- Kết luận: Chưa đạt: còn 8 lỗi Nghiêm trọng (đã chạy `pnpm content:hash uoc-chung-uoc-chung-lon-nhat --root content --mark`)
-- Bản đã review: `a76950da1ba116abedb13ecd3b4a077fbe9924f8b801aac3d0f81b6afb2667cf` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi, 0 cảnh báo của bài (trừ cảnh báo id chưa khoá)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/uoc-chung-uoc-chung-lon-nhat/`; `visual:shot` 152/152
+- Kết luận: Chưa đạt: còn 4 lỗi Nghiêm trọng (đã chạy `pnpm content:hash uoc-chung-uoc-chung-lon-nhat --root content --mark`)
+- Bản đã review: `efda49d6f824f553af298b0c4f5746170b399e530375ad6069f0337b3bf473f2` (`pnpm content:diff` so với bản này)
 
-Đã soát: 60 bài tập (tự giải trước khi đọc `answer`: mọi đáp án đúng, mỗi câu `choice` đúng một đáp án hay một tập đáp án, các câu `order` chỉ có một thứ tự đúng); mọi `note` quy tắc, `recap`, `caption`, recap card, glossary Toán; so câu quy tắc nhắc lại ở section 5 với bài `so-nguyen-to` (cùng là bản nháp). Phạm vi bỏ "Kiến thức bổ sung" (a, b), a = dm, b = dn, câu 2.41-2.43 và Ví dụ 1 tr.38: chấp nhận được (xem Góp ý 6).
+Đã soát: 65 bài tập (cả ba reviewer tự giải trước khi đọc `answer`: mọi đáp án, `accept`, `check` đúng, mỗi câu đúng một đáp án hay một tập đáp án, các câu `order` chỉ có một thứ tự đúng); mọi `note` quy tắc, `recap`, `caption`, recap card, glossary Toán. Recap của 13 card trùng recap section.
 
-Bảng đổi số ở Nên sửa 16 gom mọi đề xuất đổi số của review này; các mục khác trỏ về đó để các bộ số mới không trùng nhau.
+Bản sửa vòng 1: 8 Nghiêm trọng cũ đã sửa đúng ở các chỗ được nêu (chiều chia hết section 10, định nghĩa ƯCLN, quy tắc section 6, 8, 11, `CutTry`, màu hàng Ư(n), note chia dần, kiến thức nền phân số). Còn sót hay sinh lỗi mới ở 4 chỗ (LL-20): note màn chạm section 3 chưa đổi theo bảng số mới (Nghiêm trọng 1); câu điền `dien-tong-uoc` chưa viết lại theo định nghĩa số hoàn hảo mới (Nghiêm trọng 3); Nên sửa 7 vòng 1 bảo chép câu quy tắc của bài `so-nguyen-to`, mà câu đó chép sách (Nghiêm trọng 2); câu nhắc rút gọn phân số do chính vòng 1 đề xuất thiếu điều kiện (Nghiêm trọng 4). Góp ý 15 vòng 1 ("bé" và "nhỏ") chưa sửa (Góp ý 2).
+
+Không ghi lại (đã có trong `notebooks/backlogs/lesson-uoc-chung-uoc-chung-lon-nhat/task.md`): `sourceRef` section 5 không trỏ được trang bài Số nguyên tố; căn tên cách chia ("chia dần" hay "sơ đồ cột"), cách viết phân tích và màu "số nguyên tố" của section 5 với bài `so-nguyen-to` sau khi bài đó xuất bản.
 
 ## Nghiêm trọng
 
-### 1. Quy tắc section 10 nói ngược chiều chia hết: "số chia hết cho cả hai số" là bội chung, không phải ước chung (LL-17, LL-05)
+### 1. Màn chạm ƯCLN bảo chọn cho 8 và 12, lời kết của hình lại nói 20 và 24 (LL-20, LL-15)
 
-- Vị trí: `$.sections[9].title` ("Số chia hết cho cả hai số", cũng hiện ở màn "Bạn vừa học xong"), `$.sections[9].blocks[1].children[0].text` (`rule: true`), `$.sections[9].recap.caption`, `$.cards[9].recap.caption` (`uoc-chung-uoc-chung-lon-nhat.section.bai-toan-uc`, `uoc-chung-uoc-chung-lon-nhat.card.bai-toan-uc`)
-- Nguồn: tr.38 mục 1; tr.40 câu 2.39 ("480 ⋮ a và 720 ⋮ a"), `sbt-p38.png`, `sbt-p40.png`
-- Vấn đề: "Số chia hết cho cả hai số đã cho là ước chung của hai số đó." sai kiến thức. Số chia hết cho 20 và 28 (như 140) là bội chung. Câu này trái định nghĩa ước chung ở section 1 và trái chính các note, bài tập cùng section ("số mà cả 60 và 90 đều chia hết cho nó", `chon-uc-20-28`, `so-lon-nhat-40-100`, `chia-het-24-36`). Trẻ ôn bằng recap sẽ nhớ câu sai, và bài Bội chung ngay sau sẽ mâu thuẫn trực tiếp. Đã kiểm lại trong `lesson.json`: câu sai có ở đúng 4 chỗ trên, không có trong visual.
-- Sửa: tên section "Bài toán tìm ước chung". Câu quy tắc, recap section và recap card cùng một câu: "Nếu hai số đều chia hết cho một số thì số đó là ước chung của hai số. Đề hỏi số lớn nhất thì ta tìm ƯCLN." Sau khi sửa, tìm cả bài cụm "chia hết cho cả" để chắc không còn chỗ nào.
-
-### 2. Định nghĩa ƯCLN gần như chép nguyên văn sách (LL-08)
-
-- Vị trí: `$.sections[2].blocks[1].children[0].text`, `$.sections[2].recap.caption`, `$.cards[2].recap.caption` (`uoc-chung-uoc-chung-lon-nhat.section.uoc-chung-lon-nhat`, `uoc-chung-uoc-chung-lon-nhat.card.uoc-chung-lon-nhat`)
-- Nguồn: tr.38 "Kiến thức cần nhớ" mục 2, `sbt-p38.png`
-- Vấn đề: "Ước chung lớn nhất (viết tắt là ƯCLN) của hai hay nhiều số là số lớn nhất trong các ước chung của các số đó." chỉ thêm "viết tắt là" vào câu sách. Định nghĩa ước chung ở section 1 đã viết lại được, nên câu này cũng viết lại được.
-- Sửa: "Trong các ước chung của hai hay nhiều số, số lớn nhất gọi là ước chung lớn nhất, viết tắt là ƯCLN." Sửa cùng lúc rule, recap section và recap card (luật `rule-sentence`).
-
-### 3. Quy tắc section 6 và section 8 chép câu sách mục 3, 4; câu section 6 thiếu bước, câu section 8 đọc như cách duy nhất (LL-08, LL-05)
-
-- Vị trí: `$.sections[5].blocks[1].children[0].text`, `$.sections[5].recap.caption`, `$.cards[5].recap.caption` (`uoc-chung-uoc-chung-lon-nhat.section.uclnn-phan-tich`); `$.sections[7].blocks[1].children[0].text`, `$.sections[7].recap.caption`, `$.cards[7].recap.caption` (`uoc-chung-uoc-chung-lon-nhat.section.uc-tu-uclnn`); câu điền `$.exercises[39].segments` (`uoc-chung-uoc-chung-lon-nhat.ex.dien-tim-uclnn`)
-- Nguồn: tr.38 "Kiến thức cần nhớ" mục 3 và 4, `sbt-p38.png`
-- Vấn đề:
-  - Section 6: "Chọn các thừa số nguyên tố chung của các số, mỗi thừa số lấy với số mũ nhỏ nhất. Tích đó là ƯCLN cần tìm." giữ nguyên các cụm của sách ("mỗi thừa số lấy với số mũ nhỏ nhất", "Tích đó là ƯCLN cần tìm"). Câu còn bỏ bước phân tích và không có động từ "nhân", nên "Tích đó" không chỉ tới gì; trẻ ôn riêng recap sẽ không biết phải phân tích trước rồi nhân lại. Note "cùng làm" lại nói "rồi nhân lại": hai chỗ nói khác nhau.
-  - Section 8: "Muốn tìm ước chung của hai hay nhiều số, ta tìm ƯCLN của các số đó rồi tìm các ước của ƯCLN." chỉ đổi vài chữ so với mục 4 và bỏ "có thể". Bài có hai câu cùng mở bằng "Muốn tìm ước chung của ..." (section 2: liệt kê; section 8: qua ƯCLN), nên trẻ dễ hiểu cách liệt kê bị bỏ. Câu điền `dien-tim-uclnn` lại nói "của hai số", lệch "hai hay nhiều số" của quy tắc.
-- Sửa:
-  - Section 6 (rule, recap, recap card): "Viết mỗi số thành tích các thừa số nguyên tố. Lấy các thừa số có ở mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN." Giữ chữ "nhỏ nhất" cho khớp hàng "Mũ nhỏ nhất" của các bảng `expTable`.
-  - Section 8 (rule, recap, recap card): "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Vì vậy ta cũng có thể tìm ƯCLN trước, rồi viết các ước của ƯCLN." Sửa câu điền `dien-tim-uclnn` theo đúng câu này (ví dụ "Các ước chung của hai hay nhiều số chính là các ước của ___ của chúng.", vẫn chấp nhận "ƯCLN").
-
-### 4. Section số hoàn hảo chép định nghĩa, bộ số và lời giải của câu 2.38 (LL-08)
-
-- Vị trí: `$.sections[10].blocks[1].children[0].text`, `$.sections[10].recap.caption`, `$.cards[10].recap.caption` (định nghĩa); `$.sections[10].blocks[2].children[0].text` (số 10); `$.sections[10].blocks[3].caption` (số 28) (`uoc-chung-uoc-chung-lon-nhat.section.so-hoan-hao`, `uoc-chung-uoc-chung-lon-nhat.card.so-hoan-hao`)
-- Nguồn: tr.40 câu 2.38, `sbt-p40.png`; lời giải tr.107, `sbt-p107.png`
-- Vấn đề: "Một số bằng tổng các ước của nó, không kể chính nó, thì gọi là số hoàn hảo. Vậy 6 là số hoàn hảo." chỉ đổi ngoặc thành dấu phẩy và thêm "thì" so với câu sách, kể cả câu "Vậy 6 là số hoàn hảo". Ví dụ 10 và 28 là bộ số của câu 2.38; note số 10 gần trùng lời giải in ("1; 2; 5 ... 1 + 2 + 5 = 8 ≠ 10 nên 10 không là số hoàn hảo").
-- Sửa: rule, recap section, recap card: "Cộng tất cả các ước của một số, không kể chính nó. Nếu tổng đúng bằng số đó thì số đó là số hoàn hảo." (bỏ câu "Vậy 6 là số hoàn hảo" khỏi rule; ví dụ 6 đã có ở caption `hh-6`). Note số 10 đổi sang 14: "Xét số 14. Các ước của 14, không kể 14, là 1, 2 và 7. Tổng là 10, khác 14, nên 14 không là số hoàn hảo." Giữ 28 (số hoàn hảo nhỏ thứ hai, khó thay) nhưng viết caption theo lời riêng, ví dụ kèm câu đời sống ở Nên sửa 12. Sửa cùng lúc nhãn hình theo Nên sửa 18.
-
-### 5. Câu luyện cắt dải hiện sẵn đáp án ngay khi mở, và hình tự báo đúng sai ở mọi lần thử (LL-02, LL-07)
-
-- Vị trí: `$.exercises[1]` (`uoc-chung-uoc-chung-lon-nhat.ex.cat-8-12-tu-lam`, câu luyện của section 1 và câu kho ôn card `uoc-chung`); hình `uoc-chung-uoc-chung-lon-nhat.visual.cat-thu-8-12` (`src/visuals/math/uoc-chung-uoc-chung-lon-nhat/cut-bars.tsx`, `CutTry`)
+- Vị trí: `$.sections[2].blocks[3].children[0].text` (`section.uoc-chung-lon-nhat`), hình `chon-uclnn-20-24` (`catalog.ts`, trường `done`)
 - Nguồn: —
-- Vấn đề: `CutTry` luôn bắt đầu ở `PIECE_RANGE.min = 2` (`useState(PIECE_RANGE.min)`), mà 2 là ước chung của 8 và 12, nên màn mở ra đã ghi "2 là ước chung của 8 và 12" (walk `012-s1-06-exercise-cat-8-12-tu-lam`). Dòng `Verdict` hiện ở mọi trạng thái, kể cả khi làm bài (không có `goal`), trái chú thích trong code "nothing is revealed"; trẻ chỉ cần bấm + hay − tới khi hình báo "là ước chung". Nút "Kiểm tra" còn tắt cho tới khi trẻ chạm + hay −, nên trẻ thấy hình nói "2 là ước chung" mà không nộp được.
-- Sửa: trong `CutTry`, khi không có `goal` thì không hiện `Verdict`, và báo trạng thái đầu cho bài tập ngay khi mở (nút "Kiểm tra" bấm được). Đổi bộ số của câu sang 9 dm và 21 dm (trong khoảng 2-9 chỉ 3 vừa cả hai dải, nên trạng thái đầu 2 không phải đáp án); sửa `params` (`a: 9`, `b: 21`) và đề. Sửa chú thích `CutTry` cho khớp cách chạy thật. Chụp lại `visual:shot`.
+- Vấn đề: note "Chạm vào ước chung lớn nhất của 8 và 12", hình `done: "Bạn đã chọn đúng ước chung lớn nhất của 20 và 24."`. Đáp án tình cờ trùng (cả hai là 4) nên walk không bắt, nhưng ngay lúc làm đúng trẻ đọc một câu về hai số khác đề. Bảng Nên sửa 16 vòng 1 đổi màn này sang 20 và 24; tác giả đổi id và `done` mà quên note.
+- Sửa: note thành "Chạm vào ước chung lớn nhất của 20 và 24. Tìm các ước chung trước rồi chọn số lớn nhất." Không quay về 8 và 12: cặp này đã có ở `chon-dia-8-12` và `uclnn-8-12-20`, cùng ra 4. Giữ dãy chip 1, 2, 4, 5, 6, 8 (5 chỉ là ước của 20; 6, 8 chỉ là ước của 24). Đã soát: cặp 20, 24 không có ở chỗ nào khác trong bài.
 
-### 6. Hình liệt kê ƯCLN tô màu "Ước chung lớn nhất" cho mọi ước chung (LL-15)
+### 2. Hai định nghĩa của section `nhac-thua-so` chép câu sách bài Số nguyên tố (LL-08)
 
-- Vị trí: `$.sections[2].blocks[0]` (`uoc-chung-uoc-chung-lon-nhat.visual.ds-lon-12-18`, màn đầu section `uoc-chung-lon-nhat`); `$.exercises[11].hints.solutionVisualId` (`uoc-chung-uoc-chung-lon-nhat.visual.ds-lon-10-25`, lời giải câu `uclnn-10-25`); code `src/visuals/math/uoc-chung-uoc-chung-lon-nhat/uc-lists.tsx`, hàng Ư(n): `pickedTone={shownGreatest ? "greatest" : "common"}` với `picked={common}`
-- Nguồn: tr.38 mục 2, `sbt-p38.png`
-- Vấn đề: ở bước cuối, trong hàng Ư(12) và Ư(18), cả 1, 2, 3, 6 cùng chuyển sang màu cam và dấu của chú thích "Ước chung lớn nhất" (walk `035-s3-01-block-end`). Ngay ở màn mở đầu khái niệm, hình nói 1, 2, 3 cũng là ước chung lớn nhất; trẻ học chậm dễ hiểu là có nhiều ƯCLN. Lời giải `ds-lon-10-25` mắc cùng lỗi (1 và 5 cùng màu cam). Đã kiểm lại trong code: lỗi ở hàng Ư(n), hàng ƯC đúng (chỉ `best` màu cam).
-- Sửa: trong hàng Ư(n), các ước chung giữ `common` (xanh ngọc) ở mọi bước; chỉ số `best` đổi sang `greatest`, như hàng ƯC. Chụp lại `visual:shot` của `ds-lon-12-18` và `ds-lon-10-25`.
+- Vị trí: `$.sections[4].blocks[0].children[0].text`, `$.sections[4].blocks[2].children[0].text` (cả hai `rule`), `$.sections[4].recap.caption`, `$.cards[4].recap.caption`; câu kéo theo: `$.sections[4].blocks[3].children[0].text` (note màn chạm `chon-sn`), `$.exercises[23].segments` (`dien-sn-chinh-no`) (`section.nhac-thua-so`, `card.nhac-thua-so`)
+- Nguồn: "Kiến thức cần nhớ" ý 1, 3 tr.35 SBT (bài 10). Trang này không có trong `sources/` của bài, nhưng LL-08 đã ghi (review `so-nguyen-to` vòng 1, có đọc trang): câu số nguyên tố trùng từng chữ ý 1; câu phân tích là ý 3 bỏ "tự nhiên lớn hơn 1" và "dưới dạng một".
+- Vấn đề: "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó." chép nguyên câu sách. "Phân tích một số ra thừa số nguyên tố là viết số đó thành tích của các số nguyên tố." vừa chép vừa mất điều kiện: sách chỉ định nghĩa phân tích cho số lớn hơn 1 (số 0 và số 1 không phân tích được). Mất điều kiện này là có thật, nhưng không câu nào bắt trẻ phân tích 0 hay 1, nên mức Nghiêm trọng ở đây là do chép sách. Lỗi đến từ Nên sửa 7 vòng 1 (bảo chép câu của bài `so-nguyen-to`, lúc đó chính câu ấy đang chép sách).
+- Sửa: bài này tự diễn đạt lại, giữ điều kiện:
+  - Số nguyên tố (rule): "Một số lớn hơn 1 mà chỉ chia hết cho 1 và cho chính nó thì gọi là số nguyên tố. Ví dụ 2, 3, 5, 7 và 11 là các số nguyên tố."
+  - Phân tích (rule): "Với một số lớn hơn 1, viết nó thành tích mà mọi thừa số đều là số nguyên tố: đó là phân tích số ấy ra thừa số nguyên tố. Thừa số nào lặp lại thì viết bằng luỹ thừa."
+  - Recap section và recap card: chép nguyên văn câu mới (xem cả Nên sửa 5 về số câu của recap).
+  - Note `chon-sn`: "Chạm vào các số nguyên tố. Số nguyên tố chỉ chia hết cho 1 và cho chính nó."; `dien-sn-chinh-no`: "Một số lớn hơn 1 mà chỉ chia hết cho 1 và cho ___ thì gọi là số nguyên tố." (`accept: ["chính nó"]`, giữ ngân hàng).
+  - Khi bài `so-nguyen-to` chốt câu đã viết lại của nó, vòng căn chỉnh section 5 trong backlog chép theo câu đó (miễn câu đó không còn chép sách).
 
-### 7. Cách chia dần chỉ nằm trong caption xám, thiếu bước chia lặp và bước nhân, khác tên và khác câu với bài Số nguyên tố (LL-13, LL-05)
+### 3. Câu điền `dien-tong-uoc` vẫn là câu 2.38 đảo vế, và là cách nói thứ hai của quy tắc số hoàn hảo (LL-08, LL-05)
 
-- Vị trí: `$.sections[4].blocks[1]` (một hình `uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-12` với `caption` "Chia dần 12 cho các số nguyên tố từ bé đến lớn, cho tới khi được 1.", không có note) (`uoc-chung-uoc-chung-lon-nhat.section.nhac-thua-so`); hình `ladder` (`src/visuals/math/uoc-chung-uoc-chung-lon-nhat/ladder.tsx`)
-- Nguồn: tr.38 mục 3 (sách chỉ gọi tên "phân tích ra thừa số nguyên tố"); bài `so-nguyen-to`, section "Phân tích bằng sơ đồ cột"
-- Vấn đề: đây là cách duy nhất bài dùng để phân tích một số, và năm bài tập cần đúng thao tác này (`phan-tich-24`, `xep-chia-dan-18`, `uclnn-16-40`, `uclnn-20-30-50`, `uclnn-12-30-42`), nhưng cách làm chỉ ở caption xám (checklist trục 5: Nghiêm trọng). Caption không nói số bên trái mỗi dòng là thương của dòng trên, còn chia hết thì chia tiếp cho chính số nguyên tố đó, và nhân các số ở cột phải để được kết quả. Bài `so-nguyen-to` gọi cách này là "sơ đồ cột" và có câu quy tắc riêng ("Chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố."); bài này gọi "chia dần" với câu khác, nên cùng một cách có hai tên giữa hai bài liền nhau.
-- Sửa: biến màn thành `group` gồm note rồi hình `chia-dan-12`. Note dùng lại đúng câu quy tắc của bài `so-nguyen-to` và tên "sơ đồ cột", thêm câu nhân lại: "Nhắc lại sơ đồ cột: chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố; nhân chúng lại thì được số ban đầu." Caption chỉ còn mô tả hình ("Sơ đồ cột của 12: 12 = 2² · 3."). Có thể thêm phép chia nhỏ (12 : 2 = 6) cạnh mỗi dòng của `ladder` ở chế độ `steps` cho khớp cách viết "18 : 2 = 9" của `xep-chia-dan-18`. Đổi mọi chữ "chia dần" còn lại trong bài (đề `xep-chia-dan-18`, nhãn hình) sang "sơ đồ cột". Nếu câu quy tắc của bài `so-nguyen-to` đổi sau vòng review của nó, chép theo bản mới.
+- Vị trí: `$.exercises[56].segments` (`ex.dien-tong-uoc`, kho ôn card `so-hoan-hao`)
+- Nguồn: tr.40, `sbt-p40.png`, câu 2.38
+- Vấn đề: "Số hoàn hảo là số bằng ___ các ước của nó, không kể chính nó." chỉ đảo vế câu định nghĩa của 2.38, giữ từng cụm. Nghiêm trọng 4 vòng 1 đã viết lại quy tắc theo cách làm, nhưng câu ôn còn giữ câu sách, nên trẻ gặp hai cách nói của một quy tắc: một ở màn học và recap, một ở kho ôn.
+- Sửa: dựng câu điền từ đúng câu `rule`, như `dien-rut-gon`: "Cộng tất cả các ước của một số, không kể chính nó. Nếu ___ đúng bằng số đó thì số đó là số hoàn hảo." (`accept: ["tổng"]`, ngân hàng "tổng", "tích", "số lượng").
 
-### 8. Section phân số dùng "phân số", "tử", "mẫu", "rút gọn" mà không nhắc lại, không khai kiến thức nền (LL-09)
+### 4. Câu nhắc rút gọn phân số thiếu điều kiện của số chia (LL-17)
 
-- Vị trí: `$.sections[11]` (`uoc-chung-uoc-chung-lon-nhat.section.phan-so-toi-gian`, `sourceRef` "Sách bài tập tr.38, 40"), `$.cards[11].sourceRef`; `$.exercises[56].prompt[0]` (`rut-gon-18-24`, "Rút gọn phân số này"); `$.exercises[59].prompt[0]` (`mau-toi-gian-24-36`, "Mẫu của phân số tối giản đó là số nào?"); `content/glossary/math.json` (không có các mục này)
-- Nguồn: tr.38 "Kĩ năng giải toán" gạch 3 và tr.40 câu 2.40 có "phân số tối giản", "rút gọn" nhưng không định nghĩa phân số, tử, mẫu
-- Vấn đề: phân số tối giản thuộc phạm vi bài (kĩ năng 3, câu 2.40), nên giữ section ở đây là đúng. Nhưng "phân số", "tử", "mẫu", "rút gọn phân số" là kiến thức tiểu học: section không nhắc lại, glossary không ghi `prerequisite`, `sourceRef` không có dấu "Kiến thức nền (tiểu học)" như ngoại lệ của checklist trục 1 yêu cầu. "Rút gọn" không có trong note nào (note nói "đưa phân số về tối giản") nhưng là động từ chính của đề hai câu. Trẻ nhanh quên mà lẫn tử với mẫu sẽ nhập sai ở `mau-toi-gian-24-36`. Giữ mức Nghiêm trọng vì có câu trẻ có thể không làm được và vì quy ước kiến thức nền chưa được theo.
-- Sửa: thêm màn đầu section một note nhắc ngắn kèm phân số mẫu: "Trong phân số 20/28, 20 là tử, 28 là mẫu. Chia cả tử và mẫu cho cùng một số thì được phân số bằng nó mà gọn hơn: đó là rút gọn phân số." `sourceRef` section và card: "Kiến thức nền (tiểu học); Sách bài tập tr.38, 40". Thêm vào glossary "phân số", "tử", "mẫu", "rút gọn" với `"prerequisite": "tiểu học"`. Dùng một cách nói thống nhất "rút gọn về phân số tối giản" ở note, recap và đề. Nên làm cùng Nên sửa 17 (tách section).
+- Vị trí: `$.sections[12].blocks[0].children[0].text` (`section.rut-gon-phan-so`); caption hình `rg-20-28` (`$.sections[12].blocks[1]`)
+- Nguồn: Kiến thức nền (tiểu học); tr.38 (kĩ năng đưa phân số về tối giản), tr.107 lời giải 2.40
+- Vấn đề: "Chia cả tử và mẫu của phân số cho cùng một số thì được phân số bằng nó mà gọn hơn. Làm vậy gọi là rút gọn phân số." sai khi số đó là 0 (không chia được), là 1 (không gọn hơn), hay không là ước của cả tử và mẫu (5/7 chia cho 2 không còn là phân số có tử, mẫu là số tự nhiên). Đây là câu duy nhất nói "rút gọn phân số" là gì (thuật ngữ glossary có `prerequisite`), trẻ nhớ nguyên câu; cùng kiểu lỗi mất "khác 0", "lớn hơn 1" đã tính Nghiêm trọng ở các bài trước. Câu này do Nghiêm trọng 8 vòng 1 đề xuất.
+- Sửa: nêu điều kiện bằng kiến thức của bài: "Chọn một ước chung lớn hơn 1 của tử và mẫu, rồi chia cả tử và mẫu cho số đó: ta được phân số bằng phân số cũ, có tử và mẫu nhỏ hơn. Làm vậy gọi là rút gọn phân số." Caption `rg-20-28`: "2 là ước chung của tử và mẫu: chia cả hai cho 2, rồi lại cho 2, tới khi tử và mẫu chỉ còn ước chung là 1." (khớp định nghĩa tối giản của section trước, thay cho "không chia tiếp được nữa").
 
 ## Nên sửa
 
-### 1. Màn thử cắt dải của section 1 đã "Xong rồi!" ngay khi mở
+### 1. Định nghĩa ước chung có hai câu quy tắc khác nhau (section 1 và 10) (LL-05)
 
-- Vị trí: `$.sections[0].blocks[3].children[1]` (`uoc-chung-uoc-chung-lon-nhat.visual.cat-thu-12-18`, `goal: "fits"`)
+- Vị trí: `$.sections[0].blocks[2].children[0].text` (`section.uoc-chung`); `$.sections[9].blocks[1].children[0].text`, `$.sections[9].recap.caption`, `$.cards[9].recap.caption` (`section.bai-toan-uc`)
+- Nguồn: tr.38, `sbt-p38.png`, ý 1
+- Vấn đề: section 1 "Một số là ước của tất cả các số đã cho thì gọi là ước chung của các số đó."; section 10 "Nếu hai số đều chia hết cho một số thì số đó là ước chung của hai số." Cả hai đúng, nhưng là hai câu `rule` cho cùng một khái niệm; câu sau còn hẹp lại thành "hai số".
+- Sửa: section 10 chỉ giữ phần riêng của nó (cách đọc đề), không định nghĩa lại: "Đề hỏi số mà mọi số đã cho đều chia hết cho nó thì ta tìm ước chung. Đề hỏi số lớn nhất như vậy thì ta tìm ƯCLN." Chép cùng câu vào recap section, recap card. Giữ đúng chiều chia hết đã sửa ở vòng 1.
+
+### 2. Quy tắc section 9 gọi mỗi loại đồ vật là "nhóm"; câu điền nói cách khác và bỏ "không thừa" (LL-10, LL-05)
+
+- Vị trí: `$.sections[8].blocks[1].children[0].text` (rule), `$.sections[8].recap.caption`, `$.cards[8].recap.caption` (`section.chia-deu-nhieu-nhat`); `$.exercises[45].segments` (`dien-so-phan-nhieu-nhat`); `$.exercises[38].prompt[0]` (`chia-nhom-16-28`)
+- Nguồn: tr.39 ví dụ 2
+- Vấn đề: "Chia đều các nhóm đồ vật vào các phần như nhau, không thừa. Số phần nhiều nhất là ƯCLN của số đồ vật mỗi nhóm." Câu kiểm tra ngay trước (`chia-nhom-16-28`) lại gọi bên nhận là "nhóm"; trẻ dễ hiểu "nhóm" là "đĩa" và "số đồ vật mỗi nhóm" là số quả trên mỗi đĩa. Câu điền "Khi chia đều nhiều nhóm đồ vật, số phần nhiều nhất là ___ của số đồ vật mỗi nhóm." khác câu quy tắc và thiếu "không thừa" (được thừa thì chia được nhiều phần hơn).
+- Sửa: rule, recap section, recap card: "Khi chia đều các loại đồ vật vào các phần như nhau, không thừa, số phần nhiều nhất là ƯCLN của số đồ vật mỗi loại." Câu điền dựng từ đúng câu này, chỉ khoét "ƯCLN". Ở `chia-nhom-16-28` đổi "trong một nhóm" thành "trong một tổ".
+
+### 3. Màu cam (ƯCLN) tô lên những thứ không phải ƯCLN
+
+- Vị trí: hình `tg-5-7` (dòng `\frac{5}{7}` màu `amber` cạnh chú giải "Ước chung lớn nhất"; màn quy tắc `$.sections[11].blocks[1]`, recap section và card `phan-so-toi-gian`); nhãn `amber` trong `hh-6`, `hh-6-xong`, `hh-28`, `rg-20-28`, `tg-tom-tat`, `rg-giai-18-24`, `rg-goi-y-6-15` (`catalog.ts`)
 - Nguồn: —
-- Vấn đề: độ dài bắt đầu 2 vừa cả dải 12 dm và 18 dm, nên màn hiện ngay "Xong rồi! Đoạn 2 dm cắt vừa hết cả hai dải.", nút − tắt (walk `006-s1-04-block`). Trẻ không phải thử gì, mất ý "thử nhiều độ dài" của note.
-- Sửa: cho `CutTry` nhận độ dài bắt đầu (ví dụ `start: 4`, 4 không vừa 18) hoặc đổi đích thành "tìm đủ các độ dài vừa" (2, 3, 6). Sửa chung với Nghiêm trọng 5 vì cùng component.
+- Vấn đề: cả bài, cam là ƯCLN. Ở `tg-5-7` phân số 5/7 mang ô vuông cam đúng như chú giải "Ước chung lớn nhất" (ảnh `phone/142-s12-02-block.png`), ở số hoàn hảo và rút gọn nhãn kết quả cũng mang màu ƯCLN. Để Nên sửa vì dòng chữ bên dưới vẫn nói đúng "ƯCLN(5, 7) = 1".
+- Sửa: dòng 5/7 của `tg-5-7` màu `slate`; nhãn kết quả không phải ƯCLN dùng `slate`. Nhãn "ƯCLN(20, 28) = 4", "ƯCLN(18, 24) = 6" trong hình rút gọn thì đổi sang cam.
 
-### 2. Chưa nói "đoạn dài nhất cắt vừa hết là ƯCLN" mà câu kho ôn lại hỏi; hình cạnh định nghĩa ƯCLN ghi "6 là ước chung" (LL-09, LL-16)
+### 4. Xanh dương, hồng, xanh trời mang nhiều nghĩa; khái niệm "Cơ số" lệch chú giải "Thừa số nguyên tố"
 
-- Vị trí: `$.sections[2].blocks[1].children[1]` (`uoc-chung-uoc-chung-lon-nhat.visual.cat-lon-nhat-12-18`); `$.sections[6].blocks[0]` (`uoc-chung-uoc-chung-lon-nhat.visual.cat-18-24-30`) và caption; `$.exercises[19]` (`uoc-chung-uoc-chung-lon-nhat.ex.doan-dai-nhat-16-48`)
-- Nguồn: tr.38 mục 2
-- Vấn đề: cụm "dài nhất" chỉ có ở đề `doan-dai-nhat-16-48`. Hình `cat-lon-nhat-12-18` đặt cạnh định nghĩa ƯCLN chỉ cắt đoạn 6 dm và ghi "6 là ước chung của 12 và 18" (màu xanh ngọc), không so với các đoạn ngắn hơn. Hình mở section 7 `cat-18-24-30` cũng dừng ở "6 là ước chung". `cutTry` đã có `goal: "largest"` nhưng bài không dùng.
-- Sửa: ở section 3, thay `cat-lon-nhat-12-18` bằng `cutTry` với `goal: "largest"` cho 12 và 18 (có độ dài bắt đầu không vừa, xem Nên sửa 1), hoặc thêm cờ `greatest` cho `cutBars` (xem Nên sửa 3) để dòng kết luận ghi "6 dm là đoạn dài nhất cắt vừa hết cả hai dải: ƯCLN(12, 18) = 6" màu cam, kèm một câu note nói điều đó. Caption `cat-18-24-30`: "6 dm là đoạn dài nhất cắt vừa cả ba dải: 6 là ƯCLN(18, 24, 30)."
-
-### 3. Hình cắt dải section 4 và recap gọi 7 là "ước chung" màu xanh ngọc, trong khi quy tắc nói ƯCLN và công thức tô 7 màu cam (LL-15)
-
-- Vị trí: `$.sections[3].blocks[0]` (`uoc-chung-uoc-chung-lon-nhat.visual.cat-7-21`), `$.sections[3].recap` và `$.cards[3].recap` (`uoc-chung-uoc-chung-lon-nhat.visual.cat-7-21-xong`)
-- Nguồn: tr.39 câu 2.34; tr.107 lời giải
-- Vấn đề: dòng kết luận của hình "7 là ước chung của 7 và 21", 7 màu xanh ngọc; caption recap "ƯCLN(7, 21) = 7", công thức `21 ⋮ 7` tô 7 màu cam. Cùng số 7 có hai tên, hai màu; hình recap không nói điều recap muốn trẻ nhớ.
-- Sửa: thêm cờ `greatest: true` cho `cutBars` để dòng kết luận ghi "ƯCLN(7, 21) = 7" màu cam; dùng cho `cat-7-21`, `cat-7-21-xong` và hình ở Nên sửa 2.
-
-### 4. Câu đếm đoạn 15 dm và 20 dm cần 3 phép tính, hình lời giải không ra số 7 (LL-18, LL-15)
-
-- Vị trí: `$.exercises[4]` (`uoc-chung-uoc-chung-lon-nhat.ex.dem-doan-15-20`), `hints.solutionVisualId` = `cat-giai-15-20`
+- Vị trí: `$.concepts[2]` (`concept.co-so`, "Cơ số", blue), `$.cards[4..6].conceptIds`; hình `chia-dan-*`, `bang-*` (chú giải blue "Thừa số nguyên tố"), `sn-vi-du` (thẻ "7 chỉ có ước 1 và 7" màu blue), `cut-bars.tsx` (chấm trong dải blue, "Còn thừa" pink), `dia-18-30`, `dia-18-30-xong`, `dia-14-35`, `dia-goi-y-8-12` (quả màu blue, pink); `$.concepts[4]` (`phan-so`, pink), `$.concepts[5]` (`rut-gon-phan-so`, sky); `content/glossary/math.json` ("số nguyên tố" sky, "thừa số" blue)
 - Nguồn: —
-- Vấn đề: tính 15 : 5, 20 : 5 rồi 3 + 4 là 3 phép tính, vượt luật "tối đa 2 phép tính nhẩm", và luyện phép chia nhiều hơn khái niệm ước chung. Hình lời giải chỉ cắt hai dải rồi kết luận "5 là ước chung", không dòng nào ra 7.
-- Sửa: đổi đề về đúng ý ước chung ("Đoạn 5 dm có cắt vừa hết cả hai dải không?", hay hỏi số đoạn của một dải), hoặc giữ đề và đổi lời giải sang hình `notation` ba dòng `15 : 5 = 3`, `20 : 5 = 4`, `3 + 4 = 7`.
+- Vấn đề: bài khai blue là "Cơ số" nhưng màn trẻ thấy gọi nó là "Thừa số nguyên tố"; section 5 không dạy cơ số mà card vẫn gắn "Cơ số". Blue còn tô thẻ số nguyên tố, chấm dải băng, quả cam. Pink khai là "Phân số" nhưng hình nào cũng dùng cho "Còn thừa" và quả quýt, không tô phân số nào. Sky khai cho "Rút gọn phân số" (không hình nào dùng) trùng màu glossary của "số nguyên tố".
+- Sửa: đổi `concept.co-so` thành khái niệm "Thừa số nguyên tố" (blue, khớp glossary "thừa số"), cập nhật `conceptIds` các card. Chấm dải băng, thẻ `sn-vi-du`, quả trong các hình đĩa dùng màu không thuộc `concepts` (`slate`, hay một màu đồ vật trung tính). "Còn thừa" giữ pink thì bỏ khái niệm "Phân số" khỏi `concepts` (không hình nào tô phân số bằng pink), hoặc đổi "Còn thừa" sang màu khác. Bỏ hay đổi màu `rut-gon-phan-so` để không trùng sky. Màu "số nguyên tố" giữa hai bài để vòng căn chỉnh trong backlog.
 
-### 5. Kí hiệu "Ư(6)", "Ư(12)" xuất hiện ở màn quy tắc và recap mà chưa dạy (LL-09)
+### 5. Section `nhac-thua-so` gộp hai quy tắc, recap phải ghép hai câu dài
 
-- Vị trí: hình `uoc-chung-uoc-chung-lon-nhat.visual.uclnn-uc-12-18` (`$.sections[7].blocks[0]`), `uoc-chung-uoc-chung-lon-nhat.visual.uclnn-uc-24-36` (`$.sections[7].blocks[1].children[1]`, `$.sections[7].recap`, `$.cards[7].recap`); dữ liệu trong `src/visuals/math/uoc-chung-uoc-chung-lon-nhat/catalog.ts` ("Ư(6) = {1; 2; 3; 6}", "Ư(12) = {…}")
-- Nguồn: kí hiệu có ở tr.39 câu 2.33, bài không dạy
-- Vấn đề: bài chỉ dạy ƯC(…) và ƯCLN(…) (hình `ky-hieu-12-18`). Dòng Ư(a) ở giữa hai hình này chính là bước nối ƯCLN với ƯC của quy tắc; trẻ đọc không hiểu thì mất đúng bước cần nhớ.
-- Sửa: viết dòng đó bằng lời ("Các ước của 6: 1, 2, 3, 6"), hoặc thêm vào note màn đầu section 8: "Ư(6) là tập các ước của 6."
-
-### 6. Bước "số mũ nhỏ nhất bằng 1" dựa vào 3 = 3¹, bài không nhắc (LL-16)
-
-- Vị trí: hình `bang-36-60` (`$.sections[5].blocks[0]`), `bang-20-30`, `bang-18-24-30` (hàng "Mũ nhỏ nhất"); `$.exercises[29]` (`xep-uclnn-12-30`)
+- Vị trí: `$.sections[4]` (hai note `rule: true`), `$.sections[4].recap.caption`, `$.cards[4].recap.caption`
 - Nguồn: —
-- Vấn đề: ở cột 3² và 3, bảng ghi "Mũ nhỏ nhất: 1" mà không màn nào nói "3 cũng là 3¹". Trẻ thấy "3" không số mũ dễ nghĩ số mũ là 0 hoặc bỏ cột đó, đúng chỗ hay sai nhất.
-- Sửa: thêm vào note "cùng làm" `$.sections[5].blocks[3].children[0]`: "Thừa số viết không có số mũ thì số mũ là 1, như 3 = 3¹."
+- Vấn đề: recap ghép hai định nghĩa (ảnh `phone/068-s5-07-recap.png`: năm dòng chữ trước khi tới hình). Checklist trục 5: section gộp hai quy tắc cần nhớ riêng.
+- Sửa: tách thành hai section: "Nhắc lại: số nguyên tố" (note quy tắc + `sn-vi-du`, màn chạm `chon-sn`; kiểm tra `chon-sn-13`; card kho ôn `dien-sn-chinh-no`) và "Nhắc lại: phân tích ra thừa số nguyên tố" (note chia dần + `chia-dan-12`, quy tắc + `chia-dan-36-xong`; kiểm tra `thieu-thua-so-30`, luyện `phan-tich-24`; kho ôn `xep-chia-dan-45`), mỗi section một recap một câu. Hoặc giữ một section và bỏ `rule` ở câu số nguyên tố, recap chỉ còn câu phân tích (khi đó đổi card của `chon-sn-13`, `dien-sn-chinh-no` sao cho kho ôn không hỏi điều recap không có).
 
-### 7. Section 5 nhắc lại: recap thiếu định nghĩa số nguyên tố, và các câu nhắc lại khác chữ bài Số nguyên tố (LL-06, LL-05)
+### 6. Kí hiệu ƯC(12, 18) và dấu ngoặc nhọn hiện từ section 2 mà chưa câu nào đọc (LL-10)
 
-- Vị trí: `$.sections[4].recap`, `$.cards[4].recap`, `$.sections[4].blocks[0].children[0].text`, `$.sections[4].blocks[2].children[0].text` (`uoc-chung-uoc-chung-lon-nhat.section.nhac-thua-so`); `$.exercises[20]` (`chon-sn-13`), `$.exercises[23]` (`dien-sn-chinh-no`)
-- Nguồn: bài `so-nguyen-to`, recap section "Số nguyên tố", "Phân tích bằng sơ đồ cây", "Viết gọn bằng luỹ thừa"
-- Vấn đề: recap chỉ có ý phân tích, nhưng câu kiểm tra `chon-sn-13` và câu kho ôn `dien-sn-chinh-no` (gắn card này) hỏi định nghĩa số nguyên tố. Các câu nhắc lại cũng lệch bài trước: "Số nguyên tố là số lớn hơn 1, ..." (bài trước: "số tự nhiên lớn hơn 1"), "thành tích của các số nguyên tố. Thừa số nào lặp lại thì viết bằng luỹ thừa" (bài trước: "thành tích các thừa số nguyên tố", "Thừa số nguyên tố nào lặp lại thì viết gọn bằng luỹ thừa"). Một quy tắc nói hai cách giữa hai bài liền nhau.
-- Sửa: chép đúng câu quy tắc của bài `so-nguyen-to` cho định nghĩa số nguyên tố và câu luỹ thừa. Recap section 5 (tối đa 2 câu): "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó. Phân tích một số ra thừa số nguyên tố là viết số đó thành tích các thừa số nguyên tố." Nếu muốn giữ câu luỹ thừa trong recap thì đổi card của `dien-sn-chinh-no`.
+- Vị trí: `$.sections[1].blocks[0]` (hình `ds-12-18`, hàng "ƯC(12, 18)"), `$.sections[2].blocks[2].children[0].text` và hình `ky-hieu-12-18`
+- Nguồn: tr.107, `sbt-p107.png` (lời giải 2.33)
+- Vấn đề: màn đầu section 2 đã có nhãn "ƯC(12, 18)" (ảnh `019`), section 3 chỉ đọc dòng ƯCLN, còn dòng "ƯC(12, 18) = {1; 2; 3; 6}" (ảnh `037`) có ngoặc nhọn, chấm phẩy không ai nhắc; `docs/learner.md` ghi trẻ còn yếu kí hiệu { }.
+- Sửa: caption `ds-12-18` thêm "ƯC(12, 18) là các ước chung của 12 và 18."; note section 3 thêm câu: "ƯC(12, 18) = {1; 2; 3; 6} đọc là: các ước chung của 12 và 18 là 1, 2, 3 và 6."
 
-### 8. Câu luyện `uclnn-20-30-50` quá nhiều bước, section 7 không có màn làm trọn ƯCLN ba số (LL-18, LL-16)
+### 7. Section `liet-ke-uc` không có ví dụ đời sống (LL-16)
 
-- Vị trí: `$.exercises[31]` (`uoc-chung-uoc-chung-lon-nhat.ex.uclnn-20-30-50`, câu luyện `uclnn-ba-so`); `$.sections[6].blocks[3]` (chạm `chon-chung-12-20-28`)
+- Vị trí: `$.sections[1]` (`section.liet-ke-uc`)
 - Nguồn: —
-- Vấn đề: trẻ phải tự phân tích ba số, chọn thừa số chung, lấy số mũ nhỏ nhất rồi nhân, vượt xa "tối đa 2 phép tính". Màn tương tác duy nhất của section dừng ở chọn thừa số chung.
-- Sửa: cho sẵn phân tích trong đề như `uclnn-8-12-20` ("Ta có 20 = 2² · 5, 30 = 2 · 3 · 5, 50 = 2 · 5²."), hoặc cho màn `chon-chung-12-20-28` làm tiếp tới ƯCLN(12, 20, 28) = 4.
+- Vấn đề: bốn màn và hai câu chỉ có danh sách số, trái luật "Ví dụ đời sống ở mọi section Toán" của `lesson-author`.
+- Sửa: caption `ds-12-18` nối với dải băng section 1: "Các ước chung 1, 2, 3, 6 cũng là các độ dài (dm) cắt vừa hết cả dải 12 dm và dải 18 dm."
 
-### 9. Bước cuối của `xep-chia-dan-18` viết "2 · 3 · 3", trái quy tắc viết bằng luỹ thừa (LL-05)
+### 8. Quy tắc section 4 dùng "các số kia" không rõ chỉ số nào (LL-10)
 
-- Vị trí: `$.exercises[24].items[3]` (`uoc-chung-uoc-chung-lon-nhat.ex.xep-chia-dan-18`, mục `s4`)
-- Nguồn: —
-- Vấn đề: quy tắc và recap section 5 dặn "Thừa số nào lặp lại thì viết bằng luỹ thừa"; hình `ladder` luôn kết thúc dạng luỹ thừa. Kết quả cuối của câu lại là "18 = 2 · 3 · 3".
-- Sửa: "18 = 2 · 3²" (theo số mới ở Nên sửa 16: "45 = 3² · 5").
+- Vị trí: `$.sections[3].title`, `$.sections[3].blocks[1].children[0].text`, `$.sections[3].recap.caption`, `$.cards[3].recap.caption` (`section.so-nho-chia-het`)
+- Nguồn: tr.39 câu 2.34, tr.107 lời giải
+- Vấn đề: "Nếu các số kia đều chia hết cho số bé nhất thì ƯCLN là số bé nhất." Recap card được xem một mình trong phiên ôn, "các số kia" không có gì để trỏ về.
+- Sửa: "Nếu mọi số còn lại đều chia hết cho số nhỏ nhất thì ƯCLN chính là số nhỏ nhất. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7." Tên section "Khi số lớn chia hết cho số nhỏ"; chép đúng câu vào hai recap (xem Góp ý 2).
 
-### 10. Màu tím vừa là "Một đoạn" vừa là "Số mũ" trong section 7 (LL-03)
+### 9. Câu kho ôn, câu kiểm tra dùng lại số và kết quả của recap hay màn ngay trước (LL-07, LL-18)
 
-- Vị trí: `$.sections[6].blocks[0]` (hình `cat-18-24-30`, chú giải "Một đoạn" tím) và `$.sections[6].blocks[1]` (hình `bang-18-24-30`, chú giải "Số mũ" tím); `src/visuals/math/uoc-chung-uoc-chung-lon-nhat/cut-bars.tsx` (`color="violet"`)
-- Nguồn: —
-- Vấn đề: hai màn liền nhau, cùng màu tím, hai tên. Bài đặt `so-mu` = violet trong `concepts`; độ dài một đoạn (vốn là ước chung) không nên mang màu của số mũ.
-- Sửa: đổi viền "Một đoạn" của `cutBars` sang slate (trung tính), áp cho mọi hình `cutBars` của bài.
+- Vị trí: các mục trong bảng
+- Nguồn: tr.39 ví dụ 2 (16, 24, 40)
+- Vấn đề: recap card `uclnn-ba-so` (`bang-18-24-30-xong`) cho sẵn 18, 30 có thừa số chung 2, 3 và ƯCLN 6, đúng đáp án `chon-chung-12-18-30`, `uclnn-18-30-42`; `uclnn-9-18-45` lặp 9, 45 và đáp án 9 của `uclnn-9-45`; `uclnn-20-30-50` có đúng hai dòng 20, 30 và kết quả 10 của màn cùng làm `bang-20-30`, thêm 50 không đổi kết quả. Recap `uclnn-uc-24-36` in "ƯCLN(24, 36) = 12", đáp án `tinh-uclnn-24-36`. `but-vo-20-30` là phép tính của `bang-20-30`. Câu kiểm tra `uclnn-8-12-20` lặp dòng 12, 20 của màn chạm `chon-chung-12-20-28` ngay trước; `dia-12-20` lặp táo, lê, 12 và kết quả 4 của `chon-dia-8-12`. `uclnn-24-56`, `chon-chung-12-18-30`, `uclnn-18-30-42` bắt trẻ tự phân tích hai, ba số, quá 2 phép tính nhẩm trong khi các câu cùng card cho sẵn phân tích.
+- Sửa: đổi theo bảng; đổi id, đề, `check`, `params` và các hình gợi ý, lời giải đi kèm (LL-15); tự giải lại từng câu, từng nhiễu (LL-01). Đã soát: mọi cặp số mới không trùng cặp nào trong bài (cả id, đề, hình) và không trùng nhau.
 
-### 11. `sourceRef` ghi "(kĩ năng 3)" nhưng kĩ năng 3 của trang là phân số tối giản; section 8 thiếu câu 2.35
-
-- Vị trí: `$.sections[4].sourceRef`, `$.sections[5].sourceRef`, `$.sections[6].sourceRef`, `$.cards[4..6].sourceRef`; `$.sections[7].sourceRef`, `$.cards[7].sourceRef`
-- Nguồn: tr.38 `sbt-p38.png` (cách tìm ƯCLN bằng phân tích là "Kiến thức cần nhớ" mục 3); tr.39 câu 2.35, lời giải tr.107
-- Vấn đề: trỏ sai mục trên đúng trang. Section 5 (số nguyên tố, sơ đồ cột) là kiến thức của bài Số nguyên tố, không có trên trang nguồn nào của bài này.
-- Sửa: section 6, 7 và card: "Sách bài tập tr.38 (kiến thức cần nhớ 3)". Section 5 và card: "Nhắc lại bài Số nguyên tố; Sách bài tập tr.38 (kiến thức cần nhớ 3)" (theo dạng lint chấp nhận). Section 8 và card: "Sách bài tập tr.38 (kiến thức cần nhớ 4), câu 2.35 tr.39".
-
-### 12. Section 5, 6, 8, 11, 12 không có ví dụ đời sống (LL-16)
-
-- Vị trí: `$.sections[4]`, `$.sections[5]`, `$.sections[7]`, `$.sections[10]`, `$.sections[11]`
-- Nguồn: —
-- Vấn đề: luật "Ví dụ đời sống ở mọi section Toán" của `lesson-author`. Các section này chỉ có số trơn, kể cả câu luyện và câu ôn.
-- Sửa: mỗi section thêm một câu hay một ví dụ gắn đời sống, số nhỏ. Section 6: "36 cái kẹo và 60 cái bánh chia đều vào các túi, không thừa. Nhiều nhất bao nhiêu túi?" (dùng lại bảng 36, 60). Section 8: "Chia đều 24 bút chì và 40 cục tẩy cho các bạn trong nhóm, không thừa. Chọn tất cả các số bạn có thể có trong nhóm." (câu chọn nhiều đáp án, ƯCLN 8; không dùng `numeric` vì có nhiều đáp án). Section 11: thêm vào caption `hh-28` "Tháng Hai của năm thường có 28 ngày, và 28 cũng là số hoàn hảo." Section 12: "Chiếc bánh cắt thành 8 miếng bằng nhau, bạn ăn 2 miếng: bạn ăn 2/8 chiếc bánh, rút gọn là 1/4." Section 5: "12 cái kẹo chia đôi được 6 cái, 6 cái chia đôi được 3 cái: 12 : 2 = 6, 6 : 2 = 3, nên 12 = 2² · 3." (đi đúng các dòng của sơ đồ cột, không đặt thêm phép nhân "n nhóm, mỗi nhóm m").
-
-### 13. `hoan-hao-8`, `hoan-hao-12`: chỉ một lựa chọn "Không", đoán được bằng mẹo (LL-14)
-
-- Vị trí: `$.exercises[50].options` (`hoan-hao-8`), `$.exercises[52].options` và `$.exercises[52].prompt[0].text` (`hoan-hao-12`)
-- Nguồn: tr.40 câu 2.38
-- Vấn đề: một lựa chọn "Không, ..." (đáp án, ở `hoan-hao-8` còn dài nhất, xuống hai dòng trên điện thoại `133-s11-05`) và ba lựa chọn "Có, ...". `hoan-hao-12` in sẵn tổng 16 trong đề. Nhiễu "Có, vì 12 là số chẵn", "Có, vì 8 chia hết cho 4" không ứng với lỗi khi cộng ước.
-- Sửa: bỏ tổng khỏi đề; mỗi lựa chọn là "tổng + kết luận", nhiễu ứng với lỗi thật. `hoan-hao-8`: "Tổng là 7, nên 8 không là số hoàn hảo" (đúng) / "Tổng là 15, nên 8 không là số hoàn hảo" (cộng cả 8) / "Tổng là 6, nên 8 không là số hoàn hảo" (bỏ sót 1) / "Tổng là 8, nên 8 là số hoàn hảo". `hoan-hao-12`: "Tổng là 16, nên 12 không là số hoàn hảo" (đúng) / "Tổng là 12, nên 12 là số hoàn hảo" (bỏ sót 4) / "Tổng là 28, nên 12 không là số hoàn hảo" (cộng cả 12) / "Tổng là 15, nên 12 không là số hoàn hảo" (bỏ sót 1).
-
-### 14. Điều kiện "mỗi hộp từ 2 bút trở lên" của ví dụ mẫu chỉ nằm trong hình quy tắc (LL-10)
-
-- Vị trí: `$.sections[9].blocks[0].children[0].text` (note "An mua 14 bút, Bình mua 21 bút...") và hình `bai-toan-ket-luan` (`uoc-chung-uoc-chung-lon-nhat.section.bai-toan-uc`)
-- Nguồn: tr.40 câu 2.37
-- Vấn đề: câu chuyện mở đầu không nêu điều kiện, nên số bút mỗi hộp có thể là 1 hay 7. Điều kiện chỉ xuất hiện như nhãn hình ở màn sau (`117-s10-02-block`), trong khi câu kiểm tra `hop-but-10-15` cần dùng đúng điều kiện này.
-- Sửa: đưa điều kiện vào note đầu ("..., mỗi hộp có từ 2 bút trở lên. Mỗi hộp có mấy bút?"), sửa cùng lúc cách nói ở Góp ý 14 và bộ số mới ở Nên sửa 16.
-
-### 15. `banh-moi-tui-18-27` thiếu "không thừa", câu khó đọc (LL-10)
-
-- Vị trí: `$.exercises[42].prompt[0].text` (`uoc-chung-uoc-chung-lon-nhat.ex.banh-moi-tui-18-27`)
-- Nguồn: tr.39 Ví dụ 2
-- Vấn đề: "chia đều vào nhiều nhất các túi quà như nhau" không có "không thừa", điều kiện có trong quy tắc section và mọi câu khác; được thừa thì số túi không bị chặn. Cụm "vào nhiều nhất các túi" ngược trật tự câu.
-- Sửa (với bộ số mới ở Nên sửa 16): "Có 15 cái bánh và 40 cái kẹo chia đều vào các túi quà như nhau, không thừa. Chia được nhiều túi nhất thì mỗi túi có bao nhiêu cái bánh?" (đáp án 3).
-
-### 16. Câu kho ôn, câu kiểm tra, màn chạm lặp số của nhau và của recap (LL-07)
-
-- Vị trí: các mục trong bảng dưới
-- Nguồn: —
-- Vấn đề: phiên ôn gặp lại bộ số trẻ vừa thấy kết quả. Ví dụ: màn quy tắc `ds-8-12-xong` in sẵn ƯC(8, 12) = 1, 2, 4, là đáp án của `cat-8-12-tu-lam` và màn chạm `chon-uclnn-8-12`; màn chạm `chon-uc-6-9` lặp câu kiểm tra `chon-cat-6-9` ngay trước; câu kiểm tra `uc-uclnn-16-40` in sẵn "ƯCLN(16, 40) = 8", là đáp án câu ôn `uclnn-16-40`; `xep-chia-dan-18` có đúng các dòng của hình nấc 2 `chia-dan-goi-y-18`; `chon-uclnn-18-30` dùng 18 và 30 của câu mở bài và recap section 9; recap `uclnn-uc-24-36` in sẵn ƯCLN(24, 36) = 12 và ƯC(24, 36), là đáp án `chia-het-24-36` và `mau-toi-gian-24-36`; ƯC(12, 18) là ví dụ chính của section 2, 3, 8 nên `tui-ke-12-18` chỉ là nhớ lại; `banh-moi-tui-18-27` lặp cặp của `chon-uc-18-27`; ví dụ 14, 21 section 10 lặp `chon-uc-14-21`; `hop-but-10-15` lặp `uc-10-15` và giữ tên "Tuấn", "Hà", điều kiện, đáp án 5 của câu 2.37 (LL-08 nhẹ); `uclnn-16-24` trùng số và đáp án Ví dụ 2 tr.39; hình gợi ý `rg-goi-y-14-35` in ƯCLN(14, 35) = 7, đáp án `dia-14-35`; `uc-la-uoc-cua` dùng 36, 60 của recap section 6; `uclnn-12-30-42` có cặp 12, 30 và đáp án 6 của `xep-uclnn-12-30`.
-- Sửa: đổi theo bảng (đã soát: các cặp mới không là cặp nào đang dùng trong bài, và không trùng nhau). Tự giải lại từng câu, từng nhiễu sau khi đổi (LL-01) và soát trùng lại cả bài.
-
-  | Mục | Số mới | Đáp án mới |
+  | Mục | Số mới, đề | Đáp án; nhiễu |
   |---|---|---|
-  | `$.exercises[1]` `cat-8-12-tu-lam` | 9 dm và 21 dm | 3 |
-  | `$.sections[1].blocks[1].children[1]` `ds-8-12-xong` | 10 và 14 | ƯC 1, 2 |
-  | `$.sections[2].blocks[3].children[1]` `chon-uclnn-8-12` | 20 và 24 | 4 |
-  | `$.sections[1].blocks[2].children[1]` `chon-uc-6-9` | 15 và 25 | 1 và 5 |
-  | `$.exercises[10]` `uclnn-16-24` | 26 và 39 | 13 |
-  | `$.exercises[27]` `uclnn-16-40` | 24 và 56 | 8 |
-  | `$.exercises[24]` `xep-chia-dan-18` | 45 (45 : 3 = 15, 15 : 3 = 5, 5 : 5 = 1) | 45 = 3² · 5 |
-  | `$.exercises[28]` `chon-uclnn-18-30` | 42 = 2 · 3 · 7 và 70 = 2 · 5 · 7; lựa chọn 2 · 7, 2 · 3 · 5 · 7, 7, 2 · 5 | 2 · 7 = 14 |
-  | `$.exercises[38]` `uc-la-uoc-cua` | 40 và 60 | ƯCLN 20 |
-  | `$.exercises[34]` `uclnn-12-30-42` | 18, 30 và 42 | 6 |
-  | `$.exercises[48]` `chia-het-24-36` | 27 và 45; lựa chọn 3, 5, 9, 15 | 3 và 9 |
-  | `$.exercises[59]` `mau-toi-gian-24-36` | 33/55 | 3/5, mẫu 5 |
-  | `$.exercises[49]` `tui-ke-12-18` | 32 và 48, mỗi túi từ 10 cái trở lên | 16 |
-  | `$.exercises[42]` `banh-moi-tui-18-27` | 15 bánh và 40 kẹo | 5 túi, mỗi túi 3 bánh |
-  | `$.sections[9].blocks[0]` ví dụ `ds-14-21` | 22 và 33, mỗi hộp từ 2 bút trở lên | 11 |
-  | `$.exercises[45]` `hop-but-10-15` | 21 và 28 bút, đổi tên hai bạn (không dùng Tuấn, Hà) | 7 |
-  | `$.exercises[56].hints.hintVisualId` `rg-goi-y-14-35` | 6/15 | ƯCLN 3, được 2/5 |
+  | `$.exercises[32]` `chon-chung-12-18-30` | "Ta có 30 = 2 · 3 · 5, 42 = 2 · 3 · 7 và 66 = 2 · 3 · 11. Chọn tất cả thừa số nguyên tố chung của 30, 42 và 66." | 2 và 3; nhiễu 6 (ước chung nhưng không là số nguyên tố), 7 (chỉ có ở 42) |
+  | `$.exercises[34]` `uclnn-18-30-42` (lời giải `bang-18-30-42`) | "Ta có 24 = 2³ · 3, 60 = 2² · 3 · 5 và 84 = 2² · 3 · 7. Tìm ƯCLN của 24, 60 và 84." | 12; nhiễu 4 (quên 3), 6 (lấy 2¹), 24 (lấy số mũ lớn nhất) |
+  | `$.exercises[33]` `uclnn-9-18-45` | 7, 28 và 49 | 7 |
+  | `$.exercises[31]` `uclnn-20-30-50` (lời giải `bang-20-30-50`) | "Ta có 18 = 2 · 3², 54 = 2 · 3³ và 81 = 3⁴. Tìm ƯCLN của 18, 54 và 81." (ƯCLN của hai số đầu là 18; thêm 81 làm mất thừa số 2) | 9 |
+  | `$.exercises[30]` `uclnn-8-12-20` | "Ta có 15 = 3 · 5, 45 = 3² · 5 và 50 = 2 · 5². ƯCLN(15, 45, 50) bằng bao nhiêu?" | 5; nhiễu 3 (chỉ chung 15, 45), 15 (ƯCLN của hai số đầu), 25 (lấy 5²) |
+  | `$.exercises[26]` `tinh-uclnn-24-36` (lời giải `bang-24-36`) | "Ta có 50 = 2 · 5² và 70 = 2 · 5 · 7. Tính ƯCLN(50, 70)." | 10 |
+  | `$.exercises[27]` `uclnn-24-56` | giữ số, thêm vào đề "Ta có 24 = 2³ · 3 và 56 = 2³ · 7." | 8 |
+  | `$.exercises[44]` `but-vo-20-30` | "Cô giáo có 16 cây bút chì và 36 quyển vở, chia đều cho các học sinh, không thừa. Nhiều nhất chia được cho bao nhiêu học sinh?" (bỏ "các bạn" vì app gọi trẻ là "bạn") | 4; nhiễu 2, 8 (chỉ là ước của 16), 12 (chỉ là ước của 36) |
+  | `$.exercises[41]` `dia-12-20` | "Có 10 quả cam và 35 quả mận chia đều vào các đĩa như nhau, không thừa. Nhiều nhất được bao nhiêu đĩa?" | 5; nhiễu 1 (ước chung nhưng không nhiều nhất), 2 (chỉ là ước của 10), 7 (chỉ là ước của 35) |
 
-### 17. Section 12 gộp hai quy tắc, recap phải ghép hai câu
+### 10. Câu kiểm tra `chia-nhom-16-28` là bài toán lời văn khi section 8 chưa dạy cách đọc đề; nấc 1 tô câu hỏi (LL-09, LL-16)
 
-- Vị trí: `$.sections[11].blocks[1].children[0]`, `$.sections[11].blocks[2].children[0]` (cả hai `rule: true`), `$.sections[11].recap.caption`
-- Nguồn: tr.38 kĩ năng 3
-- Vấn đề: section dạy hai điều cần nhớ riêng (nhận biết phân số tối giản; rút gọn bằng cách chia cho ƯCLN) trong 3 màn, không còn chỗ cho phần nhắc tiểu học (Nghiêm trọng 8) và ví dụ đời sống (Nên sửa 12).
-- Sửa: tách thành "Phân số tối giản" (nhắc tử, mẫu; định nghĩa; câu `chon-toi-gian`) và "Rút gọn về phân số tối giản" (ví dụ bánh; quy tắc chia cho ƯCLN; câu `rut-gon-18-24`), mỗi section một recap một câu, mỗi section một card.
+- Vị trí: `$.exercises[38]` (`chia-nhom-16-28`, `checkIds` của `section.uc-tu-uclnn`), `$.exercises[38].hints.highlight[0]`
+- Nguồn: tr.38 ý 4, tr.39 câu 2.35 (chỉ có bài tìm ƯC từ ƯCLN bằng số)
+- Vấn đề: section 8 chỉ dạy bằng số, câu kiểm tra lại bắt trẻ tự hiểu "chia đều bút và tẩy, không thừa" nghĩa là số học sinh là ước chung, cách đọc đề này chỉ dạy ở section 9, 10. Câu cũng không cho ƯCLN như `uc-uclnn-16-40`, nên trẻ phải phân tích 16, 28, tìm ƯCLN rồi liệt kê ước. Nấc 1 (`index: 1`) tô câu hỏi, không tô hai số 16, 28 ở `block 0`.
+- Sửa: thêm vào câu đầu "Biết ƯCLN(16, 28) = 4." và một câu nối "Số học sinh phải là ước chung của 16 và 28."; đổi nấc 1 sang `index: 0`. Hoặc thay câu kiểm tra bằng câu chỉ dùng số và chuyển `chia-nhom-16-28` sang kho ôn card `bai-toan-uc`.
 
-### 18. Một ý hai cách nói: "không kể chính nó" và "các ước nhỏ hơn 6" (LL-05)
+### 11. Bảng thừa số dùng "—" cho ô trống, đọc như dấu trừ (LL-21)
 
-- Vị trí: hình `hh-6`, `hh-6-xong` (nhãn "Các ước nhỏ hơn 6 cộng lại"), `hh-28` (label "Các ước của 28 nhỏ hơn 28 cộng lại bằng 28") trong `catalog.ts`; so với note quy tắc và các đề "không kể 8", "không kể 12" (`uoc-chung-uoc-chung-lon-nhat.section.so-hoan-hao`)
-- Nguồn: tr.40 câu 2.38
-- Vấn đề: quy tắc và mọi bài tập nói "không kể chính nó", hình recap cuối section (`140-s11-07-recap`) nói "nhỏ hơn 6". Trẻ học chậm dễ nghĩ đó là hai điều kiện khác nhau.
-- Sửa: nhãn "Cộng các ước, không kể 6" và "Cộng các ước, không kể 28".
+- Vị trí: mọi hình `expTable` (`exp-table.tsx`): `bang-36-60`, `bang-36-60-xong` (màn quy tắc, recap section 6), `bang-20-30`, `bang-18-24-30`, `bang-18-24-30-xong`, các hình gợi ý, lời giải `bang-*`
+- Nguồn: —
+- Vấn đề: hàng "20 = 2² — 5", "36 = 2² 3² —" (ảnh `phone/074-s6-04-block.png`, `080-s6-07-recap.png`, `092-s7-07-recap.png`) không có dấu "·" nên không còn là tích; gạch giữa hai thừa số dễ đọc thành "trừ". Ô thừa số có khung nên ít nhầm, để Nên sửa. Đây là kiểu đã ghi ở LL-21, không cần mục mới.
+- Sửa: để ô trống thật (hay chấm mờ nhỏ không giống dấu phép tính) thay cho "—"; thêm hàng tiêu đề cột "Thừa số 2 | 3 | 5"; đổi nhãn "Mũ nhỏ nhất" thành "Số mũ nhỏ nhất" cho khớp glossary.
 
-### 19. Section 12 mở bằng cách chia cho 2 nhiều lần, quy tắc lại chia một lần cho ƯCLN, không câu nào nối hai cách (LL-05, LL-16)
+### 12. Truyện mua bút, mua kẹo không nói mỗi bạn mua trọn hộp, trọn túi (LL-10)
 
-- Vị trí: `$.sections[11].blocks[0]` (hình `uoc-chung-uoc-chung-lon-nhat.visual.rg-20-28`, caption "Chia cả tử và mẫu cho 2, rồi lại cho 2, đến khi không chia tiếp được nữa."), `$.sections[11].blocks[2].children[0]` (quy tắc "ta chia cả tử và mẫu cho ƯCLN của chúng. Ví dụ ƯCLN(20, 28) = 4."), recap `tg-tom-tat`
-- Nguồn: tr.38 kĩ năng 3 ("vận dụng ƯCLN đưa phân số về tối giản")
-- Vấn đề: màn mẫu đầu tiên dạy một cách (chia dần cho 2), quy tắc và recap dạy cách khác (chia một lần cho 4). Không câu nào nói hai cách cùng ra 5/7 hay vì sao chia cho ƯCLN nhanh hơn (2 · 2 = 4). Trẻ có thể nhớ cách ở màn đầu rồi dừng giữa chừng, hoặc không hiểu "Ví dụ ƯCLN(20, 28) = 4" dùng vào đâu.
-- Sửa: đổi màn đầu sang đúng cách của quy tắc (hình hai dòng: ƯCLN(20, 28) = 4; 20/28 = (20 : 4)/(28 : 4) = 5/7), hoặc giữ màn chia dần và thêm câu note ngay sau: "Chia cho 2 hai lần cũng là chia cho 4 = ƯCLN(20, 28). Chia luôn cho ƯCLN thì chỉ cần một bước." Câu quy tắc nói hết ví dụ: "... Ví dụ ƯCLN(20, 28) = 4 nên 20/28 rút gọn được 5/7."
+- Vị trí: `$.sections[9].blocks[0].children[0].text`, `$.exercises[46].prompt[0]` (`hop-but-21-28`), `$.exercises[50].prompt[0]` (`tui-ke-32-48`)
+- Nguồn: tr.40 câu 2.37
+- Vấn đề: "An mua 22 bút, Bình mua 33 bút, theo hộp có số bút như nhau" khó đọc và không nói mỗi bạn mua một số hộp nguyên, mà chính điều đó làm số bút một hộp thành ước chung.
+- Sửa: "Bút bán theo hộp, hộp nào cũng có số bút như nhau, từ 2 bút trở lên. An mua mấy hộp được 22 bút, Bình mua mấy hộp được 33 bút. Vậy số bút trong một hộp là ước chung của 22 và 33." Hai đề kia viết theo cùng khuôn (kẹo theo túi, từ 10 cái trở lên).
+
+### 13. Màn `hh-28` lặp lời giải 2.38, câu tháng Hai không liên quan (LL-08)
+
+- Vị trí: `$.sections[10].blocks[3]` (hình `hh-28` và caption, `section.so-hoan-hao`)
+- Nguồn: tr.107 lời giải 2.38
+- Vấn đề: màn 28 là đúng lời giải 2.38 (cùng dãy ước, cùng kết luận). Để Nên sửa vì số hoàn hảo nhỏ chỉ có 6 và 28, câu chữ đã viết lại. "Tháng Hai của năm thường có 28 ngày" (do Nên sửa 12 vòng 1 gợi ý) không nói gì về số hoàn hảo.
+- Sửa: bỏ màn `hh-28` (ví dụ 6 và phản ví dụ 14 đã đủ, section còn 3 màn). Nếu giữ thì bỏ câu tháng Hai.
+
+### 14. Section phân số tối giản không có phản ví dụ trước câu luyện (LL-16)
+
+- Vị trí: `$.sections[11].blocks` (`section.phan-so-toi-gian`), câu luyện `$.exercises[61]` (`chon-nhieu-toi-gian`)
+- Nguồn: tr.40 câu 2.40
+- Vấn đề: màn học chỉ có ví dụ đạt (5/7); câu luyện bắt loại 9/12, 10/15, kiểu xét trẻ chưa thấy làm mẫu.
+- Sửa: thêm vào hình `tg-5-7` (hay note quy tắc) dòng "ƯC(2, 8) = {1; 2}, nên 2/8 chưa tối giản", dùng lại 2/8 của màn đầu; dòng này nối sang section sau, nơi phân số được rút gọn.
+
+### 15. "Phân số tối giản" chưa có trong glossary (LL-09)
+
+- Vị trí: `$.sections[11].blocks[1].children[0]`; `content/glossary/math.json`
+- Nguồn: tr.38 (kĩ năng "nhận biết phân số tối giản"), tr.40 câu 2.40 chỉ dùng từ, không định nghĩa
+- Vấn đề: định nghĩa đúng và gọn, nhưng glossary đã có "phân số", "tử", "mẫu", "rút gọn phân số" với `prerequisite` mà thiếu chính thuật ngữ của section.
+- Sửa: thêm `{"term": "phân số tối giản", "prerequisite": "tiểu học"}`; có thể thêm "số hoàn hảo" (tr.40 có định nghĩa, không cần `prerequisite`).
 
 ## Góp ý
 
-### 1. Section 1 chưa nói thành lời mối nối "cắt vừa hết" với "là ước" (LL-16)
+### 1. `dem-doan-15-20` không luyện ước chung
 
-- Vị trí: `$.sections[0].blocks[0..2]` (`uoc-chung-uoc-chung-lon-nhat.section.uoc-chung`)
-- Nguồn: tr.38 mục 1
-- Vấn đề: màn 1 đã ghi "3 là ước chung của 12 và 18" trước khi định nghĩa; không câu nào nói "dải 12 dm cắt vừa hết thành đoạn 3 dm vì 12 chia hết cho 3, tức 3 là ước của 12".
-- Sửa: thêm câu đó vào caption màn 1 hay note màn quy tắc.
-
-### 2. Màn "1 luôn là ước chung" chưa cho thấy 7 và 10 chỉ có ước chung là 1; màn chạm 6 và 9 nhắc "danh sách" mà không hiện danh sách (LL-19)
-
-- Vị trí: `$.sections[1].blocks[3]` (formula `7 = 1 · 7`, `10 = 1 · 10`); `$.sections[1].blocks[2].children[0].text`
+- Vị trí: `$.exercises[4]` (`ex.dem-doan-15-20`, card `uoc-chung`)
 - Nguồn: —
-- Vấn đề: công thức chỉ cho thấy 1 là ước của từng số. Màn chạm nói "Đối chiếu hai danh sách ước" nhưng không có danh sách; "đối chiếu" là từ Hán Việt khó.
-- Sửa: thay công thức bằng hai hàng `ucLists` Ư(7): 1, 7 và Ư(10): 1, 2, 5, 10. Note màn chạm: "So các ước của 15 với các ước của 25 giúp bạn không bỏ sót số nào." (theo số mới ở Nên sửa 16).
+- Vấn đề: chỉ cần 20 : 5, dải 15 dm không dùng tới.
+- Sửa: hỏi "Đoạn 5 dm có cắt vừa hết cả hai dải không? Vậy 5 có là ước chung của 15 và 20 không?"
 
-### 3. Màn kí hiệu ƯC, ƯCLN chưa nói cách đọc
+### 2. "bé" và "nhỏ" dùng lẫn cho cùng một ý (LL-05)
 
-- Vị trí: `$.sections[2].blocks[2]` (`uoc-chung-uoc-chung-lon-nhat.visual.ky-hieu-12-18`)
-- Nguồn: tr.39 câu 2.33
-- Vấn đề: từ section 4, quy tắc dùng `ƯCLN(7, 21) = 7` nhưng chưa câu nào đọc kí hiệu thành lời.
-- Sửa: thêm vào note "ƯCLN(12, 18) = 6 đọc là: ước chung lớn nhất của 12 và 18 bằng 6."
-
-### 4. Ý "ba số" ở section 4 chỉ nằm trong note thường, recap chỉ nói hai số (LL-06)
-
-- Vị trí: `$.sections[3].blocks[1..2]`, `$.sections[3].recap`, `$.cards[3].recap`; câu ôn `$.exercises[17]` (`uclnn-3-18-27`)
-- Nguồn: tr.39 câu 2.34b
-- Vấn đề: recap chỉ nói "ƯCLN của hai số là số bé", câu ôn hỏi ba số.
-- Sửa: "Nếu các số kia đều chia hết cho số bé nhất thì ƯCLN là số bé nhất. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7." cho rule, recap section và recap card.
-
-### 5. Nhiễu yếu trong các câu điền từ (LL-14)
-
-- Vị trí: `$.exercises[3].bank` (`dien-uc-20-30`: "số dư"), `$.exercises[39].bank` (`dien-tim-uclnn`: "tổng", "tích"), `$.exercises[23].bank` (`dien-sn-chinh-no`: "số 0"), `$.exercises[44].bank` (`dien-so-phan-nhieu-nhat`: "tổng", "tích"), `$.exercises[54].bank` (`dien-tong-uoc`: "tích", "hiệu")
+- Vị trí: section 4 ("số bé nhất", tiêu đề), `ex.cap-uclnn-bang-so-be` ("số bé hơn"), ngân hàng `dien-so-phan-nhieu-nhat`, `dien-rut-gon` ("số bé hơn"), `dien-tim-uclnn` ("số bé nhất"); section 5, 6 ("nhỏ nhất")
 - Nguồn: —
-- Vấn đề: các từ này không ứng với lỗi hiểu sai nào của bài, trẻ loại ngay.
-- Sửa: `dien-uc-20-30`: "bội" (nhầm ước với bội). `dien-tim-uclnn`: "ước chung", "số bé nhất". `dien-sn-chinh-no`: "số 2", "số 3". `dien-so-phan-nhieu-nhat`: "hiệu" (lỗi lấy 20 − 12), "số bé hơn"; không thêm "ước chung" vì câu đó cũng đúng (LL-01). `dien-tong-uoc`: "số lượng" (đếm các ước thay vì cộng).
+- Vấn đề: Góp ý 15 vòng 1 chưa sửa.
+- Sửa: dùng "nhỏ" cho cả bài (xem Nên sửa 8).
 
-### 6. Phạm vi bỏ "Kiến thức bổ sung", câu 2.41-2.43 và Ví dụ 1: chấp nhận được
+### 3. `sourceRef` section 2 và 4 nên ghi cả trang lời giải
 
-- Vị trí: toàn bài (giả định trong `notebooks/backlogs/lesson-uoc-chung-uoc-chung-lon-nhat/task.md`)
-- Nguồn: tr.38 mục 5-6 và Ví dụ 1; tr.40 câu 2.41-2.43
-- Vấn đề: không phải lỗi. Đây là phần "bổ sung", cần biến chữ m, n và lý luận "(m, n) = 1", quá sức trẻ đang yếu nhân chia; Ví dụ 1 cần "hiệu chia hết", chưa dạy. Mọi kĩ năng bắt buộc ở tr.38 đều có section.
-- Sửa: giữ như hiện tại.
+- Vị trí: `$.sections[1].sourceRef`, `$.sections[3].sourceRef` và card tương ứng
+- Nguồn: tr.107, lời giải 2.33, 2.34
+- Vấn đề: cách liệt kê và quy tắc "số lớn chia hết cho số nhỏ" chỉ suy ra được từ lời giải.
+- Sửa: thêm "tr.107 (lời giải 2.33)", "tr.107 (lời giải 2.34)".
 
-### 7. Nấc 1 tô cả đề ở các câu mà chỗ dễ sai là số mũ
+### 4. Lời kết màn chạm section 4 chưa nối về ƯCLN
 
-- Vị trí: `$.exercises[28].hints` (`chon-uclnn-18-30`), `$.exercises[30].hints` (`uclnn-8-12-20`)
+- Vị trí: hình `chon-cap-chia-het`, trường `done`
 - Nguồn: —
-- Vấn đề: lỗi hay gặp là lấy số mũ lớn nhất hoặc lấy cả thừa số không chung; highlight `block` tô cả đề, không có `hintVisualId`.
-- Sửa: tách phân tích trong đề thành khối `formula` có `\htmlId` quanh các số mũ rồi trỏ `target: "part"`, hoặc thêm hình nấc 2 `expTable` mode `hint` với số khác đề.
+- Vấn đề: chỉ nói về chia hết.
+- Sửa: thêm "Với mỗi cặp này, ƯCLN chính là số nhỏ."
 
-### 8. Đề mở bằng "Phân tích 28 = …" đọc như một lệnh (LL-10)
+### 5. Nhiễu `chon-chung-28-42` loại được ngay (LL-14)
 
-- Vị trí: `$.exercises[25].prompt`, `$.exercises[26].prompt`, `$.exercises[28].prompt`, `$.exercises[30].prompt` (`chon-chung-28-42`, `tinh-uclnn-24-36`, `chon-uclnn-18-30`, `uclnn-8-12-20`)
+- Vị trí: `$.exercises[25].options[2]` (lựa chọn 5)
 - Nguồn: —
-- Vấn đề: trẻ có thể nghĩ mình phải phân tích lại.
-- Sửa: "Ta có 28 = 2² · 7 và 42 = 2 · 3 · 7."
+- Vấn đề: 5 không có ở số nào.
+- Sửa: thay bằng 4 (nhầm 2² là thừa số nguyên tố).
 
-### 9. Màn chạm đứng trước màn "cùng làm" ở section 6
+### 6. `dem-uc-24-40` dùng cặp con của ví dụ 2 sách, cùng ƯCLN 8 với `uc-uclnn-16-40` (LL-07)
 
-- Vị trí: `$.sections[5].blocks[2]` (chạm `chon-chung-20-30`) và `$.sections[5].blocks[3]` (cùng làm `bang-20-30`)
+- Vị trí: `$.exercises[37]` (`dem-uc-24-40`)
+- Nguồn: tr.39 ví dụ 2
+- Vấn đề: trả lời ngay bằng danh sách 1, 2, 4, 8 của câu kiểm tra cùng section.
+- Sửa: "Biết ƯCLN(36, 63) = 9. Hai số 36 và 63 có bao nhiêu ước chung?" (đáp án 3; cặp chưa có trong bài, không trùng bảng Nên sửa 9).
+
+### 7. Bước "lấy thừa số chung" nói ba cách trong hai section (LL-05)
+
+- Vị trí: `$.sections[5].blocks[1].children[0]` (rule), `$.sections[5].blocks[3].children[0]` (note cùng làm), `$.sections[6].blocks[2].children[0]` (rule)
+- Nguồn: tr.38 ý 3
+- Vấn đề: quy tắc section 6 nói "thừa số có ở mọi số", note cùng làm và quy tắc section 7 nói "thừa số (nguyên tố) chung".
+- Sửa: rule section 6 "... Lấy các thừa số nguyên tố chung, tức có ở mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN." (sửa cả hai recap); note cùng làm chỉ còn "Cùng làm với 20 và 30 theo quy tắc trên."
+
+### 8. Section 9 nêu quy tắc "nhiều nhất" trước khi trẻ thấy vì sao là nhiều nhất (LL-16)
+
+- Vị trí: `$.sections[8].blocks` (`dia-18-30` → rule → `chon-dia-8-12`)
 - Nguồn: —
-- Vấn đề: thứ tự mẫu, tự chạm, rồi mới cùng làm, ngược "mẫu → cùng làm → tự làm"; màn chạm là bước nhỏ nên ảnh hưởng ít.
-- Sửa: đổi chỗ hai màn, hoặc đổi số màn chạm khác 20 và 30.
+- Vấn đề: `dia-18-30` chỉ cho thấy 6 đĩa; màn chạm tìm mọi số đĩa đứng sau quy tắc.
+- Sửa: đặt `chon-dia-8-12` trước quy tắc, hoặc thêm vào `dia-18-30` bước "2, 3, 6 đĩa đều được; 6 là nhiều nhất".
 
-### 10. Hình ví dụ số nguyên tố không nói thẳng "6 không là số nguyên tố"
+### 9. Caption mở đầu section 6 nêu trước quy tắc của section 9
 
-- Vị trí: hình `sn-vi-du` (`$.sections[4].blocks[0].children[1]`)
+- Vị trí: `$.sections[5].blocks[0].caption` (`bang-36-60`)
 - Nguồn: —
-- Vấn đề: nhãn "6 còn có ước 2 và 3" để trẻ tự suy; kết luận chỉ có ở nhãn đọc màn hình.
-- Sửa: "6 còn có ước 2 và 3, nên 6 không là số nguyên tố".
+- Vấn đề: "chia đều 36 cái kẹo và 60 cái bánh ... số túi nhiều nhất là ƯCLN(36, 60)" là quy tắc chưa dạy.
+- Sửa: dùng dải băng đã học: "Muốn biết dải 36 dm và dải 60 dm cắt vừa hết thành đoạn dài nhất bao nhiêu, ta tìm ƯCLN(36, 60)."
 
-### 11. Quy tắc ƯCLN chưa nói trường hợp không có thừa số chung
+### 10. Phân tích trong đề bị ngắt giữa biểu thức trên điện thoại (LL-12)
 
-- Vị trí: `$.sections[5].blocks[1].children[0]` hoặc màn chạm `$.sections[5].blocks[2]`
-- Nguồn: tr.38 mục 3 (điều kiện "các số lớn hơn 1")
-- Vấn đề: section 12 dùng ƯCLN bằng 1; theo câu quy tắc, khi không có thừa số chung thì không có gì để nhân. Section 2 đã có ví dụ 7 và 10 nên ảnh hưởng nhỏ.
-- Sửa: thêm vào note "cùng làm": "Không có thừa số chung thì ƯCLN bằng 1."
-
-### 12. Câu luyện `tong-uoc-15` không chạm tới khái niệm số hoàn hảo
-
-- Vị trí: `$.exercises[51]` (`tong-uoc-15`, câu luyện duy nhất của section 11)
-- Nguồn: tr.40 câu 2.38
-- Vấn đề: đề cho sẵn các ước, chỉ hỏi 1 + 3 + 5.
-- Sửa: dùng một câu theo khuôn mới ở Nên sửa 13 (ví dụ với 15: "Tổng là 9, nên 15 không là số hoàn hảo" / "Tổng là 24, ..." (cộng cả 15) / "Tổng là 8, ..." (bỏ sót 1) / "Tổng là 15, nên 15 là số hoàn hảo") làm câu luyện, đưa `tong-uoc-15` vào kho ôn.
-
-### 13. Đề "Chạm vào số đĩa ..." nói số ít nhưng có hai đáp án; note thiếu dòng "để làm gì" (LL-10)
-
-- Vị trí: `$.sections[8].blocks[3].children[0].text` (hình `chon-dia-8-12`)
+- Vị trí: `$.exercises[31].prompt[0]` (ảnh `phone/090-s7-06-exercise-uclnn-20-30-50.png`), các đề có phân tích trong note
 - Nguồn: —
-- Vấn đề: "Chạm vào số đĩa" đọc như chỉ một số; bộ đếm "Đã chọn 0/2" gỡ được phần nào.
-- Sửa: "Chạm vào tất cả các số đĩa chia đều được 8 quả táo và 12 quả lê, không thừa. Tìm đủ các số này giúp bạn thấy số lớn nhất là ƯCLN."
+- Vấn đề: "50 = 2 ·" cuối dòng, "5²" xuống dòng.
+- Sửa: đưa các phân tích vào khối `formula` `\begin{gathered} … \end{gathered}`, note chỉ giữ câu hỏi (áp luôn cho các đề mới ở Nên sửa 9).
 
-### 14. Cụm "đều là các hộp bút như nhau" khó hiểu (LL-19)
+### 11. Câu kiểm tra section 12 chỉ hỏi tên tử, mẫu
 
-- Vị trí: `$.sections[9].blocks[0].children[0].text`, `$.exercises[45].prompt[0].text`, `$.exercises[49].prompt[0].text` ("đều theo các túi như nhau")
+- Vị trí: `$.exercises[62]` (`tu-mau-4-15`)
+- Nguồn: Kiến thức nền (tiểu học)
+- Vấn đề: không thử quy tắc của section (tối giản).
+- Sửa: đổi thành "Phân số 4/15 có tối giản không?" với nhiễu theo ước chung, hoặc thêm một câu kiểm tra về tối giản.
+
+### 12. Nhiễu 12/16 của `rut-gon-18-24` không ứng với lỗi nào (LL-14)
+
+- Vị trí: `$.exercises[58].options[3]`
 - Nguồn: —
-- Vấn đề: nghe như các hộp giống nhau về hình dạng, không nói rõ số bút trong mỗi hộp bằng nhau.
-- Sửa: "Hai bạn mua bút theo hộp, mỗi hộp có số bút như nhau."
+- Vấn đề: không ra được từ 18/24 bằng một phép chia cả tử và mẫu cho cùng một số.
+- Sửa: thay bằng 2/3 (chia tử cho 9, mẫu cho 8).
 
-### 15. "Bé" và "nhỏ" dùng lẫn trong các câu quy tắc (LL-05)
+### 13. Màn đầu section 12 chưa nối 2/8 với phần bánh Mai ăn
 
-- Vị trí: `$.sections[3].blocks[1].children[0].text` ("số bé"), `$.sections[3].blocks[2].children[0].text` ("Số bé nhất"), `$.sections[5].blocks[1].children[0].text` ("số mũ nhỏ nhất"), hàng "Mũ nhỏ nhất" trong `exp-table.tsx`, câu nhắc sơ đồ cột ("số nguyên tố nhỏ nhất")
+- Vị trí: `$.sections[11].blocks[0].children[0].text`
 - Nguồn: —
-- Vấn đề: hai từ cùng nghĩa, nhưng trẻ học chậm ghép quy tắc bằng chữ. Hiện section 4 dùng "bé", section 5-6 dùng "nhỏ".
-- Sửa: chốt "nhỏ nhất" cho số mũ và số nguyên tố (khớp bảng và bài `so-nguyen-to`), "số bé"/"số bé nhất" chỉ cho việc so hai, ba số đã cho ở section 4; không đổi chéo khi sửa các mục trên.
+- Vấn đề: "Ở phân số dưới đây, 2 là tử và 8 là mẫu" không nói phân số đó là gì.
+- Sửa: "Mai đã ăn 2/8 chiếc bánh: 2 là tử, 8 là mẫu."
+
+### 14. Ba câu số hoàn hảo đều có đáp án "không là" (LL-14)
+
+- Vị trí: `$.exercises[51]`, `$.exercises[53]`, `$.exercises[54]`
+- Nguồn: —
+- Vấn đề: trẻ có thể học mẹo loại lựa chọn "là số hoàn hảo"; ba nhiễu "không là" còn lại vẫn buộc phải cộng.
+- Sửa: tuỳ tác giả; có thể thêm câu kho ôn đáp án "là" (cho sẵn các ước của 28 nếu bỏ màn `hh-28`).
+
+### 15. `so-lon-nhat-45-60` cùng số 45 và kết quả 15 với hình gợi ý `bai-goi-y-30-45` (LL-07)
+
+- Vị trí: `$.exercises[48]`
+- Nguồn: —
+- Vấn đề: trẻ đã xem hình gợi ý của câu luyện có thể nhớ "45 thì ra 15".
+- Sửa: đổi sang 44 và 66 (đáp án 22; `check` "2·11"; cặp chưa có trong bài, không trùng bảng Nên sửa 9).
+
+### 16. Phân số trong đề và lựa chọn hiện nhỏ trên iPad (LL-12)
+
+- Vị trí: `$.sections[11].blocks[0].children[1]`, `$.exercises[61].options`, `$.exercises[62].prompt[1]` (ảnh `ipad/141`, `143`, `145`)
+- Nguồn: —
+- Vấn đề: `\frac` nhỏ hơn hẳn chữ note, dù walk không báo dưới 16px.
+- Sửa: dùng `\dfrac` cho phân số đứng riêng, hoặc báo người làm app tăng cỡ công thức.
+
+### 17. Lựa chọn 7/12 của `chon-toi-gian` là đáp số câu 2.40a (LL-08)
+
+- Vị trí: `$.exercises[57].options[2]`
+- Nguồn: tr.107 lời giải 2.40a
+- Vấn đề: lấy đúng số của lời giải sách.
+- Sửa: đổi sang 7/10.
