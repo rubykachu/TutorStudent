@@ -1,11 +1,12 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { useState } from "react";
-import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
-import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import type { VisualProps, VisualState } from "@/visuals/registry";
-import { useGuidedTask } from "@/visuals/shared/guided-step";
+import {
+  DoneLine,
+  ShownLine,
+  useGuidedPick,
+} from "@/visuals/shared/guided-feedback";
 import { stateSet } from "@/visuals/shared/markers";
 
 const CHIP =
@@ -48,8 +49,6 @@ const CHIP_TONE = {
   right: "border-correct bg-correct text-primary-foreground",
 } as const;
 
-type Verdict = "none" | "wrong" | "right";
-
 // Numbers (or short sums) the child taps to pick. State is one key per chip,
 // { i0, i1, … }, with 1 = picked.
 //
@@ -73,21 +72,9 @@ export function Chips({
   wants?: readonly number[];
   done?: string;
 }) {
-  const sounds = useFeedbackSoundsContext();
-  // Chip indices in the order they were picked.
-  const [picks, setPicks] = useState<readonly number[]>([]);
-  const [shown, setShown] = useState(false);
-  const limit = wants?.length;
-  // Right once exactly the wanted chips are chosen, wrong when as many are
-  // chosen but not those; nothing to say before that.
-  function judge(next: readonly number[]): Verdict {
-    if (!wants || next.length !== wants.length) return "none";
-    return wants.every((i) => next.includes(i)) ? "right" : "wrong";
-  }
-  const verdict = shown ? "none" : judge(picks);
-  const accepted = verdict === "right" || shown;
+  const { shown, verdict, accepted, chosen, wrongPicks, toggle } =
+    useGuidedPick({ size: items.length, wants });
 
-  const chosen = shown && wants ? wants : picks;
   const state: VisualState =
     shownState ??
     Object.fromEntries(
@@ -96,29 +83,15 @@ export function Chips({
   const locked = disabled || shownState !== undefined || accepted;
   const picked = (i: number) => (state[`i${i}`] ?? 0) === 1;
   const count = items.filter((_, i) => picked(i)).length;
-  const wrongPicks =
-    verdict === "wrong" ? picks.filter((i) => !wants?.includes(i)) : [];
 
-  function toggle(index: number) {
-    const next = picks.includes(index)
-      ? picks.filter((i) => i !== index)
-      : [...picks, index].slice(-(limit ?? items.length));
-    setPicks(next);
+  function pick(index: number) {
+    const next = toggle(index);
     onStateChange?.(
       Object.fromEntries(
         items.map((_, i) => [`i${i}`, next.includes(i) ? 1 : 0]),
       ),
     );
-    const result = judge(next);
-    if (result === "right") sounds?.play([JINGLE_ID]);
-    if (result === "wrong") sounds?.play([WRONG_ID]);
   }
-
-  function show() {
-    setShown(true);
-    setPicks(wants ?? []);
-  }
-  useGuidedTask(wants === undefined || accepted, show);
 
   const tone = (i: number) =>
     (shown || verdict === "right") && picked(i)
@@ -146,7 +119,7 @@ export function Chips({
               aria-pressed={on}
               disabled={locked}
               data-wrong={wrongPicks.includes(i) || undefined}
-              onClick={() => toggle(i)}
+              onClick={() => pick(i)}
               {...stateSet(`i${i}`, on ? 0 : 1)}
             >
               {on && <Check aria-hidden className="size-5" />}
@@ -166,21 +139,10 @@ export function Chips({
             : `Đã chọn ${count}`}
       </p>
       {verdict === "right" && done && (
-        <p
-          data-chips-done
-          className="flex items-center gap-2 rounded-lg bg-correct-soft px-4 py-2 text-center font-heading text-block font-semibold text-correct-soft-foreground"
-        >
-          <Check aria-hidden className="size-5" />
-          {done}
-        </p>
+        <DoneLine data-chips-done>{done}</DoneLine>
       )}
       {shown && (
-        <p
-          data-chips-shown
-          className="flex items-center gap-2 rounded-lg bg-correct-soft px-4 py-2 text-center font-semibold text-correct-soft-foreground"
-        >
-          Các số tô xanh là đáp án.
-        </p>
+        <ShownLine data-chips-shown>Các số tô xanh là đáp án.</ShownLine>
       )}
     </div>
   );
