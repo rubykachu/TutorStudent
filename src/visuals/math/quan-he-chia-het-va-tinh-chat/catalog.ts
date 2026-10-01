@@ -676,6 +676,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
+  "so-du-goi-y-15-7": {
+    kind: "lines",
+    label: "a bằng 15 nhân q cộng 7, xét cho 5",
+    mode: "hint",
+    rows: [
+      { tex: "a = 15 \\cdot q + 7" },
+      { tex: "15 \\cdot q \\chiahet 5" },
+      { tex: "7 \\khongchiahet 5" },
+      {
+        tex: "a \\khongchiahet 5",
+        tag: { text: "a không chia hết cho 5", color: "pink" },
+      },
+    ],
+  },
   "so-du-giai-12-9": {
     kind: "lines",
     label: "12 nhân q chia hết cho 3, số dư 9 cũng chia hết cho 3",
