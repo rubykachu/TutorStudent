@@ -1,8 +1,10 @@
 # Bàn giao: `on-tap-chuong-2` (Ôn tập chương II, Toán 6 tập 1, Kết nối tri thức)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026 (cuối buổi soạn). Bản nháp (`status: draft`): đã soạn đủ nội dung, `content:check --stats` 0 lỗi, `visual:shot` và `lesson:walk` qua; chưa review, chưa lời đọc, chưa video, chưa khoá id.
-- Việc kế: review vòng 1 bằng subagent mới (Opus), theo mục "Người review cần kiểm"; sau khi Bài 12 xuất bản, đối chiếu lại mọi chỗ dùng BCNN.
+- Cập nhật cuối: 02/10/2026 (checkpoint giữa review). Bản `draft`, chưa khoá id, chưa lời đọc, chưa video.
+- Review: vòng 1 (8 Nghiêm trọng) và vòng 2 (7 Nghiêm trọng) đã xong, đã sửa hết ở commit `5e50603`, `6576c82`, `00df273`, `235555d`. `lesson:walk` 0 FAIL, `content:check` 0 lỗi ở `235555d`. Vòng 3 (chỉ phần đổi, Sonnet) đang chạy, ghi `review.md`; chưa biết kết quả.
+- Việc tiếp theo: đọc `review.md`. Còn Nghiêm trọng thì sửa (tác giả), commit, `pnpm content:diff on-tap-chuong-2`, `pnpm lesson:walk on-tap-chuong-2` (worktree tạm, cổng 3140, `CONTENT_INCLUDE_DRAFT=1`, `public/media` nối tắt, gỡ sau khi chạy), vòng sau diff-only. 0 Nghiêm trọng thì: đối chiếu BCNN (section 10, 11, 13, câu 6 trắc nghiệm) với Bài 12 nếu đã xuất bản (nếu chưa, ghi vòng đối chiếu ở mục "Việc còn lại"), `pnpm content:hash on-tap-chuong-2 --approve`, `pnpm content:lock on-tap-chuong-2`, gate, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`, cập nhật `notebooks/backlogs/index.md`.
+- Worktree tạm của review: `.../scratchpad/on-tap-2-review/wt` (cổng 3140); gỡ bằng `git worktree remove --force` khi xong.
 
 ## Nguồn (sách bài tập, `sources/math/on-tap-chuong-2/`, không commit)
 - Đề: tr.44–46 in (PDF 45–47), tệp `sbt-p44.png` (sơ đồ tổng kết), `sbt-p45.png` (câu hỏi trắc nghiệm 1–6, bài 2.56–2.58), `sbt-p46.png` (bài 2.59–2.64). Bài 13 bắt đầu ở tr.47.
