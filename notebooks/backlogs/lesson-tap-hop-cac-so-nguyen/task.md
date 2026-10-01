@@ -53,4 +53,4 @@ Thử bằng `tips_test.py` (tạm, không commit): mọi đầu vào gồm số
 ## Ngoài nội dung bài
 - `src/visuals/registry.ts`: thêm khối `integerEntries` và dòng `EXAMPLE_MODULES` của bài (chỉ phần của bài); `tests/visuals/registry.test.tsx` không đổi (validator `dat-diem` dùng chung mẫu với Bài 3).
 - `content/glossary/math.json`: thêm 8 thuật ngữ và tên riêng ℤ (đã stage riêng các hunk này).
-- Việc của app (chưa làm, không thuộc phạm vi bài): (1) `NumberPad` chưa có phím dấu trừ cho `numeric`; (2) `src/content/lint/expr.ts` `comparisonValue` tách phép so sánh bằng `new RegExp("\\le…")`, nên `\le`, `\ge`, `\leq`, `\geq` trong TeX của lựa chọn bị đọc sai và báo "no computable value"; bài này viết "≤", "≥" trực tiếp trong lựa chọn để máy kiểm được.
+- Việc của app (đã làm, không thuộc phạm vi bài): (1) `NumberPad` có phím "−" cho `numeric` khi `allowNegative: true` (đáp án âm bắt buộc có cờ này, `content:check` báo lỗi nếu thiếu); (2) `comparisonValue` đọc đúng `\le`, `\ge`, `\leq`, `\geq`, `≤`, `≥`; (3) trục số dùng chung có tuỳ chọn `arrows: "positive"` (mũi tên chỉ ở đầu dương). Bài này không cần đổi nội dung.

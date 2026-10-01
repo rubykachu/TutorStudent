@@ -50,6 +50,15 @@ describe("parseNumber", () => {
     expect(parseNumber("abc")).toBeUndefined();
   });
 
+  it("reads the minus sign and the hyphen alike, only at the start", () => {
+    expect(parseNumber("−5")).toBe(-5);
+    expect(parseNumber("-5")).toBe(-5);
+    expect(parseNumber("−2,5")).toBe(-2.5);
+    expect(parseNumber("−")).toBeUndefined();
+    expect(parseNumber("5−3")).toBeUndefined();
+    expect(parseNumber("−−5")).toBeUndefined();
+  });
+
   it("reads a comma as the decimal separator", () => {
     expect(parseNumber("2,5")).toBe(2.5);
     expect(parseNumber(" 7 ")).toBe(7);
@@ -79,6 +88,35 @@ describe("grade choice", () => {
       correct: false,
       wrongTargets: [],
     });
+  });
+});
+
+describe("grade negative numeric value", () => {
+  const ex = numericExercise({ kind: "value", value: -5 });
+  const typed = (value: string) =>
+    grade(ex, { type: "numeric", kind: "value", value }).correct;
+
+  it("accepts the minus sign and the hyphen, rejects the missing sign", () => {
+    expect(typed("−5")).toBe(true);
+    expect(typed("-5")).toBe(true);
+    expect(typed("5")).toBe(false);
+    expect(typed("−")).toBe(false);
+  });
+
+  it("grades the base of a power by its sign too", () => {
+    const power = numericExercise({ kind: "power", base: -2, exponent: 3 });
+    expect(
+      grade(power, {
+        type: "numeric",
+        kind: "power",
+        base: "−2",
+        exponent: "3",
+      }).correct,
+    ).toBe(true);
+    expect(
+      grade(power, { type: "numeric", kind: "power", base: "2", exponent: "3" })
+        .correct,
+    ).toBe(false);
   });
 });
 

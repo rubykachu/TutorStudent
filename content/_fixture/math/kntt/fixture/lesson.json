@@ -681,6 +681,42 @@
         ]
       },
       "difficulty": 2
+    },
+    {
+      "id": "fixture.ex.nhiet-do-am",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nhiệt độ là 2 độ, rồi giảm 5 độ. Nhiệt độ mới là bao nhiêu độ?"
+        },
+        {
+          "type": "formula",
+          "tex": "2 - 5"
+        }
+      ],
+      "answer": {
+        "kind": "value",
+        "value": -3
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "2 - 5"
+      },
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "explain": {
+        "text": "Hai trừ năm không đủ, nên kết quả là số âm. Nhiệt độ mới là âm ba độ.",
+        "tex": "2 - 5 = -3"
+      },
+      "difficulty": 2
     }
   ],
   "sticker": {

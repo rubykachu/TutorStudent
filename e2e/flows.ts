@@ -129,6 +129,9 @@ export const FIXTURE_ANSWERS: Record<
     wrong: (ex) => pad(ex, ["9"]),
     fix: (ex) => pad(ex, ["backspace", "6"]),
   },
+  "fixture.ex.nhiet-do-am": {
+    right: (ex) => pad(ex, ["minus", "3"]),
+  },
   "fixture.ex.viet-luy-thua": {
     right: (ex) => pad(ex, ["2", "power", "3"]),
   },

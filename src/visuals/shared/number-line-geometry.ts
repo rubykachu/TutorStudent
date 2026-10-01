@@ -1,11 +1,13 @@
 // Pure geometry of the integer number line (a line with an arrow at both
-// ends, a tick at every integer) shared by the lessons of chapter III: which
-// ticks it has, where they sit in the drawing and how tall the drawing is for
-// the layers it carries. No React, so `content:check` and tests read it.
+// ends, or only at the positive end, and a tick at every integer) shared by
+// the lessons of chapter III: which ticks it has, where they sit in the
+// drawing and how tall the drawing is for the layers it carries. No React, so
+// `content:check` and tests read it.
 
-// The minus sign as Vietnamese textbooks print negative numbers (U+2212); the
-// plain hyphen is shorter than the digits and reads as a dash.
-export const MINUS = "−";
+import { MINUS_SIGN } from "@/lib/number-format";
+
+// The minus sign of a written number (U+2212), as printed in textbooks.
+export const MINUS = MINUS_SIGN;
 
 // "−3" for -3, "5" for 5: how a number is written inside a drawing.
 export function signed(value: number): string {
@@ -43,6 +45,28 @@ export const ARROW_ROW = 48;
 export const ZONE_ROW = 34;
 const TOP_PAD = 14;
 const BOTTOM_PAD = 16;
+
+// Which ends of the axis carry an arrowhead: both (the whole integer line,
+// going on without end each way) or only the positive end (a line that starts
+// at a point and runs on to the right).
+export type AxisArrows = "both" | "positive";
+
+export const ARROW_HEAD = 7;
+
+// The axis stroke ends where an arrowhead begins; a bare end stays at the
+// edge of the drawing.
+export function axisSpan(arrows: AxisArrows = "both"): {
+  x1: number;
+  x2: number;
+  negativeHead: boolean;
+} {
+  const negativeHead = arrows === "both";
+  return {
+    x1: negativeHead ? AXIS_LEFT + ARROW_HEAD : AXIS_LEFT,
+    x2: AXIS_RIGHT - ARROW_HEAD,
+    negativeHead,
+  };
+}
 
 // Horizontal position of an integer (also between ticks).
 export function tickX(range: LineRange, value: number): number {

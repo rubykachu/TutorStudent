@@ -30,6 +30,21 @@ describe("NumberPad", () => {
     );
   });
 
+  it("shows the minus key, 48px or more, only when negatives are allowed", () => {
+    const onKey = vi.fn();
+    const { rerender } = render(<NumberPad onKey={onKey} />);
+    expect(screen.queryByRole("button", { name: "Dấu trừ" })).toBeNull();
+    expect(screen.getByRole("button", { name: "0" })).toHaveClass("col-span-3");
+    rerender(<NumberPad onKey={onKey} negative />);
+    const minus = screen.getByRole("button", { name: "Dấu trừ" });
+    expect(minus).toHaveTextContent("−");
+    // Keys are size-16 (64px), size-15 (60px) on wide landscape screens.
+    expect(minus).toHaveClass("size-16", "lg:landscape:size-15");
+    expect(screen.getByRole("button", { name: "0" })).toHaveClass("col-span-2");
+    fireEvent.click(minus);
+    expect(onKey).toHaveBeenCalledWith("minus");
+  });
+
   it("disables single keys, or all of them", () => {
     const { rerender } = render(
       <NumberPad onKey={() => {}} decimal disabledKeys={new Set(["comma"])} />,
@@ -100,6 +115,40 @@ describe("applyPadKey", () => {
     );
     const { input } = typeKeys(keys);
     expect(input?.kind === "value" && input.value.length).toBe(MAX_SLOT_LENGTH);
+  });
+
+  it("toggles a leading minus and never puts one in the middle", () => {
+    const value = (keys: PadKey[]) => {
+      const { input } = typeKeys(keys);
+      return input?.kind === "value" ? input.value : input;
+    };
+    expect(value(["minus"])).toBe("−");
+    expect(value(["minus", "5"])).toBe("−5");
+    expect(value(["5", "minus"])).toBe("−5");
+    expect(value(["minus", "5", "minus"])).toBe("5");
+    expect(value(["1", "minus", "2", "minus", "minus"])).toBe("−12");
+    expect(value(["minus", "0", "7"])).toBe("−7");
+    expect(value(["minus", "comma", "5"])).toBe("−0,5");
+    expect(value(["minus", "5", "backspace"])).toBe("−");
+    expect(value(["minus", "backspace"])).toBe("");
+  });
+
+  it("keeps the limit with the sign and keeps the minus out of exponents", () => {
+    const nines = Array.from({ length: MAX_SLOT_LENGTH }, () => "9" as const);
+    const { input } = typeKeys(["minus", ...nines]);
+    expect(input?.kind === "value" && input.value.length).toBe(MAX_SLOT_LENGTH);
+    expect(typeKeys(["2", "power", "minus", "3"]).input).toEqual({
+      type: "numeric",
+      kind: "power",
+      base: "2",
+      exponent: "3",
+    });
+    expect(typeKeys(["minus", "2", "power", "3"]).input).toEqual({
+      type: "numeric",
+      kind: "power",
+      base: "−2",
+      exponent: "3",
+    });
   });
 
   it("turns a value into the base of a power and toggles slots", () => {

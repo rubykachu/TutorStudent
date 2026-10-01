@@ -1,3 +1,4 @@
+import { MINUS_SIGN } from "@/lib/number-format";
 import {
   CONCEPT_TEX_PATTERN,
   DIVIDES_MACRO,
@@ -31,7 +32,8 @@ function tokenize(source: string): Token[] | string {
       i += number[0].length;
       continue;
     }
-    const char = text.charAt(i);
+    // The minus sign of printed text (U+2212) reads as the hyphen.
+    const char = text.charAt(i) === MINUS_SIGN ? "-" : text.charAt(i);
     if (!"+-·:^()".includes(char)) {
       return `Unexpected "${char}"; use digits, "," for decimals and + - · : ^ ( )`;
     }
@@ -184,6 +186,15 @@ const COMPARISONS: [string, (a: number, b: number) => boolean][] = [
   [">", (a, b) => a > b && !sameNumber(a, b)],
 ];
 
+// A spelling as a pattern that matches only itself: the macro `\le` is not a
+// regex escape. The negative lookahead keeps `\le` from matching the start of
+// `\leq`.
+function spellingPattern(spelling: string): RegExp {
+  return new RegExp(
+    `${spelling.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&")}(?![a-z])`,
+  );
+}
+
 // Divisibility relations of formulas, the longer name first: "a \chiahet b"
 // holds when a is a multiple of b. The relation is defined on natural numbers
 // only, so a side that is not an integer (or a zero divisor) has no truth
@@ -216,9 +227,7 @@ export function comparisonValue(item: Item): boolean | undefined {
   const side = content.type === "text" ? textExprValue : texValue;
   if (content.type === "formula") {
     for (const [name, holds] of DIVISIBILITY) {
-      const parts = source.split(
-        new RegExp(`${name.replace("\\", "\\\\")}(?![a-z])`),
-      );
+      const parts = source.split(spellingPattern(name));
       if (parts.length === 1) continue;
       if (parts.length !== 2) return undefined;
       const [left, right] = parts.map((part) => side(part ?? ""));
@@ -227,7 +236,7 @@ export function comparisonValue(item: Item): boolean | undefined {
     }
   }
   for (const [spelling, holds] of COMPARISONS) {
-    const parts = source.split(new RegExp(`${spelling}(?![a-z])`));
+    const parts = source.split(spellingPattern(spelling));
     if (parts.length === 1) continue;
     if (parts.length !== 2) return undefined;
     const [left, right] = parts.map((part) => side(part ?? ""));

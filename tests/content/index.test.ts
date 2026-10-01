@@ -29,7 +29,7 @@ describe("flattenExercises", () => {
       parentId: "fixture.ex.viet-ve-ban",
       path: ["exercises", 10, "steps", 0],
     });
-    expect(entries).toHaveLength(13);
+    expect(entries).toHaveLength(14);
   });
 });
 

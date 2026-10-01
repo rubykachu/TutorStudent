@@ -58,7 +58,7 @@ describe("content-check", () => {
     const lines = out.split("\n");
     const fixture = lines.findIndex((line) => line.startsWith("fixture ("));
     expect(lines[fixture]).toContain(
-      "2 sections, 3 cards, 12 exercises, 8 exercise types, 2 interactive visuals",
+      "2 sections, 3 cards, 13 exercises, 8 exercise types, 2 interactive visuals",
     );
     // The fixture is test content, not held to the lesson minimums.
     expect(lines[fixture + 1]).toMatch(/^bai-moi \(/);

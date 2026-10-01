@@ -108,6 +108,20 @@ export function lintCheckExpr(input: LintInput): Finding[] {
 
   for (const { exercise, path } of flattenExercises(input.lesson)) {
     if (exercise.type !== "numeric" && exercise.type !== "choice") continue;
+    // The pad types "−" only when the exercise allows it, so a negative
+    // answer without the flag could never be entered.
+    if (
+      exercise.type === "numeric" &&
+      !exercise.allowNegative &&
+      (exercise.answer.kind === "value"
+        ? exercise.answer.value
+        : exercise.answer.base) < 0
+    ) {
+      report(
+        [...path, "allowNegative"],
+        'The answer is negative, so the number pad needs the "−" key; add "allowNegative": true',
+      );
+    }
     if (exercise.check === undefined) {
       if (required && exercise.type === "numeric") {
         report(path, "Numeric exercises of this subject need check.expr");

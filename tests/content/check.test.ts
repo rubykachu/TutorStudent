@@ -828,7 +828,7 @@ describe("lessonStats", () => {
     expect(lessonStats(checked.lesson, visualRegistry)).toEqual({
       sections: 2,
       cards: 3,
-      exercises: 12,
+      exercises: 13,
       exerciseTypes: 8,
       interactiveVisuals: 2,
       sectionsWithVisual: 1,

@@ -4,6 +4,7 @@ import { Delete } from "lucide-react";
 import type { ReactNode } from "react";
 import { AnswerHighlight } from "@/exercises/answer-highlight";
 import type { HighlightSpec } from "@/exercises/feedback";
+import { MINUS_SIGN } from "@/lib/number-format";
 
 export const DIGITS = [
   "1",
@@ -19,12 +20,15 @@ export const DIGITS = [
 ] as const;
 export type Digit = (typeof DIGITS)[number];
 // "power" moves entry to the exponent of a power (the "mũ" key).
-export type PadKey = Digit | "comma" | "backspace" | "power";
+// "minus" types the leading minus sign of a negative number.
+export type PadKey = Digit | "comma" | "minus" | "backspace" | "power";
 
 type NumberPadProps = {
   onKey: (key: PadKey) => void;
   // Shows the decimal comma key; answers without decimals leave it out.
   decimal?: boolean;
+  // Shows the minus key; answers that are never negative leave it out.
+  negative?: boolean;
   disabled?: boolean;
   // Keys that make no sense for the focused slot (a comma in an exponent).
   disabledKeys?: ReadonlySet<PadKey>;
@@ -41,13 +45,15 @@ const KEY =
 
 // Big on-screen keypad so numeric answers never depend on the system
 // keyboard: digits in a 3-column block, with delete, the decimal comma (only
-// when the answer has decimals) and the "mũ" key in a fourth column. Without
+// when the answer has decimals), the minus key (only when the answer may be
+// negative, beside the zero) and the "mũ" key in a fourth column. Without
 // the comma, delete grows to two rows so the column stays filled. Keys are
 // 64px, and 60px in the narrower answer column of the two-column exercise
 // layout (wide landscape screens).
 export function NumberPad({
   onKey,
   decimal = false,
+  negative = false,
   disabled = false,
   disabledKeys,
   powerActive = false,
@@ -104,7 +110,10 @@ export function NumberPad({
           tone: `${powerActive ? "border-3 border-primary" : "border-2 border-border"} bg-surface`,
         })}
       </AnswerHighlight>
-      {key("0", "0", { size: "col-span-3 h-16 w-full lg:landscape:h-15" })}
+      {key("0", "0", {
+        size: `${negative ? "col-span-2" : "col-span-3"} h-16 w-full lg:landscape:h-15`,
+      })}
+      {negative && key("minus", MINUS_SIGN, { ariaLabel: "Dấu trừ" })}
     </fieldset>
   );
 }

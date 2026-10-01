@@ -59,6 +59,17 @@ describe("resolveExplanation", () => {
     ).toEqual([[{ type: "text", text: "2,5" }]]);
   });
 
+  it("writes a negative answer with the minus sign", () => {
+    expect(
+      resolveExplanation(numericExercise({ kind: "value", value: -5 }))?.answer,
+    ).toEqual([[{ type: "text", text: "−5" }]]);
+    expect(
+      resolveExplanation(
+        numericExercise({ kind: "power", base: -2, exponent: 3 }),
+      )?.answer,
+    ).toEqual([[{ type: "formula", tex: "(-2)^{3}" }]]);
+  });
+
   it("writes a power answer as a formula", () => {
     expect(
       resolveExplanation(

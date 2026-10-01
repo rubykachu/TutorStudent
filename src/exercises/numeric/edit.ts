@@ -1,5 +1,6 @@
 import type { NumericInput } from "@/exercises/input";
 import type { PadKey } from "@/exercises/number-pad";
+import { MINUS_SIGN, withMinusSign } from "@/lib/number-format";
 
 // Which numeric slot the pad types into; also the hint target ids.
 export type NumericSlot = "value" | "base" | "exponent";
@@ -13,16 +14,24 @@ export const EMPTY_NUMERIC: NumericInput = {
   value: "",
 };
 
+// The minus sign only ever leads: the key toggles it, digits and the comma go
+// after it.
 function typeInto(text: string, key: PadKey): string {
   if (key === "backspace") return text.slice(0, -1);
-  if (text.length >= MAX_SLOT_LENGTH) return text;
-  if (key === "comma") {
-    if (text.includes(",")) return text;
-    return text === "" ? "0," : `${text},`;
-  }
   if (key === "power") return text;
+  if (key === "minus") {
+    if (text.startsWith(MINUS_SIGN)) return text.slice(MINUS_SIGN.length);
+    return text.length >= MAX_SLOT_LENGTH ? text : MINUS_SIGN + text;
+  }
+  if (text.length >= MAX_SLOT_LENGTH) return text;
+  const sign = text.startsWith(MINUS_SIGN) ? MINUS_SIGN : "";
+  const body = text.slice(sign.length);
+  if (key === "comma") {
+    if (body.includes(",")) return text;
+    return `${sign}${body === "" ? "0," : `${body},`}`;
+  }
   // A leading zero is replaced, so "05" never appears.
-  return text === "0" ? key : text + key;
+  return `${sign}${body === "0" ? key : body + key}`;
 }
 
 export type NumericEdit = { input: NumericInput; focus: NumericSlot };
@@ -63,15 +72,18 @@ export function applyPadKey(
       focus: "value",
     };
   }
-  // Exponents are whole numbers.
-  if (key === "comma" && slot === "exponent") return { input: current, focus };
+  // Exponents are whole numbers and never negative.
+  if ((key === "comma" || key === "minus") && slot === "exponent") {
+    return { input: current, focus };
+  }
   return {
     input: { ...current, [slot]: typeInto(current[slot], key) },
     focus: slot,
   };
 }
 
-// Numbers are shown the Vietnamese way, with a decimal comma.
+// Numbers are shown the Vietnamese way, with a decimal comma and the minus
+// sign.
 export function formatNumber(value: number): string {
-  return String(value).replace(".", ",");
+  return withMinusSign(String(value).replace(".", ","));
 }

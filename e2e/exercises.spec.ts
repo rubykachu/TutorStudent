@@ -39,6 +39,17 @@ test("a numeric exercise is answered correctly on the number pad", async ({
   await expectAccepted(card);
 });
 
+test("a negative answer is typed with the minus key", async ({ page }) => {
+  const card = exercise(page, "fixture.ex.nhiet-do-am");
+  const minus = card.getByRole("button", { name: "Dấu trừ" });
+  expect((await minus.boundingBox())?.height).toBeGreaterThanOrEqual(48);
+  await card.getByRole("button", { name: "3", exact: true }).tap();
+  await minus.tap();
+  await expect(card.locator('[data-slot="value"]')).toHaveText("−3");
+  await card.getByRole("button", { name: "Kiểm tra" }).tap();
+  await expectAccepted(card);
+});
+
 test("a power is entered with the mũ key", async ({ page }) => {
   const card = exercise(page, "fixture.ex.viet-luy-thua");
   await card.getByRole("button", { name: "2", exact: true }).tap();

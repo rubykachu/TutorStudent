@@ -48,6 +48,65 @@ describe("NumericAnswer", () => {
     expect(frame).toHaveAttribute("data-phase", "correct");
   });
 
+  it("types a negative answer with the minus key, shown as −5", () => {
+    const { frame, container } = renderExercise({
+      ...numericExercise({ kind: "value", value: -5 }),
+      allowNegative: true,
+    });
+    press("5", "Dấu trừ");
+    expect(slot(container, "value")).toHaveTextContent("−5");
+    expect(slot(container, "value")).toHaveAttribute(
+      "aria-label",
+      "Đáp số: −5",
+    );
+    press("Dấu trừ");
+    expect(slot(container, "value")).toHaveTextContent("5");
+    press("Dấu trừ");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-phase", "correct");
+  });
+
+  it("takes the hyphen of a physical keyboard as the minus key", () => {
+    const { frame, container } = renderExercise({
+      ...numericExercise({ kind: "value", value: -5 }),
+      allowNegative: true,
+    });
+    const value = slot(container, "value");
+    fireEvent.keyDown(value, { key: "-" });
+    fireEvent.keyDown(value, { key: "5" });
+    expect(value).toHaveTextContent("−5");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-phase", "correct");
+  });
+
+  it("offers no minus key unless the exercise allows negatives", () => {
+    const { container } = renderExercise(
+      numericExercise({ kind: "value", value: 5 }),
+    );
+    expect(screen.queryByRole("button", { name: "Dấu trừ" })).toBeNull();
+    fireEvent.keyDown(slot(container, "value"), { key: "-" });
+    expect(slot(container, "value")).toHaveTextContent("");
+  });
+
+  it("allows the key on a positive answer without accepting the wrong sign", () => {
+    const { frame } = renderExercise({
+      ...numericExercise({ kind: "value", value: 5 }),
+      allowNegative: true,
+    });
+    press("5", "Dấu trừ");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-phase", "wrong1");
+  });
+
+  it("disables the minus key while the exponent is typed", () => {
+    renderExercise({
+      ...numericExercise({ kind: "power", base: -2, exponent: 3 }),
+      allowNegative: true,
+    });
+    press("2", "Dấu trừ", "Số mũ");
+    expect(screen.getByRole("button", { name: "Dấu trừ" })).toBeDisabled();
+  });
+
   it("enters a power with the mũ key moving to the exponent", () => {
     const { frame, container } = renderExercise(numericExercise(POWER));
     press("2", "Số mũ");

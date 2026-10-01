@@ -279,7 +279,7 @@ Mục tiêu: không ảo giác, không lệch bài học, không ngôn từ gây
 | type | Mô tả | Chấm |
 |---|---|---|
 | `choice` | Chọn 1 hoặc nhiều đáp án, đáp án là chữ/công thức/hình | So khớp tập đáp án |
-| `numeric` | Nhập số bằng bàn phím số lớn trên màn hình | So số, hỗ trợ dạng luỹ thừa (cơ số + số mũ). `check.expr` để lint tính lại đáp án |
+| `numeric` | Nhập số bằng bàn phím số lớn trên màn hình | So số (chấp nhận "−5" và "-5"), hỗ trợ dạng luỹ thừa (cơ số + số mũ). Phím "−" chỉ hiện khi `allowNegative: true`; đáp án âm mà thiếu cờ này thì `content:check` báo lỗi. `check.expr` để lint tính lại đáp án |
 | `match` | Kéo thả ghép cặp (có chạm-chọn-rồi-chạm-đặt thay cho kéo) | Mọi cặp đúng |
 | `order` | Sắp xếp thứ tự | Đúng thứ tự |
 | `fillBlank` | Điền chỗ trống (ngân hàng từ hoặc nhập) | So khớp từng ô; chuẩn hoá Unicode NFC cả hai phía, khoảng trắng, hoa thường; giữ dấu |

@@ -1,4 +1,4 @@
-import { formatInteger } from "@/lib/number-format";
+import { formatInteger, withMinusSign } from "@/lib/number-format";
 import type { BasicExercise, Item } from "@/schema/content";
 
 // What the panel under an answered exercise shows. An exercise with an
@@ -26,9 +26,11 @@ function text(value: string): Content {
 }
 
 function numberText(value: number): string {
-  return Number.isInteger(value)
-    ? formatInteger(value)
-    : String(value).replace(".", ",");
+  return withMinusSign(
+    Number.isInteger(value)
+      ? formatInteger(value)
+      : String(value).replace(".", ","),
+  );
 }
 
 function answerLines(exercise: BasicExercise): Content[][] {
@@ -46,7 +48,7 @@ function answerLines(exercise: BasicExercise): Content[][] {
           [
             {
               type: "formula",
-              tex: `${answer.base}^{${answer.exponent}}`,
+              tex: `${answer.base < 0 ? `(${answer.base})` : answer.base}^{${answer.exponent}}`,
             },
           ],
         ];

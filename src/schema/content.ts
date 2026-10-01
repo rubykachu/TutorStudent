@@ -424,6 +424,10 @@ export const NumericExerciseSchema = z.object({
   ...exerciseBase,
   type: z.literal("numeric"),
   answer: NumericAnswerSchema,
+  // Shows the "−" key on the number pad. Required when the answer is negative
+  // (content:check); also allowed on a positive answer, so the key's presence
+  // does not give the sign away.
+  allowNegative: z.boolean().optional(),
   unit: TextSchema.optional(),
   check: CheckSchema.optional(),
 });

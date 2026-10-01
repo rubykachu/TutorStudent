@@ -8,9 +8,12 @@ import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { decorative } from "@/visuals/shared/markers";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import {
+  ARROW_HEAD,
   ARROW_ROW,
   AXIS_LEFT,
   AXIS_RIGHT,
+  type AxisArrows,
+  axisSpan,
   DOT_RADIUS,
   LABEL_DROP,
   type LinePlan,
@@ -29,7 +32,7 @@ import {
 import { StepPlayer } from "@/visuals/shared/step-player";
 
 // The integer number line drawn in an SVG as wide as its frame: an axis with
-// an arrow at both ends, a tick at every integer, the numbers under the ticks
+// an arrow at both ends (or only at the positive end), a tick at every integer, the numbers under the ticks
 // that carry one, and the layers of a picture on top (the origin, points,
 // bands for the negative and positive side, distance arrows). Layers come one
 // per step in a `StepPlayer`, or all at once in a still picture.
@@ -38,7 +41,6 @@ const TEXT = "font-heading font-bold";
 const PLAIN_NUMBER = `${TEXT} fill-muted-foreground`;
 const TICK_HALF = 7;
 const ZERO_TICK_HALF = 12;
-const ARROW_HEAD = 7;
 const BAND_HALF = 15;
 const BAND_OPACITY = 0.2;
 const TAG_SHAPE = 16;
@@ -88,6 +90,8 @@ export type NumberLineSpec = LineRange & {
   // Ticks that carry their number; every tick when absent.
   labelAt?: readonly number[];
   layers?: readonly LineLayer[];
+  // Arrowheads of the axis: both ends (default), or only the positive end.
+  arrows?: AxisArrows;
   // steps: animated walk-through that ends on the full picture; still: the
   // finished picture; hint: the walk-through that stops before the last step,
   // whose layers are never drawn.
@@ -138,6 +142,7 @@ export function LineAxis({
   range,
   plan,
   labelAt,
+  arrows,
   marks,
   behind,
   children,
@@ -145,11 +150,13 @@ export function LineAxis({
   range: LineRange;
   plan: LinePlan;
   labelAt?: readonly number[];
+  arrows?: AxisArrows;
   marks?: ReadonlyMap<number, TickMark>;
   behind?: ReactNode;
   children?: ReactNode;
 }) {
   const { axisY } = plan;
+  const span = axisSpan(arrows);
   const numbered = new Set([
     ...labelledTicks(range, labelAt),
     ...(marks?.keys() ?? []),
@@ -158,25 +165,21 @@ export function LineAxis({
     <>
       {behind}
       <g {...decorative} className="stroke-foreground" strokeLinecap="round">
-        <line
-          x1={AXIS_LEFT + ARROW_HEAD}
-          y1={axisY}
-          x2={AXIS_RIGHT - ARROW_HEAD}
-          y2={axisY}
-          strokeWidth={3}
-        />
+        <line x1={span.x1} y1={axisY} x2={span.x2} y2={axisY} strokeWidth={3} />
         <polygon
           points={`${AXIS_RIGHT - ARROW_HEAD * 2},${axisY - ARROW_HEAD} ${AXIS_RIGHT},${axisY} ${AXIS_RIGHT - ARROW_HEAD * 2},${axisY + ARROW_HEAD}`}
           className="fill-foreground"
           strokeWidth={1}
           strokeLinejoin="round"
         />
-        <polygon
-          points={`${AXIS_LEFT + ARROW_HEAD * 2},${axisY - ARROW_HEAD} ${AXIS_LEFT},${axisY} ${AXIS_LEFT + ARROW_HEAD * 2},${axisY + ARROW_HEAD}`}
-          className="fill-foreground"
-          strokeWidth={1}
-          strokeLinejoin="round"
-        />
+        {span.negativeHead && (
+          <polygon
+            points={`${AXIS_LEFT + ARROW_HEAD * 2},${axisY - ARROW_HEAD} ${AXIS_LEFT},${axisY} ${AXIS_LEFT + ARROW_HEAD * 2},${axisY + ARROW_HEAD}`}
+            className="fill-foreground"
+            strokeWidth={1}
+            strokeLinejoin="round"
+          />
+        )}
         {tickValues(range).map((tick) => {
           const half = tick === 0 ? ZERO_TICK_HALF : TICK_HALF;
           return (
@@ -505,6 +508,7 @@ function LineFrame({ spec, step }: { spec: NumberLineSpec; step: number }) {
         range={spec}
         plan={plan}
         labelAt={spec.labelAt}
+        arrows={spec.arrows}
         marks={marks}
         behind={layers.map((layer, i) =>
           layer.type === "zone" ? (

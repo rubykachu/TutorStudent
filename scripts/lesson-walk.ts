@@ -226,8 +226,9 @@ function numericKeys(
   ex: Extract<BasicExercise, { type: "numeric" }>,
   offset: number,
 ): string[] {
-  const digits = (value: number) =>
-    [...String(value)].map((char) => (char === "." ? "comma" : char));
+  const keyOf = (char: string) =>
+    char === "." ? "comma" : char === "-" ? "minus" : char;
+  const digits = (value: number) => [...String(value)].map(keyOf);
   const { answer } = ex;
   return answer.kind === "value"
     ? digits(answer.value + offset)

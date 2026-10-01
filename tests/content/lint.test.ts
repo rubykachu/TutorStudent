@@ -593,6 +593,30 @@ describe("check-expr", () => {
     ]);
   });
 
+  it("errors on a negative answer unless the pad shows the minus key", () => {
+    const input = fixtureInput();
+    const exercise = numericExercise(input.lesson, "fixture.ex.nhiet-do-am");
+    expect(findings(input, "check-expr")).toEqual([]);
+    delete exercise.allowNegative;
+    expect(findings(input, "check-expr")).toMatchObject([
+      {
+        path: ["exercises", 12, "allowNegative"],
+        message: expect.stringContaining("allowNegative"),
+      },
+    ]);
+    exercise.allowNegative = true;
+    exercise.answer = { kind: "value", value: 4 };
+    exercise.check = { expr: "9 - 5" };
+    expect(findings(input, "check-expr")).toEqual([]);
+    exercise.allowNegative = false;
+    exercise.answer = { kind: "power", base: -2, exponent: 3 };
+    exercise.check = { expr: "-2^3" };
+    expect(findings(input, "check-expr")).toHaveLength(1);
+    exercise.answer = { kind: "power", base: 2, exponent: 3 };
+    exercise.check = { expr: "2^3" };
+    expect(findings(input, "check-expr")).toEqual([]);
+  });
+
   it("reports an expression it cannot evaluate", () => {
     const input = fixtureInput();
     numericExercise(input.lesson, "fixture.ex.dem-cham").check = {
@@ -701,6 +725,28 @@ describe("check relations", () => {
     exercise.answer = ["b"];
     exercise.check = { relation: "fails" };
     expect(findings(input, "check-expr")).toEqual([]);
+  });
+
+  it("reads every spelling of the comparison signs on integers", () => {
+    const formula = (tex: string) =>
+      comparisonValue({ id: "x", content: { type: "formula", tex } });
+    const text = (value: string) =>
+      comparisonValue({ id: "x", content: { type: "text", text: value } });
+    for (const sign of ["\\le", "\\leq", "\\ge", "\\geq"]) {
+      const lower = sign.startsWith("\\l");
+      expect(formula(`-3 ${sign} 2`)).toBe(lower);
+      expect(formula(`-2 ${sign} -2`)).toBe(true);
+      expect(formula(`5 ${sign} -5`)).toBe(!lower);
+    }
+    expect(formula("-3 \\ne -3")).toBe(false);
+    expect(formula("-3 \\neq 3")).toBe(true);
+    expect(formula("-3 \\lt -2")).toBe(true);
+    expect(formula("-3 \\gt -2")).toBe(false);
+    expect(text("-3 ≤ 2")).toBe(true);
+    expect(text("-1 ≥ 4")).toBe(false);
+    expect(text("−7 ≤ −7")).toBe(true);
+    expect(text("−7 < −9")).toBe(false);
+    expect(formula("-2 \\le x")).toBeUndefined();
   });
 
   it("judges chia het sides with brackets and powers, for whole numbers only", () => {

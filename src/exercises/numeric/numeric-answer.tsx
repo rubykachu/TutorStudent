@@ -15,6 +15,7 @@ import {
   NumberPad,
   type PadKey,
 } from "@/exercises/number-pad";
+import { MINUS_SIGN } from "@/lib/number-format";
 import type { NumericExercise } from "@/schema/content";
 import { HINT_FALLBACK_COLOR } from "@/visuals/shared/highlight";
 import {
@@ -29,7 +30,8 @@ type NumericAnswerProps = {
   slot: AnswerSlotProps<NumericInput>;
 };
 
-const NO_COMMA: ReadonlySet<PadKey> = new Set(["comma"]);
+// An exponent is a whole, non-negative number.
+const NO_COMMA_OR_MINUS: ReadonlySet<PadKey> = new Set(["comma", "minus"]);
 // The same ring as an authored hint that names no concept.
 const POWER_KEY_HINT: HighlightSpec = {
   color: HINT_FALLBACK_COLOR,
@@ -62,6 +64,7 @@ function padKeyOf(event: KeyboardEvent): PadKey | undefined {
   if ((DIGITS as readonly string[]).includes(event.key))
     return event.key as Digit;
   if (event.key === "," || event.key === ".") return "comma";
+  if (event.key === "-" || event.key === MINUS_SIGN) return "minus";
   if (event.key === "Backspace") return "backspace";
   if (event.key === "^") return "power";
   return undefined;
@@ -82,6 +85,7 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
   function press(key: PadKey) {
     if (disabled) return;
     if (key === "comma" && !decimal) return;
+    if (key === "minus" && !exercise.allowNegative) return;
     const edit = applyPadKey(value, focus, key);
     if (edit.focus !== "value") setPowerFocus(edit.focus);
     onChange(edit.input);
@@ -196,8 +200,9 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
         <NumberPad
           onKey={press}
           decimal={decimal}
+          negative={exercise.allowNegative}
           disabled={disabled}
-          disabledKeys={focus === "exponent" ? NO_COMMA : undefined}
+          disabledKeys={focus === "exponent" ? NO_COMMA_OR_MINUS : undefined}
           powerActive={focus === "exponent"}
           powerHighlight={powerHint}
         />

@@ -8,8 +8,10 @@ import {
   pointMarks,
 } from "@/visuals/shared/number-line";
 import {
+  ARROW_HEAD,
   AXIS_LEFT,
   AXIS_RIGHT,
+  axisSpan,
   dotOffsets,
   MINUS,
   planLine,
@@ -167,5 +169,40 @@ describe("NumberLine", () => {
     expect(
       [...some.container.querySelectorAll("text")].map((el) => el.textContent),
     ).toEqual(["0", "1"]);
+  });
+});
+
+describe("axis arrowheads", () => {
+  const bare: NumberLineSpec = {
+    from: 0,
+    to: 5,
+    label: "Trục số từ 0 đến 5",
+    mode: "still",
+  };
+  const heads = (container: HTMLElement) =>
+    container.querySelectorAll("polygon").length;
+
+  it("draws an arrowhead at both ends by default", () => {
+    const { container } = render(<NumberLine spec={bare} />);
+    expect(heads(container)).toBe(2);
+    expect(axisSpan()).toEqual({
+      x1: AXIS_LEFT + ARROW_HEAD,
+      x2: AXIS_RIGHT - ARROW_HEAD,
+      negativeHead: true,
+    });
+  });
+
+  it("draws one arrowhead, at the positive end, when asked", () => {
+    const { container } = render(
+      <NumberLine spec={{ ...bare, arrows: "positive" }} />,
+    );
+    expect(heads(container)).toBe(1);
+    const [head] = container.querySelectorAll("polygon");
+    const tip = head?.getAttribute("points")?.split(" ")[1];
+    expect(tip?.startsWith(`${AXIS_RIGHT},`)).toBe(true);
+    // The bare left end of the stroke reaches the edge of the drawing.
+    const axis = container.querySelector("line");
+    expect(Number(axis?.getAttribute("x1"))).toBe(AXIS_LEFT);
+    expect(axisSpan("positive").negativeHead).toBe(false);
   });
 });
