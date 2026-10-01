@@ -118,6 +118,8 @@ describe("Roman numerals", () => {
   it("keeps the clusters IV and IX whole", () => {
     expect(romanParts("XXIV")).toEqual(["X", "X", "IV"]);
     expect(romanParts("XIX")).toEqual(["X", "IX"]);
+    expect(romanParts("XXIX")).toEqual(["X", "X", "IX"]);
+    expect(romanSumTex("XXIX")).toBe("10 + 10 + 9 = 29");
     expect(romanParts("VIII")).toEqual(["V", "I", "I", "I"]);
     expect(romanSplitTex("XIV")).toBe(
       "\\mathrm{XIV} = \\mathrm{X} + \\mathrm{IV}",
@@ -136,6 +138,44 @@ describe("Roman numerals", () => {
       }, 0);
       expect(total).toBe(n);
     }
+  });
+});
+
+describe("moving one stick", () => {
+  // Moving one letter I of a sum to any other place, the sums that are still
+  // a Roman addition and true.
+  function trueSumsAfterMovingAnI(expr: string): string[] {
+    const found = new Set<string>();
+    [...expr].forEach((glyph, from) => {
+      if (glyph !== "I") return;
+      const rest = expr.slice(0, from) + expr.slice(from + 1);
+      for (let to = 0; to <= rest.length; to++) {
+        const moved = `${rest.slice(0, to)}I${rest.slice(to)}`;
+        const match = /^([IVX]+)\+([IVX]+)=([IVX]+)$/.exec(moved);
+        if (!match || moved === expr) continue;
+        const [, a, b, c] = match as unknown as [
+          string,
+          string,
+          string,
+          string,
+        ];
+        if (romanValue(a) + romanValue(b) === romanValue(c)) found.add(moved);
+      }
+    });
+    return [...found].sort();
+  }
+
+  it("VI + I = V becomes true only as IV + I = V or V + I = VI", () => {
+    expect(trueSumsAfterMovingAnI("VI+I=V")).toEqual(["IV+I=V", "V+I=VI"]);
+    expect(sticksTotal("VI+I=V")).toBe(10);
+    expect(sticksTotal("VI+I=VII")).toBe(12);
+  });
+
+  it("III + V = VI becomes true only as II + IV = VI or II + V = VII", () => {
+    expect(trueSumsAfterMovingAnI("III+V=VI")).toEqual([
+      "II+IV=VI",
+      "II+V=VII",
+    ]);
   });
 });
 
@@ -284,6 +324,32 @@ describe("pictures", () => {
       screen.getByRole("button", { name: /giữa chữ số 8 và chữ số 1/ }),
     );
     expect(onToggle).toHaveBeenCalledWith("g1");
+  });
+
+  it("an added digit is drawn in every gap, shown once the gap is chosen", () => {
+    const { container } = render(
+      <RegionProvider
+        value={{
+          selected: new Set(["g1"]),
+          revealed: new Set(),
+          marks: new Map(),
+          disabled: false,
+          onToggle: vi.fn(),
+        }}
+      >
+        <Gaps spec={{ digits: "8152", add: 4 }} />
+      </RegionProvider>,
+    );
+    for (let k = 0; k <= 4; k++) {
+      expect(
+        container.querySelector(`[data-region="g${k}"] text`)?.textContent,
+      ).toBe("4");
+    }
+    expect(
+      container
+        .querySelector('[data-region="g1"]')
+        ?.hasAttribute("data-selected"),
+    ).toBe(true);
   });
 
   it("counts the sticks of a Roman sum", () => {

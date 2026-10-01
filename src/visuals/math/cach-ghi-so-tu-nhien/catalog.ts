@@ -199,7 +199,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "doi-hang-tom-tat": {
     kind: "rows",
-    label: "Mười đơn vị đổi thành một đơn vị hàng bên trái",
+    label: "Mười đơn vị đổi thành một đơn vị hàng liền bên trái",
     rows: [
       {
         tex: "10 \\cdot 1 = 10",
@@ -322,7 +322,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Cộng tiền theo hàng",
     rows: [
       {
-        tex: "2 \\cdot 100 + 5 \\cdot 10 + 4 \\cdot 1",
+        tex: "2 \\cdot 100 + 5 \\cdot 10 + 4",
         tag: {
           text: "mỗi loại tờ một hàng",
           color: "pink",
@@ -381,32 +381,33 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "cham-dong-ho-ix": {
     kind: "clockPick",
   },
-  "goi-y-la-ma": {
+  "goi-y-dem-gio": {
     kind: "romanCards",
-    label: "Ba chữ số La Mã",
+    label: "Các giờ đầu trên đồng hồ",
     items: [
       ["I", 1],
-      ["V", 5],
-      ["X", 10],
+      ["II", 2],
+      ["III", 3],
+      ["IV", 4],
     ],
   },
-  "giai-dong-ho-9": {
+  "giai-dong-ho-5": {
     kind: "clock",
-    hour: 9,
+    hour: 5,
   },
   "doc-la-ma-tom-tat": {
     kind: "lines",
-    label: "Đọc số XXX",
+    label: "Đọc số XXIX",
     rows: [
       {
-        tex: "\\concept{lime}{\\mathrm{XXX}} = \\mathrm{X} + \\mathrm{X} + \\mathrm{X}",
+        tex: "\\concept{lime}{\\mathrm{XXIX}} = \\mathrm{X} + \\mathrm{X} + \\mathrm{IX}",
         tag: {
-          text: "tách thành phần",
+          text: "khoanh cụm IX trước",
           color: "lime",
         },
       },
       {
-        tex: "= 10 + 10 + 10 = 30",
+        tex: "= 10 + 10 + 9 = 29",
         tag: {
           text: "cộng lại",
           color: "lime",
@@ -439,11 +440,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
   },
-  "chon-xxviii": {
+  "chon-xxix": {
     kind: "chips",
-    items: ["18", "28", "23", "38"],
+    items: ["31", "29", "21", "19"],
     wants: [1],
-    done: "XXVIII = 10 + 10 + 5 + 1 + 1 + 1 = 28.",
+    done: "XXIX = X + X + IX = 10 + 10 + 9 = 29.",
   },
   "viet-la-ma-tom-tat": {
     kind: "lines",
@@ -508,11 +509,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
   },
-  "chon-viet-21": {
+  "chon-viet-28": {
     kind: "chips",
-    items: ["XXI", "XIXX", "IXX", "XXII"],
+    items: ["XXVIII", "XXIIX", "VIIIXX", "XXVII"],
     wants: [0],
-    done: "21 gồm 20 và 1, viết là XX rồi I: XXI.",
+    done: "28 gồm 20 và 8, viết là XX rồi VIII: XXVIII.",
   },
   "que-tom-tat": {
     kind: "sticks",
@@ -522,6 +523,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "que-goc": {
     kind: "sticks",
     expr: "III+V=VI",
+  },
+  "que-goi-y-doi": {
+    kind: "sticks",
+    expr: "VI+I=V",
+    accent: [1, 3],
   },
   "que-cach-1": {
     kind: "sticks",
@@ -561,7 +567,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "lon-nhat-vd": {
     kind: "rows",
-    label: "Số lớn nhất có hai, ba và sáu chữ số",
+    label: "Số lớn nhất có hai, ba và tám chữ số",
     rows: [
       {
         tex: "99",
@@ -578,9 +584,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "999\\,999",
+        tex: "99\\,999\\,999",
         tag: {
-          text: "sáu chữ số",
+          text: "tám chữ số",
           color: "blue",
         },
       },
@@ -588,7 +594,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "be-nhat-vd": {
     kind: "rows",
-    label: "Số bé nhất có hai, ba và sáu chữ số",
+    label: "Số bé nhất có hai, ba và tám chữ số",
     rows: [
       {
         tex: "10",
@@ -605,19 +611,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "100\\,000",
+        tex: "10\\,000\\,000",
         tag: {
-          text: "sáu chữ số",
+          text: "tám chữ số",
           color: "blue",
         },
       },
     ],
   },
-  "chon-be-nhat-3": {
+  "chon-be-nhat-6": {
     kind: "chips",
-    items: ["100", "101", "110", "999"],
-    wants: [0],
-    done: "Số bé nhất có ba chữ số là 100.",
+    items: ["110 000", "100 000", "100 001", "1 000 000"],
+    wants: [1],
+    done: "Số bé nhất có sáu chữ số là 100 000.",
   },
   "khac-nhau-tom-tat": {
     kind: "rows",
@@ -681,47 +687,39 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-khac-nhau-3": {
     kind: "chips",
-    items: ["100", "102", "120", "987"],
+    items: ["100", "102", "120", "210"],
     wants: [1],
-    done: "Mật mã bé nhất có ba chữ số khác nhau là 102.",
+    done: "Số nhà bé nhất có ba chữ số khác nhau là 102.",
   },
   "them-0-tom-tat": {
     kind: "rows",
     label: "Viết thêm chữ số 0 vào bên phải số 614",
     rows: [
       {
-        tex: "614 \\to 6\\,140",
+        tex: "614 \\to 6\\,14\\concept{sky}{0}",
         tag: {
-          text: "thêm 0 vào cuối",
+          text: "viết thêm 0 bên phải",
           color: "sky",
         },
       },
       {
         tex: "6\\,140 = 614 \\cdot 10",
-        tag: {
-          text: "gấp 10 lần",
-          color: "sky",
-        },
       },
     ],
   },
   "them-0-vd": {
     kind: "rows",
-    label: "Thêm chữ số 0 vào cuối số 253",
+    label: "Viết thêm chữ số 0 vào bên phải số 253",
     rows: [
       {
-        tex: "253 \\to \\concept{sky}{2\\,530}",
+        tex: "253 \\to 2\\,53\\concept{sky}{0}",
         tag: {
-          text: "thêm 0 vào cuối",
+          text: "viết thêm 0 bên phải",
           color: "sky",
         },
       },
       {
         tex: "2\\,530 = 253 \\cdot 10",
-        tag: {
-          text: "gấp 10 lần",
-          color: "sky",
-        },
       },
     ],
   },
@@ -736,38 +734,30 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Viết thêm chữ số 1 vào bên trái số 614",
     rows: [
       {
-        tex: "614 \\to 1\\,614",
+        tex: "614 \\to \\concept{sky}{1}\\,614",
         tag: {
-          text: "thêm 1 vào đầu",
+          text: "viết thêm 1 bên trái",
           color: "sky",
         },
       },
       {
         tex: "1\\,614 = 1\\,000 + 614",
-        tag: {
-          text: "tăng 1 000",
-          color: "sky",
-        },
       },
     ],
   },
   "them-1-vd": {
     kind: "rows",
-    label: "Thêm chữ số 1 vào đầu số 253",
+    label: "Viết thêm chữ số 1 vào bên trái số 253",
     rows: [
       {
-        tex: "253 \\to \\concept{sky}{1\\,253}",
+        tex: "253 \\to \\concept{sky}{1}\\,253",
         tag: {
-          text: "thêm 1 vào đầu",
+          text: "viết thêm 1 bên trái",
           color: "sky",
         },
       },
       {
         tex: "1\\,253 = 1\\,000 + 253",
-        tag: {
-          text: "tăng 1 000",
-          color: "sky",
-        },
       },
     ],
   },
@@ -777,21 +767,42 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     wants: [0],
     done: "625 viết thêm chữ số 1 vào bên trái là 1 625, tăng thêm 1 000.",
   },
-  "them-lon-nho-tom-tat": {
+  "them-lon-tom-tat": {
     kind: "lines",
-    label: "Viết thêm chữ số 5 vào số 2 713",
+    label: "Viết thêm một chữ số để được số lớn nhất",
     rows: [
       {
-        tex: "\\concept{sky}{5}\\,2\\,713 = 52\\,713",
+        tex: "2\\,713 \\to \\concept{sky}{5}2\\,713",
         tag: {
-          text: "số lớn nhất",
+          text: "viết 5 trước chữ số 2",
           color: "sky",
         },
       },
       {
-        tex: "2\\,\\concept{sky}{5}\\,713 = 25\\,713",
+        tex: "532 \\to 5\\,32\\concept{sky}{1}",
         tag: {
-          text: "số bé nhất",
+          text: "viết 1 ở tận cùng bên phải",
+          color: "sky",
+        },
+      },
+    ],
+    mode: "still",
+  },
+  "them-be-tom-tat": {
+    kind: "lines",
+    label: "Viết thêm một chữ số khác 0 để được số bé nhất",
+    rows: [
+      {
+        tex: "2\\,713 \\to 2\\concept{sky}{5}\\,713",
+        tag: {
+          text: "viết 5 trước chữ số 7",
+          color: "sky",
+        },
+      },
+      {
+        tex: "247 \\to 2\\,47\\concept{sky}{8}",
+        tag: {
+          text: "viết 8 ở tận cùng bên phải",
           color: "sky",
         },
       },
@@ -812,7 +823,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\concept{sky}{5}\\,2\\,713 = 52\\,713",
         tag: {
-          text: "đặt 5 trước chữ số 2",
+          text: "viết 5 trước chữ số 2",
           color: "sky",
         },
       },
@@ -833,7 +844,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "2\\,\\concept{sky}{5}\\,713 = 25\\,713",
         tag: {
-          text: "đặt 5 trước chữ số 7",
+          text: "viết 5 trước chữ số 7",
           color: "sky",
         },
       },
@@ -845,6 +856,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     items: ["64 215", "46 215", "42 615", "42 156"],
     wants: [0],
     done: "Đặt 6 trước chữ số 4 được 64 215, số lớn nhất.",
+  },
+  "chon-them-7-2693": {
+    kind: "chips",
+    items: ["27 693", "26 793", "72 693", "26 937"],
+    wants: [1],
+    done: "Viết 7 trước chữ số 9 được 26 793, số bé nhất.",
   },
   "chen-8152": {
     kind: "gaps",
@@ -872,7 +889,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "9\\,\\concept{sky}{6}\\,35 = 9\\,635",
         tag: {
-          text: "đặt 6 trước chữ số 3",
+          text: "viết 6 trước chữ số 3",
           color: "sky",
         },
       },
@@ -900,7 +917,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "8\\,\\concept{sky}{4}\\,152 = 84\\,152",
         tag: {
-          text: "đặt 4 trước chữ số 1",
+          text: "viết 4 trước chữ số 1",
           color: "sky",
         },
       },
@@ -933,7 +950,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "7\\,\\concept{sky}{5}\\,308 = 75\\,308",
         tag: {
-          text: "đặt 5 trước chữ số 3",
+          text: "viết 5 trước chữ số 3",
           color: "sky",
         },
       },
@@ -973,7 +990,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "35\\,\\concept{sky}{6}\\,8 = 3\\,568",
         tag: {
-          text: "đặt 6 trước chữ số 8",
+          text: "viết 6 trước chữ số 8",
           color: "sky",
         },
       },
@@ -1006,14 +1023,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\concept{sky}{2} < 4",
         tag: {
-          text: "4 lớn hơn 2: hết số, đặt ở cuối",
+          text: "4 lớn hơn 2: hết số, viết 2 bên phải",
           color: "sky",
         },
       },
       {
         tex: "754\\,\\concept{sky}{2} = 7\\,542",
         tag: {
-          text: "đặt 2 ở cuối",
+          text: "viết 2 ở tận cùng bên phải",
           color: "sky",
         },
       },
@@ -1157,12 +1174,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
   },
-  "lay-trong-tap-36": {
+  "lay-trong-tap-58": {
     kind: "rows",
-    label: "Số có hai chữ số lấy trong tập {3; 6}",
+    label: "Số có hai chữ số lấy trong tập {5; 8}",
     rows: [
       {
-        tex: "33, 36, 63, 66",
+        tex: "55, 58, 85, 88",
         tag: {
           text: "lấy trong tập, được lặp",
           color: "teal",
@@ -1195,23 +1212,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Số có ba chữ số, tổng các chữ số bằng 3",
     rows: [
       {
+        tex: "2 = 0 + 2 = 1 + 1 = 2 + 0",
+        tag: {
+          text: "hàng trăm 1, phần còn lại 3 − 1 = 2",
+          color: "violet",
+        },
+      },
+      {
         tex: "102; 111; 120",
         tag: {
-          text: "hàng trăm 1, phần còn lại 2",
+          text: "ghép với hàng trăm 1",
           color: "violet",
         },
       },
       {
-        tex: "201; 210",
+        tex: "201; 210; 300",
         tag: {
-          text: "hàng trăm 2, phần còn lại 1",
-          color: "violet",
-        },
-      },
-      {
-        tex: "300",
-        tag: {
-          text: "hàng trăm 3, phần còn lại 0",
+          text: "hàng trăm 2 và 3, làm tương tự",
           color: "violet",
         },
       },

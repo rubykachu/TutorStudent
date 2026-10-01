@@ -81,6 +81,32 @@ export function Gaps({ spec }: { spec: GapsSpec }) {
                 points={`${cx},${arrowTop} ${cx + ARROW.half},${arrowTop + ARROW.height} ${cx - ARROW.half},${arrowTop + ARROW.height}`}
                 className="fill-muted-foreground"
               />
+              {/* The extra digit drawn in its gap once the gap is chosen (or
+                  shown as the answer), so the child sees the new number. */}
+              <g
+                aria-hidden
+                stroke="none"
+                className="opacity-0 in-data-revealed:opacity-100 in-data-selected:opacity-100"
+              >
+                <rect
+                  x={cx - TILE.w / 2}
+                  y={tileTop}
+                  width={TILE.w}
+                  height={TILE.h}
+                  rx={8}
+                  className="fill-concept-sky/15"
+                />
+                <text
+                  x={cx}
+                  y={tileTop + TILE.h / 2 + 10}
+                  textAnchor="middle"
+                  fontSize={30}
+                  fontWeight={700}
+                  className="fill-concept-sky font-heading"
+                >
+                  {spec.add}
+                </text>
+              </g>
             </Region>
           );
         })}
