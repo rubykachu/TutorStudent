@@ -63,6 +63,7 @@ describe("visualRegistry", () => {
         { n: 2054, len: 4 },
         { n: 305, len: 3 },
       ],
+      "dat-diem": [{ p0: 7 }, { p0: 7, p1: 11 }],
       "gap-nhau": [
         { p: 4, q: 6, first: 1 },
         { p: 4, q: 5, first: 0 },

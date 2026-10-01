@@ -1,0 +1,4758 @@
+{
+  "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 3,
+  "number": 3,
+  "chapter": {
+    "numeral": "I",
+    "name": "Tập hợp các số tự nhiên"
+  },
+  "title": "Thứ tự trong tập hợp các số tự nhiên",
+  "sourceRef": "Sách bài tập tr.11–13, lời giải tr.96",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách xếp thứ tự các số. Khi xếp hàng vào lớp, người thấp đứng trước, người cao đứng sau, và các số cũng có thứ tự như vậy."
+    },
+    "summary": "Bài này dạy vẽ tia số và tìm điểm biểu diễn của một số. Sau đó bạn so sánh các số bằng dấu nhỏ hơn, lớn hơn và tìm số liền trước, số liền sau.",
+    "goals": [
+      "vẽ tia số và tìm điểm biểu diễn một số",
+      "so sánh các số bằng dấu nhỏ hơn, lớn hơn",
+      "tìm số liền trước và số liền sau",
+      "viết tập hợp các số nằm trong một đoạn"
+    ],
+    "whyItMatters": "Bạn so thứ tự các số khi chọn món đồ rẻ hơn, hay khi xem cột cây số để biết còn xa không."
+  },
+  "concepts": [
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.diem-bieu-dien",
+      "name": "Điểm biểu diễn",
+      "color": "amber"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+      "name": "Số nhỏ hơn",
+      "color": "blue"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon",
+      "name": "Số lớn hơn",
+      "color": "violet"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lien-truoc",
+      "name": "Số liền trước",
+      "color": "sky"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lien-sau",
+      "name": "Số liền sau",
+      "color": "pink"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.tap-hop",
+      "name": "Tập hợp",
+      "color": "teal"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.dau-hieu-dac-trung",
+      "name": "Dấu hiệu đặc trưng",
+      "color": "lime"
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-sanh-so-nhieu-chu-so",
+      "name": "So sánh số có nhiều chữ số",
+      "color": "slate"
+    }
+  ],
+  "sections": [
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.tia-so",
+      "title": "Tia số và điểm biểu diễn",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 1)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.thuoc-ke",
+          "caption": "Bấm Bước tiếp: tia số giống chiếc thước kẻ, bắt đầu từ vạch số 0."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trên tia số, điểm biểu diễn số a là điểm nằm cách gốc O đúng a đơn vị.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.diem-a-4"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm + để đẩy điểm A tới vạch số 6. Mỗi lần bấm, điểm A đi thêm một đơn vị."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-diem-b",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-dem-vach-c"
+      ],
+      "practiceIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-diem-a-9"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.diem-a-4",
+        "caption": "Trên tia số, điểm biểu diễn số a là điểm nằm cách gốc O đúng a đơn vị."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.chon-don-vi",
+      "title": "Vạch cách nhau nhiều đơn vị",
+      "sourceRef": "Sách bài tập tr.12 (bài 1.23 và bài 1.24)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5",
+          "caption": "Bấm Bước tiếp: hai vạch liền nhau cách nhau 5 đơn vị, nên điểm E ở vạch thứ 7 biểu diễn số 35."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai vạch liền nhau trên tia số luôn cách nhau một số đơn vị như nhau. Muốn đọc điểm, tìm số đơn vị giữa hai vạch rồi đếm từ gốc O.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cột cây số bên đường cũng là một tia số. Cột ghi km 25 cách điểm đầu đường 25 km."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-km"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm + để đẩy điểm A tới vạch số 30. Mỗi lần bấm, điểm A đi 5 đơn vị."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem-5"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-vach-5",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-cot-km-40-25"
+      ],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-e-45",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cot-km-45-30"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5-xong",
+        "caption": "Hai vạch liền nhau trên tia số luôn cách nhau một số đơn vị như nhau. Muốn đọc điểm, tìm số đơn vị giữa hai vạch rồi đếm từ gốc O."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.ben-trai",
+      "title": "Số nhỏ hơn nằm bên trái",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 2), tr.12 (bài 1.22)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.trai-3-8",
+          "caption": "Bấm Bước tiếp: điểm A biểu diễn 3 nằm bên trái điểm B biểu diễn 8."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trên tia số nằm ngang, điểm biểu diễn số nhỏ hơn nằm bên trái điểm biểu diễn số lớn hơn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.trai-3-8-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: đặt điểm A vào số 4 và điểm B vào số 9. Rồi nhìn xem điểm nào nằm bên trái."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-hai-diem"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bài xếp thứ tự: chạm một thẻ rồi chạm vào chỗ muốn đặt, hoặc kéo thẻ. Xếp xong thì bấm “Kiểm tra”."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-cong-phep-tru.visual.huong-dan-xep"
+            }
+          ],
+          "guide": "order"
+        }
+      ],
+      "checkIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-ben-trai-4-9",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-xep-9-2-6"
+      ],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-trai-nhat-17-9-24"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.trai-3-8-xong",
+        "caption": "Trên tia số nằm ngang, điểm biểu diễn số nhỏ hơn nằm bên trái điểm biểu diễn số lớn hơn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.dau-nho-lon",
+      "title": "Dấu nhỏ hơn và dấu lớn hơn",
+      "sourceRef": "Sách bài tập tr.11 (kĩ năng giải toán)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-15-25",
+          "caption": "Bấm Bước tiếp: chiếc bánh giá 15 nghìn đồng, cốc trà sữa giá 25 nghìn đồng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-9-4"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.doc-dau",
+          "kind": "hiểu nhanh",
+          "title": "Đọc dấu < và >",
+          "text": "Đầu nhọn của dấu luôn chỉ về số bé hơn, còn phần mở rộng quay về số lớn hơn. Chỉ cần nhìn đầu nhọn là biết số nào bé.",
+          "tex": "\\begin{gathered} 3 < 8 \\\\ 8 > 3 \\end{gathered}",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bạn Lan cao 140 cm, bạn Nam cao 135 cm. Chạm vào cách viết đúng."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-dau-140-135"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-dau"],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-7-nho-hon-12",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-6-11"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8",
+        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.dau-bang",
+      "title": "Dấu nhỏ hơn hoặc bằng và lớn hơn hoặc bằng",
+      "sourceRef": "Sách bài tập tr.11 (kĩ năng giải toán)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-3-5",
+          "caption": "Bấm Bước tiếp: dấu ≤ đúng khi số bé hơn hoặc hai số bằng nhau."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thang máy chở tối đa 8 người. Gọi n là số người trong thang, ta viết n ≤ 8: thang trống hay đủ 8 người đều được."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.thang-may"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào mọi số x thoả x ≤ 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-x-nho-bang-4"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-nho-hon-bang"
+      ],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-dung-nho-bang",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.tau-cao-100"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong",
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.so-nhieu-chu-so",
+      "title": "So sánh số có nhiều chữ số",
+      "sourceRef": "Kiến thức nền (tiểu học); bài 1.25 tr.12",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-9840-12305",
+          "caption": "Bấm Bước tiếp: kênh A có 9 840 người theo dõi, kênh B có 12 305 người theo dõi."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn so sánh hai số, trước hết đếm chữ số: số nào nhiều chữ số hơn thì lớn hơn. Nếu số chữ số bằng nhau, so từng cặp chữ số từ trái sang phải.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Gặp cặp chữ số khác nhau đầu tiên thì dừng lại: cặp đó cho biết số nào lớn hơn."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-4276-4291"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.so-cung-chu-so",
+          "kind": "tránh sai",
+          "title": "So hai số cùng số chữ số",
+          "text": "Luôn so từ chữ số bên trái nhất, không so từ bên phải. Cặp chữ số khác nhau đầu tiên quyết định, các hàng còn lại không cần xét. Ví dụ 3 658 và 3 706: hàng trăm 6 nhỏ hơn 7, dù hàng đơn vị 8 lớn hơn 6.",
+          "tex": "3\\,\\concept{blue}{6}58 < 3\\,\\concept{violet}{7}06"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào số lớn hơn. Hai số đều có 5 chữ số, nên so từng cặp chữ số từ trái sang phải."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-27408-27480"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-so-nhieu-chu-so-hon"
+      ],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-lon-nhat-nhieu-chu-so",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-6305-6350"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-4276-4291",
+        "caption": "Muốn so sánh hai số, trước hết đếm chữ số: số nào nhiều chữ số hơn thì lớn hơn. Nếu số chữ số bằng nhau, so từng cặp chữ số từ trái sang phải."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.bieu-do-cot",
+      "title": "Đọc biểu đồ cột",
+      "sourceRef": "Sách bài tập tr.13 (bài 1.26)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach",
+          "caption": "Bấm Bước tiếp: mỗi cột là số quyển sách thư viện cho mượn trong một ngày. T2 là thứ Hai, còn cột cuối là Chủ nhật."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trên biểu đồ cột, cột càng cao thì số càng lớn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach-nhieu-it"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số quyển của thứ Sáu, thứ Bảy và Chủ nhật là 10, 4 và 1. Mỗi số nhỏ hơn số trước, ta nói số quyển giảm dần."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.giam-dan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: nhìn biểu đồ rồi chạm vào ngày cho mượn ít sách nhất."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach-xong"
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-ngay-it-nhat"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-cot-10"],
+      "practiceIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-cot-clb"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach-nhieu-it",
+        "caption": "Trên biểu đồ cột, cột càng cao thì số càng lớn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.lien-tiep",
+      "title": "Số liền trước và số liền sau",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 3)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.nha-so-25",
+          "caption": "Bấm Bước tiếp: nhà bạn số 25, nhà số 24 nằm liền trước, nhà số 26 nằm liền sau."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số liền sau của a là a + 1. Số liền trước của a + 1 là a.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Hai số a và a + 1 gọi là hai số tự nhiên liên tiếp."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.lien-tiep-rows"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số 0 là số tự nhiên nhỏ nhất, nên 0 không có số liền trước. Mọi số tự nhiên đều có số liền sau."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-0"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.lien-sau-tan-cung-9",
+          "kind": "tránh sai",
+          "title": "Số liền sau của số tận cùng 9",
+          "text": "Cộng 1 vào số tận cùng 9: chữ số 9 thành 0 và nhớ 1 sang hàng bên trái. Bên trái lại là 9 thì cứ làm tiếp như vậy.",
+          "tex": "\\begin{gathered} 19 + 1 = 20 \\\\ 99 + 1 = 100 \\end{gathered}"
+        }
+      ],
+      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-lien-sau-39"],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.lien-sau-199",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.lien-truoc-80"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.lien-tiep-rows",
+        "caption": "Số liền sau của a là a + 1. Số liền trước của a + 1 là a."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.bac-cau",
+      "title": "Tính chất bắc cầu",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 4)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-keo",
+          "caption": "Bấm Bước tiếp: Nam có 3 viên kẹo, Lan có 5 viên, Hà có 8 viên."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: Nam thấp hơn Lan, Lan thấp hơn Hà. Chạm vào bạn thấp nhất."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chon-thap-nhat"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-thap-nhat-an-binh-chi"
+      ],
+      "practiceIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.bac-cau-x-7-12"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-xong",
+        "caption": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.section.tap-hop-so",
+      "title": "Tập hợp các số trong một đoạn",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhà bạn là gốc O, trường ở điểm A cách nhà 5 km, chợ ở điểm B cách nhà 10 km. Hai điểm A và B chia tia số thành ba phần: đoạn OA, đoạn AB và phần còn lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.chia-ba-phan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Điểm của số x thuộc đoạn AB khi x ở giữa hai số của A và B, kể cả hai số đó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doan-ab-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "ℕ là tập hợp mọi số tự nhiên, ℕ* là tập hợp các số tự nhiên khác 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.n-nsao"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "M là tập hợp các số tự nhiên x mà x lớn hơn hoặc bằng 5 và nhỏ hơn hoặc bằng 10."
+            },
+            {
+              "type": "visual",
+              "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.m-liet-ke"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-phan-nao-7"],
+      "practiceIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.phan-nao-12",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dem-phan-tu-3-7",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nsao-0"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doan-ab-xong",
+        "caption": "Điểm của số x thuộc đoạn AB khi x ở giữa hai số của A và B, kể cả hai số đó."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 1)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.diem-bieu-dien"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.diem-a-4",
+        "caption": "Trên tia số, điểm biểu diễn số a là điểm nằm cách gốc O đúng a đơn vị."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi",
+      "sourceRef": "Sách bài tập tr.12 (bài 1.23)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.diem-bieu-dien"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.vach-5-xong",
+        "caption": "Hai vạch liền nhau trên tia số luôn cách nhau một số đơn vị như nhau."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cot-cay-so",
+      "sourceRef": "Sách bài tập tr.12 (bài 1.24)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.diem-bieu-dien"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-km",
+        "caption": "Muốn biết số ứng với thị trấn, lấy số của cột cây số cộng với số km còn lại."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 2), tr.12 (bài 1.22)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.trai-3-8-xong",
+        "caption": "Trên tia số nằm ngang, điểm biểu diễn số nhỏ hơn nằm bên trái điểm biểu diễn số lớn hơn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.doc-dau",
+      "sourceRef": "Sách bài tập tr.11 (kĩ năng giải toán)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8",
+        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.viet-dau",
+      "sourceRef": "Sách bài tập tr.11 (kĩ năng giải toán)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8",
+        "caption": "Dấu < đọc là nhỏ hơn, dấu > đọc là lớn hơn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.nho-hon-hoac-bang",
+      "sourceRef": "Sách bài tập tr.11 (kĩ năng giải toán)",
+      "conceptIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong",
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lon-hon-hoac-bang",
+      "sourceRef": "Sách bài tập tr.11 (kĩ năng giải toán)",
+      "conceptIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bang-xong",
+        "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Hai số bằng nhau thì cả hai dấu đều đúng."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.so-chu-so",
+      "sourceRef": "Kiến thức nền (tiểu học); bài 1.25 tr.12",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-sanh-so-nhieu-chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-9840-12305",
+        "caption": "Muốn so sánh hai số, trước hết đếm chữ số: số nào nhiều chữ số hơn thì lớn hơn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so",
+      "sourceRef": "Kiến thức nền (tiểu học); bài 1.25 tr.12",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-sanh-so-nhieu-chu-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.so-4276-4291",
+        "caption": "Nếu số chữ số bằng nhau, so từng cặp chữ số từ trái sang phải."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bieu-do",
+      "sourceRef": "Sách bài tập tr.13 (bài 1.26)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach-nhieu-it",
+        "caption": "Trên biểu đồ cột, cột càng cao thì số càng lớn."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 3)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lien-sau"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.lien-tiep-rows",
+        "caption": "Số liền sau của a là a + 1."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 3)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lien-truoc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.lien-tiep-rows",
+        "caption": "Số liền trước của a + 1 là a."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bac-cau",
+      "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 4)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.bac-cau-xong",
+        "caption": "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-nho-hon",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.so-lon-hon"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doan-ab-xong",
+        "caption": "Hai điểm A và B chia tia số thành ba phần: đoạn OA, đoạn AB và phần còn lại."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.tap-hop-doan",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "conceptIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.tap-hop",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.dau-hieu-dac-trung"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.m-liet-ke",
+        "caption": "M gồm các số tự nhiên x mà 5 ≤ x ≤ 10, tức là M = {5; 6; 7; 8; 9; 10}."
+      }
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.n-nsao",
+      "sourceRef": "Sách bài tập tr.7 (nhắc lại ℕ và ℕ*), tr.11 (ví dụ b, c), tr.13 (bài 1.27)",
+      "conceptIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.concept.tap-hop"],
+      "recap": {
+        "type": "visual",
+        "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.n-nsao",
+        "caption": "ℕ là tập hợp mọi số tự nhiên, ℕ* là tập hợp các số tự nhiên khác 0."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-diem-b",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm B nằm trên tia số. Điểm B biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-b-7"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "7"
+      },
+      "explain": {
+        "text": "Điểm biểu diễn số a nằm cách gốc O đúng a đơn vị. Điểm B ở vạch thứ 7 tính từ gốc O, nên B biểu diễn số 7.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "6 là vạch đứng ngay trước điểm B, chưa phải vạch của B."
+          },
+          {
+            "optionId": "c",
+            "text": "8 là vạch đứng ngay sau điểm B, không phải vạch của B."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-dem-vach-c",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trên tia số này chỉ có số 0 được ghi. Điểm C cách gốc O mấy đơn vị?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-c-4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "4"
+      },
+      "explain": {
+        "text": "Mỗi vạch là một đơn vị. Đếm từ gốc O tới điểm C được 4 vạch, nên C cách gốc O 4 đơn vị và biểu diễn số 4.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "3 là đếm thiếu một vạch."
+          },
+          {
+            "optionId": "c",
+            "text": "5 là đếm cả vạch gốc O, trong khi gốc O ứng với số 0 và chưa đi đơn vị nào."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-diem-a-9",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm A nằm trên tia số. Điểm A biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-a-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.goi-y-doc-diem",
+        "solutionVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.giai-doc-diem-a-9"
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "9"
+      },
+      "explain": {
+        "text": "Từ gốc O đi tới vạch 5, rồi thêm 4 vạch nữa tới điểm A. Điểm A cách gốc O 9 đơn vị nên biểu diễn số 9.",
+        "tex": "5 + 4 = 9"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-diem-7",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt điểm A để nó biểu diễn số 7. Bấm nút + để đẩy điểm A đi từng vạch."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "manipulate",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": 7
+      },
+      "explain": {
+        "text": "Điểm biểu diễn số 7 nằm cách gốc O đúng 7 đơn vị. Mỗi lần bấm + điểm A đi một vạch, nên bấm bảy lần."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cham-diem-8",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào điểm biểu diễn số 8."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "tapRegion",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cham-diem-8",
+      "answer": ["b"],
+      "explain": {
+        "text": "Điểm biểu diễn số 8 đứng trên vạch ghi số 8. Điểm B đứng trên vạch đó, còn A ở vạch 2 và C ở vạch 5."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cach-goc-9",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.diem-bieu-dien"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm biểu diễn số 9 cách gốc O mấy đơn vị?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "10"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "9"
+      },
+      "explain": {
+        "text": "Điểm biểu diễn số a cách gốc O đúng a đơn vị. Với a bằng 9, điểm đó cách gốc O 9 đơn vị.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Điểm biểu diễn số 9 phải cách gốc O đúng 9 đơn vị, không phải 8."
+          },
+          {
+            "optionId": "c",
+            "text": "Điểm cách gốc O 10 đơn vị biểu diễn số 10, không phải số 9."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-vach-5",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm P biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-p-40"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "35"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "40"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "40"
+      },
+      "explain": {
+        "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm P ở vạch thứ 8, đếm cách 5 từ gốc O: 5, 10, 15, 20, 25, 30, 35, 40.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "8 là số vạch tính từ gốc O, mà mỗi vạch lại là 5 đơn vị."
+          },
+          {
+            "optionId": "b",
+            "text": "35 là vạch đứng ngay trước điểm P."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-cot-km-40-25",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cột cây số ghi km 40, và thị trấn Hoa cách cột đó 25 km. Gốc O là điểm đầu đường."
+        },
+        {
+          "type": "note",
+          "text": "Thị trấn Hoa biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-40"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 65
+      },
+      "check": {
+        "expr": "40+25"
+      },
+      "explain": {
+        "text": "Số của thị trấn bằng số của cột cây số cộng với số km còn lại. Ta tính 40 cộng 25.",
+        "tex": "40 + 25 = 65"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-e-45",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm E biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.doc-e-45"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.goi-y-vach-5",
+        "solutionVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.giai-vach-5-45"
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 45
+      },
+      "check": {
+        "expr": "45"
+      },
+      "explain": {
+        "text": "Đếm cách 5 từ gốc O: 5, 10, 15, 20, 25, 30, 35, 40, 45. Điểm E ở vạch thứ 9 nên biểu diễn số 45."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-diem-5-40",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt điểm A để nó biểu diễn số 40. Mỗi lần bấm nút +, điểm A đi 5 đơn vị."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "manipulate",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-diem-5",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": 40
+      },
+      "explain": {
+        "text": "Mỗi lần bấm, điểm A đi thêm 5 đơn vị. Đếm cách 5 tới 40 thì bấm tám lần: 5, 10, 15, 20, 25, 30, 35, 40."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cham-diem-30",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Chạm vào điểm biểu diễn số 30."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "tapRegion",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cham-diem-30",
+      "answer": ["b"],
+      "explain": {
+        "text": "Từ vạch 20 đếm tiếp 25 rồi 30. Điểm B đứng trên vạch đó, còn A ở vạch 15 và C ở vạch 45."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-xa",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.vach-don-vi"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Chọn tất cả các điểm cách gốc O nhiều hơn 20 đơn vị."
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.ba-diem-d-g"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Điểm D"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "Điểm E"
+          }
+        },
+        {
+          "id": "f",
+          "content": {
+            "type": "text",
+            "text": "Điểm F"
+          }
+        },
+        {
+          "id": "g",
+          "content": {
+            "type": "text",
+            "text": "Điểm G"
+          }
+        }
+      ],
+      "answer": ["e", "f", "g"],
+      "multiple": true,
+      "explain": {
+        "text": "Mỗi vạch là 5 đơn vị. Điểm D cách gốc O 10 đơn vị, còn E, F và G cách 25, 30 và 45 đơn vị, đều nhiều hơn 20.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "Điểm D cách gốc O đúng 10 đơn vị, chưa tới 20."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cot-km-45-30",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cot-cay-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cột cây số ghi km 45, và thị trấn cách cột đó 30 km. Gốc O là điểm đầu đường."
+        },
+        {
+          "type": "note",
+          "text": "Thị trấn biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-45"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "solutionVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.giai-cot-45-30"
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 75
+      },
+      "check": {
+        "expr": "45+30"
+      },
+      "explain": {
+        "text": "Số của thị trấn bằng số của cột cây số cộng với số km còn lại. Ta tính 45 cộng 30.",
+        "tex": "45 + 30 = 75"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cot-km-20-15",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cot-cay-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cột cây số ghi km 20, và trạm nghỉ cách cột đó 15 km. Gốc O là điểm đầu đường."
+        },
+        {
+          "type": "note",
+          "text": "Trạm nghỉ biểu diễn số mấy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-20"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 35
+      },
+      "check": {
+        "expr": "20+15"
+      },
+      "explain": {
+        "text": "Từ cột cây số đi thêm 15 km nữa tới trạm nghỉ. Số của trạm nghỉ bằng 20 cộng 15.",
+        "tex": "20 + 15 = 35"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cot-con-lai-70-55",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cot-cay-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Gốc O là điểm đầu đường, thị trấn biểu diễn số 70. Bạn đang ở cột km 55."
+        },
+        {
+          "type": "note",
+          "text": "Còn bao nhiêu km nữa tới thị trấn?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cot-55-70"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "70-55"
+      },
+      "explain": {
+        "text": "Số km còn lại bằng số của thị trấn trừ đi số của cột cây số. Ta tính 70 trừ 55.",
+        "tex": "70 - 55 = 15"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-phep-tinh-km",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cot-cay-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cột cây số ghi km 30, thị trấn cách cột đó 20 km. Phép tính nào cho số biểu diễn thị trấn trên tia số?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "30 + 20"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "30 - 20"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "30 \\cdot 20"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "30+20"
+      },
+      "explain": {
+        "text": "Thị trấn nằm xa gốc O hơn cột cây số 20 km. Vì vậy ta lấy số của cột cộng với 20.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Phép trừ cho số của một điểm gần gốc O hơn cột cây số, nhưng thị trấn nằm xa hơn."
+          },
+          {
+            "optionId": "c",
+            "text": "Quãng đường còn lại được cộng thêm vào, không nhân."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-ben-trai-4-9",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm M biểu diễn số 4, điểm N biểu diễn số 9 trên tia số nằm ngang. Điểm nào nằm bên trái?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Điểm M"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Điểm N"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số nhỏ hơn nằm bên trái. Số 4 nhỏ hơn số 9, nên điểm M nằm bên trái điểm N.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Điểm N biểu diễn số lớn hơn, nên nằm bên phải điểm M."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-xep-9-2-6",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các số 9, 2 và 6 theo vị trí điểm biểu diễn trên tia số, từ trái sang phải."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "order",
+      "items": [
+        {
+          "id": "i1",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "i2",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "i3",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "explain": {
+        "text": "Số nhỏ nằm bên trái, số lớn nằm bên phải. Vì vậy từ trái sang phải là 2, rồi 6, rồi 9."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-trai-nhat-17-9-24",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba điểm M, N, P biểu diễn các số 17, 9 và 24 trên tia số nằm ngang. Điểm nào nằm bên trái nhất?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Điểm M"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Điểm N"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Điểm P"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "explain": {
+        "text": "Điểm biểu diễn số nhỏ nhất nằm bên trái nhất. Trong ba số 17, 9 và 24, số 9 nhỏ nhất, nên điểm N nằm bên trái nhất.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Điểm P biểu diễn số 24, số lớn nhất, nên nằm bên phải nhất."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cham-diem-trai",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào điểm nằm bên trái nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "tapRegion",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.cham-diem-trai",
+      "answer": ["b"],
+      "explain": {
+        "text": "Điểm nằm bên trái nhất là điểm có số nhỏ nhất. Điểm B ở vạch 1, A ở vạch 5 và C ở vạch 9."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dat-7-11",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ tia số: đặt điểm A biểu diễn số 7 và điểm B biểu diễn số 11."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "manipulate",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dat-hai-diem",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": 7,
+        "p1": 11
+      },
+      "explain": {
+        "text": "Điểm A cách gốc O 7 đơn vị, điểm B cách gốc O 11 đơn vị. Số 7 nhỏ hơn số 11, nên A nằm bên trái B."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-phai-nhat-12-5-8",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba điểm X, Y và Z biểu diễn các số 12, 5 và 8 trên tia số nằm ngang. Điểm nào nằm bên phải nhất?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Điểm X"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Điểm Y"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Điểm Z"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Điểm biểu diễn số lớn nhất nằm bên phải nhất. Trong ba số 12, 5 và 8, số 12 lớn nhất, nên điểm X nằm bên phải nhất.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Điểm Y biểu diễn số 5, số nhỏ nhất, nên nằm bên trái nhất."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-ben-trai",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Điểm biểu diễn số 14 nằm bên "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["trái"]
+        },
+        {
+          "type": "text",
+          "text": " điểm biểu diễn số 20."
+        }
+      ],
+      "bank": ["trái", "phải"],
+      "explain": {
+        "text": "Số nhỏ hơn nằm bên trái điểm biểu diễn số lớn hơn. Số 14 nhỏ hơn số 20, nên điểm của 14 nằm bên trái."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-dau",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dấu nào đọc là “nhỏ hơn”?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "<"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": ">"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "="
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Dấu < đọc là nhỏ hơn. Dấu > đọc là lớn hơn và dấu = đọc là bằng.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu > đọc là lớn hơn, không phải nhỏ hơn."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu = đọc là bằng."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-7-nho-hon-12",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.doc-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dòng nào đọc là “7 nhỏ hơn 12”?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "7 < 12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "7 > 12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "12 < 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      },
+      "explain": {
+        "text": "Chữ “nhỏ hơn” ứng với dấu <, và số 7 đứng trước. Dòng 7 < 12 đọc đúng và cũng là một so sánh đúng.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu > đọc là lớn hơn, nhưng 7 không lớn hơn 12."
+          },
+          {
+            "optionId": "c",
+            "text": "12 < 7 đọc là 12 nhỏ hơn 7, mà 12 lớn hơn 7."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-20-lon-hon-13",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.doc-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dòng nào đọc là “20 lớn hơn 13”?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "20 > 13"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "20 < 13"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "13 > 20"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      },
+      "explain": {
+        "text": "Chữ “lớn hơn” ứng với dấu >, và số 20 đứng trước. Dòng 20 > 13 đọc đúng và cũng là một so sánh đúng.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu < đọc là nhỏ hơn, nhưng 20 không nhỏ hơn 13."
+          },
+          {
+            "optionId": "c",
+            "text": "13 > 20 đọc là 13 lớn hơn 20, mà 13 nhỏ hơn 20."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-dung",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.doc-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "8 < 11"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "15 > 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "6 > 10"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "20 < 14"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      },
+      "explain": {
+        "text": "Câu 8 < 11 đúng vì 8 nhỏ hơn 11. Câu 15 > 9 đúng vì 15 lớn hơn 9. Hai câu còn lại sai vì 6 nhỏ hơn 10 và 20 lớn hơn 14.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "6 nhỏ hơn 10, nên 6 > 10 sai."
+          },
+          {
+            "optionId": "d",
+            "text": "20 lớn hơn 14, nên 20 < 14 sai."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-6-11",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.viet-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn dấu đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.goi-y-dau-4-9",
+        "solutionVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.giai-dau-6-11"
+      },
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "6 "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["<"]
+        },
+        {
+          "type": "text",
+          "text": " 11"
+        }
+      ],
+      "bank": ["<", ">"],
+      "explain": {
+        "text": "Số 6 nhỏ hơn số 11, nên ta viết dấu nhỏ hơn. Đầu nhọn của dấu chỉ về số bé hơn là 6."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-23-32",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.viet-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn dấu đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "23 "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["<"]
+        },
+        {
+          "type": "text",
+          "text": " 32"
+        }
+      ],
+      "bank": ["<", ">"],
+      "explain": {
+        "text": "Số 23 nhỏ hơn số 32 vì chữ số hàng chục 2 nhỏ hơn 3. Nên ta viết dấu nhỏ hơn."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-gia-but",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.viet-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bút giá 8 nghìn đồng, thước giá 5 nghìn đồng. Chọn dấu đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "Giá bút "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [">"]
+        },
+        {
+          "type": "text",
+          "text": " giá thước"
+        }
+      ],
+      "bank": ["<", ">"],
+      "explain": {
+        "text": "Giá bút là 8 nghìn, lớn hơn giá thước là 5 nghìn. Nên ta viết dấu lớn hơn."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-chieu-cao-142-138",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.viet-dau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nam cao 142 cm, Lan cao 138 cm. Câu nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "142 > 138"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "142 < 138"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "142 = 138"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      },
+      "explain": {
+        "text": "Nam cao 142 cm, nhiều hơn Lan là 138 cm. Vậy 142 lớn hơn 138, viết 142 > 138.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "142 lớn hơn 138, nên không thể viết 142 < 138."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai số 142 và 138 khác nhau, nên không bằng nhau."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-doc-nho-hon-bang",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dấu ≤ đọc là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "nhỏ hơn hoặc bằng"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "lớn hơn hoặc bằng"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "nhỏ hơn"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Dấu ≤ đọc là nhỏ hơn hoặc bằng. Dấu ≥ mới đọc là lớn hơn hoặc bằng.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Lớn hơn hoặc bằng là cách đọc của dấu ≥."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu ≤ còn có thêm vạch gạch ngang, nghĩa là có cả trường hợp bằng nhau."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-dung-nho-bang",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.nho-hon-hoac-bang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "6 ≤ 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "9 ≤ 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "10 ≤ 7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "4 ≤ 3"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      },
+      "explain": {
+        "text": "Câu 6 ≤ 9 đúng vì 6 nhỏ hơn 9. Câu 9 ≤ 9 đúng vì hai số bằng nhau. Hai câu còn lại sai vì 10 lớn hơn 7 và 4 lớn hơn 3.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "10 lớn hơn 7, nên 10 ≤ 7 sai."
+          },
+          {
+            "optionId": "d",
+            "text": "4 lớn hơn 3, nên 4 ≤ 3 sai."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.thang-may-12",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.nho-hon-hoac-bang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Thang máy chở tối đa 12 người, gọi n là số người trong thang. Điều kiện nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "n ≤ 12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "n ≥ 12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "n < 12"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Tối đa 12 người nghĩa là có thể ít hơn 12 người hoặc đúng 12 người. Đó là n nhỏ hơn hoặc bằng 12.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu ≥ nghĩa là từ 12 người trở lên, trái với tối đa 12 người."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu < loại luôn trường hợp đúng 12 người, mà 12 người vẫn được đi."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-x-nho-bang-6",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.nho-hon-hoac-bang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số x thoả x ≤ 6."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "explain": {
+        "text": "Số 4 nhỏ hơn 6 và số 6 bằng 6, nên cả hai thoả x ≤ 6. Các số 7 và 9 lớn hơn 6 nên không thoả.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "7 lớn hơn 6, nên 7 ≤ 6 sai."
+          },
+          {
+            "optionId": "d",
+            "text": "9 lớn hơn 6, nên 9 ≤ 6 sai."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.tau-cao-100",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lon-hon-hoac-bang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trò chơi dành cho người cao từ 100 cm trở lên. Gọi h là chiều cao người chơi, điều kiện nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "h ≥ 100"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "h ≤ 100"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "h > 100"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Từ 100 cm trở lên nghĩa là đúng 100 cm hoặc cao hơn. Đó là h lớn hơn hoặc bằng 100.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu ≤ nghĩa là từ 100 cm trở xuống, trái với từ 100 cm trở lên."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu > loại luôn bạn cao đúng 100 cm, mà bạn đó vẫn được chơi."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-x-lon-bang-8",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lon-hon-hoac-bang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số x thoả x ≥ 8."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        }
+      ],
+      "answer": ["b", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Số 8 bằng 8 và số 9 lớn hơn 8, nên cả hai thoả x ≥ 8. Các số 5 và 7 nhỏ hơn 8 nên không thoả.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "5 nhỏ hơn 8, nên 5 ≥ 8 sai."
+          },
+          {
+            "optionId": "d",
+            "text": "7 nhỏ hơn 8, nên 7 ≥ 8 sai."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-dung-lon-bang",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lon-hon-hoac-bang"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "12 ≥ 12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "7 ≥ 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "15 ≥ 11"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "3 ≥ 4"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      },
+      "explain": {
+        "text": "Câu 12 ≥ 12 đúng vì hai số bằng nhau. Câu 15 ≥ 11 đúng vì 15 lớn hơn 11. Hai câu còn lại sai vì 7 nhỏ hơn 9 và 3 nhỏ hơn 4.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "7 nhỏ hơn 9, nên 7 ≥ 9 sai."
+          },
+          {
+            "optionId": "d",
+            "text": "3 nhỏ hơn 4, nên 3 ≥ 4 sai."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-so-nhieu-chu-so-hon",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào lớn hơn?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "9 874"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "10 203"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "max"
+      },
+      "explain": {
+        "text": "Số 10 203 có 5 chữ số, còn 9 874 chỉ có 4 chữ số. Số nhiều chữ số hơn thì lớn hơn.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "9 874 có ít chữ số hơn 10 203 nên nhỏ hơn."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-lon-nhat-nhieu-chu-so",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.so-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số lớn nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "8 765"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "10 204"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "999"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "9 999"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "max"
+      },
+      "explain": {
+        "text": "Số 10 204 có 5 chữ số, nhiều nhất trong bốn số. Các số còn lại chỉ có 3 hoặc 4 chữ số.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "9 999 có nhiều chữ số 9 nhưng chỉ có 4 chữ số, ít hơn 10 204."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-742-1305",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.so-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn dấu đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "742 "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["<"]
+        },
+        {
+          "type": "text",
+          "text": " 1 305"
+        }
+      ],
+      "bank": ["<", ">"],
+      "explain": {
+        "text": "Số 742 có 3 chữ số, còn 1 305 có 4 chữ số. Số ít chữ số hơn thì nhỏ hơn, nên ta viết dấu nhỏ hơn."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nho-nhat-nhieu-chu-so",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.so-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số nhỏ nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "5 120"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "980"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "12 004"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "1 050"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "min"
+      },
+      "explain": {
+        "text": "Số 980 chỉ có 3 chữ số, ít nhất trong bốn số. Các số còn lại có 4 hoặc 5 chữ số nên lớn hơn 980.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "1 050 có 4 chữ số, nhiều hơn 980 nên lớn hơn 980."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dien-dau-6305-6350",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn dấu đúng cho chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.goi-y-so-3519-3591",
+        "solutionVisualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.giai-so-6305-6350"
+      },
+      "type": "fillBlank",
+      "segments": [
+        {
+          "type": "text",
+          "text": "6 305 "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["<"]
+        },
+        {
+          "type": "text",
+          "text": " 6 350"
+        }
+      ],
+      "bank": ["<", ">"],
+      "explain": {
+        "text": "Hai số cùng 4 chữ số. Hàng nghìn và hàng trăm giống nhau, hàng chục có 0 nhỏ hơn 5, nên 6 305 nhỏ hơn 6 350."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-lon-nhat-27408-27840",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số lớn nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "27 408"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "27 804"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "27 084"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "27 840"
+          }
+        }
+      ],
+      "answer": ["d"],
+      "multiple": false,
+      "check": {
+        "relation": "max"
+      },
+      "explain": {
+        "text": "Cả bốn số đều có 5 chữ số và bắt đầu bằng 27. Hàng trăm lớn nhất là 8, ở hai số 27 804 và 27 840. Hai số này khác nhau ở hàng chục: 4 lớn hơn 0.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "27 804 và 27 840 cùng có 8 ở hàng trăm, nhưng hàng chục 0 nhỏ hơn 4."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.xep-4-so-40982",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các số từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "order",
+      "items": [
+        {
+          "id": "i1",
+          "content": {
+            "type": "text",
+            "text": "40 982"
+          }
+        },
+        {
+          "id": "i2",
+          "content": {
+            "type": "text",
+            "text": "41 275"
+          }
+        },
+        {
+          "id": "i3",
+          "content": {
+            "type": "text",
+            "text": "41 705"
+          }
+        },
+        {
+          "id": "i4",
+          "content": {
+            "type": "text",
+            "text": "41 750"
+          }
+        }
+      ],
+      "explain": {
+        "text": "Số 40 982 có hàng nghìn là 0, nhỏ nhất. Ba số còn lại cùng hàng nghìn là 1, nên so hàng trăm: 2 nhỏ nhất. Hai số còn lại cùng hàng trăm là 7, nên số có hàng chục 0 nhỏ hơn số có hàng chục 5."
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.tia-so-4-diem",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bốn điểm A, B, C, D nằm trên tia số, theo thứ tự từ trái sang phải. Chúng biểu diễn bốn số 63 482; 63 590; 62 905; 63 508, chưa theo thứ tự."
+        },
+        {
+          "type": "note",
+          "text": "Điểm D biểu diễn số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "63 482"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "63 590"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "62 905"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "63 508"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "max"
+      },
+      "explain": {
+        "text": "Điểm D nằm bên phải nhất nên biểu diễn số lớn nhất. Cả bốn số có 5 chữ số, so từ trái sang phải thì 63 590 lớn nhất.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "63 508 và 63 590 khác nhau ở hàng chục: 0 nhỏ hơn 9."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-cot-10",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi cột là số quyển sách thư viện cho mượn trong một ngày. Chạm vào cột của ngày cho mượn 10 quyển."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "tapRegion",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach-tap",
+      "answer": ["b4"],
+      "explain": {
+        "text": "Số ghi trên đầu cột cho biết số quyển sách của ngày đó. Cột T6, tức thứ Sáu, ghi 10 quyển."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.doc-cot-clb",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bieu-do"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biểu đồ cho biết số bạn đến câu lạc bộ cờ mỗi ngày, T4 là thứ Tư. Ngày T4 có bao nhiêu bạn?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.clb-doc"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "15"
+      },
+      "explain": {
+        "text": "Đầu cột T4 chạm vạch lưới ghi 15. Vậy ngày T4 có 15 bạn."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.cham-cot-cao-nhat",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bieu-do"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biểu đồ cho biết số bạn đến câu lạc bộ cờ mỗi ngày. Chạm vào ngày có nhiều bạn nhất."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "tapRegion",
+      "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.clb-tap",
+      "answer": ["b4"],
+      "explain": {
+        "text": "Cột càng cao thì số bạn càng lớn. Cột T6 cao nhất nên ngày T6 có nhiều bạn nhất."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-ngay-it-nhat-clb",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bieu-do"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biểu đồ cho biết số bạn đến câu lạc bộ cờ mỗi ngày. Ngày nào có ít bạn nhất?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.clb-doc"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "T2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "T4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "T5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "T6"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "explain": {
+        "text": "Cột càng thấp thì số bạn càng nhỏ. Cột T5 thấp nhất nên ngày T5 có ít bạn nhất.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cột T4 cao hơn cột T5, nên T4 có nhiều bạn hơn T5."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.vi-sao-giam-dan",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bieu-do"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số quyển sách cho mượn của thứ Sáu, thứ Bảy và Chủ nhật là 10, 4 và 1. Vì sao nói số quyển giảm dần?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.muon-sach-xong"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Vì mỗi ngày ít hơn ngày trước"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Vì ngày nào cũng có người mượn sách"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Vì Chủ nhật là ngày cuối tuần"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Giảm dần nghĩa là mỗi số nhỏ hơn số trước nó. Ở đây 10 lớn hơn 4 và 4 lớn hơn 1.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Ngày nào cũng có người mượn nhưng điều đó chưa cho biết số quyển ít dần."
+          },
+          {
+            "optionId": "c",
+            "text": "Ngày cuối tuần không phải là lý do làm số quyển ít dần."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-lien-sau-39",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số liền sau của 39 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "39+1"
+      },
+      "explain": {
+        "text": "Số liền sau của một số bằng số đó cộng 1. Số 39 cộng 1 bằng 40.",
+        "tex": "39 + 1 = 40"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.lien-sau-199",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số liền sau của 199 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 200
+      },
+      "check": {
+        "expr": "199+1"
+      },
+      "explain": {
+        "text": "Cộng 1 vào 199: chữ số 9 ở hàng đơn vị thành 0 và nhớ 1. Cứ thế, 199 cộng 1 bằng 200.",
+        "tex": "199 + 1 = 200"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-lien-sau-59",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số liền sau của 59 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "58"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "69"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "59+1"
+      },
+      "explain": {
+        "text": "Số liền sau của 59 là 59 cộng 1. Chữ số 9 thành 0 và hàng chục tăng 1, được 60.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "58 là số liền trước của 59."
+          },
+          {
+            "optionId": "c",
+            "text": "69 hơn 59 những 10 đơn vị, không phải 1 đơn vị."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.nha-lien-sau-45",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nhà của Lan có số 45, nhà của Mai nằm liền sau nhà Lan. Nhà của Mai có số mấy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 46
+      },
+      "check": {
+        "expr": "45+1"
+      },
+      "explain": {
+        "text": "Nhà ở liền sau có số bằng số nhà trước cộng 1. Ta tính 45 cộng 1.",
+        "tex": "45 + 1 = 46"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-cap-lien-tiep",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp hai số tự nhiên liên tiếp."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "14 và 15"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "20 và 22"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "99 và 100"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7 và 9"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Hai số liên tiếp hơn kém nhau đúng 1 đơn vị. Các cặp 14 và 15, 99 và 100 như vậy. Còn 20 và 22, 7 và 9 hơn kém nhau 2 đơn vị.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "20 và 22 hơn kém nhau 2 đơn vị, giữa chúng còn số 21."
+          },
+          {
+            "optionId": "d",
+            "text": "7 và 9 hơn kém nhau 2 đơn vị, giữa chúng còn số 8."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.lien-truoc-80",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số liền trước của 80 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 79
+      },
+      "check": {
+        "expr": "80-1"
+      },
+      "explain": {
+        "text": "Số liền trước của một số bằng số đó trừ 1. Số 80 trừ 1 bằng 79.",
+        "tex": "80 - 1 = 79"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-lien-truoc-100",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số liền trước của 100 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "99"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "101"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "90"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "100-1"
+      },
+      "explain": {
+        "text": "Số liền trước của 100 là 100 trừ 1. Ta mượn 1 ở hàng trăm, được 99.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "101 là số liền sau của 100."
+          },
+          {
+            "optionId": "c",
+            "text": "90 kém 100 những 10 đơn vị, không phải 1 đơn vị."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.khong-co-lien-truoc",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số tự nhiên nào không có số liền trước?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "10"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số 0 là số tự nhiên nhỏ nhất, nên không có số tự nhiên nào đứng ngay trước nó. Số liền trước của 1 là 0, và của 10 là 9.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 1 có số liền trước là 0."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 10 có số liền trước là 9."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.lien-truoc-1",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số liền trước của 1 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "check": {
+        "expr": "1-1"
+      },
+      "explain": {
+        "text": "Số liền trước của một số bằng số đó trừ 1. Số 1 trừ 1 bằng 0.",
+        "tex": "1 - 1 = 0"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-thap-nhat-an-binh-chi",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết An thấp hơn Bình, Bình thấp hơn Chi. Ai thấp nhất?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "An"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Bình"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Chi"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "An thấp hơn Bình và Bình thấp hơn Chi, nên theo bắc cầu An thấp hơn Chi. Vậy An thấp hơn cả hai bạn.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Bình thấp hơn Chi nhưng lại cao hơn An."
+          },
+          {
+            "optionId": "c",
+            "text": "Chi cao hơn Bình, mà Bình cao hơn An, nên Chi cao nhất."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.bac-cau-x-7-12",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bac-cau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết x < 7 và 7 < 12. Câu nào chắc chắn đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "x < 12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "x > 12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "x = 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Ta có x < 7 và 7 < 12. Theo tính chất bắc cầu, x < 12.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "x nhỏ hơn 7 và 7 nhỏ hơn 12, nên x không thể lớn hơn 12."
+          },
+          {
+            "optionId": "c",
+            "text": "x < 7 nên x không thể bằng 7."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.xep-3-ban",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bac-cau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "An thấp hơn Bình, còn Chi cao hơn Bình. Xếp ba bạn từ thấp đến cao."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "order",
+      "items": [
+        {
+          "id": "i1",
+          "content": {
+            "type": "text",
+            "text": "An"
+          }
+        },
+        {
+          "id": "i2",
+          "content": {
+            "type": "text",
+            "text": "Bình"
+          }
+        },
+        {
+          "id": "i3",
+          "content": {
+            "type": "text",
+            "text": "Chi"
+          }
+        }
+      ],
+      "explain": {
+        "text": "An thấp hơn Bình, và Chi cao hơn Bình. Theo bắc cầu, thứ tự từ thấp đến cao là An, Bình, Chi."
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.bac-cau-nho-bang",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bac-cau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết a ≤ 5 và 5 ≤ b. Câu nào chắc chắn đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "a ≤ b"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "a ≥ b"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "a < b"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Ta có a ≤ 5 và 5 ≤ b. Theo tính chất bắc cầu, a ≤ b.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu ≥ ngược với kết luận của bắc cầu."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai dấu ≤ còn cho phép a và b cùng bằng 5, nên chưa chắc a < b."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-bac-cau",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.bac-cau"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết m < n và n < p. Chọn tất cả các câu chắc chắn đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "m < p"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "p > m"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "p < m"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "n < m"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "explain": {
+        "text": "Theo tính chất bắc cầu, m < p. Câu p > m chỉ là cách viết khác của câu đó. Hai câu còn lại ngược với đề.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "p lớn hơn m, nên p < m sai."
+          },
+          {
+            "optionId": "d",
+            "text": "m nhỏ hơn n, nên n < m sai."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.kt-phan-nao-7",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm A biểu diễn số 4, điểm B biểu diễn số 9. Điểm biểu diễn số 7 nằm ở phần nào?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-4-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Đoạn OA"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Đoạn AB"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Phần còn lại"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "explain": {
+        "text": "Số 7 lớn hơn 4 và nhỏ hơn 9, nên điểm của 7 nằm giữa A và B. Vậy nó thuộc đoạn AB.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Đoạn OA chỉ gồm các số từ 0 đến 4, mà 7 lớn hơn 4."
+          },
+          {
+            "optionId": "c",
+            "text": "Phần còn lại gồm các số lớn hơn 9, mà 7 nhỏ hơn 9."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.phan-nao-12",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm A biểu diễn số 4, điểm B biểu diễn số 9. Điểm biểu diễn số 12 nằm ở phần nào?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-4-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Đoạn OA"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Đoạn AB"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Phần còn lại"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "explain": {
+        "text": "Số 12 lớn hơn 9, nên điểm của 12 nằm bên phải điểm B. Vậy nó thuộc phần còn lại.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đoạn AB chỉ gồm các số từ 4 đến 9, mà 12 lớn hơn 9."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.phan-nao-2",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm A biểu diễn số 4, điểm B biểu diễn số 9. Điểm biểu diễn số 2 nằm ở phần nào?"
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-4-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Đoạn OA"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Đoạn AB"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Phần còn lại"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số 2 nhỏ hơn 4, nên điểm của 2 nằm giữa gốc O và điểm A. Vậy nó thuộc đoạn OA.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đoạn AB chỉ gồm các số từ 4 đến 9, mà 2 nhỏ hơn 4."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nhieu-doan-ab",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.phan-tia-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm A biểu diễn số 4, điểm B biểu diễn số 9. Chọn tất cả các số có điểm biểu diễn thuộc đoạn AB."
+        },
+        {
+          "type": "visual",
+          "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.phan-4-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "11"
+          }
+        }
+      ],
+      "answer": ["b", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Các số trong đoạn AB lớn hơn hoặc bằng 4 và nhỏ hơn hoặc bằng 9. Hai số 6 và 8 thoả điều đó. Số 3 nhỏ hơn 4 còn số 11 lớn hơn 9.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "3 nhỏ hơn 4, nên điểm của 3 nằm ngoài đoạn AB."
+          },
+          {
+            "optionId": "d",
+            "text": "11 lớn hơn 9, nên điểm của 11 nằm ngoài đoạn AB."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dem-phan-tu-3-7",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.tap-hop-doan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp sau có bao nhiêu phần tử?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N} \\mid 3 ≤ x ≤ 7\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "7-3+1"
+      },
+      "explain": {
+        "text": "Các số tự nhiên từ 3 đến 7 là 3, 4, 5, 6 và 7. Đếm được 5 số, cả hai đầu 3 và 7 đều tính.",
+        "tex": "\\{3; 4; 5; 6; 7\\}"
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.liet-ke-2-6",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.tap-hop-doan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Liệt kê các phần tử của tập hợp sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N} \\mid 2 ≤ x ≤ 6\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{2; 3; 4; 5; 6\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{3; 4; 5\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{2; 3; 4; 5\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{1; 2; 3; 4; 5; 6\\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Dấu ≤ cho phép x bằng 2 và bằng 6, nên cả hai số đó đều thuộc tập hợp. Các số ở giữa là 3, 4 và 5.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Bỏ mất hai đầu: số 2 và số 6 vẫn thuộc vì dấu ≤ cho phép x bằng chúng."
+          },
+          {
+            "optionId": "c",
+            "text": "Thiếu số 6: x nhỏ hơn hoặc bằng 6 nên số 6 vẫn thuộc."
+          },
+          {
+            "optionId": "d",
+            "text": "Thừa số 1: số 1 nhỏ hơn 2 nên không thoả x ≥ 2."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dem-phan-tu-6-9",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.tap-hop-doan"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp sau có bao nhiêu phần tử?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N} \\mid 6 ≤ x ≤ 9\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "9-6+1"
+      },
+      "explain": {
+        "text": "Các số tự nhiên từ 6 đến 9 là 6, 7, 8 và 9. Đếm được 4 số, cả hai đầu 6 và 9 đều tính.",
+        "tex": "\\{6; 7; 8; 9\\}"
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.chon-nsao-0",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.n-nsao"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 0 thuộc tập hợp nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathbb{N}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\mathbb{N}^{\\ast}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Cả hai tập hợp trên"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "ℕ có cả số 0, còn ℕ* là các số tự nhiên khác 0. Vì vậy 0 thuộc ℕ nhưng không thuộc ℕ*.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "ℕ* chỉ gồm các số tự nhiên khác 0, nên không có số 0."
+          },
+          {
+            "optionId": "c",
+            "text": "ℕ* không có số 0, nên 0 chỉ thuộc ℕ."
+          }
+        ]
+      },
+      "difficulty": 1
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.liet-ke-nho-hon-5-n",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.n-nsao"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Liệt kê các phần tử của tập hợp sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N} \\mid x < 5\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0; 1; 2; 3; 4\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{1; 2; 3; 4\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0; 1; 2; 3; 4; 5\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{1; 2; 3; 4; 5\\}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "ℕ có cả số 0. Các số tự nhiên nhỏ hơn 5 là 0, 1, 2, 3 và 4.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Thiếu số 0: số 0 thuộc ℕ và nhỏ hơn 5."
+          },
+          {
+            "optionId": "c",
+            "text": "Thừa số 5: dấu < không cho phép x bằng 5."
+          },
+          {
+            "optionId": "d",
+            "text": "Thiếu số 0 và thừa số 5."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.liet-ke-nho-hon-5-nsao",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.n-nsao"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Liệt kê các phần tử của tập hợp sau."
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N}^{\\ast} \\mid x < 5\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "choice",
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0; 1; 2; 3; 4\\}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\{1; 2; 3; 4\\}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\{0; 1; 2; 3; 4; 5\\}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\{1; 2; 3; 4; 5\\}"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "explain": {
+        "text": "ℕ* là các số tự nhiên khác 0, nên không có số 0. Các số nhỏ hơn 5 trong ℕ* là 1, 2, 3 và 4.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Thừa số 0: ℕ* không có số 0."
+          },
+          {
+            "optionId": "d",
+            "text": "Thừa số 5: dấu < không cho phép x bằng 5."
+          }
+        ]
+      },
+      "difficulty": 2
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.ex.dem-nho-bang-6-n",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.n-nsao"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tập hợp sau có bao nhiêu phần tử?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\{x \\in \\mathbb{N} \\mid x ≤ 6\\}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "6+1"
+      },
+      "explain": {
+        "text": "ℕ có cả số 0, nên các số x ≤ 6 là 0, 1, 2, 3, 4, 5 và 6. Đếm được 7 số.",
+        "tex": "\\{0; 1; 2; 3; 4; 5; 6\\}"
+      },
+      "difficulty": 2
+    }
+  ],
+  "sticker": {
+    "name": "Chiếc thước tia số",
+    "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.sticker"
+  }
+}

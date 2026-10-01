@@ -120,6 +120,18 @@ import {
   VISUAL_SPECS as THU_TU_SPECS,
   tapRegions,
 } from "@/visuals/math/thu-tu-thuc-hien-phep-tinh/catalog";
+import { barsRegions } from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/bars-logic";
+import {
+  INTERACTIVE_KINDS as ORDER_INTERACTIVE_KINDS,
+  LESSON_SLUG as ORDER_SLUG,
+  VISUAL_SPECS as ORDER_SPECS,
+  VALIDATOR_IDS as ORDER_VALIDATOR_IDS,
+} from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/catalog";
+import {
+  lineTapRegions,
+  solutions as orderLineSolutions,
+  validators as orderLineValidators,
+} from "@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/line-logic";
 import {
   INTERACTIVE_KINDS as COMMON_INTERACTIVE_KINDS,
   LESSON_SLUG as COMMON_SLUG,
@@ -444,6 +456,45 @@ const reviewEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "thu-tu-trong-tap-hop-cac-so-tu-nhien": one per item of its catalog. The point
+// screens carry the validator of `lineTry`; the pick screens reuse
+// "chon-dung"; tappable lines and bar charts declare their regions.
+const orderPickValidators = {
+  "dat-diem": orderLineValidators["dat-diem"],
+  "chon-dung": pickMatches,
+};
+const orderPickSolutions = {
+  "dat-diem": orderLineSolutions["dat-diem"],
+  "chon-dung": solvePickMatches,
+};
+
+const orderEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(ORDER_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in ORDER_VALIDATOR_IDS
+        ? ORDER_VALIDATOR_IDS[spec.kind as keyof typeof ORDER_VALIDATOR_IDS]
+        : undefined;
+    const regions =
+      spec.kind === "lineTap"
+        ? lineTapRegions(spec)
+        : spec.kind === "bars" && spec.tap
+          ? barsRegions(spec)
+          : undefined;
+    const entry: VisualEntry = {
+      interactive: ORDER_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: orderPickValidators[validatorId] },
+            solutions: { [validatorId]: orderPickSolutions[validatorId] },
+          }),
+      load: () => lessonExample(ORDER_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${ORDER_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 // Entries of "cach-ghi-so-tu-nhien": one per item of its catalog. The pick
 // screens reuse "chon-dung"; the number-writing slots have their own
 // validator; the pictures a `tapRegion` exercise taps declare their regions.
@@ -480,6 +531,7 @@ const numberEntries: Record<string, VisualEntry> = Object.fromEntries(
 
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
+  ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
   ...nhanChiaEntries,
@@ -1259,6 +1311,8 @@ const lessonModules = <T>(loaders: Loaders<T>): Loaders<T> => loaders;
 const EXAMPLE_MODULES = lessonModules({
   "cach-ghi-so-tu-nhien": () =>
     import("@/visuals/math/cach-ghi-so-tu-nhien/examples"),
+  "thu-tu-trong-tap-hop-cac-so-tu-nhien": () =>
+    import("@/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/examples"),
   "tap-hop": () => import("@/visuals/math/tap-hop/examples"),
   "luy-thua": () => import("@/visuals/math/luy-thua/examples"),
   "phep-cong-phep-tru": () =>

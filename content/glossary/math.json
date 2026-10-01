@@ -326,6 +326,52 @@
       "forbidden": []
     },
     {
+      "term": "tia số",
+      "forbidden": []
+    },
+    {
+      "term": "điểm biểu diễn",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "số nhỏ hơn",
+      "forbidden": [],
+      "color": "blue"
+    },
+    {
+      "term": "số lớn hơn",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "số liền trước",
+      "forbidden": [],
+      "color": "sky"
+    },
+    {
+      "term": "số liền sau",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "số tự nhiên liên tiếp",
+      "forbidden": []
+    },
+    {
+      "term": "tính chất bắc cầu",
+      "forbidden": []
+    },
+    {
+      "term": "biểu đồ cột",
+      "forbidden": []
+    },
+    {
+      "term": "so sánh số có nhiều chữ số",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
       "term": "số hoàn hảo",
       "forbidden": []
     },
@@ -350,5 +396,5 @@
       "prerequisite": "tiểu học"
     }
   ],
-  "names": ["ƯC", "ƯCLN", "Ư", "BC", "BCNN", "B", "II", "ℕ", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX"]
+  "names": ["ƯC", "ƯCLN", "Ư", "BC", "BCNN", "B", "II", "ℕ", "AB", "OA", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX"]
 }
