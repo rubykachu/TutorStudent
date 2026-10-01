@@ -171,7 +171,7 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 
 | Component | Mô tả |
 |---|---|
-| `BigButton` | Nút chính, cao 64/56px, bo 20px, chữ 20/18px đậm 600, có trạng thái nhấn và disabled rõ ràng |
+| `BigButton` | Nút chính, cao 64/56px, bo 20px, chữ 20/18px đậm 600, có trạng thái nhấn và disabled rõ ràng; biến thể `secondary` viền xám, `destructive` nền đỏ chỉ ở trang phụ huynh |
 | `SubjectTile` | Ô môn trên trang chủ: màu môn, biểu tượng SVG (Lucide), tiến độ dạng vòng, luôn có dòng phụ (trạng thái môn), nhắc "n ngày chưa học"; trên iPad ba ô dùng chung hàng lưới (subgrid) để tên môn thẳng hàng |
 | `ReviewButton` | Nút "Ôn bài này" trong trang bài, kèm nhãn nhỏ "n thẻ sắp quên" khi có |
 | `SectionStepper` | Chấm tiến độ các khối trong một phần (không số, không phần trăm); chấm của màn đã qua bấm được, có tên |
@@ -198,7 +198,7 @@ Biểu tượng: Lucide (SVG). Không dùng emoji làm biểu tượng giao di�
 - Lối vào: liên kết chữ nhỏ, màu phụ "Phụ huynh" ở cuối màn chọn hồ sơ; không nổi bật để trẻ không tò mò bấm.
 - Mỗi mục là một thẻ `bg-surface shadow-card` có tiêu đề khối và một dòng chú thích giải thích số liệu. Nhiều con → thanh chọn dạng segmented (avatar + tên).
 - Biểu đồ chỉ là cột bằng `div` (không thư viện biểu đồ); cột hôm nay `--color-primary`, ngày khác `primary/40`; mỗi cột có chữ số phút và nhãn cho trình đọc màn hình.
-- Được phép hiện phần trăm "còn nhớ khoảng n%" (chỉ ở trang phụ huynh, không bao giờ ở giao diện trẻ). Nhập sai PIN báo bằng chữ `--color-retry-soft-foreground`, không đỏ. `--color-destructive` chỉ cho thao tác xoá/thu hồi — hiện trang chưa có thao tác nào như vậy.
+- Được phép hiện phần trăm "còn nhớ khoảng n%" (chỉ ở trang phụ huynh, không bao giờ ở giao diện trẻ). Nhập sai PIN báo bằng chữ `--color-retry-soft-foreground`, không đỏ. `--color-destructive` chỉ cho thao tác xoá/thu hồi: nút chữ đỏ "Học lại bài này" ở mỗi bài và `BigButton` `variant="destructive"` (nền đỏ, chữ trắng) trong bảng `Sheet` hai bước xác nhận của nó (`reset-lesson-dialog.tsx`).
 
 ## 10. Không làm
 
