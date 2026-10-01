@@ -423,6 +423,42 @@
       "term": "mẫu số chung",
       "forbidden": [],
       "prerequisite": "tiểu học"
+    },
+    {
+      "term": "số nguyên",
+      "forbidden": []
+    },
+    {
+      "term": "số nguyên dương",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "số nguyên âm",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "số dương",
+      "forbidden": []
+    },
+    {
+      "term": "số âm",
+      "forbidden": []
+    },
+    {
+      "term": "tập hợp số nguyên",
+      "forbidden": [],
+      "color": "teal"
+    },
+    {
+      "term": "trục số",
+      "forbidden": []
+    },
+    {
+      "term": "số đối",
+      "forbidden": [],
+      "color": "sky"
     }
   ],
   "names": ["ƯC", "ƯCLN", "Ư", "BC", "BCNN", "B", "II", "ℕ", "AB", "OA", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX"]

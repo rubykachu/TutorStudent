@@ -116,6 +116,17 @@ import {
   strokesDone,
 } from "@/visuals/math/tap-hop/symbol-validators";
 import {
+  INTERACTIVE_KINDS as INTEGER_INTERACTIVE_KINDS,
+  LESSON_SLUG as INTEGER_SLUG,
+  VISUAL_SPECS as INTEGER_SPECS,
+  VALIDATOR_IDS as INTEGER_VALIDATOR_IDS,
+  regionsOf as integerRegions,
+} from "@/visuals/math/tap-hop-cac-so-nguyen/catalog";
+import {
+  solutions as integerSolutions,
+  validators as integerValidators,
+} from "@/visuals/math/tap-hop-cac-so-nguyen/logic";
+import {
   LESSON_SLUG as THU_TU_SLUG,
   VISUAL_SPECS as THU_TU_SPECS,
   tapRegions,
@@ -529,8 +540,43 @@ const numberEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "tap-hop-cac-so-nguyen": one per item of its catalog. The pick
+// screens reuse "chon-dung"; the point-placing screens have their own
+// validator; the line a `tapRegion` exercise taps declares its regions.
+const integerPickValidators = {
+  "chon-dung": pickMatches,
+  "dat-diem": integerValidators["dat-diem"],
+};
+const integerPickSolutions = {
+  "chon-dung": solvePickMatches,
+  "dat-diem": integerSolutions["dat-diem"],
+};
+
+const integerEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(INTEGER_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in INTEGER_VALIDATOR_IDS
+        ? INTEGER_VALIDATOR_IDS[spec.kind as keyof typeof INTEGER_VALIDATOR_IDS]
+        : undefined;
+    const regions = integerRegions(spec);
+    const entry: VisualEntry = {
+      interactive: INTEGER_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: integerPickValidators[validatorId] },
+            solutions: { [validatorId]: integerPickSolutions[validatorId] },
+          }),
+      load: () => lessonExample(INTEGER_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${INTEGER_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
+  ...integerEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1331,6 +1377,8 @@ const EXAMPLE_MODULES = lessonModules({
   "boi-chung-boi-chung-nho-nhat": () =>
     import("@/visuals/math/boi-chung-boi-chung-nho-nhat/examples"),
   "on-tap-chuong-2": () => import("@/visuals/math/on-tap-chuong-2/examples"),
+  "tap-hop-cac-so-nguyen": () =>
+    import("@/visuals/math/tap-hop-cac-so-nguyen/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
