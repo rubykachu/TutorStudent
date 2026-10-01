@@ -30,6 +30,8 @@ export type MeetTrySpec = {
   // both reach; "{n}" stands for the place ("rời bến ở phút {n}").
   at: string;
   both: string;
+  // Legend name of a place both reach ("Cả hai cùng rời bến").
+  shared: string;
   // Lesson screen: shows progress and a closing line once the first place
   // both reach is found.
   goal?: boolean;
@@ -84,7 +86,7 @@ export function MeetTry({
   disabled = false,
 }: VisualProps & { spec: MeetTrySpec }) {
   const [p, q] = [params?.p ?? spec.numbers[0], params?.q ?? spec.numbers[1]];
-  const { names, round, verb, unit, at, both, goal = false } = spec;
+  const { names, round, verb, unit, at, both, shared, goal = false } = spec;
   const start = { a: ROUND_RANGE.min, b: ROUND_RANGE.min };
   const [own, setOwn] = useState<VisualState>(start);
   const [tried, setTried] = useState(0);
@@ -160,7 +162,7 @@ export function MeetTry({
           Cả hai gặp nhau rồi, nhưng chưa phải lần đầu tiên.
         </p>
       )}
-      <Legend items={[{ color: "lime", name: "Cả hai cùng ở đó" }]} />
+      <Legend items={[{ color: "lime", name: shared }]} />
     </div>
   );
 }

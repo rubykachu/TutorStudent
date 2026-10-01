@@ -233,11 +233,13 @@ describe("MeetTry wording and counter", () => {
     expect(screen.getByText("Đã thử 1 lần")).toBeInTheDocument();
   });
 
-  it("says passed teeth for gears", () => {
+  it("says when each gear mark is back in place", () => {
     if (gear?.kind !== "meetTry") throw new Error("gap-rang-6-4");
     render(<MeetTry spec={gear} />);
     expect(
-      screen.getByText("Bánh A đã qua 6 răng, bánh B đã qua 4 răng"),
+      screen.getByText(
+        "Bánh A có dấu về chỗ cũ sau 6 răng, bánh B có dấu về chỗ cũ sau 4 răng",
+      ),
     ).toBeInTheDocument();
   });
 

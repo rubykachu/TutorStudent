@@ -73,6 +73,7 @@ const BUS: Omit<MeetTrySpec, "numbers"> = {
   unit: "phút",
   at: "rời bến ở phút {n}",
   both: "Cả hai cùng rời bến ở phút {n}",
+  shared: "Cả hai cùng rời bến",
 };
 
 const GEAR: Omit<MeetTrySpec, "numbers"> = {
@@ -80,8 +81,9 @@ const GEAR: Omit<MeetTrySpec, "numbers"> = {
   round: "vòng",
   verb: "quay",
   unit: "răng",
-  at: "đã qua {n} răng",
-  both: "Hai bánh cùng qua {n} răng",
+  at: "có dấu về chỗ cũ sau {n} răng",
+  both: "Hai dấu cùng về chỗ cũ sau {n} răng",
+  shared: "Hai dấu cùng về chỗ cũ",
 };
 
 const BCNN = "Bội chung nhỏ nhất";
@@ -442,15 +444,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "bao-thuc-giai": {
     kind: "lines",
-    label: "Hai đồng hồ cùng reo lúc 7 giờ, cứ 20 phút và 30 phút một lần",
+    label: "Hai đồng hồ cùng reo lúc 6 giờ, cứ 20 phút và 45 phút một lần",
     mode: "steps",
     rows: [
       {
-        tex: "\\mathrm{BCNN}(20, 30) = \\concept{pink}{60}",
-        tag: { text: "Sau 60 phút", color: "pink" },
+        tex: "\\mathrm{BCNN}(20, 45) = \\concept{pink}{180}",
+        tag: { text: "Sau 180 phút", color: "pink" },
       },
-      { tex: "", tag: { text: "60 phút bằng 1 giờ", color: "slate" } },
-      { tex: "7 + 1 = 8", tag: { text: "Lúc 8 giờ", color: "slate" } },
+      { tex: "", tag: { text: "180 phút bằng 3 giờ", color: "slate" } },
+      { tex: "6 + 3 = 9", tag: { text: "Lúc 9 giờ", color: "slate" } },
     ],
   },
 
@@ -487,22 +489,22 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
   },
   "gap-rang-6-4": { kind: "meetTry", numbers: [6, 4], ...GEAR, goal: true },
-  "rang-goi-y-4-6": {
+  "rang-goi-y-16-20": {
     kind: "lines",
-    label: "Hai bánh răng 4 răng và 6 răng khớp nhau",
+    label: "Hai bánh răng 16 răng và 20 răng khớp nhau",
     mode: "hint",
     rows: [
       {
-        tex: "\\mathrm{BCNN}(4, 6) = \\concept{pink}{12}",
-        tag: { text: "Sau 12 răng", color: "pink" },
+        tex: "\\mathrm{BCNN}(16, 20) = \\concept{pink}{80}",
+        tag: { text: "Sau 80 răng", color: "pink" },
       },
       {
-        tex: "12 : 4 = 3",
-        tag: { text: "Bánh 4 răng quay 3 vòng", color: "slate" },
+        tex: "80 : 16 = 5",
+        tag: { text: "Bánh 16 răng quay 5 vòng", color: "slate" },
       },
       {
-        tex: "12 : 6 = 2",
-        tag: { text: "Bánh 6 răng quay 2 vòng", color: "slate" },
+        tex: "80 : 20 = 4",
+        tag: { text: "Bánh 20 răng quay 4 vòng", color: "slate" },
       },
     ],
   },
