@@ -1,9 +1,8 @@
 "use client";
 
-import { UsersRound } from "lucide-react";
 import Link from "next/link";
+import { Avatar } from "@/components/avatar";
 import { SoundToggle } from "@/components/sound-toggle";
-import { StreakFlame } from "@/components/streak-flame";
 import {
   SUBJECT_TILE_CELL,
   SUBJECT_TILE_GRID,
@@ -20,13 +19,14 @@ import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
 import { Owl } from "@/mascot/owl";
+import { MusicBoxChip } from "@/music/music-box";
+import { countDoneSections } from "@/music/songs";
 import type { ProfileRecord } from "@/progress/db";
 import {
   type ChildProgress,
   useChildProgress,
   useContentIndex,
 } from "@/progress/hooks";
-import { computeStreak } from "@/progress/streak";
 import {
   homeMascotExpression,
   lastStudiedBySubject,
@@ -46,12 +46,18 @@ const OWL_SPEECH: Partial<Record<MascotExpression, string>> = {
 };
 const DEFAULT_SPEECH = "Hôm nay mình học môn nào?";
 
-function OwlGreeting({ progress }: { progress: ChildProgress }) {
+function OwlGreeting({
+  childId,
+  progress,
+}: {
+  childId: string;
+  progress: ChildProgress;
+}) {
   const today = vnDayKey(now());
   const expression = homeMascotExpression(progress.activityDays, today);
   return (
-    // Phones put the streak on its own full-width row under the owl and its
-    // words; tablets keep it beside the owl.
+    // Phones put the music box on its own full-width row under the owl and
+    // its words; tablets keep it beside the owl.
     <section
       className="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-3"
       aria-label="Bạn cú"
@@ -65,7 +71,10 @@ function OwlGreeting({ progress }: { progress: ChildProgress }) {
         {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
       </p>
       <div className="col-span-2 md:col-span-1 md:col-start-2 md:self-start md:justify-self-start">
-        <StreakFlame streak={computeStreak(progress.activityDays, today)} />
+        <MusicBoxChip
+          childId={childId}
+          doneSections={countDoneSections(progress.sections)}
+        />
       </div>
     </section>
   );
@@ -138,7 +147,7 @@ function HomeBody({
   const content = useContentIndex();
   return (
     <>
-      <OwlGreeting progress={progress} />
+      <OwlGreeting childId={profile.id} progress={progress} />
       {content.status === "error" && <ContentError />}
       {content.status === "ready" && (
         <HomeLessons
@@ -164,16 +173,22 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
   return (
     <>
       <header className="flex items-start justify-between gap-3">
-        <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
-          Chào {profile.name}!
-        </h1>
+        <div className="flex min-w-0 items-center gap-3">
+          <Avatar
+            avatar={profile.avatar}
+            className="size-12 shrink-0 md:size-14"
+          />
+          <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
+            Chào {profile.name}!
+          </h1>
+        </div>
         {/* The sound switch ends the row, where every screen keeps it. */}
         <div className="flex shrink-0 items-center gap-2">
           <Link
             href={PROFILES_PATH}
-            className="flex h-12 shrink-0 items-center gap-2 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+            className="flex h-12 shrink-0 items-center gap-2 rounded-full border-2 border-border bg-surface pr-3 pl-1.5 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
           >
-            <UsersRound aria-hidden className="size-5" />
+            <Avatar avatar={profile.avatar} className="size-8 shrink-0" />
             Đổi hồ sơ
           </Link>
           <SoundToggle childId={profile.id} />

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
-// Profile avatars: flat animal faces drawn in a 100×100 box on a soft disc.
+// Profile avatars: flat animal faces, a masked hero and a race car, drawn in
+// a 100×100 box on a soft disc.
 // Stored on the profile by id, so ids must never be renamed.
 
 export const AVATARS = [
@@ -10,6 +11,8 @@ export const AVATARS = [
   { id: "fox", label: "Cáo" },
   { id: "panda", label: "Gấu trúc" },
   { id: "chick", label: "Gà con" },
+  { id: "spider", label: "Người nhện" },
+  { id: "racecar", label: "Xe đua" },
 ] as const;
 
 export type AvatarId = (typeof AVATARS)[number]["id"];
@@ -52,6 +55,41 @@ function Smile({ y = 62 }: { y?: number }) {
 function Nose({ y = 57 }: { y?: number }) {
   return <ellipse cx={50} cy={y} rx={4} ry={3} className="fill-foreground" />;
 }
+
+// The web of the spider hero's mask: radial threads from the centre of the
+// forehead to the edge of the head (an ellipse), joined by sagging rings.
+const HEAD = { cx: 50, cy: 50, rx: 28, ry: 32 };
+const THREAD_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
+
+function threadPoint(angleDeg: number, scale: number): [number, number] {
+  const a = (angleDeg * Math.PI) / 180;
+  return [
+    HEAD.cx + HEAD.rx * scale * Math.cos(a),
+    HEAD.cy + HEAD.ry * scale * Math.sin(a),
+  ];
+}
+
+const WEB_RADIALS = THREAD_ANGLES.map((angle) => {
+  const [x, y] = threadPoint(angle, 1);
+  return `M${HEAD.cx} ${HEAD.cy} L${x.toFixed(1)} ${y.toFixed(1)}`;
+}).join(" ");
+
+// One ring: each step to the next thread bows toward the centre.
+function webRing(scale: number): string {
+  const points = THREAD_ANGLES.map((angle) => threadPoint(angle, scale));
+  return points
+    .map(([x, y], i) => {
+      const [nx, ny] = points[(i + 1) % points.length] as [number, number];
+      const mx = (x + nx) / 2;
+      const my = (y + ny) / 2;
+      const cx = HEAD.cx + (mx - HEAD.cx) * 0.8;
+      const cy = HEAD.cy + (my - HEAD.cy) * 0.8;
+      return `${i === 0 ? `M${x.toFixed(1)} ${y.toFixed(1)}` : ""} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${nx.toFixed(1)} ${ny.toFixed(1)}`;
+    })
+    .join(" ");
+}
+
+const WEB_RINGS = [0.4, 0.7, 0.95].map(webRing).join(" ");
 
 const FACES: Record<AvatarId, { bg: string; face: ReactNode }> = {
   cat: {
@@ -156,6 +194,76 @@ const FACES: Record<AvatarId, { bg: string; face: ReactNode }> = {
       </>
     ),
   },
+  spider: {
+    bg: "fill-avatar-spider-bg",
+    face: (
+      <>
+        <path
+          d="M18 84 Q50 66 82 84 Q72 97 50 98 Q28 97 18 84 Z"
+          className="fill-avatar-spider-suit"
+        />
+        <ellipse
+          cx={HEAD.cx}
+          cy={HEAD.cy}
+          rx={HEAD.rx}
+          ry={HEAD.ry}
+          className="fill-avatar-spider"
+        />
+        <g
+          className="fill-none stroke-avatar-spider-web"
+          strokeWidth={1.2}
+          strokeLinecap="round"
+        >
+          <path d={WEB_RADIALS} />
+          <path d={WEB_RINGS} />
+        </g>
+        <g
+          className="fill-surface stroke-foreground"
+          strokeWidth={3}
+          strokeLinejoin="round"
+        >
+          <path d="M23 43 Q37 38 47 54 Q36 63 25 54 Z" />
+          <path d="M77 43 Q63 38 53 54 Q64 63 75 54 Z" />
+        </g>
+      </>
+    ),
+  },
+  racecar: {
+    bg: "fill-avatar-car-bg",
+    face: (
+      <>
+        <g
+          className="fill-none stroke-foreground"
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          opacity={0.35}
+        >
+          <path d="M8 56 H17 M5 63 H15 M9 70 H17" />
+        </g>
+        <path d="M13 42 H25 V49 H13 Z" className="fill-foreground" />
+        <path
+          d="M17 70 L19 56 L40 51 L50 38 L68 38 L75 51 L87 56 Q91 62 88 70 Z"
+          className="fill-avatar-car"
+        />
+        <path
+          d="M51 41 L66 41 L71 50 L47 50 Z"
+          className="fill-avatar-car-window"
+        />
+        <path
+          d="M20 61 H85"
+          className="fill-none stroke-surface"
+          strokeWidth={3.5}
+          strokeLinecap="round"
+        />
+        <g>
+          <circle cx={34} cy={71} r={10} className="fill-foreground" />
+          <circle cx={34} cy={71} r={4} className="fill-surface" />
+          <circle cx={72} cy={71} r={10} className="fill-foreground" />
+          <circle cx={72} cy={71} r={4} className="fill-surface" />
+        </g>
+      </>
+    ),
+  },
   chick: {
     bg: "fill-avatar-chick-bg",
     face: (
@@ -178,9 +286,15 @@ type AvatarProps = { avatar: string; className?: string };
 // Unknown ids (e.g. from a newer app version via sync) fall back to the
 // default face instead of rendering nothing.
 export function Avatar({ avatar, className }: AvatarProps) {
-  const { bg, face } = FACES[isAvatarId(avatar) ? avatar : DEFAULT_AVATAR];
+  const id = isAvatarId(avatar) ? avatar : DEFAULT_AVATAR;
+  const { bg, face } = FACES[id];
   return (
-    <svg viewBox="0 0 100 100" aria-hidden="true" className={className}>
+    <svg
+      viewBox="0 0 100 100"
+      aria-hidden="true"
+      data-avatar={id}
+      className={className}
+    >
       <circle cx={50} cy={50} r={50} className={bg} />
       {face}
     </svg>
