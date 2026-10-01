@@ -115,7 +115,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.dem-tu-goc-o",
           "kind": "tránh sai",
           "title": "Đếm từ gốc O",
-          "text": "Gốc O ứng với số 0, nên đứng ở gốc là chưa đi đơn vị nào. Hãy đếm các bước từ gốc, đừng đếm cả vạch gốc. Khi mỗi bước là 1 đơn vị, số bước chính là số của điểm.",
+          "text": "Gốc O ứng với số 0, nên đứng ở gốc là chưa đi bước nào. Vì vậy hãy đếm các bước từ gốc, đừng đếm cả vạch gốc. Mỗi bước là 1 đơn vị, nên số bước chính là số của điểm.",
           "tex": "0 \\to 1 \\to 2 \\to 3",
           "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dem-buoc"
         }
@@ -285,7 +285,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bài xếp thứ tự: chạm một thẻ rồi chạm vào chỗ muốn đặt, hoặc kéo thẻ. Xếp xong thì bấm “Kiểm tra”."
+              "text": "Ở bài xếp thứ tự, bạn chạm một thẻ, sau đó chạm vào chỗ muốn đặt thẻ, hoặc kéo thẻ tới đó. Xếp xong thì bấm “Kiểm tra”."
             },
             {
               "type": "visual",
@@ -346,7 +346,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.doc-dau",
           "kind": "hiểu nhanh",
           "title": "Đọc dấu < và >",
-          "text": "Với dấu < và >, đầu nhọn luôn chỉ về số nhỏ hơn, còn phần miệng mở quay về số lớn hơn.",
+          "text": "Dấu < và > có một đầu nhọn, tức là đầu bé xíu như mũi kim. Đầu nhọn luôn chỉ về số nhỏ hơn, còn phía miệng mở rộng thì quay về số lớn hơn.",
           "tex": "\\begin{gathered} 3 < 8 \\\\ 8 > 3 \\end{gathered}",
           "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.dau-3-8"
         },
@@ -413,7 +413,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.doi-loi-thanh-dau",
           "kind": "hiểu nhanh",
           "title": "Đổi lời thành dấu",
-          "text": "Gặp “tối đa 8 người” thì dùng n ≤ 8. Gặp “từ 10 tuổi trở lên” (t là số tuổi) thì dùng t ≥ 10. Cả hai cách nói đều tính cả số đề cho.",
+          "text": "“Tối đa 8 người” nghĩa là nhiều nhất 8 người, nên dùng n ≤ 8. “Từ 10 tuổi trở lên” (t là số tuổi) nghĩa là 10 tuổi hoặc lớn hơn, nên dùng t ≥ 10. Cả hai cách nói đều tính cả số đề cho.",
           "tex": "\\begin{gathered} n ≤ 8 \\\\ t ≥ 10 \\end{gathered}"
         },
         {
@@ -541,7 +541,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.so-cung-chu-so",
           "kind": "tránh sai",
           "title": "So hai số cùng số chữ số",
-          "text": "Khi hai số có cùng số chữ số, so từ chữ số bên trái nhất, không so từ bên phải. Ví dụ 3 658 và 3 706: hàng trăm 6 nhỏ hơn 7, dù hàng đơn vị 8 lớn hơn 6. Hai số khác số chữ số thì đếm chữ số trước.",
+          "text": "Hai số cùng số chữ số thì so từng chữ số, bắt đầu từ bên trái, không bắt đầu từ bên phải. Ví dụ 3 658 và 3 706: chữ số đầu đều là 3, nên so tiếp hàng trăm, 6 nhỏ hơn 7. Hai số khác số chữ số thì đếm chữ số trước.",
           "tex": "3\\,\\concept{blue}{6}58 < 3\\,\\concept{violet}{7}06"
         },
         {
@@ -687,7 +687,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.lien-sau-tan-cung-9",
           "kind": "tránh sai",
           "title": "Số liền sau của số tận cùng 9",
-          "text": "Cộng 1 vào số tận cùng 9: chữ số 9 thành 0 và nhớ 1 sang hàng bên trái. Bên trái lại là 9 thì cứ làm tiếp như vậy.",
+          "text": "Khi cộng 1 vào số có tận cùng là 9, chữ số 9 đổi thành 0 và ta nhớ 1 sang hàng bên trái. Nếu bên trái lại là 9 thì ta làm tiếp như vậy.",
           "tex": "\\begin{gathered} 19 + 1 = 20 \\\\ 99 + 1 = 100 \\end{gathered}"
         }
       ],
@@ -778,7 +778,7 @@
             },
             {
               "type": "note",
-              "text": "A và B cắt tia số thành ba phần. Từ O tới A là đoạn OA, từ A tới B là đoạn AB, phần sau B là phần còn lại."
+              "text": "A và B chia tia số thành ba phần. Đó là đoạn OA từ O tới A, đoạn AB từ A tới B, và phần còn lại sau B."
             },
             {
               "type": "visual",
@@ -791,12 +791,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Điểm biểu diễn số x ở đoạn OA khi x ≤ a, ở đoạn AB khi a ≤ x ≤ b, ở phần còn lại khi x > b.",
+              "text": "Điểm A biểu diễn số a, còn điểm B biểu diễn số b. Số x nằm trên đoạn OA khi x ≤ a, trên đoạn AB khi a ≤ x ≤ b, và ở phần còn lại khi x > b.",
               "rule": true
             },
             {
               "type": "note",
-              "text": "a ≤ x ≤ b đọc là: x lớn hơn hoặc bằng a và nhỏ hơn hoặc bằng b."
+              "text": "a ≤ x ≤ b đọc là: x lớn hơn hoặc bằng a, và x cũng nhỏ hơn hoặc bằng b. Nói gọn, x nằm giữa a và b, kể cả a và b."
             },
             {
               "type": "visual",
@@ -823,7 +823,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.ba-phan-rows",
-        "caption": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Điểm biểu diễn số x ở đoạn OA khi x ≤ a, ở đoạn AB khi a ≤ x ≤ b, ở phần còn lại khi x > b."
+        "caption": "Điểm A biểu diễn số a, còn điểm B biểu diễn số b. Số x nằm trên đoạn OA khi x ≤ a, trên đoạn AB khi a ≤ x ≤ b, và ở phần còn lại khi x > b."
       }
     },
     {
@@ -850,11 +850,11 @@
           "children": [
             {
               "type": "note",
-              "text": "M là tập hợp các số tự nhiên x mà 6 ≤ x ≤ 12. Đọc là: x lớn hơn hoặc bằng 6 và nhỏ hơn hoặc bằng 12."
+              "text": "Tập hợp M gồm các số tự nhiên x mà 6 ≤ x ≤ 12. Nghĩa là x lớn hơn hoặc bằng 6, và x cũng nhỏ hơn hoặc bằng 12."
             },
             {
               "type": "note",
-              "text": "Kí hiệu x ∈ ℕ đọc là x thuộc ℕ, nghĩa là x là số tự nhiên. Vạch đứng đọc là “mà”."
+              "text": "Kí hiệu x ∈ ℕ đọc là “x thuộc ℕ”, nghĩa là x là một số tự nhiên. Trong tập hợp, vạch đứng | đọc là “mà”."
             },
             {
               "type": "visual",
@@ -939,7 +939,7 @@
           "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.tip.dem-so-hay-do-khoang",
           "kind": "tránh sai",
           "title": "Đếm số hay đo khoảng cách",
-          "text": "Lấy b trừ a rồi cộng 1 là để đếm có bao nhiêu số. Muốn biết hai điểm cách nhau bao nhiêu đơn vị thì chỉ lấy b trừ a. Cả hai cách đều dùng khi a nhỏ hơn hoặc bằng b.",
+          "text": "Lấy b trừ a rồi cộng 1 để đếm xem có bao nhiêu số. Còn muốn biết hai điểm cách nhau mấy đơn vị thì chỉ lấy b trừ a, không cộng 1. Cả hai cách đều dùng khi a nhỏ hơn hoặc bằng b.",
           "tex": "\\begin{gathered} 16 - 11 + 1 = 6 \\\\ 16 - 11 = 5 \\end{gathered}"
         },
         {
@@ -1147,7 +1147,7 @@
       "recap": {
         "type": "visual",
         "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.ba-phan-rows",
-        "caption": "Điểm A biểu diễn số a, điểm B biểu diễn số b. Điểm biểu diễn số x ở đoạn OA khi x ≤ a, ở đoạn AB khi a ≤ x ≤ b, ở phần còn lại khi x > b."
+        "caption": "Điểm A biểu diễn số a, còn điểm B biểu diễn số b. Số x nằm trên đoạn OA khi x ≤ a, trên đoạn AB khi a ≤ x ≤ b, và ở phần còn lại khi x > b."
       }
     },
     {
@@ -1256,7 +1256,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trên tia số này chỉ có số 0 được ghi, hai vạch liền nhau cách nhau 1 đơn vị. Điểm C cách gốc O mấy đơn vị?"
+          "text": "Trên tia số này chỉ ghi số 0, và hai vạch liền nhau cách nhau 1 đơn vị. Hỏi điểm C cách gốc O mấy đơn vị?"
         },
         {
           "type": "visual",
@@ -1301,7 +1301,7 @@
         "expr": "5"
       },
       "explain": {
-        "text": "Hai vạch liền nhau cách nhau 1 đơn vị. Đếm từ gốc O tới điểm C được 5 bước, nên C cách gốc O 5 đơn vị và biểu diễn số 5.",
+        "text": "Hai vạch liền nhau cách nhau 1 đơn vị. Đếm từ gốc O tới điểm C được 5 bước, nên C cách gốc O 5 đơn vị. Vì vậy C biểu diễn số 5.",
         "wrong": [
           {
             "optionId": "a",
@@ -1472,7 +1472,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hai vạch liền nhau cách nhau 5 đơn vị. Điểm P biểu diễn số mấy?"
+          "text": "Trên tia số này, hai vạch liền nhau cách nhau 5 đơn vị. Hỏi điểm P biểu diễn số mấy?"
         },
         {
           "type": "visual",
@@ -2491,7 +2491,7 @@
       ],
       "bank": ["<", ">"],
       "explain": {
-        "text": "Số 6 nhỏ hơn số 11, nên ta viết dấu nhỏ hơn. Đầu nhọn của dấu chỉ về số nhỏ hơn là 6."
+        "text": "Số 6 nhỏ hơn số 11, nên ta viết dấu nhỏ hơn. Đầu nhọn của dấu chỉ về số nhỏ hơn, đó là số 6."
       },
       "difficulty": 1
     },
@@ -4234,7 +4234,7 @@
       "answer": ["c"],
       "multiple": false,
       "explain": {
-        "text": "An thấp hơn Bình và Bình thấp hơn Chi, nên theo bắc cầu An thấp hơn Chi. Vậy Chi cao hơn cả hai bạn.",
+        "text": "An thấp hơn Bình, còn Bình thấp hơn Chi. Vì vậy theo bắc cầu, An thấp hơn Chi. Nên Chi cao hơn cả hai bạn.",
         "wrong": [
           {
             "optionId": "a",
@@ -4299,7 +4299,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Ta có x < 7 và 7 < 12. Theo tính chất bắc cầu, x < 12.",
+        "text": "Ta có x < 7, còn 7 < 12. Tức là x nhỏ hơn 7, mà 7 lại nhỏ hơn 12, nên x < 12. Đó là tính chất bắc cầu.",
         "wrong": [
           {
             "optionId": "b",
@@ -4804,7 +4804,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Liệt kê các phần tử của tập hợp sau."
+          "text": "Liệt kê (viết ra) tất cả các phần tử của tập hợp sau."
         },
         {
           "type": "formula",
@@ -4853,7 +4853,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Dấu ≤ cho phép x bằng 4 và bằng 8, nên cả hai số đó thuộc tập hợp. Các số ở giữa là 5, 6 và 7.",
+        "text": "Dấu ≤ nghĩa là x được bằng 4 và cũng được bằng 8, nên cả hai số đó thuộc tập hợp. Sau đó ta thêm các số ở giữa là 5, 6 và 7.",
         "wrong": [
           {
             "optionId": "b",
@@ -4877,7 +4877,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Liệt kê các phần tử của tập hợp sau."
+          "text": "Liệt kê (viết ra) tất cả các phần tử của tập hợp sau."
         },
         {
           "type": "formula",
@@ -4926,7 +4926,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Dấu ≤ cho phép x bằng 2 và bằng 6, nên cả hai số đó đều thuộc tập hợp. Các số ở giữa là 3, 4 và 5.",
+        "text": "Dấu ≤ nghĩa là x được bằng 2 và cũng được bằng 6, nên cả hai số đó đều thuộc tập hợp. Sau đó ta thêm các số ở giữa là 3, 4 và 5.",
         "wrong": [
           {
             "optionId": "b",
@@ -5096,7 +5096,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Số 0 thuộc tập hợp nào?"
+          "text": "Số 0 thuộc tập hợp nào dưới đây?"
         }
       ],
       "hints": {
@@ -5134,15 +5134,15 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "ℕ có cả số 0, còn ℕ* là các số tự nhiên khác 0. Vì vậy 0 thuộc ℕ nhưng không thuộc ℕ*.",
+        "text": "ℕ có cả số 0, còn ℕ* là tập hợp các số tự nhiên khác 0. Vì vậy 0 thuộc ℕ, nhưng không thuộc ℕ*.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "ℕ* chỉ gồm các số tự nhiên khác 0, nên không có số 0."
+            "text": "ℕ* chỉ gồm các số tự nhiên khác 0, nên số 0 không nằm trong ℕ*."
           },
           {
             "optionId": "c",
-            "text": "ℕ* không có số 0, nên 0 chỉ thuộc ℕ."
+            "text": "ℕ* không có số 0, nên số 0 chỉ thuộc ℕ, không thuộc cả hai tập hợp."
           }
         ]
       },
@@ -5300,7 +5300,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tập hợp sau có bao nhiêu phần tử?"
+          "text": "Tập hợp sau có bao nhiêu phần tử (bao nhiêu số)?"
         },
         {
           "type": "formula",
@@ -5335,7 +5335,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tập hợp sau có bao nhiêu phần tử?"
+          "text": "Tập hợp sau có bao nhiêu phần tử (bao nhiêu số)?"
         },
         {
           "type": "formula",
