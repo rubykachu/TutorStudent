@@ -43,43 +43,43 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 01/10/2026 của 12 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 02/10/2026 của 15 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 4 | 24 | 20 | 48 |
+| LL-10 | 5 | 27 | 20 | 52 |
 | LL-19 | 2 | 8 | 25 | 35 |
-| LL-12 | 4 | 14 | 26 | 44 |
-| LL-07 | 1 | 25 | 20 | 46 |
-| LL-15 | 4 | 12 | 8 | 24 |
-| LL-16 | 0 | 21 | 3 | 24 |
-| LL-05 | 6 | 18 | 12 | 36 |
-| LL-09 | 10 | 9 | 3 | 22 |
+| LL-12 | 8 | 15 | 26 | 49 |
+| LL-07 | 1 | 29 | 23 | 53 |
+| LL-15 | 4 | 13 | 8 | 25 |
+| LL-16 | 0 | 23 | 3 | 26 |
+| LL-05 | 8 | 20 | 12 | 40 |
+| LL-09 | 12 | 11 | 3 | 26 |
 | LL-14 | 1 | 9 | 7 | 17 |
 | LL-11 | 4 | 5 | 7 | 16 |
-| LL-06 | 0 | 13 | 4 | 17 |
-| LL-02 | 5 | 5 | 9 | 19 |
-| LL-01 | 15 | 1 | 0 | 16 |
+| LL-06 | 1 | 14 | 5 | 20 |
+| LL-02 | 6 | 6 | 9 | 21 |
+| LL-01 | 17 | 1 | 0 | 18 |
 | LL-03 | 2 | 6 | 2 | 10 |
-| LL-17 | 36 | 4 | 3 | 43 |
+| LL-17 | 41 | 4 | 3 | 48 |
 | LL-04 | 0 | 5 | 2 | 7 |
 | LL-18 | 0 | 4 | 2 | 6 |
-| LL-08 | 13 | 1 | 2 | 16 |
+| LL-08 | 24 | 1 | 2 | 27 |
 | LL-13 | 2 | 1 | 0 | 3 |
-| LL-20 | 8 | 0 | 1 | 9 |
-| LL-21 | 2 | 1 | 0 | 3 |
+| LL-20 | 9 | 0 | 1 | 10 |
+| LL-21 | 3 | 2 | 0 | 5 |
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
-| LL-24 | 5 | 0 | 0 | 5 |
-| LL-25 | 0 | 0 | 8 | 8 |
+| LL-24 | 10 | 0 | 1 | 11 |
+| LL-25 | 0 | 6 | 104 | 110 |
 
-LL-17, LL-01 và LL-08 nhiều Nghiêm trọng nhất; LL-07, LL-10, LL-12, LL-05 gặp nhiều nhất.
+LL-17, LL-08 và LL-01 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-12 gặp nhiều nhất.
 
 ## Lỗi Nghiêm trọng ở vòng 1 theo bài
 
 Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một dòng khi bài mới xong vòng 1.
 
-| Bài | Môn | Nghiêm trọng vòng 1 | Vòng hết Nghiêm trọng | Số vòng tới 01/10/2026 |
+| Bài | Môn | Nghiêm trọng vòng 1 | Vòng hết Nghiêm trọng | Số vòng tới 02/10/2026 |
 |---|---|---|---|---|
 | `neu-cau-muon-co-mot-nguoi-ban` | Ngữ văn | 3 | 5 | 14 |
 | `tap-hop` | Toán | 3 | 3 (vòng 4 lại có 1, hết ở vòng 5) | 7 |
@@ -93,4 +93,6 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `so-nguyen-to` | Toán | 9 | 3 (vòng 2 còn 4; video: vòng 4 có 1, sửa ngay) | 4 |
 | `on-tap-chuong-2` | Toán | 8 | chưa (vòng 2 còn 7, vòng 3 còn 1) | 3 |
 | `boi-chung-boi-chung-nho-nhat` | Toán | 8 | chưa (vòng 2 còn 5) | 2 |
-| `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | chưa | 1 |
+| `cach-ghi-so-tu-nhien` | Toán | 13 | 3 (vòng 2 còn 8) | 3 |
+| `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | 3 (vòng 2 còn 1) | 3 |
+| `tap-hop-cac-so-nguyen` | Toán | 4 | 3 (vòng 2 còn 1) | 3 |
