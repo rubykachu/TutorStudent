@@ -61,8 +61,8 @@ export type ScaleSpec = {
 export const VIEW_WIDTH = 320;
 const TEXT_SIZE = 17;
 // The numbers on the ruler are what the child reads off, so they are larger
-// than the words beside it: the drawing is at most 20rem (320px) wide, so
-// they are never smaller than 20px.
+// than the words beside it: the drawing is at most 20rem (320px) wide, where
+// they are 20px.
 export const TICK_TEXT_SIZE = 20;
 // A tick's number needs about 1.6 times its font size in height.
 export const GAP = 32;
