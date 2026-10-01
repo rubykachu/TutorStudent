@@ -1,15 +1,17 @@
 # Bàn giao: Bài 14 `phep-cong-phep-tru-so-nguyen` (Phép cộng và phép trừ số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Đã soạn xong bản nháp (12 phần, 12 thẻ, 55 câu, 6 dạng câu, 13 hình bấm mũi tên), `content:check --stats` 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures; đang vào review. Không làm lời đọc và video trong đợt này.
-- Việc tiếp theo cho agent mới: đọc mục "Kế hoạch bài" và "Giả định", rồi làm theo thứ tự ở "Tiến độ". Bài mẫu để theo: `content/math/kntt/tap-hop-cac-so-nguyen/` (Bài 13).
+- Cập nhật cuối: 02/10/2026 (đang giữa review vòng 3). 13 phần, 13 thẻ, 60 câu, 6 dạng câu, 13 hình bấm mũi tên, 3 mẹo. `content:check --stats` 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures 0 cảnh báo (cây tạm `git worktree` cổng 3350, xoá khi xong). Không làm lời đọc và video trong đợt này.
+- Review: vòng 1 (Opus, 8 Nghiêm trọng), vòng 2 (Opus, 4 Nghiêm trọng), đã sửa hết; đọc hiểu Haiku 3 lượt (100/25/1, 6/15/2, 7/7/0; bảy mục còn "Hiểu mơ hồ" ở lượt 3 là thuật ngữ cần bài dạy chứ không phải câu rối: ghi ở Nên sửa của `review.md`). Việc kế tiếp: vòng 3 chỉ phần đổi (Sonnet, `pnpm content:diff`), rồi `pnpm content:hash phep-cong-phep-tru-so-nguyen --approve`, `pnpm content:lock phep-cong-phep-tru-so-nguyen`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+- Tệp tạm của lần soạn (không commit): bộ sinh `lesson.json` và kết quả review ở thư mục scratchpad của phiên (`bai14/gen.py`) và `.shots/review/phep-cong-phep-tru-so-nguyen/`. Sửa chữ thì sửa thẳng `lesson.json`; bộ sinh chỉ là công cụ soạn.
 
 ## Tiến độ (đánh dấu khi xong)
 - [x] Nạp nguồn: `sources/math/phep-cong-phep-tru-so-nguyen/` (không commit).
 - [x] Hình: `src/visuals/math/phep-cong-phep-tru-so-nguyen/` (catalog, hình bấm mũi tên `hopTry`, huy hiệu) và đăng ký ở `src/visuals/registry.ts`; test `tests/visuals/phep-cong-phep-tru-so-nguyen.test.tsx`.
 - [x] `lesson.json`, `content:check --stats` 0 lỗi, không `[guides]`.
 - [x] `visual:shot`, `lesson:walk` 0 failures, xem contact sheet.
-- [ ] Review vòng 1, 2 (Opus), đọc hiểu (Haiku), vòng 3 trở đi (Sonnet).
+- [x] Review vòng 1, 2 (Opus), đọc hiểu (Haiku).
+- [ ] Review vòng 3 (Sonnet, chỉ phần đổi).
 - [ ] `content:hash --approve`, `content:lock phep-cong-phep-tru-so-nguyen`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
 
 ## Nguồn (sách bài tập, `sources/math/phep-cong-phep-tru-so-nguyen/`, không commit)
