@@ -1,7 +1,7 @@
 {
   "title": "So từng cặp chữ số",
   "engine": "local",
-  "poster": { "scene": "s02-tung-cap", "at": 0.95 },
+  "poster": { "scene": "s02-tung-cap", "at": 0.12 },
   "scenes": [
     {
       "id": "s01-hai-gia",

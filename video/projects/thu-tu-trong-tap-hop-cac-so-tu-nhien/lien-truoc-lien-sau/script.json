@@ -1,7 +1,7 @@
 {
   "title": "Số liền trước và số liền sau",
   "engine": "local",
-  "poster": { "scene": "s02-lien-tiep", "at": 0.95 },
+  "poster": { "scene": "s02-lien-tiep", "at": 0.1 },
   "scenes": [
     {
       "id": "s01-trang-sach",

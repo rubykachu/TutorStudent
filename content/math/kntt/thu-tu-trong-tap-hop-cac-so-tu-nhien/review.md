@@ -1,13 +1,67 @@
 # Review: Thứ tự trong tập hợp các số tự nhiên (`thu-tu-trong-tap-hop-cac-so-tu-nhien`)
 
 - Bài: `content/math/kntt/thu-tu-trong-tap-hop-cac-so-tu-nhien/lesson.json`
-- Vòng: 3 - chỉ phần đổi (`pnpm content:diff`), section: `tia-so`, `chon-don-vi`, `cot-cay-so`, `ben-trai`, `dau-nho-lon`, `dau-bang`, `cung-chu-so`, `lien-tiep`, `bac-cau`, `phan-tia-so`, `tap-hop-so`, `dem-phan-tu`; thêm các hình đổi trong `catalog.ts` (`giam-dan`, `chon-ngay-it-nhat` của `bieu-do-cot`, `trang-25`, `trai-3-8`)
-- Nguồn đã đọc: `sources/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/` - sbt-p11, sbt-p12, sbt-p13, sbt-p96 (đáp án bài 1.23 đến 1.28)
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (130 id chưa có trong `ids.lock.json`, đúng với bài chưa duyệt). Toàn kho còn 48 lỗi ở hai bài khác (`cach-ghi-so-tu-nhien` 44, `tap-hop-cac-so-nguyen` 4), không thuộc bài này
-- Đọc hiểu (Haiku, lượt 1): 161 / 24 / 5 (dòng tổng của tệp; đếm dòng thực 160 / 23 / 5); lượt 2 trên 30 mục viết lại: 25 / 5 / 0; tệp `.shots/review/thu-tu-trong-tap-hop-cac-so-tu-nhien/doc-hieu.md`, `doc-hieu-2.md`. Năm mục còn mơ hồ sau lượt 2: "đề cho" (đã sửa tay, chữ hiện hành là "tính luôn số 8 và số 10"), ba mục câu quy tắc, recap section, recap card của `phan-tia-so` (kí hiệu ≤, > bé chưa quen, ghi ở mục 1), một mục mẹo `dem-so-hay-do-khoang` (ghi ở mục 3). Chữ viết lại đọc gọn và rõ hơn bản trước ở các mục tôi đối chiếu, trừ câu quy tắc `phan-tia-so` (đổi chủ ngữ, mục 1). Lượt này chưa đọc 49 câu kho ôn chỉ gắn card (mục 2)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/thu-tu-trong-tap-hop-cac-so-tu-nhien/`
-- Kết luận: Đã xuất bản (0 Nghiêm trọng, 3 Nên sửa, 6 Góp ý còn lại)
-- Bản đã review: `18f3fa3ee0cffbc05007a82d508cf93541289e78da6d262ba6f1292f6cecb29a` (`pnpm content:diff` so với bản này)
+- Vòng: 4 - chỉ phần đổi (video và lời đọc; `pnpm content:diff`), section: `ben-trai`, `cung-chu-so`, `lien-tiep`; phạm vi: ba video `ben-trai-tren-tia-so`, `so-tung-cap-chu-so`, `lien-truoc-lien-sau`, lời đọc tổng quan `overview.narration`, các khối `video` và `videos[]` (ba video, ba clip, bảy điểm dừng)
+- Nguồn đã đọc: không cần (diff chỉ có media; số liệu và quy tắc đối chiếu với `lesson.json`, `catalog.ts`)
+- `content:check`: 1 lỗi, 1 cảnh báo của bài. Lỗi là `$.reviewedHash` ([review-hash]: bài đổi sau lần duyệt trước, do ba khối video và lời đọc thêm vào; hết khi chạy `--approve`); cảnh báo là 3 id chưa có trong `ids.lock.json` (ba video mới, `pnpm content:lock` sau khi duyệt). Không có lỗi nội dung. `pnpm video:check` ok cả ba video
+- Đọc hiểu (Haiku, lượt 1): 27 / 3 / 0 (ba video: 9/2/0, 10/0/0, 8/1/0; tệp `haiku-output.md` trong thư mục làm việc của điều phối). Ba mục mơ hồ đều chỉ vì tên "Bạn cú" (tên con cú, không phải lỗi), nên không viết lại và không chạy lượt 2
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong cây tạm của điều phối (`.shots/walk/thu-tu-trong-tap-hop-cac-so-tu-nhien/{phone,ipad-landscape}/`); đã đọc sheet ba section: khối video đứng đầu section, poster và nút phát hiện đúng, phụ đề bật tắt và phần còn lại của section không đổi
+- Kết luận: Đạt: 0 Nghiêm trọng, 1 Nên sửa và 3 Góp ý ở vòng này, đã xử lý ở mục "Đã xử lý sau vòng 4" (trừ phần nghe âm thanh); còn lại từ vòng 3: 3 Nên sửa, 6 Góp ý. Chờ điều phối chạy `content:hash --approve` (reviewer vòng này không ghi hash). Giọng đọc (video và lời đọc Gemini) chưa kiểm được vì chưa nghe âm thanh; chỉ có số liệu Whisper và độ dài khoảng lặng đo bằng ffmpeg
+- Bản đã review: `18f3fa3ee0cffbc05007a82d508cf93541289e78da6d262ba6f1292f6cecb29a` (`pnpm content:diff` so với bản này; vòng 4 chưa ghi hash mới)
+
+Đã soát ở vòng này (đều đạt, trừ các mục ghi dưới):
+- Số liệu tự tính lại: 6 218 và 6 247 (cùng 4 chữ số; hàng nghìn 6 và 6, hàng trăm 2 và 2, hàng chục 1 và 4, 1 < 4 nên 6 218 < 6 247, xe đạp rẻ hơn); trang 24, 25, 26; A ở 3 và B ở 8 (3 < 8, A trước), đổi chỗ A ở 9 và B ở 5 (5 < 9, B trước); số liền sau của 25 là 26, liền trước là 24; số 0 không có số liền trước, liền sau của 0 là 1. Whisper nghe "6 218 nghìn đồng" thành "6.218.000 đồng" (khớp 89,6% và 91,2% trong `report.json`): đúng số, chỉ khác cách viết.
+- Màu và ký hiệu khớp khái niệm của bài: điểm biểu diễn và "trang bạn đọc" amber (đúng như hình `trang-25`), số nhỏ hơn blue ●, số lớn hơn violet ▲, liền trước sky ◀, liền sau pink ▶, chip so sánh nhiều chữ số slate. Mọi màu có ký hiệu hình hoặc chữ đi kèm.
+- Câu `rule` của cả ba video (8 câu) khớp note hay caption; ngoại lệ chữ cái đã có `say` ("cộng"). Mọi câu không phải `rule` dài tối đa 12 chữ.
+- Nhịp (đo trên mp4 trong `public/media/video`): khoảng lặng sau câu `ask` 1,52 đến 1,53 giây (cần ≥ 1,5), sau câu `think` 1,02 đến 1,04 giây (cần ≥ 1); điểm dừng cách ≥ 3 câu (ben-trai: câu 4, 9, 12; so-tung: câu 4, 9; lien-truoc: câu 4, 9); hình giữ nguyên trong quãng lặng (dấu "?" của `ask` còn đến sát câu sau); khung tại các điểm dừng (11,7 s; 32,8 s; 43,7 s; 13,5 s; 30,8 s; 13,3 s; 33,2 s) đều đang hiện kết quả của ý, chưa chuyển cảnh.
+- Hình khớp lời ở mốc trong .vtt (kiểm bằng khung ffmpeg ở các giây gần mốc, vì ảnh `renders/frames` lệch khoảng 1 giây so với .vtt); chữ trên màn từ 30px trở lên, không cắt; dải dưới từ y ≈ 540 trống ở cả ba video.
+- Lời đọc tổng quan: `overview.vtt` khớp từng chữ `hook`, `summary`, ba `goals` và `whyItMatters`; câu đầu "Chào bạn!" gọi "bạn", cue đầu bắt đầu ở 1,0 giây sau quãng đệm; giọng Gemini Achird và giọng video Hải Đăng cùng là nam; `media.json` không có `narrationOpeningExempt` và `video:check` xác nhận câu mở đầu.
+- Clip gắn đúng card: `ben-trai` -> card `ben-trai`; `cung-chu-so` -> card `cung-chu-so`; `lien-truoc` -> card `lien-sau` và `lien-truoc`; cả ba bắt đầu ngay sau điểm dừng đầu và kết thúc trước cảnh kết.
+
+## Nghiêm trọng
+
+Không có.
+
+## Nên sửa
+
+### 1. Câu kết của `ben-trai-tren-tia-so` nêu quy tắc bằng lời rút gọn, không có cờ `rule`, và nói "số" thay cho "điểm biểu diễn số"
+
+- Vị trí: `video/projects/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so/script.json` `$.scenes[2].sentences[3]` ("Số nhỏ hơn luôn đứng bên trái.", câu cuối, 44,2 đến 46,4 s trong .vtt); card `ben-trai`. LL-05, LL-11.
+- Nguồn: tr.11 kiến thức cần nhớ 2, `sbt-p11.png`
+- Vấn đề: Đây là câu tóm tắt quy tắc nhưng không chép nguyên văn note (note: "điểm biểu diễn số nhỏ hơn luôn đứng bên trái điểm biểu diễn số lớn hơn") và không có `"rule": true`, nên `video:build` không kiểm nó. Nội dung không sai (trùng tên section "Số nhỏ hơn nằm bên trái"), nhưng bé nghe cuối cùng là "số ... đứng bên trái", còn card, recap và hai câu `rule` trước đó nói "điểm biểu diễn": một quy tắc hai cách nói (LL-05). Vì câu đứng cuối nên bé mang câu này đi.
+- Sửa: Nếu dựng lại video theo quyết định của chủ dự án: đổi thành "Nhớ nhé: điểm của số nhỏ hơn luôn đứng bên trái." (câu dẫn, không phải quy tắc nguyên văn), hoặc chép nguyên câu thứ hai của note và đánh `rule`. Không dựng lại chỉ vì mục này nếu chủ dự án không muốn đổi video đã dựng.
+
+## Góp ý
+
+### 2. Hai chỗ Whisper nghe khác chữ cần nghe lại bằng tai (chưa kiểm được vì chưa nghe âm thanh)
+
+- Vị trí: `lien-truoc-lien-sau` câu 7 "Số liền trước của số a + 1 là số a." (`say`: "...a cộng 1 là số a"), `renders/report.json`: nghe "Số A tộng 1 là số A", khớp 0,974 (lần 1 duy nhất); `ben-trai-tren-tia-so` câu 3 "Bạn cú đặt điểm A ở số 3.", nghe "Bạn cú đắt điểm A" (2 lần thử). LL-11.
+- Nguồn: —
+- Vấn đề: Điểm khớp vượt ngưỡng nên build cho qua, nhưng nếu giọng thật sự nuốt "cộng" thành "tộng" thì bé nghe sai đúng câu quy tắc "liền trước"; "đắt" thay "đặt" đổi nghĩa câu. Tôi chưa nghe được giọng nên không kết luận.
+- Sửa: Chủ dự án nghe hai câu này một lần; nếu sai thì chọn take khác hoặc đổi `say` rồi dựng lại câu đó (cần chủ dự án đồng ý, vì đổi giọng đọc).
+
+### 3. Poster của hai video hiện sẵn đáp án trước khi bé bấm phát
+
+- Vị trí: `public/media/video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.jpg` (đã hiện mũi tên "bên trái", nhãn "Số nhỏ hơn", "Số lớn hơn"), `lien-truoc-lien-sau.jpg` (đã hiện 24 "lùi 1" và 26); `script.json` `poster.scene` = `s02-ben-trai`, `s02-lien-tiep`, `at: 0.95`. LL-02.
+- Nguồn: —
+- Vấn đề: Video nhắc "bạn thử đoán" nhưng poster nằm trên đầu section đã lộ đáp án; bé chậm nhìn thấy trước khi nghe câu hỏi. Poster của `so-tung-cap-chu-so` chỉ lộ cặp 1 và 4, nhẹ hơn.
+- Sửa: Chọn `poster.at` sớm hơn (cảnh đang hỏi, chưa lộ kết quả), hoặc cảnh đầu (tia số có điểm A, B; ba trang sách). Là chọn của chủ dự án vì phải xuất lại poster.
+
+### 4. Điểm dừng cuối của `ben-trai-tren-tia-so` chỉ cách câu kết một câu
+
+- Vị trí: `ben-trai-tren-tia-so` `checkpoints[2]` (`cp-03`, `at: 43,685`; câu "Số 5 nhỏ hơn số 9, nên điểm B đứng trước."), `$.scenes[2].sentences[2]`.
+- Nguồn: —
+- Vấn đề: Luật cấm điểm dừng ở câu cuối video, nên điểm dừng đứng trước câu kết 2 giây: bé bấm "Xem tiếp" chỉ để nghe một câu ngắn. Cách ≥ 3 câu với điểm trước (câu 9) vẫn đạt, nên không vi phạm luật.
+- Sửa: Bỏ `cp-03` (còn hai điểm dừng, mỗi điểm cách nhau 5 câu) khi chủ dự án dựng lại video; hoặc giữ nếu muốn bé chốt "B đứng trước" rồi mới nghe kết luận.
+
+## Đã xử lý sau vòng 4
+
+- Nên sửa 1: câu kết `ben-trai-tren-tia-so` đổi thành "Nhớ nhé: điểm của số nhỏ hơn luôn đứng bên trái." (chỉ câu đó đọc lại, Whisper khớp 100%).
+- Góp ý 3: poster `ben-trai-tren-tia-so` lấy ở cuối cảnh tia số (hai điểm A, B chưa tô màu), `lien-truoc-lien-sau` và `so-tung-cap-chu-so` lấy đầu cảnh hỏi (ô "?"): poster không còn lộ đáp án.
+- Góp ý 4: bỏ điểm dừng cuối của `ben-trai-tren-tia-so`; còn hai điểm dừng.
+- Góp ý 2 (chưa kiểm được vì chưa nghe âm thanh): người thật nghe lại "Số liền trước của số a cộng 1 là số a" (`lien-truoc-lien-sau`, Whisper nghe "A tộng 1", khớp 0,974) và "Bạn cú đặt điểm A ở số 3" (`ben-trai-tren-tia-so`, Whisper nghe "đắt"). Nếu sai thì sửa `say` hoặc dựng lại đúng câu đó.
+
+## Còn lại từ vòng 3
 
 Tên viết tắt dưới đây: id đầy đủ có tiền tố `thu-tu-trong-tap-hop-cac-so-tu-nhien.` (vd `ex.kt-dem-vach-c-5`). Hình ghi theo khoá trong `src/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/catalog.ts`.
 

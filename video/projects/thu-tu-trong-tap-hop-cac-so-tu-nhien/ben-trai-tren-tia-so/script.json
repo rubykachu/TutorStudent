@@ -1,7 +1,7 @@
 {
   "title": "Số nhỏ hơn nằm bên trái",
   "engine": "local",
-  "poster": { "scene": "s02-ben-trai", "at": 0.95 },
+  "poster": { "scene": "s01-tia-so", "at": 0.95 },
   "scenes": [
     {
       "id": "s01-tia-so",
@@ -45,10 +45,9 @@
         { "text": "Bây giờ A ở số 9, còn B ở số 5." },
         { "text": "Bạn thử đoán xem: điểm nào đứng trước?", "pause": "ask" },
         {
-          "text": "Số 5 nhỏ hơn số 9, nên điểm B đứng trước.",
-          "checkpoint": true
+          "text": "Số 5 nhỏ hơn số 9, nên điểm B đứng trước."
         },
-        { "text": "Số nhỏ hơn luôn đứng bên trái." }
+        { "text": "Nhớ nhé: điểm của số nhỏ hơn luôn đứng bên trái." }
       ]
     }
   ],

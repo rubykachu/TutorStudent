@@ -5499,12 +5499,12 @@
       "url": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.mp4",
       "vttUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.vtt",
       "posterUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.jpg",
-      "durationSec": 47.93,
+      "durationSec": 48.93,
       "clips": [
         {
           "id": "ben-trai",
           "start": 12.427,
-          "end": 46.524,
+          "end": 47.52,
           "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"]
         }
       ],
@@ -5523,11 +5523,6 @@
           "id": "cp-02",
           "at": 32.84,
           "from": 11.727
-        },
-        {
-          "id": "cp-03",
-          "at": 43.685,
-          "from": 32.84
         }
       ]
     },
