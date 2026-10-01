@@ -876,7 +876,7 @@
             },
             {
               "type": "note",
-              "text": "Ví dụ: Mai ăn một phần tư cái bánh, Lan ăn một phần sáu cái bánh, hai bạn ăn năm phần mười hai cái bánh."
+              "text": "Ví dụ: mảnh băng dài năm phần sáu mét, cắt đi ba phần tư mét thì còn một phần mười hai mét."
             },
             {
               "type": "visual",
@@ -889,8 +889,8 @@
           "id": "on-tap-chuong-2.tip.bcnn-hai-mau",
           "kind": "làm nhanh",
           "title": "Tìm BCNN của hai mẫu",
-          "text": "Liệt kê các bội của mẫu lớn hơn. Số đầu tiên chia hết cho mẫu nhỏ hơn là BCNN.",
-          "tex": "\\begin{gathered} 8,\\ 16,\\ 24 \\\\ 24 \\chiahet 6 \\end{gathered}"
+          "text": "Ví dụ hai mẫu là 6 và 15. Liệt kê các bội của mẫu lớn hơn. Số đầu tiên chia hết cho mẫu nhỏ hơn là BCNN.",
+          "tex": "\\begin{gathered} 15,\\ 30 \\\\ 30 \\chiahet 6 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -2029,7 +2029,7 @@
       "bookRef": "SBT 2.56b",
       "difficulty": 3,
       "explain": {
-        "text": "3 · 4 · 5 có thừa số chẵn 4, và 2 020 · 2 021 · 2 022 có thừa số chẵn 2 020. Hai số hạng đều chia hết cho 2 nên tổng chia hết cho 2 và lớn hơn 2, là hợp số.",
+        "text": "3 · 4 · 5 có thừa số chẵn 4, và 2 020 · 2 021 · 2 022 có thừa số chẵn 2 020. Hai số hạng đều chia hết cho 2 nên tổng chia hết cho 2 và lớn hơn 2, là hợp số.",
         "tex": "\\begin{gathered} 3 \\cdot 4 \\cdot 5 \\chiahet 2 \\\\ 2\\,020 \\cdot 2\\,021 \\cdot 2\\,022 \\chiahet 2 \\end{gathered}",
         "wrong": [
           {
@@ -3470,7 +3470,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Cộng số dư vào từng bội chung rồi mới chọn số trong khoảng. Trong các số 20, 38, 56, 74 và 92, chỉ 56 nằm trong khoảng từ 50 đến 70.",
-        "tex": "\\begin{gathered} 18 + 2 = 20,\\ 36 + 2 = 38 \\\\ 54 + 2 = 56,\\ 72 + 2 = 74 \\end{gathered}",
+        "tex": "\\begin{gathered} 18 + 2 = 20 \\\\ 36 + 2 = 38 \\\\ 54 + 2 = 56 \\\\ 72 + 2 = 74 \\end{gathered}",
         "wrong": [
           {
             "optionId": "a",
