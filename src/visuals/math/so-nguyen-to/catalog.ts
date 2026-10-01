@@ -227,8 +227,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-nt-bang": {
     kind: "chips",
-    items: ["33", "37", "39", "45", "49", "73"],
-    wants: [1, 5],
+    items: ["33", "39", "45", "49", "73", "79"],
+    wants: [4, 5],
     done: "Bạn đã chọn đủ các số nguyên tố.",
   },
   "chon-nt-bang-2": {
