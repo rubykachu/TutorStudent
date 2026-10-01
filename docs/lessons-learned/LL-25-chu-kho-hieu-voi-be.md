@@ -13,6 +13,7 @@ Chưa có số liệu: mục này bắt đầu đếm từ lượt "Đọc hiể
   - `cap-so-tong`, quy tắc: thêm ví dụ số "như 48 chia 6 được 8" nhưng lượt 3 vẫn mơ hồ ("m cộng n là gì"). Ví dụ số cụ thể không đủ khi chữ m, n chưa được giải thích trong cùng câu.
   - `so-du-lon-nhat`, quy tắc: "cùng số dư" bị đọc là khó, đổi thành "dư bằng nhau" thì vẫn mơ hồ, lại lệch từ đã dạy ở các màn khác. Đổi sang từ mới không thay được việc giải thích từ cũ.
   - `tich-72-uclnn-3`, lời giải: câu gói ba ý (loại cặp, chọn số lớn, tính b) bị xếp Khó hiểu ở lượt 3 dù đã viết lại hai lần; câu cùng kiểu của `tich-144-uclnn-6` viết thành các câu ngắn nối bằng "mà", "nên" thì Hiểu rõ.
+- `thu-tu-trong-tap-hop-cac-so-tu-nhien` lượt 1: 5 Khó hiểu, 24 Hiểu mơ hồ. Kiểu lặp lại: câu quy tắc dùng chữ cái và dấu liền nhau ("a ≤ x ≤ b", "x ∈ ℕ |") mà chưa câu nào đọc thành lời; đề "liệt kê các phần tử", "tập hợp sau có bao nhiêu phần tử" dùng từ của bài trước không nhắc lại; chữ "đầu nhọn", "đề cho" bé không có ví dụ. Viết lại bằng câu ngắn kèm đọc thành lời thì lượt 2 còn 5 mục mơ hồ, đều do kí hiệu chưa quen.
 
 ## Nguyên nhân gốc
 

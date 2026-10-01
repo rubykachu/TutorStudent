@@ -341,8 +341,8 @@ describe("the scales of the catalog", () => {
     }
   });
 
-  it("keeps the numbers of the ruler at 20px or more on the 320px drawing", () => {
-    expect((TICK_TEXT_SIZE * 320) / VIEW_WIDTH).toBeGreaterThanOrEqual(20);
+  it("keeps the numbers of the ruler at 17px or more on the 304px drawing (19rem, the widest on a phone)", () => {
+    expect((TICK_TEXT_SIZE * 304) / VIEW_WIDTH).toBeGreaterThanOrEqual(17);
     expect(GAP).toBeGreaterThanOrEqual(TICK_TEXT_SIZE * 1.6);
   });
 });

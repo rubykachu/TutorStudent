@@ -61,14 +61,14 @@ export type ScaleSpec = {
 export const VIEW_WIDTH = 320;
 const TEXT_SIZE = 17;
 // The numbers on the ruler are what the child reads off, so they are larger
-// than the words beside it: the drawing is at most 20rem (320px) wide, where
-// they are 20px.
-export const TICK_TEXT_SIZE = 20;
+// than the words beside it: the drawing is at most 19rem (304px) wide, where
+// they are 17px.
+export const TICK_TEXT_SIZE = 18;
 // A tick's number needs about 1.6 times its font size in height.
-export const GAP = 32;
+export const GAP = 29;
 const TOP = 22;
 // Room under the lowest tick: the thermometer has its bulb there.
-const BOTTOM = 46;
+const BOTTOM = 40;
 const BOTTOM_PLAIN = 22;
 const AXIS_X = 76;
 const NUMBER_X = 62;
@@ -324,7 +324,7 @@ function Frame({ spec, step }: { spec: ScaleSpec; step: number }) {
       viewBox={`0 0 ${VIEW_WIDTH} ${scaleHeight(spec)}`}
       role="img"
       aria-label={spec.label}
-      className="h-auto w-full max-w-[20rem]"
+      className="h-auto w-full max-w-[19rem]"
     >
       <Art spec={spec} level={level} />
       <Axis spec={spec} />
