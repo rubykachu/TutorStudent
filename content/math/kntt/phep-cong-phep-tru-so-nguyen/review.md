@@ -7,7 +7,7 @@
 - Đọc hiểu (Haiku, lượt 1): 100 / 25 / 1 (lượt 2 trên 23 mục: 6 / 15 / 2; lượt 3 trên 14 mục: 7 / 7 / 0; lượt trên mục đổi sau vòng 3: 5 / 4 / 3); tệp `.shots/review/phep-cong-phep-tru-so-nguyen/doc-hieu.md`
 - `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-cong-phep-tru-so-nguyen/`
 - Kết luận: Đạt: 0 Nghiêm trọng, chờ lệnh duyệt của người điều phối
-- Bản đã review: `5a877dda36c673526a790d68300a51a422e8eca46badb819fea969b9403855ae` (`pnpm content:diff` so với bản này)
+- Bản đã review: `746d14323f45b2f31edb4caf3c486763f5b29ab85410b52b0f712d6dcc0ebe81` (`pnpm content:diff` so với bản này)
 
 ## Phạm vi và cách soát
 
