@@ -5,7 +5,7 @@ import { Chips } from "@/visuals/shared/pick-chips";
 import type { VisualSpec } from "./catalog";
 import { Column } from "./column";
 import { Rects } from "./rects";
-import { Sieve } from "./sieve";
+import { PrimeTable } from "./prime-table";
 import Sticker from "./sticker";
 import { Tree } from "./tree";
 
@@ -37,9 +37,9 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
       return function RectsVisual() {
         return <Rects spec={spec} />;
       };
-    case "sieve":
-      return function SieveVisual() {
-        return <Sieve spec={spec} />;
+    case "table":
+      return function TableVisual() {
+        return <PrimeTable spec={spec} />;
       };
     case "tree":
       return function TreeVisual() {

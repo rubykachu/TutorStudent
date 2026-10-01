@@ -4,12 +4,8 @@
 
 export const LESSON_SLUG = "so-nguyen-to";
 
-// The numbers the sieve picture lists: 1 up to this value.
-export const SIEVE_LIMIT = 100;
-
-// Primes whose multiples the sieve crosses out; the next prime, 11, has a
-// square above `SIEVE_LIMIT`, so these four leave exactly the primes.
-export const SIEVE_PRIMES = [2, 3, 5, 7] as const;
+// The prime tables list the numbers from 1 up to this value.
+export const TABLE_LIMIT = 100;
 
 export function divisorsOf(n: number): number[] {
   const divisors: number[] = [];
@@ -51,6 +47,11 @@ export function columnRows(n: number): ColumnRow[] {
   }
   rows.push({ value: rest, prime: undefined });
   return rows;
+}
+
+// The primes below `limit`, smallest first.
+export function primesBelow(limit: number): number[] {
+  return Array.from({ length: limit }, (_, i) => i + 1).filter(isPrime);
 }
 
 // A whole number in TeX with thousands grouped by thin spaces.

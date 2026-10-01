@@ -12,18 +12,19 @@ import {
   flattenTree,
   isPrime,
   primeFactors,
+  primesBelow,
   productTex,
   texList,
   treeDepth,
   treeLeaves,
 } from "@/visuals/math/so-nguyen-to/logic";
+import { PrimeTable } from "@/visuals/math/so-nguyen-to/prime-table";
 import { Rects } from "@/visuals/math/so-nguyen-to/rects";
-import { Sieve } from "@/visuals/math/so-nguyen-to/sieve";
 import Sticker from "@/visuals/math/so-nguyen-to/sticker";
 import { Tree } from "@/visuals/math/so-nguyen-to/tree";
 import { visualRegistry } from "@/visuals/registry";
 
-function spec<K extends "rects" | "sieve" | "tree" | "column">(
+function spec<K extends "rects" | "table" | "tree" | "column">(
   key: string,
   kind: K,
 ) {
@@ -119,17 +120,37 @@ describe("rectangles", () => {
     const { unmount } = render(<Rects spec={spec("xep-11", "rects")} />);
     unmount();
     render(<Rects spec={{ ...spec("xep-9", "rects"), mode: "still" }} />);
-    expect(screen.getByText("Có nhiều hơn hai ước: hợp số")).toBeTruthy();
+    expect(screen.getByText("Có từ ba ước trở lên: hợp số")).toBeTruthy();
   });
 });
 
-describe("sieve, tree and column", () => {
-  it("shows the finished table with the 25 primes below 100 marked", () => {
-    const { container } = render(<Sieve spec={spec("bang-100", "sieve")} />);
+describe("prime tables, tree and column", () => {
+  it("lists the 25 primes below 100", () => {
+    expect(primesBelow(100)).toHaveLength(25);
+    expect(primesBelow(100).slice(0, 5)).toEqual([2, 3, 5, 7, 11]);
+    expect(primesBelow(100).at(-1)).toBe(97);
+  });
+
+  it("marks only the 25 primes in the grid of 1..100", () => {
+    const { container } = render(
+      <PrimeTable spec={spec("bang-100", "table")} />,
+    );
     expect(container.querySelectorAll("text")).toHaveLength(100);
+    expect(container.querySelectorAll("rect.stroke-concept-sky")).toHaveLength(
+      25,
+    );
     expect(
-      [...container.querySelectorAll("polygon,circle")].length,
-    ).toBeGreaterThanOrEqual(25);
+      screen.getByText("Số 1 không là số nguyên tố, cũng không là hợp số."),
+    ).toBeTruthy();
+  });
+
+  it("shows the compact list of just the primes, with no crossed-out numbers", () => {
+    const { container } = render(
+      <PrimeTable spec={spec("bang-nt", "table")} />,
+    );
+    expect(container.querySelectorAll("ul.grid > li")).toHaveLength(25);
+    expect(container.textContent).toContain("97");
+    expect(container.textContent).not.toContain("91");
   });
 
   it("masks the cells an exercise asks for", () => {
@@ -142,6 +163,15 @@ describe("sieve, tree and column", () => {
       <Column spec={spec("cot-thieu-36", "column")} />,
     );
     expect(column.textContent).toContain("?");
+  });
+
+  it("names the colour of the divisors in a legend instead of marking each one", () => {
+    const { container } = render(
+      <Column spec={spec("cot-thieu-150", "column")} />,
+    );
+    expect(screen.getByText("Số chia: số nguyên tố")).toBeTruthy();
+    // One legend mark only: none beside a divisor.
+    expect(container.querySelectorAll("svg")).toHaveLength(1);
   });
 
   it("ends a worked tree and column on the product of the primes", () => {

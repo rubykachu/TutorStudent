@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { FormulaRow, Pending } from "@/visuals/shared/formula-rows";
@@ -24,6 +25,9 @@ const RADIUS = 23;
 const PAD = 8;
 const FONT = 21;
 const MARK = 6;
+// How much larger than its drawing size a tree is drawn on a wide screen (an
+// iPad), so its numbers stay easy to read there.
+const WIDE_SCALE = 1.4;
 
 type Placed = { node: TreeNode; index: number; x: number; depth: number };
 type Edge = { from: Placed; to: Placed };
@@ -160,7 +164,13 @@ export function Tree({ spec }: { spec: SpecOf<"tree"> }) {
           aria-label={label}
           viewBox={`0 0 ${width} ${height}`}
           width={width}
-          style={{ maxWidth: "100%", height: "auto" }}
+          className="h-auto w-full max-w-(--tree-width) md:max-w-(--tree-wide-width)"
+          style={
+            {
+              "--tree-width": `${width}px`,
+              "--tree-wide-width": `${width * WIDE_SCALE}px`,
+            } as CSSProperties
+          }
         >
           {edges.map(({ from, to }) => {
             const visible =

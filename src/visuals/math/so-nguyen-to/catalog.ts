@@ -26,9 +26,9 @@ export type VisualSpec =
       mode: Mode;
       verdict?: "prime" | "composite";
     }
-  // The table of 1..100 with the multiples of 2, 3, 5 and 7 crossed out one
-  // prime at a time ("steps"), or the finished table of primes ("still").
-  | { kind: "sieve"; mode: "steps" | "still" }
+  // The primes below 100: the grid of 1..100 with the primes marked ("grid"),
+  // or just the 25 primes in a compact list ("list").
+  | { kind: "table"; mode: "grid" | "list" }
   // A factor tree of `root`. `hide` lists nodes (drawing order) shown as "?";
   // in "hint" the last level and the product stay "?".
   | { kind: "tree"; root: TreeNode; hide: readonly number[]; mode: Mode }
@@ -114,50 +114,36 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Các số nguyên tố đầu tiên và ước của chúng",
     rows: [
       {
-        tex: "1,\\ 2",
-        tag: {
-          text: "Ước của 2",
-          color: "sky",
-        },
+        tex: "1,\\ \\concept{sky}{2}",
+        tag: { text: "Ước của 2", color: "violet" },
       },
       {
-        tex: "1,\\ 3",
-        tag: {
-          text: "Ước của 3",
-          color: "sky",
-        },
+        tex: "1,\\ \\concept{sky}{3}",
+        tag: { text: "Ước của 3", color: "violet" },
       },
       {
-        tex: "1,\\ 5",
-        tag: {
-          text: "Ước của 5",
-          color: "sky",
-        },
+        tex: "1,\\ \\concept{sky}{5}",
+        tag: { text: "Ước của 5", color: "violet" },
       },
       {
-        tex: "1,\\ 7",
-        tag: {
-          text: "Ước của 7",
-          color: "sky",
-        },
+        tex: "1,\\ \\concept{sky}{7}",
+        tag: { text: "Ước của 7", color: "violet" },
       },
     ],
     legend: [
-      {
-        color: "sky",
-        name: "Số nguyên tố",
-      },
+      { color: "sky", name: "Số nguyên tố" },
+      { color: "violet", name: "Ước" },
     ],
   },
   "chon-nt-2-7": {
     kind: "chips",
-    items: ["2", "3", "4", "5", "6", "7"],
-    wants: [0, 1, 3, 5],
+    items: ["20", "23", "24", "25", "27", "31"],
+    wants: [1, 5],
     done: "Bạn đã chọn đủ các số nguyên tố.",
   },
   "chon-nt-bank": {
     kind: "chips",
-    items: ["3", "9", "12", "19", "21", "23"],
+    items: ["34", "43", "58", "47", "62", "86"],
   },
   "xep-9": {
     kind: "rects",
@@ -174,29 +160,38 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Ước của 7 và ước của 6",
     rows: [
       {
-        tex: "1,\\ 7",
-        tag: {
-          text: "Ước của 7: hai ước",
-          color: "sky",
-        },
+        tex: "1,\\ \\concept{sky}{7}",
+        tag: { text: "Ước của 7: hai ước", color: "violet" },
       },
       {
-        tex: "1,\\ 2,\\ 3,\\ 6",
-        tag: {
-          text: "Ước của 6: bốn ước",
-          color: "pink",
-        },
+        tex: "1,\\ 2,\\ 3,\\ \\concept{pink}{6}",
+        tag: { text: "Ước của 6: bốn ước", color: "violet" },
       },
     ],
     legend: [
+      { color: "sky", name: "Số nguyên tố" },
+      { color: "pink", name: "Hợp số" },
+      { color: "violet", name: "Ước" },
+    ],
+  },
+  "so-sanh-nt-hs-xong": {
+    kind: "rows",
+    label: "Ước của 7, của 6 và của 1",
+    rows: [
       {
-        color: "sky",
-        name: "Số nguyên tố",
+        tex: "1,\\ \\concept{sky}{7}",
+        tag: { text: "Ước của 7: hai ước", color: "violet" },
       },
       {
-        color: "pink",
-        name: "Hợp số",
+        tex: "1,\\ 2,\\ 3,\\ \\concept{pink}{6}",
+        tag: { text: "Ước của 6: bốn ước", color: "violet" },
       },
+      { tex: "1", tag: { text: "Ước của 1: chỉ có một ước", color: "violet" } },
+    ],
+    legend: [
+      { color: "sky", name: "Số nguyên tố" },
+      { color: "pink", name: "Hợp số" },
+      { color: "violet", name: "Ước" },
     ],
   },
   "uoc-cua-1": {
@@ -220,15 +215,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-hs-bank": {
     kind: "chips",
-    items: ["6", "7", "12", "13", "15", "17"],
-  },
-  "sang-100": {
-    kind: "sieve",
-    mode: "steps",
+    items: ["26", "83", "12", "13", "15", "17"],
   },
   "bang-100": {
-    kind: "sieve",
-    mode: "still",
+    kind: "table",
+    mode: "grid",
+  },
+  "bang-nt": {
+    kind: "table",
+    mode: "list",
   },
   "chon-nt-bang": {
     kind: "chips",
@@ -688,8 +683,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "thu-3a": {
     kind: "rows",
-    label: "Các số 3a với a từ 0 đến 9",
+    label: "Các số hai chữ số có chữ số hàng chục là 3",
     rows: [
+      { tex: "\\overline{3a}" },
       {
         tex: "30,\\ 32,\\ 33,\\ 34",
         tag: {
@@ -726,7 +722,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-a-6": {
     kind: "chips",
     items: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    wants: [1, 7],
+    wants: [1, 3, 9],
     done: "Bạn đã chọn đủ các chữ số a.",
   },
   "chon-a-1": {
@@ -735,22 +731,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chan-le": {
     kind: "rows",
-    label: "Số chẵn và số lẻ",
+    label: "Số chẵn ở hàng trên, số lẻ ở hàng dưới",
     rows: [
       {
         tex: "2,\\ 4,\\ 6,\\ 8,\\ 10",
-        tag: {
-          text: "Số chẵn: chia hết cho 2",
-          color: "slate",
-        },
+        tag: { text: "Số chẵn: chia hết cho 2", color: "slate" },
       },
-      {
-        tex: "1,\\ 3,\\ 5,\\ 7,\\ 9",
-        tag: {
-          text: "Số lẻ: không chia hết cho 2",
-          color: "slate",
-        },
-      },
+      { tex: "1,\\ 3,\\ 5,\\ 7,\\ 9" },
     ],
   },
   "chan-nt": {
@@ -795,28 +782,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "le-le": {
     kind: "rows",
-    label: "Tổng của hai số lẻ và tổng có số 2",
+    label: "Số nguyên tố khác 2 đều lẻ, tổng của hai số lẻ, tổng có số 2",
     rows: [
       {
+        tex: "\\concept{sky}{3},\\ \\concept{sky}{5},\\ \\concept{sky}{7},\\ \\concept{sky}{11}",
+        tag: { text: "Số nguyên tố khác 2: đều là số lẻ", color: "sky" },
+      },
+      {
         tex: "3 + 5 = 8",
-        tag: {
-          text: "Lẻ cộng lẻ là chẵn",
-          color: "slate",
-        },
+        tag: { text: "Lẻ cộng lẻ là chẵn", color: "slate" },
       },
       {
         tex: "7 + 11 = 18",
-        tag: {
-          text: "Lẻ cộng lẻ là chẵn",
-          color: "slate",
-        },
+        tag: { text: "Lẻ cộng lẻ là chẵn", color: "slate" },
       },
       {
         tex: "2 + 19 = 21",
-        tag: {
-          text: "Có số 2: tổng là số lẻ",
-          color: "sky",
-        },
+        tag: { text: "2 cộng số lẻ: tổng là số lẻ", color: "sky" },
       },
     ],
   },
@@ -927,11 +909,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "9 viết thành tổng của ba số nguyên tố",
     rows: [
       {
-        tex: "9 = \\concept{sky}{2} + \\concept{sky}{2} + \\concept{sky}{5}",
+        tex: "9 - 2 = 7",
+        tag: { text: "Chọn trước một số nguyên tố", color: "sky" },
+      },
+      {
+        tex: "7 = \\concept{sky}{2} + \\concept{sky}{5}",
         tag: {
-          text: "Tổng ba số nguyên tố",
+          text: "Viết số còn lại thành tổng hai số nguyên tố",
           color: "amber",
         },
+      },
+      {
+        tex: "9 = \\concept{sky}{2} + \\concept{sky}{2} + \\concept{sky}{5}",
+        tag: { text: "Tổng ba số nguyên tố", color: "amber" },
       },
     ],
   },
@@ -942,14 +932,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "3 \\cdot 4 \\cdot 5 \\chiahet 2",
         tag: {
-          text: "Thừa số 4 chia hết cho 2",
+          text: "Tích có thừa số 4: chia hết cho 2",
           color: "amber",
         },
       },
       {
         tex: "6 \\cdot 7 \\chiahet 2",
         tag: {
-          text: "Thừa số 6 chia hết cho 2",
+          text: "Tích có thừa số 6: chia hết cho 2",
           color: "amber",
         },
       },
@@ -976,14 +966,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "3 \\cdot 4 \\cdot 5 \\chiahet 2",
         tag: {
-          text: "Thừa số 4 chia hết cho 2",
+          text: "Tích có thừa số 4: chia hết cho 2",
           color: "amber",
         },
       },
       {
         tex: "6 \\cdot 7 \\chiahet 2",
         tag: {
-          text: "Thừa số 6 chia hết cho 2",
+          text: "Tích có thừa số 6: chia hết cho 2",
           color: "amber",
         },
       },
@@ -1025,6 +1015,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "10 \\cdot 3 + 5 \\cdot 8 = 70 \\chiahet 5",
       },
       {
+        tex: "70 > 5",
+      },
+      {
         tex: "\\concept{pink}{70}",
         tag: {
           text: "Hợp số",
@@ -1032,6 +1025,67 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
     ],
+  },
+  "goi-y-xep-21": {
+    kind: "rects",
+    n: 21,
+    ways: [
+      [1, 21],
+      [3, 7],
+    ],
+    mode: "hint",
+  },
+  "goi-y-cay-20": {
+    kind: "tree",
+    root: {
+      n: 20,
+      kids: [
+        { n: 5 },
+        {
+          n: 4,
+          kids: [{ n: 2 }, { n: 2 }],
+        },
+      ],
+    },
+    hide: [],
+    mode: "hint",
+  },
+  "cot-thieu-54": {
+    kind: "column",
+    n: 54,
+    hide: [2],
+    mode: "still",
+  },
+  "giai-cot-54": {
+    kind: "column",
+    n: 54,
+    hide: [],
+    mode: "solution",
+  },
+  "goi-y-tong-hs": {
+    kind: "lines",
+    label: "Tổng 7 · 3 + 5 · 9 là hợp số",
+    rows: [
+      {
+        tex: "7 \\cdot 3 \\chiahet 3",
+        tag: { text: "Tích có thừa số 3: chia hết cho 3", color: "amber" },
+      },
+      {
+        tex: "5 \\cdot 9 \\chiahet 3",
+        tag: { text: "Tích có thừa số 9: chia hết cho 3", color: "amber" },
+      },
+      {
+        tex: "(7 \\cdot 3 + 5 \\cdot 9) \\chiahet 3",
+      },
+      {
+        tex: "7 \\cdot 3 + 5 \\cdot 9 = 66 > 3",
+      },
+      {
+        tex: "\\concept{pink}{66}",
+        tag: { text: "Hợp số", color: "pink" },
+      },
+    ],
+    mode: "hint",
   },
   sticker: {
     kind: "sticker",
