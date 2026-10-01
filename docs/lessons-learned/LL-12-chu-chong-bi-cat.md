@@ -15,6 +15,7 @@ Chữ, số mũ hay lựa chọn bị thanh dưới che, tràn màn điện tho�
 - `on-tap-chuong-2` vòng 2, `tip.loai-hop-so-nhanh`: ví dụ mới viết trên một dòng `2\,133:\ 2 + 1 + 3 + 3 = 9 \chiahet 3` rộng hơn khung 390px, chữ số chia 3 cuối bị cắt (ảnh `phone/051-s3-04-block.png`) mà walk không báo. `tex` của mẹo cũng xếp mỗi phép một dòng như `explain`.
 - `on-tap-chuong-2` vòng 3, `ex.chon-so-trong-khoang`: bước mới sinh khi sửa thứ tự cộng số dư có `explain.tex` hai dòng, mỗi dòng hai phép cộng (`18 + 2 = 20, 36 + 2 = 38`), rộng hơn khung 390px nên số cuối mỗi dòng bị cắt (ảnh `phone/171-s10-07-exercise-chon-so-trong-khoang-correct.png`) mà walk không báo. Cùng lỗi đã gặp ở vòng 1 và 2: nội dung mới thêm khi sửa cũng phải qua bước xem ảnh `phone/…-correct`, và mỗi dòng `gathered` chỉ một phép.
 - `cach-ghi-so-tu-nhien` vòng 1: `ClockPick` đặt `<text>` trong `Region`, nên viền chọn 20px (cùng màu chữ, `paintOrder="stroke"`) tô kín chữ số La Mã đã chọn, cả khi hiện đáp án; hình `tap-hop/set-tap.tsx` tránh được nhờ `stroke="none"` trên chữ. Ví dụ của mẹo `liet-ke-co-thu-tu` dùng `\quad` giữa năm số nên bị cắt còn "5" trên điện thoại.
+- `cach-ghi-so-tu-nhien` vòng 2, `tip.tach-cum`: dòng đầu của `gathered` "XIV = X + IV = 10 + 4 = 14" (năm vế) bị cắt còn "= 1" trên điện thoại, cả ở trang "Mẹo hay"; dòng lấy nguyên từ câu "Sửa" của review vòng 1. Mỗi dòng `gathered` tối đa ba vế, kể cả công thức review đề xuất.
 
 ## Nguyên nhân gốc
 
