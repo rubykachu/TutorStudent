@@ -1046,6 +1046,20 @@
       "multiple": false,
       "check": {
         "expr": "3"
+      },
+      "explain": {
+        "text": "Đoạn cắt vừa hết cả hai dải phải là ước chung của 6 và 9. Cả 6 và 9 đều chia hết cho 3, nên đoạn 3 dm cắt vừa.",
+        "tex": "6 = \\concept{teal}{3} \\cdot 2, \\quad 9 = \\concept{teal}{3} \\cdot 3",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "9 không chia hết cho 2, nên dải 9 dm còn thừa 1 dm."
+          },
+          {
+            "optionId": "c",
+            "text": "6 không chia hết cho 4, nên dải 6 dm còn thừa 2 dm."
+          }
+        ]
       }
     },
     {
@@ -1074,6 +1088,10 @@
         "b": 21,
         "c": 0,
         "largest": 0
+      },
+      "explain": {
+        "text": "Độ dài đoạn phải là ước của cả 9 và 21. Hai số này đều chia hết cho 3 (và cho 1), nên đoạn 3 dm cắt vừa hết cả hai dải.",
+        "tex": "9 = \\concept{teal}{3} \\cdot 3, \\quad 21 = \\concept{teal}{3} \\cdot 7"
       }
     },
     {
@@ -1126,7 +1144,21 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Ước chung phải là ước của cả 12 và 16. Cả hai số đều chia hết cho 2 và cho 4.",
+        "tex": "\\begin{aligned} 12 &= \\concept{teal}{2} \\cdot 6 = \\concept{teal}{4} \\cdot 3 \\\\ 16 &= \\concept{teal}{2} \\cdot 8 = \\concept{teal}{4} \\cdot 4 \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "3 là ước của 12 nhưng 16 chia 3 còn dư 1."
+          },
+          {
+            "optionId": "d",
+            "text": "6 là ước của 12 nhưng 16 chia 6 còn dư 4."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-uc-20-30",
@@ -1166,7 +1198,11 @@
           "text": " của 20 và 30."
         }
       ],
-      "bank": ["ước chung", "thương", "bội"]
+      "bank": ["ước chung", "thương", "bội"],
+      "explain": {
+        "text": "20 và 30 đều chia hết cho 5, nên 5 là ước của cả hai số. Một số là ước của cả hai số thì gọi là ước chung.",
+        "tex": "20 = \\concept{teal}{5} \\cdot 4, \\quad 30 = \\concept{teal}{5} \\cdot 6"
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dem-doan-15-20",
@@ -1195,6 +1231,10 @@
       },
       "check": {
         "expr": "15:5+20:5"
+      },
+      "explain": {
+        "text": "Lấy độ dài mỗi dải chia cho 5 dm để biết số đoạn, rồi cộng lại. Dải 15 dm được 3 đoạn, dải 20 dm được 4 đoạn.",
+        "tex": "15 : 5 + 20 : 5 = 3 + 4 = 7"
       }
     },
     {
@@ -1251,7 +1291,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Ước chung là số có mặt ở cả hai danh sách ước. Chỉ có 1 và 5 nằm trong cả hai danh sách.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 là ước của 10 nhưng không là ước của 15."
+          },
+          {
+            "optionId": "d",
+            "text": "15 là ước của 15 nhưng 10 không chia hết cho 15."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dem-uc-8-20",
@@ -1280,6 +1333,9 @@
       },
       "check": {
         "expr": "3"
+      },
+      "explain": {
+        "text": "Ước của 8 là 1, 2, 4, 8. Ước của 20 là 1, 2, 4, 5, 10, 20. Các số có ở cả hai danh sách là 1, 2, 4, nên có 3 ước chung."
       }
     },
     {
@@ -1332,7 +1388,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Ước của 9 là 1, 3, 9; ước của 12 là 1, 2, 3, 4, 6, 12. Số có ở cả hai danh sách là 1 và 3.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "4 là ước của 12 nhưng 9 chia 4 còn dư 1."
+          },
+          {
+            "optionId": "d",
+            "text": "9 là ước của 9 nhưng 12 chia 9 còn dư 3."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-uc-14-21",
@@ -1362,6 +1431,10 @@
         "i3": 1,
         "i4": 0,
         "i5": 0
+      },
+      "explain": {
+        "text": "Ước của 14 là 1, 2, 7, 14; ước của 21 là 1, 3, 7, 21. Chạm vào 1 và 7, hai số có ở cả hai danh sách.",
+        "tex": "14 = \\concept{teal}{7} \\cdot 2, \\quad 21 = \\concept{teal}{7} \\cdot 3"
       }
     },
     {
@@ -1393,6 +1466,9 @@
       },
       "check": {
         "expr": "4"
+      },
+      "explain": {
+        "text": "Các ước chung của 16 và 20 là 1, 2 và 4. Trong đó chỉ có 4 lớn hơn 2."
       }
     },
     {
@@ -1448,6 +1524,20 @@
       "multiple": false,
       "check": {
         "expr": "13"
+      },
+      "explain": {
+        "text": "ƯCLN là số lớn nhất trong các ước chung. Trong hai ước chung 1 và 13, số lớn nhất là 13.",
+        "tex": "26 = \\concept{amber}{13} \\cdot 2, \\quad 39 = \\concept{amber}{13} \\cdot 3",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "1 cũng là ước chung nhưng nhỏ hơn 13."
+          },
+          {
+            "optionId": "c",
+            "text": "26 là ước của 26 nhưng 39 không chia hết cho 26, nên 26 không là ước chung."
+          }
+        ]
       }
     },
     {
@@ -1477,6 +1567,10 @@
       },
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "Viết các ước của từng số: 10 có 1, 2, 5, 10; 25 có 1, 5, 25. Ước chung là 1 và 5, số lớn nhất là 5.",
+        "tex": "10 = \\concept{amber}{5} \\cdot 2, \\quad 25 = \\concept{amber}{5} \\cdot 5"
       }
     },
     {
@@ -1546,7 +1640,10 @@
           "left": "l2",
           "right": "r2"
         }
-      ]
+      ],
+      "explain": {
+        "text": "ƯC là viết tắt của ước chung. ƯCLN là viết tắt của ước chung lớn nhất."
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-9-15",
@@ -1601,6 +1698,19 @@
       "multiple": false,
       "check": {
         "expr": "3"
+      },
+      "explain": {
+        "text": "Ước của 9 là 1, 3, 9; ước của 15 là 1, 3, 5, 15. Ước chung là 1 và 3, số lớn nhất là 3.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "1 cũng là ước chung nhưng nhỏ hơn 3."
+          },
+          {
+            "optionId": "c",
+            "text": "5 là ước của 15 nhưng 9 không chia hết cho 5."
+          }
+        ]
       }
     },
     {
@@ -1651,7 +1761,10 @@
             "text": "Kết luận: ƯCLN(6, 8) = 2"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Tìm ƯCLN bằng cách liệt kê: viết các ước của từng số. Chọn các số có ở cả hai danh sách, rồi lấy số lớn nhất. Cuối cùng viết kết luận."
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-5-35",
@@ -1706,6 +1819,20 @@
       "multiple": false,
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "35 chia hết cho 5 nên 5 là ước của cả 5 và 35. Ước của 5 chỉ có 1 và 5, nên ƯCLN không thể lớn hơn 5.",
+        "tex": "35 = \\concept{amber}{5} \\cdot 7",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "7 là ước của 35 nhưng không là ước của 5."
+          },
+          {
+            "optionId": "c",
+            "text": "35 là bội của 5, không là ước của 5."
+          }
+        ]
       }
     },
     {
@@ -1735,6 +1862,10 @@
       },
       "check": {
         "expr": "9"
+      },
+      "explain": {
+        "text": "45 chia hết cho 9, tức số lớn chia hết cho số nhỏ, nên ƯCLN chính là số nhỏ. Vậy ƯCLN của 9 và 45 là 9.",
+        "tex": "45 = \\concept{amber}{9} \\cdot 5"
       }
     },
     {
@@ -1790,6 +1921,20 @@
       "multiple": false,
       "check": {
         "expr": "3"
+      },
+      "explain": {
+        "text": "18 và 27 đều chia hết cho số nhỏ nhất là 3, nên ƯCLN của ba số là 3.",
+        "tex": "18 = \\concept{amber}{3} \\cdot 6, \\quad 27 = \\concept{amber}{3} \\cdot 9",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "9 là ước của 18 và 27 nhưng 3 không chia hết cho 9."
+          },
+          {
+            "optionId": "d",
+            "text": "27 là ước của 27 nhưng 3 và 18 không chia hết cho 27."
+          }
+        ]
       }
     },
     {
@@ -1842,7 +1987,21 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "ƯCLN bằng số nhỏ khi số lớn chia hết cho số nhỏ. 24 chia hết cho 8 và 50 chia hết cho 10, nên hai cặp đó có ƯCLN là 8 và 10.",
+        "tex": "24 = \\concept{amber}{8} \\cdot 3, \\quad 50 = \\concept{amber}{10} \\cdot 5",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "15 không chia hết cho 6; ƯCLN của 6 và 15 là 3."
+          },
+          {
+            "optionId": "d",
+            "text": "20 không chia hết cho 12; ƯCLN của 12 và 20 là 4."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.doan-dai-nhat-16-48",
@@ -1869,6 +2028,10 @@
       },
       "check": {
         "expr": "16"
+      },
+      "explain": {
+        "text": "Đoạn dài nhất cắt vừa hết cả hai dải là ƯCLN của 16 và 48. Vì 48 chia hết cho 16 nên ƯCLN là số nhỏ, tức 16 dm.",
+        "tex": "48 = \\concept{amber}{16} \\cdot 3"
       }
     },
     {
@@ -1921,7 +2084,20 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số nguyên tố chỉ chia hết cho 1 và cho chính nó. 13 chỉ có hai ước là 1 và 13.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "9 chia hết cho 3 nên có ước thứ ba, 9 là hợp số."
+          },
+          {
+            "optionId": "d",
+            "text": "25 chia hết cho 5 nên có ước thứ ba, 25 là hợp số."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.phan-tich-24",
@@ -1975,7 +2151,25 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Phân tích ra thừa số nguyên tố là viết 24 thành tích các số nguyên tố. Chia 24 cho 2 ba lần rồi cho 3, ta được 24 = 2 · 2 · 2 · 3 = 2³ · 3.",
+        "tex": "24 = \\concept{sky}{2} \\cdot \\concept{sky}{2} \\cdot \\concept{sky}{2} \\cdot \\concept{sky}{3} = \\concept{sky}{2}^{\\concept{violet}{3}} \\cdot \\concept{sky}{3}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 là hợp số (6 = 2 · 3), chưa phân tích hết."
+          },
+          {
+            "optionId": "c",
+            "text": "4 và 6 đều là hợp số, không phải thừa số nguyên tố."
+          },
+          {
+            "optionId": "d",
+            "text": "4 là hợp số (4 = 2 · 2), chưa phân tích hết."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.thieu-thua-so-30",
@@ -2003,6 +2197,10 @@
       },
       "check": {
         "expr": "30:(2·3)"
+      },
+      "explain": {
+        "text": "Lấy 30 chia cho 2 · 3 = 6 được 5. Vì 5 là số nguyên tố nên 30 = 2 · 3 · 5.",
+        "tex": "30 = \\concept{sky}{2} \\cdot \\concept{sky}{3} \\cdot \\concept{sky}{5}"
       }
     },
     {
@@ -2039,7 +2237,11 @@
           "text": " của các số nguyên tố."
         }
       ],
-      "bank": ["tích", "tổng", "thương"]
+      "bank": ["tích", "tổng", "thương"],
+      "explain": {
+        "text": "Các thừa số nguyên tố được nhân với nhau, nên số được viết thành tích của chúng. Ví dụ 12 = 2 · 2 · 3, không phải tổng hay thương.",
+        "tex": "12 = \\concept{sky}{2} \\cdot \\concept{sky}{2} \\cdot \\concept{sky}{3}"
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.xep-chia-dan-45",
@@ -2089,7 +2291,11 @@
             "text": "45 = 3² · 5"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Chia 45 cho số nguyên tố nhỏ nhất mà nó chia hết là 3, được 15. Chia tiếp 15 cho 3 được 5, rồi 5 cho 5 được 1, các số chia là các thừa số nguyên tố. Dừng khi được 1 và viết 45 thành tích.",
+        "tex": "45 = \\concept{sky}{3} \\cdot \\concept{sky}{3} \\cdot \\concept{sky}{5} = \\concept{sky}{3}^{\\concept{violet}{2}} \\cdot \\concept{sky}{5}"
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-chung-28-42",
@@ -2145,7 +2351,20 @@
         }
       ],
       "answer": ["a", "d"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Thừa số nguyên tố chung phải có ở cả hai phân tích. 2 và 7 có ở cả 28 và 42.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "3 chỉ có trong phân tích của 42."
+          },
+          {
+            "optionId": "c",
+            "text": "4 là hợp số nên không phải thừa số nguyên tố."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.tinh-uclnn-50-70",
@@ -2178,6 +2397,10 @@
       },
       "check": {
         "expr": "2·5"
+      },
+      "explain": {
+        "text": "Lấy các thừa số nguyên tố chung, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại. 2 có số mũ 1 ở cả hai số, 5 có số mũ 2 và 1 nên lấy 1. 7 chỉ có ở 70 nên bỏ.",
+        "tex": "2 \\cdot 5 = \\concept{amber}{10}"
       }
     },
     {
@@ -2211,6 +2434,10 @@
       },
       "check": {
         "expr": "2^3"
+      },
+      "explain": {
+        "text": "Chỉ có thừa số 2 chung, với số mũ 3 ở cả hai số, nên lấy 2³. Thừa số 3 chỉ có ở 24 và 7 chỉ có ở 56 nên bỏ.",
+        "tex": "2^{3} = \\concept{amber}{8}"
       }
     },
     {
@@ -2270,6 +2497,19 @@
       "multiple": false,
       "check": {
         "expr": "2·7"
+      },
+      "explain": {
+        "text": "Thừa số chung là 2 và 7. Số mũ nhỏ nhất của 2 là 1; của 7 là 1 (ở 42) và 2 (ở 98), lấy 1, nên ƯCLN = 2 · 7 = 14.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "3 chỉ có ở 42, không có ở 98 nên phải bỏ."
+          },
+          {
+            "optionId": "d",
+            "text": "7 chỉ có một lần ở 42, phải lấy số mũ nhỏ nhất là 1, không lấy 7²."
+          }
+        ]
       }
     },
     {
@@ -2320,7 +2560,10 @@
             "text": "ƯCLN(12, 30) = 2 · 3 = 6"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Muốn tìm ƯCLN bằng phân tích: phân tích từng số, rồi tìm thừa số nguyên tố chung. Chọn số mũ nhỏ nhất của mỗi thừa số và nhân lại."
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-15-45-50",
@@ -2379,6 +2622,20 @@
       "multiple": false,
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "Thừa số chung phải có ở cả ba số. Chỉ có 5 có ở cả ba, với số mũ nhỏ nhất là 1, nên ƯCLN là 5.",
+        "tex": "15 = 3 \\cdot \\concept{amber}{5}, \\quad 45 = 3^{2} \\cdot \\concept{amber}{5}, \\quad 50 = 2 \\cdot 5^{2}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "3 có ở 15 và 45 nhưng không có ở 50."
+          },
+          {
+            "optionId": "d",
+            "text": "5² chỉ có ở 50; 15 chỉ có một thừa số 5, nên phải lấy 5."
+          }
+        ]
       }
     },
     {
@@ -2412,6 +2669,10 @@
       },
       "check": {
         "expr": "3^2"
+      },
+      "explain": {
+        "text": "Chỉ có 3 là thừa số chung của cả ba số, với số mũ 2 ở cả ba số, nên lấy 3². Thừa số 2, 5 và 7 không có ở cả ba số nên bỏ.",
+        "tex": "3^{2} = \\concept{amber}{9}"
       }
     },
     {
@@ -2468,7 +2729,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Thừa số nguyên tố chung phải có ở cả ba phân tích. 2 và 3 có ở 30, 42 và 66.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "6 là hợp số (6 = 2 · 3), không phải thừa số nguyên tố."
+          },
+          {
+            "optionId": "d",
+            "text": "7 chỉ có ở 42."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-7-28-49",
@@ -2495,6 +2769,10 @@
       },
       "check": {
         "expr": "7"
+      },
+      "explain": {
+        "text": "28 và 49 đều chia hết cho số nhỏ nhất là 7, nên ƯCLN của ba số là 7.",
+        "tex": "28 = \\concept{amber}{7} \\cdot 4, \\quad 49 = \\concept{amber}{7} \\cdot 7"
       }
     },
     {
@@ -2556,6 +2834,20 @@
       "multiple": false,
       "check": {
         "expr": "2^2·3"
+      },
+      "explain": {
+        "text": "Thừa số chung của ba số là 2 và 3. Số mũ nhỏ nhất của 2 là 2, của 3 là 1, nên ƯCLN = 2² · 3 = 12.",
+        "tex": "2^{2} \\cdot 3 = 4 \\cdot 3 = \\concept{amber}{12}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 chỉ lấy 2 với số mũ 1, nhưng số mũ nhỏ nhất của 2 là 2."
+          },
+          {
+            "optionId": "d",
+            "text": "24 không là ước của 60, nên không là ước chung của ba số."
+          }
+        ]
       }
     },
     {
@@ -2608,7 +2900,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Các ước chung chính là các ước của ƯCLN. Ước của 8 là 1, 2, 4, 8, trong các số đã cho có 1 và 4.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "5 không là ước của 8."
+          },
+          {
+            "optionId": "d",
+            "text": "16 lớn hơn ƯCLN là 8; ước chung không thể lớn hơn ƯCLN."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-uc-18-27",
@@ -2638,6 +2943,10 @@
         "i3": 0,
         "i4": 1,
         "i5": 0
+      },
+      "explain": {
+        "text": "Các ước chung của 18 và 27 chính là các ước của ƯCLN là 9. Ước của 9 là 1, 3 và 9, nên chạm vào ba số này.",
+        "tex": "9 = 1 \\cdot 9 = 3 \\cdot 3"
       }
     },
     {
@@ -2665,6 +2974,10 @@
       },
       "check": {
         "expr": "4"
+      },
+      "explain": {
+        "text": "Số ước chung bằng số ước của ƯCLN. 10 có 4 ước là 1, 2, 5 và 10.",
+        "tex": "10 = 1 \\cdot 10 = 2 \\cdot 5"
       }
     },
     {
@@ -2721,7 +3034,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số học sinh là ước chung của 16 và 28, tức là ước của ƯCLN là 4. Ước của 4 là 1, 2, 4, nên trong các số đã cho có 2 và 4.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "16 không chia hết cho 3, nên không chia đều được."
+          },
+          {
+            "optionId": "d",
+            "text": "28 chia 8 còn dư 4; ước chung không thể lớn hơn ƯCLN là 4."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uc-la-uoc-cua",
@@ -2776,6 +3102,19 @@
       "multiple": false,
       "check": {
         "expr": "20"
+      },
+      "explain": {
+        "text": "Các ước chung của hai số chính là các ước của ƯCLN. ƯCLN của 40 và 60 là 20, nên đó là các ước của 20.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Ước của 40 có 8 mà 60 không chia hết cho 8, nên đó không là ước chung."
+          },
+          {
+            "optionId": "d",
+            "text": "20 là ước chung của 40 và 60 nhưng không là ước của 10."
+          }
+        ]
       }
     },
     {
@@ -2812,7 +3151,10 @@
           "text": " của chúng."
         }
       ],
-      "bank": ["ƯCLN", "ước chung", "số nhỏ nhất"]
+      "bank": ["ƯCLN", "ước chung", "số nhỏ nhất"],
+      "explain": {
+        "text": "Các ước chung chính là các ước của ƯCLN. Ví dụ ƯCLN của 12 và 18 là 6, nên các ước chung là 1, 2, 3, 6, tức các ước của 6."
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dia-10-35",
@@ -2867,6 +3209,20 @@
       "multiple": false,
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "Số đĩa phải là ước chung của 10 và 35, và ta cần số nhiều nhất, nên đó là ƯCLN của 10 và 35. Ước chung là 1 và 5, số lớn nhất là 5.",
+        "tex": "10 = \\concept{amber}{5} \\cdot 2, \\quad 35 = \\concept{amber}{5} \\cdot 7",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "35 chia 2 còn dư 1, nên không chia đều được."
+          },
+          {
+            "optionId": "d",
+            "text": "35 chia 10 còn dư 5, nên không chia đều được."
+          }
+        ]
       }
     },
     {
@@ -2896,6 +3252,10 @@
       },
       "check": {
         "expr": "7"
+      },
+      "explain": {
+        "text": "Số đĩa nhiều nhất là ƯCLN của 14 và 21. Ước chung của hai số là 1 và 7, nên nhiều nhất 7 đĩa, mỗi đĩa 2 cái bánh và 3 cái kẹo.",
+        "tex": "14 = \\concept{amber}{7} \\cdot 2, \\quad 21 = \\concept{amber}{7} \\cdot 3"
       }
     },
     {
@@ -2924,6 +3284,10 @@
       },
       "check": {
         "expr": "15:5"
+      },
+      "explain": {
+        "text": "Số túi nhiều nhất là ƯCLN của 15 và 40, bằng 5. Mỗi túi có số bánh bằng 15 chia cho 5.",
+        "tex": "15 : 5 = 3"
       }
     },
     {
@@ -2979,6 +3343,20 @@
       "multiple": false,
       "check": {
         "expr": "8"
+      },
+      "explain": {
+        "text": "Số học sinh nhiều nhất là ƯCLN của 32 và 56. Ước chung của hai số là 1, 2, 4, 8, số lớn nhất là 8.",
+        "tex": "32 = \\concept{amber}{8} \\cdot 4, \\quad 56 = \\concept{amber}{8} \\cdot 7",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "4 chia được nhưng chưa phải nhiều nhất, vì 8 cũng chia được."
+          },
+          {
+            "optionId": "d",
+            "text": "56 chia 16 còn dư 8, nên không chia đều được."
+          }
+        ]
       }
     },
     {
@@ -3015,7 +3393,10 @@
           "text": " của số đồ vật mỗi loại."
         }
       ],
-      "bank": ["ƯCLN", "hiệu", "số nhỏ hơn"]
+      "bank": ["ƯCLN", "hiệu", "số nhỏ hơn"],
+      "explain": {
+        "text": "Số phần nhiều nhất chính là ƯCLN của số đồ vật mỗi loại. Ví dụ 12 quả và 20 quả có ƯCLN là 4, nên chia được nhiều nhất 4 phần."
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.hop-but-21-28",
@@ -3074,6 +3455,20 @@
       "multiple": false,
       "check": {
         "expr": "7"
+      },
+      "explain": {
+        "text": "Số bút mỗi hộp là ước chung của 21 và 28. Hai số này có ước chung là 1 và 7, mà mỗi hộp từ 2 bút trở lên nên mỗi hộp có 7 bút.",
+        "tex": "21 = \\concept{teal}{7} \\cdot 3, \\quad 28 = \\concept{teal}{7} \\cdot 4",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "28 không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "21 không chia hết cho 14."
+          }
+        ]
       }
     },
     {
@@ -3103,6 +3498,10 @@
       },
       "check": {
         "expr": "2^2·5"
+      },
+      "explain": {
+        "text": "Số mà cả 40 và 100 đều chia hết cho nó là ước chung, nên số lớn nhất là ƯCLN của 40 và 100. Ta có 40 = 2³ · 5 và 100 = 2² · 5², lấy 2² và 5 được 20.",
+        "tex": "2^{2} \\cdot 5 = \\concept{amber}{20}"
       }
     },
     {
@@ -3130,6 +3529,10 @@
       },
       "check": {
         "expr": "2·11"
+      },
+      "explain": {
+        "text": "Số lớn nhất mà cả 44 và 66 đều chia hết cho nó là ƯCLN của 44 và 66. Ta có 44 = 2² · 11 và 66 = 2 · 3 · 11, lấy 2 và 11 được 22.",
+        "tex": "2 \\cdot 11 = \\concept{amber}{22}"
       }
     },
     {
@@ -3182,7 +3585,21 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số mà cả 27 và 45 đều chia hết cho nó là ước chung. ƯCLN của 27 và 45 là 9, nên ước chung là các ước của 9: 1, 3, 9.",
+        "tex": "27 = \\concept{teal}{9} \\cdot 3, \\quad 45 = \\concept{teal}{9} \\cdot 5",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "27 không chia hết cho 5."
+          },
+          {
+            "optionId": "d",
+            "text": "27 chia 15 còn dư 12."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.tui-ke-32-48",
@@ -3213,6 +3630,10 @@
       },
       "check": {
         "expr": "16"
+      },
+      "explain": {
+        "text": "Số kẹo mỗi túi là ước chung của 32 và 48. Các ước chung là 1, 2, 4, 8 và 16, trong đó chỉ có 16 là từ 10 trở lên.",
+        "tex": "32 = \\concept{teal}{16} \\cdot 2, \\quad 48 = \\concept{teal}{16} \\cdot 3"
       }
     },
     {
@@ -3265,7 +3686,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cộng các ước của 8 không kể 8 được 7. 7 khác 8 nên 8 không là số hoàn hảo.",
+        "tex": "1 + 2 + 4 = 7",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "15 là tổng khi cộng cả ước 8, nhưng đề bảo không kể 8."
+          },
+          {
+            "optionId": "d",
+            "text": "Tổng 1 + 2 + 4 là 7, không phải 8."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-uoc-21",
@@ -3292,6 +3727,10 @@
       },
       "check": {
         "expr": "1+3+7"
+      },
+      "explain": {
+        "text": "Cộng các ước của 21, không kể 21.",
+        "tex": "1 + 3 + 7 = 11"
       }
     },
     {
@@ -3344,7 +3783,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cộng các ước của 12 không kể 12 được 16. 16 khác 12 nên 12 không là số hoàn hảo.",
+        "tex": "1 + 2 + 3 + 4 + 6 = 16",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tổng 1 + 2 + 3 + 4 + 6 là 16, không phải 12."
+          },
+          {
+            "optionId": "d",
+            "text": "Tổng 15 là khi thiếu ước 1; phải cộng cả 1."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.hoan-hao-15",
@@ -3396,7 +3849,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cộng các ước của 15 không kể 15 được 9. 9 khác 15 nên 15 không là số hoàn hảo.",
+        "tex": "1 + 3 + 5 = 9",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "24 là tổng khi cộng cả ước 15, nhưng đề bảo không kể 15."
+          },
+          {
+            "optionId": "d",
+            "text": "Tổng 1 + 3 + 5 là 9, không phải 15."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-uoc-9",
@@ -3423,6 +3890,10 @@
       },
       "check": {
         "expr": "1+3"
+      },
+      "explain": {
+        "text": "Cộng các ước của 9, không kể 9.",
+        "tex": "1 + 3 = 4"
       }
     },
     {
@@ -3459,7 +3930,11 @@
           "text": " đúng bằng số đó thì số đó là số hoàn hảo."
         }
       ],
-      "bank": ["tổng", "tích", "số lượng"]
+      "bank": ["tổng", "tích", "số lượng"],
+      "explain": {
+        "text": "Số hoàn hảo là số bằng tổng các ước của nó, không kể chính nó. Ví dụ 6 có các ước 1, 2, 3 và tổng của chúng bằng 6.",
+        "tex": "1 + 2 + 3 = 6"
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-toi-gian",
@@ -3511,7 +3986,20 @@
         }
       ],
       "answer": ["c"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Phân số tối giản có tử và mẫu chỉ có ước chung là 1. 7 và 10 chỉ có ước chung là 1.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "6 và 9 cùng chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "8 và 12 cùng chia hết cho 2."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.rut-gon-18-24",
@@ -3569,7 +4057,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "ƯCLN của 18 và 24 là 6. Chia cả tử và mẫu cho 6 thì được phân số tối giản.",
+        "tex": "\\dfrac{18}{24} = \\dfrac{18 : \\concept{amber}{6}}{24 : \\concept{amber}{6}} = \\dfrac{3}{4}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "9 và 12 còn cùng chia hết cho 3, chưa tối giản."
+          },
+          {
+            "optionId": "c",
+            "text": "6 và 8 còn cùng chia hết cho 2, chưa tối giản."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-rut-gon",
@@ -3605,7 +4107,11 @@
           "text": " của chúng."
         }
       ],
-      "bank": ["ƯCLN", "số nhỏ hơn", "tổng"]
+      "bank": ["ƯCLN", "số nhỏ hơn", "tổng"],
+      "explain": {
+        "text": "Chia cả tử và mẫu cho ƯCLN thì được ngay phân số tối giản. Ví dụ ƯCLN của 12 và 30 là 6, nên chia cho 6.",
+        "tex": "\\dfrac{12}{30} = \\dfrac{12 : \\concept{amber}{6}}{30 : \\concept{amber}{6}} = \\dfrac{2}{5}"
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.ucln-tu-mau-15-35",
@@ -3636,6 +4142,10 @@
       },
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "Ước của 15 là 1, 3, 5, 15; ước của 35 là 1, 5, 7, 35. Ước chung là 1 và 5, số lớn nhất là 5.",
+        "tex": "15 = \\concept{amber}{5} \\cdot 3, \\quad 35 = \\concept{amber}{5} \\cdot 7"
       }
     },
     {
@@ -3688,7 +4198,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Phân số tối giản có tử và mẫu chỉ có ước chung là 1. 3 và 8, 5 và 9 đều như vậy.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "9 và 12 cùng chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "10 và 15 cùng chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.toi-gian-4-15",
@@ -3744,7 +4267,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Phân số tối giản có tử và mẫu chỉ có ước chung là 1. Ước của 4 là 1, 2, 4; ước của 15 là 1, 3, 5, 15; chỉ có 1 chung.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tử nhỏ hơn mẫu chưa đủ: tử 2, mẫu 8 thì tử nhỏ hơn mà vẫn cùng chia hết cho 2."
+          },
+          {
+            "optionId": "c",
+            "text": "15 không chia hết cho 2."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uc-lon-hon-1-32-40",
@@ -3800,7 +4336,17 @@
         }
       ],
       "answer": ["a", "b", "d"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số lớn hơn 1 mà cả 32 và 40 chia hết cho nó là ước chung lớn hơn 1. ƯCLN của 32 và 40 là 8 nên ước chung là 1, 2, 4, 8; bỏ 1 còn 2, 4 và 8.",
+        "tex": "32 = \\concept{teal}{8} \\cdot 4, \\quad 40 = \\concept{teal}{8} \\cdot 5",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "32 không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.mau-toi-gian-33-55",
@@ -3831,6 +4377,10 @@
       },
       "check": {
         "expr": "55:11"
+      },
+      "explain": {
+        "text": "ƯCLN của 33 và 55 là 11. Chia cả tử và mẫu cho 11. Mẫu mới là 55 : 11 = 5.",
+        "tex": "\\dfrac{33}{55} = \\dfrac{33 : \\concept{amber}{11}}{55 : \\concept{amber}{11}} = \\dfrac{3}{5}"
       }
     }
   ],

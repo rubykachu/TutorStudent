@@ -5,7 +5,6 @@
     "phep-cong-phep-tru": "exempt",
     "phep-nhan-phep-chia": "exempt",
     "tap-hop": "exempt",
-    "thu-tu-thuc-hien-phep-tinh": "exempt",
-    "uoc-chung-uoc-chung-lon-nhat": "warn"
+    "thu-tu-thuc-hien-phep-tinh": "exempt"
   }
 }
