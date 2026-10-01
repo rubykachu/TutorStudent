@@ -297,7 +297,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ]),
   "cung-am5-cong3": tryWalk(-5, -2, "Điểm đã đi sang phải 3 đơn vị, tới −2."),
   "thu-am4": tryWalk(-4),
-  "goi-y-am5-cong2": walk(-5, [2], SUM, "hint"),
+  "goi-y-am4-cong2": walk(-4, [2], SUM, "hint"),
 
   // 4. Cộng với số âm
   "trai-2-cong-am5": walk(2, [-5], SUM),
@@ -494,11 +494,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "cung-5-bieu-thuc": tryWalk(5, -5, "Điểm đã tới −5, giá trị của A là −5."),
   "goi-y-bieu-thuc": lines(
-    "Tính B = x + 2 − 5 khi x = 1",
+    "Tính C = x + 2 − 5 khi x = 3",
     [
-      { tex: "B = 1 + 2 - 5", tag: tag("thay x bằng 1", NOTE) },
-      { tex: "= 3 - 5" },
-      { tex: "= -2" },
+      { tex: "C = 3 + 2 - 5", tag: tag("thay x bằng 3", NOTE) },
+      { tex: "= 5 - 5" },
+      { tex: "= 0" },
     ],
     "hint",
   ),

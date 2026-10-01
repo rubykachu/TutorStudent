@@ -74,7 +74,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt kế chỉ −2 độ, nghĩa là trời lạnh hơn 0 độ. Số −2 gồm dấu − và phần số tự nhiên 2."
+              "text": "Nhiệt kế chỉ −2 độ, nghĩa là trời lạnh hơn 0 độ. Số −2 gồm dấu − và số 2; số 2 này gọi là phần số tự nhiên."
             },
             {
               "type": "visual",
@@ -156,7 +156,7 @@
           "children": [
             {
               "type": "note",
-              "text": "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Ta ghi số đối của −5 là −(−5), vậy −(−5) = 5."
+              "text": "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Ta viết số đối của −5 là −(−5), tức là đặt thêm dấu − ngoài ngoặc: −(−5) = 5."
             },
             {
               "type": "formula",
@@ -221,7 +221,7 @@
         }
       ],
       "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.nhiet-do-am-ap-len"],
-      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am6-cong3"],
+      "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am8-cong3"],
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.cong-duong-vi-du",
@@ -427,7 +427,7 @@
           ]
         }
       ],
-      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am5-am2"],
+      "checkIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am7-am3"],
       "practiceIds": ["phep-cong-phep-tru-so-nguyen.ex.tinh-am8-am5"],
       "recap": {
         "type": "visual",
@@ -459,7 +459,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cộng hai số khác dấu, khi hai phần số tự nhiên không bằng nhau: lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó.",
+              "text": "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0.",
               "rule": true
             },
             {
@@ -486,7 +486,7 @@
           "id": "phep-cong-phep-tru-so-nguyen.tip.dau-truoc",
           "kind": "tránh sai",
           "title": "Cộng hai số khác dấu",
-          "text": "Khi cộng hai số khác dấu, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau. Gặp phép trừ thì đổi thành phép cộng trước, rồi mới dùng mẹo.",
+          "text": "Khi cộng hai số khác dấu mà hai phần số tự nhiên không bằng nhau, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau.",
           "tex": "\\begin{gathered} 2 + (-9) \\\\ = -(9 - 2) \\\\ = -7 \\end{gathered}"
         }
       ],
@@ -495,7 +495,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Cộng hai số khác dấu, khi hai phần số tự nhiên không bằng nhau: lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó."
+        "caption": "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0."
       }
     },
     {
@@ -690,7 +690,7 @@
           "children": [
             {
               "type": "note",
-              "text": "A = x + (−4) − 6 là một dãy phép tính có chữ x. Cho x = −3, ta thay chữ x bằng số −3 rồi tính, được giá trị của A."
+              "text": "A = x + (−4) − 6 là một biểu thức, tức là dãy phép tính có chữ x. Cho x = −3, ta thay chữ x bằng số −3 rồi tính, được giá trị của A."
             },
             {
               "type": "visual",
@@ -890,7 +890,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Cộng hai số khác dấu, khi hai phần số tự nhiên không bằng nhau: lấy phần lớn trừ phần nhỏ. Số nào có phần số tự nhiên lớn hơn thì tổng mang dấu của số đó."
+        "caption": "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0."
       }
     },
     {
@@ -1552,7 +1552,7 @@
       }
     },
     {
-      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am6-cong3",
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am8-cong3",
       "type": "numeric",
       "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"],
       "prompt": [
@@ -1562,7 +1562,7 @@
         },
         {
           "type": "formula",
-          "tex": "(-6)+3"
+          "tex": "(-8)+3"
         }
       ],
       "hints": {
@@ -1572,20 +1572,20 @@
             "index": 1
           }
         ],
-        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-am5-cong2"
+        "hintVisualId": "phep-cong-phep-tru-so-nguyen.visual.goi-y-am4-cong2"
       },
       "difficulty": 1,
       "explain": {
-        "text": "Cộng với 3 là đi sang phải 3 đơn vị từ −6. Ta tới −3.",
-        "tex": "(-6) + 3 = \\concept{pink}{-3}"
+        "text": "Cộng với 3 là đi sang phải 3 đơn vị từ −8. Ta tới −5.",
+        "tex": "(-8) + 3 = \\concept{pink}{-5}"
       },
       "answer": {
         "kind": "value",
-        "value": -3
+        "value": -5
       },
       "allowNegative": true,
       "check": {
-        "expr": "(-6)+3"
+        "expr": "(-8)+3"
       }
     },
     {
@@ -2330,7 +2330,7 @@
       "bank": ["chính số đó", "0", "số đối của nó"]
     },
     {
-      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am5-am2",
+      "id": "phep-cong-phep-tru-so-nguyen.ex.tinh-am7-am3",
       "type": "choice",
       "cardIds": [],
       "prompt": [
@@ -2340,7 +2340,7 @@
         },
         {
           "type": "formula",
-          "tex": "(-5)+(-2)"
+          "tex": "(-7)+(-3)"
         }
       ],
       "hints": {
@@ -2353,12 +2353,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số cùng là số âm: cộng 5 với 2 được 7, rồi viết dấu − ở trước. Vậy kết quả là −7.",
-        "tex": "\\begin{gathered} (-5) + (-2) \\\\ = -(5 + 2) = \\concept{pink}{-7} \\end{gathered}",
+        "text": "Hai số cùng là số âm: cộng 7 với 3 được 10, rồi viết dấu − ở trước. Vậy kết quả là −10.",
+        "tex": "\\begin{gathered} (-7) + (-3) \\\\ = -(7 + 3) = \\concept{pink}{-10} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "−3 là lấy 5 trừ 2 rồi viết dấu − ở trước. Hai số âm thì ta cộng hai phần số tự nhiên, không trừ."
+            "text": "−4 là lấy 7 trừ 3 rồi viết dấu − ở trước. Hai số âm thì ta cộng hai phần số tự nhiên, không trừ."
           },
           {
             "optionId": "c",
@@ -2371,35 +2371,35 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "-7"
+            "tex": "-10"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "-3"
+            "tex": "-4"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "7"
+            "tex": "10"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "3"
+            "tex": "4"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "(-5)+(-2)"
+        "expr": "(-7)+(-3)"
       }
     },
     {
@@ -3732,7 +3732,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Thay x bằng −4: A = (−4) + 6 − 9. Tính từ trái sang phải: 2 − 9 = −7.",
+        "text": "Thay x bằng −4: C = (−4) + 6 − 9. Tính từ trái sang phải: 2 − 9 = −7.",
         "tex": "\\begin{gathered} (-4) + 6 - 9 \\\\ = 2 - 9 = \\concept{pink}{-7} \\end{gathered}"
       },
       "answer": {
@@ -4001,7 +4001,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nam có 2 nghìn đồng, chi 10 nghìn đồng (ghi nợ phần còn thiếu), rồi mẹ cho thêm 4 nghìn đồng."
+          "text": "Nam có 2 nghìn đồng, chi 12 nghìn đồng (ghi nợ phần còn thiếu), rồi mẹ cho thêm 8 nghìn đồng."
         },
         {
           "type": "note",
@@ -4018,16 +4018,16 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chi 10 là −10 và mẹ cho 4 là +4. Tính từ trái sang phải: 2 + (−10) = −8, rồi (−8) + 4 = −4.",
-        "tex": "\\begin{gathered} 2 + (-10) + 4 \\\\ = -8 + 4 = \\concept{pink}{-4} \\end{gathered}"
+        "text": "Chi 12 là −12 và mẹ cho 8 là +8. Tính từ trái sang phải: 2 + (−12) = −10, rồi (−10) + 8 = −2.",
+        "tex": "\\begin{gathered} 2 + (-12) + 8 \\\\ = -10 + 8 = \\concept{pink}{-2} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": -4
+        "value": -2
       },
       "allowNegative": true,
       "check": {
-        "expr": "2+(-10)+4"
+        "expr": "2+(-12)+8"
       }
     },
     {
