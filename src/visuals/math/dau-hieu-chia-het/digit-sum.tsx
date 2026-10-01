@@ -16,10 +16,10 @@ export function DigitSum({ spec }: { spec: SpecOf<"digitSum"> }) {
   const digits = digitsOf(n);
   const sum = digitSum(n);
   const hint = mode === "hint";
-  const lines: Row[] = [{ tex: sumTex(n, "amber") }];
+  const lines: Row[] = [{ tex: sumTex(n, "lime") }];
   if (divisor > 0) {
     lines.push(
-      { tex: verdictTex(sum, divisor, "amber") },
+      { tex: verdictTex(sum, divisor, "lime") },
       { tex: verdictTex(n, divisor) },
     );
   }
@@ -47,7 +47,7 @@ export function DigitSum({ spec }: { spec: SpecOf<"digitSum"> }) {
           </li>
         ))}
       </ul>
-      <Legend items={[{ color: "amber", name: "Tổng các chữ số" }]} />
+      <Legend items={[{ color: "lime", name: "Tổng các chữ số" }]} />
     </div>
   );
 

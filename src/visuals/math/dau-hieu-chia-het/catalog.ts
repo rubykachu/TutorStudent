@@ -89,6 +89,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     unit: "viên",
     bag: "túi",
     mode: "steps",
+    plainBagCount: true,
   },
   "so-cuoi-2": {
     kind: "endDigits",
@@ -108,7 +109,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     thing: "đồng",
     unit: "nghìn",
     bag: "tờ",
-    mode: "hint",
+    mode: "steps",
+    plainBagCount: true,
   },
   "giai-tien-45": {
     kind: "bags",
@@ -118,6 +120,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     unit: "nghìn",
     bag: "tờ",
     mode: "solution",
+    plainBagCount: true,
   },
   "o-trong-72-5": {
     kind: "digitBox",
@@ -134,6 +137,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     unit: "cái",
     bag: "túi",
     mode: "steps",
+    plainBagCount: true,
   },
   "so-cuoi-5": {
     kind: "endDigits",
@@ -152,7 +156,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
     rows: [
       {
-        tex: "\\concept{teal}{135} \\chiahet 5",
+        tex: "13\\concept{teal}{5} \\chiahet 5",
         tag: {
           text: "Chữ số tận cùng là 5",
           color: "teal",
@@ -177,21 +181,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     rows: [
       {
-        tex: "\\concept{teal}{30} \\chiahet 2",
+        tex: "30 \\chiahet 2",
         tag: {
           text: "Xếp cặp 2 bạn, vừa hết",
-          color: "teal",
+          color: "slate",
         },
       },
       {
-        tex: "\\concept{teal}{30} \\chiahet 5",
+        tex: "30 \\chiahet 5",
         tag: {
           text: "Xếp nhóm 5 bạn, vừa hết",
-          color: "teal",
+          color: "slate",
         },
       },
       {
-        tex: "\\concept{teal}{30}",
+        tex: "3\\concept{teal}{0}",
         tag: {
           text: "Chữ số tận cùng là 0",
           color: "teal",
@@ -211,6 +215,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "hint",
     rows: [
       {
+        tex: "4\\,152",
+        tag: {
+          text: "Số đang xét, cộng từng chữ số",
+          color: "slate",
+        },
+      },
+      {
         tex: "4 + 1 = 5",
       },
       {
@@ -221,19 +232,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "giai-cong-7316": {
+  "giai-cong-7036": {
     kind: "lines",
-    label: "Cộng lần lượt các chữ số của 7 316",
+    label: "Cộng lần lượt các chữ số của 7 036",
     mode: "steps",
     rows: [
+      {
+        tex: "7 + 0 = 7",
+      },
       {
         tex: "7 + 3 = 10",
       },
       {
-        tex: "10 + 1 = 11",
-      },
-      {
-        tex: "11 + 6 = 17",
+        tex: "10 + 6 = 16",
       },
     ],
   },
@@ -249,24 +260,31 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     rows: [
       {
+        tex: "6\\,384",
+        tag: {
+          text: "Số nhà của Hà",
+          color: "slate",
+        },
+      },
+      {
         tex: "6 + 3 = 9",
         tag: {
           text: "Cộng hai chữ số đầu",
-          color: "amber",
+          color: "slate",
         },
       },
       {
         tex: "9 + 8 = 17",
         tag: {
           text: "Cộng thêm chữ số kế",
-          color: "amber",
+          color: "slate",
         },
       },
       {
-        tex: "17 + 4 = 21",
+        tex: "17 + 4 = \\concept{lime}{21}",
         tag: {
-          text: "Cộng chữ số cuối",
-          color: "amber",
+          text: "Cộng chữ số tận cùng",
+          color: "slate",
         },
       },
     ],
@@ -298,10 +316,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     unit: "cái",
     bag: "hộp",
     mode: "steps",
+    plainBagCount: true,
   },
-  "tong-1746-9": {
+  "tong-5976-9": {
     kind: "digitSum",
-    n: 1746,
+    n: 5976,
     divisor: 9,
     mode: "still",
   },
@@ -353,6 +372,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     unit: "cái",
     bag: "túi",
     mode: "steps",
+    plainBagCount: true,
   },
   "tong-2415-3": {
     kind: "digitSum",
@@ -368,14 +388,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "12 \\chiahet 3",
         tag: {
           text: "Tổng chia hết cho 3",
-          color: "amber",
+          color: "lime",
         },
       },
       {
         tex: "12 \\khongchiahet 9",
         tag: {
           text: "Tổng không chia hết cho 9",
-          color: "amber",
+          color: "lime",
         },
       },
       {
@@ -422,18 +442,18 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "2 + 1 + 3 + 6 = 12",
         tag: {
           text: "Tổng các chữ số",
-          color: "amber",
+          color: "lime",
         },
       },
       {
         tex: "12 \\chiahet 3",
         tag: {
           text: "12 chia hết cho 3",
-          color: "amber",
+          color: "lime",
         },
       },
       {
-        tex: "2\\,136 \\chiahet 3",
+        tex: "",
         tag: {
           text: "Vậy 2 136 chia hết cho cả 2 và 3",
           color: "slate",
@@ -443,20 +463,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hai-dau-hieu": {
     kind: "rows",
-    label: "Hai loại dấu hiệu",
+    label: "Số 312 chia hết cho cả 2 và 3",
     rows: [
       {
-        tex: "2,\\; 5",
+        tex: "312 \\chiahet 2",
         tag: {
-          text: "Xét chữ số tận cùng",
+          text: "Chữ số tận cùng là 2",
           color: "teal",
         },
       },
       {
-        tex: "3,\\; 9",
+        tex: "3 + 1 + 2 = 6 \\chiahet 3",
         tag: {
-          text: "Xét tổng các chữ số",
-          color: "amber",
+          text: "Tổng các chữ số là 6",
+          color: "lime",
+        },
+      },
+      {
+        tex: "",
+        tag: {
+          text: "Vậy 312 chia hết cho cả 2 và 3",
+          color: "slate",
         },
       },
     ],
@@ -469,40 +496,47 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tom-tat-hai-dau-hieu": {
     kind: "rows",
-    label: "Hai loại dấu hiệu",
+    label: "Số 534 chia hết cho cả 2 và 3",
     rows: [
       {
-        tex: "2,\\; 5",
+        tex: "534 \\chiahet 2",
         tag: {
-          text: "Xét chữ số tận cùng",
+          text: "Chữ số tận cùng là 4",
           color: "teal",
         },
       },
       {
-        tex: "3,\\; 9",
+        tex: "5 + 3 + 4 = 12 \\chiahet 3",
         tag: {
-          text: "Xét tổng các chữ số",
-          color: "amber",
+          text: "Tổng các chữ số là 12",
+          color: "lime",
+        },
+      },
+      {
+        tex: "",
+        tag: {
+          text: "Vậy 534 chia hết cho cả 2 và 3",
+          color: "slate",
         },
       },
     ],
   },
-  "giai-banh-48": {
+  "giai-banh-60": {
     kind: "lines",
     label: "Số bánh và số túi",
     mode: "steps",
     rows: [
       {
-        tex: "6 : 3 = 2",
+        tex: "10 : 5 = 2",
         tag: {
           text: "Mỗi hộp xếp được 2 túi",
           color: "amber",
         },
       },
       {
-        tex: "2 \\cdot 8 = 16",
+        tex: "2 \\cdot 6 = 12",
         tag: {
-          text: "8 hộp xếp được 16 túi",
+          text: "6 hộp xếp được 12 túi",
           color: "amber",
         },
       },
@@ -521,14 +555,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "\\concept{blue}{6} \\cdot 7 = \\concept{amber}{42}",
+        tex: "\\concept{blue}{6} \\cdot 7 = \\concept{lime}{42}",
         tag: {
           text: "Tích",
           color: "amber",
         },
       },
       {
-        tex: "\\concept{amber}{42} \\chiahet 3",
+        tex: "\\concept{lime}{42} \\chiahet 3",
         tag: {
           text: "Tích chia hết cho 3",
           color: "amber",
@@ -727,41 +761,41 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "10^{4} = 10\\,000",
         tag: {
           text: "Một chữ số 1 và bốn chữ số 0",
-          color: "amber",
+          color: "slate",
         },
       },
       {
         tex: "1 + 0 + 0 + 0 + 0 = 1",
         tag: {
           text: "Tổng các chữ số là 1",
-          color: "amber",
+          color: "lime",
         },
       },
     ],
   },
-  "tong-10-4-8": {
+  "tong-10-2-4": {
     kind: "lines",
-    label: "Xét tổng 10 mũ 4 cộng 8 có chia hết cho 9 không",
+    label: "Xét tổng 10 mũ 2 cộng 4 có chia hết cho 9 không",
     mode: "steps",
     rows: [
       {
-        tex: "10^{4} + 8 = 10\\,008",
+        tex: "10^{2} + 4 = 104",
         tag: {
-          text: "Cộng 8 vào số 10 000",
-          color: "amber",
+          text: "Cộng 4 vào số 100",
+          color: "slate",
         },
       },
       {
-        tex: "1 + 0 + 0 + 0 + 8 = 9",
+        tex: "1 + 0 + 0 + 4 = 5",
         tag: {
-          text: "Tổng các chữ số là 9",
-          color: "amber",
+          text: "Tổng các chữ số là 5",
+          color: "lime",
         },
       },
       {
-        tex: "(10^{4} + 8) \\chiahet 9",
+        tex: "(10^{2} + 4) \\khongchiahet 9",
         tag: {
-          text: "Chia hết cho 9",
+          text: "Không chia hết cho 9",
           color: "slate",
         },
       },
@@ -775,21 +809,35 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tom-tat-10-3": {
     kind: "lines",
-    label: "Luỹ thừa 10 mũ 3",
+    label: "Luỹ thừa 10 mũ 3 cộng thêm một số",
     mode: "still",
     rows: [
       {
         tex: "10^{3} = 1\\,000",
         tag: {
           text: "Một chữ số 1 và ba chữ số 0",
-          color: "amber",
+          color: "slate",
         },
       },
       {
         tex: "1 + 0 + 0 + 0 = 1",
         tag: {
           text: "Tổng các chữ số là 1",
-          color: "amber",
+          color: "lime",
+        },
+      },
+      {
+        tex: "10^{3} + 1 = 1\\,001",
+        tag: {
+          text: "Cộng thêm 1",
+          color: "slate",
+        },
+      },
+      {
+        tex: "1 + 0 + 0 + 1 = 2",
+        tag: {
+          text: "Tổng các chữ số là 1 + 1 = 2",
+          color: "lime",
         },
       },
     ],
@@ -803,14 +851,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "4 + d + 6 = 10 + d",
         tag: {
           text: "Tổng các chữ số",
-          color: "amber",
+          color: "lime",
         },
       },
       {
         tex: "10 + d = 18",
         tag: {
-          text: "18 chia hết cho 9, d là chữ số",
-          color: "amber",
+          text: "Tổng từ 10 đến 19, chỉ 18 chia hết cho 9",
+          color: "lime",
         },
       },
       {
@@ -838,14 +886,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "1 + 2 + d = 3 + d",
         tag: {
           text: "Tổng các chữ số của số 12d",
-          color: "amber",
+          color: "lime",
         },
       },
       {
         tex: "3 + d = 9",
         tag: {
-          text: "Số 12d chia hết cho 9, d là chữ số",
-          color: "amber",
+          text: "Tổng từ 3 đến 12, chỉ 9 chia hết cho 9",
+          color: "lime",
         },
       },
       {
@@ -870,24 +918,31 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     rows: [
       {
+        tex: "\\overline{38a} \\chiahet 9",
+        tag: {
+          text: "Tìm chữ số a",
+          color: "slate",
+        },
+      },
+      {
         tex: "3 + 8 + a = 11 + a",
         tag: {
           text: "Tổng các chữ số",
-          color: "amber",
+          color: "lime",
         },
       },
       {
         tex: "11 \\leq 11 + a \\leq 20",
         tag: {
           text: "a từ 0 đến 9",
-          color: "amber",
+          color: "lime",
         },
       },
       {
         tex: "11 + a = 18",
         tag: {
           text: "Chỉ có 18 chia hết cho 9",
-          color: "amber",
+          color: "lime",
         },
       },
       {
@@ -905,6 +960,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
     rows: [
       {
+        tex: "\\overline{24a}",
+        tag: {
+          text: "Tìm a để số chia hết cho cả 3 và 5",
+          color: "slate",
+        },
+      },
+      {
         tex: "\\overline{24a} \\chiahet 5",
         tag: {
           text: "a là 0 hoặc 5",
@@ -914,15 +976,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "2 + 4 + 0 = 6 \\chiahet 3",
         tag: {
-          text: "Thử a = 0: hợp",
-          color: "amber",
+          text: "Thử a = 0: được",
+          color: "lime",
         },
       },
       {
         tex: "2 + 4 + 5 = 11 \\khongchiahet 3",
         tag: {
-          text: "Thử a = 5: không hợp",
-          color: "amber",
+          text: "Thử a = 5: không được",
+          color: "lime",
         },
       },
       {
@@ -949,15 +1011,22 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\overline{ab} \\cdot 9 = \\overline{11d}",
         tag: {
-          text: "Số 11d chia hết cho 9",
+          text: "Thay chữ bằng chữ số",
+          color: "slate",
+        },
+      },
+      {
+        tex: "\\overline{11d} \\chiahet 9",
+        tag: {
+          text: "Là tích có thừa số 9",
           color: "slate",
         },
       },
       {
         tex: "1 + 1 + d = 9",
         tag: {
-          text: "d là chữ số nên d = 7",
-          color: "amber",
+          text: "Chỉ 9 chia hết cho 9, nên d = 7",
+          color: "lime",
         },
       },
       {
@@ -998,15 +1067,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "5 + 8 + 0 = 13 \\khongchiahet 9",
         tag: {
-          text: "Thử c = 0: không hợp",
-          color: "amber",
+          text: "Thử c = 0: không được",
+          color: "lime",
         },
       },
       {
         tex: "5 + 8 + 5 = 18 \\chiahet 9",
         tag: {
-          text: "Thử c = 5: hợp",
-          color: "amber",
+          text: "Thử c = 5: được",
+          color: "lime",
         },
       },
       {
@@ -1072,16 +1141,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "(6 \\cdot 7 - 3 \\cdot 2) \\chiahet 3",
+        tex: "6 \\cdot 7 - 3 \\cdot 2 = 36 \\chiahet 3",
         tag: {
-          text: "Điểm cả bài",
+          text: "Điểm cả bài, chia hết cho 3",
           color: "slate",
         },
       },
       {
         tex: "29 \\khongchiahet 3",
         tag: {
-          text: "Chắc chắn tính sai",
+          text: "Báo 29 điểm: chắc chắn tính sai",
           color: "slate",
         },
       },
@@ -1112,16 +1181,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "(12 \\cdot 2 - 3 \\cdot 5) \\chiahet 3",
+        tex: "12 \\cdot 2 - 3 \\cdot 5 = 9 \\chiahet 3",
         tag: {
-          text: "Điểm cả bài",
+          text: "Điểm cả bài, chia hết cho 3",
           color: "slate",
         },
       },
       {
         tex: "31 \\khongchiahet 3",
         tag: {
-          text: "Chắc chắn tính sai",
+          text: "Báo 31 điểm: chắc chắn tính sai",
           color: "slate",
         },
       },
@@ -1137,6 +1206,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: {
           text: "Tiền bút chia hết cho 5",
           color: "slate",
+        },
+      },
+      {
+        tex: "9,\\; 18,\\; 27,\\; 36,\\; 45,\\; 54",
+        tag: {
+          text: "Tiền bút nhỏ hơn 65",
+          color: "amber",
         },
       },
       {
@@ -1258,6 +1334,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
     rows: [
       {
+        tex: "4 \\cdot x + 5 \\cdot y = 30",
+        tag: {
+          text: "Bút 4, vở 5, tổng 30 nghìn",
+          color: "slate",
+        },
+      },
+      {
         tex: "5 \\cdot y \\chiahet 5",
         tag: {
           text: "Tiền vở chia hết cho 5",
@@ -1278,6 +1361,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
           color: "amber",
         },
       },
+      {
+        tex: "x = 5",
+        tag: {
+          text: "Tiền bút là 20 nghìn",
+          color: "amber",
+        },
+      },
     ],
   },
   "lap-235": {
@@ -1285,6 +1375,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Lập số chia hết cho 5 từ các chữ số 2, 3 và 5",
     mode: "steps",
     rows: [
+      {
+        tex: "2,\\; 3,\\; 5",
+        tag: {
+          text: "Lập số ba chữ số chia hết cho 5",
+          color: "slate",
+        },
+      },
       {
         tex: "5",
         tag: {
@@ -1310,47 +1407,56 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "lap-2-chia-het-5": {
     kind: "rows",
-    label: "Các số lập được chia hết cho 5",
+    label: "Các số lập được từ 1, 8 và 9 chia hết cho 2",
     rows: [
       {
-        tex: "\\overline{235} \\chiahet 5",
+        tex: "\\overline{198} \\chiahet 2",
         tag: {
-          text: "Tận cùng là 5",
+          text: "Tận cùng là 8",
           color: "teal",
         },
       },
       {
-        tex: "\\overline{325} \\chiahet 5",
+        tex: "\\overline{918} \\chiahet 2",
         tag: {
-          text: "Tận cùng là 5",
+          text: "Tận cùng là 8",
           color: "teal",
         },
       },
     ],
   },
   "lap-035": {
-    kind: "rows",
-    label: "Các số lập được từ 0, 3 và 5 chia hết cho 5",
+    kind: "lines",
+    label: "Lập số chia hết cho 5 từ các chữ số 0, 3 và 5",
+    mode: "steps",
     rows: [
       {
-        tex: "\\overline{350} \\chiahet 5",
+        tex: "\\overline{350},\\; \\overline{530}",
         tag: {
-          text: "Tận cùng là 0",
+          text: "Tận cùng là 0: lập được 2 số",
           color: "teal",
         },
       },
       {
-        tex: "\\overline{530} \\chiahet 5",
+        tex: "\\overline{305}",
         tag: {
-          text: "Tận cùng là 0",
+          text: "Tận cùng là 5: lập được 1 số",
           color: "teal",
         },
       },
       {
-        tex: "\\overline{305} \\chiahet 5",
+        tex: "\\overline{035}",
         tag: {
-          text: "Tận cùng là 5",
-          color: "teal",
+          text: "Chữ số 0 đứng đầu, không phải số ba chữ số",
+          color: "slate",
+        },
+        muted: true,
+      },
+      {
+        tex: "2 + 1 = 3",
+        tag: {
+          text: "Được 3 số",
+          color: "slate",
         },
       },
     ],
@@ -1363,23 +1469,64 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "tom-tat-lap": {
     kind: "rows",
-    label: "Các số lập được chia hết cho 5",
+    label: "Các số lập được từ 3, 6 và 7 chia hết cho 2",
     rows: [
       {
-        tex: "\\overline{145} \\chiahet 5",
+        tex: "3,\\; 6,\\; 7",
         tag: {
-          text: "Tận cùng là 5",
+          text: "Lập số chia hết cho 2",
+          color: "slate",
+        },
+      },
+      {
+        tex: "\\overline{376} \\chiahet 2",
+        tag: {
+          text: "Tận cùng là 6",
           color: "teal",
         },
       },
       {
-        tex: "\\overline{415} \\chiahet 5",
+        tex: "\\overline{736} \\chiahet 2",
         tag: {
-          text: "Tận cùng là 5",
+          text: "Tận cùng là 6",
           color: "teal",
         },
       },
     ],
+  },
+  "goi-y-nhom-it-nhat": {
+    kind: "lines",
+    label: "Số nhỏ nhất khác 0 chia hết cho cả 2 và 5",
+    mode: "hint",
+    rows: [
+      {
+        tex: "\\overline{\\ldots 0}",
+        tag: {
+          text: "Cả 2 và 5: tận cùng là 0",
+          color: "teal",
+        },
+      },
+      {
+        tex: "0",
+        tag: {
+          text: "Đội có bạn, nên bỏ số 0",
+          color: "slate",
+        },
+      },
+      {
+        tex: "\\overline{? 0}",
+        tag: {
+          text: "Số nhỏ nhất còn lại",
+          color: "slate",
+        },
+      },
+    ],
+  },
+  "goi-y-107-9": {
+    kind: "digitSum",
+    n: 107,
+    divisor: 9,
+    mode: "hint",
   },
   sticker: {
     kind: "sticker",
