@@ -101,8 +101,8 @@
           "id": "on-tap-chuong-2.tip.tim-khang-dinh-sai",
           "kind": "tránh sai",
           "title": "Tìm khẳng định sai",
-          "text": "Khẳng định có chữ “luôn” hay “đều” sai khi có một ví dụ làm nó sai. Thử vài số nhỏ để tìm ví dụ đó.",
-          "tex": "\\begin{gathered} 2 \\khongchiahet 3,\\ 4 \\khongchiahet 3 \\\\ 2 + 4 = 6 \\chiahet 3 \\end{gathered}"
+          "text": "Muốn biết khẳng định có chữ “luôn” hay “đều” có sai không, hãy thử vài số nhỏ. Chỉ cần một ví dụ làm nó sai là khẳng định sai.",
+          "tex": "\\begin{gathered} 1 \\khongchiahet 3,\\ 5 \\khongchiahet 3 \\\\ 1 + 5 = 6 \\chiahet 3 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -241,7 +241,7 @@
           "kind": "làm nhanh",
           "title": "Loại hợp số nhanh",
           "text": "Số lớn hơn 5 có chữ số tận cùng là 0, 2, 4, 5, 6 hoặc 8 thì là hợp số. Số lớn hơn 3 có tổng các chữ số chia hết cho 3 cũng là hợp số. Không loại được thì chưa chắc là số nguyên tố.",
-          "tex": "\\begin{gathered} 4\\,718 \\chiahet 2 \\\\ 2\\,133:\\ 2 + 1 + 3 + 3 = 9 \\chiahet 3 \\end{gathered}"
+          "tex": "\\begin{gathered} 4\\,718 \\chiahet 2 \\\\ 2 + 1 + 3 + 3 = 9 \\\\ 2\\,133 \\chiahet 3 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -407,8 +407,8 @@
           "id": "on-tap-chuong-2.tip.chia-het-3",
           "kind": "làm nhanh",
           "title": "Chia hết cho 3",
-          "text": "Gạch các chữ số 0, 3, 6, 9. Cộng các chữ số còn lại: tổng chia hết cho 3 thì số đó chia hết cho 3. Gạch hết thì số đó chia hết cho 3.",
-          "tex": "1\\,836:\\ 1 + 8 = 9 \\chiahet 3"
+          "text": "Gạch các chữ số 0, 3, 6, 9, rồi cộng các chữ số còn lại. Tổng chia hết cho 3, hay gạch hết, thì số đó chia hết cho 3. Mẹo này chỉ dùng cho 3, không dùng cho 9.",
+          "tex": "\\begin{gathered} 1\\,836 \\\\ 1 + 8 = 9 \\chiahet 3 \\end{gathered}"
         },
         {
           "type": "group",
@@ -564,7 +564,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1, đừng quên ước 1 cho n = 0.",
+              "text": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1, nhớ rằng ước 1 cho n = 0.",
               "rule": true
             },
             {
@@ -583,7 +583,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tim-n-8-xong",
-        "caption": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1, đừng quên ước 1 cho n = 0."
+        "caption": "Nếu 8 chia hết cho (n + 1) thì n + 1 là một ước của 8. Liệt kê các ước rồi trừ 1, nhớ rằng ước 1 cho n = 0."
       }
     },
     {
@@ -657,7 +657,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số chia hết cho nhiều số là bội chung của các số đó. Ta tìm BCNN, liệt kê các bội của nó rồi chọn số nằm trong khoảng đề cho.",
+              "text": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó. Nếu đề có số dư, ta cộng số dư vào từng bội trước khi chọn số nằm trong khoảng đề cho.",
               "rule": true
             },
             {
@@ -684,19 +684,19 @@
           "id": "on-tap-chuong-2.tip.nho-cong-so-du",
           "kind": "tránh sai",
           "title": "Nhớ cộng lại số dư",
-          "text": "Bội chung tìm được là số sau khi đã bớt số dư. Nhớ cộng lại số dư: bội chung 36, dư 2 thì số cần tìm là 36 + 2.",
-          "tex": "36 + 2 = 38"
+          "text": "Bội chung tìm được là số đã bớt số dư. Cộng số dư vào từng bội chung trước, rồi mới chọn số nằm trong khoảng.",
+          "tex": "\\begin{gathered} 10 + 3 = 13 \\\\ 20 + 3 = 23 \\end{gathered}"
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các bội chung của 4 và 6, là các số chia hết cho cả hai số. Biết các bội chung giúp bạn chọn đúng số học sinh trong khoảng đề cho."
+              "text": "Chạm vào các bội chung của 6 và 8, là các số chia hết cho cả hai số. Biết các bội chung giúp bạn chọn đúng số học sinh trong khoảng đề cho."
             },
             {
               "type": "visual",
-              "visualId": "on-tap-chuong-2.visual.chon-bc-4-6"
+              "visualId": "on-tap-chuong-2.visual.chon-bc-6-8"
             }
           ]
         }
@@ -704,13 +704,13 @@
       "checkIds": [
         "on-tap-chuong-2.ex.bcnn-10-12-15",
         "on-tap-chuong-2.ex.bot-5-em",
-        "on-tap-chuong-2.ex.chon-bc-60"
+        "on-tap-chuong-2.ex.chon-so-trong-khoang"
       ],
       "practiceIds": ["on-tap-chuong-2.ex.bai-2-58"],
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.khoang-bcnn-xong",
-        "caption": "Số chia hết cho nhiều số là bội chung của các số đó. Ta tìm BCNN, liệt kê các bội của nó rồi chọn số nằm trong khoảng đề cho."
+        "caption": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó. Nếu đề có số dư, ta cộng số dư vào từng bội trước khi chọn số nằm trong khoảng đề cho."
       }
     },
     {
@@ -752,7 +752,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Với mỗi thừa số nguyên tố, số mũ nhỏ nhất trong các số là số mũ trong ƯCLN. Số mũ lớn nhất là số mũ trong BCNN."
+              "text": "Thừa số nguyên tố có ở mọi số: số mũ nhỏ nhất là số mũ trong ƯCLN. Mọi thừa số nguyên tố: số mũ lớn nhất là số mũ trong BCNN."
             },
             {
               "type": "visual",
@@ -785,6 +785,10 @@
               "type": "note",
               "text": "Tích của ƯCLN và BCNN của hai số bằng tích của hai số đó.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ: hai bạn trực nhật cứ 12 ngày và 18 ngày một lần, sau 36 ngày lại gặp nhau."
             },
             {
               "type": "visual",
@@ -871,10 +875,22 @@
               "text": "Nhắc lại kiến thức tiểu học: hai phân số cùng mẫu thì cộng hoặc trừ hai tử, giữ nguyên mẫu."
             },
             {
+              "type": "note",
+              "text": "Ví dụ: Mai ăn một phần tư cái bánh, Lan ăn một phần sáu cái bánh, hai bạn ăn năm phần mười hai cái bánh."
+            },
+            {
               "type": "visual",
               "visualId": "on-tap-chuong-2.visual.tru-vi-du"
             }
           ]
+        },
+        {
+          "type": "tip",
+          "id": "on-tap-chuong-2.tip.bcnn-hai-mau",
+          "kind": "làm nhanh",
+          "title": "Tìm BCNN của hai mẫu",
+          "text": "Liệt kê các bội của mẫu lớn hơn. Số đầu tiên chia hết cho mẫu nhỏ hơn là BCNN.",
+          "tex": "\\begin{gathered} 8,\\ 16,\\ 24 \\\\ 24 \\chiahet 6 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -907,6 +923,10 @@
               "type": "note",
               "text": "Nhân ba số thì nhóm hai số nào lại trước cũng được, tích không đổi. Đó là tính chất kết hợp của phép nhân.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ: 7 thùng, mỗi thùng 8 hộp, mỗi hộp 125 viên kẹo, thì 8 · 125 = 1 000 viên kẹo một thùng."
             },
             {
               "type": "visual",
@@ -1063,7 +1083,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tich-12-18-xong",
-        "caption": "Tích của ƯCLN và BCNN của hai số bằng tích của hai số đó."
+        "caption": "Tích của ƯCLN và BCNN của hai số bằng tích của hai số đó. Biết tích và một thừa số thì chia tích cho thừa số đó để tìm thừa số còn lại."
       }
     },
     {
@@ -1236,7 +1256,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Cần tìm khẳng định có một ví dụ làm nó sai. Hai số 4 và 5 đều không chia hết cho 9, nhưng tổng 4 + 5 = 9 lại chia hết cho 9.",
-        "tex": "4 \\khongchiahet 9,\\ 5 \\khongchiahet 9,\\ 4 + 5 = 9 \\chiahet 9",
+        "tex": "\\begin{gathered} 4 \\khongchiahet 9,\\ 5 \\khongchiahet 9 \\\\ 4 + 5 = 9 \\chiahet 9 \\end{gathered}",
         "wrong": [
           {
             "optionId": "a",
@@ -1554,7 +1574,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Cộng từng chữ số: 1 + 1 + 4 + 3 = 9. Tổng 9 chia hết cho 3 nên 1 143 chia hết cho 3, và là hợp số.",
+        "text": "Cộng từng chữ số: 1 + 1 + 4 + 3 = 9. Tổng 9 chia hết cho 3 nên 1 143 chia hết cho 3; 1 143 lớn hơn 3 nên là hợp số.",
         "tex": "1 + 1 + 4 + 3 = 9 \\chiahet 3"
       },
       "type": "numeric",
@@ -1653,7 +1673,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Loại các số chia hết cho 2, 3 hoặc 5. 2 020 và 3 576 là số chẵn, còn 1 143 có tổng các chữ số là 9 nên chia hết cho 3. Ba số kia là hợp số, nên trong bốn lựa chọn chỉ 461 có thể là số nguyên tố.",
-        "tex": "461:\\ 4 + 6 + 1 = 11 \\khongchiahet 3",
+        "tex": "\\begin{gathered} 4 + 6 + 1 = 11 \\\\ 461 \\khongchiahet 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "a",
@@ -1661,7 +1681,7 @@
           },
           {
             "optionId": "b",
-            "text": "1 + 1 + 4 + 3 = 9 nên 1 143 chia hết cho 3, là hợp số."
+            "text": "1 + 1 + 4 + 3 = 9 nên 1 143 chia hết cho 3, lại lớn hơn 3, là hợp số."
           },
           {
             "optionId": "c",
@@ -1864,7 +1884,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "70 và 49 đều chia hết cho 7 nên 119 chia hết cho 7. Vì 119 lớn hơn 7 nên 119 có thêm ước 7, và là hợp số.",
+        "text": "70 và 49 đều chia hết cho 7 nên 119 chia hết cho 7. Ngoài 1 và 119, số 119 còn có ước 7, nên nó là hợp số.",
         "tex": "119 = 70 + 49 = 7 \\cdot 17",
         "wrong": [
           {
@@ -1956,21 +1976,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Hợp số, vì là tổng của hai số chia hết cho 7"
+            "text": "Hợp số, vì cả hai số hạng đều chia hết cho 7"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Hợp số, vì là tổng của hai số chia hết cho 2"
+            "text": "Hợp số, vì cả hai số hạng đều chia hết cho 2"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Hợp số, vì là tổng của hai số chia hết cho 3"
+            "text": "Hợp số, vì cả hai số hạng đều chia hết cho 3"
           }
         },
         {
@@ -1994,7 +2014,7 @@
         },
         {
           "type": "formula",
-          "tex": "3 \\cdot 4 \\cdot 5 + 2\\,020 \\cdot 2\\,021 \\cdot 2\\,022"
+          "tex": "\\begin{gathered} 3 \\cdot 4 \\cdot 5 \\\\ +\\ 2\\,020 \\cdot 2\\,021 \\cdot 2\\,022 \\end{gathered}"
         },
         {
           "type": "note",
@@ -2022,7 +2042,7 @@
           },
           {
             "optionId": "c",
-            "text": "3 · 4 · 5 = 60 không chia hết cho 9."
+            "text": "3 · 4 · 5 = 60 không chia hết cho 8."
           },
           {
             "optionId": "d",
@@ -2036,21 +2056,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Hợp số, vì là tổng của hai số chia hết cho 7"
+            "text": "Hợp số, vì cả hai số hạng đều chia hết cho 7"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Hợp số, vì là tổng của hai số chia hết cho 2"
+            "text": "Hợp số, vì cả hai số hạng đều chia hết cho 2"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Hợp số, vì là tổng của hai số chia hết cho 9"
+            "text": "Hợp số, vì cả hai số hạng đều chia hết cho 8"
           }
         },
         {
@@ -2226,7 +2246,7 @@
           },
           {
             "optionId": "d",
-            "text": "A không tận cùng là 0: tổng có đúng một số hạng không chia hết cho 2 thì không chia hết cho 2."
+            "text": "Tổng có đúng một số hạng không chia hết cho 2, nên A là số lẻ, tận cùng không phải 0."
           }
         ]
       },
@@ -2302,7 +2322,7 @@
           },
           {
             "optionId": "c",
-            "text": "Chia hết cho 2 không liên quan tới chia hết cho 5. Ba số hạng đều tận cùng là 0 hoặc 5 nên tổng chia hết cho 5."
+            "text": "Chỉ xét chữ số tận cùng: ba số hạng đều tận cùng là 0 hoặc 5 nên tổng chia hết cho 5."
           },
           {
             "optionId": "d",
@@ -2433,7 +2453,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số 9 lớn hơn 3 nhưng điều đó không làm số chia hết cho 9."
+            "text": "Mọi số chia hết cho 9 đều chia hết cho 3, nên không có số nào như vậy."
           },
           {
             "optionId": "c",
@@ -2454,7 +2474,7 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Có, vì 9 lớn hơn 3"
+            "text": "Có thể, vì có số chia hết cho 9 mà không chia hết cho 3"
           }
         },
         {
@@ -2660,7 +2680,7 @@
           },
           {
             "optionId": "c",
-            "text": "2 · 7 làm sau luỹ thừa, trước phép cộng."
+            "text": "2 · 5 làm sau luỹ thừa, trước phép cộng."
           },
           {
             "optionId": "d",
@@ -2708,11 +2728,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ xếp đều 46 cái bánh vào 2 đĩa."
-        },
-        {
-          "type": "note",
-          "text": "Tìm số nguyên tố còn thiếu trong phép phân tích sau."
+          "text": "Mẹ xếp đều 46 cái bánh vào 2 đĩa. Số bánh mỗi đĩa là số nguyên tố còn thiếu trong phép phân tích sau."
         },
         {
           "type": "formula",
@@ -2723,13 +2739,13 @@
         "highlight": [
           {
             "target": "block",
-            "index": 2
+            "index": 1
           }
         ]
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia 46 cho số nguyên tố nhỏ nhất mà nó chia hết là 2, được 23. Số 23 là số nguyên tố, nên 46 = 2 · 23.",
+        "text": "Chia 46 cho số nguyên tố nhỏ nhất mà nó chia hết là 2, được 23. Số 23 là số nguyên tố, nên 46 = 2 · 23, mỗi đĩa có 23 cái bánh.",
         "tex": "46 = 2 \\cdot 23"
       },
       "type": "numeric",
@@ -3204,14 +3220,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho a = 4, b = 6 và c = 12. BCNN(4, 6) bằng bao nhiêu, và có chia hết cho 12 không?"
+          "text": "Cho a = 4, b = 6 và c = 12. 4 và 6 đều không chia hết cho 12."
+        },
+        {
+          "type": "note",
+          "text": "BCNN(4, 6) bằng bao nhiêu, và có chia hết cho 12 không?"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -3431,16 +3451,16 @@
       "multiple": false
     },
     {
-      "id": "on-tap-chuong-2.ex.chon-bc-60",
+      "id": "on-tap-chuong-2.ex.chon-so-trong-khoang",
       "cardIds": ["on-tap-chuong-2.card.bcnn-bai-toan"],
       "prompt": [
         {
           "type": "note",
-          "text": "Bớt 5 em ở cả hai đầu khoảng: từ 200 − 5 = 195 đến 300 − 5 = 295."
+          "text": "Xếp hàng 6 hay hàng 9 đều thừa 2 em. Cộng 2 vào các bội chung của 6 và 9 được 20, 38, 56, 74, 92."
         },
         {
           "type": "note",
-          "text": "Trong các số sau, số nào là bội của 60 và nằm trong khoảng từ 195 đến 295?"
+          "text": "Số nào nằm trong khoảng từ 50 đến 70?"
         }
       ],
       "hints": {
@@ -3453,20 +3473,20 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Các bội của 60 là 60, 120, 180, 240, 300. Chỉ 240 nằm trong khoảng từ 195 đến 295.",
-        "tex": "60,\\ 120,\\ 180,\\ \\mathbf{240},\\ 300",
+        "text": "Cộng số dư vào từng bội chung rồi mới chọn số trong khoảng. Trong các số 20, 38, 56, 74 và 92, chỉ 56 nằm trong khoảng từ 50 đến 70.",
+        "tex": "\\begin{gathered} 18 + 2 = 20,\\ 36 + 2 = 38 \\\\ 54 + 2 = 56,\\ 72 + 2 = 74 \\end{gathered}",
         "wrong": [
           {
             "optionId": "a",
-            "text": "180 là bội của 60 nhưng nhỏ hơn 195."
+            "text": "38 nhỏ hơn 50."
           },
           {
-            "optionId": "b",
-            "text": "200 không chia hết cho 60."
+            "optionId": "c",
+            "text": "74 lớn hơn 70."
           },
           {
             "optionId": "d",
-            "text": "300 là bội của 60 nhưng lớn hơn 295."
+            "text": "92 lớn hơn 70."
           }
         ]
       },
@@ -3476,32 +3496,32 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "180"
+            "text": "38"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "200"
+            "text": "56"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "240"
+            "text": "74"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "300"
+            "text": "92"
           }
         }
       ],
-      "answer": ["c"],
+      "answer": ["b"],
       "multiple": false
     },
     {
@@ -3525,8 +3545,8 @@
       "bookRef": "SBT 2.58",
       "difficulty": 3,
       "explain": {
-        "text": "Gọi n là số học sinh. Bớt 5 em thì xếp hàng 10, 12 hay 15 đều vừa hết, nên n − 5 là bội chung của 10, 12 và 15. BCNN(10, 12, 15) = 60 và bội của 60 trong khoảng từ 195 đến 295 là 240, nên n = 240 + 5 = 245.",
-        "tex": "\\begin{gathered} n - 5 = 240 \\\\ n = 240 + 5 = 245 \\end{gathered}"
+        "text": "Gọi n là số học sinh. Bớt 5 em thì xếp hàng 10, 12 hay 15 đều vừa hết, nên n − 5 là bội của BCNN(10, 12, 15) = 60. Cộng 5 vào từng bội của 60, rồi chọn số từ 200 đến 300.",
+        "tex": "\\begin{gathered} 60 + 5 = 65 \\\\ 120 + 5 = 125 \\\\ 180 + 5 = 185 \\\\ 240 + 5 = 245 \\\\ 300 + 5 = 305 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
@@ -3662,7 +3682,7 @@
       "bookRef": "SBT 2.63",
       "difficulty": 3,
       "explain": {
-        "text": "Thừa số 2 có số mũ 3 và b, số mũ nhỏ nhất là 2, nên b = 2. Thừa số 3 có số mũ a và 5, số mũ lớn nhất là 6, nên a = 6.",
+        "text": "ƯCLN có 2², nên số mũ nhỏ nhất của 3 và b là 2, vậy b = 2. BCNN có 3⁶, nên số mũ lớn nhất của a và 5 là 6, vậy a = 6.",
         "tex": "\\begin{gathered} b = 2 \\\\ a = 6 \\end{gathered}"
       },
       "type": "fillBlank",
@@ -3836,7 +3856,7 @@
       "bookRef": "SBT 2.60",
       "difficulty": 3,
       "explain": {
-        "text": "Tích hai số bằng ƯCLN nhân BCNN, tức là 2³ · 3⁶ · 5⁴. Chia từng thừa số cho số đã biết: thừa số 2 mất vì 2³ : 2³ = 1. Số còn lại là 3⁴ · 5³.",
+        "text": "Tích hai số bằng ƯCLN nhân BCNN, tức là 2³ · 3⁶ · 5⁴. Chia mỗi luỹ thừa cho luỹ thừa cùng cơ số trong số đã biết: 2³ : 2³ = 1 nên thừa số 2 mất. Số còn lại là 3⁴ · 5³.",
         "tex": "\\begin{gathered} 2^{3} : 2^{3} = 1 \\\\ 3^{6} : 3^{2} = 3^{4} \\\\ 5^{4} : 5 = 5^{3} \\end{gathered}",
         "wrong": [
           {
@@ -3896,7 +3916,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phân tích các mẫu ra thừa số nguyên tố:"
+          "text": "Hai phân số có mẫu là 14 và 21. Phân tích hai mẫu ra thừa số nguyên tố:"
         },
         {
           "type": "formula",
@@ -3953,7 +3973,7 @@
       "difficulty": 2,
       "explain": {
         "text": "42 : 14 = 3 nên nhân cả tử và mẫu của phân số thứ nhất với 3. 42 : 21 = 2 nên nhân cả tử và mẫu của phân số thứ hai với 2.",
-        "tex": "\\begin{gathered} \\dfrac{9 \\cdot 3}{14 \\cdot 3} = \\dfrac{27}{42} \\\\ \\dfrac{8 \\cdot 2}{21 \\cdot 2} = \\dfrac{16}{42} \\end{gathered}",
+        "tex": "\\begin{gathered} \\dfrac{9 \\cdot 3}{14 \\cdot 3} = \\dfrac{27}{42} \\\\[8pt] \\dfrac{8 \\cdot 2}{21 \\cdot 2} = \\dfrac{16}{42} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -4370,7 +4390,7 @@
       "bookRef": "SBT 2.61",
       "difficulty": 3,
       "explain": {
-        "text": "Đổi chỗ thừa số 9 và a, rồi nhóm 12 345 679 với 9 trước. Vì 12 345 679 · 9 = 111 111 111, nên nhân với a được số có chín chữ số a."
+        "text": "Đổi chỗ thừa số 9 và a, rồi nhóm 12 345 679 với 9 trước. Vì 12 345 679 · 9 = 111 111 111, nên nhân với a được số có chín chữ số a."
       },
       "type": "order",
       "items": [
@@ -4378,21 +4398,21 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "Đổi chỗ các thừa số a và 9, ta được 12 345 679 · 9 · a."
+            "text": "Đổi chỗ các thừa số a và 9, ta được 12 345 679 · 9 · a."
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Nhóm 12 345 679 với 9 trước, ta được (12 345 679 · 9) · a."
+            "text": "Nhóm 12 345 679 với 9 trước, ta được (12 345 679 · 9) · a."
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "Tính 12 345 679 · 9 = 111 111 111, nên được 111 111 111 · a."
+            "text": "Tính 12 345 679 · 9 = 111 111 111, nên được 111 111 111 · a."
           }
         },
         {

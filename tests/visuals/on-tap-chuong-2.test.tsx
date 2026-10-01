@@ -14,7 +14,7 @@ const PICK_RULES: Record<string, (item: string) => boolean> = {
   "chon-chia-9": (n) => Number(n) % 9 === 0,
   "chon-chia-235": (n) => [2, 3, 5].some((d) => Number(n) % d === 0),
   "chon-uoc-8": (n) => 8 % Number(n) === 0,
-  "chon-bc-4-6": (n) => Number(n) % 4 === 0 && Number(n) % 6 === 0,
+  "chon-bc-6-8": (n) => Number(n) % 6 === 0 && Number(n) % 8 === 0,
   "chon-tong-5": (sum) =>
     sum
       .split("+")
