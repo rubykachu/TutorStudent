@@ -6,6 +6,7 @@ import { BcLists } from "./bc-lists";
 import { BcnnTable } from "./bcnn-table";
 import type { VisualSpec } from "./catalog";
 import { Contrast } from "./contrast";
+import { Gears } from "./gears";
 import { MeetTry } from "./meet-try";
 import Sticker from "./sticker";
 
@@ -29,6 +30,10 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
     case "contrast":
       return function ContrastVisual() {
         return <Contrast spec={spec} />;
+      };
+    case "gears":
+      return function GearsVisual() {
+        return <Gears spec={spec} />;
       };
     case "rows":
       return function RowsVisual() {

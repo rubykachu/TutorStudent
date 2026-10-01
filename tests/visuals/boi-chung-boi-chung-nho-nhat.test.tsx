@@ -8,6 +8,10 @@ import {
   VISUAL_SPECS,
 } from "@/visuals/math/boi-chung-boi-chung-nho-nhat/catalog";
 import {
+  Gears,
+  gearLayout,
+} from "@/visuals/math/boi-chung-boi-chung-nho-nhat/gears";
+import {
   commonMultiples,
   exponentOf,
   gcd,
@@ -158,7 +162,7 @@ describe("pictures", () => {
     if (lists?.kind !== "bcLists") throw new Error("bc-6-8");
     render(<BcLists spec={{ ...lists, mode: "still" }} />);
     expect(
-      screen.getByRole("img", { name: "BC(6, 8): 24, 48" }),
+      screen.getByRole("img", { name: "Bội chung của 6 và 8: 24, 48" }),
     ).toBeInTheDocument();
   });
 
@@ -183,7 +187,7 @@ describe("MeetTry", () => {
     for (let i = 0; i < 2; i++) fireEvent.click(upB);
     expect(onStateChange).toHaveBeenLastCalledWith({ a: 4, b: 3 });
     expect(
-      screen.getByText(/Xong rồi! Lần đầu cả hai cùng ở 12 phút/),
+      screen.getByText("Xong rồi! Lần đầu cả hai cùng rời bến ở phút 12."),
     ).toBeInTheDocument();
   });
 
@@ -205,9 +209,79 @@ describe("MeetTry", () => {
   it("draws the answer the exercise reveals and locks the buttons", () => {
     if (spec?.kind !== "meetTry") throw new Error("gap-3-4");
     render(<MeetTry spec={spec} shownState={{ a: 4, b: 3 }} />);
-    expect(screen.getByText("Cả hai cùng ở 12 phút")).toBeInTheDocument();
+    expect(
+      screen.getByText("Cả hai cùng rời bến ở phút 12"),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Tăng xe a đã chạy" }),
     ).toBeDisabled();
+  });
+});
+
+describe("MeetTry wording and counter", () => {
+  const spec = VISUAL_SPECS["gap-3-4"];
+  const gear = VISUAL_SPECS["gap-rang-6-4"];
+
+  it("starts at zero tries and names each side's place in words", () => {
+    if (spec?.kind !== "meetTry") throw new Error("gap-3-4");
+    render(<MeetTry spec={spec} />);
+    expect(screen.getByText("Đã thử 0 lần")).toBeInTheDocument();
+    expect(
+      screen.getByText("Xe A rời bến ở phút 3, xe B rời bến ở phút 4"),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Tăng xe a đã chạy" }));
+    expect(screen.getByText("Đã thử 1 lần")).toBeInTheDocument();
+  });
+
+  it("says passed teeth for gears", () => {
+    if (gear?.kind !== "meetTry") throw new Error("gap-rang-6-4");
+    render(<MeetTry spec={gear} />);
+    expect(
+      screen.getByText("Bánh A đã qua 6 răng, bánh B đã qua 4 răng"),
+    ).toBeInTheDocument();
+  });
+
+  it("paints the shared-place line lime only at the first place", () => {
+    if (spec?.kind !== "meetTry") throw new Error("gap-3-4");
+    // 24 is shared by 3 and 4 but is not the first (12).
+    render(<MeetTry spec={spec} shownState={{ a: 8, b: 6 }} />);
+    const line = screen.getByText("Cả hai cùng rời bến ở phút 24");
+    expect(line.className).not.toContain("text-concept-lime");
+    expect(line.querySelector("span")).toBeNull();
+  });
+
+  it("paints the first shared place lime", () => {
+    if (spec?.kind !== "meetTry") throw new Error("gap-3-4");
+    render(<MeetTry spec={spec} shownState={{ a: 4, b: 3 }} />);
+    expect(
+      screen.getByText("Cả hai cùng rời bến ở phút 12").className,
+    ).toContain("text-concept-lime");
+  });
+});
+
+describe("Gears", () => {
+  it("lays two gears with one tooth pitch and a touching rim", () => {
+    const layout = gearLayout([12, 8]);
+    expect(layout.radius[0] / 12).toBeCloseTo(layout.radius[1] / 8, 6);
+    expect(layout.centre[1] - layout.centre[0]).toBeGreaterThan(
+      layout.radius[0] + layout.radius[1],
+    );
+    expect(layout.width).toBeGreaterThan(layout.centre[1] + layout.radius[1]);
+  });
+
+  it("is a still picture with a spoken description and the mark legend", () => {
+    const spec = VISUAL_SPECS["banh-12-8"];
+    if (spec?.kind !== "gears") throw new Error("banh-12-8");
+    render(<Gears spec={spec} />);
+    expect(
+      screen.getByRole("img", {
+        name: /bánh A có 12 răng, bánh B có 8 răng/,
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Răng có dấu")).toBeInTheDocument();
+    expect(
+      visualRegistry["boi-chung-boi-chung-nho-nhat.visual.banh-12-8"]
+        ?.interactive,
+    ).toBe(false);
   });
 });

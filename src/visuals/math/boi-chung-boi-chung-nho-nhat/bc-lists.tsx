@@ -77,13 +77,20 @@ function ChipRow({
   );
 }
 
+// "6 và 8", "4, 6 và 10": numbers read out in a title.
+function spoken(numbers: readonly number[]): string {
+  return numbers.length < 2
+    ? numbers.join("")
+    : `${numbers.slice(0, -1).join(", ")} và ${numbers[numbers.length - 1]}`;
+}
+
 // A row of the picture: its title and the length of one round.
 export type BcRow = { title: string; step: number };
 
 // What a multiples picture draws: one row per number, how far the lists go,
 // how it plays (a hint stops before the shared multiples) and whether it
 // ends on the least one. `commonTitle` names the shared row; by default it
-// reads "BC(a, b)".
+// reads "Bội chung của a và b".
 export type BcListsSpec = {
   rows: readonly BcRow[];
   upTo: number;
@@ -98,7 +105,7 @@ export function BcLists({ spec }: { spec: BcListsSpec }) {
   const steps = rows.map((row) => row.step);
   const common = commonMultiples(steps, upTo);
   const best = lcmOf(steps);
-  const commonTitle = spec.commonTitle ?? `BC(${steps.join(", ")})`;
+  const commonTitle = spec.commonTitle ?? `Bội chung của ${spoken(steps)}`;
   // Steps: one per list, then the shared multiples picked out, then the
   // least one.
   const total = rows.length + 1 + (least ? 1 : 0);

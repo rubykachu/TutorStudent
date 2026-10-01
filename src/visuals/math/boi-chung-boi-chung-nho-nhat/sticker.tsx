@@ -16,12 +16,12 @@ function xOf(place: number): number {
 }
 
 // Lesson sticker: two rows of marks that repeat at different paces and line
-// up for the first time under a star.
+// up for the first time under a diamond.
 export default function Sticker() {
   return (
     <svg
       role="img"
-      aria-label="Huy hiệu hai hàng dấu lặp lại nhịp khác nhau, gặp nhau lần đầu dưới một ngôi sao"
+      aria-label="Huy hiệu hai hàng dấu lặp lại nhịp khác nhau, gặp nhau lần đầu dưới một hình thoi"
       viewBox="0 0 100 100"
       className="h-auto w-full max-w-32"
     >
@@ -42,7 +42,7 @@ export default function Sticker() {
           width={72}
           height={16}
           rx={8}
-          className="fill-concept-sky/15"
+          className="fill-concept-blue/15"
         />
         <rect
           x={14}
@@ -64,7 +64,7 @@ export default function Sticker() {
         {TOP.map((place) => (
           <ConceptShape
             key={`top-${place}`}
-            color="sky"
+            color="blue"
             cx={xOf(place)}
             cy={TOP_Y}
             r={6}

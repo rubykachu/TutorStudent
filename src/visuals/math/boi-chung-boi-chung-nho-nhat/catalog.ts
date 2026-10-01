@@ -3,6 +3,7 @@ import type { ChipsSpec } from "@/visuals/shared/pick-chips";
 import type { BcListsSpec, BcRow } from "./bc-lists";
 import type { BcnnTableSpec } from "./bcnn-table";
 import type { ContrastSpec } from "./contrast";
+import type { GearsSpec } from "./gears";
 import type { MeetTrySpec } from "./meet-try";
 
 // Every picture of the lesson that is drawn from numbers: the registry builds
@@ -23,6 +24,8 @@ export type VisualSpec =
   | ({ kind: "meetTry" } & MeetTrySpec)
   // Two kinds of question side by side (see `ContrastSpec`).
   | ({ kind: "contrast" } & ContrastSpec)
+  // Two meshing gears with one marked tooth each (see `GearsSpec`).
+  | ({ kind: "gears" } & GearsSpec)
   // Formulas stacked, each with an optional tag (see `RowsSpec`).
   | ({ kind: "rows" } & RowsSpec)
   // Lines of a worked example, one more on every step (see `LinesSpec`).
@@ -58,15 +61,18 @@ const LAMP_ROWS = (a: number, b: number): readonly BcRow[] => [
   { title: `Đèn B: cứ ${b} giây nháy một lần`, step: b },
 ];
 
-// "B(a)", "B(b)": the multiples of a number, named as the textbook does.
+// "Bội của a", "Bội của b": the multiples of a number. The textbook's B(a)
+// is read out in the rule screens, not shown as a bare row title.
 const MULTIPLES = (...numbers: number[]): readonly BcRow[] =>
-  numbers.map((n) => ({ title: `B(${n})`, step: n }));
+  numbers.map((n) => ({ title: `Bội của ${n}`, step: n }));
 
 const BUS: Omit<MeetTrySpec, "numbers"> = {
   names: ["Xe A", "Xe B"],
   round: "chuyến",
   verb: "chạy",
   unit: "phút",
+  at: "rời bến ở phút {n}",
+  both: "Cả hai cùng rời bến ở phút {n}",
 };
 
 const GEAR: Omit<MeetTrySpec, "numbers"> = {
@@ -74,6 +80,8 @@ const GEAR: Omit<MeetTrySpec, "numbers"> = {
   round: "vòng",
   verb: "quay",
   unit: "răng",
+  at: "đã qua {n} răng",
+  both: "Hai bánh cùng qua {n} răng",
 };
 
 const BCNN = "Bội chung nhỏ nhất";
@@ -129,7 +137,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Bội chung và bội chung nhỏ nhất của 6 và 8",
     rows: [
       {
-        tex: "\\mathrm{BC}(6, 8): \\concept{lime}{24},\\ \\concept{lime}{48},\\ \\concept{lime}{72}",
+        tex: "\\begin{gathered} \\mathrm{BC}(6, 8) = \\\\ \\{\\concept{lime}{0};\\ \\concept{lime}{24};\\ \\concept{lime}{48};\\ \\concept{lime}{72};\\ \\ldots\\} \\end{gathered}",
         tag: { text: COMMON, color: "lime" },
       },
       {
@@ -221,7 +229,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "chips",
     items: ["3 và 12", "4 và 6", "5 và 20", "6 và 8"],
     wants: [0, 2],
-    done: "Bạn đã chọn đủ các cặp có số lớn chia hết cho số bé.",
+    done: "Bạn đã chọn đủ các cặp có số lớn chia hết cho số nhỏ.",
   },
   "ds-goi-y-3-9": {
     kind: "bcLists",
@@ -243,7 +251,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "ƯCLN nhân BCNN của 12 và 18 bằng tích hai số",
     mode: "steps",
     rows: [
-      { tex: "", tag: { text: "ƯCLN(12, 18) = 6", color: "amber" } },
+      {
+        tex: "\\concept{amber}{6}",
+        tag: { text: "ƯCLN(12, 18)", color: "amber" },
+      },
       {
         tex: "\\mathrm{BCNN}(12, 18) = \\concept{pink}{36}",
         tag: { text: BCNN, color: "pink" },
@@ -257,7 +268,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "ƯCLN nhân BCNN của 12 và 18 bằng tích hai số",
     mode: "still",
     rows: [
-      { tex: "", tag: { text: "ƯCLN(12, 18) = 6", color: "amber" } },
+      {
+        tex: "\\concept{amber}{6}",
+        tag: { text: "ƯCLN(12, 18)", color: "amber" },
+      },
       {
         tex: "\\mathrm{BCNN}(12, 18) = \\concept{pink}{36}",
         tag: { text: BCNN, color: "pink" },
@@ -281,7 +295,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "uclnn-goi-y-b": {
+  "ucln-goi-y-b": {
     kind: "lines",
     label: "Tìm số còn lại khi biết ƯCLN, BCNN và một số",
     mode: "hint",
@@ -291,7 +305,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "b = 90 : 6 = 15" },
     ],
   },
-  "uclnn-giai-b": {
+  "ucln-giai-b": {
     kind: "lines",
     label: "Tìm số còn lại khi biết ƯCLN, BCNN và một số",
     mode: "steps",
@@ -397,7 +411,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: { text: "Sau 60 phút", color: "pink" },
       },
       { tex: "", tag: { text: "60 phút bằng 1 giờ", color: "slate" } },
-      { tex: "6 + 1 = 7", tag: { text: "Lúc 7 giờ", color: "amber" } },
+      { tex: "6 + 1 = 7", tag: { text: "Lúc 7 giờ", color: "slate" } },
     ],
   },
   "tin-nhan-10-15-20": {
@@ -410,7 +424,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: { text: "Sau 60 phút", color: "pink" },
       },
       { tex: "", tag: { text: "60 phút bằng 1 giờ", color: "slate" } },
-      { tex: "9 + 1 = 10", tag: { text: "Lúc 10 giờ", color: "amber" } },
+      { tex: "9 + 1 = 10", tag: { text: "Lúc 10 giờ", color: "slate" } },
     ],
   },
   "bao-thuc-goi-y": {
@@ -423,7 +437,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: { text: "Sau 60 phút", color: "pink" },
       },
       { tex: "", tag: { text: "60 phút bằng 1 giờ", color: "slate" } },
-      { tex: "5 + 1 = 6", tag: { text: "Lúc 6 giờ", color: "amber" } },
+      { tex: "5 + 1 = 6", tag: { text: "Lúc 6 giờ", color: "slate" } },
     ],
   },
   "bao-thuc-giai": {
@@ -436,11 +450,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: { text: "Sau 60 phút", color: "pink" },
       },
       { tex: "", tag: { text: "60 phút bằng 1 giờ", color: "slate" } },
-      { tex: "7 + 1 = 8", tag: { text: "Lúc 8 giờ", color: "amber" } },
+      { tex: "7 + 1 = 8", tag: { text: "Lúc 8 giờ", color: "slate" } },
     ],
   },
 
   // Meshing gears.
+  "banh-12-8": { kind: "gears", teeth: [12, 8] },
   "rang-12-8": {
     kind: "bcLists",
     rows: [
@@ -519,7 +534,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "\\mathrm{BCNN}(6, 9) = \\concept{pink}{18}",
-        tag: { text: "Số cần tìm là bội của 18", color: "pink" },
+        tag: { text: "Số cần tìm là bội của 18", color: "lime" },
       },
       {
         tex: "18;\\ 36;\\ 54;\\ 72;\\ 90;\\ \\concept{lime}{108}",
@@ -538,7 +553,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "\\mathrm{BCNN}(4, 6) = \\concept{pink}{12}",
-        tag: { text: "Số cần tìm là bội của 12", color: "pink" },
+        tag: { text: "Số cần tìm là bội của 12", color: "lime" },
       },
       {
         tex: "72;\\ 84;\\ \\concept{lime}{96};\\ 108",
@@ -554,13 +569,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "\\mathrm{BCNN}(3, 4) = \\concept{pink}{12}",
-        tag: { text: "Bớt 1 bạn thì chia hết cho 3 và 4", color: "pink" },
+        tag: { text: "Bớt 1 bạn thì chia hết cho 3 và 4", color: "lime" },
       },
       {
-        tex: "12;\\ 24;\\ 36;\\ \\concept{lime}{48}",
-        tag: { text: "Cần số từ 39 đến 54", color: "slate" },
+        tex: "\\concept{lime}{12};\\ \\concept{lime}{24};\\ \\concept{lime}{36};\\ \\concept{lime}{48}",
+        tag: { text: "Các bội chung của 3 và 4", color: "lime" },
       },
-      { tex: "48 + 1 = 49", tag: { text: "Lớp có 49 bạn", color: "amber" } },
+      {
+        tex: "13;\\ 25;\\ 37;\\ 49",
+        tag: { text: "Cộng 1 vào từng bội chung", color: "slate" },
+      },
+      {
+        tex: "49",
+        tag: { text: "Trong khoảng 40 đến 55: lớp có 49 bạn", color: "slate" },
+      },
     ],
   },
   "hang-goi-y-4-5": {
@@ -571,13 +593,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "\\mathrm{BCNN}(4, 5) = \\concept{pink}{20}",
-        tag: { text: "Bớt 1 người thì chia hết cho 4 và 5", color: "pink" },
+        tag: { text: "Bớt 1 người thì chia hết cho 4 và 5", color: "lime" },
       },
       {
-        tex: "20;\\ \\concept{lime}{40};\\ 60",
-        tag: { text: "Cần số từ 29 đến 49", color: "slate" },
+        tex: "\\concept{lime}{20};\\ \\concept{lime}{40};\\ \\concept{lime}{60}",
+        tag: { text: "Các bội chung của 4 và 5", color: "lime" },
       },
-      { tex: "40 + 1 = 41", tag: { text: "Đội có 41 người", color: "amber" } },
+      {
+        tex: "21;\\ 41;\\ 61",
+        tag: { text: "Cộng 1 vào từng bội chung", color: "slate" },
+      },
+      {
+        tex: "41",
+        tag: {
+          text: "Trong khoảng 30 đến 50: đội có 41 người",
+          color: "slate",
+        },
+      },
     ],
   },
   "hang-giai-5-6": {
@@ -588,13 +620,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       {
         tex: "\\mathrm{BCNN}(5, 6) = \\concept{pink}{30}",
-        tag: { text: "Bớt 2 người thì chia hết cho 5 và 6", color: "pink" },
+        tag: { text: "Bớt 2 người thì chia hết cho 5 và 6", color: "lime" },
       },
       {
-        tex: "30;\\ \\concept{lime}{60};\\ 90",
-        tag: { text: "Cần số từ 48 đến 68", color: "slate" },
+        tex: "\\concept{lime}{30};\\ \\concept{lime}{60};\\ \\concept{lime}{90}",
+        tag: { text: "Các bội chung của 5 và 6", color: "lime" },
       },
-      { tex: "60 + 2 = 62", tag: { text: "Đội có 62 người", color: "amber" } },
+      {
+        tex: "32;\\ 62;\\ 92",
+        tag: { text: "Cộng 2 vào từng bội chung", color: "slate" },
+      },
+      {
+        tex: "62",
+        tag: {
+          text: "Trong khoảng 50 đến 70: đội có 62 người",
+          color: "slate",
+        },
+      },
     ],
   },
 
@@ -611,6 +653,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\mathrm{BCNN}(4, 6) = \\concept{pink}{12}",
         tag: { text: "Mẫu số chung", color: "pink" },
+      },
+      {
+        tex: "",
+        tag: { text: "12 : 4 = 3 và 12 : 6 = 2", color: "slate" },
       },
       {
         tex: "\\dfrac{1}{4} = \\dfrac{1 \\cdot 3}{4 \\cdot 3} = \\dfrac{3}{\\concept{pink}{12}}",
@@ -634,6 +680,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: { text: "Mẫu số chung", color: "pink" },
       },
       {
+        tex: "",
+        tag: { text: "10 : 2 = 5 và 10 : 5 = 2", color: "slate" },
+      },
+      {
         tex: "\\dfrac{1}{2} = \\dfrac{1 \\cdot 5}{2 \\cdot 5} = \\dfrac{5}{\\concept{pink}{10}}",
       },
       {
@@ -653,6 +703,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\mathrm{BCNN}(6, 8) = \\concept{pink}{24}",
         tag: { text: "Mẫu số chung", color: "pink" },
+      },
+      {
+        tex: "",
+        tag: { text: "24 : 6 = 4 và 24 : 8 = 3", color: "slate" },
       },
       {
         tex: "\\dfrac{5}{6} = \\dfrac{5 \\cdot 4}{6 \\cdot 4} = \\dfrac{20}{\\concept{pink}{24}}",
@@ -676,6 +730,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: { text: "Mẫu số chung", color: "pink" },
       },
       {
+        tex: "",
+        tag: { text: "12 : 4 = 3", color: "slate" },
+      },
+      {
         tex: "\\dfrac{3}{4} = \\dfrac{3 \\cdot 3}{4 \\cdot 3} = \\dfrac{9}{\\concept{pink}{12}}",
       },
     ],
@@ -692,6 +750,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\mathrm{BCNN}(12, 18) = \\concept{pink}{36}",
         tag: { text: "Mẫu số chung", color: "pink" },
+      },
+      {
+        tex: "",
+        tag: { text: "36 : 12 = 3 và 36 : 18 = 2", color: "slate" },
       },
       {
         tex: "\\dfrac{5}{12} = \\dfrac{5 \\cdot 3}{12 \\cdot 3} = \\dfrac{15}{\\concept{pink}{36}}",
@@ -712,14 +774,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "amber",
         heading: "Chia đều: tìm ƯCLN",
         story:
-          "Chia 12 quả cam và 18 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau.",
+          "Chia 12 quả cam và 18 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau, không thừa quả nào.",
         result: "ƯCLN(12, 18) = 6",
       },
       {
         color: "pink",
         heading: "Lặp lại: tìm BCNN",
         story:
-          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần. Hỏi lúc hai xe cùng rời bến lần nữa.",
+          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần. Hỏi sau bao lâu hai xe lại cùng rời bến?",
         result: "BCNN(12, 18) = 36",
       },
     ],
@@ -733,14 +795,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "amber",
         heading: "Chia đều: tìm ƯCLN",
         story:
-          "Chia 12 quả cam và 18 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau.",
+          "Chia 12 quả cam và 18 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau, không thừa quả nào.",
         result: "ƯCLN(12, 18) = 6",
       },
       {
         color: "pink",
         heading: "Lặp lại: tìm BCNN",
         story:
-          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần. Hỏi lúc hai xe cùng rời bến lần nữa.",
+          "Xe A cứ 12 phút, xe B cứ 18 phút rời bến một lần. Hỏi sau bao lâu hai xe lại cùng rời bến?",
         result: "BCNN(12, 18) = 36",
       },
     ],
