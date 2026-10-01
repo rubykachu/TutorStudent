@@ -1247,7 +1247,7 @@
       },
       "explain": {
         "text": "Cỡ túi 5, 7 hay 8 thì xếp xong vẫn còn thừa kẹo, vì 36 không chia hết cho các số đó. Cỡ túi 2, 3, 4, 6 hay 9 thì vừa hết.",
-        "tex": "36 = 5 \\cdot 7 + 1"
+        "tex": "36 = 8 \\cdot 4 + 4"
       },
       "difficulty": 2,
       "visualId": "quan-he-chia-het-va-tinh-chat.visual.chia-tui-tu-chon",
@@ -1679,7 +1679,7 @@
         "solutionVisualId": "quan-he-chia-het-va-tinh-chat.visual.dem-cach-giai-7-59"
       },
       "explain": {
-        "text": "Tìm tích của 7 gần 59 nhất mà không vượt quá 59: 7 · 8 = 56. Số dư là 59 − 56 = 3.",
+        "text": "Tìm bội của 7 gần 59 nhất mà không vượt quá 59: 7 · 8 = 56. Số dư là 59 − 56 = 3.",
         "tex": "59 = 7 \\cdot 8 + 3"
       },
       "difficulty": 1,
@@ -3519,7 +3519,7 @@
         ]
       },
       "explain": {
-        "text": "40 và 16 đều chia hết cho 8, nên hiệu 40 − 16 cũng chia hết cho 8. Số túi còn lại là số túi lúc đầu bớt đi số túi đã lấy.",
+        "text": "40 và 16 đều chia hết cho 8, nên hiệu 40 − 16 cũng chia hết cho 8. Số túi còn lại là 5 − 2 = 3 túi.",
         "tex": "40 : 8 - 16 : 8 = 5 - 2 = 3"
       },
       "difficulty": 2,
@@ -3645,7 +3645,7 @@
         "hintVisualId": "quan-he-chia-het-va-tinh-chat.visual.hieu-goi-y-22-8"
       },
       "explain": {
-        "text": "Hiệu không chia hết cho 4 khi chỉ một trong hai số chia hết cho 4. Cặp 24 và 6 (chỉ 24 chia hết), cặp 27 và 12 (chỉ 12 chia hết) là như vậy.",
+        "text": "Nếu chỉ một trong hai số chia hết cho 4 thì hiệu không chia hết cho 4. Cặp 24 và 6 (chỉ 24 chia hết), cặp 27 và 12 (chỉ 12 chia hết) là như vậy.",
         "tex": "24 - 6 = 18 = 4 \\cdot 4 + 2",
         "wrong": [
           {
@@ -3780,7 +3780,7 @@
         ]
       },
       "explain": {
-        "text": "Hiệu không chia hết cho 9 khi một số chia hết cho 9 còn số kia thì không. 45 = 9 · 5 nhưng 20 không chia hết cho 9, nên 45 − 20 không chia hết cho 9.",
+        "text": "Nếu một số chia hết cho 9 còn số kia thì không, thì hiệu không chia hết cho 9. 45 = 9 · 5 nhưng 20 không chia hết cho 9, nên 45 − 20 không chia hết cho 9.",
         "tex": "45 - 20 = 25 = 9 \\cdot 2 + 7",
         "wrong": [
           {
@@ -4357,7 +4357,7 @@
         ]
       },
       "explain": {
-        "text": "Xét cho 3: 18 · q và 9 đều chia hết cho 3, nên a chia hết cho 3. Xét cho 6: 18 · q chia hết cho 6 nhưng 9 thì không, nên a không chia hết cho 6.",
+        "text": "Xét với 3: 18 · q và 9 đều chia hết cho 3, nên a chia hết cho 3. Xét với 6: 18 · q chia hết cho 6 nhưng 9 thì không, nên a không chia hết cho 6.",
         "tex": "a = 18 \\cdot q + 9",
         "wrong": [
           {
