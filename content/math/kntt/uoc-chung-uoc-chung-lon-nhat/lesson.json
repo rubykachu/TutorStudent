@@ -2625,7 +2625,7 @@
       },
       "explain": {
         "text": "Thừa số chung phải có ở cả ba số. Chỉ có 5 có ở cả ba, với số mũ nhỏ nhất là 1, nên ƯCLN là 5.",
-        "tex": "15 = 3 \\cdot \\concept{amber}{5}, \\quad 45 = 3^{2} \\cdot \\concept{amber}{5}, \\quad 50 = 2 \\cdot 5^{2}",
+        "tex": "15 = 3 \\cdot \\concept{amber}{5}, \\quad 45 = 3^{2} \\cdot \\concept{amber}{5}, \\quad 50 = 2 \\cdot \\concept{amber}{5}^{2}",
         "wrong": [
           {
             "optionId": "a",
@@ -2945,7 +2945,7 @@
         "i5": 0
       },
       "explain": {
-        "text": "Các ước chung của 18 và 27 chính là các ước của ƯCLN là 9. Ước của 9 là 1, 3 và 9, nên chạm vào ba số này.",
+        "text": "Các ước chung của 18 và 27 chính là các ước của ƯCLN, tức là các ước của 9. Ước của 9 là 1, 3 và 9, nên chạm vào ba số này.",
         "tex": "9 = 1 \\cdot 9 = 3 \\cdot 3"
       }
     },
@@ -3036,7 +3036,7 @@
       "answer": ["a", "c"],
       "multiple": true,
       "explain": {
-        "text": "Số học sinh là ước chung của 16 và 28, tức là ước của ƯCLN là 4. Ước của 4 là 1, 2, 4, nên trong các số đã cho có 2 và 4.",
+        "text": "Số học sinh là ước chung của 16 và 28, tức là ước của ƯCLN, tức là ước của 4. Ước của 4 là 1, 2, 4, nên trong các số đã cho có 2 và 4.",
         "wrong": [
           {
             "optionId": "b",
@@ -3588,7 +3588,7 @@
       "multiple": true,
       "explain": {
         "text": "Số mà cả 27 và 45 đều chia hết cho nó là ước chung. ƯCLN của 27 và 45 là 9, nên ước chung là các ước của 9: 1, 3, 9.",
-        "tex": "27 = \\concept{teal}{9} \\cdot 3, \\quad 45 = \\concept{teal}{9} \\cdot 5",
+        "tex": "27 = \\concept{amber}{9} \\cdot 3, \\quad 45 = \\concept{amber}{9} \\cdot 5",
         "wrong": [
           {
             "optionId": "b",
@@ -3794,7 +3794,7 @@
           },
           {
             "optionId": "d",
-            "text": "Tổng 15 là khi thiếu ước 1; phải cộng cả 1."
+            "text": "15 là tổng khi quên ước 1; phải cộng cả 1."
           }
         ]
       }
@@ -4339,7 +4339,7 @@
       "multiple": true,
       "explain": {
         "text": "Số lớn hơn 1 mà cả 32 và 40 chia hết cho nó là ước chung lớn hơn 1. ƯCLN của 32 và 40 là 8 nên ước chung là 1, 2, 4, 8; bỏ 1 còn 2, 4 và 8.",
-        "tex": "32 = \\concept{teal}{8} \\cdot 4, \\quad 40 = \\concept{teal}{8} \\cdot 5",
+        "tex": "32 = \\concept{amber}{8} \\cdot 4, \\quad 40 = \\concept{amber}{8} \\cdot 5",
         "wrong": [
           {
             "optionId": "c",
