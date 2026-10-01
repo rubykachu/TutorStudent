@@ -12,7 +12,7 @@
   "title": "Ôn tập chương II",
   "sourceRef": "Sách bài tập tr.44–46, lời giải tr.110",
   "status": "published",
-  "reviewedHash": "559a9c5e6fdcf0e28bb4d791c145b46c698c1b6c74d09167cf472552b3e177d4",
+  "reviewedHash": "4d208b10ab9923b344daffc2287dba24d4a02c4bb740818e17a57b2d6ff17f7a",
   "concepts": [
     {
       "id": "on-tap-chuong-2.concept.tong-chu-so",
@@ -4504,12 +4504,12 @@
       "url": "video/on-tap-chuong-2/so-mu.mp4",
       "vttUrl": "video/on-tap-chuong-2/so-mu.vtt",
       "posterUrl": "video/on-tap-chuong-2/so-mu.jpg",
-      "durationSec": 59.53,
+      "durationSec": 59.4,
       "clips": [
         {
           "id": "so-mu-uclnn-bcnn",
-          "start": 17.77,
-          "end": 58.112,
+          "start": 18.105,
+          "end": 57.984,
           "cardIds": ["on-tap-chuong-2.card.so-mu-uclnn-bcnn"]
         }
       ],
@@ -4521,18 +4521,18 @@
       "checkpoints": [
         {
           "id": "cp-01",
-          "at": 17.07,
+          "at": 17.405,
           "from": 0
         },
         {
           "id": "cp-02",
-          "at": 36.617,
-          "from": 17.07
+          "at": 36.792,
+          "from": 17.405
         },
         {
           "id": "cp-03",
-          "at": 54.826,
-          "from": 36.617
+          "at": 54.528,
+          "from": 36.792
         }
       ]
     },

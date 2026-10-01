@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   Lesson video "Tìm số mũ từ ƯCLN và BCNN" (lesson on-tap-chuong-2): two
-  numbers 2⁴ · 7ᵃ and 2ᵇ · 7³ with their ƯCLN (amber) and BCNN (pink) in one
+  numbers 2⁶ · 7ᵃ and 2ᵇ · 7² with their ƯCLN (amber) and BCNN (pink) in one
   table; prime bases are sky, exponents violet, the unknown exponents sit on
   the highlight yellow. The smallest exponent of 2 gives b, the largest
   exponent of 7 gives a.
@@ -118,27 +118,27 @@
           "r1",
           20,
           chip("l1", "slate", "Số thứ nhất"),
-          f(2, "x12", "4") + dot + f(7, "x17", `<span class="sw"><span id="aq">a</span><span id="aa">5</span></span>`, "unk"),
+          f(2, "x12", "6") + dot + f(7, "x17", `<span class="sw"><span id="aq">a</span><span id="aa">3</span></span>`, "unk"),
         );
         row(
           "r2",
           120,
           chip("l2", "slate", "Số thứ hai"),
-          f(2, "x22", `<span class="sw"><span id="bq">b</span><span id="ba">2</span></span>`, "unk") +
+          f(2, "x22", `<span class="sw"><span id="bq">b</span><span id="ba">4</span></span>`, "unk") +
             dot +
-            f(7, "x27", "3"),
+            f(7, "x27", "2"),
         );
         row(
           "r3",
           220,
           chip("l3", "amber", "ƯCLN"),
-          f(2, "xu2", "2") + dot + f(7, "xu7", "3"),
+          f(2, "xu2", "4") + dot + f(7, "xu7", "2"),
         );
         row(
           "r4",
           320,
           chip("l4", "pink", "BCNN"),
-          f(2, "xb2", "4") + dot + f(7, "xb7", "5"),
+          f(2, "xb2", "6") + dot + f(7, "xb7", "3"),
         );
 
         // ---------- scene overlays ----------
@@ -148,11 +148,11 @@
         );
         el(
           $("#s3"),
-          `<div id="b1" class="row" style="top: 450px; left: 120px">${chip("b1c", "slate", "thừa số 2: số mũ 4 và b")}<span id="b1a" class="math pill ans">b = 2</span></div>`,
+          `<div id="b1" class="row" style="top: 450px; left: 120px">${chip("b1c", "slate", "thừa số 2: số mũ 6 và b")}<span id="b1a" class="math pill ans">b = 4</span></div>`,
         );
         el(
           $("#s4"),
-          `<div id="a1" class="row" style="top: 450px; left: 120px">${chip("a1c", "slate", "thừa số 7: a và 3")}<span id="a1a" class="math pill ans">a = 5</span><span id="a1b" class="math pill ans">b = 2</span></div>`,
+          `<div id="a1" class="row" style="top: 450px; left: 120px">${chip("a1c", "slate", "thừa số 7: a và 2")}<span id="a1a" class="math pill ans">a = 3</span><span id="a1b" class="math pill ans">b = 4</span></div>`,
         );
         const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
           left: "34px",

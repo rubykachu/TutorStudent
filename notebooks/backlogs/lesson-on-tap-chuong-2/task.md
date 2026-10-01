@@ -1,7 +1,7 @@
 # Bàn giao: `on-tap-chuong-2` (Ôn tập chương II, Toán 6 tập 1, Kết nối tri thức)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bản `published`, id đã khoá (98 id), chưa lời đọc, chưa video. `reviewedHash` `559a9c5e...`.
+- Cập nhật cuối: 01/10/2026. Bản `published`, id đã khoá (kể cả 3 id video), lời đọc tổng quan và 3 video đã dựng, vòng 6 (video và lời đọc, chỉ phần đổi) 0 Nghiêm trọng, `content:hash --approve` và `content:lock` đã chạy, `lesson:walk` 0 failures.
 - Đã xong: vòng 1 (8 Nghiêm trọng), vòng 2 (7), vòng 3 (1), vòng 4 chỉ phần đổi (0), vòng 5 chỉ phần đổi, đối chiếu với Bài 12 đã xuất bản (Sonnet): 0 Nghiêm trọng, 2 Nên sửa đã sửa đúng đề xuất, 2 Góp ý giữ nguyên. `content:check` 0 lỗi của bài; `lesson:walk` 0 failures (bản đã duyệt); `pnpm typecheck` và `pnpm test` qua; `content:emit` đã chạy.
 - Vòng 5 đã đổi: câu quy tắc, recap section và recap card của các section BCNN trùng từng chữ Bài 12 ("Nếu mọi hàng đều dư cùng một số...", "Viết mỗi số lớn hơn 1...", câu quy đồng với "mẫu số", "tử số", "thương"; "Bội chung khác 0..."); "mẫu" thành "mẫu số", "tử" thành "tử số" ở section quy đồng; khái niệm "Quy đồng mẫu số" từ blue sang slate (khớp Bài 12; chấm ở `sticker.tsx` và hai thẻ "Quy đồng" ở hình gợi ý 2.64); câu ví dụ băng giấy nói "Hai mẫu số khác nhau, nên quy đồng rồi mới trừ"; mẹo `bcnn-hai-mau` đổi cặp 6, 15 thành 15, 25 (bội của 25: 25, 50, 75; BCNN 75; thử 18 cặp). Câu của sách không đổi chữ hay số.
 - Lời đọc tổng quan và 3 video đã dựng 01/10/2026 (mục "Lời đọc và video"); còn vòng review chỉ phần đổi (3 khối video, `overview.narration`), rồi `pnpm content:hash on-tap-chuong-2 --approve` và `pnpm content:lock on-tap-chuong-2` (`content:check` báo `[review-hash]` cho tới lúc đó).
@@ -66,7 +66,7 @@
 - Đối chiếu BCNN với Bài 12: xong ở vòng 5 (xem "Trạng thái"). Cách viết "BCNN(a, b)" giống Bài 12; câu 6 của sách giữ "BCNN(a; b)" như sách.
 - Đã xuất bản và khoá id; bản duyệt hiện tại là của vòng 5.
 - Lời đọc: Gemini hết hạn mức ngày trên cả 2 key nên lời đọc đang do VieNeu Hải Đăng đọc cả bài; sau khi hạn mức hồi, chạy lại `pnpm narration:build on-tap-chuong-2` để về giọng Gemini Achird (cần chủ dự án đồng ý vì gọi API ngoài).
-- Câu "Chào bạn!" đầu lời đọc VieNeu Whisper nghe 50% ("Xào mạng."): người duyệt nghe lại; Gemini đọc lại sẽ thay.
+- Câu "Chào bạn!" đầu lời đọc: đã đọc lại đạt 100% ở vòng 6 (xem "Lời đọc và video").
 - `overview.hook` đã có câu chào "Chào bạn!" nên không đổi chữ nào của bài.
 
 ## Lời đọc và video (01/10/2026)
@@ -75,7 +75,9 @@
 - Ba video (mỗi video gắn đầu một phần, clip theo card của phần đó), câu quy tắc chép nguyên văn note của phần, màu theo bài (xám slate cho sự kiện chia hết, tím số mũ, hổ phách ƯCLN, hồng BCNN, xanh trời thừa số nguyên tố):
   - `khang-dinh-sai` (53,1 giây, 12 câu, 3 điểm dừng, phần `tinh-chat-tong`): dạng "tìm khẳng định sai" (trắc nghiệm 1). Khẳng định "hai số không chia hết cho 4 thì tổng cũng không", phản ví dụ 1 + 3 = 4; hai quy tắc nhắc lại của phần và so với trường hợp đúng một số hạng (8 + 3 = 11).
   - `khoang-bcnn` (69,6 giây, 14 câu, 4 điểm dừng, phần `bcnn-bai-toan`): dạng "chia đều còn dư, số trong khoảng" (2.58). Hộp 100 đến 140 viên bi, nhóm 5, 6, 10 thừa 1: bớt số dư, BCNN(5, 6, 10) = 30, các bội 30 đến 150, cộng 1, chọn 121.
-  - `so-mu` (59,5 giây, 14 câu, 3 điểm dừng, phần `so-mu-uclnn-bcnn`): dạng "tìm số mũ từ ƯCLN và BCNN" (2.63). 2⁴ · 7ᵃ và 2ᵇ · 7³, ƯCLN 2² · 7³, BCNN 2⁴ · 7⁵: b từ số mũ nhỏ nhất của 2, a từ số mũ lớn nhất của 7.
+  - `so-mu` (59,4 giây, 14 câu, 3 điểm dừng, phần `so-mu-uclnn-bcnn`): dạng "tìm số mũ từ ƯCLN và BCNN" (2.63). 2⁶ · 7ᵃ và 2ᵇ · 7², ƯCLN 2⁴ · 7², BCNN 2⁶ · 7³ (b = 4, a = 3): b từ số mũ nhỏ nhất của 2, a từ số mũ lớn nhất của 7.
 - Lời đọc tổng quan: `pnpm narration:build` lần 1 Gemini trả "no audio", lần 2 hết hạn mức ngày cả 2 key nên đọc cả bài bằng VieNeu Hải Đăng (đã ghi ở `overview.narration.voice`).
 - Whisper: mọi câu của 3 video ≥ 97% (thấp nhất 97,2%); lời đọc có 3 câu 94,9% đến 96,6% do Whisper nghe "II" thành "2" và "Chào bạn!" thành "Xào mạng."
-- Chưa làm: `lesson:walk` (cần máy chủ tạm), review chỉ phần đổi, khoá id video, tải media lên.
+- Vòng 6 (Sonnet, chỉ phần đổi, 01/10/2026): "Chào bạn!" đầu lời đọc đọc lại bằng cùng giọng VieNeu Hải Đăng, lần thứ 5 đạt 100% (4 lần đầu Whisper nghe "Xào mạng." hay "Chào tạm biệt!"), lời đọc dựng lại, không đổi chữ, không gọi Gemini. Video `so-mu` đổi số vì trùng bước dẫn và câu 2.63: nay 2⁶ · 7ᵃ và 2ᵇ · 7², ƯCLN 2⁴ · 7², BCNN 2⁶ · 7³, b = 4, a = 3 (câu quy tắc giữ nguyên); dựng lại, Whisper ≥ 97,5%. Chi tiết: `content/math/kntt/on-tap-chuong-2/review.md`.
+- Lời đọc tổng quan vẫn do VieNeu Hải Đăng đọc. Khi hạn mức Gemini hồi và chủ dự án đồng ý (gọi API ngoài), chạy lại `pnpm narration:build on-tap-chuong-2` để đọc cả lời bằng Gemini Achird; lời đọc hiện tại được giữ làm bản dự phòng.
+- Chưa làm: tải media lên (cần chủ dự án đồng ý).

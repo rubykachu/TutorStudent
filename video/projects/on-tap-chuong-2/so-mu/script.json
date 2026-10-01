@@ -10,16 +10,16 @@
           "text": "Chào bạn! Hôm nay ta tìm số mũ chưa biết.",
           "opening": true
         },
-        { "text": "Số thứ nhất là 2 mũ 4 nhân 7 mũ a." },
-        { "text": "Số thứ hai là 2 mũ b nhân 7 mũ 3." }
+        { "text": "Số thứ nhất là 2 mũ 6 nhân 7 mũ a." },
+        { "text": "Số thứ hai là 2 mũ b nhân 7 mũ 2." }
       ]
     },
     {
       "id": "s02-uc",
       "sentences": [
-        { "text": "Ước chung lớn nhất là 2 mũ 2 nhân 7 mũ 3." },
+        { "text": "Ước chung lớn nhất là 2 mũ 4 nhân 7 mũ 2." },
         {
-          "text": "Bội chung nhỏ nhất là 2 mũ 4 nhân 7 mũ 5.",
+          "text": "Bội chung nhỏ nhất là 2 mũ 6 nhân 7 mũ 3.",
           "checkpoint": true
         }
       ]
@@ -28,7 +28,7 @@
       "id": "s03-b",
       "sentences": [
         { "text": "Bạn thử đoán xem: số b bằng mấy?", "pause": "ask" },
-        { "text": "Xét thừa số 2, hai số mũ là 4 và b." },
+        { "text": "Xét thừa số 2, hai số mũ là 6 và b." },
         {
           "text": "Thừa số nguyên tố có ở mọi số: số mũ nhỏ nhất là số mũ trong ƯCLN.",
           "say": "Thừa số nguyên tố có ở mọi số: số mũ nhỏ nhất là số mũ trong ước-chung-lớn-nhất.",
@@ -36,7 +36,7 @@
           "pause": "think"
         },
         {
-          "text": "Số mũ nhỏ nhất của 2 là 2, nên b bằng 2.",
+          "text": "Số mũ nhỏ nhất của 2 là 4, nên b bằng 4.",
           "checkpoint": true
         }
       ]
@@ -44,7 +44,7 @@
     {
       "id": "s04-a",
       "sentences": [
-        { "text": "Xét thừa số 7, hai số mũ là a và 3." },
+        { "text": "Xét thừa số 7, hai số mũ là a và 2." },
         { "text": "Bạn thử đoán xem: số a bằng mấy?", "pause": "ask" },
         {
           "text": "Mọi thừa số nguyên tố: số mũ lớn nhất là số mũ trong BCNN.",
@@ -53,10 +53,10 @@
           "pause": "think"
         },
         {
-          "text": "Số mũ lớn nhất của 7 là 5, nên a bằng 5.",
+          "text": "Số mũ lớn nhất của 7 là 3, nên a bằng 3.",
           "checkpoint": true
         },
-        { "text": "Vậy số a bằng 5 và số b bằng 2." }
+        { "text": "Vậy số a bằng 3 và số b bằng 4." }
       ]
     }
   ],
