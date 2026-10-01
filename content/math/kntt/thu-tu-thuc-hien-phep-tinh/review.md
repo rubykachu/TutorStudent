@@ -6,7 +6,7 @@
 - Cách soát: tự tính lại mọi dòng `tex` bằng script một lần: mọi dòng của một khối `aligned` bằng cùng một giá trị, phần tô hồng của dòng i thay bằng kết quả của nó đúng bằng dòng i + 1, ô amber bằng đáp án; render thử cả 67 `tex` bằng KaTeX với macro `\concept` (0 lỗi); đối chiếu từng `wrong.optionId` với nội dung phương án thật
 - `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 0 cảnh báo explain, tiếng Việt hay độ dài của bài
 - `lesson:walk`: không chạy (chỉ soát nội dung chữ)
-- Kết luận: Đã xuất bản: 0 Nghiêm trọng. 4 mục Nên sửa mới (câu "tra bảng nhân", "khoanh hồng" thành "tô hồng", mỗi dòng một phép tính ở 5 câu tính dài và các câu tô hai phép, text của `tinh-ngoac-day-du`) đã sửa trong commit sau vòng này; còn mở: Nên sửa 1 (video `hoa-don`) và các Góp ý
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng. 4 mục Nên sửa mới (câu "tra bảng nhân", "khoanh hồng" thành "tô hồng", mỗi dòng một phép tính ở 5 câu tính dài và các câu tô hai phép, text của `tinh-ngoac-day-du`) đã sửa trong commit sau vòng này; Nên sửa 1 (video `hoa-don`) đã sửa; còn mở các Góp ý
 - Bản đã review: `d6ed894148fd3da0b8d6ba64439bebcfba3d40d25e915074c9d8b9fcaed06152` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt:
@@ -50,12 +50,13 @@ Không có.
 - Vấn đề: `text` "Làm từ ngoặc trong ra ngoài: ngoặc tròn, ngoặc vuông, rồi ngoặc nhọn. Sau đó làm luỹ thừa 2³, rồi nhân, cuối cùng cộng." không có số nào và không nói trong từng ngoặc còn nhân trước trừ, cộng; trong khi `tex` có dòng 5 · 3 (trước − 9) và 2 · 6 (trước 4 +). Bé đọc `text` rồi nhìn `tex` thấy phép nhân chen vào giữa các ngoặc mà không có lời giải thích. Đây là câu khó nhất bài, và là câu bé hay sai (hồ sơ: chỗ yếu "thứ tự thực hiện phép tính").
 - Sửa: "Ngoặc tròn làm trước: 7 − 4 = 3. Trong ngoặc vuông, nhân trước trừ sau: 5 · 3 = 15, rồi 15 − 9 = 6. Trong ngoặc nhọn nhân 2 · 6 = 12 rồi cộng 4 được 16; cuối cùng 2³ = 8, 3 · 16 = 48 và 8 + 48 = 56." (nếu quá 3 câu thì bỏ câu cuối, `tex` đã có).
 
-### 5. Video `hoa-don`: mp4 vẫn khoanh hồng cách làm sai của Lan (bản sửa chỉ có trong `index.html`)
+### 5. Video `hoa-don`: mp4 vẫn khoanh hồng cách làm sai của Lan (bản sửa chỉ có trong `index.html`) - Đã sửa
 
 - Vị trí: `public/media/video/thu-tu-thuc-hien-phep-tinh/hoa-don.mp4` cảnh `s03-lan`, 24–31 s; `video/projects/thu-tu-thuc-hien-phep-tinh/hoa-don/index.html` dòng `tl.to("#m-ring", { borderColor: slate … })`
 - Nguồn: —
 - Vấn đề: Nên sửa 1 vòng 4. `index.html` đã đổi vòng quanh `8 + 5` sang xám, nhưng `hoa-don.mp4` (render 20:39, trước lần sửa) vẫn hiện vòng hồng ở khung 24, 27, 30 s; bản render trong `renders/site/index.html` còn `borderColor: pink`. Hồng trong bài nghĩa là "phép làm trước" (đúng), nên cách làm sai của Lan mang cùng màu với cách đúng của Nam.
 - Sửa: Chạy lại `pnpm video:build thu-tu-thuc-hien-phep-tinh hoa-don` trong worktree, xem lại khung 24–31 s, cập nhật `videos[0]` nếu độ dài hay clip đổi.
+- Kết quả: đã sửa. `hoa-don.mp4` hiện tại (render 30/9 22:00, sau bản sửa) hiện vòng xám quanh `8 + 5` của Lan ở các khung 24–31 s, vòng hồng chỉ còn ở cách đúng của Nam (`2 · 8`); `index.html` khớp mp4 nên không dựng lại. `pnpm video:check thu-tu-thuc-hien-phep-tinh hoa-don` ok; `lesson.json` không đổi.
 
 ## Góp ý
 
