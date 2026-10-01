@@ -872,7 +872,11 @@
             {
               "type": "visual",
               "visualId": "phep-cong-phep-tru.visual.lo-trinh-mau",
-              "caption": "Nam đi bộ 8 phút, đi xe buýt 22 phút, chờ 2 phút rồi đi bộ thêm 8 phút: cả đường mất 40 phút. Lớp vào học lúc 7 giờ 30 phút."
+              "caption": "Nam đi bộ 8 phút, đi xe buýt 22 phút, chờ 2 phút rồi đi bộ thêm 8 phút: cả đường mất 40 phút."
+            },
+            {
+              "type": "note",
+              "text": "Lớp vào học lúc 7 giờ 30 phút. Ta tìm giờ Nam ra khỏi nhà."
             }
           ]
         },
@@ -2501,15 +2505,15 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{pt}{47 + 26 = 43 + ?}"
+          "tex": "\\htmlId{pt}{64 + 29 = 60 + ?}"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 30
+        "value": 33
       },
       "check": {
-        "expr": "47+26-43"
+        "expr": "64+29-60"
       },
       "hints": {
         "highlight": [
@@ -3095,10 +3099,10 @@
           "text": "Trừ ở hàng chục: hàng chục đã cho mượn nên bớt đi 1. Chọn chữ số viết và số mượn."
         }
       ],
-      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-541-246",
+      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-651-278",
       "validatorId": "cot-tinh",
       "params": {
-        "digit": 9,
+        "digit": 7,
         "carry": 1
       },
       "hints": {
@@ -4737,7 +4741,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lớp học bắt đầu lúc 8 giờ 15 phút, tức 7 giờ 75 phút, đường đi mất 30 phút. Phải ra khỏi nhà lúc 7 giờ mấy phút?"
+          "text": "Lớp học bắt đầu lúc 8 giờ 15 phút, tức 7 giờ 75 phút, đường đi mất 35 phút. Phải ra khỏi nhà lúc 7 giờ mấy phút?"
         }
       ],
       "options": [
@@ -4745,14 +4749,14 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "45"
+            "text": "40"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "105"
+            "text": "110"
           }
         },
         {
@@ -4766,14 +4770,14 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "25"
+            "text": "50"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "75-30"
+        "expr": "75-35"
       },
       "hints": {
         "highlight": [

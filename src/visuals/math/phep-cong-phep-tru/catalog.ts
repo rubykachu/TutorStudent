@@ -311,11 +311,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     b: 187,
     mode: "full",
   },
-  "cot-tru-hang-chuc-541-246": {
+  "cot-tru-hang-chuc-651-278": {
     kind: "column-try",
     op: "sub",
-    a: 541,
-    b: 246,
+    a: 651,
+    b: 278,
     column: 1,
   },
   "quan-he-tom-tat": {
