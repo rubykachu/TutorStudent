@@ -1,0 +1,243 @@
+<!doctype html>
+<!--
+  Lesson video "Tìm số mũ từ ƯCLN và BCNN" (lesson on-tap-chuong-2): two
+  numbers 2⁴ · 7ᵃ and 2ᵇ · 7³ with their ƯCLN (amber) and BCNN (pink) in one
+  table; prime bases are sky, exponents violet, the unknown exponents sit on
+  the highlight yellow. The smallest exponent of 2 gives b, the largest
+  exponent of 7 gives a.
+  Built by `pnpm video:build on-tap-chuong-2 so-mu`, which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tìm số mũ từ ƯCLN và BCNN</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .chip {
+        font-size: 36px;
+      }
+      .ps {
+        color: var(--color-concept-sky);
+      }
+      .ex {
+        display: inline-block;
+        color: var(--color-concept-violet);
+        font-size: 0.6em;
+        vertical-align: 0.8em;
+        margin-left: 0.04em;
+        padding: 0 8px;
+        border-radius: 12px;
+      }
+      .unk {
+        background: var(--color-highlight);
+      }
+      .sw {
+        display: inline-grid;
+      }
+      .sw > span {
+        grid-area: 1 / 1;
+        text-align: center;
+      }
+      .rw {
+        position: absolute;
+        left: 0;
+        width: 1280px;
+        height: 96px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+      .lab {
+        width: 360px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .mm {
+        width: 460px;
+        font-size: 76px;
+      }
+      .ans {
+        font-size: 58px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="tbl" class="layer"></div>
+        <section id="s1" class="scene layer"></section>
+        <section id="s3" class="scene layer"></section>
+        <section id="s4" class="scene layer"></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish, color } =
+          window.LV;
+        const chip = (id, c, html) =>
+          `<span id="${id}" class="chip" style="--c: var(--color-concept-${c})">${html}</span>`;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+        const ps = (p) => `<span class="ps">${p}</span>`;
+        const ex = (id, html, cls = "") =>
+          `<span id="${id}" class="ex ${cls}">${html}</span>`;
+        // A prime with its exponent, the exponent being a ringable box.
+        const f = (p, id, html, cls) => ps(p) + ex(id, html, cls);
+
+        // ---------- the table: two numbers, their ƯCLN and BCNN ----------
+        const row = (id, top, label, math) =>
+          el(
+            $("#tbl"),
+            `<div id="${id}" class="rw" style="top: ${top}px"><span class="lab">${label}</span><span class="math mm">${math}</span></div>`,
+          );
+        const dot = `<span class="op">·</span>`;
+        row(
+          "r1",
+          20,
+          chip("l1", "slate", "Số thứ nhất"),
+          f(2, "x12", "4") + dot + f(7, "x17", `<span class="sw"><span id="aq">a</span><span id="aa">5</span></span>`, "unk"),
+        );
+        row(
+          "r2",
+          120,
+          chip("l2", "slate", "Số thứ hai"),
+          f(2, "x22", `<span class="sw"><span id="bq">b</span><span id="ba">2</span></span>`, "unk") +
+            dot +
+            f(7, "x27", "3"),
+        );
+        row(
+          "r3",
+          220,
+          chip("l3", "amber", "ƯCLN"),
+          f(2, "xu2", "2") + dot + f(7, "xu7", "3"),
+        );
+        row(
+          "r4",
+          320,
+          chip("l4", "pink", "BCNN"),
+          f(2, "xb2", "4") + dot + f(7, "xb7", "5"),
+        );
+
+        // ---------- scene overlays ----------
+        el(
+          $("#s1"),
+          `<div id="q0" class="row" style="top: 450px">${chip("q0c", "violet", "▲ a và b: số mũ chưa biết")}</div>`,
+        );
+        el(
+          $("#s3"),
+          `<div id="b1" class="row" style="top: 450px; left: 120px">${chip("b1c", "slate", "thừa số 2: số mũ 4 và b")}<span id="b1a" class="math pill ans">b = 2</span></div>`,
+        );
+        el(
+          $("#s4"),
+          `<div id="a1" class="row" style="top: 450px; left: 120px">${chip("a1c", "slate", "thừa số 7: a và 3")}<span id="a1a" class="math pill ans">a = 5</span><span id="a1b" class="math pill ans">b = 2</span></div>`,
+        );
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s3", "s03-b"],
+          ["#s4", "s04-a"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        const ring = (sel, token, t) =>
+          tl.fromTo(
+            sel,
+            { boxShadow: `0 0 0 0px ${color(token)}` },
+            {
+              boxShadow: `0 0 0 6px ${color(token)}`,
+              duration: 0.4,
+              immediateRender: false,
+            },
+            t,
+          );
+        const unring = (sel, token, t) =>
+          tl.to(sel, { boxShadow: `0 0 0 0px ${color(token)}`, duration: 0.3 }, t);
+        const swap = (q, a, t) => {
+          tl.to(q, { autoAlpha: 0, duration: 0.25 }, t);
+          tl.fromTo(
+            a,
+            { autoAlpha: 0, scale: 0.5 },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.4,
+              ease: "back.out(1.8)",
+              immediateRender: false,
+            },
+            t,
+          );
+        };
+
+        hide(["#r1", "#r2", "#r3", "#r4", "#ba", "#aa", "#q0c"]);
+
+        {
+          const sid = "s01-mo";
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#q0c", start(sid) + 0.3, { from: 0.6 });
+          pop("#r1", W(sid, "thứ"), { from: 0.6 });
+          pop("#r2", W(sid, "thứ", 2), { from: 0.6 });
+          pose(bird, "idle", W(sid, "thứ"));
+        }
+        {
+          const sid = "s02-uc";
+          pop("#r3", W(sid, "ước"), { from: 0.6 });
+          pop("#r4", W(sid, "bội"), { from: 0.6 });
+        }
+        {
+          const sid = "s03-b";
+          hide(["#b1c", "#b1a"]);
+          pose(bird, "idle", start(sid));
+          pop("#b1c", W(sid, "xét"), { from: 0.6 });
+          ring("#x12, #x22", "concept-violet", W(sid, "xét"));
+          ring("#xu2", "concept-amber", W(sid, "trong"));
+          pop("#b1a", W(sid, "nên"), { from: 0.5 });
+          swap("#bq", "#ba", W(sid, "nên"));
+          pose(bird, "happy", W(sid, "nên"));
+        }
+        {
+          const sid = "s04-a";
+          hide(["#a1c", "#a1a", "#a1b"]);
+          unring("#x12, #x22, #xu2", "concept-violet", start(sid));
+          tl.set("#xu2", { boxShadow: "0 0 0 0px transparent" }, start(sid));
+          pose(bird, "idle", start(sid));
+          pop("#a1c", W(sid, "xét"), { from: 0.6 });
+          ring("#x17, #x27", "concept-violet", W(sid, "xét"));
+          ring("#xb7", "concept-pink", W(sid, "trong"));
+          pop("#a1a", W(sid, "nên"), { from: 0.5 });
+          swap("#aq", "#aa", W(sid, "nên"));
+          pop("#a1b", W(sid, "vậy"), { from: 0.5 });
+          pose(bird, "cheer", W(sid, "vậy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

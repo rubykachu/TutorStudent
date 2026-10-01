@@ -58,6 +58,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "on-tap-chuong-2.video.khang-dinh-sai"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -654,6 +658,10 @@
       "minutes": 6,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "on-tap-chuong-2.video.khoang-bcnn"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -720,6 +728,10 @@
       "sourceRef": "Ôn tập chương II, bài 2.63 (sách bài tập tr.46, lời giải tr.110); ôn Bài 11 và Bài 12",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "on-tap-chuong-2.video.so-mu"
+        },
         {
           "type": "group",
           "children": [
@@ -4436,6 +4448,136 @@
       "làm các câu trắc nghiệm về chia hết và số nguyên tố",
       "làm các bài tập về ƯCLN, BCNN và phân số"
     ],
-    "whyItMatters": "Bạn dùng BCNN để biết sau mấy ngày hai bạn trực nhật lại gặp nhau, và dùng ƯCLN để chia đều kẹo."
-  }
+    "whyItMatters": "Bạn dùng BCNN để biết sau mấy ngày hai bạn trực nhật lại gặp nhau, và dùng ƯCLN để chia đều kẹo.",
+    "narration": {
+      "audioUrl": "narration/on-tap-chuong-2/overview.m4a",
+      "vttUrl": "narration/on-tap-chuong-2/overview.vtt",
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  },
+  "videos": [
+    {
+      "id": "on-tap-chuong-2.video.khang-dinh-sai",
+      "lessonId": "on-tap-chuong-2",
+      "url": "video/on-tap-chuong-2/khang-dinh-sai.mp4",
+      "vttUrl": "video/on-tap-chuong-2/khang-dinh-sai.vtt",
+      "posterUrl": "video/on-tap-chuong-2/khang-dinh-sai.jpg",
+      "durationSec": 53.1,
+      "clips": [
+        {
+          "id": "tinh-chat-tong",
+          "start": 27.215,
+          "end": 51.693,
+          "cardIds": ["on-tap-chuong-2.card.tinh-chat-tong"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 10.4,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 26.515,
+          "from": 10.4
+        },
+        {
+          "id": "cp-03",
+          "at": 46.577,
+          "from": 26.515
+        }
+      ]
+    },
+    {
+      "id": "on-tap-chuong-2.video.so-mu",
+      "lessonId": "on-tap-chuong-2",
+      "url": "video/on-tap-chuong-2/so-mu.mp4",
+      "vttUrl": "video/on-tap-chuong-2/so-mu.vtt",
+      "posterUrl": "video/on-tap-chuong-2/so-mu.jpg",
+      "durationSec": 59.53,
+      "clips": [
+        {
+          "id": "so-mu-uclnn-bcnn",
+          "start": 17.77,
+          "end": 58.112,
+          "cardIds": ["on-tap-chuong-2.card.so-mu-uclnn-bcnn"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 17.07,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 36.617,
+          "from": 17.07
+        },
+        {
+          "id": "cp-03",
+          "at": 54.826,
+          "from": 36.617
+        }
+      ]
+    },
+    {
+      "id": "on-tap-chuong-2.video.khoang-bcnn",
+      "lessonId": "on-tap-chuong-2",
+      "url": "video/on-tap-chuong-2/khoang-bcnn.mp4",
+      "vttUrl": "video/on-tap-chuong-2/khoang-bcnn.vtt",
+      "posterUrl": "video/on-tap-chuong-2/khoang-bcnn.jpg",
+      "durationSec": 69.6,
+      "clips": [
+        {
+          "id": "bcnn-bai-toan",
+          "start": 11.645,
+          "end": 68.168,
+          "cardIds": ["on-tap-chuong-2.card.bcnn-bai-toan"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 10.945,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 27.005,
+          "from": 10.945
+        },
+        {
+          "id": "cp-03",
+          "at": 45.507,
+          "from": 27.005
+        },
+        {
+          "id": "cp-04",
+          "at": 64.661,
+          "from": 45.507
+        }
+      ]
+    }
+  ]
 }

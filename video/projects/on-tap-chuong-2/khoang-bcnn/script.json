@@ -1,0 +1,77 @@
+{
+  "title": "Tìm số trong khoảng khi chia còn dư",
+  "engine": "local",
+  "poster": { "scene": "s04-khoang", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm số nằm trong một khoảng.",
+          "opening": true
+        },
+        { "text": "Hộp có từ 100 đến 140 viên bi." },
+        {
+          "text": "Chia nhóm 5, 6 hay 10 viên, đều thừa 1 viên.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s02-bot",
+      "sentences": [
+        { "text": "Bạn thử đoán xem: bớt 1 viên thì sao?", "pause": "ask" },
+        {
+          "text": "Chia cho nhiều số đều dư như nhau thì bớt số dư đi, số còn lại chia hết cho các số đó.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Vậy số còn lại là bội chung của 5, 6, 10.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s03-bcnn",
+      "sentences": [
+        {
+          "text": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó.",
+          "say": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm bội-chung-nhỏ-nhất rồi liệt kê các bội của nó.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Các thừa số là 2, 3 và 5." },
+        { "text": "2 nhân 3 nhân 5 bằng 30." },
+        {
+          "text": "Các bội của 30 là 30, 60, 90, 120, 150.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s04-khoang",
+      "sentences": [
+        {
+          "text": "Nếu mọi hàng đều dư cùng một số, ta cộng số dư đó vào từng bội trước khi chọn số nằm trong khoảng đề cho.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Cộng 1 vào từng bội: 31, 61, 91, 121, 151." },
+        {
+          "text": "Chỉ có 121 nằm trong khoảng từ 100 đến 140.",
+          "checkpoint": true
+        },
+        { "text": "Vậy hộp có 121 viên bi." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "bcnn-bai-toan",
+      "from": "s02-bot",
+      "to": "s04-khoang",
+      "cardIds": ["on-tap-chuong-2.card.bcnn-bai-toan"]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Tìm khẳng định sai bằng một ví dụ",
+  "engine": "local",
+  "poster": { "scene": "s02-thu", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm khẳng định sai bằng ví dụ.",
+          "opening": true
+        },
+        { "text": "Khẳng định: hai số đều không chia hết cho 4." },
+        {
+          "text": "Thì tổng của chúng cũng không chia hết cho 4.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s02-thu",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: khẳng định này đúng hay sai?",
+          "pause": "ask"
+        },
+        { "text": "Ta thử 1 và 3, đều không chia hết cho 4." },
+        {
+          "text": "Tổng 1 cộng 3 bằng 4, mà 4 chia hết cho 4.",
+          "pause": "think"
+        },
+        { "text": "Vậy khẳng định này sai.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-quy",
+      "sentences": [
+        {
+          "text": "Hai số hạng đều không chia hết cho một số thì tổng có thể chia hết hoặc không.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Chỉ cần một ví dụ làm nó sai là khẳng định sai." }
+      ]
+    },
+    {
+      "id": "s04-dung-mot",
+      "sentences": [
+        {
+          "text": "Tổng có đúng một số hạng không chia hết cho một số, các số hạng còn lại đều chia hết cho số đó.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Khi đó tổng không chia hết cho số đó.",
+          "rule": true,
+          "pause": "think",
+          "checkpoint": true
+        },
+        { "text": "Nhớ nhé: gặp chữ luôn hay đều, hãy thử số nhỏ." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tinh-chat-tong",
+      "from": "s03-quy",
+      "to": "s04-dung-mot",
+      "cardIds": ["on-tap-chuong-2.card.tinh-chat-tong"]
+    }
+  ]
+}

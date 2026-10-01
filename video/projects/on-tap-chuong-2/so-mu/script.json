@@ -1,0 +1,71 @@
+{
+  "title": "Tìm số mũ từ ƯCLN và BCNN",
+  "engine": "local",
+  "poster": { "scene": "s04-a", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm số mũ chưa biết.",
+          "opening": true
+        },
+        { "text": "Số thứ nhất là 2 mũ 4 nhân 7 mũ a." },
+        { "text": "Số thứ hai là 2 mũ b nhân 7 mũ 3." }
+      ]
+    },
+    {
+      "id": "s02-uc",
+      "sentences": [
+        { "text": "Ước chung lớn nhất là 2 mũ 2 nhân 7 mũ 3." },
+        {
+          "text": "Bội chung nhỏ nhất là 2 mũ 4 nhân 7 mũ 5.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s03-b",
+      "sentences": [
+        { "text": "Bạn thử đoán xem: số b bằng mấy?", "pause": "ask" },
+        { "text": "Xét thừa số 2, hai số mũ là 4 và b." },
+        {
+          "text": "Thừa số nguyên tố có ở mọi số: số mũ nhỏ nhất là số mũ trong ƯCLN.",
+          "say": "Thừa số nguyên tố có ở mọi số: số mũ nhỏ nhất là số mũ trong ước-chung-lớn-nhất.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Số mũ nhỏ nhất của 2 là 2, nên b bằng 2.",
+          "checkpoint": true
+        }
+      ]
+    },
+    {
+      "id": "s04-a",
+      "sentences": [
+        { "text": "Xét thừa số 7, hai số mũ là a và 3." },
+        { "text": "Bạn thử đoán xem: số a bằng mấy?", "pause": "ask" },
+        {
+          "text": "Mọi thừa số nguyên tố: số mũ lớn nhất là số mũ trong BCNN.",
+          "say": "Mọi thừa số nguyên tố: số mũ lớn nhất là số mũ trong bội-chung-nhỏ-nhất.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Số mũ lớn nhất của 7 là 5, nên a bằng 5.",
+          "checkpoint": true
+        },
+        { "text": "Vậy số a bằng 5 và số b bằng 2." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "so-mu-uclnn-bcnn",
+      "from": "s03-b",
+      "to": "s04-a",
+      "cardIds": ["on-tap-chuong-2.card.so-mu-uclnn-bcnn"]
+    }
+  ]
+}

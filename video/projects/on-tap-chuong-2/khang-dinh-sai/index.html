@@ -1,0 +1,202 @@
+<!doctype html>
+<!--
+  Lesson video "Tìm khẳng định sai bằng một ví dụ" (lesson on-tap-chuong-2):
+  the claim "two numbers not divisible by 4 give a sum not divisible by 4" is
+  broken by 1 + 3 = 4; divisibility facts are slate chips, the verdict "Sai"
+  is destructive red, results sit on the highlight yellow.
+  Built by `pnpm video:build on-tap-chuong-2 khang-dinh-sai`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tìm khẳng định sai bằng một ví dụ</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .chip {
+        font-size: 34px;
+      }
+      .opt {
+        font-size: 40px;
+        padding: 4px 34px;
+        --c: var(--color-muted-foreground);
+      }
+      .num {
+        position: absolute;
+        width: 150px;
+        margin-left: -75px;
+        text-align: center;
+      }
+      .sm {
+        font-size: 56px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="a0" class="row" style="top: 110px"></div>
+          <div id="a1" class="row" style="top: 250px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="z3" class="layer"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="z4" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, pose, scenes, finish, color } =
+          window.LV;
+        const chip = (id, c, html, style = "") =>
+          `<span id="${id}" class="chip" style="--c: var(--color-concept-${c}); ${style}">${html}</span>`;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        // ---------- s01: the claim ----------
+        $("#a0").innerHTML = chip(
+          "c0",
+          "slate",
+          "Hai số đều không chia hết cho 4",
+          "font-size: 44px",
+        );
+        $("#a1").innerHTML = chip(
+          "c1",
+          "slate",
+          "⇒ tổng cũng không chia hết cho 4",
+          "font-size: 44px",
+        );
+
+        // ---------- s02: try 1 and 3 ----------
+        const z2 = $("#z2");
+        el(
+          z2,
+          `<div class="row" style="top: 14px; gap: 36px"><span id="o1" class="chip opt">Đúng</span><span id="o2" class="chip opt">Sai</span></div>`,
+        );
+        el(
+          z2,
+          `<span id="n1" class="num math pill sm" style="left: 430px; top: 110px">1</span>
+           <span id="n3" class="num math pill sm" style="left: 850px; top: 110px">3</span>
+           <div id="t1" class="abs" style="left: 255px; top: 215px">${chip("t1c", "slate", "không chia hết cho 4", "font-size: 30px")}</div>
+           <div id="t3" class="abs" style="left: 675px; top: 215px">${chip("t3c", "slate", "không chia hết cho 4", "font-size: 30px")}</div>
+           <div id="sum" class="row" style="top: 300px"><span class="math pill" style="font-size: 76px">1 <span class="op">+</span> 3 <span class="op">=</span> 4</span></div>
+           <div id="t4" class="row" style="top: 430px">${chip("t4c", "slate", "4 chia hết cho 4", "font-size: 36px")}</div>`,
+        );
+
+        // ---------- s03: two sums that can go either way ----------
+        const z3 = $("#z3");
+        el(
+          z3,
+          `<div id="e1" class="row" style="top: 90px"><span class="math pill sm">1 <span class="op">+</span> 3 <span class="op">=</span> 4</span>${chip("e1c", "slate", "chia hết cho 4")}</div>
+           <div id="e2" class="row" style="top: 240px"><span class="math pill sm">1 <span class="op">+</span> 2 <span class="op">=</span> 3</span>${chip("e2c", "slate", "không chia hết cho 4")}</div>
+           <div id="e3" class="row" style="top: 400px">${chip("e3c", "slate", "1 ví dụ sai là đủ", "font-size: 38px")}</div>`,
+        );
+
+        // ---------- s04: exactly one term not divisible ----------
+        const z4 = $("#z4");
+        el(
+          z4,
+          `<div id="d0" class="row" style="top: 40px"><span class="math pill sm">8 <span class="op">+</span> 3 <span class="op">=</span> 11</span></div>
+           <div id="d1" class="row" style="top: 170px">${chip("d1c", "slate", "3 không chia hết cho 4")}</div>
+           <div id="d2" class="row" style="top: 255px">${chip("d2c", "slate", "8 chia hết cho 4")}</div>
+           <div id="d3" class="row" style="top: 340px">${chip("d3c", "slate", "tổng 11 không chia hết cho 4")}</div>
+           <div id="d4" class="row" style="top: 440px">${chip("d4c", "slate", "Gặp “luôn”, “đều”: thử số nhỏ", "font-size: 36px")}</div>`,
+        );
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-thu"],
+          ["#s3", "s03-quy"],
+          ["#s4", "s04-dung-mot"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-mo";
+          hide(["#c0", "#c1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#c0", W(sid, "khẳng"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "khẳng"));
+          pop("#c1", W(sid, "thì"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-thu";
+          hide(["#o1", "#o2", "#n1", "#n3", "#t1c", "#t3c", "#sum", "#t4c"]);
+          pose(bird, "idle", start(sid));
+          pop(["#o1", "#o2"], start(sid) + 0.2, { from: 0.6, stagger: 0.15 });
+          pop(["#n1"], W(sid, "1"), { from: 0.6 });
+          pop(["#n3"], W(sid, "3"), { from: 0.6 });
+          pop(["#t1c", "#t3c"], W(sid, "đều"), { from: 0.6, stagger: 0.15 });
+          pop("#sum", W(sid, "tổng"), { from: 0.6 });
+          pop("#t4c", W(sid, "mà"), { from: 0.6 });
+          // The verdict: "Sai" turns red, "Đúng" fades.
+          tl.to(
+            "#o2",
+            {
+              backgroundColor: color("destructive"),
+              borderColor: color("destructive"),
+              color: color("surface"),
+              duration: 0.3,
+            },
+            W(sid, "sai", 2),
+          );
+          tl.to("#o1", { opacity: 0.3, duration: 0.3 }, W(sid, "sai", 2));
+          pose(bird, "happy", W(sid, "sai", 2));
+        }
+        {
+          const sid = "s03-quy";
+          hide(["#e1", "#e2", "#e3"]);
+          pose(bird, "idle", start(sid));
+          pop("#e1", start(sid) + 0.3, { from: 0.6 });
+          pop("#e2", W(sid, "hoặc"), { from: 0.6 });
+          pop("#e3", W(sid, "một", 2), { from: 0.6 });
+        }
+        {
+          const sid = "s04-dung-mot";
+          hide(["#d0", "#d1", "#d2", "#d3", "#d4"]);
+          pose(bird, "idle", start(sid));
+          pop("#d0", start(sid) + 0.3, { from: 0.6 });
+          pop("#d1", W(sid, "đúng"), { from: 0.6 });
+          pop("#d2", W(sid, "các"), { from: 0.6 });
+          pop("#d3", W(sid, "khi"), { from: 0.6 });
+          pop("#d4", W(sid, "nhớ"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>
