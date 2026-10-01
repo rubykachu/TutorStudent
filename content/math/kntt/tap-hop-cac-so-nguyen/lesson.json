@@ -11,7 +11,8 @@
   },
   "title": "Tập hợp các số nguyên",
   "sourceRef": "Sách bài tập tr.47–49",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "eac21fceadc1fa39d1b19499633445a8208f0227a1c1ff9710830eb053f6a2ec",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với số âm. Sáng mùa đông ở Sa Pa, nhiệt kế chỉ 2 độ dưới 0, bạn ghi nhiệt độ đó bằng số nào?"
