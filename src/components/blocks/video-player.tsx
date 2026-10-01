@@ -2,7 +2,10 @@
 
 import { Captions, CaptionsOff, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { CheckpointOverlay } from "@/components/blocks/checkpoint-overlay";
+import {
+  CheckpointControls,
+  CheckpointVeil,
+} from "@/components/blocks/video-checkpoint";
 import { parseKaraokeCue, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import type { Video } from "@/schema/content";
@@ -228,14 +231,7 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
             </span>
           </button>
         )}
-        {stop !== null && checkpoints && (
-          <CheckpointOverlay
-            index={stop}
-            total={checkpoints.length}
-            onContinue={() => resumeAt(undefined)}
-            onReplay={() => resumeAt(checkpoints[stop]?.from)}
-          />
-        )}
+        {stop !== null && <CheckpointVeil />}
         {captionsOn && cue.length > 0 && stop === null && (
           <p
             data-video-caption
@@ -264,19 +260,28 @@ export function VideoPlayer({ video, clip }: VideoPlayerProps) {
           </p>
         )}
       </div>
-      <button
-        type="button"
-        aria-pressed={captionsOn}
-        onClick={() => setCaptionsOn((on) => !on)}
-        className="mt-3 inline-flex min-h-12 items-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold text-body text-foreground"
-      >
-        {captionsOn ? (
-          <Captions aria-hidden className="size-6" />
-        ) : (
-          <CaptionsOff aria-hidden className="size-6" />
-        )}
-        {captionsOn ? "Phụ đề: bật" : "Phụ đề: tắt"}
-      </button>
+      {stop !== null && checkpoints ? (
+        <CheckpointControls
+          index={stop}
+          total={checkpoints.length}
+          onContinue={() => resumeAt(undefined)}
+          onReplay={() => resumeAt(checkpoints[stop]?.from)}
+        />
+      ) : (
+        <button
+          type="button"
+          aria-pressed={captionsOn}
+          onClick={() => setCaptionsOn((on) => !on)}
+          className="mt-3 inline-flex min-h-12 items-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold text-body text-foreground"
+        >
+          {captionsOn ? (
+            <Captions aria-hidden className="size-6" />
+          ) : (
+            <CaptionsOff aria-hidden className="size-6" />
+          )}
+          {captionsOn ? "Phụ đề: bật" : "Phụ đề: tắt"}
+        </button>
+      )}
     </div>
   );
 }
