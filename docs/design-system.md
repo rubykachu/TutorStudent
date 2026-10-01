@@ -112,7 +112,7 @@ Cả hai font có bộ ký tự `vietnamese`; nạp qua `next/font/google` với
 
 - Chỉ animate `transform` và `opacity`.
 - `prefers-reduced-motion: reduce` → bỏ rung, bỏ nảy, chuyển cảnh bằng fade; animation giải thích vẫn chạy nhưng dạng từng bước bấm "Tiếp".
-- Không chuyển động nền, không hiệu ứng lặp vô hạn trong lúc học (trừ linh vật chớp mắt ≥ 4 giây/lần).
+- Không chuyển động nền (nền vũ trụ ở mục 12 đứng yên), không hiệu ứng lặp vô hạn trong lúc học (trừ linh vật chớp mắt ≥ 4 giây/lần).
 
 ## 7. Phản hồi bài tập (3 nấc)
 
@@ -134,7 +134,8 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 - Mọi lần kiểm đều có tiếng (bảng trên); mọi câu trong bong bóng đều có giọng đọc, đúng câu đang hiện. Không có bong bóng nào im lặng.
 - Một giọng cho mọi câu của cú, mọi file cùng độ lớn (giọng −16 LUFS, "oops" nhỏ hơn 4 LU) và không vỡ tiếng (đỉnh < −1 dBFS). Thông số ở `scripts/lib/sound-spec.ts`.
 - Không đọc chữ bằng giọng máy của trình duyệt.
-- Hai tiếng chạm, khác nhau: chọn đáp án, thẻ, vùng là tiếng click gỗ sáng (`tap`); mọi nút và liên kết khác trên màn của bé (Kiểm tra, Bỏ qua, Quay lại, nút về, ô môn) là tiếng "bloop" tròn, nhỏ hơn (`button`). Tiếng nút do `ButtonSounds` (`src/lib/feedback-sounds.tsx`) phát cho mọi nút bên dưới nó, nên nút mới tự có tiếng; vùng tự lo tiếng (đáp án, hình tương tác, công tắc loa, sticker) gắn `data-own-sound`. Trang phụ huynh và trang chọn hồ sơ im lặng.
+- Hai tiếng chạm, khác nhau: chọn đáp án, thẻ, vùng là tiếng click gỗ sáng (`tap`); mọi nút và liên kết khác trên màn của bé (Kiểm tra, Bỏ qua, Quay lại, nút về, ô môn, liên kết quay lại trang bài) là một nốt tròn, mềm, nhỏ hơn (`button`: một nốt sin D5 vào êm, trượt cao độ nhẹ rồi tắt dần, không có mép cắt). Tiếng nút do `ButtonSounds` (`src/lib/feedback-sounds.tsx`) phát cho mọi nút bên dưới nó, nên nút mới tự có tiếng; vùng tự lo tiếng (đáp án, hình tương tác, công tắc loa, sticker) gắn `data-own-sound`. Mọi màn của bé (kể cả màn xong phần) nằm dưới `ButtonSounds`. Tiếng nút phát ngay trong lượt chạm và không bị cắt khi màn kế tiếp mở: clip chỉ `load()` một lần (`preloadSounds` trong `src/lib/sound.ts`), vì nạp lại một clip đang phát sẽ dừng nó. Trang phụ huynh và trang chọn hồ sơ im lặng.
+- Nhận sticker (xong cả bài, `StickerEarnedCelebration`): pháo giấy cùng nhạc vui rồi cú đọc "Chúc mừng bạn! Bạn vừa nhận được một sticker mới!" (`sticker-earned`), chỉ một lần, theo công tắc âm thanh, bỏ pháo khi giảm chuyển động. Mở lại sticker đã nhận ở dải sticker trang chủ: pháo giấy trên bảng chi tiết và nhạc vui, không có lời chúc mừng.
 - Công tắc âm thanh: nút loa tròn 48px (`Volume2`/`VolumeX`, màu `--color-muted-foreground`), luôn ở đầu phải hàng trên cùng của màn hình; một setting cho mỗi con. Bật lại thì phát nhạc vui để xác nhận.
 
 ## 8. Linh vật
@@ -183,7 +184,7 @@ Biểu tượng: Lucide (SVG). Không dùng emoji làm biểu tượng giao di�
 - Popup, quảng cáo nội bộ, thông báo chen ngang lúc đang làm bài.
 - Chữ tiếng Anh trên giao diện.
 - Hơn 2 câu chữ trong một khối giải thích.
-- Hiệu ứng nền, parallax, hiệu ứng lặp khi đang học.
+- Hiệu ứng nền chuyển động, parallax, hiệu ứng lặp khi đang học (nền vũ trụ tĩnh ở mục 12 là ngoại lệ duy nhất).
 
 ## 11. Kiểm tra trước khi giao
 
@@ -195,3 +196,14 @@ Biểu tượng: Lucide (SVG). Không dùng emoji làm biểu tượng giao di�
 - [ ] Không màu nào mang nghĩa một mình (có ký hiệu/biểu tượng đi kèm).
 - [ ] Không emoji làm biểu tượng; biểu tượng dùng Lucide.
 - [ ] Safe area iPad khi mở PWA toàn màn hình.
+
+## 12. Nền vũ trụ
+
+Một lớp nền "đa vũ trụ" rất nhạt phía sau mọi màn của bé (trang chủ, môn, bài, player, hồ sơ) để app đẹp và đáng mở với bé 11–12 tuổi. Nằm ở `src/components/cosmos-background.tsx`, gắn một lần trong `src/app/(child)/layout.tsx`; trang phụ huynh ở ngoài nhóm đó nên giữ nền phẳng.
+
+- Thành phần: hai vầng tinh vân (tím góc trên phải, xanh góc dưới trái), lớp sao nhỏ lặp, hành tinh có vành đai ở góc trên phải kèm quỹ đạo nét đứt và một mặt trăng, hành tinh sọc ở góc dưới trái kèm quỹ đạo và hai mặt trăng nhỏ, một mặt trăng nhỏ ở mỗi mép bên (hổ phách, hồng).
+- Màu chỉ lấy từ token khái niệm (`--color-concept-violet`, `blue`, `teal`, `amber`, `pink`, `slate`) ở độ mờ thấp; hình lớn đặt nửa ra ngoài góc màn hình (đơn vị `vmin`, có `clamp`), nên không chạm vùng nội dung. Trên điện thoại hành tinh góc trên dời lên để chỉ lộ nửa dưới, không đè hàng nút đầu trang.
+- Phía sau mọi thứ: `fixed inset-0 -z-10`, `pointer-events-none`, `aria-hidden`, không có chữ và không phần tử nhận focus. Thẻ trắng (`--color-surface`) che kín nền, nên chỉ phần nền trống (lề, khe giữa thẻ, đầu trang) lộ ra.
+- Tương phản: độ mờ mỗi hình ≤ 0.16 (vầng tinh vân ≤ 8%). Điểm tối nhất của nền (nơi hình chồng nhau, đo trên ảnh chụp chỉ còn nền ở 820×1180, 390×844, 1180×820) giữ `--color-muted-foreground` ≥ 4.6:1 và `--color-foreground` ≥ 7.6:1. Tăng độ mờ hay thêm hình thì đo lại.
+- Nhẹ: một khối div gradient và vài SVG tĩnh, không ảnh, không script; không chuyển động nên không có gì để tắt khi giảm chuyển động.
+- Thanh dưới cố định (`bar-surface`) phủ màu nền phẳng ngang cả màn nên nền vũ trụ không hiện sau nó.
