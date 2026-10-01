@@ -1,0 +1,69 @@
+{
+  "title": "Số liền trước và số liền sau",
+  "engine": "local",
+  "poster": { "scene": "s02-lien-tiep", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-trang-sach",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm số liền trước, liền sau.",
+          "opening": true
+        },
+        { "text": "Bạn cú đang đọc trang 25." },
+        { "text": "Trang 24 nằm ngay trước trang 25." },
+        { "text": "Trang 26 nằm ngay sau trang 25.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s02-lien-tiep",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: số liền sau của 25 là số nào?",
+          "pause": "ask"
+        },
+        {
+          "text": "Số liền sau của số a là số a + 1.",
+          "say": "Số liền sau của số a là số a cộng 1.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Số liền trước của số a + 1 là số a.",
+          "say": "Số liền trước của số a cộng 1 là số a.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "25 cộng 1 bằng 26, nên số liền sau là 26." },
+        { "text": "Số liền trước của 25 là 24.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-so-0",
+      "sentences": [
+        { "text": "Còn số 0 thì sao?" },
+        {
+          "text": "Số 0 là số tự nhiên nhỏ nhất, nên 0 không có số liền trước.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Số liền sau của 0 là 1." },
+        {
+          "text": "Mọi số tự nhiên đều có số liền sau.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "lien-truoc",
+      "from": "s02-lien-tiep",
+      "to": "s03-so-0",
+      "cardIds": [
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau",
+        "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc"
+      ]
+    }
+  ]
+}

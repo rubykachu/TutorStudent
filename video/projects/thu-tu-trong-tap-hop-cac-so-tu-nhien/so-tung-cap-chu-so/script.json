@@ -1,0 +1,53 @@
+{
+  "title": "So từng cặp chữ số",
+  "engine": "local",
+  "poster": { "scene": "s02-tung-cap", "at": 0.95 },
+  "scenes": [
+    {
+      "id": "s01-hai-gia",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta so hai số cùng số chữ số.",
+          "opening": true
+        },
+        { "text": "Xe đạp giá 6 218 nghìn đồng." },
+        { "text": "Xe đạp điện giá 6 247 nghìn đồng." },
+        { "text": "Cả hai số đều có 4 chữ số.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s02-tung-cap",
+      "sentences": [
+        { "text": "Bạn thử đoán xem: xe nào rẻ hơn?", "pause": "ask" },
+        {
+          "text": "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Hàng nghìn: 6 và 6, giống nhau." },
+        { "text": "Hàng trăm: 2 và 2, cũng giống nhau." },
+        { "text": "Hàng chục: 1 và 4, khác nhau.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-ket-qua",
+      "sentences": [
+        {
+          "text": "Ở cặp khác nhau đầu tiên, số nào có chữ số lớn hơn thì lớn hơn.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Số 1 nhỏ hơn số 4." },
+        { "text": "Vậy 6 218 nhỏ hơn 6 247, xe đạp rẻ hơn." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cung-chu-so",
+      "from": "s02-tung-cap",
+      "to": "s03-ket-qua",
+      "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so"]
+    }
+  ]
+}

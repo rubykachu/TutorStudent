@@ -1,0 +1,362 @@
+<!doctype html>
+<!--
+  Lesson video "So từng cặp chữ số" (lesson
+  thu-tu-trong-tap-hop-cac-so-tu-nhien): 6 218 and 6 247 as in the lesson's
+  digit-by-digit picture, two rows of tiles, compared pair by pair from the
+  left. Tiles are slate (so sánh số có nhiều chữ số); at the end the smaller
+  digit turns blue (số nhỏ hơn, ●) and the larger violet (số lớn hơn, ▲).
+  Built by `pnpm video:build thu-tu-trong-tap-hop-cac-so-tu-nhien so-tung-cap-chu-so`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>So từng cặp chữ số</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .slate {
+        --c: var(--color-concept-slate);
+      }
+      .blue {
+        --c: var(--color-concept-blue);
+      }
+      .tile {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid var(--color-concept-slate);
+        border-radius: 22px;
+        background: color-mix(
+          in srgb,
+          var(--color-concept-slate) 15%,
+          var(--color-surface)
+        );
+        color: var(--color-concept-slate);
+        font:
+          800 84px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .pairbox {
+        position: absolute;
+        width: 150px;
+        height: 330px;
+        top: 118px;
+        border: 5px solid var(--color-foreground);
+        border-radius: 28px;
+        background: color-mix(
+          in srgb,
+          var(--color-highlight) 55%,
+          var(--color-surface)
+        );
+      }
+      .mark {
+        position: absolute;
+        width: 120px;
+        text-align: center;
+        font:
+          800 64px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-foreground);
+      }
+      .nm {
+        position: absolute;
+        top: 458px;
+        width: 150px;
+        text-align: center;
+        color: var(--color-concept-slate);
+        font:
+          800 30px / 1.1 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .who {
+        position: absolute;
+        left: 210px;
+        width: 240px;
+        text-align: right;
+        font:
+          800 32px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--color-foreground);
+      }
+      .cnt {
+        position: absolute;
+        left: 1070px;
+        width: 190px;
+        font:
+          800 30px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--color-concept-slate);
+      }
+      .sign {
+        position: absolute;
+        left: 1070px;
+        width: 190px;
+        text-align: center;
+        top: 252px;
+        font:
+          800 96px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .cheap {
+        position: absolute;
+        left: 210px;
+        width: 240px;
+        text-align: right;
+        font:
+          800 30px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--color-concept-blue);
+      }
+      .badge {
+        position: absolute;
+        font:
+          800 46px / 1 "Be Vietnam Pro",
+          sans-serif;
+        z-index: 2;
+      }
+      .arr {
+        position: absolute;
+        left: 470px;
+        width: 570px;
+        top: 98px;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--color-concept-slate);
+      }
+      .arrh {
+        position: absolute;
+        left: 1030px;
+        top: 86px;
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-left: 26px solid var(--color-concept-slate);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c1" class="chip slate">Hai số cùng số chữ số</span>
+          </div>
+          <div id="z1" class="layer"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c2" class="chip slate">So từng cặp, từ trái sang phải</span>
+          </div>
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c3" class="chip slate">Cặp khác nhau đầu tiên</span>
+          </div>
+          <div id="z3" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, color, tl, start, W, owl, pop, fade, hide, pose, scenes, finish } =
+          window.LV;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        const ROW1 = [6, 2, 1, 8];
+        const ROW2 = [6, 2, 4, 7];
+        const TOP1 = 138;
+        const TOP2 = 318;
+        const left = (i) => 480 + i * 150;
+        const NAMES = ["nghìn", "trăm", "chục", "đơn vị"];
+
+        // Both rows of tiles (plus the labels at the sides), ids start with `p`.
+        const rows = (host, p) => {
+          el(host, `<div id="${p}w1" class="who" style="top: ${TOP1 + 40}px">Xe đạp</div>`);
+          el(host, `<div id="${p}w2" class="who" style="top: ${TOP2 + 22}px">Xe đạp điện</div>`);
+          ROW1.forEach((d, i) =>
+            el(host, `<div id="${p}a${i}" class="tile" style="left: ${left(i)}px; top: ${TOP1}px">${d}</div>`),
+          );
+          ROW2.forEach((d, i) =>
+            el(host, `<div id="${p}b${i}" class="tile" style="left: ${left(i)}px; top: ${TOP2}px">${d}</div>`),
+          );
+        };
+        const pairBox = (host, id, i) =>
+          el(host, `<div id="${id}" class="pairbox" style="left: ${left(i) - 15}px"></div>`);
+        const mark = (host, id, i, sym) =>
+          el(host, `<div id="${id}" class="mark" style="left: ${left(i)}px; top: 252px">${sym}</div>`);
+        const names = (host, p) =>
+          NAMES.forEach((n, i) =>
+            el(host, `<div id="${p}n${i}" class="nm" style="left: ${left(i) - 15}px">${n}</div>`),
+          );
+        const tint = (token) => {
+          const hex = (name) =>
+            [0, 2, 4].map((k) =>
+              Number.parseInt(color(name).replace("#", "").slice(k, k + 2), 16),
+            );
+          const c = hex(`concept-${token}`);
+          const s = hex("surface");
+          return `rgb(${c.map((v, k) => Math.round(v * 0.15 + s[k] * 0.85)).join(",")})`;
+        };
+        const recolor = (id, token, t) =>
+          tl.to(
+            id,
+            {
+              backgroundColor: tint(token),
+              borderColor: color(`concept-${token}`),
+              color: color(`concept-${token}`),
+              duration: 0.3,
+            },
+            t,
+          );
+
+        // ---------- s01: the two prices, both with 4 digits ----------
+        rows($("#z1"), "a");
+        el($("#z1"), `<div id="acnt1" class="cnt" style="top: ${TOP1 + 40}px">● 4 chữ số</div>`);
+        el($("#z1"), `<div id="acnt2" class="cnt" style="top: ${TOP2 + 40}px">● 4 chữ số</div>`);
+
+        // ---------- s02: pair by pair from the left ----------
+        rows($("#z2"), "b");
+        names($("#z2"), "b");
+        [0, 1, 2].forEach((i) => pairBox($("#z2"), `bx${i}`, i));
+        // Boxes sit behind the tiles: move them first in the DOM.
+        [0, 1, 2].forEach((i) => $("#z2").prepend($(`#bx${i}`)));
+        el($("#z2"), `<div id="bgo" class="arr"></div><div id="bgoh" class="arrh"></div>`);
+        el($("#z2"), `<div id="bq" class="sign" style="color: var(--color-foreground)">?</div>`);
+        mark($("#z2"), "be0", 0, "=");
+        mark($("#z2"), "be1", 1, "=");
+        mark($("#z2"), "bne", 2, "≠");
+
+        // ---------- s03: the first different pair decides ----------
+        rows($("#z3"), "c");
+        names($("#z3"), "c");
+        pairBox($("#z3"), "cx2", 2);
+        $("#z3").prepend($("#cx2"));
+        mark($("#z3"), "ce0", 0, "=");
+        mark($("#z3"), "ce1", 1, "=");
+        mark($("#z3"), "cne", 2, "≠");
+        el($("#z3"), `<div id="csign" class="sign" style="color: var(--color-foreground)">&lt;</div>`);
+        // Shape marks beside the colours: ● smaller digit (blue), ▲ larger (violet).
+        el($("#z3"), `<div id="cba" class="badge" style="left: ${left(2) + 106}px; top: ${TOP1 - 30}px; color: var(--color-concept-blue)">●</div>`);
+        el($("#z3"), `<div id="cbb" class="badge" style="left: ${left(2) + 106}px; top: ${TOP2 - 30}px; color: var(--color-concept-violet)">▲</div>`);
+        el($("#z3"), `<div id="ccheap" class="cheap" style="top: ${TOP1 + 84}px">● rẻ hơn</div>`);
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+        scenes([
+          ["#s1", "s01-hai-gia"],
+          ["#s2", "s02-tung-cap"],
+          ["#s3", "s03-ket-qua"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-hai-gia";
+          hide(["#c1", "#aw1", "#aw2", "#acnt1", "#acnt2", ...[0, 1, 2, 3].flatMap((i) => [`#aa${i}`, `#ab${i}`])]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#c1", W(sid, "số", 1), { from: 0.6 });
+          pop("#aw1", W(sid, "xe"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "xe"));
+          pop("#aa0", W(sid, "6"), { from: 0.5 });
+          pop(["#aa1", "#aa2", "#aa3"], W(sid, "218"), { from: 0.5, stagger: 0.25 });
+          pop("#aw2", W(sid, "xe", 2), { from: 0.6 });
+          pop("#ab0", W(sid, "6", 2), { from: 0.5 });
+          pop(["#ab1", "#ab2", "#ab3"], W(sid, "247"), { from: 0.5, stagger: 0.25 });
+          pop(["#acnt1", "#acnt2"], W(sid, "4"), { from: 0.5, stagger: 0.2 });
+          pose(bird, "happy", W(sid, "4"));
+        }
+        {
+          const sid = "s02-tung-cap";
+          hide([
+            "#c2",
+            "#bq",
+            "#bgo",
+            "#bgoh",
+            "#bx0",
+            "#bx1",
+            "#bx2",
+            "#be0",
+            "#be1",
+            "#bne",
+            ...[0, 1, 2, 3].map((i) => `#bn${i}`),
+          ]);
+          pose(bird, "idle", start(sid));
+          pop([0, 1, 2, 3].map((i) => `#bn${i}`), start(sid) + 0.2, { from: 0.6, stagger: 0.12 });
+          pop("#bq", W(sid, "bạn"), { from: 0.4 });
+          fade("#bq", W(sid, "khi") - 0.05, 0.25);
+          pop("#c2", W(sid, "so"), { from: 0.6 });
+          tl.fromTo(
+            ["#bgo", "#bgoh"],
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.5, immediateRender: false },
+            W(sid, "từng"),
+          );
+          // Hàng nghìn: 6 and 6.
+          pop("#bx0", W(sid, "nghìn"), { from: 0.8 });
+          pop("#be0", W(sid, "giống"), { from: 0.5 });
+          // Hàng trăm: 2 and 2.
+          fade("#bx0", W(sid, "trăm") - 0.05, 0.2);
+          pop("#bx1", W(sid, "trăm"), { from: 0.8 });
+          pop("#be1", W(sid, "giống", 2), { from: 0.5 });
+          // Hàng chục: 1 and 4.
+          fade("#bx1", W(sid, "chục") - 0.05, 0.2);
+          pop("#bx2", W(sid, "chục"), { from: 0.8 });
+          pose(bird, "happy", W(sid, "khác"));
+          pop("#bne", W(sid, "khác"), { from: 0.5 });
+        }
+        {
+          const sid = "s03-ket-qua";
+          hide(["#c3", "#csign", "#ccheap", "#cba", "#cbb"]);
+          pose(bird, "idle", start(sid));
+          pop("#c3", start(sid) + 0.2, { from: 0.6 });
+          // The first different pair is pulsed while the rule is read.
+          tl.fromTo(
+            "#cx2",
+            { scale: 1 },
+            { scale: 1.06, duration: 0.3, yoyo: true, repeat: 1, immediateRender: false },
+            W(sid, "đầu"),
+          );
+          recolor("#ca2", "blue", W(sid, "1"));
+          recolor("#cb2", "violet", W(sid, "4"));
+          pop("#cba", W(sid, "1"), { from: 0.5 });
+          pop("#cbb", W(sid, "4"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "4"));
+          pop("#csign", W(sid, "nhỏ", 2), { from: 0.5 });
+          pop("#ccheap", W(sid, "rẻ"), { from: 0.5 });
+          pose(bird, "cheer", W(sid, "rẻ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

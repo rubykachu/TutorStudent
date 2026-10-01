@@ -1,0 +1,270 @@
+<!doctype html>
+<!--
+  Lesson video "Số liền trước và số liền sau" (lesson
+  thu-tu-trong-tap-hop-cac-so-tu-nhien): page numbers 24, 25, 26 as in the
+  lesson's picture of the page being read. The page read is amber (điểm
+  biểu diễn), the number just before it sky (số liền trước, ◀), the number
+  just after it pink (số liền sau, ▶). Scene 3 shows 0, which has no number
+  before it. Built by
+  `pnpm video:build thu-tu-trong-tap-hop-cac-so-tu-nhien lien-truoc-lien-sau`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Số liền trước và số liền sau</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .slate {
+        --c: var(--color-concept-slate);
+      }
+      .sky {
+        --c: var(--color-concept-sky);
+      }
+      .pink {
+        --c: var(--color-concept-pink);
+      }
+      .tile {
+        position: absolute;
+        top: 220px;
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 6px solid var(--c);
+        border-radius: 26px;
+        background: color-mix(in srgb, var(--c) 15%, var(--color-surface));
+        color: var(--c);
+        font:
+          800 92px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .tile.amber {
+        --c: var(--color-concept-amber);
+      }
+      .tile.slot {
+        border-style: dashed;
+        background: var(--color-surface);
+      }
+      .tag {
+        position: absolute;
+        top: 392px;
+        width: 220px;
+        text-align: center;
+        font:
+          800 30px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--c);
+      }
+      .shaft {
+        position: absolute;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--c);
+      }
+      .tip-r,
+      .tip-l {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+      }
+      .tip-r {
+        border-left: 26px solid var(--c);
+      }
+      .tip-l {
+        border-right: 26px solid var(--c);
+      }
+      .alabel {
+        position: absolute;
+        text-align: center;
+        font:
+          800 36px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--c);
+      }
+      .cross {
+        position: absolute;
+        top: 220px;
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-concept-sky);
+        font:
+          800 110px / 1 "Baloo 2",
+          sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c1" class="chip slate">Các trang sách</span>
+          </div>
+          <div id="z1" class="layer"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c2" class="chip slate">Liền nhau trên tia số</span>
+          </div>
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c3" class="chip slate">Số 0</span>
+          </div>
+          <div id="z3" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, color, tl, start, W, owl, pop, fade, hide, pose, scenes, finish } =
+          window.LV;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        // Three places side by side: before, the number, after.
+        const left = (i) => 420 + i * 260;
+        const tile = (host, id, i, text, cls, extra = "") =>
+          el(host, `<div id="${id}" class="tile ${cls}" style="left: ${left(i)}px">${text}</div>`);
+        const tag = (host, id, i, text, cls) =>
+          el(host, `<div id="${id}" class="tag ${cls}" style="left: ${left(i) - 35}px">${text}</div>`);
+        // A horizontal arrow from tile `a` to tile `b` at height y, with a label.
+        const arrow = (host, id, a, b, y, text, cls, below = false) => {
+          const dir = b > a ? "r" : "l";
+          const x1 = left(Math.min(a, b)) + 150 + 8;
+          const x2 = left(Math.max(a, b)) - 8;
+          el(
+            host,
+            `<div id="${id}" class="layer ${cls}">
+              <div class="shaft" style="left: ${x1}px; top: ${y - 4}px; width: ${x2 - x1}px"></div>
+              <div class="tip-${dir}" style="left: ${dir === "r" ? x2 - 22 : x1 - 4}px; top: ${y - 16}px"></div>
+              <div class="alabel" style="left: ${x1}px; width: ${x2 - x1}px; top: ${below ? y + 14 : y - 58}px">${text}</div>
+            </div>`,
+          );
+        };
+
+        // ---------- s01: pages 24, 25, 26 ----------
+        tile($("#z1"), "a1", 0, "24", "sky");
+        tile($("#z1"), "a2", 1, "25", "amber");
+        tile($("#z1"), "a3", 2, "26", "pink");
+        tag($("#z1"), "at1", 0, "◀ Liền trước", "sky");
+        tag($("#z1"), "at2", 1, "● Trang bạn đọc", "amber");
+        tag($("#z1"), "at3", 2, "▶ Liền sau", "pink");
+        $("#at2").style.color = "var(--color-concept-amber)";
+
+        // ---------- s02: 25 + 1 = 26, the one before 25 is 24 ----------
+        tile($("#z2"), "b1", 0, "?", "slot sky");
+        tile($("#z2"), "b2", 1, "25", "amber");
+        tile($("#z2"), "b3", 2, "?", "slot pink");
+        tile($("#z2"), "b1f", 0, "24", "sky");
+        tile($("#z2"), "b3f", 2, "26", "pink");
+        tag($("#z2"), "bt1", 0, "◀ Liền trước", "sky");
+        tag($("#z2"), "bt3", 2, "▶ Liền sau", "pink");
+        arrow($("#z2"), "bplus", 1, 2, 290, "+ 1", "pink");
+        arrow($("#z2"), "bback", 2, 1, 340, "lùi 1", "sky", true);
+        arrow($("#z2"), "bminus", 1, 0, 290, "lùi 1", "sky");
+
+        // ---------- s03: 0 has no number before it ----------
+        tile($("#z3"), "d1", 0, "?", "slot sky");
+        el($("#z3"), `<div id="cx" class="cross" style="left: ${left(0)}px">✕</div>`);
+        tile($("#z3"), "d2", 1, "0", "amber");
+        tile($("#z3"), "d3", 2, "1", "pink");
+        tag($("#z3"), "ct1", 0, "Không có số liền trước", "sky");
+        $("#ct1").style.width = "300px";
+        $("#ct1").style.left = `${left(0) - 75}px`;
+        tag($("#z3"), "ct3", 2, "▶ Liền sau", "pink");
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+        scenes([
+          ["#s1", "s01-trang-sach"],
+          ["#s2", "s02-lien-tiep"],
+          ["#s3", "s03-so-0"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-trang-sach";
+          hide(["#c1", "#a1", "#a2", "#a3", "#at1", "#at2", "#at3"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#c1", W(sid, "tìm"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "bạn", 2));
+          pop(["#a2", "#at2"], W(sid, "25"), { from: 0.5 });
+          pop("#a1", W(sid, "24"), { from: 0.5 });
+          pop("#at1", W(sid, "trước", 2), { from: 0.5 });
+          pop("#a3", W(sid, "26"), { from: 0.5 });
+          pop("#at3", W(sid, "sau", 2), { from: 0.5 });
+        }
+        {
+          const sid = "s02-lien-tiep";
+          hide(["#c2", "#b1f", "#b3f", "#bt1", "#bt3", "#bplus", "#bback", "#bminus"]);
+          pose(bird, "idle", start(sid));
+          pop("#c2", start(sid) + 0.2, { from: 0.6 });
+          // Rule: the number after is a + 1, and from it you go back 1.
+          pop("#bplus", W(sid, "1"), { from: 1, d: 0.5 });
+          pop("#bback", W(sid, "1", 2), { from: 1, d: 0.5 });
+          // 25 + 1 = 26.
+          fade("#bback", W(sid, "bằng") - 0.05, 0.25);
+          pop("#b3f", W(sid, "26"), { from: 0.5 });
+          pop("#bt3", W(sid, "liền", 5), { from: 0.5 });
+          pose(bird, "happy", W(sid, "26"));
+          // The number before 25 is 24.
+          fade("#bplus", W(sid, "trước", 2) - 0.05, 0.25);
+          pop("#bminus", W(sid, "trước", 2), { from: 1, d: 0.5 });
+          pop("#b1f", W(sid, "24"), { from: 0.5 });
+          pop("#bt1", W(sid, "24"), { from: 0.5 });
+        }
+        {
+          const sid = "s03-so-0";
+          hide(["#c3", "#d1", "#d2", "#d3", "#cx", "#ct1", "#ct3"]);
+          pose(bird, "idle", start(sid));
+          pop("#c3", start(sid) + 0.2, { from: 0.6 });
+          pop("#d2", W(sid, "0"), { from: 0.5 });
+          pop("#d1", W(sid, "0"), { from: 0.5 });
+          pose(bird, "idle", W(sid, "không"));
+          tl.to("#d1", { color: "rgba(0,0,0,0)", duration: 0.2 }, W(sid, "không"));
+          pop("#cx", W(sid, "không"), { from: 0.5 });
+          pop("#ct1", W(sid, "không"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "1"));
+          pop(["#ct3"], W(sid, "1"), { from: 0.5 });
+          pop("#d3", W(sid, "1"), { from: 0.5 });
+          pose(bird, "cheer", W(sid, "mọi"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

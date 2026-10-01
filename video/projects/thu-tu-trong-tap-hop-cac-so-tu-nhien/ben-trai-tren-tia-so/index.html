@@ -1,0 +1,317 @@
+<!doctype html>
+<!--
+  Lesson video "Số nhỏ hơn nằm bên trái" (lesson
+  thu-tu-trong-tap-hop-cac-so-tu-nhien): a number line 0 to 10 with two
+  points. The point of the smaller number is blue (số nhỏ hơn, ●), the point
+  of the larger number violet (số lớn hơn, ▲), as in the lesson's picture.
+  Scene 3 swaps the roles: A at 9, B at 5. Built by
+  `pnpm video:build thu-tu-trong-tap-hop-cac-so-tu-nhien ben-trai-tren-tia-so`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Số nhỏ hơn nằm bên trái</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .slate {
+        --c: var(--color-concept-slate);
+      }
+      .bar {
+        position: absolute;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--color-foreground);
+      }
+      .head {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-left: 30px solid var(--color-foreground);
+      }
+      .tick {
+        position: absolute;
+        width: 4px;
+        height: 32px;
+        background: var(--color-foreground);
+      }
+      .num {
+        position: absolute;
+        width: 70px;
+        text-align: center;
+        font:
+          800 38px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .dot {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 5px solid var(--color-foreground);
+        background: var(--color-concept-amber);
+      }
+      .let {
+        position: absolute;
+        width: 80px;
+        text-align: center;
+        color: var(--color-concept-amber);
+        font:
+          800 68px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .tag {
+        position: absolute;
+        width: 280px;
+        text-align: center;
+        font:
+          800 34px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .shaft {
+        position: absolute;
+        height: 8px;
+        border-radius: 4px;
+      }
+      .tip-r,
+      .tip-l {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+      }
+      .tip-r {
+        border-left: 26px solid var(--c);
+      }
+      .tip-l {
+        border-right: 26px solid var(--c);
+      }
+      .alabel {
+        position: absolute;
+        text-align: center;
+        font:
+          800 36px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--c);
+      }
+      .q {
+        position: absolute;
+        width: 160px;
+        text-align: center;
+        color: var(--color-foreground);
+        font:
+          800 120px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .blue {
+        --c: var(--color-concept-blue);
+      }
+      .violet {
+        --c: var(--color-concept-violet);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c1" class="chip slate">Tia số: giống thước kẻ</span>
+          </div>
+          <div id="z1" class="layer"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c2" class="chip slate">Tia số nằm ngang</span>
+          </div>
+          <div id="z2" class="layer"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div class="row" style="top: 20px; left: 100px">
+            <span id="c3" class="chip slate">Đổi chỗ hai điểm</span>
+          </div>
+          <div id="z3" class="layer"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, color, tl, start, W, owl, pop, rise, fade, hide, pose, scenes, finish } =
+          window.LV;
+        const el = (host, html) => host.insertAdjacentHTML("beforeend", html);
+
+        // The number line: 0 at x = 300, one unit = 88 px, y = 380.
+        const X0 = 300;
+        const U = 88;
+        const Y = 380;
+        const px = (n) => X0 + n * U;
+
+        const axis = (host, p) => {
+          el(
+            host,
+            `<div id="${p}axis" class="layer">
+              <div class="bar" style="left: ${X0 - 20}px; top: ${Y - 4}px; width: ${10 * U + 50}px"></div>
+              <div class="head" style="left: ${X0 + 10 * U + 30}px; top: ${Y - 18}px"></div>
+            </div>`,
+          );
+          const ax = $(`#${p}axis`);
+          for (let n = 0; n <= 10; n++) {
+            el(
+              ax,
+              `<div class="tick" style="left: ${px(n) - 2}px; top: ${Y - 16}px"></div>
+               <div class="num" style="left: ${px(n) - 35}px; top: ${Y + 26}px">${n}</div>`,
+            );
+          }
+        };
+        // A point with its letter above; `n` is the number it stands at.
+        const point = (host, id, n, letter) =>
+          el(
+            host,
+            `<div id="${id}d" class="dot" style="left: ${px(n) - 24}px; top: ${Y - 24}px"></div>
+             <div id="${id}l" class="let" style="left: ${px(n) - 40}px; top: ${Y - 110}px">${letter}</div>`,
+          );
+        const tag = (host, id, n, mark, text, token) =>
+          el(
+            host,
+            `<div id="${id}" class="tag" style="left: ${px(n) - 140}px; top: ${Y + 100}px; color: var(--color-concept-${token})">${mark} ${text}</div>`,
+          );
+        // An arrow along the line, from x1 to x2 at height y, with a label.
+        const arrow = (host, id, x1, x2, y, dir, text, token) => {
+          const left = Math.min(x1, x2);
+          const width = Math.abs(x2 - x1);
+          el(
+            host,
+            `<div id="${id}" class="layer ${token}">
+              <div class="shaft" style="left: ${left}px; top: ${y - 4}px; width: ${width}px; background: var(--c)"></div>
+              <div class="${dir === "r" ? "tip-r" : "tip-l"}" style="left: ${dir === "r" ? left + width - 4 : left - 22}px; top: ${y - 16}px"></div>
+              <div class="alabel" style="left: ${left}px; width: ${width}px; top: ${y - 56}px">${text}</div>
+            </div>`,
+          );
+        };
+        const recolor = (id, token, t) => {
+          tl.to(`#${id}d`, { backgroundColor: color(`concept-${token}`), duration: 0.3 }, t);
+          tl.to(`#${id}l`, { color: color(`concept-${token}`), duration: 0.3 }, t);
+        };
+        const ring = (id, t, on = true) =>
+          tl.to(
+            `#${id}d`,
+            { boxShadow: on ? `0 0 0 10px ${color("highlight")}` : "0 0 0 0 transparent", duration: 0.3 },
+            t,
+          );
+
+        // ---------- s01: the number line, A at 3, B at 8 ----------
+        axis($("#z1"), "a");
+        point($("#z1"), "pa", 3, "A");
+        point($("#z1"), "pb", 8, "B");
+
+        // ---------- s02: which point is on the left ----------
+        axis($("#z2"), "b");
+        point($("#z2"), "qa", 3, "A");
+        point($("#z2"), "qb", 8, "B");
+        el($("#z2"), `<div id="bq" class="q" style="left: ${(px(3) + px(8)) / 2 - 80}px; top: 190px">?</div>`);
+        arrow($("#z2"), "bgrow", px(1), px(9) + 20, 150, "r", "đi sang phải: các số lớn dần", "slate");
+        arrow($("#z2"), "bleft", px(3) + 40, px(8) - 40, 270, "l", "bên trái", "blue");
+        tag($("#z2"), "bta", 3, "●", "Số nhỏ hơn", "blue");
+        tag($("#z2"), "btb", 8, "▲", "Số lớn hơn", "violet");
+
+        // ---------- s03: A at 9, B at 5 ----------
+        axis($("#z3"), "c");
+        point($("#z3"), "ra", 9, "A");
+        point($("#z3"), "rb", 5, "B");
+        el($("#z3"), `<div id="cq" class="q" style="left: ${(px(5) + px(9)) / 2 - 80}px; top: 190px">?</div>`);
+        arrow($("#z3"), "cleft", px(5) + 40, px(9) - 40, 270, "l", "bên trái", "blue");
+        tag($("#z3"), "cta", 9, "▲", "Số lớn hơn", "violet");
+        tag($("#z3"), "ctb", 5, "●", "Số nhỏ hơn", "blue");
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "366px",
+        });
+        scenes([
+          ["#s1", "s01-tia-so"],
+          ["#s2", "s02-ben-trai"],
+          ["#s3", "s03-doi-cho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-tia-so";
+          hide(["#c1", "#pad", "#pal", "#pbd", "#pbl"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#c1", W(sid, "đây"), { from: 0.6 });
+          pose(bird, "idle", W(sid, "bạn", 2));
+          pop(["#pad", "#pal"], W(sid, "a"), { from: 0.4 });
+          pop(["#pbd", "#pbl"], W(sid, "b"), { from: 0.4 });
+        }
+        {
+          const sid = "s02-ben-trai";
+          hide(["#c2", "#bq", "#bgrow", "#bleft", "#bta", "#btb"]);
+          pose(bird, "idle", start(sid));
+          pop("#c2", start(sid) + 0.2, { from: 0.6 });
+          pop("#bq", W(sid, "bạn"), { from: 0.4 });
+          // Rule 1: moving right, the numbers grow.
+          fade("#bq", W(sid, "trên") - 0.05, 0.25);
+          rise("#bgrow", W(sid, "đi"), { y: 0, d: 0.7 });
+          // Rule 2: the smaller number is on the left of the larger.
+          recolor("qa", "blue", W(sid, "nhỏ"));
+          pop("#bta", W(sid, "nhỏ"), { from: 0.5 });
+          recolor("qb", "violet", W(sid, "lớn", 2));
+          pop("#btb", W(sid, "lớn", 2), { from: 0.5 });
+          rise("#bleft", W(sid, "trái", 3), { y: 0, d: 0.6 });
+          fade("#bgrow", W(sid, "trái", 3), 0.3);
+          // Reading it out: A first, then B.
+          pose(bird, "happy", W(sid, "3"));
+          ring("qa", W(sid, "3"));
+          ring("qa", W(sid, "8") - 0.05, false);
+          ring("qb", W(sid, "8"));
+        }
+        {
+          const sid = "s03-doi-cho";
+          hide(["#c3", "#cq", "#cleft", "#cta", "#ctb", "#rad", "#ral", "#rbd", "#rbl"]);
+          pose(bird, "idle", start(sid));
+          pop("#c3", W(sid, "bây"), { from: 0.6 });
+          pop(["#rad", "#ral"], W(sid, "a"), { from: 0.4 });
+          pop(["#rbd", "#rbl"], W(sid, "b"), { from: 0.4 });
+          pop("#cq", W(sid, "bạn"), { from: 0.4 });
+          fade("#cq", W(sid, "số", 3) - 0.05, 0.25);
+          recolor("rb", "blue", W(sid, "5", 2));
+          pop("#ctb", W(sid, "5", 2), { from: 0.5 });
+          ring("rb", W(sid, "5", 2));
+          recolor("ra", "violet", W(sid, "9", 2));
+          pop("#cta", W(sid, "9", 2), { from: 0.5 });
+          pose(bird, "happy", W(sid, "b", 2));
+          rise("#cleft", W(sid, "trái"), { y: 0, d: 0.6 });
+          pose(bird, "cheer", W(sid, "trái"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

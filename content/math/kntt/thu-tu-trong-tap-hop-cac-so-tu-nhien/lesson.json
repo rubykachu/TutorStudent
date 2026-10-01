@@ -259,6 +259,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.video.ben-trai-tren-tia-so"
+        },
+        {
           "type": "visual",
           "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.trai-3-8",
           "caption": "Bấm Bước tiếp: điểm A biểu diễn 3 nằm bên trái điểm B biểu diễn 8."
@@ -519,6 +523,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.video.so-tung-cap-chu-so"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -648,6 +656,10 @@
       "sourceRef": "Sách bài tập tr.11 (kiến thức cần nhớ 3)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.video.lien-truoc-lien-sau"
+        },
         {
           "type": "visual",
           "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.trang-25",
@@ -5479,5 +5491,114 @@
   "sticker": {
     "name": "Chiếc thước tia số",
     "visualId": "thu-tu-trong-tap-hop-cac-so-tu-nhien.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.video.ben-trai-tren-tia-so",
+      "lessonId": "thu-tu-trong-tap-hop-cac-so-tu-nhien",
+      "url": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.mp4",
+      "vttUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.vtt",
+      "posterUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/ben-trai-tren-tia-so.jpg",
+      "durationSec": 47.93,
+      "clips": [
+        {
+          "id": "ben-trai",
+          "start": 12.427,
+          "end": 46.524,
+          "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.ben-trai"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 11.727,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 32.84,
+          "from": 11.727
+        },
+        {
+          "id": "cp-03",
+          "at": 43.685,
+          "from": 32.84
+        }
+      ]
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.video.lien-truoc-lien-sau",
+      "lessonId": "thu-tu-trong-tap-hop-cac-so-tu-nhien",
+      "url": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/lien-truoc-lien-sau.mp4",
+      "vttUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/lien-truoc-lien-sau.vtt",
+      "posterUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/lien-truoc-lien-sau.jpg",
+      "durationSec": 47,
+      "clips": [
+        {
+          "id": "lien-truoc",
+          "start": 14.028,
+          "end": 45.584,
+          "cardIds": [
+            "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-sau",
+            "thu-tu-trong-tap-hop-cac-so-tu-nhien.card.lien-truoc"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 13.328,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 33.15,
+          "from": 13.328
+        }
+      ]
+    },
+    {
+      "id": "thu-tu-trong-tap-hop-cac-so-tu-nhien.video.so-tung-cap-chu-so",
+      "lessonId": "thu-tu-trong-tap-hop-cac-so-tu-nhien",
+      "url": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/so-tung-cap-chu-so.mp4",
+      "vttUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/so-tung-cap-chu-so.vtt",
+      "posterUrl": "video/thu-tu-trong-tap-hop-cac-so-tu-nhien/so-tung-cap-chu-so.jpg",
+      "durationSec": 45.87,
+      "clips": [
+        {
+          "id": "cung-chu-so",
+          "start": 14.23,
+          "end": 44.453,
+          "cardIds": ["thu-tu-trong-tap-hop-cac-so-tu-nhien.card.cung-chu-so"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 13.53,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 30.777,
+          "from": 13.53
+        }
+      ]
+    }
+  ]
 }
