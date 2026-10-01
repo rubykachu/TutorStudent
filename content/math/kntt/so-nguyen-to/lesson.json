@@ -1283,7 +1283,7 @@
       "answer": ["b", "d"],
       "multiple": true,
       "explain": {
-        "text": "Số nguyên tố chỉ có hai ước là 1 và chính nó. 17 và 19 không viết được thành tích của hai số nhỏ hơn chúng, còn 6 và 15 thì viết được.",
+        "text": "Số nguyên tố chỉ có hai ước là 1 và chính nó. 17 và 19 không viết được thành tích của hai số lớn hơn 1, còn 6 và 15 thì viết được.",
         "tex": "6 = 2 \\cdot 3, \\quad 15 = 3 \\cdot 5",
         "wrong": [
           {
@@ -1362,7 +1362,7 @@
       ],
       "bank": ["số nguyên tố", "hợp số"],
       "explain": {
-        "text": "31 lớn hơn 1 và chỉ chia hết cho 1 và 31, đúng với cách gọi số nguyên tố. Số 31 cũng có trong bảng số nguyên tố."
+        "text": "Số nguyên tố chỉ có hai ước, còn hợp số có từ ba ước trở lên. 31 chỉ chia hết cho 1 và 31 nên là số nguyên tố, và 31 cũng có trong bảng."
       }
     },
     {
@@ -1421,8 +1421,8 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Mỗi cách xếp ứng với một cách viết 13 thành tích hai thừa số. 13 chỉ viết được là 1 · 13, nên chỉ có một cách: 1 hàng 13 viên.",
-        "tex": "13 = 1 \\cdot 13",
+        "text": "Mỗi cách xếp ứng với một cách viết 13 thành tích hai thừa số. 13 chỉ viết được là 13 · 1, nên chỉ có một cách: 1 hàng 13 viên.",
+        "tex": "13 = 13 \\cdot 1",
         "wrong": [
           {
             "optionId": "b",
@@ -1473,8 +1473,8 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "2 hàng bằng nhau, mỗi hàng 5 viên, nên 10 = 2 · 5. Số 10 có các ước 1, 2, 5 và 10, tức là từ ba ước trở lên, nên 10 là hợp số.",
-        "tex": "10 = 1 \\cdot 10 = 2 \\cdot 5",
+        "text": "2 hàng bằng nhau, mỗi hàng 5 viên, nên 10 = 5 · 2. Số 10 có các ước 1, 2, 5 và 10, tức là từ ba ước trở lên, nên 10 là hợp số.",
+        "tex": "10 = 10 \\cdot 1 = 5 \\cdot 2",
         "wrong": [
           {
             "optionId": "a",
@@ -1644,11 +1644,11 @@
       "multiple": false,
       "explain": {
         "text": "Mỗi cách xếp là một cách viết 18 thành tích hai thừa số, và xoay hình thì vẫn tính một cách. 18 có ba cách viết nên có 3 cách xếp.",
-        "tex": "18 = 1 \\cdot 18 = 2 \\cdot 9 = 3 \\cdot 6",
+        "tex": "18 = 18 \\cdot 1 = 9 \\cdot 2 = 6 \\cdot 3",
         "wrong": [
           {
-            "optionId": "c",
-            "text": "18 · 1, 9 · 2 và 6 · 3 chỉ là xoay hình của ba cách trên, không tính thêm."
+            "optionId": "d",
+            "text": "18 có 6 ước, nhưng mỗi cách xếp dùng hai ước và xoay hình thì vẫn tính một cách."
           }
         ]
       }
@@ -1740,7 +1740,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Số nào cũng có ước 1 và ước là chính nó. Riêng số 1 thì hai ước này là một, nên 1 chỉ có một ước. Vì vậy 1 không phải số nguyên tố, cũng không phải hợp số.",
+        "text": "Số tự nhiên khác 0 nào cũng có ước 1 và ước là chính nó. Riêng số 1 thì hai ước này là một, nên 1 chỉ có một ước. Vì vậy 1 không phải số nguyên tố, cũng không phải hợp số.",
         "tex": "1 = 1 \\cdot 1",
         "wrong": [
           {
@@ -1902,7 +1902,7 @@
         "i5": 1
       },
       "explain": {
-        "text": "Tra bảng số nguyên tố: chỉ 61, 67 và 89 có trong bảng. Các số 63, 69 và 81 không có trong bảng nên là hợp số.",
+        "text": "Tra bảng số nguyên tố: chỉ 61, 67 và 89 có trong bảng. Các số 63, 69 và 81 nhỏ hơn 100 mà không có trong bảng nên là hợp số.",
         "tex": "63 = 7 \\cdot 9, \\quad 69 = 3 \\cdot 23, \\quad 81 = 9 \\cdot 9"
       }
     },
@@ -1962,7 +1962,7 @@
       "answer": ["c"],
       "multiple": false,
       "explain": {
-        "text": "Nhìn cuối bảng số nguyên tố: số lớn nhất trong bảng là 97. Các số 93, 95 và 99 không có trong bảng nên là hợp số.",
+        "text": "Nhìn cuối bảng số nguyên tố: số lớn nhất trong bảng là 97. Các số 93, 95 và 99 nhỏ hơn 100 mà không có trong bảng nên là hợp số.",
         "tex": "93 = 3 \\cdot 31, \\quad 95 = 5 \\cdot 19, \\quad 99 = 9 \\cdot 11",
         "wrong": [
           {
@@ -3345,7 +3345,7 @@
       "answer": ["b", "d"],
       "multiple": true,
       "explain": {
-        "text": "Ghép từng chữ số a vào rồi tra bảng số nguyên tố. 41 và 43 có trong bảng, còn 42 và 49 không có trong bảng nên là hợp số. Vậy a = 2 hoặc a = 9.",
+        "text": "Ghép từng chữ số a vào rồi tra bảng số nguyên tố. 41 và 43 có trong bảng, còn 42 và 49 nhỏ hơn 100 mà không có trong bảng nên là hợp số. Vậy a = 2 hoặc a = 9.",
         "tex": "42 = 2 \\cdot 21, \\quad 49 = 7 \\cdot 7",
         "wrong": [
           {
@@ -3457,8 +3457,8 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "38 bạn xếp 2 hàng bằng nhau, mỗi hàng 19 bạn, nên 38 = 2 · 19. Số 38 có các ước 1, 2, 19 và 38, tức là từ ba ước trở lên, nên 38 là hợp số.",
-        "tex": "38 = 2 \\cdot 19",
+        "text": "38 bạn xếp 2 hàng bằng nhau, mỗi hàng 19 bạn, nên 38 = 19 · 2. Số 38 có các ước 1, 2, 19 và 38, tức là từ ba ước trở lên, nên 38 là hợp số.",
+        "tex": "38 = 19 \\cdot 2",
         "wrong": [
           {
             "optionId": "a",
@@ -3681,7 +3681,7 @@
         "expr": "31-2"
       },
       "explain": {
-        "text": "Tổng 31 là số lẻ, nên trong hai số nguyên tố phải có số 2. Nhóm kia có 31 − 2 = 29 viên, và 29 có trong bảng số nguyên tố.",
+        "text": "Số nguyên tố khác 2 đều lẻ, mà hai số lẻ cộng lại là số chẵn. Tổng 31 là số lẻ nên phải có số 2. Nhóm kia có 31 − 2 = 29 viên, và 29 có trong bảng số nguyên tố.",
         "tex": "31 = 2 + 29"
       }
     },
@@ -3734,7 +3734,7 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Tổng 35 là số lẻ, nên một số hạng phải là 2. Số kia là 35 − 2 = 33, mà 33 là hợp số, nên 35 không viết được thành tổng của hai số nguyên tố.",
+        "text": "Số nguyên tố khác 2 đều lẻ, mà hai số lẻ cộng lại là số chẵn. Tổng 35 là số lẻ nên một số hạng phải là 2. Số kia là 35 − 2 = 33, mà 33 là hợp số, nên 35 không viết được thành tổng của hai số nguyên tố.",
         "tex": "35 = 2 + 33, \\quad 33 = 3 \\cdot 11",
         "wrong": [
           {
@@ -4239,7 +4239,7 @@
       "answer": ["b"],
       "multiple": false,
       "explain": {
-        "text": "Số kẹo của Hà là 9 · 2 + 5 · 4 = 18 + 20 = 38. 38 chia hết cho 2 và lớn hơn 2 nên là hợp số.",
+        "text": "Số kẹo của Hà là 9 · 2 + 5 · 4 = 18 + 20 = 38. Vì 18 và 20 đều chia hết cho 2 và 38 lớn hơn 2, nên 38 là hợp số.",
         "tex": "9 \\cdot 2 + 5 \\cdot 4 = 18 + 20 = 38",
         "wrong": [
           {
