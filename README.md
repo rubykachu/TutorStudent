@@ -9,6 +9,7 @@ Tài liệu chính:
 | `docs/architecture.md` | Bản đồ kiến trúc: luồng dữ liệu, module, kiểm tra tự động, pipeline media (đọc đầu tiên) |
 | `docs/spec.md` | Yêu cầu sản phẩm, mô hình nội dung, luật kiểm duyệt, tiêu chí từng mốc |
 | `docs/design-system.md` | Màu, chữ, bố cục, phản hồi, linh vật |
+| `docs/operations.md` | Đưa app lên Vercel và R2, mã gia đình, kiểm trên iPad: các bước ngoài máy kèm lệnh |
 | `docs/learner.md` | Hồ sơ học tập của trẻ (dùng khi soạn bài) |
 | `docs/lessons-learned/index.md` | Lỗi nội dung đã gặp và cách phòng |
 | `notebooks/backlogs/index.md` | Hàng đợi công việc và trạng thái (mỗi việc trỏ tới thư mục spec/plan/task) |
@@ -25,6 +26,8 @@ CONTENT_INCLUDE_DRAFT=1 pnpm dev --port 3001 # xem cả bài đang ở trạng t
 ```
 
 Tiến độ học lưu trong trình duyệt của từng máy (IndexedDB). Đồng bộ giữa các máy thuộc mốc Go-live.
+
+Máy dev không có cổng mã gia đình. Muốn thử cổng ở máy: đặt `FAMILY_CODES` và `SESSION_SECRET` (mẫu ở `.env.example`) rồi chạy bản production như `docs/operations.md` hướng dẫn. `pnpm test:e2e` tự mở thêm một dev server có cổng (cổng `TEST_PORT + 1000`, thư mục build `.next-gate`) cho `e2e/unlock.spec.ts`.
 
 ## Soạn bài mới
 
@@ -57,7 +60,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 
 - `pnpm clean` xoá những gì lệnh nào cũng dựng lại được; giữ nguyên nội dung, bản đọc đã chốt và môi trường giọng đọc. Dừng dev server trước khi dùng `--deep`.
 - Bản đọc từng câu của video (`video/projects/**/audio/`, `video/.cache/`) không nằm trong git và giữ dạng WAV vì pipeline đọc trực tiếp file WAV. Lúc Go-live, sao lưu cây này cùng `public/media/` lên một bucket R2 private để máy khác dựng lại vẫn dùng đúng bản đọc cũ (ví dụ `rclone copy video/.cache r2:<bucket-private>/video-cache`, tương tự cho `audio/`). Đây là bước làm tay; không có mã nào tự upload, và mỗi lần ghi lên R2 phải hỏi chủ dự án.
-- Đưa media lên bucket công khai và đặt `NEXT_PUBLIC_MEDIA_BASE_URL`: các bước ở skill `lesson-video`, mục "Lên go-live".
+- Đưa media lên bucket công khai và đặt `NEXT_PUBLIC_MEDIA_BASE_URL`: các bước kèm lệnh ở `docs/operations.md`; skill `lesson-video`, mục "Lên go-live", giải thích vì sao không cần dựng lại gì.
 
 ## Lệnh thường dùng
 
