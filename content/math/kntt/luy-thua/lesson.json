@@ -340,7 +340,7 @@
       "recap": {
         "type": "visual",
         "visualId": "luy-thua.visual.tom-tat-chia",
-        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai."
+        "caption": "Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai. Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai."
       }
     },
     {
@@ -2770,14 +2770,14 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "2^{3}"
+            "tex": "2^{9}"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "3^{2}"
+            "tex": "9^{2}"
           }
         }
       ],
