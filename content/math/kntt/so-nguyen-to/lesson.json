@@ -11,7 +11,8 @@
   },
   "title": "Số nguyên tố",
   "sourceRef": "Sách bài tập tr.35–37",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "8ba05addac880b845be68fca535822a94679360901681b53f12992e5a6d2aa5f",
   "overview": {
     "hook": {
       "text": "Bạn xếp 11 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 11 viên, vì 11 là số nguyên tố."

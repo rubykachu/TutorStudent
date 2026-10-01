@@ -40,15 +40,15 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 01/10/2026 của 10 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 01/10/2026 của 10 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2, hết ở vòng 3); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 2 | 23 | 19 | 44 |
+| LL-10 | 2 | 23 | 20 | 45 |
 | LL-19 | 1 | 8 | 25 | 34 |
-| LL-12 | 1 | 14 | 25 | 40 |
-| LL-07 | 1 | 24 | 20 | 45 |
-| LL-15 | 4 | 12 | 7 | 23 |
+| LL-12 | 1 | 14 | 26 | 41 |
+| LL-07 | 1 | 25 | 20 | 46 |
+| LL-15 | 4 | 12 | 8 | 24 |
 | LL-16 | 0 | 21 | 3 | 24 |
 | LL-05 | 5 | 18 | 12 | 35 |
 | LL-09 | 8 | 9 | 3 | 20 |
@@ -63,7 +63,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-18 | 0 | 4 | 2 | 6 |
 | LL-08 | 13 | 1 | 2 | 16 |
 | LL-13 | 1 | 1 | 0 | 2 |
-| LL-20 | 3 | 0 | 0 | 3 |
+| LL-20 | 3 | 0 | 1 | 4 |
 | LL-21 | 1 | 1 | 0 | 2 |
 | LL-22 | 1 | 0 | 0 | 1 |
 
@@ -73,7 +73,7 @@ LL-17 và LL-08 nhiều Nghiêm trọng nhất; LL-07, LL-10, LL-12, LL-05 gặp
 
 Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một dòng khi bài mới xong vòng 1.
 
-| Bài | Môn | Nghiêm trọng vòng 1 | Vòng hết Nghiêm trọng | Số vòng tới 30/09/2026 |
+| Bài | Môn | Nghiêm trọng vòng 1 | Vòng hết Nghiêm trọng | Số vòng tới 01/10/2026 |
 |---|---|---|---|---|
 | `neu-cau-muon-co-mot-nguoi-ban` | Ngữ văn | 3 | 5 | 14 |
 | `tap-hop` | Toán | 3 | 3 (vòng 4 lại có 1, hết ở vòng 5) | 7 |
@@ -84,4 +84,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `quan-he-chia-het-va-tinh-chat` | Toán | 8 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
 | `dau-hieu-chia-het` | Toán | 5 | chưa (vòng 2 còn 2, vòng 3 còn 1) | 3 |
 | `uoc-chung-uoc-chung-lon-nhat` | Toán | 8 | chưa (vòng 2 còn 4) | 2 |
-| `so-nguyen-to` | Toán | 9 | chưa (vòng 2 còn 4) | 2 |
+| `so-nguyen-to` | Toán | 9 | 3 (vòng 2 còn 4) | 3 |

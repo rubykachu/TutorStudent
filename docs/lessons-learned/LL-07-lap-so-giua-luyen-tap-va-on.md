@@ -10,6 +10,7 @@ Câu kho ôn dùng đúng bộ số của câu luyện tập, của ví dụ tr�
 - `tap-hop` vòng 2, `ex.chon-dong-dung`: dùng lại B = {x; y} của bài tập sách.
 - `thu-tu-thuc-hien-phep-tinh` vòng 2, `ex.nhan-7-8`: lặp dòng 8 · 7 = 56 của màn trước.
 - Review sản phẩm 30/09/2026: phiên ôn hỏi lại đúng câu vừa luyện.
+- `so-nguyen-to` vòng 3: bản sửa đưa chips màn chạm `chon-nt-2-7` xuống số không quá 30 (21, 22, 23, 25, 27, 29), nên bốn số và cả đáp án {23, 29} trùng màn "tra bảng rồi chạm" `chon-nt-bang` ở section 4. Đổi số của một màn để thỏa một luật thì soát các màn cùng loại ở section khác của bài, không chỉ recap và câu luyện cùng section.
 
 ## Nguyên nhân gốc
 
