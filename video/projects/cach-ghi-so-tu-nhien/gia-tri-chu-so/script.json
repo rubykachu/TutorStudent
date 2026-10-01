@@ -1,7 +1,10 @@
 {
   "title": "Giá trị của chữ số",
   "engine": "local",
-  "poster": { "scene": "s02-gia-tri", "at": 0.95 },
+  "poster": {
+    "scene": "s01-so",
+    "at": 0.6
+  },
   "scenes": [
     {
       "id": "s01-so",
@@ -10,8 +13,12 @@
           "text": "Chào bạn! Hôm nay ta tìm giá trị của một chữ số.",
           "opening": true
         },
-        { "text": "Bạn cú đi được 3 507 bước." },
-        { "text": "Chữ số 5 đứng ở hàng trăm." },
+        {
+          "text": "Bạn cú đi được 3 507 bước."
+        },
+        {
+          "text": "Chữ số 5 đứng ở hàng trăm."
+        },
         {
           "text": "Chữ số 7 đứng ở hàng đơn vị.",
           "checkpoint": true
@@ -30,7 +37,9 @@
           "rule": true,
           "pause": "think"
         },
-        { "text": "Chữ số 5 ở hàng trăm nên có giá trị 500." },
+        {
+          "text": "Chữ số 5 ở hàng trăm nên có giá trị 500."
+        },
         {
           "text": "Chữ số 7 ở hàng đơn vị nên có giá trị 7.",
           "checkpoint": true
@@ -40,16 +49,24 @@
     {
       "id": "s03-doi-hang",
       "sentences": [
-        { "text": "Bây giờ ta đổi thành số 3 570." },
-        { "text": "Chữ số 7 sang trái một hàng, lên hàng chục." },
-        { "text": "Giá trị của nó là 70, không còn là 7." },
+        {
+          "text": "Bây giờ ta đổi thành số 3 570."
+        },
+        {
+          "text": "Chữ số 7 sang trái một hàng, lên hàng chục."
+        },
+        {
+          "text": "Giá trị của nó là 70, không còn là 7."
+        },
         {
           "text": "Chữ số ở hàng đơn vị nhân 1; sang trái một hàng thì số để nhân thêm một chữ số 0.",
           "rule": true,
           "pause": "think",
           "checkpoint": true
         },
-        { "text": "Cùng một chữ số, ở hàng khác thì giá trị khác." }
+        {
+          "text": "Cùng một chữ số có giá trị khác nhau ở mỗi hàng."
+        }
       ]
     }
   ],

@@ -5763,12 +5763,12 @@
       "url": "video/cach-ghi-so-tu-nhien/gia-tri-chu-so.mp4",
       "vttUrl": "video/cach-ghi-so-tu-nhien/gia-tri-chu-so.vtt",
       "posterUrl": "video/cach-ghi-so-tu-nhien/gia-tri-chu-so.jpg",
-      "durationSec": 65.87,
+      "durationSec": 65.7,
       "clips": [
         {
           "id": "gia-tri",
           "start": 16.221,
-          "end": 64.439,
+          "end": 64.292,
           "cardIds": ["cach-ghi-so-tu-nhien.card.gia-tri"]
         }
       ],

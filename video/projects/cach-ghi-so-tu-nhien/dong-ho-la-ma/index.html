@@ -211,6 +211,7 @@
             `<div id="bc${i}" class="rc" style="left: ${cx(i)}px; top: 140px"><span class="r">${r}</span><span id="bv${i}" class="v">= ${v}</span></div>`,
           );
         });
+        el(z2, `<div id="bq" class="slot" style="left: ${cx(2)}px; top: 140px">?</div>`);
         el(
           z2,
           `<div id="bk" class="abs" style="left: 330px; top: 400px"><span class="chip lime">★ IV và IX là cụm: một giá trị riêng</span></div>`,
@@ -254,11 +255,14 @@
           const sid = "s02-thanh-phan";
           hide([
             "#bk",
+            "#bq",
             ...COMPS.flatMap((_, i) => [`#bs${i}`, `#bc${i}`, `#bv${i}`]),
           ]);
           pose(bird, "idle", start(sid));
           // The question: five empty slots wait for the answer.
-          pop(COMPS.map((_, i) => `#bs${i}`), W(sid, "bạn"), { from: 0.5, stagger: 0.12 });
+          pop("#bq", W(sid, "bạn"), { from: 0.5 });
+          fade("#bq", W(sid, "năm") - 0.1, 0.2);
+          pop(COMPS.map((_, i) => `#bs${i}`), W(sid, "năm"), { from: 0.5, stagger: 0.12 });
           // The five components fill the slots as they are named.
           ["i", "v", "x", "iv", "ix"].forEach((w, i) => {
             pop(`#bc${i}`, W(sid, w), { from: 0.5 });
