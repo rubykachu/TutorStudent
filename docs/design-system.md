@@ -134,6 +134,7 @@ Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên
 - Mọi lần kiểm đều có tiếng (bảng trên); mọi câu trong bong bóng đều có giọng đọc, đúng câu đang hiện. Không có bong bóng nào im lặng.
 - Một giọng cho mọi câu của cú, mọi file cùng độ lớn (giọng −16 LUFS, "oops" nhỏ hơn 4 LU) và không vỡ tiếng (đỉnh < −1 dBFS). Thông số ở `scripts/lib/sound-spec.ts`.
 - Không đọc chữ bằng giọng máy của trình duyệt.
+- Hai tiếng chạm, khác nhau: chọn đáp án, thẻ, vùng là tiếng click gỗ sáng (`tap`); mọi nút và liên kết khác trên màn của bé (Kiểm tra, Bỏ qua, Quay lại, nút về, ô môn) là tiếng "bloop" tròn, nhỏ hơn (`button`). Tiếng nút do `ButtonSounds` (`src/lib/feedback-sounds.tsx`) phát cho mọi nút bên dưới nó, nên nút mới tự có tiếng; vùng tự lo tiếng (đáp án, hình tương tác, công tắc loa, sticker) gắn `data-own-sound`. Trang phụ huynh và trang chọn hồ sơ im lặng.
 - Công tắc âm thanh: nút loa tròn 48px (`Volume2`/`VolumeX`, màu `--color-muted-foreground`), luôn ở đầu phải hàng trên cùng của màn hình; một setting cho mỗi con. Bật lại thì phát nhạc vui để xác nhận.
 
 ## 8. Linh vật
