@@ -905,15 +905,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { color: "teal", name: "Ước chung" },
     ],
   },
-  "viet-goi-y-15-20": {
-    kind: "notation",
-    label: "ƯCLN(15, 20) = 5, viết 15 và 20 thành 5 nhân một số",
-    lines: [
-      { color: "slate", tex: "15 = 5 \\cdot 3" },
-      { color: "amber", tex: "20 = 5 \\cdot 4" },
-    ],
-    mode: "hint",
-  },
   "viet-21-35": {
     kind: "notation",
     label: "ƯCLN(21, 35) = 7, viết 21 và 35 thành 7 nhân một số",
@@ -988,27 +979,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     wants: [0, 1, 3],
     done: "Bạn đã chọn đủ các cặp có ƯCLN là 4 và không vượt quá 12.",
   },
-  "cap-goi-y-6-24": {
-    kind: "notation",
-    label: "Các cặp số có ƯCLN là 6, không vượt quá 24",
-    lines: [
-      { color: "slate", text: "Các số là 6, 12, 18 và 24" },
-      { color: "slate", text: "Bỏ cặp 12 và 24 vì còn chung ước 12" },
-      { color: "amber", text: "Có 5 cặp số" },
-    ],
-    mode: "hint",
-  },
-  "cap-9-30-giai": {
-    kind: "notation",
-    label: "Các cặp số có ƯCLN là 9, không vượt quá 30",
-    lines: [
-      { color: "slate", text: "Các số là 9, 18 và 27 (9 nhân 1, 2, 3)" },
-      { color: "teal", text: "1 và 2, 1 và 3, 2 và 3 đều nhận" },
-      { color: "amber", text: "Có 3 cặp: 9 và 18, 9 và 27, 18 và 27" },
-    ],
-    mode: "steps",
-    legend: [{ color: "amber", name: "Ước chung lớn nhất" }],
-  },
   "tong-48-6": {
     kind: "lines",
     label: "Tổng 48 và ƯCLN là 6 cho m cộng n bằng 8",
@@ -1065,27 +1035,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     items: ["1 và 9", "2 và 8", "3 và 7", "4 và 6"],
     wants: [0, 2],
     done: "Bạn đã chọn đủ các cặp có tổng 10 mà chỉ có ước chung là 1.",
-  },
-  "tong-goi-y-36-9": {
-    kind: "notation",
-    label: "Tổng 36 và ƯCLN là 9",
-    lines: [
-      { color: "slate", text: "Tổng 36 và ƯCLN là 9" },
-      { color: "slate", tex: "m + n = 36 : 9 = 4" },
-      { color: "teal", text: "Cặp m và n chỉ có ước chung là 1: 1 và 3" },
-    ],
-    mode: "hint",
-  },
-  "tong-28-giai": {
-    kind: "notation",
-    label: "Tổng 28 và ƯCLN là 4",
-    lines: [
-      { color: "slate", tex: "m + n = 28 : 4 = 7" },
-      { color: "teal", text: "1 và 6, 2 và 5, 3 và 4: đều chỉ chung ước 1" },
-      { color: "amber", text: "Cho 4 và 24, 8 và 20, 12 và 16" },
-    ],
-    mode: "steps",
-    legend: [{ color: "amber", name: "Ước chung lớn nhất" }],
   },
   "tich-48-2": {
     kind: "lines",
@@ -1151,34 +1100,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     wants: [0, 1],
     done: "Bạn đã chọn đủ các cặp có tích 18 mà chỉ có ước chung là 1.",
   },
-  "tich-goi-y-90-3": {
-    kind: "notation",
-    label: "Tích 90 và ƯCLN là 3",
-    lines: [
-      { color: "slate", tex: "3 \\cdot 3 \\cdot m \\cdot n = 90" },
-      { color: "slate", tex: "m \\cdot n = 10" },
-      {
-        color: "teal",
-        text: "Cặp m và n chỉ có ước chung là 1: 1 và 10, 2 và 5",
-      },
-    ],
-    mode: "hint",
-  },
-  "tich-200-giai": {
-    kind: "notation",
-    label: "Tích 200 và ƯCLN là 5",
-    lines: [
-      { color: "slate", tex: "25 \\cdot m \\cdot n = 200" },
-      { color: "slate", tex: "m \\cdot n = 8" },
-      { color: "teal", text: "1 và 8 nhận, 2 và 4 loại" },
-      { color: "amber", text: "Cho 5 và 40: b là 40" },
-    ],
-    mode: "steps",
-    legend: [
-      { color: "teal", name: "Ước chung" },
-      { color: "amber", name: "Ước chung lớn nhất" },
-    ],
-  },
   "du-17-29": {
     kind: "lines",
     label: "17 và 29 chia cho 4 đều dư 1",
@@ -1189,7 +1110,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "\\begin{gathered} 17 - 1 = 16 \\chiahet 4 \\\\ 29 - 1 = 28 \\chiahet 4 \\end{gathered}",
-        tag: { text: "bỏ số dư thì chia hết cho 4", color: "teal" },
+        tag: { text: "bỏ số dư thì chia hết cho 4", color: "slate" },
       },
     ],
     mode: "steps",
@@ -1200,15 +1121,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     rows: [
       { tex: "29 - 17 = 12", tag: { text: "hiệu của hai số", color: "slate" } },
       {
-        tex: "12 \\chiahet \\concept{teal}{4}",
+        tex: "12 \\chiahet 4",
         tag: { text: "chia hết cho 4, hai số cùng dư 1", color: "lime" },
       },
     ],
-    legend: [{ color: "teal", name: "Ước chung" }],
   },
   "du-chon-5": {
     kind: "chips",
-    items: ["12 và 27", "14 và 23", "8 và 33", "19 và 31"],
+    items: ["12 và 27", "14 và 23", "8 và 33", "17 và 31"],
     wants: [0, 2],
     done: "Bạn đã chọn đủ các cặp số chia cho 5 được cùng số dư.",
   },
@@ -1261,12 +1181,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     legend: [{ color: "amber", name: "Ước chung lớn nhất" }],
   },
-  "du-lon-chon-25-43": {
-    kind: "chips",
-    items: ["3", "4", "6", "9", "12", "18"],
-    wants: [0, 2, 3, 5],
-    done: "Bạn đã chọn đủ các số a để 25 và 43 chia cho a có cùng số dư.",
-  },
   "du-lon-goi-y-15-33-63": {
     kind: "notation",
     label: "Chia 15, 33 và 63 cho cùng một số được cùng số dư",
@@ -1287,6 +1201,98 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
     legend: [{ color: "amber", name: "Ước chung lớn nhất" }],
+  },
+  "viet-goi-y-16-24": {
+    kind: "notation",
+    label: "ƯCLN(16, 24) = 8, viết 16 và 24 thành 8 nhân một số",
+    lines: [
+      { color: "slate", tex: "16 = 8 \\cdot 2" },
+      { color: "amber", tex: "24 = 8 \\cdot 3" },
+    ],
+    mode: "hint",
+  },
+  "cap-goi-y-6-18": {
+    kind: "notation",
+    label: "Các cặp số có ƯCLN là 6, không vượt quá 18",
+    lines: [
+      { color: "slate", text: "Các số là 6, 12 và 18" },
+      { color: "teal", text: "1 và 2, 1 và 3, 2 và 3 đều nhận" },
+      { color: "amber", text: "Có 3 cặp số" },
+    ],
+    mode: "hint",
+  },
+  "cap-7-28-giai": {
+    kind: "notation",
+    label: "Các cặp số có ƯCLN là 7, không vượt quá 28",
+    lines: [
+      { color: "slate", text: "Các số là 7, 14, 21 và 28 (7 nhân 1, 2, 3, 4)" },
+      { color: "slate", text: "Bỏ cặp 2 và 4 vì còn chung ước 2" },
+      {
+        color: "amber",
+        text: "Có 5 cặp: 7 và 14, 7 và 21, 7 và 28, 14 và 21, 21 và 28",
+      },
+    ],
+    mode: "steps",
+    legend: [{ color: "amber", name: "Ước chung lớn nhất" }],
+  },
+  "tong-goi-y-42-7": {
+    kind: "notation",
+    label: "Tổng 42 và ƯCLN là 7",
+    lines: [
+      { color: "slate", text: "Tổng 42 và ƯCLN là 7" },
+      { color: "slate", tex: "m + n = 42 : 7 = 6" },
+      { color: "teal", text: "Cặp m và n chỉ có ước chung là 1: 1 và 5" },
+    ],
+    mode: "hint",
+  },
+  "tong-36-giai": {
+    kind: "notation",
+    label: "Tổng 36 và ƯCLN là 4",
+    lines: [
+      { color: "slate", tex: "m + n = 36 : 4 = 9" },
+      { color: "teal", text: "1 và 8, 2 và 7, 4 và 5: chỉ chung ước 1" },
+      { color: "slate", text: "3 và 6 còn chung ước 3: loại" },
+      { color: "amber", text: "Cho 4 và 32, 8 và 28, 16 và 20" },
+    ],
+    mode: "steps",
+    legend: [
+      { color: "teal", name: "Ước chung" },
+      { color: "amber", name: "Ước chung lớn nhất" },
+    ],
+  },
+  "tich-goi-y-160-4": {
+    kind: "notation",
+    label: "Tích 160 và ƯCLN là 4",
+    lines: [
+      { color: "slate", tex: "4 \\cdot 4 \\cdot m \\cdot n = 160" },
+      { color: "slate", tex: "m \\cdot n = 10" },
+      {
+        color: "teal",
+        text: "Cặp m và n chỉ có ước chung là 1: 1 và 10, 2 và 5",
+      },
+    ],
+    mode: "hint",
+  },
+  "tich-72-giai": {
+    kind: "notation",
+    label: "Tích 72 và ƯCLN là 3",
+    lines: [
+      { color: "slate", tex: "9 \\cdot m \\cdot n = 72" },
+      { color: "slate", tex: "m \\cdot n = 8" },
+      { color: "teal", text: "1 và 8 nhận, 2 và 4 loại" },
+      { color: "amber", text: "Cho 3 và 24: b là 24" },
+    ],
+    mode: "steps",
+    legend: [
+      { color: "teal", name: "Ước chung" },
+      { color: "amber", name: "Ước chung lớn nhất" },
+    ],
+  },
+  "du-lon-chon-21-45": {
+    kind: "chips",
+    items: ["3", "4", "5", "6", "8", "9"],
+    wants: [0, 1, 3, 4],
+    done: "Bạn đã chọn đủ các số a để 21 và 45 chia cho a có cùng số dư.",
   },
   sticker: {
     kind: "sticker",
