@@ -35,10 +35,9 @@ Màu: số nguyên tố sky (✚), hợp số pink (◆), ước violet, chữ s
 - Section 10 và 11 dùng "số chẵn", "số lẻ" (kiến thức nền tiểu học, có glossary `prerequisite`); kiểm định nghĩa trong note và `sourceRef`.
 - Section 11: mệnh đề "muốn tổng hai số nguyên tố là số lẻ thì một số hạng phải là 2" dựa vào "tổng hai số lẻ là số chẵn" và "số chẵn lớn hơn 2 là hợp số" (section 10); kiểm không có chỗ nhảy bước.
 - Section 13 (`hs-tong-nhieu`, độ khó 3): tổng `3 · 5 + 6 · 7` là hợp số vì hai số hạng cùng chia hết cho 3; kiểm trẻ làm được với quy tắc "các số hạng cùng chia hết cho một số" của Bài 8.
-- Số trong bài tính nhẩm: câu 6 · 6 · 5 ở `gon-6-6-5` và `gon-2-2-3-3-3` có 3 phép tính, có hình từng bước (LL-18). Câu `cot-thieu-150` (độ khó 3) cần chia 75 cho 25 để biết số chia; có hình gợi ý và lời giải.
+- Số trong bài tính nhẩm: hình `gon-6-6-5` và câu `gon-2-2-3-3-3` có nhiều hơn 2 phép tính; hình `gon-6-6-5` có từng bước (LL-18). Câu `cot-thieu-150` (độ khó 3) cần chia 75 cho 25 để biết số chia; có hình gợi ý và lời giải.
 - Quy ước tích: "k hàng, mỗi hàng m ô" luôn viết `m · k` (m được lấy k lần), kiểm hình `rects` và chú thích cây bánh `cay-12` (LL-05).
 - Màn mở đầu của section 6 dài trên điện thoại (quy tắc 2 câu, cây, tích, chú giải, chú thích): trẻ phải cuộn xuống để thấy chú thích cuối; không có chữ chồng hay bị cắt theo walk.
-- Màn nhập số của câu 2.27 (`cot-thieu-*`) và 2.28 (`cay-thieu-*`) dùng bàn phím số của app; trẻ chưa gặp "mũ" ở các câu này (không dùng).
 
 ## Lời đọc và video
 Chưa làm. Theo `.claude/skills/lesson-video`: chọn giọng (Bài 9 dùng Hải Đăng, Bài 8 dùng Mỹ Duyên), ý chính gợi ý cho 3 video: đếm ước bằng hình chữ nhật và định nghĩa số nguyên tố (section 1–3); phân tích bằng sơ đồ cây và sơ đồ cột (section 6–7); viết số thành tổng hai số nguyên tố (section 10–12).
