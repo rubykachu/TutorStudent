@@ -1,274 +1,168 @@
 # Review: Phép cộng và phép trừ số nguyên (`phep-cong-phep-tru-so-nguyen`)
 
 - Bài: `content/math/kntt/phep-cong-phep-tru-so-nguyen/lesson.json`
-- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 3 - chỉ phần đổi (`pnpm content:diff`), section: tất cả section có trong diff (13 section, 1 reviewer duy nhất)
 - Nguồn đã đọc: `sources/math/phep-cong-phep-tru-so-nguyen/` - sbt-p50, sbt-p51, sbt-p52, sbt-p111
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá)
-- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy sau khi vòng 1-2 hết Nghiêm trọng)
+- Đọc hiểu (Haiku, lượt 1): 100 / 25 / 1 (lượt 2 trên 23 mục: 6 / 15 / 2; lượt 3 trên 14 mục: 7 / 7 / 0); tệp `.shots/review/phep-cong-phep-tru-so-nguyen/doc-hieu.md`
 - `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-cong-phep-tru-so-nguyen/`
-- Kết luận: Chưa đạt: còn 4 lỗi Nghiêm trọng
-- Bản đã review: `73c9d3859b9e91751e61d9512f834e1911b23cc5982f724248f85c95904c9076` (`pnpm content:diff` so với bản này)
+- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng
+- Bản đã review: `aa23c42231a5533513fb1f122b391f5498421a0c282e60e001cfa8ed3ec3a403` (`pnpm content:diff` so với bản này)
 
-Ba reviewer đã tự giải cả 60 exercise trước khi đọc `answer`: mọi đáp án, `check`, `accept`, `pairs` và hàng hình (`catalog.ts`) đúng số, không câu nào có hai đáp án đúng; chỉ một lý do `wrong` nói sai (Nghiêm trọng 3). Bảng thử mẹo nằm trong `.shots/review/phep-cong-phep-tru-so-nguyen/nhom-2-v2.md` (`tip.dau-truoc`) và `nhom-3-v2.md` (`tip.hai-dau-lien-nhau`, `tip.ghep-so-doi`): cả ba mẹo đúng với mọi đầu vào thuộc dạng bài.
+## Phạm vi và cách soát
 
-Kiểm bản sửa vòng 1: 8 Nghiêm trọng của vòng 1 đã sửa đúng ở phần chữ. Bản sửa sinh lỗi mới ở 8 chỗ (LL-20): Nghiêm trọng 1, 4; Nên sửa 1, 4, 6, 11; Góp ý 3, 11. Còn sót từ vòng 1: Nên sửa 2, 7, 9; Góp ý 6, 18.
+- Đã soát mọi mục của diff (chữ, câu mới, câu bị bỏ, hình của `catalog.ts`) và các mục khác cùng section.
+- Tính lại 109 đẳng thức nằm trong chữ, lời giải, `wrong`, `segments` và `tex` (không sai đẳng thức nào); đối chiếu `check.expr` với `answer` của 37 câu có `check` (đúng hết); tự giải tay các câu còn lại, kể cả `match`, `order`, `fillBlank` và ba câu `manipulate` (đích −1, −5, 0). Không câu nào có hai đáp án đúng. Phép tính mới đã tìm trong `lesson.json` và `catalog.ts`: các phép của `tinh-am6-cong3`, `gia-tri-b-x-1`, `gia-tri-c-x-am4`, `nhiet-do-chieu-toi`, `tien-cua-nam`, `cung-2-cong-am3` và ví dụ của mẹo `dau-truoc` không trùng phép nào khác (chỉ trùng kết quả, xem Nên sửa 3 và Góp ý 2, 3).
+- Mọi câu quy tắc (`rule: true`) khớp recap section và recap card từng chữ (13/13 section). Mọi câu quy tắc ≤ 25 âm tiết (cao nhất 24, tính cả dấu −, +, =); mọi note ≤ 2 câu; cả ba mẹo đều 3 câu hoặc ít hơn.
+- Đã xem sheet walk điện thoại (sheet 01, 04, 14, 18), iPad dọc (sheet 01, 12), iPad ngang (sheet 06), các ảnh `phone/066`, `083`, `090`, `095`, `113`, `137`, `001`-`004` và hình gợi ý `goi-y-am5-cong2`. Câu kho ôn (không gắn `checkIds`/`practiceIds`, như `dien-so-doi`) không có ảnh walk nên chưa xem được cách bố trí trên màn.
 
-Câu đề xuất ở các mục dưới đây đã đếm âm tiết (≤ 25), note giữ ≤ 2 câu, mẹo ≤ 3 câu. Mọi phép tính mới đã tìm trong `lesson.json` và `catalog.ts`: chưa có ở đâu, và không trùng số đề xuất ở mục khác. Ba câu quy tắc đi trên trục số (Nên sửa 1), câu quy tắc cộng với 0 cùng hình của nó (Nghiêm trọng 1, 2, Nên sửa 5), và động từ "viết dấu − ở trước" (Nên sửa 6, Nghiêm trọng 3) được sửa theo cùng một cách nói.
+## Kiểm bản sửa vòng 2
+
+| Mục vòng 2 | Kết quả | Ghi chú |
+|---|---|---|
+| Nghiêm trọng 1: hình `dung-yen-tai-3` | Đã sửa đúng | `dung-yen-tai-4`, điểm ở 4 tên "đầu và tổng", nhãn trợ năng "điểm ở 4"; `visualId` trong note đổi theo; ảnh `phone/066` đúng |
+| Nghiêm trọng 2: nhãn "đứng yên" của 0 + 9 | Đã sửa đúng | hàng 2 thành "từ 0 sang phải 9", hàng 1 giữ "đứng yên"; nhãn trợ năng theo câu quy tắc mới |
+| Nghiêm trọng 3: `wrong` "hiệu của 5 và 2" | Đã sửa đúng | đúng câu đề xuất, 5 − 2 = 3 nên −3 là "lấy 5 trừ 2 rồi viết dấu − ở trước" |
+| Nghiêm trọng 4: ví dụ mẹo bị cắt | Đã sửa đúng | `6 − (−2) = 6 + 2 = 8` và `3 + (−4) = 3 − 4 = −1` hiện đủ trên điện thoại (`phone/113`, trang "Mẹo hay") |
+| Nên sửa 1: "của số đó" thành "của số thứ hai" | Đã sửa đúng | cả 9 chỗ (note, recap section, recap card của phần 3, 4, 10); 24 âm tiết |
+| Nên sửa 2: số đối "cách gốc O bằng nhau" | Đã sửa, khác chữ đề xuất | nay "ở hai bên điểm 0 và cùng cách điểm 0 là 5 đơn vị": đúng nghĩa, Haiku "Hiểu rõ"; chỉ còn lệch tên "điểm 0" với "gốc O" (Góp ý 4) |
+| Nên sửa 3: `dien-so-doi` | Đã sửa đúng | hai chỗ trống, ngân hàng "phần số tự nhiên", "dấu", "số 0"; chỉ một cách điền đúng |
+| Nên sửa 4: nhiễu d của `chon-tong-bang-0` | Đã sửa đúng | còn 3 lựa chọn, `wrong` còn b, c |
+| Nên sửa 5: quy tắc cộng với 0 | Đã sửa đúng | note, recap, hình, lời giải, `dien-cong-voi-0` cùng một cách nói |
+| Nên sửa 6: "đặt dấu −" | Đã sửa đúng | không còn "đặt dấu" trong `lesson.json` và `catalog.ts` |
+| Nên sửa 7: gọi tắt phần số tự nhiên | Sửa được ở lời giải, hình, note cùng làm; sinh lỗi mới ở câu quy tắc | Nên sửa 1 của vòng này |
+| Nên sửa 8: mẹo `dau-truoc` | Sửa chữ, sinh lỗi mới | câu 3 "Gặp phép trừ…" đặt ở phần chưa dạy phép trừ: Nghiêm trọng 1 |
+| Nên sửa 9: tô kết quả cuối `tinh-9-am4-am9-3` | Đã sửa đúng | `0 + (−1) = −1` tô hồng ở kết quả cuối |
+| Nên sửa 10: `gia-tri-b-x-2` | Đã sửa đúng | `gia-tri-b-x-1`, 1 + (−9) = −8, nhiễu 8, 10, −10 đều có `wrong`; card chỉ còn một đáp án −3 (`gia-tri-m-x-2`) |
+| Nên sửa 11: chuyện ví của Lan | Đã sửa đúng | "chi ra", "thu vào" khớp câu quy tắc và hình `tai-khoan`, `dau-doi-song` |
+
+## Bảng thử mẹo
+
+Cả ba mẹo đều đúng với mọi đầu vào thuộc dạng bài; chỉ còn một điều kiện biên chưa nói (Góp ý 1) và một câu đặt sai chỗ (Nghiêm trọng 1).
+
+| Mẹo | Các đầu vào đã thử | Kết quả |
+|---|---|---|
+| `tip.dau-truoc` (`$.sections[7].blocks[3]`) | 2 + (−9) = −7; (−6) + 15 = 9; 1 + (−2) = −1; (−100) + 99 = −1; (−1) + 10 = 9; 10 + (−1) = 9; 9 + (−4) = 5; (−9) + 4 = −5; 7 + (−7), 5 + (−5) | Đúng với 8 đầu vào hai phần khác nhau (dấu và hiệu khớp tổng thật). Hai phần bằng nhau: mẹo không nêu "dấu", tổng thật là 0 (Góp ý 1) |
+| `tip.hai-dau-lien-nhau` (`$.sections[9].blocks[3]`) | 6 − (−2) = 6 + 2 = 8; 3 + (−4) = 3 − 4 = −1; (−3) + (−4) = (−3) − 4 = −7; (−3) − (−5) = (−3) + 5 = 2; 0 − (−7) = 7; 10 − (−10) = 20; 1 − (−1) = 2; 4 + (−4) = 4 − 4 = 0 | Đúng với 8 đầu vào, gồm số 0, số tròn chục, hai số âm, hai số đối nhau |
+| `tip.ghep-so-doi` (`$.sections[10].blocks[2]`) | 6, −4, −6 → −4; 4, −2, −4 → −2; 8, −3, −8, 5 → 2; 5, −4, 4 → 5; 1, −1, 1, −1 → 0; −7, 4, 7, −1 → 3; 100, −37, −100 → −37; 8, −8 → 0; 9 − 4 + (−4) đổi thành 9, −4, −4 (không có cặp, tổng 1); 4 − (−4) đổi thành 4, 4 (không có cặp, tổng 8) | Đúng với 10 đầu vào; mẹo đặt ở phần sau phần trừ nên câu "Có phép trừ…" đã được dạy |
+
+## Kiểm chữ viết lại theo Đọc hiểu
+
+- Các chữ viết lại đều giữ đúng kiến thức và khớp nguồn tr.50 (kiến thức cần nhớ 1 đến 6), tr.51 (ví dụ 1, 2), tr.52 (bài 3.8 đến 3.19). Không câu nào chép sách: câu quy tắc phần 7 dùng cụm "phần số tự nhiên của chúng" (5 chữ liền) của sách nhưng thứ tự và cấu trúc khác, vẫn là biên soạn lại.
+- Hai chỗ viết lại làm lệch cách nói: câu quy tắc phần 8 (Nên sửa 1) và phần 12 (Nên sửa 4).
+- Bảy mục còn "Hiểu mơ hồ" ở lượt 3 được ghi như sau: `$.sections[0].blocks[0]` (Nên sửa 5), `$.sections[0].blocks[1]` và `$.sections[0].recap.caption` (Nên sửa 5), `$.sections[1].blocks[2]` (Nên sửa 6), `$.sections[7].blocks[1]` và `$.sections[7].recap.caption` (Nên sửa 1), `$.sections[7].blocks[3]` (Nghiêm trọng 1). Không mục nào chặn riêng.
+- Các mục chữ sẽ đổi theo review này cần một lượt Haiku trên đúng các mục đó trước lệnh duyệt.
 
 ## Nghiêm trọng
 
-### 1. Màn mở đầu phần 6: chuyện nói ví có 4 nghìn, hình vẽ điểm "đầu" ở 3 và không có điểm tổng (LL-15, LL-20)
+### 1. Mẹo `dau-truoc` ở phần 8 bảo "Gặp phép trừ thì đổi thành phép cộng trước", trong khi phép trừ chỉ được dạy từ phần 9 (LL-09, LL-20)
 
-- Vị trí: `$.sections[5].blocks[0]` (note "Ví của bạn có 4 nghìn đồng…" với hình `visual.dung-yen-tai-3`), mục `dung-yen-tai-3` trong `src/visuals/math/phep-cong-phep-tru-so-nguyen/catalog.ts` (`section.cong-voi-0`) - LL-15, LL-20
-- Nguồn: —
-- Vấn đề: hình mới thêm khi tách section ở vòng 1. Chữ nói 4, hình chỉ có một chấm xanh tên "đầu" ở 3 (ảnh walk `phone/066-s6-01-block.png`, tổng hợp đã mở xem). Hình không có điểm tổng, cũng không cho thấy "cộng 0 thì đứng yên". Đây là hình duy nhất của phần 6 nối việc cộng 0 với trục số (phần không có màn cùng làm, Góp ý 7). Bé thấy 4 trong chữ và 3 trên hình, có thể nhớ 4 + 0 = 3.
-- Sửa: đổi điểm sang 4 và cho điểm mang cả hai tên: `{ type: "point", at: 4, name: "đầu và tổng", color: FIRST }`, nhãn trợ năng "Trục số: điểm ở 4, cộng 0 thì điểm vẫn ở 4", đổi id thành `dung-yen-tai-4` (sửa cả `visualId` trong note). Chụp lại `phone/…-s6-01-block`.
-
-### 2. Nhãn "đứng yên" gắn cho 0 + 9 = 9, trái cách đi trên trục số của chính bài (LL-17)
-
-- Vị trí: hàng 2 của `visual.cong-voi-0-vi-du` (`{ tex: "\\concept{slate}{0} + 9 = 9", tag: tag("đứng yên", NOTE) }`), hình này hiện ở màn quy tắc `$.sections[5].blocks[1]`, `$.sections[5].recap`, `$.cards[5].recap` (`section.cong-voi-0`, `card.cong-voi-0`) - LL-17
-- Nguồn: tr.50, `sbt-p50.png`, kiến thức cần nhớ 3, gạch đầu dòng 4 (a + 0 = 0 + a = a)
-- Vấn đề: câu quy tắc phần 3, 4 dạy "từ số đầu đi sang phải/trái". Với 0 + 9 thì số đầu là 0, điểm đi từ 0 sang phải 9 đơn vị, không đứng yên. Nhãn chỉ đúng ở hàng 1, (−4) + 0. Bé áp nhãn này vào câu luyện `cong-0-voi-am12`, tức 0 + (−12), sẽ để điểm đứng ở 0 và trả lời 0. Hình hiện ở recap card, thứ duy nhất bé thấy ở phiên ôn.
-- Sửa: hàng 2 đổi thành `tag("từ 0 sang phải 9", POSITIVE)`, cùng kiểu nhãn với `cong-duong-vi-du`; hàng 1 giữ "đứng yên". Nhãn trợ năng của hình đổi theo câu quy tắc mới ở Nên sửa 5.
-
-### 3. Lý do `wrong` b của `tinh-am5-am2` nói "−3 là hiệu của 5 và 2", sai toán (LL-17)
-
-- Vị trí: `$.exercises[26].explain.wrong[0].text` (`ex.tinh-am5-am2`, câu kiểm tra của `section.cung-dau`) - LL-17
-- Nguồn: —
-- Vấn đề: hiệu của 5 và 2 là 5 − 2 = 3; −3 là hiệu 2 − 5. Bài đang dạy phép trừ số nguyên và có khái niệm "hiệu", nên câu sai trong khung "Giải thích" (ảnh `phone/080-s7-04-exercise-tinh-am5-am2-correct.png`) dạy sai đúng khái niệm bé sắp học.
-- Sửa: "−3 là lấy 5 trừ 2 rồi viết dấu − ở trước. Hai số âm thì ta cộng hai phần số tự nhiên, không trừ." (dùng động từ của Nên sửa 6).
-
-### 4. Dòng ví dụ thứ hai của mẹo "Cộng hoặc trừ đi một số âm" bị cắt mất kết quả trên điện thoại (LL-12, LL-20)
-
-- Vị trí: `$.sections[9].blocks[3].tex` (`tip.hai-dau-lien-nhau`, `section.tru-so-am`), cùng mẹo ở trang "Mẹo hay" - LL-12, LL-20
-- Nguồn: —
-- Vấn đề: dòng `(-3) + (-4) = (-3) - 4 = -7` rộng hơn khung mẹo trên điện thoại; màn chỉ hiện "(−3) + (−4) = (−3) − 4 =" rồi hết (tổng hợp đã mở `phone/113-s10-04-block.png`; cùng lỗi ở `phone/003-tips-2.png`, `phone/004-tips-3.png`; iPad hiện đủ). Dòng này do câu "Sửa" của vòng 1 thêm vào để cho thấy dấu của kết quả vẫn phải tính, nay đúng phần đó bị mất và bé thấy phép tính kết thúc bằng dấu "=" treo. Walk không đo tràn trong TeX của mẹo nên không báo. Thêm nữa: dòng 1 dừng ở "6 + 2" không có kết quả, và (−3) + (−4) = −7 lặp đúng chuyện nợ, hình `cung-dau-vi-du` của phần 7 (Góp ý 1 nhóm 3, gộp vào đây).
-- Sửa: `\begin{gathered} 6 - (-2) = 6 + 2 = 8 \\ 3 + (-4) = 3 - 4 = -1 \end{gathered}` (mỗi dòng ngắn hơn dòng bị cắt; dòng 2 vẫn là ví dụ "hai dấu khác nhau thành −"; 3 + (−4) chưa có trong bài). Chụp lại màn điện thoại của phần 10 và trang "Mẹo hay"; nếu vẫn chạm mép thì tách mỗi dòng thành hai dòng `gathered`.
+- Vị trí: `$.sections[7].blocks[3].text` (`tip.dau-truoc`, `section.khac-dau`), cùng chữ ở trang "Mẹo hay" (`phone/001-tips`) - LL-09, LL-20
+- Nguồn: tr.50, `sbt-p50.png`, kiến thức cần nhớ 4 (a − b = a + (−b)); bài dạy quy tắc này ở `section.tru-so-duong` (phần 9), đứng sau phần 8
+- Vấn đề: câu thứ ba của mẹo là câu của đề xuất vòng 2 (Nên sửa 8, Góp ý 14), nhưng mẹo nằm trong màn thứ tư của phần 8 (`phone/090-s8-04-block.png`). Bé đọc "Gặp phép trừ thì đổi thành phép cộng trước, rồi mới dùng mẹo" khi chưa gặp phép trừ số nguyên nào, chưa biết "đổi thành phép cộng" nghĩa là gì. Haiku lượt 3 cũng ghi mục này "Hiểu mơ hồ - câu cuối khó hiểu". Mẹo dùng kiến thức chưa dạy: Nghiêm trọng (trục 1, LL-09).
+- Sửa: bỏ câu thứ ba, còn hai câu: "Khi cộng hai số khác dấu, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, dù số đó đứng trước hay đứng sau." (15 và 20 âm tiết; vẫn đúng với mọi đầu vào ở bảng thử mẹo). Câu "Có phép trừ thì đổi thành phép cộng trước" chỉ giữ ở mẹo `ghep-so-doi` (phần 11, sau phần trừ). Giữ `kind` "tránh sai" và `tex` `2 + (−9)`.
 
 ## Nên sửa
 
-### 1. Ba câu quy tắc đi trên trục số nói "của số đó"/"của số âm", đọc được là số đầu (LL-10, LL-20)
+### 1. Câu quy tắc phần 8 gọi "phần lớn trừ phần nhỏ", lệch tên "phần số tự nhiên" của chính câu sau nó (LL-05, LL-20)
 
-- Vị trí: câu quy tắc, recap section, recap card của `section.cong-so-duong` (`$.sections[2].blocks[1].children[0].text`, `$.sections[2].recap.caption`, `$.cards[2].recap.caption`), `section.cong-so-am` (`$.sections[3]…`, `$.cards[3]…`), `section.tru-so-am` (`$.sections[9].blocks[1].children[0].text`, `$.sections[9].recap.caption`, `$.cards[9].recap.caption`) - LL-10, LL-20
-- Nguồn: tr.50, `sbt-p50.png`, mục 3, 4
-- Vấn đề: "Cộng với một số dương thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số đó." Danh từ gần "số đó" nhất là "số đầu": bé đọc theo chữ sẽ tính (−3) + 5 bằng cách đi sang phải 3. Câu phần 10 viết "của số âm", nên ba câu cùng khuôn có hai cách nói; và "của số âm" cũng mơ hồ khi cả hai số đều âm, như câu luyện `tinh-am3-tru-am5`, (−3) − (−5). Câu này lấy từ câu "Sửa" của vòng 1 (tổng hợp mở rộng phát hiện của nhóm 1 sang phần 10).
-- Sửa: đổi đuôi cả ba câu thành "của số thứ hai" (không dùng "số sau", dễ lẫn với thuật ngữ "số liền sau"):
-  - phần 3: "Cộng với một số dương thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai." (24 âm tiết)
-  - phần 4: như trên, "số âm", "sang trái".
-  - phần 10: "Trừ đi một số âm thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai." (24 âm tiết)
-  - Đổi cùng lúc note, recap section, recap card của mỗi phần.
+- Vị trí: `$.sections[7].blocks[1].children[0].text` (`rule`), `$.sections[7].recap.caption`, `$.cards[7].recap.caption` (`section.khac-dau`, `card.khac-dau`) - LL-05, LL-20
+- Nguồn: tr.50, `sbt-p50.png`, kiến thức cần nhớ 3, gạch đầu dòng 3
+- Vấn đề: "lấy phần lớn trừ phần nhỏ" dùng "phần lớn", "phần nhỏ" cho phần số tự nhiên; câu thứ hai cùng note lại nói đủ "phần số tự nhiên lớn hơn". Một quy tắc hai cách gọi, đúng điều vòng 2 (Nên sửa 7) yêu cầu bỏ; "phần lớn" còn là cụm thường mang nghĩa "đa số". Haiku lượt 3 vẫn ghi cả note và recap "Hiểu mơ hồ - điều kiện phức tạp" vì vế "khi hai phần số tự nhiên không bằng nhau" chen giữa câu.
+- Sửa: bỏ vế điều kiện khỏi câu đầu, nói trường hợp hai phần bằng nhau ở câu hai, mỗi câu một ý: "Cộng hai số khác dấu: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ. Tổng mang dấu của số có phần số tự nhiên lớn hơn; nếu hai phần bằng nhau thì tổng bằng 0." (17 và 21 âm tiết, 2 câu; dùng đúng ý đã dạy ở phần 5). Đổi cùng lúc note, recap section, recap card. Không câu luyện nào của phần 8 có hai phần bằng nhau nên không câu nào bị ảnh hưởng.
 
-### 2. Note mở đầu phần 2 định nghĩa số đối bằng "cách gốc O bằng nhau", bỏ "ở hai bên gốc O" (LL-05)
+### 2. Lời giải `gia-tri-c-x-am4` gọi biểu thức là A, hình gợi ý của nó gọi là B, trùng tên với chính câu kiểm tra B cùng x = 1 (LL-15, LL-20)
 
-- Vị trí: `$.sections[1].blocks[0].children[0].text` (`section.so-doi`) - LL-05
-- Nguồn: tr.50, `sbt-p50.png`, ý 2; câu quy tắc số đối của Bài 13 (`tap-hop-cac-so-nguyen`): "cách gốc O bằng nhau nhưng ở hai bên gốc O"
-- Vấn đề: "Hai số này cách gốc O bằng nhau nên gọi là hai số đối nhau." Theo câu này, một số "cách gốc O bằng nhau" với chính nó. Câu cũng không nối khoảng cách với "phần số tự nhiên" của câu quy tắc ngay sau. Phần còn sót của Nghiêm trọng 3 vòng 1.
-- Sửa: "Có 5 nghìn đồng ghi 5, nợ 5 nghìn đồng ghi −5. Hai số này ở hai bên gốc O và cùng cách O 5 đơn vị, nên là hai số đối nhau." (khớp hai mũi tên "5 đơn vị" của hình `so-doi-truc`).
-
-### 3. Câu kho ôn `dien-so-doi` có nhiễu loại được mà không cần kiến thức, lời giải nói quy tắc cách thứ ba (LL-14)
-
-- Vị trí: `$.exercises[7].segments`, `.bank`, `.explain.text` (`ex.dien-so-doi`, card `so-doi`) - LL-14
+- Vị trí: `$.exercises[51].explain.text` (`ex.gia-tri-c-x-am4`); hình `goi-y-bieu-thuc` (`catalog.ts`: nhãn "Tính B = x + 2 − 5 khi x = 1", hàng "B = 1 + 2 - 5"); câu kiểm tra `$.exercises[50]` (`ex.gia-tri-b-x-1`: B = x + (−9), x = 1) - LL-15, LL-20
 - Nguồn: —
-- Vấn đề: đề in sẵn "cùng phần số tự nhiên và khác ___", ngân hàng "dấu", "phần số", "số 0": "phần số" trái ngay vế đầu, "số 0" vô nghĩa, nên bé chọn "dấu" mà không cần nhớ. Lời giải "chỉ khác nhau ở dấu, còn phần số tự nhiên giống nhau" là cách nói thứ ba của câu quy tắc.
-- Sửa: hai chỗ trống "Hai số đối nhau có cùng ___ nhưng khác ___.", ngân hàng "phần số tự nhiên", "dấu", "số 0"; `accept` b1 "phần số tự nhiên", b2 "dấu". Lỗi thật cần đo là đảo chỗ hai từ. Không thêm nhiễu "phần dấu" (nhóm 1 đề xuất): "khác phần dấu" cũng đúng, thành hai đáp án đúng (LL-01). `explain`: "Hai số đối nhau có cùng phần số tự nhiên nhưng khác dấu, ví dụ 5 và −5."
+- Vấn đề: bản sửa vòng 2 (Góp ý 12) đổi đề thành "C = x + 6 − 9" nhưng lời giải vẫn viết "Thay x bằng −4: A = (−4) + 6 − 9" (ảnh `phone/139-140`, tile `140-s12-05-exercise-gia-tri-c-x-am4-correct`); trong khi recap ngay phần đó ghi A = x + (−4) − 6, nên bé thấy hai "A" khác nhau. Hình gợi ý của câu C lại tên B; từ khi câu kiểm tra thành "B = x + (−9), thay x bằng 1", bé gặp hai biểu thức tên B cùng x = 1 trong một phần.
+- Sửa: lời giải: "Thay x bằng −4: C = (−4) + 6 − 9. Tính từ trái sang phải: 2 − 9 = −7." Hình `goi-y-bieu-thuc`: nhãn "Tính C = x + 2 − 5 khi x = 3", các hàng "C = 3 + 2 - 5" (nhãn "thay x bằng 3"), "= 5 - 5", "= 0" (x = 3 chưa dùng ở phần 12; hàng cuối do chế độ gợi ý ẩn đi).
 
-### 4. Lựa chọn d (−8) + 0 của `chon-tong-bang-0` cần quy tắc cộng với 0, nay dạy ở phần sau, và đã mất lý do `wrong` (LL-09, LL-20)
+### 3. Đáp án −3 của `tinh-am6-cong3` trùng điểm đến của chính hình gợi ý, và trùng hàng 2 của hình quy tắc cùng phần (LL-02, LL-07, LL-20)
 
-- Vị trí: `$.exercises[17].options[3]`, `.explain.wrong` (`ex.chon-tong-bang-0`, câu kiểm tra của `section.tong-so-doi`) - LL-09, LL-20
+- Vị trí: `$.exercises[10]` (`ex.tinh-am6-cong3`: (−6) + 3 = −3, `hintVisualId` `goi-y-am5-cong2`), `$.sections[2].practiceIds[0]`; hình `cong-duong-vi-du` hàng 2 `(-5) + 2 = -3` (recap `section.cong-so-duong`) - LL-02, LL-07, LL-20
 - Nguồn: —
-- Vấn đề: vòng 1 tách "cộng với 0" thành `section.cong-voi-0` đứng sau, nhưng giữ lựa chọn d. Bé gặp (−8) + 0 trước khi học quy tắc (`pitfalls.md`: nhiễu phải dùng ý đã dạy); chọn d thì bị chấm sai mà khung giải thích không nói vì sao.
-- Sửa: bỏ lựa chọn d, còn 3 lựa chọn như `so-doi-cua-am-9` (không thay bằng "8 + 8": vòng 1 đã bỏ nhiễu này vì ít ai chọn). Lỗi "có số 0 thì tổng bằng 0" đã được đo ở `chon-cong-0` của phần 6.
+- Vấn đề: bản sửa vòng 2 (Góp ý 2) đổi −2 thành −3 để thoát chuyện "tới −2", nhưng hình gợi ý vẽ (−5) + 2 và mũi tên dừng ở −3 (ảnh `goi-y-am5-cong2-phone.png`, nấc 2 chỉ ẩn điểm "tổng"), còn recap của phần có `(−5) + 2 = −3`. Bé xem gợi ý thấy mũi tên tới −3 rồi gõ −3 mà không tính (−6) + 3. Trước bản sửa, gợi ý tới −3 và đáp án −2 nên không lộ.
+- Sửa: đổi câu luyện thành (−8) + 3 = −5: `prompt` `(-8)+3`, `check.expr` `(-8)+3`, `answer.value` −5, `explain` "Cộng với 3 là đi sang phải 3 đơn vị từ −8. Ta tới −5." với `tex` `(-8) + 3 = \concept{pink}{-5}`, đổi id thành `tinh-am8-cong3` (sửa cả `practiceIds`). (−8) + 3 chưa có ở đâu; kết quả −5 chưa có trong phần 3 (phần có 2, −3, 0, 4, −2, −1, 1); giữ hình gợi ý (đích −3 khác −5).
 
-### 5. Câu quy tắc "Cộng với 0 thì số không đổi" không nói tới 0 + a, mà câu luyện và hình dùng 0 + a (LL-06)
+### 4. Màn mở đầu phần 12 bỏ từ "biểu thức", trong khi câu quy tắc, recap và câu `chon-bieu-thuc-am` vẫn dùng (LL-05, LL-20)
 
-- Vị trí: `$.sections[5].blocks[1].children[0].text`, `$.sections[5].recap.caption`, `$.cards[5].recap.caption`; nhãn trợ năng `cong-voi-0-vi-du`; `explain.text` của `$.exercises[22]` (`chon-cong-0`), `[23]` (`cong-0-voi-am12`), `[24]` (`chon-tong-am5-voi-0`); `$.exercises[25]` (`dien-cong-voi-0`) (`section.cong-voi-0`) - LL-06
-- Nguồn: tr.50, kiến thức cần nhớ 3, gạch đầu dòng 4 (a + 0 = 0 + a = a)
-- Vấn đề: theo chữ, "cộng với 0" là a + 0. Lời giải của `cong-0-voi-am12` áp câu này vào 0 + (−12), trường hợp câu không nói tới; tính chất đổi chỗ dạy ở phần 11, sau phần này.
-- Sửa: "Cộng một số với 0, hay cộng 0 với một số, thì được chính số đó." (16 âm tiết) ở note, recap section, recap card, nhãn trợ năng của hình. Lời giải lặp câu này (vd `cong-0-voi-am12`: "Cộng 0 với một số thì được chính số đó. Vậy 0 + (−12) = −12."). `dien-cong-voi-0`: "Cộng một số với 0 thì được ___.", ngân hàng "chính số đó", "0", "số đối của nó".
+- Vị trí: `$.sections[11].blocks[0].children[0].text` (`section.gia-tri-bieu-thuc`) so với `$.sections[11].blocks[1]` (rule), `$.sections[11].recap.caption`, `$.cards[11].recap.caption`, `$.exercises[55].prompt` (`ex.chon-bieu-thuc-am`) - LL-05, LL-20
+- Nguồn: tr.51, `sbt-p51.png`, ví dụ 1 ("Tính giá trị của biểu thức A = x + (−27) − 234")
+- Vấn đề: viết lại theo Đọc hiểu, note đổi từ "Biểu thức A = …" thành "A = … là một dãy phép tính có chữ x". Câu quy tắc ngay sau nói "Muốn tính giá trị biểu thức", nên bé không nối được "dãy phép tính có chữ x" với "biểu thức" (từ học ở Bài 6, nhưng bài này chưa gọi lại tên). Một khái niệm hai tên.
+- Sửa: "A = x + (−4) − 6 là một biểu thức, tức là dãy phép tính có chữ x. Cho x = −3, ta thay chữ x bằng số −3 rồi tính, được giá trị của A." (16 và 17 âm tiết, 2 câu). Sau khi sửa cần đọc hiểu lại mục này.
 
-### 6. Câu quy tắc phần 7 nói "viết dấu − ở trước", lời giải và hình gợi ý cùng bài vẫn nói "đặt dấu −", có chỗ giữ cụm của sách (LL-05, LL-20)
+### 5. Ba mục phần 1 còn "Hiểu mơ hồ" ở lượt 3: "phần số tự nhiên" chưa quen, câu quy tắc gói ba khái niệm mới
 
-- Vị trí: `explain.text` của `$.exercises[26]` (`tinh-am5-am2`), `[27]` (`tinh-am8-am5`: "rồi đặt dấu − trước kết quả"), `[28]` (`chon-tong-am9`), `[29]` (`hung-no-tien`), `[30]` (`noi-tong-cung-dau`), `[38]` (`tinh-am2-tru-5`); `wrong` của `[26]` (b, c) và `[13]` (`no-tien-an`, d); `visual.goi-y-am8-am5` (nhãn "cộng 8 với 5, đặt dấu −" và nhãn trợ năng) - LL-05, LL-20
-- Nguồn: tr.50, kiến thức cần nhớ 3, gạch đầu dòng 1 ("rồi đặt dấu "−" trước kết quả")
-- Vấn đề: bản sửa vòng 1 viết lại câu quy tắc, recap section, recap card thành "viết dấu − ở trước" nhưng để nguyên 9 chỗ "đặt dấu −" ở lời giải và hình gợi ý: một thao tác hai tên ngay trong một phần. `tinh-am8-am5` còn giữ nguyên cụm của sách.
-- Sửa: đổi mọi "đặt dấu −" thành "viết dấu − ở trước" (nhãn hình: "cộng 8 với 5, viết dấu −"). `tinh-am8-am5`: "Cộng 8 với 5 được 13, rồi viết dấu − ở trước: −13."
+- Vị trí: `$.sections[0].blocks[0].children[0].text`, `$.sections[0].blocks[1].children[0].text`, `$.sections[0].recap.caption`, `$.cards[0].recap.caption` (`section.phan-dau`)
+- Nguồn: tr.50, `sbt-p50.png`, kiến thức cần nhớ 1
+- Vấn đề: Haiku ghi: "tự nhiên chưa rõ" (note đầu, dùng "phần số tự nhiên" trước khi định nghĩa) và "khái niệm mới quá" (câu quy tắc gói phần dấu, phần số tự nhiên, dấu +). Từ do sách định nghĩa nên không thể bỏ, chỉ giảm được tải ở note đầu. Không chặn.
+- Sửa: note đầu: "Nhiệt kế chỉ −2 độ, nghĩa là trời lạnh hơn 0 độ. Số −2 gồm dấu − và số 2; số 2 này gọi là phần số tự nhiên." (câu hai 16 âm tiết). Giữ câu quy tắc và recap như hiện tại (23 và 17 âm tiết, đã khớp nhau); nếu sau lượt Haiku sau vẫn mơ hồ thì tách ý dấu + thành một màn riêng (phần 1 mới có 3 màn, tối đa 4) và để recap hai câu, mỗi câu một ý.
 
-### 7. Phần số tự nhiên được gọi tắt bốn cách ở phần 8; "Phần 5" trùng tên section; nhãn chọn dấu mang hai màu (LL-05, LL-10)
+### 6. Note về kí hiệu −(−5) còn "Hiểu mơ hồ" ở lượt 3
 
-- Vị trí: note cùng làm `$.sections[7].blocks[2].children[0].text` ("Phần 5 lớn hơn phần 3"); nhãn ba hàng `visual.khac-dau-vi-du` ("phần 7 lớn hơn: dấu +", màu `POSITIVE`/`NEGATIVE`; hình ở màn quy tắc, recap section, recap card); `visual.goi-y-am9-cong4` (nhãn "phần 9 lớn hơn: dấu −" màu `NOTE`, nhãn trợ năng "phần lớn trừ phần nhỏ, dấu của số xa gốc O hơn"); `explain.text` của `$.exercises[31]` (`tinh-7-cong-am10`: "Phần 10 lớn hơn phần 7 và có dấu −"), `wrong` của `[31]` ("Số có phần lớn hơn", "trừ hai phần số") và `[34]` (`chon-tong-duong`: "vì phần 7 lớn hơn và có dấu −", "vì phần 10 lớn hơn…") - LL-05, LL-10
-- Nguồn: tr.50, ý 1
-- Vấn đề: vòng 1 (Nên sửa 1) yêu cầu một cách gọi cho cả bài; phần 8 vẫn có "phần 10", "phần lớn", "phần số", "phần nhỏ". App in tiêu đề "Phần 8: Cộng hai số khác dấu", nên "Phần 5 lớn hơn phần 3" ngay dưới đọc được thành so sánh hai section (`phone/088-s8-03-block.png`). "Phần 10 … có dấu −" gán dấu cho phần số tự nhiên, trái câu quy tắc phần 1. Tổng hợp thêm: cùng một kiểu nhãn chọn dấu mà hình quy tắc tô theo dấu, hình gợi ý tô violet.
-- Sửa:
-  - Lời giải `tinh-7-cong-am10`: "−10 có phần số tự nhiên lớn hơn, nên kết quả mang dấu −. Lấy 10 − 7 = 3, vậy kết quả là −3."; `wrong` c: "17 là tổng của 7 và 10. Hai số khác dấu thì ta trừ hai phần số tự nhiên, không cộng."; `wrong` của `chon-tong-duong`: "(−7) + 3 = −4, vì −7 có phần số tự nhiên lớn hơn."
-  - Nhãn hình bỏ chữ "phần": "mang dấu của 7", "mang dấu của −8", "mang dấu của −5" (`khac-dau-vi-du`), "mang dấu của −9" màu `NEGATIVE` (`goi-y-am9-cong4`); nhãn trợ năng của `goi-y-am9-cong4` theo câu quy tắc.
-  - Note cùng làm: "Cùng làm: bấm mũi tên trái 5 lần để tính 3 + (−5). −5 có phần số tự nhiên lớn hơn, nên tổng mang dấu −." (nếu áp Góp ý 10 thì dùng số mới ở đó).
-
-### 8. Mẹo `dau-truoc` nói lại câu quy tắc bằng cách nói thứ hai và không chỉ ra lỗi cần tránh (LL-05)
-
-- Vị trí: `$.sections[7].blocks[3]` (`tip.dau-truoc`, `kind` "tránh sai") - LL-05
-- Nguồn: tr.50, kiến thức cần nhớ 3, gạch đầu dòng 3
-- Vấn đề: mẹo đúng với mọi đầu vào (bảng thử ở `nhom-2-v2.md`), nhưng: "ở xa gốc O hơn" là tên thứ hai cho "có phần số tự nhiên lớn hơn" của câu quy tắc ngay trên; `kind` "tránh sai" mà chữ không nói tránh lỗi nào; ví dụ (−8) + 5 có dấu tổng trùng dấu số đầu nên không cho thấy lỗi hay gặp nhất (lấy dấu của số đầu). Vòng 1 Góp ý 9 mới sửa được một nửa.
-- Sửa: `text` "Khi cộng hai số khác dấu, hãy tìm dấu của tổng trước rồi mới trừ. Tổng mang dấu của số có phần số tự nhiên lớn hơn, không phải dấu của số đầu. Gặp phép trừ thì đổi thành cộng với số đối trước." (16, 21, 11 âm tiết; "số đầu" như câu quy tắc phần 3, 4). `tex` `\begin{gathered} 2 + (-9) \\ = -(9 - 2) \\ = -7 \end{gathered}` (số đầu dương, tổng âm; chưa có trong bài). Đã thử: 2 + (−9) ra −7, (−6) + 15 ra 9, 3 − 8 đổi thành 3 + (−8) ra −5, (−2) − 5 đổi thành (−2) + (−5) nên mẹo không dùng.
-
-### 9. Lời giải `tinh-9-am4-am9-3` tô số giữa mà không tô kết quả cuối (LL-05)
-
-- Vị trí: `$.exercises[46].explain.tex` (`ex.tinh-9-am4-am9-3`, `section.tinh-chat`) - LL-05
-- Nguồn: —
-- Vấn đề: `= \concept{slate}{0} + (\concept{pink}{-1}) = -1`: 0 và −1 ở giữa mang màu, kết quả cuối không (`phone/129-s11-06-…-correct.png`). Mọi lời giải khác tô kết quả cuối theo dấu. Vòng 1 (Nên sửa 26) đã nêu đích danh câu này.
-- Sửa: `= 0 + (-1) = \concept{pink}{-1}`, như `tinh-am7-4-7-am1`.
-
-### 10. Câu kiểm tra phần 12 lặp phép tính của chuyện và recap phần 4; card có ba đáp án −3 (LL-07)
-
-- Vị trí: `$.exercises[50]` (`ex.gia-tri-b-x-2`: B = x + (−5), x = 2, tức 2 + (−5) = −3) so với note mở đầu `$.sections[3].blocks[0]`, hình `trai-2-cong-am5` và hàng 1 của `cong-am-vi-du` (recap card `cong-so-am`); cùng card `gia-tri-bieu-thuc` còn `gia-tri-m-x-2` và `nhiet-do-chieu-toi` cũng ra −3 - LL-07
-- Nguồn: —
-- Vấn đề: thay x xong, bé gặp lại đúng 2 + (−5) = −3 vừa thấy ở recap card nên câu không đo được việc thay chữ bằng số rồi tính. Ba câu cùng card cùng đáp án −3 cho phép đoán theo trí nhớ ở phiên ôn (tổng hợp phát hiện thêm).
-- Sửa: B = x + (−9) khi x = 1, đáp án −8; nhiễu 8 (quên dấu), 10 và −10 (cộng hai phần số tự nhiên); đổi `check.expr`, `explain`, `wrong`, id (`gia-tri-b-x-1`). Không dùng 5 + (−8) như nhóm 3 đề xuất: vẫn ra −3, và 5 − 8 = −3 đã có trong lời giải `gia-tri-m-x-2`. Đáp án −3 của `nhiet-do-chieu-toi` đổi ở Góp ý 15.
-
-### 11. Chuyện ví của Lan nói "tiêu", "được cho", ngay sau câu quy tắc nói "chi ra", "thu vào" với cùng hai số (LL-05, LL-20)
-
-- Vị trí: `$.sections[12].blocks[2].children[0].text`, nhãn và nhãn trợ năng của hình `tai-khoan` ("tiêu là số âm, được cho là số dương"), so với câu quy tắc `$.sections[12].blocks[1]` và hình recap `dau-doi-song` ("thu vào 35 nghìn đồng", "chi ra 20 nghìn đồng") - LL-05, LL-20
-- Nguồn: —
-- Vấn đề: bản sửa Góp ý 14 vòng 1 (bỏ "tài khoản", "giao dịch") dùng chữ mới lệch chữ của câu quy tắc cùng phần, trong khi recap ghi đúng hai số 35, 20 của chuyện Lan. Màn mẫu không minh hoạ chữ của câu quy tắc, và phiên ôn chỉ hiện "thu vào", "chi ra".
-- Sửa: note "Ví của Lan có 50 nghìn đồng. Lan chi ra 20 nghìn, thu vào 35 nghìn mẹ cho, rồi chi ra 45 nghìn."; nhãn hình "chi ra là số âm, thu vào là số dương"; nhãn trợ năng theo chữ mới.
+- Vị trí: `$.sections[1].blocks[2].children[0].text` (`section.so-doi`)
+- Nguồn: tr.50, `sbt-p50.png`, kiến thức cần nhớ 2 (kí hiệu −x là số đối của x, −(−x) = x)
+- Vấn đề: Haiku ghi "ký hiệu −(−5) mới". Kí hiệu này là của sách nên chỉ cần giải thích dấu − ngoài ngoặc nghĩa gì; câu hiện tại ("Ta ghi số đối của −5 là −(−5), vậy −(−5) = 5") chưa nói dấu − ngoài ngoặc làm gì. Không chặn.
+- Sửa: "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Ta viết số đối của −5 là −(−5), tức là đặt thêm dấu − ngoài ngoặc: −(−5) = 5." (câu hai 17 âm tiết, 2 câu). Công thức dưới note giữ nguyên.
 
 ## Góp ý
 
-### 1. Bốn câu thiếu lý do `wrong` cho nhiễu hay bị chọn
+### 1. Mẹo `dau-truoc` không nói trường hợp hai phần số tự nhiên bằng nhau (LL-24)
 
-- Vị trí: `$.exercises[9]` (`nhiet-do-am-ap-len`, c "6"), `[13]` (`no-tien-an`, d "8"), `[31]` (`tinh-7-cong-am10`, d −17), `[36]` (`chon-phep-tru-dung`, d `3 - 7 = -10`)
+- Vị trí: `$.sections[7].blocks[3].text` (`tip.dau-truoc`) - LL-24
+- Nguồn: tr.50, kiến thức cần nhớ 3, gạch đầu dòng 3 ("không đối nhau")
+- Vấn đề: 7 + (−7) hay 5 + (−5) cũng là "hai số khác dấu", mẹo bảo tìm dấu của số có phần lớn hơn nhưng không có số nào. Không cho kết quả sai, chỉ bỏ ngỏ; câu quy tắc cùng phần có nêu.
+- Sửa: câu một thành "Khi cộng hai số khác dấu mà không đối nhau, hãy tìm dấu của tổng trước rồi mới trừ." (19 âm tiết). Đã tự thử: vẫn đúng với mọi đầu vào ở bảng; cần đọc hiểu lại câu này (từ "không đối nhau" từng bị Haiku ghi mơ hồ ở lượt 2). Nếu áp Nên sửa 1 thì giữ nguyên câu một.
+
+### 2. Ví dụ trong câu quy tắc phần 7 lặp đúng chuyện nợ ngay trước, và kết quả −7 trùng đáp án câu kiểm tra (LL-07, LL-20)
+
+- Vị trí: `$.sections[6].blocks[1].children[0].text`, `$.sections[6].recap.caption`, `$.cards[6].recap.caption` (ví dụ (−3) + (−4) = −7) so với `$.sections[6].blocks[0]` (cùng phép tính) và `$.exercises[26]` (`ex.tinh-am5-am2`, đáp án −7) - LL-07, LL-20
 - Nguồn: —
-- Vấn đề: đều là lỗi hay gặp nhất của dạng (bỏ dấu −, hay cộng hai phần số tự nhiên rồi viết dấu −) nhưng không có lý do.
-- Sửa: c của `nhiet-do-am-ap-len`: "6 là lấy 2 + 4 mà quên dấu − của −2. Từ −2 đi sang phải 4 thì tới 2."; d của `no-tien-an`: "8 là lấy 3 + 5. Mua hàng làm tiền ít đi, nên phải đi sang trái."; d của `chon-phep-tru-dung`: "−10 là cộng 3 với 7 rồi viết dấu − ở trước. Từ 3 đi sang trái 7 thì tới −4."; d của `tinh-7-cong-am10`: "−17 là cộng 7 với 10 rồi viết dấu − ở trước. Hai số khác dấu thì ta trừ hai phần số tự nhiên."
+- Vấn đề: ví dụ thêm vào câu quy tắc theo lượt Đọc hiểu trùng chuyện nợ, hàng 1 của hình `cung-dau-vi-du`, và recap hiện cả ba nơi cùng −7; bé ôn phần này rồi gặp câu kiểm tra đáp án −7. Không phải cùng phép tính nên không chặn.
+- Sửa: đổi câu kiểm tra thành (−3) + (−2): `prompt` `(-3)+(-2)`, đáp án −5, lựa chọn −5, −1, 5, 1, `explain` "Hai số cùng là số âm: cộng 3 với 2 được 5, rồi viết dấu − ở trước. Vậy kết quả là −5.", `wrong` b (−1): "−1 là lấy 3 trừ 2 rồi viết dấu − ở trước. Hai số âm thì ta cộng hai phần số tự nhiên, không trừ.", đổi id (`tinh-am3-am2`). (−3) + (−2) và kết quả −5 chưa có trong phần 7.
 
-### 2. Ba màn liền nhau ở phần 3 cùng ra hay cùng bắt đầu ở −2 (LL-07)
+### 3. Hai câu cuối phần 13 cùng đáp án −4 (LL-07, LL-20)
 
-- Vị trí: màn cùng làm `$.sections[2].blocks[2]` ((−5) + 3, lời kết "tới −2"), câu kiểm tra `ex.nhiet-do-am-ap-len` (bắt đầu −2), câu luyện `ex.tinh-am6-cong4` ((−6) + 4 = −2) - LL-07
+- Vị trí: `$.exercises[56]` (`ex.thang-may-tang-2`: 1 + (−5) = −4, câu kiểm tra) và `$.exercises[57]` (`ex.tien-cua-nam`: 2 + (−10) + 4 = −4, câu luyện) - LL-07, LL-20
 - Nguồn: —
-- Vấn đề: bé vừa thấy "tới −2" có thể gõ −2 theo trí nhớ.
-- Sửa: câu luyện thành (−6) + 5 = −1 (sửa `check.expr`, `answer`, `explain`, id `tinh-am6-cong5`); hình gợi ý `goi-y-am5-cong2` (tới −3) vẫn dùng được, không chạm −1.
+- Vấn đề: bản sửa vòng 2 (Góp ý 15) đổi số cho `tien-cua-nam` mà không để ý đáp án −4 của câu kiểm tra cùng phần; bé gõ lại −4 theo trí nhớ.
+- Sửa: `tien-cua-nam`: "Nam có 2 nghìn đồng, chi 12 nghìn đồng (ghi nợ phần còn thiếu), rồi mẹ cho thêm 8 nghìn đồng." Đáp án −2 (2 + (−12) = −10, rồi (−10) + 8 = −2); sửa `check.expr` `2+(-12)+8`, `explain` "Chi 12 là −12 và mẹ cho 8 là +8. Tính từ trái sang phải: 2 + (−12) = −10, rồi (−10) + 8 = −2." và `tex`. Hai phép này, và đáp án −2, chưa có trong phần 13.
 
-### 3. Nhãn "số đối của 5" màu violet, trong khi khái niệm số đối màu sky (LL-05)
+### 4. Vài tên gọi lệch nhẹ sau khi viết lại chữ (LL-05)
 
-- Vị trí: hình `so-doi-vi-du` (màn quy tắc, recap section và recap card `so-doi`); hình `so-doi-truc` ngay trước dùng sky cho hai mũi tên "5 đơn vị" - LL-05
+- Vị trí: `$.sections[1].blocks[0].children[0].text` ("điểm 0") so với hình `so-doi-truc`, `cung-am2-cong2` và note `$.sections[4].blocks[2]` ("gốc O"); `$.sections[10].blocks[2].text` ("cộng chúng trước") so với "ghép" ở note cùng làm `$.sections[10].blocks[3]`, hình `ghep-so-doi`, lời giải `tinh-9-am4-am9-3` - LL-05
 - Nguồn: —
-- Vấn đề: catalog dành violet cho nhãn bước làm, "không phải khái niệm", nhưng "số đối của 5" gọi tên đúng khái niệm số đối (sky trong glossary). Đổi sang violet giải được dấu hình thập (Nghiêm trọng 4 vòng 1) nhưng một khái niệm thành hai màu trên hai màn liền nhau.
-- Sửa: cho nhãn `rows` tuỳ chọn không dấu hình như `plainTag` của trục số rồi giữ màu sky; hoặc bỏ nhãn, tô mũi tên "→" màu sky kèm `legend` "Số đối".
+- Vấn đề: cùng một điểm hay cùng một thao tác mà gọi hai cách. Không sai nghĩa, bé hiểu được qua ngữ cảnh.
+- Sửa: phần 2: "Hai số này ở hai bên gốc O (điểm 0) và cùng cách gốc O là 5 đơn vị, nên là hai số đối nhau." (25 âm tiết, đúng giới hạn); mẹo `ghep-so-doi`: "hãy ghép chúng trước, được 0" (cùng "ghép" ở mọi chỗ). Nếu đổi thì cần đọc hiểu lại hai mục này.
 
-### 4. Cách viết −(−5) xuất hiện mà không nói dấu − trước ngoặc nghĩa là "số đối của" (LL-10)
+### 5. Mục tiêu bài bỏ ý chính của quy tắc trừ
 
-- Vị trí: `$.sections[1].blocks[2].children[0].text` (`section.so-doi`) - LL-10
-- Nguồn: tr.50, ý 2 (kí hiệu −x là số đối của x)
-- Vấn đề: bé chưa biết kí hiệu này có thể đọc −(−5) thành phép trừ của phần 9, 10.
-- Sửa: "−5 có phần số tự nhiên là 5, nên số đối của nó là 5. Số đối của −5 viết là −(−5), nên −(−5) = 5."
+- Vị trí: `$.overview.goals[2]`
+- Nguồn: tr.50, kiến thức cần nhớ 4
+- Vấn đề: "trừ được hai số nguyên bằng cách đi sang trái hoặc sang phải trên trục số" đúng, nhưng quy tắc phần 9 là "ta cộng với số đối của số đó" và không mục tiêu nào nêu ý này; hai mục tiêu khác đã nói về trục số.
+- Sửa: "trừ được hai số nguyên bằng cách cộng với số đối của số bị trừ đi" hay giữ câu hiện tại nếu coi trục số là ý chính (Haiku đã đọc rõ câu hiện tại).
 
-### 5. Không câu nào cho bé gặp số dương có viết dấu +
+### 6. Câu bị ngắt dòng giữa phép tính trên điện thoại (bố cục app, báo người làm app)
 
-- Vị trí: card `phan-dau` (`ex.chon-dau-tru`, `ex.dien-dau-va-so`)
-- Nguồn: tr.51 bài 3.8 (+207), tr.52 bài 3.11
-- Vấn đề: câu quy tắc nói "Số dương có dấu +, nhưng ta thường không viết", recap phần 13 viết "+35", "+4", nhưng không câu nào cho bé nhận ra "+9" là số dương.
-- Sửa: đổi một lựa chọn số dương của `chon-dau-tru` thành `+9` (không thuộc đáp án), thêm `wrong` "+9 có dấu + nên là số dương."
-
-### 6. Note 3 phần 1 gọi phần số tự nhiên là "số 5" ngay sau câu quy tắc (LL-05)
-
-- Vị trí: `$.sections[0].blocks[2].children[0].text` (`section.phan-dau`) - LL-05
-- Nguồn: tr.50, ý 1
-- Vấn đề: phần còn sót của Nên sửa 1 vòng 1; dùng đúng tên ngay sau câu quy tắc giúp bé nối tên với nghĩa.
-- Sửa: "Bạn nợ 5 nghìn đồng thì ghi −5. Phần dấu − cho biết bạn đang nợ, phần số tự nhiên 5 cho biết nợ bao nhiêu."
-
-### 7. Phần 6 không có màn cùng làm (LL-16)
-
-- Vị trí: `$.sections[5].blocks` (2 màn) (`section.cong-voi-0`) - LL-16
+- Vị trí: `$.sections[6].blocks[1].children[0].text` (`phone/083-s7-06-recap.png`: "dấu −" xuống dòng khỏi "ở trước", "3 +" và "4 = 7" ở hai dòng); `$.sections[9].blocks[3].text` ("6" và "+ 2" ở hai dòng, `phone/090`, `phone/113`) - LL-12
 - Nguồn: —
-- Vấn đề: các phần cộng khác đều có màn bấm mũi tên; ý này dễ nên không chặn bài.
-- Sửa: nếu `hopTry` chấp nhận đích bằng điểm đầu, thêm "Cùng làm: tính (−3) + 0. Điểm không cần đi, nó đã ở tổng." với `tryWalk(-3, -3, "Cộng 0 nên điểm vẫn ở −3.")`; không thì bỏ qua.
+- Vấn đề: tiếp tục Góp ý 17 vòng 2; chữ viết lại dài hơn nên có thêm hai chỗ.
+- Sửa: báo người làm app (không ngắt dòng quanh dấu phép tính và dấu − đi kèm số); không chặn bài. Các Góp ý vòng 2 chưa xử lý (3, 7, 16, 18) vẫn không chặn.
 
-### 8. Nhiễu −31 của `so-cong-13` không ứng với lỗi nào (LL-14)
+## Bảng LL của vòng 3
 
-- Vị trí: `$.exercises[19].options[3]` (`ex.so-cong-13`) - LL-14
-- Nguồn: —
-- Sửa: thay bằng −12 (số liền kề, hay nhầm khi tìm số cần thêm), `wrong` d "13 + (−12) = 1, chưa bằng 0."
-
-### 9. Đề `xep-tong-khac-dau` nói "các số" nhưng hai mục là tổng (LL-10)
-
-- Vị trí: `$.exercises[35].prompt[0].text` (`ex.xep-tong-khac-dau`) - LL-10
-- Nguồn: —
-- Sửa: "Tính mỗi tổng rồi xếp các kết quả từ bé đến lớn."
-
-### 10. Màn cùng làm phần 8 lặp đúng câu kiểm tra phần 4 (LL-07)
-
-- Vị trí: `$.sections[7].blocks[2]` (3 + (−5) = −2) so với `$.exercises[13]` (`no-tien-an`, cũng 3 + (−5)) - LL-07
-- Nguồn: —
-- Vấn đề: bé đã biết kết quả −2 nên màn cùng làm không cho bé thử quy tắc dấu mới.
-- Sửa: 2 + (−3) = −1: note "Cùng làm: bấm mũi tên trái 3 lần để tính 2 + (−3). −3 có phần số tự nhiên lớn hơn, nên tổng mang dấu −.", `tryWalk(2, -1, "Điểm đã đi sang trái 3 đơn vị, tới −1.")`, đổi id hình. Không dùng 2 + (−6) hay 1 + (−5) (nhóm 2 đề xuất): đã có ở `tinh-2-cong-am6` và `thang-may-tang-2`.
-
-### 11. Câu ôn `dien-ghep-tong` dùng lại cặp 9 và −9 của câu luyện cùng card (LL-07)
-
-- Vị trí: `$.exercises[48]` ((−9) + 5 + 9 + (−2)) so với `$.exercises[46]` (9 + (−4) + (−9) + 3) - LL-07, LL-20
-- Nguồn: —
-- Sửa: (−11) + 5 + 11 + (−2) = 3 (sửa `segments`, `explain`); không dùng 8 và −8 (đã ở `PAIR_ROWS`).
-
-### 12. Hình recap phần 12 không ghi biểu thức A là gì; câu luyện đặt tên A cho biểu thức khác (LL-15)
-
-- Vị trí: hình `gia-tri-x-12` (`VALUE_ROWS`, recap của `section.gia-tri-bieu-thuc`, `card.gia-tri-bieu-thuc`); `ex.gia-tri-a-x-am4` (A = x + 6 − 9) - LL-15
-- Nguồn: —
-- Vấn đề: ở phiên ôn bé thấy "A = 12 + (−4) − 6, thay x bằng 12" mà không thấy A = x + (−4) − 6 (chỉ có trong nhãn trợ năng).
-- Sửa: thêm dòng đầu `A = x + (-4) - 6` vào `VALUE_ROWS`; câu `gia-tri-a-x-am4` đổi tên biểu thức thành C (id `gia-tri-c-x-am4`).
-
-### 13. Màn cùng làm phần 12 mở bằng "Cùng làm: x = 5." không nói tính gì (LL-10)
-
-- Vị trí: `$.sections[11].blocks[2].children[0].text` - LL-10
-- Nguồn: —
-- Sửa: "Cùng làm: tính A khi x = 5. Bấm mũi tên trái 4 lần, rồi trái 6 lần để tính 5 + (−4) − 6."
-
-### 14. Mẹo "Tổng có hai số đối nhau" có thể bị áp vào biểu thức có phép trừ (LL-24)
-
-- Vị trí: `$.sections[10].blocks[2]` (`tip.ghep-so-doi`) - LL-24
-- Nguồn: —
-- Vấn đề: bài không có câu dạng 9 − 4 + (−4) nên không chặn; nhưng phần 12, 13 trộn cộng trừ, bé thấy 4 và (−4) có thể ghép ra 9 (đúng là 1).
-- Sửa: thêm câu 3 "Có phép trừ thì đổi thành cộng với số đối trước." (mẹo thành 3 câu, cùng cách nói với câu 3 đề xuất ở Nên sửa 8).
-
-### 15. Bước đầu của hai câu phần 12, 13 lặp ví dụ phần 8 (LL-07)
-
-- Vị trí: `$.exercises[54]` (`nhiet-do-chieu-toi`: 7 + (−4) như chuyện An và hàng 1 `khac-dau-vi-du`), `$.exercises[57]` (`tien-cua-nam`: 4 + (−9) như `tinh-am9-cong4`) - LL-07
-- Nguồn: —
-- Sửa: `nhiet-do-chieu-toi`: "Chiều giảm 8 độ, tối giảm thêm 2 độ, nên nhiệt độ tối là x + (−8) + (−2) độ. Trưa nhiệt độ là 4 độ." (4 + (−8) = −4, rồi −6; bỏ luôn đáp án −3 thứ ba của card, Nên sửa 10). `tien-cua-nam`: "Nam có 2 nghìn đồng, chi 10 nghìn đồng (ghi nợ phần còn thiếu), rồi mẹ cho thêm 4 nghìn đồng." (2 + (−10) = −8, rồi −4). Không dùng 8 + (−4) + (−6) và 3 + (−8) + 2 (nhóm 3 đề xuất): ra −2, −3 đã dày đặc trong bài. Sửa `check.expr`, `answer`, `explain`.
-
-### 16. Hình `rows` xếp nhãn lúc bên phải, lúc bên dưới (bố cục app, báo người làm app)
-
-- Vị trí: `cong-duong-vi-du` (`phone/031-s3-02-block.png`, `phone/042-s3-06-recap.png`), `cong-am-vi-du` (`phone/046-s4-02-block.png`, `phone/053-s4-06-recap.png`), `khac-dau-vi-du` trên iPad dọc (`ipad/087-s8-02-block.png`, còn từ Góp ý 10 vòng 1) - LL-12
-- Nguồn: —
-- Vấn đề: các phép tính zigzag, khó dò cột.
-- Sửa: báo người làm app: khi có một hàng phải đưa nhãn xuống dưới thì mọi hàng cùng kiểu. Không chặn bài; nhãn ngắn hơn ở Nên sửa 7 có thể làm `khac-dau-vi-du` thẳng hàng.
-
-### 17. Phép tính viết trong chữ bị ngắt dòng giữa chừng trên điện thoại (bố cục app, báo người làm app)
-
-- Vị trí: `$.sections[4].blocks[0]` ("Vậy 4 +" / "(−4) = 0.", `phone/056-s5-01-block-end.png`); `explain.text` của `$.exercises[31]` (`phone/092-…-correct`), `[23]` (`phone/071-…-correct`) - LL-12
-- Nguồn: —
-- Sửa: báo người làm app (dấu cách không ngắt quanh dấu phép tính trong chữ); không chặn bài.
-
-### 18. Bàn phím số có phím "mũ" ở bài không dùng luỹ thừa (bố cục app, báo người làm app)
-
-- Vị trí: mọi câu `numeric`
-- Nguồn: —
-- Vấn đề: còn từ Góp ý 15 vòng 1.
-- Sửa: báo người làm app; không chặn bài.
-
-## Bảng LL của vòng 2
-
-Chỉ đếm phát hiện mới của vòng này, mỗi phát hiện một lần theo id LL đầu tiên ghi ở mục. Không đếm phần còn sót từ vòng 1 (Nên sửa 2, 7, 9; Góp ý 6, 18).
+Chỉ đếm phát hiện mới của vòng này, mỗi phát hiện một lần theo id LL đầu tiên ghi ở mục.
 
 | Id LL | Nghiêm trọng | Nên sửa | Góp ý |
 |---|---|---|---|
-| LL-05 | 0 | 3 | 1 |
-| LL-06 | 0 | 1 | 0 |
-| LL-07 | 0 | 1 | 4 |
-| LL-09 | 0 | 1 | 0 |
-| LL-10 | 0 | 1 | 3 |
-| LL-12 | 1 | 0 | 2 |
-| LL-14 | 0 | 1 | 1 |
-| LL-15 | 1 | 0 | 1 |
-| LL-16 | 0 | 0 | 1 |
-| LL-17 | 2 | 0 | 0 |
+| LL-02 | 0 | 1 | 0 |
+| LL-05 | 0 | 2 | 1 |
+| LL-07 | 0 | 0 | 2 |
+| LL-09 | 1 | 0 | 0 |
+| LL-12 | 0 | 0 | 1 |
+| LL-15 | 0 | 1 | 0 |
 | LL-24 | 0 | 0 | 1 |
+| LL-25 | 0 | 2 | 0 |
 
-Sinh từ bản sửa vòng 1 (LL-20, ghi kèm, chưa đếm ở bảng trên): Nghiêm trọng 1, 4; Nên sửa 1, 4, 6, 11; Góp ý 3, 11. Nếu tính LL-20 là mục chính cho các phát hiện này thì LL-20 có 2 Nghiêm trọng, 4 Nên sửa, 2 Góp ý. Không gắn mục LL: Góp ý 1, 5. Tổng vòng này: 4 Nghiêm trọng, 11 Nên sửa, 18 Góp ý (mới: 4 Nghiêm trọng, 8 Nên sửa, 16 Góp ý).
+Sinh từ bản sửa vòng 2 và từ viết lại theo Đọc hiểu (LL-20, ghi kèm, chưa đếm ở bảng trên): Nghiêm trọng 1; Nên sửa 1, 2, 3, 4; Góp ý 2, 3. Nếu tính LL-20 là mục chính cho các phát hiện này thì LL-20 có 1 Nghiêm trọng, 4 Nên sửa, 2 Góp ý. Không gắn mục LL: Góp ý 5. Tổng vòng này: 1 Nghiêm trọng, 6 Nên sửa, 6 Góp ý, tất cả là phát hiện mới.
