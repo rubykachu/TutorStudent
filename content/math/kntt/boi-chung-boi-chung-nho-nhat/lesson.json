@@ -11,7 +11,8 @@
   },
   "title": "Bội chung. Bội chung nhỏ nhất",
   "sourceRef": "Sách bài tập tr.41–43",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "d789fa03a4871eb6a20e45f33738502eff0e101db2707799c50444a1b5ddbef5",
   "overview": {
     "hook": {
       "text": "Chào bạn! Hôm nay ta tìm lúc hai việc lặp lại cùng xảy ra. Ở bến xe, xe A cứ 6 phút có một chuyến, xe B cứ 8 phút có một chuyến. Hai xe cùng rời bến lúc 6 giờ, hỏi bao lâu sau hai xe lại cùng rời bến?"
@@ -23,7 +24,7 @@
       "tính xem hai việc lặp lại bao lâu thì cùng xảy ra",
       "biết khi nào dùng bội chung nhỏ nhất, khi nào dùng ước chung lớn nhất"
     ],
-    "whyItMatters": "Bội chung nhỏ nhất giúp bạn mua ít nhất số bút vỉ 6 cái và vở xếp 8 quyển mà số bút bằng số vở."
+    "whyItMatters": "Bội chung nhỏ nhất giúp bạn mua ít nhất bao nhiêu bút vỉ 6 cái để bằng số vở xếp 8 quyển."
   },
   "concepts": [
     {
@@ -775,7 +776,7 @@
           "id": "boi-chung-boi-chung-nho-nhat.tip.chon-cong-cu",
           "kind": "hiểu nhanh",
           "title": "Chọn ƯCLN hay BCNN",
-          "text": "Các số đã cho đều chia hết cho số cần tìm, số đó lớn nhất (nhiều phần nhất, đoạn dài nhất): tìm ƯCLN. Số cần tìm nhỏ nhất chia hết cho các số đã cho (lần đầu gặp lại, bớt số dư trước nếu có): tìm BCNN. Đề hỏi số vòng hay lúc mấy giờ thì tìm BCNN trước rồi tính tiếp.",
+          "text": "Các số đã cho đều chia hết cho số cần tìm, số đó lớn nhất (nhiều phần nhất, đoạn dài nhất): tìm ƯCLN. Số cần tìm chia hết cho các số đã cho (lần đầu gặp lại, số trong khoảng, bớt số dư trước nếu có): tìm BCNN. Đề hỏi số vòng hay lúc mấy giờ thì tìm BCNN trước rồi tính tiếp.",
           "tex": "\\begin{gathered} 12 \\chiahet \\concept{amber}{6} \\\\ 18 \\chiahet \\concept{amber}{6} \\\\ \\concept{pink}{36} \\chiahet 12 \\\\ \\concept{pink}{36} \\chiahet 18 \\end{gathered}"
         }
       ],
@@ -3450,7 +3451,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.rang-goi-y-16-20",
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.rang-goi-y-20-25",
         "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.rang-giai-9-6"
       },
       "difficulty": 2,
@@ -4248,7 +4249,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Hai xe rời bến mỗi 12 và 16 phút. Sau bao lâu lại cùng rời bến?"
+            "text": "Hai xe rời bến mỗi 18 và 30 phút. Sau bao lâu lại cùng rời bến?"
           }
         },
         {
@@ -4307,13 +4308,13 @@
       }
     },
     {
-      "id": "boi-chung-boi-chung-nho-nhat.ex.xe-15-25",
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xe-18-27",
       "type": "numeric",
       "cardIds": ["boi-chung-boi-chung-nho-nhat.card.ucln-hay-bcnn"],
       "prompt": [
         {
           "type": "note",
-          "text": "Hai xe buýt cứ 15 phút và 25 phút rời bến một lần, cùng rời bến lúc 6 giờ. Sau bao nhiêu phút hai xe lại cùng rời bến?"
+          "text": "Hai xe buýt cứ 18 phút và 27 phút rời bến một lần, cùng rời bến lúc 6 giờ. Sau bao nhiêu phút hai xe lại cùng rời bến?"
         }
       ],
       "hints": {
@@ -4327,14 +4328,14 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 75
+        "value": 54
       },
       "check": {
-        "expr": "3·5^2"
+        "expr": "2·3^3"
       },
       "explain": {
-        "text": "Hai xe cùng rời bến lần nữa sau BCNN(15, 25). Ta có 15 = 3 · 5 và 25 = 5², nên BCNN là 3 · 5² = 75.",
-        "tex": "\\concept{sky}{3} \\cdot \\concept{sky}{5}^{\\concept{violet}{2}} = \\concept{pink}{75}"
+        "text": "Hai xe cùng rời bến lần nữa sau BCNN(18, 27). Ta có 18 = 2 · 3² và 27 = 3³, nên BCNN là 2 · 3³ = 54.",
+        "tex": "\\concept{sky}{2} \\cdot \\concept{sky}{3}^{\\concept{violet}{3}} = \\concept{pink}{54}"
       }
     },
     {

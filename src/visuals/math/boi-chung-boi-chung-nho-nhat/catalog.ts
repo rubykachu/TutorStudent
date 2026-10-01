@@ -489,22 +489,22 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
   },
   "gap-rang-6-4": { kind: "meetTry", numbers: [6, 4], ...GEAR, goal: true },
-  "rang-goi-y-16-20": {
+  "rang-goi-y-20-25": {
     kind: "lines",
-    label: "Hai bánh răng 16 răng và 20 răng khớp nhau",
+    label: "Hai bánh răng 20 răng và 25 răng khớp nhau",
     mode: "hint",
     rows: [
       {
-        tex: "\\mathrm{BCNN}(16, 20) = \\concept{pink}{80}",
-        tag: { text: "Sau 80 răng", color: "pink" },
+        tex: "\\mathrm{BCNN}(20, 25) = \\concept{pink}{100}",
+        tag: { text: "Sau 100 răng", color: "pink" },
       },
       {
-        tex: "80 : 16 = 5",
-        tag: { text: "Bánh 16 răng quay 5 vòng", color: "slate" },
+        tex: "100 : 20 = 5",
+        tag: { text: "Bánh 20 răng quay 5 vòng", color: "slate" },
       },
       {
-        tex: "80 : 20 = 4",
-        tag: { text: "Bánh 20 răng quay 4 vòng", color: "slate" },
+        tex: "100 : 25 = 4",
+        tag: { text: "Bánh 25 răng quay 4 vòng", color: "slate" },
       },
     ],
   },
