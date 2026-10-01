@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 1 cảnh báo `[guides]` đã có từ trước (`exercises[12]`); các cảnh báo khác thuộc bài khác
 - `lesson:walk`: không chạy (điều phối chạy; vòng này chỉ thêm lời giải thích)
 - Kết luận: 0 lỗi Nghiêm trọng, 1 Nên sửa, 2 Góp ý; lệnh cuối vòng (`content:hash`) do điều phối chạy
-- Bản đã review: `bd2f5ec4acb81619b245df570bf6cd9f5435bbbd27c4db7a4b58ba44b10bfce4` (`pnpm content:diff` so với bản này)
+- Bản đã review: `3b93af88951c6301782ffedd15f1321eb7397695fba3756a276f94cce3ee6a83` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt (cả 55 câu, từ đầu):
 - Số có nhóm nghìn: in từng chuỗi `text`, `wrong`, `tex` của mọi `explain` bằng script (U+202F thành "_"); mọi số 4 chữ số trở lên (1_000, 10_000, 100_000, 1_000_000, 5_247, 3_062, 3_602, 30_062, 7_000, 7_409) đủ chữ số, không còn dấu cách hẹp đứng đầu chuỗi, không còn số 4 chữ số trở lên viết liền; `tex` dùng `\,` khớp `text`.
