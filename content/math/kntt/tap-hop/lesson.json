@@ -12,7 +12,7 @@
   "title": "Tập hợp",
   "sourceRef": "Sách bài tập tr.5–6, lời giải tr.94",
   "status": "published",
-  "reviewedHash": "f748b612d68bf94eb31fdf7ebaaf7e173605358b9ef5887be54d4c3938f8f957",
+  "reviewedHash": "2e9312f00cdf152de6a0c33f8469e631402cdc05110118dd6639bad5b1f273cf",
   "concepts": [
     {
       "id": "tap-hop.concept.tap-hop",
@@ -918,7 +918,7 @@
         "i5": 1
       },
       "explain": {
-        "text": "Đồ dùng học tập gồm thước, tẩy, vở và bút, nên bốn thứ này được bỏ vào hộp. Quả bóng và cái đĩa không dùng để học nên không thuộc tập hợp này."
+        "text": "Đồ dùng học tập gồm thước, tẩy, vở và bút, nên bốn thứ này được bỏ vào hộp. Quả bóng và cái đĩa ăn không dùng để học nên không thuộc tập hợp này."
       }
     },
     {
@@ -943,7 +943,7 @@
       "visualId": "tap-hop.visual.hop-cham",
       "answer": ["thuoc"],
       "explain": {
-        "text": "Trong hộp có ba món: bút, thước và tẩy. Thước là món dùng để đo độ dài; nó là một phần tử của tập hợp đồ trong hộp."
+        "text": "Trong hộp có ba món: bút, thước và tẩy. Chiếc thước là một món trong hộp, nên là một phần tử của tập hợp đồ trong hộp."
       }
     },
     {
@@ -1035,11 +1035,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Ngoặc tròn ( ) không phải ngoặc nhọn, nên không dùng để viết tập hợp."
+            "text": "Tập hợp luôn viết trong ngoặc nhọn { }; ( ) là ngoặc tròn."
           },
           {
             "optionId": "c",
-            "text": "Ngoặc vuông [ ] cũng không phải ngoặc nhọn."
+            "text": "Tập hợp luôn viết trong ngoặc nhọn { }; [ ] là ngoặc vuông."
           }
         ]
       }
@@ -2756,7 +2756,7 @@
       "bank": ["∈", "∉"],
       "explain": {
         "text": "Xem chữ đó có trong ngoặc nhọn của tập hợp không. Chữ p có trong cả A và B, còn chữ q chỉ có trong B.",
-        "tex": "\\concept{amber}{p} \\in \\concept{teal}{A},\\; \\concept{amber}{p} \\in \\concept{teal}{B},\\; \\concept{amber}{q} \\notin \\concept{teal}{A},\\; \\concept{amber}{q} \\in \\concept{teal}{B}"
+        "tex": "\\begin{aligned} \\concept{amber}{p} \\in \\concept{teal}{A},\\quad \\concept{amber}{p} \\in \\concept{teal}{B} \\\\ \\concept{amber}{q} \\notin \\concept{teal}{A},\\quad \\concept{amber}{q} \\in \\concept{teal}{B} \\end{aligned}"
       }
     },
     {

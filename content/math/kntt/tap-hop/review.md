@@ -1,12 +1,12 @@
 # Review: Tập hợp (`tap-hop`)
 
 - Bài: `content/math/kntt/tap-hop/lesson.json`
-- Vòng: 9 - chỉ phần đổi (`pnpm content:diff tap-hop --root content`), section: `tap-hop.section.dau-hieu-dac-trung`, `tap-hop.section.dau-cham-phay`
+- Vòng: 10 - chỉ phần đổi (`pnpm content:diff tap-hop`): thêm `explain` cho cả 58 câu chấm được
 - Nguồn đã đọc: `sources/math/tap-hop/` - không có trên máy này; phần đổi chỉ là chữ diễn đạt, đối chiếu với note, recap, glossary và mã visual
-- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 8 cảnh báo `[guides]` có từ trước (match, manipulate, order)
-- `lesson:walk`: không chạy (vòng này chỉ đổi chữ, không đổi hình, không đổi đáp án)
-- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng 8)
-- Bản đã review: `f748b612d68bf94eb31fdf7ebaaf7e173605358b9ef5887be54d4c3938f8f957` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi của bài, 8 cảnh báo `[guides]` có từ trước (match, manipulate, order)
+- `lesson:walk`: 0 FAIL sau khi thêm `explain`
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng 8); 4 gợi ý về lời `explain` đã áp dụng
+- Bản đã review: `2e9312f00cdf152de6a0c33f8469e631402cdc05110118dd6639bad5b1f273cf` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt (4 mục trong diff, 2 section):
 - `kt-dau-giua`: "số áo ba, tám và mười" bỏ được chuỗi "3, 8 và 10" dễ lẫn với dấu phẩy `phay` trong ô chọn; đề vẫn một cách hiểu (dấu viết giữa hai số). Visual `cham-dau-giua` chỉ vẽ các thẻ dấu, không in số nên không lệch chữ; đáp án `cham-phay` và nấc 1 (`block`) không đổi, không lộ đáp án. Số áo viết bằng chữ không làm trái luật định dạng số của `content:check`.
