@@ -1,14 +1,14 @@
 # Bàn giao: Bài 14 `phep-cong-phep-tru-so-nguyen` (Phép cộng và phép trừ số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Đang soạn (bản nháp, chưa review). Không làm lời đọc và video trong đợt này.
+- Cập nhật cuối: 02/10/2026. Đã soạn xong bản nháp (12 phần, 12 thẻ, 55 câu, 6 dạng câu, 13 hình bấm mũi tên), `content:check --stats` 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures; đang vào review. Không làm lời đọc và video trong đợt này.
 - Việc tiếp theo cho agent mới: đọc mục "Kế hoạch bài" và "Giả định", rồi làm theo thứ tự ở "Tiến độ". Bài mẫu để theo: `content/math/kntt/tap-hop-cac-so-nguyen/` (Bài 13).
 
 ## Tiến độ (đánh dấu khi xong)
 - [x] Nạp nguồn: `sources/math/phep-cong-phep-tru-so-nguyen/` (không commit).
-- [ ] Hình: `src/visuals/math/phep-cong-phep-tru-so-nguyen/` (catalog, hình bấm mũi tên `hopTry`, huy hiệu) và đăng ký ở `src/visuals/registry.ts`.
-- [ ] `lesson.json`, `content:check --stats` 0 lỗi, không `[guides]`.
-- [ ] `visual:shot`, `lesson:walk` 0 failures, xem contact sheet.
+- [x] Hình: `src/visuals/math/phep-cong-phep-tru-so-nguyen/` (catalog, hình bấm mũi tên `hopTry`, huy hiệu) và đăng ký ở `src/visuals/registry.ts`; test `tests/visuals/phep-cong-phep-tru-so-nguyen.test.tsx`.
+- [x] `lesson.json`, `content:check --stats` 0 lỗi, không `[guides]`.
+- [x] `visual:shot`, `lesson:walk` 0 failures, xem contact sheet.
 - [ ] Review vòng 1, 2 (Opus), đọc hiểu (Haiku), vòng 3 trở đi (Sonnet).
 - [ ] `content:hash --approve`, `content:lock phep-cong-phep-tru-so-nguyen`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
 
