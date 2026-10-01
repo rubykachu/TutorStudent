@@ -82,7 +82,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
     label:
-      "Tia số như chiếc thước kẻ: điểm A cách gốc O 3 đơn vị nên biểu diễn số 3",
+      "Tia số như chiếc thước kẻ: đi từ gốc O sang phải 3 đơn vị tới điểm A biểu diễn số 3",
   },
   "diem-a-4": {
     kind: "line",
@@ -109,7 +109,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Điểm A cách gốc O 4 đơn vị nên biểu diễn số 4",
+    label: "Đi từ gốc O sang phải 4 đơn vị tới điểm A biểu diễn số 4",
   },
   "dat-diem": {
     kind: "lineTry",
@@ -313,28 +313,30 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "slate",
       },
       {
-        type: "arrow",
+        type: "span",
         from: 0,
         to: 5,
+        color: "amber",
         tag: "5 đơn vị",
       },
       {
-        type: "arrow",
+        type: "span",
         from: 5,
         to: 10,
+        color: "amber",
         tag: "5 đơn vị",
       },
       {
         type: "point",
-        at: 35,
-        name: "E",
+        at: 20,
+        name: "K",
         color: "amber",
-        tag: "7 vạch",
+        tag: "4 vạch",
       },
     ],
     mode: "steps",
     label:
-      "Tia số có vạch cách nhau 5 đơn vị: điểm E ở vạch thứ 7 nên biểu diễn số 35",
+      "Hai vạch liền nhau cách nhau 5 đơn vị: điểm K ở vạch thứ 4 nên biểu diễn số 20",
   },
   "vach-5-xong": {
     kind: "line",
@@ -350,9 +352,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "slate",
       },
       {
-        type: "arrow",
+        type: "span",
         from: 0,
         to: 5,
+        color: "amber",
         tag: "5 đơn vị",
       },
       {
@@ -367,45 +370,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label:
       "Hai vạch liền nhau cách nhau 5 đơn vị: điểm A ở vạch thứ 5 nên biểu diễn số 25",
   },
-  "cot-km": {
-    kind: "line",
-    from: 0,
-    to: 70,
-    step: 5,
-    labelAt: [0, 10, 40, 50],
-    layers: [
-      {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
-        tag: "Đầu đường",
-      },
-      {
-        type: "point",
-        at: 25,
-        name: "H",
-        color: "amber",
-        tag: "Cột km 25",
-      },
-      {
-        type: "arrow",
-        from: 25,
-        to: 65,
-        tag: "40 km",
-      },
-      {
-        type: "point",
-        at: 65,
-        name: "T",
-        color: "amber",
-        tag: "Thị trấn",
-      },
-    ],
-    mode: "steps",
-    label:
-      "Cột cây số km 25, còn 40 km nữa tới thị trấn, thị trấn ứng với số 65",
-  },
   "dat-diem-5": {
     kind: "lineTry",
     from: 0,
@@ -414,7 +378,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     labelAt: [0, 10, 20, 30, 40, 50],
     names: ["A"],
     goal: [30],
-    done: "Điểm A đi 6 vạch, mỗi vạch 5 đơn vị, nên biểu diễn số 30.",
+    done: "Điểm A đi 6 bước, mỗi bước 5 đơn vị, nên biểu diễn số 30.",
   },
   "doc-p-40": {
     kind: "line",
@@ -438,14 +402,262 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Tia số có vạch cách nhau 5 đơn vị, điểm P chưa biết số",
+    label:
+      "Tia số có hai vạch liền nhau cách nhau 5 đơn vị, điểm P chưa biết số",
+  },
+  "doc-q-35": {
+    kind: "line",
+    from: 0,
+    to: 50,
+    step: 5,
+    labelAt: [0, 10],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "point",
+        at: 35,
+        name: "Q",
+        color: "amber",
+        ask: true,
+      },
+    ],
+    mode: "still",
+    label:
+      "Tia số có hai vạch liền nhau cách nhau 5 đơn vị, điểm Q chưa biết số",
+  },
+  "goi-y-vach-5": {
+    kind: "line",
+    from: 0,
+    to: 50,
+    step: 5,
+    labelAt: [0, 10],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "span",
+        from: 0,
+        to: 5,
+        color: "amber",
+        tag: "5 đơn vị",
+      },
+      {
+        type: "point",
+        at: 30,
+        name: "M",
+        color: "amber",
+        ask: true,
+      },
+    ],
+    mode: "hint",
+    hintLayers: 2,
+    label: "Hai vạch liền nhau cách nhau 5 đơn vị, điểm M chưa biết số",
+  },
+  "giai-vach-5-35": {
+    kind: "line",
+    from: 0,
+    to: 50,
+    step: 5,
+    labelAt: [0, 10],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "span",
+        from: 0,
+        to: 5,
+        color: "amber",
+        tag: "5 đơn vị",
+      },
+      {
+        type: "span",
+        from: 5,
+        to: 10,
+        color: "amber",
+        tag: "5 đơn vị",
+      },
+      {
+        type: "point",
+        at: 35,
+        name: "Q",
+        color: "amber",
+        tag: "7 vạch",
+      },
+    ],
+    mode: "steps",
+    label: "Đếm cách 5 từ gốc O tới điểm Q ở vạch thứ 7, được số 35",
+  },
+  "cham-diem-35": {
+    kind: "lineTap",
+    from: 0,
+    to: 50,
+    step: 5,
+    labelAt: [0, 10, 20],
+    points: [
+      {
+        at: 15,
+        name: "A",
+      },
+      {
+        at: 35,
+        name: "B",
+      },
+      {
+        at: 45,
+        name: "C",
+      },
+    ],
+    label: "Tia số có hai vạch liền nhau cách nhau 5 đơn vị và ba điểm A, B, C",
+  },
+  "bon-diem-k-n": {
+    kind: "line",
+    from: 0,
+    to: 50,
+    step: 5,
+    labelAt: [0, 10],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "point",
+        at: 15,
+        name: "K",
+        color: "amber",
+        ask: true,
+      },
+      {
+        type: "point",
+        at: 35,
+        name: "L",
+        color: "amber",
+        ask: true,
+      },
+      {
+        type: "point",
+        at: 40,
+        name: "M",
+        color: "amber",
+        ask: true,
+      },
+      {
+        type: "point",
+        at: 20,
+        name: "N",
+        color: "amber",
+        ask: true,
+      },
+    ],
+    mode: "still",
+    label:
+      "Tia số có hai vạch liền nhau cách nhau 5 đơn vị và bốn điểm K, L, M, N",
+  },
+  "cot-km": {
+    kind: "line",
+    from: 0,
+    to: 70,
+    step: 5,
+    labelAt: [0, 10, 20],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+        tag: "Đầu đường",
+      },
+      {
+        type: "point",
+        at: 25,
+        name: "H",
+        color: "amber",
+        tag: "Cột km 25",
+      },
+      {
+        type: "arrow",
+        from: 25,
+        to: 65,
+        tag: "còn 40 km",
+      },
+      {
+        type: "point",
+        at: 65,
+        name: "T",
+        color: "amber",
+        tag: "Thị trấn",
+      },
+    ],
+    mode: "steps",
+    label:
+      "Đi qua cột km 25, còn 40 km nữa tới thị trấn, thị trấn ứng với điểm biểu diễn số 65",
+  },
+  "cot-km-xong": {
+    kind: "line",
+    from: 0,
+    to: 70,
+    step: 5,
+    labelAt: [0, 10, 20],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+        tag: "Đầu đường",
+      },
+      {
+        type: "point",
+        at: 25,
+        name: "H",
+        color: "amber",
+        tag: "Cột km 25",
+      },
+      {
+        type: "arrow",
+        from: 25,
+        to: 65,
+        tag: "còn 40 km",
+      },
+      {
+        type: "point",
+        at: 65,
+        name: "T",
+        color: "amber",
+        tag: "Thị trấn",
+      },
+    ],
+    mode: "still",
+    label:
+      "Số của thị trấn bằng số của cột cộng số km còn lại: 25 cộng 40 bằng 65",
+  },
+  "chon-cot-30-20": {
+    kind: "chips",
+    items: ["10", "50", "60"],
+    wants: [1],
+    done: "Bạn chọn đúng: thị trấn ở phía trước nên lấy 30 cộng 20, được 50.",
   },
   "cot-40": {
     kind: "line",
     from: 0,
     to: 70,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 50, 60, 70],
+    labelAt: [0, 10, 20],
     layers: [
       {
         type: "point",
@@ -463,172 +675,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Tia số có gốc O là điểm đầu đường và cột cây số km 40",
-  },
-  "doc-e-45": {
-    kind: "line",
-    from: 0,
-    to: 50,
-    step: 5,
-    labelAt: [0, 10],
-    layers: [
-      {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
-      },
-      {
-        type: "point",
-        at: 45,
-        name: "E",
-        color: "amber",
-        ask: true,
-      },
-    ],
-    mode: "still",
-    label: "Tia số có vạch cách nhau 5 đơn vị, điểm E chưa biết số",
-  },
-  "goi-y-vach-5": {
-    kind: "line",
-    from: 0,
-    to: 50,
-    step: 5,
-    labelAt: [0, 10],
-    layers: [
-      {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
-      },
-      {
-        type: "arrow",
-        from: 0,
-        to: 5,
-        tag: "5 đơn vị",
-      },
-      {
-        type: "point",
-        at: 30,
-        name: "M",
-        color: "amber",
-        ask: true,
-      },
-    ],
-    mode: "hint",
-    hintLayers: 2,
-    label: "Hai vạch liền nhau cách nhau 5 đơn vị, điểm M chưa biết số",
-  },
-  "giai-vach-5-45": {
-    kind: "line",
-    from: 0,
-    to: 50,
-    step: 5,
-    labelAt: [0, 10],
-    layers: [
-      {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
-      },
-      {
-        type: "arrow",
-        from: 0,
-        to: 5,
-        tag: "5 đơn vị",
-      },
-      {
-        type: "arrow",
-        from: 5,
-        to: 10,
-        tag: "5 đơn vị",
-      },
-      {
-        type: "point",
-        at: 45,
-        name: "E",
-        color: "amber",
-        tag: "9 vạch",
-      },
-    ],
-    mode: "steps",
-    label: "Đếm cách 5 từ gốc O tới điểm E ở vạch thứ 9, được số 45",
-  },
-  "cham-diem-30": {
-    kind: "lineTap",
-    from: 0,
-    to: 50,
-    step: 5,
-    labelAt: [0, 10, 20],
-    points: [
-      {
-        at: 15,
-        name: "A",
-      },
-      {
-        at: 30,
-        name: "B",
-      },
-      {
-        at: 45,
-        name: "C",
-      },
-    ],
-    label: "Tia số có vạch cách nhau 5 đơn vị và ba điểm A, B, C",
-  },
-  "ba-diem-d-g": {
-    kind: "line",
-    from: 0,
-    to: 50,
-    step: 5,
-    labelAt: [0, 10],
-    layers: [
-      {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
-      },
-      {
-        type: "point",
-        at: 15,
-        name: "D",
-        color: "amber",
-        ask: true,
-      },
-      {
-        type: "point",
-        at: 25,
-        name: "E",
-        color: "amber",
-        ask: true,
-      },
-      {
-        type: "point",
-        at: 30,
-        name: "F",
-        color: "amber",
-        ask: true,
-      },
-      {
-        type: "point",
-        at: 45,
-        name: "G",
-        color: "amber",
-        ask: true,
-      },
-    ],
-    mode: "still",
-    label: "Tia số có vạch cách nhau 5 đơn vị và bốn điểm D, E, F, G",
+    label: "Tia số có gốc O là đầu đường và cột cây số km 40",
   },
   "cot-45": {
     kind: "line",
     from: 0,
     to: 80,
     step: 5,
-    labelAt: [0, 10, 20, 30, 60, 70, 80],
+    labelAt: [0, 10, 20],
     layers: [
       {
         type: "point",
@@ -646,14 +700,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Tia số có gốc O là điểm đầu đường và cột cây số km 45",
+    label: "Tia số có gốc O là đầu đường và cột cây số km 45",
   },
   "giai-cot-45-30": {
     kind: "line",
     from: 0,
     to: 80,
     step: 5,
-    labelAt: [0, 10, 20, 30, 60],
+    labelAt: [0, 10, 20],
     layers: [
       {
         type: "point",
@@ -673,7 +727,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         type: "arrow",
         from: 45,
         to: 75,
-        tag: "30 km",
+        tag: "còn 30 km",
       },
       {
         type: "point",
@@ -684,14 +738,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "steps",
-    label: "Từ cột km 45 đi thêm 30 km tới thị trấn ứng với số 75",
+    label:
+      "Từ cột km 45 còn 30 km nữa tới thị trấn ứng với điểm biểu diễn số 75",
   },
   "cot-20": {
     kind: "line",
     from: 0,
     to: 50,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 50],
+    labelAt: [0, 10, 40],
     layers: [
       {
         type: "point",
@@ -709,14 +764,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Tia số có gốc O là điểm đầu đường và cột cây số km 20",
+    label: "Tia số có gốc O là đầu đường và cột cây số km 20",
   },
   "cot-55-70": {
     kind: "line",
     from: 0,
     to: 80,
     step: 5,
-    labelAt: [0, 10, 20, 30, 40, 70, 80],
+    labelAt: [0, 10, 20],
     layers: [
       {
         type: "point",
@@ -741,7 +796,47 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "still",
-    label: "Tia số có cột cây số km 55 và thị trấn ứng với số 70",
+    label:
+      "Tia số có cột cây số km 55 và thị trấn ứng với điểm biểu diễn số 70",
+  },
+  "goi-y-cot-lai": {
+    kind: "line",
+    from: 0,
+    to: 80,
+    step: 5,
+    labelAt: [0, 10, 20],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+        tag: "Đầu đường",
+      },
+      {
+        type: "point",
+        at: 30,
+        name: "H",
+        color: "amber",
+        tag: "Cột km 30",
+      },
+      {
+        type: "point",
+        at: 45,
+        name: "T",
+        color: "amber",
+        tag: "Thị trấn",
+      },
+      {
+        type: "arrow",
+        from: 30,
+        to: 45,
+        tag: "bao nhiêu km?",
+      },
+    ],
+    mode: "hint",
+    hintLayers: 3,
+    label: "Cột km 30 và thị trấn ứng với số 45: hỏi còn bao nhiêu km",
   },
   "trai-3-8": {
     kind: "line",
@@ -766,7 +861,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         type: "arrow",
         from: 3,
         to: 8,
-        tag: "sang phải",
+        tag: "sang phải thì số lớn dần",
       },
     ],
     mode: "steps",
@@ -795,7 +890,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         type: "arrow",
         from: 3,
         to: 8,
-        tag: "sang phải",
+        tag: "sang phải thì số lớn dần",
       },
     ],
     mode: "still",
@@ -877,9 +972,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "steps",
     label: "6 nhỏ hơn 11, viết 6 < 11",
   },
-  "bang-3-5": {
-    kind: "lines",
-    label: "Ba ví dụ dùng dấu nhỏ hơn hoặc bằng và lớn hơn hoặc bằng",
+  "bang-xong": {
+    kind: "rows",
+    label: "Bốn ví dụ dùng dấu nhỏ hơn hoặc bằng và lớn hơn hoặc bằng",
     rows: [
       {
         tex: "3 ≤ 5",
@@ -896,28 +991,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "7 ≥ 5",
-        tag: {
-          text: "7 lớn hơn 5",
-          color: "violet",
-        },
-      },
-    ],
-    mode: "steps",
-  },
-  "bang-xong": {
-    kind: "rows",
-    label: "Ba ví dụ dùng dấu nhỏ hơn hoặc bằng và lớn hơn hoặc bằng",
-    rows: [
-      {
-        tex: "3 ≤ 5",
-        tag: {
-          text: "3 nhỏ hơn 5",
-          color: "blue",
-        },
-      },
-      {
-        tex: "5 ≤ 5",
+        tex: "5 ≥ 5",
         tag: {
           text: "5 bằng 5",
           color: "slate",
@@ -960,6 +1034,26 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     b: "12305",
     mode: "steps",
     label: "So sánh 9 840 và 12 305 bằng cách đếm chữ số",
+  },
+  "so-9840-12305-xong": {
+    kind: "digits",
+    a: "9840",
+    b: "12305",
+    mode: "still",
+    label: "So sánh 9 840 và 12 305 bằng cách đếm chữ số",
+  },
+  "chon-857-1203": {
+    kind: "chips",
+    items: ["857", "1 203"],
+    wants: [1],
+    done: "Bạn chọn đúng: 1 203 có 4 chữ số, nhiều hơn 857 có 3 chữ số, nên 1 203 lớn hơn.",
+  },
+  "so-6218-6247": {
+    kind: "digits",
+    a: "6218",
+    b: "6247",
+    mode: "steps",
+    label: "So sánh 6 218 và 6 247 từng cặp chữ số từ trái sang phải",
   },
   "so-4276-4291": {
     kind: "digits",
@@ -1172,9 +1266,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-ngay-it-nhat": {
     kind: "chips",
-    items: ["T2", "T3", "T7", "CN"],
-    wants: [3],
-    done: "Bạn chọn đúng: cột Chủ nhật thấp nhất, chỉ có 1 quyển.",
+    items: ["T3", "T4", "T5", "T6"],
+    wants: [1],
+    done: "Bạn chọn đúng: cột T4 thấp nhất, chỉ có 9 quyển.",
   },
   "clb-doc": {
     kind: "bars",
@@ -1203,9 +1297,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     max: 25,
     gridEvery: 5,
     unit: "bạn",
-    values: "none",
+    values: "all",
     mode: "still",
-    label: "Số bạn đến câu lạc bộ cờ mỗi ngày, các cột chạm đúng vạch lưới",
+    label: "Số bạn đến câu lạc bộ cờ mỗi ngày",
   },
   "clb-tap": {
     kind: "bars",
@@ -1239,7 +1333,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     tap: true,
     label: "Số bạn đến câu lạc bộ cờ mỗi ngày, chạm vào một cột",
   },
-  "nha-so-25": {
+  "trang-25": {
     kind: "line",
     from: 22,
     to: 28,
@@ -1248,7 +1342,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         type: "point",
         at: 25,
         color: "amber",
-        tag: "Nhà bạn",
+        tag: "Trang bạn đọc",
       },
       {
         type: "point",
@@ -1264,7 +1358,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
     mode: "steps",
-    label: "Nhà bạn số 25: nhà số 24 liền trước, nhà số 26 liền sau",
+    label: "Bạn đọc trang 25: trang 24 liền trước, trang 26 liền sau",
   },
   "lien-tiep-rows": {
     kind: "rows",
@@ -1285,9 +1379,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "\\concept{sky}{24},\\ \\concept{pink}{25}",
+        tex: "\\concept{sky}{25},\\ \\concept{pink}{26}",
         tag: {
-          text: "Ví dụ: a = 24",
+          text: "Ví dụ: a = 25",
           color: "slate",
         },
         gapBefore: true,
@@ -1325,14 +1419,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "3 < 5",
         tag: {
           text: "Nam có ít kẹo hơn Lan",
-          color: "blue",
+          color: "slate",
         },
       },
       {
         tex: "5 < 8",
         tag: {
           text: "Lan có ít kẹo hơn Hà",
-          color: "violet",
+          color: "slate",
         },
       },
       {
@@ -1373,7 +1467,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "\\concept{blue}{a} ≤ b",
         tag: {
-          text: "a ≤ b",
+          text: "a bên trái b hoặc trùng b",
           color: "blue",
         },
         gapBefore: true,
@@ -1381,14 +1475,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "b ≤ \\concept{violet}{c}",
         tag: {
-          text: "b ≤ c",
+          text: "b bên trái c hoặc trùng c",
           color: "violet",
         },
       },
       {
         tex: "\\concept{blue}{a} ≤ \\concept{violet}{c}",
         tag: {
-          text: "Nên a ≤ c",
+          text: "Nên a bên trái c hoặc trùng c",
           color: "slate",
         },
       },
@@ -1404,7 +1498,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "line",
     from: 0,
     to: 20,
-    labelAt: [0, 5, 10, 15, 20],
+    labelAt: [0, 10, 20],
     layers: [
       {
         type: "point",
@@ -1414,33 +1508,33 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         type: "point",
-        at: 5,
+        at: 6,
         name: "A",
         color: "amber",
       },
       {
         type: "point",
-        at: 10,
+        at: 12,
         name: "B",
         color: "amber",
       },
       {
         type: "span",
         from: 0,
-        to: 5,
+        to: 6,
         color: "blue",
         tag: "đoạn OA",
       },
       {
         type: "span",
-        from: 5,
-        to: 10,
+        from: 6,
+        to: 12,
         color: "teal",
         tag: "đoạn AB",
       },
       {
         type: "span",
-        from: 10,
+        from: 12,
         to: 20,
         color: "slate",
         tag: "phần còn lại",
@@ -1448,51 +1542,42 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
     label:
-      "Điểm A biểu diễn 5 và điểm B biểu diễn 10 chia tia số thành đoạn OA, đoạn AB và phần còn lại",
+      "Điểm A biểu diễn 6 và điểm B biểu diễn 12 cắt tia số làm đoạn OA, đoạn AB và phần còn lại",
   },
-  "doan-ab-xong": {
-    kind: "line",
-    from: 0,
-    to: 20,
-    labelAt: [0, 5, 10, 15, 20],
-    layers: [
+  "ba-phan-rows": {
+    kind: "rows",
+    label: "So x với a và b để biết điểm biểu diễn số x thuộc phần nào",
+    rows: [
       {
-        type: "point",
-        at: 0,
-        name: "O",
-        color: "slate",
+        tex: "x ≤ a",
+        tag: {
+          text: "Đoạn OA",
+          color: "amber",
+        },
       },
       {
-        type: "point",
-        at: 5,
-        name: "A",
-        color: "amber",
+        tex: "a ≤ x ≤ b",
+        tag: {
+          text: "Đoạn AB, kể cả A và B",
+          color: "amber",
+        },
       },
       {
-        type: "point",
-        at: 10,
-        name: "B",
-        color: "amber",
-      },
-      {
-        type: "span",
-        from: 5,
-        to: 10,
-        color: "teal",
-        tag: "đoạn AB",
+        tex: "x > b",
+        tag: {
+          text: "Phần còn lại",
+          color: "amber",
+        },
       },
     ],
-    mode: "still",
-    label:
-      "Đoạn AB gồm điểm A biểu diễn 5, điểm B biểu diễn 10 và các điểm ở giữa",
   },
-  "chon-doan-ab-5-10": {
+  "chon-doan-ab-6-12": {
     kind: "chips",
-    items: ["3", "7", "10", "14"],
+    items: ["4", "8", "12", "15"],
     wants: [1, 2],
-    done: "Bạn chọn đúng: 7 ở giữa 5 và 10, còn 10 là đầu đoạn nên cũng thuộc đoạn AB.",
+    done: "Bạn chọn đúng: 8 ở giữa 6 và 12, còn 12 là đầu đoạn nên cũng thuộc đoạn AB.",
   },
-  "phan-4-9": {
+  "phan-3-8": {
     kind: "line",
     from: 0,
     to: 12,
@@ -1506,19 +1591,75 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         type: "point",
-        at: 4,
+        at: 3,
         name: "A",
         color: "amber",
       },
       {
         type: "point",
-        at: 9,
+        at: 8,
         name: "B",
         color: "amber",
       },
     ],
     mode: "still",
-    label: "Tia số có điểm A biểu diễn số 4 và điểm B biểu diễn số 9",
+    label: "Tia số có điểm A biểu diễn số 3 và điểm B biểu diễn số 8",
+  },
+  "phan-2-7": {
+    kind: "line",
+    from: 0,
+    to: 12,
+    labelAt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "point",
+        at: 2,
+        name: "A",
+        color: "amber",
+      },
+      {
+        type: "point",
+        at: 7,
+        name: "B",
+        color: "amber",
+      },
+    ],
+    mode: "still",
+    label: "Tia số có điểm A biểu diễn số 2 và điểm B biểu diễn số 7",
+  },
+  "phan-5-11": {
+    kind: "line",
+    from: 0,
+    to: 12,
+    labelAt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    layers: [
+      {
+        type: "point",
+        at: 0,
+        name: "O",
+        color: "slate",
+      },
+      {
+        type: "point",
+        at: 5,
+        name: "A",
+        color: "amber",
+      },
+      {
+        type: "point",
+        at: 11,
+        name: "B",
+        color: "amber",
+      },
+    ],
+    mode: "still",
+    label: "Tia số có điểm A biểu diễn số 5 và điểm B biểu diễn số 11",
   },
   "n-nsao": {
     kind: "rows",
@@ -1545,16 +1686,36 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Tập hợp M viết bằng dấu hiệu đặc trưng và bằng cách liệt kê",
     rows: [
       {
-        tex: "\\concept{teal}{M} = \\{x \\in \\mathbb{N} \\mid \\concept{lime}{5 ≤ x ≤ 10}\\}",
+        tex: "\\concept{teal}{M} = \\{x \\in \\mathbb{N} \\mid \\concept{lime}{6 ≤ x ≤ 12}\\}",
         tag: {
           text: "Dấu hiệu đặc trưng",
           color: "lime",
         },
       },
       {
-        tex: "\\concept{teal}{M} = \\{5; 6; 7; 8; 9; 10\\}",
+        tex: "\\concept{teal}{M} = \\{6; 7; 8; 9; 10; 11; 12\\}",
         tag: {
           text: "Liệt kê",
+          color: "teal",
+        },
+      },
+    ],
+  },
+  "liet-ke-mau": {
+    kind: "rows",
+    label: "Các số tự nhiên nhỏ hơn 4 trong ℕ và trong ℕ*",
+    rows: [
+      {
+        tex: "\\{x \\in \\mathbb{N} \\mid x < 4\\} = \\{0; 1; 2; 3\\}",
+        tag: {
+          text: "Có số 0, không có số 4",
+          color: "teal",
+        },
+      },
+      {
+        tex: "\\{x \\in \\mathbb{N}^{\\ast} \\mid x < 4\\} = \\{1; 2; 3\\}",
+        tag: {
+          text: "Không có số 0",
           color: "teal",
         },
       },
@@ -1565,6 +1726,41 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     items: ["2", "3", "6", "7"],
     wants: [1, 2],
     done: "Bạn chọn đúng: 3 và 6 là hai đầu nên cũng thuộc tập hợp.",
+  },
+  "thang-3-8": {
+    kind: "line",
+    from: 0,
+    to: 10,
+    labelAt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    layers: [
+      {
+        type: "dots",
+        at: [3, 4, 5, 6, 7, 8],
+        color: "amber",
+        tag: "6 số",
+      },
+    ],
+    mode: "still",
+    label: "Số người n từ 3 đến 8 có 6 số: 3, 4, 5, 6, 7 và 8",
+  },
+  "dem-rows": {
+    kind: "rows",
+    label: "Đếm các số từ 3 đến 8 bằng phép tính 8 trừ 3 cộng 1",
+    rows: [
+      {
+        tex: "8 - 3 + 1 = 6",
+        tag: {
+          text: "Từ 3 đến 8 có 6 số",
+          color: "amber",
+        },
+      },
+    ],
+  },
+  "chon-dem-10-14": {
+    kind: "chips",
+    items: ["4", "5", "6"],
+    wants: [1],
+    done: "Bạn chọn đúng: 14 trừ 10 cộng 1 bằng 5, nên từ 10 đến 14 có 5 số.",
   },
   sticker: {
     kind: "sticker",
