@@ -9,7 +9,7 @@ const TICKS = [-3, -2, -1, 0, 1, 2, 3] as const;
 const tickX = (tick: number) => CENTRE + tick * TICK_GAP;
 
 // Lesson sticker: a round badge with a number line across it and a pink arrow
-// hopping left from 2 to -2, with a lime "+" and a pink "-" above: adding goes
+// hopping left from 2 to -2, with a lime plus and a pink minus drawn above: adding goes
 // right for a positive number and left for a negative one.
 export default function Sticker() {
   return (
@@ -74,24 +74,23 @@ export default function Sticker() {
           r={6}
           className="stroke-surface"
         />
-        <text
-          x={CENTRE - 12}
-          y={36}
-          fontSize={14}
-          fontWeight={700}
-          className="fill-concept-lime font-heading"
+        <g
+          className="stroke-concept-lime"
+          strokeWidth={3.5}
+          strokeLinecap="round"
         >
-          +
-        </text>
-        <text
-          x={CENTRE + 2}
-          y={36}
-          fontSize={14}
-          fontWeight={700}
-          className="fill-concept-pink font-heading"
-        >
-          −
-        </text>
+          <line x1={CENTRE - 22} y1={30} x2={CENTRE - 10} y2={30} />
+          <line x1={CENTRE - 16} y1={24} x2={CENTRE - 16} y2={36} />
+        </g>
+        <line
+          x1={CENTRE + 8}
+          y1={30}
+          x2={CENTRE + 20}
+          y2={30}
+          className="stroke-concept-pink"
+          strokeWidth={3.5}
+          strokeLinecap="round"
+        />
       </g>
     </svg>
   );
