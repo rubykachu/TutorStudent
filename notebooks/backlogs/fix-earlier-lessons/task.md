@@ -50,8 +50,8 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
 | luy-thua#1 | Màn `guide: numericPower` ở section `co-so-so-mu` nằm sau câu nhập luỹ thừa đầu tiên (cảnh báo `[guides]`) | bỏ: chuyển lên section đầu làm dùng "cơ số", "số mũ" trước khi dạy; cần màn hướng dẫn mới, chủ dự án quyết | |
-| luy-thua#2 | Recap section `chia-cung-co-so` thiếu câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai" của note | sửa | |
-| luy-thua#3 | Lựa chọn 2³ của `chon-co-so-2` trùng trạng thái đầu của hình `tao-luy-thua` | sửa: 2⁹ và 9² | |
+| luy-thua#2 | Recap section `chia-cung-co-so` thiếu câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai" của note | sửa |  đã sửa, review vòng 14 đạt (0 Nghiêm trọng), đã duyệt |
+| luy-thua#3 | Lựa chọn 2³ của `chon-co-so-2` trùng trạng thái đầu của hình `tao-luy-thua` | sửa: 2⁹ và 9² |  đã sửa, review vòng 14 đạt (0 Nghiêm trọng), đã duyệt |
 | luy-thua#4 | Câu kiểm tra `viet-4-mu-3`, `viet-1000`, `chon-2-mu-7` có đáp án nằm sẵn trên màn giải thích | bỏ: câu kiểm tra không tính điểm nhớ, tác giả đã chọn giữ | |
 | luy-thua#5 | Hình gợi ý nấc 2 của `tach-5-247` chỉ còn một bước tới đáp án | bỏ: dựng hình gợi ý mới | |
 | luy-thua#6 | Hạt gạch khó đọc (`bead-group.tsx` dùng chung); khung `fillBlank` ngắt dòng; chữ số mũ Unicode nhỏ; nấc 1 tô cả đề | bỏ: việc của app hoặc visual dùng chung; nấc 1 tô cả đề là quy ước cho phép | |

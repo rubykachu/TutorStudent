@@ -17,5 +17,4 @@ Bài đã `published` (xem `content/math/kntt/luy-thua/review.md`). Mọi câu b
 
 - Nên sửa (review vòng 13): màn `guide: "numericPower"` (`bam-mu`) ở section `co-so-so-mu`, nhưng câu kho ôn `ex.viet-gon-10` của card `viet-luy-thua` (section đầu) đã bắt nhập luỹ thừa. Chuyển màn hướng dẫn lên section đầu (cảnh báo `[guides]`, LL-04).
 - Cảnh báo `[guides]` về `match`, `order`: hết khi bài `tap-hop` có hai màn hướng dẫn đó.
-- Góp ý: recap section `chia-cung-co-so` thiếu câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai" mà note và card có.
 - Recap section `luy-thua-la-gi` chèn "(đọc là “a mũ n”)" vào câu định nghĩa nên note đó chưa đánh `rule` (LL-05).

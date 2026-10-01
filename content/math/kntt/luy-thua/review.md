@@ -1,17 +1,20 @@
 # Review: Luỹ thừa với số mũ tự nhiên (`luy-thua`)
 
 - Bài: `content/math/kntt/luy-thua/lesson.json`
-- Vòng: 13 - chỉ phần đổi (`pnpm content:diff luy-thua --root content`), phần đổi: `guide: numericPower` trên màn `co-so-so-mu`; `rule: true` trên note quy tắc của 10 section; `check.relation: holds` ở `luy-thua.ex.chon-phep-dung`
-- Nguồn đã đọc: `sources/math/luy-thua/` - không mở lại; chữ hiển thị của bài không đổi
-- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 3 cảnh báo `[guides]` (numericPower, match, order)
-- `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
-- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 1 Nên sửa, 2 Góp ý
-- Bản đã review: `ed26504b2d1da3641ae66cb2a111302b46c5316326136c6b51f4ae1dae397801` (`pnpm content:diff` so với bản này)
+- Vòng: 14 - chỉ phần đổi (`pnpm content:diff luy-thua --root content`), section: `luy-thua.section.chia-cung-co-so` (recap thêm câu điều kiện số mũ), `luy-thua.ex.chon-co-so-2` (cặp 2³, 3² đổi thành 2⁹, 9²); soát cùng section `luy-thua.section.co-so-so-mu`
+- Nguồn đã đọc: `sources/math/luy-thua/` - `p22.png`, `p23-24.png` có trên máy; chữ quy tắc không đổi so với bản đã review nên không mở lại
+- `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 1 cảnh báo `[guides]` của bài hiện ra (numericPower ở `exercises[12]`, xem Nên sửa 1); các cảnh báo khác thuộc bài khác
+- `lesson:walk`: không chạy (điều phối chạy; vòng này chỉ đổi một câu caption và hai lựa chọn công thức)
+- Kết luận: Đã xuất bản: 0 Nghiêm trọng, 1 Nên sửa, 0 Góp ý
+- Bản đã review: `bd2f5ec4acb81619b245df570bf6cd9f5435bbbd27c4db7a4b58ba44b10bfce4` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt:
-- `rule: true` nằm đúng 10 note quy tắc, mỗi note là câu quy tắc đầu section (hoặc câu quy tắc của màn ví dụ) và caption recap section lẫn card lặp đúng từng chữ: cơ số/số mũ, số mũ 1, bình phương/lập phương, tính giá trị, nhân cùng cơ số, số không ghi số mũ, chia cùng cơ số, số mũ 0, 10ⁿ, tổng luỹ thừa của 10. Riêng `chia-cung-co-so`: note và card có thêm câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai", recap section dừng ở câu trước; không sai, xem Góp ý 1.
-- `guide: numericPower` ở `co-so-so-mu` blocks[2]: note "bấm cơ số, bấm phím mũ, rồi bấm số mũ" và visual `bam-mu` đúng là màn dạy cách nhập luỹ thừa cho câu `numeric` đáp án `power`.
-- `chon-phep-dung` (chọn tất cả, `answer` = a, b): 4² · 4³ = 4⁵ đúng (a); 8² · 8⁴ = 8⁶ đúng (b); 2³ · 2² = 2⁵ nên 2⁶ sai (c); 3³ · 3² = 3⁵ nên 9⁵ sai (d, nhiễu sai cơ số do nhân cơ số). Tập đáp án đúng bằng tập phương trình đúng, `check.relation: holds` khớp.
+- Recap `chia-cung-co-so` có đúng hai câu (lint ≤ 2 câu), trùng từng chữ với câu quy tắc `rule: true` của section (so bằng máy: bằng nhau), và lặp lại đúng quy tắc: giữ nguyên cơ số, lấy số mũ thứ nhất trừ số mũ thứ hai, điều kiện số mũ thứ nhất lớn hơn hoặc bằng số mũ thứ hai, cơ số khác 0. Khớp tr.24. Hình recap `tom-tat-chia` (5⁶ : 5² = 5⁶⁻² = 5⁴) không mâu thuẫn.
+- Lời video `chia-cung-co-so` (`script.json`): scene `s04-quy-tac` có đúng hai câu `rule: true`, trùng quy tắc và điều kiện số mũ; `s05`, `s06` nói số mũ 0 và quy ước, không trái recap.
+- `chon-co-so-2` (chọn tất cả, `answer` = a, c) tự giải: 2⁶ cơ số 2 (đúng); 6² cơ số 6 (sai, đảo cơ số và số mũ của 2⁶); 2⁹ cơ số 2 (đúng); 9² cơ số 9 (sai, đảo của 2⁹). Đúng hai đáp án, hai nhiễu là lỗi nhầm cơ số và số mũ thật, đề ghi "Chọn tất cả".
+- LL-07 trong section `co-so-so-mu`: số mới 2⁹, 9², 2⁶, 6² không trùng hình `tao-luy-thua` (mở ra 2³), hình `the-co-so-so-mu` (4³), `bam-mu` (2⁵), recap (chữ tổng quát aⁿ), `viet-4-mu-3` (4³), `tao-5-mu-3` (5³), `viet-gon-3-mu-4` (3⁴), `cham-co-so`. 9² có ở câu `match` của section khác (bài khác section), không ảnh hưởng LL-07.
+- Gợi ý của `chon-co-so-2`: nấc 1 trống kèm `hintVisualId` `dinh-nghia` (hình aⁿ chữ tổng quát, không có số của đề, không lộ đáp án); không đổi theo số mới.
+- Mọi mục còn lại của hai section khớp checklist: ghi chú quy tắc `co-so-so-mu` và recap trùng từng chữ, `chon-6-mu-3` (6⁵ : 6² = 6³, nhiễu 6⁷ cộng số mũ, 1³ nhầm cơ số) và `chia-9` (9⁸ : 9³ = 9⁵) đúng.
 
 ## Nghiêm trọng
 
@@ -28,16 +31,4 @@ Không có.
 
 ## Góp ý
 
-### 1. Recap section `chia-cung-co-so` thiếu câu điều kiện số mũ của note
-
-- Vị trí: `$.sections[7].recap.caption` (`luy-thua.section.chia-cung-co-so`)
-- Nguồn: tr.24, `p23-24.png`
-- Vấn đề: note và recap card có câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai", recap section thì không, nên điều kiện quan trọng dễ bị quên ở lần ôn cuối section.
-- Sửa: chép cả hai câu vào recap section (lint không đòi, nhưng đủ quy tắc hơn).
-
-### 2. Lựa chọn 2³ trùng trạng thái đầu của hình tạo luỹ thừa trong cùng section
-
-- Vị trí: `$.exercises[?(@.id=="luy-thua.ex.chon-co-so-2")].options[2]` (`luy-thua.ex.chon-co-so-2`)
-- Nguồn: tr.22, `p22.png`
-- Vấn đề: `luy-thua.visual.tao-luy-thua` mở ra với 2³ (`START`). Không bắt buộc đổi (giữ từ vòng trước).
-- Sửa: thay cặp 2³, 3² bằng cặp chưa dùng trong section, ví dụ 2⁹ và 9²; `answer` giữ `["a", "c"]`.
+Không có.
