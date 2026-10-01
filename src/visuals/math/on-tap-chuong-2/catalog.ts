@@ -895,17 +895,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Cộng hai phân số khác mẫu",
     rows: [
-      { tex: "\\dfrac{1}{4} + \\dfrac{1}{6}" },
+      { tex: "\\frac{1}{4} + \\frac{1}{6}" },
+      { tex: "12 : 4 = 3,\\ 12 : 6 = 2" },
       {
-        tex: "12 : 4 = 3,\\ 12 : 6 = 2",
-        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
+        tex: "= \\frac{1 \\cdot 3}{4 \\cdot 3} + \\frac{1 \\cdot 2}{6 \\cdot 2} = \\frac{3}{12} + \\frac{2}{12}",
       },
       {
-        tex: "= \\dfrac{1 \\cdot 3}{4 \\cdot 3} + \\dfrac{1 \\cdot 2}{6 \\cdot 2}",
-        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
-      },
-      {
-        tex: "= \\dfrac{3}{12} + \\dfrac{2}{12} = \\dfrac{5}{12}",
+        tex: "= \\frac{5}{12}",
         tag: { text: "Cộng hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -915,17 +911,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Trừ hai phân số khác mẫu",
     rows: [
-      { tex: "\\dfrac{5}{6} - \\dfrac{3}{4}" },
+      { tex: "\\frac{5}{6} - \\frac{3}{4}" },
+      { tex: "12 : 6 = 2,\\ 12 : 4 = 3" },
       {
-        tex: "12 : 6 = 2,\\ 12 : 4 = 3",
-        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
+        tex: "= \\frac{5 \\cdot 2}{6 \\cdot 2} - \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{10}{12} - \\frac{9}{12}",
       },
       {
-        tex: "= \\dfrac{5 \\cdot 2}{6 \\cdot 2} - \\dfrac{3 \\cdot 3}{4 \\cdot 3}",
-        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
-      },
-      {
-        tex: "= \\dfrac{10}{12} - \\dfrac{9}{12} = \\dfrac{1}{12}",
+        tex: "= \\frac{1}{12}",
         tag: { text: "Trừ hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -1182,17 +1174,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Cộng hai phân số khác mẫu",
     rows: [
-      { tex: "\\dfrac{1}{4} + \\dfrac{1}{6}" },
+      { tex: "\\frac{1}{4} + \\frac{1}{6}" },
+      { tex: "12 : 4 = 3,\\ 12 : 6 = 2" },
       {
-        tex: "12 : 4 = 3,\\ 12 : 6 = 2",
-        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
+        tex: "= \\frac{1 \\cdot 3}{4 \\cdot 3} + \\frac{1 \\cdot 2}{6 \\cdot 2} = \\frac{3}{12} + \\frac{2}{12}",
       },
       {
-        tex: "= \\dfrac{1 \\cdot 3}{4 \\cdot 3} + \\dfrac{1 \\cdot 2}{6 \\cdot 2}",
-        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
-      },
-      {
-        tex: "= \\dfrac{3}{12} + \\dfrac{2}{12} = \\dfrac{5}{12}",
+        tex: "= \\frac{5}{12}",
         tag: { text: "Cộng hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
@@ -1202,17 +1190,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "lines",
     label: "Trừ hai phân số khác mẫu",
     rows: [
-      { tex: "\\dfrac{5}{6} - \\dfrac{3}{4}" },
+      { tex: "\\frac{5}{6} - \\frac{3}{4}" },
+      { tex: "12 : 6 = 2,\\ 12 : 4 = 3" },
       {
-        tex: "12 : 6 = 2,\\ 12 : 4 = 3",
-        tag: { text: "Mẫu số chung 12 chia cho từng mẫu", color: "blue" },
+        tex: "= \\frac{5 \\cdot 2}{6 \\cdot 2} - \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{10}{12} - \\frac{9}{12}",
       },
       {
-        tex: "= \\dfrac{5 \\cdot 2}{6 \\cdot 2} - \\dfrac{3 \\cdot 3}{4 \\cdot 3}",
-        tag: { text: "Nhân cả tử lẫn mẫu với kết quả", color: "blue" },
-      },
-      {
-        tex: "= \\dfrac{10}{12} - \\dfrac{9}{12} = \\dfrac{1}{12}",
+        tex: "= \\frac{1}{12}",
         tag: { text: "Trừ hai tử, giữ nguyên mẫu", color: "teal" },
       },
     ],
