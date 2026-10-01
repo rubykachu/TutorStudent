@@ -1759,7 +1759,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "\\{x \\in \\mathbb{N} \\mid 11 ≤ x < 14\\} = \\{11; 12; 13\\}",
+        tex: "\\begin{gathered} \\{x \\in \\mathbb{N} \\mid 11 ≤ x < 14\\} \\\\ = \\{11; 12; 13\\} \\end{gathered}",
         tag: {
           text: "Có số 11, không có số 14",
           color: "teal",

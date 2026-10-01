@@ -104,20 +104,17 @@ export function LineAxis({
             strokeWidth={2}
           />
         ))}
-        {geometry.broken && (
-          <>
-            {[BREAK_X, BREAK_X + BREAK_GAP].map((x) => (
-              <line
-                key={x}
-                x1={x - BREAK_SLANT}
-                y1={axisY + BREAK_HALF}
-                x2={x + BREAK_SLANT}
-                y2={axisY - BREAK_HALF}
-                strokeWidth={2.5}
-              />
-            ))}
-          </>
-        )}
+        {geometry.broken &&
+          [BREAK_X, BREAK_X + BREAK_GAP].map((x) => (
+            <line
+              key={x}
+              x1={x - BREAK_SLANT}
+              y1={axisY + BREAK_HALF}
+              x2={x + BREAK_SLANT}
+              y2={axisY - BREAK_HALF}
+              strokeWidth={2.5}
+            />
+          ))}
       </g>
       {tickValues(geometry)
         .filter((tick) => labelled.has(tick))
