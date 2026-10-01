@@ -925,10 +925,6 @@
               "rule": true
             },
             {
-              "type": "note",
-              "text": "Ví dụ: 7 thùng, mỗi thùng 8 hộp, mỗi hộp 125 viên kẹo, thì 8 · 125 = 1 000 viên kẹo một thùng."
-            },
-            {
               "type": "visual",
               "visualId": "on-tap-chuong-2.visual.giao-hoan-ket-hop"
             }
@@ -4390,7 +4386,7 @@
       "bookRef": "SBT 2.61",
       "difficulty": 3,
       "explain": {
-        "text": "Đổi chỗ thừa số 9 và a, rồi nhóm 12 345 679 với 9 trước. Vì 12 345 679 · 9 = 111 111 111, nên nhân với a được số có chín chữ số a."
+        "text": "Đổi chỗ thừa số 9 và a, rồi nhóm 12 345 679 với 9 trước. Vì 12 345 679 · 9 = 111 111 111, nên nhân với a được số có chín chữ số a."
       },
       "type": "order",
       "items": [
@@ -4398,21 +4394,21 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "Đổi chỗ các thừa số a và 9, ta được 12 345 679 · 9 · a."
+            "text": "Đổi chỗ các thừa số a và 9, ta được 12 345 679 · 9 · a."
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Nhóm 12 345 679 với 9 trước, ta được (12 345 679 · 9) · a."
+            "text": "Nhóm 12 345 679 với 9 trước, ta được (12 345 679 · 9) · a."
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "Tính 12 345 679 · 9 = 111 111 111, nên được 111 111 111 · a."
+            "text": "Tính 12 345 679 · 9 = 111 111 111, nên được 111 111 111 · a."
           }
         },
         {
