@@ -934,7 +934,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "24", tag: { text: "BCNN(8, 12)", color: "pink" } },
       {
         tex: "\\dfrac{3}{8} = \\dfrac{9}{24},\\ \\dfrac{5}{12} = \\dfrac{10}{24}",
-        tag: { text: "Quy đồng", color: "blue" },
+        tag: { text: "Quy đồng", color: "slate" },
       },
       {
         tex: "\\dfrac{3}{8} + \\dfrac{5}{12} = \\dfrac{9}{24} + \\dfrac{10}{24} = \\dfrac{19}{24}",
@@ -949,7 +949,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "20", tag: { text: "BCNN(10, 4)", color: "pink" } },
       {
         tex: "\\dfrac{7}{10} = \\dfrac{14}{20},\\ \\dfrac{1}{4} = \\dfrac{5}{20}",
-        tag: { text: "Quy đồng", color: "blue" },
+        tag: { text: "Quy đồng", color: "slate" },
       },
       {
         tex: "\\dfrac{7}{10} - \\dfrac{1}{4} = \\dfrac{14}{20} - \\dfrac{5}{20} = \\dfrac{9}{20}",

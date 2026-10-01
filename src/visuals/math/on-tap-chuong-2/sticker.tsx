@@ -14,7 +14,7 @@ const DOTS = [
   { id: "tan-cung", color: "teal", cx: 30, cy: 12 },
   { id: "nguyen-to", color: "sky", cx: 50, cy: 7 },
   { id: "uclnn", color: "amber", cx: 70, cy: 12 },
-  { id: "quy-dong", color: "blue", cx: 82, cy: 30 },
+  { id: "quy-dong", color: "slate", cx: 82, cy: 30 },
 ] as const;
 
 // Lesson sticker: a gold medal with the numeral II on two ribbons, ringed by

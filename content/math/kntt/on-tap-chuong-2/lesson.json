@@ -12,7 +12,7 @@
   "title": "Ôn tập chương II",
   "sourceRef": "Sách bài tập tr.44–46, lời giải tr.110",
   "status": "published",
-  "reviewedHash": "d7a8228fa0f061e5fe91ea5dfd76f8e227881998392cd0ed67ad04f3806e78d0",
+  "reviewedHash": "559a9c5e6fdcf0e28bb4d791c145b46c698c1b6c74d09167cf472552b3e177d4",
   "concepts": [
     {
       "id": "on-tap-chuong-2.concept.tong-chu-so",
@@ -47,7 +47,7 @@
     {
       "id": "on-tap-chuong-2.concept.quy-dong",
       "name": "Quy đồng mẫu số",
-      "color": "blue"
+      "color": "slate"
     }
   ],
   "sections": [
@@ -612,7 +612,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bội chung của hai số đều là bội của BCNN của hai số đó.",
+              "text": "Bội chung khác 0 của hai số đều là bội của BCNN của hai số đó.",
               "rule": true
             },
             {
@@ -644,7 +644,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.uc-bc-tom-tat",
-        "caption": "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Bội chung của hai số đều là bội của BCNN của hai số đó."
+        "caption": "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Bội chung khác 0 của hai số đều là bội của BCNN của hai số đó."
       }
     },
     {
@@ -658,7 +658,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó. Nếu đề có số dư, ta cộng số dư vào từng bội trước khi chọn số nằm trong khoảng đề cho.",
+              "text": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó. Nếu mọi hàng đều dư cùng một số, ta cộng số dư đó vào từng bội trước khi chọn số nằm trong khoảng đề cho.",
               "rule": true
             },
             {
@@ -711,7 +711,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.khoang-bcnn-xong",
-        "caption": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó. Nếu đề có số dư, ta cộng số dư vào từng bội trước khi chọn số nằm trong khoảng đề cho."
+        "caption": "Số chia hết cho nhiều số là bội chung của các số đó, nên ta tìm BCNN rồi liệt kê các bội của nó. Nếu mọi hàng đều dư cùng một số, ta cộng số dư đó vào từng bội trước khi chọn số nằm trong khoảng đề cho."
       }
     },
     {
@@ -739,7 +739,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Viết mỗi số thành tích các thừa số nguyên tố. Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN.",
+              "text": "Viết mỗi số lớn hơn 1 thành tích các thừa số nguyên tố. Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN.",
               "rule": true
             },
             {
@@ -859,7 +859,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Lấy mẫu số chung chia cho mẫu của từng phân số, rồi nhân cả tử lẫn mẫu của phân số đó với kết quả.",
+              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu số làm mẫu số chung. Lấy mẫu số chung chia cho mẫu số mỗi phân số, rồi nhân cả tử số lẫn mẫu số của phân số đó với thương.",
               "rule": true
             },
             {
@@ -873,11 +873,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhắc lại kiến thức tiểu học: hai phân số cùng mẫu thì cộng hoặc trừ hai tử, giữ nguyên mẫu."
+              "text": "Nhắc lại kiến thức tiểu học: hai phân số cùng mẫu số thì cộng hoặc trừ hai tử số, giữ nguyên mẫu số."
             },
             {
               "type": "note",
-              "text": "Ví dụ: mảnh băng dài năm phần sáu mét, cắt đi ba phần tư mét thì còn một phần mười hai mét."
+              "text": "Ví dụ: băng dài năm phần sáu mét, cắt đi ba phần tư mét. Hai mẫu số khác nhau, nên quy đồng rồi mới trừ."
             },
             {
               "type": "visual",
@@ -890,8 +890,8 @@
           "id": "on-tap-chuong-2.tip.bcnn-hai-mau",
           "kind": "làm nhanh",
           "title": "Tìm BCNN của hai mẫu",
-          "text": "Ví dụ hai mẫu là 6 và 15. Liệt kê các bội của mẫu lớn hơn. Số đầu tiên chia hết cho mẫu nhỏ hơn là BCNN.",
-          "tex": "\\begin{gathered} 15,\\ 30 \\\\ 30 \\chiahet 6 \\end{gathered}"
+          "text": "Ví dụ hai mẫu là 15 và 25. Liệt kê các bội của mẫu lớn hơn. Số đầu tiên chia hết cho mẫu nhỏ hơn là BCNN.",
+          "tex": "\\begin{gathered} 25 \\khongchiahet 15 \\\\ 50 \\khongchiahet 15 \\\\ 75 \\chiahet 15 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -903,7 +903,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.quy-dong-vi-du-xong",
-        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Lấy mẫu số chung chia cho mẫu của từng phân số, rồi nhân cả tử lẫn mẫu của phân số đó với kết quả."
+        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu số làm mẫu số chung. Lấy mẫu số chung chia cho mẫu số mỗi phân số, rồi nhân cả tử số lẫn mẫu số của phân số đó với thương."
       }
     },
     {
@@ -1047,7 +1047,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.bc-6-9",
-        "caption": "Bội chung của hai số đều là bội của BCNN của hai số đó."
+        "caption": "Bội chung khác 0 của hai số đều là bội của BCNN của hai số đó."
       }
     },
     {
@@ -1090,7 +1090,7 @@
       "recap": {
         "type": "visual",
         "visualId": "on-tap-chuong-2.visual.tru-vi-du-xong",
-        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Lấy mẫu số chung chia cho mẫu của từng phân số, rồi nhân cả tử lẫn mẫu của phân số đó với kết quả."
+        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu số làm mẫu số chung. Lấy mẫu số chung chia cho mẫu số mỗi phân số, rồi nhân cả tử số lẫn mẫu số của phân số đó với thương."
       }
     },
     {
@@ -3913,7 +3913,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hai phân số có mẫu là 14 và 21. Phân tích hai mẫu ra thừa số nguyên tố:"
+          "text": "Hai phân số có mẫu số 14 và 21. Phân tích hai mẫu số ra thừa số nguyên tố:"
         },
         {
           "type": "formula",
@@ -3969,16 +3969,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "42 : 14 = 3 nên nhân cả tử và mẫu của phân số thứ nhất với 3. 42 : 21 = 2 nên nhân cả tử và mẫu của phân số thứ hai với 2.",
+        "text": "42 : 14 = 3 nên nhân cả tử số và mẫu số của phân số thứ nhất với 3. 42 : 21 = 2 nên nhân cả tử số và mẫu số của phân số thứ hai với 2.",
         "tex": "\\begin{gathered} \\dfrac{9 \\cdot 3}{14 \\cdot 3} = \\dfrac{27}{42} \\\\[8pt] \\dfrac{8 \\cdot 2}{21 \\cdot 2} = \\dfrac{16}{42} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Chỉ đổi mẫu mà không nhân cả tử thì phân số đã đổi giá trị."
+            "text": "Chỉ đổi mẫu số mà không nhân cả tử số thì phân số đã đổi giá trị."
           },
           {
             "optionId": "c",
-            "text": "Phân số thứ hai cũng phải nhân cả tử với 2."
+            "text": "Phân số thứ hai cũng phải nhân cả tử số với 2."
           },
           {
             "optionId": "d",
@@ -4045,20 +4045,20 @@
       "bookRef": "SBT 2.64a",
       "difficulty": 3,
       "explain": {
-        "text": "BCNN(14, 21) = 42, nên quy đồng hai phân số với mẫu số chung 42. Cộng hai tử, giữ nguyên mẫu: 27 + 16 = 43.",
+        "text": "BCNN(14, 21) = 42, nên quy đồng hai phân số với mẫu số chung 42. Cộng hai tử số, giữ nguyên mẫu số: 27 + 16 = 43.",
         "tex": "\\begin{gathered} \\dfrac{9}{14} + \\dfrac{8}{21} = \\dfrac{27}{42} + \\dfrac{16}{42} \\\\ = \\dfrac{43}{42} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Không được cộng tử với tử và mẫu với mẫu khi hai mẫu khác nhau."
+            "text": "Không được cộng tử số với tử số và mẫu số với mẫu số khi hai mẫu số khác nhau."
           },
           {
             "optionId": "c",
-            "text": "Mới đổi mẫu mà chưa nhân cả tử, nên chưa đúng."
+            "text": "Mới đổi mẫu số mà chưa nhân cả tử số, nên chưa đúng."
           },
           {
             "optionId": "d",
-            "text": "Tử của phân số thứ hai phải đổi thành 16, không phải 8."
+            "text": "Tử số của phân số thứ hai phải đổi thành 16, không phải 8."
           }
         ]
       },
@@ -4121,20 +4121,20 @@
       "bookRef": "SBT 2.64b",
       "difficulty": 3,
       "explain": {
-        "text": "BCNN(15, 12) = 60, nên quy đồng hai phân số với mẫu số chung 60. Trừ hai tử, giữ nguyên mẫu: 52 − 35 = 17.",
+        "text": "BCNN(15, 12) = 60, nên quy đồng hai phân số với mẫu số chung 60. Trừ hai tử số, giữ nguyên mẫu số: 52 − 35 = 17.",
         "tex": "\\begin{gathered} \\dfrac{13}{15} - \\dfrac{7}{12} = \\dfrac{52}{60} - \\dfrac{35}{60} \\\\ = \\dfrac{17}{60} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Không được trừ tử với tử và mẫu với mẫu khi hai mẫu khác nhau."
+            "text": "Không được trừ tử số với tử số và mẫu số với mẫu số khi hai mẫu số khác nhau."
           },
           {
             "optionId": "c",
-            "text": "Tử của phân số thứ hai phải đổi thành 35, không phải 7."
+            "text": "Tử số của phân số thứ hai phải đổi thành 35, không phải 7."
           },
           {
             "optionId": "d",
-            "text": "Mới đổi mẫu thành 60 mà chưa nhân cả tử, nên chưa đúng."
+            "text": "Mới đổi mẫu số thành 60 mà chưa nhân cả tử số, nên chưa đúng."
           }
         ]
       },

@@ -1,11 +1,11 @@
 # Bàn giao: `on-tap-chuong-2` (Ôn tập chương II, Toán 6 tập 1, Kết nối tri thức)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bản `published`, id đã khoá (98 id), chưa lời đọc, chưa video. `reviewedHash` `d7a8228f...`.
-- Đã xong: vòng 1 (8 Nghiêm trọng), vòng 2 (7), vòng 3 (1 Nghiêm trọng), vòng 4 chỉ phần đổi (Sonnet): 0 Nghiêm trọng, 1 Nên sửa. Sửa vòng 3 ở commit `d2c0455`. `content:check` 0 lỗi; `lesson:walk` 0 failures (chạy ở `d2c0455`, nội dung giống bản duyệt); `pnpm test` qua (2546); `pnpm lint` chỉ lỗi sắp xếp import ở `tests/visuals/primitives.test.tsx` (tệp của agent khác); `content:emit` đã chạy.
-- Còn nợ, làm khi Bài 12 xuất bản: một vòng diff đối chiếu các chỗ BCNN (2.58, 2.60, 2.63, 2.64, trắc nghiệm 6) với Bài 12: cách viết "BCNN(a, b)", câu quy tắc, màu khái niệm (pink), cụm "lớn hơn 1"; mẹo `bcnn-hai-mau` dùng cặp 6 và 15 trùng "BCNN(6, 15)" của Bài 12 (đổi một bên). Bài 12 vẫn `draft` khi duyệt bài này.
-- Nên sửa còn lại (vòng 4): câu ví dụ băng giấy ở `$.sections[12].blocks[1].children[1]` nên nói "quy đồng rồi trừ", vì câu quy tắc ngay trên nói "cùng mẫu". Gộp vào vòng đối chiếu Bài 12 để một lần duyệt.
-- Lời đọc tổng quan và video: chưa làm.
+- Cập nhật cuối: 01/10/2026. Bản `published`, id đã khoá (98 id), chưa lời đọc, chưa video. `reviewedHash` `559a9c5e...`.
+- Đã xong: vòng 1 (8 Nghiêm trọng), vòng 2 (7), vòng 3 (1), vòng 4 chỉ phần đổi (0), vòng 5 chỉ phần đổi, đối chiếu với Bài 12 đã xuất bản (Sonnet): 0 Nghiêm trọng, 2 Nên sửa đã sửa đúng đề xuất, 2 Góp ý giữ nguyên. `content:check` 0 lỗi của bài; `lesson:walk` 0 failures (bản đã duyệt); `pnpm typecheck` và `pnpm test` qua; `content:emit` đã chạy.
+- Vòng 5 đã đổi: câu quy tắc, recap section và recap card của các section BCNN trùng từng chữ Bài 12 ("Nếu mọi hàng đều dư cùng một số...", "Viết mỗi số lớn hơn 1...", câu quy đồng với "mẫu số", "tử số", "thương"; "Bội chung khác 0..."); "mẫu" thành "mẫu số", "tử" thành "tử số" ở section quy đồng; khái niệm "Quy đồng mẫu số" từ blue sang slate (khớp Bài 12; chấm ở `sticker.tsx` và hai thẻ "Quy đồng" ở hình gợi ý 2.64); câu ví dụ băng giấy nói "Hai mẫu số khác nhau, nên quy đồng rồi mới trừ"; mẹo `bcnn-hai-mau` đổi cặp 6, 15 thành 15, 25 (bội của 25: 25, 50, 75; BCNN 75; thử 18 cặp). Câu của sách không đổi chữ hay số.
+- Còn lại: lời đọc tổng quan và video (chưa làm; làm sau khi chủ dự án cho phép bước này).
+- Góp ý giữ nguyên, tuỳ tác giả: mẹo `bcnn-hai-mau` và nhãn hình "khác mẫu" còn viết "mẫu" trơn; hai quy tắc kề nhau ở `so-mu-uclnn-bcnn` mở đầu khác nhau ("Viết mỗi số" cho ƯCLN theo Bài 11, "Viết mỗi số lớn hơn 1" cho BCNN theo Bài 12).
 
 ## Nguồn (sách bài tập, `sources/math/on-tap-chuong-2/`, không commit)
 - Đề: tr.44–46 in (PDF 45–47), tệp `sbt-p44.png` (sơ đồ tổng kết), `sbt-p45.png` (câu hỏi trắc nghiệm 1–6, bài 2.56–2.58), `sbt-p46.png` (bài 2.59–2.64). Bài 13 bắt đầu ở tr.47.
@@ -63,6 +63,6 @@
 - Câu 2.58 không đặt `unit` vì `lint/walk.ts` chưa phân loại trường đó; đề đã ghi "Tính số học sinh". Các dòng xếp của câu 2.61 là chữ (không phải TeX) để tự xuống dòng trên điện thoại; công thức dài trong thẻ `order` tràn thẻ ở màn 390px.
 
 ## Việc còn lại sau review
-- Đối chiếu lại các chỗ dùng BCNN khi Bài 12 xuất bản: câu "Rồi nhân cả tử lẫn mẫu..." của section `quy-dong` đã đổi khỏi câu của Bài 12 ("nhân tử và mẫu") vì từ "nhân tử" bị glossary cấm; cách viết "BCNN(a, b)" (sách dùng cả "BCNN(a; b)" ở câu 6 nên giữ nguyên ở đó); màu khái niệm (bài này không đặt khái niệm cho BC, BCNN để khỏi trùng màu với Bài 12).
-- Xuất bản: `pnpm content:hash on-tap-chuong-2 --approve` (reviewer), `pnpm content:lock on-tap-chuong-2`.
+- Đối chiếu BCNN với Bài 12: xong ở vòng 5 (xem "Trạng thái"). Cách viết "BCNN(a, b)" giống Bài 12; câu 6 của sách giữ "BCNN(a; b)" như sách.
+- Đã xuất bản và khoá id; bản duyệt hiện tại là của vòng 5.
 - Lời đọc tổng quan và video: chưa làm (chủ dự án chưa yêu cầu).
