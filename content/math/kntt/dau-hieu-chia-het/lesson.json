@@ -1058,7 +1058,20 @@
         }
       ],
       "answer": ["d"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Chữ số tận cùng là chữ số đứng cuối cùng, ngoài cùng bên phải của số. Số 7 405 đọc từ trái sang phải là 7, 4, 0, 5, nên chữ số cuối là 5.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "7 là chữ số đứng đầu, bên trái, không phải chữ số tận cùng."
+          },
+          {
+            "optionId": "c",
+            "text": "0 đứng ở giữa, ngay trước chữ số 5, chưa phải chữ số cuối."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-chia-het-2",
@@ -1111,7 +1124,17 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Muốn biết một số có chia hết cho 2, bạn chỉ cần nhìn chữ số tận cùng. Số 548 tận cùng là 8, mà số tận cùng 0, 2, 4, 6 hoặc 8 thì chia hết cho 2.",
+        "tex": "548 : 2 = 274",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "915 tận cùng là 5, không nằm trong 0, 2, 4, 6, 8 nên không chia hết cho 2."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-2",
@@ -1163,7 +1186,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Nhìn chữ số tận cùng của từng số. 138 tận cùng 8 và 470 tận cùng 0, đều thuộc 0, 2, 4, 6, 8 nên chia hết cho 2.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "245 tận cùng là 5, không chia hết cho 2."
+          },
+          {
+            "optionId": "d",
+            "text": "691 tận cùng là 1, không chia hết cho 2."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-2-4512",
@@ -1194,7 +1230,10 @@
           "text": " cho 2."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Số có chữ số tận cùng là 0, 2, 4, 6 hoặc 8 thì chia hết cho 2. Số 4 512 tận cùng là 2 nên 4 512 chia hết cho 2."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-bi-2",
@@ -1246,7 +1285,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Chia đều cho 2 bạn thì vừa hết nghĩa là số bi chia hết cho 2. Số 34 tận cùng là 4 nên chia hết cho 2.",
+        "tex": "34 : 2 = 17",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "27 tận cùng là 7, chia cho 2 bạn còn dư 1 viên."
+          },
+          {
+            "optionId": "c",
+            "text": "45 tận cùng là 5, chia cho 2 bạn còn dư 1 viên."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.noi-tan-cung",
@@ -1333,7 +1386,10 @@
           "left": "l3",
           "right": "r3"
         }
-      ]
+      ],
+      "explain": {
+        "text": "Chữ số tận cùng là chữ số đứng cuối cùng bên phải của số. 3 251 tận cùng là 1, 7 036 tận cùng là 6 và 580 tận cùng là 0. Chữ số 3 là chữ số đầu của 3 251, không phải chữ số tận cùng của số nào."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.o-trong-2",
@@ -1363,6 +1419,10 @@
         "divisor": 2,
         "divisor2": 0,
         "fits": 1
+      },
+      "explain": {
+        "text": "Số chia hết cho 2 khi chữ số tận cùng là 0, 2, 4, 6 hoặc 8. Chữ số bạn đặt vào cuối số 61 chính là chữ số tận cùng của số mới, nên chọn một trong các chữ số đó.",
+        "tex": "610,; 612,; 614,; 616,; 618"
       }
     },
     {
@@ -1415,7 +1475,16 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số chia hết cho 5 có chữ số tận cùng là 0 hoặc 5. Trong bốn chữ số, chỉ có 0 và 5 như vậy.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "Số tận cùng 8 chia hết cho 2, nhưng chưa chắc chia hết cho 5; ví dụ 18 : 5 còn dư 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-chia-het-5",
@@ -1467,7 +1536,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số chia hết cho 5 thì tận cùng là 0 hoặc 5. Số 635 tận cùng là 5 nên chia hết cho 5.",
+        "tex": "635 : 5 = 127",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "418 tận cùng là 8, không phải 0 hay 5."
+          },
+          {
+            "optionId": "d",
+            "text": "984 tận cùng là 4, không phải 0 hay 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.tien-45",
@@ -1496,6 +1579,10 @@
       },
       "check": {
         "expr": "45:5"
+      },
+      "explain": {
+        "text": "Số tờ là 45 : 5. Số 45 tận cùng là 5 nên chia hết cho 5, tức chia vừa hết, không dư tờ nào.",
+        "tex": "45 : 5 = 9"
       }
     },
     {
@@ -1548,7 +1635,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số tận cùng là 0 hoặc 5 thì chia hết cho 5. 160 tận cùng 0 và 245 tận cùng 5 đều thoả.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "372 tận cùng là 2, chia hết cho 2 nhưng không chia hết cho 5."
+          },
+          {
+            "optionId": "d",
+            "text": "409 tận cùng là 9, không phải 0 hay 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.o-trong-5",
@@ -1578,6 +1678,10 @@
         "divisor": 5,
         "divisor2": 0,
         "fits": 1
+      },
+      "explain": {
+        "text": "Số chia hết cho 5 khi chữ số tận cùng là 0 hoặc 5. Chữ số đặt vào cuối số 72 là chữ số tận cùng của số mới, nên chọn 0 hoặc 5.",
+        "tex": "720 : 5 = 144,\\quad 725 : 5 = 145"
       }
     },
     {
@@ -1609,7 +1713,10 @@
           "text": " cho 5."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Số chia hết cho 5 phải có chữ số tận cùng là 0 hoặc 5. Số 3 472 tận cùng là 2 nên không chia hết cho 5."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-2-5-kiem",
@@ -1661,7 +1768,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số chia hết cho cả 2 và 5 thì có chữ số tận cùng là 0. Trong bốn số, chỉ có 90 tận cùng là 0.",
+        "tex": "90 : 2 = 45,\\quad 90 : 5 = 18",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "25 tận cùng là 5 nên chia hết cho 5 nhưng không chia hết cho 2."
+          },
+          {
+            "optionId": "c",
+            "text": "34 tận cùng là 4 nên chia hết cho 2 nhưng không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-2-5-310",
@@ -1713,7 +1834,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Chia hết cho cả 2 và 5 thì chữ số tận cùng phải là 0. Chỉ có 310 tận cùng là 0.",
+        "tex": "310 : 2 = 155,\\quad 310 : 5 = 62",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "125 tận cùng là 5, chia hết cho 5 nhưng không chia hết cho 2."
+          },
+          {
+            "optionId": "c",
+            "text": "412 tận cùng là 2, chia hết cho 2 nhưng không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-2-5",
@@ -1765,7 +1900,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số chia hết cho cả 2 và 5 có chữ số tận cùng là 0. Trong bốn số, 60 và 80 tận cùng là 0.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "75 tận cùng là 5, không chia hết cho 2."
+          },
+          {
+            "optionId": "d",
+            "text": "92 tận cùng là 2, không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.nhom-it-nhat",
@@ -1793,6 +1941,10 @@
       },
       "check": {
         "expr": "10"
+      },
+      "explain": {
+        "text": "Số bạn chia hết cho cả 2 và 5 nên có chữ số tận cùng là 0. Số nhỏ nhất như vậy (khác 0) là 10: xếp 5 cặp hay 2 hàng đều vừa hết.",
+        "tex": "10 : 2 = 5,\\quad 10 : 5 = 2"
       }
     },
     {
@@ -1823,6 +1975,10 @@
         "divisor": 2,
         "divisor2": 5,
         "fits": 1
+      },
+      "explain": {
+        "text": "Chia hết cho cả 2 và 5 thì chữ số tận cùng phải là 0. Vậy chữ số đặt vào cuối số 84 là 0.",
+        "tex": "840 : 2 = 420,\\quad 840 : 5 = 168"
       }
     },
     {
@@ -1850,6 +2006,10 @@
       },
       "check": {
         "expr": "5+7+4"
+      },
+      "explain": {
+        "text": "Tổng các chữ số là kết quả cộng tất cả các chữ số của số đó. Số 574 có các chữ số 5, 7 và 4.",
+        "tex": "5 + 7 + 4 = 16"
       }
     },
     {
@@ -1877,6 +2037,10 @@
       },
       "check": {
         "expr": "5+0+8+2"
+      },
+      "explain": {
+        "text": "Cộng tất cả các chữ số của 5 082, kể cả chữ số 0. Chữ số 0 cộng vào không làm tổng đổi.",
+        "tex": "5 + 0 + 8 + 2 = 15"
       }
     },
     {
@@ -1906,6 +2070,10 @@
       },
       "check": {
         "expr": "9+0+3+1"
+      },
+      "explain": {
+        "text": "Số nhà 9 031 có các chữ số 9, 0, 3 và 1. Bạn cộng cả bốn chữ số lại.",
+        "tex": "9 + 0 + 3 + 1 = 13"
       }
     },
     {
@@ -1958,7 +2126,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cộng các chữ số của từng số rồi so với 12. Số 354 có tổng là 12.",
+        "tex": "3 + 5 + 4 = 12",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 + 7 + 5 = 14, không phải 12."
+          },
+          {
+            "optionId": "c",
+            "text": "6 + 1 + 8 = 15, không phải 12."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-tong-9",
@@ -2010,7 +2192,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Cộng các chữ số của từng số rồi so với 9. 135 có 1 + 3 + 5 = 9 và 270 có 2 + 7 + 0 = 9.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "4 + 8 + 2 = 14, không phải 9."
+          },
+          {
+            "optionId": "d",
+            "text": "3 + 1 + 6 = 10, không phải 9."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.xep-tong-3524",
@@ -2053,7 +2248,11 @@
             "text": "10 + 4 = 14"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Cộng lần lượt từng chữ số từ trái sang phải, mỗi lần lấy kết quả trước cộng với chữ số kế tiếp. Tổng các chữ số của 3 524 là 14.",
+        "tex": "3 + 5 + 2 + 4 = 14"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.tong-25-chia-het-9",
@@ -2098,7 +2297,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số chia hết cho 9 khi tổng các chữ số của nó chia hết cho 9. Tổng là 25, mà 25 không chia hết cho 9 (25 : 9 được 2 dư 7), nên 5 884 không chia hết cho 9.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ số tận cùng chỉ dùng để xét chia hết cho 2 và 5, không dùng để xét cho 9."
+          },
+          {
+            "optionId": "c",
+            "text": "25 không chia hết cho 9: 9 · 2 = 18 và 9 · 3 = 27, không có 25."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-chia-het-9",
@@ -2150,7 +2362,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cộng các chữ số của từng số rồi xét tổng có chia hết cho 9 không. Số 603 có tổng là 9, chia hết cho 9 nên 603 chia hết cho 9.",
+        "tex": "6 + 0 + 3 = 9",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "1 + 5 + 6 = 12, chia hết cho 3 nhưng không chia hết cho 9."
+          },
+          {
+            "optionId": "c",
+            "text": "7 + 2 + 5 = 14, không chia hết cho 9."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-9",
@@ -2202,7 +2428,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9. 207 có tổng 2 + 0 + 7 = 9 và 729 có tổng 7 + 2 + 9 = 18, đều chia hết cho 9.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "5 + 3 + 0 = 8, không chia hết cho 9."
+          },
+          {
+            "optionId": "d",
+            "text": "3 + 4 + 6 = 13, không chia hết cho 9."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-9-3105",
@@ -2233,7 +2472,10 @@
           "text": " cho 9."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Tổng các chữ số của 3 105 là 3 + 1 + 0 + 5 = 9. Tổng này chia hết cho 9 nên số 3 105 chia hết cho 9."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.o-trong-9",
@@ -2263,6 +2505,10 @@
         "divisor": 9,
         "divisor2": 0,
         "fits": 1
+      },
+      "explain": {
+        "text": "Ta có 4 + 5 = 9, mà 9 đã chia hết cho 9. Chữ số đặt vào giữa phải cho tổng ba chữ số vẫn chia hết cho 9, nên chọn 0 hoặc 9.",
+        "tex": "4 + 0 + 5 = 9,\\quad 4 + 9 + 5 = 18"
       }
     },
     {
@@ -2315,7 +2561,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Xếp mỗi hộp 9 cái vừa hết nghĩa là số bánh chia hết cho 9. Số 54 có tổng các chữ số là 5 + 4 = 9 nên chia hết cho 9.",
+        "tex": "54 : 9 = 6",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 + 2 = 8, không chia hết cho 9."
+          },
+          {
+            "optionId": "c",
+            "text": "7 + 0 = 7, không chia hết cho 9."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.tong-15-chia-het-3",
@@ -2360,7 +2620,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số chia hết cho 3 khi tổng các chữ số của nó chia hết cho 3. Tổng là 15 và 15 chia hết cho 3 (3 · 5 = 15), nên 5 217 chia hết cho 3.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ số tận cùng chỉ dùng để xét chia hết cho 2 và 5, không dùng để xét cho 3."
+          },
+          {
+            "optionId": "c",
+            "text": "15 chia hết cho 3 vì 3 · 5 = 15."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-chia-het-3",
@@ -2412,7 +2685,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Cộng các chữ số của từng số rồi xét tổng có chia hết cho 3 không. Số 462 có tổng là 12, chia hết cho 3 nên 462 chia hết cho 3.",
+        "tex": "4 + 6 + 2 = 12",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "8 + 3 + 5 = 16, không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "7 + 2 + 8 = 17, không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-3",
@@ -2464,7 +2751,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3. 285 có tổng 2 + 8 + 5 = 15 và 714 có tổng 7 + 1 + 4 = 12, đều chia hết cho 3.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "3 + 4 + 0 = 7, không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "5 + 2 + 6 = 13, không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chia-3-to",
@@ -2516,7 +2816,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Chia đều cho 3 tổ thì vừa hết nghĩa là số bút chia hết cho 3. Số 51 có tổng các chữ số là 5 + 1 = 6, chia hết cho 3.",
+        "tex": "51 : 3 = 17",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "6 + 2 = 8, không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "7 + 4 = 11, không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-3-9-5232",
@@ -2548,7 +2862,10 @@
           "text": " cho 9."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Tổng các chữ số của 5 232 là 5 + 2 + 3 + 2 = 12. Số 12 chia hết cho 3 nhưng không chia hết cho 9, nên 5 232 chia hết cho 3 và không chia hết cho 9."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.o-trong-3",
@@ -2578,6 +2895,10 @@
         "divisor": 3,
         "divisor2": 0,
         "fits": 1
+      },
+      "explain": {
+        "text": "Ta có 5 + 4 = 9, mà 9 đã chia hết cho 3. Chữ số đặt vào giữa phải cho tổng ba chữ số vẫn chia hết cho 3, nên chọn 0, 3, 6 hoặc 9.",
+        "tex": "5 + 3 + 4 = 12,\\quad 5 + 6 + 4 = 15"
       }
     },
     {
@@ -2630,7 +2951,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Xét lần lượt từng dấu hiệu. Số 246 tận cùng 6 nên chia hết cho 2. Tổng 2 + 4 + 6 = 12 chia hết cho 3, nên 246 chia hết cho cả 2 và 3.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "308 chia hết cho 2 nhưng tổng 3 + 0 + 8 = 11 không chia hết cho 3."
+          },
+          {
+            "optionId": "c",
+            "text": "465 có tổng 15 chia hết cho 3 nhưng tận cùng là 5 nên không chia hết cho 2."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-3-5-345",
@@ -2682,7 +3016,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Xét lần lượt từng dấu hiệu. Chia hết cho 5 thì tận cùng là 0 hoặc 5; chia hết cho 3 thì tổng các chữ số chia hết cho 3. Số 345 tận cùng 5 và có tổng 3 + 4 + 5 = 12, thoả cả hai.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "410 chia hết cho 5 nhưng tổng 4 + 1 + 0 = 5 không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "648 có tổng 18 chia hết cho 3 nhưng tận cùng là 8 nên không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-2-9",
@@ -2734,7 +3081,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Xét lần lượt từng dấu hiệu. Số 738 tận cùng 8 nên chia hết cho 2. Tổng 7 + 3 + 8 = 18 chia hết cho 9, nên 738 chia hết cho cả 2 và 9.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "645 tận cùng là 5 nên không chia hết cho 2."
+          },
+          {
+            "optionId": "c",
+            "text": "520 chia hết cho 2 nhưng tổng 5 + 2 + 0 = 7 không chia hết cho 9."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-3-5",
@@ -2786,7 +3146,20 @@
         }
       ],
       "answer": ["a", "b"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số chia hết cho cả 3 và 5 phải tận cùng 0 hoặc 5 và có tổng các chữ số chia hết cho 3. 165 có tổng 12 và tận cùng 5, 240 có tổng 6 và tận cùng 0, nên cả hai thoả.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "275 tận cùng là 5 nhưng tổng 2 + 7 + 5 = 14 không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "318 có tổng 12 chia hết cho 3 nhưng tận cùng là 8 nên không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.xep-1530",
@@ -2836,7 +3209,11 @@
             "text": "Vậy 1 530 chia hết cho cả 3 và 5"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Muốn biết số có chia hết cho cả hai số không, bạn xét lần lượt từng dấu hiệu. Số 1 530 tận cùng 0 nên chia hết cho 5, rồi tổng các chữ số là 9 chia hết cho 3. Cả hai dấu hiệu đều thoả nên 1 530 chia hết cho cả 3 và 5.",
+        "tex": "1 + 5 + 3 + 0 = 9"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chia-3-5-45",
@@ -2888,7 +3265,21 @@
         }
       ],
       "answer": ["c"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Chia đều cho 3 bạn và cho 5 bạn đều vừa hết nghĩa là số vở chia hết cho cả 3 và 5. Số 45 tận cùng 5 và có tổng 4 + 5 = 9 chia hết cho 3, thoả cả hai.",
+        "tex": "45 : 3 = 15,\\quad 45 : 5 = 9",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "36 chia hết cho 3 nhưng tận cùng là 6 nên không chia hết cho 5."
+          },
+          {
+            "optionId": "b",
+            "text": "40 chia hết cho 5 nhưng tổng 4 + 0 = 4 không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dem-2-3",
@@ -2915,6 +3306,10 @@
       },
       "check": {
         "expr": "3"
+      },
+      "explain": {
+        "text": "Xét từng số: cần tận cùng 0, 2, 4, 6, 8 và tổng các chữ số chia hết cho 3. 12, 18 và 24 thoả cả hai; 15 tận cùng là 5 và 25 có tổng 7 nên không thoả. Vậy có 3 số.",
+        "tex": "1 + 2 = 3,\\quad 1 + 8 = 9,\\quad 2 + 4 = 6"
       }
     },
     {
@@ -2967,7 +3362,11 @@
         }
       ],
       "answer": ["c"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Trong một tích, nếu có một thừa số chia hết cho 3 thì tích chia hết cho 3. Tích 9 · 2 có thừa số 9 chia hết cho 3.",
+        "tex": "9 \\cdot 2 = 18"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-tich-2",
@@ -3019,7 +3418,11 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Trong một tích, nếu có một thừa số chia hết cho 2 thì tích chia hết cho 2. Tích 8 · 9 có thừa số 8 chia hết cho 2.",
+        "tex": "8 \\cdot 9 = 72"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-tich-5",
@@ -3071,7 +3474,20 @@
         }
       ],
       "answer": ["b", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Chỉ cần một thừa số chia hết cho 5 là tích chia hết cho 5. Tích 25 · 4 có thừa số 25 và tích 7 · 10 có thừa số 10, đều chia hết cho 5.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "6 và 4 đều không chia hết cho 5 (tích là 24)."
+          },
+          {
+            "optionId": "d",
+            "text": "3 và 9 đều không chia hết cho 5 (tích là 27)."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-tich-7",
@@ -3102,7 +3518,11 @@
           "text": " cho 7."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Trong một tích, nếu có một thừa số chia hết cho một số thì tích chia hết cho số đó. Thừa số 14 chia hết cho 7 nên tích 9 · 14 chia hết cho 7.",
+        "tex": "9 \\cdot 14 = 9 \\cdot 2 \\cdot 7"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.hop-banh-tui",
@@ -3130,6 +3550,10 @@
       },
       "check": {
         "expr": "(8:4)·7"
+      },
+      "explain": {
+        "text": "Số bánh là 7 · 8, mà thừa số 8 chia hết cho 4 nên tích chia hết cho 4: mỗi hộp xếp vừa 2 túi. Có 7 hộp thì dùng 7 · 2 = 14 túi.",
+        "tex": "7 \\cdot 8 : 4 = 7 \\cdot (8 : 4) = 7 \\cdot 2 = 14"
       }
     },
     {
@@ -3182,7 +3606,20 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Hai số cùng chia hết cho 2 thì tổng chia hết cho 2. Tổng 2 068 + 4 350 có hai số hạng tận cùng 8 và 0, cùng chia hết cho 2.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "3 117 tận cùng là 7, không chia hết cho 2; chỉ một số hạng chia hết nên tổng không chia hết."
+          },
+          {
+            "optionId": "c",
+            "text": "3 515 tận cùng là 5, không chia hết cho 2; chỉ một số hạng chia hết nên tổng không chia hết."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-hieu-5",
@@ -3234,7 +3671,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Hai số cùng chia hết cho 5 thì hiệu chia hết cho 5. Hiệu 3 250 − 1 140 có hai số tận cùng là 0, cùng chia hết cho 5.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 715 chia hết cho 5 nhưng 1 103 thì không; chỉ một số chia hết nên hiệu không chia hết."
+          },
+          {
+            "optionId": "d",
+            "text": "3 505 chia hết cho 5 nhưng 2 332 thì không; chỉ một số chia hết nên hiệu không chia hết."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-tong-hieu-2",
@@ -3286,7 +3736,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Hai số cùng chia hết cho 2 thì tổng và hiệu của chúng chia hết cho 2. 2 460 và 1 318 cùng chia hết cho 2, 5 846 và 2 410 cũng vậy.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "3 507 tận cùng là 7, không chia hết cho 2; chỉ một số chia hết nên hiệu không chia hết."
+          },
+          {
+            "optionId": "d",
+            "text": "4 531 tận cùng là 1, không chia hết cho 2; chỉ một số chia hết nên tổng không chia hết."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.gop-tien-25-32",
@@ -3331,7 +3794,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Nam có 25 nghìn, chia hết cho 5, nhưng Bình có 32 nghìn, tận cùng 2 nên không chia hết cho 5. Chỉ một trong hai số chia hết cho 5 thì tổng không chia hết cho 5, nên gộp lại sẽ thừa tiền.",
+        "tex": "25 + 32 = 57",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Chỉ 25 chia hết cho 5 là chưa đủ; còn 32 không chia hết nên tổng 57 không chia hết."
+          },
+          {
+            "optionId": "c",
+            "text": "25 tận cùng là 5 nên 25 chia hết cho 5; vậy lý do này nói sai về 25."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-hieu-5",
@@ -3363,7 +3840,10 @@
           "text": " cho 5."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Chỉ một trong hai số chia hết cho 5 thì hiệu của chúng không chia hết cho 5. Số 4 130 chia hết cho 5 (tận cùng 0), còn 1 322 không (tận cùng 2), nên hiệu không chia hết cho 5."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.xep-tong-3410",
@@ -3406,7 +3886,11 @@
             "text": "Hai số hạng đều chia hết cho 2 nên tổng chia hết cho 2"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Bạn xét từng số hạng bằng chữ số tận cùng. Hai số cùng chia hết cho 2 thì tổng chia hết cho 2. Cách này nhanh hơn việc tính ra tổng.",
+        "tex": "3\\,410 + 1\\,274 = 4\\,684"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.tong-10-5",
@@ -3437,6 +3921,10 @@
       },
       "check": {
         "expr": "1"
+      },
+      "explain": {
+        "text": "Luỹ thừa của 10 viết bằng một chữ số 1 và các chữ số 0. Số 10⁵ là 100 000, nên tổng các chữ số chỉ là 1.",
+        "tex": "10^{5} = 100\\,000,\\quad 1 + 0 + 0 + 0 + 0 + 0 = 1"
       }
     },
     {
@@ -3486,7 +3974,21 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số 10⁵ + 2 là 100 002, có tổng các chữ số là 1 + 2 = 3. Tổng này chia hết cho 3 nên cả số chia hết cho 3.",
+        "tex": "10^{5} + 2 = 100\\,002,\\quad 1 + 0 + 0 + 0 + 0 + 2 = 3",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số mũ 5 không phải một chữ số của số 100 002 nên không đem cộng vào tổng."
+          },
+          {
+            "optionId": "c",
+            "text": "Chỉ xét số 2 là chưa đủ; phải xét tổng các chữ số của cả số 100 002."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-10-9",
@@ -3538,7 +4040,17 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Luỹ thừa của 10 có tổng các chữ số bằng 1. Cộng thêm một chữ số thì tổng các chữ số là 1 cộng với chữ số đó. Với 10⁵ + 8 ta có 1 + 8 = 9, chia hết cho 9.",
+        "tex": "10^{5} + 8 = 100\\,008",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "1 + 5 = 6 chia hết cho 3 nhưng không chia hết cho 9."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-nhieu-10-3",
@@ -3590,7 +4102,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Luỹ thừa của 10 cộng một chữ số có tổng các chữ số là 1 cộng với chữ số đó. 10⁴ + 8 có 1 + 8 = 9 và 10⁶ + 2 có 1 + 2 = 3, đều chia hết cho 3.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "1 + 6 = 7, không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "1 + 1 = 2, không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.hop-bi-102",
@@ -3642,7 +4167,21 @@
         }
       ],
       "answer": ["b"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số bi sau khi thêm phải chia hết cho 3, tức tổng các chữ số của nó chia hết cho 3. Số 100 có tổng 1, thêm 2 viên thành 102 có tổng 1 + 0 + 2 = 3, chia hết cho 3.",
+        "tex": "102 : 3 = 34",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Thêm 1 viên thành 101, tổng các chữ số là 2, không chia hết cho 3."
+          },
+          {
+            "optionId": "c",
+            "text": "Thêm 3 viên thành 103, tổng các chữ số là 4, không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-10-5",
@@ -3674,7 +4213,10 @@
           "text": " cho 9."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Số 10³ + 5 là 1 005, có tổng các chữ số là 1 + 0 + 0 + 5 = 6. Số 6 không chia hết cho 9 nên 1 005 không chia hết cho 9."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.tim-chu-so-5a",
@@ -3705,6 +4247,10 @@
       },
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "Số chia hết cho 5 thì chữ số tận cùng là 0 hoặc 5. Đề bảo a lớn hơn 0 nên a = 5.",
+        "tex": "345 : 5 = 69"
       }
     },
     {
@@ -3736,6 +4282,10 @@
       },
       "check": {
         "expr": "5"
+      },
+      "explain": {
+        "text": "Chia hết cho 5 nên b là 0 hoặc 5. Với b = 0, tổng 2 + 8 + 0 = 10 không chia hết cho 3. Với b = 5, tổng 2 + 8 + 5 = 15 chia hết cho 3, nên b = 5.",
+        "tex": "285 : 3 = 95,\\quad 285 : 5 = 57"
       }
     },
     {
@@ -3768,6 +4318,10 @@
       },
       "check": {
         "expr": "8"
+      },
+      "explain": {
+        "text": "Đề cho số chia hết cho 9 nên ta xét tổng các chữ số. Tổng 4 + d + 6 = 10 + d phải chia hết cho 9, mà 10 + 8 = 18 nên d = 8.",
+        "tex": "4 + 8 + 6 = 18"
       }
     },
     {
@@ -3824,7 +4378,20 @@
         }
       ],
       "answer": ["b", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Đề cho số chia hết cho 3 nên ta xét tổng các chữ số: 5 + x + 1 = 6 + x phải chia hết cho 3. Với x = 3 được 9 và với x = 6 được 12, đều chia hết cho 3.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "5 + 2 + 1 = 8, không chia hết cho 3."
+          },
+          {
+            "optionId": "d",
+            "text": "5 + 7 + 1 = 13, không chia hết cho 3."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.o-trong-7-5",
@@ -3854,6 +4421,10 @@
         "divisor": 9,
         "divisor2": 0,
         "fits": 1
+      },
+      "explain": {
+        "text": "Ta có 7 + 5 = 12. Cần thêm một chữ số để tổng ba chữ số chia hết cho 9: 12 + 6 = 18, nên chữ số đặt vào là 6.",
+        "tex": "7 + 6 + 5 = 18,\\quad 765 : 9 = 85"
       }
     },
     {
@@ -3886,6 +4457,10 @@
       },
       "check": {
         "expr": "9-(1+2)"
+      },
+      "explain": {
+        "text": "Tích có thừa số 9 nên chia hết cho 9, vậy số 12d chia hết cho 9. Khi đó tổng 1 + 2 + d = 3 + d chia hết cho 9, nên 3 + d = 9 và d = 6.",
+        "tex": "126 = 9 \\cdot 14"
       }
     },
     {
@@ -3938,7 +4513,16 @@
         }
       ],
       "answer": ["c"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Điểm mỗi câu đúng (6) và điểm trừ mỗi câu sai (3) đều chia hết cho 3. Vậy điểm cả bài phải chia hết cho 3. Chỉ có 47 không chia hết cho 3 (4 + 7 = 11), nên 47 chắc chắn tính sai.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "39 là số lẻ nhưng chia hết cho 3 (3 + 9 = 12), nên vẫn có thể là điểm đúng."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.hoc-tinh-sai-52",
@@ -3983,7 +4567,20 @@
         }
       ],
       "answer": ["a"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Điểm mỗi câu đúng (6) và điểm trừ mỗi câu sai (3) đều chia hết cho 3. Vậy điểm cả bài phải chia hết cho 3. Số 52 có tổng các chữ số là 5 + 2 = 7, không chia hết cho 3, nên Hà tính sai.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Bài này chỉ cần xét chia hết cho 3; 52 chia hết cho 2 không giúp kết luận gì."
+          },
+          {
+            "optionId": "c",
+            "text": "52 không chia hết cho 3 vì 5 + 2 = 7."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.diem-nhieu-12",
@@ -4035,7 +4632,20 @@
         }
       ],
       "answer": ["b", "d"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Điểm mỗi câu đúng (12) và điểm trừ mỗi câu sai (9) đều chia hết cho 3, nên điểm cả bài chia hết cho 3. Hai số 40 và 52 không chia hết cho 3 (4 + 0 = 4 và 5 + 2 = 7), nên chắc chắn tính sai.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "27 chia hết cho 3 (2 + 7 = 9) nên không thể nói chắc chắn là sai."
+          },
+          {
+            "optionId": "c",
+            "text": "45 chia hết cho 3 (4 + 5 = 9) nên không thể nói chắc chắn là sai."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-diem-3",
@@ -4066,7 +4676,10 @@
           "text": " cho 3."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Điểm mỗi câu đúng (6) và điểm trừ mỗi câu sai (3) đều chia hết cho 3. Vì vậy điểm cả bài luôn chia hết cho 3."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.diem-nam-83",
@@ -4118,7 +4731,10 @@
         }
       ],
       "answer": ["d"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Điểm mỗi câu đúng (15) và điểm trừ mỗi câu sai (6) đều chia hết cho 3. Vậy điểm cả bài phải chia hết cho 3. Số 83 có tổng các chữ số là 8 + 3 = 11, không chia hết cho 3, nên 83 chắc chắn tính sai."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.tien-but-40",
@@ -4178,7 +4794,21 @@
         }
       ],
       "answer": ["d"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Tiền vở chia hết cho 5 và tổng 40 cũng chia hết cho 5, nên tiền bút phải chia hết cho 5. Trong các số đã cho chỉ có 35 tận cùng là 5.",
+        "tex": "40 - 35 = 5",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "14 tận cùng là 4, không chia hết cho 5; tiền vở còn lại 26 nghìn không chia hết cho 5."
+          },
+          {
+            "optionId": "c",
+            "text": "28 tận cùng là 8, không chia hết cho 5; tiền vở còn lại 12 nghìn không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.mua-vo-45",
@@ -4213,6 +4843,10 @@
       },
       "check": {
         "expr": "(45-7·5):5"
+      },
+      "explain": {
+        "text": "Tiền vở chia hết cho 5 và tổng 45 cũng chia hết cho 5, nên tiền bút chia hết cho 5. Tiền bút là 7, 14, 21, 28, 35 hoặc 42 nghìn đồng, chỉ có 35 chia hết cho 5. Tiền vở là 45 − 35 = 10 nghìn đồng, tức 2 quyển.",
+        "tex": "45 - 35 = 10,\\quad 10 : 5 = 2"
       }
     },
     {
@@ -4265,7 +4899,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Tiền vở chia hết cho 5 và tổng 60 cũng chia hết cho 5, nên tiền bút phải chia hết cho 5. Trong các số đã cho, 15 và 35 chia hết cho 5.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "28 không chia hết cho 5; tiền vở còn lại 32 nghìn không chia hết cho 5."
+          },
+          {
+            "optionId": "d",
+            "text": "42 không chia hết cho 5; tiền vở còn lại 18 nghìn không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dien-but-5",
@@ -4296,7 +4943,10 @@
           "text": " cho 5."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": ["chia hết", "không chia hết"],
+      "explain": {
+        "text": "Tiền bút bằng tổng tiền trừ tiền vở. Hai số cùng chia hết cho 5 thì hiệu của chúng chia hết cho 5, nên tiền bút chia hết cho 5."
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.mua-vo-65",
@@ -4332,6 +4982,10 @@
       },
       "check": {
         "expr": "9·5"
+      },
+      "explain": {
+        "text": "Tiền vở chia hết cho 5 và tổng 65 cũng chia hết cho 5, nên tiền bút chia hết cho 5. Tiền bút là 9, 18, 27, 36, 45 hoặc 54 nghìn đồng, chỉ có 45 chia hết cho 5.",
+        "tex": "65 - 45 = 20 = 5 \\cdot 4"
       }
     },
     {
@@ -4377,7 +5031,16 @@
         }
       ],
       "answer": ["c"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số chia hết cho 5 phải có chữ số tận cùng là 0 hoặc 5. Trong các chữ số 1, 4 và 5, chỉ có 5, nên 5 đứng cuối.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chữ số 4 đứng cuối thì số chia hết cho 2, không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.dem-so-124",
@@ -4404,6 +5067,9 @@
       },
       "check": {
         "expr": "4"
+      },
+      "explain": {
+        "text": "Số chia hết cho 2 phải tận cùng là 2 hoặc 4, không thể tận cùng 1. Cuối là 2 có hai số (142 và 412), cuối là 4 có hai số (124 và 214). Cộng lại được 4 số."
       }
     },
     {
@@ -4456,7 +5122,20 @@
         }
       ],
       "answer": ["a", "c"],
-      "multiple": true
+      "multiple": true,
+      "explain": {
+        "text": "Số chia hết cho 5 phải tận cùng là 0 hoặc 5; trong các chữ số 1, 3 và 5, chỉ có 5. Vậy 5 đứng cuối: 135 và 315.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "153 tận cùng là 3, không chia hết cho 5."
+          },
+          {
+            "optionId": "d",
+            "text": "351 tận cùng là 1, không chia hết cho 5."
+          }
+        ]
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.lap-so-014",
@@ -4483,6 +5162,9 @@
       },
       "check": {
         "expr": "3"
+      },
+      "explain": {
+        "text": "Số chia hết cho 2 phải tận cùng là 0 hoặc 4. Cuối là 0 có 140 và 410; cuối là 4 có 104, còn 014 bị loại vì chữ số 0 không đứng đầu. Vậy có 3 số."
       }
     },
     {
@@ -4526,7 +5208,11 @@
             "text": "Được hai số là 375 và 735"
           }
         }
-      ]
+      ],
+      "explain": {
+        "text": "Muốn lập số chia hết cho 5, ta chọn chữ số tận cùng trước, rồi xếp các chữ số còn lại vào chỗ đứng trước. Chữ số 5 đứng cuối, còn 3 và 7 xếp đầu theo hai cách: 375 và 735.",
+        "tex": "375 : 5 = 75,\\quad 735 : 5 = 147"
+      }
     },
     {
       "id": "dau-hieu-chia-het.ex.chon-lap-2-5",
@@ -4571,7 +5257,21 @@
         }
       ],
       "answer": ["c"],
-      "multiple": false
+      "multiple": false,
+      "explain": {
+        "text": "Số chia hết cho cả 2 và 5 phải tận cùng là 0. Với các chữ số 0, 2 và 5, số đó là 250.",
+        "tex": "250 : 2 = 125,\\quad 250 : 5 = 50",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "205 tận cùng là 5, chia hết cho 5 nhưng không chia hết cho 2."
+          },
+          {
+            "optionId": "b",
+            "text": "502 tận cùng là 2, chia hết cho 2 nhưng không chia hết cho 5."
+          }
+        ]
+      }
     }
   ],
   "sticker": {
