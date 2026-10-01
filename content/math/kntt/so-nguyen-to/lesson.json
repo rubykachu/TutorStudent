@@ -323,7 +323,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số không chia hết cho 2, 3, 5 chưa chắc là số nguyên tố. Số 77 không chia hết cho 2, 3, 5, nhưng 77 = 7 · 11 nên 77 vẫn là hợp số."
+              "text": "Số 51 có tổng chữ số là 6, nên 51 chia hết cho 3. Nhưng số không chia hết cho 2, 3, 5 chưa chắc là số nguyên tố: 77 = 7 · 11 vẫn là hợp số."
             },
             {
               "type": "visual",
@@ -3860,7 +3860,7 @@
         },
         {
           "type": "note",
-          "text": "Nhóm ít bi hơn có thể có ít nhất bao nhiêu viên?"
+          "text": "Một nhóm có thể có ít nhất bao nhiêu viên bi?"
         },
         {
           "type": "visual",
@@ -3884,7 +3884,7 @@
         "expr": "28-23"
       },
       "explain": {
-        "text": "Thử số nguyên tố nhỏ nhất trước: 28 − 2 = 26 và 28 − 3 = 25 đều là hợp số. 28 − 5 = 23 có trong bảng số nguyên tố, nên nhóm ít bi hơn có thể chỉ có 5 viên.",
+        "text": "Thử số nguyên tố nhỏ nhất trước: 28 − 2 = 26 và 28 − 3 = 25 đều là hợp số. 28 − 5 = 23 có trong bảng số nguyên tố, nên một nhóm có thể chỉ có 5 viên bi.",
         "tex": "28 = 5 + 23"
       }
     },
