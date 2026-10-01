@@ -905,7 +905,25 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-tong-tien-keo-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-tong-tien-keo-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Có cả nhân và cộng thì làm nhân trước, cộng sau. Ba gói kẹo giá 3 · 4 = 12 nghìn đồng, rồi cộng 6 nghìn đồng tiền nước.",
+        "tex": "\\begin{aligned} &\\concept{pink}{3 \\cdot 4}+6 \\\\ &= \\concept{pink}{12+6} \\\\ &= \\concept{amber}{18} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "30 là kết quả khi cộng 4 + 6 trước rồi nhân 3, như thể mua 3 chai nước; nhưng chỉ có 1 chai."
+          },
+          {
+            "optionId": "c",
+            "text": "13 là 3 + 4 + 6, bỏ sót việc 3 gói kẹo phải nhân với giá 4."
+          },
+          {
+            "optionId": "d",
+            "text": "12 mới là tiền ba gói kẹo, chưa cộng 6 nghìn đồng tiền nước."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-hoa-don-but",
@@ -934,7 +952,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hoa-don-but-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hoa-don-but-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Làm nhân trước, cộng sau. Bốn bút giá 4 · 3 = 12 nghìn đồng, cộng 7 nghìn đồng tiền sổ được 19 nghìn đồng.",
+        "tex": "\\begin{aligned} &\\concept{pink}{4 \\cdot 3}+7 \\\\ &= \\concept{pink}{12+7} \\\\ &= \\concept{amber}{19} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-tinh-hoa-don",
@@ -991,7 +1013,25 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-tinh-hoa-don-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-tinh-hoa-don-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai hộp bút giá 2 · 9 nghìn đồng, cộng thêm 3 nghìn đồng tiền thước, nên viết 3 + 2 · 9. Khi tính, làm nhân trước rồi cộng.",
+        "tex": "\\begin{aligned} &3+\\concept{pink}{2 \\cdot 9} \\\\ &= \\concept{pink}{3+18} \\\\ &= \\concept{amber}{21} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Phép này cộng 3 + 2 trước, nhưng 2 là số hộp bút chứ không phải số tiền."
+          },
+          {
+            "optionId": "c",
+            "text": "Phép này chỉ cộng, bỏ sót việc 2 hộp bút phải nhân với giá 9."
+          },
+          {
+            "optionId": "d",
+            "text": "Phép này nhân cả số tiền thước, nhưng thước chỉ có 1 cái nên 3 nghìn đồng chỉ cần cộng."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-hoa-don-keo",
@@ -1020,7 +1060,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hoa-don-keo-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hoa-don-keo-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Làm nhân trước, cộng sau. Sáu gói kẹo giá 6 · 2 = 12 nghìn đồng, cộng 8 nghìn đồng tiền sữa được 20 nghìn đồng.",
+        "tex": "\\begin{aligned} &\\concept{pink}{6 \\cdot 2}+8 \\\\ &= \\concept{pink}{12+8} \\\\ &= \\concept{amber}{20} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.noi-dau-voi-ten",
@@ -1118,7 +1162,10 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Mỗi dấu có một tên: + là dấu cộng, − là dấu trừ, · là dấu nhân, : là dấu chia. Lớp 6 viết phép nhân bằng dấu chấm ở giữa hai số, phép chia bằng hai chấm."
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.viet-tu-loi",
@@ -1170,7 +1217,25 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Viết lần lượt từng số và từng dấu theo thứ tự đọc: chín, dấu nhân, bốn, dấu trừ, sáu.",
+        "tex": "9 \\cdot 4 - 6",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Dấu : đọc là chia, còn lời đọc ở đây là nhân."
+          },
+          {
+            "optionId": "c",
+            "text": "Dấu + đọc là cộng, còn lời đọc ở đây là nhân."
+          },
+          {
+            "optionId": "d",
+            "text": "Lời đọc có chín đứng đầu, nhưng biểu thức này đọc là chín trừ bốn nhân sáu."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-ten-dau",
@@ -1219,7 +1284,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Đọc từ trái sang phải, từng số và từng dấu. Dấu : đọc là chia, dấu + đọc là cộng.",
+        "tex": "12 : 3 + 7"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.noi-loi-voi-bieu-thuc",
@@ -1306,7 +1375,10 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Đọc lần lượt từng số và dấu theo đúng thứ tự. Năm nhân hai cộng ba là 5 · 2 + 3, còn 5 + 2 · 3 đọc là năm cộng hai nhân ba."
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-dau-tien",
@@ -1330,7 +1402,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-dau-tien-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-dau-tien-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Chỉ có cộng và trừ thì làm từ trái sang phải. Phép tính bên trái nhất là 12 − 5, nên làm nó trước.",
+        "tex": "\\begin{aligned} &\\concept{pink}{12-5}+4 \\\\ &= \\concept{pink}{7+4} \\\\ &= \\concept{amber}{11} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-cong-tru-1",
@@ -1363,7 +1439,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-cong-tru-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-cong-tru-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Chỉ có cộng và trừ thì làm từ trái sang phải. Làm 9 + 15 = 24 trước, rồi trừ 6 được 18.",
+        "tex": "\\begin{aligned} &\\concept{pink}{9+15}-6 \\\\ &= \\concept{pink}{24-6} \\\\ &= \\concept{amber}{18} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-cong-tru",
@@ -1412,7 +1492,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-cong-tru-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-cong-tru-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Chỉ có cộng và trừ thì làm từ trái sang phải. Làm 50 − 20 trước, rồi cộng 10, cuối cùng trừ 5.",
+        "tex": "\\begin{aligned} &\\concept{pink}{50-20}+10-5 \\\\ &= \\concept{pink}{30+10}-5 \\\\ &= \\concept{pink}{40-5} \\\\ &= \\concept{amber}{35} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-buoc-cong-tru",
@@ -1459,7 +1543,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-buoc-cong-tru-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-buoc-cong-tru-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Chỉ có cộng và trừ thì làm từ trái sang phải. Làm 18 − 7 = 11 trước, rồi 11 + 9 = 20.",
+        "tex": "\\begin{aligned} &\\concept{pink}{18-7}+9 \\\\ &= \\concept{pink}{11+9} \\\\ &= \\concept{amber}{20} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-7-8",
@@ -1492,7 +1580,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-7-8-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-7-8-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tra bảng nhân: 7 · 8 = 56. Nếu quên, hãy nhớ dãy 5, 6, 7, 8: 56 = 7 · 8.",
+        "tex": "7 \\cdot 8 = \\concept{amber}{56}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chia-63-9",
@@ -1525,7 +1617,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chia-63-9-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chia-63-9-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn chia, hãy hỏi: nhân 9 với số nào thì được 63? Vì 9 · 7 = 63 nên 63 : 9 = 7.",
+        "tex": "63 : 9 = \\concept{amber}{7},\\quad 9 \\cdot 7 = 63"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-9-6",
@@ -1558,7 +1654,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-9-6-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-9-6-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Tra bảng nhân: 9 · 6 = 54. Cách nhẩm: 10 · 6 = 60, bớt đi một lần 6 thì còn 54.",
+        "tex": "9 \\cdot 6 = 10 \\cdot 6 - 6 = 60 - 6 = \\concept{amber}{54}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-chia-nhan",
@@ -1603,7 +1703,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Muốn chia, hãy hỏi: nhân 9 với số nào thì được 72? Vì 9 · 8 = 72 nên 72 : 9 = 8, cả hai chỗ trống đều là 8.",
+        "tex": "72 : 9 = \\concept{amber}{8},\\quad 9 \\cdot 8 = 72"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-chia-tuong-ung",
@@ -1651,7 +1755,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Biết 8 · 6 = 48 thì chia 48 cho 6 sẽ được 8, vì 6 · 8 = 48.",
+        "tex": "48 : 6 = \\concept{amber}{8}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "48 : 8 = 6, đó là thừa số còn lại của phép nhân, không phải 8."
+          },
+          {
+            "optionId": "c",
+            "text": "48 : 4 = 12; số 4 không có trong phép nhân 8 · 6 = 48."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-11-7",
@@ -1684,7 +1802,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-11-7-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-11-7-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tách 11 thành 10 và 1, nhân từng phần với 7 rồi cộng lại. 10 · 7 = 70 và 1 · 7 = 7, cộng được 77.",
+        "tex": "11 \\cdot 7 = 10 \\cdot 7 + 1 \\cdot 7 = 70 + 7 = \\concept{amber}{77}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-13-4",
@@ -1717,7 +1839,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-13-4-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-13-4-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Tách 13 thành 10 và 3, nhân từng phần với 4 rồi cộng lại. 10 · 4 = 40 và 3 · 4 = 12, cộng được 52.",
+        "tex": "13 \\cdot 4 = 10 \\cdot 4 + 3 \\cdot 4 = 40 + 12 = \\concept{amber}{52}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.nhan-25-3",
@@ -1750,7 +1876,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-25-3-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-25-3-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Tách 25 thành 20 và 5, nhân từng phần với 3 rồi cộng lại. 20 · 3 = 60 và 5 · 3 = 15, cộng được 75.",
+        "tex": "25 \\cdot 3 = 20 \\cdot 3 + 5 \\cdot 3 = 60 + 15 = \\concept{amber}{75}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-tach-chuc",
@@ -1811,7 +1941,25 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-tach-chuc-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-tach-chuc-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Tách 26 thành 20 và 6, rồi nhân cả hai phần với 3. 20 · 3 = 60 và 6 · 3 = 18, cộng được 78.",
+        "tex": "26 \\cdot 3 = 20 \\cdot 3 + 6 \\cdot 3 = 60 + 18 = \\concept{amber}{78}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Cách này chỉ nhân 20 với 3, quên nhân 6 với 3."
+          },
+          {
+            "optionId": "c",
+            "text": "Chữ số 2 của 26 là 2 chục, tức là 20, nên không viết là 2 · 3."
+          },
+          {
+            "optionId": "d",
+            "text": "Cách này chỉ nhân 6 với 3, quên nhân 20 với 3."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-tach-chuc",
@@ -1861,7 +2009,11 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Tách 15 thành 10 và 5, nhân từng phần với 4 rồi cộng lại. 10 · 4 = 40 và 5 · 4 = 20, cộng được 60.",
+        "tex": "15 \\cdot 4 = 10 \\cdot 4 + 5 \\cdot 4 = 40 + 20 = \\concept{amber}{60}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-nhan-chia",
@@ -1885,7 +2037,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-nhan-chia-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-nhan-chia-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Chỉ có nhân và chia thì làm từ trái sang phải. Phép tính bên trái nhất là 4 · 6, nên làm nó trước.",
+        "tex": "\\begin{aligned} &\\concept{pink}{4 \\cdot 6}:3 \\\\ &= \\concept{pink}{24:3} \\\\ &= \\concept{amber}{8} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-nhan-chia-1",
@@ -1918,7 +2074,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-nhan-chia-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-nhan-chia-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Chỉ có nhân và chia thì làm từ trái sang phải. Làm 84 : 7 = 12 trước, rồi nhân 5 được 60.",
+        "tex": "\\begin{aligned} &\\concept{pink}{84:7} \\cdot 5 \\\\ &= \\concept{pink}{12 \\cdot 5} \\\\ &= \\concept{amber}{60} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-nhan-chia",
@@ -1967,7 +2127,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-nhan-chia-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-nhan-chia-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Chỉ có nhân và chia thì làm từ trái sang phải. Làm 3 · 8 trước, rồi chia 6, cuối cùng nhân 5.",
+        "tex": "\\begin{aligned} &\\concept{pink}{3 \\cdot 8}:6 \\cdot 5 \\\\ &= \\concept{pink}{24:6} \\cdot 5 \\\\ &= \\concept{pink}{4 \\cdot 5} \\\\ &= \\concept{amber}{20} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-ket-qua-nhan-chia",
@@ -2028,7 +2192,21 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-ket-qua-nhan-chia-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-ket-qua-nhan-chia-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Chỉ có nhân và chia thì làm từ trái sang phải. Làm 100 : 5 = 20 trước, rồi nhân 2 được 40.",
+        "tex": "\\begin{aligned} &\\concept{pink}{100:5} \\cdot 2 \\\\ &= \\concept{pink}{20 \\cdot 2} \\\\ &= \\concept{amber}{40} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "10 có được khi nhân 5 · 2 trước, nhưng phép chia đứng bên trái nên làm trước."
+          },
+          {
+            "optionId": "d",
+            "text": "20 mới là kết quả của 100 : 5, còn phải nhân tiếp với 2."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-hon-hop",
@@ -2052,7 +2230,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-hon-hop-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-hon-hop-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Có cả nhân và cộng, trừ thì làm nhân, chia trước. Phép nhân 6 · 2 làm trước, không phải 8 + 6.",
+        "tex": "\\begin{aligned} &8+\\concept{pink}{6 \\cdot 2}-3 \\\\ &= \\concept{pink}{8+12}-3 \\\\ &= \\concept{pink}{20-3} \\\\ &= \\concept{amber}{17} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-hon-hop-1",
@@ -2085,7 +2267,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hon-hop-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-hon-hop-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Có cả nhân và cộng, trừ thì làm nhân trước. Làm 4 · 5 = 20, rồi cộng, trừ từ trái sang phải: 30 − 20 + 6 = 16.",
+        "tex": "\\begin{aligned} &30-\\concept{pink}{4 \\cdot 5}+6 \\\\ &= \\concept{pink}{30-20}+6 \\\\ &= \\concept{pink}{10+6} \\\\ &= \\concept{amber}{16} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-lam-truoc",
@@ -2129,7 +2315,17 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-lam-truoc-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-lam-truoc-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Có cả chia và cộng thì làm chia trước, cộng sau. Nên 9 : 3 làm đầu tiên.",
+        "tex": "\\begin{aligned} &14+\\concept{pink}{9:3} \\\\ &= \\concept{pink}{14+3} \\\\ &= \\concept{amber}{17} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "14 + 9 là phép cộng, mà nhân, chia phải làm trước cộng, trừ."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-nhieu-nhan-chia-truoc",
@@ -2188,7 +2384,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Biểu thức có nhân hoặc chia thì làm phép nhân hoặc chia trước. Ba biểu thức đúng đều có nhân hoặc chia, được khoanh hồng.",
+        "tex": "\\begin{aligned} 8 + \\concept{pink}{2 \\cdot 5} \\\\ 9 - \\concept{pink}{6 : 3} \\\\ \\concept{pink}{12 : 4} \\cdot 3 \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "4 + 7 − 2 chỉ có cộng và trừ, nên làm từ trái sang phải, bắt đầu từ 4 + 7."
+          },
+          {
+            "optionId": "e",
+            "text": "10 − 3 + 5 chỉ có trừ và cộng, nên làm từ trái sang phải, bắt đầu từ 10 − 3."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-hon-hop",
@@ -2237,7 +2447,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-hon-hop-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-hon-hop-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhân làm trước cộng và trừ, nên bước đầu là 4 · 3 = 12. Rồi cộng, trừ từ trái sang phải: 10 + 12 = 22, sau đó 22 − 6 = 16.",
+        "tex": "\\begin{aligned} &10+\\concept{pink}{4 \\cdot 3}-6 \\\\ &= \\concept{pink}{10+12}-6 \\\\ &= \\concept{pink}{22-6} \\\\ &= \\concept{amber}{16} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-buoc-hon-hop",
@@ -2293,7 +2507,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-buoc-hon-hop-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-buoc-hon-hop-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Làm nhân trước: 3 · 5 = 15. Rồi cộng, trừ từ trái sang phải: 25 − 15 = 10, sau đó 10 + 8 = 18.",
+        "tex": "\\begin{aligned} &25-\\concept{pink}{3 \\cdot 5}+8 \\\\ &= \\concept{pink}{25-15}+8 \\\\ &= \\concept{pink}{10+8} \\\\ &= \\concept{amber}{18} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac",
@@ -2317,7 +2535,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-ngoac-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-ngoac-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Trong ngoặc làm trước. Phép tính 3 + 4 nằm trong ngoặc nên làm đầu tiên, trước cả phép nhân.",
+        "tex": "\\begin{aligned} &2 \\cdot \\concept{pink}{(3+4)}+5 \\\\ &= \\concept{pink}{2 \\cdot 7}+5 \\\\ &= \\concept{pink}{14+5} \\\\ &= \\concept{amber}{19} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-tron-1",
@@ -2350,7 +2572,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-tron-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-tron-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Trong ngoặc làm trước: 7 + 5 = 12. Rồi nhân 4 · 12 = 48, cuối cùng trừ 20 được 28.",
+        "tex": "\\begin{aligned} &4 \\cdot \\concept{pink}{(7+5)}-20 \\\\ &= \\concept{pink}{4 \\cdot 12}-20 \\\\ &= \\concept{pink}{48-20} \\\\ &= \\concept{amber}{28} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac-2",
@@ -2394,7 +2620,17 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-ngoac-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-ngoac-2-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Trong ngoặc làm trước, nên 2 + 7 làm đầu tiên rồi mới chia.",
+        "tex": "\\begin{aligned} &36:\\concept{pink}{(2+7)} \\\\ &= \\concept{pink}{36:9} \\\\ &= \\concept{amber}{4} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "36 : 2 sẽ làm trước nếu không có ngoặc, nhưng 2 + 7 nằm trong ngoặc nên làm trước."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-nhieu-trong-ngoac-truoc",
@@ -2453,7 +2689,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Phép tính trong ngoặc luôn làm đầu tiên. Ba biểu thức đúng đều có ngoặc, phép trong ngoặc được khoanh hồng.",
+        "tex": "\\begin{aligned} 6 \\cdot \\concept{pink}{(2 + 3)} \\\\ \\concept{pink}{(9 - 4)} \\cdot 2 \\\\ 3 \\cdot 5 - \\concept{pink}{(8 - 6)} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "8 + 3 · 2 không có ngoặc, nên làm nhân 3 · 2 trước."
+          },
+          {
+            "optionId": "d",
+            "text": "20 − 12 : 4 không có ngoặc, nên làm chia 12 : 4 trước."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-ngoac",
@@ -2502,7 +2752,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-ngoac-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-ngoac-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong ngoặc làm trước: 9 − 4 = 5. Rồi nhân 5 · 5 = 25, cuối cùng cộng 6 được 31.",
+        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{(9-4)}+6 \\\\ &= \\concept{pink}{5 \\cdot 5}+6 \\\\ &= \\concept{pink}{25+6} \\\\ &= \\concept{amber}{31} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.dien-buoc-ngoac",
@@ -2558,7 +2812,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-buoc-ngoac-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.dien-buoc-ngoac-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong ngoặc làm trước: 15 − 6 = 9. Rồi nhân 9 · 4 = 36, cuối cùng trừ 10 được 26.",
+        "tex": "\\begin{aligned} &\\concept{pink}{(15-6)} \\cdot 4-10 \\\\ &= \\concept{pink}{9 \\cdot 4}-10 \\\\ &= \\concept{pink}{36-10} \\\\ &= \\concept{amber}{26} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac-long",
@@ -2582,7 +2840,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-ngoac-long-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-ngoac-long-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Ngoặc lồng nhau thì làm ngoặc tròn trước, rồi ngoặc vuông. Phép 8 − 6 nằm trong ngoặc tròn nên làm đầu tiên.",
+        "tex": "\\begin{aligned} &5+[3 \\cdot \\concept{pink}{(8-6)}] \\\\ &= 5+\\concept{pink}{[3 \\cdot 2]} \\\\ &= \\concept{pink}{5+6} \\\\ &= \\concept{amber}{11} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-long-1",
@@ -2615,7 +2877,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Làm từ ngoặc trong ra ngoài: ngoặc tròn 8 − 5 = 3 trước, rồi ngoặc vuông 3 · 3 = 9. Cuối cùng 20 − 9 = 11.",
+        "tex": "\\begin{aligned} &20-[3 \\cdot \\concept{pink}{(8-5)}] \\\\ &= 20-\\concept{pink}{[3 \\cdot 3]} \\\\ &= \\concept{pink}{20-9} \\\\ &= \\concept{amber}{11} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-long-3",
@@ -2648,7 +2914,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-3-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-3-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ngoặc tròn 10 − 6 = 4 làm trước. Trong ngoặc vuông, nhân trước trừ sau: 3 · 4 = 12, rồi 12 − 4 = 8. Còn lại 2 + 8 : 4 = 2 + 2 = 4.",
+        "tex": "\\begin{aligned} &2+[3 \\cdot \\concept{pink}{(10-6)}-4]:4 \\\\ &= 2+[\\concept{pink}{3 \\cdot 4}-4]:4 \\\\ &= 2+\\concept{pink}{[12-4]}:4 \\\\ &= 2+\\concept{pink}{8:4} \\\\ &= \\concept{pink}{2+2} \\\\ &= \\concept{amber}{4} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.noi-ngoac-voi-ten",
@@ -2728,7 +2998,11 @@
           }
         ]
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Ngoặc tròn ( ) cong tròn, ngoặc vuông [ ] có góc vuông, ngoặc nhọn { } có đầu nhọn ở giữa.",
+        "tex": "\\concept{teal}{( )},\\quad \\concept{sky}{[ ]},\\quad \\concept{lime}{\\{ \\}}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-thu-tu-ngoac",
@@ -2772,7 +3046,11 @@
         ],
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-thu-tu-ngoac-goi-y"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Ngoặc lồng nhau thì làm từ trong ra ngoài. Ngoặc tròn làm trước, rồi ngoặc vuông, cuối cùng ngoặc nhọn.",
+        "tex": "\\concept{teal}{( )} \\to \\concept{sky}{[ ]} \\to \\concept{lime}{\\{ \\}}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-long-2",
@@ -2805,7 +3083,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-long-2-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Làm từ ngoặc trong ra ngoài: ngoặc tròn 5 + 3 = 8, ngoặc vuông 12 − 8 = 4, ngoặc nhọn 1 + 4 = 5. Cuối cùng nhân 4 · 5 = 20.",
+        "tex": "\\begin{aligned} &4 \\cdot \\{1+[12-\\concept{pink}{(5+3)}]\\} \\\\ &= 4 \\cdot \\{1+\\concept{pink}{[12-8]}\\} \\\\ &= 4 \\cdot \\concept{pink}{\\{1+4\\}} \\\\ &= \\concept{pink}{4 \\cdot 5} \\\\ &= \\concept{amber}{20} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-luy-thua",
@@ -2829,7 +3111,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-luy-thua-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-luy-thua-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Có luỹ thừa thì làm luỹ thừa trước nhân, chia, rồi mới cộng, trừ. Nên 3² = 9 làm đầu tiên.",
+        "tex": "\\begin{aligned} &5+2 \\cdot \\concept{pink}{3^{2}} \\\\ &= 5+\\concept{pink}{2 \\cdot 9} \\\\ &= \\concept{pink}{5+18} \\\\ &= \\concept{amber}{23} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-luy-thua-1",
@@ -2862,7 +3148,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-luy-thua-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-luy-thua-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Làm luỹ thừa trước: 2² = 4. Rồi nhân 3 · 4 = 12, cuối cùng cộng, trừ từ trái sang phải: 4 + 12 − 5 = 11.",
+        "tex": "\\begin{aligned} &4+3 \\cdot \\concept{pink}{2^{2}}-5 \\\\ &= 4+\\concept{pink}{3 \\cdot 4}-5 \\\\ &= \\concept{pink}{4+12}-5 \\\\ &= \\concept{pink}{16-5} \\\\ &= \\concept{amber}{11} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-phep-luy-thua-2",
@@ -2913,7 +3203,21 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-luy-thua-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-phep-luy-thua-2-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Có luỹ thừa thì làm luỹ thừa trước, nên 2³ = 8 làm đầu tiên. Số mũ 3 thuộc về số 2 đứng ngay bên trái nó.",
+        "tex": "\\begin{aligned} &20-\\concept{pink}{2^{3}}:4 \\\\ &= 20-\\concept{pink}{8:4} \\\\ &= \\concept{pink}{20-2} \\\\ &= \\concept{amber}{18} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Phép trừ làm sau luỹ thừa và chia, nên 20 − 2 không làm đầu tiên."
+          },
+          {
+            "optionId": "c",
+            "text": "3 là số mũ của 2, không phải một số đem đi chia."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-nhieu-luy-thua-truoc",
@@ -2972,7 +3276,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Biểu thức có luỹ thừa thì làm luỹ thừa đầu tiên. Hai biểu thức đúng có 2² và 2³, được khoanh hồng.",
+        "tex": "\\begin{aligned} 4 + 3 \\cdot \\concept{pink}{2^{2}} \\\\ \\concept{pink}{2^{3}} - 6 : 3 \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "5 · 3 + 2 không có luỹ thừa; nhân 5 · 3 làm đầu tiên."
+          },
+          {
+            "optionId": "d",
+            "text": "18 − 2 · 4 không có luỹ thừa; nhân 2 · 4 làm đầu tiên."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-luy-thua",
@@ -3021,7 +3339,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-luy-thua-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-luy-thua-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Luỹ thừa làm trước: 2³ = 8. Rồi nhân 3 · 8 = 24, cuối cùng cộng 7 được 31.",
+        "tex": "\\begin{aligned} &7+3 \\cdot \\concept{pink}{2^{3}} \\\\ &= 7+\\concept{pink}{3 \\cdot 8} \\\\ &= \\concept{pink}{7+24} \\\\ &= \\concept{amber}{31} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-luy-thua-2",
@@ -3054,7 +3376,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-luy-thua-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-luy-thua-2-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Luỹ thừa làm trước: 2³ = 8 và 3² = 9. Rồi nhân 5 · 8 = 40, cuối cùng trừ 40 − 9 = 31.",
+        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{2^{3}}-\\concept{pink}{3^{2}} \\\\ &= \\concept{pink}{5 \\cdot 8}-9 \\\\ &= \\concept{pink}{40-9} \\\\ &= \\concept{amber}{31} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.thay-chu-2x-1",
@@ -3087,7 +3413,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.thay-chu-2x-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.thay-chu-2x-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Thay x bằng 3. Dấu nhân bị bỏ giữa số và chữ nên 2x là 2 · 3, không phải 23. Nhân trước rồi cộng: 2 · 3 + 1 = 7.",
+        "tex": "\\begin{aligned} &2x + 1 \\quad (x = 3) \\\\ &= \\concept{pink}{2 \\cdot 3}+1 \\\\ &= \\concept{pink}{6+1} \\\\ &= \\concept{amber}{7} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-chu-1",
@@ -3120,7 +3450,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-chu-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-chu-1-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Thay x bằng 5. 3x là 3 · 5 = 15, rồi cộng 4 được 19.",
+        "tex": "\\begin{aligned} &3x + 4 \\quad (x = 5) \\\\ &= \\concept{pink}{3 \\cdot 5}+4 \\\\ &= \\concept{pink}{15+4} \\\\ &= \\concept{amber}{19} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-chu-2",
@@ -3153,7 +3487,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-chu-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-chu-2-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Thay a bằng 6 và b bằng 3. Hai chữ viết liền nhau là phép nhân, nên a nhân b là 6 · 3 = 18, rồi trừ 4 được 14.",
+        "tex": "\\begin{aligned} &ab - 4 \\quad (a = 6,\\ b = 3) \\\\ &= \\concept{pink}{6 \\cdot 3}-4 \\\\ &= \\concept{pink}{18-4} \\\\ &= \\concept{amber}{14} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-chu-3",
@@ -3186,7 +3524,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-chu-3-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-chu-3-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Thay x bằng 3. Làm luỹ thừa và nhân trước: 3² = 9 và 2 · 3 = 6, rồi cộng được 15.",
+        "tex": "\\begin{aligned} &x^{2} + 2x \\quad (x = 3) \\\\ &= \\concept{pink}{3^{2}}+\\concept{pink}{2 \\cdot 3} \\\\ &= \\concept{pink}{9+6} \\\\ &= \\concept{amber}{15} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-thay-so",
@@ -3234,7 +3576,21 @@
           }
         ]
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Giữa số và chữ, dấu nhân bị bỏ đi, nên 4x là 4 · x. Thay x bằng 6 thì được 4 · 6 − 5.",
+        "tex": "4x - 5 \\to 4 \\cdot 6 - 5",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "46 ghép hai chữ số lại; nhưng 4x nghĩa là 4 · x, không phải số bốn mươi sáu."
+          },
+          {
+            "optionId": "c",
+            "text": "Giữa 4 và x là dấu nhân bị bỏ đi, không phải dấu cộng."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-kiem-tra",
@@ -3267,7 +3623,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-kiem-tra-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-kiem-tra-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Làm luỹ thừa trước: 10² = 100. Rồi làm hai phép nhân 4 · 100 = 400 và 3 · 10 = 30, cuối cùng cộng từ trái sang phải được 436.",
+        "tex": "\\begin{aligned} &4 \\cdot \\concept{pink}{10^{2}}+3 \\cdot 10+6 \\\\ &= \\concept{pink}{4 \\cdot 100}+\\concept{pink}{3 \\cdot 10}+6 \\\\ &= \\concept{pink}{400+30}+6 \\\\ &= \\concept{pink}{430+6} \\\\ &= \\concept{amber}{436} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-dong-dung-1",
@@ -3328,7 +3688,21 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-1-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Luỹ thừa làm trước nhân, chia, cộng, trừ. Nên bước đầu là thay 3² bằng 9, các số khác giữ nguyên.",
+        "tex": "6 + 2 \\cdot \\concept{pink}{3^{2}} : 3 - 1 \\to 6 + 2 \\cdot \\concept{amber}{9} : 3 - 1",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 + 2 = 8 là phép cộng, mà cộng làm sau luỹ thừa và nhân."
+          },
+          {
+            "optionId": "d",
+            "text": "3² là 3 · 3 = 9, không phải 3 · 2 = 6."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-dong-dung-2",
@@ -3389,7 +3763,21 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-2-giai"
       },
-      "difficulty": 2
+      "difficulty": 2,
+      "explain": {
+        "text": "Luỹ thừa làm trước nhân, chia, cộng, trừ. Nên bước đầu là thay 3² bằng 9, các số khác giữ nguyên.",
+        "tex": "30 - 2 \\cdot \\concept{pink}{3^{2}} + 7 \\to 30 - 2 \\cdot \\concept{amber}{9} + 7",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "30 − 2 = 28 là phép trừ, mà trừ làm sau luỹ thừa và nhân."
+          },
+          {
+            "optionId": "d",
+            "text": "3² là 3 · 3 = 9, không phải 3 · 2 = 6."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-dong-dung-3",
@@ -3450,7 +3838,21 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-3-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-3-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Trong ngoặc làm trước, và trong ngoặc có luỹ thừa 3² làm trước phép trừ. Nên bước đầu là thay 3² bằng 9.",
+        "tex": "5 \\cdot (12 - \\concept{pink}{3^{2}}) + 4 \\to 5 \\cdot (12 - \\concept{amber}{9}) + 4",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số mũ 2 chỉ thuộc về số 3 đứng ngay bên trái, không thuộc về cả 12 − 3."
+          },
+          {
+            "optionId": "d",
+            "text": "Trong ngoặc làm trước, nên không nhân 5 · 12 trước."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.chon-dong-dung-4",
@@ -3511,7 +3913,21 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-4-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.chon-dong-dung-4-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Luỹ thừa làm trước nhân, chia, cộng, trừ. Nên bước đầu là thay 2³ bằng 8, các số khác giữ nguyên.",
+        "tex": "16 + 6 \\cdot \\concept{pink}{2^{3}} : 4 \\to 16 + 6 \\cdot \\concept{amber}{8} : 4",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "16 + 6 = 22 là phép cộng, mà cộng làm sau luỹ thừa và nhân."
+          },
+          {
+            "optionId": "d",
+            "text": "2³ là 2 · 2 · 2 = 8, không phải 6."
+          }
+        ]
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-1",
@@ -3544,7 +3960,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-1-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Làm luỹ thừa trước: 2³ = 8. Rồi làm cả ba phép nhân, cuối cùng cộng, trừ từ trái sang phải: 24 + 20 − 14 = 30.",
+        "tex": "\\begin{aligned} &3 \\cdot \\concept{pink}{2^{3}}+5 \\cdot 4-2 \\cdot 7 \\\\ &= \\concept{pink}{3 \\cdot 8}+\\concept{pink}{5 \\cdot 4}-\\concept{pink}{2 \\cdot 7} \\\\ &= \\concept{pink}{24+20}-14 \\\\ &= \\concept{pink}{44-14} \\\\ &= \\concept{amber}{30} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-2",
@@ -3577,7 +3997,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-2-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Làm luỹ thừa trước: 1⁹ = 1 và 3² = 9. Rồi nhân từ trái sang phải, cuối cùng cộng, trừ từ trái sang phải được 100.",
+        "tex": "\\begin{aligned} &50-4 \\cdot \\concept{pink}{1^{9}}+2 \\cdot 3 \\cdot \\concept{pink}{3^{2}} \\\\ &= 50-\\concept{pink}{4 \\cdot 1}+\\concept{pink}{2 \\cdot 3} \\cdot 9 \\\\ &= 50-4+\\concept{pink}{6 \\cdot 9} \\\\ &= \\concept{pink}{50-4}+54 \\\\ &= \\concept{pink}{46+54} \\\\ &= \\concept{amber}{100} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-day-du-3",
@@ -3610,7 +4034,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-3-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-day-du-3-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Làm luỹ thừa trước: 2³ = 8. Rồi làm cả ba phép nhân, cuối cùng cộng, trừ từ trái sang phải được 25.",
+        "tex": "\\begin{aligned} &3 \\cdot \\concept{pink}{2^{3}}+5 \\cdot 4-14 \\cdot 2+9 \\\\ &= \\concept{pink}{3 \\cdot 8}+\\concept{pink}{5 \\cdot 4}-\\concept{pink}{14 \\cdot 2}+9 \\\\ &= \\concept{pink}{24+20}-28+9 \\\\ &= \\concept{pink}{44-28}+9 \\\\ &= \\concept{pink}{16+9} \\\\ &= \\concept{amber}{25} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tinh-ngoac-day-du",
@@ -3643,7 +4071,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-day-du-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tinh-ngoac-day-du-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Làm từ ngoặc trong ra ngoài: ngoặc tròn, ngoặc vuông, rồi ngoặc nhọn. Sau đó làm luỹ thừa 2³, rồi nhân, cuối cùng cộng.",
+        "tex": "\\begin{aligned} &2^{3}+3 \\cdot \\{4+2 \\cdot [5 \\cdot \\concept{pink}{(7-4)}-9]\\} \\\\ &= 2^{3}+3 \\cdot \\{4+2 \\cdot [\\concept{pink}{5 \\cdot 3}-9]\\} \\\\ &= 2^{3}+3 \\cdot \\{4+2 \\cdot \\concept{pink}{[15-9]}\\} \\\\ &= 2^{3}+3 \\cdot \\{4+\\concept{pink}{2 \\cdot 6}\\} \\\\ &= 2^{3}+3 \\cdot \\concept{pink}{\\{4+12\\}} \\\\ &= \\concept{pink}{2^{3}}+\\concept{pink}{3 \\cdot 16} \\\\ &= \\concept{pink}{8+48} \\\\ &= \\concept{amber}{56} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.sap-buoc-day-du",
@@ -3692,7 +4124,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-day-du-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.sap-buoc-day-du-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Luỹ thừa làm trước: 3² = 9. Rồi nhân 2 · 9 = 18, cuối cùng trừ 4 được 14.",
+        "tex": "\\begin{aligned} &2 \\cdot \\concept{pink}{3^{2}}-4 \\\\ &= \\concept{pink}{2 \\cdot 9}-4 \\\\ &= \\concept{pink}{18-4} \\\\ &= \\concept{amber}{14} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tim-x-kiem-tra",
@@ -3724,7 +4160,11 @@
         ],
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-kiem-tra-giai"
       },
-      "difficulty": 1
+      "difficulty": 1,
+      "explain": {
+        "text": "Vế phải là 14. Làm ngược phép cộng: 2x = 14 − 6 = 8. Rồi làm ngược phép nhân: x = 8 : 2 = 4.",
+        "tex": "\\begin{aligned} 2x + 6 &= 14 \\\\ 2x &= 14 - 6 = 8 \\\\ x &= 8 : 2 = \\concept{amber}{4} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tim-x-1",
@@ -3780,7 +4220,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-1-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-1-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính vế phải trước theo thứ tự: 2 · 3² + 6 : 3 = 18 + 2 = 20. Từ 5x + 5 = 20, làm ngược phép cộng: 5x = 20 − 5 = 15. Làm ngược phép nhân: x = 15 : 5 = 3.",
+        "tex": "\\begin{aligned} &2 \\cdot \\concept{pink}{3^{2}}+6:3 \\\\ &= \\concept{pink}{2 \\cdot 9}+\\concept{pink}{6:3} \\\\ &= \\concept{pink}{18+2} \\\\ &= \\concept{amber}{20} \\\\ 5x + 5 &= 20 \\\\ 5x &= 20 - 5 = 15 \\\\ x &= 15 : 5 = \\concept{amber}{3} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tim-x-2",
@@ -3836,7 +4280,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-2-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-2-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính vế phải trước theo thứ tự: 2 · 3² + 14 = 18 + 14 = 32. Từ 6x + 8 = 32, làm ngược phép cộng: 6x = 32 − 8 = 24. Làm ngược phép nhân: x = 24 : 6 = 4.",
+        "tex": "\\begin{aligned} &2 \\cdot \\concept{pink}{3^{2}}+14 \\\\ &= \\concept{pink}{2 \\cdot 9}+14 \\\\ &= \\concept{pink}{18+14} \\\\ &= \\concept{amber}{32} \\\\ 6x + 8 &= 32 \\\\ 6x &= 32 - 8 = 24 \\\\ x &= 24 : 6 = \\concept{amber}{4} \\end{aligned}"
+      }
     },
     {
       "id": "thu-tu-thuc-hien-phep-tinh.ex.tim-x-3",
@@ -3869,7 +4317,11 @@
         "hintVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-3-goi-y",
         "solutionVisualId": "thu-tu-thuc-hien-phep-tinh.visual.tim-x-3-giai"
       },
-      "difficulty": 3
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính vế phải trước theo thứ tự: 5 · 2² + 9 : 3 = 20 + 3 = 23. Từ 3x + 5 = 23, làm ngược phép cộng: 3x = 23 − 5 = 18. Làm ngược phép nhân: x = 18 : 3 = 6.",
+        "tex": "\\begin{aligned} &5 \\cdot \\concept{pink}{2^{2}}+9:3 \\\\ &= \\concept{pink}{5 \\cdot 4}+\\concept{pink}{9:3} \\\\ &= \\concept{pink}{20+3} \\\\ &= \\concept{amber}{23} \\\\ 3x + 5 &= 23 \\\\ 3x &= 23 - 5 = 18 \\\\ x &= 18 : 3 = \\concept{amber}{6} \\end{aligned}"
+      }
     }
   ],
   "sticker": {
