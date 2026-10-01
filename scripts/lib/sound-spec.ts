@@ -1,4 +1,4 @@
-import { JINGLE_ID, OOPS_ID, TAP_ID } from "@/lib/sound-manifest";
+import { BUTTON_ID, JINGLE_ID, OOPS_ID, TAP_ID } from "@/lib/sound-manifest";
 
 // Everything `pnpm sounds:build` makes its clips from, in one place. A clip's
 // manifest hash covers the settings that shape it, so editing a number here
@@ -71,6 +71,22 @@ export const TONES: Record<string, ToneSpec> = {
     attack: 1500,
     fadeOutS: 0.04,
     lufs: MASTERING.voiceLufs - 6,
+  },
+  // Pressing a button or a link: a soft, round two-note "bloop" (C5 up to
+  // G5) with almost no overtone and a slow fade, so it reads as gentle and
+  // clearly differs from the bright wooden click of choosing an answer.
+  [BUTTON_ID]: {
+    durationS: 0.22,
+    notes: [
+      [523.25, 0],
+      [783.99, 0.05],
+    ],
+    noteLevel: 0.45,
+    overtone: 0.1,
+    noteDecay: 22,
+    attack: 300,
+    fadeOutS: 0.08,
+    lufs: MASTERING.voiceLufs - 8,
   },
   // A correct answer: a bright rising arpeggio (C6 E6 G6 C7), then a quiet
   // shimmer.

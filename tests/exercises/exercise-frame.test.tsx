@@ -95,6 +95,7 @@ function renderFrame(hints: Hints) {
   const sounds = {
     play: vi.fn<(clipIds: readonly string[]) => void>(),
     tap: vi.fn<() => void>(),
+    button: vi.fn<() => void>(),
   };
   const view = render(
     <ExerciseFrame

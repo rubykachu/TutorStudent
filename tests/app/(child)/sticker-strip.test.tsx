@@ -81,7 +81,7 @@ describe("StickerStrip detail", () => {
     { lessonId: "a", sectionId: "a.section.2", state: "done" as const },
   ];
   function strip(earned: string[] = []) {
-    const sounds = { play: vi.fn(), tap: vi.fn() };
+    const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
     render(
       <StickerStrip
         lessons={[

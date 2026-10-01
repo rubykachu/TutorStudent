@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  BUTTON_ID,
   JINGLE_ID,
   OOPS_ID,
   type SoundManifest,
@@ -47,7 +48,7 @@ describe("sound manifest", () => {
 
   it("has every tone made from its current settings", () => {
     expect(Object.keys(TONES).sort()).toEqual(
-      [JINGLE_ID, OOPS_ID, TAP_ID].sort(),
+      [BUTTON_ID, JINGLE_ID, OOPS_ID, TAP_ID].sort(),
     );
     for (const [id, spec] of Object.entries(TONES)) {
       const entry = entries.get(id);

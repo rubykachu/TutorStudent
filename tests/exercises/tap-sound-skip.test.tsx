@@ -18,7 +18,7 @@ function renderWith(
   options: { skippable?: boolean } = {},
 ) {
   const onDone = vi.fn();
-  const sounds = { play: vi.fn(), tap: vi.fn() };
+  const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
   render(
     <FeedbackSoundsProvider sounds={sounds}>
       <ExerciseFrame
@@ -98,18 +98,19 @@ describe("tap sound on ordering", () => {
   });
 });
 
-describe("tap sound on action buttons", () => {
-  it("clicks on Kiểm tra and on Bỏ qua", () => {
+describe("button sound on action buttons", () => {
+  it("plays the button press, not the choice click, on Kiểm tra and Bỏ qua", () => {
     const { sounds } = renderWith(choiceExercise(["a"]), { skippable: true });
     tap("b");
     fireEvent.click(screen.getByRole("button", { name: "Kiểm tra" }));
-    expect(sounds.tap).toHaveBeenCalledTimes(2);
+    expect(sounds.tap).toHaveBeenCalledTimes(1);
+    expect(sounds.button).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByRole("button", { name: /Bỏ qua/ }));
-    expect(sounds.tap).toHaveBeenCalledTimes(3);
+    expect(sounds.button).toHaveBeenCalledTimes(2);
   });
 
-  it("clicks on Quay lại in the player header", () => {
-    const sounds = { play: vi.fn(), tap: vi.fn() };
+  it("plays the button press on Quay lại in the player header", () => {
+    const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
     const onBack = vi.fn();
     render(
       <FeedbackSoundsProvider sounds={sounds}>
@@ -122,7 +123,8 @@ describe("tap sound on action buttons", () => {
       </FeedbackSoundsProvider>,
     );
     fireEvent.click(screen.getByRole("button", { name: /Quay lại/ }));
-    expect(sounds.tap).toHaveBeenCalledTimes(1);
+    expect(sounds.button).toHaveBeenCalledTimes(1);
+    expect(sounds.tap).not.toHaveBeenCalled();
     expect(onBack).toHaveBeenCalledTimes(1);
   });
 });

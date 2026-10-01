@@ -6,7 +6,12 @@ import {
   playSound,
   preloadSounds,
 } from "@/lib/sound";
-import { allSoundUrls, soundUrl, TAP_ID } from "@/lib/sound-manifest";
+import {
+  allSoundUrls,
+  BUTTON_ID,
+  soundUrl,
+  TAP_ID,
+} from "@/lib/sound-manifest";
 import { useSoundEnabled } from "@/progress/hooks";
 
 // The feedback sounds of one player session (a section or a review), or
@@ -31,6 +36,10 @@ export function useFeedbackSounds(childId: string): FeedbackSounds | undefined {
             },
             tap() {
               const url = soundUrl(TAP_ID);
+              if (url) void playSound(url);
+            },
+            button() {
+              const url = soundUrl(BUTTON_ID);
               if (url) void playSound(url);
             },
           }

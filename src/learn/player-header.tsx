@@ -2,7 +2,7 @@ import { ChevronLeft, X } from "lucide-react";
 import Link from "next/link";
 import { SectionStepper } from "@/components/section-stepper";
 import { SoundToggle } from "@/components/sound-toggle";
-import { useTapSound } from "@/lib/feedback-sounds";
+import { useButtonSound } from "@/lib/feedback-sounds";
 import { lessonPath } from "@/lib/routes";
 
 type PlayerHeaderProps = {
@@ -33,7 +33,7 @@ export function PlayerHeader({
   progress,
   onBack,
 }: PlayerHeaderProps) {
-  const playTap = useTapSound();
+  const playButton = useButtonSound();
   return (
     <header className="flex items-center gap-2 md:gap-4">
       <Link
@@ -47,7 +47,7 @@ export function PlayerHeader({
         <button
           type="button"
           onClick={() => {
-            playTap();
+            playButton();
             onBack?.();
           }}
           disabled={!onBack}

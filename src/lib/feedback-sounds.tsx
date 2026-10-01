@@ -11,6 +11,8 @@ export type FeedbackSounds = {
   // The soft click of choosing an option, chip or region. Plays alongside
   // anything already sounding instead of cutting it off.
   tap: () => void;
+  // The softer press of a button or a link that leads somewhere.
+  button: () => void;
 };
 
 const FeedbackSoundsContext = createContext<FeedbackSounds | undefined>(
@@ -40,4 +42,11 @@ export function useFeedbackSoundsContext(): FeedbackSounds | undefined {
 export function useTapSound(): () => void {
   const sounds = useContext(FeedbackSoundsContext);
   return () => sounds?.tap();
+}
+
+// Plays the press of a button or link; does nothing when sound is off or
+// outside a screen that supplies sounds.
+export function useButtonSound(): () => void {
+  const sounds = useContext(FeedbackSoundsContext);
+  return () => sounds?.button();
 }

@@ -9,6 +9,14 @@
       "peakDb": -7.8
     },
     {
+      "id": "button",
+      "file": "button.m4a",
+      "kind": "tone",
+      "sha256": "c527fa124756dfb089ae09414db9065795b2fe89905d7f2129e57f63e139d038",
+      "lufs": -24.4,
+      "peakDb": -10.3
+    },
+    {
       "id": "correct-jingle",
       "file": "correct-jingle.m4a",
       "kind": "tone",

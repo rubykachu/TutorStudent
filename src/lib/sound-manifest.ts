@@ -35,6 +35,9 @@ export const SOUNDS_DIR_URL = "/sounds";
 export const JINGLE_ID = "correct-jingle";
 // The click of choosing an option, chip or region.
 export const TAP_ID = "tap";
+// The press of a button or a link that leads somewhere ("Kiểm tra",
+// "Quay lại", a subject tile): softer and rounder than the choice click.
+export const BUTTON_ID = "button";
 // A wrong answer after the first one of an attempt.
 export const OOPS_ID = "oops";
 

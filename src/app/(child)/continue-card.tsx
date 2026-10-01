@@ -2,6 +2,7 @@ import { Play } from "lucide-react";
 import Link from "next/link";
 import { subjectStyle } from "@/components/subject-style";
 import type { ContinueTarget } from "@/learn/next-step";
+import { useButtonSound } from "@/lib/feedback-sounds";
 import { lessonPath, sectionPath } from "@/lib/routes";
 import type { Subject } from "@/schema/content";
 
@@ -21,6 +22,7 @@ export function ContinueCard({
   overviewSeen,
 }: ContinueCardProps) {
   const { lesson, sectionIndex, pausedIndex, started } = target;
+  const playButton = useButtonSound();
   const section = lesson.sections[sectionIndex];
   const paused = pausedIndex === null ? undefined : pausedIndex + 1;
   if (!section) return null;
@@ -29,6 +31,7 @@ export function ContinueCard({
   const label = started ? "Học tiếp" : "Bắt đầu học";
   return (
     <Link
+      onClick={playButton}
       href={
         lesson.hasOverview && !overviewSeen
           ? lessonPath(lesson.id)
