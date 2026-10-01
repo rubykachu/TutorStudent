@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import type { Page } from "@playwright/test";
 import type { Lesson } from "@/schema/content";
 
@@ -39,6 +41,57 @@ export function withVideo(cardId: string): LessonPatch {
       videoId: FIXTURE_VIDEO_ID,
     });
   };
+}
+
+// A 10 s test picture (a running clock) standing in for the fixture video,
+// so the player can really play, pause and seek without media files.
+const DEMO_VIDEO = path.join(
+  import.meta.dirname,
+  "assets",
+  "checkpoint-demo.mp4",
+);
+export const DEMO_VIDEO_SECONDS = 10;
+// Where the demo video waits for the child: after 3 s and after 6.5 s.
+export const DEMO_CHECKPOINTS = [
+  { id: "cp-01", at: 3, from: 0 },
+  { id: "cp-02", at: 6.5, from: 3 },
+];
+
+// The fixture video of `withVideo`, with the demo picture's length and
+// checkpoints.
+export function withCheckpointVideo(cardId: string): LessonPatch {
+  return (lesson) => {
+    withVideo(cardId)(lesson);
+    const video = lesson.videos?.[0];
+    if (!video) return;
+    video.durationSec = DEMO_VIDEO_SECONDS;
+    video.checkpoints = DEMO_CHECKPOINTS;
+  };
+}
+
+// Serves the demo picture for the fixture video, answering byte-range
+// requests the way a media server does, which seeking needs.
+export async function serveDemoVideo(page: Page) {
+  const file = readFileSync(DEMO_VIDEO);
+  await page.route("**/media/video/fixture/gioi-thieu.mp4", (route) => {
+    const range = /bytes=(\d+)-(\d*)/.exec(
+      route.request().headers().range ?? "",
+    );
+    const headers = { "Accept-Ranges": "bytes", "Content-Type": "video/mp4" };
+    if (!range) {
+      return route.fulfill({ status: 200, headers, body: file });
+    }
+    const start = Number(range[1]);
+    const end = range[2] ? Number(range[2]) : file.length - 1;
+    return route.fulfill({
+      status: 206,
+      headers: {
+        ...headers,
+        "Content-Range": `bytes ${start}-${end}/${file.length}`,
+      },
+      body: file.subarray(start, end + 1),
+    });
+  });
 }
 
 const NARRATION_AUDIO = "narration/fixture/overview.m4a";

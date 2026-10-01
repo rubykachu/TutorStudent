@@ -20,9 +20,8 @@ export function CheckpointOverlay({
   onReplay,
 }: CheckpointOverlayProps) {
   return (
-    <div
+    <section
       data-video-checkpoint
-      role="group"
       aria-label="Dừng lại một chút"
       className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-foreground/80 p-3 md:gap-5 md:p-6"
     >
@@ -58,6 +57,6 @@ export function CheckpointOverlay({
           <ChevronRight aria-hidden className="size-6 shrink-0" />
         </button>
       </div>
-    </div>
+    </section>
   );
 }
