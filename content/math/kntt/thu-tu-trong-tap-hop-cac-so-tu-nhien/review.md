@@ -1,419 +1,302 @@
 # Review: Thứ tự trong tập hợp các số tự nhiên (`thu-tu-trong-tap-hop-cac-so-tu-nhien`)
 
 - Bài: `content/math/kntt/thu-tu-trong-tap-hop-cac-so-tu-nhien/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
 - Nguồn đã đọc: `sources/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/` - sbt-p11, sbt-p12, sbt-p13, sbt-p96 (nửa đầu, lời giải Bài 3); thêm `sources/math/cach-ghi-so-tu-nhien/sbt-p7.png` (ℕ, ℕ*)
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (120 id chưa có trong `ids.lock.json`, đúng với bài chưa duyệt)
-- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy sau vòng 2)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/thu-tu-trong-tap-hop-cac-so-tu-nhien/` (walk chỉ chạy câu kiểm tra và câu luyện; câu kho ôn soát qua JSON và `catalog.ts`)
-- Kết luận: Chưa đạt: còn 10 lỗi Nghiêm trọng
-- Bản đã review: `1c859e98046b6057a1b6ad32f5dcd166bb81e5a2ea750e48721064b4fe192713` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa có trong `ids.lock.json`, đúng với bài chưa duyệt)
+- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy sau khi hết Nghiêm trọng)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/thu-tu-trong-tap-hop-cac-so-tu-nhien/`
+- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng
+- Bản đã review: `574e93803ddca01ce3cfef7341dfc8bc3e9496213e6523af37b0469936a04934` (`pnpm content:diff` so với bản này)
 
-Tên viết tắt dưới đây: id đầy đủ có tiền tố `thu-tu-trong-tap-hop-cac-so-tu-nhien.` (vd `ex.cot-km-20-15`). Hình ghi theo khoá trong `src/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/catalog.ts`. Ba reviewer tự giải mọi câu trước khi đọc `answer`: đáp án của bài khớp ở mọi câu, trừ các đề cột cây số ở mục 1 có thêm một đáp án đúng.
+Tên viết tắt dưới đây: id đầy đủ có tiền tố `thu-tu-trong-tap-hop-cac-so-tu-nhien.` (vd `ex.cot-km-20-15`). Hình ghi theo khoá trong `src/visuals/math/thu-tu-trong-tap-hop-cac-so-tu-nhien/catalog.ts`. Ba reviewer tự giải cả 83 câu trước khi đọc `answer`: đáp án của bài khớp ở mọi câu, không câu nào có đáp án đúng thứ hai. Bốn mẹo có điều kiện (`tip.doi-loi-thanh-dau`, `tip.so-cung-chu-so`, `tip.lien-sau-tan-cung-9`, `tip.dem-so-hay-do-khoang`) đã thử trên số biên, đúng hết.
 
-Về mức của các mục chép sách (LL-08): câu quy tắc bằng lời gần nguyên văn và bộ số kèm lời của ví dụ, bài tập sách là Nghiêm trọng; câu thuần kí hiệu ngắn không viết khác được (bắc cầu, `a` và `a + 1`) là Góp ý; khuôn hình trùng sách mà số chỉ trùng một phần là Nên sửa.
+Đối chiếu vòng 1: 9 trong 10 mục Nghiêm trọng đã sửa đúng (mục 1, 2, 3, 5, 6, 7, 8, 9, 10 phần dấu kép). Mục 4 (chép ví dụ b của sách) còn câu "ba khúc", ghi ở mục 1 dưới đây. Bản sửa theo vòng 1 sinh 5 vấn đề mới (LL-20): mục 5, 6, 7, 9, 17.
+
+Về mức chép sách (LL-08), giữ cách xếp của vòng 1: câu bằng lời gần nguyên văn là Nghiêm trọng.
 
 ## Nghiêm trọng
 
-### 1. Đề cột cây số không nói thị trấn ở phía trước cột, nên có hai đáp án đúng
+### 1. Câu "Hai điểm A và B cắt tia số làm ba khúc: đoạn OA, đoạn AB và phần còn lại" vẫn là câu ví dụ b của sách, chỉ đổi động từ
 
-- Vị trí: `$.exercises[15]` (`ex.chon-phep-tinh-km`, cả `$.exercises[15].explain.wrong[0]`), `$.exercises[7].prompt[0]` (`ex.kt-cot-km-40-25`), `$.exercises[12].prompt[0]` (`ex.cot-km-45-30`), `$.exercises[13].prompt[0]` (`ex.cot-km-20-15`). LL-10, LL-01.
-- Nguồn: tr.12 bài 1.24, `sbt-p12.png`; lời giải tr.96, `sbt-p96.png`
-- Vấn đề: Bốn đề viết "thị trấn (trạm nghỉ) cách cột đó … km" mà không nói thị trấn còn ở phía trước. Thị trấn ở phía sau (bạn đã đi qua) thì số của nó là 30 − 20, 40 − 25, 45 − 30, 20 − 15, nên lựa chọn `30 - 20` của `chon-phep-tinh-km` cũng đúng, và lý do `wrong` của nó dựa vào điều đề không nói. Hình `cot-40`, `cot-45`, `cot-20` không vẽ thị trấn nên cũng không chốt chiều. Màn mẫu `cot-km` và sách đều nói "còn … nữa".
-- Sửa: Viết mọi đề theo cách nói của màn mẫu, vd "Bạn đi qua cột cây số ghi km 30. Còn 20 km nữa mới tới thị trấn." (tương tự 40/25, 45/30, 20/15). Lý do `wrong` của lựa chọn `30 - 20`: "Thị trấn còn ở phía trước, xa đầu đường hơn cột, nên phải cộng thêm chứ không trừ."
-
-### 2. Câu quy tắc `tia-so` và `ben-trai` gần nguyên văn ý 1, 2 "Kiến thức cần nhớ"
-
-- Vị trí: `$.sections[2].blocks[1].children[0].text` (`section.ben-trai`, note `rule`), `$.sections[2].recap.caption`, `$.cards[3].recap.caption` (`card.ben-trai`); `$.sections[0].blocks[1].children[0].text` (`section.tia-so`, note `rule`), `$.sections[0].recap.caption`, `$.cards[0].recap.caption` (`card.diem-bieu-dien`). LL-08.
-- Nguồn: tr.11 ý 1, ý 2 "Kiến thức cần nhớ", `sbt-p11.png`
-- Vấn đề: Câu "bên trái" chỉ bỏ chữ "thì" so với câu sách. Câu "điểm biểu diễn số a" giữ nguyên khung câu sách, chỉ đổi "một khoảng bằng a (đơn vị)" thành "đúng a đơn vị" (phát hiện của Tổng hợp). Theo tiền lệ LL-08 (`quan-he-chia-het-va-tinh-chat` chỉ bỏ "ta nói", `uoc-chung-uoc-chung-lon-nhat` chỉ thêm "viết tắt là"), đây là chép. Hai câu có mặt ở note, recap section và recap card.
-- Sửa: Viết lại theo cách làm, vd `ben-trai`: "Trên tia số nằm ngang, đi từ trái sang phải thì các số lớn dần. Vì vậy điểm biểu diễn số nhỏ hơn luôn đứng bên trái điểm biểu diễn số lớn hơn." (giữ đúng tên "điểm biểu diễn số", xem mục 19); `tia-so`: "Muốn tìm điểm biểu diễn số a, đi từ gốc O sang phải a đơn vị. Dừng ở đâu, đó là điểm biểu diễn số a." Recap section và recap card lặp nguyên văn câu mới (luật `[rule-sentence]`); soát mọi `explain`, nhãn hình còn dùng câu cũ.
-
-### 3. Câu `dat-7-11` là bài 1.22 với đúng bộ số và lời của sách
-
-- Vị trí: `$.exercises[20]` (`ex.dat-7-11`, đề và `params` {7, 11}). LL-08.
-- Nguồn: tr.12 bài 1.22, `sbt-p12.png`
-- Vấn đề: Đề "Vẽ tia số: đặt điểm A biểu diễn số 7 và điểm B biểu diễn số 11" trùng cả bộ số lẫn lời của bài 1.22, trái giả định của bàn giao "số trong bài tự chọn".
-- Sửa: Đổi sang cặp số khác trong tia 0..12 của `dat-hai-diem` và không trùng màn học (3, 8; 4, 9), vd A ở 5, B ở 12; đổi id theo số mới, sửa `params`, `explain`.
-
-### 4. Section `phan-tia-so` và `tap-hop-so` dạy bằng bộ số và lời của ví dụ a, b, c kèm lời giải sách
-
-- Vị trí: `$.sections[9].blocks[0].children[0].text` (note "Nhà bạn là gốc O … đoạn OA, đoạn AB và phần còn lại"), hình `chia-ba-phan`, `doan-ab-xong` (recap section, recap `card.phan-tia-so`), `chon-doan-ab-5-10` (`$.sections[9].blocks[2]`); `$.sections[10].blocks[1]` với hình `m-liet-ke` (recap section, recap `card.tap-hop-doan`). LL-08.
-- Nguồn: tr.11 ví dụ a, b, c, `sbt-p11.png`; tr.12 lời giải, `sbt-p12.png`
-- Vấn đề: Màn học dùng đúng A = 5, B = 10 của ví dụ a; câu "Hai điểm A và B chia tia số thành ba phần: đoạn OA, đoạn AB và phần còn lại" chỉ thêm "ba phần" vào câu ví dụ b; màn cùng làm là ví dụ c; hình `m-liet-ke` là đúng lời giải c (`M = {x ∈ ℕ | 5 ≤ x ≤ 10}`) thêm dòng liệt kê. Trùng cả bộ số lẫn lời.
-- Sửa: Đổi bộ số của cả hai section, vd màn học A = 6, B = 12 (nhà – trường 6 km, nhà – chợ 12 km), cùng làm hỏi bộ số đó, tập hợp mẫu `{x ∈ ℕ | 6 ≤ x ≤ 12}` (khác các bộ 3..6, 3..7, 2..6, 6..9, 4..9 của câu luyện, và khác 3, 8 của `ben-trai`). Viết lại câu ba phần theo lời của bài, vd "Hai điểm A và B cắt tia số làm ba khúc: từ O tới A là đoạn OA, từ A tới B là đoạn AB, phần sau B là phần còn lại." Giữ nguyên thuật ngữ "đoạn OA", "đoạn AB", "phần còn lại". Soát lại `explain`, hình gợi ý, lời giải cho khớp số mới (LL-15).
-
-### 5. Mẹo "Đọc dấu < và >" chỉ ghi điều kiện ở tiêu đề, nên ra sai với ≤, ≥ ở section ngay sau
-
-- Vị trí: `$.sections[3].blocks[2]` (`tip.doc-dau`). LL-24.
-- Nguồn: tr.11 "Kĩ năng giải toán", `sbt-p11.png`
-- Vấn đề: Text "Đầu nhọn của dấu luôn chỉ về số bé hơn … Chỉ cần nhìn đầu nhọn là biết số nào bé." không giới hạn ở < và >. Dấu ≤, ≥ ở section `dau-bang` cũng có đầu nhọn; bạn áp mẹo vào `9 ≤ 9` (`ex.chon-dung-nho-bang`), `12 ≥ 12` (`ex.chon-dung-lon-bang`) sẽ cho là câu sai, trong khi đáp án là đúng. Bảng thử của reviewer nhóm 1: đúng ở 3 < 8, 8 > 3, 0 < 1, 99 < 100, 140 > 135; sai ở 9 ≤ 9 và 12 ≥ 12. Mẹo còn gọi "số bé hơn" trong khi cả bài nói "số nhỏ hơn" (mục 18).
-- Sửa: Đưa điều kiện vào text và dùng một từ, vd "Với dấu < và >, đầu nhọn luôn chỉ về số nhỏ hơn, phía miệng mở quay về số lớn hơn. Dấu ≤, ≥ thì khác: hai số bằng nhau vẫn đúng." Giữ `tex` và hình.
-
-### 6. Mẹo "So hai số cùng số chữ số" chỉ ghi điều kiện ở tiêu đề, nên ra sai với hai số khác số chữ số
-
-- Vị trí: `$.sections[5].blocks[2].text` (`tip.so-cung-chu-so`). LL-24.
-- Nguồn: Kiến thức nền (tiểu học); bài 1.25 tr.12, `sbt-p12.png`
-- Vấn đề: Text mở bằng "Luôn so từ chữ số bên trái nhất…" mà không nói chỉ dùng khi hai số cùng số chữ số. Làm đúng từng chữ ở `kt-so-nhieu-chu-so-hon` (9 874 / 10 203), `chon-lon-nhat-nhieu-chu-so`, `chon-nho-nhat-nhieu-chu-so` (980 / 1 050), `dien-dau-742-1305` thì 9 hơn 1 ở chữ số bên trái nhất nên chọn sai. Đúng ở các cặp 4, 5 chữ số reviewer nhóm 2 đã thử.
-- Sửa: Đặt điều kiện vào câu đầu, vd "Khi hai số có cùng số chữ số, so từ chữ số bên trái nhất, không so từ bên phải. Cặp chữ số khác nhau đầu tiên quyết định. Hai số khác số chữ số thì đếm chữ số trước." Giữ ví dụ 3 658 và 3 706.
-
-### 7. Mẹo "Đếm phần tử từ a đến b" ra sai ở các câu khoảng cách của chính bài và nói ngược mẹo "Đếm từ gốc O"
-
-- Vị trí: `$.sections[10].blocks[2]` (`tip.dem-phan-tu`); va chạm với `ex.cot-con-lai-70-55`, `ex.kt-dem-vach-c` (cả lý do `wrong` của phương án "5"), `ex.cach-goc-9`, `tip.dem-tu-goc-o` (`$.sections[0].blocks[3]`). LL-24.
-- Nguồn: —
-- Vấn đề: Mẹo "Từ a đến b … có b trừ a rồi cộng 1 số … Đừng chỉ lấy b trừ a" không nói chỉ dùng để đếm số phần tử. Ba câu hỏi khoảng cách trên tia số (thuộc kho ôn card `cot-cay-so`, `diem-bieu-dien`) có đáp án b − a: từ km 55 tới km 70 theo mẹo ra 16 thay vì 15; điểm C ở vạch 4 theo mẹo ra 5, đúng nhiễu "đếm cả vạch gốc O"; điểm 9 ra 10. Mẹo "Đếm từ gốc O" ở section đầu lại dặn "đừng đếm vạch gốc", hai mẹo nói ngược nhau mà không nêu vì sao hai việc khác nhau.
-- Sửa: Ghi rõ trong `text`: mẹo dùng để đếm có bao nhiêu số; muốn biết hai số cách nhau bao nhiêu đơn vị (số km, số bước trên tia số) thì chỉ lấy b − a. `tex` hai dòng (`gathered`) đối nhau, có chữ ở `text`: "từ 11 đến 16 có 16 − 11 + 1 = 6 số" và "từ 11 đến 16 cách nhau 16 − 11 = 5 đơn vị". Nêu luôn dấu <: b là số lớn nhất thật sự thuộc tập hợp (x < 5 thì b = 4).
-
-### 8. Lời giải thích "Số liền trước của một số bằng số đó trừ 1" sai với số 0 và nói quy tắc theo cách thứ hai
-
-- Vị trí: `$.exercises[56].explain.text` (`ex.lien-truoc-80`), `$.exercises[59].explain.text` (`ex.lien-truoc-1`). LL-17, LL-05.
-- Nguồn: tr.11 ý 3 "Kiến thức cần nhớ", `sbt-p11.png`
-- Vấn đề: Câu nói cho "một số" sai với 0, đúng số section vừa dạy là không có số liền trước (note `so-0`, câu `khong-co-lien-truoc` ngay trước `lien-truoc-1`). Câu quy tắc của bài lại nói "Số liền trước của a + 1 là a", nên bạn gặp hai cách nói cho một quy tắc.
-- Sửa: Viết theo câu quy tắc: `lien-truoc-80`: "80 = 79 + 1, nên số liền trước của 80 là 79."; `lien-truoc-1`: "1 = 0 + 1, nên số liền trước của 1 là 0." Giữ cách trừ 1 thì phải ghi đủ "Số liền trước của một số khác 0 bằng số đó trừ 1".
-
-### 9. Tình huống số nhà liền trước, liền sau trái thực tế, nên đáp án 46 có thể bị bạn cãi
-
-- Vị trí: `$.exercises[54]` (`ex.nha-lien-sau-45`); `$.sections[7].blocks[0]` (hình `nha-so-25`, caption "nhà bạn số 25, nhà số 24 nằm liền trước, nhà số 26 nằm liền sau"). LL-10.
-- Nguồn: tr.11 ý 3 "Kiến thức cần nhớ", `sbt-p11.png`
-- Vấn đề: Nhà trên một phố thường đánh số lẻ một bên, chẵn một bên, nên nhà sát nhà số 45 là nhà số 47. Bạn biết điều này từ phố nhà mình sẽ trả lời 47 và bị chấm sai; màn mở đầu dạy một điều trái thực tế.
-- Sửa: Đổi tình huống sang dãy số đếm liền nhau thật, vd số trang sách ("Bạn đang đọc trang 25; trang liền trước là 24, trang liền sau là 26"), số thứ tự bốc khi xếp hàng, số ghế trong một hàng. Đổi caption, nhãn hình `nha-so-25` và đề `nha-lien-sau-45` (đổi id theo tình huống mới).
-
-### 10. Kí hiệu `{x ∈ ℕ | 3 ≤ x ≤ 6}` và dấu kép `3 ≤ x ≤ 6` dùng trong 7 đề mà chưa dạy cách đọc
-
-- Vị trí: `$.sections[10].blocks[1]` (hình `m-liet-ke`), `$.sections[10].blocks[3].children[0].text`; đề `ex.kt-liet-ke-3-6`, `ex.dem-phan-tu-3-7`, `ex.liet-ke-2-6`, `ex.dem-phan-tu-6-9`, `ex.liet-ke-nho-hon-5-n`, `ex.liet-ke-nho-hon-5-nsao`, `ex.dem-nho-bang-6-n`; recap `$.sections[10].recap`, `card.tap-hop-doan`. LL-09.
-- Nguồn: tr.12 lời giải c, `sbt-p12.png`
-- Vấn đề: Bài 1 (`tap-hop`) chỉ dạy dấu hiệu đặc trưng viết bằng chữ. Ở đây "x ∈ ℕ" trước vạch đứng và dấu kép "5 ≤ x ≤ 10" chỉ hiện trong hình, không câu nào nói "5 ≤ x ≤ 10 nghĩa là x ≥ 5 và x ≤ 10" (phải đọc "5 ≤ x" ngược thành "x lớn hơn hoặc bằng 5"). Màn cùng làm viết kiểu khác ("x ≥ 3 và x ≤ 6"), câu kiểm tra kế tiếp lại dùng `3 ≤ x ≤ 6`. Hồ sơ người học ghi bạn còn yếu kí hiệu tập hợp, nên cả 7 câu dễ thành đoán.
-- Sửa: Thêm vào màn M một note dạy cách đọc: "`6 ≤ x ≤ 12` đọc là x lớn hơn hoặc bằng 6 và nhỏ hơn hoặc bằng 12, tức là x nằm từ 6 tới 12. Phần `x ∈ ℕ` trước vạch đứng nói x là số tự nhiên." (số theo bộ mới ở mục 4). Màn cùng làm viết đúng kí hiệu câu kiểm tra dùng, hoặc viết cả hai dạng cạnh nhau.
+- Vị trí: `$.sections[11].blocks[0].children[1].text` (`section.phan-tia-so`). LL-08.
+- Nguồn: tr.11 ví dụ b, `sbt-p11.png`
+- Vấn đề: Vòng 1 (mục 4) đã ghi câu này gần nguyên văn và đề nghị viết lại. Bản sửa chỉ đổi "chia … thành" sang "cắt … làm ba khúc", còn khuôn câu và cả dãy tên giữ như sách. Câu cũng không nói mỗi phần đi từ đâu tới đâu, nên bạn phải đoán "đoạn OA" là phần nào từ màu của hình.
+- Sửa: Viết lại bằng lời của bài, giữ ba tên và dùng chữ "phần" như các màn sau (xem mục 22): "A và B cắt tia số thành ba phần. Từ O tới A là đoạn OA. Từ A tới B là đoạn AB. Phần sau B là phần còn lại." Có thể thêm "A là đầu chung của đoạn OA và đoạn AB" (mục 35).
 
 ## Nên sửa
 
-### 11. Section `chon-don-vi` dạy hai việc mà chỉ chốt một; quy tắc cột cây số không có trên màn nào, phép trừ chưa dạy
+### 2. Note màn đầu nói "Ở bài này" vạch cách nhau 1 đơn vị, trái với section ngay sau
 
-- Vị trí: `$.sections[1]` (`section.chon-don-vi`, `recap`), `$.sections[1].blocks[2]` (note cột cây số), `$.cards[2].recap.caption` (`card.cot-cay-so`), `$.exercises[14]` (`ex.cot-con-lai-70-55`). LL-06, LL-16, LL-09.
-- Nguồn: tr.12 bài 1.23, 1.24, `sbt-p12.png`
-- Vấn đề: Section có hai ý (đọc điểm khi vạch cách nhiều đơn vị; số của thị trấn bằng số của cột cộng số km còn lại) nhưng note quy tắc và recap chỉ có ý đầu. Câu "lấy số của cột cây số cộng với số km còn lại" chỉ ở recap card và `explain`; dạng cột cây số không có màn cùng làm trước câu kiểm tra `kt-cot-km-40-25`. Câu kho ôn `cot-con-lai-70-55` cần phép trừ mà không màn nào dạy, cũng không có hình gợi ý.
-- Sửa: Tách cột cây số thành section riêng (mẫu, cùng làm, tự làm) với câu quy tắc đánh `rule` khớp recap card, hoặc ít nhất thêm câu đó làm note quy tắc của màn `cot-km` và vào recap section. Thêm màn hoặc hình gợi ý cho chiều ngược ("Số km còn lại = số của thị trấn trừ số của cột"), hoặc đổi `cot-con-lai-70-55` sang card có dạy phép trừ.
+- Vị trí: `$.sections[0].blocks[1].children[0].text` (`section.tia-so`). LL-10.
+- Nguồn: tr.11 ý 1 "Kiến thức cần nhớ", `sbt-p11.png`; tr.12 bài 1.23, `sbt-p12.png`
+- Vấn đề: "Ở bài này hai vạch liền nhau cách nhau 1 đơn vị." Section `chon-don-vi` ngay sau dạy vạch cách nhau 5 đơn vị. Bạn đọc đúng từng chữ sẽ nghĩ cả bài luôn là 1 đơn vị, rồi gặp ngay điều ngược lại.
+- Sửa: "Trên tia số này, hai vạch liền nhau cách nhau 1 đơn vị."
 
-### 12. Note "Cột cây số bên đường cũng là một tia số" nói sai đối tượng
+### 3. Câu quy tắc `chon-don-vi` bảo "tìm số đơn vị giữa hai vạch" mà không màn nào dạy cách tìm; mọi đề đều cho sẵn; recap card bỏ nửa cách đọc
 
-- Vị trí: `$.sections[1].blocks[2].children[0].text` (`section.chon-don-vi`). LL-17.
-- Nguồn: tr.12 bài 1.24 và ghi chú, `sbt-p12.png`
-- Vấn đề: Một cột cây số là một cái cột; sách cho con đường ứng với tia số có gốc là cột km0. Bạn có thể hiểu sai tia số là gì.
-- Sửa: "Con đường có cột cây số giống một tia số: gốc O là đầu đường (cột km 0). Cột ghi km 25 cách đầu đường 25 km."
+- Vị trí: `$.sections[1].blocks[1].children[0].text` (note `rule`), `$.sections[1].recap.caption`, `$.cards[1].recap.caption` (`card.vach-don-vi`); đề `$.exercises[6].prompt[0]` (`ex.kt-doc-vach-5`), `$.exercises[7].prompt[0]` (`ex.doc-q-35`), `$.exercises[8..10].prompt[0]`. LL-16, LL-10, LL-06.
+- Nguồn: tr.12 bài 1.23 (Hình 1.2 chỉ ghi 0 và 10, phải tự suy ra mỗi khoảng 5 đơn vị), `sbt-p12.png`; lời giải tr.96
+- Vấn đề: Việc chính của bài 1.23 là suy ra số đơn vị giữa hai vạch từ hai số đã ghi. Quy tắc nêu bước này, nhưng màn mẫu, màn cùng làm và cả năm đề đều viết sẵn "Hai vạch liền nhau cách nhau 5 đơn vị", nên bạn chưa lần nào làm bước "tìm". "Rồi đếm từ gốc O" cũng không nói đếm thế nào (đếm cách 5 chỉ có trong `explain`). Recap card `vach-don-vi` còn bỏ hẳn câu "Muốn đọc điểm…", nên ôn bằng card thì không còn cách đọc.
+- Sửa: Màn mẫu `vach-5` chỉ rõ cách tìm: "Từ 0 tới 10 có 2 khoảng, nên mỗi khoảng là 5 đơn vị." Câu quy tắc nói đủ hai bước, vd "Muốn đọc điểm, xem hai số đã ghi để biết hai vạch liền nhau cách nhau mấy đơn vị. Rồi từ gốc O đếm thêm chừng ấy đơn vị cho mỗi bước." Recap section và recap card lặp nguyên văn. Ít nhất câu luyện `doc-q-35` và một câu kho ôn bỏ câu cho sẵn đơn vị, để bạn tự suy từ hình.
 
-### 13. Ba hình tia số vạch 5 dựng lại khuôn Hình 1.2 của sách
+### 4. Một việc hai tên: "vạch thứ 4", "4 vạch" bên cạnh "4 bước"
 
-- Vị trí: hình `vach-5` (`$.sections[1].blocks[0]`), `doc-e-45` (`$.exercises[8]`), `ba-diem-d-g` (`$.exercises[11]`). LL-08.
-- Nguồn: tr.12 bài 1.23 (Hình 1.2), `sbt-p12.png`; lời giải tr.96 (E, F, G là 20, 35, 45)
-- Vấn đề: Ba hình cùng khuôn Hình 1.2 (tia từ 0, vạch cách 5, chỉ ghi 0 và 10, điểm tên E, F, G); số chỉ trùng một phần (`vach-5` đặt E ở 35 là F của sách; `doc-e-45` đặt E ở 45 và `ba-diem-d-g` đặt G ở 45 là G của sách). Bộ số nằm trong `catalog.ts` nên máy không thấy. Tách khỏi mục 3 và hạ mức vì không trùng cả bộ số lẫn lời.
-- Sửa: Đổi cách ghi số (vd ghi 0 và 5, hoặc 0, 20, 40) và đổi giá trị, tên điểm cho khỏi trùng E 20, F 35, G 45 (vd `vach-5` dùng điểm K ở 30; `doc-e-45` thành R ở 40 hay 50; `ba-diem-d-g` bỏ 45). Soát `explain`, hình gợi ý, lời giải đi kèm (LL-15) và không đụng các số của mục 21.
-
-### 14. Mũi tên "5 đơn vị" vẽ thành hình thoi nhỏ chồng hai tầng
-
-- Vị trí: hình `vach-5` (`$.sections[1].blocks[0]`), `vach-5-xong` (`$.sections[1].blocks[1]`, recap section, recap `card.vach-don-vi`), `giai-vach-5-45`, `goi-y-vach-5` (`$.exercises[8].hints`). LL-12, LL-15.
+- Vị trí: nhãn điểm của hình `vach-5` ("4 vạch"), `vach-5-xong` ("5 vạch", màn quy tắc, recap section, recap `card.vach-don-vi`), `giai-vach-5-35` ("7 vạch"); `$.sections[1].blocks[0].caption` ("điểm K ở vạch thứ 4"); `$.exercises[0].explain.text`, `$.exercises[2].explain.text`, `$.exercises[6].explain.text`, `$.exercises[7].explain.text`. Phía "bước": `tip.dem-tu-goc-o` (`$.sections[0].blocks[3]`), hình `dem-buoc`, `done` của `dat-diem-5`, `$.exercises[1].explain`, `$.exercises[6].explain.wrong[0]`. LL-05.
 - Nguồn: —
-- Vấn đề: Mũi tên hai đầu dài một khoảng vạch chỉ còn hai đầu mũi chạm nhau; `vach-5` có hai mũi như vậy xếp hai tầng với hai nhãn lệch nhau (ảnh walk `029-s2-01-block-end`, `030-s2-02-block`, `046-s2-09-recap`, phone và iPad). Ý chính của section lại khó đọc nhất.
-- Sửa: Thay mũi tên bằng lớp `span` tô nhạt 0→5 kèm tag "5 đơn vị" (hoặc ghi số 5 dưới vạch đầu), chỉ một lớp; giữ mũi tên thì sửa mã hình cho mũi ngắn vẫn có thân.
+- Vấn đề: Mẹo dặn "đếm các bước từ gốc, đừng đếm cả vạch gốc", rồi các màn sau lại đếm "vạch". Từ O tới điểm 25 có 6 vạch nếu tính vạch gốc, nên "5 vạch", "vạch thứ 4" đúng là chỗ bạn hay đếm thừa một (đúng nhiễu "5" của `kt-dem-vach-c`).
+- Sửa: Dùng một tên "bước" như mẹo: nhãn "4 bước", "5 bước", "7 bước"; caption "điểm K cách gốc O 4 bước, nên biểu diễn số 20"; `explain` viết "Điểm B cách gốc O 7 bước", "đi thêm 4 bước", "Điểm P cách gốc O 8 bước".
 
-### 15. Hình `cot-km`: số 40 trên trục nằm ngay dưới mũi tên "40 km"
+### 5. Hình vạch 5: lớp "5 đơn vị" vẽ thành vệt tròn nằm dưới gốc O, nhãn rời xuống chú thích
 
-- Vị trí: hình `cot-km` (`labelAt: [0, 10, 40, 50]`), `$.sections[1].blocks[2]`, recap `card.cot-cay-so`. LL-21, LL-15.
+- Vị trí: hình `vach-5` (`$.sections[1].blocks[0]`), `vach-5-xong` (`$.sections[1].blocks[1]`, `$.sections[1].recap`, `$.cards[1].recap`), `giai-vach-5-35` (`$.exercises[7].hints.solutionVisualId`), `goi-y-vach-5` (`$.exercises[7].hints.hintVisualId`). LL-15, LL-12, LL-20.
 - Nguồn: —
-- Vấn đề: Mũi tên "40 km" đi từ 25 tới 65, ngay dưới là số 40 và 50 của trục (ảnh `032-s2-03-block-end`). Bạn dễ đọc thị trấn ở số 40 hay lẫn quãng 40 km với điểm 40.
-- Sửa: Đổi `labelAt` thành số không nằm dưới mũi tên, vd `[0, 10, 20]`.
+- Vấn đề: Bản sửa mục 14 vòng 1 đổi mũi tên thành lớp `span` 0→5. Trên ảnh walk (`ipad/030-s2-01-block-end`, `phone/031-s2-02-block`, `038-s2-06-recap`) span là vệt tròn cam nhạt chưa tới một khoảng, nửa bị dấu gốc O che; chữ "5 đơn vị" nằm ở chú thích bên dưới, cùng ô cam với nhãn "4 vạch" của điểm K, nên không thấy chữ nào gắn với khoảng nào. Đây là ý chính của section, có ở màn quy tắc và recap.
+- Sửa: Ghi số dưới vạch đầu (`labelAt: [0, 5, 10]`) để thấy 0 → 5 là 5 đơn vị; hoặc sửa lớp `span` cho dải tô đủ một khoảng, nằm trên trục, nhãn ngay trên dải. Giữ cùng cách vẽ ở bốn hình.
 
-### 16. Section `tia-so` không nói "một đơn vị" là gì; câu `kt-dem-vach-c` không nói vạch cách nhau mấy đơn vị
+### 6. Câu kho ôn, câu kiểm tra lặp số của màn quy tắc, câu kiểm tra và câu luyện cùng section
 
-- Vị trí: `$.sections[0].blocks[0]` (caption `thuoc-ke`), `$.exercises[1].prompt[0]` (`ex.kt-dem-vach-c`). LL-10.
-- Nguồn: tr.11 ý 1 "Kiến thức cần nhớ", `sbt-p11.png`
-- Vấn đề: Câu quy tắc dùng "a đơn vị" nhưng không màn nào nói hai vạch liền nhau cách nhau một đơn vị; mô tả tia số chỉ ở caption xám. `kt-dem-vach-c` ("chỉ có số 0 được ghi") vì thế thiếu dữ kiện, trong khi section sau dạy vạch cách 5.
-- Sửa: Thêm note ở màn đầu: "Tia số bắt đầu ở gốc O, ứng với số 0. Các vạch cách đều nhau; ở đây hai vạch liền nhau cách nhau 1 đơn vị." Đề `kt-dem-vach-c` thêm "Hai vạch liền nhau cách nhau 1 đơn vị."
-
-### 17. Lời giải thích nói "mỗi vạch là 5 đơn vị", khác câu quy tắc "hai vạch liền nhau cách nhau …"
-
-- Vị trí: `$.exercises[1].explain.text`, `$.exercises[6].explain.wrong[0]`, `$.exercises[11].explain.text`, hình `dat-diem-5` (`done`); `$.exercises[22].explain.text` (`ex.dien-ben-trai`). LL-05.
+- Vị trí: `$.exercises[1]` (`ex.kt-dem-vach-c`, C ở 4, trùng hình quy tắc và recap `diem-a-4`); `$.exercises[5]` (`ex.cach-goc-9`, trùng 9 của câu luyện `doc-diem-a-9`); `$.exercises[8]` (`ex.dat-diem-5-40`, trùng 40 của `kt-doc-vach-5`); `$.exercises[9]` (`ex.cham-diem-35`, trùng 35 của `doc-q-35`); `$.exercises[10]` (`ex.chon-nhieu-xa`, L ở 35, M ở 40, trùng cả hai). LL-07, LL-20.
 - Nguồn: —
-- Vấn đề: Vạch là một nét, không phải một khoảng; bạn dễ đếm vạch thay vì đếm khoảng (đúng nhiễu 8 của `kt-doc-vach-5`). `dien-ben-trai` viết "Số nhỏ hơn nằm bên trái điểm biểu diễn số lớn hơn", ghép "số" với "điểm".
-- Sửa: Thống nhất "hai vạch liền nhau cách nhau 5 đơn vị". `dien-ben-trai`: "Số 14 nhỏ hơn số 20, nên điểm biểu diễn số 14 nằm bên trái điểm biểu diễn số 20."
+- Vấn đề: Câu kiểm tra `kt-dem-vach-c` đến ngay sau màn quy tắc vẽ điểm ở 4 với nhãn "4 đơn vị", nên bạn nhớ số thay vì đếm. Bản sửa mục 21 vòng 1 đổi sang 35, tạo trùng mới với câu luyện `doc-q-35`; ba câu kho ôn của card `vach-don-vi` giờ chỉ quay quanh 35 và 40.
+- Sửa: `kt-dem-vach-c` đặt C ở 5 (lựa chọn 4, 5, 6; sửa `explain`, `check`). `cach-goc-9` đổi sang số chưa dùng trong section (đổi id). Card `vach-don-vi` dùng số chưa có ở màn học, câu kiểm tra, câu luyện (đã dùng 20, 25, 30, 35, 40): vd 45, 50; đổi id, `params`, `explain` theo.
 
-### 18. Một khái niệm hai tên: "bé hơn" bên cạnh "nhỏ hơn"; caption dấu ≤ không nói số nào
+### 7. Mẹo `doc-dau` nhắc dấu ≤, ≥ một section trước khi dạy
 
-- Vị trí: `$.sections[4].blocks[0].caption` (hình `bang-3-5`), `$.sections[3].blocks[2].text` (`tip.doc-dau`), `$.exercises[27]` (`ex.dien-dau-6-11`). LL-05, LL-10.
+- Vị trí: `$.sections[4].blocks[2].text` (`tip.doc-dau`). LL-09, LL-20.
 - Nguồn: tr.11 "Kĩ năng giải toán", `sbt-p11.png`
-- Vấn đề: Glossary, câu quy tắc, màu khái niệm và mọi recap dùng "nhỏ hơn"; ba chỗ này dùng "bé hơn", "số bé". Caption `bang-3-5` "dấu ≤ đúng khi số bé hơn hoặc hai số bằng nhau" còn không nói số nào phải nhỏ hơn số nào, và bỏ qua hàng `7 ≥ 5` của hình.
-- Sửa: Đổi mọi "bé hơn", "số bé" thành "nhỏ hơn", "số nhỏ hơn" (mẹo sửa theo mục 5). Caption: "Bấm Bước tiếp: dấu ≤ đúng khi số bên trái nhỏ hơn hoặc bằng số bên phải; dấu ≥ thì ngược lại."
+- Vấn đề: Câu "Dấu ≤ và ≥ thì khác: hai số bằng nhau vẫn đúng." (thêm theo mục 5 vòng 1) đưa hai kí hiệu chưa dạy vào section `dau-nho-lon`; section `dau-bang` sau mới dạy cách đọc. "Hai số bằng nhau vẫn đúng" cũng không nói điều gì đúng. Câu đầu đã đủ điều kiện ("Với dấu < và >"). Hai nhóm reviewer cùng ghi mục này.
+- Sửa: Bỏ câu thứ hai: "Với dấu < và >, đầu nhọn luôn chỉ về số nhỏ hơn, còn phía miệng mở quay về số lớn hơn." Không cần thêm lời nhắc ở `dau-bang`: câu quy tắc ở đó đã có "Hai số bằng nhau thì cả hai dấu đều đúng."
 
-### 19. "Điểm của số x" là tên thứ hai của "điểm biểu diễn số x"
+### 8. Bài xếp `kt-xep-9-2-6` hỏi "từ trái sang phải" nhưng thẻ xếp dọc
 
-- Vị trí: `$.sections[9].blocks[1].children[0].text` và recap `$.sections[9].recap`, `card.phan-tia-so`; `explain` của `ex.kt-phan-nao-7`, `ex.phan-nao-12`, `ex.phan-nao-2`, `ex.chon-nhieu-doan-ab`. LL-05.
-- Nguồn: tr.11 ý 1 (sách có "gọi tắt là điểm a", bài không dạy cách gọi tắt này)
-- Vấn đề: Cả bài và đề của chính section dùng "điểm biểu diễn số …", riêng câu quy tắc và lời giải thích đổi sang "điểm của số x". "x ở giữa hai số của A và B" cũng khó đọc.
-- Sửa: "Điểm biểu diễn số x thuộc đoạn AB khi x nằm từ số của A tới số của B, kể cả hai số đó." (gộp với mục 34); `explain` viết "điểm biểu diễn số 7".
-
-### 20. Câu nhắc ℕ, ℕ* nói khác câu của Bài 2
-
-- Vị trí: `$.sections[10].blocks[0].children[0].text`, recap `card.n-nsao`. LL-05.
-- Nguồn: `sources/math/cach-ghi-so-tu-nhien/sbt-p7.png`
-- Vấn đề: Bài 2 dạy "Tập hợp các số tự nhiên kí hiệu là ℕ", "Bỏ số 0 khỏi ℕ thì được ℕ*"; bài này viết "ℕ là tập hợp mọi số tự nhiên, ℕ* là tập hợp các số tự nhiên khác 0". Một kiến thức hai cách nói giữa hai bài liền nhau.
-- Sửa: Dùng lại đúng câu đã qua review của Bài 2 (`cach-ghi-so-tu-nhien`) cho note và recap card `n-nsao`.
-
-### 21. Câu kiểm tra và câu kho ôn của các section đầu lặp số của màn cùng làm, recap
-
-- Vị trí: `$.exercises[16]` (`ex.kt-ben-trai-4-9`); `$.exercises[10]` (`ex.cham-diem-30`); `$.exercises[11]` (`ex.chon-nhieu-xa`, điểm E ở 25). LL-07.
+- Vị trí: `$.exercises[17].prompt[0]` (`ex.kt-xep-9-2-6`). LL-10.
 - Nguồn: —
-- Vấn đề: `kt-ben-trai-4-9` hỏi đúng 4 và 9 mà màn cùng làm `dat-hai-diem` vừa chốt; `cham-diem-30` hỏi điểm 30 mà màn cùng làm `dat-diem-5` đã đẩy tới 30; `chon-nhieu-xa` có điểm 25 trùng hình recap `vach-5-xong`.
-- Sửa: `kt-ben-trai-4-9` đổi số (vd 6 và 2, đổi id); `cham-diem-30` đổi sang 35 hay 20 (đổi id, `explain`); `chon-nhieu-xa` đổi điểm 25 thành 35.
+- Vấn đề: Ảnh `phone/062-s4-06-exercise-kt-xep-9-2-6`: ba thẻ xếp từ trên xuống, màn hướng dẫn trước đó nói "Thẻ trên cùng là bước làm trước". Đề không nói thẻ trên cùng ứng với bên trái, nên bạn phải tự đổi chiều dọc sang chiều ngang.
+- Sửa: "Xếp các số 9, 2 và 6 theo vị trí điểm biểu diễn trên tia số: thẻ trên cùng là số nằm bên trái nhất."
 
-### 22. Câu kho ôn của các section giữa lặp số của màn dạy, mẹo, màn cùng làm
+### 9. Mẹo "Đổi lời thành dấu" cho sẵn đáp án câu luyện `tau-cao-100`, và dùng h mà chưa nói h là gì
 
-- Vị trí: `$.exercises[50]` (`ex.vi-sao-giam-dan`, card `bieu-do`); `$.exercises[57]` (`ex.chon-lien-truoc-100`, card `lien-truoc`); `$.exercises[43]` (`ex.chon-lon-nhat-27408-27840`, card `cung-chu-so`). LL-07.
-- Nguồn: —
-- Vấn đề: `vi-sao-giam-dan` hỏi lại đúng note màn 3 (10, 4, 1) trên cùng hình `muon-sach-xong`; `chon-lien-truoc-100` có sẵn đáp án trong `tex` của mẹo `lien-sau-tan-cung-9` ("99 + 1 = 100"); `chon-lon-nhat-27408-27840` dùng lại 27 408 của màn cùng làm `chon-27408-27480`.
-- Sửa: `vi-sao-giam-dan` hỏi trên biểu đồ câu lạc bộ cờ hay ba ngày khác; `chon-lien-truoc-100` đổi sang 300 hay 1 000; `chon-lon-nhat-27408-27840` đổi sang bộ số không có 27 408 (đổi id theo số mới).
-
-### 23. Câu kiểm tra và câu luyện của `phan-tia-so` dùng chung một hình cố định
-
-- Vị trí: `ex.kt-phan-nao-7` (checkIds), `ex.phan-nao-12` (practiceIds), cùng `ex.phan-nao-2`, `ex.chon-nhieu-doan-ab`, `ex.chon-nhieu-doan-ab-dau` (hình `phan-4-9`). LL-07.
-- Nguồn: —
-- Vấn đề: Đúng bẫy ghi trong `pitfalls.md`: câu kiểm tra hỏi số 7 (đoạn AB), câu luyện ngay sau cùng hình hỏi số 12 với ba lựa chọn y hệt, nên bạn chỉ cần chọn khác câu trước. Cả 5 câu của card đều dùng A = 4, B = 9 (cũng là 4, 9 của màn cùng làm `ben-trai`).
-- Sửa: Câu luyện và câu kho ôn dùng các bộ A, B khác nhau và khác bộ màn học mới ở mục 4 (vd 2 và 7, 5 và 11), mỗi bộ một hình `line`.
-
-### 24. Câu kiểm tra `kt-thap-nhat-an-binh-chi` lặp khuôn màn cùng làm; đáp án luôn là tên nêu đầu tiên
-
-- Vị trí: `ex.kt-thap-nhat-an-binh-chi`; `$.sections[8].blocks[2]` (hình `chon-thap-nhat`). LL-07, LL-14.
-- Nguồn: —
-- Vấn đề: "Nam thấp hơn Lan, Lan thấp hơn Hà" rồi "An thấp hơn Bình, Bình thấp hơn Chi. Ai thấp nhất?": cùng khuôn, đáp án đều là tên đứng đầu, nên chọn được nhờ vị trí tên mà không cần bắc cầu.
-- Sửa: Đổi thứ tự nêu trong câu kiểm tra, vd "Bình thấp hơn Chi, An thấp hơn Bình. Ai cao nhất?".
-
-### 25. Câu chuyện mở đầu không có kết và chỉ nằm trong caption
-
-- Vị trí: `$.sections[3].blocks[0]` (hình `dau-15-25`, caption), `$.sections[5].blocks[0]` (hình `so-9840-12305`, caption). LL-16.
-- Nguồn: —
-- Vấn đề: Caption kể "bánh 15 nghìn, trà sữa 25 nghìn" và "kênh A 9 840, kênh B 12 305 người theo dõi", nhưng hình chỉ kết ở "15 nhỏ hơn 25", "9840 nhỏ hơn 12305", không nói món nào rẻ hơn, kênh nào nhiều người theo dõi hơn; tình huống chỉ ở chữ xám nhỏ (ảnh `065-s4-01-block`).
-- Sửa: Đưa câu chuyện vào note và chốt kết, vd "Bánh giá 15 nghìn, trà sữa giá 25 nghìn. 15 nhỏ hơn 25, nên bánh rẻ hơn. Ta viết 15 < 25."; "… Vậy kênh B có nhiều người theo dõi hơn", ghi "Kênh A", "Kênh B" cạnh hai số trong hình.
-
-### 26. Mẹo "Đếm từ gốc O" chỉ đúng khi hai vạch cách nhau 1 đơn vị mà không nói điều kiện
-
-- Vị trí: `$.sections[0].blocks[3]` (`tip.dem-tu-goc-o`, hình `dem-buoc` "mỗi bước một đơn vị"). LL-24.
-- Nguồn: —
-- Vấn đề: `tex` 0 → 1 → 2 → 3 và hình cho số bước là số của điểm. Ở section sau (vạch cách 5), điểm ở bước thứ 9 thành 9 thay vì 45 (`doc-e-45`), 8 thay vì 40 (`kt-doc-vach-5`, đúng nhiễu). Text chỉ dặn đếm bước, chưa nói "số bước là số của điểm", nên để Nên sửa; sửa cùng lúc với mục 7.
-- Sửa: Thêm điều kiện: "Khi hai vạch liền nhau cách nhau 1 đơn vị, số bước chính là số của điểm. Vạch cách nhau nhiều đơn vị thì mỗi bước cộng thêm chừng ấy đơn vị."
-
-### 27. Câu luyện đọc biểu đồ bắt đọc số qua vạch lưới mà section chưa có mẫu
-
-- Vị trí: `$.exercises[47]` (`ex.doc-cot-clb`); hình `clb-doc` (`values: "none"`). LL-16.
-- Nguồn: tr.13 bài 1.26, `sbt-p13.png`
-- Vấn đề: Mọi biểu đồ ở màn dạy và câu kiểm tra `kt-cot-10` đều ghi số trên đầu cột; câu luyện đầu tiên bỏ số, lời giải nói "Đầu cột T4 chạm vạch lưới ghi 15", một thao tác chưa có màn mẫu hay cùng làm.
-- Sửa: Thêm vào màn `giam-dan` hay màn cùng làm một bước "nhìn ngang từ đầu cột sang cột số bên trái" (sách gợi ý hình dung cột số là tia số đứng), hoặc thêm `tip` "Cột không ghi số: dóng ngang đầu cột sang cột số bên trái"; không thêm thì cho `clb-doc` hiện số.
-
-### 28. Nấc 1 của nhiều câu tô câu lệnh, không tô hình hay công thức là chỗ bạn hay sai
-
-- Vị trí: `hints.highlight[0]` của `ex.kt-doc-diem-b` (`$.exercises[0]`), `ex.kt-dem-vach-c` (`$.exercises[1]`), `ex.doc-diem-a-9` (`$.exercises[2]`), `ex.doc-cot-clb` (`$.exercises[47]`), `ex.chon-ngay-it-nhat-clb` (`$.exercises[49]`), `ex.kt-liet-ke-3-6`, `ex.dem-phan-tu-3-7`, `ex.liet-ke-2-6`, `ex.dem-phan-tu-6-9`, `ex.liet-ke-nho-hon-5-n`, `ex.liet-ke-nho-hon-5-nsao`, `ex.dem-nho-bang-6-n` (đều `{target: "block", index: 0}`). LL-02.
-- Nguồn: —
-- Vấn đề: Đề có hai khối, lỗi hay gặp nằm ở khối 1 (đếm vạch trên tia số, đọc cột trên biểu đồ, dấu ≤ hay < và ℕ hay ℕ* trong công thức), nhưng nấc 1 tô câu lệnh ở khối 0 (ảnh `015-s1-05-…-wrong2`). Không thuộc ngoại lệ "đề chỉ có một câu chữ". Gộp từ ba nhóm, giữ mức Nên sửa.
-- Sửa: Trỏ `{target: "block", index: 1}`; với câu tập hợp có thể bọc `\htmlId{…}` quanh dấu ≤, < và ℕ, ℕ* rồi dùng `target: "part"`.
-
-### 29. Section `dau-bang` không có mẹo cho dạng đổi lời thành dấu
-
-- Vị trí: `$.sections[4]` (section `dau-bang`; câu `thang-may-12`, `tau-cao-100`).
+- Vị trí: `$.sections[5].blocks[2].text`, `$.sections[5].blocks[2].tex` (`tip.doi-loi-thanh-dau`); `$.exercises[35]` (`ex.tau-cao-100`, trong `practiceIds` của `dau-bang`). LL-07, LL-20, LL-10.
 - Nguồn: tr.11 "Kĩ năng giải toán", `sbt-p11.png`
-- Vấn đề: Dạng "tối đa 12 người", "từ 100 cm trở lên" có mẹo rõ, đúng với mọi số, và đúng là chỗ nhiễu `n < 12`, `h > 100` bẫy bạn; hồ sơ người học cần mẹo cho từng dạng.
-- Sửa: Thêm `tip` loại "hiểu nhanh" sau màn thang máy: "Gặp chữ 'tối đa' hay 'không quá' thì dùng ≤. Gặp 'từ … trở lên' hay 'ít nhất' thì dùng ≥. Hai cách nói này đều tính cả số đề cho." kèm `tex` `n \le 8` và `h \ge 100`.
+- Vấn đề: Mẹo ghi "Gặp “từ 100 cm trở lên” thì dùng h ≥ 100", ba màn sau câu luyện hỏi đúng "người cao từ 100 cm trở lên … điều kiện nào đúng?". Bạn chỉ cần chép lại mẹo. Đây là bản sửa theo mục 29 vòng 1. Mẹo cũng dùng chữ h mà không nói h là chiều cao; note trước chỉ giới thiệu n.
+- Sửa: Đổi ví dụ ≥ của mẹo sang tình huống và số khác câu luyện, nói luôn chữ cái là gì, vd "Gặp “từ 6 tuổi trở lên” (t là số tuổi) thì dùng t ≥ 6", `tex` đổi theo. Cách khác: giữ mẹo, đổi câu luyện sang số và tình huống khác, đổi id.
 
-### 30. Section `so-nhieu-chu-so` gộp hai quy tắc cần nhớ riêng
+### 10. Section `lien-tiep` không có màn cùng làm
 
-- Vị trí: `$.sections[5]` (recap, `blocks[1]`), card `so-chu-so`, `cung-chu-so`. LL-06.
+- Vị trí: `$.sections[9].blocks` (`section.lien-tiep`). LL-16.
 - Nguồn: —
-- Vấn đề: Recap cần hai câu mới đủ và bài đã tách thành hai card; màn quy tắc còn thêm note thứ ba ("Gặp cặp chữ số khác nhau đầu tiên thì dừng lại"), nên bạn phải nhớ ba ý trong một section.
-- Sửa: Tách thành hai section ("Đếm chữ số", "So từng cặp chữ số") theo hai card; hoặc gộp ba ý thành một câu quy tắc hai bước thật ngắn và đưa ý "dừng lại" vào hình.
+- Vấn đề: Mọi section khác có một màn "Cùng làm" trước câu tự làm. `lien-tiep` đi thẳng từ quy tắc, màn số 0 và mẹo sang câu kiểm tra, dù có hai việc (số liền sau, số liền trước). Việc tìm số liền trước từ câu "Số liền trước của a + 1 là a" chưa được thử có hướng dẫn lần nào.
+- Sửa: Thêm một màn chips trước mẹo, vd "Cùng làm: chạm vào số liền trước của 31." với 29, 30, 32, lời kết "Bạn chọn đúng: 31 = 30 + 1, nên số liền trước của 31 là 30." Chọn số khác các câu đã có (39, 199, 80, 59, 45, 300, 1, 25, 26).
 
-### 31. Nhiễu của `bac-cau-x-7-12` loại được mà không cần bắc cầu
+### 11. Section `cung-chu-so` không có ví dụ đời sống
 
-- Vị trí: `$.exercises[61].options` (`ex.bac-cau-x-7-12`). LL-14.
+- Vị trí: `$.sections[7]` (màn `so-6218-6247`, màn quy tắc, mẹo, màn cùng làm, câu `kt-cung-chu-so`, `dien-dau-6305-6350`). LL-16.
+- Nguồn: Kiến thức nền (tiểu học); bài 1.25 tr.12, `sbt-p12.png`
+- Vấn đề: Từ khi tách khỏi `dem-chu-so` (bản sửa mục 30 vòng 1), câu chuyện kênh A, kênh B ở lại section trước, còn `cung-chu-so` chỉ có số trơn. Luật "Ví dụ đời sống ở mọi section Toán" của `lesson-author` không đạt.
+- Sửa: Cho màn mở đầu một câu chuyện có kết, vd note "Xe đạp giá 6 218 nghìn đồng, xe đạp điện giá 6 247 nghìn đồng. Hai số cùng 4 chữ số, so từng cặp thì 1 nhỏ hơn 4, nên xe đạp rẻ hơn." đặt trong `group` cùng hình `so-6218-6247`; hoặc đổi đề `kt-cung-chu-so` thành tình huống đời sống.
+
+### 12. Recap card `cung-chu-so` bỏ mất nửa quy tắc "cặp khác nhau đầu tiên", và câu quy tắc không nói số nào lớn hơn
+
+- Vị trí: `$.cards[9].recap.caption` (`card.cung-chu-so`); `$.sections[7].blocks[1].children[0].text` (note `rule`), `$.sections[7].recap.caption`. LL-06.
 - Nguồn: —
-- Vấn đề: "x = 7" trái ngay dữ kiện "x < 7", "x > 12" trái hiển nhiên; loại cả hai mà không phải nối hai bất đẳng thức.
-- Sửa: Dùng nhiễu ứng với lỗi thật, vd "x > 7" (đảo dấu), "12 < x" (viết ngược hai vế), "x = 12" (quên dấu nhỏ hơn).
+- Vấn đề: Recap card chỉ còn câu đầu, bỏ câu "Gặp cặp khác nhau đầu tiên thì dừng lại…" là chỗ quyết định, nên hai recap của cùng ý lệch nhau. Câu quy tắc kết bằng "cặp đó cho biết số nào lớn hơn" mà không nói cho biết thế nào; chỉ hình mới ghi "1 nhỏ hơn 4".
+- Sửa: Viết câu quy tắc đủ ý rồi dùng nguyên văn cho note, recap section và recap card: "Khi hai số có cùng số chữ số, so từng cặp chữ số từ trái sang phải. Ở cặp khác nhau đầu tiên, số nào có chữ số lớn hơn thì lớn hơn."
 
-### 32. Section `tap-hop-so` không có câu quy tắc; recap chỉ là một ví dụ; thiếu ví dụ đời sống
+### 13. Lời kết màn cùng làm `bieu-do-cot` nói "cột T4 thấp nhất", trái với màn trước vừa đánh dấu Chủ nhật "Ít nhất"
 
-- Vị trí: `$.sections[10]` (không có note `rule: true`), `$.sections[10].recap.caption`, recap `card.tap-hop-doan`. LL-06, LL-16.
-- Nguồn: tr.11 ví dụ c, tr.13 bài 1.27
-- Vấn đề: Câu luyện chấm hai ý (dấu ≤ lấy cả số ở đầu, dấu < bỏ số đó; ℕ có 0, ℕ* không có) mà không note nào nói. Recap "M gồm … tức là M = {5; …; 10}" chỉ là một ví dụ (lại là lời giải sách, mục 4), khi ôn bạn không có cách làm để nhớ. Section không có tình huống đời sống.
-- Sửa: Thêm note `rule: true`, vd "Liệt kê các số x từ a đến b: dấu ≤ thì lấy cả a và b, dấu < thì bỏ số đó. Viết ℕ thì có số 0, viết ℕ* thì không có số 0", recap lặp đúng câu đó. Thêm ví dụ đời sống (vd thang máy chở từ 3 đến 8 người).
-
-### 33. Mẹo đếm phần tử đặt trước khi dạy cách đếm thường; ví dụ tính không nói đang đếm gì
-
-- Vị trí: `$.sections[10].blocks[2]` (`tip.dem-phan-tu`).
+- Vị trí: hình `chon-ngay-it-nhat` (`$.sections[8].blocks[3].children[2]`), trường `done` trong `catalog.ts`. LL-10.
 - Nguồn: —
-- Vấn đề: Section chưa có màn đếm phần tử bằng cách liệt kê rồi đếm mà mẹo "làm nhanh" đã đứng ngay sau màn M (checklist trục 5: mẹo phải sau cách làm thường). `16 − 11 + 1 = 6` không nói 11, 16 là gì.
-- Sửa: Thêm một màn đếm mẫu (liệt kê rồi đếm) trước mẹo, hoặc chuyển mẹo xuống sau màn cùng làm. Ví dụ của mẹo dùng chính tập hợp vừa đếm (sửa cùng mục 7).
+- Vấn đề: "Bạn chọn đúng: cột T4 thấp nhất, chỉ có 9 quyển." không nói "trong bốn ngày T3 đến T6". Màn quy tắc ngay trước đánh dấu cột Chủ nhật (1 quyển) là "Ít nhất", và trên hình của màn này cột T7, CN đều thấp hơn T4.
+- Sửa: "Bạn chọn đúng: trong bốn ngày T3, T4, T5, T6, cột T4 thấp nhất, chỉ có 9 quyển."
 
-### 34. Câu quy tắc `phan-tia-so` chỉ nói đoạn AB, câu hỏi đòi biết cả đoạn OA và phần còn lại
+### 14. Câu quy tắc liệt kê đọc được thành "có dấu ≤ thì lấy cả hai đầu"; hình mẫu không có ví dụ dấu ≤
 
-- Vị trí: `$.sections[9].blocks[1].children[0].text`, recap `$.sections[9].recap`, `card.phan-tia-so`; câu `ex.kt-phan-nao-7`, `ex.phan-nao-12`, `ex.phan-nao-2`. LL-06.
-- Nguồn: tr.12 lời giải b, `sbt-p12.png`
-- Vấn đề: Cách xếp số vào đoạn OA hay phần còn lại chỉ có trong lý do `wrong` của câu kiểm tra; khi ôn qua recap bạn không có cách làm.
-- Sửa: Câu quy tắc và recap nói đủ ba phần, dùng tên ở mục 19, vd "Số từ 0 tới số của A: điểm biểu diễn thuộc đoạn OA. Từ số của A tới số của B: đoạn AB. Lớn hơn số của B: phần còn lại."
+- Vị trí: `$.sections[12].blocks[2].children[0].text` (note `rule`), `$.sections[12].recap.caption`, `$.cards[15].recap.caption` (`card.tap-hop-doan`); hình `liet-ke-mau` (`$.sections[12].blocks[2].children[1]`, recap section, recap card). LL-10, LL-06.
+- Nguồn: tr.13 bài 1.27, `sbt-p13.png` (đề có cả dấu < và dấu ≤)
+- Vấn đề: "dấu ≤ thì lấy cả a và b, dấu < thì bỏ số đó" nói dấu ≤ lấy cả hai số, trong khi luật thật là xét từng đầu. Ở câu kho ôn `liet-ke-7-10` (`7 ≤ x < 10`, `$.exercises[74]`), theo đúng chữ thì lấy cả 10. Hình dưới quy tắc (cũng là recap) chỉ có hai dòng `x < 4` trong ℕ và ℕ*, không dòng nào cho dấu ≤ hay đề hai dấu khác nhau.
+- Sửa: Câu quy tắc (và hai recap lặp nguyên văn): "Liệt kê các số x từ a đến b: số đứng cạnh dấu ≤ thì lấy, số đứng cạnh dấu < thì bỏ. Số 0 có trong ℕ, không có trong ℕ*." Thêm vào `liet-ke-mau` một dòng hai dấu khác nhau với số chưa dùng, vd `\{x \in \mathbb{N} \mid 11 ≤ x < 14\} = \{11; 12; 13\}`, nhãn "Có số 11, không có số 14".
 
-### 35. Lựa chọn "Cả hai tập hợp trên" sai khi app xáo lựa chọn
+### 15. Câu kho ôn `xep-3-ban` lặp đúng dữ kiện và đáp án của câu kiểm tra `kt-cao-nhat-an-binh-chi`
 
-- Vị trí: `$.exercises[74].options[2]` (`ex.chon-nsao-0`). LL-10.
+- Vị trí: `$.exercises[63]` (`ex.xep-3-ban`, card `bac-cau`); so với `$.exercises[61]` (`ex.kt-cao-nhat-an-binh-chi`). LL-07.
 - Nguồn: —
-- Vấn đề: App xáo thứ tự; ảnh `ipad/169-s11-07-exercise-chon-nsao-0.png` cho thấy lựa chọn này đứng đầu, chữ "trên" không trỏ vào đâu.
-- Sửa: "Cả ℕ và ℕ*" (sửa cả `wrong` của phương án này).
+- Vấn đề: Cả hai câu dùng An, Bình, Chi với cùng quan hệ, nên thứ tự đã nằm sẵn trong lời giải câu kiểm tra. Khi ôn, bạn nhớ tên chứ không dùng bắc cầu.
+- Sửa: Đổi tên và đổi chiều, vd "Minh cao hơn Tú, còn Tú cao hơn Long. Xếp ba bạn từ thấp đến cao." (đáp án Long, Tú, Minh), sửa `explain`.
 
-### 36. Màu khái niệm tô lên phần không phải khái niệm đó
+### 16. Cách đọc phần `x ∈ ℕ |` trong kí hiệu tập hợp vẫn chưa có câu nào nói
 
-- Vị trí: hình `chia-ba-phan` (đoạn OA blue "Số nhỏ hơn", đoạn AB teal "Tập hợp", phần còn lại slate "So sánh số có nhiều chữ số"); hình `bac-cau-keo` (nhãn hàng tô cả dòng blue, violet). LL-03.
+- Vị trí: `$.sections[12].blocks[1].children[0].text` (note màn M, hình `m-liet-ke`). LL-09.
+- Nguồn: tr.12 lời giải c, `sbt-p12.png`
+- Vấn đề: Vòng 1 (mục 10) đề nghị dạy cả dấu kép lẫn phần trước vạch đứng. Bản sửa dạy dấu kép, còn phần `x ∈ ℕ |` chỉ được nói gián tiếp; không câu nào nói vạch đứng đọc là "mà", hay `x ∈ ℕ*` là số tự nhiên khác 0. `docs/learner.md` ghi bạn còn yếu kí hiệu ∈ và { }, và 8 câu (từ `kt-liet-ke-4-8` tới `dem-nho-bang-6-n`) cho đề chỉ bằng kí hiệu này.
+- Sửa: Thêm vào note màn M: "Phần x ∈ ℕ trước vạch đứng nói x là số tự nhiên. Vạch đứng đọc là 'mà'." Ở màn quy tắc có thể nói thêm "x ∈ ℕ* nghĩa là x là số tự nhiên khác 0."
+
+### 17. Thang máy "chở từ 3 đến 8 người" sai ngoài đời và trái với section `dau-bang`
+
+- Vị trí: `$.sections[13].blocks[0].children[0].text` (`section.dem-phan-tu`), hình `thang-3-8` (nhãn "Số người n"); so với `$.sections[5].blocks[1].children[0].text` (`section.dau-bang`). LL-10, LL-20, LL-05.
 - Nguồn: —
-- Vấn đề: Lệch luật một khái niệm một màu (checklist trục 4 xếp Nên sửa; nhóm 3 ghi Góp ý, Tổng hợp nâng mức theo checklist). Ở `bac-cau-keo`, hàng "Lan có ít kẹo hơn Hà" mang màu "Số lớn hơn".
-- Sửa: Dùng màu trung tính (không thuộc `concepts`) cho ba phần của tia số và cho nhãn hàng của `bac-cau-keo`, hoặc chỉ tô đúng số nhỏ hơn và số lớn hơn.
+- Vấn đề: Thang máy chở được 1 hay 2 người, không có mức tối thiểu 3 người, đúng kiểu lỗi số nhà vòng 1 (mục 9). Tổng hợp thấy thêm: section `dau-bang` cùng bài vừa nói "Thang máy chở tối đa 8 người … thang trống hay đủ 8 người đều được", nên cùng một thang máy, hai section nói hai điều trái nhau. Ví dụ này lấy từ câu "Sửa" của vòng 1 (mục 32).
+- Sửa: Chọn tình huống có cả mức thấp nhất lẫn cao nhất thật và khác thang máy, vd "Cô chia lớp thành các nhóm, mỗi nhóm có từ 3 đến 8 bạn. Số bạn n của một nhóm thoả 3 ≤ n ≤ 8, nên n là 3, 4, 5, 6, 7 hoặc 8." Sửa nhãn hình `thang-3-8` theo.
+
+### 18. Màn đầu `bac-cau` chỉ có hình từng bước; câu chuyện và việc phải làm nằm trong caption xám
+
+- Vị trí: `$.sections[10].blocks[0]` (hình `bac-cau-keo`, caption). LL-16.
+- Nguồn: —
+- Vấn đề: Màn mở section không có note: số kẹo của từng bạn và lời dặn bấm "Bước tiếp" chỉ ở chữ xám nhỏ dưới hình (ảnh `phone/152-s11-01-block.png`). Checklist trục 5: hướng dẫn chỉ ở caption xám là Nên sửa.
+- Sửa: Đặt màn thành `group` có note trước hình: "Nam có 3 viên kẹo, Lan có 5 viên, Hà có 8 viên. Bấm Bước tiếp để so từng cặp." Caption bỏ hoặc chỉ giữ lời dặn.
+
+### 19. Câu kho ôn `chon-nhieu-doan-ab` dùng lại hình và bộ A = 2, B = 7 của câu luyện `phan-nao-11`
+
+- Vị trí: `$.exercises[69]` (`ex.chon-nhieu-doan-ab`, hình `phan-2-7`); so với `$.exercises[67]` (`ex.phan-nao-11`). LL-07.
+- Nguồn: —
+- Vấn đề: Lời giải câu luyện đã nói "Đoạn AB chỉ gồm các số từ 2 đến 7", đúng điều câu kho ôn hỏi.
+- Sửa: Cho câu kho ôn một bộ chưa dùng (vd A = 4, B = 10, lựa chọn 3, 4, 9, 11; đáp án 4 và 9) với một hình `line` mới.
+
+### 20. Hai hình liền nhau tô ba phần của tia số hai bộ màu khác nhau
+
+- Vị trí: hình `ba-phan-rows` (`$.sections[11].blocks[1].children[2]`, recap section, recap `card.phan-tia-so`) so với `chia-ba-phan` (`$.sections[11].blocks[0].children[2]`). LL-05.
+- Nguồn: —
+- Vấn đề: Màn đầu tô đoạn OA xanh dương, đoạn AB xanh ngọc, phần còn lại xám; màn quy tắc ngay sau gắn cả ba nhãn cùng màu cam của "Điểm biểu diễn". Một phần mang hai màu ở hai màn liền nhau, và màu cam là màu của khái niệm khác.
+- Sửa: Nhãn của `ba-phan-rows` dùng đúng ba màu của `chia-ba-phan` (đổi theo nếu `chia-ba-phan` đổi màu), hoặc cả hai hình cùng bỏ màu khái niệm.
+
+### 21. Recap card `cot-cay-so` bỏ nửa phép trừ, mà câu kho ôn của card hỏi đúng phép trừ
+
+- Vị trí: `$.cards[2].recap.caption` (`card.cot-cay-so`); so với `$.sections[2].recap.caption` và `$.exercises[14]` (`ex.cot-con-lai-70-55`). LL-06.
+- Nguồn: —
+- Vấn đề: Recap card chỉ còn câu cộng ("số của thị trấn bằng số của cột cộng số km đó"), bỏ câu "Số km còn lại bằng số của thị trấn trừ số của cột". Câu kho ôn `cot-con-lai-70-55` của card hỏi "Còn bao nhiêu km nữa tới thị trấn?", nên khi ôn bằng card, bạn không có câu nào trên màn cho cách làm câu này. Cùng kiểu với mục 3 (`vach-don-vi`) và mục 12 (`cung-chu-so`): ba card cắt câu quy tắc của section giữa chừng.
+- Sửa: Recap card lặp đủ câu quy tắc của section (sau khi viết lại theo mục 23). Soát cả 18 card: card nào có câu kho ôn dùng nửa sau của quy tắc thì recap phải giữ nửa đó.
+
+### 22. Ba phần của tia số mang hai tên "khúc" và "phần"
+
+- Vị trí: `$.sections[11].title` ("Hai điểm cắt tia số làm ba khúc"), `$.sections[11].blocks[0].children[1].text` ("ba khúc"); so với câu quy tắc `$.sections[11].blocks[1].children[0].text` ("ở phần nào"), hình `ba-phan-rows`, `chia-ba-phan` ("Phần còn lại") và đề `ex.kt-phan-nao-6`, `ex.phan-nao-11`, `ex.phan-nao-3` ("nằm ở phần nào?"). LL-05.
+- Nguồn: —
+- Vấn đề: Tên section và màn đầu gọi là "khúc", quy tắc, hình và mọi đề gọi là "phần". Bạn đọc chậm có thể nghĩ "khúc" và "phần" là hai thứ khác nhau.
+- Sửa: Dùng một tên "phần": tên section "Hai điểm cắt tia số thành ba phần", màn đầu viết như mục 1.
 
 ## Góp ý
 
-### 37. Nhiễu "142 = 138" không ai chọn
+### 23. "Số của thị trấn", "số biểu diễn thị trấn" bên cạnh "điểm ứng với thị trấn biểu diễn số"
 
-- Vị trí: `$.exercises[30].options[2]` (`ex.chon-chieu-cao-142-138`). LL-14.
+- Vị trí: `$.sections[2].blocks[1].children[0].text` (note `rule`), `$.sections[2].recap.caption`, `$.cards[2].recap.caption`; `$.exercises[15].prompt[1]` (`ex.chon-phep-tinh-km`); `$.exercises[11..13].explain.text`. LL-05, LL-25.
 - Nguồn: —
-- Vấn đề: Hai số khác nhau rõ, không ứng với lỗi hay gặp.
-- Sửa: Thay bằng "138 > 142" (lỗi đảo số).
+- Vấn đề: Đề đã sửa theo mục 40 vòng 1 thành "Điểm ứng với thị trấn biểu diễn số mấy?", còn quy tắc, recap và `chon-phep-tinh-km` vẫn nói "số của thị trấn", "số biểu diễn thị trấn" (ngược vai). Câu quy tắc "Thị trấn còn cách cột bao nhiêu km, thì số của thị trấn bằng …" cũng hơi rối.
+- Sửa: Ví dụ quy tắc: "Số của điểm thị trấn bằng số của cột cộng số km còn phải đi. Số km còn phải đi bằng số của điểm thị trấn trừ số của cột." (recap section và recap card lặp lại, xem mục 21); đề `chon-phep-tinh-km`: "Phép tính nào cho số mà điểm thị trấn biểu diễn?".
 
-### 38. Mũi tên hai đầu gắn nhãn "sang phải"
+### 24. Nhiễu `35 · 25` của `chon-phep-tinh-km` khó có ai chọn
 
-- Vị trí: hình `trai-3-8`, `trai-3-8-xong` (màn quy tắc, recap section, recap `card.ben-trai`). LL-15.
+- Vị trí: `$.exercises[15].options[2]` (`ex.chon-phep-tinh-km`). LL-14.
 - Nguồn: —
-- Vấn đề: Mũi tên hai đầu (ảnh `049-s3-01-block-end`) trong khi nhãn nói một chiều.
-- Sửa: Dùng mũi tên một chiều, hoặc nhãn "số lớn dần khi sang phải".
+- Vấn đề: Section chỉ nói cộng và trừ; phép nhân không ứng với lỗi hay gặp, nên câu thực chất còn hai lựa chọn.
+- Sửa: Thay bằng phép tính ứng với lỗi đọc đề, vd `25 + 25`, hoặc bỏ để câu còn hai lựa chọn.
 
-### 39. Hình gợi ý `goi-y-dau-4-9` chỉ là "4 ? 9", không tách bài
+### 25. Hai câu kiểm tra của `ben-trai` dùng chung cặp 2 và 6
 
-- Vị trí: `$.exercises[27].hints.hintVisualId` (`ex.dien-dau-6-11`).
+- Vị trí: `$.exercises[16]` (`ex.kt-ben-trai-6-2`), `$.exercises[17]` (`ex.kt-xep-9-2-6`). LL-07.
 - Nguồn: —
-- Vấn đề: Nấc 2 chỉ đưa một cặp số khác với dấu "?" (ảnh `077-s4-07-…-wrong2`), không thêm cách nghĩ.
-- Sửa: Vẽ 4 và 9 trên tia số (4 bên trái nên nhỏ hơn) rồi dừng ở dấu "?".
+- Vấn đề: Câu đầu chốt 2 nằm bên trái 6; câu xếp ngay sau chỉ còn phải đặt số 9.
+- Sửa: Đổi bộ số của câu xếp, vd 10, 3, 7 (đổi id, `items`, `explain`; đề sửa theo mục 8).
 
-### 40. "Thị trấn biểu diễn số mấy" nên nói là điểm của thị trấn
+### 26. Mũi tên hai đầu vẫn đi với nhãn một chiều "sang phải thì số lớn dần"
 
-- Vị trí: `$.exercises[7].prompt[1]`, `$.exercises[12].prompt[1]`, `$.exercises[13].prompt[1]`, `$.exercises[14].prompt[0]`.
+- Vị trí: hình `trai-3-8`, `trai-3-8-xong` (`$.sections[3].blocks[0]`, `blocks[1]`, recap section, recap `card.ben-trai`). LL-15.
 - Nguồn: —
-- Vấn đề: Theo quy tắc, điểm biểu diễn số, thị trấn không biểu diễn số.
-- Sửa: "Điểm ứng với thị trấn biểu diễn số mấy?".
+- Vấn đề: Ảnh `phone/055-s4-01-block-end`, `069-s4-08-recap`: nhãn đã sửa, nhưng mũi tên vẫn hai đầu, nên hình vẫn gợi cả chiều sang trái.
+- Sửa: Dùng mũi tên một đầu chỉ sang phải (cần sửa lớp `arrow` nếu chưa có kiểu một đầu).
 
-### 41. Recap card `viet-dau` trùng recap `doc-dau`
+### 27. `dien-dau-23-32` giải thích bằng so chữ số hàng chục, cách mà section `cung-chu-so` mới dạy
 
-- Vị trí: `$.cards[5].recap` (`card.viet-dau`).
+- Vị trí: `$.exercises[28].explain.text` (`ex.dien-dau-23-32`, card `viet-dau`). LL-09.
 - Nguồn: —
-- Vấn đề: Card luyện chọn dấu điền chỗ trống nhưng recap chỉ lặp câu đọc dấu; phiên ôn hai card hiện cùng một màn.
-- Sửa: Giữ câu quy tắc nhưng dùng hình khác (vd `giai-dau-6-11`).
+- Vấn đề: So hai số hai chữ số là kiến thức tiểu học nên không sai, nhưng lời giải dựa vào quy tắc của section sau.
+- Sửa: "Khi đếm, 23 đến trước 32, nên 23 nhỏ hơn 32 (điểm của 23 nằm bên trái). Ta viết dấu nhỏ hơn."
 
-### 42. Chữ chung của app ở màn chips: "Các số tô xanh là đáp án" khi thẻ không phải số
+### 28. `chon-chieu-cao-142-138` viết "nhiều hơn" cho chiều cao
 
-- Vị trí: `src/visuals/shared/pick-chips.tsx:145`; hình `chon-dau-140-135` (ảnh `070-s4-04-block-shown`), `chon-thap-nhat` (ảnh `phone/142-s9-03-block-shown.png`).
+- Vị trí: `$.exercises[30].explain.text` (`ex.chon-chieu-cao-142-138`). LL-19.
 - Nguồn: —
-- Vấn đề: Thẻ là cách viết so sánh hay tên bạn. Lỗi của app, không chặn bài; báo người làm app.
-- Sửa: App dùng chữ trung tính, vd "Các thẻ tô xanh là đáp án."
+- Vấn đề: "Nam cao 142 cm, nhiều hơn Lan là 138 cm" đọc như so số lượng.
+- Sửa: "Nam cao 142 cm, cao hơn Lan (138 cm). Vậy 142 lớn hơn 138, viết 142 > 138."
 
-### 43. Vùng chạm của biểu đồ cột che số trên đầu cột và đè lên cột số
+### 29. Lời giải `lien-sau-199` bỏ bước hàng chục bằng chữ "Cứ thế"
 
-- Vị trí: hình `muon-sach-tap` (`ex.kt-cot-10`); ảnh `phone/120-s7-05-exercise-kt-cot-10-correct.png`, `phone/117-s7-05-exercise-kt-cot-10-wrong1.png`. LL-12.
+- Vị trí: `$.exercises[53].explain.text` (`ex.lien-sau-199`).
 - Nguồn: —
-- Vấn đề: Khung tối khi chạm đúng che số "10" và chữ "T6"; vạch sọc khi chạm sai đè lên các số của cột số bên trái.
-- Sửa: Báo người làm app cho lớp tô của `Region` để lộ nhãn; hoặc trong `bars.tsx` đặt số ngoài `Region`, thu hẹp vùng chạm.
+- Vấn đề: Câu chỉ nói hàng đơn vị 9 thành 0 và nhớ 1, rồi "Cứ thế" nhảy tới 200, đúng chỗ bạn hay sai (viết 1 910 hay 190).
+- Sửa: "Cộng 1 vào 199: hàng đơn vị 9 thành 0, nhớ 1. Hàng chục cũng là 9 nên thành 0, nhớ 1 sang hàng trăm: 1 thành 2. Vậy 199 + 1 = 200."
 
-### 44. Câu kiểm tra và màn cùng làm của `bieu-do-cot` hỏi đúng điều màn trước vừa ghi
+### 30. Lời giải `kt-lien-sau-39` nói quy tắc theo cách thứ hai
 
-- Vị trí: `$.exercises[46]` (`ex.kt-cot-10`), `$.sections[6].blocks[3]` (`chon-ngay-it-nhat`). LL-07.
+- Vị trí: `$.exercises[52].explain.text` (`ex.kt-lien-sau-39`). LL-05.
+- Nguồn: tr.11 ý 3 "Kiến thức cần nhớ", `sbt-p11.png`
+- Vấn đề: "Số liền sau của một số bằng số đó cộng 1" đúng, nhưng câu quy tắc của bài là "Số liền sau của a là a + 1"; mục 8 vòng 1 đã sửa hai lời giải số liền trước theo câu quy tắc.
+- Sửa: "Số liền sau của a là a + 1. Vậy số liền sau của 39 là 39 + 1 = 40."
+
+### 31. Hình `giam-dan` viết dấu nối tiếp "10 > 4 > 1" mà bài chưa dạy cách đọc
+
+- Vị trí: hình `giam-dan` (`$.sections[8].blocks[2].children[1]`). LL-09.
 - Nguồn: —
-- Vấn đề: Note màn 3 vừa nói thứ Sáu có 10 quyển; hình màn 2 đã gắn nhãn "Ít nhất" cho Chủ nhật. Trả lời được bằng trí nhớ.
-- Sửa: Câu kiểm tra hỏi số chưa nói ra (vd 12 quyển, T3); màn cùng làm hỏi ngày khác.
+- Vấn đề: Bài chỉ dạy cách đọc dấu kép ở section `phan-tia-so` sau đó. Note đã nói bằng lời nên vẫn hiểu được, nhưng đây là lần đầu bạn gặp hai dấu trên một hàng.
+- Sửa: Viết thành hai hàng "10 > 4" và "4 > 1"; hoặc thêm vào note: "10 > 4 > 1 đọc là 10 lớn hơn 4, 4 lớn hơn 1."
 
-### 45. Dấu hình của màu số liền trước đứng cạnh biểu thức "a + 1"
+### 32. Hình `trang-25` vẽ tia số bắt đầu ở 22, không có gốc O
 
-- Vị trí: hình `lien-tiep-rows` (màn quy tắc, recap `lien-tiep`, recap card `lien-sau`, `lien-truoc`). LL-21.
+- Vị trí: hình `trang-25` (`$.sections[9].blocks[0]`). LL-15.
 - Nguồn: —
-- Vấn đề: Hàng đầu đọc thành "a ✚ Số liền trước của a + 1"; dấu của màu sky trông như dấu cộng.
-- Sửa: Đặt dấu khái niệm ở góc, hoặc bỏ dấu trong nhãn.
+- Vấn đề: Section `tia-so` dạy "Tia số bắt đầu ở gốc O, ứng với số 0". Hình này có vạch đầu ghi 22, trông như tia số có gốc ở 22 (ảnh `phone/139-s10-01-block.png`).
+- Sửa: Thêm dấu ngắt ở đầu trục, hoặc vẽ thành dãy ô số trang.
 
-### 46. Màu xanh, tím của chữ số trong mẹo trùng màu "chữ số", "hàng" của glossary
+### 33. Dấu hình của màu ở nhãn hình vẫn đứng sát chữ, đọc được thành dấu phép tính
 
-- Vị trí: `$.sections[5].blocks[2].tex` (`tip.so-cung-chu-so`); `content/glossary/math.json`.
+- Vị trí: hình `lien-tiep-rows` (`$.sections[9].blocks[1].children[2]`, recap section, recap card `lien-sau`, `lien-truoc`): "✚ Số liền trước của a + 1"; hình `bang-xong` (`$.sections[5].blocks[0].children[1]`): "▬ 5 bằng 5". LL-21.
 - Nguồn: —
-- Vấn đề: Trong bài nhất quán (xanh là nhỏ hơn, tím là lớn hơn), nhưng ở Bài 2 xanh là "chữ số", tím là "hàng".
-- Sửa: Ghi backlog thống nhất màu trong glossary; hoặc tô hai chữ số bằng màu `slate`.
+- Vấn đề: Mục 45 vòng 1 chưa đổi. Dấu thập của màu sky đọc thành "a cộng…", dấu thanh của màu slate đọc thành "trừ 5 bằng 5" (ảnh `phone/141-s10-02-block.png`, `phone/088-s6-01-block.png`). Dấu nằm trong khung nhãn nên ít nhầm hơn vòng 1.
+- Sửa: Báo người làm app đặt dấu hình ở góc khung hay đổi kiểu dấu; trong bài có thể bỏ màu khỏi nhãn "5 bằng 5", "Ví dụ: a = 25".
 
-### 47. Thiếu ví dụ dấu ≥ với hai số bằng nhau
+### 34. Lời giải câu đếm phần tử không dùng phép tính vừa học
 
-- Vị trí: hình `bang-3-5`, `bang-xong` (`$.sections[4]`).
+- Vị trí: `$.exercises[79].explain` (`ex.dem-phan-tu-3-7`), `$.exercises[80].explain` (`ex.dem-phan-tu-6-9`), `$.exercises[81].explain` (`ex.dem-nho-bang-6-n`).
 - Nguồn: —
-- Vấn đề: Quy tắc nói "Hai số bằng nhau thì cả hai dấu đều đúng" mà hình chỉ có 5 ≤ 5; `chon-dung-lon-bang` hỏi 12 ≥ 12.
-- Sửa: Thêm hàng `5 ≥ 5` vào hai hình.
+- Vấn đề: Quy tắc là "lấy b trừ a rồi cộng 1", câu kiểm tra `kt-dem-2-5` có `5 - 2 + 1 = 4`, nhưng câu luyện và hai câu kho ôn chỉ liệt kê rồi đếm.
+- Sửa: `tex` hai dòng (`gathered`): tập hợp liệt kê và phép tính, vd `\{3; 4; 5; 6; 7\}` và `7 - 3 + 1 = 5`; với `dem-nho-bang-6-n` là `6 - 0 + 1 = 7`.
 
-### 48. Lời giải `xep-4-so-40982` bỏ bước so hàng chục nghìn; `chon-lien-truoc-100` nói "mượn 1 ở hàng trăm"
+### 35. Điểm A thuộc cả đoạn OA lẫn đoạn AB mà bài nói "ba khúc"
 
-- Vị trí: `$.exercises[44].explain.text`, `$.exercises[57].explain.text`.
+- Vị trí: `$.sections[11].blocks[0].children[1].text`; hình `ba-phan-rows` (dòng `x ≤ a` là đoạn OA, dòng `a ≤ x ≤ b` là đoạn AB).
+- Nguồn: tr.12 lời giải c, `sbt-p12.png`
+- Vấn đề: Hình quy tắc đúng với sách (x = a thuộc cả hai đoạn), nhưng "cắt làm ba khúc" khiến bạn nghĩ mỗi số chỉ thuộc một phần. Chưa câu nào hỏi số bằng a.
+- Sửa: Thêm nửa câu ở màn đầu (cùng lúc sửa mục 1) hoặc nhãn hình: "A là đầu chung của đoạn OA và đoạn AB."
+
+### 36. Câu kho ôn `liet-ke-5-9`: đáp án là tập nhiều số nhất
+
+- Vị trí: `$.exercises[73].options` (`ex.liet-ke-5-9`). LL-14.
 - Nguồn: —
-- Vấn đề: Lời giải đầu không nói bốn số cùng 4 ở hàng chục nghìn, trái cách "so từ trái sang phải"; 100 − 1 phải mượn qua cả hàng chục.
-- Sửa: "Bốn số cùng có 5 chữ số và cùng 4 ở hàng chục nghìn. So hàng nghìn: 40 982 có 0, nhỏ nhất…"; "100 = 99 + 1, nên số liền trước của 100 là 99."
+- Vấn đề: Cả ba nhiễu đều thiếu số, nên "chọn tập dài nhất" luôn trúng; vòng 1 (mục 51) đã sửa kiểu này ở câu kiểm tra.
+- Sửa: Thay một nhiễu bằng tập thừa số, vd `\{4; 5; 6; 7; 8; 9\}`, thêm `wrong` "Thừa số …".
 
-### 49. Từ "thoả" trong đề
+### 37. Dấu kép trong note bị ngắt dòng giữa hai vế trên điện thoại
 
-- Vị trí: `$.sections[4].blocks[3].children[0].text`, `$.exercises[34]`, `$.exercises[36]` và các đề khác dùng "thoả" (8 chỗ trong `exercises`). LL-19.
+- Vị trí: `$.sections[12].blocks[1].children[0].text`, `$.sections[12].blocks[3].children[0].text`. LL-12.
 - Nguồn: —
-- Vấn đề: Từ Hán Việt chưa giải thích.
-- Sửa: "Chạm vào mọi số x làm cho x ≤ 4 đúng", hoặc giải thích một lần ở màn cùng làm.
+- Vấn đề: Ảnh `phone/175-s13-02-block.png` ngắt "6 ≤" ở cuối dòng và "x ≤ 12" ở dòng sau; `phone/177-s13-04-block.png` để "6." đứng một mình.
+- Sửa: Đưa dấu kép vào khối `formula` riêng, hoặc dùng dấu cách không ngắt quanh dấu ≤.
 
-### 50. `liet-ke-nho-hon-5-nsao` thiếu `wrong` cho phương án {0; 1; 2; 3; 4; 5}
+### 38. `sourceRef` của `dem-phan-tu` không có trang nào đếm phần tử
 
-- Vị trí: `$.exercises[76].explain.wrong` (`ex.liet-ke-nho-hon-5-nsao`).
+- Vị trí: `$.sections[13].sourceRef`, `$.cards[17].sourceRef` (`card.dem-phan-tu`). LL-09.
+- Nguồn: tr.11 ví dụ c, tr.13 bài 1.27 (chỉ liệt kê, không đếm)
+- Vấn đề: Câu quy tắc "lấy b trừ a rồi cộng 1" không có trên hai trang được trỏ. Giữ mức Góp ý: cách đếm suy ra trực tiếp từ việc liệt kê của sách, và màn đầu liệt kê rồi đếm trước khi nêu phép tính, nên không phải kiến thức ngoài nguồn.
+- Sửa: Ghi rõ trong `sourceRef`, vd "Sách bài tập tr.11 (ví dụ c), tr.13 (bài 1.27): liệt kê rồi đếm".
+
+### 39. Câu quy tắc `phan-tia-so` chỉ nói "so x với a và b", không nói so xong thì ở phần nào
+
+- Vị trí: `$.sections[11].blocks[1].children[0].text` (note `rule`), `$.sections[11].recap.caption`, `$.cards[14].recap.caption` (`card.phan-tia-so`). LL-06.
 - Nguồn: —
-- Vấn đề: Phương án thừa cả số 0 lẫn số 5, dễ được chọn khi quên cả hai luật.
-- Sửa: Thêm `{optionId: "c", text: "Thừa số 0 và số 5: ℕ* không có số 0, dấu < không cho x bằng 5."}`.
+- Vấn đề: Cùng kiểu mục 12: câu quy tắc nêu việc làm mà không nêu kết luận; ba trường hợp (x ≤ a, a ≤ x ≤ b, x > b) chỉ có trong hình `ba-phan-rows`. Hình là recap nên bạn vẫn thấy, nhưng câu bạn nhớ không tự đủ.
+- Sửa: Thêm kết luận vào câu quy tắc (recap lặp nguyên văn), vd "… so x với a và b: x không quá a thì ở đoạn OA, x từ a đến b thì ở đoạn AB, x lớn hơn b thì ở phần còn lại."
 
-### 51. Ở `kt-liet-ke-3-6`, đáp án là lựa chọn dài nhất
+### 40. Khái niệm "So sánh số có nhiều chữ số" mang màu slate, cũng là màu trung tính của nhãn thường
 
-- Vị trí: `$.exercises[70].options` (`ex.kt-liet-ke-3-6`). LL-14.
+- Vị trí: `$.concepts[7]` (`concept.so-sanh-so-nhieu-chu-so`, `color: "slate"`); nhãn slate trung tính ở hình `bang-xong` ("5 bằng 5"), nhãn gốc O của các hình `line` trong `catalog.ts`. LL-05.
 - Nguồn: —
-- Vấn đề: Ba nhiễu đều thiếu số, nên "chọn tập nhiều số nhất" luôn trúng.
-- Sửa: Thay một nhiễu bằng tập thừa số, vd {3; 4; 5; 6; 7}.
-
-### 52. Lý do `wrong` "Dấu ≥ ngược với kết luận của bắc cầu" chưa nói vì sao loại; phần dấu ≤ chưa có ví dụ số
-
-- Vị trí: `$.exercises[63].explain.wrong[0]` (`ex.bac-cau-nho-bang`); `$.sections[8]`.
-- Nguồn: —
-- Vấn đề: a ≥ b vẫn đúng khi a = b, nên "ngược" chưa giải thích; màn dạy chỉ có ví dụ kẹo với dấu <.
-- Sửa: Viết lý do theo trường hợp cụ thể của đề (a ≥ b chỉ đúng khi a bằng b, nên chưa chắc đúng); thêm một dòng ví dụ số với dấu ≤ vào hình `bac-cau-xong`.
-
-### 53. Nhãn nửa dưới hình `bac-cau-xong` chỉ lặp công thức
-
-- Vị trí: hình `bac-cau-xong`, các dòng có dấu ≤.
-- Nguồn: —
-- Vấn đề: Nửa trên có nhãn giải thích ("a bên trái b"), nửa dưới nhãn trùng công thức.
-- Sửa: "a bên trái b hoặc trùng b", "b bên trái c hoặc trùng c", "Nên a bên trái c hoặc trùng c".
-
-### 54. Dải "phần còn lại" dừng ở 20
-
-- Vị trí: hình `chia-ba-phan` (`span` từ 10 tới 20).
-- Nguồn: —
-- Vấn đề: Bạn có thể nghĩ phần còn lại chỉ tới 20.
-- Sửa: Kéo dải tới mũi tên, hoặc thêm "phần còn lại kéo dài mãi về bên phải" (sửa cùng bộ số mới ở mục 4).
-
-### 55. `sourceRef` của `tap-hop-so` thiếu trang lời giải
-
-- Vị trí: `$.sections[10].sourceRef`, `card.tap-hop-doan`, `card.n-nsao`.
-- Nguồn: tr.12 (lời giải c), tr.96 (đáp án 1.27)
-- Vấn đề: Kí hiệu dấu hiệu đặc trưng lấy từ lời giải tr.12 nhưng `sourceRef` chỉ ghi tr.7, 11, 13.
-- Sửa: Thêm "tr.12 (lời giải c), tr.96 (bài 1.27)".
-
-### 56. Câu thuần kí hiệu bắc cầu và câu "a và a + 1" trùng sách
-
-- Vị trí: `$.sections[8].blocks[1].children[0].text` (note `rule`), `$.sections[8].recap.caption`, recap `card.bac-cau`; `$.sections[7].blocks[1].children[1].text` ("Hai số a và a + 1 gọi là hai số tự nhiên liên tiếp."). LL-08.
-- Nguồn: tr.11 ý 3, ý 4 "Kiến thức cần nhớ", `sbt-p11.png`
-- Vấn đề: "Nếu a < b và b < c thì a < c. Nếu a ≤ b và b ≤ c thì a ≤ c." trùng từng chữ hai dòng sách; câu liên tiếp chỉ thêm "Hai số". Đây là câu kí hiệu ngắn, gần như không viết khác được, nên Tổng hợp hạ từ Nghiêm trọng (nhóm 3) xuống Góp ý.
-- Sửa: Tuỳ tác giả: giữ kí hiệu trong khối `formula`, thêm một câu lời của bài ("a nhỏ hơn b, b lại nhỏ hơn c, nên a nhỏ hơn c. Với dấu ≤ cũng vậy."); nếu đổi câu `rule` thì recap đổi theo.
-
-### 57. Số 25 mang hai vai ở hai màn liền nhau của `lien-tiep`
-
-- Vị trí: hình `nha-so-25` (`$.sections[7].blocks[0]`) và hàng ví dụ "a = 24" của hình `lien-tiep-rows` (`$.sections[7].blocks[1]`). LL-15.
-- Nguồn: —
-- Vấn đề: Màn mở đầu lấy 25 làm số đang xét (24 liền trước, 26 liền sau); màn quy tắc ngay sau tô 25 màu "Số liền sau" (ví dụ a = 24). Bạn vừa thấy 26 là liền sau đã gặp 25 cùng màu đó (phát hiện của Tổng hợp).
-- Sửa: Cho ví dụ của `lien-tiep-rows` dùng đúng số của màn mở đầu (a = 25: 25 và 26, hoặc 24 và 25 với nhãn "24 liền trước 25"), khớp với tình huống mới ở mục 9.
+- Vấn đề: `docs/design-system.md` ghi slate là màu "Phụ, trung tính". Gán slate cho một khái niệm làm một màu có hai nghĩa trong cùng bài (khái niệm và nhãn không mang khái niệm).
+- Sửa: Bài đã dùng hết tám màu khái niệm, nên bỏ khái niệm này (card `so-chu-so`, `cung-chu-so` dùng `so-nho-hon`, `so-lon-hon` như `tex` của `tip.so-cung-chu-so` đã tô xanh dương, tím), hoặc chấp nhận và ghi rõ trong `docs/design-system.md` khi nào slate là khái niệm.
