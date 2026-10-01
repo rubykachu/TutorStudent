@@ -22,7 +22,14 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
       };
     case "cutTry":
       return function CutTryVisual(props: VisualProps) {
-        return <CutTry totals={spec.totals} goal={spec.goal} {...props} />;
+        return (
+          <CutTry
+            totals={spec.totals}
+            goal={spec.goal}
+            start={spec.start}
+            {...props}
+          />
+        );
       };
     case "ucLists":
       return function UcListsVisual() {

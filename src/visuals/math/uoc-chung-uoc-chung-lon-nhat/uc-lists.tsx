@@ -11,7 +11,8 @@ import { commonDivisors, divisors, gcdOf } from "./logic";
 
 // The divisors of each number written out, then the ones they share: the
 // picture of "find the common divisors by listing". A shared divisor is
-// picked out in teal (with its shape), the greatest one in amber.
+// picked out in teal (with its shape), the greatest one, in every row it
+// appears, in amber.
 
 type Tone = "plain" | "common" | "greatest";
 
@@ -48,27 +49,28 @@ function ChipRow({
   title,
   values,
   tone,
-  pickedTone,
-  picked,
+  common,
+  best,
 }: {
   title: string;
   values: readonly number[];
   tone: Tone;
-  // Tone of the values in `picked`; the others keep `tone`.
-  pickedTone?: Tone;
-  picked?: readonly number[];
+  // Values drawn as common divisors, the others keep `tone`.
+  common?: readonly number[];
+  // The one value drawn as the greatest common divisor.
+  best?: number;
 }) {
   const spoken = `${title}: ${values.join(", ")}`;
+  const toneOf = (value: number): Tone => {
+    if (value === best) return "greatest";
+    return common?.includes(value) ? "common" : tone;
+  };
   return (
     <div className="flex w-full flex-col gap-1">
       <p className="font-heading text-body font-bold">{title}</p>
       <div role="img" aria-label={spoken} className="flex flex-wrap gap-1.5">
         {values.map((value) => (
-          <Chip
-            key={value}
-            value={value}
-            tone={picked?.includes(value) && pickedTone ? pickedTone : tone}
-          />
+          <Chip key={value} value={value} tone={toneOf(value)} />
         ))}
       </div>
     </div>
@@ -109,8 +111,8 @@ export function UcLists({ spec }: { spec: UcListsSpec }) {
                 title={`Ư(${n})`}
                 values={divisors(n)}
                 tone="plain"
-                pickedTone={shownGreatest ? "greatest" : "common"}
-                picked={marked && !hint ? common : []}
+                common={marked && !hint ? common : []}
+                best={shownGreatest ? best : undefined}
               />
             </Reveal>
           </li>
@@ -129,8 +131,7 @@ export function UcLists({ spec }: { spec: UcListsSpec }) {
               title={`ƯC(${listNumbers(numbers)})`}
               values={common}
               tone="common"
-              pickedTone={shownGreatest ? "greatest" : undefined}
-              picked={[best]}
+              best={shownGreatest ? best : undefined}
             />
           </Reveal>
         </li>

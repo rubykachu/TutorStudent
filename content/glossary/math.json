@@ -270,6 +270,26 @@
       "term": "ước chung lớn nhất",
       "forbidden": [],
       "color": "amber"
+    },
+    {
+      "term": "phân số",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "tử",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "mẫu",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "rút gọn phân số",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
     }
   ],
   "names": ["ƯC", "ƯCLN", "Ư"]

@@ -45,6 +45,16 @@
       "id": "uoc-chung-uoc-chung-lon-nhat.concept.so-mu",
       "name": "Số mũ",
       "color": "violet"
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.concept.phan-so",
+      "name": "Phân số",
+      "color": "pink"
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.concept.rut-gon-phan-so",
+      "name": "Rút gọn phân số",
+      "color": "sky"
     }
   ],
   "sections": [
@@ -57,7 +67,7 @@
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-12-18-3",
-          "caption": "Cắt dải 12 dm và dải 18 dm thành các đoạn 3 dm: cả hai dải đều vừa hết, không thừa."
+          "caption": "Cắt dải 12 dm và dải 18 dm thành các đoạn 3 dm: cả hai dải đều vừa hết, không thừa. Vì 12 và 18 đều chia hết cho 3 nên 3 là ước của cả hai số."
         },
         {
           "type": "visual",
@@ -93,7 +103,7 @@
         }
       ],
       "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.chon-cat-6-9"],
-      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.cat-8-12-tu-lam"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.cat-9-21-tu-lam"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-tom-tat",
@@ -121,7 +131,7 @@
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-8-12-xong"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-10-14-xong"
             }
           ]
         },
@@ -130,11 +140,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các ước chung của 6 và 9. Đối chiếu hai danh sách ước giúp bạn không bỏ sót số nào."
+              "text": "Chạm vào các ước chung của 15 và 25. So các ước của 15 với các ước của 25 giúp bạn không bỏ sót số nào."
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chon-uc-6-9"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chon-uc-15-25"
             }
           ]
         },
@@ -146,8 +156,8 @@
               "text": "Số 1 là ước của mọi số khác 0, nên 1 luôn là ước chung. Ví dụ 7 và 10 chỉ có ước chung là 1."
             },
             {
-              "type": "formula",
-              "tex": "\\begin{gathered} 7 = \\concept{teal}{1} \\cdot 7 \\\\ 10 = \\concept{teal}{1} \\cdot 10 \\end{gathered}"
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-7-10"
             }
           ]
         }
@@ -176,8 +186,12 @@
           "children": [
             {
               "type": "note",
-              "text": "Ước chung lớn nhất (viết tắt là ƯCLN) của hai hay nhiều số là số lớn nhất trong các ước chung của các số đó.",
+              "text": "Trong các ước chung của hai hay nhiều số, số lớn nhất gọi là ước chung lớn nhất, viết tắt là ƯCLN.",
               "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Với dải băng, ƯCLN là độ dài đoạn dài nhất cắt vừa hết cả hai dải."
             },
             {
               "type": "visual",
@@ -190,7 +204,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ta viết gọn các ước chung và ước chung lớn nhất của 12 và 18 như hình dưới đây."
+              "text": "Ta viết gọn các ước chung và ước chung lớn nhất của 12 và 18 như hình dưới đây. ƯCLN(12, 18) = 6 đọc là ước chung lớn nhất của 12 và 18 bằng 6."
             },
             {
               "type": "visual",
@@ -207,17 +221,17 @@
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chon-uclnn-8-12"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chon-uclnn-20-24"
             }
           ]
         }
       ],
-      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uclnn-16-24"],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uclnn-26-39"],
       "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uclnn-10-25"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ky-hieu-12-18",
-        "caption": "Ước chung lớn nhất (viết tắt là ƯCLN) của hai hay nhiều số là số lớn nhất trong các ước chung của các số đó."
+        "caption": "Trong các ước chung của hai hay nhiều số, số lớn nhất gọi là ước chung lớn nhất, viết tắt là ƯCLN."
       }
     },
     {
@@ -236,7 +250,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu số lớn chia hết cho số bé thì ƯCLN của hai số là số bé. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7.",
+              "text": "Nếu các số kia đều chia hết cho số bé nhất thì ƯCLN là số bé nhất. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7.",
               "rule": true
             },
             {
@@ -277,13 +291,13 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-7-21-xong",
-        "caption": "Nếu số lớn chia hết cho số bé thì ƯCLN của hai số là số bé. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7."
+        "caption": "Nếu các số kia đều chia hết cho số bé nhất thì ƯCLN là số bé nhất. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.nhac-thua-so",
       "title": "Nhắc lại: phân tích ra thừa số nguyên tố",
-      "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "minutes": 5,
       "blocks": [
         {
@@ -291,7 +305,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Số nguyên tố là số lớn hơn 1, chỉ có hai ước là 1 và chính nó. Ví dụ 2, 3, 5, 7 và 11 là các số nguyên tố."
+              "text": "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó. Ví dụ 2, 3, 5, 7 và 11 là các số nguyên tố.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -300,9 +315,18 @@
           ]
         },
         {
-          "type": "visual",
-          "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-12",
-          "caption": "Chia dần 12 cho các số nguyên tố từ bé đến lớn, cho tới khi được 1."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia dần: chia số đó cho số nguyên tố nhỏ nhất mà nó chia hết, rồi chia tiếp thương, tới khi được 1. Các số chia là thừa số nguyên tố; nhân chúng lại thì được số ban đầu."
+            },
+            {
+              "type": "visual",
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-12",
+              "caption": "12 cái kẹo chia đôi được 6 cái, rồi 6 cái chia đôi được 3 cái. Vậy 12 = 2² · 3."
+            }
+          ]
         },
         {
           "type": "group",
@@ -337,26 +361,26 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-36-xong",
-        "caption": "Phân tích một số ra thừa số nguyên tố là viết số đó thành tích của các số nguyên tố. Thừa số nào lặp lại thì viết bằng luỹ thừa."
+        "caption": "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó. Phân tích một số ra thừa số nguyên tố là viết số đó thành tích của các số nguyên tố."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.uclnn-phan-tich",
       "title": "Tìm ƯCLN bằng cách phân tích",
-      "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "minutes": 5,
       "blocks": [
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-36-60",
-          "caption": "Viết 36 và 60 thành tích các thừa số nguyên tố, rồi so từng cột."
+          "caption": "Chia đều 36 cái kẹo và 60 cái bánh vào các túi, không thừa thì số túi nhiều nhất là ƯCLN(36, 60). Ta viết 36 và 60 thành tích các thừa số nguyên tố, rồi so từng cột."
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Chọn các thừa số nguyên tố chung của các số, mỗi thừa số lấy với số mũ nhỏ nhất. Tích đó là ƯCLN cần tìm.",
+              "text": "Viết mỗi số thành tích các thừa số nguyên tố. Lấy các thừa số có ở mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN.",
               "rule": true
             },
             {
@@ -390,6 +414,10 @@
               "text": "Cùng làm với 20 và 30. Mỗi thừa số chung lấy với số mũ nhỏ nhất, rồi nhân lại."
             },
             {
+              "type": "note",
+              "text": "Thừa số viết không có số mũ thì số mũ là 1, như 3 = 3¹. Không có thừa số chung thì ƯCLN bằng 1."
+            },
+            {
               "type": "visual",
               "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-20-30"
             }
@@ -401,19 +429,19 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-36-60-xong",
-        "caption": "Chọn các thừa số nguyên tố chung của các số, mỗi thừa số lấy với số mũ nhỏ nhất. Tích đó là ƯCLN cần tìm."
+        "caption": "Viết mỗi số thành tích các thừa số nguyên tố. Lấy các thừa số có ở mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.uclnn-ba-so",
       "title": "ƯCLN của ba số",
-      "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "minutes": 5,
       "blocks": [
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-18-24-30",
-          "caption": "Ba dải 18 dm, 24 dm và 30 dm đều cắt vừa hết thành các đoạn 6 dm."
+          "caption": "Ba dải 18 dm, 24 dm và 30 dm đều cắt vừa hết thành các đoạn 6 dm. 6 dm là đoạn dài nhất cắt vừa cả ba dải: 6 là ƯCLN(18, 24, 30)."
         },
         {
           "type": "visual",
@@ -463,7 +491,7 @@
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.uc-tu-uclnn",
       "title": "Tìm ước chung từ ƯCLN",
-      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 4)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 4), bài 2.35 tr.39",
       "minutes": 4,
       "blocks": [
         {
@@ -476,7 +504,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm ước chung của hai hay nhiều số, ta tìm ƯCLN của các số đó rồi tìm các ước của ƯCLN.",
+              "text": "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Vì vậy ta cũng có thể tìm ƯCLN trước, rồi viết các ước của ƯCLN.",
               "rule": true
             },
             {
@@ -499,12 +527,15 @@
           ]
         }
       ],
-      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uc-uclnn-16-40"],
+      "checkIds": [
+        "uoc-chung-uoc-chung-lon-nhat.ex.uc-uclnn-16-40",
+        "uoc-chung-uoc-chung-lon-nhat.ex.chia-nhom-16-28"
+      ],
       "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.chon-uc-18-27"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.uclnn-uc-24-36",
-        "caption": "Muốn tìm ước chung của hai hay nhiều số, ta tìm ƯCLN của các số đó rồi tìm các ước của ƯCLN."
+        "caption": "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Vì vậy ta cũng có thể tìm ƯCLN trước, rồi viết các ước của ƯCLN."
       }
     },
     {
@@ -550,7 +581,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào số đĩa để 8 quả táo và 12 quả lê chia đều, không thừa. Mỗi loại quả đều phải chia hết cho số đĩa."
+              "text": "Chạm vào tất cả các số đĩa chia đều được 8 quả táo và 12 quả lê, không thừa. Tìm đủ các số này giúp bạn thấy số lớn nhất là ƯCLN."
             },
             {
               "type": "visual",
@@ -569,7 +600,7 @@
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.bai-toan-uc",
-      "title": "Số chia hết cho cả hai số",
+      "title": "Bài toán tìm ước chung",
       "sourceRef": "Sách bài tập tr.39, 40",
       "minutes": 5,
       "blocks": [
@@ -578,11 +609,15 @@
           "children": [
             {
               "type": "note",
-              "text": "An mua 14 bút, Bình mua 21 bút, đều là các hộp bút như nhau. Số bút trong một hộp là ước chung của 14 và 21."
+              "text": "An mua 22 bút, Bình mua 33 bút, theo hộp có số bút như nhau. Mỗi hộp có từ 2 bút trở lên."
+            },
+            {
+              "type": "note",
+              "text": "Số bút trong một hộp là ước chung của 22 và 33."
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-14-21"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-22-33"
             }
           ]
         },
@@ -591,7 +626,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số chia hết cho cả hai số đã cho là ước chung của hai số đó. Nếu đề hỏi số lớn nhất thì ta lấy ƯCLN.",
+              "text": "Nếu hai số đều chia hết cho một số thì số đó là ước chung của hai số. Đề hỏi số lớn nhất thì ta tìm ƯCLN.",
               "rule": true
             },
             {
@@ -627,12 +662,12 @@
           ]
         }
       ],
-      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.hop-but-10-15"],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.hop-but-21-28"],
       "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.so-lon-nhat-40-100"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bai-60-90-xong",
-        "caption": "Số chia hết cho cả hai số đã cho là ước chung của hai số đó. Nếu đề hỏi số lớn nhất thì ta lấy ƯCLN."
+        "caption": "Nếu hai số đều chia hết cho một số thì số đó là ước chung của hai số. Đề hỏi số lớn nhất thì ta tìm ƯCLN."
       }
     },
     {
@@ -651,7 +686,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Một số bằng tổng các ước của nó, không kể chính nó, thì gọi là số hoàn hảo. Vậy 6 là số hoàn hảo.",
+              "text": "Cộng tất cả các ước của một số, không kể chính nó. Nếu tổng đúng bằng số đó thì số đó là số hoàn hảo.",
               "rule": true
             },
             {
@@ -665,38 +700,46 @@
           "children": [
             {
               "type": "note",
-              "text": "Xét số 10. Các ước của 10 không kể 10 là 1, 2 và 5, tổng là 8, khác 10 nên 10 không là số hoàn hảo."
+              "text": "Xét số 14. Các ước của 14 không kể 14 là 1, 2 và 7, tổng là 10, khác 14 nên 14 không là số hoàn hảo."
             },
             {
               "type": "formula",
-              "tex": "1 + 2 + 5 = 8"
+              "tex": "1 + 2 + 7 = 10"
             }
           ]
         },
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.hh-28",
-          "caption": "Số 28 cũng là số hoàn hảo: các ước 1, 2, 4, 7 và 14 cộng lại đúng bằng 28."
+          "caption": "Số 28 cũng là số hoàn hảo: cộng các ước 1, 2, 4, 7 và 14 thì được đúng 28. Tháng Hai của năm thường có 28 ngày."
         }
       ],
       "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.hoan-hao-8"],
-      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.tong-uoc-15"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.hoan-hao-15"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.hh-6-xong",
-        "caption": "Một số bằng tổng các ước của nó, không kể chính nó, thì gọi là số hoàn hảo. Vậy 6 là số hoàn hảo."
+        "caption": "Cộng tất cả các ước của một số, không kể chính nó. Nếu tổng đúng bằng số đó thì số đó là số hoàn hảo."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.section.phan-so-toi-gian",
       "title": "Phân số tối giản",
-      "sourceRef": "Sách bài tập tr.38, 40",
-      "minutes": 4,
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.38, 40",
+      "minutes": 3,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.rg-20-28",
-          "caption": "Chia cả tử và mẫu cho 2, rồi lại cho 2, đến khi không chia tiếp được nữa."
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mai ăn 2 miếng của chiếc bánh cắt thành 8 miếng bằng nhau. Ở phân số dưới đây, 2 là tử và 8 là mẫu."
+            },
+            {
+              "type": "formula",
+              "tex": "\\frac{2}{8}"
+            }
+          ]
         },
         {
           "type": "group",
@@ -711,13 +754,46 @@
               "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-5-7"
             }
           ]
+        }
+      ],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.tu-mau-4-15"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.chon-nhieu-toi-gian"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-5-7",
+        "caption": "Phân số tối giản là phân số mà tử và mẫu chỉ có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.section.rut-gon-phan-so",
+      "title": "Rút gọn về phân số tối giản",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.38, 40",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia cả tử và mẫu của phân số cho cùng một số thì được phân số bằng nó mà gọn hơn. Làm vậy gọi là rút gọn phân số."
+            },
+            {
+              "type": "formula",
+              "tex": "\\frac{2}{8} = \\frac{2 : 2}{8 : 2} = \\frac{1}{4}"
+            }
+          ]
+        },
+        {
+          "type": "visual",
+          "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.rg-20-28",
+          "caption": "Chia cả tử và mẫu cho 2, rồi lại cho 2, đến khi không chia tiếp được nữa."
         },
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Muốn đưa phân số về tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng. Ví dụ ƯCLN(20, 28) = 4.",
+              "text": "Muốn rút gọn phân số về phân số tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng. Chia cho 2 hai lần cũng là chia cho 4, mà 4 là ƯCLN(20, 28).",
               "rule": true
             },
             {
@@ -727,12 +803,12 @@
           ]
         }
       ],
-      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.chon-toi-gian"],
+      "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.dien-rut-gon"],
       "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.rut-gon-18-24"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-tom-tat",
-        "caption": "Phân số tối giản là phân số mà tử và mẫu chỉ có ước chung là 1. Muốn đưa phân số về tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng."
+        "caption": "Muốn rút gọn phân số về phân số tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng."
       }
     }
   ],
@@ -764,7 +840,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ky-hieu-12-18",
-        "caption": "Ước chung lớn nhất (viết tắt là ƯCLN) của hai hay nhiều số là số lớn nhất trong các ước chung của các số đó."
+        "caption": "Trong các ước chung của hai hay nhiều số, số lớn nhất gọi là ước chung lớn nhất, viết tắt là ƯCLN."
       }
     },
     {
@@ -774,22 +850,22 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-7-21-xong",
-        "caption": "Nếu số lớn chia hết cho số bé thì ƯCLN của hai số là số bé. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7."
+        "caption": "Nếu các số kia đều chia hết cho số bé nhất thì ƯCLN là số bé nhất. Ví dụ 21 chia hết cho 7 nên ƯCLN(7, 21) = 7."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.card.nhac-thua-so",
-      "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.co-so"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-36-xong",
-        "caption": "Phân tích một số ra thừa số nguyên tố là viết số đó thành tích của các số nguyên tố. Thừa số nào lặp lại thì viết bằng luỹ thừa."
+        "caption": "Số nguyên tố là số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó. Phân tích một số ra thừa số nguyên tố là viết số đó thành tích của các số nguyên tố."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich",
-      "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "conceptIds": [
         "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat",
         "uoc-chung-uoc-chung-lon-nhat.concept.co-so",
@@ -798,12 +874,12 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-36-60-xong",
-        "caption": "Chọn các thừa số nguyên tố chung của các số, mỗi thừa số lấy với số mũ nhỏ nhất. Tích đó là ƯCLN cần tìm."
+        "caption": "Viết mỗi số thành tích các thừa số nguyên tố. Lấy các thừa số có ở mọi số, mỗi thừa số với số mũ nhỏ nhất, rồi nhân lại: kết quả là ƯCLN."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.card.uclnn-ba-so",
-      "sourceRef": "Sách bài tập tr.38 (kĩ năng 3)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 3)",
       "conceptIds": [
         "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat",
         "uoc-chung-uoc-chung-lon-nhat.concept.co-so",
@@ -817,7 +893,7 @@
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.card.uc-tu-uclnn",
-      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 4)",
+      "sourceRef": "Sách bài tập tr.38 (kiến thức cần nhớ 4), bài 2.35 tr.39",
       "conceptIds": [
         "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung",
         "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"
@@ -825,7 +901,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.uclnn-uc-24-36",
-        "caption": "Muốn tìm ước chung của hai hay nhiều số, ta tìm ƯCLN của các số đó rồi tìm các ước của ƯCLN."
+        "caption": "Các ước chung của hai hay nhiều số chính là các ước của ƯCLN của chúng. Vì vậy ta cũng có thể tìm ƯCLN trước, rồi viết các ước của ƯCLN."
       }
     },
     {
@@ -848,7 +924,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bai-60-90-xong",
-        "caption": "Số chia hết cho cả hai số đã cho là ước chung của hai số đó. Nếu đề hỏi số lớn nhất thì ta lấy ƯCLN."
+        "caption": "Nếu hai số đều chia hết cho một số thì số đó là ước chung của hai số. Đề hỏi số lớn nhất thì ta tìm ƯCLN."
       }
     },
     {
@@ -858,17 +934,30 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.hh-6-xong",
-        "caption": "Một số bằng tổng các ước của nó, không kể chính nó, thì gọi là số hoàn hảo. Vậy 6 là số hoàn hảo."
+        "caption": "Cộng tất cả các ước của một số, không kể chính nó. Nếu tổng đúng bằng số đó thì số đó là số hoàn hảo."
       }
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.card.phan-so-toi-gian",
-      "sourceRef": "Sách bài tập tr.38, 40",
-      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"],
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.38, 40",
+      "conceptIds": ["uoc-chung-uoc-chung-lon-nhat.concept.phan-so"],
+      "recap": {
+        "type": "visual",
+        "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-5-7",
+        "caption": "Phân số tối giản là phân số mà tử và mẫu chỉ có ước chung là 1."
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.card.rut-gon-phan-so",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.38, 40",
+      "conceptIds": [
+        "uoc-chung-uoc-chung-lon-nhat.concept.rut-gon-phan-so",
+        "uoc-chung-uoc-chung-lon-nhat.concept.uoc-chung-lon-nhat"
+      ],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tg-tom-tat",
-        "caption": "Phân số tối giản là phân số mà tử và mẫu chỉ có ước chung là 1. Muốn đưa phân số về tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng."
+        "caption": "Muốn rút gọn phân số về phân số tối giản, ta chia cả tử và mẫu cho ƯCLN của chúng."
       }
     }
   ],
@@ -929,13 +1018,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cat-8-12-tu-lam",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.cat-9-21-tu-lam",
       "type": "manipulate",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uoc-chung"],
       "prompt": [
         {
           "type": "note",
-          "text": "Đặt độ dài đoạn để dải 8 dm và dải 12 dm đều cắt vừa hết, không thừa."
+          "text": "Đặt độ dài đoạn để dải 9 dm và dải 21 dm đều cắt vừa hết, không thừa."
         }
       ],
       "hints": {
@@ -947,11 +1036,11 @@
         ]
       },
       "difficulty": 1,
-      "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-thu-8-12",
+      "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.cat-thu-9-21",
       "validatorId": "cat-vua-het",
       "params": {
-        "a": 8,
-        "b": 12,
+        "a": 9,
+        "b": 21,
         "c": 0,
         "largest": 0
       }
@@ -1046,7 +1135,7 @@
           "text": " của 20 và 30."
         }
       ],
-      "bank": ["ước chung", "thương", "số dư"]
+      "bank": ["ước chung", "thương", "bội"]
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dem-doan-15-20",
@@ -1055,7 +1144,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cắt dải 15 dm và dải 20 dm thành các đoạn 5 dm, không thừa. Tất cả được bao nhiêu đoạn?"
+          "text": "Cắt dải 15 dm và dải 20 dm thành các đoạn 5 dm, không thừa. Dải 20 dm được bao nhiêu đoạn?"
         }
       ],
       "hints": {
@@ -1071,10 +1160,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 7
+        "value": 4
       },
       "check": {
-        "expr": "15:5+20:5"
+        "expr": "20:5"
       }
     },
     {
@@ -1276,13 +1365,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-16-24",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-26-39",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Các ước chung của 16 và 24 là 1, 2, 4 và 8. Số nào là ước chung lớn nhất của 16 và 24?"
+          "text": "Các ước chung của 26 và 39 là 1 và 13. Số nào là ước chung lớn nhất của 26 và 39?"
         }
       ],
       "hints": {
@@ -1299,35 +1388,35 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "8"
+            "text": "13"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "4"
+            "text": "1"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "2"
+            "text": "26"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "24"
+            "text": "39"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "8"
+        "expr": "13"
       }
     },
     {
@@ -1919,16 +2008,16 @@
           "text": "."
         }
       ],
-      "bank": ["chính nó", "số 2", "số 0"]
+      "bank": ["chính nó", "số 2", "số 3"]
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.xep-chia-dan-18",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.xep-chia-dan-45",
       "type": "order",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.nhac-thua-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các bước chia dần để phân tích 18 ra thừa số nguyên tố."
+          "text": "Xếp các bước chia dần để phân tích 45 ra thừa số nguyên tố."
         }
       ],
       "hints": {
@@ -1945,28 +2034,28 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "18 : 2 = 9"
+            "text": "45 : 3 = 15"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "9 : 3 = 3"
+            "text": "15 : 3 = 5"
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "3 : 3 = 1"
+            "text": "5 : 5 = 1"
           }
         },
         {
           "id": "s4",
           "content": {
             "type": "text",
-            "text": "18 = 2 · 3 · 3"
+            "text": "45 = 3² · 5"
           }
         }
       ]
@@ -1978,7 +2067,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phân tích 28 = 2² · 7 và 42 = 2 · 3 · 7. Chọn tất cả thừa số nguyên tố chung của 28 và 42."
+          "text": "Ta có 28 = 2² · 7 và 42 = 2 · 3 · 7. Chọn tất cả thừa số nguyên tố chung của 28 và 42."
         }
       ],
       "hints": {
@@ -2030,7 +2119,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phân tích 24 = 2³ · 3 và 36 = 2² · 3². Tính ƯCLN(24, 36)."
+          "text": "Ta có 24 = 2³ · 3 và 36 = 2² · 3². Tính ƯCLN(24, 36)."
         }
       ],
       "hints": {
@@ -2053,13 +2142,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-16-40",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-24-56",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm ƯCLN của 16 và 40 bằng cách phân tích ra thừa số nguyên tố."
+          "text": "Tìm ƯCLN của 24 và 56 bằng cách phân tích ra thừa số nguyên tố."
         }
       ],
       "hints": {
@@ -2070,7 +2159,7 @@
           }
         ],
         "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-goi-y-28-42",
-        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-16-40"
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-24-56"
       },
       "difficulty": 3,
       "answer": {
@@ -2082,13 +2171,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-uclnn-18-30",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-uclnn-42-70",
       "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich"],
       "prompt": [
         {
           "type": "note",
-          "text": "Phân tích 18 = 2 · 3² và 30 = 2 · 3 · 5. ƯCLN(18, 30) bằng tích nào?"
+          "text": "Ta có 42 = 2 · 3 · 7 và 70 = 2 · 5 · 7. ƯCLN(42, 70) bằng tích nào?"
         }
       ],
       "hints": {
@@ -2105,35 +2194,35 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 3"
+            "tex": "2 \\cdot 7"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 3^{2}"
+            "tex": "2 \\cdot 3 \\cdot 5 \\cdot 7"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 3 \\cdot 5"
+            "tex": "7"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "3 \\cdot 5"
+            "tex": "2 \\cdot 5"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "2·3"
+        "expr": "2·7"
       }
     },
     {
@@ -2193,7 +2282,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phân tích 8 = 2³, 12 = 2² · 3 và 20 = 2² · 5. ƯCLN(8, 12, 20) bằng bao nhiêu?"
+          "text": "Ta có 8 = 2³, 12 = 2² · 3 và 20 = 2² · 5. ƯCLN(8, 12, 20) bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -2248,7 +2337,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm ƯCLN của 20, 30 và 50."
+          "text": "Ta có 20 = 2² · 5, 30 = 2 · 3 · 5 và 50 = 2 · 5². Tìm ƯCLN của 20, 30 và 50."
         }
       ],
       "hints": {
@@ -2350,13 +2439,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-12-30-42",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-18-30-42",
       "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-ba-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm ƯCLN của 12, 30 và 42."
+          "text": "Tìm ƯCLN của 18, 30 và 42."
         }
       ],
       "hints": {
@@ -2367,7 +2456,7 @@
           }
         ],
         "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-goi-y-14-28-70",
-        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-12-30-42"
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-18-30-42"
       },
       "difficulty": 3,
       "options": [
@@ -2516,13 +2605,69 @@
       }
     },
     {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chia-nhom-16-28",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cô giáo chia đều 16 cây bút chì và 28 cục tẩy cho các học sinh trong một nhóm, không thừa."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số học sinh có thể có trong nhóm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.uc-la-uoc-cua",
       "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uc-tu-uclnn"],
       "prompt": [
         {
           "type": "note",
-          "text": "Biết ƯCLN(36, 60) = 12. Các ước chung của 36 và 60 chính là tất cả các ước của số nào?"
+          "text": "Biết ƯCLN(40, 60) = 20. Các ước chung của 40 và 60 chính là tất cả các ước của số nào?"
         }
       ],
       "hints": {
@@ -2539,14 +2684,14 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "12"
+            "text": "20"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "36"
+            "text": "40"
           }
         },
         {
@@ -2560,14 +2705,14 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "6"
+            "text": "10"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "12"
+        "expr": "20"
       }
     },
     {
@@ -2592,19 +2737,19 @@
       "segments": [
         {
           "type": "text",
-          "text": "Muốn tìm ước chung của hai số, ta tìm "
+          "text": "Các ước chung của hai hay nhiều số chính là các ước của "
         },
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["ƯCLN"]
+          "accept": ["ƯCLN", "ước chung lớn nhất"]
         },
         {
           "type": "text",
-          "text": " của chúng rồi tìm các ước của nó."
+          "text": " của chúng."
         }
       ],
-      "bank": ["ƯCLN", "tổng", "tích"]
+      "bank": ["ƯCLN", "ước chung", "số bé nhất"]
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.dia-12-20",
@@ -2691,13 +2836,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.banh-moi-tui-18-27",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.banh-moi-tui-15-40",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.chia-deu-nhieu-nhat"],
       "prompt": [
         {
           "type": "note",
-          "text": "Có 18 cái bánh và 27 cái kẹo chia đều vào nhiều nhất các túi quà như nhau. Mỗi túi quà có bao nhiêu cái bánh?"
+          "text": "Có 15 cái bánh và 40 cái kẹo chia đều vào các túi quà như nhau, không thừa. Chia được nhiều túi nhất thì mỗi túi có bao nhiêu cái bánh?"
         }
       ],
       "hints": {
@@ -2707,15 +2852,15 @@
             "index": 0
           }
         ],
-        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.tui-giai-18-27"
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.tui-giai-15-40"
       },
       "difficulty": 3,
       "answer": {
         "kind": "value",
-        "value": 2
+        "value": 3
       },
       "check": {
-        "expr": "18:9"
+        "expr": "15:5"
       }
     },
     {
@@ -2807,16 +2952,16 @@
           "text": " của số đồ vật mỗi nhóm."
         }
       ],
-      "bank": ["ƯCLN", "tổng", "tích"]
+      "bank": ["ƯCLN", "hiệu", "số bé hơn"]
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.hop-but-10-15",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.hop-but-21-28",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Tuấn mua 10 bút, Hà mua 15 bút, đều là các hộp bút như nhau, mỗi hộp từ 2 bút trở lên. Mỗi hộp có bao nhiêu bút?"
+          "text": "Lan mua 21 bút, Hùng mua 28 bút, theo hộp có số bút như nhau, mỗi hộp từ 2 bút trở lên. Mỗi hộp có bao nhiêu bút?"
         }
       ],
       "hints": {
@@ -2833,35 +2978,35 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "2"
+            "text": "3"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "3"
+            "text": "4"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "5"
+            "text": "7"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "10"
+            "text": "14"
           }
         }
       ],
       "answer": ["c"],
       "multiple": false,
       "check": {
-        "expr": "5"
+        "expr": "7"
       }
     },
     {
@@ -2921,13 +3066,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chia-het-24-36",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chia-het-27-45",
       "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.bai-toan-uc"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số mà cả 24 và 36 đều chia hết cho nó."
+          "text": "Chọn tất cả các số mà cả 27 và 45 đều chia hết cho nó."
         }
       ],
       "hints": {
@@ -2944,42 +3089,46 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "4"
+            "text": "3"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "6"
+            "text": "5"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "8"
+            "text": "9"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "9"
+            "text": "15"
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": ["a", "c"],
       "multiple": true
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tui-ke-12-18",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tui-ke-32-48",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.bai-toan-uc"],
       "prompt": [
         {
           "type": "note",
-          "text": "Mai mua 12 cái kẹo, An mua 18 cái kẹo, đều theo các túi như nhau, mỗi túi từ 4 cái trở lên. Mỗi túi có bao nhiêu cái kẹo?"
+          "text": "Mai mua 32 cái kẹo, An mua 48 cái kẹo, theo túi có số kẹo như nhau. Mỗi túi từ 10 cái trở lên."
+        },
+        {
+          "type": "note",
+          "text": "Mỗi túi có bao nhiêu cái kẹo?"
         }
       ],
       "hints": {
@@ -2993,10 +3142,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 6
+        "value": 16
       },
       "check": {
-        "expr": "6"
+        "expr": "16"
       }
     },
     {
@@ -3023,28 +3172,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Không, vì 1 + 2 + 4 = 7, khác 8"
+            "text": "Tổng là 7, nên 8 không là số hoàn hảo"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Có, vì 1 + 2 + 4 = 8"
+            "text": "Tổng là 15, nên 8 không là số hoàn hảo"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Có, vì 8 có ba ước"
+            "text": "Tổng là 6, nên 8 không là số hoàn hảo"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Có, vì 8 chia hết cho 4"
+            "text": "Tổng là 8, nên 8 là số hoàn hảo"
           }
         }
       ],
@@ -3052,13 +3201,13 @@
       "multiple": false
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-uoc-15",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tong-uoc-21",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-hoan-hao"],
       "prompt": [
         {
           "type": "note",
-          "text": "Các ước của 15 không kể 15 là 1, 3 và 5. Tổng các ước đó bằng bao nhiêu?"
+          "text": "Các ước của 21 không kể 21 là 1, 3 và 7. Tổng các ước đó bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -3072,10 +3221,10 @@
       "difficulty": 1,
       "answer": {
         "kind": "value",
-        "value": 9
+        "value": 11
       },
       "check": {
-        "expr": "1+3+5"
+        "expr": "1+3+7"
       }
     },
     {
@@ -3085,7 +3234,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Các ước của 12 không kể 12 là 1, 2, 3, 4 và 6, tổng là 16. Số 12 có là số hoàn hảo không?"
+          "text": "Các ước của 12 không kể 12 là 1, 2, 3, 4 và 6. Số 12 có là số hoàn hảo không?"
         }
       ],
       "hints": {
@@ -3102,28 +3251,80 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Không, vì 16 khác 12"
+            "text": "Tổng là 16, nên 12 không là số hoàn hảo"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Có, vì 16 lớn hơn 12"
+            "text": "Tổng là 12, nên 12 là số hoàn hảo"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Có, vì 12 chia hết cho 6"
+            "text": "Tổng là 28, nên 12 không là số hoàn hảo"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Có, vì 12 là số chẵn"
+            "text": "Tổng là 15, nên 12 không là số hoàn hảo"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.hoan-hao-15",
+      "type": "choice",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-hoan-hao"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Các ước của 15 không kể 15 là 1, 3 và 5. Số 15 có là số hoàn hảo không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tổng là 9, nên 15 không là số hoàn hảo"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tổng là 24, nên 15 không là số hoàn hảo"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tổng là 8, nên 15 không là số hoàn hảo"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Tổng là 15, nên 15 là số hoàn hảo"
           }
         }
       ],
@@ -3191,12 +3392,12 @@
           "text": " các ước của nó, không kể chính nó."
         }
       ],
-      "bank": ["tổng", "tích", "hiệu"]
+      "bank": ["tổng", "tích", "số lượng"]
     },
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-toi-gian",
       "type": "choice",
-      "cardIds": [],
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.phan-so-toi-gian"],
       "prompt": [
         {
           "type": "note",
@@ -3248,11 +3449,11 @@
     {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.rut-gon-18-24",
       "type": "choice",
-      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.phan-so-toi-gian"],
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.rut-gon-phan-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Rút gọn phân số này về tối giản."
+          "text": "Rút gọn phân số này về phân số tối giản."
         },
         {
           "type": "formula",
@@ -3266,7 +3467,7 @@
             "index": 1
           }
         ],
-        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.rg-goi-y-14-35",
+        "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.rg-goi-y-6-15",
         "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.rg-giai-18-24"
       },
       "difficulty": 2,
@@ -3304,9 +3505,45 @@
       "multiple": false
     },
     {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dien-rut-gon",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Muốn rút gọn phân số về phân số tối giản, ta chia cả tử và mẫu cho "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["ƯCLN"]
+        },
+        {
+          "type": "text",
+          "text": " của chúng."
+        }
+      ],
+      "bank": ["ƯCLN", "số bé hơn", "tổng"]
+    },
+    {
       "id": "uoc-chung-uoc-chung-lon-nhat.ex.ucln-tu-mau-15-35",
       "type": "numeric",
-      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.phan-so-toi-gian"],
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.rut-gon-phan-so"],
       "prompt": [
         {
           "type": "note",
@@ -3387,17 +3624,129 @@
       "multiple": true
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.mau-toi-gian-24-36",
-      "type": "numeric",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.tu-mau-4-15",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong phân số này, số 15 gọi là gì?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\frac{4}{15}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "tử"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "mẫu"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "thương"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "tích"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uc-lon-hon-1-32-40",
+      "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.phan-so-toi-gian"],
       "prompt": [
         {
           "type": "note",
-          "text": "Rút gọn phân số về tối giản. Mẫu của phân số tối giản đó là số nào?"
+          "text": "Chọn tất cả các số lớn hơn 1 mà cả tử và mẫu của phân số này đều chia hết cho nó."
         },
         {
           "type": "formula",
-          "tex": "\\frac{24}{36}"
+          "tex": "\\frac{32}{40}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        }
+      ],
+      "answer": ["a", "b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.mau-toi-gian-33-55",
+      "type": "numeric",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.rut-gon-phan-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Rút gọn phân số về phân số tối giản. Mẫu của phân số tối giản đó là số nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\frac{33}{55}"
         }
       ],
       "hints": {
@@ -3411,10 +3760,10 @@
       "difficulty": 3,
       "answer": {
         "kind": "value",
-        "value": 3
+        "value": 5
       },
       "check": {
-        "expr": "3"
+        "expr": "55:11"
       }
     }
   ],

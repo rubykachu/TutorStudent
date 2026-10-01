@@ -18,10 +18,17 @@ export type VisualSpec =
   // Strips cut into equal pieces, one strip per step (see `CutBarsSpec`).
   | ({ kind: "cutBars" } & CutBarsSpec)
   // Hands-on: the child sets the piece length with − and +, state { d }.
-  // `goal` (lesson screen) adds progress and a closing line once the cut
-  // fits every strip (`fits`) or is the longest that fits (`largest`); in an
-  // exercise the params give the strips (a, b, c) and nothing is revealed.
-  | { kind: "cutTry"; totals: readonly number[]; goal?: "fits" | "largest" }
+  // `goal` (lesson screen) adds the verdict line, progress and a closing line
+  // once the cut fits every strip (`fits`) or is the longest that fits
+  // (`largest`); `start` is the piece length the screen opens on. In an
+  // exercise the params give the strips (a, b, c) and, optionally, `start`;
+  // no verdict is shown.
+  | {
+      kind: "cutTry";
+      totals: readonly number[];
+      goal?: "fits" | "largest";
+      start?: number;
+    }
   // The divisors of each number, then the ones they share (see `UcListsSpec`).
   | ({ kind: "ucLists" } & UcListsSpec)
   // A number split into primes by repeated division (see `LadderSpec`).
@@ -74,6 +81,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "cutTry",
     totals: [12, 18],
     goal: "fits",
+    start: 4,
   },
   "cat-tom-tat": {
     kind: "cutBars",
@@ -81,9 +89,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     d: 3,
     mode: "still",
   },
-  "cat-thu-8-12": {
+  "cat-thu-9-21": {
     kind: "cutTry",
-    totals: [8, 12],
+    totals: [9, 21],
   },
   "cat-goi-y-10-15": {
     kind: "cutBars",
@@ -102,16 +110,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [12, 18],
     mode: "steps",
   },
-  "ds-8-12-xong": {
+  "ds-10-14-xong": {
     kind: "ucLists",
-    numbers: [8, 12],
+    numbers: [10, 14],
     mode: "still",
   },
-  "chon-uc-6-9": {
+  "chon-uc-15-25": {
     kind: "chips",
-    items: ["1", "2", "3", "4", "6", "9"],
+    items: ["1", "3", "5", "15", "25"],
     wants: [0, 2],
-    done: "Bạn đã chọn đủ các ước chung của 6 và 9.",
+    done: "Bạn đã chọn đủ các ước chung của 15 và 25.",
+  },
+  "ds-7-10": {
+    kind: "ucLists",
+    numbers: [7, 10],
+    mode: "still",
   },
   "ds-tom-tat": {
     kind: "ucLists",
@@ -143,6 +156,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     totals: [12, 18],
     d: 6,
     mode: "still",
+    greatest: true,
   },
   "ky-hieu-12-18": {
     kind: "notation",
@@ -169,11 +183,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "chon-uclnn-8-12": {
+  "chon-uclnn-20-24": {
     kind: "chips",
-    items: ["1", "2", "3", "4", "8", "12"],
-    wants: [3],
-    done: "Bạn đã chọn đúng ước chung lớn nhất của 8 và 12.",
+    items: ["1", "2", "4", "5", "6", "8"],
+    wants: [2],
+    done: "Bạn đã chọn đúng ước chung lớn nhất của 20 và 24.",
   },
   "ds-goi-y-4-10": {
     kind: "ucLists",
@@ -192,12 +206,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     totals: [7, 21],
     d: 7,
     mode: "steps",
+    greatest: true,
   },
   "cat-7-21-xong": {
     kind: "cutBars",
     totals: [7, 21],
     d: 7,
     mode: "still",
+    greatest: true,
   },
   "chon-cap-chia-het": {
     kind: "chips",
@@ -250,7 +266,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "6 = 2 \\cdot 3",
         tag: {
-          text: "6 còn có ước 2 và 3",
+          text: "6 còn có ước 2 và 3, nên 6 không là số nguyên tố",
           color: "slate",
         },
         gapBefore: true,
@@ -324,9 +340,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [28, 42],
     mode: "hint",
   },
-  "bang-16-40": {
+  "bang-24-56": {
     kind: "expTable",
-    numbers: [16, 40],
+    numbers: [24, 56],
     mode: "steps",
   },
   "cat-18-24-30": {
@@ -334,6 +350,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     totals: [18, 24, 30],
     d: 6,
     mode: "steps",
+    greatest: true,
   },
   "bang-18-24-30": {
     kind: "expTable",
@@ -366,9 +383,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [14, 28, 70],
     mode: "hint",
   },
-  "bang-12-30-42": {
+  "bang-18-30-42": {
     kind: "expTable",
-    numbers: [12, 30, 42],
+    numbers: [18, 30, 42],
     mode: "steps",
   },
   "uclnn-uc-12-18": {
@@ -380,7 +397,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "amber",
       },
       {
-        text: "Ư(6) = {1; 2; 3; 6}",
+        text: "Các ước của 6: 1, 2, 3, 6",
         color: "slate",
       },
       {
@@ -409,7 +426,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         color: "amber",
       },
       {
-        text: "Ư(12) = {1; 2; 3; 4; 6; 12}",
+        text: "Các ước của 12: 1, 2, 3, 4, 6, 12",
         color: "slate",
       },
       {
@@ -538,20 +555,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     count: 7,
     mode: "steps",
   },
-  "tui-giai-18-27": {
+  "tui-giai-15-40": {
     kind: "notation",
-    label: "Chia 18 cái bánh và 27 cái kẹo vào các túi quà",
+    label: "Chia 15 cái bánh và 40 cái kẹo vào các túi quà",
     lines: [
       {
-        text: "ƯCLN(18, 27) = 9",
+        text: "ƯCLN(15, 40) = 5",
         color: "amber",
       },
       {
-        text: "9 túi quà",
+        text: "5 túi quà",
         color: "slate",
       },
       {
-        text: "18 : 9 = 2 cái bánh mỗi túi",
+        text: "15 : 5 = 3 cái bánh mỗi túi",
         color: "slate",
       },
     ],
@@ -563,9 +580,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "ds-14-21": {
+  "ds-22-33": {
     kind: "ucLists",
-    numbers: [14, 21],
+    numbers: [22, 33],
     mode: "steps",
   },
   "bai-toan-ket-luan": {
@@ -573,11 +590,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Mỗi hộp từ 2 bút trở lên",
     lines: [
       {
-        text: "ƯC(14, 21) = {1; 7}",
+        text: "ƯC(22, 33) = {1; 11}",
         color: "teal",
       },
       {
-        text: "Mỗi hộp từ 2 bút trở lên: 7 bút",
+        text: "Mỗi hộp từ 2 bút trở lên: 11 bút",
         color: "slate",
       },
     ],
@@ -689,7 +706,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "1 + 2 + 3 = 6",
         tag: {
-          text: "Các ước nhỏ hơn 6 cộng lại",
+          text: "Cộng các ước, không kể 6",
           color: "amber",
         },
       },
@@ -710,7 +727,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "1 + 2 + 3 = 6",
         tag: {
-          text: "Các ước nhỏ hơn 6 cộng lại",
+          text: "Cộng các ước, không kể 6",
           color: "amber",
         },
       },
@@ -719,7 +736,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "hh-28": {
     kind: "lines",
-    label: "Các ước của 28 nhỏ hơn 28 cộng lại bằng 28",
+    label: "Cộng các ước của 28, không kể 28, được đúng 28",
     rows: [
       {
         tex: "1 + 2 = 3",
@@ -830,21 +847,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "steps",
   },
-  "rg-goi-y-14-35": {
+  "rg-goi-y-6-15": {
     kind: "lines",
     label: "Rút gọn phân số về tối giản bằng ƯCLN",
     rows: [
       {
-        tex: "\\frac{14}{35}",
+        tex: "\\frac{6}{15}",
         tag: {
-          text: "ƯCLN(14, 35) = 7",
+          text: "ƯCLN(6, 15) = 3",
           color: "slate",
         },
       },
       {
-        tex: "\\frac{14 : 7}{35 : 7} = \\frac{2}{5}",
+        tex: "\\frac{6 : 3}{15 : 3} = \\frac{2}{5}",
         tag: {
-          text: "Chia tử và mẫu cho 7",
+          text: "Chia tử và mẫu cho 3",
           color: "amber",
         },
       },

@@ -1,9 +1,9 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { ConceptColor } from "@/schema/content";
 import type { VisualProps, VisualState } from "@/visuals/registry";
-import { bagLegend } from "@/visuals/shared/bag-groups";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import type { Mode } from "@/visuals/shared/formula-rows";
 import { decorative } from "@/visuals/shared/markers";
@@ -23,6 +23,17 @@ const PAD = 4;
 const GAP = 8;
 const HEIGHT = CELL + 2 * PAD + 4;
 const UNIT = "dm";
+
+// What the colours stand for: a piece is neutral (it is no concept), what is
+// left over is pink, and the greatest cut that fits is the amber ƯCLN.
+function cutLegend(hasLeft: boolean, greatest: boolean) {
+  const items: { color: ConceptColor; name: string }[] = [
+    { color: "slate", name: "Một đoạn" },
+  ];
+  if (hasLeft) items.push({ color: "pink", name: "Còn thừa" });
+  if (greatest) items.push({ color: "amber", name: "Ước chung lớn nhất" });
+  return items;
+}
 
 function boxWidth(units: number): number {
   return units * CELL + 2 * PAD;
@@ -102,7 +113,7 @@ function Strip({
                   width={boxWidth(d) - 2}
                   height={HEIGHT - 2}
                   rx={8}
-                  className="fill-surface stroke-concept-violet"
+                  className="fill-surface stroke-concept-slate"
                   strokeWidth={2}
                 />
                 <Dots count={d} x={x} color="blue" />
@@ -184,12 +195,23 @@ function StripRow({
   );
 }
 
-// The line that says whether `d` is a common divisor of the strip lengths.
-function Verdict({ totals, d }: { totals: readonly number[]; d: number }) {
+// The line that says whether `d` is a common divisor of the strip lengths;
+// with `greatest` it names the greatest one: "ƯCLN(7, 21) = 7".
+function Verdict({
+  totals,
+  d,
+  greatest = false,
+}: {
+  totals: readonly number[];
+  d: number;
+  greatest?: boolean;
+}) {
   const fits = totals.every((total) => total % d === 0);
   return (
     <p className={MATH_LINE}>
-      {fits ? (
+      {fits && greatest && d === gcdOf(totals) ? (
+        <Tint color="amber">{`ƯCLN(${totals.join(", ")}) = ${d}`}</Tint>
+      ) : fits ? (
         <>
           <Tint color="teal">{d}</Tint>
           {` là ước chung của ${names(totals)}`}
@@ -227,17 +249,20 @@ function Strips({
 }
 
 // What a strip picture draws: the strip lengths, the piece length and how it
-// plays (see `Mode`; a hint stops before the verdict).
+// plays (see `Mode`; a hint stops before the verdict). `greatest` marks the
+// piece length as the longest that fits every strip, so the verdict reads
+// "ƯCLN(…) = d".
 export type CutBarsSpec = {
   totals: readonly number[];
   d: number;
   mode: Mode;
+  greatest?: boolean;
 };
 
 // The strips are cut one at a time, then the verdict follows. In "still" the
 // finished cut is drawn at once.
 export function CutBars({ spec }: { spec: CutBarsSpec }) {
-  const { totals, d, mode } = spec;
+  const { totals, d, mode, greatest = false } = spec;
   const hint = mode === "hint";
   const label = `Cắt các dải ${names(totals)} ${UNIT} thành các đoạn ${d} ${UNIT}`;
   const draw = (step: number) => {
@@ -248,13 +273,13 @@ export function CutBars({ spec }: { spec: CutBarsSpec }) {
         <Strips totals={totals} d={d} cutCount={cutCount} />
         <div className="min-h-[3.25rem]" aria-live="polite">
           <Reveal shown={done && !hint} placeholder={<Hole />}>
-            <Verdict totals={totals} d={d} />
+            <Verdict totals={totals} d={d} greatest={greatest} />
           </Reveal>
         </div>
         <Legend
-          items={bagLegend(
-            "đoạn",
+          items={cutLegend(
             totals.some((t) => t % d > 0),
+            greatest && done && !hint,
           )}
         />
       </div>
@@ -275,13 +300,17 @@ export function CutBars({ spec }: { spec: CutBarsSpec }) {
 }
 
 // Strips whose piece length the child changes with − and +. Reports { d }.
-// `goal` (lesson screen) reads the state back as progress and ends on a
-// closing line once the cut fits (`fits`) or is the longest that fits
-// (`largest`); without it (an exercise) the strip lengths come from the
-// task's params and nothing is revealed.
+// `goal` (lesson screen) reads the state back as progress, says whether the
+// piece fits and ends on a closing line once the cut fits (`fits`) or is the
+// longest that fits (`largest`). Without it (an exercise) the strip lengths
+// come from the task's params, only the strips show how the cut came out and
+// the opening state is reported at once, so "Kiểm tra" works from the start.
+// The piece length starts at `start` (params `start` in an exercise), by
+// default the shortest one the child may try.
 export function CutTry({
   totals: fixedTotals,
   goal,
+  start,
   params,
   onStateChange,
   shownState,
@@ -289,17 +318,24 @@ export function CutTry({
 }: VisualProps & {
   totals: readonly number[];
   goal?: "fits" | "largest";
+  start?: number;
 }) {
   const fromParams = params === undefined ? [] : stripLengths(params);
   const totals = fromParams.length > 0 ? fromParams : fixedTotals;
-  const [own, setOwn] = useState<number>(PIECE_RANGE.min);
-  const [tried, setTried] = useState<readonly number[]>([PIECE_RANGE.min]);
+  const first = params?.start ?? start ?? PIECE_RANGE.min;
+  const [own, setOwn] = useState<number>(first);
+  const [tried, setTried] = useState<readonly number[]>([first]);
   const d = shownState?.d ?? own;
   const locked = disabled || shownState !== undefined;
   const fits = totals.every((total) => total % d === 0);
   const best = d === gcdOf(totals);
   const finished = goal === "largest" ? fits && best : fits;
   const all = totals.length === 2 ? "cả hai" : "cả ba";
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: report the opening state once, on mount
+  useEffect(() => {
+    if (goal === undefined) onStateChange?.({ d: first });
+  }, []);
 
   function change(next: number) {
     setOwn(next);
@@ -315,13 +351,13 @@ export function CutTry({
         value={d}
         min={PIECE_RANGE.min}
         max={PIECE_RANGE.max}
-        color="violet"
+        color="slate"
         stateKey="d"
         disabled={locked}
         onChange={change}
       />
       <Strips totals={totals} d={d} cutCount={totals.length} />
-      <Verdict totals={totals} d={d} />
+      {goal && <Verdict totals={totals} d={d} />}
       {goal && (
         <p className="text-center text-caption text-muted-foreground">
           {`Đã thử ${tried.length} độ dài`}
@@ -335,7 +371,7 @@ export function CutTry({
             : `Xong rồi! Đoạn ${d} ${UNIT} cắt vừa hết ${all} dải.`}
         </p>
       )}
-      <Legend items={bagLegend("đoạn", !fits)} />
+      <Legend items={cutLegend(!fits, false)} />
     </div>
   );
 }
