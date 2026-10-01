@@ -10,9 +10,8 @@ Bài đã xuất bản (`published`, `content/literature/ctst/neu-cau-muon-co-mo
 
 ## Góp ý không chặn (sửa thì phải review lại rồi `content:hash --approve`)
 
-- Note đầu section `so-sanh` có "SGK tr.26 cho biết…": bỏ số trang khỏi lời cho trẻ.
-- Hình `dan-y` mục 3 và rubric bài viết nói "tiếng gió gợi nhớ bạn"; văn bản chỉ nói cáo "thấy thích" tiếng gió.
-- Bước `viet-buoc-cam-xuc` hỏi "Ngay sau khi chia tay" nhưng câu căn cứ là lúc sắp chia tay; đổi thành "Lúc chia tay".
+Đã sửa ở vòng 16 (02/10/2026): số trang SGK trong note `so-sanh`, hình `dan-y` và rubric về tiếng gió, "Lúc chia tay", đề `chon-tat-ca-loi-cao`, khoá hai id. Kiểm kê phần còn lại: `notebooks/backlogs/fix-earlier-lessons/task.md`.
+
 - Bài chưa có câu 8 tr.26 (cáo có phải nhân vật truyện đồng thoại không), câu 1 mục "Nghĩa của từ ngữ" (yếu tố "hoá" trong "cảm hoá": các từ như "tự động hoá"), và bài đặt câu với "cốt lõi".
 - Câu trong kho ôn (không nằm trong section) không được walk chạy qua. Đề có đoạn trích dài như `lua-mi-truoc`, `vi-sao-don-dieu`, `mau-lua-mi` có thể phải cuộn trên điện thoại trong phiên ôn; walk chỉ kiểm bố cục trong phần học.
 - Recap và card `doi-khac`, `cam-xuc-chia-tay`, hai mục của `noi-doi-khac` và câu `rule` "Màu lúa mì sẽ làm cáo nhớ bạn." (video `bi-mat-cua-cao`, cảnh `s02-mau-lua-mi`) gọi hoàng tử bé là "bạn", dễ nghe như nói với trẻ. Đổi thành "hoàng tử bé" cùng lúc ở recap và kịch bản (build kiểm nguyên văn), rồi `pnpm video:build` lại.

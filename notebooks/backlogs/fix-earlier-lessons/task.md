@@ -122,11 +122,11 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 
 | Mục | Vấn đề | Quyết định | Kết quả |
 |---|---|---|---|
-| neu-cau-muon-co-mot-nguoi-ban#1 | Note đầu section `so-sanh` có "SGK tr.26 cho biết…" | sửa: bỏ số trang khỏi lời cho trẻ | |
-| neu-cau-muon-co-mot-nguoi-ban#2 | Hình `dan-y` và rubric bài viết nói "tiếng gió gợi nhớ bạn", văn bản chỉ nói cáo "thấy thích" tiếng gió | sửa | |
-| neu-cau-muon-co-mot-nguoi-ban#3 | Bước `viet-buoc-cam-xuc` hỏi "Ngay sau khi chia tay" nhưng căn cứ là lúc sắp chia tay | sửa: "Lúc chia tay" | |
-| neu-cau-muon-co-mot-nguoi-ban#4 | Đề `chon-tat-ca-loi-cao` gọi cả dòng có lời người kể là "lời thoại" | sửa: "Chọn tất cả câu cáo nói." | |
-| neu-cau-muon-co-mot-nguoi-ban#5 | Hai id (`chon-tat-ca-loi-cao`, `chon-tat-ca-loi-dan`) chưa ghi vào `ids.lock.json` | sửa: `pnpm content:lock` sau khi duyệt | |
+| neu-cau-muon-co-mot-nguoi-ban#1 | Note đầu section `so-sanh` có "SGK tr.26 cho biết…" | sửa: bỏ số trang khỏi lời cho trẻ |  đã sửa, review vòng 16 đạt (0 Nghiêm trọng), đã duyệt |
+| neu-cau-muon-co-mot-nguoi-ban#2 | Hình `dan-y` và rubric bài viết nói "tiếng gió gợi nhớ bạn", văn bản chỉ nói cáo "thấy thích" tiếng gió | sửa |  đã sửa, review vòng 16 đạt (0 Nghiêm trọng), đã duyệt |
+| neu-cau-muon-co-mot-nguoi-ban#3 | Bước `viet-buoc-cam-xuc` hỏi "Ngay sau khi chia tay" nhưng căn cứ là lúc sắp chia tay | sửa: "Lúc chia tay" |  đã sửa, review vòng 16 đạt (0 Nghiêm trọng), đã duyệt |
+| neu-cau-muon-co-mot-nguoi-ban#4 | Đề `chon-tat-ca-loi-cao` gọi cả dòng có lời người kể là "lời thoại" | sửa: "Chọn tất cả câu cáo nói." |  đã sửa, review vòng 16 đạt (0 Nghiêm trọng), đã duyệt |
+| neu-cau-muon-co-mot-nguoi-ban#5 | Hai id (`chon-tat-ca-loi-cao`, `chon-tat-ca-loi-dan`) chưa ghi vào `ids.lock.json` | sửa: `pnpm content:lock` sau khi duyệt |  đã sửa, review vòng 16 đạt (0 Nghiêm trọng), đã duyệt |
 | neu-cau-muon-co-mot-nguoi-ban#6 | Câu 8 tr.26, câu 1 "Nghĩa của từ ngữ" (yếu tố "hoá"), bài đặt câu với "cốt lõi" chưa có | bỏ: nội dung mới | |
 | neu-cau-muon-co-mot-nguoi-ban#7 | Câu kho ôn có đoạn trích dài phải cuộn trên điện thoại, walk không đi qua kho ôn | bỏ: việc của app và công cụ walk | |
 | neu-cau-muon-co-mot-nguoi-ban#8 | Recap và `rule` gọi hoàng tử bé là "bạn" (cả kịch bản `bi-mat-cua-cao`) | bỏ: phải đổi kịch bản và dựng lại video | |
