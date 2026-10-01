@@ -132,7 +132,7 @@ describe("HomeScreen", () => {
     await openHomeOf("spider");
     const heading = await screen.findByRole("heading", { name: "Chào Bin!" });
     expect(
-      heading.parentElement?.querySelector('[data-avatar="spider"]'),
+      heading.closest("header")?.querySelector('[data-avatar="spider"]'),
     ).not.toBeNull();
     const switchLink = screen.getByRole("link", { name: "Đổi hồ sơ" });
     expect(switchLink.querySelector('[data-avatar="spider"]')).not.toBeNull();
