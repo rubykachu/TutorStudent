@@ -7,7 +7,7 @@
 - Đọc hiểu (Haiku): lượt 1 (cả bài, gồm câu hỏi) 123 / 44 / 0; lượt 2 trên 50 mục viết lại 44 / 6 / 0; lượt 3 trên 6 mục còn lại 0 / 6 / 0 (lí do chung: nhiều khái niệm mới, câu có hai ý); tệp `.shots/review/tap-hop-cac-so-nguyen/doc-hieu.md`, `doc-hieu-2.md`, `doc-hieu-3.md`. Sáu mục còn lại ghi ở Nên sửa 4 đến 7.
 - `lesson:walk`: 0 FAIL, ảnh trong `.shots/walk/tap-hop-cac-so-nguyen/` (iPad, điện thoại, iPad nằm ngang)
 - Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
-- Bản đã review: `eac21fceadc1fa39d1b19499633445a8208f0227a1c1ff9710830eb053f6a2ec` (`pnpm content:diff` so với bản này)
+- Bản đã review: `11df2c514e9f9ff4c3da6e8194a315feeda41d75fddef5a66cde44b36dfb3333` (`pnpm content:diff` so với bản này)
 
 Vòng 2 có 1 Nghiêm trọng và 14 Nên sửa; tất cả đã hết, xác nhận bằng ảnh:
 - Nghiêm trọng (hình gợi ý `nhiet-ke-goi-y`): ảnh `visual:shot` iPad và điện thoại cho thấy "Trên 0" ở đỉnh, "Dưới 0" ở đáy, dấu "?" hiện ở −2, không còn "2 °C"; bước cuối (−2 °C) bị ẩn. Test khoá: `shows the question mark of a hint on its last step, not the answer` và `never draws two texts beside the ruler at the same height` trong `tests/visuals/tap-hop-cac-so-nguyen.test.tsx`.
@@ -16,6 +16,17 @@ Vòng 2 có 1 Nghiêm trọng và 14 Nên sửa; tất cả đã hết, xác nh�
 - Soát chép sách (LL-08) với tr.48, 49, 111 cho các câu đổi hay mới: `chon-do-sau-ca-8` (sách: 318 m dưới mực nước biển), `so-sanh-am-36-52` (sách: −387 và −378), `chon-x-tan-cung-5` (sách: tận cùng 2, −15 < x ≤ 32), `doc-diem-mnp`, `doc-diem-e`, `xep-nhiet-do-4-ngay`: số, nhân vật và lời đề khác sách, không câu nào trùng.
 - Mẹo, thử trên số biên: `tim-so-doi` (7, −12, 0, 1, −1, 100, −100: đúng), `dem-buoc` (điểm tại −5, −1, 0, 1, 4: đúng), `so-sanh-hai-so-am` (−12 và −2, −3 và −7, −100 và −99, −1 và −10, −5 và −4: đúng), `xep-tu-be-den-lon` (−8, −3, 0, 1, 6; −4, −1, 0, 2; chỉ số dương; không có số 0: đúng). Hai mẹo `so-sanh-hai-so-am` (nghĩ nhiệt kế) và `xep-tu-be-den-lon` (bỏ dấu −) cùng dẫn tới một kết quả, không nói ngược nhau.
 - Recap và note: recap của 12 section và 12 card lặp đúng câu `rule: true` (soát từng cặp), `explain` của `chon-tat-ca-duong`, `noi-nhom-so` đã theo cụm "và cứ thế tiếp".
+
+## Vòng 4: lời đọc và video
+
+Reviewer mới (Sonnet), chỉ phần đổi: 3 video (`nhiet-ke`, `truc-so`, `so-sanh`), 3 khối `video` đầu các phần `nhiet-do`, `truc-so`, `so-sanh-truc` và lời đọc giới thiệu. Kết quả: 0 Nghiêm trọng, 4 Nên sửa, 7 Góp ý; đã sửa 4 Nên sửa và 4 Góp ý, dựng lại cả 3 video, `pnpm video:check` ok.
+
+- Lời đọc giới thiệu: Gemini hết hạn mức ở cả 2 khoá nên cả lời đọc được đọc lại bằng giọng VieNeu Hải Đăng (đúng cơ chế dự phòng, một lời đọc một giọng, `overview.narration.voice` ghi `local`); 12 câu, 47,3 giây, mọi câu từ 98,8% trở lên; "−5" ở mục tiêu cuối được đọc "âm năm".
+- Số âm trong lời đọc: dấu − trước chữ số được đọc "âm" (`spokenNegatives` ở `video/lib/text.ts`, test `says each negative sign as one word joined to its number`); Whisper nghe đúng "âm 3", "âm 6" ở cả 3 video.
+- Nên sửa đã xử lý: (1) vòng khoanh −3 của `nhiet-ke` chỉ hiện lúc đọc "âm", sau câu hỏi, không còn lộ đáp án; (2) "viết là −3" được đọc "viết là dấu trừ 3 và đọc là âm ba" (trường `say` cùng số chữ), tai nghe phân biệt cách viết với cách đọc; (3) nhãn cuối `so-sanh` dời lên y 436, nằm trên dải phụ đề; (4) câu mời thử "6 độ dưới 0" thành câu hỏi `ask`, `−6` chỉ hiện sau chữ "viết" của câu sau.
+- Góp ý đã xử lý: nhãn trung tính dùng màu chữ thường (slate chỉ cho số 0); "Bạn cú dừng ở số −3"; nhãn "−3 · âm ba" hiện lúc đọc "âm"; dấu "?" của `truc-so` mờ xong trước khi nhãn "số dương" hiện.
+- Góp ý giữ nguyên (không chặn): câu hỏi "số nào lớn hơn?" của `so-sanh` được trả lời sau 17 giây (kiến thức và thứ tự đúng); Whisper nghe "góc O" ở `truc-so` và "âm bà" ở câu cuối `so-sanh` (khớp 100% sau chuẩn hoá); hook của lời đọc giới thiệu kết bằng câu hỏi, quãng nghỉ sau đó 0,83 giây (lời đọc giới thiệu không có quãng `ask`).
+- Đã kiểm và đúng: "âm ba", không câu nào đọc "trừ ba"; số dương bên phải, số âm bên trái; −3 nhỏ hơn 2; màu số dương lime, số âm pink, số 0 slate, điểm amber, số nhỏ hơn blue, số lớn hơn violet; 11, 12 và 10 câu, mỗi video có câu `ask` và 2 điểm dừng cuối một ý; clip đúng card `nhiet-do`, `truc-so`, `so-sanh-truc`.
 
 ## Nghiêm trọng
 

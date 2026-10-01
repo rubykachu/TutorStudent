@@ -12,7 +12,7 @@
   "title": "Tập hợp các số nguyên",
   "sourceRef": "Sách bài tập tr.47–49",
   "status": "published",
-  "reviewedHash": "eac21fceadc1fa39d1b19499633445a8208f0227a1c1ff9710830eb053f6a2ec",
+  "reviewedHash": "11df2c514e9f9ff4c3da6e8194a315feeda41d75fddef5a66cde44b36dfb3333",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với số âm. Sáng mùa đông ở Sa Pa, nhiệt kế chỉ 2 độ dưới 0, bạn ghi nhiệt độ đó bằng số nào?"
@@ -4533,12 +4533,12 @@
       "url": "video/tap-hop-cac-so-nguyen/nhiet-ke.mp4",
       "vttUrl": "video/tap-hop-cac-so-nguyen/nhiet-ke.vtt",
       "posterUrl": "video/tap-hop-cac-so-nguyen/nhiet-ke.jpg",
-      "durationSec": 39.5,
+      "durationSec": 41.7,
       "clips": [
         {
           "id": "nhiet-do",
           "start": 9.693,
-          "end": 30.768,
+          "end": 32.973,
           "cardIds": ["tap-hop-cac-so-nguyen.card.nhiet-do"]
         }
       ],
@@ -4555,7 +4555,7 @@
         },
         {
           "id": "cp-02",
-          "at": 30.468,
+          "at": 32.673,
           "from": 20.99
         }
       ]
@@ -4566,12 +4566,12 @@
       "url": "video/tap-hop-cac-so-nguyen/truc-so.mp4",
       "vttUrl": "video/tap-hop-cac-so-nguyen/truc-so.vtt",
       "posterUrl": "video/tap-hop-cac-so-nguyen/truc-so.jpg",
-      "durationSec": 39.7,
+      "durationSec": 40.17,
       "clips": [
         {
           "id": "truc-so",
           "start": 9.542,
-          "end": 38.29,
+          "end": 38.734,
           "cardIds": ["tap-hop-cac-so-nguyen.card.truc-so"]
         }
       ],

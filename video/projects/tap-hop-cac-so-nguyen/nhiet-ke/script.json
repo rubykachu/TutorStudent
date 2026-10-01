@@ -36,12 +36,17 @@
       "sentences": [
         {
           "text": "3 độ dưới 0 viết là −3 và đọc là âm ba.",
+          "say": "3 độ dưới 0 viết là dấu-trừ-3 và đọc là âm ba.",
           "rule": true,
           "pause": "think"
         },
-        { "text": "Bạn cú thử với 6 độ dưới 0." },
+        {
+          "text": "Bạn thử đoán xem: 6 độ dưới 0 viết thế nào?",
+          "pause": "ask"
+        },
         {
           "text": "Ta viết −6 và đọc là âm sáu.",
+          "say": "Ta viết dấu-trừ-6 và đọc là âm sáu.",
           "pause": "think",
           "checkpoint": true
         }

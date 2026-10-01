@@ -21,6 +21,9 @@
       .lime {
         --c: var(--color-concept-lime);
       }
+      .ink {
+        --c: var(--color-foreground);
+      }
       .chip {
         font-size: 38px;
       }
@@ -143,15 +146,18 @@
 
         // ---------- the right-hand column of each scene ----------
         const html = (id, h) => ($(id).innerHTML = h);
-        html("#a1", chip("slate", "Sa Pa, buổi sáng") + `<span class="plain">độ C</span>`);
+        html("#a1", chip("ink", "Sa Pa, buổi sáng") + `<span class="plain">độ C</span>`);
         html("#b1", `<span id="q" class="num pink">?</span>`);
         html(
           "#b2",
           chip("pink", `${"▼"} số âm`) + `<span class="num pink">${MINUS}3</span>`,
         );
-        html("#c1", num("slate", "3 độ dưới 0") + `<span class="arrow">→</span>` + num("pink", `${MINUS}3`));
+        html("#c1", num("ink", "3 độ dưới 0") + `<span class="arrow">→</span>` + num("pink", `${MINUS}3`));
         html("#c2", `<span class="plain">đọc là</span>` + chip("pink", "âm ba"));
-        html("#c3", num("slate", "6 độ dưới 0") + `<span class="arrow">→</span>` + num("pink", `${MINUS}6`));
+        html(
+          "#c3",
+          `${num("ink", "6 độ dưới 0", "c3a")}<span id="c3b" style="display: flex; align-items: center; gap: 22px"><span class="arrow">→</span>${num("pink", `${MINUS}6`)}</span>`,
+        );
         html("#c4", `<span class="plain">đọc là</span>` + chip("pink", "âm sáu"));
         html("#d1", num("lime", "5") + chip("lime", "▲ trên 0: chỉ viết số"));
         html("#d2", chip("pink", `▼ dưới 0: dấu ${MINUS}, đọc là âm`));
@@ -186,7 +192,7 @@
             "#ring",
             { autoAlpha: 0 },
             { autoAlpha: 1, duration: 0.3, immediateRender: false },
-            W(sid, "3"),
+            W(sid, "âm"),
           );
           pop("#b1", W(sid, "đoán"), { from: 0.6 });
           fade("#b1", W(sid, "ghi", 2) - 0.1);
@@ -195,14 +201,15 @@
         }
         {
           const sid = "s03-doc";
-          hide(["#c1", "#c2", "#c3", "#c4"]);
+          hide(["#c1", "#c2", "#c3a", "#c3b", "#c4"]);
           pose(bird, "idle", start(sid));
           pop("#c1", W(sid, "3"), { from: 0.6 });
           pop("#c2", W(sid, "đọc"), { from: 0.6 });
           pose(bird, "happy", W(sid, "âm"));
           lower(-6, W(sid, "6"), 1.4);
           tl.to("#ring", { autoAlpha: 0, duration: 0.3 }, W(sid, "6"));
-          pop("#c3", W(sid, "6"), { from: 0.6 });
+          pop("#c3a", W(sid, "6"), { from: 0.6 });
+          pop("#c3b", W(sid, "viết", 2), { from: 0.6 });
           pop("#c4", W(sid, "âm", 2), { from: 0.6 });
           pose(bird, "cheer", W(sid, "âm", 2));
         }

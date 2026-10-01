@@ -24,6 +24,9 @@
       .slate {
         --c: var(--color-concept-slate);
       }
+      .ink {
+        --c: var(--color-foreground);
+      }
       .chip {
         font-size: 38px;
       }
@@ -125,10 +128,10 @@
 
         // ---------- per-scene tags ----------
         const el = (id, h) => $(id).insertAdjacentHTML("beforeend", h);
-        el("#s1", tag("u1", "slate", "1 đơn vị", (X(0) + X(1)) / 2, AX - 125));
+        el("#s1", tag("u1", "ink", "1 đơn vị", (X(0) + X(1)) / 2, AX - 125));
         el("#s2", tag("o1", "slate", "gốc O · số 0", X(0), AX - 150));
-        el("#s2", tag("lf", "slate", "◀ bên trái", X(-3), 110));
-        el("#s2", tag("rt", "slate", "bên phải ▶", X(3), 110));
+        el("#s2", tag("lf", "ink", "◀ bên trái", X(-3), 110));
+        el("#s2", tag("rt", "ink", "bên phải ▶", X(3), 110));
         el("#s3", `<div id="q1" class="tag" style="left: ${X(-3)}px; top: 60px">?</div>`);
         el("#s3", `<div id="q2" class="tag" style="left: ${X(3)}px; top: 60px">?</div>`);
         el("#s3", tag("sp", "lime", "▶ số dương", X(3), 110));
@@ -217,7 +220,7 @@
           pose(bird, "idle", start(sid));
           fade(["#lf", "#rt", "#o1"], start(sid), 0.2);
           pop(["#q1", "#q2"], W(sid, "đoán"), { from: 0.5, stagger: 0.15 });
-          fade(["#q1", "#q2"], W(sid, "dương", 2) - 0.2);
+          fade(["#q1", "#q2"], W(sid, "dương", 2) - 0.5);
           tl.to("#band-pos", { autoAlpha: 1, duration: 0.4 }, W(sid, "dương", 2));
           tl.to(ids("lb", parts(1, 5)), { autoAlpha: 1, duration: 0.3, stagger: 0.1 }, W(sid, "dương", 2));
           pop("#sp", W(sid, "dương", 2), { from: 0.6 });
@@ -244,7 +247,7 @@
             W(sid, "sang"),
           );
           tl.set("#pt", { x: 0, autoAlpha: 1 }, start(sid));
-          pop("#pt-label", W(sid, "dừng"), { from: 0.6 });
+          pop("#pt-label", W(sid, "âm"), { from: 0.6 });
           pose(bird, "happy", W(sid, "dừng"));
           pop("#nl", W(sid, "nhớ"), { from: 0.6 });
           pop("#nr", W(sid, "nhớ"), { from: 0.6 });
