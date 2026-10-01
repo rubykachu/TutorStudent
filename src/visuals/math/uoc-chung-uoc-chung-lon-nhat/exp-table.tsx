@@ -26,7 +26,7 @@ function Power({ p, e }: { p: number; e: number }) {
 }
 
 const CELL =
-  "flex min-h-14 items-center justify-center rounded-lg font-heading text-block font-bold tabular-nums";
+  "flex min-h-12 items-center justify-center rounded-lg font-heading text-block font-bold tabular-nums";
 
 // Tex of the result: the shared powers multiplied, then their value.
 function resultTex(numbers: readonly number[], shared: readonly number[]) {
@@ -81,7 +81,11 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
           ))}
           <Row head="Chung">
             {primes.map((p) => (
-              <Reveal key={p} shown={picked} className="flex justify-center">
+              <Reveal
+                key={p}
+                shown={picked}
+                className="flex min-h-12 items-center justify-center"
+              >
                 {shared.includes(p) ? (
                   <Check
                     aria-label={`${p} có ở mọi số`}
@@ -100,10 +104,10 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                 key={p}
                 shown={smallest}
                 placeholder={<Pending />}
-                className="flex justify-center"
+                className="flex min-h-12 items-center justify-center"
               >
                 {shared.includes(p) ? (
-                  <span className={`${CELL} min-h-0 text-concept-violet`}>
+                  <span className={`${CELL} text-concept-violet`}>
                     {Math.min(...numbers.map((n) => exponentOf(n, p)))}
                   </span>
                 ) : (
@@ -148,7 +152,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
 function Row({ head, children }: { head: string; children: React.ReactNode }) {
   return (
     <>
-      <span className="flex min-h-14 items-center font-heading text-body font-bold">
+      <span className="flex min-h-12 items-center font-heading text-body font-bold">
         {head}
       </span>
       {children}

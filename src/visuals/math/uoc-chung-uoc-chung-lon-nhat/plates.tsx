@@ -47,7 +47,7 @@ function Plate({
   return (
     <div
       className="flex flex-col gap-1 rounded-xl border-2 border-concept-violet bg-surface p-1.5"
-      style={{ width: `calc(${columns} * 1.25rem + 1.25rem)` }}
+      style={{ width: `calc(${columns} * 1rem + 1.25rem)` }}
       role="img"
       aria-label={`${plate} ${index + 1}: ${spoken}`}
     >
@@ -55,7 +55,7 @@ function Plate({
         <DotBlock
           key={item.label}
           count={per[i] ?? 0}
-          columns={Math.min(columns, per[i] ?? 1)}
+          columns={columns}
           color={item.color}
           label={`${per[i]} ${item.label}`}
         />

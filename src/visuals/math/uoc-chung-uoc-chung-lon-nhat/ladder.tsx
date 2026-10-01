@@ -32,11 +32,14 @@ export function ladderRows(n: number): [number, number | undefined][] {
   return rows;
 }
 
-// The result line: "36 = 2 · 2 · 3 · 3 = 2² · 3²" (the power form only when
-// some prime repeats).
-export function resultTex(n: number): string {
+// The result lines: "36 = 2 · 2 · 3 · 3" and, only when some prime repeats,
+// "= 2² · 3²" below it.
+export function resultLines(n: number): string[] {
   const repeats = primePowers(n).some(([, e]) => e > 1);
-  return `${n} = ${texFactorList(n)}${repeats ? ` = ${texFactorisation(n)}` : ""}`;
+  return [
+    `${n} = ${texFactorList(n)}`,
+    ...(repeats ? [`= ${texFactorisation(n)}`] : []),
+  ];
 }
 
 export function Ladder({ spec }: { spec: LadderSpec }) {
@@ -62,12 +65,16 @@ export function Ladder({ spec }: { spec: LadderSpec }) {
           </li>
         ))}
       </ul>
-      <div className="min-h-[3.25rem] w-full" aria-live="polite">
+      <div className="min-h-[5rem] w-full" aria-live="polite">
         <Reveal
           shown={!hint && (mode === "still" || step >= rows.length)}
           placeholder={<Pending />}
         >
-          <FormulaRow row={{ tex: resultTex(n) }} />
+          <div className="flex flex-col items-center gap-1">
+            {resultLines(n).map((tex) => (
+              <FormulaRow key={tex} row={{ tex }} />
+            ))}
+          </div>
         </Reveal>
       </div>
       <Legend items={[{ color: "blue", name: "Thừa số nguyên tố" }]} />
