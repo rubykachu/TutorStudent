@@ -7,10 +7,12 @@ import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import { exponentOf, gcdOf, primesOf, texPower } from "./logic";
 
-// The prime factors of several numbers side by side, one column per prime:
-// the picture of "find the greatest common divisor by factorising". Columns
-// whose prime is in every number are the shared ones; each keeps its
-// smallest exponent, and the product of those powers is the answer.
+// The prime factors of several numbers side by side, one column per prime
+// (named in the heading row): the picture of "find the greatest common divisor
+// by factorising". A prime a number lacks leaves its cell empty (a dashed
+// slot), never a dash that could read as a minus. Columns whose prime is in
+// every number are the shared ones; each keeps its smallest exponent, and the
+// product of those powers is the answer.
 
 // What the table draws: the numbers and how it plays (a hint stops after the
 // shared primes are picked out).
@@ -27,6 +29,16 @@ function Power({ p, e }: { p: number; e: number }) {
 
 const CELL =
   "flex min-h-11 items-center justify-center rounded-lg font-heading text-block font-bold tabular-nums";
+
+// The cell of a prime the number does not have.
+function EmptySlot() {
+  return (
+    <span
+      aria-hidden
+      className="size-6 rounded-md border-2 border-dashed border-muted-foreground/60"
+    />
+  );
+}
 
 // Tex of the result: the shared powers multiplied, then their value.
 function resultTex(numbers: readonly number[], shared: readonly number[]) {
@@ -59,6 +71,13 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
             gridTemplateColumns: `minmax(4.5rem, auto) repeat(${primes.length}, minmax(3.25rem, 1fr))`,
           }}
         >
+          <Row head="Thừa số">
+            {primes.map((p) => (
+              <span key={p} className={`${CELL} text-concept-blue`}>
+                {p}
+              </span>
+            ))}
+          </Row>
           {numbers.map((n) => (
             <Row key={n} head={`${n} =`}>
               {primes.map((p) => {
@@ -69,11 +88,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                     key={p}
                     className={`${CELL} ${picked && isShared ? "border-2 border-concept-blue bg-concept-blue/15" : "border-2 border-transparent"} ${picked && !isShared ? "opacity-50" : ""}`}
                   >
-                    {e > 0 ? (
-                      <Power p={p} e={e} />
-                    ) : (
-                      <span className="text-muted-foreground">—</span>
-                    )}
+                    {e > 0 ? <Power p={p} e={e} /> : <EmptySlot />}
                   </span>
                 );
               })}
@@ -86,19 +101,17 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                 shown={picked}
                 className="flex min-h-11 items-center justify-center"
               >
-                {shared.includes(p) ? (
+                {shared.includes(p) && (
                   <Check
                     aria-label={`${p} có ở mọi số`}
                     className="size-6 text-concept-blue"
                     strokeWidth={3}
                   />
-                ) : (
-                  <span className="text-muted-foreground">—</span>
                 )}
               </Reveal>
             ))}
           </Row>
-          <Row head="Mũ nhỏ nhất">
+          <Row head="Số mũ nhỏ nhất">
             {primes.map((p) => (
               <Reveal
                 key={p}
@@ -106,12 +119,10 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
                 placeholder={<Pending />}
                 className="flex min-h-11 items-center justify-center"
               >
-                {shared.includes(p) ? (
+                {shared.includes(p) && (
                   <span className={`${CELL} text-concept-violet`}>
                     {Math.min(...numbers.map((n) => exponentOf(n, p)))}
                   </span>
-                ) : (
-                  <span className="text-muted-foreground">—</span>
                 )}
               </Reveal>
             ))}

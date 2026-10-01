@@ -290,6 +290,15 @@
       "term": "rút gọn phân số",
       "forbidden": [],
       "prerequisite": "tiểu học"
+    },
+    {
+      "term": "phân số tối giản",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "số hoàn hảo",
+      "forbidden": []
     }
   ],
   "names": ["ƯC", "ƯCLN", "Ư"]

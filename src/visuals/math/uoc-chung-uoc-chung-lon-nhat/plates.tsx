@@ -46,7 +46,7 @@ function Plate({
   const spoken = items.map((item, i) => `${per[i]} ${item.label}`).join(", ");
   return (
     <div
-      className="flex flex-col gap-1 rounded-xl border-2 border-concept-violet bg-surface p-1.5"
+      className="flex flex-col gap-1 rounded-xl border-2 border-concept-slate bg-surface p-1.5"
       style={{ width: `calc(${columns} * 1rem + 1.25rem)` }}
       role="img"
       aria-label={`${plate} ${index + 1}: ${spoken}`}

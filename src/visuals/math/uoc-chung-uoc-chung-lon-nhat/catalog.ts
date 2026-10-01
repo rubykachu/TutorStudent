@@ -260,7 +260,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "7 = 1 \\cdot 7",
         tag: {
           text: "7 chỉ có ước 1 và 7",
-          color: "blue",
+          color: "sky",
         },
       },
       {
@@ -330,9 +330,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [45, 75],
     mode: "hint",
   },
-  "bang-24-36": {
+  "bang-50-70": {
     kind: "expTable",
-    numbers: [24, 36],
+    numbers: [50, 70],
     mode: "steps",
   },
   "bang-goi-y-28-42": {
@@ -373,9 +373,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [14, 21, 35],
     mode: "hint",
   },
-  "bang-20-30-50": {
+  "bang-18-54-81": {
     kind: "expTable",
-    numbers: [20, 30, 50],
+    numbers: [18, 54, 81],
     mode: "steps",
   },
   "bang-goi-y-14-28-70": {
@@ -383,9 +383,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [14, 28, 70],
     mode: "hint",
   },
-  "bang-18-30-42": {
+  "bang-24-60-84": {
     kind: "expTable",
-    numbers: [18, 30, 42],
+    numbers: [24, 60, 84],
     mode: "steps",
   },
   "uclnn-uc-12-18": {
@@ -462,12 +462,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         label: "quả cam",
         total: 18,
-        color: "blue",
+        color: "lime",
       },
       {
         label: "quả quýt",
         total: 30,
-        color: "pink",
+        color: "slate",
       },
     ],
     plate: "đĩa",
@@ -480,12 +480,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         label: "quả cam",
         total: 18,
-        color: "blue",
+        color: "lime",
       },
       {
         label: "quả quýt",
         total: 30,
-        color: "pink",
+        color: "slate",
       },
     ],
     plate: "đĩa",
@@ -525,12 +525,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         label: "viên bi",
         total: 8,
-        color: "blue",
+        color: "lime",
       },
       {
         label: "cái kẹo",
         total: 12,
-        color: "pink",
+        color: "slate",
       },
     ],
     plate: "đĩa",
@@ -543,12 +543,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         label: "cái bánh quy",
         total: 14,
-        color: "blue",
+        color: "lime",
       },
       {
         label: "cái kẹo",
         total: 35,
-        color: "pink",
+        color: "slate",
       },
     ],
     plate: "đĩa",
@@ -707,7 +707,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "1 + 2 + 3 = 6",
         tag: {
           text: "Cộng các ước, không kể 6",
-          color: "amber",
+          color: "slate",
         },
       },
     ],
@@ -728,70 +728,35 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "1 + 2 + 3 = 6",
         tag: {
           text: "Cộng các ước, không kể 6",
-          color: "amber",
+          color: "slate",
         },
       },
     ],
     mode: "still",
-  },
-  "hh-28": {
-    kind: "lines",
-    label: "Cộng các ước của 28, không kể 28, được đúng 28",
-    rows: [
-      {
-        tex: "1 + 2 = 3",
-        tag: {
-          text: "Cộng 1 và 2",
-          color: "slate",
-        },
-      },
-      {
-        tex: "3 + 4 = 7",
-        tag: {
-          text: "Cộng thêm 4",
-          color: "slate",
-        },
-      },
-      {
-        tex: "7 + 7 = 14",
-        tag: {
-          text: "Cộng thêm 7",
-          color: "slate",
-        },
-      },
-      {
-        tex: "14 + 14 = 28",
-        tag: {
-          text: "Cộng thêm 14",
-          color: "amber",
-        },
-      },
-    ],
-    mode: "steps",
   },
   "rg-20-28": {
     kind: "lines",
     label: "Chia cả tử và mẫu của phân số cho cùng một số",
     rows: [
       {
-        tex: "\\frac{20}{28} = \\frac{20 : 2}{28 : 2} = \\frac{10}{14}",
+        tex: "\\dfrac{20}{28} = \\dfrac{20 : 2}{28 : 2} = \\dfrac{10}{14}",
         tag: {
           text: "Chia cho 2",
           color: "slate",
         },
       },
       {
-        tex: "\\frac{10}{14} = \\frac{10 : 2}{14 : 2} = \\frac{5}{7}",
+        tex: "\\dfrac{10}{14} = \\dfrac{10 : 2}{14 : 2} = \\dfrac{5}{7}",
         tag: {
           text: "Lại chia cho 2",
           color: "slate",
         },
       },
       {
-        tex: "\\frac{5}{7}",
+        tex: "\\dfrac{5}{7}",
         tag: {
-          text: "Không chia tiếp được nữa",
-          color: "amber",
+          text: "Chỉ còn ước chung là 1",
+          color: "slate",
         },
       },
     ],
@@ -802,8 +767,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Phân số tối giản có tử và mẫu với ƯCLN bằng 1",
     lines: [
       {
-        tex: "\\frac{5}{7}",
-        color: "amber",
+        tex: "\\dfrac{5}{7}",
+        color: "pink",
       },
       {
         text: "ƯC(5, 7) = {1}",
@@ -816,6 +781,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "still",
     legend: [
+      {
+        color: "pink",
+        name: "Phân số tối giản",
+      },
       {
         color: "teal",
         name: "Ước chung",
@@ -831,17 +800,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Rút gọn phân số về tối giản bằng ƯCLN",
     rows: [
       {
-        tex: "\\frac{18}{24}",
+        tex: "\\dfrac{18}{24}",
         tag: {
           text: "ƯCLN(18, 24) = 6",
-          color: "slate",
+          color: "amber",
         },
       },
       {
-        tex: "\\frac{18 : 6}{24 : 6} = \\frac{3}{4}",
+        tex: "\\dfrac{18 : 6}{24 : 6} = \\dfrac{3}{4}",
         tag: {
           text: "Chia tử và mẫu cho 6",
-          color: "amber",
+          color: "slate",
         },
       },
     ],
@@ -852,17 +821,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Rút gọn phân số về tối giản bằng ƯCLN",
     rows: [
       {
-        tex: "\\frac{6}{15}",
+        tex: "\\dfrac{6}{15}",
         tag: {
           text: "ƯCLN(6, 15) = 3",
-          color: "slate",
+          color: "amber",
         },
       },
       {
-        tex: "\\frac{6 : 3}{15 : 3} = \\frac{2}{5}",
+        tex: "\\dfrac{6 : 3}{15 : 3} = \\dfrac{2}{5}",
         tag: {
           text: "Chia tử và mẫu cho 3",
-          color: "amber",
+          color: "slate",
         },
       },
     ],
@@ -873,17 +842,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Rút gọn phân số về tối giản bằng ƯCLN",
     rows: [
       {
-        tex: "\\frac{20}{28}",
+        tex: "\\dfrac{20}{28}",
         tag: {
           text: "ƯCLN(20, 28) = 4",
-          color: "slate",
+          color: "amber",
         },
       },
       {
-        tex: "\\frac{20 : 4}{28 : 4} = \\frac{5}{7}",
+        tex: "\\dfrac{20 : 4}{28 : 4} = \\dfrac{5}{7}",
         tag: {
           text: "Phân số tối giản",
-          color: "amber",
+          color: "pink",
         },
       },
     ],

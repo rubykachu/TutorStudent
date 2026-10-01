@@ -1,10 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   installAudioUnlock,
+  playMusic,
   playSequence,
   playSound,
   preloadSounds,
   resetAudioForTesting,
+  stopMusic,
   unlockAudio,
 } from "@/lib/sound";
 
@@ -148,5 +150,47 @@ describe("sound", () => {
       "/sounds/a.m4a",
       "/sounds/c.m4a",
     ]);
+  });
+  describe("music", () => {
+    it("plays one song at a time: a new song stops the one before", async () => {
+      const first = playMusic("/sounds/song-a.m4a");
+      const second = playMusic("/sounds/song-b.m4a");
+      const [a, b] = FakeAudio.instances;
+      expect(a?.pause).toHaveBeenCalled();
+      expect(b?.plays).toHaveLength(1);
+      await first;
+      b?.dispatchEvent(new Event("ended"));
+      await second;
+    });
+
+    it("stops a voice line that was speaking, and the rest of its sequence", async () => {
+      const spoken = playSequence(["/sounds/tone.m4a", "/sounds/line.m4a"]);
+      void playMusic("/sounds/song-a.m4a");
+      const [tone, song] = FakeAudio.instances;
+      expect(tone?.pause).toHaveBeenCalled();
+      expect(song?.plays).toHaveLength(1);
+      await spoken;
+      // The line after the tone never starts.
+      expect(FakeAudio.instances).toHaveLength(2);
+    });
+
+    it("is stopped by stopMusic and by a later sequence, and resolves", async () => {
+      const first = playMusic("/sounds/song-a.m4a");
+      stopMusic();
+      await first;
+      expect(FakeAudio.instances[0]?.pause).toHaveBeenCalled();
+
+      const again = playMusic("/sounds/song-a.m4a");
+      void playSequence(["/sounds/line.m4a"]);
+      await again;
+      expect(FakeAudio.instances[0]?.pause).toHaveBeenCalledTimes(2);
+    });
+
+    it("leaves button and tap clips alone", () => {
+      void playMusic("/sounds/song-a.m4a");
+      void playSound("/sounds/button.m4a");
+      const [song] = FakeAudio.instances;
+      expect(song?.pause).not.toHaveBeenCalled();
+    });
   });
 });

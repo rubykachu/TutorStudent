@@ -1,4 +1,4 @@
-// Short sound clips (the correct-answer jingle, the owl's voice lines),
+// Short sound clips (the correct-answer jingle, the owl's voice lines, songs),
 // played through HTMLAudioElement. Web Audio is silenced by the ringer switch
 // on iPhone and iPad; a media element in a "playback" audio session is not.
 // A clip that fails to load or play is skipped without an error.
@@ -45,6 +45,7 @@ function start(element: HTMLAudioElement): Promise<void> {
 }
 
 export function resetAudioForTesting(): void {
+  song = null;
   clips.clear();
   playing.clear();
   loaded.clear();
@@ -145,4 +146,28 @@ export async function playSequence(urls: readonly string[]): Promise<void> {
     if (own !== sequence) return;
     await playSound(url);
   }
+}
+
+// The song playing now, if any, and the count of songs started (so a song
+// that was cut off by a restart of itself never clears its successor).
+let song: HTMLAudioElement | null = null;
+let songsStarted = 0;
+
+// Stops the song, if one is playing.
+export function stopMusic(): void {
+  if (!song) return;
+  playing.get(song)?.();
+  song.pause();
+  song = null;
+}
+
+// Plays a song from its start, alone: anything playing stops first (a voice
+// line, another song), and a later sequence stops the song in turn. Resolves
+// when the song ended or was stopped.
+export async function playMusic(url: string): Promise<void> {
+  stopAll();
+  const own = ++songsStarted;
+  song = clip(url);
+  await playSound(url);
+  if (own === songsStarted) song = null;
 }

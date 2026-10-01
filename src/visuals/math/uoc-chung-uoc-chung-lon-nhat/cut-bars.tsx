@@ -25,12 +25,12 @@ const HEIGHT = CELL + 2 * PAD + 4;
 const UNIT = "dm";
 
 // What the colours stand for: a piece is neutral (it is no concept), what is
-// left over is pink, and the greatest cut that fits is the amber ƯCLN.
+// left over is lime, and the greatest cut that fits is the amber ƯCLN.
 function cutLegend(hasLeft: boolean, greatest: boolean) {
   const items: { color: ConceptColor; name: string }[] = [
     { color: "slate", name: "Một đoạn" },
   ];
-  if (hasLeft) items.push({ color: "pink", name: "Còn thừa" });
+  if (hasLeft) items.push({ color: "lime", name: "Còn thừa" });
   if (greatest) items.push({ color: "amber", name: "Ước chung lớn nhất" });
   return items;
 }
@@ -61,7 +61,7 @@ function Dots({
 }: {
   count: number;
   x: number;
-  color: "blue" | "pink";
+  color: "slate" | "lime";
 }) {
   return Array.from({ length: count }, (_, i) => (
     <ConceptShape
@@ -116,7 +116,7 @@ function Strip({
                   className="fill-surface stroke-concept-slate"
                   strokeWidth={2}
                 />
-                <Dots count={d} x={x} color="blue" />
+                <Dots count={d} x={x} color="slate" />
               </g>
             );
           })}
@@ -129,14 +129,14 @@ function Strip({
                 width={boxWidth(left) - 2}
                 height={HEIGHT - 2}
                 rx={8}
-                className="fill-surface stroke-concept-pink"
+                className="fill-surface stroke-concept-lime"
                 strokeWidth={2}
                 strokeDasharray="5 4"
               />
               <Dots
                 count={left}
                 x={pieces * (boxWidth(d) + GAP)}
-                color="pink"
+                color="lime"
               />
             </g>
           )}
@@ -153,7 +153,7 @@ function Strip({
             className="fill-surface stroke-muted-foreground"
             strokeWidth={2}
           />
-          <Dots count={total} x={0} color="blue" />
+          <Dots count={total} x={0} color="slate" />
         </g>
       )}
     </svg>
@@ -188,7 +188,7 @@ function StripRow({
           (left === 0 ? (
             <span className="text-correct">{`${pieces} đoạn, không thừa`}</span>
           ) : (
-            <Tint color="pink">{`${pieces} đoạn, còn thừa ${left} ${UNIT}`}</Tint>
+            <Tint color="lime">{`${pieces} đoạn, còn thừa ${left} ${UNIT}`}</Tint>
           ))}
       </p>
     </li>
