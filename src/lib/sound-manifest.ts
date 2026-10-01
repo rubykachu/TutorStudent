@@ -1,3 +1,4 @@
+import type { AvatarId } from "@/components/avatar";
 import manifest from "../../public/sounds/manifest.json";
 
 // The app's own sound clips (tones, imported clips and the owl's voice lines)
@@ -49,6 +50,22 @@ export const WRONG_ID = "wrong-answer";
 export const LESSON_END_ID = "lesson-end";
 // Leaving a section or review with the "×" control.
 export const LEAVE_ID = "leave";
+
+// The clip of each profile avatar, played when the child picks the avatar and
+// when they tap it on the home screen: the one place that maps an avatar id
+// to a clip id. A clip is defined where it is made: a recorded effect in
+// `FILES` and a spoken onomatopoeia in `AVATAR_LINES`
+// (scripts/lib/sound-spec.ts, src/mascot/lines.ts).
+export const AVATAR_CLIP_IDS = {
+  cat: "avatar-cat",
+  bear: "avatar-bear",
+  rabbit: "avatar-rabbit",
+  fox: "avatar-fox",
+  panda: "avatar-panda",
+  chick: "avatar-chick",
+  spider: "avatar-spider",
+  racecar: "avatar-racecar",
+} as const satisfies Record<AvatarId, string>;
 
 const byId = new Map(
   (manifest as SoundManifest).entries.map((entry) => [entry.id, entry]),

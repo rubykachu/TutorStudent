@@ -52,6 +52,42 @@
       "peakDb": -5.7
     },
     {
+      "id": "avatar-cat",
+      "file": "avatar-cat.m4a",
+      "kind": "file",
+      "sha256": "32e496dcf8360f73e063f2b63656f3d16279a2a8d7071c03bae5c2a6ad7bd342",
+      "source": "mixkit-cartoon-little-cat-meow.wav",
+      "lufs": -16.1,
+      "peakDb": -3.6
+    },
+    {
+      "id": "avatar-chick",
+      "file": "avatar-chick.m4a",
+      "kind": "file",
+      "sha256": "f15d6f28d4100addd14c3c1ee30aa6d8eb5e8af1d29d1a5ab1dfe4d24c3e9028",
+      "source": "mixkit-little-bird-calling-chirp.wav",
+      "lufs": -16,
+      "peakDb": -7.5
+    },
+    {
+      "id": "avatar-spider",
+      "file": "avatar-spider.m4a",
+      "kind": "file",
+      "sha256": "2600e9d0c5a968f206c8a46bdd55813b0f8645977af6268b5115ddf3e34b676a",
+      "source": "mixkit-fast-small-sweep-transition.wav",
+      "lufs": -16.4,
+      "peakDb": -1.9
+    },
+    {
+      "id": "avatar-racecar",
+      "file": "avatar-racecar.m4a",
+      "kind": "file",
+      "sha256": "fffe0c77cc0eac28766e2ec426fc8b6d3c4370b3b562a47b3d1444cc40a040f4",
+      "source": "mixkit-car-engine-start.wav",
+      "lufs": -16.3,
+      "peakDb": -1.7
+    },
+    {
       "id": "song-heng-yao-re",
       "file": "song-heng-yao-re.m4a",
       "kind": "file",
@@ -307,21 +343,6 @@
       "peakDb": -4.8
     },
     {
-      "id": "avatar-cat",
-      "file": "avatar-cat.m4a",
-      "kind": "voice",
-      "sha256": "16ecbd35f16d212eedea2a9619cdb51bd84dd70f290c93b1cd40833e9758071b",
-      "text": "Mèo mèo!",
-      "engine": {
-        "name": "gemini",
-        "model": "gemini-3.1-flash-tts-preview",
-        "voice": "Sulafat"
-      },
-      "match": 1,
-      "lufs": -16.1,
-      "peakDb": -6.3
-    },
-    {
       "id": "avatar-bear",
       "file": "avatar-bear.m4a",
       "kind": "voice",
@@ -380,51 +401,6 @@
       "match": 1,
       "lufs": -16,
       "peakDb": -3.4
-    },
-    {
-      "id": "avatar-chick",
-      "file": "avatar-chick.m4a",
-      "kind": "voice",
-      "sha256": "788755a55dbb45b6677ed574acdba6d42c75d3818732c8487daa777fcf67629c",
-      "text": "Chiếp chiếp!",
-      "engine": {
-        "name": "gemini",
-        "model": "gemini-3.1-flash-tts-preview",
-        "voice": "Sulafat"
-      },
-      "match": 1,
-      "lufs": -16.1,
-      "peakDb": -2.4
-    },
-    {
-      "id": "avatar-spider",
-      "file": "avatar-spider.m4a",
-      "kind": "voice",
-      "sha256": "d4a22258b70131d9e3db20e2cd15337ad40865e870eab10f989ce2f36cd08e31",
-      "text": "Phóc phóc!",
-      "engine": {
-        "name": "gemini",
-        "model": "gemini-3.1-flash-tts-preview",
-        "voice": "Sulafat"
-      },
-      "match": 1,
-      "lufs": -16.9,
-      "peakDb": -1.7
-    },
-    {
-      "id": "avatar-racecar",
-      "file": "avatar-racecar.m4a",
-      "kind": "voice",
-      "sha256": "d553f71f2fca7134846cd8e129deb152544ec42aa5be326c377b4b14a32bcf22",
-      "text": "Brum brum!",
-      "engine": {
-        "name": "gemini",
-        "model": "gemini-3.1-flash-tts-preview",
-        "voice": "Sulafat"
-      },
-      "match": 1,
-      "lufs": -16,
-      "peakDb": -3.3
     }
   ]
 }

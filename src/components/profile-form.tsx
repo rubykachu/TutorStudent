@@ -1,9 +1,11 @@
 "use client";
 
-import { type FormEvent, useId, useState } from "react";
+import { type FormEvent, useEffect, useId, useState } from "react";
 import { AVATARS, Avatar, type AvatarId } from "@/components/avatar";
 import { BigButton } from "@/components/big-button";
+import { avatarSoundUrls, playAvatarSound } from "@/lib/avatar-sounds";
 import { PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
+import { preloadSounds } from "@/lib/sound";
 import type { NewProfile } from "@/progress/hooks";
 
 type ProfileFormProps = {
@@ -16,6 +18,9 @@ export function ProfileForm({ onSubmit, submitting }: ProfileFormProps) {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState<AvatarId>(AVATARS[0].id);
   const trimmed = name.trim();
+
+  // Each avatar says its own sound when chosen, so they load up front.
+  useEffect(() => preloadSounds(avatarSoundUrls()), []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,7 +49,7 @@ export function ProfileForm({ onSubmit, submitting }: ProfileFormProps) {
 
       <fieldset className="flex flex-col gap-3">
         <legend className="mb-3 font-heading text-block font-semibold md:text-block-lg">
-          Chọn một bạn thú
+          Chọn hình đại diện
         </legend>
         <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
           {AVATARS.map((option) => (
@@ -58,6 +63,10 @@ export function ProfileForm({ onSubmit, submitting }: ProfileFormProps) {
                 value={option.id}
                 checked={avatar === option.id}
                 onChange={() => setAvatar(option.id)}
+                // A click, not the change, so choosing the same avatar again
+                // plays its sound again.
+                onClick={() => playAvatarSound(option.id)}
+                data-own-sound
                 className="sr-only"
               />
               <Avatar avatar={option.id} className="size-16 md:size-20" />

@@ -74,4 +74,18 @@ describe("Owl", () => {
       expect(owl(container)).toHaveAttribute("data-mascot", "hint"),
     );
   });
+
+  it("loops gently only when asked to, and not under reduced motion", () => {
+    const still = render(<Owl expression="idle" size="home" />);
+    expect(still.container.querySelector("[data-mascot-loop]")).toBeNull();
+    still.unmount();
+    const looping = render(<Owl expression="idle" size="home" loop />);
+    expect(
+      looping.container.querySelector("[data-mascot-loop]"),
+    ).not.toBeNull();
+    looping.unmount();
+    preferReducedMotion();
+    const reduced = render(<Owl expression="idle" size="home" loop />);
+    expect(reduced.container.querySelector("[data-mascot-loop]")).toBeNull();
+  });
 });

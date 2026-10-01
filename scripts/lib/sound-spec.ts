@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import {
+  AVATAR_CLIP_IDS,
   BUTTON_ID,
   JINGLE_ID,
   LEAVE_ID,
@@ -143,6 +144,11 @@ export type FileSpec = {
   fadeOutS: number;
   // Played only when the child asks for it (a song), so never preloaded.
   music: boolean;
+  // Keep only the first `clipS` seconds (after the silence is cut), faded
+  // out by `fadeOutS`; omitted keeps the whole clip.
+  clipS?: number;
+  // Where a downloaded clip comes from and under what terms it may be used.
+  credit?: { title: string; url: string; license: string };
 };
 
 export const ASSETS_SOUNDS_DIR = path.join(process.cwd(), "assets", "sounds");
@@ -150,6 +156,12 @@ export const ASSETS_SOUNDS_DIR = path.join(process.cwd(), "assets", "sounds");
 // Songs are quieter than the owl's voice, so they never drown it out or tire
 // the ear; iOS ignores a media element's volume, so the loudness is set here.
 const MUSIC_LUFS = MASTERING.voiceLufs - 6;
+
+const MIXKIT = (title: string, id: number) => ({
+  title,
+  url: `https://assets.mixkit.co/active_storage/sfx/${id}/${id}.wav`,
+  license: "Mixkit Sound Effects Free License",
+});
 
 export const FILES: Record<string, FileSpec> = {
   // A section is finished: a short, bright fanfare, as loud as the correct
@@ -177,6 +189,44 @@ export const FILES: Record<string, FileSpec> = {
     trimSilence: true,
     fadeOutS: 0,
     music: false,
+  },
+  // The avatars' recorded sound effects, short and cheerful, brought to the
+  // loudness of a voice line. All from Mixkit (free for any use, no
+  // attribution needed: https://mixkit.co/license/#sfxFree).
+  [AVATAR_CLIP_IDS.cat]: {
+    source: "mixkit-cartoon-little-cat-meow.wav",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0.1,
+    music: false,
+    credit: MIXKIT("Cartoon little cat meow", 91),
+  },
+  [AVATAR_CLIP_IDS.chick]: {
+    source: "mixkit-little-bird-calling-chirp.wav",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0.1,
+    music: false,
+    credit: MIXKIT("Little bird calling chirp", 23),
+  },
+  // The spider hero's web shot.
+  [AVATAR_CLIP_IDS.spider]: {
+    source: "mixkit-fast-small-sweep-transition.wav",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0.1,
+    music: false,
+    credit: MIXKIT("Fast small sweep transition", 166),
+  },
+  // The race car's engine, cut to its first second and a half.
+  [AVATAR_CLIP_IDS.racecar]: {
+    source: "mixkit-car-engine-start.wav",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    clipS: 1.5,
+    fadeOutS: 0.25,
+    music: false,
+    credit: MIXKIT("Car engine start", 1566),
   },
   ...Object.fromEntries(
     SONGS.map((song) => [

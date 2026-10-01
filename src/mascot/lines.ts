@@ -1,4 +1,5 @@
 import type { AvatarId } from "@/components/avatar";
+import { AVATAR_CLIP_IDS } from "@/lib/sound-manifest";
 
 // Everything the owl says beside an exercise, in one place. Each line is one
 // short, calm sentence (at most 10 words) the child reads at a glance. The
@@ -55,20 +56,15 @@ export const STICKER_EARNED_LINE: VoiceLine = {
 // Said when the child taps the owl on the home screen: a playful hoot.
 export const OWL_TAP_LINE: VoiceLine = { id: "owl-tap", text: "Cú cú!" };
 
-// The sound of each profile avatar, played when the child picks it in the
-// profile form and when they tap it on the home screen: a short playful
-// onomatopoeia of the animal, the web shot of the spider hero or the engine
-// of the race car. The one place that maps an avatar id to its clip.
-export const AVATAR_LINES: Readonly<Record<AvatarId, VoiceLine>> = {
-  cat: { id: "avatar-cat", text: "Mèo mèo!" },
-  bear: { id: "avatar-bear", text: "Gừ gừ!" },
-  rabbit: { id: "avatar-rabbit", text: "Cụt cụt!" },
-  fox: { id: "avatar-fox", text: "Hí hí!" },
-  panda: { id: "avatar-panda", text: "Măm măm!" },
-  chick: { id: "avatar-chick", text: "Chiếp chiếp!" },
-  spider: { id: "avatar-spider", text: "Phóc phóc!" },
-  racecar: { id: "avatar-racecar", text: "Brum brum!" },
-};
+// Spoken sound of the avatars with no recorded effect: a short playful
+// onomatopoeia of the animal. (The cat, the chick, the spider hero and the race
+// car use recorded effects, see `FILES` in scripts/lib/sound-spec.ts.)
+export const AVATAR_LINES = {
+  bear: { id: AVATAR_CLIP_IDS.bear, text: "Gừ gừ!" },
+  rabbit: { id: AVATAR_CLIP_IDS.rabbit, text: "Cụt cụt!" },
+  fox: { id: AVATAR_CLIP_IDS.fox, text: "Hí hí!" },
+  panda: { id: AVATAR_CLIP_IDS.panda, text: "Măm măm!" },
+} as const satisfies Partial<Record<AvatarId, VoiceLine>>;
 
 // Every line the owl can say, each with its own clip.
 export const VOICE_LINES: readonly VoiceLine[] = [

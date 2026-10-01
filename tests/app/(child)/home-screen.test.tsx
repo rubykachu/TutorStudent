@@ -1,15 +1,30 @@
 import "fake-indexeddb/auto";
-import { render, screen, within } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HomeScreen } from "@/app/(child)/home-screen";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
+import { AVATAR_CLIP_IDS, soundUrl } from "@/lib/sound-manifest";
+import { OWL_TAP_LINE } from "@/mascot/lines";
 import {
   appDb,
   resetAppDbForTesting,
   resetContentIndexForTesting,
   setActiveProfile,
+  setSoundEnabled,
 } from "@/progress/hooks";
 import type { ContentIndex, LessonSummary } from "@/schema/content";
+
+const playSequence = vi.hoisted(() => vi.fn(async () => undefined));
+vi.mock("@/lib/sound", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/sound")>()),
+  playSequence,
+}));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
@@ -24,6 +39,7 @@ beforeEach(() => {
 });
 
 afterEach(async () => {
+  playSequence.mockClear();
   vi.unstubAllGlobals();
   resetContentIndexForTesting();
   await appDb().delete();
@@ -43,7 +59,74 @@ async function openHomeOf(avatar: string) {
   return render(<HomeScreen />);
 }
 
+// Sound is on by default, but the setting is read asynchronously.
+async function soundIsOn() {
+  await waitFor(() =>
+    expect(screen.getByRole("button", { name: "Âm thanh" })).toHaveAttribute(
+      "data-sound",
+      "on",
+    ),
+  );
+}
+
 describe("HomeScreen", () => {
+  it("keeps the profile button's name when it shows only the avatar on a phone", async () => {
+    await openHomeOf("fox");
+    const link = await screen.findByRole("link", { name: "Đổi hồ sơ" });
+    // The word is for tablets and wider; a phone shows the avatar alone so
+    // the greeting stays on one line.
+    expect(link.querySelector("span.hidden.sm\\:inline")?.textContent).toBe(
+      "Đổi hồ sơ",
+    );
+  });
+
+  it("plays the owl's hoot and cheers when the owl is tapped", async () => {
+    await openHomeOf("cat");
+    await screen.findByRole("button", { name: "Chạm vào bạn cú" });
+    expect(
+      document.querySelector("[data-mascot]")?.getAttribute("data-mascot"),
+    ).toBe("idle");
+    await soundIsOn();
+    // The owl reads the sound setting on its own; tap until it has.
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole("button", { name: "Chạm vào bạn cú" }));
+      expect(playSequence).toHaveBeenCalledWith([soundUrl(OWL_TAP_LINE.id)]);
+    });
+    await waitFor(() =>
+      expect(
+        document.querySelector("[data-mascot]")?.getAttribute("data-mascot"),
+      ).toBe("cheer"),
+    );
+    // The owl loops gently while it waits.
+    expect(document.querySelector("[data-mascot-loop]")).not.toBeNull();
+  });
+
+  it("plays the avatar's own sound when the child taps their avatar", async () => {
+    await openHomeOf("racecar");
+    await soundIsOn();
+    fireEvent.click(
+      await screen.findByRole("button", { name: "Nghe tiếng Xe đua" }),
+    );
+    expect(playSequence).toHaveBeenCalledWith([
+      soundUrl(AVATAR_CLIP_IDS.racecar),
+    ]);
+  });
+
+  it("is silent when the child turned sound off", async () => {
+    await openHomeOf("cat");
+    await setSoundEnabled("kid-1", false);
+    const owl = await screen.findByRole("button", { name: "Chạm vào bạn cú" });
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Âm thanh" })).toHaveAttribute(
+        "data-sound",
+        "off",
+      ),
+    );
+    fireEvent.click(owl);
+    fireEvent.click(screen.getByRole("button", { name: "Nghe tiếng Mèo" }));
+    expect(playSequence).not.toHaveBeenCalled();
+  });
+
   it("shows the chosen avatar beside the greeting and in the profile button", async () => {
     await openHomeOf("spider");
     const heading = await screen.findByRole("heading", { name: "Chào Bin!" });
@@ -61,7 +144,8 @@ describe("HomeScreen", () => {
   it("has no music box chip and no streak chip", async () => {
     await openHomeOf("racecar");
     const greeting = await screen.findByRole("region", { name: "Bạn cú" });
-    expect(within(greeting).queryByRole("button")).toBeNull();
+    // The owl's own tap button is the only control beside the greeting.
+    expect(within(greeting).getAllByRole("button")).toHaveLength(1);
     expect(document.querySelector("[data-streak]")).toBeNull();
     expect(screen.queryByText(/ngày nghỉ/)).toBeNull();
     expect(document.body.textContent).not.toMatch(/nhạc/i);

@@ -118,6 +118,7 @@ export function renderFile(
   mkdirSync(path.dirname(raw), { recursive: true });
   const filters = [
     ...(spec.trimSilence ? [TRIM_SILENCE] : []),
+    ...(spec.clipS === undefined ? [] : [`atrim=end=${spec.clipS}`]),
     // The fade is applied to the reversed clip, so it needs no duration.
     ...(spec.fadeOutS > 0
       ? ["areverse", `afade=t=in:d=${spec.fadeOutS}`, "areverse"]

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Avatar } from "@/components/avatar";
+import { useEffect, useState } from "react";
+import { AVATARS, Avatar } from "@/components/avatar";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { SoundToggle } from "@/components/sound-toggle";
 import {
@@ -15,10 +16,12 @@ import {
   subjectProgress,
   subjectStatus,
 } from "@/learn/next-step";
+import { avatarClipId, useSayClip } from "@/lib/avatar-sounds";
 import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
+import { OWL_TAP_LINE } from "@/mascot/lines";
 import { Owl } from "@/mascot/owl";
 import type { ProfileRecord } from "@/progress/db";
 import {
@@ -45,12 +48,44 @@ const OWL_SPEECH: Partial<Record<MascotExpression, string>> = {
 };
 const DEFAULT_SPEECH = "Hôm nay mình học môn nào?";
 
-function OwlGreeting({ progress }: { progress: ChildProgress }) {
+// How long the owl cheers after a tap.
+const OWL_REACTION_MS = 1200;
+
+function OwlGreeting({
+  progress,
+  childId,
+}: {
+  progress: ChildProgress;
+  childId: string;
+}) {
   const today = vnDayKey(now());
   const expression = homeMascotExpression(progress.activityDays, today);
+  const say = useSayClip(childId);
+  // A tap makes the owl cheer (wings up, a hop) and hoot for a moment.
+  const [cheering, setCheering] = useState(false);
+  useEffect(() => {
+    if (!cheering) return undefined;
+    const timer = setTimeout(() => setCheering(false), OWL_REACTION_MS);
+    return () => clearTimeout(timer);
+  }, [cheering]);
   return (
     <section className="flex items-center gap-3" aria-label="Bạn cú">
-      <Owl expression={expression} size="home" />
+      <button
+        type="button"
+        aria-label="Chạm vào bạn cú"
+        data-owl-tap
+        // Makes its own sound, so the soft button press stays out.
+        data-own-sound
+        className="-m-1 shrink-0 rounded-full p-1 transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+        onClick={() => {
+          say?.(OWL_TAP_LINE.id);
+          setCheering(false);
+          // A new reaction restarts the pose even on a quick second tap.
+          requestAnimationFrame(() => setCheering(true));
+        }}
+      >
+        <Owl expression={cheering ? "cheer" : expression} size="home" loop />
+      </button>
       <p className="font-semibold">
         {OWL_SPEECH[expression] ?? DEFAULT_SPEECH}
       </p>
@@ -125,7 +160,7 @@ function HomeBody({
   const content = useContentIndex();
   return (
     <>
-      <OwlGreeting progress={progress} />
+      <OwlGreeting progress={progress} childId={profile.id} />
       {content.status === "error" && <ContentError />}
       {content.status === "ready" && (
         <HomeLessons
@@ -135,6 +170,30 @@ function HomeBody({
         />
       )}
     </>
+  );
+}
+
+// The child's own avatar beside the greeting: tapping it plays its sound.
+function AvatarButton({
+  avatar,
+  childId,
+}: {
+  avatar: string;
+  childId: string;
+}) {
+  const say = useSayClip(childId);
+  const label = AVATARS.find((a) => a.id === avatar)?.label;
+  return (
+    <button
+      type="button"
+      aria-label={label ? `Nghe tiếng ${label}` : "Nghe tiếng hình đại diện"}
+      data-avatar-tap
+      data-own-sound
+      className="shrink-0 rounded-full transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+      onClick={() => say?.(avatarClipId(avatar))}
+    >
+      <Avatar avatar={avatar} className="size-12 md:size-14" />
+    </button>
   );
 }
 
@@ -152,10 +211,7 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
     <>
       <header className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <Avatar
-            avatar={profile.avatar}
-            className="size-12 shrink-0 md:size-14"
-          />
+          <AvatarButton avatar={profile.avatar} childId={profile.id} />
           <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
             Chào {profile.name}!
           </h1>
@@ -164,10 +220,13 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
         <div className="flex shrink-0 items-center gap-2">
           <Link
             href={PROFILES_PATH}
-            className="flex h-12 shrink-0 items-center gap-2 rounded-full border-2 border-border bg-surface pr-3 pl-1.5 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+            // Avatar only on a phone, so the greeting keeps one line; the name
+            // stays for screen readers and shows from tablet width.
+            aria-label="Đổi hồ sơ"
+            className="flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-border bg-surface text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none sm:w-auto sm:justify-start sm:gap-2 sm:pr-3 sm:pl-1.5"
           >
             <Avatar avatar={profile.avatar} className="size-8 shrink-0" />
-            Đổi hồ sơ
+            <span className="hidden sm:inline">Đổi hồ sơ</span>
           </Link>
           <SoundToggle childId={profile.id} />
         </div>

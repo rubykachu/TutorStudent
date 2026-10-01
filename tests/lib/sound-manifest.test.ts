@@ -2,7 +2,9 @@ import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import { AVATARS, type AvatarId } from "@/components/avatar";
 import {
+  AVATAR_CLIP_IDS,
   allSoundUrls,
   BUTTON_ID,
   JINGLE_ID,
@@ -25,6 +27,9 @@ import {
   VOICE_ENGINE,
   voiceLineSource,
 } from "../../scripts/lib/sound-spec";
+
+// The avatars whose sound is a recorded effect; the others are spoken lines.
+const RECORDED_AVATARS: AvatarId[] = ["cat", "chick", "spider", "racecar"];
 
 const sha256 = (text: string) =>
   createHash("sha256").update(text).digest("hex");
@@ -66,7 +71,13 @@ describe("sound manifest", () => {
 
   it("has every imported clip made from its current source file and settings", () => {
     expect(Object.keys(FILES).sort()).toEqual(
-      [LESSON_END_ID, WRONG_ID, LEAVE_ID, ...SONGS.map((s) => s.id)].sort(),
+      [
+        LESSON_END_ID,
+        WRONG_ID,
+        LEAVE_ID,
+        ...RECORDED_AVATARS.map((id) => AVATAR_CLIP_IDS[id]),
+        ...SONGS.map((s) => s.id),
+      ].sort(),
     );
     for (const [id, spec] of Object.entries(FILES)) {
       const entry = entries.get(id);
@@ -96,6 +107,28 @@ describe("sound manifest", () => {
           Math.abs(entry.lufs - MASTERING.voiceLufs),
           entry.id,
         ).toBeLessThanOrEqual(1.5);
+      }
+    }
+  });
+
+  it("gives every avatar its own clip, short and credited when downloaded", () => {
+    const ids = AVATARS.map((a) => AVATAR_CLIP_IDS[a.id]);
+    expect(new Set(ids).size).toBe(AVATARS.length);
+    expect(Object.keys(AVATAR_CLIP_IDS).sort()).toEqual(
+      AVATARS.map((a) => a.id).sort(),
+    );
+    for (const avatar of AVATARS) {
+      const id = AVATAR_CLIP_IDS[avatar.id];
+      const entry = entries.get(id);
+      expect(entry, id).toBeDefined();
+      expect(onDisk(entry?.file ?? ""), id).toBe(true);
+      expect(allSoundUrls(), id).toContain(soundUrl(id));
+      const recorded = RECORDED_AVATARS.includes(avatar.id);
+      expect(entry?.kind, id).toBe(recorded ? "file" : "voice");
+      if (recorded) {
+        const credit = FILES[id]?.credit;
+        expect(credit?.url, id).toMatch(/^https:\/\//);
+        expect(credit?.license, id).toBeTruthy();
       }
     }
   });
