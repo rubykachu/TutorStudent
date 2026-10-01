@@ -789,7 +789,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "compare",
     source: "5+3·2",
     leftLabel: "Đúng thứ tự",
-    wrongLabel: "Sai: cộng trước",
+    wrongLabel: "Sai: làm 5 + 3 trước",
     wrongTone: "wrong",
     wrongAt: 1,
   },
@@ -921,7 +921,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "findx",
     coef: 4,
     add: 4,
-    rhs: "4·2^2+9:3",
+    rhs: "2·2^2+12:3",
     mode: "hint",
   },
   "tim-x-1-giai": {
@@ -935,7 +935,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "findx",
     coef: 4,
     add: 4,
-    rhs: "4·2^2+9:3",
+    rhs: "2·2^2+12:3",
     mode: "hint",
   },
   "tim-x-2-giai": {

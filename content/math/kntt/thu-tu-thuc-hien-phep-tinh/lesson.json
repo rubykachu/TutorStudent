@@ -201,7 +201,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.cong-tru-tu-lam",
-          "caption": "Chạm phép tính bên trái nhất để tính ra nó, vì cộng và trừ làm từ trái sang phải."
+          "caption": "Chạm phép tính bên trái nhất để làm trước, vì cộng và trừ làm từ trái sang phải."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-dau-tien"],
@@ -328,7 +328,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.nhan-chia-tu-lam",
-          "caption": "Chạm phép tính bên trái nhất để tính ra nó, vì nhân và chia làm từ trái sang phải."
+          "caption": "Chạm phép tính bên trái nhất để làm trước, vì nhân và chia làm từ trái sang phải."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-nhan-chia"],
@@ -384,7 +384,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.hon-hop-tu-lam",
-          "caption": "Chạm phép nhân hoặc chia trước để tính ra nó, vì chúng làm trước cộng và trừ."
+          "caption": "Chạm phép nhân hoặc chia, vì chúng làm trước cộng và trừ."
         }
       ],
       "checkIds": [
@@ -439,7 +439,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-tron-tu-lam",
-          "caption": "Chạm phép tính trong ngoặc trước để tính ra nó, vì trong ngoặc làm trước."
+          "caption": "Chạm phép tính trong ngoặc, vì trong ngoặc làm trước."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac"],
@@ -490,12 +490,12 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-long-tung-buoc",
-          "caption": "Mua 2 phần quà, mỗi phần có hộp bút 5 nghìn đồng và 3 gói kẹo, mỗi gói 2 nghìn đồng. Tiền túi đựng quà là 10 nghìn đồng."
+          "caption": "Mua 2 phần quà, mỗi phần có hộp bút 5 nghìn đồng và 3 gói kẹo, mỗi gói 2 nghìn đồng. Tiền túi đựng quà là 10 nghìn đồng. Tổng số tiền phải trả là 32 nghìn đồng."
         },
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.ngoac-long-tu-lam",
-          "caption": "Chạm phép tính trong ngoặc tròn trước để tính ra nó, vì ngoặc trong cùng làm trước."
+          "caption": "Chạm phép tính trong ngoặc tròn, vì ngoặc trong cùng làm trước."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-ngoac-long"],
@@ -548,7 +548,7 @@
         {
           "type": "visual",
           "visualId": "thu-tu-thuc-hien-phep-tinh.visual.luy-thua-tu-lam",
-          "caption": "Chạm luỹ thừa trước để tính ra nó, vì luỹ thừa làm trước nhân và chia."
+          "caption": "Chạm luỹ thừa, vì luỹ thừa làm trước nhân và chia."
         }
       ],
       "checkIds": ["thu-tu-thuc-hien-phep-tinh.ex.chon-phep-luy-thua"],
@@ -2958,7 +2958,7 @@
           "id": "e",
           "content": {
             "type": "formula",
-            "tex": "(1 + 2) \\cdot 3^{2}"
+            "tex": "9 - 4 + 2"
           }
         }
       ],
