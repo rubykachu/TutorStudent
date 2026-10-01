@@ -46,6 +46,15 @@ describe("textTokens", () => {
     expect(textTokens("5 trừ 3")).toEqual(textTokens("5 chữ 3"));
   });
 
+  it("compares initial d and gi as one sound before a vowel", () => {
+    expect(textTokens("dải băng dài 12")).toEqual(
+      textTokens("giải băng giải 12"),
+    );
+    expect(textTokens("gì")).not.toEqual(textTokens("d"));
+    expect(textTokens("giờ")).toEqual(textTokens("dờ"));
+    expect(textTokens("đi")).not.toEqual(textTokens("gì"));
+  });
+
   it("reads Whisper's written thousands and minus as spoken words", () => {
     expect(textTokens("35.000 đồng")).toEqual(textTokens("35 nghìn đồng"));
     expect(textTokens("368.000 đồng")).toEqual(textTokens("368 nghìn đồng"));

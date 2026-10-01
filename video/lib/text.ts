@@ -102,8 +102,12 @@ export function wordTokens(word: string): string[] {
     if (letters)
       return [...readNumber(Number(letters[1])), letters[2] as string];
     // Northern voices say "tr" and "ch" alike, so Whisper cannot tell
-    // "trừ" from "chữ"; both sides compare them as one sound.
-    return [WORD_VARIANTS[part] ?? part.replace(/^tr/, "ch")];
+    // "trừ" from "chữ"; both sides compare them as one sound. The same
+    // voices say "d" and "gi" before a vowel alike ("dải" and "giải").
+    return [
+      WORD_VARIANTS[part] ??
+        part.replace(/^tr/, "ch").replace(/^gi(?=[aeiouy])/, "d"),
+    ];
   });
 }
 

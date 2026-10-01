@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường), 0 cảnh báo
 - `lesson:walk`: 0 FAIL, ảnh trong `.shots/walk/uoc-chung-uoc-chung-lon-nhat/`; đã xem sheet điện thoại của section 5, 6, 7, 12, 13
 - Kết luận: Không còn lỗi Nghiêm trọng (0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý); đã ghi "Bản đã review" bằng `--mark`, chưa `--approve`
-- Bản đã review: `73928f5b4c305bee70185d4b56b69065c03b4ada9dd0945fc5928a665feca294` (`pnpm content:diff` so với bản này)
+- Bản đã review: `06f609621fbeb63494f46f7922eabb2d3987f1efafefbee1284b7bcd8203615f` (`pnpm content:diff` so với bản này)
 
 Đã soát: 2 khái niệm đổi (Hợp số pink, Phân số tối giản blue; "Thừa số nguyên tố" đã retired, không còn `conceptId` nào trỏ tới), section `nhac-thua-so` (4 khối, recap), card `nhac-thua-so`, `uclnn-phan-tich`, `uclnn-ba-so`, bài `dien-tich-thua-so-nguyen-to`, `xep-chia-dan-45`.
 

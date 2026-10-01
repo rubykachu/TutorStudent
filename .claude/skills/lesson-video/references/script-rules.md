@@ -13,4 +13,4 @@ Người xem là trẻ lớp 6 học chậm, xem trên iPad, nghe giọng TTS.
 - Mỗi cảnh (`scenes[]`) là một bước hình, 1–5 câu. Id `sNN-<tên>` dùng trong `index.html`.
 - `clips[]`: đoạn cảnh `from`–`to` giảng một card; trẻ xem lại đoạn đó khi ôn sai card.
 - Độ dài: khoảng 20–24 câu cho 60–90 giây (tốc độ 0.9 và các quãng nghỉ trong `PAUSE` của `video/config.ts`).
-- Giọng miền Bắc đọc "tr" như "ch", Whisper ghi "trừ" thành "chữ": đã chuẩn hoá trong `video/lib/text.ts`, không cần đổi lời.
+- Giọng miền Bắc đọc "tr" như "ch" và "d" như "gi", Whisper ghi "trừ" thành "chữ", "dải" thành "giải": đã chuẩn hoá trong `video/lib/text.ts`, không cần đổi lời.

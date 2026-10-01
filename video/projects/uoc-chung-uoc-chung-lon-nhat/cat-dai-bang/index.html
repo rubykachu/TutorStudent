@@ -151,7 +151,8 @@
           hide(["#c3", "#uc", "#c4"]);
           pose(bird, "idle", window.LV.start(sid));
           pop("#uc", W(sid, "ước", 2), { from: 0.6 });
-          pop("#c3", W(sid, "vậy"), { from: 0.6 });
+          // The cut that fits both strips stands on screen while the rule is read.
+          pop("#c3", start(sid) + 0.3, { from: 0.6 });
           pose(bird, "happy", W(sid, "vậy"));
           pop("#c4", W(sid, "còn"), { from: 0.6 });
         }
