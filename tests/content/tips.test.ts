@@ -1,5 +1,8 @@
 // @vitest-environment node
-import { describe, expect, it } from "vitest";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
 import {
   type CheckResult,
   checkContent,
@@ -18,6 +21,8 @@ import {
   fixtureContent,
   fixtureFile,
   lessonData,
+  readSkeleton,
+  writeContentRoot,
 } from "./helpers";
 
 function check(raw: RawContent): CheckResult {
@@ -234,5 +239,47 @@ describe("tip ids", () => {
       only: ["fixture"],
     });
     expect(plan.errors.join("\n")).toContain("tips.json");
+  });
+});
+
+describe("serving a tips file", () => {
+  let root: string | undefined;
+  afterEach(() => {
+    if (root) rmSync(root, { recursive: true, force: true });
+    root = undefined;
+  });
+
+  // A published lesson, as the skeleton, with a tips file of `status`.
+  function lessonWithTips(status: "draft" | "published") {
+    root = mkdtempSync(path.join(tmpdir(), "tutor-tips-"));
+    const lesson = { ...readSkeleton(), status: "published" };
+    const file = writeContentRoot(root, lesson);
+    writeFileSync(
+      path.join(path.dirname(file), "tips.json"),
+      JSON.stringify({
+        lessonId: "bai-moi",
+        status,
+        tips: [
+          {
+            id: "bai-moi.tip.mot",
+            kind: "làm nhanh",
+            title: "Một dạng bài",
+            text: "Một câu ngắn.",
+          },
+        ],
+      }),
+    );
+    return loadContent({ root, includeFixture: false });
+  }
+
+  it("lists a published file's tips with the lesson", () => {
+    const [served] = lessonWithTips("published").lessons;
+    expect(served?.tips.map((t) => t.id)).toEqual(["bai-moi.tip.mot"]);
+  });
+
+  it("keeps a draft file's tips off a published lesson", () => {
+    const [served] = lessonWithTips("draft").lessons;
+    expect(served?.lesson.id).toBe("bai-moi");
+    expect(served?.tips).toEqual([]);
   });
 });
