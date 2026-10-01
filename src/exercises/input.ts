@@ -90,22 +90,3 @@ export function isInputEmpty(input: ExerciseInput): boolean {
       return Object.keys(input.state).length === 0;
   }
 }
-
-// After a wrong check, wrongly chosen items of a selection answer (options,
-// sentences, regions) are let go, so the child picks again rather than
-// checking the same choice twice; right picks stay chosen. Other answers keep
-// everything as entered for the child to correct.
-export function releaseWrongPicks<I extends ExerciseInput>(
-  input: I | null,
-  wrong: readonly string[],
-): I | null {
-  if (input === null || wrong.length === 0) return input;
-  if (
-    input.type !== "choice" &&
-    input.type !== "tapText" &&
-    input.type !== "tapRegion"
-  )
-    return input;
-  const selected = input.selected.filter((id) => !wrong.includes(id));
-  return selected.length === 0 ? null : { ...input, selected };
-}

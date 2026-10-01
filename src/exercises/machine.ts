@@ -5,10 +5,13 @@ import {
   type ExerciseInput,
   type InputFor,
   isInputEmpty,
-  releaseWrongPicks,
 } from "@/exercises/input";
 import type { BasicExercise } from "@/schema/content";
 
+// A wrong check never edits the child's input: the answer stays exactly as
+// the child left it (wrong picks marked, nothing added or removed) and only
+// the third wrong check or "Bỏ qua" shows the right answer.
+//
 // Life of one exercise attempt:
 //   idle -> answered -> correct -> done
 //                    -> wrong1 -> wrong2 -> wrong3 -> retype -> correct -> done
@@ -131,7 +134,6 @@ export function exerciseReducer<I extends ExerciseInput>(
       return {
         ...state,
         phase: NEXT_WRONG[state.phase] ?? state.phase,
-        input: releaseWrongPicks(state.input, action.result.wrongTargets),
         wrongCount: state.wrongCount + 1,
         wrongTargets: action.result.wrongTargets,
         retypeMissed: state.phase === "retype",

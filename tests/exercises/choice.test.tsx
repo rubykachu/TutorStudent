@@ -76,23 +76,52 @@ describe("ChoiceAnswer", () => {
     );
   });
 
-  it("keeps the right picks of a multi-select through a wrong check", () => {
+  it("leaves a multi-select exactly as the child left it after a wrong check", () => {
+    // Bài 11: correct {1, 5}; the child picks 1, 2, 5.
+    const { frame } = renderExercise(choiceExercise(["a", "b"]));
+    tap("a");
+    tap("c");
+    tap("b");
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-tier", "1");
+    // Nothing is deselected for the child: the wrong pick stays ticked, marked.
+    expect(option("a")).toHaveAttribute("aria-pressed", "true");
+    expect(option("b")).toHaveAttribute("aria-pressed", "true");
+    expect(option("c")).toHaveAttribute("aria-pressed", "true");
+    expect(isMarkedWrong(option("c"))).toBe(true);
+    expect(option("c")).toHaveClass("border-dashed", "border-retry");
+    expect(isMarkedWrong(option("a"))).toBe(false);
+    expect(isMarkedWrong(option("b"))).toBe(false);
+
+    // Checking again without a change is still wrong, never auto-correct.
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-tier", "2");
+    expect(frame).not.toHaveAttribute("data-phase", "correct");
+
+    // The child fixes it: untick the wrong pick, the mark goes with it.
+    tap("c");
+    expect(isMarkedWrong(option("c"))).toBe(false);
+    checkAnswer();
+    expect(frame).toHaveAttribute("data-phase", "correct");
+  });
+
+  it("never marks or ticks a missing right option before the last tier", () => {
     const { frame, container } = renderExercise(choiceExercise(["a", "b"]));
     tap("a");
     tap("c");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    // Only the wrong pick is marked and let go; the right one stays ticked.
-    expect(isMarkedWrong(option("c"))).toBe(true);
-    expect(option("c")).toHaveAttribute("aria-pressed", "false");
-    expect(option("a")).toHaveAttribute("aria-pressed", "true");
-    expect(isMarkedWrong(option("a"))).toBe(false);
+    expect(option("b")).toHaveAttribute("aria-pressed", "false");
+    expect(option("b")).not.toHaveAttribute("data-wrong");
+    expect(highlightOf(option("b"))).toBeNull();
 
-    // A right pick alone is still incomplete: nothing is marked wrong.
+    // A right pick alone is incomplete: nothing is marked wrong, nothing added.
+    tap("c");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(container.querySelector("[data-wrong]")).toBeNull();
     expect(option("a")).toHaveAttribute("aria-pressed", "true");
+    expect(option("b")).toHaveAttribute("aria-pressed", "false");
 
     tap("b");
     checkAnswer();
@@ -101,10 +130,8 @@ describe("ChoiceAnswer", () => {
 
   it("reveals every right option of a multi-select at the third check", () => {
     const { frame, container } = renderExercise(choiceExercise(["a", "b"]));
-    for (let i = 0; i < 3; i++) {
-      if (checkButton().hasAttribute("disabled")) tap("c");
-      checkAnswer();
-    }
+    tap("c");
+    for (let i = 0; i < 3; i++) checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(container.querySelector("[data-reveal]")).not.toBeNull();
     expect(option("a")).toHaveAttribute("aria-pressed", "true");
@@ -154,13 +181,12 @@ describe("ChoiceAnswer", () => {
     tap("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "1");
-    // The wrong pick is let go and marked orange, not lit up yellow.
+    // The wrong pick stays chosen and is marked orange, not lit up yellow.
     expect(isMarkedWrong(option("b"))).toBe(true);
-    expect(option("b")).toHaveAttribute("aria-pressed", "false");
+    expect(option("b")).toHaveAttribute("aria-pressed", "true");
     expect(option("b")).toHaveClass("border-dashed", "border-retry");
     expect(option("b")).not.toHaveClass("bg-transparent");
     expect(highlightOf(option("a"))).toBeNull();
-    expect(checkButton()).toBeDisabled();
 
     tap("c");
     checkAnswer();
@@ -169,7 +195,6 @@ describe("ChoiceAnswer", () => {
     // Only the last check's mistakes are marked.
     expect(option("b")).not.toHaveAttribute("data-wrong");
 
-    tap("b");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
     expect(container.querySelector("[data-reveal]")).not.toBeNull();
@@ -189,11 +214,7 @@ describe("ChoiceAnswer", () => {
   it("plays the hint and solution visuals when the exercise has them", () => {
     const view = renderExercise(choiceExercise(["a"], VISUAL_HINTS));
     tap("b");
-    expectVisualTiers(
-      view,
-      () => option("b"),
-      () => tap("b"),
-    );
+    expectVisualTiers(view, () => option("b"));
     expect(option("b")).toHaveAttribute("aria-pressed", "false");
     expect(checkButton()).toBeDisabled();
   });

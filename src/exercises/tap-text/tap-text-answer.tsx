@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { HighlightSpec } from "@/exercises/feedback";
 import type { TapTextInput } from "@/exercises/input";
-import { toggleId } from "@/exercises/selection";
+import { toggleId, wrongPicks } from "@/exercises/selection";
 import { useTapSound } from "@/lib/feedback-sounds";
 import type { TapTextExercise } from "@/schema/content";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
@@ -24,8 +24,8 @@ function passageParagraphs(exercise: TapTextExercise) {
 }
 
 // A hint mark is an underline in the concept's colour, because a selected
-// sentence already uses the highlight background. A sentence the last check found wrong (and let go)
-// gets a dashed orange underline instead.
+// sentence already uses the highlight background. A chosen sentence the last check found wrong gets
+// a dashed orange underline instead, and stays chosen.
 function markClass(mark: HighlightSpec | undefined, wrong: boolean): string {
   if (!mark) {
     return wrong
@@ -105,6 +105,7 @@ export function TapTextAnswer({ exercise, slot }: TapTextAnswerProps) {
   const own = value?.selected ?? [];
   const selected = new Set(reveal ? exercise.answer : own);
   const answer = new Set(exercise.answer);
+  const wrongChosen = reveal ? new Set<string>() : wrongPicks(wrong, own);
 
   const playTap = useTapSound();
 
@@ -131,7 +132,7 @@ export function TapTextAnswer({ exercise, slot }: TapTextAnswerProps) {
                 selected={selected.has(sentence.id)}
                 revealed={reveal && answer.has(sentence.id)}
                 mark={highlight.get(sentence.id)}
-                wrong={!selected.has(sentence.id) && wrong.has(sentence.id)}
+                wrong={wrongChosen.has(sentence.id)}
                 disabled={disabled}
                 onToggle={toggle}
               />

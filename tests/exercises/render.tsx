@@ -79,12 +79,11 @@ export const VISUAL_HINTS: Hints = {
 
 // Walks the three wrong checks of an exercise built with VISUAL_HINTS whose
 // current answer is wrong; `wrong` is the answer element the grader flags.
-// Selection answers let go of a wrong pick after each check, so `repick`
-// enters the wrong answer again before the next one.
+// A wrong check leaves the answer as the child entered it, so the same wrong
+// answer is simply checked again.
 export function expectVisualTiers(
   { frame, container }: { frame: Element; container: HTMLElement },
   wrong: () => Element,
-  repick: () => void = () => {},
 ) {
   const visual = (id: string) =>
     container.querySelector(`[data-feedback-visual="${id}"]`);
@@ -93,13 +92,11 @@ export function expectVisualTiers(
   expect(frame).toHaveAttribute("data-tier", "1");
   expect(isMarkedWrong(wrong())).toBe(true);
 
-  repick();
   checkAnswer();
   expect(frame).toHaveAttribute("data-tier", "2");
   expect(visual("fixture.visual.dot-grid")).not.toBeNull();
   expect(highlightOf(wrong())).toBeNull();
 
-  repick();
   checkAnswer();
   expect(frame).toHaveAttribute("data-tier", "3");
   expect(visual("fixture.visual.bead-merge")).not.toBeNull();

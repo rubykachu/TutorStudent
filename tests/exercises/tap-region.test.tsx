@@ -89,7 +89,7 @@ describe("TapRegionAnswer", () => {
     });
   });
 
-  it("lets go of an extra region and rings it, then reveals", async () => {
+  it("keeps an extra region chosen, rings it, then reveals", async () => {
     const { frame, onDone, container } = await renderTapRegion();
     tap("square");
 
@@ -101,15 +101,18 @@ describe("TapRegionAnswer", () => {
     expect(region("square")).toHaveClass("stroke-retry");
     expect(region("square")).not.toHaveClass("stroke-highlight");
     expect(region("square")).toHaveAttribute("stroke-dasharray");
-    expect(region("square")).toHaveAttribute("aria-pressed", "false");
+    expect(region("square")).toHaveAttribute("aria-pressed", "true");
     expect(region("circle")).not.toHaveAttribute("data-highlighted");
-    expect(checkButton()).toBeDisabled();
+    expect(region("circle")).toHaveAttribute("aria-pressed", "false");
+    expect(region("circle")).not.toHaveAttribute("data-wrong");
 
-    tap("square");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(region("square")).toHaveAttribute("data-wrong");
 
+    // Tapping the wrong region off takes its ring with it.
+    tap("square");
+    expect(region("square")).not.toHaveAttribute("data-wrong");
     tap("square");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "3");
@@ -147,19 +150,17 @@ describe("TapRegionAnswer", () => {
     const { frame, container } = await renderTapRegion(VISUAL_HINTS);
     tap("triangle");
     checkAnswer();
-    tap("triangle");
     checkAnswer();
     expect(frame).toHaveAttribute("data-tier", "2");
     expect(feedbackVisual(container, "fixture.visual.dot-grid")).not.toBeNull();
     expect(region("triangle")).not.toHaveAttribute("data-highlight-strong");
-    tap("triangle");
     checkAnswer();
     expect(
       feedbackVisual(container, "fixture.visual.bead-merge"),
     ).not.toBeNull();
     expect(revealed(container)).toBeNull();
     // Let go after the last check too; the solution visual shows the answer.
-    expect(region("triangle")).toHaveAttribute("aria-pressed", "false");
+    expect(region("triangle")).toHaveAttribute("aria-pressed", "true");
   });
 
   it("draws the same visual as a static image outside an exercise", () => {

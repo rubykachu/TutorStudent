@@ -32,3 +32,8 @@ export function AnswerHighlight({
 // (the dash keeps it distinct without relying on colour).
 export const WRONG_TONE =
   "border-3 border-dashed border-retry bg-surface text-muted-foreground";
+
+// A wrong pick that is still chosen: the same dashed orange border, on the
+// regular text colour because the tick of its marker keeps showing that it
+// is chosen. The child taps it off to fix it.
+export const WRONG_PICK_TONE = "border-3 border-dashed border-retry bg-surface";

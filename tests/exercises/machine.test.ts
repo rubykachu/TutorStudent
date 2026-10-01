@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import type { ChoiceInput } from "@/exercises/input";
+import type { ChoiceInput, ExerciseInput } from "@/exercises/input";
 import {
   canCheck,
   exerciseReducer,
@@ -77,17 +77,42 @@ describe("exerciseReducer", () => {
     expect([three.phase, feedbackTier(three)]).toEqual(["wrong3", 3]);
   });
 
-  it("lets go of wrong picks of a selection and keeps the right ones", () => {
+  it("never edits the input after a wrong check", () => {
     const state = run(
       { type: "input", input: { type: "choice", selected: ["a", "b"] } },
       { type: "check", result: { correct: false, wrongTargets: ["b"] } },
     );
     expect(state.phase).toBe("wrong1");
-    expect(state.input).toEqual({ type: "choice", selected: ["a"] });
-    const emptied = run(pick("b"), WRONG);
-    expect(emptied.input).toBeNull();
-    expect(canCheck(emptied)).toBe(false);
+    expect(state.input).toEqual({ type: "choice", selected: ["a", "b"] });
+    const only = run(pick("b"), WRONG);
+    expect(only.input).toEqual({ type: "choice", selected: ["b"] });
+    expect(canCheck(only)).toBe(true);
   });
+
+  it.each<[string, ExerciseInput, readonly string[]]>([
+    ["choice", { type: "choice", selected: ["a", "b", "c"] }, ["c"]],
+    ["tapText", { type: "tapText", selected: ["s1", "s2"] }, ["s1"]],
+    ["tapRegion", { type: "tapRegion", selected: ["x", "y"] }, ["y"]],
+    ["match", { type: "match", pairs: { l1: "r2", l2: "r1" } }, ["l1"]],
+    ["order", { type: "order", order: ["c", "a", "b"] }, ["c"]],
+    ["fillBlank", { type: "fillBlank", blanks: { b1: "x", b2: "" } }, ["b1"]],
+    ["numeric", { type: "numeric", kind: "value", value: "12" }, ["value"]],
+    ["manipulate", { type: "manipulate", state: { n: 3 } }, []],
+  ])(
+    "keeps a %s answer exactly as entered through every wrong check",
+    (_, input, wrongTargets) => {
+      let state = initialMachineState<ExerciseInput>();
+      state = exerciseReducer(state, { type: "input", input });
+      for (const phase of ["wrong1", "wrong2", "wrong3"]) {
+        state = exerciseReducer(state, {
+          type: "check",
+          result: { correct: false, wrongTargets },
+        });
+        expect(state.phase).toBe(phase);
+        expect(state.input).toEqual(input);
+      }
+    },
+  );
 
   it("requires retyping the answer after three wrong checks", () => {
     const three = run(pick("b"), WRONG, pick("b"), WRONG, pick("b"), WRONG);

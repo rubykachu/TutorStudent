@@ -2,11 +2,11 @@
 
 import { Check, ListChecks } from "lucide-react";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
-import { AnswerHighlight, WRONG_TONE } from "@/exercises/answer-highlight";
+import { AnswerHighlight, WRONG_PICK_TONE } from "@/exercises/answer-highlight";
 import type { AnswerSlotProps } from "@/exercises/exercise-frame";
 import type { ChoiceInput } from "@/exercises/input";
 import { ItemContent } from "@/exercises/item-content";
-import { toggleId } from "@/exercises/selection";
+import { toggleId, wrongPicks } from "@/exercises/selection";
 import { seededShuffle } from "@/exercises/shuffle";
 import { useTapSound } from "@/lib/feedback-sounds";
 import type { ChoiceExercise } from "@/schema/content";
@@ -47,6 +47,8 @@ function longOptions(options: ChoiceExercise["options"]): boolean {
   });
 }
 
+const NO_IDS: ReadonlySet<string> = new Set();
+
 export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
   const { value, onChange, disabled, highlight, wrong, reveal, seed } = slot;
   const options = useMemo(
@@ -80,6 +82,7 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
     return () => observer.disconnect();
   }, []);
   const selected = reveal ? exercise.answer : (value?.selected ?? []);
+  const wrongChosen = reveal ? NO_IDS : wrongPicks(wrong, selected);
 
   const playTap = useTapSound();
 
@@ -116,7 +119,7 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
         {options.map((option) => {
           const spec = highlight.get(option.id);
           const on = selected.includes(option.id);
-          const missed = !on && wrong.has(option.id);
+          const marked = wrongChosen.has(option.id);
           return (
             <AnswerHighlight key={option.id} spec={spec} className="w-full">
               <button
@@ -124,19 +127,24 @@ export function ChoiceAnswer({ exercise, slot }: ChoiceAnswerProps) {
                 aria-pressed={on}
                 disabled={disabled}
                 data-option={option.id}
-                data-wrong={missed || undefined}
+                data-wrong={marked || undefined}
                 onClick={() => toggle(option.id)}
                 className={`flex min-h-16 w-full items-center gap-3 rounded-lg px-4 py-3 text-left motion-safe:transition-transform motion-safe:active:scale-97 ${
-                  on
-                    ? reveal
-                      ? "border-3 border-correct bg-correct-soft"
-                      : "border-3 border-primary bg-surface"
-                    : missed
-                      ? WRONG_TONE
+                  marked
+                    ? WRONG_PICK_TONE
+                    : on
+                      ? reveal
+                        ? "border-3 border-correct bg-correct-soft"
+                        : "border-3 border-primary bg-surface"
                       : "border-2 border-border bg-surface"
                 }`}
               >
-                <Marker multiple={exercise.multiple} on={on} reveal={reveal} />
+                <Marker
+                  multiple={exercise.multiple}
+                  on={on}
+                  reveal={reveal}
+                  wrong={marked}
+                />
                 <ItemContent content={option.content} />
               </button>
             </AnswerHighlight>
@@ -153,17 +161,21 @@ function Marker({
   multiple,
   on,
   reveal,
+  wrong,
 }: {
   multiple: boolean;
   on: boolean;
   reveal: boolean;
+  wrong: boolean;
 }) {
   const shape = multiple ? "rounded-sm" : "rounded-full";
-  const fill = on
-    ? reveal
-      ? "border-correct bg-correct text-primary-foreground"
-      : "border-primary bg-primary text-primary-foreground"
-    : "border-muted-foreground bg-surface";
+  const fill = wrong
+    ? "border-retry bg-retry text-primary-foreground"
+    : on
+      ? reveal
+        ? "border-correct bg-correct text-primary-foreground"
+        : "border-primary bg-primary text-primary-foreground"
+      : "border-muted-foreground bg-surface";
   return (
     <span
       aria-hidden

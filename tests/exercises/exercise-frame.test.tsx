@@ -278,10 +278,10 @@ describe("ExerciseFrame", () => {
     expect(frame).toHaveAttribute("data-tier", "1");
     expect(answerArea(container)).toHaveAttribute("data-tone", "retry");
     expect(answerArea(container)).toHaveClass("animate-shake");
-    // The graded mistake is handed over as wrong (and let go), never lit up
-    // with the highlight colour; only the authored targets light up.
+    // The graded mistake is handed over as wrong (and stays chosen), never lit
+    // up with the highlight colour; only the authored targets light up.
     expect(option("b")).toHaveAttribute("data-wrong");
-    expect(option("b")).toHaveAttribute("aria-pressed", "false");
+    expect(option("b")).toHaveAttribute("aria-pressed", "true");
     expect(optionHighlight("b")).toBeNull();
     expect(optionHighlight("a")).toBeNull();
     expect(
