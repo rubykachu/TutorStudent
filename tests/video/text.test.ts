@@ -5,6 +5,7 @@ import {
   matchRate,
   ownedTokens,
   readNumber,
+  spokenNegatives,
   textTokens,
 } from "../../video/lib/text";
 
@@ -60,6 +61,26 @@ describe("textTokens", () => {
     expect(textTokens("368.000 đồng")).toEqual(textTokens("368 nghìn đồng"));
     expect(textTokens("60-18 bằng 42")).toEqual(
       textTokens("60 trừ 18 bằng 42"),
+    );
+  });
+
+  it("reads a minus sign before a digit as \"âm\", not as a subtraction", () => {
+    expect(textTokens("−3")).toEqual(["am", "ba"]);
+    expect(textTokens("âm 3")).toEqual(textTokens("−3"));
+    expect(textTokens("-3")).toEqual(textTokens("âm ba"));
+    expect(textTokens("(−12),")).toEqual(textTokens("âm 12"));
+    expect(textTokens("5−3")).toEqual(textTokens("5 trừ 3"));
+    expect(textTokens("5 − 3")).toEqual(textTokens("5 3"));
+  });
+
+  it("says each negative sign as one word joined to its number", () => {
+    expect(spokenNegatives("Số đối của 5 là −5, của −12 là 12.")).toBe(
+      "Số đối của 5 là âm-5, của âm-12 là 12.",
+    );
+    expect(spokenNegatives("5-3 và 5−3")).toBe("5-3 và 5−3");
+    const text = "ví dụ số đối của 5 là −5";
+    expect(spokenNegatives(text).split(" ")).toHaveLength(
+      text.split(" ").length,
     );
   });
 

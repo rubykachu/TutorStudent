@@ -87,12 +87,26 @@ function stripTones(text: string): string {
     .replace(/[̀-ͯ]/g, "");
 }
 
+// A minus sign written straight before a digit ("−3", U+2212, or "-3") is the
+// sign of a negative number, said "âm" ("âm ba"), never the word "trừ" of a
+// subtraction. The sign is not a letter or digit's neighbour: "5-3" stays a
+// subtraction.
+const NEGATIVE_SIGN = /(?<![\p{L}\p{N}])[−-](?=\d)/gu;
+
+// `text` as the voice must say it: each negative sign becomes "âm-" joined to
+// its number, so the sentence keeps its word count (captions map one to one
+// to the words of the text) and the voice cannot read the sign as "trừ".
+export function spokenNegatives(text: string): string {
+  return text.replace(NEGATIVE_SIGN, "âm-");
+}
+
 // One written word (as in the script or a Whisper word) as plain tokens.
 export function wordTokens(word: string): string[] {
   const plain = stripTones(word)
     // Whisper writes "35 nghìn" as "35.000" and "5 trừ 3" as "5-3".
     .replace(/(\d)\.(?=\d{3}(?!\d))/g, "$1")
-    .replace(/(\d)-(?=\d)/g, "$1 tru ")
+    .replace(/(\d)[−-](?=\d)/g, "$1 tru ")
+    .replace(NEGATIVE_SIGN, " am ")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
   if (!plain) return [];
