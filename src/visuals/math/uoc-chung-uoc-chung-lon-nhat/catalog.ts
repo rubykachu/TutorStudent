@@ -259,14 +259,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "7 = 1 \\cdot 7",
         tag: {
-          text: "7 chỉ có ước 1 và 7",
+          text: "7 chỉ chia hết cho 1 và 7",
           color: "sky",
         },
       },
       {
         tex: "6 = 2 \\cdot 3",
         tag: {
-          text: "6 còn có ước 2 và 3, nên 6 không là số nguyên tố",
+          text: "6 còn chia hết cho 2 và 3, nên 6 không là số nguyên tố",
           color: "slate",
         },
         gapBefore: true,
@@ -373,9 +373,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     numbers: [14, 21, 35],
     mode: "hint",
   },
-  "bang-18-54-81": {
+  "bang-63-72-90": {
     kind: "expTable",
-    numbers: [18, 54, 81],
+    numbers: [63, 72, 90],
     mode: "steps",
   },
   "bang-goi-y-14-28-70": {
@@ -517,7 +517,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "chips",
     items: ["2", "3", "4", "5", "6"],
     wants: [0, 2],
-    done: "Bạn đã chọn đủ các số đĩa chia đều không thừa.",
+    done: "Bạn đã chọn đủ các số đĩa chia đều không thừa. Nhiều nhất là 4 đĩa.",
   },
   "dia-goi-y-8-12": {
     kind: "plates",
@@ -537,7 +537,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     count: 4,
     mode: "hint",
   },
-  "dia-14-35": {
+  "dia-14-21": {
     kind: "plates",
     items: [
       {
@@ -547,7 +547,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         label: "cái kẹo",
-        total: 35,
+        total: 21,
         color: "slate",
       },
     ],

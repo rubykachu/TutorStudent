@@ -70,8 +70,8 @@ export function texInt(n: number): string {
   return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\\,");
 }
 
-// "p^{e}" in TeX, with the base painted blue and the exponent violet (the
-// colours of "cơ số" and "số mũ"); exponent 1 is left out.
+// "p^{e}" in TeX, with the base painted blue (prime factor) and the exponent
+// violet (exponent); exponent 1 is left out.
 export function texPower(p: number, e: number): string {
   const base = `\\concept{blue}{${p}}`;
   return e === 1 ? base : `${base}^{\\concept{violet}{${e}}}`;

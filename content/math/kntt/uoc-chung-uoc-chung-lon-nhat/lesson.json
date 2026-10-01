@@ -488,7 +488,7 @@
         }
       ],
       "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uclnn-15-45-50"],
-      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uclnn-18-54-81"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.uclnn-63-72-90"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-18-24-30-xong",
@@ -598,7 +598,7 @@
         }
       ],
       "checkIds": ["uoc-chung-uoc-chung-lon-nhat.ex.dia-10-35"],
-      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.dia-14-35"],
+      "practiceIds": ["uoc-chung-uoc-chung-lon-nhat.ex.dia-14-21"],
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.dia-18-30-xong",
@@ -616,12 +616,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Bút bán theo hộp, hộp nào cũng có số bút như nhau, từ 2 bút trở lên. An mua trọn các hộp được 22 bút, Bình mua trọn các hộp được 33 bút."
+              "text": "Hộp bút nào cũng có số bút như nhau, từ 2 bút trở lên. An mua trọn các hộp được 22 bút, Bình mua trọn các hộp được 33 bút."
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-22-33",
-              "caption": "Vậy số bút trong một hộp là ước chung của 22 và 33."
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.ds-22-33"
             }
           ]
         },
@@ -678,7 +677,7 @@
       "id": "uoc-chung-uoc-chung-lon-nhat.section.so-hoan-hao",
       "title": "Số hoàn hảo",
       "sourceRef": "Sách bài tập tr.40",
-      "minutes": 5,
+      "minutes": 4,
       "blocks": [
         {
           "type": "visual",
@@ -750,7 +749,7 @@
             },
             {
               "type": "note",
-              "text": "Ngược lại, ƯC(2, 8) = {1; 2} có số 2 lớn hơn 1, nên phân số của Mai chưa tối giản."
+              "text": "Còn ƯC(2, 8) = {1; 2} có số 2 lớn hơn 1, nên phân số của Mai chưa tối giản."
             },
             {
               "type": "visual",
@@ -2193,17 +2192,17 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-uclnn-42-70",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.chon-uclnn-42-98",
       "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-phan-tich"],
       "prompt": [
         {
           "type": "note",
-          "text": "ƯCLN(42, 70) bằng tích nào?"
+          "text": "ƯCLN(42, 98) bằng tích nào?"
         },
         {
           "type": "formula",
-          "tex": "\\begin{gathered} 42 = 2 \\cdot 3 \\cdot 7 \\\\ 70 = 2 \\cdot 5 \\cdot 7 \\end{gathered}"
+          "tex": "\\begin{gathered} 42 = 2 \\cdot 3 \\cdot 7 \\\\ 98 = 2 \\cdot 7^{2} \\end{gathered}"
         }
       ],
       "hints": {
@@ -2227,7 +2226,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 3 \\cdot 5 \\cdot 7"
+            "tex": "2 \\cdot 3 \\cdot 7"
           }
         },
         {
@@ -2241,7 +2240,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot 5"
+            "tex": "2 \\cdot 7 \\cdot 7"
           }
         }
       ],
@@ -2361,17 +2360,17 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-18-54-81",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.uclnn-63-72-90",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uclnn-ba-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm ƯCLN của 18, 54 và 81 theo các phân tích sau."
+          "text": "Tìm ƯCLN của 63, 72 và 90 theo các phân tích sau."
         },
         {
           "type": "formula",
-          "tex": "\\begin{gathered} 18 = 2 \\cdot 3^{2} \\\\ 54 = 2 \\cdot 3^{3} \\\\ 81 = 3^{4} \\end{gathered}"
+          "tex": "\\begin{gathered} 63 = 3^{2} \\cdot 7 \\\\ 72 = 2^{3} \\cdot 3^{2} \\\\ 90 = 2 \\cdot 3^{2} \\cdot 5 \\end{gathered}"
         }
       ],
       "hints": {
@@ -2382,7 +2381,7 @@
           }
         ],
         "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-goi-y-14-21-35",
-        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-18-54-81"
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-63-72-90"
       },
       "difficulty": 3,
       "answer": {
@@ -2620,13 +2619,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dem-uc-36-63",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dem-uc-110-130",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.uc-tu-uclnn"],
       "prompt": [
         {
           "type": "note",
-          "text": "Biết ƯCLN(36, 63) = 9. Hai số 36 và 63 có bao nhiêu ước chung?"
+          "text": "Biết ƯCLN(110, 130) = 10. Hai số 110 và 130 có bao nhiêu ước chung?"
         }
       ],
       "hints": {
@@ -2640,10 +2639,10 @@
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 3
+        "value": 4
       },
       "check": {
-        "expr": "3"
+        "expr": "4"
       }
     },
     {
@@ -2838,7 +2837,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "7"
+            "text": "10"
           }
         }
       ],
@@ -2849,13 +2848,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dia-14-35",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.dia-14-21",
       "type": "numeric",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.chia-deu-nhieu-nhat"],
       "prompt": [
         {
           "type": "note",
-          "text": "Có 14 cái bánh quy và 35 cái kẹo chia đều vào các đĩa như nhau, không thừa. Nhiều nhất được bao nhiêu đĩa?"
+          "text": "Có 14 cái bánh quy và 21 cái kẹo chia đều vào các đĩa như nhau, không thừa. Nhiều nhất được bao nhiêu đĩa?"
         }
       ],
       "hints": {
@@ -2866,7 +2865,7 @@
           }
         ],
         "hintVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.dia-goi-y-8-12",
-        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.dia-14-35"
+        "solutionVisualId": "uoc-chung-uoc-chung-lon-nhat.visual.dia-14-21"
       },
       "difficulty": 2,
       "answer": {
@@ -2906,13 +2905,13 @@
       }
     },
     {
-      "id": "uoc-chung-uoc-chung-lon-nhat.ex.but-vo-16-36",
+      "id": "uoc-chung-uoc-chung-lon-nhat.ex.but-vo-32-56",
       "type": "choice",
       "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.chia-deu-nhieu-nhat"],
       "prompt": [
         {
           "type": "note",
-          "text": "Cô giáo có 16 cây bút chì và 36 quyển vở, chia đều cho các học sinh, không thừa. Nhiều nhất chia được cho bao nhiêu học sinh?"
+          "text": "Cô giáo có 32 cây bút chì và 56 quyển vở, chia đều cho các học sinh, không thừa. Nhiều nhất chia được cho bao nhiêu học sinh?"
         }
       ],
       "hints": {
@@ -2950,14 +2949,14 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "12"
+            "text": "16"
           }
         }
       ],
-      "answer": ["b"],
+      "answer": ["c"],
       "multiple": false,
       "check": {
-        "expr": "4"
+        "expr": "8"
       }
     },
     {
@@ -3676,7 +3675,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Phân số này có là phân số tối giản không?"
+          "text": "Phân số này có là phân số tối giản không? Chọn câu trả lời có lý do đúng."
         },
         {
           "type": "formula",
@@ -3704,21 +3703,21 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Không, vì tử và mẫu đều chia hết cho 2"
+            "text": "Có, vì tử nhỏ hơn mẫu"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không, vì tử và mẫu đều chia hết cho 3"
+            "text": "Không, vì tử và mẫu đều chia hết cho 2"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "Không, vì tử nhỏ hơn mẫu"
+            "text": "Không, vì tử và mẫu đều chia hết cho 3"
           }
         }
       ],
