@@ -21,6 +21,7 @@ import {
   type TargetDeviceName,
   TEST_BASE_URL,
 } from "../e2e/targets";
+import { listImages, reportSheets } from "./lib/contact-sheet";
 import { ensureServer, stopServer } from "./lib/dev-server";
 
 // Usage: visual-shot <lessonId|all|mascot>
@@ -294,6 +295,17 @@ async function main() {
   } finally {
     await Promise.all(browsers.map((browser) => browser.close()));
     stopServer(server);
+  }
+
+  // One contact sheet series per device (`sheet-<device>-NN.png`); read those
+  // instead of the single files.
+  for (const device of Object.keys(TARGET_DEVICES)) {
+    const stem = path.join(outDir, `sheet-${device}`);
+    const own = new RegExp(`-${device}(-step-\\d+)?\\.png$`);
+    await reportSheets(
+      listImages([outDir], stem).filter((file) => own.test(file)),
+      stem,
+    );
   }
 
   const idWidth = Math.max(2, ...results.map((r) => r.id.length));

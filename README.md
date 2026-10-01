@@ -72,8 +72,9 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm content:hash <bài> --approve` | Ghi dấu đã review và xuất bản |
 | `pnpm content:lock` | Khoá id đã xuất bản (tiến độ của trẻ gắn vào id) |
 | `pnpm sources:import <pdf> --pages X-Y …` | Cắt trang PDF thành ảnh (và lớp chữ) vào `sources/` |
-| `pnpm lesson:walk <bài>` | Đi hết bài ở 3 khổ màn hình, chụp ảnh, báo lỗi bố cục |
-| `pnpm visual:shot <bài>` | Chụp từng hình của bài |
+| `pnpm lesson:walk <bài>` | Đi hết bài ở 3 khổ màn hình, chụp ảnh, báo lỗi bố cục; ghi sheet `sheet-NN.png` mỗi thiết bị |
+| `pnpm visual:shot <bài>` | Chụp từng hình của bài; ghi sheet `sheet-<thiết bị>-NN.png` |
+| `pnpm shots:sheet <thư mục\|tệp\|mẫu>… [--cols N] [--out <tiền tố>] [--width PX] [--height PX]` | Ghép ảnh chụp thành contact sheet, mỗi ô in tên tệp, tự chia nhiều sheet; đọc một sheet thay cho nhiều ảnh (cần `ffmpeg`) |
 | `pnpm video:build <bài> <video>` / `pnpm video:check` | Dựng video / kiểm video đã dựng |
 | `pnpm narration:build <bài>` | Lời đọc cho phần giới thiệu bài |
 | `pnpm sounds:build` | Âm thanh dùng chung của app (chỉ khi đổi câu thoại) |

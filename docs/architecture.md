@@ -33,8 +33,10 @@ src/app (child screens) -> src/learn players -> src/exercises -> src/progress (D
 |---|---|---|
 | Content lint | `pnpm content:check` (`src/content/lint/*.ts`) | Findings end in `[rule]` and `(lessons-learned LL-nn)`; ids and the rule-to-entry table are in `docs/lessons-learned/index.md` |
 | Size and variety | `content:check --stats` | lesson minimums from `docs/spec.md` |
-| Layout walk | `pnpm lesson:walk <lesson>` | visits every screen on 3 devices, reports overlapping or clipped text; `e2e/overlap.ts` holds the overlap test, `tests/overlap.test.ts` proves it |
-| Visual shots | `pnpm visual:shot <lesson>` | every visual and hint at each device into `.shots/` |
+| Layout walk | `pnpm lesson:walk <lesson>` | visits every screen on 3 devices, reports overlapping or clipped text; `e2e/overlap.ts` holds the overlap test, `tests/overlap.test.ts` proves it; writes a contact sheet series per device next to its shots |
+| Visual shots | `pnpm visual:shot <lesson>` | every visual and hint at each device into `.shots/`, plus a contact sheet series per device |
+| Contact sheets | `pnpm shots:sheet <dir\|file\|pattern>… [--cols N] [--out <stem>]` (`scripts/lib/contact-sheet.ts`, `tests/scripts/contact-sheet.test.ts`) | tiles screenshots or video frames into `<stem>-NN.png` sheets (ffmpeg), file name on each tile, split to keep each sheet near 1600px; reviewers read sheets, not single files |
+| Silent browsers | `e2e/silence.ts`, used by `e2e/test.ts`, `lesson:walk`, `visual:shot` | every media element is really muted with volume 0 on first play, while `muted` still reads back what the app set |
 | Video | `pnpm video:check`, `tests/video/voices.test.ts` | subtitles contain every scripted sentence; on-screen rule text equals the lesson's rule sentence; the first sentence is the flagged opening line and captions start after the lead-in; one known voice per lesson |
 | Shared sounds | `tests/lib/sound-manifest.test.ts` | `public/sounds/manifest.json` hashes match files |
 | Unit, component | `pnpm test` (Vitest; `tests/` mirrors `src/`) | coverage thresholds in `vitest.config.ts` |

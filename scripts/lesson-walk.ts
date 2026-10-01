@@ -36,6 +36,7 @@ import {
 import { findOverlaps } from "../e2e/overlap";
 import { SILENCE_MEDIA_SCRIPT } from "../e2e/silence";
 import { TARGET_DEVICES, TEST_BASE_URL } from "../e2e/targets";
+import { listImages, reportSheets } from "./lib/contact-sheet";
 import { ensureServer, isServing, stopServer } from "./lib/dev-server";
 
 // Usage: lesson-walk <lessonId>
@@ -872,6 +873,12 @@ async function main() {
     const line = `${f.severity.toUpperCase()} [${f.device}] ${f.where}: ${f.message}`;
     if (f.severity === "fail") console.error(line);
     else console.log(line);
+  }
+  // One contact sheet series per device next to its shots; read those
+  // instead of the single files.
+  for (const device of devices) {
+    const stem = path.join(outRoot, device, "sheet");
+    await reportSheets(listImages([path.dirname(stem)], stem), stem);
   }
   const failed = findings.filter((f) => f.severity === "fail");
   console.log(
