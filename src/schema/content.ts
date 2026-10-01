@@ -19,6 +19,7 @@ const ID_KINDS = [
   "ex",
   "video",
   "visual",
+  "tip",
 ] as const;
 type IdKind = (typeof ID_KINDS)[number];
 
@@ -37,6 +38,7 @@ export const CardIdSchema = scopedId("card");
 export const ExerciseIdSchema = scopedId("ex");
 export const VideoIdSchema = scopedId("video");
 export const VisualIdSchema = scopedId("visual");
+export const TipIdSchema = scopedId("tip");
 
 // Ids that only need to be unique inside one exercise or block (options,
 // blanks, sentences, formula parts, clips). They never leave their container.
@@ -174,6 +176,30 @@ export const ImageBlockSchema = z.object({
   alt: TextSchema,
 });
 
+// What a tip is for: a way to solve faster, a way to see the idea at a glance,
+// or a way to avoid a typical mistake. The values are the labels the child
+// reads on the tip card.
+export const TIP_KINDS = ["làm nhanh", "hiểu nhanh", "tránh sai"] as const;
+export const TipKindSchema = z.enum(TIP_KINDS);
+
+// A trick for one kind of problem. The same fields serve a `tip` block inside
+// a section and an entry of a lesson's `tips.json`, so a tip reads the same
+// wherever it is authored. `tex` is the formula that carries the trick;
+// `visualId` a picture of it.
+export const TipSchema = z.object({
+  id: TipIdSchema,
+  kind: TipKindSchema,
+  // The problem type the trick is for, e.g. "Nhân với 9".
+  title: TextSchema,
+  text: TextSchema,
+  tex: TextSchema.optional(),
+  visualId: VisualIdSchema.optional(),
+});
+
+// One screen of a section. Allowed in `Section.blocks` only: a tip never
+// sits inside an exercise prompt, a group or a recap.
+export const TipBlockSchema = TipSchema.extend({ type: z.literal("tip") });
+
 export const BlockSchema = z.discriminatedUnion("type", [
   VisualBlockSchema,
   FormulaBlockSchema,
@@ -224,6 +250,7 @@ export const GroupBlockSchema = z.object({
 export const SectionBlockSchema = z.discriminatedUnion("type", [
   ...BlockSchema.options,
   GroupBlockSchema,
+  TipBlockSchema,
 ]);
 
 export const RecapBlockSchema = z.discriminatedUnion("type", [
@@ -280,11 +307,28 @@ export const HintsSchema = z.object({
 // ---------------------------------------------------------------------------
 // Exercises
 
+// Why the answer is right, shown after the child answers (a correct answer,
+// or the answer revealed after the last wrong check or a skip). Short: the
+// reasoning in the lesson's own words, with the formula or picture that
+// carries it. An exercise without one shows its solution visual and accepted
+// answer instead (`src/exercises/explanation.ts`).
+export const ExplanationSchema = z.object({
+  text: TextSchema,
+  tex: TextSchema.optional(),
+  visualId: VisualIdSchema.optional(),
+  // `choice` only: why a tempting wrong option is wrong, one short reason
+  // per option, shown under the explanation next to that option.
+  wrong: z
+    .array(z.object({ optionId: LocalIdSchema, text: TextSchema }))
+    .optional(),
+});
+
 const exerciseBase = {
   id: ExerciseIdSchema,
   cardIds: z.array(CardIdSchema),
   prompt: z.array(BlockSchema).min(1),
   hints: HintsSchema,
+  explain: ExplanationSchema.optional(),
   difficulty: z.int().min(1).max(3),
 };
 
@@ -527,6 +571,22 @@ export const VideoSchema = z.object({
     }),
   ),
   voice: SpokenVoiceSchema,
+  // Moments where the player pauses by itself and waits for the child
+  // ("Tiếp" to go on, "Xem lại đoạn này" to see the part again). Written by
+  // `pnpm video:build` from the script's checkpoint sentences; a video
+  // without them plays straight through.
+  checkpoints: z
+    .array(
+      z.object({
+        id: LocalIdSchema,
+        // Where the player stops, in seconds into the video.
+        at: z.number().positive(),
+        // Where "Xem lại đoạn này" restarts: the previous checkpoint's
+        // resume point (0 for the first).
+        from: z.number().nonnegative(),
+      }),
+    )
+    .optional(),
 });
 
 // What a child sees before the first section: why the lesson is worth their
@@ -601,10 +661,48 @@ export const LessonSchema = z.object({
   overview: LessonOverviewSchema.optional(),
 });
 
+// `content/legacy-lessons.json`: lessons written before rules that every new
+// lesson must follow (an explanation on every exercise, an overview). A lesson
+// not listed is new and meets every rule. A listed lesson is held to the
+// older, looser rules:
+// - "exempt": the new rules do not apply (it may never be given an
+//   explanation, and shows its solution visual and accepted answer instead);
+// - "warn": the explanations are being written; the lint reports the missing
+//   ones as one warning per lesson. Delete the entry when they are done and
+//   the lesson then fails the lint for any exercise without one.
+// Never add a lesson to the list to silence the lint.
+export const LEGACY_LEVELS = ["exempt", "warn"] as const;
+export const LegacyLevelSchema = z.enum(LEGACY_LEVELS);
+export const LegacyLessonsSchema = z.object({
+  lessons: z.record(LessonIdSchema, LegacyLevelSchema),
+});
+
 export const IdsLockSchema = z.object({
   ids: z.array(z.string().min(1)),
   // Retired id -> replacement id, or null when the entity was dropped for good.
   retired: z.record(z.string().min(1), z.string().min(1).nullable()),
+});
+
+// `content/<subject>/<series>/<slug>/tips.json`: tips of a lesson kept apart
+// from lesson.json, so a published lesson gains tips without a new review of
+// the lesson. The file has its own review: `reviewedHash` covers `tips` and
+// `lessonId`.
+export const TipsFileSchema = z.object({
+  lessonId: LessonIdSchema,
+  status: z.enum(LESSON_STATUSES),
+  reviewedHash: z
+    .string()
+    .regex(/^[0-9a-f]{64}$/, "Expected a sha256 hex digest")
+    .optional(),
+  tips: z.array(TipSchema).min(1),
+});
+
+// What the app fetches for a lesson's "Mẹo hay" page
+// (`/content/<lessonId>.tips.json`): the tips of the lesson's sections, in
+// section order, then those of `tips.json`.
+export const LessonTipsSchema = z.object({
+  lessonId: LessonIdSchema,
+  tips: z.array(TipSchema).min(1),
 });
 
 // `content/glossary/<subject>.json`: the one accepted word for each concept of
@@ -650,6 +748,9 @@ export const LessonSummarySchema = z.object({
     }),
   ),
   cardCount: z.int().nonnegative(),
+  // Tips on the lesson's "Mẹo hay" page; none (or absent) hides the page's
+  // entry point.
+  tipCount: z.int().nonnegative().optional(),
   // The lesson opens with an overview, so home leads a child who has not
   // seen it there before the first section.
   hasOverview: z.boolean(),
@@ -669,6 +770,12 @@ export type SubjectsFile = z.infer<typeof SubjectsFileSchema>;
 export type Concept = z.infer<typeof ConceptSchema>;
 export type ConceptColor = z.infer<typeof ConceptColorSchema>;
 export type Block = z.infer<typeof BlockSchema>;
+export type Tip = z.infer<typeof TipSchema>;
+export type TipKind = z.infer<typeof TipKindSchema>;
+export type TipBlock = z.infer<typeof TipBlockSchema>;
+export type TipsFile = z.infer<typeof TipsFileSchema>;
+export type LessonTips = z.infer<typeof LessonTipsSchema>;
+export type Explanation = z.infer<typeof ExplanationSchema>;
 export type NoteBlock = z.infer<typeof NoteBlockSchema>;
 export type GroupBlock = z.infer<typeof GroupBlockSchema>;
 export type SectionBlock = z.infer<typeof SectionBlockSchema>;
@@ -700,6 +807,8 @@ export type LessonOverview = z.infer<typeof LessonOverviewSchema>;
 export type LessonChapter = z.infer<typeof LessonChapterSchema>;
 export type Lesson = z.infer<typeof LessonSchema>;
 export type LessonStatus = Lesson["status"];
+export type LegacyLevel = z.infer<typeof LegacyLevelSchema>;
+export type LegacyLessons = z.infer<typeof LegacyLessonsSchema>;
 export type IdsLock = z.infer<typeof IdsLockSchema>;
 export type GlossaryTerm = z.infer<typeof GlossaryTermSchema>;
 export type GlossaryFile = z.infer<typeof GlossaryFileSchema>;

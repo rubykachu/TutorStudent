@@ -8,6 +8,9 @@ import {
   LessonSchema,
   type Subject,
   SubjectsFileSchema,
+  type Tip,
+  type TipsFile,
+  TipsFileSchema,
 } from "@/schema/content";
 import {
   FIXTURE_DIR,
@@ -20,6 +23,7 @@ import {
 } from "./check";
 import { isServed, summarizeLesson } from "./index";
 import { SOURCE_PASSAGE_FILE } from "./lint/passage";
+import { isTipsFileServed, lessonTips } from "./tips";
 
 // Node-only: reads content/ from disk at build time. Browser code imports the
 // pure modules (`./index`, `./check`) instead.
@@ -28,7 +32,9 @@ export const DEFAULT_CONTENT_ROOT = path.join(process.cwd(), "content");
 export const SUBJECTS_FILE = "subjects.json";
 export const IDS_LOCK_FILE = "ids.lock.json";
 export const GLOSSARY_DIR = "glossary";
+export const LEGACY_LESSONS_FILE = "legacy-lessons.json";
 const LESSON_FILE = "lesson.json";
+export const TIPS_FILE = "tips.json";
 // Textbook scans and their text layers sit beside the content root, in
 // sources/<subject>/<lesson>/ (gitignored).
 const SOURCES_DIR = "sources";
@@ -83,10 +89,12 @@ export function readContentRoot(
     );
     const fixture = dir[0] === FIXTURE_DIR;
     const sourceText = fixture ? undefined : readSourceText(root, dir);
+    const tipsPath = path.join(root, path.dirname(relative), TIPS_FILE);
     return {
       ...readJson(path.join(root, relative)),
       fixture,
       dir,
+      ...(existsSync(tipsPath) ? { tips: readJson(tipsPath) } : {}),
       ...(sourceText === undefined ? {} : { sourceText }),
       ...(existsSync(passageFile)
         ? { sourcePassage: readFileSync(passageFile, "utf8") }
@@ -103,15 +111,23 @@ export function readContentRoot(
           subject: path.basename(name, ".json"),
         }))
     : [];
+  const legacyPath = path.join(root, LEGACY_LESSONS_FILE);
   return {
     subjects: readJson(path.join(root, SUBJECTS_FILE)),
     lock: readJson(path.join(root, IDS_LOCK_FILE)),
+    ...(existsSync(legacyPath) ? { legacy: readJson(legacyPath) } : {}),
     glossaries,
     lessons,
   };
 }
 
-export type LoadedLesson = { lesson: Lesson; fixture: boolean };
+export type LoadedLesson = {
+  lesson: Lesson;
+  fixture: boolean;
+  // What the lesson's "Mẹo hay" page lists (see `lessonTips`): the tips of
+  // its sections plus those of a tips file the app may serve.
+  tips: Tip[];
+};
 
 export type LoadedContent = {
   subjects: Subject[];
@@ -151,10 +167,22 @@ export function loadContent({
   const lessons = raw.lessons
     // Skipping the fixture before parsing keeps it from affecting real builds.
     .filter((file) => includeFixture || !file.fixture)
-    .map((file) => ({
-      lesson: parseOrThrow(file, LessonSchema),
-      fixture: file.fixture,
-    }))
+    .map((file) => {
+      const lesson = parseOrThrow(file, LessonSchema);
+      const tipsFile: TipsFile | undefined = file.tips
+        ? parseOrThrow(file.tips, TipsFileSchema)
+        : undefined;
+      return {
+        lesson,
+        fixture: file.fixture,
+        tips: lessonTips(
+          lesson,
+          tipsFile && isTipsFileServed(tipsFile, includeDraft || file.fixture)
+            ? tipsFile
+            : undefined,
+        ),
+      };
+    })
     .filter(
       ({ lesson, fixture }) =>
         isServed(lesson, fixture, includeFixture) || (includeDraft && !fixture),
@@ -181,6 +209,8 @@ export function loadSubjects(root: string = DEFAULT_CONTENT_ROOT): Subject[] {
 export function buildContentIndex(content: LoadedContent): ContentIndex {
   return {
     subjects: content.subjects,
-    lessons: content.lessons.map(({ lesson }) => summarizeLesson(lesson)),
+    lessons: content.lessons.map(({ lesson, tips }) =>
+      summarizeLesson(lesson, tips),
+    ),
   };
 }

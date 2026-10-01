@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import type { Lesson } from "@/schema/content";
+import type { Lesson, TipsFile } from "@/schema/content";
 import { type Finding, findingCollector, type LintInput } from "./types";
 
 // Publication gate: a published lesson carries the hash of the content that
@@ -13,7 +13,7 @@ import { type Finding, findingCollector, type LintInput } from "./types";
 
 // JSON with sorted keys and NFC strings, so formatting, key order and
 // Unicode composition never change the hash.
-function canonicalJson(value: unknown): string {
+export function canonicalJson(value: unknown): string {
   if (typeof value === "string") return JSON.stringify(value.normalize("NFC"));
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
   if (value !== null && typeof value === "object") {
@@ -32,6 +32,12 @@ export function computeReviewedHash(lesson: Lesson): string {
     const { narration: _narration, ...overview } = content.overview;
     content.overview = overview;
   }
+  return createHash("sha256").update(canonicalJson(content)).digest("hex");
+}
+
+// Hash of a tips file's reviewed content: its lesson and its tips.
+export function computeTipsHash(file: TipsFile): string {
+  const { status: _status, reviewedHash: _hash, ...content } = file;
   return createHash("sha256").update(canonicalJson(content)).digest("hex");
 }
 

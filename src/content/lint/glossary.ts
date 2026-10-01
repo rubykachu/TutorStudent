@@ -20,7 +20,9 @@ import type { LessonStrings } from "./walk";
 // a formula paint a symbol only in the colour of one of the lesson's
 // concepts, and limits earlier-stage knowledge to prerequisite terms.
 
-export function lintGlossary(
+// The word and formula-colour rules, which hold for any child-facing text
+// of a lesson: its own strings and those of its tips file.
+export function lintGlossaryText(
   input: LintInput,
   strings: LessonStrings,
 ): Finding[] {
@@ -43,6 +45,25 @@ export function lintGlossary(
     }
   }
 
+  const lessonColors = new Set(input.lesson.concepts.map((c) => c.color));
+  for (const { path, value } of strings.formulas) {
+    for (const color of conceptColorsInTex(value)) {
+      if (!isConceptColor(color)) {
+        report(path, `"\\concept{${color}}" is not a concept colour`);
+      } else if (!lessonColors.has(color)) {
+        report(path, `No concept of this lesson is ${color}`);
+      }
+    }
+  }
+  return findings;
+}
+
+export function lintGlossary(
+  input: LintInput,
+  strings: LessonStrings,
+): Finding[] {
+  const { findings, report } = findingCollector(input.file, "glossary");
+  const terms = input.glossary?.terms ?? [];
   const byTerm = new Map(terms.map((t) => [wordKeys(t.term).join(" "), t]));
   input.lesson.concepts.forEach((concept, i) => {
     const entry = byTerm.get(wordKeys(concept.name).join(" "));
@@ -55,18 +76,7 @@ export function lintGlossary(
   });
 
   lintPrerequisites(input, byTerm, report);
-
-  const lessonColors = new Set(input.lesson.concepts.map((c) => c.color));
-  for (const { path, value } of strings.formulas) {
-    for (const color of conceptColorsInTex(value)) {
-      if (!isConceptColor(color)) {
-        report(path, `"\\concept{${color}}" is not a concept colour`);
-      } else if (!lessonColors.has(color)) {
-        report(path, `No concept of this lesson is ${color}`);
-      }
-    }
-  }
-  return findings;
+  return [...findings, ...lintGlossaryText(input, strings)];
 }
 
 // Marker in a section or card `sourceRef` for knowledge taught from an earlier

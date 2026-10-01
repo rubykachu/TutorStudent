@@ -13,7 +13,7 @@
     },
     "summary": "Bài này giúp bạn hiểu một ý chính và dùng nó để giải bài tập.",
     "goals": ["hiểu ý chính của bài", "làm được các bài tập cơ bản"],
-    "whyItMatters": "Kiến thức này giúp bạn làm các bài sau dễ hơn."
+    "whyItMatters": "Bạn dùng phép nhân mỗi khi đi chợ để tính tiền nhiều món giống nhau."
   },
   "concepts": [
     {
@@ -113,6 +113,16 @@
           }
         ]
       },
+      "explain": {
+        "text": "Nhân hai thừa số: 2 nhân 4 bằng 8, nên đáp án là 8.",
+        "tex": "2 \\cdot 4 = 8",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "6 là kết quả của 2 nhân 3, không phải 2 nhân 4."
+          }
+        ]
+      },
       "difficulty": 1
     },
     {
@@ -143,6 +153,10 @@
             "id": "tich"
           }
         ]
+      },
+      "explain": {
+        "text": "Lấy lần lượt từng thừa số nhân với nhau.",
+        "tex": "3 \\cdot 5 = 15"
       },
       "difficulty": 1
     },
@@ -192,6 +206,9 @@
           }
         ]
       },
+      "explain": {
+        "text": "Tính tích rồi so với từng đáp án."
+      },
       "difficulty": 2
     },
     {
@@ -222,6 +239,10 @@
             "id": "tich"
           }
         ]
+      },
+      "explain": {
+        "text": "Nhân hai thừa số được tích cần tìm.",
+        "tex": "2 \\cdot 5 = 10"
       },
       "difficulty": 1
     }

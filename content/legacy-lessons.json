@@ -1,0 +1,14 @@
+{
+  "lessons": {
+    "dau-hieu-chia-het": "warn",
+    "luy-thua": "exempt",
+    "neu-cau-muon-co-mot-nguoi-ban": "exempt",
+    "phep-cong-phep-tru": "exempt",
+    "phep-nhan-phep-chia": "exempt",
+    "quan-he-chia-het-va-tinh-chat": "warn",
+    "so-nguyen-to": "warn",
+    "tap-hop": "exempt",
+    "thu-tu-thuc-hien-phep-tinh": "exempt",
+    "uoc-chung-uoc-chung-lon-nhat": "warn"
+  }
+}

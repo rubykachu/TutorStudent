@@ -11,12 +11,15 @@ import {
   type GuidedInteraction,
   type IdsLock,
   IdsLockSchema,
+  LegacyLessonsSchema,
   type Lesson,
   LessonSchema,
   type SectionBlock,
   type Subject,
   type SubjectsFile,
   SubjectsFileSchema,
+  type TipsFile,
+  TipsFileSchema,
 } from "@/schema/content";
 import type { VisualCatalog } from "@/visuals/registry";
 import {
@@ -28,6 +31,7 @@ import {
 import { lintLesson } from "./lint";
 import { checkGlossaryFile } from "./lint/glossary";
 import { guidesBySection } from "./lint/guides";
+import { lintTipsFile } from "./lint/tips";
 
 // Pure content validation: everything `content:check` enforces beyond the zod
 // schema. Reading files is the loader's job, so tests can feed mutated content.
@@ -59,6 +63,8 @@ export type RawLessonFile = RawFile & {
   // Text layers of the lesson's textbook pages (sources/<subject>/<lesson>/
   // p*.txt), joined; absent when none were imported.
   sourceText?: string;
+  // The lesson's tips.json, when it has one.
+  tips?: RawFile;
 };
 
 export type RawGlossaryFile = RawFile & { subject: string };
@@ -66,6 +72,8 @@ export type RawGlossaryFile = RawFile & { subject: string };
 export type RawContent = {
   subjects: RawFile;
   lock: RawFile;
+  // `legacy-lessons.json`; absent when the content root has none.
+  legacy?: RawFile;
   glossaries: RawGlossaryFile[];
   lessons: RawLessonFile[];
 };
@@ -76,6 +84,10 @@ export type CheckedLesson = {
   lesson: Lesson;
   // The lesson's entry in subjects.json; absent for an unknown subject.
   subject?: Subject;
+  // The lesson's parsed tips.json, with the file it came from; absent when
+  // the lesson has none or the file did not parse.
+  tips?: TipsFile;
+  tipsFile?: string;
 };
 
 export type CheckResult = {
@@ -132,8 +144,12 @@ function parseFile<T>(
   return undefined;
 }
 
-// Every id a lesson declares, with where it is declared.
-export function declaredIds(lesson: Lesson): { id: string; path: IssuePath }[] {
+// Every id a lesson declares, with where it is declared. `tips` is the
+// lesson's tips file: its ids belong to the lesson and are locked with it.
+export function declaredIds(
+  lesson: Lesson,
+  tips?: TipsFile,
+): { id: string; path: IssuePath }[] {
   const ids: { id: string; path: IssuePath }[] = [
     { id: lesson.id, path: ["id"] },
   ];
@@ -149,6 +165,16 @@ export function declaredIds(lesson: Lesson): { id: string; path: IssuePath }[] {
   for (const entry of flattenExercises(lesson)) {
     ids.push({ id: entry.exercise.id, path: [...entry.path, "id"] });
   }
+  lesson.sections.forEach((section, i) => {
+    section.blocks.forEach((block, j) => {
+      if (block.type === "tip") {
+        ids.push({ id: block.id, path: ["sections", i, "blocks", j, "id"] });
+      }
+    });
+  });
+  tips?.tips.forEach((tip, i) => {
+    ids.push({ id: tip.id, path: ["tips", i, "id"] });
+  });
   return ids;
 }
 
@@ -425,6 +451,36 @@ function checkExercise(
   }
 }
 
+// Checks of a lesson's tips file that need the lesson: it belongs to this
+// lesson, its ids follow the lesson's, and its pictures exist. Wording and
+// the review gate are the content lint's (`lintTipsFile`).
+function checkTips(
+  lesson: Lesson,
+  tips: TipsFile,
+  catalog: VisualCatalog,
+  report: Reporter,
+): void {
+  if (tips.lessonId !== lesson.id) {
+    report(["lessonId"], `Expected lessonId "${lesson.id}"`);
+  }
+  tips.tips.forEach((tip, i) => {
+    if (!tip.id.startsWith(`${lesson.id}.`)) {
+      report(["tips", i, "id"], `Id must start with "${lesson.id}."`);
+    }
+  });
+  checkUnique(declaredIds(lesson, tips), "id", (path, message) => {
+    if (path[0] === "tips") report(path, message);
+  });
+  for (const ref of collectVisualRefs(tips)) {
+    if (!catalog[ref.visualId]) {
+      report(
+        ref.path,
+        `Visual "${ref.visualId}" is not in the visual registry`,
+      );
+    }
+  }
+}
+
 function checkLesson(
   raw: RawLessonFile,
   lesson: Lesson,
@@ -610,7 +666,7 @@ function checkLock(
   // The fixture is test-only content, so its ids are never locked.
   const real = lessons.filter((l) => !l.fixture);
   const current = new Set(
-    real.flatMap((l) => declaredIds(l.lesson).map((d) => d.id)),
+    real.flatMap((l) => declaredIds(l.lesson, l.tips).map((d) => d.id)),
   );
 
   lock.ids.forEach((id, i) => {
@@ -651,8 +707,8 @@ function checkLock(
   }
 
   const locked = new Set(lock.ids);
-  for (const { file, lesson } of real) {
-    const missing = declaredIds(lesson).filter((d) => !locked.has(d.id));
+  for (const { file, lesson, tips } of real) {
+    const missing = declaredIds(lesson, tips).filter((d) => !locked.has(d.id));
     if (missing.length > 0) {
       issues.push({
         severity: "warning",
@@ -704,6 +760,10 @@ export function checkContent(
   const issues: Issue[] = [];
   const subjects = parseFile(raw.subjects, SubjectsFileSchema, issues);
   const lock = parseFile(raw.lock, IdsLockSchema, issues);
+  const legacy = raw.legacy
+    ? parseFile(raw.legacy, LegacyLessonsSchema, issues)
+    : undefined;
+  const legacyLevels = legacy?.lessons ?? {};
   const glossaries = new Map<string, GlossaryFile>();
   for (const file of raw.glossaries) {
     const glossary = parseFile(file, GlossaryFileSchema, issues);
@@ -718,20 +778,31 @@ export function checkContent(
   for (const file of raw.lessons) {
     const lesson = parseFile(file, LessonSchema, issues);
     if (!lesson) continue;
+    const tips = file.tips
+      ? parseFile(file.tips, TipsFileSchema, issues)
+      : undefined;
     lessons.push({
       file: file.file,
       fixture: file.fixture,
       lesson,
       subject: subjects?.subjects.find((s) => s.id === lesson.subject),
+      ...(tips && file.tips ? { tips, tipsFile: file.tips.file } : {}),
     });
     checkLesson(file, lesson, subjects, catalog, (path, message) =>
       issues.push({ severity: "error", file: file.file, path, message }),
     );
-    // Optional while lessons are being given one; every published lesson
-    // should open with it.
+    if (tips && file.tips) {
+      const tipsFile = file.tips.file;
+      checkTips(lesson, tips, catalog, (path, message) =>
+        issues.push({ severity: "error", file: tipsFile, path, message }),
+      );
+    }
+    // Every published lesson opens with an overview, so the child starts it
+    // knowing what it teaches and where it shows up in daily life. A lesson
+    // from before the rule only warns; a new one fails.
     if (!file.fixture && lesson.status === "published" && !lesson.overview) {
       issues.push({
-        severity: "warning",
+        severity: lesson.id in legacyLevels ? "warning" : "error",
         file: file.file,
         path: ["overview"],
         message:
@@ -756,14 +827,27 @@ export function checkContent(
         sourcePassage: file.sourcePassage,
         sourceText: file.sourceText,
         priorGuides: priorGuides(lessons, lesson, file.fixture, subjects),
+        legacy: legacyLevels[lesson.id],
       }),
     );
+    if (checked.tips && checked.tipsFile) {
+      issues.push(
+        ...lintTipsFile({
+          file: checked.tipsFile,
+          lesson,
+          tips: checked.tips,
+          fixture: file.fixture,
+          subject,
+          glossary: glossaries.get(lesson.subject),
+        }),
+      );
+    }
   }
 
   // Ids are global: progress is keyed by id alone, across every lesson.
   const owners = new Map<string, string>();
-  for (const { file, lesson } of lessons) {
-    for (const { id, path } of declaredIds(lesson)) {
+  for (const { file, lesson, tips } of lessons) {
+    for (const { id, path } of declaredIds(lesson, tips)) {
       const owner = owners.get(id);
       if (owner !== undefined && owner !== file) {
         issues.push({

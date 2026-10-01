@@ -65,12 +65,23 @@ describe("lesson overview", () => {
     return raw;
   }
 
-  it("warns when a published lesson has no overview", () => {
+  it("fails a new published lesson without one", () => {
     expect(overviewWarnings(check(withoutOverview("published")))).toEqual([
       expect.objectContaining({
-        severity: "warning",
+        severity: "error",
         message: expect.stringContaining("no overview"),
       }),
+    ]);
+  });
+
+  it("only warns for a legacy published lesson", () => {
+    const raw = withoutOverview("published");
+    raw.legacy = {
+      file: "content/legacy-lessons.json",
+      data: { lessons: { fixture: "exempt" } },
+    };
+    expect(overviewWarnings(check(raw))).toEqual([
+      expect.objectContaining({ severity: "warning" }),
     ]);
   });
 

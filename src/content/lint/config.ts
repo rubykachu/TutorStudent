@@ -57,3 +57,10 @@ export const RULE_REWORD_MIN_SIMILARITY = 0.6;
 export const COPY_NGRAM = 5;
 export const COPY_MIN_WORDS = 8;
 export const COPY_MAX_SHARE = 0.5;
+
+// Explanations and tips are read on the spot, after an answer or beside a
+// problem type: at most this many sentences each, and a tip's title is a
+// short label of the problem type.
+export const MAX_EXPLAIN_SENTENCES = 3;
+export const MAX_TIP_SENTENCES = 3;
+export const MAX_TIP_TITLE_WORDS = 8;

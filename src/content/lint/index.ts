@@ -1,6 +1,7 @@
 import { lintCardExercises } from "./card-exercises";
 import { lintCheckExpr } from "./check-expr";
 import { lintColorLeak } from "./color-leak";
+import { lintExplain } from "./explain";
 import { lintGlossary } from "./glossary";
 import { lintGuides } from "./guides";
 import { lintHintAnswer } from "./hint-answer";
@@ -18,6 +19,7 @@ import { lintRuleSentence } from "./rule-sentence";
 import { lintScreens } from "./screens";
 import { lintSymbols } from "./symbols";
 import { lintTextbookCopy } from "./textbook-copy";
+import { lintTipBlocks } from "./tips";
 import {
   type Finding,
   findingCollector,
@@ -83,6 +85,8 @@ export function lintLesson(input: LintInput): Finding[] {
     ...lintPassage(input),
     ...lintReviewHash(input),
     ...lintOverview(input),
+    ...lintExplain(input),
+    ...lintTipBlocks(input),
     ...lintAuthoring(input),
   ];
 }

@@ -1,6 +1,7 @@
 import type {
   GlossaryFile,
   GuidedInteraction,
+  LegacyLevel,
   Lesson,
   Subject,
 } from "@/schema/content";
@@ -28,7 +29,9 @@ export type LintRule =
   | "color-leak"
   | "guides"
   | "rule-sentence"
-  | "textbook-copy";
+  | "textbook-copy"
+  | "explain"
+  | "tips";
 
 export type Finding = Issue & { rule: LintRule };
 
@@ -52,6 +55,10 @@ export type LintInput = {
   // Interactions already taught by guide screens of lessons that come
   // earlier in the app (subject order of subjects.json, then `order`).
   priorGuides?: ReadonlySet<GuidedInteraction>;
+  // Set when the lesson was written before the rules new lessons must follow
+  // (an explanation on every exercise, an overview): its level in
+  // content/legacy-lessons.json. A lesson not listed there is new.
+  legacy?: LegacyLevel;
 };
 
 // Pointer from a finding to the lessons-learned entry that explains the

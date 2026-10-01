@@ -38,6 +38,7 @@ const NON_TEXT_KEYS = new Set([
   "solutionVisualId",
   "conceptId",
   "conceptIds",
+  "optionId",
   "cardIds",
   "checkIds",
   "practiceIds",

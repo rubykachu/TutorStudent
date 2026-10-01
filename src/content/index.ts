@@ -6,8 +6,10 @@ import type {
   Lesson,
   LessonSummary,
   Section,
+  Tip,
   Video,
 } from "@/schema/content";
+import { lessonTips } from "./tips";
 
 // Pure lookups over parsed lessons; safe to import from browser code.
 
@@ -128,7 +130,12 @@ export function isServed(
   return fixture ? includeFixture : lesson.status === "published";
 }
 
-export function summarizeLesson(lesson: Lesson): LessonSummary {
+// `tips` are the ones the lesson's "Mẹo hay" page will list; by default only
+// those of its sections.
+export function summarizeLesson(
+  lesson: Lesson,
+  tips: readonly Tip[] = lessonTips(lesson),
+): LessonSummary {
   return {
     id: lesson.id,
     subject: lesson.subject,
@@ -144,6 +151,7 @@ export function summarizeLesson(lesson: Lesson): LessonSummary {
       minutes: s.minutes,
     })),
     cardCount: lesson.cards.length,
+    tipCount: tips.length,
     hasOverview: lesson.overview !== undefined,
     sticker: lesson.sticker,
   };
@@ -158,4 +166,13 @@ export function lessonContentFile(lessonId: string): string {
 
 export function lessonContentUrl(lessonId: string): string {
   return `${CONTENT_BASE_URL}/${lessonContentFile(lessonId)}`;
+}
+
+// A lesson with tips also gets its "Mẹo hay" list at this URL.
+export function lessonTipsFile(lessonId: string): string {
+  return `${lessonId}.tips.json`;
+}
+
+export function lessonTipsUrl(lessonId: string): string {
+  return `${CONTENT_BASE_URL}/${lessonTipsFile(lessonId)}`;
 }
