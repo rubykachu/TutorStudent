@@ -3655,7 +3655,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tổng các số nguyên từ −4 đến 4 bằng bao nhiêu?"
+          "text": "Tổng các số nguyên từ −4 đến 4, kể cả −4 và 4, bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -3712,7 +3712,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính tổng các số nguyên từ −3 đến 5."
+          "text": "Tính tổng các số nguyên từ −3 đến 5, kể cả −3 và 5."
         }
       ],
       "hints": {

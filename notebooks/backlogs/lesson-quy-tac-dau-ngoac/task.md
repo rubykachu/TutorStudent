@@ -1,17 +1,24 @@
 # Bàn giao: Bài 15 `quy-tac-dau-ngoac` (Quy tắc dấu ngoặc)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026, mới nạp nguồn và lập kế hoạch. Chưa có `lesson.json`, hình, review. Không làm lời đọc và video trong đợt này.
-- Việc kế tiếp: viết hình (`src/visuals/math/quy-tac-dau-ngoac/`), bộ sinh `lesson.json`, `content:check --stats`, `visual:shot`, `lesson:walk`, review.
+- Cập nhật cuối: 02/10/2026. Soạn xong bản nháp: 12 phần, 12 thẻ, 62 câu, 6 dạng câu, 19 hình tương tác (chạm chọn số hạng, chạm đổi dấu số hạng trong ngoặc), 3 mẹo. `content:check --stats` 0 lỗi, `visual:shot` 112/112, `lesson:walk` 0 failures 0 cảnh báo (cây tạm `git worktree` cổng 3370, xoá khi xong). Không làm lời đọc và video trong đợt này.
+- Việc kế tiếp: review vòng 1 và 2 (Opus, nhóm song song + Tổng hợp), đọc hiểu (Haiku), vòng 3+ (Sonnet, chỉ phần đổi), rồi `pnpm content:hash quy-tac-dau-ngoac --approve`, `pnpm content:lock quy-tac-dau-ngoac`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+- Tệp tạm của lần soạn (không commit): bộ sinh `lesson.json` (`gen.py`, `p1.py`, `p2.py`, `lib.py`), `tips_test.py` và kết quả review ở thư mục scratchpad của phiên (`bai15/`) và `.shots/review/quy-tac-dau-ngoac/`. Sửa chữ thì sửa thẳng `lesson.json`; bộ sinh chỉ là công cụ soạn.
 
 ## Tiến độ (đánh dấu khi xong)
 - [x] Nạp nguồn: `sources/math/quy-tac-dau-ngoac/` (không commit).
-- [ ] Hình: `src/visuals/math/quy-tac-dau-ngoac/` và đăng ký ở `src/visuals/registry.ts`; test `tests/visuals/quy-tac-dau-ngoac.test.tsx`.
-- [ ] `lesson.json`, `content:check --stats` 0 lỗi, không `[guides]`.
-- [ ] `visual:shot`, `lesson:walk` 0 failures, xem contact sheet.
+- [x] Hình: `src/visuals/math/quy-tac-dau-ngoac/` (catalog, hình `flipTry` chạm đổi dấu, huy hiệu) và đăng ký ở `src/visuals/registry.ts` (tái dùng `chips` và validator `chon-dung`); test `tests/visuals/quy-tac-dau-ngoac.test.tsx`.
+- [x] `lesson.json`, `content:check --stats` 0 lỗi, không `[guides]`.
+- [x] `visual:shot`, `lesson:walk` 0 failures, xem contact sheet.
 - [ ] Review vòng 1, 2 (Opus), đọc hiểu (Haiku).
 - [ ] Review vòng 3+ (Sonnet, chỉ phần đổi) tới 0 Nghiêm trọng.
 - [ ] `content:hash quy-tac-dau-ngoac --approve`, `content:lock quy-tac-dau-ngoac`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+
+## Mẹo đã thử bằng chương trình (không commit)
+- `dau-dau-tien` (viết thêm dấu + cho số đầu trong ngoặc, đổi dấu từng số hạng khi trước ngoặc có dấu −): 20 000 tổng ngẫu nhiên có ngoặc lồng nhau (tới 3 tầng) và số 0, bỏ ngoặc từ trong ra ngoài luôn giữ giá trị.
+- `gom-duong-am` (cộng riêng số dương, cộng riêng phần số của số âm, lấy số lớn trừ số bé, dấu của nhóm lớn hơn, hai nhóm bằng nhau thì 0): 20 000 tổng ngẫu nhiên có số 0, một số hạng, hai nhóm bằng nhau.
+- `kiem-tra-hai-cach` (tính trong ngoặc trước và bỏ ngoặc trước phải ra cùng kết quả): 20 000 tổng ngẫu nhiên có ngoặc lồng nhau.
+- Ba ví dụ in trong mẹo đã tính tay và bằng chương trình.
 
 ## Nguồn (sách bài tập, `sources/math/quy-tac-dau-ngoac/`, không commit)
 - Đề: tr.53–54 in (PDF 54–55), tệp `sbt-p53.png`, `sbt-p54.png`. Bài 16 bắt đầu ở tr.55.
