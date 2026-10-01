@@ -3,23 +3,35 @@ import path from "node:path";
 import { DEFAULT_CONTENT_ROOT, readContentRoot } from "@/content/load";
 import { overviewParts, overviewWordCount } from "@/content/overview";
 import { parseKaraokeVtt } from "@/lib/karaoke-vtt";
-import { LessonSchema } from "@/schema/content";
+import { type LessonOverview, LessonSchema } from "@/schema/content";
 import { MATCH_THRESHOLD, MEDIA_DIR, RENDER, VIDEO_DIR } from "./config";
 import { alignWords } from "./lib/align";
 import { ffmpeg, layNarration } from "./lib/audio";
 import { lessonVoice } from "./lib/lesson-media";
 import { writeNarration } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
-import { narrationPaths, narrationScript } from "./lib/narration";
+import {
+  narrationPaths,
+  narrationScript,
+  readWithFallback,
+} from "./lib/narration";
 import { buildVtt, schedule } from "./lib/timeline";
 import { ttsEngine } from "./tts";
+import type { EngineVoice } from "./voices";
 
 // Usage: pnpm narration:build <lessonId>
-// Reads the lesson's overview aloud with the lesson's voice (video/projects/<lessonId>/media.json) (each
-// sentence synthesized, slowed, and checked against the text by Whisper),
-// writes public/media/narration/<lessonId>/overview.{m4a,vtt} with one
-// caption timestamp per word, and records both on `overview.narration`.
-// Unchanged sentences are not synthesized again (cache in video/.cache/).
+// Reads the lesson's overview aloud with the lesson's narration voice
+// (video/voices.ts, picked by video/projects/<lessonId>/media.json): Gemini,
+// the whole text in one request cut into sentences, each sentence checked
+// against the text by Whisper. Writes
+// public/media/narration/<lessonId>/overview.{m4a,vtt} with one caption
+// timestamp per word and records both, with the voice that read them, on
+// `overview.narration`. Unchanged sentences are not synthesized again (cache
+// in video/.cache/).
+// A narration is read by one voice from start to end: when every Gemini key
+// is out of quota the whole narration is read again by the lesson's video
+// voice (local VieNeu), and a warning says so; the sentences Gemini had
+// finished are not used in it.
 
 const AUDIO_BITRATE = "64k";
 
@@ -36,16 +48,20 @@ async function main() {
   const lesson = LessonSchema.parse(file.data);
   if (!lesson.overview) throw new Error(`Lesson "${lessonId}" has no overview`);
 
-  const voice = lessonVoice(lessonId).spec;
-  const script = narrationScript(lesson.title, lesson.overview, voice.engine);
-  const engine = ttsEngine(voice.engine);
+  const spec = lessonVoice(lessonId).spec;
   const workDir = path.join(VIDEO_DIR, ".cache", "narration", lessonId);
-  const takes = await narrate(
-    script,
-    engine,
-    voice.preset,
-    path.join(workDir, "audio"),
-  );
+  const readWith = (voice: EngineVoice) =>
+    narrate(
+      narrationScript(
+        lesson.title,
+        lesson.overview as LessonOverview,
+        voice.engine,
+      ),
+      ttsEngine(voice.engine),
+      voice.preset,
+      path.join(workDir, "audio"),
+    );
+  const { voice, result: takes } = await readWithFallback(spec, readWith);
   const words = takes.map((t) =>
     alignWords(t.text, t.spoken, t.words, t.duration),
   );
@@ -82,10 +98,13 @@ async function main() {
     );
   }
   writeFileSync(path.join(MEDIA_DIR, paths.vttUrl), vtt);
-  const lessonFile = writeNarration(lessonId, paths);
+  const lessonFile = writeNarration(lessonId, {
+    ...paths,
+    voice: ttsEngine(voice.engine).voice(voice.preset),
+  });
 
   console.log(
-    `narration: ${path.relative(process.cwd(), audioFile)} ${timeline.duration}s; ${lessonFile} updated`,
+    `narration: ${path.relative(process.cwd(), audioFile)} ${timeline.duration}s read by ${voice.preset} (${voice.engine}); ${lessonFile} updated`,
   );
   for (const t of takes) {
     const rate = `${(t.matchRate * 100).toFixed(1)}%`;

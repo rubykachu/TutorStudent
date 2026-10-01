@@ -1,5 +1,5 @@
 import path from "node:path";
-import { TTS_TEMPERATURE, VIDEO_DIR } from "../config";
+import { TEMPO, TTS_TEMPERATURE, VIDEO_DIR } from "../config";
 import { runPython } from "../lib/python";
 import type { TtsEngine } from "./types";
 
@@ -9,6 +9,7 @@ import type { TtsEngine } from "./types";
 const WORKER = path.join(VIDEO_DIR, "tts", "vieneu_worker.py");
 
 export const localEngine: TtsEngine = {
+  tempo: TEMPO,
   voice: (voiceName) => ({
     engine: "local",
     voiceName,

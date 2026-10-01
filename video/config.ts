@@ -22,6 +22,9 @@ export const WHISPER_MODEL = "mlx-community/whisper-large-v3-turbo";
 // Narration is slowed to this share of the voice's own speed, for a grade-6
 // child who needs time to follow.
 export const TEMPO = 0.9;
+// Gemini already speaks at a calm pace of its own, so its narration is not
+// slowed further.
+export const GEMINI_TEMPO = 1;
 // Each sentence's transcript must match the script this closely (character
 // similarity after dropping tone marks and punctuation); a sentence below it
 // is synthesized again, at most MAX_REGENERATIONS more times.

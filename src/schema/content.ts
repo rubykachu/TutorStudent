@@ -500,6 +500,14 @@ export const MediaPathSchema = z
     'Expected a path under the media base, like "video/<lesson>/<name>.mp4"',
   );
 
+// The voice that read a video or an overview narration, as the engine named
+// it (`video/tts/types.ts`).
+const SpokenVoiceSchema = z.object({
+  engine: TextSchema,
+  voiceName: TextSchema,
+  model: TextSchema,
+});
+
 export const VideoSchema = z.object({
   id: VideoIdSchema,
   lessonId: LessonIdSchema,
@@ -518,11 +526,7 @@ export const VideoSchema = z.object({
       cardIds: z.array(CardIdSchema),
     }),
   ),
-  voice: z.object({
-    engine: TextSchema,
-    voiceName: TextSchema,
-    model: TextSchema,
-  }),
+  voice: SpokenVoiceSchema,
 });
 
 // What a child sees before the first section: why the lesson is worth their
@@ -544,9 +548,14 @@ export const LessonOverviewSchema = z.object({
   whyItMatters: TextSchema,
   // A human-like reading of the overview (`pnpm narration:build`), with
   // one WebVTT timestamp per word so the screen highlights the word being
-  // read (`src/lib/karaoke-vtt.ts`).
+  // read (`src/lib/karaoke-vtt.ts`). `voice` is the one voice that read all of
+  // it; narrations made before it was recorded have none.
   narration: z
-    .object({ audioUrl: MediaPathSchema, vttUrl: MediaPathSchema })
+    .object({
+      audioUrl: MediaPathSchema,
+      vttUrl: MediaPathSchema,
+      voice: SpokenVoiceSchema.optional(),
+    })
     .optional(),
 });
 

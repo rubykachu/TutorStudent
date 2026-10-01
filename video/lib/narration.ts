@@ -1,6 +1,8 @@
 import { overviewParts } from "@/content/overview";
 import type { LessonOverview } from "@/schema/content";
 import type { TtsEngineName } from "../tts";
+import { GeminiQuotaError } from "../tts/gemini-keys";
+import type { VoiceSpec } from "../voices";
 import type { VideoScript } from "./script";
 
 // The overview narration (`pnpm narration:build`): the overview's text, part
@@ -43,4 +45,24 @@ export function narrationScript(
 export function narrationPaths(lessonId: string) {
   const base = `narration/${lessonId}/overview`;
   return { audioUrl: `${base}.m4a`, vttUrl: `${base}.vtt` };
+}
+
+// Reads the whole narration with the lesson's narration voice; when Gemini's
+// quota is used up on every key, discards that attempt and reads the whole
+// narration again with the lesson's video voice, so one narration never mixes
+// engines. `read` gets the voice to read with and returns what it made.
+export async function readWithFallback<T>(
+  spec: Pick<VoiceSpec, "narration" | "video">,
+  read: (voice: VoiceSpec["narration"]) => Promise<T>,
+  warn: (message: string) => void = console.warn,
+): Promise<{ voice: VoiceSpec["narration"]; result: T }> {
+  try {
+    return { voice: spec.narration, result: await read(spec.narration) };
+  } catch (error) {
+    if (!(error instanceof GeminiQuotaError)) throw error;
+    warn(
+      `narration: ${error.message}\nnarration: reading the whole narration with "${spec.video.preset}" (${spec.video.engine}) instead; build again after the quota resets to use "${spec.narration.preset}"`,
+    );
+    return { voice: spec.video, result: await read(spec.video) };
+  }
 }

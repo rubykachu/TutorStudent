@@ -145,7 +145,7 @@ export function voiceIssues(
   }[],
   projects: readonly string[],
 ): string[] {
-  const spec = voiceSpec(media.voice);
+  const spec = voiceSpec(media.voice).video;
   const issues: string[] = [];
   for (const video of videos) {
     if (
@@ -165,6 +165,30 @@ export function voiceIssues(
     }
   }
   return issues;
+}
+
+// One voice per narration: the voice recorded on a lesson's overview narration
+// is the lesson's narration voice, or its video voice when the narration was
+// read whole by that voice because Gemini's quota ran out. A narration with no
+// recorded voice predates the record.
+export function narrationVoiceIssues(
+  media: LessonMedia,
+  narration: { voice?: { engine: string; voiceName: string } } | undefined,
+): string[] {
+  const recorded = narration?.voice;
+  if (!recorded) return [];
+  const spec = voiceSpec(media.voice);
+  const allowed = [spec.narration, spec.video];
+  if (
+    allowed.some(
+      (v) => v.engine === recorded.engine && v.preset === recorded.voiceName,
+    )
+  ) {
+    return [];
+  }
+  return [
+    `the overview narration was read by "${recorded.voiceName}" (${recorded.engine}); the lesson's voices are ${allowed.map((v) => `"${v.preset}" (${v.engine})`).join(" and ")}`,
+  ];
 }
 
 const DONE_PUNCTUATION = /[\s.,;:!?]+$/u;
@@ -287,7 +311,7 @@ export function checkProject(
     result.issues.push(
       ...openingIssues(script, media.openingExempt?.includes(name)),
     );
-    const spec = voiceSpec(media.voice);
+    const spec = voiceSpec(media.voice).video;
     if (script.engine !== spec.engine) {
       result.issues.push(
         `script.json engine "${script.engine}" is not the lesson's voice engine "${spec.engine}"`,
@@ -335,5 +359,16 @@ export function checkLessonVoice(lessonId: string): string[] {
     : [];
   const videos = ((lesson?.data as { videos?: unknown } | undefined)?.videos ??
     []) as Parameters<typeof voiceIssues>[1];
-  return [...issues, ...voiceIssues(media, videos, projects)];
+  const narration = (
+    lesson?.data as
+      | {
+          overview?: { narration?: Parameters<typeof narrationVoiceIssues>[1] };
+        }
+      | undefined
+  )?.overview?.narration;
+  return [
+    ...issues,
+    ...voiceIssues(media, videos, projects),
+    ...narrationVoiceIssues(media, narration),
+  ];
 }

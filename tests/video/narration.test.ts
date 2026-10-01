@@ -2,8 +2,14 @@
 import { describe, expect, it } from "vitest";
 import { OVERVIEW_GOALS_LEAD } from "@/content/overview";
 import type { LessonOverview } from "@/schema/content";
-import { narrationPaths, narrationScript } from "../../video/lib/narration";
+import {
+  narrationPaths,
+  narrationScript,
+  readWithFallback,
+} from "../../video/lib/narration";
 import { VideoScriptSchema } from "../../video/lib/script";
+import { GeminiQuotaError } from "../../video/tts/gemini-keys";
+import { VOICES } from "../../video/voices";
 
 const OVERVIEW: LessonOverview = {
   hook: { text: "Mẹ mua hai túi kẹo. Có bao nhiêu cái?" },
@@ -46,5 +52,52 @@ describe("narrationPaths", () => {
       audioUrl: "narration/luy-thua/overview.m4a",
       vttUrl: "narration/luy-thua/overview.vtt",
     });
+  });
+});
+
+describe("readWithFallback", () => {
+  const spec = VOICES["hai-dang"];
+  const quota = new GeminiQuotaError("quota used up");
+
+  it("reads with the narration voice and never touches the video voice", async () => {
+    const used: string[] = [];
+    const { voice, result } = await readWithFallback(
+      spec,
+      async (v) => {
+        used.push(v.preset);
+        return "gemini take";
+      },
+      () => {},
+    );
+    expect(used).toEqual([spec.narration.preset]);
+    expect(voice).toEqual(spec.narration);
+    expect(result).toBe("gemini take");
+  });
+
+  it("on quota reads the whole narration again with the video voice, warning", async () => {
+    const used: string[] = [];
+    const warnings: string[] = [];
+    const { voice, result } = await readWithFallback(
+      spec,
+      async (v) => {
+        used.push(v.engine);
+        if (v.engine === "gemini") throw quota;
+        return "vieneu take";
+      },
+      (m) => warnings.push(m),
+    );
+    expect(used).toEqual(["gemini", "local"]);
+    expect(voice).toEqual(spec.video);
+    expect(result).toBe("vieneu take");
+    expect(warnings[0]).toMatch(/quota used up/);
+    expect(warnings[0]).toMatch(/Hải Đăng/);
+  });
+
+  it("does not fall back on any other error", async () => {
+    await expect(
+      readWithFallback(spec, async () => {
+        throw new Error("bad request");
+      }),
+    ).rejects.toThrow("bad request");
   });
 });

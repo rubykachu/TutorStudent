@@ -61,7 +61,7 @@ async function main() {
   if (opening.length > 0) {
     throw new Error(`the opening line is off:\n${opening.join("\n")}`);
   }
-  const voice = lessonVoice(lessonId).spec;
+  const voice = lessonVoice(lessonId).spec.video;
   if (script.engine !== voice.engine) {
     throw new Error(
       `script.json engine "${script.engine}" is not the lesson's voice engine "${voice.engine}"`,

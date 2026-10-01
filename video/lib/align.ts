@@ -7,7 +7,7 @@ type Span = { start: number; end: number };
 
 // Pairs of (script token, transcript token) indexes on a cheapest edit path:
 // equal tokens and substitutions pair up, insertions and deletions do not.
-function editPairs(
+export function editPairs(
   a: readonly string[],
   b: readonly string[],
 ): [number, number][] {

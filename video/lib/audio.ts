@@ -33,20 +33,44 @@ export function probeDuration(file: string): number {
 }
 
 // Trims the silence the voice leaves around a sentence (the timeline adds its
-// own pauses) and slows it to TEMPO without changing the pitch.
+// own pauses) and slows it to `tempo` without changing the pitch.
 const TRIM =
   "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.04";
 
-export function slowSentence(input: string, output: string): void {
+export function slowSentence(
+  input: string,
+  output: string,
+  tempo: number = TEMPO,
+): void {
   ffmpeg([
     "-i",
     input,
     "-af",
-    `${TRIM},areverse,${TRIM},areverse,atempo=${TEMPO}`,
+    `${TRIM},areverse,${TRIM},areverse,atempo=${tempo}`,
     "-ac",
     "1",
     "-ar",
     String(SAMPLE_RATE),
+    "-c:a",
+    "pcm_s16le",
+    output,
+  ]);
+}
+
+// The part of `input` from `from` to `to` seconds, as 16-bit PCM.
+export function cutSegment(
+  input: string,
+  from: number,
+  to: number,
+  output: string,
+): void {
+  ffmpeg([
+    "-i",
+    input,
+    "-ss",
+    from.toFixed(3),
+    "-to",
+    to.toFixed(3),
     "-c:a",
     "pcm_s16le",
     output,

@@ -15,8 +15,9 @@ import {
   WHISPER_MODEL,
 } from "../config";
 import type { TtsEngine, VoiceInfo } from "../tts/types";
-import { probeDuration, slowSentence } from "./audio";
+import { cutSegment, probeDuration, slowSentence } from "./audio";
 import type { VideoScript } from "./script";
+import { sentenceCuts } from "./split";
 import { matchRate } from "./text";
 
 // One narrated sentence: its audio (trimmed and slowed), what Whisper heard
@@ -39,17 +40,69 @@ type Line = { sceneId: string; text: string; spoken: string; key: string };
 
 // Takes are cached by everything that changes the audio, so editing one
 // sentence of a script re-synthesizes only that sentence.
-export function cacheKey(voice: VoiceInfo, spoken: string): string {
+export function cacheKey(
+  voice: VoiceInfo,
+  spoken: string,
+  tempo: number = TEMPO,
+): string {
   return createHash("sha256")
-    .update(JSON.stringify([voice, spoken, TEMPO, WHISPER_MODEL]))
+    .update(JSON.stringify([voice, spoken, tempo, WHISPER_MODEL]))
     .digest("hex")
     .slice(0, 16);
+}
+
+type Raw = (line: Line) => string;
+
+// Speaks all of `lines` in one request, one paragraph each, and cuts the take
+// into one raw file per line at the pauses Whisper's word times show. The
+// whole take is kept in `audioDir`, so a run that stops later does not ask
+// the voice again. False when the take cannot be told apart into the lines;
+// the caller then speaks them one by one.
+async function speakWhole(
+  engine: TtsEngine,
+  voiceName: string,
+  voice: VoiceInfo,
+  lines: readonly Line[],
+  raw: Raw,
+  audioDir: string,
+): Promise<boolean> {
+  const text = lines.map((l) => l.spoken).join("\n\n");
+  const key = createHash("sha256")
+    .update(JSON.stringify([voice, text]))
+    .digest("hex")
+    .slice(0, 16);
+  const whole = path.join(audioDir, `whole-${key}.wav`);
+  if (!existsSync(whole)) {
+    await engine.synthesize(voiceName, [{ text, out: whole }]);
+  }
+  const transcript = (await transcribe([whole])).get(whole);
+  if (!transcript) throw new Error(`No transcript for ${whole}`);
+  const duration = probeDuration(whole);
+  const cuts = sentenceCuts(
+    lines.map((l) => l.spoken),
+    transcript.words,
+    duration,
+  );
+  if (!cuts) {
+    console.warn(
+      "video: could not tell the whole take into sentences; speaking them one by one",
+    );
+    return false;
+  }
+  const bounds = [0, ...cuts, duration];
+  lines.forEach((l, i) => {
+    cutSegment(whole, bounds[i] as number, bounds[i + 1] as number, raw(l));
+  });
+  return true;
 }
 
 // Synthesizes every sentence, checks each against the script with Whisper and
 // synthesizes a mismatching sentence again, up to MAX_REGENERATIONS times,
 // keeping its best take. Sentences still below MATCH_THRESHOLD come back
-// flagged for a human to listen to.
+// flagged for a human to listen to. An engine that can speak a whole narration
+// at once (`speaksWhole`) does the first round in one request, so fewer
+// requests are spent and the sentences share one delivery; only sentences that
+// fail the check are spoken again, one by one, in the same voice.
 export async function narrate(
   script: VideoScript,
   engine: TtsEngine,
@@ -65,11 +118,20 @@ export async function narrate(
         sceneId: scene.id,
         text: s.text,
         spoken,
-        key: cacheKey(voice, spoken),
+        key: cacheKey(voice, spoken, engine.tempo),
       };
     }),
   );
   const takeFile = (line: Line) => path.join(audioDir, `${line.key}.json`);
+  // Keeps a take in the cache, so a run that stops later keeps what is done.
+  const persist = (line: Line, take: SentenceTake) => {
+    const final = path.join(audioDir, `${line.key}.wav`);
+    if (take.file !== final) {
+      copyFileSync(take.file, final);
+      take.file = final;
+      writeFileSync(takeFile(line), `${JSON.stringify(take, null, 2)}\n`);
+    }
+  };
   const best = new Map<string, SentenceTake>();
   for (const line of lines) {
     if (existsSync(takeFile(line))) {
@@ -100,15 +162,22 @@ export async function narrate(
     console.log(
       `video: synthesizing ${pending.length} sentence(s), take ${attempt}`,
     );
-    const raw = (l: Line) =>
+    const raw: Raw = (l) =>
       path.join(audioDir, `${l.key}.take${attempt}.raw.wav`);
     const slow = (l: Line) =>
       path.join(audioDir, `${l.key}.take${attempt}.wav`);
-    await engine.synthesize(
-      voiceName,
-      pending.map((l) => ({ text: l.spoken, out: raw(l) })),
-    );
-    for (const l of pending) slowSentence(raw(l), slow(l));
+    const whole =
+      attempt === 1 &&
+      engine.speaksWhole === true &&
+      pending.length > 1 &&
+      (await speakWhole(engine, voiceName, voice, pending, raw, audioDir));
+    if (!whole) {
+      await engine.synthesize(
+        voiceName,
+        pending.map((l) => ({ text: l.spoken, out: raw(l) })),
+      );
+    }
+    for (const l of pending) slowSentence(raw(l), slow(l), engine.tempo);
     const heard = await transcribe(pending.map(slow));
     for (const l of pending) {
       const transcript = heard.get(slow(l));
@@ -131,6 +200,10 @@ export async function narrate(
         previous.attempts = attempt;
       }
     }
+    for (const l of pending) {
+      const take = best.get(l.key);
+      if (take && take.matchRate >= MATCH_THRESHOLD) persist(l, take);
+    }
     pending = pending.filter(
       (l) => (best.get(l.key)?.matchRate ?? 0) < MATCH_THRESHOLD,
     );
@@ -139,12 +212,7 @@ export async function narrate(
   return lines.map((line) => {
     const take = best.get(line.key);
     if (!take) throw new Error(`No take for "${line.spoken}"`);
-    const final = path.join(audioDir, `${line.key}.wav`);
-    if (take.file !== final) {
-      copyFileSync(take.file, final);
-      take.file = final;
-      writeFileSync(takeFile(line), `${JSON.stringify(take, null, 2)}\n`);
-    }
+    persist(line, take);
     // The same sentence may sit in two scenes; each keeps its own scene.
     return { ...take, sceneId: line.sceneId, text: line.text };
   });
