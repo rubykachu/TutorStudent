@@ -232,19 +232,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "giai-cong-7036": {
+  "giai-cong-9031": {
     kind: "lines",
-    label: "Cộng lần lượt các chữ số của 7 036",
+    label: "Cộng lần lượt các chữ số của 9 031",
     mode: "steps",
     rows: [
       {
-        tex: "7 + 0 = 7",
+        tex: "9 + 0 = 9",
       },
       {
-        tex: "7 + 3 = 10",
+        tex: "9 + 3 = 12",
       },
       {
-        tex: "10 + 6 = 16",
+        tex: "12 + 1 = 13",
       },
     ],
   },
@@ -521,23 +521,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "giai-banh-60": {
+  "giai-banh-56": {
     kind: "lines",
     label: "Số bánh và số túi",
     mode: "steps",
     rows: [
       {
-        tex: "10 : 5 = 2",
+        tex: "8 : 4 = 2",
         tag: {
           text: "Mỗi hộp xếp được 2 túi",
-          color: "amber",
+          color: "slate",
         },
       },
       {
-        tex: "2 \\cdot 6 = 12",
+        tex: "2 \\cdot 7 = 14",
         tag: {
-          text: "6 hộp xếp được 12 túi",
-          color: "amber",
+          text: "7 hộp xếp được 14 túi",
+          color: "slate",
         },
       },
     ],
@@ -1509,7 +1509,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       {
         tex: "0",
         tag: {
-          text: "Đội có bạn, nên bỏ số 0",
+          text: "Đội có ít nhất 1 bạn, nên bỏ số 0",
           color: "slate",
         },
       },
@@ -1523,10 +1523,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
   },
   "goi-y-107-9": {
-    kind: "digitSum",
-    n: 107,
-    divisor: 9,
+    kind: "lines",
+    label: "Xét 10² + 7 có chia hết cho 9 không",
     mode: "hint",
+    rows: [
+      {
+        tex: "10^{2} + 7 = 107",
+      },
+      {
+        tex: "1 + 7 = 8",
+      },
+      {
+        tex: "8 \\khongchiahet 9",
+      },
+    ],
   },
   sticker: {
     kind: "sticker",

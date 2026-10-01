@@ -63,3 +63,11 @@ Khái niệm mới trong `content/glossary/math.json`: "chữ số tận cùng" 
 - Câu quy tắc của `chia-het-2/5/9/3`, `cho-hai-so`, `tich-chia-het` nêu hai chiều của dấu hiệu bằng hai câu; `cho-hai-so`, `tich-chia-het`, `diem-thi`, `but-vo`, `lap-so` là suy ra trực tiếp từ các dấu hiệu và tính chất của sách (LL-09).
 - Chữ trong chip và công thức dùng U+202F cho số từ 4 chữ số; ở chip nhìn như liền nhau.
 - Chưa làm: lời đọc tổng quan, video, review, khoá id.
+
+## Sửa sau review vòng 3 (01/10/2026)
+- Nghiêm trọng 1: note `ba-khac-chin` trả về câu "3 khác 9" (Số 2 415 có tổng 12); dòng lý do "Làm vậy giúp bạn biết..." chuyển sang note màn chạm `chon-3-1410`. Chữ cũ bị bỏ ("Chạm vào ... Làm vậy giúp bạn...") không còn ở màn tĩnh, đã đọc `pnpm content:diff`.
+- Nên sửa 1: id đổi `tong-7036` -> `tong-9031` (đáp án 13), hình `giai-cong-7036` -> `giai-cong-9031`.
+- Nên sửa 2: id đổi `tong-27-chia-het-9` -> `tong-25-chia-het-9` (số 5 884, tổng 25); `checkIds` của `chia-het-9` cập nhật.
+- Nên sửa 3: id đổi `lap-so-037` -> `lap-so-014` (chữ số 0, 1, 4; đáp án 3: 140, 410, 104). Đề xuất của review (0, 2, 4, đáp án 5) đếm sai, thực tế chỉ có 4 số (204, 240, 402, 420) và mọi số đều chẵn nên luật chia hết không thử; bộ 0, 1, 4 thử cả hai luật (014 bị loại vì 0 đứng đầu, 041 và 401 lẻ).
+- Góp ý đã sửa: 1 (nhãn `giai-banh-56` sang slate), 2 (`10⁶ + 2`, `10³ + 4`), 3 (`goi-y-107-9` thành hình `lines`), 4 (`hop-banh-tui` 7 hộp, mỗi hộp 8, túi 4, đáp án 14; hình `giai-banh-60` -> `giai-banh-56`), 5, 6. Bỏ Góp ý 7 (đổi màu `concept.thua-so`: review ghi "nếu muốn chặt hơn", hai nghĩa nằm ở hai section khác nhau).
+- Ids chưa khoá (`content:lock` chưa chạy) nên đổi id không cần retire.

@@ -314,7 +314,7 @@
           ]
         }
       ],
-      "checkIds": ["dau-hieu-chia-het.ex.tong-27-chia-het-9"],
+      "checkIds": ["dau-hieu-chia-het.ex.tong-25-chia-het-9"],
       "practiceIds": ["dau-hieu-chia-het.ex.chon-chia-het-9"],
       "recap": {
         "type": "visual",
@@ -352,7 +352,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các số chia hết cho 3 bằng cách cộng các chữ số của từng số rồi xét tổng. Làm vậy giúp bạn biết số chia hết cho 3 mà không cần chia."
+              "text": "Số chia hết cho 3 chưa chắc chia hết cho 9. Số 2 415 có tổng các chữ số là 12, chia hết cho 3 nhưng không chia hết cho 9."
             },
             {
               "type": "visual",
@@ -365,7 +365,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các số chia hết cho 3. Cộng các chữ số của từng số rồi xét tổng."
+              "text": "Chạm vào các số chia hết cho 3: cộng các chữ số của từng số rồi xét tổng. Làm vậy giúp bạn biết số chia hết cho 3 mà không cần chia."
             },
             {
               "type": "visual",
@@ -808,7 +808,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chữ số 0 không đứng đầu một số ba chữ số. Từ các chữ số 0, 3 và 5, ta lập được 350, 530 và 305 chia hết cho 5."
+              "text": "Chữ số 0 không đứng đầu một số ba chữ số."
             },
             {
               "type": "visual",
@@ -1863,13 +1863,13 @@
       }
     },
     {
-      "id": "dau-hieu-chia-het.ex.tong-7036",
+      "id": "dau-hieu-chia-het.ex.tong-9031",
       "type": "numeric",
       "cardIds": ["dau-hieu-chia-het.card.tong-chu-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Số nhà của Mai là 7 036. Tính tổng các chữ số của số nhà."
+          "text": "Số nhà của Mai là 9 031. Tính tổng các chữ số của số nhà."
         }
       ],
       "hints": {
@@ -1880,15 +1880,15 @@
           }
         ],
         "hintVisualId": "dau-hieu-chia-het.visual.goi-y-cong-4152",
-        "solutionVisualId": "dau-hieu-chia-het.visual.giai-cong-7036"
+        "solutionVisualId": "dau-hieu-chia-het.visual.giai-cong-9031"
       },
       "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 16
+        "value": 13
       },
       "check": {
-        "expr": "7+0+3+6"
+        "expr": "9+0+3+1"
       }
     },
     {
@@ -2039,13 +2039,13 @@
       ]
     },
     {
-      "id": "dau-hieu-chia-het.ex.tong-27-chia-het-9",
+      "id": "dau-hieu-chia-het.ex.tong-25-chia-het-9",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Tổng các chữ số của số 5 886 là 27. Số 5 886 có chia hết cho 9 không?"
+          "text": "Tổng các chữ số của số 5 884 là 25. Số 5 884 có chia hết cho 9 không?"
         }
       ],
       "hints": {
@@ -2062,21 +2062,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Có, vì 27 chia hết cho 9"
+            "text": "Không, vì 25 không chia hết cho 9"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Không, vì 5 886 có chữ số tận cùng là 6"
+            "text": "Không, vì 5 884 có chữ số tận cùng là 4"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không, vì 27 không chia hết cho 9"
+            "text": "Có, vì 25 chia hết cho 9"
           }
         }
       ],
@@ -2802,7 +2802,7 @@
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Đã có chia hết cho 5. Xét tiếp tổng các chữ số: 1 + 5 + 3 + 0 = 9"
+            "text": "Số này đã chia hết cho 5. Xét tiếp tổng các chữ số: 1 + 5 + 3 + 0 = 9"
           }
         },
         {
@@ -3094,7 +3094,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua 6 hộp bánh, mỗi hộp 10 cái, rồi xếp hết vào các túi, mỗi túi 5 cái. Mẹ dùng bao nhiêu túi?"
+          "text": "Mẹ mua 7 hộp bánh, mỗi hộp 8 cái, rồi xếp hết vào các túi, mỗi túi 4 cái. Mẹ dùng bao nhiêu túi?"
         }
       ],
       "hints": {
@@ -3104,15 +3104,15 @@
             "index": 0
           }
         ],
-        "solutionVisualId": "dau-hieu-chia-het.visual.giai-banh-60"
+        "solutionVisualId": "dau-hieu-chia-het.visual.giai-banh-56"
       },
       "difficulty": 3,
       "answer": {
         "kind": "value",
-        "value": 12
+        "value": 14
       },
       "check": {
-        "expr": "(10:5)·6"
+        "expr": "(8:4)·7"
       }
     },
     {
@@ -3495,7 +3495,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "10^{3} + 6"
+            "tex": "10^{3} + 4"
           }
         },
         {
@@ -3561,7 +3561,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "10^{6} + 5"
+            "tex": "10^{6} + 2"
           }
         },
         {
@@ -4442,13 +4442,13 @@
       "multiple": true
     },
     {
-      "id": "dau-hieu-chia-het.ex.lap-so-037",
+      "id": "dau-hieu-chia-het.ex.lap-so-014",
       "type": "numeric",
       "cardIds": ["dau-hieu-chia-het.card.lap-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Dùng các chữ số 0, 3 và 7, mỗi chữ số một lần, lập số ba chữ số chia hết cho 2. Chữ số 0 không đứng đầu, lập được bao nhiêu số?"
+          "text": "Dùng các chữ số 0, 1 và 4, mỗi chữ số một lần, lập số ba chữ số chia hết cho 2. Chữ số 0 không đứng đầu, lập được bao nhiêu số?"
         }
       ],
       "hints": {
@@ -4462,10 +4462,10 @@
       "difficulty": 3,
       "answer": {
         "kind": "value",
-        "value": 2
+        "value": 3
       },
       "check": {
-        "expr": "2"
+        "expr": "3"
       }
     },
     {
