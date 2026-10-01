@@ -145,8 +145,11 @@ describe("StickerShelf", () => {
   it("counts earned out of all in the title and shows the earned ones in colour", () => {
     shelf(manyLessons(5), earnedRecords(2));
     expect(
-      screen.getByRole("heading", { name: "Danh hiệu của bạn · 2/5" }),
+      screen.getByRole("heading", { name: "Danh hiệu của bạn" }),
     ).toBeInTheDocument();
+    expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
+      "Đã nhận 2/5",
+    );
     expect(shelfTiles()).toHaveLength(2);
     expect(
       document.querySelectorAll(
@@ -172,8 +175,11 @@ describe("StickerShelf", () => {
       }),
     ).toHaveTextContent(`+${30 - SHELF_RECENT}`);
     expect(
-      screen.getByRole("heading", { name: "Danh hiệu của bạn · 30/34" }),
+      screen.getByRole("heading", { name: "Danh hiệu của bạn" }),
     ).toBeInTheDocument();
+    expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
+      "Đã nhận 30/34",
+    );
     // The old section of every sticker is gone from the page itself.
     expect(document.querySelectorAll("[data-sticker-lesson]")).toHaveLength(0);
   });
@@ -195,14 +201,17 @@ describe("StickerShelf", () => {
       [{ lessonId: "b", sectionId: "b.section.1", state: "done" }],
     );
     expect(
-      screen.getByRole("heading", { name: "Danh hiệu của bạn · 0/2" }),
+      screen.getByRole("heading", { name: "Danh hiệu của bạn" }),
     ).toBeInTheDocument();
+    expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
+      "Đã nhận 0/2",
+    );
     const empty = document.querySelector("[data-shelf-empty]");
     expect(empty).toHaveTextContent(
       "Học xong một bài để nhận danh hiệu đầu tiên",
     );
     // The one to aim for is the one already part coloured.
-    expect(empty).toHaveTextContent("“Trăng”");
+    expect(empty).toHaveTextContent("Trăng");
     expect(
       within(empty as HTMLElement).getByRole("img", {
         name: "Sticker Trăng, đã tô 1/3 phần",
@@ -247,7 +256,9 @@ describe("StickerShelf", () => {
   it("opens the collection from +k too, and goes back to it after a sticker's sheet", () => {
     shelf(manyLessons(10), earnedRecords(8));
     fireEvent.click(
-      screen.getByRole("button", { name: /Xem thêm 2 danh hiệu/ }),
+      screen.getByRole("button", {
+        name: `Xem thêm ${8 - SHELF_RECENT} danh hiệu`,
+      }),
     );
     const dialog = screen.getByRole("dialog", { name: "Danh hiệu của bạn" });
     fireEvent.click(
@@ -266,11 +277,11 @@ describe("StickerShelf", () => {
     shelf(manyLessons(10), earnedRecords(8));
     const all = screen.getByRole("button", { name: /Xem tất cả/ });
     expect(all.className).toContain("min-h-touch");
-    // A tile is 80px wide and holds a 56px picture, so it is above 48px.
+    // A tile is 104px wide and holds a 64px picture, so it is above 48px.
     for (const tile of shelfTiles()) {
-      expect(tile.className).toContain("w-20");
+      expect(tile.className).toContain("w-26");
       expect(tile.querySelector("[data-sticker-earned]")?.className).toContain(
-        "size-14",
+        "size-16",
       );
     }
   });

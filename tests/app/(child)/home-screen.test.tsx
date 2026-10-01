@@ -2,6 +2,7 @@ import "fake-indexeddb/auto";
 import { render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HomeScreen } from "@/app/(child)/home-screen";
+import { SHELF_RECENT } from "@/app/(child)/sticker-shelf";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import {
   appDb,
@@ -126,8 +127,9 @@ describe("HomeScreen sticker shelf", () => {
   it("sits right under the owl, above the lessons, and has one shelf only", async () => {
     await openHomeWithStickers(8, 2);
     const shelf = await screen.findByRole("region", {
-      name: /Danh hiệu của bạn · 2\/8/,
+      name: "Danh hiệu của bạn",
     });
+    expect(shelf).toHaveTextContent("Đã nhận 2/8");
     const owl = screen.getByRole("region", { name: "Bạn cú" });
     expect(owl.compareDocumentPosition(shelf)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
@@ -144,16 +146,19 @@ describe("HomeScreen sticker shelf", () => {
   });
 
   it.each([0, 3, 30])(
-    "keeps the shelf one row of at most six stickers with %i earned",
+    "keeps the shelf one row of the latest few stickers with %i earned",
     async (earned) => {
       await openHomeWithStickers(34, earned);
-      await screen.findByRole("heading", {
-        name: `Danh hiệu của bạn · ${earned}/34`,
+      const shelf = await screen.findByRole("region", {
+        name: "Danh hiệu của bạn",
       });
+      expect(shelf).toHaveTextContent(`Đã nhận ${earned}/34`);
       const tiles = document.querySelectorAll("[data-shelf-sticker]");
-      expect(tiles).toHaveLength(Math.max(1, Math.min(earned, 6)));
+      expect(tiles).toHaveLength(Math.max(1, Math.min(earned, SHELF_RECENT)));
       expect(document.querySelectorAll("[data-shelf-row] > li").length).toBe(
-        earned === 0 ? 0 : Math.min(earned, 6) + (earned > 6 ? 1 : 0),
+        earned === 0
+          ? 0
+          : Math.min(earned, SHELF_RECENT) + (earned > SHELF_RECENT ? 1 : 0),
       );
       expect(document.querySelector("[data-shelf-empty]") !== null).toBe(
         earned === 0,

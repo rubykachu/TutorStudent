@@ -35,10 +35,9 @@ test("a first visit creates a profile that survives a reload", async ({
   const mathLessons = lessons.filter((l) => l.subject === "math");
   const mathSections = mathLessons.reduce((n, l) => n + l.sections.length, 0);
 
-  // No chain yet: an invitation, never "0 ngày".
-  await expect(
-    page.getByText("Bắt đầu chuỗi ngày học hôm nay nhé"),
-  ).toBeVisible();
+  // The owl greets the child and the sticker shelf sits right under it.
+  await expect(page.getByText("Hôm nay mình học môn nào?")).toBeVisible();
+  await expect(page.getByRole("region", { name: "Bạn cú" })).toBeVisible();
   // The main action starts the first lesson, on its overview first.
   const start = page.locator("[data-continue]");
   await expect(start).toHaveAccessibleName(

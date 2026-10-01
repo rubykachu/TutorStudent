@@ -16,7 +16,7 @@ import { StickerSheet } from "./sticker-sheet";
 // How many of the latest earned stickers the shelf shows. The shelf is one
 // row of this fixed size however many stickers the child has won over the
 // year; the rest wait behind "+k" and "Xem tất cả".
-export const SHELF_RECENT = 6;
+export const SHELF_RECENT = 4;
 
 type Fill = { done: number; total: number };
 
@@ -93,6 +93,8 @@ type StickerTileProps = {
   // collection use different ones.
   dataAttr: "data-shelf-sticker" | "data-sticker-lesson";
   pictureClassName: string;
+  // Added to the name's line, e.g. to reserve its height.
+  nameClassName?: string;
   className: string;
   // Taps so far, 0 before the first: each one replays the bounce.
   taps: number;
@@ -105,6 +107,7 @@ function StickerTile({
   entry,
   dataAttr,
   pictureClassName,
+  nameClassName = "",
   className,
   taps,
   onOpen,
@@ -143,7 +146,7 @@ function StickerTile({
         />
       </motion.span>
       <span
-        className={`break-words text-caption leading-tight ${earned ? "font-semibold" : "text-muted-foreground"}`}
+        className={`break-words text-caption leading-tight ${nameClassName} ${earned ? "font-semibold" : "text-muted-foreground"}`}
       >
         {lesson.sticker.name}
       </span>
@@ -162,9 +165,11 @@ type StickerShelfProps = {
   sounds?: FeedbackSounds;
 };
 
-// Tile of the shelf: a fixed width, so a name wraps inside it.
-const SHELF_TILE = "w-20 shrink-0 snap-start gap-1 p-1";
-const SHELF_PICTURE = "size-14";
+// Tile of the shelf: a fixed width, so a name wraps inside it, and its name
+// reserves two lines, so the row is the same height whichever stickers show.
+const SHELF_TILE = "w-26 shrink-0 snap-start gap-1 p-1";
+const SHELF_PICTURE = "size-16";
+const SHELF_NAME = "min-h-[2lh]";
 
 // The titles the child has earned, on top of the home screen: one row of a
 // fixed size (the latest few stickers, scrolling sideways on a narrow screen,
@@ -214,18 +219,23 @@ export function StickerShelf({
       className="flex flex-col gap-1 rounded-lg bg-surface p-3 shadow-card md:p-4"
     >
       <div className="flex items-center justify-between gap-3">
-        <h2
-          id="sticker-shelf-title"
-          className="text-block font-semibold md:text-block-lg"
-        >
-          {`Danh hiệu của bạn · ${earned.length}/${entries.length}`}
-        </h2>
+        <div className="flex min-w-0 flex-col">
+          <h2
+            id="sticker-shelf-title"
+            className="text-block font-semibold md:text-block-lg"
+          >
+            Danh hiệu của bạn
+          </h2>
+          <p data-shelf-count className="text-caption text-muted-foreground">
+            {`Đã nhận ${earned.length}/${entries.length}`}
+          </p>
+        </div>
         <button
           type="button"
           data-shelf-open-all
           aria-haspopup="dialog"
           onClick={() => setCollectionOpen(true)}
-          className="flex min-h-touch shrink-0 items-center gap-1 rounded-full bg-muted pr-2 pl-4 text-caption font-semibold motion-safe:transition-transform motion-safe:active:scale-[0.97]"
+          className="flex min-h-touch shrink-0 items-center gap-1 rounded-full bg-muted pr-2 pl-3 text-caption font-semibold motion-safe:transition-transform motion-safe:active:scale-[0.97]"
         >
           Xem tất cả
           <ChevronRight aria-hidden className="size-5" />
@@ -237,13 +247,13 @@ export function StickerShelf({
             entry={next}
             dataAttr="data-shelf-sticker"
             pictureClassName={SHELF_PICTURE}
+            nameClassName={SHELF_NAME}
             className={SHELF_TILE}
             taps={taps(next)}
             onOpen={() => open(next)}
           />
           <p className="min-w-0 flex-1 text-balance">
-            Học xong một bài để nhận danh hiệu đầu tiên, như “
-            {next.lesson.sticker.name}”.
+            Học xong một bài để nhận danh hiệu đầu tiên.
           </p>
         </div>
       ) : (
@@ -257,6 +267,7 @@ export function StickerShelf({
                 entry={entry}
                 dataAttr="data-shelf-sticker"
                 pictureClassName={SHELF_PICTURE}
+                nameClassName={SHELF_NAME}
                 className={SHELF_TILE}
                 taps={taps(entry)}
                 onOpen={() => open(entry)}
@@ -273,10 +284,12 @@ export function StickerShelf({
                 onClick={() => setCollectionOpen(true)}
                 className={`flex flex-col items-center rounded-lg text-center motion-safe:transition-transform motion-safe:active:scale-95 ${SHELF_TILE}`}
               >
-                <span className="flex size-14 items-center justify-center rounded-full bg-muted text-block font-bold">
+                <span className="flex size-16 items-center justify-center rounded-full bg-muted text-block font-bold">
                   {`+${more}`}
                 </span>
-                <span className="text-caption leading-tight text-muted-foreground">
+                <span
+                  className={`text-caption leading-tight text-muted-foreground ${SHELF_NAME}`}
+                >
                   thêm
                 </span>
               </button>
