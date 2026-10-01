@@ -1,0 +1,72 @@
+{
+  "title": "Đi trên trục số để cộng",
+  "engine": "local",
+  "poster": { "scene": "s02-phai", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta đi trên trục số để cộng.",
+          "opening": true
+        },
+        { "text": "Bạn cú đứng ở số −3." },
+        { "text": "Trời ấm lên 5 độ, tức là cộng 5." },
+        {
+          "text": "Bạn thử đoán xem: bạn cú đi sang bên nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s02-phai",
+      "sentences": [
+        {
+          "text": "Cộng với một số dương thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Bạn cú đi sang phải 5 vạch." },
+        { "text": "Bạn cú dừng ở số 2." },
+        { "text": "Vậy −3 cộng 5 bằng 2.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-trai",
+      "sentences": [
+        { "text": "Giờ bạn cú đứng ở số 2." },
+        {
+          "text": "Bạn thử đoán xem: 2 cộng −5 đi sang đâu?",
+          "pause": "ask"
+        },
+        {
+          "text": "Cộng với một số âm thì từ số đầu đi sang trái, số đơn vị bằng phần số tự nhiên của số thứ hai.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Bạn cú đi sang trái 5 vạch, tới số −3." },
+        { "text": "Vậy 2 cộng −5 bằng −3.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        { "text": "Nhớ nhé: cộng số dương đi phải, cộng số âm đi trái." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cong-so-duong",
+      "from": "s01-mo",
+      "to": "s02-phai",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"]
+    },
+    {
+      "id": "cong-so-am",
+      "from": "s03-trai",
+      "to": "s04-nho",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-am"]
+    }
+  ]
+}

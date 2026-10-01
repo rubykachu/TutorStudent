@@ -24,7 +24,16 @@
       "trừ được hai số nguyên bằng cách đi sang trái hoặc sang phải trên trục số",
       "tính nhanh tổng nhiều số nguyên"
     ],
-    "whyItMatters": "Bạn dùng cộng và trừ số nguyên để tính nhiệt độ ngày lạnh, hay số tiền còn lại sau khi thu và chi."
+    "whyItMatters": "Bạn dùng cộng và trừ số nguyên để tính nhiệt độ ngày lạnh, hay số tiền còn lại sau khi thu và chi.",
+    "narration": {
+      "audioUrl": "narration/phep-cong-phep-tru-so-nguyen/overview.m4a",
+      "vttUrl": "narration/phep-cong-phep-tru-so-nguyen/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {

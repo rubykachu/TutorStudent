@@ -1,0 +1,68 @@
+{
+  "title": "Trừ là cộng với số đối",
+  "engine": "local",
+  "poster": { "scene": "s02-doi", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học phép trừ số nguyên.",
+          "opening": true
+        },
+        { "text": "Sáng nhiệt độ là 4 độ." },
+        { "text": "Chiều giảm 6 độ, tức là 4 trừ 6." },
+        {
+          "text": "Bạn thử đoán xem: 4 trừ 6 bằng mấy?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s02-doi",
+      "sentences": [
+        {
+          "text": "Muốn trừ một số, ta cộng với số đối của số đó.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Số đối của 6 là −6." },
+        { "text": "Vậy 4 trừ 6 bằng 4 cộng −6.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-di",
+      "sentences": [
+        { "text": "Cộng −6 là đi sang trái 6 vạch." },
+        { "text": "Bạn cú dừng ở số −2." },
+        { "text": "Vậy 4 trừ 6 bằng −2.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s04-thu",
+      "sentences": [
+        { "text": "Ta thử 1 trừ 4." },
+        {
+          "text": "Bạn thử đoán xem: số đối của 4 là số nào?",
+          "pause": "ask"
+        },
+        { "text": "Số đối của 4 là −4." },
+        { "text": "Nên 1 trừ 4 bằng 1 cộng −4, tới −3." }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        { "text": "Nhớ nhé: trừ một số là cộng với số đối." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tru-so-duong",
+      "from": "s02-doi",
+      "to": "s05-nho",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-duong"]
+    }
+  ]
+}

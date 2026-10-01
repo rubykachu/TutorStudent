@@ -1,0 +1,67 @@
+{
+  "title": "Cộng hai số khác dấu",
+  "engine": "local",
+  "poster": { "scene": "s02-vd", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta cộng hai số khác dấu.",
+          "opening": true
+        },
+        { "text": "Ta tính 7 cộng −4." },
+        {
+          "text": "Bạn thử đoán xem: tổng dương hay âm?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s02-vd",
+      "sentences": [
+        {
+          "text": "Cộng hai số khác dấu mà không đối nhau: lấy phần số tự nhiên lớn trừ phần số tự nhiên nhỏ.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Phần số tự nhiên của 7 là 7, của −4 là 4." },
+        { "text": "Lấy 7 trừ 4, được 3." },
+        {
+          "text": "Tổng mang dấu của số có phần số tự nhiên lớn hơn.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Phần 7 lớn hơn, mà 7 là số dương." },
+        { "text": "Vậy 7 cộng −4 bằng 3.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s03-am",
+      "sentences": [
+        { "text": "Giờ ta thử 3 cộng −8." },
+        {
+          "text": "Bạn thử đoán xem: tổng mang dấu nào?",
+          "pause": "ask"
+        },
+        { "text": "Lấy 8 trừ 3, được 5." },
+        { "text": "Phần 8 lớn hơn, mà −8 là số âm." },
+        { "text": "Vậy 3 cộng −8 bằng −5.", "checkpoint": true }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        { "text": "Nhớ nhé: tổng mang dấu của số có phần lớn hơn." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "khac-dau",
+      "from": "s02-vd",
+      "to": "s04-nho",
+      "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"]
+    }
+  ]
+}
