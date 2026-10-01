@@ -999,7 +999,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu ƯCLN của hai số là d thì lấy tổng hai số chia cho d, ta được m cộng n.",
+              "text": "Biết tổng của hai số và ƯCLN là d. Chia tổng cho d thì được m cộng n, như 48 chia 6 được 8.",
               "rule": true
             },
             {
@@ -1040,7 +1040,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-xong",
-        "caption": "Nếu ƯCLN của hai số là d thì lấy tổng hai số chia cho d, ta được m cộng n."
+        "caption": "Biết tổng của hai số và ƯCLN là d. Chia tổng cho d thì được m cộng n, như 48 chia 6 được 8."
       }
     },
     {
@@ -1067,7 +1067,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu ƯCLN của hai số là d thì d có mặt hai lần trong tích hai số. Tích hai số bằng d nhân d nhân m nhân n.",
+              "text": "Hai số là d nhân m và d nhân n. Nhân chúng lại, tích bằng d nhân d nhân m nhân n.",
               "rule": true
             },
             {
@@ -1108,7 +1108,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-48-xong",
-        "caption": "Nếu ƯCLN của hai số là d thì d có mặt hai lần trong tích hai số. Tích hai số bằng d nhân d nhân m nhân n."
+        "caption": "Hai số là d nhân m và d nhân n. Nhân chúng lại, tích bằng d nhân d nhân m nhân n."
       }
     },
     {
@@ -1211,7 +1211,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Xếp các số từ bé đến lớn rồi tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó có cùng số dư là ƯCLN của các hiệu đó.",
+              "text": "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó dư bằng nhau là ƯCLN của các hiệu đó.",
               "rule": true
             },
             {
@@ -1239,7 +1239,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-thu-lai",
-        "caption": "Xếp các số từ bé đến lớn rồi tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó có cùng số dư là ƯCLN của các hiệu đó."
+        "caption": "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó dư bằng nhau là ƯCLN của các hiệu đó."
       }
     }
   ],
@@ -1421,7 +1421,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tong-48-xong",
-        "caption": "Nếu ƯCLN của hai số là d thì lấy tổng hai số chia cho d, ta được m cộng n."
+        "caption": "Biết tổng của hai số và ƯCLN là d. Chia tổng cho d thì được m cộng n, như 48 chia 6 được 8."
       }
     },
     {
@@ -1431,7 +1431,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.tich-48-xong",
-        "caption": "Nếu ƯCLN của hai số là d thì d có mặt hai lần trong tích hai số. Tích hai số bằng d nhân d nhân m nhân n."
+        "caption": "Hai số là d nhân m và d nhân n. Nhân chúng lại, tích bằng d nhân d nhân m nhân n."
       }
     },
     {
@@ -1451,7 +1451,7 @@
       "recap": {
         "type": "visual",
         "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.du-thu-lai",
-        "caption": "Xếp các số từ bé đến lớn rồi tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó có cùng số dư là ƯCLN của các hiệu đó."
+        "caption": "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó dư bằng nhau là ƯCLN của các hiệu đó."
       }
     }
   ],
@@ -5625,7 +5625,7 @@
         "expr": "3·8"
       },
       "explain": {
-        "text": "Tích hai số là 3 nhân 3 nhân m nhân n, tức là 9 nhân m nhân n. Tích là 72 nên m nhân n bằng 8, và chỉ cặp 1 và 8 thì m, n mới chỉ chung ước 1. Vậy b bằng 3 nhân 8.",
+        "text": "Hai số là 3 nhân m và 3 nhân n. Nhân chúng lại được 9 nhân m nhân n, mà tích là 72 nên m nhân n bằng 8. Chỉ cặp 1 và 8 có m, n chỉ chung ước 1, nên b là 3 nhân 8.",
         "tex": "b = \\concept{amber}{3} \\cdot 8 = 24"
       }
     },
@@ -5721,7 +5721,7 @@
         "expr": "6·4"
       },
       "explain": {
-        "text": "Tích hai số là 6 nhân 6 nhân m nhân n, tức là 36 nhân m nhân n. Tích là 144 nên m nhân n bằng 4, mà hai số khác nhau nên m, n là 1 và 4. Vậy số lớn là 6 nhân 4.",
+        "text": "Hai số là 6 nhân m và 6 nhân n. Nhân chúng lại được 36 nhân m nhân n, mà tích là 144 nên m nhân n bằng 4. Hai số khác nhau nên m, n là 1 và 4, số lớn là 6 nhân 4.",
         "tex": "36 \\cdot m \\cdot n = 144"
       }
     },
@@ -6220,7 +6220,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Xếp các số từ bé đến lớn rồi tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó có cùng số dư là "
+          "text": "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó dư bằng nhau là "
         },
         {
           "type": "blank",
