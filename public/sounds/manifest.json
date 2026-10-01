@@ -12,9 +12,9 @@
       "id": "button",
       "file": "button.m4a",
       "kind": "tone",
-      "sha256": "c527fa124756dfb089ae09414db9065795b2fe89905d7f2129e57f63e139d038",
-      "lufs": -24.4,
-      "peakDb": -10.3
+      "sha256": "d92805272c7f910c876b2acfa4901e0a2f9ee7737ace23ee1fb3d19401c9d49e",
+      "lufs": -24,
+      "peakDb": -11.4
     },
     {
       "id": "correct-jingle",
@@ -226,6 +226,21 @@
       "match": 1,
       "lufs": -16.6,
       "peakDb": -1.7
+    },
+    {
+      "id": "sticker-earned",
+      "file": "sticker-earned.m4a",
+      "kind": "voice",
+      "sha256": "2af9254ea0fb3cd8fa2dcee0dcfe417e4545903bfa80ac9eaef98312806ba42b",
+      "text": "Chúc mừng bạn! Bạn vừa nhận được một sticker mới!",
+      "engine": {
+        "name": "gemini",
+        "model": "gemini-3.1-flash-tts-preview",
+        "voice": "Sulafat"
+      },
+      "match": 1,
+      "lufs": -16.4,
+      "peakDb": -2
     }
   ]
 }

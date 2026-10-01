@@ -45,7 +45,16 @@ export type ToneSpec = {
   overtone: number;
   // Per second; larger dies away faster.
   noteDecay: number;
+  // Per second; larger rises faster (the note reaches full level in about
+  // 3 / attack seconds).
   attack: number;
+  // Exponent of the rise: 1 starts at full slope, 2 starts flat, so the note
+  // swells in without any edge. Default 1.
+  attackPower?: number;
+  // A pitch glide: each note starts `amount` (a share of its frequency,
+  // negative below) away and settles on its pitch at `rate` per second,
+  // like a drop landing.
+  glide?: { amount: number; rate: number };
   sparkle?: {
     hz: number;
     rateHz: number;
@@ -72,20 +81,20 @@ export const TONES: Record<string, ToneSpec> = {
     fadeOutS: 0.04,
     lufs: MASTERING.voiceLufs - 6,
   },
-  // Pressing a button or a link: a soft, round two-note "bloop" (C5 up to
-  // G5) with almost no overtone and a slow fade, so it reads as gentle and
-  // clearly differs from the bright wooden click of choosing an answer.
+  // Pressing a button or a link: one round, soft note (D5) that swells in
+  // over a few hundredths of a second, lands from a slight pitch glide like
+  // a drop, and fades away with no edge. Nearly pure sine, so it stays clearly
+  // gentler than the bright wooden click of choosing an answer.
   [BUTTON_ID]: {
-    durationS: 0.22,
-    notes: [
-      [523.25, 0],
-      [783.99, 0.05],
-    ],
+    durationS: 0.34,
+    notes: [[587.33, 0]],
     noteLevel: 0.45,
-    overtone: 0.1,
-    noteDecay: 22,
-    attack: 300,
-    fadeOutS: 0.08,
+    overtone: 0.03,
+    noteDecay: 16,
+    attack: 70,
+    attackPower: 2,
+    glide: { amount: -0.1, rate: 30 },
+    fadeOutS: 0.12,
     lufs: MASTERING.voiceLufs - 8,
   },
   // A correct answer: a bright rising arpeggio (C6 E6 G6 C7), then a quiet
@@ -127,7 +136,15 @@ export const TONES: Record<string, ToneSpec> = {
 export function toneExpression(spec: ToneSpec): string {
   const tone = (hz: number, start: number) => {
     const t = `(t-${start})`;
-    return `if(gte(t,${start}),${spec.noteLevel}*(1-exp(-${spec.attack}*${t}))*exp(-${spec.noteDecay}*${t})*(sin(2*PI*${hz}*${t})+${spec.overtone}*sin(4*PI*${hz}*${t})),0)`;
+    const g = spec.glide;
+    // Elapsed time as the oscillator sees it: the integral of the gliding
+    // frequency, divided by the note's frequency.
+    const phase = g
+      ? `(${t}+${g.amount}*(1-exp(-${g.rate}*${t}))/${g.rate})`
+      : t;
+    const rise = `(1-exp(-${spec.attack}*${t}))`;
+    const swell = spec.attackPower ? `pow(${rise},${spec.attackPower})` : rise;
+    return `if(gte(t,${start}),${spec.noteLevel}*${swell}*exp(-${spec.noteDecay}*${t})*(sin(2*PI*${hz}*${phase})+${spec.overtone}*sin(4*PI*${hz}*${phase})),0)`;
   };
   const parts = spec.notes.map(([hz, start]) => tone(hz, start));
   const s = spec.sparkle;

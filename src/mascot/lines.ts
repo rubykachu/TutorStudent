@@ -43,11 +43,19 @@ export const PRAISE_LINES: readonly VoiceLine[] = [
   { id: "praise-hay-lam", text: "Hay lắm, bạn làm đúng rồi!" },
 ];
 
+// Said once, with the confetti, when the child finishes a lesson and earns its
+// sticker (not when they reopen a sticker they already have).
+export const STICKER_EARNED_LINE: VoiceLine = {
+  id: "sticker-earned",
+  text: "Chúc mừng bạn! Bạn vừa nhận được một sticker mới!",
+};
+
 // Every line the owl can say, each with its own clip.
 export const VOICE_LINES: readonly VoiceLine[] = [
   ...ENCOURAGE_LINES,
   ...Object.values(OWL_LINES),
   ...PRAISE_LINES,
+  STICKER_EARNED_LINE,
 ];
 
 export const OWL_LINE_MAX_WORDS = 10;

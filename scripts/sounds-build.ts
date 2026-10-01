@@ -19,12 +19,11 @@ import { synthesizeGemini } from "./lib/gemini-tts";
 import {
   MASTERING,
   TONES,
-  type ToneSpec,
-  toneExpression,
   toneSource,
   VOICE_ENGINE,
   voiceLineSource,
 } from "./lib/sound-spec";
+import { master, renderTone } from "./lib/tone-render";
 
 // Usage: pnpm sounds:build
 // Makes the app's own clips into public/sounds/ and records them in
@@ -54,93 +53,6 @@ function readManifest(): Map<string, SoundEntry> {
 
 function upToDate(entry: SoundEntry | undefined, hash: string): boolean {
   return entry?.sha256 === hash && existsSync(path.join(OUT_DIR, entry.file));
-}
-
-type Loudness = { lufs: number; peakDb: number };
-
-// EBU R128 loudness and true peak of a file. A clip shorter than the
-// meter's 400 ms window is measured looped, which reads the loudness of the
-// clip itself.
-function measure(file: string): Loudness {
-  const result = spawnSync(
-    "ffmpeg",
-    [
-      "-hide_banner",
-      "-stream_loop",
-      "7",
-      "-i",
-      file,
-      "-af",
-      "ebur128=peak=true",
-      "-f",
-      "null",
-      "-",
-    ],
-    { encoding: "utf8" },
-  );
-  const summary = result.stderr.slice(result.stderr.lastIndexOf("Summary:"));
-  const lufs = Number(summary.match(/I:\s+(-?[\d.]+) LUFS/)?.[1]);
-  const peakDb = Number(summary.match(/Peak:\s+(-?[\d.]+) dBFS/)?.[1]);
-  if (result.status !== 0 || !Number.isFinite(lufs)) {
-    throw new Error(`Could not measure ${file}:\n${result.stderr.slice(-800)}`);
-  }
-  return { lufs, peakDb: Number.isFinite(peakDb) ? peakDb : -70 };
-}
-
-// Brings a clip to `lufs` with one fixed gain (no compression or limiting,
-// which is what distorts short clips), lowered if the true peak would pass
-// MASTERING.truePeakDb, then encodes it in the delivery format and measures
-// the delivered file.
-function master(input: string, lufs: number, file: string): Loudness {
-  const before = measure(input);
-  const gain = Math.min(
-    lufs - before.lufs,
-    MASTERING.truePeakDb - before.peakDb,
-  );
-  ffmpeg([
-    "-i",
-    input,
-    "-af",
-    `volume=${gain.toFixed(2)}dB`,
-    "-ar",
-    String(MASTERING.sampleRate),
-    "-ac",
-    String(MASTERING.channels),
-    "-c:a",
-    MASTERING.codec,
-    "-b:a",
-    MASTERING.bitrate,
-    "-movflags",
-    "+faststart",
-    file,
-  ]);
-  const after = measure(file);
-  if (after.peakDb >= MASTERING.maxPeakDb) {
-    throw new Error(
-      `${file} peaks at ${after.peakDb} dBFS, over ${MASTERING.maxPeakDb}`,
-    );
-  }
-  return {
-    lufs: Math.round(after.lufs * 10) / 10,
-    peakDb: Math.round(after.peakDb * 10) / 10,
-  };
-}
-
-function buildTone(spec: ToneSpec, file: string): Loudness {
-  mkdirSync(TAKES_DIR, { recursive: true });
-  const raw = path.join(TAKES_DIR, `${path.basename(file, ".m4a")}.wav`);
-  ffmpeg([
-    "-f",
-    "lavfi",
-    "-i",
-    `aevalsrc='${toneExpression(spec)}':s=${MASTERING.sampleRate}:d=${spec.durationS}`,
-    "-af",
-    `afade=t=out:st=${spec.durationS - spec.fadeOutS}:d=${spec.fadeOutS}`,
-    "-c:a",
-    "pcm_s16le",
-    raw,
-  ]);
-  return master(raw, spec.lufs, file);
 }
 
 // The words as compared with Whisper's transcript: lower case, tone marks
@@ -315,7 +227,11 @@ async function main() {
       entries.push(old);
       continue;
     }
-    const loudness = buildTone(spec, path.join(OUT_DIR, file));
+    const loudness = renderTone(
+      spec,
+      path.join(TAKES_DIR, `${id}.wav`),
+      path.join(OUT_DIR, file),
+    );
     console.log(`sounds: made ${file} (${loudness.lufs} LUFS)`);
     entries.push({ id, file, kind: "tone", sha256: hash, ...loudness });
   }
