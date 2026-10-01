@@ -1,7 +1,7 @@
 import manifest from "../../public/sounds/manifest.json";
 
-// The app's own sound clips (the correct-answer jingle, the soft "oops" tone
-// and the owl's voice lines) live in public/sounds/ with a committed
+// The app's own sound clips (tones, imported clips and the owl's voice lines)
+// live in public/sounds/ with a committed
 // manifest, public/sounds/manifest.json, written by `pnpm sounds:build`
 // from scripts/lib/sound-spec.ts. There is one clip per id, used everywhere
 // the line is said. Each entry records the sha256 of what the clip was made
@@ -12,8 +12,9 @@ export type SoundEntry = {
   id: string;
   // File name inside public/sounds/.
   file: string;
-  kind: "tone" | "voice";
-  // sha256 hex of the clip's source (`toneSource` / `voiceLineSource`).
+  kind: "tone" | "voice" | "file";
+  // sha256 hex of the clip's source (`toneSource` / `voiceLineSource` /
+  // `fileSource`).
   sha256: string;
   // Voice lines: the words, and the text-to-speech engine that spoke them.
   text?: string;
@@ -22,6 +23,10 @@ export type SoundEntry = {
   // (case and punctuation aside, tone marks included), else how close it
   // came (0–1).
   match?: number;
+  // Imported clips: the file in assets/sounds/ it was made from, and whether
+  // it is music (played only on request, so never preloaded).
+  source?: string;
+  music?: true;
   // Measured on the delivered file: integrated loudness (LUFS) and true
   // peak (dBFS).
   lufs: number;
@@ -39,7 +44,11 @@ export const TAP_ID = "tap";
 // "Quay lại", a subject tile): softer and rounder than the choice click.
 export const BUTTON_ID = "button";
 // A wrong answer after the first one of an attempt.
-export const OOPS_ID = "oops";
+export const WRONG_ID = "wrong-answer";
+// A section is finished, and the first part of the sticker celebration.
+export const LESSON_END_ID = "lesson-end";
+// Leaving a section or review with the "×" control.
+export const LEAVE_ID = "leave";
 
 const byId = new Map(
   (manifest as SoundManifest).entries.map((entry) => [entry.id, entry]),
@@ -51,7 +60,10 @@ export function soundUrl(id: string): string | undefined {
   return entry && `${SOUNDS_DIR_URL}/${entry.file}`;
 }
 
-// Every clip the app can play, for preloading.
+// Every clip played in answer to what the child does, for preloading. Music
+// is left out: it is fetched when the child asks for a song.
 export function allSoundUrls(): string[] {
-  return [...byId.values()].map((entry) => `${SOUNDS_DIR_URL}/${entry.file}`);
+  return [...byId.values()]
+    .filter((entry) => !entry.music)
+    .map((entry) => `${SOUNDS_DIR_URL}/${entry.file}`);
 }

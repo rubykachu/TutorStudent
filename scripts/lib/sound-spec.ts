@@ -1,4 +1,15 @@
-import { BUTTON_ID, JINGLE_ID, OOPS_ID, TAP_ID } from "@/lib/sound-manifest";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import {
+  BUTTON_ID,
+  JINGLE_ID,
+  LEAVE_ID,
+  LESSON_END_ID,
+  TAP_ID,
+  WRONG_ID,
+} from "@/lib/sound-manifest";
+import { SONGS } from "@/music/songs";
 
 // Everything `pnpm sounds:build` makes its clips from, in one place. A clip's
 // manifest hash covers the settings that shape it, so editing a number here
@@ -115,21 +126,69 @@ export const TONES: Record<string, ToneSpec> = {
     fadeOutS: 0.15,
     lufs: MASTERING.voiceLufs,
   },
-  // A wrong answer after the first: two low, round notes falling a minor
-  // third (G4 E4), quieter than the voice so it never scolds.
-  [OOPS_ID]: {
-    durationS: 0.45,
-    notes: [
-      [392, 0],
-      [329.6, 0.13],
-    ],
-    noteLevel: 0.35,
-    overtone: 0.12,
-    noteDecay: 9,
-    attack: 120,
-    fadeOutS: 0.1,
-    lufs: MASTERING.voiceLufs - 4,
+};
+
+// A clip made from a file in assets/sounds/ (copied into the repo so a build
+// never depends on a download): mixed to mono, its leading silence cut, and
+// brought to one loudness like every other clip.
+export type FileSpec = {
+  // File name inside assets/sounds/.
+  source: string;
+  // Integrated loudness the clip is brought to.
+  lufs: number;
+  // Cut the silence before the sound, so it starts the instant it is played.
+  trimSilence: boolean;
+  // A fade-out that ends the clip without a click; 0 for none.
+  fadeOutS: number;
+  // Played only when the child asks for it (a song), so never preloaded.
+  music: boolean;
+};
+
+export const ASSETS_SOUNDS_DIR = path.join(process.cwd(), "assets", "sounds");
+
+// Songs are quieter than the owl's voice, so they never drown it out or tire
+// the ear; iOS ignores a media element's volume, so the loudness is set here.
+const MUSIC_LUFS = MASTERING.voiceLufs - 6;
+
+export const FILES: Record<string, FileSpec> = {
+  // A section is finished: a short, bright fanfare, as loud as the correct
+  // jingle.
+  [LESSON_END_ID]: {
+    source: "duolingo-end-of-lesson.mp3",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0,
+    music: false,
   },
+  // A wrong answer after the first: a soft buzz, quieter than the voice so
+  // it never scolds.
+  [WRONG_ID]: {
+    source: "duolingo-incorrect.mp3",
+    lufs: MASTERING.voiceLufs - 4,
+    trimSilence: true,
+    fadeOutS: 0,
+    music: false,
+  },
+  // Leaving a section or review.
+  [LEAVE_ID]: {
+    source: "bye-bye-soundbible.mp3",
+    lufs: MASTERING.voiceLufs - 2,
+    trimSilence: true,
+    fadeOutS: 0,
+    music: false,
+  },
+  ...Object.fromEntries(
+    SONGS.map((song) => [
+      song.id,
+      {
+        source: song.source,
+        lufs: MUSIC_LUFS,
+        trimSilence: true,
+        fadeOutS: 0.4,
+        music: true,
+      } satisfies FileSpec,
+    ]),
+  ),
 };
 
 // An ffmpeg `aevalsrc` expression for a tone's samples.
@@ -164,4 +223,15 @@ export function toneSource(spec: ToneSpec): string {
 
 export function voiceLineSource(text: string): string {
   return JSON.stringify([text, VOICE_ENGINE, MASTERING]);
+}
+
+// What an imported clip's manifest hash covers: its settings and the bytes of
+// its source file.
+export function fileSource(spec: FileSpec): string {
+  const bytes = readFileSync(path.join(ASSETS_SOUNDS_DIR, spec.source));
+  return JSON.stringify([
+    spec,
+    createHash("sha256").update(bytes).digest("hex"),
+    MASTERING,
+  ]);
 }

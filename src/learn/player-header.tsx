@@ -1,7 +1,10 @@
+"use client";
+
 import { ChevronLeft, X } from "lucide-react";
 import Link from "next/link";
 import { SectionStepper } from "@/components/section-stepper";
 import { SoundToggle } from "@/components/sound-toggle";
+import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { lessonPath } from "@/lib/routes";
 
 type PlayerHeaderProps = {
@@ -25,18 +28,22 @@ type PlayerHeaderProps = {
 
 // Top row of the section and review players: leave the lesson (×), go back
 // one screen ("Quay lại"), the position dots and, at the right end, the
-// sound switch.
+// sound switch. Leaving plays the goodbye clip.
 export function PlayerHeader({
   lessonId,
   childId,
   progress,
   onBack,
 }: PlayerHeaderProps) {
+  const sounds = useFeedbackSoundsContext();
   return (
     <header className="flex items-center gap-2 md:gap-4">
       <Link
         href={lessonPath(lessonId)}
         aria-label="Về trang bài"
+        // Says goodbye instead of the plain button press.
+        data-own-sound
+        onClick={() => sounds?.leave()}
         className="-ml-2 flex size-12 shrink-0 items-center justify-center rounded-full text-muted-foreground"
       >
         <X aria-hidden className="size-7" />

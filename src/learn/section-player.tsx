@@ -34,14 +34,19 @@ import {
 } from "@/learn/section-steps";
 import { StickerEarnedCelebration } from "@/learn/sticker-celebration";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
+import { usePlayOnce } from "@/learn/use-play-once";
 import { ButtonSounds, FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import { sectionHeading } from "@/lib/lesson-label";
 import { introPath, lessonPath, sectionPath } from "@/lib/routes";
+import { LESSON_END_ID } from "@/lib/sound-manifest";
 import { now } from "@/lib/time";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
+import { MusicReward } from "@/music/music-box";
+import { countDoneSections, newlyUnlocked, type Song } from "@/music/songs";
 import {
   type ChildScope,
   getSectionProgress,
+  listSectionProgress,
   type SectionPosition,
   type TutorDb,
 } from "@/progress/db";
@@ -64,8 +69,17 @@ type SectionPlayerProps = {
   initialPosition: SectionPosition;
 };
 
-// A finished section and how many sections of its lesson are done with it.
-type Finished = SectionCompletion & { doneCount: number };
+// A finished section, how many sections of its lesson are done with it, and
+// the music box state it left: all finished sections of the child, and the
+// songs this one won.
+type Finished = SectionCompletion & {
+  doneCount: number;
+  doneSections: number;
+  newSongs: readonly Song[];
+};
+
+// The finish fanfare of a section.
+const SECTION_DONE_CUE: readonly string[] = [LESSON_END_ID];
 
 // Plays one section: explanation blocks one at a time ("Tiếp"), the
 // comprehension checks (graded, never rated), the practice exercises (rated;
@@ -138,6 +152,7 @@ export function SectionPlayer({
     }
     setSaving(true);
     const sectionIds = lesson.sections.map((s) => s.id);
+    const doneBefore = countDoneSections(await listSectionProgress(db, scope));
     const result = await completeSection(
       db,
       scope,
@@ -149,9 +164,14 @@ export function SectionPlayer({
     const done = new Set(
       records.filter((r) => r.state === "done").map((r) => r.sectionId),
     );
+    const doneSections = countDoneSections(
+      await listSectionProgress(db, scope),
+    );
     setCompletion({
       ...result,
       doneCount: sectionIds.filter((id) => done.has(id)).length,
+      doneSections,
+      newSongs: newlyUnlocked(doneBefore, doneSections),
     });
   };
 
@@ -185,6 +205,7 @@ export function SectionPlayer({
             lesson={lesson}
             section={section}
             completion={completion}
+            childId={childId}
           />
         </ButtonSounds>
       </FeedbackSoundsProvider>
@@ -434,17 +455,32 @@ function FinishedOpenEnded({ exercise }: { exercise: OpenEndedExercise }) {
   );
 }
 
+// Plays the finish fanfare of a section once, as the screen appears.
+function SectionDoneSound() {
+  usePlayOnce(SECTION_DONE_CUE);
+  return null;
+}
+
 function SectionDone({
   lesson,
   section,
   completion,
+  childId,
 }: {
   lesson: Lesson;
   section: Section;
   completion: Finished;
+  childId: string;
 }) {
   const reducedMotion = usePrefersReducedMotion();
   const total = lesson.sections.length;
+  const reward = (
+    <MusicReward
+      childId={childId}
+      doneSections={completion.doneSections}
+      songs={completion.newSongs}
+    />
+  );
   if (completion.lessonDone) {
     return (
       <DoneScreen
@@ -492,6 +528,7 @@ function SectionDone({
             {`“${lesson.sticker.name}”`}
           </p>
         </div>
+        {reward}
       </DoneScreen>
     );
   }
@@ -519,8 +556,10 @@ function SectionDone({
         </>
       }
     >
+      <SectionDoneSound />
       <p className="max-w-lg text-balance">{`Bạn vừa học xong “${section.title}”. Giỏi lắm!`}</p>
       <LessonProgressCard lesson={lesson} done={completion.doneCount} />
+      {reward}
     </DoneScreen>
   );
 }

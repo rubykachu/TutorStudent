@@ -5,14 +5,16 @@ import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
 import {
   allSoundUrls,
   JINGLE_ID,
-  OOPS_ID,
+  LEAVE_ID,
   soundUrl,
+  WRONG_ID,
 } from "@/lib/sound-manifest";
 import { PRAISE_LINES } from "@/mascot/lines";
 import { appDb, resetAppDbForTesting, setSoundEnabled } from "@/progress/hooks";
 
 vi.mock("@/lib/sound", () => ({
   playSequence: vi.fn(async () => undefined),
+  playSound: vi.fn(async () => undefined),
   preloadSounds: vi.fn(),
   installAudioUnlock: vi.fn(() => () => undefined),
 }));
@@ -38,11 +40,18 @@ describe("useFeedbackSounds", () => {
     expect(sound.preloadSounds).toHaveBeenCalledWith(allSoundUrls());
 
     result.current?.play([JINGLE_ID, praise.id]);
-    result.current?.play([OOPS_ID]);
+    result.current?.play([WRONG_ID]);
     expect(vi.mocked(sound.playSequence).mock.calls).toEqual([
       [[soundUrl(JINGLE_ID), soundUrl(praise.id)]],
-      [[soundUrl(OOPS_ID)]],
+      [[soundUrl(WRONG_ID)]],
     ]);
+  });
+
+  it("plays the goodbye as a sequence, so it stops a voice still speaking", async () => {
+    const { result } = renderHook(() => useFeedbackSounds("kid-1"));
+    await waitFor(() => expect(result.current).toBeDefined());
+    result.current?.leave();
+    expect(sound.playSequence).toHaveBeenCalledWith([soundUrl(LEAVE_ID)]);
   });
 
   it("gives no sounds while this child has sound off", async () => {

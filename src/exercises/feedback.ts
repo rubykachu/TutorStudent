@@ -4,7 +4,7 @@ import {
   type Phase,
 } from "@/exercises/machine";
 import { hashSeed } from "@/exercises/shuffle";
-import { JINGLE_ID, OOPS_ID } from "@/lib/sound-manifest";
+import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import type { MascotExpression } from "@/mascot/expressions";
 import {
   ENCOURAGE_LINES,
@@ -138,7 +138,7 @@ function buildHighlights(
 
 // The clips to play, in order, right after a check led to `state`: the jingle
 // and the praise on a correct answer; the encouragement on the first wrong
-// check; the soft "oops" tone on every later one, then the owl's line when it
+// check; the wrong-answer sound on every later one, then the owl's line when it
 // has one. Every wrong check makes a sound, and the voice always says what
 // the bubble shows.
 export function feedbackCue(
@@ -156,7 +156,7 @@ export function feedbackCue(
     case "wrong2":
     case "wrong3":
     case "retype":
-      return [OOPS_ID, ...spoken];
+      return [WRONG_ID, ...spoken];
     default:
       return [];
   }

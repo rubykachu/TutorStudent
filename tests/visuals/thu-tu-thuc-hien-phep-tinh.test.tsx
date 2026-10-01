@@ -131,7 +131,9 @@ describe("TryIt", () => {
     const play = vi.fn();
     const onStateChange = vi.fn();
     render(
-      <FeedbackSoundsProvider sounds={{ play, tap: vi.fn(), button: vi.fn() }}>
+      <FeedbackSoundsProvider
+        sounds={{ play, tap: vi.fn(), button: vi.fn(), leave: vi.fn() }}
+      >
         <TryIt source="8+6·2" onStateChange={onStateChange} />
       </FeedbackSoundsProvider>,
     );

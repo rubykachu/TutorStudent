@@ -25,12 +25,61 @@
       "peakDb": -4.7
     },
     {
-      "id": "oops",
-      "file": "oops.m4a",
-      "kind": "tone",
-      "sha256": "d6a85b964c8100326c61282ebe98b58143687c103c4535c410dcc00637f1cd3d",
-      "lufs": -20.1,
-      "peakDb": -6.1
+      "id": "lesson-end",
+      "file": "lesson-end.m4a",
+      "kind": "file",
+      "sha256": "52dac7cd21b7b6230cdb669c7cc93c191f6748487b7a55588bf694fb084c28e5",
+      "source": "duolingo-end-of-lesson.mp3",
+      "lufs": -16,
+      "peakDb": -3.5
+    },
+    {
+      "id": "wrong-answer",
+      "file": "wrong-answer.m4a",
+      "kind": "file",
+      "sha256": "065a26f1e31cd11aa7ac6c10dcebfeec9e5b08233c5385f51507cd44095011e9",
+      "source": "duolingo-incorrect.mp3",
+      "lufs": -21.3,
+      "peakDb": -1.9
+    },
+    {
+      "id": "leave",
+      "file": "leave.m4a",
+      "kind": "file",
+      "sha256": "cca607cb5582a43394cde4b34e974bd276040493c8c26511e988fd00efd19e03",
+      "source": "bye-bye-soundbible.mp3",
+      "lufs": -18.1,
+      "peakDb": -5.7
+    },
+    {
+      "id": "song-heng-yao-re",
+      "file": "song-heng-yao-re.m4a",
+      "kind": "file",
+      "sha256": "1eee7014ce50fdf5d27cea0629b9ffc056aaefd3683d65480772cede0a2a3341",
+      "source": "heng-yao-re.mp3",
+      "music": true,
+      "lufs": -22.1,
+      "peakDb": -9.8
+    },
+    {
+      "id": "song-spiderman",
+      "file": "song-spiderman.m4a",
+      "kind": "file",
+      "sha256": "e7ede0b57651694d50386fa72de0d2da5a6a3a7254a843e29498f8b23d8b0b9d",
+      "source": "spiderman-meme-song.mp3",
+      "music": true,
+      "lufs": -22,
+      "peakDb": -6.6
+    },
+    {
+      "id": "song-tieng-cuoi",
+      "file": "song-tieng-cuoi.m4a",
+      "kind": "file",
+      "sha256": "7cc3546b29d891319fdc69cae6bffc64b8ad7660072bf14e6e735d4ab049f443",
+      "source": "funny-sound-that-will-make-you-to-laugh_1.mp3",
+      "music": true,
+      "lufs": -22,
+      "peakDb": -6.8
     },
     {
       "id": "encourage-lam-duoc",

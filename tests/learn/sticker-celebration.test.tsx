@@ -8,7 +8,7 @@ import {
   type FeedbackSounds,
   FeedbackSoundsProvider,
 } from "@/lib/feedback-sounds";
-import { JINGLE_ID } from "@/lib/sound-manifest";
+import { LESSON_END_ID } from "@/lib/sound-manifest";
 import { STICKER_EARNED_LINE } from "@/mascot/lines";
 
 const original = window.matchMedia;
@@ -27,7 +27,12 @@ function preferReducedMotion() {
 }
 
 function renderCelebration(sounds?: { play: FeedbackSounds["play"] }) {
-  const full = sounds && { play: sounds.play, tap: vi.fn(), button: vi.fn() };
+  const full = sounds && {
+    play: sounds.play,
+    tap: vi.fn(),
+    button: vi.fn(),
+    leave: vi.fn(),
+  };
   return render(
     <FeedbackSoundsProvider sounds={full}>
       <StickerEarnedCelebration />
@@ -36,15 +41,17 @@ function renderCelebration(sounds?: { play: FeedbackSounds["play"] }) {
 }
 
 describe("StickerEarnedCelebration", () => {
-  it("bursts confetti and plays the jingle then the owl's congratulation, once", () => {
+  it("bursts confetti and plays the finish fanfare then the owl's congratulation, once", () => {
     const play = vi.fn();
     const view = renderCelebration({ play });
     expect(view.container.querySelector("[data-confetti]")).not.toBeNull();
     expect(play).toHaveBeenCalledTimes(1);
-    expect(play).toHaveBeenCalledWith([JINGLE_ID, STICKER_EARNED_LINE.id]);
-    expect(STICKER_EARNED_CUE).toEqual([JINGLE_ID, STICKER_EARNED_LINE.id]);
+    expect(play).toHaveBeenCalledWith([LESSON_END_ID, STICKER_EARNED_LINE.id]);
+    expect(STICKER_EARNED_CUE).toEqual([LESSON_END_ID, STICKER_EARNED_LINE.id]);
     view.rerender(
-      <FeedbackSoundsProvider sounds={{ play, tap: vi.fn(), button: vi.fn() }}>
+      <FeedbackSoundsProvider
+        sounds={{ play, tap: vi.fn(), button: vi.fn(), leave: vi.fn() }}
+      >
         <StickerEarnedCelebration />
       </FeedbackSoundsProvider>,
     );

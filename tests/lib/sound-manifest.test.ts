@@ -3,16 +3,22 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  allSoundUrls,
   BUTTON_ID,
   JINGLE_ID,
-  OOPS_ID,
+  LEAVE_ID,
+  LESSON_END_ID,
   type SoundManifest,
   soundUrl,
   TAP_ID,
+  WRONG_ID,
 } from "@/lib/sound-manifest";
 import { VOICE_LINES } from "@/mascot/lines";
+import { SONGS } from "@/music/songs";
 import manifest from "../../public/sounds/manifest.json";
 import {
+  FILES,
+  fileSource,
   MASTERING,
   TONES,
   toneSource,
@@ -48,7 +54,7 @@ describe("sound manifest", () => {
 
   it("has every tone made from its current settings", () => {
     expect(Object.keys(TONES).sort()).toEqual(
-      [BUTTON_ID, JINGLE_ID, OOPS_ID, TAP_ID].sort(),
+      [BUTTON_ID, JINGLE_ID, TAP_ID].sort(),
     );
     for (const [id, spec] of Object.entries(TONES)) {
       const entry = entries.get(id);
@@ -56,6 +62,30 @@ describe("sound manifest", () => {
       expect(entry?.sha256).toBe(sha256(toneSource(spec)));
       expect(onDisk(entry?.file ?? "")).toBe(true);
     }
+  });
+
+  it("has every imported clip made from its current source file and settings", () => {
+    expect(Object.keys(FILES).sort()).toEqual(
+      [LESSON_END_ID, WRONG_ID, LEAVE_ID, ...SONGS.map((s) => s.id)].sort(),
+    );
+    for (const [id, spec] of Object.entries(FILES)) {
+      const entry = entries.get(id);
+      expect(entry?.kind, id).toBe("file");
+      expect(entry?.source, id).toBe(spec.source);
+      expect(entry?.sha256, id).toBe(sha256(fileSource(spec)));
+      expect(onDisk(entry?.file ?? ""), id).toBe(true);
+      expect(Boolean(entry?.music), id).toBe(spec.music);
+    }
+  });
+
+  it("makes every song quieter than a voice line and preloads none", () => {
+    for (const song of SONGS) {
+      const entry = entries.get(song.id);
+      expect(entry?.music, song.id).toBe(true);
+      expect(entry?.lufs, song.id).toBeLessThan(MASTERING.voiceLufs - 3);
+      expect(allSoundUrls()).not.toContain(soundUrl(song.id));
+    }
+    expect(allSoundUrls()).toContain(soundUrl(LESSON_END_ID));
   });
 
   it("keeps every clip at one loudness and clear of clipping", () => {
@@ -72,7 +102,11 @@ describe("sound manifest", () => {
 
   it("lists nothing else and gives clips URLs under /sounds", () => {
     expect([...entries.keys()].sort()).toEqual(
-      [...Object.keys(TONES), ...VOICE_LINES.map((l) => l.id)].sort(),
+      [
+        ...Object.keys(TONES),
+        ...Object.keys(FILES),
+        ...VOICE_LINES.map((l) => l.id),
+      ].sort(),
     );
     expect(soundUrl(JINGLE_ID)).toBe("/sounds/correct-jingle.m4a");
     expect(soundUrl("no-such-clip")).toBeUndefined();

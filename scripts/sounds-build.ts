@@ -17,18 +17,23 @@ import { ffmpeg, probeDuration } from "../video/lib/audio";
 import { matchRate } from "../video/lib/text";
 import { synthesizeGemini } from "./lib/gemini-tts";
 import {
+  ASSETS_SOUNDS_DIR,
+  FILES,
+  fileSource,
   MASTERING,
   TONES,
   toneSource,
   VOICE_ENGINE,
   voiceLineSource,
 } from "./lib/sound-spec";
-import { master, renderTone } from "./lib/tone-render";
+import { master, renderFile, renderTone } from "./lib/tone-render";
 
 // Usage: pnpm sounds:build
 // Makes the app's own clips into public/sounds/ and records them in
-// public/sounds/manifest.json: the tones (the correct-answer jingle and the
-// soft "oops"), synthesised by ffmpeg, and every owl voice line in
+// public/sounds/manifest.json: the tones (taps and the correct-answer
+// jingle), synthesised by ffmpeg, the clips imported from assets/sounds/
+// (finish, wrong answer, leaving, the music box songs) and every owl voice
+// line in
 // src/mascot/lines.ts, spoken by VOICE_ENGINE and checked with Whisper. All
 // of them are brought to one loudness and encoded in one format (MASTERING
 // in scripts/lib/sound-spec.ts). Only clips whose source changed are made
@@ -234,6 +239,32 @@ async function main() {
     );
     console.log(`sounds: made ${file} (${loudness.lufs} LUFS)`);
     entries.push({ id, file, kind: "tone", sha256: hash, ...loudness });
+  }
+
+  for (const [id, spec] of Object.entries(FILES)) {
+    const hash = sha256(fileSource(spec));
+    const file = `${id}.m4a`;
+    const old = previous.get(id);
+    if (old && upToDate(old, hash)) {
+      entries.push(old);
+      continue;
+    }
+    const loudness = renderFile(
+      spec,
+      path.join(ASSETS_SOUNDS_DIR, spec.source),
+      path.join(TAKES_DIR, `${id}.wav`),
+      path.join(OUT_DIR, file),
+    );
+    console.log(`sounds: made ${file} (${loudness.lufs} LUFS)`);
+    entries.push({
+      id,
+      file,
+      kind: "file",
+      sha256: hash,
+      source: spec.source,
+      ...(spec.music ? { music: true as const } : {}),
+      ...loudness,
+    });
   }
 
   const flagged: string[] = [];

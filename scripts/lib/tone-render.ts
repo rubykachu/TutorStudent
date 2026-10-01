@@ -2,7 +2,12 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync } from "node:fs";
 import path from "node:path";
 import { ffmpeg } from "../../video/lib/audio";
-import { MASTERING, type ToneSpec, toneExpression } from "./sound-spec";
+import {
+  type FileSpec,
+  MASTERING,
+  type ToneSpec,
+  toneExpression,
+} from "./sound-spec";
 
 // Measuring, mastering and synthesising the app's tones, shared by `pnpm
 // sounds:build` and any script that auditions a tone.
@@ -75,6 +80,38 @@ export function master(input: string, lufs: number, file: string): Loudness {
     lufs: Math.round(after.lufs * 10) / 10,
     peakDb: Math.round(after.peakDb * 10) / 10,
   };
+}
+
+const TRIM_SILENCE =
+  "silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.02";
+
+// Prepares an imported clip as a mono wav in `raw`: leading silence cut and a
+// fade-out when the spec asks, then masters it into `file`.
+export function renderFile(
+  spec: FileSpec,
+  input: string,
+  raw: string,
+  file: string,
+): Loudness {
+  mkdirSync(path.dirname(raw), { recursive: true });
+  const filters = [
+    ...(spec.trimSilence ? [TRIM_SILENCE] : []),
+    // The fade is applied to the reversed clip, so it needs no duration.
+    ...(spec.fadeOutS > 0
+      ? ["areverse", `afade=t=in:d=${spec.fadeOutS}`, "areverse"]
+      : []),
+  ];
+  ffmpeg([
+    "-i",
+    input,
+    "-ac",
+    "1",
+    ...(filters.length > 0 ? ["-af", filters.join(",")] : []),
+    "-c:a",
+    "pcm_s16le",
+    raw,
+  ]);
+  return master(raw, spec.lufs, file);
 }
 
 // Synthesises a tone into `raw` (a wav kept for inspection) and masters it

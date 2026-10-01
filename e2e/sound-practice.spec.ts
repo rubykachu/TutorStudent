@@ -100,7 +100,7 @@ test("every check makes a sound, and an accepted exercise can be replayed unrate
   await expect
     .poll(() => since(before))
     .toEqual([expect.stringMatching(/^\/sounds\/encourage-/)]);
-  // Later wrong checks: the soft tone, then the owl's line of that tier.
+  // Later wrong checks: the wrong-answer sound, then the owl's line of that tier.
   for (const [phase, line] of [
     ["wrong2", /^\/sounds\/hint-/],
     ["wrong3", /^\/sounds\/(solution-visual|reveal)\.m4a$/],
@@ -110,7 +110,7 @@ test("every check makes a sound, and an accepted exercise can be replayed unrate
     await expect(frame).toHaveAttribute("data-phase", phase);
     await expect
       .poll(() => since(before))
-      .toEqual(["/sounds/oops.m4a", expect.stringMatching(line)]);
+      .toEqual(["/sounds/wrong-answer.m4a", expect.stringMatching(line)]);
   }
   // Correct after wrong checks (entered again): the jingle and the praise.
   await exercise.getByRole("button", { name: "Tự làm lại" }).tap();

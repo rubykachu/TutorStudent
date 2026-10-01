@@ -9,6 +9,7 @@ import {
 import {
   allSoundUrls,
   BUTTON_ID,
+  LEAVE_ID,
   soundUrl,
   TAP_ID,
 } from "@/lib/sound-manifest";
@@ -41,6 +42,10 @@ export function useFeedbackSounds(childId: string): FeedbackSounds | undefined {
             button() {
               const url = soundUrl(BUTTON_ID);
               if (url) void playSound(url);
+            },
+            leave() {
+              const url = soundUrl(LEAVE_ID);
+              if (url) void playSequence([url]);
             },
           }
         : undefined,

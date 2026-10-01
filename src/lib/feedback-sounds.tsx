@@ -18,6 +18,10 @@ export type FeedbackSounds = {
   tap: () => void;
   // The softer press of a button or a link that leads somewhere.
   button: () => void;
+  // The goodbye of leaving a section or review. Stops any voice still
+  // speaking; the clip is kept alive by the sound module, so it finishes
+  // after the next screen has opened.
+  leave: () => void;
 };
 
 const FeedbackSoundsContext = createContext<FeedbackSounds | undefined>(

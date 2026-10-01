@@ -6,7 +6,7 @@ import {
 } from "@/exercises/exercise-frame";
 import { encouragementFor, praiseFor } from "@/exercises/feedback";
 import type { ChoiceInput } from "@/exercises/input";
-import { JINGLE_ID, OOPS_ID } from "@/lib/sound-manifest";
+import { JINGLE_ID, WRONG_ID } from "@/lib/sound-manifest";
 import {
   ENCOURAGE_LINES,
   OWL_LINE_MAX_WORDS,
@@ -96,6 +96,7 @@ function renderFrame(hints: Hints) {
     play: vi.fn<(clipIds: readonly string[]) => void>(),
     tap: vi.fn<() => void>(),
     button: vi.fn<() => void>(),
+    leave: vi.fn<() => void>(),
   };
   const view = render(
     <ExerciseFrame
@@ -441,17 +442,17 @@ describe("ExerciseFrame", () => {
 
     choose("b");
     checkAnswer();
-    expect(cue()).toEqual([OOPS_ID, OWL_LINES.hintMarks.id]);
+    expect(cue()).toEqual([WRONG_ID, OWL_LINES.hintMarks.id]);
     choose("b");
     checkAnswer();
-    expect(cue()).toEqual([OOPS_ID, OWL_LINES.reveal.id]);
+    expect(cue()).toEqual([WRONG_ID, OWL_LINES.reveal.id]);
 
     // A miss while entering the shown answer again: the tone alone, as the
     // owl says nothing then.
     fireEvent.click(screen.getByRole("button", { name: "Tự làm lại" }));
     choose("c");
     checkAnswer();
-    expect(cue()).toEqual([OOPS_ID]);
+    expect(cue()).toEqual([WRONG_ID]);
     expect(bubble(container)).toBeNull();
 
     // Correct after wrong checks: the jingle, then the praise shown.

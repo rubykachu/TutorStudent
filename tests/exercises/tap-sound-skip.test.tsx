@@ -19,7 +19,12 @@ function renderWith(
   options: { skippable?: boolean } = {},
 ) {
   const onDone = vi.fn();
-  const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
+  const sounds = {
+    play: vi.fn(),
+    tap: vi.fn(),
+    button: vi.fn(),
+    leave: vi.fn(),
+  };
   render(
     <FeedbackSoundsProvider sounds={sounds}>
       <ExerciseFrame
@@ -101,7 +106,12 @@ describe("tap sound on ordering", () => {
 
 describe("button sound", () => {
   function renderButtons(children: ReactNode) {
-    const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
+    const sounds = {
+      play: vi.fn(),
+      tap: vi.fn(),
+      button: vi.fn(),
+      leave: vi.fn(),
+    };
     render(
       <FeedbackSoundsProvider sounds={sounds}>
         <ButtonSounds>{children}</ButtonSounds>
