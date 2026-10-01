@@ -66,7 +66,7 @@ export function ExpTable({ spec }: { spec: ExpTableSpec }) {
         <div
           role="img"
           aria-label={label}
-          className="grid w-full gap-1.5"
+          className="grid w-full gap-x-1.5 gap-y-1"
           style={{
             gridTemplateColumns: `minmax(4.5rem, auto) repeat(${primes.length}, minmax(2.75rem, 1fr))`,
           }}
