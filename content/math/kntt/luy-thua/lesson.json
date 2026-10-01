@@ -621,7 +621,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Trong luỹ thừa, cơ số là thừa số được nhân lặp lại. Ở đây số 6 được nhân lặp lại 4 lần nên 6 là cơ số, còn số 4 nhỏ phía trên là số mũ.",
+        "text": "Trong luỹ thừa, cơ số là thừa số được nhân lặp lại. Ở đây có 4 thừa số 6 nhân với nhau nên 6 là cơ số, còn số 4 nhỏ phía trên là số mũ.",
         "tex": "\\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6} \\cdot \\concept{blue}{6} = \\concept{blue}{6}^{\\concept{violet}{4}}"
       }
     },
@@ -724,7 +724,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "5 · 4 chỉ có hai thừa số; số mũ 4 cho biết có 4 thừa số 5, không phải số đem nhân với 5."
+            "text": "5 · 4 chỉ có hai thừa số; 5⁴ có 4 thừa số, thừa số nào cũng bằng 5."
           },
           {
             "optionId": "c",
@@ -1237,12 +1237,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Tính luỹ thừa là nhân từng thừa số một. Đã có 6 · 6 = 36, nên lấy 36 nhân tiếp với thừa số 6 còn lại; mỗi bước chỉ thêm một thừa số.",
+        "text": "Tính luỹ thừa là nhân từng thừa số một. Đã có 6 · 6 = 36, nên lấy 36 nhân tiếp với một thừa số 6, cứ thế tới khi hết 4 thừa số.",
         "tex": "\\begin{aligned} 6 \\cdot 6 &= 36 \\\\ 36 \\cdot 6 &= 216 \\end{aligned}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Cách vừa học nhân tiếp với từng thừa số 6, không nhân kết quả 36 với chính nó."
+            "text": "Ở bước này ta lấy kết quả nhân tiếp với cơ số 6, chưa nhân 36 với 36."
           },
           {
             "optionId": "c",
@@ -1508,7 +1508,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "10 lập phương là 10³, tích của ba thừa số 10. 10 · 10 = 100, rồi 100 · 10 =  000.",
+        "text": "10 lập phương là 10³, tích của ba thừa số 10. 10 · 10 = 100, rồi 100 · 10 = 1 000.",
         "tex": "\\concept{blue}{10}^{\\concept{violet}{3}} = \\concept{blue}{10} \\cdot \\concept{blue}{10} \\cdot \\concept{blue}{10} = 1\\,000",
         "wrong": [
           {
@@ -2682,7 +2682,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số  000 là chữ số 1 và 3 chữ số 0 theo sau. Vậy  000 là 10³.",
+        "text": "Số 1 000 là chữ số 1 và 3 chữ số 0 theo sau. Vậy 1 000 là 10³.",
         "tex": "1\\,000 = \\concept{blue}{10}^{\\concept{violet}{3}}"
       }
     },
@@ -2713,7 +2713,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau. 1 000 có 4 chữ số 0, nên số mũ là 4.",
+        "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau. 10 000 có 4 chữ số 0, nên số mũ là 4.",
         "tex": "10\\,000 = \\concept{blue}{10}^{\\concept{violet}{4}}"
       }
     },
@@ -2749,7 +2749,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau. Số mũ là 5 nên viết chữ số 1 rồi 5 chữ số 0, được 10 000.",
+        "text": "10ⁿ viết ra là chữ số 1 và n chữ số 0 theo sau. Số mũ là 5 nên viết chữ số 1 rồi 5 chữ số 0, được 100 000.",
         "tex": "\\concept{blue}{10}^{\\concept{violet}{5}} = 100\\,000"
       }
     },
@@ -2836,7 +2836,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số mũ cho biết có bao nhiêu chữ số 0 sau chữ số 1. Vậy 10² là 100, 10³ là  000 và 10⁴ là 1 000.",
+        "text": "Số mũ cho biết có bao nhiêu chữ số 0 sau chữ số 1. Vậy 10² là 100, 10³ là 1 000 và 10⁴ là 10 000.",
         "tex": "\\begin{aligned} \\concept{blue}{10}^{\\concept{violet}{2}} &= 100 \\\\ \\concept{blue}{10}^{\\concept{violet}{3}} &= 1\\,000 \\\\ \\concept{blue}{10}^{\\concept{violet}{4}} &= 10\\,000 \\end{aligned}"
       }
     },
@@ -2873,7 +2873,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số  00 000 là chữ số 1 và 6 chữ số 0 theo sau. Vậy số mũ là 6 và số đó là 10⁶.",
+        "text": "Số 1 000 000 là chữ số 1 và 6 chữ số 0 theo sau. Vậy số mũ là 6 và số đó là 10⁶.",
         "tex": "1\\,000\\,000 = \\concept{blue}{10}^{\\concept{violet}{6}}"
       }
     },
@@ -2938,7 +2938,7 @@
           },
           {
             "optionId": "c",
-            "text": "10³ là  000, giá trị của hàng nghìn; chữ số 3 đứng ở hàng trăm."
+            "text": "10³ là 1 000, giá trị của hàng nghìn; chữ số 3 đứng ở hàng trăm."
           }
         ]
       }
@@ -2984,7 +2984,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Mỗi chữ số nhân với luỹ thừa của 10 ở hàng của nó. Chữ số 5 ở hàng nghìn,  000 là 10³; chữ số 2 ở hàng trăm, 100 là 10².",
+        "text": "Mỗi chữ số nhân với luỹ thừa của 10 ở hàng của nó. Chữ số 5 ở hàng nghìn, 1 000 là 10³; chữ số 2 ở hàng trăm, 100 là 10².",
         "tex": "5\\,247 = 5 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 2 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}} + 4 \\cdot \\concept{blue}{10} + 7"
       }
     },
@@ -3045,11 +3045,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Chữ số 6 ở hàng chục nên nhân với 10, không phải 10²; tổng này bằng  602."
+            "text": "Chữ số 6 ở hàng chục nên nhân với 10, không phải 10²; tổng này bằng 3 602."
           },
           {
             "optionId": "c",
-            "text": "Chữ số 3 ở hàng nghìn nên nhân với 10³, không phải 10⁴; tổng này bằng 3 062."
+            "text": "Chữ số 3 ở hàng nghìn nên nhân với 10³, không phải 10⁴; tổng này bằng 30 062."
           }
         ]
       }
@@ -3089,7 +3089,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Tính từng số hạng rồi cộng lại: 7 · 10³ =  000 và 4 · 10² = 400, còn 9 là hàng đơn vị. Vậy  000 + 400 + 9 =  409.",
+        "text": "Tính từng số hạng rồi cộng lại: 7 · 10³ = 7 000 và 4 · 10² = 400, còn 9 là hàng đơn vị. Vậy 7 000 + 400 + 9 = 7 409.",
         "tex": "7 \\cdot \\concept{blue}{10}^{\\concept{violet}{3}} + 4 \\cdot \\concept{blue}{10}^{\\concept{violet}{2}} + 9 = 7\\,000 + 400 + 9 = 7\\,409"
       }
     },
