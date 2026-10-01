@@ -319,7 +319,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("hai số âm", NEGATIVE),
     },
     {
-      tex: "(-12) + (-5) = -(12 + 5) = \\concept{pink}{-17}",
+      tex: "(-1) + (-2) = -(1 + 2) = \\concept{pink}{-3}",
       tag: tag("hai số âm", NEGATIVE),
     },
     {

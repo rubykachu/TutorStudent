@@ -11,7 +11,7 @@ import {
   ShownLine,
   useGuidedGoal,
 } from "@/visuals/shared/guided-feedback";
-import { stateStep, stateStepper } from "@/visuals/shared/markers";
+import { decorative, stateStep, stateStepper } from "@/visuals/shared/markers";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import {
   LineAxis,
@@ -108,14 +108,16 @@ export function HopTry({
         className="h-auto w-full max-w-md"
       >
         <LineAxis range={spec} plan={plan} marks={marks}>
-          <ConceptShape
-            color={START_COLOR}
-            cx={tickX(spec, start)}
-            cy={plan.axisY}
-            r={START_MARK_RADIUS}
-            className="stroke-surface"
-            strokeWidth={2}
-          />
+          <g {...decorative}>
+            <ConceptShape
+              color={START_COLOR}
+              cx={tickX(spec, start)}
+              cy={plan.axisY}
+              r={START_MARK_RADIUS}
+              className="stroke-surface"
+              strokeWidth={2}
+            />
+          </g>
           <motion.g
             initial={false}
             animate={{ x: tickX(spec, value) }}
