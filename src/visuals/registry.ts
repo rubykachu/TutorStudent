@@ -76,6 +76,13 @@ import {
   regionsOf as intOpsRegions,
 } from "@/visuals/math/phep-cong-phep-tru-so-nguyen/catalog";
 import {
+  INTERACTIVE_KINDS as BRACKET_INTERACTIVE_KINDS,
+  LESSON_SLUG as BRACKET_SLUG,
+  VISUAL_SPECS as BRACKET_SPECS,
+  VALIDATOR_IDS as BRACKET_VALIDATOR_IDS,
+  regionsOf as bracketRegions,
+} from "@/visuals/math/quy-tac-dau-ngoac/catalog";
+import {
   INTERACTIVE_KINDS,
   mulTableRegions,
   LESSON_SLUG as NHAN_CHIA_SLUG,
@@ -606,10 +613,36 @@ const intOpsEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "quy-tac-dau-ngoac": one per item of its catalog. The pick and
+// sign-change screens reuse the set lesson's "chon-dung" validator (one key
+// per candidate, 1 = picked or changed).
+const bracketEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(BRACKET_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in BRACKET_VALIDATOR_IDS
+        ? BRACKET_VALIDATOR_IDS[spec.kind as keyof typeof BRACKET_VALIDATOR_IDS]
+        : undefined;
+    const regions = bracketRegions(spec);
+    const entry: VisualEntry = {
+      interactive: BRACKET_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: pickMatches },
+            solutions: { [validatorId]: solvePickMatches },
+          }),
+      load: () => lessonExample(BRACKET_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${BRACKET_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
   ...intOpsEntries,
+  ...bracketEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1414,6 +1447,8 @@ const EXAMPLE_MODULES = lessonModules({
     import("@/visuals/math/tap-hop-cac-so-nguyen/examples"),
   "phep-cong-phep-tru-so-nguyen": () =>
     import("@/visuals/math/phep-cong-phep-tru-so-nguyen/examples"),
+  "quy-tac-dau-ngoac": () =>
+    import("@/visuals/math/quy-tac-dau-ngoac/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
