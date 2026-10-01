@@ -298,7 +298,7 @@
             },
             {
               "type": "note",
-              "text": "Ví dụ, trong số 3 507, chữ số 5 ở hàng trăm nên có giá trị 5 · 100 = 500. Còn chữ số 7 ở hàng đơn vị nên có giá trị 7 · 1 = 7."
+              "text": "Ví dụ, trong số 3 507, chữ số 5 ở hàng trăm nên có giá trị 5 · 100 = 500."
             },
             {
               "type": "visual",
@@ -872,7 +872,7 @@
             },
             {
               "type": "note",
-              "text": "Ví dụ, thêm 5 vào 2 713: chữ số 2 bé hơn 5 nên được 52 713. Còn thêm 5 vào 9 876: không chữ số nào bé hơn 5 nên được 98 765."
+              "text": "Ví dụ, 2 713 có chữ số 2 bé hơn 5 nên thêm 5 được 52 713."
             },
             {
               "type": "visual",
@@ -918,7 +918,7 @@
             },
             {
               "type": "note",
-              "text": "Ví dụ, thêm 5 vào 2 713: chữ số 7 lớn hơn 5 nên được 25 713. Còn thêm 5 vào 1 234: không chữ số nào lớn hơn 5 nên được 12 345."
+              "text": "Ví dụ, 2 713 có chữ số 7 lớn hơn 5 nên thêm 5 được 25 713."
             },
             {
               "type": "visual",
@@ -1080,10 +1080,6 @@
               "type": "note",
               "text": "Muốn liệt kê số ba chữ số theo tổng, trước hết chọn chữ số hàng trăm, từ 1 đến 9 nhưng không quá tổng. Sau đó tìm mọi cặp chữ số hàng chục và hàng đơn vị cộng lại bằng phần tổng còn lại.",
               "rule": true
-            },
-            {
-              "type": "note",
-              "text": "Phần còn lại là tổng trừ chữ số hàng trăm. Ví dụ, tổng là 3, hàng trăm là 1, phần còn lại là 3 trừ 1 bằng 2, nên ta có 102, 111, 120."
             },
             {
               "type": "visual",
