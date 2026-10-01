@@ -16,7 +16,7 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với số âm. Sáng mùa đông ở Sa Pa, nhiệt kế chỉ 2 độ dưới 0, bạn ghi nhiệt độ đó bằng số nào?"
     },
-    "summary": "Trong bài này, bạn làm quen với số nguyên âm và các số nguyên. Sau đó bạn tìm chỗ của chúng trên trục số. Cuối cùng, bạn so sánh, sắp xếp chúng và tìm số đối của một số.",
+    "summary": "Bài này dạy số âm và các số nguyên. Bạn tìm chỗ của chúng trên trục số. Sau đó bạn so sánh và sắp xếp chúng.",
     "goals": [
       "đọc và viết được số nguyên âm, số nguyên dương",
       "đặt được điểm của một số nguyên lên trục số",
@@ -252,7 +252,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Số nguyên nào cũng ở trong một nhóm, và chỉ một nhóm, trong ba nhóm: số nguyên âm, số 0 và số nguyên dương. Mỗi hàng của hình là một nhóm."
+              "text": "Mỗi số nguyên thuộc đúng một trong ba nhóm: số nguyên âm, số 0, số nguyên dương. Mỗi hàng của hình là một nhóm."
             },
             {
               "type": "visual",
@@ -265,7 +265,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Xếp chung các số nguyên âm, số 0 và các số nguyên dương vào một nhóm lớn. Nhóm lớn đó gọi là tập hợp các số nguyên, kí hiệu ℤ.",
+              "text": "Gộp ba nhóm đó lại thành một nhóm lớn. Nhóm lớn này là tập hợp các số nguyên, viết gọn là ℤ.",
               "rule": true
             },
             {
@@ -310,7 +310,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan",
-        "caption": "Xếp chung các số nguyên âm, số 0 và các số nguyên dương vào một nhóm lớn. Nhóm lớn đó gọi là tập hợp các số nguyên, kí hiệu ℤ."
+        "caption": "Gộp ba nhóm đó lại thành một nhóm lớn. Nhóm lớn này là tập hợp các số nguyên, viết gọn là ℤ."
       }
     },
     {
@@ -406,7 +406,7 @@
           "id": "tap-hop-cac-so-nguyen.tip.dem-buoc",
           "kind": "tránh sai",
           "title": "Điểm trên trục số là số nào",
-          "text": "Muốn biết một điểm là số nào, hãy đếm xem từ gốc O đến điểm đó có mấy đơn vị. Mỗi đơn vị là một khoảng giữa hai vạch liền nhau, nên chỉ đếm khoảng, không đếm vạch. Nếu điểm ở bên trái O thì số đó có dấu − đằng trước.",
+          "text": "Muốn biết một điểm là số nào, hãy đếm các đơn vị từ gốc O đến điểm đó. Một đơn vị là một khoảng giữa hai vạch liền nhau, nên bạn đếm khoảng, đừng đếm vạch. Nếu điểm ở bên trái O thì số đó có dấu − đằng trước.",
           "visualId": "tap-hop-cac-so-nguyen.visual.dem-buoc"
         }
       ],
@@ -799,7 +799,7 @@
       "recap": {
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.z-ba-phan",
-        "caption": "Xếp chung các số nguyên âm, số 0 và các số nguyên dương vào một nhóm lớn. Nhóm lớn đó gọi là tập hợp các số nguyên, kí hiệu ℤ."
+        "caption": "Gộp ba nhóm đó lại thành một nhóm lớn. Nhóm lớn này là tập hợp các số nguyên, viết gọn là ℤ."
       }
     },
     {
