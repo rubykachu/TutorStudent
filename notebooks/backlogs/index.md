@@ -27,6 +27,8 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
+0. Bài 12 `boi-chung-boi-chung-nho-nhat`: paused at review round 2 (5 Nghiêm trọng to fix; [`lesson-boi-chung-boi-chung-nho-nhat/task.md`](lesson-boi-chung-boi-chung-nho-nhat/task.md)). Next: fix them, round 3 diff, `pnpm content:hash --approve` and `pnpm content:lock`; then narration and videos; then re-check the BCNN items of `on-tap-chuong-2` against it.
+0. Ôn tập chương II `on-tap-chuong-2`: paused after review round 3 (1 Nghiêm trọng + 3 Nên sửa; [`lesson-on-tap-chuong-2/task.md`](lesson-on-tap-chuong-2/task.md)). Next: fix them, round 4 diff, approve and lock; then narration and videos.
 1. Bài 11 (print page 38): align its section 5 (`nhac-thua-so`) with the published Bài 10 (definitions, wording, colours; diff-only round, see its handover) before its narration and videos. Bài 11 narration and 3 videos are built: next is its diff-only review round (greeting in `overview.hook`, 3 video blocks), then `pnpm content:hash --approve` and `pnpm content:lock`. Bài 10 narration and videos are done and reviewed (round 4).
 2. Opening lines for the nine videos built before the opening-line rule: [`video-opening-retrofit/task.md`](video-opening-retrofit/task.md).
 3. Bài 3, then Bài 2 (on hold until the owner resumes them; add easy-to-hard guiding steps where the workbook is hard).
@@ -34,11 +36,18 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 5. First Địa lí lesson once the owner supplies pages: TopoJSON boundaries from Vietnam's point of view, `tapRegion` on maps.
 6. First deploy ("usable now"): prepared locally, waiting for the owner. Family-code gate (`src/proxy.ts`, `/unlock`, `/api/session`, codes from `FAMILY_CODES`), media through `NEXT_PUBLIC_MEDIA_BASE_URL`, `vercel.json`, production build without `public/media` and with drafts left out, all verified. The owner approves and runs the external steps of [`docs/operations.md`](../../docs/operations.md): R2 bucket and CORS, upload of `public/media/`, Vercel project and env vars, push, smoke test on iPad Safari. Progress stays per device (IndexedDB) for now.
 6b. Full Go-live, after the first deploy: two R2 buckets (private, public), app and admin tokens, `snapshots/` lifecycle 180 days; `BlobStore` with R2 and in-memory adapters; `/api/parent-session`, `/api/sync`, family/epoch/isAdmin checks from `families.json`, PIN lock; Dexie to R2 sync engine (If-Match, snapshots, 1 MB limit, queue, `merge`, progress migration by `retired`); performance measurement (Lighthouse, iPad trace); `/install`, PWA with `@serwist/turbopack`, precache of all content; `pnpm admin` and skill `tutor-admin`; back up the narration caches (README, "Dọn dẹp và Go-live"). Each write outside this machine needs the owner's go-ahead.
+6c. After Bài 12 and Ôn tập chương II are done: `pnpm media:upload` then `pnpm deploy:prod`, per [`docs/operations.md`](../../docs/operations.md); needs the owner's approval for each external write.
+6d. Progress sync across devices (full Go-live above: R2 sync, parent PIN, PWA offline) is the next big item after chapter II.
 7. Later: AI feedback for open-ended writing (`AiReviewer` with a Gemini adapter, `/api/feedback`, per-family quota, self-tick fallback); quick-update channel for content (JSON schema to prompt, admin paste page, `/api/content`, overlays from R2).
 
 ## Open follow-ups
 
-- Reset one lesson's progress from the parent page ("Học lại bài này"): [`reset-lesson-progress/task.md`](reset-lesson-progress/task.md).
+- Reset one lesson's progress from the parent page ("Học lại bài này"): [`reset-lesson-progress/task.md`](reset-lesson-progress/task.md). The progress layer is done; left: parent-page UI, confirm dialog, e2e, docs.
+- Bài 11: add the book's extra knowledge (a = d·m, b = d·n), câu 2.41–2.43 and example 1 (owner approved adding): [`lesson-uoc-chung-uoc-chung-lon-nhat/task.md`](lesson-uoc-chung-uoc-chung-lon-nhat/task.md).
+- "Mẹo hay" `tips.json` for Bài 8 to 11.
+- `explain` for the chapter I lessons (owner will ask later).
+- Chapter I interactive theory screens that do not yet use the guided "làm đúng mới Tiếp" mechanism.
+- Vercel project Node.js setting 24.x to 22.x; remove the old URL `tutor-delta-pink.vercel.app` from the R2 CORS rules once the owner confirms.
 - Owner feedback of 01/10/2026 (explanation after every answer, tips, overview tied to daily life, video pacing): [`feedback-2026-10-01-explain-tips-pacing/task.md`](feedback-2026-10-01-explain-tips-pacing/task.md). Next: `explain` for the four chapter II lessons, `tips.json` for Bài 8 to 11.
 - Owner feedback of 01/10/2026 (new sounds, avatars, section cards; the music box was dropped): [`feedback-2026-10-01-music-avatars/task.md`](feedback-2026-10-01-music-avatars/task.md).
 - Owner feedback of 01/10/2026 (sounds, stickers, background): [`feedback-2026-10-01-sounds-stickers-background/task.md`](feedback-2026-10-01-sounds-stickers-background/task.md).
