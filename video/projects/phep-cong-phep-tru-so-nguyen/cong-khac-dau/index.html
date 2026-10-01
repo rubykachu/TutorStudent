@@ -1,0 +1,316 @@
+<!doctype html>
+<!--
+  Lesson video "Cộng hai số khác dấu" (lesson phep-cong-phep-tru-so-nguyen): 7 + (-4) = 3 and 3 + (-8) = -5: take the bigger natural part minus the smaller, the sum carries the sign of the number with the bigger part; the walk on the line confirms it.
+  Colours as in the lesson: positive numbers lime, negative pink, zero slate,
+  opposite sky, first point blue, sum amber, difference teal, step labels violet.
+  Built by `pnpm video:build phep-cong-phep-tru-so-nguyen cong-khac-dau`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Cộng hai số khác dấu</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      .fm {
+        font:
+          800 84px / 1 "Baloo 2",
+          sans-serif;
+        top: 28px;
+      }
+      .fm.second {
+        top: 112px;
+        font-size: 72px;
+      }
+      .swap {
+        display: inline-grid;
+      }
+      .swap > * {
+        grid-area: 1 / 1;
+        text-align: center;
+      }
+      .fm .gap {
+        margin: 0 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="axis" class="layer"></div>
+        <section id="s1" class="scene layer"></section>
+        <section id="s2" class="scene layer"></section>
+        <section id="s3" class="scene layer"></section>
+        <section id="s4" class="scene layer"></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, fade, pose, scenes, tl, finish, color } =
+          window.LV;
+        const g = window.gsap;
+        const MINUS = "−";
+        const AX = 380;
+        const LOW = -8;
+        const HIGH = 8;
+        const STEP = 70;
+        const X = (v) => 640 + v * STEP;
+        const KIND = (v) => (v > 0 ? "lime" : v < 0 ? "pink" : "slate");
+        const written = (v) => (v < 0 ? MINUS + -v : String(v));
+        const concept = (c) =>
+          c === "ink" ? "var(--color-foreground)" : `var(--color-concept-${c})`;
+        const paint = (c) => `fill="${concept(c)}"`;
+
+        // A number in its concept colour; a negative one in brackets when it
+        // follows a sign, as the lesson writes it.
+        const num = (v, id, bracket = false) => {
+          const inner = `<span style="color: ${concept(KIND(v))}">${written(v)}</span>`;
+          const shown = bracket && v < 0 ? `(${inner})` : inner;
+          return id ? `<span id="${id}">${shown}</span>` : shown;
+        };
+        const sym = (id, s) => `<span id="${id}" class="gap">${s}</span>`;
+        const tag = (id, c, html, x, top) =>
+          `<div id="${id}" class="tag chip" style="--c: ${concept(c)}; left: ${x}px; top: ${top}px">${html}</div>`;
+        const svgIn = (scene, html) =>
+          $(scene).insertAdjacentHTML(
+            "beforeend",
+            `<svg class="layer" viewBox="0 0 1280 720">${html}</svg>`,
+          );
+        const dot = (id, v, c) =>
+          `<circle id="${id}" cx="${X(v)}" cy="${AX}" r="19" ${paint(c)} stroke="var(--color-surface)" stroke-width="4"/>`;
+        // An arrow just above the line, from value a to value b.
+        const arrow = (id, a, b, c) => {
+          const dir = b > a ? 1 : -1;
+          const y = AX - 52;
+          const tip = X(b);
+          return `<g id="${id}" stroke="${concept(c)}" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="${X(a)}" x2="${tip - dir * 8}" y1="${y}" y2="${y}"/>
+            <path d="M ${tip - dir * 26} ${y - 18} L ${tip - dir * 6} ${y} L ${tip - dir * 26} ${y + 18}"/>
+          </g>`;
+        };
+        // Two writings of one place that take turns (the sign is not known yet).
+        const swap = (a, b) => `<span class="swap">${a}${b}</span>`;
+        const centre = (selector) => {
+          const box = $(selector).getBoundingClientRect();
+          return box.left + box.width / 2;
+        };
+        const row = (id, html, second) =>
+          `<div id="${id}" class="row fm${second ? " second" : ""}">${html}</div>`;
+        const el = (scene, html) => $(scene).insertAdjacentHTML("beforeend", html);
+        // Moves a dot from value a to value b one mark at a time.
+        const hop = (id, a, b, from, to) =>
+          tl.fromTo(
+            id,
+            { x: 0 },
+            {
+              x: X(b) - X(a),
+              duration: Math.max(to - from, 0.6),
+              ease: `steps(${Math.abs(b - a)})`,
+              immediateRender: false,
+            },
+            from,
+          );
+        // Turns a dot into the result of the walk.
+        const settle = (id, c, t) =>
+          tl.set(id, { attr: { fill: color(`concept-${c}`) } }, t);
+
+        // ---------- the number line, drawn once and revealed in parts ----------
+        let ticks = "";
+        let labels = "";
+        for (let v = LOW; v <= HIGH; v++) {
+          ticks += `<line id="tk${v}" x1="${X(v)}" x2="${X(v)}" y1="${AX - 18}" y2="${AX + 18}" stroke="var(--color-foreground)" stroke-width="${v === 0 ? 6 : 4}"/>`;
+          labels += `<text id="lb${v}" x="${X(v)}" y="${AX + 66}" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="40" ${paint(KIND(v))}>${written(v)}</text>`;
+        }
+        $("#axis").innerHTML = `<svg width="1280" height="720" viewBox="0 0 1280 720">
+          <g id="line">
+            <line x1="${X(LOW - 0.6)}" x2="${X(HIGH + 0.6)}" y1="${AX}" y2="${AX}" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M ${X(LOW - 0.6) + 4} ${AX} l 20 -14 M ${X(LOW - 0.6) + 4} ${AX} l 20 14 M ${X(HIGH + 0.6) - 4} ${AX} l -20 -14 M ${X(HIGH + 0.6) - 4} ${AX} l -20 14" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </g>
+          ${ticks}
+          ${labels}
+        </svg>`;
+        const range = (from, to) => {
+          const out = [];
+          for (let v = from; v <= to; v++) out.push(v);
+          return out;
+        };
+        const ids = (prefix) => range(LOW, HIGH).map((v) => `#${prefix}${v}`);
+        g.set(["#line", ...ids("tk"), ...ids("lb")], { autoAlpha: 0 });
+        const showAxis = (t) => {
+          tl.to("#line", { autoAlpha: 1, duration: 0.4 }, t);
+          tl.to(ids("tk"), { autoAlpha: 1, duration: 0.25, stagger: 0.05 }, t + 0.2);
+          tl.to(ids("lb"), { autoAlpha: 1, duration: 0.25, stagger: 0.05 }, t + 0.3);
+        };
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "20px",
+          width: "150px",
+          height: "150px",
+        });
+
+
+        const nat = (v, id) => `<span id="${id}">${v}</span>`;
+        // One worked example: the sum on the first row, the working on the
+        // second ("= sign(big - small) = result"), the sign not known yet.
+        const example = (scene, k, a, b, big, small, resultText, signKind) => {
+          el(scene, row(`a${k}`, `<span id="a${k}a">${num(a, "")}</span>${sym(`a${k}b`, "+")}<span id="a${k}c">${num(b, "", true)}</span>`));
+          el(
+            scene,
+            row(
+              `b${k}`,
+              `${sym(`b${k}a`, "=")}<span id="b${k}s" style="color: ${concept(signKind)}">${signKind === "lime" ? "+" : MINUS}</span><span id="b${k}g">(${nat(big, `b${k}x`)}${sym(`b${k}m`, MINUS)}${nat(small, `b${k}y`)})</span>${sym(`b${k}d`, "=")}${swap(`<span id="b${k}n">${big - small}</span>`, `<span id="b${k}r" style="color: ${concept(signKind)}">${resultText}</span>`)}`,
+              true,
+            ),
+          );
+        };
+
+        // ---------- scene 1: the question ----------
+        el("#s1", row("f1", `<span id="f1a">${num(7, "")}</span>${sym("f1b", "+")}<span id="f1c">${num(-4, "", true)}</span>`));
+        svgIn("#s1", dot("d1", 7, "blue"));
+        el("#s1", tag("n1", "blue", "đầu", X(7), AX - 100));
+        el("#s1", tag("o1", "lime", "số dương", 500, 170));
+        el("#s1", tag("o2", "pink", "số âm", 780, 170));
+        // ---------- scene 2: 7 + (-4), the rule step by step ----------
+        example("#s2", 2, 7, -4, 7, 4, "3", "lime");
+        svgIn("#s2", `${dot("d2", 7, "blue")}${arrow("ar2", 7, 3, "pink")}${dot("h2", 7, "blue")}`);
+        el("#s2", tag("n2", "blue", "đầu", X(7), AX - 132));
+        el("#s2", tag("r2", "amber", "tổng", X(3), AX - 132));
+        el("#s2", tag("t2", "pink", "sang trái 4", X(4.6), AX - 190));
+        el("#s2", tag("p2x", "violet", "phần 7", centre("#a2a"), 128));
+        el("#s2", tag("p2y", "violet", "phần 4", centre("#a2c"), 128));
+        el("#s2", tag("big2", "violet", "phần lớn hơn: 7", centre("#a2a"), 215));
+        el("#s2", tag("dif2", "violet", "lớn − nhỏ", 640, 170));
+        // ---------- scene 3: 3 + (-8) ----------
+        example("#s3", 3, 3, -8, 8, 3, `${MINUS}5`, "pink");
+        svgIn("#s3", `${dot("d3", 3, "blue")}${arrow("ar3", 3, -5, "pink")}${dot("h3", 3, "blue")}`);
+        el("#s3", tag("n3", "blue", "đầu", X(3), AX - 132));
+        el("#s3", tag("r3", "amber", "tổng", X(-5), AX - 132));
+        el("#s3", tag("t3", "pink", "sang trái 8", X(-1), AX - 190));
+        el("#s3", tag("o3", "lime", "số dương", 500, 170));
+        el("#s3", tag("o4", "pink", "số âm", 780, 170));
+        el("#s3", tag("big3", "violet", "phần lớn hơn: 8", 480, 215));
+        // ---------- scene 4: the rule on both examples ----------
+        el("#s4", row("e1", `${num(7, "")}${sym("", "+")}${num(-4, "", true)}${sym("", "=")}${num(3, "")}`));
+        el("#s4", `<div id="e2" class="row fm" style="top: 230px">${num(3, "")}${sym("", "+")}${num(-8, "", true)}${sym("", "=")}${num(-5, "")}</div>`);
+        $("#e1").style.top = "110px";
+        el("#s4", tag("rl", "violet", "mang dấu của phần lớn hơn", 640, 370));
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-vd"],
+          ["#s3", "s03-am"],
+          ["#s4", "s04-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-mo";
+          hide(["#f1", "#f1b", "#f1c", "#d1", "#n1", "#o1", "#o2"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          showAxis(W(sid, "chào"));
+          tl.to("#f1", { autoAlpha: 1, duration: 0.3 }, W(sid, "7"));
+          pop("#d1", W(sid, "7"), { from: 0.4 });
+          pop("#n1", W(sid, "7"), { from: 0.6 });
+          pop(["#f1b", "#f1c"], W(sid, "cộng", 2), { from: 0.6, stagger: 0.25 });
+          pop("#o1", W(sid, "dương"), { from: 0.6 });
+          pop("#o2", W(sid, "âm"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-vd";
+          hide(["#b2a", "#b2s", "#b2g", "#b2d", "#b2n", "#b2r", "#p2x", "#p2y", "#big2", "#dif2", "#r2", "#t2", "#ar2", "#h2", "#b2"]);
+          pose(bird, "idle", start(sid));
+          // The rule sentence "lấy phần số tự nhiên lớn trừ phần nhỏ": the step label.
+          pop("#dif2", W(sid, "lấy"), { from: 0.6 });
+          fade("#dif2", W(sid, "phần", 3) - 0.2, 0.2);
+          pop("#p2x", W(sid, "7", 2), { from: 0.6 });
+          pop("#p2y", W(sid, "4", 2), { from: 0.6 });
+          fade(["#p2x", "#p2y"], W(sid, "lấy", 2) - 0.2, 0.2);
+          tl.to("#b2", { autoAlpha: 1, duration: 0.3 }, W(sid, "lấy", 2));
+          tl.set("#b2a", { autoAlpha: 1 }, W(sid, "lấy", 2));
+          pop("#b2g", W(sid, "lấy", 2), { from: 0.6 });
+          pop(["#b2d", "#b2n"], W(sid, "được"), { from: 0.6, stagger: 0.2 });
+          pop("#big2", W(sid, "lớn", 3), { from: 0.6 });
+          pop("#b2s", W(sid, "dương"), { from: 0.6 });
+          tl.set("#b2n", { autoAlpha: 0 }, W(sid, "dương"));
+          tl.set("#b2r", { autoAlpha: 1 }, W(sid, "dương"));
+          fade("#big2", W(sid, "vậy") - 0.3, 0.2);
+          pop("#ar2", W(sid, "vậy"), { from: 0.9 });
+          pop("#t2", W(sid, "vậy"), { from: 0.6 });
+          tl.set("#h2", { autoAlpha: 1 }, W(sid, "vậy"));
+          hop("#h2", 7, 3, W(sid, "vậy"), W(sid, "bằng"));
+          settle("#h2", "amber", W(sid, "bằng"));
+          pose(bird, "happy", W(sid, "bằng"));
+          pop("#r2", W(sid, "bằng"), { from: 0.6 });
+        }
+        {
+          const sid = "s03-am";
+          hide(["#a3", "#a3b", "#a3c", "#o3", "#o4", "#b3", "#b3a", "#b3s", "#b3g", "#b3d", "#b3n", "#b3r", "#big3", "#r3", "#t3", "#ar3", "#h3"]);
+          pose(bird, "idle", start(sid));
+          pop("#n3", W(sid, "thử"), { from: 0.6 });
+          tl.to("#a3", { autoAlpha: 1, duration: 0.3 }, W(sid, "3"));
+          pop(["#a3b", "#a3c"], W(sid, "cộng"), { from: 0.6, stagger: 0.25 });
+          pop("#o3", W(sid, "đoán"), { from: 0.6 });
+          pop("#o4", W(sid, "đoán"), { from: 0.6 });
+          fade(["#o3", "#o4"], W(sid, "lấy") - 0.2, 0.2);
+          tl.to("#b3", { autoAlpha: 1, duration: 0.3 }, W(sid, "lấy"));
+          tl.set("#b3a", { autoAlpha: 1 }, W(sid, "lấy"));
+          pop("#b3g", W(sid, "lấy"), { from: 0.6 });
+          pop(["#b3d", "#b3n"], W(sid, "được"), { from: 0.6, stagger: 0.2 });
+          pop("#big3", W(sid, "lớn"), { from: 0.6 });
+          pop("#b3s", W(sid, "âm"), { from: 0.6 });
+          tl.set("#b3n", { autoAlpha: 0 }, W(sid, "âm"));
+          tl.set("#b3r", { autoAlpha: 1 }, W(sid, "âm"));
+          fade("#big3", W(sid, "vậy") - 0.3, 0.2);
+          pop("#ar3", W(sid, "vậy"), { from: 0.9 });
+          pop("#t3", W(sid, "vậy"), { from: 0.6 });
+          tl.set("#h3", { autoAlpha: 1 }, W(sid, "vậy"));
+          hop("#h3", 3, -5, W(sid, "vậy"), W(sid, "bằng"));
+          settle("#h3", "amber", W(sid, "bằng"));
+          pose(bird, "happy", W(sid, "bằng"));
+          pop("#r3", W(sid, "bằng"), { from: 0.6 });
+        }
+        {
+          const sid = "s04-nho";
+          hide(["#e1", "#e2", "#rl"]);
+          pose(bird, "idle", start(sid));
+          fade("#axis", start(sid), 0.3);
+          pop("#e1", W(sid, "nhớ"), { from: 0.6 });
+          pop("#e2", W(sid, "nhớ"), { from: 0.6 });
+          pop("#rl", W(sid, "dấu"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "dấu"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

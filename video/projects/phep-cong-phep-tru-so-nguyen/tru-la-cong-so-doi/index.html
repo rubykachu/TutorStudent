@@ -1,0 +1,299 @@
+<!doctype html>
+<!--
+  Lesson video "Trừ là cộng với số đối" (lesson phep-cong-phep-tru-so-nguyen): 4 - 6 = 4 + (-6) = -2 and 1 - 4 = 1 + (-4) = -3: subtracting a number is adding its opposite, shown as a walk to the left on the number line.
+  Colours as in the lesson: positive numbers lime, negative pink, zero slate,
+  opposite sky, first point blue, sum amber, difference teal, step labels violet.
+  Built by `pnpm video:build phep-cong-phep-tru-so-nguyen tru-la-cong-so-doi`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Trừ là cộng với số đối</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      .fm {
+        font:
+          800 84px / 1 "Baloo 2",
+          sans-serif;
+        top: 28px;
+      }
+      .fm.second {
+        top: 112px;
+        font-size: 72px;
+      }
+      .swap {
+        display: inline-grid;
+      }
+      .swap > * {
+        grid-area: 1 / 1;
+        text-align: center;
+      }
+      .fm .gap {
+        margin: 0 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="axis" class="layer"></div>
+        <section id="s1" class="scene layer"></section>
+        <section id="s2" class="scene layer"></section>
+        <section id="s3" class="scene layer"></section>
+        <section id="s4" class="scene layer"></section>
+        <section id="s5" class="scene layer"></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, WE, owl, pop, hide, fade, pose, scenes, tl, finish, color } =
+          window.LV;
+        const g = window.gsap;
+        const MINUS = "−";
+        const AX = 380;
+        const LOW = -6;
+        const HIGH = 6;
+        const STEP = 84;
+        const X = (v) => 640 + v * STEP;
+        const KIND = (v) => (v > 0 ? "lime" : v < 0 ? "pink" : "slate");
+        const written = (v) => (v < 0 ? MINUS + -v : String(v));
+        const concept = (c) =>
+          c === "ink" ? "var(--color-foreground)" : `var(--color-concept-${c})`;
+        const paint = (c) => `fill="${concept(c)}"`;
+
+        // A number in its concept colour; a negative one in brackets when it
+        // follows a sign, as the lesson writes it.
+        const num = (v, id, bracket = false) => {
+          const inner = `<span style="color: ${concept(KIND(v))}">${written(v)}</span>`;
+          const shown = bracket && v < 0 ? `(${inner})` : inner;
+          return id ? `<span id="${id}">${shown}</span>` : shown;
+        };
+        const sym = (id, s) => `<span id="${id}" class="gap">${s}</span>`;
+        const tag = (id, c, html, x, top) =>
+          `<div id="${id}" class="tag chip" style="--c: ${concept(c)}; left: ${x}px; top: ${top}px">${html}</div>`;
+        const svgIn = (scene, html) =>
+          $(scene).insertAdjacentHTML(
+            "beforeend",
+            `<svg class="layer" viewBox="0 0 1280 720">${html}</svg>`,
+          );
+        const dot = (id, v, c) =>
+          `<circle id="${id}" cx="${X(v)}" cy="${AX}" r="19" ${paint(c)} stroke="var(--color-surface)" stroke-width="4"/>`;
+        // An arrow just above the line, from value a to value b.
+        const arrow = (id, a, b, c) => {
+          const dir = b > a ? 1 : -1;
+          const y = AX - 52;
+          const tip = X(b);
+          return `<g id="${id}" stroke="${concept(c)}" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="${X(a)}" x2="${tip - dir * 8}" y1="${y}" y2="${y}"/>
+            <path d="M ${tip - dir * 26} ${y - 18} L ${tip - dir * 6} ${y} L ${tip - dir * 26} ${y + 18}"/>
+          </g>`;
+        };
+        const row = (id, html, second) =>
+          `<div id="${id}" class="row fm${second ? " second" : ""}">${html}</div>`;
+        const el = (scene, html) => $(scene).insertAdjacentHTML("beforeend", html);
+        // Moves a dot from value a to value b one mark at a time.
+        const hop = (id, a, b, from, to) =>
+          tl.fromTo(
+            id,
+            { x: 0 },
+            {
+              x: X(b) - X(a),
+              duration: Math.max(to - from, 0.6),
+              ease: `steps(${Math.abs(b - a)})`,
+              immediateRender: false,
+            },
+            from,
+          );
+        // Turns a dot into the result of the walk.
+        const settle = (id, c, t) =>
+          tl.set(id, { attr: { fill: color(`concept-${c}`) } }, t);
+
+        // ---------- the number line, drawn once and revealed in parts ----------
+        let ticks = "";
+        let labels = "";
+        for (let v = LOW; v <= HIGH; v++) {
+          ticks += `<line id="tk${v}" x1="${X(v)}" x2="${X(v)}" y1="${AX - 18}" y2="${AX + 18}" stroke="var(--color-foreground)" stroke-width="${v === 0 ? 6 : 4}"/>`;
+          labels += `<text id="lb${v}" x="${X(v)}" y="${AX + 66}" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="40" ${paint(KIND(v))}>${written(v)}</text>`;
+        }
+        $("#axis").innerHTML = `<svg width="1280" height="720" viewBox="0 0 1280 720">
+          <g id="line">
+            <line x1="${X(LOW - 0.6)}" x2="${X(HIGH + 0.6)}" y1="${AX}" y2="${AX}" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M ${X(LOW - 0.6) + 4} ${AX} l 20 -14 M ${X(LOW - 0.6) + 4} ${AX} l 20 14 M ${X(HIGH + 0.6) - 4} ${AX} l -20 -14 M ${X(HIGH + 0.6) - 4} ${AX} l -20 14" stroke="var(--color-foreground)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </g>
+          ${ticks}
+          ${labels}
+        </svg>`;
+        const range = (from, to) => {
+          const out = [];
+          for (let v = from; v <= to; v++) out.push(v);
+          return out;
+        };
+        const ids = (prefix) => range(LOW, HIGH).map((v) => `#${prefix}${v}`);
+        g.set(["#line", ...ids("tk"), ...ids("lb")], { autoAlpha: 0 });
+        const showAxis = (t) => {
+          tl.to("#line", { autoAlpha: 1, duration: 0.4 }, t);
+          tl.to(ids("tk"), { autoAlpha: 1, duration: 0.25, stagger: 0.05 }, t + 0.2);
+          tl.to(ids("lb"), { autoAlpha: 1, duration: 0.25, stagger: 0.05 }, t + 0.3);
+        };
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "20px",
+          width: "150px",
+          height: "150px",
+        });
+
+
+        // The subtraction on the first row, the same sum with the opposite on
+        // the second ("= a + (-b) = result"), laid out hidden and revealed by
+        // the words.
+        const first = (k, a, b, extra = "") =>
+          `${num(a, `a${k}a`)}${sym(`a${k}b`, MINUS)}${num(b, `a${k}c`)}${extra}`;
+        const second = (k, a, b, r) =>
+          `${sym(`b${k}a`, "=")}${num(a, `b${k}x`)}${sym(`b${k}p`, "+")}${num(-b, `b${k}y`, true)}${sym(`b${k}d`, "=")}${num(r, `b${k}r`)}`;
+        const walkLayers = (scene, k, a, r, tagText, nameX) => {
+          svgIn(scene, `${dot(`d${k}`, a, "blue")}${arrow(`ar${k}`, a, r, "pink")}${dot(`h${k}`, a, "blue")}`);
+          el(scene, tag(`n${k}`, "blue", "đầu", X(a), AX - 132));
+          el(scene, tag(`r${k}`, "teal", "hiệu", X(r), AX - 132));
+          el(scene, tag(`t${k}`, "pink", tagText, nameX, AX - 190));
+        };
+
+        // ---------- scene 1: the question ----------
+        el("#s1", row("f1", first(1, 4, 6, `${sym("f1d", "=")}<span id="f1q">?</span>`)));
+        svgIn("#s1", dot("d1", 4, "blue"));
+        el("#s1", tag("n1", "blue", "đầu", X(4), AX - 132));
+        // ---------- scene 2: the rule, the opposite of 6 ----------
+        el("#s2", row("f2", first(2, 4, 6)));
+        el("#s2", row("g2", second(2, 4, 6, -2), true));
+        svgIn("#s2", dot("d2", 4, "blue"));
+        el("#s2", tag("n2", "blue", "đầu", X(4), AX - 132));
+        el("#s2", tag("c2", "violet", "trừ là cộng với số đối", 640, 170));
+        el("#s2", tag("o2", "sky", "6 và −6 là hai số đối", 640, 170));
+        // ---------- scene 3: walk 4 + (-6) ----------
+        el("#s3", row("f3", first(3, 4, 6)));
+        el("#s3", row("g3", second(3, 4, 6, -2), true));
+        walkLayers("#s3", 3, 4, -2, "sang trái 6", X(1));
+        // ---------- scene 4: try 1 - 4 ----------
+        el("#s4", row("f4", first(4, 1, 4)));
+        el("#s4", row("g4", second(4, 1, 4, -3), true));
+        walkLayers("#s4", 4, 1, -3, "sang trái 4", X(-1));
+        el("#s4", tag("q4", "sky", "số đối của 4 là ?", 640, 170));
+        el("#s4", tag("o4", "sky", "số đối của 4 là −4", 640, 170));
+        // ---------- scene 5: remember ----------
+        el("#s5", row("f5", `${num(1, "")}${sym("", MINUS)}${num(4, "")}${sym("", "=")}${num(1, "")}${sym("", "+")}${num(-4, "", true)}`));
+        $("#f5").style.top = "150px";
+        el("#s5", tag("k5", "violet", "trừ là cộng với số đối", 640, 290));
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-doi"],
+          ["#s3", "s03-di"],
+          ["#s4", "s04-thu"],
+          ["#s5", "s05-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        {
+          const sid = "s01-mo";
+          hide(["#f1", "#f1b", "#f1c", "#f1d", "#f1q", "#d1", "#n1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          showAxis(W(sid, "chào"));
+          tl.to("#f1", { autoAlpha: 1, duration: 0.3 }, W(sid, "4"));
+          pop("#d1", W(sid, "4"), { from: 0.4 });
+          pop("#n1", W(sid, "4"), { from: 0.6 });
+          pop(["#f1b", "#f1c"], W(sid, "trừ"), { from: 0.6, stagger: 0.25 });
+          pop(["#f1d", "#f1q"], W(sid, "đoán"), { from: 0.6, stagger: 0.2 });
+        }
+        {
+          const sid = "s02-doi";
+          hide(["#g2", "#b2a", "#b2x", "#b2p", "#b2y", "#b2d", "#b2r", "#c2", "#o2"]);
+          pose(bird, "idle", start(sid));
+          pop("#c2", W(sid, "cộng"), { from: 0.6 });
+          fade("#c2", W(sid, "đối", 2) - 0.25, 0.2);
+          pop("#o2", W(sid, "đối", 2), { from: 0.6 });
+          fade("#o2", W(sid, "vậy") - 0.25, 0.2);
+          tl.to("#g2", { autoAlpha: 1, duration: 0.3 }, W(sid, "bằng"));
+          pop(["#b2a", "#b2x"], W(sid, "bằng"), { from: 0.6, stagger: 0.2 });
+          pop(["#b2p", "#b2y"], W(sid, "cộng", 2), { from: 0.6, stagger: 0.2 });
+        }
+        {
+          const sid = "s03-di";
+          hide(["#b3d", "#b3r", "#ar3", "#h3", "#r3", "#t3"]);
+          pose(bird, "idle", start(sid));
+          pop("#ar3", W(sid, "sang"), { from: 0.9 });
+          pop("#t3", W(sid, "sang"), { from: 0.6 });
+          tl.set("#h3", { autoAlpha: 1 }, W(sid, "sang"));
+          hop("#h3", 4, -2, W(sid, "sang"), WE(sid, "vạch"));
+          settle("#h3", "teal", W(sid, "dừng"));
+          pose(bird, "happy", W(sid, "dừng"));
+          pop("#r3", W(sid, "2"), { from: 0.6 });
+          pop(["#b3d", "#b3r"], W(sid, "bằng"), { from: 0.6, stagger: 0.2 });
+        }
+        {
+          const sid = "s04-thu";
+          hide(["#f4", "#f4b", "#f4c", "#g4", "#b4a", "#b4x", "#b4p", "#b4y", "#b4d", "#b4r", "#d4", "#n4", "#q4", "#o4", "#ar4", "#h4", "#r4", "#t4"]);
+          pose(bird, "idle", start(sid));
+          tl.to("#f4", { autoAlpha: 1, duration: 0.3 }, W(sid, "1"));
+          pop("#d4", W(sid, "1"), { from: 0.4 });
+          pop("#n4", W(sid, "1"), { from: 0.6 });
+          pop(["#f4b", "#f4c"], W(sid, "trừ"), { from: 0.6, stagger: 0.25 });
+          pop("#q4", W(sid, "đoán"), { from: 0.6 });
+          fade("#q4", W(sid, "đối", 2) - 0.2, 0.2);
+          pop("#o4", W(sid, "đối", 2), { from: 0.6 });
+          fade("#o4", W(sid, "nên") - 0.25, 0.2);
+          tl.to("#g4", { autoAlpha: 1, duration: 0.3 }, W(sid, "nên"));
+          pop(["#b4a", "#b4x"], W(sid, "bằng"), { from: 0.6, stagger: 0.2 });
+          pop(["#b4p", "#b4y"], W(sid, "cộng"), { from: 0.6, stagger: 0.2 });
+          pop("#ar4", W(sid, "cộng"), { from: 0.9 });
+          pop("#t4", W(sid, "cộng"), { from: 0.6 });
+          tl.set("#h4", { autoAlpha: 1 }, W(sid, "cộng"));
+          hop("#h4", 1, -3, W(sid, "cộng"), W(sid, "tới"));
+          settle("#h4", "teal", W(sid, "tới"));
+          pose(bird, "happy", W(sid, "tới"));
+          pop(["#b4d", "#b4r"], W(sid, "tới"), { from: 0.6, stagger: 0.2 });
+          pop("#r4", W(sid, "tới"), { from: 0.6 });
+        }
+        {
+          const sid = "s05-nho";
+          hide(["#f5", "#k5"]);
+          pose(bird, "idle", start(sid));
+          fade("#axis", start(sid), 0.3);
+          pop("#f5", W(sid, "nhớ"), { from: 0.6 });
+          pop("#k5", W(sid, "đối"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "đối"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

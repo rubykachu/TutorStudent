@@ -190,6 +190,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "phep-cong-phep-tru-so-nguyen.video.di-tren-truc-so"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -452,6 +456,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "phep-cong-phep-tru-so-nguyen.video.cong-khac-dau"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -514,6 +522,10 @@
       "sourceRef": "Sách bài tập tr.50 (kiến thức cần nhớ 4)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-cong-phep-tru-so-nguyen.video.tru-la-cong-so-doi"
+        },
         {
           "type": "group",
           "children": [
@@ -4141,5 +4153,112 @@
   "sticker": {
     "name": "Huy hiệu cộng trừ số nguyên",
     "visualId": "phep-cong-phep-tru-so-nguyen.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.video.di-tren-truc-so",
+      "lessonId": "phep-cong-phep-tru-so-nguyen",
+      "url": "video/phep-cong-phep-tru-so-nguyen/di-tren-truc-so.mp4",
+      "vttUrl": "video/phep-cong-phep-tru-so-nguyen/di-tren-truc-so.vtt",
+      "posterUrl": "video/phep-cong-phep-tru-so-nguyen/di-tren-truc-so.jpg",
+      "durationSec": 66.13,
+      "clips": [
+        {
+          "id": "cong-so-duong",
+          "start": 0.7,
+          "end": 34.432,
+          "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-duong"]
+        },
+        {
+          "id": "cong-so-am",
+          "start": 34.832,
+          "end": 64.705,
+          "cardIds": ["phep-cong-phep-tru-so-nguyen.card.cong-so-am"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 34.132,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 58.95,
+          "from": 34.132
+        }
+      ]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.video.cong-khac-dau",
+      "lessonId": "phep-cong-phep-tru-so-nguyen",
+      "url": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.mp4",
+      "vttUrl": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.vtt",
+      "posterUrl": "video/phep-cong-phep-tru-so-nguyen/cong-khac-dau.jpg",
+      "durationSec": 63.53,
+      "clips": [
+        {
+          "id": "khac-dau",
+          "start": 12.014,
+          "end": 62.107,
+          "cardIds": ["phep-cong-phep-tru-so-nguyen.card.khac-dau"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 38.748,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 56.791,
+          "from": 38.748
+        }
+      ]
+    },
+    {
+      "id": "phep-cong-phep-tru-so-nguyen.video.tru-la-cong-so-doi",
+      "lessonId": "phep-cong-phep-tru-so-nguyen",
+      "url": "video/phep-cong-phep-tru-so-nguyen/tru-la-cong-so-doi.mp4",
+      "vttUrl": "video/phep-cong-phep-tru-so-nguyen/tru-la-cong-so-doi.vtt",
+      "posterUrl": "video/phep-cong-phep-tru-so-nguyen/tru-la-cong-so-doi.jpg",
+      "durationSec": 59.9,
+      "clips": [
+        {
+          "id": "tru-so-duong",
+          "start": 16.518,
+          "end": 58.482,
+          "cardIds": ["phep-cong-phep-tru-so-nguyen.card.tru-so-duong"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      },
+      "checkpoints": [
+        {
+          "id": "cp-01",
+          "at": 28.252,
+          "from": 0
+        },
+        {
+          "id": "cp-02",
+          "at": 38.35,
+          "from": 28.252
+        }
+      ]
+    }
+  ]
 }
