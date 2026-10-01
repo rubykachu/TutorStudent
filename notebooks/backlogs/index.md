@@ -16,7 +16,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 2, Bài 3 | on hold (owner, 01/10/2026: Bài 8 and later come first because the child's class is there) | not done |
 | Toán | Bài 8 `quan-he-chia-het-va-tinh-chat` | published (reviewed in 5 rounds, 01/10/2026; handover [`lesson-quan-he-chia-het-va-tinh-chat/task.md`](lesson-quan-he-chia-het-va-tinh-chat/task.md)) | done (voice Mỹ Duyên, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: no videos yet for the difference and later sections, `hieu-*` colour and `nhom-so-hang` example notes, caption wording of `tong-12-18-6`) |
 | Toán | Bài 9 `dau-hieu-chia-het` (SBT print pages 33–34, solutions 105–106) | published (reviewed in 4 rounds, 01/10/2026, ids locked; handover [`lesson-dau-hieu-chia-het/task.md`](lesson-dau-hieu-chia-het/task.md)) | done (voice Hải Đăng, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: 5 non-blocking Góp ý in `review.md`, owner to listen to one `tim-chu-so` sentence) |
-| Toán | Bài 10 `so-nguyen-to` (SBT print pages 35–37, solutions 106–107) | draft, authored and checked (13 sections, 64 exercises; `content:check`, `visual:shot`, `lesson:walk` clean), waiting for review (handover [`lesson-so-nguyen-to/task.md`](lesson-so-nguyen-to/task.md)) | not done |
+| Toán | Bài 10 `so-nguyen-to` (SBT print pages 35–37, solutions 106–107) | published (reviewed in 3 rounds, 01/10/2026, ids locked; handover [`lesson-so-nguyen-to/task.md`](lesson-so-nguyen-to/task.md)) | not done (next: voice, overview narration and 3 videos; leftovers in the handover: 1 Nên sửa and 4 Góp ý of `review.md`, app items) |
 | Toán | Bài 11 `uoc-chung-uoc-chung-lon-nhat` (SBT print pages 38–40, solutions 107–108) | draft, being authored (handover [`lesson-uoc-chung-uoc-chung-lon-nhat/task.md`](lesson-uoc-chung-uoc-chung-lon-nhat/task.md)) | not done |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
@@ -25,7 +25,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
-1. Bài 10 (SBT print page 35), then Bài 11 (print page 38), one subagent at a time.
+1. Bài 11 (print page 38): finish review, then align its section 5 (`nhac-thua-so`) with the published Bài 10 (diff-only round, see its handover). Then narration and videos for Bài 10 and Bài 11, one subagent at a time.
 2. Opening lines for the nine videos built before the opening-line rule: [`video-opening-retrofit/task.md`](video-opening-retrofit/task.md).
 3. Bài 3, then Bài 2 (on hold until the owner resumes them; add easy-to-hard guiding steps where the workbook is hard).
 4. Remove the remaining `[guides]` warnings of `content:check` (9, in `tap-hop` and `luy-thua`) by adding guide screens; see [`lesson-tap-hop/task.md`](lesson-tap-hop/task.md).

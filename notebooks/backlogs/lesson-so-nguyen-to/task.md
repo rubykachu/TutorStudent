@@ -1,9 +1,13 @@
 # Bàn giao: Bài 10 `so-nguyen-to` (Số nguyên tố)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bài ở `status: draft`, đã sửa xong theo review vòng 2 (4 Nghiêm trọng, 15 Nên sửa, phần lớn Góp ý), chờ review vòng 3 (Sonnet, chỉ phần đổi: `content:diff` so với bản đã review). Chưa `content:hash --approve`, chưa `content:lock`, chưa có lời đọc và video.
-- Đã chạy sau khi sửa: `pnpm content:check` 0 lỗi (còn cảnh báo "id chưa khoá", đúng vì bài draft); `pnpm typecheck`, `pnpm test` (111 file đạt), biome trên file của bài sạch; `pnpm visual:shot so-nguyen-to` 140/140 đạt; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo (đã xem hình đổi ở điện thoại, iPad dọc, iPad ngang).
-- Bước kế tiếp: review vòng 3, `content:hash --approve`, `content:lock`, rồi lời đọc tổng quan và 3 video.
+- Cập nhật cuối: 01/10/2026. Bài đã xuất bản (`status: published`) sau 3 vòng review (vòng 1: 9 Nghiêm trọng; vòng 2: 4; vòng 3: 0, 1 Nên sửa, 4 Góp ý); đã `content:hash --approve`, `content:lock`. Chưa có lời đọc và video.
+- Đã chạy ở bước xuất bản: `pnpm content:check` 0 lỗi; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo; `pnpm lint`, `pnpm typecheck`, `pnpm test` (2 150 test) đạt; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` ở cây chính.
+- Bước kế tiếp: lời đọc tổng quan và 3 video (skill `lesson-video`). Bài 11 section 5 (`nhac-thua-so`) giờ có thể căn chỉnh với bài này.
+
+## Việc còn lại sau review vòng 3 (không chặn)
+- Nên sửa: màn chạm `chon-nt-bang` (section 4: 21, 23, 27, 29, 33, 39; đáp án 23, 29) trùng bốn số và tập đáp án với `chon-nt-2-7` (section 2); đổi sang 33, 37, 39, 45, 49, 73 (đáp án 37 và 73) ở lần sửa bài kế tiếp (sửa bài đã xuất bản đổi hash, cần review lại phần đổi).
+- Góp ý: `bang-100` ở iPad ngang chữ khoảng 14,5px và dấu ✚ nhỏ do `max-h-[32vh]`; `viet-28` có hai so sánh trong một câu và trùng 28 với `cay-thieu-28`; caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám; note ngoại lệ section 5 đứng trước hình ví dụ 51 mà hai thứ chưa nối nhau.
 
 ## Đã sửa theo review vòng 1 và 2
 - Định nghĩa số nguyên tố, hợp số, phân tích ra thừa số nguyên tố viết bằng lời của bài; nhãn kết luận của hình `xep-11` giữ điều kiện "lớn hơn 1"; hợp số luôn nói "từ ba ước trở lên"; số nguyên tố nối với "chỉ có hai ước" ở caption `ngto-dau`; số 1 luôn là "không phải số nguyên tố, cũng không phải hợp số".
