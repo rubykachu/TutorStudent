@@ -12,6 +12,7 @@ import {
   ShownLine,
   useGuidedGoal,
 } from "@/visuals/shared/guided-feedback";
+import { decorative } from "@/visuals/shared/markers";
 import { Region, RegionSvg } from "@/visuals/shared/region";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
@@ -240,7 +241,7 @@ export function Places({ spec }: { spec: PlacesSpec }) {
               className="text-center"
             >
               <Formula
-                tex={`${groupedTex(spec.n)} = ${sumTex(spec.n)}`}
+                tex={`\\begin{gathered} ${groupedTex(spec.n)} \\\\ = ${sumTex(spec.n)} \\end{gathered}`}
                 className="text-body-lg"
               />
             </Reveal>
@@ -359,6 +360,7 @@ export function PlacesPick({ spec }: { spec: PlacesPickSpec }) {
           label={`Chữ số ${digit}, vị trí thứ ${i + 1} từ bên trái`}
         >
           <rect
+            {...decorative}
             x={xs[i]}
             y={PICK_TILE.pad}
             width={PICK_TILE.w}

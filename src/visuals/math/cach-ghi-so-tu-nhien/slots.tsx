@@ -74,7 +74,7 @@ export function Slots({
           <Digit key={i} digit={state[slotKey(i)]} size="big" />
         ))}
       </div>
-      <div className="grid w-full max-w-sm grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4">
+      <div className="grid w-full max-w-sm grid-cols-2 gap-x-4 gap-y-3 ">
         {indexes.map((i) => (
           <NumberStepper
             key={i}

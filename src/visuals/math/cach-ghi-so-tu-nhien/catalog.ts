@@ -1100,7 +1100,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Tổng các chữ số bằng 3",
     rows: [
       {
-        tex: "\\{102; 111; 120; 201; 210; 300\\}",
+        tex: "\\begin{gathered} \\{102; 111; 120; \\\\ 201; 210; 300\\} \\end{gathered}",
         tag: {
           text: "6 số",
           color: "teal",
@@ -1135,7 +1135,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "\\concept{teal}{B} = \\{102; 111; 120; 201; 210; 300\\}",
+        tex: "\\begin{gathered} \\concept{teal}{B} = \\{102; 111; 120; \\\\ 201; 210; 300\\} \\end{gathered}",
         tag: {
           text: "tập hợp B có 6 số",
           color: "teal",

@@ -1,6 +1,7 @@
 // A sum made of matchsticks: each Roman letter, "+" and "=" is drawn from its
 // sticks, so the child can see which stick moves.
 
+import { decorative } from "@/visuals/shared/markers";
 import type { SticksSpec } from "./catalog";
 
 type Stick = readonly [number, number, number, number];
@@ -81,23 +82,27 @@ export function Sticks({ spec }: { spec: SticksSpec }) {
       viewBox={`0 0 ${width} ${BOTTOM + TOP * 2}`}
       className="h-auto w-full max-w-md"
     >
-      {placed.map(({ glyph, x }, index) =>
-        (GLYPHS[glyph]?.sticks ?? []).map(([x1, y1, x2, y2], s) => (
-          <line
-            // biome-ignore lint/suspicious/noArrayIndexKey: sticks are placed by position
-            key={`${index}-${s}`}
-            x1={x + x1}
-            y1={y1 + TOP / 2}
-            x2={x + x2}
-            y2={y2 + TOP / 2}
-            className={
-              accent.has(index) ? "stroke-concept-amber" : "stroke-concept-sky"
-            }
-            strokeWidth={6}
-            strokeLinecap="round"
-          />
-        )),
-      )}
+      <g {...decorative}>
+        {placed.map(({ glyph, x }, index) =>
+          (GLYPHS[glyph]?.sticks ?? []).map(([x1, y1, x2, y2], s) => (
+            <line
+              // biome-ignore lint/suspicious/noArrayIndexKey: sticks are placed by position
+              key={`${index}-${s}`}
+              x1={x + x1}
+              y1={y1 + TOP / 2}
+              x2={x + x2}
+              y2={y2 + TOP / 2}
+              className={
+                accent.has(index)
+                  ? "stroke-concept-amber"
+                  : "stroke-concept-sky"
+              }
+              strokeWidth={6}
+              strokeLinecap="round"
+            />
+          )),
+        )}
+      </g>
     </svg>
   );
 }

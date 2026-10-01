@@ -1,10 +1,11 @@
+import { decorative } from "@/visuals/shared/markers";
 import { Region, RegionSvg } from "@/visuals/shared/region";
 import type { ClockSpec } from "./catalog";
 import { toRoman } from "./logic";
 
 const HOURS = Array.from({ length: 12 }, (_, i) => i + 1);
 const CENTER = 100;
-const NUMERAL_RADIUS = 74;
+const NUMERAL_RADIUS = 78;
 
 // Where the numeral (or hand) of an hour sits: 12 at the top, clockwise.
 function polar(hour: number, radius: number): { x: number; y: number } {
@@ -18,7 +19,7 @@ function polar(hour: number, radius: number): { x: number; y: number } {
 // A wall clock with Roman numerals I–XII, the hour hand on `hour`.
 export function Clock({ spec }: { spec: ClockSpec }) {
   const hand = polar(spec.hour, 46);
-  const minute = polar(12, 66);
+  const minute = polar(12, 50);
   return (
     <svg
       role="img"
@@ -27,9 +28,10 @@ export function Clock({ spec }: { spec: ClockSpec }) {
       className="h-auto w-full max-w-xs"
     >
       <circle
+        {...decorative}
         cx={CENTER}
         cy={CENTER}
-        r={96}
+        r={98}
         className="fill-surface stroke-foreground"
         strokeWidth={4}
       />
@@ -41,7 +43,7 @@ export function Clock({ spec }: { spec: ClockSpec }) {
             x={x}
             y={y + 7}
             textAnchor="middle"
-            fontSize={21}
+            fontSize={17}
             fontWeight={700}
             className="fill-foreground font-heading"
           >
@@ -81,9 +83,10 @@ export function ClockPick() {
       className="h-auto w-full max-w-xs"
     >
       <circle
+        {...decorative}
         cx={CENTER}
         cy={CENTER}
-        r={96}
+        r={98}
         className="fill-surface stroke-foreground"
         strokeWidth={4}
       />
@@ -95,12 +98,18 @@ export function ClockPick() {
             id={`h${hour}`}
             label={`Số La Mã ${toRoman(hour)}`}
           >
-            <circle cx={x} cy={y} r={15} className="fill-muted" />
+            <circle
+              {...decorative}
+              cx={x}
+              cy={y}
+              r={17}
+              className="fill-muted"
+            />
             <text
               x={x}
               y={y + 7}
               textAnchor="middle"
-              fontSize={21}
+              fontSize={17}
               fontWeight={700}
               className="fill-foreground font-heading"
             >
