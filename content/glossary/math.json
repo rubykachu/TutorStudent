@@ -299,7 +299,27 @@
     {
       "term": "số hoàn hảo",
       "forbidden": []
+    },
+    {
+      "term": "bội chung",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "bội chung nhỏ nhất",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "quy đồng mẫu số",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "mẫu số chung",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
     }
   ],
-  "names": ["ƯC", "ƯCLN", "Ư"]
+  "names": ["ƯC", "ƯCLN", "Ư", "BC", "BCNN", "B"]
 }

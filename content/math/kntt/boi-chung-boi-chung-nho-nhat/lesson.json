@@ -1,0 +1,4331 @@
+{
+  "id": "boi-chung-boi-chung-nho-nhat",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 12,
+  "number": 12,
+  "chapter": {
+    "numeral": "II",
+    "name": "Tính chia hết trong tập hợp các số tự nhiên"
+  },
+  "title": "Bội chung. Bội chung nhỏ nhất",
+  "sourceRef": "Sách bài tập tr.41–43",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Hôm nay ta tìm lúc hai việc lặp lại cùng xảy ra. Ở bến xe, xe số 1 cứ 6 phút có một chuyến, xe số 2 cứ 8 phút có một chuyến. Hai xe cùng rời bến lúc 6 giờ, hỏi bao lâu sau hai xe lại cùng rời bến?"
+    },
+    "summary": "Bài này dạy tìm các số cùng là bội của hai hay nhiều số. Bạn tìm bội chung nhỏ nhất rồi dùng nó cho các việc lặp lại và việc quy đồng mẫu số.",
+    "goals": [
+      "tìm các bội chung của hai hay nhiều số",
+      "tìm bội chung nhỏ nhất bằng cách liệt kê hay phân tích ra thừa số nguyên tố",
+      "tính xem hai việc lặp lại bao lâu thì cùng xảy ra",
+      "biết khi nào dùng bội chung nhỏ nhất, khi nào dùng ước chung lớn nhất"
+    ],
+    "whyItMatters": "Bội chung nhỏ nhất giúp bạn mua bút theo vỉ sáu cái và vở theo xếp tám quyển cho số bút bằng số vở."
+  },
+  "concepts": [
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.concept.boi-chung",
+      "name": "Bội chung",
+      "color": "lime"
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.concept.bcnn",
+      "name": "Bội chung nhỏ nhất",
+      "color": "pink"
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.concept.so-nguyen-to",
+      "name": "Số nguyên tố",
+      "color": "sky"
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.concept.so-mu",
+      "name": "Số mũ",
+      "color": "violet"
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.concept.uclnn",
+      "name": "Ước chung lớn nhất",
+      "color": "amber"
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.concept.quy-dong-mau-so",
+      "name": "Quy đồng mẫu số",
+      "color": "blue"
+    }
+  ],
+  "sections": [
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.boi-chung",
+      "title": "Bội chung của hai số",
+      "sourceRef": "Sách bài tập tr.41 (kiến thức cần nhớ 1), tr.42",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.xe-6-8",
+          "caption": "Hai xe cùng rời bến lúc 0 phút. Xe A rời bến ở các phút 6, 12, 18 và cứ thế tiếp, đó là các bội của 6. Xe B rời bến ở các phút 8, 16, 24 và cứ thế tiếp, đó là các bội của 8. Các phút 24 và 48 có ở cả hai hàng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Một số là bội của tất cả các số đã cho thì gọi là bội chung của các số đó. Bội chung viết tắt là BC.",
+              "rule": true
+            },
+            {
+              "type": "formula",
+              "tex": "\\begin{gathered} \\concept{lime}{24} \\chiahet 6 \\\\ \\concept{lime}{24} \\chiahet 8 \\end{gathered}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các bội chung của 4 và 6. Số đó phải chia hết cho cả 4 lẫn 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.chon-bc-4-6"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số 0 chia hết cho mọi số khác 0, nên 0 cũng là bội chung. Từ giờ ta chỉ xét các bội chung khác 0."
+            },
+            {
+              "type": "formula",
+              "tex": "\\begin{gathered} 0 \\chiahet 6 \\\\ 0 \\chiahet 8 \\end{gathered}"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-bc-3-5"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-nhieu-bc-2-3"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.xe-6-8-tom-tat",
+        "caption": "Một số là bội của tất cả các số đã cho thì gọi là bội chung của các số đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.boi-chung-nho-nhat",
+      "title": "Bội chung nhỏ nhất",
+      "sourceRef": "Sách bài tập tr.41 (kiến thức cần nhớ 2), tr.42",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.bc-6-8",
+          "caption": "Hai danh sách có chung các số 24 và 48. Số nhỏ nhất trong chúng là 24."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong các bội chung khác 0 của hai hay nhiều số, số nhỏ nhất gọi là bội chung nhỏ nhất, viết tắt là BCNN.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ta viết gọn BCNN(6, 8) = 24, đọc là bội chung nhỏ nhất của 6 và 8 bằng 24."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.ky-hieu-6-8"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào bội chung nhỏ nhất của 6 và 9. Các bội chung đều chia hết cho 6 và 9, ta chọn số nhỏ nhất."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.chon-bcnn-6-9"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm + cho mỗi xe chạy thêm một chuyến, tới khi hai xe cùng rời bến lần đầu. Cách này giúp bạn thấy bội chung nhỏ nhất."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.gap-3-4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-bcnn-6-10"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.gap-4-5-tu-lam"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.ky-hieu-6-8",
+        "caption": "Trong các bội chung khác 0 của hai hay nhiều số, số nhỏ nhất gọi là bội chung nhỏ nhất, viết tắt là BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.liet-ke-bcnn",
+      "title": "Tìm BCNN bằng cách liệt kê",
+      "sourceRef": "Sách bài tập tr.42 (bài 2.44), lời giải tr.108",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.ds-4-10",
+          "caption": "Viết các bội của 4 và của 10, rồi chọn các số có ở cả hai danh sách. Số nhỏ nhất trong chúng là 20, nên BCNN(4, 10) = 20."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm BCNN, ta viết các bội khác 0 của từng số, rồi chọn số nhỏ nhất có ở mọi danh sách.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.ds-9-12-xong"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "boi-chung-boi-chung-nho-nhat.tip.boi-so-lon",
+          "kind": "làm nhanh",
+          "title": "BCNN của hai số",
+          "text": "BCNN luôn là bội của số lớn hơn. Chỉ liệt kê các bội của số lớn, số nào chia hết cho số bé đầu tiên là BCNN.",
+          "tex": "\\begin{gathered} 9 \\khongchiahet 6 \\\\ \\concept{pink}{18} \\chiahet 6 \\end{gathered}"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào bội chung nhỏ nhất của 10 và 15. Hãy viết các bội của 15 rồi tìm số chia hết cho 10."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.chon-bcnn-10-15"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-6-15"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-12-16"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.ds-9-12-xong",
+        "caption": "Muốn tìm BCNN, ta viết các bội khác 0 của từng số, rồi chọn số nhỏ nhất có ở mọi danh sách."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.so-lon-chia-het",
+      "title": "Số lớn chia hết cho số bé",
+      "sourceRef": "Sách bài tập tr.42 (bài 2.48), lời giải tr.108",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.ds-5-15",
+          "caption": "Mọi bội của 15 đều chia hết cho 5. Nên số nhỏ nhất có ở cả hai danh sách là chính số 15."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nếu số lớn chia hết cho số bé thì BCNN của hai số là số lớn.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-lon-12-4"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các cặp có số lớn chia hết cho số bé. Với những cặp đó, BCNN là số lớn."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.chon-cap-so-lon"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-7-21"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-12-36"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-lon-12-4",
+        "caption": "Nếu số lớn chia hết cho số bé thì BCNN của hai số là số lớn."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.uclnn-nhan-bcnn",
+      "title": "ƯCLN nhân BCNN",
+      "sourceRef": "Sách bài tập tr.41 (kiến thức bổ sung 5), tr.43 (bài 2.51)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.lines-12-18",
+          "caption": "Nhân ƯCLN với BCNN của 12 và 18 ra 216. Nhân hai số 12 và 18 cũng ra 216."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tích của ƯCLN và BCNN của hai số bằng tích của hai số đó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.lines-12-18-xong"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "boi-chung-boi-chung-nho-nhat.tip.tim-bcnn-nhanh",
+          "kind": "làm nhanh",
+          "title": "Tìm BCNN từ ƯCLN",
+          "text": "Với hai số khác 0, nhân hai số rồi chia cho ƯCLN của chúng thì được BCNN. Cách này nhanh khi hai số lớn mà ƯCLN dễ tìm.",
+          "tex": "12 \\cdot 18 : \\concept{amber}{6} = 216 : 6 = \\concept{pink}{36}"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: biết ƯCLN(9, 15) = 3. Tìm BCNN(9, 15) bằng cách nhân hai số rồi chia cho 3."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.lines-9-15"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-tu-uclnn-6-10"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.tim-b-8-4-24"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.lines-12-18-xong",
+        "caption": "Tích của ƯCLN và BCNN của hai số bằng tích của hai số đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.bcnn-phan-tich",
+      "title": "Tìm BCNN bằng cách phân tích",
+      "sourceRef": "Sách bài tập tr.41 (kiến thức cần nhớ 3), tr.42 (bài 2.46)",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-12-18",
+          "caption": "Viết 12 và 18 thành tích các thừa số nguyên tố, rồi so từng cột. Mỗi cột lấy số mũ lớn nhất."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Viết mỗi số thành tích các thừa số nguyên tố. Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Thừa số không có số mũ thì số mũ là 1, như 3 = 3¹. Thừa số vắng ở một số thì ô của nó để trống."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-12-18-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm với 20 và 30 theo quy tắc trên. Xem mỗi thừa số nguyên tố có mặt ở số nào, rồi chọn số mũ lớn nhất."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-20-30"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "boi-chung-boi-chung-nho-nhat.tip.chung-rieng",
+          "kind": "tránh sai",
+          "title": "ƯCLN và BCNN khi phân tích",
+          "text": "ƯCLN chỉ lấy thừa số chung với số mũ nhỏ nhất. BCNN lấy mọi thừa số, chung và riêng, với số mũ lớn nhất.",
+          "tex": "\\begin{aligned} 12 &= 2^{2} \\cdot 3 \\\\ 18 &= 2 \\cdot 3^{2} \\\\ 2 \\cdot 3 &= \\concept{amber}{6} \\\\ 2^{2} \\cdot 3^{2} &= \\concept{pink}{36} \\end{aligned}"
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-18-24"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-14-35"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-12-18-xong",
+        "caption": "Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.bcnn-ba-so",
+      "title": "BCNN của ba số",
+      "sourceRef": "Sách bài tập tr.41, 42 (ví dụ 2, bài 2.48)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-4-6-10",
+          "caption": "Với ba số ta làm giống như với hai số. Mỗi cột lấy số mũ lớn nhất rồi nhân lại."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "BCNN của ba số là số nhỏ nhất khác 0 chia hết cho cả ba số.",
+              "rule": true
+            },
+            {
+              "type": "formula",
+              "tex": "\\begin{gathered} \\concept{pink}{60} \\chiahet 4 \\\\ \\concept{pink}{60} \\chiahet 6 \\\\ \\concept{pink}{60} \\chiahet 10 \\end{gathered}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm với 6, 8 và 9. Mỗi cột chọn số mũ lớn nhất."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-6-8-9"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "boi-chung-boi-chung-nho-nhat.tip.kiem-chia-het",
+          "kind": "tránh sai",
+          "title": "Kiểm lại kết quả BCNN",
+          "text": "BCNN phải chia hết cho từng số đã cho và không nhỏ hơn số lớn nhất. Kết quả không chia hết cho một số nào đó thì chắc chắn sai.",
+          "tex": "\\begin{gathered} 72 : 6 = 12 \\\\ 72 : 8 = 9 \\\\ 72 : 9 = 8 \\end{gathered}"
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.bcnn-2-3-4"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.truc-nhat-5-6-10"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-4-6-10-xong",
+        "caption": "BCNN của ba số là số nhỏ nhất khác 0 chia hết cho cả ba số."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.bc-tu-bcnn",
+      "title": "Tìm các bội chung từ BCNN",
+      "sourceRef": "Sách bài tập tr.41 (kiến thức cần nhớ 4), tr.42 (bài 2.47)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.nhan-6-8",
+          "caption": "Mọi bội chung của 6 và 8 đều bằng 24 nhân với 1, 2, 3 và cứ thế tiếp."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tìm các bội chung, ta tìm BCNN rồi nhân BCNN đó lần lượt với 1, 2, 3 và cứ thế tiếp.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.nhan-4-10-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chạm vào các bội chung của 6 và 9. Tìm BCNN trước rồi nhân với 1, 2, 3 và cứ thế."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.chon-bc-6-9"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-bc-4-6-nho-hon-40"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.bc-thu-ba-5-6"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.nhan-4-10-xong",
+        "caption": "Muốn tìm các bội chung, ta tìm BCNN rồi nhân BCNN đó lần lượt với 1, 2, 3 và cứ thế tiếp."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.lap-lai",
+      "title": "Hai việc lặp lại cùng lúc",
+      "sourceRef": "Sách bài tập tr.42 (bài 2.49), lời giải tr.109",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.den-6-10",
+          "caption": "Hai đèn cùng nháy lúc 0 giây. Lần tiếp theo cả hai cùng nháy là lúc 30 giây, đó là BCNN(6, 10)."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai việc lặp lại sau các khoảng thời gian khác nhau cùng xảy ra lần nữa sau BCNN của các khoảng đó.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ: hai xe cùng rời bến lúc 6 giờ, xe A cứ 15 phút, xe B cứ 20 phút một chuyến."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.bus-15-20"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: ba bạn nhắn tin cho bố mẹ, cứ 10, 15 và 20 phút nhắn một lần, cùng nhắn lúc 9 giờ. Tìm lúc cả ba cùng nhắn lần tiếp theo."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.tin-nhan-10-15-20"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.bus-8-12"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.bao-thuc-20-30"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.bus-15-20",
+        "caption": "Hai việc lặp lại sau các khoảng thời gian khác nhau cùng xảy ra lần nữa sau BCNN của các khoảng đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.banh-rang",
+      "title": "Hai bánh răng khớp nhau",
+      "sourceRef": "Sách bài tập tr.43 (bài 2.55), lời giải tr.109",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.rang-12-8",
+          "caption": "Bánh A qua 12 răng sau một vòng, bánh B qua 8 răng sau một vòng. Hai dấu gặp lại nhau khi hai bánh cùng qua 24 răng."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai dấu trên hai bánh răng khớp nhau gặp lại nhau lần đầu sau số răng bằng BCNN của số răng hai bánh.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Số vòng quay của mỗi bánh bằng BCNN chia cho số răng của bánh đó."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.rang-12-8-vong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm + để cho từng bánh quay thêm một vòng, tới khi hai dấu gặp nhau lần đầu. Mỗi vòng, bánh qua hết số răng của nó."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.gap-rang-6-4"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.rang-6-10"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.rang-9-6-vong"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.rang-12-8-vong",
+        "caption": "Hai dấu trên hai bánh răng khớp nhau gặp lại nhau lần đầu sau số răng bằng BCNN của số răng hai bánh."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.so-trong-khoang",
+      "title": "Tìm số trong một khoảng",
+      "sourceRef": "Sách bài tập tr.42, 43 (ví dụ 2, bài 2.50 và bài 2.53), lời giải tr.109",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-6-9",
+          "caption": "Số chia hết cho cả 6 và 9 là bội chung của 6 và 9. Ta tìm BCNN là 18, rồi cộng thêm 18 cho tới khi được số có ba chữ số đầu tiên."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số chia hết cho nhiều số là bội chung của các số đó. Ta tìm BCNN, liệt kê các bội của nó rồi chọn số nằm trong khoảng đề cho.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-4-6-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: lớp xếp hàng 3 và hàng 4 đều dư 1 bạn. Lớp có từ 40 đến 55 bạn, hỏi lớp có bao nhiêu bạn?"
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.hang-3-4"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "boi-chung-boi-chung-nho-nhat.tip.hang-con-du",
+          "kind": "tránh sai",
+          "title": "Bài toán xếp hàng còn dư",
+          "text": "Hàng nào cũng dư cùng một số bạn thì bớt số dư đó đi trước. Tìm bội chung của các số hàng, rồi nhớ cộng số dư lại ở cuối.",
+          "tex": "n - 1 = 48 \\Rightarrow n = 48 + 1 = 49"
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-ba-chu-so-5-6"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.hang-5-6-du-2"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-4-6-xong",
+        "caption": "Số chia hết cho nhiều số là bội chung của các số đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.quy-dong",
+      "title": "Quy đồng mẫu số",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.41, 43 (bài 2.52)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-4-6",
+          "caption": "Quy đồng mẫu số là đưa các phân số về cùng một mẫu số. Mẫu số chung nhỏ nhất là BCNN của các mẫu."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung. Rồi nhân cả tử số lẫn mẫu số của mỗi phân số với cùng một số.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-2-5-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm với hai phân số có mẫu 6 và 8. Tìm BCNN(6, 8) làm mẫu số chung."
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-6-8"
+            }
+          ]
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.mau-chung-9-12"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.tu-moi-5-12-7-18"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-2-5-xong",
+        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.section.uclnn-hay-bcnn",
+      "title": "ƯCLN hay BCNN?",
+      "sourceRef": "Sách bài tập tr.38, 41, 42",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "visual",
+          "visualId": "boi-chung-boi-chung-nho-nhat.visual.doi-chieu-12-18",
+          "caption": "Cùng hai số 12 và 18: chia đều thì tìm ƯCLN, việc lặp lại cùng lúc thì tìm BCNN."
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chia đều thành nhiều phần nhất thì tìm ƯCLN. Hai việc lặp lại cùng xảy ra thì tìm BCNN.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "boi-chung-boi-chung-nho-nhat.visual.doi-chieu-12-18-xong"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "boi-chung-boi-chung-nho-nhat.tip.chon-cong-cu",
+          "kind": "hiểu nhanh",
+          "title": "Chọn ƯCLN hay BCNN",
+          "text": "Hỏi mình: số cần tìm nhỏ hơn hay lớn hơn các số đã cho? Nhỏ hơn hoặc bằng thì tìm ƯCLN, lớn hơn hoặc bằng thì tìm BCNN.",
+          "tex": "\\begin{gathered} \\concept{amber}{6} \\le 12,\\ 18 \\\\ \\concept{pink}{36} \\ge 12,\\ 18 \\end{gathered}"
+        }
+      ],
+      "checkIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-dang-24-36"],
+      "practiceIds": ["boi-chung-boi-chung-nho-nhat.ex.chon-bcnn-nhieu"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.doi-chieu-12-18-xong",
+        "caption": "Chia đều thành nhiều phần nhất thì tìm ƯCLN. Hai việc lặp lại cùng xảy ra thì tìm BCNN."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.boi-chung",
+      "sourceRef": "Sách bài tập tr.41, 42",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.boi-chung"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.xe-6-8-tom-tat",
+        "caption": "Một số là bội của tất cả các số đã cho thì gọi là bội chung của các số đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.bcnn",
+      "sourceRef": "Sách bài tập tr.41, 42",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.bcnn"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.ky-hieu-6-8",
+        "caption": "Trong các bội chung khác 0 của hai hay nhiều số, số nhỏ nhất gọi là bội chung nhỏ nhất, viết tắt là BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn",
+      "sourceRef": "Sách bài tập tr.42, lời giải tr.108",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.bcnn"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.ds-9-12-xong",
+        "caption": "Muốn tìm BCNN, ta viết các bội khác 0 của từng số, rồi chọn số nhỏ nhất có ở mọi danh sách."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.so-lon-chia-het",
+      "sourceRef": "Sách bài tập tr.42, lời giải tr.108",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.bcnn"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-lon-12-4",
+        "caption": "Nếu số lớn chia hết cho số bé thì BCNN của hai số là số lớn."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.uclnn-nhan-bcnn",
+      "sourceRef": "Sách bài tập tr.41, 43",
+      "conceptIds": [
+        "boi-chung-boi-chung-nho-nhat.concept.uclnn",
+        "boi-chung-boi-chung-nho-nhat.concept.bcnn"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.lines-12-18-xong",
+        "caption": "Tích của ƯCLN và BCNN của hai số bằng tích của hai số đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich",
+      "sourceRef": "Sách bài tập tr.41, 42",
+      "conceptIds": [
+        "boi-chung-boi-chung-nho-nhat.concept.bcnn",
+        "boi-chung-boi-chung-nho-nhat.concept.so-nguyen-to",
+        "boi-chung-boi-chung-nho-nhat.concept.so-mu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-12-18-xong",
+        "caption": "Lấy mọi thừa số nguyên tố, chung và riêng, mỗi thừa số với số mũ lớn nhất, rồi nhân lại: kết quả là BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.bcnn-ba-so",
+      "sourceRef": "Sách bài tập tr.41, 42",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.bcnn"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.bang-4-6-10-xong",
+        "caption": "BCNN của ba số là số nhỏ nhất khác 0 chia hết cho cả ba số."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.bc-tu-bcnn",
+      "sourceRef": "Sách bài tập tr.41, 42",
+      "conceptIds": [
+        "boi-chung-boi-chung-nho-nhat.concept.boi-chung",
+        "boi-chung-boi-chung-nho-nhat.concept.bcnn"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.nhan-4-10-xong",
+        "caption": "Muốn tìm các bội chung, ta tìm BCNN rồi nhân BCNN đó lần lượt với 1, 2, 3 và cứ thế tiếp."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.lap-lai",
+      "sourceRef": "Sách bài tập tr.42, lời giải tr.109",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.bcnn"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.bus-15-20",
+        "caption": "Hai việc lặp lại sau các khoảng thời gian khác nhau cùng xảy ra lần nữa sau BCNN của các khoảng đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.banh-rang",
+      "sourceRef": "Sách bài tập tr.43, lời giải tr.109",
+      "conceptIds": ["boi-chung-boi-chung-nho-nhat.concept.bcnn"],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.rang-12-8-vong",
+        "caption": "Hai dấu trên hai bánh răng khớp nhau gặp lại nhau lần đầu sau số răng bằng BCNN của số răng hai bánh."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.so-trong-khoang",
+      "sourceRef": "Sách bài tập tr.42, 43, lời giải tr.109",
+      "conceptIds": [
+        "boi-chung-boi-chung-nho-nhat.concept.boi-chung",
+        "boi-chung-boi-chung-nho-nhat.concept.bcnn"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.so-4-6-xong",
+        "caption": "Số chia hết cho nhiều số là bội chung của các số đó."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.quy-dong",
+      "sourceRef": "Kiến thức nền (tiểu học); Sách bài tập tr.41, 43",
+      "conceptIds": [
+        "boi-chung-boi-chung-nho-nhat.concept.quy-dong-mau-so",
+        "boi-chung-boi-chung-nho-nhat.concept.bcnn"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-2-5-xong",
+        "caption": "Muốn quy đồng mẫu số hai phân số, ta lấy BCNN của hai mẫu làm mẫu số chung."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.card.uclnn-hay-bcnn",
+      "sourceRef": "Sách bài tập tr.38, 41, 42",
+      "conceptIds": [
+        "boi-chung-boi-chung-nho-nhat.concept.uclnn",
+        "boi-chung-boi-chung-nho-nhat.concept.bcnn"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "boi-chung-boi-chung-nho-nhat.visual.doi-chieu-12-18-xong",
+        "caption": "Chia đều thành nhiều phần nhất thì tìm ƯCLN. Hai việc lặp lại cùng xảy ra thì tìm BCNN."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bc-3-5",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào là bội chung của 3 và 5?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "10"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "15"
+      },
+      "explain": {
+        "text": "Bội chung phải chia hết cho cả 3 và 5. Chỉ có 15 chia hết cho cả hai số.",
+        "tex": "\\begin{gathered} \\concept{lime}{15} \\chiahet 3 \\\\ \\concept{lime}{15} \\chiahet 5 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "10 chia hết cho 5 nhưng chia cho 3 còn dư 1."
+          },
+          {
+            "optionId": "c",
+            "text": "20 chia hết cho 5 nhưng chia cho 3 còn dư 2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-nhieu-bc-2-3",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các bội chung của 2 và 3."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true,
+      "explain": {
+        "text": "Bội chung phải chia hết cho cả 2 và 3. Hai số 6 và 12 đều chia hết cho cả hai.",
+        "tex": "\\begin{aligned} \\concept{lime}{6} &= 2 \\cdot 3 \\\\ \\concept{lime}{12} &= 2 \\cdot 6 = 3 \\cdot 4 \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "4 chia hết cho 2 nhưng chia cho 3 còn dư 1."
+          },
+          {
+            "optionId": "c",
+            "text": "9 chia hết cho 3 nhưng chia cho 2 còn dư 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dien-bc-18",
+      "type": "fillBlank",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        },
+        {
+          "type": "formula",
+          "tex": "\\begin{gathered} 18 \\chiahet 6 \\\\ 18 \\chiahet 9 \\end{gathered}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Vậy 18 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["bội chung"]
+        },
+        {
+          "type": "text",
+          "text": " của 6 và 9."
+        }
+      ],
+      "bank": ["bội chung", "ước chung", "thương"],
+      "explain": {
+        "text": "18 chia hết cho cả 6 và 9, nên 18 là bội của cả hai số. Một số là bội của cả hai số thì gọi là bội chung.",
+        "tex": "\\begin{gathered} 6 \\cdot 3 = \\concept{lime}{18} \\\\ 9 \\cdot 2 = \\concept{lime}{18} \\end{gathered}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dem-lan-gap-5-10",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xe A cứ 5 phút rời bến một lần, xe B cứ 10 phút rời bến một lần. Hai xe cùng rời bến lúc 0 phút."
+        },
+        {
+          "type": "note",
+          "text": "Trong 30 phút đầu, có mấy lần (không tính lúc 0 phút) cả hai xe cùng rời bến?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.xe-goi-y-3-6",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.xe-giai-5-10"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "30:10"
+      },
+      "explain": {
+        "text": "Phút cả hai xe cùng rời bến là bội chung của 5 và 10. Các bội chung đó là 10, 20 và 30, nên có 3 lần.",
+        "tex": "\\concept{lime}{10},\\ \\concept{lime}{20},\\ \\concept{lime}{30}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.khong-la-bc-4-6",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.boi-chung"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số nào không là bội chung của 4 và 6?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "explain": {
+        "text": "Bội chung phải chia hết cho cả 4 và 6. Số 30 chia hết cho 6 nhưng chia cho 4 còn dư 2, nên 30 không là bội chung.",
+        "tex": "\\begin{gathered} 30 \\chiahet 6 \\\\ 30 \\khongchiahet 4 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "12 chia hết cho cả 4 và 6, nên 12 là bội chung."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bcnn-6-10",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bội chung nhỏ nhất của 6 và 10 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "16"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "90"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "30"
+      },
+      "explain": {
+        "text": "Liệt kê bội của 6 và của 10 rồi chọn số nhỏ nhất có ở cả hai danh sách. Số 30 là bội chung đầu tiên.",
+        "tex": "\\begin{aligned} \\mathrm{B}(6) &: 6,\\ 12,\\ 18,\\ 24,\\ \\concept{pink}{30} \\\\ \\mathrm{B}(10) &: 10,\\ 20,\\ \\concept{pink}{30} \\end{aligned}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "16 không chia hết cho 6 và cũng không chia hết cho 10."
+          },
+          {
+            "optionId": "c",
+            "text": "60 là bội chung nhưng chưa nhỏ nhất, vì 30 cũng là bội chung và nhỏ hơn."
+          },
+          {
+            "optionId": "d",
+            "text": "90 là bội chung nhưng chưa nhỏ nhất, vì 30 cũng là bội chung và nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.gap-4-5-tu-lam",
+      "type": "manipulate",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bấm + để xe A và xe B cùng rời bến lần đầu. Xe A cứ 4 phút một chuyến, xe B cứ 5 phút một chuyến."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "visualId": "boi-chung-boi-chung-nho-nhat.visual.gap-xe",
+      "validatorId": "gap-nhau",
+      "params": {
+        "p": 4,
+        "q": 5,
+        "first": 1
+      },
+      "explain": {
+        "text": "Hai xe cùng rời bến ở các phút là bội chung của 4 và 5. Bội chung nhỏ nhất là 20: xe A chạy 5 chuyến, xe B chạy 4 chuyến.",
+        "tex": "4 \\cdot 5 = 5 \\cdot 4 = \\concept{pink}{20}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dien-bcnn-ten",
+      "type": "fillBlank",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "BCNN là viết tắt của "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["bội chung nhỏ nhất"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": [
+        "bội chung nhỏ nhất",
+        "bội chung lớn nhất",
+        "ước chung nhỏ nhất"
+      ],
+      "explain": {
+        "text": "Các chữ cái B, C, N, N là chữ đầu của bốn từ: bội, chung, nhỏ, nhất. Vậy BCNN là bội chung nhỏ nhất."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.noi-ky-hieu",
+      "type": "match",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi kí hiệu với cách đọc của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "BC"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "BCNN"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "bội chung"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "bội chung nhỏ nhất"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "bội"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        }
+      ],
+      "explain": {
+        "text": "BC là viết tắt của bội chung. BCNN là viết tắt của bội chung nhỏ nhất."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.den-nhay-2-7",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đèn A cứ 2 giây nháy một lần, đèn B cứ 7 giây nháy một lần. Hai đèn cùng nháy lúc 0 giây."
+        },
+        {
+          "type": "note",
+          "text": "Lần tiếp theo cả hai đèn cùng nháy là lúc giây thứ mấy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.den-goi-y-2-3",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.den-giai-2-7"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 14
+      },
+      "check": {
+        "expr": "2·7"
+      },
+      "explain": {
+        "text": "Lúc cả hai đèn cùng nháy là bội chung của 2 và 7. Lần đầu tiên là bội chung nhỏ nhất, bằng 14.",
+        "tex": "\\mathrm{BCNN}(2, 7) = 2 \\cdot 7 = \\concept{pink}{14}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-6-15",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "BCNN(6, 15) là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "90"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "30"
+      },
+      "explain": {
+        "text": "Liệt kê bội của 15 là 15, 30, 45. Số đầu tiên chia hết cho 6 là 30, nên BCNN(6, 15) = 30.",
+        "tex": "\\begin{gathered} 15 \\khongchiahet 6 \\\\ \\concept{pink}{30} \\chiahet 6 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "15 không chia hết cho 6, nên 15 không là bội của 6."
+          },
+          {
+            "optionId": "d",
+            "text": "90 là bội chung nhưng chưa nhỏ nhất, vì 30 cũng là bội chung và nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-12-16",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm BCNN(12, 16)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.ds-goi-y-4-6",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.ds-giai-12-16"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 48
+      },
+      "check": {
+        "expr": "16·3"
+      },
+      "explain": {
+        "text": "Liệt kê các bội của 16: 16, 32, 48. Số đầu tiên chia hết cho 12 là 48, nên BCNN(12, 16) = 48.",
+        "tex": "\\begin{aligned} \\mathrm{B}(16) &: 16,\\ 32,\\ \\concept{pink}{48} \\\\ 48 : 12 &= 4 \\end{aligned}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.mua-but-vo-5-8",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cửa hàng bán bút theo vỉ 5 cái và bán vở theo xếp 8 quyển. Cô muốn mua trọn vỉ bút và trọn xếp vở sao cho số bút bằng số vở."
+        },
+        {
+          "type": "note",
+          "text": "Cô mua ít nhất bao nhiêu cái bút?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "5·8"
+      },
+      "explain": {
+        "text": "Số bút phải là bội của 5 và số vở phải là bội của 8, mà hai số bằng nhau. Số ít nhất là BCNN(5, 8) = 40.",
+        "tex": "\\begin{aligned} \\mathrm{B}(8) &: 8,\\ 16,\\ 24,\\ 32,\\ \\concept{pink}{40} \\\\ 40 : 5 &= 8 \\end{aligned}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bc-6-9-nho-hon-60",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các bội chung của 6 và 9 nhỏ hơn 60."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "18"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "27"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "54"
+          }
+        }
+      ],
+      "answer": ["a", "c", "d"],
+      "multiple": true,
+      "explain": {
+        "text": "Bội chung phải chia hết cho cả 6 và 9. Các số 18, 36 và 54 đều chia hết cho cả hai.",
+        "tex": "\\begin{gathered} \\concept{lime}{18} = 6 \\cdot 3 = 9 \\cdot 2 \\\\ \\concept{lime}{36} = 6 \\cdot 6 = 9 \\cdot 4 \\\\ \\concept{lime}{54} = 6 \\cdot 9 = 9 \\cdot 6 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "27 chia hết cho 9 nhưng chia cho 6 còn dư 3."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xep-liet-ke-4-6",
+      "type": "order",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.liet-ke-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tìm BCNN(4, 6) bằng cách liệt kê theo thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Viết các bội của 4: 4, 8, 12, 16"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Viết các bội của 6: 6, 12, 18"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Chọn số nhỏ nhất có ở cả hai danh sách: 12"
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Kết luận: BCNN(4, 6) = 12"
+          }
+        }
+      ],
+      "explain": {
+        "text": "Muốn tìm BCNN bằng cách liệt kê, trước hết viết các bội của từng số. Sau đó chọn số nhỏ nhất có ở cả hai danh sách rồi viết kết luận."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-7-21",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "BCNN(7, 21) là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "21"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "147"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "21"
+      },
+      "explain": {
+        "text": "21 chia hết cho 7 nên 21 là bội của cả 7 và 21. BCNN không thể nhỏ hơn số lớn 21, nên BCNN(7, 21) = 21.",
+        "tex": "21 \\chiahet 7 \\Rightarrow \\mathrm{BCNN}(7, 21) = \\concept{pink}{21}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "7 không chia hết cho 21, nên 7 không là bội của 21."
+          },
+          {
+            "optionId": "d",
+            "text": "147 là bội chung nhưng chưa nhỏ nhất, vì 21 cũng là bội chung và nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-12-36",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-lon-chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm BCNN(12, 36)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.ds-goi-y-3-9",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.ds-giai-12-36"
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 36
+      },
+      "check": {
+        "expr": "12·3"
+      },
+      "explain": {
+        "text": "36 chia hết cho 12 (36 = 12 · 3), nên 36 là bội của cả hai số. Vậy BCNN(12, 36) là số lớn 36.",
+        "tex": "36 : 12 = 3 \\Rightarrow \\mathrm{BCNN}(12, 36) = \\concept{pink}{36}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-cap-bcnn-la-so-lon",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-lon-chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cặp số có BCNN bằng số lớn của cặp."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4 và 12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5 và 7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6 và 18"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8 và 12"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "BCNN là số lớn khi số lớn chia hết cho số bé. Có 12 chia hết cho 4 và 18 chia hết cho 6.",
+        "tex": "\\begin{gathered} 12 \\chiahet 4 \\\\ 18 \\chiahet 6 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "7 không chia hết cho 5, nên BCNN lớn hơn 7."
+          },
+          {
+            "optionId": "d",
+            "text": "12 không chia hết cho 8, nên BCNN lớn hơn 12."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chuong-17-51",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-lon-chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chuông A cứ 17 phút reo một lần, chuông B cứ 51 phút reo một lần. Hai chuông cùng reo lúc 0 phút."
+        },
+        {
+          "type": "note",
+          "text": "Lần tiếp theo cả hai cùng reo là phút thứ mấy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 51
+      },
+      "check": {
+        "expr": "17·3"
+      },
+      "explain": {
+        "text": "51 chia hết cho 17 (51 = 17 · 3), nên 51 là bội của cả hai số. Lần tiếp theo cả hai chuông cùng reo là BCNN(17, 51) = 51.",
+        "tex": "51 = 17 \\cdot 3 \\Rightarrow \\mathrm{BCNN}(17, 51) = \\concept{pink}{51}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dien-so-lon-30",
+      "type": "fillBlank",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-lon-chia-het"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn số điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Vì 30 chia hết cho 6 nên BCNN(6, 30) = "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["30"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["6", "30", "180"],
+      "explain": {
+        "text": "30 chia hết cho 6, nên số lớn 30 là bội chung nhỏ nhất của hai số.",
+        "tex": "30 : 6 = 5 \\Rightarrow \\mathrm{BCNN}(6, 30) = \\concept{pink}{30}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-tu-uclnn-6-10",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "ƯCLN(6, 10) = 2. BCNN(6, 10) là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "16"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "6·10:2"
+      },
+      "explain": {
+        "text": "Nhân hai số rồi chia cho ƯCLN thì được BCNN. 6 · 10 = 60, chia cho 2 được 30.",
+        "tex": "6 \\cdot 10 : \\concept{amber}{2} = 60 : 2 = \\concept{pink}{30}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "16 là tổng 6 + 10, không dùng để tìm BCNN."
+          },
+          {
+            "optionId": "d",
+            "text": "60 là tích 6 · 10, còn phải chia cho ƯCLN là 2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.tim-b-8-4-24",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-nhan-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số a và b có ƯCLN(a, b) = 4 và BCNN(a, b) = 24. Biết a = 8, tìm b."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.uclnn-goi-y-b",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.uclnn-giai-b"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "4·24:8"
+      },
+      "explain": {
+        "text": "Tích hai số bằng ƯCLN nhân BCNN, nên a · b = 4 · 24 = 96. Biết a = 8, ta có b = 96 : 8 = 12.",
+        "tex": "a \\cdot b = \\concept{amber}{4} \\cdot \\concept{pink}{24} = 96 \\Rightarrow b = 96 : 8 = 12"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xe-16-24",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-nhan-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xe A cứ 16 phút, xe B cứ 24 phút rời bến một lần. Biết ƯCLN(16, 24) = 8."
+        },
+        {
+          "type": "note",
+          "text": "Hai xe cùng rời bến lúc 6 giờ. Mấy phút sau hai xe lại cùng rời bến?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 48
+      },
+      "check": {
+        "expr": "16·24:8"
+      },
+      "explain": {
+        "text": "Số phút cần tìm là BCNN(16, 24). Nhân 16 với 24 rồi chia cho ƯCLN là 8.",
+        "tex": "16 \\cdot 24 : \\concept{amber}{8} = 384 : 8 = \\concept{pink}{48}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.tim-b-12-3-60",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-nhan-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai số a và b có ƯCLN(a, b) = 3 và BCNN(a, b) = 60. Biết a = 12, tìm b."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "3·60:12"
+      },
+      "explain": {
+        "text": "Tích hai số bằng ƯCLN nhân BCNN, nên a · b = 3 · 60 = 180. Biết a = 12, ta có b = 180 : 12 = 15.",
+        "tex": "a \\cdot b = \\concept{amber}{3} \\cdot \\concept{pink}{60} = 180 \\Rightarrow b = 180 : 12 = 15"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.tich-150-uclnn-5",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-nhan-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tích của hai số là 150 và ƯCLN của chúng là 5. BCNN của hai số là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "145"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "155"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "750"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "150:5"
+      },
+      "explain": {
+        "text": "Tích hai số bằng ƯCLN nhân BCNN. Nên BCNN bằng tích hai số chia cho ƯCLN: 150 : 5 = 30.",
+        "tex": "150 : \\concept{amber}{5} = \\concept{pink}{30}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "145 là hiệu 150 − 5, không dùng để tìm BCNN."
+          },
+          {
+            "optionId": "d",
+            "text": "750 là tích 150 · 5, nhưng ta phải chia cho 5, không nhân."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-18-24",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho 18 và 24 viết thành tích các thừa số nguyên tố. BCNN(18, 24) là số nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\begin{gathered} 18 = 2 \\cdot 3^{2} \\\\ 24 = 2^{3} \\cdot 3 \\end{gathered}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "72"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "432"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "2^3·3^2"
+      },
+      "explain": {
+        "text": "Lấy mỗi thừa số với số mũ lớn nhất: 2³ và 3². Nhân lại được 8 · 9 = 72.",
+        "tex": "\\concept{sky}{2}^{\\concept{violet}{3}} \\cdot \\concept{sky}{3}^{\\concept{violet}{2}} = 8 \\cdot 9 = \\concept{pink}{72}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "6 là ƯCLN: số này chỉ lấy thừa số chung với số mũ nhỏ nhất."
+          },
+          {
+            "optionId": "b",
+            "text": "36 chia hết cho 18 nhưng chia cho 24 còn dư 12."
+          },
+          {
+            "optionId": "d",
+            "text": "432 có số mũ cộng lại (2⁴ · 3³), không phải số mũ lớn nhất của từng thừa số."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-14-35",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "An cứ 14 ngày đi thư viện một lần, Bình cứ 35 ngày đi một lần. Hôm nay cả hai cùng đi."
+        },
+        {
+          "type": "note",
+          "text": "Sau ít nhất bao nhiêu ngày lại cùng đi?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.bang-goi-y-6-15",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.bang-14-35"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 70
+      },
+      "check": {
+        "expr": "2·5·7"
+      },
+      "explain": {
+        "text": "Số ngày cần tìm là BCNN(14, 35). Phân tích 14 = 2 · 7 và 35 = 5 · 7, rồi lấy mọi thừa số nguyên tố với số mũ lớn nhất.",
+        "tex": "\\concept{sky}{2} \\cdot \\concept{sky}{5} \\cdot \\concept{sky}{7} = \\concept{pink}{70}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bcnn-dang-phan-tich",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho m và n viết thành tích các thừa số nguyên tố. Chọn BCNN(m, n)."
+        },
+        {
+          "type": "formula",
+          "tex": "\\begin{gathered} m = 2^{2} \\cdot 3 \\cdot 5 \\\\ n = 2 \\cdot 3^{2} \\cdot 7 \\end{gathered}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 3^{2} \\cdot 5 \\cdot 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot 3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "2^{2} \\cdot 3 \\cdot 5 \\cdot 7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "2^{3} \\cdot 3^{3} \\cdot 5 \\cdot 7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2^2·3^2·5·7"
+      },
+      "explain": {
+        "text": "Lấy mọi thừa số nguyên tố là 2, 3, 5 và 7, mỗi thừa số với số mũ lớn nhất. Số mũ lớn nhất của 2 là 2, của 3 cũng là 2.",
+        "tex": "2^{2} \\cdot 3^{2} \\cdot 5 \\cdot 7",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 · 3 là ƯCLN: chỉ lấy thừa số chung với số mũ nhỏ nhất."
+          },
+          {
+            "optionId": "c",
+            "text": "Thiếu 3²: số mũ lớn nhất của 3 là 2, không phải 1."
+          },
+          {
+            "optionId": "d",
+            "text": "Số mũ bị cộng lên: số mũ lớn nhất của 2 là 2, của 3 là 2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-16-20",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm BCNN(16, 20) bằng cách phân tích ra thừa số nguyên tố."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 80
+      },
+      "check": {
+        "expr": "2^4·5"
+      },
+      "explain": {
+        "text": "Ta có 16 = 2⁴ và 20 = 2² · 5. Lấy 2 với số mũ lớn nhất là 4, và lấy 5, rồi nhân lại.",
+        "tex": "\\concept{sky}{2}^{\\concept{violet}{4}} \\cdot \\concept{sky}{5} = 16 \\cdot 5 = \\concept{pink}{80}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xep-buoc-phan-tich",
+      "type": "order",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xếp các bước tìm BCNN bằng cách phân tích theo thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Phân tích từng số ra thừa số nguyên tố"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Lấy mọi thừa số nguyên tố, mỗi thừa số với số mũ lớn nhất"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Nhân các luỹ thừa vừa lấy với nhau"
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Viết kết quả là BCNN"
+          }
+        }
+      ],
+      "explain": {
+        "text": "Trước hết phân tích từng số ra thừa số nguyên tố. Sau đó chọn số mũ lớn nhất của mỗi thừa số, nhân lại và viết kết quả."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-thua-so-14-21",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-phan-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các thừa số nguyên tố có mặt trong BCNN(14, 21)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        }
+      ],
+      "answer": ["a", "b", "d"],
+      "multiple": true,
+      "explain": {
+        "text": "BCNN lấy mọi thừa số nguyên tố của cả hai số. Ta có 14 = 2 · 7 và 21 = 3 · 7, nên có 2, 3 và 7.",
+        "tex": "\\mathrm{BCNN}(14, 21) = \\concept{sky}{2} \\cdot \\concept{sky}{3} \\cdot \\concept{sky}{7} = 42",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "5 không là thừa số của 14 và cũng không là thừa số của 21."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-2-3-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "BCNN(2, 3, 4) là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "expr": "2^2·3"
+      },
+      "explain": {
+        "text": "Phân tích 4 = 2², còn 2 và 3 là số nguyên tố. Lấy 2² và 3 rồi nhân lại được 12.",
+        "tex": "\\concept{sky}{2}^{\\concept{violet}{2}} \\cdot \\concept{sky}{3} = \\concept{pink}{12}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "6 chia hết cho 2 và 3 nhưng chia cho 4 còn dư 2."
+          },
+          {
+            "optionId": "c",
+            "text": "24 là bội chung nhưng chưa nhỏ nhất, vì 12 cũng là bội chung và nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.truc-nhat-5-6-10",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-ba-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba bạn Lan, Mai, Hoa cứ 5, 6 và 10 ngày trực nhật một lần. Hôm nay cả ba cùng trực."
+        },
+        {
+          "type": "note",
+          "text": "Sau ít nhất bao nhiêu ngày lại cùng trực?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.bang-goi-y-3-4-6",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.bang-5-6-10"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "2·3·5"
+      },
+      "explain": {
+        "text": "Số ngày cần tìm là BCNN(5, 6, 10). Ta có 6 = 2 · 3 và 10 = 2 · 5, nên lấy 2, 3 và 5 rồi nhân lại.",
+        "tex": "\\concept{sky}{2} \\cdot \\concept{sky}{3} \\cdot \\concept{sky}{5} = \\concept{pink}{30}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-3-8-12",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-ba-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm BCNN(3, 8, 12)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 24
+      },
+      "check": {
+        "expr": "2^3·3"
+      },
+      "explain": {
+        "text": "Ta có 3 = 3, 8 = 2³ và 12 = 2² · 3. Lấy 2 với số mũ lớn nhất là 3 và lấy 3, rồi nhân lại.",
+        "tex": "\\concept{sky}{2}^{\\concept{violet}{3}} \\cdot \\concept{sky}{3} = 8 \\cdot 3 = \\concept{pink}{24}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bc-4-6-8",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-ba-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số là bội chung của 4, 6 và 8."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "48"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true,
+      "explain": {
+        "text": "BCNN(4, 6, 8) = 24, nên các bội chung là 24, 48 và cứ thế tiếp. Trong bốn số, chỉ 24 và 48 chia hết cho cả ba số.",
+        "tex": "\\begin{gathered} 24 = 8 \\cdot 3 \\\\ 48 = 8 \\cdot 6 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "12 chia hết cho 4 và 6 nhưng chia cho 8 còn dư 4."
+          },
+          {
+            "optionId": "c",
+            "text": "36 chia hết cho 4 và 6 nhưng chia cho 8 còn dư 4."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bcnn-6-9-15",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-ba-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm BCNN(6, 9, 15)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 90
+      },
+      "check": {
+        "expr": "2·3^2·5"
+      },
+      "explain": {
+        "text": "Ta có 6 = 2 · 3, 9 = 3² và 15 = 3 · 5. Lấy 2, 3² và 5 rồi nhân lại.",
+        "tex": "\\concept{sky}{2} \\cdot \\concept{sky}{3}^{\\concept{violet}{2}} \\cdot \\concept{sky}{5} = \\concept{pink}{90}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.tim-loi-bcnn-4-6-9",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn-ba-so"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nam tính BCNN(4, 6, 9) = 24. Chọn lý do cho thấy kết quả của Nam là sai."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "24 không chia hết cho 9"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "24 là số chẵn"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "24 lớn hơn 9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "24 chia hết cho 4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "BCNN phải chia hết cho từng số đã cho. Số 24 chia hết cho 4 và 6 nhưng chia cho 9 còn dư 6, nên 24 sai.",
+        "tex": "\\begin{gathered} 24 \\chiahet 4 \\\\ 24 \\chiahet 6 \\\\ 24 \\khongchiahet 9 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số chẵn hay lẻ không cho biết BCNN đúng hay sai."
+          },
+          {
+            "optionId": "c",
+            "text": "BCNN luôn không nhỏ hơn số lớn nhất, nên 24 lớn hơn 9 chưa cho thấy sai."
+          },
+          {
+            "optionId": "d",
+            "text": "24 chia hết cho 4 là đúng, nhưng chưa đủ: còn phải chia hết cho 6 và 9."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bc-4-6-nho-hon-40",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các bội chung của 4 và 6 nhỏ hơn 40."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "18"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        }
+      ],
+      "answer": ["a", "c", "d"],
+      "multiple": true,
+      "explain": {
+        "text": "BCNN(4, 6) = 12. Các bội chung nhỏ hơn 40 là 12 nhân với 1, 2 và 3, tức là 12, 24 và 36.",
+        "tex": "\\begin{gathered} 12 \\cdot 1 = \\concept{lime}{12} \\\\ 12 \\cdot 2 = \\concept{lime}{24} \\\\ 12 \\cdot 3 = \\concept{lime}{36} \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "18 chia hết cho 6 nhưng chia cho 4 còn dư 2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bc-thu-ba-5-6",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bc-tu-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết BCNN(5, 6) = 30. Bội chung thứ ba (khác 0) của 5 và 6 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 90
+      },
+      "check": {
+        "expr": "30·3"
+      },
+      "explain": {
+        "text": "Các bội chung khác 0 là BCNN nhân với 1, 2, 3 và cứ thế tiếp. Bội chung thứ ba là 30 nhân với 3.",
+        "tex": "30 \\cdot 3 = \\concept{lime}{90}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-tap-bc-3-4",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bc-tu-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết BCNN(3, 4) = 12. Các bội chung của 3 và 4 là những số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "12, 24, 36 và cứ thế tiếp"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "12, 15, 18 và cứ thế tiếp"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "3, 4, 12 và cứ thế tiếp"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "12, 16, 20 và cứ thế tiếp"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Các bội chung là BCNN nhân với 1, 2, 3 và cứ thế tiếp, tức là 12, 24, 36.",
+        "tex": "12 \\cdot 1,\\ 12 \\cdot 2,\\ 12 \\cdot 3",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "15 chia hết cho 3 nhưng chia cho 4 còn dư 3."
+          },
+          {
+            "optionId": "d",
+            "text": "16 chia hết cho 4 nhưng chia cho 3 còn dư 1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xe-10-15-100",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bc-tu-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xe A cứ 10 phút, xe B cứ 15 phút rời bến một lần, cùng rời bến lúc 0 phút. Trong 100 phút đầu (không tính lúc 0 phút), có mấy lần cả hai xe cùng rời bến?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "90:30"
+      },
+      "explain": {
+        "text": "BCNN(10, 15) = 30, nên hai xe cùng rời bến ở các phút 30, 60 và 90. Phút 120 đã quá 100, nên có 3 lần.",
+        "tex": "30 \\cdot 1,\\ 30 \\cdot 2,\\ 30 \\cdot 3"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dien-boi-cua-bcnn",
+      "type": "fillBlank",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bc-tu-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Mỗi bội chung của hai số là một "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["bội"]
+        },
+        {
+          "type": "text",
+          "text": " của BCNN của hai số đó."
+        }
+      ],
+      "bank": ["bội", "ước", "thương"],
+      "explain": {
+        "text": "Các bội chung là BCNN nhân với 1, 2, 3 và cứ thế tiếp. Nên mỗi bội chung là một bội của BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bus-8-12",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai xe buýt cùng rời bến lúc 6 giờ. Xe thứ nhất cứ 8 phút, xe thứ hai cứ 12 phút rời bến một lần."
+        },
+        {
+          "type": "note",
+          "text": "Sau bao nhiêu phút hai xe lại cùng rời bến?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "96"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "2^3·3"
+      },
+      "explain": {
+        "text": "Hai xe lại cùng rời bến sau BCNN(8, 12). Ta có 8 = 2³ và 12 = 2² · 3, nên BCNN là 2³ · 3 = 24.",
+        "tex": "\\mathrm{BCNN}(8, 12) = \\concept{pink}{24}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "4 là ƯCLN của 8 và 12, dùng khi chia đều chứ không dùng khi việc lặp lại."
+          },
+          {
+            "optionId": "b",
+            "text": "20 không chia hết cho 8 và cũng không chia hết cho 12."
+          },
+          {
+            "optionId": "d",
+            "text": "96 là bội chung nhưng chưa phải lần sớm nhất, vì 24 nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.bao-thuc-20-30",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một đồng hồ báo thức reo cứ 20 phút một lần, một đồng hồ khác cứ 30 phút một lần. Cả hai cùng reo lúc 7 giờ."
+        },
+        {
+          "type": "note",
+          "text": "Lần tiếp theo cả hai cùng reo lúc mấy giờ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.bao-thuc-goi-y",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.bao-thuc-giai"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "7+60:60"
+      },
+      "explain": {
+        "text": "Hai đồng hồ cùng reo lại sau BCNN(20, 30) = 60 phút, tức 1 giờ. Từ 7 giờ cộng thêm 1 giờ được 8 giờ.",
+        "tex": "\\mathrm{BCNN}(20, 30) = \\concept{pink}{60} \\Rightarrow 7 + 1 = 8"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xe-6-8-12",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba tuyến xe buýt cứ 6, 8 và 12 phút có một chuyến rời bến, cùng rời bến lúc 0 phút. Lần tiếp theo cả ba tuyến cùng rời bến là phút thứ mấy?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 24
+      },
+      "check": {
+        "expr": "2^3·3"
+      },
+      "explain": {
+        "text": "Ta cần BCNN(6, 8, 12). Phân tích 6 = 2 · 3, 8 = 2³ và 12 = 2² · 3, rồi lấy 2³ và 3.",
+        "tex": "\\concept{sky}{2}^{\\concept{violet}{3}} \\cdot \\concept{sky}{3} = \\concept{pink}{24}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.den-3-4-chon",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đèn A cứ 3 giây, đèn B cứ 4 giây nháy một lần, cùng nháy lúc 0 giây. Chọn tất cả các lúc cả hai đèn cùng nháy."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "18"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "24"
+          }
+        }
+      ],
+      "answer": ["b", "d"],
+      "multiple": true,
+      "explain": {
+        "text": "Lúc hai đèn cùng nháy là bội chung của 3 và 4. Các số 12 và 24 chia hết cho cả hai.",
+        "tex": "\\begin{gathered} \\concept{lime}{12} = 3 \\cdot 4 \\\\ \\concept{lime}{24} = 3 \\cdot 8 = 4 \\cdot 6 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "6 chia hết cho 3 nhưng chia cho 4 còn dư 2."
+          },
+          {
+            "optionId": "c",
+            "text": "18 chia hết cho 3 nhưng chia cho 4 còn dư 2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dien-bcnn-lap-lai",
+      "type": "fillBlank",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.lap-lai"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Để biết sau bao lâu hai việc lặp lại cùng xảy ra lần nữa, ta tìm "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["BCNN", "bội chung nhỏ nhất"]
+        },
+        {
+          "type": "text",
+          "text": " của hai khoảng thời gian."
+        }
+      ],
+      "bank": ["BCNN", "ƯCLN", "tổng"],
+      "explain": {
+        "text": "Lúc hai việc cùng xảy ra là bội của cả hai khoảng thời gian. Lần đầu tiên là bội chung nhỏ nhất, viết tắt là BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.rang-6-10",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai bánh răng khớp nhau, một bánh có 6 răng, bánh kia có 10 răng. Hai dấu gặp lại nhau lần đầu sau khi hai bánh cùng qua bao nhiêu răng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "16"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "2·3·5"
+      },
+      "explain": {
+        "text": "Số răng cần tìm là BCNN(6, 10). Ta có 6 = 2 · 3 và 10 = 2 · 5, nên BCNN là 2 · 3 · 5 = 30.",
+        "tex": "\\mathrm{BCNN}(6, 10) = \\concept{pink}{30}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "2 là ƯCLN của 6 và 10, không phải số răng của lần gặp đầu tiên."
+          },
+          {
+            "optionId": "d",
+            "text": "60 là bội chung nhưng chưa phải lần đầu, vì 30 nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.rang-9-6-vong",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.banh-rang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai bánh răng khớp nhau, bánh A có 9 răng, bánh B có 6 răng. Từ lúc hai dấu gặp nhau, bánh B quay mấy vòng thì hai dấu gặp lại nhau lần đầu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.rang-goi-y-4-6",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.rang-giai-9-6"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "18:6"
+      },
+      "explain": {
+        "text": "Hai dấu gặp lại nhau sau BCNN(9, 6) = 18 răng. Bánh B có 6 răng nên quay 18 : 6 = 3 vòng.",
+        "tex": "\\mathrm{BCNN}(9, 6) = \\concept{pink}{18} \\Rightarrow 18 : 6 = 3"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.rang-10-25",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.banh-rang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai bánh răng khớp nhau, bánh A có 10 răng, bánh B có 25 răng. Từ lúc hai dấu gặp nhau, bánh B quay mấy vòng thì hai dấu gặp lại nhau lần đầu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "check": {
+        "expr": "50:25"
+      },
+      "explain": {
+        "text": "Ta có 10 = 2 · 5 và 25 = 5², nên BCNN(10, 25) = 2 · 5² = 50 răng. Bánh B quay 50 : 25 = 2 vòng.",
+        "tex": "\\mathrm{BCNN}(10, 25) = \\concept{pink}{50} \\Rightarrow 50 : 25 = 2"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.rang-14-21",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.banh-rang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai bánh răng khớp nhau, một bánh có 14 răng, bánh kia có 21 răng. Từ lúc hai dấu gặp nhau, bánh 14 răng quay mấy vòng thì hai dấu gặp lại nhau lần đầu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "42:14"
+      },
+      "explain": {
+        "text": "Ta có 14 = 2 · 7 và 21 = 3 · 7, nên BCNN(14, 21) = 42 răng. Bánh 14 răng quay 42 : 14 = 3 vòng.",
+        "tex": "\\mathrm{BCNN}(14, 21) = \\concept{pink}{42} \\Rightarrow 42 : 14 = 3"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.noi-vong-4-10",
+      "type": "match",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.banh-rang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai bánh răng khớp nhau có 4 răng và 10 răng. Nối mỗi bánh với số vòng nó quay cho tới khi hai dấu gặp lại nhau lần đầu."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "Bánh 4 răng"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "Bánh 10 răng"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "5 vòng"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "2 vòng"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "10 vòng"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        }
+      ],
+      "explain": {
+        "text": "BCNN(4, 10) = 20 răng. Bánh 4 răng quay 20 : 4 = 5 vòng, bánh 10 răng quay 20 : 10 = 2 vòng.",
+        "tex": "\\begin{gathered} 20 : 4 = 5 \\\\ 20 : 10 = 2 \\end{gathered}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-ba-chu-so-5-6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số có ba chữ số nhỏ nhất chia hết cho cả 5 và 6 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "90"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "100"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "120"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "150"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "30·4"
+      },
+      "explain": {
+        "text": "BCNN(5, 6) = 30. Các bội của 30 là 30, 60, 90, 120, nên số có ba chữ số đầu tiên là 120.",
+        "tex": "30;\\ 60;\\ 90;\\ \\concept{lime}{120}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "90 chỉ có hai chữ số."
+          },
+          {
+            "optionId": "b",
+            "text": "100 chia hết cho 5 nhưng chia cho 6 còn dư 4."
+          },
+          {
+            "optionId": "d",
+            "text": "150 chia hết cho cả hai nhưng 120 nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.hang-5-6-du-2",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-trong-khoang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một đội xếp hàng 5 và xếp hàng 6 đều dư 2 người. Đội có từ 50 đến 70 người."
+        },
+        {
+          "type": "note",
+          "text": "Hỏi đội có bao nhiêu người?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.hang-goi-y-4-5",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.hang-giai-5-6"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 62
+      },
+      "check": {
+        "expr": "30·2+2"
+      },
+      "explain": {
+        "text": "Bớt 2 người thì số còn lại chia hết cho cả 5 và 6, nên là bội của 30. Trong khoảng từ 48 đến 68 chỉ có 60, cộng 2 lại được 62.",
+        "tex": "60 + 2 = \\concept{lime}{62}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.ba-chu-so-8-12",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-trong-khoang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số có ba chữ số nhỏ nhất chia hết cho cả 8 và 12 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 120
+      },
+      "check": {
+        "expr": "24·5"
+      },
+      "explain": {
+        "text": "BCNN(8, 12) = 24. Các bội của 24 là 24, 48, 72, 96, 120, nên số có ba chữ số đầu tiên là 120.",
+        "tex": "24;\\ 48;\\ 72;\\ 96;\\ \\concept{lime}{120}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.hai-chu-so-6-8",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-trong-khoang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số có hai chữ số lớn nhất chia hết cho cả 6 và 8 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 96
+      },
+      "check": {
+        "expr": "24·4"
+      },
+      "explain": {
+        "text": "BCNN(6, 8) = 24. Các bội của 24 là 24, 48, 72, 96, 120, nên số có hai chữ số lớn nhất là 96.",
+        "tex": "72;\\ \\concept{lime}{96};\\ 120"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-5-6-giua-50-100",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.so-trong-khoang"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các số chia hết cho cả 5 và 6 và nằm giữa 50 và 100."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "70"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "90"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "120"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "BCNN(5, 6) = 30, nên số cần tìm là bội của 30. Trong khoảng từ 50 đến 100 có 60 và 90.",
+        "tex": "30 \\cdot 2 = \\concept{lime}{60}, \\quad 30 \\cdot 3 = \\concept{lime}{90}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "70 chia hết cho 5 nhưng chia cho 6 còn dư 4."
+          },
+          {
+            "optionId": "d",
+            "text": "120 chia hết cho cả hai nhưng lớn hơn 100."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.mau-chung-9-12",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mai ăn một phần chín chiếc bánh, Lan ăn một phần mười hai chiếc bánh. Để so sánh hai phần bánh, ta quy đồng mẫu số."
+        },
+        {
+          "type": "note",
+          "text": "Mẫu số chung nhỏ nhất là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "21"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "108"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "expr": "2^2·3^2"
+      },
+      "explain": {
+        "text": "Mẫu số chung nhỏ nhất là BCNN của hai mẫu. Ta có 9 = 3² và 12 = 2² · 3, nên BCNN(9, 12) = 2² · 3² = 36.",
+        "tex": "\\mathrm{BCNN}(9, 12) = \\concept{pink}{36}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "3 là ƯCLN của 9 và 12, không phải mẫu số chung."
+          },
+          {
+            "optionId": "b",
+            "text": "21 là tổng 9 + 12 và không chia hết cho 9."
+          },
+          {
+            "optionId": "d",
+            "text": "108 là mẫu số chung nhưng chưa nhỏ nhất, vì 36 nhỏ hơn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.tu-moi-5-12-7-18",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.quy-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quy đồng mẫu số hai phân số với mẫu số chung nhỏ nhất. Tử số mới của phân số thứ hai là bao nhiêu?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\dfrac{5}{12},\\ \\dfrac{7}{18}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-goi-y",
+        "solutionVisualId": "boi-chung-boi-chung-nho-nhat.visual.quy-dong-giai"
+      },
+      "difficulty": 3,
+      "answer": {
+        "kind": "value",
+        "value": 14
+      },
+      "check": {
+        "expr": "7·36:18"
+      },
+      "explain": {
+        "text": "Mẫu số chung nhỏ nhất là BCNN(12, 18) = 36. Mẫu số 18 nhân với 2 thì được 36, nên tử số 7 cũng nhân với 2 được 14.",
+        "tex": "\\dfrac{7}{18} = \\dfrac{7 \\cdot 2}{18 \\cdot 2} = \\dfrac{14}{\\concept{pink}{36}}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-quy-dong-1-6-3-10",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.quy-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quy đồng mẫu số hai phân số với mẫu số chung nhỏ nhất. Chọn cặp phân số đúng."
+        },
+        {
+          "type": "formula",
+          "tex": "\\dfrac{1}{6},\\ \\dfrac{3}{10}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "\\dfrac{5}{30},\\ \\dfrac{9}{30}"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "\\dfrac{1}{30},\\ \\dfrac{3}{30}"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "\\dfrac{10}{60},\\ \\dfrac{18}{60}"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "\\dfrac{6}{30},\\ \\dfrac{9}{30}"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "BCNN(6, 10) = 30. Nhân cả tử số lẫn mẫu số của một phần sáu với 5, của ba phần mười với 3.",
+        "tex": "\\dfrac{1 \\cdot 5}{6 \\cdot 5} = \\dfrac{5}{30}, \\quad \\dfrac{3 \\cdot 3}{10 \\cdot 3} = \\dfrac{9}{30}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chỉ đổi mẫu số mà không đổi tử số thì giá trị phân số bị thay đổi."
+          },
+          {
+            "optionId": "c",
+            "text": "Cặp này bằng đúng giá trị nhưng mẫu số chung 60 chưa phải nhỏ nhất."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.mau-chung-8-12",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.quy-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm mẫu số chung nhỏ nhất của hai phân số có mẫu là 8 và 12."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 24
+      },
+      "check": {
+        "expr": "2^3·3"
+      },
+      "explain": {
+        "text": "Mẫu số chung nhỏ nhất là BCNN(8, 12). Ta có 8 = 2³ và 12 = 2² · 3, nên BCNN là 2³ · 3 = 24.",
+        "tex": "\\mathrm{BCNN}(8, 12) = \\concept{pink}{24}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.dien-mau-chung",
+      "type": "fillBlank",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.quy-dong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Mẫu số chung nhỏ nhất của hai phân số là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["BCNN", "bội chung nhỏ nhất"]
+        },
+        {
+          "type": "text",
+          "text": " của hai mẫu số."
+        }
+      ],
+      "bank": ["BCNN", "ƯCLN", "tổng"],
+      "explain": {
+        "text": "Mẫu số chung phải chia hết cho cả hai mẫu, nên là bội chung của hai mẫu. Số nhỏ nhất trong chúng là BCNN."
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-dang-24-36",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cô chia 24 cái kẹo và 36 cái bánh vào các đĩa như nhau, nhiều đĩa nhất, không thừa cái nào. Cô cần tìm gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "ƯCLN(24, 36)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "BCNN(24, 36)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "24 + 36"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "36 − 24"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số đĩa phải chia hết cả 24 và 36, và ta muốn nhiều đĩa nhất. Đó là ước chung lớn nhất của 24 và 36.",
+        "tex": "\\concept{amber}{12} \\le 24,\\ 36",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "BCNN(24, 36) lớn hơn cả 24 và 36, nên không thể là số đĩa."
+          },
+          {
+            "optionId": "c",
+            "text": "Tổng 24 + 36 là số đồ vật, không phải số đĩa."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chon-bcnn-nhieu",
+      "type": "choice",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-hay-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các bài toán cần tìm BCNN."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Hai đèn cứ 6 giây và 8 giây nháy một lần. Sau bao lâu hai đèn lại cùng nháy?"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Chia 18 quả cam và 24 quả quýt vào nhiều đĩa nhất, mỗi đĩa như nhau."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Hai xe buýt cứ 10 phút và 15 phút rời bến một lần. Sau bao lâu lại cùng rời bến?"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Cắt hai dải băng 12 dm và 20 dm thành các đoạn bằng nhau, dài nhất."
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true,
+      "explain": {
+        "text": "Việc lặp lại cùng xảy ra lần nữa cần BCNN: hai đèn nháy và hai xe buýt. Chia đều hay cắt đoạn dài nhất cần ƯCLN.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chia đều vào nhiều đĩa nhất là việc của ƯCLN."
+          },
+          {
+            "optionId": "d",
+            "text": "Cắt đoạn dài nhất vừa hết cả hai dải là việc của ƯCLN."
+          }
+        ]
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.chia-30-45",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-hay-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cô có 30 cái bút và 45 quyển vở, chia vào các túi quà như nhau, nhiều túi nhất, không thừa cái nào. Cô chia được bao nhiêu túi?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "3·5"
+      },
+      "explain": {
+        "text": "Số túi phải chia hết cả 30 và 45, và ta muốn nhiều nhất, nên là ƯCLN(30, 45). Ta có 30 = 2 · 3 · 5 và 45 = 3² · 5.",
+        "tex": "\\concept{sky}{3} \\cdot \\concept{sky}{5} = \\concept{amber}{15}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.xe-9-12",
+      "type": "numeric",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-hay-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai xe buýt cứ 9 phút và 12 phút rời bến một lần, cùng rời bến lúc 6 giờ. Sau bao nhiêu phút hai xe lại cùng rời bến?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 36
+      },
+      "check": {
+        "expr": "2^2·3^2"
+      },
+      "explain": {
+        "text": "Hai xe cùng rời bến lần nữa sau BCNN(9, 12). Ta có 9 = 3² và 12 = 2² · 3, nên BCNN là 2² · 3² = 36.",
+        "tex": "\\concept{sky}{2}^{\\concept{violet}{2}} \\cdot \\concept{sky}{3}^{\\concept{violet}{2}} = \\concept{pink}{36}"
+      }
+    },
+    {
+      "id": "boi-chung-boi-chung-nho-nhat.ex.noi-ket-qua",
+      "type": "match",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.uclnn-hay-bcnn"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi việc với cách tính phù hợp."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "Cắt hai dải băng thành các đoạn bằng nhau, dài nhất"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "Hai đèn cùng nháy lần nữa"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "text",
+            "text": "ƯCLN"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "text",
+            "text": "BCNN"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "text",
+            "text": "tổng"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        }
+      ],
+      "explain": {
+        "text": "Đoạn dài nhất cắt vừa hết các dải là ước chung lớn nhất. Lúc hai đèn cùng nháy lần nữa là bội chung nhỏ nhất."
+      }
+    }
+  ],
+  "sticker": {
+    "name": "Người giữ nhịp",
+    "visualId": "boi-chung-boi-chung-nho-nhat.visual.sticker"
+  }
+}

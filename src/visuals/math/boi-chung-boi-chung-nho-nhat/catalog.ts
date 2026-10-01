@@ -70,7 +70,7 @@ const BUS: Omit<MeetTrySpec, "numbers"> = {
 };
 
 const GEAR: Omit<MeetTrySpec, "numbers"> = {
-  names: ["Bánh I", "Bánh II"],
+  names: ["Bánh A", "Bánh B"],
   round: "vòng",
   verb: "quay",
   unit: "răng",
@@ -444,8 +444,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "rang-12-8": {
     kind: "bcLists",
     rows: [
-      { title: "Bánh I: mỗi vòng qua 12 răng", step: 12 },
-      { title: "Bánh II: mỗi vòng qua 8 răng", step: 8 },
+      { title: "Bánh A: mỗi vòng qua 12 răng", step: 12 },
+      { title: "Bánh B: mỗi vòng qua 8 răng", step: 8 },
     ],
     upTo: 24,
     mode: "steps",
@@ -463,11 +463,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "24 : 12 = 2",
-        tag: { text: "Bánh I quay 2 vòng", color: "slate" },
+        tag: { text: "Bánh A quay 2 vòng", color: "slate" },
       },
       {
         tex: "24 : 8 = 3",
-        tag: { text: "Bánh II quay 3 vòng", color: "slate" },
+        tag: { text: "Bánh B quay 3 vòng", color: "slate" },
       },
     ],
   },
@@ -502,11 +502,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
       {
         tex: "18 : 9 = 2",
-        tag: { text: "Bánh I quay 2 vòng", color: "slate" },
+        tag: { text: "Bánh A quay 2 vòng", color: "slate" },
       },
       {
         tex: "18 : 6 = 3",
-        tag: { text: "Bánh II quay 3 vòng", color: "slate" },
+        tag: { text: "Bánh B quay 3 vòng", color: "slate" },
       },
     ],
   },
