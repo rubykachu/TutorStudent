@@ -5,7 +5,11 @@ import { toRoman } from "./logic";
 
 const HOURS = Array.from({ length: 12 }, (_, i) => i + 1);
 const CENTER = 100;
-const NUMERAL_RADIUS = 78;
+const NUMERAL_RADIUS = 80;
+// Radius of the disc behind a tappable numeral. Neighbouring hours stand
+// 0.366 * NUMERAL_RADIUS apart both across and down, so a disc wider than that
+// would make the boxes of neighbouring buttons overlap.
+const PICK_DISC_RADIUS = 14;
 
 // Where the numeral (or hand) of an hour sits: 12 at the top, clockwise.
 function polar(hour: number, radius: number): { x: number; y: number } {
@@ -108,14 +112,14 @@ export function ClockPick() {
               {...decorative}
               cx={x}
               cy={y}
-              r={17}
+              r={PICK_DISC_RADIUS}
               className="fill-muted"
             />
             <text
               x={x}
-              y={y + 7}
+              y={y + 6}
               textAnchor="middle"
-              fontSize={17}
+              fontSize={15}
               fontWeight={700}
               className="fill-foreground font-heading"
               stroke="none"
