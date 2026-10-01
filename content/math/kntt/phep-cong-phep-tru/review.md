@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi của bài
 - `lesson:walk`: 0 FAIL (chạy sau khi duyệt)
 - Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
-- Bản đã review: `9f08e16420dddbbbfb469c720f5d3e05ab04808e185be8a9c1cc55f2599ddd09` (`pnpm content:diff` so với bản này)
+- Bản đã review: `037f2fe5610eb738f61bbf9cbd4771a2d1956ace730464074a739de6d21de591` (`pnpm content:diff` so với bản này)
 
 Đã soát: mọi câu của 3 kịch bản và lời đọc giới thiệu. Toán đúng: 34 + 66 = 100, 100 + 268 = 368 (34 + 268 + 66), 45 + 55 = 100, 100 + 27 = 127; 532 - 247 = 285 (2 thành 12 - 7 = 5, chục còn 2 mượn thành 12 - 4 = 8, trăm còn 4 - 2 = 2) và 285 + 247 = 532; 82 - 35 = 47, 47 + 35 = 82, 60 - 18 = 42. Câu đầu có chữ "bạn", một giọng (Mỹ Duyên) cho cả bài, `pnpm video:check` đạt. Câu `rule` khớp `note`; hình không hiện kết quả trước khi được đọc (368, 285, 47, 42 hiện sau lời). Lời đọc giới thiệu khớp `hook`, `summary`, `goals`, `whyItMatters`.
 

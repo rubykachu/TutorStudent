@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi; `video:check`: đạt cả ba video
 - `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-nhan-phep-chia/`
 - Kết luận: Đã xuất bản
-- Bản đã review: `cdcdfbaca0c4b189089d5eaac965ec7d9d02b03919668f31bcf5f12e3b17ba8a` (`pnpm content:diff` so với bản này)
+- Bản đã review: `9a44d8c285019e78eb5dafb027b45228db0d12bf1f3eb422e4b3df789999d44b` (`pnpm content:diff` so với bản này)
 
 Lời đọc giới thiệu và ba video (giọng Hải Đăng) đã soát từng câu: đúng toán, gọi bé là "bạn", khớp quy ước "a · b là a được lấy b lần" (6 · 4, 5 · 3, 36 · 25, 4 · 5 trong 23 = 4 · 5 + 3) và câu quy tắc của bài; câu mở đầu, một giọng, Whisper khớp từ 97,5% trở lên.
 

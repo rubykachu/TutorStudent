@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi, 0 cảnh báo của bài
 - `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/quan-he-chia-het-va-tinh-chat/`
 - Kết luận: 0 Nghiêm trọng; 4 mục Nên sửa trong kịch bản video đã sửa và dựng lại trong vòng này
-- Bản đã review: `6533223e3633161386e077e46b504c08215313643c7a1d3b159bcc42d6e0fcd4` (`pnpm content:diff` so với bản này)
+- Bản đã review: `3557fe62c7fa8b371e4786eca4a334f7ba8bc3081de3446db5622c634e4a259e` (`pnpm content:diff` so với bản này)
 
 Đã soát: toàn bộ 44 câu của 3 kịch bản (toán, chữ dùng, "bạn", khớp câu quy tắc và quy ước "a · b là a được lấy b lần"), lời đọc tổng quan (chép nguyên văn hook, summary, goals, whyItMatters), câu mở đầu và một giọng Mỹ Duyên (`pnpm video:check`), mốc thời gian từng chữ, và khung hình cách 2,5 giây của cả 3 video (chữ rõ, không chồng, không lộ kết quả trước lời). Whisper sau khi dựng lại: mọi câu từ 97,1% trở lên.
 

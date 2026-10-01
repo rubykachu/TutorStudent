@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 2 cảnh báo `[guides]` (match, order)
 - `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
 - Kết luận: Đã xuất bản: 0 Nghiêm trọng, 1 Nên sửa và 1 Góp ý (giữ từ vòng trước)
-- Bản đã review: `6119c45b2c3129968e26e43702309ccca1ba7684d328ed071a769a5261520e69` (`pnpm content:diff` so với bản này)
+- Bản đã review: `ce4bbe1688deb59393100e15ad4c051caa4003140b9b324b482c470ff25036cb` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt:
 - `guide: tapRegion` (`cong-tru` blocks[2]): note "chạm vào phép tính bạn chọn, vòng đen hiện quanh nó... bấm Kiểm tra" và visual `huong-dan-cham-phep-tinh` dạy đúng thao tác chạm vùng.

@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 3 cảnh báo `[guides]` (numericPower, match, order)
 - `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
 - Kết luận: Đã xuất bản: 0 Nghiêm trọng, 1 Nên sửa, 2 Góp ý
-- Bản đã review: `5319d306dbba023811db8c8b9977f90df52fd49537b0a6718b74587eb9018d40` (`pnpm content:diff` so với bản này)
+- Bản đã review: `ed26504b2d1da3641ae66cb2a111302b46c5316326136c6b51f4ae1dae397801` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt:
 - `rule: true` nằm đúng 10 note quy tắc, mỗi note là câu quy tắc đầu section (hoặc câu quy tắc của màn ví dụ) và caption recap section lẫn card lặp đúng từng chữ: cơ số/số mũ, số mũ 1, bình phương/lập phương, tính giá trị, nhân cùng cơ số, số không ghi số mũ, chia cùng cơ số, số mũ 0, 10ⁿ, tổng luỹ thừa của 10. Riêng `chia-cung-co-so`: note và card có thêm câu "Số mũ thứ nhất phải lớn hơn hoặc bằng số mũ thứ hai", recap section dừng ở câu trước; không sai, xem Góp ý 1.

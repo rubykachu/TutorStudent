@@ -6,7 +6,7 @@
 - `content:check`: 1 lỗi của bài (`[review-hash]`, hết sau lệnh cuối vòng), 1 cảnh báo của bài (2 id chưa có trong `ids.lock.json`, giữ từ vòng trước)
 - `lesson:walk`: không chạy (vòng này chỉ thêm dấu máy đọc `guide`, `rule`, không hiện trên màn)
 - Kết luận: Đã xuất bản: 0 Nghiêm trọng, 0 Nên sửa, 3 Góp ý (giữ từ vòng trước)
-- Bản đã review: `2c9eeab4aaf238379ef6af16ee10c3774a3e850ad321a7a77fe1a7c51e98e237` (`pnpm content:diff` so với bản này)
+- Bản đã review: `e1e979ba97878ab125c8cf350efdfd93ded4ee14fcb3cd961ec04f17c0276276` (`pnpm content:diff` so với bản này)
 
 Đã soát đạt:
 - Bản sửa recap `nghia-cam-hoa`: "Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”." khớp từng chữ với note `rule` của `cam-hoa-la-gi`, recap section, và câu lời đọc "Cáo nói gọn: cảm hoá là “làm cho gần gũi hơn”." trong `video/projects/neu-cau-muon-co-mot-nguoi-ban/cam-hoa-la-gi/script.json`. Câu cũ thiếu chủ ngữ "cảm hoá" nên dễ hiểu sai đối tượng được nói gọn; câu mới rõ hơn và khớp sách: Cáo giải nghĩa "cảm hoá" là "làm cho gần gũi hơn".

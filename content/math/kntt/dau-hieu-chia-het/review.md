@@ -6,7 +6,7 @@
 - `content:check`: 0 lỗi, 0 cảnh báo của bài
 - `lesson:walk`: 0 FAIL, ảnh trong `.shots/walk/dau-hieu-chia-het/`
 - Kết luận: 0 Nghiêm trọng; 2 mục Nên sửa trong kịch bản video đã sửa và dựng lại trong vòng này
-- Bản đã review: `737bef5f68c9b497b454547dbada13eaff8c1b3f8cfbdfd61a8eea2c8f677db3` (`pnpm content:diff` so với bản này)
+- Bản đã review: `48609ffdb011bf8c2c9cb6de7f30858cc92cbef470ad9852acf91d748e8c5b6a` (`pnpm content:diff` so với bản này)
 
 Đã soát: toàn bộ 47 câu của 3 kịch bản (toán, chữ dùng, "bạn", khớp câu quy tắc và kí hiệu "chia hết" ba chấm), lời đọc tổng quan, câu mở đầu và một giọng Hải Đăng (`pnpm video:check`), mốc thời gian từng chữ, và khung hình cách 2 giây của cả 3 video qua contact sheet (chữ rõ, không chồng, không lộ kết quả trước lời, dải dưới trống). Mọi phép tính trong lời đều đúng: 4 376 tận cùng 6; 135 : 5 và 137 không chia hết cho 5; 5 + 9 + 7 + 6 = 27; 2 + 4 + 1 + 5 = 12; 11 + a nằm từ 11 đến 20, chỉ 18 chia hết cho 9, a = 7, số 387. Các câu Whisper dưới 97% ở lần dựng đầu ("4 376", "5 976", "2 415") là cách Whisper viết số; bộ chuẩn hoá `video/lib/text.ts` nay coi số có nhóm nghìn viết bằng dấu cách, dấu chấm hay liền như nhau (kèm test), nên mọi câu của 3 video từ 98,1% trở lên.
 

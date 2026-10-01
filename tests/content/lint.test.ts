@@ -943,6 +943,42 @@ describe("review-hash", () => {
     );
   });
 
+  it("ignores generated narration metadata but not the overview text", () => {
+    const { lesson } = fixtureInput();
+    const overview = lesson.overview;
+    if (!overview) throw new Error("fixture has no overview");
+    const hash = computeReviewedHash(lesson);
+    const narrated = {
+      ...lesson,
+      overview: {
+        ...overview,
+        narration: {
+          audioUrl: "narration/x/overview.m4a",
+          vttUrl: "narration/x/overview.vtt",
+          voice: { engine: "gemini", voiceName: "Achird", model: "m" },
+        },
+      },
+    };
+    expect(computeReviewedHash(narrated)).toBe(hash);
+    const revoiced = {
+      ...narrated,
+      overview: {
+        ...narrated.overview,
+        narration: {
+          ...narrated.overview.narration,
+          voice: { engine: "local", voiceName: "Hải Đăng", model: "m2" },
+        },
+      },
+    };
+    expect(computeReviewedHash(revoiced)).toBe(hash);
+    expect(
+      computeReviewedHash({
+        ...narrated,
+        overview: { ...narrated.overview, summary: "Tóm tắt khác." },
+      }),
+    ).not.toBe(hash);
+  });
+
   it("blocks a published lesson without a matching hash", () => {
     const input = fixtureInput();
     input.lesson.status = "published";
