@@ -1,8 +1,20 @@
 # Bàn giao: Bài 13 `tap-hop-cac-so-nguyen` (Tập hợp các số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Đã duyệt và xuất bản: review vòng 1 (4 Nghiêm trọng), vòng 2 (1), vòng 3 chỉ phần đổi (0), `reviewedHash` ghi, `published`; id đã khoá (`content:lock`), `content:emit` chạy. 12 section (phần `sap-xep` và `liet-ke` tách ở vòng 2), 12 thẻ, 58 câu, 7 dạng câu, 14 hình tương tác. Đọc hiểu (Haiku): lượt 1 123/44/0, lượt 2 trên 50 mục viết lại 44/6/0, lượt 3 trên 6 mục 0/6/0 (còn ghi ở Nên sửa của `review.md`, không chặn).
-- Việc còn lại: lời đọc và video (chưa làm, đợt này không làm); sửa 7 Nên sửa còn mở trong `review.md` nếu muốn; việc của app ở mục "Ngoài nội dung bài". Khi đã làm xong video và mọi việc còn lại, lưu trữ thư mục này theo `.claude/rules/agents.md`.
+- Cập nhật cuối: 02/10/2026 (lời đọc và 3 video đã dựng, review vòng 4 chỉ phần đổi đã duyệt, id video đã khoá, `lesson:walk` 0 failures). Đã duyệt và xuất bản: review vòng 1 (4 Nghiêm trọng), vòng 2 (1), vòng 3 chỉ phần đổi (0), `reviewedHash` ghi, `published`; id đã khoá (`content:lock`), `content:emit` chạy. 12 section (phần `sap-xep` và `liet-ke` tách ở vòng 2), 12 thẻ, 58 câu, 7 dạng câu, 14 hình tương tác. Đọc hiểu (Haiku): lượt 1 123/44/0, lượt 2 trên 50 mục viết lại 44/6/0, lượt 3 trên 6 mục 0/6/0 (còn ghi ở Nên sửa của `review.md`, không chặn).
+- Việc còn lại: tải media lên R2 và deploy khi chủ dự án đồng ý (`pnpm media:upload tap-hop-cac-so-nguyen`, `pnpm deploy:prod`); sửa 7 Nên sửa còn mở trong `review.md` nếu muốn; việc của app ở mục "Ngoài nội dung bài". Khi đã làm xong và mọi việc còn lại, lưu trữ thư mục này theo `.claude/rules/agents.md`.
+
+## Lời đọc và video (02/10/2026)
+- Giọng bài: `hai-dang` (nam), khai ở `video/projects/tap-hop-cac-so-nguyen/media.json`. Lý do: Bài 12 (`boi-chung-boi-chung-nho-nhat`) là Mỹ Duyên nên xen sang Hải Đăng; bài mở đầu chương III, nhiều bước tập đọc số âm, không có lý do giữ giọng nữ.
+- Lời đọc giới thiệu: Gemini (Achird) hết hạn mức ở cả 2 khoá nên cả lời đọc được đọc lại bằng giọng VieNeu Hải Đăng (cơ chế dự phòng, `overview.narration.voice` ghi `local`); 47,3 giây, 12 câu, mọi câu từ 98,8% trở lên; chạy lại `pnpm narration:build tap-hop-cac-so-nguyen` sau khi hạn mức Gemini hồi để về giọng Gemini (cần chủ dự án đồng ý vì gọi API ngoài).
+- Số âm: dấu − liền trước chữ số được đọc "âm" (`spokenNegatives`, `video/lib/text.ts`, dùng ở `video/lib/narrate.ts`; chuẩn hoá Whisper "−3" thành "âm ba" cùng chỗ, có test `tests/video/text.test.ts`). "Dấu −" đứng riêng được đọc "dấu trừ" bằng trường `say` ở các câu quy tắc.
+- Video (VieNeu Hải Đăng, mỗi video đặt đầu một phần, đã gắn khối `video`):
+  - `nhiet-ke` (phần `nhiet-do`), 41,7 giây, 11 câu, dừng ở 21,0 s và 32,7 s: nhiệt kế hạ xuống −3 rồi −6, ghi và đọc "âm ba", "âm sáu"; số trên 0 chỉ viết số.
+  - `truc-so` (phần `truc-so`), 40,2 giây, 12 câu, dừng ở 16,0 s và 28,9 s: nhiệt kế xoay ngang thành trục số, gốc O là số 0, dương bên phải, âm bên trái, điểm −3.
+  - `so-sanh` (phần `so-sanh-truc`), 36,8 giây, 10 câu, dừng ở 18,4 s và 27,9 s: −3 và 2 trên trục số, bên trái nhỏ hơn, bên phải lớn hơn, −3 độ C lạnh hơn 2 độ C.
+- Màu theo bài: dương lime, âm pink, số 0 slate, điểm biểu diễn amber, nhỏ hơn blue, lớn hơn violet. Chưa có video cho phần `so-doi` và `hai-so-am` (hai chỗ bé hay nhầm); thêm khi chủ dự án muốn.
+- Whisper dưới 97%: chỉ "Bạn cú nhìn nhiệt kế ở Sa Pa." 96,4% (nghe "Sapa"), giữ nguyên.
+- Review vòng 4 (Sonnet, chỉ phần đổi): 0 Nghiêm trọng, 4 Nên sửa và 4 Góp ý đã sửa, 3 Góp ý giữ (xem `review.md`); `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures.
 
 ## Nguồn (sách bài tập, `sources/math/tap-hop-cac-so-nguyen/`, không commit)
 - Đề: tr.47–49 in (PDF 48–50), tệp `sbt-p47.png`, `sbt-p48.png`, `sbt-p49.png`. Bài 14 bắt đầu ở tr.50.
