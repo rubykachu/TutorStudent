@@ -209,6 +209,20 @@
       "term": "bội",
       "forbidden": [],
       "color": "blue"
+    },
+    {
+      "term": "chữ số tận cùng",
+      "forbidden": ["chữ số cuối cùng"],
+      "color": "teal"
+    },
+    {
+      "term": "tổng các chữ số",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "dấu hiệu chia hết",
+      "forbidden": []
     }
   ],
   "names": []
