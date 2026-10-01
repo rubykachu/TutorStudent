@@ -34,10 +34,11 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | [LL-17](LL-17-sai-kien-thuc.md) | Sai kiến thức | Đúng kiến thức | Người (máy phần số) | `[check-expr]`; checklist trục 2 |
 | [LL-18](LL-18-cau-qua-dai.md) | Câu luyện quá nhiều phép tính | Sư phạm | Người | `lesson-author` luật "Số nhỏ" |
 | [LL-19](LL-19-ngon-tu.md) | Xưng hô, câu dài, từ khó | Ngôn từ | Máy một phần + người | `[vietnamese]`, `[length]`, `[overview]`; checklist trục 3 |
+| [LL-20](LL-20-sua-review-lam-hong-cho-khac.md) | Bản sửa theo review làm hỏng chỗ khác | Quy trình | Người | checklist vòng chỉ phần đổi |
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 01/10/2026 của 8 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 01/10/2026 của 8 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
@@ -60,6 +61,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-18 | 0 | 3 | 1 | 4 |
 | LL-08 | 4 | 0 | 1 | 5 |
 | LL-13 | 0 | 1 | 0 | 1 |
+| LL-20 | 1 | 0 | 0 | 1 |
 
 LL-01 và LL-17 ít lần nhưng nhiều Nghiêm trọng nhất; LL-10, LL-19, LL-07, LL-12 gặp nhiều nhất.
 
@@ -76,4 +78,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-cong-phep-tru` | Toán | 3 | 4 (vòng 2 có 3, vòng 3 có 1) | 4 |
 | `phep-nhan-phep-chia` | Toán | 4 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
 | `quan-he-chia-het-va-tinh-chat` | Toán | 8 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
-| `dau-hieu-chia-het` | Toán | 5 | chưa (vòng 2 còn 2) | 2 |
+| `dau-hieu-chia-het` | Toán | 5 | chưa (vòng 2 còn 2, vòng 3 còn 1) | 3 |
