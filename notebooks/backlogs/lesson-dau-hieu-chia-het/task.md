@@ -1,6 +1,7 @@
 # Bàn giao: Bài 9 `dau-hieu-chia-het` (Dấu hiệu chia hết)
 
 ## Trạng thái
+- Cập nhật cuối: dừng giữa chừng theo lệnh chủ dự án sau khi sửa vòng 1; xem "Việc tiếp theo" ngay dưới mục này.
 - Vòng 1 review đã sửa (chờ vòng 2): cả 5 Nghiêm trọng (khoảng "9 đến 45" và nhãn `bang-chin`; lý do 18 ở `tim-38a`, ví dụ `tom-tat-tim-58c`; câu quy tắc `tim-chu-so` theo dấu hiệu đề cho; `xep-1530` và `xep-tong-3410` thành chuỗi phụ thuộc). Nên sửa 1–8, 10–23 đã làm; mục 9 làm ở code vẽ chip (`pick-chips.tsx`: mỗi U+202F thành khoảng 0,25em). Góp ý đã làm: 1, 2, 3, 4 (độ khó 3), 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16. Đã chạy: content:check 0 lỗi, visual:shot 158/158 và xem ảnh, gate đạt. Chưa chạy: lesson:walk, review vòng 2, khoá id.
 - Id đổi (bài còn draft): `tong-2431`→`tong-574`, `tong-12-chia-het-3`→`tong-15-chia-het-3`, `chon-tich-4`→`chon-tich-2`, `dien-10-7`→`dien-10-5`, `diem-mai-75`→`diem-mai-83`, `xep-lap-235`→`xep-lap-375`; hình `chon-3-1524`→`chon-3-1410`, `tom-tat-3204-3`→`tom-tat-3207-3`, `tom-tat-tim-26c`→`tom-tat-tim-58c`. Thêm: câu `hop-bi-102`; hình `tien-135-5`, `lap-035`, `goi-y-hieu-3460-1213`, `goi-y-7062-9`.
 - Mục không làm:
@@ -10,6 +11,12 @@
   - Nên sửa 21: thêm ví dụ 0, 3, 5 ở màn mới (`lap-035`) thay vì hạ độ khó câu `lap-so-045`.
 - Đang soạn (đêm 01/10/2026, thay cho buổi hỏi đáp đầu vào vì chủ dự án đang ngủ). `status: draft`; chưa review, chưa duyệt, chưa khoá id, chưa có lời đọc hay video.
 - Lý do ưu tiên: lớp của bé đang học bài này.
+
+## Việc tiếp theo (làm đúng thứ tự)
+- Đang ở: vòng 1 xong (review.md ghi 5 Nghiêm trọng, 23 Nên sửa, 16 Góp ý; hash đã `--mark`; bài vẫn `draft`). Tác giả đã sửa hết (commit `f1bce28`, `lesson.json` đổi sau bản đã review). Chưa có vòng 2.
+- Vòng kế: vòng 2 là soát TOÀN BÀI (theo skill lesson-review): `pnpm content:check`; walk bằng `git worktree add --detach /private/tmp/tutor-wt HEAD` + `pnpm install` + `pnpm lesson:walk dau-hieu-chia-het` (tự dựng máy chủ cổng 3100 có bản nháp), chép `.shots/walk/dau-hieu-chia-het` về cây chính, gỡ worktree; mở 3 Reviewer `model: "opus"` song song (section 1-5, 6-10, 11-14; ghi `.shots/review/dau-hieu-chia-het/nhom-<n>.md`) rồi 1 Tổng hợp `opus`; mục trọng tâm: id/hình mới (`hop-bi-102`, `tien-135-5`, `lap-035`, `goi-y-*`), chuỗi phụ thuộc của `xep-1530`, `xep-tong-3410`, câu quy tắc `tim-chu-so` khớp recap, nhẩm tối đa 2 phép.
+- Commit `lesson.json` + `review.md` + lessons-learned trước khi sửa. Từ vòng 3 chỉ phần đổi (`pnpm content:diff`, 1 Reviewer `sonnet`).
+- Khi 0 Nghiêm trọng: `pnpm content:hash dau-hieu-chia-het --approve`, `pnpm content:lock`, `content:check` 0 lỗi, walk 0 failure, gate, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` ở cây chính, commit đường dẫn của mình, cập nhật `notebooks/backlogs/index.md` (Bài 9 đã xuất bản; kế tiếp lời đọc và video).
 
 ## Nguồn (sách bài tập, `sources/math/dau-hieu-chia-het/`, không commit)
 - Đề: tr.33–34 in (PDF 34–35), tệp `sbt-p33.png`, `sbt-p34.png`. Bài 10 "Số nguyên tố" bắt đầu ở tr.35.
