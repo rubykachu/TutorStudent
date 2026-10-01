@@ -3,10 +3,10 @@
 ## Trạng thái
 - Cập nhật cuối: 01/10/2026. Bài đã `published`: review 4 vòng (vòng 1: 5 Nghiêm trọng; vòng 2: 2; vòng 3: 1; vòng 4: 0, 1 Nên sửa đã sửa, 4 Góp ý để lại trong `review.md`), `content:hash --approve`, `content:lock` (115 id đã khoá), `content:check` 0 lỗi, `lesson:walk` 0 failure, gate đạt, `content:emit` bản có nháp đã chạy. Từ giờ id không đổi.
 - Id đã đổi trong lúc review (trước khi khoá) và mục không làm của các vòng: xem mục "Sửa sau review vòng 3" và lịch sử git của tệp này.
-- Đã làm (01/10/2026): lời đọc tổng quan và 3 video (mục "Lời đọc và video"). Chưa review phần đổi, chưa khoá 3 id video.
+- Lời đọc tổng quan và 3 video đã làm và review vòng 5 (chỉ phần đổi, 01/10/2026): 0 Nghiêm trọng, 2 Nên sửa trong kịch bản video đã sửa và dựng lại; `content:hash --approve`, `content:lock` (3 id video đã khoá), `content:check` 0 lỗi, `lesson:walk` 0 failure, gate đạt, `content:emit` bản có nháp đã chạy.
 
-## Việc tiếp theo
-- Vòng review chỉ phần đổi (subagent mới, `model: "sonnet"`, skill `lesson-review`): diff của `lesson.json` chỉ có `overview.narration`, 3 khối video đầu phần và `videos[]`; soát lời dẫn, chuyển cảnh, số, clip theo card. Rồi `pnpm content:hash --approve`, `pnpm content:lock` (khoá 3 id video; hiện từ chối vì `[review-hash]`), `pnpm lesson:walk dau-hieu-chia-het` (chạy trên `git worktree` cổng 3100, liên kết `public/media/` vào đó), sau đó lưu trữ thư mục này theo luật `.claude/rules/agents.md`.
+## Việc còn lại (không chặn)
+- Góp ý trong `content/math/kntt/dau-hieu-chia-het/review.md`: 5 mục (câu `tim-chu-so` Whisper nghe "Đề chốt số" 98,1% cần chủ dự án nghe thử; `lap-so-014` trùng đáp án 3 với hình ví dụ; `hop-banh-tui` lặp khung hình ví dụ; màu amber và xanh dương dùng cho hai nghĩa ở hai section khác nhau). Còn việc này nên giữ thư mục này chưa lưu trữ; làm xong thì `git mv` sang `notebooks/backlogs/archive/` theo luật `.claude/rules/agents.md`.
 
 ## Nguồn (sách bài tập, `sources/math/dau-hieu-chia-het/`, không commit)
 - Đề: tr.33–34 in (PDF 34–35), tệp `sbt-p33.png`, `sbt-p34.png`. Bài 10 "Số nguyên tố" bắt đầu ở tr.35.
@@ -60,6 +60,6 @@ Khái niệm mới trong `content/glossary/math.json`: "chữ số tận cùng" 
   - `tong-chu-so` (66,6 giây) ở `chia-het-9`: tổng các chữ số, dấu hiệu chia hết cho 9 rồi cho 3, "3 khác 9" qua số 2 415 (clip `chia-het-9`, `chia-het-3`).
   - `tim-chu-so` (55,5 giây) ở `tim-chu-so`: tìm chữ số a của số 38a chia hết cho 9 (clip `tim-chu-so`).
 - Câu quy tắc chép nguyên văn câu của `note` của bài (đánh `rule`); chữ trên màn không chứa câu quy tắc nên không có `data-rule-text`. Mỗi câu mở đầu gọi "bạn"; sau "Bạn cú ..." không có câu nào mở bằng "Bạn ..." mà làm chủ ngữ mơ hồ, trừ "Bạn nhớ nhé." ở cảnh cuối (không đứng ngay sau câu "Bạn cú ...").
-- Whisper dưới 97% (đều là cách Whisper viết số, không phải đọc sai): "4 376" nghe thành "4376", "5 976" thành "5.976", "2 415" thành "2415" hay "2.415" (86–93%); câu mở đầu của `tong-chu-so` 96,1% (Whisper nghe "xét" thành "sẽ", nên nghe lại câu này khi duyệt).
+- Whisper dưới 97% ở lần dựng đầu là cách Whisper viết số ("4 376" thành "4376", "5 976" thành "5.976", "2 415" thành "2.415"); `video/lib/text.ts` nay coi số có nhóm nghìn viết bằng dấu cách, dấu chấm hay liền như nhau, nên mọi câu từ 98,1% trở lên.
 - Hình: chỉ dùng lại kí hiệu "chia hết" ba chấm của Bài 8 và màu của bài (tận cùng teal ■, tổng các chữ số lime ✚), chữ số trong ô; đã xem khung hình từng 2 giây của cả ba video (không chồng chữ, chữ số hiện đúng lúc đọc, dải dưới trống).
-- Chưa chạy `lesson:walk` (đợi review phần đổi rồi chạy một lần).
+- Review vòng 5 và `lesson:walk` đã chạy (xem mục Trạng thái). Sửa trong vòng này: câu "Đề cho số 38 và chữ số a chưa biết" của `tim-chu-so` thành "Đề cho số có ba chữ số: 3, 8 và chữ số a chưa biết" (số cần tìm là 38a, "số đó" phải chỉ đúng nó); câu mở đầu của `tong-chu-so` đổi "ta xét" thành "ta học dấu hiệu" vì giọng đọc nuốt "xét" thành "sẽ" ở cả 4 lần đọc.

@@ -99,8 +99,9 @@
           const sid = "s01-de";
           hide([...ids("g", 3), "#g-chip"]);
           pose(bird, "happy", W(sid, "chào"));
-          pop(["#g0", "#g1"], W(sid, "38"), { from: 0.4, stagger: 0.15 });
-          pop("#g2", W(sid, "a", 1), { from: 0.4 });
+          pop("#g0", W(sid, "3"), { from: 0.4 });
+          pop("#g1", W(sid, "8"), { from: 0.4 });
+          pop("#g2", W(sid, "a"), { from: 0.4 });
           pop("#g-chip", W(sid, "9"), { from: 0.6 });
           pose(bird, "idle", W(sid, "hãy"));
         }

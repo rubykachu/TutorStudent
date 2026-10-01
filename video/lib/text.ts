@@ -36,20 +36,31 @@ function readHundreds(n: number, full: boolean): string[] {
   return [...head, ...readTens(rest)];
 }
 
-export function readNumber(n: number): string[] {
+// Reading of each group of three digits of `n`, most significant first, with
+// its unit word ("nghin", "trieu") attached; a zero group is empty. A number
+// below 1000 has one group, below a million two, otherwise three.
+function readGroups(n: number): string[][] {
   if (!Number.isInteger(n) || n < 0 || n >= 1_000_000_000) {
     throw new Error(`Cannot read ${n} as a whole number below one billion`);
   }
   const millions = Math.floor(n / 1_000_000);
   const thousands = Math.floor((n % 1_000_000) / 1000);
   const rest = n % 1000;
-  const words: string[] = [];
-  if (millions) words.push(...readHundreds(millions, false), "trieu");
-  if (thousands) words.push(...readHundreds(thousands, millions > 0), "nghin");
-  if (rest || words.length === 0) {
-    words.push(...readHundreds(rest, words.length > 0));
+  const groups: string[][] = [];
+  if (millions) groups.push([...readHundreds(millions, false), "trieu"]);
+  if (thousands || millions) {
+    groups.push(
+      thousands ? [...readHundreds(thousands, millions > 0), "nghin"] : [],
+    );
   }
-  return words;
+  const before = groups.length > 0;
+  if (rest) groups.push(readHundreds(rest, before));
+  else groups.push(before ? [] : readHundreds(0, false));
+  return groups;
+}
+
+export function readNumber(n: number): string[] {
+  return readGroups(n).flat();
 }
 
 // Spoken forms that mean the same as a canonical word, by the word before
@@ -96,14 +107,57 @@ export function wordTokens(word: string): string[] {
   });
 }
 
+// A number written with its thousands groups apart ("4 376", "1 250 000"):
+// a group of one to three digits, then groups of exactly three; only the last
+// word may carry punctuation. Whisper writes the same number as "4376" or
+// "4.376", so the words of a group run are read as one number.
+const GROUP_HEAD = /^[1-9]\d{0,2}$/;
+const GROUP_MIDDLE = /^\d{3}$/;
+const GROUP_LAST = /^\d{3}[^\p{L}\p{N}]*$/u;
+const MAX_GROUPS = 3;
+
+// Number of words from `at` that form one grouped number, or 0.
+function groupRunLength(words: readonly string[], at: number): number {
+  if (!GROUP_HEAD.test(words[at] as string)) return 0;
+  let n = 1;
+  while (n < MAX_GROUPS) {
+    const word = words[at + n];
+    if (word === undefined) break;
+    if (GROUP_MIDDLE.test(word)) {
+      n++;
+      continue;
+    }
+    if (GROUP_LAST.test(word)) n++;
+    break;
+  }
+  return n > 1 ? n : 0;
+}
+
 // Plain tokens of a sequence of words, each with the index of the word it
-// came from (a number is several tokens).
+// came from (a number is several tokens; a grouped number's tokens go to the
+// word that holds their group).
 export function ownedTokens(
   words: readonly string[],
 ): { token: string; owner: number }[] {
-  const tokens = words.flatMap((word, owner) =>
-    wordTokens(word).map((token) => ({ token, owner })),
-  );
+  const tokens: { token: string; owner: number }[] = [];
+  for (let at = 0; at < words.length; ) {
+    const run = groupRunLength(words, at);
+    if (run === 0) {
+      for (const token of wordTokens(words[at] as string)) {
+        tokens.push({ token, owner: at });
+      }
+      at++;
+      continue;
+    }
+    const digits = words
+      .slice(at, at + run)
+      .join("")
+      .replace(/\D/g, "");
+    readGroups(Number(digits)).forEach((group, i) => {
+      for (const token of group) tokens.push({ token, owner: at + i });
+    });
+    at += run;
+  }
   return tokens.map((t, i) => {
     const before = tokens[i - 1]?.token;
     return {

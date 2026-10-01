@@ -12,7 +12,7 @@
   "title": "Dấu hiệu chia hết",
   "sourceRef": "Sách bài tập tr.33–34",
   "status": "published",
-  "reviewedHash": "aba13db65c55e1c752300744c2222c97c402d1558c6474aa9cf6a1388b181346",
+  "reviewedHash": "737bef5f68c9b497b454547dbada13eaff8c1b3f8cfbdfd61a8eea2c8f677db3",
   "overview": {
     "hook": {
       "text": "Mẹ nhờ bạn xem 135 nghìn đồng đổi hết ra tờ 5 nghìn đồng được không. Chỉ cần nhìn chữ số tận cùng là bạn biết ngay."
@@ -4612,18 +4612,18 @@
       "url": "video/dau-hieu-chia-het/tong-chu-so.mp4",
       "vttUrl": "video/dau-hieu-chia-het/tong-chu-so.vtt",
       "posterUrl": "video/dau-hieu-chia-het/tong-chu-so.jpg",
-      "durationSec": 66.63,
+      "durationSec": 67,
       "clips": [
         {
           "id": "chia-het-9",
-          "start": 16.877,
-          "end": 41.974,
+          "start": 17.255,
+          "end": 42.352,
           "cardIds": ["dau-hieu-chia-het.card.chia-het-9"]
         },
         {
           "id": "chia-het-3",
-          "start": 42.374,
-          "end": 54.151,
+          "start": 42.752,
+          "end": 54.529,
           "cardIds": ["dau-hieu-chia-het.card.chia-het-3"]
         }
       ],
@@ -4639,12 +4639,12 @@
       "url": "video/dau-hieu-chia-het/tim-chu-so.mp4",
       "vttUrl": "video/dau-hieu-chia-het/tim-chu-so.vtt",
       "posterUrl": "video/dau-hieu-chia-het/tim-chu-so.jpg",
-      "durationSec": 55.5,
+      "durationSec": 56.43,
       "clips": [
         {
           "id": "tim-chu-so",
-          "start": 11.89,
-          "end": 45.118,
+          "start": 12.809,
+          "end": 46.036,
           "cardIds": ["dau-hieu-chia-het.card.tim-chu-so"]
         }
       ],
