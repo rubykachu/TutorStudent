@@ -587,7 +587,9 @@ describe("ExerciseFrame", () => {
         choose("b");
         checkAnswer();
       }
-      expect(calls.at(-1)).toEqual([
+      expect(
+        calls.filter(([element]) => element === answerArea(container)).at(-1),
+      ).toEqual([
         answerArea(container),
         { block: "nearest", behavior: "auto" },
       ]);

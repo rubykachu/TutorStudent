@@ -18,6 +18,8 @@ import { BigButton } from "@/components/big-button";
 import { BlockView } from "@/components/blocks/block-view";
 import { BottomBar } from "@/components/bottom-bar";
 import { ConfettiBurst } from "@/components/confetti-burst";
+import { resolveExplanation } from "@/exercises/explanation";
+import { ExplanationPanel } from "@/exercises/explanation-panel";
 import {
   type FeedbackHighlights,
   feedbackCue,
@@ -196,7 +198,11 @@ export function ExerciseFrame<E extends BasicExercise>({
   // Strict Mode runs mount effects twice.
   const [nonce, setNonce] = useState<string | null>(null);
   useLayoutEffect(() => setNonce((kept) => kept ?? newId()), []);
-  const { state, tier } = machine;
+  // The child chose "Bỏ qua": the answer is shown like after a third wrong
+  // check, with the explanation, and "Tiếp" moves on with a skipped outcome.
+  const [skipped, setSkipped] = useState(false);
+  const { state } = machine;
+  const tier = skipped ? 3 : machine.tier;
   // A replay is a new attempt: new arrangement, new praise.
   const seed =
     nonce === null
@@ -205,7 +211,12 @@ export function ExerciseFrame<E extends BasicExercise>({
           exercise.id,
           state.replays === 0 ? nonce : `${nonce}.${state.replays}`,
         );
-  const feedback = feedbackView(exercise, state, concepts, seed);
+  const feedback = feedbackView(
+    exercise,
+    skipped ? { ...state, phase: "wrong3" } : state,
+    concepts,
+    seed,
+  );
   const view = finished
     ? { ...feedback, reveal: true, speech: undefined }
     : feedback;
@@ -215,8 +226,13 @@ export function ExerciseFrame<E extends BasicExercise>({
   // A confetti burst over the answer card once it is accepted, unless the
   // child prefers reduced motion (the owl's happy pose still shows).
   const [celebrating, setCelebrating] = useState(false);
-  const shaking = !reducedMotion && tier > 0 && state.wrongCount > shaken;
+  const shaking =
+    !reducedMotion && !skipped && tier > 0 && state.wrongCount > shaken;
   const accepted = state.phase === "correct" || state.phase === "done";
+  // The answer is on screen and the child has nothing left to enter.
+  const answered = accepted || state.phase === "wrong3" || skipped;
+  const explanation = answered ? resolveExplanation(exercise) : null;
+  const explanationRef = useRef<HTMLDivElement>(null);
   const tone = toneOf(state, tier, machine.canCheck);
   // What the live region announces: the owl's line, so screen readers hear
   // exactly what the bubble shows.
@@ -267,6 +283,17 @@ export function ExerciseFrame<E extends BasicExercise>({
       clearTimeout(stop);
     };
   }, [inViewKey, visualKey, reducedMotion]);
+
+  // The explanation is read before "Tiếp": bring it into view when it
+  // appears, once the answer area has been lifted above the bar.
+  const showsExplanation = explanation !== null;
+  useEffect(() => {
+    if (!showsExplanation) return;
+    explanationRef.current?.scrollIntoView?.({
+      block: "nearest",
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }, [showsExplanation, reducedMotion]);
 
   const feedbackStrip = inputWanted ? (
     // Stacked layouts only: the two-column layout keeps the visual in view.
@@ -411,7 +438,7 @@ export function ExerciseFrame<E extends BasicExercise>({
                   children({
                     value: state.input,
                     onChange: machine.setInput,
-                    disabled: accepted || state.phase === "wrong3",
+                    disabled: accepted || state.phase === "wrong3" || skipped,
                     highlight: answerHighlight,
                     wrong: view.wrong,
                     feedbackVisual: view.visualId !== undefined,
@@ -446,14 +473,24 @@ export function ExerciseFrame<E extends BasicExercise>({
         )}
       </div>
 
+      {explanation && (
+        <div ref={explanationRef} data-explanation-slot>
+          <ExplanationPanel
+            explanation={explanation}
+            shownVisualId={view.visualId}
+          />
+        </div>
+      )}
+
       <p className="sr-only" aria-live="polite">
         {status}
       </p>
 
-      {state.phase !== "done" && (
+      {(state.phase !== "done" || skipped) && (
         <BottomBar>
           <FrameButton
             phase={state.phase}
+            skipped={skipped}
             canCheck={machine.canCheck}
             onCheck={() => {
               const next = machine.check();
@@ -468,12 +505,12 @@ export function ExerciseFrame<E extends BasicExercise>({
               setShaken(0);
               setInputWantedFor(null);
             }}
-            onNext={() => onDone(machine.finish())}
-            onSkip={
-              skippable
-                ? () => onDone(skippedOutcome(state.wrongCount))
-                : undefined
+            onNext={() =>
+              onDone(
+                skipped ? skippedOutcome(state.wrongCount) : machine.finish(),
+              )
             }
+            onSkip={skippable ? () => setSkipped(true) : undefined}
           />
         </BottomBar>
       )}
@@ -483,6 +520,8 @@ export function ExerciseFrame<E extends BasicExercise>({
 
 type FrameButtonProps = {
   phase: MachineState<unknown>["phase"];
+  // The answer was shown after "Bỏ qua": only "Tiếp" is left.
+  skipped: boolean;
   canCheck: boolean;
   onCheck: () => void;
   onRetype: () => void;
@@ -493,6 +532,7 @@ type FrameButtonProps = {
 
 function FrameButton({
   phase,
+  skipped,
   canCheck,
   onCheck,
   onRetype,
@@ -500,6 +540,14 @@ function FrameButton({
   onNext,
   onSkip,
 }: FrameButtonProps) {
+  if (skipped) {
+    return (
+      <BigButton onClick={onNext}>
+        Tiếp
+        <ChevronRight aria-hidden className="size-6" />
+      </BigButton>
+    );
+  }
   if (phase === "correct") {
     // Practice, not a test: the child may play an accepted exercise again,
     // unrated, before moving on.

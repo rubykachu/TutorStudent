@@ -355,6 +355,7 @@ describe("SectionPlayer screens", () => {
     renderPlayer({ phase: "practice", index: 0 });
     expect(screen.getByText("Câu luyện A")).toBeInTheDocument();
     tap("Bỏ qua");
+    tap("Tiếp");
     expect(await screen.findByText("Câu luyện B")).toBeInTheDocument();
     const attempts = await listAttempts(db, scope);
     expect(

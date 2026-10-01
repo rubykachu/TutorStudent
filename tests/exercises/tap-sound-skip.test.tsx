@@ -80,6 +80,11 @@ describe("skipping an exercise", () => {
     tap("b");
     tap("Kiểm tra");
     tap("Bỏ qua");
+    // The answer and its explanation come first; "Tiếp" then moves on.
+    expect(onDone).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "Lời giải" })).toBeVisible();
+    expect(screen.queryByRole("button", { name: "Bỏ qua" })).toBeNull();
+    tap("Tiếp");
     expect(onDone).toHaveBeenCalledWith({
       firstTryCorrect: false,
       wrongCount: 1,

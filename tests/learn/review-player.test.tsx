@@ -300,9 +300,11 @@ describe("ReviewPlayer", () => {
     await screen.findByText("Câu luyện A");
     const before = await db.cardStates.toArray();
     tap("Bỏ qua");
+    tap("Tiếp");
     await waitFor(() => expect(item()).toHaveAttribute("data-card", CARD_B));
     expect(screen.queryByText("Nhớ nhé!")).toBeNull();
     tap("Bỏ qua");
+    tap("Tiếp");
     expect(await screen.findByText("Ôn xong rồi!")).toBeInTheDocument();
     // Two skipped questions, and the missed card A was not asked again.
     expect(screen.getByText("Bạn vừa ôn 2 câu. Giỏi lắm!")).toBeInTheDocument();
@@ -326,6 +328,7 @@ describe("ReviewPlayer", () => {
     await screen.findByText("Câu luyện A");
     expect(screen.getByText("Ôn tập")).toBeInTheDocument();
     tap("Bỏ qua");
+    tap("Tiếp");
     await waitFor(() => expect(item()).toHaveAttribute("data-card", CARD_B));
     tap("Câu 1");
     expect(
