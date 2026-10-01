@@ -8,6 +8,7 @@ import { bigButtonClassName } from "@/components/big-button";
 import { PageTopBar } from "@/components/page-top-bar";
 import { ReviewButton } from "@/components/review-button";
 import { RichText } from "@/components/rich-text";
+import { SectionCardArt } from "@/components/section-card-art";
 import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
 import { subjectStyle } from "@/components/subject-style";
@@ -176,12 +177,13 @@ function LessonBody({
                   data-section={section.id}
                   data-state={state}
                   data-next={isNext || undefined}
-                  className={`flex min-h-24 items-center gap-4 rounded-lg bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6 ${
+                  className={`relative flex min-h-24 items-center gap-4 overflow-hidden rounded-lg bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6 ${
                     isNext
                       ? `border-3 ${style?.border ?? "border-primary"}`
                       : "border-2 border-border"
                   }`}
                 >
+                  <SectionCardArt position={i} />
                   <span
                     aria-hidden
                     className={`flex size-10 shrink-0 items-center justify-center rounded-full font-heading text-block font-semibold ${
@@ -212,7 +214,7 @@ function LessonBody({
                   </div>
                   <ChevronRight
                     aria-hidden
-                    className="size-6 shrink-0 text-muted-foreground"
+                    className="relative size-6 shrink-0 text-muted-foreground"
                   />
                 </Link>
               </li>
