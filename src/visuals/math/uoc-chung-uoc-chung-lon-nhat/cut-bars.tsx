@@ -6,6 +6,7 @@ import type { VisualProps, VisualState } from "@/visuals/registry";
 import { bagLegend } from "@/visuals/shared/bag-groups";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import type { Mode } from "@/visuals/shared/formula-rows";
+import { decorative } from "@/visuals/shared/markers";
 import { Hole, Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -95,6 +96,7 @@ function Strip({
               // biome-ignore lint/suspicious/noArrayIndexKey: pieces are placed by position
               <g key={i}>
                 <rect
+                  {...decorative}
                   x={x + 1}
                   y={1}
                   width={boxWidth(d) - 2}
@@ -110,6 +112,7 @@ function Strip({
           {left > 0 && (
             <g>
               <rect
+                {...decorative}
                 x={pieces * (boxWidth(d) + GAP) + 1}
                 y={1}
                 width={boxWidth(left) - 2}
@@ -130,6 +133,7 @@ function Strip({
       ) : (
         <g>
           <rect
+            {...decorative}
             x={1}
             y={1}
             width={boxWidth(total) - 2}
