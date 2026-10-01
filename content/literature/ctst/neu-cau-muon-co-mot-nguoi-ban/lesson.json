@@ -759,7 +759,7 @@
           "children": [
             {
               "type": "note",
-              "text": "SGK tr.26 cho biết câu này của cáo có biện pháp so sánh. Cáo đặt bước chân của bạn cạnh tiếng nhạc, nối bằng “như là”."
+              "text": "Câu này của cáo có biện pháp so sánh. Cáo đặt bước chân của bạn cạnh tiếng nhạc, nối bằng “như là”."
             },
             {
               "type": "visual",
@@ -4765,7 +4765,7 @@
           "prompt": [
             {
               "type": "note",
-              "text": "Ngay sau khi chia tay, cáo cảm thấy thế nào?"
+              "text": "Lúc chia tay, cáo cảm thấy thế nào?"
             },
             {
               "type": "passage",
@@ -4945,7 +4945,7 @@
         "rubric": [
           "Viết từ 5 đến 7 câu.",
           "Kể được cáo buồn và nhớ bạn sau khi chia tay.",
-          "Nhắc đến màu lúa mì hoặc tiếng gió làm cáo nhớ bạn.",
+          "Nhắc đến màu lúa mì làm cáo nhớ bạn, hoặc cáo thích tiếng gió trên đồng lúa mì.",
           "Có ít nhất 2 từ ghép.",
           "Có ít nhất 2 từ láy."
         ]
@@ -4962,7 +4962,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả lời thoại của cáo."
+          "text": "Chọn tất cả câu cáo nói."
         }
       ],
       "options": [

@@ -523,7 +523,7 @@ export function GoiYTuGhep() {
 const PLAN = [
   "Cáo nhìn theo bạn đi xa",
   "Cáo buồn, nhớ bạn",
-  "Lúa mì, tiếng gió gợi nhớ bạn",
+  "Màu lúa mì gợi nhớ bạn, cáo thích tiếng gió",
   "Cáo vẫn vui vì có một người bạn",
 ] as const;
 
