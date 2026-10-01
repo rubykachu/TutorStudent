@@ -1422,7 +1422,7 @@
       },
       "explain": {
         "text": "Số chia hết cho 2 khi chữ số tận cùng là 0, 2, 4, 6 hoặc 8. Chữ số bạn đặt vào cuối số 61 chính là chữ số tận cùng của số mới, nên chọn một trong các chữ số đó.",
-        "tex": "610,; 612,; 614,; 616,; 618"
+        "tex": "610,\\quad 612,\\quad 614,\\quad 616,\\quad 618"
       }
     },
     {
@@ -1481,7 +1481,7 @@
         "wrong": [
           {
             "optionId": "d",
-            "text": "Số tận cùng 8 chia hết cho 2, nhưng chưa chắc chia hết cho 5; ví dụ 18 : 5 còn dư 3."
+            "text": "Số tận cùng 8 không chia hết cho 5. Ví dụ 18 : 5 được 3 dư 3."
           }
         ]
       }
@@ -1637,7 +1637,7 @@
       "answer": ["a", "b"],
       "multiple": true,
       "explain": {
-        "text": "Số tận cùng là 0 hoặc 5 thì chia hết cho 5. 160 tận cùng 0 và 245 tận cùng 5 đều thoả.",
+        "text": "Số tận cùng là 0 hoặc 5 thì chia hết cho 5. 160 tận cùng 0 và 245 tận cùng 5, nên cả hai chia hết cho 5.",
         "wrong": [
           {
             "optionId": "c",
@@ -2369,7 +2369,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "1 + 5 + 6 = 12, chia hết cho 3 nhưng không chia hết cho 9."
+            "text": "1 + 5 + 6 = 12, không chia hết cho 9."
           },
           {
             "optionId": "c",
@@ -3018,7 +3018,7 @@
       "answer": ["a"],
       "multiple": false,
       "explain": {
-        "text": "Xét lần lượt từng dấu hiệu. Chia hết cho 5 thì tận cùng là 0 hoặc 5; chia hết cho 3 thì tổng các chữ số chia hết cho 3. Số 345 tận cùng 5 và có tổng 3 + 4 + 5 = 12, thoả cả hai.",
+        "text": "Xét lần lượt từng dấu hiệu. Chia hết cho 5 thì tận cùng là 0 hoặc 5; chia hết cho 3 thì tổng các chữ số chia hết cho 3. Số 345 tận cùng 5 và có tổng 3 + 4 + 5 = 12, đúng cả hai dấu hiệu.",
         "wrong": [
           {
             "optionId": "c",
@@ -3148,7 +3148,7 @@
       "answer": ["a", "b"],
       "multiple": true,
       "explain": {
-        "text": "Số chia hết cho cả 3 và 5 phải tận cùng 0 hoặc 5 và có tổng các chữ số chia hết cho 3. 165 có tổng 12 và tận cùng 5, 240 có tổng 6 và tận cùng 0, nên cả hai thoả.",
+        "text": "Số chia hết cho cả 3 và 5 phải tận cùng 0 hoặc 5 và có tổng các chữ số chia hết cho 3. 165 có tổng 12 và tận cùng 5, 240 có tổng 6 và tận cùng 0, nên cả hai đúng cả hai dấu hiệu.",
         "wrong": [
           {
             "optionId": "c",
@@ -3211,7 +3211,7 @@
         }
       ],
       "explain": {
-        "text": "Muốn biết số có chia hết cho cả hai số không, bạn xét lần lượt từng dấu hiệu. Số 1 530 tận cùng 0 nên chia hết cho 5, rồi tổng các chữ số là 9 chia hết cho 3. Cả hai dấu hiệu đều thoả nên 1 530 chia hết cho cả 3 và 5.",
+        "text": "Muốn biết số có chia hết cho cả hai số không, bạn xét lần lượt từng dấu hiệu. Số 1 530 tận cùng 0 nên chia hết cho 5, rồi tổng các chữ số là 9 chia hết cho 3. Số này đúng cả hai dấu hiệu nên 1 530 chia hết cho cả 3 và 5.",
         "tex": "1 + 5 + 3 + 0 = 9"
       }
     },
@@ -3267,7 +3267,7 @@
       "answer": ["c"],
       "multiple": false,
       "explain": {
-        "text": "Chia đều cho 3 bạn và cho 5 bạn đều vừa hết nghĩa là số vở chia hết cho cả 3 và 5. Số 45 tận cùng 5 và có tổng 4 + 5 = 9 chia hết cho 3, thoả cả hai.",
+        "text": "Chia đều cho 3 bạn và cho 5 bạn đều vừa hết nghĩa là số vở chia hết cho cả 3 và 5. Số 45 tận cùng 5 và có tổng 4 + 5 = 9 chia hết cho 3, đúng cả hai dấu hiệu.",
         "tex": "45 : 3 = 15,\\quad 45 : 5 = 9",
         "wrong": [
           {
@@ -3308,7 +3308,7 @@
         "expr": "3"
       },
       "explain": {
-        "text": "Xét từng số: cần tận cùng 0, 2, 4, 6, 8 và tổng các chữ số chia hết cho 3. 12, 18 và 24 thoả cả hai; 15 tận cùng là 5 và 25 có tổng 7 nên không thoả. Vậy có 3 số.",
+        "text": "Xét từng số: cần tận cùng 0, 2, 4, 6, 8 và tổng các chữ số chia hết cho 3. 12, 18 và 24 đúng cả hai, còn 15 (tận cùng 5) và 25 (tổng 7) thì không. Vậy có 3 số.",
         "tex": "1 + 2 = 3,\\quad 1 + 8 = 9,\\quad 2 + 4 = 6"
       }
     },
@@ -3480,11 +3480,11 @@
         "wrong": [
           {
             "optionId": "a",
-            "text": "6 và 4 đều không chia hết cho 5 (tích là 24)."
+            "text": "Tích 6 · 4 là 24, tận cùng 4 nên không chia hết cho 5."
           },
           {
             "optionId": "d",
-            "text": "3 và 9 đều không chia hết cho 5 (tích là 27)."
+            "text": "Tích 3 · 9 là 27, tận cùng 7 nên không chia hết cho 5."
           }
         ]
       }
@@ -3553,7 +3553,7 @@
       },
       "explain": {
         "text": "Số bánh là 7 · 8, mà thừa số 8 chia hết cho 4 nên tích chia hết cho 4: mỗi hộp xếp vừa 2 túi. Có 7 hộp thì dùng 7 · 2 = 14 túi.",
-        "tex": "7 \\cdot 8 : 4 = 7 \\cdot (8 : 4) = 7 \\cdot 2 = 14"
+        "tex": "7 \\cdot 8 = 56,\\quad 8 : 4 = 2,\\quad 7 \\cdot 2 = 14"
       }
     },
     {
@@ -3805,7 +3805,7 @@
           },
           {
             "optionId": "c",
-            "text": "25 tận cùng là 5 nên 25 chia hết cho 5; vậy lý do này nói sai về 25."
+            "text": "25 tận cùng là 5 nên chia hết cho 5; điều quyết định là 32 không chia hết cho 5."
           }
         ]
       }
@@ -5259,7 +5259,7 @@
       "answer": ["c"],
       "multiple": false,
       "explain": {
-        "text": "Số chia hết cho cả 2 và 5 phải tận cùng là 0. Với các chữ số 0, 2 và 5, số đó là 250.",
+        "text": "Số chia hết cho cả 2 và 5 phải tận cùng là 0. Trong ba số đã cho, chỉ có 250 tận cùng là 0.",
         "tex": "250 : 2 = 125,\\quad 250 : 5 = 50",
         "wrong": [
           {
