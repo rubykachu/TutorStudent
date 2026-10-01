@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { AccessConfig } from "@/access/env";
 import { decideAccess, safeNextPath } from "@/access/gate";
 import { issueSessionToken } from "@/access/session";
+import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
 
 const SECRET = "a-secret-of-at-least-thirty-two-characters";
 const CODE = "saobien4k7m";
@@ -62,6 +63,31 @@ describe("decideAccess", () => {
     expect(await decideAccess(await request("/api/session"), gate)).toEqual({
       kind: "allow",
     });
+  });
+
+  it("serves the manifest, the icons and the share image without the cookie, and nothing else near them", async () => {
+    for (const path of BRAND_PUBLIC_PATHS) {
+      expect(await decideAccess(await request(path), gate)).toEqual({
+        kind: "allow",
+      });
+    }
+    // A look-alike path, another file in the same folder and a query on a
+    // page stay behind the gate.
+    for (const path of [
+      "/manifest.webmanifest/x",
+      "/brand/other.png",
+      "/brand/",
+      "/brand/share.png.map",
+      "/brand/../content/index.json",
+      "/opengraph-image",
+    ]) {
+      expect((await decideAccess(await request(path), gate)).kind).not.toBe(
+        "allow",
+      );
+    }
+    expect(
+      (await decideAccess(await request("/", { search: "?icons" }), gate)).kind,
+    ).toBe("redirect");
   });
 
   it("sends an unlocked device away from /unlock to where it was going", async () => {

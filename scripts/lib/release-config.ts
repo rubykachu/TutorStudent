@@ -2,12 +2,15 @@
 // and `pnpm deploy:prod`. Secret values never live here: the family code and
 // the media base URL are read from ENV_FILE at run time.
 
+import { SITE_URL } from "../../src/lib/brand";
+
 // Cloudflare R2 bucket holding the lesson videos, subtitles and narration.
 export const R2_BUCKET = "tutor-media";
 // Vercel project (account `rubykachu`) that serves the app.
 export const VERCEL_PROJECT = "tutor";
-// Public address of the production app; origin of the smoke checks.
-export const PROD_URL = "https://nhaky.vercel.app";
+// Public address of the production app; origin of the smoke checks. Declared
+// once in the app, which also builds its share-card URLs from it.
+export const PROD_URL = SITE_URL;
 // Untracked file with FAMILY_CODES, SESSION_SECRET, NEXT_PUBLIC_MEDIA_BASE_URL.
 export const ENV_FILE = ".env.production.local";
 

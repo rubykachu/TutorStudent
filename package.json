@@ -28,6 +28,7 @@
     "video:build": "tsx video/build.ts",
     "video:check": "tsx video/check.ts",
     "narration:build": "tsx video/narration-build.ts",
+    "brand:images": "tsx scripts/brand-images.ts",
     "sounds:build": "tsx scripts/sounds-build.ts",
     "media:upload": "tsx scripts/media-upload.ts",
     "deploy:prod": "tsx scripts/deploy-prod.ts",

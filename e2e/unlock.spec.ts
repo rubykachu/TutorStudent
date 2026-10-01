@@ -51,6 +51,133 @@ test("files and API calls without the code get 401, not a page", async ({
   }
 });
 
+type Manifest = {
+  start_url: string;
+  display: string;
+  icons: { src: string; sizes: string; purpose: string }[];
+};
+
+test("the manifest and its icons load without the code while the rest stays locked", async ({
+  page,
+}) => {
+  const response = await page.request.get("/manifest.webmanifest");
+  expect(response.status()).toBe(200);
+  expect(response.headers()["content-type"]).toMatch(/json/);
+  const manifest = (await response.json()) as Manifest;
+  expect(manifest.display).toBe("standalone");
+  expect(manifest.icons.map((i) => `${i.sizes} ${i.purpose}`)).toEqual([
+    "192x192 any",
+    "512x512 any",
+    "512x512 maskable",
+  ]);
+  for (const path of [
+    ...manifest.icons.map((i) => i.src),
+    "/brand/apple-touch-icon.png",
+  ]) {
+    const icon = await page.request.get(path);
+    expect(icon.status(), path).toBe(200);
+    expect(icon.headers()["content-type"], path).toBe("image/png");
+  }
+  // Public files do not open the door to anything beside them.
+  for (const path of ["/content/index.json", "/brand/other.png"]) {
+    expect((await page.request.get(path)).status(), path).toBe(401);
+  }
+});
+
+test("a link preview crawler without the cookie gets the share card from the unlock page", async ({
+  page,
+}) => {
+  // `/` redirects to `/unlock`; a crawler follows it and reads that page.
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/unlock\?next=%2F$/);
+  const meta = (name: string) =>
+    page.locator(`meta[property="${name}"], meta[name="${name}"]`);
+  const production = "https://nhaky.vercel.app";
+  await expect(meta("og:type")).toHaveAttribute("content", "website");
+  await expect(meta("og:locale")).toHaveAttribute("content", "vi_VN");
+  await expect(meta("og:site_name")).toHaveAttribute("content", "Tutor");
+  await expect(meta("og:url")).toHaveAttribute("content", production);
+  await expect(meta("og:title")).toHaveAttribute("content", /Tutor/);
+  await expect(meta("og:description")).toHaveAttribute("content", /bạn cú/);
+  await expect(meta("og:image")).toHaveAttribute(
+    "content",
+    `${production}/brand/share.png`,
+  );
+  await expect(meta("og:image:width")).toHaveAttribute("content", "1200");
+  await expect(meta("og:image:height")).toHaveAttribute("content", "630");
+  await expect(meta("twitter:card")).toHaveAttribute(
+    "content",
+    "summary_large_image",
+  );
+  await expect(meta("twitter:image")).toHaveAttribute(
+    "content",
+    `${production}/brand/share.png`,
+  );
+  await expect(
+    page.locator('link[rel="icon"][type="image/svg+xml"]'),
+  ).toHaveAttribute("href", "/brand/favicon.svg");
+  // Search engines stay out, previews still work.
+  await expect(meta("robots")).toHaveAttribute("content", /noindex/);
+
+  // The image the card points to loads for a client with no cookie (its path
+  // on this server, since the tag names the production address).
+  const image = await page.request.get("/brand/share.png");
+  expect(image.status()).toBe(200);
+  expect(image.headers()["content-type"]).toBe("image/png");
+  expect(image.headers()["x-robots-tag"]).toContain("noindex");
+  const favicon = await page.request.get("/favicon.ico");
+  expect(favicon.status()).toBe(200);
+});
+
+test("a Home Screen launch opens the unlock page once, then the app, with no service worker", async ({
+  page,
+}) => {
+  // What the browser needs to offer "Add to Home Screen", read from the page
+  // a visitor without the code gets.
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/unlock\?next=%2F$/);
+  await expect(page.locator('link[rel="manifest"]')).toHaveAttribute(
+    "href",
+    "/manifest.webmanifest",
+  );
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+    "href",
+    "/brand/apple-touch-icon.png",
+  );
+  await expect(
+    page.locator('meta[name="apple-mobile-web-app-capable"]'),
+  ).toHaveAttribute("content", "yes");
+  await expect(
+    page.locator('meta[name="apple-mobile-web-app-status-bar-style"]'),
+  ).toHaveAttribute("content", "default");
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+    "content",
+    "#f8fafc",
+  );
+  await expect(page.locator('meta[name="viewport"]')).toHaveAttribute(
+    "content",
+    /viewport-fit=cover/,
+  );
+
+  // The launch opens the manifest's start URL: locked, then through the code.
+  const manifest = (await (
+    await page.request.get("/manifest.webmanifest")
+  ).json()) as Manifest;
+  await page.goto(manifest.start_url);
+  await expect(page).toHaveURL(/\/unlock\?next=%2F$/);
+  await enterCode(page, GATE_FAMILY_CODE);
+  await expect(page).toHaveURL(/\/profiles$/);
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Chào bạn mới!" }),
+  ).toBeVisible();
+
+  expect(
+    await page.evaluate(
+      async () => (await navigator.serviceWorker.getRegistrations()).length,
+    ),
+  ).toBe(0);
+});
+
 test("a wrong code says so kindly, the right one opens the page asked for and stays", async ({
   page,
   context,

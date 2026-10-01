@@ -1,3 +1,4 @@
+import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
 import type { AccessConfig } from "./env";
 import { verifySessionToken } from "./session";
 
@@ -42,6 +43,10 @@ export async function decideAccess(
     return { kind: "unavailable", reason: config.reason };
   }
   if (pathname === SESSION_API_PATH) return { kind: "allow" };
+  // The manifest, icons and share image are fetched before the app is open (by
+  // a browser, or by a chat app's crawler with no cookie) and say nothing about
+  // a family.
+  if (BRAND_PUBLIC_PATHS.includes(pathname)) return { kind: "allow" };
 
   const unlocked =
     config.mode === "open" ||
