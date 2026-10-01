@@ -14,7 +14,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 6 `luy-thua` | published | done |
 | Toán | Bài 7 `thu-tu-thuc-hien-phep-tinh` | published | done |
 | Toán | Bài 2, Bài 3 | on hold (owner, 01/10/2026: Bài 8 and later come first because the child's class is there) | not done |
-| Toán | Bài 8 `quan-he-chia-het-va-tinh-chat` | published (reviewed in 5 rounds, 02/10/2026; handover [`lesson-quan-he-chia-het-va-tinh-chat/task.md`](lesson-quan-he-chia-het-va-tinh-chat/task.md)) | done (voice Mỹ Duyên, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: no videos yet for the difference and later sections, `hieu-*` colour and `nhom-so-hang` example notes, caption wording of `tong-12-18-6`) |
+| Toán | Bài 8 `quan-he-chia-het-va-tinh-chat` | published (reviewed in 5 rounds, 01/10/2026; handover [`lesson-quan-he-chia-het-va-tinh-chat/task.md`](lesson-quan-he-chia-het-va-tinh-chat/task.md)) | done (voice Mỹ Duyên, overview narration and 3 videos, reviewed in round 5, ids locked; leftovers in the handover: no videos yet for the difference and later sections, `hieu-*` colour and `nhom-so-hang` example notes, caption wording of `tong-12-18-6`) |
 | Toán | Bài 9 `dau-hieu-chia-het` (SBT print pages 33–34, solutions 105–106) | drafting (01/10/2026 night; handover [`lesson-dau-hieu-chia-het/task.md`](lesson-dau-hieu-chia-het/task.md)) | not done |
 | Toán | Bài 10 (SBT print page 35), Bài 11 (38) | not started | not done |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
@@ -24,9 +24,9 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
-1. Opening lines for the nine videos built before the opening-line rule: [`video-opening-retrofit/task.md`](video-opening-retrofit/task.md).
-2. Bài 8 ([`lesson-quan-he-chia-het-va-tinh-chat/task.md`](lesson-quan-he-chia-het-va-tinh-chat/task.md): published with narration and 3 videos, only the leftovers listed there remain), then Bài 9 (print page 33), one subagent at a time.
-3. Bài 10 (print page 35), then Bài 11 (print page 38).
+1. Bài 9 `dau-hieu-chia-het`: review round 1 done and fixed, paused before round 2; continue from [`lesson-dau-hieu-chia-het/task.md`](lesson-dau-hieu-chia-het/task.md) (round 2 full with Opus, then diff rounds, approve, lock, walk), then narration and videos.
+2. Bài 10 (SBT print page 35), then Bài 11 (print page 38), one subagent at a time.
+3. Opening lines for the nine videos built before the opening-line rule: [`video-opening-retrofit/task.md`](video-opening-retrofit/task.md).
 4. Bài 3, then Bài 2 (on hold until the owner resumes them; add easy-to-hard guiding steps where the workbook is hard).
 5. Remove the remaining `[guides]` warnings of `content:check` (9, in `tap-hop` and `luy-thua`) by adding guide screens; see [`lesson-tap-hop/task.md`](lesson-tap-hop/task.md).
 6. First Địa lí lesson once the owner supplies pages: TopoJSON boundaries from Vietnam's point of view, `tapRegion` on maps.
