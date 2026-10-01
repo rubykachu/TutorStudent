@@ -5,6 +5,8 @@
 - Đã chạy ở bước xuất bản: `pnpm content:check` 0 lỗi; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo; `pnpm lint`, `pnpm typecheck`, `pnpm test` (2 150 test) đạt; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` ở cây chính.
 - Bước kế tiếp: không còn việc chặn. Phần Nên sửa của vòng 3 và các Góp ý dưới đây gộp vào lần sửa bài kế tiếp (sửa bài đổi hash, cần review lại phần đổi); khi đó chạy lại `pnpm video:check so-nguyen-to`.
 
+- 02/10/2026: đã thêm `explain` cho cả 65 câu (xoá khỏi `content/legacy-lessons.json`); review phần đổi vòng 5 (1 Nghiêm trọng đã sửa) và vòng 6 (0 Nghiêm trọng), đã `content:hash --approve`. Không đổi `videos[]` hay `overview.narration`.
+
 ## Việc còn lại sau review vòng 3 (không chặn)
 - Nên sửa: màn chạm `chon-nt-bang` (section 4: 21, 23, 27, 29, 33, 39; đáp án 23, 29) trùng bốn số và tập đáp án với `chon-nt-2-7` (section 2); đổi sang 33, 37, 39, 45, 49, 73 (đáp án 37 và 73) ở lần sửa bài kế tiếp (sửa bài đã xuất bản đổi hash, cần review lại phần đổi).
 - Góp ý: `bang-100` ở iPad ngang chữ khoảng 14,5px và dấu ✚ nhỏ do `max-h-[32vh]`; `viet-28` có hai so sánh trong một câu và trùng 28 với `cay-thieu-28`; caption `xet-65` nêu dấu hiệu chia hết cho 2 chỉ bằng chữ xám; note ngoại lệ section 5 đứng trước hình ví dụ 51 mà hai thứ chưa nối nhau.
