@@ -412,7 +412,7 @@
         }
       ],
       "checkIds": [
-        "cach-ghi-so-tu-nhien.ex.tong-cua-6275"
+        "cach-ghi-so-tu-nhien.ex.tong-cua-635"
       ],
       "practiceIds": [
         "cach-ghi-so-tu-nhien.ex.viet-so-5032"
@@ -2470,12 +2470,12 @@
       }
     },
     {
-      "id": "cach-ghi-so-tu-nhien.ex.tong-cua-6275",
+      "id": "cach-ghi-so-tu-nhien.ex.tong-cua-635",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Số 6 275 bằng tổng nào?"
+          "text": "Số 635 bằng tổng nào?"
         }
       ],
       "hints": {
@@ -2493,28 +2493,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot 1\\,000 + 2 \\cdot 100 + 7 \\cdot 10 + 5"
+            "tex": "6 \\cdot 100 + 3 \\cdot 10 + 5"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot 100 + 2 \\cdot 10 + 7 + 5"
+            "tex": "6 \\cdot 10 + 3 \\cdot 100 + 5"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "6 + 2 + 7 + 5"
+            "tex": "6 + 3 + 5"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot 1\\,000 + 2 \\cdot 10 + 7 \\cdot 100 + 5"
+            "tex": "6 \\cdot 100 + 3 + 5"
           }
         }
       ],
@@ -2523,19 +2523,19 @@
       ],
       "multiple": false,
       "check": {
-        "expr": "6275"
+        "expr": "635"
       },
       "explain": {
-        "text": "Chữ số 6 ở hàng nghìn, 2 ở hàng trăm, 7 ở hàng chục, 5 ở hàng đơn vị. Mỗi chữ số nhân với giá trị hàng của nó rồi cộng lại.",
-        "tex": "6 \\cdot 1\\,000 + 2 \\cdot 100 + 7 \\cdot 10 + 5",
+        "text": "Chữ số 6 ở hàng trăm, 3 ở hàng chục, 5 ở hàng đơn vị. Mỗi chữ số nhân với giá trị hàng của nó rồi cộng lại.",
+        "tex": "6 \\cdot 100 + 3 \\cdot 10 + 5",
         "wrong": [
           {
             "optionId": "c",
-            "text": "6 + 2 + 7 + 5 chỉ cộng các chữ số, chưa nhân với giá trị của hàng."
+            "text": "6 + 3 + 5 chỉ cộng các chữ số, chưa nhân với giá trị của hàng."
           },
           {
-            "optionId": "d",
-            "text": "Ở dòng này chữ số 2 và 7 đứng sai hàng."
+            "optionId": "b",
+            "text": "Ở dòng này chữ số 6 và 3 đứng sai hàng."
           }
         ]
       }

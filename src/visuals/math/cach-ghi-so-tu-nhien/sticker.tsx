@@ -33,56 +33,30 @@ export default function Sticker() {
           strokeWidth={3}
         />
         {[0, 1, 2].map((i) => (
-          <rect
-            key={i}
-            x={30 + i * 14}
-            y={31}
-            width={12}
-            height={18}
-            rx={3}
-            className="fill-surface"
-          />
+          <g key={i}>
+            <rect
+              x={30 + i * 14}
+              y={31}
+              width={12}
+              height={18}
+              rx={3}
+              className="fill-surface"
+            />
+            <circle
+              cx={36 + i * 14}
+              cy={40}
+              r={3.5}
+              className="fill-concept-blue"
+            />
+          </g>
         ))}
-        <text
-          x={36}
-          y={44}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={700}
-          className="fill-concept-blue font-heading"
-        >
-          2
-        </text>
-        <text
-          x={50}
-          y={44}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={700}
-          className="fill-concept-blue font-heading"
-        >
-          0
-        </text>
-        <text
-          x={64}
-          y={44}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={700}
-          className="fill-concept-blue font-heading"
-        >
-          6
-        </text>
-        <text
-          x={50}
-          y={59}
-          textAnchor="middle"
-          fontSize={9}
-          fontWeight={700}
-          className="fill-surface font-heading"
-        >
-          XXVI
-        </text>
+        <ConceptShape
+          color="lime"
+          cx={50}
+          cy={59}
+          r={4.5}
+          className="stroke-surface"
+        />
         <ConceptShape
           color="blue"
           cx={24}
