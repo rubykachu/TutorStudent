@@ -36,7 +36,7 @@ export function Column({ spec }: { spec: SpecOf<"column"> }) {
     // The division that led to the newest row; it stays on the last one.
     const previous = rows[Math.min(reach, rows.length - 1) - 1];
     return (
-      <div className="flex w-full flex-col items-center gap-4">
+      <div className="flex w-full flex-col items-center gap-2">
         <div className="flex">
           <ul className="flex flex-col border-foreground border-r-4">
             {rows.map((row, i) => (
