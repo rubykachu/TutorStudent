@@ -4,10 +4,10 @@ Bài đã qua 3 vòng review, 0 lỗi Nghiêm trọng (`content/math/kntt/tap-ho
 
 ## Nội dung
 
-- Recap xét thuộc ("Có trong A thì x ∈ A, không có thì x ∉ A.") trên điện thoại vẫn ngắt "A." xuống dòng riêng. Nên thêm khoảng trắng không ngắt giữa kí hiệu và tên tập hợp.
+Đã sửa (02/10/2026, review vòng 9): khoảng trắng không ngắt ở recap xét thuộc, đề `kt-dau-giua`, câu định nghĩa dấu hiệu đặc trưng. Kiểm kê mọi mục còn lại và lý do: `notebooks/backlogs/fix-earlier-lessons/task.md`.
+
+
 - Hình `tap-hop.visual.cham-dau-hieu` (câu `kt-cham-dau-hieu`) trên iPad tách tập hợp làm hai dòng và dồn sang trái.
-- Đề `kt-dau-giua` viết "3, 8 và 10": dấu phẩy nằm ngay trong câu hỏi về dấu viết giữa hai số. Có thể đổi thành "số áo ba, tám và mười".
-- Định nghĩa dấu hiệu đặc trưng dùng "số khác", chỉ hợp với tập số; câu "Nó viết sau…" nên là "Nó được viết sau…".
 - Mục "Chú ý" (kí hiệu ℕ, viết gọn {x ∈ ℕ | …}, sách bài tập tr.6) chưa có trong bài: bản đầu đã thử và bỏ vì làm section nặng mà không có câu luyện. Khi làm lại cần cách đọc, ví dụ liệt kê và một câu luyện.
 - Bài 1.6 và 1.7 của sách (phân số, dạng 2k + 1) chưa lấy số: chương chưa dạy phân số, còn 2k + 1 cần biến k.
 - Dấu ; xuất hiện ở các ví dụ của section ngoặc nhọn trước khi section dấu chấm phẩy dạy nó.
