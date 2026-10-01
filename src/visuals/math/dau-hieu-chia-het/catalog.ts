@@ -521,7 +521,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   },
-  "giai-banh-56": {
+  "giai-banh-40": {
     kind: "lines",
     label: "Số bánh và số túi",
     mode: "steps",
@@ -534,9 +534,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         },
       },
       {
-        tex: "2 \\cdot 7 = 14",
+        tex: "2 \\cdot 5 = 10",
         tag: {
-          text: "7 hộp xếp được 14 túi",
+          text: "5 hộp xếp được 10 túi",
           color: "slate",
         },
       },

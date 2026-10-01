@@ -3531,7 +3531,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua 7 hộp bánh, mỗi hộp 8 cái, rồi xếp hết vào các túi, mỗi túi 4 cái. Mẹ dùng bao nhiêu túi?"
+          "text": "Mẹ mua 5 hộp bánh, mỗi hộp 8 cái, rồi xếp hết vào các túi, mỗi túi 4 cái. Mẹ dùng bao nhiêu túi?"
         }
       ],
       "hints": {
@@ -3541,19 +3541,19 @@
             "index": 0
           }
         ],
-        "solutionVisualId": "dau-hieu-chia-het.visual.giai-banh-56"
+        "solutionVisualId": "dau-hieu-chia-het.visual.giai-banh-40"
       },
       "difficulty": 3,
       "answer": {
         "kind": "value",
-        "value": 14
+        "value": 10
       },
       "check": {
-        "expr": "(8:4)·7"
+        "expr": "(8:4)·5"
       },
       "explain": {
-        "text": "Số bánh là 7 · 8, mà thừa số 8 chia hết cho 4 nên tích chia hết cho 4: mỗi hộp xếp vừa 2 túi. Có 7 hộp thì dùng 7 · 2 = 14 túi.",
-        "tex": "7 \\cdot 8 = 56,\\quad 8 : 4 = 2,\\quad 7 \\cdot 2 = 14"
+        "text": "Số bánh là 5 · 8, mà thừa số 8 chia hết cho 4 nên tích chia hết cho 4: mỗi hộp xếp vừa 2 túi. Có 5 hộp thì dùng 5 · 2 = 10 túi.",
+        "tex": "5 \\cdot 8 = 40,\\quad 8 : 4 = 2,\\quad 5 \\cdot 2 = 10"
       }
     },
     {
