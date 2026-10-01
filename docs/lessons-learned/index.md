@@ -35,35 +35,39 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | [LL-18](LL-18-cau-qua-dai.md) | Câu luyện quá nhiều phép tính | Sư phạm | Người | `lesson-author` luật "Số nhỏ" |
 | [LL-19](LL-19-ngon-tu.md) | Xưng hô, câu dài, từ khó | Ngôn từ | Máy một phần + người | `[vietnamese]`, `[length]`, `[overview]`; checklist trục 3 |
 | [LL-20](LL-20-sua-review-lam-hong-cho-khac.md) | Bản sửa theo review làm hỏng chỗ khác | Quy trình | Người | checklist vòng chỉ phần đổi |
+| [LL-21](LL-21-ky-hieu-hinh-doc-nham.md) | Ký hiệu, nhãn trong hình đọc nhầm thành phép toán | Visual | Người | `lesson-visual` tự xem ảnh; checklist trục 5 |
+| [LL-22](LL-22-thieu-cong-cu-tren-man.md) | Câu bảo tra cứu mà màn không có thứ để tra | Bài tập | Người | checklist trục 5 "Người học chậm theo kịp" |
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 01/10/2026 của 9 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 01/10/2026 của 10 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1), `so-nguyen-to` (vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm cùng ngày. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 1 | 17 | 16 | 34 |
+| LL-10 | 2 | 21 | 17 | 40 |
 | LL-19 | 1 | 8 | 24 | 33 |
-| LL-12 | 1 | 11 | 21 | 33 |
-| LL-07 | 1 | 17 | 16 | 34 |
-| LL-15 | 3 | 11 | 6 | 20 |
-| LL-16 | 0 | 16 | 2 | 18 |
-| LL-05 | 5 | 9 | 6 | 20 |
-| LL-09 | 7 | 9 | 3 | 19 |
-| LL-14 | 1 | 8 | 7 | 16 |
+| LL-12 | 1 | 13 | 22 | 36 |
+| LL-07 | 1 | 22 | 16 | 39 |
+| LL-15 | 4 | 12 | 6 | 22 |
+| LL-16 | 0 | 20 | 3 | 23 |
+| LL-05 | 5 | 14 | 10 | 29 |
+| LL-09 | 8 | 9 | 3 | 20 |
+| LL-14 | 1 | 9 | 7 | 17 |
 | LL-11 | 4 | 4 | 7 | 15 |
-| LL-06 | 0 | 11 | 2 | 13 |
-| LL-02 | 4 | 4 | 5 | 13 |
+| LL-06 | 0 | 13 | 2 | 15 |
+| LL-02 | 4 | 4 | 7 | 15 |
 | LL-01 | 12 | 1 | 0 | 13 |
 | LL-03 | 2 | 6 | 2 | 10 |
-| LL-17 | 14 | 3 | 3 | 20 |
+| LL-17 | 16 | 4 | 3 | 23 |
 | LL-04 | 0 | 5 | 2 | 7 |
 | LL-18 | 0 | 3 | 1 | 4 |
-| LL-08 | 7 | 0 | 1 | 8 |
+| LL-08 | 9 | 0 | 1 | 10 |
 | LL-13 | 1 | 1 | 0 | 2 |
 | LL-20 | 1 | 0 | 0 | 1 |
+| LL-21 | 1 | 0 | 0 | 1 |
+| LL-22 | 1 | 0 | 0 | 1 |
 
-LL-01 và LL-17 ít lần nhưng nhiều Nghiêm trọng nhất; LL-10, LL-19, LL-07, LL-12 gặp nhiều nhất.
+LL-17 và LL-01 nhiều Nghiêm trọng nhất; LL-10, LL-07, LL-12, LL-19 gặp nhiều nhất.
 
 ## Lỗi Nghiêm trọng ở vòng 1 theo bài
 
@@ -80,3 +84,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `quan-he-chia-het-va-tinh-chat` | Toán | 8 | chưa (vòng 2 còn 3, vòng 3 còn 1) | 3 |
 | `dau-hieu-chia-het` | Toán | 5 | chưa (vòng 2 còn 2, vòng 3 còn 1) | 3 |
 | `uoc-chung-uoc-chung-lon-nhat` | Toán | 8 | chưa | 1 |
+| `so-nguyen-to` | Toán | 9 | chưa | 1 |
