@@ -3,9 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 import {
   buildStickerEntries,
   latestEarned,
-  nextToEarn,
-  SHELF_RECENT,
   StickerShelf,
+  shelfLayout,
   stickerCollectionCaption,
 } from "@/app/(child)/sticker-shelf";
 import type { LessonSummary } from "@/schema/content";
@@ -55,11 +54,34 @@ function shelf(
   }[] = [],
 ) {
   return render(
-    <StickerShelf lessons={lessons} stickers={stickers} sections={sections} />,
+    <StickerShelf
+      childId="kid-1"
+      lessons={lessons}
+      stickers={stickers}
+      sections={sections}
+    />,
   );
 }
 
 const shelfTiles = () => document.querySelectorAll("[data-shelf-sticker]");
+const shelfIds = () =>
+  [...shelfTiles()].map((tile) => tile.getAttribute("data-shelf-sticker"));
+
+// Makes the viewport match the given min-width queries (rem), as a wider
+// screen does; jsdom matches none, which is the narrowest layout.
+function viewportMatches(...queries: string[]) {
+  const original = window.matchMedia;
+  window.matchMedia = (query: string) =>
+    ({
+      matches: queries.includes(query),
+      media: query,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+    }) as unknown as MediaQueryList;
+  return () => {
+    window.matchMedia = original;
+  };
+}
 
 describe("sticker shelf entries", () => {
   it("colours each sticker by the sections done, full once earned", () => {
@@ -99,22 +121,34 @@ describe("sticker shelf entries", () => {
     ]);
   });
 
-  it("aims at the sticker coloured furthest, else the first one", () => {
-    const lessons = [lesson("a", "A"), lesson("b", "B"), lesson("c", "C")];
-    const none = buildStickerEntries(lessons, [], []);
-    expect(nextToEarn(none)?.lesson.id).toBe("a");
-    const started = buildStickerEntries(
+  it("lays out the earned stickers first, latest first, then those part coloured, then the rest", () => {
+    const lessons = manyLessons(6);
+    const entries = buildStickerEntries(
       lessons,
-      [{ lessonId: "a", at: "2026-01-01T00:00:00.000Z" }],
-      [{ lessonId: "c", sectionId: "c.section.1", state: "done" }],
+      [
+        { lessonId: "l04", at: "2026-02-01T00:00:00.000Z" },
+        { lessonId: "l02", at: "2026-03-01T00:00:00.000Z" },
+      ],
+      [{ lessonId: "l06", sectionId: "l06.section.1", state: "done" }],
     );
-    expect(nextToEarn(started)?.lesson.id).toBe("c");
-    const all = buildStickerEntries(
-      lessons,
-      lessons.map((l) => ({ lessonId: l.id, at: "2026-01-01T00:00:00.000Z" })),
-      [],
-    );
-    expect(nextToEarn(all)).toBeUndefined();
+    const { tiles, more } = shelfLayout(entries, 6);
+    expect(tiles.map((t) => t.lesson.id)).toEqual([
+      "l02",
+      "l04",
+      "l06",
+      "l01",
+      "l03",
+      "l05",
+    ]);
+    expect(more).toBe(0);
+  });
+
+  it("ends a full layout with a +k tile that counts the stickers left out", () => {
+    const entries = buildStickerEntries(manyLessons(9), earnedRecords(9), []);
+    const { tiles, more } = shelfLayout(entries, 6);
+    expect(tiles).toHaveLength(5);
+    expect(more).toBe(4);
+    expect(shelfLayout(entries.slice(0, 6), 6).more).toBe(0);
   });
 
   it.each([
@@ -142,7 +176,7 @@ describe("sticker shelf entries", () => {
 });
 
 describe("StickerShelf", () => {
-  it("counts earned out of all in the title and shows the earned ones in colour", () => {
+  it("counts earned out of all under the title and shows the earned ones in colour first", () => {
     shelf(manyLessons(5), earnedRecords(2));
     expect(
       screen.getByRole("heading", { name: "Danh hiệu của bạn" }),
@@ -150,74 +184,81 @@ describe("StickerShelf", () => {
     expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
       "Đã nhận 2/5",
     );
-    expect(shelfTiles()).toHaveLength(2);
+    // Latest first, then the stickers still to win: the grid is never empty.
+    expect(shelfIds()).toEqual(["l02", "l01", "l03", "l04", "l05"]);
     expect(
       document.querySelectorAll(
         '[data-shelf-sticker] [data-sticker-earned="true"]',
       ),
     ).toHaveLength(2);
-    expect(document.querySelector("[data-shelf-empty]")).toBeNull();
     expect(document.querySelector("[data-shelf-more]")).toBeNull();
+    expect(document.querySelector("[data-shelf-open-all]")).toBeNull();
   });
 
-  it("keeps its size with 30 stickers: only the latest few and a +k tile", () => {
-    shelf(manyLessons(34), earnedRecords(30));
-    expect(shelfTiles()).toHaveLength(SHELF_RECENT);
-    // Latest first: the last earned lesson leads.
-    expect(shelfTiles()[0]).toHaveAttribute("data-shelf-sticker", "l30");
-    expect(shelfTiles()[SHELF_RECENT - 1]).toHaveAttribute(
-      "data-shelf-sticker",
-      `l${30 - SHELF_RECENT + 1}`,
-    );
-    expect(
-      screen.getByRole("button", {
-        name: `Xem thêm ${30 - SHELF_RECENT} danh hiệu`,
-      }),
-    ).toHaveTextContent(`+${30 - SHELF_RECENT}`);
-    expect(
-      screen.getByRole("heading", { name: "Danh hiệu của bạn" }),
-    ).toBeInTheDocument();
-    expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
-      "Đã nhận 30/34",
-    );
-    // The old section of every sticker is gone from the page itself.
-    expect(document.querySelectorAll("[data-sticker-lesson]")).toHaveLength(0);
-  });
-
-  it("has the same row with 7 as with 30 earned (one tile per shown sticker, plus +k)", () => {
-    const { unmount } = shelf(manyLessons(40), earnedRecords(SHELF_RECENT));
-    expect(shelfTiles()).toHaveLength(SHELF_RECENT);
-    expect(document.querySelector("[data-shelf-more]")).toBeNull();
-    unmount();
-    shelf(manyLessons(40), earnedRecords(SHELF_RECENT + 1));
-    expect(shelfTiles()).toHaveLength(SHELF_RECENT);
-    expect(document.querySelector("[data-shelf-more]")).toHaveTextContent("+1");
-  });
-
-  it("says how to win the first one and shows the next sticker when none is earned", () => {
+  it("shows grey stickers, not an empty state, when none is earned", () => {
     shelf(
       [lesson("a", "Sao"), lesson("b", "Trăng")],
       [],
       [{ lessonId: "b", sectionId: "b.section.1", state: "done" }],
     );
-    expect(
-      screen.getByRole("heading", { name: "Danh hiệu của bạn" }),
-    ).toBeInTheDocument();
     expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
       "Đã nhận 0/2",
     );
-    const empty = document.querySelector("[data-shelf-empty]");
-    expect(empty).toHaveTextContent(
-      "Học xong một bài để nhận danh hiệu đầu tiên",
-    );
-    // The one to aim for is the one already part coloured.
-    expect(empty).toHaveTextContent("Trăng");
+    // The part coloured one leads.
+    expect(shelfIds()).toEqual(["b", "a"]);
     expect(
-      within(empty as HTMLElement).getByRole("img", {
-        name: "Sticker Trăng, đã tô 1/3 phần",
-      }),
+      screen.getByRole("img", { name: "Sticker Trăng, đã tô 1/3 phần" }),
     ).toBeInTheDocument();
-    expect(shelfTiles()).toHaveLength(1);
+    expect(
+      screen.getByRole("img", { name: "Sticker Sao, chưa nhận" }),
+    ).toBeInTheDocument();
+  });
+
+  it("keeps two rows with 30 earned: the latest ones and a +k tile", () => {
+    shelf(manyLessons(34), earnedRecords(30));
+    // Narrowest layout: 3 columns, 2 rows.
+    expect(shelfTiles()).toHaveLength(5);
+    expect(shelfIds()[0]).toBe("l30");
+    expect(shelfIds()[4]).toBe("l26");
+    expect(
+      screen.getByRole("button", { name: "Xem thêm 29 danh hiệu" }),
+    ).toHaveTextContent("+29");
+    expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
+      "Đã nhận 30/34",
+    );
+    expect(document.querySelectorAll("[data-shelf-grid] > li")).toHaveLength(6);
+    // The full grid of every sticker is not on the page itself.
+    expect(document.querySelectorAll("[data-sticker-lesson]")).toHaveLength(0);
+  });
+
+  it.each([
+    [["(min-width: 40rem)"], 4],
+    [["(min-width: 40rem)", "(min-width: 48rem)"], 5],
+  ])("holds at most two rows at wider screens (%o)", (queries, columns) => {
+    const restore = viewportMatches("(min-width: 0px)", ...queries);
+    try {
+      shelf(manyLessons(34), earnedRecords(30));
+      const grid = document.querySelector("[data-shelf-grid]") as HTMLElement;
+      expect(grid.style.gridTemplateColumns).toBe(
+        `repeat(${columns}, minmax(0, 1fr))`,
+      );
+      expect(grid.children).toHaveLength(columns * 2);
+      expect(document.querySelector("[data-shelf-more]")).toHaveTextContent(
+        `+${34 - (columns * 2 - 1)}`,
+      );
+    } finally {
+      restore();
+    }
+  });
+
+  it("is the same size with 0, 3 and 30 earned stickers", () => {
+    const counts = [0, 3, 30].map((earned) => {
+      const { unmount } = shelf(manyLessons(34), earnedRecords(earned));
+      const cells = document.querySelectorAll("[data-shelf-grid] > li").length;
+      unmount();
+      return cells;
+    });
+    expect(counts).toEqual([6, 6, 6]);
   });
 
   it("renders nothing without lessons", () => {
@@ -234,33 +275,21 @@ describe("StickerShelf", () => {
         { lessonId: "a", sectionId: "a.section.2", state: "done" },
       ],
     );
-    fireEvent.click(screen.getByRole("button", { name: /Xem tất cả/ }));
-    const dialog = screen.getByRole("dialog", { name: "Danh hiệu của bạn" });
-    expect(
-      within(dialog).getByText("Đã có 1/3 sticker · 1 đang tô màu"),
-    ).toBeInTheDocument();
-    expect(dialog.querySelectorAll("[data-sticker-lesson]")).toHaveLength(3);
-    expect(
-      within(dialog).getByRole("img", { name: "Sticker Sao, đã tô 2/3 phần" }),
-    ).toHaveAttribute("data-sticker-fill", "2/3");
-    expect(
-      within(dialog).getByRole("img", { name: "Sticker Trăng, chưa nhận" }),
-    ).toHaveAttribute("data-sticker-fill", "0/3");
-    expect(
-      within(dialog).getByRole("img", { name: "Sticker Mây" }),
-    ).toHaveAttribute("data-sticker-earned", "true");
-    fireEvent.click(within(dialog).getByRole("button", { name: "Đóng" }));
-    expect(screen.queryByRole("dialog")).toBeNull();
+    // All three fit the grid, so the collection is only needed with more.
+    expect(screen.queryByRole("button", { name: /Xem tất cả/ })).toBeNull();
   });
 
-  it("opens the collection from +k too, and goes back to it after a sticker's sheet", () => {
+  it("opens the collection from the header button and from +k, and goes back to it after a sticker's sheet", () => {
     shelf(manyLessons(10), earnedRecords(8));
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: `Xem thêm ${8 - SHELF_RECENT} danh hiệu`,
+    fireEvent.click(screen.getByRole("button", { name: /Xem tất cả/ }));
+    let dialog = screen.getByRole("dialog", { name: "Danh hiệu của bạn" });
+    expect(within(dialog).getByText("Đã có 8/10 sticker")).toBeInTheDocument();
+    expect(dialog.querySelectorAll("[data-sticker-lesson]")).toHaveLength(10);
+    expect(
+      within(dialog).getByRole("img", {
+        name: "Sticker Danh hiệu 10, chưa nhận",
       }),
-    );
-    const dialog = screen.getByRole("dialog", { name: "Danh hiệu của bạn" });
+    ).toHaveAttribute("data-sticker-fill", "0/3");
     fireEvent.click(
       within(dialog).getByRole("button", { name: /^Danh hiệu 10,/ }),
     );
@@ -268,27 +297,41 @@ describe("StickerShelf", () => {
       screen.getByRole("dialog", { name: "Sticker Danh hiệu 10" }),
     ).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Đóng" }));
+    dialog = screen.getByRole("dialog", { name: "Danh hiệu của bạn" });
+    fireEvent.click(within(dialog).getByRole("button", { name: "Đóng" }));
+    expect(screen.queryByRole("dialog")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /Xem thêm/ }));
     expect(
       screen.getByRole("dialog", { name: "Danh hiệu của bạn" }),
     ).toBeInTheDocument();
   });
 
+  it("opens its sheets beside the card, not inside it (the card is a stacking context that would keep a sheet under the cards after it)", () => {
+    shelf(manyLessons(10), earnedRecords(8));
+    fireEvent.click(screen.getByRole("button", { name: /Xem tất cả/ }));
+    const card = document.querySelector("[data-sticker-shelf]");
+    expect(card).toHaveClass("isolate");
+    expect(card?.contains(screen.getByRole("dialog"))).toBe(false);
+  });
+
   it("has touch targets of at least 48px on its buttons", () => {
     shelf(manyLessons(10), earnedRecords(8));
-    const all = screen.getByRole("button", { name: /Xem tất cả/ });
-    expect(all.className).toContain("min-h-touch");
-    // A tile is 104px wide and holds a 64px picture, so it is above 48px.
+    expect(
+      screen.getByRole("button", { name: /Xem tất cả/ }).className,
+    ).toContain("min-h-touch");
+    // A tile fills a cell at least 100px wide and holds a 72px picture.
     for (const tile of shelfTiles()) {
-      expect(tile.className).toContain("w-26");
+      expect(tile.className).toContain("w-full");
       expect(tile.querySelector("[data-sticker-earned]")?.className).toContain(
-        "size-16",
+        "size-18",
       );
     }
   });
 
-  it("never names the removed music box", () => {
+  it("has no music box, only the sticker sheet's own button", () => {
     shelf(manyLessons(3), earnedRecords(1));
-    expect(document.body.textContent).not.toMatch(/nhạc|Hộp nhạc/i);
+    expect(document.body.textContent).not.toMatch(/Hộp nhạc/i);
+    expect(document.querySelector("[data-music-button]")).toBeNull();
   });
 });
 
@@ -306,6 +349,7 @@ describe("StickerShelf detail", () => {
     };
     render(
       <StickerShelf
+        childId="kid-1"
         lessons={[
           { ...lesson("a", "Sao"), number: 4, title: "Phép cộng" },
           lesson("b", "Trăng"),
@@ -355,8 +399,6 @@ describe("StickerShelf detail", () => {
     const backdrop = document.querySelector("[data-sticker-sheet-backdrop]");
     expect(backdrop?.querySelector("[data-confetti]")).not.toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Đóng" }));
-    // The locked sticker is in the collection, not on the shelf.
-    fireEvent.click(screen.getByRole("button", { name: /Xem tất cả/ }));
     fireEvent.click(screen.getByRole("button", { name: /^Trăng/ }));
     expect(sounds.tap).toHaveBeenCalledTimes(1);
     expect(document.querySelector("[data-confetti]")).toBeNull();

@@ -2,7 +2,6 @@ import "fake-indexeddb/auto";
 import { render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HomeScreen } from "@/app/(child)/home-screen";
-import { SHELF_RECENT } from "@/app/(child)/sticker-shelf";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import {
   appDb,
@@ -145,24 +144,45 @@ describe("HomeScreen sticker shelf", () => {
     expect(document.querySelectorAll("[data-sticker-lesson]")).toHaveLength(0);
   });
 
+  it("ends with its own band of sky below the last content", async () => {
+    await openHomeWithStickers(8, 2);
+    await screen.findByRole("region", { name: "Danh hiệu của bạn" });
+    const main = document.querySelector("main") as HTMLElement;
+    const horizon = main.querySelector("[data-cosmos-horizon]");
+    expect(horizon).not.toBeNull();
+    expect(main.lastElementChild).toBe(horizon);
+    expect(
+      main
+        .querySelector("[data-subject]")
+        ?.compareDocumentPosition(horizon as Element),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it("gives each subject tile its own cosmic scene", async () => {
+    await openHomeWithStickers(8, 2);
+    await screen.findByRole("region", { name: "Danh hiệu của bạn" });
+    expect(
+      document.querySelectorAll("[data-subject] [data-subject-art]"),
+    ).toHaveLength(document.querySelectorAll("[data-subject]").length);
+  });
+
   it.each([0, 3, 30])(
-    "keeps the shelf one row of the latest few stickers with %i earned",
+    "keeps the shelf at two rows of three (the narrowest layout) with %i earned",
     async (earned) => {
       await openHomeWithStickers(34, earned);
       const shelf = await screen.findByRole("region", {
         name: "Danh hiệu của bạn",
       });
       expect(shelf).toHaveTextContent(`Đã nhận ${earned}/34`);
-      const tiles = document.querySelectorAll("[data-shelf-sticker]");
-      expect(tiles).toHaveLength(Math.max(1, Math.min(earned, SHELF_RECENT)));
-      expect(document.querySelectorAll("[data-shelf-row] > li").length).toBe(
-        earned === 0
-          ? 0
-          : Math.min(earned, SHELF_RECENT) + (earned > SHELF_RECENT ? 1 : 0),
+      // Six cells: five stickers and the "+k" tile.
+      expect(document.querySelectorAll("[data-shelf-grid] > li")).toHaveLength(
+        6,
       );
-      expect(document.querySelector("[data-shelf-empty]") !== null).toBe(
-        earned === 0,
+      expect(document.querySelectorAll("[data-shelf-sticker]")).toHaveLength(5);
+      expect(document.querySelector("[data-shelf-more]")).toHaveTextContent(
+        "+29",
       );
+      expect(document.querySelector("[data-shelf-empty]")).toBeNull();
     },
   );
 });

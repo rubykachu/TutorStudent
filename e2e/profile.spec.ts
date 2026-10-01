@@ -57,16 +57,31 @@ test("a first visit creates a profile that survives a reload", async ({
       ? "Sắp có bài"
       : `${literatureLessons.length} bài · Chưa học`,
   );
-  // Nothing earned yet: the shelf at the top says so and shows the next
-  // sticker; the whole collection behind "Xem tất cả" has every lesson's
-  // sticker, greyed and not coloured at all yet.
-  await expect(page.locator("[data-shelf-empty]")).toBeVisible();
-  await page.getByRole("button", { name: /Xem tất cả/ }).tap();
-  await expect(page.locator("[data-sticker-lesson]")).toHaveCount(
-    lessons.length,
+  // Nothing earned yet: the sticker grid at the top shows every sticker grey
+  // and not coloured at all, in at most two rows, and the collection behind
+  // "Xem tất cả" (there when the stickers do not fit) lists every lesson's.
+  await expect(page.locator("[data-shelf-count]")).toHaveText(
+    `Đã nhận 0/${lessons.length}`,
   );
   await expect(page.locator('[data-sticker-earned="true"]')).toHaveCount(0);
   await expect(page.locator("[data-sticker-colour]")).toHaveCount(0);
+  const rows = await page.evaluate(
+    () =>
+      new Set(
+        [...document.querySelectorAll("[data-shelf-grid] > li")].map((cell) =>
+          Math.round(cell.getBoundingClientRect().top),
+        ),
+      ).size,
+  );
+  expect(rows).toBeLessThanOrEqual(2);
+  const openAll = page.locator("[data-shelf-open-all]");
+  if (await openAll.isVisible()) {
+    await openAll.tap();
+    await expect(page.locator("[data-sticker-lesson]")).toHaveCount(
+      lessons.length,
+    );
+    await page.getByRole("button", { name: "Đóng" }).tap();
+  }
   await expectTouchTargets(page);
   await expectNoHorizontalScroll(page);
 

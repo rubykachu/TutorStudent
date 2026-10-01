@@ -163,3 +163,103 @@ export function CosmosBackground() {
     </div>
   );
 }
+
+// Star positions in the horizon's 800 x 160 frame: [x, y, radius].
+const HORIZON_STARS: readonly (readonly [number, number, number])[] = [
+  [40, 30, 1.4],
+  [96, 92, 1],
+  [150, 22, 1.2],
+  [214, 64, 0.9],
+  [268, 118, 1.3],
+  [372, 40, 1],
+  [430, 104, 0.9],
+  [484, 18, 1.2],
+  [690, 36, 1.1],
+  [744, 84, 0.9],
+  [770, 130, 1.2],
+];
+
+// Where the page ends: a band of sky in the normal flow after the last
+// content (a planet rising from the bottom edge with its ring, a moon and a
+// few stars), pushed to the bottom of the screen when the page is short. It
+// takes its own room, so it is never under or against content; tints of the
+// concept colours at low opacity, no text, nothing moves.
+export function CosmosHorizon({ className = "" }: { className?: string }) {
+  return (
+    <div
+      aria-hidden
+      data-cosmos-horizon
+      className={`pointer-events-none h-28 shrink-0 overflow-hidden md:h-36 ${className}`}
+    >
+      <svg
+        viewBox="0 0 800 160"
+        preserveAspectRatio="xMidYMax slice"
+        className="size-full text-concept-violet"
+        aria-hidden
+        focusable="false"
+      >
+        <g className="text-concept-slate" fill="currentColor">
+          {HORIZON_STARS.map(([x, y, r]) => (
+            <circle key={`${x}-${y}`} cx={x} cy={y} r={r} opacity={0.18} />
+          ))}
+        </g>
+        <ellipse
+          cx="560"
+          cy="196"
+          rx="330"
+          ry="62"
+          transform="rotate(-6 560 196)"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeDasharray="3 8"
+          opacity={0.14}
+        />
+        <circle cx="560" cy="210" r="118" fill="currentColor" opacity={0.08} />
+        <ellipse
+          cx="560"
+          cy="196"
+          rx="196"
+          ry="30"
+          transform="rotate(-6 560 196)"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="8"
+          opacity={0.1}
+        />
+        <circle
+          cx="318"
+          cy="78"
+          r="16"
+          className="text-concept-amber"
+          fill="currentColor"
+          opacity={0.14}
+        />
+        <circle
+          cx="326"
+          cy="72"
+          r="5"
+          className="text-concept-amber"
+          fill="currentColor"
+          opacity={0.1}
+        />
+        <circle
+          cx="140"
+          cy="182"
+          r="52"
+          className="text-concept-teal"
+          fill="currentColor"
+          opacity={0.08}
+        />
+        <circle
+          cx="214"
+          cy="128"
+          r="7"
+          className="text-concept-teal"
+          fill="currentColor"
+          opacity={0.14}
+        />
+      </svg>
+    </div>
+  );
+}

@@ -2,6 +2,7 @@ import { Clock } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 import { subjectStyle } from "@/components/subject-style";
+import { SubjectTileArt } from "@/components/subject-tile-art";
 import type { SubjectProgress, SubjectStatus } from "@/learn/next-step";
 import type { Subject } from "@/schema/content";
 
@@ -103,8 +104,9 @@ export function SubjectTile({
       data-subject={subject.id}
       // One row on phones (icon, text, ring); on tablets the text drops below
       // the icon and ring so three tiles fit side by side.
-      className={`${style.bg} grid h-full min-h-28 grid-cols-[auto_1fr_auto] items-center gap-4 rounded-lg p-4 text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:row-span-5 md:grid-cols-[auto_1fr] md:grid-rows-subgrid md:gap-y-0 md:p-5 tall:p-6`}
+      className={`${style.bg} relative isolate grid h-full overflow-hidden min-h-28 grid-cols-[auto_1fr_auto] items-center gap-4 rounded-lg p-4 text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:row-span-5 md:grid-cols-[auto_1fr] md:grid-rows-subgrid md:gap-y-0 md:p-5 tall:p-6`}
     >
+      <SubjectTileArt color={subject.color} />
       <span className="order-1 flex size-14 items-center justify-center rounded-full bg-primary-foreground/20 md:col-start-1 md:row-start-1 tall:size-20">
         <Icon aria-hidden className="size-8 tall:size-11" strokeWidth={2.25} />
       </span>

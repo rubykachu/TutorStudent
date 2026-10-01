@@ -2,7 +2,8 @@
 
 import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+import { PanelArt } from "@/components/panel-art";
 import { Sheet } from "@/components/sheet";
 import { Sticker } from "@/components/sticker";
 import { stickerFill } from "@/learn/next-step";
@@ -13,10 +14,39 @@ import type { SectionProgressRecord, StickerRecord } from "@/progress/db";
 import type { LessonSummary } from "@/schema/content";
 import { StickerSheet } from "./sticker-sheet";
 
-// How many of the latest earned stickers the shelf shows. The shelf is one
-// row of this fixed size however many stickers the child has won over the
-// year; the rest wait behind "+k" and "Xem tất cả".
-export const SHELF_RECENT = 4;
+// Columns of the shelf's grid by viewport width, narrowest first: the shelf
+// is two rows of them, so the grid never grows however many stickers the
+// child has won over the year. The last entry whose query matches wins.
+const SHELF_ROWS = 2;
+const SHELF_COLUMNS: readonly { query: string; columns: number }[] = [
+  { query: "(min-width: 0px)", columns: 3 },
+  { query: "(min-width: 40rem)", columns: 4 },
+  { query: "(min-width: 48rem)", columns: 5 },
+];
+
+function subscribeToColumns(onChange: () => void): () => void {
+  const lists = SHELF_COLUMNS.map((c) => window.matchMedia(c.query));
+  for (const list of lists) list.addEventListener("change", onChange);
+  return () => {
+    for (const list of lists) list.removeEventListener("change", onChange);
+  };
+}
+
+function currentColumns(): number {
+  let columns = SHELF_COLUMNS[0]?.columns ?? 3;
+  for (const c of SHELF_COLUMNS) {
+    if (window.matchMedia(c.query).matches) columns = c.columns;
+  }
+  return columns;
+}
+
+function useShelfColumns(): number {
+  return useSyncExternalStore(
+    subscribeToColumns,
+    currentColumns,
+    () => SHELF_COLUMNS[0]?.columns ?? 3,
+  );
+}
 
 type Fill = { done: number; total: number };
 
@@ -62,18 +92,23 @@ export function latestEarned(entries: readonly StickerEntry[]): StickerEntry[] {
     .sort((a, b) => (b.earnedAt ?? "").localeCompare(a.earnedAt ?? ""));
 }
 
-// The sticker to aim for: of those not earned, the one furthest coloured,
-// the first in lesson order when none has been started.
-export function nextToEarn(
+// The stickers to show in `capacity` grid cells: the earned ones, latest
+// first, then the rest (part coloured ones first, then lesson order), so the
+// grid never looks empty. When they do not all fit, the last cell is a "+k"
+// tile for the collection, and `more` counts the stickers it stands for.
+export function shelfLayout(
   entries: readonly StickerEntry[],
-): StickerEntry | undefined {
+  capacity: number,
+): { tiles: StickerEntry[]; more: number } {
   const share = ({ fill }: StickerEntry) =>
     fill.total > 0 ? fill.done / fill.total : 0;
-  let best: StickerEntry | undefined;
-  for (const entry of entries) {
-    if (!entry.earned && (!best || share(entry) > share(best))) best = entry;
-  }
-  return best;
+  const waiting = entries
+    .filter((entry) => !entry.earned)
+    .sort((a, b) => share(b) - share(a));
+  const ordered = [...latestEarned(entries), ...waiting];
+  if (ordered.length <= capacity) return { tiles: ordered, more: 0 };
+  const tiles = ordered.slice(0, capacity - 1);
+  return { tiles, more: ordered.length - tiles.length };
 }
 
 // The line beside the collection's title: stickers fully earned, plus how
@@ -93,21 +128,19 @@ type StickerTileProps = {
   // collection use different ones.
   dataAttr: "data-shelf-sticker" | "data-sticker-lesson";
   pictureClassName: string;
-  // Added to the name's line, e.g. to reserve its height.
-  nameClassName?: string;
   className: string;
   // Taps so far, 0 before the first: each one replays the bounce.
   taps: number;
   onOpen: () => void;
 };
 
-// One sticker as a button: its picture and its name (which wraps, never
-// cut short).
+// One sticker as a button: its picture and its name (which wraps, never cut
+// short; it always has room for two lines, so every tile is as tall as the
+// next).
 function StickerTile({
   entry,
   dataAttr,
   pictureClassName,
-  nameClassName = "",
   className,
   taps,
   onOpen,
@@ -146,7 +179,7 @@ function StickerTile({
         />
       </motion.span>
       <span
-        className={`break-words text-caption leading-tight ${nameClassName} ${earned ? "font-semibold" : "text-muted-foreground"}`}
+        className={`min-h-[2lh] break-words text-caption leading-tight ${earned ? "font-semibold" : "text-muted-foreground"}`}
       >
         {lesson.sticker.name}
       </span>
@@ -155,6 +188,7 @@ function StickerTile({
 }
 
 type StickerShelfProps = {
+  childId: string;
   lessons: readonly LessonSummary[];
   stickers: readonly Pick<StickerRecord, "lessonId" | "at">[];
   sections: readonly Pick<
@@ -165,24 +199,20 @@ type StickerShelfProps = {
   sounds?: FeedbackSounds;
 };
 
-// Tile of the shelf: a fixed width, so a name wraps inside it, and its name
-// reserves two lines, so the row is the same height whichever stickers show.
-const SHELF_TILE = "w-26 shrink-0 snap-start gap-1 p-1";
-const SHELF_PICTURE = "size-16";
-const SHELF_NAME = "min-h-[2lh]";
-
-// The titles the child has earned, on top of the home screen: one row of a
-// fixed size (the latest few stickers, scrolling sideways on a narrow screen,
-// then "+k"), so the lessons below never move down as stickers pile up.
-// "Xem tất cả" opens the whole collection, locked and in-progress stickers
-// included. With none earned yet the row says so and shows the next one to
-// win. Tapping a sticker opens its detail sheet.
+// The child's stickers (their titles) on top of the home screen: a grid of
+// two rows at most, the earned ones latest first and then the ones still to
+// win as grey or part coloured silhouettes, so it is never empty. Past two
+// rows the last cell is "+k" and "Xem tất cả" opens the whole collection, so
+// the lessons below never move down as stickers pile up. Tapping a sticker
+// opens its detail sheet.
 export function StickerShelf({
+  childId,
   lessons,
   stickers,
   sections,
   sounds,
 }: StickerShelfProps) {
+  const columns = useShelfColumns();
   // The sticker whose sheet is open, and whether the collection is open
   // behind it (closing the sheet goes back there). `tapped` is the sticker
   // that last played its tap animation (a counter, so tapping the same one
@@ -194,10 +224,8 @@ export function StickerShelf({
   );
   if (lessons.length === 0) return null;
   const entries = buildStickerEntries(lessons, stickers, sections);
-  const earned = latestEarned(entries);
-  const shown = earned.slice(0, SHELF_RECENT);
-  const more = earned.length - shown.length;
-  const next = earned.length === 0 ? nextToEarn(entries) : undefined;
+  const earnedCount = entries.filter((entry) => entry.earned).length;
+  const { tiles, more } = shelfLayout(entries, columns * SHELF_ROWS);
   const openEntry = entries.find(({ lesson }) => lesson.id === openId);
 
   const open = (entry: StickerEntry) => {
@@ -213,90 +241,79 @@ export function StickerShelf({
     tapped?.id === entry.lesson.id ? tapped.count : 0;
 
   return (
-    <section
-      aria-labelledby="sticker-shelf-title"
-      data-sticker-shelf
-      className="flex flex-col gap-1 rounded-lg bg-surface p-3 shadow-card md:p-4"
-    >
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex min-w-0 flex-col">
-          <h2
-            id="sticker-shelf-title"
-            className="text-block font-semibold md:text-block-lg"
-          >
-            Danh hiệu của bạn
-          </h2>
-          <p data-shelf-count className="text-caption text-muted-foreground">
-            {`Đã nhận ${earned.length}/${entries.length}`}
-          </p>
+    <>
+      <section
+        aria-labelledby="sticker-shelf-title"
+        data-sticker-shelf
+        className="relative isolate flex flex-col gap-3 overflow-hidden rounded-lg bg-surface p-3 shadow-card md:p-4"
+      >
+        <PanelArt />
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex min-w-0 flex-col">
+            <h2
+              id="sticker-shelf-title"
+              className="text-block font-semibold md:text-block-lg"
+            >
+              Danh hiệu của bạn
+            </h2>
+            <p data-shelf-count className="text-caption text-muted-foreground">
+              {`Đã nhận ${earnedCount}/${entries.length}`}
+            </p>
+          </div>
+          {more > 0 && (
+            <button
+              type="button"
+              data-shelf-open-all
+              aria-haspopup="dialog"
+              onClick={() => setCollectionOpen(true)}
+              className="flex min-h-touch shrink-0 items-center gap-1 rounded-full bg-muted pr-2 pl-3 text-caption font-semibold motion-safe:transition-transform motion-safe:active:scale-[0.97]"
+            >
+              Xem tất cả
+              <ChevronRight aria-hidden className="size-5" />
+            </button>
+          )}
         </div>
-        <button
-          type="button"
-          data-shelf-open-all
-          aria-haspopup="dialog"
-          onClick={() => setCollectionOpen(true)}
-          className="flex min-h-touch shrink-0 items-center gap-1 rounded-full bg-muted pr-2 pl-3 text-caption font-semibold motion-safe:transition-transform motion-safe:active:scale-[0.97]"
-        >
-          Xem tất cả
-          <ChevronRight aria-hidden className="size-5" />
-        </button>
-      </div>
-      {next ? (
-        <div data-shelf-empty className="flex items-center gap-3">
-          <StickerTile
-            entry={next}
-            dataAttr="data-shelf-sticker"
-            pictureClassName={SHELF_PICTURE}
-            nameClassName={SHELF_NAME}
-            className={SHELF_TILE}
-            taps={taps(next)}
-            onOpen={() => open(next)}
-          />
-          <p className="min-w-0 flex-1 text-balance">
-            Học xong một bài để nhận danh hiệu đầu tiên.
-          </p>
-        </div>
-      ) : (
         <ul
-          data-shelf-row
-          className="-mx-1 flex snap-x gap-2 overflow-x-auto px-1"
+          data-shelf-grid
+          className="grid gap-x-2 gap-y-3"
+          style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
         >
-          {shown.map((entry) => (
-            <li key={entry.lesson.id} className="flex">
+          {tiles.map((entry) => (
+            <li key={entry.lesson.id}>
               <StickerTile
                 entry={entry}
                 dataAttr="data-shelf-sticker"
-                pictureClassName={SHELF_PICTURE}
-                nameClassName={SHELF_NAME}
-                className={SHELF_TILE}
+                pictureClassName="size-18"
+                className="w-full gap-1 p-1"
                 taps={taps(entry)}
                 onOpen={() => open(entry)}
               />
             </li>
           ))}
           {more > 0 && (
-            <li className="flex">
+            <li>
               <button
                 type="button"
                 data-shelf-more
                 aria-haspopup="dialog"
                 aria-label={`Xem thêm ${more} danh hiệu`}
                 onClick={() => setCollectionOpen(true)}
-                className={`flex flex-col items-center rounded-lg text-center motion-safe:transition-transform motion-safe:active:scale-95 ${SHELF_TILE}`}
+                className="flex w-full flex-col items-center gap-1 rounded-lg p-1 text-center motion-safe:transition-transform motion-safe:active:scale-95"
               >
-                <span className="flex size-16 items-center justify-center rounded-full bg-muted text-block font-bold">
+                <span className="flex size-18 items-center justify-center rounded-full bg-muted text-block font-bold">
                   {`+${more}`}
                 </span>
-                <span
-                  className={`text-caption leading-tight text-muted-foreground ${SHELF_NAME}`}
-                >
-                  thêm
+                <span className="min-h-[2lh] text-caption leading-tight text-muted-foreground">
+                  xem tất cả
                 </span>
               </button>
             </li>
           )}
         </ul>
-      )}
+      </section>
+      {/* The sheets sit beside the card, not in it: the card is its own
+          stacking context (for its sky), which would keep a sheet under the
+          cards that follow. */}
       {collectionOpen && !openEntry && (
         <Sheet
           label="Danh hiệu của bạn"
@@ -328,12 +345,13 @@ export function StickerShelf({
       )}
       {openEntry && (
         <StickerSheet
+          childId={childId}
           lesson={openEntry.lesson}
           fill={openEntry.fill}
           earned={openEntry.earned}
           onClose={() => setOpenId(null)}
         />
       )}
-    </section>
+    </>
   );
 }

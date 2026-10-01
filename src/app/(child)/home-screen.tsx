@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Avatar } from "@/components/avatar";
+import { CosmosHorizon } from "@/components/cosmos-background";
 import { SoundToggle } from "@/components/sound-toggle";
 import {
   SUBJECT_TILE_CELL,
@@ -81,6 +82,7 @@ function HomeLessons({
   return (
     <>
       <StickerShelf
+        childId={profile.id}
         lessons={index.subjects.flatMap((s) => lessonsOf(s.id))}
         stickers={progress.stickers}
         sections={progress.sections}
@@ -180,6 +182,8 @@ export function HomeScreen() {
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10 tall:gap-8">
       {profile && <HomeContent profile={profile} />}
+      {/* The end of the page: its own band of sky, below the last content. */}
+      <CosmosHorizon className="mt-auto -mx-gutter -mb-6 md:-mx-gutter-lg md:-mb-10" />
     </main>
   );
 }

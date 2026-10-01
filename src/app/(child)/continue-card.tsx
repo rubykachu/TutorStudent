@@ -1,5 +1,6 @@
 import { Play } from "lucide-react";
 import Link from "next/link";
+import { PanelArt } from "@/components/panel-art";
 import { subjectStyle } from "@/components/subject-style";
 import type { ContinueTarget } from "@/learn/next-step";
 import { lessonPath, sectionPath } from "@/lib/routes";
@@ -36,8 +37,9 @@ export function ContinueCard({
       }
       data-continue={section.id}
       aria-label={`${label}: ${lesson.title}, phần ${sectionIndex + 1}: ${section.title}`}
-      className={`${style.border} flex min-h-28 items-center gap-4 rounded-lg border-3 bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:gap-5 md:p-6 tall:min-h-36`}
+      className={`${style.border} relative isolate flex min-h-28 items-center gap-4 rounded-lg border-3 bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:gap-5 md:p-6 tall:min-h-36 overflow-hidden`}
     >
+      <PanelArt />
       <span
         className={`${style.bg} hidden size-14 shrink-0 items-center justify-center rounded-full text-primary-foreground sm:flex tall:size-18`}
       >

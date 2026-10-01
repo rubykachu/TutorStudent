@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 import { motion } from "motion/react";
 import { type ReactNode, useEffect, useRef } from "react";
+import { PanelArt } from "@/components/panel-art";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 type SheetProps = {
@@ -10,18 +11,13 @@ type SheetProps = {
   label: string;
   onClose: () => void;
   children: ReactNode;
-  className?: string;
 };
 
 // A bottom sheet on phones, a centred panel on tablets: dim backdrop,
 // closes on a tap outside, on Escape and on its own close button, which
-// takes focus when the sheet opens.
-export function Sheet({
-  label,
-  onClose,
-  children,
-  className = "",
-}: SheetProps) {
+// takes focus when the sheet opens. Its content scrolls over the page's
+// "multiverse" decoration, which stays put.
+export function Sheet({ label, onClose, children }: SheetProps) {
   const reducedMotion = usePrefersReducedMotion();
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -51,8 +47,9 @@ export function Sheet({
           initial={reducedMotion ? false : { y: 48, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 26 }}
-          className={`relative flex max-h-full w-full flex-col gap-4 overflow-y-auto rounded-t-xl bg-surface p-6 shadow-card md:rounded-xl ${className}`}
+          className="relative isolate flex max-h-full w-full flex-col overflow-hidden rounded-t-xl bg-surface shadow-card md:rounded-xl"
         >
+          <PanelArt />
           <button
             ref={closeRef}
             type="button"
@@ -62,7 +59,9 @@ export function Sheet({
           >
             <X aria-hidden className="size-7" />
           </button>
-          {children}
+          <div className="flex min-h-0 flex-col gap-4 overflow-y-auto p-6">
+            {children}
+          </div>
         </motion.section>
       </div>
     </div>
