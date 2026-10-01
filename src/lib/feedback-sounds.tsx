@@ -1,6 +1,11 @@
 "use client";
 
-import { createContext, type ReactNode, useContext } from "react";
+import {
+  createContext,
+  type MouseEvent,
+  type ReactNode,
+  useContext,
+} from "react";
 
 // Sounds of the feedback, supplied by the player (absent while the child has
 // sound off). Called inside the tap on "Kiểm tra", so audio may start there
@@ -44,9 +49,30 @@ export function useTapSound(): () => void {
   return () => sounds?.tap();
 }
 
-// Plays the press of a button or link; does nothing when sound is off or
-// outside a screen that supplies sounds.
-export function useButtonSound(): () => void {
+// `data-own-sound` marks a control or an area whose controls make their own
+// sound, or none on purpose (an answer's options, an interactive visual, the
+// sound switch, a sticker), so `ButtonSounds` leaves them alone.
+const OWN_SOUND_SELECTOR = "[data-own-sound]";
+
+// Every button and link under it plays the soft button press when tapped:
+// one rule for the whole screen instead of a call in each control, so a new
+// button can never be left silent. Skips disabled controls and anything
+// inside a `data-own-sound` area. Silent with sound off.
+export function ButtonSounds({ children }: { children: ReactNode }) {
   const sounds = useContext(FeedbackSoundsContext);
-  return () => sounds?.button();
+  const onClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (!sounds || !(event.target instanceof Element)) return;
+    const control = event.target.closest("a[href], button, [role='button']");
+    if (!control || !event.currentTarget.contains(control)) return;
+    if (control.matches(":disabled, [aria-disabled='true']")) return;
+    if (control.closest(OWN_SOUND_SELECTOR)) return;
+    sounds.button();
+  };
+  return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: listens to clicks of the buttons inside, adds no control of its own.
+    // biome-ignore lint/a11y/useKeyWithClickEvents: keyboard activation of a button fires this click too.
+    <div className="contents" onClick={onClick}>
+      {children}
+    </div>
+  );
 }

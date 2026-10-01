@@ -33,7 +33,7 @@ import {
   stepLabels,
 } from "@/learn/section-steps";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
-import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
+import { ButtonSounds, FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import { sectionHeading } from "@/lib/lesson-label";
 import { introPath, lessonPath, sectionPath } from "@/lib/routes";
 import { now } from "@/lib/time";
@@ -226,50 +226,55 @@ export function SectionPlayer({
 
   return (
     <FeedbackSoundsProvider sounds={sounds}>
-      <PlayerHeader
-        lessonId={lesson.id}
-        childId={childId}
-        progress={{
-          current: shown,
-          total: steps.length,
-          labels,
-          reached: stepIndex,
-          // The dot of the screen the child is on returns from a look back.
-          onSelect: (i) => setViewing(i >= stepIndex ? null : i),
-        }}
-        onBack={shown > 0 ? back : backToIntro}
-      />
-      <h1 className="text-block font-semibold md:text-block-lg">
-        <RichText
-          text={sectionHeading(lesson.sections.indexOf(section), section.title)}
+      <ButtonSounds>
+        <PlayerHeader
+          lessonId={lesson.id}
+          childId={childId}
+          progress={{
+            current: shown,
+            total: steps.length,
+            labels,
+            reached: stepIndex,
+            // The dot of the screen the child is on returns from a look back.
+            onSelect: (i) => setViewing(i >= stepIndex ? null : i),
+          }}
+          onBack={shown > 0 ? back : backToIntro}
         />
-      </h1>
-      {viewedStep && (
-        <StepView
-          key={`viewed-${viewing}`}
-          step={viewedStep}
-          index={index}
-          // Every step before the one reached was finished to get past it.
-          finished
-          saving={false}
-          onNext={forward}
-          {...NO_EXERCISE_PROPS}
-        />
-      )}
-      {/* An exercise in progress stays mounted while an earlier screen is
+        <h1 className="text-block font-semibold md:text-block-lg">
+          <RichText
+            text={sectionHeading(
+              lesson.sections.indexOf(section),
+              section.title,
+            )}
+          />
+        </h1>
+        {viewedStep && (
+          <StepView
+            key={`viewed-${viewing}`}
+            step={viewedStep}
+            index={index}
+            // Every step before the one reached was finished to get past it.
+            finished
+            saving={false}
+            onNext={forward}
+            {...NO_EXERCISE_PROPS}
+          />
+        )}
+        {/* An exercise in progress stays mounted while an earlier screen is
         shown, so coming back finds the answer and the wrong checks as they
         were; any other screen is simply drawn again. */}
-      {(viewedStep === undefined || step.kind === "exercise") && (
-        <div
-          hidden={viewedStep !== undefined}
-          // No box of its own while shown, so the step stays a direct part of
-          // the page's column layout.
-          className={viewedStep === undefined ? "contents" : undefined}
-          data-live-step
-        >
-          {liveStep}
-        </div>
-      )}
+        {(viewedStep === undefined || step.kind === "exercise") && (
+          <div
+            hidden={viewedStep !== undefined}
+            // No box of its own while shown, so the step stays a direct part of
+            // the page's column layout.
+            className={viewedStep === undefined ? "contents" : undefined}
+            data-live-step
+          >
+            {liveStep}
+          </div>
+        )}
+      </ButtonSounds>
     </FeedbackSoundsProvider>
   );
 }

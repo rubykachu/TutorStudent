@@ -1,7 +1,4 @@
-"use client";
-
 import type { ButtonHTMLAttributes } from "react";
-import { useButtonSound } from "@/lib/feedback-sounds";
 
 export type BigButtonVariant = "primary" | "secondary";
 
@@ -25,25 +22,17 @@ type BigButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: BigButtonVariant;
 };
 
-// The main call to action: 56px tall on phones, 64px on tablets. On a
-// screen that supplies sounds it plays the soft button press ("Kiểm tra",
-// "Bỏ qua", "Tiếp theo"); elsewhere, or with sound off, it stays silent.
+// The main call to action: 56px tall on phones, 64px on tablets.
 export function BigButton({
   variant = "primary",
   className,
   type = "button",
-  onClick,
   ...rest
 }: BigButtonProps) {
-  const playButton = useButtonSound();
   return (
     <button
       type={type}
       className={bigButtonClassName(variant, className)}
-      onClick={(event) => {
-        playButton();
-        onClick?.(event);
-      }}
       {...rest}
     />
   );

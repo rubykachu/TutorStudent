@@ -17,7 +17,7 @@ import { stickerFill } from "@/learn/next-step";
 import { PlayerHeader } from "@/learn/player-header";
 import { ScreenBadge } from "@/learn/screen-badge";
 import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
-import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
+import { ButtonSounds, FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import { lessonPath } from "@/lib/routes";
 import { now } from "@/lib/time";
 import { type ChildScope, listAttempts, type TutorDb } from "@/progress/db";
@@ -339,37 +339,39 @@ export function ReviewPlayer({
 
   return (
     <FeedbackSoundsProvider sounds={sounds}>
-      {header}
-      {viewed}
-      {/* Kept mounted while an answered question is shown, so the question
+      <ButtonSounds>
+        {header}
+        {viewed}
+        {/* Kept mounted while an answered question is shown, so the question
         in progress keeps its answer and wrong checks for the rating. */}
-      <div
-        hidden={viewed !== undefined}
-        className={viewed === undefined ? "contents" : undefined}
-        data-live-step
-      >
         <div
-          className="flex flex-1 flex-col gap-4"
-          data-review-step="exercise"
-          data-card={item.cardId}
-          data-reask={item.reask || undefined}
-          data-exercise={exercise.id}
-          data-exercise-type={exercise.type}
+          hidden={viewed !== undefined}
+          className={viewed === undefined ? "contents" : undefined}
+          data-live-step
         >
-          <ScreenBadge kind={item.reask ? "reask" : "review"} />
-          <ExerciseFrame
-            // The same exercise can come back as a re-ask; each ask starts fresh.
-            key={session.current}
-            exercise={exercise}
-            concepts={index.conceptById}
-            sounds={sounds}
-            skippable
-            onDone={finish}
+          <div
+            className="flex flex-1 flex-col gap-4"
+            data-review-step="exercise"
+            data-card={item.cardId}
+            data-reask={item.reask || undefined}
+            data-exercise={exercise.id}
+            data-exercise-type={exercise.type}
           >
-            {(slot) => renderAnswer(exercise, slot)}
-          </ExerciseFrame>
+            <ScreenBadge kind={item.reask ? "reask" : "review"} />
+            <ExerciseFrame
+              // The same exercise can come back as a re-ask; each ask starts fresh.
+              key={session.current}
+              exercise={exercise}
+              concepts={index.conceptById}
+              sounds={sounds}
+              skippable
+              onDone={finish}
+            >
+              {(slot) => renderAnswer(exercise, slot)}
+            </ExerciseFrame>
+          </div>
         </div>
-      </div>
+      </ButtonSounds>
     </FeedbackSoundsProvider>
   );
 }

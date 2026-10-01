@@ -12,6 +12,7 @@ import { StateBadge } from "@/components/state-badge";
 import { Sticker } from "@/components/sticker";
 import { subjectStyle } from "@/components/subject-style";
 import type { LessonIndex } from "@/content";
+import { ChildSounds } from "@/learn/child-sounds";
 import { LessonOverviewView } from "@/learn/lesson-overview";
 import { nextSectionIndex, stickerFill } from "@/learn/next-step";
 import { lessonHeading, lessonPlacement } from "@/lib/lesson-label";
@@ -254,7 +255,11 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     // bottom padding.
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10 has-[[data-lesson-overview]]:pb-0">
       <LessonGate lessonId={lessonId}>
-        {(index, profile) => <LessonBody index={index} profile={profile} />}
+        {(index, profile) => (
+          <ChildSounds childId={profile.id}>
+            <LessonBody index={index} profile={profile} />
+          </ChildSounds>
+        )}
       </LessonGate>
     </main>
   );

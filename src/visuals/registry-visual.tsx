@@ -121,7 +121,13 @@ function FitWidth({ id, children }: { id: string; children: ReactNode }) {
   }, [id]);
 
   return (
-    <div ref={outerRef} className="w-full min-w-0" data-visual-fit={id}>
+    <div
+      ref={outerRef}
+      className="w-full min-w-0"
+      data-visual-fit={id}
+      // Interactive visuals make their own taps (or none); see ButtonSounds.
+      data-own-sound
+    >
       <div ref={innerRef} className="w-full">
         {children}
       </div>

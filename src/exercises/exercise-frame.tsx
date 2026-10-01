@@ -401,7 +401,12 @@ export function ExerciseFrame<E extends BasicExercise>({
                 not an edited one. The key changes only then, never when an
                 answer is accepted: a remount then would redraw an interactive
                 visual, which keeps its own state, back at its start. */}
-              <div key={`${state.replays}:${state.retypes}`}>
+              <div
+                key={`${state.replays}:${state.retypes}`}
+                // Options and chips click with the choice sound; see
+                // ButtonSounds.
+                data-own-sound
+              >
                 {nonce !== null &&
                   children({
                     value: state.input,

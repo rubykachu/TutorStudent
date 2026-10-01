@@ -87,6 +87,8 @@ export function StickerStrip({
               <button
                 type="button"
                 data-sticker-open={lesson.id}
+                // Plays its jingle or tap; see ButtonSounds.
+                data-own-sound
                 aria-haspopup="dialog"
                 aria-label={`${lesson.sticker.name}, xem chi tiết`}
                 onClick={() => {

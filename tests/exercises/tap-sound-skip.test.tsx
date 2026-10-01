@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 import { renderAnswer } from "@/exercises/answers";
 import { ExerciseFrame } from "@/exercises/exercise-frame";
 import { PlayerHeader } from "@/learn/player-header";
-import { FeedbackSoundsProvider } from "@/lib/feedback-sounds";
+import { ButtonSounds, FeedbackSoundsProvider } from "@/lib/feedback-sounds";
 import type { BasicExercise } from "@/schema/content";
 import {
   choiceExercise,
@@ -98,33 +99,64 @@ describe("tap sound on ordering", () => {
   });
 });
 
-describe("button sound on action buttons", () => {
+describe("button sound", () => {
+  function renderButtons(children: ReactNode) {
+    const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
+    render(
+      <FeedbackSoundsProvider sounds={sounds}>
+        <ButtonSounds>{children}</ButtonSounds>
+      </FeedbackSoundsProvider>,
+    );
+    return sounds;
+  }
+
   it("plays the button press, not the choice click, on Kiểm tra and Bỏ qua", () => {
-    const { sounds } = renderWith(choiceExercise(["a"]), { skippable: true });
+    const exercise = choiceExercise(["a"]);
+    const sounds = renderButtons(
+      <ExerciseFrame exercise={exercise} onDone={vi.fn()} skippable>
+        {(slot) => renderAnswer(exercise, slot)}
+      </ExerciseFrame>,
+    );
     tap("b");
-    fireEvent.click(screen.getByRole("button", { name: "Kiểm tra" }));
     expect(sounds.tap).toHaveBeenCalledTimes(1);
+    expect(sounds.button).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Kiểm tra" }));
     expect(sounds.button).toHaveBeenCalledTimes(1);
     fireEvent.click(screen.getByRole("button", { name: /Bỏ qua/ }));
     expect(sounds.button).toHaveBeenCalledTimes(2);
+    expect(sounds.tap).toHaveBeenCalledTimes(1);
   });
 
-  it("plays the button press on Quay lại in the player header", () => {
-    const sounds = { play: vi.fn(), tap: vi.fn(), button: vi.fn() };
-    const onBack = vi.fn();
-    render(
-      <FeedbackSoundsProvider sounds={sounds}>
+  it("plays on Quay lại in the player header and on links", () => {
+    const sounds = renderButtons(
+      <>
         <PlayerHeader
           lessonId="fixture"
           childId="child"
           progress={{ current: 1, total: 3 }}
-          onBack={onBack}
+          onBack={vi.fn()}
         />
-      </FeedbackSoundsProvider>,
+        <a href="/subjects/math">Toán</a>
+      </>,
     );
     fireEvent.click(screen.getByRole("button", { name: /Quay lại/ }));
-    expect(sounds.button).toHaveBeenCalledTimes(1);
-    expect(sounds.tap).not.toHaveBeenCalled();
-    expect(onBack).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("link", { name: "Toán" }));
+    expect(sounds.button).toHaveBeenCalledTimes(2);
+  });
+
+  it("stays silent on disabled controls and inside own-sound areas", () => {
+    const sounds = renderButtons(
+      <>
+        <button type="button" disabled>
+          Tắt
+        </button>
+        <div data-own-sound>
+          <button type="button">Hình</button>
+        </div>
+      </>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Tắt" }));
+    fireEvent.click(screen.getByRole("button", { name: "Hình" }));
+    expect(sounds.button).not.toHaveBeenCalled();
   });
 });

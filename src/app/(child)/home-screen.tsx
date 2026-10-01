@@ -9,17 +9,13 @@ import {
   SUBJECT_TILE_GRID,
   SubjectTile,
 } from "@/components/subject-tile";
+import { ChildSounds } from "@/learn/child-sounds";
 import {
   continueTarget,
   subjectProgress,
   subjectStatus,
 } from "@/learn/next-step";
-import { useFeedbackSounds } from "@/learn/use-feedback-sounds";
-import {
-  FeedbackSoundsProvider,
-  useButtonSound,
-  useFeedbackSoundsContext,
-} from "@/lib/feedback-sounds";
+import { useFeedbackSoundsContext } from "@/lib/feedback-sounds";
 import { PROFILES_PATH, subjectPath } from "@/lib/routes";
 import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
@@ -155,20 +151,16 @@ function HomeBody({
   );
 }
 
-// Sounds of the home screen: the soft press of its tiles and links, and the
-// sticker sheet's jingle.
 function HomeContent({ profile }: { profile: ProfileRecord }) {
-  const sounds = useFeedbackSounds(profile.id);
   return (
-    <FeedbackSoundsProvider sounds={sounds}>
+    <ChildSounds childId={profile.id}>
       <HomeHeaderAndBody profile={profile} />
-    </FeedbackSoundsProvider>
+    </ChildSounds>
   );
 }
 
 function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
   const progress = useChildProgress(profile.id);
-  const playButton = useButtonSound();
   return (
     <>
       <header className="flex items-start justify-between gap-3">
@@ -179,7 +171,6 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
         <div className="flex shrink-0 items-center gap-2">
           <Link
             href={PROFILES_PATH}
-            onClick={playButton}
             className="flex h-12 shrink-0 items-center gap-2 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
           >
             <UsersRound aria-hidden className="size-5" />

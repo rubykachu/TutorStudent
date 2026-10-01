@@ -2,7 +2,6 @@ import { ChevronLeft, X } from "lucide-react";
 import Link from "next/link";
 import { SectionStepper } from "@/components/section-stepper";
 import { SoundToggle } from "@/components/sound-toggle";
-import { useButtonSound } from "@/lib/feedback-sounds";
 import { lessonPath } from "@/lib/routes";
 
 type PlayerHeaderProps = {
@@ -33,7 +32,6 @@ export function PlayerHeader({
   progress,
   onBack,
 }: PlayerHeaderProps) {
-  const playButton = useButtonSound();
   return (
     <header className="flex items-center gap-2 md:gap-4">
       <Link
@@ -46,10 +44,7 @@ export function PlayerHeader({
       {progress && (
         <button
           type="button"
-          onClick={() => {
-            playButton();
-            onBack?.();
-          }}
+          onClick={onBack}
           disabled={!onBack}
           // Hidden, not removed, on the first screen: see `onBack`.
           aria-hidden={!onBack || undefined}

@@ -25,6 +25,8 @@ export function SoundToggle({ childId }: { childId: string }) {
       aria-pressed={enabled}
       title={state}
       data-sound={enabled ? "on" : "off"}
+      // Turning sound on plays the jingle; see ButtonSounds.
+      data-own-sound
       className="-mr-2 flex size-12 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
       onClick={() => {
         if (!enabled) {

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { subjectStyle } from "@/components/subject-style";
 import type { SubjectProgress, SubjectStatus } from "@/learn/next-step";
-import { useButtonSound } from "@/lib/feedback-sounds";
 import type { Subject } from "@/schema/content";
 
 const RING_RADIUS = 22;
@@ -98,11 +97,9 @@ export function SubjectTile({
   const style = subjectStyle(subject);
   const Icon = style.icon;
   const subtitle = subjectSubtitle(status);
-  const playButton = useButtonSound();
   return (
     <Link
       href={href}
-      onClick={playButton}
       data-subject={subject.id}
       // One row on phones (icon, text, ring); on tablets the text drops below
       // the icon and ring so three tiles fit side by side.

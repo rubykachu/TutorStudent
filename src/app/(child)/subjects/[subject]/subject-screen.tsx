@@ -5,6 +5,7 @@ import Link from "next/link";
 import { PageTopBar } from "@/components/page-top-bar";
 import { StateBadge } from "@/components/state-badge";
 import { subjectStyle } from "@/components/subject-style";
+import { ChildSounds } from "@/learn/child-sounds";
 import { lessonPlacement, subjectHeading } from "@/lib/lesson-label";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
@@ -87,7 +88,7 @@ export function SubjectScreen({ subject }: { subject: Subject }) {
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">
       {profile && (
-        <>
+        <ChildSounds childId={profile.id}>
           <PageTopBar childId={profile.id}>
             <Link
               href={HOME_PATH}
@@ -108,7 +109,7 @@ export function SubjectScreen({ subject }: { subject: Subject }) {
             </h1>
           </header>
           <LessonList subject={subject} profile={profile} />
-        </>
+        </ChildSounds>
       )}
     </main>
   );
