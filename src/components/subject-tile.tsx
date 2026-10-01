@@ -22,7 +22,7 @@ function ProgressRing({ done, total }: SubjectProgress) {
       aria-label={`Xong ${done} trên ${total} phần`}
       className="flex shrink-0 flex-col items-center gap-1"
     >
-      <div className="relative size-16 tall:size-20">
+      <div className="relative size-20 tall:size-24">
         <svg viewBox="0 0 56 56" className="size-full -rotate-90" aria-hidden>
           <circle
             cx={28}
@@ -42,11 +42,13 @@ function ProgressRing({ done, total }: SubjectProgress) {
             strokeDashoffset={RING_CIRCUMFERENCE * (1 - filled)}
           />
         </svg>
+        {/* Two short lines, so a three-digit count never touches the ring. */}
         <span
           aria-hidden
-          className="absolute inset-0 flex items-center justify-center text-caption font-semibold"
+          className="absolute inset-0 flex flex-col items-center justify-center font-semibold leading-none"
         >
-          {done}/{total}
+          <span className="text-block">{done}</span>
+          <span className="text-caption">/{total}</span>
         </span>
       </div>
       <span aria-hidden className="text-caption leading-none">

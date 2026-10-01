@@ -2,9 +2,12 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { PanelArt } from "@/components/panel-art";
+import { ProfilePicker } from "@/components/profile-picker";
+import { SectionCardArt } from "@/components/section-card-art";
 import { Sheet } from "@/components/sheet";
 import { SubjectTile } from "@/components/subject-tile";
-import { SubjectTileArt } from "@/components/subject-tile-art";
+import { LessonCardArt, SubjectTileArt } from "@/components/subject-tile-art";
+import { DoneScreen } from "@/learn/done-screen";
 import type { Subject } from "@/schema/content";
 
 // Decoration is hidden from screen readers, never takes a tap, has no text
@@ -139,5 +142,95 @@ describe("CosmosHorizon", () => {
     // In the flow, so it can never lie under or against content.
     expect(horizon).not.toHaveClass("absolute", "fixed");
     expect(maxOpacity(horizon as Element)).toBeLessThanOrEqual(0.18);
+  });
+});
+
+describe("LessonCardArt", () => {
+  it("is faint, static decoration in the card's right-hand column", () => {
+    const { container } = render(
+      <LessonCardArt position={0} tint="text-subject-blue" />,
+    );
+    const art = container.querySelector("[data-lesson-art]");
+    expectDecoration(art);
+    expect(art).toHaveClass("pointer-events-none", "-z-10", "w-2/5");
+    expect(art?.querySelector("svg")).toHaveClass("text-subject-blue");
+    expect(maxOpacity(art as Element)).toBeLessThanOrEqual(0.2);
+    expect(art?.querySelectorAll("animate, animateTransform")).toHaveLength(0);
+  });
+
+  it("varies from card to card and repeats, with unique clip ids", () => {
+    const html = (n: number) =>
+      render(<LessonCardArt position={n} tint="text-subject-blue" />).container
+        .innerHTML;
+    const first = [0, 1, 2, 3, 4, 5].map(html);
+    expect(new Set(first).size).toBe(first.length);
+    const ids = [
+      ...render(
+        <>
+          <LessonCardArt position={2} tint="text-subject-teal" />
+          <LessonCardArt position={2} tint="text-subject-teal" />
+        </>,
+      ).container.querySelectorAll("clipPath"),
+    ].map((c) => c.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe("SectionCardArt", () => {
+  it("fills a column of its own with shapes at most 0.24 opaque and no text", () => {
+    for (let position = 0; position < 4; position++) {
+      const { container } = render(<SectionCardArt position={position} />);
+      const art = container.querySelector("[data-section-art]");
+      expectDecoration(art);
+      expect(art).toHaveClass("pointer-events-none", "absolute", "inset-0");
+      expect(maxOpacity(art as Element)).toBeLessThanOrEqual(0.24);
+      // Present, not a few specks: several shapes per sky.
+      expect(art?.children.length).toBeGreaterThanOrEqual(5);
+    }
+  });
+
+  it("gives four different skies and repeats them", () => {
+    const html = (n: number) =>
+      render(<SectionCardArt position={n} />).container.innerHTML;
+    expect(new Set([0, 1, 2, 3].map(html)).size).toBe(4);
+    expect(html(4)).toBe(html(0));
+  });
+});
+
+describe("the cosmos on the profile picker and the done screen", () => {
+  it("puts the panel sky on every profile card", () => {
+    const { container } = render(
+      <ProfilePicker
+        profiles={[
+          {
+            id: "a",
+            familyId: "f",
+            name: "An",
+            avatar: "cat",
+            series: {},
+            createdAt: "",
+          },
+        ]}
+        onPick={() => undefined}
+      />,
+    );
+    const card = screen.getByRole("button", { name: /An/ });
+    expect(card).toHaveClass("isolate", "overflow-hidden");
+    expect(container.querySelector("[data-panel-art]")).not.toBeNull();
+  });
+
+  it("ends a done screen with the horizon above the action bar", () => {
+    const { container } = render(
+      <DoneScreen
+        stepAttr={{ name: "data-section-step", value: "done" }}
+        title="Xong"
+        actions={<button type="button">Tiếp</button>}
+      />,
+    );
+    const horizon = container.querySelector("[data-cosmos-horizon]");
+    const bar = container.querySelector("[data-bottom-bar]");
+    expect(horizon).not.toBeNull();
+    const order = (horizon as Element).compareDocumentPosition(bar as Element);
+    expect(order & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });

@@ -2,9 +2,11 @@
 
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { CosmosHorizon } from "@/components/cosmos-background";
 import { PageTopBar } from "@/components/page-top-bar";
 import { StateBadge } from "@/components/state-badge";
 import { subjectStyle } from "@/components/subject-style";
+import { LessonCardArt } from "@/components/subject-tile-art";
 import { ChildSounds } from "@/learn/child-sounds";
 import { lessonPlacement, subjectHeading } from "@/lib/lesson-label";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
@@ -41,9 +43,10 @@ function LessonList({
   }
 
   const stickers = new Set(progress.stickers.map((s) => s.lessonId));
+  const tint = subjectStyle(subject).text;
   return (
     <ul className="flex flex-col gap-4">
-      {lessons.map((lesson) => {
+      {lessons.map((lesson, position) => {
         const state = lessonState(
           lesson,
           progress.sections.filter((s) => s.lessonId === lesson.id),
@@ -54,9 +57,10 @@ function LessonList({
             <Link
               href={lessonPath(lesson.id)}
               data-lesson={lesson.id}
-              className="flex min-h-24 items-center gap-4 rounded-lg border-2 border-border bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6"
+              className="relative isolate flex min-h-24 items-center gap-4 overflow-hidden rounded-lg border-2 border-border bg-surface p-4 shadow-card transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none md:p-6"
             >
-              <div className="flex min-w-0 flex-1 flex-col gap-1">
+              <LessonCardArt position={position} tint={tint} />
+              <div className="flex min-w-0 max-w-[58%] flex-1 flex-col gap-1">
                 <h2 className="break-words text-block font-semibold md:text-block-lg">
                   {lesson.title}
                 </h2>
@@ -111,6 +115,8 @@ export function SubjectScreen({ subject }: { subject: Subject }) {
           <LessonList subject={subject} profile={profile} />
         </ChildSounds>
       )}
+      {/* The end of the page: its own band of sky, like the home screen. */}
+      <CosmosHorizon className="mt-auto -mx-gutter -mb-6 md:-mx-gutter-lg md:-mb-10" />
     </main>
   );
 }

@@ -97,8 +97,13 @@ const SCENES: Readonly<Record<SubjectColor, (clip: string) => ReactNode>> = {
   ),
 };
 
+// The scene of each subject colour, in the order lesson cards cycle through
+// them.
+const SCENE_ORDER: readonly SubjectColor[] = ["blue", "terracotta", "teal"];
+
 // Sits behind the tile's content (the tile is its own stacking context) and
-// is clipped to its rounded corners by the tile.
+// is clipped to its rounded corners by the tile. On a phone the dome behind
+// the progress ring is held back so the ring and its count stay calm.
 export function SubjectTileArt({ color }: { color: SubjectColor }) {
   const clip = useId();
   return (
@@ -108,9 +113,63 @@ export function SubjectTileArt({ color }: { color: SubjectColor }) {
       data-subject-art={color}
       viewBox="0 0 320 200"
       preserveAspectRatio="xMaxYMax slice"
-      className="pointer-events-none absolute inset-0 -z-10 size-full text-foreground"
+      className="pointer-events-none absolute inset-0 -z-10 size-full text-foreground max-md:opacity-60"
     >
       {SCENES[color](clip)}
     </svg>
+  );
+}
+
+const SOFT_EDGE = "linear-gradient(to right, transparent, black 40%)";
+
+// How a lesson card shows the scene: the bottom of the frame (planet dome)
+// or its middle (planet and ring whole), so neighbours never look alike.
+const CARD_VIEWS = [
+  { scene: 0, anchor: "bottom" },
+  { scene: 1, anchor: "middle" },
+  { scene: 2, anchor: "bottom" },
+  { scene: 0, anchor: "middle" },
+  { scene: 1, anchor: "bottom" },
+  { scene: 2, anchor: "middle" },
+] as const;
+
+// The same scenes as the subject tiles, at the same scale (the 320 x 200
+// frame drawn about 350px wide), inside a lesson card, tinted with the
+// subject's colour. They live in the card's right-hand 40%, which holds only
+// the state badge (the card's text stops short of it), so no shape is ever
+// under a word, and what shows of a scene varies from card to card. The card
+// must be `relative isolate overflow-hidden`. `tint` is a text colour class
+// (`subjectStyle(subject).text`).
+export function LessonCardArt({
+  position,
+  tint,
+}: {
+  position: number;
+  tint: string;
+}) {
+  const clip = useId();
+  const view = CARD_VIEWS[
+    position % CARD_VIEWS.length
+  ] as (typeof CARD_VIEWS)[number];
+  const scene = SCENE_ORDER[view.scene] as SubjectColor;
+  return (
+    <div
+      aria-hidden
+      data-lesson-art={position % CARD_VIEWS.length}
+      className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-2/5 overflow-hidden"
+      // Fades in from the left, so the column has no hard edge.
+      style={{ maskImage: SOFT_EDGE, WebkitMaskImage: SOFT_EDGE }}
+    >
+      <svg
+        aria-hidden
+        focusable="false"
+        viewBox="0 0 320 200"
+        className={`absolute right-0 h-[220px] w-[352px] md:h-[240px] md:w-[384px] ${tint} ${
+          view.anchor === "bottom" ? "bottom-0" : "top-1/2 -translate-y-1/2"
+        }`}
+      >
+        {SCENES[scene](clip)}
+      </svg>
+    </div>
   );
 }

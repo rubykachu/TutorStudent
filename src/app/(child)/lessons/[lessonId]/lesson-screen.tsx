@@ -10,7 +10,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { bigButtonClassName } from "@/components/big-button";
+import { CosmosHorizon } from "@/components/cosmos-background";
 import { PageTopBar } from "@/components/page-top-bar";
+import { PanelArt } from "@/components/panel-art";
 import { ReviewButton } from "@/components/review-button";
 import { RichText } from "@/components/rich-text";
 import { SectionCardArt } from "@/components/section-card-art";
@@ -209,7 +211,6 @@ function LessonBody({
                       : "border-2 border-border"
                   }`}
                 >
-                  <SectionCardArt position={i} />
                   <span
                     aria-hidden
                     className={`flex size-10 shrink-0 items-center justify-center rounded-full font-heading text-block font-semibold ${
@@ -238,10 +239,16 @@ function LessonBody({
                       </span>
                     </div>
                   </div>
-                  <ChevronRight
-                    aria-hidden
-                    className="relative size-6 shrink-0 text-muted-foreground"
-                  />
+                  {/* The card's sky: a column of its own at the right end,
+                      reaching the card's edges, with the chevron in its
+                      free middle. */}
+                  <span className="relative -my-4 -mr-4 flex w-24 shrink-0 items-center justify-center self-stretch md:-my-6 md:-mr-6 md:w-32">
+                    <SectionCardArt position={i} />
+                    <ChevronRight
+                      aria-hidden
+                      className="relative size-6 shrink-0 text-muted-foreground"
+                    />
+                  </span>
                 </Link>
               </li>
             );
@@ -251,8 +258,9 @@ function LessonBody({
 
       <section
         aria-label="Sticker của bài"
-        className="flex items-center gap-4 rounded-lg bg-surface p-4 shadow-card md:p-6"
+        className="relative isolate flex items-center gap-4 overflow-hidden rounded-lg bg-surface p-4 shadow-card md:p-6"
       >
+        <PanelArt />
         <Sticker
           visualId={lesson.sticker.visualId}
           name={lesson.sticker.name}
@@ -273,6 +281,8 @@ function LessonBody({
           <p className="font-semibold">{`“${lesson.sticker.name}”`}</p>
         </div>
       </section>
+      {/* The end of the page: its own band of sky, like the home screen. */}
+      <CosmosHorizon className="mt-auto -mx-gutter -mb-6 md:-mx-gutter-lg md:-mb-10" />
     </>
   );
 }

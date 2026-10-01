@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BigButton } from "@/components/big-button";
+import { CosmosHorizon } from "@/components/cosmos-background";
 import { ProfileForm } from "@/components/profile-form";
 import { ProfilePicker } from "@/components/profile-picker";
 import { HOME_PATH, PARENT_PATH } from "@/lib/routes";
@@ -78,6 +79,8 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
       >
         Phụ huynh
       </Link>
+      {/* The end of the page: its own band of sky, like the home screen. */}
+      <CosmosHorizon className="-mx-gutter -mb-6 md:-mx-gutter-lg md:-mb-10" />
     </main>
   );
 }

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import { BottomBar } from "@/components/bottom-bar";
+import { CosmosHorizon } from "@/components/cosmos-background";
 import { LoopingConfetti } from "@/components/looping-celebration";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { MascotExpression } from "@/mascot/expressions";
@@ -64,6 +65,9 @@ export function DoneScreen({
         <h1 className="text-title font-bold md:text-title-lg">{title}</h1>
         {children}
       </motion.div>
+      {/* Where the screen ends: a band of sky above the action bar, like
+          the end of the home screen. */}
+      <CosmosHorizon className="-mx-gutter md:-mx-gutter-lg" />
       <BottomBar>{actions}</BottomBar>
     </div>
   );
