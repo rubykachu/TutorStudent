@@ -1,9 +1,8 @@
 # Bàn giao: Bài 2 `cach-ghi-so-tu-nhien` (Cách ghi số tự nhiên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`), 19 section. Vòng 1 và 2 xong (13 rồi 8 Nghiêm trọng, đã sửa ở `48b36fa`, `a287f44`). Đọc hiểu Haiku: lượt 1 `47/28/0`, lượt 2 `6/10/8` (chữ viết lại dài ra), lượt 3 `7/14/0`; hết 3 lượt, 14 mục còn "Hiểu mơ hồ" ghi vào Nên sửa của `review.md`, không chặn duyệt. Đang sửa lỗi `lesson:walk` phone (thanh Tiếp che nút) do chữ thêm.
-- Việc tiếp theo: walk 0 FAIL -> vòng 3 chỉ phần đổi (Sonnet, `pnpm content:diff`) tới 0 Nghiêm trọng -> `content:hash --approve`, `content:lock`, `CONTENT_INCLUDE_DRAFT=1 content:emit`.
-- Không làm trong lượt này: lời đọc tổng quan và video (người sau dựng media; xem "Việc còn lại").
+- Cập nhật cuối: 02/10/2026. Bài đã duyệt: `status: published`, `reviewedHash` ghi, id đã khoá (`content:lock`), `content:emit` xong. 19 section. Review: vòng 1 (13 Nghiêm trọng), vòng 2 (8), vòng 3 chỉ phần đổi (0). Đọc hiểu Haiku ba lượt: `47/28/0`, `6/10/8`, `7/14/0`.
+- Việc tiếp theo: làm các mục "Việc còn lại" dưới đây; media (lời đọc tổng quan, video) do người sau dựng.
 
 ## Nguồn (sách bài tập, `sources/math/cach-ghi-so-tu-nhien/`, không commit)
 - Đề: tr.7–10 in (PDF 8–11), tệp `sbt-p7.png` … `sbt-p10.png`. Lời giải: tr.94–95 (đầu tr.94 là Bài 1, phần Bài 2 bắt đầu từ giữa trang; tr.96 là Bài 3, 4), tệp `sbt-p94.png`, `sbt-p95.png`, `sbt-p96.png`.
@@ -28,3 +27,7 @@ Cơ bản: 1 `so-tu-nhien` (ℕ, ℕ*), 2 `chu-so` (mười chữ số, chữ s�
 - Bản quyền: `sources/` không commit; mọi đề viết bằng lời và số của mình.
 - Chạy `lesson:walk` và `visual:shot` trong `git worktree` tạm (cổng 3310, `pnpm install --offline`, chép `.next/dev/cache`, `public/media` là symlink), đã gỡ sau khi xong.
 
+## Việc còn lại
+- Media: lời đọc tổng quan và video (chưa làm, ngoài phạm vi lượt soạn).
+- Nên sửa của vòng 3 (`review.md`, không chặn duyệt): thiếu ví dụ cho ca "đi tiếp" và "không có chữ số nào" của quy tắc viết thêm chữ số; hình `tong-chu-so-vd` không nêu đề "tổng bằng 3"; ví dụ XXIX lặp ở note, màn chạm và recap; nhãn hình và `explain` còn từ cũ ("tách thành phần", "bỏ số 0", "dời"); `gia-tri-v` và `cham-la-ma-5` hỏi cùng một điều; quy tắc số bé nhất khác nhau rơi vế "cho đủ số chữ số"; `doi-vi-thanh-iv` lặp ca của `doi-1-que`; 14 mục còn "Hiểu mơ hồ" ở lượt đọc hiểu 3. Sửa chữ nào của bài thì chạy `pnpm content:diff`, lượt Haiku trên mục đổi, vòng chỉ phần đổi, rồi `content:hash --approve` lại.
+- Lưu trữ: sau khi hết các mục trên, `git mv` thư mục này vào `notebooks/backlogs/archive/` kèm dòng "Archived: ...".

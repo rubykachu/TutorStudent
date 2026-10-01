@@ -11,7 +11,8 @@
   },
   "title": "Cách ghi số tự nhiên",
   "sourceRef": "Sách bài tập tr.7–10, lời giải tr.94–95",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "199d109696e637ca7f300f47b994674ac8885397e134cda61606824717b4045e",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách ghi số. Bạn đọc giá 25 000 đồng ở cửa hàng hay số nhà 128 trên đường đi học. Bạn muốn biết mỗi chữ số trong đó có nghĩa là gì.",
