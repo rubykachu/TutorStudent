@@ -219,7 +219,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "chips",
     items: ["6 và 18", "5 và 12", "4 và 20", "7 và 15", "9 và 36"],
     wants: [0, 2, 4],
-    done: "Bạn đã chọn đủ các cặp mà số lớn chia hết cho số bé.",
+    done: "Bạn đã chọn đủ các cặp mà số lớn chia hết cho số nhỏ. Với mỗi cặp này, ƯCLN chính là số nhỏ.",
   },
   "cat-goi-y-5-30": {
     kind: "cutBars",

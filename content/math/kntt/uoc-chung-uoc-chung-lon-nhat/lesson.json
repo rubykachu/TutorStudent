@@ -2077,14 +2077,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ta có 28 = 2² · 7 và 42 = 2 · 3 · 7. Chọn tất cả thừa số nguyên tố chung của 28 và 42."
+          "text": "Chọn tất cả thừa số nguyên tố chung của 28 và 42."
+        },
+        {
+          "type": "formula",
+          "tex": "\\begin{gathered} 28 = 2^{2} \\cdot 7 \\\\ 42 = 2 \\cdot 3 \\cdot 7 \\end{gathered}"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -2195,14 +2199,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ta có 42 = 2 · 3 · 7 và 70 = 2 · 5 · 7. ƯCLN(42, 70) bằng tích nào?"
+          "text": "ƯCLN(42, 70) bằng tích nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\begin{gathered} 42 = 2 \\cdot 3 \\cdot 7 \\\\ 70 = 2 \\cdot 5 \\cdot 7 \\end{gathered}"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
