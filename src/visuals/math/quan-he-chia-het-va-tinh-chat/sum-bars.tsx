@@ -2,12 +2,11 @@
 
 import { Formula } from "@/components/blocks/formula";
 import type { ConceptColor } from "@/schema/content";
+import { BagBox, packBags } from "@/visuals/shared/bag-groups";
 import { Legend } from "@/visuals/shared/math-parts";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";
-import { packBags } from "./logic";
-import { BagBox } from "./parts";
 
 type Spec = SpecOf<"sumBars">;
 type LegendEntry = { color: ConceptColor; name: string; outline?: boolean };

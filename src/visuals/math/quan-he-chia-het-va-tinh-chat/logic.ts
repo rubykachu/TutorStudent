@@ -10,14 +10,6 @@ export const LESSON_SLUG = "quan-he-chia-het-va-tinh-chat";
 // every number, so the range starts at 2.
 export const BAG_RANGE = { min: 2, max: 9 } as const;
 
-// `total` items packed into bags of `size`: full bags and what is left over.
-export function packBags(
-  total: number,
-  size: number,
-): { bags: number; left: number } {
-  return { bags: Math.floor(total / size), left: total % size };
-}
-
 // The landings of equal hops from 0: step, 2 · step, … up to `limit`.
 export function landings(step: number, limit: number): number[] {
   const out: number[] = [];

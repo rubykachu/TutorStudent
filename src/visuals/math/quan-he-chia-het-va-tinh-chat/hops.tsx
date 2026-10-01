@@ -4,11 +4,12 @@ import { motion } from "motion/react";
 import { Fragment } from "react";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptShape } from "@/visuals/shared/concept-mark";
+import type { LegendItem } from "@/visuals/shared/formula-rows";
 import { decorative } from "@/visuals/shared/markers";
 import { Hole, Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import type { LegendItem, SpecOf } from "./catalog";
+import type { SpecOf } from "./catalog";
 import { landings } from "./logic";
 
 type Spec = SpecOf<"hops">;

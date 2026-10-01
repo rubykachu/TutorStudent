@@ -3,10 +3,10 @@
 import { Check } from "lucide-react";
 import { useState } from "react";
 import type { VisualProps, VisualState } from "@/visuals/registry";
+import { BagsScene, bagLegend, packBags } from "@/visuals/shared/bag-groups";
 import { Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
-import { BagsScene, bagLegend } from "./bags";
-import { BAG_RANGE, packBags } from "./logic";
+import { BAG_RANGE } from "./logic";
 
 // Bags of candy whose size the child changes with − and +. Reports { size }.
 // With `goal` (the lesson screen) it reads the state back as progress and ends

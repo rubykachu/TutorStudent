@@ -1,14 +1,142 @@
 "use client";
 
 import { Fragment } from "react";
+import type { ConceptColor } from "@/schema/content";
+import { ConceptShape } from "@/visuals/shared/concept-mark";
+import type { Mode } from "@/visuals/shared/formula-rows";
 import { Hole, Legend, MATH_LINE, Tint } from "@/visuals/shared/math-parts";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
-import type { SpecOf } from "./catalog";
-import { packBags } from "./logic";
-import { BagBox } from "./parts";
 
-type Spec = SpecOf<"bags">;
+// Pictures of items packed into bags: the dot blocks, one bag, the scene of
+// bags and the walk-through `Bags`.
+
+const DOT_CELL = 32;
+
+// `count` dots in `columns` columns, in a concept colour; the first `gone`
+// are drawn as empty slots (taken away). Its width follows the columns, so
+// bags of the same size line up.
+export function DotBlock({
+  count,
+  columns,
+  color,
+  label,
+  gone = 0,
+}: {
+  count: number;
+  columns: number;
+  color: ConceptColor;
+  label: string;
+  gone?: number;
+}) {
+  const rows = Math.max(1, Math.ceil(count / columns));
+  return (
+    <svg
+      role="img"
+      aria-label={label}
+      viewBox={`0 0 ${columns * DOT_CELL} ${rows * DOT_CELL}`}
+      className="h-auto w-full"
+    >
+      {Array.from({ length: count }, (_, i) => (
+        <ConceptShape
+          // biome-ignore lint/suspicious/noArrayIndexKey: dots are placed by position
+          key={i}
+          color={color}
+          variant={i < gone ? "outline" : "filled"}
+          cx={(i % columns) * DOT_CELL + DOT_CELL / 2}
+          cy={Math.floor(i / columns) * DOT_CELL + DOT_CELL / 2}
+          r={DOT_CELL * 0.36}
+        />
+      ))}
+    </svg>
+  );
+}
+
+// Columns of a bag holding `size` dots: one row up to 4, then a squarer block.
+export function bagColumns(size: number): number {
+  if (size <= 4) return size;
+  if (size <= 6) return 3;
+  if (size <= 8) return 4;
+  return 5;
+}
+
+const BOX_TONES = {
+  bag: "border-concept-violet bg-surface",
+  left: "border-concept-pink border-dashed bg-surface",
+  pending: "border-muted-foreground border-dashed bg-muted",
+} as const;
+export type BoxTone = keyof typeof BOX_TONES;
+
+// A bag of items: solid violet box with blue dots, the left-over items in a
+// dashed pink box with pink dots, or a dashed grey box still to be filled.
+export function BagBox({
+  count,
+  size,
+  tone,
+  label,
+  compact = false,
+  gone = 0,
+}: {
+  count: number;
+  size: number;
+  tone: BoxTone;
+  label: string;
+  // Smaller dots, for pictures that stack several rows of bags.
+  compact?: boolean;
+  // How many of the first dots were taken away (drawn as empty slots).
+  gone?: number;
+}) {
+  const columns = Math.min(bagColumns(size), Math.max(count, 1));
+  return (
+    <div
+      className={`rounded-xl border-2 p-1.5 ${BOX_TONES[tone]}`}
+      style={{
+        width: `calc(${columns} * ${compact ? 0.85 : 1.25}rem + ${compact ? 1 : 1.25}rem)`,
+      }}
+    >
+      {tone === "pending" ? (
+        <p
+          role="img"
+          aria-label={label}
+          className="py-1 text-center font-heading text-block font-bold text-muted-foreground"
+        >
+          ?
+        </p>
+      ) : (
+        <DotBlock
+          count={count}
+          columns={columns}
+          color={tone === "left" ? "pink" : "blue"}
+          label={label}
+          gone={gone}
+        />
+      )}
+    </div>
+  );
+}
+
+// `total` items packed into bags of `size`, one bag per step; what is left
+// over is the remainder. `thing` names the items, `unit` one item and `bag`
+// the container. With `openTotal` the picture never states the total: it
+// says the bag size and the remainder, and the equation keeps the letters
+// a and q.
+export type BagsSpec = {
+  total: number;
+  size: number;
+  thing: string;
+  unit: string;
+  bag: string;
+  mode: Mode;
+  openTotal?: boolean;
+};
+
+// `total` items packed into bags of `size`: full bags and what is left over.
+export function packBags(
+  total: number,
+  size: number,
+): { bags: number; left: number } {
+  return { bags: Math.floor(total / size), left: total % size };
+}
 
 // What the colours of a bag picture stand for; `bag` names the container.
 export function bagLegend(bag: string) {
@@ -118,7 +246,7 @@ function Equation({
   );
 }
 
-function BagsView({ spec, step }: { spec: Spec; step: number }) {
+function BagsView({ spec, step }: { spec: BagsSpec; step: number }) {
   const { total, size, thing, bag, unit, mode, openTotal } = spec;
   const { bags, left } = packBags(total, size);
   const hint = mode === "hint";
@@ -179,7 +307,7 @@ function BagsView({ spec, step }: { spec: Spec; step: number }) {
   );
 }
 
-export function Bags({ spec }: { spec: Spec }) {
+export function Bags({ spec }: { spec: BagsSpec }) {
   const { total, size, bag, unit, openTotal } = spec;
   const { bags } = packBags(total, size);
   const label = openTotal

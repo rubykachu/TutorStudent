@@ -63,6 +63,11 @@ describe("visualRegistry", () => {
         { total: 24, fits: 1 },
         { total: 25, fits: 0 },
       ],
+      "chia-het": [
+        { before: 43, after: 0, afterLen: 0, divisor: 2, divisor2: 0, fits: 1 },
+        { before: 43, after: 0, afterLen: 0, divisor: 2, divisor2: 0, fits: 0 },
+        { before: 0, after: 0, afterLen: 1, divisor: 2, divisor2: 5, fits: 1 },
+      ],
       "x-thuoc": [
         { want: 1, count: 3, e0: 2, e1: 4, e2: 6 },
         { want: 0, count: 3, e0: 0, e1: 1, e2: 2 },

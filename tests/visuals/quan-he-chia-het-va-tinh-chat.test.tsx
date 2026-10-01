@@ -5,24 +5,17 @@ import {
   VALIDATOR_IDS,
   VISUAL_SPECS,
 } from "@/visuals/math/quan-he-chia-het-va-tinh-chat/catalog";
-import { Chips } from "@/visuals/math/quan-he-chia-het-va-tinh-chat/chips";
 import {
   BAG_RANGE,
   divisorPairs,
   divisors,
   landings,
-  packBags,
   solutions,
   validators,
 } from "@/visuals/math/quan-he-chia-het-va-tinh-chat/logic";
 import { visualRegistry } from "@/visuals/registry";
 
 describe("divisibility helpers", () => {
-  it("packs items into bags and reports what is left", () => {
-    expect(packBags(21, 7)).toEqual({ bags: 3, left: 0 });
-    expect(packBags(26, 6)).toEqual({ bags: 4, left: 2 });
-  });
-
   it("lists equal hops, divisors and divisor pairs", () => {
     expect(landings(6, 40)).toEqual([6, 12, 18, 24, 30, 36]);
     expect(divisors(12)).toEqual([1, 2, 3, 4, 6, 12]);
@@ -73,28 +66,6 @@ describe("BagTry", () => {
   it("draws the task's own total when params are given", () => {
     render(<BagTry total={21} goal={false} params={{ total: 25 }} />);
     expect(screen.getByText("25 cái kẹo, mỗi túi 2 cái")).toBeInTheDocument();
-  });
-});
-
-describe("Chips", () => {
-  it("reports one key per chip and finishes when exactly the wanted chips are picked", () => {
-    const onStateChange = vi.fn();
-    render(
-      <Chips
-        items={["2", "3", "4"]}
-        wants={[0, 2]}
-        done="Xong rồi!"
-        onStateChange={onStateChange}
-      />,
-    );
-    fireEvent.click(screen.getByRole("button", { name: "2" }));
-    expect(onStateChange).toHaveBeenLastCalledWith({ i0: 1, i1: 0, i2: 0 });
-    fireEvent.click(screen.getByRole("button", { name: "3" }));
-    fireEvent.click(screen.getByRole("button", { name: "4" }));
-    expect(screen.queryByText("Xong rồi!")).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "3" }));
-    expect(screen.getByText("Xong rồi!")).toBeInTheDocument();
-    expect(screen.getByText("Đã chọn 2/2")).toBeInTheDocument();
   });
 });
 

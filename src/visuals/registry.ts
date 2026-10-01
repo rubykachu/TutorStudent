@@ -7,6 +7,16 @@ import {
   solveSquareOf,
   squareOf,
 } from "@/visuals/_fixture/dot-square-validators";
+import {
+  INTERACTIVE_KINDS as SIGN_INTERACTIVE_KINDS,
+  LESSON_SLUG as SIGN_SLUG,
+  VISUAL_SPECS as SIGN_SPECS,
+  VALIDATOR_IDS as SIGN_VALIDATOR_IDS,
+} from "@/visuals/math/dau-hieu-chia-het/catalog";
+import {
+  solutions as signSolutions,
+  validators as signValidators,
+} from "@/visuals/math/dau-hieu-chia-het/logic";
 import { grainsEqual, solveGrainsEqual } from "@/visuals/math/luy-thua/grains";
 import {
   exponentDifference,
@@ -253,11 +263,43 @@ const divisibilityEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "dau-hieu-chia-het": one per item of its catalog. The box screen
+// has its own validator; the pick screens reuse "chon-dung".
+const signPickValidators = {
+  "chia-het": signValidators["chia-het"],
+  "chon-dung": pickMatches,
+};
+const signPickSolutions = {
+  "chia-het": signSolutions["chia-het"],
+  "chon-dung": solvePickMatches,
+};
+
+const signEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(SIGN_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in SIGN_VALIDATOR_IDS
+        ? SIGN_VALIDATOR_IDS[spec.kind as keyof typeof SIGN_VALIDATOR_IDS]
+        : undefined;
+    const entry: VisualEntry = {
+      interactive: SIGN_INTERACTIVE_KINDS.has(spec.kind),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: signPickValidators[validatorId] },
+            solutions: { [validatorId]: signPickSolutions[validatorId] },
+          }),
+      load: () => lessonExample(SIGN_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${SIGN_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...thuTuEntries,
   ...nhanChiaEntries,
   ...congTruEntries,
   ...divisibilityEntries,
+  ...signEntries,
   "fixture.visual.dot-grid": {
     interactive: false,
     load: () => import("@/visuals/_fixture/dot-grid"),
@@ -1032,6 +1074,8 @@ const EXAMPLE_MODULES = lessonModules({
     import("@/visuals/math/phep-nhan-phep-chia/examples"),
   "quan-he-chia-het-va-tinh-chat": () =>
     import("@/visuals/math/quan-he-chia-het-va-tinh-chat/examples"),
+  "dau-hieu-chia-het": () =>
+    import("@/visuals/math/dau-hieu-chia-het/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });

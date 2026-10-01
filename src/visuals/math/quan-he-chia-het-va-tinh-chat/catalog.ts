@@ -1,5 +1,6 @@
-import type { ConceptColor } from "@/schema/content";
-import type { Row } from "./parts";
+import type { BagsSpec } from "@/visuals/shared/bag-groups";
+import type { LinesSpec, Mode, RowsSpec } from "@/visuals/shared/formula-rows";
+import type { ChipsSpec } from "@/visuals/shared/pick-chips";
 
 // Every picture of the lesson that is drawn from numbers: the registry builds
 // one entry per item (id `quan-he-chia-het-va-tinh-chat.visual.<key>`), so a
@@ -8,33 +9,9 @@ import type { Row } from "./parts";
 
 export { LESSON_SLUG } from "./logic";
 
-// How a picture with several steps plays:
-// - steps: animated walk-through that ends on the full result;
-// - still: the finished picture, no animation;
-// - hint: the walk-through of other numbers that stops at a "?" before the
-//   result;
-// - solution: walk-through of the exercise's own numbers up to the result
-//   (drawn like "steps").
-export type Mode = "steps" | "still" | "hint" | "solution";
-
-export type LegendItem = { color: ConceptColor; name: string };
-
 export type VisualSpec =
-  // `total` items packed into bags of `size`, one bag per step; what is left
-  // over is the remainder. `thing` names the items, `unit` one item and `bag`
-  // the container. With `openTotal` the picture never states the total: it
-  // says the bag size and the remainder, and the equation keeps the letters
-  // a and q.
-  | {
-      kind: "bags";
-      total: number;
-      size: number;
-      thing: string;
-      unit: string;
-      bag: string;
-      mode: Mode;
-      openTotal?: boolean;
-    }
+  // Items packed into bags, one bag per step (see `BagsSpec`).
+  | ({ kind: "bags" } & BagsSpec)
   // Hands-on screen and `manipulate` exercise: the child changes the bag size
   // for `total` candies (the exercise's params override it). `goal` adds a
   // progress line and a closing line once the bags hold the candies exactly.
@@ -50,21 +27,10 @@ export type VisualSpec =
       range?: readonly [number, number];
       mode: Mode;
     }
-  // Formulas stacked, each with an optional tag; the legend names the colours.
-  | {
-      kind: "rows";
-      label: string;
-      rows: readonly Row[];
-      legend?: readonly LegendItem[];
-    }
-  // Lines of a worked example, one more on every step. In a hint the last
-  // line is never shown.
-  | {
-      kind: "lines";
-      label: string;
-      rows: readonly Row[];
-      mode: "steps" | "still" | "hint";
-    }
+  // Formulas stacked, each with an optional tag (see `RowsSpec`).
+  | ({ kind: "rows" } & RowsSpec)
+  // Lines of a worked example, one more on every step (see `LinesSpec`).
+  | ({ kind: "lines" } & LinesSpec)
   // `big` as a multiple and `small` as its divisor, with the equations.
   | { kind: "uocBoi"; big: number; small: number }
   // The ways to write n as a product of two numbers, then its divisors.
@@ -72,12 +38,7 @@ export type VisualSpec =
   // Numbers (or short sums) the child taps to pick, state { i0, i1, … }. With
   // `wants` (indices of the right chips) and `done` it shows progress and a
   // closing line; without them (an exercise) nothing is revealed.
-  | {
-      kind: "chips";
-      items: readonly string[];
-      wants?: readonly number[];
-      done?: string;
-    }
+  | ({ kind: "chips" } & ChipsSpec)
   // Two groups of items packed into bags of `m`, and their sum or difference
   // packed the same way. `bag` names the container ("túi" by default);
   // `countBags` adds the final line "total : m = number of bags" for a story

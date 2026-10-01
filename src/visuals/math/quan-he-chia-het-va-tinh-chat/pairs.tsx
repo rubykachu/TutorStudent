@@ -1,18 +1,10 @@
 "use client";
 
+import { FormulaRow, Pending } from "@/visuals/shared/formula-rows";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
 import type { SpecOf } from "./catalog";
 import { divisorPairs, divisors } from "./logic";
-import { FormulaRow } from "./parts";
-
-function Pending() {
-  return (
-    <p className="text-center font-heading text-block font-bold text-muted-foreground">
-      ?
-    </p>
-  );
-}
 
 // The ways to write n as a product of two numbers, one per step, then the
 // divisors they give. In a hint the list of divisors stays a "?".

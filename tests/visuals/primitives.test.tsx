@@ -1,8 +1,16 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { formatInteger } from "@/lib/number-format";
+import {
+  BagBox,
+  Bags,
+  bagColumns,
+  DotBlock,
+  packBags,
+} from "@/visuals/shared/bag-groups";
 import { BeadGroup } from "@/visuals/shared/bead-group";
 import { DotGrid } from "@/visuals/shared/dot-grid";
+import { FormulaRow, Lines, Rows } from "@/visuals/shared/formula-rows";
 import { Highlight } from "@/visuals/shared/highlight";
 import {
   DECORATIVE_ATTR,
@@ -11,6 +19,7 @@ import {
   STATE_VALUE_ATTR,
 } from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
+import { Chips } from "@/visuals/shared/pick-chips";
 import { Reveal } from "@/visuals/shared/reveal";
 
 describe("DotGrid", () => {
@@ -219,5 +228,140 @@ describe("Reveal", () => {
     expect(screen.getByText("8 : 8 = 1").parentElement).toHaveClass(
       "invisible",
     );
+  });
+});
+
+describe("FormulaRow, Rows and Lines", () => {
+  it("draws a formula with its tag, and an aside in a dashed box", () => {
+    const { container } = render(
+      <>
+        <FormulaRow
+          row={{ tex: "6 \\chiahet 3", tag: { text: "tag", color: "teal" } }}
+        />
+        <FormulaRow row={{ tex: "12 = 3 \\cdot 4", aside: true }} />
+      </>,
+    );
+    expect(screen.getByText("tag")).toBeInTheDocument();
+    expect(screen.getByText("vì")).toBeInTheDocument();
+    expect(container.querySelector("[data-shape='pentagon']")).not.toBeNull();
+    expect(container.querySelectorAll(".katex")).toHaveLength(2);
+  });
+
+  it("stacks the rows with the legend of the colours", () => {
+    render(
+      <Rows
+        spec={{
+          label: "Hai dòng",
+          rows: [{ tex: "1 + 1" }, { tex: "2 + 2", gapBefore: true }],
+          legend: [{ color: "amber", name: "Tổng" }],
+        }}
+      />,
+    );
+    expect(
+      screen.getByRole("figure", { name: "Hai dòng" }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem")).toHaveLength(3);
+  });
+
+  it("shows every line on a still and keeps the last one out of a hint", () => {
+    const rows = [{ tex: "1 + 1" }, { tex: "2 + 2" }, { tex: "3 + 3" }];
+    const still = render(
+      <Lines spec={{ label: "Ví dụ", rows, mode: "still" }} />,
+    );
+    expect(still.container.querySelectorAll(".katex")).toHaveLength(3);
+    still.unmount();
+    const hint = render(
+      <Lines spec={{ label: "Gợi ý", rows, mode: "hint" }} />,
+    );
+    // Only the first line is on screen at step 0; the others are dimmed "?".
+    expect(
+      hint.container.querySelectorAll("[aria-hidden='true']").length,
+    ).toBeGreaterThan(0);
+  });
+});
+
+describe("bag groups", () => {
+  it("packs items into bags and reports what is left", () => {
+    expect(packBags(21, 7)).toEqual({ bags: 3, left: 0 });
+    expect(packBags(26, 6)).toEqual({ bags: 4, left: 2 });
+  });
+
+  it("lays bags of the same size out in the same number of columns", () => {
+    expect([1, 4, 5, 6, 7, 8, 9].map(bagColumns)).toEqual([
+      1, 4, 3, 3, 4, 4, 5,
+    ]);
+  });
+
+  it("draws one dot per item, and empty slots for the ones taken away", () => {
+    const { container } = render(
+      <DotBlock count={5} columns={3} color="blue" label="Năm chấm" gone={2} />,
+    );
+    expect(screen.getByRole("img", { name: "Năm chấm" })).toBeInTheDocument();
+    expect(container.querySelectorAll(".fill-concept-blue")).toHaveLength(3);
+    expect(container.querySelectorAll(".fill-none")).toHaveLength(2);
+  });
+
+  it("draws a bag, the left-over box and the pending box", () => {
+    render(
+      <>
+        <BagBox count={3} size={3} tone="bag" label="Túi 1" />
+        <BagBox count={2} size={3} tone="left" label="Còn thừa 2" />
+        <BagBox count={1} size={3} tone="pending" label="Số còn thừa" />
+      </>,
+    );
+    expect(screen.getByRole("img", { name: "Túi 1" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Còn thừa 2" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Số còn thừa" })).toHaveTextContent(
+      "?",
+    );
+  });
+
+  it("draws every bag and the left-over box of a still picture", () => {
+    render(
+      <Bags
+        spec={{
+          total: 14,
+          size: 3,
+          thing: "kẹo",
+          unit: "cái",
+          bag: "túi",
+          mode: "still",
+        }}
+      />,
+    );
+    expect(
+      screen.getByRole("img", { name: "Túi 4: 3 cái" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Còn thừa 2 cái" }),
+    ).toBeInTheDocument();
+  });
+});
+
+describe("Chips", () => {
+  it("reports one key per chip and finishes when exactly the wanted chips are picked", () => {
+    const onStateChange = vi.fn();
+    render(
+      <Chips
+        items={["2", "3", "4"]}
+        wants={[0, 2]}
+        done="Xong rồi!"
+        onStateChange={onStateChange}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+    expect(onStateChange).toHaveBeenLastCalledWith({ i0: 1, i1: 0, i2: 0 });
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+    fireEvent.click(screen.getByRole("button", { name: "4" }));
+    expect(screen.queryByText("Xong rồi!")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+    expect(screen.getByText("Xong rồi!")).toBeInTheDocument();
+    expect(screen.getByText("Đã chọn 2/2")).toBeInTheDocument();
+  });
+
+  it("shows only a count and locks when the answer is shown", () => {
+    render(<Chips items={["2", "3"]} shownState={{ i0: 1, i1: 0 }} />);
+    expect(screen.getByText("Đã chọn 1")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "2" })).toBeDisabled();
   });
 });

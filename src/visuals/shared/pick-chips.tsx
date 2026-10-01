@@ -8,6 +8,14 @@ import { stateSet } from "@/visuals/shared/markers";
 const CHIP =
   "inline-flex min-h-touch min-w-touch items-center justify-center gap-1 rounded-xl border-2 px-4 font-heading text-block font-bold disabled:opacity-60 motion-safe:transition-transform motion-safe:active:scale-97";
 
+// What a pick screen draws: the chips, which of them are right (indices) and
+// the closing line.
+export type ChipsSpec = {
+  items: readonly string[];
+  wants?: readonly number[];
+  done?: string;
+};
+
 // Numbers (or short sums) the child taps to pick. State is one key per chip,
 // { i0, i1, … }, with 1 = picked. With `wants` (the lesson screen) it shows
 // progress and ends on `done` once exactly those chips are picked; in an
