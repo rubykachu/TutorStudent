@@ -11,6 +11,7 @@ Chữ, số mũ hay lựa chọn bị thanh dưới che, tràn màn điện tho�
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 13: 6 FAIL walk do thanh dưới che nội dung.
 - `phep-nhan-phep-chia` vòng 2, visual `gia-dinh-6-4`, `chia-het-tom-tat`: lưới `md:grid-cols-2` trên iPad dọc làm nhãn "Số bị chia", "Thừa số" gãy mỗi từ một dòng. Walk không báo vì chữ không chồng, không tràn; chỉ thấy khi mở ảnh `ipad/`.
 - `so-nguyen-to` vòng 3, visual `bang-100`: `max-h-[32vh]` thu lưới 100 số để vừa màn iPad ngang nên chữ số còn khoảng 14,5px và dấu khái niệm khoảng 5px; walk không báo vì chỉ đo cỡ chữ khai báo, không đo cỡ sau khi SVG co. Sửa một hình cho vừa màn thì đo lại cỡ chữ hiển thị trên ảnh walk.
+- `on-tap-chuong-2` vòng 1, `ex.bai-2-61`: `explain.tex` là khối `aligned` bốn dòng với số chín chữ số, rộng hơn màn 390px nên mọi dòng bị cắt ("= 12 34", "= aaa") mà walk không báo; nhiều `explain.tex` một dòng khác tự xuống dòng ngay sau "⋮", ":". Công thức dài trong `explain` xếp mỗi phép một dòng (`gathered`) và xem ảnh `phone/…-correct`.
 
 ## Nguyên nhân gốc
 
