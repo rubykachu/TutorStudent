@@ -69,6 +69,13 @@ import {
   solveShiftRound,
 } from "@/visuals/math/phep-cong-phep-tru/pair-validators";
 import {
+  INTERACTIVE_KINDS as INT_OPS_INTERACTIVE_KINDS,
+  LESSON_SLUG as INT_OPS_SLUG,
+  VISUAL_SPECS as INT_OPS_SPECS,
+  VALIDATOR_IDS as INT_OPS_VALIDATOR_IDS,
+  regionsOf as intOpsRegions,
+} from "@/visuals/math/phep-cong-phep-tru-so-nguyen/catalog";
+import {
   INTERACTIVE_KINDS,
   mulTableRegions,
   LESSON_SLUG as NHAN_CHIA_SLUG,
@@ -574,9 +581,35 @@ const integerEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "phep-cong-phep-tru-so-nguyen": one per item of its catalog. The
+// point-walking screens reuse the point-placing validator of the lesson on
+// the integers (state { p0 }, the tick the point stands on).
+const intOpsEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(INT_OPS_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in INT_OPS_VALIDATOR_IDS
+        ? INT_OPS_VALIDATOR_IDS[spec.kind as keyof typeof INT_OPS_VALIDATOR_IDS]
+        : undefined;
+    const regions = intOpsRegions(spec);
+    const entry: VisualEntry = {
+      interactive: INT_OPS_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: integerValidators[validatorId] },
+            solutions: { [validatorId]: integerSolutions[validatorId] },
+          }),
+      load: () => lessonExample(INT_OPS_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${INT_OPS_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
+  ...intOpsEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1379,6 +1412,8 @@ const EXAMPLE_MODULES = lessonModules({
   "on-tap-chuong-2": () => import("@/visuals/math/on-tap-chuong-2/examples"),
   "tap-hop-cac-so-nguyen": () =>
     import("@/visuals/math/tap-hop-cac-so-nguyen/examples"),
+  "phep-cong-phep-tru-so-nguyen": () =>
+    import("@/visuals/math/phep-cong-phep-tru-so-nguyen/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
     import("@/visuals/literature/neu-cau-muon-co-mot-nguoi-ban/examples"),
 });
