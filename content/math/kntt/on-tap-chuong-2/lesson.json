@@ -11,7 +11,8 @@
   },
   "title": "Ôn tập chương II",
   "sourceRef": "Sách bài tập tr.44–46, lời giải tr.110",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "d7a8228fa0f061e5fe91ea5dfd76f8e227881998392cd0ed67ad04f3806e78d0",
   "concepts": [
     {
       "id": "on-tap-chuong-2.concept.tong-chu-so",
