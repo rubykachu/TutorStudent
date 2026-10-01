@@ -2505,15 +2505,15 @@
         },
         {
           "type": "formula",
-          "tex": "\\htmlId{pt}{64 + 29 = 60 + ?}"
+          "tex": "\\htmlId{pt}{58 + 37 = 60 + ?}"
         }
       ],
       "answer": {
         "kind": "value",
-        "value": 33
+        "value": 35
       },
       "check": {
-        "expr": "64+29-60"
+        "expr": "58+37-60"
       },
       "hints": {
         "highlight": [
@@ -3099,10 +3099,10 @@
           "text": "Trừ ở hàng chục: hàng chục đã cho mượn nên bớt đi 1. Chọn chữ số viết và số mượn."
         }
       ],
-      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-651-278",
+      "visualId": "phep-cong-phep-tru.visual.cot-tru-hang-chuc-642-275",
       "validatorId": "cot-tinh",
       "params": {
-        "digit": 7,
+        "digit": 6,
         "carry": 1
       },
       "hints": {
@@ -4741,7 +4741,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lớp học bắt đầu lúc 8 giờ 15 phút, tức 7 giờ 75 phút, đường đi mất 35 phút. Phải ra khỏi nhà lúc 7 giờ mấy phút?"
+          "text": "Lớp học bắt đầu lúc 8 giờ 15 phút, tức 7 giờ 75 phút, đường đi mất 28 phút. Phải ra khỏi nhà lúc 7 giờ mấy phút?"
         }
       ],
       "options": [
@@ -4749,35 +4749,35 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "40"
+            "text": "47"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "110"
+            "text": "103"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "15"
+            "text": "13"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "50"
+            "text": "57"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "75-35"
+        "expr": "75-28"
       },
       "hints": {
         "highlight": [

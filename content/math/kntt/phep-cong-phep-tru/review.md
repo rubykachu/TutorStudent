@@ -1,16 +1,19 @@
 # Review: Phép cộng và phép trừ số tự nhiên (`phep-cong-phep-tru`)
 
 - Bài: `content/math/kntt/phep-cong-phep-tru/lesson.json`
-- Vòng: 5 - chỉ phần đổi (`pnpm content:diff`): lời đọc giới thiệu, 3 video (`ghep-tron`, `dat-tinh-tru`, `tim-so-hang`) và khối video đầu 3 section
-- Nguồn đã đọc: không có trang SGK mới; đối chiếu câu quy tắc với `note` của bài và kịch bản `video/projects/phep-cong-phep-tru/*/script.json`
-- `content:check`: 0 lỗi của bài
-- `lesson:walk`: 0 FAIL (chạy sau khi duyệt)
-- Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
-- Bản đã review: `037f2fe5610eb738f61bbf9cbd4771a2d1956ace730464074a739de6d21de591` (`pnpm content:diff` so với bản này)
+- Vòng: 6 - chỉ phần đổi (`pnpm content:diff`), section: `toan-thoi-gian`, `them-bot-cong`, `dat-tinh-tru`
+- Nguồn đã đọc: không có - `sources/math/phep-cong-phep-tru/` không có trên máy; phần đổi chỉ là số liệu của câu và dữ kiện mẫu đã có trong bài nên đối chiếu bằng tự giải và `note` của bài
+- `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường vì bài vừa sửa), 0 cảnh báo
+- `lesson:walk`: không chạy (điều phối không chạy ở vòng này); đã xem ảnh `phep-cong-phep-tru.visual.cot-tru-hang-chuc-651-278` bản iPad và điện thoại
+- Kết luận: 0 Nghiêm trọng, 0 Nên sửa, 4 Góp ý. Đạt; chờ điều phối chạy `pnpm content:hash phep-cong-phep-tru --root content --approve`.
 
-Đã soát: mọi câu của 3 kịch bản và lời đọc giới thiệu. Toán đúng: 34 + 66 = 100, 100 + 268 = 368 (34 + 268 + 66), 45 + 55 = 100, 100 + 27 = 127; 532 - 247 = 285 (2 thành 12 - 7 = 5, chục còn 2 mượn thành 12 - 4 = 8, trăm còn 4 - 2 = 2) và 285 + 247 = 532; 82 - 35 = 47, 47 + 35 = 82, 60 - 18 = 42. Câu đầu có chữ "bạn", một giọng (Mỹ Duyên) cho cả bài, `pnpm video:check` đạt. Câu `rule` khớp `note`; hình không hiện kết quả trước khi được đọc (368, 285, 47, 42 hiện sau lời). Lời đọc giới thiệu khớp `hook`, `summary`, `goals`, `whyItMatters`.
-
-Âm thanh: các câu Whisper khớp dưới 97% (giá "nghìn đồng", "ba" so với "3", "60-18") đều là cách Whisper viết số, không phải đọc sai; nghe lại bằng Whisper của pipeline cho cùng kết quả ("35.000 đồng" = "35 nghìn đồng"). Bộ chuẩn hoá `video/lib/text.ts` nay đọc "35.000" thành "35 nghìn" và "60-18" thành "60 trừ 18" (test `reads Whisper's written thousands and minus as spoken words`); chữ thật sai không bị che vì các chữ khác vẫn so từng âm.
+Đã soát (tự giải, độc lập với diff):
+- `toan-thoi-gian` màn đầu: dữ kiện "Lớp vào học lúc 7 giờ 30 phút" nay là `note` trong cùng group, kèm "Ta tìm giờ Nam ra khỏi nhà", nên không còn nằm trong chữ xám; caption chỉ còn dữ kiện đường đi (8 + 22 + 2 + 8 = 40). Màn sau (7 giờ 30 = 6 giờ 90, 90 - 40 = 50, ra khỏi nhà 6 giờ 50) và recap vẫn khớp. Group có 3 khối, không vượt giới hạn.
+- `chon-gio-di`: 8 giờ 15 = 7 giờ 75; 75 - 35 = 40, tức 7 giờ 40, cộng lại 7 giờ 40 + 35 phút = 8 giờ 15. Nhiễu: 110 = 75 + 35 (cộng thay vì trừ), 15 và 50 đều không phải 75 - 35 (50 = 90 - 40 của màn mẫu; 15 = 50 - 35); chỉ đáp án `a` (40) đúng, khớp `check.expr` 75-35. Không còn cùng đáp án 7 giờ 45 với `tim-gio-xuat-phat` (80 - 35 = 45).
+- `dien-them-bot`: 64 + 29 = 93, 93 - 60 = 33; đáp án 33 khớp `check.expr`. Lấy 4 của 64 cho 29 được 60 và 33. Không còn gần hình gợi ý 47 + 25 (`hint-shift-47-25`), 57 + 26, 49 + 35.
+- `cot-tru-hang-chuc`: 651 - 278. Hàng đơn vị đã giải sẵn: 11 - 8 = 3. Hàng chục: 5 - 1 = 4, 4 nhỏ hơn 7 nên mượn, 14 - 7 = 7, số mượn 1; khớp `params` `digit: 7`, `carry: 1` và khớp `column: 1` của `column-try` trong catalog. Ảnh iPad và điện thoại: cột hàng chục sáng, hiện "-1" và "+10" ở hàng đơn vị, "5 - 1 = 4"; ô kết quả hàng chục là "?", không hiện 7; chữ không chồng, không cắt. Đề "hàng chục đã cho mượn nên bớt đi 1" khớp hình. Không còn chỗ nào nhắc `cot-tru-hang-chuc-541-246` trong `src`, `content`, `video`.
+- Số mới không trùng ví dụ và hình của section: 651 - 278 khác 532 - 247, 586 - 243, 361 - 174, 452 - 187, 725 - 48, 913 - 465, 820 - 345; `chon-gio-di` (35 phút) khác đường đi của `tim-gio-xuat-phat` (10 + 25), mẫu (40) và `tinh-tong-thoi-gian-kt`.
+- Mục khác cùng ba section, không bị bản sửa làm hỏng: recap của `them-bot-cong`, `dat-tinh-tru`, `toan-thoi-gian` vẫn khớp `note` quy tắc (từng chữ); `hint-gio-70-25` và `giai-gio-80-35` thuộc `tim-gio-xuat-phat`, không đổi nên vẫn khớp; `chon-them-bot` (29 + 46 → 30 + 45) vẫn chỉ một đáp án đúng. Nấc 1 của các câu đổi tô phần của đề, không lộ đáp án.
 
 ## Nghiêm trọng
 
@@ -24,19 +27,26 @@ Không có.
 
 ## Góp ý
 
-### 1. Dữ kiện "lớp vào học lúc 7 giờ 30 phút" nằm ở `caption` xám của màn đầu `toan-thoi-gian`
-
-- Vị trí: `sections[toan-thoi-gian].blocks[0].children[1].caption`
-- Vấn đề: Màn sau nhắc lại 7 giờ 30 phút nên trẻ không kẹt, nhưng dữ kiện của bài mẫu trên màn đầu chỉ có ở chữ nhỏ.
-- Sửa: Đưa câu đó trở lại `note`, hay cho vào hình.
-
-### 2. Số gần trùng giữa các câu (LL-07)
-
-- Vị trí: `ex.tim-gio-xuat-phat` và `ex.chon-gio-di` (cùng đáp án 7 giờ 45 phút); `ex.cot-tru-hang-chuc` (541 − 246) với ví dụ 532 − 247; `ex.dien-them-bot` (47 + 26) với `hint-shift-47-25` (47 + 25)
-- Sửa: Đổi một trong mỗi cặp, vd `chon-gio-di` thành 8 giờ 15 phút, đường đi 35 phút.
-
-### 3. Câu quy tắc mượn dài, và "chữ số cuối của kết quả" ở `dat-tinh-cong` dễ lẫn với section "chữ số cuối của tổng"
+### 1. Câu quy tắc mượn dài, và "chữ số cuối của kết quả" ở `dat-tinh-cong` dễ lẫn với section "chữ số cuối của tổng"
 
 - Vị trí: `sections[dat-tinh-tru].blocks[1].children[0].text`; `sections[dat-tinh-cong].blocks[1].children[0].text`
 - Vấn đề: Câu mượn có mệnh đề chen giữa, khó đọc với người học chậm (đúng về kiến thức). "Kết quả" ở câu nhớ chỉ kết quả của hàng đó nhưng cùng từ với section sau.
-- Sửa: Tách câu mượn thành hai câu ngắn; ghi "chữ số cuối của số vừa cộng ở hàng đó".
+- Sửa: Tách câu mượn thành hai câu ngắn; ghi "chữ số cuối của số vừa cộng ở hàng đó". Còn mở vì là câu `rule` nằm trong kịch bản video, sửa phải dựng lại video.
+
+### 2. `chon-gio-di` có đáp án 40 trùng nhiều chỗ trong cùng card (LL-07)
+
+- Vị trí: `ex.chon-gio-di` (đáp án 7 giờ 40 phút); `ex.tim-gio-hai-buoc` (đáp án 6 giờ 40 phút), `ex.tinh-tong-thoi-gian-2` (40 phút), mẫu `lo-trinh-mau` (cả đường 40 phút); cả bốn cùng card `toan-thoi-gian`
+- Vấn đề: Con số 40 lặp ở nhiều câu, nên bé chậm có thể chọn "40" vì quen mắt. Nhiễu 50 chính là đáp án của màn mẫu (6 giờ 50) nên vẫn có ích; không phải lỗi đáp án.
+- Sửa: Đổi đường đi hay giờ vào học để đáp án khác 40, vd đường đi 28 phút, đáp án 47 (nhiễu 103, 57, 13).
+
+### 3. `dien-them-bot` (64 + 29) gần `chon-them-bot` (29 + 46) trong cùng section (LL-07)
+
+- Vị trí: `ex.dien-them-bot`, `ex.chon-them-bot`
+- Vấn đề: Chung số hạng 29, và 64 là 46 đảo chữ số. Đáp án khác nhau (93 và 75) nên không lộ, chỉ dễ nhớ lẫn.
+- Sửa: Đổi một câu, vd 58 + 37 = 60 + ? (đáp án 35).
+
+### 4. `cot-tru-hang-chuc` có đáp án (7, mượn 1) giống `cot-tru-kiem-tra` và chữ số 7 đã hiện trên hình
+
+- Vị trí: `ex.cot-tru-hang-chuc` (`params.digit: 7, carry: 1`); `ex.cot-tru-kiem-tra` (725 - 48, `digit: 7, carry: 1`)
+- Vấn đề: Hai câu cùng section có chung cặp đáp án, và chữ số 7 của số trừ (278) nằm ngay cột đang làm nên bé có thể bấm 7 mà không tính 14 - 7. Hình gợi ý "-1" đã nêu việc phải làm, nên không chặn học.
+- Sửa: Chọn số cho chữ số viết khác 7 và khác chữ số của số trừ ở hàng chục, vd 642 - 275 (hàng chục: 4 - 1 = 3, 13 - 7 = 6, số mượn 1).
