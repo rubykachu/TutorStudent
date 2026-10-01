@@ -1,8 +1,8 @@
 import { ConceptShape } from "@/visuals/shared/concept-mark";
 import { decorative } from "@/visuals/shared/markers";
 
-const COLUMN = 11;
-const LEFT = 22;
+const COLUMN = 12.5;
+const LEFT = 19.5;
 const TOP_Y = 40;
 const BOTTOM_Y = 60;
 // Two rows of marks over the same six places: the top row every 2 places,
@@ -28,9 +28,9 @@ export default function Sticker() {
       <g {...decorative}>
         <circle cx={50} cy={50} r={48} className="fill-highlight" />
         <rect
-          x={10}
+          x={9}
           y={24}
-          width={80}
+          width={82}
           height={52}
           rx={10}
           className="fill-surface stroke-concept-violet"
@@ -51,7 +51,7 @@ export default function Sticker() {
             color="sky"
             cx={xOf(place)}
             cy={TOP_Y}
-            r={5.5}
+            r={6}
           />
         ))}
         {BOTTOM.map((place) => (
@@ -60,14 +60,14 @@ export default function Sticker() {
             color="amber"
             cx={xOf(place)}
             cy={BOTTOM_Y}
-            r={5.5}
+            r={6}
           />
         ))}
         <ConceptShape
           color="pink"
           cx={xOf(MEET)}
           cy={(TOP_Y + BOTTOM_Y) / 2}
-          r={7}
+          r={8}
           className="stroke-surface"
           strokeWidth={2}
         />
