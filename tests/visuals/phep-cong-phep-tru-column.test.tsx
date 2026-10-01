@@ -70,6 +70,7 @@ describe("ColumnTry", () => {
         a={958}
         b={467}
         column={0}
+        params={{}}
         onStateChange={onStateChange}
       />,
     );
@@ -91,6 +92,7 @@ describe("ColumnTry", () => {
         a={703}
         b={268}
         column={1}
+        params={{}}
         onStateChange={onStateChange}
       />,
     );
@@ -119,6 +121,7 @@ describe("ColumnTry", () => {
         a={58}
         b={27}
         column={0}
+        params={{}}
         shownState={{ digit: 5, carry: 1 }}
       />,
     );

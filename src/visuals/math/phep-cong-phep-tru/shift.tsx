@@ -6,6 +6,12 @@ import { useState } from "react";
 import type { ConceptColor } from "@/schema/content";
 import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
+import {
+  DoneLine,
+  isLessonScreen,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -19,8 +25,9 @@ import {
   NumberChip,
   OP_SIGN,
   RoundBadge,
+  roundLabel,
 } from "./arrange-parts";
-import { shiftRound } from "./pair-validators";
+import { shiftRound, solveShiftRound } from "./pair-validators";
 import { formatNumber, type Op, type StepsMode } from "./types";
 
 // Steps of the animated shift: the two numbers, the change moving over them,
@@ -352,11 +359,14 @@ type ShiftTryProps = VisualProps & {
 };
 
 // The child moves k from the first addend to the second and watches the
-// total stay while the second becomes round. Reports { k }.
+// total stay while the second becomes round. Reports { k }. On a lesson screen
+// (no `params`) "Tiếp" waits until the second number is round, or "Xem cách
+// làm" moves the right k.
 export function ShiftTry({
   a,
   b,
   unit,
+  params,
   onStateChange,
   shownState,
   disabled = false,
@@ -365,6 +375,12 @@ export function ShiftTry({
   const k = shownState?.k ?? own;
   const locked = disabled || shownState !== undefined;
   const round = shiftRound({ k }, { a, b, unit });
+  const guided = isLessonScreen(params);
+  const { shown } = useGuidedGoal({
+    met: round,
+    guided,
+    reveal: () => update(solveShiftRound({ a, b, unit }).k ?? 0),
+  });
 
   function update(value: number) {
     setOwn(value);
@@ -392,12 +408,22 @@ export function ShiftTry({
         aria-live="polite"
       >
         <RoundBadge round={round} unit={unit} />
-        {round && (
+        {round && !guided && (
           <p className="text-body font-semibold text-correct md:text-body-lg">
             Đúng rồi.
           </p>
         )}
       </div>
+      {guided && round && !shown && (
+        <DoneLine data-shift-done>
+          {`Đúng rồi! ${formatNumber(b + k)} là số ${roundLabel(unit).toLocaleLowerCase("vi")}, tổng vẫn là ${formatNumber(a + b)}.`}
+        </DoneLine>
+      )}
+      {guided && shown && (
+        <ShownLine data-shift-shown>
+          {`Chuyển ${k} sang ${formatNumber(b)} được ${formatNumber(b + k)}, tổng vẫn là ${formatNumber(a + b)}.`}
+        </ShownLine>
+      )}
     </figure>
   );
 }

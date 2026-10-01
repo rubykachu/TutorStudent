@@ -2,11 +2,17 @@
 
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
-import { Fragment, useId, useState } from "react";
+import { Fragment, useId } from "react";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
+import {
+  DoneLine,
+  isLessonScreen,
+  ShownLine,
+  useGuidedPick,
+} from "@/visuals/shared/guided-feedback";
 import { stateSet } from "@/visuals/shared/markers";
 import { useVisualTransition } from "@/visuals/shared/motion";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -18,6 +24,7 @@ import {
   RoundBadge,
   roundLabel,
 } from "./arrange-parts";
+import { pairRound, solvePairRound } from "./pair-validators";
 import { formatNumber, type StepsMode } from "./types";
 
 // Steps of the animated regrouping: the addends in their own order, the
@@ -288,28 +295,61 @@ type PairTryProps = VisualProps & {
   unit: number;
 };
 
+const PAIR_CHIP_TONE = {
+  right: "border-correct bg-correct text-primary-foreground",
+  wrong: "border-dashed border-retry bg-retry-soft text-retry-soft-foreground",
+} as const;
+
 // The child taps two numbers whose sum is round. Each chip is a toggle that
 // reports pick<i> = 0 | 1; a live line shows the pair's sum and whether it is
 // round.
+//
+// On a lesson screen (no `params`) it is a guided step: two numbers at most
+// are chosen (a new pick pushes out the oldest) and the pair is judged as
+// soon as two are chosen. Right: the chips turn green, the jingle plays and
+// the closing line shows; wrong: the numbers that are not in the round pair
+// are marked and the child tries again, with nothing revealed. "Xem cách làm"
+// chooses the round pair. In an exercise (`params`) the picks are free and the
+// validator decides.
 export function PairTry({
   numbers,
   unit,
+  params,
   onStateChange,
   shownState,
   disabled = false,
 }: PairTryProps) {
-  const [own, setOwn] = useState<readonly number[]>(() => numbers.map(() => 0));
+  const pairParams = {
+    unit,
+    ...Object.fromEntries(numbers.map((n, i) => [`n${i}`, n])),
+  };
+  const wants = isLessonScreen(params)
+    ? Object.keys(solvePairRound(pairParams)).map((key) =>
+        Number(key.slice("pick".length)),
+      )
+    : undefined;
+  const { shown, verdict, accepted, chosen, wrongPicks, toggle } =
+    useGuidedPick({
+      size: numbers.length,
+      wants,
+      isRight: (next) =>
+        pairRound(
+          Object.fromEntries(next.map((i) => [`pick${i}`, 1] as const)),
+          pairParams,
+        ),
+    });
   const picks = numbers.map((_, i) =>
-    shownState ? (shownState[`pick${i}`] ?? 0) : (own[i] ?? 0),
+    shownState ? (shownState[`pick${i}`] ?? 0) : chosen.includes(i) ? 1 : 0,
   );
-  const locked = disabled || shownState !== undefined;
+  const locked = disabled || shownState !== undefined || accepted;
   const picked = numbers.flatMap((n, i) => (picks[i] === 1 ? [n] : []));
 
-  function toggle(index: number) {
-    const next = picks.map((v, i) => (i === index ? 1 - v : v));
-    setOwn(next);
+  function pick(index: number) {
+    const next = toggle(index);
     onStateChange?.(
-      Object.fromEntries(next.map((v, i) => [`pick${i}`, v] as const)),
+      Object.fromEntries(
+        numbers.map((_, i) => [`pick${i}`, next.includes(i) ? 1 : 0] as const),
+      ),
     );
   }
 
@@ -319,6 +359,14 @@ export function PairTry({
       ? first + second
       : undefined;
   const round = pair !== undefined && pair % unit === 0;
+  const chipTone = (i: number) =>
+    wrongPicks.includes(i)
+      ? PAIR_CHIP_TONE.wrong
+      : accepted && picks[i] === 1
+        ? PAIR_CHIP_TONE.right
+        : picks[i] === 1
+          ? "border-foreground bg-highlight"
+          : `bg-surface ${CONCEPT_CLASSES.blue.border}`;
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
@@ -333,13 +381,14 @@ export function PairTry({
               type="button"
               aria-pressed={on}
               disabled={locked}
-              onClick={() => toggle(i)}
+              data-wrong={wrongPicks.includes(i) || undefined}
+              onClick={() => pick(i)}
               {...stateSet(`pick${i}`, 1)}
-              className={`inline-flex min-h-touch min-w-16 items-center justify-center rounded-xl border-2 px-4 font-heading text-title font-bold tabular-nums motion-safe:transition-transform motion-safe:active:scale-97 disabled:opacity-100 ${CONCEPT_CLASSES.blue.text} ${
-                on
-                  ? "border-foreground bg-highlight"
-                  : `bg-surface ${CONCEPT_CLASSES.blue.border}`
-              }`}
+              className={`inline-flex min-h-touch min-w-16 items-center justify-center rounded-xl border-2 px-4 font-heading text-title font-bold tabular-nums motion-safe:transition-transform motion-safe:active:scale-97 disabled:opacity-100 ${
+                (accepted && on) || wrongPicks.includes(i)
+                  ? ""
+                  : CONCEPT_CLASSES.blue.text
+              } ${chipTone(i)}`}
             >
               {formatNumber(n)}
             </button>
@@ -381,14 +430,27 @@ export function PairTry({
               </span>
             </p>
             <RoundBadge round={round} unit={unit} />
-            {round && (
+            {round && wants === undefined && (
               <p className="text-body font-semibold text-correct md:text-body-lg">
                 Đúng rồi.
+              </p>
+            )}
+            {verdict === "wrong" && (
+              <p className="text-center text-caption font-semibold text-retry-soft-foreground">
+                Chưa đúng. Bỏ chọn số chưa phải rồi thử lại nhé.
               </p>
             )}
           </>
         )}
       </div>
+      {verdict === "right" && pair !== undefined && (
+        <DoneLine data-pair-done>
+          {`Đúng rồi! ${formatNumber(pair)} là số ${roundLabel(unit).toLocaleLowerCase("vi")}, cộng hai số này trước cho dễ.`}
+        </DoneLine>
+      )}
+      {shown && (
+        <ShownLine data-pair-shown>Hai số tô xanh là đáp án.</ShownLine>
+      )}
     </div>
   );
 }

@@ -74,6 +74,7 @@ describe("PairTry", () => {
       <PairTry
         numbers={[21, 40, 79]}
         unit={100}
+        params={{}}
         onStateChange={onStateChange}
       />,
     );
@@ -98,7 +99,7 @@ describe("PairTry", () => {
   });
 
   it("asks for exactly two when three are picked", () => {
-    render(<PairTry numbers={[21, 40, 79]} unit={10} />);
+    render(<PairTry numbers={[21, 40, 79]} unit={10} params={{}} />);
     for (const name of ["21", "40", "79"]) {
       fireEvent.click(screen.getByRole("button", { name }));
     }
@@ -122,7 +123,15 @@ describe("PairTry", () => {
 describe("ShiftTry", () => {
   it("reports { k } and meets shiftRound for 38 + 47 at k = 3", () => {
     const onStateChange = vi.fn();
-    render(<ShiftTry a={38} b={47} unit={10} onStateChange={onStateChange} />);
+    render(
+      <ShiftTry
+        a={38}
+        b={47}
+        unit={10}
+        params={{}}
+        onStateChange={onStateChange}
+      />,
+    );
     const up = screen.getByRole("button", { name: "Tăng số chuyển" });
     fireEvent.click(up);
     fireEvent.click(up);

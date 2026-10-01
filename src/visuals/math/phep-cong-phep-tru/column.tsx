@@ -5,6 +5,12 @@ import type { ConceptColor } from "@/schema/content";
 import type { VisualProps } from "@/visuals/registry";
 import { CONCEPT_CLASSES } from "@/visuals/shared/concept";
 import { ConceptMark } from "@/visuals/shared/concept-mark";
+import {
+  DoneLine,
+  isLessonScreen,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { Reveal } from "@/visuals/shared/reveal";
 import { StepPlayer } from "@/visuals/shared/step-player";
@@ -409,12 +415,16 @@ function workingSum(op: Op, model: ColumnModel, column: number): string {
 
 // Guided practice on one place of a column calculation: the places to its
 // right are finished, it takes the digit to write and the carry (add) or
-// borrow (sub) the child picks, and the places to its left wait as "?".
+// borrow (sub) the child picks, and the places to its left wait as "?". On a
+// lesson screen (no `params`) the pick is judged live: once it is right the
+// jingle plays and the closing line shows, "Tiếp" waits until then, and "Xem
+// cách làm" sets the right digit and carry.
 export function ColumnTry({
   op,
   a,
   b,
   column,
+  params,
   onStateChange,
   shownState,
   disabled = false,
@@ -486,6 +496,16 @@ export function ColumnTry({
   const right =
     answered && digit === expected.digit && carry === expected.carry;
   const carryName = op === "add" ? "Số nhớ" : "Số mượn";
+  const guided = isLessonScreen(params);
+  const { shown } = useGuidedGoal({
+    met: right,
+    guided,
+    reveal: () => {
+      setTouched(true);
+      update(expected);
+    },
+  });
+  const outcome = `viết ${digit}, ${carryName.toLocaleLowerCase("vi")} ${carry}`;
   const label = `${describe(op, a, b)}, làm cột thứ ${column + 1} từ phải sang`;
 
   return (
@@ -515,16 +535,26 @@ export function ColumnTry({
       <p className="text-center text-body font-semibold tabular-nums md:text-body-lg">
         {workingSum(op, model, column)}
       </p>
-      <p
-        className={`text-center text-caption ${right ? "font-semibold text-foreground" : "text-muted-foreground"}`}
-        aria-live="polite"
-      >
-        {right
-          ? "Đúng rồi."
-          : op === "add"
-            ? "Chọn chữ số viết và số nhớ."
-            : "Chọn chữ số viết và số mượn."}
-      </p>
+      {!(guided && right) && (
+        <p
+          className={`text-center text-caption ${right ? "font-semibold text-foreground" : "text-muted-foreground"}`}
+          aria-live="polite"
+        >
+          {right
+            ? "Đúng rồi."
+            : op === "add"
+              ? "Chọn chữ số viết và số nhớ."
+              : "Chọn chữ số viết và số mượn."}
+        </p>
+      )}
+      {guided && right && !shown && (
+        <DoneLine
+          data-column-done
+        >{`Đúng rồi! Ở cột này ${outcome}.`}</DoneLine>
+      )}
+      {guided && right && shown && (
+        <ShownLine data-column-shown>{`Ở cột này ${outcome}.`}</ShownLine>
+      )}
       <Legend op={op} />
     </div>
   );
