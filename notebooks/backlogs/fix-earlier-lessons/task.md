@@ -137,3 +137,5 @@ Cột "Quyết định": **sửa** = làm trong lần này; **bỏ** = không l�
 ## Tiến độ
 
 Cập nhật khi từng bài xong (commit, review, duyệt, khoá).
+
+Kết quả 02/10/2026: 76 mục kiểm kê (có mục gộp nhiều chỗ nhỏ cùng loại): 23 sửa và đã duyệt, 1 đã sửa từ trước, 52 bỏ kèm lý do. Chín bài đổi (`tap-hop`, `phep-cong-phep-tru`, `phep-nhan-phep-chia`, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `quan-he-chia-het-va-tinh-chat`, `dau-hieu-chia-het`, `so-nguyen-to`, `neu-cau-muon-co-mot-nguoi-ban`), mỗi bài một reviewer vòng chỉ phần đổi, 0 Nghiêm trọng, đã `content:hash --approve` và `content:lock`; `uoc-chung-uoc-chung-lon-nhat` không có mục nào sửa được. `content:check` 0 lỗi (9 cảnh báo `[guides]` có từ trước). `lesson:walk`: 0 lỗi ở tám bài; `phep-nhan-phep-chia` báo 4 lỗi "bottom bar covers" ở `tinh-tuan-ngay-correct` (iPad), cũng báo đúng như vậy ở bản trước mọi thay đổi này, nên không do lần sửa này; cần người giữ app xem lời giải `tinh-tuan-ngay` dưới thanh nút.
