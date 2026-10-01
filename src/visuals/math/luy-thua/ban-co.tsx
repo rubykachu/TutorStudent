@@ -5,6 +5,12 @@ import { useState } from "react";
 import { formatInteger } from "@/lib/number-format";
 import type { VisualProps } from "@/visuals/registry";
 import { ACTION_BUTTON } from "@/visuals/shared/action-button";
+import {
+  DoneLine,
+  isLessonScreen,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { decorative, stateStep, stateStepper } from "@/visuals/shared/markers";
 import {
   BOARD_SIZE,
@@ -151,8 +157,10 @@ function Zoom({ square }: { square: number }) {
 
 // The opening story of the lesson: the child walks the chessboard square by
 // square and sees the grains double, together with the product of 2s that
-// counts them.
+// counts them. On a lesson screen (no `params`) "Tiếp" waits until the child
+// has been to the last square, or "Xem cách làm" goes there.
 export default function BanCo({
+  params,
   onStateChange,
   shownState,
   disabled = false,
@@ -162,6 +170,13 @@ export default function BanCo({
   const locked = disabled || shownState !== undefined;
   const factors = factorsOn(square);
   const grains = formatInteger(grainsOn(square));
+  const guided = isLessonScreen(params);
+  const atLast = square === SQUARE_COUNT;
+  const { shown } = useGuidedGoal({
+    met: atLast,
+    guided,
+    reveal: () => go(SQUARE_COUNT),
+  });
 
   function go(next: number) {
     setOwnSquare(next);
@@ -227,6 +242,14 @@ export default function BanCo({
           <ChevronsRight aria-hidden className="size-5" />
         </button>
       </div>
+      {guided && atLast && !shown && (
+        <DoneLine data-board-done>
+          Đúng rồi! Em đã đến ô cuối: ô thứ {SQUARE_COUNT}.
+        </DoneLine>
+      )}
+      {guided && atLast && shown && (
+        <ShownLine data-board-shown>Ô cuối là ô thứ {SQUARE_COUNT}.</ShownLine>
+      )}
     </div>
   );
 }

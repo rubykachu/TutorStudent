@@ -5,6 +5,12 @@ import { useState } from "react";
 import type { VisualProps } from "@/visuals/registry";
 import { ACTION_BUTTON } from "@/visuals/shared/action-button";
 import { BeadGroup } from "@/visuals/shared/bead-group";
+import {
+  DoneLine,
+  isLessonScreen,
+  ShownLine,
+  useGuidedGoal,
+} from "@/visuals/shared/guided-feedback";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
 import { PowerText } from "@/visuals/shared/power-text";
 import { Reveal } from "@/visuals/shared/reveal";
@@ -15,8 +21,11 @@ const BASE = 2;
 const START = { m: 1, n: 1 };
 
 // The child picks both exponents of 2ᵐ · 2ⁿ and merges the two groups of
-// factors to see that the exponents add up.
+// factors to see that the exponents add up. On a lesson screen (no `params`)
+// "Tiếp" waits until the child has merged the groups, or "Xem cách làm"
+// merges them.
 export default function GhepLuyThua({
+  params,
   onStateChange,
   shownState,
   disabled = false,
@@ -27,6 +36,12 @@ export default function GhepLuyThua({
   const n = shownState?.n ?? own.n;
   const merged = shownState !== undefined || ownMerged;
   const locked = disabled || shownState !== undefined;
+  const guided = isLessonScreen(params);
+  const { shown } = useGuidedGoal({
+    met: merged,
+    guided,
+    reveal: () => setOwnMerged(true),
+  });
 
   function update(next: { m: number; n: number }) {
     setOwn(next);
@@ -98,6 +113,16 @@ export default function GhepLuyThua({
         )}
         {merged ? "Tách ra" : "Ghép lại"}
       </button>
+      {guided && merged && !shown && (
+        <DoneLine data-merge-done>
+          {`Đúng rồi! Hai nhóm ghép thành một nhóm: ${m} + ${n} = ${m + n} thừa số 2.`}
+        </DoneLine>
+      )}
+      {guided && merged && shown && (
+        <ShownLine data-merge-shown>
+          {`Hai nhóm ghép thành một nhóm: ${m} + ${n} = ${m + n} thừa số 2.`}
+        </ShownLine>
+      )}
     </div>
   );
 }
