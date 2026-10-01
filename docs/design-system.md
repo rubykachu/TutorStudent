@@ -37,6 +37,8 @@ Chỉ giao diện sáng. Mọi cặp chữ/nền đã kiểm tra tương phản 
 | `--color-subject-math` | `#2563EB` | Toán | 5.17 |
 | `--color-subject-literature` | `#B4533F` | Ngữ văn (hồng đất) | 4.94 |
 | `--color-subject-geography` | `#0F766E` | Địa lí (xanh ngọc) | 5.47 |
+| `--color-subject-amber` | `#8A5A00` | Lịch sử (vàng đất) | 5.93 |
+| `--color-subject-violet` | `#6D28D9` | Khoa học tự nhiên (tím) | 7.10 |
 
 Địa lí dùng xanh ngọc thay vì xanh lá để không trùng màu "đúng".
 
@@ -140,6 +142,10 @@ Nấc 1 không tô vàng; chữ duy nhất là câu động viên trong bong bó
 Ô bé chọn mà sai ở nấc 1-3 giữ nguyên là đã chọn (dấu chọn còn) nhưng viền `--color-retry` nét đứt (`WRONG_PICK_TONE`); đáp án của bé không bao giờ bị máy bỏ chọn hay sửa. Chip của màn lý thuyết "cùng làm" (`Chips` có `wants`): đúng thì chip `--color-correct` nền đặc kèm dấu ✓, sai thì nền `--color-retry-soft`, viền cam nét đứt; nút phụ "Xem cách làm" (viền `--color-border`, biểu tượng mắt) nằm trong thanh dưới bên trái "Tiếp" (đang tắt) khi chưa xong, cùng cách xếp với nút "Bỏ qua" của bài tập.
 
 Sau khi đúng, thanh dưới có hai nút chia đôi: "Làm lại" (phụ, bên trái) và "Tiếp" (chính, bên phải).
+
+**Ô môn khoá và màn "Chọn lớp":** môn chưa có bài xuất bản trong lớp là ô khoá: nền `--color-surface`, viền `--color-border` 2px, biểu tượng môn tô màu môn trên vòng `--color-muted`, ổ khoá trên vòng `--color-muted` ở chỗ vòng tiến độ, dòng "Sắp ra mắt"; không có cảnh vũ trụ, không bấm được. Nút "Lớp n" (huy hiệu viền `--color-border`, nền `--color-surface`, cao ≥ 48px) nằm dưới lời chào ở trang chủ. Màn `/grades`: lưới 3 cột trên điện thoại, 4 cột từ máy tính bảng, mỗi ô một icon vũ trụ, số lớp to (Baloo) và, nếu khoá, ổ khoá ở góc trên phải kèm "Sắp ra mắt" (một dòng). Lớp mở: nền `--color-primary`, chữ trắng; lớp đang học có dấu ✓ ở góc và vòng `--color-ring`. Ô "Bạn học lớp mấy?" trong form hồ sơ: 12 ô số, lớp khoá nét đứt, mờ, có ổ khoá nhỏ.
+
+Khi khung "Giải thích" hiện, trang được kéo lên đủ để cả khung nằm trên thanh dưới nhưng đỉnh khung còn cách mép trên 16px (khung cao hơn màn hình thì hiện từ đầu), và theo dõi 1,5 giây đầu khi hình lời giải nở ra.
 
 **Khung "Giải thích"** (`ExplanationPanel`): hiện ngay dưới thẻ trả lời mỗi khi đáp án đã lộ (đúng, sau lần sai thứ 3, sau "Bỏ qua", xem lại câu đã xong), nằm trong luồng trang, trên thanh nút cố định để "Tiếp" luôn bấm được. Thẻ nền `--color-surface`, viền `--color-primary` mờ 3px, tiêu đề "Giải thích" (Baloo, `--color-primary`, biểu tượng bóng đèn); đã có `explain` thì hiện chữ, công thức và hình, `wrong` thành các dòng "phương án — lý do" (phương án tô nền `--color-retry-soft`, chữ `--color-retry-soft-foreground`, không đỏ); chưa có thì tiêu đề "Lời giải" với hình lời giải và dòng "Đáp án". Chữ tối đa 3 câu, vì vậy không cuộn dài. Sau "Bỏ qua" cú im lặng.
 

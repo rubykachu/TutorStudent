@@ -51,10 +51,16 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 
 ## Thêm môn mới
 
-1. Thêm một mục vào `content/subjects.json`: `id`, `name`, `color` (một token của bảng màu môn trong `src/schema/content.ts`), `icon`, `language` (`vi` hoặc `en`; luật chữ tiếng Việt chỉ áp cho `vi`), `rules` (`checkExpr`, `verbatimPassage`, `requiresOpenEnded`), `series` và `defaultSeries`.
+1. Thêm một mục vào `content/subjects.json`: `id`, `name`, `color` (một token của bảng màu môn trong `src/schema/content.ts`), `icon`, `language` (`vi` hoặc `en`; luật chữ tiếng Việt chỉ áp cho `vi`), `rules` (`checkExpr`, `verbatimPassage`, `requiresOpenEnded`), `series` (mỗi bộ có `grade` từ 1 đến 12) và `defaultSeries`.
 2. Tạo `content/glossary/<id>.json` (thuật ngữ chuẩn của môn; có thể để danh sách rỗng).
 3. Nếu cần màu hay icon mới: thêm vào danh sách ở `src/schema/content.ts`, biến `--color-subject-<token>` ở `src/app/globals.css` và bảng ở `src/components/subject-style.ts` (TypeScript báo thiếu).
-4. Chạy `pnpm content:check`, rồi soạn bài đầu tiên bằng `/import-source`.
+4. Chạy `pnpm content:check`, rồi soạn bài đầu tiên bằng `/import-source`. Đến khi có bài đã xuất bản đầu tiên, ô môn ở trang chủ hiện khoá "Sắp ra mắt" (suy ra từ nội dung, không cần khai gì).
+
+## Thêm lớp mới
+
+1. Trong `content/subjects.json`, thêm một bộ sách vào `series` của môn với `grade` là lớp đó (1 đến 12; `id` bộ sách không trùng bộ khác của môn, vd `kntt-7`). Môn chưa dạy lớp này thì thêm mục môn (xem "Thêm môn mới") với bộ sách của lớp.
+2. Soạn bài vào `content/<môn>/<bộ sách>/<bài>/` với `"grade"` trong `lesson.json` bằng `grade` của bộ sách (`content:check` báo lệch).
+3. Không cần sửa code: lớp tự mở ở màn "Chọn lớp" và ở form hồ sơ khi có bài đầu tiên được xuất bản, và trang chủ của lớp đó liệt kê các môn có bộ sách của lớp (môn chưa có bài thì khoá).
 
 ## Dọn dẹp và Go-live
 

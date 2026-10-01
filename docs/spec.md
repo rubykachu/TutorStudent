@@ -27,8 +27,12 @@ Quy mô: 2–3 gia đình, mỗi gia đình 1+ hồ sơ con. Hiện dùng phi th
 | Toán 6 | Kết nối tri thức với cuộc sống |
 | Ngữ văn 6 | Chân trời sáng tạo |
 | Lịch sử và Địa lí 6 (phần Địa lí) | Kết nối tri thức với cuộc sống |
+| Lịch sử và Địa lí 6 (phần Lịch sử) | Kết nối tri thức với cuộc sống |
+| Khoa học tự nhiên 6 | Kết nối tri thức với cuộc sống |
 
-Mỗi hồ sơ con khai báo bộ sách cho từng môn. Nội dung chỉ có cho bộ sách đã được soạn; bộ khác hiển thị "chưa có bài".
+Mỗi hồ sơ con khai báo bộ sách cho từng môn. Nội dung chỉ có cho bộ sách đã được soạn.
+
+**Lớp (1–12).** Mỗi bộ sách (`series` trong `content/subjects.json`) thuộc đúng một lớp (`grade`), nên một môn dạy nhiều lớp bằng cách khai một bộ sách cho mỗi lớp; lớp của một bài là lớp của bộ sách của nó (`content:check` báo lỗi khi `grade` trong `lesson.json` lệch). Hồ sơ con lưu `grade` (mặc định 6; hồ sơ lưu trước khi có lớp được chuyển sang 6 khi mở cơ sở dữ liệu, tiến độ giữ nguyên). Trang chủ chỉ liệt kê các môn có bộ sách của lớp đó (thứ tự theo `subjects.json`), bộ sách của một môn trong lớp là bộ bé đã chọn nếu thuộc lớp đó, không thì bộ mặc định của môn nếu thuộc lớp đó, không thì bộ đầu tiên của lớp. Khoá được suy ra từ nội dung, không khai tay: môn không có bài đã xuất bản trong lớp thì khoá; lớp không có bài đã xuất bản nào thì khoá (`openGrades` trong `src/content/grades.ts`). Thêm bài xuất bản đầu tiên cho một môn hay một lớp là đủ để mở khoá.
 
 ### User stories chính
 1. Trẻ mở app → chọn hồ sơ (máy nhớ lựa chọn cuối) → chọn môn/bài để học. Bài đã học có nút **"Ôn bài này"**, bấm lúc nào cũng được; app hỏi những thẻ bé đang dễ quên nhất (~5 phút). Không có lịch ôn bắt buộc.
@@ -183,7 +187,8 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 Subject      { id, name, color (token bảng màu), icon, language: "vi" | "en",
                rules: { checkExpr, verbatimPassage, requiresOpenEnded }, series[], defaultSeries }
              # cấu hình theo môn chỉ nằm ở content/subjects.json; luật chữ tiếng Việt (âm tiết, số, độ dài câu) chỉ áp cho môn language "vi"
-Lesson       { id, subject, series, grade: 6, order, kind?: "review", number?, chapter?: { numeral, name }, title, sourceRef (vd "SGK tr.22–24"),
+Series       { id, name, grade (1–12) }   # mỗi bộ sách thuộc một lớp; Subject.series[] liệt kê các bộ
+Lesson       { id, subject, series, grade (= grade của series), order, kind?: "review", number?, chapter?: { numeral, name }, title, sourceRef (vd "SGK tr.22–24"),
                status: "draft" | "published", reviewedHash?, concepts[], sections[], cards[], exercises[], sticker,
                videos?, overview? }
              # bài có thể có thêm `tips.json` cạnh `lesson.json` (xem TipsFile)
@@ -319,8 +324,9 @@ Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài,
 
 ### 5.5 Luồng học của trẻ
 - **Chọn hồ sơ:** sau khi mở khoá, chọn hồ sơ con (avatar lớn); máy nhớ lựa chọn cuối, đổi được từ góc màn hình.
-- **Sửa hồ sơ:** gia đình đổi được tên và avatar sau khi tạo. Lối vào duy nhất là nút nhỏ "Sửa" dưới mỗi thẻ ở màn chọn hồ sơ ("Ai đang học đấy?"), tới được từ nút "Đổi hồ sơ" ở trang chủ. Nút mở lại form tạo hồ sơ (cùng ô tên và lưới avatar, tên giới hạn `PROFILE_NAME_MAX_LENGTH`, không cho tên trống; avatar phát tiếng riêng khi chọn) điền sẵn giá trị hiện tại, tiêu đề "Sửa hồ sơ", nút "Lưu" và "Quay lại" không lưu. Lưu xong màn trở về danh sách, không đổi bé đang học. Chỉ bản ghi hồ sơ đổi (`updateProfile` trong `src/progress/hooks.ts`): `id` (là `childId` của mọi bản ghi tiến độ), bộ sách và ngày tạo giữ nguyên nên tiến độ không mất. Tên không cần khác tên bé khác (không có kiểm trùng khi tạo). Chưa có xoá hồ sơ.
-- **Trang chủ:** lời chào kèm avatar của bé + linh vật (chuỗi ngày chỉ còn ở trang phụ huynh) + lưới danh hiệu ngay dưới lời chào ("Danh hiệu của bạn", "Đã nhận n/m": cao tối đa hai hàng ở mọi khổ màn hình, sticker mới nhận nhất trước rồi các sticker chưa nhận dạng bóng xám tô dần từ dưới lên theo số phần đã xong, nên không bao giờ trống và không đẩy nội dung học xuống khi có thêm sticker; quá hai hàng thì ô "+k" và "Xem tất cả" mở bộ sưu tập đủ sticker; chạm một sticker mở bảng chi tiết có hiệu ứng lặp, tiếng và nút "Nghe nhạc" phát một bài ngẫu nhiên, xem `docs/design-system.md` mục Danh hiệu trên trang chủ) + thẻ "Học tiếp" vào thẳng phần đầu tiên chưa xong của bài (bài học gần nhất chưa xong; học xong một bài thì bài kế của môn đó; chưa học gì thì bài đầu tiên, trẻ mới thấy "Bắt đầu học"; nếu một phần sau đang học dở thì thêm dòng phụ "Đang dở: Phần k") + lưới môn học (luôn có dòng phụ: "Sắp có bài", "n bài · Chưa học", "n bài · Đang học phần k", "Xong d/n bài") + nhắc môn lâu chưa học (> 3 ngày).
+- **Chọn lớp:** màn `/grades` ("Chọn lớp", nút "Lớp n" dưới lời chào ở trang chủ mở màn này) có 12 ô lớp trên nền vũ trụ, mỗi ô một icon và số lớp; ô lớp đã có bài xuất bản bấm được (lớp đang học có dấu ✓ và viền), chọn thì lưu `grade` vào hồ sơ rồi về trang chủ; các lớp khác hiện khoá và dòng "Sắp ra mắt", không bấm được. Form tạo và sửa hồ sơ có thêm nhóm "Bạn học lớp mấy?" (12 ô số, chỉ lớp đã mở chọn được, lớp khoá mờ nét đứt kèm ổ khoá). Đổi lớp chỉ đổi `grade` của hồ sơ (`setProfileGrade`, `updateProfile`), tiến độ giữ nguyên.
+- **Sửa hồ sơ:** gia đình đổi được tên, avatar và lớp sau khi tạo. Lối vào duy nhất là nút nhỏ "Sửa" dưới mỗi thẻ ở màn chọn hồ sơ ("Ai đang học đấy?"), tới được từ nút "Đổi hồ sơ" ở trang chủ. Nút mở lại form tạo hồ sơ (cùng ô tên và lưới avatar, tên giới hạn `PROFILE_NAME_MAX_LENGTH`, không cho tên trống; avatar phát tiếng riêng khi chọn) điền sẵn giá trị hiện tại, tiêu đề "Sửa hồ sơ", nút "Lưu" và "Quay lại" không lưu. Lưu xong màn trở về danh sách, không đổi bé đang học. Chỉ bản ghi hồ sơ đổi (`updateProfile` trong `src/progress/hooks.ts`): `id` (là `childId` của mọi bản ghi tiến độ), bộ sách và ngày tạo giữ nguyên nên tiến độ không mất. Tên không cần khác tên bé khác (không có kiểm trùng khi tạo). Chưa có xoá hồ sơ.
+- **Trang chủ:** lời chào kèm avatar của bé + linh vật (chuỗi ngày chỉ còn ở trang phụ huynh) + lưới danh hiệu ngay dưới lời chào ("Danh hiệu của bạn", "Đã nhận n/m": cao tối đa hai hàng ở mọi khổ màn hình, sticker mới nhận nhất trước rồi các sticker chưa nhận dạng bóng xám tô dần từ dưới lên theo số phần đã xong, nên không bao giờ trống và không đẩy nội dung học xuống khi có thêm sticker; quá hai hàng thì ô "+k" và "Xem tất cả" mở bộ sưu tập đủ sticker; chạm một sticker mở bảng chi tiết có hiệu ứng lặp, tiếng và nút "Nghe nhạc" phát một bài ngẫu nhiên, xem `docs/design-system.md` mục Danh hiệu trên trang chủ) + thẻ "Học tiếp" vào thẳng phần đầu tiên chưa xong của bài (bài học gần nhất chưa xong; học xong một bài thì bài kế của môn đó; chưa học gì thì bài đầu tiên, trẻ mới thấy "Bắt đầu học"; nếu một phần sau đang học dở thì thêm dòng phụ "Đang dở: Phần k") + lưới môn học của lớp bé đang học (luôn có dòng phụ: "Sắp ra mắt", "n bài · Chưa học", "n bài · Đang học phần k", "Xong d/n bài") (môn chưa có bài xuất bản là ô khoá: ổ khoá, nền sáng, không bấm được, không dẫn tới trang trống) + nhắc môn lâu chưa học (> 3 ngày).
 - **Giới thiệu bài:** bài có `overview` thì lần đầu mở bài (từ danh sách bài, hay từ thẻ "Học tiếp"/"Bắt đầu học" ở trang chủ khi trẻ chưa xem) hiện màn giới thiệu trước: cú, tình huống đời thường (kèm hình nếu có), "Bài này nói về", "Học xong bài này, bạn sẽ:" với danh sách ý có dấu tích, câu "vì sao có ích", nút chính "Bắt đầu học" (đã học dở: "Học tiếp") vào phần kế tiếp, nút phụ "Xem các phần của bài". Có `narration` thì có trình phát nút lớn, không tự phát, chữ đang đọc được tô (`--color-reading`); không có thì màn chỉ có chữ. Đã xem thì trang bài có nút "Giới thiệu bài" để mở lại. Trạng thái "đã xem" là setting theo từng trẻ (`overviewSeen:<id bài>`).
 - **Mẹo hay:** bài có mẹo thì trang bài có nút phụ "Mẹo hay" (dưới "Giới thiệu bài") mở trang `/lessons/<id>/tips`: mọi mẹo của bài, mỗi mẹo một thẻ vàng có nhãn loại ("Mẹo làm nhanh", "Mẹo hiểu nhanh", "Mẹo tránh sai") và biểu tượng. Mẹo trong section là một màn của player (chấm tiến độ tên "Mẹo").
 - **Không dùng giọng máy của trình duyệt:** app không đọc chữ bằng Web Speech API (giọng máy nghe như robot). Mọi tiếng nói là file ghi sẵn: lời giới thiệu bài (`narration`), video bài và các câu thoại của cú (`public/sounds/`).
@@ -332,7 +338,7 @@ Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài,
 - **Sticker không có nghĩa là bài xong:** sticker là danh hiệu đã nhận và được giữ kể cả khi bài được học lại, nên "bài xong", "Học tiếp", vòng tiến độ của môn và trạng thái môn chỉ đọc bản ghi các phần (`sectionProgress`), không đọc sticker. Sticker vẫn tô đủ màu ở kệ sticker, trang bài và trang phụ huynh.
 - **Ôn xong:** cú vui + "Bạn vừa ôn n câu" (n đếm mọi câu đã hỏi, gồm câu hỏi lại) + tiến độ bài (sticker tô theo số phần đã xong, "Xong d/n phần").
 - **Chuỗi ngày:** tính theo ngày giờ Việt Nam; tuần từ thứ Hai đến Chủ nhật; mỗi tuần có 1 "ngày nghỉ" tự động giữ chuỗi.
-- **Bộ sách:** hồ sơ mới lấy bộ sách mặc định trong `subjects.json`; màn đổi bộ sách chỉ làm khi một môn có từ hai bộ trở lên.
+- **Bộ sách:** hồ sơ mới lấy bộ sách mặc định trong `subjects.json`; màn đổi bộ sách chỉ làm khi một môn có từ hai bộ trở lên trong cùng một lớp.
 
 ### 5.6 Câu hỏi mở và AI nhận xét
 - Bước viết: câu mở đầu gợi ý sẵn, ô viết lớn (dùng được đọc chính tả của iPad), hiện rubric dạng checklist.
@@ -364,7 +370,7 @@ Bố cục bucket private (`R2_PRIVATE_BUCKET`):
 ```
 families.json                                   # [{ id, name, codeHash, epoch, isAdmin, aiDailyLimit }] — chỉ admin CLI ghi
 auth/<familyId>/pin.json                        # { pinHash, pinEpoch, pinFails, lockUntil } — không cache
-progress/<familyId>/profile.json                # hồ sơ con: [{ id, name, avatar, series: { math: "kntt", … } }]
+progress/<familyId>/profile.json                # hồ sơ con: [{ id, name, avatar, grade, series: { math: "kntt", … } }]
 progress/<familyId>/<childId>.json              # tài liệu tiến độ
 snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json
 content-overlay/<lessonId>/<exerciseId>.json    # bài tập nạp nhanh
@@ -433,7 +439,7 @@ Code dùng một interface `BlobStore { get(key) → { body, etag } | null; put(
 Chi tiết ở `docs/design-system.md`. Tóm tắt ràng buộc:
 - Thuần tiếng Việt. Chữ thân ≥ 18px. Vùng chạm ≥ 48×48px, cách nhau ≥ 12px — trừ vùng chạm nằm trong dòng chữ (`tapText`, `PassageReader`): ở chế độ chạm, line-height ≥ 2.3 (mỗi dòng ≥ 48px), chạm chọn cả câu, có vùng đệm dọc.
 - Viewport mục tiêu: iPad dọc 820×1180 và ngang 1180×820; điện thoại 390×844. Không cuộn ngang.
-- Đúng = xanh lá + ✓; sai = **cam** (không đỏ). Màu môn: Toán xanh dương, Văn hồng đất, Địa xanh ngọc.
+- Đúng = xanh lá + ✓; sai = **cam** (không đỏ). Màu môn: Toán xanh dương, Văn hồng đất, Địa xanh ngọc, Sử vàng đất, Khoa học tự nhiên tím.
 - Linh vật cú, biểu cảm: vui, gợi ý, cổ vũ, "vui khi gặp lại" (khi lâu không học — không trách).
 - Không đồng hồ đếm ngược, không bảng xếp hạng. Tôn trọng `prefers-reduced-motion`.
 
