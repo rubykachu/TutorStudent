@@ -52,7 +52,7 @@
     {
       "id": "s04-so-1",
       "sentences": [
-        { "text": "Còn 1 viên gạch? Chỉ có một cách xếp." },
+        { "text": "Xếp 1 viên gạch thì sao? Chỉ có một cách." },
         {
           "text": "Số 1 chỉ có một ước nên không phải số nguyên tố, cũng không phải hợp số.",
           "rule": true

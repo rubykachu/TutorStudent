@@ -10,6 +10,7 @@
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 8–9: "bạn" trong chú thích và recap đọc như gọi trẻ.
 - `thu-tu-thuc-hien-phep-tinh` vòng 2: bài quà ngoặc lồng không nói 32 là tiền gì.
 - `so-nguyen-to` vòng 1, `ex.xep-7-cach`: "Có mấy cách xếp 7 ô thành hình chữ nhật?" không nói hình xoay có tính là cách khác không, nên nhiễu "2" (1 hàng 7 ô, 7 hàng 1 ô) cũng đúng; câu cùng dạng `xep-18-cach` có câu "Xoay hình chữ nhật thì vẫn tính là một cách", câu này thì không. Quy ước đếm phải dạy ở màn bài học và nhắc lại trong mọi đề dùng nó.
+- `so-nguyen-to` vòng 4, video `xep-gach`: lời "Còn 1 viên gạch?" đọc được là "còn lại 1 viên gạch" thay vì "xếp 1 viên thì sao"; câu hỏi lửng trong lời video cũng cần một cách hiểu.
 
 ## Nguyên nhân gốc
 

@@ -12,7 +12,7 @@
   "title": "Số nguyên tố",
   "sourceRef": "Sách bài tập tr.35–37",
   "status": "published",
-  "reviewedHash": "8ba05addac880b845be68fca535822a94679360901681b53f12992e5a6d2aa5f",
+  "reviewedHash": "4a99b800d2143e034f15cb190a6bf2465383c8bdfbe93113f46043276212bc74",
   "overview": {
     "hook": {
       "text": "Chào bạn! Hôm nay ta xếp gạch để tìm số nguyên tố. Bạn xếp 11 viên gạch vuông thành hình chữ nhật. Chỉ xếp được một hàng dài 11 viên, vì 11 là số nguyên tố."
@@ -3883,7 +3883,7 @@
       "url": "video/so-nguyen-to/xep-gach.mp4",
       "vttUrl": "video/so-nguyen-to/xep-gach.vtt",
       "posterUrl": "video/so-nguyen-to/xep-gach.jpg",
-      "durationSec": 79.73,
+      "durationSec": 79.87,
       "clips": [
         {
           "id": "uoc",
@@ -3900,7 +3900,7 @@
         {
           "id": "hop-so",
           "start": 48.367,
-          "end": 78.322,
+          "end": 78.447,
           "cardIds": ["so-nguyen-to.card.hop-so"]
         }
       ],
@@ -3916,7 +3916,7 @@
       "url": "video/so-nguyen-to/tra-bang.mp4",
       "vttUrl": "video/so-nguyen-to/tra-bang.vtt",
       "posterUrl": "video/so-nguyen-to/tra-bang.jpg",
-      "durationSec": 60.5,
+      "durationSec": 64.07,
       "clips": [
         {
           "id": "tra-bang",

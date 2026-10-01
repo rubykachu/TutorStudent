@@ -35,8 +35,9 @@
           <div id="c" class="row shift" style="top: 395px"></div>
         </section>
         <section id="s5" class="scene layer">
-          <div id="d1" class="row shift" style="top: 385px"></div>
-          <div id="d2" class="row shift" style="top: 455px"></div>
+          <div id="d0" class="row shift" style="top: 350px"></div>
+          <div id="d1" class="row shift" style="top: 420px"></div>
+          <div id="d2" class="row shift" style="top: 490px"></div>
         </section>
       </div>
       <div id="owl-layer" class="layer"></div>
@@ -77,6 +78,7 @@
         $("#a").innerHTML = `<span id="a-n" class="num">59</span>${chip("a-v", "sky", "✚ số nguyên tố")}`;
         $("#b").innerHTML = `<span id="b-n" class="num">77</span>${chip("b-x", "slate", "✘ không có trong bảng")}${chip("b-v", "pink", "◆ hợp số")}`;
         $("#c").innerHTML = `<span id="c-n" class="num">91</span>${chip("c-x", "slate", "✘ không có trong bảng")}${chip("c-v", "pink", "◆ hợp số")}`;
+        $("#d0").innerHTML = `<span class="chip" id="d-lim" style="--c: var(--color-foreground)">số nhỏ hơn 100</span>`;
         $("#d1").innerHTML = `<span class="chip" id="d-ax" style="--c: var(--color-foreground)">có trong bảng</span><span id="d-ar1" class="arr">→</span>${chip("d-a", "sky", "✚ số nguyên tố")}`;
         $("#d2").innerHTML = `<span class="chip" id="d-bx" style="--c: var(--color-foreground)">lớn hơn 1, không có trong bảng</span><span id="d-ar2" class="arr">→</span>${chip("d-b", "pink", "◆ hợp số")}`;
         const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
@@ -142,10 +144,11 @@
         // ---------- s05: remember ----------
         {
           const sid = "s05-nho";
-          hide(["#d-a", "#d-ax", "#d-b", "#d-bx", "#d-ar1", "#d-ar2"]);
+          hide(["#d-lim", "#d-a", "#d-ax", "#d-b", "#d-bx", "#d-ar1", "#d-ar2"]);
           pose(bird, "cheer", W(sid, "nhớ"));
+          pop("#d-lim", W(sid, "nhỏ"), { from: 0.6 });
           pop("#d-ax", W(sid, "có"), { from: 0.6 });
-          pop(["#d-ar1", "#d-a"], W(sid, "số"), { from: 0.6 });
+          pop(["#d-ar1", "#d-a"], W(sid, "nguyên"), { from: 0.6 });
           pop("#d-bx", W(sid, "lớn"), { from: 0.6 });
           pop(["#d-ar2", "#d-b"], W(sid, "hợp"), { from: 0.6 });
         }

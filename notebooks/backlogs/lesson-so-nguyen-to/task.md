@@ -1,9 +1,9 @@
 # Bàn giao: Bài 10 `so-nguyen-to` (Số nguyên tố)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bài đã xuất bản (`status: published`) sau 3 vòng review (vòng 1: 9 Nghiêm trọng; vòng 2: 4; vòng 3: 0, 1 Nên sửa, 4 Góp ý); đã `content:hash --approve`, `content:lock`. Lời đọc và 3 video đã dựng (01/10/2026), chờ review phần đổi.
+- Cập nhật cuối: 01/10/2026. Bài đã xuất bản (`status: published`) sau 3 vòng review (vòng 1: 9 Nghiêm trọng; vòng 2: 4; vòng 3: 0, 1 Nên sửa, 4 Góp ý); đã `content:hash --approve`, `content:lock`. Lời đọc và 3 video đã dựng và đã qua vòng 4 (chỉ phần đổi: câu chào, lời đọc, 3 video; 01/10/2026): 1 Nghiêm trọng, 2 Nên sửa, 1 Góp ý mới, đều đã sửa trừ Góp ý; đã `content:hash --approve`, 3 id video đã thêm vào `content/ids.lock.json`.
 - Đã chạy ở bước xuất bản: `pnpm content:check` 0 lỗi; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo; `pnpm lint`, `pnpm typecheck`, `pnpm test` (2 150 test) đạt; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` ở cây chính.
-- Bước kế tiếp: vòng review chỉ phần đổi (câu chào mới ở `overview.hook`, 3 khối video; reviewer là subagent mới, `model: "sonnet"`), rồi `pnpm content:hash --approve`, `pnpm content:lock` (thêm 3 id video), `pnpm lesson:walk so-nguyen-to`. Bài 11 section 5 (`nhac-thua-so`) giờ có thể căn chỉnh với bài này.
+- Bước kế tiếp: không còn việc chặn. Phần Nên sửa của vòng 3 và các Góp ý dưới đây gộp vào lần sửa bài kế tiếp (sửa bài đổi hash, cần review lại phần đổi); khi đó chạy lại `pnpm video:check so-nguyen-to`.
 
 ## Việc còn lại sau review vòng 3 (không chặn)
 - Nên sửa: màn chạm `chon-nt-bang` (section 4: 21, 23, 27, 29, 33, 39; đáp án 23, 29) trùng bốn số và tập đáp án với `chon-nt-2-7` (section 2); đổi sang 33, 37, 39, 45, 49, 73 (đáp án 37 và 73) ở lần sửa bài kế tiếp (sửa bài đã xuất bản đổi hash, cần review lại phần đổi).
@@ -68,10 +68,12 @@ Màu: số nguyên tố sky (✚), hợp số pink (◆), ước violet, chữ s
 ## Lời đọc và video
 - Giọng: `my-duyen` (`video/projects/so-nguyen-to/media.json`, không cờ miễn trừ). Bài 9 dùng Hải Đăng nên xen sang giọng nữ; không có lý do riêng để giữ giọng nam.
 - Lời đọc tổng quan: đọc bằng Gemini `Vindemiatrix` (không hết hạn mức, không rơi về VieNeu), 47,4 s, 12 câu đều khớp ≥ 97,3%. Câu đầu của `overview.hook` thêm câu chào: "Chào bạn! Hôm nay ta xếp gạch để tìm số nguyên tố." (đổi nội dung, đổi review hash).
-- Video (`video/projects/so-nguyen-to/<tên>/`, đều VieNeu Mỹ Duyên, câu đầu là câu chào `opening`):
+- Video (`video/projects/so-nguyen-to/<tên>/`, đều VieNeu Mỹ Duyên, câu đầu là câu chào `opening`; thời lượng mới sau vòng 4: `xep-gach` 79,9 s, `tra-bang` 64,1 s, `phan-tich` 71,7 s):
   - `xep-gach` (79,7 s, đầu phần 1 `dem-uoc`): xếp gạch 8, 11, 9, 1 thành hình chữ nhật, đọc ước, số nguyên tố, hợp số, số 1; clip `uoc`, `nguyen-to`, `hop-so` cho thẻ cùng tên.
   - `tra-bang` (60,5 s, đầu phần 4 `bang-so-nguyen-to`): tra bảng cho 59 (có), 77 và 91 (không có); clip `tra-bang` cho thẻ `bang`.
   - `phan-tich` (71,7 s, đầu phần 6 `phan-tich-cay`): sơ đồ cây của 12 và sơ đồ cột của 60; clip `cay`, `cot` cho thẻ cùng tên.
 - Mỗi phần chỉ có một video nên video sơ đồ cột đặt chung ở phần 6; phần 7 chưa có video riêng.
-- Whisper: câu thấp nhất 96,7% ("Ta tìm 59/77 trong bảng": Whisper nghe "bảng" thành "bản", giọng Mỹ Duyên miền Nam nuốt âm cuối "ng"; đã đọc lại 3 lần, các từ khác khớp hết); còn lại ≥ 97,2%.
+- Whisper: câu thấp nhất 96,7% ("Ta tìm 59/77 trong bảng": Whisper nghe "bảng" thành "bản", giọng Mỹ Duyên miền Nam nuốt âm cuối "ng"; đã đọc lại 3 lần). Vòng 4 nghe lại bằng Whisper có gợi ý ngữ cảnh "bảng số nguyên tố": cả hai câu ra đúng "bảng"; chữ luôn có trên phụ đề và bảng hiện trên màn, nên chấp nhận. Mọi câu khác ≥ 97,2%. Lời đọc Gemini nghe "thừa số" thành "thử số" ở hai câu (98,2% và 97,3%), chấp nhận cùng lý do.
+- Sửa ở vòng 4: `tra-bang` câu chốt có "nhỏ hơn 100" (kèm nhãn "số nhỏ hơn 100"); `phan-tich` dòng 12 = 2 · 2 · 3 hiện đúng chữ "tích của các số nguyên tố"; `xep-gach` câu số 1 thành "Xếp 1 viên gạch thì sao? Chỉ có một cách."; ba video dựng lại (chỉ ba câu đổi được đọc lại).
+- Góp ý còn lại của video: khoảng 2 giây màn trống ở đầu cảnh sơ đồ cột của `phan-tich`; câu "4 bằng 2 nhân 2" chưa nói 4 là hợp số nên tách tiếp.
 - Chưa làm: video cho phần 10–12 (viết số thành tổng hai số nguyên tố) và phần 7 riêng.

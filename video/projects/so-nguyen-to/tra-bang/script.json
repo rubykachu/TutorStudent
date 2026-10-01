@@ -46,8 +46,12 @@
     {
       "id": "s05-nho",
       "sentences": [
-        { "text": "Bạn nhớ nhé: có trong bảng là số nguyên tố." },
-        { "text": "Số lớn hơn 1 mà không có trong bảng là hợp số." }
+        {
+          "text": "Bạn nhớ nhé: số nhỏ hơn 100 có trong bảng là số nguyên tố."
+        },
+        {
+          "text": "Số lớn hơn 1, nhỏ hơn 100 mà không có trong bảng là hợp số."
+        }
       ]
     }
   ],

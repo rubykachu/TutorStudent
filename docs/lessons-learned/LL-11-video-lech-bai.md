@@ -10,6 +10,7 @@ Lời đọc, hình, phụ đề, thời lượng hay mốc clip của video kh�
 - `thu-tu-thuc-hien-phep-tinh` vòng 5: `durationSec` và clip `ngoac-long` lệch mp4, cắt mất câu kết.
 - `tap-hop` vòng 6: kịch bản có hai câu không có trong mp4.
 - `luy-thua`: khung cuối video chia thiếu điều kiện a ≠ 0.
+- `so-nguyen-to` vòng 4, video `phan-tich`: hình "12 = 2 · 2 · 3" gắn vào lần đầu của chữ "tích" (trong "phân tích") nên hiện hơn 4 giây trước câu "tích của các số nguyên tố" và 28 giây trước lúc cây ra kết quả. Mốc chữ gắn vào hình phải chọn lần xuất hiện đúng của chữ (`W(sid, "tích", 2)`), không chỉ lần đầu.
 
 ## Nguyên nhân gốc
 

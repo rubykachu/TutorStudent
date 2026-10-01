@@ -1,12 +1,24 @@
 # Review: Số nguyên tố (`so-nguyen-to`)
 
 - Bài: `content/math/kntt/so-nguyen-to/lesson.json`
-- Vòng: 3 - chỉ phần đổi (`pnpm content:diff`), section: dem-uoc, so-nguyen-to, hop-so, bang-so-nguyen-to, dau-hieu-hop-so, phan-tich-cay, phan-tich-cot, viet-luy-thua, tim-chu-so-a, so-2, tong-hai-nguyen-to, viet-tong, tong-hop-so (cả 13 section đều có mục đổi)
+- Vòng: 4 - chỉ phần đổi (`pnpm content:diff`): câu chào ở `overview.hook`, lời đọc Gemini, 3 video (`xep-gach`, `tra-bang`, `phan-tich`); section: dem-uoc, bang-so-nguyen-to, phan-tich-cay
 - Nguồn đã đọc: `sources/math/so-nguyen-to/` - sbt-p35, sbt-p36, sbt-p37, sbt-p106, sbt-p107
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (99 id chưa khoá, đúng vì bài draft)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/so-nguyen-to/` (ảnh mới hơn `lesson.json` và mã hình; đã xem sheet từng section ở điện thoại, iPad dọc, iPad ngang)
-- Kết luận: Đã xuất bản (0 lỗi Nghiêm trọng; đã chạy `pnpm content:hash so-nguyen-to --root content --approve`)
-- Bản đã review: `8ba05addac880b845be68fca535822a94679360901681b53f12992e5a6d2aa5f` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi của bài; `video:check`: ok; `lesson:walk`: 0 failures, 0 warnings
+- Kết luận: Đã xuất bản (0 lỗi Nghiêm trọng còn lại sau khi sửa; đã chạy `pnpm content:hash so-nguyen-to --approve`)
+- Bản đã review: `4a99b800d2143e034f15cb190a6bf2465383c8bdfbe93113f46043276212bc74` (`pnpm content:diff` so với bản này)
+
+## Vòng 4: video và lời đọc
+
+Đã soát: kịch bản và `report.json` Whisper của 3 video, `overview.hook` và lời đọc, mọi khung hình ba video (sheet mỗi 2 giây, khung đổi xem lại theo từng 1,5 và 2 giây), mốc chữ của mọi hình khớp lời, câu `rule` khớp bài (`video:check`), cách đọc số 1, quy ước tích (m · k: m được lấy k lần).
+
+- Nghiêm trọng (đã sửa): `tra-bang`, câu chốt "Số lớn hơn 1 mà không có trong bảng là hợp số" bỏ vế "nhỏ hơn 100" của quy tắc, nên với số 101 trẻ kết luận sai (101 là số nguyên tố). Câu chốt thành "Bạn nhớ nhé: số nhỏ hơn 100 có trong bảng là số nguyên tố." và "Số lớn hơn 1, nhỏ hơn 100 mà không có trong bảng là hợp số."; màn chốt có thêm nhãn "số nhỏ hơn 100" hiện đúng lúc nói (LL-17).
+- Nên sửa (đã sửa): `phan-tich`, dòng "12 = 2 · 2 · 3" hiện ở chữ "tích" của "phân tích", hơn 4 giây trước lúc nói "tích của các số nguyên tố", và 28 giây trước lúc cây ra kết quả; nay hiện ở chữ "tích" thứ hai (LL-11).
+- Nên sửa (đã sửa): `xep-gach`, "Còn 1 viên gạch?" đọc được là "còn lại 1 viên"; đổi thành "Xếp 1 viên gạch thì sao? Chỉ có một cách." (LL-10).
+- Whisper: "Ta tìm 59/77 trong bảng" nghe "bản" (96,8% và 96,7%). Nghe lại hai câu với và không có gợi ý ngữ cảnh: khi có gợi ý "bảng số nguyên tố" cả hai câu ra đúng "bảng", không gợi ý ra "bản"; giọng Mỹ Duyên miền Nam nuốt âm cuối "ng". Chữ "bảng" luôn hiện trên phụ đề, nhãn "bảng số nguyên tố" và bảng 25 số luôn ở trên màn, nên chấp nhận, không đổi câu. Lời đọc Gemini: "thừa số" nghe "thử số" ở hai câu (98,2% và 97,3%), cùng lý do, nhãn và phụ đề đủ nên chấp nhận.
+- Góp ý: `phan-tich` có khoảng 2 giây màn trống (chỉ có bạn cú) ở đầu cảnh sơ đồ cột, trong lúc đọc "Cách thứ hai là sơ đồ cột"; câu "4 bằng 2 nhân 2" chưa nói 4 là hợp số nên tách tiếp (hình đã tô 4 màu hợp số).
+- Clip (`videos[].clips`) khớp thẻ: `uoc`, `nguyen-to`, `hop-so`, `bang`, `cay`, `cot`; không clip nào gắn thẻ mà đoạn không giảng.
+
+## Phát hiện còn lại của vòng 3 (chưa sửa, không chặn)
 
 Đã soát: mọi mục trong diff (hook, khái niệm, 13 section, 13 card, 10 câu thêm, 10 câu bớt, 11 câu đổi chữ hay hình) và mã hình `catalog.ts`, `rects.tsx`, `prime-table.tsx`, test `so-nguyen-to.test.tsx` (18 test đạt). Tự giải và tính lại bằng python mọi câu đổi hay mới: `chon-nt-2-7` (đáp án 23, 29), `chon-hs-chan-bank` (64, 68), `chon-chan-hs` (16, 26, 34), `dh-nhieu` (27, 35; nhiễu 23, 37 đều là số nguyên tố), `tong-voi-2` (43, 13, 15; 11 − 2 = 9 là hợp số), `viet-28` (5; còn 11 + 17), `viet-40` (3), `tich-66` (11), `tinh-3-2-11` (99), `phan-tich-4-49` (196 = 2² · 7²; ba nhiễu đều sai), `cot-thieu-330` (3, ô `hide: [3]` là số chia của hàng 165), `cot-thieu-78` (39, ô `hide: [2]`), `xep-13-cach` (1), `xep-20` (ước 1, 2, 4, 5, 10, 20), `viet-74` (74 − 3 = 71), các `check`, `params`, `wants` của chips; mỗi câu đúng một đáp án hay một tập đáp án, không nhiễu nào thành đáp án đúng. Số mới (20, 11, 13, 28, 32, 37, 66, 74, 78, 99, 195, 330, 4 · 49, 55 + 30) không trùng đề, ví dụ, lời giải của tr.35–37, tr.106–107; số mới không trùng recap, ví dụ hay câu luyện cùng card (trừ mục Nên sửa 1).
 
