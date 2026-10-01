@@ -15,7 +15,7 @@ import { transcribe } from "../video/asr/whisper";
 import { VIDEO_DIR } from "../video/config";
 import { ffmpeg, probeDuration } from "../video/lib/audio";
 import { matchRate } from "../video/lib/text";
-import { synthesizeGemini } from "./lib/gemini-tts";
+import { synthesizeGemini } from "../video/tts/gemini";
 import {
   ASSETS_SOUNDS_DIR,
   FILES,

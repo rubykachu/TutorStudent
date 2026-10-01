@@ -1,34 +1,30 @@
-import { readFileSync, writeFileSync } from "node:fs";
-import os from "node:os";
-import path from "node:path";
-import type { VoiceEngine } from "./sound-spec";
+import { writeFileSync } from "node:fs";
+import { GEMINI_TEMPO } from "../config";
+import {
+  KeyPool,
+  type RawResponse,
+  readKeys,
+  sendWithKeys,
+} from "./gemini-keys";
+import type { TtsEngine } from "./types";
 
-// Gemini text-to-speech over its REST API, written as a WAV file. The API
-// key comes from GEMINI_API_KEY, else from ~/.config/gemini/api_key. A
-// request over the per-minute limit waits as long as the API asks and tries
-// again; the daily limit, or any other failure, stops the build.
+// Gemini text-to-speech over its REST API, written as a WAV file: the one
+// client of the narration build and of the shared-sounds build. Requests go
+// out with the keys of gemini-keys.ts in turn; when every key is rate limited
+// the request waits, and when every key is out of quota it throws
+// GeminiQuotaError.
+
+export const GEMINI_TTS_MODEL = "gemini-3.1-flash-tts-preview";
 
 const API = "https://generativelanguage.googleapis.com/v1beta/models";
-const KEY_FILE = path.join(os.homedir(), ".config", "gemini", "api_key");
-const MAX_RATE_LIMIT_WAITS = 10;
 
-function apiKey(): string {
-  const fromEnv = process.env.GEMINI_API_KEY?.trim();
-  if (fromEnv) return fromEnv;
-  try {
-    return readFileSync(KEY_FILE, "utf8").trim();
-  } catch {
-    throw new Error(`No Gemini API key: set GEMINI_API_KEY or ${KEY_FILE}`);
-  }
+let pool: KeyPool | undefined;
+function keyPool(): KeyPool {
+  pool ??= new KeyPool(readKeys());
+  return pool;
 }
 
 type InlineAudio = { mimeType: string; data: string };
-
-// Seconds the API asks to wait before retrying, from its error body.
-function retryAfterS(body: string): number | undefined {
-  const match = body.match(/"retryDelay":\s*"(\d+(?:\.\d+)?)s"/);
-  return match ? Number(match[1]) : undefined;
-}
 
 // Raw 16-bit PCM (`audio/L16;rate=24000`) wrapped in a WAV header.
 function pcmToWav(pcm: Buffer, rate: number): Buffer {
@@ -48,56 +44,42 @@ function pcmToWav(pcm: Buffer, rate: number): Buffer {
   return Buffer.concat([header, pcm]);
 }
 
-async function request(
-  engine: VoiceEngine,
+async function post(
+  key: string,
+  model: string,
+  voice: string,
   text: string,
-): Promise<InlineAudio> {
-  const key = apiKey();
-  for (let wait = 0; ; wait++) {
-    const response = await fetch(`${API}/${engine.model}:generateContent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": key },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text }] }],
-        generationConfig: {
-          responseModalities: ["AUDIO"],
-          speechConfig: {
-            voiceConfig: { prebuiltVoiceConfig: { voiceName: engine.voice } },
-          },
+): Promise<RawResponse> {
+  const response = await fetch(`${API}/${model}:generateContent`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text }] }],
+      generationConfig: {
+        responseModalities: ["AUDIO"],
+        speechConfig: {
+          voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } },
         },
-      }),
-    });
-    const body = await response.text();
-    if (response.ok) {
-      const audio = JSON.parse(body).candidates?.[0]?.content?.parts?.[0]
-        ?.inlineData as InlineAudio | undefined;
-      if (!audio) throw new Error(`Gemini returned no audio for "${text}"`);
-      return audio;
-    }
-    const delay = retryAfterS(body);
-    if (
-      response.status === 429 &&
-      delay !== undefined &&
-      !body.includes("PerDay") &&
-      wait < MAX_RATE_LIMIT_WAITS
-    ) {
-      console.log(`sounds: Gemini rate limit, waiting ${Math.ceil(delay)}s`);
-      await new Promise((resolve) => setTimeout(resolve, (delay + 1) * 1000));
-      continue;
-    }
-    throw new Error(
-      `Gemini TTS failed (${response.status}) for "${text}":\n${body.slice(0, 1000)}`,
-    );
-  }
+      },
+    }),
+  });
+  return { status: response.status, body: await response.text() };
 }
 
-// Speaks `text` into the WAV file `out`. Every call is a new take.
+// Speaks `text` with the prebuilt `voice` of `model` into the WAV file `out`.
+// The text is sent alone: a style instruction in the prompt gets read aloud.
+// Every call is a new take.
 export async function synthesizeGemini(
-  engine: VoiceEngine,
+  engine: { model: string; voice: string },
   text: string,
   out: string,
 ): Promise<void> {
-  const audio = await request(engine, text);
+  const body = await sendWithKeys(keyPool(), (key) =>
+    post(key, engine.model, engine.voice, text),
+  );
+  const audio = JSON.parse(body).candidates?.[0]?.content?.parts?.[0]
+    ?.inlineData as InlineAudio | undefined;
+  if (!audio) throw new Error(`Gemini returned no audio for "${text}"`);
   const bytes = Buffer.from(audio.data, "base64");
   const type = audio.mimeType.toLowerCase();
   if (type.startsWith("audio/wav")) {
@@ -110,3 +92,37 @@ export async function synthesizeGemini(
   }
   writeFileSync(out, pcmToWav(bytes, Number(rate)));
 }
+
+// A number of four or more digits is sent with its thousands grouped by
+// spaces ("4376" and "4.376" as "4 376"), which the voice reads as one number.
+// Only the request changes: captions and the transcript check keep the text
+// of the lesson.
+export function geminiText(text: string): string {
+  return text.replace(/\d[\d.]*\d|\d/g, (number) => {
+    const digits = number.replace(/\./g, "");
+    if (digits.length < 4 || !/^(\d{1,3}(\.\d{3})+|\d+)$/.test(number)) {
+      return number;
+    }
+    return digits.replace(/\B(?=(\d{3})+$)/g, " ");
+  });
+}
+
+export const geminiEngine: TtsEngine = {
+  tempo: GEMINI_TEMPO,
+  voice: (voiceName) => ({
+    engine: "gemini",
+    voiceName,
+    model: GEMINI_TTS_MODEL,
+  }),
+  // The whole narration may be spoken in one request (video/lib/narrate.ts).
+  speaksWhole: true,
+  async synthesize(voiceName, requests) {
+    for (const request of requests) {
+      await synthesizeGemini(
+        { model: GEMINI_TTS_MODEL, voice: voiceName },
+        geminiText(request.text),
+        request.out,
+      );
+    }
+  },
+};

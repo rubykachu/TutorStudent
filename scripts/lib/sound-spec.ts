@@ -10,6 +10,7 @@ import {
   WRONG_ID,
 } from "@/lib/sound-manifest";
 import { SONGS } from "@/music/songs";
+import { GEMINI_TTS_MODEL } from "../../video/tts/gemini";
 
 // Everything `pnpm sounds:build` makes its clips from, in one place. A clip's
 // manifest hash covers the settings that shape it, so editing a number here
@@ -39,7 +40,7 @@ export const MASTERING = {
 // The text is sent alone: a style instruction in the prompt gets read aloud.
 export const VOICE_ENGINE = {
   name: "gemini",
-  model: "gemini-3.1-flash-tts-preview",
+  model: GEMINI_TTS_MODEL,
   voice: "Sulafat",
 } as const;
 
