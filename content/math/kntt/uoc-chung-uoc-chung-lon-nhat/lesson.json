@@ -380,7 +380,7 @@
         {
           "type": "visual",
           "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.bang-36-60",
-          "caption": "Muốn biết dải 36 dm và dải 60 dm cắt vừa hết thành đoạn dài nhất bao nhiêu, ta tìm ƯCLN(36, 60). Ta viết 36 và 60 thành tích các thừa số nguyên tố, rồi so từng cột."
+          "caption": "Muốn biết đoạn dài nhất cắt vừa hết dải 36 dm và dải 60 dm, ta tìm ƯCLN(36, 60). Viết 36 và 60 thành tích các thừa số nguyên tố, rồi so từng cột."
         },
         {
           "type": "group",
@@ -616,7 +616,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bút bán theo hộp, hộp nào cũng có số bút như nhau, từ 2 bút trở lên. An mua trọn một số hộp được 22 bút, Bình mua trọn một số hộp được 33 bút."
+              "text": "Bút bán theo hộp, hộp nào cũng có số bút như nhau, từ 2 bút trở lên. An mua trọn các hộp được 22 bút, Bình mua trọn các hộp được 33 bút."
             },
             {
               "type": "visual",
@@ -2999,7 +2999,7 @@
         },
         {
           "type": "note",
-          "text": "Lan mua trọn một số hộp được 21 bút, Hùng mua trọn một số hộp được 28 bút. Mỗi hộp có bao nhiêu bút?"
+          "text": "Lan mua trọn các hộp được 21 bút, Hùng mua trọn các hộp được 28 bút. Mỗi hộp có bao nhiêu bút?"
         }
       ],
       "hints": {
@@ -3166,7 +3166,7 @@
         },
         {
           "type": "note",
-          "text": "Mai mua trọn một số túi được 32 cái kẹo, An mua trọn một số túi được 48 cái kẹo. Mỗi túi có bao nhiêu cái kẹo?"
+          "text": "Mai mua trọn các túi được 32 cái kẹo, An mua trọn các túi được 48 cái kẹo. Mỗi túi có bao nhiêu cái kẹo?"
         }
       ],
       "hints": {
