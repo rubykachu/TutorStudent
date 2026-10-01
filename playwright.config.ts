@@ -1,5 +1,8 @@
 import { defineConfig } from "@playwright/test";
 import {
+  GATE_BASE_URL,
+  GATE_SERVER_COMMAND,
+  GATE_SERVER_ENV,
   TARGET_DEVICES,
   TEST_BASE_URL,
   TEST_SERVER_COMMAND,
@@ -20,11 +23,20 @@ export default defineConfig({
     name,
     use: device,
   })),
-  webServer: {
-    command: TEST_SERVER_COMMAND,
-    url: TEST_BASE_URL,
-    reuseExistingServer: !process.env.CI,
-    env: TEST_SERVER_ENV,
-    timeout: 120_000,
-  },
+  webServer: [
+    {
+      command: TEST_SERVER_COMMAND,
+      url: TEST_BASE_URL,
+      reuseExistingServer: !process.env.CI,
+      env: TEST_SERVER_ENV,
+      timeout: 120_000,
+    },
+    {
+      command: GATE_SERVER_COMMAND,
+      url: `${GATE_BASE_URL}/unlock`,
+      reuseExistingServer: !process.env.CI,
+      env: GATE_SERVER_ENV,
+      timeout: 120_000,
+    },
+  ],
 });

@@ -5,6 +5,7 @@ node_modules/
 
 # next.js build output
 .next/
+.next-gate/
 out/
 build/
 next-env.d.ts

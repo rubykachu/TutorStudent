@@ -89,3 +89,17 @@ export const MAX_SECTION_VIDEOS = 1;
 export const MEDIA_BASE_URL: string = (
   process.env.NEXT_PUBLIC_MEDIA_BASE_URL || "/media"
 ).replace(/\/+$/, "");
+
+// Family-code gate (`src/access/`, `src/proxy.ts`). The cookie that proves a
+// device entered a valid code, and how long it stays valid.
+export const ACCESS_COOKIE_NAME = "tutor_family";
+export const ACCESS_SESSION_DAYS = 365;
+// A code is compared after `normalizeCode`; shorter ones are refused when the
+// environment is read, because a short code can be guessed.
+export const ACCESS_MIN_CODE_LENGTH = 10;
+export const ACCESS_MIN_SECRET_LENGTH = 32;
+// Wrong codes in a row from one address that lock it out, and for how long.
+// Counted in the memory of one server instance, so it slows guessing down;
+// the length of the code is what makes guessing hopeless.
+export const ACCESS_MAX_FAILS = 5;
+export const ACCESS_LOCK_MINUTES = 10;
