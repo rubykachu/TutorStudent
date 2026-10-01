@@ -8,7 +8,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 
 | Subject | Lesson (slug) | Status | Narration and video |
 |---|---|---|---|
-| Toán | Bài 1 `tap-hop` | published | done |
+| Toán | Bài 1 `tap-hop` | published | done; `explain` for all 58 gradable items, review round 10 passed (0 critical), re-approved, removed from `legacy-lessons.json` (02/10/2026) |
 | Toán | Bài 4 `phep-cong-phep-tru` | published | done (voice Mỹ Duyên; reviewed, archived in [`archive/lesson-phep-cong-phep-tru/task.md`](archive/lesson-phep-cong-phep-tru/task.md)) |
 | Toán | Bài 5 `phep-nhan-phep-chia` | published (5 review rounds, ids locked) | done (voice Hải Đăng, overview narration and 3 videos, reviewed; leftovers in [`lesson-phep-nhan-phep-chia/task.md`](lesson-phep-nhan-phep-chia/task.md): unsplit-by-design items and app items) |
 | Toán | Bài 6 `luy-thua` | published | done |
