@@ -36,9 +36,15 @@ export {
 export { default as Sticker } from "./set-sticker";
 export { DauHieuCham, HopCham } from "./set-tap";
 
-export function pickItems(items: string[]): ComponentType<VisualProps> {
+// `wants` (indices of the items that belong in the box) and `done` make it a
+// guided lesson screen; an exercise leaves them out.
+export function pickItems(
+  items: string[],
+  wants?: number[],
+  done?: string,
+): ComponentType<VisualProps> {
   function Example(props: VisualProps) {
-    return <PickItems items={items} {...props} />;
+    return <PickItems items={items} wants={wants} done={done} {...props} />;
   }
   return Example;
 }

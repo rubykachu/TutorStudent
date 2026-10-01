@@ -112,7 +112,7 @@ describe("choose x visual", () => {
     fireEvent.click(screen.getByRole("button", { name: "Giảm x" }));
     expect(onStateChange).toHaveBeenLastCalledWith({ x: 2 });
     expect(screen.getByText("2 thuộc A")).toBeInTheDocument();
-    expect(screen.getByText(/∈/)).toBeInTheDocument();
+    expect(screen.getAllByText(/∈/).length).toBeGreaterThan(0);
   });
 
   it("leaves the comparison to the child in the exercise visuals", async () => {

@@ -624,7 +624,11 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
     interactive: true,
     load: () =>
       lessonExample("tap-hop", (m) =>
-        m.pickItems(["bút chì", "cục tẩy", "quả cam", "thước kẻ", "con mèo"]),
+        m.pickItems(
+          ["bút chì", "cục tẩy", "quả cam", "thước kẻ", "con mèo"],
+          [0, 1, 3],
+          "Đúng rồi! Bút chì, cục tẩy và thước kẻ là đồ dùng học tập nên thuộc hộp bút.",
+        ),
       ),
   },
   "tap-hop.visual.chon-do-dung": {
