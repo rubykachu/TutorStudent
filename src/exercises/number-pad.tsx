@@ -113,7 +113,14 @@ export function NumberPad({
       {key("0", "0", {
         size: `${negative ? "col-span-2" : "col-span-3"} h-16 w-full lg:landscape:h-15`,
       })}
-      {negative && key("minus", MINUS_SIGN, { ariaLabel: "Dấu trừ" })}
+      {negative &&
+        key(
+          "minus",
+          <span aria-hidden className="text-title leading-none">
+            {MINUS_SIGN}
+          </span>,
+          { ariaLabel: "Dấu trừ" },
+        )}
     </fieldset>
   );
 }
