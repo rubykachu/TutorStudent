@@ -1,8 +1,8 @@
 # Bàn giao: Bài 13 `tap-hop-cac-so-nguyen` (Tập hợp các số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`): 12 phần, 12 thẻ, 58 câu, 7 dạng câu; đã sửa xong Nghiêm trọng và mọi Nên sửa của review vòng 2: hình gợi ý nhiệt kế (nhãn không chồng, "?" hiện ở bước cuối, số trên thước lớn hơn), hình đọc điểm không ghi số (`dem-buoc`, `doc-diem-ef`, `doc-diem-mnp`), số đối không dùng dấu chữ thập, tách phần `sap-xep` và `liet-ke`, ví dụ đời sống ở mọi phần, đổi số/khuôn trùng sách, thống nhất cách nói quy tắc so sánh số âm và danh sách vô hạn. Mẹo đã thử lại bằng chương trình trên mọi dạng bài gồm số biên. Lượt Đọc hiểu 1 (44 mục mơ hồ) đã viết lại: 50 đường dẫn trong `.shots/review/tap-hop-cac-so-nguyen/rewritten-paths.txt`, chờ Haiku đọc lại lượt 2. Không làm (việc của app): mũi tên một đầu của trục số (mục 20), hình trục số giãn theo bề ngang ở iPad nằm ngang (mục 25).
-- Việc tiếp theo: review vòng 3 (Sonnet, chỉ phần đổi), lượt Đọc hiểu (Haiku), rồi `content:hash --approve`, `content:lock`, `content:emit`. Không làm lời đọc và video trong đợt này.
+- Cập nhật cuối: 02/10/2026. Đã duyệt và xuất bản: review vòng 1 (4 Nghiêm trọng), vòng 2 (1), vòng 3 chỉ phần đổi (0), `reviewedHash` ghi, `published`; id đã khoá (`content:lock`), `content:emit` chạy. 12 section (phần `sap-xep` và `liet-ke` tách ở vòng 2), 12 thẻ, 58 câu, 7 dạng câu, 14 hình tương tác. Đọc hiểu (Haiku): lượt 1 123/44/0, lượt 2 trên 50 mục viết lại 44/6/0, lượt 3 trên 6 mục 0/6/0 (còn ghi ở Nên sửa của `review.md`, không chặn).
+- Việc còn lại: lời đọc và video (chưa làm, đợt này không làm); sửa 7 Nên sửa còn mở trong `review.md` nếu muốn; việc của app ở mục "Ngoài nội dung bài". Khi đã làm xong video và mọi việc còn lại, lưu trữ thư mục này theo `.claude/rules/agents.md`.
 
 ## Nguồn (sách bài tập, `sources/math/tap-hop-cac-so-nguyen/`, không commit)
 - Đề: tr.47–49 in (PDF 48–50), tệp `sbt-p47.png`, `sbt-p48.png`, `sbt-p49.png`. Bài 14 bắt đầu ở tr.50.
