@@ -52,7 +52,9 @@ export function EndDigits({ spec }: { spec: SpecOf<"endDigits"> }) {
         ))}
         {divisors.length > 1 && <TileRow title="cả hai" fit={both} />}
       </ul>
-      <Legend items={[{ color: "teal", name: "Chữ số tận cùng hợp" }]} />
+      <Legend
+        items={[{ color: "teal", name: "Chữ số tận cùng cho số chia hết" }]}
+      />
     </figure>
   );
 }
