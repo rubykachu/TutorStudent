@@ -72,15 +72,25 @@ const THERMOMETER = {
 
 // The ant (or any point) that walks from the origin: the point and the arrow
 // of its walk come on the same step.
+// A coloured arrow is written with a plain tag, so the concept's marker (a
+// cross for opposite numbers) is not drawn in front of the words.
 const WALK = (
   at: number,
   name: string,
   tag: string,
   step: number,
   color: ConceptColor = POINT,
+  arrowColor?: ConceptColor,
 ): LineLayer[] => [
   { type: "point", at, name, color, step },
-  { type: "arrow", from: 0, to: at, tag, step },
+  {
+    type: "arrow",
+    from: 0,
+    to: at,
+    tag,
+    step,
+    ...(arrowColor ? { color: arrowColor, plainTag: true } : {}),
+  },
 ];
 
 // Three temperatures, one from each group of the integers.
@@ -171,9 +181,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     zero: "0 °C",
     level: -2,
     label: "Nhiệt kế khác: cột nhiệt độ dừng ở dưới số 0 hai đơn vị",
+    // The hint stops before its last step: the "?" is the question the
+    // child sees, and the reading on the last step is the answer it hides.
     marks: [
-      { at: 2, text: "2 °C", color: POSITIVE, step: 1 },
-      { at: -2, text: "?", color: NEGATIVE, step: 2 },
+      { at: -2, text: "?", color: NEGATIVE, step: 1 },
+      { at: -2, text: "−2 °C", color: NEGATIVE, step: 2 },
     ],
     zones: [
       { side: "up", tag: "Trên 0", color: POSITIVE, step: 1 },
@@ -183,10 +195,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "nhiet-ke-doc-giai": {
     kind: "scale",
-    theme: "thermometer",
-    from: -4,
-    to: 4,
-    zero: "0 °C",
+    ...THERMOMETER,
     level: -4,
     label: "Nhiệt kế: cột nhiệt độ dừng ở dưới số 0 bốn đơn vị, là âm 4 độ C",
     marks: [{ at: -4, text: "−4 °C", color: NEGATIVE, step: 1 }],
@@ -203,8 +212,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     zero: "mặt đất",
     label: "Toà nhà: tầng 2 ở trên mặt đất, tầng hầm ở dưới mặt đất",
     marks: [
-      { at: 2, text: "2 tầng", color: POSITIVE, step: 1 },
-      { at: -2, text: "−2 tầng", color: NEGATIVE, step: 2 },
+      { at: 2, text: "Tầng 2", color: POSITIVE, step: 1 },
+      { at: -2, text: "Tầng −2", color: NEGATIVE, step: 2 },
     ],
     zones: [
       { side: "up", tag: "Trên đất", color: POSITIVE, step: 1 },
@@ -372,15 +381,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     mode: "still",
   },
-  "dat-hai-diem-p-q": {
+  "dat-hai-diem-c-d": {
     kind: "lineTry",
     ...R5,
-    label: "Trục số, điểm P cần đặt ở số âm 4 và điểm Q ở số 2",
-    names: ["P", "Q"],
+    label: "Trục số, điểm C cần đặt ở số âm 4 và điểm D ở số 2",
+    names: ["C", "D"],
     goal: [-4, 2],
-    done: "P ở −4, trước gốc O. Q ở 2, sau gốc O.",
+    done: "C ở −4, trước gốc O. D ở 2, sau gốc O.",
   },
-  "doc-diem-mnpq": {
+  "doc-diem-mnp": {
     kind: "line",
     ...R5,
     labelAt: [0, 1],
@@ -390,6 +399,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { type: "point", at: 4, name: "M", color: POINT, hideNumber: true },
       { type: "point", at: -2, name: "N", color: POINT, hideNumber: true },
       { type: "point", at: -5, name: "P", color: POINT, hideNumber: true },
+    ],
+    mode: "still",
+  },
+  "doc-diem-ef": {
+    kind: "line",
+    ...R5,
+    labelAt: [0],
+    label: "Trục số từ âm 5 đến 5 với hai điểm E, F; chỉ số 0 có ghi số",
+    layers: [
+      { type: "point", at: 2, name: "E", color: POINT, hideNumber: true },
+      { type: "point", at: -4, name: "F", color: POINT, hideNumber: true },
     ],
     mode: "still",
   },
@@ -417,17 +437,29 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { at: 4, name: "D" },
     ],
   },
+  // Reading a point of a line that carries no numbers: one arrow per unit
+  // counted from O, then the number the count gives.
   "dem-buoc": {
     kind: "line",
     ...R5,
-    label: "Đếm ba đơn vị từ gốc O sang trái tới điểm P, được số âm 3",
-    layers: [{ type: "origin" }, ...WALK(-3, "P", "3 đơn vị", 0)],
-    mode: "still",
+    labelAt: [0],
+    label:
+      "Đếm từng đơn vị từ gốc O sang trái tới điểm R: năm đơn vị, nên R biểu diễn số âm 5",
+    layers: [
+      { type: "origin" },
+      { type: "point", at: -5, name: "R", color: POINT, hideNumber: true },
+      { type: "arrow", from: 0, to: -1, tag: "1", step: 1 },
+      { type: "arrow", from: -1, to: -2, tag: "2", step: 2 },
+      { type: "arrow", from: -2, to: -3, tag: "3", step: 3 },
+      { type: "arrow", from: -3, to: -4, tag: "4", step: 4 },
+      { type: "arrow", from: -4, to: -5, tag: "5", step: 5 },
+      { type: "point", at: -5, color: POINT, step: 6 },
+    ],
+    mode: "steps",
   },
   "doc-diem-giai": {
     kind: "line",
-    from: -6,
-    to: 5,
+    ...R5,
     label: "Điểm N cách gốc O hai đơn vị về bên trái, nên N biểu diễn số âm 2",
     layers: [
       { type: "origin" },
@@ -444,8 +476,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     to: 3,
     zero: "mực nước biển",
     label:
-      "Thước đo độ cao so với mực nước biển, có một tàu ngầm ở dưới mực nước biển ba đơn vị",
-    marks: [{ at: -3, text: "Tàu ngầm", color: POINT }],
+      "Thước đo độ cao so với mực nước biển, có một tàu ngầm ở dưới mực nước biển hai đơn vị",
+    marks: [{ at: -2, text: "Tàu ngầm", color: POINT }],
     mode: "still",
   },
 
@@ -469,8 +501,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       "Số 5 và số âm 5 cách đều gốc O 5 đơn vị, ở hai bên gốc: hai số đối nhau",
     layers: [
       { type: "origin" },
-      ...WALK(5, "A", "5 đơn vị", 0, OPPOSITE),
-      ...WALK(-5, "B", "5 đơn vị", 0, OPPOSITE),
+      ...WALK(5, "A", "5 đơn vị", 0, POINT, OPPOSITE),
+      ...WALK(-5, "B", "5 đơn vị", 0, POINT, OPPOSITE),
     ],
     mode: "still",
   },
@@ -495,6 +527,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label:
       "Điểm A ở âm 3 nằm trước điểm B ở 2, nên âm 3 nhỏ hơn 2; đi sang phải thì số lớn dần",
     layers: [
+      { type: "origin" },
       { type: "point", at: -3, name: "A", color: SMALLER, step: 0 },
       { type: "point", at: 2, name: "B", color: GREATER, step: 1 },
       {
@@ -513,6 +546,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label:
       "Điểm A ở âm 3 nằm trước điểm B ở 2, nên âm 3 nhỏ hơn 2; đi sang phải thì số lớn dần",
     layers: [
+      { type: "origin" },
       { type: "point", at: -3, name: "A", color: SMALLER },
       { type: "point", at: 2, name: "B", color: GREATER },
       { type: "arrow", from: -3, to: 2, tag: "sang phải: lớn dần" },
@@ -543,10 +577,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "so-sanh-ab": {
     kind: "line",
     ...R5,
-    label: "Trục số có điểm A ở âm 4 và điểm B ở âm 1",
+    labelAt: [0],
+    label: "Trục số có điểm A ở âm 4 và điểm B ở âm 1; chỉ số 0 có ghi số",
     layers: [
-      { type: "point", at: -4, name: "A", color: POINT },
-      { type: "point", at: -1, name: "B", color: POINT },
+      { type: "origin" },
+      { type: "point", at: -4, name: "A", color: POINT, hideNumber: true },
+      { type: "point", at: -1, name: "B", color: POINT, hideNumber: true },
     ],
     mode: "still",
   },

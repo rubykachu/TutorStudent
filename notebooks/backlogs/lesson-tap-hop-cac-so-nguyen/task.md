@@ -1,8 +1,8 @@
 # Bàn giao: Bài 13 `tap-hop-cac-so-nguyen` (Tập hợp các số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`): 11 phần, 12 thẻ, 57 câu, 7 dạng câu; đã sửa xong mọi phát hiện Nghiêm trọng và Nên sửa của review vòng 1 (câu quy tắc viết lại khác sách và recap lặp theo, số đối của 0 có câu quy ước, "bỏ dấu −" thay tên "phần số", một từ "đơn vị" cho khoảng cách, màn mở đầu có chữ, ví dụ đời sống và màn cùng làm đủ ở mọi phần, nhiệt kế có màn mẫu cột 3 rồi −3). Mẹo đã thử lại bằng chương trình trên mọi dạng bài gồm số biên. `content:check --stats` 0 lỗi cho bài, `visual:shot` 102/102, `lesson:walk` 0 lỗi (3 thiết bị).
-- Việc tiếp theo: review vòng 2 (Opus, chỉ phần đổi), lượt Đọc hiểu (Haiku), vòng chỉ phần đổi (Sonnet), rồi `content:hash --approve`, `content:lock`, `content:emit`. Không làm lời đọc và video trong đợt này.
+- Cập nhật cuối: 02/10/2026. Bản nháp (`status: draft`): 12 phần, 12 thẻ, 58 câu, 7 dạng câu; đã sửa xong Nghiêm trọng và mọi Nên sửa của review vòng 2: hình gợi ý nhiệt kế (nhãn không chồng, "?" hiện ở bước cuối, số trên thước lớn hơn), hình đọc điểm không ghi số (`dem-buoc`, `doc-diem-ef`, `doc-diem-mnp`), số đối không dùng dấu chữ thập, tách phần `sap-xep` và `liet-ke`, ví dụ đời sống ở mọi phần, đổi số/khuôn trùng sách, thống nhất cách nói quy tắc so sánh số âm và danh sách vô hạn. Mẹo đã thử lại bằng chương trình trên mọi dạng bài gồm số biên. Không làm (việc của app): mũi tên một đầu của trục số (mục 20), hình trục số giãn theo bề ngang ở iPad nằm ngang (mục 25).
+- Việc tiếp theo: review vòng 3 (Sonnet, chỉ phần đổi), lượt Đọc hiểu (Haiku), rồi `content:hash --approve`, `content:lock`, `content:emit`. Không làm lời đọc và video trong đợt này.
 
 ## Nguồn (sách bài tập, `sources/math/tap-hop-cac-so-nguyen/`, không commit)
 - Đề: tr.47–49 in (PDF 48–50), tệp `sbt-p47.png`, `sbt-p48.png`, `sbt-p49.png`. Bài 14 bắt đầu ở tr.50.
@@ -11,7 +11,7 @@
 - Chương III "Số nguyên"; bài in là "Bài 13. Tập hợp các số nguyên" (`number: 13`, `order: 13`, `chapter` `{ numeral: "III", name: "Số nguyên" }`). `order` 13 nằm sau `on-tap-chuong-2` (12.5).
 - Nội dung nguồn: kiến thức cần nhớ 1 đến 7 (số nguyên dương và âm, tập hợp ℤ, trục số, điểm biểu diễn, so sánh, ≤ và ≥); ví dụ 1 (đổi nhiệt độ −10 °C và độ sâu −318 m sang lời, và ngược lại), ví dụ 2 (so sánh 0 và −100, 1 và −19, −387 và −378); bài 3.1 đến 3.7.
 
-## Cấu trúc bài (11 phần, mỗi phần một ý, có hình; dễ đến khó)
+## Cấu trúc bài (12 phần, mỗi phần một ý, có hình; dễ đến khó)
 1. `nhiet-do` Nhiệt độ dưới 0 (nhiệt kế; đọc "âm ba").
 2. `so-am-doi-song` Số âm trong đời sống (tầng hầm, dưới mực nước biển, nợ tiền, số dư giảm; bài 3.1, 3.2).
 3. `duong-am-khong` Số nguyên dương, số nguyên âm và số 0 (kiến thức cần nhớ 1).
@@ -22,7 +22,8 @@
 8. `so-sanh-truc` So sánh bằng trục số (kiến thức cần nhớ 5).
 9. `am-khong-duong` Số âm, số 0 và số dương (kiến thức cần nhớ 6; ví dụ 2a, 2b).
 10. `hai-so-am` So sánh hai số âm (kiến thức cần nhớ 6; ví dụ 2c; bài 3.7); mẹo "So sánh hai số âm".
-11. `sap-xep-liet-ke` Sắp xếp và liệt kê số nguyên (kiến thức cần nhớ 7; bài 3.6); mẹo "Xếp các số từ bé đến lớn"; hai thẻ `sap-xep` và `liet-ke`.
+11. `sap-xep` Sắp xếp số nguyên (quy tắc trục số, mẹo "Xếp các số từ bé đến lớn"; thẻ `sap-xep`).
+12. `liet-ke` Liệt kê số nguyên (kiến thức cần nhớ 7 về ≤ và ≥; bài 3.6; thẻ `liet-ke`).
 - Màu khái niệm: số nguyên dương lime, số nguyên âm pink, số 0 slate, tập hợp số nguyên teal, điểm biểu diễn amber, số đối sky, số nhỏ hơn blue, số lớn hơn violet (cùng màu với glossary của Bài 3 cho hai khái niệm nhỏ hơn, lớn hơn). Glossary: thêm "số nguyên", "số nguyên dương", "số nguyên âm", "số dương", "số âm", "tập hợp số nguyên", "trục số", "số đối" và tên riêng ℤ.
 - Hình: `src/visuals/math/tap-hop-cac-so-nguyen/` (`catalog.ts`: mỗi hình một dòng dữ liệu). Loại hình: `line` (trục số có lớp: gốc O, điểm, vùng âm và dương, mũi tên khoảng cách), `lineTry` (hình tương tác, bấm mũi tên đưa điểm sang trái hay phải một vạch, báo `{ p0, p1, … }`, validator `dat-diem`), `lineTap` (chạm điểm trên trục, vùng là tên chữ thường), `scale` (thước dọc: nhiệt kế, toà nhà, mực nước biển), `sticker`; dùng chung `rows`, `lines`, `chips` ở `src/visuals/shared/`. Primitive mới dùng cho cả chương III: `src/visuals/shared/number-line.tsx` và `number-line-geometry.ts` (trục số nguyên có mũi tên hai đầu), test `tests/visuals/number-line.test.tsx`; test của bài `tests/visuals/tap-hop-cac-so-nguyen.test.tsx`.
 

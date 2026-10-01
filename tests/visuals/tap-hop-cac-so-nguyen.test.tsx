@@ -13,11 +13,18 @@ import {
   validators,
 } from "@/visuals/math/tap-hop-cac-so-nguyen/logic";
 import {
+  GAP,
   levelAt,
   Scale,
+  type ScaleSpec,
   scaleHeight,
   scaleY,
+  shownSteps,
+  sideTexts,
+  TICK_TEXT_SIZE,
+  VIEW_WIDTH,
 } from "@/visuals/math/tap-hop-cac-so-nguyen/scale";
+import { NumberLine } from "@/visuals/shared/number-line";
 import { RegionProvider } from "@/visuals/shared/region";
 
 const range = { from: -5, to: 5 } as const;
@@ -283,6 +290,69 @@ describe("Scale", () => {
       (el) => el.textContent,
     );
     expect(hidden.some((text) => text?.includes("−3 °C"))).toBe(true);
+  });
+});
+
+describe("the scales of the catalog", () => {
+  const scales = Object.entries(VISUAL_SPECS).flatMap(([key, item]) =>
+    item.kind === "scale" ? [[key, item] as const] : [],
+  );
+  // Words are 17 units tall in the drawing; two at one height print over
+  // each other.
+  const TEXT_HEIGHT = 17;
+
+  it("never draws two texts beside the ruler at the same height", () => {
+    expect(scales.length).toBeGreaterThan(0);
+    for (const [key, spec] of scales) {
+      for (const step of shownSteps(spec)) {
+        const ys = sideTexts(spec, step)
+          .map((entry) => entry.y)
+          .sort((a, b) => a - b);
+        for (let i = 1; i < ys.length; i++) {
+          expect(
+            (ys[i] ?? 0) - (ys[i - 1] ?? 0),
+            `${key} step ${step}`,
+          ).toBeGreaterThanOrEqual(TEXT_HEIGHT);
+        }
+      }
+    }
+  });
+
+  it("shows the question mark of a hint on its last step, not the answer", () => {
+    const spec = VISUAL_SPECS["nhiet-ke-goi-y"] as ScaleSpec & {
+      kind: "scale";
+    };
+    const steps = shownSteps(spec);
+    const last = steps.at(-1) ?? 0;
+    const texts = sideTexts(spec, last).map((entry) => entry.text);
+    expect(texts).toContain("?");
+    expect(texts).not.toContain("−2 °C");
+    vi.useFakeTimers();
+    try {
+      const { container } = render(<Scale spec={spec} />);
+      act(() => vi.advanceTimersByTime(VISUAL_STEP_MS * steps.length));
+      const hidden = [...container.querySelectorAll(".invisible")].map(
+        (el) => el.textContent,
+      );
+      expect(hidden).not.toContain("?");
+      expect(hidden).toContain("−2 °C");
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("keeps the numbers of the ruler at 20px or more on the 320px drawing", () => {
+    expect((TICK_TEXT_SIZE * 320) / VIEW_WIDTH).toBeGreaterThanOrEqual(20);
+    expect(GAP).toBeGreaterThanOrEqual(TICK_TEXT_SIZE * 1.6);
+  });
+});
+
+describe("the opposite-numbers picture", () => {
+  it("draws no cross, which reads as a plus sign next to a minus", () => {
+    const spec = VISUAL_SPECS["so-doi-5"];
+    if (spec?.kind !== "line") throw new Error("so-doi-5 is a line");
+    const { container } = render(<NumberLine spec={spec} />);
+    expect(container.querySelector('[data-shape="cross"]')).toBeNull();
   });
 });
 

@@ -58,10 +58,14 @@ export type ScaleSpec = {
   mode: "steps" | "still" | "hint";
 };
 
-const VIEW_WIDTH = 320;
+export const VIEW_WIDTH = 320;
 const TEXT_SIZE = 17;
+// The numbers on the ruler are what the child reads off, so they are larger
+// than the words beside it: the drawing is at most 20rem (320px) wide, so
+// they are never smaller than 20px.
+export const TICK_TEXT_SIZE = 20;
 // A tick's number needs about 1.6 times its font size in height.
-const GAP = 28;
+export const GAP = 32;
 const TOP = 22;
 // Room under the lowest tick: the thermometer has its bulb there.
 const BOTTOM = 46;
@@ -78,12 +82,56 @@ const BAND_OPACITY = 0.22;
 
 const stepOf = (item: { step?: number }): number => item.step ?? 0;
 
+type Timed = { step?: number; until?: number };
+
 function lastStep(spec: ScaleSpec): number {
   return Math.max(
     0,
     ...spec.marks.map(stepOf),
     ...(spec.zones ?? []).map(stepOf),
     ...(spec.levelSteps ?? []).map(stepOf),
+  );
+}
+
+// Whether a mark or tag is drawn at `step`. A hint stops before its last
+// step and never draws what belongs to it.
+export function isShown(spec: ScaleSpec, item: Timed, step: number): boolean {
+  if (spec.mode === "still") return true;
+  const hint = spec.mode === "hint";
+  return (
+    stepOf(item) <= step &&
+    (item.until === undefined || step <= item.until) &&
+    !(hint && stepOf(item) === lastStep(spec))
+  );
+}
+
+// The words drawn beside the ruler at `step`, each with the height it sits
+// at; two of them at the same height would print over each other.
+export function sideTexts(
+  spec: ScaleSpec,
+  step: number,
+): { text: string; y: number }[] {
+  return [
+    { text: spec.zero, y: scaleY(spec, 0) },
+    ...(spec.zones ?? [])
+      .filter((zone) => isShown(spec, zone, step))
+      .map((zone) => ({
+        text: zone.tag,
+        y: scaleY(spec, zone.side === "up" ? spec.to : spec.from),
+      })),
+    ...spec.marks
+      .filter((mark) => isShown(spec, mark, step))
+      .map((mark) => ({ text: mark.text, y: scaleY(spec, mark.at) })),
+  ];
+}
+
+// The steps a picture plays: a hint stops before its last step.
+export function shownSteps(spec: ScaleSpec): number[] {
+  const last = lastStep(spec);
+  const count =
+    spec.mode === "steps" ? last + 1 : spec.mode === "hint" ? last : 1;
+  return Array.from({ length: Math.max(count, 1) }, (_, i) =>
+    spec.mode === "still" ? last : i,
   );
 }
 
@@ -247,7 +295,7 @@ function Axis({ spec }: { spec: ScaleSpec }) {
           y={scaleY(spec, value)}
           textAnchor="end"
           dominantBaseline="central"
-          fontSize={TEXT_SIZE}
+          fontSize={TICK_TEXT_SIZE}
           stroke="none"
           className={`${TEXT} ${value === 0 ? "fill-foreground" : "fill-muted-foreground"}`}
         >
@@ -269,20 +317,14 @@ function Axis({ spec }: { spec: ScaleSpec }) {
 }
 
 function Frame({ spec, step }: { spec: ScaleSpec; step: number }) {
-  const last = lastStep(spec);
-  const hint = spec.mode === "hint";
   const level = spec.mode === "still" ? (spec.level ?? 0) : levelAt(spec, step);
-  const visible = (item: { step?: number; until?: number }) =>
-    spec.mode === "still" ||
-    (stepOf(item) <= step &&
-      (item.until === undefined || step <= item.until) &&
-      !(hint && stepOf(item) === last));
+  const visible = (item: Timed) => isShown(spec, item, step);
   return (
     <svg
       viewBox={`0 0 ${VIEW_WIDTH} ${scaleHeight(spec)}`}
       role="img"
       aria-label={spec.label}
-      className="h-auto w-full max-w-[19rem]"
+      className="h-auto w-full max-w-[20rem]"
     >
       <Art spec={spec} level={level} />
       <Axis spec={spec} />

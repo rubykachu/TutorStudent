@@ -75,6 +75,9 @@ export type LineLayer =
       to: number;
       tag: string;
       color?: ConceptColor;
+      // A coloured arrow with its tag as plain words, without the concept's
+      // marker in front (for markers that read as a sign, like the cross).
+      plainTag?: boolean;
       // Row above the axis (0 is the closest), for arrows that would overlap.
       row?: number;
       step?: number;
@@ -380,7 +383,7 @@ function ArrowMark({
         className={colorClass ? colorClass.fill : "fill-foreground"}
         strokeWidth={1}
       />
-      {layer.color ? (
+      {layer.color && !layer.plainTag ? (
         <Tag
           x={(from + to) / 2}
           y={y - 22}
