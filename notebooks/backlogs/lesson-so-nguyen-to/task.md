@@ -1,28 +1,29 @@
 # Bàn giao: Bài 10 `so-nguyen-to` (Số nguyên tố)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026. Bài ở `status: draft`, đã sửa xong theo review vòng 1 (toàn bộ Nghiêm trọng, hầu hết Nên sửa và Góp ý, xem "Đã sửa theo review vòng 1"), chờ review vòng 2 (Opus, `content:diff` so với bản đã review). Chưa `content:hash --approve`, chưa `content:lock`, chưa có lời đọc và video.
-- Đã chạy sau khi sửa: `pnpm content:check` 0 lỗi (còn cảnh báo "id chưa khoá", đúng vì bài draft); `pnpm test` bài này 17 test đạt (toàn bộ: chỉ `tests/learn/section-player.test.tsx` fail do file `src/learn/section-player.tsx` đang sửa dở của agent khác, và vài test `sources-import` hết giờ khi máy tải nặng); `pnpm typecheck`, `biome lint` và `biome format` trên file của bài sạch; `pnpm visual:shot so-nguyen-to` 140/140 đạt; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo (đã xem contact sheet điện thoại của mọi màn đổi, iPad dọc mẫu).
-- Bước kế tiếp: review vòng 2, `content:hash --approve`, `content:lock`, rồi lời đọc tổng quan và 3 video.
+- Cập nhật cuối: 01/10/2026. Bài ở `status: draft`, đã sửa xong theo review vòng 2 (4 Nghiêm trọng, 15 Nên sửa, phần lớn Góp ý), chờ review vòng 3 (Sonnet, chỉ phần đổi: `content:diff` so với bản đã review). Chưa `content:hash --approve`, chưa `content:lock`, chưa có lời đọc và video.
+- Đã chạy sau khi sửa: `pnpm content:check` 0 lỗi (còn cảnh báo "id chưa khoá", đúng vì bài draft); `pnpm typecheck`, `pnpm test` (111 file đạt), biome trên file của bài sạch; `pnpm visual:shot so-nguyen-to` 140/140 đạt; `pnpm lesson:walk so-nguyen-to` 0 lỗi, 0 cảnh báo (đã xem hình đổi ở điện thoại, iPad dọc, iPad ngang).
+- Bước kế tiếp: review vòng 3, `content:hash --approve`, `content:lock`, rồi lời đọc tổng quan và 3 video.
 
-## Đã sửa theo review vòng 1
-- Định nghĩa số nguyên tố, hợp số, phân tích ra thừa số nguyên tố viết lại bằng lời của bài (giữ điều kiện "lớn hơn 1"); note, recap section, recap card đổi cùng lúc. Quy tắc tổng chia hết có thêm điều kiện "số đó lớn hơn 1", dùng nguyên văn câu Bài 8.
-- Bỏ hẳn hình sàng từng bước và block `sang-100` (mã `sieve.tsx`, mục catalog). Hình bảng là `prime-table.tsx` (kind `table`): `bang-100` (lưới 1..100, chỉ tô số nguyên tố, ghi "Số 1 không là số nguyên tố, cũng không là hợp số", rộng tới 460px) và `bang-nt` (25 số nguyên tố nhỏ hơn 100, năm số một hàng). Section 4 có thêm màn mẫu "Tra 59, tra 77".
-- Mọi câu và màn bảo "tra bảng" (section 4, 9, 11, 12) đặt `bang-nt` làm block cuối của đề hay child cuối của group; không đặt ở hình gợi ý. Section 5 giữ không có bảng.
-- Câu chép sách đổi số: `xep-5-cach` (kèm note "xoay vẫn là một cách", caption `xep-8` dạy trước), `viet-ba-19`, `viet-44`; id cũ đổi theo (bài chưa khoá id).
-- Sơ đồ cột: bỏ dấu ✚ ở từng số chia, thêm Legend "Số chia: số nguyên tố", vạch dọc liền một nét, hàng sát hơn để nút "Bước tiếp" không bị thanh dưới che trên điện thoại.
-- Nhãn `le-le` ("2 cộng số lẻ: tổng là số lẻ") và hàng "Số nguyên tố khác 2: đều là số lẻ"; hàng "Số lẻ" của `chan-le` không mang màu khái niệm (không còn nhãn có màu, hàng trên là "Số chẵn" slate, chú thích ở caption).
-- Tag "Ước" luôn violet, số nguyên tố/hợp số tô ngay trong hàng; recap `hop-so` có ý số 1 (`so-sanh-nt-hs-xong`, note số 1 đánh `rule`).
-- Đổi số để hết trùng (`chon-nt-2-7`, `chon-nt-bank`, `chon-hs-bank`, `chon-a-6` thành 7a, `tich-52`, `chia-dau-87` có "nhỏ nhất", `noi-tong`, `tong-31`, `viet-40` dạng chọn "thử từ nhỏ", `hs-tong-nhieu`); số `\overline{9a}` viết trong khối formula; thêm câu `phan-tich-4-9` cho card luỹ thừa; câu cột `cot-thieu-54` thay `chia-bi-54`.
-- Màn mở đầu section 6 tách hai màn (định nghĩa + 12 = 2 · 2 · 3, rồi cây với câu chuyện bánh làm note); hook, whyItMatters, sourceRef section 1, các câu dẫn mơ hồ ("Chia số đó", ví dụ 25, `dien-91`, `le-le-tong`, `viet-9-ba`...) sửa như review.
-- Góp ý đã làm: caption `so-sanh-nt-hs`, `chon-uoc-10`, thứ tự thừa số, hình gợi ý riêng `goi-y-cay-20` cho `cay-thieu-45`, "Sơ đồ cột của 84", cột `cot-thieu-54`, "Số thừa số bằng nhau là số mũ", ví dụ chia hết cho 2 (80), `dien-le-le` ví dụ khác, hình gợi ý `goi-y-tong-hs` và nhãn "Tích có thừa số ...", vạch dọc cột liền.
+## Đã sửa theo review vòng 1 và 2
+- Định nghĩa số nguyên tố, hợp số, phân tích ra thừa số nguyên tố viết bằng lời của bài; nhãn kết luận của hình `xep-11` giữ điều kiện "lớn hơn 1"; hợp số luôn nói "từ ba ước trở lên"; số nguyên tố nối với "chỉ có hai ước" ở caption `ngto-dau`; số 1 luôn là "không phải số nguyên tố, cũng không phải hợp số".
+- Không dùng số và hình của sách: hình quy tắc section 1 là 20 viên (`xep-20`, `xep-20-xong`), hook là 11 viên; sơ đồ cột `cot-195`, `cot-thieu-330`, `cot-thieu-78`; mẫu tổng `viet-74`; câu ôn `tich-66`, `tinh-3-2-11`, `phan-tich-4-49`.
+- Bảng số nguyên tố: `bang-100` (lưới 1..100, cao tối đa 32vh để iPad ngang thấy đủ bảng, chú giải và dòng số 1; dấu ✚ nhỏ ở góc ô, chữ số thấp xuống) và `bang-nt` (danh sách 25 số). Mọi câu và màn bảo "tra bảng" (section 4, 9, 11, 12, câu `chon-nt-bank`, `chon-hs-bank`) đặt `bang-nt` làm block cuối của đề hay group; section 5 không có bảng.
+- Section 5: số không chia hết cho 2, 3, 5 chưa chắc là số nguyên tố là note thường kèm ví dụ 77 = 7 · 11; `dh-nhieu` dùng 37 thay 49, hình gợi ý `goi-y-xet-69` dừng ở "?".
+- Nhãn hình: không nhãn nào bắt đầu bằng chữ số (test `no tag or verdict label starts with a digit`), nhãn mang màu bắt đầu bằng tên khái niệm hay chữ; hàng `2 + 19 = 21` của `le-le` không nhãn, ý nằm ở caption; sơ đồ cột không có dấu ở từng số chia, chỉ Legend "Số chia: số nguyên tố".
+- Số `\overline{9a}`, `5a`, `1a`, `4a` bọc `\htmlId{so}`, nấc 1 tô đúng số; `chon-hs-chan-bank` hỏi "hợp số chẵn"; `chon-chan-hs` chips 2, 9, 16, 21, 26, 34; `viet-28` kiểm "thử rồi loại" với "ít nhất"; nhãn `tong-hs-2` theo "Tích có thừa số ..."; câu rule section 13 có "Nếu"; nhãn hàng "Số chẵn" của `chan-le` ngắn để cùng dòng với số.
+- Thẻ `cay`, `cot`, `luy-thua` gắn khái niệm số nguyên tố, tích; bỏ khái niệm thừa số (blue) vì không hình nào dùng.
+- Câu chuyện bánh của section 6 là caption của `cay-12`, note quy tắc chỉ còn câu tách thừa số; ví dụ 72 viết từng bước; caption `xet-65` không nhắc số 80.
 
 ## Mục đã bỏ hay đổi cách làm
-- Hình cây to hơn trên iPad: bỏ. Cho SVG cây giãn 1,4 lần trên màn rộng làm walk báo thanh dưới che nút ở section 6 và hình lời giải `cay-thieu-28` (iPad dọc và ngang); số vẫn đọc được ở cỡ cũ.
-- Dòng thêm ở màn cùng làm section 5 "Số không chia hết cho 2, 3, 5 thì tra bảng để biết": đổi thành "chưa chắc là số nguyên tố" đặt ở caption `xet-51`, vì section 5 không có bảng (một câu bảo tra bảng mà không có bảng là lỗi mà review đã nêu); hình gợi ý "49 = 7 · 7" thay bằng `goi-y-xep-21` (hai cách xếp 21 ô, ước ẩn) để không lộ kết quả.
-- `phan-tich-4-9`: không đặt `check` vì nhiễu `4 · 3^2` cũng bằng 36; chỉ một lựa chọn gồm toàn số nguyên tố.
-- Recap section 12 không thêm ý "tổng ba số nguyên tố": recap tối đa 2 câu và đã đủ hai câu của note quy tắc; ý này nằm ở note và hình `viet-9-ba`.
-- Một số `rule` thành hai câu (section 3 ý số 1 là một câu, recap hai câu) để qua luật độ dài (câu tối đa 25 âm tiết, note tối đa 2 câu).
+- Hình cây to hơn trên iPad: bỏ (SVG giãn 1,4 lần làm thanh dưới che nút ở section 6).
+- `phan-tich-4-49`: không đặt `check` vì nhiễu `4 · 7^2` cũng có cùng giá trị 196.
+- Recap section 12 không thêm ý "tổng ba số nguyên tố": recap tối đa 2 câu, đã đủ hai câu của note quy tắc.
+- Nấc 1 của các câu tra bảng section 4 vẫn tô block 0 (đề), không tô bảng: vòng 1 đã chốt giữ block 0.
+- Không tách section "Số 1" khỏi `hop-so` (tốn không tương xứng: thêm section, card, câu, hình cho một ý).
+- `dien-130` vẫn không có nấc 1: mọi câu `fillBlank` của bài chỉ có một câu lệnh chung làm đề, không có khối để tô.
+- Dòng thứ hai của các màn chạm vẫn là cách làm, chưa thêm vế lý do (vòng 2 xếp "tuỳ tác giả").
+- Việc của app, không thuộc bài: bố cục màn khi bảng đẩy câu hỏi khỏi màn (cuộn tới phần được tô ở nấc 1), hàng 71, 73, 79 dưới mép ở màn chạm section 9 (chip 0–9 xuống dòng lệch trái trên iPad ngang), dấu khái niệm trong nhãn nên nhỏ hơn chữ rõ rệt hay đặt ở góc (dùng chung `TagChip`).
 
 ## Backlog cho app (không chặn bài này)
 - Nút "Bảng số nguyên tố" dùng chung cho mọi bài cần tra (bài này, Bài 11, các bài sau), mở ngay từ màn bài tập, thay cho việc chèn hình `bang-nt` vào từng đề. Khi có, bỏ `bang-nt` khỏi các prompt và để một nguồn dữ liệu (`primesBelow(100)` ở `src/visuals/math/so-nguyen-to/logic.ts`).
@@ -45,18 +46,18 @@
 ## Cấu trúc bài (13 section, 13 card, 65 bài tập, 6 dạng, 14 hình tương tác)
 `order: 10`, `number: 10`, chương II "Tính chia hết trong tập hợp các số tự nhiên", `sourceRef` "Sách bài tập tr.35–37".
 1 `dem-uoc` (tìm ước bằng cách xếp ô vuông thành hình chữ nhật, quy tắc tìm ước của Bài 8 nhắc lại nguyên văn); 2 `so-nguyen-to` (định nghĩa 1); 3 `hop-so` (định nghĩa 2, số 1); 4 `bang-so-nguyen-to` (bảng nhỏ hơn 100, màn mẫu tra bảng); 5 `dau-hieu-hop-so` (kĩ năng B: dấu hiệu 2, 3, 5; câu 2.26 dạng nhỏ); 6 `phan-tich-cay` (định nghĩa 3, sơ đồ cây, câu 2.28); 7 `phan-tich-cot` (sơ đồ cột, ví dụ 1, câu 2.27); 8 `viet-luy-thua` (viết gọn, câu 2.23, 2.24); 9 `tim-chu-so-a` (câu 2.25); 10 `so-2` (số chẵn, số lẻ, số 2 là số nguyên tố chẵn duy nhất); 11 `tong-hai-nguyen-to` (ví dụ 2, câu 2.29); 12 `viet-tong` (câu 2.32); 13 `tong-hop-so` (câu 2.31a).
-Câu 2.30 (xếp hình vuông thành hình chữ nhật) được dùng làm hình mở đầu các section 1–3 và hai câu ôn (`xep-7-cach`, `xep-18-cach`). Câu 2.31b (tích các số lẻ) không làm: cần "tích các số lẻ là số lẻ", sách bài tập không dạy.
+Câu 2.30 (xếp hình vuông thành hình chữ nhật) chỉ cho ý tưởng xếp ô; số trong bài khác sách: hình section 1 là 20 ô, section 2 là 11 ô, section 3 là 9 ô, hai câu ôn xếp 13 và 18 viên (`xep-13-cach`, `xep-18-cach`). Câu 2.31b (tích các số lẻ) không làm: cần "tích các số lẻ là số lẻ", sách bài tập không dạy.
 Hình: `src/visuals/math/so-nguyen-to/` (danh mục `catalog.ts`: mỗi hình một dòng dữ liệu; loại mới `rects`, `table`, `tree`, `column`; `rows`, `lines`, `chips` dùng lại của `src/visuals/shared/`). Câu chạm chọn dùng validator `chon-dung` của bài tập hợp. Test: `tests/visuals/so-nguyen-to.test.tsx`.
 Thuật ngữ mới trong `content/glossary/math.json`: "số nguyên tố" (sky), "hợp số" (pink), "phân tích ra thừa số nguyên tố", "sơ đồ cây", "sơ đồ cột", "bảng số nguyên tố", "số chẵn" (slate, chỉ số chẵn mang màu) và "số lẻ" (không màu; cả hai đánh dấu `prerequisite: tiểu học`, vì sách chỉ dùng mà không định nghĩa; section 10 và 11 ghi "Kiến thức nền (tiểu học)" ở `sourceRef`).
-Màu: số nguyên tố sky (✚), hợp số pink (◆), ước violet, chữ số tận cùng teal và tổng các chữ số lime (chỉ ở section 5, giống Bài 9), thừa số blue, tích amber.
+Màu: số nguyên tố sky (✚), hợp số pink (◆), ước violet, chữ số tận cùng teal và tổng các chữ số lime (chỉ ở section 5, giống Bài 9), tích amber.
 
 ## Để reviewer soi kĩ
 - Mọi đáp án và nhiễu đã được tính bằng chương trình khi dựng (hợp số, số nguyên tố, ước, thừa số), nên tập trung vào lời đề và hai cách hiểu (LL-01, LL-10). Các câu không có `check` tự động vì lint không tính được tính nguyên tố: tự giải lại từng nhiễu.
 - Bảng số nguyên tố (`bang-100`, `bang-nt`) chỉ liệt kê, không dạy cách lập (đã bỏ hình sàng vì ngoài nguồn); kiểm mọi chỗ quy tắc bảo "tra bảng" đều có `bang-nt` trên màn (LL-22).
 - Section 10 và 11 dùng "số chẵn", "số lẻ" (kiến thức nền tiểu học, có glossary `prerequisite`); kiểm định nghĩa trong note và `sourceRef`.
 - Section 11: mệnh đề "muốn tổng hai số nguyên tố là số lẻ thì một số hạng phải là 2" dựa vào "tổng hai số lẻ là số chẵn" và "số chẵn lớn hơn 2 là hợp số" (section 10); kiểm không có chỗ nhảy bước.
-- Section 13 (`hs-tong-nhieu`, độ khó 3): tổng `3 · 5 + 6 · 7` là hợp số vì hai số hạng cùng chia hết cho 3; kiểm trẻ làm được với quy tắc "các số hạng cùng chia hết cho một số" của Bài 8.
-- Số trong bài tính nhẩm: hình `gon-6-6-5` và câu `gon-2-2-3-3-3` có nhiều hơn 2 phép tính; hình `gon-6-6-5` có từng bước (LL-18). Câu `cot-thieu-150` (độ khó 3) cần chia 75 cho 25 để biết số chia; có hình gợi ý và lời giải.
+- Section 13 (`hs-tong-nhieu`, độ khó 3): tổng `6 · 5 + 9 · 7` là hợp số vì hai số hạng cùng chia hết cho 3; kiểm trẻ làm được với quy tắc "các số hạng cùng chia hết cho một số" của Bài 8.
+- Số trong bài tính nhẩm: hình `gon-6-6-5` và câu `gon-2-2-3-3-3` có nhiều hơn 2 phép tính; hình `gon-6-6-5` có từng bước (LL-18). Câu `cot-thieu-330` (độ khó 3) cần chia 165 cho 55 để biết số chia; có hình gợi ý và lời giải.
 - Quy ước tích: "k hàng, mỗi hàng m ô" luôn viết `m · k` (m được lấy k lần), kiểm hình `rects` và chú thích cây bánh `cay-12` (LL-05).
 - Màn mở đầu của section 6 dài trên điện thoại (quy tắc 2 câu, cây, tích, chú giải, chú thích): trẻ phải cuộn xuống để thấy chú thích cuối; không có chữ chồng hay bị cắt theo walk.
 
