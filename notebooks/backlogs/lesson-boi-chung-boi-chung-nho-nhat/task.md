@@ -1,9 +1,9 @@
 # Bàn giao: Bài 12 `boi-chung-boi-chung-nho-nhat` (Bội chung. Bội chung nhỏ nhất)
 
 ## Trạng thái
-- Cập nhật cuối: 01/10/2026 (vòng 3 đang chạy). Bản `draft`, chưa khoá id, chưa lời đọc, chưa video.
-- Review: vòng 1 (8 Nghiêm trọng) và vòng 2 (5 Nghiêm trọng, 16 Nên sửa, 20 Góp ý) đã sửa; bản sửa vòng 2 ở commit `fix(lesson): Bài 12 fixes after review round 2` (5 Nghiêm trọng, cả 16 Nên sửa và Góp ý 1, 2, 5, 8, 9, 11 đến 15, 17, 18, 19; còn bỏ ngỏ Góp ý 3, 4, 6, 7, 10, 16, 20). Hình bánh răng thêm trường `shared` (chú giải) trong `MeetTrySpec`. `content:check` 0 lỗi; `lesson:walk` 0 FAIL ở worktree tạm (cổng 3130).
-- Việc tiếp theo: reviewer Sonnet vòng 3 (chỉ phần đổi) đang chạy; sau đó `content:hash --approve`, `content:lock`, gate, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`, cập nhật `notebooks/backlogs/index.md`.
+- Cập nhật cuối: 01/10/2026. **Đã xuất bản** (`status: published`, id đã khoá, `lesson:walk` 0 FAIL). Chưa lời đọc, chưa video.
+- Review: vòng 1 (8 Nghiêm trọng), vòng 2 (5 Nghiêm trọng, 16 Nên sửa, 20 Góp ý) và vòng 3 chỉ phần đổi (Sonnet, 0 Nghiêm trọng, 2 Nên sửa, 3 Góp ý) đã sửa hết phần Nghiêm trọng và Nên sửa; vòng 3 đã áp luôn 2 Nên sửa và 3 Góp ý. Còn bỏ ngỏ (Góp ý vòng 2, không chặn): 3, 4, 6, 7, 10, 16, 20; việc của app: nhãn ô đếm thiếu đơn vị ("1 chuyến") và phép kiểm `solveMeet` nằm trong `ROUND_RANGE` cho mọi bài dùng `gap-nhau`.
+- Việc tiếp theo: lời đọc (`pnpm narration:build`, skill `lesson-video`) rồi video; sửa nội dung bài sau khi xuất bản đổi hash nên cần review lại. Ôn tập chương II (`on-tap-chuong-2`) phải soát lại các câu BCNN theo Bài 12 (cặp số, cách nói quy tắc "nhiều nhất" của ƯCLN, mẹo `chon-cong-cu`).
 - Số mới ở vòng 1 cần reviewer vòng 3 soát lại: `chon-bc-4-15-nho-hon-200`, `ba-chu-so-7-9`, `dien-bc-56`, `khong-la-bc-4-9`, `dien-bcnn-28`, `hai-chu-so-8-10`, `tim-loi-bcnn-3-4-8`, `chon-dang-24-40`, `hang-2-3-5-du-1`; hình bánh răng mới `gears.tsx`.
 
 ## Nguồn (sách bài tập, `sources/math/boi-chung-boi-chung-nho-nhat/`, không commit)
