@@ -310,7 +310,8 @@
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.sn-vi-du"
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.sn-vi-du",
+              "caption": "7 cái kẹo chỉ chia đều được vào 1 túi hoặc 7 túi. 6 cái kẹo còn chia đều được vào 2 túi hoặc 3 túi."
             }
           ]
         },
@@ -323,8 +324,7 @@
             },
             {
               "type": "visual",
-              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-12",
-              "caption": "12 cái kẹo chia đôi được 6 cái, rồi 6 cái chia đôi được 3 cái. Vậy 12 = 2² · 3."
+              "visualId": "uoc-chung-uoc-chung-lon-nhat.visual.chia-dan-12"
             }
           ]
         },
@@ -385,7 +385,7 @@
             },
             {
               "type": "note",
-              "text": "Thừa số viết không có số mũ thì số mũ là 1, như 3 = 3¹. Không có thừa số chung thì ƯCLN bằng 1."
+              "text": "Thừa số không có số mũ thì số mũ là 1, như 3 = 3¹."
             },
             {
               "type": "visual",
