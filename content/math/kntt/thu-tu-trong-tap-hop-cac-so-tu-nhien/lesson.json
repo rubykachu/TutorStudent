@@ -11,7 +11,8 @@
   },
   "title": "Thứ tự trong tập hợp các số tự nhiên",
   "sourceRef": "Sách bài tập tr.11–13, lời giải tr.96",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "18f3fa3ee0cffbc05007a82d508cf93541289e78da6d262ba6f1292f6cecb29a",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách xếp thứ tự các số. Khi xếp hàng vào lớp, người thấp đứng trước, người cao đứng sau, và các số cũng có thứ tự như vậy."
