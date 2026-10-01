@@ -359,6 +359,12 @@ describe("Chips", () => {
     expect(screen.getByText("Đã chọn 2/2")).toBeInTheDocument();
   });
 
+  it("draws each thousands separator as a gap of its own and keeps the character in the text", () => {
+    const { container } = render(<Chips items={["2\u202f340", "75"]} />);
+    expect(screen.getAllByRole("button")[0].textContent).toBe("2\u202f340");
+    expect(container.querySelectorAll(".w-\\[0\\.25em\\]")).toHaveLength(1);
+  });
+
   it("shows only a count and locks when the answer is shown", () => {
     render(<Chips items={["2", "3"]} shownState={{ i0: 1, i1: 0 }} />);
     expect(screen.getByText("Đã chọn 1")).toBeInTheDocument();

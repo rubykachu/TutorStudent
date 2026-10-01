@@ -14,7 +14,7 @@
   "status": "draft",
   "overview": {
     "hook": {
-      "text": "Mẹ nhờ bạn đếm xem 135 nghìn đồng đổi ra tờ 5 nghìn đồng được mấy tờ, vừa hết hay còn thừa. Chỉ cần nhìn chữ số cuối là bạn biết ngay có vừa hết không."
+      "text": "Mẹ nhờ bạn xem 135 nghìn đồng đổi hết ra tờ 5 nghìn đồng được không. Chỉ cần nhìn chữ số tận cùng là bạn biết ngay."
     },
     "summary": "Bài này dạy cách nhìn các chữ số để biết một số có chia hết cho 2, 5, 3 hoặc 9 không. Bạn dùng các dấu hiệu này để tìm chữ số còn thiếu và giải bài toán.",
     "goals": [
@@ -112,7 +112,7 @@
       "id": "dau-hieu-chia-het.section.chia-het-5",
       "title": "Dấu hiệu chia hết cho 5",
       "sourceRef": "Sách bài tập tr.33",
-      "minutes": 4,
+      "minutes": 5,
       "blocks": [
         {
           "type": "visual",
@@ -145,6 +145,19 @@
               "visualId": "dau-hieu-chia-het.visual.thu-cuoi-17"
             }
           ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mẹ nhờ bạn đổi 135 nghìn đồng ra tờ 5 nghìn đồng. Số 135 có chữ số tận cùng là 5, nên đổi vừa hết."
+            },
+            {
+              "type": "visual",
+              "visualId": "dau-hieu-chia-het.visual.tien-135-5"
+            }
+          ]
         }
       ],
       "checkIds": ["dau-hieu-chia-het.ex.tan-cung-5"],
@@ -162,6 +175,11 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "visual",
+          "visualId": "dau-hieu-chia-het.visual.lop-30-ban",
+          "caption": "Lớp có 30 bạn xếp cặp 2 bạn hoặc xếp nhóm 5 bạn đều vừa hết."
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -174,11 +192,6 @@
               "visualId": "dau-hieu-chia-het.visual.so-cuoi-2-5"
             }
           ]
-        },
-        {
-          "type": "visual",
-          "visualId": "dau-hieu-chia-het.visual.lop-30-ban",
-          "caption": "Lớp có 30 bạn xếp cặp 2 bạn hoặc xếp nhóm 5 bạn đều vừa hết."
         },
         {
           "type": "group",
@@ -225,7 +238,7 @@
         {
           "type": "visual",
           "visualId": "dau-hieu-chia-het.visual.cong-6384",
-          "caption": "Tổng các chữ số của 6 384 là 21."
+          "caption": "Số nhà của Hà là 6 384. Tổng các chữ số của số nhà là 21."
         },
         {
           "type": "group",
@@ -241,7 +254,7 @@
           ]
         }
       ],
-      "checkIds": ["dau-hieu-chia-het.ex.tong-2431"],
+      "checkIds": ["dau-hieu-chia-het.ex.tong-574"],
       "practiceIds": ["dau-hieu-chia-het.ex.tong-5082"],
       "recap": {
         "type": "visual",
@@ -258,7 +271,7 @@
         {
           "type": "visual",
           "visualId": "dau-hieu-chia-het.visual.hop-27-9",
-          "caption": "Xếp 27 cái bánh vào các hộp, mỗi hộp 9 cái: vừa hết, được 3 hộp."
+          "caption": "Xếp 27 cái bánh vào các hộp, mỗi hộp 9 cái: vừa hết, được 3 hộp. Ở số 27, 2 + 7 = 9."
         },
         {
           "type": "group",
@@ -279,7 +292,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Các số chia hết cho 9 nhỏ là 9, 18, 27, 36 và 45. Khi có tổng các chữ số, bạn so nó với các số này."
+              "text": "Các số chia hết cho 9 từ 9 đến 45 là 9, 18, 27, 36 và 45. Khi có tổng các chữ số, bạn so nó với các số này."
             },
             {
               "type": "visual",
@@ -356,16 +369,16 @@
             },
             {
               "type": "visual",
-              "visualId": "dau-hieu-chia-het.visual.chon-3-1524"
+              "visualId": "dau-hieu-chia-het.visual.chon-3-1410"
             }
           ]
         }
       ],
-      "checkIds": ["dau-hieu-chia-het.ex.tong-12-chia-het-3"],
+      "checkIds": ["dau-hieu-chia-het.ex.tong-15-chia-het-3"],
       "practiceIds": ["dau-hieu-chia-het.ex.chon-chia-het-3"],
       "recap": {
         "type": "visual",
-        "visualId": "dau-hieu-chia-het.visual.tom-tat-3204-3",
+        "visualId": "dau-hieu-chia-het.visual.tom-tat-3207-3",
         "caption": "Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3. Số có tổng các chữ số không chia hết cho 3 thì không chia hết cho 3."
       }
     },
@@ -385,7 +398,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn biết một số có chia hết cho cả hai số hay không, ta xét lần lượt từng dấu hiệu. Số đó phải đúng với cả hai dấu hiệu.",
+              "text": "Muốn biết một số có chia hết cho cả hai số hay không, ta xét lần lượt từng dấu hiệu. Số đó chia hết cho cả hai số khi xét dấu hiệu nào cũng thấy chia hết.",
               "rule": true
             },
             {
@@ -413,7 +426,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-hai-dau-hieu",
-        "caption": "Muốn biết một số có chia hết cho cả hai số hay không, ta xét lần lượt từng dấu hiệu. Số đó phải đúng với cả hai dấu hiệu."
+        "caption": "Muốn biết một số có chia hết cho cả hai số hay không, ta xét lần lượt từng dấu hiệu. Số đó chia hết cho cả hai số khi xét dấu hiệu nào cũng thấy chia hết."
       }
     },
     {
@@ -454,7 +467,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các tích chia hết cho 5. Tìm xem thừa số nào chia hết cho 5."
+              "text": "Chạm vào các tích chia hết cho 5. Tìm thừa số chia hết cho 5; không có thì tính tích."
             },
             {
               "type": "visual",
@@ -464,7 +477,7 @@
         }
       ],
       "checkIds": ["dau-hieu-chia-het.ex.chon-tich-3"],
-      "practiceIds": ["dau-hieu-chia-het.ex.chon-tich-4"],
+      "practiceIds": ["dau-hieu-chia-het.ex.chon-tich-2"],
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-tich-10-3",
@@ -478,8 +491,17 @@
       "minutes": 5,
       "blocks": [
         {
-          "type": "visual",
-          "visualId": "dau-hieu-chia-het.visual.tong-1640-3272"
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhớ lại bài trước: ta xét từng số hạng, không cần cộng cả hai số lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "dau-hieu-chia-het.visual.tong-1640-3272"
+            }
+          ]
         },
         {
           "type": "visual",
@@ -490,7 +512,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Xét từng số bằng dấu hiệu chia hết, rồi dùng tính chất của tổng hoặc của hiệu.",
+              "text": "Hai số đều chia hết cho 2 hay 5 thì tổng và hiệu của chúng cũng chia hết cho số đó. Chỉ một trong hai số chia hết cho 2 hay 5 thì tổng và hiệu của chúng không chia hết cho số đó.",
               "rule": true
             },
             {
@@ -518,7 +540,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-tong-20-35",
-        "caption": "Xét từng số bằng dấu hiệu chia hết, rồi dùng tính chất của tổng hoặc của hiệu."
+        "caption": "Hai số đều chia hết cho 2 hay 5 thì tổng và hiệu của chúng cũng chia hết cho số đó. Chỉ một trong hai số chia hết cho 2 hay 5 thì tổng và hiệu của chúng không chia hết cho số đó."
       }
     },
     {
@@ -532,7 +554,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Luỹ thừa của 10 là số 1 theo sau các chữ số 0, nên tổng các chữ số của nó bằng 1.",
+              "text": "Luỹ thừa của 10 là số 1 theo sau các chữ số 0, nên tổng các chữ số của nó bằng 1. Cộng thêm một số thì tổng các chữ số là 1 cộng tổng các chữ số của số được thêm.",
               "rule": true
             },
             {
@@ -564,7 +586,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-10-3",
-        "caption": "Luỹ thừa của 10 là số 1 theo sau các chữ số 0, nên tổng các chữ số của nó bằng 1."
+        "caption": "Luỹ thừa của 10 là số 1 theo sau các chữ số 0, nên tổng các chữ số của nó bằng 1. Cộng thêm một số thì tổng các chữ số là 1 cộng tổng các chữ số của số được thêm."
       }
     },
     {
@@ -583,12 +605,13 @@
           "children": [
             {
               "type": "note",
-              "text": "Dùng dấu hiệu chia hết cho 2 hay 5 để tìm chữ số tận cùng. Dùng dấu hiệu chia hết cho 3 hay 9 để tìm các chữ số còn lại.",
+              "text": "Đề cho chia hết cho 2 hay 5 thì xét chữ số tận cùng. Đề cho chia hết cho 3 hay 9 thì xét tổng các chữ số.",
               "rule": true
             },
             {
               "type": "visual",
-              "visualId": "dau-hieu-chia-het.visual.tim-24a"
+              "visualId": "dau-hieu-chia-het.visual.tim-24a",
+              "caption": "Tìm chữ số a để số 24a chia hết cho cả 3 và 5."
             }
           ]
         },
@@ -615,8 +638,8 @@
       "practiceIds": ["dau-hieu-chia-het.ex.tim-chu-so-28b"],
       "recap": {
         "type": "visual",
-        "visualId": "dau-hieu-chia-het.visual.tom-tat-tim-26c",
-        "caption": "Dùng dấu hiệu chia hết cho 2 hay 5 để tìm chữ số tận cùng. Dùng dấu hiệu chia hết cho 3 hay 9 để tìm các chữ số còn lại."
+        "visualId": "dau-hieu-chia-het.visual.tom-tat-tim-58c",
+        "caption": "Đề cho chia hết cho 2 hay 5 thì xét chữ số tận cùng. Đề cho chia hết cho 3 hay 9 thì xét tổng các chữ số."
       }
     },
     {
@@ -643,7 +666,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu mỗi câu đều được hay bị trừ số điểm chia hết cho 3 thì điểm cả bài chia hết cho 3.",
+              "text": "Nếu mỗi câu đều được hay bị trừ số điểm chia hết cho 3 thì điểm cả bài chia hết cho 3. Điểm cả bài không chia hết cho 3 thì chắc chắn tính sai.",
               "rule": true
             },
             {
@@ -657,7 +680,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chạm vào các số điểm có thể đạt được. Điểm cả bài phải chia hết cho 3."
+              "text": "Chạm vào các số điểm chắc chắn tính sai. Điểm cả bài phải chia hết cho 3."
             },
             {
               "type": "visual",
@@ -671,7 +694,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-diem",
-        "caption": "Nếu mỗi câu đều được hay bị trừ số điểm chia hết cho 3 thì điểm cả bài chia hết cho 3."
+        "caption": "Nếu mỗi câu đều được hay bị trừ số điểm chia hết cho 3 thì điểm cả bài chia hết cho 3. Điểm cả bài không chia hết cho 3 thì chắc chắn tính sai."
       }
     },
     {
@@ -685,7 +708,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Mẹ mua một số cái bút giá 7 nghìn đồng và một số quyển vở giá 5 nghìn đồng, hết 55 nghìn đồng. Mẹ mua mấy cái bút, mấy quyển vở?"
+              "text": "Mẹ mua một số cái bút, mỗi cái 7 nghìn đồng, và một số quyển vở, mỗi quyển 5 nghìn đồng."
+            },
+            {
+              "type": "note",
+              "text": "Mỗi loại mua ít nhất một cái, cả hai hết 55 nghìn đồng. Mẹ mua mấy cái bút, mấy quyển vở?"
             },
             {
               "type": "visual",
@@ -712,7 +739,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đây là tiền bút khi mua từ 1 đến 7 cái. Chạm vào các số chia hết cho 5."
+              "text": "Mua 8 cái bút đã hết 56 nghìn đồng, nhiều hơn 55 nghìn đồng, nên chỉ xét từ 1 đến 7 cái. Chạm vào các số tiền bút chia hết cho 5."
             },
             {
               "type": "visual",
@@ -737,7 +764,7 @@
       "id": "dau-hieu-chia-het.section.lap-so",
       "title": "Lập số chia hết cho 2 hoặc 5",
       "sourceRef": "Sách bài tập tr.34",
-      "minutes": 4,
+      "minutes": 5,
       "blocks": [
         {
           "type": "visual",
@@ -755,6 +782,19 @@
             {
               "type": "visual",
               "visualId": "dau-hieu-chia-het.visual.lap-2-chia-het-5"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chữ số 0 không đứng đầu một số ba chữ số. Từ các chữ số 0, 3 và 5, ta lập được 350, 530 và 305 chia hết cho 5."
+            },
+            {
+              "type": "visual",
+              "visualId": "dau-hieu-chia-het.visual.lap-035"
             }
           ]
         },
@@ -838,7 +878,7 @@
       "conceptIds": ["dau-hieu-chia-het.concept.tong-cs"],
       "recap": {
         "type": "visual",
-        "visualId": "dau-hieu-chia-het.visual.tom-tat-3204-3",
+        "visualId": "dau-hieu-chia-het.visual.tom-tat-3207-3",
         "caption": "Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3. Số có tổng các chữ số không chia hết cho 3 thì không chia hết cho 3."
       }
     },
@@ -852,7 +892,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-hai-dau-hieu",
-        "caption": "Muốn biết một số có chia hết cho cả hai số hay không, ta xét lần lượt từng dấu hiệu. Số đó phải đúng với cả hai dấu hiệu."
+        "caption": "Muốn biết một số có chia hết cho cả hai số hay không, ta xét lần lượt từng dấu hiệu. Số đó chia hết cho cả hai số khi xét dấu hiệu nào cũng thấy chia hết."
       }
     },
     {
@@ -875,7 +915,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-tong-20-35",
-        "caption": "Xét từng số bằng dấu hiệu chia hết, rồi dùng tính chất của tổng hoặc của hiệu."
+        "caption": "Hai số đều chia hết cho 2 hay 5 thì tổng và hiệu của chúng cũng chia hết cho số đó. Chỉ một trong hai số chia hết cho 2 hay 5 thì tổng và hiệu của chúng không chia hết cho số đó."
       }
     },
     {
@@ -885,7 +925,7 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-10-3",
-        "caption": "Luỹ thừa của 10 là số 1 theo sau các chữ số 0, nên tổng các chữ số của nó bằng 1."
+        "caption": "Luỹ thừa của 10 là số 1 theo sau các chữ số 0, nên tổng các chữ số của nó bằng 1. Cộng thêm một số thì tổng các chữ số là 1 cộng tổng các chữ số của số được thêm."
       }
     },
     {
@@ -897,8 +937,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "dau-hieu-chia-het.visual.tom-tat-tim-26c",
-        "caption": "Dùng dấu hiệu chia hết cho 2 hay 5 để tìm chữ số tận cùng. Dùng dấu hiệu chia hết cho 3 hay 9 để tìm các chữ số còn lại."
+        "visualId": "dau-hieu-chia-het.visual.tom-tat-tim-58c",
+        "caption": "Đề cho chia hết cho 2 hay 5 thì xét chữ số tận cùng. Đề cho chia hết cho 3 hay 9 thì xét tổng các chữ số."
       }
     },
     {
@@ -908,13 +948,13 @@
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-diem",
-        "caption": "Nếu mỗi câu đều được hay bị trừ số điểm chia hết cho 3 thì điểm cả bài chia hết cho 3."
+        "caption": "Nếu mỗi câu đều được hay bị trừ số điểm chia hết cho 3 thì điểm cả bài chia hết cho 3. Điểm cả bài không chia hết cho 3 thì chắc chắn tính sai."
       }
     },
     {
       "id": "dau-hieu-chia-het.card.but-vo",
       "sourceRef": "Sách bài tập tr.34",
-      "conceptIds": ["dau-hieu-chia-het.concept.tong-cs"],
+      "conceptIds": ["dau-hieu-chia-het.concept.tan-cung"],
       "recap": {
         "type": "visual",
         "visualId": "dau-hieu-chia-het.visual.tom-tat-but-vo",
@@ -1297,7 +1337,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả chữ số tận cùng cho số chia hết cho 5."
+          "text": "Chọn tất cả chữ số có thể là chữ số tận cùng của một số chia hết cho 5."
         }
       ],
       "hints": {
@@ -1414,7 +1454,7 @@
         "hintVisualId": "dau-hieu-chia-het.visual.goi-y-tien-30",
         "solutionVisualId": "dau-hieu-chia-het.visual.giai-tien-45"
       },
-      "difficulty": 2,
+      "difficulty": 3,
       "answer": {
         "kind": "value",
         "value": 9
@@ -1567,7 +1607,7 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "40"
+            "text": "90"
           }
         },
         {
@@ -1750,13 +1790,13 @@
       }
     },
     {
-      "id": "dau-hieu-chia-het.ex.tong-2431",
+      "id": "dau-hieu-chia-het.ex.tong-574",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Tính tổng các chữ số của số 2 431."
+          "text": "Tính tổng các chữ số của số 574."
         }
       ],
       "hints": {
@@ -1770,10 +1810,10 @@
       "difficulty": 1,
       "answer": {
         "kind": "value",
-        "value": 10
+        "value": 16
       },
       "check": {
-        "expr": "2+4+3+1"
+        "expr": "5+7+4"
       }
     },
     {
@@ -1856,28 +1896,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "3 441"
+            "text": "354"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "2 350"
+            "text": "275"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "6 153"
+            "text": "618"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "1 502"
+            "text": "470"
           }
         }
       ],
@@ -1908,28 +1948,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "4 203"
+            "text": "135"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "1 350"
+            "text": "270"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "4 162"
+            "text": "482"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "3 207"
+            "text": "316"
           }
         }
       ],
@@ -1943,7 +1983,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các bước tính tổng các chữ số của số 3 524."
+          "text": "Xếp các phép cộng để tính tổng các chữ số của số 3 524."
         }
       ],
       "hints": {
@@ -1960,21 +2000,21 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "Viết các chữ số 3, 5, 2, 4"
+            "text": "3 + 5 = 8"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Cộng lần lượt 3 + 5 + 2 + 4"
+            "text": "8 + 2 = 10"
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "Được tổng các chữ số là 14"
+            "text": "10 + 4 = 14"
           }
         }
       ]
@@ -2048,28 +2088,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "1 215"
+            "text": "387"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "2 316"
+            "text": "156"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "4 105"
+            "text": "725"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "3 874"
+            "text": "410"
           }
         }
       ],
@@ -2100,28 +2140,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "5 472"
+            "text": "468"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "6 130"
+            "text": "530"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "2 853"
+            "text": "729"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "4 217"
+            "text": "346"
           }
         }
       ],
@@ -2242,13 +2282,13 @@
       "multiple": false
     },
     {
-      "id": "dau-hieu-chia-het.ex.tong-12-chia-het-3",
+      "id": "dau-hieu-chia-het.ex.tong-15-chia-het-3",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Tổng các chữ số của số 4 215 là 12. Số 4 215 có chia hết cho 3 không?"
+          "text": "Tổng các chữ số của số 5 217 là 15. Số 5 217 có chia hết cho 3 không?"
         }
       ],
       "hints": {
@@ -2265,21 +2305,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Có, vì 12 chia hết cho 3"
+            "text": "Có, vì 15 chia hết cho 3"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Không, vì 4 215 có chữ số tận cùng là 5"
+            "text": "Không, vì 5 217 có chữ số tận cùng là 7"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không, vì 12 không chia hết cho 3"
+            "text": "Không, vì 15 không chia hết cho 3"
           }
         }
       ],
@@ -2310,28 +2350,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "2 451"
+            "text": "462"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "3 712"
+            "text": "571"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "5 204"
+            "text": "835"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "6 118"
+            "text": "728"
           }
         }
       ],
@@ -2362,28 +2402,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "1 602"
+            "text": "285"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "3 500"
+            "text": "340"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "7 221"
+            "text": "714"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "4 163"
+            "text": "526"
           }
         }
       ],
@@ -2453,7 +2493,8 @@
         }
       ],
       "hints": {
-        "highlight": []
+        "highlight": [],
+        "hintVisualId": "dau-hieu-chia-het.visual.goi-y-7062-9"
       },
       "difficulty": 2,
       "segments": [
@@ -2527,28 +2568,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "1 350"
+            "text": "246"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "2 408"
+            "text": "308"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "3 651"
+            "text": "465"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "5 125"
+            "text": "721"
           }
         }
       ],
@@ -2631,28 +2672,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "4 716"
+            "text": "738"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "3 645"
+            "text": "645"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "2 350"
+            "text": "520"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "8 107"
+            "text": "417"
           }
         }
       ],
@@ -2683,28 +2724,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "1 245"
+            "text": "165"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "3 120"
+            "text": "240"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "2 350"
+            "text": "275"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "4 618"
+            "text": "318"
           }
         }
       ],
@@ -2742,7 +2783,7 @@
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Tổng các chữ số là 1 + 5 + 3 + 0 = 9"
+            "text": "Số 1 530 chia hết cho 5. Xét tiếp tổng các chữ số: 1 + 5 + 3 + 0 = 9"
           }
         },
         {
@@ -2893,13 +2934,13 @@
       "multiple": false
     },
     {
-      "id": "dau-hieu-chia-het.ex.chon-tich-4",
+      "id": "dau-hieu-chia-het.ex.chon-tich-2",
       "type": "choice",
       "cardIds": ["dau-hieu-chia-het.card.tich-chia-het"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tích nào chia hết cho 4?"
+          "text": "Tích nào chia hết cho 2?"
         }
       ],
       "hints": {
@@ -2923,25 +2964,25 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot 7"
+            "tex": "8 \\cdot 9"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "8 \\cdot 9"
+            "tex": "7 \\cdot 11"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "5 \\cdot 11"
+            "tex": "5 \\cdot 13"
           }
         }
       ],
-      "answer": ["c"],
+      "answer": ["b"],
       "multiple": false
     },
     {
@@ -2968,7 +3009,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "14 \\cdot 3"
+            "tex": "6 \\cdot 4"
           }
         },
         {
@@ -2989,7 +3030,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "9 \\cdot 8"
+            "tex": "3 \\cdot 9"
           }
         }
       ],
@@ -3034,7 +3075,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua 8 hộp bánh, mỗi hộp 6 cái, rồi xếp hết vào các túi 3 cái. Mẹ dùng bao nhiêu túi?"
+          "text": "Mẹ mua 8 hộp bánh, mỗi hộp 6 cái, rồi xếp hết vào các túi, mỗi túi 3 cái. Mẹ dùng bao nhiêu túi?"
         }
       ],
       "hints": {
@@ -3052,7 +3093,7 @@
         "value": 16
       },
       "check": {
-        "expr": "(6·8):3"
+        "expr": "(6:3)·8"
       }
     },
     {
@@ -3218,7 +3259,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nam có 25 nghìn đồng, Bình có 32 nghìn đồng, hai bạn gộp tiền rồi đổi hết ra tờ 5 nghìn đồng. Có đổi vừa hết không?"
+          "text": "Nam có 25 nghìn đồng, Bình có 32 nghìn đồng. Hai bạn gộp tiền rồi đổi ra tờ 5 nghìn đồng, hỏi có đổi được mà không thừa tiền không?"
         }
       ],
       "hints": {
@@ -3249,7 +3290,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Có, vì 32 chia hết cho 5"
+            "text": "Không, vì cả 25 và 32 đều không chia hết cho 5"
           }
         }
       ],
@@ -3267,7 +3308,8 @@
         }
       ],
       "hints": {
-        "highlight": []
+        "highlight": [],
+        "hintVisualId": "dau-hieu-chia-het.visual.goi-y-hieu-3460-1213"
       },
       "difficulty": 2,
       "segments": [
@@ -3311,14 +3353,14 @@
           "id": "s1",
           "content": {
             "type": "text",
-            "text": "3 410 có chữ số tận cùng là 0 nên chia hết cho 2"
+            "text": "Nhìn chữ số tận cùng của hai số hạng: 0 và 4"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "1 274 có chữ số tận cùng là 4 nên chia hết cho 2"
+            "text": "Chữ số tận cùng 0 và 4 đều cho số chia hết cho 2, nên hai số hạng đều chia hết cho 2"
           }
         },
         {
@@ -3389,21 +3431,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Có, vì tổng các chữ số là 3"
+            "text": "Có, vì 1 + 2 = 3 chia hết cho 3"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "Không, vì tổng các chữ số là 3"
+            "text": "Không, vì 1 + 5 + 2 = 8 không chia hết cho 3"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Không, vì tổng các chữ số là 2"
+            "text": "Không, vì 2 không chia hết cho 3"
           }
         }
       ],
@@ -3441,7 +3483,7 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "10^{3} + 8"
+            "tex": "10^{5} + 8"
           }
         },
         {
@@ -3515,7 +3557,59 @@
       "multiple": true
     },
     {
-      "id": "dau-hieu-chia-het.ex.dien-10-7",
+      "id": "dau-hieu-chia-het.ex.hop-bi-102",
+      "type": "choice",
+      "cardIds": ["dau-hieu-chia-het.card.luy-thua-10"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hộp có 10² viên bi. Thêm vào mấy viên bi để chia đều cho 3 bạn thì vừa hết?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "1 viên"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "2 viên"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "3 viên"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "4 viên"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "dau-hieu-chia-het.ex.dien-10-5",
       "type": "fillBlank",
       "cardIds": ["dau-hieu-chia-het.card.luy-thua-10"],
       "prompt": [
@@ -3531,7 +3625,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Số 10⁴ + 7 có tổng các chữ số là 8, nên số đó "
+          "text": "Số 10³ + 5 có tổng các chữ số là 6, nên số đó "
         },
         {
           "type": "blank",
@@ -3732,7 +3826,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Thay các chữ bằng chữ số để phép nhân đúng. Tìm số có hai chữ số ở bên trái dấu nhân."
+          "text": "Thay các chữ bằng chữ số để phép nhân đúng. Tìm chữ số d."
         },
         {
           "type": "formula",
@@ -3748,13 +3842,13 @@
         ],
         "solutionVisualId": "dau-hieu-chia-het.visual.giai-ab-12d"
       },
-      "difficulty": 3,
+      "difficulty": 2,
       "answer": {
         "kind": "value",
-        "value": 14
+        "value": 6
       },
       "check": {
-        "expr": "126:9"
+        "expr": "9-(1+2)"
       }
     },
     {
@@ -3847,7 +3941,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Sai, vì 52 chia hết cho 3"
+            "text": "Đúng, vì 52 chia hết cho 3"
           }
         }
       ],
@@ -3861,7 +3955,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mỗi câu đúng được 9 điểm, mỗi câu sai bị trừ 3 điểm. Chọn tất cả điểm có thể đạt được."
+          "text": "Mỗi câu đúng được 9 điểm, mỗi câu sai bị trừ 3 điểm. Chọn tất cả điểm cả bài chắc chắn tính sai."
         }
       ],
       "hints": {
@@ -3903,7 +3997,7 @@
           }
         }
       ],
-      "answer": ["a", "c"],
+      "answer": ["b", "d"],
       "multiple": true
     },
     {
@@ -3923,7 +4017,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Điểm mỗi câu là 6 hoặc 3, nên điểm cả bài luôn "
+          "text": "Bài trắc nghiệm có mỗi câu đúng được 6 điểm, mỗi câu sai bị trừ 3 điểm, nên điểm cả bài luôn "
         },
         {
           "type": "blank",
@@ -3938,13 +4032,13 @@
       "bank": ["chia hết", "không chia hết"]
     },
     {
-      "id": "dau-hieu-chia-het.ex.diem-mai-75",
+      "id": "dau-hieu-chia-het.ex.diem-mai-83",
       "type": "choice",
       "cardIds": ["dau-hieu-chia-het.card.diem-thi"],
       "prompt": [
         {
           "type": "note",
-          "text": "Mỗi câu đúng được 9 điểm, mỗi câu sai bị trừ 3 điểm. Điểm nào Mai có thể đạt được?"
+          "text": "Mỗi câu đúng được 9 điểm, mỗi câu sai bị trừ 3 điểm. Mai báo điểm cả bài nào thì chắc chắn tính sai?"
         }
       ],
       "hints": {
@@ -3961,14 +4055,14 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "58"
+            "text": "54"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "61"
+            "text": "63"
           }
         },
         {
@@ -3986,7 +4080,7 @@
           }
         }
       ],
-      "answer": ["c"],
+      "answer": ["d"],
       "multiple": false
     },
     {
@@ -3996,7 +4090,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua bút giá 7 nghìn đồng và vở giá 5 nghìn đồng, hết 40 nghìn đồng. Số nào có thể là tiền bút, tính bằng nghìn đồng?"
+          "text": "Mẹ mua một số cái bút, mỗi cái 7 nghìn đồng, và một số quyển vở, mỗi quyển 5 nghìn đồng."
+        },
+        {
+          "type": "note",
+          "text": "Cả hai hết 40 nghìn đồng. Số nào có thể là tiền mua bút, tính bằng nghìn đồng?"
         }
       ],
       "hints": {
@@ -4004,6 +4102,10 @@
           {
             "target": "block",
             "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
           }
         ]
       },
@@ -4048,7 +4150,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua bút giá 7 nghìn đồng và vở giá 5 nghìn đồng, mỗi loại ít nhất một cái, hết 45 nghìn đồng. Mẹ mua mấy cái bút?"
+          "text": "Mẹ mua một số cái bút, mỗi cái 7 nghìn đồng, và một số quyển vở, mỗi quyển 5 nghìn đồng."
+        },
+        {
+          "type": "note",
+          "text": "Mỗi loại mua ít nhất một cái, cả hai hết 45 nghìn đồng. Mẹ mua mấy cái bút?"
         }
       ],
       "hints": {
@@ -4056,6 +4162,10 @@
           {
             "target": "block",
             "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
           }
         ]
       },
@@ -4158,7 +4268,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua bút giá 9 nghìn đồng và vở giá 5 nghìn đồng, mỗi loại ít nhất một cái, hết 65 nghìn đồng. Mẹ mua mấy quyển vở?"
+          "text": "Mẹ mua một số cái bút, mỗi cái 9 nghìn đồng, và một số quyển vở, mỗi quyển 5 nghìn đồng."
+        },
+        {
+          "type": "note",
+          "text": "Mỗi loại mua ít nhất một cái, cả hai hết 65 nghìn đồng. Tiền mua bút là bao nhiêu nghìn đồng?"
         }
       ],
       "hints": {
@@ -4166,6 +4280,10 @@
           {
             "target": "block",
             "index": 0
+          },
+          {
+            "target": "block",
+            "index": 1
           }
         ],
         "solutionVisualId": "dau-hieu-chia-het.visual.giai-vo-65"
@@ -4173,10 +4291,10 @@
       "difficulty": 3,
       "answer": {
         "kind": "value",
-        "value": 4
+        "value": 45
       },
       "check": {
-        "expr": "(65-9·5):5"
+        "expr": "9·5"
       }
     },
     {
@@ -4231,7 +4349,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Lan dùng các chữ số 1, 2 và 4, mỗi chữ số một lần, lập mã số ba chữ số chia hết cho 2. Lan lập được bao nhiêu mã số?"
+          "text": "Lan dùng các chữ số 1, 2 và 4, mỗi chữ số một lần, lập số ba chữ số chia hết cho 2. Lan lập được bao nhiêu số?"
         }
       ],
       "hints": {
@@ -4310,7 +4428,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Dùng các chữ số 0, 4 và 5, mỗi chữ số một lần, lập các số ba chữ số chia hết cho 5. Số ba chữ số không bắt đầu bằng 0, hỏi lập được bao nhiêu số?"
+          "text": "Dùng các chữ số 0, 4 và 5, mỗi chữ số một lần, lập số ba chữ số chia hết cho 5. Chữ số 0 không đứng đầu, lập được bao nhiêu số?"
         }
       ],
       "hints": {
@@ -4331,13 +4449,13 @@
       }
     },
     {
-      "id": "dau-hieu-chia-het.ex.xep-lap-235",
+      "id": "dau-hieu-chia-het.ex.xep-lap-375",
       "type": "order",
       "cardIds": ["dau-hieu-chia-het.card.lap-so"],
       "prompt": [
         {
           "type": "note",
-          "text": "Xếp các bước lập số ba chữ số chia hết cho 5 từ các chữ số 2, 3 và 5."
+          "text": "Xếp các bước lập số ba chữ số chia hết cho 5 từ các chữ số 3, 7 và 5."
         }
       ],
       "hints": {
@@ -4361,14 +4479,14 @@
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Xếp chữ số 2 và 3 vào hai chỗ đầu"
+            "text": "Xếp chữ số 3 và 7 vào hai chỗ đầu"
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "Được hai số là 235 và 325"
+            "text": "Được hai số là 375 và 735"
           }
         }
       ]

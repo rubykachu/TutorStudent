@@ -212,11 +212,19 @@ describe("digit pictures", () => {
     const { container } = render(
       <EndDigits spec={{ kind: "endDigits", divisors: [2, 5] }} />,
     );
-    expect(screen.getByText("chia hết cho 2")).toBeInTheDocument();
-    expect(screen.getByText("chia hết cho 5")).toBeInTheDocument();
-    expect(screen.getByText("cả hai")).toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: "cả hai: tận cùng là 0" }),
+      screen.getByText("Tận cùng tô màu thì chia hết cho 2"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Tận cùng tô màu thì chia hết cho 5"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Tận cùng tô màu thì chia hết cho cả 2 và 5"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: "Tận cùng tô màu thì chia hết cho cả 2 và 5: tận cùng là 0",
+      }),
     ).toBeInTheDocument();
     // 5 + 2 + 1 tiles carry the concept mark (plus the legend's).
     expect(container.querySelectorAll("[data-shape='pentagon']")).toHaveLength(
@@ -226,7 +234,7 @@ describe("digit pictures", () => {
 
   it("has no row for both with a single divisor", () => {
     render(<EndDigits spec={{ kind: "endDigits", divisors: [5] }} />);
-    expect(screen.queryByText("cả hai")).toBeNull();
+    expect(screen.queryByText(/chia hết cho cả/)).toBeNull();
   });
 
   it("draws the sum line and both verdicts of a digit sum on a still", () => {

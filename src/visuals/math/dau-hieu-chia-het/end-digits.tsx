@@ -46,15 +46,18 @@ export function EndDigits({ spec }: { spec: SpecOf<"endDigits"> }) {
         {divisors.map((divisor) => (
           <TileRow
             key={divisor}
-            title={`chia hết cho ${divisor}`}
+            title={`Tận cùng tô màu thì chia hết cho ${divisor}`}
             fit={endingDigitsFor(divisor)}
           />
         ))}
-        {divisors.length > 1 && <TileRow title="cả hai" fit={both} />}
+        {divisors.length > 1 && (
+          <TileRow
+            title={`Tận cùng tô màu thì chia hết cho cả ${listDivisors(divisors)}`}
+            fit={both}
+          />
+        )}
       </ul>
-      <Legend
-        items={[{ color: "teal", name: "Chữ số tận cùng cho số chia hết" }]}
-      />
+      <Legend items={[{ color: "teal", name: "Chữ số tận cùng" }]} />
     </figure>
   );
 }

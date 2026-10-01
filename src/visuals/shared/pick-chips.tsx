@@ -8,6 +8,26 @@ import { stateSet } from "@/visuals/shared/markers";
 const CHIP =
   "inline-flex min-h-touch min-w-touch items-center justify-center gap-1 rounded-xl border-2 px-4 font-heading text-block font-bold disabled:opacity-60 motion-safe:transition-transform motion-safe:active:scale-97";
 
+// Groups of digits in a chip are joined by U+202F (the lesson-text rule), which
+// the heading font draws almost as no gap, so "2 340" would read as "2340".
+// Each separator becomes a gap as wide as KaTeX's thin space next to it; the
+// character stays in the text, so the button's name is still the number.
+const GROUP_SEPARATOR = "\u202f";
+
+function SpacedNumber({ text }: { text: string }) {
+  return text.split(GROUP_SEPARATOR).map((group, i) => (
+    // biome-ignore lint/suspicious/noArrayIndexKey: the groups of a number never reorder
+    <span key={i}>
+      {i > 0 && (
+        <span className="inline-block w-[0.25em] whitespace-nowrap">
+          {GROUP_SEPARATOR}
+        </span>
+      )}
+      {group}
+    </span>
+  ));
+}
+
 // What a pick screen draws: the chips, which of them are right (indices) and
 // the closing line.
 export type ChipsSpec = {
@@ -70,7 +90,7 @@ export function Chips({
               {...stateSet(`i${i}`, on ? 0 : 1)}
             >
               {on && <Check aria-hidden className="size-5" />}
-              {item}
+              <SpacedNumber text={item} />
             </button>
           );
         })}
