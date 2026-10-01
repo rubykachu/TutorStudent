@@ -14,9 +14,17 @@ import { type Exec, parseEnvFile } from "../../scripts/lib/run";
 import { ACCESS_COOKIE_NAME } from "../../src/lib/config";
 
 describe("parseDeployArgs", () => {
-  it("reads --dry-run and rejects anything else", () => {
-    expect(parseDeployArgs([])).toEqual({ dryRun: false });
-    expect(parseDeployArgs(["--dry-run"])).toEqual({ dryRun: true });
+  it("reads --dry-run and --ref, and rejects anything else", () => {
+    expect(parseDeployArgs([])).toEqual({ dryRun: false, ref: "HEAD" });
+    expect(parseDeployArgs(["--dry-run"])).toEqual({
+      dryRun: true,
+      ref: "HEAD",
+    });
+    expect(parseDeployArgs(["--ref", "1e10fc2"])).toEqual({
+      dryRun: false,
+      ref: "1e10fc2",
+    });
+    expect(() => parseDeployArgs(["--ref"])).toThrow();
     expect(() => parseDeployArgs(["--force"])).toThrow();
   });
 });
@@ -121,18 +129,25 @@ describe("runDeploy", () => {
   });
 
   it("dry run prints the steps and executes nothing", async () => {
-    const exec = vi.fn<Exec>();
+    const exec = vi.fn<Exec>(() => ({
+      status: 0,
+      stdout: "fullsha1234\n",
+      stderr: "",
+    }));
     const fetchSpy = vi.fn();
-    const code = await runDeploy(["--dry-run"], {
+    const code = await runDeploy(["--dry-run", "--ref", "1e10fc2"], {
       root: "/nowhere",
       exec,
       fetch: fetchSpy as unknown as typeof fetch,
       log,
     });
     expect(code).toBe(0);
-    expect(exec).not.toHaveBeenCalled();
+    expect(exec.mock.calls.map(([command]) => command.join(" "))).toEqual([
+      "git rev-parse --verify 1e10fc2^{commit}",
+    ]);
     expect(fetchSpy).not.toHaveBeenCalled();
     const out = lines.join("\n");
+    expect(out).toContain("deploying 1e10fc2 = fullsha1234");
     expect(out).toContain("git worktree add --detach");
     expect(out).toContain("pnpm install --frozen-lockfile");
     expect(out).toContain("npx vercel link --yes --project tutor");
@@ -155,8 +170,19 @@ describe("runDeploy", () => {
       calls.push(command.join(" "));
       return { status: 0, stdout: "abc123\n", stderr: "" };
     });
-    const code = await runDeploy([], { root, exec, fetch: fakeSite(), log });
+    const code = await runDeploy(["--ref", "1e10fc2"], {
+      root,
+      exec,
+      fetch: fakeSite(),
+      log,
+    });
     expect(code).toBe(0);
+    expect(calls).toContain("git rev-parse --verify 1e10fc2^{commit}");
+    expect(
+      calls
+        .find((c) => c.startsWith("git worktree add --detach"))
+        ?.endsWith(" abc123"),
+    ).toBe(true);
     const order = [
       "git worktree add --detach",
       "pnpm install --frozen-lockfile",
@@ -169,12 +195,28 @@ describe("runDeploy", () => {
     expect(lines.at(-1)).toContain("deploy:prod OK");
   });
 
+  it("stops before any worktree when the ref does not resolve", async () => {
+    const exec = vi.fn<Exec>(() => ({
+      status: 128,
+      stdout: "",
+      stderr: "bad",
+    }));
+    const code = await runDeploy(["--ref", "nope"], {
+      root: "/nowhere",
+      exec,
+      fetch: vi.fn() as unknown as typeof fetch,
+      log,
+    });
+    expect(code).toBe(2);
+    expect(exec).toHaveBeenCalledTimes(1);
+  });
+
   it("removes the worktree and skips smoke checks when a step fails", async () => {
     const calls: string[] = [];
     const exec = vi.fn<Exec>((command) => {
       calls.push(command.join(" "));
       const failing = command.includes("deploy");
-      return { status: failing ? 1 : 0, stdout: "", stderr: "" };
+      return { status: failing ? 1 : 0, stdout: "abc123\n", stderr: "" };
     });
     const fetchSpy = vi.fn();
     const code = await runDeploy([], {

@@ -65,7 +65,7 @@ pnpm deploy:prod --dry-run   # in các bước, không chạy gì
 pnpm deploy:prod
 ```
 
-Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính có thay đổi chưa commit vẫn được, phần đó không lên), theo thứ tự: `pnpm install --frozen-lockfile`, `npx vercel link --yes --project tutor`, `npx vercel deploy --prod`, xoá worktree (kể cả khi một bước lỗi), rồi chạy kiểm nhanh ở bước 5. Trước khi chạy: `git log -1 --stat` đúng là commit chứa bài; media của bài đã lên bucket (bước 3). Build trên Vercel chạy `pnpm build` nên `content:check` phải 0 lỗi, nếu không bản deploy hỏng và bản cũ vẫn chạy.
+Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính có thay đổi chưa commit vẫn được, phần đó không lên), theo thứ tự: `pnpm install --frozen-lockfile`, `npx vercel link --yes --project tutor`, `npx vercel deploy --prod`, xoá worktree (kể cả khi một bước lỗi), rồi chạy kiểm nhanh ở bước 5. Khi `main` có commit chưa kiểm, deploy đúng commit đã kiểm bằng `pnpm deploy:prod --ref <commit>` (mặc định `HEAD`; lệnh in SHA đầy đủ sẽ lên). Trước khi chạy: `git log -1 --stat` đúng là commit chứa bài; media của bài đã lên bucket (bước 3). Build trên Vercel chạy `pnpm build` nên `content:check` phải 0 lỗi, nếu không bản deploy hỏng và bản cũ vẫn chạy.
 
 ### 5. Kiểm nhanh sau deploy
 

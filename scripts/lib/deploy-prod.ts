@@ -7,12 +7,23 @@ import { listMediaLessons, selectLessonFiles } from "./media-upload";
 import { ENV_FILE, PROD_URL, VERCEL, VERCEL_PROJECT } from "./release-config";
 import { type Exec, parseEnvFile } from "./run";
 
-export function parseDeployArgs(argv: readonly string[]): { dryRun: boolean } {
+export const DEFAULT_DEPLOY_REF = "HEAD";
+
+export function parseDeployArgs(argv: readonly string[]): {
+  dryRun: boolean;
+  ref: string;
+} {
   const { values } = parseArgs({
     args: [...argv],
-    options: { "dry-run": { type: "boolean", default: false } },
+    options: {
+      "dry-run": { type: "boolean", default: false },
+      ref: { type: "string", default: DEFAULT_DEPLOY_REF },
+    },
   });
-  return { dryRun: values["dry-run"] ?? false };
+  return {
+    dryRun: values["dry-run"] ?? false,
+    ref: values.ref || DEFAULT_DEPLOY_REF,
+  };
 }
 
 // The shell steps of a deploy, run in the clean worktree.
@@ -159,10 +170,21 @@ export async function runDeploy(
 ): Promise<number> {
   const { root, exec, log } = deps;
   let dryRun: boolean;
+  let ref: string;
   try {
-    ({ dryRun } = parseDeployArgs(argv));
+    ({ dryRun, ref } = parseDeployArgs(argv));
   } catch (error) {
     log(error instanceof Error ? error.message : String(error));
+    return 2;
+  }
+
+  // Read-only: resolves the ref to the full commit SHA that will ship.
+  const resolved = exec(["git", "rev-parse", "--verify", `${ref}^{commit}`], {
+    cwd: root,
+  });
+  const sha = resolved.stdout.trim();
+  if (resolved.status !== 0 || !sha) {
+    log(`cannot resolve --ref ${ref} to a commit: ${resolved.stderr.trim()}`);
     return 2;
   }
 
@@ -173,7 +195,8 @@ export async function runDeploy(
 
   if (dryRun) {
     log("deploy:prod dry run, nothing is executed. Steps:");
-    log(`1. git worktree add --detach ${worktreePath} HEAD`);
+    log(`deploying ${ref} = ${sha}`);
+    log(`1. git worktree add --detach ${worktreePath} ${sha}`);
     steps.forEach((step, i) => {
       log(`${i + 2}. (in the worktree) ${step.command.join(" ")}`);
     });
@@ -183,17 +206,16 @@ export async function runDeploy(
     return 0;
   }
 
-  const head = exec(["git", "rev-parse", "--short", "HEAD"], { cwd: root });
   const dirty = exec(["git", "status", "--porcelain", "--untracked-files=no"], {
     cwd: root,
   });
-  log(`deploying HEAD ${head.stdout.trim()} (clean worktree ${worktreePath})`);
+  log(`deploying ${ref} = ${sha} (clean worktree ${worktreePath})`);
   if (dirty.stdout.trim()) {
     log("note: uncommitted changes in this tree are not part of the deploy");
   }
 
   const added = exec(
-    ["git", "worktree", "add", "--detach", worktreePath, "HEAD"],
+    ["git", "worktree", "add", "--detach", worktreePath, sha],
     {
       cwd: root,
     },
