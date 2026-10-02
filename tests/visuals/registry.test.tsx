@@ -65,6 +65,10 @@ describe("visualRegistry", () => {
       ],
       "dat-diem": [{ p0: 7 }, { p0: 7, p1: 11 }],
       "dat-thua-so": [{ n: -2 }, { n: 0 }],
+      "ve-tam-giac-deu": [{ side: 3 }, { side: 7 }],
+      "ve-hinh-vuong": [{ side: 4 }],
+      "ve-hinh-vuong-cheo": [{ side: 5 }],
+      "ghep-luc-giac": [{ n: 6 }],
       "gap-nhau": [
         { p: 4, q: 6, first: 1 },
         { p: 4, q: 5, first: 0 },

@@ -38,6 +38,17 @@ import {
   solutions as signSolutions,
   validators as signValidators,
 } from "@/visuals/math/dau-hieu-chia-het/logic";
+import {
+  INTERACTIVE_KINDS as SHAPES_INTERACTIVE_KINDS,
+  LESSON_SLUG as SHAPES_SLUG,
+  VISUAL_SPECS as SHAPES_SPECS,
+  regionsOf as shapesRegions,
+  validatorIdOf as shapesValidatorId,
+} from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/catalog";
+import {
+  solutions as shapesSolutions,
+  validators as shapesValidators,
+} from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/logic";
 import { grainsEqual, solveGrainsEqual } from "@/visuals/math/luy-thua/grains";
 import {
   exponentDifference,
@@ -711,6 +722,31 @@ const divisionEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu": one per item of
+// its catalog. The drawing boards and the hexagon of six triangles carry the
+// validator of the `manipulate` exercises built on them; a figure with
+// tappable polygons declares its regions.
+const shapesEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(SHAPES_SPECS).map(([key, spec]) => {
+    const validatorId = shapesValidatorId(spec) as
+      | keyof typeof shapesValidators
+      | undefined;
+    const regions = shapesRegions(spec);
+    const entry: VisualEntry = {
+      interactive: SHAPES_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: shapesValidators[validatorId] },
+            solutions: { [validatorId]: shapesSolutions[validatorId] },
+          }),
+      load: () => lessonExample(SHAPES_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${SHAPES_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
@@ -718,6 +754,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...mulEntries,
   ...bracketEntries,
   ...divisionEntries,
+  ...shapesEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1527,6 +1564,10 @@ const EXAMPLE_MODULES = lessonModules({
   "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": () =>
     import(
       "@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/examples"
+    ),
+  "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu": () =>
+    import(
+      "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/examples"
     ),
   "quy-tac-dau-ngoac": () =>
     import("@/visuals/math/quy-tac-dau-ngoac/examples"),
