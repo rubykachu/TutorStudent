@@ -184,7 +184,7 @@ describe("the catalog", () => {
         expect(inside(spec.start), key).toBe(true);
         if (spec.goal !== undefined) {
           expect(inside(spec.goal), key).toBe(true);
-          expect((spec.goal - spec.start) % spec.step, key).toBe(0);
+          expect(Math.abs((spec.goal - spec.start) % spec.step), key).toBe(0);
         }
       }
       if (spec.kind === "factorTry" && spec.goal !== undefined) {
