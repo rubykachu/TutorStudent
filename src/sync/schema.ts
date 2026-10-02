@@ -6,7 +6,7 @@ import {
   SYNC_WRITING_MAX_CHARS,
 } from "@/lib/config";
 import { vnDayKey } from "@/lib/time";
-import { ATTEMPT_CONTEXTS, SECTION_PHASES } from "@/progress/db";
+import { ATTEMPT_CONTEXTS, SECTION_PHASES } from "@/progress/enums";
 
 // Shapes of the three documents a family's progress syncs through, shared by
 // the client and the server:

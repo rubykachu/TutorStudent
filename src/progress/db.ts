@@ -1,6 +1,9 @@
 import { Dexie, type Table } from "dexie";
 import { DEFAULT_GRADE, LOCAL_FAMILY_ID } from "@/lib/config";
 import type { LessonCardState } from "@/srs/select";
+import type { AttemptContext, SectionPhase } from "./enums";
+
+export type { AttemptContext, SectionPhase };
 
 // Local-first progress store. Every record carries the family and child it
 // belongs to, so one device can hold several children (and later families)
@@ -31,16 +34,6 @@ export type ProfileRecord = {
 
 export type CardStateRecord = ChildScope & LessonCardState;
 
-// `skipped`: the child chose "Bỏ qua" (in a check, practice or review
-// question); it is logged but never rated.
-export const ATTEMPT_CONTEXTS = [
-  "practice",
-  "check",
-  "review",
-  "skipped",
-] as const;
-export type AttemptContext = (typeof ATTEMPT_CONTEXTS)[number];
-
 export type AttemptRecord = ChildScope & {
   id: string;
   exerciseId: string;
@@ -55,11 +48,6 @@ export type AttemptRecord = ChildScope & {
 // Ordered from lowest to highest so the later merge can keep the furthest state.
 export const SECTION_STATES = ["not_started", "in_progress", "done"] as const;
 export type SectionState = (typeof SECTION_STATES)[number];
-
-// A section is worked through in this order: explanation blocks, comprehension
-// checks, practice exercises, then the closing recap.
-export const SECTION_PHASES = ["blocks", "check", "practice", "recap"] as const;
-export type SectionPhase = (typeof SECTION_PHASES)[number];
 
 // The item the child is on: `index` counts blocks in "blocks", exercises in
 // "check" / "practice", and is 0 in "recap".
