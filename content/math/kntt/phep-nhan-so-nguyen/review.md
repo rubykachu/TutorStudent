@@ -1,326 +1,290 @@
 # Review: Phép nhân số nguyên (`phep-nhan-so-nguyen`)
 
 - Bài: `content/math/kntt/phep-nhan-so-nguyen/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp
+- Lịch sử: vòng 1: 5 Nghiêm trọng, 17 Nên sửa, 20 Góp ý.
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
 - Nguồn đã đọc: `sources/math/phep-nhan-so-nguyen/` - sbt-p55, sbt-p56, sbt-p57 (đề), sbt-p112, sbt-p113 (lời giải)
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (96 id chưa có trong `ids.lock.json`: đúng, bài chưa được duyệt nên chưa khoá id)
-- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy trước lệnh `--approve` ở vòng sau)
+- Đọc hiểu (Haiku, lượt 1): 181 / 47 / 0; tệp `.shots/review/phep-nhan-so-nguyen/doc-hieu.md`. 47 mục "Hiểu mơ hồ" sẽ được tác giả viết lại rồi Haiku đọc lại (lượt 2 chỉ trên các mục đó) trước lệnh `--approve`.
 - `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-nhan-so-nguyen/`
-- Kết luận: Chưa đạt: còn 5 lỗi Nghiêm trọng (5 Nghiêm trọng, 17 Nên sửa, 20 Góp ý). Đã chạy `pnpm content:hash phep-nhan-so-nguyen --root content --mark`; bài giữ `draft`.
-- Bản đã review: `659b7828c4ac295431c4d8685aeda62e9a0d47c350b1682b15995fb7a43593fe` (`pnpm content:diff` so với bản này)
+- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng (1 Nghiêm trọng, 20 Nên sửa, 17 Góp ý). Đã chạy `pnpm content:hash phep-nhan-so-nguyen --root content --mark`; bài giữ `draft`.
+- Bản đã review: `360571e5b980f7a6dbe9ba8d7ac3360c3b430615d02a0be05a435e38e85d3f3c` (`pnpm content:diff` so với bản này)
 
-Ba reviewer đã tự giải cả 63 exercise trước khi đọc đáp án: mọi `answer`, `check`, `accept` khớp, không nhiễu nào cũng đúng (LL-01), không `explain`/`wrong` nào gọi lựa chọn theo vị trí (LL-26). Ba mẹo đã thử trên số biên: `tip.nhan-voi-am-1` và `tip.dem-thua-so-am` đúng mọi đầu vào; `tip.gop-thua-so-chung` sai với hiệu hai tích (mục 3). Recap của 12 section và 12 card lặp nguyên văn câu `rule: true`; màu khái niệm nhất quán cả bài (dương `lime`, âm `pink`, số 0 `slate`, khớp glossary).
+Ba reviewer đã tự giải cả 63 exercise trước khi đọc đáp án: mọi `answer`, `check`, `pairs`, `accept` khớp, không nhiễu nào cũng đúng (LL-01), không `explain`/`wrong` nào gọi lựa chọn theo vị trí (LL-26). Ba mẹo đã thử trên số biên (`tip.nhan-voi-am-1`, `tip.thua-so-0`, `tip.gop-thua-so-chung`): đúng mọi đầu vào; mẹo gộp thừa số chung nói rõ điều kiện "tổng của hai tích" (bảng số đã thử trong `.shots/review/phep-nhan-so-nguyen/nhom-r2-2.md`, `nhom-r2-3.md`). Recap của 12 section và 12 card lặp nguyên văn câu `rule: true`; màu khái niệm nhất quán cả bài (dương `lime`, âm `pink`, số 0 `slate`, khớp glossary); quy ước "m · n là m lấy n lần" đúng ở mọi note và đề có chữ "mỗi", trừ một hàng hình (mục 5). Bản sửa vòng 1 phần lớn đạt; các lỗi do bản sửa sinh ra ghi LL-20 ở từng mục.
 
 ## Nghiêm trọng
 
-### 1. Năm section viết phép nhân ngược quy ước "m · n là m lấy n lần"
+### 1. Ví dụ mẫu nhân hai số khác dấu đọc thành chuỗi "6 · 3 = 18 = −18"
 
-- Vị trí: LL-05.
-  - `$.sections[1].blocks[0].children[0].text`, hình `visual.tui-ke-0` (nhãn "4 túi, mỗi túi 0 viên" với `4 · 0`), `$.exercises[8].explain` và `check.expr` (`ex.tui-ke-trong`, "7 túi" giải là `7 · 0`) (`section.nhan-voi-0`).
-  - `$.sections[6].blocks[0].children[0].text` và hình `visual.mua-but` ("2 hộp, mỗi hộp 5 cây, mỗi cây 3 nghìn" viết `2 · 5 · 3`); `$.exercises[36].explain` và `check.expr` (`ex.thung-hop-banh`, "3 thùng, mỗi thùng 5 hộp" giải `3 · 5 = 15`) (`section.giao-hoan-ket-hop`).
-  - `$.sections[8].blocks[0].children[0].text` và hình `visual.mua-ba-phan` ("3 phần, mỗi phần 5 + 4 nghìn" viết `3 · (5 + 4)`) (`section.phan-phoi`).
-  - `$.sections[9].blocks[0].children[0].text` và hình `visual.gop-hop-keo` ("7 hộp, mỗi hộp 6 xanh và 4 đỏ" viết `7 · 6 + 7 · 4`) (`section.gop-thua-so`).
-  - `$.sections[11].blocks[0].children[0].text`, hình `visual.thay-doi-vai` (`20 · x`, `20 · 3`, `20 · (−2)`), `$.exercises[59].explain` và `check.expr` (`ex.vai-20-bo`, `20 · (−3)`) (`section.bai-toan-thuc-te`).
-- Nguồn: tr.55, `sbt-p55.png` (sách chỉ có `a · 0 = 0` và các tính chất, không có các tình huống này)
-- Vấn đề: câu quy tắc đầu bài ("Nhân một số âm với một số dương là cộng lặp lại số âm đó", `(−2) · 3 = (−2) + (−2) + (−2)`) chốt số đứng trước là lượng của mỗi lần. Section 3, 4, 5, 11 (túi kẹo `x · y`) và cùng làm của section 12 theo đúng quy ước; năm section trên viết ngược. Ngay màn sau quy tắc đầu, section `nhan-voi-0` đã viết `4 · 0 = 0 + 0 + 0 + 0` (cộng lặp lại số đứng sau). Section 12 còn tự mâu thuẫn: câu quy tắc "thay đổi mỗi lần nhân với số lần" (tức `x · 20`) đứng ngay dưới note và hình viết `20 · x`. Bé học chậm gặp hai cách đọc cho cùng một cách viết, dễ cộng lặp nhầm số ở các câu "cộng lặp lại" và nhớ sai quy tắc của section 12. `pitfalls.md` (mục phép nhân "n nhóm, mỗi nhóm m") yêu cầu một thứ tự cả bài, kể cả đề, hình, lời giải; section giao hoán chỉ được đổi chỗ sau khi đã viết đúng thứ tự. Gộp từ nhóm 1 (Nghiêm trọng), nhóm 2 (Nên sửa, mục mua bút và thùng bánh), nhóm 3 (Nên sửa, mục ba tình huống); giữ mức cao hơn vì đây là màn mẫu dạy cách đọc phép nhân và có chỗ trái chính câu quy tắc.
-- Sửa:
-  - `nhan-voi-0`: "Lan có 4 túi rỗng, mỗi túi 0 viên kẹo. Số kẹo là 0 · 4 = 0 + 0 + 0 + 0 = 0."; hình `tui-ke-0` đổi `4 \cdot 0` thành `0 \cdot 4`; `tui-ke-trong` giải "0 · 7, tức 0 lấy 7 lần", sửa `tex`, `check.expr` thành `0·7`; đề viết "túi rỗng".
-  - `giao-hoan-ket-hop`: viết `3 · 5 · 2` (nhóm `(3 · 5) · 2 = 15 · 2` và `3 · (5 · 2) = 3 · 10`), sửa hình `mua-but`. `thung-hop-banh`: `4 · 5 · 3`, giải "4 · 5 = 20 cái mỗi thùng, rồi 20 · 3 = 60", sửa `check.expr`.
-  - `phan-phoi`, `gop-thua-so`: kể lại tình huống để số ngoài ngoặc là lượng mỗi nhóm, giữ công thức, vd "Mỗi vé xe buýt 3 nghìn; sáng đi 5 lượt, chiều đi 4 lượt: 3 · 5 + 3 · 4 = 3 · (5 + 4)"; "Mỗi hộp có 7 viên kẹo; Lan có 6 hộp, Minh có 4 hộp: 7 · 6 + 7 · 4 = 7 · (6 + 4)". Sửa hình theo.
-  - `bai-toan-thuc-te`: viết `x · 20`, `3 · 20`, `(−2) · 20`, `(−3) · 20` ở note, hình `thay-doi-vai`, `vai-20-bo` (`explain`, `tex`, `check.expr`).
-  - Sửa xong, soát lại mọi đề có "mỗi" (đã soát vòng này: `nhiet-do-cach-day-3`, `thang-may-xuong`, `cach-day-3-gio` đúng quy ước).
-
-### 2. Hai câu quy tắc liền nhau trái nhau: "đổi chỗ, nhóm tuỳ ý" và "tính từ trái sang phải"
-
-- Vị trí: `$.sections[7].blocks[1].children[0].text`, `$.sections[7].recap.caption`, `$.cards[7].recap.caption`, hình `visual.nhieu-thua-so-vi-du` (nhãn "nhân từ trái sang phải"); đối chiếu `$.sections[6].blocks[1].children[0].text` và recap `card.giao-hoan-ket-hop`; `$.exercises[42].explain` (`ex.dem-hai-so-am`). LL-05.
-- Nguồn: tr.55, `sbt-p55.png` (kiến thức cần nhớ 3: trong tích nhiều thừa số có thể đổi chỗ, nhóm tuỳ ý)
-- Vấn đề: section 7 dạy "ta được đổi chỗ các thừa số và nhóm các thừa số tuỳ ý" và các câu "tính nhanh bằng cách đổi chỗ"; ngay sau đó section 8 dạy bằng câu `rule: true` "Tích nhiều thừa số được tính từ trái sang phải", trích đúng trang nguồn nói điều ngược lại. Hai thẻ ôn hiện riêng trong phiên ôn nên bé có thể nhớ "phải tính từ trái sang phải" và thôi đổi chỗ. Chính `explain` của `dem-hai-so-am` và mẹo `dem-thua-so-am` cũng không làm từ trái sang phải. Điều các câu của section thật sự hỏi (dấu của tích nhiều số) chỉ nằm trong mẹo nên thẻ ôn không có. Nhóm 2 xếp Nên sửa vì kết quả tính vẫn đúng; Tổng hợp nâng lên Nghiêm trọng vì hai quy tắc cùng có `rule: true`, nằm trong recap thẻ ôn và cho hai chỉ dẫn trái nhau (trẻ nhớ sai quy tắc).
-- Sửa: câu quy tắc thành ý dấu, vd "Tích nhiều thừa số khác 0 có số thừa số âm chẵn thì dương, lẻ thì âm.", recap section và card lặp nguyên văn; nhân lần lượt từng cặp để làm ví dụ mẫu (hình `nhan-tung-cap`), đổi nhãn hình `nhieu-thua-so-vi-du`. Khi đó mẹo `dem-thua-so-am` trùng câu quy tắc: đổi mẹo sang ý khác (vd "có thừa số 0 thì tích bằng 0, không cần nhân") hoặc bỏ. Nếu muốn giữ cách nhân lần lượt trong câu quy tắc thì viết "có thể nhân lần lượt từ trái sang phải" để không trái section 7.
-
-### 3. Quy tắc và mẹo "đưa thừa số chung ra ngoài" cho kết quả sai với hiệu hai tích, dạng của bài 3.32 mà section trích
-
-- Vị trí: `$.sections[9].blocks[3]` (`tip.gop-thua-so-chung`); câu quy tắc `$.sections[9].blocks[1].children[0].text`, `$.sections[9].recap.caption`, `$.cards[9].recap.caption`. LL-24, LL-05.
-- Nguồn: tr.57 bài 3.32, `sbt-p57.png`; lời giải tr.113, `sbt-p113.png`
-- Vấn đề: `sourceRef` là "tr.55 (ví dụ 1), tr.57 (bài 3.32)"; cả hai ý của bài 3.32 là hiệu hai tích (lời giải viết `20 · (−9) − 20 · 21 = 20 · (−9 − 21)`). Câu quy tắc và mẹo chỉ nói "các tích có chung một thừa số … cộng các thừa số còn lại", không nêu điều kiện "tổng hai tích". Làm đúng từng chữ: `20 · (−9) − 20 · 21` ra 240 thay vì −600; `4 · 7 − 4 · 2` ra 36 thay vì 20. Thêm nữa, quy tắc nói "các tích … các thừa số còn lại" còn mẹo nói "hai tích … hai số còn lại": cùng một ý hai cách nói (Tổng hợp phát hiện).
-- Sửa: nói điều kiện ngay trong câu quy tắc, vd "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại.", sửa nguyên văn ở note, recap section, recap card; mẹo dùng đúng lời đó ("Nếu đề là tổng hai tích có chung một thừa số …"). Hoặc dạy thêm hiệu `a · b − a · c = a · (b − c)` với một ví dụ nếu muốn giữ bài 3.32 trong `sourceRef` (xem mục 39).
-
-### 4. Ví dụ của mẹo bị cắt trên điện thoại, đọc thành "= −9"
-
-- Vị trí: `$.sections[9].blocks[3].tex` (`tip.gop-thua-so-chung`). LL-12.
-- Nguồn: —
-- Vấn đề: dòng `= 9 · [(−6) + (−4)] = −90` rộng hơn khung mẹo trên điện thoại; ảnh `phone/112-s10-04-block.png` cho thấy số cuối bị cắt thành "−9". Bé đọc một kết quả sai ngay trong ví dụ mẫu. Lỗi do chữ của bài (dòng TeX dài); walk không đo tràn trong khung mẹo.
-- Sửa: ba dòng trong `gathered`: `9 · (−6) + 9 · (−4)`, `= 9 · [(−6) + (−4)]`, `= 9 · (−10) = −90`. Đổi cặp 6 và 4 theo mục 14 thì giữ cách xếp ba dòng.
-
-### 5. Trên điện thoại, dòng đầu của lời giải bị cắt đúng ở bước đổi chỗ
-
-- Vị trí: `$.exercises[32].explain.tex` (`ex.tinh-nhanh-am4-3-am5`), `$.exercises[33].explain.tex` (`ex.tinh-nhanh-am25-3-am4`); soát luôn `$.exercises[35].explain.tex` (`ex.dien-so-ket-hop`, dòng đơn còn dài hơn, walk chưa chụp). LL-12.
-- Nguồn: —
-- Vấn đề: dòng `(-4)·3·(-5) = (-4)·(-5)·3` trong khối `gathered` rộng hơn màn điện thoại, bị cắt thành "(−4)·3·(−5) = (−4)·(·" (ảnh `phone/082-s7-04-exercise-tinh-nhanh-am4-3-am5-correct.png`); câu 33 mất `·(−4)·3` (ảnh `084-…-correct.png`). Phần mất chính là bước đổi chỗ mà section dạy. iPad hiện đủ.
-- Sửa: mỗi bước một dòng: `(-4)·3·(-5) \\ = (-4)·(-5)·3 \\ = 20·3 = 60`; tương tự `(-25)·3·(-4)` và `dien-so-ket-hop`.
+- Vị trí: hình `visual.khac-dau-mau` (`$.sections[3].blocks[2].children[1]`, `section.khac-dau`); cùng khuôn ở hình gợi ý `visual.goi-y-khac-dau-9-nhan-am2` (`$.exercises[15].hints.hintVisualId`, `ex.tinh-8-nhan-am4`). LL-21, LL-20.
+- Nguồn: tr.55, `sbt-p55.png` (`m(−n) = −mn`)
+- Vấn đề: hình xếp ba dòng `6 · (−3)`, `6 · 3 = 18`, `= −18`. Cả bài dùng quy ước dòng mở đầu bằng "=" nối tiếp dòng ngay trên (recap `khac-dau-vi-du`, lời giải `tinh-8-nhan-am4`), nên bé đọc được `6 · 3 = 18 = −18`, một đẳng thức sai, ngay ở màn ví dụ mẫu bé sẽ chép cách viết. Bản sửa mục 9 vòng 1 sinh ra cách xếp này. Hình gợi ý cùng khuôn: dòng cuối bị ẩn nhưng dấu "?" đặt ngay dưới `9 · 2 = 18` mời bé điền tiếp chuỗi sai. Cùng một bước còn được viết hai kiểu trong một section (hình mẫu tính riêng `6 · 3 = 18`, recap viết `= −(7 · 2)`).
+- Sửa: viết như recap: `6 \cdot (-3)` → `= -(6 \cdot 3)` (nhãn "nhân hai phần số tự nhiên") → `= -18` (nhãn "khác dấu: viết dấu − ở trước"); hoặc đặt dòng `6 \cdot 3 = 18` thành `aside: true`. Sửa `goi-y-khac-dau-9-nhan-am2` cùng cách. Xem lại ảnh `visual:shot` của hai hình.
 
 ## Nên sửa
 
-### 6. Hình gợi ý nấc 2 chỉ hiện lại đề và một dấu "?"
+### 2. Câu thao tác `thu-4-nhan-am2` vẫn không buộc bé tính: bảng tự in tích
 
-- Vị trí: `$.exercises[1].hints.hintVisualId` (`ex.tinh-am5-nhan3`, hình `goi-y-am4-nhan2`); `$.exercises[15].hints.hintVisualId` (`ex.tinh-8-nhan-am4`, hình `goi-y-khac-dau-9-nhan-am2`). LL-15.
+- Vị trí: `$.exercises[13]` (`ex.thu-4-nhan-am2`, hình `visual.thu-4-nhan-am2`, validator `dat-thua-so`). LL-02.
 - Nguồn: —
-- Vấn đề: hình `lines` chế độ `hint` luôn ẩn dòng cuối; hai hình chỉ có hai dòng nên dòng mang cách làm ("= (−4) + (−4)", "= −(9 · 2)") bị ẩn. Ảnh walk `017-s1-05-exercise-tinh-am5-nhan3-wrong2` và `visual:shot`: bé chỉ thấy đề rồi "?".
-- Sửa: thêm dòng kết quả cuối để bị ẩn: `(-4) · 2` → `= (-4) + (-4)` → `= -8`; `9 · (-2)` → `= -(9 · 2)` → `= -18` (nhãn bước theo thứ tự của mục 9). Xem lại ảnh `visual:shot`.
+- Vấn đề: đề mới "Bấm mũi tên xuống tới dòng có tích bằng −8." chấm được, nhưng `factorTry` in sẵn tích của mỗi hàng mới và dòng quy luật; bé chỉ bấm tới khi thấy chữ −8. Vấn đề của mục 7 vòng 1 còn nguyên, chỉ đổi lời đề. Câu nằm trong kho ôn của card `duong-nhan-am`.
+- Sửa: (a) thêm cho `factorTry` cờ ẩn tích của hàng mới nhất (hiện "?") khi dùng làm bài tập, đổi đề thành "Bấm tới dòng 4 · (−2)" kèm câu `numeric` hỏi tích; hoặc (b) đổi thành câu `numeric` "Tính 4 · (−3)" với hình gợi ý là bảng quy luật dừng ở "?".
 
-### 7. Câu thao tác `thu-4-nhan-am2` không kiểm được tích bé tìm
+### 3. Câu luyện `tinh-5-nhan-am2` có kết quả in sẵn trên hình và recap
 
-- Vị trí: `$.exercises[13]` (`ex.thu-4-nhan-am2`, hình `thu-4-nhan-am2`, validator `dat-thua-so`). LL-02.
+- Vị trí: `$.exercises[10]` (`ex.tinh-5-nhan-am2`); recap `visual.duong-nhan-am-vi-du` hàng `2 · (−5) = −10`; hình `visual.no-moi-ngay` hàng `5 · (−2) = −10`. LL-07.
 - Nguồn: —
-- Vấn đề: đề "Tìm 4 · (−2) … rồi đọc tích", nhưng bảng `factorTry` tự in tích mỗi hàng và validator chỉ chấm thừa số thứ hai bằng −2. Bấm xuống bốn lần là đạt, không phải tính, không có chỗ nhập tích.
-- Sửa: đổi thành câu `numeric` "Tính 4 · (−3)" (tránh trùng hình `no-moi-ngay`, mục 10) dùng bảng quy luật dừng ở "?" làm hình gợi ý; hoặc cho `factorTry` chế độ bài tập ẩn tích hàng mới nhất rồi hỏi tích bằng câu nhập số.
+- Vấn đề: màn quy tắc ngay trước câu luyện in `2 · (−5) = −10`, section kế tiếp in nguyên `5 · (−2) = −10`; khi gặp lại ở phiên ôn bé chỉ cần nhớ con số.
+- Sửa: giữ câu luyện; đổi hàng recap thành `2 · (−8) = −16` (bộ số chưa có trong bài), bỏ hàng `5 · (−2)` của `no-moi-ngay` (mục 5).
 
-### 8. Section "Số dương nhân số âm" dùng cách làm của section sau
+### 4. Màn đời sống section `duong-nhan-am` thiếu chủ ngữ và mốc so sánh
 
-- Vị trí: `$.sections[2].recap` và `$.sections[2].blocks[2]` (hình `duong-nhan-am-vi-du`, cũng là recap `card.duong-nhan-am`); `$.exercises[11].explain.text` (`ex.tinh-7-nhan-am3`). LL-09.
+- Vị trí: `$.sections[2].blocks[0].children[0].text` (`section.duong-nhan-am`). LL-10, LL-25.
+- Nguồn: —
+- Vấn đề: "Sau 2 giờ ghi là 2, cách đây 2 giờ ghi là −2, nên 3 · (−2) = −6 là thấp hơn 6 độ." không nói cái gì "ghi là 2" (số giờ), "thấp hơn" so với lúc nào, và "nên" nhảy từ cách ghi số giờ sang kết quả. Màn song song của section `am-nhan-am` nói rõ hơn ("Cách đây 3 giờ, nhiệt độ cao hơn bây giờ 6 độ"). Haiku cũng đánh dấu "Hiểu mơ hồ".
+- Sửa: theo khuôn section 5, vd "Nhiệt độ tăng đều 3 độ mỗi giờ. Số giờ trước bây giờ ghi bằng số âm: cách đây 2 giờ là −2. Lúc đó nhiệt độ thấp hơn bây giờ 6 độ, nên 3 · (−2) = −6."
+
+### 5. Hình câu chuyện nợ có hàng `5 · (−2)` viết ngược quy ước "m · n là m lấy n lần"
+
+- Vị trí: hình `visual.no-moi-ngay` hàng 2 (`$.sections[3].blocks[0].children[1]`, `section.khac-dau`). LL-05.
+- Nguồn: —
+- Vấn đề: hình mang nhãn "Mỗi ngày nợ thêm 2 nghìn đồng, trong 5 ngày"; hàng 2 `5 · (−2) = −10` đứng cùng hình nên đọc như cách viết thứ hai của chính câu chuyện ("5 lấy −2 lần"), trái quy ước cả bài. Nhãn "khác dấu nên tích âm" còn nói trước câu quy tắc của màn sau.
+- Sửa: bỏ hàng 2, hoặc thay bằng kết của câu chuyện: `(−2) · 5 = −10`, nhãn "số tiền giảm 10 nghìn đồng".
+
+### 6. Đề câu kiểm tra `quy-luat-4-nhan` ngắt dòng giữa tích trên điện thoại
+
+- Vị trí: `$.exercises[9].prompt[0].text` (`ex.quy-luat-4-nhan`). LL-12.
+- Nguồn: —
+- Vấn đề: ảnh phone `040-s3-05-exercise-quy-luat-4-nhan`: "Tích 4 ·" cuối dòng một, "(−1) bằng bao nhiêu?" dòng hai.
+- Sửa: thêm dòng `4 \cdot (-1) = ?` vào cuối khối `gathered` của `prompt[1]`, lời đề thành "Quan sát quy luật của các tích. Dòng cuối bằng bao nhiêu?".
+
+### 7. Section 7 nói hai lý do chọn cặp để "tính nhanh", và mọi ví dụ để hai lý do trùng nhau
+
+- Vị trí: `$.sections[6].blocks[2].children[0].text` ("ghép hai số có tích tròn chục"); hình `ghep-nhanh`, `goi-y-ghep-nhanh` ("ghép hai số âm trước"); `$.exercises[32].explain.text` (`ex.tinh-nhanh-am4-3-am5`); `$.exercises[33].explain.text` (`ex.tinh-nhanh-am25-3-am4`). LL-05, LL-24.
 - Nguồn: tr.55, `sbt-p55.png`
-- Vấn đề: hình quy tắc và recap viết `2 · (−5) = −(2 · 5) = −10` mà section chưa giải thích bước `−(2 · 5)`; `explain` của `tinh-7-nhan-am3` dùng "Nhân hai phần số tự nhiên", quy tắc của section `khac-dau`.
-- Sửa: hình dùng quy luật (`2 · 0 = 0`, `2 · (−1) = −2`, …) hoặc chỉ ghi `2 · (−5) = −10` với nhãn "tích âm"; `explain` giải bằng quy luật: "7 · 0 = 0, thừa số thứ hai giảm 1 thì tích giảm 7: −7, −14, −21."
+- Vấn đề: chữ bảo ghép cặp tích tròn chục, hình và lời giải bảo ghép hai số âm; ở cả năm ví dụ cặp tròn chục lại là cặp hai số âm, nên bé không thấy lý do thật và sẽ tính chậm ở (−7) · 25 · (−4).
+- Sửa: chốt "ghép hai số có tích tròn chục" cho chữ, nhãn hình và `explain` câu 32, 33; đổi một câu (vd `dien-so-ket-hop` hay câu 33) sang bộ số mà cặp tròn chục có một số dương, như (−4) · 7 · 25.
 
-### 9. Hai thứ tự bước cho quy tắc nhân hai số khác dấu
+### 8. Ví dụ đời sống mới của section 8 trỏ tới "Nam" bé chưa gặp trên màn và không có kết
 
-- Vị trí: `$.sections[3].blocks[1].children[0].text` và recap (nhân trước rồi viết dấu −); `$.sections[3].blocks[2].children[0].text` (ví dụ mẫu: xét dấu trước rồi nhân); hình `khac-dau-mau` (tag "khác dấu: viết dấu − ở trước" trước bước nhân); nhãn hình `goi-y-khac-dau-9-nhan-am2` ("viết dấu − ở trước rồi nhân"); `$.exercises[28].explain.text` (`ex.noi-tich-voi-ket-qua`, "Xét dấu trước … Rồi nhân", Tổng hợp thêm); `$.exercises[15].explain.text` theo câu quy tắc. LL-05.
-- Nguồn: tr.55, `sbt-p55.png`
-- Vấn đề: kết quả không đổi, nhưng một quy tắc được dạy với hai thứ tự bước trong cùng section và ở câu ôn.
-- Sửa: chốt một thứ tự, gợi ý giữ câu quy tắc; ví dụ mẫu thành "Nhân hai phần số tự nhiên 6 · 3 = 18, rồi viết dấu − ở trước vì hai số khác dấu."; hình `khac-dau-mau` `6 · (−3)` → `6 · 3 = 18` → `= −18`; nhãn hình gợi ý và `explain` câu 28 đổi theo.
-
-### 10. Câu kho ôn nhóm 1 lặp số của recap, hình và của nhau
-
-- Vị trí: `$.exercises[18].options[1]` (6 · (−2), trùng recap `duong-nhan-am-vi-du`); `$.exercises[18].options[3]` và `$.exercises[19].items[1]` ((−2) · 5 ở hai câu cùng card); `$.exercises[12].options[0]` và `$.exercises[19].items[0]` (3 · (−4)); `$.exercises[13]` (4 · (−2) = −8, trùng hình `no-moi-ngay`). LL-07.
+- Vị trí: `$.sections[7].blocks[0].children[0].text` (`section.nhieu-thua-so`); hình `nhan-tung-cap`. LL-10, LL-16, LL-20.
 - Nguồn: —
-- Vấn đề: phiên ôn hỏi lại tích bé vừa thấy kết quả.
-- Sửa: `chon-tich-am12` dùng 4 · (−3) và (−2) · 7; `xep-tich-khac-dau` dùng 2 · (−6), (−3) · 3, (−1) · 7; `thu-4-nhan-am2` (nếu giữ) dùng 4 · (−3).
+- Vấn đề: "Hai bạn như Nam…" trỏ tới nhân vật chỉ có ở câu kiểm tra section 1 (và Nam ở đó nợ 3 nghìn, trái số 2 nghìn ở đây); câu chuyện dừng ở phép tính, không nói −12 nghĩa là gì.
+- Sửa: "Lan và Minh, mỗi bạn nợ thêm 2 nghìn đồng mỗi ngày, trong 3 ngày. Số tiền của hai bạn thay đổi (−2) · 3 · 2 nghìn đồng; ta nhân hai số đầu trước." và thêm kết ở nhãn hàng cuối: "−12: số tiền của hai bạn giảm 12 nghìn đồng".
 
-### 11. Câu kho ôn nhóm 2 lặp số của hình và recap
+### 9. Câu kho ôn `chon-bang-tich` sau bản sửa trùng số của hình mở đầu và hình quy tắc
 
-- Vị trí: `$.exercises[24]` (`ex.nhiet-do-cach-day-3`), `$.exercises[23].options[1]` (`ex.chon-tich-12`). LL-07.
+- Vị trí: `$.exercises[34]` (`ex.chon-bang-tich`); hình `mua-but` (hàng `3 · 10 = 30`), `giao-hoan-ket-hop-vi-du` (hàng `[(−2) · 5] · 3 = −30`, recap `card.giao-hoan-ket-hop`). LL-07, LL-20.
 - Nguồn: —
-- Vấn đề: `nhiet-do-cach-day-3` hỏi (−3) · (−2) = 6 đúng câu chuyện của hình `quy-luat-am3-nhan` và `bon-truong-hop`; lựa chọn đúng (−2) · (−6) = 12 là hàng recap `am-nhan-am-vi-du`.
-- Sửa: "giảm đều 4 độ, cách đây 3 giờ" ((−4) · (−3) = 12); lựa chọn b thành (−1) · (−12).
+- Vấn đề: bản sửa mục 30 vòng 1 chọn bộ số {2, 5, 3} của hình `mua-but` (lựa chọn đúng `10 · 3`), và nhiễu `(−2) · 5 · 3` là biểu thức của hàng recap có in sẵn −30.
+- Sửa: đổi bộ số, tránh cặp (−4), (−2) của `dien-so-ket-hop`; vd "Chọn tất cả các tích bằng (−9) · (−2) · 4": đúng `(−2) · 4 · (−9)`, `18 · 4`; nhiễu `(−9) · 8`, `(−9) · 2 · 4`; sửa `wrong`.
 
-### 12. Đề `dem-hai-so-am` đọc thành "tích có hai số âm"
+### 10. Câu kho ôn `tinh-co-0` lặp ví dụ của mẹo ngay trên màn, lời giải làm ngược lời mẹo
 
-- Vị trí: `$.exercises[42].prompt[0]` (`ex.dem-hai-so-am`). LL-10.
+- Vị trí: `$.exercises[41]` (`ex.tinh-co-0`); `$.sections[7].blocks[2].tex` (`tip.thua-so-0`). LL-07, LL-20.
 - Nguồn: —
-- Vấn đề: chủ ngữ "Tích của bốn số khác 0 có đúng hai số âm" là "Tích".
-- Sửa: "Có bốn số khác 0, trong đó đúng hai số là số âm. Tích của bốn số đó là số nào?"
+- Vấn đề: đề là ví dụ của mẹo bỏ bớt một thừa số; mẹo dạy "khỏi nhân các số còn lại" nhưng lời giải nhân `(−7) · 5 = −35` trước; `explain.tex` viết `-35 \cdot 0` không ngoặc, trái cách viết cả bài.
+- Sửa: đổi số, vd `4 · (−9) · 0 · 2`; `explain`: "Có thừa số 0 nên tích bằng 0, không cần nhân các số còn lại."; `tex`: `4 \cdot (-9) \cdot 0 \cdot 2 = \concept{slate}{0}`.
 
-### 13. Section `nhieu-thua-so` không có ví dụ đời sống
+### 11. Câu kho ôn `chon-tich-duong` gần trùng hàng của hình quy tắc và recap section 8
 
-- Vị trí: `$.sections[7]` (`section.nhieu-thua-so`), câu 37 đến 42. LL-16.
+- Vị trí: `$.exercises[39].options[1]`, `$.exercises[39].options[2]`; hình `nhieu-thua-so-vi-du` (recap section và `card.nhieu-thua-so`). LL-07.
 - Nguồn: —
-- Vấn đề: luật "Ví dụ đời sống ở mọi section Toán"; cả section chỉ có phép tính.
-- Sửa: thêm một ví dụ hay câu đời sống ba thừa số số nhỏ, đúng quy ước `m · n` (mục 1).
+- Vấn đề: `(−2) · 3 · 4` chỉ dời dấu trừ trong hàng recap `2 · (−3) · 4 = −24`; `(−1) · (−4) · (−3)` là hàng ba số âm của recap đổi một số.
+- Sửa: lựa chọn đúng `3 · (−5) · 4 < 0`; nhiễu `(−5) · (−1) · (−4) > 0`; sửa `explain`, `wrong`.
 
-### 14. Cặp số 6 và 4 lặp khắp section 10, câu ôn `dien-so-gop` có đáp án in sẵn trên màn quy tắc
+### 12. Lời giải `b-dau-gi` nói như chỉ hai số âm mới cho tích dương
 
-- Vị trí: `$.exercises[50]` (`ex.dien-so-gop`), `$.exercises[49]` (`ex.tinh-hop-li-am4`); hình `gop-hop-keo`, `gop-thua-so-vi-du`, `$.sections[9].blocks[3].tex`. LL-07.
+- Vị trí: `$.exercises[29].explain.text` (`ex.b-dau-gi`). LL-17.
+- Nguồn: tr.56, `sbt-p56.png` (bài 3.29)
+- Vấn đề: "Số âm nhân với số âm mới cho tích dương." đọc riêng là trái câu quy tắc ngay trên ("cùng dấu thì tích dương", gồm cả hai số dương).
+- Sửa: "a là số âm. Số âm nhân với số âm thì tích dương, còn nhân với số dương thì tích âm. Vậy b là số âm."
+
+### 13. Câu kiểm tra section 12 hỏi đúng bộ số của ví dụ section 4 và của hàng recap vừa hiện
+
+- Vị trí: `$.exercises[58]` (`ex.nhiet-do-giam-5-gio`); hình `tang-giam-vi-du` hàng `(−5) · 2 = −10`; `$.sections[3].blocks[0].children[0].text` (`(−2) · 5 = −10`). LL-07.
 - Nguồn: —
-- Vấn đề: hình đời sống, recap, mẹo, câu luyện đều dùng 6 và 4; câu ôn hỏi đúng ô [(−4) + (−6)] = −10 đã in ở recap và mẹo.
-- Sửa: `dien-so-gop` thành 5 · (−3) + 5 · (−8) = 5 · (□), đáp án −11; `tinh-hop-li-am4` thành (−4) · 7 + (−4) · 3; mẹo đổi sang cặp khác (vd 9 · (−7) + 9 · (−3)).
+- Vấn đề: "giảm 2 độ mỗi giờ, sau 5 giờ" ra `(−2) · 5 = −10`, trùng phép tính ví dụ section 4; màn quy tắc ngay trước còn in −10. Câu kiểm tra không đo được việc lập phép nhân.
+- Sửa: "Mỗi giờ nhiệt độ giảm 4 độ. Sau 5 giờ, …" (−20; nhiễu 20, −9, 1); sửa `check.expr`, `explain`, `wrong`.
 
-### 15. Câu ôn `tim-x-am` trùng thừa số (x + 2) và đáp án −2 của ví dụ mẫu
+### 14. Ba câu kho ôn của card `bai-toan-thuc-te` cùng ra −8 từ 2 và 4, một câu trùng recap card `cong-lap`
 
-- Vị trí: `$.exercises[56]` (`ex.tim-x-am`); hình `tim-x-mau`. LL-07.
+- Vị trí: `$.exercises[60]` (`ex.thang-may-xuong`); `$.exercises[61].options[0]` (`ex.chon-tinh-huong-am`); `$.exercises[62]` (`ex.cach-day-3-gio`); hình `nhan-am-duong-vi-du` hàng `(−4) · 2 = −8`. LL-07, LL-20.
 - Nguồn: —
-- Vấn đề: ví dụ (x − 3) · (x + 2) = 0 cho −2; câu ôn (x − 6) · (x + 2) = 0 hỏi nghiệm âm, cũng −2.
-- Sửa: (x − 6) · (x + 5) = 0, đáp án −5 (sửa `check`, `explain`).
+- Vấn đề: lựa chọn a là bản sửa mục 33 vòng 1 nhưng lại đúng hàng đầu của recap card `cong-lap`; ba câu ôn cùng card hỏi lại một kết quả −8.
+- Sửa: `thang-may-xuong` "xuống 3 tầng mỗi lần, xuống 3 lần" (−9); lựa chọn a "Nhiệt độ giảm 1 độ mỗi giờ, trong 6 giờ"; giữ `cach-day-3-gio`.
 
-### 16. Hình màn quy tắc section 12 trùng số với câu luyện `vai-20-bo`
+### 15. Ví dụ của mẹo gộp thừa số chung dùng đúng cặp −7, −3 của câu kiểm tra ngay sau
 
-- Vị trí: hình `thay-doi-vai` (`$.sections[11].blocks[0]`); `$.exercises[59]` (`ex.vai-20-bo`). LL-07.
+- Vị trí: `$.sections[9].blocks[3].tex` (`tip.gop-thua-so-chung`); `$.exercises[48]` (`ex.gop-6-am3-am7`); cùng cặp ở `$.exercises[49]`, `$.exercises[51]`. LL-07, LL-20.
+- Nguồn: —
+- Vấn đề: bản sửa mục 14 vòng 1 đổi mẹo sang `9 · (−7) + 9 · (−3)`, in sẵn `(−7) + (−3) = −10` ngay trước câu kiểm tra hỏi đúng tổng đó.
+- Sửa: `9 · (−8) + 9 · (−2) = 9 · [(−8) + (−2)] = 9 · (−10) = −90`.
+
+### 16. Tình huống may vải không nói "thay đổi so với gì", một xí nghiệp gọi hai tên
+
+- Vị trí: `$.sections[11].blocks[0].children[0].text`; `$.exercises[59].prompt[0].text` (`ex.vai-20-bo`); nhãn hình `thay-doi-vai`. LL-10.
 - Nguồn: tr.57 bài 3.33, `sbt-p57.png`
-- Vấn đề: hình "mỗi bộ thêm 3 dm: 60", câu luyện "mỗi bộ ít đi 3 dm", đáp án −60: chỉ cần thêm dấu trừ.
-- Sửa: câu luyện "ít đi 4 dm" (−80) hoặc hình "thêm 5 dm"; viết theo quy ước của mục 1.
+- Vấn đề: không nói vải đổi vì mẫu mới so với mẫu cũ; câu trước "xí nghiệp", câu sau "xưởng"; hình viết "bớt", đề viết "ít đi".
+- Sửa: note "Xí nghiệp may 20 bộ quần áo theo mẫu mới. Mỗi bộ dùng vải nhiều hơn hay ít hơn mẫu cũ bao nhiêu thì nhân với 20, ta được số vải của cả 20 bộ thay đổi bao nhiêu."; đề "Theo mẫu mới, mỗi bộ dùng ít hơn mẫu cũ 4 dm vải."; nhãn hình "mỗi bộ ít hơn 2 dm: giảm 40 dm".
 
-### 17. Câu ôn `cach-day-3-gio` hỏi mơ hồ và lặp số của ví dụ section 3
+### 17. Đề câu luyện `vai-20-bo` in sẵn phép nhân nên không còn luyện việc lập phép tính
 
-- Vị trí: `$.exercises[62].prompt[0].text` (`ex.cach-day-3-gio`). LL-10, LL-07.
+- Vị trí: `$.exercises[59].prompt[2]` (khối `formula` `(-4) \cdot 20`), `$.exercises[59].hints.highlight[0]`. LL-20.
 - Nguồn: —
-- Vấn đề: "Cách đây 3 giờ, nhiệt độ thay đổi so với bây giờ bao nhiêu độ?" hiểu được +6 hay −6; đề nói "tăng đều" mà đáp án âm, ngay sau câu quy tắc "số dương là tăng". Bộ số 2, 3, −6 trùng ví dụ section 3 và cùng làm section 12.
-- Sửa: "Nhiệt độ tăng đều 4 độ mỗi giờ. Cách đây 2 giờ, nhiệt độ thấp hơn hay cao hơn bây giờ? Ghi bằng số nguyên: 4 · (−2)." (−8); `explain` "−8 nghĩa là lúc đó thấp hơn bây giờ 8 độ".
+- Vấn đề: bản sửa mục 37 vòng 1 đưa cả phép nhân vào đề; section không còn câu nào để bé tự lập tích có dấu từ lời.
+- Sửa: bỏ khối `formula`; nấc 1 trỏ `target: "block", index: 0`; giữ `explain`.
 
-### 18. Recap section 12 chỉ còn nửa quy tắc
+### 18. "Nợ thêm" không nói thay đổi của cái gì, đọc được là nợ tăng hay nợ giảm
 
-- Vị trí: hình `tang-giam-vi-du` (`$.sections[11].blocks[1]`, `$.sections[11].recap`, `card.bai-toan-thuc-te.recap`). LL-06.
+- Vị trí: hình `tang-giam-vi-du` hàng 3 (`$.sections[11].blocks[1]`, recap section và `card.bai-toan-thuc-te`); `$.exercises[61].options[2]` (`ex.chon-tinh-huong-am`). LL-10.
 - Nguồn: —
-- Vấn đề: câu quy tắc có hai ý ("thay đổi mỗi lần nhân với số lần", "dương tăng, âm giảm"); hình chỉ có dấu của thay đổi mỗi lần, không có phép nhân nào (ảnh walk 130, 137).
-- Sửa: mỗi hàng thêm phép nhân và nghĩa, vd "(−3) · 2 = −6: giảm 3 độ mỗi giờ, trong 2 giờ", số khác số câu ôn.
+- Vấn đề: section 1 và 4 luôn nói "số tiền của Nam (An) thay đổi"; ở đây "nợ thêm … giảm 10 nghìn" đọc được thành "nợ giảm"; lựa chọn c hỏi "thay đổi tổng cộng" mà số nợ thì tăng (dương), bé hiểu theo số nợ sẽ bỏ c và bị chấm sai. "2 triệu đồng" xa đời sống của bé.
+- Sửa: nhãn "nợ thêm 5 nghìn mỗi ngày, 2 ngày: số tiền giảm 10 nghìn"; lựa chọn c "Số tiền của Nam khi mỗi ngày nợ thêm 3 nghìn đồng, trong 4 ngày".
 
-### 19. Cùng làm "giảm 3 độ, 2 giờ" kết thúc ở trục số, không trả lời câu hỏi nhiệt độ
+### 19. Câu ôn của card "Tích bằng 0" lặp câu của card "Nhân với 0" và không hỏi quy tắc của card mình
 
-- Vị trí: hình `cung-giam3-2-gio` (`$.sections[11].blocks[2]`), lời kết trong `catalog.ts`. LL-16.
+- Vị trí: `$.exercises[57]` (`ex.chon-tich-bang-0`); đối chiếu `$.exercises[7]` (`ex.chon-tich-0`). LL-07.
+- Nguồn: tr.56 ví dụ 3, `sbt-p56.png`
+- Vấn đề: hai câu cùng đề "Chọn tất cả các tích bằng 0." và cùng kiểu nhiễu; cả hai hỏi chiều của section 2, không hỏi chiều ngược "tích bằng 0 thì ít nhất một số bằng 0".
+- Sửa: "Biết a · b = 0. Chọn tất cả các cặp số có thể là a và b." với "a = 0, b = −5", "a = 4, b = 0", "a = 0, b = 0" (đúng), "a = 2, b = −2" (sai, `wrong`: "2 · (−2) = −4, khác 0").
+
+### 20. Một khái niệm hai tên: chữ nói "thừa số thứ hai", hình nói "số đứng sau dấu nhân" (Tổng hợp)
+
+- Vị trí: chữ: `$.sections[2].blocks[1].children[0].text`, `$.sections[2].blocks[3].children[0].text`, `$.sections[4].blocks[1].children[0].text`, `$.sections[4].blocks[3].children[0].text`, `explain` của `$.exercises[9]`, `[10]`, `[11]`, `[13]`, `[25]` và `$.exercises[9].explain.wrong[1].text`; hình: tiêu đề `quy-luat-3-nhan`, `quy-luat-am3-nhan`, các hình `goi-y-*` kiểu bảng, lời kết `cung-2-nhan-am2`, `cung-am2-nhan-am3`, nhãn nút và dòng quy luật của `factor-try.tsx`. LL-05.
 - Nguồn: —
-- Vấn đề: note hỏi nhiệt độ thay đổi bao nhiêu; lời kết chỉ nói "Điểm đã đi sang trái 2 lần … tới −6."
-- Sửa: "Tới −6: sau 2 giờ nhiệt độ thay đổi (−3) · 2 = −6 độ, tức là giảm 6 độ."
+- Vấn đề: cùng một màn, note "thừa số thứ hai giảm 1 thì tích giảm 3" đứng ngay trên hình có tiêu đề "Số đứng sau dấu nhân giảm 1 thì tích giảm 3"; bé tưởng là hai thứ khác nhau. Haiku đánh dấu "thừa số thứ hai" là "Hiểu mơ hồ" ở 9 mục, nên tác giả có thể đang đổi dần sang "số đứng sau dấu nhân" (hình đã đổi, chữ chưa).
+- Sửa: chốt một tên cho cả chữ lẫn hình (gợi ý "số đứng sau dấu nhân", hoặc giữ "thừa số thứ hai" và giải thích một lần ở note đầu section 3: "thừa số thứ hai, tức số đứng sau dấu nhân"); đổi đủ mọi chỗ trên trong cùng lượt viết lại của Đọc hiểu.
 
-### 20. "Tính hợp lí" xuất hiện mà chưa dạy, section trước gọi là "tính nhanh"
+### 21. `overview.whyItMatters` nói "nợ tăng bao nhiêu", lệch cách bài ghi nợ thêm là số tiền thay đổi âm (Tổng hợp)
 
-- Vị trí: `$.exercises[48].prompt[0]`, `$.exercises[49].prompt[0]`, `$.exercises[51].prompt[0]`, `$.exercises[52].prompt[0]` (`gop-6-am3-am7`, `tinh-hop-li-am4`, `tinh-gop-am7`, `tinh-gop-doi-cho`). LL-05, LL-10.
-- Nguồn: tr.55 ví dụ 1, `sbt-p55.png`
-- Vấn đề: overview và section 7 dùng "tính nhanh"; section 10 đổi sang "tính hợp lí" không giải thích; hai câu chỉ ghi "Tính hợp lí." nên bé không biết dùng cách nào.
-- Sửa: một tên cả bài: "Tính nhanh bằng cách đưa thừa số chung ra ngoài." ở cả bốn câu.
-
-### 21. Mẹo của section 10 chỉ nhắc lại câu quy tắc
-
-- Vị trí: `$.sections[9].blocks[3]` (`tip.gop-thua-so-chung`).
+- Vị trí: `$.overview.whyItMatters`. LL-10.
 - Nguồn: —
-- Vấn đề: tiêu đề mẹo trùng tên section, lời mẹo là câu quy tắc nói lại; mẹo gượng (checklist trục 5).
-- Sửa: mẹo nhận dạng: "Hai số còn lại cộng ra số tròn chục là dấu hiệu nên đưa thừa số chung ra ngoài." Sửa cùng mục 3 và 4.
-
-### 22. Công thức `explain` dài bị ngắt giữa một tích trên điện thoại
-
-- Vị trí: `$.exercises[43].explain.tex` (`dung-phan-phoi`), `$.exercises[44].explain.tex` (`tinh-am3-nhan-tong`), `$.exercises[48].explain.tex` (`gop-6-am3-am7`), `$.exercises[50].explain.tex`, `$.exercises[52].explain.tex`; `$.exercises[37].explain.tex` (`dau-tich-ba-so`), `$.exercises[38].explain.tex` (`tinh-am3-2-am5`, còn viết `-6 \cdot (-5)` thiếu ngoặc), `$.exercises[40].explain.tex`. LL-12.
-- Nguồn: —
-- Vấn đề: KaTeX ngắt dòng ngay sau dấu nhân ("4 · 3 + 4 ·" / "5 = 12 + 20 = 32", "= 6 ·" / "(−5) = −30"; ảnh phone 092, 094, 102, 104, 114). Bé dễ đọc dòng dưới thành phép tính riêng. Gộp nhóm 3 (Nên sửa) và nhóm 2 (Góp ý), giữ mức cao hơn.
-- Sửa: mỗi bước một dòng trong `\begin{gathered} … \\ = … \end{gathered}`; viết `(-6) \cdot (-5)`.
+- Vấn đề: cả bài ghi "nợ thêm" thành số tiền thay đổi số âm (`(−2) · 5 = −10`, quy tắc section 12 "Số dương là tăng, số âm là giảm"); "nợ tăng bao nhiêu" thì đáp số là số dương 10, ngược dấu với phép nhân bé sẽ học. Cùng gốc với mục 18.
+- Sửa: "Bạn dùng phép nhân số nguyên để tính nhiệt độ giảm bao nhiêu sau vài giờ, hay số tiền thay đổi bao nhiêu khi mỗi ngày nợ thêm một ít."
 
 ## Góp ý
 
-### 23. Ví dụ nợ ở section 4 thiếu đơn vị và gần trùng câu kiểm tra section 1
+### 22. Câu luyện `tinh-0-nhan-am9` còn dùng "0 nhân với số âm" trước section 3
 
-- Vị trí: `$.sections[3].blocks[0].children[0].text` (`section.khac-dau`); hình `no-moi-ngay`
+- Vị trí: `$.exercises[6]` (`ex.tinh-0-nhan-am9`). LL-09, LL-20.
+- Nguồn: tr.55, `sbt-p55.png`
+- Vấn đề: vòng 1 (mục 42) đã đổi recap `0 · (−3)` thành `0 · 6`; câu luyện ngay trong section vẫn là `0 · (−9)`. Không sai kiến thức, nhưng bản sửa chưa đi hết.
+- Sửa: đổi thành `(−9) · 0` (sửa `check.expr`, `explain`), hoặc giữ.
+
+### 23. Hai câu kho ôn lặp số của recap hay của nhau
+
+- Vị trí: `$.exercises[18].options[1]` (`ex.chon-tich-am12`, `(−2) · 6`); `$.exercises[19].items[2]` (`ex.xep-tich-khac-dau`, `(−2) · 4`, trùng `$.exercises[2].options[2]`). LL-07.
 - Nguồn: —
-- Vấn đề: "thay đổi (−2) · 4 = −8" không ghi "nghìn đồng"; tình huống gần chép câu `ex.no-moi-ngay`.
-- Sửa: "= −8, tức giảm 8 nghìn đồng"; đổi tên hoặc số ngày.
+- Vấn đề: phiên ôn hiện lại tích bé vừa thấy.
+- Sửa: `(−1) · 12`; `(−1) · 7` (thứ tự −15 < −9 < −7 không đổi).
 
-### 24. Câu chuyện "cách đây 2 giờ" không nói vì sao ghi là −2
+### 24. Lời giải `di-trai-am2-nhan2` thiếu hướng đi ở câu kết
 
-- Vị trí: `$.sections[2].blocks[0].children[0].text` (`section.duong-nhan-am`)
+- Vị trí: `$.exercises[4].explain.text` (`ex.di-trai-am2-nhan2`).
 - Nguồn: —
-- Vấn đề: note nhảy từ "cách đây 2 giờ" sang "3 · (−2)".
-- Sửa: thêm "Sau 2 giờ ghi là 2, cách đây 2 giờ ghi là −2."
+- Vấn đề: "Từ 0 đi 2 rồi 2 nữa thì tới −4." không nói "sang trái", chỗ bé hay sai.
+- Sửa: "Từ 0 sang trái 2 rồi sang trái 2 nữa thì tới −4."
 
-### 25. Lý do sai của "(−3) + 4 = −12" chưa nói phép tính đó cũng sai
+### 25. Bố cục hình và app trên điện thoại (việc của người làm app)
 
-- Vị trí: `$.exercises[0].explain.wrong[1]` (`ex.no-moi-ngay`)
+- Vị trí: hình `am2-nhan3` (ảnh phone `006-s1-01-block-end`: ba nhãn "−2" kèm hình thoi đọc thành "♦−2♦−2♦−2"); `cung-2-nhan-am2` (`039-s3-04-block-shown`) và `cung-am2-nhan-am3` (`061-s5-04-block-shown`): dòng quy luật, lời kết nằm dưới thanh nút cuối màn, phải cuộn; note `$.sections[4].blocks[1]` (`058-s5-02-block-end`): chữ "6." rơi một mình xuống dòng. LL-21, LL-12.
 - Nguồn: —
-- Vấn đề: (−3) + 4 = 1; lý do chỉ nói "chỉ cộng một lần".
-- Sửa: "(−3) + 4 = 1, không phải −12; hơn nữa nợ lặp lại bốn lần nên phải nhân."
+- Vấn đề: không chặn bài.
+- Sửa: báo người làm app.
 
-### 26. Ký hiệu trong hình có thể đọc nhầm thành dấu trừ
+### 26. Câu quy tắc section 8 nói "có chẵn thừa số âm"
 
-- Vị trí: hình `am2-nhan3` (ảnh walk `006-s1-01-block-end`, điện thoại); hình `cung-2-nhan-am2`, `thu-4-nhan-am2` (ảnh `039-s3-04-block-shown`). LL-21.
+- Vị trí: `$.sections[7].blocks[1].children[0].text`, `$.sections[7].recap.caption`, `$.cards[7].recap.caption`. LL-25.
 - Nguồn: —
-- Vấn đề: ba nhãn "−2" sát nhau kèm hình thoi đọc thành "♦−2♦−2♦−2"; vạch xám cuối hàng "2 · 0 = 0" trông như dấu "−". Mã hình dùng chung, không chặn bài.
-- Sửa: báo người làm hình: giãn nhãn bước nhảy; dùng dấu khác cho hàng tích bằng 0.
+- Vấn đề: "có chẵn/lẻ thừa số âm" thiếu chữ "số", bé phải đoán; Haiku đánh dấu "Hiểu mơ hồ" ở cả ba chỗ và ở bốn `explain`/`wrong` dùng "chẵn", "lẻ".
+- Sửa: "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn, là số âm khi số thừa số âm là số lẻ." (recap section và card lặp nguyên văn).
 
-### 27. Lý do "hai thừa số đều khác 0" chạm quy tắc của section "Tích bằng 0"
+### 27. Id câu không khớp đề sau bản sửa vòng 1
 
-- Vị trí: `$.exercises[5].explain.wrong[1]`, `$.exercises[5].explain.wrong[2]` (`ex.tich-bang-0-nao`); `$.exercises[7].explain.wrong[0]`, `$.exercises[7].explain.wrong[1]` (`ex.chon-tich-0`). LL-09.
+- Vị trí: `$.exercises[23].id` (`ex.chon-tich-12`, đề hỏi 15); `$.exercises[38].id` (`ex.tinh-am3-2-am5`, đề `(−6) · 2 · (−3)`); `$.exercises[39].id` (`ex.chon-tich-duong`); `$.exercises[62].id` (`ex.cach-day-3-gio`, đề "cách đây 2 giờ").
 - Nguồn: —
-- Vấn đề: vế "hai thừa số đều khác 0" ngầm dạy chiều thuộc section `tich-bang-0`.
-- Sửa: chỉ giữ phần tính: "8 · 1 = 8, khác 0."
+- Vấn đề: id chưa khoá nên đổi lúc này còn rẻ.
+- Sửa: `chon-tich-15`, `tinh-am6-2-am3`, `chon-so-sanh-ba-so`, `cach-day-2-gio` (sửa `practiceIds`), trước `content:lock`.
 
-### 28. Lý do sai "tích không âm" kém chính xác
+### 28. Đề hỏi "là số nào?" khi đáp án là loại số
 
-- Vị trí: `$.exercises[42].explain.wrong[0]` (`ex.dem-hai-so-am`)
+- Vị trí: `$.exercises[29].prompt[1].text`, `$.exercises[37].prompt[0].text`, `$.exercises[42].prompt[0].text`. LL-10.
+- Nguồn: tr.56, `sbt-p56.png` (bài 3.29)
+- Vấn đề: "là số nào?" đọc được là hỏi một giá trị cụ thể.
+- Sửa: "… là số âm, số dương hay số 0?".
+
+### 29. Câu mở đầu section 7 nói "cách nào" và bị ngắt giữa phép nhân trên điện thoại
+
+- Vị trí: `$.sections[6].blocks[0].children[0].text`; ảnh `phone/077-s7-01-block`. LL-12, LL-25.
 - Nguồn: —
-- Vấn đề: "không âm" gồm cả 0.
-- Sửa: "Có hai thừa số âm, là số chẵn, nên tích là số dương."
+- Vấn đề: "cách nào" chưa nói là cách nhóm; "3 · 5 ·" / "2" gãy dòng.
+- Sửa: "Nhóm hai số đầu hay hai số sau trước đều được 30 nghìn đồng.", để phép tính trong hình.
 
-### 29. Câu kiểm tra và câu luyện tập của section `nhieu-thua-so` dùng cùng bộ số
+### 30. Mẹo `nhan-voi-am-1` đứng ở section không có câu nào nhân với −1
 
-- Vị trí: `$.exercises[37]` (`ex.dau-tich-ba-so`) và `$.exercises[38]` (`ex.tinh-am3-2-am5`). LL-07.
+- Vị trí: `$.sections[5].blocks[2]` (`tip.nhan-voi-am-1`).
+- Nguồn: tr.57, `sbt-p57.png` (bài 3.30)
+- Vấn đề: không câu nào của section 6 dùng mẹo.
+- Sửa: thêm vào `noi-tich-voi-ket-qua` một cặp như `(−9) · (−1)` và 9, hoặc chuyển mẹo xuống section 8.
+
+### 31. Hình nấc 2 của `tinh-am6-nhan-am3` dừng trước số âm đầu tiên
+
+- Vị trí: `$.exercises[21].hints.hintVisualId` (`goi-y-am5-nhan-am`).
 - Nguồn: —
-- Vấn đề: −30 vừa hiện ở câu kiểm tra, câu luyện chỉ cần đổi dấu.
-- Sửa: câu 38 thành (−6) · 2 · (−3) = 36.
+- Vấn đề: hình dừng ở `(−5) · 0 = 0` rồi "?", chưa có hàng nào có thừa số thứ hai âm.
+- Sửa: thêm hàng `(−5) · (−1) = 5` trước "?", hoặc dùng khuôn "nhân hai phần số tự nhiên" (tránh lỗi chuỗi bằng nhau của mục 1).
 
-### 30. Số của câu kho ôn gần với recap
+### 32. Nhãn dài của recap section 12 ngắt dòng giữa số và đơn vị
 
-- Vị trí: `$.exercises[34].options[3]` (`ex.chon-bang-tich`), `$.exercises[28].left[1]` (`ex.noi-tich-voi-ket-qua`). LL-07.
+- Vị trí: hình `tang-giam-vi-du`, nhãn hàng 1 và 2 (ảnh `130-s12-02-block`). LL-12.
 - Nguồn: —
-- Vấn đề: (−2) · 3 · 5 và 5 · (−2) chỉ là recap đổi chỗ.
-- Sửa: đổi bộ số (vd (−2) · (−5) · 3; 7 · (−2)).
+- Vấn đề: "… 3 / ngày", "… 12 / nghìn" ở hai dòng.
+- Sửa: rút nhãn, vd "để dành 4 nghìn mỗi ngày, 3 ngày", "giảm 3 độ mỗi giờ, 4 giờ".
 
-### 31. Hình `bon-truong-hop` không nói tích chỉ điều gì
+### 33. Cùng làm section 12 lặp thao tác và số của cùng làm section 1
 
-- Vị trí: `$.sections[5].blocks[0]`, hình `bon-truong-hop`
+- Vị trí: hình `cung-giam3-2-gio` (`$.sections[11].blocks[2]`); đối chiếu `cung-am3-nhan2`. LL-07.
 - Nguồn: —
-- Vấn đề: nhãn chỉ ghi "tăng, sau 2 giờ"…, không nói 6 hay −6 nghĩa là gì.
-- Sửa: nhãn "tăng, sau 2 giờ: cao hơn 6 độ"…, chia hai hàng nếu chật.
+- Vấn đề: cùng điểm đầu 0, bước 3, hai lần bấm, đích −6.
+- Sửa: vd "nhiệt độ giảm 1 độ mỗi giờ, sau 5 giờ" (`tryJump(0, 1, -5, …)`), sửa note và lời kết.
 
-### 32. `sourceRef` của section `dau-cua-tich` và `nhieu-thua-so` chưa khớp nội dung
+### 34. Hàng `(−4) · 0` của hình tích bằng 0 không khớp câu chuyện túi kẹo cùng màn
 
-- Vị trí: `$.sections[5].sourceRef`, `$.cards[5].sourceRef`; `$.sections[7].sourceRef`, `$.cards[7].sourceRef`
-- Nguồn: tr.57 (bài 3.30, 3.34), `sbt-p57.png`; tr.55 (ví dụ 2)
-- Vấn đề: `noi-tich-voi-ket-qua` dựa bài 3.30 nhưng `dau-cua-tich` chỉ trỏ 3.27–3.29; `nhieu-thua-so` trỏ ví dụ 2 "tr.56" và bài 3.34 mà section không dùng.
-- Sửa: thêm "tr.57 (bài 3.30)" cho `dau-cua-tich`; `nhieu-thua-so` trỏ đúng phần dùng.
-
-### 33. Câu kho ôn `chon-tinh-huong-am` lặp tình huống câu kiểm tra
-
-- Vị trí: `$.exercises[61].options[0]` (`ex.chon-tinh-huong-am`). LL-07.
+- Vị trí: hình `tich-bang-0-truong-hop` hàng 2 (`$.sections[10].blocks[0]`). LL-15.
 - Nguồn: —
-- Vấn đề: "giảm 2 độ mỗi giờ, trong 5 giờ" là đề `nhiet-do-giam-4-gio`.
-- Sửa: "giảm 4 độ mỗi giờ, trong 2 giờ".
+- Vấn đề: "−4 viên kẹo mỗi túi" không có trong câu chuyện.
+- Sửa: `3 \cdot 0 = 0`.
 
-### 34. Câu kiểm tra `biet-tich-0` dùng đúng số 7 của hình quy tắc
+### 35. Câu chuyện hộp kẹo kết ở "cả hai bạn" mà không nói 70 là gì
 
-- Vị trí: `$.exercises[53]` (`ex.biet-tich-0`); hình `tich-bang-0-vi-du`. LL-07, LL-05.
+- Vị trí: `$.sections[9].blocks[0].children[0].text`; hình `gop-hop-keo`. LL-16.
 - Nguồn: —
-- Vấn đề: hình "a · 7 = 0 → a = 0", câu ngay sau "a = 7"; `explain` "có một thừa số bằng 0" khác lời quy tắc "ít nhất một số trong hai số đó bằng 0".
-- Sửa: a = −6; `explain` mở bằng câu quy tắc nguyên văn.
+- Vấn đề: note nói gộp số hộp, kết quả là số kẹo; nhãn không đơn vị.
+- Sửa: nhãn "70 viên kẹo của cả hai bạn"; note "Xem cách tính số kẹo của cả hai bạn."
 
-### 35. Từ "vế" chưa dạy trong lời giải `dung-phan-phoi`
+### 36. Đề "Đổi chỗ một thừa số" chưa rõ
 
-- Vị trí: `$.exercises[43].explain.text` ("Cả hai vế đều bằng 32", Tổng hợp thêm) và `$.exercises[43].explain.wrong[2].text` ("vế phải") (`ex.dung-phan-phoi`). LL-25.
+- Vị trí: `$.exercises[52].prompt[0].text` (`ex.tinh-gop-doi-cho`). LL-10.
 - Nguồn: —
-- Vấn đề: lựa chọn chỉ là một biểu thức; "vế", "vế phải" bé chưa học.
-- Sửa: "Cách viết này bỏ mất phép nhân với 4, chỉ bằng 12."; `explain` "Cả hai cách đều bằng 32."
+- Vấn đề: đổi chỗ là đổi hai thừa số của một tích.
+- Sửa: "Đổi chỗ hai thừa số trong một tích để thấy thừa số chung, rồi tính nhanh."
 
-### 36. Hàng thứ ba của hình quy tắc section 10 bỏ bước ngoặc
+### 37. Lời giải `tinh-4-nhan-tong-am` không dùng cách của card nó luyện
 
-- Vị trí: hình `gop-thua-so-vi-du`, hàng `(−2) · 5 + (−2) · 6`
+- Vị trí: `$.exercises[47].explain` (`ex.tinh-4-nhan-tong-am`, card `phan-phoi`).
 - Nguồn: —
-- Vấn đề: hai hàng trên có bước ngoặc, hàng ba nhảy thẳng tới `(−2) · 11`.
-- Sửa: `= (−2) · (5 + 6) = (−2) · 11 = −22`.
+- Vấn đề: chỉ "tính trong ngoặc trước".
+- Sửa: thêm "Nhân với từng số hạng cũng được: 4 · (−5) + 4 · 2 = −20 + 8 = −12."
 
-### 37. Công thức viết trong chữ của note bị ngắt dòng giữa tích
+### 38. "Cách đây 2 giờ" ở chữ, "2 giờ trước" ở hình cho cùng một ý (Tổng hợp)
 
-- Vị trí: `$.sections[9].blocks[0].children[0].text`; `$.exercises[59].prompt[0].text` (`ex.vai-20-bo`). LL-12.
+- Vị trí: note `$.sections[2].blocks[0]`, `$.sections[4].blocks[0]`, `$.sections[5].blocks[0]`, đề `$.exercises[24]`, `$.exercises[62]`; nhãn hình `nhiet-do-cach-day`, `nhiet-do-giam-cach-day`, `bon-truong-hop`. LL-25.
 - Nguồn: —
-- Vấn đề: ảnh 107, 108, 135: "Cả 7 hộp có 7" / "· 6 + 7 · 4 = 7 ·" / "(6 + 4)"; "x =" / "−3".
-- Sửa: bỏ công thức khỏi note, để trong hình; `vai-20-bo` đưa "x = −3" vào khối `formula`.
-
-### 38. Lời đề thang máy chưa tự nhiên
-
-- Vị trí: `$.exercises[60].prompt[1].text` (`ex.thang-may-xuong`). LL-25.
-- Nguồn: —
-- Vấn đề: "Số tầng của thang máy thay đổi bao nhiêu?" hiểu được là toà nhà đổi số tầng.
-- Sửa: "Vị trí của thang máy thay đổi bao nhiêu tầng?"
-
-### 39. `sourceRef` section 10 trích bài 3.32 nhưng section không có nội dung của bài đó
-
-- Vị trí: `$.sections[9].sourceRef`, `$.cards[9].sourceRef`
-- Nguồn: tr.57 bài 3.32, `sbt-p57.png`
-- Vấn đề: bài 3.32 là hiệu hai tích; section chỉ dạy tổng. Gắn với mục 3.
-- Sửa: bỏ "bài 3.32" nếu không dạy hiệu, hoặc giữ khi đã thêm phần hiệu.
-
-### 40. Id câu không khớp đề
-
-- Vị trí: `$.exercises[58].id` (`ex.nhiet-do-giam-4-gio`)
-- Nguồn: —
-- Vấn đề: id ghi "4 giờ", đề hỏi "Sau 5 giờ".
-- Sửa: đổi id thành `nhiet-do-giam-5-gio` (sửa `checkIds`); làm trước khi khoá id.
-
-### 41. "Quy tắc dấu" được dùng như tên riêng mà chưa màn nào đặt tên
-
-- Vị trí: `$.sections[7].blocks[1].children[0].text` và recap ("theo quy tắc dấu"); `overview.summary`, `overview.goals[1]`; đối chiếu `$.sections[5]` (tiêu đề "Dấu của tích", câu quy tắc không có chữ "quy tắc dấu"). LL-05. Tổng hợp phát hiện.
-- Nguồn: —
-- Vấn đề: câu quy tắc section 8 trỏ tới "quy tắc dấu" nhưng section 6 không gọi câu "cùng dấu thì dương, khác dấu thì âm" bằng tên đó; bé phải đoán đó là câu nào.
-- Sửa: section 6 mở câu ví dụ hay tiêu đề bằng tên này (vd tiêu đề "Quy tắc dấu của tích"), hoặc bỏ cụm "theo quy tắc dấu" khi viết lại câu quy tắc ở mục 2.
-
-### 42. Recap "Nhân với 0" dùng phép nhân với số âm trước khi section 3 dạy
-
-- Vị trí: hình `nhan-voi-0-vi-du` (`$.sections[1].blocks[1]`, `$.sections[1].recap`, `card.nhan-voi-0.recap`), hàng `0 · (−3) = 0` (nhãn "0 nhân với số âm" tô màu âm dù tích là 0). LL-09. Tổng hợp phát hiện.
-- Nguồn: tr.55, `sbt-p55.png` (sách có `a · 0 = 0 · a = 0` với mọi số nguyên)
-- Vấn đề: theo quy ước "m · n là m lấy n lần", `0 · (−3)` là "0 lấy −3 lần", chưa có nghĩa cho tới section 3. Quy tắc có trong sách nên không sai, nhưng bé gặp kiểu tích này trước khi được dạy.
-- Sửa: hàng thứ ba dùng `0 · 6` (nhãn "0 nhân với số dương"), hoặc dời ví dụ `0 · (−3)` sang section 3; nhãn tô màu theo tích (`slate`) hoặc màu ghi chú.
+- Vấn đề: Haiku đánh dấu "cách đây" là "Hiểu mơ hồ" ở 5 mục; hình đã dùng "2 giờ trước", dễ hiểu hơn, nhưng chữ ngay trên vẫn "cách đây".
+- Sửa: chốt một cách nói cho chữ lẫn hình (gợi ý "2 giờ trước", lần đầu nói "2 giờ trước bây giờ") trong lượt viết lại của Đọc hiểu.
 
 ## Ngoài phạm vi của Tổng hợp
 
-Không có việc ngoài phạm vi phát sinh. Tổng hợp chỉ ghi tệp này, `docs/lessons-learned/` và dòng hash do `--mark`.
+- `notebooks/backlogs/lesson-phep-nhan-so-nguyen/task.md`, mục "Cấu trúc bài", còn ghi "tính hợp lí", "bài 3.32" và tên mẹo cũ: tài liệu bàn giao, Tổng hợp không sửa; tác giả cập nhật khi sửa bài.
+- Mục 20 và 38: `src/visuals/math/phep-nhan-so-nguyen/catalog.ts` và `factor-try.tsx` đổi lúc 09:07, sau khi `lesson.json` đổi lần cuối; Tổng hợp ghi theo trạng thái lúc review, không sửa.
