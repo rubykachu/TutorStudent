@@ -855,6 +855,133 @@
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
         "caption": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó."
       }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.59 (bài 3.35 đến bài 3.40), lời giải tr.113",
+      "minutes": 19,
+      "bookPractice": true,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.35 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau."
+            },
+            {
+              "type": "note",
+              "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-nhac-lai-dau-thuong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.36 và bài 3.39 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Muốn tìm các ước của một số nguyên khác 0, tìm các ước dương rồi viết thêm số đối của chúng. Số −14 có cùng các ước dương với 14.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Viết số dương thành tích hai số dương. Rồi đổi dấu cả hai thừa số để có thêm các tích khác."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-nhac-lai-uoc-tich"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.37 và bài 3.38 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Muốn tìm các bội của số nguyên khác 0, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp. Viết thêm số đối của các tích, và số 0 cũng là bội của số đó."
+            },
+            {
+              "type": "note",
+              "text": "Muốn tìm bội trong một khoảng, liệt kê các bội dương, bội âm và số 0, rồi giữ những số nằm trong khoảng đó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-nhac-lai-boi-khoang"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.40 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Số x khác 0 luôn chia hết cho chính nó. Vì vậy nếu x + 3 chia hết cho x thì hiệu của x + 3 và x, tức 3, cũng chia hết cho x."
+            },
+            {
+              "type": "note",
+              "text": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35a-am68-4",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35a-345-am5",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35a",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35b-am156-am12",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35b",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35c-am404-101",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35c-am1515-101",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35c",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-36a-uoc-26",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36a",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-36b-uoc-am52",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36b",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-dem-boi-9",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-boi-8-khoang",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-37",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-0-chia-6",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-boi-5-khoang",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-38",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-39-22-bang-2",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-39-22-am2",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-39",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-hieu-x-11",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-dem-x-9",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-40"
+      ],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-tom-tat",
+        "caption": "Muốn tìm các ước của một số nguyên khác 0, tìm các ước dương rồi viết thêm số đối của chúng. Muốn tìm bội trong một khoảng, liệt kê các bội dương, bội âm và số 0, rồi giữ những số nằm trong khoảng đó."
+      }
     }
   ],
   "cards": [
@@ -4253,6 +4380,1498 @@
         }
       ],
       "bank": ["ước", "bội", "thương"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35a-am68-4",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính thương của phép chia sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-68) : 4"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số −68 âm còn số 4 dương, hai số khác dấu nên thương là số âm. Ta chia hai phần số tự nhiên: 68 : 4 = 17.",
+        "tex": "\\begin{gathered} (-68) : 4 = -(68 : 4) \\\\ = \\concept{pink}{-17} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -17
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-68):4"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35a-345-am5",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính thương của phép chia sau."
+        },
+        {
+          "type": "formula",
+          "tex": "345 : (-5)"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số 345 dương còn số −5 âm, hai số khác dấu nên thương là số âm. Ta tách 345 = 300 + 45 rồi chia từng phần cho 5: 300 : 5 = 60 và 45 : 5 = 9, cộng lại được 69. Vậy thương là −69.",
+        "tex": "\\begin{gathered} 345 : (-5) = -(345 : 5) \\\\ = \\concept{pink}{-69} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -69
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "345:(-5)"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Thực hiện phép chia:"
+        },
+        {
+          "type": "formula",
+          "tex": "735 : (-5);"
+        }
+      ],
+      "bookRef": "SBT 3.35a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-chia-am-5",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-35a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số 735 dương còn số −5 âm, hai số khác dấu nên thương là số âm. Ta tách 735 = 700 + 35 rồi chia từng phần cho 5: 700 : 5 = 140 và 35 : 5 = 7, cộng lại được 147. Vậy thương là −147.",
+        "tex": "\\begin{gathered} 735 : (-5) = -(735 : 5) \\\\ = \\concept{pink}{-147} \\\\ (-5) \\cdot (-147) = 735 \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -147
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "735:(-5)"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35b-am156-am12",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính thương của phép chia sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-156) : (-12)"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số −156 và số −12 đều âm, hai số cùng dấu nên thương là số dương. Ta tìm số nhân với 12 để được 156: 12 · 10 = 120, 12 · 3 = 36, cộng lại 12 · 13 = 156. Vậy thương là 13.",
+        "tex": "\\begin{gathered} (-156) : (-12) = 156 : 12 \\\\ = \\concept{lime}{13} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 13
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-156):(-12)"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Thực hiện phép chia:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-528) : (-12);"
+        }
+      ],
+      "bookRef": "SBT 3.35b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-chia-cung-dau-12",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-35b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Số −528 và số −12 đều âm, hai số cùng dấu nên thương là số dương. Ta tìm số nhân với 12 để được 528: 12 · 40 = 480, 12 · 4 = 48, cộng lại 12 · 44 = 528. Vậy thương là 44.",
+        "tex": "\\begin{gathered} 12 \\cdot 44 = 528 \\\\ (-528) : (-12) = \\concept{lime}{44} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 44
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-528):(-12)"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35c-am404-101",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính thương của phép chia sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-404) : 101"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số −404 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta có 101 · 4 = 404, nên thương là −4.",
+        "tex": "\\begin{gathered} 101 \\cdot (-4) = -404 \\\\ (-404) : 101 = \\concept{pink}{-4} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -4
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-404):101"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-35c-am1515-101",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính thương của phép chia sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-1\\,515) : 101"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số −1 515 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta tìm số nhân với 101 để được 1 515: 101 · 10 = 1 010, 101 · 5 = 505, cộng lại 101 · 15 = 1 515. Vậy thương là −15.",
+        "tex": "\\begin{gathered} 101 \\cdot 15 = 1\\,515 \\\\ (-1\\,515) : 101 = \\concept{pink}{-15} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -15
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-1515):101"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-35c",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Thực hiện phép chia:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-2\\,020) : 101."
+        }
+      ],
+      "bookRef": "SBT 3.35c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-chia-101",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-35c-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Số −2 020 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta tìm số nhân với 101 để được 2 020. Vì 101 · 2 = 202 nên 101 · 20 = 2 020, vậy thương là −20.",
+        "tex": "\\begin{gathered} 101 \\cdot 20 = 2\\,020 \\\\ (-2\\,020) : 101 = \\concept{pink}{-20} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -20
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-2020):101"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-36a-uoc-26",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền các ước của 26, viết gọn bằng dấu ± (±1 là hai số 1 và −1)."
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Điền từ số bé đến số lớn."
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Viết 26 thành tích hai số dương: 26 = 1 · 26 = 2 · 13. Mỗi thừa số là một ước dương, nên các ước dương là 1, 2, 13 và 26. Mỗi ước dương có thêm một số đối là ước âm.",
+        "tex": "\\begin{gathered} 26 = 1 \\cdot 26 = 2 \\cdot 13 \\\\ \\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm13,\\ \\pm26} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các ước của 26 là ±"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["1"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["2"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["13"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["26"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["1", "2", "13", "26", "4", "6"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36a",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm các ước của 21 và −66."
+        },
+        {
+          "type": "note",
+          "text": "Câu này hỏi các ước của 21. Chạm một số, rồi chạm ô trống cần điền. Viết gọn bằng dấu ± (±1 là hai số 1 và −1), xếp từ số bé đến số lớn."
+        }
+      ],
+      "bookRef": "SBT 3.36a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-uoc-34",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-36a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Viết 21 thành tích hai số dương: 21 = 1 · 21 = 3 · 7. Mỗi thừa số là một ước dương, nên các ước dương là 1, 3, 7 và 21. Mỗi ước dương có thêm một số đối là ước âm.",
+        "tex": "\\begin{gathered} 21 = 1 \\cdot 21 = 3 \\cdot 7 \\\\ \\concept{violet}{\\pm1,\\ \\pm3,\\ \\pm7,\\ \\pm21} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các ước của 21 là ±"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["1"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["3"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["7"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["21"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["1", "3", "7", "21", "2", "9", "14"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-36b-uoc-am52",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền các ước của −52, viết gọn bằng dấu ± (±1 là hai số 1 và −1)."
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Điền từ số bé đến số lớn."
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số −52 có cùng các ước dương với 52. Ta có 52 = 1 · 52 = 2 · 26 = 4 · 13, nên các ước dương là 1, 2, 4, 13, 26 và 52. Mỗi ước dương có thêm một số đối là ước âm.",
+        "tex": "\\begin{gathered} 52 = 1 \\cdot 52 = 2 \\cdot 26 \\\\ = 4 \\cdot 13 \\\\ \\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm4,} \\\\ \\concept{violet}{\\pm13,\\ \\pm26,\\ \\pm52} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các ước của −52 là ±"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["1"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["2"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["4"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["13"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["26"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b6",
+          "accept": ["52"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["1", "2", "4", "13", "26", "52", "3", "8"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36b",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm các ước của 21 và −66."
+        },
+        {
+          "type": "note",
+          "text": "Câu này hỏi các ước của −66. Chạm một số, rồi chạm ô trống cần điền. Viết gọn bằng dấu ± (±1 là hai số 1 và −1), xếp từ số bé đến số lớn."
+        }
+      ],
+      "bookRef": "SBT 3.36b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-uoc-am70",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-36b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Số −66 có cùng các ước dương với 66. Ta có 66 = 1 · 66 = 2 · 33 = 3 · 22 = 6 · 11, nên các ước dương là 1, 2, 3, 6, 11, 22, 33 và 66. Mỗi ước dương có thêm một số đối là ước âm.",
+        "tex": "\\begin{gathered} 66 = 1 \\cdot 66 = 2 \\cdot 33 \\\\ = 3 \\cdot 22 = 6 \\cdot 11 \\\\ \\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm3,\\ \\pm6,} \\\\ \\concept{violet}{\\pm11,\\ \\pm22,\\ \\pm33,\\ \\pm66} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các ước của −66 là ±"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["1"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["2"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["3"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["6"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["11"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b6",
+          "accept": ["22"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b7",
+          "accept": ["33"]
+        },
+        {
+          "type": "text",
+          "text": "; ±"
+        },
+        {
+          "type": "blank",
+          "id": "b8",
+          "accept": ["66"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["1", "2", "3", "6", "11", "22", "33", "66", "4", "9", "12"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-dem-boi-9",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có bao nhiêu bội của 9 lớn hơn 0 và nhỏ hơn 60?"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-37",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân 9 lần lượt với 1, 2, 3 và cứ thế tiếp, ta được 9, 18, 27, 36, 45 và 54. Số tiếp theo là 63, lớn hơn 60 nên ta dừng. Vậy có 6 bội.",
+        "tex": "\\begin{gathered} 9 \\cdot 6 = 54 < 60 \\\\ 63 = 9 \\cdot 7 > 60 \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-boi-8-khoang",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền các bội của 8 (không lấy số 0), lớn hơn −30 và nhỏ hơn 40."
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Điền từ số bé đến số lớn."
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-37",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Các bội dương của 8 nhỏ hơn 40 là 8, 16, 24 và 32. Các bội âm lớn hơn −30 là −8, −16 và −24. Số 0 bị bỏ vì đề không lấy số 0, còn −32 và 40 nằm ngoài khoảng.",
+        "tex": "\\begin{gathered} 8 \\cdot 4 = 32 < 40 \\\\ -30 < (-8) \\cdot 3 = -24 \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các bội của 8 là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−24", "-24"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−16", "-16"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["−8", "-8"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["8"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["16"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b6",
+          "accept": ["24"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b7",
+          "accept": ["32"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−24", "−16", "−8", "8", "16", "24", "32", "0", "−32", "40"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-37",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm các bội khác 0 của số 11, lớn hơn −50 và nhỏ hơn 100."
+        },
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các số cần tìm."
+        }
+      ],
+      "bookRef": "SBT 3.37",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-boi-25",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-37-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Nhân 11 với 1, 2, 3 và cứ thế tiếp để có các bội dương, rồi thêm số đối của chúng. Các bội trong khoảng là −44, −33, −22, −11 và 11, 22, 33, 44, 55, 66, 77, 88, 99. Số −55 và 110 nằm ngoài khoảng, còn số 0 bị bỏ vì đề cần bội khác 0."
+      },
+      "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-chon-boi-11",
+      "validatorId": "chon-dung",
+      "params": {
+        "i0": 0,
+        "i1": 1,
+        "i2": 1,
+        "i3": 1,
+        "i4": 1,
+        "i5": 0,
+        "i6": 1,
+        "i7": 1,
+        "i8": 1,
+        "i9": 1,
+        "i10": 1,
+        "i11": 1,
+        "i12": 1,
+        "i13": 1,
+        "i14": 1,
+        "i15": 0
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-0-chia-6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Số 0 có chia hết cho 6 không?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-38",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ta có 0 = 6 · 0 nên 0 chia hết cho 6, và 0 : 6 = 0. Số 0 đem chia cho 6 thì được; ta chỉ không chia được cho số 0.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chia hết không cần số đứng trước lớn hơn: 0 = 6 · 0 nên 0 chia hết cho 6."
+          },
+          {
+            "optionId": "c",
+            "text": "Ở đây ta chia cho 6, không chia cho 0. Ta chỉ không chia được khi chia cho số 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Có, vì 0 = 6 · 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Không, vì 0 bé hơn 6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Không, vì không chia được cho số 0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-boi-5-khoang",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền các phần tử của tập hợp A dưới đây, từ bé đến lớn."
+        },
+        {
+          "type": "note",
+          "text": "A = {x ∈ ℤ | x ⋮ 5 và −15 < x ≤ 15}"
+        },
+        {
+          "type": "note",
+          "text": "Dấu ⋮ đọc là chia hết cho. Chạm một số, rồi chạm ô trống cần điền."
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-38",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Các số cần tìm chia hết cho 5, lớn hơn −15 và nhỏ hơn hoặc bằng 15. Số −15 bị bỏ vì x phải lớn hơn −15, còn 15 được giữ vì x có thể bằng 15. Đừng quên số 0.",
+        "tex": "A = \\{-10;\\ -5;\\ 0;\\ 5;\\ 10;\\ 15\\}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "A = {"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−10", "-10"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−5", "-5"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["0"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["5"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["10"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b6",
+          "accept": ["15"]
+        },
+        {
+          "type": "text",
+          "text": "}"
+        }
+      ],
+      "bank": ["−10", "−5", "0", "5", "10", "15", "−15", "20"]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-38",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Liệt kê các phần tử của tập hợp sau:"
+        },
+        {
+          "type": "note",
+          "text": "P = {x ∈ ℤ | x ⋮ 3 và −18 < x ≤ 18}."
+        },
+        {
+          "type": "note",
+          "text": "Dấu ⋮ đọc là chia hết cho. Chạm một số, rồi chạm ô trống cần điền, xếp từ số bé đến số lớn."
+        }
+      ],
+      "bookRef": "SBT 3.38",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-tap-hop-7",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-38-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Các số cần tìm chia hết cho 3, lớn hơn −18 và nhỏ hơn hoặc bằng 18. Số −18 bị bỏ vì x phải lớn hơn −18, còn 18 được giữ vì x có thể bằng 18. Nhớ có cả số 0.",
+        "tex": "\\begin{gathered} P = \\{-15;\\ -12;\\ -9;\\ -6; \\\\ -3;\\ 0;\\ 3;\\ 6;\\ 9; \\\\ 12;\\ 15;\\ 18\\} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "P = {"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−15", "-15"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−12", "-12"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["−9", "-9"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["−6", "-6"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["−3", "-3"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b6",
+          "accept": ["0"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b7",
+          "accept": ["3"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b8",
+          "accept": ["6"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b9",
+          "accept": ["9"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b10",
+          "accept": ["12"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b11",
+          "accept": ["15"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b12",
+          "accept": ["18"]
+        },
+        {
+          "type": "text",
+          "text": "}"
+        }
+      ],
+      "bank": [
+        "−15",
+        "−12",
+        "−9",
+        "−6",
+        "−3",
+        "0",
+        "3",
+        "6",
+        "9",
+        "12",
+        "15",
+        "18",
+        "−18",
+        "21",
+        "10"
+      ]
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-39-22-bang-2",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số còn thiếu."
+        },
+        {
+          "type": "formula",
+          "tex": "22 = 2 \\cdot ?"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-39",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ta tìm số nhân với 2 để được 22. Vì 2 · 11 = 22 nên số cần điền là 11.",
+        "tex": "22 = 2 \\cdot 11"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 11
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "11"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-39-22-am2",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số còn thiếu."
+        },
+        {
+          "type": "formula",
+          "tex": "22 = (-2) \\cdot ?"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-39",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Kết quả 22 là số dương, mà −2 là số âm, nên số cần điền cũng là số âm. Vì (−2) · (−11) = 22 nên số cần điền là −11.",
+        "tex": "22 = (-2) \\cdot (-11)"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -11
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-11"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-39",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hãy phân tích số 21 thành tích của hai số nguyên."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng 21."
+        }
+      ],
+      "bookRef": "SBT 3.39",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-tich-39",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-39-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Hai số dương nhân với nhau được 21 là 1 · 21 và 3 · 7. Đổi dấu cả hai số đó thì kết quả vẫn là 21, nên có thêm (−1) · (−21) và (−3) · (−7).",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Một số âm, một số dương nên kết quả là −21, không phải 21."
+          },
+          {
+            "optionId": "f",
+            "text": "Một số âm, một số dương nên kết quả là −21, không phải 21."
+          },
+          {
+            "optionId": "g",
+            "text": "Ta có 3 · 9 = 27, không phải 21."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot 7"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot (-7)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot 7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "1 \\cdot 21"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "formula",
+            "tex": "(-1) \\cdot (-21)"
+          }
+        },
+        {
+          "id": "f",
+          "content": {
+            "type": "formula",
+            "tex": "(-1) \\cdot 21"
+          }
+        },
+        {
+          "id": "g",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot 9"
+          }
+        }
+      ],
+      "answer": ["a", "b", "d", "e"],
+      "multiple": true,
+      "check": {
+        "expr": "21"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-hieu-x-11",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết x khác 0 và x + 11 chia hết cho x. Hãy tính hiệu sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(x + 11) - x"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-40",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số x và x + 11 cùng chia hết cho x. Theo quy tắc ở trên, hiệu của chúng cũng chia hết cho x. Hiệu đó là (x + 11) − x = 11.",
+        "tex": "(x + 11) - x = 11"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 11
+      },
+      "check": {
+        "expr": "11"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-dem-x-9",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có bao nhiêu số nguyên x để x + 9 chia hết cho x?"
+        }
+      ],
+      "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-40",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số x chia hết cho x, nên x + 9 chia hết cho x khi 9 chia hết cho x. Như vậy x là ước của 9. Các ước dương của 9 là 1, 3 và 9, mỗi ước có thêm số đối, nên có 6 số x.",
+        "tex": "x = \\pm1,\\ \\pm3,\\ \\pm9"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-40",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ta đã biết: Nếu hai số nguyên a và b cùng chia hết cho số nguyên c thì a + b và a − b cũng chia hết cho c. Hãy sử dụng kết quả đó để tìm số nguyên x sao cho x + 5 chia hết cho x (nói cách khác: x là ước của x + 5)."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các giá trị của x."
+        }
+      ],
+      "bookRef": "SBT 3.40",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-goi-y-x-13",
+        "solutionVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-3-40-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Số x chia hết cho x, và số x + 5 cũng chia hết cho x. Vì vậy số 5, là hiệu của hai số đó, cũng chia hết cho x. Vậy x là ước của 5, nên x là 1, −1, 5 hoặc −5.",
+        "tex": "\\begin{gathered} (x + 5) - x = 5 \\\\ x = \\pm1,\\ \\pm5 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "e",
+            "text": "Ta không chia được cho số 0, nên x = 0 không dùng được."
+          },
+          {
+            "optionId": "f",
+            "text": "Khi x = 2 thì x + 5 = 7, mà 7 không chia hết cho 2."
+          },
+          {
+            "optionId": "g",
+            "text": "Khi x = 10 thì x + 5 = 15, mà 15 không chia hết cho 10."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "x = −5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "x = −1"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "x = 1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "x = 5"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "x = 0"
+          }
+        },
+        {
+          "id": "f",
+          "content": {
+            "type": "text",
+            "text": "x = 2"
+          }
+        },
+        {
+          "id": "g",
+          "content": {
+            "type": "text",
+            "text": "x = 10"
+          }
+        }
+      ],
+      "answer": ["a", "b", "c", "d"],
+      "multiple": true
     }
   ],
   "sticker": {

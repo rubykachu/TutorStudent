@@ -47,6 +47,10 @@ const NOTE = "teal";
 
 const tag = (text: string, color: ConceptColor) => ({ text, color });
 
+// A result written in the colour of its sign.
+const neg = (n: number | string) => `\\concept{pink}{${n}}`;
+const pos = (n: number | string) => `\\concept{lime}{${n}}`;
+
 const rows = (
   label: string,
   items: readonly Row[],
@@ -497,6 +501,427 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "−4, 8, −8 và 2 đều là ước của 8, nên x + 8 chia hết cho x. Với x = −8 thì x + 8 = 0, mà 0 chia hết cho −8.",
   ),
   "chon-x-10": chips(["−5", "4", "10", "−2", "3", "−10"]),
+
+  // 13. Bài tập sách bài tập: the reminder of the section, the hint (other
+  // numbers, stops before the result) and the solution (the exercise's own
+  // numbers) of each workbook exercise.
+  "sbt-nhac-lai-dau-thuong": rows(
+    "Chia hai số nguyên: chia hai phần số tự nhiên rồi viết dấu cho thương",
+    [
+      {
+        tex: `(-96) : (-8) = ${pos(12)}`,
+        tag: tag("cùng dấu: thương dương", POSITIVE),
+      },
+      {
+        tex: `96 : (-8) = ${neg(-12)}`,
+        tag: tag("khác dấu: thương âm", NEGATIVE),
+      },
+      {
+        tex: `(-96) : 8 = ${neg(-12)}`,
+        tag: tag("khác dấu: thương âm", NEGATIVE),
+      },
+    ],
+  ),
+  "sbt-nhac-lai-uoc-tich": rows(
+    "Các ước của −38 và các cách viết 38 thành tích hai số nguyên",
+    [
+      { tex: "\\pm3", tag: tag("±3 là hai số 3 và −3", NOTE) },
+      {
+        tex: "38 = 1 \\cdot 38 = 2 \\cdot 19",
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      {
+        tex: "\\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm19,\\ \\pm38}",
+        tag: tag("các ước của −38", DIVISOR),
+      },
+      {
+        tex: steps("38 = (-1) \\cdot (-38)", "= (-2) \\cdot (-19)"),
+        tag: tag("đổi dấu cả hai thừa số", NOTE),
+      },
+    ],
+  ),
+  "sbt-nhac-lai-boi-khoang": rows(
+    "Các số nguyên chia hết cho 4, lớn hơn −8 và nhỏ hơn hoặc bằng 12",
+    [
+      { tex: "x \\chiahet 4", tag: tag("x chia hết cho 4", NOTE) },
+      {
+        tex: "-8 < x \\le 12",
+        tag: tag("x lớn hơn −8, nhỏ hơn hoặc bằng 12", NOTE),
+      },
+      {
+        tex: "4,\\ 8,\\ 12",
+        tag: tag("bội dương, lấy cả 12", POSITIVE),
+      },
+      { tex: "-4", tag: tag("bội âm, bỏ −8", NEGATIVE) },
+      {
+        tex: "\\concept{blue}{-4,\\ 0,\\ 4,\\ 8,\\ 12}",
+        tag: tag("có thêm số 0", MULTIPLE),
+      },
+    ],
+  ),
+  "sbt-tom-tat": rows("Tìm các ước và tìm bội trong một khoảng", [
+    {
+      tex: "\\concept{violet}{\\pm1,\\ \\pm3,\\ \\pm19,\\ \\pm57}",
+      tag: tag("các ước của −57", DIVISOR),
+    },
+    {
+      tex: "-13 < x \\le 20",
+      tag: tag("khoảng cần tìm", NOTE),
+      gapBefore: true,
+    },
+    {
+      tex: "\\concept{blue}{-12,\\ -6,\\ 0,\\ 6,\\ 12,\\ 18}",
+      tag: tag("bội của 6 trong khoảng", MULTIPLE),
+    },
+  ]),
+
+  // Bài 3.35
+  "sbt-goi-y-chia-am-5": lines(
+    "Số dương chia cho số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước",
+    [
+      { tex: "460 : (-5)" },
+      {
+        tex: "= -(460 : 5)",
+        tag: tag("khác dấu: thương âm", NOTE),
+      },
+      { tex: `= ${neg(-92)}` },
+    ],
+    "hint",
+  ),
+  "sbt-3-35a-giai": lines(
+    "735 : (−5): hai số khác dấu nên thương là số âm",
+    [
+      { tex: "735 : (-5)" },
+      {
+        tex: "= -(735 : 5)",
+        tag: tag("khác dấu: thương âm", NOTE),
+      },
+      {
+        tex: steps("700 : 5 = 140", "35 : 5 = 7"),
+        tag: tag("chia từng phần", NOTE),
+      },
+      {
+        tex: `= ${neg(-147)}`,
+        tag: tag("140 + 7 = 147, thêm dấu −", NEGATIVE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-goi-y-chia-cung-dau-12": lines(
+    "Hai số cùng dấu: chia hai phần số tự nhiên, thương là số dương",
+    [
+      { tex: "(-372) : (-12)" },
+      {
+        tex: "= 372 : 12",
+        tag: tag("cùng dấu: thương dương", NOTE),
+      },
+      {
+        tex: steps("12 \\cdot 30 = 360", "372 - 360 = 12"),
+        tag: tag("chia từng phần", NOTE),
+      },
+      { tex: `= ${pos(31)}` },
+    ],
+    "hint",
+  ),
+  "sbt-3-35b-giai": lines(
+    "(−528) : (−12): hai số cùng dấu nên thương là số dương",
+    [
+      { tex: "(-528) : (-12)" },
+      {
+        tex: "= 528 : 12",
+        tag: tag("cùng dấu: thương dương", NOTE),
+      },
+      {
+        tex: steps("12 \\cdot 40 = 480", "12 \\cdot 4 = 48"),
+        tag: tag("tìm thương từng phần", NOTE),
+      },
+      {
+        tex: `= ${pos(44)}`,
+        tag: tag("40 + 4 = 44", POSITIVE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-goi-y-chia-101": lines(
+    "Hai số khác dấu: chia hai phần số tự nhiên rồi viết dấu − ở trước",
+    [
+      { tex: "(-6\\,060) : 101" },
+      {
+        tex: "= -(6\\,060 : 101)",
+        tag: tag("khác dấu: thương âm", NOTE),
+      },
+      {
+        tex: "101 \\cdot 6 = 606",
+        tag: tag("tìm số nhân với 101", NOTE),
+      },
+      { tex: `= ${neg(-60)}` },
+    ],
+    "hint",
+  ),
+  "sbt-3-35c-giai": lines(
+    "(−2 020) : 101: hai số khác dấu nên thương là số âm",
+    [
+      { tex: "(-2\\,020) : 101" },
+      {
+        tex: "= -(2\\,020 : 101)",
+        tag: tag("khác dấu: thương âm", NOTE),
+      },
+      {
+        tex: steps("101 \\cdot 2 = 202", "101 \\cdot 20 = 2\\,020"),
+        tag: tag("nhân 101 với 20", NOTE),
+      },
+      {
+        tex: `= ${neg(-20)}`,
+        tag: tag("thương âm", NEGATIVE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.36
+  "sbt-goi-y-uoc-34": lines(
+    "Tìm các ước của 34: các ước dương, rồi thêm số đối của chúng",
+    [
+      {
+        tex: "34 = 1 \\cdot 34 = 2 \\cdot 17",
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      {
+        tex: "\\concept{violet}{1,\\ 2,\\ 17,\\ 34}",
+        tag: tag("các ước dương", DIVISOR),
+      },
+      {
+        tex: "\\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm17,\\ \\pm34}",
+        tag: tag("thêm số đối", NOTE),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-36a-giai": lines(
+    "Các ước của 21: các ước dương, rồi thêm số đối của chúng",
+    [
+      {
+        tex: "21 = 1 \\cdot 21 = 3 \\cdot 7",
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      {
+        tex: "\\concept{violet}{1,\\ 3,\\ 7,\\ 21}",
+        tag: tag("các ước dương", DIVISOR),
+      },
+      {
+        tex: "\\concept{violet}{\\pm1,\\ \\pm3,\\ \\pm7,\\ \\pm21}",
+        tag: tag("thêm số đối", NOTE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-goi-y-uoc-am70": lines(
+    "Số −70 có cùng các ước dương với 70, rồi thêm số đối",
+    [
+      { tex: "-70", tag: tag("cùng ước dương với 70", NOTE) },
+      {
+        tex: steps(
+          "70 = 1 \\cdot 70 = 2 \\cdot 35",
+          "= 5 \\cdot 14 = 7 \\cdot 10",
+        ),
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      {
+        tex: steps(
+          "\\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm5,\\ \\pm7,}",
+          "\\concept{violet}{\\pm10,\\ \\pm14,\\ \\pm35,\\ \\pm70}",
+        ),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-36b-giai": lines(
+    "Số −66 có cùng các ước dương với 66, rồi thêm số đối",
+    [
+      { tex: "-66", tag: tag("cùng ước dương với 66", NOTE) },
+      {
+        tex: steps(
+          "66 = 1 \\cdot 66 = 2 \\cdot 33",
+          "= 3 \\cdot 22 = 6 \\cdot 11",
+        ),
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      {
+        tex: steps(
+          "\\concept{violet}{\\pm1,\\ \\pm2,\\ \\pm3,\\ \\pm6,}",
+          "\\concept{violet}{\\pm11,\\ \\pm22,\\ \\pm33,\\ \\pm66}",
+        ),
+        tag: tag("thêm số đối", NOTE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.37
+  "sbt-chon-boi-11": chips([
+    "−55",
+    "−44",
+    "−33",
+    "−22",
+    "−11",
+    "0",
+    "11",
+    "22",
+    "33",
+    "44",
+    "55",
+    "66",
+    "77",
+    "88",
+    "99",
+    "110",
+  ]),
+  "sbt-goi-y-boi-25": lines(
+    "Các bội khác 0 của 25, lớn hơn −60 và nhỏ hơn 120",
+    [
+      { tex: "-60 < x < 120", tag: tag("khoảng cần tìm", NOTE) },
+      {
+        tex: "25,\\ 50,\\ 75,\\ 100",
+        tag: tag("bội dương nhỏ hơn 120", POSITIVE),
+      },
+      {
+        tex: "-25,\\ -50",
+        tag: tag("bội âm lớn hơn −60", NEGATIVE),
+      },
+      {
+        tex: "\\concept{blue}{-50,\\ -25,\\ 25,\\ 50,\\ 75,\\ 100}",
+        tag: tag("bỏ số 0", MULTIPLE),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-37-giai": lines(
+    "Các bội khác 0 của 11, lớn hơn −50 và nhỏ hơn 100",
+    [
+      { tex: "-50 < x < 100", tag: tag("khoảng cần tìm", NOTE) },
+      {
+        tex: steps("11,\\ 22,\\ 33,\\ 44,\\ 55,", "66,\\ 77,\\ 88,\\ 99"),
+        tag: tag("bội dương nhỏ hơn 100", POSITIVE),
+      },
+      {
+        tex: "-11,\\ -22,\\ -33,\\ -44",
+        tag: tag("bội âm lớn hơn −50", NEGATIVE),
+      },
+      {
+        tex: "",
+        tag: tag("13 số: 4 bội âm và 9 bội dương, bỏ số 0", MULTIPLE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.38
+  "sbt-goi-y-tap-hop-7": lines(
+    "Các số nguyên chia hết cho 7, lớn hơn −21 và nhỏ hơn hoặc bằng 21",
+    [
+      {
+        tex: "-21 < x \\le 21",
+        tag: tag("không lấy −21, có lấy 21", NOTE),
+      },
+      {
+        tex: "7,\\ 14,\\ 21",
+        tag: tag("bội dương, lấy cả 21", POSITIVE),
+      },
+      { tex: "-7,\\ -14", tag: tag("bội âm, bỏ −21", NEGATIVE) },
+      {
+        tex: "\\concept{blue}{-14,\\ -7,\\ 0,\\ 7,\\ 14,\\ 21}",
+        tag: tag("có thêm số 0", MULTIPLE),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-38-giai": lines(
+    "Các số nguyên chia hết cho 3, lớn hơn −18 và nhỏ hơn hoặc bằng 18",
+    [
+      {
+        tex: "-18 < x \\le 18",
+        tag: tag("không lấy −18, có lấy 18", NOTE),
+      },
+      {
+        tex: "3,\\ 6,\\ 9,\\ 12,\\ 15,\\ 18",
+        tag: tag("bội dương, lấy cả 18", POSITIVE),
+      },
+      {
+        tex: "-3,\\ -6,\\ -9,\\ -12,\\ -15",
+        tag: tag("bội âm, bỏ −18", NEGATIVE),
+      },
+      {
+        tex: steps(
+          "\\concept{blue}{-15,\\ -12,\\ -9,\\ -6,\\ -3,\\ 0,}",
+          "\\concept{blue}{3,\\ 6,\\ 9,\\ 12,\\ 15,\\ 18}",
+        ),
+        tag: tag("có thêm số 0", MULTIPLE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.39
+  "sbt-goi-y-tich-39": lines(
+    "Viết 39 thành tích hai số dương, rồi đổi dấu cả hai thừa số",
+    [
+      {
+        tex: "39 = 1 \\cdot 39 = 3 \\cdot 13",
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      { tex: "", tag: tag("đổi dấu cả hai thừa số của mỗi tích", NOTE) },
+      {
+        tex: steps("39 = (-1) \\cdot (-39)", "= (-3) \\cdot (-13)"),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-39-giai": lines(
+    "Phân tích 21 thành tích hai số nguyên",
+    [
+      {
+        tex: "21 = 1 \\cdot 21 = 3 \\cdot 7",
+        tag: tag("tích hai số dương", POSITIVE),
+      },
+      {
+        tex: steps("21 = (-1) \\cdot (-21)", "= (-3) \\cdot (-7)"),
+        tag: tag("đổi dấu cả hai thừa số", NOTE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.40
+  "sbt-goi-y-x-13": lines(
+    "Tìm x để x + 13 chia hết cho x",
+    [
+      { tex: "x + 13 \\chiahet x", tag: tag("điều cần có", NOTE) },
+      {
+        tex: "13 = (x + 13) - x \\chiahet x",
+        tag: tag("x khác 0 chia hết cho x", NOTE),
+      },
+      {
+        tex: "x = \\pm1,\\ \\pm13",
+        tag: tag("x là ước của 13", DIVISOR),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-40-giai": lines(
+    "Tìm x để x + 5 chia hết cho x",
+    [
+      { tex: "x + 5 \\chiahet x", tag: tag("điều cần có", NOTE) },
+      {
+        tex: "5 = (x + 5) - x \\chiahet x",
+        tag: tag("x khác 0 chia hết cho x", NOTE),
+      },
+      {
+        tex: "x = \\pm1,\\ \\pm5",
+        tag: tag("x là ước của 5", DIVISOR),
+      },
+    ],
+    "steps",
+  ),
 
   sticker: { kind: "sticker" },
 };
