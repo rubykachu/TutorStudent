@@ -691,7 +691,9 @@ const divisionEntries: Record<string, VisualEntry> = Object.fromEntries(
   Object.entries(DIVISION_SPECS).map(([key, spec]) => {
     const validatorId =
       spec.kind in DIVISION_VALIDATOR_IDS
-        ? DIVISION_VALIDATOR_IDS[spec.kind as keyof typeof DIVISION_VALIDATOR_IDS]
+        ? DIVISION_VALIDATOR_IDS[
+            spec.kind as keyof typeof DIVISION_VALIDATOR_IDS
+          ]
         : undefined;
     const regions = divisionRegions(spec);
     const entry: VisualEntry = {
@@ -1523,7 +1525,9 @@ const EXAMPLE_MODULES = lessonModules({
   "phep-nhan-so-nguyen": () =>
     import("@/visuals/math/phep-nhan-so-nguyen/examples"),
   "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": () =>
-    import("@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/examples"),
+    import(
+      "@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/examples"
+    ),
   "quy-tac-dau-ngoac": () =>
     import("@/visuals/math/quy-tac-dau-ngoac/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
