@@ -148,7 +148,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.chia-cung-dau",
       "title": "Chia hai số cùng dấu",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
+      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), tr.59 (bài 3.35)",
       "minutes": 4,
       "blocks": [
         {
@@ -208,7 +208,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.chia-khac-dau",
       "title": "Chia hai số khác dấu",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
+      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), tr.59 (bài 3.35)",
       "minutes": 4,
       "blocks": [
         {
@@ -268,7 +268,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.suy-ra-thuong",
       "title": "Bốn phép chia từ một phép chia",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 1, ví dụ 1)",
       "minutes": 4,
       "blocks": [
         {
@@ -399,7 +399,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.tim-uoc",
       "title": "Tìm các ước của một số nguyên",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 3)",
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.36)",
       "minutes": 4,
       "blocks": [
         {
@@ -467,7 +467,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.tim-boi",
       "title": "Tìm các bội của một số nguyên",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 3)",
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.37)",
       "minutes": 3,
       "blocks": [
         {
@@ -527,7 +527,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.boi-trong-khoang",
       "title": "Bội trong một khoảng",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 3)",
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.37, 3.38)",
       "minutes": 4,
       "blocks": [
         {
@@ -647,7 +647,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.phan-tich-thanh-tich",
       "title": "Phân tích một số thành tích",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 2)",
+      "sourceRef": "Sách bài tập tr.59 (ví dụ 2, bài 3.39)",
       "minutes": 4,
       "blocks": [
         {
@@ -707,7 +707,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.tong-hieu-chia-het",
       "title": "Tổng và hiệu cùng chia hết",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 2)",
+      "sourceRef": "Sách bài tập tr.59 (bài 3.40)",
       "minutes": 4,
       "blocks": [
         {
@@ -767,7 +767,7 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.tim-x",
       "title": "Tìm x để x + a chia hết cho x",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), bài 3.40",
+      "sourceRef": "Sách bài tập tr.59 (bài 3.40)",
       "minutes": 4,
       "blocks": [
         {
@@ -842,7 +842,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-cung-dau",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
+      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), tr.59 (bài 3.35)",
       "conceptIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-bi-chia",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-chia",
@@ -857,7 +857,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-khac-dau",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
+      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), tr.59 (bài 3.35)",
       "conceptIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-bi-chia",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-chia",
@@ -872,7 +872,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.suy-ra-thuong",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 1, ví dụ 1)",
       "conceptIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-bi-chia",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-chia",
@@ -903,8 +903,10 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 3)",
-      "conceptIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.uoc"],
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.36)",
+      "conceptIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.uoc"
+      ],
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.uoc-vi-du",
@@ -913,8 +915,10 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 3)",
-      "conceptIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.boi"],
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.37)",
+      "conceptIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.boi"
+      ],
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.boi-4-vi-du",
@@ -923,8 +927,10 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.boi-trong-khoang",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 3)",
-      "conceptIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.boi"],
+      "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.37, 3.38)",
+      "conceptIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.boi"
+      ],
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.boi-khoang-vi-du",
@@ -946,7 +952,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.phan-tich-thanh-tich",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 2)",
+      "sourceRef": "Sách bài tập tr.59 (ví dụ 2, bài 3.39)",
       "conceptIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.thuong",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.duong",
@@ -960,7 +966,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tong-hieu-chia-het",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 2)",
+      "sourceRef": "Sách bài tập tr.59 (bài 3.40)",
       "conceptIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-bi-chia",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-chia"
@@ -973,7 +979,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x",
-      "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), bài 3.40",
+      "sourceRef": "Sách bài tập tr.59 (bài 3.40)",
       "conceptIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.uoc",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.so-chia"
@@ -1086,7 +1092,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false
     },
     {
@@ -1192,14 +1200,21 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["−5", "-5"]
+          "accept": [
+            "−5",
+            "-5"
+          ]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": ["−5", "5", "−24"]
+      "bank": [
+        "−5",
+        "5",
+        "−24"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-chia-het-nhieu",
@@ -1266,7 +1281,10 @@
           }
         }
       ],
-      "answer": ["a", "c"],
+      "answer": [
+        "a",
+        "c"
+      ],
       "multiple": true
     },
     {
@@ -1356,7 +1374,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false,
       "check": {
         "relation": "max"
@@ -1504,7 +1524,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true,
       "check": {
         "relation": "max"
@@ -1690,7 +1713,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false,
       "check": {
         "relation": "min"
@@ -1838,7 +1863,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true,
       "check": {
         "relation": "min"
@@ -1876,14 +1904,21 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["−4", "-4"]
+          "accept": [
+            "−4",
+            "-4"
+          ]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": ["−4", "4", "−24"]
+      "bank": [
+        "−4",
+        "4",
+        "−24"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.suy-ra-tu-56-chia-7",
@@ -1977,7 +2012,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false
     },
     {
@@ -2122,7 +2159,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true,
       "check": {
         "expr": "-9"
@@ -2240,7 +2280,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false
     },
     {
@@ -2273,7 +2315,9 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["ước"]
+          "accept": [
+            "ước"
+          ]
         },
         {
           "type": "text",
@@ -2282,19 +2326,27 @@
         {
           "type": "blank",
           "id": "b2",
-          "accept": ["bội"]
+          "accept": [
+            "bội"
+          ]
         },
         {
           "type": "text",
           "text": " của 8."
         }
       ],
-      "bank": ["ước", "bội", "thương"]
+      "bank": [
+        "ước",
+        "bội",
+        "thương"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-12-chips",
       "type": "manipulate",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-va-boi"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-va-boi"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2327,7 +2379,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-cua-am18",
       "type": "choice",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-va-boi"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-va-boi"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2383,13 +2437,19 @@
           }
         }
       ],
-      "answer": ["a", "b", "d"],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
       "multiple": true
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-chia-het-bo-dau",
       "type": "choice",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-va-boi"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-va-boi"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2449,7 +2509,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true
     },
     {
@@ -2542,13 +2605,19 @@
           }
         }
       ],
-      "answer": ["a", "b", "d"],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
       "multiple": true
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-15-chips",
       "type": "manipulate",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2581,7 +2650,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-uoc-duong-18",
       "type": "numeric",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2612,7 +2683,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-uoc-am-5",
       "type": "fillBlank",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2639,19 +2712,28 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["−5", "-5"]
+          "accept": [
+            "−5",
+            "-5"
+          ]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": ["−5", "5", "0"]
+      "bank": [
+        "−5",
+        "5",
+        "0"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.xep-uoc-cua-4",
       "type": "order",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2811,13 +2893,18 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-boi-6-chips",
       "type": "manipulate",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2850,7 +2937,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.boi-duong-nho-nhat-cua-am7",
       "type": "numeric",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2880,7 +2969,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-boi-3",
       "type": "fillBlank",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-boi"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -2907,14 +2998,21 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["−9", "-9"]
+          "accept": [
+            "−9",
+            "-9"
+          ]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": ["−9", "−4", "−8"]
+      "bank": [
+        "−9",
+        "−4",
+        "−8"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.thang-may-dung-may-tang",
@@ -3009,7 +3107,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true
     },
     {
@@ -3203,7 +3304,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true
     },
     {
@@ -3273,13 +3377,17 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uc-12-18-chips",
       "type": "manipulate",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-chung"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-chung"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -3312,7 +3420,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-uoc-chung-duong-20-30",
       "type": "numeric",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-chung"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-chung"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -3343,7 +3453,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-uoc-chung",
       "type": "fillBlank",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-chung"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.uoc-chung"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -3370,14 +3482,20 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["ước chung"]
+          "accept": [
+            "ước chung"
+          ]
         },
         {
           "type": "text",
           "text": " của −8 và 12."
         }
       ],
-      "bank": ["ước chung", "bội chung", "thương"]
+      "bank": [
+        "ước chung",
+        "bội chung",
+        "thương"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-tich-bang-15",
@@ -3438,7 +3556,11 @@
           }
         }
       ],
-      "answer": ["a", "b", "d"],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
       "multiple": true,
       "check": {
         "expr": "15"
@@ -3710,7 +3832,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false
     },
     {
@@ -3743,14 +3867,19 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["chia hết"]
+          "accept": [
+            "chia hết"
+          ]
         },
         {
           "type": "text",
           "text": " cho 7."
         }
       ],
-      "bank": ["chia hết", "không chia hết"]
+      "bank": [
+        "chia hết",
+        "không chia hết"
+      ]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-tong-6-chips",
@@ -3850,7 +3979,10 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": [
+        "a",
+        "b"
+      ],
       "multiple": true
     },
     {
@@ -3954,7 +4086,9 @@
           }
         }
       ],
-      "answer": ["a"],
+      "answer": [
+        "a"
+      ],
       "multiple": false
     },
     {
@@ -3991,7 +4125,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-x-10-chips",
       "type": "manipulate",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -4024,7 +4160,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-x-5",
       "type": "numeric",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -4055,7 +4193,9 @@
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-x-12",
       "type": "choice",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -4115,13 +4255,18 @@
           }
         }
       ],
-      "answer": ["a", "c"],
+      "answer": [
+        "a",
+        "c"
+      ],
       "multiple": true
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-uoc-x-6",
       "type": "fillBlank",
-      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"],
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"
+      ],
       "prompt": [
         {
           "type": "note",
@@ -4148,14 +4293,20 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["ước"]
+          "accept": [
+            "ước"
+          ]
         },
         {
           "type": "text",
           "text": " của 6."
         }
       ],
-      "bank": ["ước", "bội", "thương"]
+      "bank": [
+        "ước",
+        "bội",
+        "thương"
+      ]
     }
   ],
   "sticker": {

@@ -110,10 +110,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     { tex: "0 : 5 = 0", tag: tag("vì 0 = 5 · 0", NOTE) },
     { tex: "0 : (-7) = 0", tag: tag("vì 0 = (−7) · 0", NOTE) },
   ]),
-  "chon-chia-het-24": chips(
-    ["(−24) : 8", "(−24) : 5", "15 : (−3)", "(−9) : 4"],
-    [0, 2],
-  ),
+  "chon-chia-het-24": chips([
+    "(−24) : 8",
+    "(−24) : 5",
+    "15 : (−3)",
+    "(−9) : 4",
+  ]),
   "goi-y-chia-het": lines(
     "Tìm thương: số nhân với số chia để được số bị chia",
     [
@@ -253,7 +255,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 1, 3, 5],
     "5, −2, −10 và −1 đều chia hết 10, còn 3 và 4 thì không.",
   ),
-  "chon-uoc-12": chips(["6", "−4", "5", "−12", "7", "−1"], [0, 1, 3, 5]),
+  "chon-uoc-12": chips(["6", "−4", "5", "−12", "7", "−1"]),
 
   // 6. Tìm các ước
   "uoc-6": lines(
@@ -286,7 +288,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 1, 2, 4],
     "−2, 4, −8 và 1 đều là ước của 8, còn 3 và −5 thì không.",
   ),
-  "chon-uoc-15": chips(["−3", "5", "−15", "2", "−1", "4"], [0, 1, 2, 4]),
+  "chon-uoc-15": chips(["−3", "5", "−15", "2", "−1", "4"]),
 
   // 7. Tìm các bội
   "boi-nhiet-do": rows(
@@ -314,7 +316,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 1, 3, 4],
     "−10, 15, 0 và 20 đều là bội của 5, còn −12 và 7 thì không.",
   ),
-  "chon-boi-6": chips(["−12", "18", "−9", "0", "24", "10"], [0, 1, 3, 4]),
+  "chon-boi-6": chips(["−12", "18", "−9", "0", "24", "10"]),
 
   // 8. Bội trong một khoảng
   "thang-may-boi-4": {
@@ -370,7 +372,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 1, 5],
     "4, −4 và −2 đều là ước của cả 8 và −12.",
   ),
-  "chon-uc-12-18": chips(["6", "−3", "4", "−9", "−6", "12"], [0, 1, 4]),
+  "chon-uc-12-18": chips(["6", "−3", "4", "−9", "−6", "12"]),
 
   // 10. Phân tích một số thành tích
   "ghe-10": rows("10 cái ghế xếp thành các hàng bằng nhau", [
@@ -392,10 +394,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 1, 3],
     "21 = 3 · 7 = (−3) · (−7) = (−21) · (−1), còn (−3) · 7 = −21.",
   ),
-  "chon-tich-14": chips(
-    ["(−1) · (−14)", "2 · (−7)", "(−7) · (−2)", "7 · 7"],
-    [0, 2],
-  ),
+  "chon-tich-14": chips(["(−1) · (−14)", "2 · (−7)", "(−7) · (−2)", "7 · 7"]),
 
   // 11. Tổng và hiệu cùng chia hết
   "tong-no": rows(
@@ -418,10 +417,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 2],
     "(−8) + 12 = 4 và 20 − (−8) = 28, cả hai đều chia hết cho 4.",
   ),
-  "chon-tong-6": chips(
-    ["(−18) + 12", "(−18) − 12", "(−18) + 10", "(−18) − 7"],
-    [0, 1],
-  ),
+  "chon-tong-6": chips(["(−18) + 12", "(−18) − 12", "(−18) + 10", "(−18) − 7"]),
 
   // 12. Tìm x để x + m chia hết cho x
   "tim-x-5": lines(
@@ -451,7 +447,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 2, 3, 5],
     "−4, 8, −8 và 2 đều là ước của 8, nên x + 8 chia hết cho x.",
   ),
-  "chon-x-10": chips(["−5", "4", "10", "−2", "3", "−10"], [0, 2, 3, 5]),
+  "chon-x-10": chips(["−5", "4", "10", "−2", "3", "−10"]),
 
   sticker: { kind: "sticker" },
 };
