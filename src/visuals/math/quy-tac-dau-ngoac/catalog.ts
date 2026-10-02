@@ -161,7 +161,7 @@ const PAIR_ROWS = [
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // 1. Tổng đại số
   "thu-chi-cho": rows(
-    "Tiền mẹ đi chợ: thu vào là số dương, chi ra là số âm",
+    "Tiền mẹ đi chợ: thu vào là số hạng dương, chi ra là số hạng âm",
     [
       {
         tex: "\\concept{lime}{+50}",
@@ -463,7 +463,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "nhom-cong-vi-du": rows("Đặt ngoặc có dấu + đứng trước: số hạng giữ dấu cũ", [
     {
       tex: steps("8 - 3 + 5 - 2", "= (8 - 3) + (5 - 2)"),
-      tag: tag("hai nhóm, dấu giữ dấu cũ", NOTE),
+      tag: tag("hai nhóm, mỗi số hạng giữ dấu cũ", NOTE),
     },
     {
       tex: steps("6 - 9 + 4 + 1", "= 6 + (-9 + 4 + 1)"),
@@ -473,7 +473,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-nhom-7-4": chips(
     ["(7 − 4) + (9 − 5)", "(7 − 4) + (9 + 5)", "(7 − 4) − (9 − 5)"],
     [0],
-    "Ngoặc có dấu +, nên các số hạng giữ dấu cũ.",
+    "Nhóm ở đầu tổng và nhóm có dấu + đứng trước đều giữ dấu cũ.",
   ),
 
   // 9. Đặt ngoặc có dấu − đứng trước

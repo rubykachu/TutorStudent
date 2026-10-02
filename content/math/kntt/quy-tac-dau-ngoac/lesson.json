@@ -258,7 +258,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu của nó. Bạn sẽ thấy số âm −3 đổi thành +3, và số đầu tiên cũng phải đổi dấu."
+              "text": "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu của nó. Bạn sẽ thấy số hạng âm −3 đổi thành +3, và số hạng đầu tiên cũng phải đổi dấu."
             },
             {
               "type": "visual",
@@ -1560,17 +1560,17 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["đổi dấu từng số hạng"]
+          "accept": ["đổi dấu từng số hạng trong ngoặc, không sót số hạng nào"]
         },
         {
           "type": "text",
-          "text": " trong ngoặc, không sót số hạng nào."
+          "text": "."
         }
       ],
       "bank": [
-        "đổi dấu từng số hạng",
-        "giữ dấu cũ của từng số hạng",
-        "chỉ đổi dấu số hạng đầu"
+        "đổi dấu từng số hạng trong ngoặc, không sót số hạng nào",
+        "giữ dấu cũ của từng số hạng trong ngoặc",
+        "chỉ đổi dấu số hạng đầu trong ngoặc"
       ]
     },
     {
@@ -2508,7 +2508,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số hạng dương có dấu + đứng trước, hoặc là số hạng đầu không ghi dấu. Trong tổng này đó là +7, +3 và +6."
+        "text": "Số hạng dương có dấu + đứng trước, hoặc là số hạng đầu không ghi dấu nên coi như có dấu +. Trong tổng này đó là +7, +3 và +6."
       },
       "visualId": "quy-tac-dau-ngoac.visual.chon-duong-7-10",
       "validatorId": "chon-dung",
@@ -2754,19 +2754,23 @@
       "segments": [
         {
           "type": "text",
-          "text": "Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc vẫn "
+          "text": "Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc "
         },
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["giữ dấu cũ"]
+          "accept": ["vẫn giữ dấu cũ"]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": ["giữ dấu cũ", "đổi dấu", "chỉ đổi dấu số đầu"]
+      "bank": [
+        "vẫn giữ dấu cũ",
+        "đổi dấu từng số hạng",
+        "chỉ giữ dấu số hạng đầu"
+      ]
     },
     {
       "id": "quy-tac-dau-ngoac.ex.nhom-thu-chi-40",
