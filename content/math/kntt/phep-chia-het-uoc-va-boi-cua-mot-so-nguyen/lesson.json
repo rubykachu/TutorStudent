@@ -21,7 +21,7 @@
       "chia được hai số nguyên và viết đúng dấu của thương",
       "biết khi nào một số nguyên chia hết cho số khác",
       "tìm được các ước và các bội của một số, kể cả số âm",
-      "tìm được số x để x cộng với một số đã cho vẫn chia hết cho x"
+      "tìm được số x để tổng như x + 3 vẫn chia hết cho x"
     ],
     "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ."
   },
@@ -1961,7 +1961,7 @@
           },
           {
             "optionId": "c",
-            "text": "Phép 42 : 6 = 7 là chia số 42, còn đề cho số bị chia là −42, nên thương 7 chưa có dấu − là sai."
+            "text": "Phép 42 : 6 = 7 là chia số 42. Đề cho số −42, nên thương phải là −7, không phải 7."
           },
           {
             "optionId": "d",
