@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "pnpm content:emit && next dev --hostname 0.0.0.0",
-    "build": "pnpm content:check && NODE_ENV=production pnpm content:emit && tsx scripts/offline-manifest.ts && next build && tsx scripts/bundle-check.ts",
+    "build": "pnpm content:check && NODE_ENV=production pnpm content:emit && next build && tsx scripts/bundle-check.ts",
     "start": "next start",
     "lint": "biome check .",
     "format": "biome check --write .",
