@@ -61,12 +61,12 @@ export function parseLabArgs(argv: readonly string[]): LabArgs {
   };
 }
 
-// The names of the variables the lab sets, so a test can check each one is
-// explicit (an explicit value beats any `.env*` file).
+// The caller's environment with every lab variable set explicitly (an explicit
+// value beats any `.env*` file).
 export function labEnv(
-  base: NodeJS.ProcessEnv = process.env,
+  base: Record<string, string | undefined> = process.env,
 ): NodeJS.ProcessEnv {
-  return { ...base, ...OFFLINE_SERVER_ENV };
+  return { ...base, ...OFFLINE_SERVER_ENV } as NodeJS.ProcessEnv;
 }
 
 // Files of the client bundle that name the media origin of the owner's real
