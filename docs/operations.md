@@ -6,8 +6,8 @@ Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2,
 
 ## Bản đang chạy
 
-- Production: `https://nhaky.vercel.app` (project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket.
-- Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin `https://nhaky.vercel.app` (origin khác không nhận header CORS, preflight bị từ chối).
+- Production: `https://hoctungbuoc.vercel.app` (project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket.
+- Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin `https://hoctungbuoc.vercel.app` (origin khác không nhận header CORS, preflight bị từ chối).
 - Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Đổi mã gia đình".
 - Deploy lại: `pnpm deploy:prod` (chi tiết ở "Đưa bài mới lên production"). Lệnh luôn dựng từ một worktree sạch của `HEAD`, nên thay đổi chưa commit ở cây chính (kể cả việc dở của agent khác) không bao giờ lên mạng.
 
@@ -290,7 +290,7 @@ curl -sL "$APP_ORIGIN/" | grep -oE '<meta property="og:(image|title|locale)"[^>]
 curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/brand/other.png"
 ```
 
-Cần thấy `200 application/manifest+json`, `200 image/png` hai lần; ba thẻ `og:` với `og:image` là `https://nhaky.vercel.app/brand/share.png`; rồi `401` cho file khác.
+Cần thấy `200 application/manifest+json`, `200 image/png` hai lần; ba thẻ `og:` với `og:image` là `https://hoctungbuoc.vercel.app/brand/share.png`; rồi `401` cho file khác.
 
 ## Kiểm trên iPad Safari
 

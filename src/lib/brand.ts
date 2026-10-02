@@ -9,7 +9,7 @@ export const APP_DESCRIPTION = "Ứng dụng tự học cho học sinh lớp 6";
 
 // Public address of the production app: the base of every absolute URL in
 // the share card, and the origin `pnpm deploy:prod` smoke-checks.
-export const SITE_URL = "https://nhaky.vercel.app";
+export const SITE_URL = "https://hoctungbuoc.vercel.app";
 
 // Same values as the `--background` and `--primary` tokens in
 // `src/app/globals.css` (a test compares them): the splash screen and the

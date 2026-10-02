@@ -1,4 +1,5 @@
 import { expect, type Page } from "@playwright/test";
+import { SITE_URL } from "../src/lib/brand";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 import { GATE_BASE_URL, GATE_FAMILY_CODE } from "./targets";
 import { test } from "./test";
@@ -92,7 +93,7 @@ test("a link preview crawler without the cookie gets the share card from the unl
   await expect(page).toHaveURL(/\/unlock\?next=%2F$/);
   const meta = (name: string) =>
     page.locator(`meta[property="${name}"], meta[name="${name}"]`);
-  const production = "https://nhaky.vercel.app";
+  const production = SITE_URL;
   await expect(meta("og:type")).toHaveAttribute("content", "website");
   await expect(meta("og:locale")).toHaveAttribute("content", "vi_VN");
   await expect(meta("og:site_name")).toHaveAttribute("content", "Tutor");
