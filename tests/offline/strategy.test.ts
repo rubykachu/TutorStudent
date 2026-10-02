@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  CONTENT_TIMEOUT_SECONDS,
   fetchInit,
   navigationFallbackPath,
+  networkTimeoutSeconds,
   PAGE_TIMEOUT_SECONDS,
   precacheLookupPath,
   type RouteRequest,
@@ -183,5 +185,11 @@ describe("navigation fallback", () => {
 
   it("waits 3 seconds for a page", () => {
     expect(PAGE_TIMEOUT_SECONDS).toBe(3);
+  });
+
+  it("waits 10 seconds for a lesson file, longer than a page", () => {
+    expect(CONTENT_TIMEOUT_SECONDS).toBe(10);
+    expect(networkTimeoutSeconds("navigate")).toBe(PAGE_TIMEOUT_SECONDS);
+    expect(networkTimeoutSeconds("cors")).toBe(CONTENT_TIMEOUT_SECONDS);
   });
 });

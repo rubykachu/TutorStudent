@@ -1,5 +1,6 @@
 import {
   CACHE_PREFIX,
+  INSTALL_BACKOFF_HOURS,
   SKIP_WAITING_MESSAGE,
   UPDATE_CHECK_MINUTES,
   UPDATE_IDLE_MINUTES,
@@ -26,6 +27,22 @@ export function isPlayerPath(pathname: string): boolean {
 }
 
 type Listener = () => void;
+
+// Consecutive failed installs and when the next attempt is allowed (epoch ms).
+export type InstallBackoff = { failures: number; retryAt: number };
+
+// The backoff after one more failed install.
+export function backoffAfterFailure(
+  previous: InstallBackoff | null,
+  now: number,
+): InstallBackoff {
+  const failures = (previous?.failures ?? 0) + 1;
+  const hours =
+    INSTALL_BACKOFF_HOURS[
+      Math.min(failures, INSTALL_BACKOFF_HOURS.length) - 1
+    ] ?? 0;
+  return { failures, retryAt: now + hours * 3_600_000 };
+}
 
 type WorkerLike = {
   state: string;
@@ -59,6 +76,13 @@ export type UpdateDeps = {
     state: () => string;
     subscribe: (listener: Listener) => () => void;
   };
+  // Survives page loads, so a failing install is not retried at every boot.
+  // Reading or writing may fail (private mode): the controller then simply has
+  // no backoff.
+  installBackoff: {
+    load: () => InstallBackoff | null;
+    save: (value: InstallBackoff | null) => void;
+  };
   now: () => number;
   reload: () => void;
   setInterval: (callback: Listener, ms: number) => unknown;
@@ -89,6 +113,7 @@ export function createUpdateController(deps: UpdateDeps): UpdateController {
   let registration: RegistrationLike | null = null;
   let hiddenAt: number | null = null;
   let persisted = false;
+  let registering = false;
 
   const notify = () => {
     for (const listener of listeners) listener();
@@ -109,8 +134,38 @@ export function createUpdateController(deps: UpdateDeps): UpdateController {
     void Promise.resolve(deps.storage.persist?.()).catch(() => undefined);
   };
 
+  const backedOff = () => {
+    const state = deps.installBackoff.load();
+    return state !== null && deps.now() < state.retryAt;
+  };
+
+  // Registering is what starts the first install, so it waits out a backoff
+  // like an update check does; a page that opened during one registers at the
+  // first check after it ends.
+  const register = async () => {
+    if (registering || backedOff()) return;
+    registering = true;
+    try {
+      const reg = await sw.register(WORKER_PATH, {
+        scope: WORKER_SCOPE,
+        updateViaCache: "none",
+      });
+      registration = reg;
+      watch(reg);
+      check();
+    } catch {
+      // The browser refused to register: nothing to watch.
+    }
+    registering = false;
+  };
+
   const check = () => {
-    registration?.update().catch(() => undefined);
+    if (backedOff()) return;
+    if (registration === null) {
+      void register();
+      return;
+    }
+    registration.update().catch(() => undefined);
   };
 
   const onWaiting = (worker: WorkerLike, atBoot: boolean) => {
@@ -126,9 +181,17 @@ export function createUpdateController(deps: UpdateDeps): UpdateController {
     if (reg.waiting && hadController) onWaiting(reg.waiting, true);
     reg.addEventListener("updatefound", () => {
       const installing = reg.installing;
+      let installed = false;
       installing?.addEventListener("statechange", () => {
-        if (installing.state === "installed" && hadController) {
-          onWaiting(installing, false);
+        if (installing.state === "installed") {
+          installed = true;
+          deps.installBackoff.save(null);
+          if (hadController) onWaiting(installing, false);
+        } else if (installing.state === "redundant" && !installed) {
+          // The install failed (or a newer worker replaced it).
+          deps.installBackoff.save(
+            backoffAfterFailure(deps.installBackoff.load(), deps.now()),
+          );
         }
       });
     });
@@ -167,14 +230,7 @@ export function createUpdateController(deps: UpdateDeps): UpdateController {
       return () => {};
     }
     sw.addEventListener("controllerchange", onControllerChange);
-    void sw
-      .register(WORKER_PATH, { scope: WORKER_SCOPE, updateViaCache: "none" })
-      .then((reg) => {
-        registration = reg;
-        watch(reg);
-        check();
-      })
-      .catch(() => undefined);
+    void register();
     void sw.ready.then(requestPersist).catch(() => undefined);
 
     const unsubscribeVisibility = deps.visibility.subscribe(() => {

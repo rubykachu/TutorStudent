@@ -30,6 +30,16 @@ export const INSTALL_CONCURRENCY = 6;
 // visible again and this often while it stays visible.
 export const UPDATE_CHECK_MINUTES = 60;
 
+// After a worker failed to install, the page asks for a new one only after
+// this many hours: the first, second, third and every later failure in a row.
+// A failure can cost the whole precache (about 21 MB) again, so a persistent
+// one (a page answering 404, a full disk) must not repeat on every check.
+// One success clears it.
+export const INSTALL_BACKOFF_HOURS = [1, 6, 24] as const;
+
+// `localStorage` key of the failure count and the time of the next attempt.
+export const INSTALL_BACKOFF_KEY = "offline-install-backoff";
+
 // A page that comes back after being hidden this long counts as a fresh
 // open: a waiting worker is activated then, outside a lesson player.
 export const UPDATE_IDLE_MINUTES = 15;

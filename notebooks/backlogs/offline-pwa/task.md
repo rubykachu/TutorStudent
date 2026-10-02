@@ -17,8 +17,8 @@ No Critical. Fixed on the branch, each with unit tests:
 Measured: 756 entries, 20.9 MB in the precache (pages 1.75 MB, build files 8.5 MB, the rest content, short sounds and public files), well under the 50 MB budget.
 
 Leftovers from the review (none blocks the merge, all matter only once the flag is on):
-- `/content/*.json` has no timeout: on wifi without internet the page comes from the precache after 3 s, but the lesson file waits for the browser's own network timeout. A long timeout (about 10 s) would bound it.
-- A failed install has no backoff: every update check (and every page load before the first install) downloads entries again until the failing one. A persistent failure (a page answering 404, quota) costs up to about 21 MB per attempt.
+- [x] `/content/*.json` has no timeout: on wifi without internet the page comes from the precache after 3 s, but the lesson file waits for the browser's own network timeout. Fixed: `CONTENT_TIMEOUT_SECONDS = 10` in `strategy.ts`, used by `sw-core.ts` (falls back on a network error or timeout); `spec.md` section 5 and Q3 amended; tests in `sw-core.test.ts` and `strategy.test.ts`.
+- [x] A failed install has no backoff: every update check (and every page load before the first install) downloads entries again until the failing one. Fixed: `update-controller.ts` stores the failure count and next attempt in `localStorage` (1 h, 6 h, 24 h; cleared on `installed`); `spec.md` section 6 step 5; tests in `update-controller.test.ts`.
 - After the 3 s timeout the precached page of the old build runs with the network's newer lesson file.
 
 ### Before the review

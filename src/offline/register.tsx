@@ -3,12 +3,40 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { UpdateBanner } from "@/components/update-banner";
+import { INSTALL_BACKOFF_KEY } from "./config";
 import { offlineWorkerOn } from "./flags";
 import {
   createUpdateController,
+  type InstallBackoff,
   type UpdateController,
   type UpdateDeps,
 } from "./update-controller";
+
+// The install backoff in `localStorage`; a missing, unreadable or malformed
+// value means no backoff.
+function loadBackoff(): InstallBackoff | null {
+  try {
+    const value = JSON.parse(
+      window.localStorage.getItem(INSTALL_BACKOFF_KEY) ?? "null",
+    ) as Partial<InstallBackoff> | null;
+    return typeof value?.failures === "number" &&
+      typeof value.retryAt === "number"
+      ? { failures: value.failures, retryAt: value.retryAt }
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveBackoff(value: InstallBackoff | null): void {
+  try {
+    if (value === null) window.localStorage.removeItem(INSTALL_BACKOFF_KEY);
+    else
+      window.localStorage.setItem(INSTALL_BACKOFF_KEY, JSON.stringify(value));
+  } catch {
+    // Storage is blocked: the next load has no backoff.
+  }
+}
 
 // What the update controller needs from the browser.
 function browserDeps(pathname: string): UpdateDeps {
@@ -28,6 +56,7 @@ function browserDeps(pathname: string): UpdateDeps {
         return () => document.removeEventListener("visibilitychange", listener);
       },
     },
+    installBackoff: { load: loadBackoff, save: saveBackoff },
     now: () => Date.now(),
     reload: () => window.location.reload(),
     setInterval: (callback, ms) => window.setInterval(callback, ms),

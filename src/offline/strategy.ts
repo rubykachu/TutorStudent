@@ -27,9 +27,19 @@ export type RouteRequest = {
   isPrecached: (url: URL) => boolean;
 };
 
-// How long a page waits for the network before the precached copy answers
-// (navigations only; lesson files wait for a network error, never a timer).
+// How long a page waits for the network before the precached copy answers.
 export const PAGE_TIMEOUT_SECONDS = 3;
+
+// The same for a lesson file (`/content/*.json`). Longer than a page, because
+// a slow answer that comes after the page's own fallback mixes an old page
+// with a new lesson file; the timer only bounds wifi without internet, where
+// the browser would wait about 60 s.
+export const CONTENT_TIMEOUT_SECONDS = 10;
+
+// Seconds the network gets before the precached copy answers.
+export function networkTimeoutSeconds(mode: string): number {
+  return mode === "navigate" ? PAGE_TIMEOUT_SECONDS : CONTENT_TIMEOUT_SECONDS;
+}
 
 function isUnder(pathname: string, folder: string): boolean {
   return pathname === folder || pathname.startsWith(`${folder}/`);

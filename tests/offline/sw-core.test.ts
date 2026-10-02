@@ -441,7 +441,29 @@ describe("respond", () => {
     expect(missing?.type).toBe("error");
   });
 
-  it("never waits on a timer for a lesson file", async () => {
+  it("waits 10 s for a lesson file, then answers from the precache", async () => {
+    const waits: number[] = [];
+    const { core } = await installed(
+      () => new Promise(() => {}),
+      async (ms) => {
+        waits.push(ms);
+      },
+    );
+    const got = await core.respond(new Request(`${ORIGIN}/content/a.json`));
+    expect(waits).toEqual([10_000]);
+    expect(await got?.text()).toBe(`body of ${ORIGIN}/content/a.json`);
+  });
+
+  it("returns a lesson file that arrives before the timeout, not the precached copy", async () => {
+    const { core } = await installed(
+      async () => reply("fresh", { url: `${ORIGIN}/content/a.json` }),
+      () => new Promise(() => {}),
+    );
+    const got = await core.respond(new Request(`${ORIGIN}/content/a.json`));
+    expect(await got?.text()).toBe("fresh");
+  });
+
+  it("keeps waiting for a lesson file after the timeout when it is not precached", async () => {
     let answer: (response: Response) => void = () => {};
     const slow = new Promise<Response>((resolve) => {
       answer = resolve;
@@ -450,9 +472,9 @@ describe("respond", () => {
       () => slow,
       async () => {},
     );
-    const pending = core.respond(new Request(`${ORIGIN}/content/a.json`));
-    answer(reply("slow but new"));
-    expect(await (await pending)?.text()).toBe("slow but new");
+    const pending = core.respond(new Request(`${ORIGIN}/content/zzz.json`));
+    answer(reply("late"));
+    expect(await (await pending)?.text()).toBe("late");
   });
 });
 

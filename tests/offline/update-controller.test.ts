@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CACHE_PREFIX, SKIP_WAITING_MESSAGE } from "@/offline/config";
 import {
+  backoffAfterFailure,
   createUpdateController,
+  type InstallBackoff,
   isPlayerPath,
   type UpdateDeps,
 } from "@/offline/update-controller";
@@ -44,6 +46,7 @@ type Setup = {
   register: ReturnType<typeof vi.fn>;
   persist: ReturnType<typeof vi.fn>;
   clock: { now: number };
+  backoff: { value: InstallBackoff | null };
   visibility: { state: string; fire: () => void };
   changeController: () => void;
   caches: Map<string, boolean>;
@@ -56,6 +59,7 @@ function setup(
     hasController?: boolean;
     waiting?: FakeWorker;
     others?: FakeRegistration[];
+    backoff?: InstallBackoff;
   } = {},
 ): Setup {
   const registration = new FakeRegistration();
@@ -81,6 +85,7 @@ function setup(
     },
   };
   const clock = { now: 1_000_000 };
+  const backoff = { value: options.backoff ?? null };
   const reload = vi.fn();
   const persist = vi.fn(async () => true);
   const cacheMap = new Map<string, boolean>([
@@ -103,6 +108,12 @@ function setup(
         };
       },
     },
+    installBackoff: {
+      load: () => backoff.value,
+      save: (value) => {
+        backoff.value = value;
+      },
+    },
     now: () => clock.now,
     reload,
     setInterval: (cb, ms) => setInterval(cb, ms),
@@ -117,6 +128,7 @@ function setup(
     register: container.register,
     persist,
     clock,
+    backoff,
     visibility,
     changeController: () => {
       for (const l of [...controllerListeners]) l();
@@ -358,5 +370,115 @@ describe("controllerchange", () => {
     s.changeController();
     s.controller.tapBanner();
     expect(s.reload).toHaveBeenCalledTimes(1);
+  });
+});
+
+const HOUR = 3_600_000;
+
+describe("backoffAfterFailure", () => {
+  it("waits 1 h, then 6 h, then 24 h, and 24 h for every later failure", () => {
+    let state: InstallBackoff | null = null;
+    const waits: number[] = [];
+    for (let i = 0; i < 5; i++) {
+      state = backoffAfterFailure(state, 0);
+      waits.push(state.retryAt / HOUR);
+    }
+    expect(waits).toEqual([1, 6, 24, 24, 24]);
+    expect(state?.failures).toBe(5);
+  });
+});
+
+describe("a worker whose install fails", () => {
+  async function started(options: Parameters<typeof setup>[0] = {}) {
+    const s = setup(options);
+    s.controller.start();
+    await settle();
+    return s;
+  }
+
+  function failInstall(s: Setup) {
+    const worker = new FakeWorker();
+    worker.state = "installing";
+    s.registration.found(worker);
+    worker.become("redundant");
+  }
+
+  it("stops update checks for an hour, then allows them", async () => {
+    const s = await started();
+    failInstall(s);
+    expect(s.backoff.value?.failures).toBe(1);
+    s.registration.update.mockClear();
+    s.visibility.fire();
+    expect(s.registration.update).not.toHaveBeenCalled();
+    s.clock.now += HOUR - 1;
+    s.visibility.fire();
+    expect(s.registration.update).not.toHaveBeenCalled();
+    s.clock.now += 1;
+    s.visibility.fire();
+    expect(s.registration.update).toHaveBeenCalledTimes(1);
+  });
+
+  it("waits longer after each failure in a row", async () => {
+    const s = await started();
+    failInstall(s);
+    s.clock.now += HOUR;
+    failInstall(s);
+    expect(s.backoff.value).toEqual({
+      failures: 2,
+      retryAt: s.clock.now + 6 * HOUR,
+    });
+  });
+
+  it("clears the backoff when a worker installs", async () => {
+    const s = await started({
+      backoff: { failures: 2, retryAt: 0 },
+    });
+    const worker = new FakeWorker();
+    worker.state = "installing";
+    s.registration.found(worker);
+    worker.become("installed");
+    expect(s.backoff.value).toBeNull();
+  });
+
+  it("does not count a waiting worker that is replaced", async () => {
+    const s = await started();
+    const worker = new FakeWorker();
+    worker.state = "installing";
+    s.registration.found(worker);
+    worker.become("installed");
+    worker.become("redundant");
+    expect(s.backoff.value).toBeNull();
+  });
+
+  it("keeps the backoff across page loads and does not register inside it", async () => {
+    const s = setup({
+      hasController: false,
+      backoff: { failures: 1, retryAt: 1_000_000 + HOUR },
+    });
+    s.controller.start();
+    await settle();
+    expect(s.register).not.toHaveBeenCalled();
+  });
+
+  it("registers at the first check after the backoff ends", async () => {
+    const s = setup({
+      hasController: false,
+      backoff: { failures: 1, retryAt: 1_000_000 + HOUR },
+    });
+    s.controller.start();
+    await settle();
+    s.clock.now += HOUR;
+    s.visibility.fire();
+    await settle();
+    expect(s.register).toHaveBeenCalledTimes(1);
+    expect(s.registration.update).toHaveBeenCalledTimes(1);
+  });
+
+  it("skips the hourly check inside the backoff", async () => {
+    const s = await started();
+    failInstall(s);
+    s.registration.update.mockClear();
+    await vi.advanceTimersByTimeAsync(60 * 60_000);
+    expect(s.registration.update).not.toHaveBeenCalled();
   });
 });

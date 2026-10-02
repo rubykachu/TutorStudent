@@ -8,7 +8,7 @@ import {
 import {
   fetchInit,
   navigationFallbackPath,
-  PAGE_TIMEOUT_SECONDS,
+  networkTimeoutSeconds,
   precacheLookupPath,
   routeFor,
   storable,
@@ -167,19 +167,10 @@ export function createCore(deps: CoreDeps): Core {
     // The timer may win and the network answer then be dropped; its failure
     // must not surface as an unhandled rejection.
     network.catch(() => {});
-    if (request.mode !== "navigate") {
-      // Lesson files fall back only on a network error: a slow answer never
-      // mixes an old lesson file into a new page.
-      try {
-        return await network;
-      } catch {
-        return fromPrecache(fallbackPath);
-      }
-    }
     try {
       const first = await Promise.race([
         network,
-        deps.wait(PAGE_TIMEOUT_SECONDS * 1000).then(() => null),
+        deps.wait(networkTimeoutSeconds(request.mode) * 1000).then(() => null),
       ]);
       if (first) return first;
       return (await lookup(fallbackPath)) ?? (await network);
