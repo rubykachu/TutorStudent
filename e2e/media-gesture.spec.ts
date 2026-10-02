@@ -33,6 +33,12 @@ const IOS_GESTURE_MODEL = `(() => {
     if (!ids.has(this)) ids.set(this, ids.size + 1);
     const entry = {
       element: ids.get(this),
+      // Only the players' own elements; the app's sound effects use others.
+      player: this.hasAttribute("data-overview-audio")
+        ? "narration"
+        : this.closest("[data-video]")
+          ? "video"
+          : "other",
       inClick,
       unlocked: unlocked.has(this),
       src: this.getAttribute("src") || "",
@@ -54,16 +60,20 @@ const IOS_GESTURE_MODEL = `(() => {
 
 type PlayEntry = {
   element: number;
+  player: "narration" | "video" | "other";
   inClick: boolean;
   unlocked: boolean;
   src: string;
   refused: boolean;
 };
 
-const playLog = (page: Page) =>
-  page.evaluate(
+// The `play()` calls the model saw on one player's element.
+async function playLog(page: Page, player: PlayEntry["player"]) {
+  const all = await page.evaluate(
     () => (window as unknown as { __playLog: PlayEntry[] }).__playLog,
   );
+  return all.filter((entry) => entry.player === player);
+}
 
 // Holds a media file's response until the spec releases it, so a tap lands
 // while the download is still running.
@@ -113,7 +123,7 @@ test.describe("media tapped before its download ends (iOS gesture model)", () =>
     const player = page.locator("[data-overview-narration]");
     await expect(player).toHaveAttribute("data-overview-narration", "playing");
 
-    const log = await playLog(page);
+    const log = await playLog(page, "narration");
     const unlock = log.find((entry) => entry.inClick);
     const real = log.find((entry) => entry.src.startsWith("blob:"));
     expect(unlock?.src).toMatch(/^data:audio\/wav/);
@@ -142,13 +152,15 @@ test.describe("media tapped before its download ends (iOS gesture model)", () =>
 
     const player = page.locator("[data-overview-narration]");
     await expect
-      .poll(async () => (await playLog(page)).some((e) => e.refused))
+      .poll(async () =>
+        (await playLog(page, "narration")).some((e) => e.refused),
+      )
       .toBe(true);
     await expect(player).toHaveAttribute("data-overview-narration", "paused");
     await expect(
       page.getByRole("button", { name: "Nghe giới thiệu" }),
     ).toBeVisible();
-    await expect(page.getByRole("alert")).toHaveCount(0);
+    await expect(page.locator("[data-media-error]")).toHaveCount(0);
 
     // The file is in memory: the second tap plays inside the tap.
     await page.getByRole("button", { name: "Nghe giới thiệu" }).tap();
@@ -184,7 +196,7 @@ test.describe("media tapped before its download ends (iOS gesture model)", () =>
       )
       .toBe(true);
 
-    const log = await playLog(page);
+    const log = await playLog(page, "video");
     const unlock = log.find((entry) => entry.inClick);
     const real = log.find((entry) => entry.src.startsWith("blob:"));
     expect(unlock?.src).toMatch(/^data:audio\/wav/);
