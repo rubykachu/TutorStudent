@@ -4,6 +4,7 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { OVERVIEW_GOALS_LEAD } from "@/content/overview";
@@ -254,6 +255,161 @@ describe("LessonOverviewView", () => {
       await download.push(10);
       await download.finish();
       await waitFor(() => expect(screen.queryByRole("alert")).toBeNull());
+    });
+  });
+
+  describe("keeping the narration reachable", () => {
+    const NARRATED: LessonOverview = {
+      ...OVERVIEW,
+      narration: {
+        audioUrl: "narration/phep-nhan/overview.m4a",
+        vttUrl: "narration/phep-nhan/overview.vtt",
+      },
+    };
+    const words = [
+      "Mẹ mua hai túi kẹo.",
+      "Bài này nói về phép nhân.",
+      OVERVIEW_GOALS_LEAD,
+      "biết phép nhân",
+      "tính nhanh",
+      "Phép nhân giúp bạn đếm nhanh.",
+    ]
+      .join(" ")
+      .split(" ")
+      .map((text, i) => ({ text, start: i }));
+    const vtt = `WEBVTT\n\n1\n00:00:00.000 --> 00:01:00.000\n${karaokeCueText(words)}\n`;
+
+    // The player card reports how much of it is on screen.
+    let reportRatio: (ratio: number) => void = () => undefined;
+
+    beforeEach(() => {
+      // No Content-Length: the element streams the audio itself.
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(async () => new Response(vtt)),
+      );
+      Element.prototype.scrollIntoView = vi.fn();
+      vi.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(function (
+        this: HTMLMediaElement,
+      ) {
+        this.dispatchEvent(new Event("play"));
+        return Promise.resolve();
+      });
+      vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(
+        function (this: HTMLMediaElement) {
+          this.dispatchEvent(new Event("pause"));
+        },
+      );
+      vi.stubGlobal(
+        "IntersectionObserver",
+        class {
+          constructor(
+            private readonly callback: (
+              entries: Partial<IntersectionObserverEntry>[],
+            ) => void,
+          ) {
+            reportRatio = (ratio) =>
+              act(() => this.callback([{ intersectionRatio: ratio }]));
+          }
+          observe() {}
+          disconnect() {}
+        },
+      );
+    });
+
+    async function startNarration() {
+      const view = renderOverview(NARRATED);
+      const audio = view.container.querySelector("audio") as HTMLAudioElement;
+      vi.spyOn(audio, "currentTime", "get").mockReturnValue(6.5);
+      await act(async () => {
+        await Promise.resolve();
+      });
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      await waitFor(() =>
+        expect(
+          view.container.querySelector("[data-overview-narration]"),
+        ).toHaveAttribute("data-overview-narration", "playing"),
+      );
+      return view;
+    }
+
+    it("shows a slim player only once the card has scrolled away, and its close button pauses", async () => {
+      const { container } = await startNarration();
+      expect(container.querySelector("[data-narration-mini]")).toBeNull();
+
+      reportRatio(0);
+      const mini = container.querySelector(
+        "[data-narration-mini]",
+      ) as HTMLElement;
+      expect(mini).not.toBeNull();
+      expect(
+        document.documentElement.style.getPropertyValue(
+          "--narration-mini-height",
+        ),
+      ).toMatch(/px$/);
+
+      // Pause and play stay reachable from it.
+      fireEvent.click(within(mini).getByRole("button", { name: "Tạm dừng" }));
+      await waitFor(() =>
+        expect(
+          within(mini).getByRole("button", { name: "Nghe tiếp" }),
+        ).toBeInTheDocument(),
+      );
+      fireEvent.click(within(mini).getByRole("button", { name: "Nghe tiếp" }));
+      await waitFor(() =>
+        expect(
+          within(mini).getByRole("button", { name: "Tạm dừng" }),
+        ).toBeInTheDocument(),
+      );
+
+      fireEvent.click(
+        within(mini).getByRole("button", { name: "Đóng trình nghe" }),
+      );
+      expect(container.querySelector("[data-narration-mini]")).toBeNull();
+      expect(
+        container.querySelector("[data-overview-narration]"),
+      ).toHaveAttribute("data-overview-narration", "paused");
+      expect(
+        document.documentElement.style.getPropertyValue(
+          "--narration-mini-height",
+        ),
+      ).toBe("");
+
+      // Scrolling back to the card or playing again leaves it as it was.
+      reportRatio(1);
+      expect(container.querySelector("[data-narration-mini]")).toBeNull();
+    });
+
+    it("stops scrolling after the child touches the page and offers 'Theo dõi lời đọc'", async () => {
+      const { container } = await startNarration();
+      const scroll = Element.prototype.scrollIntoView as ReturnType<
+        typeof vi.fn
+      >;
+      await waitFor(() => expect(scroll).toHaveBeenCalled());
+
+      fireEvent.wheel(window);
+      scroll.mockClear();
+      // The word the narration is on moves out of sight.
+      const word = container.querySelector(
+        "[data-word-reading]",
+      ) as HTMLElement;
+      vi.spyOn(word, "getBoundingClientRect").mockReturnValue({
+        top: 9000,
+        bottom: 9030,
+      } as DOMRect);
+      fireEvent.scroll(window);
+      const follow = await screen.findByRole("button", {
+        name: "Theo dõi lời đọc",
+      });
+      expect(scroll).not.toHaveBeenCalled();
+
+      fireEvent.click(follow);
+      expect(scroll).toHaveBeenCalled();
+      await waitFor(() =>
+        expect(
+          screen.queryByRole("button", { name: "Theo dõi lời đọc" }),
+        ).toBeNull(),
+      );
     });
   });
 });

@@ -15,6 +15,10 @@ export const BOTTOM_BAR_HEIGHT_VAR = "--bottom-bar-height";
 // it reads as going beneath. Its parent is a flex column with at least a
 // `gap-4` so the last control above (a secondary button, a video's
 // caption toggle) never touches the bar; e2e/layout.ts checks that.
+// On a short viewport (a phone held sideways) the bar is one compact row, so
+// it does not take two fifths of the screen: its children share the row
+// (a child marked `data-bar-secondary` keeps its own width), the buttons
+// are 44px tall and the bottom padding clears the home indicator.
 export function BottomBar({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -48,7 +52,7 @@ export function BottomBar({ children }: { children: ReactNode }) {
     <div
       ref={ref}
       data-bottom-bar
-      className="bar-surface sticky bottom-0 z-10 mt-auto flex w-full flex-col self-stretch gap-3 bg-background pt-4 pb-4 md:pb-6"
+      className="bar-surface sticky bottom-0 z-10 mt-auto flex w-full flex-col self-stretch gap-3 bg-background pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:pb-[max(1.5rem,env(safe-area-inset-bottom))] short:flex-row short:items-center short:gap-3 short:pt-2 short:pb-[max(0.5rem,env(safe-area-inset-bottom))] short:[&>*]:w-auto! short:[&>*]:flex-1 short:[&>[data-bar-secondary]]:flex-none"
     >
       {children}
     </div>

@@ -21,6 +21,28 @@ describe("BottomBar", () => {
     expect(root.style.getPropertyValue(BOTTOM_BAR_HEIGHT_VAR)).toBe("");
   });
 
+  it("turns into one compact row on a short viewport, keeping the secondary link its own width", () => {
+    const { container } = render(
+      <BottomBar>
+        <button type="button">Bắt đầu học</button>
+        <button type="button" data-bar-secondary>
+          Xem các phần của bài
+        </button>
+      </BottomBar>,
+    );
+    const bar = container.querySelector("[data-bottom-bar]");
+    // `short:` is a viewport under 500px tall (a phone held sideways).
+    expect(bar).toHaveClass(
+      "short:flex-row",
+      "short:items-center",
+      "short:pt-2",
+      "short:[&>*]:flex-1",
+      "short:[&>[data-bar-secondary]]:flex-none",
+    );
+    // The bottom padding clears the home indicator.
+    expect(bar?.className).toContain("env(safe-area-inset-bottom)");
+  });
+
   it("leaves the height to the bar on show while its screen is hidden", () => {
     const root = document.documentElement;
     const shown = render(

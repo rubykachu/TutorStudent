@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes } from "react";
 export type BigButtonVariant = "primary" | "secondary" | "destructive";
 
 const BASE =
-  "inline-flex h-14 w-full items-center justify-center gap-3 rounded-lg px-6 text-body font-semibold leading-none transition-transform duration-100 ease-out select-none active:scale-[0.97] motion-reduce:transition-none md:h-16 md:text-body-lg disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none";
+  "inline-flex h-14 w-full items-center justify-center gap-3 rounded-lg px-6 text-body font-semibold leading-none transition-transform duration-100 ease-out select-none active:scale-[0.97] motion-reduce:transition-none md:h-16 md:text-body-lg short:h-11 disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none";
 
 const VARIANTS: Record<BigButtonVariant, string> = {
   primary: "bg-primary text-primary-foreground shadow-card",
@@ -24,7 +24,8 @@ type BigButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: BigButtonVariant;
 };
 
-// The main call to action: 56px tall on phones, 64px on tablets.
+// The main call to action: 56px tall on phones, 64px on tablets, 44px on a
+// short viewport (a phone held sideways).
 export function BigButton({
   variant = "primary",
   className,

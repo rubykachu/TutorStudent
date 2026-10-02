@@ -4,19 +4,14 @@ import {
   CircleCheck,
   Lightbulb,
   ListOrdered,
-  Pause,
+  LocateFixed,
   Play,
   Rocket,
   Sparkles,
 } from "lucide-react";
-import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
-import {
-  loadingText,
-  MediaLoadError,
-  ProgressRing,
-} from "@/components/media-loading";
 import { RichText } from "@/components/rich-text";
 import {
   type OverviewPart,
@@ -24,274 +19,21 @@ import {
   overviewParts,
   overviewWordCount,
 } from "@/content/overview";
-import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
+import {
+  NarrationMiniPlayer,
+  NarrationPlayer,
+  useMostlyInView,
+  useNarration,
+} from "@/learn/narration";
+import {
+  NARRATION_CONTROL_ATTR,
+  useFollowReading,
+} from "@/learn/use-follow-reading";
 import { lessonHeading } from "@/lib/lesson-label";
-import { mediaUrl } from "@/lib/media";
-import { bufferedFraction, percentLabel } from "@/lib/media-download";
-import { useMediaSource } from "@/lib/use-media-source";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { Owl } from "@/mascot/owl";
 import type { Lesson, LessonOverview } from "@/schema/content";
 import { RegistryVisual } from "@/visuals/registry-visual";
-
-type Narration = NonNullable<LessonOverview["narration"]>;
-
-// The narration's words with their times, or null while loading or when the
-// captions do not match the overview text word for word (the overview was
-// edited after the narration was built); the audio still plays then.
-function useNarrationWords(
-  narration: Narration | undefined,
-  wordCount: number,
-): TimedWord[] | null {
-  const [words, setWords] = useState<TimedWord[] | null>(null);
-  useEffect(() => {
-    if (!narration) return;
-    let live = true;
-    fetch(mediaUrl(narration.vttUrl))
-      .then((response) => (response.ok ? response.text() : ""))
-      .then((vtt) => {
-        const parsed = parseKaraokeVtt(vtt);
-        if (live) setWords(parsed.length === wordCount ? parsed : null);
-      })
-      .catch(() => undefined);
-    return () => {
-      live = false;
-    };
-  }, [narration, wordCount]);
-  return words;
-}
-
-type NarrationState = {
-  playing: boolean;
-  // The audio file is on its way (after the tap on play, or a stall).
-  loading: boolean;
-  // 0–1 of the file that arrived, undefined while its length is unknown.
-  loadFraction: number | undefined;
-  loadedBytes: number;
-  // The download failed after the child asked to listen.
-  failed: boolean;
-  retry: () => void;
-  // 0–1 through the audio.
-  progress: number;
-  word: number;
-  toggle: () => void;
-  audio: ReactNode;
-};
-
-// The recorded narration: never starts on its own; the file is fetched on the
-// first tap on play (with its percentage on screen) and played from memory;
-// the highlighted word follows the playhead on every frame while it plays.
-function useNarration(
-  narration: Narration | undefined,
-  wordCount: number,
-): NarrationState {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const words = useNarrationWords(narration, wordCount);
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [word, setWord] = useState(-1);
-  const source = useMediaSource(narration ? mediaUrl(narration.audioUrl) : "");
-  const { phase, src: playable, request } = source;
-  // The child tapped play and the audio starts as soon as its file is here.
-  const [wanted, setWanted] = useState(false);
-  const [stalled, setStalled] = useState(false);
-  const [buffered, setBuffered] = useState<number | undefined>();
-  const [broken, setBroken] = useState(false);
-
-  useEffect(() => {
-    const element = audioRef.current;
-    if (!wanted || phase !== "ready" || !playable || !element) return;
-    void element.play().catch(() => {
-      setWanted(false);
-      setPlaying(false);
-    });
-  }, [wanted, phase, playable]);
-
-  useEffect(() => {
-    const element = audioRef.current;
-    if (!element || !playing) return;
-    let frame = 0;
-    const tick = () => {
-      const t = element.currentTime;
-      setProgress(element.duration > 0 ? t / element.duration : 0);
-      setWord(words ? words.findLastIndex((w) => w.start <= t) : -1);
-      frame = requestAnimationFrame(tick);
-    };
-    tick();
-    return () => cancelAnimationFrame(frame);
-  }, [playing, words]);
-
-  const toggle = () => {
-    const element = audioRef.current;
-    if (!element) return;
-    if (wanted) {
-      // Tapped again while the file loads: the child changed their mind.
-      setWanted(false);
-      return;
-    }
-    if (playing) {
-      element.pause();
-      return;
-    }
-    setWanted(true);
-    setBroken(false);
-    request();
-  };
-
-  const retry = () => {
-    setBroken(false);
-    if (phase === "error" || phase === "idle") {
-      request();
-      return;
-    }
-    const element = audioRef.current;
-    element?.load();
-    void element?.play().catch(() => setWanted(false));
-  };
-
-  const trackBuffered = () => {
-    const element = audioRef.current;
-    if (element) setBuffered(bufferedFraction(element));
-  };
-  const loadingFile = wanted && phase === "loading";
-  const loading = loadingFile || stalled;
-  const loadFraction = loadingFile
-    ? source.progress
-    : source.streamed
-      ? buffered
-      : 1;
-
-  const audio = narration ? (
-    <audio
-      ref={audioRef}
-      src={source.src}
-      preload="auto"
-      data-overview-audio
-      onPlay={() => {
-        setPlaying(true);
-        setWanted(false);
-      }}
-      onPause={() => {
-        setPlaying(false);
-        setStalled(false);
-      }}
-      onWaiting={() => {
-        setStalled(true);
-        trackBuffered();
-      }}
-      onPlaying={() => setStalled(false)}
-      onProgress={trackBuffered}
-      onError={() => {
-        setStalled(false);
-        if (source.src) setBroken(true);
-      }}
-      onEnded={() => {
-        setPlaying(false);
-        setWord(-1);
-        setProgress(0);
-      }}
-    >
-      {/* The page itself shows the words being said; the track carries
-        the same captions for assistive technology. */}
-      <track
-        kind="captions"
-        src={mediaUrl(narration.vttUrl)}
-        srcLang="vi"
-        label="Tiếng Việt"
-      />
-    </audio>
-  ) : null;
-  return {
-    playing,
-    loading,
-    loadFraction,
-    loadedBytes: source.receivedBytes,
-    failed: wanted && (phase === "error" || broken),
-    retry,
-    progress,
-    word: playing ? word : -1,
-    toggle,
-    audio,
-  };
-}
-
-function NarrationPlayer({ state }: { state: NarrationState }) {
-  const busy = state.loading && !state.failed;
-  const Icon = state.playing ? Pause : Play;
-  const fraction = busy ? state.loadFraction : state.progress;
-  return (
-    <div
-      data-overview-narration={state.playing ? "playing" : "paused"}
-      data-narration-control
-      className="flex items-center gap-4 rounded-xl border-2 border-border bg-surface p-3 pr-5"
-    >
-      {state.audio}
-      <span className="relative shrink-0">
-        {busy && (
-          <ProgressRing
-            fraction={state.loadFraction}
-            className="pointer-events-none absolute -inset-1.5"
-          />
-        )}
-        <button
-          type="button"
-          onClick={state.toggle}
-          aria-label={
-            state.playing ? "Tạm dừng" : busy ? "Dừng tải" : "Nghe giới thiệu"
-          }
-          className="relative flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.95] motion-reduce:transition-none"
-        >
-          <Icon
-            aria-hidden
-            className={`size-8 fill-current ${state.playing ? "" : "ml-1"}`}
-          />
-        </button>
-      </span>
-      {state.failed ? (
-        <MediaLoadError
-          onRetry={state.retry}
-          className="min-w-0 flex-1 items-start text-left"
-        />
-      ) : (
-        <div className="flex min-w-0 flex-1 flex-col gap-2">
-          {busy ? (
-            <span
-              data-narration-label
-              role="progressbar"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={
-                state.loadFraction === undefined
-                  ? undefined
-                  : percentLabel(state.loadFraction)
-              }
-              aria-valuetext={loadingText(
-                state.loadFraction,
-                state.loadedBytes,
-              )}
-              className="font-semibold"
-            >
-              {loadingText(state.loadFraction, state.loadedBytes)}
-            </span>
-          ) : (
-            <span data-narration-label className="font-semibold">
-              {state.playing ? "Đang đọc…" : "Nghe giới thiệu"}
-            </span>
-          )}
-          <span
-            aria-hidden
-            className="h-2 w-full overflow-hidden rounded-full bg-muted"
-          >
-            <span
-              className="block h-full rounded-full bg-primary"
-              style={{ width: `${Math.round((fraction ?? 0) * 100)}%` }}
-            />
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
 
 // One sentence of the overview, word by word so the narration can light up
 // the word being said (`reading`: its position in the overview, -1 for none).
@@ -362,17 +104,23 @@ export function LessonOverviewView({
   const parts = useMemo(() => overviewParts(overview), [overview]);
   const narration = useNarration(overview.narration, overviewWordCount(parts));
   const reading = narration.word;
-  // The text being heard stays on screen: the page follows it down, and the
-  // document's scroll-padding keeps it above the bottom bar.
   const rootRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
+  const follow = useFollowReading({
+    rootRef,
+    reading,
+    playing: narration.playing,
+    reducedMotion,
+  });
+  // Once the player card has scrolled away, a slim player stays on screen.
+  const cardRef = useRef<HTMLDivElement>(null);
+  const cardInView = useMostlyInView(cardRef);
+  const [closed, setClosed] = useState(false);
   useEffect(() => {
-    if (reading < 0) return;
-    rootRef.current?.querySelector("[data-word-reading]")?.scrollIntoView?.({
-      block: "nearest",
-      behavior: reducedMotion ? "auto" : "smooth",
-    });
-  }, [reading, reducedMotion]);
+    if (narration.playing) setClosed(false);
+  }, [narration.playing]);
+  const showMini =
+    Boolean(overview.narration) && !cardInView && narration.started && !closed;
   const find = (key: OverviewPart["key"], item = 0) =>
     parts.find((p) => p.key === key && p.item === item);
   const goals = parts.filter((p) => p.key === "goal");
@@ -393,7 +141,9 @@ export function LessonOverviewView({
         </div>
       </header>
 
-      {overview.narration && <NarrationPlayer state={narration} />}
+      {overview.narration && (
+        <NarrationPlayer state={narration} containerRef={cardRef} />
+      )}
 
       <section
         data-overview-part="hook"
@@ -458,6 +208,28 @@ export function LessonOverviewView({
         </p>
       </section>
 
+      {showMini && (
+        <NarrationMiniPlayer
+          state={narration}
+          onClose={() => {
+            narration.stop();
+            setClosed(true);
+          }}
+        />
+      )}
+      {follow.canResume && (
+        <button
+          type="button"
+          onClick={follow.resume}
+          data-narration-follow
+          {...{ [NARRATION_CONTROL_ATTR]: "" }}
+          className="-translate-x-1/2 fixed bottom-[calc(var(--bottom-bar-height,0px)+0.75rem)] left-1/2 z-20 inline-flex min-h-touch items-center gap-2 rounded-full bg-primary px-5 font-semibold text-primary-foreground shadow-card short:min-h-11"
+        >
+          <LocateFixed aria-hidden className="size-5" />
+          Theo dõi lời đọc
+        </button>
+      )}
+
       <BottomBar>
         <BigButton onClick={onStart} data-overview-start>
           {startLabel}
@@ -468,7 +240,8 @@ export function LessonOverviewView({
             type="button"
             onClick={onBrowse}
             data-overview-browse
-            className="mx-auto inline-flex min-h-touch items-center gap-2 rounded-full px-4 font-semibold text-muted-foreground"
+            data-bar-secondary
+            className="mx-auto inline-flex min-h-touch items-center gap-2 rounded-full px-4 font-semibold text-muted-foreground short:mx-0 short:min-h-11 short:whitespace-nowrap"
           >
             <ListOrdered aria-hidden className="size-5" />
             Xem các phần của bài

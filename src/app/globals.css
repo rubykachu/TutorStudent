@@ -16,6 +16,13 @@
  */
 @custom-variant tall (@media (min-width: 48rem) and (min-height: 62rem));
 
+/*
+ * `short:` = a viewport under 500px tall: a phone held sideways (iPhone 16
+ * Plus landscape is 932×430). The sticky bottom bar and big buttons shrink so
+ * the content, a video or the narration's text, keeps most of the height.
+ */
+@custom-variant short (@media (max-height: 500px));
+
 /* shadcn/ui components read these unprefixed variables directly. */
 :root {
   --background: #f8fafc;
@@ -235,6 +242,10 @@
    */
   html {
     scroll-padding-bottom: var(--bottom-bar-height, 0px);
+  }
+  /* Likewise the narration's mini-player (learn/narration.tsx) at the top. */
+  html {
+    scroll-padding-top: var(--narration-mini-height, 0px);
   }
 }
 
