@@ -269,6 +269,40 @@ describe("import of an export", () => {
   });
 });
 
+// A time no honest file holds: a crafted or corrupt backup.
+const FAR_FUTURE = "2099-01-01T00:00:00.000Z";
+
+describe("import of a file with times in the future", () => {
+  it("brings them down to now, so a future reset cannot hide what is studied later", async () => {
+    const source = await studied();
+    const file = JSON.parse(await exportOf(source)) as Record<string, unknown>;
+    file.resets = { "l-one": FAR_FUTURE };
+    const [first] = file.attempts as Record<string, unknown>[];
+    file.attempts = [
+      ...(file.attempts as unknown[]),
+      { ...first, id: "f".repeat(32), at: FAR_FUTURE },
+    ];
+    const target = device();
+    const p = await plan(target, JSON.stringify(file));
+    expect(p.doc.resets).toEqual({ "l-one": NOW.toISOString() });
+    // The future answer now lies in the current month, at now.
+    const current = p.months.find((m) => m.month === "2026-10");
+    expect(current?.attempts.find((a) => a.id === "f".repeat(32))?.at).toBe(
+      NOW.toISOString(),
+    );
+    expect(p.months.some((m) => m.month > "2026-10")).toBe(false);
+
+    await importBackup(target, p);
+    // An answer given after the import is not hidden by the file's reset.
+    setNowForTesting(() => new Date(NOW.getTime() + 60_000));
+    await answer(target, new Date(NOW.getTime() + 60_000), {
+      card: "l-one.card.later",
+    });
+    const visible = await readChildDoc(target, CHILD, "local-doc");
+    expect(visible.cards.map((c) => c.cardId)).toContain("l-one.card.later");
+  });
+});
+
 describe("import of a snapshot", () => {
   it("merges the state of a child the device has", async () => {
     const source = await studied();
@@ -287,6 +321,18 @@ describe("import of a snapshot", () => {
     expect(doc.sections).toEqual(snapshot.sections);
     expect(doc.cards).toHaveLength(3);
     expect(await listAttempts(target, scope)).toHaveLength(0);
+  });
+
+  it("brings a reset dated in the future down to now", async () => {
+    const source = await studied();
+    const snapshot = {
+      ...(await readChildDoc(source, CHILD, "nha-minh")),
+      resets: { "l-one": FAR_FUTURE },
+    };
+    const target = device();
+    await addProfile(target);
+    const p = await plan(target, JSON.stringify(snapshot));
+    expect(p.doc.resets).toEqual({ "l-one": NOW.toISOString() });
   });
 
   it("refuses a child with no profile on the device", async () => {

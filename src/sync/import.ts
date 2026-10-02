@@ -1,4 +1,9 @@
-import { BACKUP_IMPORT_MAX_BYTES, LOCAL_FAMILY_ID } from "@/lib/config";
+import {
+  BACKUP_IMPORT_MAX_BYTES,
+  LOCAL_FAMILY_ID,
+  SYNC_FUTURE_SKEW_MINUTES,
+} from "@/lib/config";
+import { now } from "@/lib/time";
 import {
   listProfiles,
   OVERVIEW_SEEN_LEGACY_AT,
@@ -11,6 +16,7 @@ import {
   PROGRESS_EXPORT_FORMAT,
   PROGRESS_EXPORT_VERSION,
 } from "@/progress/parent-data";
+import { clampFutureTimes } from "@/sync/clamp";
 import { visibleHistory } from "@/sync/history";
 import { applyChildDoc, readChildDoc } from "@/sync/local";
 import { applyHistoryDoc } from "@/sync/local-history";
@@ -242,6 +248,47 @@ function validateMonths(raw: readonly unknown[]): HistoryDoc[] | null {
   return months;
 }
 
+// A file's times in this device's future become now, as the server does with
+// every write (`clampFutureTimes`). The merge runs on the device before any
+// server sees the file, so without this a reset dated years ahead in a crafted
+// or corrupt file would erase the device's answers of that lesson at once and
+// hide every later one, and a record dated ahead would win every later merge.
+function futureLimit(): { limit: string; at: string } {
+  const at = now();
+  return {
+    limit: new Date(
+      at.getTime() + SYNC_FUTURE_SKEW_MINUTES * 60_000,
+    ).toISOString(),
+    at: at.toISOString(),
+  };
+}
+
+function clampChildDoc(doc: ChildDoc): ChildDoc | null {
+  const { limit, at } = futureLimit();
+  const clamped = clampFutureTimes("child", doc, limit, at);
+  if (!clamped.changed) return doc;
+  const again = migrateDoc("child", clamped.doc);
+  return again.ok ? again.doc : null;
+}
+
+// Months whose records were clamped are regrouped: a record moved to now
+// belongs to the current month's doc.
+function clampMonths(
+  childId: string,
+  months: HistoryDoc[],
+): HistoryDoc[] | null {
+  const { limit, at } = futureLimit();
+  const clamped = months.map((m) => clampFutureTimes("history", m, limit, at));
+  if (!clamped.some((m) => m.changed)) return months;
+  return validateMonths(
+    monthDocs(
+      childId,
+      clamped.flatMap((m) => m.doc.attempts),
+      clamped.flatMap((m) => m.doc.writings),
+    ),
+  );
+}
+
 // Reads a backup file's text. `size` is the file's size in bytes. Nothing is
 // written.
 export async function readBackup(
@@ -267,11 +314,12 @@ export async function readBackup(
     }
     // Only its state counts, and it joins this device's records, whichever
     // family wrote it.
-    const doc = {
+    const doc = clampChildDoc({
       ...migrated.doc,
       familyId: LOCAL_FAMILY_ID,
       historyMonths: [],
-    };
+    });
+    if (doc === null) return fail("invalid");
     const profile = local.find((p) => p.id === doc.childId);
     if (!profile) return fail("no-profile");
     return {
@@ -328,10 +376,13 @@ export async function readBackup(
     "child",
     exportToChildDoc(file, childId, overviewSeenOf(file, childId)),
   );
-  const months = validateMonths(
+  const read = validateMonths(
     monthDocs(childId, array(file.attempts), array(file.writings)),
   );
-  if (!migrated.ok || months === null) return fail("invalid");
+  if (!migrated.ok || read === null) return fail("invalid");
+  const doc = clampChildDoc(migrated.doc);
+  const months = clampMonths(childId, read);
+  if (doc === null || months === null) return fail("invalid");
 
   const existing = local.find((p) => p.id === childId);
   const profile: ProfileRecord = existing ?? {
@@ -347,8 +398,8 @@ export async function readBackup(
       exportedAt: new Date(exportedAt).toISOString(),
       createsProfile: existing === undefined,
       profile,
-      counts: countsOf(migrated.doc, months),
-      doc: migrated.doc,
+      counts: countsOf(doc, months),
+      doc,
       months,
     },
   };
