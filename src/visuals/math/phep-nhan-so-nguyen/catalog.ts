@@ -248,20 +248,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "Nhân với 2 là cộng lặp lại hai lần số −4",
     [
       { tex: "(-4) \\cdot 2" },
-      {
-        tex: "= (-4) + (-4)",
-        tag: tag("cộng lặp lại 2 lần", NOTE),
-      },
+      { tex: "= (-4) + (-4)", tag: tag("cộng lặp lại 2 lần", NOTE) },
+      { tex: "= -8" },
     ],
     "hint",
   ),
 
   // 2. Nhân với 0
-  "tui-ke-0": rows("Bốn túi, mỗi túi không có viên kẹo nào", [
+  "tui-ke-0": rows("Bốn túi rỗng, mỗi túi không có viên kẹo nào", [
     {
-      tex: steps("4 \\cdot 0", `= 0 + 0 + 0 + 0 = ${zero}`),
-      tag: tag("4 túi, mỗi túi 0 viên", NOTE),
+      tex: steps("0 \\cdot 4", `= 0 + 0 + 0 + 0 = ${zero}`),
+      tag: tag("0 lấy 4 lần", NOTE),
     },
+    { tex: `4 \\cdot 0 = ${zero}`, tag: tag("4 lấy 0 lần", NOTE) },
   ]),
   "nhan-voi-0-vi-du": rows(
     "Một số nhân với 0, hay 0 nhân với một số, thì bằng 0",
@@ -275,8 +274,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: tag("số dương nhân với 0", POSITIVE),
       },
       {
-        tex: `0 \\cdot (-3) = ${zero}`,
-        tag: tag("0 nhân với số âm", NEGATIVE),
+        tex: `0 \\cdot 6 = ${zero}`,
+        tag: tag("0 nhân với số dương", POSITIVE),
       },
       { tex: `0 \\cdot 0 = ${zero}`, tag: tag("0 nhân với 0", NOTE) },
     ],
@@ -306,18 +305,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "steps",
   ),
   "duong-nhan-am-vi-du": rows("Số dương nhân với số âm cho tích là số âm", [
-    {
-      tex: steps("2 \\cdot (-5)", `= -(2 \\cdot 5) = ${neg(-10)}`),
-      tag: tag("tích âm", NEGATIVE),
-    },
-    {
-      tex: steps("6 \\cdot (-2)", `= -(6 \\cdot 2) = ${neg(-12)}`),
-      tag: tag("tích âm", NEGATIVE),
-    },
-    {
-      tex: steps("8 \\cdot (-1)", `= -(8 \\cdot 1) = ${neg(-8)}`),
-      tag: tag("tích âm", NEGATIVE),
-    },
+    { tex: `2 \\cdot (-5) = ${neg(-10)}`, tag: tag("tích âm", NEGATIVE) },
+    { tex: `6 \\cdot (-2) = ${neg(-12)}`, tag: tag("tích âm", NEGATIVE) },
+    { tex: `8 \\cdot (-1) = ${neg(-8)}`, tag: tag("tích âm", NEGATIVE) },
   ]),
   "cung-2-nhan-am2": tryFactor(
     2,
@@ -339,13 +329,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
 
   // 4. Nhân hai số khác dấu
-  "no-moi-ngay": rows("Mỗi ngày nợ thêm 2 nghìn đồng, trong 4 ngày", [
+  "no-moi-ngay": rows("Mỗi ngày nợ thêm 2 nghìn đồng, trong 5 ngày", [
     {
-      tex: `(-2) \\cdot 4 = ${neg(-8)}`,
-      tag: tag("nợ thêm 2 nghìn mỗi ngày, 4 ngày", NEGATIVE),
+      tex: `(-2) \\cdot 5 = ${neg(-10)}`,
+      tag: tag("nợ thêm 2 nghìn mỗi ngày, 5 ngày", NEGATIVE),
     },
     {
-      tex: `4 \\cdot (-2) = ${neg(-8)}`,
+      tex: `5 \\cdot (-2) = ${neg(-10)}`,
       tag: tag("khác dấu nên tích âm", NEGATIVE),
     },
   ]),
@@ -364,25 +354,29 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "khac-dau-mau": lines(
-    "Tính 6 · (−3): hai số khác dấu nên tích là số âm",
+    "Tính 6 · (−3): nhân hai phần số tự nhiên rồi viết dấu − ở trước",
     [
       { tex: "6 \\cdot (-3)" },
       {
-        tex: "= -(6 \\cdot 3)",
+        tex: "6 \\cdot 3 = 18",
+        tag: tag("nhân hai phần số tự nhiên", NOTE),
+      },
+      {
+        tex: `= ${neg(-18)}`,
         tag: tag("khác dấu: viết dấu − ở trước", NOTE),
       },
-      { tex: `= ${neg(-18)}`, tag: tag("tích", PRODUCT) },
     ],
     "steps",
   ),
   "goi-y-khac-dau-9-nhan-am2": lines(
-    "Hai số khác dấu: viết dấu − ở trước rồi nhân hai phần số tự nhiên",
+    "Hai số khác dấu: nhân hai phần số tự nhiên rồi viết dấu − ở trước",
     [
       { tex: "9 \\cdot (-2)" },
       {
-        tex: "= -(9 \\cdot 2)",
-        tag: tag("khác dấu: viết dấu − ở trước", NOTE),
+        tex: "9 \\cdot 2 = 18",
+        tag: tag("nhân hai phần số tự nhiên", NOTE),
       },
+      { tex: "= -18" },
     ],
     "hint",
   ),
@@ -447,18 +441,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "bon-truong-hop": rows(
     "Nhiệt độ tăng hay giảm 3 độ mỗi giờ, sau hay cách đây 2 giờ",
     [
-      { tex: `3 \\cdot 2 = ${pos(6)}`, tag: tag("tăng, sau 2 giờ", POSITIVE) },
+      {
+        tex: `3 \\cdot 2 = ${pos(6)}`,
+        tag: tag("tăng, sau 2 giờ: cao hơn", POSITIVE),
+      },
       {
         tex: `(-3) \\cdot 2 = ${neg(-6)}`,
-        tag: tag("giảm, sau 2 giờ", NEGATIVE),
+        tag: tag("giảm, sau 2 giờ: thấp hơn", NEGATIVE),
       },
       {
         tex: `3 \\cdot (-2) = ${neg(-6)}`,
-        tag: tag("tăng, cách đây 2 giờ", NEGATIVE),
+        tag: tag("tăng, cách đây 2 giờ: thấp hơn", NEGATIVE),
       },
       {
         tex: `(-3) \\cdot (-2) = ${pos(6)}`,
-        tag: tag("giảm, cách đây 2 giờ", POSITIVE),
+        tag: tag("giảm, cách đây 2 giờ: cao hơn", POSITIVE),
       },
     ],
   ),
@@ -472,11 +469,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // 7. Đổi chỗ và nhóm các thừa số
   "mua-but": rows("Hai cách nhóm cho cùng một tích", [
     {
-      tex: steps("(2 \\cdot 5) \\cdot 3", "= 10 \\cdot 3 = 30"),
+      tex: steps("(3 \\cdot 5) \\cdot 2", "= 15 \\cdot 2 = 30"),
       tag: tag("nhóm hai số đầu", NOTE),
     },
     {
-      tex: steps("2 \\cdot (5 \\cdot 3)", "= 2 \\cdot 15 = 30"),
+      tex: steps("3 \\cdot (5 \\cdot 2)", "= 3 \\cdot 10 = 30"),
       tag: tag("nhóm hai số sau", NOTE),
     },
   ]),
@@ -521,38 +518,39 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "= (-2) \\cdot (-5) \\cdot 6",
         tag: tag("đổi chỗ để ghép hai số âm", NOTE),
       },
+      { tex: "= 10 \\cdot 6" },
     ],
     "hint",
   ),
 
   // 8. Tích nhiều thừa số
   "nhan-tung-cap": lines(
-    "Tính (−2) · 3 · (−4): nhân hai số đầu trước, rồi nhân với số còn lại",
+    "Tính (−2) · 3 · 2: nhân hai số đầu trước, rồi nhân với số còn lại",
     [
-      { tex: "(-2) \\cdot 3 \\cdot (-4)" },
-      { tex: "= (-6) \\cdot (-4)", tag: tag("nhân hai số đầu trước", NOTE) },
-      { tex: `= ${pos(24)}`, tag: tag("tích", PRODUCT) },
+      { tex: "(-2) \\cdot 3 \\cdot 2" },
+      { tex: "= (-6) \\cdot 2", tag: tag("nhân hai số đầu trước", NOTE) },
+      { tex: `= ${neg(-12)}`, tag: tag("tích", PRODUCT) },
     ],
     "steps",
   ),
-  "nhieu-thua-so-vi-du": rows("Nhân từ trái sang phải", [
+  "nhieu-thua-so-vi-du": rows("Đếm thừa số âm để biết dấu của tích", [
     {
       tex: steps(
         "(-1) \\cdot (-2) \\cdot (-3)",
         `= 2 \\cdot (-3) = ${neg(-6)}`,
       ),
-      tag: tag("nhân từ trái sang phải", NOTE),
+      tag: tag("3 thừa số âm: tích âm", NEGATIVE),
     },
     {
       tex: steps("2 \\cdot (-3) \\cdot 4", `= (-6) \\cdot 4 = ${neg(-24)}`),
-      tag: tag("nhân từ trái sang phải", NOTE),
+      tag: tag("1 thừa số âm: tích âm", NEGATIVE),
     },
     {
       tex: steps(
         "5 \\cdot (-2) \\cdot (-1)",
         `= (-10) \\cdot (-1) = ${pos(10)}`,
       ),
-      tag: tag("nhân từ trái sang phải", NOTE),
+      tag: tag("2 thừa số âm: tích dương", POSITIVE),
     },
   ]),
   "goi-y-nhan-tung-cap": lines(
@@ -560,19 +558,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [
       { tex: "(-4) \\cdot 2 \\cdot (-3)" },
       { tex: "= (-8) \\cdot (-3)", tag: tag("nhân hai số đầu trước", NOTE) },
+      { tex: "= 24" },
     ],
     "hint",
   ),
 
   // 9. Nhân một số với một tổng
-  "mua-ba-phan": rows("Hai cách tính tiền 3 phần ăn", [
+  "ve-xe-buyt": rows("Hai cách tính tiền vé xe buýt cả ngày", [
     {
       tex: steps("3 \\cdot (5 + 4)", "= 3 \\cdot 9 = 27"),
-      tag: tag("tính tiền một phần trước", NOTE),
+      tag: tag("tính cả ngày một lần", NOTE),
     },
     {
       tex: steps("3 \\cdot 5 + 3 \\cdot 4", "= 15 + 12 = 27"),
-      tag: tag("tính bánh và nước riêng", NOTE),
+      tag: tag("tính sáng và chiều riêng", NOTE),
     },
   ]),
   "phan-phoi-vi-du": rows("Nhân một số với từng số hạng của tổng", [
@@ -612,30 +611,31 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "= (-2) \\cdot 5 + (-2) \\cdot 1",
         tag: tag("nhân với từng số hạng", NOTE),
       },
+      { tex: "= -10 + (-2)" },
     ],
     "hint",
   ),
 
   // 10. Đưa thừa số chung ra ngoài
   "gop-hop-keo": lines(
-    "Cả 7 hộp, mỗi hộp 6 viên kẹo xanh và 4 viên kẹo đỏ",
+    "Mỗi hộp 7 viên kẹo, Lan có 6 hộp và Minh có 4 hộp",
     [
       { tex: "7 \\cdot 6 + 7 \\cdot 4" },
       {
         tex: "= 7 \\cdot (6 + 4)",
         tag: tag("đưa thừa số chung 7 ra ngoài", NOTE),
       },
-      { tex: "= 7 \\cdot 10 = 70", tag: tag("cả 7 hộp", PRODUCT) },
+      { tex: "= 7 \\cdot 10 = 70", tag: tag("cả hai bạn", PRODUCT) },
     ],
     "steps",
   ),
   "gop-thua-so-vi-du": rows("Đưa thừa số chung ra ngoài", [
     {
       tex: steps(
-        "7 \\cdot (-6) + 7 \\cdot (-4)",
-        `= 7 \\cdot [(-6) + (-4)] = ${neg(-70)}`,
+        "8 \\cdot (-6) + 8 \\cdot (-4)",
+        `= 8 \\cdot [(-6) + (-4)] = ${neg(-80)}`,
       ),
-      tag: tag("chung thừa số 7", NOTE),
+      tag: tag("chung thừa số 8", NOTE),
     },
     {
       tex: steps(
@@ -647,7 +647,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     {
       tex: steps(
         "(-2) \\cdot 5 + (-2) \\cdot 6",
-        `= (-2) \\cdot 11 = ${neg(-22)}`,
+        `= (-2) \\cdot (5 + 6) = ${neg(-22)}`,
       ),
       tag: tag("chung thừa số −2", NOTE),
     },
@@ -673,6 +673,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tex: "= 4 \\cdot [(-2) + (-5)]",
         tag: tag("đưa thừa số chung 4 ra ngoài", NOTE),
       },
+      { tex: "= 4 \\cdot (-7)" },
     ],
     "hint",
   ),
@@ -717,27 +718,38 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
 
   // 12. Bài toán đời sống
-  "thay-doi-vai": rows("Số vải cả 20 bộ khi mỗi bộ thay đổi x dm", [
+  "thay-doi-vai": rows("Số vải mỗi bộ thay đổi, nhân với 20 bộ", [
     {
-      tex: `20 \\cdot 3 = ${pos(60)}`,
-      tag: tag("mỗi bộ thêm 3 dm: tăng 60 dm", POSITIVE),
+      tex: `5 \\cdot 20 = ${pos(100)}`,
+      tag: tag("mỗi bộ thêm 5 dm: tăng 100 dm", POSITIVE),
     },
     {
-      tex: `20 \\cdot (-2) = ${neg(-40)}`,
+      tex: `(-2) \\cdot 20 = ${neg(-40)}`,
       tag: tag("mỗi bộ bớt 2 dm: giảm 40 dm", NEGATIVE),
     },
   ]),
-  "tang-giam-vi-du": rows("Tăng ghi số dương, giảm ghi số âm", [
-    { tex: `${pos(3)}`, tag: tag("nhiệt độ tăng 3 độ mỗi giờ", POSITIVE) },
-    { tex: `${neg(-3)}`, tag: tag("nhiệt độ giảm 3 độ mỗi giờ", NEGATIVE) },
-    { tex: `${neg(-2)}`, tag: tag("nợ thêm 2 nghìn mỗi ngày", NEGATIVE) },
-    { tex: `${pos(5)}`, tag: tag("tiết kiệm thêm 5 nghìn mỗi ngày", POSITIVE) },
+  "tang-giam-vi-du": rows("Thay đổi mỗi lần nhân với số lần", [
+    {
+      tex: `4 \\cdot 3 = ${pos(12)}`,
+      tag: tag(
+        "tiết kiệm thêm 4 nghìn mỗi ngày, 3 ngày: tăng 12 nghìn",
+        POSITIVE,
+      ),
+    },
+    {
+      tex: `(-3) \\cdot 4 = ${neg(-12)}`,
+      tag: tag("nhiệt độ giảm 3 độ mỗi giờ, 4 giờ: giảm 12 độ", NEGATIVE),
+    },
+    {
+      tex: `(-5) \\cdot 2 = ${neg(-10)}`,
+      tag: tag("nợ thêm 5 nghìn mỗi ngày, 2 ngày: giảm 10 nghìn", NEGATIVE),
+    },
   ]),
   "cung-giam3-2-gio": tryJump(
     0,
     3,
     -6,
-    "Điểm đã đi sang trái 2 lần, mỗi lần 3 đơn vị, tới −6.",
+    "Điểm đã tới −6: sau 2 giờ nhiệt độ thay đổi (−3) · 2 = −6 độ, tức là giảm 6 độ.",
   ),
 
   sticker: { kind: "sticker" },

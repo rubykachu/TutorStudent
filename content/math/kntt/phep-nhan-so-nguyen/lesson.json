@@ -119,7 +119,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Lan có 4 túi, mỗi túi có 0 viên kẹo. Số kẹo của Lan là 4 · 0 = 0 + 0 + 0 + 0 = 0."
+              "text": "Lan có 4 túi rỗng, mỗi túi 0 viên kẹo, nên số kẹo là 0 · 4 = 0 + 0 + 0 + 0 = 0. Còn 4 · 0 là 4 lấy 0 lần, cũng bằng 0."
             },
             {
               "type": "visual",
@@ -161,7 +161,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ. Cách đây 2 giờ, nhiệt độ thấp hơn bây giờ 6 độ, nên 3 · (−2) = −6."
+              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ. Sau 2 giờ ghi là 2, cách đây 2 giờ ghi là −2, nên 3 · (−2) = −6 là thấp hơn 6 độ."
             },
             {
               "type": "visual",
@@ -229,7 +229,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Mỗi ngày Nam nợ thêm 2 nghìn đồng. Sau 4 ngày, số tiền của Nam thay đổi (−2) · 4 = −8."
+              "text": "Mỗi ngày An nợ thêm 2 nghìn đồng. Sau 5 ngày, số tiền của An thay đổi (−2) · 5 = −10 nghìn đồng."
             },
             {
               "type": "visual",
@@ -256,7 +256,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ví dụ mẫu: tính 6 · (−3). Hai số khác dấu nên tích là số âm, rồi nhân hai phần số tự nhiên."
+              "text": "Ví dụ mẫu: tính 6 · (−3). Nhân hai phần số tự nhiên 6 · 3 = 18, rồi viết dấu − ở trước vì hai số khác dấu."
             },
             {
               "type": "visual",
@@ -343,8 +343,8 @@
     },
     {
       "id": "phep-nhan-so-nguyen.section.dau-cua-tich",
-      "title": "Dấu của tích: cùng dấu, khác dấu",
-      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (các bài 3.27 đến bài 3.29)",
+      "title": "Quy tắc dấu của tích",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (các bài 3.27 đến bài 3.29), tr.57 (bài 3.30)",
       "minutes": 4,
       "blocks": [
         {
@@ -402,7 +402,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Lan mua 2 hộp bút, mỗi hộp 5 cây, mỗi cây giá 3 nghìn đồng. Tính 2 · 5 · 3 cách nào cũng được 30 nghìn đồng."
+              "text": "Lan mua 2 hộp bút, mỗi hộp 5 cây, mỗi cây giá 3 nghìn đồng. Tính 3 · 5 · 2 cách nào cũng được 30 nghìn đồng."
             },
             {
               "type": "visual",
@@ -449,7 +449,7 @@
     {
       "id": "phep-nhan-so-nguyen.section.nhieu-thua-so",
       "title": "Tích nhiều thừa số",
-      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 3), tr.56 (ví dụ 2), tr.57 (bài 3.34)",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 3 và ví dụ 2)",
       "minutes": 4,
       "blocks": [
         {
@@ -457,7 +457,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tính (−2) · 3 · (−4), ta nhân hai số đầu trước. Rồi lấy kết quả nhân với số còn lại."
+              "text": "Hai bạn như Nam, mỗi bạn nợ thêm 2 nghìn đồng mỗi ngày trong 3 ngày. Số tiền thay đổi là (−2) · 3 · 2, ta nhân hai số đầu trước."
             },
             {
               "type": "visual",
@@ -470,7 +470,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tích nhiều thừa số được tính từ trái sang phải, mỗi lần nhân hai số theo quy tắc dấu.",
+              "text": "Tích nhiều thừa số khác 0 là số dương khi có chẵn thừa số âm, là số âm khi có lẻ thừa số âm.",
               "rule": true
             },
             {
@@ -481,11 +481,11 @@
         },
         {
           "type": "tip",
-          "id": "phep-nhan-so-nguyen.tip.dem-thua-so-am",
+          "id": "phep-nhan-so-nguyen.tip.thua-so-0",
           "kind": "làm nhanh",
-          "title": "Dấu của tích nhiều số",
-          "text": "Nếu không có thừa số 0, hãy đếm các thừa số âm. Số thừa số âm chẵn thì tích dương, lẻ thì tích âm. Nếu có thừa số 0 thì tích bằng 0.",
-          "tex": "\\begin{gathered} (-2) \\cdot  3 \\cdot  (-4) \\cdot  (-1) \\\\ = -(2 \\cdot  3 \\cdot  4 \\cdot  1) = -24 \\end{gathered}"
+          "title": "Tích có thừa số 0",
+          "text": "Gặp thừa số 0 thì tích bằng 0 ngay, khỏi nhân các số còn lại. Nhìn thấy 0 trước khi tính sẽ đỡ tính nhầm.",
+          "tex": "\\begin{gathered} (-7) \\cdot  5 \\cdot  0 \\cdot  (-3) \\\\ = 0 \\end{gathered}"
         }
       ],
       "checkIds": ["phep-nhan-so-nguyen.ex.dau-tich-ba-so"],
@@ -493,7 +493,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
-        "caption": "Tích nhiều thừa số được tính từ trái sang phải, mỗi lần nhân hai số theo quy tắc dấu."
+        "caption": "Tích nhiều thừa số khác 0 là số dương khi có chẵn thừa số âm, là số âm khi có lẻ thừa số âm."
       }
     },
     {
@@ -507,11 +507,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Hà mua 3 phần ăn, mỗi phần gồm bánh 5 nghìn đồng và nước 4 nghìn đồng. Tiền cả 3 phần tính theo hai cách đều là 27 nghìn đồng."
+              "text": "Mỗi vé xe buýt giá 3 nghìn đồng. Sáng Hà đi 5 lượt, chiều đi 4 lượt, nên tiền xe cả ngày tính theo hai cách đều là 27 nghìn đồng."
             },
             {
               "type": "visual",
-              "visualId": "phep-nhan-so-nguyen.visual.mua-ba-phan"
+              "visualId": "phep-nhan-so-nguyen.visual.ve-xe-buyt"
             }
           ]
         },
@@ -554,7 +554,7 @@
     {
       "id": "phep-nhan-so-nguyen.section.gop-thua-so",
       "title": "Đưa thừa số chung ra ngoài",
-      "sourceRef": "Sách bài tập tr.55 (ví dụ 1), tr.57 (bài 3.32)",
+      "sourceRef": "Sách bài tập tr.55 (ví dụ 1)",
       "minutes": 4,
       "blocks": [
         {
@@ -562,7 +562,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Mỗi hộp có 6 viên kẹo xanh và 4 viên kẹo đỏ. Cả 7 hộp có 7 · 6 + 7 · 4 = 7 · (6 + 4) = 70 viên."
+              "text": "Mỗi hộp có 7 viên kẹo, Lan có 6 hộp và Minh có 4 hộp. Xem cách gộp số hộp của hai bạn lại."
             },
             {
               "type": "visual",
@@ -575,7 +575,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Khi các tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng các thừa số còn lại.",
+              "text": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại.",
               "rule": true
             },
             {
@@ -601,9 +601,9 @@
           "type": "tip",
           "id": "phep-nhan-so-nguyen.tip.gop-thua-so-chung",
           "kind": "làm nhanh",
-          "title": "Đưa thừa số chung ra ngoài",
-          "text": "Nếu hai tích có chung một thừa số, hãy đưa thừa số đó ra ngoài. Cộng hai số còn lại trong ngoặc rồi nhân một lần, nhẩm nhanh hơn nhân hai lần.",
-          "tex": "\\begin{gathered} 9 \\cdot  (-6) + 9 \\cdot  (-4) \\\\ = 9 \\cdot  [(-6) + (-4)] = -90 \\end{gathered}"
+          "title": "Tổng hai tích có thừa số chung",
+          "text": "Với tổng của hai tích có chung một thừa số, hãy đưa thừa số đó ra ngoài. Nếu hai số còn lại cộng ra số tròn chục thì nhân rất nhanh.",
+          "tex": "\\begin{gathered} 9 \\cdot  (-7) + 9 \\cdot  (-3) \\\\ = 9 \\cdot  [(-7) + (-3)] \\\\ = 9 \\cdot  (-10) = -90 \\end{gathered}"
         }
       ],
       "checkIds": ["phep-nhan-so-nguyen.ex.gop-6-am3-am7"],
@@ -611,7 +611,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
-        "caption": "Khi các tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng các thừa số còn lại."
+        "caption": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
       }
     },
     {
@@ -680,7 +680,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Xí nghiệp may 20 bộ quần áo. Số vải mỗi bộ thay đổi x dm thì số vải cả 20 bộ thay đổi 20 · x dm."
+              "text": "Xí nghiệp may 20 bộ quần áo. Số vải mỗi bộ thay đổi bao nhiêu thì nhân với 20 bộ, ta được số vải cả xưởng thay đổi."
             },
             {
               "type": "visual",
@@ -716,7 +716,7 @@
           ]
         }
       ],
-      "checkIds": ["phep-nhan-so-nguyen.ex.nhiet-do-giam-4-gio"],
+      "checkIds": ["phep-nhan-so-nguyen.ex.nhiet-do-giam-5-gio"],
       "practiceIds": ["phep-nhan-so-nguyen.ex.vai-20-bo"],
       "recap": {
         "type": "visual",
@@ -787,7 +787,7 @@
     },
     {
       "id": "phep-nhan-so-nguyen.card.dau-cua-tich",
-      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (các bài 3.27 đến bài 3.29)",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (các bài 3.27 đến bài 3.29), tr.57 (bài 3.30)",
       "conceptIds": [
         "phep-nhan-so-nguyen.concept.duong",
         "phep-nhan-so-nguyen.concept.am"
@@ -813,7 +813,7 @@
     },
     {
       "id": "phep-nhan-so-nguyen.card.nhieu-thua-so",
-      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 3), tr.56 (ví dụ 2), tr.57 (bài 3.34)",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 3 và ví dụ 2)",
       "conceptIds": [
         "phep-nhan-so-nguyen.concept.thua-so",
         "phep-nhan-so-nguyen.concept.tich"
@@ -821,7 +821,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
-        "caption": "Tích nhiều thừa số được tính từ trái sang phải, mỗi lần nhân hai số theo quy tắc dấu."
+        "caption": "Tích nhiều thừa số khác 0 là số dương khi có chẵn thừa số âm, là số âm khi có lẻ thừa số âm."
       }
     },
     {
@@ -839,7 +839,7 @@
     },
     {
       "id": "phep-nhan-so-nguyen.card.gop-thua-so",
-      "sourceRef": "Sách bài tập tr.55 (ví dụ 1), tr.57 (bài 3.32)",
+      "sourceRef": "Sách bài tập tr.55 (ví dụ 1)",
       "conceptIds": [
         "phep-nhan-so-nguyen.concept.thua-so",
         "phep-nhan-so-nguyen.concept.tich"
@@ -847,7 +847,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
-        "caption": "Khi các tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng các thừa số còn lại."
+        "caption": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
       }
     },
     {
@@ -903,7 +903,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Nợ thêm 3 nghìn mỗi ngày là thay đổi −3 mỗi ngày. Lặp lại 4 ngày thì cộng bốn lần −3, được −12.",
-        "tex": "(-3) \\cdot  4 = (-3) + (-3) + (-3) + (-3) = -12",
+        "tex": "\\begin{gathered} (-3) \\cdot  4 \\\\ = (-3) + (-3) \\\\ + (-3) + (-3) \\\\ = -12 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -911,7 +911,7 @@
           },
           {
             "optionId": "c",
-            "text": "−3 + 4 chỉ cộng một lần, còn nợ lặp lại bốn lần."
+            "text": "(−3) + 4 = 1, còn nợ lặp lại bốn lần nên phải nhân."
           },
           {
             "optionId": "d",
@@ -981,7 +981,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Nhân với 3 là cộng lặp lại ba lần số −5. Ta được tích là số âm.",
-        "tex": "(-5) \\cdot  3 = (-5) + (-5) + (-5) = \\concept{pink}{-15}"
+        "tex": "\\begin{gathered} (-5) \\cdot  3 \\\\ = (-5) + (-5) + (-5) \\\\ = \\concept{pink}{-15} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -1087,7 +1087,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Giảm 4 độ mỗi giờ là thay đổi −4 độ mỗi giờ. Lặp lại 3 giờ thì (−4) · 3 = −12 độ.",
-        "tex": "(-4) \\cdot  3 = (-4) + (-4) + (-4) = \\concept{pink}{-12}"
+        "tex": "\\begin{gathered} (-4) \\cdot  3 \\\\ = (-4) + (-4) + (-4) \\\\ = \\concept{pink}{-12} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -1151,15 +1151,15 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Nhân với 1 giữ nguyên số, được −8."
+            "text": "(−8) · 1 = −8, khác 0."
           },
           {
             "optionId": "c",
-            "text": "8 · 1 = 8, hai thừa số đều khác 0."
+            "text": "8 · 1 = 8, khác 0."
           },
           {
             "optionId": "d",
-            "text": "(−1) · 8 = −8, hai thừa số đều khác 0."
+            "text": "(−1) · 8 = −8, khác 0."
           }
         ]
       },
@@ -1260,11 +1260,11 @@
         "wrong": [
           {
             "optionId": "c",
-            "text": "(−5) · 1 = −5, không có thừa số nào bằng 0."
+            "text": "(−5) · 1 = −5, khác 0."
           },
           {
             "optionId": "d",
-            "text": "12 · 1 = 12, không có thừa số nào bằng 0."
+            "text": "12 · 1 = 12, khác 0."
           }
         ]
       },
@@ -1312,7 +1312,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một túi có 0 viên kẹo, Nam có 7 túi như vậy. Nam có bao nhiêu viên kẹo?"
+          "text": "Nam có 7 túi rỗng, mỗi túi có 0 viên kẹo. Nam có bao nhiêu viên kẹo?"
         }
       ],
       "hints": {
@@ -1325,8 +1325,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số kẹo là 7 · 0. Số nào nhân với 0 cũng bằng 0.",
-        "tex": "7 \\cdot  0 = \\concept{slate}{0}"
+        "text": "Số kẹo là 0 · 7, tức 0 lấy 7 lần. Một số nhân với 0, hay 0 nhân với một số, đều bằng 0.",
+        "tex": "0 \\cdot  7 = \\concept{slate}{0}"
       },
       "answer": {
         "kind": "value",
@@ -1334,7 +1334,7 @@
       },
       "allowNegative": true,
       "check": {
-        "expr": "7·0"
+        "expr": "0·7"
       }
     },
     {
@@ -1362,7 +1362,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Mỗi dòng đi xuống, thừa số thứ hai giảm 1 và tích giảm 4. Từ 4 · 0 = 0 đi xuống một dòng thì 0 − 4 = −4.",
-        "tex": "4 \\cdot  (-1) = 0 - 4 = \\concept{pink}{-4}",
+        "tex": "\\begin{gathered} 4 \\cdot  (-1) \\\\ = 0 - 4 \\\\ = \\concept{pink}{-4} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -1475,7 +1475,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số dương nhân với số âm thì tích là số âm. Nhân hai phần số tự nhiên: 7 · 3 = 21, nên tích là −21.",
+        "text": "Thừa số thứ hai giảm 1 thì tích giảm 7. Từ 7 · 0 = 0 đi xuống ta được −7, −14, rồi 7 · (−3) = −21.",
         "tex": "7 \\cdot  (-3) = \\concept{pink}{-21}"
       },
       "answer": {
@@ -1562,7 +1562,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm 4 · (−2). Bấm mũi tên xuống để giảm thừa số thứ hai tới −2, rồi đọc tích."
+          "text": "Bấm mũi tên xuống tới dòng có tích bằng −8."
         }
       ],
       "hints": {
@@ -1575,7 +1575,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Mỗi lần bấm, thừa số thứ hai giảm 1 và tích giảm 4. Tới −2 thì tích là −8."
+        "text": "Mỗi lần bấm, thừa số thứ hai giảm 1 và tích giảm 4. Tới thừa số thứ hai là −2 thì tích là −8."
       },
       "visualId": "phep-nhan-so-nguyen.visual.thu-4-nhan-am2",
       "validatorId": "dat-thua-so",
@@ -1682,7 +1682,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Hai số khác dấu nên tích là số âm. Nhân hai phần số tự nhiên 8 · 4 = 32, rồi viết dấu − ở trước.",
-        "tex": "8 \\cdot  (-4) = -(8 \\cdot  4) = \\concept{pink}{-32}"
+        "tex": "\\begin{gathered} 8 \\cdot  (-4) \\\\ = -(8 \\cdot  4) \\\\ = \\concept{pink}{-32} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -1785,7 +1785,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai số khác dấu thì tích là số âm. (−3) · 4 = −12 và 6 · (−2) = −12.",
+        "text": "Hai số khác dấu thì tích là số âm. 4 · (−3) = −12 và (−2) · 6 = −12.",
         "wrong": [
           {
             "optionId": "c",
@@ -1793,7 +1793,7 @@
           },
           {
             "optionId": "d",
-            "text": "(−2) · 5 = −10, chưa phải −12."
+            "text": "(−2) · 7 = −14, chưa phải −12."
           }
         ]
       },
@@ -1802,14 +1802,14 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "(-3) \\cdot  4"
+            "tex": "4 \\cdot  (-3)"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot  (-2)"
+            "tex": "(-2) \\cdot  6"
           }
         },
         {
@@ -1823,7 +1823,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "(-2) \\cdot  5"
+            "tex": "(-2) \\cdot  7"
           }
         }
       ],
@@ -1854,29 +1854,29 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tính từng tích: 3 · (−4) = −12, (−2) · 5 = −10, (−1) · 6 = −6. Số âm càng gần 0 thì càng lớn.",
-        "tex": "-12 < -10 < -6"
+        "text": "Tính từng tích: 3 · (−5) = −15, (−1) · 9 = −9, (−2) · 4 = −8. Số âm càng gần 0 thì càng lớn.",
+        "tex": "-15 < -9 < -8"
       },
       "items": [
         {
           "id": "s1",
           "content": {
             "type": "formula",
-            "tex": "3 \\cdot  (-4)"
+            "tex": "3 \\cdot  (-5)"
           }
         },
         {
           "id": "s2",
           "content": {
             "type": "formula",
-            "tex": "(-2) \\cdot  5"
+            "tex": "(-1) \\cdot  9"
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "formula",
-            "tex": "(-1) \\cdot  6"
+            "tex": "(-2) \\cdot  4"
           }
         }
       ]
@@ -2034,7 +2034,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các tích bằng 12."
+          "text": "Chọn tất cả các tích bằng 15."
         }
       ],
       "hints": {
@@ -2047,15 +2047,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai số âm nhân với nhau cho tích dương: (−3) · (−4) = 12 và (−2) · (−6) = 12.",
+        "text": "Hai số âm nhân với nhau cho tích dương: (−3) · (−5) = 15 và (−1) · (−15) = 15.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "Hai số khác dấu cho tích âm: (−3) · 4 = −12."
+            "text": "Hai số khác dấu cho tích âm: (−3) · 5 = −15."
           },
           {
             "optionId": "d",
-            "text": "Hai số khác dấu cho tích âm: 2 · (−6) = −12."
+            "text": "Hai số khác dấu cho tích âm: 3 · (−5) = −15."
           }
         ]
       },
@@ -2064,28 +2064,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "(-3) \\cdot  (-4)"
+            "tex": "(-3) \\cdot  (-5)"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "(-2) \\cdot  (-6)"
+            "tex": "(-1) \\cdot  (-15)"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "(-3) \\cdot  4"
+            "tex": "(-3) \\cdot  5"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot  (-6)"
+            "tex": "3 \\cdot  (-5)"
           }
         }
       ],
@@ -2093,21 +2093,21 @@
       "multiple": true,
       "check": {
         "relation": "equal",
-        "expr": "12"
+        "expr": "15"
       }
     },
     {
-      "id": "phep-nhan-so-nguyen.ex.nhiet-do-cach-day-3",
+      "id": "phep-nhan-so-nguyen.ex.nhiet-do-cach-day-4",
       "type": "numeric",
       "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"],
       "prompt": [
         {
           "type": "note",
-          "text": "Nhiệt độ giảm đều 3 độ mỗi giờ. Cách đây 2 giờ, nhiệt độ cao hơn bây giờ bao nhiêu độ?"
+          "text": "Nhiệt độ giảm đều 4 độ mỗi giờ. Cách đây 3 giờ, nhiệt độ cao hơn bây giờ bao nhiêu độ?"
         },
         {
           "type": "formula",
-          "tex": "(-3) \\cdot  (-2)"
+          "tex": "(-4) \\cdot  (-3)"
         }
       ],
       "hints": {
@@ -2120,16 +2120,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai số âm nhân với nhau thì tích là số dương. 3 · 2 = 6, nên cách đây 2 giờ nhiệt độ cao hơn 6 độ.",
-        "tex": "(-3) \\cdot  (-2) = \\concept{lime}{6}"
+        "text": "Hai số âm nhân với nhau thì tích là số dương. 4 · 3 = 12, nên cách đây 3 giờ nhiệt độ cao hơn 12 độ.",
+        "tex": "(-4) \\cdot  (-3) = \\concept{lime}{12}"
       },
       "answer": {
         "kind": "value",
-        "value": 6
+        "value": 12
       },
       "allowNegative": true,
       "check": {
-        "expr": "(-3)·(-2)"
+        "expr": "(-4)·(-3)"
       }
     },
     {
@@ -2139,7 +2139,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tìm (−4) · (−2). Bấm mũi tên xuống để giảm thừa số thứ hai tới −2, rồi đọc tích."
+          "text": "Bấm mũi tên xuống tới dòng có tích bằng 8."
         }
       ],
       "hints": {
@@ -2152,7 +2152,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Mỗi lần bấm, thừa số thứ hai giảm 1 và tích tăng 4. Tới −2 thì tích là 8."
+        "text": "Mỗi lần bấm, thừa số thứ hai giảm 1 và tích tăng 4. Tới thừa số thứ hai là −2 thì tích là 8."
       },
       "visualId": "phep-nhan-so-nguyen.visual.thu-am4-nhan-am2",
       "validatorId": "dat-thua-so",
@@ -2607,7 +2607,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Đổi chỗ để nhân hai số âm trước: (−4) · (−5) = 20. Rồi 20 · 3 = 60.",
-        "tex": "\\begin{gathered} (-4) \\cdot  3 \\cdot  (-5) = (-4) \\cdot  (-5) \\cdot  3 \\\\ = 20 \\cdot  3 = \\concept{lime}{60} \\end{gathered}"
+        "tex": "\\begin{gathered} (-4) \\cdot  3 \\cdot  (-5) \\\\ = (-4) \\cdot  (-5) \\cdot  3 \\\\ = 20 \\cdot  3 = \\concept{lime}{60} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2643,7 +2643,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Đổi chỗ để nhân (−25) với (−4) trước, được 100. Rồi 100 · 3 = 300.",
-        "tex": "\\begin{gathered} (-25) \\cdot  3 \\cdot  (-4) = (-25) \\cdot  (-4) \\cdot  3 \\\\ = 100 \\cdot  3 = \\concept{lime}{300} \\end{gathered}"
+        "tex": "\\begin{gathered} (-25) \\cdot  3 \\cdot  (-4) \\\\ = (-25) \\cdot  (-4) \\cdot  3 \\\\ = 100 \\cdot  3 = \\concept{lime}{300} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2661,7 +2661,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các tích bằng (−2) · (−3) · 5."
+          "text": "Chọn tất cả các tích bằng (−2) · (−5) · 3."
         }
       ],
       "hints": {
@@ -2674,15 +2674,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tích (−2) · (−3) · 5 bằng 30. Nhóm (−2) · (−3) thành 6 thì được 6 · 5 = 30, và đổi chỗ các thừa số thì tích vẫn là 30.",
+        "text": "Tích (−2) · (−5) · 3 bằng 30. Nhóm (−2) · (−5) thành 10 thì được 10 · 3 = 30, và đổi chỗ các thừa số thì tích vẫn là 30.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "(−2) · 15 = −30, vì nhóm sai: bỏ mất dấu của −3."
+            "text": "(−2) · 15 = −30, vì nhóm sai: bỏ mất dấu của −5."
           },
           {
             "optionId": "d",
-            "text": "(−2) · 3 · 5 = −30, vì đã đổi dấu của −3 thành 3."
+            "text": "(−2) · 5 · 3 = −30, vì đã đổi dấu của −5 thành 5."
           }
         ]
       },
@@ -2691,14 +2691,14 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "(-3) \\cdot  5 \\cdot  (-2)"
+            "tex": "(-5) \\cdot  3 \\cdot  (-2)"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot  5"
+            "tex": "10 \\cdot  3"
           }
         },
         {
@@ -2712,7 +2712,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "(-2) \\cdot  3 \\cdot  5"
+            "tex": "(-2) \\cdot  5 \\cdot  3"
           }
         }
       ],
@@ -2720,7 +2720,7 @@
       "multiple": true,
       "check": {
         "relation": "equal",
-        "expr": "(-2)·(-3)·5"
+        "expr": "(-2)·(-5)·3"
       }
     },
     {
@@ -2748,7 +2748,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Đổi chỗ để nhân (−4) với (−2) trước, được 8. Thừa số còn lại là 5.",
-        "tex": "(-4) \\cdot  5 \\cdot  (-2) = (-4) \\cdot  (-2) \\cdot  5 = 8 \\cdot  5"
+        "tex": "\\begin{gathered} (-4) \\cdot  5 \\cdot  (-2) \\\\ = (-4) \\cdot  (-2) \\cdot  5 \\\\ = 8 \\cdot  5 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2779,8 +2779,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhóm hai thừa số đầu: 3 · 5 = 15 hộp. Rồi 15 · 4 = 60 cái bánh.",
-        "tex": "3 \\cdot  5 \\cdot  4 = 15 \\cdot  4 = 60"
+        "text": "Mỗi thùng có 4 · 5 = 20 cái bánh. Rồi 3 thùng có 20 · 3 = 60 cái bánh.",
+        "tex": "\\begin{gathered} 4 \\cdot  5 \\cdot  3 \\\\ = 20 \\cdot  3 = 60 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2788,7 +2788,7 @@
       },
       "allowNegative": true,
       "check": {
-        "expr": "3·5·4"
+        "expr": "4·5·3"
       }
     },
     {
@@ -2811,8 +2811,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân (−3) với (−2) trước: được 6, là số dương. Rồi 6 · (−5) khác dấu nên tích là số âm.",
-        "tex": "(-3) \\cdot  (-2) \\cdot  (-5) = 6 \\cdot  (-5) = \\concept{pink}{-30}",
+        "text": "Có ba thừa số âm, là số lẻ, nên tích là số âm. Kiểm tra: (−3) · (−2) = 6, rồi 6 · (−5) = −30.",
+        "tex": "\\begin{gathered} (-3) \\cdot  (-2) \\cdot  (-5) \\\\ = 6 \\cdot  (-5) = \\concept{pink}{-30} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -2861,7 +2861,7 @@
         },
         {
           "type": "formula",
-          "tex": "(-3) \\cdot  2 \\cdot  (-5)"
+          "tex": "(-6) \\cdot  2 \\cdot  (-3)"
         }
       ],
       "hints": {
@@ -2875,16 +2875,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Nhân hai số đầu: (−3) · 2 = −6. Rồi (−6) · (−5) = 30.",
-        "tex": "(-3) \\cdot  2 \\cdot  (-5) = -6 \\cdot  (-5) = \\concept{lime}{30}"
+        "text": "Nhân hai số đầu: (−6) · 2 = −12. Rồi (−12) · (−3) = 36.",
+        "tex": "\\begin{gathered} (-6) \\cdot  2 \\cdot  (-3) \\\\ = (-12) \\cdot  (-3) = \\concept{lime}{36} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": 30
+        "value": 36
       },
       "allowNegative": true,
       "check": {
-        "expr": "(-3)·2·(-5)"
+        "expr": "(-6)·2·(-3)"
       }
     },
     {
@@ -2980,7 +2980,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Nhân hai số đầu: (−1) · (−1) = 1. Rồi 1 · (−1) = −1.",
-        "tex": "(-1) \\cdot  (-1) \\cdot  (-1) = 1 \\cdot  (-1) = \\concept{pink}{-1}"
+        "tex": "\\begin{gathered} (-1) \\cdot  (-1) \\cdot  (-1) \\\\ = 1 \\cdot  (-1) = \\concept{pink}{-1} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3016,7 +3016,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Có một thừa số bằng 0 thì tích bằng 0. Nhân hai số đầu được −35, rồi nhân với 0 vẫn bằng 0.",
-        "tex": "(-7) \\cdot  5 \\cdot  0 = \\concept{slate}{0}"
+        "tex": "\\begin{gathered} (-7) \\cdot  5 \\cdot  0 \\\\ = -35 \\cdot  0 = \\concept{slate}{0} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3034,7 +3034,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tích của bốn số khác 0 có đúng hai số âm. Tích đó là số nào?"
+          "text": "Có bốn số khác 0, trong đó đúng hai số là số âm. Tích của bốn số đó là số nào?"
         }
       ],
       "hints": {
@@ -3051,7 +3051,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Có hai thừa số âm, là số chẵn, nên tích không âm."
+            "text": "Có hai thừa số âm, là số chẵn, nên tích là số dương."
           },
           {
             "optionId": "c",
@@ -3109,8 +3109,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân 4 với từng số hạng 3 và 5, rồi cộng hai tích lại. Cả hai vế đều bằng 32.",
-        "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 + 4 \\cdot  5 = 12 + 20 = 32",
+        "text": "Nhân 4 với từng số hạng 3 và 5, rồi cộng hai tích lại. Kết quả đều bằng 32.",
+        "tex": "\\begin{gathered} 4 \\cdot  (3 + 5) \\\\ = 4 \\cdot  3 + 4 \\cdot  5 \\\\ = 12 + 20 = 32 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -3122,7 +3122,7 @@
           },
           {
             "optionId": "d",
-            "text": "Bỏ mất phép nhân với 4, vế phải chỉ còn 12."
+            "text": "Cách viết này bỏ mất phép nhân với 4, chỉ bằng 12."
           }
         ]
       },
@@ -3189,7 +3189,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Nhân (−3) với từng số hạng: (−3) · 4 = −12 và (−3) · 2 = −6. Rồi cộng hai tích: −12 + (−6) = −18.",
-        "tex": "(-3) \\cdot  (4 + 2) = (-3) \\cdot  4 + (-3) \\cdot  2 = \\concept{pink}{-18}"
+        "tex": "\\begin{gathered} (-3) \\cdot  (4 + 2) \\\\ = (-3) \\cdot  4 + (-3) \\cdot  2 \\\\ = -12 + (-6) = \\concept{pink}{-18} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3225,7 +3225,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Số 5 được nhân với từng số hạng của tổng 2 + 3. Số hạng còn lại là 3.",
-        "tex": "5 \\cdot  (2 + 3) = 5 \\cdot  2 + 5 \\cdot  3"
+        "tex": "\\begin{gathered} 5 \\cdot  (2 + 3) \\\\ = 5 \\cdot  2 + 5 \\cdot  3 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3330,7 +3330,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Tính trong ngoặc trước: (−5) + 2 = −3. Rồi 4 · (−3) = −12.",
-        "tex": "4 \\cdot  [(-5) + 2] = 4 \\cdot  (-3) = \\concept{pink}{-12}"
+        "tex": "\\begin{gathered} 4 \\cdot  [(-5) + 2] \\\\ = 4 \\cdot  (-3) \\\\ = \\concept{pink}{-12} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3348,7 +3348,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính hợp lí bằng cách đưa thừa số chung ra ngoài."
+          "text": "Tính nhanh bằng cách đưa thừa số chung ra ngoài."
         },
         {
           "type": "formula",
@@ -3367,7 +3367,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Thừa số chung là 6. Cộng hai số còn lại: (−3) + (−7) = −10. Rồi 6 · (−10) = −60.",
-        "tex": "6 \\cdot  (-3) + 6 \\cdot  (-7) = 6 \\cdot  [(-3) + (-7)] = \\concept{pink}{-60}"
+        "tex": "\\begin{gathered} 6 \\cdot  (-3) + 6 \\cdot  (-7) \\\\ = 6 \\cdot  [(-3) + (-7)] \\\\ = 6 \\cdot  (-10) = \\concept{pink}{-60} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3385,11 +3385,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính hợp lí."
+          "text": "Tính nhanh bằng cách đưa thừa số chung ra ngoài."
         },
         {
           "type": "formula",
-          "tex": "(-4) \\cdot  6 + (-4) \\cdot  4"
+          "tex": "(-4) \\cdot  7 + (-4) \\cdot  3"
         }
       ],
       "hints": {
@@ -3402,8 +3402,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Thừa số chung là (−4). Cộng hai số còn lại: 6 + 4 = 10. Rồi (−4) · 10 = −40.",
-        "tex": "(-4) \\cdot  6 + (-4) \\cdot  4 = (-4) \\cdot  (6 + 4) = \\concept{pink}{-40}"
+        "text": "Thừa số chung là (−4). Cộng hai số còn lại: 7 + 3 = 10. Rồi (−4) · 10 = −40.",
+        "tex": "\\begin{gathered} (-4) \\cdot  7 + (-4) \\cdot  3 \\\\ = (-4) \\cdot  (7 + 3) \\\\ = (-4) \\cdot  10 = \\concept{pink}{-40} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3411,7 +3411,7 @@
       },
       "allowNegative": true,
       "check": {
-        "expr": "(-4)·6+(-4)·4"
+        "expr": "(-4)·7+(-4)·3"
       }
     },
     {
@@ -3425,7 +3425,7 @@
         },
         {
           "type": "formula",
-          "tex": "5 \\cdot  (-4) + 5 \\cdot  (-6) = 5 \\cdot  (\\square)"
+          "tex": "5 \\cdot  (-3) + 5 \\cdot  (-8) = 5 \\cdot  (\\square)"
         }
       ],
       "hints": {
@@ -3438,16 +3438,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Thừa số chung là 5. Số trong ngoặc là tổng của hai số còn lại: (−4) + (−6) = −10.",
-        "tex": "5 \\cdot  (-4) + 5 \\cdot  (-6) = 5 \\cdot  [(-4) + (-6)] = 5 \\cdot  (\\concept{pink}{-10})"
+        "text": "Thừa số chung là 5. Số trong ngoặc là tổng của hai số còn lại: (−3) + (−8) = −11.",
+        "tex": "\\begin{gathered} 5 \\cdot  (-3) + 5 \\cdot  (-8) \\\\ = 5 \\cdot  [(-3) + (-8)] \\\\ = 5 \\cdot  (\\concept{pink}{-11}) \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": -10
+        "value": -11
       },
       "allowNegative": true,
       "check": {
-        "expr": "(-4)+(-6)"
+        "expr": "(-3)+(-8)"
       }
     },
     {
@@ -3457,7 +3457,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính hợp lí."
+          "text": "Tính nhanh bằng cách đưa thừa số chung ra ngoài."
         },
         {
           "type": "formula",
@@ -3475,7 +3475,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Thừa số chung là (−7). Cộng hai số còn lại: 3 + 2 = 5. Rồi (−7) · 5 = −35.",
-        "tex": "(-7) \\cdot  3 + (-7) \\cdot  2 = (-7) \\cdot  5 = \\concept{pink}{-35}"
+        "tex": "\\begin{gathered} (-7) \\cdot  3 + (-7) \\cdot  2 \\\\ = (-7) \\cdot  (3 + 2) \\\\ = (-7) \\cdot  5 = \\concept{pink}{-35} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3493,7 +3493,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đổi chỗ một thừa số rồi tính hợp lí."
+          "text": "Đổi chỗ một thừa số rồi tính nhanh."
         },
         {
           "type": "formula",
@@ -3511,7 +3511,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Đổi 2 · (−9) thành (−9) · 2 để thấy thừa số chung (−9). Rồi (−9) · (2 + 8) = (−9) · 10 = −90.",
-        "tex": "2 \\cdot  (-9) + (-9) \\cdot  8 = (-9) \\cdot  (2 + 8) = \\concept{pink}{-90}"
+        "tex": "\\begin{gathered} 2 \\cdot  (-9) + (-9) \\cdot  8 \\\\ = (-9) \\cdot  2 + (-9) \\cdot  8 \\\\ = (-9) \\cdot  (2 + 8) = \\concept{pink}{-90} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3529,7 +3529,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Biết a · b = 0 và a = 7. Số b bằng bao nhiêu?"
+          "text": "Biết a · b = 0 và a = −6. Số b bằng bao nhiêu?"
         }
       ],
       "hints": {
@@ -3542,20 +3542,20 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Tích bằng 0 thì có một thừa số bằng 0. Vì a = 7 khác 0 nên b phải bằng 0.",
-        "tex": "7 \\cdot  b = 0 → b = \\concept{slate}{0}",
+        "text": "Hai số có tích bằng 0 thì ít nhất một số bằng 0. Vì a = −6 khác 0 nên b phải bằng 0.",
+        "tex": "\\begin{gathered} (-6) \\cdot  b = 0 \\\\ b = \\concept{slate}{0} \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "7 · 7 = 49, không bằng 0."
+            "text": "(−6) · 6 = −36, khác 0."
           },
           {
             "optionId": "c",
-            "text": "7 · (−7) = −49, không bằng 0."
+            "text": "(−6) · (−6) = 36, khác 0."
           },
           {
             "optionId": "d",
-            "text": "7 · 1 = 7, không bằng 0."
+            "text": "(−6) · 1 = −6, khác 0."
           }
         ]
       },
@@ -3571,14 +3571,14 @@
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "7"
+            "tex": "6"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "-7"
+            "tex": "-6"
           }
         },
         {
@@ -3620,7 +3620,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Thừa số 5 khác 0 nên x + 3 phải bằng 0. Số cộng với 3 được 0 là số đối của 3, tức là −3.",
-        "tex": "x + 3 = 0 → x = \\concept{pink}{-3}"
+        "tex": "\\begin{gathered} x + 3 = 0 \\\\ x = \\concept{pink}{-3} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3656,7 +3656,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Một trong hai thừa số bằng 0: x − 4 = 0 cho x = 4, còn x + 1 = 0 cho x = −1. Chỉ 4 là số dương.",
-        "tex": "x - 4 = 0 → x = \\concept{lime}{4}"
+        "tex": "\\begin{gathered} x - 4 = 0 \\\\ x = \\concept{lime}{4} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3678,7 +3678,7 @@
         },
         {
           "type": "formula",
-          "tex": "(x - 6) \\cdot  (x + 2) = 0"
+          "tex": "(x - 6) \\cdot  (x + 5) = 0"
         }
       ],
       "hints": {
@@ -3691,16 +3691,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Một trong hai thừa số bằng 0: x − 6 = 0 cho x = 6, còn x + 2 = 0 cho x = −2. Chỉ −2 nhỏ hơn 0.",
-        "tex": "x + 2 = 0 → x = \\concept{pink}{-2}"
+        "text": "Một trong hai thừa số bằng 0: x − 6 = 0 cho x = 6, còn x + 5 = 0 cho x = −5. Chỉ −5 nhỏ hơn 0.",
+        "tex": "\\begin{gathered} x + 5 = 0 \\\\ x = \\concept{pink}{-5} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": -2
+        "value": -5
       },
       "allowNegative": true,
       "check": {
-        "expr": "-2"
+        "expr": "-5"
       }
     },
     {
@@ -3773,7 +3773,7 @@
       }
     },
     {
-      "id": "phep-nhan-so-nguyen.ex.nhiet-do-giam-4-gio",
+      "id": "phep-nhan-so-nguyen.ex.nhiet-do-giam-5-gio",
       "type": "choice",
       "cardIds": [],
       "prompt": [
@@ -3852,33 +3852,37 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Xí nghiệp may 20 bộ quần áo. Mỗi bộ dùng ít đi 3 dm vải, tức là x = −3."
+          "text": "Xí nghiệp may 20 bộ quần áo. Mỗi bộ dùng ít đi 4 dm vải."
         },
         {
           "type": "note",
           "text": "Số vải cả 20 bộ thay đổi bao nhiêu dm?"
+        },
+        {
+          "type": "formula",
+          "tex": "(-4) \\cdot  20"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 2
           }
         ]
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số vải cả 20 bộ thay đổi 20 · (−3) = −60 dm. Số âm nghĩa là số vải ít đi 60 dm.",
-        "tex": "20 \\cdot  (-3) = \\concept{pink}{-60}"
+        "text": "Mỗi bộ thay đổi −4 dm, nhân với 20 bộ. Ta có (−4) · 20 = −80 dm, nghĩa là số vải ít đi 80 dm.",
+        "tex": "(-4) \\cdot  20 = \\concept{pink}{-80}"
       },
       "answer": {
         "kind": "value",
-        "value": -60
+        "value": -80
       },
       "allowNegative": true,
       "check": {
-        "expr": "20·(-3)"
+        "expr": "(-4)·20"
       }
     },
     {
@@ -3892,7 +3896,7 @@
         },
         {
           "type": "note",
-          "text": "Số tầng của thang máy thay đổi bao nhiêu?"
+          "text": "Vị trí của thang máy thay đổi bao nhiêu tầng?"
         }
       ],
       "hints": {
@@ -3954,7 +3958,7 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "Nhiệt độ giảm 2 độ mỗi giờ, trong 5 giờ"
+            "text": "Nhiệt độ giảm 4 độ mỗi giờ, trong 2 giờ"
           }
         },
         {
@@ -3989,33 +3993,33 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nhiệt độ tăng đều 2 độ mỗi giờ. Cách đây 3 giờ, nhiệt độ thay đổi so với bây giờ bao nhiêu độ?"
+          "text": "Nhiệt độ tăng đều 4 độ mỗi giờ. Cách đây 2 giờ, nhiệt độ lúc đó so với bây giờ thay đổi bao nhiêu độ?"
         },
         {
-          "type": "note",
-          "text": "Tính 2 · (−3)."
+          "type": "formula",
+          "tex": "4 \\cdot  (-2)"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cách đây 3 giờ là −3 giờ. Nhiệt độ thay đổi 2 · (−3) = −6 độ, tức là thấp hơn bây giờ 6 độ.",
-        "tex": "2 \\cdot  (-3) = \\concept{pink}{-6}"
+        "text": "Cách đây 2 giờ ghi là −2 giờ. Nhiệt độ thay đổi 4 · (−2) = −8 độ, tức là lúc đó thấp hơn bây giờ 8 độ.",
+        "tex": "4 \\cdot  (-2) = \\concept{pink}{-8}"
       },
       "answer": {
         "kind": "value",
-        "value": -6
+        "value": -8
       },
       "allowNegative": true,
       "check": {
-        "expr": "2·(-3)"
+        "expr": "4·(-2)"
       }
     }
   ],
