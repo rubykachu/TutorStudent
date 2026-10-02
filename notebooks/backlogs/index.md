@@ -32,6 +32,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
+0. HOTFIX first: video player — no auto-pause at checkpoints, captions off the picture on phones ([`hotfix-video-player/task.md`](hotfix-video-player/task.md)).
 0. Bài 12 `boi-chung-boi-chung-nho-nhat`: published, narration and 3 videos built and reviewed (round 4, locked, walk 0 failures). Next: upload and deploy with owner approval, see item 6c ([`lesson-boi-chung-boi-chung-nho-nhat/task.md`](lesson-boi-chung-boi-chung-nho-nhat/task.md)).
 0. Ôn tập chương II `on-tap-chuong-2`: published, aligned with Bài 12 (round 5). Narration and 3 videos built and reviewed 01/10/2026 (round 6); next: owner approval to upload media (see its handover).
 1. Bài 11 (print page 38): align its section 5 (`nhac-thua-so`) with the published Bài 10 (definitions, wording, colours; diff-only round, see its handover) before its narration and videos. Bài 11 narration and 3 videos are built: next is its diff-only review round (greeting in `overview.hook`, 3 video blocks), then `pnpm content:hash --approve` and `pnpm content:lock`. Bài 10 narration and videos are done and reviewed (round 4).
