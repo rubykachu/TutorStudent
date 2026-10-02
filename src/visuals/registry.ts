@@ -102,6 +102,17 @@ import {
   validators as nhanValidators,
 } from "@/visuals/math/phep-nhan-phep-chia/validators-nhan";
 import {
+  INTERACTIVE_KINDS as MUL_INTERACTIVE_KINDS,
+  LESSON_SLUG as MUL_SLUG,
+  VISUAL_SPECS as MUL_SPECS,
+  VALIDATOR_IDS as MUL_VALIDATOR_IDS,
+  regionsOf as mulRegions,
+} from "@/visuals/math/phep-nhan-so-nguyen/catalog";
+import {
+  solutions as mulSolutions,
+  validators as mulValidators,
+} from "@/visuals/math/phep-nhan-so-nguyen/logic";
+import {
   INTERACTIVE_KINDS as DIVISIBILITY_INTERACTIVE_KINDS,
   LESSON_SLUG as DIVISIBILITY_SLUG,
   VISUAL_SPECS as DIVISIBILITY_SPECS,
@@ -620,6 +631,34 @@ const intOpsEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "phep-nhan-so-nguyen": one per item of its catalog. The
+// point-walking screens reuse the point-placing validator of the lesson on the
+// integers (state { p0 }); the pattern screens use this lesson's factor
+// validator (state { n }).
+const mulValidatorsById = { ...integerValidators, ...mulValidators };
+const mulSolutionsById = { ...integerSolutions, ...mulSolutions };
+const mulEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(MUL_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in MUL_VALIDATOR_IDS
+        ? MUL_VALIDATOR_IDS[spec.kind as keyof typeof MUL_VALIDATOR_IDS]
+        : undefined;
+    const regions = mulRegions(spec);
+    const entry: VisualEntry = {
+      interactive: MUL_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: mulValidatorsById[validatorId] },
+            solutions: { [validatorId]: mulSolutionsById[validatorId] },
+          }),
+      load: () => lessonExample(MUL_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${MUL_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 // Entries of "quy-tac-dau-ngoac": one per item of its catalog. The pick and
 // sign-change screens reuse the set lesson's "chon-dung" validator (one key
 // per candidate, 1 = picked or changed).
@@ -645,11 +684,38 @@ const bracketEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": one per item of
+// its catalog. The pick screens reuse the set lesson's "chon-dung" validator
+// (one key per candidate, 1 = picked).
+const divisionEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(DIVISION_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in DIVISION_VALIDATOR_IDS
+        ? DIVISION_VALIDATOR_IDS[spec.kind as keyof typeof DIVISION_VALIDATOR_IDS]
+        : undefined;
+    const regions = divisionRegions(spec);
+    const entry: VisualEntry = {
+      interactive: DIVISION_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: pickMatches },
+            solutions: { [validatorId]: solvePickMatches },
+          }),
+      load: () => lessonExample(DIVISION_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${DIVISION_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
   ...intOpsEntries,
+  ...mulEntries,
   ...bracketEntries,
+  ...divisionEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -684,38 +750,12 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "fixture.visual.star-sticker": {
     interactive: false,
     load: () => import("@/visuals/_fixture/star-sticker"),
-// Entries of "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": one per item of
-// its catalog. The pick screens reuse the set lesson's "chon-dung" validator
-// (one key per candidate, 1 = picked).
-const divisionEntries: Record<string, VisualEntry> = Object.fromEntries(
-  Object.entries(DIVISION_SPECS).map(([key, spec]) => {
-    const validatorId =
-      spec.kind in DIVISION_VALIDATOR_IDS
-        ? DIVISION_VALIDATOR_IDS[spec.kind as keyof typeof DIVISION_VALIDATOR_IDS]
-        : undefined;
-    const regions = divisionRegions(spec);
-    const entry: VisualEntry = {
-      interactive: DIVISION_INTERACTIVE_KINDS.has(spec.kind),
-      ...(regions === undefined ? {} : { regions }),
-      ...(validatorId === undefined
-        ? {}
-        : {
-            validators: { [validatorId]: pickMatches },
-            solutions: { [validatorId]: solvePickMatches },
-          }),
-      load: () => lessonExample(DIVISION_SLUG, (m) => m.fromSpec(spec)),
-    };
-    return [`${DIVISION_SLUG}.visual.${key}`, entry];
-  }),
-);
-
   },
   "fixture.visual.bead-merge": {
     interactive: false,
     load: () => import("@/visuals/_fixture/bead-merge"),
   },
   "tap-hop.visual.hop-but": {
-  ...divisionEntries,
     interactive: false,
     load: () => lessonExample("tap-hop", (m) => m.HopBut),
   },
@@ -1480,6 +1520,10 @@ const EXAMPLE_MODULES = lessonModules({
     import("@/visuals/math/tap-hop-cac-so-nguyen/examples"),
   "phep-cong-phep-tru-so-nguyen": () =>
     import("@/visuals/math/phep-cong-phep-tru-so-nguyen/examples"),
+  "phep-nhan-so-nguyen": () =>
+    import("@/visuals/math/phep-nhan-so-nguyen/examples"),
+  "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": () =>
+    import("@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/examples"),
   "quy-tac-dau-ngoac": () =>
     import("@/visuals/math/quy-tac-dau-ngoac/examples"),
   "neu-cau-muon-co-mot-nguoi-ban": () =>
@@ -1502,7 +1546,3 @@ async function lessonExample<S extends keyof ExampleModules>(
 export function findVisual(id: string): VisualEntry | undefined {
   return Object.hasOwn(visualRegistry, id) ? visualRegistry[id] : undefined;
 }
-  "phep-nhan-so-nguyen": () =>
-    import("@/visuals/math/phep-nhan-so-nguyen/examples"),
-  "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": () =>
-    import("@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/examples"),

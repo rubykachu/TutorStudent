@@ -1,0 +1,4242 @@
+{
+  "id": "phep-nhan-so-nguyen",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "number": 16,
+  "order": 16,
+  "title": "Phép nhân số nguyên",
+  "chapter": {
+    "numeral": "III",
+    "name": "Số nguyên"
+  },
+  "sourceRef": "Sách bài tập tr.55–57",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ học phép nhân số nguyên. Buổi tối ở Đà Lạt, nhiệt độ giảm 2 độ mỗi giờ. Sau 3 giờ, nhiệt độ đã thay đổi bao nhiêu độ?"
+    },
+    "summary": "Bài này dạy nhân hai số nguyên bằng cách cộng lặp lại và tìm quy luật. Sau đó bạn nhớ quy tắc dấu và dùng các tính chất để tính nhanh.",
+    "goals": [
+      "nhân được số âm với số dương bằng cách cộng lặp lại",
+      "nhớ quy tắc dấu khi nhân hai số nguyên",
+      "dùng đổi chỗ, nhóm và nhân với một tổng để tính nhanh",
+      "tìm số x khi biết tích bằng 0"
+    ],
+    "whyItMatters": "Bạn dùng phép nhân số nguyên để tính nhiệt độ giảm bao nhiêu sau vài giờ, hay nợ tăng bao nhiêu sau vài ngày."
+  },
+  "concepts": [
+    {
+      "id": "phep-nhan-so-nguyen.concept.duong",
+      "name": "Số nguyên dương",
+      "color": "lime"
+    },
+    {
+      "id": "phep-nhan-so-nguyen.concept.am",
+      "name": "Số nguyên âm",
+      "color": "pink"
+    },
+    {
+      "id": "phep-nhan-so-nguyen.concept.so-0",
+      "name": "Số 0",
+      "color": "slate"
+    },
+    {
+      "id": "phep-nhan-so-nguyen.concept.thua-so",
+      "name": "Thừa số",
+      "color": "blue"
+    },
+    {
+      "id": "phep-nhan-so-nguyen.concept.tich",
+      "name": "Tích",
+      "color": "amber"
+    }
+  ],
+  "sections": [
+    {
+      "id": "phep-nhan-so-nguyen.section.cong-lap",
+      "title": "Số âm nhân số dương: cộng lặp lại",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ở Đà Lạt, nhiệt độ giảm 2 độ mỗi giờ, nên mỗi giờ thay đổi −2 độ. Sau 3 giờ: (−2) · 3 = (−2) + (−2) + (−2) = −6 độ."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.am2-nhan3"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.nhan-am-duong-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên trái 4 lần, mỗi lần đi 2 đơn vị, để tính (−2) · 4. Làm vậy bạn thấy nhân là cộng lặp lại, và tích là số âm."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.cung-am2-nhan4"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.no-moi-ngay"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-am5-nhan3"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.nhan-am-duong-vi-du",
+        "caption": "Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.nhan-voi-0",
+      "title": "Nhân với 0",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Lan có 4 túi, mỗi túi có 0 viên kẹo. Số kẹo của Lan là 4 · 0 = 0 + 0 + 0 + 0 = 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.tui-ke-0"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Một số nhân với 0, hay 0 nhân với một số, đều có tích bằng 0.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.nhan-voi-0-vi-du"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.tich-bang-0-nao"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-0-nhan-am9"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.nhan-voi-0-vi-du",
+        "caption": "Một số nhân với 0, hay 0 nhân với một số, đều có tích bằng 0."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.duong-nhan-am",
+      "title": "Số dương nhân số âm: tìm quy luật",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ. Cách đây 2 giờ, nhiệt độ thấp hơn bây giờ 6 độ, nên 3 · (−2) = −6."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.nhiet-do-cach-day"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhìn quy luật: thừa số thứ hai giảm 1 thì tích giảm 3. Đi tiếp xuống dưới, ta được 3 · (−1) = −3 và 3 · (−2) = −6."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.quy-luat-3-nhan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Số dương nhân với số âm thì tích là số âm.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.duong-nhan-am-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên xuống để giảm thừa số thứ hai của 2 · n từ 3 tới −2. Làm vậy bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.cung-2-nhan-am2"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.quy-luat-4-nhan"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-5-nhan-am2"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.duong-nhan-am-vi-du",
+        "caption": "Số dương nhân với số âm thì tích là số âm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.khac-dau",
+      "title": "Nhân hai số khác dấu",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (bài 3.26)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi ngày Nam nợ thêm 2 nghìn đồng. Sau 4 ngày, số tiền của Nam thay đổi (−2) · 4 = −8."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.no-moi-ngay"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai số khác dấu thì tích là số âm: nhân hai phần số tự nhiên rồi viết dấu − ở trước.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.khac-dau-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ mẫu: tính 6 · (−3). Hai số khác dấu nên tích là số âm, rồi nhân hai phần số tự nhiên."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.khac-dau-mau"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.dau-tich-khac-dau"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-8-nhan-am4"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.khac-dau-vi-du",
+        "caption": "Hai số khác dấu thì tích là số âm: nhân hai phần số tự nhiên rồi viết dấu − ở trước."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.am-nhan-am",
+      "title": "Nhân hai số âm",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (bài 3.26)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiệt độ giảm đều 2 độ mỗi giờ, tức là thay đổi −2 độ mỗi giờ. Cách đây 3 giờ, nhiệt độ cao hơn bây giờ 6 độ, nên (−2) · (−3) = 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.nhiet-do-giam-cach-day"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhìn quy luật: thừa số thứ hai giảm 1 thì tích tăng 3. Đi tiếp xuống dưới, ta được (−3) · (−1) = 3 và (−3) · (−2) = 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.quy-luat-am3-nhan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.am-nhan-am-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm mũi tên xuống để giảm thừa số thứ hai của (−2) · n từ 1 tới −3. Làm vậy bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.cung-am2-nhan-am3"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.dau-tich-am-am"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-am6-nhan-am3"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.am-nhan-am-vi-du",
+        "caption": "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.dau-cua-tich",
+      "title": "Dấu của tích: cùng dấu, khác dấu",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (các bài 3.27 đến bài 3.29)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhiệt độ tăng hay giảm 3 độ mỗi giờ, ta xét sau 2 giờ hoặc cách đây 2 giờ. Bốn trường hợp cho bốn tích."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.bon-truong-hop"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.dau-cua-tich-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "phep-nhan-so-nguyen.tip.nhan-voi-am-1",
+          "kind": "hiểu nhanh",
+          "title": "Nhân với −1",
+          "text": "Nhân một số với −1 thì được số đối của số đó. Số đối của 7 là −7, của −4 là 4, còn của 0 là 0.",
+          "tex": "\\begin{gathered} 7 \\cdot  (-1) = -7 \\\\ (-4) \\cdot  (-1) = 4 \\\\ 0 \\cdot  (-1) = 0 \\end{gathered}"
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.so-sanh-voi-0"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.chon-so-sanh-dung"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.dau-cua-tich-vi-du",
+        "caption": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.giao-hoan-ket-hop",
+      "title": "Đổi chỗ và nhóm các thừa số",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 2 và 3)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Lan mua 2 hộp bút, mỗi hộp 5 cây, mỗi cây giá 3 nghìn đồng. Tính 2 · 5 · 3 cách nào cũng được 30 nghìn đồng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.mua-but"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trong một tích, ta được đổi chỗ các thừa số và nhóm các thừa số tuỳ ý.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.giao-hoan-ket-hop-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ mẫu: đổi chỗ để ghép hai số có tích tròn chục, rồi tính (−5) · 7 · (−2)."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.ghep-nhanh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.tinh-nhanh-am4-3-am5"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-nhanh-am25-3-am4"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.giao-hoan-ket-hop-vi-du",
+        "caption": "Trong một tích, ta được đổi chỗ các thừa số và nhóm các thừa số tuỳ ý."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.nhieu-thua-so",
+      "title": "Tích nhiều thừa số",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 3), tr.56 (ví dụ 2), tr.57 (bài 3.34)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn tính (−2) · 3 · (−4), ta nhân hai số đầu trước. Rồi lấy kết quả nhân với số còn lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.nhan-tung-cap"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tích nhiều thừa số được tính từ trái sang phải, mỗi lần nhân hai số theo quy tắc dấu.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "phep-nhan-so-nguyen.tip.dem-thua-so-am",
+          "kind": "làm nhanh",
+          "title": "Dấu của tích nhiều số",
+          "text": "Nếu không có thừa số 0, hãy đếm các thừa số âm. Số thừa số âm chẵn thì tích dương, lẻ thì tích âm. Nếu có thừa số 0 thì tích bằng 0.",
+          "tex": "\\begin{gathered} (-2) \\cdot  3 \\cdot  (-4) \\cdot  (-1) \\\\ = -(2 \\cdot  3 \\cdot  4 \\cdot  1) = -24 \\end{gathered}"
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.dau-tich-ba-so"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-am3-2-am5"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
+        "caption": "Tích nhiều thừa số được tính từ trái sang phải, mỗi lần nhân hai số theo quy tắc dấu."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.phan-phoi",
+      "title": "Nhân một số với một tổng",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 2)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hà mua 3 phần ăn, mỗi phần gồm bánh 5 nghìn đồng và nước 4 nghìn đồng. Tiền cả 3 phần tính theo hai cách đều là 27 nghìn đồng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.mua-ba-phan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ mẫu: tính (−2) · [3 + (−5)] theo hai cách. Cả hai cách đều ra cùng kết quả."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-am-mau"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.dung-phan-phoi"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-am3-nhan-tong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du",
+        "caption": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.gop-thua-so",
+      "title": "Đưa thừa số chung ra ngoài",
+      "sourceRef": "Sách bài tập tr.55 (ví dụ 1), tr.57 (bài 3.32)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi hộp có 6 viên kẹo xanh và 4 viên kẹo đỏ. Cả 7 hộp có 7 · 6 + 7 · 4 = 7 · (6 + 4) = 70 viên."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.gop-hop-keo"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Khi các tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng các thừa số còn lại.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ mẫu: đổi chỗ để thấy thừa số chung (−5), rồi đưa nó ra ngoài."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.gop-mau"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "phep-nhan-so-nguyen.tip.gop-thua-so-chung",
+          "kind": "làm nhanh",
+          "title": "Đưa thừa số chung ra ngoài",
+          "text": "Nếu hai tích có chung một thừa số, hãy đưa thừa số đó ra ngoài. Cộng hai số còn lại trong ngoặc rồi nhân một lần, nhẩm nhanh hơn nhân hai lần.",
+          "tex": "\\begin{gathered} 9 \\cdot  (-6) + 9 \\cdot  (-4) \\\\ = 9 \\cdot  [(-6) + (-4)] = -90 \\end{gathered}"
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.gop-6-am3-am7"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tinh-hop-li-am4"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
+        "caption": "Khi các tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng các thừa số còn lại."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.tich-bang-0",
+      "title": "Tích bằng 0",
+      "sourceRef": "Sách bài tập tr.56 (ví dụ 3), tr.57 (bài 3.31)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nam có y túi, mỗi túi có x viên kẹo. Nếu số kẹo x · y bằng 0, thì không có túi nào hoặc mỗi túi đều rỗng."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.tich-bang-0-truong-hop"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.tich-bang-0-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ mẫu: tìm x biết (x − 3) · (x + 2) = 0. Một trong hai thừa số phải bằng 0."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.tim-x-mau"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.biet-tich-0"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.tim-x-5-nhan"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.tich-bang-0-vi-du",
+        "caption": "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.bai-toan-thuc-te",
+      "title": "Bài toán đời sống",
+      "sourceRef": "Sách bài tập tr.57 (bài 3.33)",
+      "minutes": 4,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Xí nghiệp may 20 bộ quần áo. Số vải mỗi bộ thay đổi x dm thì số vải cả 20 bộ thay đổi 20 · x dm."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.thay-doi-vai"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Thay đổi tổng cộng bằng thay đổi mỗi lần nhân với số lần. Số dương là tăng, số âm là giảm.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.tang-giam-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: nhiệt độ giảm 3 độ mỗi giờ. Bấm mũi tên trái 3 lần, mỗi lần đi 3 đơn vị, để biết sau 3 giờ nhiệt độ thay đổi bao nhiêu."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.cung-giam3-3-gio"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.nhiet-do-giam-4-gio"
+      ],
+      "practiceIds": [
+        "phep-nhan-so-nguyen.ex.vai-20-bo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.tang-giam-vi-du",
+        "caption": "Thay đổi tổng cộng bằng thay đổi mỗi lần nhân với số lần. Số dương là tăng, số âm là giảm."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "phep-nhan-so-nguyen.card.cong-lap",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.nhan-am-duong-vi-du",
+        "caption": "Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.nhan-voi-0",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.so-0"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.nhan-voi-0-vi-du",
+        "caption": "Một số nhân với 0, hay 0 nhân với một số, đều có tích bằng 0."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.duong-nhan-am",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.duong",
+        "phep-nhan-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.duong-nhan-am-vi-du",
+        "caption": "Số dương nhân với số âm thì tích là số âm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.khac-dau",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (bài 3.26)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.duong",
+        "phep-nhan-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.khac-dau-vi-du",
+        "caption": "Hai số khác dấu thì tích là số âm: nhân hai phần số tự nhiên rồi viết dấu − ở trước."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.am-nhan-am",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (bài 3.26)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.am",
+        "phep-nhan-so-nguyen.concept.duong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.am-nhan-am-vi-du",
+        "caption": "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.dau-cua-tich",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (các bài 3.27 đến bài 3.29)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.duong",
+        "phep-nhan-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.dau-cua-tich-vi-du",
+        "caption": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.giao-hoan-ket-hop",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 2 và 3)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.thua-so",
+        "phep-nhan-so-nguyen.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.giao-hoan-ket-hop-vi-du",
+        "caption": "Trong một tích, ta được đổi chỗ các thừa số và nhóm các thừa số tuỳ ý."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.nhieu-thua-so",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 3), tr.56 (ví dụ 2), tr.57 (bài 3.34)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.thua-so",
+        "phep-nhan-so-nguyen.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
+        "caption": "Tích nhiều thừa số được tính từ trái sang phải, mỗi lần nhân hai số theo quy tắc dấu."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.phan-phoi",
+      "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 2)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.thua-so",
+        "phep-nhan-so-nguyen.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du",
+        "caption": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.gop-thua-so",
+      "sourceRef": "Sách bài tập tr.55 (ví dụ 1), tr.57 (bài 3.32)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.thua-so",
+        "phep-nhan-so-nguyen.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
+        "caption": "Khi các tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng các thừa số còn lại."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.tich-bang-0",
+      "sourceRef": "Sách bài tập tr.56 (ví dụ 3), tr.57 (bài 3.31)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.so-0",
+        "phep-nhan-so-nguyen.concept.tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.tich-bang-0-vi-du",
+        "caption": "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.card.bai-toan-thuc-te",
+      "sourceRef": "Sách bài tập tr.57 (bài 3.33)",
+      "conceptIds": [
+        "phep-nhan-so-nguyen.concept.duong",
+        "phep-nhan-so-nguyen.concept.am"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.tang-giam-vi-du",
+        "caption": "Thay đổi tổng cộng bằng thay đổi mỗi lần nhân với số lần. Số dương là tăng, số âm là giảm."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "phep-nhan-so-nguyen.ex.no-moi-ngay",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi ngày Nam nợ thêm 3 nghìn đồng. Sau 4 ngày, số tiền của Nam thay đổi bao nhiêu?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn phép tính đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nợ thêm 3 nghìn mỗi ngày là thay đổi −3 mỗi ngày. Lặp lại 4 ngày thì cộng bốn lần −3, được −12.",
+        "tex": "(-3) \\cdot  4 = (-3) + (-3) + (-3) + (-3) = -12",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Nợ thì tiền giảm, nên kết quả phải là số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "−3 + 4 chỉ cộng một lần, còn nợ lặp lại bốn lần."
+          },
+          {
+            "optionId": "d",
+            "text": "−7 là −3 cộng với −4, không phải bốn lần −3."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  4 = -12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  4 = 12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) + 4 = -12"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  4 = -7"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-am5-nhan3",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.cong-lap"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-5) \\cdot  3"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-am4-nhan2"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân với 3 là cộng lặp lại ba lần số −5. Ta được tích là số âm.",
+        "tex": "(-5) \\cdot  3 = (-5) + (-5) + (-5) = \\concept{pink}{-15}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -15
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-5)·3"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tich-am6",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.cong-lap"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng −6."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính từng tích bằng cách cộng lặp lại. (−6) · 1 = −6 và (−1) · 6 = −6.",
+        "tex": "\\begin{gathered} (-6) \\cdot  1 = -6 \\\\ (-1) \\cdot  6 = -6 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "−2 lấy 4 lần là −8, chưa phải −6."
+          },
+          {
+            "optionId": "d",
+            "text": "−3 lấy 3 lần là −9, chưa phải −6."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-6) \\cdot  1"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-1) \\cdot  6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  3"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "-6"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.nhiet-do-giam-3",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.cong-lap"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi giờ nhiệt độ giảm 4 độ. Sau 3 giờ, nhiệt độ thay đổi bao nhiêu độ?"
+        },
+        {
+          "type": "note",
+          "text": "Ghi bằng số nguyên."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Giảm 4 độ mỗi giờ là thay đổi −4 độ mỗi giờ. Lặp lại 3 giờ thì (−4) · 3 = −12 độ.",
+        "tex": "(-4) \\cdot  3 = (-4) + (-4) + (-4) = \\concept{pink}{-12}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -12
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-4)·3"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.di-trai-am3-nhan2",
+      "type": "manipulate",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.cong-lap"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính (−3) · 2. Bấm mũi tên để đưa điểm tới tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Mỗi lần bấm sang trái đi 3 đơn vị, bấm 2 lần. Từ 0 đi 3 rồi 3 nữa thì tới −6."
+      },
+      "visualId": "phep-nhan-so-nguyen.visual.thu-am3-nhan2",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": -6
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tich-bang-0-nao",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn phép nhân có tích bằng 0."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số nào nhân với 0 cũng bằng 0, kể cả số âm.",
+        "tex": "(-8) \\cdot  0 = \\concept{slate}{0}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Nhân với 1 giữ nguyên số, được −8."
+          },
+          {
+            "optionId": "c",
+            "text": "8 · 1 = 8, hai thừa số đều khác 0."
+          },
+          {
+            "optionId": "d",
+            "text": "(−1) · 8 = −8, hai thừa số đều khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-8) \\cdot  0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-8) \\cdot  1"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "8 \\cdot  1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-1) \\cdot  8"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "equal",
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-0-nhan-am9",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhan-voi-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "0 \\cdot  (-9)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "0 nhân với số nào cũng bằng 0, kể cả số âm.",
+        "tex": "0 \\cdot  (-9) = \\concept{slate}{0}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "0·(-9)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tich-0",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhan-voi-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng 0."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích có một thừa số bằng 0 thì bằng 0. Đó là (−5) · 0 và 0 · 12.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "(−5) · 1 = −5, không có thừa số nào bằng 0."
+          },
+          {
+            "optionId": "d",
+            "text": "12 · 1 = 12, không có thừa số nào bằng 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "0 \\cdot  12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "12 \\cdot  1"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tui-ke-trong",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhan-voi-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một túi có 0 viên kẹo, Nam có 7 túi như vậy. Nam có bao nhiêu viên kẹo?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số kẹo là 7 · 0. Số nào nhân với 0 cũng bằng 0.",
+        "tex": "7 \\cdot  0 = \\concept{slate}{0}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "7·0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.quy-luat-4-nhan",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát quy luật của các tích. Tích 4 · (−1) bằng bao nhiêu?"
+        },
+        {
+          "type": "formula",
+          "tex": "\\begin{gathered} 4 \\cdot  3 = 12 \\\\ 4 \\cdot  2 = 8 \\\\ 4 \\cdot  1 = 4 \\\\ 4 \\cdot  0 = 0 \\end{gathered}"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Mỗi dòng đi xuống, thừa số thứ hai giảm 1 và tích giảm 4. Từ 4 · 0 = 0 đi xuống một dòng thì 0 − 4 = −4.",
+        "tex": "4 \\cdot  (-1) = 0 - 4 = \\concept{pink}{-4}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Từ 0 mà giảm 4 thì tới −4, không quay lại 4."
+          },
+          {
+            "optionId": "c",
+            "text": "−1 là thừa số thứ hai, không phải tích."
+          },
+          {
+            "optionId": "d",
+            "text": "Tích phải giảm tiếp 4 nữa, không đứng yên ở 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "4·(-1)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-5-nhan-am2",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.duong-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "5 \\cdot  (-2)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-5-nhan-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thừa số thứ hai giảm 1 thì tích giảm 5. Từ 5 · 0 = 0, ta có 5 · (−1) = −5 và 5 · (−2) = −10.",
+        "tex": "5 \\cdot  (-2) = \\concept{pink}{-10}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -10
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "5·(-2)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-7-nhan-am3",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.duong-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "7 \\cdot  (-3)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số dương nhân với số âm thì tích là số âm. Nhân hai phần số tự nhiên: 7 · 3 = 21, nên tích là −21.",
+        "tex": "7 \\cdot  (-3) = \\concept{pink}{-21}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -21
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "7·(-3)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-so-sanh-am",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.duong-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các so sánh đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số dương nhân với số âm cho tích âm, nhỏ hơn 0. Vậy 3 · (−4) = −12 và 6 · (−1) = −6 đều nhỏ hơn 0.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "2 · 5 = 10, là số dương nên không nhỏ hơn 0."
+          },
+          {
+            "optionId": "d",
+            "text": "5 · 0 = 0, không nhỏ hơn 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot  (-4) < 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot  5 < 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot  (-1) < 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot  0 < 0"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.thu-4-nhan-am2",
+      "type": "manipulate",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.duong-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm 4 · (−2). Bấm mũi tên xuống để giảm thừa số thứ hai tới −2, rồi đọc tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Mỗi lần bấm, thừa số thứ hai giảm 1 và tích giảm 4. Tới −2 thì tích là −8."
+      },
+      "visualId": "phep-nhan-so-nguyen.visual.thu-4-nhan-am2",
+      "validatorId": "dat-thua-so",
+      "params": {
+        "n": -2
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dau-tich-khac-dau",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số khác dấu thì tích là số âm. Nhân hai phần số tự nhiên: 6 · 5 = 30, nên tích là −30.",
+        "tex": "(-6) \\cdot  5 = \\concept{pink}{-30}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai số khác dấu thì tích là số âm, không phải số dương."
+          },
+          {
+            "optionId": "c",
+            "text": "−1 là 5 cộng với −6, không phải tích."
+          },
+          {
+            "optionId": "d",
+            "text": "6 · (−5) cũng khác dấu nên tích là −30, không phải 30."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-6) \\cdot  5 = -30"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-6) \\cdot  5 = 30"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-6) \\cdot  5 = -1"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot  (-5) = 30"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-8-nhan-am4",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.khac-dau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "8 \\cdot  (-4)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-khac-dau-9-nhan-am2"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số khác dấu nên tích là số âm. Nhân hai phần số tự nhiên 8 · 4 = 32, rồi viết dấu − ở trước.",
+        "tex": "8 \\cdot  (-4) = -(8 \\cdot  4) = \\concept{pink}{-32}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -32
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "8·(-4)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-am9-nhan3",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.khac-dau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-9) \\cdot  3"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số khác dấu nên tích là số âm. 9 · 3 = 27, nên tích là −27.",
+        "tex": "(-9) \\cdot  3 = \\concept{pink}{-27}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -27
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-9)·3"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.no-5-nghin-6-ngay",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.khac-dau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi ngày Hà nợ thêm 5 nghìn đồng. Sau 6 ngày, số tiền của Hà thay đổi bao nhiêu nghìn đồng?"
+        },
+        {
+          "type": "note",
+          "text": "Ghi bằng số nguyên."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nợ thêm 5 nghìn mỗi ngày là thay đổi −5 mỗi ngày. Sau 6 ngày thay đổi (−5) · 6 = −30 nghìn đồng.",
+        "tex": "(-5) \\cdot  6 = \\concept{pink}{-30}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -30
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-5)·6"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tich-am12",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.khac-dau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng −12."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số khác dấu thì tích là số âm. (−3) · 4 = −12 và 6 · (−2) = −12.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "3 · 4 = 12 là số dương."
+          },
+          {
+            "optionId": "d",
+            "text": "(−2) · 5 = −10, chưa phải −12."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot  (-2)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot  4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  5"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "-12"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.xep-tich-khac-dau",
+      "type": "order",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.khac-dau"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính rồi xếp các tích sau từ bé đến lớn."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính từng tích: 3 · (−4) = −12, (−2) · 5 = −10, (−1) · 6 = −6. Số âm càng gần 0 thì càng lớn.",
+        "tex": "-12 < -10 < -6"
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "formula",
+            "tex": "3 \\cdot  (-4)"
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  5"
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "formula",
+            "tex": "(-1) \\cdot  6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dau-tich-am-am",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phép tính nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số âm nhân với nhau thì tích là số dương. Nhân hai phần số tự nhiên: 7 · 2 = 14.",
+        "tex": "(-7) \\cdot  (-2) = \\concept{lime}{14}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai số âm nhân với nhau cho tích dương, không phải âm."
+          },
+          {
+            "optionId": "c",
+            "text": "−9 là −7 cộng với −2, không phải tích."
+          },
+          {
+            "optionId": "d",
+            "text": "9 là 7 cộng 2, còn nhân thì 7 · 2 = 14."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-7) \\cdot  (-2) = 14"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-7) \\cdot  (-2) = -14"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-7) \\cdot  (-2) = -9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-7) \\cdot  (-2) = 9"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-am6-nhan-am3",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.am-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-6) \\cdot  (-3)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-am5-nhan-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số âm nhân với nhau thì tích là số dương. 6 · 3 = 18, nên tích là 18.",
+        "tex": "(-6) \\cdot  (-3) = \\concept{lime}{18}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 18
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-6)·(-3)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-am5-nhan-am5",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.am-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-5) \\cdot  (-5)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số âm nhân với nhau thì tích là số dương. 5 · 5 = 25.",
+        "tex": "(-5) \\cdot  (-5) = \\concept{lime}{25}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 25
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-5)·(-5)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tich-12",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.am-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng 12."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số âm nhân với nhau cho tích dương: (−3) · (−4) = 12 và (−2) · (−6) = 12.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Hai số khác dấu cho tích âm: (−3) · 4 = −12."
+          },
+          {
+            "optionId": "d",
+            "text": "Hai số khác dấu cho tích âm: 2 · (−6) = −12."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  (-4)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  (-6)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "2 \\cdot  (-6)"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "12"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.nhiet-do-cach-day-3",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.am-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nhiệt độ giảm đều 3 độ mỗi giờ. Cách đây 2 giờ, nhiệt độ cao hơn bây giờ bao nhiêu độ?"
+        },
+        {
+          "type": "formula",
+          "tex": "(-3) \\cdot  (-2)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số âm nhân với nhau thì tích là số dương. 3 · 2 = 6, nên cách đây 2 giờ nhiệt độ cao hơn 6 độ.",
+        "tex": "(-3) \\cdot  (-2) = \\concept{lime}{6}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-3)·(-2)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.thu-am4-nhan-am2",
+      "type": "manipulate",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.am-nhan-am"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm (−4) · (−2). Bấm mũi tên xuống để giảm thừa số thứ hai tới −2, rồi đọc tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Mỗi lần bấm, thừa số thứ hai giảm 1 và tích tăng 4. Tới −2 thì tích là 8."
+      },
+      "visualId": "phep-nhan-so-nguyen.visual.thu-am4-nhan-am2",
+      "validatorId": "dat-thua-so",
+      "params": {
+        "n": -2
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.so-sanh-voi-0",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh tích với 0 mà không cần tính. Cách viết nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "(−5) và 8 khác dấu nên tích là số âm, nhỏ hơn 0. Không cần nhân ra.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai số khác dấu cho tích âm, không lớn hơn 0."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai số âm cùng dấu nên tích dương, không nhỏ hơn 0."
+          },
+          {
+            "optionId": "d",
+            "text": "Hai số dương cùng dấu nên tích dương, không nhỏ hơn 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  8 < 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  8 > 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  (-8) < 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot  8 < 0"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-so-sanh-dung",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.dau-cua-tich"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Không cần tính tích, chọn tất cả các so sánh đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Chỉ cần xét dấu của hai thừa số. (−7) · (−9) cùng dấu nên dương, (−12) · 4 khác dấu nên âm.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "15 và −8 khác dấu nên tích âm, không lớn hơn 0."
+          },
+          {
+            "optionId": "d",
+            "text": "6 và 11 cùng dấu nên tích dương, không nhỏ hơn 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-7) \\cdot  (-9) > 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "15 \\cdot  (-8) > 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-12) \\cdot  4 < 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot  11 < 0"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.noi-tich-voi-ket-qua",
+      "type": "match",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.dau-cua-tich"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi phép nhân với tích của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Xét dấu trước: khác dấu cho tích âm, cùng dấu cho tích dương, có 0 thì tích bằng 0. Rồi nhân hai phần số tự nhiên."
+      },
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "formula",
+            "tex": "(-4) \\cdot  3"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "formula",
+            "tex": "5 \\cdot  (-2)"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  (-3)"
+          }
+        },
+        {
+          "id": "l4",
+          "content": {
+            "type": "formula",
+            "tex": "0 \\cdot  (-6)"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "formula",
+            "tex": "9"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "formula",
+            "tex": "-10"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "formula",
+            "tex": "-12"
+          }
+        },
+        {
+          "id": "r5",
+          "content": {
+            "type": "formula",
+            "tex": "12"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r4"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r1"
+        },
+        {
+          "left": "l4",
+          "right": "r3"
+        }
+      ],
+      "answer": null
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.b-dau-gi",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.dau-cua-tich"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho a là số nguyên âm. Biết tích a · b là số dương."
+        },
+        {
+          "type": "note",
+          "text": "Hỏi b là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số âm nhân với số âm mới cho tích dương. Vậy b phải là số âm.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số âm nhân với số dương cho tích âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Nhân với 0 cho tích bằng 0, không phải số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên âm"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên dương"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số 0"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dien-dau-tich",
+      "type": "fillBlank",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.dau-cua-tich"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số cùng dấu cho tích dương, hai số khác dấu cho tích âm. Hai số âm cùng dấu, còn số âm và số dương khác dấu."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Tích của hai số âm là số "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": [
+            "dương"
+          ]
+        },
+        {
+          "type": "text",
+          "text": ". Tích của một số âm và một số dương là số "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": [
+            "âm"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": [
+        "dương",
+        "âm",
+        "0"
+      ]
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.so-sanh-hai-tich",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.dau-cua-tich"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh hai tích (−4) · 5 và 3 · (−6). Cách viết nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính từng tích: (−4) · 5 = −20 và 3 · (−6) = −18. Trên trục số, −20 nằm bên trái −18 nên nhỏ hơn.",
+        "tex": "-20 < -18",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "−20 nằm bên trái −18, nên −20 không lớn hơn."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai tích là −20 và −18, không bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-4) \\cdot  5 < 3 \\cdot  (-6)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-4) \\cdot  5 > 3 \\cdot  (-6)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-4) \\cdot  5 = 3 \\cdot  (-6)"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-nhanh-am4-3-am5",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhanh bằng cách đổi chỗ các thừa số."
+        },
+        {
+          "type": "formula",
+          "tex": "(-4) \\cdot  3 \\cdot  (-5)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-ghep-nhanh"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đổi chỗ để nhân hai số âm trước: (−4) · (−5) = 20. Rồi 20 · 3 = 60.",
+        "tex": "\\begin{gathered} (-4) \\cdot  3 \\cdot  (-5) = (-4) \\cdot  (-5) \\cdot  3 \\\\ = 20 \\cdot  3 = \\concept{lime}{60} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 60
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-4)·3·(-5)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-nhanh-am25-3-am4",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính nhanh bằng cách đổi chỗ các thừa số."
+        },
+        {
+          "type": "formula",
+          "tex": "(-25) \\cdot  3 \\cdot  (-4)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đổi chỗ để nhân (−25) với (−4) trước, được 100. Rồi 100 · 3 = 300.",
+        "tex": "\\begin{gathered} (-25) \\cdot  3 \\cdot  (-4) = (-25) \\cdot  (-4) \\cdot  3 \\\\ = 100 \\cdot  3 = \\concept{lime}{300} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 300
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-25)·3·(-4)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-bang-tich",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng (−2) · (−3) · 5."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích (−2) · (−3) · 5 bằng 30. Nhóm (−2) · (−3) thành 6 thì được 6 · 5 = 30, và đổi chỗ các thừa số thì tích vẫn là 30.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "(−2) · 15 = −30, vì nhóm sai: bỏ mất dấu của −3."
+          },
+          {
+            "optionId": "d",
+            "text": "(−2) · 3 · 5 = −30, vì đã đổi dấu của −3 thành 3."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  5 \\cdot  (-2)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "6 \\cdot  5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  15"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  3 \\cdot  5"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "(-2)·(-3)·5"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dien-so-ket-hop",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số vào ô trống."
+        },
+        {
+          "type": "formula",
+          "tex": "(-4) \\cdot  5 \\cdot  (-2) = 8 \\cdot  \\square"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đổi chỗ để nhân (−4) với (−2) trước, được 8. Thừa số còn lại là 5.",
+        "tex": "(-4) \\cdot  5 \\cdot  (-2) = (-4) \\cdot  (-2) \\cdot  5 = 8 \\cdot  5"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "5"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.thung-hop-banh",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có 3 thùng, mỗi thùng 5 hộp, mỗi hộp 4 cái bánh. Có tất cả bao nhiêu cái bánh?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhóm hai thừa số đầu: 3 · 5 = 15 hộp. Rồi 15 · 4 = 60 cái bánh.",
+        "tex": "3 \\cdot  5 \\cdot  4 = 15 \\cdot  4 = 60"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 60
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "3·5·4"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dau-tich-ba-so",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Không cần tính, tích (−3) · (−2) · (−5) là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân (−3) với (−2) trước: được 6, là số dương. Rồi 6 · (−5) khác dấu nên tích là số âm.",
+        "tex": "(-3) \\cdot  (-2) \\cdot  (-5) = 6 \\cdot  (-5) = \\concept{pink}{-30}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai số âm cho tích dương, nhưng còn nhân thêm với số âm nữa."
+          },
+          {
+            "optionId": "c",
+            "text": "Không có thừa số nào bằng 0, nên tích khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số âm"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số dương"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số 0"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-am3-2-am5",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhieu-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-3) \\cdot  2 \\cdot  (-5)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-nhan-tung-cap"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhân hai số đầu: (−3) · 2 = −6. Rồi (−6) · (−5) = 30.",
+        "tex": "(-3) \\cdot  2 \\cdot  (-5) = -6 \\cdot  (-5) = \\concept{lime}{30}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-3)·2·(-5)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tich-duong",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhieu-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các so sánh đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đếm thừa số âm: hai số âm cho tích dương, một số âm cho tích âm. Vậy (−4) · (−1) · 3 > 0 và (−2) · 3 · 4 < 0 là hai so sánh đúng.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Có ba thừa số âm, là số lẻ, nên tích là số âm."
+          },
+          {
+            "optionId": "d",
+            "text": "Có bốn thừa số âm, là số chẵn, nên tích là số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-4) \\cdot  (-1) \\cdot  3 > 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-1) \\cdot  (-4) \\cdot  (-3) > 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  3 \\cdot  4 < 0"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-2) \\cdot  (-2) \\cdot  (-2) \\cdot  (-2) < 0"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-3-so-am",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhieu-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-1) \\cdot  (-1) \\cdot  (-1)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân hai số đầu: (−1) · (−1) = 1. Rồi 1 · (−1) = −1.",
+        "tex": "(-1) \\cdot  (-1) \\cdot  (-1) = 1 \\cdot  (-1) = \\concept{pink}{-1}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -1
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-1)·(-1)·(-1)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-co-0",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhieu-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "(-7) \\cdot  5 \\cdot  0"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Có một thừa số bằng 0 thì tích bằng 0. Nhân hai số đầu được −35, rồi nhân với 0 vẫn bằng 0.",
+        "tex": "(-7) \\cdot  5 \\cdot  0 = \\concept{slate}{0}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-7)·5·0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dem-hai-so-am",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.nhieu-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tích của bốn số khác 0 có đúng hai số âm. Tích đó là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số âm nhân với nhau cho tích dương. Nhân tiếp với hai số dương, tích vẫn là số dương.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Có hai thừa số âm, là số chẵn, nên tích không âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Cả bốn số đều khác 0 nên tích khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số dương"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số âm"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số 0"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dung-phan-phoi",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cách viết nào đúng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân 4 với từng số hạng 3 và 5, rồi cộng hai tích lại. Cả hai vế đều bằng 32.",
+        "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 + 4 \\cdot  5 = 12 + 20 = 32",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Mới nhân 4 với số hạng 3, còn số hạng 5 chưa được nhân với 4."
+          },
+          {
+            "optionId": "c",
+            "text": "Đổi dấu cộng thành dấu nhân làm kết quả thành 60."
+          },
+          {
+            "optionId": "d",
+            "text": "Bỏ mất phép nhân với 4, vế phải chỉ còn 12."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 + 4 \\cdot  5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 + 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 \\cdot  5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "4 \\cdot  (3 + 5) = 4 + 3 + 5"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-am3-nhan-tong",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.phan-phoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính bằng cách nhân với từng số hạng."
+        },
+        {
+          "type": "formula",
+          "tex": "(-3) \\cdot  (4 + 2)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-phan-phoi"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhân (−3) với từng số hạng: (−3) · 4 = −12 và (−3) · 2 = −6. Rồi cộng hai tích: −12 + (−6) = −18.",
+        "tex": "(-3) \\cdot  (4 + 2) = (-3) \\cdot  4 + (-3) \\cdot  2 = \\concept{pink}{-18}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -18
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-3)·(4+2)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dien-so-phan-phoi",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.phan-phoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền số vào ô trống."
+        },
+        {
+          "type": "formula",
+          "tex": "5 \\cdot  (2 + 3) = 5 \\cdot  2 + 5 \\cdot  \\square"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số 5 được nhân với từng số hạng của tổng 2 + 3. Số hạng còn lại là 3.",
+        "tex": "5 \\cdot  (2 + 3) = 5 \\cdot  2 + 5 \\cdot  3"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "3"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-bang-phan-phoi",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.phan-phoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các cách viết bằng (−5) · (1 + 3)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tổng 1 + 3 bằng 4, nên (−5) · 4 = −20. Nhân (−5) với từng số hạng rồi cộng cũng được −20.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Mới nhân (−5) với số hạng 1, còn số hạng 3 chưa được nhân."
+          },
+          {
+            "optionId": "d",
+            "text": "Đổi dấu cộng thành dấu nhân, được −15."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  1 + (-5) \\cdot  3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  1 + 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-5) \\cdot  1 \\cdot  3"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "(-5)·(1+3)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-4-nhan-tong-am",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.phan-phoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "4 \\cdot  [(-5) + 2]"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính trong ngoặc trước: (−5) + 2 = −3. Rồi 4 · (−3) = −12.",
+        "tex": "4 \\cdot  [(-5) + 2] = 4 \\cdot  (-3) = \\concept{pink}{-12}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -12
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "4·((-5)+2)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.gop-6-am3-am7",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hợp lí bằng cách đưa thừa số chung ra ngoài."
+        },
+        {
+          "type": "formula",
+          "tex": "6 \\cdot  (-3) + 6 \\cdot  (-7)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-gop-thua-so"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thừa số chung là 6. Cộng hai số còn lại: (−3) + (−7) = −10. Rồi 6 · (−10) = −60.",
+        "tex": "6 \\cdot  (-3) + 6 \\cdot  (-7) = 6 \\cdot  [(-3) + (-7)] = \\concept{pink}{-60}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -60
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "6·(-3)+6·(-7)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-hop-li-am4",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.gop-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "(-4) \\cdot  6 + (-4) \\cdot  4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Thừa số chung là (−4). Cộng hai số còn lại: 6 + 4 = 10. Rồi (−4) · 10 = −40.",
+        "tex": "(-4) \\cdot  6 + (-4) \\cdot  4 = (-4) \\cdot  (6 + 4) = \\concept{pink}{-40}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -40
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-4)·6+(-4)·4"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dien-so-gop",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.gop-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đưa thừa số chung ra ngoài rồi điền số vào ô trống."
+        },
+        {
+          "type": "formula",
+          "tex": "5 \\cdot  (-4) + 5 \\cdot  (-6) = 5 \\cdot  (\\square)"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Thừa số chung là 5. Số trong ngoặc là tổng của hai số còn lại: (−4) + (−6) = −10.",
+        "tex": "5 \\cdot  (-4) + 5 \\cdot  (-6) = 5 \\cdot  [(-4) + (-6)] = 5 \\cdot  (\\concept{pink}{-10})"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -10
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-4)+(-6)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-gop-am7",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.gop-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "(-7) \\cdot  3 + (-7) \\cdot  2"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Thừa số chung là (−7). Cộng hai số còn lại: 3 + 2 = 5. Rồi (−7) · 5 = −35.",
+        "tex": "(-7) \\cdot  3 + (-7) \\cdot  2 = (-7) \\cdot  5 = \\concept{pink}{-35}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -35
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-7)·3+(-7)·2"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tinh-gop-doi-cho",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.gop-thua-so"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đổi chỗ một thừa số rồi tính hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "2 \\cdot  (-9) + (-9) \\cdot  8"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đổi 2 · (−9) thành (−9) · 2 để thấy thừa số chung (−9). Rồi (−9) · (2 + 8) = (−9) · 10 = −90.",
+        "tex": "2 \\cdot  (-9) + (-9) \\cdot  8 = (-9) \\cdot  (2 + 8) = \\concept{pink}{-90}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -90
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "2·(-9)+(-9)·8"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.biet-tich-0",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết a · b = 0 và a = 7. Số b bằng bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tích bằng 0 thì có một thừa số bằng 0. Vì a = 7 khác 0 nên b phải bằng 0.",
+        "tex": "7 \\cdot  b = 0 → b = \\concept{slate}{0}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "7 · 7 = 49, không bằng 0."
+          },
+          {
+            "optionId": "c",
+            "text": "7 · (−7) = −49, không bằng 0."
+          },
+          {
+            "optionId": "d",
+            "text": "7 · 1 = 7, không bằng 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "1"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tim-x-5-nhan",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.tich-bang-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "5 \\cdot  (x + 3) = 0"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Thừa số 5 khác 0 nên x + 3 phải bằng 0. Số cộng với 3 được 0 là số đối của 3, tức là −3.",
+        "tex": "x + 3 = 0 → x = \\concept{pink}{-3}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -3
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-3"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tim-x-duong",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.tich-bang-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên dương x, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "(x - 4) \\cdot  (x + 1) = 0"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Một trong hai thừa số bằng 0: x − 4 = 0 cho x = 4, còn x + 1 = 0 cho x = −1. Chỉ 4 là số dương.",
+        "tex": "x - 4 = 0 → x = \\concept{lime}{4}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "4"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.tim-x-am",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.tich-bang-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x nhỏ hơn 0, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "(x - 6) \\cdot  (x + 2) = 0"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Một trong hai thừa số bằng 0: x − 6 = 0 cho x = 6, còn x + 2 = 0 cho x = −2. Chỉ −2 nhỏ hơn 0.",
+        "tex": "x + 2 = 0 → x = \\concept{pink}{-2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -2
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-2"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tich-bang-0",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.tich-bang-0"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tích bằng 0."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích có một thừa số bằng 0 thì bằng 0. Hai tích (−3) · 0 · 5 và 0 · (−4) · (−2) đều có thừa số 0.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Không có thừa số nào bằng 0, tích là −15."
+          },
+          {
+            "optionId": "d",
+            "text": "Không có thừa số nào bằng 0, tích là 15."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  0 \\cdot  5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "0 \\cdot  (-4) \\cdot  (-2)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  1 \\cdot  5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "(-3) \\cdot  (-1) \\cdot  5"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "multiple": true,
+      "check": {
+        "relation": "equal",
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.nhiet-do-giam-4-gio",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi giờ nhiệt độ giảm 2 độ. Sau 5 giờ, nhiệt độ thay đổi bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Giảm 2 độ mỗi giờ là thay đổi −2 độ mỗi giờ. Sau 5 giờ, thay đổi (−2) · 5 = −10 độ.",
+        "tex": "(-2) \\cdot  5 = \\concept{pink}{-10}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Nhiệt độ giảm nên thay đổi là số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "−7 là −2 cộng với −5, không phải năm lần −2."
+          },
+          {
+            "optionId": "d",
+            "text": "3 là −2 cộng với 5, không phải năm lần −2."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-10"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "10"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "3"
+          }
+        }
+      ],
+      "answer": [
+        "a"
+      ],
+      "multiple": false,
+      "check": {
+        "expr": "(-2)·5"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.vai-20-bo",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Xí nghiệp may 20 bộ quần áo. Mỗi bộ dùng ít đi 3 dm vải, tức là x = −3."
+        },
+        {
+          "type": "note",
+          "text": "Số vải cả 20 bộ thay đổi bao nhiêu dm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Số vải cả 20 bộ thay đổi 20 · (−3) = −60 dm. Số âm nghĩa là số vải ít đi 60 dm.",
+        "tex": "20 \\cdot  (-3) = \\concept{pink}{-60}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -60
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "20·(-3)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.thang-may-xuong",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Thang máy xuống 2 tầng mỗi lần, xuống 4 lần. Đi xuống ghi là số âm."
+        },
+        {
+          "type": "note",
+          "text": "Số tầng của thang máy thay đổi bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Mỗi lần thay đổi −2 tầng, lặp lại 4 lần. Ta có (−2) · 4 = −8 tầng.",
+        "tex": "(-2) \\cdot  4 = \\concept{pink}{-8}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -8
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-2)·4"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.chon-tinh-huong-am",
+      "type": "choice",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các tình huống mà thay đổi tổng cộng là số âm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Giảm hay nợ thêm là thay đổi âm, nhân với số lần vẫn ra số âm. Tăng thêm hay tiết kiệm thêm là thay đổi dương.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tiết kiệm thêm là thay đổi dương, nên tổng cộng là số dương."
+          },
+          {
+            "optionId": "d",
+            "text": "Cây cao thêm là thay đổi dương, nên tổng cộng là số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Nhiệt độ giảm 2 độ mỗi giờ, trong 5 giờ"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Mỗi ngày tiết kiệm thêm 3 nghìn đồng, trong 4 ngày"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Mỗi tháng nợ thêm 2 triệu đồng, trong 3 tháng"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Cây cao thêm 2 cm mỗi tuần, trong 3 tuần"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.cach-day-3-gio",
+      "type": "numeric",
+      "cardIds": [
+        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nhiệt độ tăng đều 2 độ mỗi giờ. Cách đây 3 giờ, nhiệt độ thay đổi so với bây giờ bao nhiêu độ?"
+        },
+        {
+          "type": "note",
+          "text": "Tính 2 · (−3)."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cách đây 3 giờ là −3 giờ. Nhiệt độ thay đổi 2 · (−3) = −6 độ, tức là thấp hơn bây giờ 6 độ.",
+        "tex": "2 \\cdot  (-3) = \\concept{pink}{-6}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -6
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "2·(-3)"
+      }
+    }
+  ],
+  "sticker": {
+    "name": "Huy hiệu nhân số nguyên",
+    "visualId": "phep-nhan-so-nguyen.visual.sticker"
+  }
+}
