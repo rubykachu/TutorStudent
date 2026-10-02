@@ -2,28 +2,20 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import { PACING, PAUSE, PAUSE_MAX, PROJECTS_DIR } from "../../video/config";
 import {
-  CHECKPOINT_AFTER,
-  PACING,
-  PAUSE,
-  PAUSE_MAX,
-  PROJECTS_DIR,
-} from "../../video/config";
-import {
-  checkpointIssues,
   pacingExemptVideos,
   pacingIssues,
   pauseGapIssues,
 } from "../../video/lib/consistency";
 import type { SentenceTake } from "../../video/lib/narrate";
 import { type VideoScript, VideoScriptSchema } from "../../video/lib/script";
-import { buildCheckpoints, schedule } from "../../video/lib/timeline";
+import { schedule } from "../../video/lib/timeline";
 
 type S = {
   text: string;
   rule?: true;
   pause?: "think" | "ask";
-  checkpoint?: true;
 };
 
 function script(...scenes: S[][]): VideoScript {
@@ -41,17 +33,17 @@ const GOOD = () =>
   script(
     [{ text: "Chào bạn!" }, { text: "Bạn thử đoán xem.", pause: "ask" }],
     [
-      { text: "Đáp án là sáu.", checkpoint: true },
+      { text: "Đáp án là sáu." },
       { text: "Một ý.", rule: true, pause: "think" },
       { text: "Hai ý." },
       { text: "Ba ý." },
-      { text: "Cuối cùng.", checkpoint: true },
+      { text: "Cuối cùng." },
       { text: "Nhớ nhé.", rule: true },
     ],
   );
 
 describe("script fields", () => {
-  it("accepts pause and checkpoint, rejects other pauses", () => {
+  it("accepts pause, rejects other pauses", () => {
     expect(VideoScriptSchema.parse(GOOD()).scenes[0]?.sentences[1]?.pause).toBe(
       "ask",
     );
@@ -100,27 +92,6 @@ describe("pacingIssues", () => {
     if (ask) ask.pause = "think";
     expect(pacingIssues(noAsk).join("\n")).toContain("ask");
   });
-
-  it("wants 1 to 4 checkpoints, 3 sentences apart", () => {
-    const none = GOOD();
-    for (const sc of none.scenes)
-      for (const x of sc.sentences) delete x.checkpoint;
-    expect(pacingIssues(none).join("\n")).toContain("0 checkpoints");
-    const close = GOOD();
-    const near = close.scenes[1]?.sentences[1];
-    if (near) near.checkpoint = true;
-    expect(pacingIssues(close).join("\n")).toContain("apart");
-  });
-});
-
-describe("checkpointIssues", () => {
-  it("rejects a checkpoint on the last sentence", () => {
-    const s = GOOD();
-    const last = s.scenes[1]?.sentences.at(-1);
-    if (last) last.checkpoint = true;
-    expect(checkpointIssues(s)).toHaveLength(1);
-    expect(checkpointIssues(GOOD())).toEqual([]);
-  });
 });
 
 const take = (sceneId: string, text: string): SentenceTake => ({
@@ -158,44 +129,6 @@ describe("schedule with pauses", () => {
   });
 });
 
-describe("buildCheckpoints", () => {
-  const s = script([
-    { text: "Một.", checkpoint: true },
-    { text: "Hai.", checkpoint: true },
-    { text: "Ba." },
-  ]);
-  const takes = ["Một.", "Hai.", "Ba."].map((t) => take("s1", t));
-
-  it("stops just after each flagged sentence, from the previous stop", () => {
-    const timeline = schedule(takes, [[], [], []]);
-    const cps = buildCheckpoints(s, timeline) ?? [];
-    expect(cps.map((c) => c.id)).toEqual(["cp-01", "cp-02"]);
-    expect(cps[0]).toEqual({
-      id: "cp-01",
-      at:
-        Math.round(
-          ((timeline.sentences[0]?.end ?? 0) + CHECKPOINT_AFTER) * 1000,
-        ) / 1000,
-      from: 0,
-    });
-    expect(cps[1]?.from).toBe(cps[0]?.at);
-  });
-
-  it("records nothing for a script without checkpoints", () => {
-    const plain = script([{ text: "Một." }, { text: "Hai." }]);
-    expect(
-      buildCheckpoints(plain, schedule(takes.slice(0, 2), [[], []])),
-    ).toBeUndefined();
-  });
-
-  it("refuses a checkpoint on the last sentence", () => {
-    const bad = script([{ text: "Một." }, { text: "Hai.", checkpoint: true }]);
-    expect(() =>
-      buildCheckpoints(bad, schedule(takes.slice(0, 2), [[], []])),
-    ).toThrow(/last/);
-  });
-});
-
 describe("pauseGapIssues", () => {
   const s = script([
     { text: "Bạn thử đoán xem.", pause: "ask" },
@@ -226,7 +159,6 @@ describe("the script template", () => {
       ),
     );
     expect(pacingIssues(template)).toEqual([]);
-    expect(checkpointIssues(template)).toEqual([]);
   });
 });
 

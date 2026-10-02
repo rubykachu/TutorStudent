@@ -13,7 +13,6 @@ import { buildSite } from "./lib/compose";
 import {
   captionIssues,
   checkProject,
-  checkpointIssues,
   openingIssues,
   pacingExemptVideos,
   pacingIssues,
@@ -24,7 +23,6 @@ import { narrate } from "./lib/narrate";
 import { encodeVideo, extractPoster, renderSite } from "./lib/render";
 import { readScript } from "./lib/script";
 import {
-  buildCheckpoints,
   buildClips,
   buildVtt,
   compositionTiming,
@@ -54,12 +52,9 @@ async function main() {
       `script.json must quote the lesson word for word:\n${verbatim.join("\n")}`,
     );
   }
-  const pacing = [
-    ...checkpointIssues(script),
-    ...(pacingExemptVideos().has(`${lessonId}/${name}`)
-      ? []
-      : pacingIssues(script)),
-  ];
+  const pacing = pacingExemptVideos().has(`${lessonId}/${name}`)
+    ? []
+    : pacingIssues(script);
   if (pacing.length > 0) {
     throw new Error(
       `the script's pacing is off (see the lesson-video skill):\n${pacing.join("\n")}`,
@@ -146,7 +141,6 @@ async function main() {
   }
 
   const media = `video/${lessonId}/${name}`;
-  const checkpoints = buildCheckpoints(script, timeline);
   const file = writeManifest(lessonId, {
     id: `${lessonId}.video.${name}`,
     lessonId,
@@ -156,7 +150,6 @@ async function main() {
     durationSec: duration,
     clips: buildClips(script, timeline),
     voice: engine.voice(voice.preset),
-    ...(checkpoints ? { checkpoints } : {}),
   });
 
   const report = {

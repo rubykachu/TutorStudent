@@ -26,8 +26,6 @@ const SentenceSchema = z.object({
   // PAUSE.ask): "think" after a key reveal, "ask" after a question the child
   // should try before the answer shows.
   pause: z.enum(["think", "ask"]).optional(),
-  // The player stops after this sentence until the child presses "Tiếp".
-  checkpoint: z.literal(true).optional(),
 });
 
 const SceneSchema = z.object({

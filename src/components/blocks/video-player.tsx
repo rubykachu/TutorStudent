@@ -2,10 +2,6 @@
 
 import { Captions, CaptionsOff, LoaderCircle, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import {
-  CheckpointControls,
-  CheckpointVeil,
-} from "@/components/blocks/video-checkpoint";
 import { parseKaraokeCue, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import type { Video } from "@/schema/content";
@@ -27,10 +23,13 @@ const CLIP_END_SLACK_S = 0.05;
 
 // A lesson video. It never starts on its own (with sound or without, reduced
 // motion or not): the child taps the big play button, and the native
-// controls take over for pausing and seeking. Captions are on by default and
-// drawn by the page, large and with the spoken word highlighted, from the
-// karaoke timestamps in the WebVTT track; when the video goes native
-// fullscreen (where the page cannot draw) the browser shows the track itself.
+// controls take over for pausing and seeking. It never stops by itself
+// either: only the child pauses. Captions are on by default and drawn by the
+// page, large and with the spoken word highlighted, from the karaoke
+// timestamps in the WebVTT track: over the picture's bottom on a wide screen,
+// in a strip under the picture on a phone (where an overlay would cover the
+// picture and the native controls). When the video goes native fullscreen
+// (where the page cannot draw) the browser shows the track itself.
 export function VideoPlayer({
   video,
   clip,
@@ -46,76 +45,6 @@ export function VideoPlayer({
   const [captionsOn, setCaptionsOn] = useState(true);
   const [cue, setCue] = useState<TimedWord[]>([]);
   const [spoken, setSpoken] = useState(-1);
-  // Checkpoints stop the whole video only; a clip is already a short piece.
-  const checkpoints = clip ? undefined : video.checkpoints;
-  // Index of the checkpoint the video waits at, or null while it plays.
-  const [stop, setStop] = useState<number | null>(null);
-  // Where playback was at the last look, to tell playing across a checkpoint
-  // from jumping past it.
-  const lastTime = useRef(0);
-  const seeking = useRef(false);
-
-  // Pauses the video when playback crosses a checkpoint. Run every frame
-  // while playing and on `timeupdate`; a jump (seek) never counts.
-  const checkCheckpoint = () => {
-    const element = videoRef.current;
-    if (!element || !checkpoints || seeking.current) return;
-    const t = element.currentTime;
-    const before = lastTime.current;
-    lastTime.current = t;
-    const at = checkpoints.findIndex((c) => c.at > before && c.at <= t);
-    const hit = checkpoints[at];
-    if (!hit) return;
-    element.pause();
-    element.currentTime = hit.at;
-    lastTime.current = hit.at;
-    setStop(at);
-  };
-  const checkRef = useRef(checkCheckpoint);
-  checkRef.current = checkCheckpoint;
-
-  useEffect(() => {
-    const element = videoRef.current;
-    if (!element || !checkpoints) return;
-    let frame = 0;
-    const tick = () => {
-      checkRef.current();
-      if (!element.paused) frame = requestAnimationFrame(tick);
-    };
-    const onPlaying = () => {
-      setStop(null);
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(tick);
-    };
-    const onSeeking = () => {
-      seeking.current = true;
-    };
-    const onSeeked = () => {
-      seeking.current = false;
-      lastTime.current = element.currentTime;
-    };
-    element.addEventListener("play", onPlaying);
-    element.addEventListener("seeking", onSeeking);
-    element.addEventListener("seeked", onSeeked);
-    return () => {
-      cancelAnimationFrame(frame);
-      element.removeEventListener("play", onPlaying);
-      element.removeEventListener("seeking", onSeeking);
-      element.removeEventListener("seeked", onSeeked);
-    };
-  }, [checkpoints]);
-
-  const resumeAt = (time: number | undefined) => {
-    const element = videoRef.current;
-    if (!element) return;
-    if (time !== undefined) {
-      element.currentTime = time;
-      lastTime.current = time;
-    }
-    setStop(null);
-    Promise.resolve(element.play()).catch(() => undefined);
-  };
-
   // The track stays "hidden" (not `default`, which WebKit draws) so its cues
   // load and fire events without the browser drawing them over ours.
   useEffect(() => {
@@ -196,7 +125,6 @@ export function VideoPlayer({
   };
 
   const onTimeUpdate = () => {
-    checkCheckpoint();
     const element = videoRef.current;
     if (clip && element && element.currentTime >= clip.end) element.pause();
   };
@@ -270,14 +198,17 @@ export function VideoPlayer({
             </span>
           </span>
         )}
-        {stop !== null && <CheckpointVeil />}
-        {captionsOn && cue.length > 0 && stop === null && (
+        {captionsOn && (
           <p
             data-video-caption
             aria-hidden
-            className={`pointer-events-none absolute inset-x-3 flex justify-center ${started ? "bottom-14" : "bottom-3"}`}
+            // Phone: a strip of its own below the picture, tall enough for two
+            // lines so the card does not jump between cues. From `md`: over
+            // the bottom of the picture, above the native controls once they
+            // show.
+            className={`flex min-h-16 items-center justify-center px-3 py-2 md:pointer-events-none md:absolute md:inset-x-3 md:min-h-0 md:p-0 ${started ? "md:bottom-14" : "md:bottom-3"}`}
           >
-            <span className="max-w-[90%] rounded-md bg-foreground/85 px-3 py-1 text-center font-semibold text-caption text-surface md:text-block-lg">
+            <span className="max-w-full text-center font-semibold text-caption text-surface md:max-w-[90%] md:rounded-md md:bg-foreground/85 md:px-3 md:py-1 md:text-block-lg">
               {cue.map((word, i) => (
                 <span
                   // Words of one cue never reorder.
@@ -299,28 +230,19 @@ export function VideoPlayer({
           </p>
         )}
       </div>
-      {stop !== null && checkpoints ? (
-        <CheckpointControls
-          index={stop}
-          total={checkpoints.length}
-          onContinue={() => resumeAt(undefined)}
-          onReplay={() => resumeAt(checkpoints[stop]?.from)}
-        />
-      ) : (
-        <button
-          type="button"
-          aria-pressed={captionsOn}
-          onClick={() => setCaptionsOn((on) => !on)}
-          className="mt-3 inline-flex min-h-12 items-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold text-body text-foreground"
-        >
-          {captionsOn ? (
-            <Captions aria-hidden className="size-6" />
-          ) : (
-            <CaptionsOff aria-hidden className="size-6" />
-          )}
-          {captionsOn ? "Phụ đề: bật" : "Phụ đề: tắt"}
-        </button>
-      )}
+      <button
+        type="button"
+        aria-pressed={captionsOn}
+        onClick={() => setCaptionsOn((on) => !on)}
+        className="mt-3 inline-flex min-h-12 items-center gap-2 rounded-lg border-2 border-border bg-surface px-4 font-semibold text-body text-foreground"
+      >
+        {captionsOn ? (
+          <Captions aria-hidden className="size-6" />
+        ) : (
+          <CaptionsOff aria-hidden className="size-6" />
+        )}
+        {captionsOn ? "Phụ đề: bật" : "Phụ đề: tắt"}
+      </button>
     </div>
   );
 }

@@ -20,8 +20,7 @@
           "text": "Chuỗi thứ nhất có hai hạt 3."
         },
         {
-          "text": "Chuỗi thứ hai có bốn hạt 3.",
-          "checkpoint": true
+          "text": "Chuỗi thứ hai có bốn hạt 3."
         }
       ]
     },
@@ -40,8 +39,7 @@
           "pause": "think"
         },
         {
-          "text": "Vậy 3 mũ 2 nhân 3 mũ 4 bằng 3 mũ 6.",
-          "checkpoint": true
+          "text": "Vậy 3 mũ 2 nhân 3 mũ 4 bằng 3 mũ 6."
         }
       ]
     },

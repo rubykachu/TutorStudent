@@ -604,18 +604,15 @@ export const VideoSchema = z.object({
     }),
   ),
   voice: SpokenVoiceSchema,
-  // Moments where the player pauses by itself and waits for the child
-  // ("Tiếp" to go on, "Xem lại đoạn này" to see the part again). Written by
-  // `pnpm video:build` from the script's checkpoint sentences; a video
-  // without them plays straight through.
+  // Legacy: older builds recorded points where the player stopped. The player
+  // ignores them and nothing writes them any more; the field stays only
+  // because published lessons still carry it inside their reviewed hash,
+  // and the next build of such a video drops it.
   checkpoints: z
     .array(
       z.object({
         id: LocalIdSchema,
-        // Where the player stops, in seconds into the video.
         at: z.number().positive(),
-        // Where "Xem lại đoạn này" restarts: the previous checkpoint's
-        // resume point (0 for the first).
         from: z.number().nonnegative(),
       }),
     )

@@ -45,33 +45,36 @@ export function withVideo(cardId: string): LessonPatch {
 
 // A 10 s test picture (a running clock) standing in for the fixture video,
 // so the player can really play, pause and seek without media files.
-const DEMO_VIDEO = path.join(
-  import.meta.dirname,
-  "assets",
-  "checkpoint-demo.mp4",
-);
+const DEMO_VIDEO = path.join(import.meta.dirname, "assets", "video-demo.mp4");
 export const DEMO_VIDEO_SECONDS = 10;
-// Where the demo video waits for the child: after 3 s and after 6.5 s.
-export const DEMO_CHECKPOINTS = [
-  { id: "cp-01", at: 3, from: 0 },
-  { id: "cp-02", at: 6.5, from: 3 },
-];
+// Karaoke captions of the demo picture: one cue of seven words from 0.5 s to
+// 9.5 s, so a caption is on screen while the video plays.
+const DEMO_CAPTIONS = `WEBVTT
 
-// The fixture video of `withVideo`, with the demo picture's length and
-// checkpoints.
-export function withCheckpointVideo(cardId: string): LessonPatch {
+1
+00:00:00.500 --> 00:00:09.500
+Một <00:00:01.500>hai <00:00:02.500>ba <00:00:03.500>bốn <00:00:04.500>năm <00:00:05.500>sáu <00:00:06.500>bảy
+`;
+
+// The fixture video of `withVideo`, with the demo picture's length.
+export function withDemoVideo(cardId: string): LessonPatch {
   return (lesson) => {
     withVideo(cardId)(lesson);
     const video = lesson.videos?.[0];
-    if (!video) return;
-    video.durationSec = DEMO_VIDEO_SECONDS;
-    video.checkpoints = DEMO_CHECKPOINTS;
+    if (video) video.durationSec = DEMO_VIDEO_SECONDS;
   };
 }
 
-// Serves the demo picture for the fixture video, answering byte-range
-// requests the way a media server does, which seeking needs.
+// Serves the demo picture and its captions for the fixture video, answering
+// byte-range requests the way a media server does, which seeking needs.
 export async function serveDemoVideo(page: Page) {
+  await page.route("**/media/video/fixture/gioi-thieu.vtt", (route) =>
+    route.fulfill({
+      status: 200,
+      headers: { "Content-Type": "text/vtt; charset=utf-8" },
+      body: DEMO_CAPTIONS,
+    }),
+  );
   const file = readFileSync(DEMO_VIDEO);
   await page.route("**/media/video/fixture/gioi-thieu.mp4", (route) => {
     const range = /bytes=(\d+)-(\d*)/.exec(

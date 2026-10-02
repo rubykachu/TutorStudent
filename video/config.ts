@@ -56,15 +56,7 @@ export const PAUSE = {
 export const PACING = {
   maxSentences: 16,
   maxWordsPerSentence: 12,
-  minCheckpoints: 1,
-  maxCheckpoints: 4,
-  // Sentences between two checkpoints, at least.
-  minSentencesBetweenCheckpoints: 3,
 };
-// The player stops this long after a checkpoint sentence ends; the next
-// sentence must start at least CHECKPOINT_MARGIN later still.
-export const CHECKPOINT_AFTER = 0.3;
-export const CHECKPOINT_MARGIN = 0.3;
 // Videos built before the pacing rules, one "<lesson>/<name>" each.
 export const PACING_EXEMPT_FILE = path.join(VIDEO_DIR, "pacing-exempt.json");
 // A caption shows at most this many words, so it fits two lines on a phone.

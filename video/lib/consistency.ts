@@ -151,19 +151,8 @@ const flatSentences = (script: VideoScript) =>
     scene.sentences.map((sentence) => ({ scene: scene.id, ...sentence })),
   );
 
-// Rules of any video: a checkpoint stops the player after its sentence, so
-// the video cannot end on one.
-export function checkpointIssues(script: VideoScript): string[] {
-  const flat = flatSentences(script);
-  const last = flat.at(-1);
-  return last?.checkpoint
-    ? [`the last sentence cannot be a checkpoint: "${last.text}"`]
-    : [];
-}
-
 // Pacing of a new video for a slow, low-focus child: short, one idea per
-// sentence, a pause after each key reveal, a question before a reveal, and
-// stops where the child sets the pace.
+// sentence, a pause after each key reveal, and a question before a reveal.
 export function pacingIssues(script: VideoScript): string[] {
   const flat = flatSentences(script);
   const issues: string[] = [];
@@ -199,26 +188,6 @@ export function pacingIssues(script: VideoScript): string[] {
       'no sentence is flagged `pause: "ask"`: ask the child to guess ("Bạn thử đoán xem…") before the reveal',
     );
   }
-  const stops = flat.flatMap((s, i) => (s.checkpoint ? [i] : []));
-  if (
-    stops.length < PACING.minCheckpoints ||
-    stops.length > PACING.maxCheckpoints
-  ) {
-    issues.push(
-      `${stops.length} checkpoints (need ${PACING.minCheckpoints} to ${PACING.maxCheckpoints})`,
-    );
-  }
-  stops.forEach((at, k) => {
-    const before = stops[k - 1];
-    if (
-      before !== undefined &&
-      at - before < PACING.minSentencesBetweenCheckpoints
-    ) {
-      issues.push(
-        `checkpoints after sentences ${before + 1} and ${at + 1} are less than ${PACING.minSentencesBetweenCheckpoints} sentences apart`,
-      );
-    }
-  });
   return issues;
 }
 
@@ -471,7 +440,6 @@ export function checkProject(
       );
     }
   }
-  result.issues.push(...checkpointIssues(script));
   if (!pacingExemptVideos().has(`${lessonId}/${name}`)) {
     result.issues.push(...pacingIssues(script));
   }

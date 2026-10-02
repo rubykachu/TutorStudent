@@ -192,7 +192,7 @@ Khi khung "Giải thích" hiện, trang được kéo lên đủ để cả khun
 | `StickerSheet` | Bảng chi tiết một sticker: hình (bóng xám nếu chưa nhận), tên, bài, tiến độ, cách nhận, nút mở bài |
 | `TipCard` | Thẻ mẹo (`src/components/blocks/tip-card.tsx`): viền 3px `--color-tip`, nền `--color-tip-soft`, nhãn tròn đặc "Mẹo làm nhanh" (tia chớp) / "Mẹo hiểu nhanh" (bóng đèn) / "Mẹo tránh sai" (khiên) — loại mẹo luôn có cả chữ lẫn biểu tượng —, tên dạng bài in đậm (Baloo), câu mẹo, công thức trong ô trắng, hình trong ô trắng. Là một màn của player (không bọc thêm thẻ) và là mỗi thẻ ở trang "Mẹo hay" |
 | `ExplanationPanel` | Khung "Giải thích" / "Lời giải" dưới câu đã trả lời, xem mục 7 |
-| `CheckpointVeil`, `CheckpointControls` | Video dừng ở điểm dừng: lớp phủ `--color-foreground` mờ 70% với dấu tạm dừng tròn trên hình, và dưới hình hai nút lớn cao 56/64px xếp dọc: "Xem tiếp" (chính) và "Xem lại đoạn này" (phụ), nhãn "Dừng lại một chút · Đoạn n/N". Nút không đặt tên "Tiếp" để không lẫn với nút rời màn |
+| `VideoPlayer` caption | Phụ đề karaoke: dưới 768 px một dải `min-h-16` nền `--color-foreground` ngay dưới hình, trong khung video; từ 768 px đè đáy hình trên nền mờ 85%, cao hơn thanh điều khiển gốc khi đã phát. Video không tự dừng, không có lớp phủ |
 | `ExerciseFrame` | Khung chung cho 8 dạng bài: đề, vùng trả lời, nút "Kiểm tra", vùng gợi ý, trạng thái 3 nấc |
 | `NumberPad` | Khối số 3 cột (phím 0 trải ngang hàng cuối) + cột phụ Xoá / "mũ" / "," — phím "," chỉ hiện khi đáp án có số thập phân; phím 64px (60px ở iPad ngang). Khi nấc 2/3 có hình, bàn phím tạm ẩn để hình vào đúng chỗ, chạm ô đáp số để mở lại |
 | `PassageReader` | Hiển thị văn bản đọc hiểu, chạm từng câu để chọn, ghi chú "Theo dõi" dạng thẻ nhỏ bên lề (iPad) hoặc dưới đoạn (điện thoại) |

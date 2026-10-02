@@ -119,82 +119,30 @@ describe("VideoPlayer", () => {
   });
 });
 
-describe("checkpoints", () => {
-  const WITH_STOPS: Video = {
-    ...VIDEO,
-    checkpoints: [
-      { id: "cp-01", at: 10, from: 0 },
-      { id: "cp-02", at: 25, from: 10 },
-    ],
-  };
-
-  function setup(video: Video = WITH_STOPS, clip?: Video["clips"][number]) {
-    const { container } = render(<VideoPlayer video={video} clip={clip} />);
+describe("playing through", () => {
+  it("never pauses by itself, wherever playback goes", () => {
+    const { container } = render(<VideoPlayer video={VIDEO} />);
     const element = videoElement(container);
     element.pause = vi.fn();
-    element.play = vi.fn(() => Promise.resolve());
     fireEvent.play(element);
-    return element;
-  }
-  const at = (element: HTMLVideoElement, time: number) => {
-    element.currentTime = time;
-    fireEvent.timeUpdate(element);
-  };
-
-  it("pauses where playback crosses a checkpoint and waits for the child", () => {
-    const element = setup();
-    at(element, 9);
-    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
-    at(element, 10.2);
-    expect(element.pause).toHaveBeenCalled();
-    expect(element.currentTime).toBe(10);
-    expect(screen.getByRole("button", { name: "Xem tiếp" })).toBeVisible();
-    expect(screen.getByText("Đoạn 1/2")).toBeVisible();
-  });
-
-  it("goes on past the checkpoint with Xem tiếp, and stops at the next one", () => {
-    const element = setup();
-    at(element, 10.2);
-    fireEvent.click(screen.getByRole("button", { name: "Xem tiếp" }));
-    expect(element.play).toHaveBeenCalled();
-    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
-    at(element, 10.4);
-    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
-    at(element, 25.1);
-    expect(screen.getByText("Đoạn 2/2")).toBeVisible();
-  });
-
-  it("restarts the part from its start with Xem lại đoạn này", () => {
-    const element = setup();
-    at(element, 10.2);
-    at(element, 25.1);
-    fireEvent.click(screen.getByRole("button", { name: /Xem lại đoạn này/ }));
-    expect(element.currentTime).toBe(10);
-    expect(element.play).toHaveBeenCalled();
-    at(element, 25.2);
-    expect(screen.getByText("Đoạn 2/2")).toBeVisible();
-  });
-
-  it("does not stop when the child seeks past a checkpoint", () => {
-    const element = setup();
-    element.currentTime = 30;
-    fireEvent.seeking(element);
-    fireEvent.seeked(element);
-    at(element, 30.2);
+    for (const time of [3, 10, 25, 59]) {
+      element.currentTime = time;
+      fireEvent.timeUpdate(element);
+    }
     expect(element.pause).not.toHaveBeenCalled();
+    expect(container.querySelector("[data-video-checkpoint-veil]")).toBeNull();
     expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
+    // Only the native controls and the caption switch remain.
+    expect(screen.getAllByRole("button")).toHaveLength(1);
   });
 
-  it("ignores checkpoints while a clip plays", () => {
-    const element = setup(WITH_STOPS, { ...VIDEO.clips[0], end: 40 } as never);
-    at(element, 10.2);
-    expect(screen.queryByRole("button", { name: "Xem tiếp" })).toBeNull();
-  });
-
-  it("leaves a video without checkpoints alone", () => {
-    const element = setup(VIDEO);
-    at(element, 10.2);
-    expect(element.pause).not.toHaveBeenCalled();
+  it("keeps the caption inside the video card, and drops it when switched off", () => {
+    const { container } = render(<VideoPlayer video={VIDEO} />);
+    const card = container.querySelector("[data-block=video] > div");
+    const caption = container.querySelector("[data-video-caption]");
+    expect(caption?.parentElement).toBe(card);
+    fireEvent.click(screen.getByRole("button", { name: "Phụ đề: bật" }));
+    expect(container.querySelector("[data-video-caption]")).toBeNull();
   });
 });
 
