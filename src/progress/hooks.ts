@@ -25,6 +25,7 @@ import {
   listProfiles,
   listSectionProgress,
   listStickers,
+  localScope,
   markOverviewSeen,
   type ProfileRecord,
   putProfile,
@@ -58,7 +59,7 @@ export function resetAppDbForTesting(): void {
 }
 
 export function childScope(childId: string): ChildScope {
-  return { familyId: LOCAL_FAMILY_ID, childId };
+  return localScope(childId);
 }
 
 // `undefined` while the first read is in flight.

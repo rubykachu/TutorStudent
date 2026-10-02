@@ -1,5 +1,5 @@
 import "fake-indexeddb/auto";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import {
   awardSticker,
@@ -131,6 +131,43 @@ describe("resetLessonProgress", () => {
         settings: 1,
       },
     });
+  });
+
+  it("writes the reset marker with the reset time, only for that child and lesson", async () => {
+    await resetLessonProgress(db, kid, LESSON_ID, LATER);
+    expect(await db.lessonResets.toArray()).toEqual([
+      { ...kid, lessonId: LESSON_ID, at: LATER.toISOString() },
+    ]);
+  });
+
+  it("keeps the later marker when a lesson is reset again", async () => {
+    await resetLessonProgress(db, kid, LESSON_ID, LATER);
+    const earlier = await resetLessonProgress(db, kid, LESSON_ID, NOW);
+    expect(earlier.at).toBe(LATER.toISOString());
+    expect(await db.lessonResets.toArray()).toEqual([
+      { ...kid, lessonId: LESSON_ID, at: LATER.toISOString() },
+    ]);
+    const evenLater = new Date("2026-11-30T02:00:00Z");
+    await resetLessonProgress(db, kid, LESSON_ID, evenLater);
+    expect((await db.lessonResets.toArray())[0]?.at).toBe(
+      evenLater.toISOString(),
+    );
+  });
+
+  it("erases and marks in one transaction: a failing marker leaves the records", async () => {
+    const before = await recordsOf(kid, LESSON_ID);
+    expect(before.attempts.length).toBeGreaterThan(0);
+    vi.spyOn(db.lessonResets, "put").mockRejectedValueOnce(
+      new Error("disk full"),
+    );
+
+    await expect(
+      resetLessonProgress(db, kid, LESSON_ID, LATER),
+    ).rejects.toThrow("disk full");
+
+    expect(await recordsOf(kid, LESSON_ID)).toEqual(before);
+    expect(await db.lessonResets.count()).toBe(0);
+    vi.restoreAllMocks();
   });
 
   it("leaves other lessons and other children untouched", async () => {

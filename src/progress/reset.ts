@@ -107,14 +107,11 @@ export type LessonResetResult = {
 };
 
 // Deletes one child's progress of one lesson in a single transaction over
-// every table the policy erases, found from the schema (`db.tables`). Other
-// lessons, other children and the lesson's sticker are untouched.
-//
-// Sync hook: the returned result (child, lesson, time) is what the planned R2
-// sync must turn into a per-lesson reset marker, written in this same
-// transaction. Without it the merge rules (attempts united by id, the higher
-// section state wins) would bring the erased progress back from another
-// device. There is no sync code yet.
+// every table the policy erases, found from the schema (`db.tables`), and
+// writes the lesson's reset marker (`lessonResets`) in that same transaction,
+// so a failure leaves neither. Other lessons, other children and the lesson's
+// sticker are untouched. The marker is what sync turns into a tombstone, so
+// the erased records do not come back from another device.
 export async function resetLessonProgress(
   db: TutorDb,
   scope: ChildScope,
@@ -129,8 +126,9 @@ export async function resetLessonProgress(
   const erasing = db.tables.filter(
     (t) => LESSON_RESET_POLICY[t.name as TableName].kind === "erase",
   );
+  let at = now.toISOString();
   const erased: LessonResetResult["erased"] = {};
-  await db.transaction("rw", erasing, async () => {
+  await db.transaction("rw", [...erasing, db.lessonResets], async () => {
     for (const table of erasing) {
       const policy = LESSON_RESET_POLICY[table.name as TableName];
       if (policy.kind !== "erase") continue;
@@ -140,6 +138,15 @@ export async function resetLessonProgress(
         lessonId,
       });
     }
+    // A reset never moves an earlier marker back in time.
+    const key: [string, string, string] = [
+      scope.familyId,
+      scope.childId,
+      lessonId,
+    ];
+    const previous = await db.lessonResets.get(key);
+    if (previous && previous.at > at) at = previous.at;
+    await db.lessonResets.put({ ...scope, lessonId, at });
   });
-  return { scope, lessonId, at: now.toISOString(), erased };
+  return { scope, lessonId, at, erased };
 }

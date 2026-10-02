@@ -110,7 +110,11 @@ export type LessonResetRecord = ChildScope & { lessonId: string; at: string };
 // now differs has unsent changes. Bookkeeping of this device only; never
 // synced.
 export type SyncMonthState = {
+  // Hash of the whole month doc as last sent or applied.
   hash: string | null;
+  // Hash of each lesson's records of that doc as last sent or applied, so a
+  // lesson erased by a reset does not look like unsent changes.
+  parts: Record<string, string>;
   etag: string | null;
   applied: boolean;
 };
@@ -131,9 +135,21 @@ export const DEVICE_SCOPE: ChildScope = {
   familyId: LOCAL_FAMILY_ID,
   childId: "_device",
 };
+// The sync state of the family's profile doc is kept in `syncState` under
+// this reserved child id (generated child ids are hex, so it cannot collide).
+export const FAMILY_DOC_STATE_SCOPE: ChildScope = {
+  familyId: LOCAL_FAMILY_ID,
+  childId: "_family",
+};
 export const ACTIVE_PROFILE_KEY = "activeProfileId";
 // Per-child setting: false once the child turns the "ting" off; unset = on.
 export const SOUND_ENABLED_KEY = "soundEnabled";
+
+// The scope of a child's records on this device: they all live under the
+// local family id (`LOCAL_FAMILY_ID`), whichever family syncs them.
+export function localScope(childId: string): ChildScope {
+  return { familyId: LOCAL_FAMILY_ID, childId };
+}
 
 type ScopedKey = [string, string, string];
 
@@ -379,11 +395,12 @@ export async function markOverviewSeen(
   );
 }
 
-// Ids of the lessons whose overview this child has seen.
-export async function listOverviewsSeen(
+// Lesson id -> when this child last saw its overview. A mark stored as `true`
+// (older records) counts as seen at the epoch.
+export async function listOverviewSeenAt(
   db: TutorDb,
   scope: ChildScope,
-): Promise<string[]> {
+): Promise<Record<string, string>> {
   const records = await db.settings
     .where("[familyId+childId+key]")
     .between(
@@ -391,9 +408,23 @@ export async function listOverviewsSeen(
       [...scopeKey(scope), `${OVERVIEW_SEEN_PREFIX}\uffff`],
     )
     .toArray();
-  return records
-    .filter((r) => r.value === true || typeof r.value === "string")
-    .map((r) => r.key.slice(OVERVIEW_SEEN_PREFIX.length));
+  const seen: Record<string, string> = {};
+  for (const { key, value } of records) {
+    if (value === true)
+      seen[key.slice(OVERVIEW_SEEN_PREFIX.length)] = OVERVIEW_SEEN_LEGACY_AT;
+    else if (typeof value === "string") {
+      seen[key.slice(OVERVIEW_SEEN_PREFIX.length)] = value;
+    }
+  }
+  return seen;
+}
+
+// Ids of the lessons whose overview this child has seen.
+export async function listOverviewsSeen(
+  db: TutorDb,
+  scope: ChildScope,
+): Promise<string[]> {
+  return Object.keys(await listOverviewSeenAt(db, scope));
 }
 
 export async function setSetting(

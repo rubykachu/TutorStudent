@@ -1,10 +1,23 @@
 import { TIMEZONE } from "@/lib/config";
 
 let nowOverride: (() => Date) | null = null;
+// How far this device's clock is behind the server's (server minus device, in
+// milliseconds); 0 until the first sync has measured it.
+let clockOffsetMs = 0;
 
-// Every "current time" read goes through here so tests can pin the clock.
+// Every "current time" read goes through here so tests can pin the clock, and
+// so every time the app stores (answers, reviews, section progress, resets)
+// is on the server's clock rather than a device clock that may be wrong.
 export function now(): Date {
-  return nowOverride ? nowOverride() : new Date();
+  return nowOverride ? nowOverride() : new Date(Date.now() + clockOffsetMs);
+}
+
+export function setClockOffset(ms: number): void {
+  clockOffsetMs = ms;
+}
+
+export function getClockOffset(): number {
+  return clockOffsetMs;
 }
 
 export function setNowForTesting(fn: (() => Date) | null): void {
