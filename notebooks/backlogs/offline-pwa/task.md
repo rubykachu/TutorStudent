@@ -4,7 +4,26 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: built on the bran
 
 ## Handover
 
-Next: an independent review of the branch `offline-pwa` (worktree `scratchpad/offline/wt` of the overnight run), then the merge into `main`, then the owner's deploy and iPad check (`docs/operations.md`, "Kiểm trên iPad Safari" steps 9 and 10). Nothing is deployed or pushed. Review focus: `src/offline/sw-core.ts` (the worker's behaviour), `src/offline/update-controller.ts` (when a new build takes over), `src/access/gate.ts` (the one public path added), `scripts/offline-worker.ts` and the `pnpm build` order, the kill switch.
+Status after the independent review: merged into `main` with the worker OFF by default. Next: the owner turns it on (`NEXT_PUBLIC_OFFLINE_ENABLED=1` in Vercel Production, deploy) and runs the iPad check (`docs/operations.md`, "Bật offline", then "Kiểm trên iPad Safari" steps 9 and 10). Archive this folder once that check passes.
+
+### Independent review (fresh Opus session)
+
+No Critical. Fixed on the branch, each with unit tests:
+- High: Next adds `?dpl=<deployment id>` to build file URLs when the build has a deployment id (Vercel with Skew Protection). The precache lookup used path plus query, so offline every chunk and CSS file missed and the page could not start. `precacheLookupPath` drops the parameter; the lab now builds with `NEXT_DEPLOYMENT_ID` so the offline E2E covers it (78 `?dpl=` asset URLs on the home page, scenario 1 green).
+- High (rollout): WebKit is untested, so `src/offline/flags.ts` adds `NEXT_PUBLIC_OFFLINE_ENABLED`. Unset: no registration, any registration removed, `/sw.js` is the retiring worker, the parent line says "chưa bật". The kill switch wins over it.
+- Medium, fixed: a navigation copied with the `no-cache` init by an engine that refuses the copy would fail every network-first page fetch and serve every page from the precache; the init is now used only when the copy works.
+- Medium, fixed: an install racing the activation of a newer build could finish into a deleted cache and run with nothing stored; the install now fails when its cache is gone.
+
+Measured: 756 entries, 20.9 MB in the precache (pages 1.75 MB, build files 8.5 MB, the rest content, short sounds and public files), well under the 50 MB budget.
+
+Leftovers from the review (none blocks the merge, all matter only once the flag is on):
+- `/content/*.json` has no timeout: on wifi without internet the page comes from the precache after 3 s, but the lesson file waits for the browser's own network timeout. A long timeout (about 10 s) would bound it.
+- A failed install has no backoff: every update check (and every page load before the first install) downloads entries again until the failing one. A persistent failure (a page answering 404, quota) costs up to about 21 MB per attempt.
+- After the 3 s timeout the precached page of the old build runs with the network's newer lesson file.
+
+### Before the review
+
+Next (then): an independent review of the branch `offline-pwa` (worktree `scratchpad/offline/wt` of the overnight run), then the merge into `main`, then the owner's deploy and iPad check (`docs/operations.md`, "Kiểm trên iPad Safari" steps 9 and 10). Nothing is deployed or pushed. Review focus: `src/offline/sw-core.ts` (the worker's behaviour), `src/offline/update-controller.ts` (when a new build takes over), `src/access/gate.ts` (the one public path added), `scripts/offline-worker.ts` and the `pnpm build` order, the kill switch.
 
 Where the work lives: Tasks 1 to 3 and the lab were committed on `main` before the branch rule (listed under "Done"); everything from Task 4a on is on `offline-pwa`. `main` keeps only inert build-time modules and the lab; the `pnpm build` hook for the precache list was reverted on `main` and is part of the branch. When merging, `notebooks/backlogs/index.md` (touched on both sides) needs a hand merge.
 
