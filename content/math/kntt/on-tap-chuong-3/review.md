@@ -4,7 +4,7 @@
 - Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp (nhóm 1: `so-sanh`, `tap-hop-a`, `dau-tich-tong`, `dau-tich-hieu`; nhóm 2: `so-doi`, `tinh-abcd`, `thua-so-chung-3-43`, `thua-so-chung-3-44`, `tich-bang-0`; nhóm 3: `boi-trong-khoang`, `uoc-chung`, `bang-tich`, `bang-tong`, `overview`)
 - Nguồn đã đọc: `sources/math/on-tap-chuong-3/` - sbt-p60, sbt-p61, sbt-p62, sbt-p114 (Tổng hợp mở lại `sbt-p62.png` để kiểm dấu cuối 3.43, 3.44)
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (89 id chưa khoá)
-- Đọc hiểu (Haiku): chưa chạy ở vòng này; sẽ chạy trên chữ đổi (`.shots/review/on-tap-chuong-3/doc-hieu-r1-items.txt` cộng chữ đổi ở vòng này, lấy từ `pnpm content:diff`) trước `--approve`
+- Đọc hiểu (Haiku): lượt 1 trên 116 mục chữ đổi (108 mục của `doc-hieu-r1-items.txt` cộng chữ đổi khi sửa vòng 2): 98 Hiểu rõ / 18 Hiểu mơ hồ / 0 Khó hiểu; viết lại 18 mục, lượt 2: 16 / 2 / 0; viết lại 2 mục, lượt 3: 2 / 0 / 0. Kết quả: `.shots/review/on-tap-chuong-3/doc-hieu-r2.md`, `doc-hieu-r2-2.md`, `doc-hieu-r2-3.md` (không commit)
 - `lesson:walk`: 0 FAIL, 0 cảnh báo (ipad, phone, ipad-landscape), ảnh trong `.shots/walk/on-tap-chuong-3/` (chỉ ảnh chụp sau bản sửa vòng 1; thư mục còn lẫn ảnh cũ, xem "Việc còn lại")
 - Kết luận: 0 Nghiêm trọng, 8 Nên sửa, 14 Góp ý. Đạt về nội dung, chờ sửa Nên sửa và Đọc hiểu trước khi duyệt
 - Bản đã review: `3fed1377bf9fc45c1273d246c34c02831fb1b342ccfa7fd01d5da08686f4aae6` (`pnpm content:diff` so với bản này)
@@ -234,3 +234,9 @@ Không tính vào số Nên sửa, Góp ý của vòng này; cần tạo hình m
 - Nên sửa 6 (`bai-3-44a`): lời giải hai bước mỗi bước hai tích; `tex` sáu dòng theo review. Câu thứ hai tách ra, câu cuối "Gộp 32 · (−13) với 32 · (−7) trước, rồi đưa 32 ra ngoài." (giới hạn 25 từ).
 - Nên sửa 7 (`doi-thua-so-6`, `tru-hai-tich`): lời giải và lý do `b` dùng nguyên quy tắc "Muốn trừ một số, ta cộng với số đối của số đó"; bỏ câu "Số 10 · (−4) là số âm.".
 - Nên sửa 8 (`bai-3-43b`, `bai-3-44b`): thêm "." cuối `42 \cdot 3 - 7 \cdot [(-34) + 18].` và dòng hai của 3.44b; thêm dòng ngoại lệ vào "Giả định" của `task.md`.
+
+## Đã sửa sau Đọc hiểu và kiểm phần đổi
+
+- 18 mục "Hiểu mơ hồ" viết lại (tác giả Sonnet): quy tắc bảng ba ô thành "Nếu ba ô liền nhau luôn có cùng tích khác 0 (cùng tổng), thì ô 1, ô 4, ô 7 có cùng một số.", dùng nguyên văn ở note `rule: true`, recap section và card của `bang-tich`, `bang-tong`, và lời giải `o-xa-*`; lời giải 3.48, 3.49 nêu thẳng các nhóm ô bằng nhau; lời giải 3.43a/b, 3.44a/b và mẹo `thua-so-chung-bi-giau` nói "đưa thừa số chung N ra ngoài dấu ngoặc, tức viết N · (...)".
+- Lời giải `bai-3-44a` thêm bước 71 · 64 = 71 · 2 · 32 = 142 · 32; lời giải 3.48 tách 6 · (−4) = −24 trước phép chia (hai mục còn mơ hồ ở lượt 2).
+- Kiểm phần đổi (Reviewer Sonnet, `.shots/review/on-tap-chuong-3/r2-fix-check.md`): 0 Nghiêm trọng, 2 Nên sửa, 5 Góp ý; mọi số trong lời giải tính lại đúng. Đã sửa cả hai Nên sửa: lời giải `o-xa-bang-tong` thêm "Cũng vậy, ô 2, ô 5, ô 8 có cùng một số"; lời giải 3.43a, 3.43b, 3.44a, 3.44b dùng nguyên văn "Muốn trừ một số, ta cộng với số đối của số đó" như `doi-thua-so-6`, `tru-hai-tich` và mẹo. Góp ý để tác giả cân nhắc sau.

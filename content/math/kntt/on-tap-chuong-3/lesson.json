@@ -494,7 +494,7 @@
           "id": "on-tap-chuong-3.tip.thua-so-chung-bi-giau",
           "kind": "làm nhanh",
           "title": "Tìm thừa số chung bị giấu",
-          "text": "Nhiều khi thừa số chung bị giấu trong một phép nhân dài, như 2 · 2 · (−5) ở ví dụ dưới đây. Hãy nhân thử hai thừa số đứng cạnh nhau: 2 · 2 = 4. Muốn trừ một số, ta cộng với số đối của số đó, nên 4 · 7 − 4 · (−5) thành 4 · 7 + 4 · 5.",
+          "text": "Nhiều khi thừa số chung bị giấu trong một phép nhân dài, như 2 · 2 · (−5) ở ví dụ dưới đây. Hãy nhân hai thừa số đứng cạnh nhau: 2 · 2 = 4, nên ta được 4 · 7 − 4 · (−5). Muốn trừ một số, ta cộng với số đối của số đó, nên biểu thức thành 4 · 7 + 4 · 5.",
           "tex": "\\begin{gathered} 4 \\cdot 7 - 2 \\cdot 2 \\cdot (-5) \\\\ = 4 \\cdot 7 - 4 \\cdot (-5) \\\\ = 4 \\cdot 7 + 4 \\cdot 5 \\\\ = 4 \\cdot (7 + 5) = 48 \\end{gathered}"
         },
         {
@@ -786,7 +786,7 @@
             },
             {
               "type": "note",
-              "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó.",
+              "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có cùng một số.",
               "rule": true
             }
           ]
@@ -809,7 +809,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chia-het-vi-du",
-        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q. Nếu ba ô liền nhau luôn có cùng tích khác 0, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó."
+        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q. Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có cùng một số."
       }
     },
     {
@@ -849,7 +849,7 @@
             },
             {
               "type": "note",
-              "text": "Nếu ba ô liền nhau luôn có cùng tổng, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó.",
+              "text": "Nếu ba ô liền nhau luôn có cùng tổng, thì ô 1, ô 4, ô 7 có cùng một số.",
               "rule": true
             }
           ]
@@ -872,7 +872,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-vi-du",
-        "caption": "Hai số đối nhau cộng lại thì được 0. Nếu ba ô liền nhau luôn có cùng tổng, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó."
+        "caption": "Hai số đối nhau cộng lại thì được 0. Nếu ba ô liền nhau luôn có cùng tổng, thì ô 1, ô 4, ô 7 có cùng một số."
       }
     }
   ],
@@ -1004,7 +1004,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chia-het-vi-du",
-        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q. Nếu ba ô liền nhau luôn có cùng tích khác 0, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó."
+        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q. Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có cùng một số."
       }
     },
     {
@@ -1014,7 +1014,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-vi-du",
-        "caption": "Hai số đối nhau cộng lại thì được 0. Nếu ba ô liền nhau luôn có cùng tổng, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó."
+        "caption": "Hai số đối nhau cộng lại thì được 0. Nếu ba ô liền nhau luôn có cùng tổng, thì ô 1, ô 4, ô 7 có cùng một số."
       }
     }
   ],
@@ -2376,16 +2376,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vì 2 · 3 = 6 nên cả hai phép nhân đều có thừa số 6. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 6 · (−5) là cộng 6 · 5. Sau đó đưa 6 ra ngoài.",
+        "text": "Vì 2 · 3 = 6 nên 6 · 4 − 2 · 3 · (−5) thành 6 · 4 − 6 · (−5). Muốn trừ một số, ta cộng với số đối của số đó, nên ta được 6 · 4 + 6 · 5. Sau đó đưa thừa số chung 6 ra ngoài dấu ngoặc, tức viết 6 · (4 + 5).",
         "tex": "\\begin{gathered} 6 \\cdot 4 - 6 \\cdot (-5) \\\\ = 6 \\cdot 4 + 6 \\cdot 5 \\\\ = 6 \\cdot (4 + 5) \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Trừ 6 · (−5) là cộng số đối của nó, là 6 · 5, nên trong ngoặc phải là 4 + 5, không phải 4 − 5."
+            "text": "Trừ 6 · (−5) cũng là cộng 6 · 5, nên trong ngoặc phải là 4 + 5, không phải 4 − 5."
           },
           {
             "optionId": "c",
-            "text": "Đưa 6 ra ngoài thì hai số còn lại nối nhau bằng dấu cộng, không nhân với nhau."
+            "text": "Khi đưa 6 ra ngoài dấu ngoặc, ta viết 6 · (4 + 5): hai số còn lại cộng với nhau chứ không nhân với nhau."
           },
           {
             "optionId": "d",
@@ -2489,7 +2489,7 @@
       "bookRef": "SBT 3.43a",
       "difficulty": 3,
       "explain": {
-        "text": "Vì 3 · 7 = 21 nên cả hai phép nhân đều có thừa số 21. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 21 · (−17) là cộng 21 · 17. Sau đó đưa 21 ra ngoài.",
+        "text": "Vì 3 · 7 = 21 nên 21 · 23 − 3 · 7 · (−17) thành 21 · 23 − 21 · (−17). Muốn trừ một số, ta cộng với số đối của số đó, nên ta được 21 · 23 + 21 · 17. Sau đó đưa thừa số chung 21 ra ngoài dấu ngoặc, tức viết 21 · (23 + 17).",
         "tex": "\\begin{gathered} 21 \\cdot 23 + 21 \\cdot 17 \\\\ = 21 \\cdot (23 + 17) \\\\ = 21 \\cdot 40 = 840 \\end{gathered}"
       },
       "type": "numeric",
@@ -2525,7 +2525,7 @@
       "bookRef": "SBT 3.43b",
       "difficulty": 3,
       "explain": {
-        "text": "Tính trong ngoặc trước, (−34) + 18 = −16, rồi tách 42 = 7 · 6 để 42 · 3 thành 7 · 18. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 7 · (−16) là cộng 7 · 16. Sau đó đưa 7 ra ngoài; tính thẳng cũng ra 238.",
+        "text": "Trong ngoặc, (−34) + 18 = −16; còn 42 = 7 · 6 nên 42 · 3 = 7 · 18. Muốn trừ một số, ta cộng với số đối của số đó, nên 7 · 18 − 7 · (−16) thành 7 · 18 + 7 · 16. Sau đó đưa thừa số chung 7 ra ngoài dấu ngoặc, tức viết 7 · (18 + 16) = 238.",
         "tex": "\\begin{gathered} 42 \\cdot 3 - 7 \\cdot (-16) \\\\ = 7 \\cdot 18 + 7 \\cdot 16 \\\\ = 7 \\cdot (18 + 16) \\\\ = 7 \\cdot 34 = 238 \\end{gathered}"
       },
       "type": "numeric",
@@ -2673,7 +2673,7 @@
       "bookRef": "SBT 3.44a",
       "difficulty": 3,
       "explain": {
-        "text": "Tách 64 = 2 · 32 thì 71 · 64 = 142 · 32. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 13 · 32 là cộng 32 · (−13). Gộp 32 · (−13) với 32 · (−7) trước, rồi đưa 32 ra ngoài.",
+        "text": "Vì 64 = 2 · 32 nên 71 · 64 = 71 · 2 · 32 = 142 · 32. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 13 · 32 là cộng 32 · (−13). Gộp (−7) + (−13) = −20, sau đó đưa thừa số chung 32 ra ngoài dấu ngoặc, tức viết 32 · [142 + (−20)].",
         "tex": "\\begin{gathered} 71 \\cdot 64 = 142 \\cdot 32 \\\\ 32 \\cdot (-7) + 32 \\cdot (-13) \\\\ = 32 \\cdot (-20) \\\\ 142 \\cdot 32 + 32 \\cdot (-20) \\\\ = 32 \\cdot [142 + (-20)] \\\\ = 32 \\cdot 122 = 3\\,904 \\end{gathered}"
       },
       "type": "numeric",
@@ -2709,7 +2709,7 @@
       "bookRef": "SBT 3.44b",
       "difficulty": 3,
       "explain": {
-        "text": "Tính hai ngoặc trước: 23 − 17 = 6 và 23 + 17 = 40. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 13 · 40 là cộng 13 · (−40). Sau đó đưa 13 ra ngoài.",
+        "text": "Trong hai ngoặc, 23 − 17 = 6 và 23 + 17 = 40. Muốn trừ một số, ta cộng với số đối của số đó, nên ta được 13 · 6 + 13 · (−40). Sau đó đưa thừa số chung 13 ra ngoài dấu ngoặc, tức viết 13 · [6 + (−40)].",
         "tex": "\\begin{gathered} 13 \\cdot 6 - 13 \\cdot 40 \\\\ = 13 \\cdot 6 + 13 \\cdot (-40) \\\\ = 13 \\cdot [6 + (-40)] \\\\ = 13 \\cdot (-34) = -442 \\end{gathered}"
       },
       "type": "numeric",
@@ -3518,7 +3518,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó. Ô 7 là 9 nên lùi 3 ô tới ô 4, rồi ô 1, cũng là 9."
+        "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có cùng một số. Ô 7 là 9, nên ô 4 và ô 1 cũng là 9."
       },
       "type": "numeric",
       "answer": {
@@ -3557,7 +3557,7 @@
       "bookRef": "SBT 3.48",
       "difficulty": 3,
       "explain": {
-        "text": "Từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó. Ô 10 là −4 nên ô 7, ô 4, ô 1 cũng là −4. Ô 3 là 6 nên ô 6, ô 9 cũng là 6; các ô còn lại bằng 120 chia cho tích của hai số đó.",
+        "text": "Ô 1, ô 4, ô 7, ô 10 có cùng một số; ô 3, ô 6, ô 9 cũng vậy. Ô 10 là −4 nên ô 1, ô 4, ô 7 cũng vậy; ô 3 là 6 nên ô 6, ô 9 cũng vậy. Ba ô liền nhau nhân lại bằng 120, mà 6 · (−4) = −24, nên mỗi ô còn lại là 120 : (−24) = −5.",
         "tex": "\\begin{gathered} 6 \\cdot (-4) = -24 \\\\ 120 : (-24) = -5 \\end{gathered}"
       },
       "type": "fillBlank",
@@ -3740,7 +3740,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Nếu ba ô liền nhau luôn có cùng tổng, thì từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó. Ô 8 là 5 nên lùi 3 ô tới ô 5, rồi ô 2, cũng là 5."
+        "text": "Nếu ba ô liền nhau luôn có cùng tổng, thì ô 1, ô 4, ô 7 có cùng một số. Cũng vậy, ô 2, ô 5, ô 8 có cùng một số; ô 8 là 5 nên ô 5 và ô 2 cũng là 5."
       },
       "type": "numeric",
       "answer": {
@@ -3779,7 +3779,7 @@
       "bookRef": "SBT 3.49",
       "difficulty": 3,
       "explain": {
-        "text": "Từ một ô, tiến hay lùi 3 ô sẽ gặp lại số đó. Ô 2 là −7 nên ô 5, ô 8, ô 11 cũng là −7. Ô 9 là 3 nên ô 3, ô 6 cũng là 3; (−7) + 3 = −4 nên ô còn lại là 4.",
+        "text": "Ô 2, ô 5, ô 8, ô 11 có cùng một số; ô 3, ô 6, ô 9 cũng vậy. Ô 2 là −7 nên ô 5, ô 8, ô 11 cũng vậy; ô 9 là 3 nên ô 3, ô 6 cũng vậy. Hai số đó cộng lại là (−7) + 3 = −4, nên mỗi ô còn lại là số đối của −4, tức 4.",
         "tex": "\\begin{gathered} (-7) + 3 = -4 \\\\ 4 + (-7) + 3 = 0 \\end{gathered}"
       },
       "type": "fillBlank",
