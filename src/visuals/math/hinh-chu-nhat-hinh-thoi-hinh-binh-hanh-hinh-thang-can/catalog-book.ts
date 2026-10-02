@@ -51,6 +51,10 @@ const DEFG = ["D", "E", "F", "G"] as const;
 const MNPQ = ["M", "N", "P", "Q"] as const;
 const EFHK = ["E", "F", "H", "K"] as const;
 
+// The figure without the names of its corners: three small figures side by
+// side have no room for writing of a readable size.
+const unnamed = (fig: FigureSpec): FigureSpec => ({ ...fig, names: [] });
+
 // The frames of a drawing, from the first side to the finished figure.
 const drawingSteps = (
   label: string,
@@ -85,19 +89,20 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     "Hình chữ nhật, hình thoi và hình bình hành vẽ xong",
     [
       {
-        figure: finished("rectangle", ABCD, { a: 4, b: 3 }, "Hình chữ nhật"),
+        figure: unnamed(
+          finished("rectangle", ABCD, { a: 4, b: 3 }, "Hình chữ nhật"),
+        ),
         caption: "Hình chữ nhật",
       },
       {
-        figure: finished("rhombus", ABCD, { side: 3, angle: 75 }, "Hình thoi"),
+        figure: unnamed(
+          finished("rhombus", ABCD, { side: 3, angle: 75 }, "Hình thoi"),
+        ),
         caption: "Hình thoi",
       },
       {
-        figure: finished(
-          "parallelogram",
-          ABCD,
-          { a: 5, b: 3 },
-          "Hình bình hành",
+        figure: unnamed(
+          finished("parallelogram", ABCD, { a: 5, b: 3 }, "Hình bình hành"),
         ),
         caption: "Hình bình hành",
       },

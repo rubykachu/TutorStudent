@@ -76,7 +76,8 @@ export function TapCards({
         {spec.items.map((item, i) => {
           const seen = seenAt(i);
           return (
-            <li key={item.name} className="flex min-w-0">
+            // biome-ignore lint/suspicious/noArrayIndexKey: two cards may carry the same name
+            <li key={i} className="flex min-w-0">
               <button
                 type="button"
                 className={`${CARD} ${seen ? CONCEPT_CLASSES[item.color].border : "border-border"}`}
