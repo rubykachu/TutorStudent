@@ -1070,8 +1070,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // two things to check beside it. It stays short: it shows under the six
   // shapes of the exercise and must fit on a phone screen above the buttons.
   "luc-giac-deu-goi-y": figure({
-    ...hex("Hình lục giác đều xoay nghiêng, các cạnh và các góc bằng nhau", {
-      ...ARCS,
+    ...hex("Hình lục giác đều xoay nghiêng, các cạnh bằng nhau", {
+      ticks: true,
       fill: "lime",
       turn: 15,
       w: 300,
@@ -1080,9 +1080,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       cy: 55,
       r: 46,
       texts: [
-        textAt(126, 30, "Đếm số cạnh.", "ink", "start"),
-        textAt(126, 58, "Các cạnh có", "ink", "start"),
-        textAt(126, 82, "bằng nhau không?", "ink", "start"),
+        textAt(126, 26, "Đếm số cạnh.", "ink", "start"),
+        textAt(126, 60, "Các cạnh có", "ink", "start"),
+        textAt(126, 90, "bằng nhau không?", "ink", "start"),
       ],
     }),
     maxScale: 1,
