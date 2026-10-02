@@ -15,8 +15,7 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 
 ### Next steps, in order
 
-1. Checkpoint A (build in a temp worktree, two-context check on port 3520, e2e learn/review/parent with `--workers=2`, flaky `e2e/unlock.spec.ts` if the fix is test-only).
-2. Task 14, Task 15, Task 16.
+1. Task 14, Task 15, Task 16. Checkpoint A is done (`b7883e7` fixed the flaky unlock E2E, test-only).
 
 ### Deviations from the spec
 
@@ -31,7 +30,6 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 ### Known flakes
 
 - `tests/scripts/sources-import.test.ts` can time out (5 s) when the whole suite runs under load; it passes alone.
-- `e2e/unlock.spec.ts` on iPad WebKit with `--workers=2`: "Vào học" not enabled in time (not investigated yet).
 
 ## Rules for every task
 
@@ -249,7 +247,25 @@ Files: `src/sync/history-pull.ts`, `src/sync/runner.tsx` (start the pull), `src/
 
 ### Checkpoint A
 
-- [ ] Owner can open two browsers (normal and private window) on a local gate server with the fs store and see progress move between them. Main session writes the exact commands into this file when it gets here.
+- [x] Owner can open two browsers (normal and private window) on a local gate server with the fs store and see progress move between them.
+
+Result (gate green, `pnpm build` passed in a temporary worktree, e2e learn, review and parent passed with `--workers=2` on `ipad` and `phone`, a scripted two-browser-context run passed: a section finished on A, its profile, main doc and month doc appeared in the store, B showed the profile and the section as done).
+
+By hand, in a temporary worktree so the owner's dev server keeps `.next`:
+
+```bash
+git worktree add --detach ../tutor-sync-check HEAD
+cd ../tutor-sync-check && pnpm install --frozen-lockfile
+CONTENT_INCLUDE_FIXTURE=1 pnpm content:emit
+CONTENT_INCLUDE_FIXTURE=1 SYNC_STORE=fs:/tmp/tutor-sync-store \
+  FAMILY_CODES=test-family:Sao-Bien-4k7m \
+  SESSION_SECRET=any-text-of-at-least-32-characters-here \
+  pnpm exec next dev --port 3520
+```
+
+Open `http://localhost:3520` in a normal window and in a private window, enter the code `Sao-Bien-4k7m` in each (a made-up code for this local run), create a profile and finish a section in the first, then open the second: the profile and the section appear within seconds. The folder `/tmp/tutor-sync-store/dev/progress/test-family/` holds the docs. Stop the server with Ctrl-C and run `git worktree remove --force ../tutor-sync-check`.
+
+The unlock E2E was flaky on iPad WebKit under `--workers=2`: text typed before the page hydrates stays in the field while React keeps an empty value, and typing the same text again fires no change event. The helper now empties the field before each retype; `e2e/unlock.spec.ts` passed 84 of 84 runs (six repeats on both targets).
 
 ## Slice 5: parent page
 
