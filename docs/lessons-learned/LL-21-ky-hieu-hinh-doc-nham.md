@@ -10,6 +10,7 @@ Một ký hiệu trang trí hay ký hiệu khái niệm (dấu hình của màu 
 - `on-tap-chuong-2` vòng 2: công thức ví dụ viết "số:" rồi phép tính (`1\,836:\ 1 + 8 = 9 \chiahet 3` ở `tip.chia-het-3`, `2\,133:\ ...` ở `tip.loai-hop-so-nhanh`, `461:\ ...` ở `explain` của `ex.tn2`, `30 < n < 50:\ n = 36,\ 48` ở hình `khoang-bcnn`). KaTeX in ":" có khoảng trắng như phép chia nên đọc thành "1 836 chia 1 cộng 8". Mẫu này do chính câu "Sửa" của review vòng 1 đề xuất. Trong TeX, ":" chỉ dùng cho phép chia; số đang xét và phép tính về nó đặt hai dòng (`gathered`) hoặc nói số trong `text`.
 - `cach-ghi-so-tu-nhien` vòng 1: hình chạm khe `gaps` vẽ khe đã chọn thành khung đen bo tròn cao bằng ô chữ số, đè lên chữ số hai bên, nên 8 152 đọc thành "8 0 1 5 2" ngay sau section dạy viết thêm chữ số 0. Ô được chọn nên hiện chính thứ bé vừa đặt (chữ số viết thêm), không là một hình rỗng có thể đọc thành ký hiệu.
 - `phep-cong-phep-tru-so-nguyen` vòng 1: nhãn màu sky (hình thập) "số đối của −5" hiện thành "✚ số đối của −5" trong bài dạy phép cộng, và nhãn slate (hình gạch ngang) "cộng với 0" hiện thành "− cộng với 0" ở mọi hình `rows`, `lines` của bài. Ảnh walk `phone/021-s2-02-block.png`.
+- `on-tap-chuong-3` vòng 1, `explain.tex` của `ex.uc-duong-12-20`: hai dòng "12 : 1, 2, 3, 4, 6, 12" và "20 : 1, 2, 4" vừa đọc thành phép chia, vừa khiến bé hiểu dòng dưới là đủ các ước của 20 (thiếu 5, 10, 20), vì dòng trên cùng dạng là đủ các ước của 12. Hai dòng cùng dạng trong một công thức phải cùng nghĩa; ý từng dòng nói trong `text`.
 
 ## Nguyên nhân gốc
 
