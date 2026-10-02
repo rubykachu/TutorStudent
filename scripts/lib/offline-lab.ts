@@ -11,7 +11,7 @@ import os from "node:os";
 import path from "node:path";
 import { parseArgs } from "node:util";
 import { OFFLINE_PORT, OFFLINE_SERVER_ENV } from "../../e2e/targets";
-import { type BundleFile, readBundle } from "./bundle-check";
+import { type BundleFile, readClientFiles } from "./bundle-check";
 import { ENV_FILE } from "./release-config";
 import { type Exec, parseEnvFile } from "./run";
 
@@ -206,9 +206,14 @@ export async function startLab(args: LabArgs, deps: LabDeps): Promise<Lab> {
     }
     run("build", ["pnpm", "build"], true);
 
-    const staticDir = path.join(worktree, ".next", "static");
     const origin = realMediaOrigin(mainRoot);
-    const naming = filesNamingOrigin(readBundle(staticDir), origin);
+    const naming = filesNamingOrigin(
+      readClientFiles(
+        path.join(worktree, ".next"),
+        path.join(worktree, "public"),
+      ),
+      origin,
+    );
     if (naming.length > 0) {
       throw new Error(
         `the client bundle names the real media origin (${naming.length} files): ${naming.slice(0, 3).join(", ")}`,

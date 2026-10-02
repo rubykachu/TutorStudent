@@ -1,10 +1,19 @@
 import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
+import { WORKER_PATH } from "@/offline/config";
 import type { AccessConfig } from "./env";
 import { verifySessionToken } from "./session";
 
 export const UNLOCK_PATH = "/unlock";
 export const SESSION_API_PATH = "/api/session";
 export const NEXT_PARAM = "next";
+
+// Files served without the cookie: the brand files above, and the service
+// worker script, which carries no family data and has to load on every update
+// check, which may run without the cookie.
+export const PUBLIC_FILE_PATHS: readonly string[] = [
+  ...BRAND_PUBLIC_PATHS,
+  WORKER_PATH,
+];
 
 // What the proxy does with one request.
 export type GateDecision =
@@ -46,7 +55,7 @@ export async function decideAccess(
   // The manifest, icons and share image are fetched before the app is open (by
   // a browser, or by a chat app's crawler with no cookie) and say nothing about
   // a family.
-  if (BRAND_PUBLIC_PATHS.includes(pathname)) return { kind: "allow" };
+  if (PUBLIC_FILE_PATHS.includes(pathname)) return { kind: "allow" };
 
   const unlocked =
     config.mode === "open" ||

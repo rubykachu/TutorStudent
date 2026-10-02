@@ -52,3 +52,6 @@ public/content/
 
 # list of files the service worker stores, written by scripts/offline-manifest.ts
 src/offline/precache-list.generated.json
+
+# the service worker, written by scripts/offline-worker.ts after next build
+public/sw.js

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { WORKER_PATH } from "./src/offline/config";
 
 // Lets an iPad on the home network load the dev server by LAN IP or mDNS name.
 // Each "*" matches exactly one hostname label (one IPv4 octet).
@@ -42,6 +43,13 @@ const CACHE_HEADERS = [
         value: `private, max-age=${YEAR_SECONDS}, immutable`,
       },
     ],
+  },
+  {
+    // The service worker script is fetched afresh on every update check, so a
+    // fixed worker is replaced on the next launch: a cached copy would delay
+    // it by the cache's age.
+    source: WORKER_PATH,
+    headers: [{ key: "Cache-Control", value: "no-cache" }],
   },
   {
     // Lesson files keep their names across builds: served from cache for a

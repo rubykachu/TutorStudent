@@ -17,6 +17,9 @@ export const PRECACHE_LIST_FILE = "src/offline/precache-list.generated.json";
 
 export type PrecacheListFile = {
   buildId: string;
+  // Bytes of what is known before `next build` (content, sounds, public
+  // files); the worker build adds the build files and the pages.
+  knownBytes: number;
   entries: PrecacheEntry[];
 };
 
@@ -42,7 +45,7 @@ export function writePrecacheList({
   checkBudget(knownBytes);
   const file = path.join(rootDir, PRECACHE_LIST_FILE);
   mkdirSync(path.dirname(file), { recursive: true });
-  const body: PrecacheListFile = { buildId, entries };
+  const body: PrecacheListFile = { buildId, knownBytes, entries };
   writeFileSync(file, `${JSON.stringify(body, null, 2)}\n`);
   return { entries, knownBytes, file };
 }
