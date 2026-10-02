@@ -3,7 +3,7 @@ Archived: 01/10/2026, sections A and B done; leftovers in `../../video-opening-r
 # Góp ý của chủ dự án sau khi bé dùng thử (01/10/2026)
 
 Ảnh minh hoạ: các tệp `NN.png` trong thư mục này (số ảnh ghi trong ngoặc).
-Đồng nghiệp nhận xét: app thú vị, UI/UX đẹp, kiểu Duolingo, đúng hướng. Giữ phong cách hiện tại.
+Đồng nghiệp nhận xét: app thú vị, UI/UX đẹp, đúng hướng. Giữ phong cách hiện tại.
 
 ## A. Giao diện, trải nghiệm (một đợt) — xong 12/12 (kế hoạch: `plan.md`)
 1. [x] Trang môn: hiện số chương/bài như sách, vd "Chương I · Bài 4", để phụ huynh tra nhanh (17). Cần trường chương/số bài trong nội dung.

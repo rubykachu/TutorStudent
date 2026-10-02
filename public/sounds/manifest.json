@@ -28,8 +28,8 @@
       "id": "lesson-end",
       "file": "lesson-end.m4a",
       "kind": "file",
-      "sha256": "52dac7cd21b7b6230cdb669c7cc93c191f6748487b7a55588bf694fb084c28e5",
-      "source": "duolingo-end-of-lesson.mp3",
+      "sha256": "fbfa7cf68bc4742da916de421e61bd95290c0c34a3ca25650554674b4dd61980",
+      "source": "lesson-complete.mp3",
       "lufs": -16,
       "peakDb": -3.5
     },
@@ -37,8 +37,8 @@
       "id": "wrong-answer",
       "file": "wrong-answer.m4a",
       "kind": "file",
-      "sha256": "065a26f1e31cd11aa7ac6c10dcebfeec9e5b08233c5385f51507cd44095011e9",
-      "source": "duolingo-incorrect.mp3",
+      "sha256": "019b3e0116b4274579ece80cd5c739639c604bb982029b11f6e6e1443f06e953",
+      "source": "answer-wrong.mp3",
       "lufs": -21.3,
       "peakDb": -1.9
     },

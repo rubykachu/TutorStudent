@@ -167,7 +167,7 @@ export const FILES: Record<string, FileSpec> = {
   // A section is finished: a short, bright fanfare, as loud as the correct
   // jingle.
   [LESSON_END_ID]: {
-    source: "duolingo-end-of-lesson.mp3",
+    source: "lesson-complete.mp3",
     lufs: MASTERING.voiceLufs,
     trimSilence: true,
     fadeOutS: 0,
@@ -176,7 +176,7 @@ export const FILES: Record<string, FileSpec> = {
   // A wrong answer after the first: a soft buzz, quieter than the voice so
   // it never scolds.
   [WRONG_ID]: {
-    source: "duolingo-incorrect.mp3",
+    source: "answer-wrong.mp3",
     lufs: MASTERING.voiceLufs - 4,
     trimSilence: true,
     fadeOutS: 0,

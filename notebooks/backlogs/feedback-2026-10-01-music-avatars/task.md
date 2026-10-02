@@ -11,8 +11,8 @@ Nguồn: phản hồi mới nhất của chủ app. Đánh dấu `[x]` khi xong.
 
 ## Việc cần làm
 
-- [x] 1a. `duolingo-end-of-lesson.mp3`: phát ở màn xong phần và lúc nhận sticker (nối tiếp lời chúc mừng).
-- [x] 1b. `duolingo-incorrect.mp3`: thay tiếng `oops` ở tín hiệu phản hồi, giữ 3 nấc.
+- [x] 1a. `lesson-complete.mp3`: phát ở màn xong phần và lúc nhận sticker (nối tiếp lời chúc mừng).
+- [x] 1b. `answer-wrong.mp3`: thay tiếng `oops` ở tín hiệu phản hồi, giữ 3 nấc.
 - [x] 1c. `bye-bye-soundbible.mp3`: phát khi bé thoát bằng nút × ở màn phần và màn ôn; vẫn nghe được sau khi chuyển màn.
 - [x] 2. Hai avatar mới cho bé trai: anh hùng nhện (thiết kế riêng, lấy cảm hứng mặt nạ đỏ xanh có lưới) và xe đua.
 - [x] 3. Hiện avatar đã chọn cạnh "Chào <tên>!" và trong nút "Đổi hồ sơ" (giữ chữ).
