@@ -83,7 +83,8 @@ describe("drawing boards", () => {
 
   it("meets the two arcs only when each radius reaches past half the segment", () => {
     expect(apexOf({ len: 4, open: 4 })).toBeDefined();
-    expect(apexOf({ len: 4, open: 2 })).toBeDefined();
+    expect(apexOf({ len: 4, open: 3 })).toBeDefined();
+    expect(apexOf({ len: 4, open: 2 })).toBeUndefined();
     expect(apexOf({ len: 4, open: 1 })).toBeUndefined();
     expect(apexOf({ len: 4 })).toBeUndefined();
   });
@@ -251,8 +252,59 @@ describe("Construct", () => {
     press("Cung B");
     expect(screen.getByText(/Hai cung chưa gặp nhau/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Điểm C/ })).toBeDisabled();
+    // Half the side only touches in the middle.
+    press("Tăng mở compa (cm)");
+    expect(screen.getByText(/Hai cung chưa gặp nhau/)).toBeInTheDocument();
     press("Tăng mở compa (cm)");
     expect(screen.queryByText(/Hai cung chưa gặp nhau/)).toBeNull();
+  });
+
+  it("says on a lesson screen that the compass opening must equal the side", () => {
+    render(
+      <Construct
+        spec={{ shape: "triangle", names: ["A", "B", "C"], goal: 4 }}
+      />,
+    );
+    for (let i = 0; i < 4; i++) press("Tăng cạnh ab (cm)");
+    for (let i = 0; i < 3; i++) press("Tăng mở compa (cm)");
+    press("Cung A");
+    press("Cung B");
+    expect(
+      screen.getByText("Độ mở compa phải bằng cạnh AB."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Điểm C/ })).toBeDisabled();
+    press("Tăng mở compa (cm)");
+    expect(screen.queryByText(/Độ mở compa phải bằng/)).toBeNull();
+  });
+
+  it("says on a lesson screen that the two taken segments must equal the side", () => {
+    render(
+      <Construct
+        spec={{ shape: "square", names: ["A", "B", "C", "D"], goal: 3 }}
+      />,
+    );
+    for (let i = 0; i < 3; i++) press("Tăng cạnh ab (cm)");
+    press("Êke tại A");
+    press("Êke tại B");
+    press("Tăng ad, bc (cm)");
+    expect(
+      screen.getByText("Hai đoạn lấy thêm phải bằng cạnh AB."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Nối DC" })).toBeDisabled();
+  });
+
+  it("never says in an exercise whether the figure is right, only that the steps are done", () => {
+    const { container } = render(
+      <Construct
+        spec={{ shape: "triangle", names: ["A", "B", "C"] }}
+        params={{ side: 2 }}
+      />,
+    );
+    for (let i = 0; i < 2; i++) press("Tăng cạnh ab (cm)");
+    for (let i = 0; i < 3; i++) press("Tăng mở compa (cm)");
+    for (const name of ["Cung A", "Cung B", "Điểm C", "Nối"]) press(name);
+    expect(container.textContent).toContain("Bạn đã bấm đủ các bước");
+    expect(container.textContent).not.toMatch(/phải bằng cạnh|xong mọi bước/);
   });
 
   it("asks the yes or no question only after the diagonals are drawn", () => {
@@ -328,7 +380,27 @@ describe("Probe", () => {
     if (spec?.kind !== "probe") throw new Error("not a probe");
     const done = spec.parts.map((part) => part.kind === "chip");
     const figure = probeFigure(spec, done);
-    expect(figure.polys?.length).toBe((spec.figure.polys?.length ?? 0) + 1);
+    expect(figure.polys?.length).toBe(spec.figure.polys?.length);
+    expect(figure.polys?.some((poly) => poly.fill === "amber")).toBe(true);
+  });
+
+  it("draws a measured segment or region in place of the one the figure has", () => {
+    for (const key of [
+      "do-duong-cheo-vuong",
+      "do-cheo-chinh",
+      "dem-cung-lam",
+    ]) {
+      const spec = VISUAL_SPECS[key];
+      if (spec?.kind !== "probe") throw new Error("not a probe");
+      const figure = probeFigure(
+        spec,
+        spec.parts.map(() => true),
+      );
+      const segKeys = (figure.segs ?? []).map((seg) => `${seg.a}${seg.b}`);
+      const polyKeys = (figure.polys ?? []).map((poly) => poly.v.join(""));
+      expect(new Set(segKeys).size).toBe(segKeys.length);
+      expect(new Set(polyKeys).size).toBe(polyKeys.length);
+    }
   });
 
   it("shows every part when the answer is shown", () => {

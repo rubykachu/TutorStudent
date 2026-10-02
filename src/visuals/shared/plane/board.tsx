@@ -45,8 +45,8 @@ export type BoardProps = VisualProps & {
   ) => BoardWarning | undefined;
   done: string;
   // The picture is capped so it, the instruction and the controls of the
-  // biggest board still fit one frame.
-  maxHeight?: number;
+  // biggest board still fit one frame: pixels, or a CSS length.
+  maxHeight?: number | string;
 };
 
 const DEFAULT_MAX_HEIGHT = 188;

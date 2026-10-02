@@ -111,6 +111,15 @@ export function bubbleOf(figure: FigureSpec, part: ProbePart): Pt | undefined {
   }
 }
 
+// Puts `item` in `list`, in the place of the entry that already draws the same
+// thing: a segment or polygon the figure already has is restyled, never drawn
+// twice (two elements of one drawing must not share a React key).
+function put<T>(list: T[], item: T, same: (other: T) => boolean): void {
+  const at = list.findIndex(same);
+  if (at < 0) list.push(item);
+  else list[at] = item;
+}
+
 // The figure with every part marked `done` shown as measured.
 export function probeFigure(
   spec: ProbeSpec,
@@ -126,7 +135,13 @@ export function probeFigure(
     if (!done[i]) return;
     switch (part.kind) {
       case "seg": {
-        segs.push({ a: part.a, b: part.b, tone: part.tone, bold: true });
+        put(
+          segs,
+          { a: part.a, b: part.b, tone: part.tone, bold: true },
+          (seg) =>
+            (seg.a === part.a && seg.b === part.b) ||
+            (seg.a === part.b && seg.b === part.a),
+        );
         const from = point(figure, part.a);
         const to = point(figure, part.b);
         const spot = lerp(from, to, part.at ?? 0.5);
@@ -176,11 +191,20 @@ export function probeFigure(
         });
         break;
       case "poly":
-        polys.push({ v: part.v, tone: part.tone, fill: part.tone });
+        put(
+          polys,
+          { v: part.v, tone: part.tone, fill: part.tone },
+          (poly) => poly.v.join("") === part.v.join(""),
+        );
         break;
       case "chip":
         if (spec.whole) {
-          polys.push({ v: spec.whole, tone: part.tone, fill: part.tone });
+          const whole = spec.whole;
+          put(
+            polys,
+            { v: whole, tone: part.tone, fill: part.tone },
+            (poly) => poly.v.join("") === whole.join(""),
+          );
         }
         break;
     }

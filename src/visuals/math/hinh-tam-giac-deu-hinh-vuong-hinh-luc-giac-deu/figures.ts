@@ -44,23 +44,26 @@ export const ANGLE_TEXT: Readonly<Record<ShapeKind, string>> = {
 // - sq: A top left, B top right, C bottom right, D bottom left;
 // - hex: A bottom left, B left, C top left, D top right, E right, F bottom
 //   right (pointed at the left and right, flat top and bottom).
+//
+// `turn` rotates the shape by that many degrees (clockwise on the screen).
 export function corners(
   kind: ShapeKind,
   cx: number,
   cy: number,
   r: number,
+  turn = 0,
 ): Pt[] {
   switch (kind) {
     case "tri":
       return [
-        polar(cx, cy, r, -90),
-        polar(cx, cy, r, 150),
-        polar(cx, cy, r, 30),
+        polar(cx, cy, r, -90 + turn),
+        polar(cx, cy, r, 150 + turn),
+        polar(cx, cy, r, 30 + turn),
       ];
     case "sq":
-      return regularPoints(4, cx, cy, r, -135);
+      return regularPoints(4, cx, cy, r, -135 + turn);
     case "hex":
-      return regularPoints(6, cx, cy, r, 120);
+      return regularPoints(6, cx, cy, r, 120 + turn);
   }
 }
 
@@ -85,10 +88,14 @@ export type ShapeOptions = {
   // Outline and soft fill colours.
   tone?: Tone;
   fill?: Tone;
+  // Rotates the shape by this many degrees.
+  turn?: number;
   // Marks every side with one stroke (all sides equal).
   ticks?: boolean;
   // An arc with the measure at every corner; right-angle squares on a square.
-  angles?: boolean;
+  // "arcs" leaves the measure out, for a small picture where six of them would
+  // not fit.
+  angles?: boolean | "arcs";
   segs?: readonly FigureSeg[];
   texts?: readonly FigureText[];
   dots?: readonly string[];
@@ -104,7 +111,7 @@ export type ShapeOptions = {
 export function shape(kind: ShapeKind, o: ShapeOptions): FigureSpec {
   const names = CORNERS[kind];
   const pts = {
-    ...named(names, corners(kind, o.cx, o.cy, o.r)),
+    ...named(names, corners(kind, o.cx, o.cy, o.r, o.turn)),
     ...(o.extraPts ?? {}),
   };
   const ticks: FigureTick[] = [
@@ -125,10 +132,14 @@ export function shape(kind: ShapeKind, o: ShapeOptions): FigureSpec {
           at,
           a: prev,
           b: next,
-          text: ANGLE_TEXT[kind],
           tone: "violet",
           radius: kind === "hex" ? 19 : 23,
-          ...(kind === "hex" ? { textDistance: 50 } : {}),
+          ...(o.angles === "arcs"
+            ? {}
+            : {
+                text: ANGLE_TEXT[kind],
+                ...(kind === "hex" ? { textDistance: 50 } : {}),
+              }),
         });
       }
     });
@@ -165,13 +176,16 @@ export function triangleBySides(
     lengths?: boolean;
     // Names of the apex, the left and the right corner (default A, B, C).
     names?: readonly [string, string, string];
+    // Room kept round the triangle (default: enough for the lengths when they
+    // are written, else just a margin); names stand in it.
+    margin?: number;
   },
 ): FigureSpec {
   const x = (b * b + c * c - a * a) / (2 * c);
   const height = Math.sqrt(Math.max(b * b - x * x, 0));
   const minX = Math.min(0, x);
   const maxX = Math.max(c, x);
-  const margin = o.lengths ? 28 : 12;
+  const margin = o.margin ?? (o.lengths ? 28 : 12);
   const scale = Math.min(
     (o.w - 2 * margin) / (maxX - minX),
     (o.h - 2 * margin) / height,
@@ -269,7 +283,9 @@ export function hexTriangles(
     count: number;
     diagonal?: readonly [string, string];
     names?: boolean;
-    ticksOnDiagonal?: boolean;
+    // Marks the two halves of the main diagonal AD and the six sides with the
+    // same strokes: all eight are equal.
+    equalMarks?: boolean;
   },
 ): FigureSpec {
   const pts: Record<string, Pt> = {
@@ -298,17 +314,13 @@ export function hexTriangles(
       bold: true,
     });
   }
-  const ticks: FigureTick[] = o.ticksOnDiagonal
-    ? [
-        {
-          segs: [
-            ["O", "A"],
-            ["O", "D"],
-          ],
-          count: 2,
-          tone: "blue",
-        },
-      ]
+  const equal: [string, string][] = [
+    ["O", "A"],
+    ["O", "D"],
+    ...sidePairs(HEX_NAMES),
+  ];
+  const ticks: FigureTick[] = o.equalMarks
+    ? [{ segs: equal, count: 2, tone: "blue" }]
     : [];
   return {
     label,
@@ -385,6 +397,82 @@ export function squareGrid(
     polys.push(cellPoly(big.row, big.col, big.size, big.tone));
   }
   return { label, w: o.w, h: o.h, pts, polys };
+}
+
+// A point of the triangular lattice of a big triangle: row 0 is the apex, row
+// n the base, 0 <= col <= row.
+export type LatticeCell = readonly [row: number, col: number];
+type LatticeLine = readonly [LatticeCell, LatticeCell];
+
+// Every line of the lattice of a triangle `n` units a side: the triangle cut
+// into n * n equal equilateral triangles, drawn as the lines inside it.
+export function latticeLines(n: number): LatticeLine[] {
+  const lines: LatticeLine[] = [];
+  for (let k = 1; k < n; k++) {
+    // Parallel to the base, to the left side, to the right side.
+    lines.push([
+      [k, 0],
+      [k, k],
+    ]);
+    lines.push([
+      [k, k],
+      [n, k],
+    ]);
+    lines.push([
+      [k, 0],
+      [n, n - k],
+    ]);
+  }
+  return lines;
+}
+
+// A big equilateral triangle `side` drawing units a side, apex on top and
+// centred, made of `n` units a side, with `lines` drawn inside it. `cells`
+// names the lattice points a picture refers to; the lattice points it does
+// not name are called t<row><col>. Only the points in `labelled` have their
+// name written, and `outer` names the apex, the left and the right corner.
+export function triangleLattice(
+  label: string,
+  o: {
+    w: number;
+    h: number;
+    side: number;
+    n: number;
+    cells: Readonly<Record<string, LatticeCell>>;
+    labelled: readonly string[];
+    outer: readonly [string, string, string];
+    lines: readonly LatticeLine[];
+  },
+): FigureSpec {
+  const unit = o.side / o.n;
+  const rowHeight = (unit * Math.sqrt(3)) / 2;
+  const top = (o.h - rowHeight * o.n) / 2;
+  const nameOf = new Map<string, string>(
+    Object.entries(o.cells).map(([name, [row, col]]) => [
+      `${row},${col}`,
+      name,
+    ]),
+  );
+  const keyOf = ([row, col]: LatticeCell) =>
+    nameOf.get(`${row},${col}`) ?? `t${row}${col}`;
+  const pts: Record<string, Pt> = {};
+  for (let row = 0; row <= o.n; row++) {
+    for (let col = 0; col <= row; col++) {
+      pts[keyOf([row, col])] = [
+        o.w / 2 + (col - row / 2) * unit,
+        top + row * rowHeight,
+      ];
+    }
+  }
+  return {
+    label,
+    w: o.w,
+    h: o.h,
+    pts,
+    polys: [{ v: [...o.outer] }],
+    segs: o.lines.map(([from, to]) => ({ a: keyOf(from), b: keyOf(to) })),
+    names: [...o.labelled],
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -684,7 +772,9 @@ export function figure48(extra?: {
   polys?: readonly FigurePoly[];
   segs?: readonly FigureSeg[];
   texts?: readonly FigureText[];
-  plainDiagonals?: boolean;
+  ticks?: readonly FigureTick[];
+  // Taller drawing, for writing under the hexagon.
+  h?: number;
 }): FigureSpec {
   const hex = named(CORNERS.hex, corners("hex", 150, 131, 100));
   const at = (name: string) => hex[name] as Pt;
@@ -718,7 +808,7 @@ export function figure48(extra?: {
     label:
       "Hình 4.8: hình lục giác đều ABCDEF và sáu đường chéo cắt nhau tại M, N, P, Q, R, S",
     w: 300,
-    h: 262,
+    h: extra?.h ?? 262,
     pts,
     polys: [{ v: [...CORNERS.hex] }, ...(extra?.polys ?? [])],
     segs: [
@@ -728,5 +818,6 @@ export function figure48(extra?: {
     names: [...CORNERS.hex, "M", "N", "P", "Q", "R", "S"],
     nameShift: inside,
     ...(extra?.texts ? { texts: extra.texts } : {}),
+    ...(extra?.ticks ? { ticks: extra.ticks } : {}),
   };
 }

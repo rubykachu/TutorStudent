@@ -37,6 +37,9 @@ const BASE = MAX_CM * UNIT + TOP_ROOM;
 const RULER_DROP = 38;
 const RULER_HEIGHT = 28;
 const ARC_HALF_SPAN = 24;
+// A board is small in its own units, so on a wide screen it may grow past the
+// usual 1.2 times to keep its writing big.
+const BOARD_MAX_SCALE = 1.5;
 
 export const BOARD_HEIGHT = BASE + RULER_DROP + RULER_HEIGHT + 6;
 
@@ -196,11 +199,12 @@ function bold(
   return { a, b, tone, bold: true };
 }
 
-// Both circles of the compass pass through the apex only when each radius is
-// at least half the segment.
+// Both circles of the compass cross at the apex only when each radius is more
+// than half the segment: at exactly half they touch in the middle of it.
 export function apexOf(state: VisualState): Pt | undefined {
   const { len, open } = state;
   if (len === undefined || open === undefined) return undefined;
+  if (open * 2 <= len) return undefined;
   const meet = meetingPoints(
     [LEFT, BASE],
     open * UNIT,
@@ -271,6 +275,7 @@ function triangleFigure(
     w: BOARD_WIDTH,
     h: BOARD_HEIGHT,
     textSize: TEXT_SIZE,
+    maxScale: BOARD_MAX_SCALE,
     pts,
     segs,
     arcs,
@@ -343,6 +348,7 @@ function squareFigure(
     w: BOARD_WIDTH,
     h: BOARD_HEIGHT,
     textSize: TEXT_SIZE,
+    maxScale: BOARD_MAX_SCALE,
     pts,
     segs,
     rights,

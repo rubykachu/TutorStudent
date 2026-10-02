@@ -1,8 +1,9 @@
 "use client";
 
-import type { VisualProps } from "@/visuals/registry";
+import type { VisualProps, VisualState } from "@/visuals/registry";
 import { isLessonScreen } from "@/visuals/shared/guided-feedback";
-import { Board } from "@/visuals/shared/plane/board";
+import { Board, type BoardWarning } from "@/visuals/shared/plane/board";
+import type { BoardStep } from "@/visuals/shared/plane/board-steps";
 import {
   apexOf,
   type ConstructShape,
@@ -11,6 +12,10 @@ import {
   solvedState,
 } from "./construction";
 import { isConstructed } from "./logic";
+
+// The picture of a board is capped so it, the instruction and the controls
+// fit one frame: 188px on a phone, up to 300px where the screen is wide.
+const BOARD_MAX_HEIGHT = "max(188px, min(46vw, 300px))";
 
 // The two drawing boards of the lesson (see `construction.ts`), shown by the
 // shared `Board`. On a lesson screen with a `goal` side it is a guided "cùng
@@ -27,6 +32,53 @@ export type ConstructSpec = {
   goal?: number;
   done?: string;
 };
+
+// What the board says instead of the instruction. Two compass arcs must meet
+// before the apex is marked, on a lesson screen the compass opening and the
+// two segments taken on the square's perpendiculars must equal the side, and
+// an exercise only says the steps are all done, never whether the figure is
+// right (the frame does, after "Kiểm tra").
+function warningOf(
+  spec: ConstructSpec,
+  state: VisualState,
+  current: BoardStep | undefined,
+  guided: boolean,
+): BoardWarning | undefined {
+  const [first = "", second = ""] = spec.names;
+  const { len, open, h } = state;
+  if (spec.shape === "triangle") {
+    if (current?.key === "apex" && apexOf(state) === undefined) {
+      return {
+        text: "Hai cung chưa gặp nhau. Hãy mở compa rộng hơn.",
+        blocks: "apex",
+      };
+    }
+    if (
+      guided &&
+      len !== undefined &&
+      open !== undefined &&
+      open !== len &&
+      (current === undefined || ["apex", "join"].includes(current.key))
+    ) {
+      return {
+        text: `Độ mở compa phải bằng cạnh ${first}${second}.`,
+        blocks: "apex",
+      };
+    }
+  } else if (guided && len !== undefined && h !== undefined && h !== len) {
+    return {
+      text: `Hai đoạn lấy thêm phải bằng cạnh ${first}${second}.`,
+      blocks: "join",
+    };
+  }
+  if (!guided && current === undefined) {
+    return {
+      text: "Bạn đã bấm đủ các bước. Hãy bấm Kiểm tra.",
+      blocks: "",
+    };
+  }
+  return undefined;
+}
 
 export function Construct({
   spec,
@@ -45,16 +97,8 @@ export function Construct({
       guided={guided}
       met={(state) => isConstructed(spec.shape, diagonals)(state, { side })}
       solved={() => solvedState(spec.shape, side, diagonals)}
-      warning={(state, current) =>
-        spec.shape === "triangle" &&
-        current?.key === "apex" &&
-        apexOf(state) === undefined
-          ? {
-              text: "Hai cung chưa gặp nhau. Hãy mở compa rộng hơn.",
-              blocks: "apex",
-            }
-          : undefined
-      }
+      warning={(state, current) => warningOf(spec, state, current, guided)}
+      maxHeight={BOARD_MAX_HEIGHT}
       done={spec.done ?? "Bạn đã vẽ xong hình."}
     />
   );

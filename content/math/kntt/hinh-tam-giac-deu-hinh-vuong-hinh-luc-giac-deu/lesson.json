@@ -14,16 +14,16 @@
   "status": "draft",
   "overview": {
     "hook": {
-      "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với các hình đều. Bạn thử nhìn viên gạch lát nền nhà mình xem, các cạnh của nó có bằng nhau không?"
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với ba hình đặc biệt. Bạn thử nhìn viên gạch lát nền nhà mình xem, các cạnh của nó có bằng nhau không?"
     },
-    "summary": "Bài này nói về ba hình đều: hình tam giác đều, hình vuông và hình lục giác đều. Bạn học cách nhận ra, đo và vẽ chúng.",
+    "summary": "Bài này nói về ba hình: hình tam giác đều, hình vuông và hình lục giác đều. Bạn học cách nhận ra, đo và vẽ chúng.",
     "goals": [
       "nhận ra hình tam giác đều, hình vuông và hình lục giác đều",
-      "biết cạnh, góc và đường chéo (đường nối hai góc không kề nhau) của từng hình",
+      "biết cạnh, góc và đường chéo (đoạn nối hai đỉnh không nằm cạnh nhau) của từng hình",
       "vẽ được hình tam giác đều và hình vuông bằng thước, compa và êke",
-      "đếm được các hình đều trong một hình lớn"
+      "đếm được các hình tam giác đều, hình vuông, hình lục giác đều trong một hình lớn"
     ],
-    "whyItMatters": "Bạn dùng bài này khi chọn gạch lát nền, vì các viên gạch hình vuông bằng nhau xếp khít với nhau."
+    "whyItMatters": "Bạn dùng bài này để kiểm tra viên gạch có phải hình vuông không: bốn cạnh bằng nhau, bốn góc vuông."
   },
   "concepts": [
     {
@@ -60,7 +60,7 @@
   "sections": [
     {
       "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.hinh-deu-quanh-ta",
-      "title": "Hình đều quanh ta",
+      "title": "Ba hình quanh ta",
       "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
@@ -69,7 +69,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Gạch lát nền, tổ ong và biển báo nguy hiểm đều có hình đều. Hãy xem ba vật này trong hình."
+              "text": "Gạch lát nền, tổ ong và biển báo nguy hiểm đều có hình dạng quen thuộc. Hãy xem ba vật này trong hình."
             },
             {
               "type": "visual",
@@ -82,7 +82,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hình đều có các cạnh bằng nhau và các góc bằng nhau.",
+              "text": "Hình tam giác đều, hình vuông và hình lục giác đều cùng có các cạnh bằng nhau và các góc bằng nhau.",
               "rule": true
             },
             {
@@ -96,7 +96,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng cạnh của hình vuông để đo. Bạn sẽ thấy các cạnh của hình đều bằng nhau."
+              "text": "Cùng làm: chạm vào từng cạnh của hình vuông để đo. Bạn sẽ thấy bốn cạnh của hình vuông dài bằng nhau."
             },
             {
               "type": "visual",
@@ -115,7 +115,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu",
-        "caption": "Hình đều có các cạnh bằng nhau và các góc bằng nhau."
+        "caption": "Hình tam giác đều, hình vuông và hình lục giác đều cùng có các cạnh bằng nhau và các góc bằng nhau."
       }
     },
     {
@@ -241,7 +241,7 @@
     {
       "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.duong-cheo-hinh-vuong",
       "title": "Đường chéo của hình vuông",
-      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.64 (ví dụ 2)",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.65 (bài 4.3), tr.115 (lời giải bài 4.3)",
       "minutes": 5,
       "blocks": [
         {
@@ -276,7 +276,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào hai đường chéo và chỗ chúng cắt nhau để đo. Bạn sẽ thấy chúng bằng nhau và vuông góc."
+              "text": "Cùng làm: hình vuông ABCD có cạnh 3 cm, chạm vào hai đường chéo và chỗ chúng cắt nhau để đo. Bạn sẽ thấy chúng bằng nhau và vuông góc."
             },
             {
               "type": "visual",
@@ -336,7 +336,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng cạnh và từng góc để đo. Bạn sẽ thấy sáu cạnh đều bằng nhau."
+              "text": "Cùng làm: chạm vào từng cạnh để đo. Bạn sẽ thấy sáu cạnh đều bằng nhau."
             },
             {
               "type": "visual",
@@ -361,7 +361,7 @@
     {
       "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.duong-cheo-luc-giac",
       "title": "Đường chéo của hình lục giác đều",
-      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.65 (bài 4.4a), tr.115 (lời giải bài 4.4a)",
       "minutes": 5,
       "blocks": [
         {
@@ -369,7 +369,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tâm là điểm chính giữa của hình. Đường chéo đi qua tâm là đường chéo chính, các đường chéo còn lại là đường chéo phụ."
+              "text": "Đường chéo chính nối hai đỉnh đối diện nhau. Đường chéo phụ nối hai đỉnh mà giữa chúng chỉ có một đỉnh."
             },
             {
               "type": "visual",
@@ -382,7 +382,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau.",
+              "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau. Ba đường chéo chính bằng nhau.",
               "rule": true
             },
             {
@@ -415,7 +415,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac",
-        "caption": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau."
+        "caption": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau. Ba đường chéo chính bằng nhau."
       }
     },
     {
@@ -468,9 +468,9 @@
           "type": "tip",
           "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.cheo-chinh-gap-doi",
           "kind": "làm nhanh",
-          "title": "Đường chéo chính",
-          "text": "Đường chéo chính của hình lục giác đều dài gấp đôi cạnh. Chỉ cần nhân đôi độ dài cạnh.",
-          "tex": "7 \\cdot 2 = 14"
+          "title": "Tính đường chéo chính hay cạnh",
+          "text": "Biết cạnh thì nhân 2 ra đường chéo chính. Biết đường chéo chính thì chia 2 ra cạnh.",
+          "tex": "\\begin{aligned} \\concept{blue}{7} \\cdot 2 &= \\concept{amber}{14} \\\\ \\concept{amber}{14} : 2 &= \\concept{blue}{7} \\end{aligned}"
         }
       ],
       "checkIds": [
@@ -537,7 +537,7 @@
           "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.mo-compa-mot-lan",
           "kind": "tránh sai",
           "title": "Độ mở compa",
-          "text": "Mở compa xong thì giữ yên. Dùng cùng một độ mở cho cả hai cung tròn."
+          "text": "Khi vẽ trên giấy, mở compa xong thì giữ yên. Dùng cùng một độ mở cho cả hai cung tròn."
         }
       ],
       "checkIds": [
@@ -604,7 +604,7 @@
           "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.lay-doan-bang-compa",
           "kind": "làm nhanh",
           "title": "Lấy hai đoạn bằng nhau",
-          "text": "Mở compa bằng cạnh một lần. Dùng độ mở đó chấm điểm trên cả hai đường vuông góc."
+          "text": "Mở compa bằng cạnh AB một lần. Đặt kim ở A rồi ở B, chấm điểm trên hai đường vuông góc."
         }
       ],
       "checkIds": [
@@ -631,7 +631,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Compa so độ dài hai đoạn thẳng. Êke kiểm tra một góc có vuông không."
+              "text": "Compa so độ dài hai đoạn thẳng, êke kiểm tra góc vuông. Hình tam giác chỉ cần so ba cạnh, hình bốn cạnh phải kiểm cả cạnh và góc."
             },
             {
               "type": "visual",
@@ -670,7 +670,7 @@
           "type": "tip",
           "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.goc-to-giay",
           "kind": "làm nhanh",
-          "title": "Kiểm tra góc vuông",
+          "title": "Không có êke",
           "text": "Không có êke thì dùng góc của tờ giấy vở. Góc nào khít với góc tờ giấy thì góc đó là góc vuông."
         }
       ],
@@ -725,7 +725,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng hình tam giác đều bạn tìm thấy. Đừng quên hình lớn."
+              "text": "Cùng làm: chạm vào từng hình tam giác đều bạn tìm thấy. Đừng quên các hình lớn hơn."
             },
             {
               "type": "visual",
@@ -812,11 +812,11 @@
             },
             {
               "type": "note",
-              "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau."
+              "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau. Ba đường chéo chính bằng nhau."
             },
             {
               "type": "note",
-              "text": "Đường chéo phụ là những đường chéo còn lại, tức những đường không đi qua tâm."
+              "text": "Đường chéo phụ nối hai đỉnh mà giữa chúng chỉ có một đỉnh."
             },
             {
               "type": "note",
@@ -872,7 +872,7 @@
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-6-cheo-3",
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-6",
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7a",
-        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-7b-tam-giac-bon",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-7b-tam-giac-chia-9",
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7b"
       ],
       "practiceIds": [],
@@ -895,7 +895,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu",
-        "caption": "Hình đều có các cạnh bằng nhau và các góc bằng nhau."
+        "caption": "Hình tam giác đều, hình vuông và hình lục giác đều cùng có các cạnh bằng nhau và các góc bằng nhau."
       }
     },
     {
@@ -928,7 +928,7 @@
     },
     {
       "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-hinh-vuong",
-      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.64 (ví dụ 2)",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.65 (bài 4.3), tr.115 (lời giải bài 4.3)",
       "conceptIds": [
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.duong-cheo"
@@ -955,7 +955,7 @@
     },
     {
       "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-luc-giac",
-      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.65 (bài 4.4a), tr.115 (lời giải bài 4.4a)",
       "conceptIds": [
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.luc-giac-deu",
         "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.duong-cheo"
@@ -963,7 +963,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac",
-        "caption": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau."
+        "caption": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau. Ba đường chéo chính bằng nhau."
       }
     },
     {
@@ -1045,7 +1045,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nối mỗi vật với hình đều của nó."
+          "text": "Nối mỗi vật với hình của nó."
         }
       ],
       "hints": {
@@ -1054,7 +1054,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ngăn tổ ong có sáu cạnh, nên là hình lục giác đều. Mặt viên gạch có bốn cạnh bằng nhau và bốn góc vuông, nên là hình vuông. Biển báo có ba cạnh bằng nhau, nên là hình tam giác đều."
+        "text": "Ngăn tổ ong có sáu cạnh bằng nhau và sáu góc bằng nhau, nên là hình lục giác đều. Mặt viên gạch có bốn cạnh bằng nhau và bốn góc vuông, nên là hình vuông. Biển báo có ba cạnh bằng nhau, nên là hình tam giác đều."
       },
       "left": [
         {
@@ -1124,7 +1124,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hình đều là hình thế nào? Chọn câu đúng."
+          "text": "Ba hình trong bài giống nhau ở điểm nào? Chọn câu đúng."
         }
       ],
       "hints": {
@@ -1137,19 +1137,19 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình đều có các cạnh bằng nhau và cũng có các góc bằng nhau. Thiếu một trong hai điều thì chưa phải hình đều.",
+        "text": "Cả ba hình cùng có các cạnh bằng nhau và các góc bằng nhau.",
         "wrong": [
           {
             "optionId": "goc-khac",
-            "text": "Các góc khác nhau thì chưa phải hình đều, vì hình đều cần cả các góc bằng nhau."
+            "text": "Các góc của cả ba hình bằng nhau, không khác nhau."
           },
           {
             "optionId": "canh-khac",
-            "text": "Các cạnh khác nhau thì chưa phải hình đều, vì hình đều cần cả các cạnh bằng nhau."
+            "text": "Các cạnh của cả ba hình bằng nhau, không khác nhau."
           },
           {
             "optionId": "dai-ngan",
-            "text": "Hình đều không có cạnh dài cạnh ngắn, vì các cạnh của nó bằng nhau."
+            "text": "Cả ba hình không có cạnh dài cạnh ngắn, vì các cạnh bằng nhau."
           }
         ]
       },
@@ -1158,28 +1158,28 @@
           "id": "dung",
           "content": {
             "type": "text",
-            "text": "Hình có các cạnh bằng nhau và các góc bằng nhau"
+            "text": "Các cạnh bằng nhau và các góc bằng nhau"
           }
         },
         {
           "id": "goc-khac",
           "content": {
             "type": "text",
-            "text": "Hình có các cạnh bằng nhau nhưng các góc khác nhau"
+            "text": "Các cạnh bằng nhau nhưng các góc khác nhau"
           }
         },
         {
           "id": "canh-khac",
           "content": {
             "type": "text",
-            "text": "Hình có các góc bằng nhau nhưng các cạnh khác nhau"
+            "text": "Các góc bằng nhau nhưng các cạnh khác nhau"
           }
         },
         {
           "id": "dai-ngan",
           "content": {
             "type": "text",
-            "text": "Hình có một cạnh dài hơn và một cạnh ngắn hơn"
+            "text": "Có một cạnh dài hơn và một cạnh ngắn hơn"
           }
         }
       ],
@@ -1195,7 +1195,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các hình đều."
+          "text": "Chọn tất cả các hình có các cạnh bằng nhau và các góc bằng nhau."
         }
       ],
       "hints": {
@@ -1210,7 +1210,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình đều có các cạnh bằng nhau và các góc bằng nhau. Hình tam giác đều và hình lục giác đều thoả cả hai điều đó. Hai hình còn lại có các cạnh dài ngắn khác nhau.",
+        "text": "Cần chọn hình có các cạnh bằng nhau và các góc bằng nhau. Hình tam giác đều và hình lục giác đều có đủ cả hai điều đó. Hai hình còn lại có các cạnh dài ngắn khác nhau.",
         "wrong": [
           {
             "optionId": "chu-nhat",
@@ -1335,7 +1335,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một hình đều có các cạnh bằng nhau, và một cạnh dài 9 cm. Một cạnh khác của hình đó dài bao nhiêu cm?"
+          "text": "Một hình lục giác đều có một cạnh dài 9 cm. Một cạnh khác của hình đó dài bao nhiêu cm?"
         }
       ],
       "hints": {
@@ -1348,7 +1348,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình đều có các cạnh bằng nhau. Một cạnh dài 9 cm thì mọi cạnh khác cũng dài 9 cm."
+        "text": "Hình lục giác đều có các cạnh bằng nhau. Một cạnh dài 9 cm thì mọi cạnh khác cũng dài 9 cm."
       },
       "answer": {
         "kind": "value",
@@ -1480,7 +1480,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-deu"
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-4-4-hoi"
       },
       "difficulty": 2,
       "explain": {
@@ -1613,7 +1613,7 @@
         },
         {
           "type": "visual",
-          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-deu"
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-deu-vach"
         }
       ],
       "hints": {
@@ -1989,7 +1989,7 @@
           },
           {
             "optionId": "a",
-            "text": "Góc 45° là góc nhỏ, còn hai đường chéo cắt nhau thành góc vuông 90°."
+            "text": "Góc 45° là góc giữa đường chéo và cạnh. Còn ở chỗ hai đường chéo cắt nhau là góc vuông 90°."
           },
           {
             "optionId": "d",
@@ -2123,7 +2123,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình vuông có bốn đỉnh. Mỗi đường chéo nối hai đỉnh đối diện nhau, nên hình vuông có hai đường chéo."
+        "text": "Hình vuông có bốn đỉnh. Mỗi đường chéo nối hai đỉnh không nằm cạnh nhau, nên hình vuông có hai đường chéo."
       },
       "answer": {
         "kind": "value",
@@ -2287,7 +2287,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-luc-giac-deu"
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-goi-y"
       },
       "difficulty": 2,
       "explain": {
@@ -2402,7 +2402,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho hình lục giác đều ABCDEF. Chọn tất cả các đường chéo chính, tức các đường đi qua tâm."
+          "text": "Cho hình lục giác đều ABCDEF. Chọn tất cả các đường chéo chính, tức các đường nối hai đỉnh đối diện nhau."
         },
         {
           "type": "visual",
@@ -2419,15 +2419,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Đường chéo chính nối hai đỉnh đối diện nhau. A đối diện với D, B đối diện với E, nên AD và BE là đường chéo chính.",
+        "text": "Đường chéo chính nối hai đỉnh đối diện nhau. A đối diện với D, B đối diện với E, nên AD và BE là đường chéo chính. Giữa A và D, mỗi phía có hai đỉnh.",
         "wrong": [
           {
             "optionId": "ac",
-            "text": "AC nối A với C, giữa hai đỉnh này còn có đỉnh B, nên AC là đường chéo phụ."
+            "text": "AC nối A với C, giữa hai đỉnh này chỉ có một đỉnh B, nên AC là đường chéo phụ."
           },
           {
             "optionId": "df",
-            "text": "DF nối D với F, giữa hai đỉnh này còn có đỉnh E, nên DF là đường chéo phụ."
+            "text": "DF nối D với F, giữa hai đỉnh này chỉ có một đỉnh E, nên DF là đường chéo phụ."
           }
         ]
       },
@@ -2552,7 +2552,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Đường chéo chính nối hai đỉnh đối diện nhau và đi qua tâm của hình.",
+        "text": "Đường chéo chính nối hai đỉnh đối diện nhau. Giữa hai đỉnh đó, mỗi phía có hai đỉnh khác.",
         "wrong": [
           {
             "optionId": "canh",
@@ -2560,7 +2560,7 @@
           },
           {
             "optionId": "cach-mot",
-            "text": "Hai đỉnh có một đỉnh ở giữa tạo thành đường chéo phụ."
+            "text": "Hai đỉnh mà giữa chúng chỉ có một đỉnh tạo thành đường chéo phụ."
           },
           {
             "optionId": "cung",
@@ -2587,7 +2587,7 @@
           "id": "cach-mot",
           "content": {
             "type": "text",
-            "text": "Hai đỉnh có một đỉnh ở giữa"
+            "text": "Hai đỉnh mà giữa chúng chỉ có một đỉnh"
           }
         },
         {
@@ -2610,7 +2610,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hình lục giác đều có đường chéo chính EB = 14 cm. Đường chéo chính CF dài bao nhiêu cm?"
+          "text": "Hình lục giác đều ABCDEF có đường chéo chính BE = 14 cm. Đường chéo chính CF dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-abcdef-ten"
         }
       ],
       "hints": {
@@ -2623,7 +2627,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ba đường chéo chính của hình lục giác đều bằng nhau. EB dài 14 cm thì CF cũng dài 14 cm."
+        "text": "Ba đường chéo chính của hình lục giác đều bằng nhau. BE dài 14 cm thì CF cũng dài 14 cm."
       },
       "answer": {
         "kind": "value",
@@ -2675,7 +2679,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cần mấy hình tam giác đều bằng nhau để ghép thành một hình lục giác đều?"
+          "text": "Ghép quanh một điểm, cần mấy hình tam giác đều bằng nhau để được một hình lục giác đều?"
         }
       ],
       "hints": {
@@ -2746,7 +2750,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một hình lục giác đều ghép từ các hình tam giác đều có cạnh 9 cm. Đường chéo chính của nó dài bao nhiêu cm?"
+          "text": "Một hình lục giác đều ghép từ sáu hình tam giác đều có cạnh 9 cm. Đường chéo chính của nó dài bao nhiêu cm?"
         }
       ],
       "hints": {
@@ -2826,7 +2830,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Đường chéo chính dài gấp đôi cạnh. Vậy cạnh bằng một nửa đường chéo chính: 30 : 2 = 15 cm.",
-        "tex": "30 : 2 = \\concept{amber}{15}"
+        "tex": "30 : 2 = \\concept{blue}{15}"
       },
       "answer": {
         "kind": "value",
@@ -2909,7 +2913,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Mỗi điểm trên cung tròn cách tâm một đoạn bằng độ mở compa. Mở compa bằng cạnh đã vẽ thì hai cạnh mới dài bằng cạnh đó.",
+        "text": "Mỗi điểm trên cung tròn cách chỗ đặt kim compa một đoạn bằng độ mở compa. Mở compa bằng cạnh đã vẽ thì hai cạnh mới dài bằng cạnh đó.",
         "wrong": [
           {
             "optionId": "vuong",
@@ -2997,7 +3001,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn vẽ một lá cờ hình tam giác đều có cạnh 5 cm. Phải mở compa bao nhiêu cm?"
+          "text": "Bạn vẽ một lá cờ hình tam giác đều có cạnh 8 cm. Phải mở compa bao nhiêu cm?"
         }
       ],
       "hints": {
@@ -3010,19 +3014,19 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Compa phải mở bằng đúng độ dài cạnh, tức 5 cm.",
+        "text": "Compa phải mở bằng đúng độ dài cạnh, tức 8 cm.",
         "wrong": [
           {
             "optionId": "d",
-            "text": "10 cm là gấp đôi cạnh. Compa phải mở bằng đúng độ dài cạnh."
+            "text": "16 cm là gấp đôi cạnh. Compa phải mở bằng đúng độ dài cạnh."
           },
           {
             "optionId": "a",
-            "text": "Compa mở 2 cm thì ngắn quá, hai cung tròn vẽ ra sẽ không gặp nhau."
+            "text": "Compa mở 4 cm thì hai cung tròn chỉ chạm nhau, chưa cắt nhau."
           },
           {
             "optionId": "c",
-            "text": "7 cm dài hơn cạnh 5 cm, nên hai cạnh mới sẽ dài hơn cạnh đã vẽ."
+            "text": "6 cm ngắn hơn cạnh 8 cm, nên hai cạnh mới sẽ ngắn hơn cạnh đã vẽ."
           }
         ]
       },
@@ -3031,28 +3035,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "2"
+            "text": "4"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "5"
+            "text": "8"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "7"
+            "text": "6"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "10"
+            "text": "16"
           }
         }
       ],
@@ -3068,7 +3072,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hai cung tròn vẽ từ hai đầu của một cạnh gặp nhau ở điểm C. Nối C với hai đầu cạnh thì được hình gì?"
+          "text": "Mở compa bằng đúng cạnh AB, vẽ hai cung tròn từ A và từ B, hai cung gặp nhau ở C. Nối C với A và B thì được hình gì?"
         }
       ],
       "hints": {
@@ -3081,7 +3085,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Điểm C cách mỗi đầu cạnh một đoạn bằng độ mở compa, và độ mở đó bằng cạnh đã vẽ. Vậy ba cạnh bằng nhau, và ta được hình tam giác đều.",
+        "text": "Điểm C cách mỗi đầu cạnh một đoạn bằng độ mở compa, tức bằng cạnh AB. Vậy ba cạnh bằng nhau, và ta được hình tam giác đều.",
         "wrong": [
           {
             "optionId": "vuong",
@@ -3291,7 +3295,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bạn vẽ một ô gạch hình vuông có cạnh 4 cm. Trên mỗi đường vuông góc, phải lấy đoạn dài bao nhiêu cm?"
+          "text": "Bạn vẽ một ô gạch hình vuông có cạnh 2 cm. Trên mỗi đường vuông góc, phải lấy đoạn dài bao nhiêu cm?"
         }
       ],
       "hints": {
@@ -3304,19 +3308,19 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình vuông có bốn cạnh bằng nhau. Cạnh đã vẽ dài 4 cm nên mỗi đoạn lấy thêm cũng dài 4 cm.",
+        "text": "Hình vuông có bốn cạnh bằng nhau. Cạnh đã vẽ dài 2 cm nên mỗi đoạn lấy thêm cũng dài 2 cm.",
         "wrong": [
           {
             "optionId": "d",
-            "text": "8 cm là gấp đôi cạnh. Các đoạn lấy thêm phải bằng đúng cạnh đã vẽ."
+            "text": "4 cm là gấp đôi cạnh. Các đoạn lấy thêm phải bằng đúng cạnh đã vẽ."
           },
           {
             "optionId": "a",
-            "text": "2 cm ngắn hơn cạnh 4 cm, nên bốn cạnh của hình vẽ ra không bằng nhau."
+            "text": "1 cm ngắn hơn cạnh 2 cm, nên bốn cạnh của hình vẽ ra không bằng nhau."
           },
           {
             "optionId": "c",
-            "text": "6 cm dài hơn cạnh 4 cm, nên bốn cạnh của hình vẽ ra không bằng nhau."
+            "text": "3 cm dài hơn cạnh 2 cm, nên bốn cạnh của hình vẽ ra không bằng nhau."
           }
         ]
       },
@@ -3325,28 +3329,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "2"
+            "text": "1"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "4"
+            "text": "2"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "6"
+            "text": "3"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "8"
+            "text": "4"
           }
         }
       ],
@@ -3468,7 +3472,7 @@
           },
           {
             "optionId": "canh",
-            "text": "Hình đã cho có bốn cạnh, không phải năm cạnh."
+            "text": "Bốn cạnh bằng nhau và bốn góc vuông là đủ để biết đó là hình vuông."
           }
         ]
       },
@@ -3498,7 +3502,7 @@
           "id": "canh",
           "content": {
             "type": "text",
-            "text": "Hình có năm cạnh"
+            "text": "Chưa biết, phải đo thêm hai đường chéo"
           }
         }
       ],
@@ -3514,7 +3518,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một hình có bốn cạnh bằng nhau, nhưng êke cho thấy một góc không vuông. Hình đó có là hình vuông không?"
+          "text": "Chạm vào các cạnh và góc E của hình EFGH để kiểm tra. Hình EFGH có là hình vuông không?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-hinh-thoi-efgh"
         }
       ],
       "hints": {
@@ -3734,8 +3742,8 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Có 6 hình vuông nhỏ. Hai ô liền nhau ở hai hàng ghép thành một hình vuông lớn hơn, và có 2 hình như vậy. Vậy có tất cả 6 + 2 = 8 hình vuông.",
-        "tex": "6 + 2 = \\concept{amber}{8}"
+        "text": "Có 6 hình vuông nhỏ. Bốn ô xếp 2 hàng, 2 cột ghép thành một hình vuông lớn, và có 2 hình như vậy. Vậy có tất cả 6 + 2 = 8 hình vuông.",
+        "tex": "6 + 2 = \\concept{pink}{8}"
       },
       "answer": {
         "kind": "value",
@@ -3909,7 +3917,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình tam giác đều có ba cạnh bằng nhau. Hình này quay đầu xuống nhưng ba cạnh vẫn bằng nhau.",
+        "text": "Hình tam giác quay đầu xuống vẫn có ba cạnh bằng nhau, nên là hình tam giác đều.",
         "wrong": [
           {
             "optionId": "b",
@@ -4330,7 +4338,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cho hình lục giác đều ABCDEF. Chọn tất cả các đường chéo phụ, tức các đường không đi qua tâm."
+          "text": "Cho hình lục giác đều ABCDEF. Chọn tất cả các đường chéo phụ, tức các đường nối hai đỉnh mà giữa chúng chỉ có một đỉnh."
         },
         {
           "type": "visual",
@@ -4348,15 +4356,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Đường chéo phụ nối hai đỉnh mà giữa chúng còn một đỉnh khác. Giữa C và E có đỉnh D, giữa F và B có đỉnh A.",
+        "text": "Đường chéo phụ nối hai đỉnh mà giữa chúng chỉ có một đỉnh. Giữa C và E có đỉnh D, giữa F và B có đỉnh A.",
         "wrong": [
           {
             "optionId": "ad",
-            "text": "A và D ở hai phía đối diện nhau, nên AD là đường chéo chính."
+            "text": "A và D là hai đỉnh đối diện nhau, nên AD là đường chéo chính."
           },
           {
             "optionId": "cf",
-            "text": "C và F ở hai phía đối diện nhau, nên CF là đường chéo chính."
+            "text": "C và F là hai đỉnh đối diện nhau, nên CF là đường chéo chính."
           }
         ]
       },
@@ -4412,7 +4420,7 @@
         },
         {
           "type": "note",
-          "text": "Chọn tất cả các đường chéo phụ, tức các đường không đi qua tâm."
+          "text": "Chọn tất cả các đường chéo phụ, tức các đường nối hai đỉnh mà giữa chúng chỉ có một đỉnh."
         }
       ],
       "bookRef": "SBT 4.4a",
@@ -4428,7 +4436,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Đường chéo chính nối hai đỉnh đối diện nhau và đi qua tâm: MQ, NR và PS. Các đường chéo còn lại là đường chéo phụ. Vậy đường chéo phụ là NQ, QS, SN, MP, PR và MR.",
+        "text": "Đường chéo chính nối hai đỉnh đối diện nhau: MQ, NR và PS. Đường chéo phụ nối hai đỉnh mà giữa chúng chỉ có một đỉnh. Đó là NQ, QS, SN, MP, PR và MR.",
         "wrong": [
           {
             "optionId": "mq",
@@ -4619,7 +4627,7 @@
         },
         {
           "type": "visual",
-          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-5"
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-4b-do"
         },
         {
           "type": "note",
@@ -4664,7 +4672,7 @@
           "id": "ca-hai",
           "content": {
             "type": "text",
-            "text": "Cả hai tam giác MPR và NQS đều là tam giác đều"
+            "text": "Tam giác MPR và tam giác NQS cùng là tam giác đều"
           }
         },
         {
@@ -4685,7 +4693,7 @@
           "id": "khong",
           "content": {
             "type": "text",
-            "text": "Cả hai tam giác MPR và NQS đều không phải tam giác đều"
+            "text": "Tam giác MPR và tam giác NQS cùng không phải tam giác đều"
           }
         }
       ],
@@ -4751,7 +4759,7 @@
         },
         {
           "type": "visual",
-          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-6"
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-5a-do"
         },
         {
           "type": "note",
@@ -4822,6 +4830,10 @@
         {
           "type": "note",
           "text": "Chọn đáp án đúng."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-5b-do"
         }
       ],
       "bookRef": "SBT 4.5b",
@@ -5044,17 +5056,17 @@
       "multiple": true
     },
     {
-      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-7b-tam-giac-bon",
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-7b-tam-giac-chia-9",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Hình tam giác đều ABC được chia thành 4 hình tam giác đều nhỏ như hình. Có tất cả bao nhiêu hình tam giác đều?"
+          "text": "Hình tam giác đều ABC được chia thành 9 hình tam giác đều nhỏ như hình. Có tất cả bao nhiêu hình tam giác đều?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-tam-giac-bon"
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-tam-giac-chia-9"
         }
       ],
       "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7b",
@@ -5068,15 +5080,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Có 4 hình tam giác đều nhỏ. Hình lớn ABC ghép từ chúng cũng là hình tam giác đều. Vậy có 4 + 1 = 5 hình.",
-        "tex": "4 + 1 = \\concept{amber}{5}"
+        "text": "Có 9 hình tam giác đều nhỏ. Có thêm 3 hình ghép từ 4 hình nhỏ và 1 hình lớn nhất là ABC. Vậy có tất cả 9 + 3 + 1 = 13 hình.",
+        "tex": "9 + 3 + 1 = \\concept{teal}{13}"
       },
       "answer": {
         "kind": "value",
-        "value": 5
+        "value": 13
       },
       "check": {
-        "expr": "4 + 1"
+        "expr": "9 + 3 + 1"
       }
     },
     {
@@ -5105,13 +5117,13 @@
             "index": 1
           }
         ],
-        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-luc-giac-ba-cheo",
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-7b-goi-y",
         "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-7b-giai"
       },
       "difficulty": 3,
       "explain": {
         "text": "Có hai hình tam giác đều lớn là ACE và BDF. Có thêm sáu hình tam giác đều nhỏ ở sáu đỉnh: ASR, BMS, CMN, DNP, EPQ, FQR. Tổng cộng 2 + 6 = 8 hình.",
-        "tex": "2 + 6 = \\concept{amber}{8}"
+        "tex": "2 + 6 = \\concept{teal}{8}"
       },
       "answer": {
         "kind": "value",
@@ -5123,7 +5135,7 @@
     }
   ],
   "sticker": {
-    "name": "Huy hiệu hình đều",
+    "name": "Huy hiệu ba hình",
     "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sticker"
   }
 }

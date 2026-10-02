@@ -469,8 +469,9 @@ export function Figure({
   maxHeight,
 }: {
   spec: FigureSpec;
-  // Caps the drawing's height in pixels (the drawing keeps its proportions).
-  maxHeight?: number;
+  // Caps the drawing's height (the drawing keeps its proportions): pixels, or
+  // a CSS length such as "min(46vw, 300px)" for a cap that follows the screen.
+  maxHeight?: number | string;
 }) {
   return (
     <div

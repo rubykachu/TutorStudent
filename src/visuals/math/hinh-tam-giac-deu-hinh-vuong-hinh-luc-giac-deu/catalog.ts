@@ -2,6 +2,7 @@ import {
   type FigureSeg,
   type FigureSpec,
   type FigureText,
+  type FigureTick,
   figureRegions,
   type Pt,
   type Tone,
@@ -10,7 +11,6 @@ import type { StepsSpec } from "@/visuals/shared/plane/figure-steps";
 import {
   directionDeg,
   dist,
-  lerp,
   polar,
   regularPoints,
 } from "@/visuals/shared/plane/geometry";
@@ -23,18 +23,23 @@ import {
   solvedState,
 } from "./construction";
 import {
+  CORNERS,
   figure44,
   figure45,
   figure46,
   figure47,
   figure48,
   hexTriangles,
+  type LatticeCell,
+  latticeLines,
   polygon,
   rectangle,
   type ShapeOptions,
   shape,
+  sidePairs,
   squareGrid,
   triangleBySides,
+  triangleLattice,
 } from "./figures";
 import type { GallerySpec } from "./gallery";
 
@@ -99,6 +104,22 @@ const figure = (figureSpec: FigureSpec): VisualSpec => ({
   figure: figureSpec,
 });
 
+// A triangle among options with its side lengths written on it: drawn large
+// in its cell and with big writing, so a 5 is never read as a 6.
+const labelledTriangle = (
+  sides: readonly [number, number, number],
+): VisualSpec =>
+  figure({
+    ...triangleBySides(`Hình tam giác có ba cạnh ${sides.join(", ")}`, sides, {
+      w: 170,
+      h: 150,
+      lengths: true,
+      margin: 26,
+    }),
+    textSize: 22,
+    maxScale: 1.6,
+  });
+
 // The three shapes at the size of a full-width picture, and as a thumbnail
 // in a row of options or of the gallery.
 const tri = (label: string, o: Partial<ShapeOptions> = {}) =>
@@ -127,6 +148,8 @@ const frame = (figureSpec: FigureSpec, caption: string) => ({
 
 const TICKS = { ticks: true } as const;
 const MARKS = { ticks: true, angles: true } as const;
+// The same marks on a small picture: the arcs without their measures.
+const ARCS = { ticks: true, angles: "arcs" } as const;
 
 // Centres of the shapes drawn above, named O.
 const SQ_CENTRE = { O: [150, 98] } as const satisfies Record<string, Pt>;
@@ -149,6 +172,8 @@ const HEX_SHORT = [
   ["E", "A"],
   ["F", "B"],
 ] as const;
+
+const HEX_SIDES = sidePairs(CORNERS.hex);
 
 const segsOf = (
   pairs: readonly (readonly [string, string])[],
@@ -342,33 +367,74 @@ const SQUARE_SIDES = [
   ["D", "A"],
 ] as const;
 
-// A triangle of side 2·u cut into four equal triangles by the lines between
-// the midpoints of its sides.
-function triangleOfFour(label: string): FigureSpec {
-  const a: Pt = [150, 24];
-  const b: Pt = [35, 24 + 115 * Math.sqrt(3)];
-  const c: Pt = [265, 24 + 115 * Math.sqrt(3)];
-  return {
-    label,
+// A big triangle DEF of side 4·u (the points G, H, K are the midpoints of its
+// sides, P1, P2, P3 those of the top triangle DGH): cut into four triangles
+// by the lines between G, H and K, and the top one cut again into four. It
+// holds 4 small, 4 medium and 1 big equilateral triangle: 9 in all.
+const NINE_CELLS = {
+  D: [0, 0],
+  E: [4, 0],
+  F: [4, 4],
+  G: [2, 0],
+  H: [2, 2],
+  K: [4, 2],
+  P1: [1, 0],
+  P2: [1, 1],
+  P3: [2, 1],
+} as const satisfies Record<string, LatticeCell>;
+
+function triangleOfNine(label: string): FigureSpec {
+  return triangleLattice(label, {
     w: 300,
     h: 262,
-    pts: {
-      A: a,
-      B: b,
-      C: c,
-      M: lerp(a, b, 0.5),
-      N: lerp(a, c, 0.5),
-      P: lerp(b, c, 0.5),
-    },
-    polys: [{ v: ["A", "B", "C"] }],
-    segs: segsOf([
-      ["M", "N"],
-      ["M", "P"],
-      ["N", "P"],
-    ]),
-    names: ["A", "B", "C", "M", "N", "P"],
-  };
+    side: 230,
+    n: 4,
+    cells: NINE_CELLS,
+    labelled: ["D", "E", "F", "G", "H", "K"],
+    outer: ["D", "E", "F"],
+    lines: [
+      [
+        [2, 0],
+        [2, 2],
+      ],
+      [
+        [2, 0],
+        [4, 2],
+      ],
+      [
+        [2, 2],
+        [4, 2],
+      ],
+      [
+        [1, 0],
+        [1, 1],
+      ],
+      [
+        [1, 0],
+        [2, 1],
+      ],
+      [
+        [1, 1],
+        [2, 1],
+      ],
+    ],
+  });
 }
+
+// A triangle ABC of side 3·u cut into nine equal triangles by the lines
+// parallel to its sides: 9 small, 3 medium and 1 big equilateral triangle, 13
+// in all.
+const triangleOfThirteen = (label: string): FigureSpec =>
+  triangleLattice(label, {
+    w: 300,
+    h: 262,
+    side: 230,
+    n: 3,
+    cells: { A: [0, 0], B: [3, 0], C: [3, 3] },
+    labelled: ["A", "B", "C"],
+    outer: ["A", "B", "C"],
+    lines: latticeLines(3),
+  });
 
 // Three equilateral triangles in a row, point up, point down, point up: a
 // trapezoid, no bigger triangle.
@@ -468,23 +534,58 @@ function hexagonGallery(): FigureSpec {
   };
 }
 
-// A rhombus (four equal sides, angles 60° and 120°) for the compass and
-// set-square check.
-function rhombus(label: string): FigureSpec {
+// A rhombus (four equal sides, `angle` and its supplement as the angles) for
+// the compass and set-square check, corners named bottom left, top left, top
+// right, bottom right. `sample` marks its first side as the one the compass is
+// opened to.
+function rhombus(
+  label: string,
+  o: {
+    names?: readonly [string, string, string, string];
+    angle?: number;
+    sample?: boolean;
+  } = {},
+): FigureSpec {
+  const [a0, b0, c0, d0] = o.names ?? ["A", "B", "C", "D"];
   const side = 100;
   const a: Pt = [100, 168];
   const d: Pt = [a[0] + side, a[1]];
-  const b: Pt = polar(a[0], a[1], side, -60);
+  const b: Pt = polar(a[0], a[1], side, -(o.angle ?? 60));
   const c: Pt = [b[0] + side, b[1]];
   return {
     label,
     w: 300,
     h: 210,
-    pts: { A: a, B: b, C: c, D: d },
-    polys: [{ v: ["A", "B", "C", "D"] }],
-    segs: [{ a: "A", b: "B", tone: "teal", bold: true }],
-    names: ["A", "B", "C", "D"],
-    texts: [textAt(80, 112, "cạnh mẫu", "teal", "end")],
+    pts: { [a0]: a, [b0]: b, [c0]: c, [d0]: d },
+    polys: [{ v: [a0, b0, c0, d0] }],
+    names: [a0, b0, c0, d0],
+    ...(o.sample
+      ? {
+          segs: [{ a: a0, b: b0, tone: "teal" as Tone, bold: true }],
+          texts: [textAt(80, 112, "cạnh mẫu", "teal", "end")],
+        }
+      : {}),
+  };
+}
+
+// The square MNPQ of Figure 4.6 drawn on its own and bigger: N and P above,
+// M and Q below.
+function squareMNPQ(label: string): FigureSpec {
+  const side = 150;
+  const left = (300 - side) / 2;
+  const top = 36;
+  return {
+    label,
+    w: 300,
+    h: top + side + 36,
+    pts: {
+      N: [left, top],
+      P: [left + side, top],
+      Q: [left + side, top + side],
+      M: [left, top + side],
+    },
+    polys: [{ v: ["M", "N", "P", "Q"] }],
+    names: ["M", "N", "P", "Q"],
   };
 }
 
@@ -526,8 +627,30 @@ const SQUARE_MNPQ = [
 // a frame of a hint, painted in a colour.
 const tone = (fill: Tone) => ({ tone: "ink" as Tone, fill });
 
+// Every triangle is teal, the colour of the equilateral triangle; the two big
+// ones tell apart by their strokes, 2 on ACE and 3 on BDF.
 const FIG48_BIG_ACE = [{ v: ["A", "C", "E"], ...tone("teal") }] as const;
-const FIG48_BIG_BDF = [{ v: ["B", "D", "F"], ...tone("amber") }] as const;
+const FIG48_BIG_BDF = [{ v: ["B", "D", "F"], ...tone("teal") }] as const;
+const FIG48_BIG_TICKS = [
+  {
+    segs: [
+      ["A", "C"],
+      ["C", "E"],
+      ["E", "A"],
+    ],
+    count: 2,
+    tone: "blue",
+  },
+  {
+    segs: [
+      ["B", "D"],
+      ["D", "F"],
+      ["F", "B"],
+    ],
+    count: 3,
+    tone: "blue",
+  },
+] as const satisfies readonly FigureTick[];
 const FIG48_SMALL = [
   ["A", "S", "R"],
   ["B", "M", "S"],
@@ -535,7 +658,7 @@ const FIG48_SMALL = [
   ["D", "N", "P"],
   ["E", "P", "Q"],
   ["F", "Q", "R"],
-].map((v) => ({ v, ...tone("lime") }));
+].map((v) => ({ v, ...tone("teal") }));
 
 // A hexagon of six triangles, with its main diagonal AD when `diagonal`.
 const hexOfSix = (label: string, diagonal: boolean) =>
@@ -571,20 +694,19 @@ const triangleDown = polygon("Hình tam giác đều quay đầu xuống", {
 
 // Hint of exercise 4.5a: the same check on another triangle XYZ with XY = XZ
 // = 5 and YZ = 8. The compass, needle on X, reaches both Y and Z; the check
-// of YZ is left as "?".
+// of YZ is left as "?". The drawing is taller than the triangle because the
+// arc through Y and Z bulges under YZ.
 const SBT_4_5A_HINT: FigureSpec = (() => {
   const base = triangleBySides(
     "Kim compa ở X, đầu bút chạm cả Y và Z",
     [5, 5, 8],
-    {
-      w: 300,
-      h: 210,
-      names: ["X", "Y", "Z"],
-    },
+    { w: 300, h: 150, names: ["X", "Y", "Z"], margin: 30 },
   );
   const [x, y, z] = [base.pts.X, base.pts.Y, base.pts.Z] as [Pt, Pt, Pt];
+  const arcDepth = dist(x, y) - (z[1] - x[1]);
   return {
     ...base,
+    h: Math.ceil(z[1] + arcDepth + 16),
     arcs: [
       {
         c: "X",
@@ -604,7 +726,33 @@ const SBT_4_5A_HINT: FigureSpec = (() => {
         tone: "blue" as Tone,
       },
     ],
-    texts: [textAt((y[0] + z[0]) / 2, y[1] + 30, "YZ: ?", "amber")],
+    texts: [textAt((y[0] + z[0]) / 2, y[1] - 22, "YZ: ?", "amber")],
+  };
+})();
+
+// Hint of exercise "choose the equilateral triangle": a triangle with two
+// sides of 4 and the third left as "?", and the one thing to check.
+const TRIANGLE_HINT: FigureSpec = (() => {
+  const base = triangleBySides(
+    "Hình tam giác có hai cạnh dài 4 và một cạnh chưa biết",
+    [4, 4, 4],
+    { w: 300, h: 200, lengths: true },
+  );
+  // The lengths are written in the order left side, right side, base.
+  const [left, right, bottom] = base.texts as [
+    FigureText,
+    FigureText,
+    FigureText,
+  ];
+  return {
+    ...base,
+    h: 240,
+    texts: [
+      left,
+      right,
+      { ...bottom, text: "?", tone: "amber" },
+      textAt(150, 222, "Ba cạnh phải cùng một số"),
+    ],
   };
 })();
 
@@ -627,15 +775,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     label: "Hình tam giác đều, hình vuông và hình lục giác đều",
     items: [
       {
-        figure: triThumb("Hình tam giác đều", { ...TICKS, fill: "teal" }),
+        figure: triThumb("Hình tam giác đều", { ...ARCS, fill: "teal" }),
         caption: "Hình tam giác đều",
       },
       {
-        figure: sqThumb("Hình vuông", { ...TICKS, fill: "pink" }),
+        figure: sqThumb("Hình vuông", { ...ARCS, fill: "pink" }),
         caption: "Hình vuông",
       },
       {
-        figure: hexThumb("Hình lục giác đều", { ...TICKS, fill: "lime" }),
+        figure: hexThumb("Hình lục giác đều", { ...ARCS, fill: "lime" }),
         caption: "Hình lục giác đều",
       },
     ],
@@ -723,28 +871,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       texts: [textAt(98, 96, "6 cm", "ink", "end")],
     }),
   ),
-  "tam-giac-5-5-5": small(
-    triangleBySides("Hình tam giác có ba cạnh 5, 5, 5", [5, 5, 5], {
-      ...THUMB,
-      lengths: true,
-    }),
-  ),
-  "tam-giac-5-5-6": small(
-    triangleBySides("Hình tam giác có ba cạnh 5, 5, 6", [5, 5, 6], {
-      ...THUMB,
-      lengths: true,
-    }),
-  ),
-  "tam-giac-4-5-6": small(
-    triangleBySides("Hình tam giác có ba cạnh 4, 5, 6", [4, 5, 6], {
-      ...THUMB,
-      lengths: true,
-    }),
-  ),
-  "tam-giac-3-3-5": small(
-    triangleBySides("Hình tam giác có ba cạnh 3, 3, 5", [3, 3, 5], {
-      ...THUMB,
-      lengths: true,
+  "tam-giac-5-5-5": labelledTriangle([5, 5, 5]),
+  "tam-giac-5-5-6": labelledTriangle([5, 5, 6]),
+  "tam-giac-4-5-6": labelledTriangle([4, 5, 6]),
+  "tam-giac-3-3-5": labelledTriangle([3, 3, 5]),
+  "tam-giac-4-4-hoi": figure(TRIANGLE_HINT),
+  // The triangle of the fill-in exercise, full size, its three sides marked
+  // equal.
+  "tam-giac-deu-vach": figure(
+    tri("Hình tam giác đều có ba cạnh bằng nhau", {
+      ...TICKS,
+      fill: "teal",
     }),
   ),
 
@@ -846,24 +983,26 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "do-duong-cheo-vuong": {
     kind: "probe",
-    figure: sq("Hình vuông ABCD với hai đường chéo", {
+    figure: sq("Hình vuông ABCD cạnh 3 cm với hai đường chéo", {
       names: true,
       fill: "pink",
       segs: segsOf(SQUARE_DIAGONALS, { tone: "mute", dash: true }),
       extraPts: SQ_CENTRE,
+      // Room under the square for the two measures, one line each.
+      h: 240,
     }),
     parts: [
-      ...sideProbe([["A", "C"]], "4,2 cm", "amber").map((part) => ({
+      ...sideProbe([["A", "C"]], "AC = 4,2 cm", "amber").map((part) => ({
         ...part,
         label: "Đường chéo AC",
         at: 0.1,
-        textAt: [104, 98] as Pt,
+        textAt: [150, 192] as Pt,
       })),
-      ...sideProbe([["B", "D"]], "4,2 cm", "amber").map((part) => ({
+      ...sideProbe([["B", "D"]], "BD = 4,2 cm", "amber").map((part) => ({
         ...part,
         label: "Đường chéo BD",
         at: 0.1,
-        textAt: [196, 98] as Pt,
+        textAt: [150, 218] as Pt,
       })),
       {
         kind: "angle" as const,
@@ -921,29 +1060,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "do-luc-giac-deu": {
     kind: "probe",
     figure: hex("Hình lục giác đều ABCDEF", { names: true, fill: "lime" }),
-    parts: [
-      ...sideProbe(
-        [
-          ["A", "B"],
-          ["C", "D"],
-          ["E", "F"],
-        ],
-        "3 cm",
-        "blue",
-      ),
-      ...angleProbe(
-        [
-          ["A", "F", "B"],
-          ["C", "B", "D"],
-          ["E", "D", "F"],
-        ],
-        "120°",
-      ),
-    ],
+    parts: sideProbe(HEX_SIDES, "3 cm", "blue"),
     verb: "đo",
-    done: "Các cạnh đều dài 3 cm và các góc đều bằng 120°.",
+    done: "Cả sáu cạnh đều dài 3 cm.",
   },
   "chon-luc-giac": figure(hexagonGallery()),
+  // Hint of the exercise on tapping: a regular hexagon turned to neither of
+  // the two directions of the pictures, its sides and angles marked.
+  "luc-giac-deu-goi-y": figure(
+    hex("Hình lục giác đều xoay nghiêng, các cạnh và các góc bằng nhau", {
+      ...MARKS,
+      fill: "lime",
+      turn: 15,
+      cy: 106,
+      r: 100,
+      h: 264,
+      texts: [
+        textAt(150, 224, "Đếm số cạnh."),
+        textAt(150, 248, "Các cạnh có bằng nhau không?"),
+      ],
+    }),
+  ),
   "luc-giac-deu-abcdef-8": figure(
     hex("Hình lục giác đều ABCDEF có cạnh AB = 8 cm", {
       names: true,
@@ -971,7 +1108,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
           segs: segsOf([["A", "D"]], { tone: "amber", bold: true }),
           dots: ["O"],
         }),
-        "Đường chéo chính AD đi qua tâm O",
+        "Đường chéo chính AD nối hai đỉnh đối diện nhau",
       ),
       frame(
         hex("Ba đường chéo chính", {
@@ -994,7 +1131,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
           ],
           dots: ["O"],
         }),
-        "Các đường chéo phụ không qua tâm",
+        "Đường chéo phụ nối hai đỉnh mà giữa chúng chỉ có một đỉnh",
       ),
     ],
   ),
@@ -1086,7 +1223,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
             r: 104,
             count: 6,
             diagonal: ["A", "D"],
-            ticksOnDiagonal: true,
+            equalMarks: true,
             names: true,
           }),
           "Đường chéo chính AD dài bằng hai cạnh",
@@ -1104,7 +1241,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         r: 104,
         count: 6,
         diagonal: ["A", "D"],
-        ticksOnDiagonal: true,
+        equalMarks: true,
       },
     ),
   ),
@@ -1283,7 +1420,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "kiem-cung-lam": {
     kind: "probe",
-    figure: rhombus("Hình có bốn cạnh bằng nhau nhưng một góc không vuông"),
+    figure: rhombus("Hình có bốn cạnh bằng nhau nhưng một góc không vuông", {
+      sample: true,
+    }),
     parts: [
       ...sideProbe(
         [
@@ -1306,6 +1445,38 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     verb: "kiểm tra",
     done: "Bốn cạnh bằng nhau nhưng góc A không vuông, nên đây không phải hình vuông.",
+  },
+  // The exercise on one angle that is not right: another rhombus, turned
+  // and with an angle of 70°.
+  "kiem-hinh-thoi-efgh": {
+    kind: "probe",
+    figure: rhombus("Hình EFGH có bốn cạnh bằng nhau", {
+      names: ["E", "F", "G", "H"],
+      angle: 70,
+    }),
+    parts: [
+      ...sideProbe(
+        [
+          ["E", "F"],
+          ["F", "G"],
+          ["G", "H"],
+          ["H", "E"],
+        ],
+        "vừa khít",
+        "teal",
+      ),
+      {
+        kind: "angle" as const,
+        at: "E",
+        a: "H",
+        b: "F",
+        text: "≠ 90°",
+        label: "Góc E",
+        tone: "amber" as Tone,
+      },
+    ],
+    verb: "kiểm tra",
+    done: "Bốn cạnh vừa khít, còn êke không khít ở góc E.",
   },
   "tam-giac-4-4-5": figure(
     triangleBySides(
@@ -1379,37 +1550,34 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   }),
   "dem-cung-lam": {
     kind: "probe",
-    figure: triangleOfFour("Hình tam giác đều ABC chia thành bốn hình nhỏ"),
+    figure: triangleOfNine("Hình tam giác đều DEF chia thành các hình nhỏ"),
     parts: [
-      {
-        kind: "poly",
-        v: ["A", "M", "N"],
-        label: "Hình tam giác AMN",
-        tone: "teal",
-      },
-      {
-        kind: "poly",
-        v: ["M", "B", "P"],
-        label: "Hình tam giác MBP",
-        tone: "teal",
-      },
-      {
-        kind: "poly",
-        v: ["N", "P", "C"],
-        label: "Hình tam giác NPC",
-        tone: "teal",
-      },
-      {
-        kind: "poly",
-        v: ["M", "N", "P"],
-        label: "Hình tam giác MNP",
-        tone: "teal",
-      },
-      { kind: "chip", label: "Cả hình lớn ABC", tone: "amber" },
+      // The four smallest, then the four medium ones, then the whole.
+      ...(
+        [
+          ["D", "P1", "P2"],
+          ["P1", "G", "P3"],
+          ["P2", "P3", "H"],
+          ["P1", "P2", "P3"],
+          ["D", "G", "H"],
+          ["G", "E", "K"],
+          ["H", "K", "F"],
+          ["G", "H", "K"],
+        ] as const
+      ).map((v, i) => ({
+        kind: "poly" as const,
+        v,
+        label:
+          i < 4
+            ? `Hình tam giác nhỏ số ${i + 1}`
+            : `Hình tam giác ${v.join("")}`,
+        tone: "teal" as Tone,
+      })),
+      { kind: "chip", label: "Cả hình lớn DEF", tone: "amber" },
     ],
-    whole: ["A", "B", "C"],
+    whole: ["D", "E", "F"],
     verb: "tô",
-    done: "Có 5 hình tam giác đều: 4 hình nhỏ và 1 hình lớn.",
+    done: "Có 9 hình tam giác đều: 4 hình nhỏ, 4 hình vừa và 1 hình lớn.",
   },
   "dem-dai-ba-tam-giac": figure(
     triangleStrip("Ba hình tam giác đều nhỏ ghép thành hình thang"),
@@ -1477,8 +1645,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       cell: 82,
     }),
   ),
-  "dem-tam-giac-bon": figure(
-    triangleOfFour("Hình tam giác đều ABC chia thành bốn hình nhỏ"),
+  "dem-tam-giac-chia-9": figure(
+    triangleOfThirteen("Hình tam giác đều ABC chia thành chín hình nhỏ"),
   ),
 
   // Lead-ins of the book exercises
@@ -1514,6 +1682,67 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "sbt-hinh-4-6": figure(FIG46),
   "sbt-hinh-4-7": figure(figure47()),
   "sbt-hinh-4-8": figure(figure48()),
+
+  // The figures of the exercises 4.4b to 4.5b that the child measures
+  "sbt-4-4b-do": {
+    kind: "probe",
+    // The two triangles cross, so their measures are written in two rows
+    // under the hexagon, one column per side.
+    figure: { ...figure45(), h: 312 },
+    parts: (
+      [
+        ["M", "P"],
+        ["P", "R"],
+        ["R", "M"],
+        ["N", "Q"],
+        ["Q", "S"],
+        ["S", "N"],
+      ] as const
+    ).flatMap(([a, b], i) =>
+      sideProbe([[a, b]], `${a}${b} 6,9 cm`, "blue").map((part) => ({
+        ...part,
+        textAt: [55 + (i % 3) * 105, i < 3 ? 280 : 302] as Pt,
+      })),
+    ),
+    verb: "đo",
+    done: "Cả sáu đoạn đều dài 6,9 cm.",
+  },
+  "sbt-4-5a-do": {
+    kind: "probe",
+    figure: figure46(),
+    parts: [
+      ...sideProbe(
+        [
+          ["A", "B"],
+          ["A", "C"],
+        ],
+        "7,8 cm",
+        "blue",
+      ).map((part) => ({ ...part, at: 0.28 })),
+      ...sideProbe([["B", "C"]], "6 cm", "blue"),
+    ],
+    verb: "đo",
+    done: "AB và AC đều dài 7,8 cm, còn BC dài 6 cm.",
+  },
+  "sbt-4-5b-do": {
+    kind: "probe",
+    figure: squareMNPQ("Hình MNPQ lấy từ Hình 4.6"),
+    parts: [
+      ...sideProbe(SQUARE_MNPQ, "3,3 cm", "blue"),
+      ...angleProbe(
+        [
+          ["M", "Q", "N"],
+          ["N", "M", "P"],
+          ["P", "N", "Q"],
+          ["Q", "P", "M"],
+        ],
+        "90°",
+        { right: true },
+      ),
+    ],
+    verb: "đo",
+    done: "Bốn cạnh đều dài 3,3 cm và bốn góc đều bằng 90°.",
+  },
 
   // Hints (other numbers or a stop before the result) and solutions
   "sbt-4-1-goi-y": figure(figure44({ counts: true })),
@@ -1576,24 +1805,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         ],
         { tone: "teal", bold: true },
       ),
-      ticksExtra: [
-        {
-          segs: [
-            ["A", "C"],
-            ["C", "E"],
-            ["E", "A"],
-          ],
-          count: 2,
-          tone: "blue",
-        },
-      ],
+      h: 270,
+      texts: [textAt(150, 252, "AC, CE, EA bằng nhau không?")],
     }),
   ),
   "sbt-4-4b-giai": figure(
     figure45({
       polys: [
         { v: ["M", "P", "R"], fill: "teal" },
-        { v: ["N", "Q", "S"], fill: "amber" },
+        { v: ["N", "Q", "S"], fill: "teal" },
       ],
       ticks: [
         {
@@ -1618,22 +1838,41 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     }),
   ),
   "sbt-4-5a-goi-y": figure(SBT_4_5A_HINT),
-  "sbt-4-5a-giai": figure(
-    figure46({
-      arcs: fig46Arcs(true),
-      ticks: [
-        {
-          segs: [
-            ["A", "B"],
-            ["A", "C"],
-          ],
-          count: 1,
-          tone: "blue",
-        },
-        { segs: [["B", "C"]], count: 2, tone: "blue" },
-      ],
-    }),
-  ),
+  "sbt-4-5a-giai": steps("Dùng compa so các cạnh của hình ABC", [
+    frame(
+      figure46({
+        arcs: fig46Arcs(false),
+        ticks: [
+          {
+            segs: [
+              ["A", "B"],
+              ["A", "C"],
+            ],
+            count: 1,
+            tone: "blue",
+          },
+        ],
+      }),
+      "Kim ở A: đầu bút chạm B và C, nên AB = AC",
+    ),
+    frame(
+      figure46({
+        arcs: fig46Arcs(true),
+        ticks: [
+          {
+            segs: [
+              ["A", "B"],
+              ["A", "C"],
+            ],
+            count: 1,
+            tone: "blue",
+          },
+          { segs: [["B", "C"]], count: 2, tone: "blue" },
+        ],
+      }),
+      "Kim ở B, mở bằng BA: đầu bút đi quá C, nên BC ngắn hơn",
+    ),
+  ]),
   "sbt-4-5b-goi-y": figure(
     sq("Hình có bốn cạnh bằng nhau, còn các góc thì chưa biết", {
       ...TICKS,
@@ -1680,7 +1919,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "sbt-4-7a-giai": steps("Hai hình lục giác đều trong hình", [
     frame(
       figure48({
-        polys: [{ v: ["A", "B", "C", "D", "E", "F"], ...tone("teal") }],
+        polys: [{ v: ["A", "B", "C", "D", "E", "F"], ...tone("lime") }],
       }),
       "ABCDEF có sáu cạnh bằng nhau",
     ),
@@ -1691,9 +1930,24 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       "MNPQRS ở giữa cũng là hình lục giác đều",
     ),
   ]),
+  // Hint of 4.7b: the two big triangles, the small ones left to find.
+  "sbt-4-7b-goi-y": figure(
+    figure48({
+      polys: [...FIG48_BIG_ACE, ...FIG48_BIG_BDF],
+      ticks: FIG48_BIG_TICKS,
+      h: 296,
+      texts: [
+        textAt(150, 258, "2 hình tam giác lớn"),
+        textAt(150, 282, "và ? hình nhỏ ở các đỉnh"),
+      ],
+    }),
+  ),
   "sbt-4-7b-giai": steps("Đếm các hình tam giác đều trong hình", [
     frame(
-      figure48({ polys: [...FIG48_BIG_ACE, ...FIG48_BIG_BDF] }),
+      figure48({
+        polys: [...FIG48_BIG_ACE, ...FIG48_BIG_BDF],
+        ticks: FIG48_BIG_TICKS,
+      }),
       "2 hình tam giác lớn: ACE và BDF",
     ),
     frame(figure48({ polys: FIG48_SMALL }), "6 hình tam giác nhỏ ở sáu đỉnh"),
