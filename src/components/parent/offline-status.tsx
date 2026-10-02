@@ -57,7 +57,7 @@ export function OfflineStatus() {
       data-parent-panel="Dùng khi không có mạng"
     >
       <p
-        role="status"
+        aria-live="polite"
         data-offline-status={readiness.kind}
         className="font-semibold"
       >

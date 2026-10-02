@@ -1,6 +1,6 @@
 # Plan: offline support (service worker precache)
 
-Spec: `spec.md` in this folder. Tasks with acceptance criteria and commands: `task.md`.
+Spec: `spec.md` in this folder. Outcome of the build: the Serwist trial failed one criterion, so the worker is hand-written (`src/offline/sw-core.ts`, bundled by `scripts/offline-worker.ts`); where this plan or the spec say Serwist, read that module; evidence in `task.md`, "Findings of the Serwist trial". Tasks with acceptance criteria and commands: `task.md`.
 
 ## Overview
 

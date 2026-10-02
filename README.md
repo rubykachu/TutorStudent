@@ -75,6 +75,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm lint` / `pnpm format` | Kiểm tra / sửa định dạng (Biome) |
 | `pnpm typecheck` | Kiểm tra kiểu TypeScript |
 | `pnpm test` / `pnpm test:e2e` | Unit test (Vitest) / E2E (Playwright) |
+| `pnpm test:e2e:offline` | E2E offline trên bản build production của `HEAD` (dựng và chạy trong một worktree tạm, cổng `TEST_PORT + 500`; mất vài phút, chạy trước khi phát hành bản đụng tới `src/offline/`) |
 | `pnpm test:r2` | Bộ test của store trên bucket R2 thật, chỉ dưới `test/<mã chạy>/`; ghi ra ngoài máy nên chỉ chạy khi chủ dự án đồng ý |
 | `pnpm build` | Build production (chạy `content:check` trước) |
 | `pnpm content:check [--stats]` | Kiểm nội dung: schema, lint tiếng Việt, đáp án, id, cổng xuất bản |

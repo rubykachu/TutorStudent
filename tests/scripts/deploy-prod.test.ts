@@ -60,6 +60,11 @@ function fakeSite(
       }),
     "GET media": () => new Response("x", { status: 206 }),
     "GET /api/sync": () => new Response(null, { status: 401 }),
+    "GET /sw.js": () =>
+      new Response("worker", {
+        status: 200,
+        headers: { "cache-control": "no-cache" },
+      }),
     ...overrides,
   };
   return (async (url: string, init?: RequestInit) => {
@@ -81,7 +86,7 @@ const input = {
 };
 
 describe("runSmokeChecks", () => {
-  it("passes all six checks on a healthy site", async () => {
+  it("passes all seven checks on a healthy site", async () => {
     const checks = await runSmokeChecks({ ...input, fetch: fakeSite() });
     expect(checks.map((c) => c.ok)).toEqual([
       true,
@@ -90,7 +95,33 @@ describe("runSmokeChecks", () => {
       true,
       true,
       true,
+      true,
     ]);
+  });
+
+  it("fails when the worker script is cached, missing or behind the gate", async () => {
+    for (const worker of [
+      () =>
+        new Response("worker", {
+          status: 200,
+          headers: { "cache-control": "public, max-age=31536000" },
+        }),
+      () => new Response("worker", { status: 200 }),
+      () => new Response(null, { status: 401 }),
+      () =>
+        new Response(null, {
+          status: 307,
+          headers: { location: "/unlock?next=%2Fsw.js" },
+        }),
+    ]) {
+      const checks = await runSmokeChecks({
+        ...input,
+        fetch: fakeSite({ "GET /sw.js": worker }),
+      });
+      expect(checks.filter((c) => !c.ok).map((c) => c.name)).toEqual([
+        "worker script no-cache",
+      ]);
+    }
   });
 
   it("fails the login check without a code and skips the content check", async () => {

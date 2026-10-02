@@ -69,7 +69,7 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 
 ### 5. Kiểm nhanh sau deploy
 
-`pnpm deploy:prod` tự chạy sáu kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã đầu của `FAMILY_CODES` trong `.env.production.local` được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
+`pnpm deploy:prod` tự chạy bảy kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã đầu của `FAMILY_CODES` trong `.env.production.local` được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket); `/sw.js` trả 200 không cần cookie với `Cache-Control: no-cache` (tệp service worker phải qua cổng và không bao giờ nằm trong cache, nếu không máy giữ worker cũ bấy lâu cache còn sống). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
 
 ## Biến môi trường
 
@@ -83,6 +83,7 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 | `R2_PRIVATE_BUCKET` | để bật đồng bộ | như trên | `tutor-progress`. Thiếu một trong bốn biến (hoặc id, tên bucket sai dạng) thì đồng bộ tắt và log ghi tên biến thiếu, không ghi giá trị; không đặt biến nào thì đồng bộ tắt im lặng |
 | `SYNC_STORE` | không | chỉ máy dev và test | `fs:<thư mục>` hay `memory`: store thay cho R2 khi chạy thử trên máy (E2E nhiều máy dùng nó). Được ưu tiên hơn `R2_*`, và server production từ chối nó |
 | `NEXT_PUBLIC_MEDIA_BASE_URL` | khi dùng bucket | Vercel, lúc build | Địa chỉ công khai của bucket media, không có dấu `/` ở cuối, ví dụ `https://pub-xxxx.r2.dev`. Để trống thì app đọc video từ `public/media` |
+| `NEXT_PUBLIC_OFFLINE_KILL_SWITCH` | không | Vercel, lúc build | `1` gỡ service worker khỏi mọi máy ở bản deploy đó (cách dùng: "Gỡ service worker lỗi"). Để trống hay vắng là chế độ bình thường; đặt nó trong `.env.local` khi chạy thử thì cũng tắt worker ở máy |
 
 Quy tắc đã được code giữ:
 
@@ -375,9 +376,10 @@ Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN
 6. Tiếng: làm một câu đúng và một câu sai nghe tiếng thưởng và tiếng sai; bấm cú mèo nghe tiếng; tắt rồi bật nút tiếng. Thử cả khi gạt công tắc chuông sang im lặng: tiếng của app vẫn phát (đã đặt phiên âm thanh "playback").
 7. Làm xong một phần, tải lại trang: tiến độ còn (IndexedDB trên máy này). Vào `/parent` đặt PIN, xem báo cáo.
 8. Thêm vào Màn hình chính (làm sau cùng, vì app ở đó có dữ liệu riêng, tách khỏi Safari): trong Safari bấm nút Chia sẻ, chọn "Thêm vào Màn hình chính". Tên gợi ý là "Owl Yeah", biểu tượng là cú mèo trên nền xanh, không phải chữ cái hay ảnh chụp trang. Bấm "Thêm".
-9. Mở app từ biểu tượng mới: toàn màn hình, không có thanh địa chỉ của Safari, thanh trạng thái sáng. Lần đầu hỏi mã gia đình (cookie của Safari không sang đây): gõ mã, vào trang "Chào bạn mới!" vì hồ sơ tạo trong Safari không có ở đây. Tạo hồ sơ, đóng app, mở lại: vào thẳng, không hỏi mã. Cần mạng như mở trong Safari (chưa có chế độ offline).
-10. Gửi link `APP_ORIGIN` cho chính mình bằng Zalo, Messenger hoặc iMessage: hiện thẻ có ảnh cú mèo cạnh chữ Owl Yeah, tiêu đề "Owl Yeah: tự học lớp 6 cùng bạn cú" và mô tả tiếng Việt. Facebook lưu thẻ cũ rất lâu: sau khi đổi ảnh hay chữ, dán link vào Sharing Debugger của Facebook (developers.facebook.com/tools/debug) và bấm "Scrape Again".
-11. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
+9. Mở app từ biểu tượng mới: toàn màn hình, không có thanh địa chỉ của Safari, thanh trạng thái sáng. Lần đầu hỏi mã gia đình (cookie của Safari không sang đây): gõ mã, vào trang "Chào bạn mới!" vì hồ sơ tạo trong Safari không có ở đây. Tạo hồ sơ, đóng app, mở lại: vào thẳng, không hỏi mã. Mở app thấy khung giống Safari.
+10. Offline (làm sau bước 9, trên app ở Màn hình chính): khi còn mạng, vào `/parent` (đặt PIN nếu chưa có) và đợi dòng "Dùng khi không có mạng: sẵn sàng" (lúc đầu là "đang tải (n/N)"; "chưa sẵn sàng" nghĩa là chưa có worker, ví dụ bản chạy `next dev`, hay chưa cài xong: để app mở thêm ít phút có mạng). Bật chế độ máy bay, vuốt đóng app khỏi trình chuyển app, mở lại từ biểu tượng: vào thẳng trang chủ. Học một bài chưa từng mở (phần có hình, công thức), làm một câu, mở "Mẹo hay" và "Ôn bài này". Video và lời đọc nói "Cần mạng để xem video" và "Cần mạng để nghe đọc bài", không có vòng quay hay phần trăm; nút nhạc nói "Cần mạng để nghe nhạc". Tắt chế độ máy bay: bấm phát video thì video tải và chạy, và nếu đã bật đồng bộ thì `/parent` có "Đồng bộ lần cuối" mới. Khi có bản mới, màn hình chính hiện dòng "Có bài mới, tải lại" (không hiện trong màn học); bấm thì app tải lại.
+11. Gửi link `APP_ORIGIN` cho chính mình bằng Zalo, Messenger hoặc iMessage: hiện thẻ có ảnh cú mèo cạnh chữ Owl Yeah, tiêu đề "Owl Yeah: tự học lớp 6 cùng bạn cú" và mô tả tiếng Việt. Facebook lưu thẻ cũ rất lâu: sau khi đổi ảnh hay chữ, dán link vào Sharing Debugger của Facebook (developers.facebook.com/tools/debug) và bấm "Scrape Again".
+12. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
 
 ## Đổi mã gia đình
 
@@ -407,7 +409,25 @@ Giới hạn thử sai (5 lần trong 10 phút cho mỗi địa chỉ mạng) đ
 | Video chạy nhưng không tua được | Bucket không trả `206` cho `Range` | Chạy lệnh `curl` có `Range` ở bước 3 |
 | Phụ đề báo sai định dạng | `Content-Type` của `.vtt` không phải `text/vtt` | Tải lại các tệp `.vtt` bằng lệnh ở bước 3 |
 | Bài mới không hiện sau khi push | Bài chưa `published` (chỉ bài đã qua review mới được đưa ra) | `pnpm content:check`; xem trạng thái trong `notebooks/backlogs/index.md` |
+| App trắng, hiện bài cũ hay lỗi lạ trên iPad sau một lần cập nhật, nghi service worker | Worker lỗi giữ trang cũ hay trả sai | Công tắc khẩn cấp: "Gỡ service worker lỗi" ngay dưới bảng |
+| Dòng "Dùng khi không có mạng" mãi là "đang tải" hay "chưa sẵn sàng" | Worker chưa cài xong (mạng yếu, mở app quá ngắn), hoặc máy chưa có cookie, hoặc đang chạy `next dev` | Để app mở có mạng vài phút rồi xem lại; ở bản production vẫn không đổi thì kiểm `curl -sI "$APP_ORIGIN/sw.js"` trả 200 với `no-cache`, rồi dùng công tắc khẩn cấp nếu nghi worker |
 | Cần quay về bản trước | Bản mới hỏng | Vercel, Deployments, bản cũ, "Promote to Production"; hoặc `npx vercel rollback` |
+
+## Gỡ service worker lỗi
+
+Service worker lỗi trên máy của bé là sự cố tệ nhất của phần offline: nó có thể giữ trang cũ hay trả sai ngay cả khi bản mới đã sửa. Công tắc khẩn cấp gỡ nó trên mọi máy mà không cần chạm vào từng máy, và không đụng tới tiến độ (tiến độ nằm trong IndexedDB, worker không bao giờ ghi vào đó).
+
+1. Đặt biến `NEXT_PUBLIC_OFFLINE_KILL_SWITCH` bằng `1` ở Vercel (Production), rồi deploy lại: biến này được in vào mã lúc build nên chỉ có hiệu lực ở bản deploy mới (`pnpm deploy:prod`, hoặc `npx vercel deploy --prod` sau khi đặt biến).
+
+   ```bash
+   printf '1' | npx vercel env add NEXT_PUBLIC_OFFLINE_KILL_SWITCH production
+   pnpm deploy:prod
+   ```
+2. Kiểm: `curl -s "$APP_ORIGIN/sw.js"` phải chứa `unregister` và không chứa `/_next/static`; `curl -sI "$APP_ORIGIN/sw.js"` vẫn `200` và `no-cache`.
+3. Điều xảy ra trên máy của bé: lần mở app có mạng kế tiếp (trình duyệt kiểm tra `/sw.js` mỗi lần điều hướng, ngoài worker, tệp qua cổng không cần cookie), worker tự gỡ được cài, nhận quyền ngay, xoá mọi cache `offline-*`, huỷ đăng ký. Trang mở lên cũng không đăng ký lại, và gỡ bất kỳ đăng ký nào còn sót. App chạy như trước khi có offline. Máy đang offline vẫn giữ worker cũ cho tới lần có mạng đầu tiên.
+4. Khi đã sửa xong lỗi: xoá biến (`npx vercel env rm NEXT_PUBLIC_OFFLINE_KILL_SWITCH production --yes`), deploy lại; worker bình thường được cài lại ở lần mở có mạng sau.
+
+Không dùng tiêu đề `Clear-Site-Data`: giá trị `"storage"` xoá luôn IndexedDB, tức tiến độ chưa gửi của bé; `"cache"` không đụng tới Cache Storage; Safari bỏ qua tiêu đề này. Worker tự gỡ là cơ chế duy nhất.
 
 ## Thêm video cho bài cũ
 

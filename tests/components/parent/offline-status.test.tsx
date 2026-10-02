@@ -79,7 +79,7 @@ describe("OfflineStatus", () => {
   it("says not ready when no worker is installed (development, or not yet)", async () => {
     render(<OfflineStatus />);
     await settle();
-    expect(screen.getByRole("status").textContent).toBe(
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toBe(
       "Dùng khi không có mạng: chưa sẵn sàng",
     );
   });
@@ -90,7 +90,7 @@ describe("OfflineStatus", () => {
     });
     render(<OfflineStatus />);
     await settle();
-    expect(screen.getByRole("status").textContent).toBe(
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toBe(
       "Dùng khi không có mạng: sẵn sàng",
     );
   });
@@ -101,7 +101,7 @@ describe("OfflineStatus", () => {
     registration = reg({ installing });
     render(<OfflineStatus />);
     await settle();
-    expect(screen.getByRole("status").textContent).toBe(
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toBe(
       "Dùng khi không có mạng: đang tải (120/340)",
     );
     // The install finishes: no worker installing, the active one is ready.
@@ -111,7 +111,7 @@ describe("OfflineStatus", () => {
       await vi.advanceTimersByTimeAsync(OFFLINE_STATUS_POLL_MS);
     });
     await settle();
-    expect(screen.getByRole("status").textContent).toBe(
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toBe(
       "Dùng khi không có mạng: sẵn sàng",
     );
   });
@@ -128,7 +128,9 @@ describe("OfflineStatus", () => {
     });
     handler();
     await settle();
-    expect(screen.getByRole("status").textContent).toContain("sẵn sàng");
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toContain(
+      "sẵn sàng",
+    );
     unmount();
     expect(container.removeEventListener).toHaveBeenCalledWith(
       "controllerchange",
