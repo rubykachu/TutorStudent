@@ -11,7 +11,8 @@
   },
   "title": "Phép chia hết. Ước và bội của một số nguyên",
   "sourceRef": "Sách bài tập tr.58–59",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "7b693998b2ac4ec8fd8d6f8f128a30a1f10a6a160bfc9523573332bfa85976e5",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"

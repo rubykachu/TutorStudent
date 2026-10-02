@@ -1,9 +1,12 @@
 # Bàn giao: Bài 17 `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Phép chia hết. Ước và bội của một số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026, bản nháp đã soạn xong, đang review vòng 1 (3 reviewer Opus song song). Đã xong: nạp nguồn; `lesson.json` 12 phần, 12 thẻ, 66 câu, 6 dạng câu, 20 hình bấm chọn, 4 mẹo; `content:check --stats` 0 lỗi, không có `[guides]`; `visual:shot` 96/96; `lesson:walk` 0 failures 0 cảnh báo.
-- Việc còn lại: soạn `lesson.json`, hình, `content:check --stats`, `visual:shot`, `lesson:walk`, review vòng 1–2 (Opus) rồi Haiku đọc hiểu, các vòng sau (Sonnet, chỉ phần đổi), `content:hash --approve`, `content:lock`. Không làm lời đọc và video trong đợt này.
-- Việc chờ bên ngoài: Bài 16 `phep-nhan-so-nguyen` (quy tắc dấu của phép nhân) đang được soạn song song, chưa có `lesson.json` lúc bắt đầu. Khi Bài 16 xuất bản phải chạy một vòng kiểm khớp cách nói quy tắc dấu và màu giữa hai bài (xem "Việc khớp với Bài 16").
+- Cập nhật cuối: 02/10/2026. Bài đã duyệt và xuất bản (`published`): review vòng 1, 2 (Opus), 3, 4 (Sonnet) hết Nghiêm trọng; Haiku đọc hiểu 4 lượt; `content:hash --approve`, `content:lock` (103 id), `content:emit` đã chạy. `content:check` của bài 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures 0 cảnh báo, `typecheck` và `biome check` đạt.
+- Việc còn lại:
+  1. Khớp Bài 16 `phep-nhan-so-nguyen` khi Bài 16 xuất bản (Bài 16 còn `draft` lúc duyệt Bài 17). Câu khác dấu của hai bài đã cùng mẫu, màu số dương lime và số âm pink khớp. Còn lệch ở câu cùng dấu của Bài 17 ("số nguyên" thừa, đuôi "cho nhau" thừa so với Bài 16): đổi thành "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên." ở note quy tắc, recap, card của section `chia-cung-dau`. Chữ đổi thì chạy `content:diff`, Haiku đọc hiểu mục đổi, một vòng review chỉ phần đổi, `content:hash --approve`.
+  2. Nên sửa chưa xử lý (review.md, vòng 4): 2 (số trùng ở mẹo "Kiểm tra phép chia" và `ex.tinh-khac-dau-48`, `ex.tinh-48-chia-8`), 3 (`ex.chon-boi-cua-4` trùng hình), 7 (nấc 1 của các câu điền chỉ tô dòng hướng dẫn), 8 (section `suy-ra-thuong` thiếu ví dụ đời sống), 9 (`chon-tong-6-chips` cùng khuôn hình quy tắc), 10 (chip nhiễu "5 · 5", "7 · 7"), 11 (chiều ngược của quy tắc `tim-x`), cùng các Góp ý.
+  3. Lời đọc và video: chưa làm, đợt này không dựng media.
+- Đọc hiểu: lượt 1 quá nhiễu bị bỏ; Haiku không phủ `options` và `hints`.
 
 ## Nguồn (sách bài tập, `sources/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`, không commit)
 - Đề: tr.58–59 in (PDF 59–60), tệp `sbt-p58.png`, `sbt-p59.png`. Tr.60 là "Ôn tập chương III", không thuộc bài này.
