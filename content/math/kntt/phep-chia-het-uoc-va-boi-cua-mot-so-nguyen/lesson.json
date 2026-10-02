@@ -21,7 +21,7 @@
       "chia được hai số nguyên và viết đúng dấu của thương",
       "biết khi nào một số nguyên chia hết cho số khác",
       "tìm được các ước và các bội của một số, kể cả số âm",
-      "tìm được số x để tổng như x + 3 vẫn chia hết cho x"
+      "tìm được số x để x + 3 vẫn chia hết cho x"
     ],
     "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ."
   },
@@ -772,7 +772,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thử vài số x với x + 3: Các số làm được là 1, 3, −1 và −3, đều là ước của 3. Số 2 không là ước của 3 nên không làm được."
+              "text": "Thử vài số x để x + 3 chia hết cho x: chỉ 1, 3, −1 và −3 làm được, đều là ước của 3. Số 2 không là ước của 3 nên không làm được."
             },
             {
               "type": "visual",
@@ -798,7 +798,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tổng x + 3 chia hết cho x khi x là ước của 3. Số cộng thêm là số nào thì x là ước của số đó.",
+              "text": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó.",
               "rule": true
             },
             {
@@ -831,7 +831,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
-        "caption": "Tổng x + 3 chia hết cho x khi x là ước của 3. Số cộng thêm là số nào thì x là ước của số đó."
+        "caption": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó."
       }
     }
   ],
@@ -991,7 +991,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
-        "caption": "Tổng x + 3 chia hết cho x khi x là ước của 3. Số cộng thêm là số nào thì x là ước của số đó."
+        "caption": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó."
       }
     }
   ],
