@@ -45,9 +45,11 @@ export type SyncLogEntry = {
   status: number;
   // Size of the request body in bytes, when one was read.
   bytes: number | null;
+  // Set when the line reports something other than the request's own failure.
+  event: "snapshot-failed" | null;
 };
 
-type RequestContext = Omit<SyncLogEntry, "route" | "status">;
+type RequestContext = Omit<SyncLogEntry, "route" | "status" | "event">;
 const newContext = (): RequestContext => ({
   familyId: null,
   doc: null,
@@ -232,6 +234,9 @@ export function createSyncService(deps: SyncServiceDeps) {
     MINUTE_MS,
     () => now().getTime(),
   );
+  // The Vietnam day each child's snapshot was last taken or found on this
+  // instance, so later writes that day skip the check.
+  const snapshotDays = new Map<string, string>();
   // Children listed in each family's profile doc, as last read by this
   // instance.
   const profileCache = new Map<string, { ids: Set<string>; at: number }>();
@@ -326,7 +331,9 @@ export function createSyncService(deps: SyncServiceDeps) {
   ): Promise<NextResponse> {
     const ctx = newContext();
     const response = await handle(ctx);
-    if (response.status >= 400) log({ route, ...ctx, status: response.status });
+    if (response.status >= 400) {
+      log({ route, ...ctx, status: response.status, event: null });
+    }
     return response;
   }
 
@@ -388,6 +395,40 @@ export function createSyncService(deps: SyncServiceDeps) {
     return current.state === "missing"
       ? fail(412, "conflict", { doc: null, etag: null })
       : fail(412, "conflict", { doc: current.doc, etag: current.etag });
+  }
+
+  // Before the first write of a Vietnam day, keeps the stored main doc as it
+  // was: `snapshots/<familyId>/<childId>/<day>.json` is the state before that
+  // day's first write. `before` is the stored text. A failure is logged and
+  // never blocks the write.
+  async function snapshotBeforeWrite(
+    store: BlobStore,
+    familyId: string,
+    childId: string,
+    before: string,
+    at: Date,
+  ): Promise<void> {
+    const day = vnDayKey(at);
+    if (snapshotDays.get(`${familyId}/${childId}`) === day) return;
+    try {
+      await store.put(
+        syncKey(deps.prefix, { kind: "snapshot", familyId, childId, day }),
+        before,
+        { ifNoneMatch: "*" },
+      );
+    } catch {
+      log({
+        route: "PUT",
+        familyId,
+        doc: "child",
+        status: 200,
+        bytes: null,
+        event: "snapshot-failed",
+      });
+      return;
+    }
+    // A conflict means the day's snapshot already exists, which is as good.
+    snapshotDays.set(`${familyId}/${childId}`, day);
   }
 
   async function put(request: NextRequest): Promise<NextResponse> {
@@ -472,6 +513,7 @@ export function createSyncService(deps: SyncServiceDeps) {
     if (byteLength(storedText) > cap) return fail(413, "too-large");
 
     const key = targetKey(deps.prefix, familyId, target);
+    let before: string | null = null;
     if ("ifMatch" in body.condition) {
       const current = await readStored(store, key, kind);
       if (current.state === "missing") {
@@ -481,6 +523,7 @@ export function createSyncService(deps: SyncServiceDeps) {
         return fail(409, "upgrade-required");
       }
       if (current.state === "invalid") return fail(500, "stored-invalid");
+      before = current.body;
       if (current.etag !== body.condition.ifMatch) {
         return fail(412, "conflict", { doc: current.doc, etag: current.etag });
       }
@@ -492,8 +535,21 @@ export function createSyncService(deps: SyncServiceDeps) {
       }
     }
 
+    if (target.kind === "child" && before !== null) {
+      await snapshotBeforeWrite(
+        store,
+        familyId,
+        target.childId,
+        before,
+        serverNow,
+      );
+    }
     const written = await store.put(key, storedText, body.condition);
     if ("conflict" in written) return conflict(store, key, kind);
+    if (target.kind === "child" && before === null) {
+      // A new doc had no earlier state, so the day has nothing to keep.
+      snapshotDays.set(`${familyId}/${target.childId}`, vnDayKey(serverNow));
+    }
     if (kind === "profile") {
       profileCache.set(familyId, {
         ids: new Set((stored as ProfileDoc).profiles.map((p) => p.id)),
