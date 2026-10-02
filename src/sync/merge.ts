@@ -150,10 +150,10 @@ function laterPerKey(
   return result;
 }
 
-// The rule table of the sync spec. Resets are applied to each side first
-// (`resets` of the result is the later time per lesson), then every field is
-// merged by "the later time wins", never by "keep the furthest state": that
-// is what makes the result independent of merge order.
+// Resets are applied to each side first (`resets` of the result is the later
+// time per lesson), then every field is merged by "the later time wins", never
+// by "keep the furthest state": that is what makes the result independent of
+// merge order.
 export function mergeChildDocs(a: ChildDoc, b: ChildDoc): ChildDoc {
   if (a.familyId !== b.familyId || a.childId !== b.childId) {
     throw new Error("Cannot merge docs of different children");

@@ -96,7 +96,7 @@ Files: `src/sync/local.ts`, `src/sync/local-history.ts`, `tests/sync/local.test.
 
 ### Checkpoint 2
 
-- [ ] Gate green, coverage held; app still runs with no sync code reachable from screens (`pnpm build` in a separate worktree, not the owner's `.next`, per `docs/operations.md`).
+- [x] Gate green, coverage held; app still runs with no sync code reachable from screens (`pnpm build` in a separate worktree, not the owner's `.next`, per `docs/operations.md`).
 
 ## Slice 3: server
 
