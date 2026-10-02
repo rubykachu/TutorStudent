@@ -115,17 +115,17 @@ const group = (lead: "+" | "-" | "", ...terms: number[]): Piece => ({
 
 // Worked example of the whole method (the lesson's last method section).
 const WHOLE_ROWS = [
-  { tex: steps("(-4) + (8 - 5)", "- (-3 + 6)") },
+  { tex: steps("(-4) + (8 - 5)", "- (-4 + 6)") },
   {
-    tex: "= -4 + 8 - 5 + 3 - 6",
-    tag: tag("bỏ ngoặc: giữ dấu +, đổi dấu −", NOTE),
+    tex: "= -4 + 8 - 5 + 4 - 6",
+    tag: tag("ngoặc + giữ dấu cũ, ngoặc − đổi dấu", NOTE),
   },
   {
-    tex: steps("= (8 + 3)", "- (4 + 5 + 6)"),
-    tag: tag("đổi chỗ, nhóm số hạng", NOTE),
+    tex: steps("= (-4 + 4) + 8", "- 5 - 6"),
+    tag: tag("đổi chỗ, ghép hai số đối", NOTE),
   },
-  { tex: "= 11 - 15" },
-  { tex: "= \\concept{amber}{-4}", tag: tag("giá trị của tổng", SUM) },
+  { tex: "= 8 - 5 - 6" },
+  { tex: "= \\concept{amber}{-3}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
 // Rows shared by a worked example and its still recap.
@@ -139,24 +139,24 @@ const LEADING_ROWS = [
 ] as const satisfies readonly Row[];
 
 const REASONABLE_ROWS = [
-  { tex: "38 - (25 - 2) + (-15)" },
-  { tex: "= 38 - 25 + 2 - 15", tag: tag("bỏ ngoặc", NOTE) },
+  { tex: "38 - (25 - 2) + (-5)" },
+  { tex: "= 38 - 25 + 2 - 5", tag: tag("bỏ ngoặc", NOTE) },
   {
-    tex: "= (38 + 2) - (25 + 15)",
+    tex: "= (38 + 2) - (25 + 5)",
     tag: tag("đổi chỗ, nhóm thành số tròn chục", NOTE),
   },
-  { tex: "= 40 - 40" },
-  { tex: "= \\concept{amber}{0}", tag: tag("giá trị của tổng", SUM) },
+  { tex: "= 40 - 30" },
+  { tex: "= \\concept{amber}{10}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
 const PAIR_ROWS = [
-  { tex: steps("(-3) + (-2) + (-1)", "+ 0 + 1 + 2 + 3") },
+  { tex: steps("(-1) + 0 + 1", "+ 2 + 3") },
   {
-    tex: steps("= [(-3) + 3] + [(-2) + 2]", "+ [(-1) + 1] + 0"),
-    tag: tag("ghép các cặp số đối", NOTE),
+    tex: steps("= [(-1) + 1] + 0", "+ 2 + 3"),
+    tag: tag("ghép cặp số đối", NOTE),
   },
-  { tex: "= 0 + 0 + 0 + 0" },
-  { tex: "= \\concept{amber}{0}", tag: tag("tổng các số", SUM) },
+  { tex: "= 0 + 0 + 2 + 3", tag: tag("cộng các số còn lại", NOTE) },
+  { tex: "= \\concept{amber}{5}", tag: tag("tổng các số", SUM) },
 ] as const satisfies readonly Row[];
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
@@ -182,7 +182,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "tong-dai-so-vi-du": rows("Một tổng và các số hạng của nó", [
     {
       tex: "8 - 3 + 2",
-      tag: tag("một tổng, chỉ có phép cộng và trừ", SUM),
+      tag: tag("một tổng, chỉ dùng dấu + và dấu −", SUM),
     },
     {
       tex: `${sg(8)}\\ ${sg(-3)}\\ ${sg(2)}`,
@@ -206,23 +206,26 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     "steps",
   ),
-  "cong-ngoac-vi-du": rows("Ngoặc có dấu + đứng trước: các dấu giữ dấu cũ", [
-    {
-      tex: steps(`5 + ${inside([3, -2])}`, `= 5\\ ${sg(3)}\\ ${sg(-2)}`),
-      tag: tag("+3 và −2 giữ dấu cũ", NOTE),
-    },
-    {
-      tex: steps(`7 + ${inside([-4, 1])}`, `= 7\\ ${sg(-4)}\\ ${sg(1)}`),
-      tag: tag("−4 và +1 giữ dấu cũ", NOTE),
-    },
-    {
-      tex: steps(
-        `10 + ${inside([6, -9, 2])}`,
-        `= 10\\ ${sg(6)}\\ ${sg(-9)}\\ ${sg(2)}`,
-      ),
-      tag: tag("cả ba số giữ dấu cũ", NOTE),
-    },
-  ]),
+  "cong-ngoac-vi-du": rows(
+    "Ngoặc có dấu + đứng trước: mỗi số hạng giữ dấu cũ",
+    [
+      {
+        tex: steps(`5 + ${inside([3, -2])}`, `= 5\\ ${sg(3)}\\ ${sg(-2)}`),
+        tag: tag("+3 và −2 giữ dấu cũ", NOTE),
+      },
+      {
+        tex: steps(`7 + ${inside([-4, 1])}`, `= 7\\ ${sg(-4)}\\ ${sg(1)}`),
+        tag: tag("−4 và +1 giữ dấu cũ", NOTE),
+      },
+      {
+        tex: steps(
+          `10 + ${inside([6, -9, 2])}`,
+          `= 10\\ ${sg(6)}\\ ${sg(-9)}\\ ${sg(2)}`,
+        ),
+        tag: tag("cả ba số giữ dấu cũ", NOTE),
+      },
+    ],
+  ),
   "goi-y-cong-ngoac": lines(
     "Ngoặc có dấu + đứng trước: bỏ ngoặc và giữ dấu cũ",
     [
@@ -235,7 +238,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-bo-ngoac-8": chips(
     ["8 + 5 − 3", "8 − 5 + 3", "8 + 5 + 3"],
     [0],
-    "Ngoặc có dấu +, nên các dấu vẫn như cũ.",
+    "Ngoặc có dấu +, nên các số hạng giữ dấu cũ.",
   ),
 
   // 3. Ngoặc có dấu − đứng trước
@@ -248,7 +251,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     "steps",
   ),
-  "tru-ngoac-vi-du": rows("Ngoặc có dấu − đứng trước: mọi số hạng đổi dấu", [
+  "tru-ngoac-vi-du": rows("Ngoặc có dấu − đứng trước: đổi dấu từng số hạng", [
     {
       tex: steps(`9 - ${inside([4, 3])}`, `= 9\\ ${flipped([4, 3])}`),
       tag: tag("+4 thành −4, +3 thành −3", NOTE),
@@ -265,7 +268,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "doi-dau-10-3-4": flipTry(
     "Bỏ ngoặc của 10 trừ ngoặc 3 cộng 4",
     [term(10), group("-", 3, 4)],
-    "Cả hai số hạng đã đổi dấu: 10 − 3 − 4.",
+    "Cả hai số hạng đã đổi dấu: 10 − 3 − 4.",
   ),
   "doi-dau-25-9-6": flipTry("Bỏ ngoặc của 25 trừ ngoặc 9 cộng 6", [
     term(25),
@@ -288,9 +291,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "100 - (30 - 10)" },
       {
         tex: "= 100 - 30 + 10",
-        tag: tag("−10 đổi thành +10", NOTE),
+        tag: tag("+30 thành −30, −10 thành +10", NOTE),
       },
-      { tex: "= \\concept{amber}{80}", tag: tag("còn 80 nghìn", SUM) },
+      { tex: "= \\concept{amber}{80}", tag: tag("trả lại 80 nghìn", SUM) },
     ],
     "steps",
   ),
@@ -311,7 +314,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "doi-dau-20-7-3-2": flipTry(
     "Bỏ ngoặc của 20 trừ ngoặc 7 trừ 3 cộng 2",
     [term(20), group("-", 7, -3, 2)],
-    "Cả ba số hạng đã đổi dấu: 20 − 7 + 3 − 2.",
+    "Cả ba số hạng đã đổi dấu: 20 − 7 + 3 − 2.",
   ),
   "doi-dau-35-12-5-4": flipTry("Bỏ ngoặc của 35 trừ ngoặc 12 trừ 5 cộng 4", [
     term(35),
@@ -339,10 +342,22 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "ngoac-mot-so-vi-du": rows("Bốn trường hợp của ngoặc chỉ có một số", [
-    { tex: "5 + (+3) = 5 + 3", tag: tag("+ và + thành +", POSITIVE) },
-    { tex: "5 + (-3) = 5 - 3", tag: tag("+ và − thành −", NEGATIVE) },
-    { tex: "5 - (+3) = 5 - 3", tag: tag("− và + thành −", NEGATIVE) },
-    { tex: "5 - (-3) = 5 + 3", tag: tag("− và − thành +", POSITIVE) },
+    {
+      tex: "5 + (+3) = 5 + 3",
+      tag: tag("+ trước ngoặc: +3 giữ dấu cũ", POSITIVE),
+    },
+    {
+      tex: "5 + (-3) = 5 - 3",
+      tag: tag("+ trước ngoặc: −3 giữ dấu cũ", NEGATIVE),
+    },
+    {
+      tex: "5 - (+3) = 5 - 3",
+      tag: tag("− trước ngoặc: +3 đổi dấu", NEGATIVE),
+    },
+    {
+      tex: "5 - (-3) = 5 + 3",
+      tag: tag("− trước ngoặc: −3 đổi dấu", POSITIVE),
+    },
   ]),
   "chon-20-tru-am6": chips(
     ["20 + 6", "20 − 6", "−20 + 6"],
@@ -352,9 +367,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "goi-y-ngoac-mot-so": lines(
     "Bỏ ngoặc từng số một, rồi tính",
     [
-      { tex: "6 + (-3) - 5 + (-4)" },
-      { tex: "= 6 - 3 - 5 - 4", tag: tag("bỏ ngoặc, giữ dấu cũ", NOTE) },
-      { tex: "= -6" },
+      { tex: "8 + (-3) - (-2)" },
+      {
+        tex: "= 8 - 3 + 2",
+        tag: tag("ngoặc + giữ dấu cũ, ngoặc − đổi dấu", NOTE),
+      },
+      { tex: "= 7" },
     ],
     "hint",
   ),
@@ -366,7 +384,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: steps("100 - (40 - 5)", "- (30 - 10)") },
       {
         tex: "= 100 - 40 + 5 - 30 + 10",
-        tag: tag("mỗi ngoặc đổi dấu riêng", NOTE),
+        tag: tag("hai ngoặc có dấu − đứng trước: đổi dấu từng số hạng", NOTE),
       },
       { tex: "= \\concept{amber}{45}", tag: tag("còn 45 nghìn", SUM) },
     ],
@@ -395,7 +413,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "Bỏ từng ngoặc theo dấu đứng trước nó",
     [
       { tex: "(4 - 7) - (2 - 6 + 1)" },
-      { tex: "= 4 - 7 - 2 + 6 - 1", tag: tag("ngoặc sau đổi dấu", NOTE) },
+      { tex: "= 4 - 7 - 2 + 6 - 1", tag: tag("ngoặc có dấu − đổi dấu", NOTE) },
       { tex: "= 0" },
     ],
     "hint",
@@ -413,7 +431,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
     {
       tex: "9 - 5 + 12 = 16",
-      tag: tag("bỏ lại dấu − thì sai", NOTE),
+      tag: tag("bỏ lại dấu −: ra 16, khác 2", NOTE),
       muted: true,
     },
   ]),
@@ -482,7 +500,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("−4 và +2 thành +4 và −2", NOTE),
     },
     {
-      tex: "5 - 8 + 3 - 1 = 5 - (8 - 3 + 1)",
+      tex: steps("5 - 8 + 3 - 1", "= 5 - (8 - 3 + 1)"),
       tag: tag("cả ba số hạng đổi dấu", NOTE),
     },
   ]),
@@ -538,16 +556,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-ghep-30": chips(
     ["+27", "−14", "+3", "−6"],
     [0, 2],
-    "Hai số hạng +27 và +3 cộng lại được 30.",
+    "Hai số hạng +27 và +3 cộng lại được 30. Hai khoản mua là 14 + 6 = 20, nên còn 30 − 20 = 10 nghìn.",
   ),
   "chon-ghep-100": chips(["+64", "−37", "+36", "−20"]),
   "goi-y-hop-li": lines(
     "Nhóm từng cặp số hạng rồi tính",
     [
-      { tex: "2 - 5 + 8 - 11" },
-      { tex: "= (2 - 5) + (8 - 11)", tag: tag("nhóm từng cặp", NOTE) },
-      { tex: "= -3 + (-3)" },
-      { tex: "= -6" },
+      { tex: "2 - 7 + 8 - 13" },
+      { tex: "= (2 - 7) + (8 - 13)", tag: tag("nhóm từng cặp", NOTE) },
+      { tex: "= -5 + (-5)" },
+      { tex: "= -10" },
     ],
     "hint",
   ),
@@ -573,11 +591,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [term(5), group("-", 3, -8), group("+", 6, -2), group("-", 1, 4)],
   ),
   "goi-y-tong-hop": lines(
-    "Bỏ ngoặc rồi nhóm các số hạng",
+    "Bỏ ngoặc rồi ghép số đối",
     [
-      { tex: steps("(-2) + (9 - 4)", "- (1 - 5 + 2)") },
-      { tex: "= -2 + 9 - 4 - 1 + 5 - 2", tag: tag("bỏ ngoặc", NOTE) },
-      { tex: "= 5" },
+      { tex: steps("(-5) + (8 - 3)", "- (2 - 5)") },
+      { tex: "= -5 + 8 - 3 - 2 + 5", tag: tag("bỏ ngoặc", NOTE) },
+      {
+        tex: steps("= (-5 + 5) + 8", "- 3 - 2"),
+        tag: tag("ghép hai số đối", NOTE),
+      },
+      { tex: "= 3" },
     ],
     "hint",
   ),
@@ -596,12 +618,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "steps",
   ),
   "ghep-so-doi": lines(
-    "Tổng các số nguyên từ −3 đến 3, kể cả −3 và 3: ghép từng cặp số đối nhau",
+    "Tổng các số nguyên từ −1 đến 3, kể cả −1 và 3: ghép cặp số đối rồi cộng các số còn lại",
     PAIR_ROWS,
     "steps",
   ),
   "ghep-so-doi-xong": lines(
-    "Tổng các số nguyên từ −3 đến 3, kể cả −3 và 3: ghép từng cặp số đối nhau",
+    "Tổng các số nguyên từ −1 đến 3, kể cả −1 và 3: ghép cặp số đối rồi cộng các số còn lại",
     PAIR_ROWS,
     "still",
   ),
@@ -621,7 +643,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-khong-doi": chips(
     ["−2", "−1", "0", "1", "2", "3"],
     [5],
-    "Số 3 không có số đối −3 trong các số này, nên 3 là số còn lại.",
+    "Số 3 không có số đối −3 trong các số này. Còn lại 0 và 3, cộng lại được 3.",
   ),
   "goi-y-ghep-doi": lines(
     "Ghép các cặp số đối nhau, rồi cộng các số còn lại",
