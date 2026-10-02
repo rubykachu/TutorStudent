@@ -1,14 +1,14 @@
 # Review: Phép chia hết. Ước và bội của một số nguyên (`phep-chia-het-uoc-va-boi-cua-mot-so-nguyen`)
+- Bản đã review: `f38d12f8d56e4463a922adc78cd305cbbc2d45002868cbe83555eb2fddd39391` (`pnpm content:diff` so với bản này)
 
 - Bài: `content/math/kntt/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/lesson.json`
-- Vòng: 4 - chỉ phần đổi (Sonnet), commit `39503de` (so với `3517f40`); bản vòng 3 giữ ở mục "Vòng 3" bên dưới
+- Vòng: 6 - chỉ phần đổi (`pnpm content:diff`, so với bản `4ec8a78819`), section: `chia-cung-dau`, `chia-khac-dau` và video `dau-cua-thuong`; kết quả vòng 6 ở mục "Vòng 6" bên dưới, bản vòng 4 và 5 giữ ở các mục sau
 - Nguồn đã đọc: `sources/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/` - sbt-p58, sbt-p59, sbt-p113
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (103 id chưa có trong `ids.lock.json`, đúng với bài nháp)
-- Lịch sử: Vòng 1: 11 Nghiêm trọng; vòng 2: 6 Nghiêm trọng, 17 Nên sửa, 16 Góp ý; vòng 3: 0 Nghiêm trọng, 13 Nên sửa, 12 Góp ý; vòng 4: 0 Nghiêm trọng, 9 Nên sửa (5 đã sửa, 1 mới), 14 Góp ý (2 mới)
-- Đọc hiểu (Haiku): lượt 1 (bản trước vòng 2, quá nhiễu: 85 / 276 / 228, bỏ); lượt 2 toàn bài trên bản sau vòng 2: 235 / 3 / 0 (`doc-hieu-2.md`); lượt 3 trên 3 mục viết lại: 1 / 2 / 0 (`doc-hieu-3.md`); lượt 4 trên 8 mục viết lại: 6 / 2 / 0 (`doc-hieu-4.md`); hai mục còn mơ hồ (`goals[3]`, note thử `tim-x`) đã viết lại lần cuối, quá 3 lượt nên không đọc lại, ghi ở Nên sửa. Lượt đọc không phủ `options` và `hints`
-- `lesson:walk`: 0 FAIL, 0 cảnh báo (bản `0e8d510`); `visual:shot` 100/100; ảnh trong `.shots/walk/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`
-- Kết luận: Đạt: 0 Nghiêm trọng sau vòng 4; đã chạy `pnpm content:hash phep-chia-het-uoc-va-boi-cua-mot-so-nguyen --root content --approve` và `pnpm content:lock phep-chia-het-uoc-va-boi-cua-mot-so-nguyen`. Còn Nên sửa chưa xử lý: 2, 3, 7, 8, 9, 10, 11 (chiều ngược của quy tắc `tim-x`), 13 (khớp Bài 16 khi xuất bản)
-- Bản đã review: `1b6342b1723760b6badc84f2bb376350a6ff3bd0e85bb43747bb800a8e8854fd` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi, 0 cảnh báo của bài (bản vòng 6, sau `--approve` và `content:lock`)
+- Lịch sử: Vòng 1: 11 Nghiêm trọng; vòng 2: 6 Nghiêm trọng, 17 Nên sửa, 16 Góp ý; vòng 3: 0 Nghiêm trọng, 13 Nên sửa, 12 Góp ý; vòng 4: 0 Nghiêm trọng, 9 Nên sửa (5 đã sửa, 1 mới), 14 Góp ý (2 mới); vòng 5 (video, lời đọc): 0 Nghiêm trọng, 0 Nên sửa, 5 Góp ý; vòng 6: 0 Nghiêm trọng, 1 Nên sửa mới (cùng dấu, đọc hiểu mơ hồ), 1 Góp ý mới; Nên sửa 13 (khớp Bài 16) đã xử lý
+- Đọc hiểu (Haiku): lượt 1 (bản trước vòng 2, quá nhiễu: 85 / 276 / 228, bỏ); lượt 2 toàn bài trên bản sau vòng 2: 235 / 3 / 0 (`doc-hieu-2.md`); lượt 3 trên 3 mục viết lại: 1 / 2 / 0 (`doc-hieu-3.md`); lượt 4 trên 8 mục viết lại: 6 / 2 / 0 (`doc-hieu-4.md`); hai mục còn mơ hồ (`goals[3]`, note thử `tim-x`) đã viết lại lần cuối, quá 3 lượt nên không đọc lại, ghi ở Nên sửa. Lượt đọc không phủ `options` và `hints`; vòng 6: lượt 5 trên câu cùng dấu mới (3 mục): 0 / 3 / 0 (`doc-hieu-5.md`), lượt 6 trên câu khác dấu mới (3 mục): 3 / 0 / 0 (`doc-hieu-6.md`); vòng 6 (đổi câu quy tắc): lượt 5 câu cùng dấu 0 / 3 / 0 mơ hồ (`doc-hieu-5.md`), lượt 6 câu khác dấu 3 / 0 / 0 (`doc-hieu-6.md`), lượt 7 và 8 thử thêm câu ví dụ 0 / 2 / 0 mỗi lần (`doc-hieu-7.md`, `doc-hieu-8.md`), câu ví dụ đã gỡ
+- `lesson:walk`: 0 FAIL, 0 cảnh báo (bản vòng 6, chạy trên worktree tạm, cổng 3420; trước đó bản `0e8d510` cũng 0 FAIL); `visual:shot` 100/100; ảnh trong `.shots/walk/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`
+- Kết luận (vòng 6): 0 Nghiêm trọng; đã `--approve` và `content:lock` (0 id mới), `lesson:walk` 0 FAIL. Còn 1 Nên sửa mới (mục "Vòng 6", câu cùng dấu), không chặn duyệt. Kết luận vòng 4: Đạt: 0 Nghiêm trọng sau vòng 4; đã chạy `pnpm content:hash phep-chia-het-uoc-va-boi-cua-mot-so-nguyen --root content --approve` và `pnpm content:lock phep-chia-het-uoc-va-boi-cua-mot-so-nguyen`. Còn Nên sửa chưa xử lý: 2, 3, 7, 8, 9, 10, 11 (chiều ngược của quy tắc `tim-x`), 13 (khớp Bài 16 khi xuất bản)
 
 Phạm vi vòng 3: mọi mục đổi so với bản `f87e1e3` (toàn bộ diff của `lesson.json` tới commit `3517f40`, và `catalog.ts`). Cây làm việc lúc review không còn sửa chưa commit. Đã so từng chuỗi chữ của `lesson.json` bằng script (hiện cả U+00A0), tự giải mọi exercise bị đổi, đọc ba trang nguồn và sheet walk các section `suy-ra-thuong`, `tim-uoc`, `tim-boi`, ảnh phone của năm hình đổi (`bon-phep-chia`, `boi-4-vi-du`, `boi-khoang-vi-du`, `tim-x-thu`, `uoc-vi-du`: chữ không cắt, không còn ±, công thức không vỡ).
 
@@ -119,7 +119,7 @@ Không có.
 - Vấn đề: câu quy tắc, recap và card nay viết "Tổng x + 3 chia hết cho x khi x là ước của 3", nhưng hình đi kèm cả ba chỗ dạy x + 6 và ước của 6. Bé nhìn câu nói 3, hình nói 6, phải tự suy ra "số cộng thêm" là gì; hình không còn minh hoạ đúng câu. Cả hai đều đúng kiến thức, nên không chặn.
 - Sửa: đổi hình sang x + 3 (đổi nhãn và hàng thành x + 3, x = ±1, ±3; hàng này trùng `tim-x-3`, chấp nhận vì là hình ôn quy tắc), hoặc giữ x + 6 và đổi câu quy tắc, recap, card sang x + 6 và ước của 6 (ba nơi cùng chữ).
 
-### 13. Khớp Bài 16 (`phep-nhan-so-nguyen`, chỉ đọc)
+### 13. Khớp Bài 16 (`phep-nhan-so-nguyen`, chỉ đọc) [ĐÃ XỬ LÝ vòng 6: câu cùng dấu bỏ "nguyên" và "cho nhau", câu khác dấu bỏ "nguyên"; còn một hệ quả về độ dễ đọc ở Nên sửa 1 của mục "Vòng 6"]
 
 - Vị trí: `$.sections[1].blocks[1].children[0].text` (+ recap, card), `$.sections[2].blocks[1].children[0].text` (+ recap, card), hình `cung-dau-vi-du`, `khac-dau-vi-du`
 - Nguồn: —
@@ -229,6 +229,44 @@ Không có.
 ## Báo nhầm
 
 Không có.
+
+## Vòng 6: chỉ đổi chữ quy tắc dấu của thương
+
+Phạm vi: `pnpm content:diff` (4 mục chữ: note `rule: true` của `chia-cung-dau` và `chia-khac-dau`, hai recap section, hai recap card; video `dau-cua-thuong`: `durationSec` và hai clip). Đã đọc hai section đầy đủ, `script.json`, `index.html` (hai thẻ `data-rule-text`), `.vtt` trong `public/media/video/...`, `renders/report.json`, hai contact sheet khung hình (`sheet2-01.png`, `sheet2-02.png`), `doc-hieu-5.md`, `doc-hieu-6.md`, và các câu quy tắc của Bài 16 `phep-nhan-so-nguyen` (chỉ đọc). `pnpm video:check`: ok cả ba video của bài (`dau-cua-thuong`: rule text on screen 2). `content:check`: chỉ còn lỗi `review-hash` của bài (lesson đổi sau review, đúng với vòng này).
+
+Đã kiểm, đạt:
+- Toán không đổi: mọi ví dụ, số, màu (số dương lime, số âm pink) giữ nguyên; "số nguyên" bỏ khỏi câu quy tắc vẫn đúng vì cả bài là số nguyên.
+- Note, recap section và recap card của cả hai section giống nhau từng ký tự (script so sánh); hai câu `rule` của `script.json` và hai thẻ `data-rule-text` trong `index.html` khớp từng chữ với note.
+- Grep `lesson.json` và `src/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`: không còn "cho nhau" ở câu quy tắc, không còn "số nguyên khác 0 cùng/khác dấu" (hai chỗ "số nguyên khác 0" còn lại là quy tắc ước và bội, đúng). Không có `tips.json`. Hình `cung-dau-vi-du`, `khac-dau-vi-du`, `goi-y-cung-dau`, `goi-y-khac-dau`, ba câu "Cùng làm" và `explain` của hai section không nhắc câu cũ và không mâu thuẫn câu mới.
+- Khớp Bài 16: câu khác dấu giống Bài 16 trừ "khác 0" (cần vì không chia cho 0). Bài 16 không có câu cùng dấu kèm "chia hai phần số tự nhiên" ở dạng "Hai số khác 0 cùng dấu": câu có vế hành động là "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên." (chủ ngữ có "với nhau"); câu "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm." không có vế hành động. Màu lime và pink khớp ở cả hai bài.
+- Video: lời đọc khớp chữ trên màn (Whisper nghe "khác không" cho "khác 0", "viết dấu trừ" cho "−", cả hai câu rule 100%, đúng với `say`). Phụ đề `.vtt` cắt câu theo ý ("...thì thương là số dương: / chia hai phần số tự nhiên."), cue karaoke khớp thời gian. Thẻ quy tắc hai dòng, vừa khung, không bị cắt, không đè cú; chữ "số dương" lime, "số âm" pink (khung f-008, f-009, f-017 đến f-019). Quãng dừng: sau câu hỏi 1,0 giây, sau hai câu rule 0,81 và 0,85 giây, hình giữ nguyên trong quãng dừng. Clip: `chia-cung-dau` 0,7 đến 20,515 bao cue 1,0 đến 20,402; `chia-khac-dau` 20,915 đến 40,31 bao cue 21,215 đến 40,159; `durationSec` 46,87 khớp mp4 (46,867 giây); cả hai clip vẫn gắn đúng card cùng tên.
+
+### Nghiêm trọng
+
+Không có.
+
+### Nên sửa
+
+#### 1. Câu cùng dấu mới đọc mơ hồ ở cả ba chỗ bé thấy chữ và trong lời video (LL-25, LL-20) [CÒN LẠI sau 3 lượt đọc hiểu: giữ câu theo Bài 16, chờ quyết định của chủ dự án]
+
+- Vị trí: `$.sections[1].blocks[2].children[0].text`, `$.sections[1].recap.caption`, `$.cards[1].recap.caption` (`chia-cung-dau`); lặp ở `video/projects/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong/script.json` (câu `rule` đầu) và `index.html` (`#rule1`)
+- Nguồn: —
+- Vấn đề: Haiku (`doc-hieu-5.md`): cả 3 mục Hiểu mơ hồ, "chia hai phần số tự nhiên" chưa rõ; bản cũ có đuôi "cho nhau" từng Hiểu rõ, và câu khác dấu mới (có "rồi viết dấu − ở trước" nối tiếp) Hiểu rõ cả 3 (`doc-hieu-6.md`). Nguyên nhân: "phần số tự nhiên" là thuật ngữ học ở Bài 15 (glossary `phần số tự nhiên`), bài này không nhắc lại và không có ví dụ nào gắn thuật ngữ với 12 và 3 trước câu quy tắc (chỉ hình gợi ý `goi-y-cung-dau`, hiện sau khi bé sai, mới có hàng "= 40 : 5"); câu kết thúc ngay sau cụm đó nên "hai phần" không có vật để trỏ. Bài 16 dạy cùng thuật ngữ bằng "Ví dụ mẫu" ngay trước câu quy tắc. Mức: theo bảng LL-25 "mơ hồ" là Góp ý, nhưng đây là bản sửa làm câu đang rõ thành mơ hồ (LL-20), lặp ở note, recap, card và video, và thuật ngữ này đã gây mơ hồ ở Bài 15 và Bài 16, nên tôi chọn Nên sửa; không chặn duyệt vì kiến thức đúng và chủ dự án chỉ định câu này.
+- Đã thử: thêm một câu ví dụ vào note nhiệt độ, hai bản ("Phần số tự nhiên của −12 và −3 là 12 và 3, và 12 : 3 = 4." rồi "Bỏ dấu của −12 và −3, ta được hai phần số tự nhiên là 12 và 3, và 12 : 3 = 4."). Haiku đọc lại (`doc-hieu-7.md`, `doc-hieu-8.md`): câu quy tắc vẫn Hiểu mơ hồ, câu ví dụ cũng bị gắn Hiểu mơ hồ. Đã gỡ câu ví dụ; chữ của bài trở lại đúng phần diff vòng 6. Quá 3 lượt nên ghi lại, không chặn duyệt. Lựa chọn còn lại cho chủ dự án: giữ câu khớp Bài 16 như hiện tại, hoặc quay về đuôi "cho nhau" (phải đọc lại một câu và dựng lại video `dau-cua-thuong`).
+- Sửa đề xuất ban đầu của reviewer (giữ nguyên câu theo Bài 16, không phải dựng lại video): thêm ví dụ gắn thuật ngữ vào note ngay trước, `$.sections[1].blocks[1].children[0].text`: "Mỗi giờ nhiệt độ giảm 3 độ, tức thay đổi −3 độ. Muốn thay đổi tổng cộng −12 độ, cần (−12) : (−3) = 4 giờ. Phần số tự nhiên của −12 và −3 là 12 và 3, và 12 : 3 = 4." (giữ U+00A0 quanh toán tử, chạy lại đọc hiểu cho note này và câu quy tắc). Hoặc thêm vào hình `cung-dau-vi-du` mỗi hàng đuôi "= 15 : 5 = 3" như hình gợi ý. Nếu sau lượt đọc lại câu quy tắc vẫn mơ hồ, phương án dự phòng cần dựng lại video: "Hai số khác 0 cùng dấu chia cho nhau thì thương là số dương: chia hai phần số tự nhiên." (đuôi "chia cho nhau" đã có ở `explain` của `ex.chon-thuong-duong`, cùng cấu trúc "với nhau" của câu Bài 16 "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên."); phương án này lệch Bài 16 thêm "khác 0" và "cùng dấu".
+
+### Góp ý
+
+#### 1. `explain` của hai câu kiểm tra còn nói "chia cho nhau", quy tắc không còn (LL-05)
+
+- Vị trí: `$.exercises[7].explain.text` (`ex.chon-thuong-duong`), `$.exercises[13].explain.text` (`ex.chon-thuong-am`)
+- Nguồn: —
+- Vấn đề: "Hai số cùng dấu chia cho nhau thì được thương dương." và "Hai số khác dấu chia cho nhau thì được thương âm." là quy tắc nói bằng cách khác với câu quy tắc mới; chữ này hợp lý (đã Hiểu rõ ở lượt trước) và `explain` chỉ hiện sau khi làm, nên chỉ ghi để tác giả cân nhắc nếu chọn lại "cho nhau" cho câu quy tắc.
+- Sửa: nếu câu quy tắc giữ như hiện tại, đổi hai câu này thành "Hai số khác 0 cùng dấu thì thương là số dương." và "Hai số khác 0 khác dấu thì thương là số âm."; nếu câu quy tắc quay lại "chia cho nhau", giữ nguyên.
+
+### Kết quả vòng 6
+
+0 Nghiêm trọng, 1 Nên sửa, 1 Góp ý. Mục 13 cũ (khớp Bài 16) đã xử lý. Không có Nghiêm trọng nên không cập nhật `docs/lessons-learned/` (LL-25 và LL-20 chỉ tính theo bảng của lượt 1 và Nghiêm trọng). Bản đã review để điều phối cập nhật sau lệnh cuối vòng.
 
 ## Vòng 4: kết quả
 
