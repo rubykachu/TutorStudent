@@ -37,6 +37,8 @@ const NEGATIVE = "pink";
 const DIVISOR = "violet";
 const MULTIPLE = "blue";
 const COMMON = "teal";
+const SUM = "amber";
+const DIFFERENCE = "teal";
 // The colour of a label that names a step ("đổi dấu cả hai thừa số") rather
 // than a concept of the lesson. Its marker (a pentagon) cannot be read as a
 // sign, unlike the cross of sky or the bar of slate; the common divisor
@@ -231,6 +233,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "Biết 45 : 9 = 5, đổi dấu một số thì thương là −5.",
   ),
 
+  "goi-y-doi-dau": lines(
+    "Biết thương của hai phần số tự nhiên, đổi dấu một số thì thương đổi dấu",
+    [
+      { tex: "24 : 6 = 4" },
+      {
+        tex: "24 : (-6)",
+        tag: tag("đổi dấu số chia: thương đổi dấu", NOTE),
+      },
+      { tex: "= -4" },
+    ],
+    "hint",
+  ),
+
   // 5. Ước và bội
   "uoc-boi-12-3": rows(
     "12 chia hết cho −3, nên −3 là ước của 12 và 12 là bội của −3",
@@ -253,7 +268,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-uoc-10-cung-lam": chips(
     ["5", "−2", "3", "−10", "4", "−1"],
     [0, 1, 3, 5],
-    "5, −2, −10 và −1 đều chia hết 10, còn 3 và 4 thì không.",
+    "10 chia hết cho 5, −2, −10 và −1, nên chúng là ước của 10. Còn 10 không chia hết cho 3 và 4.",
   ),
   "chon-uoc-12": chips(["6", "−4", "5", "−12", "7", "−1"]),
 
@@ -273,14 +288,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
     "steps",
   ),
-  "uoc-vi-du": rows("Các ước của 8 và các ước của −10, viết gọn bằng dấu ±", [
+  "uoc-vi-du": rows("Các ước của 9 và các ước của −14, viết gọn bằng dấu ±", [
     {
-      tex: "\\pm1,\\ \\pm2,\\ \\pm4,\\ \\pm8",
-      tag: tag("các ước của 8", DIVISOR),
+      tex: "\\pm1,\\ \\pm3,\\ \\pm9",
+      tag: tag("các ước của 9", DIVISOR),
     },
     {
-      tex: "\\pm1,\\ \\pm2,\\ \\pm5,\\ \\pm10",
-      tag: tag("các ước của −10", DIVISOR),
+      tex: "\\pm1,\\ \\pm2,\\ \\pm7,\\ \\pm14",
+      tag: tag("các ước của −14", DIVISOR),
     },
   ]),
   "chon-uoc-8-cung-lam": chips(
@@ -299,18 +314,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "(-3) \\cdot 3 = -9", tag: tag("sau 3 giờ", MULTIPLE) },
     ],
   ),
-  "boi-4-vi-du": rows("Các bội của 4: nhân 4 với 1, 2, rồi viết thêm số đối", [
-    { tex: "4 \\cdot 1 = \\concept{blue}{4}", tag: tag("bội dương", POSITIVE) },
-    { tex: "4 \\cdot 2 = \\concept{blue}{8}", tag: tag("bội dương", POSITIVE) },
-    {
-      tex: "\\concept{blue}{-4},\\ \\concept{blue}{-8}",
-      tag: tag("số đối là bội âm", NEGATIVE),
-    },
-    {
-      tex: "4 \\cdot 0 = \\concept{blue}{0}",
-      tag: tag("0 cũng là bội của 4", MULTIPLE),
-    },
-  ]),
+  "boi-4-vi-du": rows(
+    "Các bội của 4: nhân 4 với 1, 2, rồi viết thêm số đối và số 0",
+    [
+      {
+        tex: "4 \\cdot 1 = \\concept{blue}{4}",
+        tag: tag("bội dương", POSITIVE),
+      },
+      {
+        tex: "4 \\cdot 2 = \\concept{blue}{8}",
+        tag: tag("bội dương", POSITIVE),
+      },
+      {
+        tex: "\\concept{blue}{-4},\\ \\concept{blue}{-8}",
+        tag: tag("số đối là bội âm", NEGATIVE),
+      },
+      {
+        tex: "4 \\cdot 0 = \\concept{blue}{0}",
+        tag: tag("0 cũng là bội của 4", MULTIPLE),
+      },
+    ],
+  ),
   "chon-boi-5-cung-lam": chips(
     ["−10", "15", "−12", "0", "20", "7"],
     [0, 1, 3, 4],
@@ -389,10 +413,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     SPLIT_ROWS,
     "still",
   ),
-  "chon-tich-21-cung-lam": chips(
-    ["3 · 7", "(−3) · (−7)", "(−3) · 7", "(−21) · (−1)", "1 · 12"],
+  "chon-tich-35-cung-lam": chips(
+    ["5 · 7", "(−5) · (−7)", "(−5) · 7", "(−35) · (−1)", "1 · 12"],
     [0, 1, 3],
-    "21 = 3 · 7 = (−3) · (−7) = (−21) · (−1), còn (−3) · 7 = −21.",
+    "35 = 5 · 7 = (−5) · (−7) = (−35) · (−1), còn (−5) · 7 = −35.",
   ),
   "chon-tich-14": chips(["(−1) · (−14)", "2 · (−7)", "(−7) · (−2)", "7 · 7"]),
 
@@ -409,8 +433,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
   ),
   "tong-hieu-vi-du": rows("Tổng và hiệu của hai số cùng chia hết cho 6", [
-    { tex: "(-12) + 18 = 6 \\chiahet 6", tag: tag("tổng", NOTE) },
-    { tex: "(-12) - 18 = -30 \\chiahet 6", tag: tag("hiệu", NOTE) },
+    { tex: "(-12) + 18 = 6 \\chiahet 6", tag: tag("tổng", SUM) },
+    { tex: "(-12) - 18 = -30 \\chiahet 6", tag: tag("hiệu", DIFFERENCE) },
   ]),
   "chon-tong-4-cung-lam": chips(
     ["(−8) + 12", "(−8) + 6", "20 − (−8)", "7 − (−8)"],
@@ -420,17 +444,29 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-tong-6": chips(["(−18) + 12", "(−18) − 12", "(−18) + 10", "(−18) − 7"]),
 
   // 12. Tìm x để x + m chia hết cho x
-  "tim-x-5": lines(
-    "Tìm x để x + 5 chia hết cho x",
+  "tim-x-thu": rows("Thử x bằng 1, 2, 3 và −1 với x + 3", [
+    { tex: "1 + 3 = 4 \\chiahet 1", tag: tag("x = 1 được", NOTE) },
+    {
+      tex: "2 + 3 = 5 \\khongchiahet 2",
+      tag: tag("x = 2 không được", NOTE),
+    },
+    { tex: "3 + 3 = 6 \\chiahet 3", tag: tag("x = 3 được", NOTE) },
+    {
+      tex: "(-1) + 3 = 2 \\chiahet (-1)",
+      tag: tag("x = −1 được", NOTE),
+    },
+  ]),
+  "tim-x-3": lines(
+    "Tìm x để x + 3 chia hết cho x",
     [
-      { tex: "x + 5 \\chiahet x", tag: tag("điều cần có", NOTE) },
+      { tex: "x + 3 \\chiahet x", tag: tag("điều cần có", NOTE) },
       {
-        tex: "5 = (x + 5) - x \\chiahet x",
-        tag: tag("x chia hết cho x", NOTE),
+        tex: "3 = (x + 3) - x \\chiahet x",
+        tag: tag("x khác 0 chia hết cho x", NOTE),
       },
       {
-        tex: "x \\in \\{-5,\\ -1,\\ 1,\\ 5\\}",
-        tag: tag("x là ước của 5", DIVISOR),
+        tex: "x = \\pm1,\\ \\pm3",
+        tag: tag("x là ước của 3", DIVISOR),
       },
     ],
     "steps",
@@ -445,7 +481,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-x-8-cung-lam": chips(
     ["−4", "3", "8", "−8", "5", "2"],
     [0, 2, 3, 5],
-    "−4, 8, −8 và 2 đều là ước của 8, nên x + 8 chia hết cho x.",
+    "−4, 8, −8 và 2 đều là ước của 8, nên x + 8 chia hết cho x. Với x = −8 thì x + 8 = 0, mà 0 chia hết cho −8.",
   ),
   "chon-x-10": chips(["−5", "4", "10", "−2", "3", "−10"]),
 

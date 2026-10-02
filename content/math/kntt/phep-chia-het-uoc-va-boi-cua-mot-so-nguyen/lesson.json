@@ -16,12 +16,12 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"
     },
-    "summary": "Bài này dạy chia hai số nguyên và tìm dấu của thương. Sau đó bạn tìm ước và bội của một số nguyên, kể cả ước và bội âm.",
+    "summary": "Bài này dạy chia hai số nguyên và tìm dấu của thương. Sau đó bạn tìm ước, bội, ước chung, rồi dùng chúng để tìm số x.",
     "goals": [
       "chia được hai số nguyên và viết đúng dấu của thương",
       "biết khi nào một số nguyên chia hết cho số khác",
-      "tìm được các ước và các bội của một số nguyên",
-      "tìm được ước chung của hai số nguyên"
+      "tìm được các ước, các bội và ước chung của số nguyên",
+      "dùng tổng và hiệu cùng chia hết để tìm số x"
     ],
     "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ."
   },
@@ -65,6 +65,11 @@
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.uoc-chung",
       "name": "Ước chung",
       "color": "teal"
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.tich",
+      "name": "Tích",
+      "color": "amber"
     }
   ],
   "sections": [
@@ -156,7 +161,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Mỗi giờ nhiệt độ giảm 3 độ, tức thay đổi −3 độ. Muốn giảm tổng cộng 12 độ, tức −12 độ, cần (−12) : (−3) = 4 giờ."
+              "text": "Mỗi giờ nhiệt độ giảm 3 độ, tức thay đổi −3 độ. Muốn thay đổi tổng cộng −12 độ, cần (−12) : (−3) = 4 giờ."
             },
             {
               "type": "visual",
@@ -169,7 +174,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chia hai số nguyên cùng dấu: chia hai phần số tự nhiên cho nhau, thương là số dương.",
+              "text": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau.",
               "rule": true
             },
             {
@@ -202,7 +207,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.cung-dau-vi-du",
-        "caption": "Chia hai số nguyên cùng dấu: chia hai phần số tự nhiên cho nhau, thương là số dương."
+        "caption": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau."
       }
     },
     {
@@ -229,7 +234,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chia hai số nguyên khác dấu: chia hai phần số tự nhiên cho nhau, thương là số âm.",
+              "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước.",
               "rule": true
             },
             {
@@ -262,21 +267,21 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Chia hai số nguyên khác dấu: chia hai phần số tự nhiên cho nhau, thương là số âm."
+        "caption": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
       }
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.suy-ra-thuong",
       "title": "Bốn phép chia từ một phép chia",
       "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 1, ví dụ 1)",
-      "minutes": 4,
+      "minutes": 3,
       "blocks": [
         {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Muốn chia hai số nguyên, chia hai phần số tự nhiên trước, rồi chọn dấu: cùng dấu là dương, khác dấu là âm.",
+              "text": "Đổi dấu một trong hai số thì thương đổi dấu. Đổi dấu cả hai số thì thương giữ nguyên.",
               "rule": true
             },
             {
@@ -284,14 +289,6 @@
               "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.bon-phep-chia"
             }
           ]
-        },
-        {
-          "type": "tip",
-          "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.tip.dem-dau-tru",
-          "kind": "làm nhanh",
-          "title": "Dấu của thương",
-          "text": "Đếm các dấu − của hai số trong phép chia. Có 0 hoặc 2 dấu − thì thương dương, có 1 dấu − thì thương âm. Mẹo này dùng khi số bị chia khác 0.",
-          "tex": "\\begin{gathered} (-8) : (-2) = 4 \\\\ (-8) : 2 = -4 \\end{gathered}"
         },
         {
           "type": "tip",
@@ -306,7 +303,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: biết 45 : 9 = 5, chạm vào các phép chia có thương −5. Đổi dấu một trong hai số thì thương đổi dấu."
+              "text": "Cùng làm: biết 45 : 9 = 5, chạm vào các phép chia có thương −5. Nhớ rằng đổi dấu một số thì thương đổi dấu."
             },
             {
               "type": "visual",
@@ -325,7 +322,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.bon-phep-chia",
-        "caption": "Muốn chia hai số nguyên, chia hai phần số tự nhiên trước, rồi chọn dấu: cùng dấu là dương, khác dấu là âm."
+        "caption": "Đổi dấu một trong hai số thì thương đổi dấu. Đổi dấu cả hai số thì thương giữ nguyên."
       }
     },
     {
@@ -365,9 +362,9 @@
           "type": "tip",
           "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.tip.bo-dau-xet-chia-het",
           "kind": "hiểu nhanh",
-          "title": "Chia hết cho số âm",
-          "text": "Muốn biết một số có chia hết cho một số âm không, bỏ dấu − của cả hai số rồi xét như số tự nhiên. Kết quả không đổi.",
-          "tex": "\\begin{gathered} (-12) \\chiahet (-4) \\\\ \\downarrow \\\\ 12 \\chiahet 4 \\end{gathered}"
+          "title": "Xét chia hết khi có số âm",
+          "text": "Muốn biết một số có chia hết cho một số khác không, bỏ dấu − của cả hai số rồi xét như số tự nhiên. Chia hết hay không vẫn giữ nguyên, còn dấu của thương thì xét riêng.",
+          "tex": "\\begin{gathered} (-35) \\chiahet 7 \\to 35 \\chiahet 7 \\\\ 12 \\chiahet (-4) \\to 12 \\chiahet 4 \\end{gathered}"
         },
         {
           "type": "group",
@@ -420,7 +417,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm các ước của một số nguyên khác 0, tìm các ước dương rồi viết thêm số đối của chúng.",
+              "text": "Muốn tìm các ước của một số nguyên khác 0, tìm các ước dương rồi viết thêm số đối của chúng. Số −14 có cùng các ước dương với 14.",
               "rule": true
             },
             {
@@ -434,8 +431,8 @@
           "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.tip.so-uoc-chan",
           "kind": "tránh sai",
           "title": "Kiểm tra số ước",
-          "text": "Các ước của một số nguyên khác 0 đi thành từng cặp đối nhau. Vì vậy số ước luôn là số chẵn, đếm ra số lẻ thì bạn còn thiếu ước.",
-          "tex": "(1, -1),\\ (2, -2),\\ (3, -3),\\ (6, -6)"
+          "text": "Số ước âm bằng số ước dương, vì mỗi ước dương có một số đối. Vậy số ước luôn gấp đôi số ước dương: 6 có 4 ước dương nên có 8 ước.",
+          "tex": "\\begin{gathered} (1, -1),\\ (2, -2) \\\\ (3, -3),\\ (6, -6) \\end{gathered}"
         },
         {
           "type": "group",
@@ -452,8 +449,8 @@
         }
       ],
       "checkIds": [
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-uoc-cua-6",
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-cua-am10"
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-uoc-cua-12",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-cua-am21"
       ],
       "practiceIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-15-chips"
@@ -488,7 +485,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm các bội khác 0 của một số nguyên khác 0, nhân số đó với 1, 2, 3 và cứ thế tiếp. Số đối của mỗi bội cũng là một bội.",
+              "text": "Muốn tìm các bội của số nguyên khác 0, nhân số đó với 1, 2, 3 rồi viết thêm số đối của tích. Số 0 cũng là bội của số đó.",
               "rule": true
             },
             {
@@ -512,7 +509,7 @@
         }
       ],
       "checkIds": [
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.nhiet-do-5-gio",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-boi-cua-am3",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-boi-cua-4"
       ],
       "practiceIds": [
@@ -521,7 +518,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.boi-4-vi-du",
-        "caption": "Muốn tìm các bội khác 0 của một số nguyên khác 0, nhân số đó với 1, 2, 3 và cứ thế tiếp. Số đối của mỗi bội cũng là một bội."
+        "caption": "Muốn tìm các bội của số nguyên khác 0, nhân số đó với 1, 2, 3 rồi viết thêm số đối của tích. Số 0 cũng là bội của số đó."
       }
     },
     {
@@ -548,7 +545,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn tìm bội trong một khoảng, liệt kê các bội dương và bội âm, rồi chỉ giữ những bội nằm trong khoảng đó.",
+              "text": "Muốn tìm bội trong một khoảng, liệt kê các bội dương, bội âm và số 0, rồi giữ những số nằm trong khoảng đó.",
               "rule": true
             },
             {
@@ -581,7 +578,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.boi-khoang-vi-du",
-        "caption": "Muốn tìm bội trong một khoảng, liệt kê các bội dương và bội âm, rồi chỉ giữ những bội nằm trong khoảng đó."
+        "caption": "Muốn tìm bội trong một khoảng, liệt kê các bội dương, bội âm và số 0, rồi giữ những số nằm trong khoảng đó."
       }
     },
     {
@@ -655,7 +652,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Có 10 cái ghế xếp thành các hàng bằng nhau. Ta xếp 1 hàng 10 ghế hay 2 hàng 5 ghế, vì 10 = 1 · 10 = 2 · 5."
+              "text": "Có 10 cái ghế xếp thành các hàng bằng nhau. Ta có thể xếp 1 hàng 10 ghế hay 2 hàng 5 ghế, vì 10 = 1 · 10 = 2 · 5."
             },
             {
               "type": "visual",
@@ -668,7 +665,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Phân tích một số dương thành tích hai số nguyên: tìm tích hai số dương rồi đổi dấu cả hai thừa số.",
+              "text": "Viết số dương thành tích hai số dương. Rồi đổi dấu cả hai thừa số để có thêm các tích khác.",
               "rule": true
             },
             {
@@ -682,11 +679,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào các tích bằng 21. Nhớ rằng đổi dấu cả hai thừa số thì tích không đổi."
+              "text": "Cùng làm: chạm vào các tích bằng 35. Nhớ rằng đổi dấu cả hai thừa số thì tích không đổi."
             },
             {
               "type": "visual",
-              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chon-tich-21-cung-lam"
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chon-tich-35-cung-lam"
             }
           ]
         }
@@ -701,7 +698,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.phan-tich-10-xong",
-        "caption": "Phân tích một số dương thành tích hai số nguyên: tìm tích hai số dương rồi đổi dấu cả hai thừa số."
+        "caption": "Viết số dương thành tích hai số dương. Rồi đổi dấu cả hai thừa số để có thêm các tích khác."
       }
     },
     {
@@ -728,7 +725,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nếu a và b cùng chia hết cho c thì a + b và a − b cũng chia hết cho c.",
+              "text": "Hai số nguyên cùng chia hết cho một số thì tổng và hiệu của chúng cũng chia hết cho số đó. Với số nguyên, số bị trừ nhỏ hơn số trừ vẫn trừ được.",
               "rule": true
             },
             {
@@ -761,12 +758,12 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tong-hieu-vi-du",
-        "caption": "Nếu a và b cùng chia hết cho c thì a + b và a − b cũng chia hết cho c."
+        "caption": "Hai số nguyên cùng chia hết cho một số thì tổng và hiệu của chúng cũng chia hết cho số đó."
       }
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.tim-x",
-      "title": "Tìm x để x + a chia hết cho x",
+      "title": "Tìm x để x cộng thêm một số chia hết cho x",
       "sourceRef": "Sách bài tập tr.59 (bài 3.40)",
       "minutes": 4,
       "blocks": [
@@ -775,11 +772,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Số x luôn chia hết cho x. Nên nếu x + 5 chia hết cho x thì hiệu (x + 5) − x = 5 cũng chia hết cho x."
+              "text": "Thử vài số x với x + 3. Các số x = 1, x = 3 và x = −1 làm x + 3 chia hết cho x, còn x = 2 thì không."
             },
             {
               "type": "visual",
-              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-5"
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-thu"
             }
           ]
         },
@@ -788,7 +785,20 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn x + a chia hết cho x thì x phải là ước của a.",
+              "text": "Số x khác 0 luôn chia hết cho chính nó. Vì vậy nếu x + 3 chia hết cho x thì hiệu của x + 3 và x, tức 3, cũng chia hết cho x."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-3"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Các số x để x cộng thêm một số chia hết cho x chính là các ước của số đó.",
               "rule": true
             },
             {
@@ -821,7 +831,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
-        "caption": "Muốn x + a chia hết cho x thì x phải là ước của a."
+        "caption": "Các số x để x cộng thêm một số chia hết cho x chính là các ước của số đó."
       }
     }
   ],
@@ -852,7 +862,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.cung-dau-vi-du",
-        "caption": "Chia hai số nguyên cùng dấu: chia hai phần số tự nhiên cho nhau, thương là số dương."
+        "caption": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau."
       }
     },
     {
@@ -867,7 +877,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Chia hai số nguyên khác dấu: chia hai phần số tự nhiên cho nhau, thương là số âm."
+        "caption": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
       }
     },
     {
@@ -883,7 +893,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.bon-phep-chia",
-        "caption": "Muốn chia hai số nguyên, chia hai phần số tự nhiên trước, rồi chọn dấu: cùng dấu là dương, khác dấu là âm."
+        "caption": "Đổi dấu một trong hai số thì thương đổi dấu. Đổi dấu cả hai số thì thương giữ nguyên."
       }
     },
     {
@@ -918,7 +928,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.boi-4-vi-du",
-        "caption": "Muốn tìm các bội khác 0 của một số nguyên khác 0, nhân số đó với 1, 2, 3 và cứ thế tiếp. Số đối của mỗi bội cũng là một bội."
+        "caption": "Muốn tìm các bội của số nguyên khác 0, nhân số đó với 1, 2, 3 rồi viết thêm số đối của tích. Số 0 cũng là bội của số đó."
       }
     },
     {
@@ -928,7 +938,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.boi-khoang-vi-du",
-        "caption": "Muốn tìm bội trong một khoảng, liệt kê các bội dương và bội âm, rồi chỉ giữ những bội nằm trong khoảng đó."
+        "caption": "Muốn tìm bội trong một khoảng, liệt kê các bội dương, bội âm và số 0, rồi giữ những số nằm trong khoảng đó."
       }
     },
     {
@@ -948,14 +958,14 @@
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.phan-tich-thanh-tich",
       "sourceRef": "Sách bài tập tr.59 (ví dụ 2, bài 3.39)",
       "conceptIds": [
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.thuong",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.tich",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.duong",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.concept.am"
       ],
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.phan-tich-10-xong",
-        "caption": "Phân tích một số dương thành tích hai số nguyên: tìm tích hai số dương rồi đổi dấu cả hai thừa số."
+        "caption": "Viết số dương thành tích hai số dương. Rồi đổi dấu cả hai thừa số để có thêm các tích khác."
       }
     },
     {
@@ -968,7 +978,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tong-hieu-vi-du",
-        "caption": "Nếu a và b cùng chia hết cho c thì a + b và a − b cũng chia hết cho c."
+        "caption": "Hai số nguyên cùng chia hết cho một số thì tổng và hiệu của chúng cũng chia hết cho số đó."
       }
     },
     {
@@ -981,7 +991,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
-        "caption": "Muốn x + a chia hết cho x thì x phải là ước của a."
+        "caption": "Các số x để x cộng thêm một số chia hết cho x chính là các ước của số đó."
       }
     }
   ],
@@ -1187,7 +1197,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Vì −30 = 6 · (−5) nên (−30) : 6 = "
+          "text": "Vì 6 · "
         },
         {
           "type": "blank",
@@ -1196,10 +1206,10 @@
         },
         {
           "type": "text",
-          "text": "."
+          "text": " = −30 nên thương của (−30) : 6 là số vừa tìm."
         }
       ],
-      "bank": ["−5", "5", "−24"]
+      "bank": ["−5", "5", "−6"]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-chia-het-nhieu",
@@ -1223,8 +1233,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Một phép chia hết khi có số nguyên nhân với số chia được số bị chia. Ta có −16 = 4 · (−4) và 20 = (−5) · (−4), còn hai phép kia có số dư.",
-        "tex": "(-16) = 4 \\cdot (-4), \\quad 20 = (-5) \\cdot (-4)",
+        "text": "Một phép chia hết khi có số nguyên nhân với số chia được số bị chia. Ta có −16 = 4 · (−4) và 20 = (−5) · (−4), còn hai phép kia không chia hết.",
+        "tex": "\\begin{gathered} (-16) = 4 \\cdot (-4) \\\\ 20 = (-5) \\cdot (-4) \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -1276,7 +1286,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mỗi giờ nhiệt độ giảm 5 độ, tức thay đổi −5 độ. Hỏi sau bao nhiêu giờ thì nhiệt độ giảm tổng cộng 20 độ, tức −20 độ?"
+          "text": "Mỗi giờ nhiệt độ giảm 5 độ, tức thay đổi −5 độ. Hỏi sau bao nhiêu giờ thì nhiệt độ thay đổi tổng cộng −20 độ?"
         }
       ],
       "hints": {
@@ -1298,7 +1308,8 @@
       },
       "check": {
         "expr": "(-20):(-5)"
-      }
+      },
+      "allowNegative": true
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-thuong-duong",
@@ -1389,7 +1400,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 45 : 9 = 5. Hai số cùng dấu nên thương là số dương, bằng 5.",
+        "text": "Hai số cùng dấu nên thương là số dương. Chia hai phần số tự nhiên: 45 : 9 = 5, nên thương là 5.",
         "tex": "(-45) : (-9) = 5"
       },
       "answer": {
@@ -1427,7 +1438,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 56 : 8 = 7. Hai số cùng dấu nên thương là số dương, bằng 7.",
+        "text": "Hai số cùng dấu nên thương là số dương. Chia hai phần số tự nhiên: 56 : 8 = 7, nên thương là 7.",
         "tex": "(-56) : (-8) = 7"
       },
       "answer": {
@@ -1462,7 +1473,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Thương dương khi hai số cùng dấu. Phép (−18) : (−3) có hai số âm và phép 18 : 3 có hai số dương, cả hai đều bằng 6.",
-        "tex": "(-18) : (-3) = 6, \\quad 18 : 3 = 6",
+        "tex": "\\begin{gathered} (-18) : (-3) = 6 \\\\ 18 : 3 = 6 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -1723,7 +1734,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 48 : 6 = 8. Hai số khác dấu nên thương là số âm, bằng −8.",
+        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 48 : 6 = 8, nên thương là −8.",
         "tex": "48 : (-6) = -8"
       },
       "answer": {
@@ -1761,7 +1772,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 54 : 9 = 6. Hai số khác dấu nên thương là số âm, bằng −6.",
+        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 54 : 9 = 6, nên thương là −6.",
         "tex": "(-54) : 9 = -6"
       },
       "answer": {
@@ -1796,7 +1807,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Thương âm khi hai số khác dấu. Phép (−27) : 9 và phép 27 : (−9) đều có hai số khác dấu và bằng −3.",
-        "tex": "(-27) : 9 = -3, \\quad 27 : (-9) = -3",
+        "tex": "\\begin{gathered} (-27) : 9 = -3 \\\\ 27 : (-9) = -3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -1866,7 +1877,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 32 : 8 = 4. Hai số khác dấu nên thương là số âm, bằng −4."
+        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 32 : 8 = 4, nên thương là −4."
       },
       "segments": [
         {
@@ -1951,6 +1962,10 @@
           {
             "optionId": "c",
             "text": "Chia hai phần số tự nhiên đúng, nhưng Nam quên dấu của thương."
+          },
+          {
+            "optionId": "d",
+            "text": "6 · (−6) = −36, khác số bị chia −42."
           }
         ]
       },
@@ -1975,6 +1990,13 @@
             "type": "text",
             "text": "Đúng, vì 42 : 6 = 7"
           }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Sai, vì (−42) : 6 = −6"
+          }
         }
       ],
       "answer": ["a"],
@@ -1989,11 +2011,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính thương của phép chia sau."
+          "text": "Biết 63 : 7 = 9. Tính thương của phép chia sau."
         },
         {
           "type": "formula",
-          "tex": "(-63) : (-7)"
+          "tex": "63 : (-7)"
         }
       ],
       "hints": {
@@ -2003,19 +2025,19 @@
             "index": 1
           }
         ],
-        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.goi-y-cung-dau"
+        "hintVisualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.goi-y-doi-dau"
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 63 : 7 = 9. Hai số cùng dấu nên thương là số dương, bằng 9. Kiểm tra: (−7) · 9 = −63.",
-        "tex": "(-7) \\cdot 9 = -63"
+        "text": "Phép 63 : 7 có hai số cùng dấu. Đổi dấu số chia thì thương đổi dấu, nên 63 : (−7) = −9. Kiểm tra: (−7) · (−9) = 63.",
+        "tex": "(-7) \\cdot (-9) = 63"
       },
       "answer": {
         "kind": "value",
-        "value": 9
+        "value": -9
       },
       "check": {
-        "expr": "(-63):(-7)"
+        "expr": "63:(-7)"
       },
       "allowNegative": true
     },
@@ -2045,7 +2067,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia hai phần số tự nhiên: 81 : 9 = 9. Hai số khác dấu nên thương là số âm, bằng −9. Kiểm tra: (−9) · (−9) = 81.",
+        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 81 : 9 = 9, nên thương là −9. Kiểm tra: (−9) · (−9) = 81.",
         "tex": "(-9) \\cdot (-9) = 81"
       },
       "answer": {
@@ -2080,7 +2102,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Thương −9 khi hai số khác dấu và phần số tự nhiên chia ra 9. Phép (−36) : 4 và phép 36 : (−4) đều như vậy.",
-        "tex": "(-36) : 4 = -9, \\quad 36 : (-4) = -9",
+        "tex": "\\begin{gathered} (-36) : 4 = -9 \\\\ 36 : (-4) = -9 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -2129,15 +2151,15 @@
       }
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.xep-thuong",
-      "type": "order",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-thuong-nho-nhat",
+      "type": "choice",
       "cardIds": [
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.suy-ra-thuong"
       ],
       "prompt": [
         {
           "type": "note",
-          "text": "Tính thương của từng phép chia rồi xếp các thương từ bé đến lớn."
+          "text": "Phép chia nào có thương nhỏ nhất?"
         }
       ],
       "hints": {
@@ -2148,41 +2170,49 @@
           }
         ]
       },
-      "difficulty": 2,
+      "difficulty": 1,
       "explain": {
-        "text": "Các thương là 12 : (−2) = −6, (−20) : 5 = −4, 0 : 4 = 0 và (−15) : (−5) = 3. Xếp từ bé đến lớn là −6, −4, 0, 3.",
-        "tex": "-6 < -4 < 0 < 3"
+        "text": "Hai phép đầu có hai số khác dấu nên thương âm: 12 : (−2) = −6 và (−20) : 5 = −4. Phép (−15) : (−5) = 3 là số dương. Trong ba thương, −6 nhỏ nhất.",
+        "tex": "-6 < -4 < 3",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Thương là −4, lớn hơn −6."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai số cùng dấu nên thương là 3, một số dương."
+          }
+        ]
       },
-      "items": [
+      "options": [
         {
-          "id": "s1",
+          "id": "a",
           "content": {
             "type": "formula",
             "tex": "12 : (-2)"
           }
         },
         {
-          "id": "s2",
+          "id": "b",
           "content": {
             "type": "formula",
             "tex": "(-20) : 5"
           }
         },
         {
-          "id": "s3",
-          "content": {
-            "type": "formula",
-            "tex": "0 : 4"
-          }
-        },
-        {
-          "id": "s4",
+          "id": "c",
           "content": {
             "type": "formula",
             "tex": "(-15) : (-5)"
           }
         }
-      ]
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "min"
+      }
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.uoc-boi-20-chia-am5",
@@ -2407,7 +2437,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Bỏ dấu −, ta xét 35 chia cho 7 và 35 chia cho 5: cả hai đều chia hết. Còn 35 không chia hết cho 6 và cho 4.",
-        "tex": "35 \\chiahet 7, \\quad 35 \\chiahet 5",
+        "tex": "\\begin{gathered} 35 \\chiahet 7 \\\\ 35 \\chiahet 5 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -2453,13 +2483,13 @@
       "multiple": true
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-uoc-cua-6",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-uoc-cua-12",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Số 6 có tất cả bao nhiêu ước, tính cả ước dương lẫn ước âm?"
+          "text": "Số 12 có tất cả bao nhiêu ước, tính cả ước dương lẫn ước âm?"
         }
       ],
       "hints": {
@@ -2472,25 +2502,25 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số 6 có bốn ước dương là 1, 2, 3 và 6. Mỗi ước dương có thêm một số đối, nên có 4 + 4 = 8 ước.",
-        "tex": "(1, -1),\\ (2, -2),\\ (3, -3),\\ (6, -6)"
+        "text": "Số 12 có sáu ước dương là 1, 2, 3, 4, 6 và 12. Mỗi ước dương có thêm một số đối, nên có 6 + 6 = 12 ước.",
+        "tex": "6 + 6 = 12"
       },
       "answer": {
         "kind": "value",
-        "value": 8
+        "value": 12
       },
       "check": {
-        "expr": "8"
+        "expr": "12"
       }
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-cua-am10",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-uoc-cua-am21",
       "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các ước của −10."
+          "text": "Chọn tất cả các ước của −21."
         }
       ],
       "hints": {
@@ -2503,12 +2533,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Các ước của −10 giống các ước của 10: ±1, ±2, ±5, ±10. Vậy −5, −2 và 10 đều là ước, còn −4 thì không.",
-        "tex": "\\pm1,\\ \\pm2,\\ \\pm5,\\ \\pm10",
+        "text": "Các ước của −21 giống các ước của 21: ±1, ±3, ±7, ±21. Vậy −7, −3 và 21 đều là ước, còn −5 thì không.",
+        "tex": "\\pm1,\\ \\pm3,\\ \\pm7,\\ \\pm21",
         "wrong": [
           {
             "optionId": "c",
-            "text": "−10 chia −4 không ra số nguyên, nên −4 không là ước."
+            "text": "−21 chia −5 không ra số nguyên, nên −5 không là ước."
           }
         ]
       },
@@ -2517,28 +2547,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "−5"
+            "text": "−7"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "−2"
+            "text": "−3"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "−4"
+            "text": "−5"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "10"
+            "text": "21"
           }
         }
       ],
@@ -2717,13 +2747,13 @@
       ]
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.nhiet-do-5-gio",
-      "type": "numeric",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-boi-cua-am3",
+      "type": "choice",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Mỗi giờ nhiệt độ thay đổi −3 độ. Sau 5 giờ, nhiệt độ thay đổi bao nhiêu độ?"
+          "text": "Chọn số là bội của −3."
         }
       ],
       "hints": {
@@ -2736,17 +2766,55 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Sau 5 giờ nhiệt độ thay đổi (−3) · 5 = −15 độ. Số −15 là một bội của 3.",
-        "tex": "(-3) \\cdot 5 = -15"
+        "text": "Bội của −3 có dạng (−3) nhân với một số nguyên. Chỉ có −12 làm được: (−3) · 4 = −12, còn −10, −8 và −7 không chia hết cho 3.",
+        "tex": "-12 = (-3) \\cdot 4",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "−10 chia −3 không ra số nguyên."
+          },
+          {
+            "optionId": "c",
+            "text": "−8 chia −3 không ra số nguyên."
+          },
+          {
+            "optionId": "d",
+            "text": "−7 chia −3 không ra số nguyên."
+          }
+        ]
       },
-      "answer": {
-        "kind": "value",
-        "value": -15
-      },
-      "check": {
-        "expr": "(-3)·5"
-      },
-      "allowNegative": true
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "−12"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "−10"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "−8"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "−7"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.chon-boi-cua-4",
@@ -2769,7 +2837,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Bội của 4 có dạng 4 nhân với một số nguyên. Ta có −8 = 4 · (−2) và 12 = 4 · 3, còn −6 và 10 không chia hết cho 4.",
-        "tex": "-8 = 4 \\cdot (-2), \\quad 12 = 4 \\cdot 3",
+        "tex": "\\begin{gathered} -8 = 4 \\cdot (-2) \\\\ 12 = 4 \\cdot 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -2897,24 +2965,24 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Bội của 3 là số chia hết cho 3. Trong ba số này chỉ có −9 chia hết cho 3, vì −9 = 3 · (−3)."
+        "text": "Bội của 3 là số chia hết cho 3. Trong khoảng đó còn thiếu 6, vì 6 = 3 · 2; số 9 lớn hơn 7 và số 4 không chia hết cho 3."
       },
       "segments": [
         {
           "type": "text",
-          "text": "Các bội của 3 là 0, 3, 6, −3, −6 và "
+          "text": "Các bội của 3 lớn hơn −10 và nhỏ hơn 7 là −9, −6, −3, 0, 3 và "
         },
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["−9", "-9"]
+          "accept": ["6"]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": ["−9", "−4", "−8"]
+      "bank": ["6", "9", "4"]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.thang-may-dung-may-tang",
@@ -2954,7 +3022,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các số là bội của 4, lớn hơn −9 và nhỏ hơn hoặc bằng 9."
+          "text": "Chọn tất cả các số là bội của 4, lớn hơn −8 và nhỏ hơn hoặc bằng 8."
         }
       ],
       "hints": {
@@ -2967,15 +3035,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Liệt kê các bội của 4 ở cả hai phía của 0: −12, −8, −4, 0, 4, 8, 12. Chỉ −8 và 4 trong lựa chọn nằm giữa −9 và 9.",
+        "text": "Các bội của 4 là −8, −4, 0, 4, 8, 12 và cứ thế tiếp. Đề nói lớn hơn −8 nên không lấy −8, nói nhỏ hơn hoặc bằng 8 nên lấy 8.",
         "wrong": [
           {
-            "optionId": "c",
-            "text": "−12 nhỏ hơn −9 nên nằm ngoài khoảng."
+            "optionId": "a",
+            "text": "Đề nói lớn hơn −8, nên không lấy −8."
           },
           {
             "optionId": "d",
-            "text": "12 lớn hơn 9 nên nằm ngoài khoảng."
+            "text": "12 lớn hơn 8 nên nằm ngoài khoảng."
           }
         ]
       },
@@ -2991,14 +3059,14 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "4"
+            "text": "8"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "−12"
+            "text": "−4"
           }
         },
         {
@@ -3009,7 +3077,7 @@
           }
         }
       ],
-      "answer": ["a", "b"],
+      "answer": ["b", "c"],
       "multiple": true
     },
     {
@@ -3034,7 +3102,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Các bội của 6 là 0, ±6, ±12, ±18 và cứ thế tiếp. Trong khoảng từ −14 đến 14 có −12, −6, 0, 6, 12, xếp từ bé đến lớn.",
+        "text": "Các bội của 6 là 0, ±6, ±12, ±18 và cứ thế tiếp. Trong khoảng lớn hơn −14 và nhỏ hơn 14 có −12, −6, 0, 6, 12, xếp từ bé đến lớn.",
         "tex": "-12 < -6 < 0 < 6 < 12"
       },
       "items": [
@@ -3160,8 +3228,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ước chung phải là ước của cả 10 và 15. Số 5 và −5 chia hết cả hai số, còn 2 không là ước của 15 và 10 không là ước của 15.",
-        "tex": "10 = 5 \\cdot 2, \\quad 15 = 5 \\cdot 3",
+        "text": "Cả 10 và 15 đều chia hết cho 5 và cho −5, nên 5 và −5 là ước chung. Còn 2 không là ước của 15, và 10 không là ước của 15.",
+        "tex": "\\begin{gathered} 10 = 5 \\cdot 2 \\\\ 15 = 5 \\cdot 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -3226,8 +3294,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ta có −14 = 7 · (−2) và 21 = 7 · 3, nên 7 là ước của cả hai số. Các số còn lại chỉ là ước của một số hoặc không là ước của số nào.",
-        "tex": "-14 = 7 \\cdot (-2), \\quad 21 = 7 \\cdot 3",
+        "text": "Ta có −14 = 7 · (−2) và 21 = 7 · 3, nên 7 là ước của cả hai số. Các số còn lại không là ước của cả hai số.",
+        "tex": "\\begin{gathered} -14 = 7 \\cdot (-2) \\\\ 21 = 7 \\cdot 3 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -3296,7 +3364,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ước chung phải là ước của cả 12 và −18. Các số 6, −3 và −6 chia hết cả hai số. Còn 4 và 12 không là ước của 18, và −9 không là ước của 12."
+        "text": "Ước chung phải là ước của cả 12 và −18. Các số 6, −3 và −6 đều là ước của cả 12 và −18. Số 4 và 12 không là ước của 18, còn −9 không là ước của 12."
       },
       "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chon-uc-12-18",
       "validatorId": "chon-dung",
@@ -3347,7 +3415,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn từ điền vào chỗ trống."
+          "text": "Số −3 là ước của 9 và cũng là ước của −15. Chọn từ điền vào chỗ trống."
         }
       ],
       "hints": {
@@ -3360,12 +3428,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Một số là ước của cả hai số đã cho thì gọi là ước chung. Số −4 là ước của cả −8 và 12 nên nó là ước chung."
+        "text": "Một số là ước của cả hai số đã cho thì gọi là ước chung. Số −3 là ước của cả 9 và −15 nên nó là ước chung."
       },
       "segments": [
         {
           "type": "text",
-          "text": "Số −4 là ước của −8 và là ước của 12 nên −4 là một "
+          "text": "Vậy −3 là một "
         },
         {
           "type": "blank",
@@ -3374,7 +3442,7 @@
         },
         {
           "type": "text",
-          "text": " của −8 và 12."
+          "text": " của 9 và −15."
         }
       ],
       "bank": ["ước chung", "bội chung", "thương"]
@@ -3650,7 +3718,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Biết −15 và 20 đều chia hết cho 5. Chọn kết quả chia hết cho 5."
+          "text": "Chọn tất cả các phép tính có kết quả chia hết cho 5."
         }
       ],
       "hints": {
@@ -3663,20 +3731,16 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số −15 và 20 đều chia hết cho 5, nên tổng của chúng chia hết cho 5. Thật vậy (−15) + 20 = 5.",
-        "tex": "(-15) + 20 = 5",
+        "text": "Các số 25, −10, −15 và 20 đều chia hết cho 5. Nên tổng 25 + (−10) = 15 và hiệu (−15) − 20 = −35 cũng chia hết cho 5. Còn 25 + (−12) = 13 và 30 − 4 = 26 thì không.",
+        "tex": "\\begin{gathered} 25 + (-10) = 15 \\\\ (-15) - 20 = -35 \\end{gathered}",
         "wrong": [
           {
-            "optionId": "b",
-            "text": "21 không chia hết cho 5 nên tổng (−15) + 21 = 6 không chia hết cho 5."
-          },
-          {
             "optionId": "c",
-            "text": "22 không chia hết cho 5 nên tổng (−15) + 22 = 7 không chia hết cho 5."
+            "text": "25 + (−12) = 13, mà 13 không chia hết cho 5."
           },
           {
             "optionId": "d",
-            "text": "23 không chia hết cho 5 nên tổng (−15) + 23 = 8 không chia hết cho 5."
+            "text": "30 − 4 = 26, mà 26 không chia hết cho 5."
           }
         ]
       },
@@ -3685,33 +3749,33 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "(-15) + 20"
+            "tex": "25 + (-10)"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "(-15) + 21"
+            "tex": "(-15) - 20"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "(-15) + 22"
+            "tex": "25 + (-12)"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "(-15) + 23"
+            "tex": "30 - 4"
           }
         }
       ],
-      "answer": ["a"],
-      "multiple": false
+      "answer": ["a", "b"],
+      "multiple": true
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-tong-hieu-7",
@@ -3720,7 +3784,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn cụm từ điền vào chỗ trống."
+          "text": "Biết −28 và 35 đều chia hết cho 7. Chọn cụm từ điền vào chỗ trống."
         }
       ],
       "hints": {
@@ -3738,7 +3802,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Vì −28 và 35 đều chia hết cho 7 nên hiệu (−28) − 35 "
+          "text": "Hiệu (−28) − 35 "
         },
         {
           "type": "blank",
@@ -3807,8 +3871,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Các số 27, −18, −36 và 27 đều chia hết cho 9, nên 27 + (−18) = 9 và (−36) − 27 = −63 đều chia hết cho 9. Số 20 và 7 không chia hết cho 9.",
-        "tex": "27 + (-18) = 9, \\quad (-36) - 27 = -63",
+        "text": "Các số 27, −18 và −36 đều chia hết cho 9, nên 27 + (−18) = 9 và (−36) − 27 = −63 đều chia hết cho 9. Số 20 và 7 không chia hết cho 9.",
+        "tex": "\\begin{gathered} 27 + (-18) = 9 \\\\ (-36) - 27 = -63 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -3898,7 +3962,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Muốn x + 7 chia hết cho x thì x là ước của số nào?"
+          "text": "Các số x để x + 7 chia hết cho x chính là các ước của số nào?"
         }
       ],
       "hints": {
@@ -3911,16 +3975,20 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số x chia hết cho x, nên x + 7 chia hết cho x khi 7 chia hết cho x. Vậy x phải là ước của 7.",
+        "text": "Số x khác 0 chia hết cho x, nên x + 7 chia hết cho x khi 7 chia hết cho x. Vậy các số x đó chính là các ước của 7.",
         "tex": "7 = (x + 7) - x",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Hiệu (x + 7) − x bằng 7, không phải 14."
+            "text": "Số 2 là ước của 14, nhưng 2 + 7 = 9 không chia hết cho 2."
           },
           {
             "optionId": "c",
-            "text": "Số 1 chỉ là một ước của 7, còn x có thể là các ước khác của 7."
+            "text": "Số 4 là ước của 8, nhưng 4 + 7 = 11 không chia hết cho 4."
+          },
+          {
+            "optionId": "d",
+            "text": "Số 3 là ước của 6, nhưng 3 + 7 = 10 không chia hết cho 3."
           }
         ]
       },
@@ -3943,14 +4011,14 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "1"
+            "text": "8"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "x"
+            "text": "6"
           }
         }
       ],
@@ -3977,8 +4045,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Muốn x + 9 chia hết cho x thì x là ước của 9. Các ước dương của 9 là 1, 3 và 9, nên x lớn nhất là 9.",
-        "tex": "x \\in \\{1,\\ 3,\\ 9\\}"
+        "text": "Các số x để x + 9 chia hết cho x chính là các ước của 9. Các ước dương của 9 là 1, 3 và 9, nên x lớn nhất là 9.",
+        "tex": "x = 1,\\ 3,\\ 9"
       },
       "answer": {
         "kind": "value",
@@ -4008,7 +4076,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Muốn x + 10 chia hết cho x thì x phải là ước của 10. Trong các số đã cho, −5, 10, −2 và −10 là ước của 10, còn 4 và 3 thì không."
+        "text": "Các số x để x + 10 chia hết cho x chính là các ước của 10. Số −5, 10, −2 và −10 là ước của 10, còn 4 và 3 thì không. Với x = −10 thì x + 10 = 0, mà 0 chia hết cho mọi số khác 0."
       },
       "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chon-x-10",
       "validatorId": "chon-dung",
@@ -4022,13 +4090,13 @@
       }
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-x-5",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dem-x-4",
       "type": "numeric",
       "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"],
       "prompt": [
         {
           "type": "note",
-          "text": "Có bao nhiêu số nguyên x để x + 5 chia hết cho x?"
+          "text": "Có bao nhiêu số nguyên x để x + 4 chia hết cho x?"
         }
       ],
       "hints": {
@@ -4041,15 +4109,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Muốn x + 5 chia hết cho x thì x là ước của 5. Số 5 có bốn ước là −5, −1, 1 và 5, nên có 4 số x.",
-        "tex": "x \\in \\{-5,\\ -1,\\ 1,\\ 5\\}"
+        "text": "Các số x để x + 4 chia hết cho x chính là các ước của 4. Số 4 có sáu ước là −4, −2, −1, 1, 2 và 4, nên có 6 số x.",
+        "tex": "x = \\pm1,\\ \\pm2,\\ \\pm4"
       },
       "answer": {
         "kind": "value",
-        "value": 4
+        "value": 6
       },
       "check": {
-        "expr": "4"
+        "expr": "6"
       }
     },
     {
@@ -4072,8 +4140,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Muốn x + 12 chia hết cho x thì x là ước của 12. Số −3 và −12 là ước của 12, còn 5 và 8 thì không.",
-        "tex": "(-3) + 12 = 9, \\quad (-12) + 12 = 0",
+        "text": "Các số x để x + 12 chia hết cho x chính là các ước của 12. Số −3 và −12 là ước của 12, còn 5 và 8 thì không. Với x = −12 thì x + 12 = 0, mà 0 chia hết cho −12.",
+        "tex": "\\begin{gathered} (-3) + 12 = 9 \\\\ (-12) + 12 = 0 \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
@@ -4119,13 +4187,13 @@
       "multiple": true
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-uoc-x-6",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dien-uoc-x-15",
       "type": "fillBlank",
       "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-x"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn từ điền vào chỗ trống."
+          "text": "Xét x + 15 chia hết cho x. Chọn từ điền vào chỗ trống."
         }
       ],
       "hints": {
@@ -4138,12 +4206,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số x chia hết cho x, nên x + 6 chia hết cho x khi 6 chia hết cho x. Tức là x là ước của 6."
+        "text": "Số x khác 0 chia hết cho x, nên x + 15 chia hết cho x khi 15 chia hết cho x. Vậy các số x đó là các ước của 15."
       },
       "segments": [
         {
           "type": "text",
-          "text": "Muốn x + 6 chia hết cho x thì x phải là "
+          "text": "Các số x đó chính là các "
         },
         {
           "type": "blank",
@@ -4152,7 +4220,7 @@
         },
         {
           "type": "text",
-          "text": " của 6."
+          "text": " của 15."
         }
       ],
       "bank": ["ước", "bội", "thương"]
