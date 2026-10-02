@@ -3,6 +3,9 @@ import {
   GATE_BASE_URL,
   GATE_SERVER_COMMAND,
   GATE_SERVER_ENV,
+  SYNC_BASE_URL,
+  SYNC_SERVER_COMMAND,
+  syncServerEnv,
   TARGET_DEVICES,
   TEST_BASE_URL,
   TEST_SERVER_COMMAND,
@@ -36,6 +39,15 @@ export default defineConfig({
       url: `${GATE_BASE_URL}/unlock`,
       reuseExistingServer: !process.env.CI,
       env: GATE_SERVER_ENV,
+      timeout: 120_000,
+    },
+    {
+      command: SYNC_SERVER_COMMAND,
+      url: `${SYNC_BASE_URL}/unlock`,
+      // Its store folder is new for every run, so a server left over from an
+      // earlier run would write somewhere else.
+      reuseExistingServer: false,
+      env: syncServerEnv(),
       timeout: 120_000,
     },
   ],

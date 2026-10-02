@@ -1,3 +1,6 @@
+import { tmpdir } from "node:os";
+import path from "node:path";
+
 // Shared by playwright.config.ts and scripts/visual-shot.ts so E2E runs and
 // visual screenshots always target the same devices and server.
 
@@ -27,6 +30,56 @@ export const GATE_SERVER_ENV = {
   FAMILY_CODES: GATE_FAMILY_CODE,
   SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",
 } as const;
+
+// A third dev server for the progress-sync E2E: the gate on, named family
+// codes and the folder store. Every test uses its own family (so tests running
+// side by side never share a profile doc or a rate limit) and the store folder
+// is new for each run: its name is made once and handed to the workers through
+// the environment.
+export const SYNC_PORT = TEST_PORT + 2000;
+export const SYNC_BASE_URL = `http://localhost:${SYNC_PORT}`;
+export const SYNC_DIST_DIR = ".next-sync";
+export const SYNC_SERVER_COMMAND = `pnpm exec next dev --port ${SYNC_PORT}`;
+
+export type SyncFamily = { id: string; code: string };
+
+// One family per scenario and target, plus one stranger family per target.
+const SYNC_FAMILY_COUNT = 18;
+export const SYNC_FAMILIES: readonly SyncFamily[] = Array.from(
+  { length: SYNC_FAMILY_COUNT },
+  (_, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    return { id: `e2e-family-${n}`, code: `Sync-E2E-Code-${n}` };
+  },
+);
+
+const SYNC_STORE_ENV_KEY = "TUTOR_E2E_SYNC_STORE";
+
+// The folder of this run's store, named on first call, in the system's
+// temporary folder. It must lie outside the project: the dev server watches
+// the project and reloads pages when a file in it changes, which every write
+// of the store would do. The server creates the folder when it first writes,
+// so a run that never syncs leaves nothing behind.
+export function syncStoreDir(): string {
+  const known = process.env[SYNC_STORE_ENV_KEY];
+  if (known) return known;
+  const dir = path.join(
+    tmpdir(),
+    `tutor-sync-e2e-${Date.now()}-${process.pid}`,
+  );
+  process.env[SYNC_STORE_ENV_KEY] = dir;
+  return dir;
+}
+
+export function syncServerEnv(): Record<string, string> {
+  return {
+    NEXT_DIST_DIR: SYNC_DIST_DIR,
+    CONTENT_INCLUDE_FIXTURE: "1",
+    FAMILY_CODES: SYNC_FAMILIES.map((f) => `${f.id}:${f.code}`).join(","),
+    SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",
+    SYNC_STORE: `fs:${syncStoreDir()}`,
+  };
+}
 
 export const TARGET_DEVICES = {
   // Safari engine, portrait iPad Air size: the primary target device.
