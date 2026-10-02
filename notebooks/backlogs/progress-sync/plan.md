@@ -4,16 +4,17 @@ Spec: `spec.md` in this folder. Tasks with acceptance criteria and commands: `ta
 
 ## Overview
 
-Build sync from the inside out: pure schema and merge first (no I/O, fully unit-tested), then the server route over a swappable storage adapter (memory, folder, R2), then the client engine that reads Dexie, calls the route and writes the merge back, then the parent page pieces (import button, last-sync line), then the real-R2 rollout steps the owner approves. Every slice leaves the app working: with no R2 variables set, sync stays silently off and the app behaves as today, so code can be committed and even deployed before any bucket exists.
+Build sync from the inside out: pure schema and merge first (no I/O, fully unit-tested), then the server route over a swappable storage adapter (memory, folder, R2), then the client engine that reads Dexie, calls the route and writes the merge back, then the parent page pieces (import button, last-sync line), then the R2 adapter, the security review and the rollout steps the owner approves. Every slice leaves the app working: with no R2 variables set, sync stays silently off and the app behaves as today, so code can be committed and even deployed before any bucket exists.
 
 ## Architecture decisions
 
-- Full-state docs plus a dirty counter, no operation log (`spec.md`, "Design choices", item 3).
+- Full-state docs; dirty means the doc built from Dexie hashes differently from the last one sent. No operation log and no counter bumped by Dexie hooks (`spec.md`, "Design choices", item 3).
 - Local records keep `familyId: "local"`; the device remembers which family it belongs to (item 2). No hook or query changes in child screens.
-- One pure merge used by sync, 412 retry and import (item 4).
-- Storage behind `BlobStore` with `memory`, `fs` (dev and E2E only) and `r2` adapters.
-- Family id from named `FAMILY_CODES` entries (item 1; open question Q1).
-- New module `src/sync/` for everything sync-specific; `src/progress/` only gains the Dexie upgrade, the reset tombstone and the dirty hook.
+- One pure merge used by sync, 412 retry, apply-back and import (item 4); tombstones applied to each side first, every choice ordered by time; trimming to the size cap is a separate step before a PUT.
+- The app clock `now()` carries the server clock offset, so every stored time is corrected (item 5).
+- Storage behind `BlobStore` with `memory`, `fs` (E2E only) and `r2` adapters. One bucket `tutor-progress`; `syncKey` is the only key builder and adds the environment prefix (`prod/` only when `VERCEL_ENV` is `production`, `dev/` otherwise, `test/<run-id>/` for the smoke test) (item 7).
+- Family id from named `FAMILY_CODES` entries, parsed in one place that the deploy smoke check also uses (item 1).
+- New module `src/sync/` for everything sync-specific; `src/progress/` only gains the Dexie upgrade, the reset tombstone and section `doneAt`; `src/lib/time.ts` gains the clock offset.
 
 ## Dependency graph
 
@@ -23,10 +24,12 @@ Build sync from the inside out: pure schema and merge first (no I/O, fully unit-
         +-----------------------------+
         v                             v
  merge (src/sync/merge.ts)     Dexie upgrade: lessonResets, syncState,
-        |                      profiles.updatedAt, overviewSeen times
+        |                      profiles.updatedAt, section doneAt,
+        |                      overviewSeen times
         |                             |
         |                             v
-        |                      reset writes tombstone; dirty hook
+        |                      reset tombstone, corrected now(),
+        |                      dirty by doc hash
         |                             |
         |                             v
         |                      Dexie <-> doc conversion (src/sync/local.ts)
@@ -35,7 +38,7 @@ Build sync from the inside out: pure schema and merge first (no I/O, fully unit-
  + origin helper (src/access)         |
         |                             |
         v                             |
- BlobStore memory + fs                |
+ BlobStore memory + fs, syncKey       |
         |                             |
         v                             |
  /api/sync route (GET, PUT,           |
@@ -59,16 +62,17 @@ Build sync from the inside out: pure schema and merge first (no I/O, fully unit-
             two-device E2E (fs store)
                        |
                        v
-            security review (fresh agent)
+            R2 adapter (mocked fetch); optional smoke under test/<run-id>/ (owner approves each run)
                        |
                        v
-            R2 adapter + test:r2 (dev bucket, owner approves)
+            security review (fresh agent, covers the adapter)
                        |
                        v
             docs: spec, architecture, operations
                        |
                        v
- [owner] bucket + token + env vars + FAMILY_CODES names -> deploy -> smoke on 2 devices
+ [owner] bucket + token + lifecycle + env vars + FAMILY_CODES names
+         -> local try with a test profile (dev/) -> deploy -> smoke on 2 devices
                        |
                        v
        later, own backlog: offline precache + /install
@@ -80,19 +84,19 @@ Each slice is a vertical, demoable step. Tasks in `task.md` carry the same order
 
 ### Slice 1: merge core (pure)
 
-Schema with versions, `migrateDoc`, `mergeChildDocs`, `mergeProfileDocs`, size trimming. Property tests for commutative, associative, idempotent merge; reset tombstone cases; clock tie-breaks. Demo: `pnpm test tests/sync`.
+Schema with versions, `migrateDoc`, `mergeChildDocs`, `mergeProfileDocs`, size trimming. Property tests for commutative, associative, idempotent merge over docs with resets and equal timestamps; the fixed counterexample of `spec.md` section 6.1; clock tie-breaks. Demo: `pnpm test tests/sync`.
 
 ### Slice 2: local side
 
-Dexie upgrade, tombstone written by `resetLessonProgress`, dirty counter by table hooks (with a `SYNC_POLICY` table classifying every Dexie table, so a new table fails typecheck like `LESSON_RESET_POLICY` does), Dexie to doc conversion and back. Demo: unit tests with `fake-indexeddb` show a reset produces a tombstone and a doc round-trip loses nothing.
+Dexie upgrade (with section `doneAt`), tombstone written by `resetLessonProgress`, corrected `now()`, dirty detection by doc hash, a `SYNC_POLICY` table classifying every Dexie table so a new table fails typecheck like `LESSON_RESET_POLICY` does, Dexie to doc conversion and back with the apply-back re-read. Demo: unit tests with `fake-indexeddb` show a reset produces a tombstone, a doc round-trip loses nothing and an answer given during a sync survives the apply-back.
 
 ### Slice 3: server
 
-Family id resolution, origin helper extracted from the session route, `BlobStore` memory and fs adapters, `/api/sync` GET and PUT with conditional writes, 412 body, size cap, rate limit, snapshot, `sync-unavailable` without env. Demo: API tests with the memory store (two interleaved clients, cross-family, origin, too large); `curl` against a local gate server with `SYNC_STORE=fs:…`.
+Family id resolution (and the deploy smoke check reading named entries), origin helper extracted from the session route, `BlobStore` memory and fs adapters, `syncKey` with the environment prefix, `/api/sync` GET and PUT with conditional writes, 412 body, size cap, rate limit, snapshot, `sync-unavailable` without env. Demo: API tests with the memory store (two interleaved clients, cross-family, origin, too large); `curl` against a local gate server with `SYNC_STORE=fs:…`.
 
 ### Slice 4: client engine and triggers
 
-Engine: profile doc first, then each child; GET with `known`, merge, PUT, 412 retry up to 3, apply merge back to Dexie in one transaction, `syncState` bookkeeping, clock offset. Triggers: 5-minute timer, `online`, `visibilitychange` hidden, section end (`completeSection` call site), review end, one tab at a time via Web Locks. Demo: two browser windows on a local gate server with the fs store.
+Engine, in two commits: first one doc's cycle (GET with `known`, merge, trim, PUT, 412 retry up to 3 with a random wait, apply-back), then the orchestration (profile doc first, then each child, `syncState`, clock offset, family guard). Triggers: 5-minute timer, `online`, `visibilitychange` hidden (normal fetch, no `keepalive`), section end (`completeSection` call site), review end, one tab at a time via Web Locks. Demo: two browser windows on a local gate server with the fs store.
 
 ### Checkpoint A (after slices 1 to 4)
 
@@ -100,32 +104,36 @@ Owner can try sync locally on two browsers against the fs store, no cloud involv
 
 ### Slice 5: parent page
 
-Import backup JSON button next to the export (file picker, validation, preview, merge, summary), last sync time and stuck message, family switch guard. UI files: `src/components/parent/*`; coordinate with the agent working on media players, brand and bottom bar (no overlap expected, but check `git status` first).
+Import backup JSON button next to the export (file picker, validation, preview, merge, summary), last sync time, stuck messages and the doc size warning, family switch guard. UI files: `src/components/parent/*`; coordinate with the agent working on media players, brand and bottom bar (no overlap expected, but check `git status` first).
 
 ### Slice 6: verification
 
-Two-device E2E on a second gate dev server with the fs store (like the unlock E2E server in `e2e/targets.ts`): progress, offline, reset, import. Then a fresh-agent security review of the whole diff.
+Two-device E2E on a second gate dev server with the fs store (like the unlock E2E server in `e2e/targets.ts`): progress, offline, reset, import, other family, no jump mid-section.
+
+### Slice 7: R2 adapter and security review
+
+R2 adapter with aws4fetch, unit-tested against a mocked fetch. Optional `pnpm test:r2` smoke against the real bucket under `test/<run-id>/`, run only on the owner's approval. Then a fresh-agent security review of the whole diff, adapter included.
 
 ### Checkpoint B
 
-Owner reviews the E2E evidence and the security review result before any cloud step.
+Owner reviews the E2E evidence and the security review result before any production step.
 
-### Slice 7: R2 adapter and rollout
+### Slice 8: docs and rollout
 
-R2 adapter with aws4fetch, `pnpm test:r2` against the dev bucket, docs updates (`docs/spec.md`, `docs/architecture.md`, `docs/operations.md` env table, token runbook, restore procedure). Then the owner-approved external steps and a production smoke on two real devices.
+Docs updates (`docs/spec.md`, `docs/architecture.md`, `docs/operations.md` env table, bucket and lifecycle setup, token runbook, restore procedure). Then the owner-approved external steps: bucket and token, a local try with a test profile under `dev/`, deploy, and a production smoke on two real devices.
 
-### Slice 8 (later, separate backlog): offline precache and `/install`
+### Later, separate backlog: offline precache and `/install`
 
-Serwist service worker, precache of app shell, published lesson JSON, visual chunks, fonts; the `/install` flow for iOS Home Screen. Large and independent of sync correctness, so it gets its own backlog (`offline-pwa`) once sync has run for a week.
+Serwist service worker, precache of app shell, published lesson JSON, visual chunks, fonts; the `/install` flow for iOS Home Screen. Out of scope here: the child studies at home on wifi, and sync does not depend on it.
 
 ## External writes (owner approval each time, never run by an agent on its own)
 
 | Step | What | Where in `task.md` |
 |---|---|---|
-| Dev bucket and dev token for `pnpm test:r2` | create `tutor-progress-dev`, Object R/W token on it only, keep in `.env.local` | Task 17 |
-| Run `pnpm test:r2` | real R2 calls against the dev bucket | Task 17 |
-| Production private bucket | create `tutor-progress`, public access off, lifecycle rule `snapshots/` 180 days, billing notification | Task 19 |
-| Production R2 token | Object R/W on `tutor-progress` only | Task 19 |
+| Private bucket | create `tutor-progress`, public access off, no custom domain, lifecycle rules `prod/snapshots/` and `dev/snapshots/` 180 days, `test/` 1 day, usage notification | Task 19 |
+| R2 token (the only one) | Object Read & Write on `tutor-progress` only; into Vercel Production and the owner's `.env.local` | Task 19 |
+| Local try with a test profile | local gate server with `.env.local`, writes under `dev/` | Task 19 |
+| Run `pnpm test:r2` (optional) | real R2 calls under `test/<run-id>/`, deletes only there | Task 16 |
 | Vercel env vars | `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_PRIVATE_BUCKET` (Production, Sensitive); `FAMILY_CODES` rewritten as named entries | Task 19 |
 | Deploy | `pnpm deploy:prod` per `docs/operations.md` | Task 19 |
 
@@ -135,14 +143,17 @@ Committing code with sync off is not an external write and can happen at every t
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| R2 conditional PUT behaves differently from the memory adapter | lost update | `pnpm test:r2` checks `If-Match` and `If-None-Match` on real R2 before rollout; memory adapter written to the same contract test |
+| R2 conditional PUT behaves differently from the memory adapter | lost update | memory adapter written to the same contract test; the optional `pnpm test:r2` smoke and the owner's local try check `If-Match` and `If-None-Match` on real R2 before rollout |
+| Local or preview server writes production data (one bucket, one token) | family data overwritten | prefix from `VERCEL_ENV` in `syncKey` only, unit test; runbook forbids pulling the production environment into a local file; snapshots |
+| Apply-back overwrites an answer given during the request | lost card state or position | apply-back re-reads and merges inside its transaction; unit test |
 | Merge bug wipes progress on every device | high | property tests; attempts only removed by tombstones; daily snapshots; local Dexie keeps all attempts; rollout watched on two devices first |
 | Dexie upgrade fails on an existing iPad | app unusable on that device | upgrade only adds tables and fields; test opens a version-2 database built from a fixture and upgrades it |
 | Applying the merge while the child is mid-section moves them | confusing jump | player keeps its in-memory position; merged position applies on next open (E2E checks) |
 | Rate limit per instance is weak | cost | size cap, PUT only when dirty, conditional GET, billing alert |
 | Another agent editing UI at the same time | merge conflicts | sync touches only `src/components/parent/*` and one call site each in `section-player.tsx` / `review-player.tsx`; check `git status` before those tasks; commit only own paths |
-| Duplicate profiles from before sync | parent confusion | shown as two; merge tool only if it happens (Q3) |
+| Duplicate profiles from before sync | parent confusion | shown as two; merge tool only if it happens |
+| Doc grows past 1 MB in the second school year | sync stops for that child | parent page warns at 70%; owner decides on compact encoding or a split (`spec.md` section 11) |
 
 ## Open questions
 
-Listed with recommendations in `spec.md`, "Open questions for the owner" (Q1 to Q8). Tasks that depend on an answer say so; defaults follow the recommendations.
+The planning questions are answered in `spec.md` section 10. Two remain for the owner in section 11 (attempt history on other devices, second-year size); neither blocks the first tasks.
