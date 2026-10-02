@@ -1066,21 +1066,27 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "chon-luc-giac": figure(hexagonGallery()),
   // Hint of the exercise on tapping: a regular hexagon turned to neither of
-  // the two directions of the pictures, its sides and angles marked.
-  "luc-giac-deu-goi-y": figure(
-    hex("Hình lục giác đều xoay nghiêng, các cạnh và các góc bằng nhau", {
-      ...MARKS,
+  // the two directions of the pictures, its sides and angles marked, with the
+  // two things to check beside it. It stays short: it shows under the six
+  // shapes of the exercise and must fit on a phone screen above the buttons.
+  "luc-giac-deu-goi-y": figure({
+    ...hex("Hình lục giác đều xoay nghiêng, các cạnh và các góc bằng nhau", {
+      ...ARCS,
       fill: "lime",
       turn: 15,
-      cy: 106,
-      r: 100,
-      h: 264,
+      w: 300,
+      h: 110,
+      cx: 62,
+      cy: 55,
+      r: 46,
       texts: [
-        textAt(150, 224, "Đếm số cạnh."),
-        textAt(150, 248, "Các cạnh có bằng nhau không?"),
+        textAt(126, 30, "Đếm số cạnh.", "ink", "start"),
+        textAt(126, 58, "Các cạnh có", "ink", "start"),
+        textAt(126, 82, "bằng nhau không?", "ink", "start"),
       ],
     }),
-  ),
+    maxScale: 1,
+  }),
   "luc-giac-deu-abcdef-8": figure(
     hex("Hình lục giác đều ABCDEF có cạnh AB = 8 cm", {
       names: true,
@@ -1935,10 +1941,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     figure48({
       polys: [...FIG48_BIG_ACE, ...FIG48_BIG_BDF],
       ticks: FIG48_BIG_TICKS,
-      h: 296,
+      h: 322,
       texts: [
-        textAt(150, 258, "2 hình tam giác lớn"),
-        textAt(150, 282, "và ? hình nhỏ ở các đỉnh"),
+        textAt(150, 274, "2 hình tam giác lớn"),
+        textAt(150, 304, "và ? hình nhỏ ở các đỉnh"),
       ],
     }),
   ),

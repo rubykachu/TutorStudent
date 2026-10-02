@@ -14,8 +14,8 @@ import {
 import { isConstructed } from "./logic";
 
 // The picture of a board is capped so it, the instruction and the controls
-// fit one frame: 188px on a phone, up to 300px where the screen is wide.
-const BOARD_MAX_HEIGHT = "max(188px, min(46vw, 300px))";
+// fit one frame: 188px on a phone, up to 290px where the screen is wide.
+const BOARD_MAX_HEIGHT = "max(188px, min(46vw, 290px))";
 
 // The two drawing boards of the lesson (see `construction.ts`), shown by the
 // shared `Board`. On a lesson screen with a `goal` side it is a guided "cùng
