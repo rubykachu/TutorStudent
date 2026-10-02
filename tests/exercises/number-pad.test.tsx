@@ -12,7 +12,7 @@ import {
 describe("NumberPad", () => {
   it("reports every key it shows", () => {
     const onKey = vi.fn();
-    render(<NumberPad onKey={onKey} decimal />);
+    render(<NumberPad onKey={onKey} decimal power />);
     const names: [string, PadKey][] = [
       ...[..."0123456789"].map((d): [string, PadKey] => [d, d as PadKey]),
       ["Dấu phẩy", "comma"],
@@ -70,8 +70,24 @@ describe("NumberPad", () => {
     );
   });
 
+  it("shows the mũ key only for power answers, keeping the other keys in place", () => {
+    const { rerender } = render(<NumberPad onKey={() => {}} />);
+    expect(screen.queryByRole("button", { name: "Số mũ" })).toBeNull();
+    const zero = screen.getByRole("button", { name: "0" });
+    expect(zero).toHaveClass("col-span-3");
+    expect(screen.getByRole("button", { name: "Xoá" })).toHaveClass(
+      "row-span-2",
+    );
+    rerender(<NumberPad onKey={() => {}} power />);
+    expect(screen.getByRole("button", { name: "Số mũ" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "0" })).toHaveClass("col-span-3");
+    expect(screen.getByRole("button", { name: "Xoá" })).toHaveClass(
+      "row-span-2",
+    );
+  });
+
   it("marks the mũ key while the exponent is being typed", () => {
-    render(<NumberPad onKey={() => {}} powerActive />);
+    render(<NumberPad onKey={() => {}} power powerActive />);
     expect(screen.getByRole("button", { name: "Số mũ" })).toHaveAttribute(
       "aria-pressed",
       "true",

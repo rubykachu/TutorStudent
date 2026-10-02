@@ -207,6 +207,19 @@ describe("NumericAnswer", () => {
     expect(screen.getByRole("button", { name: "Dấu phẩy" })).toBeEnabled();
   });
 
+  it("offers the mũ key only when the answer is a power", () => {
+    renderExercise(numericExercise({ kind: "value", value: 8 }));
+    expect(screen.queryByRole("button", { name: "Số mũ" })).toBeNull();
+    // A typed "^" is ignored too.
+    fireEvent.keyDown(screen.getByRole("button", { name: /Đáp số/ }), {
+      key: "^",
+    });
+    expect(screen.queryByRole("button", { name: /Cơ số/ })).toBeNull();
+    cleanup();
+    renderExercise(numericExercise(POWER));
+    expect(screen.getByRole("button", { name: "Số mũ" })).toBeEnabled();
+  });
+
   it("lets the hint visual take the pad's place until the child asks for it", () => {
     const { container } = renderExercise(
       numericExercise({ kind: "value", value: 6 }, VISUAL_HINTS),

@@ -59,6 +59,12 @@ export function needsDecimal(exercise: NumericExercise): boolean {
   );
 }
 
+// The "mũ" key is offered only when the answer is a power (base and
+// exponent), so other answers never show a key that does not apply.
+export function needsPower(exercise: NumericExercise): boolean {
+  return exercise.answer.kind === "power";
+}
+
 // Physical keyboards (and switch access) type the same keys as the pad.
 function padKeyOf(event: KeyboardEvent): PadKey | undefined {
   if ((DIGITS as readonly string[]).includes(event.key))
@@ -76,6 +82,7 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
   const shown = reveal ? revealedInput(exercise) : (value ?? EMPTY_NUMERIC);
   const focus: NumericSlot = shown.kind === "value" ? "value" : powerFocus;
   const decimal = needsDecimal(exercise);
+  const power = needsPower(exercise);
   // While a hint or solution visual (or the revealed answer) is showing, the
   // pad steps aside on stacked layouts so it is seen without scrolling; the
   // entered answer stays as a compact summary above.
@@ -85,6 +92,7 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
   function press(key: PadKey) {
     if (disabled) return;
     if (key === "comma" && !decimal) return;
+    if (key === "power" && !power) return;
     if (key === "minus" && !exercise.allowNegative) return;
     const edit = applyPadKey(value, focus, key);
     if (edit.focus !== "value") setPowerFocus(edit.focus);
@@ -201,6 +209,7 @@ export function NumericAnswer({ exercise, slot }: NumericAnswerProps) {
           onKey={press}
           decimal={decimal}
           negative={exercise.allowNegative}
+          power={power}
           disabled={disabled}
           disabledKeys={focus === "exponent" ? NO_COMMA_OR_MINUS : undefined}
           powerActive={focus === "exponent"}

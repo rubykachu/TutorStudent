@@ -29,6 +29,8 @@ type NumberPadProps = {
   decimal?: boolean;
   // Shows the minus key; answers that are never negative leave it out.
   negative?: boolean;
+  // Shows the "mũ" key; answers that are not a power leave it out.
+  power?: boolean;
   disabled?: boolean;
   // Keys that make no sense for the focused slot (a comma in an exponent).
   disabledKeys?: ReadonlySet<PadKey>;
@@ -46,14 +48,17 @@ const KEY =
 // Big on-screen keypad so numeric answers never depend on the system
 // keyboard: digits in a 3-column block, with delete, the decimal comma (only
 // when the answer has decimals), the minus key (only when the answer may be
-// negative, beside the zero) and the "mũ" key in a fourth column. Without
-// the comma, delete grows to two rows so the column stays filled. Keys are
+// negative, beside the zero) and the "mũ" key (only when the answer is a
+// power) in a fourth column. Without the comma, delete grows to two rows so
+// the column stays filled; every other key keeps its place whether or not
+// the optional keys show, so the pad does not shift between exercises. Keys are
 // 64px, and 60px in the narrower answer column of the two-column exercise
 // layout (wide landscape screens).
 export function NumberPad({
   onKey,
   decimal = false,
   negative = false,
+  power = false,
   disabled = false,
   disabledKeys,
   powerActive = false,
@@ -102,14 +107,16 @@ export function NumberPad({
       {key("7", "7")}
       {key("8", "8")}
       {key("9", "9")}
-      <AnswerHighlight spec={powerHighlight} className="row-span-2">
-        {key("power", "mũ", {
-          ariaLabel: "Số mũ",
-          pressed: powerActive,
-          size: "h-full w-16 lg:landscape:w-15",
-          tone: `${powerActive ? "border-3 border-primary" : "border-2 border-border"} bg-surface`,
-        })}
-      </AnswerHighlight>
+      {power && (
+        <AnswerHighlight spec={powerHighlight} className="row-span-2">
+          {key("power", "mũ", {
+            ariaLabel: "Số mũ",
+            pressed: powerActive,
+            size: "h-full w-16 lg:landscape:w-15",
+            tone: `${powerActive ? "border-3 border-primary" : "border-2 border-border"} bg-surface`,
+          })}
+        </AnswerHighlight>
+      )}
       {key("0", "0", {
         size: `${negative ? "col-span-2" : "col-span-3"} h-16 w-full lg:landscape:h-15`,
       })}
