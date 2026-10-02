@@ -459,7 +459,8 @@ describe("BoardVisual", () => {
       />,
     );
     expect(screen.getByText(/Dùng thước vẽ đoạn thẳng AB/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Êke tại A/ })).toBeDisabled();
+    // Only the step to do is on the screen.
+    expect(screen.queryByRole("button", { name: /Êke tại A/ })).toBeNull();
     press("Tăng cạnh ab (cm)");
     press("Êke tại A");
     press("Êke tại B");
@@ -477,6 +478,35 @@ describe("BoardVisual", () => {
     expect(screen.getByText("Xong hình.")).toBeInTheDocument();
   });
 
+  it("shows the step to do and the one before it, and draws again from the start on request", () => {
+    const onStateChange = vi.fn();
+    render(
+      <BoardVisual
+        spec={{ shape: "rectangle", names: ["A", "B", "C", "D"] }}
+        params={{ a: 3, b: 2 }}
+        onStateChange={onStateChange}
+      />,
+    );
+    expect(screen.queryByRole("button", { name: "Vẽ lại từ đầu" })).toBeNull();
+    press("Tăng cạnh ab (cm)");
+    press("Êke tại A");
+    press("Êke tại B");
+    // The earlier steps are out of sight now; the last press stays.
+    expect(
+      screen.queryByRole("button", { name: "Tăng cạnh ab (cm)" }),
+    ).toBeNull();
+    expect(screen.queryByRole("button", { name: "Êke tại A" })).toBeNull();
+    expect(
+      screen.getByRole("button", { name: "Êke tại B" }),
+    ).toBeInTheDocument();
+    press("Vẽ lại từ đầu");
+    expect(onStateChange).toHaveBeenLastCalledWith({});
+    expect(
+      screen.getByRole("button", { name: "Tăng cạnh ab (cm)" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Êke tại B" })).toBeNull();
+  });
+
   it("sets an angle with one button and warns when the arcs of the diagonal board cannot meet", () => {
     const onStateChange = vi.fn();
     const { unmount } = render(
@@ -486,7 +516,7 @@ describe("BoardVisual", () => {
         onStateChange={onStateChange}
       />,
     );
-    expect(screen.getByRole("button", { name: "60°" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "60°" })).toBeNull();
     press("Tăng cạnh mn (cm)");
     press("60°");
     expect(onStateChange).toHaveBeenLastCalledWith({ len: 1, angle: 60 });
@@ -509,7 +539,7 @@ describe("BoardVisual", () => {
     expect(screen.getByRole("button", { name: /Điểm C/ })).toBeDisabled();
   });
 
-  it("shows a given state locked", () => {
+  it("shows a given state locked, with no way to start over", () => {
     render(
       <BoardVisual
         spec={{ shape: "parallelogram", names: ["E", "F", "H", "K"] }}
@@ -517,9 +547,8 @@ describe("BoardVisual", () => {
         shownState={solvedState("parallelogram", { a: 3, b: 4 })}
       />,
     );
-    expect(
-      screen.getByRole("button", { name: "Tăng cạnh ef (cm)" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Nối" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "Vẽ lại từ đầu" })).toBeNull();
   });
 });
 
