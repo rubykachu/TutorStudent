@@ -82,9 +82,7 @@
       "id": "ngoac-tru-so-am",
       "from": "s02-quy-tac",
       "to": "s04-nho",
-      "cardIds": [
-        "quy-tac-dau-ngoac.card.ngoac-tru-so-am"
-      ]
+      "cardIds": ["quy-tac-dau-ngoac.card.ngoac-tru-so-am"]
     }
   ]
 }
