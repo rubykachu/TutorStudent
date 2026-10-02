@@ -4,7 +4,7 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnig
 
 ## Handover
 
-Next: Task 3. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: Task 4a. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
 
 Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. A kill switch (a self-unregistering worker deployable in place) is added as Task 4c and documented in `docs/operations.md` in Task 9. `pnpm content:check` currently fails on another agent's lesson in progress (`phep-cong-phep-tru-so-nguyen` review hash); not caused by this backlog.
 
@@ -12,6 +12,8 @@ Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exc
 
 - Task 1: `src/offline/routes.ts` (param functions shared with the five pages, `appPagePaths()`, `NOT_PRECACHED_ROUTES`), `tests/offline/routes.test.ts`.
 - Task 2: `src/offline/precache.ts` (pure list, deny-list, budget), `src/offline/precache-node.ts`, `scripts/lib/offline-manifest.ts` and `scripts/offline-manifest.ts` (writes `src/offline/precache-list.generated.json`, gitignored, run by `pnpm build`), `FAVICON_ICO_PATH` in `src/lib/brand.ts`. The build id is a timestamp per build. The budget counts only what is known before `next build` (content, sounds, public files); pages and build files are measured by the worker build (Task 4b).
+- Task 3: `src/offline/strategy.ts` (`routeFor`, `fetchInit`, `storable`, `navigationFallbackPath`, `PAGE_TIMEOUT_SECONDS`), `tests/offline/strategy.test.ts`. `routeFor` also takes `method` and `isPrecached(url)` (the worker passes a lookup in its precache): precache-first is decided by the list, so a song, a Range request or an unknown path is passthrough without a path-prefix table that could drift from the list.
+- Checkpoint 1: gate green (196 files, 4080 tests); changed files are `src/offline/`, the five page files, the manifest script and lib, `build` script, `.gitignore`, one constant in `src/lib/brand.ts`, tests; nothing reads the generated list; no app behaviour changed.
 
 ### Rules for every task
 
@@ -61,13 +63,13 @@ Files: `src/offline/strategy.ts` (new, pure), `tests/offline/strategy.test.ts`.
 - `PAGE_TIMEOUT_SECONDS = 3` for navigations only; `/content` falls back only on a network error (no timeout).
 
 Acceptance:
-- [ ] One test per table row: cross-origin media URL, same-origin `/media/x.mp4`, any `.vtt`, `/api/sync`, `/api/session`, `/unlock?next=%2F`, RSC by header and by `_rsc` query, a navigation with a query, `/content/x.json`, a `/_next/static/` chunk, a short sound, a song (not in the precache, so passthrough in effect), a `Range` request for a sound, an unknown path.
-- [ ] `fetchInit` cases; `storable` rejects 301/302/307, `redirected: true`, 401, 404, 500, opaque, and a final URL of `/unlock`.
-- [ ] Gate green.
+- [x] One test per table row: cross-origin media URL, same-origin `/media/x.mp4`, any `.vtt`, `/api/sync`, `/api/session`, `/unlock?next=%2F`, RSC by header and by `_rsc` query, a navigation with a query, `/content/x.json`, a `/_next/static/` chunk, a short sound, a song (not in the precache, so passthrough in effect), a `Range` request for a sound, an unknown path.
+- [x] `fetchInit` cases; `storable` rejects 301/302/307, `redirected: true`, 401, 404, 500, opaque, and a final URL of `/unlock`.
+- [x] Gate green.
 
 ### Checkpoint 1
 
-- [ ] Gate green; `git diff --stat` since the start of Task 1 touches only `src/offline/`, the five page files, `scripts/offline-manifest.ts`, the `build` script and tests. The generated list is produced but nothing reads it yet; no app behaviour changed. Record in "Done".
+- [x] Gate green; `git diff --stat` since the start of Task 1 touches only `src/offline/`, the five page files, `scripts/offline-manifest.ts`, the `build` script and tests. The generated list is produced but nothing reads it yet; no app behaviour changed. Record in "Done".
 
 ## Task 4a (S): Serwist spike, findings only
 
