@@ -27,7 +27,7 @@
           "text": "Thương là 4, một số dương."
         },
         {
-          "text": "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên.",
+          "text": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau.",
           "rule": true,
           "pause": "think"
         }
@@ -50,8 +50,8 @@
           "text": "Mỗi bạn nợ 5 nghìn, nên thương là −5."
         },
         {
-          "text": "Hai số khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước.",
-          "say": "Hai số khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu trừ ở trước.",
+          "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước.",
+          "say": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu trừ ở trước.",
           "rule": true,
           "pause": "think"
         }

@@ -12,7 +12,7 @@
   "title": "Phép chia hết. Ước và bội của một số nguyên",
   "sourceRef": "Sách bài tập tr.58–59",
   "status": "published",
-  "reviewedHash": "f38d12f8d56e4463a922adc78cd305cbbc2d45002868cbe83555eb2fddd39391",
+  "reviewedHash": "1b6342b1723760b6badc84f2bb376350a6ff3bd0e85bb43747bb800a8e8854fd",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"
@@ -192,7 +192,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên.",
+              "text": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau.",
               "rule": true
             },
             {
@@ -225,7 +225,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.cung-dau-vi-du",
-        "caption": "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên."
+        "caption": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau."
       }
     },
     {
@@ -252,7 +252,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai số khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước.",
+              "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước.",
               "rule": true
             },
             {
@@ -285,7 +285,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Hai số khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
+        "caption": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
       }
     },
     {
@@ -884,7 +884,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.cung-dau-vi-du",
-        "caption": "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên."
+        "caption": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau."
       }
     },
     {
@@ -899,7 +899,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.khac-dau-vi-du",
-        "caption": "Hai số khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
+        "caption": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
       }
     },
     {
@@ -4266,20 +4266,20 @@
       "url": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong.mp4",
       "vttUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong.vtt",
       "posterUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong.jpg",
-      "durationSec": 46.87,
+      "durationSec": 48.13,
       "clips": [
         {
           "id": "chia-cung-dau",
           "start": 0.7,
-          "end": 20.515,
+          "end": 21.135,
           "cardIds": [
             "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-cung-dau"
           ]
         },
         {
           "id": "chia-khac-dau",
-          "start": 20.915,
-          "end": 40.31,
+          "start": 21.535,
+          "end": 41.585,
           "cardIds": [
             "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-khac-dau"
           ]
