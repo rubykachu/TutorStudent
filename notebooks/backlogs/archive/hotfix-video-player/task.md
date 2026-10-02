@@ -1,5 +1,7 @@
 # Hotfix: video player (owner feedback 02/10/2026)
 
+Archived: done 02/10/2026 in commit 452824f (no auto-pause, captions in a strip under the picture below 768 px), deployed to production together with Bài 14.
+
 Code-only fixes in the app's video player. Do not re-render any video and do not touch audio.
 
 ## 1. Remove the automatic pauses at checkpoints
