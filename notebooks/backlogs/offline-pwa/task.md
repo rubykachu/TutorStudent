@@ -1,14 +1,14 @@
 # Tasks: offline support (service worker precache)
 
-Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnight run). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
+Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: built on the branch `offline-pwa`, waiting for an independent review (overnight run). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
 
 ## Handover
 
-Next: Task 8. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: an independent review of the branch `offline-pwa` (worktree `scratchpad/offline/wt` of the overnight run), then the merge into `main`, then the owner's deploy and iPad check (`docs/operations.md`, "Kiểm trên iPad Safari" steps 9 and 10). Nothing is deployed or pushed. Review focus: `src/offline/sw-core.ts` (the worker's behaviour), `src/offline/update-controller.ts` (when a new build takes over), `src/access/gate.ts` (the one public path added), `scripts/offline-worker.ts` and the `pnpm build` order, the kill switch.
 
-Where the work lives: all offline work from Task 4a on is committed on the branch `offline-pwa`, in the worktree `scratchpad/offline/wt`; `main` is not touched until an independent review merges the branch (a service worker must not reach production by accident). On `main` sit only the inert build-time modules of Tasks 1 to 3 and the lab, listed under "Done" as "on main".
+Where the work lives: Tasks 1 to 3 and the lab were committed on `main` before the branch rule (listed under "Done"); everything from Task 4a on is on `offline-pwa`. `main` keeps only inert build-time modules and the lab; the `pnpm build` hook for the precache list was reverted on `main` and is part of the branch. When merging, `notebooks/backlogs/index.md` (touched on both sides) needs a hand merge.
 
-Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. Ports: the lab serves on 3600 (`OFFLINE_PORT` = `TEST_PORT + 500`), inside the range the owner allowed, instead of `TEST_PORT + 3000`. A kill switch (a self-unregistering worker deployable in place) is Task 4c, documented in `docs/operations.md` in Task 9. `pnpm content:check` on the main tree can fail on another agent's lesson in progress; the branch worktree holds only committed content.
+Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. Ports: the lab serves on 3600 (`OFFLINE_PORT` = `TEST_PORT + 500`), inside the range the owner allowed, instead of `TEST_PORT + 3000`. The kill switch is Task 4c, documented in `docs/operations.md` ("Gỡ service worker lỗi"). `pnpm content:check` on the main tree can fail on another agent's lesson in progress; the branch worktree holds only committed content.
 
 ### Done (commits, oldest first)
 
@@ -25,6 +25,10 @@ Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exc
 - Task 5: bff7a9b. `src/offline/update-controller.ts` (registration and update rules, framework-free), `src/offline/register.tsx` (`OfflineManager`, mounted in the child layout and the parent screen), `src/components/update-banner.tsx`, `UPDATE_*_MINUTES` in `config.ts`.
 - Task 6: 78da211. `src/lib/network-status.ts` (`useNetworkStatus`, one store for every player), `MediaOffline` in `media-loading.tsx`, offline states in the video player, narration, preload and the song button. Five existing tests that simulated a failed download with a `TypeError` now use a 500 answer, because a network error is the offline state by design (`tests/setup.ts` also resets the shared network state after each test).
 - Task 7: df2fe88. `src/offline/status.ts`, `src/components/parent/offline-status.tsx`, mounted in `parent-dashboard.tsx`.
+
+- Task 8: fc49286. `playwright.offline.config.ts`, `e2e/offline.spec.ts` (six scenarios on one Chromium device), `test:e2e:offline` in `package.json`, `testIgnore` in `playwright.config.ts`, the unlock test renamed.
+- Task 9: a7ae673. Docs (`docs/spec.md` 5.9, `docs/architecture.md`, `docs/operations.md`, `README.md`, `.env.example`), a seventh deploy smoke check (`/sw.js` 200 with `no-cache`), the manifest comment, the backlog index.
+- Final fixes found by the everyday E2E: the parent line is `aria-live`, not `role="status"` (it made `getByRole("status")` ambiguous on the parent page).
 
 ### Rules for every task
 
@@ -218,27 +222,53 @@ Files: `e2e/targets.ts` (`OFFLINE_*` beside `OFFLINE_SERVER_ENV`), `playwright.o
 Scenarios (details in `spec.md` section 11): 1 offline cold start (navigation offline by tapping links in the app, not `page.goto`; parent PIN set first to read the readiness line), 2 offline study kept and `/api/sync` passed through, 3 media offline states, 4 nothing stored that must not be (walk every Cache Storage entry; IndexedDB names), 5 gate (cleared cookie online goes to `/unlock`; a never-unlocked context has no worker), 6 update flow (as 4a criterion 7 decided).
 
 Acceptance:
-- [ ] `pnpm test:e2e:offline` green; run twice in a row to show it is stable.
-- [ ] The everyday `pnpm test:e2e` still green; `e2e/unlock.spec.ts` test renamed to say the dev server registers no worker.
-- [ ] No request leaves localhost: a guard that also sees worker-initiated requests (`context.on("request")` plus a check of every response URL, not only `context.route`), and the bundle check of the lab script for a media origin.
-- [ ] Gate green; main tree's `public/content`, `tsconfig.json` unchanged by the run; dev server untouched.
+- [x] `pnpm test:e2e:offline` green; run twice in a row to show it is stable.
+- [x] The everyday `pnpm test:e2e` still green; `e2e/unlock.spec.ts` test renamed to say the dev server registers no worker.
+- [x] No request leaves localhost: a guard that also sees worker-initiated requests (`context.on("request")` plus a check of every response URL, not only `context.route`), and the bundle check of the lab script for a media origin.
+- [x] Gate green; main tree's `public/content`, `tsconfig.json` unchanged by the run; dev server untouched.
 
 ### Checkpoint 4
 
-- [ ] Both E2E commands green; evidence (test list output) pasted here.
+- [x] Both E2E commands green; evidence (test list output) pasted here.
+
+Checkpoint 4 evidence: `pnpm test:e2e:offline`, run four times in a row on three different builds of the branch, each time the lab built `HEAD` in a temporary worktree and removed it:
+
+```
+  ✓  1 [ipad-chromium] › e2e/offline.spec.ts › 1 opens home, a subject, lessons, sections, tips and review offline from a cold start
+  ✓  2 [ipad-chromium] › e2e/offline.spec.ts › 2 keeps answers given offline and leaves /api/sync alone
+  ✓  3 [ipad-chromium] › e2e/offline.spec.ts › 3 video and narration say they need the network offline, and load again online
+  ✓  4 [ipad-chromium] › e2e/offline.spec.ts › 4 stores no media, no caption, no song and nothing that must not be kept
+  ✓  5 [ipad-chromium] › e2e/offline.spec.ts › 5 online, a device without the cookie goes to the unlock page; a device never unlocked has no worker
+  ✓  6 [ipad-chromium] › e2e/offline.spec.ts › 6 a changed worker waits, the banner offers it outside a lesson, and a tap puts the new one in charge
+  6 passed (11.3s)
+```
+
+Everyday `TEST_PORT=3610 pnpm test:e2e` (ports 3610, 4610, 5610 instead of 3100, 4100, 5100, to stay clear of other agents' servers): 105 passed, 7 skipped as before, exit 0. A first run found two things: the parent page's `getByRole("status")` became ambiguous (fixed, see Done) and one unlock test timed out waiting for the dev server under load (it passes alone and in the second full run).
+
+How the E2E meets its rules: no request leaves localhost (every test ends by checking the requests and responses seen by `context.on`, which include the worker's, and the lab refuses a bundle that names the owner's real media origin); WebKit is not used (4a); the update test registers another script URL for the same scope because Playwright cannot serve a changed script to Chromium's update check; the gate cookie is created through `/api/session` because the production cookie is `Secure`; scenario 3 needs a lesson with a narration and a section-opening video whose files exist in the main tree's `public/media` (the lab links it) and skips itself otherwise.
+
 
 ## Task 9 (S): docs and deploy smoke
 
 Files: `docs/spec.md` section 5.9 and the test strategy row, `docs/architecture.md` (module `offline/`, the media loading line, the manifest line, the checks table rows), `docs/operations.md` ("Kiểm trên iPad Safari" offline steps, step 9 no longer says offline is missing, deploy smoke expectations), `src/app/manifest.ts` comment, `README.md` (the new command), `scripts/lib/deploy-prod.ts` and its test (smoke: the worker script answers 200 without the cookie with `Cache-Control: no-cache`).
 
 Acceptance:
-- [ ] Every doc statement checked against the code (grep for "no service worker", "chưa có offline", "không có service worker" leaves only true statements).
-- [ ] Durable files hold no task numbers, checkpoint names or other planning jargon (grep `Task [0-9]`, `Checkpoint`, `§`).
-- [ ] Gate plus `pnpm content:check` green.
+- [x] Every doc statement checked against the code (grep for "no service worker", "chưa có offline", "không có service worker" leaves only true statements).
+- [x] Durable files hold no task numbers, checkpoint names or other planning jargon (grep `Task [0-9]`, `Checkpoint`, `§`).
+- [x] Gate plus `pnpm content:check` green.
 
 ### Final
 
-- [ ] Backlog index row updated; leftovers listed here; folder archived with `git mv` to `notebooks/backlogs/archive/offline-pwa/` with an "Archived: ..." line once the owner has deployed and checked the iPad.
+- [x] Backlog index row updated; leftovers listed here; folder archived with `git mv` to `notebooks/backlogs/archive/offline-pwa/` with an "Archived: ..." line once the owner has deployed and checked the iPad.
+
+Leftovers (none blocks the merge):
+- The tab icon `/favicon.ico?favicon.<hash>.ico` that Next adds is not a precache hit, so it is a network error offline (the SVG icon is precached).
+- A song cannot be told offline from a failed start when `navigator.onLine` stays true (wifi without internet): the button says "Cần mạng để nghe nhạc" only when the browser says offline or a video or narration download just failed with a network error.
+- A superseded waiting worker leaves its cache until the next activation, which deletes every other build's cache.
+- The offline lab and E2E need `public/media` of the main tree for scenario 3; on a machine without media the scenario skips.
+- `docs/design-system.md` has no entry for the update banner or the offline lines; they use existing tokens.
+- On `main`: commits 3df7eb5 to e06817c and e37cb03 (listed under "Done"); `main` was not rewritten.
+
 
 ## Open for the owner (non-blocking)
 
