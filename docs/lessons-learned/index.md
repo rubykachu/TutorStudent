@@ -44,34 +44,34 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 02/10/2026 của 17 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 02/10/2026 của 18 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 5 | 35 | 24 | 64 |
+| LL-10 | 5 | 38 | 27 | 70 |
 | LL-19 | 2 | 8 | 26 | 36 |
-| LL-12 | 9 | 17 | 30 | 56 |
-| LL-07 | 1 | 37 | 31 | 69 |
+| LL-12 | 10 | 18 | 30 | 58 |
+| LL-07 | 1 | 39 | 33 | 73 |
 | LL-15 | 5 | 14 | 10 | 29 |
-| LL-16 | 0 | 29 | 4 | 33 |
-| LL-05 | 10 | 33 | 15 | 58 |
-| LL-09 | 13 | 13 | 3 | 29 |
-| LL-14 | 1 | 10 | 12 | 23 |
+| LL-16 | 0 | 31 | 4 | 35 |
+| LL-05 | 10 | 37 | 20 | 67 |
+| LL-09 | 13 | 15 | 4 | 32 |
+| LL-14 | 1 | 12 | 13 | 26 |
 | LL-11 | 4 | 5 | 7 | 16 |
-| LL-06 | 1 | 16 | 6 | 23 |
-| LL-02 | 7 | 8 | 10 | 25 |
-| LL-01 | 18 | 1 | 0 | 19 |
+| LL-06 | 1 | 18 | 6 | 25 |
+| LL-02 | 7 | 11 | 11 | 29 |
+| LL-01 | 19 | 1 | 0 | 20 |
 | LL-03 | 2 | 6 | 2 | 10 |
-| LL-17 | 46 | 4 | 3 | 53 |
+| LL-17 | 50 | 5 | 3 | 58 |
 | LL-04 | 0 | 5 | 2 | 7 |
-| LL-18 | 0 | 6 | 2 | 8 |
-| LL-08 | 29 | 2 | 3 | 34 |
+| LL-18 | 0 | 7 | 2 | 9 |
+| LL-08 | 32 | 2 | 4 | 38 |
 | LL-13 | 2 | 1 | 0 | 3 |
 | LL-20 | 11 | 0 | 1 | 12 |
 | LL-21 | 4 | 2 | 0 | 6 |
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
-| LL-24 | 13 | 2 | 3 | 18 |
+| LL-24 | 15 | 2 | 3 | 20 |
 | LL-25 | 0 | 9 | 135 | 144 |
 | LL-26 | 1 | 0 | 0 | 1 |
 
@@ -100,3 +100,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `tap-hop-cac-so-nguyen` | Toán | 4 | 3 (vòng 2 còn 1) | 3 |
 | `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1) | 4 |
 | `quy-tac-dau-ngoac` | Toán | 8 | chưa (vòng 2 còn 3) | 2 |
+| `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` | Toán | 11 | chưa (vòng 1) | 1 |

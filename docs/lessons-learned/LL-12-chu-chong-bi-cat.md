@@ -18,6 +18,7 @@ Chữ, số mũ hay lựa chọn bị thanh dưới che, tràn màn điện tho�
 - `cach-ghi-so-tu-nhien` vòng 2, `tip.tach-cum`: dòng đầu của `gathered` "XIV = X + IV = 10 + 4 = 14" (năm vế) bị cắt còn "= 1" trên điện thoại, cả ở trang "Mẹo hay"; dòng lấy nguyên từ câu "Sửa" của review vòng 1. Mỗi dòng `gathered` tối đa ba vế, kể cả công thức review đề xuất.
 - `tap-hop-cac-so-nguyen` vòng 2, hình gợi ý `nhiet-ke-goi-y` (`ex.doc-nhiet-ke`): thước dọc `scale` đặt nhãn vùng ("Trên 0") ở đỉnh thước và mark ở cùng hàng chữ; thước dừng ở `to: 2` nên mark "2 °C" và "Trên 0" cùng ở vạch 2, chồng thành "2°CTrên 0". Hình gợi ý chỉ hiện trong lúc làm sai nên walk không chụp; chỉ thấy ở ảnh `visual:shot`. Trong hình `scale`, mark không đặt ở vạch đầu, vạch cuối của thước khi vùng phía đó có nhãn (hay nới `from`, `to` thêm một vạch). Cùng mục là lỗi "?" bị ẩn, ghi ở LL-15.
 - `phep-cong-phep-tru-so-nguyen` vòng 2: ví dụ thứ hai của mẹo `hai-dau-lien-nhau` (`(-3) + (-4) = (-3) - 4 = -7`) rộng hơn khung mẹo trên điện thoại, màn chỉ hiện đến dấu "=" cuối (walk không đo tràn trong TeX của khối `tip`). Các `explain.tex` ba vế bị ngắt giữa ngoặc ở vòng 1. Cách làm: viết chuỗi từ hai dấu "=" trở lên bằng `gathered`, mỗi dòng tối đa 22 ký tự.
+- `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` vòng 1: `tex` một dòng `(1, -1),\ (2, -2),\ (3, -3),\ (6, -6)` của mẹo `so-uoc-chan` và lời giải `ex.dem-uoc-cua-6` mất cặp (6, −6) trên điện thoại, cả ở trang "Mẹo hay", nên màn hiện 6 ước cạnh chữ "8 ước". Danh sách cặp trong TeX cũng theo luật `gathered` tối đa 22 ký tự mỗi dòng.
 
 ## Nguyên nhân gốc
 
