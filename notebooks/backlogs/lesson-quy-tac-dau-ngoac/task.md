@@ -1,8 +1,8 @@
 # Bàn giao: Bài 15 `quy-tac-dau-ngoac` (Quy tắc dấu ngoặc)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026 (buổi sáng). Bài đã qua review vòng 1 (8 Nghiêm trọng), vòng 2 (3 Nghiêm trọng, Opus, 3 reviewer + Tổng hợp), đọc hiểu Haiku (lượt 1: 243 Hiểu rõ; lượt 2 và 3 chỉ trên mục viết lại), vòng 3 (Sonnet, 0 Nghiêm trọng), rồi `content:hash --approve` và `content:lock`. `lesson:walk` 0 failures trên bản trước khi thêm video (cây tạm cổng 3370, đã xoá khi xong).
-- Lời đọc giới thiệu: Gemini hết hạn mức ở cả 2 key nên `pnpm narration:build quy-tac-dau-ngoac` đọc cả lời bằng giọng Hải Đăng (VieNeu). Chạy lại lệnh sau khi hạn mức hồi để về giọng Gemini Achird (câu đã đọc được giữ trong cache). Phần giới thiệu viết "dấu cộng", "dấu trừ" bằng chữ vì giọng đọc nuốt ký hiệu "−".
+- Cập nhật cuối: 02/10/2026. Bài đã qua review vòng 1–3, đọc hiểu Haiku, vòng video (Sonnet, 0 Nghiêm trọng, 0 Nên sửa), `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures (có video). Xong, chờ chủ dự án quyết ba góp ý video ở `review.md` mục "Vòng video" và việc tải media lên production.
+- Lời đọc giới thiệu: giọng Gemini Achird (đã đọc lại sau khi hạn mức hồi, thay bản VieNeu tạm). Phần giới thiệu viết "dấu cộng", "dấu trừ" bằng chữ vì giọng đọc nuốt ký hiệu "−".
 - Giọng cả bài: Hải Đăng (`video/projects/quy-tac-dau-ngoac/media.json`), xen kẽ với Bài 14 (Mỹ Duyên).
 - Ba video (đầu các phần 2, 3, 4): `bo-ngoac-dau-cong`, `bo-ngoac-dau-tru`, `ngoac-tru-so-am`, một ý mỗi video, không `checkpoint`, có `ask` và `think`.
 - Việc còn lại xem phần "Tiến độ".
@@ -12,9 +12,9 @@
 - [x] Hình: `src/visuals/math/quy-tac-dau-ngoac/` (catalog, hình `flipTry` chạm đổi dấu, huy hiệu) và đăng ký ở `src/visuals/registry.ts` (tái dùng `chips` và validator `chon-dung`); test `tests/visuals/quy-tac-dau-ngoac.test.tsx`.
 - [x] `lesson.json`, `content:check --stats` 0 lỗi, không `[guides]`.
 - [x] `visual:shot`, `lesson:walk` 0 failures, xem contact sheet.
-- [ ] Review vòng 1 (Opus) đã chạy, chưa sửa; vòng 2 (Opus), đọc hiểu (Haiku) còn lại.
-- [ ] Review vòng 3+ (Sonnet, chỉ phần đổi) tới 0 Nghiêm trọng.
-- [ ] `content:hash quy-tac-dau-ngoac --approve`, `content:lock quy-tac-dau-ngoac`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+- [x] Review vòng 1 và 2 (Opus), đọc hiểu (Haiku).
+- [x] Review vòng 3 (Sonnet) và vòng video tới 0 Nghiêm trọng.
+- [x] `content:hash quy-tac-dau-ngoac --approve`, `content:lock quy-tac-dau-ngoac`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
 
 ## Mẹo đã thử bằng chương trình (không commit)
 - `dau-dau-tien` (viết thêm dấu + cho số đầu trong ngoặc, đổi dấu từng số hạng khi trước ngoặc có dấu −): 20 000 tổng ngẫu nhiên có ngoặc lồng nhau (tới 3 tầng) và số 0, bỏ ngoặc từ trong ra ngoài luôn giữ giá trị.
