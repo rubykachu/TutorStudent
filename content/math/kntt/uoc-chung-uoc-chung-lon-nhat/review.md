@@ -1,16 +1,142 @@
 # Review: Ước chung. Ước chung lớn nhất (`uoc-chung-uoc-chung-lon-nhat`)
 
 - Bài: `content/math/kntt/uoc-chung-uoc-chung-lon-nhat/lesson.json`
-- Vòng: 7 - chỉ phần đổi (`pnpm content:diff`), các section mới sau sửa vòng 6: `viet-tu-uclnn`, `cap-so-gioi-han`, `cap-so-tong`, `cap-so-tich`, `cung-so-du`, `so-du-lon-nhat` (câu đổi số hay thêm, câu đổi chữ, 6 quy tắc và recap viết lại, 1 khối `tip` thay, hình đổi hay thêm trong `catalog.ts`)
-- Nguồn đã đọc: `sources/math/uoc-chung-uoc-chung-lon-nhat/` - sbt-p40 (đề 2.41-2.43: số 17 và 60, 96 và 16, 8 và 384); số mới của vòng này (7 và 28, 2 và 14, 36 và 4, 45 và 9, 56 và 14, 72 và 3, 144 và 6, 22 và 58, 21 và 45) không trùng số nào của sách; các trang sbt-p38, p39, p108 đã đối chiếu ở vòng 6, vòng này không đổi quan hệ với nguồn
-- `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường), 1 cảnh báo ("43 id(s) not in ids.lock.json")
+- Vòng: 8 - chỉ phần đổi (`pnpm content:diff`), 6 video mới của section 14 đến 19 (`viet-tu-uclnn`, `cap-so-gioi-han`, `cap-so-tong`, `cap-so-tich`, `cung-so-du`, `so-du-lon-nhat`); diff chỉ có 6 khối `video` ở đầu 6 section và 6 mục `videos[]`
+- Nguồn đã đọc: `sources/math/uoc-chung-uoc-chung-lon-nhat/` - vòng này không đối chiếu ảnh nguồn mới: diff chỉ có video, các số trong video đều là số của chính bài (section 14 đến 19), đã đối chiếu từng số với `note`, recap và `catalog.ts`; số của sách (sbt-p38, p40, p108) đã soát ở vòng 6 và 7
+- `content:check`: 1 lỗi của bài (`[review-hash]`, bình thường, chờ duyệt), 1 cảnh báo (6 id video chưa khoá, điều phối sẽ chạy `content:lock`); `pnpm video:check uoc-chung-uoc-chung-lon-nhat` ok cả 9 video
 - Đọc hiểu (Haiku, lượt 1): 163 / 10 / 0; tệp `.shots/review/uoc-chung-uoc-chung-lon-nhat/doc-hieu.md` (dòng "Tổng cả bài" của tệp ghi 163 / 10 / 0; đếm lại từ các dòng của tệp ra 168 / 8 / 0, tức 8 mục Hiểu mơ hồ, nên số rút kinh nghiệm tính theo 8)
 - Đọc hiểu (Haiku, lượt 2): 0 / 8 / 1 trên 9 mục viết lại (`doc-hieu-2.md`); lượt 3: 3 Hiểu rõ / 5 Hiểu mơ hồ / 1 Khó hiểu trên 9 mục (`doc-hieu-3.md`; dòng "Tổng" của tệp ghi 2 Hiểu rõ nhưng liệt kê 3: quy tắc và recap `cap-so-tich`, explain `tich-144-uclnn-6`). Các mục còn lại sau lượt 3 ghi ở Nên sửa 4, 5 và 7 (quy tắc và recap `cap-so-tong`, quy tắc, recap và câu điền `so-du-lon-nhat`, explain `tich-72-uclnn-3`), không chặn duyệt
-- `lesson:walk`: 0 FAIL, `visual:shot` 220/220 (điều phối chạy sau sửa); đã đọc sheet điện thoại của 6 section mới (`walk-phone-s14` đến `s19`, tạo lúc 23:41, sau lần sửa `lesson.json` cuối lúc 23:31) và sheet từng bước của hình (`phone-viet`, `phone-cap`, `phone-tich`); ảnh nằm ở cây tạm của điều phối, không nằm trong `.shots/walk/`
-- Kết luận: Không còn lỗi Nghiêm trọng (0 Nghiêm trọng, 9 Nên sửa, 7 Góp ý); đã ghi "Bản đã review" bằng `--mark`, chưa `--approve`, chưa `content:lock` (người điều phối làm)
-- Bản đã review: `59714700b1fd4728c77b723b5a6263c4f112ed8e42e95671c1d2d51d431a43b3` (`pnpm content:diff` so với bản này)
+- Đọc hiểu (Haiku, vòng 8, 6 kịch bản video): 70 / 6 / 1; các câu nhãn "không rõ" đều là câu quy tắc chép nguyên văn từ bài (riêng câu "Có số a hàng" đã sửa), không viết lại được vì là lời của bài
+- `lesson:walk`: chưa chạy ở vòng này (điều phối chạy sau khi duyệt); vòng 7 đã chạy 0 FAIL, `visual:shot` 220/220. Vòng 8 đã đọc contact sheet khung hình của 6 video (`frames-<tên>/sheet-01.png`, `sheet-02.png`), poster `.jpg` và xem lại chỗ chuyển cảnh bằng `ffmpeg`
+- Kết luận: vòng 8 có 0 Nghiêm trọng; 6 Nên sửa của video đã sửa và dựng lại video liên quan (bảng "Kết quả vòng 8 đã được xử lý"), 4 Góp ý đã sửa, còn 4 Góp ý để mở không chặn; `content:hash --approve` và `content:lock` chạy sau khi sửa; đọc hiểu Haiku lượt 2 trên 4 câu video viết lại: 1 / 2 / 1 (Haiku không thấy hình; các câu nhắc lại cách nói đã có ở video cùng dạng)
+- Bản đã review: `caf66cb45ab4d4eb986eb82c40cc601835a9ead1868e015fa9c5f4a6d0ea1bf1` (`pnpm content:diff` so với bản này)
 
-Đã soát: toàn bộ diff theo checklist 5 trục, "Luật gợi ý 3 nấc" và LL-01, 02, 05, 06, 07, 09, 10, 14, 15, 17, 18, 19, 20, 25.
+Đã soát: toàn bộ diff theo checklist 5 trục, "Luật gợi ý 3 nấc" và LL-01, 02, 05, 06, 07, 09, 10, 14, 15, 17, 18, 19, 20, 25 (vòng 7); vòng 8: "Lời video khớp bài", "Nhịp video cho bé chậm", "Video xem được" của checklist, `script-rules.md`, `docs/learner.md`, LL-02, 03, 05, 11, 12, 15, 21 cho 6 video (kịch bản, `index.html`, `report.json`, `.vtt`, poster, contact sheet).
+
+## Kết quả vòng 8 đã được xử lý
+
+| Mục vòng 8 | Kết quả |
+|---|---|
+| Nên sửa 1 (`cap-so-tich`, khung m · n = 12 hiện lúc hỏi) | Đã sửa: khung hiện ở chữ "bằng" của câu đáp án; dựng lại video |
+| Nên sửa 2 (`cung-so-du`, dấu "16 chia hết cho 4" lúc hỏi) | Đã sửa: hiện ở chữ "Có" của câu đáp án; dựng lại video |
+| Nên sửa 3 (`cung-so-du`, teal ở "chia hết cho 4") | Đã sửa: ba khung đổi sang slate |
+| Nên sửa 4 (`so-du-lon-nhat`, hiệu 24 và 36 amber) | Đã sửa: hai hiệu để màu chữ thường, amber chỉ còn ở 12 |
+| Nên sửa 5 (`viet-tu-uclnn`, lời không nói 6 là ƯCLN) | Đã sửa: câu "Đoạn lớn nhất cắt vừa hết cả hai là 6."; chỉ câu đó đọc lại |
+| Nên sửa 6 (`cap-so-tich`, thiếu tiêu chí nhận cặp) | Đã sửa: thêm câu "Hai cặp còn lại chỉ chung ước 1, nên nhận."; hai khung "nhận" hiện cùng câu đó |
+| Góp ý 3 (`cap-so-tich`, bước 2 nhân 2) | Đã sửa: hai câu "Số d là 2, nên số d nhân số d bằng 4." và "Vậy 48 bằng 4 nhân số m nhân số n." (video 16 câu) |
+| Góp ý 4 (`cap-so-tong`, tỉ lệ hai dải) | Đã sửa: độ rộng 220 và 560 |
+| Góp ý 5 (`cung-so-du`, màn chỉ có tiêu đề) | Đã sửa: hình hiệu giữ đến chữ "chia" của câu quy tắc, khung "cùng số dư" hiện từ đó |
+| Góp ý 6 (`viet-tu-uclnn`, số 6 slate) | Đã sửa: số 6 amber ở khung cuối |
+| Góp ý 1, 2, 7, 8 | Để mở, không chặn (căn cứ câu hỏi 2 và 4, hình hai dải của `cap-so-gioi-han`, Whisper nghe lại, màu glossary "số dư" có từ trước) |
+
+## Vòng 8: video của 6 section cuối
+
+Phạm vi: 6 video mới (`video/projects/uoc-chung-uoc-chung-lon-nhat/<tên>/`), mỗi video gắn ở đầu một section. Đã đọc `script.json`, `index.html`, `renders/report.json`, `.vtt`, poster và contact sheet khung hình; những chỗ chuyển cảnh và chỗ nghi lộ đáp án được kiểm lại bằng `ffmpeg` (chỉ đọc `public/media`). Câu `rule` đã được `video:build` so nguyên văn với bài; vòng này soát các câu không đánh `rule`: không có câu nào nêu quy tắc hay định nghĩa mà thiếu cờ `rule`. Cả 6 video mở bằng câu chào có "bạn" (`opening`), cách đọc chữ cái đều là "số d, số m, số n, số a, số b" và khớp với bài. Clip: cả 6 clip gắn đúng card cùng tên section, đoạn clip bao trọn câu quy tắc của card và không cắt giữa câu.
+
+### Nghiêm trọng
+
+Không có.
+
+### Nên sửa
+
+#### 1. `cap-so-tich`: hình hiện đáp án "m · n = 12" ngay lúc đọc câu hỏi (LL-02)
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-tich/index.html` dòng 124 (`pop("#c4", W(sid, "bằng", 2) ...)`) và 125 (cảnh `s02-viet`); câu số 4 của cảnh (`Bạn thử đoán: 48 chia 4 bằng mấy?`, `pause: "ask"`)
+- Vấn đề: trong cảnh `s02-viet`, chữ "bằng" xuất hiện lần 1 ở câu quy tắc, lần 2 ở chính câu hỏi, lần 3 ở câu đáp án. Mã dùng lần 2 nên khung "m · n = 12" hiện khi câu hỏi đang đọc và nằm trên màn suốt quãng im lặng, trong khi "48 : 4 = ?" vẫn còn dấu hỏi (sheet khung f-015; poster của video cũng chụp đúng khoảnh khắc này). Bé không còn gì để đoán.
+- Sửa: đổi `W(sid, "bằng", 2)` thành `W(sid, "bằng", 3)` ở cả hai dòng (khung hiện khi đọc "Số m nhân số n bằng 12", sau khi "12" thay dấu hỏi), rồi dựng lại video (`video:build`, không đổi lời nên giọng và âm thanh giữ nguyên) và dựng lại poster.
+
+#### 2. `cung-so-du`: hình hiện dấu "✓ 16 chia hết cho 4" ngay lúc đọc câu hỏi (LL-02)
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cung-so-du/index.html` dòng 120 (`pop("#ycc", W(sid, "có") ...)`), dòng 86 (khung `yc`); câu số 2 của cảnh `s02-bo` (`Bạn thử đoán: 16 có chia hết cho 4 không?`, `pause: "ask"`)
+- Vấn đề: trong cảnh `s02-bo`, chữ "có" đầu tiên nằm trong câu hỏi ("16 có chia hết") chứ không phải câu đáp án ("Có, và 28 cũng..."). Khung "16 chia hết cho 4 ✓" hiện lúc hỏi và còn trên màn suốt quãng im lặng (sheet khung f-009), nên câu hỏi đã có đáp án trên hình.
+- Sửa: đổi thành `W(sid, "có", 2)` (chữ "Có," của câu đáp án), rồi dựng lại video. Khung `ydc` của 28 đang đúng chỗ (`W(sid, "28", 2)`), giữ nguyên.
+
+#### 3. `cung-so-du`: màu teal (Ước chung) tô các dấu "chia hết cho 4 ✓", trái với quyết định của bài
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cung-so-du/index.html` dòng 86 (khung `yc`, `yd`) và dòng 92 (khung `e2`)
+- Vấn đề: ở vòng 6 bài đã bỏ màu teal khỏi hình `du-hieu` và lời giải của `cung-du-6`, `cung-du-30` vì số chia a không phải ước chung của hai số cần tô; hình `du-17-29` cũng tô "chia hết cho 4" bằng slate. Video lại tô 3 khung "16 chia hết cho 4 ✓", "28 chia hết cho 4 ✓", "12 chia hết cho 4 ✓" bằng teal (đặc biệt "12 chia hết cho 4" chỉ có một số, không thể là ước chung). Bé dễ nhớ nhầm teal là màu của mọi lần chia hết.
+- Sửa: đổi `teal` thành `slate` ở 3 khung này (khớp `du-17-29`), giữ lime cho phần dư. Gộp với dựng lại ở mục 2.
+
+#### 4. `so-du-lon-nhat`: hai hiệu 24 và 36 tô amber (màu của ƯCLN)
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/so-du-lon-nhat/index.html` dòng 72 và 73 (`<span class="am">24</span>`, `<span class="am">36</span>`)
+- Vấn đề: amber là màu của ước chung lớn nhất; 24 và 36 là hai hiệu (glossary: "hiệu" teal; hình `du-lon-29-53-89` của bài tô chúng slate). Trên cùng một màn, 24, 36 và ƯCLN(24, 36) = 12 đều amber nên bé không phân biệt được số nào là đáp án; câu hỏi `ask` ngay sau đó chính là "ƯCLN của 24 và 36 là mấy?".
+- Sửa: bỏ `class="am"` ở hai số 24 và 36 (để màu mặc định hoặc `sl` như hình của bài), chỉ giữ amber cho "12" ở `d3a` và các hàng của cảnh `s03-thu`.
+
+#### 5. `viet-tu-uclnn`: lời không nói 6 là ƯCLN của 12 và 18
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/viet-tu-uclnn/script.json` cảnh `s02-cat6`, câu số 1 (`Ta cắt thành các đoạn dài 6.`)
+- Vấn đề: cả video dựa vào việc 6 là ƯCLN của 12 và 18 (quy tắc "d là ƯCLN", câu "Nên 6 chưa là ước chung lớn nhất" ở cảnh 12 và 24), nhưng lời chỉ nói "cắt thành các đoạn dài 6"; chữ "ƯCLN(12, 18) = 6" chỉ nằm trên khung tiêu đề, không đọc lên. Hai video cùng loại (`cap-so-gioi-han`, `cap-so-tong`) đều nói "Đoạn lớn nhất cắt vừa hết cả hai là ...". Bé nghe không thấy vì sao chọn 6, rồi nghe "6 chưa là ƯCLN" của cặp khác.
+- Sửa: đổi câu thành "Đoạn lớn nhất cắt vừa hết cả hai là 6." (9 chữ, cùng cách nói với `cap-so-gioi-han` và `cap-so-tong`). Câu mới vẫn có chữ "cắt" nên `index.html` (các đoạn hiện ở `W(sid, "cắt")`) giữ nguyên. Chỉ một câu đổi lời nên chỉ câu đó đọc lại; giữ nguyên giọng các câu còn lại (xem `video.md`: không xoá `audio/*.wav`).
+
+#### 6. `cap-so-tich`: lời không nêu tiêu chí chọn cặp (m và n chỉ chung ước 1)
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-tich/script.json` cảnh `s03-chon`, câu số 1 và 2 (`Có ba cặp: 1 và 12, 2 và 6, 3 và 4.`, `Cặp 2 và 6 còn chung ước 2, nên loại.`)
+- Vấn đề: video chỉ nói vì sao loại cặp 2 và 6; không có câu nào nói hai cặp còn lại được nhận vì chỉ chung ước 1 (chỉ có khung hình "✓ nhận"). Bài (section 17, note) nêu tiêu chí này ("Chọn cặp chỉ có ước chung là 1"), và hai video cùng dạng đều nói thành lời ("Các cặp còn lại chỉ chung ước 1, nên nhận", "Cặp 1 và 7: chỉ chung ước 1, nhận"). Clip của card (`cap-so-tich`, bắt đầu từ cảnh `s02-viet`) cũng không có tiêu chí này ở chỗ nào, nên bé ôn lại card không nghe được luật chọn.
+- Sửa: thêm sau câu số 2 một câu "Hai cặp còn lại chỉ chung ước 1, nên nhận." (9 chữ, video lên 15 câu, dưới giới hạn 16), cảnh `s03-chon` giữ nguyên, và đổi thời điểm hiện hai khung "✓ nhận" (`#v0`, `#v2`, hiện ở `W(sid, "loại")`) sang chữ "nhận" của câu mới.
+
+### Góp ý
+
+#### 1. `cap-so-gioi-han`: câu hỏi cặp 2 và 4 chưa có căn cứ trong chính video
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-gioi-han/script.json` cảnh `s02-bang`, câu số 2 (`Bạn thử đoán: cặp 2 và 4 có nhận không?`)
+- Vấn đề: bé chỉ đoán được nếu nhớ luật "m và n chỉ chung ước 1" từ section 14; trong video luật này chỉ được nói ở cảnh sau (`s03-quy`). Với bé chậm, nên có một câu nhắc căn cứ trước câu hỏi.
+- Sửa: thêm trước câu hỏi "Hai số m và n chỉ được chung ước 1." hay bỏ nhãn "đoán" cho câu này; tuỳ tác giả.
+
+#### 2. `cap-so-gioi-han`: lời nói "hai dải băng" nhưng hình chỉ có một dải 20 dm
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-gioi-han/index.html` dòng 62 đến 66 (cảnh `s01-mo`); câu số 2 của cảnh (`Hai dải băng khác nhau, dài không quá 20.`)
+- Vấn đề: khi nghe "hai dải băng khác nhau" màn chỉ có một thanh 20 dm cắt thành 4 đoạn; hình không chỉ vì sao hai dải khác nhau và đều không quá 20.
+- Sửa: vẽ hai thanh dưới thanh 20 dm (vd 10 dm và 15 dm) hay đổi lời thành "Mỗi dải dài không quá 20."
+
+#### 3. `cap-so-tich`: bước "2 nhân 2 bằng 4" không được nói
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-tich/script.json` cảnh `s02-viet`, câu số 2 (`Ở đây tích là 4 nhân số m nhân số n.`)
+- Vấn đề: hình đi từ "48 = 2 · 2 · m · n" sang "48 = 4 · m · n", lời nhảy thẳng sang "4 nhân số m nhân số n"; bé chậm không thấy 4 từ đâu ra. Câu cũng nói "tích là 4 nhân số m nhân số n" trong khi tích của đề là 48.
+- Sửa: đổi thành "Số d là 2, nên số d nhân số d bằng 4." rồi "Vậy 48 bằng 4 nhân số m nhân số n." (cả hai dưới 12 chữ; video lên 16 câu nếu đã thêm câu ở mục Nên sửa 6, vẫn đúng giới hạn); đổi `W(sid, "ở")` và `W(sid, "tích", 2)` ở `index.html` sang chữ của hai câu mới.
+
+#### 4. `cap-so-tong`: độ dài hai dải trong hình theo tỉ lệ 1 và 2
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-tong/index.html` dòng 72 và 73 (`width:260px`, `width:520px`)
+- Vấn đề: dải b dài đúng gấp đôi dải a, dễ gợi b = 2a; hai đáp án thật có tỉ lệ 1 đến 7 (6 và 42) và 3 đến 5 (18 và 30).
+- Sửa: chọn hai độ rộng không gợi tỉ lệ nào (vd 220 và 560) hay bỏ độ dài thật, chỉ vẽ hai hộp "a" và "b".
+
+#### 5. `cung-so-du`: màn chỉ có tiêu đề trong khoảng 3 giây ở cảnh cuối
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cung-so-du/index.html` dòng 132 (`pop("#r1c", W(sid, "cùng") ...)`), cảnh `s03-hieu`
+- Vấn đề: từ lúc khung "12 chia hết cho 4" mờ đi (câu "Bạn nhớ nhé") đến chữ "cùng" của câu quy tắc (khoảng 3 giây) màn chỉ còn tiêu đề "Cùng số dư" trong khi lời đang đọc "Hai số chia cho số a được". Đã đủ để bé tưởng hình bị thiếu.
+- Sửa: hiện khung "chia cho a" (hay chính khung "cùng số dư") ngay từ chữ "chia" của câu quy tắc.
+
+#### 6. `viet-tu-uclnn`: số 6 trong khung cuối tô slate, còn ở cảnh 12 và 18 tô amber
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/viet-tu-uclnn/index.html` dòng 118 (khung `r4c`, `chip("r4c", "slate", "12 = 6 · 2, 18 = 6 · 3")`)
+- Vấn đề: cùng số 6 là ƯCLN của 12 và 18 nhưng khung tóm tắt dùng màu slate, trái với "12 = **6** · 2" amber ở cảnh trước và với `a = d · m` amber ngay trên nó.
+- Sửa: đổi khung thành amber, hay viết bằng `<span class="am">6</span>` trong nội dung khung.
+
+#### 7. Whisper: hai chỗ đã đọc lại nhiều lần, nên nghe lại
+
+- Vị trí: `video/projects/uoc-chung-uoc-chung-lon-nhat/cap-so-tich/renders/report.json` câu `Hai số là số d nhân số m và số d nhân số n. Nhân chúng lại, ...` (đọc 4 lần, khớp 0,971); `viet-tu-uclnn/renders/report.json` câu `Gọi số d là ƯCLN của hai số a và b.` (khớp 0,979)
+- Vấn đề: Whisper nghe "Nhân chúng lại" thành "nên chúng lại" và "số m nhân số n" thành "số N nhân số N" ở câu đầu; nghe "Gọi" thành "Với" ở câu sau. Cả hai là câu quy tắc, nên khác một chữ là bé nghe nhầm quy tắc. Đây có thể chỉ là nhiễu nhận dạng (các câu khác trong cùng video khớp đủ), nhưng tôi không nghe được âm thanh.
+- Sửa: người điều phối hay chủ dự án nghe hai câu này một lần; nếu đọc đúng thì bỏ qua, nếu sai thì thêm `say` cho câu đó.
+
+#### 8. Màu "số dư": glossary ghi pink, bài và video dùng lime
+
+- Vị trí: `content/glossary/math.json` mục `số dư` (`color: pink`); `src/visuals/math/uoc-chung-uoc-chung-lon-nhat/catalog.ts` legend `Số dư` (lime); `video/projects/uoc-chung-uoc-chung-lon-nhat/cung-so-du/index.html`, `so-du-lon-nhat/index.html` (lime)
+- Vấn đề: video theo đúng quy ước của bài (lime), nhưng glossary đặt `số dư` màu pink, nên màu khái niệm của cùng từ khác nhau giữa glossary và bài. Có từ trước vòng này, không do video.
+- Sửa: không sửa ở vòng này; nếu muốn thống nhất, đổi một nơi cho cả bài (glossary hay catalog và video) ở một vòng riêng.
+
+### Đã tự tính lại
+
+| Video | Đã kiểm | Kết quả |
+|---|---|---|
+| `viet-tu-uclnn` | 12 = 6·2, 18 = 6·3, ƯCLN(12, 18) = 6, ƯCLN(2, 3) = 1; 12 = 6·2, 24 = 6·4, ƯCLN(2, 4) = 2; ƯCLN(12, 24) = 12 (12 = 12·1, 24 = 12·2); số đoạn 12:6 và 18:6 | Đúng; cặp 2 và 4 còn chung ước 2 |
+| `cap-so-gioi-han` | m, n từ 1 đến 4, m < n: 6 cặp, bỏ (2, 4) còn 5 cặp; nhân 5: 5 và 10, 5 và 15, 5 và 20, 10 và 15, 15 và 20, ƯCLN từng cặp đều 5; (10, 20) có ƯCLN 10, loại; không vượt 20 | Đúng, 5 cặp, khớp bài (5 cặp không thứ tự) |
+| `cap-so-tong` | 48 : 6 = 8; m + n = 8, m < n: (1, 7), (2, 6), (3, 5), ƯCLN 1, 2, 1; nhân 6: 6 và 42, 18 và 30; 6 + 42 = 48, 18 + 30 = 48; ƯCLN(6, 42) = 6, ƯCLN(18, 30) = 6 | Đúng; cặp (4, 4) bị loại vì a < b |
+| `cap-so-tich` | 2·2 = 4; 48 : 4 = 12; m·n = 12, m < n: (1, 12), (2, 6), (3, 4), ƯCLN 1, 2, 1; nhân 2: 2 và 24, 6 và 8; 2·24 = 48, 6·8 = 48; ƯCLN(2, 24) = 2, ƯCLN(6, 8) = 2 | Đúng |
+| `cung-so-du` | 17 = 4·4 + 1, 29 = 4·7 + 1; 17 − 1 = 16 = 4·4, 29 − 1 = 28 = 4·7; 29 − 17 = 12 = 4·3; số túi và phần dư trong hình (4 túi + 1, 7 túi + 1) | Đúng |
+| `so-du-lon-nhat` | 53 − 29 = 24, 89 − 53 = 36, ƯCLN(24, 36) = 12; 29 = 12·2 + 5, 53 = 12·4 + 5, 89 = 12·7 + 5; 12 lớn hơn số dư 5 | Đúng, cùng dư 5 |
+
+Số trong lời khớp với `note`, `caption` và recap của section tương ứng ở mọi chỗ kiểm; không có câu nào trái với bài.
 
 ## Kết quả vòng 6 đã được xử lý
 

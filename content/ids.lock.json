@@ -2109,9 +2109,15 @@
     "uoc-chung-uoc-chung-lon-nhat.section.uoc-chung-lon-nhat",
     "uoc-chung-uoc-chung-lon-nhat.section.viet-tu-uclnn",
     "uoc-chung-uoc-chung-lon-nhat.tip.cung-so-du",
+    "uoc-chung-uoc-chung-lon-nhat.video.cap-so-gioi-han",
+    "uoc-chung-uoc-chung-lon-nhat.video.cap-so-tich",
+    "uoc-chung-uoc-chung-lon-nhat.video.cap-so-tong",
     "uoc-chung-uoc-chung-lon-nhat.video.cat-dai-bang",
     "uoc-chung-uoc-chung-lon-nhat.video.chia-vao-dia",
-    "uoc-chung-uoc-chung-lon-nhat.video.phan-tich-uclnn"
+    "uoc-chung-uoc-chung-lon-nhat.video.cung-so-du",
+    "uoc-chung-uoc-chung-lon-nhat.video.phan-tich-uclnn",
+    "uoc-chung-uoc-chung-lon-nhat.video.so-du-lon-nhat",
+    "uoc-chung-uoc-chung-lon-nhat.video.viet-tu-uclnn"
   ],
   "retired": {
     "luy-thua.ex.tinh-3-mu-4": "luy-thua.ex.tinh-3-mu-3",

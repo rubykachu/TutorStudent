@@ -12,7 +12,7 @@
   "title": "Ước chung. Ước chung lớn nhất",
   "sourceRef": "Sách bài tập tr.38–40",
   "status": "published",
-  "reviewedHash": "59714700b1fd4728c77b723b5a6263c4f112ed8e42e95671c1d2d51d431a43b3",
+  "reviewedHash": "caf66cb45ab4d4eb986eb82c40cc601835a9ead1868e015fa9c5f4a6d0ea1bf1",
   "overview": {
     "hook": {
       "text": "Chào bạn! Hôm nay ta tìm số đĩa nhiều nhất để chia đều. Mẹ có 18 quả cam và 30 quả quýt, muốn chia đều vào các đĩa như nhau, không thừa quả nào. Nhiều nhất chia được bao nhiêu đĩa?"
@@ -846,6 +846,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.viet-tu-uclnn"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -913,6 +917,10 @@
       "sourceRef": "Sách bài tập tr.40 (bài 2.41), lời giải tr.108",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.cap-so-gioi-han"
+        },
         {
           "type": "group",
           "children": [
@@ -982,6 +990,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.cap-so-tong"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -1049,6 +1061,10 @@
       "sourceRef": "Sách bài tập tr.40 (bài 2.43), lời giải tr.108",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.cap-so-tich"
+        },
         {
           "type": "group",
           "children": [
@@ -1118,6 +1134,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.cung-so-du"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -1180,6 +1200,10 @@
       "sourceRef": "Sách bài tập tr.38 (ví dụ 1), lời giải tr.39",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "uoc-chung-uoc-chung-lon-nhat.video.so-du-lon-nhat"
+        },
         {
           "type": "group",
           "children": [
@@ -6298,6 +6322,132 @@
           "start": 11.567,
           "end": 45.598,
           "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.chia-deu-nhieu-nhat"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.viet-tu-uclnn",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/viet-tu-uclnn.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/viet-tu-uclnn.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/viet-tu-uclnn.jpg",
+      "durationSec": 52.8,
+      "clips": [
+        {
+          "id": "viet-tu-uclnn",
+          "start": 7.828,
+          "end": 51.374,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.cap-so-gioi-han",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-gioi-han.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-gioi-han.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-gioi-han.jpg",
+      "durationSec": 53.07,
+      "clips": [
+        {
+          "id": "cap-so-gioi-han",
+          "start": 11.333,
+          "end": 51.635,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.cap-so-tong",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-tong.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-tong.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-tong.jpg",
+      "durationSec": 56.07,
+      "clips": [
+        {
+          "id": "cap-so-tong",
+          "start": 13.394,
+          "end": 54.658,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.cap-so-tich",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-tich.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-tich.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/cap-so-tich.jpg",
+      "durationSec": 57.97,
+      "clips": [
+        {
+          "id": "cap-so-tich",
+          "start": 16.462,
+          "end": 56.551,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.cung-so-du",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/cung-so-du.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/cung-so-du.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/cung-so-du.jpg",
+      "durationSec": 41.37,
+      "clips": [
+        {
+          "id": "cung-so-du",
+          "start": 12.023,
+          "end": 39.942,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cung-so-du"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "uoc-chung-uoc-chung-lon-nhat.video.so-du-lon-nhat",
+      "lessonId": "uoc-chung-uoc-chung-lon-nhat",
+      "url": "video/uoc-chung-uoc-chung-lon-nhat/so-du-lon-nhat.mp4",
+      "vttUrl": "video/uoc-chung-uoc-chung-lon-nhat/so-du-lon-nhat.vtt",
+      "posterUrl": "video/uoc-chung-uoc-chung-lon-nhat/so-du-lon-nhat.jpg",
+      "durationSec": 46.6,
+      "clips": [
+        {
+          "id": "so-du-lon-nhat",
+          "start": 12.326,
+          "end": 45.184,
+          "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat"]
         }
       ],
       "voice": {

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tìm cặp số khi biết ước chung lớn nhất" (lesson
+  uoc-chung-uoc-chung-lon-nhat): two strips, each at most 20 dm, whose
+  greatest common cut is 5 dm are 5 · m and 5 · n with m, n from 1 to 4 and
+  sharing only the divisor 1; the five pairs are multiplied by 5. The greatest
+  common divisor is amber, a shared divisor teal, pieces slate, as in the
+  lesson. The title and the 20 dm strip are on screen from the first frame.
+  Built by `pnpm video:build uoc-chung-uoc-chung-lon-nhat cap-so-gioi-han`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tìm cặp số khi biết ước chung lớn nhất</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .whole { position: absolute; height: 84px; border: 5px solid var(--color-muted-foreground); border-radius: 16px; background: var(--color-surface); }
+      .piece { position: absolute; height: 84px; border: 5px solid var(--color-concept-slate); border-radius: 16px; background: var(--color-surface); display: flex; align-items: center; justify-content: space-evenly; padding: 0 6px; }
+      .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--color-concept-slate); flex: none; }
+      .len { position: absolute; width: 130px; text-align: right; font: 800 44px / 84px "Baloo 2", sans-serif; }
+      .len small { font: 700 26px "Be Vietnam Pro", sans-serif; color: var(--color-muted-foreground); }
+      .teal { --c: var(--color-concept-teal); }
+      .amber { --c: var(--color-concept-amber); }
+      .slate { --c: var(--color-concept-slate); }
+      .chip { font-size: 40px; }
+      .am { color: var(--color-concept-amber); }
+      .tl { color: var(--color-concept-teal); }
+      .sl { color: var(--color-concept-slate); }
+      .eq { position: absolute; font: 800 60px / 1.1 "Baloo 2", sans-serif; white-space: nowrap; padding: 2px 16px; border-radius: 16px; }
+      .big { font-size: 80px; }
+      .pair { position: absolute; font: 800 52px / 1.1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .pair .arrow { color: var(--color-muted-foreground); margin: 0 14px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer"><div id="z1" class="layer"></div></section>
+        <section id="s2" class="scene layer"><div id="z2" class="layer"></div></section>
+        <section id="s3" class="scene layer"><div id="z3" class="layer"></div></section>
+        <section id="s4" class="scene layer"><div id="z4" class="layer"></div></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, fade, tint, pose, scenes, finish } = window.LV;
+        const UNIT = 40; // px per dm
+        const X0 = 320;
+        const chip = (id, cls, html) => `<span id="${id}" class="chip ${cls}">${html}</span>`;
+        const el = (host, html) => {
+          host.insertAdjacentHTML("beforeend", html);
+        };
+        const title = (host, id, cls, html) =>
+          el(host, `<div class="abs" style="left:250px;top:28px">${chip(id, cls, html)}</div>`);
+        const at = (id, left, top, cls, html) =>
+          `<div id="${id}" class="abs" style="left:${left}px;top:${top}px">${chip(`${id}c`, cls, html)}</div>`;
+
+        // ---------- s01: the 20 dm limit and the cut of 5 ----------
+        title($("#z1"), "t1", "amber", "ƯCLN là 5, không quá 20");
+        el($("#z1"), `
+          <div class="len" style="left:${X0 - 150}px;top:190px">20<small> dm</small></div>
+          <div class="whole" style="left:${X0}px;top:190px;width:${20 * UNIT - 6}px"></div>`);
+        const cuts = [];
+        for (let i = 0; i < 4; i++) {
+          cuts.push(`#cut${i}`);
+          el($("#z1"), `<div id="cut${i}" class="piece" style="left:${X0 + i * 5 * UNIT}px;top:190px;width:${5 * UNIT - 6}px">${'<span class="dot"></span>'.repeat(5)}</div>`);
+        }
+        el($("#z1"), at("g5", X0, 330, "amber", "đoạn lớn nhất cắt vừa hết: 5 dm"));
+
+        // ---------- s02: 5 · 1, 5 · 2, 5 · 3, 5 · 4 and which pairs fit ----------
+        title($("#z2"), "t2", "amber", "ƯCLN là 5, không quá 20");
+        const rows = [1, 2, 3, 4];
+        rows.forEach((m, i) => {
+          el($("#z2"), `<div id="row${m}" class="eq" style="left:330px;top:${105 + i * 88}px">${5 * m} = <span class="am">5</span> · ${m}</div>`);
+        });
+        el($("#z2"), `
+          ${at("ask", 760, 150, "slate", "cặp 2 và 4?")}
+          ${at("no", 760, 150, "teal", "✕ chung ước 2")}
+          ${at("yes", 760, 270, "teal", "✓ 5 cặp còn lại")}`);
+
+        // ---------- s03: the rule ----------
+        title($("#z3"), "t3", "amber", "ƯCLN là 5, không quá 20");
+        el($("#z3"), `
+          <div id="f1" class="eq big" style="left:330px;top:120px"><span class="am">d</span> · m <span class="sl">và</span> <span class="am">d</span> · n</div>
+          ${at("lim", 330, 260, "slate", "d · m và d · n không quá 20")}
+          ${at("cop", 330, 350, "teal", "m và n chỉ chung ước 1")}`);
+
+        // ---------- s04: multiply the five pairs by 5 ----------
+        title($("#z4"), "t4", "amber", "Nhân mỗi cặp với 5");
+        const pairs = [["1 và 2", "5 và 10"], ["1 và 3", "5 và 15"], ["1 và 4", "5 và 20"], ["2 và 3", "10 và 15"], ["3 và 4", "15 và 20"]];
+        pairs.forEach(([from, to], i) => {
+          el($("#z4"), `<div class="pair" style="left:330px;top:${100 + i * 66}px"><span class="tl">${from}</span><span class="arrow">→</span><span id="res${i}" class="am">${to}</span></div>`);
+        });
+        el($("#z4"), `
+          ${at("one", 330, 448, "slate", "5 và 10 = 10 và 5: một cặp")}
+          ${at("all", 900, 220, "amber", "5 cặp")}`);
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+        scenes([["#s1", "s01-mo"], ["#s2", "s02-bang"], ["#s3", "s03-quy"], ["#s4", "s04-nhan"]]);
+
+        {
+          const sid = "s01-mo";
+          hide([...cuts, "#g5c"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "hai"));
+          pop(cuts, W(sid, "đoạn"), { from: 0.4, stagger: 0.12 });
+          pop("#g5c", W(sid, "vừa"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-bang";
+          hide(["#row2", "#row3", "#row4", "#askc", "#noc", "#yesc"]);
+          pose(bird, "idle", start(sid));
+          pop("#row2", W(sid, "2"), { from: 0.6 });
+          pop("#row3", W(sid, "3"), { from: 0.6 });
+          pop("#row4", W(sid, "4"), { from: 0.6 });
+          pop("#askc", W(sid, "cặp"), { from: 0.6 });
+          tint(["#row2", "#row4"], W(sid, "cặp"));
+          fade("#askc", W(sid, "không", 2) - 0.1, 0.2);
+          pop("#noc", W(sid, "không", 2), { from: 0.6 });
+          fade("#noc", W(sid, "các") - 0.1, 0.25);
+          tl.to(["#row2", "#row4"], { backgroundColor: "rgba(0,0,0,0)", duration: 0.3 }, W(sid, "các"));
+          pop("#yesc", W(sid, "các"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nhận", 2));
+        }
+        {
+          const sid = "s03-quy";
+          hide(["#limc", "#copc"]);
+          pose(bird, "idle", start(sid));
+          pop("#limc", W(sid, "không"), { from: 0.6 });
+          pop("#copc", W(sid, "chỉ"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "chỉ"));
+        }
+        {
+          const sid = "s04-nhan";
+          hide(["#res0", "#res1", "#res2", "#res3", "#res4", "#onec", "#allc"]);
+          pose(bird, "idle", start(sid));
+          pop("#res0", W(sid, "được", 2), { from: 0.6 });
+          pop("#res1", W(sid, "15"), { from: 0.6 });
+          pop("#res2", W(sid, "20"), { from: 0.6 });
+          pop("#res3", W(sid, "rồi"), { from: 0.6 });
+          pop("#res4", W(sid, "15", 3), { from: 0.6 });
+          pop("#onec", W(sid, "hay"), { from: 0.6 });
+          pop("#allc", W(sid, "vậy"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "vậy"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

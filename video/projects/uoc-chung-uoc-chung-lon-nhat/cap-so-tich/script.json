@@ -1,0 +1,61 @@
+{
+  "title": "Tìm hai số khi biết tích",
+  "engine": "local",
+  "poster": { "scene": "s02-viet", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm hai số khi biết tích.",
+          "opening": true
+        },
+        { "text": "Tấm bìa xếp từ 48 ô vuông." },
+        { "text": "Gọi số a là số hàng." },
+        { "text": "Gọi số b là số ô mỗi hàng." },
+        {
+          "text": "Số a nhỏ hơn số b, ƯCLN của hai số là 2.",
+          "say": "Số a nhỏ hơn số b, ước-chung-lớn-nhất của hai số là 2."
+        }
+      ]
+    },
+    {
+      "id": "s02-viet",
+      "sentences": [
+        {
+          "text": "Hai số là số d nhân số m và số d nhân số n. Nhân chúng lại, tích bằng số d nhân số d nhân số m nhân số n.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Số d là 2, nên số d nhân số d bằng 4." },
+        { "text": "Vậy 48 bằng 4 nhân số m nhân số n." },
+        { "text": "Bạn thử đoán: 48 chia 4 bằng mấy?", "pause": "ask" },
+        { "text": "Số m nhân số n bằng 12.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-chon",
+      "sentences": [
+        { "text": "Có ba cặp: 1 và 12, 2 và 6, 3 và 4." },
+        { "text": "Cặp 2 và 6 còn chung ước 2, nên loại." },
+        { "text": "Hai cặp còn lại chỉ chung ước 1, nên nhận." }
+      ]
+    },
+    {
+      "id": "s04-nhan",
+      "sentences": [
+        { "text": "Nhân mỗi số với 2." },
+        { "text": "1 và 12 cho 2 và 24." },
+        { "text": "3 và 4 cho 6 và 8." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cap-so-tich",
+      "from": "s02-viet",
+      "to": "s04-nhan",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tich"]
+    }
+  ]
+}

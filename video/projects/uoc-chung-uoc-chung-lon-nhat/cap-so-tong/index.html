@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tìm hai số khi biết tổng" (lesson uoc-chung-uoc-chung-lon-nhat):
+  two strips a and b of total 48 with greatest common cut 6 are 6 · m and
+  6 · n, so m + n = 48 : 6 = 8; the pairs 1 and 7, 3 and 5 (sharing only the
+  divisor 1) give 6 and 42, 18 and 30. The greatest common divisor is amber,
+  a shared divisor teal, as in the lesson. The title and the two strips are on
+  screen from the first frame.
+  Built by `pnpm video:build uoc-chung-uoc-chung-lon-nhat cap-so-tong`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tìm hai số khi biết tổng</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .teal { --c: var(--color-concept-teal); }
+      .amber { --c: var(--color-concept-amber); }
+      .slate { --c: var(--color-concept-slate); }
+      .chip { font-size: 40px; }
+      .am { color: var(--color-concept-amber); }
+      .tl { color: var(--color-concept-teal); }
+      .sl { color: var(--color-concept-slate); }
+      .q { color: var(--color-muted-foreground); }
+      .slot { display: inline-grid; }
+      .slot > * { grid-area: 1 / 1; }
+      .eq { position: absolute; font: 800 70px / 1.1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .eq.small { font-size: 60px; }
+      .seg { position: absolute; top: 200px; height: 96px; border: 5px solid var(--color-concept-slate); border-radius: 16px; background: var(--color-surface); display: flex; align-items: center; justify-content: center; font: 800 56px "Baloo 2", sans-serif; }
+      .pair { position: absolute; font: 800 52px / 1.1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .pair .arrow { color: var(--color-muted-foreground); margin: 0 14px; }
+      .verdict { position: absolute; left: 640px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer"><div id="z1" class="layer"></div></section>
+        <section id="s2" class="scene layer"><div id="z2" class="layer"></div></section>
+        <section id="s3" class="scene layer"><div id="z3" class="layer"></div></section>
+        <section id="s4" class="scene layer"><div id="z4" class="layer"></div></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, fade, pose, scenes, finish } = window.LV;
+        const chip = (id, cls, html) => `<span id="${id}" class="chip ${cls}">${html}</span>`;
+        const el = (host, html) => {
+          host.insertAdjacentHTML("beforeend", html);
+        };
+        const title = (host, id, cls, html) =>
+          el(host, `<div class="abs" style="left:250px;top:28px">${chip(id, cls, html)}</div>`);
+        const at = (id, left, top, cls, html) =>
+          `<div id="${id}" class="abs" style="left:${left}px;top:${top}px">${chip(`${id}c`, cls, html)}</div>`;
+        const swap = (q, a, t) => {
+          tl.fromTo(q, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.2, immediateRender: false }, t);
+          pop(a, t, { from: 0.4 });
+        };
+
+        // ---------- s01: one bar, a short strip and a long strip ----------
+        title($("#z1"), "t1", "amber", "Tổng 48, ƯCLN là 6");
+        el($("#z1"), `
+          <div id="sa" class="seg" style="left:330px;width:220px"><span id="la">a</span></div>
+          <div id="sb" class="seg" style="left:560px;width:560px"><span id="lb">b</span></div>
+          <div id="tot" class="abs" style="left:330px;top:120px">${chip("totc", "slate", "a + b = 48")}</div>
+          ${at("g6", 330, 340, "amber", "đoạn lớn nhất cắt vừa hết: 6")}`);
+
+        // ---------- s02: a = 6 · m, b = 6 · n, m + n = 48 : 6 ----------
+        title($("#z2"), "t2", "amber", "Tổng 48, ƯCLN là 6");
+        el($("#z2"), `
+          <div id="a1" class="eq" style="left:330px;top:100px">a = <span class="am">6</span> · m</div>
+          <div id="a2" class="eq" style="left:330px;top:185px">b = <span class="am">6</span> · n</div>
+          <div id="a3" class="eq small" style="left:330px;top:280px"><span class="am">6</span> · (m + n) = 48</div>
+          <div id="a4" class="eq" style="left:330px;top:375px"><span class="pill" style="padding:0 30px 4px">48 : <span class="am">6</span> = <span class="slot"><span id="a4q" class="q">?</span><span id="a4a">8</span></span></span></div>
+          <div id="a5" class="eq" style="left:330px;top:375px"><span class="pill" style="padding:0 30px 4px">m + n = 8</span></div>`);
+
+        // ---------- s03: pairs with sum 8 ----------
+        title($("#z3"), "t3", "amber", "Tổng 48, ƯCLN là 6");
+        const picks = [["1 và 7", "teal", "✓ chỉ chung ước 1: nhận"], ["2 và 6", "slate", "✕ còn chung ước 2: loại"], ["3 và 5", "teal", "✓ chỉ chung ước 1: nhận"]];
+        el($("#z3"), `<div id="p0" class="eq" style="left:330px;top:110px"><span class="pill" style="padding:0 30px 4px">m + n = 8</span></div>`);
+        picks.forEach(([pair, cls, text], i) => {
+          el($("#z3"), `<div id="r${i}" class="abs" style="left:330px;top:${240 + i * 90}px"><span class="pair ${cls === "teal" ? "tl" : "sl"}" style="position:static;margin-right:20px">${pair}</span>${chip(`r${i}c`, cls, text)}</div>`);
+        });
+
+        // ---------- s04: multiply by 6 and check ----------
+        title($("#z4"), "t4", "amber", "Nhân mỗi cặp với 6");
+        [["1 và 7", "6 và 42"], ["3 và 5", "18 và 30"]].forEach(([from, to], i) => {
+          el($("#z4"), `<div class="pair" style="left:330px;top:${115 + i * 90}px"><span class="tl">${from}</span><span class="arrow">→</span><span id="o${i}" class="am">${to}</span></div>`);
+        });
+        el($("#z4"), `${at("c1", 330, 330, "slate", "6 + 42 = 48")}${at("c2", 330, 420, "slate", "18 + 30 = 48")}`);
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+        scenes([["#s1", "s01-mo"], ["#s2", "s02-chia"], ["#s3", "s03-chon"], ["#s4", "s04-nhan"]]);
+
+        {
+          const sid = "s01-mo";
+          hide(["#la", "#lb", "#totc", "#g6c"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pop("#la", W(sid, "ngắn"), { from: 0.4 });
+          pop("#lb", W(sid, "dài"), { from: 0.4 });
+          pose(bird, "idle", W(sid, "dài"));
+          pop("#totc", W(sid, "tổng"), { from: 0.6 });
+          pop("#g6c", W(sid, "đoạn"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-chia";
+          hide(["#a3", "#a4", "#a4a", "#a5"]);
+          pose(bird, "idle", start(sid));
+          pop("#a3", W(sid, "n"), { from: 0.6 });
+          pop("#a4", W(sid, "48"), { from: 0.6 });
+          swap("#a4q", "#a4a", W(sid, "8"));
+          fade("#a4", W(sid, "m", 2) - 0.1, 0.25);
+          pop("#a5", W(sid, "m", 2), { from: 0.6 });
+          pose(bird, "happy", W(sid, "m", 2));
+        }
+        {
+          const sid = "s03-chon";
+          hide(["#r0", "#r1", "#r2"]);
+          pose(bird, "idle", start(sid));
+          pop("#r0", W(sid, "cặp", 1), { from: 0.6 });
+          pop("#r1", W(sid, "cặp", 2), { from: 0.6 });
+          pop("#r2", W(sid, "cặp", 3), { from: 0.6 });
+        }
+        {
+          const sid = "s04-nhan";
+          hide(["#o0", "#o1", "#c1c", "#c2c"]);
+          pose(bird, "idle", start(sid));
+          pop("#o0", W(sid, "được", 2), { from: 0.6 });
+          pop("#o1", W(sid, "hay"), { from: 0.6 });
+          pop("#c1c", W(sid, "thử"), { from: 0.6 });
+          pop("#c2c", W(sid, "hai"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "thử"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

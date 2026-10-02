@@ -1,0 +1,53 @@
+{
+  "title": "Số lớn nhất cho cùng số dư",
+  "engine": "local",
+  "poster": { "scene": "s03-thu", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Ta tìm số lớn nhất để cùng số dư.",
+          "opening": true
+        },
+        { "text": "Ba gói kẹo có 29, 53 và 89 cái." },
+        { "text": "Chia vào các túi bằng nhau thì thừa số kẹo như nhau." }
+      ]
+    },
+    {
+      "id": "s02-hieu",
+      "sentences": [
+        { "text": "Ta tính hiệu của các số liền nhau." },
+        { "text": "53 trừ 29 bằng 24." },
+        { "text": "89 trừ 53 bằng 36." },
+        {
+          "text": "Bạn thử đoán: ƯCLN của 24 và 36 là mấy?",
+          "say": "Bạn thử đoán: ước-chung-lớn-nhất của 24 và 36 là mấy?",
+          "pause": "ask"
+        },
+        { "text": "Ước chung lớn nhất của 24 và 36 là 12.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-thu",
+      "sentences": [
+        {
+          "text": "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó dư bằng nhau là ƯCLN của các hiệu đó.",
+          "say": "Xếp các số từ bé đến lớn, tính hiệu của hai số liền nhau. Số lớn nhất để các số chia cho nó dư bằng nhau là ước-chung-lớn-nhất của các hiệu đó.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Vậy mỗi túi nhiều nhất 12 cái." },
+        { "text": "Thử lại: cả ba số chia cho 12 đều dư 5." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "so-du-lon-nhat",
+      "from": "s02-hieu",
+      "to": "s03-thu",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.so-du-lon-nhat"]
+    }
+  ]
+}

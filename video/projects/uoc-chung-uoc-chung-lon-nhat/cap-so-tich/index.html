@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--
+  Lesson video "Tìm hai số khi biết tích" (lesson uoc-chung-uoc-chung-lon-nhat):
+  a card of 48 squares in a rows of b squares, with greatest common divisor 2:
+  a = 2 · m, b = 2 · n, so 48 = 4 · m · n and m · n = 12; the pairs 1 and 12,
+  3 and 4 (sharing only the divisor 1) give 2 and 24, 6 and 8. The greatest
+  common divisor is amber, a shared divisor teal, as in the lesson. The title
+  and the card are on screen from the first frame.
+  Built by `pnpm video:build uoc-chung-uoc-chung-lon-nhat cap-so-tich`,
+  which injects window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>Tìm hai số khi biết tích</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .teal { --c: var(--color-concept-teal); }
+      .amber { --c: var(--color-concept-amber); }
+      .slate { --c: var(--color-concept-slate); }
+      .chip { font-size: 40px; }
+      .am { color: var(--color-concept-amber); }
+      .tl { color: var(--color-concept-teal); }
+      .sl { color: var(--color-concept-slate); }
+      .q { color: var(--color-muted-foreground); }
+      .slot { display: inline-grid; }
+      .slot > * { grid-area: 1 / 1; }
+      .eq { position: absolute; font: 800 70px / 1.1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .eq.small { font-size: 58px; }
+      .card48 { position: absolute; left: 330px; top: 180px; width: 520px; height: 220px; border: 5px solid var(--color-concept-slate); border-radius: 20px; background: var(--color-surface); display: flex; align-items: center; justify-content: center; font: 800 64px "Baloo 2", sans-serif; }
+      .pair { position: absolute; font: 800 52px / 1.1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .pair .arrow { color: var(--color-muted-foreground); margin: 0 14px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer"><div id="z1" class="layer"></div></section>
+        <section id="s2" class="scene layer"><div id="z2" class="layer"></div></section>
+        <section id="s3" class="scene layer"><div id="z3" class="layer"></div></section>
+        <section id="s4" class="scene layer"><div id="z4" class="layer"></div></section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { tl, $, start, W, owl, pop, hide, fade, pose, scenes, finish } = window.LV;
+        const chip = (id, cls, html) => `<span id="${id}" class="chip ${cls}">${html}</span>`;
+        const el = (host, html) => {
+          host.insertAdjacentHTML("beforeend", html);
+        };
+        const title = (host, id, cls, html) =>
+          el(host, `<div class="abs" style="left:250px;top:28px">${chip(id, cls, html)}</div>`);
+        const at = (id, left, top, cls, html) =>
+          `<div id="${id}" class="abs" style="left:${left}px;top:${top}px">${chip(`${id}c`, cls, html)}</div>`;
+        const swap = (q, a, t) => {
+          tl.fromTo(q, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.2, immediateRender: false }, t);
+          pop(a, t, { from: 0.4 });
+        };
+
+        // ---------- s01: a card of 48 squares ----------
+        title($("#z1"), "t1", "amber", "Tích 48, ƯCLN là 2");
+        el($("#z1"), `
+          <div class="card48">48 ô vuông</div>
+          ${at("rows", 880, 260, "slate", "a hàng")}
+          ${at("cols", 330, 110, "slate", "mỗi hàng b ô")}
+          ${at("lt", 330, 430, "slate", "a &lt; b")}
+          ${at("g2", 520, 430, "amber", "ƯCLN(a, b) = 2")}`);
+
+        // ---------- s02: a · b = d · d · m · n ----------
+        title($("#z2"), "t2", "amber", "Tích 48, ƯCLN là 2");
+        el($("#z2"), `
+          <div id="b1" class="eq" style="left:330px;top:100px">a = <span class="am">d</span> · m</div>
+          <div id="b2" class="eq" style="left:330px;top:185px">b = <span class="am">d</span> · n</div>
+          <div id="b3" class="eq small" style="left:330px;top:285px">a · b = <span class="am">d</span> · <span class="am">d</span> · m · n</div>
+          <div id="c1" class="eq small" style="left:330px;top:100px">48 = <span class="am">2</span> · <span class="am">2</span> · m · n</div>
+          <div id="c2" class="eq small" style="left:330px;top:185px">48 = 4 · m · n</div>
+          <div id="c3" class="eq small" style="left:330px;top:285px">48 : 4 = <span class="slot"><span id="c3q" class="q">?</span><span id="c3a">12</span></span></div>
+          <div id="c4" class="eq" style="left:330px;top:385px"><span class="pill" style="padding:0 30px 4px">m · n = 12</span></div>`);
+
+        // ---------- s03: pairs with product 12 ----------
+        title($("#z3"), "t3", "amber", "Tích 48, ƯCLN là 2");
+        el($("#z3"), `<div id="p0" class="eq" style="left:330px;top:110px"><span class="pill" style="padding:0 30px 4px">m · n = 12</span></div>`);
+        [["1 và 12", "✓ nhận"], ["2 và 6", "✕ còn chung ước 2"], ["3 và 4", "✓ nhận"]].forEach(([pair, text], i) => {
+          el($("#z3"), `<div id="q${i}" class="pair ${i === 1 ? "sl" : "tl"}" style="left:330px;top:${250 + i * 85}px">${pair}</div>
+            ${at(`v${i}`, 660, 244 + i * 85, i === 1 ? "slate" : "teal", text)}`);
+        });
+
+        // ---------- s04: multiply by 2 ----------
+        title($("#z4"), "t4", "amber", "Nhân mỗi số với 2");
+        [["1 và 12", "2 và 24", "2 · 24 = 48"], ["3 và 4", "6 và 8", "6 · 8 = 48"]].forEach(([from, to, check], i) => {
+          el($("#z4"), `<div class="pair" style="left:330px;top:${130 + i * 100}px"><span class="tl">${from}</span><span class="arrow">→</span><span id="o${i}" class="am">${to}</span></div>
+            ${at(`k${i}`, 800, 124 + i * 100, "slate", check)}`);
+        });
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], { left: "34px", top: "366px" });
+        scenes([["#s1", "s01-mo"], ["#s2", "s02-viet"], ["#s3", "s03-chon"], ["#s4", "s04-nhan"]]);
+
+        {
+          const sid = "s01-mo";
+          hide(["#rowsc", "#colsc", "#ltc", "#g2c"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bìa"));
+          pop("#rowsc", W(sid, "hàng"), { from: 0.6 });
+          pop("#colsc", W(sid, "ô", 2), { from: 0.6 });
+          pop("#ltc", W(sid, "nhỏ"), { from: 0.6 });
+          pop("#g2c", W(sid, "hai", 2), { from: 0.6 });
+        }
+        {
+          const sid = "s02-viet";
+          hide(["#b3", "#c1", "#c2", "#c3", "#c3a", "#c4"]);
+          pose(bird, "idle", start(sid));
+          pop("#b3", W(sid, "chúng"), { from: 0.6 });
+          fade(["#b1", "#b2", "#b3"], W(sid, "nên") - 0.2, 0.25);
+          pop("#c1", W(sid, "nên"), { from: 0.6 });
+          pop("#c2", W(sid, "vậy"), { from: 0.6 });
+          pop("#c3", W(sid, "48", 2), { from: 0.6 });
+          swap("#c3q", "#c3a", W(sid, "12"));
+          pop("#c4", W(sid, "bằng", 5), { from: 0.6 });
+          pose(bird, "happy", W(sid, "bằng", 5));
+        }
+        {
+          const sid = "s03-chon";
+          hide(["#q0", "#q1", "#q2", "#v0", "#v1", "#v2"]);
+          pose(bird, "idle", start(sid));
+          pop("#q0", W(sid, "1"), { from: 0.6 });
+          pop("#q1", W(sid, "2"), { from: 0.6 });
+          pop("#q2", W(sid, "3"), { from: 0.6 });
+          pop("#v1", W(sid, "còn"), { from: 0.6 });
+          pop(["#v0", "#v2"], W(sid, "chỉ"), { from: 0.6, stagger: 0.15 });
+        }
+        {
+          const sid = "s04-nhan";
+          hide(["#o0", "#o1", "#k0", "#k1"]);
+          pose(bird, "idle", start(sid));
+          pop("#o0", W(sid, "cho", 1), { from: 0.6 });
+          pop("#k0", W(sid, "cho", 1) + 0.9, { from: 0.6 });
+          pop("#o1", W(sid, "cho", 2), { from: 0.6 });
+          pop("#k1", W(sid, "cho", 2) + 0.9, { from: 0.6 });
+          pose(bird, "cheer", W(sid, "cho", 2));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

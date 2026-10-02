@@ -1,0 +1,58 @@
+{
+  "title": "Tìm hai số khi biết tổng",
+  "engine": "local",
+  "poster": { "scene": "s03-chon", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm hai số khi biết tổng.",
+          "opening": true
+        },
+        { "text": "Một dải băng ngắn, một dải băng dài." },
+        { "text": "Hai dải dài tổng cộng 48." },
+        { "text": "Đoạn lớn nhất cắt vừa hết cả hai là 6." }
+      ]
+    },
+    {
+      "id": "s02-chia",
+      "sentences": [
+        { "text": "Hai dải là 6 nhân số m và 6 nhân số n." },
+        { "text": "Bạn thử đoán: 48 chia 6 bằng mấy?", "pause": "ask" },
+        { "text": "48 chia 6 bằng 8.", "pause": "think" },
+        {
+          "text": "Biết tổng của hai số và ƯCLN là số d. Chia tổng cho số d thì được số m cộng số n, như 48 chia 6 được 8.",
+          "say": "Biết tổng của hai số và ước-chung-lớn-nhất là số d. Chia tổng cho số d thì được số m cộng số n, như 48 chia 6 được 8.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s03-chon",
+      "sentences": [
+        { "text": "Vậy số m cộng số n bằng 8." },
+        { "text": "Cặp 1 và 7: chỉ chung ước 1, nhận." },
+        { "text": "Cặp 2 và 6: còn chung ước 2, loại." },
+        { "text": "Cặp 3 và 5: chỉ chung ước 1, nhận." }
+      ]
+    },
+    {
+      "id": "s04-nhan",
+      "sentences": [
+        { "text": "Nhân mỗi cặp nhận được với 6." },
+        { "text": "Ta được 6 và 42, hay 18 và 30." },
+        { "text": "Thử lại: tổng cả hai cặp đều là 48." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cap-so-tong",
+      "from": "s02-chia",
+      "to": "s04-nhan",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-tong"]
+    }
+  ]
+}

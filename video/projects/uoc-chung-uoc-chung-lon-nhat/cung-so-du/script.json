@@ -1,0 +1,46 @@
+{
+  "title": "Cùng số dư thì hiệu chia hết",
+  "engine": "local",
+  "poster": { "scene": "s03-hieu", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta xem hai số cùng số dư.",
+          "opening": true
+        },
+        { "text": "Chia 17 cái kẹo vào các túi 4 cái, thừa 1 cái." },
+        { "text": "Chia 29 cái kẹo vào túi 4 cái, cũng thừa 1." }
+      ]
+    },
+    {
+      "id": "s02-bo",
+      "sentences": [
+        { "text": "Bỏ cái kẹo thừa đi, còn 16 và 28." },
+        { "text": "Bạn thử đoán: 16 có chia hết cho 4 không?", "pause": "ask" },
+        { "text": "Có, và 28 cũng chia hết cho 4.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-hieu",
+      "sentences": [
+        { "text": "Hiệu của 29 và 17 là 12." },
+        { "text": "12 cũng chia hết cho 4.", "pause": "think" },
+        { "text": "Bạn nhớ nhé." },
+        {
+          "text": "Hai số chia cho số a được cùng số dư thì hiệu của chúng chia hết cho số a. Hiệu của hai số chia hết cho số a thì hai số được cùng số dư.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cung-so-du",
+      "from": "s02-bo",
+      "to": "s03-hieu",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cung-so-du"]
+    }
+  ]
+}

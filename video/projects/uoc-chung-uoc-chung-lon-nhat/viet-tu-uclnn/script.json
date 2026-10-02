@@ -1,0 +1,66 @@
+{
+  "title": "Viết hai số từ ước chung lớn nhất",
+  "engine": "local",
+  "poster": { "scene": "s03-viet", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta viết hai số từ ƯCLN.",
+          "say": "Chào bạn! Hôm nay ta viết hai số từ ước-chung-lớn-nhất.",
+          "opening": true
+        },
+        { "text": "Hai dải băng dài 12 và 18." }
+      ]
+    },
+    {
+      "id": "s02-cat6",
+      "sentences": [
+        { "text": "Đoạn lớn nhất cắt vừa hết cả hai là 6." },
+        { "text": "Dải 12 được 2 đoạn, dải 18 được 3 đoạn." }
+      ]
+    },
+    {
+      "id": "s03-viet",
+      "sentences": [
+        { "text": "Bạn thử đoán: 12 bằng 6 nhân mấy?", "pause": "ask" },
+        { "text": "12 bằng 6 nhân 2, và 18 bằng 6 nhân 3." },
+        { "text": "Hai số 2 và 3 chỉ có ước chung là 1.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s04-phan-vi-du",
+      "sentences": [
+        { "text": "Thử với 12 và 24: chọn 6 được 2 và 4." },
+        { "text": "Nhưng 2 và 4 còn chung ước 2." },
+        { "text": "Nên 6 chưa là ước chung lớn nhất." },
+        { "text": "Ước chung lớn nhất của 12 và 24 là 12." }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé." },
+        {
+          "text": "Gọi số d là ƯCLN của hai số a và b.",
+          "say": "Gọi số d là ước-chung-lớn-nhất của hai số a và b.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Khi đó số a bằng số d nhân số m, số b bằng số d nhân số n, và số m, số n chỉ có ước chung là 1.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "viet-tu-uclnn",
+      "from": "s02-cat6",
+      "to": "s05-nho",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.viet-tu-uclnn"]
+    }
+  ]
+}

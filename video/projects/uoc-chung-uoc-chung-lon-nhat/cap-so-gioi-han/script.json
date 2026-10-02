@@ -1,0 +1,65 @@
+{
+  "title": "Tìm cặp số khi biết ước chung lớn nhất",
+  "engine": "local",
+  "poster": { "scene": "s03-quy", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm cặp số có ƯCLN là 5.",
+          "say": "Chào bạn! Hôm nay ta tìm cặp số có ước-chung-lớn-nhất là 5.",
+          "opening": true
+        },
+        { "text": "Hai dải băng khác nhau, dài không quá 20." },
+        { "text": "Đoạn lớn nhất cắt vừa hết cả hai là 5." }
+      ]
+    },
+    {
+      "id": "s02-bang",
+      "sentences": [
+        { "text": "Mỗi dải dài 5 nhân 1, 2, 3 hay 4." },
+        { "text": "Bạn thử đoán: cặp 2 và 4 có nhận không?", "pause": "ask" },
+        { "text": "Không, vì 2 và 4 còn chung ước 2.", "pause": "think" },
+        { "text": "Các cặp còn lại chỉ chung ước 1, nên nhận." }
+      ]
+    },
+    {
+      "id": "s03-quy",
+      "sentences": [
+        {
+          "text": "Các cặp số có ƯCLN là số d là số d nhân số m và số d nhân số n, không quá giới hạn của đề.",
+          "say": "Các cặp số có ước-chung-lớn-nhất là số d là số d nhân số m và số d nhân số n, không quá giới hạn của đề.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Hai số m và n chỉ được có ước chung là 1.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-nhan",
+      "sentences": [
+        { "text": "Nhân mỗi cặp nhận được với 5." },
+        { "text": "Ta được 5 và 10, 5 và 15, 5 và 20." },
+        { "text": "Rồi 10 và 15, 15 và 20." },
+        {
+          "text": "Cặp 5 và 10 hay 10 và 5 chỉ tính một cặp.",
+          "pause": "think"
+        },
+        { "text": "Vậy có tất cả 5 cặp." }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cap-so-gioi-han",
+      "from": "s02-bang",
+      "to": "s04-nhan",
+      "cardIds": ["uoc-chung-uoc-chung-lon-nhat.card.cap-so-gioi-han"]
+    }
+  ]
+}
