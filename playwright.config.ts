@@ -14,6 +14,8 @@ import {
 
 export default defineConfig({
   testDir: "./e2e",
+  // Needs a production build: `pnpm test:e2e:offline` runs it.
+  testIgnore: "**/offline.spec.ts",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

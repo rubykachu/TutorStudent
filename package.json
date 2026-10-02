@@ -16,6 +16,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:e2e:offline": "tsx scripts/offline-lab.ts -- playwright test -c playwright.offline.config.ts",
     "test:r2": "TUTOR_R2_SMOKE=1 vitest run tests/integration/r2-store.test.ts",
     "content:check": "tsx scripts/content-check.ts",
     "content:lock": "tsx scripts/content-lock.ts",
