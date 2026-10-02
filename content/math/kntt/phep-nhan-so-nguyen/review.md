@@ -8,9 +8,10 @@
 - Đọc hiểu (Haiku): lượt 1 181 / 47 / 0 (`.shots/review/phep-nhan-so-nguyen/doc-hieu.md`); lượt 2 trên 106 mục đổi 89 / 17 / 0 (`doc-hieu-2.md`); lượt 3 trên 21 mục viết lại 16 / 5 / 0 (`doc-hieu-3.md`); lượt 4 trên 19 mục chữ đổi sau vòng 3 8 / 11 / 0 (`doc-hieu-4.md`). Đã quá 3 lượt: các nhận xét lượt 4 là kiểu "hơi mơ hồ" chung, gộp vào Nên sửa mục 2, không chặn duyệt.
 - `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-nhan-so-nguyen/` (đã đọc contact sheet điện thoại của section 2, 3, 4, 5, 6, 7, 8: chữ mới không chồng, không bị cắt, hình bài vừa màn)
 - Kết luận: Đạt: 0 lỗi Nghiêm trọng (0 Nghiêm trọng, 2 Nên sửa, 6 Góp ý). Đã chạy `pnpm content:hash phep-nhan-so-nguyen --root content --approve` (đặt `published`) và `pnpm content:lock phep-nhan-so-nguyen`. Nên sửa 1 đã sửa trước khi duyệt (hai cặp kho ôn đổi sang `7 · (−6) = −42`, `(−9) · 5 = −45`, nhiễu 42); Nên sửa 2 còn lại (Haiku quá 3 lượt).
-- Bản đã review: `25435a9ec2e3555c4f3d8ebdfea7f1db8d36beb01ff61d91f8e9b247a6143ce6` (`pnpm content:diff` so với bản này)
+- Bản đã review: `42cc8a4dfb21d58ee74c91462edc247e55544dcf424e306ab5ad81cfabb3d2c1` (`pnpm content:diff` so với bản này)
 
 Kiểm bản sửa vòng 3 (mục 1 đến 11 của review vòng 3): 10 đã sửa đúng và không sinh lỗi mới; mục 11 (kho ôn `noi-tich-voi-ket-qua`) đã bỏ trùng với hai câu luyện ở section khác nhưng hai cặp mới lại gần như trùng một câu kho ôn khác của cùng card (Nên sửa 1).
+
 - Quy tắc tích nhiều thừa số (mục 1): "số chẵn, như 0, 2, 4" và "số lẻ, như 1, 3, 5" phủ mọi số thừa số âm; "số chẵn", "số lẻ", "thừa số" đều có trong glossary. Note `rule: true` của section 8 lặp nguyên văn ở recap section và recap card (đối chiếu bằng script: cả 12 section khớp note, recap section giống recap card). Không còn "2, 4 hay 6" ở chỗ nào trong chữ, hình hay tip.
 - Cách nói ghép cặp (mục 2): note section 7, nhãn hình `ghep-nhanh` và `goi-y-ghep-nhanh`, hai `explain` của `tinh-nhanh-am4-3-am5` và `tinh-nhanh-am25-7-4` đều nói "ghép hai số nhân ra …"; tip section 10 giữ "cộng ra 10, 20 hoặc 100" (đúng, đó là phép cộng). Hết "tích tròn chục".
 - Mục 3, 4, 5, 6, 7, 8, 9, 10: chữ mới đúng toán, khớp hình; "số đứng sau dấu nhân" khớp nhãn nút của hình; "thừa số chung" ở tip; "3 giờ trước" và "2 giờ trước" không còn "lúc"; lời giải `xep-tich-khac-dau` đã nói thứ tự của −9 và −7; section 6 nói "sau 2 giờ và 2 giờ trước" khớp bốn dòng hình. Phần Haiku lượt 4 còn mơ hồ ghi ở Nên sửa 2; chỗ còn lệch chữ ghi ở Góp ý 3 và 4.
@@ -81,3 +82,37 @@ Không có.
 - Nguồn: —
 - Vấn đề: giữ nguyên từ vòng 3: không câu `manipulate` nào gọi `dat-thua-so`.
 - Sửa: giữ nếu sắp có bài dùng tiếp, không thì xoá cùng dòng test; việc của người giữ mã, không phải của bài.
+
+## Vòng 5 - chỉ phần đổi (video và lời đọc giới thiệu)
+
+- Phạm vi: `pnpm content:diff phep-nhan-so-nguyen`: lời đọc `overview.narration` (Gemini, Vindemiatrix), ba video `cong-lap`, `duong-nhan-am`, `am-nhan-am` (VieNeu, Mỹ Duyên) cùng ba khối video đặt đầu section `cong-lap`, `duong-nhan-am`, `am-nhan-am`. Chữ của bài không đổi (overview.hook/summary/goals/whyItMatters và mọi note, exercise giữ nguyên), nên không chạy lượt Haiku.
+- `content:check`: chỉ còn lỗi `[review-hash]` và cảnh báo 3 id chưa có trong `ids.lock.json` (dự kiến). `video:check`: ok cho giọng, câu mở lời đọc, và cả 3 video (chữ rule trên hình mỗi video: 2).
+- Kịch bản (`script.json`): đã tự tính lại mọi số: (−2) · 3 = −2 + −2 + −2 = −6; (−3) · 2 = −3 + −3 = −6; dãy 3 · 2, 3 · 1, 3 · 0 = 6, 3, 0 (tích giảm 3), rồi 3 · (−1) = −3, 3 · (−2) = −6, 5 · (−2) = −10; dãy (−3) · 2, (−3) · 1, (−3) · 0 = −6, −3, 0 (tích tăng 3), rồi (−3) · (−1) = 3, (−3) · (−2) = 6, (−2) · (−3) = 6. Đều đúng, và "giảm 1, tích giảm 3" / "giảm 1, tích tăng 3" khớp note section. Ba câu quy tắc chép đúng note (cờ `rule`, `video:check` xác nhận); thuật ngữ "số âm", "số dương", "tích", "nhân" khớp glossary; mọi câu thường ≤ 12 chữ; mỗi video có câu chào "bạn" (`opening`), ba câu `ask` trước khi lộ đáp án, `think` sau mỗi câu quy tắc (trừ câu cuối), câu cuối là câu "Nhớ nhé" + quy tắc không phải `ask`; 15 câu mỗi video, 57 đến 65 giây.
+- Hình và khung đã cắt (3 sheet cong-lap, 2 sheet duong-nhan-am, 3 sheet am-nhan-am, thêm cắt riêng đoạn cuối bằng ffmpeg vào tệp tạm để xem kết quả hàng cuối trước khi hết cảnh): trình tự hình theo lời (chip "số dương/số âm" rồi "tìm quy luật", các hàng hiện theo từng câu, hàng hỏi `= ?` hiện trước khi đọc đáp án, thẻ quy tắc rồi ví dụ thử); hàng đáp án cuối cùng (−6 và 6) hiện trước khi cảnh tắt. Màu đúng theo bài: kết quả dương lime, số âm pink, số 0 slate, nhãn bước và chip "tích?" violet; đường số của cong-lap vẽ −2 pink, cung violet. Không chữ chồng, không bị cắt.
+- Phụ đề `.vtt` và Whisper (`report.json`): đủ 15 câu mỗi video, mọi `match` = 1; các chỗ Whisper nghe khác ("Nhận", "nền", "x") là kiểu nhận nhầm quen thuộc, không phải lệch lời. Clip: `cong-lap` (18,0 đến 63,4 giây), `duong-nhan-am` (8,7 đến 56,2), `am-nhan-am` (9,5 đến 62,9) mỗi clip một card cùng tên, đoạn clip đúng phần giảng quy tắc của card đó.
+- Lời đọc giới thiệu (`overview.vtt`): 27 câu phụ đề, câu đầu "Chào bạn!", chữ khớp từng chữ với hook, summary, 4 goals và whyItMatters; phần thêm duy nhất là câu dẫn "Học xong bài này, bạn sẽ:" trước các goals (do quy trình đọc lời, không phải chữ của bài).
+- Kết luận: Đạt: 0 Nghiêm trọng, 0 Nên sửa, 2 Góp ý. Không cập nhật `docs/lessons-learned/index.md` (không có Nghiêm trọng). Chưa chạy `content:hash`; việc đó và `content:lock` để điều phối làm.
+
+### Nghiêm trọng
+
+Không có.
+
+### Nên sửa
+
+Không có.
+
+### Góp ý
+
+#### 9. Thừa số dương trong phép nhân đang in màu tối, chưa theo "số dương lime"
+
+- Vị trí: `video/projects/phep-nhan-so-nguyen/cong-lap/index.html` (hàng `(−2) · 3`, `(−3) · 2`), `duong-nhan-am/index.html` (`3 · 2`, `3 · 1`, `3 · (−1)`, `5 · (−2)`), `am-nhan-am/index.html` (`(−3) · 2`, `(−3) · 1`). LL-05.
+- Nguồn: —
+- Vấn đề: chip "số dương" tô lime nhưng số dương cụ thể trong phép tính (thừa số 3, 2, 1, 5) cùng màu chữ tối của dấu nhân; chỉ tích dương mới lime. Bé thấy cùng khái niệm hai màu. Không sai kiến thức.
+- Sửa: giữ nguyên: hình của bài (`quy-luat-3-nhan`, `quy-luat-am3-nhan`) cũng chỉ tô màu theo dấu ở tích, không tô thừa số; video làm đúng như hình của bài.
+
+#### 10. Thẻ quy tắc xuống dòng để lại một chữ lẻ
+
+- Vị trí: thẻ `rule` của `cong-lap` ("… nên tích / là số âm."), `am-nhan-am` ("… nhân hai phần số tự / nhiên."), khung `sheet-01` đến `sheet-03`. LL-12.
+- Nguồn: —
+- Vấn đề: ngắt dòng tách "số tự nhiên" của câu quy tắc trong am-nhan-am thành "tự / nhiên.", khó đọc hơn một cụm liền với bé chậm.
+- Sửa: đã thêm `text-wrap: balance` cho thẻ quy tắc của cả ba video và dựng lại (chỉ đổi hình, giọng giữ nguyên).

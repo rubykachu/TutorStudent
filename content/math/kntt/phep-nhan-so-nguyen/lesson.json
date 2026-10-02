@@ -12,7 +12,7 @@
   },
   "sourceRef": "Sách bài tập tr.55–57",
   "status": "published",
-  "reviewedHash": "25435a9ec2e3555c4f3d8ebdfea7f1db8d36beb01ff61d91f8e9b247a6143ce6",
+  "reviewedHash": "42cc8a4dfb21d58ee74c91462edc247e55544dcf424e306ab5ad81cfabb3d2c1",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học phép nhân số nguyên. Buổi tối ở Đà Lạt, nhiệt độ giảm 2 độ mỗi giờ. Sau 3 giờ, nhiệt độ đã thay đổi bao nhiêu độ?"
@@ -24,7 +24,16 @@
       "tính nhanh: đổi chỗ các số, nhóm các số, hoặc nhân một số với một tổng",
       "tìm số x khi biết tích bằng 0"
     ],
-    "whyItMatters": "Bạn dùng phép nhân số nguyên để tính nhiệt độ thay đổi bao nhiêu sau vài giờ, hay tiền thay đổi khi nợ thêm."
+    "whyItMatters": "Bạn dùng phép nhân số nguyên để tính nhiệt độ thay đổi bao nhiêu sau vài giờ, hay tiền thay đổi khi nợ thêm.",
+    "narration": {
+      "audioUrl": "narration/phep-nhan-so-nguyen/overview.m4a",
+      "vttUrl": "narration/phep-nhan-so-nguyen/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -60,6 +69,10 @@
       "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-nhan-so-nguyen.video.cong-lap"
+        },
         {
           "type": "group",
           "children": [
@@ -157,6 +170,10 @@
       "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-nhan-so-nguyen.video.duong-nhan-am"
+        },
         {
           "type": "group",
           "children": [
@@ -280,6 +297,10 @@
       "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1), tr.56 (bài 3.26)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-nhan-so-nguyen.video.am-nhan-am"
+        },
         {
           "type": "group",
           "children": [
@@ -4051,5 +4072,70 @@
   "sticker": {
     "name": "Huy hiệu nhân số nguyên",
     "visualId": "phep-nhan-so-nguyen.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "phep-nhan-so-nguyen.video.cong-lap",
+      "lessonId": "phep-nhan-so-nguyen",
+      "url": "video/phep-nhan-so-nguyen/cong-lap.mp4",
+      "vttUrl": "video/phep-nhan-so-nguyen/cong-lap.vtt",
+      "posterUrl": "video/phep-nhan-so-nguyen/cong-lap.jpg",
+      "durationSec": 64.8,
+      "clips": [
+        {
+          "id": "cong-lap",
+          "start": 18.008,
+          "end": 63.4,
+          "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.video.duong-nhan-am",
+      "lessonId": "phep-nhan-so-nguyen",
+      "url": "video/phep-nhan-so-nguyen/duong-nhan-am.mp4",
+      "vttUrl": "video/phep-nhan-so-nguyen/duong-nhan-am.vtt",
+      "posterUrl": "video/phep-nhan-so-nguyen/duong-nhan-am.jpg",
+      "durationSec": 57.67,
+      "clips": [
+        {
+          "id": "duong-nhan-am",
+          "start": 8.728,
+          "end": 56.239,
+          "cardIds": ["phep-nhan-so-nguyen.card.duong-nhan-am"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.video.am-nhan-am",
+      "lessonId": "phep-nhan-so-nguyen",
+      "url": "video/phep-nhan-so-nguyen/am-nhan-am.mp4",
+      "vttUrl": "video/phep-nhan-so-nguyen/am-nhan-am.vtt",
+      "posterUrl": "video/phep-nhan-so-nguyen/am-nhan-am.jpg",
+      "durationSec": 64.3,
+      "clips": [
+        {
+          "id": "am-nhan-am",
+          "start": 9.52,
+          "end": 62.872,
+          "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

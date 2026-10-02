@@ -1,8 +1,8 @@
 # Bàn giao: Bài 16 `phep-nhan-so-nguyen` (Phép nhân số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bài đã duyệt: review vòng 1 đến 4 (vòng 3 và 4 chỉ phần đổi, 0 Nghiêm trọng), Đọc hiểu Haiku 4 lượt, `content:hash --approve` (`published`), `content:lock` (96 id), `lesson:walk` 0 FAIL, `content:check` 0 lỗi 0 cảnh báo. Còn 2 mục Nên sửa trong `review.md` (câu Haiku còn đánh dấu mơ hồ, 6 Góp ý) và mục bố cục điện thoại của hình `am2-nhan3` (việc của người làm app). Chưa làm lời đọc và video.
-- Việc kế tiếp: lời đọc và video của bài (skill `lesson-video`), sau khi chủ dự án chốt giọng.
+- Cập nhật cuối: 02/10/2026. Bài đã duyệt: review vòng 1 đến 4 (vòng 3 và 4 chỉ phần đổi, 0 Nghiêm trọng), Đọc hiểu Haiku 4 lượt, `content:hash --approve` (`published`), `content:lock` (96 id), `lesson:walk` 0 FAIL, `content:check` 0 lỗi 0 cảnh báo. Còn 2 mục Nên sửa trong `review.md` (câu Haiku còn đánh dấu mơ hồ, 6 Góp ý) và mục bố cục điện thoại của hình `am2-nhan3` (việc của người làm app). Lời đọc và video đã làm (02/10/2026): giọng Mỹ Duyên (Bài 15 và 17 giọng Hải Đăng nên xen giọng nữ; `media.json` không cờ miễn), lời đọc giới thiệu bằng Gemini Vindemiatrix (mọi câu khớp 100%), 3 video `cong-lap` (cộng lặp lại trên trục số), `duong-nhan-am` (dãy 3 · n), `am-nhan-am` (dãy (−3) · n). Review vòng 5 chỉ phần đổi (Sonnet, 0 Nghiêm trọng), `content:hash --approve`, `content:lock` (3 id video), `lesson:walk` 0 FAIL.
+- Việc kế tiếp: tải media lên R2 và deploy theo `docs/operations.md`.
 - Chưa dùng nữa: validator `dat-thua-so` (logic.ts) không còn câu nào gọi, vì hai câu bảng tích đã đổi thành câu tính tích có hình gợi ý (bảng tự in tích thì bé chỉ bấm tới khi thấy đáp án). Registry và test vẫn nối nó; chủ dự án quyết giữ cho bài sau hay gỡ.
 
 ## Nguồn (sách bài tập, `sources/math/phep-nhan-so-nguyen/`, không commit)

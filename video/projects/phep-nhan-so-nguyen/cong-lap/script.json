@@ -1,0 +1,90 @@
+{
+  "title": "Số âm nhân số dương là cộng lặp lại",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-cong",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chuyen",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta nhân số âm với số dương.",
+          "opening": true
+        },
+        {
+          "text": "Ở Đà Lạt, nhiệt độ giảm 2 độ mỗi giờ."
+        },
+        {
+          "text": "Mỗi giờ thay đổi âm 2 độ."
+        },
+        {
+          "text": "Bạn đoán xem: sau 3 giờ, thay đổi mấy độ?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s02-cong",
+      "sentences": [
+        {
+          "text": "Mỗi giờ ta cộng thêm âm 2."
+        },
+        {
+          "text": "Giờ thứ nhất: âm 2."
+        },
+        {
+          "text": "Giờ thứ hai: thêm âm 2, được âm 4."
+        },
+        {
+          "text": "Giờ thứ ba: thêm âm 2, được âm 6."
+        },
+        {
+          "text": "Vậy âm 2 nhân 3 bằng âm 6 độ.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Bạn đoán xem: số âm nhân số dương, tích dương hay âm?",
+          "pause": "ask"
+        },
+        {
+          "text": "Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Thử với âm 3 nhân 2."
+        },
+        {
+          "text": "Âm 3 cộng âm 3 bằng âm 6."
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cong-lap",
+      "from": "s02-cong",
+      "to": "s04-nho",
+      "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"]
+    }
+  ]
+}

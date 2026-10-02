@@ -1,0 +1,96 @@
+{
+  "title": "Nhân hai số âm: tìm quy luật",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-tiep",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta nhân hai số âm với nhau.",
+          "opening": true
+        },
+        {
+          "text": "Ta lại tìm quy luật của dãy phép nhân."
+        }
+      ]
+    },
+    {
+      "id": "s02-day",
+      "sentences": [
+        {
+          "text": "Âm 3 nhân 2 bằng âm 6."
+        },
+        {
+          "text": "Âm 3 nhân 1 bằng âm 3."
+        },
+        {
+          "text": "Âm 3 nhân 0 bằng 0."
+        },
+        {
+          "text": "Số sau dấu nhân giảm 1, tích tăng 3.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s03-tiep",
+      "sentences": [
+        {
+          "text": "Bạn đoán xem: âm 3 nhân âm 1 bằng mấy?",
+          "pause": "ask"
+        },
+        {
+          "text": "Tích tăng 3 nữa: 0 cộng 3 bằng 3."
+        },
+        {
+          "text": "Tiếp theo, âm 3 nhân âm 2 bằng 6.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Bạn đoán xem: âm nhân âm, tích dương hay âm?",
+          "pause": "ask"
+        },
+        {
+          "text": "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Thử số khác: âm 2 nhân âm 3."
+        },
+        {
+          "text": "Tích là số dương, bằng 6."
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "am-nhan-am",
+      "from": "s02-day",
+      "to": "s05-nho",
+      "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"]
+    }
+  ]
+}

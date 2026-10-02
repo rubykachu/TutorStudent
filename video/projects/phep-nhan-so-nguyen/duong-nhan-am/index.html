@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+  Lesson video "Số dương nhân số âm: tìm quy luật" (lesson phep-nhan-so-nguyen):
+  3 . 2 = 6, 3 . 1 = 3, 3 . 0 = 0: the number after the dot goes down 1 and the product
+  goes down 3, so 3 . (-1) = -3 and 3 . (-2) = -6; a positive times a negative is negative.
+  Colours as in the lesson: positive numbers lime, negative numbers pink, zero slate,
+  step labels violet. Built by `pnpm video:build`, which injects window.TIMING.
+  The rule card carries `data-rule-text`: its text is the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Số dương nhân số âm: tìm quy luật</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag { position: absolute; white-space: nowrap; transform: translateX(-50%); }
+      .fm { font: 800 84px / 1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .fm.small { font-size: 64px; }
+      .fm.mini { font-size: 56px; }
+      .pos { color: var(--color-concept-lime); }
+      .neg { color: var(--color-concept-pink); }
+      .zero { color: var(--color-concept-slate); }
+      .chip.big { font: 800 56px / 1.1 "Baloo 2", sans-serif; padding: 2px 26px 8px; }
+      .chip.word { font: 700 44px / 1.2 "Be Vietnam Pro", sans-serif; }
+      .rule { position: absolute; left: 100px; width: 1080px; top: 135px; padding: 20px 32px;
+        font: 600 30px / 1.4 "Be Vietnam Pro", sans-serif; text-align: center; box-sizing: border-box; text-wrap: balance; }
+      .res { display: inline-grid; justify-items: start; min-width: 1.6em; }
+      .res > * { grid-area: 1 / 1; }
+      .qm { font: 800 56px / 1 "Baloo 2", sans-serif; color: var(--color-concept-violet); }
+      .sub { font: 700 34px / 1.2 "Be Vietnam Pro", sans-serif; color: var(--color-concept-violet); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="75" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="c1" class="row fm small" style="top: 130px; gap: 26px"><span class="chip word" style="--c: var(--color-concept-lime)">số dương</span><span>·</span><span class="chip word" style="--c: var(--color-concept-pink)">số âm</span></div>
+          <div id="c2" class="tag chip word" style="left: 640px; top: 300px; --c: var(--color-concept-violet)">tìm quy luật</div>
+        </section>
+        <section id="s2" class="scene layer"><div id="ar0" class="row fm " style="top: 50px"><span>3</span><span>·</span><span>2</span><span>=</span><span class="res"><span id="ap0" class="pos">6</span></span></div><div id="ar1" class="row fm " style="top: 170px"><span>3</span><span>·</span><span>1</span><span>=</span><span class="res"><span id="ap1" class="pos">3</span></span></div><div id="ar2" class="row fm " style="top: 290px"><span>3</span><span>·</span><span>0</span><span>=</span><span class="res"><span id="ap2" class="zero">0</span></span></div><div id="all0" class="tag chip" style="left: 320px; top: 128px; --c: var(--color-concept-violet)">−1</div><div id="alr0" class="tag chip" style="left: 960px; top: 128px; --c: var(--color-concept-violet)">−3</div><div id="all1" class="tag chip" style="left: 320px; top: 248px; --c: var(--color-concept-violet)">−1</div><div id="alr1" class="tag chip" style="left: 960px; top: 248px; --c: var(--color-concept-violet)">−3</div></section>
+        <section id="s3" class="scene layer"><div id="br0" class="row fm small" style="top: 30px"><span>3</span><span>·</span><span>2</span><span>=</span><span class="res"><span id="bp0" class="pos">6</span></span></div><div id="br1" class="row fm small" style="top: 130px"><span>3</span><span>·</span><span>1</span><span>=</span><span class="res"><span id="bp1" class="pos">3</span></span></div><div id="br2" class="row fm small" style="top: 230px"><span>3</span><span>·</span><span>0</span><span>=</span><span class="res"><span id="bp2" class="zero">0</span></span></div><div id="br3" class="row fm small" style="top: 330px"><span>3</span><span>·</span><span>(−1)</span><span>=</span><span class="res"><span id="bp3" class="neg">−3</span><span id="bq3" class="qm">?</span></span></div><div id="br4" class="row fm small" style="top: 430px"><span>3</span><span>·</span><span>(−2)</span><span>=</span><span class="res"><span id="bp4" class="neg">−6</span></span></div><div id="bll0" class="tag chip" style="left: 320px; top: 98px; --c: var(--color-concept-violet)">−1</div><div id="blr0" class="tag chip" style="left: 960px; top: 98px; --c: var(--color-concept-violet)">−3</div><div id="bll1" class="tag chip" style="left: 320px; top: 198px; --c: var(--color-concept-violet)">−1</div><div id="blr1" class="tag chip" style="left: 960px; top: 198px; --c: var(--color-concept-violet)">−3</div><div id="bll2" class="tag chip" style="left: 320px; top: 298px; --c: var(--color-concept-violet)">−1</div><div id="blr2" class="tag chip" style="left: 960px; top: 298px; --c: var(--color-concept-violet)">−3</div><div id="bll3" class="tag chip" style="left: 320px; top: 398px; --c: var(--color-concept-violet)">−1</div><div id="blr3" class="tag chip" style="left: 960px; top: 398px; --c: var(--color-concept-violet)">−3</div></section>
+        <section id="s4" class="scene layer">
+          <div id="a4" class="row fm small" style="top: 150px; gap: 26px"><span class="chip word" style="--c: var(--color-concept-lime)">số dương</span><span>·</span><span class="chip word" style="--c: var(--color-concept-pink)">số âm</span><span>=</span><span class="chip word" style="--c: var(--color-concept-violet)">tích?</span></div>
+          <div id="rule4" class="card rule" data-rule-text>Số dương nhân với số âm thì tích là số âm.</div>
+          <div id="e4" class="row fm small" style="top: 330px"><span>5 · (<span class="neg">−2</span>)</span><span id="e4r" class="neg">= −10</span></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="rule5" class="card rule" data-rule-text>Số dương nhân với số âm thì tích là số âm.</div>
+          <div id="m5" class="row fm mini" style="top: 330px"><span>3</span><span>·</span><span>(<span class="neg">−2</span>)</span><span>=</span><span class="neg">−6</span></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, fade, pose, scenes, finish } = window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes([
+          ["#s1", "s01-chao"],
+          ["#s2", "s02-day"],
+          ["#s3", "s03-tiep"],
+          ["#s4", "s04-quy-tac"],
+          ["#s5", "s05-nho"],
+        ]);
+
+        {
+          const sid = "s01-chao";
+          hide(["#c1", "#c2"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#c1", W(sid, "âm"), { from: 0.6 });
+          pop("#c2", W(sid, "quy"), { from: 0.6 });
+        }
+
+        {
+          const sid = "s02-day";
+          hide(["#ar0", "#ar1", "#ar2", "#ap0", "#ap1", "#ap2", "#all0", "#all1", "#alr0", "#alr1"]);
+          pose(bird, "idle", start(sid));
+          for (const k of [0, 1, 2]) {
+            pop(`#ar${k}`, W(sid, "nhân", k + 1), { from: 0.6 });
+            pop(`#ap${k}`, W(sid, "bằng", k + 1), { from: 0.5 });
+          }
+          pop(["#all0", "#all1"], W(sid, "giảm", 1), { from: 0.6 });
+          pop(["#alr0", "#alr1"], W(sid, "giảm", 2), { from: 0.6 });
+          pose(bird, "happy", W(sid, "giảm", 2));
+        }
+
+        {
+          const sid = "s03-tiep";
+          // the first three rows and their labels are already there when the scene starts
+          hide(["#br3", "#bp3", "#bq3", "#br4", "#bp4", "#bll2", "#blr2", "#bll3", "#blr3"]);
+          pose(bird, "idle", start(sid));
+          pop(["#br3", "#bq3", "#bll2"], W(sid, "nhân", 1), { from: 0.6, stagger: 0.1 });
+          pop("#blr2", W(sid, "giảm", 1), { from: 0.6 });
+          fade("#bq3", W(sid, "bằng", 2), 0.2);
+          pop("#bp3", W(sid, "bằng", 2), { from: 0.5 });
+          pop(["#br4", "#bll3"], W(sid, "nhân", 2), { from: 0.6, stagger: 0.1 });
+          pop("#blr3", W(sid, "tiếp"), { from: 0.6 });
+          pop("#bp4", W(sid, "bằng", 3), { from: 0.5 });
+          pose(bird, "happy", W(sid, "bằng", 3));
+        }
+
+        {
+          const sid = "s04-quy-tac";
+          hide(["#a4", "#rule4", "#e4", "#e4r"]);
+          pose(bird, "idle", start(sid));
+          pop("#a4", W(sid, "đoán"), { from: 0.6 });
+          fade("#a4", W(sid, "số"), 0.2);
+          pop("#rule4", W(sid, "số"), { from: 0.9 });
+          pop("#e4", W(sid, "5"), { from: 0.6 });
+          pop("#e4r", W(sid, "10"), { from: 0.5 });
+        }
+
+        {
+          const sid = "s05-nho";
+          hide(["#rule5", "#m5"]);
+          pose(bird, "idle", start(sid));
+          pop("#m5", W(sid, "nhớ"), { from: 0.6 });
+          pop("#rule5", W(sid, "số"), { from: 0.9 });
+          pose(bird, "cheer", W(sid, "số"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

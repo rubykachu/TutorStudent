@@ -1,0 +1,96 @@
+{
+  "title": "Số dương nhân số âm: tìm quy luật",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-tiep",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta nhân số dương với số âm.",
+          "opening": true
+        },
+        {
+          "text": "Ta tìm quy luật của dãy phép nhân."
+        }
+      ]
+    },
+    {
+      "id": "s02-day",
+      "sentences": [
+        {
+          "text": "3 nhân 2 bằng 6."
+        },
+        {
+          "text": "3 nhân 1 bằng 3."
+        },
+        {
+          "text": "3 nhân 0 bằng 0."
+        },
+        {
+          "text": "Số sau dấu nhân giảm 1, tích giảm 3.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s03-tiep",
+      "sentences": [
+        {
+          "text": "Bạn đoán xem: 3 nhân âm 1 bằng mấy?",
+          "pause": "ask"
+        },
+        {
+          "text": "Tích giảm 3 nữa: 0 trừ 3 bằng âm 3."
+        },
+        {
+          "text": "Tiếp theo, 3 nhân âm 2 bằng âm 6.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Bạn đoán xem: dương nhân âm, tích dương hay âm?",
+          "pause": "ask"
+        },
+        {
+          "text": "Số dương nhân với số âm thì tích là số âm.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Thử số khác: 5 nhân âm 2."
+        },
+        {
+          "text": "Tích là số âm, bằng âm 10."
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Số dương nhân với số âm thì tích là số âm.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "duong-nhan-am",
+      "from": "s02-day",
+      "to": "s05-nho",
+      "cardIds": ["phep-nhan-so-nguyen.card.duong-nhan-am"]
+    }
+  ]
+}

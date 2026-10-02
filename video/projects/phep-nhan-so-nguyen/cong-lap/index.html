@@ -1,0 +1,177 @@
+<!doctype html>
+<!--
+  Lesson video "Số âm nhân số dương là cộng lặp lại" (lesson phep-nhan-so-nguyen):
+  the temperature in Da Lat drops 2 degrees an hour, so after 3 hours
+  (-2) + (-2) + (-2) = (-2) . 3 = -6, shown as three jumps of -2 on a number line.
+  Colours as in the lesson: positive numbers lime, negative numbers pink, zero slate,
+  step labels violet. Built by `pnpm video:build`, which injects window.TIMING.
+  The rule card carries `data-rule-text`: its text is the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Số âm nhân số dương là cộng lặp lại</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag { position: absolute; white-space: nowrap; transform: translateX(-50%); }
+      .fm { font: 800 84px / 1 "Baloo 2", sans-serif; white-space: nowrap; }
+      .fm.small { font-size: 64px; }
+      .fm.mini { font-size: 56px; }
+      .pos { color: var(--color-concept-lime); }
+      .neg { color: var(--color-concept-pink); }
+      .zero { color: var(--color-concept-slate); }
+      .chip.big { font: 800 56px / 1.1 "Baloo 2", sans-serif; padding: 2px 26px 8px; }
+      .chip.word { font: 700 44px / 1.2 "Be Vietnam Pro", sans-serif; }
+      .rule { position: absolute; left: 100px; width: 1080px; top: 135px; padding: 20px 32px;
+        font: 600 30px / 1.4 "Be Vietnam Pro", sans-serif; text-align: center; box-sizing: border-box; text-wrap: balance; }
+      .res { display: inline-grid; justify-items: start; min-width: 1.6em; }
+      .res > * { grid-area: 1 / 1; }
+      .qm { font: 800 56px / 1 "Baloo 2", sans-serif; color: var(--color-concept-violet); }
+      .sub { font: 700 34px / 1.2 "Be Vietnam Pro", sans-serif; color: var(--color-concept-violet); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="70" data-width="1280" data-height="720">
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="c1a" class="tag chip word" style="left: 640px; top: 60px">Đà Lạt</div>
+          <div id="c1b" class="tag chip word" style="left: 640px; top: 170px; --c: var(--color-concept-violet)">giảm 2 độ mỗi giờ</div>
+          <div id="c1c" class="tag chip big" style="left: 640px; top: 290px; --c: var(--color-concept-pink)">−2 độ mỗi giờ</div>
+          <div id="c1d" class="tag chip word" style="left: 640px; top: 420px; --c: var(--color-concept-violet)">sau 3 giờ?</div>
+        </section>
+        <section id="s2" class="scene layer">
+          <svg class="layer" viewBox="0 0 1280 720" aria-hidden="true">
+            <line x1="200" y1="180" x2="1040" y2="180" stroke="var(--color-foreground)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="980" y1="173" x2="980" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="980" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">0</text><line x1="880" y1="173" x2="880" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="880" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−1</text><line x1="780" y1="173" x2="780" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="780" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−2</text><line x1="680" y1="173" x2="680" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="680" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−3</text><line x1="580" y1="173" x2="580" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="580" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−4</text><line x1="480" y1="173" x2="480" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="480" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−5</text><line x1="380" y1="173" x2="380" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="380" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−6</text><line x1="280" y1="173" x2="280" y2="197" stroke="var(--color-foreground)" stroke-width="4"/><text x="280" y="240" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="34" fill="var(--color-foreground)">−7</text><path id="arc1" d="M980 180 Q880 80 780 180" fill="none" stroke="var(--color-concept-violet)" stroke-width="6" stroke-linecap="round"/><text id="al1" x="880" y="96" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="38" fill="var(--color-concept-pink)">−2</text><path id="arc2" d="M780 180 Q680 80 580 180" fill="none" stroke="var(--color-concept-violet)" stroke-width="6" stroke-linecap="round"/><text id="al2" x="680" y="96" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="38" fill="var(--color-concept-pink)">−2</text><path id="arc3" d="M580 180 Q480 80 380 180" fill="none" stroke="var(--color-concept-violet)" stroke-width="6" stroke-linecap="round"/><text id="al3" x="480" y="96" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="38" fill="var(--color-concept-pink)">−2</text>
+          </svg>
+          <div id="dot" class="abs" style="left: 962px; top: 162px; width: 36px; height: 36px; border-radius: 50%; background: var(--color-concept-blue); border: 4px solid var(--color-surface); box-shadow: 0 2px 6px rgb(15 23 42 / 0.3)"></div>
+          <div id="f2a" class="row fm small" style="top: 290px">
+            <span id="t1" class="neg">(−2)</span>
+            <span id="t2">+</span>
+            <span id="t3" class="neg">(−2)</span>
+            <span id="t4">+</span>
+            <span id="t5" class="neg">(−2)</span>
+            <span id="t6">=</span>
+            <span id="t7" class="neg">−6</span>
+          </div>
+          <div id="f2b" class="row fm small" style="top: 390px">
+            <span class="neg">(−2)</span>
+            <span>·</span>
+            <span>3</span>
+            <span>=</span>
+            <span id="u7" class="neg">−6</span>
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="a3" class="row fm small" style="top: 150px; gap: 26px">
+            <span class="chip word" style="--c: var(--color-concept-pink)">số âm</span>
+            <span>·</span>
+            <span class="chip word" style="--c: var(--color-concept-lime)">số dương</span>
+            <span>=</span>
+            <span class="chip word" style="--c: var(--color-concept-violet)">tích?</span>
+          </div>
+          <div id="rule3" class="card rule" data-rule-text>Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm.</div>
+          <div id="e3" class="row fm small" style="top: 330px">
+            <span>(<span class="neg">−3</span>) · 2</span>
+            <span id="e3b">= <span class="neg">(−3)</span> + <span class="neg">(−3)</span></span>
+            <span id="e3c">= <span class="neg">−6</span></span>
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="rule4" class="card rule" data-rule-text>Nhân một số âm với một số dương là cộng lặp lại số âm đó, nên tích là số âm.</div>
+          <div id="m4" class="row fm mini" style="top: 330px">
+            <span class="neg">(−2)</span><span>·</span><span>3</span><span>=</span><span class="neg">(−2) + (−2) + (−2)</span><span>=</span><span class="neg">−6</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, fade, pose, scenes, tl, finish } = window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        const show = (target, t, d = 0.4) =>
+          tl.fromTo(target, { autoAlpha: 0 }, { autoAlpha: 1, duration: d, immediateRender: false }, t);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes([
+          ["#s1", "s01-chuyen"],
+          ["#s2", "s02-cong"],
+          ["#s3", "s03-quy-tac"],
+          ["#s4", "s04-nho"],
+        ]);
+
+        {
+          const sid = "s01-chuyen";
+          hide(["#c1a", "#c1b", "#c1c", "#c1d"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#c1a", W(sid, "đà"), { from: 0.6 });
+          pop("#c1b", W(sid, "giảm"), { from: 0.6 });
+          pop("#c1c", W(sid, "âm", 2), { from: 0.6 });
+          pop("#c1d", W(sid, "đoán"), { from: 0.6 });
+        }
+
+        {
+          const sid = "s02-cong";
+          hide(["#arc1", "#arc2", "#arc3", "#al1", "#al2", "#al3", "#t1", "#t2", "#t3", "#t4", "#t5", "#t6", "#t7", "#f2b", "#u7"]);
+          pose(bird, "idle", start(sid));
+          const jump = (i, word) => {
+            const t = W(sid, word);
+            show([`#arc${i}`, `#al${i}`], t);
+            tl.to("#dot", { x: -200 * i, duration: 0.5, ease: "power2.inOut" }, t + 0.1);
+          };
+          jump(1, "nhất");
+          jump(2, "hai");
+          jump(3, "ba");
+          pop("#t1", W(sid, "nhất"), { from: 0.6 });
+          pop(["#t2", "#t3"], W(sid, "hai"), { from: 0.6, stagger: 0.15 });
+          pop(["#t4", "#t5"], W(sid, "ba"), { from: 0.6, stagger: 0.15 });
+          pop(["#t6", "#t7"], W(sid, "âm", 6), { from: 0.6, stagger: 0.15 });
+          pop("#f2b", W(sid, "vậy"), { from: 0.6 });
+          pop("#u7", W(sid, "âm", 8), { from: 0.5 });
+          pose(bird, "happy", W(sid, "âm", 8));
+        }
+
+        {
+          const sid = "s03-quy-tac";
+          hide(["#a3", "#rule3", "#e3", "#e3b", "#e3c"]);
+          pose(bird, "idle", start(sid));
+          pop("#a3", W(sid, "đoán"), { from: 0.6 });
+          fade("#a3", W(sid, "nhân", 2), 0.2);
+          pop("#rule3", W(sid, "nhân", 2), { from: 0.9 });
+          pop("#e3", W(sid, "thử"), { from: 0.6 });
+          pop("#e3b", W(sid, "âm", 7), { from: 0.6 });
+          pop("#e3c", W(sid, "bằng"), { from: 0.6 });
+        }
+
+        {
+          const sid = "s04-nho";
+          hide(["#rule4", "#m4"]);
+          pose(bird, "idle", start(sid));
+          pop("#m4", W(sid, "nhớ"), { from: 0.6 });
+          pop("#rule4", W(sid, "nhân"), { from: 0.9 });
+          pose(bird, "cheer", W(sid, "nhân"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>
