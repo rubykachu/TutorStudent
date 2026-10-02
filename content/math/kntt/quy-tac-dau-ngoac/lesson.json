@@ -11,7 +11,8 @@
   },
   "title": "Quy tắc dấu ngoặc",
   "sourceRef": "Sách bài tập tr.53–54",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "6b34bfd9dd2372691b33cd6a674bcae421740072d7f0eb2c9d77641ae3a04665",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học quy tắc bỏ dấu ngoặc. Bạn đưa cô bán hàng 100 nghìn đồng để trả túi hàng giá 30 nghìn, được giảm 10 nghìn. Bạn tính xem cô phải trả lại bạn bao nhiêu tiền?"
