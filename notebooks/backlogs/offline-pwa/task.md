@@ -4,13 +4,14 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnig
 
 ## Handover
 
-Next: Task 2. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: Task 3. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
 
 Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. A kill switch (a self-unregistering worker deployable in place) is added as Task 4c and documented in `docs/operations.md` in Task 9. `pnpm content:check` currently fails on another agent's lesson in progress (`phep-cong-phep-tru-so-nguyen` review hash); not caused by this backlog.
 
 ### Done (commits, oldest first)
 
 - Task 1: `src/offline/routes.ts` (param functions shared with the five pages, `appPagePaths()`, `NOT_PRECACHED_ROUTES`), `tests/offline/routes.test.ts`.
+- Task 2: `src/offline/precache.ts` (pure list, deny-list, budget), `src/offline/precache-node.ts`, `scripts/lib/offline-manifest.ts` and `scripts/offline-manifest.ts` (writes `src/offline/precache-list.generated.json`, gitignored, run by `pnpm build`), `FAVICON_ICO_PATH` in `src/lib/brand.ts`. The build id is a timestamp per build. The budget counts only what is known before `next build` (content, sounds, public files); pages and build files are measured by the worker build (Task 4b).
 
 ### Rules for every task
 
@@ -45,10 +46,10 @@ Files: `src/offline/precache.ts` (new, pure, no Node imports), `src/offline/prec
 - A filter for build files that drops `.ttf` and `.woff`, in the pure module so the worker build can use it.
 
 Acceptance:
-- [ ] Tests: every served lesson and its tips file present; every page path present with the build id as revision; every `allSoundUrls()` URL present with no revision; no song; no URL under `/api/`, `/media/`, `/unlock`, `/dev/`; no `share.png`; no dotfile; a file under a `maps/` folder of the test fixture's public dir is included (generic rule); revisions equal the sha256 prefix.
-- [ ] A served lesson whose emitted file is missing fails with the lesson id; a budget breach fails with the total.
-- [ ] `precache.ts` imports nothing from `node:*` (test reads its imports).
-- [ ] Gate green.
+- [x] Tests: every served lesson and its tips file present; every page path present with the build id as revision; every `allSoundUrls()` URL present with no revision; no song; no URL under `/api/`, `/media/`, `/unlock`, `/dev/`; no `share.png`; no dotfile; a file under a `maps/` folder of the test fixture's public dir is included (generic rule); revisions equal the sha256 prefix.
+- [x] A served lesson whose emitted file is missing fails with the lesson id; a budget breach fails with the total.
+- [x] `precache.ts` imports nothing from `node:*` (test reads its imports).
+- [x] Gate green.
 
 ## Task 3 (S): request strategy
 

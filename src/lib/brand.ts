@@ -55,6 +55,7 @@ export const APPLE_TOUCH_ICON: AppIcon = {
 // the same drawing for the browsers that ask for `/favicon.ico`.
 export const FAVICON_SVG_PATH = "/brand/favicon.svg";
 export const FAVICON_ICO_SIZES = [16, 32, 48] as const;
+export const FAVICON_ICO_PATH = "/favicon.ico";
 
 // The card a chat app shows for a pasted link (Open Graph and Twitter use
 // the same file): 1200×630, the owl and the app's name on the cosmos.
