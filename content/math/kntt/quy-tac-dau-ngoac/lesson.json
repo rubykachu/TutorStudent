@@ -22,7 +22,7 @@
       "bỏ được dấu ngoặc có dấu − đứng trước và đổi dấu từng số hạng",
       "đổi chỗ và nhóm các số hạng để tính nhanh"
     ],
-    "whyItMatters": "Bạn dùng quy tắc dấu ngoặc khi tính hóa đơn có giảm giá, để biết mình phải trả hay còn lại bao nhiêu tiền."
+    "whyItMatters": "Bạn dùng quy tắc dấu ngoặc khi tính hoá đơn có giảm giá, để biết mình phải trả hay còn lại bao nhiêu tiền."
   },
   "concepts": [
     {
@@ -71,7 +71,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Dãy tính chỉ có phép cộng và phép trừ gọi là một tổng đại số. Mỗi số hạng của tổng mang dấu đứng trước nó.",
+              "text": "Một dãy tính chỉ dùng dấu + và dấu − là một tổng đại số, gọi tắt là tổng. Số hạng đầu không ghi dấu là số dương, các số hạng khác mang dấu đứng trước nó.",
               "rule": true
             },
             {
@@ -99,7 +99,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tong-dai-so-vi-du",
-        "caption": "Dãy tính chỉ có phép cộng và phép trừ gọi là một tổng đại số. Mỗi số hạng của tổng mang dấu đứng trước nó."
+        "caption": "Một dãy tính chỉ dùng dấu + và dấu − là một tổng đại số, gọi tắt là tổng. Số hạng đầu không ghi dấu là số dương, các số hạng khác mang dấu đứng trước nó."
       }
     },
     {
@@ -113,7 +113,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bạn có 40 nghìn đồng, rồi nhận thêm cả khoản (30 − 10): bán đồ cũ được 30 nghìn nhưng tiêu mất 10 nghìn. Cộng cả khoản đó cũng là cộng 30 rồi trừ 10."
+              "text": "Bạn có 40 nghìn đồng. Bạn bán đồ cũ được 30 nghìn nhưng tiêu mất 10 nghìn, nên số tiền thêm vào là (30 − 10) nghìn."
             },
             {
               "type": "visual",
@@ -126,7 +126,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ngoặc có dấu + đứng trước: bỏ ngoặc và giữ nguyên dấu của các số hạng trong ngoặc.",
+              "text": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ.",
               "rule": true
             },
             {
@@ -140,7 +140,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào cách viết đúng của 8 + (5 − 3) khi bỏ ngoặc. Cách này giúp bạn tính đúng mọi tổng có ngoặc."
+              "text": "Cùng làm: chạm vào cách viết đúng của 8 + (5 − 3) khi bỏ ngoặc. Làm vậy bạn nhớ: trước ngoặc là dấu + thì các dấu trong ngoặc không đổi."
             },
             {
               "type": "visual",
@@ -154,7 +154,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.cong-ngoac-vi-du",
-        "caption": "Ngoặc có dấu + đứng trước: bỏ ngoặc và giữ nguyên dấu của các số hạng trong ngoặc."
+        "caption": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ."
       }
     },
     {
@@ -168,7 +168,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bạn có 100 nghìn đồng và trả cả một túi hàng gồm bánh 30 nghìn và sữa 20 nghìn. Trả cả túi là trừ từng món: 100 − (30 + 20) = 100 − 30 − 20."
+              "text": "Bạn có 100 nghìn đồng và trả cả một túi hàng gồm bánh 30 nghìn và sữa 20 nghìn. Tiền còn lại là 100 − (30 + 20)."
             },
             {
               "type": "visual",
@@ -181,7 +181,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ngoặc có dấu − đứng trước: bỏ ngoặc và đổi dấu tất cả các số hạng trong ngoặc.",
+              "text": "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số nào.",
               "rule": true
             },
             {
@@ -191,11 +191,19 @@
           ]
         },
         {
+          "type": "tip",
+          "id": "quy-tac-dau-ngoac.tip.dau-dau-tien",
+          "kind": "tránh sai",
+          "title": "Bỏ ngoặc có dấu − đứng trước",
+          "text": "Khi trước ngoặc có dấu −, số đầu tiên trong ngoặc không ghi dấu vẫn là số dương. Hãy viết thêm dấu + trước nó rồi đổi dấu từng số hạng.",
+          "tex": "\\begin{gathered} 16 - (4 + 3) \\\\ = 16 - (+4 + 3) \\\\ = 16 - 4 - 3 = 9 \\end{gathered}"
+        },
+        {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu của nó. Làm vậy bạn thấy dấu − trước ngoặc đổi dấu mọi số hạng."
+              "text": "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu của nó. Làm vậy bạn thấy dấu − trước ngoặc đổi dấu từng số hạng."
             },
             {
               "type": "visual",
@@ -209,7 +217,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tru-ngoac-vi-du",
-        "caption": "Ngoặc có dấu − đứng trước: bỏ ngoặc và đổi dấu tất cả các số hạng trong ngoặc."
+        "caption": "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số nào."
       }
     },
     {
@@ -223,7 +231,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hàng giá 30 nghìn đồng, được giảm 10 nghìn: hóa đơn là 30 − 10. Bạn đưa 100 nghìn nên còn lại 100 − (30 − 10) = 100 − 30 + 10 = 80 nghìn đồng."
+              "text": "Hàng giá 30 nghìn đồng, được giảm 10 nghìn, nên hoá đơn là 30 − 10. Bạn đưa 100 nghìn đồng và cô bán hàng trả lại cho bạn 100 − (30 − 10)."
             },
             {
               "type": "visual",
@@ -246,19 +254,11 @@
           ]
         },
         {
-          "type": "tip",
-          "id": "quy-tac-dau-ngoac.tip.dau-dau-tien",
-          "kind": "tránh sai",
-          "title": "Số đầu tiên trong ngoặc",
-          "text": "Số đầu tiên trong ngoặc không ghi dấu thì vẫn có dấu +. Hãy viết thêm dấu + trước nó rồi mới đổi dấu từng số hạng. Ví dụ với 10 − (3 − 5), ta viết 10 − (+3 − 5) rồi đổi dấu cả hai số hạng.",
-          "tex": "\\begin{gathered} 10 - (3 - 5) \\\\ = 10 - (+3 - 5) \\\\ = 10 - 3 + 5 = 12 \\end{gathered}"
-        },
-        {
           "type": "group",
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu của nó. Số hạng âm đổi thành số hạng dương, nên nhớ đổi cả số đầu tiên."
+              "text": "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu của nó. Bạn sẽ thấy số âm −3 đổi thành +3, và số đầu tiên cũng phải đổi dấu."
             },
             {
               "type": "visual",
@@ -286,7 +286,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bạn có 50 nghìn đồng và nợ Lan 5 nghìn, nên còn 50 + (−5) = 45 nghìn đồng. Khi Lan xoá nợ, ta trừ đi số −5: 45 − (−5) = 50 nghìn đồng."
+              "text": "Bạn có 50 nghìn đồng nhưng nợ Lan 5 nghìn, nên trả nợ xong bạn còn 50 + (−5) = 45 nghìn. Nếu Lan xoá nợ, ta trừ đi số −5: 45 − (−5) = 50 nghìn đồng."
             },
             {
               "type": "visual",
@@ -299,7 +299,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Ngoặc chỉ có một số cũng bỏ theo hai cách ở trên. Bảng sau cho cả bốn trường hợp."
+              "text": "Ngoặc chỉ có một số: trước ngoặc là dấu + thì số đó giữ dấu cũ, trước ngoặc là dấu − thì đổi dấu số đó.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -312,7 +313,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào cách viết đúng của 20 − (−6) khi bỏ ngoặc. Cách này giúp bạn không nhầm khi gặp hai dấu liền nhau."
+              "text": "Cùng làm: chạm vào cách viết đúng của 20 − (−6) khi bỏ ngoặc. Làm vậy bạn không nhầm khi gặp hai dấu liền nhau."
             },
             {
               "type": "visual",
@@ -322,11 +323,11 @@
         }
       ],
       "checkIds": ["quy-tac-dau-ngoac.ex.bo-ngoac-9-tru-am4"],
-      "practiceIds": ["quy-tac-dau-ngoac.ex.tinh-bon-ngoac"],
+      "practiceIds": ["quy-tac-dau-ngoac.ex.tinh-ngoac-cong-am"],
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ngoac-mot-so-vi-du",
-        "caption": "Hai dấu đứng liền nhau: cùng dấu thì thành dấu +, khác dấu thì thành dấu −."
+        "caption": "Ngoặc chỉ có một số: trước ngoặc là dấu + thì số đó giữ dấu cũ, trước ngoặc là dấu − thì đổi dấu số đó."
       }
     },
     {
@@ -353,7 +354,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ngoặc ở đầu dãy, không có dấu đứng trước, được bỏ như ngoặc có dấu +.",
+              "text": "Mỗi ngoặc xét riêng theo dấu đứng ngay trước nó. Ngoặc ở đầu tổng không có dấu đứng trước, được bỏ như ngoặc có dấu +.",
               "rule": true
             },
             {
@@ -367,7 +368,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng số hạng cần đổi dấu. Mỗi ngoặc xét riêng theo dấu đứng ngay trước nó."
+              "text": "Cùng làm: chạm vào từng số hạng cần đổi dấu, mỗi ngoặc xét riêng theo dấu đứng ngay trước nó. Làm đúng bước này thì bạn bỏ ngoặc không sai dấu."
             },
             {
               "type": "visual",
@@ -381,7 +382,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ngoac-dau-day-vi-du-xong",
-        "caption": "Ngoặc ở đầu dãy, không có dấu đứng trước, được bỏ như ngoặc có dấu +."
+        "caption": "Mỗi ngoặc xét riêng theo dấu đứng ngay trước nó. Ngoặc ở đầu tổng không có dấu đứng trước, được bỏ như ngoặc có dấu +."
       }
     },
     {
@@ -395,7 +396,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cuối ngày, bạn ghi sổ: thu 8 nghìn, chi 12 nghìn, thu 4 nghìn. Ghi các khoản theo thứ tự khác thì số tiền còn lại vẫn như vậy."
+              "text": "Cuối ngày, bạn ghi sổ: thu 8 nghìn, chi 12 nghìn, thu 4 nghìn. Ghi các khoản theo thứ tự khác thì số tiền thêm hay bớt sau cả ngày vẫn như vậy."
             },
             {
               "type": "visual",
@@ -422,8 +423,8 @@
           "id": "quy-tac-dau-ngoac.tip.gom-duong-am",
           "kind": "làm nhanh",
           "title": "Tính tổng nhiều số hạng",
-          "text": "Cộng riêng các số hạng dương, cộng riêng phần số tự nhiên của các số hạng âm. Sau đó lấy số lớn trừ số bé, kết quả mang dấu của nhóm lớn hơn. Hai nhóm bằng nhau thì kết quả bằng 0.",
-          "tex": "\\begin{gathered} 7 - 9 + 5 - 3 \\\\ = (7 + 5) - (9 + 3) \\\\ = 12 - 12 = 0 \\end{gathered}"
+          "text": "Bỏ hết ngoặc trước. Rồi cộng riêng các số hạng dương, cộng riêng phần số của các số hạng âm. Lấy số lớn trừ số bé, kết quả mang dấu của nhóm có tổng lớn hơn; hai nhóm bằng nhau thì kết quả bằng 0.",
+          "tex": "\\begin{gathered} 7 - 9 + 5 - 3 \\\\ = 7 + 5 - 9 - 3 \\\\ = 12 - 12 = 0 \\end{gathered}"
         },
         {
           "type": "group",
@@ -458,7 +459,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cô bán hàng ghi sổ: thu 50, chi 20, thu 30, chi 10 nghìn đồng. Cô gom thành hai nhóm (50 − 20) và (30 − 10) cho dễ tính."
+              "text": "Cô bán hàng ghi sổ: thu 50, chi 20, thu 30, chi 10 nghìn đồng. Cô gom thành hai nhóm thu trừ chi cho dễ tính."
             },
             {
               "type": "visual",
@@ -471,7 +472,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đặt ngoặc có dấu + đứng trước để nhóm các số hạng thì giữ nguyên dấu các số hạng.",
+              "text": "Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc vẫn giữ dấu cũ.",
               "rule": true
             },
             {
@@ -485,7 +486,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào cách đặt ngoặc đúng cho 7 − 4 + 9 − 5. Mỗi nhóm có dấu + đứng trước nên các số hạng giữ nguyên dấu."
+              "text": "Cùng làm: chạm vào cách đặt ngoặc đúng cho 7 − 4 + 9 − 5. Mỗi nhóm có dấu + đứng trước nên các số hạng giữ dấu cũ."
             },
             {
               "type": "visual",
@@ -499,7 +500,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.nhom-cong-vi-du",
-        "caption": "Đặt ngoặc có dấu + đứng trước để nhóm các số hạng thì giữ nguyên dấu các số hạng."
+        "caption": "Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc vẫn giữ dấu cũ."
       }
     },
     {
@@ -513,7 +514,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bạn có 100 nghìn đồng, trả bánh 20 nghìn và sữa 10 nghìn. Gom hai khoản trả vào một ngoặc có dấu −: 100 − 20 − 10 = 100 − (20 + 10)."
+              "text": "Bạn có 100 nghìn đồng, trả bánh 20 nghìn rồi trả sữa 10 nghìn. Ta gom hai khoản trả vào một ngoặc có dấu − đứng trước."
             },
             {
               "type": "visual",
@@ -526,7 +527,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Đặt ngoặc có dấu − đứng trước thì đổi dấu tất cả các số hạng đưa vào ngoặc.",
+              "text": "Đặt ngoặc có dấu − đứng trước thì đổi dấu từng số hạng đưa vào ngoặc.",
               "rule": true
             },
             {
@@ -554,7 +555,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.nhom-tru-vi-du",
-        "caption": "Đặt ngoặc có dấu − đứng trước thì đổi dấu tất cả các số hạng đưa vào ngoặc."
+        "caption": "Đặt ngoặc có dấu − đứng trước thì đổi dấu từng số hạng đưa vào ngoặc."
       }
     },
     {
@@ -568,7 +569,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để được số tròn chục.",
+              "text": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau.",
               "rule": true
             },
             {
@@ -582,7 +583,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai số đối nhau cùng có mặt trong tổng thì mất nhau, vì tổng của chúng bằng 0. Số 0 cộng hay trừ vào tổng không làm tổng đổi."
+              "text": "Hai số đối nhau cùng có mặt trong tổng thì cộng lại bằng 0, như 30 và −30. Số 0 cộng hay trừ vào tổng không làm tổng đổi."
             },
             {
               "type": "visual",
@@ -595,7 +596,20 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào hai số hạng cộng lại bằng 30 trong tổng 27 − 14 + 3 − 6. Ghép được số tròn chục thì tính nhẩm dễ hơn nhiều."
+              "text": "Có khi ta nhóm từng cặp số hạng, mỗi cặp cho cùng một kết quả. Khi đó ta chỉ cần cộng các kết quả bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.nhom-cap-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bạn được cho 27 nghìn, mua vở 14 nghìn, được cho thêm 3 nghìn rồi mua bút 6 nghìn. Chạm vào hai khoản cộng lại được 30 nghìn: ghép được số tròn chục thì tính nhẩm dễ hơn."
             },
             {
               "type": "visual",
@@ -605,11 +619,11 @@
         }
       ],
       "checkIds": ["quy-tac-dau-ngoac.ex.bo-ngoac-47-30-3"],
-      "practiceIds": ["quy-tac-dau-ngoac.ex.nhom-cap-10-20"],
+      "practiceIds": ["quy-tac-dau-ngoac.ex.nhom-cap-13-25"],
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tinh-hop-li-vi-du-xong",
-        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để được số tròn chục."
+        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
       }
     },
     {
@@ -623,7 +637,20 @@
           "children": [
             {
               "type": "note",
-              "text": "Tính tổng có ngoặc: bỏ ngoặc trước, rồi đổi chỗ, nhóm các số hạng và tính.",
+              "text": "Lan có 60 nghìn đồng. Lan bán giấy vụn được 20 nghìn nhưng trả 5 nghìn tiền gửi xe, rồi mua bút 12 nghìn và vở 8 nghìn."
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.thu-chi-lan"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau.",
               "rule": true
             },
             {
@@ -649,9 +676,9 @@
           "type": "tip",
           "id": "quy-tac-dau-ngoac.tip.kiem-tra-hai-cach",
           "kind": "tránh sai",
-          "title": "Kiểm tra kết quả",
-          "text": "Tính trong ngoặc trước rồi tính tiếp. Sau đó bỏ ngoặc và tính lại một lần nữa. Hai kết quả phải bằng nhau, nếu khác thì kiểm tra lại các dấu.",
-          "tex": "\\begin{gathered} 10 - (3 - 5 + 2) = 10 - 0 = 10 \\\\ 10 - 3 + 5 - 2 = 10 \\end{gathered}"
+          "title": "Kiểm tra phép bỏ ngoặc",
+          "text": "Muốn kiểm lại, hãy tính thêm một cách: tính trong ngoặc trước rồi tính tiếp. Sau đó so với kết quả khi bỏ ngoặc. Hai kết quả phải bằng nhau, nếu khác thì xem lại các dấu và các phép tính.",
+          "tex": "\\begin{gathered} 10 - (4 - 9 + 2) \\\\ = 10 - (-3) = 13 \\\\ 10 - 4 + 9 - 2 = 13 \\end{gathered}"
         }
       ],
       "checkIds": ["quy-tac-dau-ngoac.ex.bo-ngoac-ba-3-8"],
@@ -659,7 +686,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.vi-du-tong-hop-xong",
-        "caption": "Tính tổng có ngoặc: bỏ ngoặc trước, rồi đổi chỗ, nhóm các số hạng và tính."
+        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
       }
     },
     {
@@ -673,11 +700,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Lan có 60 nghìn đồng, nhận 20 nghìn trừ 5 nghìn công, rồi trả 12 nghìn và 8 nghìn. Lan còn 60 + (20 − 5) − (12 + 8) = 55 nghìn đồng."
+              "text": "Bạn ghi tiền trong năm ngày: thu 5 nghìn, chi 2 nghìn, thu 2 nghìn, chi 5 nghìn, rồi thu 4 nghìn. Thu 5 rồi chi 5 thì coi như không đổi, thu 2 rồi chi 2 cũng vậy, nên chỉ còn khoản thu 4 nghìn."
             },
             {
               "type": "visual",
-              "visualId": "quy-tac-dau-ngoac.visual.thu-chi-lan"
+              "visualId": "quy-tac-dau-ngoac.visual.thu-chi-tuan"
             }
           ]
         },
@@ -686,7 +713,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong dãy số nguyên từ −3 đến 3, số nào cũng có số đối. Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0."
+              "text": "Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Rồi cộng các số còn lại.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -699,7 +727,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào số không có số đối nào trong dãy −2, −1, 0, 1, 2, 3. Đó là số còn lại sau khi ghép cặp, nên nó quyết định cả tổng."
+              "text": "Cùng làm: chạm vào số khác 0 mà không ghép được với số đối của nó trong các số −2, −1, 0, 1, 2, 3. Đó là số còn lại sau khi ghép cặp, nên nó quyết định cả tổng."
             },
             {
               "type": "visual",
@@ -713,7 +741,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ghep-so-doi-xong",
-        "caption": "Ghép từng cặp số đối nhau: mỗi cặp có tổng bằng 0."
+        "caption": "Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Rồi cộng các số còn lại."
       }
     }
   ],
@@ -728,7 +756,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tong-dai-so-vi-du",
-        "caption": "Dãy tính chỉ có phép cộng và phép trừ gọi là một tổng đại số. Mỗi số hạng của tổng mang dấu đứng trước nó."
+        "caption": "Một dãy tính chỉ dùng dấu + và dấu − là một tổng đại số, gọi tắt là tổng. Số hạng đầu không ghi dấu là số dương, các số hạng khác mang dấu đứng trước nó."
       }
     },
     {
@@ -741,7 +769,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.cong-ngoac-vi-du",
-        "caption": "Ngoặc có dấu + đứng trước: bỏ ngoặc và giữ nguyên dấu của các số hạng trong ngoặc."
+        "caption": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ."
       }
     },
     {
@@ -754,7 +782,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tru-ngoac-vi-du",
-        "caption": "Ngoặc có dấu − đứng trước: bỏ ngoặc và đổi dấu tất cả các số hạng trong ngoặc."
+        "caption": "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số nào."
       }
     },
     {
@@ -781,7 +809,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ngoac-mot-so-vi-du",
-        "caption": "Hai dấu đứng liền nhau: cùng dấu thì thành dấu +, khác dấu thì thành dấu −."
+        "caption": "Ngoặc chỉ có một số: trước ngoặc là dấu + thì số đó giữ dấu cũ, trước ngoặc là dấu − thì đổi dấu số đó."
       }
     },
     {
@@ -794,7 +822,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ngoac-dau-day-vi-du-xong",
-        "caption": "Ngoặc ở đầu dãy, không có dấu đứng trước, được bỏ như ngoặc có dấu +."
+        "caption": "Mỗi ngoặc xét riêng theo dấu đứng ngay trước nó. Ngoặc ở đầu tổng không có dấu đứng trước, được bỏ như ngoặc có dấu +."
       }
     },
     {
@@ -820,7 +848,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.nhom-cong-vi-du",
-        "caption": "Đặt ngoặc có dấu + đứng trước để nhóm các số hạng thì giữ nguyên dấu các số hạng."
+        "caption": "Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc vẫn giữ dấu cũ."
       }
     },
     {
@@ -833,7 +861,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.nhom-tru-vi-du",
-        "caption": "Đặt ngoặc có dấu − đứng trước thì đổi dấu tất cả các số hạng đưa vào ngoặc."
+        "caption": "Đặt ngoặc có dấu − đứng trước thì đổi dấu từng số hạng đưa vào ngoặc."
       }
     },
     {
@@ -846,7 +874,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tinh-hop-li-vi-du-xong",
-        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để được số tròn chục."
+        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
       }
     },
     {
@@ -859,7 +887,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.vi-du-tong-hop-xong",
-        "caption": "Tính tổng có ngoặc: bỏ ngoặc trước, rồi đổi chỗ, nhóm các số hạng và tính."
+        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
       }
     },
     {
@@ -872,7 +900,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ghep-so-doi-xong",
-        "caption": "Ghép từng cặp số đối nhau: mỗi cặp có tổng bằng 0."
+        "caption": "Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Rồi cộng các số còn lại."
       }
     }
   ],
@@ -884,14 +912,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mẹ mua cá hết 20 nghìn đồng. Trong tổng tính tiền, khoản chi này là số hạng nào?"
+          "text": "Tiền của mẹ là tổng dưới đây. Khoản mua cá 20 nghìn là số hạng nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "50 - 20 - 5"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -902,7 +934,7 @@
         "wrong": [
           {
             "optionId": "a",
-            "text": "Số 20 là khoản thu vào, không phải khoản chi."
+            "text": "Số hạng 20 mang dấu +, là tiền thu vào; mua cá là chi ra nên mang dấu −."
           }
         ]
       },
@@ -925,7 +957,7 @@
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "0"
+            "tex": "-5"
           }
         }
       ],
@@ -1017,7 +1049,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các dãy tính là một tổng (chỉ có phép cộng và phép trừ)."
+          "text": "Chọn tất cả các dãy tính là một tổng đại số."
         }
       ],
       "hints": {
@@ -1030,15 +1062,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Một tổng chỉ có phép cộng và phép trừ. Hai dãy 7 − 2 + 4 và 10 − 3 − 6 đúng như vậy, còn hai dãy kia có thêm phép nhân hoặc phép chia.",
+        "text": "Một tổng chỉ có phép cộng và phép trừ. Hai dãy 7 − 2 + 4 và 10 − 3 − 6 đúng như vậy. Dãy 3 · 5 − 1 có phép nhân, còn dãy 8 : 2 + 1 có phép chia.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Dãy này có phép nhân, nên không phải một tổng."
+            "text": "Dãy tính này có phép nhân, nên không phải tổng đại số."
           },
           {
             "optionId": "d",
-            "text": "Dãy này có phép chia, nên không phải một tổng."
+            "text": "Dãy tính này có phép chia, nên không phải tổng đại số."
           }
         ]
       },
@@ -1113,7 +1145,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của tổng sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -1130,7 +1162,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Trước ngoặc có dấu +, nên các số hạng trong ngoặc giữ nguyên dấu. Số 4 vẫn dương và số 6 vẫn mang dấu −.",
+        "text": "Trước ngoặc có dấu +, nên các số hạng trong ngoặc giữ dấu cũ. Số 4 vẫn dương và số 6 vẫn mang dấu −.",
         "tex": "9 + (\\concept{lime}{+4}\\ \\concept{pink}{-6}) = 9\\ \\concept{lime}{+4}\\ \\concept{pink}{-6}",
         "wrong": [
           {
@@ -1197,7 +1229,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ngoặc có dấu + đứng trước, nên bỏ ngoặc và giữ nguyên dấu: 20 + 6 − 9. Tính từ trái sang phải được 26 − 9 = 17.",
+        "text": "Ngoặc có dấu + đứng trước, nên bỏ ngoặc và giữ dấu cũ: 20 + 6 − 9. Tính từ trái sang phải được 26 − 9 = 17.",
         "tex": "20 + 6 - 9 = 26 - 9 = 17"
       },
       "answer": {
@@ -1228,12 +1260,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ngoặc có dấu + đứng trước, nên bỏ ngoặc và giữ nguyên dấu. Số 30 vẫn có dấu + và số 10 vẫn có dấu −."
+        "text": "Ngoặc có dấu + đứng trước, nên bỏ ngoặc và giữ dấu cũ. Số 12 vẫn có dấu + và số 7 vẫn có dấu −."
       },
       "segments": [
         {
           "type": "text",
-          "text": "40 + (30 − 10) = 40 "
+          "text": "35 + (12 − 7) = 35 "
         },
         {
           "type": "blank",
@@ -1242,7 +1274,7 @@
         },
         {
           "type": "text",
-          "text": " 30 "
+          "text": " 12 "
         },
         {
           "type": "blank",
@@ -1276,7 +1308,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cách một: bỏ ngoặc, giữ nguyên dấu được 7 + 3 − 5 = 5. Cách hai: tính trong ngoặc trước, 3 − 5 = −2, rồi 7 + (−2) = 5.",
+        "text": "Cách một: bỏ ngoặc, giữ dấu cũ được 7 + 3 − 5 = 5. Cách hai: tính trong ngoặc trước, 3 − 5 = −2, rồi 7 + (−2) = 5.",
         "wrong": [
           {
             "optionId": "c",
@@ -1284,7 +1316,7 @@
           },
           {
             "optionId": "d",
-            "text": "Hai dấu bị đổi, trong khi ngoặc có dấu + thì giữ nguyên."
+            "text": "Hai dấu bị đổi, trong khi ngoặc có dấu + thì giữ dấu cũ."
           }
         ]
       },
@@ -1335,7 +1367,7 @@
         },
         {
           "type": "formula",
-          "tex": "6 + (-4 + 1)"
+          "tex": "6 + (-5 + 2)"
         }
       ],
       "hints": {
@@ -1348,15 +1380,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngoặc có dấu +, nên giữ nguyên dấu của −4 và +1. Ta được 6 − 4 + 1 = 2 + 1 = 3.",
-        "tex": "6 + (-4 + 1) = 6 - 4 + 1 = 3"
+        "text": "Ngoặc có dấu +, nên giữ dấu cũ của −5 và +2. Ta được 6 − 5 + 2 = 1 + 2 = 3.",
+        "tex": "\\begin{gathered} 6 + (-5 + 2) \\\\ = 6 - 5 + 2 = 3 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
         "value": 3
       },
       "check": {
-        "expr": "6+(-4+1)"
+        "expr": "6+(-5+2)"
       }
     },
     {
@@ -1366,7 +1398,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của tổng sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -1392,7 +1424,7 @@
           },
           {
             "optionId": "c",
-            "text": "Dãy này không đổi dấu số hạng nào."
+            "text": "Tổng này không đổi dấu số hạng nào."
           }
         ]
       },
@@ -1515,7 +1547,7 @@
       "segments": [
         {
           "type": "text",
-          "text": "Bỏ ngoặc có dấu − đứng trước thì ta "
+          "text": "Trước ngoặc là dấu −: bỏ ngoặc đi và "
         },
         {
           "type": "blank",
@@ -1524,10 +1556,10 @@
         },
         {
           "type": "text",
-          "text": " tất cả các số hạng trong ngoặc."
+          "text": " từng số hạng trong ngoặc, không sót số nào."
         }
       ],
-      "bank": ["đổi dấu", "giữ nguyên dấu", "bỏ đi"]
+      "bank": ["đổi dấu", "giữ dấu cũ", "chỉ đổi dấu số đầu"]
     },
     {
       "id": "quy-tac-dau-ngoac.ex.tra-tui-keo-but",
@@ -1550,7 +1582,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Trả cả túi là trừ cả hai món. Ta có 50 − (12 + 8) = 50 − 12 − 8 = 30.",
-        "tex": "50 - (12 + 8) = 50 - 12 - 8 = 30"
+        "tex": "\\begin{gathered} 50 - (12 + 8) \\\\ = 50 - 12 - 8 = 30 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -1567,7 +1599,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của tổng sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -1699,7 +1731,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hàng giá 45 nghìn đồng, được giảm 5 nghìn đồng, và bạn đưa 100 nghìn đồng. Bạn còn lại bao nhiêu nghìn đồng?"
+          "text": "Hàng giá 45 nghìn đồng, được giảm 5 nghìn đồng, và bạn đưa 100 nghìn đồng. Cô bán hàng trả lại bạn bao nhiêu nghìn đồng?"
         }
       ],
       "hints": {
@@ -1712,8 +1744,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hóa đơn là 45 − 5 nghìn. Ta có 100 − (45 − 5) = 100 − 45 + 5 = 60.",
-        "tex": "100 - (45 - 5) = 100 - 45 + 5 = 60"
+        "text": "Hoá đơn là 45 − 5 nghìn. Ta có 100 − (45 − 5) = 100 − 45 + 5 = 60.",
+        "tex": "\\begin{gathered} 100 - (45 - 5) \\\\ = 100 - 45 + 5 = 60 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -1802,7 +1834,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của phép tính sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -1862,7 +1894,7 @@
       }
     },
     {
-      "id": "quy-tac-dau-ngoac.ex.tinh-bon-ngoac",
+      "id": "quy-tac-dau-ngoac.ex.tinh-ngoac-cong-am",
       "type": "numeric",
       "cardIds": ["quy-tac-dau-ngoac.card.ngoac-mot-so"],
       "prompt": [
@@ -1872,7 +1904,7 @@
         },
         {
           "type": "formula",
-          "tex": "(-8) + (-5) - 9 + (-2)"
+          "tex": "12 + (-5) - 8 + (-4)"
         }
       ],
       "hints": {
@@ -1886,15 +1918,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Các ngoặc có dấu + đứng trước hoặc đứng đầu, nên giữ nguyên dấu: −8 − 5 − 9 − 2. Cộng các phần số tự nhiên rồi viết dấu − ở trước được −24.",
-        "tex": "-8 - 5 - 9 - 2 = -24"
+        "text": "Cả hai ngoặc có dấu + đứng trước, nên giữ dấu cũ: 12 − 5 − 8 − 4. Tính từ trái sang phải được 7 − 8 − 4 = −5.",
+        "tex": "12 - 5 - 8 - 4 = -5"
       },
       "answer": {
         "kind": "value",
-        "value": -24
+        "value": -5
       },
       "check": {
-        "expr": "(-8)+(-5)-9+(-2)"
+        "expr": "12+(-5)-8+(-4)"
       },
       "allowNegative": true
     },
@@ -2116,7 +2148,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của tổng sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -2133,15 +2165,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ngoặc đầu không có dấu đứng trước nên giữ nguyên dấu: 8 − 5. Ngoặc sau có dấu − đứng trước nên đổi dấu: −6 + 9.",
+        "text": "Ngoặc (8 − 5) ở đầu tổng không có dấu đứng trước nên giữ dấu cũ. Ngoặc (6 − 9) có dấu − đứng trước nên đổi dấu từng số hạng: −6 + 9.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số −9 trong ngoặc sau phải đổi thành +9."
+            "text": "Số −9 trong ngoặc (6 − 9) phải đổi thành +9."
           },
           {
             "optionId": "c",
-            "text": "Ngoặc đầu giữ nguyên dấu, nên −5 không đổi."
+            "text": "Ngoặc (8 − 5) giữ dấu cũ, nên −5 không đổi."
           }
         ]
       },
@@ -2185,7 +2217,7 @@
         },
         {
           "type": "formula",
-          "tex": "(5 - 9) - (3 - 8 + 2)"
+          "tex": "(5 - 9) - (3 - 8)"
         }
       ],
       "hints": {
@@ -2197,17 +2229,17 @@
         ],
         "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-nhieu-ngoac"
       },
-      "difficulty": 2,
+      "difficulty": 1,
       "explain": {
-        "text": "Ngoặc đầu giữ nguyên dấu, ngoặc sau đổi dấu: 5 − 9 − 3 + 8 − 2. Tính từ trái sang phải được −4 − 3 + 8 − 2 = −1.",
-        "tex": "5 - 9 - 3 + 8 - 2 = -1"
+        "text": "Ngoặc (5 − 9) ở đầu tổng giữ dấu cũ. Ngoặc (3 − 8) có dấu − đứng trước nên đổi dấu từng số hạng: 5 − 9 − 3 + 8. Tính từ trái sang phải được −4 − 3 + 8 = 1.",
+        "tex": "5 - 9 - 3 + 8 = 1"
       },
       "answer": {
         "kind": "value",
-        "value": -1
+        "value": 1
       },
       "check": {
-        "expr": "(5-9)-(3-8+2)"
+        "expr": "(5-9)-(3-8)"
       },
       "allowNegative": true
     },
@@ -2231,7 +2263,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Chỉ ngoặc thứ hai có dấu − đứng trước, nên chỉ 7 và 3 đổi dấu. Ngoặc đầu và ngoặc thứ ba giữ nguyên dấu."
+        "text": "Chỉ ngoặc (7 + 3) có dấu − đứng trước, nên chỉ 7 và 3 đổi dấu. Hai ngoặc còn lại giữ dấu cũ."
       },
       "visualId": "quy-tac-dau-ngoac.visual.doi-dau-ba-ngoac",
       "validatorId": "chon-dung",
@@ -2251,7 +2283,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mai có 80 nghìn đồng, mua túi hàng giá 25 nghìn được giảm 5 nghìn. Mai còn lại bao nhiêu nghìn đồng?"
+          "text": "Mai có 80 nghìn đồng, mua túi A giá 25 nghìn được giảm 5 nghìn, và túi B giá 30 nghìn được giảm 10 nghìn. Mai còn lại bao nhiêu nghìn đồng?"
         }
       ],
       "hints": {
@@ -2264,15 +2296,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hóa đơn của túi là 25 − 5 nghìn. Ta có 80 − (25 − 5) = 80 − 25 + 5 = 60.",
-        "tex": "80 - (25 - 5) = 80 - 25 + 5 = 60"
+        "text": "Mỗi túi là một ngoặc có dấu − đứng trước, nên mỗi ngoặc đổi dấu riêng. Ta có 80 − (25 − 5) − (30 − 10) = 80 − 25 + 5 − 30 + 10 = 40.",
+        "tex": "\\begin{gathered} 80 - (25 - 5) \\\\ - (30 - 10) \\\\ = 80 - 25 + 5 \\\\ - 30 + 10 = 40 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": 60
+        "value": 40
       },
       "check": {
-        "expr": "80-(25-5)"
+        "expr": "80-(25-5)-(30-10)"
       }
     },
     {
@@ -2350,7 +2382,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Đổi chỗ các số hạng của tổng sau, ta được dãy nào?"
+          "text": "Đổi chỗ các số hạng của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -2367,15 +2399,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Khi đổi chỗ, mỗi số hạng mang theo dấu của nó: +9, −4 và +6. Dãy 9 + 6 − 4 vẫn có đủ ba số hạng đó.",
+        "text": "Khi đổi chỗ, mỗi số hạng mang theo dấu của nó: +9, −4 và +6. Tổng 9 + 6 − 4 vẫn có đủ ba số hạng đó.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Dãy này đổi dấu của 4 và 6, nên không còn là +6 và −4."
+            "text": "Tổng này đổi dấu của 4 và 6, nên không còn là +6 và −4."
           },
           {
             "optionId": "c",
-            "text": "Dãy này đổi dấu của 9 và 4, nên không còn là +9 và −4."
+            "text": "Tổng này đổi dấu của 9 và 4, nên không còn là +9 và −4."
           }
         ]
       },
@@ -2433,7 +2465,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Đổi chỗ thành 17 + 3 − 8, số hạng −8 mang theo dấu − của nó. Tính 17 + 3 = 20 rồi 20 − 8 = 12.",
-        "tex": "17 - 8 + 3 = 17 + 3 - 8 = 20 - 8 = 12"
+        "tex": "\\begin{gathered} 17 - 8 + 3 = 17 + 3 - 8 \\\\ = 20 - 8 = 12 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2463,7 +2495,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số hạng dương là số hạng có dấu + đứng trước hoặc đứng đầu tổng. Trong tổng này đó là +7, +3 và +6."
+        "text": "Số hạng dương có dấu + đứng trước, hoặc là số hạng đầu không ghi dấu. Trong tổng này đó là +7, +3 và +6."
       },
       "visualId": "quy-tac-dau-ngoac.visual.chon-duong-7-10",
       "validatorId": "chon-dung",
@@ -2503,11 +2535,11 @@
         "wrong": [
           {
             "optionId": "c",
-            "text": "Dãy này đổi dấu của 8 và 4, nên bằng 9."
+            "text": "Tổng này đổi dấu của 8 và 4, nên bằng 9."
           },
           {
             "optionId": "d",
-            "text": "Dãy này đổi dấu của 5 và 8, nên bằng 7."
+            "text": "Tổng này đổi dấu của 5 và 8, nên bằng 7."
           }
         ]
       },
@@ -2548,7 +2580,7 @@
       }
     },
     {
-      "id": "quy-tac-dau-ngoac.ex.gom-6-9-4-5-8",
+      "id": "quy-tac-dau-ngoac.ex.gom-6-9-4-5",
       "type": "numeric",
       "cardIds": ["quy-tac-dau-ngoac.card.doi-cho"],
       "prompt": [
@@ -2558,7 +2590,7 @@
         },
         {
           "type": "formula",
-          "tex": "6 - 9 + 4 - 5 + 8"
+          "tex": "6 - 9 + 4 - 5"
         }
       ],
       "hints": {
@@ -2571,16 +2603,17 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Các số hạng dương cộng lại được 6 + 4 + 8 = 18. Các số hạng âm có phần số tự nhiên cộng lại là 9 + 5 = 14, nên tổng là 18 − 14 = 4.",
-        "tex": "(6 + 4 + 8) - (9 + 5) = 18 - 14 = 4"
+        "text": "Các số hạng dương cộng lại được 6 + 4 = 10. Các số hạng âm có phần số cộng lại là 9 + 5 = 14, nên tổng là 10 − 14 = −4.",
+        "tex": "\\begin{gathered} 6 - 9 + 4 - 5 \\\\ = 6 + 4 - 9 - 5 \\\\ = 10 - 14 = -4 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": 4
+        "value": -4
       },
       "check": {
-        "expr": "6-9+4-5+8"
-      }
+        "expr": "6-9+4-5"
+      },
+      "allowNegative": true
     },
     {
       "id": "quy-tac-dau-ngoac.ex.nhom-12-5-8-6",
@@ -2606,11 +2639,11 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Đặt ngoặc có dấu + đứng trước thì các số hạng giữ nguyên dấu. Nhóm +8 và −6 thành + (8 − 6).",
+        "text": "Đặt ngoặc có dấu + đứng trước thì các số hạng giữ dấu cũ. Nhóm +8 và −6 thành + (8 − 6).",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số −6 bị đổi thành +6, nhưng ngoặc có dấu + thì phải giữ nguyên dấu."
+            "text": "Số −6 bị đổi thành +6, nhưng ngoặc có dấu + thì phải giữ dấu cũ."
           },
           {
             "optionId": "c",
@@ -2671,8 +2704,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhóm thành (9 − 4) + (7 − 10), các số hạng giữ nguyên dấu. Ta được 5 + (−3) = 2.",
-        "tex": "(9 - 4) + (7 - 10) = 5 + (-3) = 2"
+        "text": "Nhóm thành (9 − 4) + (7 − 10), các số hạng giữ dấu cũ. Ta được 5 + (−3) = 2.",
+        "tex": "\\begin{gathered} (9 - 4) + (7 - 10) \\\\ = 5 + (-3) = 2 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2702,24 +2735,24 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Dấu + trước ngoặc nghĩa là cộng cả nhóm. Vì vậy các số hạng trong ngoặc giữ nguyên dấu."
+        "text": "Dấu + trước ngoặc nghĩa là cộng cả nhóm. Vì vậy các số hạng trong ngoặc giữ dấu cũ."
       },
       "segments": [
         {
           "type": "text",
-          "text": "Đặt ngoặc có dấu + đứng trước thì ta "
+          "text": "Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc vẫn "
         },
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["giữ nguyên"]
+          "accept": ["giữ dấu cũ"]
         },
         {
           "type": "text",
-          "text": " dấu các số hạng."
+          "text": "."
         }
       ],
-      "bank": ["giữ nguyên", "đổi", "bỏ đi"]
+      "bank": ["giữ dấu cũ", "đổi dấu", "chỉ đổi dấu số đầu"]
     },
     {
       "id": "quy-tac-dau-ngoac.ex.nhom-thu-chi-40",
@@ -2742,7 +2775,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Nhóm thành hai ngoặc có dấu +: (40 − 15) + (25 − 20). Ta được 25 + 5 = 30.",
-        "tex": "(40 - 15) + (25 - 20) = 25 + 5 = 30"
+        "tex": "\\begin{gathered} (40 - 15) + (25 - 20) \\\\ = 25 + 5 = 30 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2776,15 +2809,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai dãy đầu nhóm số hạng mà vẫn giữ nguyên dấu, nên cùng bằng 14. Hai dãy sau đổi dấu của 8 hoặc của −8.",
+        "text": "Hai cách viết (20 − 8) + (5 − 3) và 20 − 8 + (5 − 3) vẫn giữ dấu cũ, nên cùng bằng 14. Cách viết (20 + 8) + (5 − 3) đổi −8 thành +8, còn cách viết 20 − (8 + 5) − 3 đổi +5 thành −5.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "Số −8 bị đổi thành +8, nên dãy này bằng 30."
+            "text": "Số −8 bị đổi thành +8, nên tổng này bằng 30."
           },
           {
             "optionId": "d",
-            "text": "Số 5 bị đổi thành −5, nên dãy này bằng 4."
+            "text": "Số 5 bị đổi thành −5, nên tổng này bằng 4."
           }
         ]
       },
@@ -2856,7 +2889,7 @@
           },
           {
             "optionId": "c",
-            "text": "Ngoặc có dấu + giữ nguyên dấu, nên không viết được −5 và −3."
+            "text": "Ngoặc có dấu + giữ dấu cũ, nên 12 + (5 − 3) là 12 + 5 − 3: số −5 đã thành +5."
           }
         ]
       },
@@ -2915,7 +2948,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Đưa hai số hạng cuối vào ngoặc có dấu − và đổi dấu: 50 − (28 + 12). Trong ngoặc được 40, nên 50 − 40 = 10.",
-        "tex": "50 - 28 - 12 = 50 - (28 + 12) = 50 - 40 = 10"
+        "tex": "\\begin{gathered} 50 - 28 - 12 \\\\ = 50 - (28 + 12) \\\\ = 50 - 40 = 10 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -2957,7 +2990,7 @@
           },
           {
             "optionId": "c",
-            "text": "Ngoặc có dấu + giữ nguyên dấu, nên không viết được −6 và +4."
+            "text": "Ngoặc có dấu + giữ dấu cũ, nên không viết được −6 và +4."
           }
         ]
       },
@@ -3028,7 +3061,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các cách viết đúng của tổng sau."
+          "text": "Chọn tất cả các biểu thức có giá trị bằng tổng sau."
         },
         {
           "type": "formula",
@@ -3045,15 +3078,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai số hạng −12 và −8 đưa vào ngoặc có dấu − thì thành 30 − (12 + 8) = 30 − 20 = 10. Hai dãy kia cho 26 và 50.",
+        "text": "Tổng 30 − 12 − 8 bằng 10. Biểu thức 30 − (12 + 8) = 30 − 20 = 10 và biểu thức 30 − 20 = 10 cùng giá trị. Hai biểu thức còn lại cho 26 và 50.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số −8 phải đổi thành +8, nên dãy này bằng 26."
+            "text": "Đưa −8 vào ngoặc có dấu − thì phải viết +8. Biểu thức này viết −8 nên bằng 26, không phải 10."
           },
           {
             "optionId": "d",
-            "text": "Ngoặc có dấu + giữ nguyên dấu, nên dãy này bằng 50."
+            "text": "Ngoặc có dấu + giữ dấu cũ, nên tổng này bằng 50."
           }
         ]
       },
@@ -3100,7 +3133,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của tổng sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
@@ -3117,7 +3150,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngoặc có dấu − đứng trước nên đổi dấu: −30 + 3. Ngoặc có dấu + đứng trước nên giữ nguyên số −20.",
+        "text": "Ngoặc có dấu − đứng trước nên đổi dấu: −30 + 3. Ngoặc có dấu + đứng trước nên số −20 giữ dấu cũ.",
         "wrong": [
           {
             "optionId": "b",
@@ -3159,7 +3192,7 @@
       }
     },
     {
-      "id": "quy-tac-dau-ngoac.ex.nhom-cap-10-20",
+      "id": "quy-tac-dau-ngoac.ex.nhom-cap-13-25",
       "type": "numeric",
       "cardIds": ["quy-tac-dau-ngoac.card.tinh-hop-li"],
       "prompt": [
@@ -3169,7 +3202,7 @@
         },
         {
           "type": "formula",
-          "tex": "10 - 12 + 14 - 16 + 18 - 20"
+          "tex": "13 - 17 + 21 - 25"
         }
       ],
       "hints": {
@@ -3183,15 +3216,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Nhóm thành (10 − 12) + (14 − 16) + (18 − 20). Mỗi nhóm bằng −2, nên tổng là −6.",
-        "tex": "(10 - 12) + (14 - 16) + (18 - 20) = -2 + (-2) + (-2) = -6"
+        "text": "Nhóm thành (13 − 17) + (21 − 25). Mỗi nhóm bằng −4, nên tổng là −8.",
+        "tex": "\\begin{gathered} (13 - 17) + (21 - 25) \\\\ = -4 + (-4) = -8 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
-        "value": -6
+        "value": -8
       },
       "check": {
-        "expr": "10-12+14-16+18-20"
+        "expr": "13-17+21-25"
       },
       "allowNegative": true
     },
@@ -3219,8 +3252,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Bỏ ngoặc được 45 − 12 − 45 − 8 − 0. Hai số +45 và −45 mất nhau, còn −12 − 8 = −20.",
-        "tex": "45 - 12 - 45 - 8 - 0 = (45 - 45) - 12 - 8 = -20"
+        "text": "Bỏ ngoặc được 45 − 12 − 45 − 8 − 0. Hai số +45 và −45 cộng lại bằng 0, còn −12 − 8 = −20.",
+        "tex": "\\begin{gathered} 45 - 12 - 45 - 8 - 0 \\\\ = (45 - 45) - 12 - 8 \\\\ = -20 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3286,8 +3319,8 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Bỏ ngoặc được 120 − 150 − 20 + 80. Nhóm thành (120 − 20) + (80 − 150) = 100 − 70 = 30.",
-        "tex": "120 - 150 - 20 + 80 = (120 - 20) + (80 - 150) = 100 + (-70) = 30"
+        "text": "Bỏ ngoặc được 120 − 150 − 20 + 80. Nhóm thành (120 + 80) − (150 + 20) = 200 − 170 = 30.",
+        "tex": "\\begin{gathered} 120 - 150 - 20 + 80 \\\\ = (120 + 80) - (150 + 20) \\\\ = 200 - 170 = 30 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3300,7 +3333,7 @@
     {
       "id": "quy-tac-dau-ngoac.ex.xep-gia-tri-bo-ngoac",
       "type": "order",
-      "cardIds": ["quy-tac-dau-ngoac.card.tinh-hop-li"],
+      "cardIds": ["quy-tac-dau-ngoac.card.ngoac-dau-tru"],
       "prompt": [
         {
           "type": "note",
@@ -3354,7 +3387,7 @@
     {
       "id": "quy-tac-dau-ngoac.ex.chon-bang-0",
       "type": "choice",
-      "cardIds": ["quy-tac-dau-ngoac.card.tinh-hop-li"],
+      "cardIds": ["quy-tac-dau-ngoac.card.ngoac-dau-tru"],
       "prompt": [
         {
           "type": "note",
@@ -3426,11 +3459,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Bỏ ngoặc của tổng sau, ta được dãy nào?"
+          "text": "Bỏ ngoặc của tổng sau, ta được tổng nào?"
         },
         {
           "type": "formula",
-          "tex": "(-3) + (8 - 5) - (4 - 6)"
+          "tex": "(-3) + (7 - 2) - (4 - 6)"
         }
       ],
       "hints": {
@@ -3443,15 +3476,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngoặc đầu và ngoặc có dấu + giữ nguyên dấu. Ngoặc có dấu − đổi dấu cả hai số hạng: +4 thành −4 và −6 thành +6.",
+        "text": "Ngoặc (−3) ở đầu tổng và ngoặc (7 − 2) có dấu + giữ dấu cũ. Ngoặc (4 − 6) có dấu − đổi dấu cả hai số hạng: +4 thành −4 và −6 thành +6.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Số −6 trong ngoặc cuối phải đổi thành +6."
+            "text": "Số −6 trong ngoặc (4 − 6) phải đổi thành +6."
           },
           {
             "optionId": "c",
-            "text": "Số 4 trong ngoặc cuối phải đổi thành −4."
+            "text": "Số 4 trong ngoặc (4 − 6) phải đổi thành −4."
           }
         ]
       },
@@ -3460,28 +3493,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "-3 + 8 - 5 - 4 + 6"
+            "tex": "-3 + 7 - 2 - 4 + 6"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "-3 + 8 - 5 - 4 - 6"
+            "tex": "-3 + 7 - 2 - 4 - 6"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "-3 + 8 - 5 + 4 - 6"
+            "tex": "-3 + 7 - 2 + 4 - 6"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "expr": "(-3)+(8-5)-(4-6)"
+        "expr": "(-3)+(7-2)-(4-6)"
       }
     },
     {
@@ -3510,7 +3543,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Bỏ ngoặc được −9 + 14 − 6 − 3 + 7 − 2. Gom số hạng dương 14 + 7 = 21 và phần số của số hạng âm 9 + 6 + 3 + 2 = 20, nên tổng là 1.",
-        "tex": "-9 + 14 - 6 - 3 + 7 - 2 = 21 - 20 = 1"
+        "tex": "\\begin{gathered} -9 + 14 - 6 - 3 + 7 - 2 \\\\ = 21 - 20 = 1 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3540,7 +3573,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngoặc thứ nhất và ngoặc thứ ba có dấu − đứng trước, nên 3, −8, 1 và 4 đổi dấu. Ngoặc thứ hai có dấu + nên giữ nguyên."
+        "text": "Ngoặc thứ nhất và ngoặc thứ ba có dấu − đứng trước, nên 3, −8, 1 và 4 đổi dấu. Ngoặc thứ hai có dấu + nên giữ dấu cũ."
       },
       "visualId": "quy-tac-dau-ngoac.visual.doi-dau-nam-ngoac",
       "validatorId": "chon-dung",
@@ -3560,7 +3593,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nam có 30 nghìn đồng, nhận thêm khoản (20 − 5) nghìn và trả khoản (6 + 4) nghìn. Nam còn lại bao nhiêu nghìn đồng?"
+          "text": "Nam có 30 nghìn đồng, được thưởng 20 nghìn nhưng làm rơi 5 nghìn, rồi mua kẹo 6 nghìn và nước 4 nghìn. Nam còn lại bao nhiêu nghìn đồng?"
         }
       ],
       "hints": {
@@ -3573,8 +3606,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngoặc có dấu + giữ nguyên dấu, ngoặc có dấu − đổi dấu: 30 + 20 − 5 − 6 − 4. Tính được 35.",
-        "tex": "30 + (20 - 5) - (6 + 4) = 30 + 15 - 10 = 35"
+        "text": "Ngoặc có dấu + giữ dấu cũ, ngoặc có dấu − đổi dấu: 30 + 20 − 5 − 6 − 4. Tính được 35.",
+        "tex": "\\begin{gathered} 30 + (20 - 5) - (6 + 4) \\\\ = 30 + 15 - 10 = 35 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3668,11 +3701,11 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số nào trong dãy cũng có số đối: −4 và 4, −3 và 3, −2 và 2, −1 và 1. Mỗi cặp có tổng bằng 0, còn số 0 cộng vào không đổi.",
+        "text": "Trong các số nguyên từ −4 đến 4, mỗi số đều có số đối. Các cặp là −4 và 4, −3 và 3, −2 và 2, −1 và 1, mỗi cặp có tổng bằng 0. Số 0 đứng riêng nên cộng vào không đổi.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "4 chỉ là số lớn nhất của dãy, không phải tổng cả dãy."
+            "text": "4 chỉ là số lớn nhất trong các số, không phải tổng của chúng."
           }
         ]
       },
@@ -3727,7 +3760,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Ghép các cặp số đối: −3 và 3, −2 và 2, −1 và 1, mỗi cặp bằng 0. Còn lại 0, 4 và 5, nên tổng là 9.",
-        "tex": "[(-3) + 3] + [(-2) + 2] + [(-1) + 1] + 0 + 4 + 5 = 9"
+        "tex": "\\begin{gathered} [(-3) + 3] + [(-2) + 2] \\\\ + [(-1) + 1] + 0 + 4 + 5 \\\\ = 9 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3740,11 +3773,11 @@
     {
       "id": "quy-tac-dau-ngoac.ex.thu-chi-lan-40",
       "type": "numeric",
-      "cardIds": ["quy-tac-dau-ngoac.card.bai-toan-doi-song"],
+      "cardIds": ["quy-tac-dau-ngoac.card.vi-du-tong-hop"],
       "prompt": [
         {
           "type": "note",
-          "text": "Lan có 40 nghìn đồng, nhận thêm khoản (15 − 5) nghìn và trả khoản (10 + 6) nghìn. Lan còn lại bao nhiêu nghìn đồng?"
+          "text": "Lan có 40 nghìn đồng, bán đồ cũ được 15 nghìn nhưng tiêu mất 5 nghìn, rồi mua sách 10 nghìn và bút 6 nghìn. Lan còn lại bao nhiêu nghìn đồng?"
         }
       ],
       "hints": {
@@ -3757,8 +3790,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ngoặc có dấu + giữ nguyên dấu, ngoặc có dấu − đổi dấu: 40 + 15 − 5 − 10 − 6. Tính được 34.",
-        "tex": "40 + (15 - 5) - (10 + 6) = 40 + 10 - 16 = 34"
+        "text": "Ngoặc có dấu + giữ dấu cũ, ngoặc có dấu − đổi dấu: 40 + 15 − 5 − 10 − 6. Tính được 34.",
+        "tex": "\\begin{gathered} 40 + (15 - 5) - (10 + 6) \\\\ = 40 + 10 - 16 = 34 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3771,7 +3804,7 @@
     {
       "id": "quy-tac-dau-ngoac.ex.viet-bieu-thuc-80",
       "type": "choice",
-      "cardIds": ["quy-tac-dau-ngoac.card.bai-toan-doi-song"],
+      "cardIds": ["quy-tac-dau-ngoac.card.vi-du-tong-hop"],
       "prompt": [
         {
           "type": "note",
@@ -3792,11 +3825,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Dãy này cộng 20 thay vì trừ 20."
+            "text": "Tổng này cộng 20 thay vì trừ 20."
           },
           {
             "optionId": "c",
-            "text": "Dãy này cộng 30 thay vì trừ 30."
+            "text": "Tổng này cộng 30 thay vì trừ 30."
           }
         ]
       },
@@ -3849,15 +3882,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai tổng đầu có đủ các cặp số đối nhau, nên bằng 0. Tổng thứ ba còn lại 3 − 4 = −1 và tổng thứ tư còn lại 3.",
+        "text": "Tổng (−5) + (−2) + 0 + 2 + 5 và tổng (−3) + (−2) + 2 + 3 có đủ các cặp số đối nhau, nên bằng 0. Tổng (−4) + (−1) + 1 + 3 còn lại 3 − 4 = −1, còn tổng (−3) + (−1) + 1 + 2 + 3 còn lại 2.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "Số −4 không có số đối trong tổng này, nên tổng khác 0."
+            "text": "Số −4 không có số đối 4 trong tổng này, nên tổng khác 0."
           },
           {
             "optionId": "d",
-            "text": "Số 3 không có số đối −3 trong tổng này, nên tổng bằng 3."
+            "text": "Số 2 không có số đối −2 trong tổng này, nên tổng bằng 2."
           }
         ]
       },
@@ -3866,7 +3899,7 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "(-2) + (-1) + 0 + 1 + 2"
+            "tex": "(-5) + (-2) + 0 + 2 + 5"
           }
         },
         {
@@ -3887,7 +3920,7 @@
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "(-2) + (-1) + 0 + 1 + 2 + 3"
+            "tex": "(-3) + (-1) + 1 + 2 + 3"
           }
         }
       ],
@@ -3895,6 +3928,68 @@
       "multiple": true,
       "check": {
         "expr": "0"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.tong-lon-hon-am4",
+      "type": "numeric",
+      "cardIds": ["quy-tac-dau-ngoac.card.bai-toan-doi-song"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng các số nguyên lớn hơn −4 và nhỏ hơn hoặc bằng 4."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Các số cần cộng là −3, −2, −1, 0, 1, 2, 3 và 4; số −4 không được lấy. Ghép các cặp số đối từ −3 đến 3, mỗi cặp bằng 0, còn lại 4.",
+        "tex": "\\begin{gathered} [(-3) + 3] + [(-2) + 2] \\\\ + [(-1) + 1] + 0 + 4 = 4 \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "(-3)+(-2)+(-1)+0+1+2+3+4"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.thu-chi-nam-ngay",
+      "type": "numeric",
+      "cardIds": ["quy-tac-dau-ngoac.card.bai-toan-doi-song"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn ghi tiền trong năm ngày: thu 8 nghìn, chi 6 nghìn, thu 6 nghìn, chi 8 nghìn, rồi thu 3 nghìn. Sau năm ngày, tiền của bạn thêm bao nhiêu nghìn đồng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Thu 8 rồi chi 8 là hai số đối nhau, thu 6 rồi chi 6 cũng vậy, mỗi cặp bằng 0. Còn lại khoản thu 3 nghìn, nên tiền thêm 3 nghìn.",
+        "tex": "\\begin{gathered} (8 - 8) + (-6 + 6) + 3 \\\\ = 0 + 0 + 3 = 3 \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "8-6+6-8+3"
       }
     }
   ],

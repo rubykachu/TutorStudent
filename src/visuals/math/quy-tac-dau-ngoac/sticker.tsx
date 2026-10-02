@@ -4,7 +4,7 @@ import { decorative } from "@/visuals/shared/markers";
 const CENTRE = 50;
 
 // Lesson sticker: a round badge with a pair of brackets; inside, a lime plus
-// turns into a pink minus (and back) along two curved arrows, the sign flip of
+// turns into a pink minus (and back) along one curved arrow, the sign flip of
 // a bracket with a minus before it.
 export default function Sticker() {
   return (

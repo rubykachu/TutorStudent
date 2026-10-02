@@ -125,7 +125,7 @@ const WHOLE_ROWS = [
     tag: tag("đổi chỗ, nhóm số hạng", NOTE),
   },
   { tex: "= 11 - 15" },
-  { tex: "= \\concept{pink}{-4}", tag: tag("giá trị của tổng", SUM) },
+  { tex: "= \\concept{amber}{-4}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
 // Rows shared by a worked example and its still recap.
@@ -133,9 +133,9 @@ const LEADING_ROWS = [
   { tex: "(9 - 12) - (5 - 8 + 1)" },
   {
     tex: "= 9 - 12 - 5 + 8 - 1",
-    tag: tag("ngoặc đầu giữ dấu, ngoặc sau đổi dấu", NOTE),
+    tag: tag("ngoặc ở đầu tổng giữ dấu cũ, ngoặc có dấu − đổi dấu", NOTE),
   },
-  { tex: "= \\concept{pink}{-1}", tag: tag("giá trị của tổng", SUM) },
+  { tex: "= \\concept{amber}{-1}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
 const REASONABLE_ROWS = [
@@ -146,7 +146,7 @@ const REASONABLE_ROWS = [
     tag: tag("đổi chỗ, nhóm thành số tròn chục", NOTE),
   },
   { tex: "= 40 - 40" },
-  { tex: "= \\concept{slate}{0}", tag: tag("giá trị của tổng", SUM) },
+  { tex: "= \\concept{amber}{0}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
 const PAIR_ROWS = [
@@ -156,7 +156,7 @@ const PAIR_ROWS = [
     tag: tag("ghép các cặp số đối", NOTE),
   },
   { tex: "= 0 + 0 + 0 + 0" },
-  { tex: "= \\concept{slate}{0}", tag: tag("tổng cả dãy", SUM) },
+  { tex: "= \\concept{amber}{0}", tag: tag("tổng các số", SUM) },
 ] as const satisfies readonly Row[];
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
@@ -198,36 +198,36 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // 2. Ngoặc có dấu + đứng trước
   "cong-ngoac-mua": lines(
-    "Có 40 nghìn, cộng thêm khoản 30 nghìn trừ 10 nghìn: bỏ ngoặc, giữ nguyên dấu",
+    "Có 40 nghìn, cộng thêm khoản 30 nghìn trừ 10 nghìn: bỏ ngoặc, giữ dấu cũ",
     [
       { tex: "40 + (30 - 10)" },
-      { tex: "= 40 + 30 - 10", tag: tag("bỏ ngoặc, giữ nguyên dấu", NOTE) },
+      { tex: "= 40 + 30 - 10", tag: tag("bỏ ngoặc, giữ dấu cũ", NOTE) },
       { tex: "= \\concept{amber}{60}", tag: tag("còn 60 nghìn", SUM) },
     ],
     "steps",
   ),
-  "cong-ngoac-vi-du": rows("Ngoặc có dấu + đứng trước: các dấu giữ nguyên", [
+  "cong-ngoac-vi-du": rows("Ngoặc có dấu + đứng trước: các dấu giữ dấu cũ", [
     {
       tex: steps(`5 + ${inside([3, -2])}`, `= 5\\ ${sg(3)}\\ ${sg(-2)}`),
-      tag: tag("+3 và −2 giữ nguyên", NOTE),
+      tag: tag("+3 và −2 giữ dấu cũ", NOTE),
     },
     {
       tex: steps(`7 + ${inside([-4, 1])}`, `= 7\\ ${sg(-4)}\\ ${sg(1)}`),
-      tag: tag("−4 và +1 giữ nguyên", NOTE),
+      tag: tag("−4 và +1 giữ dấu cũ", NOTE),
     },
     {
       tex: steps(
         `10 + ${inside([6, -9, 2])}`,
         `= 10\\ ${sg(6)}\\ ${sg(-9)}\\ ${sg(2)}`,
       ),
-      tag: tag("cả ba số giữ nguyên", NOTE),
+      tag: tag("cả ba số giữ dấu cũ", NOTE),
     },
   ]),
   "goi-y-cong-ngoac": lines(
-    "Ngoặc có dấu + đứng trước: bỏ ngoặc và giữ nguyên dấu",
+    "Ngoặc có dấu + đứng trước: bỏ ngoặc và giữ dấu cũ",
     [
       { tex: "15 + (4 - 9)" },
-      { tex: "= 15 + 4 - 9", tag: tag("giữ nguyên dấu", NOTE) },
+      { tex: "= 15 + 4 - 9", tag: tag("giữ dấu cũ", NOTE) },
       { tex: "= 10" },
     ],
     "hint",
@@ -235,7 +235,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-bo-ngoac-8": chips(
     ["8 + 5 − 3", "8 − 5 + 3", "8 + 5 + 3"],
     [0],
-    "Ngoặc có dấu +, nên các dấu giữ nguyên.",
+    "Ngoặc có dấu +, nên các dấu vẫn như cũ.",
   ),
 
   // 3. Ngoặc có dấu − đứng trước
@@ -331,7 +331,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "no-xoa-no": rows("Nợ 5 nghìn rồi được xoá nợ", [
     {
       tex: "50 + (-5) = 50 - 5 = 45",
-      tag: tag("nợ 5 nghìn: giữ dấu −", NEGATIVE),
+      tag: tag("nợ 5 nghìn: giữ dấu cũ", NEGATIVE),
     },
     {
       tex: "45 - (-5) = 45 + 5 = 50",
@@ -347,14 +347,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "chon-20-tru-am6": chips(
     ["20 + 6", "20 − 6", "−20 + 6"],
     [0],
-    "Trừ đi số âm thì thành cộng với số dương.",
+    "Dấu − trước ngoặc nên −6 đổi thành +6.",
   ),
   "goi-y-ngoac-mot-so": lines(
-    "Bỏ ngoặc từng số một, rồi cộng các số hạng",
+    "Bỏ ngoặc từng số một, rồi tính",
     [
-      { tex: "(-3) + (-4) - 5 + (-1)" },
-      { tex: "= -3 - 4 - 5 - 1", tag: tag("bỏ ngoặc, giữ dấu −", NOTE) },
-      { tex: "= -13" },
+      { tex: "6 + (-3) - 5 + (-4)" },
+      { tex: "= 6 - 3 - 5 - 4", tag: tag("bỏ ngoặc, giữ dấu cũ", NOTE) },
+      { tex: "= -6" },
     ],
     "hint",
   ),
@@ -363,7 +363,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "hai-tui-giam-gia": lines(
     "Có 100 nghìn, mua túi A giá 40 nghìn giảm 5 nghìn và túi B giá 30 nghìn giảm 10 nghìn",
     [
-      { tex: "100 - (40 - 5) - (30 - 10)" },
+      { tex: steps("100 - (40 - 5)", "- (30 - 10)") },
       {
         tex: "= 100 - 40 + 5 - 30 + 10",
         tag: tag("mỗi ngoặc đổi dấu riêng", NOTE),
@@ -373,12 +373,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "steps",
   ),
   "ngoac-dau-day-vi-du": lines(
-    "Ngoặc ở đầu giữ dấu, ngoặc có dấu − đứng trước đổi dấu",
+    "Ngoặc ở đầu tổng giữ dấu cũ, ngoặc có dấu − đứng trước đổi dấu",
     LEADING_ROWS,
     "steps",
   ),
   "ngoac-dau-day-vi-du-xong": lines(
-    "Ngoặc ở đầu giữ dấu, ngoặc có dấu − đứng trước đổi dấu",
+    "Ngoặc ở đầu tổng giữ dấu cũ, ngoặc có dấu − đứng trước đổi dấu",
     LEADING_ROWS,
     "still",
   ),
@@ -412,7 +412,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("−12 mang theo dấu −", NEGATIVE),
     },
     {
-      tex: "9 + 12 - 5 = 16",
+      tex: "9 - 5 + 12 = 16",
       tag: tag("bỏ lại dấu − thì sai", NOTE),
       muted: true,
     },
@@ -436,17 +436,17 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "50 - 20 + 30 - 10" },
       {
         tex: "= (50 - 20) + (30 - 10)",
-        tag: tag("gom nhóm, các dấu giữ nguyên", NOTE),
+        tag: tag("gom nhóm, các số hạng giữ dấu cũ", NOTE),
       },
       { tex: "= 30 + 20" },
       { tex: "= \\concept{amber}{50}", tag: tag("thu về 50 nghìn", SUM) },
     ],
     "steps",
   ),
-  "nhom-cong-vi-du": rows("Đặt ngoặc có dấu + đứng trước: dấu giữ nguyên", [
+  "nhom-cong-vi-du": rows("Đặt ngoặc có dấu + đứng trước: số hạng giữ dấu cũ", [
     {
       tex: steps("8 - 3 + 5 - 2", "= (8 - 3) + (5 - 2)"),
-      tag: tag("hai nhóm, dấu giữ nguyên", NOTE),
+      tag: tag("hai nhóm, dấu giữ dấu cũ", NOTE),
     },
     {
       tex: steps("6 - 9 + 4 + 1", "= 6 + (-9 + 4 + 1)"),
@@ -454,9 +454,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     },
   ]),
   "chon-nhom-7-4": chips(
-    ["(7 − 4) + (9 − 5)", "(7 − 4) + (9 + 5)", "(7 + 4) − (9 − 5)"],
+    ["(7 − 4) + (9 − 5)", "(7 − 4) + (9 + 5)", "(7 − 4) − (9 − 5)"],
     [0],
-    "Ngoặc có dấu +, nên các số hạng giữ nguyên dấu.",
+    "Ngoặc có dấu +, nên các số hạng giữ dấu cũ.",
   ),
 
   // 9. Đặt ngoặc có dấu − đứng trước
@@ -513,15 +513,25 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "still",
   ),
   "so-doi-mat-nhau": lines(
-    "Bỏ ngoặc rồi cho hai số đối nhau mất nhau",
+    "Bỏ ngoặc rồi ghép hai số đối nhau",
     [
       { tex: "30 - (17 + 30) - (5 + 0)" },
       { tex: "= 30 - 17 - 30 - 5 - 0", tag: tag("bỏ ngoặc", NOTE) },
       {
         tex: "= (30 - 30) - 17 - 5",
-        tag: tag("30 và −30 mất nhau, bỏ 0", NOTE),
+        tag: tag("30 và −30 cộng lại bằng 0, bỏ 0", NOTE),
       },
-      { tex: "= \\concept{pink}{-22}", tag: tag("giá trị của tổng", SUM) },
+      { tex: "= \\concept{amber}{-22}", tag: tag("giá trị của tổng", SUM) },
+    ],
+    "steps",
+  ),
+  "nhom-cap-vi-du": lines(
+    "Nhóm từng cặp số hạng cho kết quả bằng nhau",
+    [
+      { tex: "5 - 7 + 9 - 11" },
+      { tex: "= (5 - 7) + (9 - 11)", tag: tag("nhóm từng cặp", NOTE) },
+      { tex: "= -2 + (-2)" },
+      { tex: "= \\concept{amber}{-4}", tag: tag("giá trị của tổng", SUM) },
     ],
     "steps",
   ),
@@ -534,10 +544,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "goi-y-hop-li": lines(
     "Nhóm từng cặp số hạng rồi tính",
     [
-      { tex: "3 - 5 + 7 - 9" },
-      { tex: "= (3 - 5) + (7 - 9)", tag: tag("nhóm từng cặp", NOTE) },
-      { tex: "= -2 + (-2)" },
-      { tex: "= -4" },
+      { tex: "2 - 5 + 8 - 11" },
+      { tex: "= (2 - 5) + (8 - 11)", tag: tag("nhóm từng cặp", NOTE) },
+      { tex: "= -3 + (-3)" },
+      { tex: "= -6" },
     ],
     "hint",
   ),
@@ -574,31 +584,44 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // 12. Thu chi và ghép số đối
   "thu-chi-lan": lines(
-    "Lan có 60 nghìn, nhận 20 nghìn trừ 5 nghìn công, rồi trả 12 nghìn và 8 nghìn",
+    "Lan có 60 nghìn, bán giấy vụn được 20 nghìn nhưng trả 5 nghìn gửi xe, rồi mua bút 12 nghìn và vở 8 nghìn",
     [
       { tex: "60 + (20 - 5) - (12 + 8)" },
       {
         tex: "= 60 + 20 - 5 - 12 - 8",
-        tag: tag("ngoặc + giữ dấu, ngoặc − đổi dấu", NOTE),
+        tag: tag("ngoặc + giữ dấu cũ, ngoặc − đổi dấu", NOTE),
       },
       { tex: "= \\concept{amber}{55}", tag: tag("Lan còn 55 nghìn", SUM) },
     ],
     "steps",
   ),
   "ghep-so-doi": lines(
-    "Tổng các số nguyên từ −3 đến 3: ghép từng cặp số đối nhau",
+    "Tổng các số nguyên từ −3 đến 3, kể cả −3 và 3: ghép từng cặp số đối nhau",
     PAIR_ROWS,
     "steps",
   ),
   "ghep-so-doi-xong": lines(
-    "Tổng các số nguyên từ −3 đến 3: ghép từng cặp số đối nhau",
+    "Tổng các số nguyên từ −3 đến 3, kể cả −3 và 3: ghép từng cặp số đối nhau",
     PAIR_ROWS,
     "still",
+  ),
+  "thu-chi-tuan": lines(
+    "Năm ngày thu chi: thu 5, chi 2, thu 2, chi 5, thu 4 nghìn",
+    [
+      { tex: "5 - 2 + 2 - 5 + 4" },
+      {
+        tex: "= (5 - 5) + (-2 + 2) + 4",
+        tag: tag("ghép các cặp số đối", NOTE),
+      },
+      { tex: "= 0 + 0 + 4" },
+      { tex: "= \\concept{amber}{4}", tag: tag("tiền thêm sau năm ngày", SUM) },
+    ],
+    "steps",
   ),
   "chon-khong-doi": chips(
     ["−2", "−1", "0", "1", "2", "3"],
     [5],
-    "Số 3 không có số đối trong dãy, nên nó là số còn lại.",
+    "Số 3 không có số đối −3 trong các số này, nên 3 là số còn lại.",
   ),
   "goi-y-ghep-doi": lines(
     "Ghép các cặp số đối nhau, rồi cộng các số còn lại",
