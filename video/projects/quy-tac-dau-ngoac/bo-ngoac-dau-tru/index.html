@@ -1,0 +1,353 @@
+<!doctype html>
+<!--
+  Lesson video "Bỏ ngoặc có dấu trừ đứng trước" (lesson quy-tac-dau-ngoac):
+  100 - (30 + 20) = 100 - 30 - 20 = 50 and 60 - (25 + 15) = 60 - 25 - 15 = 20:
+  with a minus sign before the bracket, every term inside changes its sign
+  (shown as a lime term turning into a pink one).
+  Colours as in the lesson: positive terms lime, negative terms pink, sum amber,
+  step labels violet.
+  Built by `pnpm video:build quy-tac-dau-ngoac bo-ngoac-dau-tru`, which injects
+  window.TIMING. The rule card carries `data-rule-text`: its text is the
+  lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Bỏ ngoặc có dấu trừ đứng trước</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      .fm {
+        font:
+          800 84px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+      }
+      .fm.small {
+        font-size: 72px;
+      }
+      .fm.mini {
+        font-size: 60px;
+      }
+      .pos {
+        color: var(--color-concept-lime);
+      }
+      .neg {
+        color: var(--color-concept-pink);
+      }
+      .sum {
+        color: var(--color-concept-amber);
+      }
+      .group {
+        display: inline-block;
+        padding: 0 10px;
+        border-radius: 14px;
+      }
+      .coin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .coin .cap {
+        font:
+          600 30px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .chip.big {
+        font:
+          800 64px / 1.1 "Baloo 2",
+          sans-serif;
+        padding: 2px 26px 8px;
+      }
+      .bracket {
+        display: flex;
+        gap: 28px;
+        padding: 16px 26px 12px;
+        border: 5px solid transparent;
+        border-radius: 32px;
+      }
+      .pairs {
+        gap: 90px;
+      }
+      .pair {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .pair svg {
+        width: 64px;
+        height: 40px;
+        flex: none;
+      }
+      .rule {
+        position: absolute;
+        left: 100px;
+        width: 1080px;
+        top: 135px;
+        padding: 20px 32px;
+        font:
+          600 30px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="70"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <!-- scene 1: the story, 100 - (30 + 20) -->
+        <section id="s1" class="scene layer">
+          <div class="row" style="top: 110px; gap: 36px; align-items: flex-start">
+            <div id="c1a" class="coin">
+              <span class="chip big" style="--c: var(--color-concept-lime)">100</span>
+              <span class="cap">nghìn đồng có sẵn</span>
+            </div>
+            <div id="br1" class="bracket">
+              <div id="c1b" class="coin">
+                <span class="chip big" style="--c: var(--color-concept-lime)">30</span>
+                <span class="cap">bánh</span>
+              </div>
+              <div id="c1c" class="coin">
+                <span class="chip big" style="--c: var(--color-concept-lime)">+20</span>
+                <span class="cap">sữa</span>
+              </div>
+            </div>
+          </div>
+          <div class="row fm" style="top: 400px">
+            <span id="f1a" class="pos">100</span>
+            <span id="f1o">−</span>
+            <span id="f1l">(</span>
+            <span id="f1b" class="pos">30</span>
+            <span id="f1c" class="pos">+20</span>
+            <span id="f1r">)</span>
+          </div>
+        </section>
+
+        <!-- scene 2: ask, the rule, each term changes its sign -->
+        <section id="s2" class="scene layer">
+          <div class="row fm" style="top: 30px">
+            <span id="f2a" class="pos">100</span>
+            <span id="f2o">−</span>
+            <span id="f2l">(</span>
+            <span id="f2g" class="group">
+              <span class="pos">30</span>
+              <span class="pos" style="margin-left: 0.2em">+20</span>
+            </span>
+            <span id="f2r">)</span>
+          </div>
+          <div id="a2" class="tag chip" style="--c: var(--color-concept-violet); left: 640px; top: 165px">
+            các dấu trong ngoặc có đổi không?
+          </div>
+          <div id="rule2" class="card rule" data-rule-text>Trước ngoặc là dấu <span class="neg">−</span>: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.</div>
+          <div class="row pairs" style="top: 285px">
+            <div class="pair">
+              <span id="p1a" class="chip big" style="--c: var(--color-concept-lime)">+30</span>
+              <svg id="p1x" viewBox="0 0 64 40"><path d="M4 20 H52 M38 6 L54 20 L38 34" stroke="var(--color-concept-violet)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <span id="p1b" class="chip big" style="--c: var(--color-concept-pink)">−30</span>
+            </div>
+            <div class="pair">
+              <span id="p2a" class="chip big" style="--c: var(--color-concept-lime)">+20</span>
+              <svg id="p2x" viewBox="0 0 64 40"><path d="M4 20 H52 M38 6 L54 20 L38 34" stroke="var(--color-concept-violet)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <span id="p2b" class="chip big" style="--c: var(--color-concept-pink)">−20</span>
+            </div>
+          </div>
+          <div class="row fm small" style="top: 400px">
+            <span id="g2e">=</span>
+            <span id="g2a" class="pos">100</span>
+            <span id="g2b" class="neg">−30</span>
+            <span id="g2c" class="neg">−20</span>
+            <span id="g2d">=</span>
+            <span id="g2r" class="sum">50</span>
+          </div>
+        </section>
+
+        <!-- scene 3: another try, 60 - (25 + 15) -->
+        <section id="s3" class="scene layer">
+          <div class="row fm small" style="top: 100px">
+            <span id="f3a" class="pos">60</span>
+            <span id="f3o">−</span>
+            <span id="f3l">(</span>
+            <span id="f3b" class="pos">25</span>
+            <span id="f3c" class="pos">+15</span>
+            <span id="f3r">)</span>
+          </div>
+          <div class="row pairs" style="top: 225px">
+            <div class="pair">
+              <span id="q1a" class="chip big" style="--c: var(--color-concept-lime)">+25</span>
+              <svg id="q1x" viewBox="0 0 64 40"><path d="M4 20 H52 M38 6 L54 20 L38 34" stroke="var(--color-concept-violet)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <span id="q1b" class="chip big" style="--c: var(--color-concept-pink)">−25</span>
+            </div>
+            <div class="pair">
+              <span id="q2a" class="chip big" style="--c: var(--color-concept-lime)">+15</span>
+              <svg id="q2x" viewBox="0 0 64 40"><path d="M4 20 H52 M38 6 L54 20 L38 34" stroke="var(--color-concept-violet)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <span id="q2b" class="chip big" style="--c: var(--color-concept-pink)">−15</span>
+            </div>
+          </div>
+          <div class="row fm small" style="top: 365px">
+            <span id="g3e">=</span>
+            <span id="g3a" class="pos">60</span>
+            <span id="g3b" class="neg">−25</span>
+            <span id="g3c" class="neg">−15</span>
+            <span id="g3d">=</span>
+            <span id="g3r" class="sum">20</span>
+          </div>
+        </section>
+
+        <!-- scene 4: remember -->
+        <section id="s4" class="scene layer">
+          <div id="rule4" class="card rule" data-rule-text>Trước ngoặc là dấu <span class="neg">−</span>: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.</div>
+          <div id="m4" class="row fm mini" style="top: 330px">
+            <span class="pos">100</span>
+            <span>−</span>
+            <span>(</span>
+            <span class="pos">30</span>
+            <span class="pos">+20</span>
+            <span>)</span>
+            <span>=</span>
+            <span class="pos">100</span>
+            <span class="neg">−30</span>
+            <span class="neg">−20</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, fade, pose, scenes, tl, finish, color } =
+          window.LV;
+        const g = window.gsap;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        const OPEN = { from: 0.6, stagger: 0.2 };
+        // Colours a group now and puts it back later: both steps are explicit
+        // so seeking backwards shows the right state.
+        const glow = (target, on, off) => {
+          g.set(target, { backgroundColor: "rgba(0, 0, 0, 0)" });
+          tl.to(target, { backgroundColor: color("highlight"), duration: 0.3 }, on);
+          tl.to(target, { backgroundColor: "rgba(0, 0, 0, 0)", duration: 0.3 }, off);
+        };
+
+        scenes([
+          ["#s1", "s01-chuyen"],
+          ["#s2", "s02-quy-tac"],
+          ["#s3", "s03-thu"],
+          ["#s4", "s04-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- scene 1: 100 in the purse, a bag of 30 and 20 ----------
+        {
+          const sid = "s01-chuyen";
+          hide(["#c1a", "#c1b", "#c1c", "#f1a", "#f1o", "#f1l", "#f1b", "#f1c", "#f1r"]);
+          g.set("#br1", { borderColor: "rgba(0, 0, 0, 0)" });
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#c1a", W(sid, "100"), { from: 0.4 });
+          tl.to("#br1", { borderColor: color("concept-violet"), duration: 0.4 }, W(sid, "túi"));
+          pop("#c1b", W(sid, "bánh"), { from: 0.4 });
+          pop("#c1c", W(sid, "sữa"), { from: 0.4 });
+          pop("#f1a", W(sid, "100", 2), { from: 0.6 });
+          pop("#f1o", W(sid, "trừ", 2), { from: 0.6 });
+          pop("#f1l", W(sid, "ngoặc", 2), { from: 0.6 });
+          pop("#f1b", W(sid, "30", 2), { from: 0.6 });
+          pop("#f1c", W(sid, "cộng"), { from: 0.6 });
+          pop("#f1r", W(sid, "20", 2), { from: 0.6 });
+        }
+
+        // ---------- scene 2: guess, rule, every sign flips ----------
+        {
+          const sid = "s02-quy-tac";
+          hide(["#a2", "#rule2", "#p1a", "#p1x", "#p1b", "#p2a", "#p2x", "#p2b", "#g2e", "#g2a", "#g2b", "#g2c", "#g2d", "#g2r"]);
+          pose(bird, "idle", start(sid));
+          pop("#a2", W(sid, "đoán"), { from: 0.6 });
+          glow("#f2g", W(sid, "ngoặc"), W(sid, "trước"));
+          fade("#a2", W(sid, "trước"), 0.2);
+          pop("#rule2", W(sid, "trước"), { from: 0.9 });
+          // first term: +30 becomes -30
+          pop("#p1a", W(sid, "cộng"), { from: 0.6 });
+          pop("#p1x", W(sid, "đổi", 3), { from: 0.6 });
+          pop("#p1b", W(sid, "trừ"), { from: 0.6 });
+          // second term: +20 becomes -20
+          pop("#p2a", W(sid, "cộng", 2), { from: 0.6 });
+          pop("#p2x", W(sid, "đổi", 4), { from: 0.6 });
+          pop("#p2b", W(sid, "trừ", 2), { from: 0.6 });
+          // the brackets go, the new signs stay
+          tl.to(["#f2l", "#f2r"], { opacity: 0.2, duration: 0.3 }, W(sid, "ta"));
+          pop(["#g2e", "#g2a"], W(sid, "ta"), { ...OPEN });
+          pop("#g2b", W(sid, "30", 3), { from: 0.6 });
+          pop("#g2c", W(sid, "20", 3), { from: 0.6 });
+          pop("#g2d", W(sid, "còn"), { from: 0.6 });
+          pop("#g2r", W(sid, "50"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "50"));
+        }
+
+        // ---------- scene 3: try 60 - (25 + 15) ----------
+        {
+          const sid = "s03-thu";
+          hide(["#f3a", "#f3o", "#f3l", "#f3b", "#f3c", "#f3r", "#q1a", "#q1x", "#q1b", "#q2a", "#q2x", "#q2b", "#g3e", "#g3a", "#g3b", "#g3c", "#g3d", "#g3r"]);
+          pose(bird, "idle", start(sid));
+          pop("#f3a", W(sid, "60"), { from: 0.6 });
+          pop("#f3o", W(sid, "trừ"), { from: 0.6 });
+          pop("#f3l", W(sid, "ngoặc"), { from: 0.6 });
+          pop("#f3b", W(sid, "25"), { from: 0.6 });
+          pop("#f3c", W(sid, "cộng"), { from: 0.6 });
+          pop("#f3r", W(sid, "15"), { from: 0.6 });
+          pop("#q1a", W(sid, "cộng", 2), { from: 0.6 });
+          pop("#q1x", W(sid, "thành"), { from: 0.6 });
+          pop("#q1b", W(sid, "trừ", 2), { from: 0.6 });
+          pop("#q2a", W(sid, "cộng", 3), { from: 0.6 });
+          pop("#q2x", W(sid, "thành", 2), { from: 0.6 });
+          pop("#q2b", W(sid, "trừ", 3), { from: 0.6 });
+          tl.to(["#f3l", "#f3r"], { opacity: 0.2, duration: 0.3 }, W(sid, "kết"));
+          pop(["#g3e", "#g3a"], W(sid, "60", 2), { ...OPEN });
+          pop("#g3b", W(sid, "25", 4), { from: 0.6 });
+          pop("#g3c", W(sid, "15", 4), { from: 0.6 });
+          pop("#g3d", W(sid, "bằng"), { from: 0.6 });
+          pop("#g3r", W(sid, "20"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "20"));
+        }
+
+        // ---------- scene 4: remember ----------
+        {
+          const sid = "s04-nho";
+          hide(["#rule4", "#m4"]);
+          pose(bird, "idle", start(sid));
+          pop("#m4", W(sid, "nhớ"), { from: 0.6 });
+          pop("#rule4", W(sid, "trước"), { from: 0.9 });
+          pose(bird, "cheer", W(sid, "trước"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

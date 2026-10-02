@@ -1,0 +1,89 @@
+{
+  "title": "Bỏ ngoặc có dấu cộng đứng trước",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-quy-tac",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chuyen",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta bỏ ngoặc có dấu cộng.",
+          "opening": true
+        },
+        {
+          "text": "Bạn có 40 nghìn đồng."
+        },
+        {
+          "text": "Bạn bán đồ cũ được 30 nghìn."
+        },
+        {
+          "text": "Nhưng bạn tiêu mất 10 nghìn."
+        },
+        {
+          "text": "Tiền là 40 cộng, trong ngoặc, 30 trừ 10."
+        }
+      ]
+    },
+    {
+      "id": "s02-quy-tac",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: dấu trong ngoặc có đổi không?",
+          "pause": "ask"
+        },
+        {
+          "text": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ.",
+          "say": "Trước ngoặc là dấu cộng: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Ta bỏ ngoặc: 40 cộng 30 trừ 10."
+        },
+        {
+          "text": "Vậy bạn còn 60 nghìn đồng."
+        }
+      ]
+    },
+    {
+      "id": "s03-thu",
+      "sentences": [
+        {
+          "text": "Thử số khác: 12 cộng, trong ngoặc, 4 trừ 7."
+        },
+        {
+          "text": "Bỏ ngoặc: 12 cộng 4 trừ 7."
+        },
+        {
+          "text": "Kết quả là 9."
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ.",
+          "say": "Trước ngoặc là dấu cộng: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ngoac-dau-cong",
+      "from": "s02-quy-tac",
+      "to": "s04-nho",
+      "cardIds": [
+        "quy-tac-dau-ngoac.card.ngoac-dau-cong"
+      ]
+    }
+  ]
+}

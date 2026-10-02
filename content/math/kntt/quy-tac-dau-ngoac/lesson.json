@@ -17,13 +17,22 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học quy tắc bỏ dấu ngoặc. Bạn đưa cô bán hàng 100 nghìn đồng để trả túi hàng giá 30 nghìn, được giảm 10 nghìn. Bạn tính xem cô phải trả lại bạn bao nhiêu tiền?"
     },
-    "summary": "Bài này dạy bỏ dấu ngoặc khi trước ngoặc có dấu + hoặc dấu −. Sau đó bạn đổi chỗ và nhóm các số hạng để tính nhanh.",
+    "summary": "Bài này dạy bỏ dấu ngoặc khi trước ngoặc có dấu cộng hoặc dấu trừ. Sau đó bạn đổi chỗ và nhóm các số hạng để tính nhanh.",
     "goals": [
-      "bỏ được dấu ngoặc có dấu + đứng trước",
-      "bỏ được dấu ngoặc có dấu − đứng trước và đổi dấu từng số hạng",
+      "bỏ được dấu ngoặc có dấu cộng đứng trước",
+      "bỏ được dấu ngoặc có dấu trừ đứng trước và đổi dấu từng số hạng",
       "đổi chỗ các số hạng rồi gom thành nhóm để tính nhanh"
     ],
-    "whyItMatters": "Bạn dùng quy tắc dấu ngoặc khi tính hoá đơn có giảm giá, để biết mình phải trả hay còn lại bao nhiêu tiền."
+    "whyItMatters": "Bạn dùng quy tắc dấu ngoặc khi tính hoá đơn có giảm giá, để biết mình phải trả hay còn lại bao nhiêu tiền.",
+    "narration": {
+      "audioUrl": "narration/quy-tac-dau-ngoac/overview.m4a",
+      "vttUrl": "narration/quy-tac-dau-ngoac/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Achird",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -110,6 +119,10 @@
       "minutes": 4,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "quy-tac-dau-ngoac.video.bo-ngoac-dau-cong"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -164,6 +177,10 @@
       "sourceRef": "Sách bài tập tr.53 (kiến thức cần nhớ 2)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "quy-tac-dau-ngoac.video.bo-ngoac-dau-tru"
+        },
         {
           "type": "group",
           "children": [
@@ -227,6 +244,10 @@
       "sourceRef": "Sách bài tập tr.53 (kiến thức cần nhớ 2)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "quy-tac-dau-ngoac.video.ngoac-tru-so-am"
+        },
         {
           "type": "group",
           "children": [
@@ -4012,5 +4033,70 @@
   "sticker": {
     "name": "Huy hiệu quy tắc dấu ngoặc",
     "visualId": "quy-tac-dau-ngoac.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "quy-tac-dau-ngoac.video.bo-ngoac-dau-tru",
+      "lessonId": "quy-tac-dau-ngoac",
+      "url": "video/quy-tac-dau-ngoac/bo-ngoac-dau-tru.mp4",
+      "vttUrl": "video/quy-tac-dau-ngoac/bo-ngoac-dau-tru.vtt",
+      "posterUrl": "video/quy-tac-dau-ngoac/bo-ngoac-dau-tru.jpg",
+      "durationSec": 57.27,
+      "clips": [
+        {
+          "id": "ngoac-dau-tru",
+          "start": 15.919,
+          "end": 55.843,
+          "cardIds": ["quy-tac-dau-ngoac.card.ngoac-dau-tru"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.video.bo-ngoac-dau-cong",
+      "lessonId": "quy-tac-dau-ngoac",
+      "url": "video/quy-tac-dau-ngoac/bo-ngoac-dau-cong.mp4",
+      "vttUrl": "video/quy-tac-dau-ngoac/bo-ngoac-dau-cong.vtt",
+      "posterUrl": "video/quy-tac-dau-ngoac/bo-ngoac-dau-cong.jpg",
+      "durationSec": 45.27,
+      "clips": [
+        {
+          "id": "ngoac-dau-cong",
+          "start": 14.469,
+          "end": 43.861,
+          "cardIds": ["quy-tac-dau-ngoac.card.ngoac-dau-cong"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.video.ngoac-tru-so-am",
+      "lessonId": "quy-tac-dau-ngoac",
+      "url": "video/quy-tac-dau-ngoac/ngoac-tru-so-am.mp4",
+      "vttUrl": "video/quy-tac-dau-ngoac/ngoac-tru-so-am.vtt",
+      "posterUrl": "video/quy-tac-dau-ngoac/ngoac-tru-so-am.jpg",
+      "durationSec": 54.2,
+      "clips": [
+        {
+          "id": "ngoac-tru-so-am",
+          "start": 13.802,
+          "end": 52.783,
+          "cardIds": ["quy-tac-dau-ngoac.card.ngoac-tru-so-am"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

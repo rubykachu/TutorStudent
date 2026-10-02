@@ -1,0 +1,90 @@
+{
+  "title": "Bỏ ngoặc khi có số âm trong ngoặc",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-quy-tac",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chuyen",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta bỏ ngoặc có số âm.",
+          "opening": true
+        },
+        {
+          "text": "Hàng giá 30 nghìn, được giảm 10 nghìn."
+        },
+        {
+          "text": "Bạn đưa 100 nghìn đồng."
+        },
+        {
+          "text": "Tiền trả lại là 100 trừ, trong ngoặc, 30 trừ 10."
+        }
+      ]
+    },
+    {
+      "id": "s02-quy-tac",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: số hạng −10 đổi thành gì?",
+          "pause": "ask"
+        },
+        {
+          "text": "Khi đổi dấu, số hạng dương thành số hạng âm và số hạng âm thành số hạng dương.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Số hạng −10 đổi thành cộng 10."
+        },
+        {
+          "text": "Số đầu tiên cũng phải đổi dấu."
+        },
+        {
+          "text": "Cộng 30 đổi thành trừ 30."
+        },
+        {
+          "text": "Ta được 100 trừ 30 cộng 10, bằng 80."
+        }
+      ]
+    },
+    {
+      "id": "s03-thu",
+      "sentences": [
+        {
+          "text": "Thử số khác: 50 trừ, trong ngoặc, 20 trừ 5."
+        },
+        {
+          "text": "Cộng 20 thành trừ 20, −5 thành cộng 5."
+        },
+        {
+          "text": "Kết quả: 50 trừ 20 cộng 5 bằng 35."
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Khi đổi dấu, số hạng dương thành số hạng âm và số hạng âm thành số hạng dương.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ngoac-tru-so-am",
+      "from": "s02-quy-tac",
+      "to": "s04-nho",
+      "cardIds": [
+        "quy-tac-dau-ngoac.card.ngoac-tru-so-am"
+      ]
+    }
+  ]
+}

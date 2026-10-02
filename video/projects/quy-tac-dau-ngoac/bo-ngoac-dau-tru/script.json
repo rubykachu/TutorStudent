@@ -1,0 +1,92 @@
+{
+  "title": "Bỏ ngoặc có dấu trừ đứng trước",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-quy-tac",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-chuyen",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta bỏ ngoặc có dấu trừ.",
+          "opening": true
+        },
+        {
+          "text": "Bạn có 100 nghìn đồng."
+        },
+        {
+          "text": "Bạn trả cả một túi hàng."
+        },
+        {
+          "text": "Trong túi có bánh 30 và sữa 20."
+        },
+        {
+          "text": "Tiền còn lại là 100 trừ, trong ngoặc, 30 cộng 20."
+        }
+      ]
+    },
+    {
+      "id": "s02-quy-tac",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: các dấu trong ngoặc có đổi không?",
+          "pause": "ask"
+        },
+        {
+          "text": "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.",
+          "say": "Trước ngoặc là dấu trừ: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Cộng 30 đổi thành trừ 30."
+        },
+        {
+          "text": "Cộng 20 đổi thành trừ 20."
+        },
+        {
+          "text": "Ta được 100 trừ 30 trừ 20, còn 50 nghìn."
+        }
+      ]
+    },
+    {
+      "id": "s03-thu",
+      "sentences": [
+        {
+          "text": "Thử số khác: 60 trừ, trong ngoặc, 25 cộng 15."
+        },
+        {
+          "text": "Cộng 25 thành trừ 25, cộng 15 thành trừ 15."
+        },
+        {
+          "text": "Kết quả: 60 trừ 25 trừ 15 bằng 20."
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.",
+          "say": "Trước ngoặc là dấu trừ: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ngoac-dau-tru",
+      "from": "s02-quy-tac",
+      "to": "s04-nho",
+      "cardIds": [
+        "quy-tac-dau-ngoac.card.ngoac-dau-tru"
+      ]
+    }
+  ]
+}
