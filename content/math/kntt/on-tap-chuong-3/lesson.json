@@ -14,7 +14,7 @@
   "status": "draft",
   "overview": {
     "hook": {
-      "text": "Chào bạn! Ở bài này, chúng ta ôn lại cả chương III về số nguyên. Khi bạn xem nhiệt kế ghi −2 độ, hay tính xem ví còn bao nhiêu tiền, là bạn đang dùng số nguyên."
+      "text": "Chào bạn! Ở bài này, chúng ta ôn lại cả chương III về số nguyên. Bạn có 3 nghìn mà mua món 5 nghìn thì còn nợ 2 nghìn, tức là ba trừ năm bằng âm hai."
     },
     "summary": "Bài này ôn lại chương III, từ Bài 13 đến Bài 17. Bạn sẽ ôn cách so sánh số nguyên, cách cộng, trừ, nhân, chia số nguyên, và cách tìm ước, bội. Mỗi câu đều có phần nhắc lại và từng bước dẫn.",
     "goals": [
@@ -22,7 +22,7 @@
       "làm các câu chọn đáp án về dấu của kết quả khi nhân, cộng và trừ",
       "làm các bài tập tính, tìm x, và tìm bội, tìm ước của số nguyên"
     ],
-    "whyItMatters": "Bạn dùng số nguyên để đọc nhiệt độ dưới 0, và để biết ví còn tiền hay đang nợ sau khi thu chi."
+    "whyItMatters": "Bạn dùng số nguyên để đọc nhiệt độ dưới 0 và biết mình còn tiền hay đang nợ sau khi mượn và trả."
   },
   "concepts": [
     {
@@ -89,9 +89,9 @@
           "type": "tip",
           "id": "on-tap-chuong-3.tip.so-sanh-nhieu-so",
           "kind": "làm nhanh",
-          "title": "So sánh nhiều số nguyên",
-          "text": "Chia các số thành ba nhóm: số âm, số 0 và số dương. Xếp nhóm số âm trước, rồi tới số 0, sau cùng là nhóm số dương. Hai số âm thì bỏ dấu − rồi so sánh: số nào lớn hơn thì số âm đó nhỏ hơn.",
-          "tex": "\\concept{pink}{-12} < \\concept{pink}{-4} < 0 < \\concept{lime}{3}"
+          "title": "Xếp nhiều số nguyên từ bé đến lớn",
+          "text": "Muốn xếp từ bé đến lớn, chia các số thành ba nhóm số âm, số 0 và số dương, rồi xếp theo thứ tự đó. Hai số âm thì bỏ dấu − rồi so sánh: số nào lớn hơn thì số âm đó nhỏ hơn. Muốn xếp từ lớn đến bé thì viết theo thứ tự ngược lại.",
+          "tex": "\\concept{pink}{-11} < \\concept{pink}{-6} < 0 < \\concept{lime}{8}"
         }
       ],
       "checkIds": [
@@ -177,6 +177,14 @@
             {
               "type": "note",
               "text": "Số −3 thuộc B vì dấu ≤ cho x bằng −3, còn 2 không thuộc B vì dấu < không cho x bằng 2."
+            },
+            {
+              "type": "formula",
+              "tex": "\\begin{gathered} -3 \\in B \\\\ 2 \\notin B \\end{gathered}"
+            },
+            {
+              "type": "note",
+              "text": "Dấu ∉ đọc là không thuộc, ngược lại với dấu ∈."
             }
           ]
         }
@@ -227,7 +235,7 @@
           "id": "on-tap-chuong-3.tip.tich-duong-tong",
           "kind": "hiểu nhanh",
           "title": "Tích dương và dấu của tổng",
-          "text": "Nhân hai số dương, hay nhân hai số âm, đều được số dương. Vậy tích dương thì hai số cùng dấu. Khi đó, tổng dương thì cả hai số dương, còn tổng âm thì cả hai số âm.",
+          "text": "Hai số khác dấu thì tích âm, nên tích dương thì hai số cùng dấu. Khi đó, tổng dương thì cả hai số dương, còn tổng âm thì cả hai số âm.",
           "tex": "\\begin{gathered} 3 \\cdot 4 = 12 \\\\ 3 + 4 = 7 \\\\ (-3) \\cdot (-4) = 12 \\\\ (-3) + (-4) = -7 \\end{gathered}"
         }
       ],
@@ -245,7 +253,7 @@
     },
     {
       "id": "on-tap-chuong-3.section.dau-tich-hieu",
-      "title": "Nhắc lại Bài 14 và Bài 16: dấu khi nhân và khi trừ",
+      "title": "Nhắc lại Bài 14: trừ là cộng với số đối",
       "sourceRef": "Ôn tập chương III, câu hỏi 5, 6 (sách bài tập tr.61, lời giải tr.114); ôn Bài 14 và Bài 16",
       "minutes": 6,
       "blocks": [
@@ -254,7 +262,8 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn trừ một số, ta cộng với số đối của số đó."
+              "text": "Muốn trừ một số, ta cộng với số đối của số đó.",
+              "rule": true
             },
             {
               "type": "visual",
@@ -267,8 +276,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trừ đi một số âm thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai.",
-              "rule": true
+              "text": "Trừ đi một số âm thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai."
             },
             {
               "type": "visual",
@@ -306,8 +314,8 @@
       "practiceIds": ["on-tap-chuong-3.ex.tn6"],
       "recap": {
         "type": "visual",
-        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-am-vi-du",
-        "caption": "Trừ đi một số âm thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai."
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-vi-du",
+        "caption": "Muốn trừ một số, ta cộng với số đối của số đó."
       }
     },
     {
@@ -325,7 +333,7 @@
             },
             {
               "type": "visual",
-              "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so-vi-du"
+              "visualId": "phep-cong-phep-tru-so-nguyen.visual.dau-va-so"
             }
           ]
         },
@@ -359,10 +367,10 @@
         {
           "type": "tip",
           "id": "on-tap-chuong-3.tip.tim-so-doi",
-          "kind": "làm nhanh",
-          "title": "Tìm số đối",
-          "text": "Muốn tìm số đối của một số dương, thêm dấu − đằng trước nó. Muốn tìm số đối của một số âm, bỏ dấu − đi. Số đối của 0 vẫn là 0.",
-          "tex": "\\begin{gathered} 9 \\leftrightarrow -9 \\\\ -15 \\leftrightarrow 15 \\\\ 0 \\leftrightarrow 0 \\end{gathered}"
+          "kind": "tránh sai",
+          "title": "Kiểm lại số đối",
+          "text": "Tìm số đối xong, hãy cộng hai số lại để kiểm tra. Hai số đối nhau cộng lại thì được 0. Nếu không được 0 thì số bạn tìm chưa phải số đối.",
+          "tex": "\\begin{gathered} -15 + 15 = 0 \\\\ 40 + (-40) = 0 \\\\ 0 + 0 = 0 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -486,54 +494,8 @@
           "id": "on-tap-chuong-3.tip.thua-so-chung-bi-giau",
           "kind": "làm nhanh",
           "title": "Tìm thừa số chung bị giấu",
-          "text": "Nhiều khi thừa số chung bị giấu trong một phép nhân dài, như 2 · 2 · (−5) ở ví dụ dưới đây. Hãy nhân thử hai thừa số đứng cạnh nhau: 2 · 2 = 4. Nếu số 4 đó cũng có mặt ở phép nhân 4 · 7, ta đưa 4 ra ngoài.",
-          "tex": "\\begin{gathered} 4 \\cdot 7 - 2 \\cdot 2 \\cdot (-5) \\\\ = 4 \\cdot 7 - 4 \\cdot (-5) \\\\ = 4 \\cdot [7 - (-5)] = 48 \\end{gathered}"
-        }
-      ],
-      "checkIds": [
-        "on-tap-chuong-3.ex.doi-thua-so-6",
-        "on-tap-chuong-3.ex.tinh-6-4-tru-am-5",
-        "on-tap-chuong-3.ex.bai-3-43a"
-      ],
-      "practiceIds": ["on-tap-chuong-3.ex.bai-3-43b"],
-      "recap": {
-        "type": "visual",
-        "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
-        "caption": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
-      }
-    },
-    {
-      "id": "on-tap-chuong-3.section.thua-so-chung-3-44",
-      "title": "Nhắc lại Bài 16: nhân một số với một tổng",
-      "sourceRef": "Ôn tập chương III, bài 3.44 (sách bài tập tr.62, lời giải tr.114); ôn Bài 16",
-      "minutes": 5,
-      "blocks": [
-        {
-          "type": "group",
-          "children": [
-            {
-              "type": "note",
-              "text": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại.",
-              "rule": true
-            },
-            {
-              "type": "visual",
-              "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "children": [
-            {
-              "type": "note",
-              "text": "Ví dụ mẫu: tính (−2) · [3 + (−5)] theo hai cách. Cả hai cách đều ra cùng kết quả."
-            },
-            {
-              "type": "visual",
-              "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-am-mau"
-            }
-          ]
+          "text": "Nhiều khi thừa số chung bị giấu trong một phép nhân dài, như 2 · 2 · (−5) ở ví dụ dưới đây. Hãy nhân thử hai thừa số đứng cạnh nhau: 2 · 2 = 4. Muốn trừ một số, ta cộng với số đối của số đó, nên 4 · 7 − 4 · (−5) thành 4 · 7 + 4 · 5.",
+          "tex": "\\begin{gathered} 4 \\cdot 7 - 2 \\cdot 2 \\cdot (-5) \\\\ = 4 \\cdot 7 - 4 \\cdot (-5) \\\\ = 4 \\cdot 7 + 4 \\cdot 5 \\\\ = 4 \\cdot (7 + 5) = 48 \\end{gathered}"
         },
         {
           "type": "tip",
@@ -545,6 +507,52 @@
         }
       ],
       "checkIds": [
+        "on-tap-chuong-3.ex.doi-thua-so-6",
+        "on-tap-chuong-3.ex.tru-hai-tich",
+        "on-tap-chuong-3.ex.bai-3-43a"
+      ],
+      "practiceIds": ["on-tap-chuong-3.ex.bai-3-43b"],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
+        "caption": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
+      }
+    },
+    {
+      "id": "on-tap-chuong-3.section.thua-so-chung-3-44",
+      "title": "Nhắc lại Bài 16: tách thừa số rồi đưa ra ngoài",
+      "sourceRef": "Ôn tập chương III, bài 3.44 (sách bài tập tr.62, lời giải tr.114); ôn Bài 16",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ví dụ mẫu: tính 18 · 5 + 9 · (−4). Tách 18 = 9 · 2 để hai phép nhân cùng có thừa số 9."
+            },
+            {
+              "type": "formula",
+              "tex": "\\begin{gathered} 18 \\cdot 5 + 9 \\cdot (-4) \\\\ = 9 \\cdot 2 \\cdot 5 + 9 \\cdot (-4) \\\\ = 9 \\cdot [10 + (-4)] = 54 \\end{gathered}"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
         "on-tap-chuong-3.ex.tach-12-bang-4",
         "on-tap-chuong-3.ex.doi-thua-so-4",
         "on-tap-chuong-3.ex.bai-3-44a"
@@ -552,8 +560,8 @@
       "practiceIds": ["on-tap-chuong-3.ex.bai-3-44b"],
       "recap": {
         "type": "visual",
-        "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du",
-        "caption": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại."
+        "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
+        "caption": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
       }
     },
     {
@@ -588,6 +596,14 @@
               "visualId": "phep-nhan-so-nguyen.visual.tim-x-mau"
             }
           ]
+        },
+        {
+          "type": "tip",
+          "id": "on-tap-chuong-3.tip.kiem-lai-x",
+          "kind": "tránh sai",
+          "title": "Kiểm lại x vừa tìm",
+          "text": "Tìm x xong, hãy thay x vừa tìm vào thừa số đó. Thừa số phải ra 0, nếu không thì x chưa đúng. Ví dụ x − 9 = 0 cho x = 9, thay lại thì 9 − 9 = 0.",
+          "tex": "\\begin{gathered} x - 9 = 0 \\to x = 9 \\\\ 9 - 9 = 0 \\\\ x + 6 = 0 \\to x = -6 \\\\ -6 + 6 = 0 \\end{gathered}"
         }
       ],
       "checkIds": [
@@ -652,13 +668,13 @@
           "id": "on-tap-chuong-3.tip.boi-doi-xung",
           "kind": "làm nhanh",
           "title": "Bội trong khoảng đối xứng",
-          "text": "Khi khoảng giống nhau ở hai bên số 0, có bội dương nào thì có luôn số đối của nó. Ví dụ khoảng từ −15 đến 15, không tính hai đầu. Bạn chỉ cần tìm các bội dương, rồi viết thêm số đối của chúng và số 0.",
-          "tex": "\\begin{gathered} 4,\\ 8,\\ 12 \\\\ -4,\\ -8,\\ -12,\\ 0 \\end{gathered}"
+          "text": "Khi khoảng giống nhau ở hai bên số 0, có bội dương nào thì có luôn số đối của nó. Ví dụ, bội của 9 lớn hơn −30 và nhỏ hơn 30 có bội dương là 9, 18 và 27. Bạn chỉ cần viết thêm số đối của chúng và số 0.",
+          "tex": "\\begin{gathered} 9,\\ 18,\\ 27 \\\\ -9,\\ -18,\\ -27,\\ 0 \\end{gathered}"
         }
       ],
       "checkIds": [
-        "on-tap-chuong-3.ex.boi-cua-4",
-        "on-tap-chuong-3.ex.boi-4-trong-khoang"
+        "on-tap-chuong-3.ex.boi-cua-7",
+        "on-tap-chuong-3.ex.boi-7-trong-khoang"
       ],
       "practiceIds": ["on-tap-chuong-3.ex.bai-3-46"],
       "recap": {
@@ -718,12 +734,12 @@
           "id": "on-tap-chuong-3.tip.uoc-chung-nhanh",
           "kind": "làm nhanh",
           "title": "Tìm ước chung của hai số",
-          "text": "Viết các ước dương của số nhỏ hơn. Rồi thử từng ước xem số còn lại có chia hết cho nó không. Giữ lại các ước chung dương, rồi viết thêm số đối của chúng.",
+          "text": "Viết các ước dương của số có phần số tự nhiên nhỏ hơn, rồi thử từng ước với số còn lại. Ví dụ ước chung của 15 và 25: các ước dương của 15 là 1, 3, 5, 15. Giữ lại 1 và 5 vì 25 chỉ chia hết cho hai số này, rồi viết thêm số đối của chúng.",
           "tex": "\\begin{gathered} 1,\\ 3,\\ 5,\\ 15 \\to 1,\\ 5 \\\\ \\pm 1,\\ \\pm 5 \\end{gathered}"
         }
       ],
       "checkIds": [
-        "on-tap-chuong-3.ex.uoc-duong-14",
+        "on-tap-chuong-3.ex.uoc-duong-22",
         "on-tap-chuong-3.ex.uc-duong-12-20"
       ],
       "practiceIds": ["on-tap-chuong-3.ex.bai-3-47"],
@@ -735,7 +751,7 @@
     },
     {
       "id": "on-tap-chuong-3.section.bang-tich",
-      "title": "Nhắc lại Bài 17: bảng ba ô liền nhau có tích 120",
+      "title": "Nhắc lại Bài 17: bảng ba ô liền nhau có cùng tích",
       "sourceRef": "Ôn tập chương III, bài 3.48 (sách bài tập tr.62, lời giải tr.114); ôn Bài 17",
       "minutes": 5,
       "blocks": [
@@ -758,15 +774,16 @@
           "children": [
             {
               "type": "note",
-              "text": "Gọi bốn ô liền nhau là a, b, c, d. Hai phép nhân a · b · c và b · c · d đều cho kết quả 120."
+              "text": "Ví dụ: ô 1, ô 2, ô 3 là −1, 5, −2 và nhân lại được 10. Ô 2, ô 3, ô 4 cũng nhân lại được 10."
             },
             {
               "type": "formula",
-              "tex": "\\begin{gathered} a \\cdot b \\cdot c = 120 \\\\ b \\cdot c \\cdot d = 120 \\end{gathered}"
+              "tex": "\\begin{gathered} (-1) \\cdot 5 \\cdot (-2) = 10 \\\\ 5 \\cdot (-2) \\cdot \\square = 10 \\end{gathered}"
             },
             {
               "type": "note",
-              "text": "Cùng chia 120 cho b · c thì được a và d, nên a = d. Vậy hai ô cách nhau hai ô thì bằng nhau."
+              "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì hai ô cách nhau hai ô bằng nhau.",
+              "rule": true
             }
           ]
         },
@@ -775,24 +792,25 @@
           "id": "on-tap-chuong-3.tip.bang-o-lien-nhau",
           "kind": "hiểu nhanh",
           "title": "Bảng ba ô nhân lại luôn bằng nhau",
-          "text": "Nếu ba ô liền nhau nhân lại luôn bằng nhau và khác 0, thì các ô cách nhau hai ô bằng nhau. Bạn chỉ cần tìm ba ô đầu, rồi lặp lại ba số đó.",
-          "tex": "\\begin{gathered} 2,\\ -3,\\ 5,\\ 2,\\ -3,\\ 5 \\\\ 2 \\cdot (-3) \\cdot 5 = (-3) \\cdot 5 \\cdot 2 \\end{gathered}"
+          "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì hai ô cách nhau hai ô bằng nhau. Từ một ô đã biết, cứ tiến hay lùi 3 ô là gặp lại số đó.",
+          "tex": "\\begin{gathered} 2,\\ -3,\\ 5,\\ 2,\\ -3,\\ 5,\\ 2 \\\\ 2 \\cdot (-3) \\cdot 5 = -30 \\\\ (-3) \\cdot 5 \\cdot 2 = -30 \\end{gathered}"
         }
       ],
       "checkIds": [
         "on-tap-chuong-3.ex.tim-x-nhan-3-am-2",
-        "on-tap-chuong-3.ex.o-thu-tu-bang-tich"
+        "on-tap-chuong-3.ex.o-thu-tu-bang-tich",
+        "on-tap-chuong-3.ex.o-xa-bang-tich"
       ],
       "practiceIds": ["on-tap-chuong-3.ex.bai-3-48"],
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chia-het-vi-du",
-        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q."
+        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q. Nếu ba ô liền nhau luôn có cùng tích khác 0, thì hai ô cách nhau hai ô bằng nhau."
       }
     },
     {
       "id": "on-tap-chuong-3.section.bang-tong",
-      "title": "Nhắc lại Bài 14: bảng ba ô liền nhau có tổng 0",
+      "title": "Nhắc lại Bài 14: bảng ba ô liền nhau có cùng tổng",
       "sourceRef": "Ôn tập chương III, bài 3.49 (sách bài tập tr.62, lời giải tr.114); ôn Bài 14",
       "minutes": 5,
       "blocks": [
@@ -815,15 +833,16 @@
           "children": [
             {
               "type": "note",
-              "text": "Gọi bốn ô liền nhau là a, b, c, d. Cả hai tổng a + b + c và b + c + d đều bằng 0."
+              "text": "Ví dụ: ô 1, ô 2, ô 3 là 2, 3, −5 và cộng lại được 0. Ô 2, ô 3, ô 4 cũng cộng lại được 0."
             },
             {
               "type": "formula",
-              "tex": "\\begin{gathered} a + b + c = 0 \\\\ b + c + d = 0 \\end{gathered}"
+              "tex": "\\begin{gathered} 2 + 3 + (-5) = 0 \\\\ 3 + (-5) + \\square = 0 \\end{gathered}"
             },
             {
               "type": "note",
-              "text": "Hai tổng cùng bằng 0 và cùng có b + c, nên a = d. Vậy hai ô cách nhau hai ô thì bằng nhau."
+              "text": "Nếu ba ô liền nhau luôn có cùng tổng, thì hai ô cách nhau hai ô bằng nhau.",
+              "rule": true
             }
           ]
         },
@@ -838,13 +857,14 @@
       ],
       "checkIds": [
         "on-tap-chuong-3.ex.o-con-lai-4-am-9",
-        "on-tap-chuong-3.ex.o-thu-tu-bang-tong"
+        "on-tap-chuong-3.ex.o-thu-tu-bang-tong",
+        "on-tap-chuong-3.ex.o-xa-bang-tong"
       ],
       "practiceIds": ["on-tap-chuong-3.ex.bai-3-49"],
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-vi-du",
-        "caption": "Hai số đối nhau cộng lại thì được 0."
+        "caption": "Hai số đối nhau cộng lại thì được 0. Nếu ba ô liền nhau luôn có cùng tổng, thì hai ô cách nhau hai ô bằng nhau."
       }
     }
   ],
@@ -891,8 +911,8 @@
       ],
       "recap": {
         "type": "visual",
-        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-am-vi-du",
-        "caption": "Trừ đi một số âm thì từ số đầu đi sang phải, số đơn vị bằng phần số tự nhiên của số thứ hai."
+        "visualId": "phep-cong-phep-tru-so-nguyen.visual.tru-vi-du",
+        "caption": "Muốn trừ một số, ta cộng với số đối của số đó."
       }
     },
     {
@@ -935,8 +955,8 @@
       "conceptIds": [],
       "recap": {
         "type": "visual",
-        "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du",
-        "caption": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại."
+        "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
+        "caption": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
       }
     },
     {
@@ -976,7 +996,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chia-het-vi-du",
-        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q."
+        "caption": "Nếu a = b · q, trong đó b khác 0 và q là số nguyên, thì a chia hết cho b và a : b = q. Nếu ba ô liền nhau luôn có cùng tích khác 0, thì hai ô cách nhau hai ô bằng nhau."
       }
     },
     {
@@ -986,7 +1006,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-cong-phep-tru-so-nguyen.visual.tong-doi-vi-du",
-        "caption": "Hai số đối nhau cộng lại thì được 0."
+        "caption": "Hai số đối nhau cộng lại thì được 0. Nếu ba ô liền nhau luôn có cùng tổng, thì hai ô cách nhau hai ô bằng nhau."
       }
     }
   ],
@@ -1221,11 +1241,11 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Điều kiện −4 < x ≤ 5 nghĩa là x lớn hơn −4 và x nhỏ hơn hoặc bằng 5. Vì vậy 5 thuộc C. Còn −4 không thuộc C, vì x phải lớn hơn −4.",
+        "text": "Điều kiện −4 < x ≤ 5 nghĩa là x lớn hơn −4 và x nhỏ hơn hoặc bằng 5. Vì x phải lớn hơn −4, nên −4 không thuộc C. Còn 5 thì thuộc C.",
         "wrong": [
           {
             "optionId": "a",
-            "text": "Dấu < không cho x bằng −4."
+            "text": "Dấu < không cho x bằng −4, nên không thể viết −4 ∈ C."
           },
           {
             "optionId": "c",
@@ -1233,7 +1253,7 @@
           },
           {
             "optionId": "d",
-            "text": "−5 nhỏ hơn −4 nên không thuộc C."
+            "text": "Dấu ≤ cho x bằng 5, nên 5 thuộc C, không thể viết 5 ∉ C."
           }
         ]
       },
@@ -1250,7 +1270,7 @@
           "id": "b",
           "content": {
             "type": "text",
-            "text": "5 ∈ C"
+            "text": "−4 ∉ C"
           }
         },
         {
@@ -1264,7 +1284,7 @@
           "id": "d",
           "content": {
             "type": "text",
-            "text": "−5 ∈ C"
+            "text": "5 ∉ C"
           }
         }
       ],
@@ -1440,7 +1460,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân hai số cùng dấu thì được số dương, nhân hai số khác dấu thì được số âm. Tích đang dương, nên hai số phải cùng dấu.",
+        "text": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm. Tích đang dương, nên hai số phải cùng dấu.",
         "wrong": [
           {
             "optionId": "b",
@@ -1485,7 +1505,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hai số cùng dấu có tổng bằng −7. Hai số đó là số dương hay số âm?"
+          "text": "Hai số cùng dấu có tổng bằng −11. Hai số đó là số dương hay số âm?"
         }
       ],
       "hints": {
@@ -1499,7 +1519,7 @@
       "difficulty": 1,
       "explain": {
         "text": "Hai số cùng dấu thì tổng mang chính dấu đó. Tổng là số âm nên cả hai số đều âm.",
-        "tex": "(-3) + (-4) = -7",
+        "tex": "(-5) + (-6) = -11",
         "wrong": [
           {
             "optionId": "b",
@@ -1507,7 +1527,7 @@
           },
           {
             "optionId": "c",
-            "text": "Đề cho hai số cùng dấu, không phải khác dấu."
+            "text": "Hai số cùng dấu có tổng âm thì cả hai số chắc chắn là số âm."
           }
         ]
       },
@@ -1531,7 +1551,7 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "Một số âm, một số dương"
+            "text": "Chưa thể biết được"
           }
         }
       ],
@@ -1713,16 +1733,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Trừ một số thì giống như cộng với số đối của nó. Số b là số âm, nên số đối của b là số dương. Vậy a − b bằng a cộng một số dương, và kết quả là số dương.",
+        "text": "Muốn trừ một số, ta cộng với số đối của số đó. Số b là số âm, nên số đối của b là số dương. Vậy a − b là a cộng một số dương, nên là số dương.",
         "tex": "a - b = a + (-b)",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Trừ một số âm là cộng với số dương, nên hiệu không thể âm."
+            "text": "Số đối của b là số dương, mà a cộng một số dương thì không thể là số âm."
           },
           {
             "optionId": "c",
-            "text": "Hai số dương cộng lại luôn lớn hơn 0."
+            "text": "a dương, số đối của b cũng dương, cộng lại luôn lớn hơn 0 nên không thể bằng 0."
           }
         ]
       },
@@ -1772,7 +1792,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân hai số cùng dấu thì được số dương, nhân hai số khác dấu thì được số âm. Tích đang âm, nên hai số phải khác dấu.",
+        "text": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm. Tích đang âm, nên hai số phải khác dấu.",
         "wrong": [
           {
             "optionId": "b",
@@ -1917,7 +1937,7 @@
       "bookRef": "SBT câu hỏi 6",
       "difficulty": 3,
       "explain": {
-        "text": "Tích âm nên a và b khác dấu. Nếu a dương và b âm thì a − b là số dương, đúng với đề.",
+        "text": "Tích âm nên a và b khác dấu. Nếu a dương và b âm thì a − b dương, còn nếu a âm và b dương thì a − b âm. Đề cho a − b dương, vậy a dương và b âm.",
         "wrong": [
           {
             "optionId": "a",
@@ -1973,7 +1993,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Số nguyên b có phần dấu là \"−\" và phần số tự nhiên là 9. Hãy viết số b."
+          "text": "Số nguyên b có phần dấu là \"−\" và phần số tự nhiên là 31. Hãy viết số b."
         }
       ],
       "hints": {
@@ -1986,16 +2006,16 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số b có phần dấu là − và phần số tự nhiên là 9. Ghép hai phần lại, ta được b = −9.",
-        "tex": "b = -9"
+        "text": "Số b có phần dấu là − và phần số tự nhiên là 31. Ghép hai phần lại, ta được b = −31.",
+        "tex": "b = -31"
       },
       "type": "numeric",
       "answer": {
         "kind": "value",
-        "value": -9
+        "value": -31
       },
       "check": {
-        "expr": "-9"
+        "expr": "-31"
       },
       "allowNegative": true
     },
@@ -2018,7 +2038,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số đối nhau giống nhau ở phần số tự nhiên nhưng khác nhau ở dấu. Còn số đối của 0 là chính số 0."
+        "text": "Hai số đối nhau có cùng phần số tự nhiên nhưng khác dấu. Riêng số đối của 0 là 0."
       },
       "type": "match",
       "left": [
@@ -2026,7 +2046,7 @@
           "id": "l1",
           "content": {
             "type": "text",
-            "text": "7"
+            "text": "8"
           }
         },
         {
@@ -2047,7 +2067,7 @@
           "id": "l4",
           "content": {
             "type": "text",
-            "text": "12"
+            "text": "11"
           }
         }
       ],
@@ -2056,7 +2076,7 @@
           "id": "r1",
           "content": {
             "type": "text",
-            "text": "−7"
+            "text": "−8"
           }
         },
         {
@@ -2077,7 +2097,7 @@
           "id": "r4",
           "content": {
             "type": "text",
-            "text": "−12"
+            "text": "−11"
           }
         }
       ],
@@ -2110,7 +2130,7 @@
         },
         {
           "type": "note",
-          "text": "Chạm một số rồi chạm ô trống cần điền."
+          "text": "Chạm một số, rồi chạm ô trống cần điền."
         }
       ],
       "hints": {
@@ -2124,7 +2144,7 @@
       "bookRef": "SBT 3.41",
       "difficulty": 2,
       "explain": {
-        "text": "Số a có phần dấu là − và phần số tự nhiên là 27, nên a = −27. Số đối của −27 giống phần số tự nhiên nhưng khác dấu. Vậy số đối của a là 27.",
+        "text": "Số a có phần dấu là − và phần số tự nhiên là 27, nên a = −27. Hai số đối nhau có cùng phần số tự nhiên nhưng khác dấu, nên số đối của a là 27.",
         "tex": "\\begin{gathered} a = -27 \\\\ -(-27) = 27 \\end{gathered}"
       },
       "type": "fillBlank",
@@ -2160,7 +2180,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tính hiệu sau."
+          "text": "Muốn trừ một số, ta cộng với số đối của số đó. Tính hiệu sau."
         },
         {
           "type": "formula",
@@ -2177,7 +2197,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Trừ một số thì giống như cộng với số đối của nó. Số đối của 4 là −4, nên (−6) − 4 = (−6) + (−4) = −10.",
+        "text": "Muốn trừ một số, ta cộng với số đối của số đó. Số đối của 4 là −4, nên (−6) − 4 = (−6) + (−4) = −10.",
         "tex": "(-6) - 4 = (-6) + (-4) = -10"
       },
       "type": "numeric",
@@ -2272,7 +2292,7 @@
         },
         {
           "type": "note",
-          "text": "a = 32 + (−28); b = (−7) − 5; c = (−12) · (−5) và d = (−28) : 7."
+          "text": "a = 32 + (−28); b = (−7) − 5; c = (−12) · (−5) và d = (−28) : 7."
         },
         {
           "type": "note",
@@ -2290,8 +2310,8 @@
       "bookRef": "SBT 3.42",
       "difficulty": 3,
       "explain": {
-        "text": "Trước hết tính từng số: a = 4, b = −12, c = 60 và d = −4. Sau đó xếp số âm trước. Hai số âm thì −12 nhỏ hơn −4, rồi tới 4 và 60.",
-        "tex": "b < d < a < c"
+        "text": "Trước hết tính từng số, rồi xếp số âm trước. Hai số âm thì −12 nhỏ hơn −4, rồi tới 4 và 60.",
+        "tex": "\\begin{gathered} 32 + (-28) = 4 \\\\ (-7) - 5 = -12 \\\\ (-12) \\cdot (-5) = 60 \\\\ (-28) : 7 = -4 \\\\ b < d < a < c \\end{gathered}"
       },
       "type": "order",
       "items": [
@@ -2348,16 +2368,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vì 2 · 3 = 6 nên cả hai phép nhân đều có thừa số 6. Ta đưa 6 ra ngoài: 6 · 4 − 6 · (−5) = 6 · [4 − (−5)].",
-        "tex": "6 \\cdot 4 - 6 \\cdot (-5) = 6 \\cdot [4 - (-5)]",
+        "text": "Vì 2 · 3 = 6 nên cả hai phép nhân đều có thừa số 6. Số 6 · (−5) là số âm, nên trừ nó là cộng số đối của nó, là 6 · 5. Sau đó đưa 6 ra ngoài.",
+        "tex": "\\begin{gathered} 6 \\cdot 4 - 6 \\cdot (-5) \\\\ = 6 \\cdot 4 + 6 \\cdot 5 \\\\ = 6 \\cdot (4 + 5) \\end{gathered}",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Tính thử thì 6 · (4 + (−5)) = −6, không phải 54."
+            "text": "Trừ một tích âm là cộng số đối của nó, nên trong ngoặc phải là 4 + 5, không phải 4 − 5."
           },
           {
             "optionId": "c",
-            "text": "Tính thử thì 6 · 4 · (−5) = −120, không phải 54."
+            "text": "Đưa 6 ra ngoài thì hai số còn lại nối nhau bằng dấu cộng, không nhân với nhau."
           },
           {
             "optionId": "d",
@@ -2371,28 +2391,28 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot (4 - (-5))"
+            "tex": "6 \\cdot (4 + 5)"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot (4 + (-5))"
+            "tex": "6 \\cdot (4 - 5)"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "6 \\cdot 4 \\cdot (-5)"
+            "tex": "6 \\cdot 4 \\cdot 5"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "2 \\cdot (4 - (-5))"
+            "tex": "2 \\cdot (4 + 5)"
           }
         }
       ],
@@ -2403,7 +2423,7 @@
       }
     },
     {
-      "id": "on-tap-chuong-3.ex.tinh-6-4-tru-am-5",
+      "id": "on-tap-chuong-3.ex.tru-hai-tich",
       "cardIds": ["on-tap-chuong-3.card.thua-so-chung-3-43"],
       "prompt": [
         {
@@ -2412,7 +2432,7 @@
         },
         {
           "type": "formula",
-          "tex": "6 \\cdot [4 - (-5)]"
+          "tex": "10 \\cdot 3 - 10 \\cdot (-4)"
         }
       ],
       "hints": {
@@ -2425,16 +2445,16 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Làm phép tính trong ngoặc trước: 4 − (−5) = 4 + 5 = 9. Sau đó nhân: 6 · 9 = 54.",
-        "tex": "6 \\cdot [4 - (-5)] = 6 \\cdot 9 = 54"
+        "text": "Số 10 · (−4) là số âm. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 10 · (−4) là cộng 10 · 4.",
+        "tex": "\\begin{gathered} 10 \\cdot 3 - 10 \\cdot (-4) \\\\ = 30 + 40 = 70 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
         "kind": "value",
-        "value": 54
+        "value": 70
       },
       "check": {
-        "expr": "6·(4−(−5))"
+        "expr": "10·3−10·(−4)"
       }
     },
     {
@@ -2461,8 +2481,8 @@
       "bookRef": "SBT 3.43a",
       "difficulty": 3,
       "explain": {
-        "text": "Vì 3 · 7 = 21 nên cả hai phép nhân đều có thừa số 21. Ta đưa 21 ra ngoài: 21 · [23 − (−17)] = 21 · 40 = 840.",
-        "tex": "\\begin{gathered} 21 \\cdot 23 - 3 \\cdot 7 \\cdot (-17) \\\\ = 21 \\cdot 23 - 21 \\cdot (-17) \\\\ = 21 \\cdot [23 - (-17)] = 840 \\end{gathered}"
+        "text": "Vì 3 · 7 = 21 nên cả hai phép nhân đều có thừa số 21. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 21 · (−17) là cộng 21 · 17. Sau đó đưa 21 ra ngoài.",
+        "tex": "\\begin{gathered} 21 \\cdot 23 + 21 \\cdot 17 \\\\ = 21 \\cdot (23 + 17) \\\\ = 21 \\cdot 40 = 840 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
@@ -2497,8 +2517,8 @@
       "bookRef": "SBT 3.43b",
       "difficulty": 3,
       "explain": {
-        "text": "Bước 1: tính trong ngoặc, (−34) + 18 = −16. Bước 2: tính hai phép nhân, 7 · (−16) = −112 và 42 · 3 = 126. Bước 3: lấy 126 trừ −112, được 126 − (−112) = 238.",
-        "tex": "\\begin{gathered} 42 \\cdot 3 - 7 \\cdot (-16) \\\\ = 126 + 112 = 238 \\end{gathered}"
+        "text": "Tính trong ngoặc trước, (−34) + 18 = −16, rồi tách 42 = 7 · 6 để 42 · 3 thành 7 · 18. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 7 · (−16) là cộng 7 · 16. Sau đó đưa 7 ra ngoài; tính thẳng cũng ra 238.",
+        "tex": "\\begin{gathered} 42 \\cdot 3 - 7 \\cdot (-16) \\\\ = 7 \\cdot 18 + 7 \\cdot 16 \\\\ = 7 \\cdot (18 + 16) \\\\ = 7 \\cdot 34 = 238 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
@@ -2532,7 +2552,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Chia 12 cho 4 được 3, nên 12 = 4 · 3. Viết như vậy, ta thấy thừa số 4 có ở cả hai phép nhân.",
+        "text": "Chia 12 cho 4 được 3, nên 12 = 4 · 3. Câu sau sẽ dùng cách tách này.",
         "tex": "12 = 4 \\cdot 3"
       },
       "type": "numeric",
@@ -2567,7 +2587,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tách 12 = 4 · 3, thì cả hai phép nhân đều có thừa số 4. Ta đưa 4 ra ngoài, còn 5 · 3 ở lại trong ngoặc.",
+        "text": "Tách 12 = 4 · 3, thì cả hai phép nhân đều có thừa số 4. Ta đưa 4 ra ngoài, còn 5 · 3 và −3 ở lại trong ngoặc.",
         "tex": "5 \\cdot 12 = 5 \\cdot 3 \\cdot 4",
         "wrong": [
           {
@@ -2580,7 +2600,7 @@
           },
           {
             "optionId": "d",
-            "text": "Phép nhân 4 · (−3) cho −3 ở trong ngoặc, không phải 3."
+            "text": "Phép nhân 4 · (−3) cho −3 ở trong ngoặc, nên trước số 3 phải có dấu trừ."
           }
         ]
       },
@@ -2590,21 +2610,21 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot (5 \\cdot 3 + (-3))"
+            "tex": "4 \\cdot (5 \\cdot 3 - 3)"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot (5 \\cdot 12 + (-3))"
+            "tex": "4 \\cdot (5 \\cdot 12 - 3)"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot (5 + 3 + (-3))"
+            "tex": "4 \\cdot (5 + 3 - 3)"
           }
         },
         {
@@ -2645,8 +2665,8 @@
       "bookRef": "SBT 3.44a",
       "difficulty": 3,
       "explain": {
-        "text": "Tách 64 = 2 · 32, thì ba phép nhân 71 · 64, 32 · (−7) và 13 · 32 đều có thừa số 32. Ta đưa 32 ra ngoài, trong ngoặc còn ba số hạng: 71 · 2, −7 và −13. Tính ra 32 · 122 = 3 904.",
-        "tex": "\\begin{gathered} 71 \\cdot 64 + 32 \\cdot (-7) - 13 \\cdot 32 \\\\ = 32 \\cdot [71 \\cdot 2 + (-7) - 13] \\\\ = 32 \\cdot 122 = 3\\,904 \\end{gathered}"
+        "text": "Tách 64 = 2 · 32, thì ba phép nhân đều có thừa số 32. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 13 · 32 là cộng 32 · (−13). Đưa 32 ra ngoài, trong ngoặc là 142 cộng với −7 và −13, tức là cộng với −20.",
+        "tex": "\\begin{gathered} 64 = 2 \\cdot 32 \\\\ 71 \\cdot 64 = 142 \\cdot 32 \\\\ (-7) + (-13) = -20 \\\\ 32 \\cdot [142 + (-20)] \\\\ = 32 \\cdot 122 = 3\\,904 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
@@ -2667,7 +2687,7 @@
         },
         {
           "type": "formula",
-          "tex": "13 \\cdot (23 - 17) - 13 \\cdot (23 + 17)"
+          "tex": "\\begin{gathered} 13 \\cdot (23 - 17) \\\\ -\\ 13 \\cdot (23 + 17) \\end{gathered}"
         }
       ],
       "hints": {
@@ -2681,8 +2701,8 @@
       "bookRef": "SBT 3.44b",
       "difficulty": 3,
       "explain": {
-        "text": "Cả hai phép nhân đều có thừa số 13. Ta đưa 13 ra ngoài, trong ngoặc còn hai nhóm (23 − 17) và (23 + 17), nối với nhau bằng dấu −. Tính ra 13 · (6 − 40) = 13 · (−34) = −442.",
-        "tex": "\\begin{gathered} 13 \\cdot (23 - 17) - 13 \\cdot (23 + 17) \\\\ = 13 \\cdot [6 - 40] = 13 \\cdot (-34) = -442 \\end{gathered}"
+        "text": "Tính hai ngoặc trước: 23 − 17 = 6 và 23 + 17 = 40. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 13 · 40 là cộng 13 · (−40). Sau đó đưa 13 ra ngoài.",
+        "tex": "\\begin{gathered} 13 \\cdot 6 - 13 \\cdot 40 \\\\ = 13 \\cdot 6 + 13 \\cdot (-40) \\\\ = 13 \\cdot [6 + (-40)] \\\\ = 13 \\cdot (-34) = -442 \\end{gathered}"
       },
       "type": "numeric",
       "answer": {
@@ -2713,7 +2733,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân hai số mà được 0 thì ít nhất một số phải bằng 0. Ví dụ 0 · 5 = 0, chỉ có một số bằng 0.",
+        "text": "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0. Ví dụ 0 · 5 = 0, chỉ có một số bằng 0.",
         "wrong": [
           {
             "optionId": "b",
@@ -2721,7 +2741,7 @@
           },
           {
             "optionId": "c",
-            "text": "Hai số đối nhau như 3 và −3 nhân nhau được −9, không phải 0."
+            "text": "Hai số 0 và 7 có tích bằng 0, nhưng 0 và 7 không phải hai số đối nhau."
           },
           {
             "optionId": "d",
@@ -2809,7 +2829,7 @@
         },
         {
           "type": "formula",
-          "tex": "(38 - x) \\cdot (x + 25) = 0"
+          "tex": "(38 - x) \\cdot (x + 25) = 0."
         },
         {
           "type": "note",
@@ -2827,7 +2847,7 @@
       "bookRef": "SBT 3.45",
       "difficulty": 3,
       "explain": {
-        "text": "Nhân hai số mà được 0 thì có một số bằng 0. Nếu 38 − x = 0 thì x = 38. Nếu x + 25 = 0 thì x = −25.",
+        "text": "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0. Nếu 38 − x = 0 thì x = 38. Nếu x + 25 = 0 thì x = −25.",
         "tex": "\\begin{gathered} 38 - x = 0 \\to x = 38 \\\\ x + 25 = 0 \\to x = -25 \\end{gathered}",
         "wrong": [
           {
@@ -2886,12 +2906,12 @@
       "multiple": true
     },
     {
-      "id": "on-tap-chuong-3.ex.boi-cua-4",
+      "id": "on-tap-chuong-3.ex.boi-cua-7",
       "cardIds": ["on-tap-chuong-3.card.boi-trong-khoang"],
       "prompt": [
         {
           "type": "note",
-          "text": "Số nào sau đây là bội của 4, tức là chia hết cho 4?"
+          "text": "Số nào sau đây là bội của 7, tức là chia hết cho 7?"
         }
       ],
       "hints": {
@@ -2904,20 +2924,20 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Bội của 4 là số chia hết cho 4, như 4, 8, 12, 16, 20. Trong các số đã cho, chỉ có 20 = 4 · 5 là bội của 4.",
-        "tex": "20 = 4 \\cdot 5",
+        "text": "Bội của 7 là số bằng 7 nhân với một số nguyên. Trong các số đã cho, chỉ có 21 = 7 · 3 là bội của 7.",
+        "tex": "21 = 7 \\cdot 3",
         "wrong": [
           {
             "optionId": "a",
-            "text": "18 chia 4 được thương 4 và còn dư 2."
+            "text": "15 chia 7 được thương 2 và còn dư 1."
           },
           {
             "optionId": "c",
-            "text": "22 chia 4 được thương 5 và còn dư 2."
+            "text": "25 chia 7 được thương 3 và còn dư 4."
           },
           {
             "optionId": "d",
-            "text": "25 chia 4 được thương 6 và còn dư 1."
+            "text": "30 chia 7 được thương 4 và còn dư 2."
           }
         ]
       },
@@ -2927,28 +2947,28 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "18"
+            "text": "15"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "20"
+            "text": "21"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "22"
+            "text": "25"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "25"
+            "text": "30"
           }
         }
       ],
@@ -2956,12 +2976,12 @@
       "multiple": false
     },
     {
-      "id": "on-tap-chuong-3.ex.boi-4-trong-khoang",
+      "id": "on-tap-chuong-3.ex.boi-7-trong-khoang",
       "cardIds": ["on-tap-chuong-3.card.boi-trong-khoang"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các bội của 4 (số chia hết cho 4) lớn hơn −9 và nhỏ hơn 9."
+          "text": "Chọn tất cả các bội của 7 (số chia hết cho 7) lớn hơn −16 và nhỏ hơn 16."
         }
       ],
       "hints": {
@@ -2974,16 +2994,16 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Các bội dương của 4 là 4, 8, 12, nhưng chỉ có 4 và 8 nằm trong khoảng. Thêm các số đối −4, −8 và số 0, ta được năm số.",
-        "tex": "\\begin{gathered} 4,\\ 8 \\\\ -4,\\ -8,\\ 0 \\end{gathered}",
+        "text": "Các bội dương của 7 là 7, 14, 21, nhưng chỉ có 7 và 14 nằm trong khoảng. Thêm các số đối −7, −14 và số 0, ta được năm số.",
+        "tex": "\\begin{gathered} 7,\\ 14 \\\\ -7,\\ -14,\\ 0 \\end{gathered}",
         "wrong": [
           {
             "optionId": "a",
-            "text": "−12 nhỏ hơn −9 nên nằm ngoài khoảng."
+            "text": "−21 nhỏ hơn −16 nên nằm ngoài khoảng."
           },
           {
             "optionId": "g",
-            "text": "12 lớn hơn 9 nên nằm ngoài khoảng."
+            "text": "21 lớn hơn 16 nên nằm ngoài khoảng."
           }
         ]
       },
@@ -2993,21 +3013,21 @@
           "id": "a",
           "content": {
             "type": "text",
-            "text": "−12"
+            "text": "−21"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "text",
-            "text": "−8"
+            "text": "−14"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "text",
-            "text": "−4"
+            "text": "−7"
           }
         },
         {
@@ -3021,21 +3041,21 @@
           "id": "e",
           "content": {
             "type": "text",
-            "text": "4"
+            "text": "7"
           }
         },
         {
           "id": "f",
           "content": {
             "type": "text",
-            "text": "8"
+            "text": "14"
           }
         },
         {
           "id": "g",
           "content": {
             "type": "text",
-            "text": "12"
+            "text": "21"
           }
         }
       ],
@@ -3075,7 +3095,7 @@
           },
           {
             "optionId": "c",
-            "text": "−24 và 24 nằm ngoài khoảng từ −19 đến 19."
+            "text": "Dãy này có −24 và 24, mà −24 không lớn hơn −19 và 24 không nhỏ hơn 19."
           },
           {
             "optionId": "d",
@@ -3118,12 +3138,12 @@
       "multiple": false
     },
     {
-      "id": "on-tap-chuong-3.ex.uoc-duong-14",
+      "id": "on-tap-chuong-3.ex.uoc-duong-22",
       "cardIds": ["on-tap-chuong-3.card.uoc-chung"],
       "prompt": [
         {
           "type": "note",
-          "text": "Chọn tất cả các ước dương của 14, tức là các số dương mà 14 chia hết cho."
+          "text": "Chọn tất cả các ước dương của 22, tức là các số dương mà 22 chia hết cho."
         }
       ],
       "hints": {
@@ -3136,12 +3156,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Viết 14 thành phép nhân hai số: 14 = 1 · 14 = 2 · 7. Mỗi số trong các phép nhân đó là một ước dương của 14.",
-        "tex": "14 = 1 \\cdot 14 = 2 \\cdot 7",
+        "text": "Viết 22 thành phép nhân hai số: 22 = 1 · 22 = 2 · 11. Mỗi số trong các phép nhân đó là một ước dương của 22.",
+        "tex": "22 = 1 \\cdot 22 = 2 \\cdot 11",
         "wrong": [
           {
             "optionId": "c",
-            "text": "14 chia 3 được thương 4 và còn dư 2."
+            "text": "22 chia 4 được thương 5 và còn dư 2."
           }
         ]
       },
@@ -3165,21 +3185,21 @@
           "id": "c",
           "content": {
             "type": "text",
-            "text": "3"
+            "text": "4"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "text",
-            "text": "7"
+            "text": "11"
           }
         },
         {
           "id": "e",
           "content": {
             "type": "text",
-            "text": "14"
+            "text": "22"
           }
         }
       ],
@@ -3205,8 +3225,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Các ước dương của 12 là 1, 2, 3, 4, 6, 12. Trong các số này, chỉ có 1, 2, 4 là số mà 20 cũng chia hết cho.",
-        "tex": "\\begin{gathered} 12:\\ 1,\\ 2,\\ 3,\\ 4,\\ 6,\\ 12 \\\\ 20 :  1,\\ 2,\\ 4 \\end{gathered}",
+        "text": "Các ước dương của 12 là 1, 2, 3, 4, 6, 12, ở dòng trên. Dòng dưới là các số trong đó mà 20 cũng chia hết cho: 1, 2, 4.",
+        "tex": "\\begin{gathered} 1,\\ 2,\\ 3,\\ 4,\\ 6,\\ 12 \\\\ 1,\\ 2,\\ 4 \\end{gathered}",
         "wrong": [
           {
             "optionId": "c",
@@ -3408,7 +3428,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trong một bảng, ba ô liền nhau bất kì nhân lại đều được 60, và ô thứ nhất là −3. Hỏi ô thứ tư là số nào?"
+          "text": "Trong một bảng, ba ô liền nhau bất kì nhân lại đều được 60, và ô 1 là −3. Hỏi ô 4 là số nào?"
         }
       ],
       "hints": {
@@ -3421,11 +3441,11 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Ô 1, 2, 3 nhân lại được 60, ô 2, 3, 4 cũng nhân lại được 60. Hai phép nhân này cùng có ô 2 và ô 3, nên ô 1 phải bằng ô 4. Vậy ô thứ tư là −3.",
+        "text": "Ô 1, ô 2, ô 3 nhân lại được 60, ô 2, ô 3, ô 4 cũng nhân lại được 60. Hai phép nhân cùng có ô 2 và ô 3, nên ô 1 bằng ô 4. Vậy ô 4 là −3.",
         "wrong": [
           {
             "optionId": "b",
-            "text": "Ô thứ tư bằng ô thứ nhất nên cũng mang dấu −."
+            "text": "Ô 4 bằng ô 1 nên cũng mang dấu −."
           },
           {
             "optionId": "c",
@@ -3472,6 +3492,36 @@
       "multiple": false
     },
     {
+      "id": "on-tap-chuong-3.ex.o-xa-bang-tich",
+      "cardIds": ["on-tap-chuong-3.card.bang-tich"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong một bảng, ba ô liền nhau bất kì nhân lại đều được 36, và ô 7 là 2. Hỏi ô 1 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai ô cách nhau hai ô bằng nhau. Ô 7 là 2, nên ô 4 và ô 1 cũng là 2."
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "check": {
+        "expr": "2"
+      }
+    },
+    {
       "id": "on-tap-chuong-3.ex.bai-3-48",
       "cardIds": ["on-tap-chuong-3.card.bang-tich"],
       "prompt": [
@@ -3485,7 +3535,7 @@
         },
         {
           "type": "note",
-          "text": "Chạm một số, rồi chạm ô trống cần điền. Điền các ô theo thứ tự từ trái sang phải."
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Các ô xếp theo thứ tự như dòng trên, từ trái sang phải, hết dòng thì sang dòng dưới."
         }
       ],
       "hints": {
@@ -3499,8 +3549,8 @@
       "bookRef": "SBT 3.48",
       "difficulty": 3,
       "explain": {
-        "text": "Ô 1 bằng ô 4, ô 2 bằng ô 5 và cứ thế, nên bảng cứ lặp lại ba số. Ô còn thiếu là số x có x · 6 · (−4) = 120. Vậy x = −5.",
-        "tex": "x \\cdot 6 \\cdot (-4) = 120 \\to x = -5"
+        "text": "Ô 10 là −4; lùi mỗi lần 3 ô thì ô 7, ô 4, ô 1 cũng là −4. Ô 3 là 6 nên ô 6, ô 9 cũng là 6. Các ô còn lại bằng 120 chia cho tích của hai số đó.",
+        "tex": "\\begin{gathered} 6 \\cdot (-4) = -24 \\\\ 120 : (-24) = -5 \\end{gathered}"
       },
       "type": "fillBlank",
       "segments": [
@@ -3511,7 +3561,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3520,7 +3570,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "text",
@@ -3528,7 +3578,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3537,7 +3587,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3546,7 +3596,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3555,7 +3605,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3564,7 +3614,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3573,7 +3623,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3582,7 +3632,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "text",
@@ -3590,7 +3640,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3638,7 +3688,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Trong một bảng, tổng ba ô liền nhau luôn bằng 0, và ô thứ nhất là −6. Hỏi ô thứ tư là số nào?"
+          "text": "Trong một bảng, tổng ba ô liền nhau luôn bằng 0, và ô 1 là −6. Hỏi ô 4 là số nào?"
         }
       ],
       "hints": {
@@ -3651,7 +3701,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai tổng ba ô liền nhau cùng bằng 0 thì ô thứ nhất bằng ô thứ tư. Vậy ô thứ tư cũng là −6."
+        "text": "Ô 1 + ô 2 + ô 3 = 0 và ô 2 + ô 3 + ô 4 = 0. Hai tổng cùng có ô 2 và ô 3, nên ô 1 bằng ô 4. Vậy ô 4 là −6."
       },
       "type": "numeric",
       "answer": {
@@ -3662,6 +3712,36 @@
         "expr": "-6"
       },
       "allowNegative": true
+    },
+    {
+      "id": "on-tap-chuong-3.ex.o-xa-bang-tong",
+      "cardIds": ["on-tap-chuong-3.card.bang-tong"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trong một bảng, tổng ba ô liền nhau luôn bằng 0, và ô 8 là 5. Hỏi ô 2 là số nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai ô cách nhau hai ô bằng nhau. Ô 8 là 5, nên ô 5 và ô 2 cũng là 5."
+      },
+      "type": "numeric",
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "5"
+      }
     },
     {
       "id": "on-tap-chuong-3.ex.bai-3-49",
@@ -3677,7 +3757,7 @@
         },
         {
           "type": "note",
-          "text": "Chạm một số, rồi chạm ô trống cần điền. Điền các ô theo thứ tự từ trái sang phải."
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Các ô xếp theo thứ tự như dòng trên, từ trái sang phải, hết dòng thì sang dòng dưới."
         }
       ],
       "hints": {
@@ -3691,7 +3771,7 @@
       "bookRef": "SBT 3.49",
       "difficulty": 3,
       "explain": {
-        "text": "Hai ô cách nhau hai ô thì bằng nhau, nên bảng cứ lặp lại ba số. Hai ô đã cho là −7 và 3, có tổng −4. Ô còn thiếu là số đối của −4, tức là 4.",
+        "text": "Ô 2 là −7; tiến mỗi lần 3 ô thì ô 5, ô 8, ô 11 cũng là −7. Ô 9 là 3 nên ô 3, ô 6 cũng là 3. Các ô còn lại cộng với −7 và 3 để được 0, nên là số đối của −4, tức là 4.",
         "tex": "4 + (-7) + 3 = 0"
       },
       "type": "fillBlank",
@@ -3703,7 +3783,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "text",
@@ -3711,7 +3791,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3720,7 +3800,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3729,7 +3809,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3738,7 +3818,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3747,7 +3827,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3756,7 +3836,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3765,7 +3845,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "text",
@@ -3773,7 +3853,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
@@ -3782,7 +3862,7 @@
         },
         {
           "type": "text",
-          "text": " "
+          "text": " | "
         },
         {
           "type": "blank",
