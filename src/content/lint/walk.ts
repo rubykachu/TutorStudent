@@ -32,6 +32,7 @@ const NON_TEXT_KEYS = new Set([
   "type",
   "kind",
   "bookRef",
+  "leadsTo",
   "target",
   "color",
   "visualId",

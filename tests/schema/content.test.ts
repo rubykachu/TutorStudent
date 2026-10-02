@@ -94,6 +94,21 @@ describe("review lesson fields", () => {
     ).toContain("order");
   });
 
+  it("accepts leadsTo naming an exercise id, and rejects a malformed id", () => {
+    const exercise = {
+      ...baseExercise,
+      type: "numeric",
+      answer: { kind: "value", value: 2 },
+    };
+    expect(
+      ExerciseSchema.safeParse({ ...exercise, leadsTo: "bai.ex.hai" }).success,
+    ).toBe(true);
+    expect(
+      ExerciseSchema.safeParse({ ...exercise, leadsTo: "Không Phải Id" })
+        .success,
+    ).toBe(false);
+  });
+
   it("accepts bookRef on an exercise", () => {
     expect(
       ExerciseSchema.safeParse({

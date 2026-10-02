@@ -1145,6 +1145,119 @@ describe("book practice section", () => {
     ]);
   });
 
+  // The section's exercises in listed order, as [id, exercise index] pairs.
+  function listed(input: LintInput): [string, number][] {
+    const section = input.lesson.sections[input.lesson.sections.length - 1];
+    if (!section) throw new Error("fixture has no section");
+    return [...section.checkIds, ...section.practiceIds].map((id) => [
+      id,
+      input.lesson.exercises.findIndex((e) => e.id === id),
+    ]);
+  }
+
+  // Turns the first listed exercise into a lead-in to the second.
+  function withLeadIn() {
+    const { input } = practiceInput();
+    const [[leadId, leadIndex] = ["", 0], [targetId] = [""]] = listed(input);
+    const lead = input.lesson.exercises[leadIndex];
+    if (!lead) throw new Error("exercise missing");
+    delete lead.bookRef;
+    lead.leadsTo = targetId;
+    return { input, lead, leadId, leadIndex, targetId };
+  }
+
+  it("book-practice: a lead-in without bookRef may lead to the next book exercise", () => {
+    expect(findings(withLeadIn().input, "book-practice")).toEqual([]);
+    expect(findings(withLeadIn().input, "book-ref")).toEqual([]);
+  });
+
+  it("book-practice: an exercise with neither bookRef nor leadsTo fails", () => {
+    const { input, lead } = withLeadIn();
+    delete lead.leadsTo;
+    expect(findings(input, "book-practice")).toMatchObject([
+      { message: expect.stringContaining("or leadsTo") },
+    ]);
+  });
+
+  it("book-practice: a lead-in must point to a book exercise of the same section", () => {
+    const { input, lead } = withLeadIn();
+    lead.leadsTo = "fixture.ex.chon-phep-nhan";
+    expect(findings(input, "book-practice")).toMatchObject([
+      { message: expect.stringContaining("must be a book exercise") },
+    ]);
+    lead.leadsTo = "fixture.ex.khong-co";
+    expect(findings(input, "book-practice")).toMatchObject([
+      { message: expect.stringContaining("must be a book exercise") },
+    ]);
+  });
+
+  it("book-practice: a lead-in must come before its target and name the next book exercise", () => {
+    const { input, lead } = withLeadIn();
+    const lastId = listed(input)[3]?.[0] ?? "";
+    lead.leadsTo = lastId;
+    expect(messages(input, "book-practice")).toEqual([
+      expect.stringContaining("must lead to the next book exercise"),
+    ]);
+    // Moving the lead-in after its target is caught as order, not as skipping.
+    const { input: moved, lead: movedLead, targetId } = withLeadIn();
+    const section = moved.lesson.sections[moved.lesson.sections.length - 1];
+    if (!section) throw new Error("fixture has no section");
+    const ids = [...section.checkIds, ...section.practiceIds];
+    const swapped = [ids[1], ids[0], ...ids.slice(2)] as string[];
+    section.checkIds = swapped.slice(0, section.checkIds.length);
+    section.practiceIds = swapped.slice(section.checkIds.length);
+    expect(movedLead.leadsTo).toBe(targetId);
+    expect(messages(moved, "book-practice")).toEqual([
+      expect.stringContaining("must come before"),
+    ]);
+  });
+
+  it("book-practice: at most two lead-ins per book exercise", () => {
+    const { input } = practiceInput();
+    const [a, b, c, d] = listed(input);
+    if (!a || !b || !c || !d) throw new Error("fixture section too short");
+    for (const [, index] of [a, b, c]) {
+      const exercise = input.lesson.exercises[index];
+      if (!exercise) throw new Error("exercise missing");
+      delete exercise.bookRef;
+      exercise.leadsTo = d[0];
+    }
+    expect(findings(input, "book-practice")).toMatchObject([
+      {
+        path: ["exercises", c[1], "leadsTo"],
+        message: expect.stringContaining("more than 2 lead-in"),
+      },
+    ]);
+  });
+
+  it("book-practice: a book exercise cannot also be a lead-in, and leadsTo outside the section fails", () => {
+    const { input, leadIndex, targetId } = withLeadIn();
+    const lead = input.lesson.exercises[leadIndex];
+    if (!lead) throw new Error("exercise missing");
+    lead.bookRef = "SBT 3.99";
+    expect(findings(input, "book-practice")).toMatchObject([
+      { path: ["exercises", leadIndex, "leadsTo"] },
+    ]);
+    const outside = practiceInput().input;
+    const stray = outside.lesson.exercises.find((e) => e.bookRef === undefined);
+    if (!stray) throw new Error("no exercise outside the section");
+    stray.leadsTo = targetId;
+    expect(findings(outside, "book-practice")).toMatchObject([
+      { message: expect.stringContaining("belongs to a lead-in step") },
+    ]);
+  });
+
+  it("a lead-in's own text is not exempt from textbook-copy or length", () => {
+    const { input, lead } = withLeadIn();
+    lead.prompt = [{ type: "note", text: LONG }];
+    expect(messages(input, "length")).toEqual([
+      expect.stringContaining("30 syllables"),
+    ]);
+    lead.prompt = [{ type: "note", text: BOOK_TEXT }];
+    input.sourceText = `Định nghĩa. ${BOOK_TEXT} Ví dụ khác.`;
+    expect(findings(input, "textbook-copy")).toHaveLength(1);
+  });
+
   it("a review lesson with distinct bookRefs still passes", () => {
     const input = fixtureInput();
     input.lesson.kind = "review";

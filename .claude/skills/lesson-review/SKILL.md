@@ -38,7 +38,7 @@ Sau đó tác giả commit `lesson.json` và `review.md` **trước khi sửa**:
 
 Điều phối:
 1. `pnpm content:check --root <ROOT>`; `ROOT` là `content/` thì thêm `pnpm lesson:walk <id bài>` (walk ghi contact sheet `sheet-NN.png` mỗi thiết bị vào `.shots/walk/<id bài>/<thiết bị>/`, mỗi ô in tên ảnh; `ROOT` khác thì ghi "không chạy").
-2. Chia section thành nhóm liên tiếp: ≤ 4 section thì 1 nhóm, nhiều hơn thì 3 nhóm gần bằng nhau. Section `bookPractice` luôn là một nhóm riêng (nhiều câu, mỗi câu so với ảnh sách), thêm vào các nhóm trên; Reviewer của nhóm đó làm đủ ba việc của mục "Phần bài tập sách bài tập" trong `references/checklist.md` (đủ bài tập, đề y hệt sách, đáp án khớp trang lời giải) và mở ảnh `sbt-pNN.png`, không dựa vào lớp chữ. Card, exercise theo section có nó trong `checkIds`/`practiceIds` hay luyện card của nó; câu kho ôn theo card.
+2. Chia section thành nhóm liên tiếp: ≤ 4 section thì 1 nhóm, nhiều hơn thì 3 nhóm gần bằng nhau. Section `bookPractice` luôn là một nhóm riêng (nhiều câu, mỗi câu so với ảnh sách), thêm vào các nhóm trên; Reviewer của nhóm đó làm đủ ba việc với câu sách và việc soát câu dẫn của mục "Phần bài tập sách bài tập" trong `references/checklist.md` (đủ bài tập, đề y hệt sách, đáp án khớp trang lời giải) và mở ảnh `sbt-pNN.png`, không dựa vào lớp chữ. Card, exercise theo section có nó trong `checkIds`/`practiceIds` hay luyện card của nó; câu kho ôn theo card.
 3. Mở song song mỗi nhóm một **Reviewer** (một lượt gọi Agent nhiều tool), kèm kết quả bước 1 và tệp ghi `.shots/review/<id bài>/nhom-<n>.md`.
 4. Xong cả nhóm: mở một **Tổng hợp**.
 

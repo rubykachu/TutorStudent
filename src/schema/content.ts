@@ -359,6 +359,10 @@ const exerciseBase = {
   // carries the book's own wording and numbers. Only a lesson with
   // `kind: "review"` and an exercise of a `bookPractice` section may use it.
   bookRef: TextSchema.optional(),
+  // A guided lead-in step written in the lesson's own words: the id of the
+  // book exercise (with `bookRef`) it prepares the child for. Only an
+  // exercise of a `bookPractice` section without `bookRef` may use it.
+  leadsTo: ExerciseIdSchema.optional(),
   hints: HintsSchema,
   explain: ExplanationSchema.optional(),
   difficulty: z.int().min(1).max(3),
@@ -570,7 +574,8 @@ export const SectionSchema = z.object({
   recap: RecapBlockSchema,
   // The last section of a regular lesson, holding the workbook's exercises of
   // the lesson word for word: every exercise in `checkIds` and `practiceIds`
-  // carries `bookRef`. Absent on every other section.
+  // carries `bookRef`, apart from lead-in steps (`leadsTo`). Absent on every
+  // other section.
   bookPractice: z.boolean().optional(),
 });
 
