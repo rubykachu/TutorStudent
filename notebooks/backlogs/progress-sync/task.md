@@ -35,12 +35,12 @@ Files: `src/sync/schema.ts`, `src/lib/config.ts`, `vitest.config.ts`, `tests/syn
 `mergeChildDocs`, `mergeProfileDocs`, `mergeHistoryDocs` and `visibleHistory` exactly as `spec.md` section 6.1 (main doc: tombstones applied to each side first, then the rule table; history: plain union, tombstones only when read). Nothing is trimmed.
 
 Acceptance:
-- [ ] Every row of the rule table has its own unit test, including reset tombstone drops for cards, section `doneAt` and `position` separately, `overviewSeen`, and stickers, activity days and `historyMonths` kept; a record whose time equals the reset is dropped.
-- [ ] `mergeHistoryDocs` never drops a record, whatever the resets; `visibleHistory` hides attempts and writings of a reset lesson at or before the reset and keeps later ones.
-- [ ] The three-doc counterexample of section 6.1 (done at 5, in progress at 8, reset at 6) gives the same result in every merge order.
-- [ ] Property tests (generated docs with resets, equal timestamps and records on both sides of a reset; fixed seed): commutative, associative, idempotent, for all three doc kinds; and `visibleHistory(merge(a, b), r) == merge(visibleHistory(a, r), visibleHistory(b, r))`.
-- [ ] Card tie-break: equal `lastReviewAt` resolves by `reps`, then canonical JSON; same result in both argument orders.
-- [ ] Line coverage of `src/sync/merge.ts` ≥ 90%.
+- [x] Every row of the rule table has its own unit test, including reset tombstone drops for cards, section `doneAt` and `position` separately, `overviewSeen`, and stickers, activity days and `historyMonths` kept; a record whose time equals the reset is dropped.
+- [x] `mergeHistoryDocs` never drops a record, whatever the resets; `visibleHistory` hides attempts and writings of a reset lesson at or before the reset and keeps later ones.
+- [x] The three-doc counterexample of section 6.1 (done at 5, in progress at 8, reset at 6) gives the same result in every merge order.
+- [x] Property tests (generated docs with resets, equal timestamps and records on both sides of a reset; fixed seed): commutative, associative, idempotent, for all three doc kinds; and `visibleHistory(merge(a, b), r) == merge(visibleHistory(a, r), visibleHistory(b, r))`.
+- [x] Card tie-break: equal `lastReviewAt` resolves by `reps`, then canonical JSON; same result in both argument orders.
+- [x] Line coverage of `src/sync/merge.ts` ≥ 90%.
 
 Verify: `pnpm test tests/sync/merge.test.ts && pnpm test --coverage`
 
