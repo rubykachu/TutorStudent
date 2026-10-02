@@ -1,13 +1,20 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
+import { cacheKey } from "../../video/lib/narrate";
 import {
   anchorKey,
   matchRate,
   ownedTokens,
   readNumber,
+  SPOKEN_ABBREVIATIONS,
+  spelledOutCapitals,
+  spokenAbbreviations,
   spokenNegatives,
+  spokenText,
   textTokens,
 } from "../../video/lib/text";
+import { localEngine } from "../../video/tts/local";
+import { VOICES } from "../../video/voices";
 
 describe("readNumber", () => {
   it("reads whole numbers the Vietnamese way, without tones", () => {
@@ -140,5 +147,111 @@ describe("anchorKey", () => {
   it("keeps tone marks and drops punctuation", () => {
     expect(anchorKey("Thóc.")).toBe("thóc");
     expect(anchorKey("64,")).toBe("64");
+  });
+});
+
+describe("spokenText", () => {
+  it("says an abbreviation in full, as one word per written word", () => {
+    expect(spokenText("Tìm ƯCLN(12, 18).")).toBe(
+      "Tìm ước-chung-lớn-nhất(12, 18).",
+    );
+    expect(spokenText("ƯCLN và BCNN")).toBe(
+      "ước-chung-lớn-nhất và bội-chung-nhỏ-nhất",
+    );
+    expect(spokenText("Tìm ƯC(12) rồi BC của 4 và 6")).toBe(
+      "Tìm ước-chung(12) rồi bội-chung của 4 và 6",
+    );
+    for (const text of ["Tìm ƯCLN(12, 18).", "ƯCLN và BCNN", "ƯC(12)"]) {
+      expect(spokenText(text).split(/\s+/)).toHaveLength(
+        text.split(/\s+/).length,
+      );
+    }
+  });
+
+  it("leaves a sentence with no abbreviation unchanged", () => {
+    const text = "Bội chung nhỏ nhất của 4 và 6 là 12, ước là số chia hết.";
+    expect(spokenText(text)).toBe(text);
+    expect(spokenText("Số đối của 5 là −5.")).toBe(
+      spokenNegatives("Số đối của 5 là −5."),
+    );
+  });
+
+  it("leaves point labels, lone letters and longer words alone", () => {
+    for (const text of [
+      "Đoạn thẳng AB dài 3 cm, tia OA.",
+      "Điểm B nằm giữa A và C.",
+      "Số b chia hết cho c.",
+      "Chữ BCNNX và ABC và XƯCLN.",
+      "Mã BC2 và 2BC.",
+    ]) {
+      expect(spokenText(text)).toBe(text);
+    }
+  });
+
+  it("reads a Roman chapter number as a number, other numerals as letters", () => {
+    expect(spokenText("Ta ôn lại cả chương II.")).toBe(
+      "Ta ôn lại cả chương hai.",
+    );
+    expect(spokenText("Chương IV nói về phân số.")).toBe(
+      "Chương bốn nói về phân số.",
+    );
+    expect(spokenText("Kim giờ chỉ vào số IV.")).toBe("Kim giờ chỉ vào số IV.");
+    expect(spokenText("chương IIIA")).toBe("chương IIIA");
+  });
+
+  it("uses the author's respelling in full, with abbreviations expanded", () => {
+    expect(spokenText("BC", "bê-xê")).toBe("bê-xê");
+    expect(spokenText("ƯCLN là gì", "ƯCLN là gì")).toBe(
+      "ước-chung-lớn-nhất là gì",
+    );
+  });
+
+  it("is the one map: every entry is said and matched whole-word only", () => {
+    for (const [abbreviation, phrase] of Object.entries(SPOKEN_ABBREVIATIONS)) {
+      expect(spokenAbbreviations(abbreviation)).toBe(phrase.replace(/ /g, "-"));
+      expect(spokenAbbreviations(`x${abbreviation}`)).toBe(`x${abbreviation}`);
+    }
+  });
+
+  it("is checked by Whisper against the full words", () => {
+    const spoken = spokenText("Tìm ƯCLN và BCNN của 12 và 18.");
+    expect(
+      matchRate(
+        spoken,
+        "Tìm ước chung lớn nhất và bội chung nhỏ nhất của 12 và 18.",
+      ),
+    ).toBe(1);
+    expect(
+      matchRate(spoken, "Tìm Ư C L N và B C N N của 12 và 18."),
+    ).toBeLessThan(0.97);
+  });
+
+  it("changes the audio cache key of an affected sentence only", () => {
+    const voice = localEngine.voice(VOICES["hai-dang"].video.preset);
+    const key = (text: string) => cacheKey(voice, spokenText(text));
+    expect(key("Bạn nhớ nhé.")).toBe(cacheKey(voice, "Bạn nhớ nhé."));
+    expect(key("Bạn nhớ nhé.")).toBe("56dedb834ddda5c4");
+    expect(key("Tìm ƯCLN của 12.")).not.toBe(
+      cacheKey(voice, "Tìm ƯCLN của 12."),
+    );
+  });
+});
+
+describe("spelledOutCapitals", () => {
+  it("reports a capital-letter token the voice would spell out", () => {
+    expect(spelledOutCapitals("Xem SGK trang 5.")).toEqual(["SGK"]);
+    expect(spelledOutCapitals("Tìm ƯCLN và BCNN.")).toEqual([]);
+    expect(spelledOutCapitals("Ôn chương II.")).toEqual([]);
+  });
+
+  it("lets point labels and Roman numerals through", () => {
+    expect(spelledOutCapitals("Đoạn thẳng AB nằm trên tia OA.")).toEqual([]);
+    expect(spelledOutCapitals("Số IV và IX.")).toEqual([]);
+    expect(spelledOutCapitals("AB dài 3 cm")).toEqual(["AB"]);
+    expect(spelledOutCapitals("Chữ A, B và x.")).toEqual([]);
+  });
+
+  it("does not report what the author respelled", () => {
+    expect(spelledOutCapitals("Xem SGK", "Xem ét-gờ-ca")).toEqual([]);
   });
 });

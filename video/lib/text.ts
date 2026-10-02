@@ -100,6 +100,124 @@ export function spokenNegatives(text: string): string {
   return text.replace(NEGATIVE_SIGN, "âm-");
 }
 
+// Abbreviations the voice would spell letter by letter ("ƯCLN" as "Ư C L N"),
+// and what it must say instead. The single source: every sentence that goes
+// to a TTS engine passes through `spokenText`, so a new abbreviation is added
+// here and nowhere else. Captions and on-screen text keep the abbreviation.
+// Matched as whole words and case-sensitively, so "BCNN" inside another word
+// and a lone "B" or "C" (a point label or a variable) are never touched.
+export const SPOKEN_ABBREVIATIONS = {
+  ƯCLN: "ước chung lớn nhất",
+  BCNN: "bội chung nhỏ nhất",
+  ƯC: "ước chung",
+  BC: "bội chung",
+} as const satisfies Record<string, string>;
+
+// A chapter number written in Roman numerals right after "chương" is said as
+// a number ("chương II" is "chương hai"). Roman numerals elsewhere are the
+// letters themselves (the lesson on Roman numerals names I, V, X, IV, IX), so
+// they stay as they are.
+export const SPOKEN_CHAPTER_NUMERALS = {
+  I: "một",
+  II: "hai",
+  III: "ba",
+  IV: "bốn",
+  V: "năm",
+  VI: "sáu",
+  VII: "bảy",
+  VIII: "tám",
+  IX: "chín",
+  X: "mười",
+  XI: "mười một",
+  XII: "mười hai",
+} as const satisfies Record<string, string>;
+
+const NOT_WORD_BEFORE = "(?<![\\p{L}\\p{N}])";
+const NOT_WORD_AFTER = "(?![\\p{L}\\p{N}])";
+
+// Longest first, so "ƯCLN" is never read as "ƯC" plus "LN".
+const longestFirst = (words: readonly string[]) =>
+  [...words].sort((a, b) => b.length - a.length).join("|");
+
+const ABBREVIATION = new RegExp(
+  `${NOT_WORD_BEFORE}(${longestFirst(Object.keys(SPOKEN_ABBREVIATIONS))})${NOT_WORD_AFTER}`,
+  "gu",
+);
+const CHAPTER_NUMERAL = new RegExp(
+  `${NOT_WORD_BEFORE}([Cc]hương) (${longestFirst(Object.keys(SPOKEN_CHAPTER_NUMERALS))})${NOT_WORD_AFTER}`,
+  "gu",
+);
+
+// The words of a spoken phrase joined with hyphens, so the replacement stays
+// one word: captions map one to one to the words of the text, and the voice
+// reads a hyphen between syllables as a plain join.
+const oneWord = (phrase: string) => phrase.replace(/ /g, "-");
+
+// `text` with each abbreviation written out in full for the voice.
+export function spokenAbbreviations(text: string): string {
+  return text
+    .replace(CHAPTER_NUMERAL, (_, chapter: string, numeral: string) => {
+      const said =
+        SPOKEN_CHAPTER_NUMERALS[
+          numeral as keyof typeof SPOKEN_CHAPTER_NUMERALS
+        ];
+      return `${chapter} ${oneWord(said)}`;
+    })
+    .replace(ABBREVIATION, (abbreviation) =>
+      oneWord(
+        SPOKEN_ABBREVIATIONS[abbreviation as keyof typeof SPOKEN_ABBREVIATIONS],
+      ),
+    );
+}
+
+// A sentence as the voice must say it, and the form every Whisper check and
+// audio cache key uses: `say` (the author's own respelling) when the script
+// has one, else `text`; abbreviations in full, negative signs as "âm". A
+// sentence with neither comes out unchanged, so its cached take stays valid.
+export function spokenText(text: string, say?: string): string {
+  return say === undefined
+    ? spokenNegatives(spokenAbbreviations(text))
+    : spokenAbbreviations(say);
+}
+
+// Abbreviations a sentence introduces ("Bội chung viết tắt là BC"): said in
+// full they read "bội chung viết tắt là bội chung", so the author decides
+// whether the voice names the letters (respell with `say`, "bê-xê").
+const INTRODUCES = new RegExp(
+  `viết tắt là (${longestFirst(Object.keys(SPOKEN_ABBREVIATIONS))})${NOT_WORD_AFTER}`,
+  "u",
+);
+
+export function introducedAbbreviation(
+  text: string,
+  say?: string,
+): string | undefined {
+  return say === undefined ? INTRODUCES.exec(text)?.[1] : undefined;
+}
+
+// Capital-letter tokens the voice would still spell out, in a sentence as the
+// voice says it. Not reported: a point label (two or more capitals in a
+// sentence about a point, segment, ray, line, angle, triangle, side or
+// figure) and a Roman numeral, which the Roman-numeral lesson reads as letters.
+const CAPITALS = new RegExp(
+  `${NOT_WORD_BEFORE}\\p{Lu}{2,}${NOT_WORD_AFTER}`,
+  "gu",
+);
+const GEOMETRY_WORD = new RegExp(
+  `${NOT_WORD_BEFORE}(?:điểm|đoạn|tia|đường|góc|tam giác|cạnh|hình)${NOT_WORD_AFTER}`,
+  "iu",
+);
+const ROMAN_NUMERAL = /^[IVX]+$/;
+
+export function spelledOutCapitals(text: string, say?: string): string[] {
+  const spoken = spokenText(text, say);
+  const geometry = GEOMETRY_WORD.test(spoken);
+  return (spoken.match(CAPITALS) ?? []).filter(
+    (token) =>
+      !ROMAN_NUMERAL.test(token) && !(geometry && /^[A-Z]+$/.test(token)),
+  );
+}
+
 // One written word (as in the script or a Whisper word) as plain tokens.
 export function wordTokens(word: string): string[] {
   const plain = stripTones(word)

@@ -61,7 +61,10 @@ async function main() {
     );
   }
   // On-screen rule text is checked before any voice or render work.
-  const onScreen = checkProject(lessonId, name, { captions: false }).issues;
+  const projectCheck = checkProject(lessonId, name, { captions: false });
+  for (const warning of projectCheck.warnings)
+    console.warn(`video: ${warning}`);
+  const onScreen = projectCheck.issues;
   if (onScreen.length > 0) {
     throw new Error(
       `index.html shows rule text that is off:\n${onScreen.join("\n")}`,

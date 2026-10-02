@@ -5,6 +5,8 @@ import {
   captionTokens,
   onScreenIssues,
   ruleTextsOnScreen,
+  spelledOutOverviewWarnings,
+  spelledOutScriptWarnings,
 } from "../../video/lib/consistency";
 import type { VideoScript } from "../../video/lib/script";
 
@@ -139,5 +141,45 @@ describe("ruleTextsOnScreen", () => {
         '<div data-rule-text class="x">a <div>b</div> &lt;c&gt;</div><div>no</div><span data-rule-text="">d</span>',
       ),
     ).toEqual(["a b <c>", "d"]);
+  });
+});
+
+describe("spelledOutScriptWarnings", () => {
+  it("warns about a capital-letter token the voice would spell out", () => {
+    const warnings = spelledOutScriptWarnings(
+      script(["Tìm ƯCLN của 12."], ["Xem SGK trang 5.", "Đoạn thẳng AB."]),
+    );
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('s2 (sentence 2): "SGK"');
+    expect(warnings[0]).toContain("SPOKEN_ABBREVIATIONS");
+  });
+
+  it("is quiet for a respelled sentence and for the mapped abbreviations", () => {
+    const quiet = script(["Tìm BCNN."]);
+    const sentence = quiet.scenes[0]?.sentences[0];
+    if (sentence) sentence.say = "Tìm BCNN.";
+    expect(spelledOutScriptWarnings(quiet)).toEqual([]);
+  });
+
+  it("warns when a sentence introduces an abbreviation the voice says in full", () => {
+    const warnings = spelledOutScriptWarnings(
+      script(["Bội chung viết tắt là BC."]),
+    );
+    expect(warnings).toEqual([expect.stringContaining('introduces "BC"')]);
+    const respelled = script(["Bội chung viết tắt là BC."]);
+    const sentence = respelled.scenes[0]?.sentences[0];
+    if (sentence) sentence.say = "Bội chung viết tắt là bê-xê.";
+    expect(spelledOutScriptWarnings(respelled)).toEqual([]);
+  });
+
+  it("checks the overview sentences too", () => {
+    expect(
+      spelledOutOverviewWarnings({
+        hook: { text: "Chào bạn! Hôm nay ta học ƯCLN." },
+        summary: "Xem SGK.",
+        goals: ["biết ƯC"],
+        whyItMatters: "Dùng trong chương II.",
+      }),
+    ).toEqual([expect.stringContaining('"SGK"')]);
   });
 });

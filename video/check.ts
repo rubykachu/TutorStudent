@@ -3,14 +3,17 @@ import path from "node:path";
 import { PROJECTS_DIR } from "./config";
 import {
   checkLessonNarration,
+  checkLessonSpelling,
   checkLessonVoice,
   checkProject,
 } from "./lib/consistency";
 
 // Usage: pnpm video:check [<lessonId> [<name>]]
 // Runs the consistency checks of `pnpm video:build` (script sentences in the
-// captions, on-screen rule text, opening line, one voice per lesson, overview narration opening) on videos already built, without voice or
-// render work. Exits 1 when a video fails.
+// captions, on-screen rule text, opening line, one voice per lesson, overview
+// narration opening) on videos already built, without voice or render work.
+// Exits 1 when a video fails. Lines starting WARN (capital-letter tokens the
+// voice would spell out) do not fail it.
 
 const dirs = (dir: string) =>
   readdirSync(dir).filter((f) => statSync(path.join(dir, f)).isDirectory());
@@ -29,6 +32,9 @@ function main() {
       `${issues.length > 0 ? "FAIL" : "ok"} ${l} (voice, narration opening)`,
     );
     for (const issue of issues) console.log(`  - ${issue}`);
+    for (const warning of checkLessonSpelling(l)) {
+      console.log(`  WARN ${warning}`);
+    }
     if (issues.length > 0) failed++;
   }
   for (const [l, n] of targets) {
@@ -38,6 +44,7 @@ function main() {
       `${status} ${l}/${n} (rule text on screen: ${r.ruleTextCount}${r.skipped ? `; ${r.skipped}` : ""})`,
     );
     for (const issue of r.issues) console.log(`  - ${issue}`);
+    for (const warning of r.warnings) console.log(`  WARN ${warning}`);
     if (r.issues.length > 0) failed++;
   }
   if (targets.length === 0) console.log("video: no projects to check");

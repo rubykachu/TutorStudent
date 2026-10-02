@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
+import { overviewParts } from "@/content/overview";
 import { parseKaraokeVtt } from "@/lib/karaoke-vtt";
 import type { LessonOverview } from "@/schema/content";
 import {
@@ -14,6 +15,7 @@ import { type LessonMedia, readLessonMedia } from "./lesson-media";
 import { narrationPaths, narrationScript } from "./narration";
 import type { VideoScript } from "./script";
 import { readScript } from "./script";
+import { introducedAbbreviation, spelledOutCapitals } from "./text";
 import { findLesson, ruleTexts, spokenForm } from "./verbatim";
 
 // Zero-token consistency checks of a video, run after `pnpm video:build` and
@@ -32,6 +34,9 @@ import { findLesson, ruleTexts, spokenForm } from "./verbatim";
 // 5. Narration opening: the overview narration starts with a greeting to the
 //    child and its captions start after the lead-in (lessons narrated before
 //    the rule are exempt in media.json).
+// 6. Spelled-out capitals (a warning, never a failure): a sentence the voice
+//    reads still has a capital-letter token it would spell letter by letter
+//    (see SPOKEN_ABBREVIATIONS in text.ts).
 
 // Words of a text as compared: NFC, typography and known symbol readings
 // unified (spokenForm), lower case, no punctuation.
@@ -395,6 +400,57 @@ export function onScreenIssues(html: string, lesson: unknown): string[] {
   return issues;
 }
 
+function spelledOutWarning(where: string, token: string, text: string) {
+  return `${where}: "${token}" would be spelled letter by letter by the voice; add it to SPOKEN_ABBREVIATIONS (video/lib/text.ts) or respell the sentence with \`say\`: "${text}"`;
+}
+
+// Findings of one sentence: capitals the voice would spell out, and an
+// abbreviation the sentence introduces (said in full, not as letters).
+function sentenceWarnings(where: string, text: string, say?: string) {
+  const introduced = introducedAbbreviation(text, say);
+  return [
+    ...spelledOutCapitals(text, say).map((token) =>
+      spelledOutWarning(where, token, text),
+    ),
+    ...(introduced
+      ? [
+          `${where}: the sentence introduces "${introduced}" but the voice says it in full; if the letters are meant, respell it with \`say\` ("bê-xê"): "${text}"`,
+        ]
+      : []),
+  ];
+}
+
+// Capital-letter tokens in the script's sentences that the voice would spell
+// out. Sentences are numbered from 1 across the whole script.
+export function spelledOutScriptWarnings(script: VideoScript): string[] {
+  let n = 0;
+  return script.scenes.flatMap((scene) =>
+    scene.sentences.flatMap(({ text, say }) => {
+      n++;
+      return sentenceWarnings(`${scene.id} (sentence ${n})`, text, say);
+    }),
+  );
+}
+
+// The same for the sentences of a lesson's overview, which the narration
+// reads.
+export function spelledOutOverviewWarnings(overview: LessonOverview): string[] {
+  return overviewParts(overview).flatMap((part) =>
+    part.sentences.flatMap(({ text }) =>
+      sentenceWarnings(`overview ${part.key}`, text),
+    ),
+  );
+}
+
+// Warnings of a lesson's overview narration text, whether or not it has been
+// narrated yet.
+export function checkLessonSpelling(lessonId: string): string[] {
+  const overview = (
+    findLesson(lessonId)?.data as { overview?: LessonOverview } | undefined
+  )?.overview;
+  return overview ? spelledOutOverviewWarnings(overview) : [];
+}
+
 export type ProjectCheck = {
   lessonId: string;
   name: string;
@@ -402,6 +458,8 @@ export type ProjectCheck = {
   skipped?: string;
   ruleTextCount: number;
   issues: string[];
+  // Findings that do not fail the check.
+  warnings: string[];
 };
 
 export function projectDir(lessonId: string, name: string): string {
@@ -420,7 +478,13 @@ export function checkProject(
   { captions }: { captions: boolean },
 ): ProjectCheck {
   const dir = projectDir(lessonId, name);
-  const result: ProjectCheck = { lessonId, name, ruleTextCount: 0, issues: [] };
+  const result: ProjectCheck = {
+    lessonId,
+    name,
+    ruleTextCount: 0,
+    issues: [],
+    warnings: [],
+  };
   const lesson = findLesson(lessonId);
   if (!lesson) {
     result.issues.push(`No lesson "${lessonId}" under content/`);
@@ -443,6 +507,7 @@ export function checkProject(
   if (!pacingExemptVideos().has(`${lessonId}/${name}`)) {
     result.issues.push(...pacingIssues(script));
   }
+  result.warnings.push(...spelledOutScriptWarnings(script));
   result.ruleTextCount = ruleTextsOnScreen(html).length;
   result.issues.push(...onScreenIssues(html, lesson.data));
   if (captions) {

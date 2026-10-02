@@ -7,7 +7,7 @@ import { type LessonOverview, LessonSchema } from "@/schema/content";
 import { MATCH_THRESHOLD, MEDIA_DIR, RENDER, VIDEO_DIR } from "./config";
 import { alignWords } from "./lib/align";
 import { ffmpeg, layNarration } from "./lib/audio";
-import { narrationOpeningIssues } from "./lib/consistency";
+import { checkLessonSpelling, narrationOpeningIssues } from "./lib/consistency";
 import { lessonVoice, readLessonMedia } from "./lib/lesson-media";
 import { writeNarration } from "./lib/manifest";
 import { narrate } from "./lib/narrate";
@@ -62,6 +62,9 @@ async function main() {
     throw new Error(
       `the overview must open with a greeting to the child (first sentence of overview.hook); nothing synthesized:\n${opening.join("\n")}`,
     );
+  }
+  for (const warning of checkLessonSpelling(lessonId)) {
+    console.warn(`narration: ${warning}`);
   }
   const spec = lessonVoice(lessonId).spec;
   const workDir = path.join(VIDEO_DIR, ".cache", "narration", lessonId);

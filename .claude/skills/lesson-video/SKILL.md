@@ -31,6 +31,10 @@ Chọn giọng theo không khí của bài, lúc dựng video đầu tiên của
 - Xen kẽ giữa các bài liền nhau để bé đỡ nhàm: xem giọng của bài trước trong `media.json` và chọn giọng kia khi không có lý do riêng.
 - Ghi lý do chọn vào `task.md` của bài. Đổi giọng một bài đã có video nghĩa là đọc lại mọi video và lời đọc của bài đó (giọng là một phần khoá cache câu), nên không đổi khi không cần.
 
+## Chữ viết tắt
+
+Giọng đọc rời từng chữ cái của chữ in hoa ("ƯCLN" thành "Ư C L N"), nên mọi câu gửi tới TTS (câu video và lời đọc giới thiệu, VieNeu và Gemini) đi qua `spokenText` trong `video/lib/text.ts`, thay chữ viết tắt bằng chữ đầy đủ theo `SPOKEN_ABBREVIATIONS` (ƯCLN, BCNN, ƯC, BC) và số La Mã chỉ chương ("chương II" thành "chương hai"). Phụ đề và chữ trên màn giữ nguyên chữ viết tắt; Whisper và khoá cache dùng dạng đã đọc, nên chỉ câu có chữ viết tắt mới bị đọc lại. Viết tắt mới: thêm vào bảng đó, không `say` riêng từng câu. `pnpm video:check` và các lệnh build cảnh báo `WARN` khi còn chữ in hoa bị đọc rời.
+
 ## Câu mở đầu và quãng đệm
 
 Mọi video mở đầu bằng **một câu chào và giới thiệu**, gọi bé là "bạn", nói video nói về gì: "Chào bạn! Hôm nay ta ghép số cho tròn để tính nhẩm nhanh." Câu đó là câu đầu tiên của cảnh đầu tiên, đánh `"opening": true`, không phải câu `rule` hay `quote`, ngắn (≤ 15 chữ). Trước câu đầu luôn có `PAUSE.leadIn` (1 giây) im lặng (phụ đề chưa hiện), để bé không mất mấy chữ đầu. Build và `pnpm video:check` dừng khi câu đầu không có cờ `opening`, không có chữ "bạn", hay phụ đề đầu bắt đầu trước quãng đệm; cờ `opening` ở câu khác cũng là lỗi. Video dựng trước khi có luật này được liệt kê trong `openingExempt` của `media.json` của bài; dựng lại video nào thì thêm câu mở đầu và xoá tên nó khỏi danh sách.

@@ -18,7 +18,7 @@ import type { TtsEngine, VoiceInfo } from "../tts/types";
 import { cutSegment, probeDuration, slowSentence } from "./audio";
 import type { VideoScript } from "./script";
 import { sentenceCuts } from "./split";
-import { matchRate, spokenNegatives } from "./text";
+import { matchRate, spokenText } from "./text";
 
 // One narrated sentence: its audio (trimmed and slowed), what Whisper heard
 // in it and how closely that matches the script.
@@ -113,7 +113,7 @@ export async function narrate(
   const voice = engine.voice(voiceName);
   const lines: Line[] = script.scenes.flatMap((scene) =>
     scene.sentences.map((s) => {
-      const spoken = s.say ?? spokenNegatives(s.text);
+      const spoken = spokenText(s.text, s.say);
       return {
         sceneId: scene.id,
         text: s.text,
