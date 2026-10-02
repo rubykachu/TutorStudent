@@ -100,12 +100,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.no-moi-ngay"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-am5-nhan3"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.no-moi-ngay"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-am5-nhan3"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhan-am-duong-vi-du",
@@ -146,12 +142,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.tich-bang-0-nao"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-0-nhan-am9"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.tich-bang-0-nao"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-0-nhan-am9"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhan-voi-0-vi-du",
@@ -218,12 +210,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.quy-luat-4-nhan"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-5-nhan-am2"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.quy-luat-4-nhan"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-5-nhan-am2"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.duong-nhan-am-vi-du",
@@ -277,12 +265,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.dau-tich-khac-dau"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-8-nhan-am4"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.dau-tich-khac-dau"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-8-nhan-am4"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.khac-dau-vi-du",
@@ -349,12 +333,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.dau-tich-am-am"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-am6-nhan-am3"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.dau-tich-am-am"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-am6-nhan-am3"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.am-nhan-am-vi-du",
@@ -403,12 +383,8 @@
           "tex": "\\begin{gathered} 7 \\cdot  (-1) = -7 \\\\ (-4) \\cdot  (-1) = 4 \\\\ 0 \\cdot  (-1) = 0 \\end{gathered}"
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.so-sanh-voi-0"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.chon-so-sanh-dung"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.so-sanh-voi-0"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.chon-so-sanh-dung"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.dau-cua-tich-vi-du",
@@ -462,12 +438,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.tinh-nhanh-am4-3-am5"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-nhanh-am25-3-am4"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.tinh-nhanh-am4-3-am5"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-nhanh-am25-3-am4"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.giao-hoan-ket-hop-vi-du",
@@ -516,12 +488,8 @@
           "tex": "\\begin{gathered} (-2) \\cdot  3 \\cdot  (-4) \\cdot  (-1) \\\\ = -(2 \\cdot  3 \\cdot  4 \\cdot  1) = -24 \\end{gathered}"
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.dau-tich-ba-so"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-am3-2-am5"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.dau-tich-ba-so"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-am3-2-am5"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
@@ -575,12 +543,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.dung-phan-phoi"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-am3-nhan-tong"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.dung-phan-phoi"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-am3-nhan-tong"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.phan-phoi-vi-du",
@@ -642,12 +606,8 @@
           "tex": "\\begin{gathered} 9 \\cdot  (-6) + 9 \\cdot  (-4) \\\\ = 9 \\cdot  [(-6) + (-4)] = -90 \\end{gathered}"
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.gop-6-am3-am7"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tinh-hop-li-am4"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.gop-6-am3-am7"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tinh-hop-li-am4"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du",
@@ -701,12 +661,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.biet-tich-0"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.tim-x-5-nhan"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.biet-tich-0"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.tim-x-5-nhan"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.tich-bang-0-vi-du",
@@ -760,12 +716,8 @@
           ]
         }
       ],
-      "checkIds": [
-        "phep-nhan-so-nguyen.ex.nhiet-do-giam-4-gio"
-      ],
-      "practiceIds": [
-        "phep-nhan-so-nguyen.ex.vai-20-bo"
-      ],
+      "checkIds": ["phep-nhan-so-nguyen.ex.nhiet-do-giam-4-gio"],
+      "practiceIds": ["phep-nhan-so-nguyen.ex.vai-20-bo"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.tang-giam-vi-du",
@@ -777,9 +729,7 @@
     {
       "id": "phep-nhan-so-nguyen.card.cong-lap",
       "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
-      "conceptIds": [
-        "phep-nhan-so-nguyen.concept.am"
-      ],
+      "conceptIds": ["phep-nhan-so-nguyen.concept.am"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhan-am-duong-vi-du",
@@ -789,9 +739,7 @@
     {
       "id": "phep-nhan-so-nguyen.card.nhan-voi-0",
       "sourceRef": "Sách bài tập tr.55 (kiến thức cần nhớ 1)",
-      "conceptIds": [
-        "phep-nhan-so-nguyen.concept.so-0"
-      ],
+      "conceptIds": ["phep-nhan-so-nguyen.concept.so-0"],
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhan-voi-0-vi-du",
@@ -1001,9 +949,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "holds"
@@ -1012,9 +958,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-am5-nhan3",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.cong-lap"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"],
       "prompt": [
         {
           "type": "note",
@@ -1051,9 +995,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tich-am6",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.cong-lap"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"],
       "prompt": [
         {
           "type": "note",
@@ -1113,10 +1055,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -1126,9 +1065,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.nhiet-do-giam-3",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.cong-lap"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"],
       "prompt": [
         {
           "type": "note",
@@ -1164,9 +1101,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.di-trai-am3-nhan2",
       "type": "manipulate",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.cong-lap"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"],
       "prompt": [
         {
           "type": "note",
@@ -1258,9 +1193,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "equal",
@@ -1270,9 +1203,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-0-nhan-am9",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhan-voi-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhan-voi-0"],
       "prompt": [
         {
           "type": "note",
@@ -1308,9 +1239,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tich-0",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhan-voi-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhan-voi-0"],
       "prompt": [
         {
           "type": "note",
@@ -1369,10 +1298,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -1382,9 +1308,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tui-ke-trong",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhan-voi-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhan-voi-0"],
       "prompt": [
         {
           "type": "note",
@@ -1484,9 +1408,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "expr": "4·(-1)"
@@ -1495,9 +1417,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-5-nhan-am2",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.duong-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.duong-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -1534,9 +1454,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-7-nhan-am3",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.duong-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.duong-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -1572,9 +1490,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-so-sanh-am",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.duong-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.duong-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -1633,10 +1549,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "c"
-      ],
+      "answer": ["a", "c"],
       "multiple": true,
       "check": {
         "relation": "holds"
@@ -1645,9 +1558,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.thu-4-nhan-am2",
       "type": "manipulate",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.duong-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.duong-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -1739,9 +1650,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "holds"
@@ -1750,9 +1659,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-8-nhan-am4",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.khac-dau"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.khac-dau"],
       "prompt": [
         {
           "type": "note",
@@ -1789,9 +1696,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-am9-nhan3",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.khac-dau"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.khac-dau"],
       "prompt": [
         {
           "type": "note",
@@ -1827,9 +1732,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.no-5-nghin-6-ngay",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.khac-dau"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.khac-dau"],
       "prompt": [
         {
           "type": "note",
@@ -1865,9 +1768,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tich-am12",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.khac-dau"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.khac-dau"],
       "prompt": [
         {
           "type": "note",
@@ -1926,10 +1827,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -1939,9 +1837,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.xep-tich-khac-dau",
       "type": "order",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.khac-dau"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.khac-dau"],
       "prompt": [
         {
           "type": "note",
@@ -2052,9 +1948,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "holds"
@@ -2063,9 +1957,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-am6-nhan-am3",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.am-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -2102,9 +1994,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-am5-nhan-am5",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.am-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -2140,9 +2030,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tich-12",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.am-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -2201,10 +2089,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -2214,9 +2099,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.nhiet-do-cach-day-3",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.am-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -2252,9 +2135,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.thu-am4-nhan-am2",
       "type": "manipulate",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.am-nhan-am"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.am-nhan-am"],
       "prompt": [
         {
           "type": "note",
@@ -2345,9 +2226,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "holds"
@@ -2356,9 +2235,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-so-sanh-dung",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.dau-cua-tich"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.dau-cua-tich"],
       "prompt": [
         {
           "type": "note",
@@ -2417,10 +2294,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "c"
-      ],
+      "answer": ["a", "c"],
       "multiple": true,
       "check": {
         "relation": "holds"
@@ -2429,9 +2303,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.noi-tich-voi-ket-qua",
       "type": "match",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.dau-cua-tich"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.dau-cua-tich"],
       "prompt": [
         {
           "type": "note",
@@ -2540,9 +2412,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.b-dau-gi",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.dau-cua-tich"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.dau-cua-tich"],
       "prompt": [
         {
           "type": "note",
@@ -2598,17 +2468,13 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false
     },
     {
       "id": "phep-nhan-so-nguyen.ex.dien-dau-tich",
       "type": "fillBlank",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.dau-cua-tich"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.dau-cua-tich"],
       "prompt": [
         {
           "type": "note",
@@ -2635,9 +2501,7 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": [
-            "dương"
-          ]
+          "accept": ["dương"]
         },
         {
           "type": "text",
@@ -2646,27 +2510,19 @@
         {
           "type": "blank",
           "id": "b2",
-          "accept": [
-            "âm"
-          ]
+          "accept": ["âm"]
         },
         {
           "type": "text",
           "text": "."
         }
       ],
-      "bank": [
-        "dương",
-        "âm",
-        "0"
-      ]
+      "bank": ["dương", "âm", "0"]
     },
     {
       "id": "phep-nhan-so-nguyen.ex.so-sanh-hai-tich",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.dau-cua-tich"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.dau-cua-tich"],
       "prompt": [
         {
           "type": "note",
@@ -2719,9 +2575,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "holds"
@@ -2767,9 +2621,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-nhanh-am25-3-am4",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.giao-hoan-ket-hop"],
       "prompt": [
         {
           "type": "note",
@@ -2805,9 +2657,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-bang-tich",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.giao-hoan-ket-hop"],
       "prompt": [
         {
           "type": "note",
@@ -2866,10 +2716,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -2879,9 +2726,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.dien-so-ket-hop",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.giao-hoan-ket-hop"],
       "prompt": [
         {
           "type": "note",
@@ -2917,9 +2762,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.thung-hop-banh",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.giao-hoan-ket-hop"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.giao-hoan-ket-hop"],
       "prompt": [
         {
           "type": "note",
@@ -3004,17 +2847,13 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false
     },
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-am3-2-am5",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhieu-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhieu-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3051,9 +2890,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tich-duong",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhieu-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhieu-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3112,10 +2949,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "c"
-      ],
+      "answer": ["a", "c"],
       "multiple": true,
       "check": {
         "relation": "holds"
@@ -3124,9 +2958,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-3-so-am",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhieu-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhieu-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3162,9 +2994,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-co-0",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhieu-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhieu-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3200,9 +3030,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.dem-hai-so-am",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.nhieu-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.nhieu-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3254,9 +3082,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false
     },
     {
@@ -3326,9 +3152,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "relation": "holds"
@@ -3337,9 +3161,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-am3-nhan-tong",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.phan-phoi"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.phan-phoi"],
       "prompt": [
         {
           "type": "note",
@@ -3376,9 +3198,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.dien-so-phan-phoi",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.phan-phoi"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.phan-phoi"],
       "prompt": [
         {
           "type": "note",
@@ -3414,9 +3234,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-bang-phan-phoi",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.phan-phoi"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.phan-phoi"],
       "prompt": [
         {
           "type": "note",
@@ -3475,10 +3293,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -3488,9 +3303,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-4-nhan-tong-am",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.phan-phoi"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.phan-phoi"],
       "prompt": [
         {
           "type": "note",
@@ -3563,9 +3376,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-hop-li-am4",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.gop-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.gop-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3601,9 +3412,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.dien-so-gop",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.gop-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.gop-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3639,9 +3448,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-gop-am7",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.gop-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.gop-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3677,9 +3484,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tinh-gop-doi-cho",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.gop-thua-so"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.gop-thua-so"],
       "prompt": [
         {
           "type": "note",
@@ -3779,9 +3584,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "expr": "0"
@@ -3790,9 +3593,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tim-x-5-nhan",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.tich-bang-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.tich-bang-0"],
       "prompt": [
         {
           "type": "note",
@@ -3828,9 +3629,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tim-x-duong",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.tich-bang-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.tich-bang-0"],
       "prompt": [
         {
           "type": "note",
@@ -3866,9 +3665,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.tim-x-am",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.tich-bang-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.tich-bang-0"],
       "prompt": [
         {
           "type": "note",
@@ -3904,9 +3701,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tich-bang-0",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.tich-bang-0"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.tich-bang-0"],
       "prompt": [
         {
           "type": "note",
@@ -3965,10 +3760,7 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "b"
-      ],
+      "answer": ["a", "b"],
       "multiple": true,
       "check": {
         "relation": "equal",
@@ -4042,9 +3834,7 @@
           }
         }
       ],
-      "answer": [
-        "a"
-      ],
+      "answer": ["a"],
       "multiple": false,
       "check": {
         "expr": "(-2)·5"
@@ -4053,9 +3843,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.vai-20-bo",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.bai-toan-thuc-te"],
       "prompt": [
         {
           "type": "note",
@@ -4091,9 +3879,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.thang-may-xuong",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.bai-toan-thuc-te"],
       "prompt": [
         {
           "type": "note",
@@ -4129,9 +3915,7 @@
     {
       "id": "phep-nhan-so-nguyen.ex.chon-tinh-huong-am",
       "type": "choice",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.bai-toan-thuc-te"],
       "prompt": [
         {
           "type": "note",
@@ -4190,18 +3974,13 @@
           }
         }
       ],
-      "answer": [
-        "a",
-        "c"
-      ],
+      "answer": ["a", "c"],
       "multiple": true
     },
     {
       "id": "phep-nhan-so-nguyen.ex.cach-day-3-gio",
       "type": "numeric",
-      "cardIds": [
-        "phep-nhan-so-nguyen.card.bai-toan-thuc-te"
-      ],
+      "cardIds": ["phep-nhan-so-nguyen.card.bai-toan-thuc-te"],
       "prompt": [
         {
           "type": "note",
