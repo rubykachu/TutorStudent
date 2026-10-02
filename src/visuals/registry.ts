@@ -54,6 +54,13 @@ import {
   VALIDATOR_IDS as REVIEW_VALIDATOR_IDS,
 } from "@/visuals/math/on-tap-chuong-2/catalog";
 import {
+  INTERACTIVE_KINDS as DIVISION_INTERACTIVE_KINDS,
+  LESSON_SLUG as DIVISION_SLUG,
+  VISUAL_SPECS as DIVISION_SPECS,
+  VALIDATOR_IDS as DIVISION_VALIDATOR_IDS,
+  regionsOf as divisionRegions,
+} from "@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/catalog";
+import {
   LESSON_SLUG as CONG_TRU_SLUG,
   VISUAL_SPECS as CONG_TRU_SPECS,
   TAP_PARTS_REGIONS,
@@ -677,12 +684,38 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   "fixture.visual.star-sticker": {
     interactive: false,
     load: () => import("@/visuals/_fixture/star-sticker"),
+// Entries of "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": one per item of
+// its catalog. The pick screens reuse the set lesson's "chon-dung" validator
+// (one key per candidate, 1 = picked).
+const divisionEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(DIVISION_SPECS).map(([key, spec]) => {
+    const validatorId =
+      spec.kind in DIVISION_VALIDATOR_IDS
+        ? DIVISION_VALIDATOR_IDS[spec.kind as keyof typeof DIVISION_VALIDATOR_IDS]
+        : undefined;
+    const regions = divisionRegions(spec);
+    const entry: VisualEntry = {
+      interactive: DIVISION_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: pickMatches },
+            solutions: { [validatorId]: solvePickMatches },
+          }),
+      load: () => lessonExample(DIVISION_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${DIVISION_SLUG}.visual.${key}`, entry];
+  }),
+);
+
   },
   "fixture.visual.bead-merge": {
     interactive: false,
     load: () => import("@/visuals/_fixture/bead-merge"),
   },
   "tap-hop.visual.hop-but": {
+  ...divisionEntries,
     interactive: false,
     load: () => lessonExample("tap-hop", (m) => m.HopBut),
   },
@@ -1469,3 +1502,7 @@ async function lessonExample<S extends keyof ExampleModules>(
 export function findVisual(id: string): VisualEntry | undefined {
   return Object.hasOwn(visualRegistry, id) ? visualRegistry[id] : undefined;
 }
+  "phep-nhan-so-nguyen": () =>
+    import("@/visuals/math/phep-nhan-so-nguyen/examples"),
+  "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen": () =>
+    import("@/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/examples"),
