@@ -14,12 +14,25 @@ import { test } from "./test";
 // draft) out of /content/index.json, which the unit tests of the content index
 // cover.
 
-// Lessons the served index lists, so the checks follow published content.
+// Lessons of the visible subjects the served index lists, so the checks follow
+// published content; the index still names hidden subjects and their lessons.
 type ServedLesson = { subject: string; sections: unknown[] };
+type ServedIndex = {
+  subjects: { id: string; visible?: boolean }[];
+  lessons: ServedLesson[];
+};
+
+async function servedIndex(page: Page): Promise<ServedIndex> {
+  const response = await page.request.get("/content/index.json");
+  return (await response.json()) as ServedIndex;
+}
 
 async function servedLessons(page: Page): Promise<ServedLesson[]> {
-  const response = await page.request.get("/content/index.json");
-  return ((await response.json()) as { lessons: ServedLesson[] }).lessons;
+  const { subjects, lessons } = await servedIndex(page);
+  const hidden = new Set(
+    subjects.filter((s) => s.visible === false).map((s) => s.id),
+  );
+  return lessons.filter((l) => !hidden.has(l.subject));
 }
 
 test("a first visit creates a profile that survives a reload", async ({
@@ -55,12 +68,13 @@ test("a first visit creates a profile that survives a reload", async ({
     math.getByRole("img", { name: `Xong 0 trên ${mathSections} phần` }),
   ).toBeVisible();
   await expect(math).toContainText(`${mathLessons.length} bài · Chưa học`);
-  const literatureLessons = lessons.filter((l) => l.subject === "literature");
-  await expect(page.locator('[data-subject="literature"]')).toContainText(
-    literatureLessons.length === 0
-      ? "Sắp ra mắt"
-      : `${literatureLessons.length} bài · Chưa học`,
-  );
+  // Math is the only visible subject: no tile (not even a locked one) for the
+  // hidden ones, and the lone tile is a full-width row, not a third of a grid.
+  await expect(page.locator("[data-subject]")).toHaveCount(1);
+  await expect(page.locator("[data-locked]")).toHaveCount(0);
+  const tile = await math.boundingBox();
+  const list = await page.locator("ul", { has: math }).boundingBox();
+  expect(tile && list && tile.width >= list.width - 1).toBe(true);
   // Nothing earned yet: the sticker grid at the top shows every sticker grey
   // and not coloured at all, in at most two rows, and the collection behind
   // "Xem tất cả" (there when the stickers do not fit) lists every lesson's.

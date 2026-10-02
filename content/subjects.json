@@ -28,7 +28,8 @@
         "requiresOpenEnded": true
       },
       "series": [{ "id": "ctst", "name": "Chân trời sáng tạo", "grade": 6 }],
-      "defaultSeries": "ctst"
+      "defaultSeries": "ctst",
+      "visible": false
     },
     {
       "id": "geography",
@@ -44,7 +45,8 @@
       "series": [
         { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
       ],
-      "defaultSeries": "kntt"
+      "defaultSeries": "kntt",
+      "visible": false
     },
     {
       "id": "history",
@@ -60,7 +62,8 @@
       "series": [
         { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
       ],
-      "defaultSeries": "kntt"
+      "defaultSeries": "kntt",
+      "visible": false
     },
     {
       "id": "science",
@@ -76,7 +79,8 @@
       "series": [
         { "id": "kntt", "name": "Kết nối tri thức với cuộc sống", "grade": 6 }
       ],
-      "defaultSeries": "kntt"
+      "defaultSeries": "kntt",
+      "visible": false
     }
   ]
 }

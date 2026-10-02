@@ -382,3 +382,39 @@ describe("HomeScreen grade and locked subjects", () => {
     expect(tiles[0]).toHaveAttribute("data-locked");
   });
 });
+
+describe("HomeScreen hidden subjects", () => {
+  function onlyMathVisible(): ContentIndex {
+    const index = gradeSixIndex();
+    return {
+      ...index,
+      subjects: index.subjects.map((s) =>
+        s.id === "math" ? s : { ...s, visible: false },
+      ),
+    };
+  }
+
+  it("lists no tile, locked or not, for a subject marked hidden, and keeps the lone tile a full-width row", async () => {
+    await openHomeOfGrade(6, onlyMathVisible());
+    await screen.findByText("Toán");
+    const tiles = [...document.querySelectorAll("[data-subject]")];
+    expect(tiles.map((t) => t.getAttribute("data-subject"))).toEqual(["math"]);
+    expect(document.querySelector("[data-locked]")).toBeNull();
+    expect(screen.queryByText("Ngữ văn")).toBeNull();
+    // The solo layout has no three-column grid and no subgrid rows.
+    expect(tiles[0]?.className).not.toContain("row-span-5");
+    expect(tiles[0]?.closest("ul")?.className).not.toContain("grid-cols-3");
+  });
+
+  it("does not count a hidden subject's lessons in the sticker shelf or lead the child into them", async () => {
+    await openHomeOfGrade(6, onlyMathVisible());
+    await screen.findByText("Toán");
+    expect(document.querySelector("[data-shelf-count]")).toHaveTextContent(
+      "Đã nhận 0/1",
+    );
+    // The continue card leads to a math lesson, never the literature one.
+    expect(
+      document.querySelector("[data-continue]")?.getAttribute("href"),
+    ).not.toContain("lit-01");
+  });
+});

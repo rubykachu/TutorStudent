@@ -6,12 +6,9 @@ import { useEffect, useState } from "react";
 import { AVATARS, Avatar } from "@/components/avatar";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { SoundToggle } from "@/components/sound-toggle";
-import {
-  SUBJECT_TILE_CELL,
-  SUBJECT_TILE_GRID,
-  SubjectTile,
-} from "@/components/subject-tile";
+import { SubjectTile, subjectTileLayout } from "@/components/subject-tile";
 import { subjectsOfGrade } from "@/content/grades";
+import { visibleIndex } from "@/content/visibility";
 import { ChildSounds } from "@/learn/child-sounds";
 import {
   continueTarget,
@@ -116,6 +113,7 @@ function HomeLessons({
   const targetSubject =
     target && index.subjects.find((s) => s.id === target.lesson.subject);
   const subjects = subjectsOfGrade(index.subjects, profile.grade);
+  const tiles = subjectTileLayout(subjects.length);
   const sounds = useFeedbackSoundsContext();
   return (
     <>
@@ -133,13 +131,14 @@ function HomeLessons({
           overviewSeen={progress.overviewsSeen.includes(target.lesson.id)}
         />
       )}
-      <ul className={SUBJECT_TILE_GRID}>
+      <ul className={tiles.grid}>
         {subjects.map((subject) => {
           const lessons = lessonsOf(subject.id);
           return (
-            <li key={subject.id} className={SUBJECT_TILE_CELL}>
+            <li key={subject.id} className={tiles.cell}>
               <SubjectTile
                 subject={subject}
+                solo={tiles.solo}
                 href={subjectPath(subject.id)}
                 progress={subjectProgress(lessons, progress)}
                 status={subjectStatus(lessons, progress)}
@@ -167,7 +166,7 @@ function HomeBody({
       {content.status === "error" && <ContentError />}
       {content.status === "ready" && (
         <HomeLessons
-          index={content.index}
+          index={visibleIndex(content.index)}
           profile={profile}
           progress={progress}
         />

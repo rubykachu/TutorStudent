@@ -123,6 +123,30 @@ export function touchedLessonIds(records: {
   return [...ids].sort();
 }
 
+// The records of the lessons in `shown` only: the parent page's lists never
+// name a lesson that is hidden. Study time keeps reading the full data.
+export function recordsOfLessons<
+  T extends {
+    attempts: readonly Pick<AttemptRecord, "lessonId">[];
+    cardStates: readonly Pick<LessonCardState, "lessonId">[];
+    sections: readonly { lessonId: string }[];
+    stickers: readonly { lessonId: string }[];
+    writings: readonly { exerciseId: string }[];
+  },
+>(data: T, shown: ReadonlySet<string>): T {
+  const keep = (r: { lessonId: string }) => shown.has(r.lessonId);
+  return {
+    ...data,
+    attempts: data.attempts.filter(keep),
+    cardStates: data.cardStates.filter(keep),
+    sections: data.sections.filter(keep),
+    stickers: data.stickers.filter(keep),
+    writings: data.writings.filter((w) =>
+      shown.has(lessonIdOfContentId(w.exerciseId)),
+    ),
+  };
+}
+
 export function shorten(text: string, maxLength: number): string {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= maxLength) return clean;

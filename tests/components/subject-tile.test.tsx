@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { SubjectTile } from "@/components/subject-tile";
+import { SubjectTile, subjectTileLayout } from "@/components/subject-tile";
 import type { SubjectStatus } from "@/learn/next-step";
 import type { Subject } from "@/schema/content";
 
@@ -96,5 +96,33 @@ describe("SubjectTile", () => {
     const tile = renderTile({ kind: "new", total: 2 });
     expect(tile).not.toHaveAttribute("data-locked");
     expect(tile.querySelector("[data-lock]")).toBeNull();
+  });
+});
+
+describe("subjectTileLayout", () => {
+  it("shares grid rows among several tiles", () => {
+    const layout = subjectTileLayout(3);
+    expect(layout.solo).toBe(false);
+    expect(layout.grid).toContain("md:grid-cols-3");
+    expect(layout.cell).toContain("row-span-5");
+  });
+
+  it("gives a lone tile a single full-width row without subgrid", () => {
+    const layout = subjectTileLayout(1);
+    expect(layout.solo).toBe(true);
+    expect(layout.grid).not.toContain("grid-cols-3");
+    const { container } = render(
+      <SubjectTile
+        solo
+        subject={math}
+        href="/subjects/math"
+        progress={{ done: 0, total: 1 }}
+        status={{ kind: "new", total: 1 }}
+        nudgeDays={null}
+      />,
+    );
+    const tile = container.querySelector("[data-subject]") as HTMLElement;
+    expect(tile.className).not.toContain("subgrid");
+    expect(tile.className).not.toContain("row-span-5");
   });
 });

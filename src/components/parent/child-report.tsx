@@ -7,6 +7,7 @@ import { BigButton } from "@/components/big-button";
 import { Formula } from "@/components/blocks/formula";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
+import { visibleIndex } from "@/content/visibility";
 import { PARENT_RECENT_DAYS, PARENT_WRONG_WINDOW_DAYS } from "@/lib/config";
 import { now, vnDayKey } from "@/lib/time";
 import type { ProfileRecord, WritingRecord } from "@/progress/db";
@@ -31,6 +32,7 @@ import {
   lessonSections,
   promptSummary,
   recentStudyDays,
+  recordsOfLessons,
   type SkippedExercise,
   shorten,
   skippedExercises,
@@ -584,7 +586,11 @@ function ReportBody({
   data: ParentData;
   index: ContentIndex;
 }) {
-  const states = useLessons(touchedLessonIds(data));
+  // `index` lists only visible subjects: every list below reads the records
+  // of its lessons; study time keeps the full data.
+  const shown = new Set(index.lessons.map((l) => l.id));
+  const listed = recordsOfLessons(data, shown);
+  const states = useLessons(touchedLessonIds(listed));
   const lessons = new Map<string, LessonIndex>();
   for (const [id, state] of states) {
     if (state.status === "ready") lessons.set(id, state.index);
@@ -593,22 +599,22 @@ function ReportBody({
   return (
     <>
       <StudyTime data={data} />
-      <LessonsProgress index={index} profile={profile} data={data} />
+      <LessonsProgress index={index} profile={profile} data={listed} />
       <ForgettingCards
-        cards={topForgettingCards(data.cardStates, lessons, at)}
+        cards={topForgettingCards(listed.cardStates, lessons, at)}
         index={index}
       />
       <WrongQuestions
-        items={topWrongExercises(data.attempts, at)}
+        items={topWrongExercises(listed.attempts, at)}
         lessons={lessons}
         index={index}
       />
       <SkippedQuestions
-        items={skippedExercises(data.attempts, at)}
+        items={skippedExercises(listed.attempts, at)}
         lessons={lessons}
         index={index}
       />
-      <Writings writings={data.writings} lessons={lessons} />
+      <Writings writings={listed.writings} lessons={lessons} />
       <Backup profile={profile} />
     </>
   );
@@ -629,5 +635,11 @@ export function ChildReport({ profile }: { profile: ProfileRecord }) {
       </p>
     );
   }
-  return <ReportBody profile={profile} data={data} index={content.index} />;
+  return (
+    <ReportBody
+      profile={profile}
+      data={data}
+      index={visibleIndex(content.index)}
+    />
+  );
 }

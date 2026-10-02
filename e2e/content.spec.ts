@@ -2,7 +2,8 @@ import { expect } from "@playwright/test";
 import { test } from "./test";
 
 // The dev server runs with CONTENT_INCLUDE_FIXTURE=1, so the emitted static
-// content lists the fixture lesson and serves it whole.
+// content lists the fixture lesson and serves it whole. The index names every
+// subject, hidden ones included: only the screens' lists leave them out.
 test("static content lists and serves the fixture lesson", async ({
   request,
 }) => {
@@ -13,6 +14,8 @@ test("static content lists and serves the fixture lesson", async ({
     "math",
     "literature",
     "geography",
+    "history",
+    "science",
   ]);
   expect(body.lessons.map((l: { id: string }) => l.id)).toContain("fixture");
 

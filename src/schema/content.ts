@@ -126,6 +126,9 @@ export const SubjectSchema = z.object({
   series: z.array(SeriesSchema).min(1),
   // A new child profile starts on this series for the subject.
   defaultSeries: LessonIdSchema,
+  // `false` keeps the subject (and its lessons) out of every list a child or
+  // parent sees; its routes and content stay. Absent means visible.
+  visible: z.boolean().optional(),
 });
 
 export const SubjectsFileSchema = z.object({
