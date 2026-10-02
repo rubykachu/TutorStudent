@@ -13,11 +13,13 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 - `d05ce63` Task 13: `src/sync/history-pull.ts` (`pullHistory`, `pendingMonths`; newest first, one request at a time, `SYNC_HISTORY_PULL_PER_MINUTE` pacing, one lock per request, stops on `ENDS_RUN` failures, a missing month stays pending), started from `request.ts` after every run that ended `synced` or `partial` (own background job, never holds the scheduler). `src/components/parent/history-loading.tsx` placed after `StudyTime` in `child-report.tsx`. Tests `tests/sync/history-pull.test.ts`, `tests/components/parent/history-loading.test.tsx`.
 - `18e66bd` Task 14: `src/sync/status.ts` (`readSyncStatus`, `syncMessages`, `isFamilyMismatch`, `hasUnsentWork`), `src/sync/family-switch.ts` (`clearLocalFamilyData`: every table cleared except `settings`, which loses child rows and the family and active-profile device keys; the PIN and clock offset stay), `src/components/parent/sync-status.tsx` (placed under the header note of `parent-dashboard.tsx`; hidden until a server with sync on has answered), `family-switch-dialog.tsx`, `export-backup-button.tsx` and `panel.tsx` (pulled out of `child-report.tsx` so the guard shares them). Tests `tests/sync/status.test.ts`, `tests/components/parent/sync-status.test.tsx`; `e2e/parent.spec.ts` passes on both targets.
 - `b7883e7` flaky unlock E2E fix (test-only).
+- `16dbb41` fix found while testing the import: `HistoryDocSchema` threw `RangeError` on a record whose time does not parse (a hostile PUT would have answered 500 instead of 400); the month check now skips such a record, which its own time check already reports. Tests `tests/sync/schema-bad-time.test.ts`, `tests/api/sync-put.test.ts`.
+- `e9662ce` Task 15: `src/sync/import.ts` (`readBackup`: size limit, JSON, export versions 1 and 2, snapshot of a child doc, strict validation through the doc schemas, nothing written; `importBackup`: profile when missing, state through `mergeChildDocs` and `applyChildDoc`, months through `applyHistoryDoc`, which now returns how many records it added), `src/components/parent/import-backup.tsx` (button, file input, preview sheet, summary; starts a full sync after an import), export moved to version 2 in `src/progress/parent-data.ts` (`resets`), `BACKUP_IMPORT_MAX_BYTES` in config. Tests `tests/sync/import.test.ts`, `tests/components/parent/import-backup.test.tsx`, `tests/progress/parent-data.test.ts`.
 - Gate green for each commit (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`; `tests/scripts/sources-import.test.ts` can time out under load, passes alone).
 
 ### Next steps, in order
 
-1. Task 15, Task 16. Checkpoint A is done (`b7883e7` fixed the flaky unlock E2E, test-only).
+1. Task 16 (multi-device E2E). Checkpoint A is done (`b7883e7` fixed the flaky unlock E2E, test-only).
 
 ### Deviations from the spec
 
@@ -25,6 +27,7 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 - Routine syncs always do a conditional GET of the current and previous month, so a device sees the other device's answers of the current month; each is a cheap `unchanged` answer.
 - The server answers a stored doc of a newer version with 500 `stored-invalid` when read by an older server; the client's `too-new` case only arises when a newer server answers an older client.
 - A month empty on both sides records nothing in `syncState`.
+- A snapshot import takes the state only (a snapshot has no answers); an export's child joins the device's records of the same id, and the device's own profile is kept when it already exists.
 - `requestSync()` takes no reason argument (nothing would read it).
 - The history pull is not part of `engine.run`: it runs as its own background job so its pacing never holds back a sync.
 - A month the cloud lists but does not hold (its push failed) stays pending, so the parent page's loading line stays until it appears.
@@ -288,10 +291,10 @@ Files: `src/components/parent/sync-status.tsx`, `src/components/parent/family-sw
 Button "Nhập bản sao lưu" next to the existing export on the parent page (behind the PIN like the rest of the page). Accepts the export file (versions 1 and 2) and a main child doc (a restored snapshot; its child must already have a profile on the device or in the family's profile doc, otherwise a plain error). Shows child name, export date and record counts before merging; merges state with `mergeChildDocs` and writes answers and writings to Dexie (never overwrites), marking every affected month for the next sync; creates the profile if its id is not on the device; summary line with how many records were added and how many were skipped because of a later reset. Export moves to version 2 (adds `resets`, `overviewSeen` times and section `doneAt`). File size limit 5 MB.
 
 Acceptance:
-- [ ] Importing the same file twice changes nothing the second time.
-- [ ] A malformed file, a wrong `format`, a newer version or an oversized file shows a plain error and writes nothing.
-- [ ] Import makes the main doc and each affected month dirty, so the next sync sends them.
-- [ ] Unit tests for the parser and the import function; component test for the preview and summary.
+- [x] Importing the same file twice changes nothing the second time.
+- [x] A malformed file, a wrong `format`, a newer version or an oversized file shows a plain error and writes nothing.
+- [x] Import makes the main doc and each affected month dirty, so the next sync sends them.
+- [x] Unit tests for the parser and the import function; component test for the preview and summary.
 
 Verify: `pnpm test tests/progress/parent-data.test.ts tests/sync/import.test.ts tests/components/parent`
 
