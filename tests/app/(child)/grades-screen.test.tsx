@@ -23,6 +23,9 @@ vi.mock("@/lib/config", async (importOriginal) => ({
 // Shows every grade, as when the owner publishes more than grade 6.
 const ALL_GRADES = Array.from({ length: 12 }, (_, i) => i + 1);
 
+const requestSync = vi.hoisted(() => vi.fn());
+vi.mock("@/sync/request", () => ({ requestSync }));
+
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace, push: vi.fn() }),
 }));
@@ -91,6 +94,7 @@ async function openGradesOf(grade: number, open: number[]) {
 
 beforeEach(() => {
   replace.mockClear();
+  requestSync.mockClear();
   gradesVisible.list = ALL_GRADES;
 });
 
@@ -125,6 +129,7 @@ describe("GradesScreen", () => {
     fireEvent.click(document.querySelector('[data-grade="6"]') as Element);
     await waitFor(() => expect(replace).toHaveBeenCalledWith("/"));
     expect((await appDb().profiles.get("kid-1"))?.grade).toBe(6);
+    expect(requestSync).not.toHaveBeenCalled();
   });
 
   it("saves another open grade on the profile and goes home", async () => {
@@ -135,6 +140,7 @@ describe("GradesScreen", () => {
     fireEvent.click(seven);
     await waitFor(() => expect(replace).toHaveBeenCalledWith("/"));
     expect((await appDb().profiles.get("kid-1"))?.grade).toBe(7);
+    expect(requestSync).toHaveBeenCalledTimes(1);
   });
 
   it("does nothing on a locked grade", async () => {

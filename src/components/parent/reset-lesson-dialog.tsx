@@ -6,6 +6,7 @@ import { Sheet } from "@/components/sheet";
 import { now } from "@/lib/time";
 import { appDb, childScope } from "@/progress/hooks";
 import { resetLessonProgress } from "@/progress/reset";
+import { requestSync } from "@/sync/request";
 
 type ResetLessonDialogProps = {
   childId: string;
@@ -46,6 +47,7 @@ export function ResetLessonDialog({
     setFailed(false);
     try {
       await resetLessonProgress(appDb(), childScope(childId), lessonId, now());
+      requestSync();
       onDone();
     } catch {
       setFailed(true);

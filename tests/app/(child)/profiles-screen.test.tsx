@@ -25,6 +25,9 @@ vi.mock("@/lib/sound", async (importOriginal) => ({
   playSequence,
 }));
 
+const requestSync = vi.hoisted(() => vi.fn());
+vi.mock("@/sync/request", () => ({ requestSync }));
+
 const replace = vi.hoisted(() => vi.fn());
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace, push: vi.fn() }),
@@ -33,6 +36,7 @@ vi.mock("next/navigation", () => ({
 afterEach(async () => {
   playSequence.mockClear();
   replace.mockClear();
+  requestSync.mockClear();
   await appDb().delete();
   resetAppDbForTesting();
 });
@@ -104,6 +108,20 @@ describe("ProfilesScreen: editing a profile", () => {
     ]);
     expect((await readActiveProfile(appDb()))?.id).toBe("bin");
     expect(replace).not.toHaveBeenCalled();
+    // The edit is sent to the family's other devices.
+    expect(requestSync).toHaveBeenCalledTimes(1);
+  });
+
+  it("asks for a sync once when a new child is created", async () => {
+    render(<ProfilesScreen subjects={[]} />);
+    fireEvent.change(await screen.findByLabelText("Bạn tên là gì?"), {
+      target: { value: "Na" },
+    });
+    fireEvent.click(screen.getByRole("radio", { name: "Xe đua" }));
+    expect(requestSync).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Bắt đầu học" }));
+    await waitFor(() => expect(replace).toHaveBeenCalledWith("/"));
+    expect(requestSync).toHaveBeenCalledTimes(1);
   });
 
   it("does not save an empty name and limits the name length like the create form", async () => {

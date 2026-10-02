@@ -31,6 +31,9 @@ import * as reset from "@/progress/reset";
 import type { ContentIndex } from "@/schema/content";
 import { LESSON_ID, learnLesson } from "../../learn/helpers";
 
+const requestSync = vi.hoisted(() => vi.fn());
+vi.mock("@/sync/request", () => ({ requestSync }));
+
 vi.mock("@/progress/reset", async (importOriginal) => {
   const actual = await importOriginal<typeof import("@/progress/reset")>();
   return { ...actual, resetLessonProgress: vi.fn(actual.resetLessonProgress) };
@@ -117,6 +120,7 @@ afterEach(async () => {
   setNowForTesting(null);
   vi.unstubAllGlobals();
   resetLesson.mockClear();
+  requestSync.mockClear();
 });
 
 async function openLessons() {
@@ -202,6 +206,8 @@ describe("Học lại bài này on the parent page", () => {
     );
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(resetLesson).toHaveBeenCalledTimes(1);
+    // The reset is sent to the family's other devices.
+    expect(requestSync).toHaveBeenCalledTimes(1);
     expect(resetLesson).toHaveBeenCalledWith(
       expect.anything(),
       NA_SCOPE,

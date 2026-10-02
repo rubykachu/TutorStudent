@@ -13,6 +13,7 @@ import { HOME_PATH } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
 import { setProfileGrade, useContentIndex } from "@/progress/hooks";
 import { GRADES } from "@/schema/content";
+import { requestSync } from "@/sync/request";
 import { ContentError } from "../content-error";
 import { useRequiredProfile } from "../use-required-profile";
 
@@ -107,7 +108,10 @@ function GradeGrid({ profile }: { profile: ProfileRecord }) {
 
   async function pick(grade: number) {
     setBusy(true);
-    if (grade !== profile.grade) await setProfileGrade(profile.id, grade);
+    if (grade !== profile.grade) {
+      await setProfileGrade(profile.id, grade);
+      requestSync();
+    }
     router.replace(HOME_PATH);
   }
 

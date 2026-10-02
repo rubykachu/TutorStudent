@@ -21,6 +21,7 @@ import {
   useProfiles,
 } from "@/progress/hooks";
 import type { Subject } from "@/schema/content";
+import { requestSync } from "@/sync/request";
 
 type ProfilesScreenProps = {
   // Subjects from the build, so a profile can be created before (or without)
@@ -54,6 +55,7 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
   async function handleCreate(input: NewProfile) {
     setBusy(true);
     await createProfile(input, subjects);
+    requestSync();
     router.replace(HOME_PATH);
   }
 
@@ -64,6 +66,7 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
   async function handleEdit(id: string, input: NewProfile) {
     setBusy(true);
     await updateProfile(id, input);
+    requestSync();
     setBusy(false);
     setMode({ kind: "pick" });
   }
