@@ -160,3 +160,6 @@ export const SYNC_PROFILE_CACHE_SECONDS = 60;
 // before it is read.
 export const BACKUP_IMPORT_MAX_BYTES = 5_000_000;
 export const SYNC_BODY_SLACK_BYTES = 4_096;
+// A request from the server to the cloud bucket is given up after this long, so
+// a stalled bucket never holds a function open.
+export const SYNC_STORE_TIMEOUT_MS = 10_000;
