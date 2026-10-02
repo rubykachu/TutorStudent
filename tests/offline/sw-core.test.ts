@@ -35,6 +35,9 @@ class FakeCaches {
   async delete(name: string) {
     return this.byName.delete(name);
   }
+  async has(name: string) {
+    return this.byName.has(name);
+  }
 }
 
 function reply(
@@ -192,6 +195,31 @@ describe("install", () => {
     expect(caches.byName.has(`${CACHE_PREFIX}B1`)).toBe(false);
   });
 
+  it("fails when a newer build deleted its cache before the install ended", async () => {
+    const caches = new FakeCaches();
+    let release: () => void = () => {};
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const { core } = setup({
+      caches,
+      network: async (input) => {
+        await gate;
+        const url = typeof input === "string" ? input : (input as Request).url;
+        return reply("ok", { url });
+      },
+    });
+    const installing = core.install();
+    // Build B2 takes over while B1 still installs, and deletes B1's cache.
+    await vi.waitFor(() =>
+      expect(caches.byName.has(`${CACHE_PREFIX}B1`)).toBe(true),
+    );
+    await setup({ caches, buildId: "B2" }).core.activate();
+    release();
+    await expect(installing).rejects.toThrow("deleted during the install");
+    expect((await core.status()).state).toBe("failed");
+  });
+
   it("reports progress while installing", async () => {
     let release: () => void = () => {};
     const gate = new Promise<void>((resolve) => {
@@ -287,6 +315,38 @@ describe("respond", () => {
     );
     expect(sound?.status).toBe(200);
     expect(fetchFn).not.toHaveBeenCalled();
+  });
+
+  it("finds a build file that carries Next's deployment id parameter", async () => {
+    const { core, fetchFn } = await installed();
+    const chunk = await core.respond(
+      new Request(`${ORIGIN}/_next/static/chunks/x.js?dpl=dpl_abc`),
+    );
+    expect(await chunk?.text()).toBe(
+      `body of ${ORIGIN}/_next/static/chunks/x.js`,
+    );
+    const sound = await core.respond(
+      new Request(`${ORIGIN}/sounds/tap.m4a?v=abc&dpl=dpl_abc`),
+    );
+    expect(sound?.status).toBe(200);
+    expect(fetchFn).not.toHaveBeenCalled();
+  });
+
+  it("fetches a navigation as it came when the engine refuses to copy it with an init", async () => {
+    // Not a real Request, so `new Request(it, init)` throws, as an engine
+    // that refuses to copy a navigation request would.
+    const request = {
+      url: `${ORIGIN}/lessons/a`,
+      method: "GET",
+      mode: "navigate",
+      headers: new Headers(),
+    } as unknown as Request;
+    const answer = reply("page", { url: `${ORIGIN}/lessons/a` });
+    const { core, fetchFn } = await installed(async () => answer);
+    expect(await core.respond(request)).toBe(answer);
+    expect(fetchFn).toHaveBeenCalledOnce();
+    expect(fetchFn.mock.calls[0]?.[0]).toBe(request);
+    expect(fetchFn.mock.calls[0]?.[1]).toBeUndefined();
   });
 
   it("passes a song and an unknown file to the browser", async () => {

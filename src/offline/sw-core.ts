@@ -9,6 +9,7 @@ import {
   fetchInit,
   navigationFallbackPath,
   PAGE_TIMEOUT_SECONDS,
+  precacheLookupPath,
   routeFor,
   storable,
 } from "./strategy";
@@ -56,6 +57,21 @@ export async function runPool<T>(
   };
   await Promise.all(Array.from({ length: limit }, worker));
   if (failure !== null) throw (failure as { error: unknown }).error;
+}
+
+// Whether `request` may be fetched with `init`. The Fetch standard turns a
+// navigation request copied with an init into a same-origin one; an engine
+// that refuses the copy instead (WebKit is not covered by the offline E2E)
+// would fail every network-first page fetch, and the worker would then answer
+// every navigation from the precache. Such an engine gets the request as it
+// came, which loses only the cache hint.
+function acceptsInit(request: Request, init: RequestInit): boolean {
+  try {
+    new Request(request, init);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function createCore(deps: CoreDeps): Core {
@@ -116,6 +132,12 @@ export function createCore(deps: CoreDeps): Core {
         await cache.put(key, response);
         state.cached++;
       });
+      // A newer build that took over meanwhile deletes every other build's
+      // cache, this one included: the entries above then went into a cache
+      // no lookup can reach, and this worker would run with nothing stored.
+      if (!(await deps.caches.has(cacheName))) {
+        throw new Error(`${cacheName} was deleted during the install`);
+      }
     } catch (error) {
       // All or nothing: a partial cache is never left behind.
       state.failed = true;
@@ -138,7 +160,10 @@ export function createCore(deps: CoreDeps): Core {
 
   const respondNetworkFirst = async (request: Request): Promise<Response> => {
     const fallbackPath = navigationFallbackPath(request.url);
-    const network = deps.fetch(request, fetchInit("network-first"));
+    const init = fetchInit("network-first");
+    const network = acceptsInit(request, init)
+      ? deps.fetch(request, init)
+      : deps.fetch(request);
     // The timer may win and the network answer then be dropped; its failure
     // must not surface as an unhandled rejection.
     network.catch(() => {});
@@ -171,12 +196,11 @@ export function createCore(deps: CoreDeps): Core {
       headers: request.headers,
       origin: deps.origin,
       mediaBaseUrl: deps.mediaBaseUrl,
-      isPrecached: (url) => keys.has(url.pathname + url.search),
+      isPrecached: (url) => keys.has(precacheLookupPath(url)),
     });
     if (route === "passthrough") return null;
     if (route === "network-first") return respondNetworkFirst(request);
-    const url = new URL(request.url);
-    return lookup(url.pathname + url.search).then(
+    return lookup(precacheLookupPath(new URL(request.url))).then(
       (hit) => hit ?? deps.fetch(request),
     );
   };

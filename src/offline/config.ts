@@ -17,6 +17,12 @@ export const CACHE_PREFIX = "offline-";
 // previous build's cache.
 export const REVISION_PARAM = "__rev";
 
+// The query parameter Next adds to every build file URL when the build has a
+// deployment id (`NEXT_DEPLOYMENT_ID`, set by Vercel when Skew Protection is
+// on): `/_next/static/chunks/x.js?dpl=<id>`. The worker stores the file under
+// its bare URL, so a lookup ignores this parameter.
+export const DEPLOYMENT_ID_PARAM = "dpl";
+
 // Entries fetched at the same time during install.
 export const INSTALL_CONCURRENCY = 6;
 
