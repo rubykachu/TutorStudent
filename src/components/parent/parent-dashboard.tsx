@@ -8,6 +8,7 @@ import { PROFILES_PATH } from "@/lib/routes";
 import { useProfiles } from "@/progress/hooks";
 import { closeParentSession } from "@/progress/parent-session";
 import { ChildReport } from "./child-report";
+import { ReportSourceNote } from "./progress-location";
 import { SyncStatus } from "./sync-status";
 
 const HEADER_ACTION =
@@ -42,10 +43,7 @@ export function ParentDashboard() {
           </button>
         </div>
       </header>
-      <p className="text-caption text-muted-foreground">
-        Số liệu lấy từ tiến độ lưu trên máy này. Con học trên máy khác thì phần
-        đó chưa hiện ở đây.
-      </p>
+      <ReportSourceNote />
       <SyncStatus />
       {profiles && profiles.length === 0 && (
         <p className="rounded-lg bg-surface p-4 shadow-card md:p-6">

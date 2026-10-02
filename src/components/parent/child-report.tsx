@@ -48,6 +48,7 @@ import {
 import { HistoryLoading } from "./history-loading";
 import { ImportBackup } from "./import-backup";
 import { CARD, Panel } from "./panel";
+import { BACKUP_NOTE, useSyncOn } from "./progress-location";
 import { ResetLessonDialog } from "./reset-lesson-dialog";
 
 function Empty({ children }: { children: ReactNode }) {
@@ -504,11 +505,14 @@ function Writings({
 // Backup
 
 function Backup({ profile }: { profile: ProfileRecord }) {
+  const syncOn = useSyncOn();
   return (
     <Panel
       label="Sao lưu"
       title="Sao lưu tiến độ"
-      note="Tiến độ hiện chỉ nằm trên máy này. Thỉnh thoảng hãy tải một bản sao lưu để giữ lại."
+      note={
+        syncOn === undefined ? undefined : BACKUP_NOTE[syncOn ? "on" : "off"]
+      }
     >
       <div className="flex flex-col gap-3 md:flex-row md:flex-wrap">
         <ExportBackupButton profile={profile} />
