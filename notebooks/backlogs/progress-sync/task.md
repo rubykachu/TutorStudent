@@ -170,7 +170,7 @@ Files: `src/sync/server.ts`, `tests/api/sync-snapshot.test.ts`.
 
 ### Checkpoint 3
 
-- [ ] Gate green. Main session runs a local gate server on a free port with `FAMILY_CODES=test-family:<code>`, `SESSION_SECRET=<32 chars>`, `SYNC_STORE=fs:.sync-store` and checks GET/PUT/412 with `curl` and a cookie from `/api/session`; stops that server by its PID.
+- [x] Gate green. Main session runs a local gate server on a free port with `FAMILY_CODES=test-family:<code>`, `SESSION_SECRET=<32 chars>`, `SYNC_STORE=fs:.sync-store` and checks GET/PUT/412 with `curl` and a cookie from `/api/session`; stops that server by its PID.
 
 ## Slice 4: client engine and triggers
 
