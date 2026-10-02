@@ -201,7 +201,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n đứng sau dấu nhân của 2 · n, từ 3 xuống −2. Làm vậy bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
+              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n của 2 · n, từ 3 xuống −2. Bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
             },
             {
               "type": "visual",
@@ -324,7 +324,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n đứng sau dấu nhân của (−2) · n, từ 1 xuống −3. Làm vậy bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
+              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n của (−2) · n, từ 1 xuống −3. Bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
             },
             {
               "type": "visual",
