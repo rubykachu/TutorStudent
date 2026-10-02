@@ -1,8 +1,8 @@
 # Bàn giao: Bài 16 `phep-nhan-so-nguyen` (Phép nhân số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Sửa xong review vòng 2 (38 mục, trừ mục bố cục app trên điện thoại, việc của người làm app) và viết lại 47 mục Đọc hiểu lượt 1; `content:check --stats` 0 lỗi (12 phần, 12 thẻ, 63 câu, 6 dạng câu, 5 hình bấm), `visual:shot` 94/94. Chờ Đọc hiểu lượt 2 (Haiku đọc lại các mục đã viết lại). Không làm lời đọc và video trong đợt này.
-- Việc kế tiếp: Đọc hiểu lượt 2, review vòng 3 chỉ phần đổi (`pnpm content:diff phep-nhan-so-nguyen`), `lesson:walk`, `content:hash --approve`, `content:lock`.
+- Cập nhật cuối: 02/10/2026. Bài đã duyệt: review vòng 1 đến 4 (vòng 3 và 4 chỉ phần đổi, 0 Nghiêm trọng), Đọc hiểu Haiku 4 lượt, `content:hash --approve` (`published`), `content:lock` (96 id), `lesson:walk` 0 FAIL, `content:check` 0 lỗi 0 cảnh báo. Còn 2 mục Nên sửa trong `review.md` (câu Haiku còn đánh dấu mơ hồ, 6 Góp ý) và mục bố cục điện thoại của hình `am2-nhan3` (việc của người làm app). Chưa làm lời đọc và video.
+- Việc kế tiếp: lời đọc và video của bài (skill `lesson-video`), sau khi chủ dự án chốt giọng.
 - Chưa dùng nữa: validator `dat-thua-so` (logic.ts) không còn câu nào gọi, vì hai câu bảng tích đã đổi thành câu tính tích có hình gợi ý (bảng tự in tích thì bé chỉ bấm tới khi thấy đáp án). Registry và test vẫn nối nó; chủ dự án quyết giữ cho bài sau hay gỡ.
 
 ## Nguồn (sách bài tập, `sources/math/phep-nhan-so-nguyen/`, không commit)

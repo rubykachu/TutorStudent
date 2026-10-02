@@ -101,4 +101,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1) | 4 |
 | `quy-tac-dau-ngoac` | Toán | 8 | 3 (vòng 2 còn 3) | 3 |
 | `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` | Toán | 11 | chưa (vòng 2 còn 6) | 2 |
-| `phep-nhan-so-nguyen` | Toán | 5 | chưa (vòng 2 còn 1) | 2 |
+| `phep-nhan-so-nguyen` | Toán | 5 | 3 (vòng 2 còn 1) | 4 |

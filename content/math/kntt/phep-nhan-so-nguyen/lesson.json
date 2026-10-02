@@ -11,7 +11,8 @@
     "name": "Số nguyên"
   },
   "sourceRef": "Sách bài tập tr.55–57",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "25435a9ec2e3555c4f3d8ebdfea7f1db8d36beb01ff61d91f8e9b247a6143ce6",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học phép nhân số nguyên. Buổi tối ở Đà Lạt, nhiệt độ giảm 2 độ mỗi giờ. Sau 3 giờ, nhiệt độ đã thay đổi bao nhiêu độ?"
