@@ -118,13 +118,12 @@ const WHOLE_ROWS = [
   { tex: steps("(-4) + (8 - 5)", "- (-4 + 6)") },
   {
     tex: "= -4 + 8 - 5 + 4 - 6",
-    tag: tag("ngoặc + giữ dấu cũ, ngoặc − đổi dấu", NOTE),
+    tag: tag("bỏ ngoặc theo dấu đứng trước", NOTE),
   },
   {
     tex: steps("= (-4 + 4) + 8", "- 5 - 6"),
     tag: tag("đổi chỗ, ghép hai số đối", NOTE),
   },
-  { tex: "= 8 - 5 - 6" },
   { tex: "= \\concept{amber}{-3}", tag: tag("giá trị của tổng", SUM) },
 ] as const satisfies readonly Row[];
 
@@ -370,7 +369,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "8 + (-3) - (-2)" },
       {
         tex: "= 8 - 3 + 2",
-        tag: tag("ngoặc + giữ dấu cũ, ngoặc − đổi dấu", NOTE),
+        tag: tag("bỏ ngoặc theo dấu đứng trước", NOTE),
       },
       { tex: "= 7" },
     ],
@@ -611,7 +610,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       { tex: "60 + (20 - 5) - (12 + 8)" },
       {
         tex: "= 60 + 20 - 5 - 12 - 8",
-        tag: tag("ngoặc + giữ dấu cũ, ngoặc − đổi dấu", NOTE),
+        tag: tag("bỏ ngoặc theo dấu đứng trước", NOTE),
       },
       { tex: "= \\concept{amber}{55}", tag: tag("Lan còn 55 nghìn", SUM) },
     ],
