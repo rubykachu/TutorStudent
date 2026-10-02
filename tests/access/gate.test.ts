@@ -6,7 +6,12 @@ import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
 
 const SECRET = "a-secret-of-at-least-thirty-two-characters";
 const CODE = "saobien4k7m";
-const gate: AccessConfig = { mode: "gate", secret: SECRET, codes: [CODE] };
+const gate: AccessConfig = {
+  mode: "gate",
+  secret: SECRET,
+  codes: [CODE],
+  families: new Map(),
+};
 
 async function request(
   pathname: string,

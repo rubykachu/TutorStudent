@@ -104,6 +104,9 @@ export const MEDIA_BASE_URL: string = (
 // Family-code gate (`src/access/`, `src/proxy.ts`). The cookie that proves a
 // device entered a valid code, and how long it stays valid.
 export const ACCESS_COOKIE_NAME = "tutor_family";
+// A family id: the name before the colon in a `FAMILY_CODES` entry; it names
+// the family's folder in the progress store.
+export const FAMILY_ID_PATTERN = /^[a-z0-9-]{3,32}$/;
 export const ACCESS_SESSION_DAYS = 365;
 // A code is compared after `normalizeCode`; shorter ones are refused when the
 // environment is read, because a short code can be guessed.

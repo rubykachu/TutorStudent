@@ -49,6 +49,16 @@ describe("POST /api/session", () => {
     expect(cookie?.value).not.toContain("saobien4k7m");
   });
 
+  it("takes the code of a named entry and issues the same cookie as a bare one", async () => {
+    const bare = await (await route())(post({ code: CODE }));
+    vi.stubEnv("FAMILY_CODES", `nha-minh:${CODE}`);
+    const named = await (await route())(post({ code: CODE }));
+    expect(named.status).toBe(200);
+    const fingerprint = (response: typeof bare) =>
+      response.cookies.get(ACCESS_COOKIE_NAME)?.value.split(".")[2];
+    expect(fingerprint(named)).toBe(fingerprint(bare));
+  });
+
   it("answers a wrong code with 401 and no cookie", async () => {
     const response = await (await route())(
       post({ code: "not-the-code-at-all" }),

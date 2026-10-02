@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { matchCode, normalizeCode } from "@/access/code";
 import { readAccessConfig } from "@/access/env";
+import { sameOrigin } from "@/access/origin";
 import { FailureLimiter } from "@/access/rate-limit";
 import { issueSessionToken, sessionMaxAgeSeconds } from "@/access/session";
 import {
@@ -24,16 +25,6 @@ function clientKey(request: NextRequest): string {
     ?.split(",")[0]
     ?.trim();
   return forwarded || request.headers.get("x-real-ip") || "unknown";
-}
-
-function sameOrigin(request: NextRequest): boolean {
-  const origin = request.headers.get("origin");
-  if (!origin) return false;
-  try {
-    return new URL(origin).host === request.headers.get("host");
-  } catch {
-    return false;
-  }
 }
 
 function locked(retryAfterSeconds: number) {

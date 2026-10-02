@@ -2,6 +2,7 @@ import { existsSync, mkdtempSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { parseArgs } from "node:util";
+import { parseFamilyCodes } from "../../src/access/env";
 import { ACCESS_COOKIE_NAME } from "../../src/lib/config";
 import { listMediaLessons, selectLessonFiles } from "./media-upload";
 import { ENV_FILE, PROD_URL, VERCEL, VERCEL_PROJECT } from "./release-config";
@@ -151,6 +152,13 @@ export function pickMediaKey(root: string): string | null {
   return null;
 }
 
+// The code part of the first `FAMILY_CODES` entry (the entry may be written
+// `<familyId>:<code>`), or null when there is none or the list is invalid.
+export function firstFamilyCode(raw: string | undefined): string | null {
+  const parsed = parseFamilyCodes(raw);
+  return "entries" in parsed ? (parsed.entries[0]?.code ?? null) : null;
+}
+
 export type DeployDeps = {
   root: string;
   exec: Exec;
@@ -259,7 +267,7 @@ export async function runDeploy(
   const checks = await runSmokeChecks({
     fetch: deps.fetch,
     appUrl: PROD_URL,
-    code: env.FAMILY_CODES?.split(",")[0]?.trim() || null,
+    code: firstFamilyCode(env.FAMILY_CODES),
     mediaUrl: base && mediaKey ? `${base}/${mediaKey}` : null,
   });
   log(`smoke checks against ${PROD_URL}:`);

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  FAMILY_ID_PATTERN,
   SYNC_MAX_DOC_RECORDS,
   SYNC_MAX_PROFILES,
   SYNC_PROFILE_NAME_MAX_CHARS,
@@ -32,7 +33,6 @@ const DOC_SCHEMA_NAME: Record<DocKind, string> = {
 // ---------------------------------------------------------------------------
 // Building blocks
 
-export const FAMILY_ID_PATTERN = /^[a-z0-9-]{3,32}$/;
 export const CHILD_ID_PATTERN = /^[0-9a-f]{32}$/;
 const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
 const DAY_PATTERN = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;

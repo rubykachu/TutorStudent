@@ -4,6 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  firstFamilyCode,
   parseDeployArgs,
   pickMediaKey,
   runDeploy,
@@ -111,6 +112,21 @@ describe("runSmokeChecks", () => {
   });
 });
 
+describe("firstFamilyCode", () => {
+  it("takes the code of the first entry, named or bare", () => {
+    expect(firstFamilyCode("nha-minh:Sao-Bien 4k7m,nha-an:other")).toBe(
+      "saobien4k7m",
+    );
+    expect(firstFamilyCode(" Sao-Bien 4k7m ,x")).toBe("saobien4k7m");
+  });
+
+  it("returns null when there is no usable entry", () => {
+    expect(firstFamilyCode(undefined)).toBeNull();
+    expect(firstFamilyCode("")).toBeNull();
+    expect(firstFamilyCode("BAD_NAME:abcdefghijk")).toBeNull();
+  });
+});
+
 describe("pickMediaKey", () => {
   it("returns the first mp4 of the first lesson with media", () => {
     const root = mkdtempSync(path.join(os.tmpdir(), "deploy-media-"));
@@ -161,7 +177,7 @@ describe("runDeploy", () => {
     const root = mkdtempSync(path.join(os.tmpdir(), "deploy-root-"));
     writeFileSync(
       path.join(root, ".env.production.local"),
-      "FAMILY_CODES=code-1,code-2\nNEXT_PUBLIC_MEDIA_BASE_URL=https://media.test\n",
+      "FAMILY_CODES=nha-minh:Code-1 abc,nha-an:code-2\nNEXT_PUBLIC_MEDIA_BASE_URL=https://media.test\n",
     );
     mkdirSync(path.join(root, "public/media/video/a"), { recursive: true });
     writeFileSync(path.join(root, "public/media/video/a/x.mp4"), "x");
@@ -170,13 +186,23 @@ describe("runDeploy", () => {
       calls.push(command.join(" "));
       return { status: 0, stdout: "abc123\n", stderr: "" };
     });
+    const site = fakeSite();
+    const logins: unknown[] = [];
+    const watching = ((url: string, init?: RequestInit) => {
+      if (new URL(url).pathname === "/api/session") {
+        logins.push(JSON.parse(String(init?.body)));
+      }
+      return site(url, init);
+    }) as unknown as typeof fetch;
     const code = await runDeploy(["--ref", "1e10fc2"], {
       root,
       exec,
-      fetch: fakeSite(),
+      fetch: watching,
       log,
     });
     expect(code).toBe(0);
+    // The login sends the code part of the first entry, not `nha-minh:...`.
+    expect(logins).toEqual([{ code: "code1abc" }]);
     expect(calls).toContain("git rev-parse --verify 1e10fc2^{commit}");
     expect(
       calls

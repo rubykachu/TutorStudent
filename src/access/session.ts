@@ -1,4 +1,5 @@
 import { ACCESS_SESSION_DAYS } from "@/lib/config";
+import type { AccessConfig } from "./env";
 
 // The cookie value proving a device unlocked the app:
 // `v1.<expiry, unix seconds>.<code fingerprint>.<signature>`.
@@ -88,6 +89,35 @@ export async function issueSessionToken(
   return `${payload}.${base64Url(await sign(secret, payload))}`;
 }
 
+// The normalised code among `normalizedCodes` the token was made from, when
+// the token is signed with `secret` and not expired; otherwise null.
+export async function matchSessionCode(
+  secret: string,
+  normalizedCodes: readonly string[],
+  token: string | undefined,
+  nowMs: number = Date.now(),
+): Promise<string | null> {
+  if (!token) return null;
+  const parts = token.split(".");
+  if (parts.length !== 4 || parts[0] !== VERSION) return null;
+  const [, expiresText, fingerprint, signature] = parts;
+  const signatureBytes = fromBase64Url(signature);
+  if (!signatureBytes) return null;
+  const valid = await crypto.subtle.verify(
+    "HMAC",
+    await hmacKey(secret, "verify"),
+    signatureBytes,
+    toBytes(`${VERSION}.${expiresText}.${fingerprint}`),
+  );
+  if (!valid) return null;
+  const expires = Number(expiresText);
+  if (!Number.isFinite(expires) || expires * 1000 <= nowMs) return null;
+  for (const code of normalizedCodes) {
+    if ((await codeFingerprint(secret, code)) === fingerprint) return code;
+  }
+  return null;
+}
+
 // True when the token is signed with `secret`, not expired, and made from one
 // of the codes still in `normalizedCodes`.
 export async function verifySessionToken(
@@ -96,23 +126,24 @@ export async function verifySessionToken(
   token: string | undefined,
   nowMs: number = Date.now(),
 ): Promise<boolean> {
-  if (!token) return false;
-  const parts = token.split(".");
-  if (parts.length !== 4 || parts[0] !== VERSION) return false;
-  const [, expiresText, fingerprint, signature] = parts;
-  const signatureBytes = fromBase64Url(signature);
-  if (!signatureBytes) return false;
-  const valid = await crypto.subtle.verify(
-    "HMAC",
-    await hmacKey(secret, "verify"),
-    signatureBytes,
-    toBytes(`${VERSION}.${expiresText}.${fingerprint}`),
+  return (
+    (await matchSessionCode(secret, normalizedCodes, token, nowMs)) !== null
   );
-  if (!valid) return false;
-  const expires = Number(expiresText);
-  if (!Number.isFinite(expires) || expires * 1000 <= nowMs) return false;
-  for (const code of normalizedCodes) {
-    if ((await codeFingerprint(secret, code)) === fingerprint) return true;
-  }
-  return false;
+}
+
+// The family id of the entry the cookie was made from. Null when the cookie is
+// not valid, or when its code is listed without a family id.
+export async function resolveFamily(
+  config: AccessConfig,
+  token: string | undefined,
+  nowMs: number = Date.now(),
+): Promise<string | null> {
+  if (config.mode !== "gate") return null;
+  const code = await matchSessionCode(
+    config.secret,
+    config.codes,
+    token,
+    nowMs,
+  );
+  return code === null ? null : (config.families.get(code) ?? null);
 }
