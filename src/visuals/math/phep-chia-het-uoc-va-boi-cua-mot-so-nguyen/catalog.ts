@@ -330,11 +330,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: tag("bội dương", POSITIVE),
       },
       {
-        tex: "4 \\cdot 3 = \\concept{blue}{12}",
+        tex: "4 \\cdot 3 = \\concept{blue}{12},\\ \\ldots",
         tag: tag("bội dương", POSITIVE),
       },
       {
-        tex: "\\concept{blue}{-4},\\ \\concept{blue}{-8},\\ \\concept{blue}{-12}",
+        tex: "\\concept{blue}{-4},\\ \\concept{blue}{-8},\\ \\concept{blue}{-12},\\ \\ldots",
         tag: tag("số đối là bội âm", NEGATIVE),
       },
       {

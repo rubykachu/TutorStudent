@@ -16,7 +16,7 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"
     },
-    "summary": "Bài này dạy cách chia hai số nguyên và cách chọn dấu cho kết quả. Sau đó bạn tìm ước và bội của một số, kể cả ước và bội âm.",
+    "summary": "Bài này dạy cách chia hai số nguyên và cách chọn dấu cho kết quả. Sau đó bạn tìm ước và bội của một số, kể cả ước và bội âm. Bạn còn tìm ước chung của hai số và viết một số thành tích hai số.",
     "goals": [
       "chia được hai số nguyên và viết đúng dấu của thương",
       "biết khi nào một số nguyên chia hết cho số khác",
@@ -763,7 +763,7 @@
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.section.tim-x",
-      "title": "Tìm số x để tổng của x và một số chia hết cho x",
+      "title": "Tìm số x để x + 3 chia hết cho x",
       "sourceRef": "Sách bài tập tr.59 (bài 3.40)",
       "minutes": 4,
       "blocks": [
@@ -772,7 +772,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Thử vài số x với x + 3. Các số x = 1, x = 3 và x = −1 làm x + 3 chia hết cho x, còn x = 2 thì không."
+              "text": "Thử vài số x với x + 3: Các số làm được là 1, 3, −1 và −3, đều là ước của 3. Số 2 không là ước của 3 nên không làm được."
             },
             {
               "type": "visual",
@@ -798,7 +798,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tổng của x và một số chia hết cho x khi x là ước của số đó.",
+              "text": "Tổng x + 3 chia hết cho x khi x là ước của 3. Số cộng thêm là số nào thì x là ước của số đó.",
               "rule": true
             },
             {
@@ -831,7 +831,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
-        "caption": "Tổng của x và một số chia hết cho x khi x là ước của số đó."
+        "caption": "Tổng x + 3 chia hết cho x khi x là ước của 3. Số cộng thêm là số nào thì x là ước của số đó."
       }
     }
   ],
@@ -991,7 +991,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.tim-x-vi-du",
-        "caption": "Tổng của x và một số chia hết cho x khi x là ước của số đó."
+        "caption": "Tổng x + 3 chia hết cho x khi x là ước của 3. Số cộng thêm là số nào thì x là ước của số đó."
       }
     }
   ],
@@ -2300,7 +2300,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số chia 8 là ước, còn số bị chia −24 là bội. Số chia hết cho 8 thì là bội của 8."
+        "text": "Số chia 8 là ước, còn số bị chia −24 là bội."
       },
       "segments": [
         {
@@ -3042,7 +3042,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Các bội của 7 là −14, −7, 0, 7, 14, 21 và cứ thế tiếp. Đề nói lớn hơn −14 nên không lấy −14, nói nhỏ hơn hoặc bằng 14 nên lấy 14.",
+        "text": "Các bội của 7 là 0, ±7, ±14, ±21 và cứ thế tiếp. Đề nói lớn hơn −14 nên không lấy −14, nói nhỏ hơn hoặc bằng 14 nên lấy 14.",
         "wrong": [
           {
             "optionId": "a",
