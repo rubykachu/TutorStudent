@@ -39,7 +39,7 @@ Backlog [`progress-sync/`](progress-sync/task.md), the checklist in `task.md` is
 
 ### Deferred
 
-"Mẹo hay" for Bài 8 to 11; leftover review notes in the lesson handovers; the unused validator `dat-thua-so` (`src/visuals/math/phep-nhan-so-nguyen/logic.ts`); chapter IV onward.
+"Mẹo hay" for Bài 8 to 11; leftover review notes in the lesson handovers; the unused validator `dat-thua-so` (`src/visuals/math/phep-nhan-so-nguyen/logic.ts`); chapter IV from Bài 19 onward.
 
 ## Lessons
 
@@ -66,6 +66,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 17 `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (SBT print pages 58–59, solutions 113) | published after review round 4, ids locked; book-practice section (SBT 3.35 to 3.40) added and approved 03/10/2026 after rounds 6 to 8, not deployed yet; alignment check against Bài 16 settled (handover [`lesson-phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/task.md`](lesson-phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/task.md)) | not done (no narration or video in this task) |
 | Toán | Bài 16 `phep-nhan-so-nguyen` (SBT print pages 55–57, solutions 112–113) | approved and published, ids locked (handover [`lesson-phep-nhan-so-nguyen/task.md`](lesson-phep-nhan-so-nguyen/task.md)) | done 02/10/2026: voice Mỹ Duyên, overview narration by Gemini Vindemiatrix, 3 videos (`cong-lap`, `duong-nhan-am`, `am-nhan-am`), diff-only round 5 (0 Nghiêm trọng) approved, video ids locked, `lesson:walk` 0 failures; media uploaded and deployed to production 02/10/2026 (commit 12df400, smoke passed) |
 | Toán | Chương III review `on-tap-chuong-3` (SBT print pages 60–62, solutions 114; `kind: "review"`, no number, order 17.5) | published 02/10/2026 (reviewedHash `94dbb2d8…`, 89 ids locked): 13 sections, 13 cards, 46 exercises covering all 17 book items; round 1 found 7 Nghiêm trọng, 24 Nên sửa, 15 Góp ý; round 2 (full, Opus) found 0 Nghiêm trọng, 8 Nên sửa, 14 Góp ý, all Nên sửa fixed; readability pass on changed text 98/18/0, then 16/2/0, then 2/0/0; `lesson:walk` 0 failures; narration (Gemini Vindemiatrix) and 3 videos (Mỹ Duyên) built and reviewed (reviewedHash `c8cc57b4…`, 92 ids locked); next is media upload and deploy with the owner's approval; leftovers (recap figures for the product and sum tables, fillBlank table app fix) in the handover [`lesson-on-tap-chuong-3/task.md`](lesson-on-tap-chuong-3/task.md) | not started |
+| Toán | Bài 18 `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` (SBT print pages 63–66, solutions 115; first lesson of Chương IV) | draft, authored 03/10/2026: 12 sections, 11 cards, 77 exercises, 92 visuals, book-practice section for SBT 4.1 to 4.7 (10 book exercises, 12 lead-ins); `content:check`, `visual:shot`, `lesson:walk` pass, readability pass done; next is review round 1 (handover [`lesson-hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/task.md`](lesson-hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/task.md)) | not done (no narration or video in this task) |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
 | Lịch sử, Khoa học tự nhiên | none | subjects added (locked on home until a lesson is published); waiting for textbook pages | not done |
@@ -74,6 +75,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
+0. Bài 18 `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu`: draft authored, 0 `content:check` errors; next is review round 1 (3 Opus reviewers and an Opus synthesis, run by a fresh agent), see its handover [`lesson-hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/task.md`](lesson-hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/task.md).
 0. Ôn tập chương III `on-tap-chuong-3`: published, narration and 3 videos done and reviewed; next is media upload and production deploy once the owner approves (files listed in its handover [`lesson-on-tap-chuong-3/task.md`](lesson-on-tap-chuong-3/task.md)).
 0. Bài 12 `boi-chung-boi-chung-nho-nhat`: published, narration and 3 videos built and reviewed (round 4, locked, walk 0 failures). Next: upload and deploy with owner approval, see item 6c ([`lesson-boi-chung-boi-chung-nho-nhat/task.md`](lesson-boi-chung-boi-chung-nho-nhat/task.md)).
 0. Ôn tập chương II `on-tap-chuong-2`: published, aligned with Bài 12 (round 5). Narration and 3 videos built and reviewed 01/10/2026 (round 6); next: owner approval to upload media (see its handover).

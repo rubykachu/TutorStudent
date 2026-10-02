@@ -1,0 +1,5129 @@
+{
+  "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 18,
+  "number": 18,
+  "chapter": {
+    "numeral": "IV",
+    "name": "Một số hình phẳng trong thực tiễn"
+  },
+  "title": "Hình tam giác đều. Hình vuông. Hình lục giác đều",
+  "sourceRef": "Sách bài tập tr.63–66",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với các hình đều. Bạn thử nhìn viên gạch lát nền nhà mình xem, các cạnh của nó có bằng nhau không?"
+    },
+    "summary": "Bài này nói về ba hình đều: hình tam giác đều, hình vuông và hình lục giác đều. Bạn học cách nhận ra, đo và vẽ chúng.",
+    "goals": [
+      "nhận ra hình tam giác đều, hình vuông và hình lục giác đều",
+      "biết cạnh, góc và đường chéo (đường nối hai góc không kề nhau) của từng hình",
+      "vẽ được hình tam giác đều và hình vuông bằng thước, compa và êke",
+      "đếm được các hình đều trong một hình lớn"
+    ],
+    "whyItMatters": "Bạn dùng bài này khi chọn gạch lát nền, vì các viên gạch hình vuông bằng nhau xếp khít với nhau."
+  },
+  "concepts": [
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+      "name": "Cạnh",
+      "color": "blue"
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc",
+      "name": "Góc",
+      "color": "violet"
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.duong-cheo",
+      "name": "Đường chéo",
+      "color": "amber"
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-tam-giac-deu",
+      "name": "Hình tam giác đều",
+      "color": "teal"
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
+      "name": "Hình vuông",
+      "color": "pink"
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.luc-giac-deu",
+      "name": "Hình lục giác đều",
+      "color": "lime"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.hinh-deu-quanh-ta",
+      "title": "Hình đều quanh ta",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Gạch lát nền, tổ ong và biển báo nguy hiểm đều có hình đều. Hãy xem ba vật này trong hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.doi-song-ba-vat"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình đều có các cạnh bằng nhau và các góc bằng nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng cạnh của hình vuông để đo. Bạn sẽ thấy các cạnh của hình đều bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.do-canh-hinh-vuong"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.noi-vat-voi-hinh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.hinh-deu-la-gi"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-hinh-deu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu",
+        "caption": "Hình đều có các cạnh bằng nhau và các góc bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.tam-giac-deu",
+      "title": "Hình tam giác đều",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Biển báo nguy hiểm trên đường có dạng hình tam giác đều. Xem hình chạy từng bước để thấy hình này có gì đặc biệt."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-deu-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình tam giác đều có ba cạnh bằng nhau và ba góc bằng nhau, mỗi góc bằng 60°.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-deu-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng cạnh và từng góc để đo. Bạn sẽ thấy các số đo giống nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.do-tam-giac-deu"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ba-canh-ab-6",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-tam-giac-deu"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-tam-giac-deu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-deu-quy-tac",
+        "caption": "Hình tam giác đều có ba cạnh bằng nhau và ba góc bằng nhau, mỗi góc bằng 60°."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.hinh-vuong",
+      "title": "Hình vuông",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Viên gạch lát nền và ô trong vở ô li có hình vuông. Xem hình chạy từng bước để thấy hình vuông có gì đặc biệt."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình vuông có bốn cạnh bằng nhau và bốn góc bằng nhau, mỗi góc bằng 90°. Góc 90° gọi là góc vuông.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng góc của hình vuông để đo. Bạn sẽ thấy mỗi góc đều là góc vuông."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.do-hinh-vuong"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-ab-7",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-hinh-vuong"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-cau-dung-hinh-vuong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-quy-tac",
+        "caption": "Hình vuông có bốn cạnh bằng nhau và bốn góc bằng nhau, mỗi góc bằng 90°. Góc 90° gọi là góc vuông."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.duong-cheo-hinh-vuong",
+      "title": "Đường chéo của hình vuông",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.64 (ví dụ 2)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đường chéo là đoạn thẳng nối hai đỉnh không nằm cạnh nhau. Viên gạch hình vuông có hai đường chéo."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-cheo-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình vuông có hai đường chéo bằng nhau và vuông góc với nhau. Vuông góc nghĩa là cắt nhau tạo thành góc vuông.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-cheo-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào hai đường chéo và chỗ chúng cắt nhau để đo. Bạn sẽ thấy chúng bằng nhau và vuông góc."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.do-duong-cheo-vuong"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-ac-8",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-goc-bang-bao-nhieu"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-cheo-quy-tac",
+        "caption": "Hình vuông có hai đường chéo bằng nhau và vuông góc với nhau. Vuông góc nghĩa là cắt nhau tạo thành góc vuông."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.luc-giac-deu",
+      "title": "Hình lục giác đều",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mỗi ngăn của tổ ong có hình lục giác đều. Xem hình chạy từng bước để thấy hình này có gì đặc biệt."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau, mỗi góc bằng 120°.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng cạnh và từng góc để đo. Bạn sẽ thấy sáu cạnh đều bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.do-luc-giac-deu"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-luc-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-de-8"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.tim-luc-giac-deu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-quy-tac",
+        "caption": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau, mỗi góc bằng 120°."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.duong-cheo-luc-giac",
+      "title": "Đường chéo của hình lục giác đều",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tâm là điểm chính giữa của hình. Đường chéo đi qua tâm là đường chéo chính, các đường chéo còn lại là đường chéo phụ."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng đường chéo chính để đo. Bạn sẽ thấy ba đường đều dài bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.do-cheo-chinh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-cheo-chinh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.co-may-cheo-chinh"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-chinh-ad-12"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac",
+        "caption": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.ghep-luc-giac",
+      "title": "Ghép hình lục giác đều",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.66 (bài 4.6)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn có sáu miếng giấy hình tam giác đều bằng nhau. Xem cách ghép chúng thành hình lục giác đều."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Sáu hình tam giác đều bằng nhau ghép thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm nút cộng để thêm từng miếng. Ghép đủ sáu miếng, bạn sẽ có hình lục giác đều."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-cung-lam"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.cheo-chinh-gap-doi",
+          "kind": "làm nhanh",
+          "title": "Đường chéo chính",
+          "text": "Đường chéo chính của hình lục giác đều dài gấp đôi cạnh. Chỉ cần nhân đôi độ dài cạnh.",
+          "tex": "7 \\cdot 2 = 14"
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ghep-cheo-canh-4",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.can-may-mieng"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ghep-cheo-canh-9"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-quy-tac",
+        "caption": "Sáu hình tam giác đều bằng nhau ghép thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.ve-tam-giac-deu",
+      "title": "Vẽ hình tam giác đều",
+      "sourceRef": "Sách bài tập tr.63 (kĩ năng giải toán), tr.65 (bài 4.2)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cần thước thẳng và compa. Xem hình chạy từng bước vẽ hình tam giác đều ABC có cạnh 5 cm."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vẽ một cạnh, mở compa bằng đúng cạnh đó rồi vẽ hai cung tròn từ hai đầu cạnh. Nối chỗ hai cung gặp nhau với hai đầu cạnh.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: vẽ hình tam giác đều ABC có cạnh 3 cm. Làm từng bước trong khung dưới hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-cung-lam"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.mo-compa-mot-lan",
+          "kind": "tránh sai",
+          "title": "Độ mở compa",
+          "text": "Mở compa xong thì giữ yên. Dùng cùng một độ mở cho cả hai cung tròn."
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.xep-buoc-ve-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.vi-sao-mo-compa"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ve-tam-giac-deu-def-6"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-quy-tac",
+        "caption": "Vẽ một cạnh, mở compa bằng đúng cạnh đó rồi vẽ hai cung tròn từ hai đầu cạnh. Nối chỗ hai cung gặp nhau với hai đầu cạnh."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.ve-hinh-vuong",
+      "title": "Vẽ hình vuông",
+      "sourceRef": "Sách bài tập tr.63 (kĩ năng giải toán), tr.65 (bài 4.3)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cần thước thẳng và êke. Xem hình chạy từng bước vẽ hình vuông ABCD có cạnh 4 cm."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: vẽ hình vuông ABCD có cạnh 3 cm. Làm từng bước trong khung dưới hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-cung-lam"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.lay-doan-bang-compa",
+          "kind": "làm nhanh",
+          "title": "Lấy hai đoạn bằng nhau",
+          "text": "Mở compa bằng cạnh một lần. Dùng độ mở đó chấm điểm trên cả hai đường vuông góc."
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.xep-buoc-ve-hinh-vuong",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-eke-ve-hinh-vuong"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ve-hinh-vuong-efgh-6"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-quy-tac",
+        "caption": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.kiem-tra-hinh",
+      "title": "Kiểm tra bằng compa và êke",
+      "sourceRef": "Sách bài tập tr.65 (bài 4.5)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Compa so độ dài hai đoạn thẳng. Êke kiểm tra một góc có vuông không."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình có ba cạnh bằng nhau là hình tam giác đều. Hình có bốn cạnh bằng nhau và bốn góc vuông là hình vuông.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng phần của hình để kiểm tra. Bạn sẽ thấy vì sao cần cả compa lẫn êke."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-cung-lam"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.goc-to-giay",
+          "kind": "làm nhanh",
+          "title": "Kiểm tra góc vuông",
+          "text": "Không có êke thì dùng góc của tờ giấy vở. Góc nào khít với góc tờ giấy thì góc đó là góc vuông."
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-do-ba-canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-bon-canh-bon-goc"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-mot-goc-khong-vuong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-quy-tac",
+        "caption": "Hình có ba cạnh bằng nhau là hình tam giác đều. Hình có bốn cạnh bằng nhau và bốn góc vuông là hình vuông."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.dem-hinh",
+      "title": "Đếm hình trong một hình",
+      "sourceRef": "Sách bài tập tr.63 (ví dụ 1), tr.64 (ví dụ 2 và 3), tr.66 (bài 4.7)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Một hình lớn có thể chứa nhiều hình nhỏ. Xem hình chạy để đếm các hình vuông trong hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn đếm hình, đếm các hình nhỏ trước. Rồi đếm thêm các hình lớn hơn ghép từ các hình nhỏ.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng hình tam giác đều bạn tìm thấy. Đừng quên hình lớn."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-dai-ba-tam-giac",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-hinh-vuong-hai-hang"
+      ],
+      "practiceIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-tam-giac-trong-luc-giac"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-quy-tac",
+        "caption": "Muốn đếm hình, đếm các hình nhỏ trước. Rồi đếm thêm các hình lớn hơn ghép từ các hình nhỏ."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.64 đến tr.66 (bài 4.1 đến bài 4.7), lời giải tr.115",
+      "minutes": 18,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.1 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hình tam giác đều có ba cạnh bằng nhau và ba góc bằng nhau, mỗi góc bằng 60°."
+            },
+            {
+              "type": "note",
+              "text": "Hình vuông có bốn cạnh bằng nhau và bốn góc bằng nhau, mỗi góc bằng 90°. Góc 90° gọi là góc vuông."
+            },
+            {
+              "type": "note",
+              "text": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau, mỗi góc bằng 120°."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.2 và bài 4.3 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Vẽ một cạnh, mở compa bằng đúng cạnh đó rồi vẽ hai cung tròn từ hai đầu cạnh. Nối chỗ hai cung gặp nhau với hai đầu cạnh."
+            },
+            {
+              "type": "note",
+              "text": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy."
+            },
+            {
+              "type": "note",
+              "text": "Hình vuông có hai đường chéo bằng nhau và vuông góc với nhau. Vuông góc nghĩa là cắt nhau tạo thành góc vuông."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hai-hinh"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.4 và bài 4.5 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau."
+            },
+            {
+              "type": "note",
+              "text": "Đường chéo phụ là những đường chéo còn lại, tức những đường không đi qua tâm."
+            },
+            {
+              "type": "note",
+              "text": "Hình có ba cạnh bằng nhau là hình tam giác đều. Hình có bốn cạnh bằng nhau và bốn góc vuông là hình vuông.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.6 và bài 4.7 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Sáu hình tam giác đều bằng nhau ghép thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
+            },
+            {
+              "type": "note",
+              "text": "Muốn đếm hình, đếm các hình nhỏ trước. Rồi đếm thêm các hình lớn hơn ghép từ các hình nhỏ."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-quy-tac"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-1-chon-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-1-noi-ten",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-1",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-2-mo-compa-9",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-2-ve-7",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-2",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-3-ve-7",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-3",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-4a-chon-phu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4a",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-4b-do-6-6-6",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-4b-do-6-6-7",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4b",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-5a-compa-khit",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-5a",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-5b",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-6-ghep",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-6-cheo-3",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-6",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7a",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-7b-tam-giac-bon",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7b"
+      ],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-quy-tac",
+        "caption": "Hình có ba cạnh bằng nhau là hình tam giác đều. Hình có bốn cạnh bằng nhau và bốn góc vuông là hình vuông."
+      },
+      "bookPractice": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-deu",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu",
+        "caption": "Hình đều có các cạnh bằng nhau và các góc bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.tam-giac-deu",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-deu-quy-tac",
+        "caption": "Hình tam giác đều có ba cạnh bằng nhau và ba góc bằng nhau, mỗi góc bằng 60°."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-vuong",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-quy-tac",
+        "caption": "Hình vuông có bốn cạnh bằng nhau và bốn góc bằng nhau, mỗi góc bằng 90°. Góc 90° gọi là góc vuông."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-hinh-vuong",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.64 (ví dụ 2)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-cheo-quy-tac",
+        "caption": "Hình vuông có hai đường chéo bằng nhau và vuông góc với nhau. Vuông góc nghĩa là cắt nhau tạo thành góc vuông."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.luc-giac-deu",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.luc-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-quy-tac",
+        "caption": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau, mỗi góc bằng 120°."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-luc-giac",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.luc-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac",
+        "caption": "Đường chéo chính của hình lục giác đều nối hai đỉnh đối diện nhau và đi qua tâm. Ba đường chéo chính bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ghep-luc-giac",
+      "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ), tr.66 (bài 4.6)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.luc-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-quy-tac",
+        "caption": "Sáu hình tam giác đều bằng nhau ghép thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-tam-giac-deu",
+      "sourceRef": "Sách bài tập tr.63 (kĩ năng giải toán), tr.65 (bài 4.2)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-quy-tac",
+        "caption": "Vẽ một cạnh, mở compa bằng đúng cạnh đó rồi vẽ hai cung tròn từ hai đầu cạnh. Nối chỗ hai cung gặp nhau với hai đầu cạnh."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-hinh-vuong",
+      "sourceRef": "Sách bài tập tr.63 (kĩ năng giải toán), tr.65 (bài 4.3)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-quy-tac",
+        "caption": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.kiem-tra-hinh",
+      "sourceRef": "Sách bài tập tr.65 (bài 4.5)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.canh",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.kiem-quy-tac",
+        "caption": "Hình có ba cạnh bằng nhau là hình tam giác đều. Hình có bốn cạnh bằng nhau và bốn góc vuông là hình vuông."
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.dem-hinh",
+      "sourceRef": "Sách bài tập tr.63 (ví dụ 1), tr.64 (ví dụ 2 và 3), tr.66 (bài 4.7)",
+      "conceptIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-tam-giac-deu",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.hinh-vuong",
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.concept.luc-giac-deu"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-quy-tac",
+        "caption": "Muốn đếm hình, đếm các hình nhỏ trước. Rồi đếm thêm các hình lớn hơn ghép từ các hình nhỏ."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.noi-vat-voi-hinh",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi vật với hình đều của nó."
+        }
+      ],
+      "hints": {
+        "highlight": [],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.doi-song-ba-vat"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ngăn tổ ong có sáu cạnh, nên là hình lục giác đều. Mặt viên gạch có bốn cạnh bằng nhau và bốn góc vuông, nên là hình vuông. Biển báo có ba cạnh bằng nhau, nên là hình tam giác đều."
+      },
+      "left": [
+        {
+          "id": "gach",
+          "content": {
+            "type": "text",
+            "text": "Gạch lát nền"
+          }
+        },
+        {
+          "id": "to-ong",
+          "content": {
+            "type": "text",
+            "text": "Tổ ong"
+          }
+        },
+        {
+          "id": "bien-bao",
+          "content": {
+            "type": "text",
+            "text": "Biển báo nguy hiểm"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "luc-giac",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        },
+        {
+          "id": "tam-giac",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "gach",
+          "right": "vuong"
+        },
+        {
+          "left": "to-ong",
+          "right": "luc-giac"
+        },
+        {
+          "left": "bien-bao",
+          "right": "tam-giac"
+        }
+      ]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.hinh-deu-la-gi",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình đều là hình thế nào? Chọn câu đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình đều có các cạnh bằng nhau và cũng có các góc bằng nhau. Thiếu một trong hai điều thì chưa phải hình đều.",
+        "wrong": [
+          {
+            "optionId": "goc-khac",
+            "text": "Các góc khác nhau thì chưa phải hình đều, vì hình đều cần cả các góc bằng nhau."
+          },
+          {
+            "optionId": "canh-khac",
+            "text": "Các cạnh khác nhau thì chưa phải hình đều, vì hình đều cần cả các cạnh bằng nhau."
+          },
+          {
+            "optionId": "dai-ngan",
+            "text": "Hình đều không có cạnh dài cạnh ngắn, vì các cạnh của nó bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "dung",
+          "content": {
+            "type": "text",
+            "text": "Hình có các cạnh bằng nhau và các góc bằng nhau"
+          }
+        },
+        {
+          "id": "goc-khac",
+          "content": {
+            "type": "text",
+            "text": "Hình có các cạnh bằng nhau nhưng các góc khác nhau"
+          }
+        },
+        {
+          "id": "canh-khac",
+          "content": {
+            "type": "text",
+            "text": "Hình có các góc bằng nhau nhưng các cạnh khác nhau"
+          }
+        },
+        {
+          "id": "dai-ngan",
+          "content": {
+            "type": "text",
+            "text": "Hình có một cạnh dài hơn và một cạnh ngắn hơn"
+          }
+        }
+      ],
+      "answer": ["dung"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-hinh-deu",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các hình đều."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-deu-vi-du-vuong",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình đều có các cạnh bằng nhau và các góc bằng nhau. Hình tam giác đều và hình lục giác đều thoả cả hai điều đó. Hai hình còn lại có các cạnh dài ngắn khác nhau.",
+        "wrong": [
+          {
+            "optionId": "chu-nhat",
+            "text": "Hình này có hai cạnh dài và hai cạnh ngắn, nên các cạnh không bằng nhau."
+          },
+          {
+            "optionId": "tam-giac-lech",
+            "text": "Ba cạnh của hình này dài ngắn khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "tam-giac-deu",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-deu"
+          }
+        },
+        {
+          "id": "chu-nhat",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-chu-nhat"
+          }
+        },
+        {
+          "id": "luc-giac-deu",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-luc-giac-deu"
+          }
+        },
+        {
+          "id": "tam-giac-lech",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-lech"
+          }
+        }
+      ],
+      "answer": ["tam-giac-deu", "luc-giac-deu"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.to-ong-hinh-gi",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi ngăn của tổ ong có sáu cạnh bằng nhau và sáu góc bằng nhau. Mỗi ngăn có hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình có sáu cạnh bằng nhau và sáu góc bằng nhau là hình lục giác đều. Vậy mỗi ngăn tổ ong là hình lục giác đều.",
+        "wrong": [
+          {
+            "optionId": "tam-giac",
+            "text": "Hình tam giác đều chỉ có ba cạnh."
+          },
+          {
+            "optionId": "vuong",
+            "text": "Hình vuông chỉ có bốn cạnh."
+          },
+          {
+            "optionId": "chu-nhat",
+            "text": "Hình chữ nhật chỉ có bốn cạnh."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "tam-giac",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        },
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "luc-giac",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        },
+        {
+          "id": "chu-nhat",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        }
+      ],
+      "answer": ["luc-giac"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-bang-nhau-9",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hình đều có các cạnh bằng nhau, và một cạnh dài 9 cm. Một cạnh khác của hình đó dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình đều có các cạnh bằng nhau. Một cạnh dài 9 cm thì mọi cạnh khác cũng dài 9 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "9"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ba-canh-ab-6",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một tấm bìa hình tam giác đều ABC có cạnh AB = 6 cm. Cạnh BC dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-deu-ab-6"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình tam giác đều có ba cạnh bằng nhau. Cạnh AB dài 6 cm thì cạnh BC cũng dài 6 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-tam-giac-deu",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi góc của hình tam giác đều bằng bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình tam giác đều có ba góc bằng nhau, và mỗi góc bằng 60°.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Góc 90° là góc vuông, mà hình tam giác đều không có góc vuông."
+          },
+          {
+            "optionId": "a",
+            "text": "Góc 30° quá nhỏ: mỗi góc của hình tam giác đều bằng 60°."
+          },
+          {
+            "optionId": "d",
+            "text": "Góc 120° quá lớn: mỗi góc của hình tam giác đều chỉ bằng 60°."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "30°"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "60°"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "90°"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "120°"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-tam-giac-deu",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.tam-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Các số bên cạnh mỗi hình là độ dài các cạnh, tính bằng cm. Chọn hình tam giác đều."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-deu"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình tam giác đều có ba cạnh bằng nhau. Chỉ có hình với ba cạnh cùng dài 5 cm là hình tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hình này có hai cạnh dài 5 cm nhưng cạnh còn lại dài 6 cm, nên chưa đủ."
+          },
+          {
+            "optionId": "d",
+            "text": "Hình này có hai cạnh dài 3 cm nhưng cạnh còn lại dài 5 cm, nên chưa đủ."
+          },
+          {
+            "optionId": "c",
+            "text": "Hình này có ba cạnh dài 4 cm, 5 cm và 6 cm, khác nhau cả ba."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-5-5-5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-5-5-6"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-4-5-6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-3-3-5"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.td-chon-cau-dung",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.tam-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng về hình tam giác đều."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình tam giác đều có ba cạnh bằng nhau và mỗi góc bằng 60°. Nó không có cạnh dài hơn cạnh khác.",
+        "wrong": [
+          {
+            "optionId": "goc90",
+            "text": "Góc 90° là góc vuông, mà ba góc của hình tam giác đều bằng 60°."
+          },
+          {
+            "optionId": "dai-ngan",
+            "text": "Hình tam giác đều không có cạnh dài cạnh ngắn, vì ba cạnh của nó bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Ba cạnh bằng nhau"
+          }
+        },
+        {
+          "id": "goc60",
+          "content": {
+            "type": "text",
+            "text": "Mỗi góc bằng 60°"
+          }
+        },
+        {
+          "id": "dai-ngan",
+          "content": {
+            "type": "text",
+            "text": "Hai cạnh dài và một cạnh ngắn"
+          }
+        },
+        {
+          "id": "goc90",
+          "content": {
+            "type": "text",
+            "text": "Có một góc bằng 90°"
+          }
+        }
+      ],
+      "answer": ["canh", "goc60"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.td-dien-cho-trong",
+      "type": "fillBlank",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.tam-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền vào chỗ trống."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-deu"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình tam giác đều có ba cạnh bằng nhau. Ba góc của nó bằng nhau, và mỗi góc bằng 60°."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Hình tam giác đều có "
+        },
+        {
+          "type": "blank",
+          "id": "so-canh",
+          "accept": ["ba"]
+        },
+        {
+          "type": "text",
+          "text": " cạnh bằng nhau, mỗi góc bằng "
+        },
+        {
+          "type": "blank",
+          "id": "so-do",
+          "accept": ["60"]
+        },
+        {
+          "type": "text",
+          "text": "°."
+        }
+      ],
+      "bank": ["ba", "bốn", "60", "90"]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-ab-7",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một tờ giấy hình vuông ABCD có cạnh AB = 7 cm. Cạnh CD dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-ab-7"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn cạnh bằng nhau. Cạnh AB dài 7 cm thì cạnh CD cũng dài 7 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "7"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-hinh-vuong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi góc của hình vuông bằng bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn góc bằng nhau, và mỗi góc bằng 90°. Góc 90° gọi là góc vuông.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Góc 60° là góc của hình tam giác đều, không phải của hình vuông."
+          },
+          {
+            "optionId": "a",
+            "text": "Góc 45° nhỏ hơn góc vuông, còn mỗi góc của hình vuông là góc vuông."
+          },
+          {
+            "optionId": "d",
+            "text": "Góc 120° lớn hơn góc vuông, mà mỗi góc của hình vuông bằng 90°."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "45°"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "60°"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "90°"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "120°"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-cau-dung-hinh-vuong",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng về hình vuông."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình vuông có bốn cạnh bằng nhau và bốn góc vuông.",
+        "wrong": [
+          {
+            "optionId": "dai-ngan",
+            "text": "Hình vuông không có cạnh dài cạnh ngắn, vì bốn cạnh của nó bằng nhau."
+          },
+          {
+            "optionId": "goc60",
+            "text": "Góc 60° là góc của hình tam giác đều, còn các góc của hình vuông bằng 90°."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Bốn cạnh bằng nhau"
+          }
+        },
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Bốn góc đều là góc vuông"
+          }
+        },
+        {
+          "id": "dai-ngan",
+          "content": {
+            "type": "text",
+            "text": "Hai cạnh dài và hai cạnh ngắn"
+          }
+        },
+        {
+          "id": "goc60",
+          "content": {
+            "type": "text",
+            "text": "Mỗi góc bằng 60°"
+          }
+        }
+      ],
+      "answer": ["canh", "vuong"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-hinh-vuong",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn hình vuông."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn cạnh bằng nhau và bốn góc vuông.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Hình này có hai cạnh dài và hai cạnh ngắn, nên chưa phải hình vuông."
+          },
+          {
+            "optionId": "c",
+            "text": "Hình này có sáu cạnh, không phải bốn cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "Hình này chỉ có ba cạnh."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-chu-nhat"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-hinh-vuong"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-luc-giac-deu"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-tam-giac-deu"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.bon-goc-vuong",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình vuông có bao nhiêu góc vuông?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn góc, và mỗi góc là một góc vuông. Vậy hình vuông có bốn góc vuông."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "4"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-ac-8",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một tờ giấy hình vuông ABCD có đường chéo AC = 8 cm. Đường chéo BD dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-cheo-ac-8"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có hai đường chéo bằng nhau. Đường chéo AC dài 8 cm thì đường chéo BD cũng dài 8 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "8"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-goc-bang-bao-nhieu",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai đường chéo của hình vuông cắt nhau tạo thành góc bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai đường chéo của hình vuông vuông góc với nhau. Vuông góc nghĩa là cắt nhau tạo thành góc 90°.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Góc 60° là góc của hình tam giác đều, không phải góc giữa hai đường chéo hình vuông."
+          },
+          {
+            "optionId": "a",
+            "text": "Góc 45° là góc nhỏ, còn hai đường chéo cắt nhau thành góc vuông 90°."
+          },
+          {
+            "optionId": "d",
+            "text": "Góc 120° là góc to, còn hai đường chéo cắt nhau thành góc vuông 90°."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "45°"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "60°"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "90°"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "120°"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-duong-cheo",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho hình vuông ABCD. Chọn tất cả các đường chéo của hình vuông."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-vuong-abcd-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo nối hai đỉnh không nằm cạnh nhau. A và C không nằm cạnh nhau, B và D cũng vậy.",
+        "wrong": [
+          {
+            "optionId": "ab",
+            "text": "A và B nằm cạnh nhau, nên AB là một cạnh chứ không phải đường chéo."
+          },
+          {
+            "optionId": "cd",
+            "text": "C và D nằm cạnh nhau, nên CD là một cạnh chứ không phải đường chéo."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "ac",
+          "content": {
+            "type": "text",
+            "text": "AC"
+          }
+        },
+        {
+          "id": "bd",
+          "content": {
+            "type": "text",
+            "text": "BD"
+          }
+        },
+        {
+          "id": "ab",
+          "content": {
+            "type": "text",
+            "text": "AB"
+          }
+        },
+        {
+          "id": "cd",
+          "content": {
+            "type": "text",
+            "text": "CD"
+          }
+        }
+      ],
+      "answer": ["ac", "bd"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.hinh-vuong-co-may-duong-cheo",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình vuông có bao nhiêu đường chéo?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn đỉnh. Mỗi đường chéo nối hai đỉnh đối diện nhau, nên hình vuông có hai đường chéo."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 2
+      },
+      "check": {
+        "expr": "2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-rt-10",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình vuông RSTU có đường chéo RT = 10 cm. Đường chéo SU dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình vuông có hai đường chéo bằng nhau. Đường chéo RT dài 10 cm thì đường chéo SU cũng dài 10 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 10
+      },
+      "check": {
+        "expr": "10"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-luc-giac-deu",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi góc của hình lục giác đều bằng bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình lục giác đều có sáu góc bằng nhau, và mỗi góc bằng 120°.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Góc 60° là góc của hình tam giác đều, không phải của hình lục giác đều."
+          },
+          {
+            "optionId": "b",
+            "text": "Góc 90° là góc của hình vuông, không phải của hình lục giác đều."
+          },
+          {
+            "optionId": "d",
+            "text": "Góc 180° quá lớn: mỗi góc của hình lục giác đều bằng 120°."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "60°"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "90°"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "120°"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "180°"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-de-8",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình lục giác đều ABCDEF có cạnh AB = 8 cm. Cạnh DE dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-abcdef-8"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình lục giác đều có sáu cạnh bằng nhau. Cạnh AB dài 8 cm thì cạnh DE cũng dài 8 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "8"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.tim-luc-giac-deu",
+      "type": "tapRegion",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.luc-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chạm vào tất cả các hình lục giác đều."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-luc-giac-deu"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau. Hình 1 và hình 4 đúng như vậy, chỉ quay khác nhau. Hình 6 có sáu cạnh nhưng các cạnh dài ngắn khác nhau."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.chon-luc-giac",
+      "answer": ["hinh-1", "hinh-4"]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.lg-chon-cau-dung",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.luc-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng về hình lục giác đều."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau. Mỗi góc bằng 120°.",
+        "wrong": [
+          {
+            "optionId": "goc90",
+            "text": "Góc 90° là góc của hình vuông, còn mỗi góc của hình lục giác đều bằng 120°."
+          },
+          {
+            "optionId": "bon-canh",
+            "text": "Hình lục giác đều có sáu cạnh, không phải bốn cạnh."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Sáu cạnh bằng nhau"
+          }
+        },
+        {
+          "id": "goc",
+          "content": {
+            "type": "text",
+            "text": "Sáu góc bằng nhau"
+          }
+        },
+        {
+          "id": "goc90",
+          "content": {
+            "type": "text",
+            "text": "Mỗi góc bằng 90°"
+          }
+        },
+        {
+          "id": "bon-canh",
+          "content": {
+            "type": "text",
+            "text": "Chỉ có bốn cạnh"
+          }
+        }
+      ],
+      "answer": ["canh", "goc"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.to-ong-sau-goc",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.luc-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi ngăn tổ ong có hình lục giác đều. Mỗi ngăn có bao nhiêu góc bằng 120°?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình lục giác đều có sáu góc bằng nhau và mỗi góc bằng 120°. Vậy mỗi ngăn có sáu góc bằng 120°."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.chon-cheo-chinh",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho hình lục giác đều ABCDEF. Chọn tất cả các đường chéo chính, tức các đường đi qua tâm."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-abcdef-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo chính nối hai đỉnh đối diện nhau. A đối diện với D, B đối diện với E, nên AD và BE là đường chéo chính.",
+        "wrong": [
+          {
+            "optionId": "ac",
+            "text": "AC nối A với C, giữa hai đỉnh này còn có đỉnh B, nên AC là đường chéo phụ."
+          },
+          {
+            "optionId": "df",
+            "text": "DF nối D với F, giữa hai đỉnh này còn có đỉnh E, nên DF là đường chéo phụ."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "ad",
+          "content": {
+            "type": "text",
+            "text": "AD"
+          }
+        },
+        {
+          "id": "be",
+          "content": {
+            "type": "text",
+            "text": "BE"
+          }
+        },
+        {
+          "id": "ac",
+          "content": {
+            "type": "text",
+            "text": "AC"
+          }
+        },
+        {
+          "id": "df",
+          "content": {
+            "type": "text",
+            "text": "DF"
+          }
+        }
+      ],
+      "answer": ["ad", "be"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.co-may-cheo-chinh",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình lục giác đều có bao nhiêu đường chéo chính?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình lục giác đều có sáu đỉnh, ghép thành ba cặp đỉnh đối diện nhau. Mỗi cặp có một đường chéo chính, nên có ba đường chéo chính."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-chinh-ad-12",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-luc-giac"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một miếng gỗ hình lục giác đều ABCDEF có đường chéo chính AD = 12 cm. Đường chéo chính BE dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-ad-12"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba đường chéo chính của hình lục giác đều bằng nhau. AD dài 12 cm thì BE cũng dài 12 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "12"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-chinh-noi-nao",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-luc-giac"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đường chéo chính của hình lục giác đều nối hai đỉnh nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đường chéo chính nối hai đỉnh đối diện nhau và đi qua tâm của hình.",
+        "wrong": [
+          {
+            "optionId": "canh",
+            "text": "Hai đỉnh nằm cạnh nhau tạo thành một cạnh, không phải đường chéo."
+          },
+          {
+            "optionId": "cach-mot",
+            "text": "Hai đỉnh có một đỉnh ở giữa tạo thành đường chéo phụ."
+          },
+          {
+            "optionId": "cung",
+            "text": "Hai đỉnh trùng nhau chỉ là một đỉnh, không tạo thành đoạn thẳng nào."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "doi",
+          "content": {
+            "type": "text",
+            "text": "Hai đỉnh đối diện nhau"
+          }
+        },
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Hai đỉnh nằm cạnh nhau"
+          }
+        },
+        {
+          "id": "cach-mot",
+          "content": {
+            "type": "text",
+            "text": "Hai đỉnh có một đỉnh ở giữa"
+          }
+        },
+        {
+          "id": "cung",
+          "content": {
+            "type": "text",
+            "text": "Hai đỉnh trùng nhau"
+          }
+        }
+      ],
+      "answer": ["doi"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.cheo-chinh-eb-14",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.duong-cheo-luc-giac"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình lục giác đều có đường chéo chính EB = 14 cm. Đường chéo chính CF dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba đường chéo chính của hình lục giác đều bằng nhau. EB dài 14 cm thì CF cũng dài 14 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 14
+      },
+      "check": {
+        "expr": "14"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ghep-cheo-canh-4",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ghép sáu hình tam giác đều có cạnh 4 cm thành một hình lục giác đều. Đường chéo chính của hình lục giác dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-sau-mieng"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo chính dài gấp đôi cạnh. Cạnh dài 4 cm nên đường chéo chính dài 4 · 2 = 8 cm.",
+        "tex": "4 \\cdot 2 = \\concept{amber}{8}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "4 · 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.can-may-mieng",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cần mấy hình tam giác đều bằng nhau để ghép thành một hình lục giác đều?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cần sáu hình tam giác đều bằng nhau, xếp quanh một điểm thì được một hình lục giác đều.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Ba miếng chỉ ghép được một nửa hình lục giác đều."
+          },
+          {
+            "optionId": "b",
+            "text": "Bốn miếng chưa đủ để xếp kín một vòng quanh điểm giữa."
+          },
+          {
+            "optionId": "d",
+            "text": "Chỉ cần sáu miếng để xếp kín một vòng, không cần tám miếng."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ghep-cheo-canh-9",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ghep-luc-giac"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hình lục giác đều ghép từ các hình tam giác đều có cạnh 9 cm. Đường chéo chính của nó dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo chính dài gấp đôi cạnh. Cạnh dài 9 cm nên đường chéo chính dài 9 · 2 = 18 cm.",
+        "tex": "9 \\cdot 2 = \\concept{amber}{18}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 18
+      },
+      "check": {
+        "expr": "9 · 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ghep-cheo-canh-6",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ghep-luc-giac"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình lục giác đều có cạnh dài 6 cm. Đường chéo chính của nó dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo chính dài gấp đôi cạnh. Cạnh dài 6 cm nên đường chéo chính dài 6 · 2 = 12 cm.",
+        "tex": "6 \\cdot 2 = \\concept{amber}{12}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 12
+      },
+      "check": {
+        "expr": "6 · 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-tu-cheo-chinh-30",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ghep-luc-giac"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đường chéo chính của một hình lục giác đều dài 30 cm. Cạnh của hình đó dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Đường chéo chính dài gấp đôi cạnh. Vậy cạnh bằng một nửa đường chéo chính: 30 : 2 = 15 cm.",
+        "tex": "30 : 2 = \\concept{amber}{15}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "30 : 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.xep-buoc-ve-tam-giac-deu",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước vẽ một hình tam giác đều theo thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Phải có một cạnh trước, rồi mở compa bằng cạnh đó. Sau đó vẽ hai cung tròn, và cuối cùng nối chỗ hai cung gặp nhau với hai đầu cạnh."
+      },
+      "items": [
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Vẽ một cạnh bằng thước"
+          }
+        },
+        {
+          "id": "compa",
+          "content": {
+            "type": "text",
+            "text": "Mở compa bằng đúng độ dài cạnh đó"
+          }
+        },
+        {
+          "id": "cung",
+          "content": {
+            "type": "text",
+            "text": "Vẽ hai cung tròn từ hai đầu cạnh"
+          }
+        },
+        {
+          "id": "noi",
+          "content": {
+            "type": "text",
+            "text": "Nối chỗ hai cung gặp nhau với hai đầu cạnh"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.vi-sao-mo-compa",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vì sao phải mở compa bằng đúng độ dài cạnh đã vẽ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Mỗi điểm trên cung tròn cách tâm một đoạn bằng độ mở compa. Mở compa bằng cạnh đã vẽ thì hai cạnh mới dài bằng cạnh đó.",
+        "wrong": [
+          {
+            "optionId": "vuong",
+            "text": "Góc 90° là góc của hình vuông. Hình tam giác đều có các góc bằng 60°."
+          },
+          {
+            "optionId": "nho",
+            "text": "Hình nhỏ hay to là do độ dài cạnh đã vẽ, không phải do độ mở compa."
+          },
+          {
+            "optionId": "dai",
+            "text": "Hình tam giác đều không có cạnh dài hơn, vì ba cạnh của nó bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "bang",
+          "content": {
+            "type": "text",
+            "text": "Để hai cạnh mới dài bằng cạnh đã vẽ"
+          }
+        },
+        {
+          "id": "nho",
+          "content": {
+            "type": "text",
+            "text": "Để hình vẽ ra nhỏ hơn"
+          }
+        },
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Để các góc của hình bằng 90°"
+          }
+        },
+        {
+          "id": "dai",
+          "content": {
+            "type": "text",
+            "text": "Để hình có một cạnh dài hơn"
+          }
+        }
+      ],
+      "answer": ["bang"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ve-tam-giac-deu-def-6",
+      "type": "manipulate",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-tam-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình tam giác đều DEF có cạnh DE = 6 cm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ DE = 6 cm bằng thước. Mở compa 6 cm rồi vẽ hai cung tròn từ D và từ E. Hai cung gặp nhau tại F, nối F với D và E."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-tap-lam",
+      "validatorId": "ve-tam-giac-deu",
+      "params": {
+        "side": 6
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.mo-compa-bao-nhieu",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-tam-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn vẽ một lá cờ hình tam giác đều có cạnh 5 cm. Phải mở compa bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Compa phải mở bằng đúng độ dài cạnh, tức 5 cm.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "10 cm là gấp đôi cạnh. Compa phải mở bằng đúng độ dài cạnh."
+          },
+          {
+            "optionId": "a",
+            "text": "Compa mở 2 cm thì ngắn quá, hai cung tròn vẽ ra sẽ không gặp nhau."
+          },
+          {
+            "optionId": "c",
+            "text": "7 cm dài hơn cạnh 5 cm, nên hai cạnh mới sẽ dài hơn cạnh đã vẽ."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "10"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.hai-cung-gap-nhau",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-tam-giac-deu"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai cung tròn vẽ từ hai đầu của một cạnh gặp nhau ở điểm C. Nối C với hai đầu cạnh thì được hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Điểm C cách mỗi đầu cạnh một đoạn bằng độ mở compa, và độ mở đó bằng cạnh đã vẽ. Vậy ba cạnh bằng nhau, và ta được hình tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "vuong",
+            "text": "Hình vuông có bốn cạnh, mà ta chỉ nối ba điểm."
+          },
+          {
+            "optionId": "lg",
+            "text": "Hình lục giác đều có sáu cạnh, mà ta chỉ nối ba điểm."
+          },
+          {
+            "optionId": "doan",
+            "text": "Nối thêm hai đoạn từ C thì có ba đoạn thẳng, và ba đoạn đó tạo thành một hình có ba cạnh."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "td",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        },
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "lg",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        },
+        {
+          "id": "doan",
+          "content": {
+            "type": "text",
+            "text": "Một đoạn thẳng"
+          }
+        }
+      ],
+      "answer": ["td"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.xep-buoc-ve-hinh-vuong",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước vẽ một hình vuông theo thứ tự."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Phải có một cạnh trước, rồi dùng êke kẻ hai đường vuông góc ở hai đầu cạnh. Sau đó lấy hai đoạn bằng cạnh trên hai đường ấy, và cuối cùng nối hai điểm vừa lấy."
+      },
+      "items": [
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Vẽ một cạnh bằng thước"
+          }
+        },
+        {
+          "id": "eke",
+          "content": {
+            "type": "text",
+            "text": "Dùng êke kẻ hai đường vuông góc ở hai đầu cạnh"
+          }
+        },
+        {
+          "id": "lay",
+          "content": {
+            "type": "text",
+            "text": "Lấy hai đoạn bằng cạnh đã vẽ trên hai đường ấy"
+          }
+        },
+        {
+          "id": "noi",
+          "content": {
+            "type": "text",
+            "text": "Nối hai điểm vừa lấy"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.goc-eke-ve-hinh-vuong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khi vẽ hình vuông, êke giúp kẻ góc bao nhiêu độ ở hai đầu cạnh?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Các góc của hình vuông đều là góc vuông, bằng 90°. Êke có một góc vuông nên giúp kẻ góc 90°.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Góc 60° là góc của hình tam giác đều, không phải của hình vuông."
+          },
+          {
+            "optionId": "a",
+            "text": "Góc 45° nhỏ hơn góc vuông, mà góc của hình vuông là 90°."
+          },
+          {
+            "optionId": "d",
+            "text": "Góc 120° lớn hơn góc vuông, mà góc của hình vuông là 90°."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "45°"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "60°"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "90°"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "120°"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.ve-hinh-vuong-efgh-6",
+      "type": "manipulate",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình vuông EFGH có cạnh EF = 6 cm."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ EF = 6 cm bằng thước. Dùng êke kẻ hai đường vuông góc ở E và F, rồi lấy EH và FG cùng dài 6 cm. Nối H với G."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-tap-lam",
+      "validatorId": "ve-hinh-vuong",
+      "params": {
+        "side": 6
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.lay-doan-bao-nhieu",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn vẽ một ô gạch hình vuông có cạnh 4 cm. Trên mỗi đường vuông góc, phải lấy đoạn dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn cạnh bằng nhau. Cạnh đã vẽ dài 4 cm nên mỗi đoạn lấy thêm cũng dài 4 cm.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "8 cm là gấp đôi cạnh. Các đoạn lấy thêm phải bằng đúng cạnh đã vẽ."
+          },
+          {
+            "optionId": "a",
+            "text": "2 cm ngắn hơn cạnh 4 cm, nên bốn cạnh của hình vẽ ra không bằng nhau."
+          },
+          {
+            "optionId": "c",
+            "text": "6 cm dài hơn cạnh 4 cm, nên bốn cạnh của hình vẽ ra không bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "8"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.canh-thu-tu-7",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-hinh-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hình vuông có ba cạnh đã vẽ, mỗi cạnh dài 7 cm. Cạnh thứ tư dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn cạnh bằng nhau. Ba cạnh dài 7 cm thì cạnh thứ tư cũng dài 7 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "7"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-do-ba-canh",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đo ba cạnh của hình DEF thì được DE = 4 cm, DF = 4 cm và EF = 5 cm. Hình DEF có là hình tam giác đều không?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.tam-giac-4-4-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình tam giác đều phải có cả ba cạnh bằng nhau. Cạnh EF dài 5 cm, khác hai cạnh còn lại, nên chưa phải hình tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Hai cạnh bằng nhau chưa đủ, vì cạnh thứ ba còn phải bằng hai cạnh kia."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì ba cạnh chưa bằng nhau"
+          }
+        },
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì hai cạnh bằng nhau"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-bon-canh-bon-goc",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một viên gạch có bốn cạnh bằng nhau, và êke cho thấy cả bốn góc đều vuông. Đó là hình nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình có bốn cạnh bằng nhau và bốn góc vuông là hình vuông.",
+        "wrong": [
+          {
+            "optionId": "td",
+            "text": "Hình tam giác đều chỉ có ba cạnh."
+          },
+          {
+            "optionId": "lg",
+            "text": "Hình lục giác đều có sáu cạnh, không phải bốn cạnh."
+          },
+          {
+            "optionId": "canh",
+            "text": "Hình đã cho có bốn cạnh, không phải năm cạnh."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "td",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        },
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "lg",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        },
+        {
+          "id": "canh",
+          "content": {
+            "type": "text",
+            "text": "Hình có năm cạnh"
+          }
+        }
+      ],
+      "answer": ["vuong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-mot-goc-khong-vuong",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.kiem-tra-hinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hình có bốn cạnh bằng nhau, nhưng êke cho thấy một góc không vuông. Hình đó có là hình vuông không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình vuông phải có bốn cạnh bằng nhau và cả bốn góc vuông. Một góc không vuông thì hình đó chưa phải hình vuông.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Bốn cạnh bằng nhau chưa đủ, vì các góc cũng phải là góc vuông."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì có góc không vuông"
+          }
+        },
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì bốn cạnh bằng nhau"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-bon-goc-vuong",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.kiem-tra-hinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hình có bốn góc vuông, nhưng hai cạnh dài và hai cạnh ngắn. Hình đó có là hình vuông không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình vuông phải có bốn cạnh bằng nhau. Hình này có cạnh dài cạnh ngắn nên chưa phải hình vuông.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Bốn góc vuông chưa đủ, vì các cạnh cũng phải bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì các cạnh không bằng nhau"
+          }
+        },
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì bốn góc đều vuông"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.kiem-compa-ba-canh",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.kiem-tra-hinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Dùng compa so ba cạnh của một hình tam giác thì thấy cả ba cạnh vừa khít với nhau. Hình đó là hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba cạnh vừa khít nghĩa là ba cạnh bằng nhau. Hình tam giác có ba cạnh bằng nhau là hình tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "lech",
+            "text": "Ba cạnh vừa khít thì không thể dài ngắn khác nhau."
+          },
+          {
+            "optionId": "vuong",
+            "text": "Hình vuông có bốn cạnh, mà đây là hình tam giác."
+          },
+          {
+            "optionId": "lg",
+            "text": "Hình lục giác đều có sáu cạnh, mà đây là hình tam giác."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "td",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        },
+        {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "lg",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        },
+        {
+          "id": "lech",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác có các cạnh dài ngắn khác nhau"
+          }
+        }
+      ],
+      "answer": ["td"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-dai-ba-tam-giac",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba hình tam giác đều nhỏ ghép thành một hình thang như hình. Có tất cả bao nhiêu hình tam giác đều, kể cả hình ghép từ các hình nhỏ?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-dai-ba-tam-giac"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình có ba hình tam giác đều nhỏ. Hình thang ghép từ chúng không phải hình tam giác đều, nên không đếm thêm. Vậy có 3 hình tam giác đều."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-hinh-vuong-hai-hang",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mặt sàn gồm hai hàng, mỗi hàng ba viên gạch hình vuông bằng nhau. Có tất cả bao nhiêu hình vuông, kể cả hình ghép từ nhiều viên?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-luoi-2x3"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-luoi-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-luoi-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Có 6 hình vuông nhỏ. Hai ô liền nhau ở hai hàng ghép thành một hình vuông lớn hơn, và có 2 hình như vậy. Vậy có tất cả 6 + 2 = 8 hình vuông.",
+        "tex": "6 + 2 = \\concept{amber}{8}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "6 + 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-tam-giac-trong-luc-giac",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.dem-hinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba đường chéo chính chia một hình lục giác đều thành các hình tam giác đều nhỏ. Có tất cả bao nhiêu hình tam giác đều, kể cả hình ghép từ các hình nhỏ?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-luc-giac-ba-cheo"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba đường chéo chính chia hình lục giác đều thành sáu hình tam giác đều nhỏ bằng nhau. Không có hình tam giác đều nào lớn hơn trong hình này."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-hinh-vuong-mot-hang",
+      "type": "numeric",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.dem-hinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba ô vuông bằng nhau xếp thành một hàng ngang. Có tất cả bao nhiêu hình vuông, kể cả hình ghép từ nhiều ô?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-hang-ba-o"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba ô vuông xếp một hàng. Ghép các ô lại chỉ được hình chữ nhật, không được hình vuông mới. Vậy chỉ có 3 hình vuông."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dem-cach-dem-dung",
+      "type": "choice",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.dem-hinh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn đếm các hình vuông trong một hình lớn, nên làm thế nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình lớn có thể chứa nhiều hình vuông nhỏ và cả những hình vuông lớn hơn ghép từ chúng. Phải đếm hết các hình đó.",
+        "wrong": [
+          {
+            "optionId": "nho",
+            "text": "Chỉ đếm hình nhỏ nhất thì bỏ sót các hình vuông lớn hơn."
+          },
+          {
+            "optionId": "lon",
+            "text": "Chỉ đếm hình lớn nhất thì bỏ sót các hình vuông nhỏ."
+          },
+          {
+            "optionId": "doan",
+            "text": "Đoán thì dễ sai: phải đếm từng hình một."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "dung",
+          "content": {
+            "type": "text",
+            "text": "Đếm các hình vuông nhỏ, rồi đếm thêm các hình vuông lớn hơn ghép từ chúng"
+          }
+        },
+        {
+          "id": "nho",
+          "content": {
+            "type": "text",
+            "text": "Chỉ đếm các hình vuông nhỏ nhất"
+          }
+        },
+        {
+          "id": "lon",
+          "content": {
+            "type": "text",
+            "text": "Chỉ đếm hình vuông lớn nhất"
+          }
+        },
+        {
+          "id": "doan",
+          "content": {
+            "type": "text",
+            "text": "Đoán số hình vuông"
+          }
+        }
+      ],
+      "answer": ["dung"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-1-chon-tam-giac-deu",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình nào là hình tam giác đều?"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-1",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình tam giác đều có ba cạnh bằng nhau. Hình này quay đầu xuống nhưng ba cạnh vẫn bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hình này có ba cạnh, nhưng hai cạnh bên dài hơn cạnh đáy."
+          },
+          {
+            "optionId": "c",
+            "text": "Hình này có bốn cạnh, không phải ba cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "Hình này có tám cạnh, không phải ba cạnh."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dan-td-nguoc"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dan-tam-giac-cao"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dan-hinh-thang"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dan-bat-giac"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-1-noi-ten",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi tên với hình đúng."
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-1",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đếm số cạnh rồi so các cạnh. Ba cạnh bằng nhau là hình tam giác đều. Bốn cạnh bằng nhau và bốn góc vuông là hình vuông, còn sáu cạnh bằng nhau là hình lục giác đều."
+      },
+      "left": [
+        {
+          "id": "td",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        },
+        {
+          "id": "hv",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "lg",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "h1",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-luc-giac-deu"
+          }
+        },
+        {
+          "id": "h2",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-chu-nhat"
+          }
+        },
+        {
+          "id": "h3",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dan-td-nguoc"
+          }
+        },
+        {
+          "id": "h4",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.th-hinh-vuong"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "td",
+          "right": "h3"
+        },
+        {
+          "left": "hv",
+          "right": "h4"
+        },
+        {
+          "left": "lg",
+          "right": "h1"
+        }
+      ]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-1",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.4 và cho biết: Hình nào là hình tam giác đều, hình nào là hình vuông, hình nào là hình lục giác đều?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-4"
+        },
+        {
+          "type": "note",
+          "text": "Nối mỗi tên hình với hình đúng."
+        }
+      ],
+      "bookRef": "SBT 4.1",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-1-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-1-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đếm số cạnh rồi so các cạnh và các góc. Hình c có ba cạnh bằng nhau, hình b có bốn cạnh bằng nhau và bốn góc vuông, hình f có sáu cạnh bằng nhau. Hình e cũng có ba cạnh nhưng một cạnh ngắn hơn hai cạnh kia."
+      },
+      "left": [
+        {
+          "id": "td",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        },
+        {
+          "id": "hv",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "lg",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "ha",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.4a"
+          }
+        },
+        {
+          "id": "hb",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.4b"
+          }
+        },
+        {
+          "id": "hc",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.4c"
+          }
+        },
+        {
+          "id": "hd",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.4d"
+          }
+        },
+        {
+          "id": "he",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.4e"
+          }
+        },
+        {
+          "id": "hf",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.4f"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "td",
+          "right": "hc"
+        },
+        {
+          "left": "hv",
+          "right": "hb"
+        },
+        {
+          "left": "lg",
+          "right": "hf"
+        }
+      ]
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-2-mo-compa-9",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn vẽ hình tam giác đều có cạnh 9 cm, phải mở compa bao nhiêu cm?"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-2",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai cung tròn vẽ từ hai đầu cạnh phải có bán kính bằng cạnh. Vậy compa phải mở bằng đúng 9 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "9"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-2-ve-7",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình tam giác đều DEF có cạnh DE = 7 cm."
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-2",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ DE = 7 cm bằng thước. Mở compa 7 cm rồi vẽ hai cung tròn từ D và từ E. Hai cung gặp nhau tại F, nối F với D và E."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-tap-lam",
+      "validatorId": "ve-tam-giac-deu",
+      "params": {
+        "side": 7
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-2",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ tam giác đều MNP có cạnh MN = 4 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        }
+      ],
+      "bookRef": "SBT 4.2",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-2-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-2-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ MN = 4 cm bằng thước. Mở compa 4 cm rồi vẽ hai cung tròn từ M và từ N. Hai cung gặp nhau tại P, nối P với M và N."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-2-ve",
+      "validatorId": "ve-tam-giac-deu",
+      "params": {
+        "side": 4
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-3-ve-7",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình vuông EFGH có cạnh EF = 7 cm."
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-3",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ EF = 7 cm bằng thước. Dùng êke kẻ hai đường vuông góc ở E và F, rồi lấy EH và FG cùng dài 7 cm. Nối H với G."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-tap-lam",
+      "validatorId": "ve-hinh-vuong",
+      "params": {
+        "side": 7
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-3",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình vuông DEFQ có cạnh DE = 5 cm. Vẽ hai đường chéo DF và EQ. Hãy kiểm tra xem DF và EQ có vuông góc với nhau không."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        }
+      ],
+      "bookRef": "SBT 4.3",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-3-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-3-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ DE = 5 cm, dùng êke kẻ hai đường vuông góc ở D và E, rồi lấy DQ và EF cùng dài 5 cm. Nối Q với F rồi vẽ hai đường chéo DF và EQ. Đặt êke vào chỗ hai đường chéo cắt nhau thì thấy chúng vuông góc."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-3-ve",
+      "validatorId": "ve-hinh-vuong-cheo",
+      "params": {
+        "side": 5
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-4a-chon-phu",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho hình lục giác đều ABCDEF. Chọn tất cả các đường chéo phụ, tức các đường không đi qua tâm."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-abcdef-ten"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo phụ nối hai đỉnh mà giữa chúng còn một đỉnh khác. Giữa C và E có đỉnh D, giữa F và B có đỉnh A.",
+        "wrong": [
+          {
+            "optionId": "ad",
+            "text": "A và D ở hai phía đối diện nhau, nên AD là đường chéo chính."
+          },
+          {
+            "optionId": "cf",
+            "text": "C và F ở hai phía đối diện nhau, nên CF là đường chéo chính."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "ce",
+          "content": {
+            "type": "text",
+            "text": "CE"
+          }
+        },
+        {
+          "id": "fb",
+          "content": {
+            "type": "text",
+            "text": "FB"
+          }
+        },
+        {
+          "id": "ad",
+          "content": {
+            "type": "text",
+            "text": "AD"
+          }
+        },
+        {
+          "id": "cf",
+          "content": {
+            "type": "text",
+            "text": "CF"
+          }
+        }
+      ],
+      "answer": ["ce", "fb"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.5."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-5"
+        },
+        {
+          "type": "note",
+          "text": "Gọi tên các đường chéo phụ của hình lục giác đều MNPQRS;"
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các đường chéo phụ, tức các đường không đi qua tâm."
+        }
+      ],
+      "bookRef": "SBT 4.4a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-cheo-quy-tac",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-4a-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Đường chéo chính nối hai đỉnh đối diện nhau và đi qua tâm: MQ, NR và PS. Các đường chéo còn lại là đường chéo phụ. Vậy đường chéo phụ là NQ, QS, SN, MP, PR và MR.",
+        "wrong": [
+          {
+            "optionId": "mq",
+            "text": "MQ nối hai đỉnh đối diện nhau, nên là đường chéo chính."
+          },
+          {
+            "optionId": "nr",
+            "text": "NR nối hai đỉnh đối diện nhau, nên là đường chéo chính."
+          },
+          {
+            "optionId": "ps",
+            "text": "PS nối hai đỉnh đối diện nhau, nên là đường chéo chính."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "nq",
+          "content": {
+            "type": "text",
+            "text": "NQ"
+          }
+        },
+        {
+          "id": "qs",
+          "content": {
+            "type": "text",
+            "text": "QS"
+          }
+        },
+        {
+          "id": "sn",
+          "content": {
+            "type": "text",
+            "text": "SN"
+          }
+        },
+        {
+          "id": "mp",
+          "content": {
+            "type": "text",
+            "text": "MP"
+          }
+        },
+        {
+          "id": "pr",
+          "content": {
+            "type": "text",
+            "text": "PR"
+          }
+        },
+        {
+          "id": "mr",
+          "content": {
+            "type": "text",
+            "text": "MR"
+          }
+        },
+        {
+          "id": "mq",
+          "content": {
+            "type": "text",
+            "text": "MQ"
+          }
+        },
+        {
+          "id": "nr",
+          "content": {
+            "type": "text",
+            "text": "NR"
+          }
+        },
+        {
+          "id": "ps",
+          "content": {
+            "type": "text",
+            "text": "PS"
+          }
+        }
+      ],
+      "answer": ["nq", "qs", "sn", "mp", "pr", "mr"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-4b-do-6-6-6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đo ba cạnh của tam giác XYZ thì được XY = 6 cm, YZ = 6 cm và XZ = 6 cm. Tam giác XYZ có là tam giác đều không?"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình tam giác đều có ba cạnh bằng nhau. Cả ba cạnh đều dài 6 cm nên XYZ là tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "khong",
+            "text": "Ba cạnh đều dài 6 cm, nên chúng bằng nhau chứ không khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì ba cạnh bằng nhau"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì ba cạnh khác nhau"
+          }
+        }
+      ],
+      "answer": ["co"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-4b-do-6-6-7",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đo ba cạnh của tam giác UVW thì được UV = 6 cm, VW = 6 cm và UW = 7 cm. Tam giác UVW có là tam giác đều không?"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình tam giác đều phải có cả ba cạnh bằng nhau. Cạnh UW dài 7 cm, khác hai cạnh còn lại.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Hai cạnh bằng nhau chưa đủ, vì cạnh thứ ba còn phải bằng hai cạnh kia."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì ba cạnh chưa bằng nhau"
+          }
+        },
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì hai cạnh bằng nhau"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-4b",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.5."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-5"
+        },
+        {
+          "type": "note",
+          "text": "Hãy đo độ dài các cạnh và cho biết các tam giác MPR và tam giác NQS trong Hình 4.5 có là các tam giác đều không."
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 4.4b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-4b-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-4b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Ba cạnh MP, PR, RM của tam giác MPR đo được bằng nhau. Ba cạnh NQ, QS, SN của tam giác NQS cũng vậy. Vậy cả hai đều là tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "mpr",
+            "text": "Tam giác NQS cũng có ba cạnh bằng nhau, nên nó cũng là tam giác đều."
+          },
+          {
+            "optionId": "nqs",
+            "text": "Tam giác MPR cũng có ba cạnh bằng nhau, nên nó cũng là tam giác đều."
+          },
+          {
+            "optionId": "khong",
+            "text": "Cả hai tam giác đều có ba cạnh bằng nhau, nên cả hai là tam giác đều."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "ca-hai",
+          "content": {
+            "type": "text",
+            "text": "Cả hai tam giác MPR và NQS đều là tam giác đều"
+          }
+        },
+        {
+          "id": "mpr",
+          "content": {
+            "type": "text",
+            "text": "Chỉ tam giác MPR là tam giác đều"
+          }
+        },
+        {
+          "id": "nqs",
+          "content": {
+            "type": "text",
+            "text": "Chỉ tam giác NQS là tam giác đều"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Cả hai tam giác MPR và NQS đều không phải tam giác đều"
+          }
+        }
+      ],
+      "answer": ["ca-hai"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-5a-compa-khit",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mở compa bằng cạnh XY của tam giác XYZ thì nó vừa khít cạnh XZ và cả cạnh YZ. Tam giác XYZ có là hình tam giác đều không?"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-5a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Compa vừa khít cả ba cạnh nghĩa là ba cạnh bằng nhau. Hình tam giác có ba cạnh bằng nhau là hình tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "khong",
+            "text": "Compa vừa khít cả ba cạnh nên ba cạnh bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì ba cạnh bằng nhau"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì ba cạnh chưa bằng nhau"
+          }
+        }
+      ],
+      "answer": ["co"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-5a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.6."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-6"
+        },
+        {
+          "type": "note",
+          "text": "Dùng compa kiểm tra xem hình ABC có là hình tam giác đều không."
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 4.5a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-5a-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-5a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Dùng compa so các cạnh: AB và AC bằng nhau, nhưng BC ngắn hơn hai cạnh đó. Ba cạnh chưa bằng nhau nên ABC không phải hình tam giác đều.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Hai cạnh bằng nhau chưa đủ, vì cạnh BC còn ngắn hơn."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Hình ABC là hình tam giác đều"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Hình ABC không phải là hình tam giác đều"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-5b",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.6."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-6"
+        },
+        {
+          "type": "note",
+          "text": "Dùng compa và êke (hoặc thước đo góc) để kiểm tra xem hình MNPQ có là hình vuông không."
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 4.5b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-5b-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-5b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Dùng compa so bốn cạnh MN, NP, PQ, QM thì thấy chúng bằng nhau. Dùng êke thì thấy cả bốn góc đều vuông. Vậy MNPQ là hình vuông.",
+        "wrong": [
+          {
+            "optionId": "khong",
+            "text": "Bốn cạnh bằng nhau và bốn góc vuông, nên đây đúng là hình vuông."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Hình MNPQ là hình vuông"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Hình MNPQ không phải là hình vuông"
+          }
+        }
+      ],
+      "answer": ["co"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-6-ghep",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bấm nút cộng để ghép đủ sáu hình tam giác đều thành một hình lục giác đều."
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-6",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Các hình tam giác đều xếp quanh một điểm. Cần sáu hình để xếp kín một vòng, và khi đó có hình lục giác đều."
+      },
+      "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-cung-lam",
+      "validatorId": "ghep-luc-giac",
+      "params": {
+        "n": 6
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-6-cheo-3",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ghép sáu hình tam giác đều có cạnh 3 cm thành một hình lục giác đều. Đường chéo chính của hình lục giác dài bao nhiêu cm?"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-6",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường chéo chính gồm hai cạnh của hình tam giác đều. Vậy nó dài 3 + 3 = 6 cm.",
+        "tex": "3 + 3 = \\concept{amber}{6}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "3 · 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-6",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Em hãy cắt 6 hình tam giác đều có cạnh là 5 cm và ghép lại thành một hình lục giác đều (H.4.7). Hãy tính độ dài đường chéo chính của hình lục giác đều vừa ghép được."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-7"
+        }
+      ],
+      "bookRef": "SBT 4.6",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-6-goi-y",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-6-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình lục giác đều ghép từ sáu hình tam giác đều có chung một đỉnh. Đường chéo chính gồm hai cạnh của hình tam giác đều, nên dài 5 + 5 = 10 cm.",
+        "tex": "5 + 5 = \\concept{amber}{10}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 10
+      },
+      "check": {
+        "expr": "5 · 2"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.8."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-8"
+        },
+        {
+          "type": "note",
+          "text": "Hãy kiểm tra xem có mấy hình lục giác đều. Đó là những hình nào?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các hình lục giác đều."
+        }
+      ],
+      "bookRef": "SBT 4.7a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.luc-giac-deu-quy-tac",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-7a-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Hình lục giác đều có sáu cạnh bằng nhau và sáu góc bằng nhau. Trong hình có hai hình như vậy là ABCDEF và MNPQRS.",
+        "wrong": [
+          {
+            "optionId": "ace",
+            "text": "ACE chỉ có ba cạnh, nên là hình tam giác, không phải hình lục giác."
+          },
+          {
+            "optionId": "bdf",
+            "text": "BDF chỉ có ba cạnh, nên là hình tam giác, không phải hình lục giác."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "abcdef",
+          "content": {
+            "type": "text",
+            "text": "ABCDEF"
+          }
+        },
+        {
+          "id": "mnpqrs",
+          "content": {
+            "type": "text",
+            "text": "MNPQRS"
+          }
+        },
+        {
+          "id": "ace",
+          "content": {
+            "type": "text",
+            "text": "ACE"
+          }
+        },
+        {
+          "id": "bdf",
+          "content": {
+            "type": "text",
+            "text": "BDF"
+          }
+        }
+      ],
+      "answer": ["abcdef", "mnpqrs"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.dan-4-7b-tam-giac-bon",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình tam giác đều ABC được chia thành 4 hình tam giác đều nhỏ như hình. Có tất cả bao nhiêu hình tam giác đều?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-tam-giac-bon"
+        }
+      ],
+      "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Có 4 hình tam giác đều nhỏ. Hình lớn ABC ghép từ chúng cũng là hình tam giác đều. Vậy có 4 + 1 = 5 hình.",
+        "tex": "4 + 1 = \\concept{amber}{5}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "4 + 1"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-7b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.8."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-hinh-4-8"
+        },
+        {
+          "type": "note",
+          "text": "Có tất cả bao nhiêu hình tam giác đều?"
+        }
+      ],
+      "bookRef": "SBT 4.7b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.dem-luc-giac-ba-cheo",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sbt-4-7b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Có hai hình tam giác đều lớn là ACE và BDF. Có thêm sáu hình tam giác đều nhỏ ở sáu đỉnh: ASR, BMS, CMN, DNP, EPQ, FQR. Tổng cộng 2 + 6 = 8 hình.",
+        "tex": "2 + 6 = \\concept{amber}{8}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "2 + 6"
+      }
+    }
+  ],
+  "sticker": {
+    "name": "Huy hiệu hình đều",
+    "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sticker"
+  }
+}

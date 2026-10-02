@@ -443,6 +443,72 @@
       "term": "tổng đại số",
       "forbidden": [],
       "color": "amber"
+    },
+    {
+      "term": "cạnh",
+      "forbidden": [],
+      "color": "blue"
+    },
+    {
+      "term": "góc",
+      "forbidden": [],
+      "color": "violet"
+    },
+    {
+      "term": "đường chéo",
+      "forbidden": [],
+      "color": "amber"
+    },
+    {
+      "term": "hình tam giác đều",
+      "forbidden": [],
+      "color": "teal"
+    },
+    {
+      "term": "hình vuông",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "hình lục giác đều",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "đỉnh",
+      "forbidden": []
+    },
+    {
+      "term": "tâm",
+      "forbidden": []
+    },
+    {
+      "term": "compa",
+      "forbidden": []
+    },
+    {
+      "term": "êke",
+      "forbidden": []
+    },
+    {
+      "term": "góc vuông",
+      "forbidden": []
+    },
+    {
+      "term": "vuông góc",
+      "forbidden": []
+    },
+    {
+      "term": "đường chéo chính",
+      "forbidden": []
+    },
+    {
+      "term": "đường chéo phụ",
+      "forbidden": []
+    },
+    {
+      "term": "thước đo góc",
+      "forbidden": []
     }
   ],
   "names": [
@@ -483,6 +549,62 @@
     "XXVIII",
     "XXIX",
     "XXX",
+    "ABC",
+    "ABCD",
+    "ABCDEF",
+    "AC",
+    "ACE",
+    "AD",
+    "ASR",
+    "BD",
+    "BDF",
+    "BMS",
+    "CD",
+    "CE",
+    "CF",
+    "CMN",
+    "DEF",
+    "DEFQ",
+    "DF",
+    "DNP",
+    "DQ",
+    "EB",
+    "EF",
+    "EFGH",
+    "EH",
+    "EPQ",
+    "EQ",
+    "FB",
+    "FG",
+    "FQR",
+    "MN",
+    "MNP",
+    "MNPQ",
+    "MNPQRS",
+    "MP",
+    "MPR",
+    "MQ",
+    "MR",
+    "NP",
+    "NQ",
+    "NQS",
+    "NR",
+    "PQ",
+    "PR",
+    "PS",
+    "QM",
+    "QS",
+    "RM",
+    "RSTU",
+    "RT",
+    "SN",
+    "UV",
+    "UVW",
+    "UW",
+    "VW",
+    "XYZ",
+    "XZ",
+    "YZ",
     "Moscow"
   ]
 }
