@@ -3092,14 +3092,18 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Cách viết nào đúng?"
+          "text": "Cách viết nào bằng tích sau?"
+        },
+        {
+          "type": "formula",
+          "tex": "4 \\cdot  (3 + 5)"
         }
       ],
       "hints": {
         "highlight": [
           {
             "target": "block",
-            "index": 0
+            "index": 1
           }
         ]
       },
@@ -3127,35 +3131,36 @@
           "id": "a",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 + 4 \\cdot  5"
+            "tex": "4 \\cdot  3 + 4 \\cdot  5"
           }
         },
         {
           "id": "b",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 + 5"
+            "tex": "4 \\cdot  3 + 5"
           }
         },
         {
           "id": "c",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot  (3 + 5) = 4 \\cdot  3 \\cdot  5"
+            "tex": "4 \\cdot  3 \\cdot  5"
           }
         },
         {
           "id": "d",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot  (3 + 5) = 4 + 3 + 5"
+            "tex": "4 + 3 + 5"
           }
         }
       ],
       "answer": ["a"],
       "multiple": false,
       "check": {
-        "relation": "holds"
+        "relation": "equal",
+        "expr": "4·(3+5)"
       }
     },
     {
