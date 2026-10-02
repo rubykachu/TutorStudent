@@ -650,8 +650,12 @@ class Walker {
       const url = file
         ? new URL(file.split("#")[0] ?? file, BASE_URL)
         : undefined;
-      const response = url ? await fetch(url, { method: "HEAD" }) : undefined;
-      if (!response?.ok) {
+      // The player downloads the video into a blob first (real percentage),
+      // so a blob URL means the file was served.
+      const served =
+        url?.protocol === "blob:" ||
+        (url !== undefined && (await fetch(url, { method: "HEAD" })).ok);
+      if (!served) {
         this.report(
           "fail",
           where,

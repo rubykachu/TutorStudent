@@ -58,3 +58,37 @@ export function neighbour(
     ? Math.min(value + 1, range.to)
     : Math.max(value - 1, range.from);
 }
+
+// Place of each dot of the "place the points" picture. Dots that share a tick
+// sit side by side. On a picture with many points, PILE_FROM dots or more on
+// one tick look the same as a single dot, so the pile is drawn as one unnamed
+// dot: names floating over the neighbouring ticks would read as other
+// numbers, and dots drawn on top of each other overlap. A dot is drawn and
+// named again once it leaves the pile.
+export const PILE_FROM = 3;
+
+export type DotPlace = {
+  offset: number;
+  // False for a dot hidden behind the first dot of its pile.
+  drawn: boolean;
+  named: boolean;
+};
+
+export function dotPlaces(
+  values: readonly number[],
+  radius: number,
+  crowded: boolean,
+): DotPlace[] {
+  return values.map((value, i) => {
+    const group = values.filter((other) => other === value).length;
+    const rank = values.slice(0, i).filter((other) => other === value).length;
+    if (crowded && group >= PILE_FROM) {
+      return { offset: 0, drawn: rank === 0, named: false };
+    }
+    return {
+      offset: (rank - (group - 1) / 2) * (radius * 2 + 2),
+      drawn: true,
+      named: true,
+    };
+  });
+}

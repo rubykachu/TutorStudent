@@ -6,6 +6,7 @@ import { LineTap } from "@/visuals/math/tap-hop-cac-so-nguyen/line-tap";
 import { LineTry } from "@/visuals/math/tap-hop-cac-so-nguyen/line-try";
 import {
   datDiem,
+  dotPlaces,
   lineTapRegions,
   neighbour,
   solutions,
@@ -56,6 +57,45 @@ describe("the place-the-points exercise", () => {
     expect(neighbour(range, 0, "up")).toBe(1);
     expect(neighbour(range, -5, "down")).toBe(-5);
     expect(neighbour(range, 5, "up")).toBe(5);
+  });
+});
+
+describe("the places of the dots of a crowded line", () => {
+  it("sets dots that share a tick side by side, all drawn and named", () => {
+    const places = dotPlaces([0, 0], 16, true);
+    expect(places.map((place) => [place.drawn, place.named])).toEqual([
+      [true, true],
+      [true, true],
+    ]);
+    expect(places[0]?.offset).toBeLessThan(0);
+    expect(places[1]?.offset).toBeGreaterThan(0);
+  });
+
+  it("draws a pile of three or more as one unnamed dot on a crowded line", () => {
+    const places = dotPlaces([0, 0, 0, 0, 0, 0], 16, true);
+    expect(places.map((place) => place.drawn)).toEqual([
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ]);
+    expect(places.every((place) => !place.named && place.offset === 0)).toBe(
+      true,
+    );
+  });
+
+  it("keeps a pile of three side by side and named when the line is not crowded", () => {
+    const places = dotPlaces([0, 0, 0], 16, false);
+    expect(places.every((place) => place.drawn && place.named)).toBe(true);
+    expect(places[2]?.offset).toBe(34);
+  });
+
+  it("draws and names a dot again once it leaves the pile", () => {
+    const places = dotPlaces([0, 0, 0, 0, 0, 3], 16, true);
+    expect(places[5]).toEqual({ offset: 0, drawn: true, named: true });
+    expect(places.slice(0, 5).filter((place) => place.drawn)).toHaveLength(1);
   });
 });
 

@@ -20,14 +20,13 @@ import {
   numberMark,
 } from "@/visuals/shared/number-line";
 import {
-  dotOffsets,
   type LineRange,
   planLine,
   signed,
   tickX,
   tryDotRadius,
 } from "@/visuals/shared/number-line-geometry";
-import { neighbour, pointKey, START_TICK } from "./logic";
+import { dotPlaces, neighbour, pointKey, START_TICK } from "./logic";
 
 // A number line with named points the child moves, one pair of large arrow
 // buttons per point (a tick is too narrow to tap), each press moving the
@@ -46,6 +45,9 @@ export type LineTrySpec = LineRange & {
 };
 
 const POINT_COLOR = "amber";
+// More points than this and the steppers are drawn closer together, so two
+// of them fit side by side on a phone and the picture stays short.
+const COMPACT_FROM = 4;
 const BUTTON =
   "inline-flex size-touch shrink-0 items-center justify-center rounded-lg border-2 border-border bg-surface text-foreground disabled:opacity-40 motion-safe:transition-transform motion-safe:active:scale-97";
 
@@ -98,9 +100,10 @@ export function LineTry({
     },
   });
 
+  const compact = names.length >= COMPACT_FROM;
   const radius = tryDotRadius(spec);
   const plan = planLine({ names: true, arrowRows: 0, zoneTags: false });
-  const offsets = dotOffsets(values, radius);
+  const places = dotPlaces(values, radius, compact);
   const marks = new Map(
     values.map((value) => [value, numberMark(POINT_COLOR, value)]),
   );
@@ -116,27 +119,33 @@ export function LineTry({
         className="h-auto w-full max-w-md"
       >
         <LineAxis range={spec} plan={plan} labelAt={spec.labelAt} marks={marks}>
-          {names.map((name, i) => (
-            <motion.g
-              key={name}
-              initial={false}
-              animate={{
-                x: tickX(spec, values[i] ?? START_TICK) + (offsets[i] ?? 0),
-              }}
-              transition={transition}
-            >
-              <NamedDot
-                x={0}
-                y={plan.axisY}
-                color={POINT_COLOR}
-                name={name}
-                radius={radius}
-              />
-            </motion.g>
-          ))}
+          {names.map((name, i) =>
+            places[i]?.drawn === false ? null : (
+              <motion.g
+                key={name}
+                initial={false}
+                animate={{
+                  x:
+                    tickX(spec, values[i] ?? START_TICK) +
+                    (places[i]?.offset ?? 0),
+                }}
+                transition={transition}
+              >
+                <NamedDot
+                  x={0}
+                  y={plan.axisY}
+                  color={POINT_COLOR}
+                  name={places[i]?.named ? name : undefined}
+                  radius={radius}
+                />
+              </motion.g>
+            ),
+          )}
         </LineAxis>
       </svg>
-      <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+      <div
+        className={`flex flex-wrap justify-center ${compact ? "gap-x-3 gap-y-2" : "gap-x-6 gap-y-3"}`}
+      >
         {names.map((name, i) => {
           const value = values[i] ?? START_TICK;
           const label = `điểm ${name}`;
@@ -150,7 +159,9 @@ export function LineTry({
                 <ConceptMark color={POINT_COLOR} className="size-4" />
                 {`Điểm ${name}`}
               </legend>
-              <div className="flex items-center gap-2">
+              <div
+                className={`flex items-center ${compact ? "gap-1" : "gap-2"}`}
+              >
                 <button
                   type="button"
                   className={BUTTON}
@@ -163,7 +174,7 @@ export function LineTry({
                 </button>
                 <output
                   aria-live="polite"
-                  className="min-w-14 text-center font-heading text-title font-bold text-concept-amber tabular-nums"
+                  className={`${compact ? "min-w-9" : "min-w-14"} text-center font-heading text-title font-bold text-concept-amber tabular-nums`}
                 >
                   {signed(value)}
                 </output>

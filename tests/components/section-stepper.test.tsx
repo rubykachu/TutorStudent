@@ -30,4 +30,14 @@ describe("SectionStepper", () => {
     render(<SectionStepper total={3} current={0} />);
     expect(screen.queryAllByRole("button")).toHaveLength(0);
   });
+
+  it("draws a long section's dots dense so the whole row fits", () => {
+    const { container, rerender } = render(
+      <SectionStepper total={24} current={0} />,
+    );
+    const stepper = container.querySelector("[data-section-stepper]");
+    expect(stepper).toHaveAttribute("data-dense");
+    rerender(<SectionStepper total={8} current={0} />);
+    expect(stepper).not.toHaveAttribute("data-dense");
+  });
 });
