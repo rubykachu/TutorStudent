@@ -69,6 +69,11 @@ describe("visualRegistry", () => {
       "ve-hinh-vuong": [{ side: 4 }],
       "ve-hinh-vuong-cheo": [{ side: 5 }],
       "ghep-luc-giac": [{ n: 6 }],
+      "ve-hinh-chu-nhat": [{ a: 3, b: 5 }],
+      "ve-hinh-thoi": [{ side: 4 }, { side: 5, angle: 60 }],
+      "ve-binh-hanh-hai-canh": [{ a: 3, b: 4 }],
+      "ve-binh-hanh-duong-cheo": [{ ab: 3, bc: 5, ac: 6 }],
+      "ghep-hinh": [{ n: 3 }, { n: 8 }],
       "gap-nhau": [
         { p: 4, q: 6, first: 1 },
         { p: 4, q: 5, first: 0 },

@@ -39,6 +39,17 @@ import {
   validators as signValidators,
 } from "@/visuals/math/dau-hieu-chia-het/logic";
 import {
+  INTERACTIVE_KINDS as QUADS_INTERACTIVE_KINDS,
+  LESSON_SLUG as QUADS_SLUG,
+  VISUAL_SPECS as QUADS_SPECS,
+  regionsOf as quadsRegions,
+  validatorIdOf as quadsValidatorId,
+} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/catalog";
+import {
+  solutions as quadsSolutions,
+  validators as quadsValidators,
+} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/logic";
+import {
   INTERACTIVE_KINDS as SHAPES_INTERACTIVE_KINDS,
   LESSON_SLUG as SHAPES_SLUG,
   VISUAL_SPECS as SHAPES_SPECS,
@@ -747,6 +758,31 @@ const shapesEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can": one per
+// item of its catalog. The drawing boards and the piece boards carry the
+// validator of the `manipulate` exercises built on them; a figure with
+// tappable polygons declares its regions.
+const quadsEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(QUADS_SPECS).map(([key, spec]) => {
+    const validatorId = quadsValidatorId(spec) as
+      | keyof typeof quadsValidators
+      | undefined;
+    const regions = quadsRegions(spec);
+    const entry: VisualEntry = {
+      interactive: QUADS_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: quadsValidators[validatorId] },
+            solutions: { [validatorId]: quadsSolutions[validatorId] },
+          }),
+      load: () => lessonExample(QUADS_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${QUADS_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
@@ -755,6 +791,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...bracketEntries,
   ...divisionEntries,
   ...shapesEntries,
+  ...quadsEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1568,6 +1605,10 @@ const EXAMPLE_MODULES = lessonModules({
   "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu": () =>
     import(
       "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/examples"
+    ),
+  "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can": () =>
+    import(
+      "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/examples"
     ),
   "quy-tac-dau-ngoac": () =>
     import("@/visuals/math/quy-tac-dau-ngoac/examples"),
