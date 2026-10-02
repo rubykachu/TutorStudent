@@ -18,6 +18,7 @@ import {
   readParentData,
 } from "@/progress/parent-data";
 import { recordAttempt } from "@/progress/record";
+import { resetLessonProgress } from "@/progress/reset";
 import { saveOpenEndedWriting } from "@/progress/writing";
 
 const NOW = new Date("2026-09-30T02:00:00Z");
@@ -116,6 +117,15 @@ describe("parent data", () => {
     expect(backup.attempts.every((a) => a.childId === "na")).toBe(true);
     // Plain JSON: survives a round trip unchanged.
     expect(JSON.parse(JSON.stringify(backup))).toEqual(backup);
+  });
+
+  it("writes version 2 with the lesson resets and the time each section was done", async () => {
+    await study(db, na);
+    await resetLessonProgress(db, na, "other", NOW);
+    const backup = await buildProgressExport(db, profile, NOW);
+    expect(backup.version).toBe(2);
+    expect(backup.resets).toEqual({ other: NOW.toISOString() });
+    expect(backup.sections[0]?.doneAt).toBe(NOW.toISOString());
   });
 
   it("names the backup file in plain ASCII", () => {

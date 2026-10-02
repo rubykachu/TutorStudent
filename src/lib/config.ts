@@ -156,4 +156,7 @@ export const SYNC_HISTORY_PULL_PER_MINUTE = SYNC_GET_LIMIT_PER_MINUTE / 4;
 // how much a request body may exceed its doc's cap (the JSON wrapper around
 // the doc).
 export const SYNC_PROFILE_CACHE_SECONDS = 60;
+// Largest backup file the parent page's "import" accepts; bigger is refused
+// before it is read.
+export const BACKUP_IMPORT_MAX_BYTES = 5_000_000;
 export const SYNC_BODY_SLACK_BYTES = 4_096;

@@ -50,9 +50,11 @@ export async function readParentData(
 }
 
 // Bumped whenever the shape of the backup changes, so a later import can
-// tell old files apart.
+// tell old files apart. Version 2 adds `resets` (when each lesson was started
+// over); its `overviewSeen:*` settings hold times and its sections carry
+// `doneAt`. Version 1 files still import: the missing parts are derived.
 export const PROGRESS_EXPORT_FORMAT = "tutor-progress";
-export const PROGRESS_EXPORT_VERSION = 1;
+export const PROGRESS_EXPORT_VERSION = 2;
 
 export type ProgressExport = ParentData & {
   format: typeof PROGRESS_EXPORT_FORMAT;
@@ -60,6 +62,8 @@ export type ProgressExport = ParentData & {
   exportedAt: string;
   profile: ProfileRecord;
   settings: SettingRecord[];
+  // Lesson id -> when the child started it over.
+  resets: Record<string, string>;
 };
 
 // The child's whole local record as plain JSON: a backup to keep until
@@ -70,10 +74,17 @@ export async function buildProgressExport(
   now: Date,
 ): Promise<ProgressExport> {
   const scope = { familyId: profile.familyId, childId: profile.id };
-  const [data, settings] = await Promise.all([
+  const [data, settings, resets] = await Promise.all([
     readParentData(db, scope),
     db.settings
       .where("[familyId+childId+key]")
+      .between(
+        [scope.familyId, scope.childId, Dexie.minKey],
+        [scope.familyId, scope.childId, Dexie.maxKey],
+      )
+      .toArray(),
+    db.lessonResets
+      .where("[familyId+childId+lessonId]")
       .between(
         [scope.familyId, scope.childId, Dexie.minKey],
         [scope.familyId, scope.childId, Dexie.maxKey],
@@ -86,6 +97,7 @@ export async function buildProgressExport(
     exportedAt: now.toISOString(),
     profile,
     settings,
+    resets: Object.fromEntries(resets.map((r) => [r.lessonId, r.at])),
     ...data,
   };
 }

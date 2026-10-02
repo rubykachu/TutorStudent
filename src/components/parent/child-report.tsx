@@ -1,9 +1,8 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
-import { Circle, CircleCheck, Download, Flame } from "lucide-react";
+import { Circle, CircleCheck, Flame } from "lucide-react";
 import { type ReactNode, useCallback, useState } from "react";
-import { BigButton } from "@/components/big-button";
 import { Formula } from "@/components/blocks/formula";
 import { Sticker } from "@/components/sticker";
 import type { LessonIndex } from "@/content";
@@ -17,12 +16,7 @@ import {
   useContentIndex,
   useLessons,
 } from "@/progress/hooks";
-import {
-  buildProgressExport,
-  type ParentData,
-  progressExportFileName,
-  readParentData,
-} from "@/progress/parent-data";
+import { type ParentData, readParentData } from "@/progress/parent-data";
 import {
   cardConceptNames,
   type DayStudy,
@@ -52,6 +46,7 @@ import {
   WEEKDAY_SHORT,
 } from "./format";
 import { HistoryLoading } from "./history-loading";
+import { ImportBackup } from "./import-backup";
 import { CARD, Panel } from "./panel";
 import { ResetLessonDialog } from "./reset-lesson-dialog";
 
@@ -515,7 +510,10 @@ function Backup({ profile }: { profile: ProfileRecord }) {
       title="Sao lưu tiến độ"
       note="Tiến độ hiện chỉ nằm trên máy này. Thỉnh thoảng hãy tải một bản sao lưu để giữ lại."
     >
-      <ExportBackupButton profile={profile} />
+      <div className="flex flex-col gap-3 md:flex-row md:flex-wrap">
+        <ExportBackupButton profile={profile} />
+        <ImportBackup />
+      </div>
     </Panel>
   );
 }

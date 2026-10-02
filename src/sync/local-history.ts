@@ -155,14 +155,15 @@ export async function eraseHistoryBeforeResets(
 // Adds the records of a month doc that the reset markers leave visible to
 // Dexie. It never deletes a record, and a record the markers hide (an answer
 // given before a reset made on any device) is not brought back. `resets` are
-// the main doc's; the local markers count too.
+// the main doc's; the local markers count too. Returns how many records it
+// added.
 export async function applyHistoryDoc(
   db: TutorDb,
   doc: HistoryDoc,
   resets: Readonly<Record<string, string>>,
-): Promise<void> {
+): Promise<{ attempts: number; writings: number }> {
   const scope = localScope(doc.childId);
-  await db.transaction(
+  return db.transaction(
     "rw",
     [db.attempts, db.writings, db.lessonResets],
     async () => {
@@ -183,19 +184,22 @@ export async function applyHistoryDoc(
       const haveAttempts = await db.attempts.bulkGet(
         visible.attempts.map((a) => a.id),
       );
+      const newAttempts = visible.attempts.filter(
+        (_, i) => haveAttempts[i] === undefined,
+      );
       await db.attempts.bulkAdd(
-        visible.attempts
-          .filter((_, i) => haveAttempts[i] === undefined)
-          .map((a): AttemptRecord => ({ ...scope, ...a })),
+        newAttempts.map((a): AttemptRecord => ({ ...scope, ...a })),
       );
       const haveWritings = await db.writings.bulkGet(
         visible.writings.map((w) => w.id),
       );
-      await db.writings.bulkAdd(
-        visible.writings
-          .filter((_, i) => haveWritings[i] === undefined)
-          .map((w): WritingRecord => ({ ...scope, ...w })),
+      const newWritings = visible.writings.filter(
+        (_, i) => haveWritings[i] === undefined,
       );
+      await db.writings.bulkAdd(
+        newWritings.map((w): WritingRecord => ({ ...scope, ...w })),
+      );
+      return { attempts: newAttempts.length, writings: newWritings.length };
     },
   );
 }

@@ -174,7 +174,9 @@ export function monthAdapter(
         ([lessonId, part]) => sent[lessonId] !== part,
       );
     },
-    apply: async (doc) => applyHistoryDoc(db, doc, await resets()),
+    apply: async (doc) => {
+      await applyHistoryDoc(db, doc, await resets());
+    },
     overwrite: (sent, stored) => overwriteClamped(db, "history", sent, stored),
     // Nothing is recorded for a month that is empty on both sides: it is not
     // a month that exists.
