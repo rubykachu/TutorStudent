@@ -79,6 +79,19 @@ export function filesNamingOrigin(
   return files.filter((f) => f.text.includes(origin)).map((f) => f.path);
 }
 
+// The main working tree: the first entry of `git worktree list`. The lab may
+// run from another worktree, but media files and the owner's settings live in
+// the main tree.
+export function mainTreeRoot(exec: Exec, root: string): string {
+  const listed = exec(["git", "worktree", "list", "--porcelain"], {
+    cwd: root,
+  });
+  const first = listed.stdout
+    .split("\n")
+    .find((line) => line.startsWith("worktree "));
+  return first ? first.slice("worktree ".length).trim() : root;
+}
+
 function realMediaOrigin(root: string): string {
   const file = path.join(root, ENV_FILE);
   if (!existsSync(file)) return "";
@@ -180,7 +193,8 @@ export async function startLab(args: LabArgs, deps: LabDeps): Promise<Lab> {
       ["pnpm", "install", "--frozen-lockfile", "--prefer-offline"],
       false,
     );
-    const media = path.join(root, "public/media");
+    const mainRoot = mainTreeRoot(exec, root);
+    const media = path.join(mainRoot, "public/media");
     if (existsSync(media)) {
       symlinkSync(media, path.join(worktree, "public/media"));
     }
@@ -193,7 +207,7 @@ export async function startLab(args: LabArgs, deps: LabDeps): Promise<Lab> {
     run("build", ["pnpm", "build"], true);
 
     const staticDir = path.join(worktree, ".next", "static");
-    const origin = realMediaOrigin(root);
+    const origin = realMediaOrigin(mainRoot);
     const naming = filesNamingOrigin(readBundle(staticDir), origin);
     if (naming.length > 0) {
       throw new Error(

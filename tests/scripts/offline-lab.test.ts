@@ -4,6 +4,7 @@ import { OFFLINE_PORT, OFFLINE_SERVER_ENV, TEST_PORT } from "../../e2e/targets";
 import {
   filesNamingOrigin,
   labEnv,
+  mainTreeRoot,
   parseLabArgs,
 } from "../../scripts/lib/offline-lab";
 
@@ -94,5 +95,22 @@ describe("filesNamingOrigin", () => {
 
   it("finds nothing when no origin is configured", () => {
     expect(filesNamingOrigin(files, "")).toEqual([]);
+  });
+});
+
+describe("mainTreeRoot", () => {
+  it("is the first worktree of the list, whichever one runs the lab", () => {
+    const exec = () => ({
+      status: 0,
+      stderr: "",
+      stdout:
+        "worktree /work/main\nHEAD abc\nbranch refs/heads/main\n\nworktree /tmp/other\nHEAD def\ndetached\n",
+    });
+    expect(mainTreeRoot(exec, "/tmp/other")).toBe("/work/main");
+  });
+
+  it("falls back to the given root when git says nothing", () => {
+    const exec = () => ({ status: 1, stdout: "", stderr: "no" });
+    expect(mainTreeRoot(exec, "/tmp/here")).toBe("/tmp/here");
   });
 });
