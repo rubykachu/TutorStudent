@@ -64,6 +64,7 @@ export const SMOKE_CHECK_NAMES = [
   "login with the family code",
   "content index 200",
   "media 206",
+  "sync 401 without cookie",
 ] as const;
 
 export async function runSmokeChecks(input: SmokeInput): Promise<SmokeCheck[]> {
@@ -136,6 +137,15 @@ export async function runSmokeChecks(input: SmokeInput): Promise<SmokeCheck[]> {
     if (!mediaUrl) return [false, "no media URL to test"];
     const response = await get(mediaUrl, { headers: { range: "bytes=0-99" } });
     return [response.status === 206, `${response.status} ${mediaUrl}`];
+  });
+
+  // The progress API sits behind the same gate: without the family cookie it
+  // answers 401 whatever the storage setting, and never reads the bucket.
+  await attempt("sync 401 without cookie", async () => {
+    const response = await get(`${appUrl}/api/sync?doc=profile`, {
+      redirect: "manual",
+    });
+    return [response.status === 401, String(response.status)];
   });
 
   return checks;

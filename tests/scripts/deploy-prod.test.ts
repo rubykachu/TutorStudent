@@ -59,6 +59,7 @@ function fakeSite(
         },
       }),
     "GET media": () => new Response("x", { status: 206 }),
+    "GET /api/sync": () => new Response(null, { status: 401 }),
     ...overrides,
   };
   return (async (url: string, init?: RequestInit) => {
@@ -80,9 +81,16 @@ const input = {
 };
 
 describe("runSmokeChecks", () => {
-  it("passes all five checks on a healthy site", async () => {
+  it("passes all six checks on a healthy site", async () => {
     const checks = await runSmokeChecks({ ...input, fetch: fakeSite() });
-    expect(checks.map((c) => c.ok)).toEqual([true, true, true, true, true]);
+    expect(checks.map((c) => c.ok)).toEqual([
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+    ]);
   });
 
   it("fails the login check without a code and skips the content check", async () => {
@@ -93,6 +101,24 @@ describe("runSmokeChecks", () => {
     });
     expect(checks[2]?.ok).toBe(false);
     expect(checks[3]).toMatchObject({ ok: false });
+  });
+
+  it("fails when the sync API answers without a cookie", async () => {
+    for (const status of [200, 404, 503]) {
+      const checks = await runSmokeChecks({
+        ...input,
+        fetch: fakeSite({
+          "GET /api/sync": () => new Response("{}", { status }),
+        }),
+      });
+      expect(checks.filter((c) => !c.ok)).toEqual([
+        {
+          name: "sync 401 without cookie",
+          ok: false,
+          detail: String(status),
+        },
+      ]);
+    }
   });
 
   it("fails when the gate is open and when media ignores Range", async () => {
