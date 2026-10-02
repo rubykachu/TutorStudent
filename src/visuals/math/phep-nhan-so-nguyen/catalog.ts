@@ -224,10 +224,6 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "Số âm nhân với số dương là cộng lặp lại số âm đó",
     [
       {
-        tex: `\\begin{gathered} (-2) \\cdot 3 \\\\ = (-2) + (-2) + (-2) \\\\ = ${neg(-6)} \\end{gathered}`,
-        tag: tag("−2 lấy 3 lần", NEGATIVE),
-      },
-      {
         tex: steps("(-4) \\cdot 2", `= (-4) + (-4) = ${neg(-8)}`),
         tag: tag("−4 lấy 2 lần", NEGATIVE),
       },
