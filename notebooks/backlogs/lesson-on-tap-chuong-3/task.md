@@ -1,11 +1,12 @@
 # Bàn giao: `on-tap-chuong-3` (Ôn tập chương III, Toán 6 tập 1, Kết nối tri thức)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bài `draft`, xong review vòng 1 (toàn bài, 3 Reviewer Opus + Tổng hợp Opus) và đã sửa; chưa duyệt: không có `reviewedHash`, id chưa khoá (89 id), chưa có lời đọc và video (làm sau khi bài được duyệt và xuất bản).
-- Vòng 1: 7 Nghiêm trọng, 24 Nên sửa, 15 Góp ý, ghi ở `content/math/kntt/on-tap-chuong-3/review.md` (bản đã review `5d7ca2e3…`, đã `content:hash --mark`); tệp nhóm `.shots/review/on-tap-chuong-3/nhom-{1,2,3}.md` (không commit). Lessons-learned đã tăng LL-08 (2), LL-09, LL-12, LL-21, LL-23, LL-24 và thêm dòng của bài vào bảng vòng 1.
-- Đã sửa (tác giả Sonnet, mục "Đã sửa sau vòng 1" cuối `review.md`): mọi Nghiêm trọng và Nên sửa, trừ phần cần hình mới (Nên sửa 23) và phần cần sửa app (Nên sửa 24), xem mục "Việc còn lại sau review". Bài từ 44 lên 46 câu; đổi id `tinh-6-4-tru-am-5` → `tru-hai-tich`, `boi-cua-4` → `boi-cua-7`, `boi-4-trong-khoang` → `boi-7-trong-khoang`, `uoc-duong-14` → `uoc-duong-22`; thêm câu `o-xa-bang-tich`, `o-xa-bang-tong`, mẹo `kiem-lai-x`; mẹo `tach-thua-so` chuyển lên section `thua-so-chung-3-43`.
-- Đã chạy sau khi sửa: `pnpm content:check` 0 lỗi của bài (chỉ cảnh báo id chưa khoá); `pnpm lesson:walk on-tap-chuong-3` 0 FAIL, 0 cảnh báo ở ipad, phone, ipad-landscape (cây git tạm, cổng 3530), ảnh ở `.shots/walk/on-tap-chuong-3/`; `pnpm lint`, `pnpm typecheck`, `pnpm test` qua; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
-- Việc tiếp theo: review vòng 2 (toàn bài) do một phiên mới, xem mục "Chạy vòng 2".
+- Cập nhật cuối: 02/10/2026. Bài `published` sau review vòng 2: `reviewedHash` `94dbb2d8cc14e98720235db20fbf58e437a8b4ab5740b5e788a20e2280a75b4b`, 89 id đã khoá (`content:lock on-tap-chuong-3`). Chưa có lời đọc tổng quan và video; chưa tải media, chưa deploy.
+- Vòng 1: 7 Nghiêm trọng, 24 Nên sửa, 15 Góp ý, đã sửa (trừ phần cần hình mới và sửa app, xem "Việc còn lại sau review").
+- Vòng 2 (toàn bài, 3 Reviewer Opus + Tổng hợp Opus): 0 Nghiêm trọng, 8 Nên sửa, 14 Góp ý, ghi ở `content/math/kntt/on-tap-chuong-3/review.md`; tệp nhóm `.shots/review/on-tap-chuong-3/nhom-{1,2,3}-r2.md` (không commit). Tác giả Sonnet sửa đủ 8 Nên sửa (mục "Đã sửa sau vòng 2"). Câu quy tắc bảng ba ô được xét là không ngoài nguồn (lời giải sách tr.114 suy ra đúng ô 1 bằng ô 4), giữ cờ `rule`; sau lượt đọc hiểu, câu chốt là "Nếu ba ô liền nhau luôn có cùng tích khác 0 (cùng tổng), thì ô 1, ô 4, ô 7 có cùng một số." Đề 3.43b, 3.44b thêm dấu "." như sách (quy ước ghi ở mục "Giả định"). Không có Nghiêm trọng nên không đổi `docs/lessons-learned/`.
+- Đọc hiểu (Haiku) trên 116 mục chữ đổi (`doc-hieu-r1-items.txt` cộng chữ đổi vòng 2): 98 / 18 / 0, viết lại 18 mục, lượt 2: 16 / 2 / 0, viết lại 2 mục, lượt 3: 2 / 0 / 0. Một Reviewer Sonnet kiểm phần đổi sau đó (`.shots/review/on-tap-chuong-3/r2-fix-check.md`): 0 Nghiêm trọng, 2 Nên sửa (đã sửa), 5 Góp ý.
+- Đã chạy sau khi duyệt: `pnpm content:check` 0 lỗi; `pnpm lesson:walk on-tap-chuong-3` 0 FAIL, 0 cảnh báo ở ipad, phone, ipad-landscape (cây git tạm, cổng 3550, đã gỡ), ảnh ở `.shots/walk/on-tap-chuong-3/` (ảnh cũ của vòng 1 chuyển sang `.shots/walk/on-tap-chuong-3.old-r1/`, xoá tay khi tiện); `pnpm lint`, `pnpm typecheck`, `pnpm test` qua; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+- Việc tiếp theo: lời đọc tổng quan và video theo skill `lesson-video` (một phiên mới, Sonnet; chọn giọng đối xen kẽ với Bài 17), review kịch bản và lời đọc (Sonnet), rồi tải media và deploy khi chủ dự án đồng ý (`docs/operations.md` "Đưa bài mới lên production": media trước, deploy sau).
 
 ## Nguồn (sách bài tập, `sources/math/on-tap-chuong-3/`, không commit)
 - Trang in = trang PDF − 1 (PDF `/Users/minhtang/Documents/MyProject/NhaKy/Toan6-tap1.pdf`, chỉ đọc). Ảnh dựng bằng `pdftoppm` 200 dpi (1363 × 1938), cùng cỡ ảnh các bài khác.
@@ -87,9 +88,10 @@ Như mục "Chạy vòng 1" (cùng ba nhóm section, 3 Reviewer Opus song song r
 - Sau vòng hết Nghiêm trọng: lượt Đọc hiểu (Haiku) trên các mục chữ đổi ở `.shots/review/on-tap-chuong-3/doc-hieu-r1-items.txt` (108 mục, tác giả ghi lúc sửa vòng 1; cộng thêm chữ đổi ở vòng 2 lấy từ `pnpm content:diff`), rồi mới `content:hash --approve` và `pnpm content:lock on-tap-chuong-3`.
 
 ## Việc còn lại sau review
-- Xuất bản: `content:hash --approve`, `content:lock on-tap-chuong-3` (sau Đọc hiểu cho chữ đổi).
-- Chưa làm theo quyết định chủ dự án: lời đọc tổng quan và video (chọn giọng đối xen kẽ với Bài 17 theo skill `lesson-video`), tải media và deploy (cần chủ dự án đồng ý từng bước ngoài máy này).
-- Hình riêng cho bài (mục "Hình"), nếu chủ dự án muốn.
-- Hình bảng ô cho recap `bang-tich`, `bang-tong` (Nên sửa 23 vòng 1): recap đã có câu "hai ô cách nhau hai ô bằng nhau" nhưng vẫn gắn hình của Bài 17 và Bài 14; cần skill `lesson-visual` (sửa `src/visuals/`), phiên này không được đụng `src/`.
-- Sửa app cho `fillBlank` dạng bảng (Nên sửa 24 vòng 1, việc của `src/`): ô đã cho (6, −4, −7, 3) là chữ trơn không khung, và dòng 11 ô tự gãy dòng (phone 4/3/4, iPad 8/3) nên dấu "|" có thể đứng đầu dòng; đề xuất ô đã cho có khung, hoặc đánh số thứ tự ô.
-- Luật `content:check` hay sửa `key` cho `wrong` trùng chữ (mục "Phát hiện về công cụ"); đề xuất với chủ dự án.
+- Lời đọc tổng quan và video (mục "Trạng thái"), rồi tải media và deploy (cần chủ dự án đồng ý từng bước ngoài máy này).
+- Hình bảng ô cho recap `bang-tich`, `bang-tong` (Nên sửa 23 vòng 1, vẫn mở sau vòng 2): recap có câu quy tắc bảng ba ô nhưng còn gắn hình `chia-het-vi-du` (Bài 17) và `tong-doi-vi-du` (Bài 14), không có bảng ô nào. Cần skill `lesson-visual` (sửa `src/visuals/`, đăng ký registry) làm hình một dòng ô đánh số, tô ô 1, ô 4, ô 7 cùng màu; rồi đổi `visualId` của hai recap section và hai card, review phần đổi.
+- Hình riêng khác (không chặn): hình nấc 2 cho các câu sách; hình `uoc-chung-vi-du` đang in sẵn ±1, ±2, ±3, ±6 là đáp án 3.47 (Góp ý vòng 2); hình phép tách số cho card `thua-so-chung-3-44`; sticker riêng.
+- Sửa app cho `fillBlank` dạng bảng (Nên sửa 24 vòng 1, việc của `src/`): ô đã cho là chữ trơn không khung, dòng 11 ô gãy dòng nên dấu "|" có thể đứng đầu dòng.
+- Luật `content:check` hay sửa `key` cho `wrong` trùng chữ (mục "Phát hiện về công cụ").
+- Góp ý vòng 2 chưa làm (14 mục trong `review.md` và 5 mục trong `r2-fix-check.md`): tuỳ tác giả; sửa chữ thì đổi hash, cần vòng chỉ phần đổi (Sonnet) và lượt Haiku trên chữ đổi trước khi duyệt lại.
+- Bài 13 (`tap-hop-cac-so-nguyen`) đang được một phiên khác sửa (nội dung và hình); bài này dùng 8 hình của Bài 13, nên khi phiên đó commit cần chạy lại `lesson:walk on-tap-chuong-3`.
