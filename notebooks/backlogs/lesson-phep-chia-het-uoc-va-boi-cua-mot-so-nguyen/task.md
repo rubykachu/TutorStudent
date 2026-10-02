@@ -3,9 +3,9 @@
 ## Trạng thái
 - Cập nhật cuối: 02/10/2026. Bài đã duyệt và xuất bản (`published`): review vòng 1, 2 (Opus), 3, 4 (Sonnet) hết Nghiêm trọng; Haiku đọc hiểu 4 lượt; `content:hash --approve`, `content:lock` (103 id), `content:emit` đã chạy. `content:check` của bài 0 lỗi, `visual:shot` 100/100, `lesson:walk` 0 failures 0 cảnh báo, `typecheck` và `biome check` đạt.
 - Việc còn lại:
-  1. Khớp Bài 16 `phep-nhan-so-nguyen` khi Bài 16 xuất bản (Bài 16 còn `draft` lúc duyệt Bài 17). Câu khác dấu của hai bài đã cùng mẫu, màu số dương lime và số âm pink khớp. Còn lệch ở câu cùng dấu của Bài 17 ("số nguyên" thừa, đuôi "cho nhau" thừa so với Bài 16): đổi thành "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên." ở note quy tắc, recap, card của section `chia-cung-dau`. Chữ đổi thì chạy `content:diff`, Haiku đọc hiểu mục đổi, một vòng review chỉ phần đổi, `content:hash --approve`.
+  1. Khớp Bài 16: đã chốt, không làm. Chủ dự án chọn giữ câu quy tắc cùng dấu gốc ("…chia hai phần số tự nhiên cho nhau.") vì đọc rõ nghĩa hơn, nên lời quy tắc của Bài 17 và video `dau-cua-thuong` giữ nguyên.
   2. Nên sửa chưa xử lý (review.md, vòng 4): 2 (số trùng ở mẹo "Kiểm tra phép chia" và `ex.tinh-khac-dau-48`, `ex.tinh-48-chia-8`), 3 (`ex.chon-boi-cua-4` trùng hình), 7 (nấc 1 của các câu điền chỉ tô dòng hướng dẫn), 8 (section `suy-ra-thuong` thiếu ví dụ đời sống), 9 (`chon-tong-6-chips` cùng khuôn hình quy tắc), 10 (chip nhiễu "5 · 5", "7 · 7"), 11 (chiều ngược của quy tắc `tim-x`), cùng các Góp ý.
-  3. Lời đọc và video: đã dựng (02/10/2026), giọng `hai-dang` (xen kẽ với Bài 16 dùng `my-duyen`). Ba video `dau-cua-thuong` (đầu phần `chia-cung-dau`, clip hai card cùng và khác dấu), `chia-het-so-nguyen` (đầu phần `phep-chia-het`), `uoc-cua-6` (đầu phần `tim-uoc`). Lời đọc giới thiệu bị Gemini hết hạn mức nên đọc cả bài bằng VieNeu Hải Đăng (`overview.narration.voice`); chạy lại `pnpm narration:build` khi hạn mức hồi để về giọng Gemini. Review vòng 5 (Sonnet, chỉ video và lời đọc): 0 Nghiêm trọng, Góp ý trong `review.md`. Nếu đổi câu quy tắc của phần `chia-cung-dau` theo Bài 16 (mục 1) thì sửa luôn câu `rule` trong `dau-cua-thuong/script.json` cho khớp.
+  3. Lời đọc và video: đã dựng (02/10/2026), giọng `hai-dang` (xen kẽ với Bài 16 dùng `my-duyen`). Ba video `dau-cua-thuong` (đầu phần `chia-cung-dau`, clip hai card cùng và khác dấu), `chia-het-so-nguyen` (đầu phần `phep-chia-het`), `uoc-cua-6` (đầu phần `tim-uoc`). Lời đọc giới thiệu bị Gemini hết hạn mức nên đọc cả bài bằng VieNeu Hải Đăng (`overview.narration.voice`); chạy lại `pnpm narration:build` khi hạn mức hồi để về giọng Gemini. Review vòng 5 (Sonnet, chỉ video và lời đọc): 0 Nghiêm trọng, Góp ý trong `review.md`.
 - Đọc hiểu: lượt 1 quá nhiễu bị bỏ; Haiku không phủ `options` và `hints`.
 
 ## Nguồn (sách bài tập, `sources/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`, không commit)
@@ -20,7 +20,7 @@
 - Bài 3.38 (tập hợp P viết bằng dấu `{x ∈ ℤ | …}`) dạy bằng lời ("các số nguyên chia hết cho 3, lớn hơn −18 và không lớn hơn 18"), vì bé chưa viết được kí hiệu tập hợp (`docs/learner.md`).
 - Số 0: dạy "0 chia cho số khác 0 bằng 0" và "không chia cho 0" (suy ra từ b ≠ 0 và a = b·q của sách); không đề cập ước của 0.
 - Mẹo chỉ viết khi đúng với mọi số thuộc dạng bài (đã thử bằng chương trình tạm, không commit): xem mục "Mẹo".
-- Quy tắc dấu của thương viết bằng lời của bài này, cùng màu với Bài 14 (số dương lime, số âm pink); chờ khớp với Bài 16.
+- Quy tắc dấu của thương viết bằng lời của bài này, cùng màu với Bài 14 (số dương lime, số âm pink).
 
 ## Cấu trúc bài
 12 phần, mỗi phần một ý, mỗi phần có một thẻ cùng tên:
@@ -41,4 +41,4 @@
 - Mẹo (đã thử bằng chương trình tạm, không commit): `dem-dau-tru` (1044 phép chia hết, a, b khác 0), `kiem-tra-bang-nhan` (1164 phép chia hết, kể cả số bị chia 0; một thương sai luôn lệch), `bo-dau-xet-chia-het` (14520 cặp, kể cả a = 0), `so-uoc-chan` (1000 số nguyên khác 0 từ −500 đến 500). Quy tắc phần 12 thử trên 19360 cặp (x, a); quy tắc phần 11 trên 46328 bộ (a, b, c).
 
 ## Việc khớp với Bài 16
-- Khi Bài 16 `phep-nhan-so-nguyen` xuất bản: đọc câu quy tắc dấu của phép nhân và màu khái niệm của nó, so với câu quy tắc dấu của thương ở các phần 2, 3, 4 của bài này; sửa bài này theo Bài 16 (chữ đổi thì chạy `content:diff`, Haiku đọc hiểu mục đổi, một vòng review chỉ phần đổi, `content:hash --approve`).
+- Đã chốt: chủ dự án chọn giữ câu quy tắc cùng dấu gốc của Bài 17 vì đọc rõ nghĩa hơn; không sửa theo Bài 16.

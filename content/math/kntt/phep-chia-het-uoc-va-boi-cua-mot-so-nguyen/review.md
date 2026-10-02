@@ -275,3 +275,5 @@ Không có.
 3. `uoc-cua-6`: thẻ quy tắc ở cảnh `s02-so-doi` (một dòng, chữ nhỏ) khác thẻ ở cảnh `s03-nho` (hai dòng, chữ lớn hơn). Cách sửa: dùng cùng cỡ chữ cho hai thẻ.
 4. `chia-het-so-nguyen`, câu cuối "Bạn nhớ nhé: số chia phải khác 0.": Whisper nghe "số chưa phải khác không" (khớp 97,1%, ngưỡng 97%). Có thể do Whisper nhầm "chia" thành "chưa"; nên nghe lại một lần khi duyệt tay. Câu cùng tên "số chia" ở các câu trước vẫn nghe đúng.
 5. `overview.summary` và `overview.goals` chưa nhắc tổng, hiệu cùng chia hết (đã ghi ở Nên sửa 14 của vòng 4); lời đọc đọc đúng chữ trên màn nên lỗi này kéo theo, không thêm lỗi mới.
+
+Quyết định của chủ dự án (02/10/2026): giữ nguyên câu quy tắc cùng dấu gốc ("…chia hai phần số tự nhiên cho nhau.") vì đọc rõ nghĩa hơn; không đổi theo Bài 16.
