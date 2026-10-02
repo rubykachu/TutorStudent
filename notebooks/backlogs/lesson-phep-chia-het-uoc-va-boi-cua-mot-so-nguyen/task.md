@@ -1,7 +1,7 @@
 # Bàn giao: Bài 17 `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Phép chia hết. Ước và bội của một số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026, đang soạn (nháp). Việc đã xong: nạp nguồn.
+- Cập nhật cuối: 02/10/2026, bản nháp đã soạn xong, đang review vòng 1 (3 reviewer Opus song song). Đã xong: nạp nguồn; `lesson.json` 12 phần, 12 thẻ, 66 câu, 6 dạng câu, 20 hình bấm chọn, 4 mẹo; `content:check --stats` 0 lỗi, không có `[guides]`; `visual:shot` 96/96; `lesson:walk` 0 failures 0 cảnh báo.
 - Việc còn lại: soạn `lesson.json`, hình, `content:check --stats`, `visual:shot`, `lesson:walk`, review vòng 1–2 (Opus) rồi Haiku đọc hiểu, các vòng sau (Sonnet, chỉ phần đổi), `content:hash --approve`, `content:lock`. Không làm lời đọc và video trong đợt này.
 - Việc chờ bên ngoài: Bài 16 `phep-nhan-so-nguyen` (quy tắc dấu của phép nhân) đang được soạn song song, chưa có `lesson.json` lúc bắt đầu. Khi Bài 16 xuất bản phải chạy một vòng kiểm khớp cách nói quy tắc dấu và màu giữa hai bài (xem "Việc khớp với Bài 16").
 
@@ -20,7 +20,22 @@
 - Quy tắc dấu của thương viết bằng lời của bài này, cùng màu với Bài 14 (số dương lime, số âm pink); chờ khớp với Bài 16.
 
 ## Cấu trúc bài
-(sẽ cập nhật sau khi soạn)
+12 phần, mỗi phần một ý, mỗi phần có một thẻ cùng tên:
+1. `phep-chia-het` Phép chia hết của số nguyên (a = b · q; số 0 trong phép chia).
+2. `chia-cung-dau` Chia hai số cùng dấu (nhiệt độ giảm đều; thương dương).
+3. `chia-khac-dau` Chia hai số khác dấu (chia đều khoản nợ; thương âm).
+4. `suy-ra-thuong` Bốn phép chia từ một phép chia (ví dụ 1; mẹo "Dấu của thương", mẹo "Kiểm tra phép chia").
+5. `uoc-va-boi` Ước và bội của số nguyên (cùng câu với Bài 8; mẹo "Chia hết cho số âm").
+6. `tim-uoc` Tìm các ước (ước dương rồi số đối; mẹo "Kiểm tra số ước").
+7. `tim-boi` Tìm các bội.
+8. `boi-trong-khoang` Bội trong một khoảng (bài 3.37, 3.38 dạy bằng lời; thang máy dừng ở các tầng).
+9. `uoc-chung` Ước chung của hai số nguyên (cùng câu với Bài 11).
+10. `phan-tich-thanh-tich` Phân tích một số thành tích (ví dụ 2, bài 3.39).
+11. `tong-hieu-chia-het` Tổng và hiệu cùng chia hết (tính chất ở bài 3.40).
+12. `tim-x` Tìm x để x + a chia hết cho x (bài 3.40).
+- Màu khái niệm: số nguyên dương lime, số nguyên âm pink, số bị chia blue, số chia violet, thương amber, ước violet, bội blue, ước chung teal (cùng glossary, Bài 8, 11, 14). Nhãn tên bước làm trong hình dùng teal (hình năm cạnh), không đứng chung hình với ước chung.
+- Hình: `src/visuals/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/` (`catalog.ts`: mỗi hình một dòng dữ liệu `rows`, `lines`, `line`, `chips`; `chips` dùng validator `chon-dung` của Bài 15; màn "Cùng làm" có `wants` nên chấm ngay, câu luyện không có `wants` nên chấm khi bấm "Kiểm tra").
+- Mẹo (đã thử bằng chương trình tạm, không commit): `dem-dau-tru` (1044 phép chia hết, a, b khác 0), `kiem-tra-bang-nhan` (1164 phép chia hết, kể cả số bị chia 0; một thương sai luôn lệch), `bo-dau-xet-chia-het` (14520 cặp, kể cả a = 0), `so-uoc-chan` (1000 số nguyên khác 0 từ −500 đến 500). Quy tắc phần 12 thử trên 19360 cặp (x, a); quy tắc phần 11 trên 46328 bộ (a, b, c).
 
 ## Việc khớp với Bài 16
 - Khi Bài 16 `phep-nhan-so-nguyen` xuất bản: đọc câu quy tắc dấu của phép nhân và màu khái niệm của nó, so với câu quy tắc dấu của thương ở các phần 2, 3, 4 của bài này; sửa bài này theo Bài 16 (chữ đổi thì chạy `content:diff`, Haiku đọc hiểu mục đổi, một vòng review chỉ phần đổi, `content:hash --approve`).
