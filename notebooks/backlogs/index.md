@@ -30,7 +30,6 @@ Backlog [`progress-sync/`](progress-sync/task.md), the checklist in `task.md` is
 - Keep the existing celebration sounds; they are free.
 - Do not re-voice existing videos or narrations, and do not add opening greetings to old videos. The blank first seconds of existing videos are accepted.
 - The `narration:build` default engine stays as is. Re-narrating an old lesson must force the engine recorded for that lesson.
-- Ôn tập chương III is on hold.
 - Offline and PWA precache is a later, separate backlog.
 
 ### Open discussions
@@ -66,7 +65,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 15 `quy-tac-dau-ngoac` (SBT print pages 53–54, solutions 112) | draft, being authored (handover [`lesson-quy-tac-dau-ngoac/task.md`](lesson-quy-tac-dau-ngoac/task.md)) | not done (no narration or video in this task) |
 | Toán | Bài 17 `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (SBT print pages 58–59, solutions 113) | published after review round 4, ids locked; alignment check against Bài 16 due when it publishes (handover [`lesson-phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/task.md`](lesson-phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/task.md)) | not done (no narration or video in this task) |
 | Toán | Bài 16 `phep-nhan-so-nguyen` (SBT print pages 55–57, solutions 112–113) | approved and published, ids locked (handover [`lesson-phep-nhan-so-nguyen/task.md`](lesson-phep-nhan-so-nguyen/task.md)) | done 02/10/2026: voice Mỹ Duyên, overview narration by Gemini Vindemiatrix, 3 videos (`cong-lap`, `duong-nhan-am`, `am-nhan-am`), diff-only round 5 (0 Nghiêm trọng) approved, video ids locked, `lesson:walk` 0 failures; media uploaded and deployed to production 02/10/2026 (commit 12df400, smoke passed) |
-| Toán | Ôn tập chương III (review lesson closing Chương III) | on hold by the owner: do not start until the owner resumes it | not started |
+| Toán | Chương III review `on-tap-chuong-3` (SBT print pages 60–62, solutions 114; `kind: "review"`, no number, order 17.5) | draft, in progress (owner resumed it 02/10/2026): authored with 13 sections, 13 cards, 44 exercises covering all 17 book items (multiple-choice questions 1 to 6 and 3.41 to 3.49 with sub-parts a and b of 3.43 and 3.44), `content:check` 0 errors, `lesson:walk` 0 failures; next is review round 1 by a fresh agent (3 Opus reviewers plus an Opus synthesis); handover [`lesson-on-tap-chuong-3/task.md`](lesson-on-tap-chuong-3/task.md) | not started (after review) |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
 | Lịch sử, Khoa học tự nhiên | none | subjects added (locked on home until a lesson is published); waiting for textbook pages | not done |
@@ -75,6 +74,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 
 ## Work queue (in order)
 
+0. Ôn tập chương III `on-tap-chuong-3`: draft authored; next is review round 1 from its handover ([`lesson-on-tap-chuong-3/task.md`](lesson-on-tap-chuong-3/task.md)), then rounds as needed, `content:hash --approve` and `content:lock`; no narration or video until it is published.
 0. Bài 12 `boi-chung-boi-chung-nho-nhat`: published, narration and 3 videos built and reviewed (round 4, locked, walk 0 failures). Next: upload and deploy with owner approval, see item 6c ([`lesson-boi-chung-boi-chung-nho-nhat/task.md`](lesson-boi-chung-boi-chung-nho-nhat/task.md)).
 0. Ôn tập chương II `on-tap-chuong-2`: published, aligned with Bài 12 (round 5). Narration and 3 videos built and reviewed 01/10/2026 (round 6); next: owner approval to upload media (see its handover).
 1. Bài 11 (print page 38): align its section 5 (`nhac-thua-so`) with the published Bài 10 (definitions, wording, colours; diff-only round, see its handover) before its narration and videos. Bài 11 narration and 3 videos are built: next is its diff-only review round (greeting in `overview.hook`, 3 video blocks), then `pnpm content:hash --approve` and `pnpm content:lock`. Bài 10 narration and videos are done and reviewed (round 4).
