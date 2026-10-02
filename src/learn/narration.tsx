@@ -237,7 +237,7 @@ export function NarrationPlayer({
         {busy && (
           <ProgressRing
             fraction={state.loadFraction}
-            className="pointer-events-none absolute -inset-1.5"
+            className="pointer-events-none absolute -inset-2.5"
           />
         )}
         <button
@@ -376,7 +376,7 @@ export function NarrationMiniPlayer({
           />
         </button>
         <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <span className="truncate font-semibold text-caption">
+          <span className="font-semibold text-caption">
             {busy
               ? loadingText(state.loadFraction, state.loadedBytes)
               : state.playing

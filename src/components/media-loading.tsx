@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import { percentLabel } from "@/lib/media-download";
 import { Owl } from "@/mascot/owl";
 
-const RING_STROKE = 6;
-const RING_RADIUS = 20;
+const RING_STROKE = 5;
+const RING_RADIUS = 21;
 const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
 // Share of the ring drawn while the length is unknown: it turns, or under
 // reduced motion stays put as a quarter.
