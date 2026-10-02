@@ -21,7 +21,7 @@
       "chia được hai số nguyên và viết đúng dấu của thương",
       "biết khi nào một số nguyên chia hết cho số khác",
       "tìm được các ước và các bội của một số, kể cả số âm",
-      "tìm được số x để x cộng thêm một số vẫn chia hết cho x"
+      "tìm được số x để x cộng với một số đã cho vẫn chia hết cho x"
     ],
     "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ."
   },
@@ -472,7 +472,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Mỗi giờ nhiệt độ thay đổi −3 độ. Sau 1, 2, 3 giờ, nhiệt độ thay đổi −3, −6 và −9 độ, đó là các bội của 3."
+              "text": "Mỗi giờ nhiệt độ thay đổi −3 độ. Sau 1, 2, 3 giờ, nhiệt độ thay đổi −3, −6 và −9 độ, đó là các bội của −3."
             },
             {
               "type": "visual",
@@ -1961,7 +1961,7 @@
           },
           {
             "optionId": "c",
-            "text": "Nam chia đúng 42 : 6 = 7, nhưng quên đặt dấu − cho thương."
+            "text": "Phép 42 : 6 = 7 là chia số 42, còn đề cho số bị chia là −42, nên thương 7 chưa có dấu − là sai."
           },
           {
             "optionId": "d",

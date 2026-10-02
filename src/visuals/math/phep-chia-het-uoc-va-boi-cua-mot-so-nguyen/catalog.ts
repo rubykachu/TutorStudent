@@ -311,7 +311,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // 7. Tìm các bội
   "boi-nhiet-do": rows(
-    "Mỗi giờ nhiệt độ thay đổi −3 độ, các mức thay đổi là bội của 3",
+    "Mỗi giờ nhiệt độ thay đổi −3 độ, các mức thay đổi là bội của −3",
     [
       { tex: "(-3) \\cdot 1 = -3", tag: tag("sau 1 giờ", MULTIPLE) },
       { tex: "(-3) \\cdot 2 = -6", tag: tag("sau 2 giờ", MULTIPLE) },
