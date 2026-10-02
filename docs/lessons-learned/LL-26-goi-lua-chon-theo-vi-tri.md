@@ -8,6 +8,7 @@
 
 - `quy-tac-dau-ngoac` vòng 1, `ex.chon-tong-bang-0` (chọn tất cả các tổng bằng 0): "Hai tổng đầu có đủ các cặp số đối nhau, nên bằng 0. Tổng thứ ba còn lại 3 − 4 = −1 và tổng thứ tư còn lại 3." Ở phần lớn thứ tự xáo, câu này bảo tổng có −4 hay có số 3 thừa ra là bằng 0.
 - Cùng vòng, `ex.chon-nhom-20-8`: "Hai dãy đầu nhóm số hạng mà vẫn giữ nguyên dấu … Hai dãy sau đổi dấu …".
+- `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` vòng 2, `ex.chon-thuong-nho-nhat` (câu kho ôn mới thêm ở vòng sửa để thay câu xếp thứ tự): "Hai phép đầu có hai số khác dấu nên thương âm", nên ở phần lớn thứ tự xáo câu này bảo phép (−15) : (−5) cho thương âm. Câu `choice` viết mới ở vòng sửa cũng phải soát cụm chỉ vị trí như câu của vòng 1.
 
 ## Nguyên nhân gốc
 

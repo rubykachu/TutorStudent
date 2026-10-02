@@ -18,6 +18,7 @@
 - `thu-tu-trong-tap-hop-cac-so-tu-nhien` vòng 1, section `tap-hop-so`: kí hiệu `{x ∈ ℕ | 3 ≤ x ≤ 6}` và dấu kép `3 ≤ x ≤ 6` dùng trong 7 đề, chỉ hiện trong hình mẫu mà không câu nào dạy cách đọc ("5 ≤ x" phải đọc ngược thành "x lớn hơn hoặc bằng 5"); Bài 1 chỉ dạy dấu hiệu đặc trưng viết bằng chữ. Kí hiệu mới lấy từ lời giải sách cũng phải có câu dạy cách đọc trước câu đầu tiên dùng nó.
 - `tap-hop-cac-so-nguyen` vòng 1: câu kho ôn `dien-so-lien-sau` (số liền sau của −8) gắn card `tap-hop-z` (section 4) nhưng cần thứ tự số âm hay trục số dạy ở section 5–10, và `explain` "hơn số đó 1 đơn vị" là phép cộng số nguyên của bài sau. Khái niệm "liền sau" quen từ số tự nhiên dễ được coi là đã dạy, dù với số âm nó dựa vào thứ tự mới.
 - `phep-cong-phep-tru-so-nguyen` vòng 3, `tip.dau-truoc` (phần cộng hai số khác dấu): câu "Gặp phép trừ thì đổi thành phép cộng trước" do câu "Sửa" của vòng 2 thêm vào, đặt ở phần đứng trước phần dạy phép trừ nên dùng kiến thức chưa dạy. Mẹo nói cách làm của dạng bài khác phải đặt sau phần dạy dạng đó.
+- `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` vòng 2: kí hiệu "±" (lấy từ lời giải 3.36) là toàn bộ ví dụ của hình quy tắc và recap section `tim-uoc`, rồi dùng tiếp ở ba hình và năm `explain`; câu giải nghĩa "viết gọn bằng dấu ±" chỉ nằm ở `label` của hình, mà `label` là `aria-label`, không hiện trên màn. Lời dạy cách đọc kí hiệu phải là chữ bé nhìn thấy (note hay nhãn hàng trong hình), không phải `label`.
 
 ## Nguyên nhân gốc
 
