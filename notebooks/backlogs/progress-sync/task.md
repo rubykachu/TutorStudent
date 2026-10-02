@@ -71,10 +71,10 @@ Files: `src/progress/db.ts`, `src/progress/record.ts` (`doneAt` only), `src/prog
 `resetLessonProgress` writes `lessonResets` in the same transaction as the erase. `now()` in `src/lib/time.ts` adds the stored clock offset (0 until the first sync; `setNowForTesting` still wins). `dirtyDocs(db, childId, months)` builds the child's main doc and the month docs asked for (Task 5's readers, or minimal ones if Task 5 is not merged yet), takes their canonical form and compares a non-cryptographic hash (e.g. `cyrb53`; no `crypto.subtle`, which is missing over plain http on the LAN) with the hashes in `syncState`. It checks the current and previous month by default and every local month when asked (app start, after an import). No Dexie hooks.
 
 Acceptance:
-- [ ] Reset test: tombstone exists with the reset time; erase and tombstone are one transaction (a forced failure leaves neither).
-- [ ] With an offset set, `recordAttempt`, `saveSectionPosition`, `completeSection`, `resetLessonProgress` and `saveOpenEndedWriting` all store the corrected time.
-- [ ] Each write function in `src/progress/record.ts`, `db.ts`, `hooks.ts`, `writing.ts` and `reset.ts` makes the right doc dirty (an answer: the main doc and its month; a reset: the main doc only, never an old month); the sound switch and device-scope settings (`_device`) do not.
-- [ ] Hash of the same doc is stable across runs and argument orders.
+- [x] Reset test: tombstone exists with the reset time; erase and tombstone are one transaction (a forced failure leaves neither).
+- [x] With an offset set, `recordAttempt`, `saveSectionPosition`, `completeSection`, `resetLessonProgress` and `saveOpenEndedWriting` all store the corrected time.
+- [x] Each write function in `src/progress/record.ts`, `db.ts`, `hooks.ts`, `writing.ts` and `reset.ts` makes the right doc dirty (an answer: the main doc and its month; a reset: the main doc only, never an old month); the sound switch and device-scope settings (`_device`) do not.
+- [x] Hash of the same doc is stable across runs and argument orders.
 
 Verify: `pnpm test tests/progress tests/sync tests/lib`
 
