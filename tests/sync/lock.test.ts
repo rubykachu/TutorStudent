@@ -45,4 +45,18 @@ describe("withSyncLock", () => {
     await withSyncLock(task);
     expect(task).not.toHaveBeenCalled();
   });
+
+  it("queues behind the holder instead of skipping when asked to wait", async () => {
+    const request = vi.fn(
+      async (
+        _name: string,
+        _options: { ifAvailable: boolean },
+        callback: (lock: object | null) => unknown,
+      ) => callback({}),
+    );
+    vi.stubGlobal("navigator", { locks: { request } });
+    const task = vi.fn(async () => "done");
+    expect(await withSyncLock(task, { wait: true })).toBe("done");
+    expect(request.mock.calls[0]?.[1]).toEqual({ ifAvailable: false });
+  });
 });
