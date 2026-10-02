@@ -1,406 +1,364 @@
 # Review: Quy tắc dấu ngoặc (`quy-tac-dau-ngoac`)
 
 - Bài: `content/math/kntt/quy-tac-dau-ngoac/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
 - Nguồn đã đọc: `sources/math/quy-tac-dau-ngoac/` - sbt-p53, sbt-p54, sbt-p112
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa có trong `ids.lock.json`, đúng với bài chưa duyệt)
-- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy sau khi vòng 1-2 hết Nghiêm trọng)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/quy-tac-dau-ngoac/` (cây tạm, sẽ xoá)
-- Kết luận: Chưa đạt: còn 8 lỗi Nghiêm trọng
-- Bản đã review: `717b30f76ae08fa43b7b31f3996e013f1d16e8cccc1260e3339c0790e956d9f9` (`pnpm content:diff` so với bản này)
+- `content:check`: 0 lỗi của bài
+- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy sau khi vòng 2 hết Nghiêm trọng)
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/quy-tac-dau-ngoac/`
+- Kết luận: Chưa đạt: còn 3 lỗi Nghiêm trọng
+- Bản đã review: `2aaaf8cd9c51d894134b7e01b47f8ef0303bb41803565fb1ed638896f98d9b90` (`pnpm content:diff` so với bản này)
 
-Ba reviewer đã tự giải cả 62 exercise trước khi đọc `answer`: mọi `answer` và `check` đúng; `match` `noi-ngoac-ket-qua` có đúng một cách nối; mặt nạ đích của mọi hình `flipTry` khớp `params` và `explain`. Lỗi đáp án nằm ở một hình "Cùng làm" (Nghiêm trọng 4) và ở chữ giải thích (Nghiêm trọng 6, 7, 8). Tệp nhóm: `.shots/review/quy-tac-dau-ngoac/nhom-1.md`, `nhom-2.md`, `nhom-3.md`.
+Ba reviewer đã tự giải cả 64 exercise trước khi đọc `answer`: mọi `answer`, `check`, `params`, `pairs` đúng; `match` `noi-ngoac-ket-qua` có đúng một cách nối; mặt nạ đích của các hình `flipTry` và `wants` của các hình "Cùng làm" khớp đề. Không còn `explain` hay `wrong` nào gọi lựa chọn theo vị trí (LL-26). Các bản sửa Nghiêm trọng của vòng 1 đều đạt. Ba lỗi Nghiêm trọng của vòng này nằm ở chữ in sẵn của một câu điền, ở câu chuyện mở đầu phần 5 và ở một lý do `wrong`; Tổng hợp đã tự tính lại cả ba. Hai trong ba lỗi sinh từ bản sửa vòng 1 (một do chính câu "Sửa" của review vòng 1). Tệp nhóm: `.shots/review/quy-tac-dau-ngoac/nhom-1.md`, `nhom-2.md`, `nhom-3.md`.
+
+Khi sửa: nhiều mục dưới đây đổi câu quy tắc (`rule: true`) hay nhãn hình recap (Nên sửa 4, 5, 9, 10, 14, 15, 16; Góp ý 19, 21). Đổi câu quy tắc thì đổi cùng lúc recap section và recap card lặp nguyên văn, đếm lại theo `[length]`, và chụp lại màn điện thoại. Các câu đổi số (Nên sửa 1, 11, 12, 17, 20, 22) phải tự giải lại, sửa `check.expr`, `explain`, `wrong`, và soát trùng số với hình mẫu, hình gợi ý, recap (LL-07).
 
 ## Bảng thử mẹo
 
-| Mẹo | Các số đã thử | Kết quả |
+| Mẹo | Số đã thử | Kết quả |
 |---|---|---|
-| `tip.dau-dau-tien` (viết thêm + cho số đầu trong ngoặc rồi đổi dấu từng số hạng) | 10 − (3 − 5) = 12; 10 − (0 − 4) = 14; 10 − (3) = 7; 10 − (−3 + 5) = 8; 6 − (4 − 1) − (2 + 3) = −2 | Đúng khi trước ngoặc là dấu −. Sai ở dạng bài khác của bài: 10 + (3 − 5) ra 12 (đúng 8), (3 − 5) − 2 ra 0 (đúng −4). Nghiêm trọng 2 |
-| `tip.gom-duong-am` (cộng riêng dương, riêng âm, lấy lớn trừ bé) | 7 − 9 + 5 − 3 = 0; 6 − 9 + 2 − 1 + 5 = 3; −8 − 5 + 2 = −11; 5 và −4 (một số hạng); 0 − 3 + 3 = 0 | Đúng sau khi đã bỏ ngoặc. Sai khi còn ngoặc: `tinh-ngoac-chuoi` ra 4 (đúng 2), `tinh-hai-ngoac` ra −7 (đúng −1); đọc "nhóm lớn hơn" là nhóm nhiều số thì 10 − 1 − 2 − 3 ra −4 (đúng 4). Nghiêm trọng 5 |
-| `tip.kiem-tra-hai-cach` (tính trong ngoặc trước, rồi bỏ ngoặc tính lại) | 10 − (3 − 5 + 2); 0 − (0 − 5); 5 − (−2); 7 + (−3 + 2); 20 − (8 − (3 + 1)); ví dụ tr.53; 15 − (6 + 4) so với 15 − (6 − 4) | Đúng với mọi đầu vào, nhưng không bắt được lỗi khi ngoặc có tổng bằng 0, mà ví dụ duy nhất của mẹo lại là trường hợp đó. Nên sửa 16 |
-| Quy tắc đặt ngoặc có dấu − (phần 9) | 9 − 4 − 2; 9 − 4 + 2; 0 − 3 − 0; 5 − 8 + 3 − 1; −4 − 5 − 6; 10 − 3 + 2 + 1; lời giải tr.53, gợi ý 3.22b tr.112 | Đúng mọi đầu vào, suy ra trực tiếp từ nguồn |
-| Ghép số đối (phần 12) | từ −3 đến 3 = 0; từ −3 đến 5 = 9; từ −5 đến 2 = −12; chỉ số 0; từ −1 đến 1; bài 3.24 = 20; từ 2 đến 5 = 14 | Đúng khi có bước "cộng các số còn lại"; recap thiếu bước này. Nên sửa 18 |
+| `tip.dau-dau-tien` (trước ngoặc có dấu −, số đầu không ghi dấu viết thêm dấu + rồi đổi dấu từng số hạng) | 16 − (4 + 3) = 9 (ví dụ); 10 − (3 − 5) = 12; 10 − (3) = 7; 50 − (28 + 12) = 10; 6 − (4 − 1) − (2 + 3) = −2; −(3 + 4) + 10 = 3; 10 − (0 − 4) = 14; ngoặc có số âm đầu: 9 − (−4) = 13, 9 − (−4) + (−6) − (+5) = 2, −3 − (−7) = 4; hai ngoặc: (8 − 5) − (6 − 9) = 6, (5 − 9) − (3 − 8) = 1, 80 − (25 − 5) − (30 − 10) = 40; chiều đặt ngoặc: 12 − 5 − (8 − 6) = 5, 20 − (8 + 5) − 3 = 4; ngoặc không có dấu − đứng trước: 10 + (3 − 5), (3 − 5) − 2, 12 + (−5) − 8 + (−4) | Đúng mọi số; mẹo đã nói điều kiện "trước ngoặc có dấu −" nên không bị dùng sai ở dạng khác (bản sửa vòng 1 đạt). Biên 0: kết quả đúng nhưng câu "số đầu tiên … vẫn là số dương" sai với 0 (Nên sửa 4) |
+| `tip.gom-duong-am` (bỏ hết ngoặc, cộng riêng dương, cộng riêng phần số của âm, lấy lớn trừ bé) | 7 − 9 + 5 − 3 = 0; 6 − 9 + 4 − 5 = −4; −8 + 4 + 5 = 1; 5; 0 − 5 + 0 = −5; 64 − 37 + 36 − 20 = 43; còn ngoặc: 12 + (−5) − 8 + (−4) = −5, 9 − (−4) + (−6) − (+5) = 2, (5 − 9) − (3 − 8) = 1; biên −3 − 4 = −7 | Đúng mọi số. Nhóm trống không được nói là 0 (Góp ý 13). Đọc từng chữ "nhóm có tổng lớn hơn" với tổng nhóm âm là −14 thì ra +4 thay vì −4 (Nên sửa 13) |
+| `tip.kiem-tra-hai-cach` (tính trong ngoặc trước, rồi so với kết quả khi bỏ ngoặc) | 10 − (4 − 9 + 2) = 13 (bắt được cách sai −1); 7 − (3 − 5 + 2) = 7; 0 − (0 − 5) = 5; 9 − (−4) = 13; (9 − 12) − (5 − 8 + 1) = −1; 120 − (150 + 20 − 80) = 30; đặt ngoặc 12 − 5 − 3 so với 12 − (5 + 3); nhiễu của `bo-ngoac-47-30-3`, `bo-ngoac-ba-3-8` | Đúng mọi số. Ngoặc có tổng 0 thì không bắt được cách giữ nguyên dấu, nhưng giá trị cuối vẫn đúng; ví dụ đã đổi sang ngoặc có tổng −3 (bản sửa vòng 1 đạt) |
 
 ## Nghiêm trọng
 
-### 1. Ba câu quy tắc đầu gần nguyên văn khung "Kiến thức cần nhớ"
+### 1. Câu điền dấu `dien-dau-cong` in sẵn một đẳng thức sai: 35 + (12 − 7) = 35 + 12 − 10
 
-- Vị trí: `$.sections[0].blocks[1].children[0].text` (`section.tong-dai-so`), `$.sections[1].blocks[1].children[0].text` (`section.ngoac-dau-cong`), `$.sections[2].blocks[1].children[0].text` (`section.ngoac-dau-tru`), cùng recap lặp nguyên văn (`$.sections[0..2].recap.caption`, `$.cards[0..2].recap.caption`) và `$.exercises[13].segments` (`ex.dien-quy-tac-tru`); câu quy tắc `$.sections[8].blocks[1].children[0].text` (`section.nhom-ngoac-tru`) giữ cùng cụm - LL-08
-- Nguồn: tr.53, `sbt-p53.png`, ý 1 và ý 2
-- Vấn đề: "Dãy tính chỉ có phép cộng và phép trừ gọi là một tổng đại số" chỉ đổi "gồm" thành "có" và bỏ "cũng", "(hay …)" so với ý 1. Hai câu bỏ ngoặc giữ nguyên các cụm dài của ý 2: "giữ nguyên dấu của các số hạng trong ngoặc" (9 chữ) và "đổi dấu tất cả các số hạng trong ngoặc" (8 chữ), chỉ chuyển điều kiện lên trước. `tap-hop-cac-so-nguyen` và `phep-cong-phep-tru-so-nguyen` vòng 1 đã tính kiểu chép này là Nghiêm trọng. Ngoài ra cùng một thao tác đang có ba cách nói: "đổi dấu tất cả các số hạng" (quy tắc phần 3, 9), "đổi dấu mọi số hạng" (note "Cùng làm" phần 3), "đổi dấu từng số hạng" (`overview.goals[1]`, `tip.dau-dau-tien`) (LL-05).
-- Sửa: viết lại theo cách làm, giữ đủ điều kiện, vd phần 1 "Một dãy tính chỉ dùng dấu + và dấu − là một tổng đại số. Mỗi số hạng của tổng mang dấu đứng trước nó." (gộp với Nên sửa 23); phần 2 "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ."; phần 3 "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số nào." Chốt một cách nói ("đổi dấu từng số hạng") cho quy tắc phần 3, phần 9, note "Cùng làm", `overview.goals`, mẹo. Sửa theo mọi chỗ lặp: recap section, recap card, `segments` của `dien-quy-tac-tru`, nhãn hình `cong-ngoac-vi-du`, `tru-ngoac-vi-du`, `goi-y-*` trong `catalog.ts` (LL-20).
-
-### 2. Mẹo `dau-dau-tien` không nói chỉ dùng khi trước ngoặc có dấu −
-
-- Vị trí: `$.sections[3].blocks[2]` (`tip.dau-dau-tien`) - LL-24
-- Nguồn: tr.53, `sbt-p53.png`, ý 2
-- Vấn đề: `text` "Hãy viết thêm dấu + trước nó rồi mới đổi dấu từng số hạng" không có điều kiện. Trang "Mẹo hay" (ảnh walk `001-tips`) hiện mẹo đứng một mình, nên bé áp vào 10 + (3 − 5) ra 12 (đúng 8) và vào (3 − 5) − 2 ra 0 (đúng −4): đúng lỗi mà phần 2 và phần 6 dạy tránh. `title` "Số đầu tiên trong ngoặc" không nêu dạng bài.
-- Sửa: đưa điều kiện vào câu đầu và tên mẹo, vd `title` "Bỏ ngoặc có dấu − đứng trước", `text` "Khi trước ngoặc có dấu −, số đầu tiên trong ngoặc không ghi dấu vẫn là số dương. Hãy viết thêm dấu + trước nó rồi đổi dấu từng số hạng." kèm ví dụ (≤ 3 câu, tính lại số tiếng). Xem thêm Nên sửa 6 (vị trí mẹo).
-
-### 3. Recap phần "Ngoặc chỉ có một số" nêu một quy tắc mới, không có câu quy tắc, thiếu điều kiện
-
-- Vị trí: `$.sections[4].recap.caption`, `$.cards[4].recap.caption` (`section.ngoac-mot-so`, `card.ngoac-mot-so`); `$.sections[4].blocks[1].children[0]` (note không có `rule: true`); chữ done của `visual.chon-20-tru-am6` - LL-05
-- Nguồn: tr.53, `sbt-p53.png`, mục 2: chỉ có hai quy tắc giữ dấu và đổi dấu
-- Vấn đề: phần không có note `rule: true` nên `[rule-sentence]` không so được. Recap dạy câu "Hai dấu đứng liền nhau: cùng dấu thì thành dấu +, khác dấu thì thành dấu −", cách nói thứ hai của quy tắc đổi dấu; chữ "Trừ đi số âm thì thành cộng với số dương." của hình chips là cách nói thứ ba. Recap bỏ điều kiện "ngoặc chỉ có một số", nên ở màn ôn card bé dễ dùng cho ngoặc nhiều số: 5 − (−3 + 2) thành 5 + 3 + 2 = 10 (đúng 6). Note màn quy tắc chỉ viết "bỏ theo hai cách ở trên", trỏ vào màn khác (LL-10).
-- Sửa: thêm note `rule: true` dùng lại lời của hai quy tắc cũ, vd "Ngoặc chỉ có một số: trước ngoặc có dấu + thì giữ dấu số đó, trước ngoặc có dấu − thì đổi dấu số đó." Recap section và recap card lặp nguyên văn. Nhãn "+ và − thành −" trong bảng giữ làm nhãn ví dụ, không đưa lên recap. Chữ done của `chon-20-tru-am6` đổi cùng lời, vd "Dấu − trước ngoặc nên −6 đổi thành +6."
-
-### 4. Hình "Cùng làm" đặt ngoặc có hai lựa chọn bằng tổng ban đầu
-
-- Vị trí: `$.sections[7].blocks[2].children[1]` (`visual.chon-nhom-7-4`, `catalog.ts` khoá `chon-nhom-7-4`) - LL-01
-- Nguồn: tr.53, `sbt-p53.png`, mục 3
-- Vấn đề: đề 7 − 4 + 9 − 5 = 7, `wants: [0]` chỉ nhận (7 − 4) + (9 − 5). Chip thứ ba (7 + 4) − (9 − 5) = 11 − 4 cũng bằng 7. Trong cùng card, `explain` của `chon-nhom-20-8` dạy bé lấy "cùng bằng 14" làm căn cứ, nên bé kiểm bằng cách tính sẽ chọn chip 3 và bị báo sai.
-- Sửa: đổi chip 3 sang một lỗi thật có giá trị khác 7, vd (7 + 4) + (9 + 5) = 25 hoặc (7 − 4) − (9 − 5) = −1. Tính lại giá trị mọi chip.
-
-### 5. Mẹo "Tính tổng nhiều số hạng" ra sai khi tổng còn ngoặc, lời mẹo hiểu được hai cách, ví dụ dùng phép đặt ngoặc chưa dạy
-
-- Vị trí: `$.sections[6].blocks[2]` (`tip.gom-duong-am`); `$.exercises[34].explain` (`ex.gom-6-9-4-5-8`) - LL-24, LL-10, LL-09
-- Nguồn: tr.53, `sbt-p53.png`, mục 3
-- Vấn đề: `text` không nói "sau khi bỏ hết ngoặc". Trang "Mẹo hay" gom mẹo ra khỏi section; dùng mẹo cho câu của chính bài khi chưa bỏ ngoặc thì sai: `tinh-ngoac-chuoi` ra 4 (đúng 2), `tinh-hai-ngoac` ra −7 (đúng −1). "Mang dấu của nhóm lớn hơn" đọc được là nhóm nhiều số hơn: 10 − 1 − 2 − 3 khi đó ra −4 (đúng 4). `tex` viết 7 − 9 + 5 − 3 = (7 + 5) − (9 + 3): vừa đổi chỗ vừa đặt ngoặc có dấu − đứng trước, mà phần `nhom-ngoac-tru` (hai section sau) mới dạy.
-- Sửa: `text` mở bằng "Bỏ hết ngoặc trước." và viết "kết quả mang dấu của nhóm có tổng lớn hơn". `tex` không đặt ngoặc có dấu −, vd `7 - 9 + 5 - 3 = 7 + 5 - 9 - 3 = 12 - 12 = 0`. `explain` của `gom-6-9-4-5-8` (đang viết `(6 + 4 + 8) - (9 + 5)`) đổi cùng cách.
-
-### 6. Giải thích của `chon-nhom-20-8` nói sai về phương án d
-
-- Vị trí: `$.exercises[39].explain.text` (`ex.chon-nhom-20-8`) - LL-17
+- Vị trí: `$.exercises[7].segments[4].text` (`ex.dien-dau-cong`, card `ngoac-dau-cong`) - LL-20 (LL-17, LL-01)
 - Nguồn: —
-- Vấn đề: "Hai dãy sau đổi dấu của 8 hoặc của −8." sai với d: 20 − (8 + 5) − 3 = 20 − 8 − 5 − 3, số −8 vẫn là −8, chỉ +5 đổi thành −5 (chính `wrong` của d nói đúng). Câu gọi một số hạng bằng hai tên "8" và "−8". Câu này còn gọi lựa chọn theo vị trí ("hai dãy đầu", "hai dãy sau"), xem Nghiêm trọng 8.
-- Sửa: gọi từng dãy theo nội dung: "Hai cách viết (20 − 8) + (5 − 3) và 20 − 8 + (5 − 3) vẫn giữ nguyên dấu, nên cùng bằng 14. Cách viết (20 + 8) + (5 − 3) đổi −8 thành +8, cách viết 20 − (8 + 5) − 3 đổi +5 thành −5."
+- Vấn đề: ghép `segments` với `accept` được "35 + (12 − 7) = 35 + 12 − 10": vế trái 40, vế phải 37 (Tổng hợp đã tính lại). Câu "Sửa" của vòng 1 (Nên sửa 4) đề xuất "35 ☐ 12 ☐ 7", bản sửa gõ "10" thay cho "7". Bé điền đúng hai dấu theo quy tắc mà nhận một đẳng thức sai; `explain` nói "số 7 vẫn có dấu −" trong khi màn không còn số 7. `fillBlank` Toán không có `check` nên máy không bắt.
+- Sửa: `segments[4].text` thành " 7.". Tính lại: 35 + 12 − 7 = 40 = 35 + 5.
 
-### 7. Giải thích của `chon-duong-7-10` coi mọi số hạng đứng đầu là số dương
+### 2. Chuyện nợ mở đầu phần 5 sai ngoài đời: trả nợ xong rồi thì xoá nợ không làm bạn có lại 50 nghìn
 
-- Vị trí: `$.exercises[32].explain.text` (`ex.chon-duong-7-10`) - LL-17
+- Vị trí: `$.sections[4].blocks[0].children[0].text` (`section.ngoac-mot-so`, hình `no-xoa-no`) - LL-20 (LL-17, LL-10)
 - Nguồn: —
-- Vấn đề: "Số hạng dương là số hạng có dấu + đứng trước hoặc đứng đầu tổng." sai với tổng mở đầu bằng số âm, mà bài có những tổng như vậy (lựa chọn b `−8 + 4 + 5` của `chon-bang-5-8-4`, `(−8) + (−5) − 9 + (−2)`). Bé dễ nhớ thành "số đứng đầu luôn dương". Câu quy tắc phần 1 không nói gì về số hạng đứng đầu, nên chỗ duy nhất nói tới nó lại nói sai (Nên sửa 23).
-- Sửa: "Số hạng dương là số hạng có dấu + đứng trước, hoặc đứng đầu tổng mà không có dấu −."
+- Vấn đề: "nợ Lan 5 nghìn, nên trả nợ xong bạn còn 50 + (−5) = 45 nghìn. Nếu Lan xoá nợ, ta trừ đi số −5: 45 − (−5) = 50 nghìn đồng." Phép tính đúng, nhưng đã trả 5 nghìn thì không còn khoản nợ nào để xoá, và Lan xoá nợ cũng không trả lại 5 nghìn. Câu này là đúng câu "Sửa" của review vòng 1 (Góp ý 23), đặt ở màn mở đầu dạy ý "trừ đi số âm là thêm vào"; bé nghĩ theo chuyện sẽ thấy vô lý hoặc gắn quy tắc với một việc không xảy ra (ảnh `phone/059-s5-01-block.png`).
+- Sửa: không cho trả nợ trước khi xoá nợ, vd "Bạn có 50 nghìn đồng nhưng nợ Lan 5 nghìn. Tính cả khoản nợ thì bạn chỉ có 50 + (−5) = 45 nghìn. Nếu Lan xoá nợ, khoản −5 bị trừ đi: 45 − (−5) = 50 nghìn đồng." Nhãn hình `no-xoa-no` giữ. Câu mới phải qua `[length]` và lượt Đọc hiểu; viết các phép tính trong câu không để xuống dòng giữa "50" và "+ (−5)" (Nên sửa 6).
 
-### 8. Lời giải thích của câu chọn nhiều đáp án gọi tên lựa chọn theo vị trí, mà app xáo thứ tự lựa chọn
+### 3. Lý do sai của tổng có −4 ở `chon-tong-bang-0` dạy một điều sai: "không có số đối thì tổng khác 0"
 
-- Vị trí: `$.exercises[61].explain.text` (`ex.chon-tong-bang-0`), `$.exercises[39].explain.text` (`ex.chon-nhom-20-8`) - LL-26
+- Vị trí: `$.exercises[61].explain.wrong[0].text` (`ex.chon-tong-bang-0`, lựa chọn c) - LL-17
 - Nguồn: —
-- Vấn đề: `chon-tong-bang-0`: "Hai tổng đầu có đủ các cặp số đối nhau, nên bằng 0. Tổng thứ ba còn lại 3 − 4 = −1 và tổng thứ tư còn lại 3." `chon-nhom-20-8`: "Hai dãy đầu … Hai dãy sau …". `src/exercises/choice/choice-answer.tsx` xáo lựa chọn (`seededShuffle`), nên ở phần lớn các lần làm "hai tổng đầu" trên màn không phải a, b: lời giải thích bảo một tổng có −4 hay có số 3 thừa ra là bằng 0, đúng ý bé đang học nhận ra.
-- Sửa: gọi từng lựa chọn theo nội dung: "Tổng từ −2 đến 2 và tổng (−3) + (−2) + 2 + 3 có đủ các cặp số đối, nên bằng 0. Tổng có −4 còn lại 3 − 4 = −1; tổng có thêm số 3 thì bằng 3." Đổi luôn lựa chọn d (Nên sửa 4). `chon-nhom-20-8` sửa theo Nghiêm trọng 6. Soát mọi `explain` của câu `choice` trong bài cho các chữ "đầu", "sau", "thứ ba", "thứ tư".
+- Vấn đề: "Số −4 không có số đối 4 trong tổng này, nên tổng khác 0." Chữ "nên" biến một quan sát thành quy tắc: có một số không ghép được thì tổng khác 0. Điều này sai, và chính bài có phản ví dụ: hình quy tắc phần 10 (`REASONABLE_ROWS`) 38 − 25 + 2 − 15 = 0 và câu kiểm tra `bo-ngoac-47-30-3` 47 − 30 + 3 − 20 = 0 không có cặp số đối nào mà vẫn bằng 0; (−4) + 1 + 3 = 0 cũng vậy. Tổng của c, (−4) + (−1) + 1 + 3, bằng −1 (Tổng hợp đã tính lại) vì −4 và 3 còn lại cộng được −1, không phải vì −4 thiếu số đối.
+- Sửa: "Ghép −1 với 1 xong, còn lại −4 và 3. Cộng lại được −1, nên tổng khác 0." Viết lý do của d cùng khuôn để hai lý do không dạy hai cách nghĩ: "Ghép −3 với 3, −1 với 1 xong, còn lại 2, nên tổng bằng 2." (Tổng hợp bổ sung; d hiện đúng nhưng cùng kiểu "không có số đối, nên…").
 
 ## Nên sửa
 
-### 1. Màn "Cùng làm" phần 2 nói cách giữ dấu dùng được cho "mọi tổng có ngoặc"
+### 1. Hai câu kho ôn gắn card phần 3 nhưng cần cách đổi dấu số âm của phần 4 và ngoặc một số của phần 5
 
-- Vị trí: `$.sections[1].blocks[2].children[0].text` (`section.ngoac-dau-cong`)
+- Vị trí: `$.exercises[50]` (`ex.xep-gia-tri-bo-ngoac`, mục `s2` 4 − (9 − 3), mục `s4` 6 − (−1)), `$.exercises[51].options[2]` (`ex.chon-bang-0`, 8 − (12 − 4)); cả hai `cardIds: ["…card.ngoac-dau-tru"]` - LL-09, LL-20
 - Nguồn: —
-- Vấn đề: "Cách này giúp bạn tính đúng mọi tổng có ngoặc." Bé đọc "cách này" là cách vừa làm (giữ nguyên dấu), nên hiểu mọi ngoặc đều giữ dấu, đúng lỗi phần 3 phải sửa.
-- Sửa: "Cùng làm: chạm vào cách viết đúng của 8 + (5 − 3) khi bỏ ngoặc. Làm vậy bạn nhớ: trước ngoặc là dấu + thì các dấu trong ngoặc không đổi."
+- Vấn đề: phần 3 chỉ dạy ngoặc toàn số dương; số âm trong ngoặc đổi thành dương là ý của phần 4, "6 − (−1)" là quy tắc ngoặc một số của phần 5. Card `ngoac-dau-tru` có thể đến hạn ôn trước khi bé học hai phần đó.
+- Sửa: gắn cả hai câu sang card `ngoac-tru-so-am`, và đổi mục `s4` của câu 50 sang một ngoặc nhiều số vẫn bằng 7, vd `3 - (5 - 9)` (3 − 5 + 9 = 7), để thứ tự −3, −2, 2, 7 giữ nguyên. Tính lại `explain` của câu 50.
 
-### 2. Ba màn "Cùng làm" thiếu dòng lý do; một câu nối "nên" không hợp lý
+### 2. Hai câu "Chọn tất cả các cách viết đúng" có đáp án là kết quả tính trong ngoặc, không phải cách bỏ ngoặc
 
-- Vị trí: `$.sections[3].blocks[3].children[0].text` (`section.ngoac-tru-so-am`), `$.sections[5].blocks[2].children[0].text` (`section.nhieu-ngoac`), `$.sections[7].blocks[2].children[0].text` (`section.nhom-ngoac-cong`) - LL-25
+- Vị trí: `$.exercises[8].prompt[0].text` (`ex.chon-cach-viet-7-cong`, đáp án b `7 + (-2)`), `$.exercises[19].prompt[0].text` (`ex.chon-cach-viet-12-tru`, đáp án b `12 + 1`) - LL-10, LL-20
 - Nguồn: —
-- Vấn đề: phần 4: "Số hạng âm đổi thành số hạng dương, nên nhớ đổi cả số đầu tiên.": vế sau không suy ra từ vế trước (số đầu tiên +7 là số dương). Câu thứ hai của ba note này là gợi ý cách làm, không nói làm để làm gì, trong khi màn "Cùng làm" của các phần 1, 5, 7 có dòng lý do (checklist trục 5, "Màn tương tác nói rõ làm gì và để làm gì").
-- Sửa: phần 4 "Cùng làm: chạm vào từng số hạng trong ngoặc để đổi dấu, kể cả số đầu tiên. Bạn sẽ thấy số âm −3 đổi thành +3."; phần 6 thêm "Làm đúng bước này thì bạn bỏ ngoặc không sai dấu."; phần 8 "Nhóm đúng giúp bạn tính nhanh mà kết quả không đổi."
+- Vấn đề: vòng 1 (Nên sửa 20) đã sửa lỗi này ở `chon-nhom-tru-30` nhưng hai câu cùng dạng của phần 2 và phần 4 vẫn "cách viết đúng". Ngay sau màn dạy bỏ ngoặc, bé hiểu "cách viết" là cách bỏ ngoặc nên bỏ qua b và bị chấm thiếu.
+- Sửa: cùng khuôn với `chon-nhom-tru-30`: "Chọn tất cả các biểu thức có giá trị bằng tổng sau." (câu 8 đưa `7 + (3 - 5)` ra khối `formula` như câu 19). Từ "biểu thức" ở đây theo cách chốt của Nên sửa 3.
 
-### 3. Câu kiểm tra `thu-chi-la-so-nao` không có tổng trên màn
+### 3. Một khái niệm nhiều tên trong đề và lời giải: "phép tính", "tổng", "biểu thức"; "kết quả", "giá trị"; "giữ dấu" và "mang theo dấu"
 
-- Vị trí: `$.exercises[0].prompt[0].text` (`ex.thu-chi-la-so-nao`) - LL-10
+- Vị trí: `$.exercises[23].prompt[0].text`, `$.exercises[23].explain.text` (`noi-ngoac-ket-qua`: "Nối mỗi phép tính với kết quả của nó", "Bỏ ngoặc từng phép tính"), `$.exercises[24].prompt[0].text` (`chon-bang-6`: "các phép tính có kết quả bằng 6"), so với `$.exercises[29].prompt[0].text` (`chon-bang-2`: "các tổng có giá trị bằng 2"); `$.exercises[44].explain.wrong` (`chon-nhom-tru-30`: đề "biểu thức", b "Biểu thức này", d "tổng này"), `$.exercises[60].explain.wrong` (`viet-bieu-thuc-80`: đề "Biểu thức nào", lý do "Tổng này"); `$.exercises[33].explain.text` (`chon-bang-5-8-4`: "Đổi chỗ mà mỗi số hạng giữ dấu") so với câu quy tắc phần 7 "mang theo dấu của nó" - LL-05, LL-20
+- Nguồn: tr.53, ý 1, ý 3; nhóm 2 Nên sửa 7, nhóm 3 Góp ý 2 (gộp; Tổng hợp chốt cách gọi vì hai nhóm đề xuất hai hướng)
+- Vấn đề: vòng 1 (Nên sửa 22) chốt gọi biểu thức là "tổng"; hai câu của card `ngoac-mot-so` còn gọi là "phép tính", và cùng một ý được hỏi bằng "kết quả" ở câu này, "giá trị" ở câu kia (hình bài dùng nhãn "giá trị của tổng"). Trong một câu, đề gọi lựa chọn là "biểu thức" mà lý do gọi "tổng". "giữ dấu" là tên của quy tắc ngoặc có dấu +; dùng cho việc đổi chỗ làm hai quy tắc nghe như một. Lý do d của `chon-nhom-tru-30` ("…nên tổng này bằng 50") chỉ tính giá trị, không chỉ ra −12 và −8 đã thành +12 và +8.
+- Sửa: chốt: một dãy chỉ có + và − gọi là "tổng", điều hỏi gọi là "giá trị"; riêng đề so các lựa chọn với "tổng sau" thì gọi lựa chọn là "biểu thức" (đã chốt ở `chon-nhom-tru-30`) và mọi lý do của câu đó dùng đúng từ của đề. Cụ thể: "Nối mỗi tổng với giá trị của nó.", "Bỏ ngoặc từng tổng: …", "Chọn tất cả các tổng có giá trị bằng 6."; lý do của `chon-nhom-tru-30` và `viet-bieu-thuc-80` dùng "biểu thức này", d của `chon-nhom-tru-30` "Đưa −12 và −8 vào ngoặc có dấu + thì phải giữ dấu −. Biểu thức này đổi thành +12 và +8 nên bằng 50."; `chon-bang-5-8-4` "Đổi chỗ mà mỗi số hạng mang theo dấu của nó thì tổng không đổi."
+
+### 4. Câu quy tắc phần 1 và mẹo nói số đứng đầu không ghi dấu "là số dương" (sai khi số đó là 0), còn câu quy tắc phần 6 nói cùng ý bằng "bỏ như ngoặc có dấu +"
+
+- Vị trí: `$.sections[0].blocks[1].children[0].text` (rule), `$.sections[0].recap.caption`, `$.cards[0].recap.caption`; `$.sections[2].blocks[2].text` (`tip.dau-dau-tien`: "số đầu tiên trong ngoặc không ghi dấu vẫn là số dương"); so với `$.sections[5].blocks[1].children[0].text` (rule phần 6: "Ngoặc ở đầu tổng không có dấu đứng trước, được bỏ như ngoặc có dấu +") - LL-17, LL-05
+- Nguồn: tr.53, `sbt-p53.png`, ý 1 (sách không nói về dấu của số đứng đầu); nhóm 1 Nên sửa 3, Tổng hợp bổ sung phần so với câu quy tắc phần 6
+- Vấn đề: với 0 − 5 + 3 hay (0 − 4), câu quy tắc bảo 0 là số dương, trái điều bé vừa học (0 không là số nguyên dương, cũng không là số nguyên âm). Bài chưa có tổng nào mở đầu bằng 0 nên không câu nào chấm sai, nhưng đây là câu quy tắc lặp ở recap và card. Thêm nữa, "thứ đứng đầu không ghi dấu" được nói ba cách ở ba chỗ: "là số dương" (phần 1), "vẫn là số dương… viết thêm dấu +" (mẹo phần 3), "được bỏ như ngoặc có dấu +" (phần 6); Nên sửa 5 còn thêm cách thứ tư. Bé không thấy đó là một ý.
+- Sửa: nói theo dấu, cùng lời với phần 6: câu quy tắc phần 1 "… gọi tắt là tổng. Số hạng đầu không ghi dấu thì coi như có dấu +, các số hạng khác mang dấu đứng trước nó." (recap section, recap card lặp nguyên văn); mẹo "Khi trước ngoặc có dấu −, số hạng đầu trong ngoặc không ghi dấu thì coi như có dấu +. Hãy viết dấu + đó ra rồi đổi dấu từng số hạng." Đếm lại theo `[length]`; `explain` của `chon-duong-7-10` dùng cùng cụm.
+
+### 5. Ngoặc ở đầu tổng bị gọi là "có dấu + đứng trước" ở phần 8, phần 11 và một câu ôn
+
+- Vị trí: `$.sections[7].blocks[2].children[0].text` ("Mỗi nhóm có dấu + đứng trước nên các số hạng giữ dấu cũ.", với (7 − 4) + (9 − 5)); chữ `done` của `catalog.ts` khoá `chon-nhom-7-4` ("Ngoặc có dấu +, nên…"); `$.exercises[38].explain.text` (`nhom-thu-chi-40`: "Nhóm thành hai ngoặc có dấu +: (40 − 15) + (25 − 20)"); `$.exercises[52].explain.text` (`bo-ngoac-ba-3-8`: "Ngoặc (−3) ở đầu tổng và ngoặc (7 − 2) có dấu + giữ dấu cũ.") - LL-05
+- Nguồn: tr.53, ý 3; nhóm 2 Nên sửa 2, nhóm 3 Góp ý 3 (gộp, giữ mức Nên sửa)
+- Vấn đề: (7 − 4), (40 − 15), (−3) đứng ở đầu tổng, không có dấu nào đứng trước. Câu quy tắc phần 6 đặt tên riêng cho trường hợp này ("không có dấu đứng trước, được bỏ như ngoặc có dấu +"); các chỗ trên gọi nó là "có dấu + đứng trước", tức một khái niệm hai cách nói, và nói sai điều bé thấy trên màn.
+- Sửa: note "Cùng làm" phần 8 và `done` của `chon-nhom-7-4` "Nhóm ở đầu tổng và nhóm có dấu + đứng trước đều giữ dấu cũ."; `nhom-thu-chi-40` "Nhóm thành (40 − 15) + (25 − 20): ngoặc ở đầu tổng và ngoặc có dấu + đều giữ dấu cũ."; `bo-ngoac-ba-3-8` "Ngoặc (−3) ở đầu tổng được bỏ như ngoặc có dấu +, ngoặc (7 − 2) có dấu + nên giữ dấu cũ."
+
+### 6. Phép tính trong chữ và trong hình xuống dòng giữa ngoặc hay giữa số và dấu trên điện thoại
+
+- Vị trí: `$.sections[1].blocks[0].children[0].text` ("(30 −" / "10) nghìn", ảnh `phone/021-s2-01-block.png`), `$.sections[2].blocks[0].children[0].text` ("(30 +" / "20).", ảnh `phone/036-s3-01-block.png`), `$.sections[4].blocks[0].children[0].text` ("50" / "+ (−5) = 45", ảnh `phone/059-s5-01-block.png`), `$.exercises[26].explain.text` ("5 −" / "9 − 3 + 8", ảnh `phone/078-s6-05-exercise-tinh-hai-ngoac-correct.png`); `done` của `doi-dau-10-3-4` ("10 −" / "3 − 4.", ảnh `phone/041-s3-04-block-shown.png`) và `doi-dau-20-7-3-2` ("20 − 7" / "+ 3 − 2.", ảnh `phone/052-s4-03-block-shown.png`); `catalog.ts` khoá `nhom-tru-vi-du` dòng 3 `5 - 8 + 3 - 1 = 5 - (8 - 3 + 1)` (màn quy tắc và recap phần 9, ảnh `phone/105-s9-02-block.png`, `112-s9-06-recap.png`); `$.exercises[53].prompt[1].tex` (ảnh `phone/137-s11-06-exercise-tinh-tong-hop-9-14.png`: "(3 − 7 +" / "2)"); `$.exercises[43].explain.tex` (`nhom-tru-90-35-15`, câu kho ôn walk không chụp, dòng khoảng 26 ký tự) - LL-12
+- Nguồn: nhóm 1 Nên sửa 4 và Góp ý 6, nhóm 2 Góp ý 8, nhóm 3 Nên sửa 9 và Góp ý 10 (gộp, giữ mức Nên sửa)
+- Vấn đề: chữ không bị cắt, nhưng dấu và số trong ngoặc bị tách sang hai dòng, ngay trên màn quy tắc, recap và hình dạy đọc dấu trong ngoặc. Vòng 1 (Nên sửa 10) đã nêu cùng kiểu, đề `[53]` chưa sửa.
+- Sửa: phép tính trong note và chữ `done` dùng khoảng trắng không ngắt (U+00A0) giữa số và dấu, hoặc bỏ phép tính khỏi note vì hình ngay dưới đã viết nó (vd "… nên số tiền thêm vào là 30 nghìn bớt 10 nghìn."); dòng 3 `nhom-tru-vi-du` dùng helper `steps` ("5 - 8 + 3 - 1", "= 5 - (8 - 3 + 1)"); đề `[53]` và `explain.tex` của `[43]` viết `\begin{gathered} … \\ … \end{gathered}` (`[43]`: `90 - (35 + 15) \\ = 90 - 50 = 40`). Chụp lại màn điện thoại.
+
+### 7. Câu điền quy tắc `dien-quy-tac-tru`: hai nhiễu điền vào thì câu sai ngữ pháp, loại được không cần hiểu quy tắc
+
+- Vị trí: `$.exercises[13].bank` (`ex.dien-quy-tac-tru`) - LL-14
 - Nguồn: —
-- Vấn đề: "Trong tổng tính tiền, khoản chi này là số hạng nào?" nhắc tới tổng 50 − 20 − 5 chỉ có ở màn đầu section. Bé chỉ thấy màn này thì không biết tổng nào; câu còn lại là đoán dấu của "chi".
-- Sửa: thêm khối `formula` "50 - 20 - 5" vào đề, hỏi "Trong tổng tiền của mẹ dưới đây, khoản mua cá 20 nghìn là số hạng nào?", nấc 1 trỏ `\htmlId` quanh "- 20".
+- Vấn đề: câu "bỏ ngoặc đi và ☐ từng số hạng trong ngoặc, không sót số nào": điền "giữ dấu cũ" hay "chỉ đổi dấu số đầu" đọc không thành câu, nên bé chọn "đổi dấu" chỉ nhờ ghép chữ.
+- Sửa: để trống cả cụm động từ lẫn đối tượng để mọi nhiễu thành câu trọn, vd ô trống thay "đổi dấu từng số hạng", ngân hàng "đổi dấu từng số hạng", "giữ dấu cũ của từng số hạng", "chỉ đổi dấu số hạng đầu"; bỏ đuôi "không sót số nào" khỏi câu điền, hoặc giữ đúng câu quy tắc nếu `[rule-sentence]` yêu cầu.
 
-### 4. Câu kho ôn và lựa chọn lặp số của màn dạy cùng section
+### 8. Định nghĩa tổng và quy tắc giữ dấu, đổi dấu có thêm cách nói thứ hai ở chữ bé đọc
 
-- Vị trí: `$.exercises[7]` (`ex.dien-dau-cong`), `$.exercises[9]` (`ex.tinh-6-cong-ngoac-am`), `$.exercises[61].options[3]` (`ex.chon-tong-bang-0`, lựa chọn d) - LL-07
+- Vị trí: nhãn hình `tong-dai-so-vi-du` dòng 1 "một tổng, chỉ có phép cộng và trừ" (`catalog.ts`, màn quy tắc và recap phần 1, ảnh `phone/019-s1-06-recap.png`) và `$.exercises[3].explain.text` ("Một tổng chỉ có phép cộng và phép trừ"), so với câu quy tắc "chỉ dùng dấu + và dấu −"; `$.sections[1].blocks[2].children[0].text` ("các dấu trong ngoặc không đổi") và `done` của `chon-bo-ngoac-8` ("các dấu vẫn như cũ"), so với "giữ dấu cũ"; `$.exercises[13].explain.text` ("mọi số hạng trong ngoặc đổi dấu"), so với "đổi dấu từng số hạng" - LL-05
 - Nguồn: —
-- Vấn đề: `dien-dau-cong` là đúng 40 + (30 − 10) = 40 + 30 − 10 của màn đầu phần 2 và hình `cong-ngoac-mua`. `tinh-6-cong-ngoac-am` dùng lại ngoặc (−4 + 1) của hình quy tắc `cong-ngoac-vi-du`. Lựa chọn d của `chon-tong-bang-0` là đúng dãy chips của màn "Cùng làm" `chon-khong-doi`, mà lời kết màn đó vừa cho biết số 3 còn lại; lựa chọn a là phần đầu của dãy đó.
-- Sửa: `dien-dau-cong` 35 + (12 − 7) = 35 ☐ 12 ☐ 7; `tinh-6-cong-ngoac-am` 6 + (−5 + 2); lựa chọn d (−3) + (−1) + 1 + 2 + 3 (bằng 2), `wrong` "Số 2 không có số đối −2 trong tổng này, nên tổng bằng 2".
+- Vấn đề: vòng 1 (Nghiêm trọng 1) chốt một cách nói cho mỗi quy tắc; các chỗ trên vẫn nói bằng lời khác ngay trên hay ngay sau câu quy tắc. Recap phần 1 hiện cùng lúc hai định nghĩa tổng.
+- Sửa: nhãn `tong-dai-so-vi-du` "một tổng, chỉ dùng dấu + và dấu −"; `explain` câu 3 "Một tổng chỉ dùng dấu + và dấu −."; note "Cùng làm" phần 2 "… trước ngoặc là dấu + thì các số hạng trong ngoặc giữ dấu cũ."; `done` của `chon-bo-ngoac-8` "Ngoặc có dấu +, nên các số hạng giữ dấu cũ."; `explain` câu 13 "… Vì vậy ta đổi dấu từng số hạng trong ngoặc."
 
-### 5. Câu điền quy tắc nói khác câu quy tắc của section
+### 9. Hình quy tắc và recap phần 5 vẫn dạy cách nói "hai dấu": "+ và − thành −", "− và − thành +"
 
-- Vị trí: `$.exercises[13].segments` (`ex.dien-quy-tac-tru`) - LL-05
-- Nguồn: —
-- Vấn đề: "Bỏ ngoặc có dấu − đứng trước thì ta ☐ tất cả các số hạng trong ngoặc" là cách nói thứ hai của câu quy tắc phần 3. Câu điền nên là đúng câu bé phải nhớ.
-- Sửa: dựng `segments` từ đúng câu quy tắc (bản viết lại theo Nghiêm trọng 1), chỉ để trống "đổi dấu".
+- Vị trí: `catalog.ts` khoá `ngoac-mot-so-vi-du` (bốn nhãn), hình của `$.sections[4].blocks[1].children[1]`, `$.sections[4].recap` và `$.cards[4].recap`; `$.sections[4].blocks[2].children[0].text` ("không nhầm khi gặp hai dấu liền nhau") - LL-05, LL-20
+- Nguồn: tr.53, ý 2 (`sbt-p53.png`): chỉ có giữ dấu và đổi dấu
+- Vấn đề: vòng 1 (Nghiêm trọng 3) cho giữ bốn nhãn "chỉ làm nhãn ví dụ, không đưa lên recap", nhưng recap section và recap card dùng chính hình này, nên trên màn "Nhớ nhé!" (`phone/067-s5-06-recap.png`) và ở màn ôn card bé thấy câu quy tắc "giữ dấu cũ / đổi dấu" cùng bốn nhãn chữ to "+ và − thành −", "− và − thành +", không kèm điều kiện "ngoặc chỉ có một số". Bé nhớ "− và − thành +" dễ đem dùng cho 5 − (−3 + 2) thành 5 + 3 + 2.
+- Sửa: bốn nhãn theo lời câu quy tắc, vd "dấu + trước ngoặc: +3 giữ dấu cũ", "dấu + trước ngoặc: −3 giữ dấu cũ", "dấu − trước ngoặc: +3 đổi thành −3", "dấu − trước ngoặc: −3 đổi thành +3" (hoặc gọn "giữ dấu cũ", "đổi dấu"); câu lý do màn "Cùng làm" "Làm vậy bạn không quên đổi dấu số trong ngoặc khi trước ngoặc là dấu −."
 
-### 6. Mẹo tránh sai đặt sau phần tự làm đầu tiên của dạng bài
+### 10. Nhãn hình của phần 6 nói quy tắc nhiều ngoặc theo vị trí hay như mọi ngoặc đều đổi dấu: "ngoặc sau đổi dấu", "mỗi ngoặc đổi dấu riêng"
 
-- Vị trí: `$.sections[3].blocks[2]` (`tip.dau-dau-tien`)
-- Nguồn: —
-- Vấn đề: lỗi "quên đổi dấu số đầu không ghi dấu" có ngay ở phần 3 (20 − (6 + 5), 30 − (8 + 7)), nhưng mẹo đứng ở phần 4, sau câu kiểm tra và câu luyện của phần 3 (checklist trục 5: mẹo đặt trước câu tự làm của dạng đó).
-- Sửa: chuyển khối `tip` sang phần 3, sau màn quy tắc và trước màn "Cùng làm", ví dụ đổi sang ngoặc toàn số dương, vd 12 − (4 + 3) = 12 − (+4 + 3) = 12 − 4 − 3.
+- Vị trí: `catalog.ts` khoá `goi-y-nhieu-ngoac`, nhãn dòng 2 "ngoặc sau đổi dấu" (nấc 2 của `$.exercises[26]`, `ex.tinh-hai-ngoac`); khoá `hai-tui-giam-gia`, nhãn dòng 2 "mỗi ngoặc đổi dấu riêng" (hình mở đầu `$.sections[5].blocks[0]`) - LL-05
+- Nguồn: nhóm 2 Nên sửa 3; Tổng hợp bổ sung nhãn `hai-tui-giam-gia`
+- Vấn đề: câu quy tắc phần 6 là "Mỗi ngoặc xét riêng theo dấu đứng ngay trước nó". Vòng 1 (Nên sửa 8) đã bỏ "ngoặc đầu / ngoặc sau" ở `explain` và `LEADING_ROWS` vì bé dễ nhớ "ngoặc thứ hai đổi dấu"; hình gợi ý còn sót "ngoặc sau đổi dấu". Nhãn "mỗi ngoặc đổi dấu riêng" ở màn mở đầu cùng phần đúng với hai ngoặc có dấu − của ví dụ, nhưng đọc thành "ngoặc nào cũng đổi dấu", trái câu quy tắc ngay sau và trái `LEADING_ROWS` ("ngoặc ở đầu tổng giữ dấu cũ").
+- Sửa: `goi-y-nhieu-ngoac` "ngoặc có dấu − đổi dấu" (hoặc như `LEADING_ROWS`); `hai-tui-giam-gia` "hai ngoặc có dấu − đứng trước: đổi dấu từng số hạng".
 
-### 7. Câu luyện phần "Ngoặc chỉ có một số" dùng quy tắc ngoặc ở đầu dãy, phần sau mới dạy
+### 11. Câu ôn `hai-tui-80` cần 4 phép tính và lặp túi B của câu chuyện mở đầu
 
-- Vị trí: `$.exercises[21]` (`ex.tinh-bon-ngoac`) và `explain` của nó, hình gợi ý `visual.goi-y-ngoac-mot-so`; quy tắc ở `$.sections[5].blocks[1].children[0]` - LL-09
-- Nguồn: tr.54, bài 3.20a, `sbt-p54.png`
-- Vấn đề: đề mở đầu bằng (−8); `explain` viết "Các ngoặc có dấu + đứng trước hoặc đứng đầu" trong khi quy tắc ngoặc ở đầu dãy nằm ở phần `nhieu-ngoac`. Hình gợi ý cũng mở đầu bằng (−3).
-- Sửa: hoặc đưa câu quy tắc ngoặc ở đầu dãy (kèm ví dụ một số, như (−8) + 5 = −8 + 5) lên phần `ngoac-mot-so`; hoặc đổi đề luyện và hình gợi ý để ngoặc không đứng đầu, vd 3 + (−5) − 4 + (−2) = −8, và bỏ "hoặc đứng đầu" khỏi `explain`.
-
-### 8. "Ngoặc đầu" dễ hiểu thành "ngoặc thứ nhất", lệch lời câu quy tắc
-
-- Vị trí: `$.exercises[25].explain` (`ex.bo-ngoac-hai-8-5`), `$.exercises[26].explain.text` (`ex.tinh-hai-ngoac`), `$.exercises[27].explain.text` (`ex.doi-dau-ba-ngoac`: "Ngoặc đầu và ngoặc thứ ba"), nhãn `LEADING_ROWS` của `ngoac-dau-day-vi-du`, `ngoac-dau-day-vi-du-xong`, `explain` của `tinh-bon-ngoac` ("đứng đầu") - LL-05
-- Nguồn: —
-- Vấn đề: câu quy tắc gọi là "ngoặc ở đầu dãy"; các chỗ khác nói "ngoặc đầu", "đứng đầu". Bé chậm dễ nhớ thành "ngoặc thứ nhất giữ dấu" rồi dùng cho 100 − (40 − 5) − (30 − 10), nơi ngoặc thứ nhất có dấu − đứng trước.
-- Sửa: mọi chỗ viết "ngoặc ở đầu dãy" (nhãn hình viết gọn "ngoặc ở đầu dãy giữ dấu").
-
-### 9. Câu kho ôn của card "Nhiều ngoặc" chỉ có một ngoặc
-
-- Vị trí: `$.exercises[28]` (`ex.hai-tui-80`, card `nhieu-ngoac`)
+- Vị trí: `$.exercises[28]` (`ex.hai-tui-80`, card `nhieu-ngoac`), `explain.tex` - LL-18, LL-07, LL-20
 - Nguồn: tr.54, bài 3.21
-- Vấn đề: đề chỉ cho 80 − (25 − 5), dạng của card `ngoac-dau-tru`; không ôn ý của card, và id nói hai túi trong khi đề chỉ có một.
-- Sửa: thêm túi thứ hai, vd 80 − (25 − 5) − (30 − 10) = 40; hoặc chuyển câu sang card `ngoac-dau-tru`.
+- Vấn đề: bản sửa theo Nên sửa 9 vòng 1 thành 80 − 25 + 5 − 30 + 10: 4 phép tính, quá luật 2 phép tính nhẩm của câu ôn; `explain.tex` nhảy từ dòng bỏ ngoặc tới "= 40". Túi B "giá 30 nghìn được giảm 10 nghìn" trùng túi B của note và hình mở đầu `hai-tui-giam-gia`.
+- Sửa: vd "Mai có 60 nghìn đồng, mua túi A giá 25 nghìn được giảm 5 nghìn và túi B giá 15 nghìn được giảm 5 nghìn": 60 − (25 − 5) − (15 − 5) = 60 − 25 + 5 − 15 + 5 = 70 − 40 = 30 (Tổng hợp đã tính lại); `explain` ghi thêm dòng gom "= 70 − 40". Tính lại `check.expr` và đáp án.
 
-### 10. Công thức và chữ xuống dòng giữa ngoặc trên điện thoại
+### 12. Câu luyện và câu ôn cần hơn 2 phép tính nhẩm mà bớt được số hạng
 
-- Vị trí: `visual.hai-tui-giam-gia` dòng `100 - (40 - 5) - (30 - 10)` (ảnh `phone/069-s6-01-block.png`, `070-s6-01-block-end.png`); note `$.sections[7].blocks[0].children[0]` ("(30 −" / "10)", ảnh `phone/092-s8-01-block.png`); `$.exercises[53].prompt[1].tex` (ảnh `phone/133-s11-05-exercise-tinh-tong-hop-9-14.png`); `explain.tex` của `$.exercises[41]`, `[46]`, `[53]`, `[58]` (ảnh `phone/111-`, `123-`, `134-`, `146-…-correct`); câu kho ôn cùng kiểu chuỗi dài một dòng `$.exercises[47]`, `[49]`, `[55]`, `[59]` - LL-12
+- Vị trí: `$.exercises[21]` (`tinh-ngoac-cong-am`, câu luyện, 12 − 5 − 8 − 4), `$.exercises[22]` (`tinh-ngoac-chuoi`, 9 + 4 − 6 − 5), `$.exercises[34]` (`gom-6-9-4-5`); `$.exercises[53]` (`tinh-tong-hop-9-14`, câu luyện, 6 số hạng, 5 phép tính), `$.exercises[55]` (`tong-hop-nam-30`, 4 phép tính), `$.exercises[59]` (`thu-chi-lan-40`, 4 phép tính), `$.exercises[49]` (`hop-li-120-150`, 3 phép tính), `$.exercises[56]` (`chon-bang-am-5`, mỗi lựa chọn 3 phép tính) - LL-18
+- Nguồn: tr.54, bài 3.20 đến 3.23; nhóm 2 Nên sửa 5, nhóm 3 Nên sửa 5 (gộp)
+- Vấn đề: luật "Số nhỏ" (`pitfalls.md`) giới hạn câu luyện và câu ôn ở 2 phép tính nhẩm. Vòng 1 (Nên sửa 11) đã nêu `[53]`, `[55]`, `[59]`, `[49]`; bản sửa chỉ đổi `[46]` và `[34]` một phần. `tinh-ngoac-cong-am` là câu tự làm đầu tiên của dạng bài; bé chậm dễ sai ở phép giữa dù bỏ ngoặc đúng.
+- Sửa (Tổng hợp đã tính lại từng số): `tinh-ngoac-cong-am` 12 + (−5) − (−4) = 12 − 5 + 4 = 11; `tinh-ngoac-chuoi` 9 − (−4) + (−6) = 7; `gom-6-9-4-5` 6 − 9 + 4 = 1; `[53]` (−7) + (9 − 2) − (5 − 7) = −7 + 9 − 2 − 5 + 7 = 2; `[55]` "Nam có 30 nghìn, được thưởng 20 nghìn nhưng làm rơi 6 nghìn, rồi mua kẹo 4 nghìn và trả bạn 20 nghìn": 30 + (20 − 6) − (4 + 20) = 20; `[59]` cùng cách với số khác; `[56]` mỗi lựa chọn một ngoặc, vd 4 − (3 + 6), (2 − 9) + 2. Khi đổi số `tinh-ngoac-chuoi`, xem lại cờ `allowNegative` (Góp ý 11) và hình gợi ý `goi-y-ngoac-mot-so`, `goi-y-tong-hop` (Nên sửa 21). Câu mà dạng bài buộc 4 số hạng: Góp ý 7.
+
+### 13. Mẹo và lời giải dùng "phần số", trong khi glossary và các bài trước gọi "phần số tự nhiên"; "nhóm có tổng lớn hơn" đọc được hai cách
+
+- Vị trí: `$.sections[6].blocks[2].text` (`tip.gom-duong-am`), `$.exercises[34].explain.text` (`gom-6-9-4-5`), `$.exercises[53].explain.text` (`tinh-tong-hop-9-14`: "phần số của số hạng âm") - LL-05, LL-10
 - Nguồn: —
-- Vấn đề: chữ không bị cắt, nhưng ngoặc và dấu "=" bị tách khỏi số của chúng; bé học chậm phải tự ghép lại một dãy nhiều dấu, ngay trong bài dạy đọc dấu trước ngoặc.
-- Sửa: dòng đầu `hai-tui-giam-gia` tách bằng helper `steps` (như `WHOLE_ROWS`): `100 - (40 - 5)` và `- (30 - 10)`; đề 53 tách hai dòng; mỗi `explain.tex` có từ hai dấu "=" viết bằng `gathered`, mỗi dòng một phép, tối đa 22 ký tự; note phần 8 dùng khoảng trắng không ngắt trong ngoặc hoặc bỏ hai ngoặc vì hình đã vẽ. Xem lại ảnh `phone/…-correct`.
+- Vấn đề: glossary Toán có thuật ngữ "phần số tự nhiên", bài `phep-cong-phep-tru-so-nguyen` dùng đúng tên đó 51 lần; bài này viết "phần số", một tên thứ hai. Mẹo bảo "kết quả mang dấu của nhóm có tổng lớn hơn": tổng của nhóm số hạng âm là số âm (−14 với 6 − 9 + 4 − 5), nên đọc từng chữ thì nhóm dương luôn "lớn hơn" và kết quả luôn dương (ra +4, đúng là −4).
+- Sửa: "phần số tự nhiên" ở cả ba chỗ, và nói theo cách bài cộng hai số khác dấu đã dạy: "Cộng riêng các số hạng dương, cộng riêng phần số tự nhiên của các số hạng âm. Lấy số lớn trừ số bé, kết quả mang dấu của nhóm cho số lớn hơn; hai số bằng nhau thì kết quả bằng 0." Soát lại độ dài.
 
-### 11. Câu luyện và câu ôn cần nhiều hơn 2 phép tính nhẩm
+### 14. Câu quy tắc dùng chung cho phần 10 và 11 liệt kê ba cách nhóm, nhưng ví dụ và lời giải của phần 11 nhóm theo cách thứ tư
 
-- Vị trí: `$.exercises[26]` (`tinh-hai-ngoac`, câu luyện, 4 phép), `$.exercises[34]` (`gom-6-9-4-5-8`, 5 số hạng), `$.exercises[21]` (`tinh-bon-ngoac`), `$.exercises[22]` (`tinh-ngoac-chuoi`), `$.exercises[46]` (`nhom-cap-10-20`, câu luyện, 5 phép), `$.exercises[53]` (`tinh-tong-hop-9-14`, câu luyện, 6 số hạng), `$.exercises[49]` (`hop-li-120-150`), `$.exercises[55]` (`tong-hop-nam-30`), `$.exercises[59]` (`thu-chi-lan-40`) - LL-18
-- Nguồn: tr.54, bài 3.20 đến 3.22
-- Vấn đề: luật "Số nhỏ" giới hạn câu luyện và câu ôn ở 2 phép tính nhẩm; câu 5, 6 số hạng bắt bé chậm giữ nhiều số có dấu trong đầu, dễ sai ở bước giữa dù bỏ ngoặc đúng.
-- Sửa: giữ dạng sách nhưng bớt số hạng, vd `tinh-hai-ngoac` (5 − 9) − (3 − 8) = 1; `gom-6-9-4-5-8` 6 − 9 + 4 − 5 = −4; câu 53 (−6) + (9 − 4) − (3 − 6) = 2 (−6 và +6 bằng 0); câu 46 giữ 4 số hạng (2 nhóm), số khác hình `goi-y-hop-li`. Hai câu 4 số hạng dạng 3.20 có thể giữ.
+- Vị trí: `$.sections[10].blocks[1]` (note `rule: true` và hình `vi-du-tong-hop`), `$.sections[10].recap`, `$.cards[10].recap` (hình `vi-du-tong-hop-xong`, `WHOLE_ROWS`), `$.exercises[53].explain` - LL-05, LL-15
+- Nguồn: tr.53 (ví dụ của sách nhóm ra số tròn)
+- Vấn đề: "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau." đọc như danh sách đủ. Ngay dưới, hình mẫu phần 11 nhóm (8 + 3) − (4 + 5 + 6) = 11 − 15: cách "gom số dương, gom số âm" của mẹo `gom-duong-am`, không thuộc ba cách kia; lời giải `[53]` cũng vậy. Ở phiên ôn card, chữ và hình nói hai điều khác nhau.
+- Sửa: chọn một. (a) Đổi số `WHOLE_ROWS` để bước nhóm gặp một cách trong danh sách, vd (−4) + (8 − 5) − (−4 + 6) = −4 + 8 − 5 + 4 − 6 = (−4 + 4) + 8 − 5 − 6 = −3 (Tổng hợp đã tính lại), và `[53]` theo Nên sửa 12. (b) Thêm cách thứ tư vào câu quy tắc (hai note, hai recap section, hai recap card), vd "...: số tròn chục, số đối nhau, các nhóm bằng nhau, hay số dương với số dương." Kiểm câu mới với `[length]` và `[rule-sentence]`.
 
-### 12. Câu quy tắc "Tính hợp lí" chỉ nói "để được số tròn chục", hẹp hơn bài tập của phần
+### 15. Nhãn "bỏ ngoặc: giữ dấu +, đổi dấu −" đọc được thành "giữ các dấu +, đổi các dấu −"
 
-- Vị trí: `$.sections[9].blocks[0].children[0]` (rule), `$.sections[9].recap.caption`, `$.cards[9].recap.caption` (`card.tinh-hop-li`)
-- Nguồn: tr.54 bài 3.22a, gợi ý tr.112 (nhóm thành các nhóm cùng bằng −2)
-- Vấn đề: câu luyện `nhom-cap-10-20` nhóm thành các nhóm bằng nhau, màn ngay sau cho hai số đối cộng bằng 0. Bé làm đúng chữ quy tắc thì đi tìm cặp tròn chục trong 10 − 12 + 14 − 16 + 18 − 20 mà không có. Recap lặp câu này.
-- Sửa: "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau." (recap lặp câu đầu; gộp với Nên sửa 15).
-
-### 13. Dạng "nhóm từng cặp có kết quả bằng nhau" không có ví dụ mẫu trước câu luyện
-
-- Vị trí: `$.exercises[46]` (`ex.nhom-cap-10-20`), `$.sections[9].blocks` - LL-16
-- Nguồn: tr.54 bài 3.22a
-- Vấn đề: ba màn của phần chỉ có mẫu nhóm tròn chục (`tinh-hop-li-vi-du`) và số đối triệt tiêu (`so-doi-mat-nhau`); cách nhóm (10 − 12) + (14 − 16) chỉ hiện ở hình gợi ý nấc 2 `goi-y-hop-li`, tức là sau khi bé làm sai.
-- Sửa: thêm dạng này vào hình mẫu màn quy tắc, bằng số khác câu luyện và hình gợi ý (vd 5 − 8 + 15 − 18 = −6), hoặc đổi câu luyện sang dạng đã có mẫu.
-
-### 14. Phần `tinh-hop-li` không có ví dụ đời sống; phần `vi-du-tong-hop` chỉ có ở kho ôn
-
-- Vị trí: `$.sections[9]` (`section.tinh-hop-li`) và các câu của `card.tinh-hop-li`; `$.sections[10]` (`section.vi-du-tong-hop`), câu đời sống duy nhất là `$.exercises[55]` (kho ôn) - LL-16
+- Vị trí: `catalog.ts` khoá `vi-du-tong-hop`, `vi-du-tong-hop-xong` (`WHOLE_ROWS` dòng 2; màn quy tắc và recap phần 11, ảnh `phone/131-s11-02-block-end.png`, `139-s11-07-recap.png`); so với nhãn `thu-chi-lan` "ngoặc + giữ dấu cũ, ngoặc − đổi dấu" - LL-10, LL-05
 - Nguồn: —
-- Vấn đề: màn, câu kiểm tra, câu luyện của hai phần đều là dãy số trần; luật "Ví dụ đời sống ở mọi section Toán" chưa đạt.
-- Sửa: phần 10 đổi màn "Cùng làm" hay câu luyện thành tình huống có tiền, vd "Bạn được cho 27 nghìn, mua vở 14 nghìn, được cho thêm 3 nghìn, mua bút 6 nghìn" (giữ tập số của màn cùng làm). Phần 11 nhận ví dụ Lan từ phần 12 làm màn mở đầu (Nên sửa 18).
+- Vấn đề: viết gọn "giữ dấu +, đổi dấu −", bé chậm dễ đọc thành "số mang dấu + giữ nguyên, số mang dấu − đổi dấu", một quy tắc sai (với −(−3 + 6) bé sẽ giữ +6). Nhãn nằm trên hình recap của card. Cùng phần, màn mở đầu nói cùng ý bằng lời khác.
+- Sửa: một nhãn cho cả hai hình, nói rõ "ngoặc", vd "ngoặc có dấu + giữ dấu, ngoặc có dấu − đổi dấu" (xem độ rộng trên điện thoại, nhãn `thu-chi-lan` đã xuống dòng).
 
-### 15. Hai phần liền nhau nêu cùng một cách làm bằng hai câu quy tắc khác nhau
+### 16. Số 0 trong phép ghép số đối được nói theo ba cách: là "số còn lại", không phải "số còn lại", hay "đứng riêng"
 
-- Vị trí: `$.sections[9].blocks[0].children[0]` và `$.sections[10].blocks[0].children[0]`, cùng recap của hai phần và hai card (`tinh-hop-li`, `vi-du-tong-hop`) - LL-05
-- Nguồn: tr.53 (ví dụ), tr.54 bài 3.22, 3.23
-- Vấn đề: "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để được số tròn chục." và "Tính tổng có ngoặc: bỏ ngoặc trước, rồi đổi chỗ, nhóm các số hạng và tính." cùng là "bỏ ngoặc, đổi chỗ, nhóm" nhưng mở đầu khác nhau. Ở phiên ôn trộn card, bé không biết khi nào dùng câu nào; `[rule-sentence]` chỉ so trong một phần nên không bắt.
-- Sửa: phần `vi-du-tong-hop` chỉ áp dụng, không dạy ý mới, nên dùng lại nguyên văn câu quy tắc phần 10 (bản sửa theo Nên sửa 12) cho note và recap; nếu giữ câu riêng thì câu đó nói điều mới, như "Bỏ hết các ngoặc trước khi đổi chỗ".
+- Vị trí: `$.sections[11].blocks[2].children[0].text` và `done` của `visual.chon-khong-doi` ("Đó là số còn lại", "nên 3 là số còn lại"); `$.exercises[62].explain.text` (`tong-lon-hon-am4`: "còn lại 4", trong khi `tex` cộng "+ 0 + 4"); so với `$.exercises[58].explain.text` (`tong-tu-am3-den-5`: "Còn lại 0, 4 và 5"), hình `ghep-so-doi` (`PAIR_ROWS`), hình gợi ý `goi-y-ghep-doi` ("+ 0 + 3 + 4"), `$.exercises[57].explain.text` ("Số 0 đứng riêng nên cộng vào không đổi") - LL-05, LL-10
+- Nguồn: tr.112, gợi ý 3.24
+- Vấn đề: câu quy tắc nói "Rồi cộng các số còn lại." Màn "Cùng làm" và lời kết coi chỉ số 3 là "số còn lại", câu 62 nói "còn lại 4", còn câu 58, hình mẫu và hình gợi ý đếm 0 vào. Kết quả không sai, nhưng một khái niệm của câu quy tắc có hai nghĩa.
+- Sửa: đếm 0 vào số còn lại ở mọi chỗ: note "Cùng làm" "chạm vào số khác 0 còn lại sau khi ghép cặp. Số 0 cũng còn lại, nhưng cộng 0 không làm tổng đổi, nên số bạn chạm quyết định cả tổng."; lời kết "Số 3 không có số đối −3 trong các số này. Còn lại 0 và 3, cộng lại được 3."; câu 62 "còn lại 0 và 4, nên tổng là 4"; câu 57 "Còn lại số 0, nên tổng bằng 0."
 
-### 16. Ví dụ của mẹo kiểm tra dùng ngoặc có tổng bằng 0, đúng chỗ phép kiểm không phát hiện lỗi
+### 17. Ví dụ của câu quy tắc ghép số đối không cho thấy vế "cộng các số còn lại"
 
-- Vị trí: `$.sections[10].blocks[2].tex` (`tip.kiem-tra-hai-cach`) - LL-24
+- Vị trí: `catalog.ts` khoá `ghep-so-doi`, `ghep-so-doi-xong` (`PAIR_ROWS`), dùng ở `$.sections[11].blocks[1]`, `$.sections[11].recap`, `$.cards[11].recap` - LL-06, LL-15
+- Nguồn: tr.54 bài 3.24 (đáp số 20, không phải 0)
+- Vấn đề: vòng 1 thêm vế "Rồi cộng các số còn lại." vì làm theo vế đầu thì câu nào cũng ra 0; hình đi kèm vẫn là tổng từ −3 đến 3, kết quả 0, nên vế mới không có ví dụ và hình recap card cho bé thấy đúng điều cần tránh. Câu kiểm tra `[57]` (−4 đến 4, đáp số 0) cũng vậy.
+- Sửa: đổi `PAIR_ROWS` sang dãy có số thừa (tránh −2 đến 4 của `goi-y-ghep-doi` và −3 đến 5 của câu luyện), vd từ −1 đến 3: [(−1) + 1] + 0 + 2 + 3 = 5 (Tổng hợp đã tính lại), nhãn "ghép cặp số đối" rồi "cộng các số còn lại"; sửa nhãn tiêu đề hình cho khớp.
+
+### 18. Lời giải `tex` của hai câu thu chi làm ngược câu quy tắc của card, và lời chữ không nói nhóm thế nào
+
+- Vị trí: `$.exercises[55].explain` (`tong-hop-nam-30`), `$.exercises[59].explain` (`thu-chi-lan-40`), card `vi-du-tong-hop` - LL-05
 - Nguồn: —
-- Vấn đề: 3 − 5 + 2 = 0 nên 10 − 0 và 10 + 0 bằng nhau: bé bỏ ngoặc sai thành 10 + 3 − 5 + 2 vẫn ra 10 và phép kiểm báo đúng. Câu "nếu khác thì kiểm tra lại các dấu" bỏ qua trường hợp tính sai trong ngoặc.
-- Sửa: ngoặc có tổng khác 0, mỗi dòng ≤ 22 ký tự: `\begin{gathered} 10 - (3 - 8 + 2) \\ = 10 - (-3) = 13 \\ 10 - 3 + 8 - 2 = 13 \end{gathered}` (cách sai 10 + 3 − 8 + 2 = 7 và 10 − 3 − 8 + 2 = 1 đều bị phát hiện). Câu cuối: "nếu khác thì xem lại các dấu và các phép tính".
+- Vấn đề: `text` bỏ ngoặc ("30 + 20 − 5 − 6 − 4") rồi chỉ phán "Tính được 35"; `tex` lại tính trong ngoặc trước: 30 + (20 − 5) − (6 + 4) = 30 + 15 − 10. Một lời giải, hai cách làm, và cách hiện trên công thức là cách câu quy tắc bảo không làm trước.
+- Sửa: `text` và `tex` cùng theo câu quy tắc, có bước nhóm, vd "Bỏ ngoặc được 30 + 20 − 5 − 6 − 4. Nhóm 30 + 20 = 50 và 5 + 6 + 4 = 15, nên còn 35." (viết sau khi đổi số theo Nên sửa 12).
 
-### 17. Số 0 trong dãy số đối được nói theo hai cách trái nhau
+### 19. Câu ôn "Biểu thức nào cho số tiền còn lại?" không ôn ý của card `vi-du-tong-hop`
 
-- Vị trí: `$.sections[11].blocks[1].children[0]`, `$.sections[11].blocks[2].children[0]`, `done` của `visual.chon-khong-doi`, so với `$.exercises[57].explain.text`, `$.exercises[58].explain.text`, hình `ghep-so-doi` - LL-10, LL-05
-- Nguồn: tr.112 bài 3.24 ("Tách riêng 20, các số khác 0 còn lại chia thành từng cặp")
-- Vấn đề: note nói "số nào cũng có số đối. Ghép từng cặp số đối nhau"; màn "Cùng làm" bảo chạm "số không có số đối", lời kết nói chỉ 3 còn lại. Nhưng hình `ghep-so-doi` và lời giải câu 57, 58 ("Còn lại 0, 4 và 5") để số 0 đứng riêng. Bé nghĩ "0 không ghép được" sẽ chạm 0 và bị coi là sai.
-- Sửa: note "Trong dãy số nguyên từ −3 đến 3, kể cả −3 và 3, ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Số 0 đứng riêng, cộng vào không làm tổng đổi."; "Cùng làm": "chạm vào số khác 0 mà không ghép được với số đối của nó"; lời kết sửa theo.
-
-### 18. Phần `bai-toan-doi-song` gộp hai ý; recap thiếu bước "cộng các số còn lại" và không khớp câu ôn của card
-
-- Vị trí: `$.sections[11]` (`section.bai-toan-doi-song`), `$.sections[11].recap.caption`, `$.cards[11].recap.caption`, `$.exercises[59]`, `$.exercises[60]` - LL-06
-- Nguồn: tr.54 bài 3.24
-- Vấn đề: phần dạy hai việc: tính thu chi có ngoặc (Lan, câu 59, 60) và cộng dãy bằng ghép số đối (câu 57, 58, 61). Không có note `rule: true`. Recap "Ghép từng cặp số đối nhau: mỗi cặp có tổng bằng 0." không nói phải cộng các số còn lại, bước quyết định của câu luyện 58 và bài 3.24 (đáp số 20): làm đúng recap thì câu nào cũng ra 0. Câu ôn 59, 60 của card hỏi thu chi, ý recap không nhắc.
-- Sửa: note `rule: true` "Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Rồi cộng các số còn lại.", recap lặp nguyên văn, kèm hình có số thừa (vd từ −1 đến 3 bằng 5). Chuyển ví dụ Lan và câu 59, 60 sang `vi-du-tong-hop`; ví dụ đời sống của phần 12 dùng chuyện ghép số đối, vd tiền một tuần +5, −2, +2, −5, +4 nghìn.
-
-### 19. Câu chuyện thu chi đưa công thức vào lời kể: "nhận thêm cả khoản (30 − 10)", "nhận 20 nghìn trừ 5 nghìn công"
-
-- Vị trí: `$.sections[1].blocks[0].children[0]` (`section.ngoac-dau-cong`); `$.sections[11].blocks[0].children[0]` và nhãn `visual.thu-chi-lan`; `$.exercises[55].prompt[0]` (`ex.tong-hop-nam-30`), `$.exercises[59].prompt[0]` (`ex.thu-chi-lan-40`) - LL-10, LL-19
+- Vị trí: `$.exercises[60]` (`viet-bieu-thuc-80`, `cardIds` `card.vi-du-tong-hop`)
 - Nguồn: —
-- Vấn đề: bé lớp 6 khó hiểu "5 nghìn công" là tiền gì và ai trừ. Ngoài đời không ai "nhận cả khoản (30 − 10)", "nhận khoản (20 − 5) nghìn" hay "trả khoản (6 + 4) nghìn"; đề đặt công thức vào chỗ câu chuyện nên bé không thấy vì sao có ngoặc.
-- Sửa: kể từng khoản bằng lời rồi mới viết biểu thức, vd "Lan có 60 nghìn đồng. Lan bán giấy vụn được 20 nghìn nhưng trả 5 nghìn tiền gửi xe, rồi mua bút 12 nghìn và vở 8 nghìn."; câu 55 "Nam có 30 nghìn đồng, được thưởng 20 nghìn nhưng làm rơi 5 nghìn, rồi mua kẹo 6 nghìn và nước 4 nghìn." (đổi số để khác ví dụ Lan); câu 59 và note phần 2 theo cùng khuôn ("Bạn có 40 nghìn. Bạn bán đồ cũ được 30 nghìn nhưng tiêu mất 10 nghìn.").
+- Vấn đề: câu chỉ hỏi viết 80 − (30 + 20) cho "trả cả hai khoản", đúng ý card `nhom-ngoac-tru` (cùng dạng `[43]`). Recap của card `vi-du-tong-hop` không giúp gì cho câu này.
+- Sửa: chuyển `cardIds` sang `card.nhom-ngoac-tru` (hoặc `card.ngoac-dau-tru`); muốn giữ ở card `vi-du-tong-hop` thì đổi thành câu có cả ngoặc dấu + và ngoặc dấu −, như câu Lan.
 
-### 20. Đề "Chọn tất cả các cách viết đúng" có lựa chọn là kết quả tính dở, không phải cách đặt ngoặc
+### 20. Ví dụ màn quy tắc "Tính hợp lí" và câu kiểm tra của phần vẫn là khuôn bài 3.22b, cùng cách nhóm và đáp số 0 của lời giải sách
 
-- Vị trí: `$.exercises[44].prompt[0]` (`ex.chon-nhom-tru-30`), lựa chọn c "30 − 20" - LL-10
+- Vị trí: `catalog.ts` khoá `tinh-hop-li-vi-du`, `tinh-hop-li-vi-du-xong` (`REASONABLE_ROWS`, ở `$.sections[9].blocks[0]`, `$.sections[9].recap`, `$.cards[9].recap`); `$.exercises[45]` (`bo-ngoac-47-30-3`); hình gợi ý `goi-y-hop-li` (đáp số −6) - LL-08
+- Nguồn: tr.54 bài 3.22a, 3.22b; tr.112 lời giải "a) −6", "b) 0", gợi ý nhóm (92 + 8) − (55 + 45)
+- Vấn đề: 38 − (25 − 2) + (−15) = (38 + 2) − (25 + 15) = 0 chép nguyên khuôn 92 − (55 − 8) + (−45), cách nhóm của gợi ý tr.112 và đáp số 0, chỉ thay số; câu kiểm tra cùng khuôn, cùng giá trị 0; hình gợi ý ra −6, đúng đáp số 3.22a. Vòng 1 (Góp ý 19) đã nêu. Không số nào trùng sách nên chưa là chép.
+- Sửa (Tổng hợp đã tính lại): `REASONABLE_ROWS` 38 − (25 − 2) + (−5) = (38 + 2) − (25 + 5) = 10; `[45]` 47 − (30 − 3) + (−30) (giá trị −10, đổi lựa chọn và lý do theo); `goi-y-hop-li` 2 − 7 + 8 − 13 = (−5) + (−5) = −10 (khác đáp số −8 của `nhom-cap-13-25`).
+
+### 21. Hình gợi ý của câu luyện phần 11 hứa "rồi nhóm" mà không có bước nhóm
+
+- Vị trí: `catalog.ts` khoá `goi-y-tong-hop` (`$.exercises[53].hints.hintVisualId`) - LL-15
 - Nguồn: —
-- Vấn đề: ngay sau phần dạy đặt ngoặc, bé hiểu "cách viết" là cách đặt ngoặc, nên dễ bỏ c dù c cùng giá trị và được tính đúng.
-- Sửa: "Chọn tất cả các biểu thức có giá trị bằng tổng sau."
+- Vấn đề: tiêu đề "Bỏ ngoặc rồi nhóm các số hạng", nhưng hình đi thẳng từ −2 + 9 − 4 − 1 + 5 − 2 tới "= 5", bỏ qua đúng bước bé chưa biết.
+- Sửa: thêm một dòng nhóm có nhãn theo cách đã chốt ở Nên sửa 14, vd "= (9 + 5) − (2 + 4 + 1 + 2)", "= 14 − 9" rồi "= 5", hoặc chọn số có cặp số đối.
 
-### 21. Kết quả của tổng được tô ba màu khác nhau trong các hình
+### 22. Câu ôn `nhom-tru-14-6-4` dùng lại các ngoặc của màn "Cùng làm"
 
-- Vị trí: `catalog.ts`: `REASONABLE_ROWS`, `PAIR_ROWS` (`\concept{slate}{0}`), so với `gom-vao-tui` (`amber` 70), `thu-chi-lan` (`amber` 55), `so-doi-mat-nhau`, `WHOLE_ROWS` (`pink` −22, −4), chỗ tô số 0 bằng `amber`
+- Vị trí: `$.exercises[42]` (`nhom-tru-14-6-4`), so với `visual.chon-nhom-15` (`$.sections[8].blocks[2]`) - LL-07
 - Nguồn: —
-- Vấn đề: cùng nhãn "giá trị của tổng" mà số kết quả lúc amber, lúc hồng (màu số âm), lúc slate (không có trong `concepts` của bài); số 0 lúc amber, lúc slate. Màu không còn chỉ một khái niệm (checklist trục 4).
-- Sửa: chốt một cách tô cho mọi kết quả: luôn amber như nhãn, hoặc theo dấu (dương lime, âm hồng, 0 amber); sửa `REASONABLE_ROWS`, `PAIR_ROWS` theo cách đã chốt.
+- Vấn đề: màn "Cùng làm" có ba chip 15 − (6 + 4), 15 − (6 − 4), 15 + (6 − 4); câu ôn có 14 − (6 + 4), 14 − (6 − 4), 14 + (6 − 4): cùng ba ngoặc, chỉ đổi số đầu. Bé nhớ chip đúng "(6 + 4)" sẽ chọn theo trí nhớ (đáp án câu ôn lại là (6 − 4)).
+- Sửa: vd 14 − 7 + 3 với các lựa chọn 14 − (7 + 3), 14 − (7 − 3), 14 + (7 − 3) (đáp án 14 − (7 − 3) = 10); sửa `explain`, `wrong` (Góp ý 14), `check.expr`.
 
-### 22. Một khái niệm gọi bằng năm tên: "tổng đại số", "tổng", "dãy tính", "dãy", "phép tính"
+### 23. Màn "Cùng làm" phần 9 thiếu dòng lý do
 
-- Vị trí: `$.sections[0].blocks[1].children[0]` ("Dãy tính … gọi là một tổng đại số"), `$.sections[5].blocks[1].children[0]` ("Ngoặc ở đầu dãy"), `$.exercises[3]` (`ex.tong-nao-la-tong-dai-so`: "các dãy tính là một tổng", `explain` "Một tổng chỉ có phép cộng và phép trừ"), đề "Bỏ ngoặc của tổng sau, ta được dãy nào?" (bốn câu bỏ ngoặc) và một đề "Bỏ ngoặc của phép tính sau", `wrong` "Dãy này …" ở nhiều câu; `$.sections[11].blocks[1..2]` ("dãy số nguyên từ −3 đến 3", "dãy −2, −1, 0, 1, 2, 3") - LL-05
-- Nguồn: tr.53, ý 1
-- Vấn đề: câu quy tắc phần 1 định nghĩa "tổng đại số"; sau đó cùng một biểu thức được gọi "tổng", "dãy", "dãy tính", "phép tính". Đề "Bỏ ngoặc của tổng sau, ta được dãy nào?" ngầm nói kết quả bỏ ngoặc không còn là tổng. Phần 12 lại dùng "dãy" cho một danh sách số nguyên, nghĩa khác. Bé gặp tên mới mà không biết là cùng một thứ.
-- Sửa: sau phần 1 gọi biểu thức là "tổng" (nói rõ một lần trong câu quy tắc phần 1: "gọi tắt là tổng"); đề bỏ ngoặc hỏi "ta được tổng nào?"; `wrong` viết "Tổng này …"; "ngoặc ở đầu tổng" thay "ngoặc ở đầu dãy" nếu đổi câu quy tắc phần 6 (sửa cùng Nên sửa 8). Phần 12 có thể giữ "dãy số" vì là danh sách số, nhưng viết "các số nguyên từ −3 đến 3".
+- Vị trí: `$.sections[8].blocks[2].children[0].text` (`section.nhom-ngoac-tru`)
+- Nguồn: —
+- Vấn đề: câu thứ hai "Nhớ rằng ngoặc có dấu − đứng trước làm các số hạng đổi dấu." là lời nhắc cách làm, không nói làm để làm gì (checklist trục 5); các màn "Cùng làm" phần 10, 11, 12 đều có dòng lý do.
+- Sửa: "Cùng làm: chạm vào cách đặt ngoặc đúng cho hai số cuối của 15 − 6 − 4. Đặt ngoặc đúng thì bạn gom được hai khoản trừ mà kết quả không đổi."
 
-### 23. Câu quy tắc phần 1 không nói số hạng đứng đầu không ghi dấu là số dương; ý này rải ở ba chỗ với ba cách nói
+### 24. `sourceRef` của phần 12 và phần 10 không trỏ trang gợi ý đã dùng
 
-- Vị trí: `$.sections[0].blocks[1].children[0].text` và recap phần 1, card `tong-dai-so`; so với `tip.dau-dau-tien` ("Số đầu tiên trong ngoặc không ghi dấu thì vẫn có dấu +"), `$.exercises[32].explain.text` ("đứng đầu tổng"), câu quy tắc phần 6 ("Ngoặc ở đầu dãy, không có dấu đứng trước, được bỏ như ngoặc có dấu +") - LL-05
-- Nguồn: tr.53, ý 1
-- Vấn đề: "Mỗi số hạng của tổng mang dấu đứng trước nó." không áp được cho số hạng đầu (9 trong 9 − 4 + 1 − 2 không có dấu đứng trước). Điều bé cần biết (số đầu không ghi dấu là số dương) chỉ có trong mẹo, trong một `explain` nói sai (Nghiêm trọng 7) và gián tiếp trong quy tắc phần 6. Ba cách nói cho một ý.
-- Sửa: thêm vào câu quy tắc phần 1 (và recap lặp nguyên văn): "Số hạng đứng đầu không ghi dấu là số dương." Mẹo `dau-dau-tien`, `explain` của `chon-duong-7-10` và câu quy tắc phần 6 dùng lại đúng cụm "không ghi dấu là số dương".
+- Vị trí: `$.sections[11].sourceRef`, `$.cards[11].sourceRef` ("Sách bài tập tr.53–54 (bài 3.24)"); `$.sections[9].sourceRef`, `$.cards[9].sourceRef`
+- Nguồn: bài 3.24 chỉ có ở tr.54; cách ghép cặp của 3.24 và cách nhóm của 3.22 nằm ở gợi ý tr.112; nhóm 3 Góp ý 9 (Tổng hợp nâng lên Nên sửa vì checklist trục 1 xếp `sourceRef` không trỏ đúng trang là Nên sửa)
+- Vấn đề: phần 12 dựa vào gợi ý tr.112 ("các số khác 0 còn lại chia thành từng cặp có tổng bằng 0"), phần 10 dựa vào gợi ý 3.22a, 3.22b tr.112; `sourceRef` chỉ ghi tr.53–54.
+- Sửa: phần 12 "Sách bài tập tr.54 (bài 3.24), tr.112 (gợi ý 3.24)"; phần 10 thêm "tr.112 (gợi ý 3.22)".
 
 ## Góp ý
 
-### 1. Note mở đầu hiện sẵn bước mà hình từng bước đang giấu
+### 1. Nhãn đọc màn hình (`aria-label`) của hai hình quy tắc còn cách nói cũ
 
-- Vị trí: `$.sections[2].blocks[0].children[0].text` (`section.ngoac-dau-tru`, hình `tra-tui-hang`), `$.sections[3].blocks[0].children[0].text` (`section.ngoac-tru-so-am`, hình `giam-gia`), `$.sections[8].blocks[0].children[0].text` (`section.nhom-ngoac-tru`, hình `gom-vao-tui`)
+- Vị trí: `catalog.ts` khoá `cong-ngoac-vi-du` ("Ngoặc có dấu + đứng trước: các dấu giữ dấu cũ"), `tru-ngoac-vi-du` ("Ngoặc có dấu − đứng trước: mọi số hạng đổi dấu") - LL-05
 - Nguồn: —
-- Vấn đề: note viết sẵn "100 − (30 + 20) = 100 − 30 − 20", "= 100 − 30 + 10 = 80 nghìn đồng", "100 − 20 − 10 = 100 − (20 + 10)" ngay trên hình đang để "?" chờ bấm "Bước tiếp" (ảnh walk `036`, `047`), nên các bước của hình không còn gì để bé đoán.
-- Sửa: note chỉ kể chuyện và nêu phép tính ban đầu, để hình hiện từng bước và kết quả.
+- Vấn đề: không hiện trên màn, nhưng vòng 1 (Nghiêm trọng 1) đã ghi sửa theo câu quy tắc; "các dấu giữ dấu cũ" không thành câu.
+- Sửa: "Ngoặc có dấu + đứng trước: mỗi số hạng giữ dấu cũ", "Ngoặc có dấu − đứng trước: đổi dấu từng số hạng".
 
-### 2. Cùng tình huống đưa 100 nghìn mà hỏi hai cách: "trả lại" và "còn lại"
+### 2. Hình mở đầu phần 4 chỉ ghi số âm đổi dấu và ghi "còn" trong khi chữ nói "trả lại"
 
-- Vị trí: `$.exercises[18].prompt[0].text` (`ex.giam-gia-45-5`), `$.sections[3].blocks[0].children[0].text`, so với `$.overview.hook`
+- Vị trí: `catalog.ts` khoá `giam-gia` (nhãn "−10 đổi thành +10", "còn 80 nghìn"; ảnh `phone/049-s4-01-block-end.png`), so với `$.sections[3].blocks[0].children[0].text` - LL-15, LL-10
 - Nguồn: —
-- Vấn đề: "bạn đưa 100 nghìn đồng. Bạn còn lại bao nhiêu nghìn đồng?": đưa hết 100 nghìn rồi thì số tiền nhận về là tiền thối; `overview.hook` hỏi "cô phải trả lại bạn bao nhiêu tiền".
-- Sửa: hỏi thống nhất "Cô bán hàng trả lại bạn bao nhiêu nghìn đồng?", hoặc "Bạn có 100 nghìn đồng … bạn còn bao nhiêu" như `tra-tui-keo-but`.
+- Vấn đề: dòng 100 − 30 + 10 đổi dấu cả 30 lẫn 10, nhưng nhãn chỉ nói −10, ở phần nhắc "số đầu tiên cũng phải đổi dấu". Note nói "cô bán hàng trả lại cho bạn", nhãn nói "còn 80 nghìn".
+- Sửa: nhãn bước "+30 thành −30, −10 thành +10"; nhãn kết quả "trả lại 80 nghìn".
 
-### 3. Nhiễu "0" và lý do sai của `thu-chi-la-so-nao`
+### 3. Câu kiểm tra `thu-chi-la-so-nao`: nhiễu −5 không có lý do sai; lý do của 20 nói tới số hạng không có trong tổng
 
-- Vị trí: `$.exercises[0].options[2]`, `$.exercises[0].explain.wrong[0].text` (`ex.thu-chi-la-so-nao`) - LL-14
+- Vị trí: `$.exercises[0].explain.wrong` (`ex.thu-chi-la-so-nao`)
 - Nguồn: —
-- Vấn đề: "0" không ứng với lỗi nào. "Số 20 là khoản thu vào" đọc như trong chuyện có khoản thu 20 nghìn, trong khi khoản thu là 50.
-- Sửa: khi đề đã có tổng 50 − 20 − 5 (Nên sửa 3), thay "0" bằng "−5"; lý do sai của "20": "Số hạng 20 mang dấu +, là tiền thu vào; mua cá là chi ra nên mang dấu −."
+- Vấn đề: −5 là nhiễu dễ chọn mà không có `wrong`. "Số hạng 20 mang dấu +" nói như tổng 50 − 20 − 5 có số hạng +20.
+- Sửa: thêm `wrong` cho −5 "−5 là khoản mua hành, không phải mua cá."; lý do của 20 "Viết 20 là coi khoản này mang dấu +, tức tiền thu vào; mua cá là chi ra nên mang dấu −."
 
-### 4. Câu bấm đổi dấu ở phần 3, 4 luôn có đáp án "chạm hết"
+### 4. Đề `dien-so-hang` bảo "chọn từ" mà ngân hàng là số
 
-- Vị trí: `$.exercises[12]` (`ex.doi-dau-25-9-6`), `$.exercises[17]` (`ex.doi-dau-35-12-5-4`), hình `flipTry` (`src/visuals/math/quy-tac-dau-ngoac/flip-try.tsx`)
+- Vị trí: `$.exercises[2].prompt[0].text` (`ex.dien-so-hang`)
 - Nguồn: —
-- Vấn đề: mỗi đề chỉ có một ngoặc dấu −, nên chạm mọi chip là đúng; câu không phân biệt bé hiểu quy tắc hay làm theo thói quen. Màn "Cùng làm" nói "dấu − trước ngoặc đổi dấu mọi số hạng" mà hình không cho thấy vì sao (không hiện giá trị tổng trước và sau khi bỏ ngoặc; `sumValue` của `logic.ts` có sẵn).
-- Sửa: ở màn "Cùng làm" (chỉ chế độ bài học), thêm dòng so giá trị, vd "10 − (3 + 4) = 3; tổng bạn được: 10 + 3 + 4 = 17". Câu bài tập giữ như hiện tại.
+- Vấn đề: ngân hàng "−4", "4", "+4", đề ghi "Chọn từ điền vào chỗ trống."
+- Sửa: "Chọn số điền vào chỗ trống."
 
-### 5. Chip đã chọn tô xanh lá, trùng màu số dương của bài
+### 5. Chip chọn số hạng âm đã tách sẵn dấu, nên chỉ cần chạm chip có dấu −
 
-- Vị trí: hình `chon-so-hang-am` (`$.sections[0].blocks[2]`), `chon-bo-ngoac-8` (`$.sections[1].blocks[2]`); thành phần `src/visuals/shared/pick-chips`
+- Vị trí: `catalog.ts` khoá `chon-so-hang-am` (`+9`, `−4`, `+1`, `−2`), `chon-am-5-7` (`$.exercises[4]`)
 - Nguồn: —
-- Vấn đề: ảnh walk `008-s1-03-block-shown`: chip "−4", "−2" khi chọn thành nền xanh lá có ✓, trong khi bài dùng lime cho số hạng dương. Đây là màu trạng thái của app, không chặn bài.
-- Sửa: báo người làm app: màu "đã chọn" của `Chips` khác hẳn lime (vd viền xanh dương đậm).
+- Vấn đề: việc cần học (dấu − đứng trước thuộc về số hạng sau nó) đã được chip làm thay; câu kho ôn không phân biệt bé hiểu hay không.
+- Sửa: ở câu kho ôn, chip chỉ ghi phần số (5, 7, 2, 1) và đề giữ tổng có dấu; màn "Cùng làm" có thể giữ chip có dấu làm mẫu.
 
-### 6. Chính tả "hóa đơn" lệch kiểu bỏ dấu của app
+### 6. Ngoặc (4 + 3) lặp ở hình quy tắc, mẹo và một câu kho ôn của cùng card
 
-- Vị trí: `$.overview.whyItMatters`, `$.sections[3].blocks[0].children[0].text`, `$.exercises[18].explain.text`
+- Vị trí: `tru-ngoac-vi-du` dòng 1 `9 - (4 + 3)`, `tip.dau-dau-tien.tex` `16 - (4 + 3)`, `$.exercises[51].options[0]` `7 - (4 + 3)`; câu 50 mục `s3` `7 - (2 + 3)` gần dòng 2 `7 - (2 + 1 + 3)` - LL-07
 - Nguồn: —
-- Vấn đề: bài viết "hóa đơn" nhưng viết "xoá"; glossary dùng "luỹ thừa", "tuỳ" (kiểu cũ).
-- Sửa: "hoá đơn".
+- Vấn đề: bé gặp lại đúng ngoặc đã thấy giải sẵn, câu ôn ít giá trị kiểm tra.
+- Sửa: đổi ngoặc của ví dụ mẹo (vd `16 - (5 + 2)`) và của lựa chọn a câu 51 (vd `9 - (5 + 4)`, vẫn bằng 0).
 
-### 7. Chú thích mã của huy hiệu tả sai hình
+### 7. Các câu mà dạng bài buộc 4 số hạng vẫn cần 3 phép tính
 
-- Vị trí: `src/visuals/math/quy-tac-dau-ngoac/sticker.tsx` (chú thích đầu hàm), `$.sticker`
+- Vị trí: `$.exercises[26]` (`tinh-hai-ngoac`), `$.exercises[36]` (`nhom-9-4-7-10`), `$.exercises[38]` (`nhom-thu-chi-40`) - LL-18
+- Nguồn: tr.54, bài 3.21; tr.53, ý 3
+- Vấn đề: hai ngoặc mỗi ngoặc hai số, hay nhóm hai cặp, luôn có 3 phép tính; luật 2 phép tính không giữ được mà không bỏ ý của card.
+- Sửa: tuỳ tác giả: giữ, chọn số để mỗi bước là phép nhẩm một chữ số hoặc tròn chục, `explain` ghi đủ từng bước; ghi quyết định vào backlog để vòng sau không nêu lại.
+
+### 8. Hình mẫu nhảy 4 phép tính trong một dòng
+
+- Vị trí: `catalog.ts` khoá `hai-tui-giam-gia` ("= 100 − 40 + 5 − 30 + 10" rồi "= 45"), `LEADING_ROWS` ("= 9 − 12 − 5 + 8 − 1" rồi "= −1") - LL-16
 - Nguồn: —
-- Vấn đề: chú thích ghi "along two curved arrows" nhưng hình chỉ có một mũi tên cong (ảnh `sticker-phone`).
-- Sửa: "one curved arrow".
+- Vấn đề: hai hình từng bước của phần 6 gộp cả 4 phép cộng trừ vào một bước; bé chậm không thấy 45 và −1 từ đâu ra.
+- Sửa: thêm một dòng gom số, vd "= 115 − 70" và "= 17 − 18" (cách của mẹo `gom-duong-am`).
 
-### 8. Câu chuyện thu chi chi nhiều hơn số đang có
+### 9. Nhiễu "0" của câu nối quá yếu
 
-- Vị trí: `$.sections[6].blocks[0]` (`section.doi-cho`, hình `doi-cho-thu-chi`)
+- Vị trí: `$.exercises[23].right[4]` (`noi-ngoac-ket-qua`, ô `r5`) - LL-14
 - Nguồn: —
-- Vấn đề: "thu 8 nghìn, chi 12 nghìn, thu 4 nghìn": sau khoản thứ hai bé đang âm 4 nghìn; note nói "số tiền còn lại" mà hình ghi "= 0", bé có thể hiểu là còn 0 đồng.
-- Sửa: cho số tiền lúc đầu ("Bạn có 20 nghìn"), hoặc nói "số tiền thêm hay bớt sau cả ngày vẫn như vậy".
+- Vấn đề: không phép bỏ ngoặc sai nào của bốn tổng ra 0; bốn ô đã tự làm nhiễu cho nhau.
+- Sửa: bỏ ô 0, hoặc giữ nếu app cần ô thừa.
 
-### 9. Dòng ví dụ sai của `doi-cho-vi-du` không theo thứ tự của dòng đúng
+### 10. Lý do `wrong` chưa nói hệ quả cụ thể
 
-- Vị trí: `catalog.ts` khoá `doi-cho-vi-du`, dòng `9 + 12 - 5 = 16` (nhãn "bỏ lại dấu − thì sai") - LL-15
+- Vị trí: `$.exercises[20].explain.wrong[0]` (`bo-ngoac-9-tru-am4`, "9 − 4 xảy ra khi trong ngoặc là +4, không phải −4."), `$.exercises[35].explain.wrong[1]` (`nhom-12-5-8-6`, "Dấu − đứng trước ngoặc làm các số hạng trong ngoặc đổi dấu.")
 - Nguồn: —
-- Vấn đề: dòng đúng đưa −12 ra cuối (9 + 5 − 12); dòng sai giữ thứ tự 9, 12, 5 và đổi dấu, nên bé khó thấy "bỏ lại dấu" là gì.
-- Sửa: `9 - 5 + 12 = 16`.
+- Vấn đề: câu thứ nhất khó hiểu ("xảy ra khi"), không nói bé quên bước nào; câu thứ hai không nói lựa chọn đó thành tổng nào.
+- Sửa: "Viết 9 − 4 là quên đổi dấu: trước ngoặc có dấu − thì −4 phải thành +4." và "Bỏ ngoặc thì được 12 − 5 − 8 + 6: số +8 và −6 đã đổi dấu."
 
-### 10. Nhiễu "bỏ đi" của câu điền từ quá yếu
+### 11. Thiếu phím "−" lộ dấu của đáp số
 
-- Vị trí: `$.exercises[37].bank` (`ex.dien-nhom-cong`) - LL-14
+- Vị trí: `$.exercises[22]` (`tinh-ngoac-chuoi`, đáp số 2), `$.exercises[36]` (`nhom-9-4-7-10`, đáp số 2, bước giữa 5 + (−3))
 - Nguồn: —
-- Vấn đề: "bỏ đi dấu các số hạng" không ứng với lỗi nào bé hay mắc.
-- Sửa: thay bằng "đổi dấu số đầu tiên" hay một lỗi thật khác, hoặc chỉ giữ "giữ nguyên", "đổi".
+- Vấn đề: hai câu tính qua số âm mà không có `allowNegative`, nên bé biết trước kết quả không âm; câu cùng dạng `tinh-hai-ngoac` đã bật cờ.
+- Sửa: thêm `"allowNegative": true` (với `tinh-ngoac-chuoi`, quyết định lại sau khi đổi số theo Nên sửa 12).
 
-### 11. Recap phần "Nhiều ngoặc" chỉ nói ngoặc ở đầu dãy
+### 12. Dòng sai của `doi-cho-vi-du` là một đẳng thức đúng
 
-- Vị trí: `$.sections[5].recap`, `$.cards[5].recap` (`nhieu-ngoac`) - LL-06
-- Nguồn: tr.54, bài 3.21
-- Vấn đề: ý chính của tên phần (mỗi ngoặc xét riêng theo dấu đứng ngay trước nó) chỉ nằm ở note "Cùng làm" và nhãn hình.
-- Sửa: thêm câu đó vào note quy tắc của phần, recap lặp nguyên văn.
-
-### 12. Lý do `wrong` của lựa chọn c `nhom-tru-12-5-3` chưa đúng chỗ sai
-
-- Vị trí: `$.exercises[40].explain.wrong[1]` (`ex.nhom-tru-12-5-3`)
+- Vị trí: `catalog.ts` khoá `doi-cho-vi-du`, dòng `9 - 5 + 12 = 16` (nhãn "bỏ lại dấu − thì sai") - LL-15
 - Nguồn: —
-- Vấn đề: "Ngoặc có dấu + giữ nguyên dấu, nên không viết được −5 và −3.": trong 12 + (5 − 3), −3 vẫn giữ; chỉ −5 thành +5.
-- Sửa: "Ngoặc có dấu + giữ nguyên dấu, nên 12 + (5 − 3) là 12 + 5 − 3: số −5 đã thành +5."
+- Vấn đề: 9 − 5 + 12 = 16 đúng về tính toán; cái sai là đổi chỗ làm tổng khác 2. Bé có thể hiểu nhãn là phép tính sai.
+- Sửa: nhãn "bỏ lại dấu −: ra 16, khác 2".
 
-### 13. Lý do `wrong` của lựa chọn b `chon-nhom-tru-30` nghe như đã sửa xong mà vẫn ra 26
+### 13. Mẹo `gom-duong-am` không nói khi một nhóm không có số nào
 
-- Vị trí: `$.exercises[44].explain.wrong[0]` (`ex.chon-nhom-tru-30`)
+- Vị trí: `$.sections[6].blocks[2].text` (`tip.gom-duong-am`) - LL-24
 - Nguồn: —
-- Vấn đề: "Số −8 phải đổi thành +8, nên dãy này bằng 26": "nên" khiến bé hiểu đổi dấu đúng thì ra 26.
-- Sửa: "Đưa −8 vào ngoặc có dấu − thì phải viết +8. Dãy này viết −8 nên bằng 26, không phải 10."
+- Vấn đề: với −3 − 4 hay 5 + 2, "Lấy số lớn trừ số bé" không có "số bé"; kết quả vẫn đúng nếu bé tự coi nhóm trống là 0.
+- Sửa: thêm "nhóm nào không có số thì coi là 0" nếu còn chỗ (cùng lúc với Nên sửa 13), hoặc bỏ qua vì câu của bài luôn có cả hai dấu.
 
-### 14. Từ "mất nhau" bé khó hiểu
+### 14. Lý do sai của lựa chọn c `nhom-tru-14-6-4` còn kiểu cũ đã sửa ở `nhom-tru-12-5-3`
 
-- Vị trí: `$.sections[9].blocks[1].children[0]`, nhãn visual `so-doi-mat-nhau`, `$.exercises[47].explain.text` - LL-25
+- Vị trí: `$.exercises[42].explain.wrong[1].text` (`ex.nhom-tru-14-6-4`)
 - Nguồn: —
-- Vấn đề: "hai số mất nhau" không phải cách nói bé đã gặp.
-- Sửa: "cộng lại bằng 0" (vd "30 và −30 cộng lại bằng 0").
+- Vấn đề: "Ngoặc có dấu + giữ dấu cũ, nên không viết được −6 và +4." khó hiểu: 14 + (6 − 4) là 14 + 6 − 4. Câu cùng dạng `[40]` đã sửa ở vòng 1 (Góp ý 12).
+- Sửa: "Ngoặc có dấu + giữ dấu cũ, nên 14 + (6 − 4) là 14 + 6 − 4: số −6 đã thành +6, số +4 đã thành −4." (viết lại theo số mới nếu làm Nên sửa 22).
 
-### 15. Mẹo kiểm tra: tên không nêu dạng bài, câu đầu đi ngược thứ tự câu quy tắc ngay trên nó
+### 15. Note mở đầu phần 12 nói sẵn kết quả mà hình từng bước đang giấu
 
-- Vị trí: `$.sections[10].blocks[2].title`, `.text` (`tip.kiem-tra-hai-cach`), so với `$.sections[10].blocks[0].children[0]`
+- Vị trí: `$.sections[11].blocks[0].children[0].text` (hình `thu-chi-tuan`, ảnh `phone/141-s12-01-block.png`)
 - Nguồn: —
-- Vấn đề: "Kiểm tra kết quả" không nói kiểm phép gì. Câu quy tắc của phần nói "bỏ ngoặc trước", mẹo ngay dưới mở bằng "Tính trong ngoặc trước rồi tính tiếp", bé có thể nghĩ hai câu nói ngược nhau.
-- Sửa: `title` "Kiểm tra phép bỏ ngoặc"; mở `text` bằng "Muốn kiểm lại, hãy tính thêm một cách: tính trong ngoặc trước …".
+- Vấn đề: note viết "… nên chỉ còn khoản thu 4 nghìn" ngay trên hình đang để "?" chờ "Bước tiếp" (cùng kiểu vòng 1 Góp ý 1).
+- Sửa: note chỉ kể năm khoản và hỏi "Sau năm ngày, tiền của bạn thêm bao nhiêu?".
 
-### 16. Lời giải câu 49 viết hai kiểu cho một bước và không nhóm theo mẫu
+### 16. Câu chuyện của màn "Cùng làm" phần 10 không có kết
 
-- Vị trí: `$.exercises[49].explain` (`ex.hop-li-120-150`)
+- Vị trí: `$.sections[9].blocks[3]` (note và `visual.chon-ghep-30`, lời kết `done`)
 - Nguồn: —
-- Vấn đề: `text` "100 − 70", `tex` "100 + (−70)"; nhóm (80 − 150) ra số âm, khác hình mẫu (gom số dương, đưa số âm vào ngoặc có dấu −).
-- Sửa: (120 + 80) − (150 + 20) = 200 − 170 = 30, viết cùng cách ở `text` và `tex`.
+- Vấn đề: chuyện dừng ở việc chạm hai khoản cộng được 30; bé không biết cuối cùng còn bao nhiêu tiền.
+- Sửa: lời kết "Hai số hạng +27 và +3 cộng lại được 30. Hai khoản mua là 14 + 6 = 20, nên còn 30 − 20 = 10 nghìn."
 
-### 17. "Từ −3 đến 3" chưa nói có lấy hai đầu không; dạng một đầu không lấy của 3.24 chưa có câu
+### 17. Hình ví dụ Lan nhảy từ tổng năm số hạng tới kết quả
 
-- Vị trí: `$.sections[11].blocks[1].children[0]`, nhãn `ghep-so-doi`, `ghep-so-doi-xong`
-- Nguồn: tr.54 bài 3.24 (−20 < x ≤ 20)
-- Vấn đề: câu 57, 58 ghi "kể cả", note và nhãn hình thì không. Điểm cần để ý của 3.24 (không lấy −20) chưa có câu nào hỏi.
-- Sửa: thêm "kể cả −3 và 3" vào note và nhãn; có thể thêm câu kho ôn "Tổng các số nguyên lớn hơn −4 và không quá 4" (bằng 4).
-
-### 18. Hình chạm đổi dấu sửa luôn dòng đề
-
-- Vị trí: `visual.doi-dau-tong-hop` (ảnh `phone/129-s11-02-block-shown.png`), `visual.doi-dau-nam-ngoac`
+- Vị trí: `catalog.ts` khoá `thu-chi-lan` (`$.sections[10].blocks[0]`)
 - Nguồn: —
-- Vấn đề: sau khi chạm, dòng đề hiện "−(+3 +2 −8)", một tổng khác tổng ban đầu, đứng ngay trên dòng kết quả; bé có thể chép nguyên dòng này.
-- Sửa: giữ dòng đề như ban đầu, chỉ tô ô đã chạm; số đổi dấu hiện ở hàng "Tổng khi bỏ ngoặc".
+- Vấn đề: từ 60 + 20 − 5 − 12 − 8 đi thẳng tới 55, trong phần dạy đổi chỗ và nhóm.
+- Sửa: thêm dòng "= (60 + 20) − 5 − (12 + 8)" nhãn "nhóm số tròn chục", rồi "= 80 − 5 − 20 = 55".
 
-### 19. Khuôn bài và đáp số trùng bài sách
+### 18. Hình chạm đổi dấu vẫn sửa luôn dòng đề
 
-- Vị trí: `$.exercises[46]` (khuôn 3.22a, đáp số −6), `visual.tinh-hop-li-vi-du` và `$.exercises[45]` (khuôn 3.22b, đáp số 0, cùng cách nhóm của gợi ý tr.112), `so-doi-mat-nhau` và `$.exercises[47]` (khuôn 3.23a) - LL-08
-- Nguồn: tr.54, tr.112
-- Vấn đề: không có số nào trùng sách nên chưa thành chép, nhưng đáp số trùng lời giải sách.
-- Sửa: đổi một số để đáp số khác −6 và 0.
-
-### 20. Ảnh `visual:shot` của hình gợi ý `goi-y-tong-hop` cũ hơn `catalog.ts`
-
-- Vị trí: `visual.goi-y-tong-hop`
+- Vị trí: `visual.doi-dau-tong-hop`, `visual.doi-dau-nam-ngoac` (ảnh `phone/133-s11-03-block-shown.png`: dòng đề thành "−(+3 +2 −8)")
 - Nguồn: —
-- Vấn đề: ảnh `quy-tac-dau-ngoac.visual.goi-y-tong-hop-phone.png` còn dòng đầu xuống dòng giữa ngoặc "(1 − 5 + / 2)", trong khi `catalog.ts` sửa sau đã tách bằng `steps`; chưa xác nhận được bản hiện tại.
-- Sửa: chạy lại `pnpm visual:shot` và xem ảnh hình gợi ý của phần 9 đến 12.
+- Vấn đề: như vòng 1 Góp ý 18; dòng đề sau khi chạm là một tổng khác tổng ban đầu. Do cách vẽ của thành phần `flipTry`, không do chữ của bài.
+- Sửa: giữ dòng đề như ban đầu, chỉ tô ô đã chạm; báo người làm app nếu không sửa trong đợt này.
 
-### 21. Câu kiểm tra dùng lại ngoặc của hình mẫu ngay trước nó
+### 19. Hai câu quy tắc đặt ngoặc không cùng khuôn
 
-- Vị trí: `$.exercises[52]` (`ex.bo-ngoac-ba-3-8`) - LL-07
+- Vị trí: `$.sections[8].blocks[1].children[0].text` ("Đặt ngoặc có dấu − đứng trước thì đổi dấu từng số hạng đưa vào ngoặc."), so với `$.sections[7].blocks[1].children[0].text` ("Đặt ngoặc có dấu + đứng trước để nhóm thì mỗi số hạng đưa vào ngoặc vẫn giữ dấu cũ.") - LL-05
 - Nguồn: —
-- Vấn đề: "(8 − 5)" là đúng ngoặc thứ hai của hình mẫu `vi-du-tong-hop`, hai dãy cùng mở bằng một số âm trong ngoặc.
-- Sửa: đổi ngoặc giữa, vd (7 − 2).
+- Vấn đề: hai quy tắc đối nhau nhưng một câu có "để nhóm", một câu không; một câu "mỗi số hạng", một câu "từng số hạng".
+- Sửa: cùng khuôn, vd phần 9 "Đặt ngoặc có dấu − đứng trước để nhóm thì từng số hạng đưa vào ngoặc đều đổi dấu." (đổi cả recap section, recap card).
 
-### 22. Hai câu kho ôn của card `tinh-hop-li` không cần tính hợp lí
+### 20. Màu số hạng dương, âm mang hai tên: "Số nguyên dương/âm" ở khái niệm bài, "Số hạng dương/âm" ở chú giải hình
 
-- Vị trí: `$.exercises[50]` (`xep-gia-tri-bo-ngoac`), `$.exercises[51]` (`chon-bang-0`)
-- Nguồn: —
-- Vấn đề: chỉ cần bỏ ngoặc rồi tính, không cần đổi chỗ hay nhóm, nên không luyện ý recap của card nhắc.
-- Sửa: gắn sang card `ngoac-dau-tru` hay `ngoac-mot-so`, hoặc đổi số để phải nhóm mới tính nhẩm được.
+- Vị trí: `$.concepts[0]`, `$.concepts[1]` ("Số nguyên dương" lime, "Số nguyên âm" pink), so với `catalog.ts` `LEGEND_SIGNS` ("Số hạng dương" lime, "Số hạng âm" pink) - LL-05
+- Nguồn: Tổng hợp
+- Vấn đề: cùng một màu được gọi hai tên. Trong bài này cái được tô là số hạng kèm dấu của nó (vd −4 trong 9 − 4), nên tên "số hạng dương/âm" mới đúng ý bài; bé thấy hai tên cho một màu ở chip khái niệm và ở chú giải hình.
+- Sửa: đổi tên hai khái niệm thành "Số hạng dương", "Số hạng âm" (giữ màu), hoặc đổi chú giải theo tên khái niệm; một tên cho cả bài.
 
-### 23. Chuyện nợ ở phần 5 nói "còn 45 nghìn" khi trong túi vẫn có 50 nghìn
+### 21. Câu quy tắc phần 3 dùng "số hạng" rồi "số" cho cùng một thứ
 
-- Vị trí: `$.sections[4].blocks[0].children[0].text` (`section.ngoac-mot-so`, hình `no-xoa-no`) - LL-10
-- Nguồn: —
-- Vấn đề: "Bạn có 50 nghìn đồng và nợ Lan 5 nghìn, nên còn 50 + (−5) = 45 nghìn đồng.": chưa trả nợ thì bé vẫn cầm 50 nghìn; "còn" phải hiểu là "nếu trả nợ thì còn", bé phải đoán.
-- Sửa: "Bạn có 50 nghìn đồng nhưng nợ Lan 5 nghìn. Trả nợ xong bạn còn 50 + (−5) = 45 nghìn. Nếu Lan xoá nợ, ta trừ đi số −5: 45 − (−5) = 50 nghìn đồng."
+- Vị trí: `$.sections[2].blocks[1].children[0].text`, `$.sections[2].recap.caption`, `$.cards[2].recap.caption` ("… đổi dấu từng số hạng trong ngoặc, không sót số nào.") - LL-05
+- Nguồn: Tổng hợp
+- Vấn đề: các câu quy tắc khác của bài đều nói "số hạng"; đuôi "không sót số nào" đổi sang "số" trong cùng một câu. Không sai, nhưng là chỗ bé phải tự hiểu "số" là "số hạng".
+- Sửa: "… không sót số hạng nào." (đổi cùng recap; nếu làm Nên sửa 7 thì câu điền theo câu mới).
