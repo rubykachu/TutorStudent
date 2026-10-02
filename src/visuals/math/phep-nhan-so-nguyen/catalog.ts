@@ -517,25 +517,25 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
   ),
   "ghep-nhanh": lines(
-    "Tính (−5) · 7 · (−2) bằng cách ghép hai số có tích tròn chục",
+    "Tính (−5) · 7 · (−2) bằng cách ghép hai số nhân ra 10",
     [
       { tex: "(-5) \\cdot 7 \\cdot (-2)" },
       { tex: "= (-5) \\cdot (-2) \\cdot 7", tag: tag("đổi chỗ", NOTE) },
       {
         tex: "= 10 \\cdot 7",
-        tag: tag("(−5) · (−2) = 10, tròn chục", NOTE),
+        tag: tag("(−5) · (−2) = 10", NOTE),
       },
       { tex: `= ${pos(70)}`, tag: tag("tích", PRODUCT) },
     ],
     "steps",
   ),
   "goi-y-ghep-nhanh": lines(
-    "Đổi chỗ để ghép hai số có tích tròn chục",
+    "Đổi chỗ để ghép hai số nhân ra 10, 20 hoặc 100",
     [
       { tex: "(-2) \\cdot 6 \\cdot (-5)" },
       {
         tex: "= (-2) \\cdot (-5) \\cdot 6",
-        tag: tag("ghép hai số có tích tròn chục", NOTE),
+        tag: tag("ghép hai số nhân ra 10", NOTE),
       },
       { tex: "= 10 \\cdot 6" },
     ],

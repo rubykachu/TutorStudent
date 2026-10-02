@@ -161,7 +161,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ, và ta viết 2 giờ trước là −2 giờ. Lúc đó nhiệt độ thấp hơn bây giờ 6 độ, nên 3 · (−2) = −6."
+              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ. Ta ghi 2 giờ sau là 2 và 2 giờ trước là −2, nên 3 · (−2) = −6 là thấp hơn bây giờ 6 độ."
             },
             {
               "type": "visual",
@@ -174,7 +174,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhìn các dòng đi xuống: mỗi dòng, số đứng sau dấu nhân (tức thừa số thứ hai) giảm 1 thì tích giảm 3. Đi tiếp xuống dưới, ta được 3 · (−1) = −3 và 3 · (−2) = −6."
+              "text": "Mỗi dòng đi xuống, số đứng sau dấu nhân giảm 1 và tích giảm 3. Cứ đi tiếp thì được 3 · (−1) = −3, rồi 3 · (−2) = −6."
             },
             {
               "type": "visual",
@@ -201,7 +201,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n của 2 · n, từ 3 xuống −2. Bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
+              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số đứng sau dấu nhân, từ 3 xuống −2. Bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
             },
             {
               "type": "visual",
@@ -284,7 +284,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ giảm đều 2 độ mỗi giờ, tức là mỗi giờ thay đổi −2 độ, và ta viết 3 giờ trước là −3 giờ. Lúc đó nhiệt độ cao hơn bây giờ 6 độ, nên (−2) · (−3) = 6."
+              "text": "Nhiệt độ giảm đều 2 độ mỗi giờ, tức là mỗi giờ thay đổi −2 độ. Ta ghi 3 giờ trước là −3, nên (−2) · (−3) = 6 là cao hơn bây giờ 6 độ."
             },
             {
               "type": "visual",
@@ -297,7 +297,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhìn các dòng đi xuống: mỗi dòng, số đứng sau dấu nhân giảm 1 thì tích tăng 3. Đi tiếp xuống dưới, ta được (−3) · (−1) = 3 và (−3) · (−2) = 6."
+              "text": "Mỗi dòng đi xuống, số đứng sau dấu nhân giảm 1 và tích tăng 3. Cứ đi tiếp thì được (−3) · (−1) = 3, rồi (−3) · (−2) = 6."
             },
             {
               "type": "visual",
@@ -324,7 +324,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n của (−2) · n, từ 1 xuống −3. Bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
+              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số đứng sau dấu nhân, từ 1 xuống −3. Bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
             },
             {
               "type": "visual",
@@ -352,7 +352,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ tăng hay giảm 3 độ mỗi giờ, ta xét 2 giờ sau hoặc 2 giờ trước bây giờ. Có bốn trường hợp, mỗi trường hợp cho một tích."
+              "text": "Nhiệt độ tăng hay giảm 3 độ mỗi giờ. Ta xét sau 2 giờ và 2 giờ trước, nên có bốn tích."
             },
             {
               "type": "visual",
@@ -429,7 +429,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ví dụ mẫu: đổi chỗ để ghép hai số nhân ra 10, 20 hoặc 100, rồi tính (−5) · 7 · (−2)."
+              "text": "Ví dụ mẫu: đổi chỗ để ghép hai số nhân ra 10, 20 hoặc 100."
             },
             {
               "type": "visual",
@@ -470,7 +470,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tích nhiều thừa số khác 0 là số dương nếu có 2, 4 hay 6 thừa số âm. Có 1, 3 hay 5 thừa số âm thì tích là số âm.",
+              "text": "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn, như 0, 2, 4. Tích là số âm khi số thừa số âm là số lẻ, như 1, 3, 5.",
               "rule": true
             },
             {
@@ -493,7 +493,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
-        "caption": "Tích nhiều thừa số khác 0 là số dương nếu có 2, 4 hay 6 thừa số âm. Có 1, 3 hay 5 thừa số âm thì tích là số âm."
+        "caption": "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn, như 0, 2, 4. Tích là số âm khi số thừa số âm là số lẻ, như 1, 3, 5."
       }
     },
     {
@@ -602,7 +602,7 @@
           "id": "phep-nhan-so-nguyen.tip.gop-thua-so-chung",
           "kind": "làm nhanh",
           "title": "Tổng hai tích có thừa số chung",
-          "text": "Hai tích cộng nhau mà có chung một số, thì đưa số chung đó ra ngoài. Nếu hai số còn lại cộng ra 10, 20 hoặc 100 thì nhân rất nhanh.",
+          "text": "Hai tích cộng nhau mà có chung một thừa số, thì đưa thừa số chung đó ra ngoài. Nếu hai số còn lại cộng ra 10, 20 hoặc 100 thì nhân rất nhanh.",
           "tex": "\\begin{gathered} 5 \\cdot (-9) + 5 \\cdot (-1) \\\\ = 5 \\cdot [(-9) + (-1)] \\\\ = 5 \\cdot (-10) = -50 \\end{gathered}"
         }
       ],
@@ -821,7 +821,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
-        "caption": "Tích nhiều thừa số khác 0 là số dương nếu có 2, 4 hay 6 thừa số âm. Có 1, 3 hay 5 thừa số âm thì tích là số âm."
+        "caption": "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn, như 0, 2, 4. Tích là số âm khi số thừa số âm là số lẻ, như 1, 3, 5."
       }
     },
     {
@@ -1863,7 +1863,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tính từng tích: 3 · (−5) = −15, (−1) · 9 = −9, (−1) · 7 = −7. So sánh hai số âm: số nào có phần số lớn hơn thì số đó bé hơn. Vì 15 lớn hơn 9 và 7 nên −15 bé nhất.",
+        "text": "Tính từng tích: 3 · (−5) = −15, (−1) · 9 = −9, (−1) · 7 = −7. So sánh hai số âm: số nào có phần số lớn hơn thì số đó bé hơn. Vì 15 lớn hơn 9 và 9 lớn hơn 7 nên −15 bé nhất, rồi tới −9, −7.",
         "tex": "-15 < -9 < -7"
       },
       "items": [
@@ -2112,7 +2112,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nhiệt độ giảm đều 4 độ mỗi giờ. Lúc 3 giờ trước, nhiệt độ cao hơn bây giờ bao nhiêu độ?"
+          "text": "Nhiệt độ giảm đều 4 độ mỗi giờ. 3 giờ trước, nhiệt độ cao hơn bây giờ bao nhiêu độ?"
         },
         {
           "type": "formula",
@@ -2129,7 +2129,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai số âm nhân với nhau thì tích là số dương. 4 · 3 = 12, nên lúc 3 giờ trước nhiệt độ cao hơn bây giờ 12 độ.",
+        "text": "Hai số âm nhân với nhau thì tích là số dương. 4 · 3 = 12, nên 3 giờ trước nhiệt độ cao hơn bây giờ 12 độ.",
         "tex": "(-4) \\cdot  (-3) = \\concept{lime}{12}"
       },
       "answer": {
@@ -2345,14 +2345,14 @@
           "id": "l1",
           "content": {
             "type": "formula",
-            "tex": "(-4) \\cdot  3"
+            "tex": "(-6) \\cdot  3"
           }
         },
         {
           "id": "l2",
           "content": {
             "type": "formula",
-            "tex": "5 \\cdot  (-2)"
+            "tex": "4 \\cdot  (-5)"
           }
         },
         {
@@ -2389,7 +2389,7 @@
           "id": "r2",
           "content": {
             "type": "formula",
-            "tex": "-10"
+            "tex": "-20"
           }
         },
         {
@@ -2403,14 +2403,14 @@
           "id": "r4",
           "content": {
             "type": "formula",
-            "tex": "-12"
+            "tex": "-18"
           }
         },
         {
           "id": "r5",
           "content": {
             "type": "formula",
-            "tex": "12"
+            "tex": "18"
           }
         },
         {
@@ -2642,7 +2642,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Đổi chỗ để ghép hai số có tích tròn chục: (−4) · (−5) = 20. Rồi 20 · 3 = 60.",
+        "text": "Đổi chỗ để ghép hai số nhân ra 20: (−4) · (−5) = 20. Rồi 20 · 3 = 60.",
         "tex": "\\begin{gathered} (-4) \\cdot  3 \\cdot  (-5) \\\\ = (-4) \\cdot  (-5) \\cdot  3 \\\\ = 20 \\cdot  3 = \\concept{lime}{60} \\end{gathered}"
       },
       "answer": {
@@ -2678,7 +2678,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Đổi chỗ để ghép hai số có tích tròn chục: (−25) · 4 = −100. Rồi (−100) · 7 = −700.",
+        "text": "Đổi chỗ để ghép hai số nhân ra −100: (−25) · 4 = −100. Rồi (−100) · 7 = −700.",
         "tex": "\\begin{gathered} (-25) \\cdot 7 \\cdot 4 \\\\ = (-25) \\cdot 4 \\cdot 7 \\\\ = (-100) \\cdot 7 = \\concept{pink}{-700} \\end{gathered}"
       },
       "answer": {
@@ -4017,7 +4017,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Nhiệt độ tăng đều 4 độ mỗi giờ. So với bây giờ, lúc 2 giờ trước nhiệt độ thay đổi bao nhiêu độ?"
+          "text": "Nhiệt độ tăng đều 4 độ mỗi giờ. So với bây giờ, 2 giờ trước nhiệt độ thay đổi bao nhiêu độ?"
         },
         {
           "type": "formula",
@@ -4034,7 +4034,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "2 giờ trước bây giờ viết là −2. Nhiệt độ thay đổi 4 · (−2) = −8 độ, tức là lúc đó thấp hơn bây giờ 8 độ.",
+        "text": "2 giờ trước ghi là −2. Nhiệt độ thay đổi 4 · (−2) = −8 độ, tức là lúc đó thấp hơn bây giờ 8 độ.",
         "tex": "4 \\cdot  (-2) = \\concept{pink}{-8}"
       },
       "answer": {
