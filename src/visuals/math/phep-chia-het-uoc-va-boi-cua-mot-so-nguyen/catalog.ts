@@ -210,20 +210,23 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // 4. Bốn phép chia từ một phép chia
   "bon-phep-chia": rows(
-    "Từ 72 : 8 = 9 suy ra thương của ba phép chia còn lại",
+    "Từ 72 : 8 = 9 suy ra thương của ba phép chia còn lại bằng cách đổi dấu",
     [
-      { tex: "72 : 8 = \\concept{lime}{9}", tag: tag("cùng dấu +", POSITIVE) },
+      {
+        tex: "72 : 8 = \\concept{lime}{9}",
+        tag: tag("phép chia đã biết", POSITIVE),
+      },
       {
         tex: "(-72) : (-8) = \\concept{lime}{9}",
-        tag: tag("cùng dấu −", POSITIVE),
+        tag: tag("đổi dấu cả hai số: giữ nguyên", POSITIVE),
       },
       {
         tex: "(-72) : 8 = \\concept{pink}{-9}",
-        tag: tag("khác dấu", NEGATIVE),
+        tag: tag("đổi dấu số bị chia: đổi dấu", NEGATIVE),
       },
       {
         tex: "72 : (-8) = \\concept{pink}{-9}",
-        tag: tag("khác dấu", NEGATIVE),
+        tag: tag("đổi dấu số chia: đổi dấu", NEGATIVE),
       },
     ],
   ),
@@ -289,6 +292,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "steps",
   ),
   "uoc-vi-du": rows("Các ước của 9 và các ước của −14, viết gọn bằng dấu ±", [
+    { tex: "\\pm3", tag: tag("±3 là hai số 3 và −3", NOTE) },
     {
       tex: "\\pm1,\\ \\pm3,\\ \\pm9",
       tag: tag("các ước của 9", DIVISOR),
@@ -315,7 +319,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ],
   ),
   "boi-4-vi-du": rows(
-    "Các bội của 4: nhân 4 với 1, 2, rồi viết thêm số đối và số 0",
+    "Các bội của 4: nhân 4 lần lượt với 1, 2, 3 và cứ thế tiếp, rồi viết thêm số đối và số 0",
     [
       {
         tex: "4 \\cdot 1 = \\concept{blue}{4}",
@@ -326,7 +330,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: tag("bội dương", POSITIVE),
       },
       {
-        tex: "\\concept{blue}{-4},\\ \\concept{blue}{-8}",
+        tex: "4 \\cdot 3 = \\concept{blue}{12}",
+        tag: tag("bội dương", POSITIVE),
+      },
+      {
+        tex: "\\concept{blue}{-4},\\ \\concept{blue}{-8},\\ \\concept{blue}{-12}",
         tag: tag("số đối là bội âm", NEGATIVE),
       },
       {
@@ -358,6 +366,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     mode: "still",
   },
   "boi-khoang-vi-du": rows("Các bội của 3 lớn hơn −10 và nhỏ hơn 10", [
+    { tex: "-10 < x < 10", tag: tag("khoảng cần tìm", NOTE) },
     { tex: "3,\\ 6,\\ 9", tag: tag("bội dương trong khoảng", POSITIVE) },
     { tex: "-3,\\ -6,\\ -9", tag: tag("bội âm trong khoảng", NEGATIVE) },
     {
@@ -377,7 +386,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [
       { tex: "1,\\ 2,\\ 3,\\ 6", tag: tag("ước dương của 6", DIVISOR) },
       { tex: "1,\\ 3,\\ 9", tag: tag("ước dương của 9", DIVISOR) },
-      { tex: "1,\\ 3", tag: tag("ước dương chung", COMMON) },
+      { tex: "1,\\ 3", tag: tag("ước chung dương", COMMON) },
     ],
   ),
   "uoc-chung-vi-du": rows(
@@ -414,7 +423,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "still",
   ),
   "chon-tich-35-cung-lam": chips(
-    ["5 · 7", "(−5) · (−7)", "(−5) · 7", "(−35) · (−1)", "1 · 12"],
+    ["5 · 7", "(−5) · (−7)", "(−5) · 7", "(−35) · (−1)", "5 · 5"],
     [0, 1, 3],
     "35 = 5 · 7 = (−5) · (−7) = (−35) · (−1), còn (−5) · 7 = −35.",
   ),
@@ -441,10 +450,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [0, 2],
     "(−8) + 12 = 4 và 20 − (−8) = 28, cả hai đều chia hết cho 4.",
   ),
-  "chon-tong-6": chips(["(−18) + 12", "(−18) − 12", "(−18) + 10", "(−18) − 7"]),
+  "chon-tong-6": chips(["(−24) + 18", "(−24) − 18", "(−24) + 15", "(−24) − 5"]),
 
   // 12. Tìm x để x + m chia hết cho x
-  "tim-x-thu": rows("Thử x bằng 1, 2, 3 và −1 với x + 3", [
+  "tim-x-thu": rows("Thử x bằng 1, 2, 3, −1 và −3 với x + 3", [
     { tex: "1 + 3 = 4 \\chiahet 1", tag: tag("x = 1 được", NOTE) },
     {
       tex: "2 + 3 = 5 \\khongchiahet 2",
@@ -454,6 +463,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     {
       tex: "(-1) + 3 = 2 \\chiahet (-1)",
       tag: tag("x = −1 được", NOTE),
+    },
+    {
+      tex: "(-3) + 3 = 0 \\chiahet (-3)",
+      tag: tag("x = −3 được, vì 0 chia hết cho −3", NOTE),
     },
   ]),
   "tim-x-3": lines(
