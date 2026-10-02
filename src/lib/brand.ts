@@ -5,17 +5,17 @@
 // without the cookie; `scripts/brand-images.ts` draws the image files.
 
 // What the child sees: the tab, the Home Screen label, the share card.
-export const APP_NAME = "Học từng bước";
+export const APP_NAME = "Owl Yeah";
 // The label under the Home Screen icon (manifest `short_name`): the full name
-// is 13 characters and fits under an iOS icon in one line, so it is not cut.
+// is 8 characters and fits under an iOS icon in one line, so it is not cut.
 export const APP_SHORT_NAME = APP_NAME;
 // A page that sets its own title gets the app's name after it.
 export const TITLE_TEMPLATE = `%s | ${APP_NAME}`;
-export const APP_DESCRIPTION = "Ứng dụng tự học cho học sinh lớp 6";
+export const APP_DESCRIPTION = "Học từng bước cùng cú";
 
 // Public address of the production app: the base of every absolute URL in
 // the share card, and the origin `pnpm deploy:prod` smoke-checks.
-export const SITE_URL = "https://hoctungbuoc.vercel.app";
+export const SITE_URL = "https://owlyeah.vercel.app";
 
 // Same values as the `--background` and `--primary` tokens in
 // `src/app/globals.css` (a test compares them): the splash screen and the

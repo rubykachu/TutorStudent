@@ -61,13 +61,13 @@ describe("the web app manifest", () => {
     });
   });
 
-  it("is called Học từng bước on the Home Screen and everywhere else", () => {
-    expect(m.name).toBe("Học từng bước");
-    expect(m.short_name).toBe("Học từng bước");
+  it("is called Owl Yeah on the Home Screen and everywhere else", () => {
+    expect(m.name).toBe("Owl Yeah");
+    expect(m.short_name).toBe("Owl Yeah");
     // An iOS icon label holds about this many characters before it is cut.
     expect(APP_SHORT_NAME.length).toBeLessThanOrEqual(14);
-    expect(TITLE_TEMPLATE).toBe("%s | Học từng bước");
-    expect(SHARE_TITLE).toBe("Học từng bước: tự học lớp 6 cùng bạn cú");
+    expect(TITLE_TEMPLATE).toBe("%s | Owl Yeah");
+    expect(SHARE_TITLE).toBe("Owl Yeah: tự học lớp 6 cùng bạn cú");
     expect(SHARE_IMAGE.alt).toContain(APP_NAME);
     expect(JSON.stringify(m)).not.toContain("Tutor");
   });
