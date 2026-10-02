@@ -5,7 +5,7 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { OVERVIEW_GOALS_LEAD } from "@/content/overview";
 import { LessonOverviewView } from "@/learn/lesson-overview";
 import { karaokeCueText } from "@/lib/karaoke-vtt";
@@ -112,11 +112,148 @@ describe("LessonOverviewView", () => {
       await Promise.resolve();
     });
     fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
-    expect(play).toHaveBeenCalledOnce();
+    await waitFor(() => expect(play).toHaveBeenCalledOnce());
     await waitFor(() =>
       expect(container.querySelector("[data-word-reading]")).toHaveTextContent(
         "này",
       ),
     );
+  });
+
+  describe("loading the narration", () => {
+    const NARRATED: LessonOverview = {
+      ...OVERVIEW,
+      narration: {
+        audioUrl: "narration/phep-nhan/overview.m4a",
+        vttUrl: "narration/phep-nhan/overview.vtt",
+      },
+    };
+
+    // The audio file as a download the test feeds chunk by chunk; the
+    // captions answer at once.
+    function stubNarrationFetch(total: number | null, failFirst = false) {
+      let controller!: ReadableStreamDefaultController<Uint8Array>;
+      let failed = !failFirst;
+      const fetchMock = vi.fn(async (url: string) => {
+        if (url.endsWith(".vtt")) return new Response("WEBVTT\n");
+        if (!failed) {
+          failed = true;
+          throw new TypeError("network");
+        }
+        const headers: Record<string, string> = {};
+        if (total !== null) headers["Content-Length"] = String(total);
+        return new Response(
+          new ReadableStream<Uint8Array>({
+            start(c) {
+              controller = c;
+            },
+          }),
+          { headers },
+        );
+      });
+      vi.stubGlobal("fetch", fetchMock);
+      const settle = () =>
+        act(async () => {
+          await new Promise((resolve) => setTimeout(resolve, 0));
+        });
+      return {
+        fetchMock,
+        push: async (bytes: number) => {
+          controller.enqueue(new Uint8Array(bytes));
+          await settle();
+        },
+        finish: async () => {
+          controller.close();
+          await settle();
+        },
+      };
+    }
+
+    beforeEach(() => {
+      URL.createObjectURL = vi.fn(() => "blob:narration");
+      URL.revokeObjectURL = vi.fn();
+      vi.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(function (
+        this: HTMLMediaElement,
+      ) {
+        this.dispatchEvent(new Event("play"));
+        return Promise.resolve();
+      });
+    });
+
+    it("fetches nothing until the tap, then shows the real percentage and plays from memory", async () => {
+      const download = stubNarrationFetch(400);
+      const { container } = renderOverview(NARRATED);
+      const audio = container.querySelector("audio") as HTMLAudioElement;
+      expect(audio.hasAttribute("src")).toBe(false);
+      expect(download.fetchMock.mock.calls.map((call) => call[0])).toEqual([
+        "/media/narration/phep-nhan/overview.vtt",
+      ]);
+
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      await download.push(100);
+      expect(screen.getByRole("progressbar")).toHaveAttribute(
+        "aria-valuenow",
+        "25",
+      );
+      expect(
+        container.querySelector("[data-narration-label]"),
+      ).toHaveTextContent("Đang tải… 25%");
+      expect(
+        screen.getByRole("button", { name: "Dừng tải" }),
+      ).toBeInTheDocument();
+      expect(audio.hasAttribute("src")).toBe(false);
+
+      await download.push(300);
+      await download.finish();
+      await waitFor(() =>
+        expect(audio.getAttribute("src")).toBe("blob:narration"),
+      );
+      await waitFor(() =>
+        expect(
+          container.querySelector("[data-overview-narration]"),
+        ).toHaveAttribute("data-overview-narration", "playing"),
+      );
+      expect(screen.queryByRole("progressbar")).toBeNull();
+    });
+
+    it("shows the buffered share when the file's length is unknown and the audio stalls", async () => {
+      const download = stubNarrationFetch(null);
+      const { container } = renderOverview(NARRATED);
+      const audio = container.querySelector("audio") as HTMLAudioElement;
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      await waitFor(() =>
+        expect(audio.getAttribute("src")).toBe(
+          "/media/narration/phep-nhan/overview.m4a",
+        ),
+      );
+      expect(download.fetchMock).toHaveBeenCalledTimes(2);
+      Object.defineProperty(audio, "duration", {
+        value: 20,
+        configurable: true,
+      });
+      Object.defineProperty(audio, "buffered", {
+        value: { length: 1, start: () => 0, end: () => 5 },
+        configurable: true,
+      });
+      fireEvent.waiting(audio);
+      expect(
+        container.querySelector("[data-narration-label]"),
+      ).toHaveTextContent("Đang tải… 25%");
+      fireEvent.playing(audio);
+      expect(screen.queryByRole("progressbar")).toBeNull();
+    });
+
+    it("offers 'Thử lại' when the download fails", async () => {
+      const download = stubNarrationFetch(10, true);
+      renderOverview(NARRATED);
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      expect(await screen.findByRole("alert")).toHaveTextContent(
+        "Bạn thử lại nhé",
+      );
+      fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+      await download.push(10);
+      await download.finish();
+      await waitFor(() => expect(screen.queryByRole("alert")).toBeNull());
+    });
   });
 });

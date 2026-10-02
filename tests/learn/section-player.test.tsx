@@ -179,6 +179,10 @@ describe("SectionPlayer", () => {
       }) as never;
     const videoBlock = (id: string) =>
       ({ type: "video", videoId: `${LESSON_ID}.video.${id}` }) as const;
+    const fetchMock = vi.fn(
+      (_url: string) => new Promise<Response>(() => undefined),
+    );
+    vi.stubGlobal("fetch", fetchMock);
     renderPlayer(SECTION_START, {
       videos: [clip("a"), clip("b")],
       sections: [
@@ -196,17 +200,18 @@ describe("SectionPlayer", () => {
       [...document.querySelectorAll("[data-video-preload]")].map((e) =>
         e.getAttribute("data-video-preload"),
       );
-    // On the note: the video after it is fetched, hidden.
+    const fetched = () => fetchMock.mock.calls.map((call) => call[0]);
+    // On the note: the video after it is fetched, unseen.
     expect(preloading()).toEqual([`${LESSON_ID}.video.a`]);
-    expect(document.querySelectorAll("video")).toHaveLength(1);
+    expect(document.querySelectorAll("video")).toHaveLength(0);
+    expect(fetched()).toEqual(["/media/video/a.mp4"]);
     tap("Tiếp");
-    // On the first video: it fetches itself (auto); the second waits.
+    // On the first video: it fetches itself; the second waits.
     expect(preloading()).toEqual([]);
-    expect(
-      document
-        .querySelector("[data-block=video] video")
-        ?.getAttribute("preload"),
-    ).toBe("auto");
+    expect(document.querySelectorAll("[data-block=video] video")).toHaveLength(
+      1,
+    );
+    expect(fetched()).not.toContain("/media/video/b.mp4");
     tap("Tiếp");
     expect(preloading()).toEqual([]);
     await waitFor(async () =>

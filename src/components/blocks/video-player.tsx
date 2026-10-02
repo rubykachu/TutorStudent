@@ -1,9 +1,12 @@
 "use client";
 
-import { Captions, CaptionsOff, LoaderCircle, Play } from "lucide-react";
+import { Captions, CaptionsOff, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { MediaLoadError, MediaLoading } from "@/components/media-loading";
 import { parseKaraokeCue, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
+import { bufferedFraction } from "@/lib/media-download";
+import { useMediaSource } from "@/lib/use-media-source";
 import type { Video } from "@/schema/content";
 
 export type VideoClip = Video["clips"][number];
@@ -12,9 +15,9 @@ type VideoPlayerProps = {
   video: Video;
   // Plays only this part of the video, e.g. the part that explains a card.
   clip?: VideoClip;
-  // How much the browser fetches before the child taps play: "auto" for a
-  // video the child is looking at, "metadata" (the default) otherwise. The
-  // video is only ever streamed, never saved on the device.
+  // When the download starts: "auto" as the screen opens (a video the child
+  // is looking at), "metadata" (the default) on the tap on play. The video
+  // is fetched into memory and played from there, never saved on the device.
   preload?: "metadata" | "auto";
 };
 
@@ -23,7 +26,9 @@ const CLIP_END_SLACK_S = 0.05;
 
 // A lesson video. It never starts on its own (with sound or without, reduced
 // motion or not): the child taps the big play button, and the native
-// controls take over for pausing and seeking. It never stops by itself
+// controls take over for pausing and seeking. The file arrives first, with
+// its percentage on screen (and again on every stall); a failed download
+// offers "Thử lại". It never stops by itself
 // either: only the child pauses. Captions are on by default and drawn by the
 // page, large and with the spoken word highlighted, from the karaoke
 // timestamps in the WebVTT track: over the picture's bottom on a wide screen,
@@ -38,10 +43,18 @@ export function VideoPlayer({
   const videoRef = useRef<HTMLVideoElement>(null);
   const trackRef = useRef<HTMLTrackElement>(null);
   const [started, setStarted] = useState(false);
+  const source = useMediaSource(mediaUrl(video.url));
+  const { request } = source;
+  // The child tapped play: the video plays as soon as its file is here.
+  const [wanted, setWanted] = useState(false);
   // True from the tap on play until the first frame runs, and again whenever
-  // playback stalls to buffer: the spinner shows over the poster, so a tap
-  // never meets a frozen picture.
+  // playback stalls to buffer: the loading card shows over the poster, so a
+  // tap never meets a frozen picture.
   const [waiting, setWaiting] = useState(false);
+  // How much of a streamed video the element has buffered.
+  const [buffered, setBuffered] = useState<number | undefined>();
+  // The element itself could not play the file it was given.
+  const [broken, setBroken] = useState(false);
   const [captionsOn, setCaptionsOn] = useState(true);
   const [cue, setCue] = useState<TimedWord[]>([]);
   const [spoken, setSpoken] = useState(-1);
@@ -106,13 +119,50 @@ export function VideoPlayer({
     };
   }, [cue]);
 
+  useEffect(() => {
+    if (preload === "auto") request();
+  }, [preload, request]);
+
+  const { phase, src: playable } = source;
+  // The file is here: play it if the child already asked (a browser that
+  // wants a fresh tap for sound refuses, and the play button comes back).
+  useEffect(() => {
+    const element = videoRef.current;
+    if (!wanted || phase !== "ready" || !playable || !element) return;
+    Promise.resolve(element.play()).catch(() => {
+      setWanted(false);
+      setWaiting(false);
+    });
+  }, [wanted, phase, playable]);
+
   const play = () => {
     setWaiting(true);
-    const element = videoRef.current;
-    if (!element) return;
-    // Older engines return nothing from `play()`.
-    Promise.resolve(element.play()).catch(() => setWaiting(false));
+    setWanted(true);
+    request();
   };
+
+  const retry = () => {
+    setBroken(false);
+    setWaiting(true);
+    if (phase === "error") {
+      request();
+      return;
+    }
+    const element = videoRef.current;
+    element?.load();
+    Promise.resolve(element?.play()).catch(() => setWaiting(false));
+  };
+
+  const trackBuffered = () => {
+    const element = videoRef.current;
+    if (element) setBuffered(bufferedFraction(element));
+  };
+
+  const failed = wanted && (phase === "error" || broken);
+  // A download shows its bytes, a streamed video what it has buffered; a file
+  // already in memory is all there.
+  const fraction =
+    phase === "loading" ? source.progress : source.streamed ? buffered : 1;
 
   const onPlay = () => {
     setStarted(true);
@@ -129,11 +179,6 @@ export function VideoPlayer({
     if (clip && element && element.currentTime >= clip.end) element.pause();
   };
 
-  // A media fragment makes the poster frame and first seek land on the clip.
-  const src = clip
-    ? `${mediaUrl(video.url)}#t=${clip.start},${clip.end}`
-    : mediaUrl(video.url);
-
   return (
     // On a short, wide screen (a landscape tablet) the 16:9 picture would fill
     // the width and push the captions button under the bottom bar, so the
@@ -146,19 +191,30 @@ export function VideoPlayer({
       <div className="relative w-full overflow-hidden rounded-lg bg-foreground">
         <video
           ref={videoRef}
-          src={src}
+          src={source.src}
           poster={mediaUrl(video.posterUrl)}
           controls={started}
           playsInline
-          preload={preload}
+          preload="auto"
           // Captions come from the media store, which serves them to the app
           // with CORS once it is a separate domain.
           crossOrigin="anonymous"
           onPlay={onPlay}
-          onWaiting={() => setWaiting(true)}
+          onWaiting={() => {
+            setWaiting(true);
+            trackBuffered();
+          }}
+          onStalled={() => {
+            if (wanted && !videoRef.current?.paused) setWaiting(true);
+            trackBuffered();
+          }}
+          onProgress={trackBuffered}
           onPlaying={() => setWaiting(false)}
           onPause={() => setWaiting(false)}
-          onError={() => setWaiting(false)}
+          onError={() => {
+            setWaiting(false);
+            if (source.src) setBroken(true);
+          }}
           onTimeUpdate={onTimeUpdate}
           className="block aspect-video w-full"
         >
@@ -170,7 +226,7 @@ export function VideoPlayer({
             label="Tiếng Việt"
           />
         </video>
-        {!started && !waiting && (
+        {!started && !waiting && !failed && (
           <button
             type="button"
             aria-label="Phát video"
@@ -183,20 +239,18 @@ export function VideoPlayer({
             </span>
           </button>
         )}
-        {waiting && (
-          <span
-            role="status"
-            aria-label="Đang tải video"
-            data-video-spinner
-            className="pointer-events-none absolute inset-0 flex items-center justify-center"
-          >
-            <span className="flex size-20 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card">
-              <LoaderCircle
-                aria-hidden
-                className="size-10 animate-spin motion-reduce:animate-none"
-              />
-            </span>
-          </span>
+        {waiting && !failed && (
+          <MediaLoading
+            what="video"
+            fraction={fraction}
+            receivedBytes={source.receivedBytes}
+          />
+        )}
+        {failed && (
+          <MediaLoadError
+            onRetry={retry}
+            className="absolute inset-0 bg-surface p-3"
+          />
         )}
         {captionsOn && (
           <p

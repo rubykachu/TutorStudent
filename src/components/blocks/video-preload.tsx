@@ -1,35 +1,27 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { mediaUrl } from "@/lib/media";
+import { downloadMedia, storePreloaded } from "@/lib/media-download";
 import type { Video } from "@/schema/content";
 
 // Fetches the video of the next screen while the child reads this one, so
-// play starts at once when they get there. The element is never shown and
-// mirrors the player's attributes (address, CORS mode) so both ask for the
-// same resource. Leaving the screen stops the download; nothing is kept.
+// play starts at once when they get there. The file waits in memory (one
+// video at most, `storePreloaded`) for the player that needs it; leaving the
+// screen before it finished stops the download; nothing is written to the
+// device. Shows nothing.
 export function VideoPreload({ video }: { video: Video }) {
-  const ref = useRef<HTMLVideoElement>(null);
+  const url = mediaUrl(video.url);
   useEffect(() => {
-    const element = ref.current;
-    return () => {
-      if (!element) return;
-      element.removeAttribute("src");
-      element.load();
-    };
-  }, []);
-  return (
-    <video
-      ref={ref}
-      src={mediaUrl(video.url)}
-      preload="auto"
-      muted
-      playsInline
-      crossOrigin="anonymous"
-      hidden
-      aria-hidden
-      tabIndex={-1}
-      data-video-preload={video.id}
-    />
-  );
+    const controller = new AbortController();
+    downloadMedia(url, { signal: controller.signal })
+      .then((result) => {
+        if (result.kind === "blob" && !controller.signal.aborted) {
+          storePreloaded(url, result.blob);
+        }
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, [url]);
+  return <span hidden aria-hidden data-video-preload={video.id} />;
 }

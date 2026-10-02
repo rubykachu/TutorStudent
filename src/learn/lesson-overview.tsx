@@ -12,6 +12,11 @@ import {
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { BigButton } from "@/components/big-button";
 import { BottomBar } from "@/components/bottom-bar";
+import {
+  loadingText,
+  MediaLoadError,
+  ProgressRing,
+} from "@/components/media-loading";
 import { RichText } from "@/components/rich-text";
 import {
   type OverviewPart,
@@ -22,6 +27,8 @@ import {
 import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
 import { lessonHeading } from "@/lib/lesson-label";
 import { mediaUrl } from "@/lib/media";
+import { bufferedFraction, percentLabel } from "@/lib/media-download";
+import { useMediaSource } from "@/lib/use-media-source";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import { Owl } from "@/mascot/owl";
 import type { Lesson, LessonOverview } from "@/schema/content";
@@ -56,6 +63,14 @@ function useNarrationWords(
 
 type NarrationState = {
   playing: boolean;
+  // The audio file is on its way (after the tap on play, or a stall).
+  loading: boolean;
+  // 0–1 of the file that arrived, undefined while its length is unknown.
+  loadFraction: number | undefined;
+  loadedBytes: number;
+  // The download failed after the child asked to listen.
+  failed: boolean;
+  retry: () => void;
   // 0–1 through the audio.
   progress: number;
   word: number;
@@ -63,8 +78,9 @@ type NarrationState = {
   audio: ReactNode;
 };
 
-// The recorded narration: never starts on its own; the highlighted word
-// follows the playhead on every frame while it plays.
+// The recorded narration: never starts on its own; the file is fetched on the
+// first tap on play (with its percentage on screen) and played from memory;
+// the highlighted word follows the playhead on every frame while it plays.
 function useNarration(
   narration: Narration | undefined,
   wordCount: number,
@@ -74,6 +90,22 @@ function useNarration(
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [word, setWord] = useState(-1);
+  const source = useMediaSource(narration ? mediaUrl(narration.audioUrl) : "");
+  const { phase, src: playable, request } = source;
+  // The child tapped play and the audio starts as soon as its file is here.
+  const [wanted, setWanted] = useState(false);
+  const [stalled, setStalled] = useState(false);
+  const [buffered, setBuffered] = useState<number | undefined>();
+  const [broken, setBroken] = useState(false);
+
+  useEffect(() => {
+    const element = audioRef.current;
+    if (!wanted || phase !== "ready" || !playable || !element) return;
+    void element.play().catch(() => {
+      setWanted(false);
+      setPlaying(false);
+    });
+  }, [wanted, phase, playable]);
 
   useEffect(() => {
     const element = audioRef.current;
@@ -92,18 +124,67 @@ function useNarration(
   const toggle = () => {
     const element = audioRef.current;
     if (!element) return;
-    if (element.paused) void element.play().catch(() => setPlaying(false));
-    else element.pause();
+    if (wanted) {
+      // Tapped again while the file loads: the child changed their mind.
+      setWanted(false);
+      return;
+    }
+    if (playing) {
+      element.pause();
+      return;
+    }
+    setWanted(true);
+    setBroken(false);
+    request();
   };
+
+  const retry = () => {
+    setBroken(false);
+    if (phase === "error" || phase === "idle") {
+      request();
+      return;
+    }
+    const element = audioRef.current;
+    element?.load();
+    void element?.play().catch(() => setWanted(false));
+  };
+
+  const trackBuffered = () => {
+    const element = audioRef.current;
+    if (element) setBuffered(bufferedFraction(element));
+  };
+  const loadingFile = wanted && phase === "loading";
+  const loading = loadingFile || stalled;
+  const loadFraction = loadingFile
+    ? source.progress
+    : source.streamed
+      ? buffered
+      : 1;
 
   const audio = narration ? (
     <audio
       ref={audioRef}
-      src={mediaUrl(narration.audioUrl)}
-      preload="metadata"
+      src={source.src}
+      preload="auto"
       data-overview-audio
-      onPlay={() => setPlaying(true)}
-      onPause={() => setPlaying(false)}
+      onPlay={() => {
+        setPlaying(true);
+        setWanted(false);
+      }}
+      onPause={() => {
+        setPlaying(false);
+        setStalled(false);
+      }}
+      onWaiting={() => {
+        setStalled(true);
+        trackBuffered();
+      }}
+      onPlaying={() => setStalled(false)}
+      onProgress={trackBuffered}
+      onError={() => {
+        setStalled(false);
+        if (source.src) setBroken(true);
+      }}
       onEnded={() => {
         setPlaying(false);
         setWord(-1);
@@ -120,42 +201,94 @@ function useNarration(
       />
     </audio>
   ) : null;
-  return { playing, progress, word: playing ? word : -1, toggle, audio };
+  return {
+    playing,
+    loading,
+    loadFraction,
+    loadedBytes: source.receivedBytes,
+    failed: wanted && (phase === "error" || broken),
+    retry,
+    progress,
+    word: playing ? word : -1,
+    toggle,
+    audio,
+  };
 }
 
 function NarrationPlayer({ state }: { state: NarrationState }) {
+  const busy = state.loading && !state.failed;
   const Icon = state.playing ? Pause : Play;
+  const fraction = busy ? state.loadFraction : state.progress;
   return (
     <div
       data-overview-narration={state.playing ? "playing" : "paused"}
+      data-narration-control
       className="flex items-center gap-4 rounded-xl border-2 border-border bg-surface p-3 pr-5"
     >
       {state.audio}
-      <button
-        type="button"
-        onClick={state.toggle}
-        aria-label={state.playing ? "Tạm dừng" : "Nghe giới thiệu"}
-        className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.95] motion-reduce:transition-none"
-      >
-        <Icon
-          aria-hidden
-          className={`size-8 fill-current ${state.playing ? "" : "ml-1"}`}
-        />
-      </button>
-      <div className="flex min-w-0 flex-1 flex-col gap-2">
-        <span className="font-semibold">
-          {state.playing ? "Đang đọc…" : "Nghe giới thiệu"}
-        </span>
-        <span
-          aria-hidden
-          className="h-2 w-full overflow-hidden rounded-full bg-muted"
-        >
-          <span
-            className="block h-full rounded-full bg-primary"
-            style={{ width: `${Math.round(state.progress * 100)}%` }}
+      <span className="relative shrink-0">
+        {busy && (
+          <ProgressRing
+            fraction={state.loadFraction}
+            className="pointer-events-none absolute -inset-1.5"
           />
-        </span>
-      </div>
+        )}
+        <button
+          type="button"
+          onClick={state.toggle}
+          aria-label={
+            state.playing ? "Tạm dừng" : busy ? "Dừng tải" : "Nghe giới thiệu"
+          }
+          className="relative flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.95] motion-reduce:transition-none"
+        >
+          <Icon
+            aria-hidden
+            className={`size-8 fill-current ${state.playing ? "" : "ml-1"}`}
+          />
+        </button>
+      </span>
+      {state.failed ? (
+        <MediaLoadError
+          onRetry={state.retry}
+          className="min-w-0 flex-1 items-start text-left"
+        />
+      ) : (
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          {busy ? (
+            <span
+              data-narration-label
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={
+                state.loadFraction === undefined
+                  ? undefined
+                  : percentLabel(state.loadFraction)
+              }
+              aria-valuetext={loadingText(
+                state.loadFraction,
+                state.loadedBytes,
+              )}
+              className="font-semibold"
+            >
+              {loadingText(state.loadFraction, state.loadedBytes)}
+            </span>
+          ) : (
+            <span data-narration-label className="font-semibold">
+              {state.playing ? "Đang đọc…" : "Nghe giới thiệu"}
+            </span>
+          )}
+          <span
+            aria-hidden
+            className="h-2 w-full overflow-hidden rounded-full bg-muted"
+          >
+            <span
+              className="block h-full rounded-full bg-primary"
+              style={{ width: `${Math.round((fraction ?? 0) * 100)}%` }}
+            />
+          </span>
+        </div>
+      )}
     </div>
   );
 }
