@@ -51,15 +51,15 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-10 | 5 | 41 | 30 | 76 |
 | LL-19 | 2 | 8 | 26 | 36 |
 | LL-12 | 13 | 19 | 30 | 62 |
-| LL-07 | 1 | 44 | 35 | 80 |
+| LL-07 | 1 | 45 | 35 | 81 |
 | LL-15 | 5 | 16 | 10 | 31 |
 | LL-16 | 0 | 32 | 4 | 36 |
 | LL-05 | 12 | 38 | 21 | 71 |
-| LL-09 | 15 | 15 | 4 | 34 |
-| LL-14 | 2 | 13 | 13 | 28 |
+| LL-09 | 15 | 16 | 4 | 35 |
+| LL-14 | 2 | 15 | 13 | 30 |
 | LL-11 | 4 | 5 | 7 | 16 |
 | LL-06 | 1 | 19 | 7 | 27 |
-| LL-02 | 7 | 12 | 11 | 30 |
+| LL-02 | 8 | 13 | 11 | 32 |
 | LL-01 | 19 | 1 | 0 | 20 |
 | LL-03 | 2 | 6 | 2 | 10 |
 | LL-17 | 52 | 5 | 3 | 60 |
@@ -70,7 +70,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-20 | 12 | 1 | 1 | 14 |
 | LL-21 | 5 | 3 | 0 | 8 |
 | LL-22 | 1 | 0 | 0 | 1 |
-| LL-23 | 2 | 0 | 0 | 2 |
+| LL-23 | 4 | 0 | 0 | 4 |
 | LL-24 | 17 | 3 | 4 | 24 |
 | LL-25 | 0 | 9 | 182 | 191 |
 | LL-26 | 2 | 0 | 0 | 2 |
@@ -98,7 +98,7 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `cach-ghi-so-tu-nhien` | Toán | 13 | 3 (vòng 2 còn 8) | 3 |
 | `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | 3 (vòng 2 còn 1) | 3 |
 | `tap-hop-cac-so-nguyen` | Toán | 4 | 3 (vòng 2 còn 1) | 3 |
-| `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1) | 4 |
+| `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1; phần bài tập sách bài tập, vòng 6 có 2 và vòng 7 có 1, hết ở vòng 7) | 7 |
 | `quy-tac-dau-ngoac` | Toán | 8 | 3 (vòng 2 còn 3) | 3 |
 | `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` | Toán | 11 | chưa (vòng 2 còn 6) | 2 |
 | `phep-nhan-so-nguyen` | Toán | 5 | 3 (vòng 2 còn 1) | 4 |

@@ -499,6 +499,14 @@ class Walker {
     if (loadingVisual) {
       this.report("fail", where, `visual still loading (${file})`);
     }
+    // A tall answer (a table of sixteen gaps) runs past the screen, so a
+    // control is rightly behind the bar until the child scrolls to it. What
+    // must hold is that nothing stays behind the bar at the end of the page.
+    const scrollTop = await this.page.evaluate(() => {
+      const top = window.scrollY;
+      window.scrollTo({ top: document.documentElement.scrollHeight });
+      return top;
+    });
     try {
       await expectNothingUnderBottomBar(this.page);
     } catch {
@@ -506,6 +514,7 @@ class Walker {
         this.report("fail", where, `bottom bar covers ${element} (${file})`);
       }
     }
+    await this.page.evaluate((top) => window.scrollTo({ top }), scrollTop);
     if (feedback) {
       const target =
         (await this.page.locator("[data-feedback-visual]").count()) > 0

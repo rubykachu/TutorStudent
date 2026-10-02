@@ -1,13 +1,13 @@
 # Review: Phép cộng và phép trừ số nguyên (`phep-cong-phep-tru-so-nguyen`)
 
 - Bài: `content/math/kntt/phep-cong-phep-tru-so-nguyen/lesson.json`
-- Vòng: 5 - chỉ phần đổi: video và lời đọc (`pnpm content:diff`: ba khối `video` và ba mục `videos[]` mới ở phần 1, 2, 3 theo id `cong-so-duong`, `khac-dau`, `tru-so-duong`; lời đọc tổng quan `overview.narration`); 1 reviewer duy nhất. Nội dung các vòng trước giữ nguyên bên dưới.
+- Vòng: 6 (Opus, soát đầy đủ phần bài tập sách bài tập) và 7 (Sonnet, chỉ phần đổi của phần đó), xem mục "Vòng 6 và 7" ở cuối; vòng 5 - chỉ phần đổi: video và lời đọc (`pnpm content:diff`: ba khối `video` và ba mục `videos[]` mới ở phần 1, 2, 3 theo id `cong-so-duong`, `khac-dau`, `tru-so-duong`; lời đọc tổng quan `overview.narration`); 1 reviewer duy nhất. Nội dung các vòng trước giữ nguyên bên dưới.
 - Nguồn đã đọc: `sources/math/phep-cong-phep-tru-so-nguyen/` - sbt-p50 (đối chiếu lại kiến thức cần nhớ 1 đến 3); p51, p52, p111 đã đọc ở vòng 3, các mục của chúng không đổi
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá)
-- Đọc hiểu (Haiku, lượt 1): 100 / 25 / 1 (lượt 2 trên 23 mục: 6 / 15 / 2; lượt 3 trên 14 mục: 7 / 7 / 0; lượt trên mục đổi sau vòng 3: 5 / 4 / 3); tệp `.shots/review/phep-cong-phep-tru-so-nguyen/doc-hieu.md`
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ảnh trong `.shots/walk/phep-cong-phep-tru-so-nguyen/`
-- Kết luận: Đạt: 0 Nghiêm trọng, chờ lệnh duyệt của người điều phối
-- Bản đã review: `746d14323f45b2f31edb4caf3c486763f5b29ab85410b52b0f712d6dcc0ebe81` (`pnpm content:diff` so với bản này)
+- Đọc hiểu (Haiku): chữ cũ của bài lượt 1: 100 / 25 / 1 (lượt 2 trên 23 mục: 6 / 15 / 2; lượt 3 trên 14 mục: 7 / 7 / 0; lượt trên mục đổi sau vòng 3: 5 / 4 / 3); tệp `.shots/review/phep-cong-phep-tru-so-nguyen/doc-hieu.md` (đã bị ghi đè khi chạy đọc hiểu cho phần bài tập sách bài tập; số liệu cũ giữ ở dòng này). Chữ mới của phần bài tập sách bài tập: xem mục "Vòng 6 và 7".
+- `lesson:walk`: 0 FAIL, 0 cảnh báo sau khi thêm phần bài tập sách bài tập, ảnh trong `.shots/walk/phep-cong-phep-tru-so-nguyen/`
+- Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng sau vòng 7)
+- Bản đã review: `2949e61078fd56d8b3f8668ff9f734c2ade873fbd985f3e33ad488660097e505` (`pnpm content:diff` so với bản này)
 
 ## Phạm vi và cách soát
 
@@ -177,3 +177,19 @@ Tổng vòng này: 0 Nghiêm trọng, 2 Nên sửa, 1 Góp ý. Không có phát 
 - Nên sửa 2 (LL-11): câu đổi thành "Bạn cú dừng lại ở số 2." và đọc lại; mọi câu của video `di-tren-truc-so` nay match 1 và không còn câu cần nghe duyệt.
 - Góp ý 1 (LL-12): ô dấu chưa hiện của dòng kết quả hiện "?" cho tới khi đọc tới "dương" hoặc "âm".
 - Đọc hiểu (Haiku) trên 44 câu của ba kịch bản: 39 / 5 / 0 theo tổng của Haiku (bảng ghi 7 câu mơ hồ); câu mơ hồ do thuật ngữ nằm nguyên văn trong câu quy tắc của bài ("phần số tự nhiên", "không đối nhau", "mang dấu", "trừ một số") giữ nguyên; câu hỏi "tổng mang dấu nào?" đổi thành "tổng là số dương hay số âm?".
+
+## Vòng 6 và 7: phần bài tập sách bài tập (section cuối, 45 câu)
+
+Bài đã xuất bản được thêm một section cuối `bookPractice` ("Bài tập sách bài tập"): 19 câu sách (SBT 3.8, 3.9, 3.10a, 3.10b, 3.11a, 3.11b, 3.12a, 3.12b, 3.13a, 3.13b, 3.14a, 3.14b, 3.15, 3.16, 3.17, 3.18a, 3.18b, 3.19a, 3.19b, đủ mọi bài tập của Bài 14 ở tr.51-52), 26 câu dẫn (`leadsTo`), 4 khối "Nhắc lại" (lặp nguyên văn quy tắc của các section đã có), recap, 22 hình mới `sbt-*` (nấc 2 và nấc 3 của câu sách, hình dùng lại cho phần còn lại). Các section 1 đến 13, id, video, media không đổi.
+
+- Vòng 6 (Opus, soát đầy đủ phần mới, đọc ảnh `sbt-p51`, `sbt-p52`, `sbt-p111`): 2 Nghiêm trọng, 7 Nên sửa, 6 Góp ý. Đủ 19 ý của sách; đề 3.8, 3.9, 3.10, 3.15 (từng ô), 3.16, 3.17 khớp từng chữ; mọi đáp án và `check.expr` đúng, 16 ô bảng 3.15 khớp tr.111. Sách không in lời giải cho 3.8 và 3.11 đến 3.14, người review tự tính lại cả chín câu, đều đúng.
+- Vòng 7 (Sonnet, chỉ phần đổi): 1 Nghiêm trọng, 0 Nên sửa, 3 Góp ý.
+
+Đã sửa:
+- Nghiêm trọng (LL-23), tám câu 3.11 đến 3.14 và bốn câu 3.18, 3.19: dòng lệnh chung của sách bị cắt hay đổi ("Thực hiện phép tính." thay "Thực hiện phép tính (từ Bài 3.11 đến Bài 3.14):"; "Thực hiện phép tính." thay "Tính một cách hợp lí (từ Bài 3.18 đến Bài 3.19):", mất yêu cầu "hợp lí"). Nay giữ đúng từng chữ như `on-tap-chuong-3`.
+- Nghiêm trọng (LL-02, vòng 7), `dan-3-10-y-duong5`: hình gợi ý `so-doi-vi-du` in sẵn "5 → −5", đúng số của đề; đổi đề sang y = 9.
+- Nên sửa: câu dẫn Sa Pa trùng ví dụ của phần 12 và hình nhắc lại, đáp án −7 trùng số đầu của 3.16 (LL-07), nay −5 giảm 3 = −8; hình gợi ý của 3.16 dùng đúng hai số 2 và 7 của đề (LL-02), nay hình mới `sbt-goi-y-nhiet-do` (−6 − 4); câu dẫn "y = −8" đứng trước 3.10a nhưng dẫn tới ý b (LL-23), nay 3.10a có hai câu dẫn y = 8 và y = 9, 3.10b có câu dẫn y = −6; bank 3.8 thiếu nhiễu "−58", "−986" và nhãn ô viết tắt (LL-14), nay có nhiễu và nhãn "phần dấu", "phần số tự nhiên"; nhiễu "4" của số đối −40 quá yếu (LL-14), đã bỏ; khối "Nhắc lại" nói tìm số chưa biết mà không câu dẫn nào luyện (LL-09), nay có câu dẫn `dan-3-15-tim-y` và `dan-3-15-tim-x`, câu nhắc lại viết lại.
+- Góp ý đã nhận: lời giải 3.18 ghép số như sách (cách ghép do số của đề ép); số các câu dẫn 3.12 đến 3.14 gần số sách (925, 538...) nhưng đáp án khác; hình gợi ý 3.18b ghép số dương với số âm trong khi đề ghép hai số âm; bảng 3.15 hiện thành các dòng chữ ngăn bằng "|" (schema chưa có khối bảng; đề giữ đúng chữ sách, phần trả lời xếp theo từng cột); câu dẫn `dan-3-15-tim-y` đã đổi sang x = 4 để khỏi trùng cột 2.
+- Còn mở (không chặn): (1) sách không in lời giải 3.8, 3.11 đến 3.14, chủ dự án có thể xác nhận đáp án tự giải. (2) Ba câu quy tắc dùng lại nguyên văn từ section 2, 8, 9 trong khối "Nhắc lại" (hai số đối nhau, cộng hai số khác dấu, trừ đi một số âm) vẫn được Haiku gắn "Hiểu mơ hồ" vì thuật ngữ: một quy tắc một cách nói, muốn viết lại phải sửa cả section gốc, recap, video. (3) Hai `explain` ("Với mỗi cột, ..." của 3.15) và khối "Phép tính ngược" được viết lại lượt 3 mà chưa có Haiku đọc bản cuối (quá 3 lượt): `$.exercises[90].explain.text` và `$.sections[13].blocks[2].children[4].text`. (4) Lệnh `lesson:walk` được sửa để chỉ báo khi điều khiển còn nằm sau thanh dưới ở cuối trang (phần trả lời của 3.15 cao hơn màn điện thoại).
+
+Đọc hiểu (Haiku) trên chữ mới của section: lượt 1 110 / 5 / 1; lượt 2 trên 5 mục viết lại 1 / 3 / 1; lượt 3 trên 3 mục 1 / 2 / 0; sau review lượt trên 4 câu dẫn mới 18 / 2 / 0 (hai mục `explain` đã rút gọn). Các tệp lượt 1 và lượt 2 do Haiku ghi đè `doc-hieu.md` và `doc-hieu-2.md` của vòng trước (bản vòng trước của lượt 2 còn ở `doc-hieu-2.vong-truoc.md`, lượt 1 cũ mất; số liệu cũ vẫn ghi ở đầu tệp này); lượt 3 và sau review: `doc-hieu-bai-tap-sach-3.md`, `doc-hieu-bai-tap-sach-4.md`. Báo cáo reviewer: `nhom-bai-tap-sach.md`, `vong-sua-bai-tap-sach.md`.

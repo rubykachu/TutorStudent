@@ -529,6 +529,307 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ]),
   "cung-3-thang-may": tryWalk(3, -3, "Thang máy đã xuống 6 tầng, tới tầng −3."),
 
+  // 13. Workbook exercises (the book-practice section): the worked solution of
+  // each exercise with its own numbers, and hints with other numbers.
+  "sbt-dau-va-so-giai": rows(
+    "Bốn số nguyên, mỗi số tách thành phần dấu và phần số tự nhiên",
+    [
+      {
+        tex: "\\concept{pink}{-58}",
+        tag: tag("dấu −, phần số tự nhiên 58", NEGATIVE),
+      },
+      {
+        tex: "\\concept{lime}{+207}",
+        tag: tag("dấu +, phần số tự nhiên 207", POSITIVE),
+      },
+      {
+        tex: "\\concept{pink}{-986}",
+        tag: tag("dấu −, phần số tự nhiên 986", NEGATIVE),
+      },
+      {
+        tex: "\\concept{lime}{2\\,023}",
+        tag: tag("dấu +, phần số tự nhiên 2 023", POSITIVE),
+      },
+    ],
+    LEGEND_SIGNS,
+  ),
+  "sbt-so-doi-giai": rows("Số đối của bốn số: giữ phần số tự nhiên, đổi dấu", [
+    {
+      tex: "\\concept{lime}{25} \\to \\concept{pink}{-25}",
+      tag: tag("số đối của +25", NOTE),
+    },
+    {
+      tex: "\\concept{pink}{-18} \\to \\concept{lime}{18}",
+      tag: tag("số đối của −18", NOTE),
+    },
+    {
+      tex: "\\concept{lime}{472} \\to \\concept{pink}{-472}",
+      tag: tag("số đối của 472", NOTE),
+    },
+    {
+      tex: "\\concept{pink}{-9\\,853} \\to \\concept{lime}{9\\,853}",
+      tag: tag("số đối của −9 853", NOTE),
+    },
+    {
+      tex: "",
+      tag: tag("hai số đối nhau có phần số tự nhiên giống nhau", SUM),
+    },
+  ]),
+
+  // Adding two integers of different signs or of the same sign, then the
+  // difference of two positive numbers and of a number and a negative one.
+  "sbt-3-11a-giai": lines(
+    "Tính (−107) + (+92): bỏ dấu + của số trong ngoặc, lấy 107 trừ 92, viết dấu −",
+    [
+      { tex: "(-107) + (+92)" },
+      { tex: "= (-107) + 92", tag: tag("(+92) là số 92", NOTE) },
+      { tex: "= -(107 - 92)", tag: tag("mang dấu của −107", NEGATIVE) },
+      { tex: "= \\concept{pink}{-15}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-11b-giai": lines(
+    "Tính 329 + (−315): lấy 329 trừ 315, viết dấu +",
+    [
+      { tex: "329 + (-315)" },
+      { tex: "= +(329 - 315)", tag: tag("mang dấu của 329", POSITIVE) },
+      { tex: "= \\concept{lime}{14}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-12a-giai": lines(
+    "Tính 1 238 + (−1 328): lấy 1 328 trừ 1 238, viết dấu −",
+    [
+      { tex: "1\\,238 + (-1\\,328)" },
+      {
+        tex: "= -(1\\,328 - 1\\,238)",
+        tag: tag("mang dấu của −1 328", NEGATIVE),
+      },
+      { tex: "= \\concept{pink}{-90}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-12b-giai": lines(
+    "Tính (−3 782) + (−1 031): cộng hai phần số tự nhiên rồi viết dấu −",
+    [
+      { tex: "(-3\\,782) + (-1\\,031)" },
+      {
+        tex: "= -(3\\,782 + 1\\,031)",
+        tag: tag("hai số âm", NEGATIVE),
+      },
+      { tex: "= \\concept{pink}{-4\\,813}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-13a-giai": lines(
+    "Tính 8 294 + (−56 946): lấy 56 946 trừ 8 294, viết dấu −",
+    [
+      { tex: "8\\,294 + (-56\\,946)" },
+      {
+        tex: steps("= -(56\\,946", "- 8\\,294)"),
+        tag: tag("mang dấu của −56 946", NEGATIVE),
+      },
+      { tex: "= \\concept{pink}{-48\\,652}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-13b-giai": lines(
+    "Tính (−15 778) + 335 925: lấy 335 925 trừ 15 778, viết dấu +",
+    [
+      { tex: "(-15\\,778) + 335\\,925" },
+      {
+        tex: steps("= +(335\\,925", "- 15\\,778)"),
+        tag: tag("mang dấu của 335 925", POSITIVE),
+      },
+      { tex: "= \\concept{lime}{320\\,147}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-14a-giai": lines(
+    "Tính 27 538 − 12 473: hai số dương, lấy số lớn trừ số nhỏ",
+    [
+      { tex: "27\\,538 - 12\\,473" },
+      {
+        tex: "= \\concept{lime}{15\\,065}",
+        tag: tag("số lớn trừ số nhỏ", DIFFERENCE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-3-14b-giai": lines(
+    "Tính 6 591 − (−386): trừ đi −386 là cộng với 386",
+    [
+      { tex: "6\\,591 - (-386)" },
+      { tex: "= 6\\,591 + 386", tag: tag("trừ −386 là cộng với 386", NOTE) },
+      { tex: "= \\concept{lime}{6\\,977}" },
+    ],
+    "steps",
+  ),
+
+  // The table of x, y, x + y and x − y: the same dealing with one column
+  // (hint, other numbers) and the two columns that miss x or y (solution).
+  "sbt-bang-goi-y": lines(
+    "Với x = 4 và y = −9: tính x + y rồi x − y",
+    [
+      { tex: "x = 4, \\; y = -9", tag: tag("thay vào từng ô", NOTE) },
+      {
+        tex: "x + y = 4 + (-9) = -5",
+        tag: tag("cộng hai số khác dấu", NEGATIVE),
+      },
+      { tex: "x - y = 4 + 9", tag: tag("trừ −9 là cộng với 9", NOTE) },
+      { tex: "= 13" },
+    ],
+    "hint",
+  ),
+  "sbt-bang-giai": lines(
+    "Cột 8 thiếu x, cột 7 thiếu y: tìm chúng từ x − y và x + y",
+    [
+      { tex: "x - 53 = -39", tag: tag("cột 8: biết x − y và y", NOTE) },
+      { tex: "x = -39 + 53 = \\concept{lime}{14}" },
+      { tex: "6 + y = -24", tag: tag("cột 7: biết x + y và x", NOTE) },
+      { tex: "y = -24 - 6 = \\concept{pink}{-30}" },
+      { tex: "", tag: tag("các ô còn lại: thay x, y rồi cộng hoặc trừ", NOTE) },
+    ],
+    "steps",
+  ),
+
+  // Real-life exercises: the temperature at night and the bank account.
+  "sbt-3-16-giai": lines(
+    "Nhiệt độ ban ngày −7°C, giảm 2°C thì nhiệt độ đêm là −9°C",
+    [
+      { tex: "-7 - 2", tag: tag("giảm 2 độ là trừ 2", NOTE) },
+      { tex: "= (-7) + (-2)", tag: tag("trừ là cộng với số đối", NOTE) },
+      {
+        tex: "= \\concept{pink}{-9}",
+        tag: tag("nhiệt độ ban đêm", DIFFERENCE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-goi-y-nhiet-do": lines(
+    "Nhiệt độ −6 độ, giảm 4 độ: trừ đi 4 là cộng với −4",
+    [
+      { tex: "-6 - 4", tag: tag("giảm 4 độ là trừ 4", NOTE) },
+      { tex: "= (-6) + (-4)", tag: tag("trừ là cộng với số đối", NOTE) },
+      { tex: "= -10" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-tai-khoan": lines(
+    "Tài khoản có 60 nghìn đồng, giao dịch −25 nghìn rồi 30 nghìn",
+    [
+      {
+        tex: "60 + (-25) + 30",
+        tag: tag("giao dịch âm là trừ, dương là cộng", NOTE),
+      },
+      { tex: "= 35 + 30" },
+      { tex: "= 65" },
+    ],
+    "hint",
+  ),
+  "sbt-3-17-giai": lines(
+    "Ba giao dịch lần lượt: trừ 1 765 000, cộng 5 772 000, trừ 3 478 000",
+    [
+      {
+        tex: steps("25\\,784\\,209 - 1\\,765\\,000", "= 24\\,019\\,209"),
+        tag: tag("tin nhắn thứ nhất: trừ", NEGATIVE),
+      },
+      {
+        tex: steps("24\\,019\\,209 + 5\\,772\\,000", "= 29\\,791\\,209"),
+        tag: tag("tin nhắn thứ hai: cộng", POSITIVE),
+      },
+      {
+        tex: steps(
+          "29\\,791\\,209 - 3\\,478\\,000",
+          "= \\concept{lime}{26\\,313\\,209}",
+        ),
+        tag: tag("tin nhắn thứ ba: trừ", NEGATIVE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Reasonable calculation: join the numbers that make a round number, or
+  // the positives and the negatives, before the last addition.
+  "sbt-goi-y-ghep-tron": lines(
+    "Ghép 47 với −7 cho tròn chục rồi cộng với −29",
+    [
+      { tex: "47 + (-29) + (-7)" },
+      {
+        tex: "= 47 + (-7) + (-29)",
+        tag: tag("ghép 47 với −7 cho tròn chục", NOTE),
+      },
+      { tex: "= 40 + (-29)" },
+      { tex: "= 11" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-ghep-cung-dau": lines(
+    "Cộng các số dương, cộng các số âm, rồi cộng hai kết quả",
+    [
+      { tex: "8 + (-3) + 5 + (-6)" },
+      {
+        tex: steps("= 8 + 5", "+ (-3) + (-6)"),
+        tag: tag("số dương trước", NOTE),
+      },
+      { tex: "= 13 + (-9)" },
+      { tex: "= 4" },
+    ],
+    "hint",
+  ),
+  "sbt-3-18a-giai": lines(
+    "Tính 387 + (−224) + (−87): ghép 387 với −87 được 300",
+    [
+      { tex: "387 + (-224) + (-87)" },
+      {
+        tex: steps("= 387 + (-87)", "+ (-224)"),
+        tag: tag("ghép 387 với −87", NOTE),
+      },
+      { tex: "= 300 + (-224)" },
+      { tex: "= \\concept{lime}{76}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-18b-giai": lines(
+    "Tính (−75) + 329 + (−25): ghép −75 với −25 được −100",
+    [
+      { tex: "(-75) + 329 + (-25)" },
+      {
+        tex: steps("= (-75) + (-25)", "+ 329"),
+        tag: tag("ghép −75 với −25", NOTE),
+      },
+      { tex: "= (-100) + 329" },
+      { tex: "= \\concept{lime}{229}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-19a-giai": lines(
+    "Tính 11 + (−13) + 15 + (−17): cộng các số dương, cộng các số âm",
+    [
+      { tex: "11 + (-13) + 15 + (-17)" },
+      {
+        tex: steps("= 11 + 15", "+ (-13) + (-17)"),
+        tag: tag("số dương trước", NOTE),
+      },
+      { tex: "= 26 + (-30)" },
+      { tex: "= \\concept{pink}{-4}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-19b-giai": lines(
+    "Tính (−21) + 24 + (−27) + 31: cộng các số dương, cộng các số âm",
+    [
+      { tex: "(-21) + 24 + (-27) + 31" },
+      {
+        tex: steps("= 24 + 31", "+ (-21) + (-27)"),
+        tag: tag("số dương trước", NOTE),
+      },
+      { tex: "= 55 + (-48)" },
+      { tex: "= \\concept{lime}{7}" },
+    ],
+    "steps",
+  ),
+
   sticker: { kind: "sticker" },
 };
 

@@ -8,6 +8,7 @@ Câu có `bookRef` ở bài ôn tập (`kind: "review"`) hay ở section `bookPr
 
 - `on-tap-chuong-2` vòng 1, `ex.bai-2-60`, `ex.bai-2-63`: đề tách thành khối chữ và khối công thức, mất "." sau `3^{2} \cdot 5` và sau `2^{3} \cdot 3^{6}`, mất "," sau `2^{3} \cdot 3^{2} \cdot 5`. Trên điện thoại đề đọc liền "… 3² · 5 / Biết một trong hai số là …", không thấy ranh giới câu; câu `ex.bai-2-61` cùng bài lại giữ dấu trong công thức (`37\,037\,037;`).
 - `on-tap-chuong-3` vòng 1, `ex.bai-3-45`: "Tìm x, nếu" và công thức `(38 - x) \cdot (x + 25) = 0` tách hai khối, mất "." cuối câu; lặp đúng lỗi của `on-tap-chuong-2` ở bài ôn kế tiếp dù mục này đã có. Tác giả tự đọc liền khối chữ và khối công thức của mỗi câu sách trước khi gọi review.
+- `phep-cong-phep-tru-so-nguyen` phần bài tập sách bài tập vòng 1 (Nghiêm trọng, hai mục), SBT 3.11 đến 3.14 và 3.18, 3.19: dòng lệnh chung của sách ("Thực hiện phép tính (từ Bài 3.11 đến Bài 3.14):", "Tính một cách hợp lí (từ Bài 3.18 đến Bài 3.19):") bị cắt, đổi thành "Thực hiện phép tính." và mất yêu cầu "hợp lí"; đã chép đủ từng chữ như `on-tap-chuong-3`.
 
 ## Nguyên nhân gốc
 
