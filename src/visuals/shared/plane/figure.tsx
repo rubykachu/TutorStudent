@@ -5,6 +5,7 @@ import { Region, RegionSvg } from "@/visuals/shared/region";
 import type {
   FigureAngle,
   FigureArc,
+  FigureArrow,
   FigurePoly,
   FigureRuler,
   FigureSpec,
@@ -25,6 +26,8 @@ const MARK_LINE = 2.5;
 const NAME_GAP = 17;
 const TICK_LENGTH = 11;
 const TICK_GAP = 6;
+const ARROW_REACH = 6;
+const ARROW_GAP = 9;
 const RIGHT_SIZE = 13;
 const ANGLE_RADIUS = 24;
 const ANGLE_TEXT_GAP = 17;
@@ -126,6 +129,34 @@ function Ticks({ spec, tick }: { spec: FigureSpec; tick: FigureTick }) {
           strokeWidth={MARK_LINE}
           strokeLinecap="round"
           className={strokeClass(tick.tone ?? "blue")}
+        />
+      );
+    });
+  });
+}
+
+// Chevrons ">" on a segment, each pointing the way from `a` to `b`.
+function Arrows({ spec, arrow }: { spec: FigureSpec; arrow: FigureArrow }) {
+  return arrow.segs.map(([a, b]) => {
+    const pa = at(spec, a);
+    const pb = at(spec, b);
+    const mid = lerp(pa, pb, arrow.at ?? 0.5);
+    const [ux, uy] = unit(pa, pb);
+    return Array.from({ length: arrow.count }, (_, i) => {
+      const along = (i - (arrow.count - 1) / 2) * ARROW_GAP;
+      const tipX = mid[0] + ux * (along + ARROW_REACH);
+      const tipY = mid[1] + uy * (along + ARROW_REACH);
+      const backX = tipX - ux * ARROW_REACH * 1.6;
+      const backY = tipY - uy * ARROW_REACH * 1.6;
+      return (
+        <path
+          key={`${a}${b}${along}`}
+          d={`M ${round(backX - uy * ARROW_REACH)} ${round(backY + ux * ARROW_REACH)} L ${round(tipX)} ${round(tipY)} L ${round(backX + uy * ARROW_REACH)} ${round(backY - ux * ARROW_REACH)}`}
+          fill="none"
+          strokeWidth={MARK_LINE}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={strokeClass(arrow.tone ?? "slate")}
         />
       );
     });
@@ -360,6 +391,13 @@ export function FigureLayers({ spec }: { spec: FigureSpec }): ReactNode {
             key={tick.segs.map((s) => s.join("")).join("-")}
             spec={spec}
             tick={tick}
+          />
+        ))}
+        {(spec.arrows ?? []).map((arrow) => (
+          <Arrows
+            key={arrow.segs.map((s) => s.join("")).join("-")}
+            spec={spec}
+            arrow={arrow}
           />
         ))}
         {(spec.dots ?? []).map((name) => {

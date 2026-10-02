@@ -42,6 +42,16 @@ export type FigureTick = {
   at?: number;
 };
 
+// Small chevrons across the middle of segments, pointing from the first named
+// point to the second: segments with the same number of chevrons are parallel.
+export type FigureArrow = {
+  segs: readonly (readonly [string, string])[];
+  count: number;
+  tone?: Tone;
+  // How far along each segment the chevrons sit, 0 to 1 (default: the middle).
+  at?: number;
+};
+
 // A small square at vertex `at` between the directions to `a` and `b`.
 export type FigureRight = { at: string; a: string; b: string; tone?: Tone };
 
@@ -104,6 +114,7 @@ export type FigureSpec = {
   nameShift?: Readonly<Record<string, Pt>>;
   dots?: readonly string[];
   ticks?: readonly FigureTick[];
+  arrows?: readonly FigureArrow[];
   rights?: readonly FigureRight[];
   angles?: readonly FigureAngle[];
   arcs?: readonly FigureArc[];

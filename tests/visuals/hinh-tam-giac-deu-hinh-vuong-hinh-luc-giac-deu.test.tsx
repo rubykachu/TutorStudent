@@ -12,13 +12,12 @@ import {
   constructFigure,
   constructSteps,
   solvedState,
-  stepDone,
-  stepEnabled,
 } from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/construction";
 import {
   solutions,
   validators,
 } from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/logic";
+import { stepDone, stepEnabled } from "@/visuals/shared/plane/board-steps";
 import { FigureLayers } from "@/visuals/shared/plane/figure";
 import {
   dist,

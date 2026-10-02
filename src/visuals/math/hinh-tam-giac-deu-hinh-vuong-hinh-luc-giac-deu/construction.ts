@@ -1,4 +1,5 @@
 import type { VisualState } from "@/visuals/registry";
+import type { BoardStep } from "@/visuals/shared/plane/board-steps";
 import type {
   FigureArc,
   FigureRight,
@@ -39,19 +40,6 @@ const ARC_HALF_SPAN = 24;
 
 export const BOARD_HEIGHT = BASE + RULER_DROP + RULER_HEIGHT + 6;
 
-// One step of a board. `text` is the instruction shown while it is the step
-// to do; `short` names its control (a stepper's label, a button).
-export type ConstructStep =
-  | { key: string; kind: "stepper"; text: string; short: string }
-  | { key: string; kind: "press"; text: string; short: string }
-  | {
-      key: string;
-      kind: "choice";
-      text: string;
-      yes: string;
-      no: string;
-    };
-
 // The steps of a board, in the order the child does them. `names` are the
 // corners: base left, base right, then the apex (triangle) or the corner
 // above the right one and the corner above the left one (square).
@@ -59,19 +47,23 @@ export function constructSteps(
   shape: ConstructShape,
   names: readonly string[],
   diagonals: boolean,
-): ConstructStep[] {
+): BoardStep[] {
   const [first = "", second = "", third = "", fourth = ""] = names;
   if (shape === "triangle") {
     return [
       {
         key: "len",
         kind: "stepper",
+        min: MIN_CM,
+        max: MAX_CM,
         short: `Cạnh ${first}${second} (cm)`,
         text: `Dùng thước vẽ đoạn thẳng ${first}${second}: chọn độ dài.`,
       },
       {
         key: "open",
         kind: "stepper",
+        min: MIN_CM,
+        max: MAX_CM,
         short: "Mở compa (cm)",
         text: "Chọn độ mở của compa.",
       },
@@ -101,10 +93,12 @@ export function constructSteps(
       },
     ];
   }
-  const steps: ConstructStep[] = [
+  const steps: BoardStep[] = [
     {
       key: "len",
       kind: "stepper",
+      min: MIN_CM,
+      max: MAX_CM,
       short: `Cạnh ${first}${second} (cm)`,
       text: `Dùng thước vẽ đoạn thẳng ${first}${second}: chọn độ dài.`,
     },
@@ -123,6 +117,8 @@ export function constructSteps(
     {
       key: "h",
       kind: "stepper",
+      min: MIN_CM,
+      max: MAX_CM,
       short: `${first}${fourth}, ${second}${third} (cm)`,
       text: `Lấy ${fourth} và ${third} trên hai đường vuông góc: chọn độ dài ${first}${fourth} và ${second}${third}.`,
     },
@@ -157,25 +153,6 @@ export function constructSteps(
     );
   }
   return steps;
-}
-
-export function stepDone(step: ConstructStep, state: VisualState): boolean {
-  const value = state[step.key];
-  if (value === undefined) return false;
-  return step.kind === "stepper"
-    ? true
-    : step.kind === "press"
-      ? value === 1
-      : value === 1 || value === 2;
-}
-
-// A step can be done once every step before it is.
-export function stepEnabled(
-  steps: readonly ConstructStep[],
-  index: number,
-  state: VisualState,
-): boolean {
-  return steps.slice(0, index).every((step) => stepDone(step, state));
 }
 
 // The state a finished board of this side length has, keys in step order, so
