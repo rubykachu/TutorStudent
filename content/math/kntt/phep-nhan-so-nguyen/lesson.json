@@ -2847,7 +2847,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Có 3 thừa số âm, mà 3 là số lẻ, nên tích là số âm. Kiểm tra: (−3) · (−2) = 6, rồi 6 · (−5) = −30.",
+        "text": "Có 3 thừa số âm, nên tích là số âm. Kiểm tra: (−3) · (−2) = 6, rồi 6 · (−5) = −30.",
         "tex": "\\begin{gathered} (-3) \\cdot  (-2) \\cdot  (-5) \\\\ = 6 \\cdot  (-5) = \\concept{pink}{-30} \\end{gathered}",
         "wrong": [
           {
@@ -2947,11 +2947,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Có 3 thừa số âm, mà 3 là số lẻ, nên tích là số âm."
+            "text": "Có 3 thừa số âm, nên tích là số âm."
           },
           {
             "optionId": "d",
-            "text": "Có 4 thừa số âm, mà 4 là số chẵn, nên tích là số dương."
+            "text": "Có 4 thừa số âm, nên tích là số dương."
           }
         ]
       },
@@ -3087,7 +3087,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Có 2 thừa số âm, mà 2 là số chẵn, nên tích là số dương."
+            "text": "Có 2 thừa số âm, nên tích là số dương."
           },
           {
             "optionId": "c",
