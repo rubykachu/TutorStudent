@@ -106,6 +106,28 @@ describe("review lesson fields", () => {
   });
 });
 
+describe("bookPractice section marker", () => {
+  const withMarker = (value: unknown) => {
+    const lesson = fixture() as { sections: Record<string, unknown>[] };
+    const [section] = lesson.sections;
+    if (!section) throw new Error("fixture has no section");
+    section.bookPractice = value;
+    return lesson;
+  };
+
+  it("accepts true and false, and a section without it", () => {
+    expect(LessonSchema.safeParse(withMarker(true)).success).toBe(true);
+    expect(LessonSchema.safeParse(withMarker(false)).success).toBe(true);
+    expect(LessonSchema.safeParse(fixture()).success).toBe(true);
+  });
+
+  it("rejects a value that is not a boolean", () => {
+    expect(issuePaths(LessonSchema.safeParse(withMarker("yes")))).toContain(
+      "sections.0.bookPractice",
+    );
+  });
+});
+
 describe("ExerciseSchema", () => {
   it("accepts value and power numeric answers with an optional check", () => {
     expect(

@@ -1,8 +1,8 @@
-# LL-23 — Đề sách ở bài ôn tập lệch nguyên văn
+# LL-23 — Đề sách ở bài ôn tập hay phần bài tập sách bài tập lệch nguyên văn
 
 ## Triệu chứng
 
-Câu có `bookRef` ở bài ôn tập (`kind: "review"`) khác lời đề của sách: mất hay thêm dấu câu, chữ, số, lựa chọn. Hay gặp nhất khi tách một câu của sách thành nhiều khối `note` và `formula`: dấu kết câu đứng ngay sau công thức bị bỏ.
+Câu có `bookRef` ở bài ôn tập (`kind: "review"`) hay ở section `bookPractice` của một bài thường khác lời đề của sách: mất hay thêm dấu câu, chữ, số, lựa chọn. Hay gặp nhất khi tách một câu của sách thành nhiều khối `note` và `formula`: dấu kết câu đứng ngay sau công thức bị bỏ.
 
 ## Ví dụ thật
 
@@ -10,12 +10,13 @@ Câu có `bookRef` ở bài ôn tập (`kind: "review"`) khác lời đề của
 
 ## Nguyên nhân gốc
 
-Lời đề được chép lại theo từng khối; dấu câu nằm giữa chữ và công thức không thuộc khối nào nên rơi mất. Lint bỏ qua `[textbook-copy]` ở bài ôn tập nên không có phép so nào với sách.
+Lời đề được chép lại theo từng khối; dấu câu nằm giữa chữ và công thức không thuộc khối nào nên rơi mất. Lint bỏ qua `[textbook-copy]` cho đề của các câu này nên không có phép so nào với sách.
 
 ## Cách phòng
 
-- Người: checklist trục 1, mục "Bài ôn tập (`kind: \"review\"`)": đọc liền các khối của đề như một đoạn và so từng dấu với ảnh đề. Dấu kết câu sau công thức đặt ở cuối TeX của khối công thức (`3^{2} \cdot 5.`).
+- Máy: `[book-practice]` giữ cấu trúc của section `bookPractice` (phần cuối, một phần, mọi câu có `bookRef` và `explain`, không trùng `bookRef`); `--stats` in các `bookRef` để so với trang sách.
+- Người: checklist trục 1, mục "Bài ôn tập (`kind: \"review\"`)" và "Phần bài tập sách bài tập": đọc liền các khối của đề như một đoạn và so từng dấu với ảnh đề. Dấu kết câu sau công thức đặt ở cuối TeX của khối công thức (`3^{2} \cdot 5.`).
 
 ## Trạng thái
 
-Chỉ người soát.
+Máy chỉ giữ cấu trúc; so từng chữ với ảnh sách là việc của người soát.

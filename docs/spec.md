@@ -193,11 +193,11 @@ Lesson       { id, subject, series, grade (= grade của series), order, kind?: 
                videos?, overview? }
              # bài có thể có thêm `tips.json` cạnh `lesson.json` (xem TipsFile)
              # `order` có thể là số thập phân: bài ôn tập chương (`kind: "review"`) đứng giữa hai bài có số, vd 12,5 sau Bài 12 và trước Bài 13; bài ôn tập không có `number`
-             # mọi dạng câu hỏi có thêm `bookRef?` (vd "SBT 2.58"): đề của câu lấy nguyên văn từ sách; chỉ bài `kind: "review"` được dùng
+             # mọi dạng câu hỏi có thêm `bookRef?` (vd "SBT 2.58"): đề của câu lấy nguyên văn từ sách; chỉ bài `kind: "review"` và câu của section `bookPractice` được dùng
 Overview     { hook: { text, visualId? }, summary, goals[2..4], whyItMatters,
                narration?: { audioUrl, vttUrl } }        # màn giới thiệu trước phần đầu tiên
 Concept      { id, name, color }                 # tên token màu khái niệm (design-system.md)
-Section      { id, title, sourceRef, minutes, blocks: SectionBlock[], checkIds[], practiceIds[], recap: RecapBlock }
+Section      { id, title, sourceRef, minutes, blocks: SectionBlock[], checkIds[], practiceIds[], recap: RecapBlock, bookPractice?: boolean }
 SectionBlock = Block | group { children: (note | formula | visual | image)[] }   # mỗi phần tử là một màn
              | tip { id, kind: "làm nhanh" | "hiểu nhanh" | "tránh sai", title, text, tex?, visualId? }   # mẹo cho một dạng bài; một màn, chỉ ở `Section.blocks`
 TipsFile     { lessonId, status: "draft" | "published", reviewedHash?, tips: Tip[1..] }   # content/<môn>/<bộ sách>/<slug>/tips.json; Tip = tip bỏ `type`; có review riêng
@@ -216,7 +216,8 @@ Hints        { highlight: TargetRef[], hintVisualId?, solutionVisualId? }
 Video        { id, lessonId, url, vttUrl, posterUrl, durationSec, clips[{ id, start, end, cardIds[] }], voice, checkpoints?: [{ id, at, from }] }   # đường dẫn dưới media base; `checkpoints` là dữ liệu cũ, player bỏ qua, không còn được ghi
 ```
 
-- Một section dài vài phút: tối đa 4 màn giải thích (`blocks`, một `group` tính là một màn, khối `video` không tính — xem "Video") và 4 bài tập (`checkIds` cộng `practiceIds`), rồi tới recap; ngưỡng là `MAX_SECTION_SCREENS`, `MAX_SECTION_EXERCISES` trong `src/lib/config.ts`. Bài dài hơn chia thành nhiều section, mỗi section một ý và recap một câu.
+- Một section dài vài phút: tối đa 4 màn giải thích (`blocks`, một `group` tính là một màn, khối `video` không tính — xem "Video") và 4 bài tập (`checkIds` cộng `practiceIds`), rồi tới recap; ngưỡng là `MAX_SECTION_SCREENS`, `MAX_SECTION_EXERCISES` trong `src/lib/config.ts`. Bài dài hơn chia thành nhiều section, mỗi section một ý và recap một câu. Ngoại lệ: section `bookPractice` (bên dưới) không bị giới hạn 4 bài tập vì số câu theo sách.
+- Section bài tập sách bài tập: `Section.bookPractice: true` đánh dấu section cuối của một bài thường chép nguyên văn mọi bài tập SBT của bài (chúng xuất hiện trong bài kiểm tra). Mỗi câu trong `checkIds`/`practiceIds` của nó có `bookRef` (không trùng trong bài) và `explain`. Luật `[book-practice]`: section phải là section cuối, tối đa một, không dùng ở bài `kind: "review"`, câu thiếu `bookRef` hay `explain` (kể cả bài trong `legacy-lessons.json`), `bookRef` trùng trong bài. `[book-ref]` chỉ cho `bookRef` ở bài ôn tập và ở các câu này. Chữ đề (`prompt`, lựa chọn, `segments`, `left`, `right`, `items`) của các câu này không bị `[textbook-copy]` và giới hạn `[length]`; mọi luật khác và mọi chữ khác của bài giữ nguyên. `content:check --stats` in danh sách `bookRef` mỗi bài để đối chiếu độ phủ với sách.
 - Section hiện mỗi phần tử của `blocks` trên một màn. `group` gom ≥ 2 khối ngắn, tĩnh lên cùng một màn theo thứ tự: câu quy tắc (`note`, chữ thân bài) rồi ví dụ có nhãn (`formula`/`visual`/`image`). Không lồng `group`, không chứa `passage`/`video`; chỉ dùng trong `Section.blocks` (đề bài tập vốn đã hiện mọi khối trên một màn, nên chỉ số `block` của gợi ý vẫn đếm khối đề). Lint, `content:check` và review đọc được chữ trong `group` như mọi khối khác.
 - Lời bài học (định nghĩa, quy tắc, cách đọc, câu cần nhớ) nằm trong JSON (`note`, `caption`) để lint và review thấy. Visual chỉ vẽ hình, ví dụ và nhãn ngắn, không mang câu bài học. Recap là một `visual` có `caption`: câu cần nhớ nằm ở `caption`, màn recap hiện nó thành chữ thân bài phía trên ví dụ (schema còn nhận recap `formula` để bài fixture thử đường hiển thị đó; lint chặn ở bài thật).
 - Quan hệ card ↔ exercise chỉ khai một chiều ở `Exercise.cardIds`. Loader dựng index card → exercises sau khi gộp overlay; mọi luật về "exercise của card" dùng index này.

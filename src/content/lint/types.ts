@@ -31,6 +31,7 @@ export type LintRule =
   | "rule-sentence"
   | "textbook-copy"
   | "book-ref"
+  | "book-practice"
   | "explain"
   | "tips";
 

@@ -76,7 +76,7 @@ Adding a lint rule: create `src/content/lint/<rule>.ts`, register it in `lint/in
 
 ## Conventions
 
-Kept in `.claude/rules/` so each is stated once: `content.md` (ids, rule and guide markers, review hash, textbook copying), `video.md` (verbatim quotes, caches, shared sounds), `agents.md` (model choice, handovers, external writes, commit hygiene).
+Kept in `.claude/rules/` so each is stated once: `content.md` (ids, rule and guide markers, review hash, textbook copying, review lessons and book-practice sections), `video.md` (verbatim quotes, caches, shared sounds), `agents.md` (model choice, handovers, external writes, commit hygiene).
 
 ## Where state lives
 

@@ -357,7 +357,7 @@ const exerciseBase = {
   prompt: z.array(BlockSchema).min(1),
   // Where the prompt comes from in the book, e.g. "SBT 2.58": the prompt
   // carries the book's own wording and numbers. Only a lesson with
-  // `kind: "review"` may use it.
+  // `kind: "review"` and an exercise of a `bookPractice` section may use it.
   bookRef: TextSchema.optional(),
   hints: HintsSchema,
   explain: ExplanationSchema.optional(),
@@ -568,6 +568,10 @@ export const SectionSchema = z.object({
   // First encounter of each card; these answers are rated.
   practiceIds: z.array(ExerciseIdSchema),
   recap: RecapBlockSchema,
+  // The last section of a regular lesson, holding the workbook's exercises of
+  // the lesson word for word: every exercise in `checkIds` and `practiceIds`
+  // carries `bookRef`. Absent on every other section.
+  bookPractice: z.boolean().optional(),
 });
 
 // A file in the media store, written as a path under the media base URL

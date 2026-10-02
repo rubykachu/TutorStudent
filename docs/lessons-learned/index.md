@@ -22,7 +22,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | [LL-05](LL-05-quy-tac-nhieu-cach-noi.md) | Một quy tắc nói nhiều cách | Nhất quán | Máy + người | `[rule-sentence]`, `video:check`; checklist trục 4 |
 | [LL-06](LL-06-recap-thieu-y-hoac-dai.md) | Recap thiếu ý, trừu tượng, dài | Nhất quán | Máy (độ dài) + người | `[recap]`; checklist trục 5 |
 | [LL-07](LL-07-lap-so-giua-luyen-tap-va-on.md) | Câu ôn lặp số của câu luyện, ví dụ, hình | Bài tập | Máy (đề) + người | `[review-bank]`; checklist vòng chỉ phần đổi |
-| [LL-08](LL-08-chep-sgk.md) | Chép câu, ví dụ, bài tập của sách | Khớp nguồn | Máy (khi có lớp chữ) + người | `[textbook-copy]`; checklist trục 1 |
+| [LL-08](LL-08-chep-sgk.md) | Chép câu, ví dụ, bài tập của sách | Khớp nguồn | Máy (khi có lớp chữ) + người | `[textbook-copy]`, `[book-ref]`; checklist trục 1 |
 | [LL-09](LL-09-ngoai-pham-vi.md) | Kiến thức ngoài nguồn hoặc chưa dạy | Khớp nguồn | Người | checklist trục 1 |
 | [LL-10](LL-10-de-mo-ho.md) | Đề mơ hồ, hai cách hiểu | Ngôn từ | Người | checklist trục 3 |
 | [LL-11](LL-11-video-lech-bai.md) | Video lệch kịch bản, phụ đề, bài | Video | Máy + người | `video:build`, `video:check`; checklist trục 2 |
@@ -37,7 +37,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | [LL-20](LL-20-sua-review-lam-hong-cho-khac.md) | Bản sửa theo review làm hỏng chỗ khác | Quy trình | Người | checklist vòng chỉ phần đổi |
 | [LL-21](LL-21-ky-hieu-hinh-doc-nham.md) | Ký hiệu, nhãn trong hình đọc nhầm thành phép toán | Visual | Người | `lesson-visual` tự xem ảnh; checklist trục 5 |
 | [LL-22](LL-22-thieu-cong-cu-tren-man.md) | Câu bảo tra cứu mà màn không có thứ để tra | Bài tập | Người | checklist trục 5 "Người học chậm theo kịp" |
-| [LL-23](LL-23-de-sach-lech-nguyen-van.md) | Đề sách ở bài ôn tập lệch nguyên văn | Khớp nguồn | Người | checklist trục 1 "Bài ôn tập" |
+| [LL-23](LL-23-de-sach-lech-nguyen-van.md) | Đề sách ở bài ôn tập hay phần bài tập sách bài tập lệch nguyên văn | Khớp nguồn | Máy (cấu trúc phần) + người | `[book-practice]`; checklist trục 1 "Bài ôn tập" và "Phần bài tập sách bài tập" |
 | [LL-24](LL-24-meo-sai-o-dang-bai-khac.md) | Mẹo sai ở số biên hay ở dạng bài khác trong cùng bài | Đúng kiến thức | Người | checklist trục 2 "Mẹo đúng với mọi đầu vào" |
 | [LL-25](LL-25-chu-kho-hieu-voi-be.md) | Chữ đúng nhưng bé lớp 6 đọc không hiểu | Ngôn từ | Haiku đọc hiểu + tác giả viết lại | `lesson-review` mục "Đọc hiểu" |
 | [LL-26](LL-26-goi-lua-chon-theo-vi-tri.md) | Lời giải thích gọi lựa chọn theo vị trí mà app xáo thứ tự | Đúng kiến thức | Người | checklist trục 2 "Giải thích đúng và giải thích được" |

@@ -31,7 +31,7 @@ Soạn khi đang nhìn trang sách, lấy luôn ví dụ có sẵn.
 
 - Máy: `content:check` luật `[textbook-copy]` (cảnh báo): chữ của bài (trừ `passage` và phần trong ngoặc kép) có từ nửa số cụm 5 từ trở lên trùng lớp chữ `sources/<môn>/<bài>/p*.txt`. Không có tệp `.txt` thì luật bỏ qua.
 - Người: checklist mục "Biên soạn lại, không chép" (ví dụ số trong hình, bảng).
-- Ngoại lệ bài ôn tập chương (`kind: "review"`): đề các bài tập của sách được chép nguyên văn và mang `bookRef`. Máy bỏ `[textbook-copy]` cho bài này, miễn `[length]` cho chữ trong đề của câu có `bookRef`, và `[book-ref]` báo lỗi nếu bài khác dùng `bookRef`. Reviewer đổi sang kiểm độ khớp với ảnh nguồn (checklist mục "Bài ôn tập"); phần nhắc lại, gợi ý, giải thích, mẹo vẫn phải là lời của bài.
+- Ngoại lệ bài ôn tập chương (`kind: "review"`) và section `bookPractice` của bài thường: đề các bài tập của sách được chép nguyên văn và mang `bookRef`. Máy bỏ `[textbook-copy]` cho bài ôn tập (cả bài) và cho chữ đề của câu có `bookRef` trong section `bookPractice`, miễn `[length]` cho chữ trong đề của câu có `bookRef`, và `[book-ref]` báo lỗi nếu `bookRef` nằm ngoài hai chỗ đó. Reviewer đổi sang kiểm độ khớp với ảnh nguồn (checklist mục "Bài ôn tập"); phần nhắc lại, gợi ý, giải thích, mẹo vẫn phải là lời của bài.
 
 ## Trạng thái
 

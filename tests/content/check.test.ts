@@ -9,7 +9,12 @@ import {
   formatPath,
 } from "@/content/check";
 import { MIN_EXERCISES_PER_CARD } from "@/content/lint/config";
-import { LESSON_MINIMUMS, lessonCriteria, lessonStats } from "@/content/stats";
+import {
+  LESSON_MINIMUMS,
+  lessonBookRefs,
+  lessonCriteria,
+  lessonStats,
+} from "@/content/stats";
 import {
   MAX_SECTION_EXERCISES,
   MAX_SECTION_SCREENS,
@@ -453,6 +458,22 @@ describe("cards and sections", () => {
     );
   });
 
+  it("does not limit the exercises of a bookPractice section", () => {
+    const raw = fixtureContent();
+    const [first, second] = lessonData(raw).sections;
+    if (!first || !second) throw new Error("no sections");
+    // Every id stays placed once, and each section keeps its first check.
+    (first.practiceIds as string[]).push(...(second.practiceIds as string[]));
+    (second.practiceIds as string[]).length = 0;
+    expect(
+      errors(check(raw)).some((e) => e.includes("exercises in checkIds")),
+    ).toBe(true);
+    first.bookPractice = true;
+    expect(
+      errors(check(raw)).some((e) => e.includes("exercises in checkIds")),
+    ).toBe(false);
+  });
+
   it("reports an openEnded exercise that carries cards", () => {
     const raw = fixtureContent();
     exercise(raw, "fixture.ex.viet-ve-ban").cardIds = ["fixture.card.doc-hieu"];
@@ -818,6 +839,20 @@ describe("formatPath", () => {
       "$.exercises[3].cardIds[0]",
     );
     expect(formatPath(["retired", "a.card.b"])).toBe('$.retired["a.card.b"]');
+  });
+});
+
+describe("lessonBookRefs", () => {
+  it("lists the bookRefs in exercise order, and nothing for a lesson without any", () => {
+    const [checked] = check().lessons;
+    if (!checked) throw new Error("fixture missing");
+    const { lesson } = checked;
+    expect(lessonBookRefs(lesson)).toEqual([]);
+    const [a, b, c] = lesson.exercises;
+    if (!a || !b || !c) throw new Error("fixture exercises missing");
+    c.bookRef = "SBT 3.12b";
+    a.bookRef = "SBT 3.12a";
+    expect(lessonBookRefs(lesson)).toEqual(["SBT 3.12a", "SBT 3.12b"]);
   });
 });
 

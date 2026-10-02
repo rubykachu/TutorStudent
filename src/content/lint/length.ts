@@ -5,8 +5,8 @@ import { type Finding, findingCollector, type LintInput } from "./types";
 import type { LessonStrings } from "./walk";
 
 // Short sentences for grade-6 readers. Formulas live in their own blocks, so
-// text fields hold only words and plain numbers. The prompt wording of a
-// review lesson's book exercise is exempt (see book-ref.ts).
+// text fields hold only words and plain numbers. The prompt wording of a book
+// exercise (review lesson or bookPractice section) is exempt (see book-ref.ts).
 
 export function lintLength(
   input: LintInput,

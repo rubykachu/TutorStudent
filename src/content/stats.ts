@@ -60,6 +60,15 @@ export function lessonStats(
   };
 }
 
+// The `bookRef` of every exercise that reproduces a book exercise (a review
+// lesson's, or a `bookPractice` section's), in lesson order, so
+// `content:check --stats` can show which workbook exercises a lesson covers.
+export function lessonBookRefs(lesson: Lesson): string[] {
+  return lesson.exercises.flatMap((e) =>
+    e.bookRef === undefined ? [] : [e.bookRef],
+  );
+}
+
 export type Criterion = {
   name: string;
   actual: number;

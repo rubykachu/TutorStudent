@@ -15,6 +15,12 @@ Năm trục, soát lần lượt trên từng section, card và exercise (cả `
 
 **Bài ôn tập (`kind: "review"`).** Thay cho "Biên soạn lại, không chép": đối chiếu từng câu có `bookRef` với ảnh nguồn. Lời đề, số và các lựa chọn phải y hệt sách (chỉ được khác dấu ";" hay "." cuối lựa chọn và nhãn ý a), b)); một câu lệnh của app như "Chọn đáp án đúng." được phép, đặt thành khối riêng ở cuối đề. Đáp án phải bằng lời giải ở trang đáp án của sách. Đề khác sách: Nghiêm trọng. Giải thích, phần nhắc lại, gợi ý, mẹo vẫn phải là lời của bài: chép chúng là Nghiêm trọng như ở bài thường.
 
+**Phần bài tập sách bài tập (section có `"bookPractice": true`).** Phần cuối của bài thường chép đủ bài tập SBT của bài, vì chúng xuất hiện trong bài kiểm tra; mọi câu trong `checkIds` và `practiceIds` của nó có `bookRef`. Thay cho "Biên soạn lại, không chép" ở các câu đó, soát ba việc, mỗi việc mở ảnh `sources/<môn>/<slug>/sbt-pNN.png` (đúng trang của `bookRef`; thiếu ảnh là Nghiêm trọng "thiếu nguồn"), không tin lớp chữ `.txt` thay ảnh:
+- **Đủ bài tập.** Lập danh sách mọi bài tập và ý a), b)... của bài trên các trang SBT; đối chiếu với dòng "book exercises" của `content:check --stats`. Thiếu một bài tập hay một ý, hoặc có câu mang `bookRef` mà sách không có: Nghiêm trọng.
+- **Đề y hệt sách.** So từng chữ, số, đơn vị, dấu câu, thứ tự và từng lựa chọn của mỗi câu với ảnh. Đọc liền các khối `note`, `formula` của đề như một đoạn (dấu kết câu sau công thức dễ rơi). Chỉ được khác nhãn ý a), b), dấu ";" hay "." cuối lựa chọn, và câu lệnh của app ("Chọn đáp án đúng.") ở khối riêng cuối đề. Đề khác sách dù một số hay một dấu: Nghiêm trọng. Nghi sách in sai thì ghi vào "Nên sửa" kèm trang để chủ dự án quyết; không đòi sửa đề.
+- **Đáp án khớp trang lời giải.** Tìm lời giải của từng bài tập ở trang đáp án SBT, so với `answer` (và `check.expr`) của câu; không tự giải rồi coi là đủ. Lệch lời giải của sách: Nghiêm trọng. Sách không có lời giải cho ý đó: ghi "Nên sửa" và tự giải kỹ.
+- Mọi thứ ngoài đề vẫn là lời của bài và chịu mọi luật như bài thường: `explain` (kèm `wrong`), 3 nấc `hints`, khối "Nhắc lại", recap, mẹo. Chép lời giải hay cách trình bày của sách vào đó: Nghiêm trọng. Hướng dẫn từng bước cho mỗi bài tập phải có (nấc 3 của gợi ý hay `explain` nêu từng bước với số của câu) và đúng.
+
 **`sourceRef` trỏ đúng trang** có nội dung đó: sai trang là Nên sửa.
 
 ## 2. Đúng kiến thức
@@ -124,7 +130,7 @@ Ví dụ từ bài `luy-thua`:
 ## Không bắt lỗi
 
 Quy ước đã chốt. Không ghi thành phát hiện ở bất kỳ mức nào:
-- Câu dài hơn giới hạn trong đề của câu có `bookRef` ở bài ôn tập (lời sách không rút gọn được).
+- Câu dài hơn giới hạn trong đề của câu có `bookRef` ở bài ôn tập hay ở section `bookPractice` (lời sách không rút gọn được).
 - Thứ tự lựa chọn `choice`, cột phải `match`, ngân hàng từ `fillBlank`, mục `order` trong JSON: app xáo mỗi lần làm.
 - Câu kiểm tra (`checkIds`) không gắn card.
 - Thiếu `hintVisualId` hay `solutionVisualId` (khung có cách hiện thay).

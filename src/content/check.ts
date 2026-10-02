@@ -561,8 +561,10 @@ function checkLesson(
         `Section has ${videoCount} video blocks (max ${MAX_SECTION_VIDEOS})`,
       );
     }
+    // A bookPractice section holds every workbook exercise of the lesson, so
+    // its count follows the book.
     const exerciseCount = section.checkIds.length + section.practiceIds.length;
-    if (exerciseCount > MAX_SECTION_EXERCISES) {
+    if (!section.bookPractice && exerciseCount > MAX_SECTION_EXERCISES) {
       report(
         ["sections", i],
         `Section has ${exerciseCount} exercises in checkIds and practiceIds (max ${MAX_SECTION_EXERCISES}); split it or move practice beyond one per card to the review bank`,

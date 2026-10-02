@@ -1,3 +1,4 @@
+import { isBookWording } from "./book-ref";
 import { COPY_MAX_SHARE, COPY_MIN_WORDS, COPY_NGRAM } from "./config";
 import { nfc } from "./text";
 import {
@@ -10,8 +11,9 @@ import type { LessonStrings } from "./walk";
 
 // Lessons retell the textbook in their own words and examples; a text that
 // shares most of its word runs with the textbook's text layer was copied.
-// A review lesson reproduces the book's exercises on purpose and is skipped
-// (see book-ref.ts).
+// A review lesson reproduces the book's exercises on purpose and is skipped;
+// in a regular lesson only the book wording of a `bookRef` exercise of a
+// `bookPractice` section is skipped (see book-ref.ts).
 // Quoted words (“…”) are exempt: a lesson may quote a reading passage. Runs
 // only when sources/<subject>/<lesson>/p*.txt exist.
 
@@ -39,6 +41,7 @@ export function lintTextbookCopy(
   if (!input.sourceText || input.lesson.kind === "review") return findings;
   const source = new Set(grams(tokens(input.sourceText)));
   for (const { path, value } of strings.texts) {
+    if (isBookWording(input, path)) continue;
     const words = tokens(value.replace(QUOTED, " "));
     if (words.length < COPY_MIN_WORDS) continue;
     const own = grams(words);

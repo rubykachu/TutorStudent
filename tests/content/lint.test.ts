@@ -1004,6 +1004,157 @@ describe("review lessons", () => {
   });
 });
 
+describe("book practice section", () => {
+  const LONG = `${Array.from({ length: 30 }, () => "một").join(" ")}.`;
+  const BOOK_TEXT =
+    "Luỹ thừa bậc n của a là tích của n thừa số bằng nhau, mỗi thừa số bằng a.";
+
+  // The fixture with its last section marked bookPractice and each of that
+  // section's exercises given a distinct bookRef. Returns the input and the
+  // indexes of those exercises.
+  function practiceInput(): { input: LintInput; indexes: number[] } {
+    const input = fixtureInput();
+    const section = input.lesson.sections[input.lesson.sections.length - 1];
+    if (!section) throw new Error("fixture has no section");
+    section.bookPractice = true;
+    const ids = [...section.checkIds, ...section.practiceIds];
+    const indexes = ids.map((id) =>
+      input.lesson.exercises.findIndex((e) => e.id === id),
+    );
+    indexes.forEach((index, n) => {
+      const exercise = input.lesson.exercises[index];
+      if (!exercise) throw new Error("exercise missing");
+      exercise.bookRef = `SBT 3.12${"abcd"[n]}`;
+    });
+    return { input, indexes };
+  }
+
+  const bookRules: LintRule[] = ["book-ref", "book-practice"];
+  const bookFindings = (input: LintInput) =>
+    bookRules.flatMap((rule) => findings(input, rule));
+
+  it("accepts a last section whose exercises all carry distinct bookRefs", () => {
+    expect(bookFindings(practiceInput().input)).toEqual([]);
+  });
+
+  it("book-ref allows bookRef only on the section's exercises", () => {
+    const { input } = practiceInput();
+    const outside = input.lesson.exercises.findIndex(
+      (e) => e.bookRef === undefined,
+    );
+    const exercise = input.lesson.exercises[outside];
+    if (!exercise) throw new Error("no exercise outside the section");
+    exercise.bookRef = "SBT 3.99";
+    expect(findings(input, "book-ref")).toMatchObject([
+      { path: ["exercises", outside, "bookRef"], severity: "error" },
+    ]);
+  });
+
+  it("skips textbook-copy and the sentence limit in the book wording, not elsewhere", () => {
+    const { input, indexes } = practiceInput();
+    const index = indexes[0] ?? 0;
+    const exercise = input.lesson.exercises[index];
+    if (!exercise) throw new Error("exercise missing");
+    exercise.prompt = [{ type: "note", text: BOOK_TEXT }];
+    input.sourceText = `Định nghĩa. ${BOOK_TEXT} Ví dụ khác.`;
+    expect(findings(input, "textbook-copy")).toEqual([]);
+    exercise.prompt = [{ type: "note", text: LONG }];
+    expect(messages(input, "length")).toEqual([]);
+    // The explanation is the lesson's own words: the rules still apply.
+    exercise.explain = { text: BOOK_TEXT };
+    expect(findings(input, "textbook-copy")).toHaveLength(1);
+    // A prompt outside the section is checked as before.
+    const outside = input.lesson.exercises.find((e) => e.bookRef === undefined);
+    if (!outside) throw new Error("no exercise outside the section");
+    outside.prompt = [{ type: "note", text: BOOK_TEXT }];
+    expect(findings(input, "textbook-copy")).toHaveLength(2);
+  });
+
+  it("book-practice: the section must be the last one", () => {
+    const { input } = practiceInput();
+    const [firstSection] = input.lesson.sections;
+    if (!firstSection) throw new Error("fixture has no section");
+    firstSection.bookPractice = true;
+    delete input.lesson.sections[input.lesson.sections.length - 1]
+      ?.bookPractice;
+    // Its exercises lack bookRef too; only the position finding is asserted.
+    expect(
+      findings(input, "book-practice").filter((f) =>
+        f.message.includes("last section"),
+      ),
+    ).toMatchObject([{ path: ["sections", 0, "bookPractice"] }]);
+  });
+
+  it("book-practice: at most one section", () => {
+    const { input } = practiceInput();
+    const [firstSection] = input.lesson.sections;
+    if (!firstSection) throw new Error("fixture has no section");
+    firstSection.bookPractice = true;
+    const found = findings(input, "book-practice").map((f) => f.message);
+    expect(found.filter((m) => m.includes("at most one"))).toHaveLength(1);
+    expect(found.filter((m) => m.includes("last section"))).toHaveLength(1);
+  });
+
+  it("book-practice: not in a review lesson", () => {
+    const { input } = practiceInput();
+    input.lesson.kind = "review";
+    expect(findings(input, "book-practice")).toMatchObject([
+      {
+        path: ["sections", input.lesson.sections.length - 1, "bookPractice"],
+        message: expect.stringContaining("review lesson"),
+      },
+    ]);
+  });
+
+  it("book-practice: every exercise of the section needs bookRef", () => {
+    const { input, indexes } = practiceInput();
+    const index = indexes[1] ?? 0;
+    delete input.lesson.exercises[index]?.bookRef;
+    expect(findings(input, "book-practice")).toMatchObject([
+      { path: ["exercises", index, "bookRef"], severity: "error" },
+    ]);
+  });
+
+  it("book-practice: a lesson listed as legacy still needs explain on the section's exercises", () => {
+    const { input, indexes } = practiceInput();
+    const index = indexes[0] ?? 0;
+    delete input.lesson.exercises[index]?.explain;
+    input.fixture = false;
+    expect(findings(input, "book-practice")).toEqual([]);
+    input.legacy = "warn";
+    expect(findings(input, "book-practice")).toContainEqual(
+      expect.objectContaining({
+        path: ["exercises", index, "explain"],
+        severity: "error",
+      }),
+    );
+  });
+
+  it("book-practice: the same bookRef twice in a lesson fails, whatever the case", () => {
+    const { input, indexes } = practiceInput();
+    const [a = 0, b = 0] = indexes;
+    const exercise = input.lesson.exercises[b];
+    if (!exercise) throw new Error("exercise missing");
+    exercise.bookRef = ` ${input.lesson.exercises[a]?.bookRef?.toUpperCase()}`;
+    expect(findings(input, "book-practice")).toMatchObject([
+      {
+        // Reported on the later of the two exercises in lesson order.
+        path: ["exercises", Math.max(a, b), "bookRef"],
+        message: expect.stringContaining("repeats"),
+      },
+    ]);
+  });
+
+  it("a review lesson with distinct bookRefs still passes", () => {
+    const input = fixtureInput();
+    input.lesson.kind = "review";
+    input.lesson.exercises.slice(0, 2).forEach((e, n) => {
+      e.bookRef = `SBT 2.${n}`;
+    });
+    expect(bookFindings(input)).toEqual([]);
+  });
+});
+
 describe("passage", () => {
   it("accepts passages that differ only in typography", () => {
     const input = fixtureInput();

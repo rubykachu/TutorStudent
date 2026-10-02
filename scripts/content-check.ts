@@ -5,6 +5,7 @@ import { DEFAULT_CONTENT_ROOT, readContentRoot } from "@/content/load";
 import {
   type Criterion,
   type LessonStats,
+  lessonBookRefs,
   lessonCriteria,
   lessonStats,
 } from "@/content/stats";
@@ -49,6 +50,12 @@ if (values.stats) {
   for (const { file, fixture, lesson, subject } of lessons) {
     const stats = lessonStats(lesson, visualRegistry);
     console.log(`${lesson.id} (${file}): ${describeStats(stats)}`);
+    const bookRefs = lessonBookRefs(lesson);
+    if (bookRefs.length > 0) {
+      console.log(
+        `  book exercises (${bookRefs.length}): ${bookRefs.join(", ")}`,
+      );
+    }
     // The fixture is test content, not held to the lesson minimums.
     if (fixture) continue;
     for (const criterion of lessonCriteria(subject, stats)) {
