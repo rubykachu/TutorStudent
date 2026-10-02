@@ -4,7 +4,7 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnig
 
 ## Handover
 
-Next: Task 4b (hand-written worker, see "Findings of the Serwist trial"). Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: Task 5. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
 
 Where the work lives: all offline work from Task 4a on is committed on the branch `offline-pwa`, in the worktree `scratchpad/offline/wt`; `main` is not touched until an independent review merges the branch (a service worker must not reach production by accident). On `main` sit only the inert build-time modules of Tasks 1 to 3 and the lab, listed under "Done" as "on main".
 
@@ -17,6 +17,10 @@ Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exc
 - Task 2: `src/offline/precache.ts` (pure list, deny-list, budget), `src/offline/precache-node.ts`, `scripts/lib/offline-manifest.ts` and `scripts/offline-manifest.ts` (writes `src/offline/precache-list.generated.json`, gitignored, run by `pnpm build`), `FAVICON_ICO_PATH` in `src/lib/brand.ts`. The build id is a timestamp per build. The budget counts only what is known before `next build` (content, sounds, public files); pages and build files are measured by the worker build (Task 4b).
 - Task 3: `src/offline/strategy.ts` (`routeFor`, `fetchInit`, `storable`, `navigationFallbackPath`, `PAGE_TIMEOUT_SECONDS`), `tests/offline/strategy.test.ts`. `routeFor` also takes `method` and `isPrecached(url)` (the worker passes a lookup in its precache): precache-first is decided by the list, so a song, a Range request or an unknown path is passthrough without a path-prefix table that could drift from the list.
 - Checkpoint 1 (on main): gate green (196 files, 4080 tests); changed files are `src/offline/`, the five page files, the manifest script and lib, `build` script, `.gitignore`, one constant in `src/lib/brand.ts`, tests; nothing reads the generated list; no app behaviour changed.
+
+- Branch `offline-pwa`: 30b0043 (precache list step back in `pnpm build`, lab finds media in the main tree), 5ff747c (Serwist findings, this file).
+- Task 4b: e105145. Hand-written worker: `src/offline/sw-core.ts` (all behaviour, injected deps, unit-tested on a fake cache and network), `sw.ts` (wiring), `config.ts` (path, cache prefix, messages), `scripts/lib/offline-worker.ts` and `scripts/offline-worker.ts` (esbuild bundle of the worker with the list injected, written to gitignored `public/sw.js` after `next build`; fails above the budget now counting build files and page HTML), `PUBLIC_FILE_PATHS` in `src/access/gate.ts`, `no-cache` header for `/sw.js` in `next.config.ts`, the bundle check reads `public/sw.js` too (`readClientFiles`), `esbuild` as a dev dependency.
+- Task 4c: 705c89c and 208b70c. `src/offline/sw-kill.ts` and `kill-switch.ts` (the retiring worker), `kill-switch-flag.ts` (`NEXT_PUBLIC_OFFLINE_KILL_SWITCH`), a build guard that fails when the worker bundle reads `process.env`.
 
 ### Rules for every task
 
@@ -136,18 +140,23 @@ A broken worker on the child's iPad is the worst failure here, so there is a doc
 
 Files: the worker build step 4b chose (a build flag), `src/offline/kill-switch.ts` or the equivalent script source, `next.config.ts` (the `Clear-Site-Data` header on the same script path), tests; the runbook goes into `docs/operations.md` in Task 9.
 
-- One flag (`OFFLINE_KILL_SWITCH=1` at build time, so a deploy can carry it) makes the worker script at the same public path a self-unregistering one: it takes over at once (`skipWaiting`), deletes every Cache Storage entry, calls `registration.unregister()` and reloads the open windows. Browsers fetch the script at that path on every update check (`no-cache`, `updateViaCache: "none"`), so a deploy with the flag reaches every device that opens or resumes the app.
-- Registration code stays unchanged; with no worker left, the app runs as before offline support existed.
+- One flag (`NEXT_PUBLIC_OFFLINE_KILL_SWITCH=1` at build time (set in the Vercel production environment, then redeploy), so a deploy can carry it) makes the worker script at the same public path a self-unregistering one: it takes over at once (`skipWaiting`), deletes every Cache Storage entry, calls `registration.unregister()` and reloads the open windows. Browsers fetch the script at that path on every update check (`no-cache`, `updateViaCache: "none"`), so a deploy with the flag reaches every device that opens or resumes the app.
+- The page code (Task 5) reads the same flag and stops registering, so the retiring worker is not registered again; with no worker left, the app runs as before offline support existed.
 - `Clear-Site-Data: "cache", "storage"` is rejected: `"storage"` would also wipe IndexedDB, which holds the child's unsynced progress. If used at all it would be `"cache"` only (Cache Storage), on the worker script response; Chromium honours it, Safari does not, so the self-unregistering script is the real mechanism.
 
 Acceptance:
-- [ ] With the flag, the built script is the self-unregistering one; a lab run (Chromium) with a worker installed from the normal build, then the flag build served: the worker is gone, Cache Storage is empty, Dexie is intact, the app still loads online.
-- [ ] Unit test of the script's steps; the flag is off by default and a normal build never contains it.
-- [ ] Gate green.
+- [x] With the flag, the built script is the self-unregistering one; a lab run (Chromium) with a worker installed from the normal build, then the flag build served: the worker is gone, Cache Storage is empty, Dexie is intact, the app still loads online.
+- [x] Unit test of the script's steps; the flag is off by default and a normal build never contains it.
+- [x] Gate green.
+
+Results (lab, Chromium): a worker installed from the normal build (756 entries), then the flag build served on the same origin and profile: `/sw.js` is the retiring script (no precache list, `no-cache`); after one update check the registration list is empty, `caches.keys()` is empty, the `tutor` IndexedDB database is still there, the home screen shows the profile created before, a lesson loads online. Unit tests: the retiring steps, the flag off by default in a normal worker, the `process.env` guard. `Clear-Site-Data` is not used: `"storage"` would wipe IndexedDB with unsynced progress, `"cache"` does not touch Cache Storage, and Safari ignores the header, so the retiring worker is the only mechanism.
+
 
 ### Checkpoint 2
 
-- [ ] Decision and evidence of 4a, the lab results of 4b and 4c written here. If the fallback was taken, `spec.md` Q1 gets a one-line note.
+- [x] Decision and evidence of 4a, the lab results of 4b and 4c written here. If the fallback was taken, `spec.md` Q1 gets a one-line note.
+
+Checkpoint 2 evidence: decision and criteria table under "Findings of the Serwist trial" (Serwist fails criterion 4, hand-written worker taken); lab results under Task 4b and Task 4c. `spec.md` Q1 and Q11 carry a one-line note.
 
 ## Task 5 (S): registration and update banner
 
