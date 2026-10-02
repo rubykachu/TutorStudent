@@ -12,7 +12,7 @@
   "title": "Phép chia hết. Ước và bội của một số nguyên",
   "sourceRef": "Sách bài tập tr.58–59",
   "status": "published",
-  "reviewedHash": "1b6342b1723760b6badc84f2bb376350a6ff3bd0e85bb43747bb800a8e8854fd",
+  "reviewedHash": "f4bbe1a8919b8d1f89a7945233b667e737d3e52a6939ac7b37e0fb177da155c1",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"
@@ -876,7 +876,7 @@
             },
             {
               "type": "note",
-              "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
+              "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước."
             },
             {
               "type": "visual",
@@ -937,11 +937,11 @@
             },
             {
               "type": "note",
-              "text": "Số x khác 0 luôn chia hết cho chính nó. Vì vậy nếu x + 3 chia hết cho x thì hiệu của x + 3 và x, tức 3, cũng chia hết cho x."
+              "text": "Số x khác 0 luôn chia hết cho chính nó. Vì vậy nếu x + 3 chia hết cho x thì hiệu của x + 3 và x, tức 3, cũng chia hết cho x."
             },
             {
               "type": "note",
-              "text": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó."
+              "text": "Tổng x + 6 chia hết cho x khi x là ước của 6. Số cộng thêm là số nào thì x là ước của số đó."
             },
             {
               "type": "visual",
@@ -963,17 +963,17 @@
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36a",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-36b-uoc-am52",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-36b",
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-dem-boi-9",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-dem-boi-18",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-boi-8-khoang",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-37",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-0-chia-6",
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-boi-5-khoang",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-boi-10-khoang",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-38",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-39-22-bang-2",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-39-22-am2",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-39",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-hieu-x-11",
-        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-dem-x-9",
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-dem-x-23",
         "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-40"
       ],
       "practiceIds": [],
@@ -4519,7 +4519,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số −156 và số −12 đều âm, hai số cùng dấu nên thương là số dương. Ta tìm số nhân với 12 để được 156: 12 · 10 = 120, 12 · 3 = 36, cộng lại 12 · 13 = 156. Vậy thương là 13.",
+        "text": "Số −156 và số −12 đều âm, hai số cùng dấu nên thương là số dương. Ta tìm số nhân với 12 để được 156: 12 · 10 = 120, còn thiếu 156 − 120 = 36 = 12 · 3, nên 12 · 13 = 156. Vậy thương là 13.",
         "tex": "\\begin{gathered} (-156) : (-12) = 156 : 12 \\\\ = \\concept{lime}{13} \\end{gathered}"
       },
       "answer": {
@@ -4558,7 +4558,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Số −528 và số −12 đều âm, hai số cùng dấu nên thương là số dương. Ta tìm số nhân với 12 để được 528: 12 · 40 = 480, 12 · 4 = 48, cộng lại 12 · 44 = 528. Vậy thương là 44.",
+        "text": "Số −528 và số −12 đều âm, hai số cùng dấu nên thương là số dương. Ta tìm số nhân với 12 để được 528: 12 · 40 = 480, còn thiếu 528 − 480 = 48 = 12 · 4, nên 12 · 44 = 528. Vậy thương là 44.",
         "tex": "\\begin{gathered} 12 \\cdot 44 = 528 \\\\ (-528) : (-12) = \\concept{lime}{44} \\end{gathered}"
       },
       "answer": {
@@ -4632,7 +4632,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số −1 515 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta tìm số nhân với 101 để được 1 515: 101 · 10 = 1 010, 101 · 5 = 505, cộng lại 101 · 15 = 1 515. Vậy thương là −15.",
+        "text": "Số −1 515 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta tìm số nhân với 101 để được 1 515: 101 · 10 = 1 010, còn thiếu 1 515 − 1 010 = 505 = 101 · 5, nên 101 · 15 = 1 515. Vậy thương là −15.",
         "tex": "\\begin{gathered} 101 \\cdot 15 = 1\\,515 \\\\ (-1\\,515) : 101 = \\concept{pink}{-15} \\end{gathered}"
       },
       "answer": {
@@ -4671,7 +4671,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Số −2 020 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta tìm số nhân với 101 để được 2 020. Vì 101 · 2 = 202 nên 101 · 20 = 2 020, vậy thương là −20.",
+        "text": "Số −2 020 âm còn số 101 dương, hai số khác dấu nên thương là số âm. Ta cần số nhân với 101 để được 2 020: 101 · 2 = 202, mà 2 020 là 202 viết thêm một chữ số 0. Vậy 101 · 20 = 2 020 và thương là −20.",
         "tex": "\\begin{gathered} 101 \\cdot 20 = 2\\,020 \\\\ (-2\\,020) : 101 = \\concept{pink}{-20} \\end{gathered}"
       },
       "answer": {
@@ -5030,13 +5030,13 @@
       "bank": ["1", "2", "3", "6", "11", "22", "33", "66", "4", "9", "12"]
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-dem-boi-9",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-37-dem-boi-18",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Có bao nhiêu bội của 9 lớn hơn 0 và nhỏ hơn 60?"
+          "text": "Có bao nhiêu bội của 18 lớn hơn 0 và nhỏ hơn 110?"
         }
       ],
       "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-37",
@@ -5050,8 +5050,8 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Nhân 9 lần lượt với 1, 2, 3 và cứ thế tiếp, ta được 9, 18, 27, 36, 45 và 54. Số tiếp theo là 63, lớn hơn 60 nên ta dừng. Vậy có 6 bội.",
-        "tex": "\\begin{gathered} 9 \\cdot 6 = 54 < 60 \\\\ 63 = 9 \\cdot 7 > 60 \\end{gathered}"
+        "text": "Nhân 18 lần lượt với 1, 2, 3 và cứ thế tiếp, ta được 18, 36, 54, 72, 90 và 108. Số tiếp theo là 126, lớn hơn 110 nên ta dừng. Vậy có 6 bội.",
+        "tex": "\\begin{gathered} 18 \\cdot 6 = 108 < 110 \\\\ 126 = 18 \\cdot 7 > 110 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -5187,27 +5187,31 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Nhân 11 với 1, 2, 3 và cứ thế tiếp để có các bội dương, rồi thêm số đối của chúng. Các bội trong khoảng là −44, −33, −22, −11 và 11, 22, 33, 44, 55, 66, 77, 88, 99. Số −55 và 110 nằm ngoài khoảng, còn số 0 bị bỏ vì đề cần bội khác 0."
+        "text": "Nhân 11 với 1, 2, 3 và cứ thế tiếp để có các bội dương, rồi thêm số đối của chúng. Các bội khác 0 trong khoảng là −44, −33, −22, −11 và 11, 22, 33, 44, 55, 66, 77, 88, 99. Ta bỏ −55 và 110 vì ngoài khoảng, bỏ số 0 vì đề cần bội khác 0."
       },
       "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sbt-chon-boi-11",
       "validatorId": "chon-dung",
       "params": {
-        "i0": 0,
-        "i1": 1,
+        "i0": 1,
+        "i1": 0,
         "i2": 1,
-        "i3": 1,
+        "i3": 0,
         "i4": 1,
-        "i5": 0,
-        "i6": 1,
+        "i5": 1,
+        "i6": 0,
         "i7": 1,
-        "i8": 1,
+        "i8": 0,
         "i9": 1,
-        "i10": 1,
+        "i10": 0,
         "i11": 1,
         "i12": 1,
         "i13": 1,
         "i14": 1,
-        "i15": 0
+        "i15": 0,
+        "i16": 1,
+        "i17": 0,
+        "i18": 1,
+        "i19": 1
       }
     },
     {
@@ -5274,7 +5278,7 @@
       "multiple": false
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-boi-5-khoang",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-38-boi-10-khoang",
       "type": "fillBlank",
       "cardIds": [],
       "prompt": [
@@ -5284,7 +5288,11 @@
         },
         {
           "type": "note",
-          "text": "A = {x ∈ ℤ | x ⋮ 5 và −15 < x ≤ 15}"
+          "text": "A = {x ∈ ℤ | x ⋮ 10 và −30 < x ≤ 30}"
+        },
+        {
+          "type": "note",
+          "text": "Đọc cả tập hợp: các số nguyên x chia hết cho 10, lớn hơn −30 và nhỏ hơn hoặc bằng 30."
         },
         {
           "type": "note",
@@ -5302,8 +5310,8 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Các số cần tìm chia hết cho 5, lớn hơn −15 và nhỏ hơn hoặc bằng 15. Số −15 bị bỏ vì x phải lớn hơn −15, còn 15 được giữ vì x có thể bằng 15. Đừng quên số 0.",
-        "tex": "A = \\{-10;\\ -5;\\ 0;\\ 5;\\ 10;\\ 15\\}"
+        "text": "Các số cần tìm chia hết cho 10, lớn hơn −30 và nhỏ hơn hoặc bằng 30. Số −30 bị bỏ vì x phải lớn hơn −30, còn 30 được giữ vì x có thể bằng 30. Đừng quên số 0.",
+        "tex": "\\begin{gathered} A = \\{-20;\\ -10;\\ 0; \\\\ 10;\\ 20;\\ 30\\} \\end{gathered}"
       },
       "segments": [
         {
@@ -5313,7 +5321,7 @@
         {
           "type": "blank",
           "id": "b1",
-          "accept": ["−10", "-10"]
+          "accept": ["−20", "-20"]
         },
         {
           "type": "text",
@@ -5322,7 +5330,7 @@
         {
           "type": "blank",
           "id": "b2",
-          "accept": ["−5", "-5"]
+          "accept": ["−10", "-10"]
         },
         {
           "type": "text",
@@ -5340,15 +5348,6 @@
         {
           "type": "blank",
           "id": "b4",
-          "accept": ["5"]
-        },
-        {
-          "type": "text",
-          "text": "; "
-        },
-        {
-          "type": "blank",
-          "id": "b5",
           "accept": ["10"]
         },
         {
@@ -5357,15 +5356,24 @@
         },
         {
           "type": "blank",
+          "id": "b5",
+          "accept": ["20"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
           "id": "b6",
-          "accept": ["15"]
+          "accept": ["30"]
         },
         {
           "type": "text",
           "text": "}"
         }
       ],
-      "bank": ["−10", "−5", "0", "5", "10", "15", "−15", "20"]
+      "bank": ["−20", "−10", "0", "10", "20", "30", "−30", "40"]
     },
     {
       "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-38",
@@ -5643,10 +5651,6 @@
           {
             "optionId": "f",
             "text": "Một số âm, một số dương nên kết quả là −21, không phải 21."
-          },
-          {
-            "optionId": "g",
-            "text": "Ta có 3 · 9 = 27, không phải 21."
           }
         ]
       },
@@ -5692,13 +5696,6 @@
             "type": "formula",
             "tex": "(-1) \\cdot 21"
           }
-        },
-        {
-          "id": "g",
-          "content": {
-            "type": "formula",
-            "tex": "3 \\cdot 9"
-          }
         }
       ],
       "answer": ["a", "b", "d", "e"],
@@ -5732,7 +5729,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số x và x + 11 cùng chia hết cho x. Theo quy tắc ở trên, hiệu của chúng cũng chia hết cho x. Hiệu đó là (x + 11) − x = 11.",
+        "text": "Số x khác 0 luôn chia hết cho chính nó, và đề cho x + 11 chia hết cho x. Hai số cùng chia hết cho x thì hiệu của chúng cũng chia hết cho x. Hiệu đó là (x + 11) − x = 11.",
         "tex": "(x + 11) - x = 11"
       },
       "answer": {
@@ -5744,13 +5741,13 @@
       }
     },
     {
-      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-dem-x-9",
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.dan-3-40-dem-x-23",
       "type": "numeric",
       "cardIds": [],
       "prompt": [
         {
           "type": "note",
-          "text": "Có bao nhiêu số nguyên x để x + 9 chia hết cho x?"
+          "text": "Có bao nhiêu số nguyên x để x + 23 chia hết cho x?"
         }
       ],
       "leadsTo": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.ex.sbt-3-40",
@@ -5764,15 +5761,15 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Số x chia hết cho x, nên x + 9 chia hết cho x khi 9 chia hết cho x. Như vậy x là ước của 9. Các ước dương của 9 là 1, 3 và 9, mỗi ước có thêm số đối, nên có 6 số x.",
-        "tex": "x = \\pm1,\\ \\pm3,\\ \\pm9"
+        "text": "Nếu x + 23 chia hết cho x thì hiệu (x + 23) − x, tức 23, cũng chia hết cho x. Như vậy x là ước của 23. Số 23 có hai ước dương là 1 và 23, mỗi ước có thêm số đối, nên có 4 số x.",
+        "tex": "x = \\pm1,\\ \\pm23"
       },
       "answer": {
         "kind": "value",
-        "value": 6
+        "value": 4
       },
       "check": {
-        "expr": "6"
+        "expr": "4"
       }
     },
     {
@@ -5803,7 +5800,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Số x chia hết cho x, và số x + 5 cũng chia hết cho x. Vì vậy số 5, là hiệu của hai số đó, cũng chia hết cho x. Vậy x là ước của 5, nên x là 1, −1, 5 hoặc −5.",
-        "tex": "\\begin{gathered} (x + 5) - x = 5 \\\\ x = \\pm1,\\ \\pm5 \\end{gathered}",
+        "tex": "\\begin{gathered} (x + 5) - x = 5 \\\\ x = \\pm1,\\ \\pm5 \\\\ x = -5 \\\\ (-5) + 5 = 0 \\chiahet (-5) \\end{gathered}",
         "wrong": [
           {
             "optionId": "e",

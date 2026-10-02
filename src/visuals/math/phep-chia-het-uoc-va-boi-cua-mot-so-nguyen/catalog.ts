@@ -525,7 +525,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   "sbt-nhac-lai-uoc-tich": rows(
     "Các ước của −38 và các cách viết 38 thành tích hai số nguyên",
     [
-      { tex: "\\pm3", tag: tag("±3 là hai số 3 và −3", NOTE) },
+      { tex: "\\pm2", tag: tag("±2 là hai số 2 và −2", NOTE) },
       {
         tex: "38 = 1 \\cdot 38 = 2 \\cdot 19",
         tag: tag("tích hai số dương", POSITIVE),
@@ -565,13 +565,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       tag: tag("các ước của −57", DIVISOR),
     },
     {
-      tex: "-13 < x \\le 20",
+      tex: "-25 < x \\le 40",
       tag: tag("khoảng cần tìm", NOTE),
       gapBefore: true,
     },
     {
-      tex: "\\concept{blue}{-12,\\ -6,\\ 0,\\ 6,\\ 12,\\ 18}",
-      tag: tag("bội của 6 trong khoảng", MULTIPLE),
+      tex: "\\concept{blue}{-24,\\ -12,\\ 0,\\ 12,\\ 24,\\ 36}",
+      tag: tag("bội của 12 trong khoảng", MULTIPLE),
     },
   ]),
 
@@ -616,8 +616,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: tag("cùng dấu: thương dương", NOTE),
       },
       {
-        tex: steps("12 \\cdot 30 = 360", "372 - 360 = 12"),
-        tag: tag("chia từng phần", NOTE),
+        tex: `\\begin{gathered} 12 \\cdot 30 = 360 \\\\ 372 - 360 = 12 \\\\ 12 \\cdot 1 = 12 \\end{gathered}`,
+        tag: tag("tìm thương từng phần", NOTE),
       },
       { tex: `= ${pos(31)}` },
     ],
@@ -632,7 +632,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: tag("cùng dấu: thương dương", NOTE),
       },
       {
-        tex: steps("12 \\cdot 40 = 480", "12 \\cdot 4 = 48"),
+        tex: `\\begin{gathered} 12 \\cdot 40 = 480 \\\\ 528 - 480 = 48 \\\\ 12 \\cdot 4 = 48 \\end{gathered}`,
         tag: tag("tìm thương từng phần", NOTE),
       },
       {
@@ -759,22 +759,26 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // Bài 3.37
   "sbt-chon-boi-11": chips([
-    "−55",
-    "−44",
-    "−33",
-    "−22",
-    "−11",
-    "0",
-    "11",
-    "22",
     "33",
-    "44",
-    "55",
-    "66",
-    "77",
-    "88",
-    "99",
+    "−16",
+    "−11",
     "110",
+    "66",
+    "22",
+    "−55",
+    "44",
+    "0",
+    "−33",
+    "38",
+    "99",
+    "−44",
+    "55",
+    "11",
+    "−27",
+    "88",
+    "61",
+    "−22",
+    "77",
   ]),
   "sbt-goi-y-boi-25": lines(
     "Các bội khác 0 của 25, lớn hơn −60 và nhỏ hơn 120",
@@ -897,8 +901,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [
       { tex: "x + 13 \\chiahet x", tag: tag("điều cần có", NOTE) },
       {
-        tex: "13 = (x + 13) - x \\chiahet x",
-        tag: tag("x khác 0 chia hết cho x", NOTE),
+        tex: "(x + 13) - x = 13",
+        tag: tag("hiệu của x + 13 và x", NOTE),
+      },
+      {
+        tex: "13 \\chiahet x",
+        tag: tag("x chia hết cho x, nên hiệu cũng chia hết cho x", NOTE),
       },
       {
         tex: "x = \\pm1,\\ \\pm13",
@@ -912,8 +920,12 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     [
       { tex: "x + 5 \\chiahet x", tag: tag("điều cần có", NOTE) },
       {
-        tex: "5 = (x + 5) - x \\chiahet x",
-        tag: tag("x khác 0 chia hết cho x", NOTE),
+        tex: "(x + 5) - x = 5",
+        tag: tag("hiệu của x + 5 và x", NOTE),
+      },
+      {
+        tex: "5 \\chiahet x",
+        tag: tag("x chia hết cho x, nên hiệu cũng chia hết cho x", NOTE),
       },
       {
         tex: "x = \\pm1,\\ \\pm5",
