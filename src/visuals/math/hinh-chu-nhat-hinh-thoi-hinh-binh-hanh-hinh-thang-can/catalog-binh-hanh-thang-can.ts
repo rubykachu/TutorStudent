@@ -3,6 +3,7 @@ import {
   figure,
   frame,
   gallery,
+  PROBE_MARGIN,
   sideProbe,
   steps,
   THUMB,
@@ -111,7 +112,11 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   ),
   "do-binh-hanh": {
     kind: "probe",
-    figure: quad("binh-hanh", { label: "Hình bình hành ABCD", ...NAMED }),
+    figure: quad("binh-hanh", {
+      label: "Hình bình hành ABCD",
+      ...NAMED,
+      margin: PROBE_MARGIN,
+    }),
     parts: [
       ...sideProbe(
         [
@@ -188,7 +193,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         segs: [{ a: "A", b: "B", bold: true }],
         dots: ["A", "B", "O"],
         names: ["A", "B", "O"],
-        nameShift: { A: [0, -10], B: [0, -10], O: [0, -10] },
+        nameShift: { A: [0, -10], B: [0, -10], O: [12, -30] },
       },
       "Điểm O nằm chính giữa AB",
     ),
@@ -201,7 +206,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         segs: [{ a: "A", b: "B", bold: true }],
         dots: ["A", "B", "O"],
         names: ["A", "B", "O"],
-        nameShift: { A: [0, -10], B: [0, -10], O: [0, -10] },
+        nameShift: { A: [0, -10], B: [0, -10], O: [12, -30] },
         ticks: [
           {
             segs: [
@@ -315,7 +320,11 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   ),
   "do-thang-can": {
     kind: "probe",
-    figure: quad("thang-can", { label: "Hình thang cân ABCD", ...NAMED }),
+    figure: quad("thang-can", {
+      label: "Hình thang cân ABCD",
+      ...NAMED,
+      margin: PROBE_MARGIN,
+    }),
     parts: [
       ...sideProbe(
         [

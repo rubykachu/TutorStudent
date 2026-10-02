@@ -276,7 +276,8 @@ export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
       names.push("O");
     }
     if (o.diagonals === "perp") {
-      rights.push({ at: "O", a: "A", b: "B", tone: "violet" });
+      // The mark sits between the lower diagonals, away from the name O.
+      rights.push({ at: "O", a: "C", b: "D", tone: "violet" });
     }
     if (o.diagonals === "mid") {
       ticks.push(

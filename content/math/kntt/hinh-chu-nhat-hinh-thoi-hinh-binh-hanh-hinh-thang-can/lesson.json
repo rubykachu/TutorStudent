@@ -23,7 +23,7 @@
       "vẽ được hình chữ nhật, hình thoi và hình bình hành bằng thước, êke và compa",
       "kiểm tra một hình xem nó là hình gì"
     ],
-    "whyItMatters": "Bạn dùng bài này khi đóng khung ảnh: hai đường chéo bằng nhau thì khung không bị méo."
+    "whyItMatters": "Bạn dùng bài này khi đóng khung ảnh: hai đường chéo bằng nhau thì khung không bị lệch."
   },
   "concepts": [
     {
@@ -230,7 +230,7 @@
           "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.tip.kiem-khung",
           "kind": "làm nhanh",
           "title": "Kiểm tra khung hình chữ nhật",
-          "text": "Đóng khung ảnh có các cạnh đối bằng nhau, rồi đo hai đường chéo. Hai đường chéo bằng nhau thì khung là hình chữ nhật, không bị méo.",
+          "text": "Đóng khung ảnh có các cạnh đối bằng nhau, rồi đo hai đường chéo. Hai đường chéo bằng nhau thì khung là hình chữ nhật, không bị lệch.",
           "tex": "AC = BD"
         },
         {
@@ -422,7 +422,7 @@
           "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.tip.thoi-60-do",
           "kind": "hiểu nhanh",
           "title": "Hình thoi có góc 60°",
-          "text": "Hình thoi có một góc 60° ghép từ hai hình tam giác đều. Đường chéo ngắn của nó dài bằng cạnh.",
+          "text": "Hình thoi có góc 60° ghép từ hai tam giác đều. Tam giác đều có ba cạnh bằng nhau, nên đường chéo ngắn dài bằng cạnh.",
           "tex": "BD = AB",
           "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.hai-tam-giac-deu-thoi"
         },
@@ -781,7 +781,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn vẽ hình chữ nhật, ta cần thước và êke. Xem hình chạy từng bước vẽ hình chữ nhật ABCD có AB = 4 cm và BC = 3 cm."
+              "text": "Muốn vẽ hình chữ nhật, ta cần thước và êke. Êke là thước có một góc vuông, dùng để kẻ đường vuông góc."
+            },
+            {
+              "type": "note",
+              "text": "Xem hình chạy từng bước vẽ hình chữ nhật ABCD có AB = 4 cm và BC = 3 cm."
             },
             {
               "type": "visual",
@@ -841,7 +845,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn vẽ hình thoi, ta cần thước, thước đo góc và compa. Xem hình chạy từng bước vẽ hình thoi ABCD có AB = 3 cm."
+              "text": "Muốn vẽ hình thoi, ta cần thước, thước đo góc và compa. Compa vẽ được cung tròn, tức một phần của đường tròn."
+            },
+            {
+              "type": "note",
+              "text": "Xem hình chạy từng bước vẽ hình thoi ABCD có AB = 3 cm."
             },
             {
               "type": "visual",
@@ -852,6 +860,10 @@
         {
           "type": "group",
           "children": [
+            {
+              "type": "note",
+              "text": "Tia có một đầu và kéo dài mãi về một phía. Độ mở compa là khoảng cách giữa kim và đầu bút của compa."
+            },
             {
               "type": "note",
               "text": "Vẽ một cạnh và một tia, lấy cạnh thứ hai bằng cạnh thứ nhất, rồi vẽ hai cung tròn cùng độ mở.",
@@ -868,7 +880,7 @@
           "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.tip.hai-tam-giac-deu",
           "kind": "làm nhanh",
           "title": "Vẽ hình thoi có góc 60°",
-          "text": "Muốn vẽ hình thoi có góc 60°, vẽ hai hình tam giác đều có chung một cạnh. Hai tam giác đó ghép thành hình thoi.",
+          "text": "Muốn vẽ hình thoi có góc 60°, vẽ hai hình tam giác đều (ba cạnh bằng nhau) có chung một cạnh. Hai tam giác đó ghép thành hình thoi.",
           "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.hai-tam-giac-deu-thoi"
         },
         {
@@ -909,7 +921,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn vẽ hình bình hành, ta cần thước, thước đo góc và êke. Xem hình chạy từng bước vẽ hình bình hành ABCD có AB = 5 cm và AD = 3 cm."
+              "text": "Muốn vẽ hình bình hành, ta cần thước, thước đo góc và êke. Êke giúp ta kẻ các đường song song."
+            },
+            {
+              "type": "note",
+              "text": "Xem hình chạy từng bước vẽ hình bình hành ABCD có AB = 5 cm và AD = 3 cm."
             },
             {
               "type": "visual",
@@ -977,7 +993,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Có khi ta biết hai cạnh và một đường chéo của hình bình hành. Xem hình chạy từng bước vẽ hình bình hành ABCD."
+              "text": "Có khi ta biết hai cạnh và một đường chéo của hình bình hành. Compa vẽ cung tròn: tâm là chỗ đặt kim, bán kính là độ mở compa."
+            },
+            {
+              "type": "note",
+              "text": "Xem hình chạy từng bước vẽ hình bình hành ABCD."
             },
             {
               "type": "visual",
@@ -1064,7 +1084,7 @@
           "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.tip.goc-to-giay",
           "kind": "làm nhanh",
           "title": "Kiểm tra góc vuông",
-          "text": "Góc của tờ giấy vở là góc vuông. Đặt nó vào góc của hình: khít là góc vuông, hở hoặc chờm ra là không phải.",
+          "text": "Góc của tờ giấy vở là góc vuông. Đặt nó vào góc của hình: hai cạnh trùng nhau, gọi là khít, thì đó là góc vuông. Còn bị hở hoặc chờm ra ngoài thì không phải.",
           "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.to-giay-goc"
         },
         {
@@ -1758,7 +1778,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình này nghiêng sang một bên và có hai cặp cạnh đối giống nhau. Đó là hình bình hành.",
+        "text": "Hình này nghiêng sang một bên và có hai cặp cạnh giống nhau. Đó là hình bình hành.",
         "wrong": [
           {
             "optionId": "cn",
@@ -2005,11 +2025,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Góc 60° là góc của hình tam giác đều, không phải của hình chữ nhật."
+            "text": "Góc 60° là góc của hình tam giác đều (ba cạnh bằng nhau), không phải của hình chữ nhật."
           },
           {
             "optionId": "d",
-            "text": "Góc 120° là góc của hình lục giác đều, không phải của hình chữ nhật."
+            "text": "Góc 120° là góc của hình lục giác đều (sáu cạnh bằng nhau), không phải của hình chữ nhật."
           }
         ]
       },
@@ -3144,7 +3164,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Hình thoi có góc 60° ghép từ hai hình tam giác đều. Đường chéo ngắn BD bằng cạnh, nên BD dài 4 cm."
+        "text": "Hình thoi ABCD có góc A bằng 60°, ghép từ hai tam giác đều. Tam giác đều có ba cạnh bằng nhau, nên BD bằng cạnh AB, dài 4 cm."
       },
       "answer": {
         "kind": "value",

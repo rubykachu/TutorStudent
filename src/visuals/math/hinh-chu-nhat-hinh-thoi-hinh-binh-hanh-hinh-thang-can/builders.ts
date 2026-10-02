@@ -16,6 +16,9 @@ export const figure = (figureSpec: FigureSpec): VisualSpec => ({
 export const small = (figureSpec: FigureSpec): VisualSpec =>
   figure({ ...figureSpec, maxScale: 1 });
 
+// Room round a shape whose sides get their measures written beside them.
+export const PROBE_MARGIN = 44;
+
 // Size of a thumbnail in a row of options or of a gallery.
 export const THUMB = { w: 140, h: 112 } as const;
 

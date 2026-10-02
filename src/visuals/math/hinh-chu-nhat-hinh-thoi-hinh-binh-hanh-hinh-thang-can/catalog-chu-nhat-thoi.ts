@@ -3,6 +3,7 @@ import {
   figure,
   frame,
   gallery,
+  PROBE_MARGIN,
   sideProbe,
   small,
   steps,
@@ -197,7 +198,11 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   ),
   "do-chu-nhat": {
     kind: "probe",
-    figure: quad("chu-nhat", { label: "Hình chữ nhật ABCD", ...NAMED }),
+    figure: quad("chu-nhat", {
+      label: "Hình chữ nhật ABCD",
+      ...NAMED,
+      margin: PROBE_MARGIN,
+    }),
     parts: [
       ...angleProbe(
         [
@@ -506,7 +511,11 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   ),
   "do-thoi": {
     kind: "probe",
-    figure: quad("thoi", { label: "Hình thoi ABCD", ...NAMED }),
+    figure: quad("thoi", {
+      label: "Hình thoi ABCD",
+      ...NAMED,
+      margin: PROBE_MARGIN,
+    }),
     parts: [
       ...sideProbe(
         [
