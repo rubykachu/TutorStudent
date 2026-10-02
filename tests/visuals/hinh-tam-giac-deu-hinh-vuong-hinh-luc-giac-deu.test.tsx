@@ -15,19 +15,19 @@ import {
   stepDone,
   stepEnabled,
 } from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/construction";
-import { FigureLayers } from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/figure";
+import {
+  solutions,
+  validators,
+} from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/logic";
+import { FigureLayers } from "@/visuals/shared/plane/figure";
 import {
   dist,
   lineIntersection,
   meetingPoints,
   regularPoints,
-} from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/geometry";
-import {
-  solutions,
-  validators,
-} from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/logic";
-import { Probe } from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/probe";
-import { probeFigure } from "@/visuals/math/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/probe-model";
+} from "@/visuals/shared/plane/geometry";
+import { Probe } from "@/visuals/shared/plane/probe";
+import { probeFigure } from "@/visuals/shared/plane/probe-model";
 
 describe("geometry", () => {
   it("puts the corners of a regular polygon on one circle, equally apart", () => {

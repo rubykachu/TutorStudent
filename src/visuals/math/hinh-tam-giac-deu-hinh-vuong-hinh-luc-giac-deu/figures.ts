@@ -8,7 +8,7 @@ import type {
   FigureTick,
   Pt,
   Tone,
-} from "./figure-spec";
+} from "@/visuals/shared/plane/figure-spec";
 import {
   lerp,
   lineIntersection,
@@ -16,7 +16,7 @@ import {
   polar,
   regularPoints,
   unit,
-} from "./geometry";
+} from "@/visuals/shared/plane/geometry";
 
 // Builders of the pictures of this lesson: the three regular shapes with the
 // marks the lesson teaches (equal-length strokes, angle arcs, diagonals),

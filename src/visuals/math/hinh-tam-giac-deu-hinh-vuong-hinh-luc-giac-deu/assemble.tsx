@@ -9,7 +9,7 @@ import {
   useGuidedGoal,
 } from "@/visuals/shared/guided-feedback";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
-import { Figure } from "./figure";
+import { Figure } from "@/visuals/shared/plane/figure";
 import { hexTriangles } from "./figures";
 
 // Six equilateral triangles ghép (put together) round one point: the child

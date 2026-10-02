@@ -1,12 +1,12 @@
 import type { ComponentType } from "react";
 import type { VisualProps } from "@/visuals/registry";
+import { Figure } from "@/visuals/shared/plane/figure";
+import { FigureSteps } from "@/visuals/shared/plane/figure-steps";
+import { Probe } from "@/visuals/shared/plane/probe";
 import { Assemble } from "./assemble";
 import type { VisualSpec } from "./catalog";
 import { Construct } from "./construct";
-import { Figure } from "./figure";
-import { FigureSteps } from "./figure-steps";
 import { Gallery } from "./gallery";
-import { Probe } from "./probe";
 import Sticker from "./sticker";
 
 // One registry entry per `VisualSpec` of the catalog. This module is not a

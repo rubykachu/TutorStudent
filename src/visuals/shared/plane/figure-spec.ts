@@ -1,9 +1,9 @@
 import type { ConceptColor } from "@/schema/content";
 
-// The data a flat drawing of this lesson is made of. Every figure of the
-// lesson (shapes with their marks, steps of a construction, the pieces of a
-// tiling) is one `FigureSpec`; `figure.tsx` draws it. Pure data, no React, so
-// `content:check` and the registry can read it.
+// The data a flat geometry drawing is made of. Every figure (shapes with their
+// marks, steps of a construction, the pieces of a tiling) is one `FigureSpec`;
+// `figure.tsx` draws it. Pure data, no React, so `content:check` and the
+// registry can read it. Shared by the geometry lessons.
 
 export type Pt = readonly [number, number];
 

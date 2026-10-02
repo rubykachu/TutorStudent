@@ -5,8 +5,12 @@ import type {
   FigureSeg,
   FigureSpec,
   Pt,
-} from "./figure-spec";
-import { directionDeg, lineIntersection, meetingPoints } from "./geometry";
+} from "@/visuals/shared/plane/figure-spec";
+import {
+  directionDeg,
+  lineIntersection,
+  meetingPoints,
+} from "@/visuals/shared/plane/geometry";
 
 // The model of the two drawing boards of the lesson: an equilateral triangle
 // drawn with a ruler and a compass, a square drawn with a ruler and a set

@@ -1,7 +1,7 @@
 import { decorative } from "@/visuals/shared/markers";
-import { Figure, pointList } from "./figure";
-import type { FigureSpec } from "./figure-spec";
-import { regularPoints } from "./geometry";
+import { Figure, pointList } from "@/visuals/shared/plane/figure";
+import type { FigureSpec } from "@/visuals/shared/plane/figure-spec";
+import { regularPoints } from "@/visuals/shared/plane/geometry";
 
 // Pictures side by side, each with a caption: the three real-life things the
 // lesson opens with, or the three regular shapes with their names.

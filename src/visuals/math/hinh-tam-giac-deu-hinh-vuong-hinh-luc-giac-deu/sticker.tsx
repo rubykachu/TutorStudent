@@ -1,6 +1,6 @@
 import { decorative } from "@/visuals/shared/markers";
-import { pointList } from "./figure";
-import { regularPoints } from "./geometry";
+import { pointList } from "@/visuals/shared/plane/figure";
+import { regularPoints } from "@/visuals/shared/plane/geometry";
 
 const CENTRE = 50;
 

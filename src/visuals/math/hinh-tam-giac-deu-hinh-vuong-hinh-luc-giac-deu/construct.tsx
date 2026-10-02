@@ -11,6 +11,7 @@ import {
 } from "@/visuals/shared/guided-feedback";
 import { stateSet } from "@/visuals/shared/markers";
 import { NumberStepper } from "@/visuals/shared/number-stepper";
+import { Figure } from "@/visuals/shared/plane/figure";
 import {
   apexOf,
   type ConstructShape,
@@ -22,7 +23,6 @@ import {
   stepDone,
   stepEnabled,
 } from "./construction";
-import { Figure } from "./figure";
 import { isConstructed } from "./logic";
 
 // A drawing board the child works on as on paper: a ruler under the first

@@ -1,10 +1,3 @@
-import type { AssembleSpec } from "./assemble";
-import type { ConstructSpec } from "./construct";
-import {
-  type ConstructShape,
-  constructFigure,
-  solvedState,
-} from "./construction";
 import {
   type FigureSeg,
   type FigureSpec,
@@ -12,8 +5,23 @@ import {
   figureRegions,
   type Pt,
   type Tone,
-} from "./figure-spec";
-import type { StepsSpec } from "./figure-steps";
+} from "@/visuals/shared/plane/figure-spec";
+import type { StepsSpec } from "@/visuals/shared/plane/figure-steps";
+import {
+  directionDeg,
+  dist,
+  lerp,
+  polar,
+  regularPoints,
+} from "@/visuals/shared/plane/geometry";
+import type { ProbeSpec } from "@/visuals/shared/plane/probe-model";
+import type { AssembleSpec } from "./assemble";
+import type { ConstructSpec } from "./construct";
+import {
+  type ConstructShape,
+  constructFigure,
+  solvedState,
+} from "./construction";
 import {
   figure44,
   figure45,
@@ -29,8 +37,6 @@ import {
   triangleBySides,
 } from "./figures";
 import type { GallerySpec } from "./gallery";
-import { directionDeg, dist, lerp, polar, regularPoints } from "./geometry";
-import type { ProbeSpec } from "./probe-model";
 
 // Every picture of the lesson: the registry builds one entry per item (id
 // `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.<key>`), so a new
