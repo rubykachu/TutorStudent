@@ -97,6 +97,32 @@ describe("buildWorker", () => {
     expect(result.entries).toBe(2 + 3);
   });
 
+  it("never holds the retiring code in a normal worker", async () => {
+    writeList();
+    await buildWorker({
+      rootDir: root,
+      distDir: ".next",
+      source: path.join(process.cwd(), "src/offline/sw.ts"),
+    });
+    expect(readFileSync(path.join(root, "public/sw.js"), "utf8")).not.toContain(
+      "unregister",
+    );
+  });
+
+  it("writes the retiring worker, with no list, when the kill switch is on", async () => {
+    // No list file and no build folder: the kill switch needs neither.
+    const result = await buildWorker({
+      rootDir: root,
+      killSwitch: true,
+      killSource: path.join(process.cwd(), "src/offline/sw-kill.ts"),
+    });
+    const script = readFileSync(path.join(root, "public/sw.js"), "utf8");
+    expect(result.entries).toBe(0);
+    expect(script).toContain("unregister");
+    expect(script).toContain("skipWaiting");
+    expect(script).not.toContain("/_next/static");
+  });
+
   it("fails above the budget", async () => {
     writeList(PRECACHE_BUDGET_BYTES);
     await expect(

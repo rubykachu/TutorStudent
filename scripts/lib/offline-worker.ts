@@ -75,12 +75,21 @@ export async function buildWorker({
   distDir = process.env.NEXT_DIST_DIR || ".next",
   mediaBaseUrl = process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? "",
   source = "src/offline/sw.ts",
+  killSwitch = false,
+  killSource = "src/offline/sw-kill.ts",
 }: {
   rootDir: string;
   distDir?: string;
   mediaBaseUrl?: string;
   source?: string;
+  // Write the worker that retires every installed worker instead of the
+  // precaching one (`OFFLINE_KILL_SWITCH`).
+  killSwitch?: boolean;
+  killSource?: string;
 }): Promise<WorkerBuildResult> {
+  if (killSwitch) {
+    return writeBundle(rootDir, killSource, {}, 0);
+  }
   const listFile = path.join(rootDir, PRECACHE_LIST_FILE);
   if (!existsSync(listFile)) {
     throw new Error(
@@ -111,6 +120,20 @@ export async function buildWorker({
     entries,
     mediaBaseUrl,
   };
+  return writeBundle(
+    rootDir,
+    source,
+    { __WORKER_DATA__: JSON.stringify(data) },
+    entries.length,
+  );
+}
+
+async function writeBundle(
+  rootDir: string,
+  source: string,
+  define: Record<string, string>,
+  entries: number,
+): Promise<WorkerBuildResult> {
   const outfile = path.join(rootDir, "public", WORKER_FILE);
   mkdirSync(path.dirname(outfile), { recursive: true });
   const result = await build({
@@ -120,7 +143,7 @@ export async function buildWorker({
     format: "iife",
     target: "es2020",
     platform: "browser",
-    define: { __WORKER_DATA__: JSON.stringify(data) },
+    define,
     write: false,
     tsconfig: path.resolve(rootDir, "tsconfig.json"),
     logLevel: "silent",
@@ -128,9 +151,5 @@ export async function buildWorker({
   const output = result.outputFiles[0];
   if (!output) throw new Error("esbuild produced no output");
   writeFileSync(outfile, output.contents);
-  return {
-    file: outfile,
-    entries: entries.length,
-    bytes: output.contents.length,
-  };
+  return { file: outfile, entries, bytes: output.contents.length };
 }
