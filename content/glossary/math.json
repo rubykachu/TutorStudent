@@ -509,6 +509,60 @@
     {
       "term": "thước đo góc",
       "forbidden": []
+    },
+    {
+      "term": "hình chữ nhật",
+      "forbidden": [],
+      "color": "teal"
+    },
+    {
+      "term": "hình thoi",
+      "forbidden": [],
+      "color": "pink"
+    },
+    {
+      "term": "hình bình hành",
+      "forbidden": [],
+      "color": "lime"
+    },
+    {
+      "term": "hình thang cân",
+      "forbidden": [],
+      "color": "sky"
+    },
+    {
+      "term": "hình thang",
+      "forbidden": []
+    },
+    {
+      "term": "song song",
+      "forbidden": [],
+      "color": "slate",
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "trung điểm",
+      "forbidden": []
+    },
+    {
+      "term": "tứ giác",
+      "forbidden": []
+    },
+    {
+      "term": "cạnh đối",
+      "forbidden": []
+    },
+    {
+      "term": "góc đối",
+      "forbidden": []
+    },
+    {
+      "term": "cạnh bên",
+      "forbidden": []
+    },
+    {
+      "term": "cạnh đáy",
+      "forbidden": []
     }
   ],
   "names": [
