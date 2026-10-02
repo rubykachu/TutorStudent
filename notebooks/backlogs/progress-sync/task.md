@@ -4,7 +4,7 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: not started; the 
 
 ## Handover
 
-Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was clean after the last commit unless the list below says otherwise.
+Slices 1 to 6 are built, and the R2 adapter (Task 17) and the docs (Task 19) are done. Next: Task 18 (security review, fresh Opus agent), then Task 20 (rollout, owner approvals). Working tree was clean after the last commit unless the list below says otherwise.
 
 ### Done (commits, oldest first)
 
@@ -17,11 +17,15 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 - `e9662ce` Task 15: `src/sync/import.ts` (`readBackup`: size limit, JSON, export versions 1 and 2, snapshot of a child doc, strict validation through the doc schemas, nothing written; `importBackup`: profile when missing, state through `mergeChildDocs` and `applyChildDoc`, months through `applyHistoryDoc`, which now returns how many records it added), `src/components/parent/import-backup.tsx` (button, file input, preview sheet, summary; starts a full sync after an import), export moved to version 2 in `src/progress/parent-data.ts` (`resets`), `BACKUP_IMPORT_MAX_BYTES` in config. Tests `tests/sync/import.test.ts`, `tests/components/parent/import-backup.test.tsx`, `tests/progress/parent-data.test.ts`.
 - `cff121d` creating or editing a profile, choosing a grade and resetting a lesson now also call `requestSync()` (found by the E2E: without it a profile or reset waited for the 5-minute timer). Tests in `tests/app/(child)/profiles-screen.test.tsx`, `grades-screen.test.tsx`, `tests/components/parent/reset-lesson.test.tsx`.
 - `d95b099` Task 16: `e2e/sync.spec.ts` (eight scenarios, `ipad` and `phone`), `e2e/sync-lab.ts` (devices, store reader, steps, backup builder), `SYNC_*` and `syncStoreDir()` in `e2e/targets.ts`, third server in `playwright.config.ts` (`.next-sync`, named `FAMILY_CODES`, 18 families: one per scenario and target plus one stranger per target). Run: `pnpm test:e2e e2e/sync.spec.ts`. 42 of 42 passed with learn, review, parent, unlock and sync together at `--workers=2`.
+- `e0984af` fix for the known flake: `withSyncLock` took the lock with `ifAvailable` for every caller, so an engine run asked for while this tab's history pull held it (or another tab synced) was skipped and not retried. The engine run now waits for the lock (`withSyncLock(task, { wait: true })`); the history pull keeps `ifAvailable` and skips a request while a sync holds it. One run at a time is unchanged (the lock is still exclusive). Tests `tests/sync/request-lock.test.ts` (fails on the old code: the second run finished without running), `lock.test.ts`.
+- `8eabfc0` Task 17: `src/sync/store/r2.ts` (`createR2Store`, `R2Error`, `bareEtag`), `readSyncStoreConfig` reads the four `R2_*` variables (`R2_ENV_NAMES`; none set: off with no reason; some missing or malformed: off, the reason names variables only; `SYNC_STORE` outside production still wins so a test server never reaches the bucket), `SYNC_STORE_TIMEOUT_MS`, `.env.example`. Dependency `aws4fetch` 1.0.20 (MIT, no dependencies; the full AWS SDK would add dozens of packages for four calls). Requests are signed with `AwsClient.sign` and sent with `fetch` in the adapter, because `AwsClient.fetch` retries on its own and a retried write could land twice. Mapping: 304 `unchanged`, 404 `null`, 412 and 409 `conflict` (409 is S3's concurrent conditional write), 404 under `If-Match` `conflict`, anything else `R2Error(status, code)` with no body or credentials. The contract suite (`tests/sync/store/contract.ts`, now with `root` and `scoped` options) runs on a fake bucket (`fake-s3.ts`, signed requests answered like S3). `pnpm test:r2` runs `tests/integration/r2-store.test.ts`: flag `TUTOR_R2_SMOKE=1` set by the script, loads `.env.local`, skips with a message when the variables are missing, every key under `test/<run-id>/` through `createTestStore`, deletes only keys it wrote. It has not been run.
+- `430890a` parent page copy about where progress lives (`src/components/parent/progress-location.tsx`), `7abb3a0` deploy smoke check `sync 401 without cookie`, `802ce76` Task 19 docs (`docs/spec.md` 5.7 to 5.9 and the test table, `docs/architecture.md`, `docs/operations.md` with the rollout runbook, `README.md`).
 - Gate green for each commit (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`; `tests/scripts/sources-import.test.ts` can time out under load, passes alone).
 
 ### Next steps, in order
 
-1. Slices 1 to 6 are done. Next: Task 17 (R2 adapter), then 18 to 20 (needs owner approvals). Checkpoint A is done (`b7883e7` fixed the flaky unlock E2E, test-only).
+1. Task 18: security review by a fresh Opus agent, findings into "Security review" below; build in a separate worktree and grep `.next/static` for `R2_`. Check the R2 adapter and `config.ts` reading `R2_*` as part of it.
+2. Task 20: rollout, each step approved by the owner. The runbook is in `docs/operations.md`, "Bật đồng bộ lần đầu". `pnpm test:r2` only on the owner's yes.
 
 ### Deviations from the spec
 
@@ -37,7 +41,7 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 
 ### Known flakes
 
-- `e2e/sync.spec.ts`: rare failures under load where a sync that should follow a parent-page action (reset, import) or a page load never happens within 45 s. Not reproduced when the failing scenarios run alone. A guess to check first: `withSyncLock` skips a run when the lock is held, including by this tab's own history pull (`pullHistory` takes the same lock per request), and the skipped run is not retried before the next trigger.
+- `e2e/sync.spec.ts`: fixed in `e0984af` (see Done): a run skipped because this tab's history pull held the lock. Pass rate after the fix: `e2e/sync.spec.ts` at `--workers=2` (16 tests, `ipad` and `phone`), 15 runs in a temporary worktree on port 3560: 14 runs fully green (239 of 240 tests). The one failing run was a page that never showed the section step after the tap (`[data-section-step]` missing for 5 s, before any sync), during a full `pnpm test` on the same machine; it is a load failure of a lazy page, not a lost sync. No run lost a sync after the fix.
 - `tests/scripts/sources-import.test.ts` can time out (5 s) when the whole suite runs under load; it passes alone.
 
 ## Rules for every task
@@ -327,9 +331,9 @@ Files: `e2e/sync.spec.ts`, `e2e/targets.ts`, `playwright.config.ts` (second serv
 External: the bucket and token come from Task 20 step 1 and 2. Running `pnpm test:r2` is a real R2 call; the agent runs it once only after the owner says yes for that run.
 
 Acceptance:
-- [ ] Contract suite passes on memory, fs and the mocked R2 fetch, including 412 on stale `If-Match` and on `If-None-Match: *`; on an approved run, also on real R2.
-- [ ] Missing variables make `test:r2` skip with a message, never fail the normal gate; `pnpm test` never reaches the network.
-- [ ] A unit test shows `test:r2` refuses to start with a prefix outside `test/`.
+- [x] Contract suite passes on memory, fs and the mocked R2 fetch, including 412 on stale `If-Match` and on `If-None-Match: *`; on an approved run, also on real R2. Real R2 not run: no approval yet.
+- [x] Missing variables make `test:r2` skip with a message, never fail the normal gate; `pnpm test` never reaches the network.
+- [x] A unit test shows `test:r2` refuses to start with a prefix outside `test/`.
 
 Verify: `pnpm test tests/sync/store` (always); `pnpm test:r2` (only with approval).
 
@@ -358,8 +362,8 @@ Files: this file only (review), fixes in follow-up tasks.
 Update `docs/spec.md`: "Tiến độ và đồng bộ" (main doc plus monthly history docs instead of the 500-entry log, merge rules as in `spec.md` section 6.1, one bucket with `prod/`, `dev/`, `test/` prefixes in the bucket layout, restore through the import button instead of `pnpm admin restore`), "Truy cập và bảo mật" (named family codes, PIN per device, synced settings, one bucket-scoped token instead of "2 bucket"), "Offline và PWA" (offline and `/install` are a separate later backlog, `/install` no longer says sync is required), "Chiến lược kiểm thử" (real-R2 test is the optional smoke under `test/`). Update `docs/architecture.md` (new `src/sync/` module, checks table rows, "Child progress" line in "Where state lives"), `docs/operations.md` (env table rows and the named `FAMILY_CODES` form, how to create the bucket, token and lifecycle rules, never pull the production environment into a local file, token rotation, restore a child from a snapshot via the import button, usage notification, deleting `dev/` test profiles), `README.md` if commands changed. Add a smoke check to `scripts/lib/deploy-prod.ts`: `GET /api/sync?doc=profile` without cookie answers 401.
 
 Acceptance:
-- [ ] Docs name no task numbers or planning jargon; grep for `Task `, `Slice`, `Checkpoint`, `Q[0-9]` in `docs/` finds none from this work.
-- [ ] `tests/scripts/deploy-prod.test.ts` covers the new smoke check.
+- [x] Docs name no task numbers or planning jargon; grep for `Task `, `Slice`, `Checkpoint`, `Q[0-9]` in `docs/` finds none from this work. (Grep of `docs/`, `README.md`, `.env.example` clean.)
+- [x] `tests/scripts/deploy-prod.test.ts` covers the new smoke check.
 
 Verify: `pnpm test tests/scripts/deploy-prod.test.ts && pnpm lint`
 
