@@ -1,312 +1,214 @@
 # Review: Phép chia hết. Ước và bội của một số nguyên (`phep-chia-het-uoc-va-boi-cua-mot-so-nguyen`)
 
 - Bài: `content/math/kntt/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/lesson.json`
-- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp
+- Vòng: 3 - chỉ phần đổi (Sonnet), so với bản vòng 2
 - Nguồn đã đọc: `sources/math/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/` - sbt-p58, sbt-p59, sbt-p113
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (103 id chưa có trong `ids.lock.json`, đúng với bài nháp)
-- Đọc hiểu (Haiku, lượt 1): chưa chạy (chạy sau khi vòng toàn bài hết Nghiêm trọng)
-- `lesson:walk`: 0 FAIL (theo ba reviewer nhóm), ảnh trong `.shots/walk/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`
-- Kết luận: Chưa đạt: còn 6 lỗi Nghiêm trọng (`pnpm content:hash phep-chia-het-uoc-va-boi-cua-mot-so-nguyen --root content --mark` đã chạy)
-- Bản đã review: `bc9df83fb13836553c74f706e3e6eb2fad352e371c51a333d19772684d8c72e2` (`pnpm content:diff` so với bản này)
+- Lịch sử: Vòng 1: 11 Nghiêm trọng; vòng 2: 6 Nghiêm trọng, 17 Nên sửa, 16 Góp ý; vòng 3: 0 Nghiêm trọng, 13 Nên sửa, 12 Góp ý
+- Đọc hiểu (Haiku): lượt 1 (bản trước vòng 2): 85 / 276 / 228 (quá nhiễu, bỏ); lượt 2 toàn bài trên bản hiện tại: 235 / 3 / 0; lượt 3 trên 3 mục đã viết lại: xem điều phối
+- `lesson:walk`: 0 FAIL, 0 cảnh báo (lần chạy gần nhất, trước hai commit sửa chữ `82bef98`, `3517f40`), ảnh trong `.shots/walk/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`
+- Kết luận: 0 Nghiêm trọng, chờ approve (điều phối chạy `--approve` sau khi đọc hiểu xong)
+- Bản đã review: `2274ca1c3673bb4e34b9a69844f4b014fb8adbb1963e22e31ee724e8fe9d6ad8` (`pnpm content:diff` so với bản này)
 
-Bản review: `lesson.json` và `catalog.ts` của commit `f87e1e3`. Lúc tổng hợp, `catalog.ts` trong cây làm việc đã có sửa chưa commit (nhãn `bon-phep-chia`, hàng "±3" của `uoc-vi-du`, `boi-4-vi-du`, hàng khoảng của `boi-khoang-vi-du`, "ước chung dương", chip "5 · 5", số của `chon-tong-6`, hàng x = −3 của `tim-x-thu`); các sửa đó chưa được review. Riêng `chon-tong-6` đã đổi sang −24 trong khi `explain` của `ex.chon-tong-6-chips` vẫn nói −18: sửa cả hai cùng lúc.
+Phạm vi vòng 3: mọi mục đổi so với bản `f87e1e3` (toàn bộ diff của `lesson.json` tới commit `3517f40`, và `catalog.ts`). Cây làm việc lúc review không còn sửa chưa commit. Đã so từng chuỗi chữ của `lesson.json` bằng script (hiện cả U+00A0), tự giải mọi exercise bị đổi, đọc ba trang nguồn và sheet walk các section `suy-ra-thuong`, `tim-uoc`, `tim-boi`, ảnh phone của năm hình đổi (`bon-phep-chia`, `boi-4-vi-du`, `boi-khoang-vi-du`, `tim-x-thu`, `uoc-vi-du`: chữ không cắt, không còn ±, công thức không vỡ).
 
-Đã đối chiếu mọi câu quy tắc, recap, caption với Bài 8 `quan-he-chia-het-va-tinh-chat`, Bài 11 `uoc-chung-uoc-chung-lon-nhat` (đã xuất bản) và Bài 16 `phep-nhan-so-nguyen`. Câu quy tắc dấu thương khớp khuôn Bài 16; câu ước, bội khớp Bài 8; mọi recap section và card lặp đúng câu quy tắc (trừ Góp ý 8). Mâu thuẫn còn lại: câu tìm bội lệch Bài 8 (Nghiêm trọng 2), định nghĩa và cách tìm ước chung lệch Bài 11 (Góp ý 16).
+Kiểm sáu Nghiêm trọng vòng 2: cả sáu đã xử lý.
+1. `chon-thuong-nho-nhat` thay bằng `chon-thuong-7`, `explain` gọi theo nội dung: đạt.
+2. Câu quy tắc bội, recap, card, cùng làm có "lần lượt ... và cứ thế tiếp", ba nơi lặp nguyên văn: đạt (hình còn thiếu "…", Nên sửa 4).
+3. `ex.boi-7-lon-nhat-nho-hon-30` có "và cứ thế tiếp": đạt (câu cùng kiểu ở `chon-boi-7-khoang`, Nên sửa 5).
+4. "±" nay có hàng nhìn thấy được "±3 là hai số 3 và −3" ở đầu hình `uoc-vi-du`, trước mọi chỗ dùng ±: đạt.
+5. Số 21 của bài 3.36 đổi sang −55, `explain`, `tex`, `wrong` khớp, không trùng sách: đạt.
+6. `wrong` và `explain` của `chon-tong-chia-het-9`, `chon-tong-6-chips`, cùng làm `chon-tong-4-cung-lam` không còn lấy "một số không chia hết" làm nguyên nhân: đạt; không còn câu nào kết luận tổng, hiệu từ số không chia hết.
+
+NBSP: sau sửa, không còn phép tính nào trong chữ của `lesson.json` (note, prompt, option, segment, explain, wrong, caption, recap) có dấu cách thường quanh +, −, ·, :, =. Chỗ mới viết (`ex.chon-thuong-7`, `ex.dien-boi-3-nhan`, `ex.tinh-48-chia-8`, `ex.dien-uoc-x-15`, `wrong` của `ex.kiem-tra-42-chia-6`, `ex.chon-tong-chia-het-9`) đều giữ U+00A0 sau toán tử, cùng quy ước với `quy-tac-dau-ngoac`. Chữ trong `catalog.ts` (nhãn dòng, chip) vẫn dùng dấu cách thường; ảnh phone không thấy gãy.
 
 ## Nghiêm trọng
 
-### 1. `explain` gọi lựa chọn theo vị trí "Hai phép đầu" (LL-26)
-
-- Vị trí: `$.exercises[23].explain.text` (`ex.chon-thuong-nho-nhat`, câu kho ôn card `suy-ra-thuong`)
-- Nguồn: —
-- Vấn đề: "Hai phép đầu có hai số khác dấu nên thương âm…". App xáo lựa chọn, nên phần lớn lần làm "hai phép đầu" có cả (−15) : (−5), và câu bảo phép cùng dấu đó cho thương âm. Câu mới thêm ở vòng sửa (thay `xep-thuong`), tức bản sửa sinh lỗi (LL-20).
-- Sửa: gọi bằng nội dung: "Phép 12 : (−2) và phép (−20) : 5 có hai số khác dấu nên thương âm: −6 và −4. Phép (−15) : (−5) có hai số cùng dấu nên thương là 3. Trong ba thương, −6 nhỏ nhất." (đổi số (−15) : (−5) theo Nên sửa 6.)
-
-### 2. Quy tắc tìm bội dừng ở "1, 2, 3", hình quy tắc chỉ nhân với 1, 2, không có "…" (LL-17)
-
-- Vị trí: `$.sections[6].blocks[1].children[0].text`, `$.sections[6].recap.caption`, `$.cards[6].recap.caption` (`tim-boi`); hình `boi-4-vi-du` (`catalog.ts`, màn quy tắc và recap); `$.sections[6].blocks[2].children[0].text` (cùng làm)
-- Nguồn: tr.58 kiến thức cần nhớ 3, lời giải 3.37 tr.113 (nhân 11 lần lượt với 1; 2; …; 9), `sbt-p58.png`, `sbt-p113.png`
-- Vấn đề: "nhân số đó với 1, 2, 3 rồi viết thêm số đối của tích" là danh sách đóng; câu "Sửa" vòng 1 và câu quy tắc đã xuất bản của Bài 8 đều có "lần lượt … và cứ thế tiếp", bản sửa bỏ mất (LL-20). Hình chỉ có 4 · 1, 4 · 2, −4, −8, 0, không có `\ldots`, nên recap đọc thành "bội của 4 là 4, 8, −4, −8, 0". Làm đúng từng chữ thì sai ở cùng làm `chon-boi-5-cung-lam` (20), `ex.chon-boi-cua-am3` (−12), `ex.chon-boi-6-chips` (24), `ex.boi-7-lon-nhat-nho-hon-30` (ra 21).
-- Sửa: "Muốn tìm các bội của số nguyên khác 0, nhân số đó lần lượt với 1, 2, 3 và cứ thế tiếp, rồi viết thêm số đối của các tích. Số 0 cũng là bội của số đó." (recap section, card lặp nguyên văn). Hình: thêm hàng `4 \cdot 3 = 12`, hàng bội dương `4,\ 8,\ 12,\ \ldots`, hàng bội âm `-4,\ -8,\ -12,\ \ldots`. Cùng làm: "Nhân 5 lần lượt với 1, 2, 3, 4 và cứ thế tiếp giúp bạn nhận ra các bội."
-
-### 3. Lời giải thích liệt kê bội như một danh sách đủ (LL-17)
-
-- Vị trí: `$.exercises[44].explain.text` (`ex.boi-7-lon-nhat-nho-hon-30`); cùng kiểu nhẹ hơn ở `$.exercises[41].explain.text` (`ex.chon-boi-4-khoang`)
-- Nguồn: —
-- Vấn đề: "Các bội dương của 7 là 7, 14, 21, 28, 35." là câu sai: bội dương của 7 không dừng ở 35. Cùng kiểu câu điền `dien-boi-3` đã tính Nghiêm trọng ở vòng 1, và cộng với Nghiêm trọng 2 thì bé nhớ "bội chỉ có vài số". `chon-boi-4-khoang` viết "Các bội của 4 là −8, −4, 0, 4, 8, 12 và cứ thế tiếp", đọc như bội của 4 bắt đầu từ −8. Reviewer nhóm để Nên sửa; tổng hợp nâng lên vì checklist xếp giải thích nói sai kiến thức là Nghiêm trọng.
-- Sửa: "Các bội dương của 7 là 7, 14, 21, 28, 35 và cứ thế tiếp. Trong chúng, 28 là số lớn nhất nhỏ hơn 30." `chon-boi-4-khoang`: "Các bội của 4 là 0, ±4, ±8, ±12 và cứ thế tiếp." (theo cách viết chốt ở Nghiêm trọng 4).
-
-### 4. Kí hiệu "±" dùng ở màn quy tắc, recap và năm lời giải mà bài không dạy (LL-09)
-
-- Vị trí: hình `uoc-vi-du` (màn quy tắc và recap của `tim-uoc`), `uoc-chung-vi-du`, `tim-x-3`, `tim-x-vi-du` (`catalog.ts`); `$.exercises[30].explain`, `$.exercises[31].explain.text`, `$.exercises[34].explain.text`, `$.exercises[38].explain.text`, `$.exercises[42].explain.text`
-- Nguồn: lời giải 3.36 tr.113 ("viết gọn là ±1; ±3; …"), `sbt-p113.png`
-- Vấn đề: hình quy tắc `tim-uoc` chỉ gồm hai hàng `±1, ±3, ±9` và `±1, ±2, ±7, ±14`. Chữ "viết gọn bằng dấu ±" chỉ nằm ở `label`, mà `label` là `aria-label` của `<figure>` (`src/visuals/shared/formula-rows.tsx`), không hiện trên màn. Không note nào nói ±3 là "3 và −3", không bài nào trước dùng "±". Ví dụ duy nhất của câu quy tắc và recap bé ôn viết bằng kí hiệu bé chưa đọc được; bé đọc ±1 thành "cộng 1" thì sót đúng các ước âm mà section dạy. LL-09 đã chốt: kí hiệu lấy từ lời giải sách phải có câu dạy cách đọc trước lần dùng đầu.
-- Sửa: thêm vào note `$.sections[5].blocks[0]` (sau hình `uoc-6`): "Ta viết gọn 1 và −1 là ±1, đọc là "cộng trừ 1"."; hình `uoc-vi-du` có hàng nhìn thấy được "±3 là hai số 3 và −3". Hoặc bỏ "±", viết đủ hai số ở mọi hình và `explain`.
-
-### 5. Câu kiểm tra `chon-uoc-cua-am21` dùng số 21 của bài 3.36 và `tex` là đúng dòng lời giải (LL-08)
-
-- Vị trí: `$.exercises[30]` (`ex.chon-uoc-cua-am21`), `explain.text`, `explain.tex`
-- Nguồn: bài 3.36 tr.59 ("Tìm các ước của 21 và −66"), lời giải tr.113 ("viết gọn là ±1; ±3; ±7; ±21"), `sbt-p59.png`, `sbt-p113.png`
-- Vấn đề: số −21 lấy từ câu "Sửa" vòng 1 (Nên sửa 8: "−14 hay −21"), nhưng 21 là số của chính bài 3.36, và `explain` "Các ước của −21 giống các ước của 21: ±1, ±3, ±7, ±21" cùng `tex` là nguyên dòng lời giải. Vòng 1 đã đổi màn `chon-tich-21-cung-lam` khỏi số 21 của 3.39 vì cùng lý do.
-- Sửa: đổi sang số chưa dùng trong bài và trong sách, vd −22 (lựa chọn −11, −2, 22 đúng, −4 sai) hay −35; tránh 6, 8, 9, 10, 12, 14, 15, 18, 21, 66. Viết lại `explain`, `tex`, `wrong` theo số mới và theo cách viết của Nghiêm trọng 4.
-
-### 6. Lý do sai và gợi ý cùng làm dạy "một số không chia hết thì tổng không chia hết" (LL-17)
-
-- Vị trí: `$.exercises[58].explain.wrong[0]`, `$.exercises[58].explain.wrong[1]`, `$.exercises[58].explain.text` (`ex.chon-tong-chia-het-9`); `$.exercises[57].explain.text` (`ex.chon-tong-6-chips`: "Số 10 và 7 không chia hết cho 6."); `$.sections[10].blocks[2].children[0].text` (cùng làm `chon-tong-4-cung-lam`)
-- Nguồn: —
-- Vấn đề: "20 không chia hết cho 9, nên kết quả −16 không chia hết cho 9." lấy một số không chia hết làm nguyên nhân; bé nhớ "một số hạng không chia hết thì tổng không chia hết", sai với 20 + 7 = 27. Vòng 1 (Nên sửa 18) đã nêu câu này cùng `chon-tong-chia-het-5`; bản sửa chỉ sửa câu 5. Bản sửa còn thêm vào cùng làm "Xét xem hai số trong mỗi phép tính có chia hết cho 4 không", dẫn bé tới cùng suy luận, trong khi quy tắc section chỉ nói chiều "cả hai cùng chia hết" (chiều "đúng một số không chia hết" là quy tắc Bài 8 mà bài không nhắc). Mức cuối: Nghiêm trọng (nhóm 3 đề nghị, tổng hợp giữ): checklist xếp lý do `wrong` nói sai là Nghiêm trọng, LL-17 đã tính Nghiêm trọng cho đúng kiểu này ở `on-tap-chuong-2` vòng 1, và đây là lần sửa thứ hai vẫn sót.
-- Sửa: hai `wrong`: "(−36) + 20 = −16, mà −16 không chia hết cho 9.", "45 − 7 = 38, mà 38 không chia hết cho 9." `explain.text` của hai câu: thay "Số 20 và 7 không chia hết cho 9." bằng "Còn −16 và 38 không chia hết cho 9." (tương tự cho câu 6). Note cùng làm: "Tính từng phép, hoặc xem hai số có cùng chia hết cho 4 không." Tìm cả bài và `catalog.ts` mọi câu "… không chia hết …, nên …" có kết luận về tổng, hiệu.
+Không có.
 
 ## Nên sửa
 
-### 1. Hình quy tắc và recap `bon-phep-chia` không chỉ ra việc đổi dấu (LL-15)
-
-- Vị trí: hình `bon-phep-chia` (`catalog.ts`; màn `$.sections[3].blocks[0]`, `$.sections[3].recap`, `$.cards[3].recap`)
-- Nguồn: tr.58–59 ví dụ 1, `sbt-p58.png`, `sbt-p59.png`
-- Vấn đề: câu quy tắc nói "đổi dấu một trong hai số… đổi dấu cả hai số", nhãn bốn dòng vẫn "cùng dấu +", "cùng dấu −", "khác dấu", "khác dấu", tức lặp quy tắc section 2, 3.
-- Sửa: nhãn theo phép gốc 72 : 8 = 9: "đổi dấu số bị chia", "đổi dấu số chia", "đổi dấu cả hai số".
-
-### 2. Hai trong bốn câu kho ôn của card `suy-ra-thuong` không ôn ý của card (LL-06)
-
-- Vị trí: `$.exercises[21]` (`ex.tinh-81-chia-am9`), `$.exercises[23]` (`ex.chon-thuong-nho-nhat`)
-- Nguồn: —
-- Vấn đề: một câu là phép chia khác dấu không cho phép gốc, một câu so sánh thương âm; card ôn quy tắc "đổi dấu".
-- Sửa: chuyển hai câu sang card hợp (`chia-khac-dau`), hoặc viết lại theo ý đổi dấu, vd "Biết 81 : 9 = 9. Tính (−81) : (−9)."
-
-### 3. Mẹo "Kiểm tra phép chia" thiếu điều kiện chia hết và số chia khác 0 (LL-24)
-
-- Vị trí: `$.sections[3].blocks[1]` (`tip.kiem-tra-bang-nhan`)
-- Nguồn: —
-- Vấn đề: "nếu không thì bạn đã sai số hoặc sai dấu" chỉ đúng khi phép chia là chia hết; với (−7) : 2, (−16) : 6 của chính bài, mọi thương đoán đều lệch mà kết luận đúng là "không chia hết". Với 0 : 0 = 5, phép nhân khớp nên mẹo bảo "đúng". Bảng thử 8 đầu vào ở `.shots/review/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/vong2-nhom-1.md`. Không câu tính thương nào của bài ra sai nên giữ Nên sửa.
-- Sửa: "Nhân số chia (khác 0) với thương. Được đúng số bị chia thì phép chia đúng. Nếu không, bạn đã sai số hoặc sai dấu; thử mọi số mà không số nào được thì phép chia đó không chia hết."
-
-### 4. Câu `kiem-tra-42-chia-6` hỏi "đúng hay sai" mà có hai lựa chọn mở bằng "Sai" (LL-10)
-
-- Vị trí: `$.exercises[19].prompt[0]`, `$.exercises[19].options` (`ex.kiem-tra-42-chia-6`)
-- Nguồn: —
-- Vấn đề: nhiễu mới "Sai, vì (−42) : 6 = −6" trả lời đúng câu hỏi "đúng hay sai?", chỉ sai lý do; đề không nói phải chọn cả lý do.
-- Sửa: "Nam tính (−42) : 6 = 7. Dùng phép nhân để kiểm tra. Chọn câu có kết luận và lý do đều đúng."
-
-### 5. Nấc 1 của hai câu điền chỉ tô dòng hướng dẫn (LL-02)
-
-- Vị trí: `$.exercises[4].hints.highlight` (`ex.dien-thuong-30`), `$.exercises[17].hints.highlight` (`ex.dien-thuong-khac-dau`)
-- Nguồn: —
-- Vấn đề: dữ kiện nằm trong `segments`, `prompt` chỉ có "Chọn số điền vào chỗ trống.", không có `hintVisualId`; cùng kiểu Nên sửa 23 vòng 1 ở ba câu khác.
-- Sửa: đưa phép chia lên `prompt` (note hay khối `formula`) rồi tô khối đó.
-
-### 6. Câu ôn, mẹo và cùng làm lặp số của hình quy tắc, recap, câu luyện (LL-07)
-
-- Vị trí: `$.exercises[23].options` ((−15) : (−5), dòng đầu recap `cung-dau-vi-du`); `$.sections[3].blocks[1].tex` ((−72) : 8 = −9, dòng ba của `bon-phep-chia` ngay màn trước); hình `chon-thuong-am5-cung-lam` (chip (−45) : (−9) là đề `ex.tinh-cung-dau-45`)
-- Nguồn: —
-- Vấn đề: bé làm đúng nhờ nhớ số trên màn.
-- Sửa: đổi sang số chưa dùng (tìm trong cả `lesson.json` và `catalog.ts`), vd (−64) : (−8), mẹo (−60) : 5 = −12, cùng làm 70 : 7 = 10.
-
-### 7. Section `suy-ra-thuong` không có ví dụ đời sống (LL-16)
-
-- Vị trí: `$.sections[3]`
-- Nguồn: —
-- Vấn đề: ba section trước mở bằng tình huống; section này vào thẳng câu quy tắc.
-- Sửa: note mở đầu dùng lại tình huống nợ: "Bốn bạn chia đều khoản nợ 20 nghìn: (−20) : 4 = −5. Chia đều 20 nghìn tiền thưởng thì 20 : 4 = 5: đổi dấu số bị chia, thương đổi dấu."
-
-### 8. Hình quy tắc bội trong khoảng không cho thấy bội của số nào, khoảng nào (LL-15)
-
-- Vị trí: hình `boi-khoang-vi-du` (màn quy tắc và recap `boi-trong-khoang`)
-- Nguồn: —
-- Vấn đề: "bội của 3, lớn hơn −10 và nhỏ hơn 10" chỉ ở `label` (không hiện); hình cũng bỏ bước "liệt kê rồi giữ" của câu quy tắc.
-- Sửa: hàng đầu nhìn thấy được nêu số và khoảng; một hàng cho thấy 12, −12 bị bỏ vì ngoài khoảng.
-
-### 9. Bội của 4 lặp ở màn quy tắc, ví dụ đời sống, hai câu kiểm tra và câu ôn (LL-07)
-
-- Vị trí: hình `boi-4-vi-du` rồi `$.exercises[36]` (`ex.chon-boi-cua-4`, −8); `thang-may-boi-4` rồi `$.exercises[41]` (`ex.chon-boi-4-khoang`, 8 và −4); `$.exercises[43]` (`ex.dem-boi-4-khoang`)
-- Nguồn: —
-- Vấn đề: câu kiểm tra hỏi lại số vừa in trên màn trước; câu ôn là bội của 4 lần thứ năm.
-- Sửa: `chon-boi-cua-4` sang bội của 9; `chon-boi-4-khoang` sang bội của 5 với khoảng khác màn cùng làm; hoặc đổi số ví dụ thang máy.
-
-### 10. Câu ôn `dien-boi-3` gần trùng recap `boi-khoang-vi-du` và gắn card section trước (LL-07)
-
-- Vị trí: `$.exercises[39]` (`ex.dien-boi-3`, `cardIds` `card.tim-boi`)
-- Nguồn: —
-- Vấn đề: sáu số đầu của hàng recap (cùng số 3, cùng cận −10); câu hỏi bội trong khoảng mà gắn card `tim-boi`.
-- Sửa: đổi số (vd bội của 7 lớn hơn −15 và nhỏ hơn 10) và chuyển sang `card.boi-trong-khoang`; hoặc bỏ khoảng ("Số nào là bội của −3?").
-
-### 11. Ví dụ của mẹo "Xét chia hết khi có số âm" là lựa chọn đúng của câu ôn (LL-07)
-
-- Vị trí: `$.sections[4].blocks[2].tex` (`tip.bo-dau-xet-chia-het`), `$.exercises[28]` (`ex.chon-chia-het-bo-dau`)
-- Nguồn: —
-- Vấn đề: `(-35) \chiahet 7` có ở cả mẹo và câu ôn cùng card; câu ôn dùng −35 cho cả bốn lựa chọn.
-- Sửa: đổi số câu ôn (vd −28 với 7, −4 đúng; −6, 3 sai), sửa `explain`, `wrong`.
-
-### 12. Câu kiểm tra `dem-uoc-cua-12` có đáp số bằng số trong đề (LL-14)
-
-- Vị trí: `$.exercises[29]` (`ex.dem-uoc-cua-12`)
-- Nguồn: —
-- Vấn đề: đáp 12, gõ lại số của đề cũng đúng; câu luyện liền trước vừa cho chọn ước của 12.
-- Sửa: số có số ước khác chính nó và chưa dùng, vd 20 (12 ước) hay 16 (10 ước, thử số chính phương).
-
-### 13. Câu quy tắc và tên section `tim-x` có hai cách đọc (LL-10)
+### 1. Câu quy tắc và tên section `tim-x` vẫn đọc được hai cách, "số đó" mơ hồ hơn (LL-10, LL-20)
 
 - Vị trí: `$.sections[11].blocks[2].children[0].text`, `$.sections[11].recap.caption`, `$.cards[11].recap.caption`, `$.sections[11].title`
 - Nguồn: lời giải 3.40 tr.113, `sbt-p113.png`
-- Vấn đề: "x cộng thêm một số chia hết cho x" đọc được thành "x cộng với (một số chia hết cho x)"; "số đó" phải dò ngược.
-- Sửa: "Tổng của x và một số chia hết cho x khi x là ước của số cộng thêm. Mọi ước của số cộng thêm đều làm được." (recap lặp nguyên văn); tên section "Tìm x khi tổng của x và một số chia hết cho x".
+- Vấn đề: "Tổng của x và một số chia hết cho x khi x là ước của số đó." đọc được thành x + (một số chia hết cho x), luôn đúng. "Số đó" có thể trỏ "một số" đó, không phải số cộng thêm. Câu gợi ý của review vòng 2 cũng còn hai cách đọc; bản sửa chép gần nguyên nó nên lỗi ở lại. Tên section "Tìm số x để tổng của x và một số chia hết cho x" cùng kiểu.
+- Sửa: dùng số cụ thể như các bài tập: "Tổng x + 3 chia hết cho x khi x là ước của 3. Cộng với số nào thì x là ước của số đó." (recap và card lặp nguyên văn). Tên section: "Tìm số x khi x + một số chia hết cho x".
 
-### 14. Màn `tim-x` còn thiếu bậc cho bé học chậm (LL-16; tiếp Nên sửa 15, 16 vòng 1)
+### 2. Ví dụ mẹo "Kiểm tra phép chia" trùng câu luyện section trước và câu ôn cùng section (LL-07, LL-20)
 
-- Vị trí: `$.sections[11].blocks[0].children[0].text`, hình `tim-x-thu`; `$.sections[11].blocks[1].children[0].text`, hình `tim-x-3`, `tim-x-vi-du`
+- Vị trí: `$.sections[3].blocks[1].tex`; `$.exercises[14]` (`ex.tinh-khac-dau-48`); `$.exercises[21]` (`ex.tinh-48-chia-8`)
 - Nguồn: —
-- Vấn đề: (a) màn thử không nói điều cần thấy (1, 3, −1 là ước của 3, còn 2 thì không); (b) `tim-x-3` kết luận x = −3 mà màn thử chưa thử −3; (c) quy tắc nói "chính là" (hai chiều) mà bài chỉ lập luận một chiều, nhãn `tim-x-vi-du` "x là một ước của 6" cũng một chiều.
-- Sửa: (a) "Thay x bằng vài số rồi xem x + 3 có chia hết cho x không. Các số làm được là 1, 3, −1, −3, đều là ước của 3. Số 2 không là ước của 3 nên không làm được." (b) hàng x = −3 trong `tim-x-thu`. (c) thêm "Ngược lại, x là ước của 3 thì x và 3 cùng chia hết cho x, nên x + 3 chia hết cho x."; nhãn "x + 6 chia hết cho x khi x là ước của 6".
+- Vấn đề: bản sửa đổi (−72) : 8 (trùng hình `bon-phep-chia`) sang (−48) : 6 = −8, nhưng đó là cùng số và cùng thương của `ex.tinh-khac-dau-48` (48 : (−6) = −8) vừa làm ở section 3; `ex.tinh-48-chia-8` lại dùng 48 một lần nữa. Bé làm đúng nhờ nhớ −8.
+- Sửa: ví dụ mẹo dùng số chưa có trong bài, vd (−60) : 5 = −12 và 5 · (−12) = −60; đổi `ex.tinh-48-chia-8` sang số khác 48.
 
-### 15. Chip nhiễu không ứng lỗi nào ở hai màn chips (LL-20)
+### 3. Câu kiểm tra `chon-boi-cua-4` có hai đáp án đúng nằm ngay trên hình quy tắc (LL-07, LL-20)
 
-- Vị trí: hình `chon-tich-35-cung-lam` (chip "1 · 12", màn `$.sections[9].blocks[2]`), `chon-tich-14` (chip "7 · 7", `ex.chon-tich-14-chips`)
+- Vị trí: `$.exercises[36]` (`ex.chon-boi-cua-4`); hình `boi-4-vi-du` (`catalog.ts`)
 - Nguồn: —
-- Vấn đề: đổi 21 sang 35 nhưng giữ chip "1 · 12" của bản cũ; "7 · 7" = 49 chưa sửa từ Góp ý 18 vòng 1. Bé loại ngay mà không cần nghĩ về dấu.
-- Sửa: nhiễu sai dấu, vd "(−1) · 35", "(−2) · 7"; tính lại `wants`, `done`, `explain` của `ex.chon-tich-14-chips` (đang nhắc "7 · 7 = 49").
+- Vấn đề: vòng 2 (Nên sửa 9) nêu −8 trùng hình; bản sửa đổi hai câu khác nhưng không đổi câu này, và hình mới thêm hàng 4 · 3 = 12, hàng −12, nên cả hai đáp án đúng −8 và 12 đều in trên màn ngay trước. Câu kiểm tra ngay sau quy tắc không còn kiểm gì.
+- Sửa: đổi sang bội của 9 (vd −18 và 27 đúng; −12 và 20 sai), tính lại `explain`, `wrong`.
 
-### 16. Câu luyện `chon-tong-6-chips` lặp số của hình quy tắc ngay trước (LL-07)
+### 4. Hình quy tắc `boi-4-vi-du` không có "…", đọc như danh sách đóng (LL-17)
 
-- Vị trí: `$.exercises[57]` (`ex.chon-tong-6-chips`), hình `chon-tong-6`; so với `tong-hieu-vi-du`, `tong-no`
+- Vị trí: hình `boi-4-vi-du` (`catalog.ts`; màn quy tắc `$.sections[6].blocks[1]` và recap `$.cards[6].recap`)
+- Nguồn: lời giải 3.37 tr.113, `sbt-p113.png`
+- Vấn đề: câu chữ đã có "cứ thế tiếp", nhưng hình chỉ liệt kê 4, 8, 12, −4, −8, −12, 0 (đã xem ảnh iPad và phone). Vòng 2 đã yêu cầu hàng `\ldots`; bản sửa thêm hàng 12 mà không thêm "…".
+- Sửa: thêm `\ldots` vào hai hàng: "4, 8, 12, …" và "−4, −8, −12, …".
+
+### 5. `explain` của `chon-boi-7-khoang` liệt kê bội như bắt đầu từ −14 (LL-17)
+
+- Vị trí: `$.exercises[41].explain.text` (`ex.chon-boi-7-khoang`)
 - Nguồn: —
-- Vấn đề: cùng hai số −12, 18 đổi vai, cùng số chia 6, đáp số −30 trùng hình quy tắc.
-- Sửa: số chia và cặp số khác, vd chia hết cho 7: (−21) + 14, 35 − (−14); tính lại `params` và `explain`.
+- Vấn đề: "Các bội của 7 là −14, −7, 0, 7, 14, 21 và cứ thế tiếp." Đây là nửa còn lại của Nghiêm trọng 3 vòng 2 (cách viết chốt là "0, ±7, ±14, ..."); danh sách mở một đầu, bé hiểu bội của 7 bắt đầu từ −14.
+- Sửa: "Các bội của 7 là 0, ±7, ±14, ±21 và cứ thế tiếp." (cùng cách viết với `ex.xep-boi-6-khoang`).
 
-### 17. Phép tính trong chữ bị ngắt dòng giữa biểu thức (LL-12, LL-21)
+### 6. `explain` của `dien-uoc-boi` có "Số chia hết cho 8" đọc thành "số chia" (LL-10, LL-25)
 
-- Vị trí: `$.sections[11].blocks[0].children[0].text`, `$.sections[11].blocks[3].children[0].text` (dòng sau đọc thành "8 chia hết cho x"), `$.sections[9].blocks[0].children[0].text`; `explain.text` của `$.exercises[0]`, `[2]`, `[7]`, `[8]`, `[14]`, `[20]`, `[50]`, `[52]`, `[55]`, `[57]` (ảnh phone và iPad ghi trong `vong2-nhom-1.md` Góp ý 6, `vong2-nhom-3.md` Nên sửa 5)
+- Vị trí: `$.exercises[25].explain.text` (`ex.dien-uoc-boi`)
 - Nguồn: —
-- Vấn đề: chữ gãy ở +, −, ·, =; nửa sau đứng đầu dòng thành một phép tính khác. Bài không có dấu cách không ngắt (U+00A0) nào, trong khi `quy-tac-dau-ngoac`, `phep-nhan-phep-chia` dùng nó.
-- Sửa: dấu cách quanh +, −, ·, = và giữa "x" với "=" trong phép tính viết trong chữ đổi thành U+00A0, hoặc đưa phép tính ra `tex`/`formula`. Soát cả bài.
+- Vấn đề: "Số chia 8 là ước, còn số bị chia −24 là bội. Số chia hết cho 8 thì là bội của 8." Ngay sau "Số chia 8", cụm "Số chia hết cho 8" đọc thành "số chia | hết cho 8", mà "số chia" là thuật ngữ của bài.
+- Sửa: "Mọi số mà 8 là ước của nó đều là bội của 8." hay bỏ câu thứ hai.
+
+### 7. Nấc 1 của hai câu điền mới chỉ tô dòng hướng dẫn (LL-02, LL-20)
+
+- Vị trí: `$.exercises[65].hints.highlight` (`ex.dien-uoc-x-15`), `$.exercises[39].hints.highlight` (`ex.dien-boi-3-nhan`); cùng dạng: `$.exercises[25]`, `$.exercises[33]`
+- Nguồn: —
+- Vấn đề: vòng 2 (Nên sửa 5) bắt hai câu điền chuyển dữ kiện lên `prompt`. Hai câu viết lại ở vòng này lại để dữ kiện trong `segments`, `prompt` chỉ là "Chọn từ/số điền vào chỗ trống.", nên nấc 1 sáng đúng dòng hướng dẫn. Hai câu còn lại cùng dạng, chưa đổi.
+- Sửa: đưa phần dữ kiện lên `prompt` (vd "Xét tổng x + 15 chia hết cho x. Chọn từ điền vào chỗ trống." với segment chỉ còn "x là … của 15"; "Tìm số nhân với 3 để được −18. Chọn số điền vào chỗ trống.") rồi tô khối đó.
+
+### 8. Section `suy-ra-thuong` vẫn không có ví dụ đời sống (LL-16, tiếp Nên sửa 7 vòng 2)
+
+- Vị trí: `$.sections[3].blocks[0]`
+- Nguồn: —
+- Vấn đề: ba section trước mở bằng tình huống, section này vào thẳng câu quy tắc; bản sửa không đụng tới.
+- Sửa: note mở đầu dùng lại tình huống nợ: "Bốn bạn chia đều khoản nợ 20 nghìn: (−20) : 4 = −5. Chia đều 20 nghìn tiền thưởng thì 20 : 4 = 5. Đổi dấu số bị chia, thương đổi dấu."
+
+### 9. Câu luyện `chon-tong-6-chips` còn cùng khuôn với hình quy tắc ngay trước (LL-07)
+
+- Vị trí: hình `chon-tong-6`; so với `tong-hieu-vi-du`, `tong-no` (`catalog.ts`); `$.exercises[57]`
+- Nguồn: —
+- Vấn đề: chỉ đổi −12 thành −24; vẫn số chia 6, vẫn thừa số 18, vẫn hai chip đúng "(…) + 18" và "(…) − 18", giống hệt hai hàng của `tong-hieu-vi-du`.
+- Sửa: đổi số chia và cả hai số (vd chia hết cho 7: (−21) + 14, (−21) − 14, nhiễu (−21) + 10, (−21) − 4), tính lại `explain`.
+
+### 10. Chip nhiễu "5 · 5" và "7 · 7" không ứng lỗi nào (LL-14, tiếp Nên sửa 15 vòng 2)
+
+- Vị trí: hình `chon-tich-35-cung-lam` (chip "5 · 5"; `$.sections[9].blocks[2]`), `chon-tich-14` (chip "7 · 7"; `$.exercises[52]`, `explain` nhắc "7 · 7 = 49")
+- Nguồn: —
+- Vấn đề: vòng 2 đề nghị nhiễu sai dấu; bản sửa thay "1 · 12" bằng "5 · 5" (25) và không đổi "7 · 7". Cả hai là tích sai giá trị hiển nhiên, bé loại ngay mà không nghĩ về dấu.
+- Sửa: nhiễu sai dấu như "(−1) · 35" và "(−2) · 7"; tính lại `wants`, `done`, `explain` của `ex.chon-tich-14-chips`.
+
+### 11. Màn `tim-x` còn hai trong ba chỗ thiếu bậc (LL-16, tiếp Nên sửa 14 vòng 2)
+
+- Vị trí: `$.sections[11].blocks[0].children[0].text`; `$.sections[11].blocks[2].children[0].text`; hình `tim-x-vi-du`
+- Nguồn: —
+- Vấn đề: hàng x = −3 đã thêm vào `tim-x-thu`, nhưng note vẫn kể chỉ "x = 1, x = 3 và x = −1" và không nói điều cần thấy (các số làm được đều là ước của 3). Chiều ngược của quy tắc ("x là ước thì x + 3 chia hết cho x") vẫn chưa được lập luận, trong khi quy tắc và `explain` của `ex.chon-so-can-tim-7` dùng "khi" như hai chiều.
+- Sửa: note thử: "Các số làm được là 1, 3, −1, −3, đều là ước của 3. Số 2 không là ước của 3 nên không làm được." Thêm vào note kế: "Ngược lại, x là ước của 3 thì x và 3 cùng chia hết cho x, nên x + 3 chia hết cho x."
+
+### 12. `overview` bỏ mất ước chung, phân tích thành tích, tổng và hiệu (LL-20, LL-16)
+
+- Vị trí: `$.overview.summary`, `$.overview.goals[2]`
+- Nguồn: —
+- Vấn đề: viết lại cho dễ đọc làm mất "ước chung" khỏi cả `summary` lẫn `goals`; từ vòng 2 đã thiếu phân tích thành tích. Bốn trong mười hai section (`uoc-chung`, `phan-tich-thanh-tich`, `tong-hieu-chia-het`, kể cả nửa đầu của `tim-x`) không có trong tổng quan, mà "ước chung" là kiến thức cần nhớ 2 của sách.
+- Sửa: thêm vào `summary` một câu: "Bạn còn tìm ước chung của hai số, viết một số thành tích hai số nguyên, và dùng tổng, hiệu cùng chia hết." Giữ câu ngắn như bản đã qua đọc hiểu.
+
+### 13. Khớp Bài 16 (`phep-nhan-so-nguyen`, chỉ đọc)
+
+- Vị trí: `$.sections[1].blocks[1].children[0].text` (+ recap, card), `$.sections[2].blocks[1].children[0].text` (+ recap, card), hình `cung-dau-vi-du`, `khac-dau-vi-du`
+- Nguồn: —
+- Vấn đề: câu khác dấu cùng mẫu với Bài 16: "Hai số khác dấu thì tích là số âm: nhân hai phần số tự nhiên rồi viết dấu − ở trước." so với "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước." Chỉ lệch "khác 0" (bài này thêm vì chia cho 0 không được, hợp lý). Câu cùng dấu: Bài 16 "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên." và "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm."; bài này "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau." Lệch: "số nguyên" thừa trong khi Bài 16 chỉ nói "số", và đuôi "cho nhau" không có ở Bài 16. Màu khớp: số dương lime, số âm pink ở cả hai bài.
+- Sửa: khi Bài 16 xuất bản, bỏ "nguyên" và "cho nhau" ở câu cùng dấu để cùng mẫu "Hai số khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên."; giữ khuôn khác dấu như hiện tại.
 
 ## Góp ý
 
-### 1. "Nhân thương với số chia" mà phép nhân viết số chia trước (LL-05; Góp ý 1 vòng 1, chưa sửa)
+### 1. Mẹo "Kiểm tra phép chia" vẫn viết "Nhân thương với số chia" mà phép nhân viết số chia trước (LL-05; Góp ý 1 vòng 2, chưa sửa)
 
-- Vị trí: `$.sections[3].blocks[1].text`, `.tex`; `$.exercises[19].explain.text`; `$.exercises[21].explain`
+- Vị trí: `$.sections[3].blocks[1].text`, `.tex`
 - Nguồn: —
-- Vấn đề: `tex` `8 \cdot (-9)`; ở `tinh-81-chia-am9` số chia và thương cùng là −9.
-- Sửa: "Nhân số chia với thương."; đổi `tinh-81-chia-am9` sang số có thương khác số chia.
+- Vấn đề: `tex` `6 · (−8)`, số chia đứng trước.
+- Sửa: "Nhân số chia với thương."
 
-### 2. Đề `chia-no-ba-ban` báo trước thương âm (LL-02; Góp ý 4 vòng 1, chưa sửa)
+### 2. Đề `chia-no-ba-ban` báo trước thương âm (LL-02; chưa sửa)
 
 - Vị trí: `$.exercises[12].prompt[0]`
 - Nguồn: —
 - Vấn đề: "viết bằng số âm?".
-- Sửa: "Số tiền mỗi bạn thay đổi bao nhiêu nghìn? Viết bằng số nguyên."
+- Sửa: "Mỗi bạn thay đổi bao nhiêu nghìn? Viết bằng số nguyên."
 
-### 3. Nhiễu (−7) : 2 của `chon-chia-het` thiếu `wrong` (Góp ý 6 vòng 1, chưa sửa)
+### 3. Nhiễu (−7) : 2 của `chon-chia-het` thiếu `wrong` (chưa sửa)
 
 - Vị trí: `$.exercises[1].explain.wrong`
 - Nguồn: —
 - Vấn đề: bé dễ nghĩ ra −3.
-- Sửa: thêm "Không có số nguyên nào nhân với 2 để được −7."
+- Sửa: "Không có số nguyên nào nhân với 2 để được −7."
 
-### 4. Nhiều câu cùng đáp số −9, câu ôn trùng hình gợi ý (LL-07; Góp ý 5 vòng 1, chưa sửa)
+### 4. Số lặp: câu ôn trùng ví dụ của hình gợi ý, số 35 xuất hiện ở bốn chỗ (LL-07)
 
-- Vị trí: `$.exercises[22]` (`ex.chon-thuong-am9`, trùng `goi-y-khac-dau`), `$.exercises[5]` (`ex.chon-chia-het-nhieu`); `ex.tinh-bon-phep`, `ex.tinh-81-chia-am9`, `ex.chon-thuong-am9`, mẹo và recap `bon-phep-chia` đều ra −9
+- Vị trí: `$.exercises[22]` (`ex.chon-thuong-am9`, đúng ví dụ (−36) : 4 của hình `goi-y-khac-dau`); `$.exercises[8]`, `$.exercises[23]`, hình `khac-dau-vi-du`, `chon-tich-35-cung-lam` (cùng bộ 35, 5, 7); mẹo `$.sections[4].blocks[2].tex` ((−45) chia hết cho 9) so với chip (−45) : 9 của `chon-thuong-am5-cung-lam`
 - Nguồn: —
-- Vấn đề: ở phiên ôn card `suy-ra-thuong`, ba câu cùng đáp số −9.
-- Sửa: đổi sang số chưa có trong `lesson.json`, `catalog.ts`; ít nhất hai câu của card ra đáp số khác −9.
+- Vấn đề: số chéo section làm bé nhớ đáp số thay vì tính; hai câu (`tinh-bon-phep`, `chon-thuong-am9`) vẫn cùng đáp số −9.
+- Sửa: đổi `chon-thuong-am9` sang số không có ở hình gợi ý (vd 45 : 5 = 9 suy ra 4 phép −9), và một trong các nơi dùng 35.
 
-### 5. Nhãn hình nấc 2 nói "chia trước, dấu sau", ngược câu quy tắc (LL-05)
+### 5. Nhãn hình nấc 2 nói "chia trước, dấu sau", ngược câu quy tắc (LL-05; chưa sửa)
 
 - Vị trí: `catalog.ts` mục `goi-y-cung-dau`, `goi-y-khac-dau` (label)
 - Nguồn: —
-- Vấn đề: câu quy tắc section 2, 3 đã đổi sang xét dấu trước.
-- Sửa: "Chia hai số cùng dấu: thương là số dương, rồi chia hai phần số tự nhiên"; tương tự cho khác dấu.
+- Vấn đề: câu quy tắc đã xét dấu trước.
+- Sửa: "Chia hai số cùng dấu: thương là số dương, rồi chia hai phần số tự nhiên"; tương tự khác dấu.
 
-### 6. Câu quy tắc `suy-ra-thuong` chưa nói "hai số" là số nào (LL-10)
+### 6. Câu quy tắc `suy-ra-thuong` chưa nói "hai số" là số nào (LL-10; chưa sửa)
 
-- Vị trí: `$.sections[3].blocks[0].children[0].text`, `$.sections[3].recap.caption`, `$.cards[3].recap.caption`
+- Vị trí: `$.sections[3].blocks[0].children[0].text`, recap, card
 - Nguồn: —
 - Vấn đề: ở card ôn, câu đứng riêng không có phép chia đi kèm.
 - Sửa: "Trong một phép chia, đổi dấu số bị chia hoặc số chia thì thương đổi dấu. Đổi dấu cả hai số thì thương giữ nguyên." (recap lặp nguyên văn).
 
-### 7. Mẹo "Kiểm tra số ước" không ghi "khác 0" (LL-24)
-
-- Vị trí: `$.sections[5].blocks[2].text` (`tip.so-uoc-chan`)
-- Nguồn: —
-- Vấn đề: trang "Mẹo hay" gom mẹo ra khỏi section; bài không hỏi ước của 0 nên chỉ Góp ý. Đã thử 1, −1, 6, 9, 7, 12, −21: đúng.
-- Sửa: "Với số nguyên khác 0, số ước âm bằng số ước dương, …".
-
-### 8. Câu thứ hai trong khung quy tắc `tong-hieu-chia-het` không có trong recap (LL-06)
+### 7. Câu thứ hai trong khung quy tắc `tong-hieu-chia-het` không có trong recap (LL-06; chưa sửa)
 
 - Vị trí: `$.sections[10].blocks[1].children[0].text` so với `$.sections[10].recap.caption`, `$.cards[10].recap.caption`
 - Nguồn: —
 - Vấn đề: "Với số nguyên, số bị trừ nhỏ hơn số trừ vẫn trừ được." là lời nhắc nhưng nằm trong khung quy tắc.
-- Sửa: chuyển sang nhãn hình `tong-hieu-vi-du` hoặc note mở đầu.
+- Sửa: chuyển sang nhãn hình `tong-hieu-vi-du` hay note mở đầu.
 
-### 9. Còn giữ khung câu và chuỗi bước của sách ở ba chỗ (LL-08)
+### 8. Cùng làm `chon-tong-4-cung-lam` không còn dẫn bé tới quy tắc của section
+
+- Vị trí: `$.sections[10].blocks[2].children[0].text`
+- Nguồn: —
+- Vấn đề: "Tính từng kết quả rồi kiểm tra." sửa đúng lỗi vòng 2 nhưng bỏ chiều dùng quy tắc "hai số cùng chia hết".
+- Sửa: "Tính từng kết quả, hoặc xem hai số trong phép tính có cùng chia hết cho 4 không."
+
+### 9. Hình quy tắc `boi-khoang-vi-du` chưa hiện "bội của 3" và số bị loại (LL-15; xử lý một phần Nên sửa 8 vòng 2)
+
+- Vị trí: hình `boi-khoang-vi-du` (`catalog.ts`)
+- Nguồn: —
+- Vấn đề: khoảng −10 < x < 10 đã nhìn thấy được, nhưng "của 3" chỉ ở `label` (không hiện) và hình không có hàng "12, −12 bị bỏ vì ngoài khoảng".
+- Sửa: hàng đầu "Bội của 3, −10 < x < 10"; thêm hàng "12, −12: ngoài khoảng".
+
+### 10. Còn giữ khung câu và chuỗi bước của sách ở ba chỗ (LL-08; chưa sửa, tuỳ tác giả)
 
 - Vị trí: `$.sections[11].blocks[1].children[0].text` và hình `tim-x-3`; `$.sections[10].blocks[1].children[0].text`; `$.sections[9].blocks[1].children[0].text`
-- Nguồn: lời giải 3.40 tr.113, đề 3.40 và ví dụ 2 tr.59, `sbt-p113.png`, `sbt-p59.png`
-- Vấn đề: số đã đổi, nhưng "Số x khác 0 luôn chia hết cho chính nó" và hàng `3 = (x + 3) - x` đi đúng chuỗi lời giải; quy tắc tổng hiệu giữ khung câu dẫn 3.40; quy tắc phân tích đi đúng hai bước của ví dụ 2. Câu toán khó nói khác nên chỉ Góp ý.
-- Sửa: tuỳ tác giả; `tim-x` có thể đi từ chiều tổng (quy tắc section 11) rồi mới tới chiều hiệu.
+- Nguồn: lời giải 3.40 tr.113, đề 3.40 và ví dụ 2 tr.59
+- Vấn đề: hàng `3 = (x + 3) − x` và câu "Số x khác 0 luôn chia hết cho chính nó" đi đúng chuỗi lời giải 3.40.
+- Sửa: tuỳ tác giả.
 
-### 10. Đề `dien-uoc-x-15` thiếu việc phải làm (LL-10)
+### 11. Câu kho ôn `noi-tich-gia-tri` chỉ ôn dấu của tích; `dien-uoc-chung` gần số hình recap (chưa sửa)
 
-- Vị trí: `$.exercises[65].prompt[0]` (`ex.dien-uoc-x-15`)
+- Vị trí: `$.exercises[53]`, `$.exercises[49]`
 - Nguồn: —
-- Vấn đề: "Xét x + 15 chia hết cho x." không phải câu hỏi; "Các số x đó" phải dò ngược.
-- Sửa: "Ta tìm các số x để x + 15 chia hết cho x. Chọn từ điền vào chỗ trống."
+- Vấn đề: `noi-tich-gia-tri` là việc của Bài 16; `dien-uoc-chung` (−3 với 9 và −15) gần ±3 của `uoc-chung-vi-du`.
+- Sửa: tuỳ tác giả, vd nối 12, −12 với một cách viết thành tích; đổi sang −4 với 16 và −20.
 
-### 11. Câu kho ôn `noi-tich-gia-tri` chỉ ôn dấu của tích
-
-- Vị trí: `$.exercises[53]` (`ex.noi-tich-gia-tri`, card `phan-tich-thanh-tich`)
-- Nguồn: —
-- Vấn đề: nối tích với giá trị là việc của Bài 16; không câu ôn nào hỏi viết một số thành tích theo mọi cách.
-- Sửa: vd nối 12, −12 với một cách viết thành tích, hoặc hỏi số cách viết 22 thành tích hai số nguyên.
-
-### 12. "ước dương chung" và "ước chung dương" (LL-05; Góp ý 12 vòng 1, chưa sửa trong bản review)
-
-- Vị trí: hình `uoc-chung-6-9`, `$.exercises[48].prompt`
-- Nguồn: —
-- Vấn đề: một khái niệm hai cách nói.
-- Sửa: "ước chung dương" ở cả hai chỗ (cây làm việc đã đổi nhãn, còn tiêu đề hình).
-
-### 13. `overview` chưa nhắc phân tích một số thành tích (Nên sửa 25 vòng 1, sửa một phần)
-
-- Vị trí: `$.overview.summary`, `$.overview.goals`
-- Nguồn: —
-- Vấn đề: section `phan-tich-thanh-tich` không có trong `summary` hay `goals`.
-- Sửa: thêm "… viết một số thành tích hai số nguyên, …" vào `summary` hoặc một mục `goals`.
-
-### 14. Câu kho ôn `dien-uoc-chung` gần số của hình recap (LL-07)
-
-- Vị trí: `$.exercises[49]` (`ex.dien-uoc-chung`) so với hình `uoc-chung-vi-du`
-- Nguồn: —
-- Vấn đề: recap có ±3 là ước chung của 6 và −9; câu ôn hỏi −3 với 9 và −15 (số do câu "Sửa" vòng 1 đề xuất).
-- Sửa: tuỳ tác giả, vd −4 với 16 và −20.
-
-### 15. Ví dụ nhiệt độ gọi tích của −3 là "bội của 3" (Góp ý 7 vòng 1, chưa sửa)
-
-- Vị trí: `$.sections[6].blocks[0].children[0].text`, hình `boi-nhiet-do`
-- Nguồn: —
-- Vấn đề: câu quy tắc ngay sau bảo "nhân số đó với…", mà hình nhân −3 rồi gọi là bội của 3.
-- Sửa: "… đó là các bội của −3 (cũng là bội của 3)."
-
-### 16. Định nghĩa và cách tìm ước chung khác lời Bài 11 (LL-05; Góp ý 11 vòng 1, chưa sửa)
+### 12. Câu ước chung khác lời Bài 11 (LL-05; chưa sửa)
 
 - Vị trí: `$.sections[8].blocks[1].children[0].text`, `$.sections[8].blocks[2].children[0].text`
 - Nguồn: tr.58 kiến thức cần nhớ 2, `sbt-p58.png`
-- Vấn đề: Bài 11 (đã xuất bản): "Một số là ước của tất cả các số đã cho thì gọi là ước chung của các số đó." và "viết các ước của từng số, rồi chọn những số có mặt ở cả hai danh sách"; bài này "của cả hai số", cùng làm "Thử từng số với cả hai số", còn hình `uoc-chung-vi-du` đi theo hai danh sách.
-- Sửa: dùng lại câu của Bài 11 và gợi ý cùng làm theo cách hai danh sách.
+- Vấn đề: Bài 11 (đã xuất bản): "Một số là ước của tất cả các số đã cho thì gọi là ước chung của các số đó."; cùng làm "Thử từng số với cả hai số" còn hình đi theo hai danh sách.
+- Sửa: dùng lại câu của Bài 11; gợi ý cùng làm theo cách hai danh sách.
 
-## Báo nhầm của nhóm
+## Báo nhầm
 
-Không có phát hiện nào của ba nhóm là báo nhầm. Tổng hợp đổi mức hai mục: Nên sửa 6 của nhóm 2 (`ex.boi-7-lon-nhat-nho-hon-30`) nâng lên Nghiêm trọng 3; Nghiêm trọng 1 của nhóm 3 (`ex.chon-tong-chia-het-9`) giữ Nghiêm trọng. Góp ý 6 nhóm 1 gộp vào Nên sửa 17.
+Không có.
 
-## Vòng 1: đã sửa
+## Vòng 2: đã sửa
 
-Cả 11 Nghiêm trọng của vòng 1 đã xử lý (ba nhóm kiểm lại trong bản `f87e1e3`):
-1. Mẹo "Dấu của thương" sai với biểu thức có dấu −: đã bỏ mẹo.
-2. Quy tắc tìm bội, bội trong khoảng bỏ số 0: đã thêm số 0 (riêng danh sách "1, 2, 3" sinh lỗi mới, Nghiêm trọng 2).
-3. `dien-boi-3` như thể bội của 3 chỉ có sáu số: đã nói rõ khoảng.
-4. "chia hết" thiếu "cho": đã thêm "cho" ở `done` và hai `explain`.
-5. Mẹo "Kiểm tra số ước" cho qua lỗi quên ước âm: đã đổi sang đếm ước âm.
-6. Cặp (6, −6) bị cắt trên điện thoại: `tex` đã xếp hai dòng.
-7. `chon-so-can-tim-7` có ba lựa chọn đúng: nay chỉ 7 đúng.
-8. "Số x luôn chia hết cho x" thiếu "khác 0": đã thêm.
-9. Cùng làm `phan-tich-thanh-tich` là bài 3.39: đã đổi sang 35.
-10. Section `tim-x` và `dem-x-5` dựng trên 3.40: đã đổi sang x + 3 và `dem-x-4`.
-11. Câu quy tắc `tong-hieu-chia-het` chép câu dẫn 3.40: đã viết bằng lời.
+Sáu Nghiêm trọng đã đạt (xem đầu tệp). Nên sửa vòng 2 đã đạt: 1 (nhãn `bon-phep-chia`), 2 (hai câu kho ôn `suy-ra-thuong`), 3 (mẹo thêm "dùng cho phép chia hết"), 4 (`kiem-tra-42-chia-6` hỏi cả lý do), 5 (hai câu điền, riêng `ex.dien-uoc-x-15` lặp lỗi, Nên sửa 7), 10 (`dien-boi-3` thành `dien-boi-3-nhan` đúng card), 11 (mẹo bỏ dấu đổi số), 12 (`dem-uoc-cua-16`), 17 (NBSP), cùng các Góp ý 7, 10, 12, 15; Nên sửa 6, 9, 13, 14, 15, 16 và Góp ý 13 xử lý một phần hay chưa, tính lại ở danh sách trên.
