@@ -6,8 +6,8 @@ Only what is true now and what comes next. History lives in git and `notebooks/b
 
 ### Production
 
-- URL: https://hoctungbuoc.vercel.app (Vercel project `tutor`). The old `nhaky.vercel.app` is removed; the Vercel default `tutor-delta-pink.vercel.app` remains. The media bucket's CORS allows only the hoctungbuoc origin (`docs/operations.md`). Last verified deploy: `acc5ca6`.
-- App name "Học từng bước" (`APP_NAME` in `src/lib/brand.ts`). Only math is visible: `content/subjects.json` has `visible: false` on the other four subjects. The grade picker is hidden because `VISIBLE_GRADES = [6]` in `src/lib/config.ts`.
+- URL: https://owlyeah.vercel.app (Vercel project `tutor`). The old `nhaky.vercel.app` and `hoctungbuoc.vercel.app` are removed; the Vercel default `tutor-delta-pink.vercel.app` remains. The media bucket's CORS allows only the owlyeah origin (`docs/operations.md`). Last verified deploy: `9d71d1a` (02/10/2026, renamed to Owl Yeah, smoke 6/6).
+- App name "Owl Yeah" (`APP_NAME` in `src/lib/brand.ts`). Only math is visible: `content/subjects.json` has `visible: false` on the other four subjects. The grade picker is hidden because `VISIBLE_GRADES = [6]` in `src/lib/config.ts`.
 - Player work live: real media loading percentage, compact bottom bar on short (iPhone landscape) screens, overview narration mini-player, iOS gesture fix (the tap unlocks the media element).
 - Content live: lessons through chapter III Bài 17. Bài 11 and Bài 13 carry extra videos. The `on-tap-chuong-2` overview narration was re-read with abbreviations spoken in full. Where a row of the table below still says "awaiting upload" (Bài 13, Ôn tập chương II), production already has that media.
 - Abbreviations for TTS are expanded by `SPOKEN_ABBREVIATIONS` in `video/lib/text.ts`; `pnpm video:check` warns on an all-caps token that is not listed there.

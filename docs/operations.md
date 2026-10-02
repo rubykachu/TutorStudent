@@ -6,8 +6,8 @@ Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2,
 
 ## Bản đang chạy
 
-- Production: `https://hoctungbuoc.vercel.app` (project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket.
-- Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin `https://hoctungbuoc.vercel.app` (origin khác không nhận header CORS, preflight bị từ chối).
+- Production: `https://owlyeah.vercel.app` (tên hiển thị "Owl Yeah", project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket. Bản đang chạy: commit `9d71d1a` (02/10/2026).
+- Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin `https://owlyeah.vercel.app` (origin khác không nhận header CORS, preflight bị từ chối).
 - Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Đổi mã gia đình".
 - Deploy lại: `pnpm deploy:prod` (chi tiết ở "Đưa bài mới lên production"). Lệnh luôn dựng từ một worktree sạch của `HEAD`, nên thay đổi chưa commit ở cây chính (kể cả việc dở của agent khác) không bao giờ lên mạng.
 
@@ -361,7 +361,7 @@ curl -sL "$APP_ORIGIN/" | grep -oE '<meta property="og:(image|title|locale)"[^>]
 curl -s -o /dev/null -w '%{http_code}\n' "$APP_ORIGIN/brand/other.png"
 ```
 
-Cần thấy `200 application/manifest+json`, `200 image/png` hai lần; ba thẻ `og:` với `og:image` là `https://hoctungbuoc.vercel.app/brand/share.png`; rồi `401` cho file khác.
+Cần thấy `200 application/manifest+json`, `200 image/png` hai lần; ba thẻ `og:` với `og:image` là `https://owlyeah.vercel.app/brand/share.png`; rồi `401` cho file khác.
 
 ## Kiểm trên iPad Safari
 
@@ -374,9 +374,9 @@ Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN
 5. Video của bài: bấm phát, hình hiện trước khi phát (poster), phụ đề từng từ chạy đúng nhịp. Kéo thanh tua giữa video và nhảy đến chỗ khác: video tiếp tục từ đó, không treo (kiểm `Range`). Xoay ngang rồi dọc: video vẫn đúng khung. Video dừng ở chỗ hỏi bé ("Xem tiếp") đúng như đã thiết kế.
 6. Tiếng: làm một câu đúng và một câu sai nghe tiếng thưởng và tiếng sai; bấm cú mèo nghe tiếng; tắt rồi bật nút tiếng. Thử cả khi gạt công tắc chuông sang im lặng: tiếng của app vẫn phát (đã đặt phiên âm thanh "playback").
 7. Làm xong một phần, tải lại trang: tiến độ còn (IndexedDB trên máy này). Vào `/parent` đặt PIN, xem báo cáo.
-8. Thêm vào Màn hình chính (làm sau cùng, vì app ở đó có dữ liệu riêng, tách khỏi Safari): trong Safari bấm nút Chia sẻ, chọn "Thêm vào Màn hình chính". Tên gợi ý là "Tutor", biểu tượng là cú mèo trên nền xanh, không phải chữ cái hay ảnh chụp trang. Bấm "Thêm".
+8. Thêm vào Màn hình chính (làm sau cùng, vì app ở đó có dữ liệu riêng, tách khỏi Safari): trong Safari bấm nút Chia sẻ, chọn "Thêm vào Màn hình chính". Tên gợi ý là "Owl Yeah", biểu tượng là cú mèo trên nền xanh, không phải chữ cái hay ảnh chụp trang. Bấm "Thêm".
 9. Mở app từ biểu tượng mới: toàn màn hình, không có thanh địa chỉ của Safari, thanh trạng thái sáng. Lần đầu hỏi mã gia đình (cookie của Safari không sang đây): gõ mã, vào trang "Chào bạn mới!" vì hồ sơ tạo trong Safari không có ở đây. Tạo hồ sơ, đóng app, mở lại: vào thẳng, không hỏi mã. Cần mạng như mở trong Safari (chưa có chế độ offline).
-10. Gửi link `APP_ORIGIN` cho chính mình bằng Zalo, Messenger hoặc iMessage: hiện thẻ có ảnh cú mèo cạnh chữ Tutor, tiêu đề "Tutor: tự học lớp 6 cùng bạn cú" và mô tả tiếng Việt. Facebook lưu thẻ cũ rất lâu: sau khi đổi ảnh hay chữ, dán link vào Sharing Debugger của Facebook (developers.facebook.com/tools/debug) và bấm "Scrape Again".
+10. Gửi link `APP_ORIGIN` cho chính mình bằng Zalo, Messenger hoặc iMessage: hiện thẻ có ảnh cú mèo cạnh chữ Owl Yeah, tiêu đề "Owl Yeah: tự học lớp 6 cùng bạn cú" và mô tả tiếng Việt. Facebook lưu thẻ cũ rất lâu: sau khi đổi ảnh hay chữ, dán link vào Sharing Debugger của Facebook (developers.facebook.com/tools/debug) và bấm "Scrape Again".
 11. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
 
 ## Đổi mã gia đình
