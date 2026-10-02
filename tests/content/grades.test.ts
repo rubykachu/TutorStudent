@@ -1,11 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
+  hasGradeChoice,
+  learnerGrade,
   openGrades,
   seriesForGrade,
   seriesOfGrade,
   subjectsOfGrade,
+  visibleGrades,
+  withLearnerGrade,
 } from "@/content/grades";
 import { subjectStatus } from "@/learn/next-step";
+import { DEFAULT_GRADE, VISIBLE_GRADES } from "@/lib/config";
 import { lessonsForSubject } from "@/progress/summary";
 import type { ContentIndex, LessonSummary, Subject } from "@/schema/content";
 
@@ -117,5 +122,32 @@ describe("open grades", () => {
     expect(
       openGrades({ ...index, lessons: [lesson("x", "math", "unknown")] }),
     ).toEqual([]);
+  });
+});
+
+describe("visible grades", () => {
+  it("keeps the default grade visible, so a profile always has a grade to study", () => {
+    expect(VISIBLE_GRADES).toContain(DEFAULT_GRADE);
+  });
+
+  it("studies the profile's grade when visible, else the default grade", () => {
+    expect(learnerGrade(7, [6, 7])).toBe(7);
+    expect(learnerGrade(7, [6])).toBe(DEFAULT_GRADE);
+    expect(learnerGrade(undefined, [6, 7])).toBe(DEFAULT_GRADE);
+  });
+
+  it("asks for a grade only when more than one is visible", () => {
+    expect(hasGradeChoice([6])).toBe(false);
+    expect(hasGradeChoice([6, 7])).toBe(true);
+  });
+
+  it("lists only visible grades", () => {
+    expect(visibleGrades([5, 6, 7], [6])).toEqual([6]);
+  });
+
+  it("reads a profile with its studied grade without changing the stored one", () => {
+    const stored = { id: "a", grade: 9 };
+    expect(withLearnerGrade(stored).grade).toBe(DEFAULT_GRADE);
+    expect(stored.grade).toBe(9);
   });
 });

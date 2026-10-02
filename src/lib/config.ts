@@ -40,6 +40,13 @@ export const SUBJECT_NUDGE_AFTER_DAYS = 3;
 // existed is moved to.
 export const DEFAULT_GRADE = 6;
 
+// Grades a child can see and pick, ascending, and the only ones any screen
+// lists; routes of the others stay. Must include DEFAULT_GRADE. A profile with
+// no grade, or one of a hidden grade, studies DEFAULT_GRADE, and with a single
+// visible grade no screen asks which grade the child is in. To show a grade,
+// add it here.
+export const VISIBLE_GRADES: readonly number[] = [6];
+
 // Longest child name the profile form accepts, so it fits the home greeting.
 export const PROFILE_NAME_MAX_LENGTH = 20;
 

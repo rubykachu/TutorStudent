@@ -12,6 +12,17 @@ import {
 import type { ContentIndex } from "@/schema/content";
 
 const replace = vi.hoisted(() => vi.fn());
+const gradesVisible = vi.hoisted(() => ({ list: [6] as number[] }));
+vi.mock("@/lib/config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/config")>()),
+  get VISIBLE_GRADES() {
+    return gradesVisible.list;
+  },
+}));
+
+// Shows every grade, as when the owner publishes more than grade 6.
+const ALL_GRADES = Array.from({ length: 12 }, (_, i) => i + 1);
+
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace, push: vi.fn() }),
 }));
@@ -71,13 +82,19 @@ async function openGradesOf(grade: number, open: number[]) {
   render(<GradesScreen />);
   await screen.findByRole("heading", { name: "Chọn lớp" });
   await waitFor(() =>
-    expect(document.querySelectorAll("[data-grade]")).toHaveLength(12),
+    expect(document.querySelectorAll("[data-grade]")).toHaveLength(
+      gradesVisible.list.length,
+    ),
   );
 }
 
-beforeEach(() => replace.mockClear());
+beforeEach(() => {
+  replace.mockClear();
+  gradesVisible.list = ALL_GRADES;
+});
 
 afterEach(async () => {
+  gradesVisible.list = [6];
   vi.unstubAllGlobals();
   resetContentIndexForTesting();
   await appDb().delete();
@@ -124,5 +141,16 @@ describe("GradesScreen", () => {
     fireEvent.click(document.querySelector('[data-grade="9"]') as Element);
     expect(replace).not.toHaveBeenCalled();
     expect((await appDb().profiles.get("kid-1"))?.grade).toBe(6);
+  });
+});
+
+describe("GradesScreen with one visible grade", () => {
+  it("lists only that grade, which stays tappable", async () => {
+    gradesVisible.list = [6];
+    await openGradesOf(6, [6, 7]);
+    const tiles = [...document.querySelectorAll("[data-grade]")];
+    expect(tiles.map((t) => t.getAttribute("data-grade"))).toEqual(["6"]);
+    fireEvent.click(tiles[0] as Element);
+    await waitFor(() => expect(replace).toHaveBeenCalledWith("/"));
   });
 });

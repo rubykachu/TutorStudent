@@ -7,7 +7,7 @@ import { useState } from "react";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { gradeIcon } from "@/components/grade-style";
 import { PageTopBar } from "@/components/page-top-bar";
-import { openGrades } from "@/content/grades";
+import { openGrades, visibleGrades } from "@/content/grades";
 import { ChildSounds } from "@/learn/child-sounds";
 import { HOME_PATH } from "@/lib/routes";
 import type { ProfileRecord } from "@/progress/db";
@@ -113,7 +113,7 @@ function GradeGrid({ profile }: { profile: ProfileRecord }) {
 
   return (
     <ul className="grid grid-cols-3 gap-3 md:grid-cols-4 md:gap-4">
-      {GRADES.map((grade) => (
+      {visibleGrades(GRADES).map((grade) => (
         <li key={grade} className="contents">
           <GradeTile
             grade={grade}

@@ -5,12 +5,26 @@ import { ProfileForm } from "@/components/profile-form";
 import { AVATAR_CLIP_IDS, soundUrl } from "@/lib/sound-manifest";
 
 const playSequence = vi.hoisted(() => vi.fn(async () => undefined));
+const gradesVisible = vi.hoisted(() => ({ list: [6] as number[] }));
+vi.mock("@/lib/config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/config")>()),
+  get VISIBLE_GRADES() {
+    return gradesVisible.list;
+  },
+}));
+
+// Shows every grade, as when the owner publishes more than grade 6.
+const ALL_GRADES = Array.from({ length: 12 }, (_, i) => i + 1);
+
 vi.mock("@/lib/sound", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/sound")>()),
   playSequence,
 }));
 
-afterEach(() => playSequence.mockClear());
+afterEach(() => {
+  playSequence.mockClear();
+  gradesVisible.list = [6];
+});
 
 describe("ProfileForm", () => {
   it("titles the avatar choice 'Chọn hình đại diện'", () => {
@@ -84,7 +98,47 @@ describe("ProfileForm", () => {
     expect(screen.getByRole("radio", { name: "Mèo" })).toBeChecked();
   });
 
+  it("asks no grade while one grade is visible, and submits it", () => {
+    const onSubmit = vi.fn();
+    render(
+      <ProfileForm
+        onSubmit={onSubmit}
+        submitting={false}
+        openGrades={[6, 7]}
+      />,
+    );
+    expect(
+      screen.queryByRole("group", { name: "Bạn học lớp mấy?" }),
+    ).toBeNull();
+    fireEvent.change(screen.getByLabelText("Bạn tên là gì?"), {
+      target: { value: "Na" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Bắt đầu học" }));
+    expect(onSubmit).toHaveBeenCalledWith({
+      name: "Na",
+      avatar: expect.any(String),
+      grade: 6,
+    });
+  });
+
+  it("submits the visible grade for a profile saved with a hidden one", () => {
+    const onSubmit = vi.fn();
+    render(
+      <ProfileForm
+        initial={{ name: "Na", avatar: "fox", grade: 9 }}
+        onSubmit={onSubmit}
+        submitting={false}
+        openGrades={[6]}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Bắt đầu học" }));
+    expect(onSubmit).toHaveBeenCalledWith(
+      expect.objectContaining({ grade: 6 }),
+    );
+  });
+
   it("lets the child pick only open grades, and submits the one chosen", () => {
+    gradesVisible.list = ALL_GRADES;
     const onSubmit = vi.fn();
     render(
       <ProfileForm

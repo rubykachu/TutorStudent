@@ -7,7 +7,7 @@ import { AVATARS, Avatar } from "@/components/avatar";
 import { CosmosHorizon } from "@/components/cosmos-background";
 import { SoundToggle } from "@/components/sound-toggle";
 import { SubjectTile, subjectTileLayout } from "@/components/subject-tile";
-import { subjectsOfGrade } from "@/content/grades";
+import { hasGradeChoice, subjectsOfGrade } from "@/content/grades";
 import { visibleIndex } from "@/content/visibility";
 import { ChildSounds } from "@/learn/child-sounds";
 import {
@@ -218,15 +218,18 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
             <h1 className="min-w-0 break-words text-title font-bold md:text-title-lg">
               Chào {profile.name}!
             </h1>
-            <Link
-              href={GRADES_PATH}
-              aria-label={`Lớp ${profile.grade}, đổi lớp`}
-              data-grade-chip
-              className="flex min-h-touch w-fit shrink-0 items-center justify-center gap-1.5 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
-            >
-              <GraduationCap aria-hidden className="size-5 shrink-0" />
-              <span aria-hidden>Lớp {profile.grade}</span>
-            </Link>
+            {/* Only when the child can pick between grades. */}
+            {hasGradeChoice() && (
+              <Link
+                href={GRADES_PATH}
+                aria-label={`Lớp ${profile.grade}, đổi lớp`}
+                data-grade-chip
+                className="flex min-h-touch w-fit shrink-0 items-center justify-center gap-1.5 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none"
+              >
+                <GraduationCap aria-hidden className="size-5 shrink-0" />
+                <span aria-hidden>Lớp {profile.grade}</span>
+              </Link>
+            )}
           </div>
         </div>
         {/* The sound switch ends the row, where every screen keeps it. */}

@@ -21,6 +21,17 @@ import {
 import type { ContentIndex, LessonSummary } from "@/schema/content";
 
 const playSequence = vi.hoisted(() => vi.fn(async () => undefined));
+const gradesVisible = vi.hoisted(() => ({ list: [6] as number[] }));
+vi.mock("@/lib/config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/config")>()),
+  get VISIBLE_GRADES() {
+    return gradesVisible.list;
+  },
+}));
+
+// Shows every grade, as when the owner publishes more than grade 6.
+const ALL_GRADES = Array.from({ length: 12 }, (_, i) => i + 1);
+
 vi.mock("@/lib/sound", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/sound")>()),
   playSequence,
@@ -39,6 +50,7 @@ beforeEach(() => {
 });
 
 afterEach(async () => {
+  gradesVisible.list = [6];
   playSequence.mockClear();
   vi.unstubAllGlobals();
   resetContentIndexForTesting();
@@ -336,6 +348,10 @@ async function openHomeOfGrade(grade: number, index: ContentIndex) {
 }
 
 describe("HomeScreen grade and locked subjects", () => {
+  beforeEach(() => {
+    gradesVisible.list = ALL_GRADES;
+  });
+
   it("shows the five subjects of grade 6, three of them locked and not tappable", async () => {
     await openHomeOfGrade(6, gradeSixIndex());
     await screen.findByText("Toán");
@@ -416,5 +432,24 @@ describe("HomeScreen hidden subjects", () => {
     expect(
       document.querySelector("[data-continue]")?.getAttribute("href"),
     ).not.toContain("lit-01");
+  });
+});
+
+describe("HomeScreen with one visible grade", () => {
+  it("shows no grade chip, so the child never meets the grade screen", async () => {
+    await openHomeOfGrade(6, gradeSixIndex());
+    await screen.findByText("Toán");
+    expect(screen.queryByRole("link", { name: /đổi lớp/ })).toBeNull();
+    expect(document.querySelector("[data-grade-chip]")).toBeNull();
+  });
+
+  it("studies grade 6 for a profile saved with a hidden grade", async () => {
+    await openHomeOfGrade(7, gradeSixIndex());
+    await screen.findByText("Toán");
+    const tile = document.querySelector('[data-subject="math"]');
+    expect(tile).not.toBeNull();
+    expect(tile).not.toHaveAttribute("data-locked");
+    // The stored record keeps its own grade.
+    expect((await appDb().profiles.get("kid-1"))?.grade).toBe(7);
   });
 });

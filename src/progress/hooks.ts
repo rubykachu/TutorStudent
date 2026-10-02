@@ -6,6 +6,7 @@ import {
   type LessonIndex,
   lessonContentUrl,
 } from "@/content";
+import { withLearnerGrade } from "@/content/grades";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import { newId } from "@/lib/id";
 import { now } from "@/lib/time";
@@ -62,7 +63,11 @@ export function childScope(childId: string): ChildScope {
 
 // `undefined` while the first read is in flight.
 export function useProfiles(): ProfileRecord[] | undefined {
-  return useLiveQuery(() => listProfiles(appDb(), LOCAL_FAMILY_ID), []);
+  return useLiveQuery(
+    async () =>
+      (await listProfiles(appDb(), LOCAL_FAMILY_ID)).map(withLearnerGrade),
+    [],
+  );
 }
 
 // The active child is a device setting in Dexie rather than localStorage: it
@@ -74,7 +79,9 @@ export async function readActiveProfile(
   const id = await getSetting(db, DEVICE_SCOPE, ACTIVE_PROFILE_KEY);
   if (typeof id !== "string") return null;
   const profile = await db.profiles.get(id);
-  return profile?.familyId === LOCAL_FAMILY_ID ? profile : null;
+  return profile?.familyId === LOCAL_FAMILY_ID
+    ? withLearnerGrade(profile)
+    : null;
 }
 
 export type ActiveProfileState =

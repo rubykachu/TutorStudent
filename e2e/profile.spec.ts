@@ -46,8 +46,11 @@ test("a first visit creates a profile that survives a reload", async ({
   ).toBeDisabled();
   await expectNoHorizontalScroll(page);
 
+  // One visible grade: the form never asks it and home shows no grade chip.
+  await expect(page.getByText("Bạn học lớp mấy?")).toHaveCount(0);
   await createProfile(page, "Bé Na", "Cáo");
   await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator("[data-grade-chip]")).toHaveCount(0);
   const lessons = await servedLessons(page);
   const mathLessons = lessons.filter((l) => l.subject === "math");
   const mathSections = mathLessons.reduce((n, l) => n + l.sections.length, 0);

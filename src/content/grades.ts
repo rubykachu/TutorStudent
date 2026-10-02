@@ -1,3 +1,4 @@
+import { DEFAULT_GRADE, VISIBLE_GRADES } from "@/lib/config";
 import type { ContentIndex, Subject } from "@/schema/content";
 
 // Pure lookups that tie subjects, series and lessons to a grade; safe to
@@ -54,4 +55,36 @@ export function openGrades(index: ContentIndex): number[] {
     if (series) open.add(series.grade);
   }
   return [...open].sort((a, b) => a - b);
+}
+
+// Which grades a screen may list: `VISIBLE_GRADES`, see `lib/config.ts`.
+export function visibleGrades<T extends number>(
+  grades: readonly T[],
+  visible: readonly number[] = VISIBLE_GRADES,
+): T[] {
+  return grades.filter((g) => visible.includes(g));
+}
+
+// More than one visible grade is the only case where a child picks one.
+export function hasGradeChoice(
+  visible: readonly number[] = VISIBLE_GRADES,
+): boolean {
+  return visible.length > 1;
+}
+
+// The grade a child studies: their own when it is visible, else the default
+// (also for a profile saved without a grade).
+export function learnerGrade(
+  grade: number | undefined,
+  visible: readonly number[] = VISIBLE_GRADES,
+): number {
+  return grade !== undefined && visible.includes(grade) ? grade : DEFAULT_GRADE;
+}
+
+// A profile as screens read it: its grade replaced by the one it studies. The
+// stored record is not rewritten.
+export function withLearnerGrade<T extends { grade?: number }>(
+  profile: T,
+): T & { grade: number } {
+  return { ...profile, grade: learnerGrade(profile.grade) };
 }

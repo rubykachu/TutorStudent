@@ -10,8 +10,9 @@ import {
   isAvatarId,
 } from "@/components/avatar";
 import { BigButton } from "@/components/big-button";
+import { hasGradeChoice, learnerGrade, visibleGrades } from "@/content/grades";
 import { avatarSoundUrls, playAvatarSound } from "@/lib/avatar-sounds";
-import { DEFAULT_GRADE, PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
+import { PROFILE_NAME_MAX_LENGTH } from "@/lib/config";
 import { preloadSounds } from "@/lib/sound";
 import type { NewProfile } from "@/progress/hooks";
 import { GRADES } from "@/schema/content";
@@ -40,7 +41,7 @@ export function ProfileForm({
   const [avatar, setAvatar] = useState<AvatarId>(
     initial && isAvatarId(initial.avatar) ? initial.avatar : DEFAULT_AVATAR,
   );
-  const [grade, setGrade] = useState(initial?.grade ?? DEFAULT_GRADE);
+  const [grade, setGrade] = useState(learnerGrade(initial?.grade));
   const trimmed = name.trim();
 
   // Each avatar says its own sound when chosen, so they load up front.
@@ -100,47 +101,49 @@ export function ProfileForm({
         </div>
       </fieldset>
 
-      <fieldset className="flex flex-col gap-3">
-        <legend className="mb-3 font-heading text-block font-semibold md:text-block-lg">
-          Bạn học lớp mấy?
-        </legend>
-        <div className="grid grid-cols-6 gap-2 md:gap-3">
-          {GRADES.map((option) => {
-            const open = openGrades.includes(option);
-            return (
-              <label
-                key={option}
-                data-grade-option={option}
-                className={`flex min-h-touch items-center justify-center rounded-lg border-2 font-heading font-bold text-block md:text-block-lg ${
-                  open
-                    ? "cursor-pointer border-border bg-surface transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none has-checked:border-primary has-checked:bg-primary has-checked:text-primary-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring"
-                    : "relative border-border border-dashed bg-muted text-muted-foreground"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="grade"
-                  value={option}
-                  checked={grade === option}
-                  disabled={!open}
-                  onChange={() => setGrade(option)}
-                  className="sr-only"
-                  aria-label={`Lớp ${option}${open ? "" : ", sắp ra mắt"}`}
-                />
-                <span aria-hidden>{option}</span>
-                {!open && (
-                  <Lock
-                    aria-hidden
-                    data-lock
-                    className="absolute top-1 right-1 size-3"
-                    strokeWidth={2.5}
+      {hasGradeChoice() && (
+        <fieldset className="flex flex-col gap-3">
+          <legend className="mb-3 font-heading text-block font-semibold md:text-block-lg">
+            Bạn học lớp mấy?
+          </legend>
+          <div className="grid grid-cols-6 gap-2 md:gap-3">
+            {visibleGrades(GRADES).map((option) => {
+              const open = openGrades.includes(option);
+              return (
+                <label
+                  key={option}
+                  data-grade-option={option}
+                  className={`flex min-h-touch items-center justify-center rounded-lg border-2 font-heading font-bold text-block md:text-block-lg ${
+                    open
+                      ? "cursor-pointer border-border bg-surface transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none has-checked:border-primary has-checked:bg-primary has-checked:text-primary-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ring"
+                      : "relative border-border border-dashed bg-muted text-muted-foreground"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="grade"
+                    value={option}
+                    checked={grade === option}
+                    disabled={!open}
+                    onChange={() => setGrade(option)}
+                    className="sr-only"
+                    aria-label={`Lớp ${option}${open ? "" : ", sắp ra mắt"}`}
                   />
-                )}
-              </label>
-            );
-          })}
-        </div>
-      </fieldset>
+                  <span aria-hidden>{option}</span>
+                  {!open && (
+                    <Lock
+                      aria-hidden
+                      data-lock
+                      className="absolute top-1 right-1 size-3"
+                      strokeWidth={2.5}
+                    />
+                  )}
+                </label>
+              );
+            })}
+          </div>
+        </fieldset>
+      )}
 
       <BigButton type="submit" disabled={!trimmed || submitting}>
         {submitLabel}
