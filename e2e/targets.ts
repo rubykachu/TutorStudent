@@ -81,6 +81,31 @@ export function syncServerEnv(): Record<string, string> {
   };
 }
 
+// The offline E2E and the lab runs serve a production build of a committed
+// ref from a temporary worktree (`scripts/offline-lab.ts`). The port is the
+// test port plus 500 (3600 by default), clear of the dev servers above.
+export const OFFLINE_PORT = TEST_PORT + 500;
+export const OFFLINE_BASE_URL = `http://localhost:${OFFLINE_PORT}`;
+export const OFFLINE_FAMILY_CODE = "Sao-Bien-4k7m";
+// Passed to the content emit, the build and the server of every lab run.
+// Explicit values win over any `.env*` file, so a build for checks never
+// reads the owner's real settings: media comes from the local `/media`
+// (never the bucket), the family code and secret are test values, and no
+// storage variable is set, so sync stays off (a production server refuses the
+// folder store anyway).
+export const OFFLINE_SERVER_ENV = {
+  NODE_ENV: "production",
+  NEXT_PUBLIC_MEDIA_BASE_URL: "",
+  FAMILY_CODES: OFFLINE_FAMILY_CODE,
+  SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",
+  CONTENT_INCLUDE_FIXTURE: "1",
+  R2_ACCOUNT_ID: "",
+  R2_ACCESS_KEY_ID: "",
+  R2_SECRET_ACCESS_KEY: "",
+  R2_PRIVATE_BUCKET: "",
+  SYNC_STORE: "",
+} as const;
+
 export const TARGET_DEVICES = {
   // Safari engine, portrait iPad Air size: the primary target device.
   ipad: {

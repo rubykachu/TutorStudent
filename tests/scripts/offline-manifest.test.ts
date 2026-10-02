@@ -4,6 +4,7 @@ import {
   mkdtempSync,
   readFileSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import os from "node:os";
@@ -69,6 +70,24 @@ describe("writePrecacheList", () => {
     expect(byUrl.has("/brand/share.png")).toBe(false);
     expect(byUrl.has("/media/video/a/v.mp4")).toBe(false);
     expect([...byUrl.keys()].some((u) => u.includes(".DS_Store"))).toBe(false);
+  });
+
+  it("does not enter a linked media folder", () => {
+    const outside = mkdtempSync(path.join(os.tmpdir(), "linked-media-"));
+    try {
+      writeFileSync(path.join(outside, "big.mp4"), "video");
+      rmSync(path.join(root, "public/media"), { recursive: true, force: true });
+      symlinkSync(outside, path.join(root, "public/media"));
+      const { entries } = writePrecacheList({
+        rootDir: root,
+        buildId: "B1",
+        sources,
+        mediaBaseUrl: "",
+      });
+      expect(entries.some((e) => e.url.startsWith("/media/"))).toBe(false);
+    } finally {
+      rmSync(outside, { recursive: true, force: true });
+    }
   });
 
   it("fails with the lesson id when a served lesson has no emitted file", () => {

@@ -6,13 +6,14 @@ export type ExecResult = { status: number; stdout: string; stderr: string };
 // terminal (long builds); otherwise output is captured.
 export type Exec = (
   command: readonly string[],
-  options?: { cwd?: string; inherit?: boolean },
+  options?: { cwd?: string; inherit?: boolean; env?: NodeJS.ProcessEnv },
 ) => ExecResult;
 
 export const exec: Exec = (command, options = {}) => {
   const [file, ...args] = command;
   const result = spawnSync(file as string, args, {
     cwd: options.cwd,
+    env: options.env,
     encoding: "utf8",
     stdio: options.inherit ? "inherit" : "pipe",
   });

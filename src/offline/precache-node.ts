@@ -50,12 +50,17 @@ function walkPublic(dir: string, prefix = ""): PublicFileInput[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const relative = `${prefix}${entry.name}`;
     if (isDotfile(relative)) return [];
-    if (entry.isDirectory()) {
+    const full = path.join(dir, entry.name);
+    // A linked folder (the lab links `public/media`) counts as a folder.
+    if (
+      entry.isDirectory() ||
+      (entry.isSymbolicLink() && statSync(full).isDirectory())
+    ) {
       if (isDenied(`${relative}/`)) return [];
-      return walkPublic(path.join(dir, entry.name), `${relative}/`);
+      return walkPublic(full, `${relative}/`);
     }
     if (isDenied(relative)) return [];
-    const bytes = readFileSync(path.join(dir, entry.name));
+    const bytes = readFileSync(full);
     return [{ path: relative, hash: fileHash(bytes), bytes: bytes.length }];
   });
 }
