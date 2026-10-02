@@ -4,16 +4,19 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnig
 
 ## Handover
 
-Next: Task 4a. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: Task 4b (hand-written worker, see "Findings of the Serwist trial"). Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
 
-Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. A kill switch (a self-unregistering worker deployable in place) is added as Task 4c and documented in `docs/operations.md` in Task 9. `pnpm content:check` currently fails on another agent's lesson in progress (`phep-cong-phep-tru-so-nguyen` review hash); not caused by this backlog.
+Where the work lives: all offline work from Task 4a on is committed on the branch `offline-pwa`, in the worktree `scratchpad/offline/wt`; `main` is not touched until an independent review merges the branch (a service worker must not reach production by accident). On `main` sit only the inert build-time modules of Tasks 1 to 3 and the lab, listed under "Done" as "on main".
+
+Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. Ports: the lab serves on 3600 (`OFFLINE_PORT` = `TEST_PORT + 500`), inside the range the owner allowed, instead of `TEST_PORT + 3000`. A kill switch (a self-unregistering worker deployable in place) is Task 4c, documented in `docs/operations.md` in Task 9. `pnpm content:check` on the main tree can fail on another agent's lesson in progress; the branch worktree holds only committed content.
 
 ### Done (commits, oldest first)
 
+- On `main` (before the branch rule): 3df7eb5 (Task 1), d954fb5 (Task 2), 29c4fda (Task 3), cfafc94 and e06817c (lab, `OFFLINE_*` in `e2e/targets.ts`, an `env` option in `scripts/lib/run.ts`). All are build-time or test modules that nothing in the running app imports, except the five pages' `generateStaticParams`, which return the same lists as before. The one runtime-adjacent change, the `pnpm build` hook for the precache list in d954fb5, was reverted on `main` by e37cb03 and re-applied on the branch by 30b0043.
 - Task 1: `src/offline/routes.ts` (param functions shared with the five pages, `appPagePaths()`, `NOT_PRECACHED_ROUTES`), `tests/offline/routes.test.ts`.
 - Task 2: `src/offline/precache.ts` (pure list, deny-list, budget), `src/offline/precache-node.ts`, `scripts/lib/offline-manifest.ts` and `scripts/offline-manifest.ts` (writes `src/offline/precache-list.generated.json`, gitignored, run by `pnpm build`), `FAVICON_ICO_PATH` in `src/lib/brand.ts`. The build id is a timestamp per build. The budget counts only what is known before `next build` (content, sounds, public files); pages and build files are measured by the worker build (Task 4b).
 - Task 3: `src/offline/strategy.ts` (`routeFor`, `fetchInit`, `storable`, `navigationFallbackPath`, `PAGE_TIMEOUT_SECONDS`), `tests/offline/strategy.test.ts`. `routeFor` also takes `method` and `isPrecached(url)` (the worker passes a lookup in its precache): precache-first is decided by the list, so a song, a Range request or an unknown path is passthrough without a path-prefix table that could drift from the list.
-- Checkpoint 1: gate green (196 files, 4080 tests); changed files are `src/offline/`, the five page files, the manifest script and lib, `build` script, `.gitignore`, one constant in `src/lib/brand.ts`, tests; nothing reads the generated list; no app behaviour changed.
+- Checkpoint 1 (on main): gate green (196 files, 4080 tests); changed files are `src/offline/`, the five page files, the manifest script and lib, `build` script, `.gitignore`, one constant in `src/lib/brand.ts`, tests; nothing reads the generated list; no app behaviour changed.
 
 ### Rules for every task
 
@@ -87,9 +90,28 @@ Record each criterion with evidence:
 7. Whether `context.setOffline(true)` cuts the worker's own fetches in Chromium; whether `context.route` can serve a changed worker script; whether `response.fromServiceWorker()` tells a passed-through `/api/sync` answer from a worker answer.
 
 Acceptance:
-- [ ] Criteria 1 to 7 recorded here with evidence; decision written: Serwist (1 to 5 pass) or the hand-written fallback (a worker bundled by esbuild in the build step, a versioned cache per build, unchanged revisions copied from the previous cache, same modules and messages).
-- [ ] The lab script creates and removes its worktree, leaves the main tree's `public/content`, `tsconfig.json` and `next-env.d.ts` unchanged (`git status` before and after), and never contacts the media bucket.
-- [ ] Gate green.
+- [x] Criteria 1 to 7 recorded here with evidence; decision written: Serwist (1 to 5 pass) or the hand-written fallback (a worker bundled by esbuild in the build step, a versioned cache per build, unchanged revisions copied from the previous cache, same modules and messages).
+- [x] The lab script creates and removes its worktree, leaves the main tree's `public/content`, `tsconfig.json` and `next-env.d.ts` unchanged (`git status` before and after), and never contacts the media bucket.
+- [x] Gate green.
+
+### Findings of the Serwist trial (Task 4a)
+
+Setup: `serwist` and `@serwist/turbopack` 9.5.12 plus `esbuild`, added inside the lab worktree only (`--setup`), with the route handler `/serwist/[path]` (`createSerwistRoute`: `swSrc`, native esbuild, `globPatterns` on `.next/static`, `globIgnores` for ttf, woff and maps, `additionalPrecacheEntries` from the generated list) and a worker wired by hand: one `fetch` listener calling `routeFor`, lookups with `serwist.matchPrecache`, `handleInstall` and `handleActivate`, a plugin whose `cacheWillUpdate` applies `storable`. The default precache route is registered by the Serwist constructor but never consulted, because `handleFetch` is not used. The probe scripts and the overlay live in the scratchpad, not in git. Chromium and Playwright WebKit, production build of `HEAD` in the lab worktree, gate on.
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 1 | Turbopack `next build` produces the worker at a fixed path | pass, with a header to fix | built, served at `/serwist/sw.js`, 96,832 bytes, `Service-Worker-Allowed: /`; default `Cache-Control: s-maxage=31536000` would need an override |
+| 2 | Precache takes our entries and every `/_next/static` file except ttf and woff | pass | 755 entries (8.7 MB) in the cache: 309 chunks, 30 woff2, 0 ttf or woff, 331 lesson pages, 34 lesson files, 0 under `/media/` or `/api/` |
+| 3 | Default route left out, lookups by precache key, pages and `/content` network first | pass | offline reload of a lesson renders; online navigation answered by the worker's network-first path; lookups only through `matchPrecache` |
+| 4 | Install fails and writes no entry when one fetch is redirected or 401 | **fail** | with `/profiles` answered 401, answered by a 302 to `/unlock`, or aborted, the entry is not written (the plugin works) but the install never settles: the worker stays "installing" for 30 s and more, never `redundant`, with the other 754 entries already in the live cache |
+| 5 | Chromium: worker controls scope `/`, offline reload of a never-opened lesson renders | pass | controlled `true`, scope `http://localhost:3600/`; `/lessons/thu-tu-trong-tap-hop-cac-so-tu-nhien` rendered offline from the precache |
+| 6 | Playwright WebKit | partial, not usable for the E2E | registers, controls, precaches 755 entries, `fromServiceWorker()` true; but `page.goto` while `setOffline(true)` fails with "WebKit encountered an internal error", and `context.route` does not see the worker's requests (the 401 case installed 755 entries), `context.on("request")` saw none. The gate cookie is `Secure` in production, which WebKit drops on `http://localhost`, so the probe added it by hand |
+| 7 | Offline tooling | pass (Chromium) | `setOffline(true)` cuts the worker's own fetches (a not-precached sound and an unknown `/content` file both fail); `context.route` serves a changed worker script and `registration.update()` then finds a waiting worker; `response.fromServiceWorker()` is `false` for `/api/sync` and `true` for a navigation; `context.on("request")` sees worker requests (`request.serviceWorker()` set, 767 in the run) |
+
+Root cause of criterion 4: `parallel` in `@serwist/utils` builds its queues with `new Promise(async (resolve) => ...)`. When one task throws, the async executor's rejection is dropped, that queue never settles, `Promise.all` waits forever and `handleInstall` neither resolves nor rejects. A stuck install shows "đang tải" on the parent line forever and is not retried by the browser until the worker is replaced. Fixing it means replacing `handleInstall` with our own loop, after which Serwist would only supply key mapping and cleanup. Other costs seen: entries are written one by one into the live cache (not atomic per build), the script carries the whole Serwist runtime, and the integration pulls `@swc/core`, `esbuild`, `browserslist` and `zod` and reads `next/dist/server/config.js`.
+
+**Decision: the hand-written worker.** Criterion 4 fails, the plan's fallback applies: a worker bundled by esbuild in the build step from `src/offline/sw.ts`, written to `public/sw.js` after `next build` (so Vercel ships it and it sits at the root, no `Service-Worker-Allowed` needed), a versioned cache per build (`offline-<buildId>`) written all or nothing, unchanged revisions copied from the previous cache, the same modules (`strategy.ts`, `precache.ts` filters) and messages. The offline E2E runs on Chromium only. `spec.md` Q1 and Q11 get a one-line note at Checkpoint 2.
+
 
 ## Task 4b (M): the service worker
 
