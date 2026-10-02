@@ -1,7 +1,7 @@
 # Bàn giao: Bài 13 `tap-hop-cac-so-nguyen` (Tập hợp các số nguyên)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026 (lời đọc và 3 video đã dựng, review vòng 4 chỉ phần đổi đã duyệt, id video đã khoá, `lesson:walk` 0 failures). Đã duyệt và xuất bản: review vòng 1 (4 Nghiêm trọng), vòng 2 (1), vòng 3 chỉ phần đổi (0), `reviewedHash` ghi, `published`; id đã khoá (`content:lock`), `content:emit` chạy. 12 section (phần `sap-xep` và `liet-ke` tách ở vòng 2), 12 thẻ, 58 câu, 7 dạng câu, 14 hình tương tác. Đọc hiểu (Haiku): lượt 1 123/44/0, lượt 2 trên 50 mục viết lại 44/6/0, lượt 3 trên 6 mục 0/6/0 (còn ghi ở Nên sửa của `review.md`, không chặn).
+- Cập nhật cuối: 03/10/2026 (thêm 2 video `so-doi`, `hai-so-am`, review vòng 5 đã duyệt, id đã khoá, chưa upload và deploy); trước đó 02/10/2026 (lời đọc và 3 video đã dựng, review vòng 4 chỉ phần đổi đã duyệt, id video đã khoá, `lesson:walk` 0 failures). Đã duyệt và xuất bản: review vòng 1 (4 Nghiêm trọng), vòng 2 (1), vòng 3 chỉ phần đổi (0), `reviewedHash` ghi, `published`; id đã khoá (`content:lock`), `content:emit` chạy. 12 section (phần `sap-xep` và `liet-ke` tách ở vòng 2), 12 thẻ, 58 câu, 7 dạng câu, 14 hình tương tác. Đọc hiểu (Haiku): lượt 1 123/44/0, lượt 2 trên 50 mục viết lại 44/6/0, lượt 3 trên 6 mục 0/6/0 (còn ghi ở Nên sửa của `review.md`, không chặn).
 - Việc còn lại: tải media lên R2 và deploy khi chủ dự án đồng ý (`pnpm media:upload tap-hop-cac-so-nguyen`, `pnpm deploy:prod`); sửa 7 Nên sửa còn mở trong `review.md` nếu muốn; việc của app ở mục "Ngoài nội dung bài". Khi đã làm xong và mọi việc còn lại, lưu trữ thư mục này theo `.claude/rules/agents.md`.
 
 ## Lời đọc và video (02/10/2026)
@@ -12,7 +12,10 @@
   - `nhiet-ke` (phần `nhiet-do`), 41,7 giây, 11 câu, dừng ở 21,0 s và 32,7 s: nhiệt kế hạ xuống −3 rồi −6, ghi và đọc "âm ba", "âm sáu"; số trên 0 chỉ viết số.
   - `truc-so` (phần `truc-so`), 40,2 giây, 12 câu, dừng ở 16,0 s và 28,9 s: nhiệt kế xoay ngang thành trục số, gốc O là số 0, dương bên phải, âm bên trái, điểm −3.
   - `so-sanh` (phần `so-sanh-truc`), 36,8 giây, 10 câu, dừng ở 18,4 s và 27,9 s: −3 và 2 trên trục số, bên trái nhỏ hơn, bên phải lớn hơn, −3 độ C lạnh hơn 2 độ C.
-- Màu theo bài: dương lime, âm pink, số 0 slate, điểm biểu diễn amber, nhỏ hơn blue, lớn hơn violet. Chưa có video cho phần `so-doi` và `hai-so-am` (hai chỗ bé hay nhầm); thêm khi chủ dự án muốn.
+  - `so-doi` (phần `so-doi`), 46,9 giây, 13 câu: bạn cú đi 4 đơn vị sang phải rồi sang trái từ gốc O, 4 và −4 cách gốc bằng nhau (sky); thử số đối của 2; số đối của 0 là 0.
+  - `hai-so-am` (phần `hai-so-am`), 49,1 giây, 13 câu: −7 độ C và −2 độ C trên nhiệt kế, −7 thấp hơn nên nhỏ hơn; quy tắc bỏ dấu −; thử −12 và −2.
+- Màu theo bài: dương lime, âm pink, số 0 slate, điểm biểu diễn amber, số đối sky, nhỏ hơn blue, lớn hơn violet.
+- Hai video `so-doi` và `hai-so-am` thêm sau khi bài đã lên production (03/10/2026): giọng VieNeu Hải Đăng của bài, Whisper mọi câu từ 97,5%; review vòng 5 chỉ phần đổi (Sonnet): 0 Nghiêm trọng, 3 Nên sửa và 2 Góp ý đã sửa, 1 Góp ý giữ; đọc hiểu Haiku trên lời video (2 mục "Khó hiểu" là câu quy tắc chép nguyên văn). Chưa tải lên R2 và chưa deploy: cần `pnpm media:upload tap-hop-cac-so-nguyen` (thêm `so-doi.{mp4,vtt,jpg}`, `hai-so-am.{mp4,vtt,jpg}`) rồi `pnpm deploy:prod --ref <SHA>` khi chủ dự án đồng ý (theo mục "Thêm video cho bài cũ" của `docs/operations.md`).
 - Whisper dưới 97%: chỉ "Bạn cú nhìn nhiệt kế ở Sa Pa." 96,4% (nghe "Sapa"), giữ nguyên.
 - Review vòng 4 (Sonnet, chỉ phần đổi): 0 Nghiêm trọng, 4 Nên sửa và 4 Góp ý đã sửa, 3 Góp ý giữ (xem `review.md`); `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures.
 

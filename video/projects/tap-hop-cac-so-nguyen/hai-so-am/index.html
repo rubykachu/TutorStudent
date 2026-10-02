@@ -1,0 +1,261 @@
+<!doctype html>
+<!--
+  Lesson video "So sánh hai số âm" (lesson tap-hop-cac-so-nguyen): -7 and -2
+  on a thermometer (-7 sits lower, so it is colder and smaller); to compare two
+  negative numbers drop both minus signs: the number with the larger part is the
+  smaller number (-12 < -2 because 12 > 2). Negative numbers pink, smaller
+  blue, larger violet, as in the lesson.
+  Built by `pnpm video:build tap-hop-cac-so-nguyen hai-so-am`, which injects
+  window.TIMING.
+-->
+<html lang="vi">
+  <head>
+    <title>So sánh hai số âm</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .pink {
+        --c: var(--color-concept-pink);
+      }
+      .blue {
+        --c: var(--color-concept-blue);
+      }
+      .violet {
+        --c: var(--color-concept-violet);
+      }
+      .ink {
+        --c: var(--color-foreground);
+      }
+      .chip {
+        font-size: 38px;
+      }
+      .num {
+        display: inline-block;
+        padding: 4px 28px 8px;
+        border-radius: 26px;
+        font:
+          800 72px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+        color: var(--c);
+        background: color-mix(in srgb, var(--c) 14%, var(--color-surface));
+      }
+      .sign {
+        font:
+          800 72px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-foreground);
+      }
+      .arrow {
+        font:
+          800 64px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-concept-slate);
+      }
+      .rrow {
+        position: absolute;
+        left: 560px;
+        width: 700px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <div id="thermo" class="layer"></div>
+        <section id="s1" class="scene layer">
+          <div id="a1" class="rrow" style="top: 60px"></div>
+          <div id="a2" class="rrow" style="top: 190px"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="b1" class="rrow" style="top: 90px"></div>
+          <div id="b2" class="rrow" style="top: 230px"></div>
+          <div id="b3" class="rrow" style="top: 370px"></div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="c0" class="rrow" style="top: 110px"></div>
+          <div id="c1" class="rrow" style="top: 40px"></div>
+          <div id="c2" class="rrow" style="top: 170px"></div>
+          <div id="c3" class="rrow" style="top: 310px"></div>
+          <div id="c4" class="rrow" style="top: 430px"></div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="d1" class="rrow" style="top: 70px"></div>
+          <div id="d2" class="rrow" style="top: 230px"></div>
+          <div id="d3" class="rrow" style="top: 380px"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="e1" class="rrow" style="top: 230px"></div>
+          <div id="e2" class="rrow" style="top: 380px"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, color, owl, pop, hide, fade, pose, scenes, tl, finish } =
+          window.LV;
+        const MINUS = "−";
+        const g = window.gsap;
+        const chip = (c, html) =>
+          `<span class="chip ${c}" style="--c: var(--color-concept-${c})">${html}</span>`;
+        const num = (c, html, id) =>
+          `<span ${id ? `id="${id}"` : ""} class="num ${c}">${html}</span>`;
+        const sign = (html) => `<span class="sign">${html}</span>`;
+
+        // ---------- the thermometer: column and scale from 1 down to -12 ----------
+        const Y0 = 52;
+        const STEP = 34;
+        const y = (v) => Y0 - v * STEP;
+        const TUBE_TOP = y(1) - 14;
+        const TUBE_BOTTOM = y(-13.3) + 14;
+        let ticks = "";
+        for (let v = 1; v >= -12; v--) {
+          const c = v > 0 ? "lime" : v < 0 ? "pink" : "slate";
+          const label = v < 0 ? `${MINUS}${-v}` : `${v}`;
+          ticks += `<line x1="346" x2="${v === 0 ? 378 : 366}" y1="${y(v)}" y2="${y(v)}" stroke="var(--color-foreground)" stroke-width="${v === 0 ? 5 : 3}"/>
+            <text x="388" y="${y(v) + 10}" font-family="Baloo 2" font-weight="800" font-size="28" fill="var(--color-concept-${c})">${label}</text>`;
+        }
+        const ring = (id, v) =>
+          `<rect id="${id}" x="376" y="${y(v) - 19}" width="100" height="38" rx="19" fill="none" stroke="var(--color-foreground)" stroke-width="5"/>`;
+        $("#thermo").innerHTML = `<svg width="1280" height="720" viewBox="0 0 1280 720">
+          <rect x="300" y="${TUBE_TOP}" width="46" height="${TUBE_BOTTOM - TUBE_TOP}" rx="23" fill="var(--color-surface)" stroke="var(--color-foreground)" stroke-width="4"/>
+          <rect id="hg" x="311" y="${y(-2)}" width="24" height="${TUBE_BOTTOM - 8 - y(-2)}" rx="12" fill="var(--color-foreground)"/>
+          ${ticks}
+          ${ring("r2", -2)}
+          ${ring("r7", -7)}
+          ${ring("r12", -12)}
+          <path id="down" d="M 500 ${y(-2) + 12} L 500 ${y(-7) - 14} M 500 ${y(-7) - 14} l -13 -20 M 500 ${y(-7) - 14} l 13 -20" stroke="var(--color-concept-pink)" stroke-width="6" stroke-linecap="round" fill="none" transform="translate(0 0)"/>
+        </svg>`;
+        const mercury = { v: -2 };
+        const draw = () => {
+          const top = y(mercury.v);
+          $("#hg").setAttribute("y", top);
+          $("#hg").setAttribute("height", TUBE_BOTTOM - 8 - top);
+        };
+        const lower = (to, t, d) =>
+          tl.to(mercury, { v: to, duration: d, ease: "power2.inOut", onUpdate: draw }, t);
+
+        // ---------- the right-hand column of each scene ----------
+        const html = (id, h) => ($(id).innerHTML = h);
+        html("#a1", chip("pink", "So sánh hai số âm"));
+        html(
+          "#a2",
+          num("pink", `${MINUS}7`) + sign("?") + num("pink", `${MINUS}2`),
+        );
+        html("#b1", num("pink", `${MINUS}7`) + chip("pink", "thấp hơn") + num("pink", `${MINUS}2`));
+        html("#b2", chip("blue", `❄ lạnh hơn: ${MINUS}7 độ C`));
+        html("#b3", num("blue", `${MINUS}7`) + sign("&lt;") + num("violet", `${MINUS}2`));
+        html("#c0", chip("pink", "hai số âm") + num("pink", `${MINUS}7`) + num("pink", `${MINUS}2`));
+        html("#c1", `${num("pink", `${MINUS}7`)}<span class="arrow">→</span>${num("ink", "7")}`);
+        html("#c2", `${num("pink", `${MINUS}2`)}<span class="arrow">→</span>${num("ink", "2")}`);
+        html("#c3", num("ink", "7") + sign("&gt;") + num("ink", "2"));
+        html("#c4", num("blue", `${MINUS}7`) + sign("&lt;") + num("violet", `${MINUS}2`));
+        html("#d1", num("pink", `${MINUS}12`) + sign("?") + num("pink", `${MINUS}2`));
+        html("#d2", num("ink", "12") + sign("&gt;") + num("ink", "2"));
+        html("#d3", num("blue", `${MINUS}12`) + sign("&lt;") + num("violet", `${MINUS}2`));
+        html("#e1", num("ink", "12") + sign("&gt;") + num("ink", "2"));
+        html("#e2", num("blue", `${MINUS}12`) + sign("&lt;") + num("violet", `${MINUS}2`));
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "34px",
+          top: "380px",
+        });
+
+        scenes([
+          ["#s1", "s01-mo"],
+          ["#s2", "s02-nhiet-ke"],
+          ["#s3", "s03-bo-dau"],
+          ["#s4", "s04-thu"],
+          ["#s5", "s05-nho"],
+        ]);
+        g.set(["#r2", "#r7", "#r12", "#down"], { autoAlpha: 0 });
+        const paint = (node, token, t) =>
+          tl.to(node, { attr: { stroke: color(token) }, duration: 0.3 }, t);
+        const show = (nodes, t) =>
+          tl.to(nodes, { autoAlpha: 1, duration: 0.3 }, t);
+
+        {
+          const sid = "s01-mo";
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          show("#r2", W(sid, "độ"));
+        }
+        {
+          const sid = "s02-nhiet-ke";
+          hide(["#b1", "#b2", "#b3"]);
+          pose(bird, "idle", start(sid));
+          fade(["#a1", "#a2"], start(sid), 0.2);
+          pop("#b1", start(sid) + 0.2, { from: 0.6 });
+          lower(-7, W(sid, "thấp"), 1.2);
+          show(["#r7", "#down"], W(sid, "thấp"));
+          fade("#b1", W(sid, "trời") - 0.1, 0.25);
+          pop("#b2", W(sid, "trời"), { from: 0.6 });
+          pop("#b3", W(sid, "vậy"), { from: 0.6 });
+          paint("#r7", "concept-blue", W(sid, "vậy"));
+          paint("#r2", "concept-violet", W(sid, "vậy"));
+          pose(bird, "happy", W(sid, "vậy"));
+        }
+        {
+          const sid = "s03-bo-dau";
+          hide(["#c1", "#c2", "#c3", "#c4"]);
+          pose(bird, "idle", start(sid));
+          fade(["#b2", "#b3", "#down"], start(sid), 0.2);
+          fade("#c0", W(sid, "bỏ") - 0.1, 0.25);
+          pop("#c1", W(sid, "bỏ"), { from: 0.6 });
+          pop("#c2", W(sid, "bỏ"), { from: 0.6 });
+          pop("#c3", W(sid, "lớn"), { from: 0.6 });
+          pop("#c4", W(sid, "nhỏ"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "nhỏ"));
+        }
+        {
+          const sid = "s04-thu";
+          hide(["#d1", "#d2", "#d3"]);
+          pose(bird, "idle", start(sid));
+          fade(["#c1", "#c2", "#c3", "#c4", "#r7"], start(sid), 0.2);
+          paint("#r2", "foreground", start(sid));
+          lower(-12, W(sid, "bỏ"), 1.4);
+          show("#r12", W(sid, "vậy"));
+          paint("#r12", "concept-blue", W(sid, "vậy"));
+          paint("#r2", "concept-violet", W(sid, "vậy"));
+          pop("#d1", start(sid) + 0.2, { from: 0.6 });
+          fade("#d1", W(sid, "bỏ") - 0.1, 0.25);
+          pop("#d2", W(sid, "bỏ"), { from: 0.6 });
+          pop("#d3", W(sid, "vậy"), { from: 0.6 });
+          pose(bird, "happy", W(sid, "vậy"));
+        }
+        {
+          const sid = "s05-nho";
+          pose(bird, "idle", start(sid));
+          pose(bird, "cheer", W(sid, "nhớ"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

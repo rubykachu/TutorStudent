@@ -1,0 +1,80 @@
+{
+  "title": "So sánh hai số âm",
+  "engine": "local",
+  "poster": { "scene": "s03-bo-dau", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta so sánh hai số âm.",
+          "opening": true
+        },
+        { "text": "Bạn cú nhìn nhiệt kế: −7 độ C và −2 độ C." },
+        {
+          "text": "Bạn thử đoán xem: trời nào lạnh hơn?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s02-nhiet-ke",
+      "sentences": [
+        { "text": "Số −7 nằm thấp hơn −2 trên nhiệt kế." },
+        { "text": "Trời −7 độ C lạnh hơn." },
+        { "text": "Vậy −7 nhỏ hơn −2.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-bo-dau",
+      "sentences": [
+        {
+          "text": "Muốn so sánh hai số âm khác nhau, bỏ dấu − của cả hai số rồi so sánh.",
+          "say": "Muốn so sánh hai số âm khác nhau, bỏ dấu trừ của cả hai số rồi so sánh.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia.",
+          "say": "Số âm nào có số lớn hơn sau khi bỏ dấu trừ thì nhỏ hơn số âm kia.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-thu",
+      "sentences": [
+        {
+          "text": "Thử nhé: −12 và −2, số nào nhỏ hơn?",
+          "pause": "ask"
+        },
+        {
+          "text": "Bỏ dấu −: 12 lớn hơn 2.",
+          "say": "Bỏ dấu trừ: 12 lớn hơn 2.",
+          "pause": "think"
+        },
+        { "text": "Vậy −12 nhỏ hơn −2.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé." },
+        {
+          "text": "Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia.",
+          "say": "Số âm nào có số lớn hơn sau khi bỏ dấu trừ thì nhỏ hơn số âm kia.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hai-so-am",
+      "from": "s03-bo-dau",
+      "to": "s05-nho",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.hai-so-am"]
+    }
+  ]
+}

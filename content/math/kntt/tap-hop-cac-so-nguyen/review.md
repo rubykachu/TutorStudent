@@ -7,7 +7,7 @@
 - Đọc hiểu (Haiku): lượt 1 (cả bài, gồm câu hỏi) 123 / 44 / 0; lượt 2 trên 50 mục viết lại 44 / 6 / 0; lượt 3 trên 6 mục còn lại 0 / 6 / 0 (lí do chung: nhiều khái niệm mới, câu có hai ý); tệp `.shots/review/tap-hop-cac-so-nguyen/doc-hieu.md`, `doc-hieu-2.md`, `doc-hieu-3.md`. Sáu mục còn lại ghi ở Nên sửa 4 đến 7.
 - `lesson:walk`: 0 FAIL, ảnh trong `.shots/walk/tap-hop-cac-so-nguyen/` (iPad, điện thoại, iPad nằm ngang)
 - Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
-- Bản đã review: `11df2c514e9f9ff4c3da6e8194a315feeda41d75fddef5a66cde44b36dfb3333` (`pnpm content:diff` so với bản này)
+- Bản đã review: `747992f46ed97136ec2207143b20764e7bff1a2dcfc6045f078b83e2ee3bbcc7` (`pnpm content:diff` so với bản này)
 
 Vòng 2 có 1 Nghiêm trọng và 14 Nên sửa; tất cả đã hết, xác nhận bằng ảnh:
 - Nghiêm trọng (hình gợi ý `nhiet-ke-goi-y`): ảnh `visual:shot` iPad và điện thoại cho thấy "Trên 0" ở đỉnh, "Dưới 0" ở đáy, dấu "?" hiện ở −2, không còn "2 °C"; bước cuối (−2 °C) bị ẩn. Test khoá: `shows the question mark of a hint on its last step, not the answer` và `never draws two texts beside the ruler at the same height` trong `tests/visuals/tap-hop-cac-so-nguyen.test.tsx`.
@@ -27,6 +27,21 @@ Reviewer mới (Sonnet), chỉ phần đổi: 3 video (`nhiet-ke`, `truc-so`, `s
 - Góp ý đã xử lý: nhãn trung tính dùng màu chữ thường (slate chỉ cho số 0); "Bạn cú dừng ở số −3"; nhãn "−3 · âm ba" hiện lúc đọc "âm"; dấu "?" của `truc-so` mờ xong trước khi nhãn "số dương" hiện.
 - Góp ý giữ nguyên (không chặn): câu hỏi "số nào lớn hơn?" của `so-sanh` được trả lời sau 17 giây (kiến thức và thứ tự đúng); Whisper nghe "góc O" ở `truc-so` và "âm bà" ở câu cuối `so-sanh` (khớp 100% sau chuẩn hoá); hook của lời đọc giới thiệu kết bằng câu hỏi, quãng nghỉ sau đó 0,83 giây (lời đọc giới thiệu không có quãng `ask`).
 - Đã kiểm và đúng: "âm ba", không câu nào đọc "trừ ba"; số dương bên phải, số âm bên trái; −3 nhỏ hơn 2; màu số dương lime, số âm pink, số 0 slate, điểm amber, số nhỏ hơn blue, số lớn hơn violet; 11, 12 và 10 câu, mỗi video có câu `ask` và 2 điểm dừng cuối một ý; clip đúng card `nhiet-do`, `truc-so`, `so-sanh-truc`.
+
+## Vòng 5: video `so-doi` và `hai-so-am`
+
+Reviewer mới (Sonnet), chỉ phần đổi: 2 video mới (`so-doi`, `hai-so-am`), 2 khối `video` đầu các phần `so-doi` và `hai-so-am`, 2 mục `videos[]` tương ứng; soát thêm note, recap, mẹo cùng section. Kết quả: 0 Nghiêm trọng, 3 Nên sửa (12 đến 14), 3 Góp ý (15 đến 17); đã sửa 3 Nên sửa và 2 Góp ý (15, 17), dựng lại cả hai video, `pnpm video:check` ok.
+
+- Nhịp: `so-doi` 13 câu (46,97 giây), `hai-so-am` 13 câu (49,13 giây); câu thường dài nhất 10 chữ; mỗi video có câu `ask`, câu cuối không phải `ask`, mọi câu `rule` trừ câu cuối có `think`; chào "bạn" ở câu đầu; không có checkpoint trong `videos[]`; hình hiện ngay từ khung đầu (tiêu đề và biểu thức cạnh cú).
+- Whisper: 13 câu mỗi video, mọi câu từ 97,5% trở lên. Nghe "âm bùn", "ấm 3", "Chơi âm 7", "Bỏ dấu chữ", "cốc ô", "bạn cứ": khớp sau chuẩn hoá, cùng kiểu đã giữ nguyên ở vòng 4, không chặn.
+- Kiến thức đúng: số đối của 4, 3, 5 và 0 (số đối của 0 là chính nó); "−12 nhỏ hơn −2 vì bỏ dấu thì 12 lớn hơn 2", "−7 nằm thấp hơn −2 nên lạnh hơn". Lời khớp note, recap và mẹo `tim-so-doi`, `so-sanh-hai-so-am` của hai section: cùng một quy tắc, không nói trái nhau. Số âm đọc "âm", dấu − riêng đọc "dấu trừ" (`say` của 5 câu `hai-so-am`).
+- Thứ tự hỏi rồi mới mở: đúng ở `hai-so-am` (câu hỏi 8,5 giây, câu trả lời 12 giây; câu hỏi thứ hai 31,2 giây, "12 lớn hơn 2" hiện 35,4 giây) và ở câu hỏi đầu của `so-doi` (nhãn "4 đơn vị" hiện lúc đọc 17,5 giây); lỗi ở câu hỏi thứ hai của `so-doi` ghi ở mục 12.
+- Màu: số dương lime, số âm pink, số 0 slate, số đối sky, −7 và −12 blue, −2 violet ở các ô so sánh; ngoại lệ ở vòng khoanh nhiệt kế (mục 13). Dải dưới (y từ 540) trống ở cả hai video, chỉ có cú ở góc; không chữ bị cắt hay chồng; màn không trống khi chờ chữ.
+- Clip: `so-doi` 12,752 đến 45,545 giây (card `so-doi`), `hai-so-am` 20,347 đến 47,721 giây (card `hai-so-am`), cuối clip trùng cuối lời nói; mp4, vtt, jpg có mặt, độ dài khớp `durationSec`.
+
+- Đã xử lý vòng 5: (12, 14) câu hỏi thứ hai của `so-doi` đổi sang số đối của 2 (không trùng "Cùng làm" của số 3), lúc hỏi hình chỉ hiện "2 ↔ ?", "−2" và điểm −2 hiện đúng lúc đọc đáp án; (13) vòng khoanh nhiệt kế màu trung tính lúc hỏi, chỉ tô blue cho số nhỏ hơn và violet cho −2 lúc hiện ô so sánh; (15) màn cuối `so-doi` vẽ điểm 5, −5 và hai mũi tên, nhãn "cùng cách gốc O, ở hai bên gốc O"; (17) thuỷ ngân của `hai-so-am` tụt xuống −12 lúc đọc "Bỏ dấu trừ", không phải lúc hỏi. Whisper sau khi dựng lại: mọi câu từ 97,5% trở lên.
+- Đọc hiểu (Haiku) trên lời hai video: `so-doi` 6 / 7 / 0, `hai-so-am` 5 / 7 / 2 (`.shots/review/tap-hop-cac-so-nguyen/doc-hieu-video-so-doi-hai-so-am.md`). Hai mục "Khó hiểu" là câu quy tắc "Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia" (nói ở `s03-bo-dau` và lặp ở `s05-nho`), chép nguyên văn từ note và recap của bài nên video không đổi được; cùng câu đã ghi ở Nên sửa 6 về chữ của bài. Các mục "Hiểu mơ hồ" là câu dẫn cần hình, hình đã đi kèm. Không chặn duyệt.
+- Góp ý 16 giữ nguyên: "Bạn cú" là nhân vật dẫn của mọi video, note kể về con kiến là ví dụ riêng của section.
 
 ## Nghiêm trọng
 
@@ -83,6 +98,28 @@ Không có.
 - Vấn đề: một mẹo gồm ba câu, câu đầu có hai ý và câu thứ hai nói "khoảng" rồi "vạch". Không chặn duyệt.
 - Sửa: "Muốn biết điểm là số nào, đếm các khoảng từ gốc O tới điểm đó. Đếm khoảng, đừng đếm vạch. Điểm ở bên trái O thì số có dấu −."
 
+### 12. (vòng 5) Video `so-doi`: đáp án −3 hiện trên màn từ lúc hỏi, 4,5 giây trước khi được đọc
+
+- Vị trí: `video/projects/tap-hop-cac-so-nguyen/so-doi/index.html` (cảnh `s03-thu`, ô `pair` "3 ↔ −3"), câu `ask` "Thử nhé: số đối của 3 là số nào?" (28,9 đến 31,6 giây), câu đáp án "Số đối của 3 là −3." (32,5 giây) (LL-02, LL-11)
+- Nguồn: —
+- Vấn đề: khung giây 28 và 30 của contact sheet (f-014, f-015) đã có ô hồng "−3" cạnh "3". Bé chưa kịp nghĩ đã đọc được đáp án; hai điểm của trục chỉ hiện ở giây 32, nên chữ hiện trước hình.
+- Sửa: lúc hỏi chỉ hiện "3 ↔ ?" (trục chỉ có điểm 3 hoặc không có điểm), đổi "?" thành "−3" và hiện điểm −3 đúng lúc đọc "−3" (khoảng 33 giây).
+
+### 13. (vòng 5) Video `hai-so-am`: hai vòng khoanh trên nhiệt kế cùng màu blue, −2 (số lớn hơn) lẽ ra là violet
+
+- Vị trí: `video/projects/tap-hop-cac-so-nguyen/hai-so-am/index.html` (`ring("r2", -2, "blue")`, `ring("r7", -7, "blue")`, `ring("r12", -12, "blue")`), các khung f-003 đến f-023 (LL-03)
+- Nguồn: —
+- Vấn đề: màu blue chỉ số nhỏ hơn, violet chỉ số lớn hơn. Từ giây 6 đến 36 vòng khoanh −2 màu blue trong khi các ô so sánh cùng video tô −2 violet, nên cùng một số hai màu. Đổi ngay −2 sang violet và −7 sang blue lúc hỏi lại lộ đáp án.
+- Sửa: vòng khoanh màu trung tính (màu chữ thường) lúc hỏi; chỉ tô −7 hay −12 blue và −2 violet đồng thời với ô "−7 < −2" (giây 18) và "−12 < −2" (giây 38).
+
+### 14. (vòng 5) Video `so-doi` hỏi lại đúng ví dụ của câu "Cùng làm" liền sau
+
+- Vị trí: câu `ask` "Thử nhé: số đối của 3 là số nào?" trong `video/projects/tap-hop-cac-so-nguyen/so-doi/script.json`, `$.sections[6].blocks[3]` ("Cùng làm: chạm vào số đối của 3", hình `chon-doi-3`) (LL-07)
+- Nguồn: —
+- Vấn đề: bé nghe video đọc "số đối của 3 là −3" rồi gặp lại câu chạm vào số đối của 3 ngay trong section, không cần nghĩ. Số 4 và 5 của video thì khớp note và quy tắc nên không sao.
+- Sửa: đổi ví dụ "Thử nhé" của video sang một số chưa dùng trong section và bài tập số đối (tránh 3, 4, 5, 8, 13, 15), ví dụ 6; sửa các hình và câu đáp án theo.
+
+
 ## Góp ý
 
 ### 8. Số đối nói ba cách
@@ -112,3 +149,24 @@ Không có.
 - Nguồn: tr.49 Hình 3.1
 - Vấn đề: do app, không do nội dung bài.
 - Sửa: báo người làm app (chỉ vẽ mũi tên chiều dương; hình giãn theo bề ngang thẻ).
+
+### 15. (vòng 5) Video `so-doi`: màn cuối vẽ quy tắc mà không có hình của quy tắc
+
+- Vị trí: `video/projects/tap-hop-cac-so-nguyen/so-doi/index.html` (cảnh `s04-nho`, nhãn "cùng cách gốc O, hai bên"), khung f-019 đến f-022 (38,6 đến 45,4 giây)
+- Nguồn: —
+- Vấn đề: lời nói "như 5 và −5" nhưng trục chỉ có điểm 0, không có điểm 5 và −5 như các cảnh trước; nhãn kết thúc ở "hai bên", cụt so với "hai bên gốc O" của lời nói. Cũng vậy lúc đọc quy tắc đầu (20 đến 25 giây): lời nói 5 và −5, hình còn 4 và −4. Không sai kiến thức.
+- Sửa: vẽ hai điểm 5 và −5 cùng hai mũi tên "5 đơn vị" ở màn cuối, nhãn "cùng cách gốc O, ở hai bên gốc O".
+
+### 16. (vòng 5) Video `so-doi` kể về bạn cú, note ngay dưới kể về con kiến
+
+- Vị trí: `video/projects/tap-hop-cac-so-nguyen/so-doi/script.json` ("Bạn cú đứng ở gốc O", "Bạn cú đi sang phải 4 đơn vị"), `$.sections[6].blocks[1].children[0].text` ("Con kiến đứng ở gốc O…"), hình `kien-4`
+- Nguồn: —
+- Vấn đề: cùng một tình huống đi 4 đơn vị sang hai bên, video đặt cho cú, note đặt cho kiến; trên màn cú đứng ở góc, chấm đi thay cú. Bé có thể tưởng là hai chuyện.
+- Sửa: lời video nói "Một chấm đứng ở gốc O", hoặc đổi note thành "Chấm đứng ở gốc O" (và `kien-4`) nếu giữ cú làm người kể.
+
+### 17. (vòng 5) Video `hai-so-am`: thủy ngân tụt xuống −12 trong lúc hỏi
+
+- Vị trí: `video/projects/tap-hop-cac-so-nguyen/hai-so-am/index.html` (cảnh `s04-thu`), câu `ask` "Thử nhé: −12 và −2, số nào nhỏ hơn?" (31,2 đến 34,4 giây), khung f-016 (giây 32)
+- Nguồn: —
+- Vấn đề: cột thủy ngân hạ xuống −12 giữa lúc hỏi, bé nhìn thấy −12 thấp hơn trước khi nghe câu "Bỏ dấu −". Kiến thức và thứ tự lời nói đúng; chỉ là gợi ý hơi sớm.
+- Sửa: hạ thủy ngân cùng lúc đọc "Bỏ dấu trừ" (khoảng 35,4 giây) hay lúc đọc "Vậy −12 nhỏ hơn −2" (38,6 giây).

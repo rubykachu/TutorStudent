@@ -12,7 +12,7 @@
   "title": "Tập hợp các số nguyên",
   "sourceRef": "Sách bài tập tr.47–49",
   "status": "published",
-  "reviewedHash": "11df2c514e9f9ff4c3da6e8194a315feeda41d75fddef5a66cde44b36dfb3333",
+  "reviewedHash": "747992f46ed97136ec2207143b20764e7bff1a2dcfc6045f078b83e2ee3bbcc7",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với số âm. Sáng mùa đông ở Sa Pa, nhiệt kế chỉ 2 độ dưới 0, bạn ghi nhiệt độ đó bằng số nào?"
@@ -443,6 +443,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "tap-hop-cac-so-nguyen.video.so-doi"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -631,6 +635,10 @@
       "sourceRef": "Sách bài tập tr.47 (kiến thức cần nhớ 6), tr.48 (ví dụ 2), tr.49 (bài 3.7)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "tap-hop-cac-so-nguyen.video.hai-so-am"
+        },
         {
           "type": "group",
           "children": [
@@ -4625,6 +4633,48 @@
           "from": 18.432
         }
       ]
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.video.hai-so-am",
+      "lessonId": "tap-hop-cac-so-nguyen",
+      "url": "video/tap-hop-cac-so-nguyen/hai-so-am.mp4",
+      "vttUrl": "video/tap-hop-cac-so-nguyen/hai-so-am.vtt",
+      "posterUrl": "video/tap-hop-cac-so-nguyen/hai-so-am.jpg",
+      "durationSec": 49.13,
+      "clips": [
+        {
+          "id": "hai-so-am",
+          "start": 20.347,
+          "end": 47.721,
+          "cardIds": ["tap-hop-cac-so-nguyen.card.hai-so-am"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.video.so-doi",
+      "lessonId": "tap-hop-cac-so-nguyen",
+      "url": "video/tap-hop-cac-so-nguyen/so-doi.mp4",
+      "vttUrl": "video/tap-hop-cac-so-nguyen/so-doi.vtt",
+      "posterUrl": "video/tap-hop-cac-so-nguyen/so-doi.jpg",
+      "durationSec": 46.93,
+      "clips": [
+        {
+          "id": "so-doi",
+          "start": 12.752,
+          "end": 45.524,
+          "cardIds": ["tap-hop-cac-so-nguyen.card.so-doi"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
     }
   ]
 }

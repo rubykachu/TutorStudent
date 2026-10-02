@@ -1,0 +1,75 @@
+{
+  "title": "Số đối của một số",
+  "engine": "local",
+  "poster": { "scene": "s02-doi", "at": 0.9 },
+  "scenes": [
+    {
+      "id": "s01-mo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm số đối của một số.",
+          "opening": true
+        },
+        {
+          "text": "Bạn cú đứng ở gốc O trên trục số.",
+          "say": "Bạn cú đứng ở gốc ô trên trục số."
+        },
+        { "text": "Bạn cú đi sang phải 4 đơn vị." },
+        { "text": "Rồi bạn cú đi sang trái 4 đơn vị." }
+      ]
+    },
+    {
+      "id": "s02-doi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: 4 và −4 giống nhau ở đâu?",
+          "pause": "ask"
+        },
+        {
+          "text": "Hai số cùng cách gốc 4 đơn vị."
+        },
+        {
+          "text": "Hai số đối nhau thì cách gốc O bằng nhau nhưng ở hai bên gốc O, như 5 và −5.",
+          "say": "Hai số đối nhau thì cách gốc ô bằng nhau nhưng ở hai bên gốc ô, như 5 và âm-5.",
+          "rule": true,
+          "pause": "think"
+        },
+        { "text": "Vậy số đối của 4 là −4.", "pause": "think" }
+      ]
+    },
+    {
+      "id": "s03-thu",
+      "sentences": [
+        {
+          "text": "Thử nhé: số đối của 2 là số nào?",
+          "pause": "ask"
+        },
+        { "text": "Số đối của 2 là −2.", "pause": "think" },
+        {
+          "text": "Riêng số đối của 0 là chính số 0.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        { "text": "Bạn nhớ nhé." },
+        {
+          "text": "Hai số đối nhau thì cách gốc O bằng nhau nhưng ở hai bên gốc O, như 5 và −5.",
+          "say": "Hai số đối nhau thì cách gốc ô bằng nhau nhưng ở hai bên gốc ô, như 5 và âm-5.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "so-doi",
+      "from": "s02-doi",
+      "to": "s04-nho",
+      "cardIds": ["tap-hop-cac-so-nguyen.card.so-doi"]
+    }
+  ]
+}
