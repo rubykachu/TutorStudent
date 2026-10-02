@@ -4,43 +4,34 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: not started; the 
 
 ## Handover
 
-Slice 4 (client engine and triggers) is partly built. Working tree was clean after the last commit; nothing half-done.
+Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was clean after the last commit unless the list below says otherwise.
 
 ### Done (commits, oldest first)
 
-- `e85bdc1` Task 11, commit 1: one doc's cycle. `src/sync/client.ts` (fetch wrapper, answers reduced to `GetResult`/`PutResult`, network error = `offline`), `src/sync/state.ts` (`syncState` access, `syncFamilyId` device setting, `PENDING_MONTH`), `src/sync/docs.ts` (one adapter each for profile, main and month doc), `src/sync/cycle.ts` (`syncDoc`: conditional GET, migrate, merge, PUT, up to `SYNC_MAX_RETRIES` rounds on 412 with a 100 to 500 ms wait, one retry on 409 `shrink`, apply-back, empty docs never created), `src/sync/overwrite.ts` (writes the server's clamped doc over the local records it changed, because the merge cannot lower a time). `src/sync/local.ts` only gained `export` on `listResets`. Tests: `tests/sync/cycle.test.ts`, helpers `tests/sync/network.ts` (fake fetch answered by the real service over the memory store) and `tests/sync/devices.ts`.
-- `5791b5b` Task 11, commit 2: `src/sync/engine.ts`, `createSyncEngine({ db, api, deviceNow?, sleep?, random? }).run({ full? })`. Order: profile doc, then per local child the months (current and previous; with `full` also every dirty local month, oldest first), then the main doc. Failures that end the run: unavailable (turns sync off for the session, silent), unauthorized, offline, rate, origin, server, family-mismatch. Per-doc failures (conflict, too-new, upgrade-required, too-large, invalid, stored-invalid, shrink) leave the doc dirty and the run goes on; too-new and upgrade-required block that doc until reload. 403 `child` sends the profile doc and retries once. Clock offset measured from the first answer of a run, stored at the end. Tests: `tests/sync/engine.test.ts` (18 cases: first sync, new device, two-device interleaving, 412 race, three lost races, writes during a sync, offline then online, lost PUT answer, 401, 503 and no-gate, family mismatch, 403 child, too-new, reset on one device, clamp, clock offset).
-- Task 11 is ticked below. Gate was green for both commits (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`).
-
-### Not started
-
-Tasks 12 and 13, Checkpoint A. `git status` was clean, so `src/learn/*` and `src/app/(child)/layout.tsx` had no foreign uncommitted changes at the time; re-check before editing.
+- `e85bdc1`, `5791b5b` Task 11: the engine. `src/sync/cycle.ts` (one doc), `docs.ts` (adapters), `state.ts`, `client.ts`, `overwrite.ts`, `engine.ts` (`createSyncEngine(...).run({ full? })`). Tests `tests/sync/cycle.test.ts`, `engine.test.ts`, helpers `tests/sync/network.ts` (fake fetch answered by the real service over the memory store) and `devices.ts`.
+- `bd2bc6c` Task 12: `src/sync/scheduler.ts` (pure: one run at a time, a debounce of `SYNC_DEBOUNCE_MS`, a request during a run answered by one more run, nothing acts before a runner calls `start`), `src/sync/request.ts` (the app's engine and scheduler, `requestSync`, `syncNow`, `startSync`, Web Locks lock `tutor-sync` with `ifAvailable`, no lock when the API is missing), `src/sync/runner.tsx` (`SyncRunner`: full sync at start after `restoreClockOffset`, timer, `online`, `visibilitychange` hidden; draws nothing). Mounted in `src/app/(child)/layout.tsx` and `src/components/parent/parent-screen.tsx`. Call sites: `section-player.tsx` `advance` after `completeSection`, `review-player.tsx` effect when the session is over. Tests `tests/sync/scheduler.test.ts`, `runner.test.tsx`, `lock.test.ts`, `tests/learn/sync-triggers.test.tsx`.
+- `d05ce63` Task 13: `src/sync/history-pull.ts` (`pullHistory`, `pendingMonths`; newest first, one request at a time, `SYNC_HISTORY_PULL_PER_MINUTE` pacing, one lock per request, stops on `ENDS_RUN` failures, a missing month stays pending), started from `request.ts` after every run that ended `synced` or `partial` (own background job, never holds the scheduler). `src/components/parent/history-loading.tsx` placed after `StudyTime` in `child-report.tsx`. Tests `tests/sync/history-pull.test.ts`, `tests/components/parent/history-loading.test.tsx`.
+- Gate green for each commit (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`; `tests/scripts/sources-import.test.ts` can time out under load, passes alone).
 
 ### Next steps, in order
 
-1. Task 12. Create `src/sync/request.ts`: the default engine (`createSyncEngine({ db: appDb(), api: createSyncApi() })`; keep it out of `engine.ts` so the engine does not import `src/progress/hooks.ts`), `syncNow(options?)`, and `requestSync(reason)` with a short debounce and one sync in flight at a time. Create `src/sync/runner.tsx` (`SyncRunner`: first run with `full: true` after `restoreClockOffset(db)`, a `SYNC_INTERVAL_MINUTES` timer, `online`, `visibilitychange` hidden, no `keepalive`; Web Locks lock `tutor-sync`, no lock when `navigator.locks` is missing). Mount once in `src/app/(child)/layout.tsx` and in `src/components/parent/parent-screen.tsx`. Call sites: in `src/learn/section-player.tsx` `advance`, one line after `completeSection` resolves; in `src/learn/review-player.tsx`, a small effect (placed before `if (!session) return null`) that calls `requestSync` once when the session ends (`session !== null && !item && !session.recap`). Tests `tests/sync/runner.test.tsx` with fake timers; no child screen renders sync text; an apply-back changing the open section's position does not move the player.
-2. Task 13. `src/sync/history-pull.ts`: after the main doc is applied, pull months whose `syncState.months[m].applied` is false (the engine records every month the cloud lists as `PENDING_MONTH`), newest first, one request at a time, paced under `SYNC_GET_LIMIT_PER_MINUTE`, through `syncDoc` with `monthAdapter` (which applies with `applyHistoryDoc` and marks the month applied). A listed month that does not exist counts as empty and stays pending. Start it from the runner; stop on leaving the app and resume at the next start. `src/components/parent/history-loading.tsx` ("Đang tải lịch sử học… (đã có từ tháng …)") placed in `child-report.tsx` under the totals. Tests `tests/sync/history-pull.test.ts`, `tests/components/parent`.
-3. Checkpoint A: `pnpm build` in a temp `git worktree`; local gate server on port 3520 with `SYNC_STORE=fs:<temp dir>` and a fake `FAMILY_CODES=test-family:<code>` plus `SESSION_SECRET` (32 characters); two browser contexts: learn on A, open B, progress arrives; run e2e learn, review and parent once with `--workers=2`; remove the worktree; stop only own PIDs (never the dev server on 3001, never `pkill`). No push, no deploy, no R2.
-4. Look at the flaky `e2e/unlock.spec.ts` on iPad WebKit ("Vào học" button not enabled in time under `--workers=2`). If the fix is test-only (wait for the enabled state, no fixed sleeps), commit it alone as `test(e2e): ...`; otherwise leave it and note it here.
-5. Write the exact two-browser commands into Checkpoint A, tick Tasks 12 and 13, update this handover.
+1. Checkpoint A (build in a temp worktree, two-context check on port 3520, e2e learn/review/parent with `--workers=2`, flaky `e2e/unlock.spec.ts` if the fix is test-only).
+2. Task 14, Task 15, Task 16.
 
 ### Deviations from the spec
 
-- The cycle lives in `src/sync/cycle.ts` and the adapters in `src/sync/docs.ts`, `src/sync/state.ts`, `src/sync/overwrite.ts`; `engine.ts` holds only the orchestration. The task listed `engine.ts` and `client.ts` only.
-- Routine syncs always do a conditional GET of the current and previous month (not only when a month is dirty), so a device sees the other device's answers of the current month; each is a cheap `unchanged` answer. The cost note in section 8 assumed one poll per sync.
-- The server answers a stored doc of a newer version with 500 `stored-invalid` when read by an older server; the client's `too-new` case only arises when a newer server answers an older client (tested with a canned answer).
-- A month empty on both sides records nothing in `syncState` (otherwise the main doc would list months that do not exist).
+- The cycle lives in `src/sync/cycle.ts` and the adapters in `src/sync/docs.ts`, `state.ts`, `overwrite.ts`; `engine.ts` holds only the orchestration.
+- Routine syncs always do a conditional GET of the current and previous month, so a device sees the other device's answers of the current month; each is a cheap `unchanged` answer.
+- The server answers a stored doc of a newer version with 500 `stored-invalid` when read by an older server; the client's `too-new` case only arises when a newer server answers an older client.
+- A month empty on both sides records nothing in `syncState`.
+- `requestSync()` takes no reason argument (nothing would read it).
+- The history pull is not part of `engine.run`: it runs as its own background job so its pacing never holds back a sync.
+- A month the cloud lists but does not hold (its push failed) stays pending, so the parent page's loading line stays until it appears.
 
 ### Known flakes
 
-- `tests/scripts/sources-import.test.ts` can time out (5 s) when the whole suite runs under load; it passes alone (`pnpm vitest run tests/scripts/sources-import.test.ts`).
+- `tests/scripts/sources-import.test.ts` can time out (5 s) when the whole suite runs under load; it passes alone.
 - `e2e/unlock.spec.ts` on iPad WebKit with `--workers=2`: "Vào học" not enabled in time (not investigated yet).
-
-### Commands to verify
-
-- `pnpm vitest run tests/sync/cycle.test.ts tests/sync/engine.test.ts`
-- `pnpm format && pnpm lint && pnpm typecheck && pnpm test`
-- `git log --oneline -3` shows `5791b5b` and `e85bdc1` below the handover commit.
 
 ## Rules for every task
 
@@ -234,10 +225,10 @@ Files: `src/sync/engine.ts`, `src/sync/client.ts` (fetch wrapper), `tests/sync/e
 `requestSync(reason)` with a short debounce; a client `SyncRunner` that starts the 5-minute timer, listens to `online` and `visibilitychange` (hidden: a normal sync, no `keepalive`, whose 64 KB body limit a doc exceeds), and holds a Web Locks lock `tutor-sync` (falls back to no lock). Call sites: after `completeSection` succeeds (in `src/learn/section-player.tsx`) and when a review session finishes (`src/learn/review-player.tsx`), one line each. Mounted once in `src/app/(child)/layout.tsx` and on the parent screen. Nothing visible to the child.
 
 Acceptance:
-- [ ] Component test with fake timers: timer, online, hidden and the two call sites each trigger one sync; repeated triggers inside the debounce give one sync.
-- [ ] No child screen renders any sync text (test renders home and players and finds none).
-- [ ] An apply-back that changes the open section's position does not move the section player (component test).
-- [ ] `git status` checked before editing `src/learn/*` and the layout (see rules above).
+- [x] Component test with fake timers: timer, online, hidden and the two call sites each trigger one sync; repeated triggers inside the debounce give one sync.
+- [x] No child screen renders any sync text (test renders home and players and finds none).
+- [x] An apply-back that changes the open section's position does not move the section player (component test).
+- [x] `git status` checked before editing `src/learn/*` and the layout (see rules above).
 
 Verify: `pnpm test tests/sync/runner.test.tsx tests/learn`
 
@@ -248,9 +239,9 @@ Files: `src/sync/runner.tsx`, `src/sync/request.ts`, `src/learn/section-player.t
 After the main docs are applied, a background job pulls the months of `historyMonths` that `syncState.months` has not applied yet, newest first, one request at a time, paced to stay under the GET limit, and applies each through `applyHistoryDoc`. It stops on leaving the app and resumes on the next start. The child can study meanwhile. On the parent page, under the totals: "Đang tải lịch sử học… (đã có từ tháng <tháng>)" while listed months are missing (`spec.md` section 6.6); "Thẻ hay quên" (card states) and the 14-day lists need nothing more than the main doc and the two newest months.
 
 Acceptance:
-- [ ] Unit test with a fake fetch: a device with no local data applies the main doc first (sections, cards, stickers readable before any month arrives), then months newest first; an interrupted pull resumes without refetching applied months; a listed month that is missing counts as empty and is retried later.
-- [ ] Component test: the loading line shows while months are missing and disappears when all are applied; parent totals after the pull equal those computed on the source device.
-- [ ] No child screen waits for the history (the lesson and review screens open while months are pending).
+- [x] Unit test with a fake fetch: a device with no local data applies the main doc first (sections, cards, stickers readable before any month arrives), then months newest first; an interrupted pull resumes without refetching applied months; a listed month that is missing counts as empty and is retried later.
+- [x] Component test: the loading line shows while months are missing and disappears when all are applied; parent totals after the pull equal those computed on the source device.
+- [x] No child screen waits for the history (the lesson and review screens open while months are pending).
 
 Verify: `pnpm test tests/sync/history-pull.test.ts tests/components/parent`
 
