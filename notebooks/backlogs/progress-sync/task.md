@@ -105,10 +105,10 @@ Files: `src/sync/local.ts`, `src/sync/local-history.ts`, `tests/sync/local.test.
 Parse entries `<familyId>:<code>` (slug `^[a-z0-9-]{3,32}$`), splitting at the first `:` before normalising the code; bare codes still accepted for the gate. A family may have several entries; the same normalised code under two family ids, or a bad slug, closes the gate with a clear reason (same style as `readAccessConfig`). `resolveFamily(config, token)` returns the family id of the matching entry or `null`. Move `sameOrigin` from `src/app/api/session/route.ts` to `src/access/origin.ts`, reused by both routes. The deploy smoke check (`scripts/lib/deploy-prod.ts`, which today takes `FAMILY_CODES.split(",")[0]`) reads the first code through the same parser.
 
 Acceptance:
-- [ ] Existing gate tests pass unchanged; a cookie issued for a bare code before the change resolves to the named family after the entry gains a name.
-- [ ] Two entries with the same family id both resolve to it; one code under two ids closes the gate.
-- [ ] `tests/scripts/deploy-prod.test.ts` logs in with the code part of a named entry.
-- [ ] `.env.example` documents the named form.
+- [x] Existing gate tests pass unchanged; a cookie issued for a bare code before the change resolves to the named family after the entry gains a name.
+- [x] Two entries with the same family id both resolve to it; one code under two ids closes the gate.
+- [x] `tests/scripts/deploy-prod.test.ts` logs in with the code part of a named entry.
+- [x] `.env.example` documents the named form.
 
 Verify: `pnpm test tests/access tests/scripts/deploy-prod.test.ts`
 
@@ -119,10 +119,10 @@ Files: `src/access/env.ts`, `src/access/session.ts` (resolve helper), `src/acces
 Interface from `spec.md`, "Storage adapter"; `syncEnvPrefix(env)` (`prod` only when `VERCEL_ENV === "production"`, `dev` otherwise) and `syncKey` as the only key builder; a separate test-store constructor that takes a `test/<run-id>/` prefix and refuses anything else; `memory` and `fs` adapters; `readSyncStoreConfig(env)` that refuses `fs`/`memory` in production. One shared contract test suite run against every adapter (later also R2).
 
 Acceptance:
-- [ ] Contract: create with `ifNoneMatch: "*"` fails when the key exists; `ifMatch` with a stale etag returns `conflict`; conditional GET returns `unchanged`; `delete` refuses a key outside the store's `test/` prefix.
-- [ ] `syncKey` builds the four key kinds of `spec.md` section 4 (profile, main, `<childId>/history/<yyyy-mm>.json`, snapshot) and cannot produce a key outside `<env>/progress/<familyId>/` or `<env>/snapshots/<familyId>/` for any input that passed validation (test with hostile strings, including a month like `../x`).
-- [ ] For every combination of `NODE_ENV` (unset, development, test, production) and `VERCEL_ENV` (unset, development, preview), no key starts with `prod/`; only `VERCEL_ENV=production` gives `prod/`. The test-store constructor refuses `prod/…`, `dev/…`, `` and `../`.
-- [ ] The fs adapter writes under the given folder only; the folder is gitignored (`.sync-store/`).
+- [x] Contract: create with `ifNoneMatch: "*"` fails when the key exists; `ifMatch` with a stale etag returns `conflict`; conditional GET returns `unchanged`; `delete` refuses a key outside the store's `test/` prefix.
+- [x] `syncKey` builds the four key kinds of `spec.md` section 4 (profile, main, `<childId>/history/<yyyy-mm>.json`, snapshot) and cannot produce a key outside `<env>/progress/<familyId>/` or `<env>/snapshots/<familyId>/` for any input that passed validation (test with hostile strings, including a month like `../x`).
+- [x] For every combination of `NODE_ENV` (unset, development, test, production) and `VERCEL_ENV` (unset, development, preview), no key starts with `prod/`; only `VERCEL_ENV=production` gives `prod/`. The test-store constructor refuses `prod/…`, `dev/…`, `` and `../`.
+- [x] The fs adapter writes under the given folder only; the folder is gitignored (`.sync-store/`).
 
 Verify: `pnpm test tests/sync/store`
 
@@ -133,8 +133,8 @@ Files: `src/sync/store/{types,keys,memory,fs,config}.ts`, `tests/sync/store/*`, 
 Route skeleton: auth via cookie and `resolveFamily`, `sync-unavailable` / `no-gate` answers, query validation (`doc=profile`, `child`, `child` + `month`; a month after the current Vietnam month is refused), GET with `known`, `serverTime`, `Cache-Control: no-store`, `Sec-Fetch-Site` check, a stored doc failing the schema answers `stored-invalid`.
 
 Acceptance:
-- [ ] API tests with the memory store: no cookie (401 from the proxy decision), a cookie whose code was removed (401), other family's child (403 or 404, never data), unknown child, `unchanged`, `doc: null` for a missing month, a future month (400), cross-site `Sec-Fetch-Site` (403).
-- [ ] No doc content in logs (test spies on `console`).
+- [x] API tests with the memory store: no cookie (401 from the proxy decision), a cookie whose code was removed (401), other family's child (403 or 404, never data), unknown child, `unchanged`, `doc: null` for a missing month, a future month (400), cross-site `Sec-Fetch-Site` (403).
+- [x] No doc content in logs (test spies on `console`).
 
 Verify: `pnpm test tests/api/sync-get.test.ts`
 
@@ -145,11 +145,11 @@ Files: `src/app/api/sync/route.ts`, `src/sync/server.ts`, `tests/api/sync-get.te
 Origin and content-type check, body size cap while reading (by doc kind), zod, header ids match, child listed in the profile doc (60-second per-instance cache, re-read from the store on a miss before refusing), future timestamps clamped and the stored doc returned when clamped, conditional write, 412 with current `{doc, etag}`, 409 `upgrade-required`, 409 `shrink` for a history doc missing a stored record id, 413, per-family rate limit (30 PUTs and 120 GETs per minute per instance).
 
 Acceptance:
-- [ ] Two interleaved clients on the memory store, for the main doc and for one month doc: the second gets 412 with the first one's doc; after merge and retry both writes are in the stored doc.
-- [ ] A history PUT that drops a stored attempt gets 409 `shrink`; a record clamped out of its month gets 400.
-- [ ] Wrong origin 403; `text/plain` body 400; oversized body 413 without parsing; lower version 409; child not in profile 403 `child`; 31st request in a minute 429 with `retry-after`.
-- [ ] A child PUT right after its profile was added through another server instance (stale cache) succeeds.
-- [ ] A doc with a timestamp a day in the future is stored with server time and the 200 body carries the stored doc.
+- [x] Two interleaved clients on the memory store, for the main doc and for one month doc: the second gets 412 with the first one's doc; after merge and retry both writes are in the stored doc.
+- [x] A history PUT that drops a stored attempt gets 409 `shrink`; a record outside its doc's month gets 400 (a clamp never moves a record out of the month: the target month is at most the current one, so the clamped time is in it).
+- [x] Wrong origin 403; `text/plain` body 400; oversized body 413 without parsing; lower version 409; child not in profile 403 `child`; 31st request in a minute 429 with `retry-after`.
+- [x] A child PUT right after its profile was added through another server instance (stale cache) succeeds.
+- [x] A doc with a timestamp a day in the future is stored with server time and the 200 body carries the stored doc.
 
 Verify: `pnpm test tests/api/sync-put.test.ts`
 
@@ -160,9 +160,9 @@ Files: `src/app/api/sync/route.ts`, `src/sync/server.ts`, `src/access/rate-limit
 Main doc only (history docs are append-only, `spec.md` section 5 step 7). Before the first main-doc PUT of a Vietnam day, copy the stored doc to `<env>/snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json` with `If-None-Match: *`; each instance remembers the days already done. Failure is logged and never blocks.
 
 Acceptance:
-- [ ] A history PUT never creates a snapshot.
-- [ ] First main-doc PUT of a day creates the snapshot of the state before it; later PUTs that day do not change it; a failing snapshot write still returns 200 for the main write.
-- [ ] Day key from server time in `Asia/Ho_Chi_Minh` (test with a fake clock across midnight VN).
+- [x] A history PUT never creates a snapshot.
+- [x] First main-doc PUT of a day creates the snapshot of the state before it; later PUTs that day do not change it; a failing snapshot write still returns 200 for the main write.
+- [x] Day key from server time in `Asia/Ho_Chi_Minh` (test with a fake clock across midnight VN).
 
 Verify: `pnpm test tests/api/sync-snapshot.test.ts`
 
