@@ -107,7 +107,7 @@ function walk(
       type: "arrow",
       from,
       to,
-      tag: word(hop),
+      tag: written(hop),
       color: signOf(hop),
       row,
       step: 2 * i + 1,
@@ -143,7 +143,7 @@ const repeat = (hop: number, times: number): number[] =>
 
 // The child's own walk in equal jumps: the point starts on `start`, each
 // press moves it `step` ticks, and on a lesson screen it must reach `goal`.
-const TRY_REACH = 8;
+const TRY_REACH = 6;
 function tryJump(
   start: number,
   step: number,
@@ -232,11 +232,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         tag: tag("−4 lấy 2 lần", NEGATIVE),
       },
       {
-        tex: steps(
-          "(-1) \\cdot 5",
-          `= (-1) + (-1) + (-1) + (-1) + (-1) = ${neg(-5)}`,
-        ),
-        tag: tag("−1 lấy 5 lần", NEGATIVE),
+        tex: steps("(-1) \\cdot 3", `= (-1) + (-1) + (-1) = ${neg(-3)}`),
+        tag: tag("−1 lấy 3 lần", NEGATIVE),
       },
       {
         tex: steps("(-5) \\cdot 2", `= (-5) + (-5) = ${neg(-10)}`),
@@ -244,13 +241,13 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       },
     ],
   ),
-  "cung-am2-nhan4": tryJump(
+  "cung-am3-nhan2": tryJump(
     0,
-    2,
-    -8,
-    "Điểm đã đi sang trái 4 lần, mỗi lần 2 đơn vị, tới −8.",
+    3,
+    -6,
+    "Điểm đã đi sang trái 2 lần, mỗi lần 3 đơn vị, tới −6.",
   ),
-  "thu-am3-nhan2": tryJump(0, 3),
+  "thu-am2-nhan2": tryJump(0, 2),
   "goi-y-am4-nhan2": lines(
     "Nhân với 2 là cộng lặp lại hai lần số −4",
     [
@@ -740,11 +737,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     { tex: `${neg(-2)}`, tag: tag("nợ thêm 2 nghìn mỗi ngày", NEGATIVE) },
     { tex: `${pos(5)}`, tag: tag("tiết kiệm thêm 5 nghìn mỗi ngày", POSITIVE) },
   ]),
-  "cung-giam3-3-gio": tryJump(
+  "cung-giam3-2-gio": tryJump(
     0,
     3,
-    -9,
-    "Điểm đã đi sang trái 3 lần, mỗi lần 3 đơn vị, tới −9.",
+    -6,
+    "Điểm đã đi sang trái 2 lần, mỗi lần 3 đơn vị, tới −6.",
   ),
 
   sticker: { kind: "sticker" },

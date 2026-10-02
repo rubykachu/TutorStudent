@@ -91,11 +91,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm mũi tên trái 4 lần, mỗi lần đi 2 đơn vị, để tính (−2) · 4. Làm vậy bạn thấy nhân là cộng lặp lại, và tích là số âm."
+              "text": "Cùng làm: bấm mũi tên trái 2 lần, mỗi lần đi 3 đơn vị, để tính (−3) · 2. Làm vậy bạn thấy nhân là cộng lặp lại, và tích là số âm."
             },
             {
               "type": "visual",
-              "visualId": "phep-nhan-so-nguyen.visual.cung-am2-nhan4"
+              "visualId": "phep-nhan-so-nguyen.visual.cung-am3-nhan2"
             }
           ]
         }
@@ -707,11 +707,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: nhiệt độ giảm 3 độ mỗi giờ. Bấm mũi tên trái 3 lần, mỗi lần đi 3 đơn vị, để biết sau 3 giờ nhiệt độ thay đổi bao nhiêu."
+              "text": "Cùng làm: nhiệt độ giảm 3 độ mỗi giờ. Bấm mũi tên trái 2 lần, mỗi lần đi 3 đơn vị, để biết sau 2 giờ nhiệt độ thay đổi bao nhiêu."
             },
             {
               "type": "visual",
-              "visualId": "phep-nhan-so-nguyen.visual.cung-giam3-3-gio"
+              "visualId": "phep-nhan-so-nguyen.visual.cung-giam3-2-gio"
             }
           ]
         }
@@ -1099,13 +1099,13 @@
       }
     },
     {
-      "id": "phep-nhan-so-nguyen.ex.di-trai-am3-nhan2",
+      "id": "phep-nhan-so-nguyen.ex.di-trai-am2-nhan2",
       "type": "manipulate",
       "cardIds": ["phep-nhan-so-nguyen.card.cong-lap"],
       "prompt": [
         {
           "type": "note",
-          "text": "Tính (−3) · 2. Bấm mũi tên để đưa điểm tới tích."
+          "text": "Tính (−2) · 2. Bấm mũi tên để đưa điểm tới tích."
         }
       ],
       "hints": {
@@ -1118,12 +1118,12 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Mỗi lần bấm sang trái đi 3 đơn vị, bấm 2 lần. Từ 0 đi 3 rồi 3 nữa thì tới −6."
+        "text": "Mỗi lần bấm sang trái đi 2 đơn vị, bấm 2 lần. Từ 0 đi 2 rồi 2 nữa thì tới −4."
       },
-      "visualId": "phep-nhan-so-nguyen.visual.thu-am3-nhan2",
+      "visualId": "phep-nhan-so-nguyen.visual.thu-am2-nhan2",
       "validatorId": "dat-diem",
       "params": {
-        "p0": -6
+        "p0": -4
       }
     },
     {
