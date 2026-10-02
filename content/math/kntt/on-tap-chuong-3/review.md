@@ -1,426 +1,225 @@
 # Review: Ôn tập chương III (`on-tap-chuong-3`)
 
 - Bài: `content/math/kntt/on-tap-chuong-3/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp (nhóm 1: `so-sanh`, `tap-hop-a`, `dau-tich-tong`, `dau-tich-hieu`; nhóm 2: `so-doi`, `tinh-abcd`, `thua-so-chung-3-43`, `thua-so-chung-3-44`, `tich-bang-0`; nhóm 3: `boi-trong-khoang`, `uoc-chung`, `bang-tich`, `bang-tong`, `overview`)
-- Nguồn đã đọc: `sources/math/on-tap-chuong-3/` - sbt-p60, sbt-p61, sbt-p62, sbt-p114 (Tổng hợp đối chiếu thêm `phep-nhan-so-nguyen/sbt-p55.png` và `lesson.json` của Bài 16)
-- `content:check`: 0 lỗi, 1 cảnh báo của bài (86 id chưa khoá)
-- Đọc hiểu (Haiku): không chạy ở vòng này (lượt Haiku đã chạy lúc soạn, xem handover `notebooks/backlogs/lesson-on-tap-chuong-3/task.md`; chạy lại trên chữ đổi trước `--approve`)
-- `lesson:walk`: 0 FAIL, 0 cảnh báo (ipad, phone, ipad-landscape), ảnh trong `.shots/walk/on-tap-chuong-3/`
-- Kết luận: Chưa đạt: còn 7 lỗi Nghiêm trọng
-- Bản đã review: `5d7ca2e3e127a8245893497d479d62549085b8a794a3da1870022b03a87fd937` (`pnpm content:diff` so với bản này)
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp (nhóm 1: `so-sanh`, `tap-hop-a`, `dau-tich-tong`, `dau-tich-hieu`; nhóm 2: `so-doi`, `tinh-abcd`, `thua-so-chung-3-43`, `thua-so-chung-3-44`, `tich-bang-0`; nhóm 3: `boi-trong-khoang`, `uoc-chung`, `bang-tich`, `bang-tong`, `overview`)
+- Nguồn đã đọc: `sources/math/on-tap-chuong-3/` - sbt-p60, sbt-p61, sbt-p62, sbt-p114 (Tổng hợp mở lại `sbt-p62.png` để kiểm dấu cuối 3.43, 3.44)
+- `content:check`: 0 lỗi, 1 cảnh báo của bài (89 id chưa khoá)
+- Đọc hiểu (Haiku): chưa chạy ở vòng này; sẽ chạy trên chữ đổi (`.shots/review/on-tap-chuong-3/doc-hieu-r1-items.txt` cộng chữ đổi ở vòng này, lấy từ `pnpm content:diff`) trước `--approve`
+- `lesson:walk`: 0 FAIL, 0 cảnh báo (ipad, phone, ipad-landscape), ảnh trong `.shots/walk/on-tap-chuong-3/` (chỉ ảnh chụp sau bản sửa vòng 1; thư mục còn lẫn ảnh cũ, xem "Việc còn lại")
+- Kết luận: 0 Nghiêm trọng, 8 Nên sửa, 14 Góp ý. Đạt về nội dung, chờ sửa Nên sửa và Đọc hiểu trước khi duyệt
+- Bản đã review: `3fed1377bf9fc45c1273d246c34c02831fb1b342ccfa7fd01d5da08686f4aae6` (`pnpm content:diff` so với bản này)
 
 ## Nghiêm trọng
 
-### 1. Mẹo "So sánh nhiều số nguyên" sai khi đề bảo xếp từ lớn đến bé
-
-- Vị trí: `$.sections[0].blocks[2].text`, `.title` (`on-tap-chuong-3.tip.so-sanh-nhieu-so`) - LL-24
-- Nguồn: —
-- Vấn đề: "Xếp nhóm số âm trước, rồi tới số 0, sau cùng là nhóm số dương" chỉ đúng khi xếp từ bé đến lớn, nhưng lời mẹo và tiêu đề không nói điều kiện đó. Xếp từ lớn đến bé là dạng bài của chương (Bài 13). Áp đúng chữ cho −3; 5; 0; −8 khi đề bảo xếp từ lớn đến bé thì ra −8, −3, 0, 5 (sai). Trang "Mẹo hay" gom mẹo ra khỏi section nên điều kiện phải nằm trong `text`.
-- Sửa: "Muốn xếp từ bé đến lớn, chia các số thành ba nhóm: ... Muốn xếp từ lớn đến bé thì viết theo thứ tự ngược lại." Tiêu đề: "Xếp nhiều số nguyên từ bé đến lớn".
-
-### 2. Đề 3.45 mất dấu "." cuối câu sau công thức
-
-- Vị trí: `$.exercises[31].prompt[1].tex` (`on-tap-chuong-3.ex.bai-3-45`) - LL-23
-- Nguồn: tr.62, `sbt-p62.png`, 3.45
-- Vấn đề: đề tách thành khối chữ "Tìm x, nếu" và khối công thức `(38 - x) \cdot (x + 25) = 0`; dấu "." kết câu của sách rơi mất. Đề khác sách một dấu là Nghiêm trọng (checklist trục 1, "Bài ôn tập"). Lặp đúng kiểu lỗi của `on-tap-chuong-2`.
-- Sửa: `(38 - x) \cdot (x + 25) = 0.`
-
-### 3. Lời giải bị cắt bên phải trên điện thoại ở 3.43a, 3.44a, 3.44b; 3.44b mất kết quả −442
-
-- Vị trí: `$.exercises[23].explain.tex` (`bai-3-43a`), `$.exercises[27].explain.tex` (`bai-3-44a`), `$.exercises[28].explain.tex` (`bai-3-44b`) - LL-12
-- Nguồn: walk `phone/118-s7-06-exercise-bai-3-43a-correct.png` (dòng cuối hiện "84(" thay cho 840), `phone/132-s8-06-exercise-bai-3-44a-correct.png`, `phone/134-s8-07-exercise-bai-3-44b-correct.png` (Tổng hợp đã mở: hai dòng cụt "13 · (2", "13 · (−3", không thấy "= −442"). iPad hiện đủ; walk không đo tràn trong KaTeX.
-- Vấn đề: dòng `gathered` quá dài nên bé không thấy bước cuối hay thấy số sai.
-- Sửa: mỗi dòng `gathered` một phép, tối đa khoảng 20 ký tự và ba vế (luật đã ghi ở LL-12). Viết lại cùng lúc với cách sửa của mục 4 và 5, ví dụ 3.44b: `13 \cdot 6 + 13 \cdot (-40)` / `= 13 \cdot [6 + (-40)]` / `= 13 \cdot (-34)` / `= -442`. Chụp lại phone và mở từng ảnh `*-correct.png` của ba câu.
-
-### 4. Đưa thừa số chung ra ngoài khi hai tích trừ nhau chưa được dạy; làm đúng chữ quy tắc thì ra nhiễu
-
-- Vị trí: `$.sections[6].blocks[0].children[0]` (quy tắc "Khi cộng hai tích ... rồi cộng hai thừa số còn lại.") so với `$.exercises[21]` (`doi-thua-so-6`, đáp án `6 · (4 − (−5))`), `$.sections[6].blocks[2]` (mẹo `thua-so-chung-bi-giau`, `4 · [7 − (−5)]`), `explain` của `bai-3-43a` (`21 · [23 − (−17)]`), `bai-3-44a` ("−13" trong ngoặc), `bai-3-44b` (`13 · [6 − 40]`) - LL-09
-- Nguồn: tr.62, tr.114; Bài 16 của app (`phep-nhan-so-nguyen`, section `gop-thua-so`, `phan-phoi`) và trang `phep-nhan-so-nguyen/sbt-p55.png` ("Phân phối đối với phép cộng") chỉ có trường hợp cộng; glossary không có mục nào về phép trừ.
-- Vấn đề: Tổng hợp đã kiểm Bài 16: không câu, ví dụ, mẹo hay bài tập nào có a · b − a · c = a · (b − c); mọi khối đều là tổng hai tích. Bài ôn này dùng phép trừ ở mọi bước dẫn và lời giải của hai section. Bé làm theo đúng chữ "rồi cộng hai thừa số còn lại" sẽ viết 6 · [4 + (−5)], tức nhiễu `b` của `doi-thua-so-6`; lý do `wrong` của nhiễu đó không nói vì sao phải giữ dấu −.
-- Sửa: chọn một, không thêm quy tắc ngoài nguồn:
-  (a) chỉ dùng điều đã dạy: đổi phép trừ thành cộng số đối trước rồi mới đưa thừa số ra ngoài ("Muốn trừ một số, ta cộng với số đối của số đó" có ở section `dau-tich-hieu`), ví dụ `6 · 4 − 6 · (−5) = 6 · 4 + 6 · 5 = 6 · (4 + 5)`; `13 · 6 − 13 · 40 = 13 · 6 + 13 · (−40) = 13 · [6 + (−40)]`. Câu chữ cần một ý nối: "6 · (−5) là số âm, trừ nó tức là cộng số đối của nó, là 6 · 5". Đổi đáp án `doi-thua-so-6` thành `6 · (4 + 5)` và viết lại nhiễu cho khớp; sửa mẹo `thua-so-chung-bi-giau` theo cùng cách.
-  (b) thêm một màn nhắc có ví dụ hai tích trừ nhau trước `doi-thua-so-6`, dựng từ hai quy tắc đã dạy (a · b − a · c = a · b + a · (−c) = a · [b + (−c)]), với số khác sách và khác các bước dẫn, rồi lý do `wrong` của nhiễu `b` nói rõ "hai tích trừ nhau thì trong ngoặc cũng trừ".
-
-### 5. Lời giải 3.43a trùng nguyên chuỗi bước lời giải sách
-
-- Vị trí: `$.exercises[23].explain.tex` và câu cuối `$.exercises[23].explain.text` (`bai-3-43a`) - LL-08
-- Nguồn: tr.114, `sbt-p114.png`, 3.43a
-- Vấn đề: `tex` là ba vế đầu của lời giải sách đúng thứ tự (thay 3 · 7 bằng 21, viết hiệu hai tích, đưa 21 ra ngoài với ngoặc vuông `[23 − (−17)]`), phần chữ thêm vế `21 · 40 = 840` còn lại. Tổng hợp cân nhắc mức: số của đề ép thừa số chung 21, nhưng chuỗi bước không bị ép, vì có cách trình bày khác hợp lệ và chỉ dùng điều đã dạy (đổi phép trừ thành cộng số đối, mục 4 cách (a)), nên giữ Nghiêm trọng theo LL-08 ("đổi lời mà giữ số và chuỗi bước của lời giải vẫn là chép").
-- Sửa: gộp với mục 4 cách (a): "3 · 7 = 21. 21 · (−17) là số âm, trừ nó tức là cộng 21 · 17, nên đưa 21 ra ngoài." `tex`: `21 \cdot 23 + 21 \cdot 17` / `= 21 \cdot (23 + 17)` / `= 21 \cdot 40 = 840`. Nếu chọn cách (b) của mục 4 thì vẫn phải đổi trình bày (ví dụ tính 23 − (−17) = 40 bằng một dòng riêng trước), không để nguyên dòng sách.
-
-### 6. Màn lập luận bảng ba ô và lời giải 3.48 chép lời giải sách của 3.48
-
-- Vị trí: `$.sections[11].blocks[1]` (`bang-tich`: "Gọi bốn ô liền nhau là a, b, c, d. Hai phép nhân a · b · c và b · c · d đều cho kết quả 120." kèm công thức và "nên a = d"), `$.sections[12].blocks[1]` (`bang-tong`, cùng lập luận với tổng 0), `$.exercises[40].explain` (`bai-3-48`: "Ô còn thiếu là số x có x · 6 · (−4) = 120. Vậy x = −5.") - LL-08, LL-10. Phát hiện của Tổng hợp, gộp Nên sửa 6 của nhóm 3 (chữ a, b hai nghĩa).
-- Nguồn: tr.114, `sbt-p114.png`, lời giải 3.48 (bốn ô a, b, c, d; abc = bcd = 120; suy ra a = d; "Các ô còn lại chứa số x thoả mãn x · 6 · (−4) = 120. Vậy x = −5.") và 3.49 ("Lập luận tương tự Bài 3.48").
-- Vấn đề: màn "Nhắc lại" của `bang-tich` là lời giải sách viết lại lời mà giữ nguyên chữ a, b, c, d, số 120 và chuỗi bước; `explain` của 3.48 gần như nguyên câu cuối của lời giải sách. Checklist trục 1: phần nhắc lại và lời giải của câu `bookRef` phải là lời của bài. Thêm nữa, ngay màn trước a, b là số bị chia và số chia ("a = b · q"), nên một chữ có hai nghĩa trên hai màn liền nhau, còn mọi lời giải lại gọi "ô 1, ô 2".
-- Sửa: (1) màn lập luận dùng ví dụ số của bài, gọi ô bằng "ô 1, ô 2, ô 3, ô 4" (chữ để trong `note`, không đặt chữ Việt trong TeX), số khác 3.48, 3.49 và khác mẹo (mẹo dùng 2, −3, 5), ví dụ bảng −1, 4, −2, ?: (−1) · 4 · (−2) = 8 và 4 · (−2) · ? = 8 nên ? = −1, tức ô 4 bằng ô 1; làm tương tự cho `bang-tong` (ví dụ 1, −6, 5, ?). (2) `explain` 3.48 đi theo cách khác sách, ví dụ đi từ ô đã cho: "Ô 10 là −4; lùi mỗi lần 3 ô thì ô 7, ô 4, ô 1 cũng là −4. Ô 3 là 6 nên ô 6, ô 9 cũng là 6. Ô còn lại là 120 : [(−4) · 6] = 120 : (−24) = −5." (3) Câu "Sửa" của Nên sửa 4 dưới đây phải theo luật này, không chép câu sách.
-
-### 7. Lời giải `uc-duong-12-20` viết "20 : 1, 2, 4", đọc thành phép chia hay thành "ước của 20 là 1, 2, 4"
-
-- Vị trí: `$.exercises[36].explain.tex` (`on-tap-chuong-3.ex.uc-duong-12-20`) - LL-21
-- Nguồn: walk `phone/169-s11-06-exercise-uc-duong-12-20-correct.png` (Tổng hợp đã mở: hai dòng "12 : 1, 2, 3, 4, 6, 12" và "20 : 1, 2, 4")
-- Vấn đề: trong chương này ":" là dấu chia (section kế tiếp dạy "a : b = q"), nên dòng đọc thành "12 chia 1, 2, 3...". Hai dòng cùng dạng mà dòng trên là đủ các ước của 12, nên bé hiểu dòng dưới là đủ các ước của 20, tức nhớ sai "ước của 20 là 1, 2, 4" (thiếu 5, 10, 20). Lặp đúng mẫu đã ghi ở LL-21 (`on-tap-chuong-2` vòng 2: trong TeX, ":" chỉ dùng cho phép chia). Tổng hợp giữ Nghiêm trọng vì hình dạy một điều sai kiến thức.
-- Sửa: bỏ ":" trong TeX; dòng 1 `1,\ 2,\ 3,\ 4,\ 6,\ 12`, dòng 2 `1,\ 2,\ 4`, còn ý từng dòng nói trong `text` ("Các ước dương của 12 là ...; trong đó 20 chỉ chia hết cho 1, 2, 4"). Hoặc viết mỗi ước chung thành phép chia hết thật (`20 = 4 \cdot 5`). Không đặt chữ Việt trong TeX.
+Không có.
 
 ## Nên sửa
 
-### 1. Ví dụ của mẹo so sánh cho thấy luôn đáp án câu hỏi 1, và cùng hình xếp hàng hiện sẵn thứ tự ba số của 3.42
+### 1. Quy tắc bảng ba ô nói hai cách ("cách nhau hai ô" và "tiến hay lùi 3 ô"), màn ví dụ không có kết luận
 
-- Vị trí: `$.sections[0].blocks[2].tex` (`tip.so-sanh-nhieu-so`, `−12 < −4 < 0 < 3`) so với `ex.tn1`; `$.sections[5].blocks[3]` và `recap` (hình `xep-hang`, `xep-hang-xong`: −4, −1, 2, 4) - LL-07. Gộp Nên sửa 1 nhóm 1 và Góp ý 2 nhóm 2.
-- Nguồn: tr.61 câu 1; tr.114 (3.42: b = −12, d = −4, a = 4)
-- Vấn đề: ví dụ dùng đúng ba số 0; 3; −12 của câu 1, bé chỉ cần bỏ −4 là ra đáp án `−12 < 0 < 3`; trái giả định của handover "Mọi số trong bước dẫn khác số của sách". Ví dụ đó cùng hình xếp hàng còn đặt sẵn −12 < −4 < 4 của 3.42.
-- Sửa: đổi `tex` của mẹo sang số không có trong câu 1, 3.42 và hình `am-0-duong`, ví dụ `−11 < −6 < 0 < 8`. Hình xếp hàng dùng lại từ Bài 13 thì giữ.
+- Vị trí: `$.sections[11].blocks[1].children[0..2]` và `$.sections[12].blocks[1].children[0..2]` (note ví dụ, công thức có ô □, note `rule: true`), `$.sections[11].recap.caption`, `$.sections[12].recap.caption`, `$.cards[11].recap.caption`, `$.cards[12].recap.caption`, `$.sections[11].blocks[2]` (mẹo `on-tap-chuong-3.tip.bang-o-lien-nhau`), `$.exercises[40].explain.text` (`o-xa-bang-tich`), `$.exercises[41].explain.text` (`bai-3-48`), `$.exercises[44].explain.text` (`o-xa-bang-tong`), `$.exercises[45].explain.text` (`bai-3-49`) - LL-05, LL-10, LL-16
+- Nguồn: lời giải sách tr.114, `sbt-p114.png` (3.48: ô thứ nhất, thứ tư, thứ bảy, thứ mười bằng nhau); walk `phone/176-s12-02-block.png`, `phone/189-s13-02-block.png`
+- Vấn đề: (a) màn ví dụ dừng ở ô □ mà không nói □ = −1 (`bang-tong`: □ = 2), cũng không nói ô 4 bằng ô 1, rồi sang ngay câu quy tắc. (b) "Hai ô cách nhau hai ô" đúng nghĩa (ô 1 và ô 4) nhưng bé dễ hiểu thành ô 1 và ô 3, trong khi mẹo và lời giải 3.48, 3.49 nói "3 ô": cùng một quan hệ mà bé gặp số 2 và số 3. Recap và card chỉ có câu này, không có hình bảng ô để neo. (c) Lời giải `o-xa-*` rút gọn câu quy tắc, bỏ điều kiện "ba ô liền nhau luôn có cùng tích khác 0". (d) Phát hiện của Tổng hợp: mẹo `bang-o-lien-nhau` lặp nguyên câu `rule` rồi nói thêm cách "tiến hay lùi 3 ô"; khi câu quy tắc đã chứa ý này thì mẹo chỉ còn là quy tắc nói lại (mẹo gượng). Mức: nghĩa đen của câu đúng, mọi câu luyện và lời giải đều cho thấy cặp ô 1, ô 4 bằng số, nên giữ Nên sửa; nhưng đây là câu bé mang theo trong kho thẻ nên phải sửa ở vòng này.
+- Sửa: Tổng hợp chốt một câu duy nhất, dùng nguyên văn ở mọi chỗ:
+  - `bang-tich`: "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì từ một ô bất kì, tiến hay lùi 3 ô sẽ gặp lại đúng số đó, như ô 1, ô 4, ô 7 bằng nhau."
+  - `bang-tong`: "Nếu ba ô liền nhau luôn có cùng tổng, thì từ một ô bất kì, tiến hay lùi 3 ô sẽ gặp lại đúng số đó, như ô 1, ô 4, ô 7 bằng nhau."
+  - Note `rule: true` (`children[2]`) của hai section: thay bằng câu trên. Recap section và card: câu Bài 17 (Bài 14) giữ nguyên, câu thứ hai thay bằng câu trên (vẫn 2 câu, đúng giới hạn `[recap]`).
+  - Note ví dụ: thêm một note giữa công thức và câu quy tắc: "Vậy ô 4 là −1, bằng ô 1." (`bang-tong`: "Vậy ô 4 là 2, bằng ô 1."). Đã tính: (−1) · 5 · (−2) = 10 và 5 · (−2) · (−1) = 10; 2 + 3 + (−5) = 0 và 3 + (−5) + 2 = 0.
+  - Lời giải `o-xa-bang-tich`, `o-xa-bang-tong`: mở bằng nguyên câu quy tắc, rồi "Ô 7 là … nên lùi 3 ô tới ô 4, rồi ô 1, cũng là …" (số theo Nên sửa 2 và Góp ý 12).
+  - Lời giải 3.48, 3.49 (giới hạn 3 câu): câu đầu dùng nguyên vế "từ một ô bất kì, tiến hay lùi 3 ô sẽ gặp lại đúng số đó", ví dụ 3.48: "Từ một ô bất kì, tiến hay lùi 3 ô sẽ gặp lại đúng số đó: ô 10 là −4 nên ô 7, ô 4, ô 1 cũng là −4." (3.49 xem Góp ý 10).
+  - Mẹo `bang-o-lien-nhau`: bỏ câu quy tắc và câu "tiến hay lùi 3 ô", đổi sang cách tìm ô còn thiếu (song song với mẹo của `bang-tong`), ví dụ tiêu đề "Tìm ô còn thiếu khi biết tích", chữ "Biết tích của ba ô liền nhau (khác 0) và số ở hai ô, hãy nhân hai số đó trước. Ô còn lại bằng tích của ba ô chia cho kết quả vừa nhân.", `tex` `2 \cdot (-3) = -6` / `(-30) : (-6) = 5`. Đã thử: (2, −3; −30) → 5; (6, −4; 120) → −5; (−1, 5; 10) → −2; (1, 1; 1) → 1; (−2, −2; 4) → 1; (3, −1; −3) → 1; tích 0 thì không chia được, nên lời mẹo có điều kiện "khác 0".
+  - Câu `rule` đổi nên chạy lượt Đọc hiểu cho các chữ này.
 
-### 2. Câu `cung-dau-tong-am` dùng tổng −7 đã có trên ví dụ và mẹo ngay trước
+### 2. `o-xa-bang-tich` trùng số với dòng 7 ô của mẹo ngay trước
 
-- Vị trí: `$.exercises[7].prompt[0].text`, `.explain.tex` (`ex.cung-dau-tong-am`) - LL-07
+- Vị trí: `$.exercises[40]` (`on-tap-chuong-3.ex.o-xa-bang-tich`: "ô 7 là 2. Hỏi ô 1"), `$.sections[11].blocks[2].tex` (`2,\ -3,\ 5,\ 2,\ -3,\ 5,\ 2`) - LL-07
+- Nguồn: walk `phone/177-s12-03-block.png`, `phone/182-s12-06-exercise-o-xa-bang-tich.png`
+- Vấn đề: dòng 7 ô của mẹo có ô 1 = ô 7 = 2; câu hỏi đúng hai vị trí đó với đúng số 2, bé nhìn lại mẹo là có đáp án mà không cần quy tắc. Nếu mẹo đổi theo Nên sửa 1 thì dòng 7 ô mất, nhưng số 2 vẫn nằm trong ví dụ mẹo.
+- Sửa: "Trong một bảng, ba ô liền nhau bất kì nhân lại đều được 36, và ô 7 là 9. Hỏi ô 1 là số nào?" (đáp án 9, `check.expr` "9"; bảng 9, 2, 2 có tích 36 nên đề hợp lệ; số 9 chưa có trên màn nào của `bang-tich`).
+
+### 3. Mẹo ước chung: "25 chỉ chia hết cho hai số này" có hai cách hiểu
+
+- Vị trí: `$.sections[10].blocks[3].text` (`on-tap-chuong-3.tip.uoc-chung-nhanh`) - LL-10, LL-20 (câu sinh ra ở bản sửa vòng 1)
+- Nguồn: walk `phone/166-s11-04-block.png`
+- Vấn đề: đọc riêng, câu thành "25 chỉ có hai ước dương là 1 và 5" (thiếu 25), đúng kiểu nhớ sai mà vòng 1 đã chặn ở `uc-duong-12-20`. Lời mẹo cũng không nói hai số khác 0 (với 0 và 6 thì 0 là "số có phần số tự nhiên nhỏ hơn" mà 0 không liệt kê được ước); phần này nhẹ vì chương không có bài dạng đó.
+- Sửa: câu cuối: "Trong bốn số đó, 25 chỉ chia hết cho 1 và 5, nên giữ lại 1 và 5, rồi viết thêm số đối của chúng." Câu đầu mở bằng "Với hai số khác 0, …". Vẫn 3 câu.
+
+### 4. Lý do sai của nhiễu "5 < 0 < −4 < −9" và câu cuối mẹo so sánh để bé nghĩ xếp từ lớn đến bé vẫn dùng dấu <
+
+- Vị trí: `$.exercises[1].explain.wrong[2].text` (`on-tap-chuong-3.ex.xep-day-so`, nhiễu `d`); `$.sections[0].blocks[2].text`, câu cuối (`on-tap-chuong-3.tip.so-sanh-nhieu-so`)
 - Nguồn: —
-- Vấn đề: tổng −7 trùng note "(−3) + (−4) ... được −7", hình `cung-dau-vi-du` và dòng cuối mẹo `tich-duong-tong`; `explain.tex` lặp đúng phép tính đó.
-- Sửa: đổi tổng sang −11 và `explain.tex` thành `(-5) + (-6) = -11` (số không có ở các màn trước và ở câu 3, 4).
+- Vấn đề: lý do "Dãy này xếp từ lớn đến bé." chỉ nói về thứ tự, không nói chuỗi so sánh sai (5 < 0 là sai), nên bé có thể coi `5 < 0 < −4 < −9` là cách viết đúng khi xếp từ lớn đến bé. Mẹo nói "viết theo thứ tự ngược lại" mà ví dụ chỉ có dấu <; làm đúng chữ với −11 < −6 < 0 < 8 ra `8 < 0 < −6 < −11` (sai). Đã thử {−3; 5; 0; −8}, {−9; −4; 0; 5}, {−11; −6; 0; 8}: thứ tự đúng, chuỗi dấu < đều sai.
+- Sửa: lý do `d`: "5 < 0 là sai vì 5 lớn hơn 0. Dãy này viết các số từ lớn đến bé, còn đề hỏi từ bé đến lớn." Mẹo: xem câu chốt ở Nên sửa 5 (có "dùng dấu >"); có thể thêm dòng `8 > 0 > -6 > -11` vào `tex` (xếp `gathered`).
 
-### 3. Section `tap-hop-a` không nhắc ký hiệu ∉, trong khi ba trong bốn lựa chọn câu hỏi 2 có ∉
+### 5. Mẹo so sánh nói lại quy tắc so sánh hai số âm của Bài 13 bằng câu khác
 
-- Vị trí: `$.sections[1].blocks[3]`, `ex.thuoc-c`, `ex.thuoc-d` - LL-16
-- Nguồn: tr.61 câu 2
-- Vấn đề: phần nhắc chỉ dạy "Dấu ∈ đọc là thuộc"; ví dụ B nói "2 không thuộc B" bằng chữ; hai bước dẫn không dùng ∉. Lần đầu bé gặp lại ∉ là ở câu sách (`docs/learner.md`: bé chưa viết được ký hiệu tập hợp).
-- Sửa: thêm vào ví dụ B "Ta viết −3 ∈ B và 2 ∉ B; dấu ∉ đọc là không thuộc." (hay dòng `2 \notin B` trong khối công thức); cho `thuoc-c` một lựa chọn dạng ∉ (ví dụ đáp án "−4 ∉ C"), các nhiễu viết đều bằng ∈ hay ∉.
+- Vị trí: `$.sections[0].blocks[2].text`, câu thứ hai (`on-tap-chuong-3.tip.so-sanh-nhieu-so`) - LL-05
+- Nguồn: Bài 13 của app, `tap-hop-cac-so-nguyen` (note `rule: true`): "Muốn so sánh hai số âm khác nhau, bỏ dấu − của cả hai số rồi so sánh. Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia."
+- Vấn đề: mẹo viết "Hai số âm thì bỏ dấu − rồi so sánh: số nào lớn hơn thì số âm đó nhỏ hơn." Cùng quy tắc nói cách khác, và "số nào" không rõ là trước hay sau khi bỏ dấu. Giả định của handover: một quy tắc chỉ có một cách nói trong cả app. Section không có màn nhắc quy tắc này nên mẹo là chỗ duy nhất dạy bước cần cho `xep-day-so`.
+- Sửa (gộp với Nên sửa 4, giữ 3 câu theo `MAX_TIP_SENTENCES`): "Muốn xếp từ bé đến lớn, xếp số âm trước, rồi số 0, rồi số dương; muốn xếp từ lớn đến bé thì làm ngược lại và dùng dấu >. Muốn so sánh hai số âm khác nhau, bỏ dấu − của cả hai số rồi so sánh. Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia."
 
-### 4. Bước dẫn, lời giải và mẹo của 3.48, 3.49 thiếu bước nối ô ở xa về ba ô đầu; mẹo `bang-o-lien-nhau` chỉ nói lại câu của màn trước
+### 6. Lời giải 3.44a đưa thừa số chung ra ngoài ba tích, trong khi quy tắc chỉ nói "hai tích"; TeX là các phép tính rời
 
-- Vị trí: `ex.o-thu-tu-bang-tich`, `ex.bai-3-48` `explain`, `ex.o-thu-tu-bang-tong`, `ex.bai-3-49` `explain`, `$.sections[11].blocks[2]` (`tip.bang-o-lien-nhau`). Gộp Nên sửa 4 và 8 nhóm 3.
-- Nguồn: `sbt-p62.png` (ô đã cho: 3.48 ô 3 và ô 10; 3.49 ô 2 và ô 9)
-- Vấn đề: bước dẫn chỉ cho thấy ô 1 bằng ô 4, còn câu sách cho số ở ô 10, ô 9; không bước nào dạy ô 10 = ô 7 = ô 4 = ô 1. Lời giải nhảy từ "bảng cứ lặp lại ba số" sang phép tính. Mẹo nói lại "các ô cách nhau hai ô bằng nhau" (mẹo gượng) và "tìm ba ô đầu" không dùng thẳng được cho 3.48 vì ba ô đầu chỉ biết một ô.
-- Sửa: (a) thêm hoặc đổi một bước dẫn hỏi ô xa, số khác sách, ví dụ "Ba ô liền nhau bất kì nhân lại đều được 60, ô thứ bảy là 2. Ô thứ nhất là số nào?"; (b) lời giải 3.48, 3.49 theo cách ở Nghiêm trọng 6 (đi từ ô đã cho, lùi hay tiến mỗi lần 3 ô; không chép câu sách); (c) mẹo thành cách làm thật, ví dụ "Hai ô cách nhau 3 bước luôn cùng một số. Từ ô đã biết, cứ tiến hay lùi 3 ô là gặp lại số đó." với ví dụ trên một bảng khác độ dài và khác số 3.48.
+- Vị trí: `$.exercises[27].explain.text`, `.tex` (`on-tap-chuong-3.ex.bai-3-44a`); câu quy tắc `$.sections[7].blocks[0].children[0]` - LL-09. Gộp Góp ý 3 của nhóm 2 (cùng TeX).
+- Nguồn: tr.62, `sbt-p62.png` (3.44a có ba số hạng); Bài 16 của app: quy tắc "Khi cộng hai tích có chung một thừa số…", hình `gop-thua-so-vi-du`, `gop-mau`, `phan-phoi-vi-du` và mọi câu luyện chỉ có hai tích
+- Vấn đề: chữ nói "Đưa 32 ra ngoài, trong ngoặc là 142 cộng với −7 và −13", tức đưa ra ngoài ba tích cùng lúc; bước dẫn `doi-thua-so-4` và ví dụ mẫu đều chỉ hai tích. TeX năm dòng `64 = 2 · 32`, `71 · 64 = 142 · 32`, `(−7) + (−13) = −20`, `32 · [142 + (−20)]`, … không nối bằng "=" với biểu thức đề, bé không thấy (−7), (−13) từ đâu vào ngoặc. Mở rộng tự nhiên, không bẫy dấu, nên Nên sửa.
+- Sửa: hai bước, mỗi bước hai tích, số đã có trong lời giải. Chữ: "Tách 64 = 2 · 32 thì 71 · 64 = 142 · 32. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 13 · 32 là cộng 32 · (−13); gộp hai tích này với 32 · (−7) trước. Còn lại hai tích có chung 32, đưa 32 ra ngoài." TeX (mỗi dòng ≤ khoảng 20 ký tự, LL-12): `71 \cdot 64 = 142 \cdot 32` / `32 \cdot (-7) + 32 \cdot (-13)` / `= 32 \cdot (-20)` / `142 \cdot 32 + 32 \cdot (-20)` / `= 32 \cdot [142 + (-20)]` / `= 32 \cdot 122 = 3\,904`. Không chép dòng `(142 − 7 − 13) · 32` của sách tr.114. Chụp lại phone, mở ảnh `*-bai-3-44a-correct.png`.
 
-### 5. Recap section và card `dau-tich-hieu` không phải ý dùng để giải câu hỏi 5, 6
+### 7. Lời giải `doi-thua-so-6`, `tru-hai-tich` nói quy tắc trừ như thể chỉ đúng khi trừ một tích âm
 
-- Vị trí: `$.sections[3].recap`, `$.cards[3].recap`, cờ `rule` ở `$.sections[3].blocks[1].children[0]`
-- Nguồn: tr.61 câu 5, 6
-- Vấn đề: recap là cách đi sang phải trên trục số khi trừ số âm, còn bước dẫn và lời giải câu 5, 6 dùng "trừ một số là cộng với số đối" cùng dấu của tích.
-- Sửa: chuyển cờ `rule` sang note "Muốn trừ một số, ta cộng với số đối của số đó." (khối đã duyệt ở Bài 14), recap section và card dùng hình `tru-vi-du` kèm câu đó.
-
-### 6. Một quy tắc nói nhiều cách trong lời giải (dấu của tích, phép trừ)
-
-- Vị trí: `explain` của `ex.tich-duong-cung-dau`, `ex.tich-am-khac-dau` ("Nhân hai số cùng dấu thì được số dương, nhân hai số khác dấu thì được số âm.") so với câu `rule` `$.sections[2].blocks[0]` ("Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm."); `explain` của `ex.duong-tru-am`, `ex.hieu-am-6-tru-4` ("Trừ một số thì giống như cộng với số đối của nó.") so với note `$.sections[3].blocks[0]` ("Muốn trừ một số, ta cộng với số đối của số đó.") - LL-05. Phát hiện của Tổng hợp.
+- Vị trí: `$.exercises[21].explain.text`, `$.exercises[21].explain.wrong[0].text` (`on-tap-chuong-3.ex.doi-thua-so-6`, nhiễu `b`); `$.exercises[22].explain.text` (`on-tap-chuong-3.ex.tru-hai-tich`) - LL-05
 - Nguồn: —
-- Vấn đề: cùng một quy tắc có hai cách nói trong cùng bài, cách nói trong lời giải bỏ điều kiện "khác 0"; bé ôn card thấy một câu, làm bài thấy câu khác.
-- Sửa: lời giải trích nguyên câu quy tắc ("Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm.", "Muốn trừ một số, ta cộng với số đối của số đó.") rồi mới áp vào số của câu.
+- Vấn đề: câu quy tắc của bài là "Muốn trừ một số, ta cộng với số đối của số đó.", đúng với mọi số, và lời giải 3.43a/b, 3.44a/b đã trích nguyên văn. Ba chỗ này nói lại bằng "Số 6 · (−5) là số âm, nên trừ nó là cộng số đối", "Trừ một tích âm là cộng số đối của nó", "Số 10 · (−4) là số âm.", khiến bé hiểu chỉ trừ số âm mới đổi thành cộng số đối; ngay sau đó 3.44a, 3.44b lại trừ tích dương. Bản sửa vòng 1 (Nên sửa 6) sót các câu này.
+- Sửa: `doi-thua-so-6`: "Vì 2 · 3 = 6 nên cả hai phép nhân đều có thừa số 6. Muốn trừ một số, ta cộng với số đối của số đó, nên trừ 6 · (−5) là cộng 6 · 5. Sau đó đưa 6 ra ngoài." Lý do `b`: "Trừ 6 · (−5) là cộng số đối của nó, là 6 · 5, nên trong ngoặc phải là 4 + 5, không phải 4 − 5." `tru-hai-tich`: bỏ câu "Số 10 · (−4) là số âm.", giữ câu quy tắc.
 
-### 7. Section "nhân một số với một tổng" nhắc và tóm tắt một quy tắc mà không câu nào trong section dùng
+### 8. Đề 3.43b, 3.44b thiếu dấu "." cuối câu mà sách có in
 
-- Vị trí: `$.sections[7]` (`thua-so-chung-3-44`): `title`, `blocks[0]`, `blocks[1]`, `recap`; `$.cards[7].recap`
-- Nguồn: tr.62, tr.114
-- Vấn đề: màn nhắc, ví dụ mẫu, recap dạy nhân phá ngoặc a · (b + c) = a · b + a · c, còn các bước dẫn và lời giải 3.44a, 3.44b đều tách số rồi đưa thừa số chung ra ngoài (quy tắc của section trước). Recap lệch việc của section (checklist trục 4).
-- Sửa: đổi màn nhắc, ví dụ mẫu, recap sang "đưa thừa số chung ra ngoài" với ví dụ có bước tách số (gộp với mẹo `tach-thua-so`), sửa `title`; hoặc giữ quy tắc nhân phá ngoặc và cho `explain` 3.44b đi theo nó bằng lời của bài (không chép dòng sách tr.114).
-
-### 8. 3.43b ở section 7 nhưng cách tính hợp lí cần mẹo tách số của section 8; lời giải tính thẳng
-
-- Vị trí: `$.sections[6].practiceIds`, `$.exercises[24].explain` (`bai-3-43b`)
-- Nguồn: tr.62 ("tìm cách tính hợp lí")
-- Vấn đề: `explain` tính thẳng 126 + 112; cách tách 42 = 7 · 6 chỉ được dạy ở mẹo `tach-thua-so` của section sau.
-- Sửa: chuyển 3.43b sang section `thua-so-chung-3-44` hoặc đưa mẹo `tach-thua-so` lên trước; `explain` nêu tách 42 = 7 · 6 rồi đưa 7 ra ngoài bằng lời của bài, có thể thêm "Tính thẳng cũng ra 238" để bé tự kiểm; không chép dòng `7·(18 + 34 – 18)` của sách. Phần trong ngoặc có phép trừ thì theo cách sửa đã chọn ở Nghiêm trọng 4.
-
-### 9. Lời giải 3.42 chỉ đưa bốn kết quả, không có bước tính
-
-- Vị trí: `$.exercises[20].explain` (`bai-3-42`)
-- Nguồn: tr.114
-- Vấn đề: "a = 4, b = −12, c = 60 và d = −4" là đúng dòng kết quả của sách; bé yếu dấu cần thấy từng phép.
-- Sửa: `tex` xếp dọc bốn phép (32 + (−28) = 4; (−7) − 5 = −12; (−12) · (−5) = 60; (−28) : 7 = −4), giữ phần chữ cho bước xếp thứ tự.
-
-### 10. Màn nhắc và bước dẫn của section `tinh-abcd` không khớp nhau
-
-- Vị trí: `$.sections[5].blocks[0]` (cộng khác dấu 7 + (−4)), `ex.hieu-am-6-tru-4`
-- Nguồn: tr.62
-- Vấn đề: màn nhắc cộng khác dấu không có bước dẫn; bước dẫn (−6) − 4 không có màn nhắc trong section.
-- Sửa: thêm bước dẫn cộng khác dấu (số khác sách và hình, ví dụ 25 + (−21)), hoặc thêm màn nhắc "Muốn trừ một số, ta cộng với số đối của số đó." trước bước (−6) − 4; kiểm giới hạn 4 bài tập mỗi section.
-
-### 11. Câu luyện trùng số của mẹo và hình ở section `so-doi`
-
-- Vị trí: `ex.viet-so-b` (9 → −9), `ex.noi-so-doi` (cặp 12 và −12) - LL-07
-- Nguồn: —
-- Vấn đề: mẹo `tim-so-doi` hiện `9 ↔ −9`, màn nhắc nói "như −2 hay 9"; cặp 12 là một dòng hình `so-doi-vi-du`.
-- Sửa: `viet-so-b` dùng số chưa xuất hiện trong bài, ví dụ 31 (đáp án −31; tránh 14 vì đã có ở hình `uoc-vi-du`); `noi-so-doi` đổi cặp 12 thành 11 và −11.
-
-### 12. Lý do `wrong` ở `doi-thua-so-6` cho sẵn đáp án bước sau
-
-- Vị trí: `$.exercises[21].explain.wrong[0]`, `[1]`; bước sau `ex.tinh-6-4-tru-am-5` (đáp án 54)
-- Nguồn: —
-- Vấn đề: hai lý do kết thúc "không phải 54", đúng đáp án của câu kế tiếp; lý do chỉ so giá trị, không nói lỗi.
-- Sửa: lý do nói lỗi, không nêu giá trị, theo cách sửa đã chọn ở Nghiêm trọng 4 (ví dụ nhiễu đổi dấu: "Đổi phép trừ thành cộng thì phải đổi cả (−5) thành số đối của nó."; nhiễu nhân: "Đưa 6 ra ngoài thì hai số còn lại nối bằng dấu cộng hay trừ, không nhân với nhau.").
-
-### 13. Lý do `wrong` "Hai số đối nhau" lập luận ngược chiều
-
-- Vị trí: `$.exercises[29].explain.wrong[1]` (`ex.tich-0-it-nhat-mot`)
-- Nguồn: —
-- Vấn đề: "3 và −3 nhân nhau được −9" chứng minh đối nhau thì tích khác 0, không bác được "tích bằng 0 thì hai số đối nhau"; còn dễ khiến bé nghĩ hai số đối nhau không bao giờ nhân ra 0 (sai với 0 và 0).
-- Sửa: "Như 0 · 5 = 0, nhưng 0 và 5 không phải hai số đối nhau."
-
-### 14. Lời giải 3.45 nói quy tắc tích bằng 0 khác câu quy tắc
-
-- Vị trí: `$.exercises[31].explain.text` (`bai-3-45`) - LL-05
-- Nguồn: —
-- Vấn đề: "thì có một số bằng 0" khác câu `rule` "ít nhất một số trong hai số đó bằng 0"; "có một số" dễ đọc thành "đúng một số".
-- Sửa: "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0." rồi áp vào hai thừa số.
-
-### 15. Lời giải `tach-12-bang-4` nói "cả hai phép nhân" khi màn chỉ có một đẳng thức
-
-- Vị trí: `$.exercises[25].explain.text` - LL-10
-- Nguồn: —
-- Vấn đề: đề chỉ có `12 = 4 · □`; bé chưa thấy "hai phép nhân" nào.
-- Sửa: "Chia 12 cho 4 được 3, nên 12 = 4 · 3." (bỏ câu sau, hay nói "Câu sau sẽ dùng cách tách này.").
-
-### 16. Cách viết ngoặc trong lựa chọn khác lời giải và câu kế tiếp
-
-- Vị trí: `$.exercises[21].options`, `$.exercises[26].options` so với `$.exercises[21].explain.tex`, `$.exercises[22].prompt[1]`; `$.exercises[28].explain.tex` (`13 · [6 − 40]`)
-- Nguồn: —
-- Vấn đề: cùng biểu thức viết `6 · (4 − (−5))` ở lựa chọn và `6 · [4 − (−5)]` ở lời giải, câu sau; ngược lại `13 · [6 − 40]` dùng ngoặc vuông khi trong không có ngoặc.
-- Sửa: ngoặc lồng nhau thì ngoặc vuông ở ngoài, như Bài 16 (`6 \cdot [4 - (-5)]`, `4 \cdot [5 \cdot 3 + (-3)]`); không lồng thì ngoặc tròn (`13 \cdot (6 - 40)`). Sau khi sửa Nghiêm trọng 4, áp luật này cho biểu thức mới.
-
-### 17. Mẹo `tim-so-doi` chỉ nói lại câu quy tắc số đối
-
-- Vị trí: `$.sections[4].blocks[3]` (`tip.tim-so-doi`)
-- Nguồn: —
-- Vấn đề: đúng ở mọi số đã thử nhưng chỉ là câu quy tắc nói theo thao tác, ví dụ `−(−5) = 5` ở màn trước đã chỉ thao tác đó (mẹo gượng, checklist trục 5).
-- Sửa: mẹo kiểm `kind: "tránh sai"`: "Cộng một số với số đối của nó phải được 0." với ví dụ số khác 3.41 (Bài 14 đã dạy); hoặc bỏ mẹo.
-
-### 18. Section `tich-bang-0` thiếu mẹo dù dạng bài có mẹo kiểm thật
-
-- Vị trí: `$.sections[8].blocks`
-- Nguồn: —
-- Vấn đề: 3.45 có nhiễu sai dấu (x = 25, x = −38). Mẹo "thay x vừa tìm vào thừa số đó, phải ra 0" đúng mọi trường hợp và đúng cách các lý do `wrong` đang làm. Không dùng mẹo "đổi dấu số đi kèm x" (sai với 38 − x = 0).
-- Sửa: thêm `tip` `kind: "tránh sai"`, ví dụ số khác sách và hình (x − 9 = 0 nên x = 9, thay lại 9 − 9 = 0; x + 6 = 0 nên x = −6, thay lại −6 + 6 = 0).
-
-### 19. Đề 3.44b trên điện thoại xuống dòng giữa ngoặc
-
-- Vị trí: `$.exercises[28].prompt[1].tex` (`bai-3-44b`) - LL-12
-- Nguồn: walk `phone/133-s8-07-exercise-bai-3-44b.png`
-- Vấn đề: công thức ngắt thành "... − 13 · (23 +" / "17)".
-- Sửa: `\begin{gathered} 13 \cdot (23 - 17) \\ -\ 13 \cdot (23 + 17). \end{gathered}`, không đổi chữ, số, dấu của đề.
-
-### 20. Đáp án `boi-4-trong-khoang` nằm sẵn trên hình ví dụ và trong mẹo ngay trước
-
-- Vị trí: `ex.boi-4-trong-khoang`; hình `boi-4-vi-du` ở `$.sections[9].blocks[0]`; `$.sections[9].blocks[3].tex` (`tip.boi-doi-xung`) - LL-07
-- Nguồn: —
-- Vấn đề: đáp án −8, −4, 0, 4, 8 in sẵn trên hình và mẹo (4, 8, 12, −4, −8, −12, 0); bé chỉ cần bỏ ±12.
-- Sửa: đổi bước dẫn sang bội của 7 lớn hơn −16 và nhỏ hơn 16 (đáp án −14, −7, 0, 7, 14), đổi `boi-cua-4` theo số 7; đổi ví dụ mẹo sang số khác 3 đến 7 (xem Nên sửa 22).
-
-### 21. Đáp án `uoc-duong-14` in sẵn trên màn nhắc ngay trước
-
-- Vị trí: `ex.uoc-duong-14`; `$.sections[10].blocks[0]` (chữ "Số −14 có cùng các ước dương với 14" và hình `uoc-vi-du`) - LL-07
-- Nguồn: —
-- Vấn đề: hình in đủ ±1, ±2, ±7, ±14.
-- Sửa: đổi sang ước dương của 22 (1, 2, 11, 22; nhiễu 4 hay 3); không dùng 15 (số của mẹo `uoc-chung-nhanh`).
-
-### 22. Ví dụ của hai mẹo thiếu số đề nên bé không theo được
-
-- Vị trí: `$.sections[9].blocks[3]` (`tip.boi-doi-xung`), `$.sections[10].blocks[3]` (`tip.uoc-chung-nhanh`)
-- Nguồn: —
-- Vấn đề: `boi-doi-xung` nói khoảng −15 đến 15 mà không nói bội của số nào, rồi `tex` hiện 4, 8, 12; `uoc-chung-nhanh` không nói số thứ hai nên bé không kiểm được vì sao 3 và 15 bị bỏ.
-- Sửa: ghi đủ số đề trong `text`, ví dụ "Ví dụ tìm bội của 8 lớn hơn −20 và nhỏ hơn 20: bội dương là 8, 16; thêm −8, −16 và 0." (đổi `tex` theo); "Ví dụ ước chung của 15 và 25: ước dương của 15 là 1, 3, 5, 15; 25 chỉ chia hết cho 1 và 5."
-
-### 23. Recap section và card `bang-tich` không tóm ý của section; recap `bang-tong` chỉ tóm một nửa
-
-- Vị trí: `$.sections[11].recap`, `$.cards[11].recap`, `$.sections[12].recap`, `$.cards[12].recap`
-- Nguồn: —
-- Vấn đề: cả ba câu của `bang-tich` dùng ý "hai ô cách nhau hai ô thì bằng nhau", nhưng recap là câu chia hết "Nếu a = b · q ..." với hình 12 : 3 = 4; recap `bang-tong` thiếu ý ô 1 bằng ô 4.
-- Sửa: tách câu "Vậy hai ô cách nhau hai ô thì bằng nhau." thành `note` riêng có `rule: true` (cùng một câu cho cả hai section), recap lặp nguyên văn kèm ví dụ số của Nghiêm trọng 6; câu quy tắc Bài 17 để ở màn nhắc, bỏ cờ `rule` của nó.
-
-### 24. Dòng ô điền 3.48, 3.49 xuống dòng; ô đã cho là chữ nhỏ không khung
-
-- Vị trí: `$.exercises[40].segments`, `$.exercises[43].segments` - LL-12
-- Nguồn: walk `phone/181-s12-06-exercise-bai-3-48.png`, `phone/192-s13-06-exercise-bai-3-49.png`, `ipad/181-...`, `ipad/192-...`
-- Vấn đề: 11 ô gãy thành 4 / 3 / 4 (phone), 8 / 3 (iPad); ô đã cho ("6", "−4", "−7", "3") là chữ trơn dính viền ô trống, khó biết ô nào thứ mấy, trong khi lời giải dựa vào vị trí ô. Không chồng hay cắt chữ.
-- Sửa: đặt " | " ở đoạn chữ giữa các ô cho giống dòng đề; lời dặn "Các ô xếp theo thứ tự như dòng trên, từ trái sang phải, hết dòng thì sang dòng dưới." Phần app (ô đã cho có khung, hay số thứ tự ô trong `fillBlank`) ghi backlog, không sửa ở bài này.
+- Vị trí: `$.exercises[24].prompt[1].tex` (`on-tap-chuong-3.ex.bai-3-43b`), `$.exercises[28].prompt[1].tex` (`on-tap-chuong-3.ex.bai-3-44b`); cùng kiểu: dấu ";" cuối ý a) của `bai-3-43a`, `bai-3-44a` - LL-23
+- Nguồn: tr.62, `sbt-p62.png`. Tổng hợp đã mở ảnh: sách in "b) 42·3 – 7·[(–34) + 18]." và "b) 13·(23 – 17) – 13·(23 + 17)." (có "."), ý a) kết bằng ";".
+- Vấn đề: đề khác sách một dấu. Mức: Nên sửa, không Nghiêm trọng như 3.45 ở vòng 1, vì ở đây ";" và "." là dấu ngăn các ý a), b) in trên cùng một dòng (cùng loại với dấu ";" "." cuối lựa chọn mà checklist cho bỏ), còn dấu "." của 3.45 kết một câu đề trọn vẹn; chữ, số và việc bé phải làm không đổi. Nhưng mục "Giả định" của handover chưa ghi ngoại lệ này, nên bài ôn sau dễ xử khác nhau.
+- Sửa (quyết định của Tổng hợp, ưu tiên khớp sách như đã làm ở 3.45): thêm "." vào cuối TeX của 3.43b (`42 \cdot 3 - 7 \cdot [(-34) + 18].`) và dòng thứ hai của 3.44b (`-\ 13 \cdot (23 + 17).`). Ý a) giữ như hiện tại (không thêm ";" vào cuối một câu đứng riêng), và tác giả thêm vào mục "Giả định" của `notebooks/backlogs/lesson-on-tap-chuong-3/task.md` một dòng: "Tách ý a), b) thành câu riêng thì bỏ dấu ';' ngăn ý ở cuối ý a); dấu '.' cuối ý cuối giữ như sách." Không đổi chữ hay số nào khác.
 
 ## Góp ý
 
-### 1. Lời giải câu hỏi 6 chưa nói kết luận
+### 1. Ý "tổng hai số cùng dấu mang dấu đó" nói theo ba cách
 
-- Vị trí: `$.exercises[13].explain.text` (`ex.tn6`)
+- Vị trí: `$.exercises[7].explain.text` (`cung-dau-tong-am`), `$.exercises[8].explain.text`, `$.exercises[9].explain.text` (`tn3`, `tn4`), `$.sections[2].blocks[2].text` (mẹo `tich-duong-tong`) - LL-05
+- Nguồn: —
+- Vấn đề: không phải câu `rule`, nghĩa giống nhau, nhưng bé đọc ba câu khác nhau trong một section.
+- Sửa: dùng một câu cho cả ba `explain`: "Hai số cùng dấu thì tổng mang chính dấu đó."
+
+### 2. Lời giải câu hỏi 6 nói "a âm, b dương thì a − b âm" mà không nói vì sao
+
+- Vị trí: `$.exercises[13].explain.text` (`tn6`)
 - Nguồn: tr.61 câu 6
-- Vấn đề: dừng ở bước kiểm tra, không loại trường hợp a âm, b dương và không nói "Vậy ..." như câu 5.
-- Sửa: thêm "Còn nếu a âm và b dương thì a − b âm. Vậy a dương và b âm." (gộp câu để ≤ 3 câu).
+- Vấn đề: câu dẫn `duong-tru-am` chỉ dẫn trường hợp a dương, b âm; trường hợp ngược lại chỉ được nói.
+- Sửa: tuỳ tác giả, nối với mẹo `hieu-va-thu-tu`: "… còn nếu a âm và b dương thì a nhỏ hơn b nên a − b âm." (giữ trong 3 câu).
 
-### 2. Nhiễu "Một số âm, một số dương" tự trái với đề
+### 3. Trên điện thoại, chữ trong lời giải và mẹo xuống dòng giữa phép tính
 
-- Vị trí: `$.exercises[7].options[2]` (`ex.cung-dau-tong-am`) - LL-14
+- Vị trí: `$.exercises[28].explain.text` ("13 / · 40"), `$.exercises[24].explain.text` ("7 · / (−16)"), `$.exercises[31].explain.text`, `$.exercises[29].explain.text`, `$.sections[6].blocks[2].text` (mẹo `thua-so-chung-bi-giau`), `$.exercises[17].explain.tex` (`hieu-am-6-tru-4`, KaTeX tự ngắt sau "+") - LL-12
+- Nguồn: walk phone, ví dụ `phone/134-s8-06-exercise-bai-3-44b-correct.png`, `phone/113-s7-03-block.png`, `phone/098-…-correct.png`
+- Vấn đề: không chữ nào bị cắt, nhưng một phép tính bị chẻ hai dòng, bé chậm phải ghép lại.
+- Sửa: khoảng trắng không ngắt quanh "·", "−", "=" trong cụm số ở phần chữ (như đề 3.42); `hieu-am-6-tru-4` xếp `gathered` hai dòng `(-6) - 4 = (-6) + (-4)` / `= -10`.
+
+### 4. Lời giải `doi-thua-so-4` chưa đi tới đúng dạng của đáp án
+
+- Vị trí: `$.exercises[26].explain.tex`, `.text`
 - Nguồn: —
-- Vấn đề: đề đã cho "hai số cùng dấu" nên lựa chọn bị loại ngay.
-- Sửa: nhiễu ứng với lỗi thật, ví dụ "Không biết được, vì chưa biết hai số".
+- Vấn đề: chữ nói "Tách 12 = 4 · 3" mà TeX viết `5 · 3 · 4` rồi dừng; đáp án viết `5 · 3 − 3` trong khi quy tắc nói "cộng hai thừa số còn lại", bé có thể tìm `5 · 3 + (−3)` và nghi đáp án.
+- Sửa: TeX `5 \cdot 12 + 4 \cdot (-3)` / `= 4 \cdot 5 \cdot 3 + 4 \cdot (-3)` / `= 4 \cdot [5 \cdot 3 + (-3)]` / `= 4 \cdot (5 \cdot 3 - 3)`, và thêm vào chữ "cộng với −3 cũng là trừ 3". Lựa chọn giữ ngoặc tròn không lồng (vì `check`).
 
-### 3. Mẹo `tich-duong-tong` suy luận ngược chiều
+### 5. Thứ tự bước dẫn của section `thua-so-chung-3-43`: câu dễ đứng sau câu khó
 
-- Vị trí: `$.sections[2].blocks[2].text`
+- Vị trí: `$.sections[6].checkIds` (`doi-thua-so-6` rồi `tru-hai-tich`); `$.exercises[22].explain.tex`
 - Nguồn: —
-- Vấn đề: "Nhân hai số dương, hay nhân hai số âm, đều được số dương. Vậy tích dương thì hai số cùng dấu." đi ngược chiều câu trước.
-- Sửa: "Hai số khác dấu thì tích âm, nên tích dương thì hai số cùng dấu."
+- Vấn đề: `tru-hai-tich` luyện riêng bước đổi trừ thành cộng mà `doi-thua-so-6` đã đòi trước; lời giải `tru-hai-tich` tính thẳng `30 + 40`, không dùng thừa số chung 10.
+- Sửa: đặt `tru-hai-tich` trước `doi-thua-so-6`; TeX thêm `= 10 \cdot 3 + 10 \cdot 4` / `= 10 \cdot (3 + 4) = 70` (xếp dọc).
 
-### 4. Lý do `wrong` của "Có thể bằng 0" chưa nói tới lựa chọn
+### 6. Section `thua-so-chung-3-44` lặp màn quy tắc và recap của section trước; `$.cards[6]` và `$.cards[7]` giống hệt nhau
 
-- Vị trí: `$.exercises[10].explain.wrong[1]` (`ex.duong-tru-am`)
+- Vị trí: `$.sections[7].blocks[0]`, `$.sections[7].recap`, `$.cards[7].recap` so với `$.sections[6]`, `$.cards[6]`
 - Nguồn: —
-- Vấn đề: "Hai số dương cộng lại luôn lớn hơn 0." chỉ hiểu khi đọc liền lời giải.
-- Sửa: "a dương, số đối của b cũng dương, cộng lại luôn lớn hơn 0 nên không thể bằng 0."
+- Vấn đề: đúng cách sửa vòng 1 đã đề xuất, nhưng kho thẻ có hai thẻ cùng câu, cùng hình; việc riêng của `thua-so-chung-3-44` (tách số để lộ thừa số chung) không có trên thẻ nào.
+- Sửa: tuỳ tác giả, dùng hình có sẵn: `$.sections[7].recap` và `$.cards[7].recap` đổi sang `phep-nhan-so-nguyen.visual.gop-mau` (ví dụ có từng bước của cùng quy tắc, đang là màn "Ví dụ mẫu" `$.sections[6].blocks[1]` của `thua-so-chung-3-43`; số (−5), (−8), 3 không trùng câu nào của `thua-so-chung-3-44`), caption giữ nguyên câu `rule`, để hai thẻ khác hình. Catalog Bài 16 không có hình vẽ phép tách số, nên thẻ thể hiện đúng việc tách số cần hình mới (mục "Việc còn lại").
 
-### 5. Tiêu đề section 4 nhắc Bài 16 nhưng phần nhắc không có khối nào của Bài 16
+### 7. Lời giải 3.42 không ghi tên số ở mỗi dòng
 
-- Vị trí: `$.sections[3].title`
+- Vị trí: `$.exercises[20].explain.tex`
+- Nguồn: walk `phone/107-s6-08-exercise-bai-3-42-correct.png`
+- Vấn đề: bốn dòng kết quả rồi `b < d < a < c`; bé phải tự đối chiếu dòng nào là a, b, c, d.
+- Sửa: `a = 32 + (-28) = 4` / `b = (-7) - 5 = -12` / `c = (-12) \cdot (-5) = 60` / `d = (-28) : 7 = -4` / `b < d < a < c`; xem lại ảnh phone.
+
+### 8. Lời giải `boi-7-trong-khoang` liệt kê bội dương như một danh sách đủ
+
+- Vị trí: `$.exercises[33].explain.text`
 - Nguồn: —
-- Vấn đề: "Nhắc lại Bài 14 và Bài 16: dấu khi nhân và khi trừ" nhưng các màn chỉ có phép trừ.
-- Sửa: thêm khối quy tắc dấu của tích làm màn đầu, hoặc đổi tiêu đề.
+- Vấn đề: "Các bội dương của 7 là 7, 14, 21" đọc như chỉ có ba bội dương.
+- Sửa (không dùng "…", checklist trục 3): "Nhân 7 với 1, 2, 3 được 7, 14, 21; 21 đã lớn hơn 16 nên chỉ giữ 7 và 14. Thêm các số đối −7, −14 và số 0, ta được năm số."
 
-### 6. Màn nhắc đầu section `so-doi` nói "−2 hay 9" nhưng hình hiện −7, 12, −20
+### 9. Đáp án `uc-duong-12-20` (1, 2, 4) trùng đáp án màn Cùng làm ngay trước
 
-- Vị trí: `$.sections[4].blocks[0]` (hình `dau-va-so-vi-du`) - LL-15
+- Vị trí: `$.exercises[36]`; `$.sections[10].blocks[2]` (Cùng làm ước chung của 8 và −12: ±1, ±2, ±4) - LL-07
+- Nguồn: walk `phone/165-s11-03-block-shown.png`
+- Vấn đề: hai câu liền nhau cùng ra tập ước chung dương 1, 2, 4.
+- Sửa: cặp khác, khác cả ±1, ±2, ±3, ±6 của 3.47, ví dụ 20 và 30 (1, 2, 5, 10; nhiễu 3, 4, 6), viết lại lời giải và `wrong` theo số mới.
+
+### 10. Lời giải 3.49 nói "số đối của −4" mà không cho thấy −4 từ đâu
+
+- Vị trí: `$.exercises[45].explain.text`, `.tex`
 - Nguồn: —
-- Vấn đề: số trong chữ không có trên hình (khối chép nguyên từ Bài 14).
-- Sửa: dùng hình `dau-va-so` (−2, 9), hoặc giữ như Bài 14.
+- Vấn đề: bước (−7) + 3 = −4 không có trong chữ hay `tex`.
+- Sửa: câu cuối "Các ô còn lại: (−7) + 3 = −4, nên là số đối của −4, tức là 4."; `tex` thêm dòng `(-7) + 3 = -4` trước `4 + (-7) + 3 = 0`. Viết cùng lúc với câu đầu ở Nên sửa 1.
 
-### 7. 3.42 trên điện thoại ngắt dòng ngay sau "c ="
-
-- Vị trí: `$.exercises[20].prompt[1].text`
-- Nguồn: walk `phone/102-s6-08-exercise-bai-3-42.png`
-- Vấn đề: giá trị (−12) · (−5) sang dòng sau.
-- Sửa: khoảng trắng không ngắt sau "c =" và "d =", như đã làm quanh "·", ":".
-
-### 8. Thẻ xếp thứ tự 3.42 chỉ có chữ a, b, c, d
-
-- Vị trí: `$.exercises[20].items`
-- Nguồn: —
-- Vấn đề: bé phải nhớ bốn kết quả khi kéo thẻ.
-- Sửa: tuỳ tác giả, ghi kèm biểu thức trên thẻ; đề sách giữ nguyên.
-
-### 9. Câu "giống phần số tự nhiên" thiếu vế so sánh
-
-- Vị trí: `$.exercises[16].explain.text` (`bai-3-41`)
-- Nguồn: —
-- Vấn đề: không nói giống với số nào.
-- Sửa: "Số đối của −27 có cùng phần số tự nhiên 27 nhưng khác dấu."
-
-### 10. Câu lệnh của app ở 3.41 khác dấu phẩy với 3.48, 3.49
-
-- Vị trí: `$.exercises[16].prompt[1].text` ("Chạm một số rồi chạm ô trống cần điền.") so với `$.exercises[40]`, `$.exercises[43]` ("Chạm một số, rồi chạm ô trống cần điền.")
-- Nguồn: —
-- Vấn đề: một câu lệnh hai cách viết.
-- Sửa: thống nhất một cách cho cả ba câu.
-
-### 11. Một khoảng nói theo hai cách
-
-- Vị trí: `$.sections[9].blocks[3].text`, `$.exercises[34].explain.wrong[1].text`
-- Nguồn: `sbt-p62.png` ("lớn hơn −19 và nhỏ hơn 19")
-- Vấn đề: mẹo nói "từ ... đến ..., không tính hai đầu", lý do sai nói "từ −19 đến 19", còn đề, hình nói "lớn hơn ... và nhỏ hơn ...".
-- Sửa: dùng "lớn hơn ... và nhỏ hơn ..." ở mẹo và `wrong`.
-
-### 12. Mẹo ước chung nói "số nhỏ hơn" trong khi bài có số âm
-
-- Vị trí: `$.sections[10].blocks[3].text`
-- Nguồn: —
-- Vấn đề: với 8 và −12 (màn Cùng làm), "số nhỏ hơn" là −12; kết quả vẫn đúng, chỉ mất ý làm nhanh.
-- Sửa: "Viết các ước dương của số có phần số tự nhiên nhỏ hơn".
-
-### 13. `whyItMatters` và `hook`: "ví ... đang nợ"
-
-- Vị trí: `$.overview.whyItMatters`, `$.overview.hook.text`
-- Nguồn: —
-- Vấn đề: ví không chứa số tiền âm; câu hook không cần số âm.
-- Sửa: "biết mình còn tiền hay đang nợ bạn bao nhiêu sau khi mượn và trả"; hook ví dụ "Bạn có 3 nghìn mà mua món 5 nghìn thì còn nợ 2 nghìn, tức là 3 − 5 = −2."
-
-### 14. Lời giải `o-thu-tu-bang-tong` không nói hai tổng nào
-
-- Vị trí: `$.exercises[42].explain.text`
-- Nguồn: —
-- Vấn đề: khác câu cùng kiểu `o-thu-tu-bang-tich` vốn nói rõ hai tích cùng có ô 2 và ô 3.
-- Sửa: "Ô 1 + ô 2 + ô 3 = 0 và ô 2 + ô 3 + ô 4 = 0. Hai tổng cùng có ô 2 và ô 3, nên ô 1 bằng ô 4. Vậy ô thứ tư là −6."
-
-### 15. Tên section "Nhắc lại Bài 17/Bài 14: bảng ba ô ..."
+### 11. Tiêu đề `bang-tich`, `bang-tong` vẫn gán bảng ba ô cho Bài 17, Bài 14
 
 - Vị trí: `$.sections[11].title`, `$.sections[12].title`
 - Nguồn: —
-- Vấn đề: bảng ba ô không có trong Bài 17 hay Bài 14, chỉ quy tắc nhắc lại là của hai bài đó.
-- Sửa: ví dụ "Bảng ba ô liền nhau có tích 120 (nhắc lại Bài 17)".
+- Vấn đề: góp ý vòng 1 mới làm một nửa; bảng ba ô không có ở Bài 17 hay Bài 14.
+- Sửa: "Bảng ba ô liền nhau có cùng tích (nhắc lại Bài 17)" và "Bảng ba ô liền nhau có cùng tổng (nhắc lại Bài 14)".
+
+### 12. Câu số dương không có phím "−" nên bàn phím cho biết dấu của đáp án
+
+- Vị trí: `$.exercises[40]`, `$.exercises[44]` (`o-xa-*`, nhóm 3); thêm phát hiện của Tổng hợp: `$.exercises[22]` (`tru-hai-tich`), `$.exercises[23]` (`bai-3-43a`), `$.exercises[24]` (`bai-3-43b`), `$.exercises[27]` (`bai-3-44a`) không có `allowNegative`, trong khi `bai-3-44b`, `tich-am-7-am-4`, `tim-x-7`, `o-con-lai-4-am-9` có
+- Nguồn: walk `phone/182-s12-06-exercise-o-xa-bang-tich.png`, `phone/195-s13-06-exercise-o-xa-bang-tong.png`
+- Vấn đề: chương này luyện chính dấu của kết quả; thiếu phím "−" báo trước đáp án dương (3.43a có −3 · 7 · (−17) mà bé biết ngay kết quả dương), và các câu cùng section làm khác nhau.
+- Sửa: thêm `"allowNegative": true` cho sáu câu trên (đây là cài đặt của app, không đổi đề sách). Câu `o-xa-bang-tong` có đáp án 5 trùng đáp án `o-con-lai-4-am-9` ngay trước; có thể đổi ô đã cho thành −2 ("ô 8 là −2", đáp án −2, số chưa có trong `bang-tong`).
+
+### 13. Một ô hai cách gọi trong cùng câu
+
+- Vị trí: `$.exercises[39].explain.wrong[2].text` (`o-thu-tu-bang-tich`: "ô thứ tư") so với đề và lời giải cùng câu ("ô 4")
+- Nguồn: —
+- Vấn đề: lặp kiểu lệch đã sửa ở vòng 1 (ô thứ nhất / ô 1).
+- Sửa: "… không phải số ở ô 4."
+
+### 14. "Tích" và "phép nhân" thay nhau cho cùng một thứ ở `thua-so-chung-3-43`, `thua-so-chung-3-44`, `bang-tich`
+
+- Vị trí: câu quy tắc `$.sections[6].blocks[0].children[0]`, `$.sections[7].blocks[0].children[0]` ("hai tích có chung một thừa số") so với `$.exercises[21]`, `[23]`, `[26]`, `[27]`, `$.sections[7].blocks[1].children[0]` ("cả hai phép nhân đều có thừa số …"); đề `$.exercises[39]`, `[40]` ("nhân lại đều được 60") so với `$.exercises[43]`, `[44]` ("tổng ba ô liền nhau luôn bằng 0") và câu quy tắc "cùng tích" - LL-05. Phát hiện của Tổng hợp.
+- Nguồn: —
+- Vấn đề: lượt đọc hiểu đã thay "tích" bằng "phép nhân" cho dễ đọc, nên quy tắc nói "hai tích" mà lời giải ngay dưới nói "hai phép nhân"; bé chậm có thể không nhận ra đó là cùng hai thứ. Hai section bảng ô hỏi cùng dạng mà một bên "nhân lại đều được", một bên "tổng … luôn bằng".
+- Sửa: tuỳ tác giả; ví dụ lời giải nói "cả hai tích đều có thừa số 6" (từ "tích" đã giải nghĩa ở `tich-duong-cung-dau`), và đề bảng ô dùng một khuôn: "ba ô liền nhau bất kì nhân lại đều được 60" / "ba ô liền nhau bất kì cộng lại đều được 0".
+
+## Việc còn lại (không chặn duyệt)
+
+Không tính vào số Nên sửa, Góp ý của vòng này; cần tạo hình mới hay sửa `src/`, mà vòng này không được làm.
+
+- Hình bảng ô cho recap `bang-tich`, `bang-tong` (Nên sửa 23 vòng 1): recap vẫn gắn `chia-het-vi-du`, `tong-doi-vi-du` (khớp câu Bài 17, Bài 14 nhưng không có ví dụ cho câu bảng ô). Catalog Bài 14, Bài 17 không có hình bảng ô dùng được; `[recap]` bắt recap là hình có caption nên không sửa bằng chữ được. Cần `lesson-visual`. Khi có hình, cân nhắc bỏ cờ `rule` của câu Bài 17 (Bài 14) cho recap còn một câu (LL-06).
+- Sửa app cho `fillBlank` dạng bảng (Nên sửa 24 vòng 1): ô đã cho (6, −4, −7, 3) là chữ trơn không khung, dòng 11 ô tự gãy dòng (phone 3/3/3/2, iPad 6/4) và "|" có thể đứng đầu dòng (`phone/184-s12-07-exercise-bai-3-48.png`, `ipad/197-s13-07-exercise-bai-3-49.png`). Câu lệnh hiện tại giúp đọc được; khi điền đúng, thứ tự ô khớp bảng sách.
+- Đáp án 3.47 (±1, ±2, ±3, ±6) in sẵn trên hình `uoc-chung-vi-du` ở màn quy tắc và recap `uoc-chung` (LL-07, nhóm 3 ghi Góp ý): hình đã duyệt của Bài 17 và đề sách đều cố định; nếu làm hình riêng cho bài thì chọn ví dụ ước chung khác ước của 6.
+- Hình vẽ phép tách số (như 18 = 9 · 2 rồi đưa 9 ra ngoài) cho recap và card `thua-so-chung-3-44` (Góp ý 6), nếu muốn thẻ thể hiện đúng việc riêng của section này.
+- Thư mục `.shots/walk/on-tap-chuong-3/` lẫn ảnh cũ của vòng 1 (21:22) với ảnh mới (22:05), cùng số thứ tự; cả ba nhóm phải lọc theo giờ chụp. Trước walk vòng sau, điều phối nên chạy walk vào thư mục sạch.
+- `content/math/kntt/tap-hop-cac-so-nguyen/lesson.json` và `src/visuals/math/tap-hop-cac-so-nguyen/` đang có thay đổi chưa commit của phiên khác (thêm phần bài tập sách bài tập, sửa `line-try.tsx`); bài này dùng 8 hình và các câu quy tắc của Bài 13. Sau khi thay đổi đó vào git, chạy lại walk các section `so-sanh`, `tap-hop-a`, `tinh-abcd` và so lại câu chép nguyên văn.
+- Lượt Đọc hiểu (Haiku) trên chữ đổi trước `--approve`, rồi `pnpm content:lock on-tap-chuong-3`.
+
+## Đã soát mục vòng 1
+
+- 7 Nghiêm trọng vòng 1 đã sửa thật, không thấy bản sửa làm hỏng chỗ khác (LL-20) ngoài các mục ghi ở trên: mẹo so sánh có điều kiện (còn thiếu dấu >: Nên sửa 4); 3.45 có "."; lời giải 3.43a, 3.44a, 3.44b hiện đủ trên phone (840, 3 904, −442); phép trừ tích đổi thành cộng số đối trước khi đưa thừa số ra (còn sót cách nói ở Nên sửa 7); lời giải 3.43a, 3.48, 3.49 khác chuỗi bước sách tr.114; màn bảng ô dùng số riêng và "ô 1, ô 2" (mất câu kết luận: Nên sửa 1); `uc-duong-12-20` chỉ còn hai dãy số.
+- Nên sửa 1 đến 22 vòng 1 đã sửa; câu mới của mẹo ước chung (Nên sửa 22) sinh ra Nên sửa 3 ở trên. Nên sửa 23, 24 còn mở (mục "Việc còn lại"). Góp ý vòng 1 đã làm, trừ Góp ý 8 (thẻ 3.42 kèm biểu thức; lý do của tác giả hợp lý, Góp ý 7 ở trên giảm việc phải nhớ) và Góp ý 15 (làm một nửa: Góp ý 11 ở trên).
 
 ## Đã soát và đạt
 
-- Đề 17 câu sách (câu hỏi 1 đến 6, 3.41 đến 3.49) khớp `sbt-p61.png`, `sbt-p62.png` từng chữ, số, ký hiệu, dấu (trừ dấu "." của 3.45, Nghiêm trọng 2); các chỗ khác sách đều nằm trong mục "Giả định" của handover (bỏ nhãn lựa chọn, tách ý a), b), khối lệnh của app ở cuối đề, khoảng trắng không ngắt ở 3.42).
-- Đáp án khớp `sbt-p114.png` và đã tự tính lại: 1 D, 2 C, 3 A, 4 D, 5 C, 6 B; 3.41 −27 và 27; 3.42 b < d < a < c; 3.43a 840, 3.43b 238; 3.44a 3 904, 3.44b −442; 3.45 x = 38, x = −25; 3.46, 3.47 như sách; bảng 3.48, 3.49 khớp bảng sách, mỗi bảng một cách điền.
-- Mỗi câu có đúng một đáp án hay một tập đáp án; mọi nhiễu tự giải đều sai đúng như `wrong` nói; mọi số học trong `explain` đúng; không lời giải nào gọi lựa chọn theo vị trí (LL-26); không phủ định kép; câu chọn nhiều có "Chọn tất cả".
+- Đề 17 câu sách khớp `sbt-p61.png`, `sbt-p62.png` từng chữ, số, ký hiệu, dấu (U+2212, U+00B7, ℤ, ∈, ∉, ≤), trừ dấu cuối ý ở Nên sửa 8; các chỗ khác sách nằm trong "Giả định" của handover (bỏ nhãn lựa chọn, tách ý a), b), khối lệnh của app, khoảng trắng không ngắt ở 3.42, 3.44b xếp hai dòng).
+- Đáp án khớp `sbt-p114.png`, cả ba nhóm tự giải trước khi đọc `answer`: 1 D, 2 C, 3 A, 4 D, 5 C, 6 B; 3.41 −27 và 27; 3.42 b < d < a < c; 3.43a 840, 3.43b 238; 3.44a 3 904, 3.44b −442; 3.45 x = 38, x = −25; 3.46 −18; −12; −6; 0; 6; 12; 18; 3.47 ±1; ±2; ±3; ±6; bảng 3.48, 3.49 khớp bảng sách.
+- Mỗi câu một đáp án hay một tập đáp án; mọi nhiễu sai đúng như `wrong` nói; mọi phép tính trong `explain`, mẹo, ví dụ mẫu đúng; không lời giải nào gọi lựa chọn theo vị trí (LL-26); không phủ định kép; câu chọn nhiều có "Chọn tất cả"; câu dẫn khác số câu sách, không lộ đáp án.
 - Gợi ý nấc 1 tô khối đề hay khối công thức, không lộ đáp án.
-- Hình dùng lại từ Bài 13, 14, 16, 17: số trên hình khớp chữ cạnh hình (trừ Góp ý 6). Mỗi câu `rule: true` được recap section và card lặp nguyên văn; các khối nhắc chép đúng câu đã duyệt của bài gốc. Màu khái niệm khớp glossary.
-- `overview`, `sourceRef` của bài, section, card đúng phạm vi và đúng trang (tr.60 đến 62, lời giải tr.114).
-- Tổng hợp soát chéo: các câu quy tắc của 13 section không mâu thuẫn nhau về nội dung; cách gọi ô (a, b, c, d / ô 1 / ô thứ nhất) và cách nói quy tắc trong lời giải đã ghi ở Nghiêm trọng 6, Nên sửa 6, 14.
-- Sheet walk phone và iPad của cả 13 section: ngoài Nghiêm trọng 3, 7, Nên sửa 19, 24 và Góp ý 7, không thấy chữ chồng, bị cắt hay tràn.
+- Khối chép từ Bài 13, 14, 16, 17: câu chữ trùng nguyên văn bài gốc (Tổng hợp kiểm lại các câu "Số nguyên âm nằm trước số 0…", "bên trái gốc O", "Hai số âm nhân với nhau…", "Hai số âm cộng nhau…", "Trừ đi một số âm thì…"); số trên hình khớp chữ cạnh hình (LL-15). Mỗi câu `rule: true` của 13 section được recap section và card lặp nguyên văn.
+- Tổng hợp soát chéo mọi `note`, `recap`, `caption`, mẹo và thuật ngữ cả bài: các câu quy tắc của 13 section không mâu thuẫn nhau về nội dung; "phần dấu", "phần số tự nhiên", "số đối", "thừa số chung", "bội", "ước chung" dùng một tên trong cả bài; câu "Hai số đối nhau cộng lại thì được 0." ở mẹo `tim-so-doi` và câu quy tắc `bang-tong` trùng nguyên văn. Chỗ lệch: Nên sửa 1, 5, 7 và Góp ý 1, 13, 14.
+- Câu quy tắc bảng ô không phải kiến thức ngoài nguồn (LL-09): là kết luận "ô thứ nhất, thứ tư, thứ bảy, thứ mười bằng nhau" của lời giải sách nói chung cho mọi bảng; điều kiện "khác 0" ở bản tích cần và đủ (nhóm 3 kiểm mọi bộ 4 số từ −4 đến 4: 0 trường hợp sai; biên (0, 0, 1, 5) cho ô 1 ≠ ô 4). Giữ cờ `rule`.
+- `overview` (hook mượn tiền, 3 − 5 = −2; `whyItMatters` một câu đời sống), `sourceRef` của bài, section, card đúng trang (tr.60–62, lời giải tr.114). Màu khái niệm khớp glossary.
+- Sheet walk phone và iPad của 13 section (ảnh sau bản sửa): không chữ chồng, cắt hay tràn, ngoài Góp ý 3 và mục fillBlank ở "Việc còn lại".
 
 ## Bảng thử mẹo
 
-| Mẹo | Các số đã thử | Kết quả |
-|---|---|---|
-| `so-sanh-nhieu-so` | {0; 3; −12}; {−9; −4; 0; 5}; {−1; −10; −5}; {−4; −4; 2}; {0; 7; 1}; −3; 5; 0; −8 xếp từ lớn đến bé | Đúng ở 5 bộ xếp từ bé đến lớn; sai khi xếp từ lớn đến bé (Nghiêm trọng 1) |
-| `tich-duong-tong` | (2, 5); (−2, −5); (−1, −1); (1, 1); (−20, −1); (0, 5); (3, −3) | Đúng mọi bộ; có số 0 hay khác dấu thì tích không dương nên mẹo không áp dụng |
-| `hieu-va-thu-tu` | (5, 3); (3, 5); (−2, −7); (0, 4); (0, −1); (4, −4); (−3, 2) | Đúng mọi bộ (lời mẹo đòi hai số khác nhau) |
-| `tim-so-doi` | 9; 1; 100; −15; −1; 0; −27 | Đúng mọi số; là câu quy tắc nói lại (Nên sửa 17) |
-| `thua-so-chung-bi-giau` | 4·7 − 2·2·(−5) = 48; 6·4 − 2·3·(−5) = 54; 21·23 − 3·7·(−17) = 840; 10·3 + 2·5·(−4) = −10; 1·7 + 1·1·5 = 12; biên 12·5 + 3·2·2, 6·4 − 2·(−5)·3 | Phép biến đổi luôn đúng; ca biên mẹo không tìm ra nhưng không cho kết quả sai. Ví dụ là hiệu hai tích, chưa dạy (Nghiêm trọng 4) |
-| `tach-thua-so` | 48·5 + 6·(−7) = 198; 5·12 + 4·(−3) = 48; 71·64 + 32·(−7) − 13·32 = 3 904; 42·3 − 7·[(−34) + 18] = 238; (−12)·5 + 4·3 = −48; 0·5 + 6·(−7) = −42; biên 7·5 + 3·(−2) | Đúng mọi đầu vào; ca không tách được mẹo chỉ bảo "thử" (đặt sau 3.43b: Nên sửa 8) |
-| `boi-doi-xung` | k = 1 đến 12, −3, −5 với mọi khoảng đối xứng m = 0 đến 39, tính và không tính hai đầu; 6 trong (−19; 19); 4 trong (−9; 9); 5 trong [−15; 15]; 7 trong (−5; 5); khoảng (−1; 1) | Đúng mọi trường hợp (thiếu số đề ở ví dụ: Nên sửa 22) |
-| `uoc-chung-nhanh` | mọi cặp khác 0 từ −40 đến 40; (36, 42); (12, 20); (8, −12); (6, −9); (6, 6); (1, 7); (5, −15) | Kết quả đúng mọi cặp; với số âm "số nhỏ hơn" chọn số có phần số tự nhiên lớn hơn, chỉ mất ý làm nhanh (Góp ý 12) |
-| `bang-o-lien-nhau` | mọi dãy 5 số khác 0 từ −4 đến 4 có ba tích liền nhau bằng nhau; (−4, −5, 6); (−3, 4, −5); (1, 2, −4); (−1, −1, −1); tích 0 với (0, 1, 2, 0, 5) | Đúng khi tích khác 0 (lời mẹo đã có điều kiện); "tìm ba ô đầu" không dùng thẳng được cho 3.48 (Nên sửa 4) |
-| `o-con-thieu-tong-0` | mọi dãy 5 số từ −5 đến 5 có ba tổng liền nhau bằng 0; (4, −9); (−7, 3); (0, 0); (6, −6); (−3, −5); (10, 2) | Đúng mọi trường hợp, kể cả tổng hai ô bằng 0 |
-
-## Đã sửa sau vòng 1
-
-Tác giả sửa `lesson.json` theo vòng 1; chưa review lại, chưa chạy lượt đọc hiểu (danh sách mục chữ đổi: `.shots/review/on-tap-chuong-3/doc-hieu-r1-items.txt`). Hai phép trừ tích dùng cách đã dạy: "Muốn trừ một số, ta cộng với số đối của số đó" rồi mới đưa thừa số chung ra ngoài. Các lựa chọn của câu có `check` viết ngoặc tròn không lồng vì bộ tính `check.expr` không đọc ngoặc vuông.
-
-### Nghiêm trọng
-
-1. Mẹo `so-sanh-nhieu-so`: nêu rõ "xếp từ bé đến lớn", thêm câu xếp từ lớn đến bé là viết ngược lại; tiêu đề "Xếp nhiều số nguyên từ bé đến lớn".
-2. 3.45: thêm lại dấu "." cuối công thức `(38 - x) \cdot (x + 25) = 0.`
-3. Lời giải 3.43a, 3.44a, 3.44b viết lại mỗi dòng một phép, dài nhất khoảng 20 ký tự; 3.44b có đủ `= -442`. Điều phối chạy lại `pnpm lesson:walk on-tap-chuong-3` sau khi sửa: 0 FAIL, 0 cảnh báo; ảnh phone `120-s7-07-...-bai-3-43a-correct.png`, `134-s8-06-...-bai-3-44b-correct.png` hiện đủ 840 và −442, không bị cắt.
-4. Cách (a): bỏ ngoặc `[a − (−b)]`; đổi phép trừ tích thành cộng số đối trước rồi đưa thừa số ra. Sửa `doi-thua-so-6` (đáp án `6 · (4 + 5)`, nhiễu viết lại), mẹo `thua-so-chung-bi-giau`, lời giải 3.43a, 3.43b, 3.44a, 3.44b; câu `tinh-6-4-tru-am-5` đổi thành `tru-hai-tich` (10 · 3 − 10 · (−4)) để luyện chính bước đổi trừ thành cộng.
-5. Lời giải 3.43a đi theo chuỗi khác sách: `21·23 + 21·17`, `21·(23 + 17)`, `21·40`; ý nối "trừ 21 · (−17) là cộng 21 · 17" nằm ở chữ.
-6. Bỏ màn lập luận chép sách: `bang-tich`, `bang-tong` dùng ví dụ số riêng (−1, 5, −2 và 2, 3, −5), gọi ô là "ô 1, ô 2, ...", không dùng chữ a, b, c, d. Lời giải 3.48, 3.49 đi từ ô đã cho, lùi hay tiến 3 ô, rồi tính ô còn lại.
-7. Lời giải `uc-duong-12-20`: TeX chỉ còn hai dãy số, bỏ ":"; ý "dòng trên là ước của 12, dòng dưới là ước chung" nằm ở chữ.
-
-### Nên sửa
-
-1. Ví dụ mẹo so sánh đổi sang −11 < −6 < 0 < 8.
-2. `cung-dau-tong-am` dùng tổng −11 và lời giải (−5) + (−6).
-3. Thêm khối "−3 ∈ B, 2 ∉ B" và câu "∉ đọc là không thuộc"; `thuoc-c` có đáp án "−4 ∉ C", nhiễu dùng ∈ hay ∉.
-4. Thêm câu `o-xa-bang-tich` (ô 7 → ô 1) và `o-xa-bang-tong` (ô 8 → ô 2); lời giải 3.48, 3.49 theo Nghiêm trọng 6; mẹo `bang-o-lien-nhau` nói cách làm (tiến hay lùi 3 ô), bảng 7 ô, mỗi dòng TeX một phép.
-5. Quy tắc của section `dau-tich-hieu` là "Muốn trừ một số, ta cộng với số đối của số đó" (cờ `rule`, recap section và card dùng hình `tru-vi-du`).
-6. Lời giải của bốn câu trích nguyên câu quy tắc (dấu của tích, trừ là cộng số đối); thêm cho `bai-3-41`, `noi-so-doi` (số đối) và `tich-0-it-nhat-mot`, `bai-3-45` (tích bằng 0).
-7. Section `thua-so-chung-3-44` đổi sang quy tắc "đưa thừa số chung ra ngoài" (cùng câu và hình `gop-thua-so-vi-du` với section trước), ví dụ mẫu 18 · 5 + 9 · (−4) có bước tách số; recap, card, tiêu đề theo.
-8. Mẹo `tach-thua-so` chuyển lên section `thua-so-chung-3-43` (trước 3.43b); lời giải 3.43b tách 42 = 7 · 6, đổi trừ thành cộng, nói "tính thẳng cũng ra 238".
-9. Lời giải 3.42 xếp dọc bốn phép tính và dòng `b < d < a < c`.
-10. Chọn cách "nhắc trong bước dẫn": đề `hieu-am-6-tru-4` mở bằng câu quy tắc trừ (section đã đủ 4 màn, thêm màn thứ 5 bị `[screens]` chặn).
-11. `viet-so-b` dùng 31 (đáp án −31); `noi-so-doi` dùng cặp 8 và 11 (bỏ 7 và 12 vì đã có trên hình).
-12. Lý do `wrong` của `doi-thua-so-6` nói lỗi, không nêu giá trị 54.
-13. Lý do `wrong` "Hai số đối nhau" của `tich-0-it-nhat-mot` dùng 0 và 7.
-14. Lời giải 3.45 mở bằng nguyên câu quy tắc tích bằng 0.
-15. Lời giải `tach-12-bang-4`: "Chia 12 cho 4 được 3, nên 12 = 4 · 3. Câu sau sẽ dùng cách tách này."
-16. Lựa chọn của `doi-thua-so-6`, `doi-thua-so-4` viết ngoặc tròn không lồng (không dùng ngoặc vuông được vì bộ tính `check.expr` chỉ đọc ngoặc tròn); lời giải có ngoặc lồng dùng ngoặc vuông ngoài, không lồng dùng ngoặc tròn (`13 · (-34)`, `32 · [142 + (-20)]`).
-17. Mẹo `tim-so-doi` đổi thành mẹo "tránh sai" kiểm lại: hai số đối nhau cộng lại thì được 0 (ví dụ −15 + 15, 40 + (−40)).
-18. Thêm mẹo `kiem-lai-x` (`tránh sai`) cho section `tich-bang-0`: ví dụ x − 9 = 0 và x + 6 = 0.
-19. 3.44b: đề xếp dọc `13 · (23 − 17)` rồi `− 13 · (23 + 17)` bằng `gathered`; chữ, số, dấu giữ nguyên.
-20. Bước dẫn đổi sang bội của 7 (`boi-cua-7`, `boi-7-trong-khoang`, khoảng −16 đến 16); mẹo `boi-doi-xung` dùng bội của 9.
-21. `uoc-duong-22` thay `uoc-duong-14` (nhiễu 4).
-22. Mẹo `boi-doi-xung` và `uoc-chung-nhanh` ghi đủ số đề (bội của 9 trong khoảng −30 đến 30; ước chung của 15 và 25).
-23. `bang-tich`, `bang-tong` thêm câu quy tắc "Nếu ba ô liền nhau luôn có cùng tích khác 0 (cùng tổng), thì hai ô cách nhau hai ô bằng nhau" thành `note` có `rule`, recap và card lặp nguyên văn kèm câu cũ của Bài 17, 14. Chưa đủ: recap vẫn dùng hình `chia-het-vi-du` và `tong-doi-vi-du`, chưa có hình bảng ô vì lượt này không tạo hình mới (cần `lesson-visual`).
-24. Dòng 11 ô điền ngăn cách bằng " | " như dòng đề; câu lệnh "Các ô xếp theo thứ tự như dòng trên, từ trái sang phải, hết dòng thì sang dòng dưới." Chưa làm phần app: ô đã cho vẫn là chữ trơn không khung, dòng 11 ô vẫn tự gãy dòng; cần ghi backlog sửa `src/` (ô đã cho có khung hoặc số thứ tự ô trong `fillBlank`).
-
-### Góp ý đã làm
-
-1. `tn6`: thêm kết luận "vậy a dương và b âm".
-2. `cung-dau-tong-am`: nhiễu thành "Chưa thể biết được".
-3. Mẹo `tich-duong-tong`: "Hai số khác dấu thì tích âm, nên tích dương thì hai số cùng dấu."
-4. Lý do `wrong` "Có thể bằng 0" nói rõ vì sao.
-5. Tiêu đề section 4 đổi thành "Nhắc lại Bài 14: trừ là cộng với số đối".
-6. Màn đầu `so-doi` dùng hình `dau-va-so` (−2, 9) khớp chữ.
-9. `bai-3-41`: câu số đối nói rõ "cùng phần số tự nhiên".
-10. Ba câu lệnh "Chạm một số, rồi chạm ô trống cần điền." thống nhất có dấu phẩy.
-11. Mẹo và `wrong` dùng "lớn hơn ... và nhỏ hơn ...".
-12. Mẹo ước chung nói "số có phần số tự nhiên nhỏ hơn".
-13. `hook` và `whyItMatters` dùng tình huống mượn, nợ tiền.
-14. `o-thu-tu-bang-tong` nói rõ hai tổng và ô 2, ô 3.
-7. 3.42: khoảng trắng không ngắt sau "c =" và "d =".
-15. Tiêu đề section 11, 12 bỏ số 120 và nhắc đúng bài.
-
-Chưa làm: Góp ý 8 (thẻ xếp thứ tự ghi kèm biểu thức), vì thẻ dài làm hẹp vùng kéo trên điện thoại và mục này không bắt buộc.
+| Mẹo                     | Các số đã thử                                                                                                                                                                   | Kết quả                                                                                                                                              |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `so-sanh-nhieu-so`      | Từ bé đến lớn: {−11; −6; 0; 8}; {−3; 5; 0; −8}; {−9; −4; 0; 5}; {−100; −99}; {0; 7; 1}; {−4; −4; 2}; {1; 0; −1}. Từ lớn đến bé: {−3; 5; 0; −8}, {−9; −4; 0; 5}, {−11; −6; 0; 8} | Đúng mọi bộ từ bé đến lớn; từ lớn đến bé thứ tự đúng nhưng mẹo không nói đổi sang dấu > (Nên sửa 4)                                                  |
+| `tich-duong-tong`       | (3, 4); (−3, −4); (1, 1); (−1, −1); (−20, −1); (1, 100); (0, 5); (3, −3)                                                                                                        | Đúng mọi bộ có tích dương; có 0 hay khác dấu thì mẹo không áp dụng                                                                                   |
+| `hieu-va-thu-tu`        | (5, 3); (3, 5); (0, −1); (−1, 0); (−2, −7); (−7, −2); (4, −4); (−30, 30)                                                                                                        | Đúng mọi bộ (lời mẹo có điều kiện hai số khác nhau)                                                                                                  |
+| `tim-so-doi`            | −15 và 15; 40 và −40; 0 và 0; −27 và 27; 1 và −1; nhầm −27 và −27; nhầm 9 và 9                                                                                                  | Đúng; bắt được mọi lần tìm nhầm                                                                                                                      |
+| `thua-so-chung-bi-giau` | 4 · 7 − 2 · 2 · (−5) = 48; 6 · 4 − 2 · 3 · (−5) = 54; 21 · 23 − 3 · 7 · (−17) = 840; 10 · 3 + 2 · 5 · (−4) = −10; 1 · 7 + 1 · 1 · 5 = 12; biên 6 · 4 − 2 · (−5) · 3             | Đúng; ca biên mẹo không tìm ra thừa số chung nhưng không cho kết quả sai                                                                             |
+| `tach-thua-so`          | 48 · 5 + 6 · (−7) = 198; 5 · 12 + 4 · (−3) = 48; 18 · 5 + 9 · (−4) = 54; 42 · 3 − 7 · (−16) = 238; 71 · 64 + 32 · (−7) = 4 320; 0 · 5 + 6 · (−7) = −42; biên 7 · 5 + 3 · (−2)   | Đúng; ca không tách được mẹo chỉ bảo "thử"                                                                                                           |
+| `kiem-lai-x`            | x − 9; x + 6; 38 − x; x + 25; x − 7; x − (−3); nhầm x = 25 cho x + 25                                                                                                           | Đúng; bắt được lỗi sai dấu (nhiễu 25, −38 của 3.45)                                                                                                  |
+| `boi-doi-xung`          | 9 trong (−30; 30); 6 trong (−19; 19); 7 trong (−16; 16); 5 trong [−15; 15]; 7 trong (−5; 5); 1 trong (−1; 1); bội của −3 trong (−10; 10); khoảng lệch (−10; 20)                 | Đúng mọi khoảng đối xứng; khoảng lệch thì lời mẹo đã nói không dùng                                                                                  |
+| `uoc-chung-nhanh`       | (15, 25); (36, 42); (12, 20); (8, −12); (6, 6); (1, 7); (5, −15); mọi cặp khác 0 từ −40 đến 40; biên (0, 6)                                                                     | Đúng mọi cặp khác 0; với 0 không liệt kê được, và câu "25 chỉ chia hết cho hai số này" hai cách hiểu (Nên sửa 3)                                     |
+| `bang-o-lien-nhau`      | 3.48 (từ ô 10 lùi tới ô 7, 4, 1; từ ô 3 tiến tới ô 6, 9); 2, −3, 5 (7 ô); (−1, 5, −2); tích 60 với ô 1 = −3; biên tích 0 (0, 0, 1, 5)                                           | Đúng khi tích khác 0; hai cách nói 2 ô / 3 ô và mẹo lặp quy tắc (Nên sửa 1). Mẹo thay thế đề xuất ở Nên sửa 1 đã thử trên 6 bộ, đúng khi tích khác 0 |
+| `o-con-thieu-tong-0`    | (5, −8) → 3; (4, −9) → 5; (−7, 3) → 4; (0, 0) → 0; (6, −6) → 0; (−3, −5) → 8; (10, 2) → −12                                                                                     | Đúng mọi trường hợp                                                                                                                                  |
