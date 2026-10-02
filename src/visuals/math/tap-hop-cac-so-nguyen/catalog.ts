@@ -63,6 +63,9 @@ const GREATER = "violet";
 
 const R5 = { from: -5, to: 5 } as const;
 
+// The line of the workbook exercise on reading points (Hình 3.1).
+const SBT_FIGURE_RANGE = { from: -8, to: 3 } as const;
+
 const THERMOMETER = {
   theme: "thermometer",
   from: -5,
@@ -720,6 +723,290 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     items: ["−3", "−2", "−1", "0", "1", "2"],
     wants: [2, 3, 4],
     done: "Các số nguyên x là −1, 0 và 1.",
+  },
+
+  // 12. Workbook exercises (the book-practice section).
+  // The figure of the exercise on reading four points: a line from −8 to 3
+  // with only 0 and 1 numbered and an arrow at the positive end.
+  "sbt-hinh-diem": {
+    kind: "line",
+    ...SBT_FIGURE_RANGE,
+    arrows: "positive",
+    labelAt: [0, 1],
+    label:
+      "Trục số từ âm 8 đến 3 với bốn điểm M, N, P, Q; chỉ số 0 và số 1 có ghi số",
+    layers: [
+      { type: "origin" },
+      { type: "point", at: 2, name: "M", color: POINT, hideNumber: true },
+      { type: "point", at: -5, name: "N", color: POINT, hideNumber: true },
+      { type: "point", at: -8, name: "P", color: POINT, hideNumber: true },
+      { type: "point", at: -3, name: "Q", color: POINT, hideNumber: true },
+    ],
+    mode: "still",
+  },
+  // Solution: the distance of each point from O, then its number.
+  "sbt-hinh-diem-giai": {
+    kind: "line",
+    ...SBT_FIGURE_RANGE,
+    arrows: "positive",
+    labelAt: [0, 1],
+    label:
+      "M cách gốc O 2 đơn vị về bên phải nên biểu diễn 2; Q, N, P cách gốc O 3, 5, 8 đơn vị về bên trái nên biểu diễn âm 3, âm 5, âm 8",
+    layers: [
+      { type: "origin" },
+      { type: "point", at: 2, name: "M", color: POINT, step: 1 },
+      { type: "arrow", from: 0, to: 2, tag: "2 đơn vị", step: 1 },
+      { type: "point", at: -3, name: "Q", color: POINT, step: 2 },
+      { type: "arrow", from: 0, to: -3, tag: "3 đơn vị", row: 1, step: 2 },
+      { type: "point", at: -5, name: "N", color: POINT, step: 3 },
+      { type: "arrow", from: 0, to: -5, tag: "5 đơn vị", step: 3 },
+      { type: "point", at: -8, name: "P", color: POINT, step: 4 },
+      { type: "arrow", from: 0, to: -8, tag: "8 đơn vị", row: 2, step: 4 },
+    ],
+    mode: "steps",
+  },
+  // Lead-in screens of the reading-points exercise: one point on the same
+  // kind of line, with other numbers.
+  "sbt-dan-diem-k": {
+    kind: "line",
+    ...SBT_FIGURE_RANGE,
+    arrows: "positive",
+    labelAt: [0, 1],
+    label: "Trục số từ âm 8 đến 3 với điểm K; chỉ số 0 và số 1 có ghi số",
+    layers: [
+      { type: "origin" },
+      { type: "point", at: -4, name: "K", color: POINT, hideNumber: true },
+    ],
+    mode: "still",
+  },
+  "sbt-dan-diem-s": {
+    kind: "line",
+    ...SBT_FIGURE_RANGE,
+    arrows: "positive",
+    labelAt: [0, 1],
+    label: "Trục số từ âm 8 đến 3 với điểm S; chỉ số 0 và số 1 có ghi số",
+    layers: [
+      { type: "origin" },
+      { type: "point", at: -7, name: "S", color: POINT, hideNumber: true },
+    ],
+    mode: "still",
+  },
+  // The exercise on marking six numbers on one line: every point carries the
+  // number it must reach.
+  "sbt-dat-sau-diem": {
+    kind: "lineTry",
+    from: -6,
+    to: 6,
+    label: "Trục số từ âm 6 đến 6, sáu điểm để đặt, mỗi điểm mang số cần đặt",
+    names: ["4", "−4", "−6", "6", "−1", "1"],
+  },
+  // Hint of that exercise: from O, n units to the right reach n; stop before
+  // the point on the left.
+  "sbt-dat-sau-diem-goi-y": {
+    kind: "line",
+    from: -6,
+    to: 6,
+    label:
+      "Từ gốc O đi sang phải 5 đơn vị thì tới số 5; đi sang trái 5 đơn vị thì tới số âm 5",
+    layers: [
+      { type: "origin" },
+      ...WALK(5, "C", "5 đơn vị", 1),
+      ...WALK(-5, "D", "5 đơn vị", 2),
+    ],
+    mode: "hint",
+  },
+  // The recall block and the recap of the section: 3 and −3 reached from O,
+  // on points named so they never share a letter with Hình 3.1.
+  "sbt-nhac-lai-diem": {
+    kind: "line",
+    ...R5,
+    label:
+      "Điểm U biểu diễn 3, cách gốc O 3 đơn vị về bên phải; điểm V biểu diễn âm 3, cách gốc O 3 đơn vị về bên trái",
+    layers: [
+      { type: "origin" },
+      ...WALK(3, "U", "3 đơn vị", 1),
+      ...WALK(-3, "V", "3 đơn vị", 2),
+    ],
+    mode: "steps",
+  },
+  "sbt-nhac-lai-diem-xong": {
+    kind: "line",
+    ...R5,
+    label:
+      "Điểm U biểu diễn 3, cách gốc O 3 đơn vị về bên phải; điểm V biểu diễn âm 3, cách gốc O 3 đơn vị về bên trái",
+    layers: [
+      { type: "origin" },
+      ...WALK(3, "U", "3 đơn vị", 0),
+      ...WALK(-3, "V", "3 đơn vị", 0),
+    ],
+    mode: "still",
+  },
+  // The ant of the exercise on a walk of 16 units: the solution says the two
+  // facts in words.
+  "sbt-kien-phai-giai": {
+    kind: "lines",
+    label:
+      "Chiều dương là sang phải nên đi 16 đơn vị tới số dương; con kiến dừng ở điểm 16",
+    rows: [
+      {
+        tex: "",
+        tag: {
+          text: "Chiều dương: đi sang phải, tới số dương",
+          color: POSITIVE,
+        },
+      },
+      {
+        tex: "16",
+        tag: { text: "Con kiến dừng ở điểm 16", color: POSITIVE },
+      },
+    ],
+    mode: "steps",
+  },
+  "sbt-kien-trai-giai": {
+    kind: "lines",
+    label:
+      "Chiều âm là sang trái nên đi 16 đơn vị tới số âm; con kiến dừng ở điểm âm 16",
+    rows: [
+      {
+        tex: "",
+        tag: { text: "Chiều âm: đi sang trái, tới số âm", color: NEGATIVE },
+      },
+      {
+        tex: "-16",
+        tag: { text: "Con kiến dừng ở điểm −16", color: NEGATIVE },
+      },
+    ],
+    mode: "steps",
+  },
+  // Rewording exercises: a negative number said without the minus sign. The
+  // hint does the same with other numbers and stops before the result.
+  "sbt-do-cao-goi-y": {
+    kind: "lines",
+    label: "Âm 20 mét là 20 mét dưới mực nước biển",
+    rows: [
+      {
+        tex: "-20",
+        tag: { text: "Số âm: dưới mực nước biển", color: NEGATIVE },
+      },
+      {
+        tex: "20",
+        tag: { text: "20 m dưới mực nước biển", color: NEGATIVE },
+      },
+    ],
+    mode: "hint",
+  },
+  "sbt-do-cao-giai": {
+    kind: "lines",
+    label: "Âm 65 mét là 65 mét dưới mực nước biển",
+    rows: [
+      {
+        tex: "-65",
+        tag: { text: "Số âm: dưới mực nước biển", color: NEGATIVE },
+      },
+      {
+        tex: "65",
+        tag: { text: "65 m dưới mực nước biển", color: NEGATIVE },
+      },
+    ],
+    mode: "steps",
+  },
+  "sbt-so-du-goi-y": {
+    kind: "lines",
+    label:
+      "Âm 40 nghìn đồng là số dư giảm 40 nghìn đồng, tức rút 40 nghìn đồng",
+    rows: [
+      {
+        tex: "-40\\,000",
+        tag: { text: "Số âm: số dư giảm", color: NEGATIVE },
+      },
+      {
+        tex: "40\\,000",
+        tag: { text: "Rút 40 000 đồng", color: NEGATIVE },
+      },
+    ],
+    mode: "hint",
+  },
+  "sbt-so-du-giai": {
+    kind: "lines",
+    label:
+      "Âm 210 800 đồng là số dư giảm 210 800 đồng, tức ông Tám đã rút 210 800 đồng",
+    rows: [
+      {
+        tex: "-210\\,800",
+        tag: { text: "Số âm: số dư giảm", color: NEGATIVE },
+      },
+      {
+        tex: "210\\,800",
+        tag: { text: "Rút 210 800 đồng", color: NEGATIVE },
+      },
+    ],
+    mode: "steps",
+  },
+  // Listing exercise: first the numbers of the range, then the ones that end
+  // in the wanted digit.
+  "sbt-liet-ke-goi-y": {
+    kind: "lines",
+    label:
+      "Trong khoảng lớn hơn âm 8 và nhỏ hơn hoặc bằng 13, các số tận cùng là 3 là âm 3, 3 và 13",
+    rows: [
+      {
+        tex: "-8 < x \\le 13",
+        tag: { text: "Bước 1: x chạy từ −7 tới 13", color: "teal" },
+      },
+      {
+        tex: "-3;\\ 3;\\ 13",
+        tag: { text: "Bước 2: giữ các số tận cùng là 3", color: "teal" },
+      },
+    ],
+    mode: "hint",
+  },
+  "sbt-liet-ke-giai": {
+    kind: "lines",
+    label:
+      "Trong khoảng lớn hơn âm 15 và nhỏ hơn hoặc bằng 32, các số tận cùng là 2 là âm 12, âm 2, 2, 12, 22 và 32",
+    rows: [
+      {
+        tex: "-15 < x \\le 32",
+        tag: { text: "Bước 1: x chạy từ −14 tới 32", color: "teal" },
+      },
+      {
+        tex: "-12;\\ -2;\\ 2;\\ 12;\\ 22;\\ 32",
+        tag: { text: "Bước 2: giữ các số tận cùng là 2", color: "teal" },
+      },
+    ],
+    mode: "steps",
+  },
+  // Comparing two negative numbers of five digits: drop the minus signs,
+  // compare, then turn the sign around.
+  "sbt-so-sanh-goi-y": {
+    kind: "lines",
+    label: "Bỏ dấu trừ để so 8 215 với 8 125 rồi đổi chiều dấu cho hai số âm",
+    rows: [
+      {
+        tex: "\\concept{violet}{8\\,215} > \\concept{blue}{8\\,125}",
+        tag: { text: "Bỏ dấu −: 8 215 lớn hơn 8 125", color: GREATER },
+      },
+      {
+        tex: "\\concept{blue}{-8\\,215} < \\concept{violet}{-8\\,125}",
+        tag: { text: "−8 215 nhỏ hơn −8 125", color: SMALLER },
+      },
+    ],
+    mode: "hint",
+  },
+  "sbt-so-sanh-giai": {
+    kind: "lines",
+    label: "Bỏ dấu trừ: 46 789 lớn hơn 45 999, nên âm 46 789 nhỏ hơn âm 45 999",
+    rows: [
+      {
+        tex: "\\concept{violet}{46\\,789} > \\concept{blue}{45\\,999}",
+        tag: { text: "Bỏ dấu −: 46 789 lớn hơn 45 999", color: GREATER },
+      },
+      {
+        tex: "\\concept{blue}{-46\\,789} < \\concept{violet}{-45\\,999}",
+        tag: { text: "−46 789 nhỏ hơn −45 999", color: SMALLER },
+      },
+    ],
+    mode: "steps",
   },
 
   sticker: { kind: "sticker" },

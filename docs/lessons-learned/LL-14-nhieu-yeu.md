@@ -9,6 +9,7 @@ Nhiễu không ứng với lỗi thật, khác đáp án ở hình thức (độ
 - `neu-cau-muon-co-mot-nguoi-ban` vòng 2: nhiễu trong ngân hàng từ không hợp nghĩa câu; vòng 6: "bí mật" là lựa chọn hai tiếng duy nhất.
 - `thu-tu-thuc-hien-phep-tinh` vòng 1, `ex.chon-dong-dung-1`: giải bằng mẹo "dòng không còn số mũ".
 - `phep-cong-phep-tru` vòng 3 (Nghiêm trọng), `ex.chon-kiem-tra`: nhiễu "53 + 34 = 97" chỉ lệch kết quả đúng (87) một chữ số, nên yếu như một lỗi gõ hơn là một lỗi hiểu sai.
+- `tap-hop-cac-so-nguyen` phần bài tập sách bài tập vòng 1 (Nghiêm trọng), `ex.dan-rut-tien`: nhiễu −3 000 chỉ thiếu một chữ số 0 so với đáp án −30 000, bắt lỗi đọc nhầm số chứ không bắt lỗi hiểu số âm; đã bỏ nhiễu.
 
 ## Nguyên nhân gốc
 

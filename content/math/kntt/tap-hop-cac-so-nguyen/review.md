@@ -5,9 +5,9 @@
 - Nguồn đã đọc: `sources/math/tap-hop-cac-so-nguyen/` - sbt-p47, sbt-p48, sbt-p49, sbt-p111
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (95 id chưa có trong `ids.lock.json`, đúng với bài chưa duyệt)
 - Đọc hiểu (Haiku): lượt 1 (cả bài, gồm câu hỏi) 123 / 44 / 0; lượt 2 trên 50 mục viết lại 44 / 6 / 0; lượt 3 trên 6 mục còn lại 0 / 6 / 0 (lí do chung: nhiều khái niệm mới, câu có hai ý); tệp `.shots/review/tap-hop-cac-so-nguyen/doc-hieu.md`, `doc-hieu-2.md`, `doc-hieu-3.md`. Sáu mục còn lại ghi ở Nên sửa 4 đến 7.
-- `lesson:walk`: 0 FAIL, ảnh trong `.shots/walk/tap-hop-cac-so-nguyen/` (iPad, điện thoại, iPad nằm ngang)
+- `lesson:walk`: 0 FAIL sau khi thêm phần bài tập sách bài tập (13 section, iPad, điện thoại, iPad nằm ngang)
 - Kết luận: Đã ghi reviewedHash (0 lỗi Nghiêm trọng)
-- Bản đã review: `747992f46ed97136ec2207143b20764e7bff1a2dcfc6045f078b83e2ee3bbcc7` (`pnpm content:diff` so với bản này)
+- Bản đã review: `20be05332350d20e024fd35064c9008967dcc09782fc22be57b3eee6ec4ac24d` (`pnpm content:diff` so với bản này)
 
 Vòng 2 có 1 Nghiêm trọng và 14 Nên sửa; tất cả đã hết, xác nhận bằng ảnh:
 - Nghiêm trọng (hình gợi ý `nhiet-ke-goi-y`): ảnh `visual:shot` iPad và điện thoại cho thấy "Trên 0" ở đỉnh, "Dưới 0" ở đáy, dấu "?" hiện ở −2, không còn "2 °C"; bước cuối (−2 °C) bị ẩn. Test khoá: `shows the question mark of a hint on its last step, not the answer` và `never draws two texts beside the ruler at the same height` trong `tests/visuals/tap-hop-cac-so-nguyen.test.tsx`.
@@ -170,3 +170,21 @@ Không có.
 - Nguồn: —
 - Vấn đề: cột thủy ngân hạ xuống −12 giữa lúc hỏi, bé nhìn thấy −12 thấp hơn trước khi nghe câu "Bỏ dấu −". Kiến thức và thứ tự lời nói đúng; chỉ là gợi ý hơi sớm.
 - Sửa: hạ thủy ngân cùng lúc đọc "Bỏ dấu trừ" (khoảng 35,4 giây) hay lúc đọc "Vậy −12 nhỏ hơn −2" (38,6 giây).
+
+## Vòng 6 và 7: phần bài tập sách bài tập (section cuối, 19 câu)
+
+Bài đã xuất bản được thêm một section cuối `bookPractice` ("Bài tập sách bài tập"): 8 câu sách (SBT 3.1, 3.2, 3.3, 3.4, 3.5a, 3.5b, 3.6, 3.7, đủ mọi bài tập và mọi ý của Bài 13 ở tr.48-49), 11 câu dẫn (`leadsTo`), 4 khối "Nhắc lại" (lặp nguyên văn câu quy tắc của các section đã có), recap, 21 hình mới `sbt-*` (gồm hình tương tác `sbt-dat-sau-diem` của bài 3.4). Các section 1 đến 12, id, video, media không đổi.
+
+Hai vòng chỉ soát phần mới (reviewer mới mỗi vòng, đọc ảnh `sbt-p47..p49`, `sbt-p111`, không dùng lớp chữ):
+- Vòng 6 (Opus, soát đầy đủ phần mới): 1 Nghiêm trọng, 5 Nên sửa, 8 Góp ý. Đề 8 câu sách khớp từng chữ với ảnh; Hình 3.1 khớp (P -8, N -5, Q -3, M 2; chỉ ghi số 0 và 1; mũi tên ở đầu dương); 7 đáp án khớp tr.111; bài 3.4 sách không in đáp án nên tự giải (4, -4, -6, 6, -1, 1: đúng).
+- Vòng 7 (Sonnet, chỉ phần đổi): 0 Nghiêm trọng, 0 Nên sửa, 4 Góp ý. Đề sách không câu nào bị sửa.
+
+Đã sửa sau vòng 6:
+- Nghiêm trọng (LL-14), `$.exercises[60]` `dan-rut-tien`: nhiễu -3 000 chỉ thiếu một chữ số 0 so với đáp án -30 000; đã bỏ, thêm lời `wrong` cho lựa chọn "0".
+- Nên sửa: bốn `explain` dùng từ "phần số" chưa dạy và nói lại quy tắc theo cách khác (LL-05), nay nói theo quy tắc của section `hai-so-am`; khối "Nhắc lại cho bài 3.7" thiếu câu quy tắc, đã thêm nguyên văn; hình nhắc lại và recap đặt P, Q khác Hình 3.1 (LL-10), nay dùng hình `sbt-nhac-lai-diem` với điểm U, V; sáu chấm của hình bài 3.4 giãn ra như nằm trên các vạch -3 đến 2 và nhãn dính "-4-6" (LL-21), nay một đống từ 3 chấm cùng vạch trở lên vẽ thành một chấm không tên (`dotPlaces`, test `the places of the dots of a crowded line`).
+- Góp ý đã nhận: lời `explain` bài 3.1, `tex` bài 3.3, lý do "từ -9" của câu dẫn tận cùng 4, số lặp giữa câu dẫn và hình gợi ý (LL-07), nấc 2 bài 3.4 lặp hình khối nhắc, cặp -5 312 và -5 231 thay cặp theo khuôn ví dụ 2c của sách (LL-08), quy ước "chữ số tận cùng của số âm" thêm vào khối nhắc cho bài 3.6 (LL-10), số 5 lặp giữa câu dẫn 3.4 và hình gợi ý (nay B ở 3), `wrong` cho lựa chọn "0".
+- Còn mở (không chặn): (1) bài 3.4 sách không in lời giải; chủ dự án xác nhận đáp án tự giải. (2) Câu quy tắc so sánh hai số âm ở khối nhắc bài 3.7 vẫn được Haiku gắn "Hiểu mơ hồ": đó là đúng câu của section `hai-so-am` (một quy tắc một cách nói); muốn viết lại phải sửa cả section đó, recap, video, mẹo. (3) `dat-hai-diem-a-b` (section 8) dùng 4 và -1, hai số của bài 3.4: ngoài phạm vi.
+
+Đọc hiểu (Haiku) trên chữ mới của section: lượt 1 (cả chữ mới) 75 / 4 / 0, 4 mục "Hiểu mơ hồ" là câu quy tắc so sánh số âm và ba `explain` bài 3.7 viết lại; lượt 2 trên 4 mục viết lại 0 / 4 / 0; lượt 3 2 / 2 / 0 (còn hai `explain` số lớn, sau đó viết lại bằng cặp số mới); sau review, lượt 4 trên 14 mục sửa 11 / 3 / 0 và lượt 5 trên 2 mục viết lại 1 / 1 / 0 (mục còn lại tham chiếu "sáu số dưới đây", đã viết lại bằng danh sách cụ thể). Tệp: `.shots/review/tap-hop-cac-so-nguyen/doc-hieu.md`, `doc-hieu-bai-tap-sach-2.md` đến `-5.md`; kết quả của hai vòng review: `bai-tap-sach-vong-1.md`, `bai-tap-sach-vong-2.md`.
+
+Chỉnh sau vòng 7 để `lesson:walk` đạt 0 FAIL (đã duyệt lại, hash ở dòng "Bản đã review"): chấm tiến độ của phần 24 màn tràn ngang nên `SectionStepper` vẽ chấm nhỏ khi có hơn 10 màn; bỏ hai hình nấc 2 của bài 3.3 và 3.5 (nội dung gợi ý chiếm quá chỗ, nấc 2 dùng khung tô đậm hơn, nấc 3 vẫn có hình lời giải) và một nhiễu của bài 3.3 (còn năm số để nối); ba lựa chọn của bài 3.7 viết bằng chữ thay cho công thức cho vừa khung điện thoại (đề không đổi); `lesson:walk` không còn HEAD vào địa chỉ `blob:` của trình phát video.

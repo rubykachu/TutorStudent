@@ -12,7 +12,7 @@
   "title": "Tập hợp các số nguyên",
   "sourceRef": "Sách bài tập tr.47–49",
   "status": "published",
-  "reviewedHash": "747992f46ed97136ec2207143b20764e7bff1a2dcfc6045f078b83e2ee3bbcc7",
+  "reviewedHash": "20be05332350d20e024fd35064c9008967dcc09782fc22be57b3eee6ec4ac24d",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với số âm. Sáng mùa đông ở Sa Pa, nhiệt kế chỉ 2 độ dưới 0, bạn ghi nhiệt độ đó bằng số nào?"
@@ -781,6 +781,119 @@
         "type": "visual",
         "visualId": "tap-hop-cac-so-nguyen.visual.nho-hon-hoac-bang",
         "caption": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Phép so sánh a ≤ b đúng khi a nhỏ hơn b, và cũng đúng khi hai số bằng nhau."
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.48–49 (bài 3.1 đến bài 3.7), lời giải tr.111",
+      "minutes": 16,
+      "bookPractice": true,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.1 và bài 3.2 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hai điều trái ngược nhau, như trên và dưới hay có và nợ, được ghi bằng số dương và số âm."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.doi-lap"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.3, bài 3.4 và bài 3.5 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Từ gốc O đi sang phải 3 đơn vị thì tới số 3. Còn từ gốc O đi sang trái 3 đơn vị thì tới số −3.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.sbt-nhac-lai-diem"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.6 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Dấu ≤ đọc là nhỏ hơn hoặc bằng, dấu ≥ đọc là lớn hơn hoặc bằng. Phép so sánh a ≤ b đúng khi a nhỏ hơn b, và cũng đúng khi hai số bằng nhau."
+            },
+            {
+              "type": "note",
+              "text": "Với số âm, chữ số tận cùng là chữ số cuối sau dấu −. Chẳng hạn −24 có chữ số tận cùng là 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.nho-hon-hoac-bang"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.7 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Muốn so sánh hai số âm khác nhau, bỏ dấu − của cả hai số rồi so sánh. Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia."
+            },
+            {
+              "type": "note",
+              "text": "Ví dụ: −7 độ C lạnh hơn −2 độ C, nên −7 nhỏ hơn −2. Bỏ dấu −, ta thấy 7 lớn hơn 2."
+            },
+            {
+              "type": "visual",
+              "visualId": "tap-hop-cac-so-nguyen.visual.bo-dau"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "tap-hop-cac-so-nguyen.ex.dan-do-cao-vinh",
+        "tap-hop-cac-so-nguyen.ex.sbt-do-cao-them-luc-dia",
+        "tap-hop-cac-so-nguyen.ex.dan-rut-tien",
+        "tap-hop-cac-so-nguyen.ex.sbt-tin-nhan-ngan-hang",
+        "tap-hop-cac-so-nguyen.ex.dan-doc-diem-k",
+        "tap-hop-cac-so-nguyen.ex.dan-doc-diem-s",
+        "tap-hop-cac-so-nguyen.ex.sbt-hinh-diem",
+        "tap-hop-cac-so-nguyen.ex.dan-dat-hai-diem",
+        "tap-hop-cac-so-nguyen.ex.sbt-bieu-dien-sau-so",
+        "tap-hop-cac-so-nguyen.ex.dan-kien-chieu-duong",
+        "tap-hop-cac-so-nguyen.ex.sbt-kien-chieu-duong",
+        "tap-hop-cac-so-nguyen.ex.dan-kien-chieu-am",
+        "tap-hop-cac-so-nguyen.ex.sbt-kien-chieu-am",
+        "tap-hop-cac-so-nguyen.ex.dan-liet-ke-3-2",
+        "tap-hop-cac-so-nguyen.ex.dan-liet-ke-tan-cung-4",
+        "tap-hop-cac-so-nguyen.ex.sbt-liet-ke-tan-cung-2",
+        "tap-hop-cac-so-nguyen.ex.dan-so-sanh-58-85",
+        "tap-hop-cac-so-nguyen.ex.dan-so-sanh-5312-5231",
+        "tap-hop-cac-so-nguyen.ex.sbt-so-sanh-46789-45999"
+      ],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "tap-hop-cac-so-nguyen.visual.sbt-nhac-lai-diem-xong",
+        "caption": "Từ gốc O đi sang phải 3 đơn vị thì tới số 3. Còn từ gốc O đi sang trái 3 đơn vị thì tới số −3."
       }
     }
   ],
@@ -4527,6 +4640,1191 @@
             "text": "Số 3 có chữ số tận cùng là 3, không phải 5."
           }
         ]
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-do-cao-vinh",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đáy một vịnh biển có độ cao là −12 m. Hãy nói lại thông tin này mà không dùng số âm."
+        },
+        {
+          "type": "note",
+          "text": "Chọn cách nói đúng."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-do-cao-them-luc-dia",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Đáy vịnh ở độ cao 12 m dưới mực nước biển."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Đáy vịnh ở độ cao 12 m trên mực nước biển."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Đáy vịnh ở đúng mực nước biển."
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số âm cho biết ở dưới mực nước biển. Vì vậy −12 m là 12 m dưới mực nước biển.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Trên mực nước biển ứng với số dương, còn đề cho số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Đúng mực nước biển là số 0, còn đề cho −12."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-do-cao-them-luc-dia",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Diễn đạt lại thông tin sau mà không dùng số âm: \"Độ cao trung bình của thềm lục địa Việt Nam là −65 m\"."
+        },
+        {
+          "type": "note",
+          "text": "Chọn cách diễn đạt đúng."
+        }
+      ],
+      "bookRef": "SBT 3.1",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "tap-hop-cac-so-nguyen.visual.sbt-do-cao-goi-y",
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-do-cao-giai"
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Độ cao trung bình của thềm lục địa Việt Nam là 65 m dưới mực nước biển."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Độ cao trung bình của thềm lục địa Việt Nam là 65 m trên mực nước biển."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Độ cao trung bình của thềm lục địa Việt Nam đúng bằng mực nước biển."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Độ cao trung bình của thềm lục địa Việt Nam là −65 m dưới mực nước biển."
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số âm cho biết ở dưới mực nước biển. Vì vậy −65 m là 65 m dưới mực nước biển: ta bỏ dấu − rồi thêm cụm dưới mực nước biển.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Trên mực nước biển ứng với số dương, còn đề cho số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Đúng mực nước biển là số 0, không phải −65."
+          },
+          {
+            "optionId": "d",
+            "text": "Câu này vẫn còn số âm −65, mà đề yêu cầu không dùng số âm."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-rut-tien",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bạn Nam rút 30 000 đồng từ tài khoản. Tin nhắn ngân hàng ghi thay đổi số dư là bao nhiêu?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn số đúng."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-tin-nhan-ngan-hang",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-30\\,000"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "30\\,000"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Rút tiền làm số dư giảm, nên thay đổi số dư là số âm. Rút 30 000 đồng thì ghi −30 000.",
+        "tex": "\\concept{pink}{-30\\,000}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số dương nghĩa là số dư tăng, còn rút tiền làm số dư giảm."
+          },
+          {
+            "optionId": "c",
+            "text": "Số 0 nghĩa là số dư không đổi, còn bạn Nam đã rút tiền."
+          }
+        ]
+      },
+      "check": {
+        "expr": "-30000"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-tin-nhan-ngan-hang",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ông Tám nhận được tin nhắn từ ngân hàng về thay đổi số dư trong tài khoản của ông là −210 800 đồng. Em hiểu thế nào về tin nhắn đó?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn cách hiểu đúng."
+        }
+      ],
+      "bookRef": "SBT 3.2",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "tap-hop-cac-so-nguyen.visual.sbt-so-du-goi-y",
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-so-du-giai"
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Ông Tám đã rút 210 800 đồng trong tài khoản."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Ông Tám vừa gửi thêm 210 800 đồng vào tài khoản."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tài khoản của ông Tám còn lại 210 800 đồng."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Số dư tài khoản của ông Tám không thay đổi."
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Số âm cho biết số dư giảm đi, tức là tiền bị rút ra. Vậy thay đổi −210 800 đồng nghĩa là ông Tám đã rút 210 800 đồng.",
+        "tex": "\\concept{pink}{-210\\,800}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Gửi thêm tiền làm số dư tăng, nên thay đổi phải là số dương."
+          },
+          {
+            "optionId": "c",
+            "text": "Tin nhắn nói số dư thay đổi bao nhiêu, không nói số dư còn lại là bao nhiêu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-doc-diem-k",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm K biểu diễn số nguyên nào?"
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.sbt-dan-diem-k",
+          "caption": "Chỉ có số 0 và số 1 được ghi trên trục số."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-hinh-diem",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "formula",
+            "tex": "-5"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Điểm K ở bên trái gốc O và cách gốc O 4 đơn vị. Vì vậy K biểu diễn số −4.",
+        "tex": "\\concept{amber}{-4}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số 4 ở bên phải gốc O, còn điểm K ở bên trái gốc O."
+          },
+          {
+            "optionId": "c",
+            "text": "Điểm K cách gốc O 4 đơn vị, không phải 3 đơn vị."
+          },
+          {
+            "optionId": "d",
+            "text": "Điểm K cách gốc O 4 đơn vị, không phải 5 đơn vị."
+          }
+        ]
+      },
+      "check": {
+        "expr": "-4"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-doc-diem-s",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điểm S biểu diễn số nguyên nào? Nhập số đó."
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.sbt-dan-diem-s",
+          "caption": "Chỉ có số 0 và số 1 được ghi trên trục số."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-hinh-diem",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": -7
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-7"
+      },
+      "explain": {
+        "text": "Đếm các đơn vị từ gốc O sang trái tới điểm S, ta được 7 đơn vị. Điểm S ở bên trái gốc O nên S biểu diễn số −7.",
+        "tex": "\\concept{amber}{-7}"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-hinh-diem",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Trên Hình 3.1, mỗi điểm M, N, P, Q biểu diễn số nguyên nào?"
+        },
+        {
+          "type": "visual",
+          "visualId": "tap-hop-cac-so-nguyen.visual.sbt-hinh-diem",
+          "caption": "Hình 3.1"
+        },
+        {
+          "type": "note",
+          "text": "Nối mỗi điểm với số nguyên mà điểm đó biểu diễn."
+        }
+      ],
+      "bookRef": "SBT 3.3",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-hinh-diem-giai"
+      },
+      "difficulty": 3,
+      "left": [
+        {
+          "id": "l1",
+          "content": {
+            "type": "text",
+            "text": "Điểm M"
+          }
+        },
+        {
+          "id": "l2",
+          "content": {
+            "type": "text",
+            "text": "Điểm N"
+          }
+        },
+        {
+          "id": "l3",
+          "content": {
+            "type": "text",
+            "text": "Điểm P"
+          }
+        },
+        {
+          "id": "l4",
+          "content": {
+            "type": "text",
+            "text": "Điểm Q"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "content": {
+            "type": "formula",
+            "tex": "2"
+          }
+        },
+        {
+          "id": "r2",
+          "content": {
+            "type": "formula",
+            "tex": "-5"
+          }
+        },
+        {
+          "id": "r3",
+          "content": {
+            "type": "formula",
+            "tex": "-8"
+          }
+        },
+        {
+          "id": "r4",
+          "content": {
+            "type": "formula",
+            "tex": "-3"
+          }
+        },
+        {
+          "id": "r6",
+          "content": {
+            "type": "formula",
+            "tex": "5"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "l1",
+          "right": "r1"
+        },
+        {
+          "left": "l2",
+          "right": "r2"
+        },
+        {
+          "left": "l3",
+          "right": "r3"
+        },
+        {
+          "left": "l4",
+          "right": "r4"
+        }
+      ],
+      "explain": {
+        "text": "Đếm các đơn vị từ gốc O tới từng điểm. M ở bên phải O, cách O 2 đơn vị, nên M biểu diễn 2. Q, N, P ở bên trái O, cách O 3, 5 và 8 đơn vị, nên biểu diễn −3, −5 và −8.",
+        "tex": "M \\to 2;\\ N \\to -5;\\ P \\to -8;\\ Q \\to -3"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-dat-hai-diem",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt điểm A ở số −2 và điểm B ở số 3 trên trục số."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-bieu-dien-sau-so",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "visualId": "tap-hop-cac-so-nguyen.visual.dat-diem-2",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": -2,
+        "p1": 3
+      },
+      "explain": {
+        "text": "Số −2 là số âm nên A nằm bên trái gốc O, cách gốc O 2 đơn vị. Số 3 là số dương nên B nằm bên phải gốc O, cách gốc O 3 đơn vị."
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-bieu-dien-sau-so",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biểu diễn các số sau trên cùng một trục số: 4; −4; −6; 6; −1; 1."
+        },
+        {
+          "type": "note",
+          "text": "Đặt mỗi điểm vào đúng số của nó."
+        }
+      ],
+      "bookRef": "SBT 3.4",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "tap-hop-cac-so-nguyen.visual.sbt-dat-sau-diem-goi-y"
+      },
+      "difficulty": 3,
+      "visualId": "tap-hop-cac-so-nguyen.visual.sbt-dat-sau-diem",
+      "validatorId": "dat-diem",
+      "params": {
+        "p0": 4,
+        "p1": -4,
+        "p2": -6,
+        "p3": 6,
+        "p4": -1,
+        "p5": 1
+      },
+      "explain": {
+        "text": "Số dương nằm bên phải gốc O, còn số âm nằm bên trái gốc O. Mỗi điểm cách gốc O đúng bằng số ta được khi bỏ dấu −. Chẳng hạn 4 và −4 cùng cách gốc O 4 đơn vị."
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-kien-chieu-duong",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Con kiến đứng ở gốc O của một trục số. Chiều dương là chiều từ trái sang phải."
+        },
+        {
+          "type": "note",
+          "text": "Nó đi 7 đơn vị theo chiều dương rồi dừng. Con kiến dừng ở điểm biểu diễn số nào?"
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-kien-chieu-duong",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "7"
+      },
+      "explain": {
+        "text": "Chiều dương là sang phải, nên con kiến đi sang phải 7 đơn vị. Điểm dừng cách gốc O 7 đơn vị về bên phải, tức là số 7."
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-kien-chieu-duong",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Giả sử một con kiến bò trên một trục số gốc O có chiều dương là chiều từ trái sang phải, chiều ngược lại là chiều âm và giả sử nó đi được 16 đơn vị thì dừng lại. Hỏi trong mỗi trường hợp sau, con kiến dừng lại ở điểm nào trên trục số?"
+        },
+        {
+          "type": "note",
+          "text": "Con kiến xuất phát từ gốc O và đi theo chiều dương;"
+        },
+        {
+          "type": "note",
+          "text": "Nhập số mà điểm đó biểu diễn."
+        }
+      ],
+      "bookRef": "SBT 3.5a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-kien-phai-giai"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": 16
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "16"
+      },
+      "explain": {
+        "text": "Chiều dương là chiều từ trái sang phải, nên con kiến đi sang phải 16 đơn vị. Điểm dừng cách gốc O 16 đơn vị về bên phải, nên đó là điểm 16.",
+        "tex": "\\concept{lime}{16}"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-kien-chieu-am",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Con kiến đứng ở gốc O của một trục số. Chiều âm là chiều từ phải sang trái."
+        },
+        {
+          "type": "note",
+          "text": "Nó đi 9 đơn vị theo chiều âm rồi dừng. Con kiến dừng ở điểm biểu diễn số nào?"
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-kien-chieu-am",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "answer": {
+        "kind": "value",
+        "value": -9
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-9"
+      },
+      "explain": {
+        "text": "Chiều âm là sang trái, nên con kiến đi sang trái 9 đơn vị. Điểm dừng cách gốc O 9 đơn vị về bên trái, tức là số −9.",
+        "tex": "\\concept{pink}{-9}"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-kien-chieu-am",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Giả sử một con kiến bò trên một trục số gốc O có chiều dương là chiều từ trái sang phải, chiều ngược lại là chiều âm và giả sử nó đi được 16 đơn vị thì dừng lại. Hỏi trong mỗi trường hợp sau, con kiến dừng lại ở điểm nào trên trục số?"
+        },
+        {
+          "type": "note",
+          "text": "Con kiến xuất phát từ gốc O và đi theo chiều âm."
+        },
+        {
+          "type": "note",
+          "text": "Nhập số mà điểm đó biểu diễn."
+        }
+      ],
+      "bookRef": "SBT 3.5b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-kien-trai-giai"
+      },
+      "difficulty": 2,
+      "answer": {
+        "kind": "value",
+        "value": -16
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-16"
+      },
+      "explain": {
+        "text": "Chiều âm là chiều từ phải sang trái, nên con kiến đi sang trái 16 đơn vị. Điểm dừng cách gốc O 16 đơn vị về bên trái, nên đó là điểm −16.",
+        "tex": "\\concept{pink}{-16}"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-liet-ke-3-2",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết các số nguyên x thoả điều kiện dưới đây, xếp từ bé đến lớn."
+        },
+        {
+          "type": "formula",
+          "tex": "-3 \\le x < 2"
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số rồi chạm ô trống cần điền."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-liet-ke-tan-cung-2",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các số nguyên x là: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−3"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−2"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["−1"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["0"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["1"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−3", "−2", "−1", "0", "1", "2", "−4"],
+      "explain": {
+        "text": "Số x lớn hơn hoặc bằng −3 và nhỏ hơn 2. Vì vậy ta lấy −3 và các số nguyên lớn hơn −3 cho tới 1, còn số 2 thì không lấy.",
+        "tex": "-3;\\ -2;\\ -1;\\ 0;\\ 1"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-liet-ke-tan-cung-4",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Viết các số nguyên x có chữ số tận cùng là 4, thoả điều kiện dưới đây, xếp từ bé đến lớn."
+        },
+        {
+          "type": "formula",
+          "tex": "-10 < x \\le 15"
+        },
+        {
+          "type": "note",
+          "text": "Với số âm, chữ số tận cùng là chữ số cuối sau dấu −. Chẳng hạn −24 có chữ số tận cùng là 4."
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số rồi chạm ô trống cần điền."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-liet-ke-tan-cung-2",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "segments": [
+        {
+          "type": "text",
+          "text": "Các số nguyên x là: "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−4"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["4"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["14"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−4", "4", "14", "−14", "24"],
+      "explain": {
+        "text": "Bước 1: x lớn hơn −10 nên x bắt đầu từ −9, và x nhỏ hơn hoặc bằng 15 nên x chạy tới 15. Bước 2: giữ các số có chữ số tận cùng là 4, đó là −4, 4 và 14. Còn −14 và 24 nằm ngoài khoảng nên không lấy.",
+        "tex": "-4;\\ 4;\\ 14"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-liet-ke-tan-cung-2",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Liệt kê các phần tử của tập hợp sau theo thứ tự tăng dần:"
+        },
+        {
+          "type": "note",
+          "text": "M = {x ∈ ℤ | x có tận cùng là 2 và −15 < x ≤ 32}."
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số rồi chạm ô trống cần điền."
+        }
+      ],
+      "bookRef": "SBT 3.6",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "tap-hop-cac-so-nguyen.visual.sbt-liet-ke-goi-y",
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-liet-ke-giai"
+      },
+      "difficulty": 3,
+      "segments": [
+        {
+          "type": "text",
+          "text": "M = {"
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["−12"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["−2"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b3",
+          "accept": ["2"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b4",
+          "accept": ["12"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b5",
+          "accept": ["22"]
+        },
+        {
+          "type": "text",
+          "text": "; "
+        },
+        {
+          "type": "blank",
+          "id": "b6",
+          "accept": ["32"]
+        },
+        {
+          "type": "text",
+          "text": "}"
+        }
+      ],
+      "bank": ["−12", "−2", "2", "12", "22", "32", "−22", "−15", "42"],
+      "explain": {
+        "text": "Bước 1: x chạy từ −14 tới 32. Bước 2: giữ các số có chữ số tận cùng là 2, kể cả −12 và −2. Bước 3: xếp từ bé đến lớn, ta được −12, −2, 2, 12, 22 và 32.",
+        "tex": "M = \\{-12;\\ -2;\\ 2;\\ 12;\\ 22;\\ 32\\}"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-so-sanh-58-85",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh hai số −58 và −85."
+        },
+        {
+          "type": "note",
+          "text": "Chọn phép so sánh đúng."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-so-sanh-46789-45999",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-58 < -85"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "-58 > -85"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-58 = -85"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "explain": {
+        "text": "Bỏ dấu −, ta được 58 và 85. Số 85 lớn hơn, nên −85 nhỏ hơn. Vậy −58 lớn hơn −85.",
+        "tex": "\\concept{violet}{-58} > \\concept{blue}{-85}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Số −58 nằm bên phải số −85 trên trục số, nên nó lớn hơn."
+          }
+        ]
+      },
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.dan-so-sanh-5312-5231",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh hai số −5 312 và −5 231."
+        },
+        {
+          "type": "note",
+          "text": "Chọn phép so sánh đúng."
+        }
+      ],
+      "leadsTo": "tap-hop-cac-so-nguyen.ex.sbt-so-sanh-46789-45999",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "formula",
+            "tex": "-5\\,312 < -5\\,231"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "formula",
+            "tex": "-5\\,312 > -5\\,231"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "formula",
+            "tex": "-5\\,312 = -5\\,231"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Bỏ dấu −, ta được 5 312 và 5 231. Số 5 312 lớn hơn, nên −5 312 nhỏ hơn. Vậy −5 312 nhỏ hơn −5 231.",
+        "tex": "\\concept{blue}{-5\\,312} < \\concept{violet}{-5\\,231}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số −5 312 nằm bên trái số −5 231 trên trục số, nên nó nhỏ hơn."
+          }
+        ]
+      },
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "tap-hop-cac-so-nguyen.ex.sbt-so-sanh-46789-45999",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh hai số: −46 789 và −45 999."
+        },
+        {
+          "type": "note",
+          "text": "Chọn phép so sánh đúng."
+        }
+      ],
+      "bookRef": "SBT 3.7",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "tap-hop-cac-so-nguyen.visual.sbt-so-sanh-goi-y",
+        "solutionVisualId": "tap-hop-cac-so-nguyen.visual.sbt-so-sanh-giai"
+      },
+      "difficulty": 3,
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "−46 789 < −45 999"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "−46 789 > −45 999"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "−46 789 = −45 999"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "explain": {
+        "text": "Bỏ dấu −, ta được 46 789 và 45 999. Số 46 789 lớn hơn, nên −46 789 nhỏ hơn. Vậy −46 789 nhỏ hơn −45 999.",
+        "tex": "\\concept{blue}{-46\\,789} < \\concept{violet}{-45\\,999}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Số −46 789 nằm bên trái số −45 999 trên trục số, nên nó nhỏ hơn, không lớn hơn."
+          }
+        ]
+      },
+      "check": {
+        "relation": "holds"
       }
     }
   ],
