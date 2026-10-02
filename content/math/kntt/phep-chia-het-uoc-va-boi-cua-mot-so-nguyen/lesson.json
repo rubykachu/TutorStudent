@@ -16,12 +16,12 @@
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"
     },
-    "summary": "Bài này dạy chia hai số nguyên và tìm dấu của thương. Sau đó bạn tìm ước, bội, ước chung, rồi dùng chúng để phân tích thành tích và tìm số x.",
+    "summary": "Bài này dạy cách chia hai số nguyên và cách chọn dấu cho kết quả. Sau đó bạn tìm ước và bội của một số, kể cả ước và bội âm.",
     "goals": [
       "chia được hai số nguyên và viết đúng dấu của thương",
       "biết khi nào một số nguyên chia hết cho số khác",
-      "tìm được các ước, các bội và ước chung của số nguyên",
-      "dùng tổng và hiệu cùng chia hết để tìm số x"
+      "tìm được các ước và các bội của một số, kể cả số âm",
+      "tìm được số x để x cộng thêm một số vẫn chia hết cho x"
     ],
     "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ."
   },
@@ -1400,7 +1400,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số cùng dấu nên thương là số dương. Chia hai phần số tự nhiên: 35 : 7 = 5, nên thương là 5.",
+        "text": "Hai số cùng dấu nên thương là số dương. Lấy 35 : 7 = 5, vậy thương là 5.",
         "tex": "(-35) : (-7) = 5"
       },
       "answer": {
@@ -1438,7 +1438,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số cùng dấu nên thương là số dương. Chia hai phần số tự nhiên: 56 : 8 = 7, nên thương là 7.",
+        "text": "Hai số cùng dấu nên thương là số dương. Lấy 56 : 8 = 7, vậy thương là 7.",
         "tex": "(-56) : (-8) = 7"
       },
       "answer": {
@@ -1734,7 +1734,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 48 : 6 = 8, nên thương là −8.",
+        "text": "Hai số khác dấu nên thương là số âm. Lấy 48 : 6 = 8, vậy thương là −8.",
         "tex": "48 : (-6) = -8"
       },
       "answer": {
@@ -1772,7 +1772,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 54 : 9 = 6, nên thương là −6.",
+        "text": "Hai số khác dấu nên thương là số âm. Lấy 54 : 9 = 6, vậy thương là −6.",
         "tex": "(-54) : 9 = -6"
       },
       "answer": {
@@ -1877,7 +1877,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hai số khác dấu nên thương là số âm. Chia hai phần số tự nhiên: 32 : 8 = 4, nên thương là −4."
+        "text": "Hai số khác dấu nên thương là số âm. Lấy 32 : 8 = 4, vậy thương là −4."
       },
       "segments": [
         {
@@ -1961,7 +1961,7 @@
           },
           {
             "optionId": "c",
-            "text": "Chia hai phần số tự nhiên đúng, nhưng Nam quên dấu của thương."
+            "text": "Nam chia đúng 42 : 6 = 7, nhưng quên đặt dấu − cho thương."
           },
           {
             "optionId": "d",
@@ -2101,7 +2101,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Thương −9 khi hai số khác dấu và phần số tự nhiên chia ra 9. Phép (−36) : 4 và phép 36 : (−4) đều như vậy.",
+        "text": "Hai số khác dấu thì thương âm, và 36 : 4 = 9. Phép (−36) : 4 và phép 36 : (−4) đều cho −9.",
         "tex": "\\begin{gathered} (-36) : 4 = -9 \\\\ 36 : (-4) = -9 \\end{gathered}",
         "wrong": [
           {
@@ -2241,7 +2241,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Khi a chia hết cho b thì b là ước của a, còn a là bội của b. Ở đây a = 20 và b = −5, nên −5 là một ước của 20.",
+        "text": "Vì 20 chia hết cho −5, nên −5 là ước của 20, còn 20 là bội của −5.",
         "tex": "20 \\chiahet (-5)",
         "wrong": [
           {
@@ -2300,7 +2300,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Khi a chia hết cho b thì b là ước của a, còn a là bội của b. Số chia 8 là ước, còn số bị chia −24 là bội."
+        "text": "Số chia 8 là ước, còn số bị chia −24 là bội. Số chia hết cho 8 thì là bội của 8."
       },
       "segments": [
         {
@@ -3235,7 +3235,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Cả 10 và 15 đều chia hết cho 5 và cho −5, nên 5 và −5 là ước chung. Còn 2 không là ước của 15, và 10 không là ước của 15.",
+        "text": "10 và 15 đều chia hết cho 5 và −5, nên 5 và −5 là ước chung. Còn 2 và 10 không là ước của 15.",
         "tex": "\\begin{gathered} 10 = 5 \\cdot 2 \\\\ 15 = 5 \\cdot 3 \\end{gathered}",
         "wrong": [
           {
@@ -3738,7 +3738,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Các số 25, −10, −15 và 20 đều chia hết cho 5. Nên tổng 25 + (−10) = 15 và hiệu (−15) − 20 = −35 cũng chia hết cho 5. Còn 25 + (−12) = 13 và 30 − 4 = 26 thì không.",
+        "text": "Các số 25, −10, −15 và 20 đều chia hết cho 5. Vì vậy 25 + (−10) = 15 và (−15) − 20 = −35 cũng chia hết cho 5. Còn 13 và 26 thì không.",
         "tex": "\\begin{gathered} 25 + (-10) = 15 \\\\ (-15) - 20 = -35 \\end{gathered}",
         "wrong": [
           {
@@ -3845,7 +3845,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số −24 và 18 đều chia hết cho 6, nên tổng (−24) + 18 = −6 và hiệu (−24) − 18 = −42 chia hết cho 6. Còn (−24) + 15 = −9 và (−24) − 5 = −29 thì không."
+        "text": "Số −24 và 18 đều chia hết cho 6. Vì vậy (−24) + 18 = −6 và (−24) − 18 = −42 cũng chia hết cho 6. Còn −9 và −29 thì không."
       },
       "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.chon-tong-6",
       "validatorId": "chon-dung",
