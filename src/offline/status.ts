@@ -5,6 +5,8 @@ import { PRECACHE_STATUS_MESSAGE, type PrecacheStatus } from "./config";
 // (it knows its cache is whole), and turns the answer into one line.
 
 export type OfflineReadiness =
+  // This build has offline support off (`flags.ts`): no worker will come.
+  | { kind: "off" }
   // No worker: development, a browser without workers, or not installed yet.
   | { kind: "none" }
   | { kind: "installing"; cached: number; total: number }
@@ -65,5 +67,7 @@ export function offlineStatusText(readiness: OfflineReadiness): string {
       return `${label} đang tải (${readiness.cached}/${readiness.total})`;
     case "none":
       return `${label} chưa sẵn sàng`;
+    case "off":
+      return `${label} chưa bật`;
   }
 }

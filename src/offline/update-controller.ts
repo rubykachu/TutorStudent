@@ -63,8 +63,9 @@ export type UpdateDeps = {
   reload: () => void;
   setInterval: (callback: Listener, ms: number) => unknown;
   clearInterval: (handle: unknown) => void;
-  // False in `next dev` and when the kill switch is on: no worker may run,
-  // and any that is installed is removed.
+  // False in `next dev`, when the build has offline support off and when the
+  // kill switch is on: no worker may run, and any that is installed is
+  // removed.
   enabled: boolean;
   pathname: string;
 };

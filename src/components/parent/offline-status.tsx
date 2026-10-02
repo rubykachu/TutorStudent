@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { offlineWorkerOn } from "@/offline/flags";
 import {
   type OfflineReadiness,
   offlineStatusText,
@@ -17,6 +18,11 @@ export function OfflineStatus() {
   const [readiness, setReadiness] = useState<OfflineReadiness | null>(null);
 
   useEffect(() => {
+    // Nothing to wait for: the build registers no worker.
+    if (!offlineWorkerOn()) {
+      setReadiness({ kind: "off" });
+      return;
+    }
     let live = true;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const container =

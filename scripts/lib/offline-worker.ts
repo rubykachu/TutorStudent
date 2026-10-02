@@ -9,6 +9,7 @@ import {
 import path from "node:path";
 import { build } from "esbuild";
 import { WORKER_FILE, type WorkerBuildData } from "../../src/offline/config";
+import { offlineWorkerOn } from "../../src/offline/flags";
 import {
   checkBudget,
   keepBuildFile,
@@ -75,7 +76,7 @@ export async function buildWorker({
   distDir = process.env.NEXT_DIST_DIR || ".next",
   mediaBaseUrl = process.env.NEXT_PUBLIC_MEDIA_BASE_URL ?? "",
   source = "src/offline/sw.ts",
-  killSwitch = false,
+  killSwitch = !offlineWorkerOn(),
   killSource = "src/offline/sw-kill.ts",
 }: {
   rootDir: string;
@@ -83,7 +84,8 @@ export async function buildWorker({
   mediaBaseUrl?: string;
   source?: string;
   // Write the worker that retires every installed worker instead of the
-  // precaching one (`OFFLINE_KILL_SWITCH`).
+  // precaching one (offline support off, or the kill switch on:
+  // `src/offline/flags.ts`).
   killSwitch?: boolean;
   killSource?: string;
 }): Promise<WorkerBuildResult> {

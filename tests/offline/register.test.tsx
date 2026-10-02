@@ -91,8 +91,27 @@ describe("OfflineManager", () => {
     expect(screen.queryByText("Có bài mới, tải lại")).toBeNull();
   });
 
+  it("unregisters instead of registering in production when the build has offline support off", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    render(<OfflineManager />);
+    await flush();
+    expect(container.register).not.toHaveBeenCalled();
+    expect(registration.unregister).toHaveBeenCalledOnce();
+  });
+
+  it("unregisters instead of registering under the kill switch", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_OFFLINE_ENABLED", "1");
+    vi.stubEnv("NEXT_PUBLIC_OFFLINE_KILL_SWITCH", "1");
+    render(<OfflineManager />);
+    await flush();
+    expect(container.register).not.toHaveBeenCalled();
+    expect(registration.unregister).toHaveBeenCalledOnce();
+  });
+
   it("registers in production, shows the banner for a new build and activates it on a tap", async () => {
     vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_OFFLINE_ENABLED", "1");
     render(<OfflineManager />);
     await flush();
     expect(container.register).toHaveBeenCalledOnce();
@@ -108,6 +127,7 @@ describe("OfflineManager", () => {
 
   it("keeps the banner hidden inside a player and shows it after the child leaves", async () => {
     vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_OFFLINE_ENABLED", "1");
     pathname = "/lessons/a/sections/s1";
     const { rerender } = render(<OfflineManager />);
     await flush();

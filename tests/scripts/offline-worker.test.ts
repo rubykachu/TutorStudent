@@ -8,7 +8,7 @@ import {
 } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { PRECACHE_BUDGET_BYTES } from "@/offline/precache";
 import { PRECACHE_LIST_FILE } from "../../scripts/lib/offline-manifest";
 import {
@@ -40,6 +40,9 @@ function writeList(knownBytes = 10) {
 }
 
 beforeEach(() => {
+  // The precaching worker is written only with offline support on.
+  vi.stubEnv("NEXT_PUBLIC_OFFLINE_ENABLED", "1");
+  vi.stubEnv("NEXT_PUBLIC_OFFLINE_KILL_SWITCH", "");
   root = mkdtempSync(path.join(os.tmpdir(), "offline-worker-"));
   put("tsconfig.json", "{}");
   put(".next/static/chunks/a.js", "aaaa");
@@ -53,6 +56,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  vi.unstubAllEnvs();
   rmSync(root, { recursive: true, force: true });
 });
 
@@ -124,6 +128,25 @@ describe("buildWorker", () => {
     expect(script).toContain("skipWaiting");
     expect(script).not.toContain("/_next/static");
     expect(script).not.toMatch(/process\.env/);
+  });
+
+  it.each([
+    ["offline support is off", { NEXT_PUBLIC_OFFLINE_ENABLED: "" }],
+    ["the kill switch is on", { NEXT_PUBLIC_OFFLINE_KILL_SWITCH: "1" }],
+  ])("writes the retiring worker by default when %s", async (_case, env) => {
+    for (const [name, value] of Object.entries(env)) vi.stubEnv(name, value);
+    writeList();
+    const result = await buildWorker({
+      rootDir: root,
+      distDir: ".next",
+      source: path.join(process.cwd(), "src/offline/sw.ts"),
+      killSource: path.join(process.cwd(), "src/offline/sw-kill.ts"),
+    });
+    const script = readFileSync(path.join(root, "public/sw.js"), "utf8");
+    expect(result.entries).toBe(0);
+    expect(script).toContain("unregister");
+    expect(script).not.toContain("/_next/static");
+    expect(script).not.toContain("/lessons/a");
   });
 
   it("fails when a module the worker imports reads process.env", async () => {

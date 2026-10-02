@@ -81,6 +81,9 @@ describe("offlineStatusText", () => {
     expect(offlineStatusText({ kind: "none" })).toBe(
       "Dùng khi không có mạng: chưa sẵn sàng",
     );
+    expect(offlineStatusText({ kind: "off" })).toBe(
+      "Dùng khi không có mạng: chưa bật",
+    );
   });
 });
 

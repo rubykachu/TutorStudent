@@ -35,6 +35,7 @@ let container: {
 };
 
 beforeEach(() => {
+  vi.stubEnv("NEXT_PUBLIC_OFFLINE_ENABLED", "1");
   vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
   registration = undefined;
   container = {
@@ -50,6 +51,7 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
+  vi.unstubAllEnvs();
   vi.useRealTimers();
   delete (navigator as unknown as Record<string, unknown>).serviceWorker;
 });
@@ -76,6 +78,28 @@ async function settle() {
 }
 
 describe("OfflineStatus", () => {
+  it("says off, asks no worker and does not poll when the build has offline support off", async () => {
+    vi.stubEnv("NEXT_PUBLIC_OFFLINE_ENABLED", "");
+    render(<OfflineStatus />);
+    await settle();
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toBe(
+      "Dùng khi không có mạng: chưa bật",
+    );
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(OFFLINE_STATUS_POLL_MS * 3);
+    });
+    expect(container.getRegistration).not.toHaveBeenCalled();
+  });
+
+  it("says off under the kill switch even with offline support on", async () => {
+    vi.stubEnv("NEXT_PUBLIC_OFFLINE_KILL_SWITCH", "1");
+    render(<OfflineStatus />);
+    await settle();
+    expect(screen.getByText(/^Dùng khi không có mạng:/).textContent).toBe(
+      "Dùng khi không có mạng: chưa bật",
+    );
+  });
+
   it("says not ready when no worker is installed (development, or not yet)", async () => {
     render(<OfflineStatus />);
     await settle();

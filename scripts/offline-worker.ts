@@ -1,19 +1,30 @@
-import { OFFLINE_KILL_SWITCH } from "../src/offline/kill-switch-flag";
+import {
+  offlineEnabled,
+  offlineKillSwitch,
+  offlineWorkerOn,
+} from "../src/offline/flags";
 import { buildWorker } from "./lib/offline-worker";
 
 // Run by `pnpm build` after `next build` (and before the bundle check):
 // writes the service worker to `public/sw.js`. Fails above the precache
-// budget. With NEXT_PUBLIC_OFFLINE_KILL_SWITCH=1 it writes the worker that
-// retires installed workers instead.
+// budget. Unless offline support is on (`NEXT_PUBLIC_OFFLINE_ENABLED=1`) and
+// the kill switch is off, it writes the worker that retires installed workers
+// instead (`src/offline/flags.ts`).
+function retiringReason(): string {
+  if (offlineKillSwitch()) return "KILL SWITCH";
+  if (!offlineEnabled()) return "offline support off";
+  return "";
+}
+
 try {
+  const on = offlineWorkerOn();
   const { file, entries, bytes } = await buildWorker({
     rootDir: process.cwd(),
-    killSwitch: OFFLINE_KILL_SWITCH,
   });
   console.log(
-    OFFLINE_KILL_SWITCH
-      ? `offline worker: KILL SWITCH, the worker that retires installed workers -> ${file}`
-      : `offline worker: ${entries} entries, ${(bytes / 1024).toFixed(1)} KB script -> ${file}`,
+    on
+      ? `offline worker: ${entries} entries, ${(bytes / 1024).toFixed(1)} KB script -> ${file}`
+      : `offline worker: ${retiringReason()}, the worker that retires installed workers -> ${file}`,
   );
 } catch (error) {
   console.error(

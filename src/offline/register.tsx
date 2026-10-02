@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { UpdateBanner } from "@/components/update-banner";
-import { OFFLINE_KILL_SWITCH } from "./kill-switch-flag";
+import { offlineWorkerOn } from "./flags";
 import {
   createUpdateController,
   type UpdateController,
@@ -33,8 +33,9 @@ function browserDeps(pathname: string): UpdateDeps {
     setInterval: (callback, ms) => window.setInterval(callback, ms),
     clearInterval: (handle) => window.clearInterval(handle as number),
     // Production only: a worker on a dev origin would serve stale pages to the
-    // dev server. The kill switch turns the worker off for everyone.
-    enabled: process.env.NODE_ENV === "production" && !OFFLINE_KILL_SWITCH,
+    // dev server. Off unless the build turned offline support on, and off
+    // for everyone under the kill switch (`flags.ts`).
+    enabled: process.env.NODE_ENV === "production" && offlineWorkerOn(),
     pathname,
   };
 }

@@ -63,6 +63,8 @@ describe("the lab environment", () => {
       R2_SECRET_ACCESS_KEY: "secret",
       R2_PRIVATE_BUCKET: "tutor-progress",
       SYNC_STORE: "fs:/somewhere",
+      NEXT_PUBLIC_OFFLINE_ENABLED: "",
+      NEXT_PUBLIC_OFFLINE_KILL_SWITCH: "1",
     });
     expect(env.NODE_ENV).toBe("production");
     expect(env.NEXT_PUBLIC_MEDIA_BASE_URL).toBe("");
@@ -78,6 +80,9 @@ describe("the lab environment", () => {
       expect(env[name]).toBe("");
     }
     expect(env.CONTENT_INCLUDE_FIXTURE).toBe("1");
+    // The lab builds with offline support on, whatever the shell says.
+    expect(env.NEXT_PUBLIC_OFFLINE_ENABLED).toBe("1");
+    expect(env.NEXT_PUBLIC_OFFLINE_KILL_SWITCH).toBe("");
   });
 });
 
