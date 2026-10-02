@@ -1,6 +1,6 @@
 # Vận hành: đưa app lên mạng và giữ cho chạy
 
-Sổ tay cho chủ dự án. Bản đầu tiên là bản "dùng được ngay": app chạy trên Vercel, video và lời đọc nằm trên bucket R2 công khai, cả app nằm sau mã gia đình, tiến độ của bé vẫn lưu riêng trên từng máy (IndexedDB). Chưa có: đồng bộ tiến độ qua R2, PIN trên server, PWA ngoại tuyến, trang quản trị (xem các mục "Tiến độ và đồng bộ", "Truy cập và bảo mật", "Offline và PWA" của `docs/spec.md`).
+Sổ tay cho chủ dự án. Bản đầu tiên là bản "dùng được ngay": app chạy trên Vercel, video và lời đọc nằm trên bucket R2 công khai, cả app nằm sau mã gia đình, tiến độ của bé lưu trên từng máy (IndexedDB) và, khi bật đồng bộ ("Đồng bộ tiến độ giữa các máy"), còn được gửi lên một bucket R2 riêng tư để các máy của gia đình thấy chung. PIN phụ huynh vẫn riêng từng máy. Chưa có: PWA ngoại tuyến, trang quản trị (xem các mục "Tiến độ và đồng bộ", "Truy cập và bảo mật", "Offline và PWA" của `docs/spec.md`).
 
 Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2, Vercel, GitHub), nên mỗi bước cần chủ dự án đồng ý trước khi chạy; tài khoản nào dùng cho bước nào ghi ngay trong bước.
 
@@ -69,21 +69,92 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 
 ### 5. Kiểm nhanh sau deploy
 
-`pnpm deploy:prod` tự chạy năm kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã đầu của `FAMILY_CODES` trong `.env.production.local` được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`. Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
+`pnpm deploy:prod` tự chạy sáu kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã đầu của `FAMILY_CODES` trong `.env.production.local` được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
 
 ## Biến môi trường
 
 | Tên | Bắt buộc | Đặt ở đâu | Ý nghĩa |
 |---|---|---|---|
-| `FAMILY_CODES` | production | Vercel (Sensitive) | Mã gia đình, mỗi gia đình một mã, cách nhau bằng dấu phẩy. Mỗi mã dài ít nhất 10 chữ hoặc số (dấu cách, dấu gạch và chữ hoa không tính). Bỏ một mã khỏi danh sách là cắt quyền của gia đình đó |
+| `FAMILY_CODES` | production | Vercel (Sensitive) | Mã gia đình, các mục cách nhau bằng dấu phẩy. Mỗi mục viết `<id gia đình>:<mã>` (id là 3 đến 32 chữ thường, chữ số hoặc dấu gạch, đặt một lần rồi không đổi) để máy của gia đình đó đồng bộ; mã không tên vẫn vào được app nhưng không đồng bộ. Mỗi mã dài ít nhất 10 chữ hoặc số (dấu cách, dấu gạch và chữ hoa không tính). Một gia đình có thể có nhiều mục; cùng một mã dưới hai id làm cổng đóng. Bỏ một mục khỏi danh sách là cắt quyền của mã đó |
 | `SESSION_SECRET` | production | Vercel (Sensitive) | Khoá ký cookie `tutor_family`, ít nhất 32 ký tự ngẫu nhiên. Đổi khoá là mọi máy phải nhập lại mã |
+| `R2_ACCOUNT_ID` | để bật đồng bộ | Vercel (Sensitive), `.env.local` khi chạy thử trên máy | Id tài khoản Cloudflare (32 chữ số hex), ghép thành địa chỉ S3 của bucket riêng tư |
+| `R2_ACCESS_KEY_ID` | để bật đồng bộ | như trên | Access key của token R2 chỉ có quyền Object Read & Write trên bucket `tutor-progress` |
+| `R2_SECRET_ACCESS_KEY` | để bật đồng bộ | như trên | Secret của token đó. Không in ra log, không dán vào chat |
+| `R2_PRIVATE_BUCKET` | để bật đồng bộ | như trên | `tutor-progress`. Thiếu một trong bốn biến (hoặc id, tên bucket sai dạng) thì đồng bộ tắt và log ghi tên biến thiếu, không ghi giá trị; không đặt biến nào thì đồng bộ tắt im lặng |
+| `SYNC_STORE` | không | chỉ máy dev và test | `fs:<thư mục>` hay `memory`: store thay cho R2 khi chạy thử trên máy (E2E nhiều máy dùng nó). Được ưu tiên hơn `R2_*`, và server production từ chối nó |
 | `NEXT_PUBLIC_MEDIA_BASE_URL` | khi dùng bucket | Vercel, lúc build | Địa chỉ công khai của bucket media, không có dấu `/` ở cuối, ví dụ `https://pub-xxxx.r2.dev`. Để trống thì app đọc video từ `public/media` |
 
 Quy tắc đã được code giữ:
 
 - Máy dev và test không đặt hai biến mã: không có cổng, vào thẳng. Server production thiếu hoặc đặt sai một trong hai biến: không phục vụ gì (trả 503, log ghi lý do), để quên biến không bao giờ làm app mở cho người lạ.
 - `NEXT_PUBLIC_MEDIA_BASE_URL` được ghép vào mã trình duyệt lúc build. Đổi nó thì phải deploy lại. Giá trị sai (thiếu `https://`, hay `http://` ở production) làm build dừng với thông báo rõ.
+- Bốn biến `R2_*` không bao giờ là `NEXT_PUBLIC_*`, nên không vào mã trình duyệt (test kiểm bản build). Tiền tố `prod/` hay `dev/` không do biến nào chọn: chỉ `VERCEL_ENV=production` của Vercel cho `prod/`.
 - Mẫu các biến nằm ở `.env.example`; tệp `.env*` thật không bao giờ commit.
+
+## Đồng bộ tiến độ giữa các máy (bucket riêng tư)
+
+Tiến độ của bé nằm trong IndexedDB của từng trình duyệt. Khi bật đồng bộ, app còn gửi nó (ngầm, bé không thấy gì) lên bucket R2 riêng tư `tutor-progress`, để iPad (Safari và app ở Màn hình chính), điện thoại, laptop của cùng gia đình thấy chung hồ sơ, phần đã học, thẻ ôn và sticker. Quy tắc của hệ thống nằm ở `docs/spec.md` mục 5.7; mục này là các việc của chủ dự án.
+
+Chưa đặt bốn biến `R2_*` thì đồng bộ tắt im lặng và app chạy như trước. Một mục `FAMILY_CODES` không có tên (`<mã>` thay vì `<id gia đình>:<mã>`) vẫn vào được app nhưng máy dùng mã đó không đồng bộ.
+
+Một bucket cho mọi môi trường, tách bằng tiền tố: `prod/` chỉ do bản production trên Vercel ghi, `dev/` cho máy dev và bản preview, `test/<mã chạy>/` cho bài kiểm tra R2 thật tuỳ chọn. Token R2 giới hạn theo bucket chứ không theo tiền tố, nên chỉ có code giữ hai môi trường tách nhau (`prod/` chỉ khi `VERCEL_ENV=production`). Vì vậy:
+
+- Không bao giờ đặt `VERCEL_ENV` trong tệp trên máy.
+- Không bao giờ kéo biến production về máy (`npx vercel env pull` cho môi trường production vào `.env.local` hay tệp nào khác): tệp đó mang `VERCEL_ENV=production` và server trên máy sẽ ghi vào dữ liệu thật.
+
+### Bật đồng bộ lần đầu (chủ dự án làm hoặc duyệt từng bước)
+
+Mỗi bước dưới ghi ra ngoài máy; agent chỉ làm khi chủ dự án đồng ý cho bước đó.
+
+1. **Tạo bucket riêng tư.** Cloudflare dashboard, R2, Create bucket, tên `tutor-progress`. Để Public access tắt: không bật `r2.dev`, không gắn custom domain. Trong Settings của bucket thêm quy tắc vòng đời (Object lifecycle rules):
+   - xoá đối tượng có tiền tố `prod/snapshots/` sau 180 ngày;
+   - xoá đối tượng có tiền tố `dev/snapshots/` sau 180 ngày;
+   - xoá đối tượng có tiền tố `test/` sau 1 ngày.
+
+   Không đặt quy tắc cho `prod/progress/` và `dev/progress/`: lịch sử học không được tự xoá. Thêm một thông báo mức sử dụng ở mục Notifications của Cloudflare, đặt mức thấp (ví dụ 1 USD) để biết ngay nếu có gì bất thường.
+2. **Tạo token cho app.** R2, Manage API tokens, Create API token, quyền Object Read & Write, "Apply to specific buckets only" và chỉ chọn `tutor-progress` (token này không được chạm `tutor-media`; việc tải media vẫn dùng token rclone riêng ở phần trên). Chép Access Key ID và Secret Access Key (chỉ hiện một lần) cùng Account ID (trang tổng quan R2). Đặt vào `.env.local` ở gốc repo, không commit, không đặt `VERCEL_ENV`:
+
+   ```bash
+   R2_ACCOUNT_ID=<32 chữ số hex>
+   R2_ACCESS_KEY_ID=<access key id>
+   R2_SECRET_ACCESS_KEY=<secret>
+   R2_PRIVATE_BUCKET=tutor-progress
+   ```
+
+   Không dán các giá trị này vào chat, issue hay log.
+3. **Thử trên máy, dữ liệu vào `dev/`.** Chạy một server dev riêng (cổng và thư mục build khác, để không đụng dev server đang chạy) với một gia đình thử đặt tên ngay trên dòng lệnh, đừng ghi `FAMILY_CODES` vào `.env.local` vì như vậy dev server thường cũng đòi mã:
+
+   ```bash
+   FAMILY_CODES='gia-dinh-thu:<mã thử, ít nhất 10 chữ hoặc số>' \
+   SESSION_SECRET='<ít nhất 32 ký tự>' \
+   NEXT_DIST_DIR=.next-sync CONTENT_INCLUDE_FIXTURE=1 \
+   pnpm exec next dev --port 3520
+   ```
+
+   Mở `http://localhost:3520` ở cửa sổ thường và cửa sổ riêng tư, nhập mã thử ở cả hai, tạo hồ sơ và học xong một phần ở cửa sổ đầu: cửa sổ kia thấy hồ sơ và phần đó sau vài giây, và trang `/parent` hiện "Đồng bộ lần cuối". Trong dashboard, các đối tượng mới nằm dưới `dev/progress/gia-dinh-thu/` và không có gì dưới `prod/`. Tuỳ chọn, khi đã đồng ý riêng: `pnpm test:r2` chạy bộ test của store trên bucket thật; nó chỉ ghi dưới `test/<mã chạy>/`, chỉ xoá khoá do chính nó ghi, và tự bỏ qua kèm thông báo nếu thiếu biến.
+4. **Đặt biến cho production trên Vercel** (môi trường Production, đều Sensitive; giá trị đi qua stdin). Viết lại `FAMILY_CODES` thành mục có tên: mã giữ nguyên nên không máy nào phải nhập lại mã. Id gia đình đặt một lần rồi không đổi, vì nó nằm trong khoá lưu trữ.
+
+   ```bash
+   printf '%s' '<R2_ACCOUNT_ID>'        | npx vercel env add R2_ACCOUNT_ID production --sensitive
+   printf '%s' '<R2_ACCESS_KEY_ID>'     | npx vercel env add R2_ACCESS_KEY_ID production --sensitive
+   printf '%s' '<R2_SECRET_ACCESS_KEY>' | npx vercel env add R2_SECRET_ACCESS_KEY production --sensitive
+   printf '%s' 'tutor-progress'         | npx vercel env add R2_PRIVATE_BUCKET production --sensitive
+   npx vercel env rm FAMILY_CODES production --yes
+   printf '%s' '<id-gia-dinh>:<mã>[,<id-khác>:<mã khác>]' | npx vercel env add FAMILY_CODES production --sensitive
+   ```
+
+   Sửa `.env.production.local` cho cùng dạng có tên (kiểm nhanh sau deploy đọc mã đầu từ đó). Không đặt biến cho Preview: bản preview không có mã nên trả 503, và nếu sau này có thì nó chỉ ghi dưới `dev/`.
+5. **Deploy** theo "Đưa bài mới lên production", bước 4: `pnpm deploy:prod` từ commit đã kiểm. Kiểm nhanh phải `PASS` cả sáu dòng, kể cả `sync 401 without cookie`.
+6. **Thử trên hai máy thật** (iPad Safari và app ở Màn hình chính, hoặc iPad và điện thoại): học xong một phần ở máy này, máy kia thấy sau vài giây; `/parent` hiện thời gian đồng bộ lần cuối; trong dashboard đối tượng mới nằm dưới `prod/progress/<id gia đình>/` và không có gì mới dưới `dev/`. Kiểm lại bucket vẫn riêng tư (Settings: Public access tắt, không có `r2.dev` hay domain).
+7. **Một tuần sau:** xem mức dùng R2 và Vercel trên dashboard (số request, dữ liệu truyền), vẫn trong gói miễn phí.
+
+### Việc định kỳ và xử lý sự cố
+
+- **Xoay token:** tạo token mới (cùng quyền, cùng bucket), cập nhật `R2_ACCESS_KEY_ID` và `R2_SECRET_ACCESS_KEY` trên Vercel (xoá rồi thêm lại) và trong `.env.local`, deploy lại, kiểm `/parent` còn đồng bộ, rồi xoá token cũ. Nghi lộ token thì làm ngay và xoá token cũ trước khi kiểm.
+- **Khôi phục một bé từ bản chụp:** mỗi ngày server giữ trạng thái của tài liệu chính trước lần ghi đầu của ngày đó, 180 ngày, tại `prod/snapshots/<id gia đình>/<id bé>/<yyyy-mm-dd>.json`. Tải tệp của ngày cần từ dashboard, đưa sang máy đang có hồ sơ của bé, mở `/parent`, bấm "Nhập bản sao lưu" và chọn tệp: app cho xem trước rồi trộn vào máy mà không xoá gì (phần mới hơn trên máy được giữ), và kết quả tự đồng bộ cho các máy khác. Bé phải đã có hồ sơ trên máy đó. Lịch sử làm bài không có bản chụp vì các tháng chỉ được thêm vào.
+- **Xoá hồ sơ thử dưới `dev/`:** dữ liệu của lần thử ở bước 3 nằm trong cùng bucket. Khi không cần nữa, vào dashboard, bucket `tutor-progress`, mở `dev/progress/<id gia đình thử>/` và `dev/snapshots/<id gia đình thử>/` rồi xoá. Không xoá gì dưới `prod/` bằng tay trừ khi chủ dự án muốn xoá dữ liệu thật của một gia đình.
+- **Thêm gia đình:** thêm mục `<id mới>:<mã mới>` vào `FAMILY_CODES` (xem "Đổi mã gia đình"); máy đầu tiên của gia đình đó tạo tài liệu ở lần đồng bộ đầu.
+- **Máy đổi sang gia đình khác:** trang `/parent` chặn nếu máy còn tiến độ chưa gửi (chỉ cho tải bản sao lưu), và cho "Dùng máy này cho gia đình mới" khi máy sạch. Đừng dời một mã từ mục gia đình này sang mục gia đình khác.
 
 ## Chuẩn bị trên máy (không ghi ra ngoài)
 
@@ -312,8 +383,8 @@ Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN
 
 Mọi thay đổi biến môi trường chỉ có hiệu lực ở bản deploy mới, nên sau mỗi lệnh dưới cần `npx vercel deploy --prod` (hoặc push một commit). Sửa một biến Sensitive: xoá rồi thêm lại.
 
-- Thêm gia đình: tạo mã mới (lệnh ở "Chuẩn bị trên máy"), nối vào `FAMILY_CODES` bằng dấu phẩy.
-- Thu hồi một gia đình: bỏ mã của họ khỏi `FAMILY_CODES`. Cookie đã cấp cho mã đó hết hiệu lực ngay ở lần tải trang sau khi deploy xong; các gia đình khác không bị ảnh hưởng.
+- Thêm gia đình: tạo mã mới (lệnh ở "Chuẩn bị trên máy"), nối mục `<id gia đình>:<mã>` vào `FAMILY_CODES` bằng dấu phẩy. Id gia đình không đổi về sau; đổi nó là tách gia đình khỏi dữ liệu đã lưu.
+- Thu hồi một gia đình: bỏ mục của họ khỏi `FAMILY_CODES` (dữ liệu của họ trong bucket vẫn còn; xoá bằng tay trong dashboard nếu cần). Cookie đã cấp cho mã đó hết hiệu lực ngay ở lần tải trang sau khi deploy xong; các gia đình khác không bị ảnh hưởng.
 - Khẩn cấp (nghi lộ mã): đổi `SESSION_SECRET` và `FAMILY_CODES`, deploy lại; mọi máy phải nhập mã mới.
 
 ```bash
@@ -329,6 +400,8 @@ Giới hạn thử sai (5 lần trong 10 phút cho mỗi địa chỉ mạng) đ
 | Dấu hiệu | Nguyên nhân thường gặp | Cách xử lý |
 |---|---|---|
 | Mọi trang trả "Ứng dụng chưa sẵn sàng" (503) | Production thiếu hoặc đặt sai `FAMILY_CODES` / `SESSION_SECRET` | Vercel, Logs: dòng `family-code gate is closed: <lý do>` nói rõ biến nào; sửa rồi deploy lại |
+| Tiến độ không sang máy khác, `/parent` không có dòng "Đồng bộ lần cuối" | Thiếu hay sai một biến `R2_*`, hoặc mã của máy đó là mục không tên | Vercel, Logs: dòng `progress sync is off: <lý do>` nêu tên biến thiếu; kiểm `FAMILY_CODES` dạng `<id>:<mã>`; sửa rồi deploy lại |
+| `/parent` báo máy chưa gửi được tiến độ | Mất mạng lâu, hay bucket từ chối (token hết hạn hoặc bị xoá) | Máy vẫn giữ nguyên tiến độ và gửi bù khi được; kiểm token R2 còn dùng được, xoay token nếu cần ("Việc định kỳ và xử lý sự cố") |
 | Nhập đúng mã vẫn quay về trang nhập | Cookie bị chặn (chế độ riêng tư chặn cookie của bên thứ nhất, hay lỗi giờ máy), hoặc truy cập qua một tên miền khác `APP_ORIGIN` | Thử thẻ thường; kiểm giờ của iPad; vào đúng địa chỉ production |
 | Video không phát, phụ đề không hiện | Chưa đặt CORS đúng origin, hay build chưa có `NEXT_PUBLIC_MEDIA_BASE_URL` | Chạy lại bước 7 và các lệnh `curl` ở đó; trong Vercel kiểm biến, sửa xong phải deploy lại |
 | Video chạy nhưng không tua được | Bucket không trả `206` cho `Range` | Chạy lệnh `curl` có `Range` ở bước 3 |

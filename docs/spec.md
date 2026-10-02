@@ -82,7 +82,7 @@ Mỗi hồ sơ con khai báo bộ sách cho từng môn. Nội dung chỉ có ch
 
 Hạ tầng (gói miễn phí):
 - **Vercel Hobby** — host app, API route. Chuyển gói trả phí hoặc Cloudflare khi thương mại hoá.
-- **Cloudflare R2** — bucket private (gia đình, tiến độ, overlay, usage) và bucket public (video, SVG overlay).
+- **Cloudflare R2** — bucket private `tutor-progress` (tiến độ và bản chụp, một bucket cho `prod/`, `dev/` và `test/`) và bucket public `tutor-media` (video, lời đọc, SVG overlay).
 - **GitHub** — repo code + nội dung bài học, account `rubykachu`.
 - **Gemini API** — AI nhận xét bài viết (một key, `GEMINI_API_KEY`).
 
@@ -101,7 +101,7 @@ pnpm typecheck               # tsc --noEmit
 pnpm test                    # vitest run
 pnpm test:watch              # vitest
 pnpm test:e2e                # playwright test (project ipad + phone)
-pnpm test:r2                 # test tích hợp với bucket R2 dev thật (chỉ chạy tay, cần .env.local)
+pnpm test:r2                 # bộ test của store trên bucket R2 thật, chỉ dưới test/<run-id>/ (chạy tay, hỏi trước, cần biến R2_* trong .env.local)
 pnpm content:check           # validate content/ + ids.lock + overlay trên R2 (nếu có biến môi trường R2)
 pnpm content:lock <lesson>…  # thêm id của các bài nêu tên vào content/ids.lock.json (không nêu: mọi bài, bỏ qua bài có reviewedHash cũ)
 pnpm content:hash <lesson>   # in reviewedHash của bài; --mark ghi bản đã review vào review.md; --approve ghi thêm hash và đặt published (skill lesson-review dùng); --tips làm cùng việc cho tips.json của bài (hash và status riêng, không đụng bài)
@@ -143,7 +143,7 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 │   │   └── api/
 │   │       ├── session/          # mã gia đình → cookie tutor_family
 │   │       ├── parent-session/   # PIN → cookie tutor_parent
-│   │       ├── sync/             # đọc/ghi tiến độ + profile trên R2
+│   │       ├── sync/             # đọc/ghi tiến độ: hồ sơ, tài liệu chính, lịch sử từng tháng
 │   │       ├── feedback/         # AI nhận xét bài viết
 │   │       └── content/          # GET overlay (mọi gia đình); POST/DELETE (admin + PIN)
 │   ├── proxy.ts                  # chặn trang khi chưa có cookie gia đình hợp lệ
@@ -155,8 +155,9 @@ pnpm admin <command>         # CLI quản trị: family:create, family:revoke, p
 │   │   ├── shared/               # primitive dùng chung: dot grid, bead, highlight, number line, plot…
 │   │   └── <subject>/<lesson-slug>/*.tsx
 │   ├── srs/                      # bọc ts-fsrs: rating, ước lượng mức nhớ, chọn thẻ ôn
-│   ├── progress/                 # Dexie DB, sync engine, merge
-│   ├── storage/                  # BlobStore (get/put có ETag) + adapter R2 + adapter in-memory cho test
+│   ├── progress/                 # Dexie DB, báo cáo phụ huynh, PIN
+│   ├── sync/                     # tài liệu đồng bộ, gộp, engine, lịch chạy, nhập sao lưu
+│   │   └── store/                # BlobStore (get/put có ETag) + adapter r2, fs, memory, bộ dựng khoá
 │   ├── auth/                     # JWT, kiểm family/epoch/isAdmin, khoá PIN
 │   ├── ai/                       # AiReviewer interface + adapter Gemini, prompt, hạn mức
 │   ├── mascot/                   # linh vật SVG + biểu cảm
@@ -350,34 +351,38 @@ Bé hoặc phụ huynh **chủ động** bấm "Ôn bài này" trong trang bài,
 - Chỉ gửi đề + bài viết + rubric; không gửi tên hay thông tin cá nhân.
 
 ### 5.7 Tiến độ và đồng bộ
-- **Local-first:** mọi thao tác ghi vào Dexie trước, UI không chờ mạng. Mọi bản ghi Dexie mang `familyId` + `childId`.
-- **Kích hoạt sync:** kết thúc phần/phiên ôn, mỗi 5 phút khi app mở, khi có mạng lại, khi `visibilitychange` → hidden. Hàng đợi thay đổi trong Dexie.
-- **Giao thức:**
-  - `GET /api/sync?child=` → `{ doc, etag }` (etag nằm trong body, không phụ thuộc header).
-  - Chưa có tài liệu → client tạo, `PUT` với `ifNoneMatch: "*"`.
-  - Có tài liệu → `PUT { doc, ifMatch: etag }`. Server ghi R2 với `If-Match`/`If-None-Match` tương ứng. 412 → client tải lại, gộp, gửi lại (tối đa 3 lần); vẫn lỗi → giữ hàng đợi cho lần sync sau.
-  - `profile.json` (danh sách hồ sơ con) đồng bộ cùng giao thức. Server kiểm `childId` thuộc gia đình trong cookie.
-- **Quy tắc gộp** (hàm thuần, có unit test):
-  - Card state: giữ bản có `lastReviewAt` mới hơn; state mồ côi giữ nguyên.
-  - Attempt log, bài viết: hợp theo id; log giữ 500 mục gần nhất.
-  - Section progress: trạng thái cao hơn thắng (xong > đang học > chưa học).
-  - Ngày học, sticker: hợp tập.
-  - Học lại bài: hai quy tắc trên (hợp attempt theo id, trạng thái phần cao hơn thắng) sẽ đem tiến độ cũ về từ máy khác. Khi làm đồng bộ, `resetLessonProgress` trả về con, bài và giờ xoá; kết quả đó phải được ghi thành mốc reset theo bài trong cùng giao dịch và gộp theo mốc (bản ghi của bài đó cũ hơn mốc thì bỏ). Hiện chưa có code đồng bộ.
-- **Giới hạn kích thước** tài liệu tiến độ: 1 MB; vượt → cắt log cũ trước khi gửi.
-- **Bản chụp hằng ngày:** trước mỗi `PUT` tiến độ, server đã `GET` bản hiện tại (cần cho `If-Match`); nếu chưa có bản chụp của ngày hôm nay (giờ VN), server ghi bản hiện tại đó vào `snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json` với `If-None-Match: *`. Nghĩa: file ngày D = trạng thái trước lần ghi đầu tiên của ngày D. Ghi snapshot lỗi không chặn ghi chính (chỉ log). Lifecycle rule R2 xoá prefix `snapshots/` sau 180 ngày.
-- **Đổi gia đình trên cùng máy:** nếu Dexie còn dữ liệu chưa sync của gia đình khác → chặn, đề nghị xuất JSON trước.
-- Xuất/nhập JSON tiến độ từ trang phụ huynh. Khôi phục từ bản chụp qua `pnpm admin restore`.
+- **Local-first:** mọi thao tác ghi vào Dexie trước, UI không chờ mạng, màn hình của trẻ không hiện gì về đồng bộ. Bản ghi Dexie giữ `familyId: "local"`; máy nhớ gia đình mình đồng bộ với (setting thiết bị `syncFamilyId`, ghi ở lần đồng bộ thành công đầu tiên). Không đặt biến R2 thì đồng bộ tắt im lặng và app chạy như khi chưa có đồng bộ.
+- **Ba loại tài liệu** (zod, `src/sync/schema.ts`; mỗi tài liệu có `schema` và `version`, tài liệu có `version` mới hơn code biết thì không gộp, không ghi):
+  - tài liệu hồ sơ của gia đình: danh sách hồ sơ con (tối đa 12);
+  - tài liệu chính của từng con, chỉ chứa trạng thái: thẻ ôn, tiến độ và vị trí từng phần, sticker, ngày học, mốc học lại, dấu "đã xem tổng quan", danh sách tháng có lịch sử. Khoảng 0,3 MB sau một năm, giới hạn 1 MB, trang phụ huynh cảnh báo ở 70%;
+  - tài liệu lịch sử của từng con theo tháng: lượt làm và bài viết, chỉ thêm, không bao giờ cắt. Giới hạn 512 KB mỗi tháng. Thiết bị mới tải các tháng cũ ngầm, tháng mới nhất trước, trong lúc con đã học được.
+- **Kích hoạt sync:** sau khi xong một phần hoặc phiên ôn, sau khi tạo hay sửa hồ sơ, chọn lớp và học lại một bài (gom các lần gọi trong vài giây thành một), mỗi 5 phút khi app mở, khi có mạng lại, khi trang bị ẩn, khi mở app (đồng bộ đủ mọi tháng) và sau khi nhập bản sao lưu. Mỗi lúc một lần đồng bộ; hai tab của một máy nhường nhau bằng khoá Web Locks. Một tài liệu cần gửi khi mã băm của nó khác mã băm lưu ở lần gửi trước (`syncState`); không dùng hook Dexie.
+- **Giao thức** (`/api/sync`, một route cho cả ba loại tài liệu: `?doc=profile`, `?child=<id>`, `?child=<id>&month=<yyyy-mm>`):
+  - `GET` trả `{ doc, etag }`; kèm `known=<etag>` mà chưa đổi thì trả `{ unchanged }` không có body, nên lần hỏi 5 phút rất rẻ.
+  - `PUT { doc, ifMatch }` để thay, `PUT { doc, ifNoneMatch: "*" }` để tạo. Server ghi bucket có điều kiện; điều kiện sai thì 412 kèm tài liệu hiện tại, client gộp rồi gửi lại (tối đa 3 vòng, chờ ngẫu nhiên 100 đến 500 ms); vẫn lỗi thì tài liệu giữ trạng thái cần gửi cho lần sau.
+  - Server không gộp. Nó kiểm: cookie ra đúng một gia đình (id gia đình chỉ lấy từ cookie, không từ request), `Origin` cùng domain, `content-type`, cỡ body (cắt khi đọc), schema chặt, id trong header khớp, con có trong hồ sơ gia đình, thời gian ở tương lai bị kẹp về giờ server, tài liệu lịch sử không được thiếu bản ghi đã lưu (409 `shrink`), 30 PUT và 120 GET mỗi phút cho mỗi gia đình trên mỗi instance. Không ghi nội dung tài liệu vào log.
+- **Quy tắc gộp** (hàm thuần `src/sync/merge.ts`, giao hoán, kết hợp, lũy đẳng, có property test): dấu học lại áp lên từng phía trước, rồi mỗi trường chọn theo giờ.
+  - Thẻ ôn: bản có `lastReviewAt` mới hơn; hoà thì nhiều `reps` hơn.
+  - Phần học: `doneAt` là giờ muộn hơn trong hai bên (xong ở đâu thì xong), vị trí lấy từ bản cập nhật muộn hơn.
+  - Sticker, ngày học, tháng có lịch sử: hợp tập; học lại không xoá chúng.
+  - Dấu "đã xem tổng quan": giờ muộn hơn.
+  - Lượt làm và bài viết (tài liệu tháng): hợp theo id.
+  - Học lại một bài: `resetLessonProgress` ghi dấu học lại (bài, giờ) trong cùng giao dịch xoá. Bản ghi của bài đó có giờ không muộn hơn dấu thì bị bỏ khi gộp; tài liệu tháng cũ không bao giờ bị ghi lại, lượt làm trước dấu chỉ bị ẩn khi đọc (`visibleHistory`), nên việc học sau khi học lại ở máy khác vẫn được giữ.
+- **Bản chụp hằng ngày:** chỉ cho tài liệu chính. Trước lần `PUT` đầu tiên của một ngày (giờ VN), server chép tài liệu đang lưu sang `snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json` với `If-None-Match: *`; tệp của ngày D là trạng thái trước lần ghi đầu của ngày D. Ghi bản chụp lỗi không chặn ghi chính (chỉ log). Tài liệu lịch sử chỉ thêm nên không có bản chụp. Quy tắc lifecycle của bucket xoá `snapshots/` sau 180 ngày.
+- **Đổi gia đình trên cùng máy:** nếu cookie thuộc gia đình khác với `syncFamilyId` và máy còn tiến độ chưa gửi, đồng bộ dừng và trang phụ huynh chỉ cho tải bản sao lưu; máy sạch thì có nút "Dùng máy này cho gia đình mới" (hai lần xác nhận) xoá dữ liệu trên máy rồi tải dữ liệu gia đình mới. Đồng bộ không bao giờ ghi bản ghi của gia đình này vào tài liệu của gia đình khác.
+- **Trang phụ huynh:** dòng "Đồng bộ lần cuối", thông báo bằng lời thường khi kẹt (quá một ngày chưa gửi, tài liệu chính vượt 70% giới hạn, tài liệu quá lớn, app cũ hơn dữ liệu, mã gia đình bị từ chối), dòng "Đang tải lịch sử học…" khi tháng cũ chưa về. Nút xuất và nút "Nhập bản sao lưu" (tệp xuất phiên bản 1 và 2, hoặc tài liệu chính của một con, ví dụ bản chụp tải từ bucket): nhập là trộn, không xoá gì, nhập hai lần không đổi gì thêm, rồi kết quả tự đồng bộ cho các máy khác. Khôi phục một con từ bản chụp đi qua nút này, xem `docs/operations.md`.
 
-Bố cục bucket private (`R2_PRIVATE_BUCKET`):
+Bố cục bucket private `tutor-progress`, một bucket cho mọi môi trường, tách bằng tiền tố khoá (chỉ hàm `syncKey` ghép khoá):
 ```
-families.json                                   # [{ id, name, codeHash, epoch, isAdmin, aiDailyLimit }] — chỉ admin CLI ghi
-auth/<familyId>/pin.json                        # { pinHash, pinEpoch, pinFails, lockUntil } — không cache
-progress/<familyId>/profile.json                # hồ sơ con: [{ id, name, avatar, grade, series: { math: "kntt", … } }]
-progress/<familyId>/<childId>.json              # tài liệu tiến độ
-snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json
-content-overlay/<lessonId>/<exerciseId>.json    # bài tập nạp nhanh
-usage/<familyId>/<yyyy-mm-dd>.json              # đếm lượt AI
+prod/progress/<familyId>/profile.json                         # hồ sơ con của gia đình
+prod/progress/<familyId>/<childId>.json                       # tài liệu chính
+prod/progress/<familyId>/<childId>/history/<yyyy-mm>.json     # lịch sử một tháng
+prod/snapshots/<familyId>/<childId>/<yyyy-mm-dd>.json         # bản chụp hằng ngày
+dev/…                                                          # cùng bố cục: máy dev và bản preview
+test/<run-id>/…                                                # chỉ bài kiểm tra R2 thật tùy chọn
 ```
+Tiền tố là `prod/` chỉ khi `VERCEL_ENV=production`, còn lại là `dev/`; không biến nào chọn tiền tố trực tiếp, và test khoá điều đó. Chưa dùng: `families.json`, `auth/`, `content-overlay/`, `usage/` (của các tính năng sau).
+
 Bucket public (`R2_MEDIA_BUCKET`, domain `NEXT_PUBLIC_MEDIA_BASE_URL`, CORS cho origin của app, hỗ trợ Range):
 ```
 video/<lessonId>/<videoId>.mp4
@@ -385,31 +390,29 @@ video/<lessonId>/<videoId>.vtt
 svg/<lessonId>/<id>.svg                         # SVG nạp nhanh (đã lọc)
 ```
 
-Code dùng một interface `BlobStore { get(key) → { body, etag } | null; put(key, body, { ifMatch? , ifNoneMatch? }) }`; adapter R2 và adapter in-memory (mô phỏng ETag/412) cho test.
+Code dùng một interface `BlobStore { get(key, { ifNoneMatch? }) → { body, etag } | { unchanged } | null; put(key, body, { ifMatch? | ifNoneMatch? }) → { etag } | { conflict }; delete(key) }` (`src/sync/store/`): adapter `r2` (API S3 của R2, request ký bằng `aws4fetch`, ETag chuẩn hoá ở một chỗ), `fs` (thư mục, cho E2E nhiều máy và chạy thử trên máy, không cho phép ở production) và `memory` (test); `delete` chỉ dành cho bài kiểm tra R2 thật và từ chối mọi khoá ngoài tiền tố `test/<run-id>/` của store đó. Chọn store qua `readSyncStoreConfig`: bốn biến `R2_*` (xem `docs/operations.md`) bật R2, `SYNC_STORE=fs:<thư mục>` hay `memory` chỉ cho máy dev và test, không đặt gì thì đồng bộ tắt.
 
 ### 5.8 Truy cập và bảo mật
 - **Cổng trang:** `proxy.ts` kiểm chữ ký cookie `tutor_family`; thiếu/sai → chuyển `/unlock`. Matcher loại trừ: `/unlock`, `/install`, `/api/session`, `/sw.js`, `/serwist/*`, `/_next/static/*`, font. Cổng cho qua không cần cookie đúng các đường dẫn của `BRAND_PUBLIC_PATHS` (`src/lib/brand.ts`): `/manifest.webmanifest` và các file trong `/brand/` (icon, favicon, ảnh chia sẻ). Header `X-Robots-Tag: noindex` cho mọi response.
-- **Cổng mã gia đình khi chưa có R2 (hiện tại):** mã và khoá nằm ở biến môi trường, không có `families.json`. `FAMILY_CODES` (các mã cách nhau dấu phẩy, mỗi mã ≥ 10 ký tự sau khi bỏ dấu cách và dấu gạch; chữ hoa không phân biệt) và `SESSION_SECRET` (≥ 32 ký tự). Không đặt hai biến ở máy dev/test: không có cổng; production thiếu hoặc sai: trả 503, không phục vụ gì. `POST /api/session { code }` kiểm Origin, so mã (thời gian không phụ thuộc mã gần đúng) và đặt cookie `tutor_family` httpOnly, Secure ở production, SameSite=Lax, 1 năm; giá trị cookie là `v1.<hạn>.<dấu vân tay của mã>.<chữ ký HMAC-SHA256>`, không chứa mã. Bỏ một mã khỏi `FAMILY_CODES` thì cookie của mã đó hết hiệu lực, đổi `SESSION_SECRET` thì hết hiệu lực toàn bộ. Sai 5 lần trong 10 phút thì khoá địa chỉ đó 10 phút (đếm trong bộ nhớ từng instance, chỉ làm chậm; độ dài mã mới là phòng thủ chính). `proxy.ts` chạy trên mọi đường dẫn trừ `/_next/static`, `/_next/image`, `favicon.ico`; `/unlock` và `/api/session` được cho qua trong code; tệp và API chưa có cookie nhận 401, trang nhận chuyển hướng tới `/unlock?next=…`; `/unlock` khi đã mở khoá chuyển về `next`. Trang phụ huynh và mọi tệp dưới `/content`, `/sounds` nằm sau cùng cổng. Khi có đồng bộ R2, cơ chế dưới đây thay thế.
-- **Mã gia đình:** ≥ 10 ký tự ngẫu nhiên (không cần giới hạn số lần thử). `POST /api/session { code }` → so với `codeHash` (scrypt + salt) → cookie `tutor_family` httpOnly, Secure, SameSite=Lax, JWT HS256 (`SESSION_SECRET`), hạn 1 năm, claim **chỉ** `{ familyId, epoch }`.
-- **Kiểm quyền mỗi API dữ liệu:** đọc `families.json` (cache trong function 60 giây) → gia đình còn tồn tại, `epoch` khớp, lấy `isAdmin` từ đây (không từ JWT). Đường dẫn dữ liệu phải thuộc `familyId` của cookie, không thì 403.
-- **Thu hồi:** `pnpm admin family:revoke` tăng `epoch` (hoặc xoá gia đình) → mọi cookie cũ nhận 401 trong ≤ 60 giây. Thu hồi toàn cục khẩn cấp: đổi `SESSION_SECRET`.
-- **PIN phụ huynh:** `POST /api/parent-session { pin }` → đọc `auth/<familyId>/pin.json` (không cache) → cookie `tutor_parent` (JWT `{ familyId, pinEpoch }`, hạn 30 phút; mỗi API cần PIN kiểm `pinEpoch` còn khớp). Sai 5 lần → khoá 15 phút; cập nhật `pinFails`/`lockUntil` bằng `If-Match`, 412 → đọc lại, thử lại tối đa 3 lần. Quên PIN → `pnpm admin pin:reset` (tăng `pinEpoch`). Tách file riêng để mỗi lần nhập sai không ghi vào `families.json` chung.
-- **PIN phụ huynh khi chưa có đồng bộ (hiện tại):** trang `/parent` chỉ đọc Dexie trên máy đang dùng. PIN 4–6 chữ số, nhập hai lần khi đặt, lưu dạng PBKDF2-HMAC-SHA256 có salt trong setting thiết bị (`src/progress/parent-pin.ts`; tự cài bằng TypeScript vì `crypto.subtle` không có khi mở qua http trong mạng LAN). Sai 5 lần → khoá 15 phút, lưu trong Dexie nên tải lại trang không gỡ khoá. Mở khoá chỉ giữ trong bộ nhớ 30 phút (tải lại trang là hỏi lại). Quên PIN → xoá dữ liệu trang web của app (mất luôn tiến độ trên máy). Khi có đồng bộ, PIN chuyển sang cơ chế server ở trên. Trang phụ huynh có nút tải bản sao lưu JSON tiến độ của từng con.
+- **Cổng mã gia đình:** mã và khoá nằm ở biến môi trường, không có cơ sở dữ liệu gia đình. `FAMILY_CODES` (các mục cách nhau dấu phẩy, mỗi mục viết `<familyId>:<mã>`, mã ≥ 10 ký tự sau khi bỏ dấu cách và dấu gạch; chữ hoa không phân biệt) và `SESSION_SECRET` (≥ 32 ký tự). Không đặt hai biến ở máy dev/test: không có cổng; production thiếu hoặc sai: trả 503, không phục vụ gì. `POST /api/session { code }` kiểm Origin, so mã (thời gian không phụ thuộc mã gần đúng) và đặt cookie `tutor_family` httpOnly, Secure ở production, SameSite=Lax, 1 năm; giá trị cookie là `v1.<hạn>.<dấu vân tay của mã>.<chữ ký HMAC-SHA256>`, không chứa mã. Bỏ một mã khỏi `FAMILY_CODES` thì cookie của mã đó hết hiệu lực, đổi `SESSION_SECRET` thì hết hiệu lực toàn bộ. Sai 5 lần trong 10 phút thì khoá địa chỉ đó 10 phút (đếm trong bộ nhớ từng instance, chỉ làm chậm; độ dài mã mới là phòng thủ chính). `proxy.ts` chạy trên mọi đường dẫn trừ `/_next/static`, `/_next/image`, `favicon.ico`; `/unlock` và `/api/session` được cho qua trong code; tệp và API chưa có cookie nhận 401, trang nhận chuyển hướng tới `/unlock?next=…`; `/unlock` khi đã mở khoá chuyển về `next`. Trang phụ huynh và mọi tệp dưới `/content`, `/sounds` nằm sau cùng cổng.
+- **Gia đình có tên:** `<familyId>` là 3 đến 32 chữ thường, chữ số hoặc dấu gạch, không bao giờ đổi sau khi gia đình đã đồng bộ (nó nằm trong khoá lưu trữ). Một gia đình có thể có nhiều mục; một mã nằm dưới hai id gia đình, hay một id sai dạng, làm cổng đóng và log ghi lý do. Mã không tên vẫn mở cổng nhưng máy dùng nó không có đồng bộ (`/api/sync` trả `sync-unavailable`). Id gia đình của một request chỉ lấy từ cookie; đường dẫn dữ liệu do `syncKey` ghép từ id đã kiểm, không bao giờ từ chữ của request. Thu hồi một mã: bỏ mục đó khỏi `FAMILY_CODES`, cookie của nó hết hiệu lực ở lần tải sau khi deploy (khẩn cấp: đổi `SESSION_SECRET`). Cookie cấp cho mã không tên vẫn dùng được sau khi mục đó được đặt tên.
+- **Cài đặt đồng bộ:** trong các setting chỉ dấu "đã xem tổng quan" của từng bài đi theo con; PIN phụ huynh, công tắc âm thanh, hồ sơ đang chọn thuộc riêng từng máy.
+- **PIN phụ huynh (riêng từng máy, không lên server):** trang `/parent` đọc Dexie trên máy đang dùng, kèm phần đã đồng bộ từ các máy khác. PIN 4–6 chữ số, nhập hai lần khi đặt, lưu dạng PBKDF2-HMAC-SHA256 có salt trong setting thiết bị (`src/progress/parent-pin.ts`; tự cài bằng TypeScript vì `crypto.subtle` không có khi mở qua http trong mạng LAN). Sai 5 lần → khoá 15 phút, lưu trong Dexie nên tải lại trang không gỡ khoá. Mở khoá chỉ giữ trong bộ nhớ 30 phút (tải lại trang là hỏi lại). Quên PIN → xoá dữ liệu trang web của app (mất phần chưa gửi lên của máy đó; phần đã đồng bộ tải lại sau khi nhập mã gia đình). Trang phụ huynh có nút tải và nút nhập bản sao lưu JSON tiến độ của từng con.
 - **Học lại bài (trang phụ huynh, không có ở màn hình của trẻ):** ở mục "Tiến độ bài học", mỗi bài đã có dữ liệu (phần đã học, lượt làm, thẻ ôn hoặc bài viết) có nút "Học lại bài này" (chữ đỏ `--color-destructive`, vùng chạm ≥ 48px). Nút mở bảng `Sheet` hai bước, không dùng `confirm()` của trình duyệt: bước 1 nói rõ sẽ xoá tiến độ các phần và vị trí đang học, dữ liệu ôn tập, các câu đã làm kể cả câu bỏ qua, bài viết đã nộp (và dấu "đã xem tổng quan" của bài), và rằng sticker vẫn được giữ, các bài khác không đổi; bước 2 nhắc tên bài và tên con, nói không hoàn tác được, nút đỏ "Xoá và học lại". "Hủy", nút "Đóng", Escape hay chạm ngoài ở bước nào cũng không xoá gì. Xong, trang hiện dòng "Đã cho <tên> học lại bài “<bài>”. Sticker vẫn được giữ." và số liệu tự cập nhật. Một hàm `resetLessonProgress` (`src/progress/reset.ts`) xoá trong một giao dịch Dexie; giữ sticker, ngày học (chuỗi), hồ sơ và cài đặt khác, các bài khác và các con khác; không lưu lịch sử. Mỗi bảng của schema phải khai báo xoá / giữ / không liên quan nên bảng mới thêm vào mà chưa phân loại làm typecheck và test hỏng.
 - **Ghi nội dung chung** (`POST/DELETE /api/content`): cần `isAdmin` **và** cookie `tutor_parent` hợp lệ.
 - **POST/PUT API** kiểm header `Origin` khớp domain app.
 - **SVG nạp nhanh:** lọc bằng DOMPurify (profile SVG) ở client trước khi gửi; server kiểm MIME, kích thước ≤ 200 KB, lưu vào bucket public; app **chỉ hiển thị qua `<img src>`** (trình duyệt không chạy script trong SVG nạp bằng `<img>`).
-- **Secrets** chỉ ở biến môi trường Vercel / `.env.local` (gitignore): `SESSION_SECRET`, `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_PRIVATE_BUCKET`, `R2_MEDIA_BUCKET`, `GEMINI_API_KEY`. Public: `NEXT_PUBLIC_MEDIA_BASE_URL`. Token R2 của app chỉ có quyền trên 2 bucket; admin CLI dùng token riêng.
+- **Secrets** chỉ ở biến môi trường Vercel / `.env.local` (gitignore), không biến nào là `NEXT_PUBLIC_*` trừ địa chỉ media: `SESSION_SECRET`, `FAMILY_CODES`, `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_PRIVATE_BUCKET`, `GEMINI_API_KEY`. Public: `NEXT_PUBLIC_MEDIA_BASE_URL`. Một token R2 duy nhất của app, chỉ có quyền Object Read & Write trên bucket `tutor-progress`; việc tải media lên bucket `tutor-media` dùng token rclone riêng. Token theo bucket chứ không theo tiền tố, nên mã là chốt chặn duy nhất giữa `dev/` và `prod/`: máy local không đặt `VERCEL_ENV`, và không bao giờ kéo biến production về tệp trên máy (runbook ở `docs/operations.md`). Test báo lỗi nếu tên `R2_*` xuất hiện trong bundle trình duyệt.
 
 ### 5.9 Offline và PWA
 - **Cài lên Màn hình chính (đã có; chưa có offline):** `src/app/manifest.ts` trả manifest (`display: standalone`, `start_url` và `scope` là `/`, tên và tên ngắn "Học từng bước" (`APP_NAME`, `APP_SHORT_NAME`; tên này cũng là `<title>` và mẫu tiêu đề `%s | Học từng bước`, `apple-mobile-web-app-title`, `og:site_name`), `lang: vi`, màu nền và màu theme theo token `--background`). Icon cú mèo 192, 512 và maskable 512, `apple-touch-icon` 180 và favicon (`src/app/favicon.ico` cùng `public/brand/favicon.svg`) vẽ từ `assets/brand/owl.svg` bằng `pnpm brand:images`, ra `public/brand/`. Thẻ iOS (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style: default`, `theme-color`) nằm ở layout gốc. Chưa có service worker và chưa cache gì: mở từ Màn hình chính vẫn cần mạng như mở trong Safari. Mọi hằng số (tên, màu, đường dẫn icon, `SITE_URL`) ở `src/lib/brand.ts`, nơi duy nhất; test so màu với `globals.css`.
-- **Mở từ Màn hình chính trên iOS:** vào `/`; chưa có cookie thì tới `/unlock?next=%2F`, nhập mã gia đình một lần rồi vào app. Cookie và IndexedDB của app ở Màn hình chính tách riêng khỏi Safari: hồ sơ và tiến độ tạo trong Safari không có trong app đã thêm, nên cài trước rồi mới tạo hồ sơ từ app đó (đến khi có đồng bộ).
+- **Mở từ Màn hình chính trên iOS:** vào `/`; chưa có cookie thì tới `/unlock?next=%2F`, nhập mã gia đình một lần rồi vào app. Cookie và IndexedDB của app ở Màn hình chính tách riêng khỏi Safari: hồ sơ và tiến độ tạo trong Safari không có sẵn trong app đã thêm. Có đồng bộ thì sau lần đồng bộ đầu app đó thấy cùng hồ sơ và tiến độ với Safari; chưa có (mã không tên, hay chưa đặt biến R2) thì cài trước rồi mới tạo hồ sơ từ app đó.
 - **Xem trước link:** layout gốc khai Open Graph và Twitter card (`og:type website`, `og:locale vi_VN`, tiêu đề và mô tả tiếng Việt, `og:url` và `og:image` là địa chỉ tuyệt đối theo `metadataBase = SITE_URL`). Ảnh 1200×630 `public/brand/share.png` vẽ cú mèo cạnh tên "Học từng bước" trên nền vũ trụ. Trình thu thập của Facebook, Messenger, Zalo, Telegram, iMessage không có cookie nên bị cổng chuyển tới `/unlock`; thẻ nằm ở layout gốc nên trang `/unlock` có đủ thẻ. `X-Robots-Tag: noindex` giữ nguyên, xem trước vẫn chạy.
-- **Offline (làm sau, cùng đồng bộ):** service worker (`@serwist/turbopack`) khi cài: precache app shell, **toàn bộ lesson JSON**, mọi visual chunk trong registry, font (Be Vietnam Pro, Baloo 2, KaTeX), TopoJSON bản đồ.
+- **Offline (làm sau, tách khỏi đồng bộ):** service worker (`@serwist/turbopack`) khi cài: precache app shell, **toàn bộ lesson JSON**, mọi visual chunk trong registry, font (Be Vietnam Pro, Baloo 2, KaTeX), TopoJSON bản đồ.
 - Trang bài/phần/ôn render phía client từ lesson JSON đã cache (không phụ thuộc cache RSC payload).
 - Không cache response 3xx và response `/api/*` trừ `GET /api/content` (network-first, fallback cache).
 - Video không precache; phát khi có mạng.
-- **iOS:** dữ liệu của PWA ngoài màn hình chính tách riêng khỏi Safari. Luồng `/install`: sync bắt buộc → hướng dẫn "Thêm vào Màn hình chính" → mở app → nhập mã gia đình → tiến độ tải về từ R2. `docs/operations.md` ghi hướng dẫn này.
+- **iOS:** dữ liệu của PWA ngoài màn hình chính tách riêng khỏi Safari. Đồng bộ không phụ thuộc offline: Dexie giữ mọi thứ khi mất mạng và đồng bộ bù khi có mạng lại. Luồng `/install` (hướng dẫn "Thêm vào Màn hình chính", mở app, nhập mã gia đình, tiến độ tải về) cùng offline và precache làm sau trong một hạng mục riêng; `/install` không đòi đồng bộ. `docs/operations.md` ghi cách cài.
 
 ### 5.10 Kênh nạp nội dung
 **Kênh chính (Claude Code):** tài liệu vào `sources/<subject>/<lesson-slug>/` → skill `lesson-author` sinh `content/…/lesson.json` → skill `lesson-visual` viết component trong `src/visuals/…` → `pnpm content:check` + `pnpm visual:shot` (Claude tự xem ảnh) → `pnpm content:lock` → quản trị viên xem ở máy → commit/push → Vercel deploy.
@@ -481,12 +484,12 @@ export function gradeNumeric(ex: NumericExercise, input: NumericInput): GradeRes
 
 | Mức | Công cụ | Phạm vi | Vị trí |
 |---|---|---|---|
-| Unit | Vitest (+ `fake-indexeddb` cho Dexie, stub `matchMedia`) | Schema; lint nội dung; chấm 8 dạng bài (NFC, input rỗng); rating; chọn thẻ ôn (bỏ id mồ côi, hỏi lại trong phiên); gộp tiến độ và chuyển `retired`; múi giờ; hash/verify mã; khoá PIN; sinh prompt (`z.toJSONSchema` không throw) | `tests/**` |
+| Unit | Vitest (+ `fake-indexeddb` cho Dexie, stub `matchMedia`) | Schema; lint nội dung; chấm 8 dạng bài (NFC, input rỗng); rating; chọn thẻ ôn (bỏ id mồ côi, hỏi lại trong phiên); gộp tiến độ (ba loại tài liệu, property test giao hoán, kết hợp, lũy đẳng) và chuyển `retired`; múi giờ; hash/verify mã; khoá PIN; sinh prompt (`z.toJSONSchema` không throw) | `tests/**` |
 | Component | Vitest + Testing Library | Mỗi dạng bài: đúng, và đủ 3 nấc sai ở cả hai nhánh (có visual gợi ý / fallback); bàn phím số; chạm-thay-kéo | `tests/exercises/**` |
 | Content | `pnpm content:check` | Schema, tham chiếu, ids.lock, overlay | trước `build` |
-| API | Vitest + BlobStore in-memory | session; revoke → 401; truy cập chéo gia đình → 403; ghi nội dung thiếu PIN → 403; sync 412 + gộp; tạo mới `If-None-Match`; snapshot; hạn mức AI; Origin sai → 403 | `tests/api/**` |
-| Tích hợp R2 | `pnpm test:r2` (chạy tay, bucket dev, hỏi trước) | `If-Match`/`If-None-Match` thật, lifecycle, CORS media | `tests/integration/**` |
-| E2E | Playwright, project `ipad` (820×1180, touch, WebKit) và `phone` (390×844); đồng hồ giả `page.clock` (cài trước `goto`, đổi ngày bằng `setSystemTime`) | Luồng học: chọn hồ sơ → học một phần → sai 3 lần → sticker → bấm "Ôn bài này" → câu sai được hỏi lại cuối phiên. Luồng mở khoá và offline cold start (reload lạnh khi offline, ôn thẻ từ 2 bài, online lại → sync) thuộc mốc Go-live. Một case với `reducedMotion: "reduce"` | `e2e/**` |
+| API | Vitest + BlobStore in-memory | session; revoke → 401; truy cập chéo gia đình → 403; ghi nội dung thiếu PIN → 403; `/api/sync` (412 và gộp, tạo mới `If-None-Match`, `shrink`, kẹp giờ, bản chụp, giới hạn tốc độ, Origin sai → 403); hạn mức AI | `tests/api/**` |
+| Store và R2 | Vitest: bộ test chung của `BlobStore` chạy trên `memory`, `fs` và adapter `r2` với bucket giả (request ký thật, trả lời như S3: 412, 304, ETag có ngoặc kép); `pnpm test:r2` (tuỳ chọn, chạy tay, hỏi trước) chạy bộ đó trên bucket thật | `If-Match` / `If-None-Match` thật; mọi khoá dưới `test/<run-id>/`, chỉ xoá khoá do chính lần chạy ghi, không đụng `prod/` hay `dev/`; thiếu biến R2 thì bỏ qua kèm thông báo, `pnpm test` không bao giờ ra mạng | `tests/sync/store/**`, `tests/integration/**` |
+| E2E | Playwright, project `ipad` (820×1180, touch, WebKit) và `phone` (390×844); đồng hồ giả `page.clock` (cài trước `goto`, đổi ngày bằng `setSystemTime`) | Luồng học: chọn hồ sơ → học một phần → sai 3 lần → sticker → bấm "Ôn bài này" → câu sai được hỏi lại cuối phiên. Luồng đồng bộ nhiều máy (`e2e/sync.spec.ts`: hai ngữ cảnh trình duyệt làm hai máy trên một server dev dùng store thư mục: hồ sơ và phần học sang máy kia, máy kia mất mạng rồi có lại, học lại một bài, nhập sao lưu, gia đình khác không thấy gì, máy mới tải lịch sử nhiều tháng). Luồng mở khoá có E2E riêng; offline cold start (reload lạnh khi offline, ôn thẻ từ 2 bài, online lại → sync) thuộc mốc Go-live. Một case với `reducedMotion: "reduce"` | `e2e/**` |
 | Bố cục tự động | Playwright trên mọi route (trừ `/dev/*`) | `scrollWidth <= clientWidth`; mọi phần tử tương tác **không nằm trong dòng chữ** có bounding box ≥ 48×48; vùng chạm trong dòng chữ kiểm line-height ≥ 2.3 ở chế độ chạm | `e2e/layout.spec.ts` |
 | Visual | `pnpm visual:shot` | Ảnh từng visual; không tràn khung, không chồng lấn; Claude xem ảnh | `.shots/` (gitignore) |
 
@@ -538,7 +541,7 @@ Yêu cầu: logic thuần (`src/{schema,srs,progress,exercises/grade}`) phủ �
 - E2E mở khoá và offline cold start xanh trên bản build production.
 - Chỉ số hiệu năng (mục Hiệu năng) đạt trên bản deploy.
 - Cài PWA ra màn hình chính iPad theo luồng `/install`, tiến độ tải về đúng.
-- Bản chụp hằng ngày có trên R2; lifecycle 180 ngày đã cấu hình; `pnpm test:r2` xanh.
+- Bản chụp hằng ngày có trên R2; lifecycle 180 ngày đã cấu hình; `pnpm test:r2` xanh (một lần, khi chủ dự án đồng ý).
 - Skill `tutor-admin`: tạo/thu hồi mã, reset PIN, khôi phục (có xác nhận).
 
 **Mốc "Đủ 3 môn"**

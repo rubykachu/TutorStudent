@@ -27,7 +27,7 @@ CONTENT_INCLUDE_DRAFT=1 pnpm dev --port 3001 # xem cả bài đang ở trạng t
 
 Tiến độ học lưu trong trình duyệt của từng máy (IndexedDB). Đồng bộ giữa các máy thuộc mốc Go-live.
 
-Máy dev không có cổng mã gia đình. Muốn thử cổng ở máy: đặt `FAMILY_CODES` và `SESSION_SECRET` (mẫu ở `.env.example`) rồi chạy bản production như `docs/operations.md` hướng dẫn. `pnpm test:e2e` tự mở thêm một dev server có cổng (cổng `TEST_PORT + 1000`, thư mục build `.next-gate`) cho `e2e/unlock.spec.ts`.
+Máy dev không có cổng mã gia đình. Muốn thử cổng ở máy: đặt `FAMILY_CODES` và `SESSION_SECRET` (mẫu ở `.env.example`) rồi chạy bản production như `docs/operations.md` hướng dẫn. `pnpm test:e2e` tự mở thêm một dev server có cổng (cổng `TEST_PORT + 1000`, thư mục build `.next-gate`) cho `e2e/unlock.spec.ts`, và một dev server thứ ba cho đồng bộ nhiều máy (cổng `TEST_PORT + 2000`, thư mục build `.next-sync`, store thư mục trong thư mục tạm của hệ thống) cho `e2e/sync.spec.ts`. Đồng bộ chỉ bật khi đặt bốn biến `R2_*` (xem `docs/operations.md`, "Đồng bộ tiến độ giữa các máy"); không đặt thì app chạy như chưa có đồng bộ.
 
 ## Soạn bài mới
 
@@ -75,6 +75,7 @@ Soạn bằng Sonnet; review vòng 1–2 bằng Opus, từ vòng 3 bằng Sonnet
 | `pnpm lint` / `pnpm format` | Kiểm tra / sửa định dạng (Biome) |
 | `pnpm typecheck` | Kiểm tra kiểu TypeScript |
 | `pnpm test` / `pnpm test:e2e` | Unit test (Vitest) / E2E (Playwright) |
+| `pnpm test:r2` | Bộ test của store trên bucket R2 thật, chỉ dưới `test/<mã chạy>/`; ghi ra ngoài máy nên chỉ chạy khi chủ dự án đồng ý |
 | `pnpm build` | Build production (chạy `content:check` trước) |
 | `pnpm content:check [--stats]` | Kiểm nội dung: schema, lint tiếng Việt, đáp án, id, cổng xuất bản |
 | `pnpm content:diff <bài>` | Liệt kê phần đổi so với bản đã review |
