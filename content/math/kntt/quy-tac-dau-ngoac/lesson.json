@@ -2508,7 +2508,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Số hạng dương có dấu + đứng trước. Số hạng đầu không ghi dấu thì coi như có dấu +, nên cũng là số hạng dương. Trong tổng này đó là +7, +3 và +6."
+        "text": "Số hạng dương có dấu + đứng trước. Số hạng đầu 7 không ghi dấu thì coi như có dấu +, nên cũng là số hạng dương. Vậy các số hạng dương là +7, +3 và +6."
       },
       "visualId": "quy-tac-dau-ngoac.visual.chon-duong-7-10",
       "validatorId": "chon-dung",
