@@ -1,7 +1,7 @@
 # Bàn giao: Bài 15 `quy-tac-dau-ngoac` (Quy tắc dấu ngoặc)
 
 ## Trạng thái
-- Cập nhật cuối: 02/10/2026. Bài đã qua review vòng 1–3, đọc hiểu Haiku, vòng video (Sonnet, 0 Nghiêm trọng, 0 Nên sửa), `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures (có video). Xong, chờ chủ dự án quyết ba góp ý video ở `review.md` mục "Vòng video" và việc tải media lên production.
+- Cập nhật cuối: 03/10/2026. Bài đã qua review vòng 1–3, đọc hiểu Haiku, vòng video (Sonnet, 0 Nghiêm trọng, 0 Nên sửa), rồi thêm phần cuối "Bài tập sách bài tập" (vòng 5 Opus, vòng 6 Sonnet, xem `review.md` mục "Vòng 5 và 6"), `content:hash --approve`, `content:lock`, `lesson:walk` 0 failures (có video). Xong, chờ chủ dự án quyết ba góp ý video ở `review.md` mục "Vòng video", các mục "Không sửa, ghi cho chủ dự án" của mục "Vòng 5 và 6", và việc tải media lên production.
 - Lời đọc giới thiệu: giọng Gemini Achird (đã đọc lại sau khi hạn mức hồi, thay bản VieNeu tạm). Phần giới thiệu viết "dấu cộng", "dấu trừ" bằng chữ vì giọng đọc nuốt ký hiệu "−".
 - Giọng cả bài: Hải Đăng (`video/projects/quy-tac-dau-ngoac/media.json`), xen kẽ với Bài 14 (Mỹ Duyên).
 - Ba video (đầu các phần 2, 3, 4): `bo-ngoac-dau-cong`, `bo-ngoac-dau-tru`, `ngoac-tru-so-am`, một ý mỗi video, không `checkpoint`, có `ask` và `think`.
@@ -15,6 +15,7 @@
 - [x] Review vòng 1 và 2 (Opus), đọc hiểu (Haiku).
 - [x] Review vòng 3 (Sonnet) và vòng video tới 0 Nghiêm trọng.
 - [x] `content:hash quy-tac-dau-ngoac --approve`, `content:lock quy-tac-dau-ngoac`, `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit`.
+- [x] Phần cuối `bookPractice` (section 13): 10 câu sách SBT 3.20a đến 3.25 (đủ tr.54), 15 câu dẫn, bốn khối "Nhắc lại", recap hai câu quy tắc ngoặc, 24 hình `sbt-*` ở `catalog.ts`; review, duyệt lại, khoá id, walk 0 failures. Không sửa section 1 đến 12, id, video, media.
 
 ## Mẹo đã thử bằng chương trình (không commit)
 - `dau-dau-tien` (viết thêm dấu + cho số đầu trong ngoặc, đổi dấu từng số hạng khi trước ngoặc có dấu −): 20 000 tổng ngẫu nhiên có ngoặc lồng nhau (tới 3 tầng) và số 0, bỏ ngoặc từ trong ra ngoài luôn giữ giá trị.
@@ -47,5 +48,5 @@
 ## Giả định (chủ dự án đang ngủ, không hỏi được)
 - Nguồn là sách bài tập, trang đáp án tr.112. Số trong bài tự chọn nhỏ hơn số của sách (bé học chậm); số lớn của 3.20 đến 3.23 chỉ giữ ở mức bài toán thật, còn lại đổi.
 - Không dạy ngoặc lồng nhau (sách không có). Mẹo vẫn được thử bằng chương trình trên cả biểu thức có ngoặc lồng nhau và số 0.
-- Bài 3.25 (giải thích tổng năm số) quá trừu tượng cho bé, bỏ. Bài 3.24 (tổng phần tử tập M) hỏi bằng lời "các số nguyên từ −4 đến 4", không dùng ký hiệu tập hợp vì bé chưa viết được.
+- Các section thường (1 đến 12) bỏ bài 3.25 (giải thích tổng năm số) vì quá trừu tượng cho bé, và hỏi bài 3.24 (tổng phần tử tập M) bằng lời "các số nguyên từ −4 đến 4", không dùng ký hiệu tập hợp vì bé chưa viết được. Phần cuối `bookPractice` chép đủ cả hai theo sách: 3.24 giữ ký hiệu `{x ∈ ℤ | −20 < x ≤ 20}` (hai câu dẫn và một khối nhắc đọc ký hiệu bằng lời), 3.25 thành câu sắp xếp các bước giải thích (`order`) với lời đề của sách và các bước bằng lời của bài.
 - Bộ sinh `lesson.json` và kết quả review ở scratchpad của phiên (`bai15/`) và `.shots/review/quy-tac-dau-ngoac/` (không commit).

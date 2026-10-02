@@ -12,7 +12,7 @@
   "title": "Quy tắc dấu ngoặc",
   "sourceRef": "Sách bài tập tr.53–54",
   "status": "published",
-  "reviewedHash": "6605aa0d3f5ad2c3e64d9f14d3764029371c509357dc6ee9c7169279cb87e406",
+  "reviewedHash": "513c75c0a2113cfd006b5d88882812f033281637e24abdc3c80b38fdc46a04ff",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học quy tắc bỏ dấu ngoặc. Bạn đưa cô bán hàng 100 nghìn đồng để trả túi hàng giá 30 nghìn, được giảm 10 nghìn. Bạn tính xem cô phải trả lại bạn bao nhiêu tiền?"
@@ -764,6 +764,138 @@
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.ghep-so-doi-xong",
         "caption": "Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Rồi cộng các số còn lại."
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.53–54 (bài 3.20 đến bài 3.25), lời giải tr.112",
+      "minutes": 20,
+      "bookPractice": true,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.20 và bài 3.21 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.sbt-nhac-lai-ngoac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.22 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Có khi ta nhóm từng cặp số hạng, mỗi cặp cho cùng một kết quả. Khi đó ta chỉ cần cộng các kết quả bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.nhom-cap-vi-du"
+            },
+            {
+              "type": "note",
+              "text": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.tinh-hop-li-vi-du-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.23 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hai số đối nhau cùng có mặt trong tổng thì cộng lại bằng 0, như 30 và −30. Số 0 cộng hay trừ vào tổng không làm tổng đổi."
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.so-doi-mat-nhau"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.24 và bài 3.25 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Trong bài 3.24, x ∈ ℤ nghĩa là x là số nguyên. Điều kiện −20 < x ≤ 20 nghĩa là x lớn hơn −20 và x nhỏ hơn hoặc bằng 20."
+            },
+            {
+              "type": "note",
+              "text": "Ghép từng cặp số đối nhau, mỗi cặp có tổng bằng 0. Rồi cộng các số còn lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "quy-tac-dau-ngoac.visual.ghep-so-doi"
+            },
+            {
+              "type": "note",
+              "text": "Nếu các số đều là 0 hay số dương thì tổng không thể âm, nên tổng âm thì có ít nhất một số âm. Cộng các số âm thì được số âm."
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "quy-tac-dau-ngoac.ex.dan-3-20a-am7-am5",
+        "quy-tac-dau-ngoac.ex.sbt-3-20a",
+        "quy-tac-dau-ngoac.ex.dan-3-20b-20-tru-am8",
+        "quy-tac-dau-ngoac.ex.dan-3-20b-18-tru-am25",
+        "quy-tac-dau-ngoac.ex.sbt-3-20b",
+        "quy-tac-dau-ngoac.ex.dan-3-21a-6-11",
+        "quy-tac-dau-ngoac.ex.dan-3-21a-20-35",
+        "quy-tac-dau-ngoac.ex.sbt-3-21a",
+        "quy-tac-dau-ngoac.ex.dan-3-21b-17-9",
+        "quy-tac-dau-ngoac.ex.sbt-3-21b",
+        "quy-tac-dau-ngoac.ex.dan-3-22a-21-27",
+        "quy-tac-dau-ngoac.ex.dan-3-22a-20-40",
+        "quy-tac-dau-ngoac.ex.sbt-3-22a",
+        "quy-tac-dau-ngoac.ex.dan-3-22b-26-12",
+        "quy-tac-dau-ngoac.ex.sbt-3-22b",
+        "quy-tac-dau-ngoac.ex.dan-3-23a-47-36",
+        "quy-tac-dau-ngoac.ex.sbt-3-23a",
+        "quy-tac-dau-ngoac.ex.dan-3-23b-90-55",
+        "quy-tac-dau-ngoac.ex.sbt-3-23b",
+        "quy-tac-dau-ngoac.ex.dan-3-24-dem-phan-tu",
+        "quy-tac-dau-ngoac.ex.dan-3-24-tong-b",
+        "quy-tac-dau-ngoac.ex.sbt-3-24",
+        "quy-tac-dau-ngoac.ex.dan-3-25-co-so-am",
+        "quy-tac-dau-ngoac.ex.dan-3-25-ba-so",
+        "quy-tac-dau-ngoac.ex.sbt-3-25"
+      ],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "quy-tac-dau-ngoac.visual.sbt-nhac-lai-ngoac",
+        "caption": "Trước ngoặc là dấu +: bỏ ngoặc đi, mỗi số hạng trong ngoặc vẫn giữ dấu cũ. Trước ngoặc là dấu −: bỏ ngoặc đi và đổi dấu từng số hạng trong ngoặc, không sót số hạng nào."
       }
     }
   ],
@@ -4028,6 +4160,1044 @@
       "check": {
         "expr": "8-6+6-8+3"
       }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-20a-am7-am5",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "(-7)+(-5)-9"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-20a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-ngoac-mot-so"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ngoặc ở đầu tổng và ngoặc sau dấu + đều giữ dấu cũ. Ta được −7 − 5 − 9, cả ba số hạng đều âm, nên tổng là −21.",
+        "tex": "\\begin{gathered} (-7) + (-5) - 9 \\\\ = -7 - 5 - 9 \\\\ = \\concept{pink}{-21} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -21
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-7-5-9"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-20a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ dấu ngoặc rồi tính các tổng sau (từ Bài 3.20 đến Bài 3.21):"
+        },
+        {
+          "type": "formula",
+          "tex": "(-28)+(-35)-92+(-82);"
+        }
+      ],
+      "bookRef": "SBT 3.20a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-20a",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-20a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ngoặc ở đầu tổng và ngoặc sau dấu + đều giữ dấu cũ. Ta được −28 − 35 − 92 − 82, cả bốn số hạng đều âm. Cộng 28 + 35 + 92 + 82 = 237 rồi viết dấu −, được −237.",
+        "tex": "\\begin{gathered} (-28) + (-35) \\\\ - 92 + (-82) \\\\ = -28 - 35 - 92 - 82 \\\\ = \\concept{pink}{-237} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -237
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-28-35-92-82"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-20b-20-tru-am8",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "20-(-8)-(+5)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-20b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-ngoac-mot-so"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trước ngoặc là dấu −, nên −(−8) thành +8 và −(+5) thành −5. Ta được 20 + 8 − 5 = 23.",
+        "tex": "\\begin{gathered} 20 - (-8) - (+5) \\\\ = 20 + 8 - 5 \\\\ = \\concept{lime}{23} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 23
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "20+8-5"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-20b-18-tru-am25",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "18-(-25)+(-40)-(+13)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-20b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-ngoac-mot-so"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc theo dấu đứng trước: 18 + 25 − 40 − 13. Cộng các số dương 18 + 25 = 43, cộng các số âm (−40) + (−13) = −53. Vậy tổng là 43 + (−53) = −10.",
+        "tex": "\\begin{gathered} 18 - (-25) \\\\ + (-40) - (+13) \\\\ = 18 + 25 - 40 - 13 \\\\ = \\concept{pink}{-10} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -10
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "18+25-40-13"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-20b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ dấu ngoặc rồi tính các tổng sau (từ Bài 3.20 đến Bài 3.21):"
+        },
+        {
+          "type": "formula",
+          "tex": "15-(-38)+(-55)-(+47)."
+        }
+      ],
+      "bookRef": "SBT 3.20b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-20b",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-20b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Trước ngoặc là dấu −, nên −(−38) thành +38 và −(+47) thành −47. Trước ngoặc là dấu +, nên +(−55) giữ là −55. Ta được 15 + 38 − 55 − 47 = 53 − 102 = −49.",
+        "tex": "\\begin{gathered} 15 - (-38) \\\\ + (-55) - (+47) \\\\ = 15 + 38 - 55 - 47 \\\\ = 53 - 102 \\\\ = \\concept{pink}{-49} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -49
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "15+38-55-47"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-21a-6-11",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "(6-11)-(4-12)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-21a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-nhieu-ngoac"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ngoặc ở đầu tổng giữ dấu cũ, ngoặc có dấu − đứng trước đổi dấu: 6 − 11 − 4 + 12. Cộng các số dương 6 + 12 = 18, cộng các số âm (−11) + (−4) = −15. Vậy tổng là 18 + (−15) = 3.",
+        "tex": "\\begin{gathered} (6 - 11) - (4 - 12) \\\\ = 6 - 11 - 4 + 12 \\\\ = \\concept{lime}{3} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "6-11-4+12"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-21a-20-35",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "(20-35)-(8-14+5)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-21a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-ngoac-ba-so"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ngoặc có dấu − đứng trước đổi dấu từng số hạng: 20 − 35 − 8 + 14 − 5. Cộng các số dương 20 + 14 = 34, cộng các số âm (−35) + (−8) + (−5) = −48. Vậy tổng là 34 + (−48) = −14.",
+        "tex": "\\begin{gathered} (20 - 35) \\\\ - (8 - 14 + 5) \\\\ = 20 - 35 - 8 \\\\ + 14 - 5 \\\\ = 34 - 48 \\\\ = \\concept{pink}{-14} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -14
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "20-35-8+14-5"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-21a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ dấu ngoặc rồi tính các tổng sau (từ Bài 3.20 đến Bài 3.21):"
+        },
+        {
+          "type": "formula",
+          "tex": "(62-81)-(12-59+9);"
+        }
+      ],
+      "bookRef": "SBT 3.21a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-21a",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-21a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc theo dấu đứng trước: 62 − 81 − 12 + 59 − 9. Cộng các số dương 62 + 59 = 121, cộng các số âm (−81) + (−12) + (−9) = −102. Vậy tổng là 121 + (−102) = 19.",
+        "tex": "\\begin{gathered} (62 - 81) \\\\ - (12 - 59 + 9) \\\\ = 62 - 81 - 12 \\\\ + 59 - 9 \\\\ = 121 - 102 \\\\ = \\concept{lime}{19} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 19
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "62-81-12+59-9"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-21b-17-9",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ ngoặc rồi tính."
+        },
+        {
+          "type": "formula",
+          "tex": "17+(9-21)-(30+17)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-21b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-tong-hop"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc theo dấu đứng trước: 17 + 9 − 21 − 30 − 17. Hai số 17 và −17 đối nhau, cộng lại bằng 0. Còn lại 9 − 21 − 30 = 9 − 51 = −42.",
+        "tex": "\\begin{gathered} 17 + (9 - 21) \\\\ - (30 + 17) \\\\ = 17 + 9 - 21 \\\\ - 30 - 17 \\\\ = 9 - 51 \\\\ = \\concept{pink}{-42} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -42
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "17+9-21-30-17"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-21b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bỏ dấu ngoặc rồi tính các tổng sau (từ Bài 3.20 đến Bài 3.21):"
+        },
+        {
+          "type": "formula",
+          "tex": "39+(13-26)-(62+39)."
+        }
+      ],
+      "bookRef": "SBT 3.21b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-21b",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-21b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Bỏ ngoặc theo dấu đứng trước: 39 + 13 − 26 − 62 − 39. Hai số 39 và −39 đối nhau, cộng lại bằng 0. Còn lại 13 − 26 − 62 = 13 − 88 = −75.",
+        "tex": "\\begin{gathered} 39 + (13 - 26) \\\\ - (62 + 39) \\\\ = 39 + 13 - 26 \\\\ - 62 - 39 \\\\ = 13 - 88 \\\\ = \\concept{pink}{-75} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -75
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "39+13-26-62-39"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-22a-21-27",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "21-23+25-27"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-22a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-hop-li"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhóm từng cặp số hạng, mỗi cặp bằng −2. Vậy tổng là −2 + (−2) = −4.",
+        "tex": "\\begin{gathered} 21 - 23 + 25 - 27 \\\\ = (21 - 23) \\\\ + (25 - 27) \\\\ = -2 + (-2) \\\\ = \\concept{pink}{-4} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -4
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "21-23+25-27"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-22a-20-40",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "20-24+28-32+36-40"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-22a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-hop-li"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhóm từng cặp số hạng, mỗi cặp bằng −4. Có ba cặp, nên tổng là −4 + (−4) + (−4) = −12.",
+        "tex": "\\begin{gathered} 20 - 24 + 28 \\\\ - 32 + 36 - 40 \\\\ = (20 - 24) + (28 - 32) \\\\ + (36 - 40) \\\\ = -4 + (-4) + (-4) \\\\ = \\concept{pink}{-12} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -12
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "20-24+28-32+36-40"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-22a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí (từ Bài 3.22 đến Bài 3.23):"
+        },
+        {
+          "type": "formula",
+          "tex": "32-34+36-38+40-42;"
+        }
+      ],
+      "bookRef": "SBT 3.22a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-22a",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-22a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhóm từng cặp số hạng: (32 − 34) + (36 − 38) + (40 − 42). Mỗi cặp bằng −2. Vậy tổng là −2 + (−2) + (−2) = −6.",
+        "tex": "\\begin{gathered} 32 - 34 + 36 \\\\ - 38 + 40 - 42 \\\\ = (32 - 34) \\\\ + (36 - 38) \\\\ + (40 - 42) \\\\ = -2 + (-2) + (-2) \\\\ = \\concept{pink}{-6} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -6
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "32-34+36-38+40-42"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-22b-26-12",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "26-(12-4)+(-14)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-22b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-ghep-tron-ngoac"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc có dấu −: 26 − 12 + 4 − 14. Ghép 26 với 4 được 30, ghép 12 với 14 được 26. Vậy tổng là 30 − 26 = 4.",
+        "tex": "\\begin{gathered} 26 - (12 - 4) \\\\ + (-14) \\\\ = 26 - 12 + 4 - 14 \\\\ = (26 + 4) \\\\ - (12 + 14) \\\\ = 30 - 26 \\\\ = \\concept{lime}{4} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "26-12+4-14"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-22b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí (từ Bài 3.22 đến Bài 3.23):"
+        },
+        {
+          "type": "formula",
+          "tex": "92-(55-8)+(-45)."
+        }
+      ],
+      "bookRef": "SBT 3.22b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-22b",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-22b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Bỏ ngoặc có dấu −: 92 − 55 + 8 − 45. Ghép 92 với 8 được 100, ghép 55 với 45 được 100. Vậy tổng là (92 + 8) − (55 + 45) = 100 − 100 = 0.",
+        "tex": "\\begin{gathered} 92 - (55 - 8) \\\\ + (-45) \\\\ = 92 - 55 + 8 - 45 \\\\ = (92 + 8) \\\\ - (55 + 45) \\\\ = 100 - 100 \\\\ = \\concept{amber}{0} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "92-55+8-45"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-23a-47-36",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "47-(36+47)-(9+0)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-23a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-tong-hop"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc có dấu −: 47 − 36 − 47 − 9 − 0. Hai số 47 và −47 đối nhau, cộng lại bằng 0, còn trừ 0 thì không đổi. Còn lại −36 − 9 = −45.",
+        "tex": "\\begin{gathered} 47 - (36 + 47) \\\\ - (9 + 0) \\\\ = 47 - 36 - 47 \\\\ - 9 - 0 \\\\ = -36 - 9 \\\\ = \\concept{pink}{-45} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -45
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "47-36-47-9-0"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-23a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí (từ Bài 3.22 đến Bài 3.23):"
+        },
+        {
+          "type": "formula",
+          "tex": "386-(287+386)-(13+0);"
+        }
+      ],
+      "bookRef": "SBT 3.23a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-23a",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-23a-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Bỏ ngoặc có dấu −: 386 − 287 − 386 − 13 − 0. Hai số 386 và −386 đối nhau, cộng lại bằng 0, còn trừ 0 thì không đổi. Còn lại −287 − 13 = −300.",
+        "tex": "\\begin{gathered} 386 - (287 + 386) \\\\ - (13 + 0) \\\\ = 386 - 287 - 386 \\\\ - 13 - 0 \\\\ = -287 - 13 \\\\ = \\concept{pink}{-300} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -300
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "386-287-386-13-0"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-23b-90-55",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí."
+        },
+        {
+          "type": "formula",
+          "tex": "90-(55+40-25)"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-23b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-ghep-tron-ngoac"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Bỏ ngoặc có dấu − và đổi dấu từng số hạng: 90 − 55 − 40 + 25. Ghép 90 với −40 được 50, ghép 25 với −55 được −30. Vậy tổng là 50 + (−30) = 20.",
+        "tex": "\\begin{gathered} 90 - (55 + 40 - 25) \\\\ = 90 - 55 - 40 + 25 \\\\ = (90 - 40) \\\\ + (25 - 55) \\\\ = 50 + (-30) \\\\ = \\concept{lime}{20} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 20
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "90-55-40+25"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-23b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí (từ Bài 3.22 đến Bài 3.23):"
+        },
+        {
+          "type": "formula",
+          "tex": "332-(681+232-431)."
+        }
+      ],
+      "bookRef": "SBT 3.23b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-23b",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-23b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Bỏ ngoặc có dấu − và đổi dấu từng số hạng: 332 − 681 − 232 + 431. Ghép 332 với −232 được 100, ghép 431 với −681 được −250. Vậy tổng là 100 + (−250) = −150.",
+        "tex": "\\begin{gathered} 332 - (681 + 232 \\\\ - 431) \\\\ = 332 - 681 \\\\ - 232 + 431 \\\\ = (332 - 232) \\\\ + (431 - 681) \\\\ = 100 + (-250) \\\\ = \\concept{pink}{-150} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -150
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "332-681-232+431"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-24-dem-phan-tu",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Kí hiệu x ∈ ℤ nghĩa là x là số nguyên. Điều kiện −3 < x ≤ 3 nghĩa là x lớn hơn −3 và x nhỏ hơn hoặc bằng 3."
+        },
+        {
+          "type": "note",
+          "text": "Cho tập hợp A = {x ∈ ℤ | −3 < x ≤ 3}. Tập hợp A có bao nhiêu phần tử?"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-24",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-dem-phan-tu"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số −3 không thuộc A vì x phải lớn hơn −3, còn số 3 thuộc A vì x được bằng 3. Các phần tử của A là −2, −1, 0, 1, 2, 3, tất cả có 6 số.",
+        "tex": "\\begin{gathered} A = \\{-2; -1; 0; \\\\ \\quad 1; 2; 3\\} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "3-(-3)"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-24-tong-b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Kí hiệu x ∈ ℤ nghĩa là x là số nguyên. Điều kiện −5 < x ≤ 5 nghĩa là x lớn hơn −5 và x nhỏ hơn hoặc bằng 5."
+        },
+        {
+          "type": "note",
+          "text": "Cho tập hợp B = {x ∈ ℤ | −5 < x ≤ 5}. Tính tổng các phần tử của B."
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-24",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.goi-y-ghep-doi"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "B gồm các số −4, −3, …, 4, 5. Ghép các cặp số đối nhau, mỗi cặp bằng 0, nên chỉ còn lại số 5. Vậy tổng là 5.",
+        "tex": "\\begin{gathered} (-4) + (-3) + \\ldots \\\\ + 4 + 5 \\\\ = 0 + 0 + \\ldots + 5 \\\\ = \\concept{lime}{5} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-4-3-2-1+0+1+2+3+4+5"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-24",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tổng các phần tử của tập hợp M = {x ∈ ℤ | −20 < x ≤ 20};"
+        }
+      ],
+      "bookRef": "SBT 3.24",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-24",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-24-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Các số nguyên x lớn hơn −20 và nhỏ hơn hoặc bằng 20 là −19, −18, …, 19, 20. Mỗi cặp số đối nhau như −19 và 19 có tổng bằng 0, còn số 0 cộng vào thì tổng không đổi. Chỉ còn lại số 20, nên tổng là 20.",
+        "tex": "\\begin{gathered} (-19) + (-18) + \\ldots \\\\ + 19 + 20 \\\\ = 0 + 0 + \\ldots \\\\ + 0 + 20 \\\\ = \\concept{lime}{20} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 20
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-19-18-17-16-15-14-13-12-11-10-9-8-7-6-5-4-3-2-1+0+1+2+3+4+5+6+7+8+9+10+11+12+13+14+15+16+17+18+19+20"
+      }
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-25-co-so-am",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba số nguyên có tổng là số âm. Điều nào dưới đây chắc chắn đúng?"
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-25",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-ba-so-tong-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nếu ba số đều là 0 hoặc số dương thì tổng của chúng không thể âm. Vậy ba số có tổng âm thì phải có ít nhất một số âm.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Chưa chắc: −5, 1, 2 có tổng −2 là số âm, nhưng chỉ có một số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Chưa chắc: −1, −2, −3 có tổng −6 là số âm, nhưng không có số dương nào."
+          },
+          {
+            "optionId": "d",
+            "text": "Chưa chắc: −4, −2, 1 có tổng −5 là số âm, nhưng không có số nào bằng 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Trong ba số có ít nhất một số âm."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Cả ba số đều là số âm."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Trong ba số có ít nhất một số dương."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Trong ba số có một số bằng 0."
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.dan-3-25-ba-so",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Có ba số nguyên. Cộng hai số nào trong ba số cũng được số âm."
+        },
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước để giải thích vì sao tổng của ba số là số âm."
+        }
+      ],
+      "leadsTo": "quy-tac-dau-ngoac.ex.sbt-3-25",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-hai-so-am"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong ba số, hai số bất kì có tổng âm, nên trong hai số đó có ít nhất một số âm, ta gọi là a. Hai số còn lại là b và c, có tổng b + c cũng âm. Vậy cả ba số cộng lại là a + (b + c), tổng của hai số âm."
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Chọn hai số bất kì. Tổng của chúng âm, nên có ít nhất một số âm, ta đặt tên là a."
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Bỏ a ra, còn hai số b và c. Theo đề bài, tổng b + c cũng âm."
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Cộng cả ba số chính là cộng a với b + c."
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "a và b + c đều âm, nên tổng của ba số là số âm."
+          }
+        }
+      ]
+    },
+    {
+      "id": "quy-tac-dau-ngoac.ex.sbt-3-25",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho năm số nguyên có tính chất: Tổng của ba số bất kì trong chúng luôn là số nguyên âm. Giải thích tại sao tổng của cả năm số đã cho cũng là số nguyên âm."
+        },
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước giải thích theo thứ tự đúng."
+        }
+      ],
+      "bookRef": "SBT 3.25",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "quy-tac-dau-ngoac.visual.sbt-goi-y-3-25",
+        "solutionVisualId": "quy-tac-dau-ngoac.visual.sbt-3-25-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Trong năm số, ba số bất kì có tổng âm, nên trong ba số đó phải có ít nhất một số âm. Ta tìm được hai số âm khác nhau là a và b, còn ba số còn lại có tổng s cũng âm. Vậy cả năm số cộng lại là a + b + s, tổng của ba số âm."
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Chọn ba số bất kì trong năm số. Tổng của chúng âm, nên có ít nhất một số âm, ta đặt tên là a."
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Bỏ a ra, còn bốn số. Chọn ba số trong bốn số này. Trong ba số này vẫn có một số âm, ta đặt tên là b."
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Bỏ cả a và b ra, còn đúng ba số. Theo đề bài, ba số này có tổng âm, ta gọi tổng đó là s."
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Cộng cả năm số chính là cộng a, b và s."
+          }
+        },
+        {
+          "id": "s5",
+          "content": {
+            "type": "text",
+            "text": "Vì a, b và s đều là số âm, nên tổng của năm số là số âm."
+          }
+        }
+      ]
     }
   ],
   "sticker": {

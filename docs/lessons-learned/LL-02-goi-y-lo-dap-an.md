@@ -14,6 +14,7 @@ Lần sai đầu, phần sáng lên chính là đáp án; hình gợi ý nấc 2
 - `uoc-chung-uoc-chung-lon-nhat` vòng 1, `ex.cat-8-12-tu-lam`: hình tương tác `cutTry` luôn bắt đầu ở độ dài 2, đúng một đáp án (2 là ước chung của 8 và 12), và dòng kết luận "... là ước chung" hiện cả khi làm bài, nên màn mở ra đã báo đáp án và mỗi lần bấm hình tự chấm. Hình dùng cho bài tập phải có trạng thái đầu không phải đáp án và không hiện lời kết luận trước khi trẻ nộp.
 - `on-tap-chuong-2` vòng 1, `ex.bai-2-56b`: câu chọn lý do ("Hợp số, vì là tổng của hai số chia hết cho 7 / 2 / 9"); hình nấc 2 `tn256b-goi-y` dùng số khác đề nhưng xét đúng số chia 2 và kết luận "Tổng chia hết cho 2 và lớn hơn 2: hợp số", tức chỉ thẳng lựa chọn đúng. Với câu chọn lý do, lý do trong hình cũng là đáp án; câu cùng dạng `bai-2-56a` tránh được vì hình xét số chia khác.
 - `phep-cong-phep-tru-so-nguyen` phần bài tập sách bài tập vòng 7 (Nghiêm trọng), `ex.dan-3-10-y-duong5`: hình gợi ý `so-doi-vi-du` có dòng "5 → −5" đúng số của đề (y = 5); đã đổi đề sang y = 9. Vòng 6 (Nên sửa): hình gợi ý của SBT 3.16 dùng đúng hai số của đề, chỉ đảo thứ tự; đổi sang hình "−6 − 4".
+- `quy-tac-dau-ngoac` phần bài tập sách bài tập vòng 5 (Nên sửa, hai mục): hình gợi ý `sbt-goi-y-khong-co-so-am` ("0 + 4 + 2 = ?") của câu chọn `dan-3-25-co-so-am` là chính lập luận của đáp án (đổi sang ba bộ ba số có tổng âm, dừng ở "?"); câu dẫn `dan-3-21a-20-35` không có cặp số đối mà hình gợi ý là "ghép số đối" (đổi sang hình cùng dạng ngoặc có dấu − ba số hạng).
 
 ## Nguyên nhân gốc
 

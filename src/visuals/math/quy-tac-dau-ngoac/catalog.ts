@@ -658,6 +658,376 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     "hint",
   ),
 
+  // 13. Workbook exercises (the book-practice section): the rule of the
+  // brackets, the worked solution of each exercise with its own numbers, and
+  // hints with other numbers that stop before the result.
+  "sbt-nhac-lai-ngoac": rows(
+    "Bỏ ngoặc: dấu + đứng trước thì giữ dấu cũ, dấu − đứng trước thì đổi dấu từng số hạng",
+    [
+      {
+        tex: steps(`6 + ${inside([4, -3])}`, `= 6\\ ${sg(4)}\\ ${sg(-3)}`),
+        tag: tag("dấu + trước ngoặc: giữ dấu cũ", NOTE),
+      },
+      {
+        tex: steps(`6 - ${inside([4, -3])}`, `= 6\\ ${flipped([4, -3])}`),
+        tag: tag("dấu − trước ngoặc: đổi dấu từng số hạng", NOTE),
+      },
+    ],
+  ),
+
+  "sbt-3-20a-giai": lines(
+    "Bỏ ngoặc, giữ dấu cũ: cả bốn số hạng đều âm",
+    [
+      { tex: steps("(-28) + (-35)", "- 92 + (-82)") },
+      {
+        tex: steps("= -28 - 35", "- 92 - 82"),
+        tag: tag("dấu + trước ngoặc: giữ dấu cũ", NOTE),
+      },
+      { tex: "= \\concept{pink}{-237}", tag: tag("cộng các số âm", NEGATIVE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-20b-giai": lines(
+    "Bỏ ngoặc theo dấu đứng trước, rồi cộng số dương và số âm",
+    [
+      { tex: steps("15 - (-38)", "+ (-55) - (+47)") },
+      {
+        tex: "= 15 + 38 - 55 - 47",
+        tag: tag("−(−38) thành +38, −(+47) thành −47", NOTE),
+      },
+      { tex: "= 53 - 102", tag: tag("cộng riêng số dương và số âm", NOTE) },
+      { tex: "= \\concept{pink}{-49}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-21a-giai": lines(
+    "Ngoặc đầu giữ dấu cũ, ngoặc có dấu − đổi dấu từng số hạng",
+    [
+      { tex: "(62 - 81) - (12 - 59 + 9)" },
+      {
+        tex: "= 62 - 81 - 12 + 59 - 9",
+        tag: tag("đổi dấu 12, −59, 9 trong ngoặc", NOTE),
+      },
+      { tex: "= 121 - 102", tag: tag("cộng riêng số dương và số âm", NOTE) },
+      { tex: "= \\concept{lime}{19}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-21b-giai": lines(
+    "Bỏ ngoặc rồi ghép hai số đối nhau 39 và −39",
+    [
+      { tex: steps("39 + (13 - 26)", "- (62 + 39)") },
+      {
+        tex: steps("= 39 + 13 - 26", "- 62 - 39"),
+        tag: tag("bỏ ngoặc theo dấu đứng trước", NOTE),
+      },
+      {
+        tex: steps("= (39 - 39) + 13", "- 26 - 62"),
+        tag: tag("39 và −39 cộng lại bằng 0", NOTE),
+      },
+      { tex: "= 13 - 88", tag: tag("26 + 62 = 88", NOTE) },
+      { tex: "= \\concept{pink}{-75}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-22a-giai": lines(
+    "Nhóm từng cặp số hạng, mỗi cặp bằng −2",
+    [
+      { tex: steps("32 - 34 + 36", "- 38 + 40 - 42") },
+      {
+        tex: steps("= (32 - 34) + (36 - 38)", "+ (40 - 42)"),
+        tag: tag("nhóm từng cặp", NOTE),
+      },
+      { tex: "= -2 + (-2) + (-2)" },
+      { tex: "= \\concept{pink}{-6}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-22b-giai": lines(
+    "Bỏ ngoặc, rồi ghép 92 với 8 và 55 với 45 thành hai số tròn trăm",
+    [
+      { tex: "92 - (55 - 8) + (-45)" },
+      { tex: "= 92 - 55 + 8 - 45", tag: tag("bỏ ngoặc", NOTE) },
+      {
+        tex: "= (92 + 8) - (55 + 45)",
+        tag: tag("ghép thành hai số tròn trăm", NOTE),
+      },
+      { tex: "= 100 - 100" },
+      { tex: "= \\concept{amber}{0}", tag: tag("hai số bằng nhau", SUM) },
+    ],
+    "steps",
+  ),
+  "sbt-3-23a-giai": lines(
+    "Bỏ ngoặc rồi ghép hai số đối nhau 386 và −386",
+    [
+      { tex: steps("386 - (287 + 386)", "- (13 + 0)") },
+      {
+        tex: steps("= 386 - 287 - 386", "- 13 - 0"),
+        tag: tag("bỏ ngoặc theo dấu −", NOTE),
+      },
+      {
+        tex: steps("= (386 - 386)", "- 287 - 13"),
+        tag: tag("386 và −386 cộng lại bằng 0, bỏ −0", NOTE),
+      },
+      { tex: "= \\concept{pink}{-300}", tag: tag("287 + 13 = 300", NOTE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-23b-giai": lines(
+    "Bỏ ngoặc, rồi ghép 332 với −232 và 431 với −681",
+    [
+      { tex: "332 - (681 + 232 - 431)" },
+      {
+        tex: steps("= 332 - 681", "- 232 + 431"),
+        tag: tag("đổi dấu từng số hạng trong ngoặc", NOTE),
+      },
+      {
+        tex: steps("= (332 - 232)", "+ (431 - 681)"),
+        tag: tag("ghép để có số tròn trăm", NOTE),
+      },
+      { tex: "= 100 + (-250)" },
+      { tex: "= \\concept{pink}{-150}" },
+    ],
+    "steps",
+  ),
+  "sbt-3-24-giai": lines(
+    "Các số nguyên từ −19 đến 20: ghép các cặp số đối nhau",
+    [
+      { tex: steps("(-19) + (-18) + \\ldots", "+ 18 + 19 + 20") },
+      {
+        tex: steps("= [(-19) + 19] + \\ldots", "+ [(-1) + 1] + 0 + 20"),
+        tag: tag("mỗi cặp số đối nhau bằng 0", NOTE),
+      },
+      { tex: "= 0 + 0 + \\ldots + 20" },
+      {
+        tex: "= \\concept{lime}{20}",
+        tag: tag("chỉ còn lại số 20", POSITIVE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-3-25-giai": lines(
+    "Ba số bất kì có tổng âm, nên lần lượt tìm được a, b và s đều âm",
+    [
+      {
+        tex: "a < 0",
+        tag: tag(
+          "chọn ba số bất kì: tổng âm, nên có ít nhất một số âm tên a",
+          NEGATIVE,
+        ),
+      },
+      {
+        tex: "b < 0",
+        tag: tag(
+          "bỏ a ra, chọn ba trong bốn số còn lại: vẫn có số âm tên b",
+          NEGATIVE,
+        ),
+      },
+      {
+        tex: "s < 0",
+        tag: tag("bỏ a và b ra, ba số còn lại có tổng s âm theo đề", NEGATIVE),
+      },
+      {
+        tex: "a + b + s < 0",
+        tag: tag("tổng năm số là tổng của ba số âm", SUM),
+      },
+    ],
+    "steps",
+  ),
+
+  "sbt-goi-y-3-20a": lines(
+    "Bỏ ngoặc có dấu + đứng trước rồi cộng các số âm",
+    [
+      { tex: steps("(-12) + (-5)", "- 8 + (-6)") },
+      {
+        tex: steps("= -12 - 5", "- 8 - 6"),
+        tag: tag("dấu + trước ngoặc: giữ dấu cũ", NOTE),
+      },
+      { tex: "= -31" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-20b": lines(
+    "Bỏ ngoặc theo dấu đứng trước từng ngoặc",
+    [
+      { tex: steps("30 - (-12)", "+ (-25) - (+9)") },
+      {
+        tex: "= 30 + 12 - 25 - 9",
+        tag: tag("−(−12) thành +12, −(+9) thành −9", NOTE),
+      },
+      { tex: "= 8" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-21a": lines(
+    "Ngoặc có dấu − đứng trước đổi dấu từng số hạng",
+    [
+      { tex: "(40 - 55) - (6 - 20 + 9)" },
+      {
+        tex: "= 40 - 55 - 6 + 20 - 9",
+        tag: tag("ngoặc có dấu − đổi dấu từng số hạng", NOTE),
+      },
+      { tex: "= -10" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-21b": lines(
+    "Bỏ ngoặc theo dấu đứng trước, rồi tìm hai số đối nhau",
+    [
+      { tex: "18 + (7 - 30) - (45 + 18)" },
+      {
+        tex: "= 18 + 7 - 30 - 45 - 18",
+        tag: tag("bỏ ngoặc theo dấu đứng trước", NOTE),
+      },
+      { tex: "= -68" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-22a": lines(
+    "Nhóm từng cặp số hạng rồi tính",
+    [
+      { tex: steps("11 - 14 + 17", "- 20 + 23 - 26") },
+      {
+        tex: steps("= (11 - 14) + (17 - 20)", "+ (23 - 26)"),
+        tag: tag("nhóm từng cặp", NOTE),
+      },
+      { tex: "= -9" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-22b": lines(
+    "Bỏ ngoặc rồi ghép các số thành số tròn chục",
+    [
+      { tex: "46 - (31 - 4) + (-29)" },
+      { tex: "= 46 - 31 + 4 - 29", tag: tag("bỏ ngoặc", NOTE) },
+      {
+        tex: "= (46 + 4) - (31 + 29)",
+        tag: tag("ghép thành hai số tròn chục", NOTE),
+      },
+      { tex: "= -10" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-23a": lines(
+    "Bỏ ngoặc rồi ghép hai số đối nhau",
+    [
+      { tex: steps("250 - (99 + 250)", "- (8 + 0)") },
+      {
+        tex: steps("= 250 - 99 - 250", "- 8 - 0"),
+        tag: tag("bỏ ngoặc", NOTE),
+      },
+      {
+        tex: steps("= (250 - 250)", "- 99 - 8"),
+        tag: tag("250 và −250 cộng lại bằng 0", NOTE),
+      },
+      { tex: "= -107" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-23b": lines(
+    "Bỏ ngoặc rồi ghép các số để có số tròn chục",
+    [
+      { tex: "125 - (95 + 70 - 45)" },
+      {
+        tex: "= 125 - 95 - 70 + 45",
+        tag: tag("đổi dấu từng số hạng trong ngoặc", NOTE),
+      },
+      {
+        tex: steps("= (125 - 70)", "+ (45 - 95)"),
+        tag: tag("ghép 125 với −70, ghép 45 với −95", NOTE),
+      },
+      { tex: "= 5" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-ghep-tron-ngoac": lines(
+    "Bỏ ngoặc rồi ghép các số thành số tròn chục",
+    [
+      { tex: "53 - (24 - 7) + (-26)" },
+      { tex: "= 53 - 24 + 7 - 26", tag: tag("bỏ ngoặc", NOTE) },
+      {
+        tex: "= (53 + 7) - (24 + 26)",
+        tag: tag("ghép thành hai số tròn chục", NOTE),
+      },
+      { tex: "= 10" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-dem-phan-tu": lines(
+    "Liệt kê các số nguyên x lớn hơn −2 và nhỏ hơn hoặc bằng 1",
+    [
+      {
+        tex: "-2 < x \\le 1",
+        tag: tag("−2 không thuộc, 1 thuộc", NOTE),
+      },
+      {
+        tex: "x \\in \\{-1;\\ 0;\\ 1\\}",
+        tag: tag("liệt kê rồi đếm", NOTE),
+      },
+      { tex: "3" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-24": lines(
+    "Các số nguyên từ −8 đến 9: ghép các cặp số đối nhau",
+    [
+      { tex: steps("(-8) + (-7) + \\ldots", "+ 8 + 9") },
+      {
+        tex: steps("= [(-8) + 8] + \\ldots", "+ [(-1) + 1] + 0 + 9"),
+        tag: tag("mỗi cặp số đối nhau bằng 0", NOTE),
+      },
+      { tex: "= 9" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-ba-so-tong-am": lines(
+    "Ba bộ ba số đều có tổng âm: điều gì luôn có ở cả ba bộ?",
+    [
+      { tex: "(-7) + 3 + 2 = -2", tag: tag("tổng âm", NEGATIVE) },
+      { tex: "(-3) + (-4) + (-1) = -8", tag: tag("tổng âm", NEGATIVE) },
+      { tex: "(-6) + (-1) + 5 = -2", tag: tag("tổng âm", NEGATIVE) },
+      { tex: "?" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-ngoac-ba-so": lines(
+    "Ngoặc có dấu − đứng trước đổi dấu từng số hạng",
+    [
+      { tex: "(30 - 42) - (9 - 15 + 7)" },
+      {
+        tex: steps("= 30 - 42 - 9", "+ 15 - 7"),
+        tag: tag("ngoặc có dấu − đổi dấu từng số hạng", NOTE),
+      },
+      { tex: "= -13" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-hai-so-am": lines(
+    "Ba số −4, 1, −3: tổng của hai số bất kì đều âm",
+    [
+      { tex: "(-4) + 1 = -3", tag: tag("âm", NEGATIVE) },
+      { tex: "1 + (-3) = -2", tag: tag("âm", NEGATIVE) },
+      { tex: "(-4) + (-3) = -7", tag: tag("âm", NEGATIVE) },
+      { tex: "(-4) + 1 + (-3) = -6" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-25": lines(
+    "Năm số −6, −5, −4, −1, 3: tổng của ba số bất kì đều âm",
+    [
+      {
+        tex: "3 + (-1) + (-4) = -2",
+        tag: tag("ba số này có tổng âm, trong đó có số âm", NEGATIVE),
+      },
+      {
+        tex: "(-6) + (-5) + 3 = -8",
+        tag: tag("ba số khác cũng có tổng âm, trong đó có số âm", NEGATIVE),
+      },
+      { tex: steps("(-6) + (-5) + (-4)", "+ (-1) + 3 = -13") },
+    ],
+    "hint",
+  ),
+
   sticker: { kind: "sticker" },
 };
 
