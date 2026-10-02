@@ -26,6 +26,7 @@ Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe
 | Toán | Bài 15 `quy-tac-dau-ngoac` (SBT print pages 53–54, solutions 112) | draft, being authored (handover [`lesson-quy-tac-dau-ngoac/task.md`](lesson-quy-tac-dau-ngoac/task.md)) | not done (no narration or video in this task) |
 | Toán | Bài 17 `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (SBT print pages 58–59, solutions 113) | draft, being authored (handover [`lesson-phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/task.md`](lesson-phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/task.md)); final alignment check against Bài 16 due once it is published | not done (no narration or video in this task) |
 | Toán | Bài 16 `phep-nhan-so-nguyen` (SBT print pages 55–57, solutions 112–113) | draft, being authored (handover [`lesson-phep-nhan-so-nguyen/task.md`](lesson-phep-nhan-so-nguyen/task.md)) | not done (no narration or video in this task) |
+| Toán | Ôn tập chương III (review lesson closing Chương III) | on hold by the owner: do not start until the owner resumes it | not started |
 | Ngữ văn | `neu-cau-muon-co-mot-nguoi-ban` | published | done |
 | Địa lí | none | waiting for the first textbook pages | not done |
 | Lịch sử, Khoa học tự nhiên | none | subjects added (locked on home until a lesson is published); waiting for textbook pages | not done |
@@ -54,7 +55,6 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 - "Mẹo hay" `tips.json` for Bài 8 to 11.
 - `explain` for the chapter I lessons (owner will ask later).
 - Chapter I interactive theory screens that do not yet use the guided "làm đúng mới Tiếp" mechanism.
-- Vercel project Node.js setting 24.x to 22.x; remove the old URL `tutor-delta-pink.vercel.app` from the R2 CORS rules once the owner confirms.
 - Owner feedback of 01/10/2026 (explanation after every answer, tips, overview tied to daily life, video pacing): [`feedback-2026-10-01-explain-tips-pacing/task.md`](feedback-2026-10-01-explain-tips-pacing/task.md). Next: `explain` for the four chapter II lessons, `tips.json` for Bài 8 to 11.
 - Owner feedback of 01/10/2026 (new sounds, avatars, section cards; the music box was dropped): [`feedback-2026-10-01-music-avatars/task.md`](feedback-2026-10-01-music-avatars/task.md).
 - Owner feedback of 01/10/2026 (sounds, stickers, background): [`feedback-2026-10-01-sounds-stickers-background/task.md`](feedback-2026-10-01-sounds-stickers-background/task.md).
