@@ -2,6 +2,46 @@
 
 Only what is true now and what comes next. History lives in git and `notebooks/backlogs/archive/`. Acceptance criteria of each milestone: `docs/spec.md`, "Tiêu chí thành công".
 
+## Current state and next steps
+
+### Production
+
+- URL: https://hoctungbuoc.vercel.app (Vercel project `tutor`). The old `nhaky.vercel.app` is removed; the Vercel default `tutor-delta-pink.vercel.app` remains. The media bucket's CORS allows only the hoctungbuoc origin (`docs/operations.md`). Last verified deploy: `acc5ca6`.
+- App name "Học từng bước" (`APP_NAME` in `src/lib/brand.ts`). Only math is visible: `content/subjects.json` has `visible: false` on the other four subjects. The grade picker is hidden because `VISIBLE_GRADES = [6]` in `src/lib/config.ts`.
+- Player work live: real media loading percentage, compact bottom bar on short (iPhone landscape) screens, overview narration mini-player, iOS gesture fix (the tap unlocks the media element).
+- Content live: lessons through chapter III Bài 17. Bài 11 and Bài 13 carry extra videos. The `on-tap-chuong-2` overview narration was re-read with abbreviations spoken in full. Where a row of the table below still says "awaiting upload" (Bài 13, Ôn tập chương II), production already has that media.
+- Abbreviations for TTS are expanded by `SPOKEN_ABBREVIATIONS` in `video/lib/text.ts`; `pnpm video:check` warns on an all-caps token that is not listed there.
+
+### Not pushed
+
+GitHub `main` was last pushed at `ec30934`; every later commit is local (36 commits up to the one that adds this section; the local `origin/main` ref is stale, so run `git ls-remote origin main` to confirm before pushing). Pushing needs the owner's approval.
+
+### In progress: progress sync
+
+Backlog [`progress-sync/`](progress-sync/task.md), the checklist in `task.md` is the source of truth.
+
+- Built: merge core with schemas, Dexie v3 with dirty-by-hash and apply-back, server `/api/sync` (GET, PUT, daily snapshot) with memory and folder stores, family ids from `FAMILY_CODES`.
+- Running: the client sync engine and its triggers. Its handover is at the top of that `task.md` once written; read it first.
+- Remaining: parent page items, multi-device e2e, the R2 adapter, security review, docs, rollout.
+- Rollout needs the owner's approval for each step: create ONE private bucket `tutor-progress` with key prefixes `prod/` and `dev/`, a token scoped to that bucket, Vercel env vars, and a deploy.
+
+### Owner decisions to keep
+
+- Keep the existing celebration sounds; they are free.
+- Do not re-voice existing videos or narrations, and do not add opening greetings to old videos. The blank first seconds of existing videos are accepted.
+- The `narration:build` default engine stays as is. Re-narrating an old lesson must force the engine recorded for that lesson.
+- Ôn tập chương III is on hold.
+- Offline and PWA precache is a later, separate backlog.
+
+### Open discussions
+
+- Confetti jank on some devices. Proposed: `canvas-confetti` with a worker, an adaptive particle count and a 0.2 to 0.3 s delay. Waiting for the owner to name the device; nothing is built.
+- Owner to test on a real iPhone or iPad: the Home Screen label is not truncated (fallback: set `short_name` to "Từng bước"), one tap plays the narration, the landscape mini-player works.
+
+### Deferred
+
+"Mẹo hay" for Bài 8 to 11; leftover review notes in the lesson handovers; the unused validator `dat-thua-so` (`src/visuals/math/phep-nhan-so-nguyen/logic.ts`); chapter IV onward.
+
 ## Lessons
 
 Source for Toán 6 tập 1 is the workbook (SBT) `/Users/minhtang/Documents/MyLe/NhaKy/Toan6-tap1.pdf`, printed page = PDF page − 1.
@@ -45,7 +85,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 6. First deploy ("usable now"): prepared locally, waiting for the owner. Family-code gate (`src/proxy.ts`, `/unlock`, `/api/session`, codes from `FAMILY_CODES`), media through `NEXT_PUBLIC_MEDIA_BASE_URL`, `vercel.json`, production build without `public/media` and with drafts left out, all verified. The owner approves and runs the external steps of [`docs/operations.md`](../../docs/operations.md): R2 bucket and CORS, upload of `public/media/`, Vercel project and env vars, push, smoke test on iPad Safari. Progress stays per device (IndexedDB) for now.
 6b. Full Go-live, after the first deploy: two R2 buckets (private, public), app and admin tokens, `snapshots/` lifecycle 180 days; `BlobStore` with R2 and in-memory adapters; `/api/parent-session`, `/api/sync`, family/epoch/isAdmin checks from `families.json`, PIN lock; Dexie to R2 sync engine (If-Match, snapshots, 1 MB limit, queue, `merge`, progress migration by `retired`); performance measurement (Lighthouse, iPad trace); `/install`, PWA with `@serwist/turbopack`, precache of all content; `pnpm admin` and skill `tutor-admin`; back up the narration caches (README, "Dọn dẹp và Go-live"). Each write outside this machine needs the owner's go-ahead.
 6c. After Bài 12 and Ôn tập chương II are done: `pnpm media:upload` then `pnpm deploy:prod`, per [`docs/operations.md`](../../docs/operations.md); needs the owner's approval for each external write.
-6d. Progress sync across devices ("đồng bộ ngầm, học tới đâu lưu tới đó" plus an import backup button): spec, plan and 19 tasks written, waiting for the owner's review of its open questions, see [`progress-sync/spec.md`](progress-sync/spec.md) ([`plan.md`](progress-sync/plan.md), [`task.md`](progress-sync/task.md)). Offline precache and `/install` stay a later, separate backlog. The sync must write a per-lesson reset marker from what `resetLessonProgress` returns, or merging brings reset progress back (`docs/spec.md`, merge rules); the reset itself is done and archived in [`archive/reset-lesson-progress/task.md`](archive/reset-lesson-progress/task.md).
+6d. Progress sync across devices ("đồng bộ ngầm, học tới đâu lưu tới đó" plus an import backup button): in progress, see "Current state and next steps" above and [`progress-sync/spec.md`](progress-sync/spec.md) ([`plan.md`](progress-sync/plan.md), [`task.md`](progress-sync/task.md)). Offline precache and `/install` stay a later, separate backlog. The sync must write a per-lesson reset marker from what `resetLessonProgress` returns, or merging brings reset progress back (`docs/spec.md`, merge rules); the reset itself is done and archived in [`archive/reset-lesson-progress/task.md`](archive/reset-lesson-progress/task.md).
 7. Later: AI feedback for open-ended writing (`AiReviewer` with a Gemini adapter, `/api/feedback`, per-family quota, self-tick fallback); quick-update channel for content (JSON schema to prompt, admin paste page, `/api/content`, overlays from R2).
 
 ## Open follow-ups
