@@ -76,13 +76,6 @@ import {
   regionsOf as intOpsRegions,
 } from "@/visuals/math/phep-cong-phep-tru-so-nguyen/catalog";
 import {
-  INTERACTIVE_KINDS as BRACKET_INTERACTIVE_KINDS,
-  LESSON_SLUG as BRACKET_SLUG,
-  VISUAL_SPECS as BRACKET_SPECS,
-  VALIDATOR_IDS as BRACKET_VALIDATOR_IDS,
-  regionsOf as bracketRegions,
-} from "@/visuals/math/quy-tac-dau-ngoac/catalog";
-import {
   INTERACTIVE_KINDS,
   mulTableRegions,
   LESSON_SLUG as NHAN_CHIA_SLUG,
@@ -111,6 +104,13 @@ import {
   solutions as divisibilitySolutions,
   validators as divisibilityValidators,
 } from "@/visuals/math/quan-he-chia-het-va-tinh-chat/logic";
+import {
+  INTERACTIVE_KINDS as BRACKET_INTERACTIVE_KINDS,
+  LESSON_SLUG as BRACKET_SLUG,
+  VISUAL_SPECS as BRACKET_SPECS,
+  VALIDATOR_IDS as BRACKET_VALIDATOR_IDS,
+  regionsOf as bracketRegions,
+} from "@/visuals/math/quy-tac-dau-ngoac/catalog";
 import {
   INTERACTIVE_KINDS as PRIME_INTERACTIVE_KINDS,
   LESSON_SLUG as PRIME_SLUG,
