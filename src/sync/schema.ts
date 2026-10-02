@@ -34,8 +34,8 @@ const DOC_SCHEMA_NAME: Record<DocKind, string> = {
 // Building blocks
 
 export const CHILD_ID_PATTERN = /^[0-9a-f]{32}$/;
-const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
-const DAY_PATTERN = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+export const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
+export const DAY_PATTERN = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
 const FamilyIdSchema = z.string().regex(FAMILY_ID_PATTERN);
 const ChildIdSchema = z.string().regex(CHILD_ID_PATTERN);

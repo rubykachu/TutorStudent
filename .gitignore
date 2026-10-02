@@ -24,6 +24,9 @@ playwright-report/
 test-results/
 .shots/
 
+# local progress-sync store (SYNC_STORE=fs:.sync-store)
+.sync-store/
+
 # deployment
 .vercel/
 
