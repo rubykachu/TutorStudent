@@ -11,11 +11,13 @@ Slice 4 (engine and triggers) is built; slice 5 and 6 are next. Working tree was
 - `e85bdc1`, `5791b5b` Task 11: the engine. `src/sync/cycle.ts` (one doc), `docs.ts` (adapters), `state.ts`, `client.ts`, `overwrite.ts`, `engine.ts` (`createSyncEngine(...).run({ full? })`). Tests `tests/sync/cycle.test.ts`, `engine.test.ts`, helpers `tests/sync/network.ts` (fake fetch answered by the real service over the memory store) and `devices.ts`.
 - `bd2bc6c` Task 12: `src/sync/scheduler.ts` (pure: one run at a time, a debounce of `SYNC_DEBOUNCE_MS`, a request during a run answered by one more run, nothing acts before a runner calls `start`), `src/sync/request.ts` (the app's engine and scheduler, `requestSync`, `syncNow`, `startSync`, Web Locks lock `tutor-sync` with `ifAvailable`, no lock when the API is missing), `src/sync/runner.tsx` (`SyncRunner`: full sync at start after `restoreClockOffset`, timer, `online`, `visibilitychange` hidden; draws nothing). Mounted in `src/app/(child)/layout.tsx` and `src/components/parent/parent-screen.tsx`. Call sites: `section-player.tsx` `advance` after `completeSection`, `review-player.tsx` effect when the session is over. Tests `tests/sync/scheduler.test.ts`, `runner.test.tsx`, `lock.test.ts`, `tests/learn/sync-triggers.test.tsx`.
 - `d05ce63` Task 13: `src/sync/history-pull.ts` (`pullHistory`, `pendingMonths`; newest first, one request at a time, `SYNC_HISTORY_PULL_PER_MINUTE` pacing, one lock per request, stops on `ENDS_RUN` failures, a missing month stays pending), started from `request.ts` after every run that ended `synced` or `partial` (own background job, never holds the scheduler). `src/components/parent/history-loading.tsx` placed after `StudyTime` in `child-report.tsx`. Tests `tests/sync/history-pull.test.ts`, `tests/components/parent/history-loading.test.tsx`.
+- `18e66bd` Task 14: `src/sync/status.ts` (`readSyncStatus`, `syncMessages`, `isFamilyMismatch`, `hasUnsentWork`), `src/sync/family-switch.ts` (`clearLocalFamilyData`: every table cleared except `settings`, which loses child rows and the family and active-profile device keys; the PIN and clock offset stay), `src/components/parent/sync-status.tsx` (placed under the header note of `parent-dashboard.tsx`; hidden until a server with sync on has answered), `family-switch-dialog.tsx`, `export-backup-button.tsx` and `panel.tsx` (pulled out of `child-report.tsx` so the guard shares them). Tests `tests/sync/status.test.ts`, `tests/components/parent/sync-status.test.tsx`; `e2e/parent.spec.ts` passes on both targets.
+- `b7883e7` flaky unlock E2E fix (test-only).
 - Gate green for each commit (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`; `tests/scripts/sources-import.test.ts` can time out under load, passes alone).
 
 ### Next steps, in order
 
-1. Task 14, Task 15, Task 16. Checkpoint A is done (`b7883e7` fixed the flaky unlock E2E, test-only).
+1. Task 15, Task 16. Checkpoint A is done (`b7883e7` fixed the flaky unlock E2E, test-only).
 
 ### Deviations from the spec
 
@@ -274,8 +276,8 @@ The unlock E2E was flaky on iPad WebKit under `--workers=2`: text typed before t
 On the parent page: "Đồng bộ lần cuối: <thời gian>" per device; plain messages for: not sent for more than 1 day while dirty, main doc above 70% of the cap, a doc too large, app too old, cookie rejected; the family switch guard with export buttons and "Dùng máy này cho gia đình mới" (two-step confirmation, `Sheet`, like the reset dialog). Vietnamese text, tokens from `docs/design-system.md`, touch targets ≥ 48px.
 
 Acceptance:
-- [ ] Component tests for each message state and for both guard branches (dirty: only export offered; clean: clear and pull after two confirmations; cancel at any step deletes nothing).
-- [ ] `pnpm test:e2e e2e/parent.spec.ts` still passes on `ipad` and `phone`.
+- [x] Component tests for each message state and for both guard branches (dirty: only export offered; clean: clear and pull after two confirmations; cancel at any step deletes nothing).
+- [x] `pnpm test:e2e e2e/parent.spec.ts` still passes on `ipad` and `phone`.
 
 Verify: `pnpm test tests/components/parent && pnpm test:e2e e2e/parent.spec.ts`
 
