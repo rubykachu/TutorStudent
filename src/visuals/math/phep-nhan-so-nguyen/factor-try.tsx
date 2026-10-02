@@ -60,8 +60,8 @@ export function rowTex(first: number, n: number): string {
 export function patternText(first: number): string | undefined {
   if (first === 0) return undefined;
   return first > 0
-    ? `Mỗi lần thừa số thứ hai giảm 1, tích giảm ${first}`
-    : `Mỗi lần thừa số thứ hai giảm 1, tích tăng ${-first}`;
+    ? `Mỗi lần số đứng sau dấu nhân giảm 1, tích giảm ${first}`
+    : `Mỗi lần số đứng sau dấu nhân giảm 1, tích tăng ${-first}`;
 }
 
 export function FactorTry({
@@ -106,7 +106,7 @@ export function FactorTry({
   return (
     <div className="flex w-full flex-col items-center gap-3">
       <ul
-        aria-label={`${spec.label}: ${factorTex(first)} nhân với thừa số thứ hai từ ${signed(start)} xuống ${signed(value)}`}
+        aria-label={`${spec.label}: ${factorTex(first)} nhân với số đứng sau dấu nhân từ ${signed(start)} xuống ${signed(value)}`}
         className="flex w-full max-w-xs flex-col gap-1"
       >
         {factors.map((n) => {
@@ -130,13 +130,13 @@ export function FactorTry({
         {...stateStepper(KEY, value)}
       >
         <legend className="mx-auto text-caption text-muted-foreground">
-          Thừa số thứ hai
+          Số đứng sau dấu nhân
         </legend>
         <div className="flex items-center gap-2">
           <button
             type="button"
             className={BUTTON}
-            aria-label="Giảm thừa số thứ hai 1 đơn vị"
+            aria-label="Giảm số đứng sau dấu nhân 1 đơn vị"
             {...stateStep(KEY, "down")}
             disabled={locked || value <= min}
             onClick={() => move(Math.max(value - 1, min))}
@@ -153,7 +153,7 @@ export function FactorTry({
           <button
             type="button"
             className={BUTTON}
-            aria-label="Tăng thừa số thứ hai 1 đơn vị"
+            aria-label="Tăng số đứng sau dấu nhân 1 đơn vị"
             {...stateStep(KEY, "up")}
             disabled={locked || value >= start}
             onClick={() => move(Math.min(value + 1, start))}

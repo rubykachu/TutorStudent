@@ -34,8 +34,8 @@ describe("JumpTry", () => {
 
   it("names the buttons and shows the amount of a jump", () => {
     render(<JumpTry spec={spec} params={{}} />);
-    const left = screen.getByRole("button", { name: "Sang trái 3 đơn vị" });
-    const right = screen.getByRole("button", { name: "Sang phải 3 đơn vị" });
+    const left = screen.getByRole("button", { name: "Sang trái 3 vạch" });
+    const right = screen.getByRole("button", { name: "Sang phải 3 vạch" });
     expect(left).toHaveTextContent("−3");
     expect(right).toHaveTextContent("+3");
   });
@@ -48,7 +48,7 @@ describe("JumpTry", () => {
     fireEvent.click(left);
     expect(onStateChange).toHaveBeenLastCalledWith({ p0: -6 });
     expect(
-      screen.getByText("Đã đi sang trái 2 lần, mỗi lần 3 đơn vị"),
+      screen.getByText("Đã đi sang trái 2 lần, mỗi lần 3 vạch"),
     ).toBeInTheDocument();
   });
 
@@ -75,10 +75,8 @@ describe("JumpTry", () => {
 
   it("words the walk", () => {
     expect(walkedText(0, 0, 3)).toBe("Chưa bấm lần nào");
-    expect(walkedText(0, 6, 3)).toBe("Đã đi sang phải 2 lần, mỗi lần 3 đơn vị");
-    expect(walkedText(2, -4, 2)).toBe(
-      "Đã đi sang trái 3 lần, mỗi lần 2 đơn vị",
-    );
+    expect(walkedText(0, 6, 3)).toBe("Đã đi sang phải 2 lần, mỗi lần 3 vạch");
+    expect(walkedText(2, -4, 2)).toBe("Đã đi sang trái 3 lần, mỗi lần 2 vạch");
   });
 });
 
@@ -91,9 +89,9 @@ describe("FactorTry", () => {
     goal: -1,
   } as const;
   const down = () =>
-    screen.getByRole("button", { name: "Giảm thừa số thứ hai 1 đơn vị" });
+    screen.getByRole("button", { name: "Giảm số đứng sau dấu nhân 1 đơn vị" });
   const up = () =>
-    screen.getByRole("button", { name: "Tăng thừa số thứ hai 1 đơn vị" });
+    screen.getByRole("button", { name: "Tăng số đứng sau dấu nhân 1 đơn vị" });
 
   it("opens on one row and reports the start", () => {
     const onStateChange = vi.fn();
@@ -111,7 +109,7 @@ describe("FactorTry", () => {
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
     expect(onStateChange).toHaveBeenLastCalledWith({ n: 1 });
     expect(
-      screen.getByText("Mỗi lần thừa số thứ hai giảm 1, tích giảm 3"),
+      screen.getByText("Mỗi lần số đứng sau dấu nhân giảm 1, tích giảm 3"),
     ).toBeInTheDocument();
     fireEvent.click(up());
     expect(screen.getAllByRole("listitem")).toHaveLength(2);
@@ -131,7 +129,7 @@ describe("FactorTry", () => {
     render(<FactorTry spec={{ ...spec, first: -3 }} params={{}} />);
     fireEvent.click(down());
     expect(
-      screen.getByText("Mỗi lần thừa số thứ hai giảm 1, tích tăng 3"),
+      screen.getByText("Mỗi lần số đứng sau dấu nhân giảm 1, tích tăng 3"),
     ).toBeInTheDocument();
   });
 
@@ -151,8 +149,12 @@ describe("FactorTry", () => {
   });
 
   it("describes the step of the pattern", () => {
-    expect(patternText(4)).toBe("Mỗi lần thừa số thứ hai giảm 1, tích giảm 4");
-    expect(patternText(-2)).toBe("Mỗi lần thừa số thứ hai giảm 1, tích tăng 2");
+    expect(patternText(4)).toBe(
+      "Mỗi lần số đứng sau dấu nhân giảm 1, tích giảm 4",
+    );
+    expect(patternText(-2)).toBe(
+      "Mỗi lần số đứng sau dấu nhân giảm 1, tích tăng 2",
+    );
   });
 });
 

@@ -58,7 +58,7 @@ export function walkedText(start: number, value: number, step: number): string {
   const moved = value - start;
   if (moved === 0) return "Chưa bấm lần nào";
   const times = Math.abs(moved) / step;
-  return `Đã đi sang ${moved > 0 ? "phải" : "trái"} ${times} lần, mỗi lần ${step} đơn vị`;
+  return `Đã đi sang ${moved > 0 ? "phải" : "trái"} ${times} lần, mỗi lần ${step} vạch`;
 }
 
 export function JumpTry({
@@ -109,7 +109,7 @@ export function JumpTry({
       <svg
         viewBox={lineViewBox(plan)}
         role="img"
-        aria-label={`${spec.label}: bắt đầu ở ${signed(start)}, điểm đang ở ${signed(value)}`}
+        aria-label={`${spec.label}: bắt đầu ở ${signed(start)}, chấm đang ở ${signed(value)}`}
         className="h-auto w-full max-w-md"
       >
         <LineAxis range={spec} plan={plan} marks={marks}>
@@ -128,13 +128,13 @@ export function JumpTry({
       >
         <legend className="mx-auto flex items-center gap-2 text-caption text-muted-foreground">
           <ConceptMark color={pointColor} className="size-4" />
-          Điểm đang đi
+          Chấm đang đi
         </legend>
         <div className="flex items-center gap-2">
           <button
             type="button"
             className={BUTTON}
-            aria-label={`Sang trái ${step} đơn vị`}
+            aria-label={`Sang trái ${step} vạch`}
             {...stateStep(KEY, "down")}
             disabled={locked || value <= spec.from}
             onClick={() => move(Math.max(value - step, spec.from))}
@@ -151,7 +151,7 @@ export function JumpTry({
           <button
             type="button"
             className={BUTTON}
-            aria-label={`Sang phải ${step} đơn vị`}
+            aria-label={`Sang phải ${step} vạch`}
             {...stateStep(KEY, "up")}
             disabled={locked || value >= spec.to}
             onClick={() => move(Math.min(value + step, spec.to))}
@@ -168,7 +168,7 @@ export function JumpTry({
         {walkedText(start, value, step)}
       </p>
       {met && !shown && <DoneLine>{done ?? "Xong rồi!"}</DoneLine>}
-      {met && shown && <ShownLine>{done ?? "Điểm đã tới đúng chỗ."}</ShownLine>}
+      {met && shown && <ShownLine>{done ?? "Chấm đã tới đúng chỗ."}</ShownLine>}
     </div>
   );
 }
