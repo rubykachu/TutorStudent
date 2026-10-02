@@ -104,9 +104,6 @@ export const MEDIA_BASE_URL: string = (
 // Family-code gate (`src/access/`, `src/proxy.ts`). The cookie that proves a
 // device entered a valid code, and how long it stays valid.
 export const ACCESS_COOKIE_NAME = "tutor_family";
-// A family id: the name before the colon in a `FAMILY_CODES` entry; it names
-// the family's folder in the progress store.
-export const FAMILY_ID_PATTERN = /^[a-z0-9-]{3,32}$/;
 export const ACCESS_SESSION_DAYS = 365;
 // A code is compared after `normalizeCode`; shorter ones are refused when the
 // environment is read, because a short code can be guessed.
@@ -117,6 +114,9 @@ export const ACCESS_MIN_SECRET_LENGTH = 32;
 // the length of the code is what makes guessing hopeless.
 export const ACCESS_MAX_FAILS = 5;
 export const ACCESS_LOCK_MINUTES = 10;
+// A family id: the name before the colon in a `FAMILY_CODES` entry; it names
+// the family's folder in the progress store.
+export const FAMILY_ID_PATTERN = /^[a-z0-9-]{3,32}$/;
 
 // Progress sync (`src/sync/`, `src/app/api/sync/`). A synced doc may be at
 // most this many bytes (family profile doc and a child's main doc), and the
@@ -141,3 +141,13 @@ export const SYNC_PROFILE_NAME_MAX_CHARS = 40;
 export const SYNC_INTERVAL_MINUTES = 5;
 export const SYNC_MAX_RETRIES = 3;
 export const SYNC_FUTURE_SKEW_MINUTES = 10;
+// Per family and per server instance, each minute: how many writes and how
+// many reads the sync route accepts (reads are mostly cheap "unchanged" polls
+// and the paced background pull of history).
+export const SYNC_PUT_LIMIT_PER_MINUTE = 30;
+export const SYNC_GET_LIMIT_PER_MINUTE = 120;
+// How long a server instance trusts its copy of a family's profile list, and
+// how much a request body may exceed its doc's cap (the JSON wrapper around
+// the doc).
+export const SYNC_PROFILE_CACHE_SECONDS = 60;
+export const SYNC_BODY_SLACK_BYTES = 4_096;

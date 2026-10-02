@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FailureLimiter } from "@/access/rate-limit";
+import { FailureLimiter, RequestLimiter } from "@/access/rate-limit";
 
 const MINUTE = 60_000;
 
@@ -53,5 +53,35 @@ describe("FailureLimiter", () => {
     l.clear("a");
     expect(l.fail("a")).toEqual({ locked: false });
     expect(l.fail("a")).toEqual({ locked: false });
+  });
+});
+
+describe("RequestLimiter", () => {
+  function counter(max = 3) {
+    const clock = { now: 0 };
+    return { clock, limiter: new RequestLimiter(max, MINUTE, () => clock.now) };
+  }
+
+  it("allows max requests per window, then says how long to wait", () => {
+    const { clock, limiter: l } = counter();
+    for (let i = 0; i < 3; i++) expect(l.hit("a")).toEqual({ allowed: true });
+    clock.now = 20_000;
+    expect(l.hit("a")).toEqual({ allowed: false, retryAfterSeconds: 40 });
+  });
+
+  it("counts each key apart and starts a new window after the minute", () => {
+    const { clock, limiter: l } = counter(1);
+    expect(l.hit("a")).toEqual({ allowed: true });
+    expect(l.hit("b")).toEqual({ allowed: true });
+    expect(l.hit("a").allowed).toBe(false);
+    clock.now = MINUTE;
+    expect(l.hit("a")).toEqual({ allowed: true });
+  });
+
+  it("sweeps stale keys so one-off keys do not pile up", () => {
+    const { clock, limiter: l } = counter(1);
+    for (let i = 0; i < 600; i++) l.hit(`k${i}`);
+    clock.now = 2 * MINUTE;
+    expect(l.hit("k0")).toEqual({ allowed: true });
   });
 });
