@@ -64,6 +64,9 @@ export const QUAD_SIDES = [
   ["D", "A"],
 ] as const;
 
+// Where along a side the chevrons sit when equal-side strokes mark its middle.
+const BESIDE_STROKES = 0.26;
+
 export type QuadOptions = {
   label: string;
   w?: number;
@@ -86,6 +89,9 @@ export type QuadOptions = {
   // The two diagonals, and what they show: nothing more (plain), equal
   // lengths, a right angle between them, or the middle of each.
   diagonals?: "plain" | "equal" | "perp" | "mid";
+  // Marks the point O where the diagonals cross, with its name, even when the
+  // diagonals themselves are not drawn.
+  centre?: boolean;
   texts?: readonly FigureText[];
   segs?: readonly FigureSeg[];
   nameShift?: Readonly<Record<string, Pt>>;
@@ -202,8 +208,11 @@ export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
   ];
   const segs: FigureSeg[] = [...(o.segs ?? [])];
   const ticks: FigureTick[] = o.sides ? [...SIDE_MARKS[o.sides]] : [];
+  // Chevrons move off the middle of the sides when strokes sit there.
   const arrows: FigureArrow[] = o.parallel
-    ? [...PARALLEL_MARKS[o.parallel]]
+    ? PARALLEL_MARKS[o.parallel].map((arrow) =>
+        o.sides ? { ...arrow, at: BESIDE_STROKES } : arrow,
+      )
     : [];
   const rights: FigureRight[] = [];
   const angles: FigureAngle[] = [];
@@ -282,6 +291,19 @@ export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
       );
     }
   }
+  if (o.centre && !pts.O) {
+    const meet = lineIntersection(
+      corner("A"),
+      corner("C"),
+      corner("B"),
+      corner("D"),
+    );
+    if (meet) {
+      pts.O = meet;
+      dots.push("O");
+      names.push("O");
+    }
+  }
   return {
     label: o.label,
     w,
@@ -308,6 +330,275 @@ export const textAt = (
   tone: Tone = "ink",
   anchor: FigureText["anchor"] = "middle",
 ): FigureText => ({ x, y, text, tone, anchor });
+
+// The figure with a length (or any text) written beside the side a-b, away
+// from the middle of the figure.
+export function labelSide(
+  figure: FigureSpec,
+  a: string,
+  b: string,
+  text: string,
+  tone: Tone = "ink",
+  gap = 17,
+): FigureSpec {
+  const points = Object.values(figure.pts);
+  const centre: Pt = [
+    points.reduce((sum, p) => sum + p[0], 0) / points.length,
+    points.reduce((sum, p) => sum + p[1], 0) / points.length,
+  ];
+  const pa = figure.pts[a] as Pt;
+  const pb = figure.pts[b] as Pt;
+  const mid = lerp(pa, pb, 0.5);
+  const [dx, dy] = [pb[0] - pa[0], pb[1] - pa[1]];
+  const length = Math.hypot(dx, dy) || 1;
+  // The normal that points away from the centre.
+  let normal: Pt = [-dy / length, dx / length];
+  if ((mid[0] - centre[0]) * normal[0] + (mid[1] - centre[1]) * normal[1] < 0) {
+    normal = [-normal[0], -normal[1]];
+  }
+  return {
+    ...figure,
+    texts: [
+      ...(figure.texts ?? []),
+      textAt(
+        mid[0] + normal[0] * (gap + text.length * 3),
+        mid[1] + normal[1] * (gap + text.length * 2),
+        text,
+        tone,
+      ),
+    ],
+  };
+}
+
+// The figure with a text written inside the corner `name`, towards the middle
+// of the figure (an unknown angle marked "?").
+export function textInCorner(
+  figure: FigureSpec,
+  name: string,
+  text: string,
+  tone: Tone = "violet",
+  distance = 36,
+): FigureSpec {
+  const points = Object.values(figure.pts);
+  const centre: Pt = [
+    points.reduce((sum, p) => sum + p[0], 0) / points.length,
+    points.reduce((sum, p) => sum + p[1], 0) / points.length,
+  ];
+  const corner = figure.pts[name] as Pt;
+  const length = Math.hypot(centre[0] - corner[0], centre[1] - corner[1]) || 1;
+  return {
+    ...figure,
+    texts: [
+      ...(figure.texts ?? []),
+      textAt(
+        corner[0] + ((centre[0] - corner[0]) / length) * distance,
+        corner[1] + ((centre[1] - corner[1]) / length) * distance,
+        text,
+        tone,
+      ),
+    ],
+  };
+}
+
+// An isosceles trapezoid ABCD (A top left, B top right, C bottom right, D
+// bottom left) with base angles `angle` at D and C, a bottom base of 200 and
+// legs of 90, fitted to the drawing. The marks are the ones of `quad`.
+export function isoTrapezoid(
+  label: string,
+  o: Size & {
+    angle: number;
+    names?: boolean;
+    fill?: Tone | true;
+    angles?: Partial<Record<QuadCorner, string>>;
+    // Chevrons on the two bases.
+    bases?: boolean;
+    texts?: readonly FigureText[];
+  },
+): FigureSpec {
+  const w = o.w ?? 300;
+  const h = o.h ?? 200;
+  const leg = 90;
+  const run = leg * Math.cos((o.angle * Math.PI) / 180);
+  const rise = leg * Math.sin((o.angle * Math.PI) / 180);
+  const pts = fitTo(
+    {
+      A: [run, 0],
+      B: [200 - run, 0],
+      C: [200, rise],
+      D: [0, rise],
+    },
+    w,
+    h,
+    o.names ? 26 : 14,
+  );
+  const angles: FigureAngle[] = Object.entries(o.angles ?? {}).map(
+    ([at, text]) => {
+      const i = CORNERS.indexOf(at as QuadCorner);
+      return {
+        at,
+        a: CORNERS[(i + 3) % 4] as string,
+        b: CORNERS[(i + 1) % 4] as string,
+        text,
+        tone: "violet" as Tone,
+        radius: 20,
+        textDistance: 40,
+      };
+    },
+  );
+  return {
+    label,
+    w,
+    h,
+    pts,
+    polys: [
+      {
+        v: CORNERS,
+        tone: "ink",
+        ...(o.fill ? { fill: o.fill === true ? "sky" : o.fill } : {}),
+      },
+    ],
+    ...(o.names ? { names: [...CORNERS] } : {}),
+    ...(angles.length > 0 ? { angles } : {}),
+    ...(o.bases
+      ? {
+          arrows: [
+            {
+              ...(PARALLEL_MARKS.bases[0] as FigureArrow),
+              tone: "slate" as Tone,
+            },
+          ],
+        }
+      : {}),
+    ...(o.texts ? { texts: o.texts } : {}),
+  };
+}
+
+// A parallelogram ABCD drawn from its diagonals, which cross at O: A and C lie
+// `first` units from O on one line, B and D `second` units on another that
+// makes `between` degrees with it (A top left, B top right, C bottom right, D
+// bottom left, clockwise).
+export function diagonalParallelogram(
+  label: string,
+  o: Size & {
+    first: number;
+    second: number;
+    between: number;
+    names?: boolean;
+    fill?: Tone | true;
+    // "none" leaves the diagonals out (the figure is the plain parallelogram).
+    diagonals?: "none" | "plain" | "mid";
+    texts?: readonly FigureText[];
+  },
+): FigureSpec {
+  const w = o.w ?? 300;
+  const h = o.h ?? 200;
+  const unit = 25;
+  const lean = 25;
+  const toC = polar(0, 0, o.first * unit, lean);
+  const toB = polar(0, 0, o.second * unit, lean - o.between);
+  const pts = fitTo(
+    {
+      A: [-toC[0], -toC[1]],
+      B: toB,
+      C: toC,
+      D: [-toB[0], -toB[1]],
+      O: [0, 0],
+    },
+    w,
+    h,
+    o.names ? 26 : 14,
+  );
+  const ticks: FigureTick[] =
+    o.diagonals === "mid"
+      ? [
+          {
+            segs: [
+              ["A", "O"],
+              ["O", "C"],
+            ],
+            count: 1,
+            tone: "blue",
+          },
+          {
+            segs: [
+              ["B", "O"],
+              ["O", "D"],
+            ],
+            count: 2,
+            tone: "blue",
+          },
+        ]
+      : [];
+  return {
+    label,
+    w,
+    h,
+    pts,
+    polys: [
+      {
+        v: CORNERS,
+        tone: "ink",
+        ...(o.fill ? { fill: o.fill === true ? "lime" : o.fill } : {}),
+      },
+    ],
+    ...(o.diagonals === "none"
+      ? {}
+      : {
+          segs: [
+            { a: "A", b: "C", tone: "amber" as Tone, bold: true },
+            { a: "B", b: "D", tone: "amber" as Tone, bold: true },
+          ],
+          dots: ["O"],
+        }),
+    ...(o.names
+      ? { names: o.diagonals === "none" ? [...CORNERS] : [...CORNERS, "O"] }
+      : {}),
+    ...(ticks.length > 0 ? { ticks } : {}),
+    ...(o.texts ? { texts: o.texts } : {}),
+  };
+}
+
+// Two or more straight lines on their own (rails, crossing lines), each given
+// as the two points it passes through, with chevrons on the listed lines.
+export function linesFigure(
+  label: string,
+  o: Size & {
+    lines: readonly (readonly [Pt, Pt])[];
+    // Index lists of lines marked parallel, one chevron count per group.
+    parallel?: readonly (readonly number[])[];
+    // Short strokes across the lines (the ties of a railway).
+    ties?: readonly (readonly [Pt, Pt])[];
+  },
+): FigureSpec {
+  const pts: Record<string, Pt> = {};
+  const segs: FigureSeg[] = [];
+  o.lines.forEach(([from, to], i) => {
+    pts[`l${i}a`] = from;
+    pts[`l${i}b`] = to;
+    segs.push({ a: `l${i}a`, b: `l${i}b`, bold: true });
+  });
+  (o.ties ?? []).forEach(([from, to], i) => {
+    pts[`t${i}a`] = from;
+    pts[`t${i}b`] = to;
+    segs.push({ a: `t${i}a`, b: `t${i}b`, tone: "mute" });
+  });
+  return {
+    label,
+    w: o.w ?? 300,
+    h: o.h ?? 200,
+    pts,
+    segs,
+    ...(o.parallel
+      ? {
+          arrows: o.parallel.map((group, k) => ({
+            segs: group.map((i) => [`l${i}a`, `l${i}b`] as const),
+            count: k + 1,
+            tone: "slate" as Tone,
+          })),
+        }
+      : {}),
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Shapes that are not one of the four (for choices and for the exercises)
@@ -444,6 +735,7 @@ export function figure49(label: string): FigureSpec {
 export function hexagonDiagonals(
   label: string,
   fill?: { v: readonly string[]; tone: Tone },
+  o: { nameO?: boolean } = {},
 ): FigureSpec {
   const names = ["A", "B", "C", "D", "E", "F"];
   const corners = regularPoints(6, 160, 120, 100, 180);
@@ -465,7 +757,8 @@ export function hexagonDiagonals(
       { a: "B", b: "E" },
       { a: "C", b: "F" },
     ],
-    names,
+    names: o.nameO ? [...names, "O"] : names,
+    ...(o.nameO ? { dots: ["O"] } : {}),
   };
 }
 
@@ -555,14 +848,14 @@ export function figure413(
   label: string,
   o: { sides?: boolean } = {},
 ): FigureSpec {
-  const a: Pt = [30, 30];
-  const b: Pt = [270, 30];
-  const c: Pt = [270, 170];
-  const d: Pt = [30, 170];
+  const a: Pt = [30, 25];
+  const b: Pt = [270, 25];
+  const c: Pt = [270, 205];
+  const d: Pt = [30, 205];
   return {
     label,
     w: 300,
-    h: 200,
+    h: 230,
     pts: {
       A: a,
       B: b,
@@ -599,7 +892,11 @@ export function figure413(
 // corners of a parallelogram and B, C, D, A lie on its sides.
 export function figure414(
   label: string,
-  o: { diagonals?: boolean } = {},
+  o: {
+    // The two diagonals of EFPQ meet at O, each cut into equal halves, and the
+    // four corners of ABCD are right angles.
+    solution?: boolean;
+  } = {},
 ): FigureSpec {
   const pts: Record<string, Pt> = {
     A: [110, 147],
@@ -610,20 +907,57 @@ export function figure414(
     F: [160, 61.7],
     P: [285, 115],
     Q: [160, 168.3],
+    O: [160, 115],
   };
+  const corners = ["A", "B", "C", "D"];
   return {
     label,
     w: 320,
     h: 230,
     pts,
     polys: [{ v: ["E", "F", "P", "Q"] }, { v: ["A", "B", "C", "D"] }],
-    names: ["A", "B", "C", "D", "E", "F", "P", "Q"],
-    ...(o.diagonals
+    names: [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "P",
+      "Q",
+      ...(o.solution ? ["O"] : []),
+    ],
+    ...(o.solution
       ? {
           segs: [
             { a: "E", b: "P", tone: "amber" as Tone, bold: true },
             { a: "F", b: "Q", tone: "amber" as Tone, bold: true },
           ],
+          dots: ["O"],
+          ticks: [
+            {
+              segs: [
+                ["E", "O"],
+                ["O", "P"],
+              ],
+              count: 1,
+              tone: "blue" as Tone,
+            },
+            {
+              segs: [
+                ["F", "O"],
+                ["O", "Q"],
+              ],
+              count: 2,
+              tone: "blue" as Tone,
+            },
+          ],
+          rights: corners.map((at, i) => ({
+            at,
+            a: corners[(i + 3) % 4] as string,
+            b: corners[(i + 1) % 4] as string,
+            tone: "violet" as Tone,
+          })),
         }
       : {}),
   };

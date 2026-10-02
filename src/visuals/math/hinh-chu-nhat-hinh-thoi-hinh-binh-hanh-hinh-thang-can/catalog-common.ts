@@ -19,6 +19,8 @@ const KINDS: readonly QuadKind[] = [
   "thang-can",
 ];
 
+const DIAGONAL_KINDS: readonly QuadKind[] = ["chu-nhat", "thoi"];
+
 export const COMMON_SPECS: Record<string, VisualSpec> = {
   sticker: { kind: "sticker" },
   // The four shapes alone, no marks: "th-chu-nhat", "th-thoi",
@@ -29,9 +31,10 @@ export const COMMON_SPECS: Record<string, VisualSpec> = {
       small(quad(kind, { label: QUAD_NAME[kind], ...THUMB })),
     ]),
   ),
-  // The four shapes with their two diagonals drawn, no other marks.
+  // The rectangle and the rhombus with their two diagonals drawn, no other
+  // marks.
   ...Object.fromEntries(
-    KINDS.map((kind) => [
+    DIAGONAL_KINDS.map((kind) => [
       `th-${kind}-cheo`,
       small(
         quad(kind, {
