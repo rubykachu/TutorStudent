@@ -44,6 +44,7 @@ import {
 import { computeStreak } from "@/progress/streak";
 import { lessonsForSubject } from "@/progress/summary";
 import type { ContentIndex } from "@/schema/content";
+import { ExportBackupButton } from "./export-backup-button";
 import {
   formatDateTime,
   formatDayKey,
@@ -51,33 +52,8 @@ import {
   WEEKDAY_SHORT,
 } from "./format";
 import { HistoryLoading } from "./history-loading";
+import { CARD, Panel } from "./panel";
 import { ResetLessonDialog } from "./reset-lesson-dialog";
-
-const CARD = "flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-card md:p-6";
-
-function Panel({
-  title,
-  note,
-  children,
-  label,
-}: {
-  title: string;
-  note?: string;
-  children: ReactNode;
-  label: string;
-}) {
-  return (
-    <section className={CARD} aria-label={label} data-parent-panel={label}>
-      <div className="flex flex-col gap-1">
-        <h2 className="font-heading text-block font-bold md:text-block-lg">
-          {title}
-        </h2>
-        {note && <p className="text-caption text-muted-foreground">{note}</p>}
-      </div>
-      {children}
-    </section>
-  );
-}
 
 function Empty({ children }: { children: ReactNode }) {
   return <p className="text-muted-foreground">{children}</p>;
@@ -532,46 +508,14 @@ function Writings({
 // ---------------------------------------------------------------------------
 // Backup
 
-function download(fileName: string, text: string): void {
-  const url = URL.createObjectURL(
-    new Blob([text], { type: "application/json" }),
-  );
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = fileName;
-  document.body.append(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-}
-
 function Backup({ profile }: { profile: ProfileRecord }) {
-  const [busy, setBusy] = useState(false);
-  async function handleExport() {
-    setBusy(true);
-    const at = now();
-    const backup = await buildProgressExport(appDb(), profile, at);
-    download(
-      progressExportFileName(profile.name, vnDayKey(at)),
-      JSON.stringify(backup, null, 2),
-    );
-    setBusy(false);
-  }
   return (
     <Panel
       label="Sao lưu"
       title="Sao lưu tiến độ"
       note="Tiến độ hiện chỉ nằm trên máy này. Thỉnh thoảng hãy tải một bản sao lưu để giữ lại."
     >
-      <BigButton
-        variant="secondary"
-        onClick={handleExport}
-        disabled={busy}
-        className="md:w-auto md:self-start"
-      >
-        <Download aria-hidden className="size-6" />
-        Tải bản sao lưu (JSON)
-      </BigButton>
+      <ExportBackupButton profile={profile} />
     </Panel>
   );
 }

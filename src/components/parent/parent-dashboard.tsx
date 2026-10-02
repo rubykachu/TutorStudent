@@ -8,6 +8,7 @@ import { PROFILES_PATH } from "@/lib/routes";
 import { useProfiles } from "@/progress/hooks";
 import { closeParentSession } from "@/progress/parent-session";
 import { ChildReport } from "./child-report";
+import { SyncStatus } from "./sync-status";
 
 const HEADER_ACTION =
   "flex h-12 shrink-0 items-center gap-2 rounded-full border-2 border-border bg-surface px-3 text-caption font-semibold transition-transform duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none";
@@ -45,6 +46,7 @@ export function ParentDashboard() {
         Số liệu lấy từ tiến độ lưu trên máy này. Con học trên máy khác thì phần
         đó chưa hiện ở đây.
       </p>
+      <SyncStatus />
       {profiles && profiles.length === 0 && (
         <p className="rounded-lg bg-surface p-4 shadow-card md:p-6">
           Máy này chưa có hồ sơ con nào.
