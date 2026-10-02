@@ -1,14 +1,16 @@
 # Tasks: offline support (service worker precache)
 
-Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: planned, not started. The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
+Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnight run). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
 
 ## Handover
 
-Next: Task 1. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: Task 2. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+
+Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. A kill switch (a self-unregistering worker deployable in place) is added as Task 4c and documented in `docs/operations.md` in Task 9. `pnpm content:check` currently fails on another agent's lesson in progress (`phep-cong-phep-tru-so-nguyen` review hash); not caused by this backlog.
 
 ### Done (commits, oldest first)
 
-None yet.
+- Task 1: `src/offline/routes.ts` (param functions shared with the five pages, `appPagePaths()`, `NOT_PRECACHED_ROUTES`), `tests/offline/routes.test.ts`.
 
 ### Rules for every task
 
@@ -29,9 +31,9 @@ Files: `src/offline/routes.ts` (new), the `generateStaticParams` of `src/app/(ch
 - `NOT_PRECACHED_ROUTES` lists route patterns left out, each with its reason: `/unlock`, `/dev/**`.
 
 Acceptance:
-- [ ] Each page's `generateStaticParams` returns what it returned before (test compares with `servedLessons()` and `loadSubjects()`).
-- [ ] A test walks `src/app/**/page.tsx` and fails when a route is neither produced by `appPagePaths()` nor listed in `NOT_PRECACHED_ROUTES`.
-- [ ] Gate plus `pnpm content:check` green.
+- [x] Each page's `generateStaticParams` returns what it returned before (test compares with `servedLessons()` and `loadSubjects()`).
+- [x] A test walks `src/app/**/page.tsx` and fails when a route is neither produced by `appPagePaths()` nor listed in `NOT_PRECACHED_ROUTES`.
+- [x] Gate green; `pnpm content:check` fails only on another agent's lesson in progress (review hash), none of this task's files.
 
 ## Task 2 (S): precache list builder and its build step
 
@@ -103,9 +105,24 @@ Acceptance:
 - [ ] Nothing registers the worker in the app yet (`grep` for `serviceWorker.register` finds only test code).
 - [ ] Gate green; dev server on 3001 untouched.
 
+## Task 4c (S): kill switch for a bad worker
+
+A broken worker on the child's iPad is the worst failure here, so there is a documented way to undo it without touching the device.
+
+Files: the worker build step 4b chose (a build flag), `src/offline/kill-switch.ts` or the equivalent script source, `next.config.ts` (the `Clear-Site-Data` header on the same script path), tests; the runbook goes into `docs/operations.md` in Task 9.
+
+- One flag (`OFFLINE_KILL_SWITCH=1` at build time, so a deploy can carry it) makes the worker script at the same public path a self-unregistering one: it takes over at once (`skipWaiting`), deletes every Cache Storage entry, calls `registration.unregister()` and reloads the open windows. Browsers fetch the script at that path on every update check (`no-cache`, `updateViaCache: "none"`), so a deploy with the flag reaches every device that opens or resumes the app.
+- Registration code stays unchanged; with no worker left, the app runs as before offline support existed.
+- `Clear-Site-Data: "cache", "storage"` is rejected: `"storage"` would also wipe IndexedDB, which holds the child's unsynced progress. If used at all it would be `"cache"` only (Cache Storage), on the worker script response; Chromium honours it, Safari does not, so the self-unregistering script is the real mechanism.
+
+Acceptance:
+- [ ] With the flag, the built script is the self-unregistering one; a lab run (Chromium) with a worker installed from the normal build, then the flag build served: the worker is gone, Cache Storage is empty, Dexie is intact, the app still loads online.
+- [ ] Unit test of the script's steps; the flag is off by default and a normal build never contains it.
+- [ ] Gate green.
+
 ### Checkpoint 2
 
-- [ ] Decision and evidence of 4a and the lab results of 4b written here. If the fallback was taken, `spec.md` Q1 gets a one-line note.
+- [ ] Decision and evidence of 4a, the lab results of 4b and 4c written here. If the fallback was taken, `spec.md` Q1 gets a one-line note.
 
 ## Task 5 (S): registration and update banner
 

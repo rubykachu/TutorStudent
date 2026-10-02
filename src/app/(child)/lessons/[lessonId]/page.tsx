@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import { servedLessons } from "@/content/load";
+import { lessonParams } from "@/offline/routes";
 import { LessonScreen } from "./lesson-screen";
 
 // Only served lessons exist; anything else is a 404.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return servedLessons().map((lesson) => ({ lessonId: lesson.id }));
+  return lessonParams();
 }
 
 // The lesson itself is fetched on the client from /content/<lessonId>.json,

@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import { servedLessons } from "@/content/load";
+import { lessonParams } from "@/offline/routes";
 import { ReviewScreen } from "./review-screen";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return servedLessons().map((lesson) => ({ lessonId: lesson.id }));
+  return lessonParams();
 }
 
 export default async function ReviewPage({

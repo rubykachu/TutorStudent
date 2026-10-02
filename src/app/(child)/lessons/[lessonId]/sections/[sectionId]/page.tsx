@@ -1,16 +1,12 @@
 import { notFound } from "next/navigation";
 import { servedLessons } from "@/content/load";
+import { sectionParams } from "@/offline/routes";
 import { SectionScreen } from "./section-screen";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return servedLessons().flatMap((lesson) =>
-    lesson.sections.map((section) => ({
-      lessonId: lesson.id,
-      sectionId: section.id,
-    })),
-  );
+  return sectionParams();
 }
 
 export default async function SectionPage({
