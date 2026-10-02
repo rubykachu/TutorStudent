@@ -39,7 +39,8 @@ function childTables(db: TutorDb) {
   ];
 }
 
-function listResets(db: TutorDb, childId: string) {
+// The child's reset markers, one per lesson.
+export function listResets(db: TutorDb, childId: string) {
   const { familyId } = localScope(childId);
   return db.lessonResets
     .where("[familyId+childId+lessonId]")
