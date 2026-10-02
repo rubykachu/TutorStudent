@@ -7,7 +7,7 @@
 - Đọc hiểu (Haiku): lượt 1 trên 116 mục chữ đổi (108 mục của `doc-hieu-r1-items.txt` cộng chữ đổi khi sửa vòng 2): 98 Hiểu rõ / 18 Hiểu mơ hồ / 0 Khó hiểu; viết lại 18 mục, lượt 2: 16 / 2 / 0; viết lại 2 mục, lượt 3: 2 / 0 / 0. Kết quả: `.shots/review/on-tap-chuong-3/doc-hieu-r2.md`, `doc-hieu-r2-2.md`, `doc-hieu-r2-3.md` (không commit)
 - `lesson:walk`: 0 FAIL, 0 cảnh báo (ipad, phone, ipad-landscape), ảnh trong `.shots/walk/on-tap-chuong-3/` (chỉ ảnh chụp sau bản sửa vòng 1; thư mục còn lẫn ảnh cũ, xem "Việc còn lại")
 - Kết luận: 0 Nghiêm trọng, 8 Nên sửa, 14 Góp ý. Đạt về nội dung, chờ sửa Nên sửa và Đọc hiểu trước khi duyệt
-- Bản đã review: `94dbb2d8cc14e98720235db20fbf58e437a8b4ab5740b5e788a20e2280a75b4b` (`pnpm content:diff` so với bản này)
+- Bản đã review: `c8cc57b4027bf7596118278a64228798594e4947f7421bba53269e459334166e` (`pnpm content:diff` so với bản này)
 
 ## Nghiêm trọng
 

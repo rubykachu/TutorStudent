@@ -203,8 +203,10 @@ window.LV = (() => {
     );
   };
 
-  // Each scene fades in at its start and out just before the next begins.
-  const scenes = (windows) => {
+  // Each scene fades in at its start and out `leave` seconds before the next
+  // begins (default 0.3). `leave: 0` fades it out only as the next scene
+  // starts, so the picture stays through the silence of a `pause`.
+  const scenes = (windows, { leave = 0.3 } = {}) => {
     windows.forEach(([selector, sid]) => {
       const el = $(selector);
       const t0 = start(sid);
@@ -215,7 +217,8 @@ window.LV = (() => {
         { autoAlpha: 1, duration: 0.35, immediateRender: false },
         t0,
       );
-      if (t1 < T.duration) tl.to(el, { autoAlpha: 0, duration: 0.3 }, t1 - 0.3);
+      if (t1 < T.duration)
+        tl.to(el, { autoAlpha: 0, duration: 0.3 }, t1 - leave);
     });
   };
 

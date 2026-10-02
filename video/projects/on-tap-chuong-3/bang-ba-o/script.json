@@ -1,0 +1,94 @@
+{
+  "title": "Bảng ba ô liền nhau có cùng tích",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-quy-tac",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta xem bảng ba ô liền nhau.",
+          "opening": true
+        },
+        {
+          "text": "Ba ô liền nhau nhân lại đều bằng 10."
+        }
+      ]
+    },
+    {
+      "id": "s02-vd",
+      "sentences": [
+        {
+          "text": "Ba ô đầu là âm 1, 5 và âm 2."
+        },
+        {
+          "text": "Âm 1 nhân 5 nhân âm 2 bằng 10."
+        }
+      ]
+    },
+    {
+      "id": "s03-hoi",
+      "sentences": [
+        {
+          "text": "Ô 2, ô 3, ô 4 cũng nhân lại bằng 10."
+        },
+        {
+          "text": "Bạn thử đoán xem: ô 4 là số nào?",
+          "pause": "ask"
+        },
+        {
+          "text": "5 nhân âm 2 bằng âm 10."
+        },
+        {
+          "text": "10 chia âm 10 bằng âm 1."
+        },
+        {
+          "text": "Ô 1 và ô 4 cùng nhân với âm 10 ra 10."
+        },
+        {
+          "text": "Vậy ô 4 là âm 1, bằng ô 1.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có cùng một số.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Tương tự, ô 5 là 5, ô 6 là âm 2."
+        },
+        {
+          "text": "Vậy ô 7 cũng là âm 1."
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có cùng một số.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "bang-ba-o",
+      "from": "s02-vd",
+      "to": "s05-nho",
+      "cardIds": ["on-tap-chuong-3.card.bang-tich"]
+    }
+  ]
+}

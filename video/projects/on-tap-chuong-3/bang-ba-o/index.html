@@ -1,0 +1,285 @@
+<!doctype html>
+<!--
+  Lesson video "Bảng ba ô liền nhau có cùng tích" (lesson on-tap-chuong-3):
+  cells 1, 2, 3 are -1, 5, -2 with product 10; cells 2, 3, 4 also multiply to 10, so
+  cell 4 is -1, equal to cell 1; hence cells 1, 4, 7 hold the same number.
+  Colours as in the lesson: positive numbers lime, negative numbers pink, the cells
+  1, 4, 7 and step labels violet. Built by `pnpm video:build on-tap-chuong-3 bang-ba-o`,
+  which injects window.TIMING. The rule cards carry `data-rule-text`: their text is the
+  lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Bảng ba ô liền nhau có cùng tích</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      .fm {
+        font:
+          800 72px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+      }
+      .fm.small {
+        font-size: 56px;
+      }
+      .pos {
+        color: var(--color-concept-lime);
+      }
+      .neg {
+        color: var(--color-concept-pink);
+      }
+      .chip.word {
+        font:
+          700 40px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .cell {
+        position: absolute;
+        width: 130px;
+        height: 120px;
+        margin-left: -65px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 22px;
+        border: 4px solid var(--color-concept-slate);
+        background: var(--color-surface);
+        font:
+          800 60px / 1 "Baloo 2",
+          sans-serif;
+      }
+      .cell small {
+        font:
+          700 24px / 1 "Be Vietnam Pro",
+          sans-serif;
+        color: var(--color-concept-slate);
+        margin-bottom: 6px;
+      }
+      .cell.key {
+        border-color: var(--color-concept-violet);
+      }
+      .cell.key small {
+        color: var(--color-concept-violet);
+      }
+      .cell .v {
+        min-height: 60px;
+      }
+      .rule {
+        position: absolute;
+        left: 100px;
+        width: 1080px;
+        top: 30px;
+        padding: 20px 32px;
+        font:
+          600 30px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+        text-wrap: balance;
+      }
+      .qm {
+        font:
+          800 60px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-concept-violet);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="75"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="c1" class="row" style="top: 90px">
+            <span class="chip word" style="--c: var(--color-concept-violet)"
+              >ba ô liền nhau · tích 10</span
+            >
+          </div>
+          <div id="st1"></div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="st2"></div>
+          <div id="f2" class="row fm small" style="top: 330px">
+            <span>(<span class="neg">−1</span>)</span><span>·</span
+            ><span class="pos">5</span><span>·</span
+            ><span>(<span class="neg">−2</span>)</span><span>=</span
+            ><span>10</span>
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="st3"></div>
+          <div id="f3" class="row fm small" style="top: 200px">
+            <span class="pos">5</span><span>·</span
+            ><span>(<span class="neg">−2</span>)</span><span>·</span
+            ><span class="res"
+              ><span id="x3v" class="neg">(−1)</span
+              ><span id="x3" class="qm">?</span></span
+            ><span>=</span><span>10</span>
+          </div>
+          <div id="g3" class="row fm small" style="top: 290px">
+            <span>5</span><span>·</span
+            ><span>(<span class="neg">−2</span>)</span><span>=</span
+            ><span class="neg">−10</span>
+          </div>
+          <div id="h3" class="row fm small" style="top: 380px">
+            <span>10</span><span>:</span
+            ><span>(<span class="neg">−10</span>)</span><span>=</span
+            ><span class="neg">−1</span>
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="rule4" class="card rule" data-rule-text>
+            Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có
+            cùng một số.
+          </div>
+          <div id="st4"></div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="rule5" class="card rule" data-rule-text>
+            Nếu ba ô liền nhau luôn có cùng tích khác 0, thì ô 1, ô 4, ô 7 có
+            cùng một số.
+          </div>
+          <div id="st5"></div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const {
+          $,
+          tl,
+          start,
+          W,
+          owl,
+          pop,
+          hide,
+          fade,
+          pose,
+          scenes,
+          finish,
+          color,
+        } = window.LV;
+        const VALUES = [-1, 5, -2, -1, 5, -2, -1];
+        const KEY = [1, 4, 7];
+        const LEFT = (n) => 270 + (n - 1) * 140;
+        // One strip of seven cells per scene, top `top`; `show` lists the cell numbers
+        // whose value is already written, the others are empty boxes.
+        const strip = (host, key, top, show) => {
+          const html = VALUES.map((v, i) => {
+            const n = i + 1;
+            const cls = KEY.includes(n) && key ? "cell key" : "cell";
+            const val = show.includes(n)
+              ? `<span class="v ${v < 0 ? "neg" : "pos"}" id="${host}v${n}">${v < 0 ? `−${-v}` : v}</span>`
+              : `<span class="v" id="${host}v${n}"></span>`;
+            return `<div id="${host}c${n}" class="${cls}" style="left: ${LEFT(n)}px; top: ${top}px"><small>ô ${n}</small>${val}</div>`;
+          }).join("");
+          $(`#${host}`).innerHTML = html;
+        };
+        strip("st1", false, 230, []);
+        strip("st2", false, 150, [1, 2, 3]);
+        strip("st3", false, 30, [1, 2, 3, 4]);
+        strip("st4", true, 230, [1, 2, 3, 4, 5, 6, 7]);
+        strip("st5", true, 230, [1, 2, 3, 4, 5, 6, 7]);
+
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-vd"],
+            ["#s3", "s03-hoi"],
+            ["#s4", "s04-quy-tac"],
+            ["#s5", "s05-nho"],
+          ],
+          { leave: 0 },
+        );
+
+        {
+          // title chip and the empty cells are on screen from the first frame of the scene
+          const sid = "s01-chao";
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+        }
+        {
+          const sid = "s02-vd";
+          hide(["#f2"]);
+          pose(bird, "idle", start(sid));
+          pop("#f2", W(sid, "nhân"), { from: 0.6 });
+        }
+        {
+          const sid = "s03-hoi";
+          hide(["#f3", "#g3", "#h3", "#x3v", "#st3v4"]);
+          pose(bird, "idle", start(sid));
+          pop("#f3", W(sid, "nhân"), { from: 0.6 });
+          tl.to(
+            ["#st3c2", "#st3c3", "#st3c4"],
+            { borderColor: color("concept-violet"), duration: 0.3 },
+            W(sid, "cũng"),
+          );
+          pop("#g3", W(sid, "5"), { from: 0.6 });
+          pop("#h3", W(sid, "chia"), { from: 0.6 });
+          tl.to(
+            "#st3c1",
+            { borderColor: color("concept-violet"), duration: 0.3 },
+            W(sid, "cùng"),
+          );
+          fade("#x3", W(sid, "vậy"), 0.2);
+          pop(["#x3v", "#st3v4"], W(sid, "vậy"), { from: 0.5 });
+          pose(bird, "happy", W(sid, "vậy"));
+        }
+        {
+          const sid = "s04-quy-tac";
+          hide(["#rule4", "#st4v5", "#st4v6", "#st4v7"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule4", start(sid) + 0.1, { from: 0.9 });
+          pop("#st4v5", W(sid, "5", 2), { from: 0.5 });
+          pop("#st4v6", W(sid, "6"), { from: 0.5 });
+          pop("#st4v7", W(sid, "vậy"), { from: 0.5 });
+        }
+        {
+          const sid = "s05-nho";
+          hide(["#rule5"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule5", W(sid, "nếu"), { from: 0.9 });
+          pose(bird, "cheer", W(sid, "nếu"));
+        }
+        finish();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<!--
+  Lesson video "Trừ một số là cộng với số đối" (lesson on-tap-chuong-3):
+  1 - (-3) = 1 + 3 = 4 because the opposite of -3 is 3, then 2 - 5 = 2 + (-5) = -3.
+  Colours as in the lesson: positive numbers lime, negative numbers pink, opposite
+  numbers sky, step labels violet. Built by `pnpm video:build on-tap-chuong-3 tru-so-doi`,
+  which injects window.TIMING. The rule cards carry `data-rule-text`: their text is the
+  lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Trừ một số là cộng với số đối</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .tag {
+        position: absolute;
+        white-space: nowrap;
+        transform: translateX(-50%);
+      }
+      .fm {
+        font:
+          800 84px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+      }
+      .fm.small {
+        font-size: 64px;
+      }
+      .pos {
+        color: var(--color-concept-lime);
+      }
+      .neg {
+        color: var(--color-concept-pink);
+      }
+      .opp {
+        color: var(--color-concept-sky);
+      }
+      .chip.word {
+        font:
+          700 44px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .chip.lab {
+        font:
+          700 34px / 1.2 "Be Vietnam Pro",
+          sans-serif;
+      }
+      .rule {
+        position: absolute;
+        left: 100px;
+        width: 1080px;
+        top: 135px;
+        padding: 20px 32px;
+        font:
+          600 30px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+        text-wrap: balance;
+      }
+      .res {
+        display: inline-grid;
+        justify-items: start;
+        min-width: 1.2em;
+      }
+      .res > * {
+        grid-area: 1 / 1;
+      }
+      .qm {
+        font:
+          800 84px / 1 "Baloo 2",
+          sans-serif;
+        color: var(--color-concept-violet);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="75"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div id="c1" class="row fm" style="top: 120px">
+            <span>1</span><span>−</span
+            ><span>(<span class="neg">−3</span>)</span><span>=</span
+            ><span class="qm">?</span>
+          </div>
+          <div
+            id="c2"
+            class="tag chip word"
+            style="left: 640px; top: 290px; --c: var(--color-concept-violet)"
+          >
+            phép trừ
+          </div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div class="row fm" style="top: 120px">
+            <span>1</span><span>−</span
+            ><span>(<span class="neg">−3</span>)</span><span>=</span
+            ><span class="qm">?</span>
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="rule3" class="card rule" data-rule-text>
+            Muốn trừ một số, ta cộng với số đối của số đó.
+          </div>
+          <div class="row fm small" style="top: 330px">
+            <span>1</span><span>−</span
+            ><span>(<span class="neg">−3</span>)</span><span>=</span
+            ><span class="qm">?</span>
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="o4" class="row" style="top: 60px; gap: 26px">
+            <span class="chip word" style="--c: var(--color-concept-sky)"
+              >số đối của <span class="neg">−3</span> là
+              <span class="opp">3</span></span
+            >
+          </div>
+          <div id="f4" class="row fm" style="top: 220px">
+            <span>1</span><span>−</span
+            ><span>(<span class="neg">−3</span>)</span>
+          </div>
+          <div id="g4" class="row fm" style="top: 340px">
+            <span>=</span><span>1</span><span>+</span><span class="opp">3</span
+            ><span id="h4">=</span><span id="i4" class="pos">4</span>
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="a5" class="row fm" style="top: 70px">
+            <span>2</span><span>−</span><span>5</span>
+          </div>
+          <div id="o5" class="row" style="top: 200px">
+            <span class="chip word" style="--c: var(--color-concept-sky)"
+              >số đối của 5 là <span class="opp">−5</span></span
+            >
+          </div>
+          <div id="b5" class="row fm" style="top: 330px">
+            <span>=</span><span>2</span><span>+</span
+            ><span class="opp">(−5)</span><span>=</span
+            ><span id="r5" class="neg">−3</span>
+          </div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="rule6" class="card rule" data-rule-text>
+            Muốn trừ một số, ta cộng với số đối của số đó.
+          </div>
+          <div id="m6" class="row fm small" style="top: 330px">
+            <span>1</span><span>−</span
+            ><span>(<span class="neg">−3</span>)</span><span>=</span
+            ><span>1</span><span>+</span><span class="opp">3</span><span>=</span
+            ><span class="pos">4</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, pose, scenes, finish } = window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-hoi"],
+            ["#s3", "s03-quy-tac"],
+            ["#s4", "s04-doi"],
+            ["#s5", "s05-thu"],
+            ["#s6", "s06-nho"],
+          ],
+          { leave: 0 },
+        );
+
+        {
+          // the expression is on screen from the first frame of the scene
+          const sid = "s01-chao";
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+        }
+        pose(bird, "idle", start("s02-hoi"));
+        {
+          const sid = "s03-quy-tac";
+          hide(["#rule3"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule3", start(sid) + 0.1, { from: 0.9 });
+        }
+        {
+          const sid = "s04-doi";
+          hide(["#o4", "#f4", "#g4", "#h4", "#i4"]);
+          pose(bird, "idle", start(sid));
+          pop("#f4", start(sid) + 0.1, { from: 0.6 });
+          pop("#o4", W(sid, "số"), { from: 0.6 });
+          pop("#g4", W(sid, "vậy"), { from: 0.6 });
+          pop(["#h4", "#i4"], W(sid, "bằng", 2), { from: 0.5 });
+          pose(bird, "happy", W(sid, "bằng", 2));
+        }
+        {
+          const sid = "s05-thu";
+          hide(["#a5", "#o5", "#b5", "#r5"]);
+          pose(bird, "idle", start(sid));
+          pop("#a5", W(sid, "thử"), { from: 0.6 });
+          pop("#o5", W(sid, "số", 2), { from: 0.6 });
+          pop("#b5", W(sid, "2", 2), { from: 0.6 });
+          pop("#r5", W(sid, "bằng"), { from: 0.5 });
+        }
+        {
+          const sid = "s06-nho";
+          hide(["#rule6", "#m6"]);
+          pose(bird, "idle", start(sid));
+          pop("#m6", W(sid, "nhớ"), { from: 0.6 });
+          pop("#rule6", W(sid, "muốn"), { from: 0.9 });
+          pose(bird, "cheer", W(sid, "muốn"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "title": "Dấu của tích hai số nguyên",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-quy-tac",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta xét dấu của tích.",
+          "opening": true
+        },
+        {
+          "text": "Ta nhân hai số khác 0."
+        }
+      ]
+    },
+    {
+      "id": "s02-cung",
+      "sentences": [
+        {
+          "text": "3 nhân 4 bằng 12."
+        },
+        {
+          "text": "Âm 3 nhân âm 4 cũng bằng 12."
+        }
+      ]
+    },
+    {
+      "id": "s03-khac",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: 3 nhân âm 4 bằng mấy?",
+          "pause": "ask"
+        },
+        {
+          "text": "3 nhân âm 4 bằng âm 12.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Thử một cặp: âm 5 nhân 2."
+        },
+        {
+          "text": "Hai số khác dấu, nên tích âm."
+        },
+        {
+          "text": "Tích bằng âm 10."
+        }
+      ]
+    },
+    {
+      "id": "s05-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "dau-cua-tich",
+      "from": "s02-cung",
+      "to": "s05-nho",
+      "cardIds": ["on-tap-chuong-3.card.dau-tich-tong"]
+    }
+  ]
+}

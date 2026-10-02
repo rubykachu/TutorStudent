@@ -1,0 +1,94 @@
+{
+  "title": "Trừ một số là cộng với số đối",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-doi",
+    "at": 0.95
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học cách trừ số nguyên.",
+          "opening": true
+        },
+        {
+          "text": "Ta đổi phép trừ thành phép cộng."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: 1 trừ âm 3 bằng mấy?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Muốn trừ một số, ta cộng với số đối của số đó.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-doi",
+      "sentences": [
+        {
+          "text": "Số đối của âm 3 là 3."
+        },
+        {
+          "text": "Vậy 1 trừ âm 3 bằng 1 cộng 3."
+        },
+        {
+          "text": "1 cộng 3 bằng 4."
+        },
+        {
+          "text": "Trừ âm 3 cũng là cộng với 3.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-thu",
+      "sentences": [
+        {
+          "text": "Thử số khác: 2 trừ 5."
+        },
+        {
+          "text": "Số đối của 5 là âm 5."
+        },
+        {
+          "text": "2 cộng âm 5 bằng âm 3.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Muốn trừ một số, ta cộng với số đối của số đó.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tru-so-doi",
+      "from": "s02-hoi",
+      "to": "s06-nho",
+      "cardIds": ["on-tap-chuong-3.card.dau-tich-hieu"]
+    }
+  ]
+}

@@ -12,7 +12,7 @@
   "title": "Ôn tập chương III",
   "sourceRef": "Sách bài tập tr.60–62, lời giải tr.114",
   "status": "published",
-  "reviewedHash": "94dbb2d8cc14e98720235db20fbf58e437a8b4ab5740b5e788a20e2280a75b4b",
+  "reviewedHash": "c8cc57b4027bf7596118278a64228798594e4947f7421bba53269e459334166e",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta ôn lại cả chương III về số nguyên. Bạn có 3 nghìn mà mua món 5 nghìn thì còn nợ 2 nghìn, tức là ba trừ năm bằng âm hai."
@@ -23,7 +23,16 @@
       "làm các câu chọn đáp án về dấu của kết quả khi nhân, cộng và trừ",
       "làm các bài tập tính, tìm x, và tìm bội, tìm ước của số nguyên"
     ],
-    "whyItMatters": "Bạn dùng số nguyên để đọc nhiệt độ dưới 0 và biết mình còn tiền hay đang nợ sau khi mượn và trả."
+    "whyItMatters": "Bạn dùng số nguyên để đọc nhiệt độ dưới 0 và biết mình còn tiền hay đang nợ sau khi mượn và trả.",
+    "narration": {
+      "audioUrl": "narration/on-tap-chuong-3/overview.m4a",
+      "vttUrl": "narration/on-tap-chuong-3/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -205,6 +214,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "on-tap-chuong-3.video.dau-cua-tich"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -258,6 +271,10 @@
       "sourceRef": "Ôn tập chương III, câu hỏi 5, 6 (sách bài tập tr.61, lời giải tr.114); ôn Bài 14 và Bài 16",
       "minutes": 6,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "on-tap-chuong-3.video.tru-so-doi"
+        },
         {
           "type": "group",
           "children": [
@@ -756,6 +773,10 @@
       "sourceRef": "Ôn tập chương III, bài 3.48 (sách bài tập tr.62, lời giải tr.114); ôn Bài 17",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "on-tap-chuong-3.video.bang-ba-o"
+        },
         {
           "type": "group",
           "children": [
@@ -3885,5 +3906,70 @@
   "sticker": {
     "name": "Huy chương chương ba",
     "visualId": "tap-hop-cac-so-nguyen.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "on-tap-chuong-3.video.dau-cua-tich",
+      "lessonId": "on-tap-chuong-3",
+      "url": "video/on-tap-chuong-3/dau-cua-tich.mp4",
+      "vttUrl": "video/on-tap-chuong-3/dau-cua-tich.vtt",
+      "posterUrl": "video/on-tap-chuong-3/dau-cua-tich.jpg",
+      "durationSec": 47.07,
+      "clips": [
+        {
+          "id": "dau-cua-tich",
+          "start": 7.578,
+          "end": 45.646,
+          "cardIds": ["on-tap-chuong-3.card.dau-tich-tong"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "on-tap-chuong-3.video.tru-so-doi",
+      "lessonId": "on-tap-chuong-3",
+      "url": "video/on-tap-chuong-3/tru-so-doi.mp4",
+      "vttUrl": "video/on-tap-chuong-3/tru-so-doi.vtt",
+      "posterUrl": "video/on-tap-chuong-3/tru-so-doi.jpg",
+      "durationSec": 47.83,
+      "clips": [
+        {
+          "id": "tru-so-doi",
+          "start": 9.124,
+          "end": 46.416,
+          "cardIds": ["on-tap-chuong-3.card.dau-tich-hieu"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "on-tap-chuong-3.video.bang-ba-o",
+      "lessonId": "on-tap-chuong-3",
+      "url": "video/on-tap-chuong-3/bang-ba-o.mp4",
+      "vttUrl": "video/on-tap-chuong-3/bang-ba-o.vtt",
+      "posterUrl": "video/on-tap-chuong-3/bang-ba-o.jpg",
+      "durationSec": 69.13,
+      "clips": [
+        {
+          "id": "bang-ba-o",
+          "start": 9.378,
+          "end": 67.725,
+          "cardIds": ["on-tap-chuong-3.card.bang-tich"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }
