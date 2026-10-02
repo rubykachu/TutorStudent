@@ -82,6 +82,35 @@ describe("strictness", () => {
     ).toBe(false);
   });
 
+  // The merge looks lesson ids up in plain objects; one of these names would
+  // find a function there, and the merged doc would carry it into Dexie.
+  it("refuses an id that is a name of Object.prototype, as a key or a value", () => {
+    const at = "2026-10-01T02:20:00.000Z";
+    const doc = child();
+    for (const name of [
+      "constructor",
+      "toString",
+      "valueOf",
+      "hasOwnProperty",
+    ]) {
+      expect(
+        migrateDoc("child", {
+          ...doc,
+          resets: JSON.parse(`{"${name}":"${at}"}`),
+        }).ok,
+      ).toBe(false);
+      expect(
+        migrateDoc("child", {
+          ...doc,
+          stickers: [{ lessonId: name, at }],
+        }).ok,
+      ).toBe(false);
+    }
+    expect(
+      migrateDoc("child", { ...doc, resets: { "l-constructor": at } }).ok,
+    ).toBe(true);
+  });
+
   it("requires times in one fixed UTC format", () => {
     const doc = child();
     for (const bad of [

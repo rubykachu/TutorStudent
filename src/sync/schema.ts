@@ -42,7 +42,14 @@ const ChildIdSchema = z.string().regex(CHILD_ID_PATTERN);
 const MonthSchema = z.string().regex(MONTH_PATTERN);
 const DaySchema = z.string().regex(DAY_PATTERN);
 // Content ids (`<lesson>.card.<name>`) and record ids (32 hex characters).
-const IdSchema = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/);
+// A name `Object.prototype` already has (`constructor`, `toString`, ...) is
+// refused: the merge looks ids up in plain objects (`resets[lessonId]`), where
+// such a name finds a function instead of nothing, which drops records and
+// puts a function into the merged doc.
+const IdSchema = z
+  .string()
+  .regex(/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/)
+  .refine((id) => !(id in Object.prototype), "Reserved name");
 const TimeSchema = z.iso.datetime({ precision: 3 });
 const CountSchema = z.number().int().min(0).max(1_000_000);
 const SmallNumberSchema = z.number().finite();
