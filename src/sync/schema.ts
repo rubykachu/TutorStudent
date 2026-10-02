@@ -185,6 +185,8 @@ export const HistoryDocSchema = z
   .superRefine((doc, ctx) => {
     for (const key of ["attempts", "writings"] as const) {
       doc[key].forEach((record, index) => {
+        // A time that does not parse is already reported by its own check.
+        if (Number.isNaN(Date.parse(record.at))) return;
         if (monthOfTime(record.at) !== doc.month) {
           ctx.addIssue({
             code: "custom",

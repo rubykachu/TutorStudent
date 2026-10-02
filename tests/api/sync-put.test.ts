@@ -215,6 +215,17 @@ describe("PUT /api/sync, history is append-only", () => {
       400,
     );
   });
+
+  it("refuses a record whose time is not a time with 400, not a server error", async () => {
+    const h = await seeded();
+    const garbled = {
+      ...historyDoc(),
+      attempts: [attempt("a".repeat(32), "garbage")],
+    };
+    expect((await putMonth(h, { doc: garbled, ifNoneMatch: "*" })).status).toBe(
+      400,
+    );
+  });
 });
 
 describe("PUT /api/sync, request checks", () => {
