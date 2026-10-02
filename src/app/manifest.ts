@@ -3,6 +3,7 @@ import {
   APP_DESCRIPTION,
   APP_ICONS,
   APP_NAME,
+  APP_SHORT_NAME,
   BACKGROUND_COLOR,
   THEME_COLOR,
 } from "@/lib/brand";
@@ -13,7 +14,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
     name: APP_NAME,
-    short_name: APP_NAME,
+    short_name: APP_SHORT_NAME,
     description: APP_DESCRIPTION,
     lang: "vi",
     start_url: "/",

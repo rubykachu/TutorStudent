@@ -4,7 +4,13 @@
 // one place; the family-code gate lets exactly `BRAND_PUBLIC_PATHS` through
 // without the cookie; `scripts/brand-images.ts` draws the image files.
 
-export const APP_NAME = "Tutor";
+// What the child sees: the tab, the Home Screen label, the share card.
+export const APP_NAME = "Học từng bước";
+// The label under the Home Screen icon (manifest `short_name`): the full name
+// is 13 characters and fits under an iOS icon in one line, so it is not cut.
+export const APP_SHORT_NAME = APP_NAME;
+// A page that sets its own title gets the app's name after it.
+export const TITLE_TEMPLATE = `%s | ${APP_NAME}`;
 export const APP_DESCRIPTION = "Ứng dụng tự học cho học sinh lớp 6";
 
 // Public address of the production app: the base of every absolute URL in
@@ -56,7 +62,7 @@ export const SHARE_IMAGE = {
   path: "/brand/share.png",
   width: 1200,
   height: 630,
-  alt: "Bạn cú của Tutor giữa bầu trời sao, cạnh chữ Tutor: tự học lớp 6",
+  alt: `Bạn cú giữa bầu trời sao, cạnh chữ ${APP_NAME}: tự học lớp 6`,
 } as const;
 // The image as the metadata API takes it.
 export const SHARE_IMAGE_TAG = {
@@ -65,7 +71,7 @@ export const SHARE_IMAGE_TAG = {
   height: SHARE_IMAGE.height,
   alt: SHARE_IMAGE.alt,
 } as const;
-export const SHARE_TITLE = "Tutor: tự học lớp 6 cùng bạn cú";
+export const SHARE_TITLE = `${APP_NAME}: tự học lớp 6 cùng bạn cú`;
 export const SHARE_DESCRIPTION =
   "Học bài cùng bạn cú: hình động dễ hiểu, bài tập vui và ôn lại đúng lúc để nhớ lâu.";
 

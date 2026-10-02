@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import {
+  APP_NAME,
   type AppIcon,
   ICON_BACKGROUND_COLOR,
   OWL_SHARE_OF_ICON,
@@ -62,7 +63,7 @@ export function faviconSvg(owlSvg: string): string {
     FAVICON_SIZE / 2,
     FAVICON_OWL_SHARE * FAVICON_SIZE,
   );
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${FAVICON_SIZE} ${FAVICON_SIZE}"><title>Tutor</title><rect width="${FAVICON_SIZE}" height="${FAVICON_SIZE}" rx="${FAVICON_CORNER}" fill="${ICON_BACKGROUND_COLOR}"/>${owl}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${FAVICON_SIZE} ${FAVICON_SIZE}"><title>${APP_NAME}</title><rect width="${FAVICON_SIZE}" height="${FAVICON_SIZE}" rx="${FAVICON_CORNER}" fill="${ICON_BACKGROUND_COLOR}"/>${owl}</svg>`;
 }
 
 // How far the owl's corner farthest from its centre sits from the icon's
@@ -146,7 +147,7 @@ export type ShareFont = { family: string; weight: number; dataUrl: string };
 
 // The share card as a page to screenshot at 1200×630: a night sky with
 // nebula glows and stars, a ringed planet and a banded moon, the owl on a
-// glow to the right, "Tutor" and the line under it to the left.
+// glow to the right, the app's name and the line under it to the left.
 export function shareImageHtml(owlSvg: string, fonts: ShareFont[]): string {
   const c = SHARE_COLORS;
   const { width, height } = SHARE_IMAGE;
@@ -187,11 +188,11 @@ ${owl}
 </svg>`;
   return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>${faces}
 html,body{margin:0;width:${width}px;height:${height}px;overflow:hidden;background:${c.night}}
-.title{position:absolute;left:84px;top:150px;margin:0;font:700 210px/1 "Baloo 2",sans-serif;color:${c.white};letter-spacing:-2px}
-.line{position:absolute;left:90px;top:372px;margin:0;font:700 56px/1.2 "Baloo 2",sans-serif;color:${c.sky}}
-.hint{position:absolute;left:90px;top:446px;margin:0;font:600 34px/1.3 "Baloo 2",sans-serif;color:${c.cream};opacity:.9}
+.title{position:absolute;left:84px;top:70px;width:640px;margin:0;font:700 150px/1 "Baloo 2",sans-serif;color:${c.white};letter-spacing:-2px}
+.line{position:absolute;left:90px;top:392px;margin:0;font:700 56px/1.2 "Baloo 2",sans-serif;color:${c.sky}}
+.hint{position:absolute;left:90px;top:466px;margin:0;font:600 34px/1.3 "Baloo 2",sans-serif;color:${c.cream};opacity:.9}
 </style></head><body>${art}
-<h1 class="title">Tutor</h1>
+<h1 class="title">${APP_NAME}</h1>
 <p class="line">Tự học lớp 6 cùng bạn cú</p>
 <p class="hint">Hình động · Bài tập vui · Ôn lại đúng lúc</p>
 </body></html>`;

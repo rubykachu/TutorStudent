@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Tutor</title><rect width="64" height="64" rx="14" fill="#2563eb"/><g transform="translate(-3.45 -3.74) scale(0.5908)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Học từng bước</title><rect width="64" height="64" rx="14" fill="#2563eb"/><g transform="translate(-3.45 -3.74) scale(0.5908)">
   <title>Bạn cú</title>
   <!-- The home screen owl (src/mascot/owl.tsx, idle pose) with the colours of
        the --color-mascot-* tokens, flattened so a script can rasterise it

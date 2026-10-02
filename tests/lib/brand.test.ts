@@ -5,6 +5,7 @@ import manifest from "@/app/manifest";
 import {
   APP_ICONS,
   APP_NAME,
+  APP_SHORT_NAME,
   APPLE_TOUCH_ICON,
   BACKGROUND_COLOR,
   BRAND_PUBLIC_PATHS,
@@ -13,8 +14,10 @@ import {
   ICON_BACKGROUND_COLOR,
   MANIFEST_PATH,
   SHARE_IMAGE,
+  SHARE_TITLE,
   SITE_URL,
   THEME_COLOR,
+  TITLE_TEMPLATE,
 } from "@/lib/brand";
 import {
   faviconSvg,
@@ -54,8 +57,19 @@ describe("the web app manifest", () => {
       display: "standalone",
       lang: "vi",
       name: APP_NAME,
-      short_name: APP_NAME,
+      short_name: APP_SHORT_NAME,
     });
+  });
+
+  it("is called Học từng bước on the Home Screen and everywhere else", () => {
+    expect(m.name).toBe("Học từng bước");
+    expect(m.short_name).toBe("Học từng bước");
+    // An iOS icon label holds about this many characters before it is cut.
+    expect(APP_SHORT_NAME.length).toBeLessThanOrEqual(14);
+    expect(TITLE_TEMPLATE).toBe("%s | Học từng bước");
+    expect(SHARE_TITLE).toBe("Học từng bước: tự học lớp 6 cùng bạn cú");
+    expect(SHARE_IMAGE.alt).toContain(APP_NAME);
+    expect(JSON.stringify(m)).not.toContain("Tutor");
   });
 
   it("takes its colours from the design tokens", () => {
@@ -133,7 +147,7 @@ describe("the share image", () => {
 
   it("names the app and says what it is, in Vietnamese", () => {
     const html = shareImageHtml(readOwlSvg(root), []);
-    expect(html).toContain(">Tutor<");
+    expect(html).toContain(`>${APP_NAME}<`);
     expect(html).toContain("Tự học lớp 6 cùng bạn cú");
   });
 });

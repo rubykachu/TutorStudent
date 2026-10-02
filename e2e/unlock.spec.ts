@@ -1,5 +1,5 @@
 import { expect, type Page } from "@playwright/test";
-import { SITE_URL } from "../src/lib/brand";
+import { APP_NAME, APP_SHORT_NAME, SITE_URL } from "../src/lib/brand";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
 import { GATE_BASE_URL, GATE_FAMILY_CODE } from "./targets";
 import { test } from "./test";
@@ -94,11 +94,19 @@ test("a link preview crawler without the cookie gets the share card from the unl
   const meta = (name: string) =>
     page.locator(`meta[property="${name}"], meta[name="${name}"]`);
   const production = SITE_URL;
+  await expect(page).toHaveTitle(new RegExp(APP_NAME));
+  await expect(meta("apple-mobile-web-app-title")).toHaveAttribute(
+    "content",
+    APP_SHORT_NAME,
+  );
   await expect(meta("og:type")).toHaveAttribute("content", "website");
   await expect(meta("og:locale")).toHaveAttribute("content", "vi_VN");
-  await expect(meta("og:site_name")).toHaveAttribute("content", "Tutor");
+  await expect(meta("og:site_name")).toHaveAttribute("content", APP_NAME);
   await expect(meta("og:url")).toHaveAttribute("content", production);
-  await expect(meta("og:title")).toHaveAttribute("content", /Tutor/);
+  await expect(meta("og:title")).toHaveAttribute(
+    "content",
+    new RegExp(APP_NAME),
+  );
   await expect(meta("og:description")).toHaveAttribute("content", /bạn cú/);
   await expect(meta("og:image")).toHaveAttribute(
     "content",

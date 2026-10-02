@@ -3,6 +3,7 @@ import { Baloo_2, Be_Vietnam_Pro } from "next/font/google";
 import {
   APP_DESCRIPTION,
   APP_NAME,
+  APP_SHORT_NAME,
   APPLE_TOUCH_ICON,
   FAVICON_SVG_PATH,
   SHARE_DESCRIPTION,
@@ -10,6 +11,7 @@ import {
   SHARE_TITLE,
   SITE_URL,
   THEME_COLOR,
+  TITLE_TEMPLATE,
 } from "@/lib/brand";
 import "./globals.css";
 
@@ -32,7 +34,7 @@ const bodyFont = Be_Vietnam_Pro({
 // that page's tags are the ones that make the link preview.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: APP_NAME,
+  title: { default: APP_NAME, template: TITLE_TEMPLATE },
   description: APP_DESCRIPTION,
   // `src/app/favicon.ico` is the tab icon for browsers that ask for it; this
   // is the sharper one for those that take an SVG.
@@ -45,7 +47,11 @@ export const metadata: Metadata = {
     },
   },
   // iOS launches it standalone with the light status bar the page needs.
-  appleWebApp: { capable: true, title: APP_NAME, statusBarStyle: "default" },
+  appleWebApp: {
+    capable: true,
+    title: APP_SHORT_NAME,
+    statusBarStyle: "default",
+  },
   // Next writes only the unprefixed `mobile-web-app-capable`; iOS Safari
   // before 17 reads the prefixed tag.
   other: { "apple-mobile-web-app-capable": "yes" },
