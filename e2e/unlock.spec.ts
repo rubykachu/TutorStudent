@@ -19,9 +19,11 @@ test.beforeEach(async ({ context }) => {
 async function enterCode(page: Page, code: string) {
   const field = page.getByLabel("Nhập mã của gia đình để vào học");
   const button = page.getByRole("button", { name: "Vào học" });
-  // Text typed before the page hydrates is forgotten, which keeps the button
-  // off: type again until the button wakes up.
+  // Text typed before the page hydrates is forgotten by React while the field
+  // still shows it, so typing the same text again changes nothing: empty the
+  // field first, then type, until the button wakes up.
   await expect(async () => {
+    await field.fill("");
     await field.fill(code);
     await expect(button).toBeEnabled({ timeout: 500 });
   }).toPass();
