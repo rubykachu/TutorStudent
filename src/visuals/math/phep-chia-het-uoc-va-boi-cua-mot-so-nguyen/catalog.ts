@@ -321,7 +321,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "line",
     from: -5,
     to: 10,
-    labelAt: [-5, 10],
+    labelAt: [10],
     label: "Trục số từ −5 đến 10: thang máy dừng ở các tầng −4, 0, 4 và 8",
     layers: [
       { type: "point", at: -4, color: MULTIPLE },
