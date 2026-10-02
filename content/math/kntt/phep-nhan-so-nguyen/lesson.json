@@ -2345,14 +2345,14 @@
           "id": "l1",
           "content": {
             "type": "formula",
-            "tex": "(-6) \\cdot  3"
+            "tex": "7 \\cdot  (-6)"
           }
         },
         {
           "id": "l2",
           "content": {
             "type": "formula",
-            "tex": "4 \\cdot  (-5)"
+            "tex": "(-9) \\cdot  5"
           }
         },
         {
@@ -2389,7 +2389,7 @@
           "id": "r2",
           "content": {
             "type": "formula",
-            "tex": "-20"
+            "tex": "-45"
           }
         },
         {
@@ -2403,14 +2403,14 @@
           "id": "r4",
           "content": {
             "type": "formula",
-            "tex": "-18"
+            "tex": "-42"
           }
         },
         {
           "id": "r5",
           "content": {
             "type": "formula",
-            "tex": "18"
+            "tex": "42"
           }
         },
         {
