@@ -569,7 +569,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau.",
+              "text": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau.",
               "rule": true
             },
             {
@@ -623,7 +623,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tinh-hop-li-vi-du-xong",
-        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
+        "caption": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau."
       }
     },
     {
@@ -650,7 +650,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau.",
+              "text": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau.",
               "rule": true
             },
             {
@@ -686,7 +686,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.vi-du-tong-hop-xong",
-        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
+        "caption": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau."
       }
     },
     {
@@ -874,7 +874,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.tinh-hop-li-vi-du-xong",
-        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
+        "caption": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau."
       }
     },
     {
@@ -887,7 +887,7 @@
       "recap": {
         "type": "visual",
         "visualId": "quy-tac-dau-ngoac.visual.vi-du-tong-hop-xong",
-        "caption": "Tính hợp lí là bỏ ngoặc trước, rồi đổi chỗ và nhóm các số hạng để tính nhẩm. Nên nhóm thành số tròn chục, hai số đối nhau hay các nhóm bằng nhau."
+        "caption": "Bỏ ngoặc trước, rồi đổi chỗ và nhóm để tính nhẩm: số tròn chục, số đối nhau, các nhóm bằng nhau."
       }
     },
     {
