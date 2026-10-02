@@ -4,7 +4,7 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnig
 
 ## Handover
 
-Next: Task 5. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Next: Task 8. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
 
 Where the work lives: all offline work from Task 4a on is committed on the branch `offline-pwa`, in the worktree `scratchpad/offline/wt`; `main` is not touched until an independent review merges the branch (a service worker must not reach production by accident). On `main` sit only the inert build-time modules of Tasks 1 to 3 and the lab, listed under "Done" as "on main".
 
@@ -21,6 +21,10 @@ Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exc
 - Branch `offline-pwa`: 30b0043 (precache list step back in `pnpm build`, lab finds media in the main tree), 5ff747c (Serwist findings, this file).
 - Task 4b: e105145. Hand-written worker: `src/offline/sw-core.ts` (all behaviour, injected deps, unit-tested on a fake cache and network), `sw.ts` (wiring), `config.ts` (path, cache prefix, messages), `scripts/lib/offline-worker.ts` and `scripts/offline-worker.ts` (esbuild bundle of the worker with the list injected, written to gitignored `public/sw.js` after `next build`; fails above the budget now counting build files and page HTML), `PUBLIC_FILE_PATHS` in `src/access/gate.ts`, `no-cache` header for `/sw.js` in `next.config.ts`, the bundle check reads `public/sw.js` too (`readClientFiles`), `esbuild` as a dev dependency.
 - Task 4c: 705c89c and 208b70c. `src/offline/sw-kill.ts` and `kill-switch.ts` (the retiring worker), `kill-switch-flag.ts` (`NEXT_PUBLIC_OFFLINE_KILL_SWITCH`), a build guard that fails when the worker bundle reads `process.env`.
+
+- Task 5: bff7a9b. `src/offline/update-controller.ts` (registration and update rules, framework-free), `src/offline/register.tsx` (`OfflineManager`, mounted in the child layout and the parent screen), `src/components/update-banner.tsx`, `UPDATE_*_MINUTES` in `config.ts`.
+- Task 6: 78da211. `src/lib/network-status.ts` (`useNetworkStatus`, one store for every player), `MediaOffline` in `media-loading.tsx`, offline states in the video player, narration, preload and the song button. Five existing tests that simulated a failed download with a `TypeError` now use a 500 answer, because a network error is the offline state by design (`tests/setup.ts` also resets the shared network state after each test).
+- Task 7: df2fe88. `src/offline/status.ts`, `src/components/parent/offline-status.tsx`, mounted in `parent-dashboard.tsx`.
 
 ### Rules for every task
 
@@ -172,9 +176,9 @@ Files: `src/offline/register.tsx` (new), `src/app/(child)/layout.tsx`, `src/comp
 - Player detection from the pathname (`/lessons/<id>/sections/<id>`, `/lessons/<id>/review`), one helper.
 
 Acceptance:
-- [ ] Component tests with a fake `navigator.serviceWorker` cover every rule above, including boot apply, dev unregister and the first-install case.
-- [ ] Banner copy and spacing follow `docs/design-system.md`; screenshot in a lab run at the iPad and phone sizes, read by the agent.
-- [ ] Gate green.
+- [x] Component tests with a fake `navigator.serviceWorker` cover every rule above, including boot apply, dev unregister and the first-install case.
+- [x] Banner copy and spacing follow `docs/design-system.md`; screenshot in a lab run at the iPad and phone sizes, read by the agent.
+- [x] Gate green.
 
 ## Task 6 (S): media offline states
 
@@ -186,8 +190,8 @@ Files: `src/lib/network-status.ts` (new), `src/components/blocks/video-player.ts
 - Nothing about storage changes: media stays in memory only.
 
 Acceptance:
-- [ ] Tests: each player with `navigator.onLine` false, and with a download that rejects with `TypeError` while `onLine` stays true, shows its line and no percentage; `online`, visible and tap each recover; preload does not fetch offline; existing media tests (`tests/components/video-player.test.tsx`, `tests/lib/media-download.test.ts`, `tests/lib/play-from-tap.test.ts`, `tests/learn/lesson-overview.test.tsx`) still green.
-- [ ] Gate green.
+- [x] Tests: each player with `navigator.onLine` false, and with a download that rejects with `TypeError` while `onLine` stays true, shows its line and no percentage; `online`, visible and tap each recover; preload does not fetch offline; existing media tests (`tests/components/video-player.test.tsx`, `tests/lib/media-download.test.ts`, `tests/lib/play-from-tap.test.ts`, `tests/learn/lesson-overview.test.tsx`) still green.
+- [x] Gate green.
 
 ## Task 7 (S): parent readiness line
 
@@ -196,12 +200,16 @@ Files: `src/offline/status.ts` (new), `src/components/parent/offline-status.tsx`
 - Asks `PRECACHE_STATUS` of the installing worker if there is one, else the active one; shows "Dùng khi không có mạng: sẵn sàng" when the active worker is ready, "đang tải (cached/total)" while one installs, "chưa sẵn sàng" with no worker (dev, or not installed yet). Refreshes on `controllerchange`, on `updatefound` and every few seconds while not ready.
 
 Acceptance:
-- [ ] Component tests for the three states and the refresh.
-- [ ] Gate green.
+- [x] Component tests for the three states and the refresh.
+- [x] Gate green.
 
 ### Checkpoint 3
 
-- [ ] Lab run: banner appears after a second lab build with a changed lesson (second build folder, the first server stopped by its own PID first), tap reloads; parent line goes from "đang tải" to "sẵn sàng". Screenshots read and listed here.
+- [x] Lab run: banner appears after a second lab build with a changed lesson (second build folder, the first server stopped by its own PID first), tap reloads; parent line goes from "đang tải" to "sẵn sàng". Screenshots read and listed here.
+
+
+
+Checkpoint 3 evidence (lab, Chromium, production build of the branch, gate on; scripts and screenshots in the scratchpad `offline/cp3*`): the app registers the worker by itself after the profile is created; with the build files slowed by 120 ms each, the parent line went from "Dùng khi không có mạng: đang tải (n/756)" to "sẵn sàng". A second lab build of the same origin with one page changed: the home screen shows the banner "Có bài mới, tải lại" while the old worker still controls the page, tapping it reloads once, the banner is gone, only the new build's cache is left, the parent line says "sẵn sàng" and the lesson page is the new one. Screenshots read: `banner-ipad.png` (820 wide) and `banner-phone.png` (390 wide), the banner sits above the greeting, aligned with the cards' margins, 48 px tall, no overlap; `parent-ready-ipad.png` and `parent-ready-phone.png`, the readiness card sits under the source note. The banner inside a lesson player is covered by the component tests, not by this run (a player is reached by a full navigation here, which applies a waiting worker at boot by design).
 
 ## Task 8 (M): offline E2E on a production build
 
