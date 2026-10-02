@@ -50,6 +50,7 @@ import {
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
 } from "./format";
+import { HistoryLoading } from "./history-loading";
 import { ResetLessonDialog } from "./reset-lesson-dialog";
 
 const CARD = "flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-card md:p-6";
@@ -599,6 +600,7 @@ function ReportBody({
   return (
     <>
       <StudyTime data={data} />
+      <HistoryLoading childId={profile.id} />
       <LessonsProgress index={index} profile={profile} data={listed} />
       <ForgettingCards
         cards={topForgettingCards(listed.cardStates, lessons, at)}

@@ -14,6 +14,8 @@ export type SyncScheduler = {
   now(options?: SyncRunOptions): Promise<void>;
   // Lets `request` act; the returned function undoes it.
   start(): () => void;
+  // Whether a runner is started, that is, the app is open.
+  active(): boolean;
 };
 
 export type SchedulerDeps = {
@@ -76,6 +78,7 @@ export function createSyncScheduler({
         void now();
       }, debounceMs);
     },
+    active: () => starts > 0,
     start() {
       starts += 1;
       let stopped = false;

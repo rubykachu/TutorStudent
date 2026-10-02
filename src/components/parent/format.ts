@@ -35,6 +35,12 @@ export function formatDayKey(day: string): string {
   return `${Number(date)}/${Number(month)}`;
 }
 
+// A month key (yyyy-mm) as "9/2026".
+export function formatMonthKey(month: string): string {
+  const [year, mon] = month.split("-");
+  return `${Number(mon)}/${year}`;
+}
+
 // Monday = 0 … Sunday = 6, as `weekdayOfDay` counts.
 export const WEEKDAY_SHORT = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 export const WEEKDAY_LONG = [

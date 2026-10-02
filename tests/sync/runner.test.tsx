@@ -9,6 +9,7 @@ const run = vi.fn(async (_options?: { full?: boolean }) => ({
 vi.mock("@/sync/engine", () => ({ createSyncEngine: () => ({ run }) }));
 vi.mock("@/sync/clock", () => ({ restoreClockOffset: async () => undefined }));
 vi.mock("@/progress/hooks", () => ({ appDb: () => ({}) }));
+vi.mock("@/sync/history-pull", () => ({ pullHistory: async () => undefined }));
 
 import { SyncRunner } from "@/sync/runner";
 

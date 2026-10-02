@@ -149,6 +149,9 @@ export const SYNC_FUTURE_SKEW_MINUTES = 10;
 // and the paced background pull of history).
 export const SYNC_PUT_LIMIT_PER_MINUTE = 30;
 export const SYNC_GET_LIMIT_PER_MINUTE = 120;
+// The background pull of old months sends at most this many requests a
+// minute, a quarter of the read limit, so the child's own syncs always fit.
+export const SYNC_HISTORY_PULL_PER_MINUTE = SYNC_GET_LIMIT_PER_MINUTE / 4;
 // How long a server instance trusts its copy of a family's profile list, and
 // how much a request body may exceed its doc's cap (the JSON wrapper around
 // the doc).

@@ -1,5 +1,11 @@
 import "fake-indexeddb/auto";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ReviewPlayer } from "@/learn/review-player";
 import { SectionPlayer } from "@/learn/section-player";
@@ -8,6 +14,7 @@ import { setNowForTesting } from "@/lib/time";
 import { type ChildScope, SECTION_START, TutorDb } from "@/progress/db";
 import { recordAttempt } from "@/progress/record";
 import { applyChildDoc, readChildDoc } from "@/sync/local";
+import { childStateScope, PENDING_MONTH, updateSyncState } from "@/sync/state";
 import { CARD_A, LESSON_ID, learnIndex, SECTION_ID } from "./helpers";
 
 const requestSync = vi.fn();
@@ -74,6 +81,27 @@ describe("sync triggers on the learning screens", () => {
     expect(await screen.findByText("Giỏi quá!")).toBeInTheDocument();
     expect(requestSync).toHaveBeenCalledTimes(1);
     expect(document.body.textContent).not.toMatch(SYNC_TEXT);
+  });
+
+  it("opens the section and the review while old months are still pending", async () => {
+    await updateSyncState(db, childStateScope(scope.childId), (state) => ({
+      ...state,
+      months: { "2026-07": PENDING_MONTH },
+    }));
+    renderSection();
+    expect(screen.getByText("Khối thứ nhất")).toBeInTheDocument();
+    cleanup();
+    render(
+      <ReviewPlayer
+        db={db}
+        index={learnIndex()}
+        scope={scope}
+        onAgain={vi.fn()}
+      />,
+    );
+    await waitFor(() =>
+      expect(document.querySelector("[data-review-step]")).not.toBeNull(),
+    );
   });
 
   it("stays on its screen when a synced doc moves the section's position", async () => {

@@ -62,8 +62,9 @@ export type SyncEngine = {
   run(options?: SyncRunOptions): Promise<SyncRun>;
 };
 
-// Failures after which no other doc is worth trying in this run.
-const ENDS_RUN: ReadonlySet<CycleFailure> = new Set([
+// Failures after which no other doc is worth trying in this run (the history
+// pull stops on them too).
+export const ENDS_RUN: ReadonlySet<CycleFailure> = new Set([
   "unavailable",
   "unauthorized",
   "offline",
