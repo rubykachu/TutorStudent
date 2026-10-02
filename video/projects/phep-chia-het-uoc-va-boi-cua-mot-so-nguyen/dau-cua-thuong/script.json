@@ -1,0 +1,90 @@
+{
+  "title": "Dấu của thương",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-nho",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-nhiet-do",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta chọn dấu của thương.",
+          "opening": true
+        },
+        {
+          "text": "Mỗi giờ nhiệt độ thay đổi −3 độ."
+        },
+        {
+          "text": "Cần bao nhiêu giờ để thay đổi −12 độ?"
+        },
+        {
+          "text": "Bạn thử đoán xem: −12 chia −3 bằng mấy?",
+          "pause": "ask"
+        },
+        {
+          "text": "Thương là 4, một số dương."
+        },
+        {
+          "text": "Hai số nguyên khác 0 cùng dấu thì thương là số dương: chia hai phần số tự nhiên cho nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s02-no",
+      "sentences": [
+        {
+          "text": "Bốn bạn cùng nợ chung 20 nghìn đồng."
+        },
+        {
+          "text": "Nợ ghi bằng số âm: −20 chia 4."
+        },
+        {
+          "text": "Bạn thử đoán xem: mỗi bạn nợ mấy nghìn?",
+          "pause": "ask"
+        },
+        {
+          "text": "Mỗi bạn nợ 5 nghìn, nên thương là −5."
+        },
+        {
+          "text": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu − ở trước.",
+          "say": "Hai số nguyên khác 0 khác dấu thì thương là số âm: chia hai phần số tự nhiên rồi viết dấu trừ ở trước.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s03-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Cùng dấu thì thương dương, khác dấu thì thương âm."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "chia-cung-dau",
+      "from": "s01-nhiet-do",
+      "to": "s01-nhiet-do",
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-cung-dau"
+      ]
+    },
+    {
+      "id": "chia-khac-dau",
+      "from": "s02-no",
+      "to": "s02-no",
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-khac-dau"
+      ]
+    }
+  ]
+}

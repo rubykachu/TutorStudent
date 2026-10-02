@@ -1,0 +1,222 @@
+<!doctype html>
+<!--
+  Lesson video "Các ước của 6" (lesson phep-chia-het-uoc-va-boi-cua-mot-so-nguyen):
+  6 = 1 · 6 = 2 · 3 gives the positive divisors 1, 2, 3, 6; every divisor has an
+  opposite that is a divisor too, so 6 has the divisors -1, -2, -3, -6 as well.
+  Colours as in the lesson: divisors (ước) violet, labels naming a step of the
+  method teal (a pentagon marker, never beside a common divisor).
+  Built by `pnpm video:build phep-chia-het-uoc-va-boi-cua-mot-so-nguyen uoc-cua-6`,
+  which injects window.TIMING. The rule card carries `data-rule-text`: its text
+  is a sentence of the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Các ước của 6</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .fm {
+        font:
+          800 64px / 1 "Baloo 2",
+          sans-serif;
+        white-space: nowrap;
+      }
+      .fm.small {
+        font-size: 56px;
+      }
+      .div {
+        color: var(--color-concept-violet);
+      }
+      .chip.big {
+        font:
+          800 56px / 1.1 "Baloo 2",
+          sans-serif;
+        padding: 2px 26px 8px;
+        min-width: 100px;
+        justify-content: center;
+      }
+      .chips {
+        gap: 24px;
+      }
+      .note {
+        --c: var(--color-concept-teal);
+        font-size: 32px;
+      }
+      .note::before {
+        content: "⬟";
+        font-size: 0.8em;
+      }
+      .rule {
+        position: absolute;
+        left: 230px;
+        width: 960px;
+        padding: 18px 32px;
+        font:
+          600 32px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="70"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <!-- scene 1: 6 = 1 · 6 = 2 · 3, the positive divisors -->
+        <section id="s1" class="scene layer">
+          <div class="row" style="top: 30px">
+            <span id="n1" class="chip note">tìm các ước dương</span>
+          </div>
+          <div class="row fm" style="top: 115px">
+            <span id="a1">6</span><span id="a1e">=</span><span id="a1x" class="div">1</span><span id="a1m">·</span><span id="a1y" class="div">6</span>
+          </div>
+          <div class="row fm" style="top: 215px">
+            <span id="a2">6</span><span id="a2e">=</span><span id="a2x" class="div">2</span><span id="a2m">·</span><span id="a2y" class="div">3</span>
+          </div>
+          <div class="row chips" style="top: 350px">
+            <span id="p1" class="chip big" style="--c: var(--color-concept-violet)">1</span>
+            <span id="p2" class="chip big" style="--c: var(--color-concept-violet)">2</span>
+            <span id="p3" class="chip big" style="--c: var(--color-concept-violet)">3</span>
+            <span id="p6" class="chip big" style="--c: var(--color-concept-violet)">6</span>
+          </div>
+        </section>
+
+        <!-- scene 2: the negative factors, the opposites -->
+        <section id="s2" class="scene layer">
+          <div class="row fm small" style="top: 20px">
+            <span id="b1">6</span><span id="b1e">=</span><span id="b1x">(</span><span id="b1a" class="div">−1</span><span id="b1y">)</span><span id="b1m">·</span><span id="b1z">(</span><span id="b1b" class="div">−6</span><span id="b1w">)</span>
+          </div>
+          <div class="row fm small" style="top: 100px">
+            <span id="b2">6</span><span id="b2e">=</span><span id="b2x">(</span><span id="b2a" class="div">−2</span><span id="b2y">)</span><span id="b2m">·</span><span id="b2z">(</span><span id="b2b" class="div">−3</span><span id="b2w">)</span>
+          </div>
+          <div class="row chips" style="top: 190px">
+            <span class="chip big" style="--c: var(--color-concept-violet)">1</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">2</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">3</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">6</span>
+          </div>
+          <div class="row" style="top: 282px">
+            <span id="n2" class="chip note">viết thêm số đối</span>
+          </div>
+          <div class="row chips" style="top: 345px">
+            <span id="m1" class="chip big" style="--c: var(--color-concept-violet)">−1</span>
+            <span id="m2" class="chip big" style="--c: var(--color-concept-violet)">−2</span>
+            <span id="m3" class="chip big" style="--c: var(--color-concept-violet)">−3</span>
+            <span id="m6" class="chip big" style="--c: var(--color-concept-violet)">−6</span>
+          </div>
+          <div id="rule2" class="card rule" style="top: 450px; padding: 10px 28px; font-size: 28px" data-rule-text>Mỗi ước dương có một số đối, số đối đó cũng là ước của 6.</div>
+        </section>
+
+        <!-- scene 3: remember -->
+        <section id="s3" class="scene layer">
+          <div id="rule3" class="card rule" style="top: 40px" data-rule-text>Muốn tìm các ước của một số nguyên khác 0, tìm các ước dương rồi viết thêm số đối của chúng.</div>
+          <div class="row chips" style="top: 245px">
+            <span class="chip big" style="--c: var(--color-concept-violet)">1</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">2</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">3</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">6</span>
+          </div>
+          <div id="m3row" class="row chips" style="top: 345px">
+            <span class="chip big" style="--c: var(--color-concept-violet)">−1</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">−2</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">−3</span>
+            <span class="chip big" style="--c: var(--color-concept-violet)">−6</span>
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div id="fade" class="layer" style="background: var(--color-background)"></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, pop, hide, pose, scenes, finish } =
+          window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+
+        scenes([
+          ["#s1", "s01-duong"],
+          ["#s2", "s02-so-doi"],
+          ["#s3", "s03-nho"],
+        ]);
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        // ---------- scene 1: 6 as a product of two positive numbers ----------
+        {
+          const sid = "s01-duong";
+          hide(["#n1", "#a1", "#a1e", "#a1x", "#a1m", "#a1y", "#a2", "#a2e", "#a2x", "#a2m", "#a2y", "#p1", "#p2", "#p3", "#p6"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#n1", W(sid, "ta", 2), { from: 0.6 });
+          pop(["#a1", "#a1e"], W(sid, "6", 2), { from: 0.6, stagger: 0.15 });
+          pop("#a1x", W(sid, "1"), { from: 0.6 });
+          pop("#a1m", W(sid, "nhân"), { from: 0.6 });
+          pop("#a1y", W(sid, "6", 4), { from: 0.6 });
+          pop(["#a2", "#a2e"], W(sid, "6", 5), { from: 0.6, stagger: 0.15 });
+          pop("#a2x", W(sid, "2"), { from: 0.6 });
+          pop("#a2m", W(sid, "nhân", 2), { from: 0.6 });
+          pop("#a2y", W(sid, "3"), { from: 0.6 });
+          pop("#p1", W(sid, "1", 2), { from: 0.5 });
+          pop("#p2", W(sid, "2", 2), { from: 0.5 });
+          pop("#p3", W(sid, "3", 2), { from: 0.5 });
+          pop("#p6", W(sid, "6", 8), { from: 0.5 });
+          pose(bird, "happy", W(sid, "6", 8));
+        }
+
+        // ---------- scene 2: the opposites are divisors too ----------
+        {
+          const sid = "s02-so-doi";
+          hide(["#b1", "#b1e", "#b1x", "#b1a", "#b1y", "#b1m", "#b1z", "#b1b", "#b1w", "#b2", "#b2e", "#b2x", "#b2a", "#b2y", "#b2m", "#b2z", "#b2b", "#b2w", "#n2", "#m1", "#m2", "#m3", "#m6", "#rule2"]);
+          pose(bird, "idle", start(sid));
+          pop(["#b1", "#b1e"], W(sid, "6"), { from: 0.6, stagger: 0.15 });
+          pop(["#b1x", "#b1a", "#b1y"], W(sid, "1"), { from: 0.6, stagger: 0.1 });
+          pop("#b1m", W(sid, "nhân"), { from: 0.6 });
+          pop(["#b1z", "#b1b", "#b1w"], W(sid, "6", 2), { from: 0.6, stagger: 0.1 });
+          pop(["#b2", "#b2e"], W(sid, "6", 3), { from: 0.6, stagger: 0.15 });
+          pop(["#b2x", "#b2a", "#b2y"], W(sid, "2"), { from: 0.6, stagger: 0.1 });
+          pop("#b2m", W(sid, "nhân", 2), { from: 0.6 });
+          pop(["#b2z", "#b2b", "#b2w"], W(sid, "3"), { from: 0.6, stagger: 0.1 });
+          pop("#rule2", W(sid, "mỗi"), { from: 0.9 });
+          pop("#n2", W(sid, "mỗi"), { from: 0.6 });
+          pop("#m1", W(sid, "1", 2), { from: 0.5 });
+          pop("#m2", W(sid, "2", 2), { from: 0.5 });
+          pop("#m3", W(sid, "3", 2), { from: 0.5 });
+          pop("#m6", W(sid, "6", 5), { from: 0.5 });
+          pose(bird, "happy", W(sid, "vậy"));
+        }
+
+        // ---------- scene 3: remember ----------
+        {
+          const sid = "s03-nho";
+          hide(["#rule3", "#m3row"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule3", W(sid, "muốn"), { from: 0.9 });
+          pop("#m3row", W(sid, "viết"), { from: 0.6 });
+          pose(bird, "cheer", W(sid, "muốn"));
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

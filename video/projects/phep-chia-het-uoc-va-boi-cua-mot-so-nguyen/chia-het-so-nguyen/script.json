@@ -1,0 +1,82 @@
+{
+  "title": "Phép chia hết của số nguyên",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-so-nguyen",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-keo",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học phép chia hết.",
+          "opening": true
+        },
+        {
+          "text": "Chia 12 cái kẹo cho 3 bạn."
+        },
+        {
+          "text": "Bạn thử đoán xem: mỗi bạn được mấy cái?",
+          "pause": "ask"
+        },
+        {
+          "text": "Mỗi bạn được 4 cái, vì 12 bằng 3 nhân 4."
+        }
+      ]
+    },
+    {
+      "id": "s02-so-nguyen",
+      "sentences": [
+        {
+          "text": "Với số nguyên cũng vậy."
+        },
+        {
+          "text": "−12 bằng 3 nhân −4."
+        },
+        {
+          "text": "Nên −12 chia 3 bằng −4."
+        },
+        {
+          "text": "Nếu số a = số b · số q, trong đó số b khác 0 và số q là số nguyên, thì số a chia hết cho số b và số a : số b = số q.",
+          "say": "Nếu số a bằng số b nhân số q, trong đó số b khác 0 và số q là số nguyên, thì số a chia hết cho số b và số a chia số b bằng số q.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s03-thu",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: 18 có chia hết cho −6 không?",
+          "pause": "ask"
+        },
+        {
+          "text": "Có, vì 18 bằng −6 nhân −3."
+        },
+        {
+          "text": "Nên 18 chia −6 bằng −3."
+        }
+      ]
+    },
+    {
+      "id": "s04-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé: số chia phải khác 0."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "phep-chia-het",
+      "from": "s01-keo",
+      "to": "s04-nho",
+      "cardIds": [
+        "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.phep-chia-het"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "title": "Các ước của 6",
+  "engine": "local",
+  "poster": {
+    "scene": "s02-so-doi",
+    "at": 0.9
+  },
+  "scenes": [
+    {
+      "id": "s01-duong",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm các ước của 6.",
+          "opening": true
+        },
+        {
+          "text": "Ta viết 6 thành tích hai số dương."
+        },
+        {
+          "text": "6 bằng 1 nhân 6, và 6 bằng 2 nhân 3."
+        },
+        {
+          "text": "Bạn thử đoán xem: 6 có những ước dương nào?",
+          "pause": "ask"
+        },
+        {
+          "text": "Ước dương của 6 là 1, 2, 3 và 6.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s02-so-doi",
+      "sentences": [
+        {
+          "text": "Còn số âm thì sao?"
+        },
+        {
+          "text": "6 bằng −1 nhân −6, và 6 bằng −2 nhân −3."
+        },
+        {
+          "text": "Mỗi ước dương có một số đối, số đối đó cũng là ước của 6.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Các ước âm là −1, −2, −3 và −6."
+        },
+        {
+          "text": "Vậy số 6 có tất cả 8 ước."
+        }
+      ]
+    },
+    {
+      "id": "s03-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Muốn tìm các ước của một số nguyên khác 0, tìm các ước dương rồi viết thêm số đối của chúng.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "tim-uoc",
+      "from": "s01-duong",
+      "to": "s03-nho",
+      "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"]
+    }
+  ]
+}

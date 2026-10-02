@@ -1,5 +1,4 @@
 # Review: Phép chia hết. Ước và bội của một số nguyên (`phep-chia-het-uoc-va-boi-cua-mot-so-nguyen`)
-- Bản đã review: `7b693998b2ac4ec8fd8d6f8f128a30a1f10a6a160bfc9523573332bfa85976e5` (`pnpm content:diff` so với bản này)
 
 - Bài: `content/math/kntt/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/lesson.json`
 - Vòng: 4 - chỉ phần đổi (Sonnet), commit `39503de` (so với `3517f40`); bản vòng 3 giữ ở mục "Vòng 3" bên dưới
@@ -9,6 +8,7 @@
 - Đọc hiểu (Haiku): lượt 1 (bản trước vòng 2, quá nhiễu: 85 / 276 / 228, bỏ); lượt 2 toàn bài trên bản sau vòng 2: 235 / 3 / 0 (`doc-hieu-2.md`); lượt 3 trên 3 mục viết lại: 1 / 2 / 0 (`doc-hieu-3.md`); lượt 4 trên 8 mục viết lại: 6 / 2 / 0 (`doc-hieu-4.md`); hai mục còn mơ hồ (`goals[3]`, note thử `tim-x`) đã viết lại lần cuối, quá 3 lượt nên không đọc lại, ghi ở Nên sửa. Lượt đọc không phủ `options` và `hints`
 - `lesson:walk`: 0 FAIL, 0 cảnh báo (bản `0e8d510`); `visual:shot` 100/100; ảnh trong `.shots/walk/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/`
 - Kết luận: Đạt: 0 Nghiêm trọng sau vòng 4; đã chạy `pnpm content:hash phep-chia-het-uoc-va-boi-cua-mot-so-nguyen --root content --approve` và `pnpm content:lock phep-chia-het-uoc-va-boi-cua-mot-so-nguyen`. Còn Nên sửa chưa xử lý: 2, 3, 7, 8, 9, 10, 11 (chiều ngược của quy tắc `tim-x`), 13 (khớp Bài 16 khi xuất bản)
+- Bản đã review: `1b6342b1723760b6badc84f2bb376350a6ff3bd0e85bb43747bb800a8e8854fd` (`pnpm content:diff` so với bản này)
 
 Phạm vi vòng 3: mọi mục đổi so với bản `f87e1e3` (toàn bộ diff của `lesson.json` tới commit `3517f40`, và `catalog.ts`). Cây làm việc lúc review không còn sửa chưa commit. Đã so từng chuỗi chữ của `lesson.json` bằng script (hiện cả U+00A0), tự giải mọi exercise bị đổi, đọc ba trang nguồn và sheet walk các section `suy-ra-thuong`, `tim-uoc`, `tim-boi`, ảnh phone của năm hình đổi (`bon-phep-chia`, `boi-4-vi-du`, `boi-khoang-vi-du`, `tim-x-thu`, `uoc-vi-du`: chữ không cắt, không còn ±, công thức không vỡ).
 
@@ -248,3 +248,30 @@ Mục "Vòng 3" ở trên và các mục sau giữ nguyên từ vòng 3 (Nghiêm
 ## Vòng 2: đã sửa
 
 Sáu Nghiêm trọng đã đạt (xem đầu tệp). Nên sửa vòng 2 đã đạt: 1 (nhãn `bon-phep-chia`), 2 (hai câu kho ôn `suy-ra-thuong`), 3 (mẹo thêm "dùng cho phép chia hết"), 4 (`kiem-tra-42-chia-6` hỏi cả lý do), 5 (hai câu điền, riêng `ex.dien-uoc-x-15` lặp lỗi, Nên sửa 7), 10 (`dien-boi-3` thành `dien-boi-3-nhan` đúng card), 11 (mẹo bỏ dấu đổi số), 12 (`dem-uoc-cua-16`), 17 (NBSP), cùng các Góp ý 7, 10, 12, 15; Nên sửa 6, 9, 13, 14, 15, 16 và Góp ý 13 xử lý một phần hay chưa, tính lại ở danh sách trên.
+
+## Vòng 5: video và lời đọc
+
+Phạm vi: diff chỉ thêm `videos[]`, khối video đầu ba section (`chia-cung-dau`, `phep-chia-het`, `tim-uoc`) và `overview.narration`. Đã đọc ba `script.json`, ba `.vtt`, `renders/report.json`, sheet khung hình (hai sheet mỗi video), `index.html` của `dau-cua-thuong`, `overview.vtt` và `overview.*`. `pnpm video:check` ok cho cả ba video và lời đọc. Kết luận: 0 Nghiêm trọng.
+
+### Nghiêm trọng
+
+Không có.
+- Toán đúng: (−12) : (−3) = 4; (−20) : 4 = −5; −12 = 3 · (−4); 18 = (−6) · (−3) nên 18 chia hết cho −6; 6 = (−1)(−6) = (−2)(−3); ước dương 1, 2, 3, 6; ước âm −1, −2, −3, −6; 6 có 8 ước.
+- Ba câu `rule` khớp note của bài (build đã so nguyên văn); câu "số chia phải khác 0" khớp note "Ta không chia được cho số 0".
+- Số âm đọc "âm" (report Whisper nghe "âm 12", "âm 3", "âm 6"); câu "Vậy số 6 có tất cả 8 ước." khớp 100%.
+- Màu đúng bài: dấu của thương dùng lime cho số dương và pink cho số âm; `chia-het-so-nguyen` dùng blue cho số bị chia, violet cho số chia, amber cho thương; `uoc-cua-6` dùng violet cho ước, teal cho nhãn bước.
+- Hỏi rồi mới mở: cả ba video có câu `ask` trước đáp án; mọi câu quy tắc (trừ câu cuối) có `think`. Hình giữ nguyên trong quãng lặng. Dải dưới trống cho phụ đề, chữ không bị cắt. Câu mở đầu có "bạn". Chữ gọi "Bạn cú" không xuất hiện trong lời video.
+- Clip đúng card: `chia-cung-dau` (0,7–21,1 s) và `chia-khac-dau` (21,5–41,6 s) đúng hai card cùng tên; `phep-chia-het` và `tim-uoc` phủ cả video và đúng card.
+- Lời đọc giới thiệu: câu chào "Chào bạn!", hook, summary, goals, whyItMatters khớp chữ trên màn; giọng Hải Đăng khớp `media.json` (dự phòng khi hết hạn mức Gemini, đúng một engine từ đầu đến cuối).
+
+### Nên sửa
+
+Không có.
+
+### Góp ý
+
+1. `video/projects/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong/script.json`, cảnh `s02-no`: video đặt ở đầu section `chia-cung-dau` nhưng cũng giảng luôn quy tắc khác dấu, nên bé nghe quy tắc đó trước khi tới section `chia-khac-dau`. Không sai kiến thức và clip `chia-khac-dau` gắn đúng card; chỉ lệch ranh giới "một video một ý của phần". Cách sửa (nếu chủ dự án muốn): tách thành hai video, mỗi video một section; không cần làm ngay.
+2. `uoc-cua-6`, cảnh `s02-so-doi`, câu "Vậy số 6 có tất cả 8 ước.": hình chỉ có 8 ô ước, không hiện số 8 hay nhãn đếm. Bé phải tự đếm. Cách sửa: thêm một nhãn "8 ước" hiện đúng lúc nói câu đó.
+3. `uoc-cua-6`: thẻ quy tắc ở cảnh `s02-so-doi` (một dòng, chữ nhỏ) khác thẻ ở cảnh `s03-nho` (hai dòng, chữ lớn hơn). Cách sửa: dùng cùng cỡ chữ cho hai thẻ.
+4. `chia-het-so-nguyen`, câu cuối "Bạn nhớ nhé: số chia phải khác 0.": Whisper nghe "số chưa phải khác không" (khớp 97,1%, ngưỡng 97%). Có thể do Whisper nhầm "chia" thành "chưa"; nên nghe lại một lần khi duyệt tay. Câu cùng tên "số chia" ở các câu trước vẫn nghe đúng.
+5. `overview.summary` và `overview.goals` chưa nhắc tổng, hiệu cùng chia hết (đã ghi ở Nên sửa 14 của vòng 4); lời đọc đọc đúng chữ trên màn nên lỗi này kéo theo, không thêm lỗi mới.

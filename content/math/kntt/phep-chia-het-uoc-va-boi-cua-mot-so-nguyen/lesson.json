@@ -12,7 +12,7 @@
   "title": "Phép chia hết. Ước và bội của một số nguyên",
   "sourceRef": "Sách bài tập tr.58–59",
   "status": "published",
-  "reviewedHash": "7b693998b2ac4ec8fd8d6f8f128a30a1f10a6a160bfc9523573332bfa85976e5",
+  "reviewedHash": "1b6342b1723760b6badc84f2bb376350a6ff3bd0e85bb43747bb800a8e8854fd",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học chia các số nguyên. Ba bạn cùng nợ chung 12 nghìn đồng, chia đều thì mỗi bạn nợ bao nhiêu nghìn?"
@@ -24,7 +24,16 @@
       "tìm được các ước và các bội của một số, kể cả số âm",
       "tìm được số x để x + 3 vẫn chia hết cho x"
     ],
-    "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ."
+    "whyItMatters": "Bạn dùng phép chia số nguyên khi chia đều một khoản nợ, hay khi tính mỗi giờ nhiệt độ giảm bao nhiêu độ.",
+    "narration": {
+      "audioUrl": "narration/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/overview.m4a",
+      "vttUrl": "narration/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/overview.vtt",
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
   },
   "concepts": [
     {
@@ -80,6 +89,10 @@
       "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.video.chia-het-so-nguyen"
+        },
         {
           "type": "group",
           "children": [
@@ -157,6 +170,10 @@
       "sourceRef": "Sách bài tập tr.58 (kiến thức cần nhớ 1), tr.59 (bài 3.35)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.video.dau-cua-thuong"
+        },
         {
           "type": "group",
           "children": [
@@ -400,6 +417,10 @@
       "sourceRef": "Sách bài tập tr.58, 59 (kiến thức cần nhớ 3, bài 3.36)",
       "minutes": 4,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.video.uoc-cua-6"
+        },
         {
           "type": "group",
           "children": [
@@ -4237,5 +4258,82 @@
   "sticker": {
     "name": "Huy hiệu phép chia số nguyên",
     "visualId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.video.dau-cua-thuong",
+      "lessonId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen",
+      "url": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong.mp4",
+      "vttUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong.vtt",
+      "posterUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/dau-cua-thuong.jpg",
+      "durationSec": 48.13,
+      "clips": [
+        {
+          "id": "chia-cung-dau",
+          "start": 0.7,
+          "end": 21.135,
+          "cardIds": [
+            "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-cung-dau"
+          ]
+        },
+        {
+          "id": "chia-khac-dau",
+          "start": 21.535,
+          "end": 41.585,
+          "cardIds": [
+            "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.chia-khac-dau"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.video.chia-het-so-nguyen",
+      "lessonId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen",
+      "url": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/chia-het-so-nguyen.mp4",
+      "vttUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/chia-het-so-nguyen.vtt",
+      "posterUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/chia-het-so-nguyen.jpg",
+      "durationSec": 46.7,
+      "clips": [
+        {
+          "id": "phep-chia-het",
+          "start": 0.7,
+          "end": 45.286,
+          "cardIds": [
+            "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.phep-chia-het"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.video.uoc-cua-6",
+      "lessonId": "phep-chia-het-uoc-va-boi-cua-mot-so-nguyen",
+      "url": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/uoc-cua-6.mp4",
+      "vttUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/uoc-cua-6.vtt",
+      "posterUrl": "video/phep-chia-het-uoc-va-boi-cua-mot-so-nguyen/uoc-cua-6.jpg",
+      "durationSec": 44.17,
+      "clips": [
+        {
+          "id": "tim-uoc",
+          "start": 0.7,
+          "end": 42.739,
+          "cardIds": ["phep-chia-het-uoc-va-boi-cua-mot-so-nguyen.card.tim-uoc"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }
