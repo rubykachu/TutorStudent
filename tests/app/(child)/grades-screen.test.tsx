@@ -77,6 +77,7 @@ async function openGradesOf(grade: number, open: number[]) {
     grade,
     series: {},
     createdAt: "2026-01-01T00:00:00.000Z",
+    updatedAt: "2026-01-01T00:00:00.000Z",
   });
   await setActiveProfile("kid-1");
   render(<GradesScreen />);

@@ -100,6 +100,7 @@ export async function saveSectionPosition(
       state: previous?.state === "done" ? "done" : "in_progress",
       position,
       updatedAt: now.toISOString(),
+      doneAt: previous?.doneAt ?? null,
     });
   });
 }
@@ -130,6 +131,7 @@ export async function completeSection(
       state: "done",
       position: SECTION_START,
       updatedAt: now.toISOString(),
+      doneAt: now.toISOString(),
     });
     const records = await db.sectionProgress
       .where("[familyId+childId+lessonId]")

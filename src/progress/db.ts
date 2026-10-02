@@ -24,6 +24,9 @@ export type ProfileRecord = {
   // that series is of the child's grade).
   series: Record<string, string>;
   createdAt: string;
+  // Last time the name, avatar or grade changed; the later copy of a profile
+  // wins when devices sync.
+  updatedAt: string;
 };
 
 export type CardStateRecord = ChildScope & LessonCardState;
@@ -71,6 +74,10 @@ export type SectionProgressRecord = ChildScope & {
   // Where the child left off, so the section resumes on the same item.
   position: SectionPosition;
   updatedAt: string;
+  // When the section was last completed; null while it is only in progress.
+  // `state` is "done" exactly when this is set (the upgrade of older records
+  // and every writer keep the two in step); sync merges by this time.
+  doneAt: string | null;
 };
 
 // `day` is a Vietnam-time day key (yyyy-mm-dd) from `vnDayKey`.
@@ -91,6 +98,31 @@ export type WritingRecord = ChildScope & {
 export type SettingValue = string | number | boolean | null;
 
 export type SettingRecord = ChildScope & { key: string; value: SettingValue };
+
+// Marks that a child started a lesson over at `at`. It is the tombstone sync
+// uses to drop the lesson's older records on every device, and it stays after
+// the erase.
+export type LessonResetRecord = ChildScope & { lessonId: string; at: string };
+
+// What sync last did for one child: the hash of the main doc as last sent
+// (`syncedHash`), its etag, and per month of history the same plus whether the
+// cloud copy of that month has been applied to this device. A doc whose hash
+// now differs has unsent changes. Bookkeeping of this device only; never
+// synced.
+export type SyncMonthState = {
+  hash: string | null;
+  etag: string | null;
+  applied: boolean;
+};
+
+export type SyncStateRecord = ChildScope & {
+  syncedHash: string | null;
+  etag: string | null;
+  lastSyncAt: string | null;
+  lastError: string | null;
+  docBytes: number | null;
+  months: Record<string, SyncMonthState>;
+};
 
 // Settings that describe the device rather than a child (e.g. which child is
 // using it) live in the same table under this reserved child id. Generated
@@ -114,6 +146,8 @@ export class TutorDb extends Dexie {
   declare stickers: Table<StickerRecord, ScopedKey>;
   declare writings: Table<WritingRecord, string>;
   declare settings: Table<SettingRecord, ScopedKey>;
+  declare lessonResets: Table<LessonResetRecord, ScopedKey>;
+  declare syncState: Table<SyncStateRecord, [string, string]>;
 
   constructor(name: string = DB_NAME) {
     super(name);
@@ -138,6 +172,48 @@ export class TutorDb extends Dexie {
           profile.grade ??= DEFAULT_GRADE;
         }),
     );
+    // Sync adds a reset marker table, the per-child sync bookkeeping, month
+    // range indexes on the two history tables and three fields. The upgrade
+    // touches only those fields and every step can run again.
+    this.version(3)
+      .stores({
+        attempts:
+          "id, [familyId+childId], [familyId+childId+lessonId], [familyId+childId+at]",
+        writings: "id, [familyId+childId], [familyId+childId+at]",
+        lessonResets: "[familyId+childId+lessonId]",
+        syncState: "[familyId+childId]",
+      })
+      .upgrade(async (tx) => {
+        await tx
+          .table<Partial<ProfileRecord> & Pick<ProfileRecord, "createdAt">>(
+            "profiles",
+          )
+          .toCollection()
+          .modify((profile) => {
+            profile.updatedAt ??= profile.createdAt;
+          });
+        await tx
+          .table<Partial<SectionProgressRecord> & SectionProgressRecord>(
+            "sectionProgress",
+          )
+          .toCollection()
+          .modify((record) => {
+            if (record.doneAt === undefined) {
+              record.doneAt = record.state === "done" ? record.updatedAt : null;
+            }
+          });
+        await tx
+          .table<SettingRecord>("settings")
+          .toCollection()
+          .modify((setting) => {
+            if (
+              setting.key.startsWith(OVERVIEW_SEEN_PREFIX) &&
+              setting.value === true
+            ) {
+              setting.value = OVERVIEW_SEEN_LEGACY_AT;
+            }
+          });
+      });
   }
 }
 
@@ -282,15 +358,25 @@ export async function getSetting(
 }
 
 // Per-child settings that record the lesson overviews a child has already
-// been through: `overviewSeen:<lessonId>` = true.
+// been through: `overviewSeen:<lessonId>` = the time it was last seen. Older
+// records hold `true`, which the upgrade turns into the epoch below (a reset
+// made anywhere still drops such a mark, so the overview may show once more).
+// Readers accept both forms.
 export const OVERVIEW_SEEN_PREFIX = "overviewSeen:";
+export const OVERVIEW_SEEN_LEGACY_AT = "1970-01-01T00:00:00.000Z";
 
 export async function markOverviewSeen(
   db: TutorDb,
   scope: ChildScope,
   lessonId: string,
+  at: Date,
 ): Promise<void> {
-  await setSetting(db, scope, `${OVERVIEW_SEEN_PREFIX}${lessonId}`, true);
+  await setSetting(
+    db,
+    scope,
+    `${OVERVIEW_SEEN_PREFIX}${lessonId}`,
+    at.toISOString(),
+  );
 }
 
 // Ids of the lessons whose overview this child has seen.
@@ -306,7 +392,7 @@ export async function listOverviewsSeen(
     )
     .toArray();
   return records
-    .filter((r) => r.value === true)
+    .filter((r) => r.value === true || typeof r.value === "string")
     .map((r) => r.key.slice(OVERVIEW_SEEN_PREFIX.length));
 }
 

@@ -203,6 +203,7 @@ describe("ParentScreen dashboard", () => {
       grade: 6,
       series: { math: "kntt" },
       createdAt: START.toISOString(),
+      updatedAt: START.toISOString(),
     });
     const scope = { familyId: LOCAL_FAMILY_ID, childId: "na" };
     await recordAttempt(

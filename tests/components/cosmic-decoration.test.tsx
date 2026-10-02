@@ -210,6 +210,7 @@ describe("the cosmos on the profile picker and the done screen", () => {
             grade: 6,
             series: {},
             createdAt: "",
+            updatedAt: "",
           },
         ]}
         onPick={() => undefined}

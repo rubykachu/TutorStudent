@@ -83,7 +83,7 @@ async function seedLesson(scope: ChildScope, lessonId: string) {
     checks: [],
     at: NOW.toISOString(),
   });
-  await markOverviewSeen(db, scope, lessonId);
+  await markOverviewSeen(db, scope, lessonId, NOW);
   await awardSticker(db, scope, lessonId, NOW);
 }
 
@@ -230,24 +230,27 @@ describe("lesson reset policy", () => {
 
   it("never treats a table with a lessonId index as unrelated to lessons", async () => {
     await db.open();
+    const withLessonKey: string[] = [];
     for (const table of db.tables) {
       const hasLessonKey = [table.schema.primKey, ...table.schema.indexes].some(
         (index) => [index.keyPath].flat().some((path) => path === "lessonId"),
       );
       if (hasLessonKey) {
+        withLessonKey.push(table.name);
         expect(
           LESSON_RESET_POLICY[table.name as keyof typeof LESSON_RESET_POLICY]
             .kind,
         ).not.toBe("unrelated");
       }
     }
+    expect(withLessonKey).toContain("lessonResets");
   });
 
-  it("only keeps the sticker table", () => {
+  it("only keeps the sticker table and the reset markers themselves", () => {
     const kept = Object.entries(LESSON_RESET_POLICY)
       .filter(([, policy]) => policy.kind === "keep")
       .map(([name]) => name);
-    expect(kept).toEqual(["stickers"]);
+    expect(kept.sort()).toEqual(["lessonResets", "stickers"]);
   });
 
   it("refuses to run when a table has no policy", async () => {

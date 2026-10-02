@@ -117,6 +117,7 @@ export function buildProfile(
     grade: input.grade,
     series: Object.fromEntries(subjects.map((s) => [s.id, s.defaultSeries])),
     createdAt: createdAt.toISOString(),
+    updatedAt: createdAt.toISOString(),
   };
 }
 
@@ -145,7 +146,7 @@ export async function setProfileGrade(
   return db.transaction("rw", db.profiles, async () => {
     const profile = await db.profiles.get(id);
     if (!profile) return null;
-    const updated = { ...profile, grade };
+    const updated = { ...profile, grade, updatedAt: now().toISOString() };
     await putProfile(db, updated);
     return updated;
   });
@@ -167,6 +168,7 @@ export async function updateProfile(
       name: input.name.trim(),
       avatar: input.avatar,
       grade: input.grade,
+      updatedAt: now().toISOString(),
     };
     await putProfile(db, updated);
     return updated;
@@ -263,7 +265,7 @@ export async function setOverviewSeen(
   childId: string,
   lessonId: string,
 ): Promise<void> {
-  await markOverviewSeen(appDb(), childScope(childId), lessonId);
+  await markOverviewSeen(appDb(), childScope(childId), lessonId, now());
 }
 
 export function useLessonProgress(

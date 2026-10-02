@@ -32,6 +32,7 @@ const profile: ProfileRecord = {
   grade: 6,
   series: { math: "kntt" },
   createdAt: NOW.toISOString(),
+  updatedAt: NOW.toISOString(),
 };
 
 async function study(db: TutorDb, scope: ChildScope) {
@@ -55,6 +56,7 @@ async function study(db: TutorDb, scope: ChildScope) {
     state: "done",
     position: { phase: "blocks", index: 0 },
     updatedAt: NOW.toISOString(),
+    doneAt: NOW.toISOString(),
   });
   await awardSticker(db, scope, "l", NOW);
   await saveOpenEndedWriting(

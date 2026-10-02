@@ -46,6 +46,7 @@ async function seedProfile(id: string, name: string, avatar: string) {
     grade: 6,
     series: { math: "kntt" },
     createdAt: `2026-01-0${id === "na" ? 1 : 2}T00:00:00.000Z`,
+    updatedAt: `2026-01-0${id === "na" ? 1 : 2}T00:00:00.000Z`,
   });
 }
 

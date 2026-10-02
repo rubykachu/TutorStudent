@@ -12,6 +12,7 @@ function profile(id: string, name: string): ProfileRecord {
     grade: 6,
     series: {},
     createdAt: "",
+    updatedAt: "",
   };
 }
 

@@ -96,6 +96,7 @@ describe("buildProfile", () => {
       grade: 6,
       series: { math: "kntt", literature: "ctst" },
       createdAt: "2026-03-01T02:00:00.000Z",
+      updatedAt: "2026-03-01T02:00:00.000Z",
     });
   });
 });
@@ -229,10 +230,16 @@ describe("updateProfile", () => {
     const scope = { familyId: LOCAL_FAMILY_ID, childId: na.id };
     await markActivityDay(appDb(), scope, "2026-03-02");
     const progressBefore = await readChildProgress(appDb(), na.id);
+    const later = new Date("2026-03-09T05:00:00.000Z");
+    setNowForTesting(() => later);
 
     const moved = await setProfileGrade(na.id, 7);
 
-    expect(moved).toEqual({ ...na, grade: 7 });
+    expect(moved).toEqual({
+      ...na,
+      grade: 7,
+      updatedAt: later.toISOString(),
+    });
     expect(await appDb().profiles.get(na.id)).toEqual(moved);
     expect(await readChildProgress(appDb(), na.id)).toEqual(progressBefore);
     expect(await setProfileGrade("missing", 7)).toBe(null);
@@ -256,6 +263,7 @@ describe("child progress", () => {
       state: "done" as const,
       position: { phase: "practice" as const, index: 1 },
       updatedAt: "2026-03-02T01:00:00.000Z",
+      doneAt: "2026-03-02T01:00:00.000Z",
     };
     await putSectionProgress(appDb(), section);
     await putSectionProgress(appDb(), { ...section, childId: "kid-2" });

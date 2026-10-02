@@ -42,10 +42,12 @@ describe("TutorDb", () => {
       "activityDays",
       "attempts",
       "cardStates",
+      "lessonResets",
       "profiles",
       "sectionProgress",
       "settings",
       "stickers",
+      "syncState",
       "writings",
     ]);
   });
@@ -71,6 +73,7 @@ describe("profiles", () => {
       avatar: "fox",
       grade: 6,
       series: {},
+      updatedAt: "2026-03-05T00:00:00.000Z",
     };
     await putProfile(db, {
       ...base,
@@ -107,22 +110,23 @@ describe("section progress", () => {
       state: "in_progress" as const,
       position: { phase: "blocks" as const, index: 2 },
       updatedAt: "2026-03-02T01:00:00.000Z",
+      doneAt: null,
+    };
+    const finished = {
+      ...record,
+      state: "done" as const,
+      position: { phase: "recap" as const, index: 0 },
+      doneAt: "2026-03-02T01:00:00.000Z",
     };
     await putSectionProgress(db, record);
-    await putSectionProgress(db, {
-      ...record,
-      state: "done",
-      position: { phase: "recap", index: 0 },
-    });
+    await putSectionProgress(db, finished);
     await putSectionProgress(db, {
       ...record,
       sectionId: "roots.section.one",
       lessonId: "roots",
     });
     await putSectionProgress(db, { ...record, ...sibling });
-    expect(await getSectionProgress(db, scope, "powers")).toEqual([
-      { ...record, state: "done", position: { phase: "recap", index: 0 } },
-    ]);
+    expect(await getSectionProgress(db, scope, "powers")).toEqual([finished]);
   });
 
   it("lists every section a child touched across lessons", async () => {
@@ -133,6 +137,7 @@ describe("section progress", () => {
       state: "in_progress" as const,
       position: { phase: "blocks" as const, index: 0 },
       updatedAt: "2026-03-02T01:00:00.000Z",
+      doneAt: null,
     };
     const other = {
       ...record,

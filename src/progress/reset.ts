@@ -78,6 +78,11 @@ export const LESSON_RESET_POLICY: Record<TableName, LessonResetPolicy> = {
     kind: "keep",
     reason: "A title the child earned stays after the lesson is relearned.",
   },
+  lessonResets: {
+    kind: "keep",
+    reason:
+      "It is the marker of the reset itself, kept so sync can drop the lesson's older records on every device.",
+  },
   activityDays: {
     kind: "unrelated",
     reason: "Study days of the child, not tied to a lesson.",
@@ -85,6 +90,10 @@ export const LESSON_RESET_POLICY: Record<TableName, LessonResetPolicy> = {
   profiles: {
     kind: "unrelated",
     reason: "The child's own profile.",
+  },
+  syncState: {
+    kind: "unrelated",
+    reason: "Bookkeeping of what this device last sent, not lesson progress.",
   },
 };
 

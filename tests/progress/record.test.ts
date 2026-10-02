@@ -174,6 +174,34 @@ describe("section progress", () => {
       state: "in_progress",
       position: { phase: "check", index: 1 },
       updatedAt: START.toISOString(),
+      doneAt: null,
+    });
+  });
+
+  it("sets doneAt when a section is completed", async () => {
+    await completeSection(db, scope, one, sections, START);
+    expect(await read(one.sectionId)).toMatchObject({
+      state: "done",
+      doneAt: START.toISOString(),
+      updatedAt: START.toISOString(),
+    });
+  });
+
+  it("keeps state done and doneAt unchanged when a done section is gone through again", async () => {
+    await completeSection(db, scope, one, sections, START);
+    const later = new Date(START.getTime() + 60_000);
+    await saveSectionPosition(
+      db,
+      scope,
+      one,
+      { phase: "practice", index: 2 },
+      later,
+    );
+    expect(await read(one.sectionId)).toMatchObject({
+      state: "done",
+      doneAt: START.toISOString(),
+      position: { phase: "practice", index: 2 },
+      updatedAt: later.toISOString(),
     });
   });
 

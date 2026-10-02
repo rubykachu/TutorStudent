@@ -57,10 +57,10 @@ Files: `src/sync/merge.ts`, `src/sync/history.ts`, `tests/sync/merge.test.ts`, `
 New Dexie version 3: tables `lessonResets` (`[familyId+childId+lessonId]`) and `syncState` (`[familyId+childId]`, holding `syncedHash`, `etag`, `lastSyncAt`, `lastError`, `docBytes`, and per month `{ hash, etag, applied }` in `months`); an index `[familyId+childId+at]` on `attempts` and `writings` so one month is read by range; `profiles.updatedAt` (upgrade sets it to `createdAt`); `sectionProgress.doneAt` (upgrade sets it to `updatedAt` for `done` records; `completeSection` sets it, `saveSectionPosition` keeps it); `overviewSeen:*` settings turn from `true` into `1970-01-01T00:00:00.000Z`, new marks store the time (readers in `db.ts` accept both). `buildProfile`, `updateProfile` and `setProfileGrade` set `updatedAt`. `SYNC_POLICY: Record<TableName, …>` classifies every table as synced or local-only, so a new table fails typecheck. `lessonResets` is classified in `LESSON_RESET_POLICY` as kept (it is the marker itself), `syncState` as unrelated.
 
 Acceptance:
-- [ ] A database created at version 2 with fixture records (done and in-progress sections, `overviewSeen` true) opens at version 3 with every old record intact and the new fields set as above (test with `fake-indexeddb`).
-- [ ] `tests/progress/reset.test.ts` still passes, and its rule about tables with a `lessonId` index covers `lessonResets`.
-- [ ] `listOverviewsSeen` returns the same lessons before and after the upgrade.
-- [ ] Going through a done section again keeps `state` done and `doneAt` unchanged.
+- [x] A database created at version 2 with fixture records (done and in-progress sections, `overviewSeen` true) opens at version 3 with every old record intact and the new fields set as above (test with `fake-indexeddb`).
+- [x] `tests/progress/reset.test.ts` still passes, and its rule about tables with a `lessonId` index covers `lessonResets`.
+- [x] `listOverviewsSeen` returns the same lessons before and after the upgrade.
+- [x] Going through a done section again keeps `state` done and `doneAt` unchanged.
 
 Verify: `pnpm test tests/progress && pnpm typecheck`
 

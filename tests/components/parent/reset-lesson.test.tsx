@@ -45,6 +45,7 @@ const NA: ProfileRecord = {
   grade: 6,
   series: { math: "kntt" },
   createdAt: NOW.toISOString(),
+  updatedAt: NOW.toISOString(),
 };
 const NA_SCOPE = { familyId: LOCAL_FAMILY_ID, childId: NA.id };
 
