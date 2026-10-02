@@ -132,3 +132,47 @@ Không có.
 - Vị trí: `catalog.ts` khoá `so-doi-mat-nhau` dòng 3, nhãn "30 và −30 cộng lại bằng 0, bỏ 0" (ảnh `phone/117-s10-02-block-end.png`) - LL-10
 - Vấn đề: dòng đó viết "(30 − 30) − 17 − 5" nên "bỏ 0" có thể hiểu là bỏ kết quả của (30 − 30); thật ra là bỏ "− 0" ở cuối dòng trên.
 - Sửa: nhãn "30 và −30 cộng lại bằng 0; bỏ luôn − 0".
+
+---
+
+# Vòng video - chỉ phần đổi (một reviewer Sonnet)
+
+- Vòng: 4 - chỉ phần đổi (`pnpm content:diff`: ba block `video`, ba bản ghi `videos`, lời đọc giới thiệu), section: `ngoac-dau-cong`, `ngoac-dau-tru`, `ngoac-tru-so-am`
+- `video:check`: ok cả ba video (`bo-ngoac-dau-cong`, `bo-ngoac-dau-tru`, `ngoac-tru-so-am`: câu `rule` khớp bài, chữ quy tắc trên hình có `data-rule-text`)
+- Kết luận: Hết lỗi Nghiêm trọng (0); 0 Nên sửa, 3 Góp ý.
+
+Phạm vi và kết quả đối chiếu:
+- Kịch bản: mỗi video 15 câu, câu thường ≤ 12 chữ, mở bằng câu chào "bạn", một câu `ask` ở giữa (không phải câu cuối), câu `rule` đầu có `think`, không `checkpoint`. Lặng đo bằng `silencedetect` trên mp4: sau `ask` 1,53 / 1,54 / 1,56 giây, sau `think` 1,04 giây, mọi quãng khác 0,82-1,37 giây.
+- Phép tính đúng: 40 + (30 − 10) = 60; 12 + (4 − 7) = 9; 100 − (30 + 20) = 50; 60 − (25 + 15) = 20; 100 − (30 − 10) = 80; 50 − (20 − 5) = 35. Số trong lời, trên hình và trong ba note của bài khớp nhau (40/30/10; 100/30/20; 30/10/100).
+- Câu quy tắc và recap của ba card lặp nguyên văn câu `rule` trong lời và trên hình ("dấu +" đọc "dấu cộng", "dấu −" đọc "dấu trừ" qua `say`; Whisper nghe đúng "cộng", "trừ", "âm 10").
+- Hình khớp lời ở mốc `.vtt`: số, phép tính và kết quả (60, 50, 80, 9, 20, 35) hiện đúng lúc lời nói tới (xem lại trên mp4 cuối, vì khung contact sheet lệch khoảng 1 giây). Màu đúng: dương lime, âm pink, mọi chữ rõ không bị cắt, nửa dưới màn trống cho phụ đề.
+- Clip theo card: `ngoac-dau-cong` 14,469-43,861, `ngoac-dau-tru` 15,919-55,843, `ngoac-tru-so-am` 13,802-52,783; mỗi clip bắt đầu ở câu hỏi và kết ở câu "Nhớ nhé", đúng đoạn quy tắc của card.
+- Lời đọc giới thiệu `overview.vtt`: 25 cue, chữ khớp từng câu của `hook`, `summary`, `goals`, `whyItMatters` (cộng câu dẫn "Học xong bài này, bạn sẽ:"); câu đầu chào "bạn"; số 100/30/10 khớp video `ngoac-tru-so-am`.
+
+## Nghiêm trọng
+
+Không có.
+
+## Nên sửa
+
+Không có.
+
+## Góp ý
+
+### 1. Ba video mở đầu 3 giây chỉ có con cú, chưa có hình theo lời chào
+
+- Vị trí: `bo-ngoac-dau-cong` 1,0-4,0 giây, `bo-ngoac-dau-tru` 1,0-3,7 giây, `ngoac-tru-so-am` 1,0-4,0 giây (câu 1-2 của `.vtt`)
+- Vấn đề: màn trắng trong lúc đọc "Hôm nay ta bỏ ngoặc có dấu cộng/trừ/số âm"; bé chậm không thấy tên bài nên có thể tưởng video chưa chạy.
+- Sửa: hiện tên bài (hoặc biểu thức mẫu mờ) từ câu chào ở `s01-chuyen` của cả ba `index.html`; không đổi lời nên không cần đọc lại giọng.
+
+### 2. Câu quy tắc của `ngoac-tru-so-am` không nói điều kiện "trước ngoặc có dấu −", và dòng 100 − (30 + 20) của `bo-ngoac-dau-tru` đọc "Cộng 30" khi hình ghi "30"
+
+- Vị trí: `ngoac-tru-so-am/script.json` câu hỏi và câu `rule` ở `s02-quy-tac` (14,1-22,8 giây); `bo-ngoac-dau-tru/script.json` câu "Cộng 30 đổi thành trừ 30." (26,5 giây)
+- Vấn đề: video `ngoac-tru-so-am` hỏi "số hạng −10 đổi thành gì?" rồi đọc luôn câu "Khi đổi dấu, …" mà chưa nhắc vì sao phải đổi (trước ngoặc có dấu −); bé chỉ nhớ được nếu vừa xem video ngay trước. Ở `bo-ngoac-dau-tru` số 30 đầu ngoặc không ghi dấu nhưng lời đọc "Cộng 30".
+- Sửa: thêm vào lời dẫn một câu ngắn ≤ 12 chữ, vd "Trước ngoặc là dấu trừ, nên ta đổi dấu." (trước câu `ask` của `ngoac-tru-so-am`) và "Số 30 đứng đầu, coi như cộng 30." (trước câu "Cộng 30 đổi thành trừ 30"); cần đọc lại giọng nên hỏi chủ dự án trước khi dựng lại.
+
+### 3. Whisper nghe lệch một số chỗ của giọng đọc, chưa chạm ngưỡng chặn
+
+- Vị trí: `ngoac-tru-so-am` "Tiền trả lại là 100 trừ…" nghe thành "Kiên trả lại" (9,6 giây, khớp 0,982); `bo-ngoac-dau-cong` câu `rule` nghe "bỏ ngoặc bì" thay "bỏ ngoặc đi" (cả hai lần đọc, 20,1 và 40,6 giây) và "Bỏ ngoặc: 12 cộng 4 trừ 7" nghe "Bảo ngoặc" sau 4 lần đọc (33,07 giây, khớp 0,971); `ngoac-tru-so-am` "trong ngoặc" nghe "trong hoặc" sau 4 lần (36,2 giây, khớp 0,962)
+- Vấn đề: số đo Whisper cho thấy 4 chỗ giọng có thể đọc mờ âm; chữ "trừ", "âm" đều đúng.
+- Sửa: chủ dự án nghe riêng bốn chỗ này; nếu nghe sai thì thêm `say` cho đúng chữ và đọc lại câu đó.
