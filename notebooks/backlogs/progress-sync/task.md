@@ -2,6 +2,46 @@
 
 Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: not started; the owner's decisions are in `spec.md` section 10, no question is open.
 
+## Handover
+
+Slice 4 (client engine and triggers) is partly built. Working tree was clean after the last commit; nothing half-done.
+
+### Done (commits, oldest first)
+
+- `e85bdc1` Task 11, commit 1: one doc's cycle. `src/sync/client.ts` (fetch wrapper, answers reduced to `GetResult`/`PutResult`, network error = `offline`), `src/sync/state.ts` (`syncState` access, `syncFamilyId` device setting, `PENDING_MONTH`), `src/sync/docs.ts` (one adapter each for profile, main and month doc), `src/sync/cycle.ts` (`syncDoc`: conditional GET, migrate, merge, PUT, up to `SYNC_MAX_RETRIES` rounds on 412 with a 100 to 500 ms wait, one retry on 409 `shrink`, apply-back, empty docs never created), `src/sync/overwrite.ts` (writes the server's clamped doc over the local records it changed, because the merge cannot lower a time). `src/sync/local.ts` only gained `export` on `listResets`. Tests: `tests/sync/cycle.test.ts`, helpers `tests/sync/network.ts` (fake fetch answered by the real service over the memory store) and `tests/sync/devices.ts`.
+- `5791b5b` Task 11, commit 2: `src/sync/engine.ts`, `createSyncEngine({ db, api, deviceNow?, sleep?, random? }).run({ full? })`. Order: profile doc, then per local child the months (current and previous; with `full` also every dirty local month, oldest first), then the main doc. Failures that end the run: unavailable (turns sync off for the session, silent), unauthorized, offline, rate, origin, server, family-mismatch. Per-doc failures (conflict, too-new, upgrade-required, too-large, invalid, stored-invalid, shrink) leave the doc dirty and the run goes on; too-new and upgrade-required block that doc until reload. 403 `child` sends the profile doc and retries once. Clock offset measured from the first answer of a run, stored at the end. Tests: `tests/sync/engine.test.ts` (18 cases: first sync, new device, two-device interleaving, 412 race, three lost races, writes during a sync, offline then online, lost PUT answer, 401, 503 and no-gate, family mismatch, 403 child, too-new, reset on one device, clamp, clock offset).
+- Task 11 is ticked below. Gate was green for both commits (`pnpm format && pnpm lint && pnpm typecheck && pnpm test`).
+
+### Not started
+
+Tasks 12 and 13, Checkpoint A. `git status` was clean, so `src/learn/*` and `src/app/(child)/layout.tsx` had no foreign uncommitted changes at the time; re-check before editing.
+
+### Next steps, in order
+
+1. Task 12. Create `src/sync/request.ts`: the default engine (`createSyncEngine({ db: appDb(), api: createSyncApi() })`; keep it out of `engine.ts` so the engine does not import `src/progress/hooks.ts`), `syncNow(options?)`, and `requestSync(reason)` with a short debounce and one sync in flight at a time. Create `src/sync/runner.tsx` (`SyncRunner`: first run with `full: true` after `restoreClockOffset(db)`, a `SYNC_INTERVAL_MINUTES` timer, `online`, `visibilitychange` hidden, no `keepalive`; Web Locks lock `tutor-sync`, no lock when `navigator.locks` is missing). Mount once in `src/app/(child)/layout.tsx` and in `src/components/parent/parent-screen.tsx`. Call sites: in `src/learn/section-player.tsx` `advance`, one line after `completeSection` resolves; in `src/learn/review-player.tsx`, a small effect (placed before `if (!session) return null`) that calls `requestSync` once when the session ends (`session !== null && !item && !session.recap`). Tests `tests/sync/runner.test.tsx` with fake timers; no child screen renders sync text; an apply-back changing the open section's position does not move the player.
+2. Task 13. `src/sync/history-pull.ts`: after the main doc is applied, pull months whose `syncState.months[m].applied` is false (the engine records every month the cloud lists as `PENDING_MONTH`), newest first, one request at a time, paced under `SYNC_GET_LIMIT_PER_MINUTE`, through `syncDoc` with `monthAdapter` (which applies with `applyHistoryDoc` and marks the month applied). A listed month that does not exist counts as empty and stays pending. Start it from the runner; stop on leaving the app and resume at the next start. `src/components/parent/history-loading.tsx` ("Đang tải lịch sử học… (đã có từ tháng …)") placed in `child-report.tsx` under the totals. Tests `tests/sync/history-pull.test.ts`, `tests/components/parent`.
+3. Checkpoint A: `pnpm build` in a temp `git worktree`; local gate server on port 3520 with `SYNC_STORE=fs:<temp dir>` and a fake `FAMILY_CODES=test-family:<code>` plus `SESSION_SECRET` (32 characters); two browser contexts: learn on A, open B, progress arrives; run e2e learn, review and parent once with `--workers=2`; remove the worktree; stop only own PIDs (never the dev server on 3001, never `pkill`). No push, no deploy, no R2.
+4. Look at the flaky `e2e/unlock.spec.ts` on iPad WebKit ("Vào học" button not enabled in time under `--workers=2`). If the fix is test-only (wait for the enabled state, no fixed sleeps), commit it alone as `test(e2e): ...`; otherwise leave it and note it here.
+5. Write the exact two-browser commands into Checkpoint A, tick Tasks 12 and 13, update this handover.
+
+### Deviations from the spec
+
+- The cycle lives in `src/sync/cycle.ts` and the adapters in `src/sync/docs.ts`, `src/sync/state.ts`, `src/sync/overwrite.ts`; `engine.ts` holds only the orchestration. The task listed `engine.ts` and `client.ts` only.
+- Routine syncs always do a conditional GET of the current and previous month (not only when a month is dirty), so a device sees the other device's answers of the current month; each is a cheap `unchanged` answer. The cost note in section 8 assumed one poll per sync.
+- The server answers a stored doc of a newer version with 500 `stored-invalid` when read by an older server; the client's `too-new` case only arises when a newer server answers an older client (tested with a canned answer).
+- A month empty on both sides records nothing in `syncState` (otherwise the main doc would list months that do not exist).
+
+### Known flakes
+
+- `tests/scripts/sources-import.test.ts` can time out (5 s) when the whole suite runs under load; it passes alone (`pnpm vitest run tests/scripts/sources-import.test.ts`).
+- `e2e/unlock.spec.ts` on iPad WebKit with `--workers=2`: "Vào học" not enabled in time (not investigated yet).
+
+### Commands to verify
+
+- `pnpm vitest run tests/sync/cycle.test.ts tests/sync/engine.test.ts`
+- `pnpm format && pnpm lint && pnpm typecheck && pnpm test`
+- `git log --oneline -3` shows `5791b5b` and `e85bdc1` below the handover commit.
+
 ## Rules for every task
 
 - One Sonnet subagent per task (or per pair of S tasks), started from this file; the security review runs on Opus in a fresh agent.
@@ -182,8 +222,8 @@ Files: `src/sync/server.ts`, `tests/api/sync-snapshot.test.ts`.
 2. Orchestration: skip when sync is unavailable; profile doc first, then for each local child the dirty month docs (oldest first, so a month exists before it is listed) and then the main doc with `historyMonths` updated; update `syncState` (`syncedHash`, `etag`, `lastSyncAt`, `lastError`, `docBytes`), store the clock offset, record `syncFamilyId` on first success, stop on family mismatch (`spec.md`, "Offline, family switch, first sync").
 
 Acceptance:
-- [ ] Unit tests with a fake fetch backed by the memory store: first sync from a device with local data; second device pulls; conflict path; three conflicts in a row leave the child dirty; offline (fetch throws) keeps dirty; `too-new` stops without writing; 401 stops; `sync-unavailable` disables silently; a lost PUT response (stored but answer dropped) settles without duplicates on the next sync; only months with unsent records are pushed; a reset pushes the main doc and no old month.
-- [ ] Writes made during a sync stay dirty afterwards.
+- [x] Unit tests with a fake fetch backed by the memory store: first sync from a device with local data; second device pulls; conflict path; three conflicts in a row leave the child dirty; offline (fetch throws) keeps dirty; `too-new` stops without writing; 401 stops; `sync-unavailable` disables silently; a lost PUT response (stored but answer dropped) settles without duplicates on the next sync; only months with unsent records are pushed; a reset pushes the main doc and no old month.
+- [x] Writes made during a sync stay dirty afterwards.
 
 Verify: `pnpm test tests/sync/engine.test.ts`
 
