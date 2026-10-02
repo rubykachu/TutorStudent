@@ -12,7 +12,7 @@
   },
   "sourceRef": "Sách bài tập tr.55–57",
   "status": "published",
-  "reviewedHash": "42cc8a4dfb21d58ee74c91462edc247e55544dcf424e306ab5ad81cfabb3d2c1",
+  "reviewedHash": "a8cb56c48e1085db024d62c595dd261c7ad2e5e6241611bd23f261f44db2e332",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học phép nhân số nguyên. Buổi tối ở Đà Lạt, nhiệt độ giảm 2 độ mỗi giờ. Sau 3 giờ, nhiệt độ đã thay đổi bao nhiêu độ?"
@@ -744,6 +744,164 @@
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.tang-giam-vi-du",
         "caption": "Thay đổi tổng cộng bằng thay đổi mỗi lần nhân với số lần. Số dương là tăng, số âm là giảm."
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.56–57 (bài 3.26 đến bài 3.34), lời giải tr.112–113",
+      "minutes": 35,
+      "bookPractice": true,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.26, bài 3.27, bài 3.29, bài 3.30, bài 3.33 và bài 3.34 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hai số khác dấu thì tích là số âm: nhân hai phần số tự nhiên rồi viết dấu − ở trước."
+            },
+            {
+              "type": "note",
+              "text": "Hai số âm nhân với nhau thì tích là số dương: nhân hai phần số tự nhiên."
+            },
+            {
+              "type": "note",
+              "text": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.sbt-nhac-lai-dau-tich"
+            },
+            {
+              "type": "note",
+              "text": "Thay đổi tổng cộng bằng thay đổi mỗi lần nhân với số lần. Số dương là tăng, số âm là giảm."
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.28 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Số nguyên âm nằm trước số 0 trên trục số nên nhỏ hơn 0. Số 0 lại nhỏ hơn số dương, vì vậy số âm nhỏ hơn mọi số dương."
+            },
+            {
+              "type": "note",
+              "text": "Muốn so sánh hai số âm khác nhau, bỏ dấu − của cả hai số rồi so sánh. Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn số âm kia."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.sbt-nhac-lai-so-sanh"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.31 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.sbt-nhac-lai-tich-0"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 3.32 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Muốn trừ một số, ta cộng với số đối của số đó. Hai số đối nhau cộng lại thì được 0."
+            },
+            {
+              "type": "note",
+              "text": "Nhân một số với một tổng thì nhân số đó với từng số hạng, rồi cộng các tích lại."
+            },
+            {
+              "type": "note",
+              "text": "Khi cộng hai tích có chung một thừa số, ta đưa thừa số đó ra ngoài rồi cộng hai thừa số còn lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "phep-nhan-so-nguyen.visual.gop-thua-so-vi-du"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "phep-nhan-so-nguyen.ex.dan-3-26-125-6",
+        "phep-nhan-so-nguyen.ex.sbt-3-26",
+        "phep-nhan-so-nguyen.ex.dan-3-26a-14-3",
+        "phep-nhan-so-nguyen.ex.sbt-3-26a",
+        "phep-nhan-so-nguyen.ex.dan-3-26b-16-5",
+        "phep-nhan-so-nguyen.ex.sbt-3-26b",
+        "phep-nhan-so-nguyen.ex.dan-3-26c-18-4",
+        "phep-nhan-so-nguyen.ex.sbt-3-26c",
+        "phep-nhan-so-nguyen.ex.sbt-3-27a",
+        "phep-nhan-so-nguyen.ex.dan-3-27b-am48-35",
+        "phep-nhan-so-nguyen.ex.sbt-3-27b",
+        "phep-nhan-so-nguyen.ex.dan-3-27c-am62-am57",
+        "phep-nhan-so-nguyen.ex.sbt-3-27c",
+        "phep-nhan-so-nguyen.ex.dan-3-28a-am6-5",
+        "phep-nhan-so-nguyen.ex.sbt-3-28a",
+        "phep-nhan-so-nguyen.ex.dan-3-28b-am9-am7",
+        "phep-nhan-so-nguyen.ex.sbt-3-28b",
+        "phep-nhan-so-nguyen.ex.dan-3-28c-am85-am93",
+        "phep-nhan-so-nguyen.ex.dan-3-28c-am8-15",
+        "phep-nhan-so-nguyen.ex.sbt-3-28c",
+        "phep-nhan-so-nguyen.ex.dan-3-29a-am6",
+        "phep-nhan-so-nguyen.ex.sbt-3-29a",
+        "phep-nhan-so-nguyen.ex.dan-3-29b-am9",
+        "phep-nhan-so-nguyen.ex.sbt-3-29b",
+        "phep-nhan-so-nguyen.ex.dan-3-30-am1",
+        "phep-nhan-so-nguyen.ex.dan-3-30-bang-nho",
+        "phep-nhan-so-nguyen.ex.sbt-3-30",
+        "phep-nhan-so-nguyen.ex.dan-3-31a-7-x15",
+        "phep-nhan-so-nguyen.ex.sbt-3-31a",
+        "phep-nhan-so-nguyen.ex.dan-3-31b-x6-x4",
+        "phep-nhan-so-nguyen.ex.sbt-3-31b",
+        "phep-nhan-so-nguyen.ex.dan-3-31c-am-x-5",
+        "phep-nhan-so-nguyen.ex.dan-3-31c-am-x-12",
+        "phep-nhan-so-nguyen.ex.sbt-3-31c",
+        "phep-nhan-so-nguyen.ex.dan-3-32a-11-1",
+        "phep-nhan-so-nguyen.ex.dan-3-32a-hai-tich",
+        "phep-nhan-so-nguyen.ex.sbt-3-32a",
+        "phep-nhan-so-nguyen.ex.dan-3-32b-nhan-hieu",
+        "phep-nhan-so-nguyen.ex.dan-3-32b-doi-nhau",
+        "phep-nhan-so-nguyen.ex.sbt-3-32b",
+        "phep-nhan-so-nguyen.ex.dan-3-33a-4-50",
+        "phep-nhan-so-nguyen.ex.sbt-3-33a",
+        "phep-nhan-so-nguyen.ex.dan-3-33b-am3-60",
+        "phep-nhan-so-nguyen.ex.sbt-3-33b",
+        "phep-nhan-so-nguyen.ex.dan-3-34-ba-so-tich-am",
+        "phep-nhan-so-nguyen.ex.dan-3-34-nam-so",
+        "phep-nhan-so-nguyen.ex.sbt-3-34"
+      ],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "phep-nhan-so-nguyen.visual.sbt-tom-tat",
+        "caption": "Hai số khác 0 cùng dấu thì tích dương, khác dấu thì tích âm. Hai số có tích bằng 0 thì ít nhất một số trong hai số đó bằng 0."
       }
     }
   ],
@@ -4067,6 +4225,2679 @@
       "check": {
         "expr": "4·(-2)"
       }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-26-125-6",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích sau."
+        },
+        {
+          "type": "formula",
+          "tex": "125 \\cdot 6"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-26",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-nhan-tach"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tách 125 thành 100 + 25 rồi nhân từng phần với 6. Ta có 100 · 6 = 600 và 25 · 6 = 150, cộng lại được 750.",
+        "tex": "\\begin{gathered} 125 \\cdot 6 = 100 \\cdot 6 + 25 \\cdot 6 \\\\ = 600 + 150 = \\concept{lime}{750} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 750
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "125·6"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-26",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích 115 · 8."
+        }
+      ],
+      "bookRef": "SBT 3.26",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-nhan-tach",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-26-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tách 115 thành 100 + 15 rồi nhân từng phần với 8. Ta có 100 · 8 = 800 và 15 · 8 = 120, cộng lại được 920.",
+        "tex": "\\begin{gathered} 115 \\cdot 8 = 100 \\cdot 8 + 15 \\cdot 8 \\\\ = 800 + 120 = \\concept{lime}{920} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 920
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "115·8"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-26a-14-3",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết 14 · 3 = 42. Hãy tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-14) \\cdot 3"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-26a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-am-nhan-duong"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số −14 và 3 khác dấu nên tích là số âm. Phần số tự nhiên của tích vẫn là 14 · 3 = 42, nên tích bằng −42.",
+        "tex": "\\begin{gathered} (-14) \\cdot 3 \\\\ = -(14 \\cdot 3) = \\concept{pink}{-42} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -42
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-14)·3"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-26a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích 115 · 8. Từ đó suy ra các tích sau:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-115) \\cdot 8;"
+        }
+      ],
+      "bookRef": "SBT 3.26a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-am-nhan-duong",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-26a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số −115 và 8 khác dấu nên tích là số âm. Phần số tự nhiên của tích vẫn là 115 · 8 = 920, nên tích bằng −920.",
+        "tex": "\\begin{gathered} (-115) \\cdot 8 \\\\ = -(115 \\cdot 8) = \\concept{pink}{-920} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -920
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-115)·8"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-26b-16-5",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết 16 · 5 = 80. Hãy tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "16 \\cdot (-5)"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-26b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-khac-dau-9-nhan-am2"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số 16 và −5 khác dấu nên tích là số âm. Phần số tự nhiên của tích vẫn là 16 · 5 = 80, nên tích bằng −80.",
+        "tex": "\\begin{gathered} 16 \\cdot (-5) \\\\ = -(16 \\cdot 5) = \\concept{pink}{-80} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -80
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "16·(-5)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-26b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích 115 · 8. Từ đó suy ra các tích sau:"
+        },
+        {
+          "type": "formula",
+          "tex": "115 \\cdot (-8);"
+        }
+      ],
+      "bookRef": "SBT 3.26b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-khac-dau-9-nhan-am2",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-26b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số 115 và −8 khác dấu nên tích là số âm. Phần số tự nhiên của tích vẫn là 115 · 8 = 920, nên tích bằng −920.",
+        "tex": "\\begin{gathered} 115 \\cdot (-8) \\\\ = -(115 \\cdot 8) = \\concept{pink}{-920} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -920
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "115·(-8)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-26c-18-4",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết 18 · 4 = 72. Hãy tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-18) \\cdot (-4)"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-26c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-am8-nhan-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai số −18 và −4 cùng là số âm nên tích là số dương. Phần số tự nhiên của tích vẫn là 18 · 4 = 72, nên tích bằng 72.",
+        "tex": "\\begin{gathered} (-18) \\cdot (-4) \\\\ = 18 \\cdot 4 = \\concept{lime}{72} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 72
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-18)·(-4)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-26c",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính tích 115 · 8. Từ đó suy ra các tích sau:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-115) \\cdot (-8)."
+        }
+      ],
+      "bookRef": "SBT 3.26c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-am5-nhan-am",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-26c-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số −115 và −8 cùng là số âm nên tích là số dương. Phần số tự nhiên của tích vẫn là 115 · 8 = 920, nên tích bằng 920.",
+        "tex": "\\begin{gathered} (-115) \\cdot (-8) \\\\ = 115 \\cdot 8 = \\concept{lime}{920} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 920
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-115)·(-8)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-27a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Không thực hiện phép tính, hãy so sánh mỗi tích sau với 0:"
+        },
+        {
+          "type": "formula",
+          "tex": "287 \\cdot 522;"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.27a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-dau-duong-duong",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-27a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "287 và 522 đều là số dương, cùng dấu, nên tích là số dương, lớn hơn 0. Ta không cần nhân ra.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tích chỉ âm khi hai thừa số khác dấu, mà 287 và 522 cùng dấu."
+          },
+          {
+            "optionId": "c",
+            "text": "Tích chỉ bằng 0 khi có một thừa số bằng 0, mà 287 và 522 đều khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tích lớn hơn 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tích nhỏ hơn 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tích bằng 0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-27b-am48-35",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chỉ xét dấu, đừng nhân. Tích dưới đây so với 0 thế nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "(-48) \\cdot 35"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-27b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-dau-am-duong"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Số −48 là số âm còn 35 là số dương, hai số khác dấu nên tích là số âm, nhỏ hơn 0.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai số khác dấu cho tích âm, không phải tích dương."
+          },
+          {
+            "optionId": "c",
+            "text": "Cả hai thừa số đều khác 0 nên tích không thể bằng 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tích nhỏ hơn 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tích lớn hơn 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tích bằng 0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-27b",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Không thực hiện phép tính, hãy so sánh mỗi tích sau với 0:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-375) \\cdot 959;"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.27b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-dau-am-duong",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-27b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "−375 là số âm còn 959 là số dương, hai số khác dấu nên tích là số âm, nhỏ hơn 0. Ta không cần nhân ra.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Hai số khác dấu cho tích âm, không phải tích dương."
+          },
+          {
+            "optionId": "b",
+            "text": "Cả hai thừa số đều khác 0 nên tích không thể bằng 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tích lớn hơn 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tích bằng 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tích nhỏ hơn 0"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-27c-am62-am57",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chỉ xét dấu, đừng nhân. Tích dưới đây so với 0 thế nào?"
+        },
+        {
+          "type": "formula",
+          "tex": "(-62) \\cdot (-57)"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-27c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-dau-am-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cả −62 và −57 đều là số âm, cùng dấu nên tích là số dương, lớn hơn 0.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Cả hai thừa số đều khác 0 nên tích không thể bằng 0."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai số âm nhân với nhau cho tích dương, không phải tích âm."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tích bằng 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tích lớn hơn 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tích nhỏ hơn 0"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-27c",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Không thực hiện phép tính, hãy so sánh mỗi tích sau với 0:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-278) \\cdot (-864)."
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.27c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-dau-am-am",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-27c-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "−278 và −864 đều là số âm, cùng dấu, nên tích là số dương, lớn hơn 0. Ta không cần nhân ra.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Hai số âm nhân với nhau cho tích dương, không phải tích âm."
+          },
+          {
+            "optionId": "b",
+            "text": "Cả hai thừa số đều khác 0 nên tích không thể bằng 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tích nhỏ hơn 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tích bằng 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tích lớn hơn 0"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-28a-am6-5",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hãy so sánh hai tích sau."
+        },
+        {
+          "type": "note",
+          "text": "(−6) · 9 với 5 · 4"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-28a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-dau"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tích đầu có hai số khác dấu nên là số âm. Tích sau có hai số dương nên là số dương. Số âm bé hơn số dương, nên tích đầu bé hơn tích sau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tích đầu là số âm, mà số âm không thể lớn hơn một số dương."
+          },
+          {
+            "optionId": "c",
+            "text": "Một tích âm và một tích dương không thể bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "(−6) · 9 < 5 · 4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "(−6) · 9 > 5 · 4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "(−6) · 9 = 5 · 4"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-28a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh:"
+        },
+        {
+          "type": "note",
+          "text": "(+32) · (−25) với (−7) · (−8);"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.28a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-dau",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-28a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích đầu có hai số khác dấu nên là số âm: −800. Tích sau có hai số âm nên là số dương: 56. Số âm bé hơn số dương, nên tích đầu bé hơn tích sau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Tích đầu là số âm, mà số âm không thể lớn hơn một số dương."
+          },
+          {
+            "optionId": "c",
+            "text": "Một tích âm và một tích dương không thể bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "32 · (−25) < (−7) · (−8)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "32 · (−25) > (−7) · (−8)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "32 · (−25) = (−7) · (−8)"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-28b-am9-am7",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hãy so sánh hai tích sau."
+        },
+        {
+          "type": "note",
+          "text": "(−9) · (−4) với (−7) · (−6)"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-28b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-cung-dau"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cả hai tích đều có hai số âm nên đều là số dương. Tính ra 9 · 4 = 36 và 7 · 6 = 42, mà 36 bé hơn 42.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Tích đầu là 36, còn tích sau là 42, nên tích đầu không lớn hơn."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai tích là 36 và 42, khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "(−9) · (−4) > (−7) · (−6)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "(−9) · (−4) < (−7) · (−6)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "(−9) · (−4) = (−7) · (−6)"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-28b",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh:"
+        },
+        {
+          "type": "note",
+          "text": "(−44) · (−5) với (−11) · (−20);"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.28b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-cung-dau",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-28b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cả hai tích đều có hai số âm nên đều là số dương. Tính ra 44 · 5 = 220 và 11 · 20 = 220, nên hai tích bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Tích sau cũng bằng 220, nên tích đầu không bé hơn."
+          },
+          {
+            "optionId": "c",
+            "text": "Tích sau cũng bằng 220, nên tích đầu không lớn hơn."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "(−44) · (−5) < (−11) · (−20)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "(−44) · (−5) = (−11) · (−20)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "(−44) · (−5) > (−11) · (−20)"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-28c-am85-am93",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hãy so sánh hai số sau."
+        },
+        {
+          "type": "note",
+          "text": "−85 với −93"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-28c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Bỏ dấu − của cả hai số, ta được 85 và 93. Số âm nào có số lớn hơn sau khi bỏ dấu − thì nhỏ hơn. Vì 93 lớn hơn 85 nên −93 nhỏ hơn −85.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Bỏ dấu −, 93 lớn hơn 85 nên −93 mới là số nhỏ hơn, không phải −85."
+          },
+          {
+            "optionId": "b",
+            "text": "Bỏ dấu − thì được 85 và 93, hai số khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "−85 < −93"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "−85 = −93"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "−85 > −93"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-28c-am8-15",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hãy so sánh hai tích sau."
+        },
+        {
+          "type": "note",
+          "text": "(−8) · 15 với 12 · (−11)"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-28c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-am"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cả hai tích đều có hai số khác dấu nên đều là số âm: −120 và −132. Bỏ dấu −, 132 lớn hơn 120 nên −132 nhỏ hơn −120. Vậy tích đầu lớn hơn tích sau.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Bỏ dấu −, 132 lớn hơn 120 nên −132 mới là số nhỏ hơn, không phải −120."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai tích là −120 và −132, khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "(−8) · 15 < 12 · (−11)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "(−8) · 15 > 12 · (−11)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "(−8) · 15 = 12 · (−11)"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-28c",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "So sánh:"
+        },
+        {
+          "type": "note",
+          "text": "(−24) · (+25) với (+30) · (−21)."
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.28c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-so-sanh-am",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-28c-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Cả hai tích đều có hai số khác dấu nên đều là số âm: −600 và −630. Bỏ dấu −, 630 lớn hơn 600 nên −630 nhỏ hơn −600. Vậy tích đầu lớn hơn tích sau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Bỏ dấu −, 630 lớn hơn 600 nên −630 mới là số nhỏ hơn, không phải −600."
+          },
+          {
+            "optionId": "a",
+            "text": "Hai tích là −600 và −630, khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "(−24) · 25 = 30 · (−21)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "(−24) · 25 < 30 · (−21)"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "(−24) · 25 > 30 · (−21)"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false,
+      "check": {
+        "relation": "holds"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-29a-am6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho a = −6. Với giá trị nào của b thì tích a · b là một số dương?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-29a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-b-duong"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tích dương khi hai thừa số cùng dấu. Vì a = −6 là số âm nên b cũng phải là số âm, như b = −5.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "(−6) · 5 = −30 là số âm, vì hai số khác dấu."
+          },
+          {
+            "optionId": "c",
+            "text": "(−6) · 0 = 0, mà 0 không phải số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "b = 5"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "b = −5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "b = 0"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-29a",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho a là một số nguyên âm. Hỏi b là số nguyên dương hay nguyên âm nếu:"
+        },
+        {
+          "type": "note",
+          "text": "Tích a · b là một số nguyên dương?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.29a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-b-duong",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-29a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích dương thì hai thừa số cùng dấu. Vì a là số âm nên b cũng phải là số âm.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Nếu b dương thì a và b khác dấu, nên tích a · b là số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Nếu b = 0 thì a · b = 0, mà 0 không phải số dương."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên âm"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên dương"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số 0"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-29b-am9",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho a = −9. Với giá trị nào của b thì tích a · b là một số âm?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-29b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-b-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tích âm khi hai thừa số khác dấu. Vì a = −9 là số âm nên b phải là số dương, như b = 2.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "(−9) · (−2) = 18 là số dương, vì hai số cùng dấu."
+          },
+          {
+            "optionId": "b",
+            "text": "(−9) · 0 = 0, mà 0 không phải số âm."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "b = −2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "b = 0"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "b = 2"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-29b",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho a là một số nguyên âm. Hỏi b là số nguyên dương hay nguyên âm nếu:"
+        },
+        {
+          "type": "note",
+          "text": "Tích a · b là một số nguyên âm?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 3.29b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-b-am",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-29b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích âm thì hai thừa số khác dấu. Vì a là số âm nên b phải là số dương.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Nếu b âm thì a và b cùng dấu, nên tích a · b là số dương."
+          },
+          {
+            "optionId": "a",
+            "text": "Nếu b = 0 thì a · b = 0, mà 0 không phải số âm."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Số 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên âm"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Số nguyên dương"
+          }
+        }
+      ],
+      "answer": ["c"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-30-am1",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho x = −1 và y = 38. Tính x · y."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-30",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.goi-y-khac-dau-9-nhan-am2"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân một số với −1 thì chỉ đổi dấu của số đó. Vậy (−1) · 38 = −38.",
+        "tex": "\\begin{gathered} (-1) \\cdot 38 \\\\ = -(1 \\cdot 38) = \\concept{pink}{-38} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -38
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-1)·38"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-30-bang-nho",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền tích x · y của mỗi cột trong bảng nhỏ này."
+        },
+        {
+          "type": "note",
+          "text": "x | −4 | 9 | −8 | 0"
+        },
+        {
+          "type": "note",
+          "text": "y | 6 | −7 | −5 | −15"
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Các ô xếp theo từng cột của bảng, từ cột 1 đến cột 4."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-30",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          },
+          {
+            "target": "block",
+            "index": 2
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-bang-cot"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ở mỗi cột, xét dấu của x và y rồi nhân hai phần số tự nhiên. Hai số khác dấu cho tích âm, hai số cùng dấu cho tích dương, và có thừa số 0 thì tích bằng 0.",
+        "tex": "\\begin{gathered} (-4) \\cdot 6 = \\concept{pink}{-24} \\quad 9 \\cdot (-7) = \\concept{pink}{-63} \\\\ (-8) \\cdot (-5) = \\concept{lime}{40} \\quad 0 \\cdot (-15) = \\concept{slate}{0} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Cột 1: x = −4, y = 6, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c1-tich",
+          "accept": ["−24", "-24"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 2: x = 9, y = −7, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c2-tich",
+          "accept": ["−63", "-63"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 3: x = −8, y = −5, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c3-tich",
+          "accept": ["40"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 4: x = 0, y = −15, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c4-tich",
+          "accept": ["0"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": ["−24", "−63", "40", "0", "24", "63", "−40"]
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-30",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Điền các số thích hợp thay thế các dấu \"?\" trong bảng sau:"
+        },
+        {
+          "type": "note",
+          "text": "x | −28 | 55 | −27 | −25 | 0 | −364 | −1 | −532"
+        },
+        {
+          "type": "note",
+          "text": "y | 15 | −8 | −35 | −280 | −653 | 1 | 293 | −1"
+        },
+        {
+          "type": "note",
+          "text": "x · y | ? | ? | ? | ? | ? | ? | ? | ?"
+        },
+        {
+          "type": "note",
+          "text": "Chạm một số, rồi chạm ô trống cần điền. Các ô xếp theo từng cột của bảng, từ cột 1 đến cột 8."
+        }
+      ],
+      "bookRef": "SBT 3.30",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          },
+          {
+            "target": "block",
+            "index": 2
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-bang",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-30-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Ở mỗi cột, xét dấu của x và y rồi nhân hai phần số tự nhiên. Cột có x = 0 thì tích bằng 0. Cột có thừa số 1 hay −1 thì tích chỉ là số còn lại, giữ nguyên hoặc đổi dấu.",
+        "tex": "\\begin{gathered} (-27) \\cdot (-35) = \\concept{lime}{945} \\\\ (-25) \\cdot (-280) = \\concept{lime}{7\\,000} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Cột 1: x = −28, y = 15, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c1-tich",
+          "accept": ["−420", "-420"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 2: x = 55, y = −8, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c2-tich",
+          "accept": ["−440", "-440"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 3: x = −27, y = −35, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c3-tich",
+          "accept": ["945"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 4: x = −25, y = −280, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c4-tich",
+          "accept": ["7 000"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 5: x = 0, y = −653, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c5-tich",
+          "accept": ["0"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 6: x = −364, y = 1, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c6-tich",
+          "accept": ["−364", "-364"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 7: x = −1, y = 293, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c7-tich",
+          "accept": ["−293", "-293"]
+        },
+        {
+          "type": "text",
+          "text": ". "
+        },
+        {
+          "type": "text",
+          "text": "Cột 8: x = −532, y = −1, x · y = "
+        },
+        {
+          "type": "blank",
+          "id": "c8-tich",
+          "accept": ["532"]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ],
+      "bank": [
+        "−420",
+        "−440",
+        "945",
+        "7 000",
+        "0",
+        "−364",
+        "−293",
+        "532",
+        "420",
+        "−945",
+        "−7 000",
+        "364",
+        "293"
+      ]
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-31a-7-x15",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x thoả mãn:"
+        },
+        {
+          "type": "formula",
+          "tex": "7 \\cdot (x + 15) = 0"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-31a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-tim-x-mot"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thừa số 7 khác 0, nên thừa số x + 15 phải bằng 0. Từ x + 15 = 0 ta được x = −15.",
+        "tex": "\\begin{gathered} 7 \\cdot (x + 15) = 0 \\\\ x + 15 = 0 \\to x = \\concept{pink}{-15} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -15
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-15"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-31a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "9 \\cdot (x + 28) = 0;"
+        }
+      ],
+      "bookRef": "SBT 3.31a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-tim-x-mot",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-31a-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Thừa số 9 khác 0, nên thừa số x + 28 phải bằng 0. Từ x + 28 = 0 ta được x = −28.",
+        "tex": "\\begin{gathered} 9 \\cdot (x + 28) = 0 \\\\ x + 28 = 0 \\to x = \\concept{pink}{-28} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -28
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "-28"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-31b-x6-x4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x thoả mãn:"
+        },
+        {
+          "type": "formula",
+          "tex": "(x - 6) \\cdot (x + 4) = 0"
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các giá trị của x thoả mãn."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-31b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-tim-x-hai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích bằng 0 thì ít nhất một thừa số bằng 0. Nếu x − 6 = 0 thì x = 6, nếu x + 4 = 0 thì x = −4.",
+        "tex": "\\begin{gathered} x - 6 = 0 \\to x = 6 \\\\ x + 4 = 0 \\to x = -4 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Thay x = −6 thì hai thừa số là −12 và −2, nhân lên khác 0."
+          },
+          {
+            "optionId": "d",
+            "text": "Thay x = 4 thì hai thừa số là −2 và 8, nhân lên khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "x = 6"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "x = −4"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "x = −6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "x = 4"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-31b",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "(27 - x) \\cdot (x + 9) = 0;"
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các giá trị của x thoả mãn."
+        }
+      ],
+      "bookRef": "SBT 3.31b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-tim-x-hai",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-31b-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích bằng 0 thì ít nhất một thừa số bằng 0. Nếu 27 − x = 0 thì x = 27, nếu x + 9 = 0 thì x = −9.",
+        "tex": "\\begin{gathered} 27 - x = 0 \\to x = 27 \\\\ x + 9 = 0 \\to x = -9 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Thay x = −27 thì hai thừa số là 54 và −18, nhân lên khác 0."
+          },
+          {
+            "optionId": "d",
+            "text": "Thay x = 9 thì hai thừa số là 18 và 18, nhân lên khác 0."
+          },
+          {
+            "optionId": "e",
+            "text": "Thay x = 0 thì hai thừa số là 27 và 9, nhân lên khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "x = 27"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "x = −27"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "x = −9"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "x = 9"
+          }
+        },
+        {
+          "id": "e",
+          "content": {
+            "type": "text",
+            "text": "x = 0"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-31c-am-x-5",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x thoả mãn:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-x) \\cdot 5 = 0"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-31c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Thừa số 5 khác 0, nên thừa số −x phải bằng 0. Số đối của x bằng 0 khi x = 0.",
+        "tex": "\\begin{gathered} (-x) \\cdot 5 = 0 \\\\ -x = 0 \\to x = \\concept{slate}{0} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 0
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "0"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-31c-am-x-12",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x thoả mãn:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-x) \\cdot (x - 12) = 0"
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các giá trị của x thoả mãn."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-31c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-am-x-hai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích bằng 0 thì ít nhất một thừa số bằng 0. Nếu −x = 0 thì x = 0, nếu x − 12 = 0 thì x = 12.",
+        "tex": "\\begin{gathered} -x = 0 \\to x = 0 \\\\ x - 12 = 0 \\to x = 12 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Thay x = −12 thì hai thừa số là 12 và −24, nhân lên khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "x = 0"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "x = −12"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "x = 12"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-31c",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tìm số nguyên x, biết:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-x) \\cdot (x - 43) = 0."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các giá trị của x thoả mãn."
+        }
+      ],
+      "bookRef": "SBT 3.31c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-am-x-hai",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-31c-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Tích bằng 0 thì ít nhất một thừa số bằng 0. Nếu −x = 0 thì x = 0, nếu x − 43 = 0 thì x = 43.",
+        "tex": "\\begin{gathered} -x = 0 \\to x = 0 \\\\ x - 43 = 0 \\to x = 43 \\end{gathered}",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Thay x = −43 thì hai thừa số là 43 và −86, nhân lên khác 0."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "x = −43"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "x = 43"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "x = 0"
+          }
+        }
+      ],
+      "answer": ["b", "c"],
+      "multiple": true
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-32a-11-1",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "(11 - 1) \\cdot (-3)"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-32a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-trong-ngoac"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tính trong ngoặc trước: 11 − 1 = 10. Rồi nhân 10 · (−3), hai số khác dấu nên tích là −30.",
+        "tex": "\\begin{gathered} (11 - 1) \\cdot (-3) \\\\ = 10 \\cdot (-3) = \\concept{pink}{-30} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -30
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(11-1)·(-3)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-32a-hai-tich",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "(7 - 2) \\cdot (-3) + (-1 - 4) \\cdot 7"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-32a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-hai-tich"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính trong ngoặc trước: 7 − 2 = 5 và −1 − 4 = −5, được 5 · (−3) + (−5) · 7. Tích (−5) · 7 bằng −35, và 5 · (−7) cũng bằng −35, nên ta viết (−5) · 7 thành 5 · (−7). Hai tích 5 · (−3) và 5 · (−7) có chung thừa số 5, nên 5 · [(−3) + (−7)] = −50.",
+        "tex": "\\begin{gathered} 5 \\cdot (-3) + (-5) \\cdot 7 \\\\ = 5 \\cdot (-3) + 5 \\cdot (-7) \\\\ = 5 \\cdot (-10) = \\concept{pink}{-50} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -50
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(7-2)·(-3)+(-1-4)·7"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-32a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí:"
+        },
+        {
+          "type": "formula",
+          "tex": "(29 - 9) \\cdot (-9) + (-13 - 7) \\cdot 21;"
+        }
+      ],
+      "bookRef": "SBT 3.32a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-3-32a",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-32a-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính trong ngoặc trước: 29 − 9 = 20 và −13 − 7 = −20, được 20 · (−9) + (−20) · 21. Tích (−20) · 21 bằng −420, và 20 · (−21) cũng bằng −420, nên ta viết (−20) · 21 thành 20 · (−21). Hai tích 20 · (−9) và 20 · (−21) có chung thừa số 20, nên 20 · [(−9) + (−21)] = −600.",
+        "tex": "\\begin{gathered} 20 \\cdot (-9) + (-20) \\cdot 21 \\\\ = 20 \\cdot (-9) + 20 \\cdot (-21) \\\\ = 20 \\cdot (-30) = \\concept{pink}{-600} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -600
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(29-9)·(-9)+(-13-7)·21"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-32b-nhan-hieu",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-3) \\cdot (4 - 6)"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-32b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-nhan-hieu"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đổi 4 − 6 thành 4 + (−6), rồi nhân từng số hạng với −3. Ta có (−3) · 4 = −12 và (−3) · (−6) = 18, cộng lại được 6.",
+        "tex": "\\begin{gathered} (-3) \\cdot [4 + (-6)] \\\\ = -12 + 18 = \\concept{lime}{6} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-3)·(4-6)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-32b-doi-nhau",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-8) \\cdot 9 + 9 \\cdot 8 + 5 \\cdot 6"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-32b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-doi-nhau"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích 9 · 8 bằng 8 · 9, nên (−8) · 9 và 9 · 8 là hai số đối nhau. Hai số đối nhau cộng lại bằng 0, nên chỉ còn 5 · 6 = 30.",
+        "tex": "\\begin{gathered} (-8) \\cdot 9 + 9 \\cdot 8 + 5 \\cdot 6 \\\\ = 0 + 5 \\cdot 6 = \\concept{lime}{30} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-8)·9+9·8+5·6"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-32b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính một cách hợp lí:"
+        },
+        {
+          "type": "formula",
+          "tex": "(-157) \\cdot (127 - 316) - 127 \\cdot (316 - 157)."
+        }
+      ],
+      "bookRef": "SBT 3.32b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-3-32b",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-32b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Đổi mỗi phép trừ thành cộng với số đối, rồi nhân từng số hạng. Hai tích (−157) · 127 và 127 · 157 là hai số đối nhau, cộng lại bằng 0. Hai tích còn lại có chung thừa số 316, nên [157 + (−127)] · 316 = 30 · 316 = 9 480.",
+        "tex": "\\begin{gathered} 157 \\cdot 316 + (-127) \\cdot 316 \\\\ = [157 + (-127)] \\cdot 316 \\\\ = 30 \\cdot 316 = \\concept{lime}{9\\,480} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 9480
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-157)·(127-316)-127·(316-157)"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-33a-4-50",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi cái áo theo mẫu mới cần thêm 4 dm vải so với mẫu cũ. May 50 cái áo thì số vải tăng thêm bao nhiêu đề-xi-mét?"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-33a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-vai-tang"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Vải tăng thêm của 50 cái áo gấp 50 lần vải tăng thêm của một cái áo. Vậy số vải tăng thêm là 4 · 50 = 200 dm.",
+        "tex": "\\begin{gathered} 4 \\cdot 50 \\\\ = \\concept{lime}{200} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 200
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "4·50"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-33a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một xí nghiệp may chuyển đổi may mẫu quần áo kiểu mới. Biết rằng số vải để may mỗi bộ quần áo theo mẫu mới tăng thêm x (dm) so với mẫu cũ. Hỏi trong mỗi trường hợp sau, số vải dùng để may 420 bộ quần áo theo mẫu mới tăng thêm bao nhiêu đề-xi-mét?"
+        },
+        {
+          "type": "formula",
+          "tex": "x = 18;"
+        }
+      ],
+      "bookRef": "SBT 3.33a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-vai-420",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-33a-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Vải tăng thêm của 420 bộ gấp 420 lần vải tăng thêm của một bộ, tức là x · 420 dm. Với x = 18, tích 18 · 420 bằng 7 560, nên vải tăng thêm 7 560 dm.",
+        "tex": "\\begin{gathered} 18 \\cdot 420 \\\\ = 7\\,200 + 360 = \\concept{lime}{7\\,560} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7560
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "18·420"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-33b-am3-60",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mẫu mới dùng ít vải hơn mẫu cũ: mỗi cái áo thay đổi x = −3 dm vải. May 60 cái áo thì số vải thay đổi bao nhiêu đề-xi-mét?"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-33b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-vai-giam"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vải thay đổi của 60 cái áo gấp 60 lần vải thay đổi của một cái áo, tức là (−3) · 60 dm. Hai số khác dấu nên tích là −180, nghĩa là vải giảm 180 dm.",
+        "tex": "\\begin{gathered} (-3) \\cdot 60 \\\\ = -(3 \\cdot 60) = \\concept{pink}{-180} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -180
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-3)·60"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-33b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một xí nghiệp may chuyển đổi may mẫu quần áo kiểu mới. Biết rằng số vải để may mỗi bộ quần áo theo mẫu mới tăng thêm x (dm) so với mẫu cũ. Hỏi trong mỗi trường hợp sau, số vải dùng để may 420 bộ quần áo theo mẫu mới tăng thêm bao nhiêu đề-xi-mét?"
+        },
+        {
+          "type": "formula",
+          "tex": "x = -7."
+        }
+      ],
+      "bookRef": "SBT 3.33b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-vai-420-am",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-33b-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Vải tăng thêm của 420 bộ là x · 420 dm. Với x = −7, hai số khác dấu nên tích là số âm, và 7 · 420 = 2 940, được −2 940. Số âm cho biết vải giảm đi 2 940 dm.",
+        "tex": "\\begin{gathered} (-7) \\cdot 420 \\\\ = -(7 \\cdot 420) = \\concept{pink}{-2\\,940} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -2940
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-7)·420"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-34-ba-so-tich-am",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba số nguyên có tích là số âm. Điều nào dưới đây chắc chắn đúng?"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-34",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-ba-so-tich-am"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nếu ba số đều là số dương hoặc số 0 thì tích không thể âm. Vậy ba số có tích âm thì phải có ít nhất một số âm.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Chưa chắc: −2, 3, 4 có tích −24 là số âm, nhưng chỉ có một số âm."
+          },
+          {
+            "optionId": "b",
+            "text": "Nếu có một số bằng 0 thì tích bằng 0, không phải số âm."
+          },
+          {
+            "optionId": "c",
+            "text": "Chưa chắc: −1, −2, −3 có tích −6 là số âm, nhưng không có số dương nào."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Cả ba số đều là số âm."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Trong ba số có một số bằng 0."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Trong ba số có ít nhất một số dương."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Trong ba số có ít nhất một số âm."
+          }
+        }
+      ],
+      "answer": ["d"],
+      "multiple": false
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.dan-3-34-nam-so",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho số a bằng −5 và tích của bốn số còn lại là số dương 6. Tích của cả năm số bằng bao nhiêu?"
+        }
+      ],
+      "leadsTo": "phep-nhan-so-nguyen.ex.sbt-3-34",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-nam-so"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tích của cả năm số bằng a nhân với tích của bốn số còn lại, tức là (−5) · 6. Hai số khác dấu nên tích là số âm, bằng −30.",
+        "tex": "\\begin{gathered} (-5) \\cdot 6 \\\\ = -(5 \\cdot 6) = \\concept{pink}{-30} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": -30
+      },
+      "allowNegative": true,
+      "check": {
+        "expr": "(-5)·6"
+      }
+    },
+    {
+      "id": "phep-nhan-so-nguyen.ex.sbt-3-34",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho năm số nguyên có tính chất: Tích của ba số tuỳ ý trong năm số đó luôn là số nguyên âm. Hỏi tích của năm số đó là số nguyên âm hay nguyên dương? Hãy giải thích tại sao."
+        },
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước giải thích theo thứ tự đúng."
+        }
+      ],
+      "bookRef": "SBT 3.34",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "phep-nhan-so-nguyen.visual.sbt-goi-y-3-34",
+        "solutionVisualId": "phep-nhan-so-nguyen.visual.sbt-3-34-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Ba số bất kì có tích âm, nên trong chúng có ít nhất một số âm. Ta tìm được hai số âm a và b, còn ba số còn lại có tích q là số âm. Khi đó b · q dương, và tích năm số a · (b · q) là số âm."
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Chọn ba số bất kì trong năm số. Tích của chúng âm, nên có ít nhất một số âm. Ta đặt tên số âm đó là a."
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Bỏ a ra, còn bốn số. Chọn ba số bất kì trong bốn số này, tích của chúng vẫn âm, nên có ít nhất một số âm. Ta đặt tên số âm đó là b."
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Bỏ cả a và b ra, còn đúng ba số. Theo đề bài, tích của ba số này là số âm, ta gọi tích đó là q."
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Tích của bốn số còn lại (ngoài a) gồm số âm b và ba số có tích q, nên bằng b · q. Số âm nhân số âm được số dương, nên tích của bốn số này dương."
+          }
+        },
+        {
+          "id": "s5",
+          "content": {
+            "type": "text",
+            "text": "Tích của cả năm số là a nhân với tích của bốn số đó: số âm nhân số dương, nên là số âm."
+          }
+        }
+      ]
     }
   ],
   "sticker": {

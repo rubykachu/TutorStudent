@@ -44,35 +44,35 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 02/10/2026 của 20 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1–2), `on-tap-chuong-3` (vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 03/10/2026 của 20 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `on-tap-chuong-3` (vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 5 | 41 | 30 | 76 |
+| LL-10 | 5 | 42 | 30 | 77 |
 | LL-19 | 2 | 8 | 26 | 36 |
 | LL-12 | 13 | 19 | 30 | 62 |
-| LL-07 | 1 | 45 | 36 | 82 |
+| LL-07 | 1 | 45 | 38 | 84 |
 | LL-15 | 5 | 16 | 10 | 31 |
-| LL-16 | 0 | 32 | 4 | 36 |
-| LL-05 | 12 | 39 | 21 | 72 |
-| LL-09 | 15 | 16 | 4 | 35 |
-| LL-14 | 2 | 15 | 13 | 30 |
+| LL-16 | 0 | 33 | 4 | 37 |
+| LL-05 | 13 | 43 | 23 | 79 |
+| LL-09 | 16 | 16 | 4 | 36 |
+| LL-14 | 2 | 16 | 13 | 31 |
 | LL-11 | 4 | 5 | 7 | 16 |
 | LL-06 | 1 | 19 | 7 | 27 |
-| LL-02 | 8 | 15 | 11 | 34 |
+| LL-02 | 8 | 16 | 12 | 36 |
 | LL-01 | 19 | 1 | 0 | 20 |
 | LL-03 | 2 | 6 | 2 | 10 |
 | LL-17 | 52 | 5 | 3 | 60 |
 | LL-04 | 0 | 5 | 2 | 7 |
 | LL-18 | 0 | 7 | 2 | 9 |
-| LL-08 | 36 | 3 | 6 | 45 |
+| LL-08 | 37 | 3 | 7 | 47 |
 | LL-13 | 2 | 1 | 0 | 3 |
-| LL-20 | 12 | 1 | 1 | 14 |
+| LL-20 | 13 | 2 | 1 | 16 |
 | LL-21 | 5 | 3 | 0 | 8 |
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 4 | 1 | 0 | 5 |
 | LL-24 | 17 | 3 | 4 | 24 |
-| LL-25 | 0 | 9 | 184 | 193 |
+| LL-25 | 0 | 9 | 189 | 198 |
 | LL-26 | 2 | 0 | 0 | 2 |
 
 LL-17, LL-08 và LL-01 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-12 gặp nhiều nhất.
@@ -81,7 +81,7 @@ LL-17, LL-08 và LL-01 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-1
 
 Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một dòng khi bài mới xong vòng 1.
 
-| Bài | Môn | Nghiêm trọng vòng 1 | Vòng hết Nghiêm trọng | Số vòng tới 02/10/2026 |
+| Bài | Môn | Nghiêm trọng vòng 1 | Vòng hết Nghiêm trọng | Số vòng tới 03/10/2026 |
 |---|---|---|---|---|
 | `neu-cau-muon-co-mot-nguoi-ban` | Ngữ văn | 3 | 5 | 14 |
 | `tap-hop` | Toán | 3 | 3 (vòng 4 lại có 1, hết ở vòng 5) | 7 |
@@ -101,5 +101,5 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1; phần bài tập sách bài tập, vòng 6 có 2 và vòng 7 có 1, hết ở vòng 7) | 7 |
 | `quy-tac-dau-ngoac` | Toán | 8 | 3 (vòng 2 còn 3; phần bài tập sách bài tập, vòng 5 có 1, hết ở vòng 6) | 6 |
 | `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` | Toán | 11 | chưa (vòng 2 còn 6) | 2 |
-| `phep-nhan-so-nguyen` | Toán | 5 | 3 (vòng 2 còn 1) | 4 |
+| `phep-nhan-so-nguyen` | Toán | 5 | 3 (vòng 2 còn 1; phần bài tập sách bài tập, vòng 6 có 3, hết ở vòng 7) | 8 |
 | `on-tap-chuong-3` | Toán | 7 | chưa | 1 |

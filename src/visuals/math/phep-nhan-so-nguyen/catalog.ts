@@ -206,8 +206,8 @@ const steps = (first: string, second: string) =>
   `\\begin{gathered} ${first} \\\\ ${second} \\end{gathered}`;
 
 // A result written in the colour of its sign.
-const neg = (n: number) => `\\concept{pink}{${n}}`;
-const pos = (n: number) => `\\concept{lime}{${n}}`;
+const neg = (n: number | string) => `\\concept{pink}{${n}}`;
+const pos = (n: number | string) => `\\concept{lime}{${n}}`;
 const zero = `\\concept{slate}{0}`;
 
 // One row of a sign-rule picture: both signs and the sign of the product.
@@ -772,6 +772,874 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     1,
     -5,
     "Chấm đã tới −5: sau 5 giờ nhiệt độ thay đổi (−1) · 5 = −5 độ, tức là giảm 5 độ.",
+  ),
+
+  // 13. Bài tập sách bài tập: the reminder of the section, the hint (other
+  // numbers, stops before the result) and the solution (the exercise's own
+  // numbers) of each workbook exercise, and the hints of its lead-in steps.
+  "sbt-nhac-lai-dau-tich": rows(
+    "Nhân hai số nguyên: nhân hai phần số tự nhiên rồi viết dấu cho tích",
+    [
+      {
+        tex: `(-4) \\cdot 5 = ${neg(-20)}`,
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: `4 \\cdot (-5) = ${neg(-20)}`,
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: `(-4) \\cdot (-5) = ${pos(20)}`,
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      {
+        tex: `4 \\cdot 5 = ${pos(20)}`,
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+    ],
+  ),
+  "sbt-nhac-lai-tich-0": rows("Tích bằng 0 thì ít nhất một thừa số bằng 0", [
+    {
+      tex: "3 \\cdot (x + 2) = 0",
+      tag: tag("3 khác 0 nên thừa số x + 2 bằng 0", NOTE),
+    },
+    { tex: `x + 2 = 0 \\to x = ${neg(-2)}` },
+    {
+      tex: "(x - 7) \\cdot (x + 1) = 0",
+      tag: tag("ít nhất một thừa số bằng 0", NOTE),
+      gapBefore: true,
+    },
+    {
+      tex: `x = ${pos(7)} \\quad ; \\quad x = ${neg(-1)}`,
+      tag: tag("hai giá trị cần tìm", PRODUCT),
+    },
+  ]),
+  "sbt-tom-tat": rows("Dấu của tích và tích bằng 0", [
+    { tex: signRow("-", "-"), tag: tag("cùng dấu: tích dương", POSITIVE) },
+    { tex: signRow("+", "-"), tag: tag("khác dấu: tích âm", NEGATIVE) },
+    {
+      tex: "a \\cdot b = 0",
+      tag: tag("ít nhất một thừa số bằng 0", NOTE),
+      gapBefore: true,
+    },
+  ]),
+
+  // Bài 3.26
+  "sbt-goi-y-nhan-tach": lines(
+    "Tách 135 thành 100 + 35 rồi nhân từng phần với 4",
+    [
+      { tex: "135 \\cdot 4" },
+      {
+        tex: "= 100 \\cdot 4 + 35 \\cdot 4",
+        tag: tag("tách 135 = 100 + 35", NOTE),
+      },
+      { tex: "= 400 + 140", tag: tag("nhân từng phần", NOTE) },
+      { tex: "= 540" },
+    ],
+    "hint",
+  ),
+  "sbt-3-26-giai": lines(
+    "Tách 115 thành 100 + 15 rồi nhân từng phần với 8",
+    [
+      { tex: "115 \\cdot 8" },
+      {
+        tex: "= 100 \\cdot 8 + 15 \\cdot 8",
+        tag: tag("tách 115 = 100 + 15", NOTE),
+      },
+      { tex: "= 800 + 120", tag: tag("nhân từng phần", NOTE) },
+      { tex: `= ${pos(920)}`, tag: tag("tích", PRODUCT) },
+    ],
+    "steps",
+  ),
+  "sbt-goi-y-am-nhan-duong": lines(
+    "Số âm nhân số dương: nhân hai phần số tự nhiên rồi viết dấu − ở trước",
+    [
+      { tex: "(-8) \\cdot 6" },
+      {
+        tex: "= -(8 \\cdot 6)",
+        tag: tag("khác dấu: viết dấu − ở trước", NOTE),
+      },
+      { tex: "= -48" },
+    ],
+    "hint",
+  ),
+  "sbt-3-26a-giai": lines(
+    "(−115) · 8: hai số khác dấu nên tích là số âm",
+    [
+      { tex: "(-115) \\cdot 8" },
+      {
+        tex: "= -(115 \\cdot 8)",
+        tag: tag("khác dấu: viết dấu − ở trước", NOTE),
+      },
+      {
+        tex: `= ${neg(-920)}`,
+        tag: tag("115 · 8 = 920, thêm dấu −", NEGATIVE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-3-26b-giai": lines(
+    "115 · (−8): hai số khác dấu nên tích là số âm",
+    [
+      { tex: "115 \\cdot (-8)" },
+      {
+        tex: "= -(115 \\cdot 8)",
+        tag: tag("khác dấu: viết dấu − ở trước", NOTE),
+      },
+      {
+        tex: `= ${neg(-920)}`,
+        tag: tag("115 · 8 = 920, thêm dấu −", NEGATIVE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-3-26c-giai": lines(
+    "(−115) · (−8): hai số âm nên tích là số dương",
+    [
+      { tex: "(-115) \\cdot (-8)" },
+      {
+        tex: "= 115 \\cdot 8",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      { tex: `= ${pos(920)}`, tag: tag("115 · 8 = 920", POSITIVE) },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.27
+  "sbt-goi-y-dau-duong-duong": lines(
+    "Xét dấu từng thừa số, không cần nhân",
+    [
+      { tex: "63 \\cdot 48" },
+      {
+        tex: "63 > 0 \\quad ; \\quad 48 > 0",
+        tag: tag("hai số dương: cùng dấu", POSITIVE),
+      },
+      { tex: "63 \\cdot 48 > 0" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-dau-am-duong": lines(
+    "Xét dấu từng thừa số, không cần nhân",
+    [
+      { tex: "(-52) \\cdot 36" },
+      {
+        tex: "-52 < 0 \\quad ; \\quad 36 > 0",
+        tag: tag("một số âm, một số dương: khác dấu", NEGATIVE),
+      },
+      { tex: "(-52) \\cdot 36 < 0" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-dau-am-am": lines(
+    "Xét dấu từng thừa số, không cần nhân",
+    [
+      { tex: "(-73) \\cdot (-29)" },
+      {
+        tex: "-73 < 0 \\quad ; \\quad -29 < 0",
+        tag: tag("hai số âm: cùng dấu", POSITIVE),
+      },
+      { tex: "(-73) \\cdot (-29) > 0" },
+    ],
+    "hint",
+  ),
+  "sbt-3-27a-giai": lines(
+    "287 và 522 đều là số dương nên tích dương",
+    [
+      { tex: "287 \\cdot 522" },
+      {
+        tex: "287 > 0 \\quad ; \\quad 522 > 0",
+        tag: tag("hai số dương: cùng dấu", POSITIVE),
+      },
+      { tex: "287 \\cdot 522 > 0", tag: tag("tích dương", POSITIVE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-27b-giai": lines(
+    "−375 là số âm, 959 là số dương nên tích âm",
+    [
+      { tex: "(-375) \\cdot 959" },
+      {
+        tex: "-375 < 0 \\quad ; \\quad 959 > 0",
+        tag: tag("một số âm, một số dương: khác dấu", NEGATIVE),
+      },
+      { tex: "(-375) \\cdot 959 < 0", tag: tag("tích âm", NEGATIVE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-27c-giai": lines(
+    "−278 và −864 đều là số âm nên tích dương",
+    [
+      { tex: "(-278) \\cdot (-864)" },
+      {
+        tex: "-278 < 0 \\quad ; \\quad -864 < 0",
+        tag: tag("hai số âm: cùng dấu", POSITIVE),
+      },
+      {
+        tex: "(-278) \\cdot (-864) > 0",
+        tag: tag("tích dương", POSITIVE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.28
+  "sbt-goi-y-so-sanh-dau": lines(
+    "Xét dấu của mỗi tích rồi so sánh",
+    [
+      {
+        tex: "(-3) \\cdot 8 < 0",
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: "2 \\cdot 5 > 0",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      {
+        tex: "(-3) \\cdot 8 < 2 \\cdot 5",
+        tag: tag("số âm bé hơn số dương", NOTE),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-so-sanh-cung-dau": lines(
+    "Hai tích cùng dấu: tính ra rồi so sánh",
+    [
+      {
+        tex: "(-3) \\cdot (-8) = 24",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      {
+        tex: "(-4) \\cdot (-5) = 20",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      { tex: "24 > 20" },
+    ],
+    "hint",
+  ),
+  "sbt-nhac-lai-so-sanh": rows(
+    "So sánh số âm với số dương và hai số âm với nhau",
+    [
+      {
+        tex: "-3 < 5",
+        tag: tag("số âm nhỏ hơn mọi số dương", NEGATIVE),
+      },
+      {
+        tex: "-12 < -8",
+        tag: tag("bỏ dấu −: 12 lớn hơn 8 nên −12 nhỏ hơn −8", NOTE),
+      },
+    ],
+  ),
+  "sbt-goi-y-so-sanh-am": lines(
+    "Hai số âm: bỏ dấu − rồi so sánh",
+    [
+      {
+        tex: "-40 \\quad ; \\quad -52",
+        tag: tag("bỏ dấu −: 40 và 52", NOTE),
+      },
+      { tex: "52 > 40", tag: tag("52 lớn hơn 40", NOTE) },
+      { tex: "-52 < -40" },
+    ],
+    "hint",
+  ),
+  "sbt-3-28a-giai": lines(
+    "So sánh (+32) · (−25) với (−7) · (−8)",
+    [
+      {
+        tex: "32 \\cdot (-25) = -800",
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: "(-7) \\cdot (-8) = 56",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      { tex: "-800 < 56", tag: tag("số âm bé hơn số dương", NOTE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-28b-giai": lines(
+    "So sánh (−44) · (−5) với (−11) · (−20)",
+    [
+      {
+        tex: "(-44) \\cdot (-5) = 220",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      {
+        tex: "(-11) \\cdot (-20) = 220",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      { tex: "220 = 220", tag: tag("hai tích bằng nhau", NOTE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-28c-giai": lines(
+    "So sánh (−24) · (+25) với (+30) · (−21)",
+    [
+      {
+        tex: "(-24) \\cdot 25 = -600",
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: "30 \\cdot (-21) = -630",
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: "-630 < -600",
+        tag: tag("bỏ dấu −: 630 lớn hơn 600 nên −630 nhỏ hơn −600", NOTE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.29
+  "sbt-goi-y-b-duong": lines(
+    "Cho a = −7: thử với b là số dương",
+    [
+      { tex: "a = -7" },
+      { tex: "b = 3", tag: tag("b là số dương", POSITIVE) },
+      { tex: "(-7) \\cdot 3 = -21", tag: tag("khác dấu: tích âm", NEGATIVE) },
+      { tex: "(-7) \\cdot (-3) = 21" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-b-am": lines(
+    "Cho a = −7: thử với b là số âm",
+    [
+      { tex: "a = -7" },
+      { tex: "b = -3", tag: tag("b là số âm", NEGATIVE) },
+      {
+        tex: "(-7) \\cdot (-3) = 21",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      { tex: "(-7) \\cdot 3 = -21" },
+    ],
+    "hint",
+  ),
+  "sbt-3-29a-giai": lines(
+    "a là số âm và tích a · b dương thì b là số âm",
+    [
+      { tex: "a < 0", tag: tag("a là số âm", NEGATIVE) },
+      {
+        tex: "a \\cdot b > 0",
+        tag: tag("tích dương: hai thừa số cùng dấu", POSITIVE),
+      },
+      { tex: "b < 0", tag: tag("b cùng dấu với a: số âm", NEGATIVE) },
+    ],
+    "steps",
+  ),
+  "sbt-3-29b-giai": lines(
+    "a là số âm và tích a · b âm thì b là số dương",
+    [
+      { tex: "a < 0", tag: tag("a là số âm", NEGATIVE) },
+      {
+        tex: "a \\cdot b < 0",
+        tag: tag("tích âm: hai thừa số khác dấu", NEGATIVE),
+      },
+      { tex: "b > 0", tag: tag("b khác dấu với a: số dương", POSITIVE) },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.30
+  "sbt-goi-y-bang-cot": lines(
+    "Một cột của bảng có x = −3 và y = −9",
+    [
+      {
+        tex: "x = -3 \\quad ; \\quad y = -9",
+        tag: tag("thay vào ô x · y", NOTE),
+      },
+      {
+        tex: "x \\cdot y = (-3) \\cdot (-9)",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      { tex: "= 27" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-bang": lines(
+    "Mỗi cột: xét dấu của x và y rồi nhân hai phần số tự nhiên",
+    [
+      {
+        tex: "(-6) \\cdot 12 = -72",
+        tag: tag("khác dấu: tích âm", NEGATIVE),
+      },
+      {
+        tex: "(-6) \\cdot (-12) = 72",
+        tag: tag("cùng dấu: tích dương", POSITIVE),
+      },
+      {
+        tex: "(-1) \\cdot 12 = -12",
+        tag: tag("nhân với −1: chỉ đổi dấu", NOTE),
+      },
+      { tex: "0 \\cdot (-14) = 0" },
+    ],
+    "hint",
+  ),
+  "sbt-3-30-giai": rows("Tích x · y của từng cột", [
+    {
+      tex: `(-28) \\cdot 15 = ${neg(-420)}`,
+      tag: tag("cột 1: khác dấu", NEGATIVE),
+    },
+    {
+      tex: `55 \\cdot (-8) = ${neg(-440)}`,
+      tag: tag("cột 2: khác dấu", NEGATIVE),
+    },
+    {
+      tex: `(-27) \\cdot (-35) = ${pos(945)}`,
+      tag: tag("cột 3: cùng dấu", POSITIVE),
+    },
+    {
+      tex: `(-25) \\cdot (-280) = ${pos("7\\,000")}`,
+      tag: tag("cột 4: cùng dấu", POSITIVE),
+    },
+    {
+      tex: `0 \\cdot (-653) = ${zero}`,
+      tag: tag("cột 5: có thừa số 0", NOTE),
+    },
+    {
+      tex: `(-364) \\cdot 1 = ${neg(-364)}`,
+      tag: tag("cột 6: nhân với 1", NOTE),
+    },
+    {
+      tex: `(-1) \\cdot 293 = ${neg(-293)}`,
+      tag: tag("cột 7: nhân với −1", NOTE),
+    },
+    {
+      tex: `(-532) \\cdot (-1) = ${pos(532)}`,
+      tag: tag("cột 8: nhân với −1", NOTE),
+    },
+  ]),
+
+  // Bài 3.31
+  "sbt-goi-y-tim-x-mot": lines(
+    "Tìm x biết 6 · (x + 3) = 0",
+    [
+      { tex: "6 \\cdot (x + 3) = 0" },
+      {
+        tex: "x + 3 = 0",
+        tag: tag("6 khác 0 nên thừa số kia bằng 0", NOTE),
+      },
+      { tex: "x = -3" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-tim-x-hai": lines(
+    "Tìm x biết (x − 2) · (x + 7) = 0",
+    [
+      { tex: "(x - 2) \\cdot (x + 7) = 0" },
+      {
+        tex: "x - 2 = 0 \\to x = 2",
+        tag: tag("thừa số đầu bằng 0", NOTE),
+      },
+      {
+        tex: "x + 7 = 0 \\to x = -7",
+        tag: tag("thừa số sau bằng 0", NOTE),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-am-x-hai": lines(
+    "Tìm x biết (−x) · (x − 5) = 0",
+    [
+      { tex: "(-x) \\cdot (x - 5) = 0" },
+      {
+        tex: "x - 5 = 0 \\to x = 5",
+        tag: tag("thừa số sau bằng 0", NOTE),
+      },
+      {
+        tex: "-x = 0 \\to x = 0",
+        tag: tag("thừa số đầu bằng 0", NOTE),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-31a-giai": lines(
+    "9 · (x + 28) = 0 thì thừa số x + 28 bằng 0",
+    [
+      { tex: "9 \\cdot (x + 28) = 0" },
+      {
+        tex: "x + 28 = 0",
+        tag: tag("9 khác 0 nên thừa số kia bằng 0", NOTE),
+      },
+      { tex: `x = ${neg(-28)}`, tag: tag("giá trị cần tìm", PRODUCT) },
+    ],
+    "steps",
+  ),
+  "sbt-3-31b-giai": lines(
+    "Tích bằng 0 thì có một thừa số bằng 0",
+    [
+      { tex: "(27 - x) \\cdot (x + 9) = 0" },
+      {
+        tex: `27 - x = 0 \\to x = ${pos(27)}`,
+        tag: tag("thừa số đầu bằng 0", NOTE),
+      },
+      {
+        tex: `x + 9 = 0 \\to x = ${neg(-9)}`,
+        tag: tag("thừa số sau bằng 0", NOTE),
+      },
+      {
+        tex: "x = 27 \\quad ; \\quad x = -9",
+        tag: tag("hai giá trị cần tìm", PRODUCT),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-3-31c-giai": lines(
+    "Tích bằng 0 thì có một thừa số bằng 0",
+    [
+      { tex: "(-x) \\cdot (x - 43) = 0" },
+      {
+        tex: `-x = 0 \\to x = ${zero}`,
+        tag: tag("thừa số đầu bằng 0", NOTE),
+      },
+      {
+        tex: `x - 43 = 0 \\to x = ${pos(43)}`,
+        tag: tag("thừa số sau bằng 0", NOTE),
+      },
+      {
+        tex: "x = 0 \\quad ; \\quad x = 43",
+        tag: tag("hai giá trị cần tìm", PRODUCT),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.32
+  "sbt-goi-y-trong-ngoac": lines(
+    "Tính trong ngoặc trước",
+    [
+      { tex: "(8 - 3) \\cdot (-4)" },
+      {
+        tex: "= 5 \\cdot (-4)",
+        tag: tag("tính trong ngoặc trước", NOTE),
+      },
+      { tex: "= -20" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-hai-tich": lines(
+    "Tính trong hai ngoặc trước, rồi đổi tích thứ hai để có thừa số chung",
+    [
+      { tex: steps("(6 - 2) \\cdot (-3)", "+ (-3 - 1) \\cdot 5") },
+      {
+        tex: "= 4 \\cdot (-3) + (-4) \\cdot 5",
+        tag: tag("tính trong ngoặc trước", NOTE),
+      },
+      {
+        tex: "= 4 \\cdot (-3) + 4 \\cdot (-5)",
+        tag: tag("(−4) · 5 = 4 · (−5)", NOTE),
+      },
+      { tex: "= -32" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-32a": lines(
+    "Tính trong ngoặc, rồi đưa thừa số chung 10 ra ngoài",
+    [
+      { tex: steps("(16 - 6) \\cdot (-4)", "+ (-9 - 1) \\cdot 7") },
+      {
+        tex: "= 10 \\cdot (-4) + (-10) \\cdot 7",
+        tag: tag("tính trong ngoặc trước", NOTE),
+      },
+      {
+        tex: "= 10 \\cdot (-4) + 10 \\cdot (-7)",
+        tag: tag("(−10) · 7 = 10 · (−7)", NOTE),
+      },
+      {
+        tex: "= 10 \\cdot [(-4) + (-7)]",
+        tag: tag("đưa 10 ra ngoài", NOTE),
+      },
+      { tex: "= -110" },
+    ],
+    "hint",
+  ),
+  "sbt-3-32a-giai": lines(
+    "Tính trong ngoặc, rồi đưa thừa số chung 20 ra ngoài",
+    [
+      { tex: steps("(29 - 9) \\cdot (-9)", "+ (-13 - 7) \\cdot 21") },
+      {
+        tex: "= 20 \\cdot (-9) + (-20) \\cdot 21",
+        tag: tag("tính trong ngoặc trước", NOTE),
+      },
+      {
+        tex: "= 20 \\cdot (-9) + 20 \\cdot (-21)",
+        tag: tag("(−20) · 21 = 20 · (−21)", NOTE),
+      },
+      {
+        tex: "= 20 \\cdot [(-9) + (-21)]",
+        tag: tag("đưa 20 ra ngoài", NOTE),
+      },
+      { tex: `= 20 \\cdot (-30) = ${neg(-600)}`, tag: tag("tích", PRODUCT) },
+    ],
+    "steps",
+  ),
+  "sbt-goi-y-nhan-hieu": lines(
+    "Đổi phép trừ thành cộng với số đối, rồi nhân từng số hạng",
+    [
+      { tex: "(-2) \\cdot (5 - 9)" },
+      {
+        tex: "= (-2) \\cdot [5 + (-9)]",
+        tag: tag("trừ là cộng với số đối", NOTE),
+      },
+      {
+        tex: "= (-2) \\cdot 5 + (-2) \\cdot (-9)",
+        tag: tag("nhân với từng số hạng", NOTE),
+      },
+      { tex: "= -10 + 18 = 8" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-doi-nhau": lines(
+    "Hai số đối nhau cộng lại thì được 0",
+    [
+      { tex: "(-4) \\cdot 7 + 7 \\cdot 4 + 3 \\cdot 5" },
+      {
+        tex: steps("= -(4 \\cdot 7) + 4 \\cdot 7", "+ 3 \\cdot 5"),
+        tag: tag("7 · 4 = 4 · 7: đổi chỗ", NOTE),
+      },
+      {
+        tex: "= 0 + 3 \\cdot 5",
+        tag: tag("hai số đối nhau cộng lại thì được 0", NOTE),
+      },
+      { tex: "= 15" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-32b": lines(
+    "Đổi phép trừ thành cộng với số đối, nhân từng số hạng, bỏ hai số đối nhau",
+    [
+      { tex: steps("(-2) \\cdot (4 - 7)", "- 4 \\cdot (7 - 2)") },
+      {
+        tex: steps("= (-2) \\cdot (4 - 7)", "+ (-4) \\cdot (7 - 2)"),
+        tag: tag("số đối của 4 · (7 − 2) là (−4) · (7 − 2)", NOTE),
+      },
+      {
+        tex: steps("= (-2) \\cdot [4 + (-7)]", "+ (-4) \\cdot [7 + (-2)]"),
+        tag: tag("trừ là cộng với số đối", NOTE),
+      },
+      {
+        tex: steps(
+          "= (-2) \\cdot 4 + 2 \\cdot 7",
+          "+ (-4) \\cdot 7 + 4 \\cdot 2",
+        ),
+        tag: tag("nhân với từng số hạng", NOTE),
+      },
+      {
+        tex: "= 2 \\cdot 7 + (-4) \\cdot 7",
+        tag: tag("(−2) · 4 và 4 · 2 là hai số đối nhau, cộng lại bằng 0", NOTE),
+      },
+      { tex: "= [2 + (-4)] \\cdot 7", tag: tag("đưa 7 ra ngoài", NOTE) },
+      { tex: "= -14" },
+    ],
+    "hint",
+  ),
+  "sbt-3-32b-giai": lines(
+    "Bỏ hai số đối nhau, rồi đưa thừa số chung 316 ra ngoài",
+    [
+      { tex: steps("(-157) \\cdot (127 - 316)", "- 127 \\cdot (316 - 157)") },
+      {
+        tex: steps(
+          "= (-157) \\cdot (127 - 316)",
+          "+ (-127) \\cdot (316 - 157)",
+        ),
+        tag: tag("số đối của 127 · (316 − 157) là (−127) · (316 − 157)", NOTE),
+      },
+      {
+        tex: steps(
+          "= (-157) \\cdot [127 + (-316)]",
+          "+ (-127) \\cdot [316 + (-157)]",
+        ),
+        tag: tag("trừ là cộng với số đối", NOTE),
+      },
+      {
+        tex: steps(
+          "= (-157) \\cdot 127 + 157 \\cdot 316",
+          "+ (-127) \\cdot 316 + 127 \\cdot 157",
+        ),
+        tag: tag("nhân với từng số hạng", NOTE),
+      },
+      {
+        tex: steps("= 157 \\cdot 316", "+ (-127) \\cdot 316"),
+        tag: tag(
+          "(−157) · 127 và 127 · 157 là hai số đối nhau, cộng lại bằng 0",
+          NOTE,
+        ),
+      },
+      {
+        tex: "= [157 + (-127)] \\cdot 316",
+        tag: tag("đưa 316 ra ngoài", NOTE),
+      },
+      {
+        tex: `= 30 \\cdot 316 = ${pos("9\\,480")}`,
+        tag: tag("tích", PRODUCT),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.33
+  "sbt-goi-y-vai-tang": lines(
+    "Mỗi cái áo thêm 3 dm vải, may 20 cái áo",
+    [
+      { tex: "x = 3", tag: tag("mỗi cái áo thêm 3 dm", NOTE) },
+      { tex: "3 \\cdot 20", tag: tag("nhân với 20 cái áo", NOTE) },
+      { tex: "= 60" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-vai-420": lines(
+    "Mỗi bộ thêm 15 dm vải, may 320 bộ",
+    [
+      { tex: "x = 15", tag: tag("mỗi bộ thêm 15 dm", NOTE) },
+      { tex: "15 \\cdot 320", tag: tag("nhân với 320 bộ", NOTE) },
+      {
+        tex: "= 15 \\cdot 300 + 15 \\cdot 20",
+        tag: tag("tách 320 = 300 + 20", NOTE),
+      },
+      { tex: "= 4\\,500 + 300 = 4\\,800" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-vai-giam": lines(
+    "Mỗi cái áo thay đổi −2 dm vải, may 30 cái áo",
+    [
+      { tex: "x = -2", tag: tag("mỗi cái áo thay đổi −2 dm", NEGATIVE) },
+      { tex: "(-2) \\cdot 30", tag: tag("nhân với 30 cái áo", NOTE) },
+      { tex: "= -60" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-vai-420-am": lines(
+    "Mỗi bộ thay đổi −6 dm vải, may 150 bộ",
+    [
+      { tex: "x = -6", tag: tag("mỗi bộ thay đổi −6 dm", NEGATIVE) },
+      { tex: "(-6) \\cdot 150", tag: tag("nhân với 150 bộ", NOTE) },
+      {
+        tex: "= -(6 \\cdot 150)",
+        tag: tag("khác dấu: viết dấu − ở trước", NOTE),
+      },
+      { tex: "= -900" },
+    ],
+    "hint",
+  ),
+  "sbt-3-33a-giai": lines(
+    "Mỗi bộ thêm 18 dm vải, may 420 bộ",
+    [
+      { tex: "x = 18", tag: tag("mỗi bộ thêm 18 dm", POSITIVE) },
+      {
+        tex: "18 \\cdot 420",
+        tag: tag("số vải tăng thêm của 420 bộ", NOTE),
+      },
+      {
+        tex: "= 18 \\cdot 400 + 18 \\cdot 20",
+        tag: tag("tách 420 = 400 + 20", NOTE),
+      },
+      {
+        tex: `= 7\\,200 + 360 = ${pos("7\\,560")}`,
+        tag: tag("tăng thêm 7 560 dm", POSITIVE),
+      },
+    ],
+    "steps",
+  ),
+  "sbt-3-33b-giai": lines(
+    "Mỗi bộ thay đổi −7 dm vải, may 420 bộ",
+    [
+      { tex: "x = -7", tag: tag("mỗi bộ thay đổi −7 dm", NEGATIVE) },
+      {
+        tex: "(-7) \\cdot 420",
+        tag: tag("số vải thay đổi của 420 bộ", NOTE),
+      },
+      {
+        tex: "= -(7 \\cdot 420)",
+        tag: tag("khác dấu: viết dấu − ở trước", NOTE),
+      },
+      {
+        tex: `= ${neg("-2\\,940")}`,
+        tag: tag("số âm: vải giảm 2 940 dm", NEGATIVE),
+      },
+    ],
+    "steps",
+  ),
+
+  // Bài 3.34
+  "sbt-goi-y-ba-so-tich-am": lines(
+    "Ba số có tích là số âm: thử vài bộ ba số",
+    [
+      {
+        tex: "(-2) \\cdot 3 \\cdot 1 = -6",
+        tag: tag("tích là số âm", NEGATIVE),
+      },
+      {
+        tex: "(-1) \\cdot (-4) \\cdot (-2) = -8",
+        tag: tag("tích là số âm", NEGATIVE),
+      },
+      { tex: "4 \\cdot (-3) \\cdot 1 = -12" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-nam-so": lines(
+    "Tích của cả năm số là số a nhân với tích của bốn số còn lại",
+    [
+      { tex: "a = -4", tag: tag("số a là số âm", NEGATIVE) },
+      {
+        tex: "(-4) \\cdot 3",
+        tag: tag("tích của bốn số còn lại là 3", POSITIVE),
+      },
+      { tex: "= -12" },
+    ],
+    "hint",
+  ),
+  "sbt-goi-y-3-34": lines(
+    "Năm số −1, −2, −3, −1, −2: tích của ba số bất kì đều âm",
+    [
+      {
+        tex: "(-1) \\cdot (-2) \\cdot (-3) = -6",
+        tag: tag("ba số này có tích âm, trong đó có số âm", NEGATIVE),
+      },
+      {
+        tex: "(-2) \\cdot (-3) \\cdot (-1) = -6",
+        tag: tag("ba số khác cũng có tích âm, trong đó có số âm", NEGATIVE),
+      },
+      {
+        tex: steps(
+          "(-1) \\cdot (-2) \\cdot (-3)",
+          "\\cdot (-1) \\cdot (-2) = -12",
+        ),
+      },
+    ],
+    "hint",
+  ),
+  "sbt-3-34-giai": lines(
+    "Ba số bất kì có tích âm, nên lần lượt tìm được a và b đều âm",
+    [
+      {
+        tex: "a < 0",
+        tag: tag(
+          "chọn ba số bất kì: tích âm, nên có ít nhất một số âm tên a",
+          NEGATIVE,
+        ),
+      },
+      {
+        tex: "b < 0",
+        tag: tag(
+          "bỏ a ra, chọn ba trong bốn số còn lại: vẫn có số âm tên b",
+          NEGATIVE,
+        ),
+      },
+      {
+        tex: "q < 0",
+        tag: tag("bỏ a và b ra, ba số còn lại có tích q âm theo đề", NEGATIVE),
+      },
+      {
+        tex: "b \\cdot q > 0",
+        tag: tag("âm nhân âm: tích của bốn số còn lại dương", POSITIVE),
+      },
+      {
+        tex: "a \\cdot (b \\cdot q) < 0",
+        tag: tag("âm nhân dương: tích của năm số là số âm", NEGATIVE),
+      },
+    ],
+    "steps",
   ),
 
   sticker: { kind: "sticker" },
