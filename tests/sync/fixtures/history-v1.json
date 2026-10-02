@@ -1,0 +1,28 @@
+{
+  "schema": "tutor-child-history",
+  "version": 1,
+  "familyId": "nha-minh",
+  "childId": "3f9c2a7be1d04c58a6b7f0e2c4d91a35",
+  "month": "2026-10",
+  "attempts": [
+    {
+      "id": "0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+      "exerciseId": "boi-chung-boi-chung-nho-nhat.ex.luyen-a",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "cardIds": ["boi-chung-boi-chung-nho-nhat.card.bcnn"],
+      "firstTryCorrect": false,
+      "wrongCount": 1,
+      "at": "2026-10-01T02:05:00.000Z",
+      "context": "practice"
+    }
+  ],
+  "writings": [
+    {
+      "id": "f9e8d7c6b5a4938271605f4e3d2c1b0a",
+      "exerciseId": "neu-cau-muon-co-mot-nguoi-ban.ex.viet",
+      "text": "Mình muốn có một người bạn thân.",
+      "checks": [{ "criterion": "Có mở bài", "met": true }],
+      "at": "2026-10-01T02:30:00.000Z"
+    }
+  ]
+}

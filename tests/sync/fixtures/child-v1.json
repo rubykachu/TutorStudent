@@ -1,0 +1,49 @@
+{
+  "schema": "tutor-child-progress",
+  "version": 1,
+  "familyId": "nha-minh",
+  "childId": "3f9c2a7be1d04c58a6b7f0e2c4d91a35",
+  "cards": [
+    {
+      "cardId": "boi-chung-boi-chung-nho-nhat.card.bcnn",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "due": "2026-10-03T02:00:00.000Z",
+      "stability": 4.1,
+      "difficulty": 5.3,
+      "scheduledDays": 2,
+      "learningSteps": 0,
+      "reps": 3,
+      "lapses": 0,
+      "state": 2,
+      "lastReviewAt": "2026-10-01T02:00:00.000Z"
+    }
+  ],
+  "sections": [
+    {
+      "sectionId": "boi-chung-boi-chung-nho-nhat.section.mot",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "doneAt": "2026-09-30T03:00:00.000Z",
+      "position": { "phase": "blocks", "index": 0 },
+      "updatedAt": "2026-09-30T03:00:00.000Z"
+    },
+    {
+      "sectionId": "boi-chung-boi-chung-nho-nhat.section.hai",
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "doneAt": null,
+      "position": { "phase": "practice", "index": 1 },
+      "updatedAt": "2026-10-01T02:10:00.000Z"
+    }
+  ],
+  "stickers": [
+    {
+      "lessonId": "boi-chung-boi-chung-nho-nhat",
+      "at": "2026-10-01T02:20:00.000Z"
+    }
+  ],
+  "activityDays": ["2026-09-30", "2026-10-01"],
+  "historyMonths": ["2026-09", "2026-10"],
+  "overviewSeen": {
+    "boi-chung-boi-chung-nho-nhat": "2026-09-30T02:30:00.000Z"
+  },
+  "resets": {}
+}

@@ -16,6 +16,7 @@ export default defineConfig({
         "src/schema/**",
         "src/srs/**",
         "src/progress/**",
+        "src/sync/**",
         "src/exercises/grade/**",
         "src/content/lint/**",
       ],

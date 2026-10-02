@@ -114,3 +114,27 @@ export const ACCESS_MIN_SECRET_LENGTH = 32;
 // the length of the code is what makes guessing hopeless.
 export const ACCESS_MAX_FAILS = 5;
 export const ACCESS_LOCK_MINUTES = 10;
+
+// Progress sync (`src/sync/`, `src/app/api/sync/`). A synced doc may be at
+// most this many bytes (family profile doc and a child's main doc), and the
+// history doc of one month at most the second figure. The parent page warns
+// once a doc reaches the ratio of its cap. Nothing is ever trimmed to fit.
+export const SYNC_DOC_MAX_BYTES = 1_000_000;
+export const SYNC_HISTORY_MAX_BYTES = 512_000;
+export const SYNC_DOC_WARN_RATIO = 0.7;
+// Children one family may hold; it also bounds how many child docs a family
+// code can create.
+export const SYNC_MAX_PROFILES = 12;
+// Longest writing a doc may carry, and the most records of one kind in a doc.
+export const SYNC_WRITING_MAX_CHARS = 5_000;
+export const SYNC_MAX_DOC_RECORDS = 10_000;
+// Longest name a synced profile may carry. Looser than the form's
+// PROFILE_NAME_MAX_LENGTH so lowering the form limit later never makes a
+// stored profile invalid.
+export const SYNC_PROFILE_NAME_MAX_CHARS = 40;
+// How often an open app syncs, how many conflicting rounds one doc is retried
+// in a single sync, and how far into the future (server clock) a stored time
+// may lie before the server clamps it.
+export const SYNC_INTERVAL_MINUTES = 5;
+export const SYNC_MAX_RETRIES = 3;
+export const SYNC_FUTURE_SKEW_MINUTES = 10;

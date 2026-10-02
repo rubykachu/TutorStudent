@@ -19,12 +19,12 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: not started; the 
 Zod schemas for the family profile doc, the main child doc and the history doc of one month (`spec.md`, "Doc shapes"), `migrateDoc` (version 1 only for now, structure ready for steps), a canonical form (arrays sorted by key, fixed key order) used for equality and hashing, constants in `src/lib/config.ts`: `SYNC_DOC_MAX_BYTES` (1 MB), `SYNC_HISTORY_MAX_BYTES` (512 KB), `SYNC_DOC_WARN_RATIO` (0.7), `SYNC_MAX_PROFILES` (12), `SYNC_WRITING_MAX_CHARS` (5 000), `SYNC_INTERVAL_MINUTES` (5), `SYNC_MAX_RETRIES` (3), `SYNC_FUTURE_SKEW_MINUTES` (10).
 
 Acceptance:
-- [ ] Schemas are strict (unknown keys rejected), ids validated by regex, string and array lengths bounded (profiles ≤ 12).
-- [ ] A doc whose `version` is newer than the code knows is reported as `too-new`, not parsed as current.
-- [ ] A history record whose Vietnam-time month differs from the doc's `month` fails the schema.
-- [ ] Stored sample files `tests/sync/fixtures/child-v1.json`, `history-v1.json`, `profile-v1.json` parse.
-- [ ] The canonical form of a doc is the same whatever the order of its arrays.
-- [ ] `src/sync/**` added to the coverage `include` in `vitest.config.ts`.
+- [x] Schemas are strict (unknown keys rejected), ids validated by regex, string and array lengths bounded (profiles ≤ 12).
+- [x] A doc whose `version` is newer than the code knows is reported as `too-new`, not parsed as current.
+- [x] A history record whose Vietnam-time month differs from the doc's `month` fails the schema.
+- [x] Stored sample files `tests/sync/fixtures/child-v1.json`, `history-v1.json`, `profile-v1.json` parse.
+- [x] The canonical form of a doc is the same whatever the order of its arrays.
+- [x] `src/sync/**` added to the coverage `include` in `vitest.config.ts`.
 
 Verify: `pnpm test tests/sync/schema.test.ts && pnpm typecheck`
 
