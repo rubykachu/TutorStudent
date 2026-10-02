@@ -1,6 +1,6 @@
 # Tasks: offline support (service worker precache)
 
-Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: built on the branch `offline-pwa`, waiting for an independent review (overnight run). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
+Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: reviewed and merged into `main`, off by default until the owner's iPad check (see Handover). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
 
 ## Handover
 
