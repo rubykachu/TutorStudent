@@ -20,6 +20,14 @@ export const REVISION_PARAM = "__rev";
 // Entries fetched at the same time during install.
 export const INSTALL_CONCURRENCY = 6;
 
+// A page asks the worker for a new build: when it starts, when it becomes
+// visible again and this often while it stays visible.
+export const UPDATE_CHECK_MINUTES = 60;
+
+// A page that comes back after being hidden this long counts as a fresh
+// open: a waiting worker is activated then, outside a lesson player.
+export const UPDATE_IDLE_MINUTES = 15;
+
 // Messages from a page to a worker.
 export const SKIP_WAITING_MESSAGE = "SKIP_WAITING";
 export const PRECACHE_STATUS_MESSAGE = "PRECACHE_STATUS";

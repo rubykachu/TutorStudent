@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { now } from "@/lib/time";
+import { OfflineManager } from "@/offline/register";
 import {
   closeParentSession,
   openParentSession,
@@ -35,6 +36,7 @@ export function ParentScreen() {
   return (
     <>
       <SyncRunner />
+      <OfflineManager />
       {remaining > 0 ? (
         <ParentDashboard />
       ) : (
