@@ -20,7 +20,7 @@
     "goals": [
       "nhân được số âm với số dương bằng cách cộng lặp lại",
       "nhớ quy tắc dấu khi nhân hai số nguyên",
-      "tính nhanh bằng cách đổi chỗ các số, nhóm các số và nhân một số với từng số trong một tổng",
+      "tính nhanh: đổi chỗ các số, nhóm các số, hoặc nhân một số với một tổng",
       "tìm số x khi biết tích bằng 0"
     ],
     "whyItMatters": "Bạn dùng phép nhân số nguyên để tính nhiệt độ thay đổi bao nhiêu sau vài giờ, hay tiền thay đổi khi nợ thêm."
@@ -119,7 +119,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Lan có 4 túi rỗng, mỗi túi 0 viên kẹo, nên số kẹo là 0 · 4 = 0 + 0 + 0 + 0 = 0. Còn 4 · 0 là mỗi túi có 4 viên nhưng không có túi nào, nên cũng bằng 0."
+              "text": "Lan có 4 túi rỗng, mỗi túi 0 viên kẹo, nên số kẹo là 0 · 4 = 0 + 0 + 0 + 0 = 0. Còn 4 · 0: mỗi túi có 4 viên nhưng Lan có 0 túi, nên cũng bằng 0."
             },
             {
               "type": "visual",
@@ -161,7 +161,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ; số giờ trước bây giờ viết là số âm, nên 2 giờ trước bây giờ là −2. Lúc đó nhiệt độ thấp hơn bây giờ 6 độ, nên 3 · (−2) = −6."
+              "text": "Nhiệt độ tăng đều 3 độ mỗi giờ, và ta viết 2 giờ trước là −2 giờ. Lúc đó nhiệt độ thấp hơn bây giờ 6 độ, nên 3 · (−2) = −6."
             },
             {
               "type": "visual",
@@ -174,7 +174,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhìn các dòng đi xuống: số đứng sau dấu nhân (tức thừa số thứ hai) giảm 1 thì tích giảm 3. Đi tiếp xuống dưới, ta được 3 · (−1) = −3 và 3 · (−2) = −6."
+              "text": "Nhìn các dòng đi xuống: mỗi dòng, số đứng sau dấu nhân (tức thừa số thứ hai) giảm 1 thì tích giảm 3. Đi tiếp xuống dưới, ta được 3 · (−1) = −3 và 3 · (−2) = −6."
             },
             {
               "type": "visual",
@@ -201,7 +201,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số đứng sau dấu nhân của 2 · n, từ 3 xuống −2. Làm vậy bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
+              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n đứng sau dấu nhân của 2 · n, từ 3 xuống −2. Làm vậy bạn thấy tích giảm 2 sau mỗi bước, rồi thành số âm."
             },
             {
               "type": "visual",
@@ -284,7 +284,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ giảm đều 2 độ mỗi giờ, nên mỗi giờ thay đổi −2 độ; 3 giờ trước bây giờ viết là −3. Lúc đó nhiệt độ cao hơn bây giờ 6 độ, nên (−2) · (−3) = 6."
+              "text": "Nhiệt độ giảm đều 2 độ mỗi giờ, tức là mỗi giờ thay đổi −2 độ, và ta viết 3 giờ trước là −3 giờ. Lúc đó nhiệt độ cao hơn bây giờ 6 độ, nên (−2) · (−3) = 6."
             },
             {
               "type": "visual",
@@ -297,7 +297,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhìn các dòng đi xuống: số đứng sau dấu nhân giảm 1 thì tích tăng 3. Đi tiếp xuống dưới, ta được (−3) · (−1) = 3 và (−3) · (−2) = 6."
+              "text": "Nhìn các dòng đi xuống: mỗi dòng, số đứng sau dấu nhân giảm 1 thì tích tăng 3. Đi tiếp xuống dưới, ta được (−3) · (−1) = 3 và (−3) · (−2) = 6."
             },
             {
               "type": "visual",
@@ -324,7 +324,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số đứng sau dấu nhân của (−2) · n, từ 1 xuống −3. Làm vậy bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
+              "text": "Cùng làm: bấm nút mũi tên xuống để giảm số n đứng sau dấu nhân của (−2) · n, từ 1 xuống −3. Làm vậy bạn thấy tích tăng 2 sau mỗi bước, rồi thành số dương."
             },
             {
               "type": "visual",
@@ -352,7 +352,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhiệt độ tăng hay giảm 3 độ mỗi giờ, ta xét 2 giờ sau hoặc 2 giờ trước bây giờ. Bốn trường hợp cho bốn tích."
+              "text": "Nhiệt độ tăng hay giảm 3 độ mỗi giờ, ta xét 2 giờ sau hoặc 2 giờ trước bây giờ. Có bốn trường hợp, mỗi trường hợp cho một tích."
             },
             {
               "type": "visual",
@@ -429,7 +429,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Ví dụ mẫu: đổi chỗ để ghép hai số có tích tròn chục như 10, 20, 100, rồi tính (−5) · 7 · (−2)."
+              "text": "Ví dụ mẫu: đổi chỗ để ghép hai số nhân ra 10, 20 hoặc 100, rồi tính (−5) · 7 · (−2)."
             },
             {
               "type": "visual",
@@ -470,7 +470,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn. Tích là số âm khi số thừa số âm là số lẻ.",
+              "text": "Tích nhiều thừa số khác 0 là số dương nếu có 2, 4 hay 6 thừa số âm. Có 1, 3 hay 5 thừa số âm thì tích là số âm.",
               "rule": true
             },
             {
@@ -493,7 +493,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
-        "caption": "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn. Tích là số âm khi số thừa số âm là số lẻ."
+        "caption": "Tích nhiều thừa số khác 0 là số dương nếu có 2, 4 hay 6 thừa số âm. Có 1, 3 hay 5 thừa số âm thì tích là số âm."
       }
     },
     {
@@ -602,7 +602,7 @@
           "id": "phep-nhan-so-nguyen.tip.gop-thua-so-chung",
           "kind": "làm nhanh",
           "title": "Tổng hai tích có thừa số chung",
-          "text": "Với tổng của hai tích có chung một thừa số, hãy đưa thừa số đó ra ngoài. Nếu cộng hai số còn lại được số tròn chục như 10, 20, 100 thì nhân rất nhanh.",
+          "text": "Hai tích cộng nhau mà có chung một số, thì đưa số chung đó ra ngoài. Nếu hai số còn lại cộng ra 10, 20 hoặc 100 thì nhân rất nhanh.",
           "tex": "\\begin{gathered} 5 \\cdot (-9) + 5 \\cdot (-1) \\\\ = 5 \\cdot [(-9) + (-1)] \\\\ = 5 \\cdot (-10) = -50 \\end{gathered}"
         }
       ],
@@ -625,7 +625,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nam có y túi kẹo, mỗi túi có x viên. Nếu số kẹo x · y bằng 0 thì y = 0 (không có túi nào) hoặc x = 0 (mỗi túi đều rỗng)."
+              "text": "Nam có y túi kẹo, mỗi túi có x viên, nên số kẹo là x · y. Số kẹo bằng 0 khi không có túi nào (y = 0) hoặc mỗi túi đều rỗng (x = 0)."
             },
             {
               "type": "visual",
@@ -821,7 +821,7 @@
       "recap": {
         "type": "visual",
         "visualId": "phep-nhan-so-nguyen.visual.nhieu-thua-so-vi-du",
-        "caption": "Tích nhiều thừa số khác 0 là số dương khi số thừa số âm là số chẵn. Tích là số âm khi số thừa số âm là số lẻ."
+        "caption": "Tích nhiều thừa số khác 0 là số dương nếu có 2, 4 hay 6 thừa số âm. Có 1, 3 hay 5 thừa số âm thì tích là số âm."
       }
     },
     {
@@ -1863,7 +1863,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tính từng tích: 3 · (−5) = −15, (−1) · 9 = −9, (−1) · 7 = −7. Với hai số âm, bỏ dấu − rồi so sánh: số lớn hơn thì số âm đó bé hơn.",
+        "text": "Tính từng tích: 3 · (−5) = −15, (−1) · 9 = −9, (−1) · 7 = −7. So sánh hai số âm: số nào có phần số lớn hơn thì số đó bé hơn. Vì 15 lớn hơn 9 và 7 nên −15 bé nhất.",
         "tex": "-15 < -9 < -7"
       },
       "items": [
@@ -2575,7 +2575,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Tính từng tích: (−4) · 5 = −20 và 3 · (−6) = −18. Với hai số âm, bỏ dấu − thì 20 lớn hơn 18, nên −20 bé hơn −18.",
+        "text": "Tính từng tích: (−4) · 5 = −20 và 3 · (−6) = −18. So sánh hai số âm: số nào có phần số lớn hơn thì số đó bé hơn. Vì 20 lớn hơn 18 nên −20 bé hơn −18.",
         "tex": "-20 < -18",
         "wrong": [
           {
