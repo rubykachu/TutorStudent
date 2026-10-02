@@ -9,6 +9,7 @@ import {
   parentSessionSnapshot,
   subscribeParentSession,
 } from "@/progress/parent-session";
+import { SyncRunner } from "@/sync/runner";
 import { ParentDashboard } from "./parent-dashboard";
 import { PinGate } from "./pin-gate";
 
@@ -31,6 +32,14 @@ export function ParentScreen() {
     return () => clearTimeout(timer);
   }, [until]);
 
-  if (remaining > 0) return <ParentDashboard />;
-  return <PinGate onUnlock={() => openParentSession(now())} />;
+  return (
+    <>
+      <SyncRunner />
+      {remaining > 0 ? (
+        <ParentDashboard />
+      ) : (
+        <PinGate onUnlock={() => openParentSession(now())} />
+      )}
+    </>
+  );
 }

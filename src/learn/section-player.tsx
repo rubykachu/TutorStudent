@@ -58,6 +58,7 @@ import {
 } from "@/progress/record";
 import { saveOpenEndedWriting } from "@/progress/writing";
 import type { Lesson, OpenEndedExercise, Section } from "@/schema/content";
+import { requestSync } from "@/sync/request";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
 import { GuidedStepProvider, useGuided } from "@/visuals/shared/guided-step";
 
@@ -157,6 +158,7 @@ export function SectionPlayer({
       sectionIds,
       now(),
     );
+    requestSync();
     const records = await getSectionProgress(db, scope, lesson.id);
     const done = new Set(
       records.filter((r) => r.state === "done").map((r) => r.sectionId),

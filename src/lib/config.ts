@@ -139,6 +139,9 @@ export const SYNC_PROFILE_NAME_MAX_CHARS = 40;
 // in a single sync, and how far into the future (server clock) a stored time
 // may lie before the server clamps it.
 export const SYNC_INTERVAL_MINUTES = 5;
+// A trigger (a finished section, a network that came back) waits this long for
+// others before one sync runs, so a burst of triggers costs one sync.
+export const SYNC_DEBOUNCE_MS = 2_000;
 export const SYNC_MAX_RETRIES = 3;
 export const SYNC_FUTURE_SKEW_MINUTES = 10;
 // Per family and per server instance, each minute: how many writes and how

@@ -38,6 +38,7 @@ import {
   skipCurrent,
   startSession,
 } from "@/srs/session";
+import { requestSync } from "@/sync/request";
 import { preloadVisuals, visualIdsIn } from "@/visuals/registry-visual";
 
 type ReviewPlayerProps = {
@@ -137,6 +138,13 @@ export function ReviewPlayer({
   useEffect(() => {
     if (upcomingVisuals) preloadVisuals(upcomingVisuals.split(" "));
   }, [upcomingVisuals]);
+
+  // The session is over once no question or recap is left: its answers are
+  // saved, so they can be sent.
+  const over = session !== null && !item && !session.recap;
+  useEffect(() => {
+    if (over) requestSync();
+  }, [over]);
 
   if (!session) return null;
 

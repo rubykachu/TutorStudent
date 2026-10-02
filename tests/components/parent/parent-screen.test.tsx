@@ -37,6 +37,8 @@ import { learnLesson } from "../../learn/helpers";
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
 }));
+// Sync has its own tests; here it would only add requests to the stubbed fetch.
+vi.mock("@/sync/runner", () => ({ SyncRunner: () => null }));
 
 const START = new Date("2026-09-30T02:00:00Z");
 let clock = START;
