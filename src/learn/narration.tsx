@@ -22,6 +22,7 @@ import {
 import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import { bufferedFraction, percentLabel } from "@/lib/media-download";
+import { ignoringSilentClip, playFromTap } from "@/lib/play-from-tap";
 import { useMediaSource } from "@/lib/use-media-source";
 import type { LessonOverview } from "@/schema/content";
 
@@ -56,8 +57,11 @@ export type NarrationState = {
   playing: boolean;
   // Played at least once and not yet finished: paused halfway counts.
   started: boolean;
-  // The audio file is on its way (after the tap on play, or a stall).
+  // The audio file is on its way (it downloads as the screen opens) or the
+  // audio stalled to buffer.
   loading: boolean;
+  // The child tapped play and the audio starts as soon as the file is here.
+  requested: boolean;
   // 0–1 of the file that arrived, undefined while its length is unknown.
   loadFraction: number | undefined;
   loadedBytes: number;
@@ -73,9 +77,13 @@ export type NarrationState = {
   audio: ReactNode;
 };
 
-// The recorded narration: never starts on its own; the file is fetched on the
-// first tap on play (with its percentage on screen) and played from memory;
-// the highlighted word follows the playhead on every frame while it plays.
+// The recorded narration: never starts on its own. The file is fetched as the
+// screen opens (with its percentage in the player) and played from memory.
+// A tap on play plays at once when the file is here; otherwise the player
+// keeps showing the percentage and plays when it arrives. The tap itself asks
+// the audio element to play (see `playFromTap`), so iOS lets that element
+// play after the fetch without a second tap. The highlighted word follows the
+// playhead on every frame while it plays.
 export function useNarration(
   narration: Narration | undefined,
   wordCount: number,
@@ -87,6 +95,10 @@ export function useNarration(
   const [word, setWord] = useState(-1);
   const source = useMediaSource(narration ? mediaUrl(narration.audioUrl) : "");
   const { phase, src: playable, request } = source;
+  const hasNarration = Boolean(narration);
+  useEffect(() => {
+    if (hasNarration) request();
+  }, [hasNarration, request]);
   // The child tapped play and the audio starts as soon as its file is here.
   const [wanted, setWanted] = useState(false);
   const [stalled, setStalled] = useState(false);
@@ -117,6 +129,12 @@ export function useNarration(
     return () => cancelAnimationFrame(frame);
   }, [playing, words]);
 
+  // The browser said no: the play button comes back, nothing else changes.
+  const refused = () => {
+    setWanted(false);
+    setPlaying(false);
+  };
+
   const toggle = () => {
     const element = audioRef.current;
     if (!element) return;
@@ -129,14 +147,23 @@ export function useNarration(
       element.pause();
       return;
     }
-    setWanted(true);
     setBroken(false);
+    if (phase === "ready" && playable) {
+      // Played right here, so the file needs no `wanted` effect.
+      playFromTap(element, true, refused);
+      return;
+    }
+    setWanted(true);
+    playFromTap(element, false, refused);
     request();
   };
 
   const retry = () => {
     setBroken(false);
     if (phase === "error" || phase === "idle") {
+      const element = audioRef.current;
+      if (element) playFromTap(element, false, refused);
+      setWanted(true);
       request();
       return;
     }
@@ -149,7 +176,7 @@ export function useNarration(
     const element = audioRef.current;
     if (element) setBuffered(bufferedFraction(element));
   };
-  const loadingFile = wanted && phase === "loading";
+  const loadingFile = phase === "loading";
   const loading = loadingFile || stalled;
   const loadFraction = loadingFile
     ? source.progress
@@ -163,31 +190,31 @@ export function useNarration(
       src={source.src}
       preload="auto"
       data-overview-audio
-      onPlay={() => {
+      onPlay={ignoringSilentClip(() => {
         setPlaying(true);
         setStarted(true);
         setWanted(false);
-      }}
-      onPause={() => {
+      })}
+      onPause={ignoringSilentClip(() => {
         setPlaying(false);
         setStalled(false);
-      }}
-      onWaiting={() => {
+      })}
+      onWaiting={ignoringSilentClip(() => {
         setStalled(true);
         trackBuffered();
-      }}
-      onPlaying={() => setStalled(false)}
-      onProgress={trackBuffered}
-      onError={() => {
+      })}
+      onPlaying={ignoringSilentClip(() => setStalled(false))}
+      onProgress={ignoringSilentClip(trackBuffered)}
+      onError={ignoringSilentClip(() => {
         setStalled(false);
         if (source.src) setBroken(true);
-      }}
-      onEnded={() => {
+      })}
+      onEnded={ignoringSilentClip(() => {
         setPlaying(false);
         setStarted(false);
         setWord(-1);
         setProgress(0);
-      }}
+      })}
     >
       {/* The page itself shows the words being said; the track carries
         the same captions for assistive technology. */}
@@ -201,8 +228,11 @@ export function useNarration(
   ) : null;
   return {
     playing,
-    started: started || loading,
+    // Only a tap (not the download that starts with the screen) brings the
+    // slim player in.
+    started: started || (wanted && loading),
     loading,
+    requested: wanted,
     loadFraction,
     loadedBytes: source.receivedBytes,
     failed: wanted && (phase === "error" || broken),
@@ -244,7 +274,11 @@ export function NarrationPlayer({
           type="button"
           onClick={state.toggle}
           aria-label={
-            state.playing ? "Tạm dừng" : busy ? "Dừng tải" : "Nghe giới thiệu"
+            state.playing
+              ? "Tạm dừng"
+              : busy && state.requested
+                ? "Dừng tải"
+                : "Nghe giới thiệu"
           }
           className="relative flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card transition-transform duration-100 ease-out active:scale-[0.95] motion-reduce:transition-none"
         >
@@ -366,7 +400,11 @@ export function NarrationMiniPlayer({
           type="button"
           onClick={state.toggle}
           aria-label={
-            state.playing ? "Tạm dừng" : busy ? "Dừng tải" : "Nghe tiếp"
+            state.playing
+              ? "Tạm dừng"
+              : busy && state.requested
+                ? "Dừng tải"
+                : "Nghe tiếp"
           }
           className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-card active:scale-[0.95] motion-reduce:transition-none"
         >

@@ -6,6 +6,7 @@ import { MediaLoadError, MediaLoading } from "@/components/media-loading";
 import { parseKaraokeCue, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import { bufferedFraction } from "@/lib/media-download";
+import { ignoringSilentClip, playFromTap } from "@/lib/play-from-tap";
 import { useMediaSource } from "@/lib/use-media-source";
 import type { Video } from "@/schema/content";
 
@@ -16,8 +17,9 @@ type VideoPlayerProps = {
   // Plays only this part of the video, e.g. the part that explains a card.
   clip?: VideoClip;
   // When the download starts: "auto" as the screen opens (a video the child
-  // is looking at), "metadata" (the default) on the tap on play. The video
-  // is fetched into memory and played from there, never saved on the device.
+  // is looking at, so play starts at once), "metadata" (the default) on the
+  // tap on play. The video is fetched into memory and played from there,
+  // never saved on the device.
   preload?: "metadata" | "auto";
 };
 
@@ -28,8 +30,10 @@ const CLIP_END_SLACK_S = 0.05;
 // motion or not): the child taps the big play button, and the native
 // controls take over for pausing and seeking. The file arrives first, with
 // its percentage on screen (and again on every stall); a failed download
-// offers "Thử lại". It never stops by itself
-// either: only the child pauses. Captions are on by default and drawn by the
+// offers "Thử lại". The tap itself asks the element to play, so a file that
+// arrives after the tap's activation expired (iOS) still plays without a
+// second tap; a browser that refuses anyway brings the play button back. It
+// never stops by itself either: only the child pauses. Captions are on by default and drawn by the
 // page, large and with the spoken word highlighted, from the karaoke
 // timestamps in the WebVTT track: over the picture's bottom on a wide screen,
 // in a strip under the picture on a phone (where an overlay would cover the
@@ -135,16 +139,35 @@ export function VideoPlayer({
     });
   }, [wanted, phase, playable]);
 
+  // The play button's tap. The element is asked to play inside the tap (see
+  // `playFromTap`), so iOS lets the real file play later on this same element.
   const play = () => {
+    const element = videoRef.current;
     setWaiting(true);
+    const ready = phase === "ready" && Boolean(playable);
+    if (ready) {
+      // Played right here, so the file needs no `wanted` effect.
+      if (element) playFromTap(element, true, refused);
+      return;
+    }
     setWanted(true);
+    if (element) playFromTap(element, false, refused);
     request();
+  };
+
+  // The browser said no: the play button comes back, nothing else changes.
+  const refused = () => {
+    setWanted(false);
+    setWaiting(false);
   };
 
   const retry = () => {
     setBroken(false);
     setWaiting(true);
     if (phase === "error") {
+      const element = videoRef.current;
+      if (element) playFromTap(element, false, refused);
+      setWanted(true);
       request();
       return;
     }
@@ -199,22 +222,22 @@ export function VideoPlayer({
           // Captions come from the media store, which serves them to the app
           // with CORS once it is a separate domain.
           crossOrigin="anonymous"
-          onPlay={onPlay}
-          onWaiting={() => {
+          onPlay={ignoringSilentClip(onPlay)}
+          onWaiting={ignoringSilentClip(() => {
             setWaiting(true);
             trackBuffered();
-          }}
-          onStalled={() => {
+          })}
+          onStalled={ignoringSilentClip(() => {
             if (wanted && !videoRef.current?.paused) setWaiting(true);
             trackBuffered();
-          }}
-          onProgress={trackBuffered}
-          onPlaying={() => setWaiting(false)}
-          onPause={() => setWaiting(false)}
-          onError={() => {
+          })}
+          onProgress={ignoringSilentClip(trackBuffered)}
+          onPlaying={ignoringSilentClip(() => setWaiting(false))}
+          onPause={ignoringSilentClip(() => setWaiting(false))}
+          onError={ignoringSilentClip(() => {
             setWaiting(false);
             if (source.src) setBroken(true);
-          }}
+          })}
           onTimeUpdate={onTimeUpdate}
           className="block aspect-video w-full"
         >

@@ -17,6 +17,9 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
+// The silent clip the tap unlocks the audio element with.
+const SILENT_CLIP = /^data:audio\/wav/;
+
 const OVERVIEW: LessonOverview = {
   hook: { text: "Mẹ mua hai túi kẹo." },
   summary: "Bài này nói về phép nhân.",
@@ -181,28 +184,60 @@ describe("LessonOverviewView", () => {
       });
     });
 
-    it("fetches nothing until the tap, then shows the real percentage and plays from memory", async () => {
+    it("fetches the audio as the screen opens and shows the real percentage in the player, before any tap", async () => {
       const download = stubNarrationFetch(400);
       const { container } = renderOverview(NARRATED);
       const audio = container.querySelector("audio") as HTMLAudioElement;
-      expect(audio.hasAttribute("src")).toBe(false);
-      expect(download.fetchMock.mock.calls.map((call) => call[0])).toEqual([
+      expect(
+        download.fetchMock.mock.calls.map((call) => call[0]).sort(),
+      ).toEqual([
+        "/media/narration/phep-nhan/overview.m4a",
         "/media/narration/phep-nhan/overview.vtt",
       ]);
 
-      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
       await download.push(100);
+      expect(
+        container.querySelector("[data-narration-label]"),
+      ).toHaveTextContent("Đang tải… 25%");
       expect(screen.getByRole("progressbar")).toHaveAttribute(
         "aria-valuenow",
         "25",
       );
+      // Nobody tapped: the button still invites, nothing plays, no slim player.
       expect(
-        container.querySelector("[data-narration-label]"),
-      ).toHaveTextContent("Đang tải… 25%");
+        screen.getByRole("button", { name: "Nghe giới thiệu" }),
+      ).toBeInTheDocument();
+      expect(container.querySelector("[data-narration-mini]")).toBeNull();
+      expect(audio.hasAttribute("src")).toBe(false);
+
+      await download.push(300);
+      await download.finish();
+      await waitFor(() =>
+        expect(audio.getAttribute("src")).toBe("blob:narration"),
+      );
+      expect(screen.queryByRole("progressbar")).toBeNull();
+      expect(
+        container.querySelector("[data-overview-narration]"),
+      ).toHaveAttribute("data-overview-narration", "paused");
+    });
+
+    it("keeps the percentage after a tap during the download and plays when it ends", async () => {
+      const download = stubNarrationFetch(400);
+      const { container } = renderOverview(NARRATED);
+      const audio = container.querySelector("audio") as HTMLAudioElement;
+      await download.push(100);
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      // The tap unlocked the element with the silent clip, nothing is playing.
+      expect(audio.getAttribute("src")).toMatch(SILENT_CLIP);
+      expect(
+        container.querySelector("[data-overview-narration]"),
+      ).toHaveAttribute("data-overview-narration", "paused");
       expect(
         screen.getByRole("button", { name: "Dừng tải" }),
       ).toBeInTheDocument();
-      expect(audio.hasAttribute("src")).toBe(false);
+      expect(
+        container.querySelector("[data-narration-label]"),
+      ).toHaveTextContent("Đang tải… 25%");
 
       await download.push(300);
       await download.finish();
@@ -214,7 +249,81 @@ describe("LessonOverviewView", () => {
           container.querySelector("[data-overview-narration]"),
         ).toHaveAttribute("data-overview-narration", "playing"),
       );
+      expect(container.querySelector("audio")).toBe(audio);
+    });
+
+    it("plays inside the tap, on the same element, when the download is already done", async () => {
+      const download = stubNarrationFetch(400);
+      const { container } = renderOverview(NARRATED);
+      const audio = container.querySelector("audio") as HTMLAudioElement;
+      await download.push(400);
+      await download.finish();
+      await waitFor(() =>
+        expect(audio.getAttribute("src")).toBe("blob:narration"),
+      );
+      const play = vi.mocked(HTMLMediaElement.prototype.play);
+      play.mockClear();
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      // Called by the time the click returned, once, on the one element.
+      expect(play).toHaveBeenCalledOnce();
+      expect(play.mock.contexts[0]).toBe(audio);
+      expect(
+        container.querySelector("[data-overview-narration]"),
+      ).toHaveAttribute("data-overview-narration", "playing");
+    });
+
+    it("brings the play button back, with no error, when play is refused after the download; the next tap plays at once", async () => {
+      const download = stubNarrationFetch(400);
+      const { container } = renderOverview(NARRATED);
+      const audio = container.querySelector("audio") as HTMLAudioElement;
+      // The unlock inside the tap is allowed; the later play is not (the
+      // gesture was lost).
+      let afterAwait = false;
+      const play = vi
+        .mocked(HTMLMediaElement.prototype.play)
+        .mockImplementation(async function (this: HTMLMediaElement) {
+          if (afterAwait) {
+            throw new DOMException("not allowed", "NotAllowedError");
+          }
+          this.dispatchEvent(new Event("play"));
+        });
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      afterAwait = true;
+      await download.push(400);
+      await download.finish();
+      await waitFor(() =>
+        expect(audio.getAttribute("src")).toBe("blob:narration"),
+      );
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: "Nghe giới thiệu" }),
+        ).toBeInTheDocument(),
+      );
+      expect(screen.queryByRole("alert")).toBeNull();
       expect(screen.queryByRole("progressbar")).toBeNull();
+      expect(
+        container.querySelector("[data-overview-narration]"),
+      ).toHaveAttribute("data-overview-narration", "paused");
+
+      afterAwait = false;
+      const fetches = download.fetchMock.mock.calls.length;
+      const before = play.mock.calls.length;
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      expect(play.mock.calls.length).toBe(before + 1);
+      expect(download.fetchMock.mock.calls.length).toBe(fetches);
+      expect(
+        container.querySelector("[data-overview-narration]"),
+      ).toHaveAttribute("data-overview-narration", "playing");
+    });
+
+    it("stops the download and frees the audio when the screen is left", async () => {
+      const download = stubNarrationFetch(400);
+      const { unmount } = renderOverview(NARRATED);
+      await download.push(400);
+      await download.finish();
+      await waitFor(() => expect(URL.createObjectURL).toHaveBeenCalledOnce());
+      unmount();
+      expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:narration");
     });
 
     it("shows the buffered share when the file's length is unknown and the audio stalls", async () => {
@@ -242,6 +351,34 @@ describe("LessonOverviewView", () => {
       ).toHaveTextContent("Đang tải… 25%");
       fireEvent.playing(audio);
       expect(screen.queryByRole("progressbar")).toBeNull();
+    });
+
+    it("stays quiet when the prefetch fails, and the tap tries again", async () => {
+      const download = stubNarrationFetch(10, true);
+      const { container } = renderOverview(NARRATED);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      // Nobody asked yet: no error card, the button still invites.
+      expect(screen.queryByRole("alert")).toBeNull();
+      expect(
+        screen.getByRole("button", { name: "Nghe giới thiệu" }),
+      ).toBeInTheDocument();
+      const audioFetches = () =>
+        download.fetchMock.mock.calls.filter((call) =>
+          String(call[0]).endsWith(".m4a"),
+        ).length;
+      expect(audioFetches()).toBe(1);
+
+      fireEvent.click(screen.getByRole("button", { name: "Nghe giới thiệu" }));
+      expect(audioFetches()).toBe(2);
+      await download.push(10);
+      await download.finish();
+      await waitFor(() =>
+        expect(
+          container.querySelector("[data-overview-narration]"),
+        ).toHaveAttribute("data-overview-narration", "playing"),
+      );
     });
 
     it("offers 'Thử lại' when the download fails", async () => {

@@ -10,7 +10,8 @@ type CardClipProps = { lesson: Pick<Lesson, "videos">; cardId: string };
 
 // Under a card's recap in review: a small, optional way back to the part of
 // the lesson video that explains the card. Nothing shows when the card has
-// no clip; the player opens only when the child asks for it.
+// no clip; the player opens only when the child asks for it, and then fetches
+// the video at once so play starts without a wait.
 export function CardClip({ lesson, cardId }: CardClipProps) {
   const [open, setOpen] = useState(false);
   const found = cardClip(lesson, cardId);
@@ -18,7 +19,7 @@ export function CardClip({ lesson, cardId }: CardClipProps) {
   if (open) {
     return (
       <div className="mx-auto w-full max-w-content" data-card-clip="open">
-        <VideoPlayer video={found.video} clip={found.clip} />
+        <VideoPlayer video={found.video} clip={found.clip} preload="auto" />
       </div>
     );
   }

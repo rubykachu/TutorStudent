@@ -14,6 +14,8 @@ import { clearPreloaded, storePreloaded } from "@/lib/media-download";
 import type { Video } from "@/schema/content";
 
 const VIDEO_URL = "/media/video/fixture/gioi-thieu.mp4";
+// The silent clip the tap unlocks the element with.
+const SILENT_CLIP = /^data:audio\/wav/;
 
 // A download the test feeds chunk by chunk.
 function controlledDownload(totalBytes: number | null) {
@@ -166,15 +168,149 @@ describe("VideoPlayer", () => {
     expect(
       container.querySelector("[data-media-loading-text]"),
     ).toHaveTextContent("Đang tải… 45%");
-    expect(play).not.toHaveBeenCalled();
-    expect(video.hasAttribute("src")).toBe(false);
+    // Only the unlock inside the tap has played so far, on a silent clip.
+    expect(play).toHaveBeenCalledOnce();
+    expect(video.getAttribute("src")).toMatch(SILENT_CLIP);
 
     await download.push(550);
     await download.finish();
     await waitFor(() => expect(video.getAttribute("src")).toBe("blob:test-0"));
-    await waitFor(() => expect(play).toHaveBeenCalledOnce());
+    await waitFor(() => expect(play).toHaveBeenCalledTimes(2));
+    // The same element all along.
+    expect(videoElement(container)).toBe(video);
     fireEvent.playing(video);
     expect(screen.queryByRole("progressbar")).toBeNull();
+  });
+
+  describe("playing from the tap (iOS lets only the tapped element play later)", () => {
+    function stubDownload(bytes: number) {
+      const download = controlledDownload(bytes);
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(async (_url: string) => download.response),
+      );
+      return download;
+    }
+
+    it("unlocks the element inside the tap, before any await, and ignores the silent clip's events", () => {
+      stubDownload(10);
+      const { container } = render(<VideoPlayer video={VIDEO} />);
+      const video = videoElement(container);
+      const calls: string[] = [];
+      video.play = vi.fn(() => {
+        calls.push("play");
+        // The browser fires play for the silent clip too.
+        fireEvent.play(video);
+        return Promise.reject(new DOMException("interrupted", "AbortError"));
+      });
+      video.pause = vi.fn(() => {
+        calls.push("pause");
+        fireEvent.pause(video);
+      });
+      fireEvent.click(screen.getByRole("button", { name: "Phát video" }));
+      // Synchronously, by the time the click handler returned.
+      expect(calls).toEqual(["play", "pause"]);
+      // The silent clip is not the child's playback: no controls, loading card stays.
+      expect(video.controls).toBe(false);
+      expect(screen.getByRole("progressbar")).toBeInTheDocument();
+    });
+
+    it("plays at once, inside the tap, when the video was prefetched", async () => {
+      const download = stubDownload(10);
+      const { container } = render(
+        <VideoPlayer video={VIDEO} preload="auto" />,
+      );
+      const video = videoElement(container);
+      const play = vi.fn(() => Promise.resolve());
+      video.play = play;
+      await download.push(10);
+      await download.finish();
+      await waitFor(() =>
+        expect(video.getAttribute("src")).toBe("blob:test-0"),
+      );
+      fireEvent.click(screen.getByRole("button", { name: "Phát video" }));
+      expect(play).toHaveBeenCalledOnce();
+      fireEvent.playing(video);
+      expect(screen.queryByRole("progressbar")).toBeNull();
+      await act(async () => undefined);
+      // No second play from an effect after the tap.
+      expect(play).toHaveBeenCalledOnce();
+    });
+
+    it("keeps showing the prefetch's percentage after a tap during it, and plays when it ends", async () => {
+      const download = stubDownload(1000);
+      const { container } = render(
+        <VideoPlayer video={VIDEO} preload="auto" />,
+      );
+      const video = videoElement(container);
+      const play = vi.fn(() => Promise.resolve());
+      video.play = play;
+      await download.push(300);
+      fireEvent.click(screen.getByRole("button", { name: "Phát video" }));
+      await waitFor(() =>
+        expect(screen.getByRole("progressbar")).toHaveAttribute(
+          "aria-valuenow",
+          "30",
+        ),
+      );
+      await download.push(700);
+      await download.finish();
+      await waitFor(() => expect(play).toHaveBeenCalledTimes(2));
+      expect(video.getAttribute("src")).toBe("blob:test-0");
+    });
+
+    it("brings the play button back, with no error, when play is refused after the fetch; the next tap plays at once", async () => {
+      const download = stubDownload(10);
+      const { container } = render(<VideoPlayer video={VIDEO} />);
+      const video = videoElement(container);
+      // The unlock inside the tap is allowed; the later play is not (the
+      // gesture was lost).
+      let afterAwait = false;
+      const play = vi.fn(async () => {
+        if (afterAwait)
+          throw new DOMException("not allowed", "NotAllowedError");
+      });
+      video.play = play;
+      fireEvent.click(screen.getByRole("button", { name: "Phát video" }));
+      afterAwait = true;
+      await download.push(10);
+      await download.finish();
+      expect(
+        await screen.findByRole("button", { name: "Phát video" }),
+      ).toBeVisible();
+      expect(screen.queryByRole("alert")).toBeNull();
+      expect(screen.queryByRole("progressbar")).toBeNull();
+      expect(video.getAttribute("src")).toBe("blob:test-0");
+
+      afterAwait = false;
+      const fetchCalls = vi.mocked(fetch).mock.calls.length;
+      fireEvent.click(screen.getByRole("button", { name: "Phát video" }));
+      expect(play).toHaveBeenCalledTimes(3);
+      expect(vi.mocked(fetch).mock.calls.length).toBe(fetchCalls);
+    });
+
+    it("unlocks again on 'Thử lại' after a failed download", async () => {
+      const download = controlledDownload(10);
+      vi.stubGlobal(
+        "fetch",
+        vi
+          .fn()
+          .mockRejectedValueOnce(new TypeError("network"))
+          .mockImplementation(async () => download.response),
+      );
+      const { container } = render(<VideoPlayer video={VIDEO} />);
+      const video = videoElement(container);
+      const play = vi.fn(() => Promise.resolve());
+      video.play = play;
+      fireEvent.click(screen.getByRole("button", { name: "Phát video" }));
+      await screen.findByRole("alert");
+      const before = play.mock.calls.length;
+      fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+      expect(play.mock.calls.length).toBe(before + 1);
+      await download.push(10);
+      await download.finish();
+      await waitFor(() => expect(play).toHaveBeenCalledTimes(before + 2));
+    });
   });
 
   it("shows the loading card again on a stall, with what the element has buffered when it streams the file itself", async () => {
@@ -398,13 +534,19 @@ describe("VideoPreload", () => {
 });
 
 describe("CardClip", () => {
-  it("offers the card's clip on request only", () => {
+  it("offers the card's clip on request only, and fetches it once it is open", () => {
+    const fetchMock = vi.fn(
+      (_url: string) => new Promise<Response>(() => undefined),
+    );
+    vi.stubGlobal("fetch", fetchMock);
     const { container } = render(
       <CardClip lesson={{ videos: [VIDEO] }} cardId="fixture.card.nhan-lap" />,
     );
     expect(container.querySelector("video")).toBeNull();
+    expect(fetchMock).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: "Xem lại đoạn video" }));
     expect(videoElement(container).hasAttribute("src")).toBe(false);
+    expect(fetchMock.mock.calls.map((call) => call[0])).toEqual([VIDEO_URL]);
   });
 
   it("shows nothing for a card without a clip", () => {
