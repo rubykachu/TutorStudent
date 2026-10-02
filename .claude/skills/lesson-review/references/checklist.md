@@ -99,6 +99,7 @@ Các kiểu lỗi đã gặp ở nhiều bài, kèm ví dụ thật: `docs/lesso
 - Câu ôn trùng số recap, ví dụ màn quy tắc, trạng thái đầu của hình: LL-07.
 - Kiến thức chưa dạy (kể cả câu kho ôn gắn card của section sau): LL-09. Đề hai cách hiểu: LL-10. Nhiễu loại được bằng mẹo: LL-14.
 - Hình lệch chữ hay lệch số của đề: LL-15. Thiếu mẫu, cùng làm, ví dụ đời sống: LL-16. Câu quá nhiều phép tính: LL-18.
+- `explain` và `wrong` của câu `choice` gọi lựa chọn theo vị trí ("hai tổng đầu", "dãy thứ ba") mà app xáo thứ tự: LL-26.
 
 ## Luật gợi ý 3 nấc
 
