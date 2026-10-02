@@ -262,6 +262,19 @@ export function getCardStates(
     .toArray();
 }
 
+export function listCardStates(
+  db: TutorDb,
+  { familyId, childId }: ChildScope,
+): Promise<CardStateRecord[]> {
+  return db.cardStates
+    .where("[familyId+childId+lessonId]")
+    .between(
+      [familyId, childId, Dexie.minKey],
+      [familyId, childId, Dexie.maxKey],
+    )
+    .toArray();
+}
+
 export function listAttempts(
   db: TutorDb,
   scope: ChildScope,

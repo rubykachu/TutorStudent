@@ -13,6 +13,7 @@ import type {
 import {
   listActivityDays,
   listAttempts,
+  listCardStates,
   listSectionProgress,
   listStickers,
   listWritings,
@@ -31,19 +32,6 @@ export type ParentData = {
   // Oldest first.
   writings: WritingRecord[];
 };
-
-function listCardStates(
-  db: TutorDb,
-  { familyId, childId }: ChildScope,
-): Promise<CardStateRecord[]> {
-  return db.cardStates
-    .where("[familyId+childId+lessonId]")
-    .between(
-      [familyId, childId, Dexie.minKey],
-      [familyId, childId, Dexie.maxKey],
-    )
-    .toArray();
-}
 
 export async function readParentData(
   db: TutorDb,

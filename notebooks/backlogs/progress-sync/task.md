@@ -85,10 +85,10 @@ Files: `src/progress/reset.ts`, `src/lib/time.ts`, `src/sync/dirty.ts`, `src/syn
 `readChildDoc(db, childId, familyId)`, `readHistoryDoc(db, childId, familyId, month)`, `readProfileDoc(db, familyId)`, `applyChildDoc(db, doc)`, `applyHistoryDoc(db, doc, resets)`, `applyProfileDoc(db, doc)`. Records stay under `familyId: "local"` locally (`spec.md`, "Design choices", item 2). Apply-back runs in one transaction per child: re-reads the local records, merges them with the given doc, writes the result, deletes local records the tombstones drop, sets section `state` from `doneAt`. `applyHistoryDoc` adds the records `visibleHistory` keeps and never deletes one.
 
 Acceptance:
-- [ ] Round trip: Dexie records to main doc and month docs to an empty Dexie gives the same records.
-- [ ] Apply-back never deletes a local attempt that is not dropped by a tombstone.
-- [ ] Applying a main doc with a reset removes the lesson's older local records and keeps the sticker; applying an old month afterwards does not bring the lesson's earlier answers back.
-- [ ] An answer recorded between reading the doc and applying the merge (card state and section position) is still there after apply-back.
+- [x] Round trip: Dexie records to main doc and month docs to an empty Dexie gives the same records.
+- [x] Apply-back never deletes a local attempt that is not dropped by a tombstone.
+- [x] Applying a main doc with a reset removes the lesson's older local records and keeps the sticker; applying an old month afterwards does not bring the lesson's earlier answers back.
+- [x] An answer recorded between reading the doc and applying the merge (card state and section position) is still there after apply-back.
 
 Verify: `pnpm test tests/sync/local.test.ts`
 
