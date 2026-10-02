@@ -26,6 +26,7 @@ import {
   type ProfileDoc,
 } from "@/sync/schema";
 import { type SyncPrefix, syncKey } from "@/sync/store/keys";
+import { R2Error } from "@/sync/store/r2";
 import type { BlobStore, StoredBlob } from "@/sync/store/types";
 
 // The server side of `/api/sync`: it checks who is asking and what, and
@@ -45,11 +46,19 @@ export type SyncLogEntry = {
   status: number;
   // Size of the request body in bytes, when one was read.
   bytes: number | null;
-  // Set when the line reports something other than the request's own failure.
-  event: "snapshot-failed" | null;
+  // Set when the line reports something other than a refused request:
+  // `snapshot-failed` (the write went on), `exception` (the store or the code
+  // threw; the answer is 500 `server`).
+  event: "snapshot-failed" | "exception" | null;
+  // With `exception` only: the bucket's status and error code, or the error's
+  // name. Never its message, which can hold a URL, a path or a body.
+  detail?: string;
 };
 
-type RequestContext = Omit<SyncLogEntry, "route" | "status" | "event">;
+type RequestContext = Omit<
+  SyncLogEntry,
+  "route" | "status" | "event" | "detail"
+>;
 const newContext = (): RequestContext => ({
   familyId: null,
   doc: null,
@@ -330,7 +339,22 @@ export function createSyncService(deps: SyncServiceDeps) {
     handle: (ctx: RequestContext) => Promise<NextResponse>,
   ): Promise<NextResponse> {
     const ctx = newContext();
-    const response = await handle(ctx);
+    let response: NextResponse;
+    try {
+      response = await handle(ctx);
+    } catch (error) {
+      // An unreadable bucket, a timeout or a bug: a JSON answer with
+      // `no-store` like every other, and one log line without the error's
+      // message.
+      log({
+        route,
+        ...ctx,
+        status: 500,
+        event: "exception",
+        detail: errorDetail(error),
+      });
+      return fail(500, "server");
+    }
     if (response.status >= 400) {
       log({ route, ...ctx, status: response.status, event: null });
     }
@@ -564,6 +588,11 @@ export function createSyncService(deps: SyncServiceDeps) {
   }
 
   return { get, put };
+}
+
+function errorDetail(error: unknown): string {
+  if (error instanceof R2Error) return `R2 ${error.status} ${error.code}`;
+  return error instanceof Error ? error.name : "unknown";
 }
 
 // True when `next` lacks an attempt or writing the stored month doc has.
