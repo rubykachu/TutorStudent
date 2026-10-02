@@ -141,6 +141,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         quad("binh-hanh", {
           label: "Hình bình hành ABCD có AB = 6 cm và BC = 4 cm",
           names: true,
+          margin: 44,
         }),
         "A",
         "B",
@@ -347,6 +348,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
       quad("thang-can", {
         label: "Hình thang cân ABCD có cạnh bên AD = 5 cm",
         names: true,
+        margin: 44,
       }),
       "A",
       "D",
@@ -424,7 +426,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         text: "7 cm",
         label: "Đường chéo AC",
         tone: "amber",
-        at: 0.28,
+        at: 0.2,
       },
       {
         kind: "seg",
@@ -433,7 +435,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         text: "7 cm",
         label: "Đường chéo BD",
         tone: "amber",
-        at: 0.28,
+        at: 0.2,
       },
     ],
     verb: "đo",

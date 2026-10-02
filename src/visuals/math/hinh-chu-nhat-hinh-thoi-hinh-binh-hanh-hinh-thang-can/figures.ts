@@ -89,6 +89,9 @@ export type QuadOptions = {
   // The two diagonals, and what they show: nothing more (plain), equal
   // lengths, a right angle between them, or the middle of each.
   diagonals?: "plain" | "equal" | "perp" | "mid";
+  // Room round the shape, for the lengths written beside its sides (default:
+  // enough for the corner names).
+  margin?: number;
   // Marks the point O where the diagonals cross, with its name, even when the
   // diagonals themselves are not drawn.
   centre?: boolean;
@@ -197,7 +200,12 @@ export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
   const w = o.w ?? 300;
   const h = o.h ?? 200;
   const base = QUAD_POINTS[kind];
-  const pts: Record<string, Pt> = fitTo(base, w, h, o.names ? 26 : 14);
+  const pts: Record<string, Pt> = fitTo(
+    base,
+    w,
+    h,
+    o.margin ?? (o.names ? 26 : 14),
+  );
   const corner = (name: QuadCorner) => pts[name] as Pt;
   const polys: FigurePoly[] = [
     {
@@ -331,6 +339,9 @@ export const textAt = (
   anchor: FigureText["anchor"] = "middle",
 ): FigureText => ({ x, y, text, tone, anchor });
 
+// Half the height of the writing of a label, in drawing units.
+const LABEL_HALF_HEIGHT = 11;
+
 // The figure with a length (or any text) written beside the side a-b, away
 // from the middle of the figure.
 export function labelSide(
@@ -356,13 +367,25 @@ export function labelSide(
   if ((mid[0] - centre[0]) * normal[0] + (mid[1] - centre[1]) * normal[1] < 0) {
     normal = [-normal[0], -normal[1]];
   }
+  // The text stays inside the drawing, whatever the side it labels.
+  const half = text.length * 4.7;
+  const clamp = (value: number, low: number, high: number) =>
+    Math.min(Math.max(value, low), high);
   return {
     ...figure,
     texts: [
       ...(figure.texts ?? []),
       textAt(
-        mid[0] + normal[0] * (gap + text.length * 3),
-        mid[1] + normal[1] * (gap + text.length * 2),
+        clamp(
+          mid[0] + normal[0] * (gap + text.length * 3),
+          half + 2,
+          figure.w - half - 2,
+        ),
+        clamp(
+          mid[1] + normal[1] * (gap + text.length * 2),
+          LABEL_HALF_HEIGHT,
+          figure.h - LABEL_HALF_HEIGHT,
+        ),
         text,
         tone,
       ),

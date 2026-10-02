@@ -227,6 +227,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       quad("chu-nhat", {
         label: "Hình chữ nhật ABCD có AB = 7 cm",
         names: true,
+        margin: 44,
       }),
       "A",
       "B",
@@ -239,6 +240,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
         quad("chu-nhat", {
           label: "Hình chữ nhật có hai cạnh liền nhau dài 9 cm và 4 cm",
           names: true,
+          margin: 44,
         }),
         "A",
         "B",
@@ -530,7 +532,11 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   },
   "thoi-ab-5": figure(
     labelSide(
-      quad("thoi", { label: "Hình thoi ABCD có AB = 5 cm", names: true }),
+      quad("thoi", {
+        label: "Hình thoi ABCD có AB = 5 cm",
+        names: true,
+        margin: 44,
+      }),
       "A",
       "B",
       "5 cm",
@@ -650,6 +656,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       quad("thoi", {
         label: "Hình thoi ABCD có cạnh 4 cm và góc A bằng 60°",
         names: true,
+        margin: 44,
         angles: { A: "60°" },
       }),
       "A",

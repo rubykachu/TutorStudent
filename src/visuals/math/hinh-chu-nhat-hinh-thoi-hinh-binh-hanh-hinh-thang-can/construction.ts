@@ -467,6 +467,7 @@ function rhombusFigure(
       });
       if (flag(state, "markQ")) {
         draw.corner(q, corner);
+        draw.segs.push(bold(m, q));
         draw.arcs.push(arcAround(m, radius, -angle));
         if (flag(state, "arcQ")) draw.arcs.push(arcAround(q, radius, 0));
       }

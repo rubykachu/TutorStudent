@@ -89,11 +89,11 @@ function Kite() {
 
 // Two rows of three parallelogram tiles on a darker floor.
 function Tiles() {
-  const tileW = 44;
+  const tileW = 38;
   const tileH = 32;
-  const skew = 12;
+  const skew = 10;
   const gap = 4;
-  const left = 20;
+  const left = 14;
   const top = 22;
   return (
     <>

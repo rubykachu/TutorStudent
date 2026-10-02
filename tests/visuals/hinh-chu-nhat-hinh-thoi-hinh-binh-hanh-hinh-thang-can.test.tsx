@@ -396,6 +396,11 @@ describe("drawing boards", () => {
       same(length(f, a, b), side, 0.01);
     }
     same(angleAt(f, "M", "N", "Q"), 60, 0.01);
+    // All four sides are drawn, the first one included.
+    const drawn = (f.segs ?? [])
+      .filter((seg) => seg.bold)
+      .map((seg) => `${seg.a}${seg.b}`);
+    expect(drawn.sort()).toEqual(["MN", "MQ", "PN", "QP"].sort());
   });
 
   it("draws the finished parallelograms with equal opposite sides", () => {

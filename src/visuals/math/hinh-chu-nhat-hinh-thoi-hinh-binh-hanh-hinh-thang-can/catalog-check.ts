@@ -42,11 +42,16 @@ const SIDE_PAIRS = [
   ["Z", "T"],
   ["T", "X"],
 ] as const;
-const measured = (count: number) =>
-  SIDE_PAIRS.slice(0, count).reduce(
-    (fig, [a, b]) => labelSide(fig, a, b, "4 cm"),
-    rhombusXyzt("Tứ giác XYZT"),
-  );
+// The first `count` sides of XYZT drawn bold blue: the sides measured so far.
+const measured = (count: number): FigureSpec => ({
+  ...rhombusXyzt("Tứ giác XYZT"),
+  segs: SIDE_PAIRS.slice(0, count).map(([a, b]) => ({
+    a,
+    b,
+    tone: "blue" as const,
+    bold: true,
+  })),
+});
 
 // A parallelogram whose diagonals have halves of 4 and 3 units.
 const checkParallelogram = (label: string, extra: object = {}) =>
@@ -87,7 +92,7 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
     frame(rhombusXyzt("Tứ giác XYZT"), "Tứ giác XYZT"),
     frame(measured(1), "Đo cạnh XY: 4 cm"),
     frame(measured(2), "Đo cạnh YZ: 4 cm"),
-    frame(measured(4), "Đo cạnh ZT và TX: cũng 4 cm"),
+    frame(measured(4), "Đo cạnh ZT và cạnh TX: cũng 4 cm"),
     frame(
       {
         ...measured(4),
@@ -202,35 +207,30 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
       "Vẽ hai đường chéo AC và BD, chúng cắt nhau tại O",
     ),
     frame(
-      labelSide(
-        labelSide(checkParallelogram("Đo OA và OC"), "A", "O", "4 cm"),
-        "O",
-        "C",
-        "4 cm",
-      ),
+      {
+        ...checkParallelogram("Đo OA và OC"),
+        ticks: [
+          {
+            segs: [
+              ["A", "O"],
+              ["O", "C"],
+            ],
+            count: 1,
+            tone: "blue",
+          },
+        ],
+      },
       "Đo OA và OC: cùng 4 cm",
     ),
     frame(
-      labelSide(
-        labelSide(
-          labelSide(
-            labelSide(checkParallelogram("Đo OB và OD"), "A", "O", "4 cm"),
-            "O",
-            "C",
-            "4 cm",
-          ),
-          "B",
-          "O",
-          "3 cm",
-        ),
-        "O",
-        "D",
-        "3 cm",
-      ),
+      checkParallelogram("Đo OB và OD", { diagonals: "mid" }),
       "Đo OB và OD: cùng 3 cm",
     ),
     frame(
-      checkParallelogram("O là trung điểm của AC và BD", { diagonals: "mid" }),
+      checkParallelogram("O là trung điểm của AC và BD", {
+        diagonals: "mid",
+        fill: true,
+      }),
       "O là trung điểm của cả hai đường chéo: ABCD là hình bình hành",
     ),
   ]),

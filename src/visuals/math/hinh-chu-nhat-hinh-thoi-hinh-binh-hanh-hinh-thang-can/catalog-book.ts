@@ -339,15 +339,10 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
         tone: "blue",
       },
     ],
+    // BE and CD are parallel: one chevron on each, BE's off the centre O.
     arrows: [
-      {
-        segs: [
-          ["B", "E"],
-          ["C", "D"],
-        ],
-        count: 1,
-        tone: "slate",
-      },
+      { segs: [["B", "E"]], count: 1, tone: "slate", at: 0.25 },
+      { segs: [["C", "D"]], count: 1, tone: "slate" },
     ],
   }),
   "sbt-4-18-giai": figure(
