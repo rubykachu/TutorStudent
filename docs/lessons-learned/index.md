@@ -40,38 +40,40 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | [LL-23](LL-23-de-sach-lech-nguyen-van.md) | Đề sách ở bài ôn tập lệch nguyên văn | Khớp nguồn | Người | checklist trục 1 "Bài ôn tập" |
 | [LL-24](LL-24-meo-sai-o-dang-bai-khac.md) | Mẹo sai ở số biên hay ở dạng bài khác trong cùng bài | Đúng kiến thức | Người | checklist trục 2 "Mẹo đúng với mọi đầu vào" |
 | [LL-25](LL-25-chu-kho-hieu-voi-be.md) | Chữ đúng nhưng bé lớp 6 đọc không hiểu | Ngôn từ | Haiku đọc hiểu + tác giả viết lại | `lesson-review` mục "Đọc hiểu" |
+| [LL-26](LL-26-goi-lua-chon-theo-vi-tri.md) | Lời giải thích gọi lựa chọn theo vị trí mà app xáo thứ tự | Đúng kiến thức | Người | checklist trục 2 "Giải thích đúng và giải thích được" |
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 02/10/2026 của 16 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 02/10/2026 của 17 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
-| LL-10 | 5 | 31 | 23 | 59 |
+| LL-10 | 5 | 35 | 24 | 64 |
 | LL-19 | 2 | 8 | 26 | 36 |
-| LL-12 | 9 | 16 | 30 | 55 |
-| LL-07 | 1 | 36 | 30 | 67 |
-| LL-15 | 5 | 14 | 9 | 28 |
-| LL-16 | 0 | 27 | 4 | 31 |
-| LL-05 | 9 | 28 | 15 | 52 |
-| LL-09 | 13 | 12 | 3 | 28 |
-| LL-14 | 1 | 10 | 10 | 21 |
+| LL-12 | 9 | 17 | 30 | 56 |
+| LL-07 | 1 | 37 | 31 | 69 |
+| LL-15 | 5 | 14 | 10 | 29 |
+| LL-16 | 0 | 29 | 4 | 33 |
+| LL-05 | 10 | 33 | 15 | 58 |
+| LL-09 | 13 | 13 | 3 | 29 |
+| LL-14 | 1 | 10 | 12 | 23 |
 | LL-11 | 4 | 5 | 7 | 16 |
-| LL-06 | 1 | 15 | 5 | 21 |
+| LL-06 | 1 | 16 | 6 | 23 |
 | LL-02 | 7 | 8 | 10 | 25 |
-| LL-01 | 17 | 1 | 0 | 18 |
+| LL-01 | 18 | 1 | 0 | 19 |
 | LL-03 | 2 | 6 | 2 | 10 |
-| LL-17 | 43 | 4 | 3 | 50 |
+| LL-17 | 45 | 4 | 3 | 52 |
 | LL-04 | 0 | 5 | 2 | 7 |
-| LL-18 | 0 | 5 | 2 | 7 |
-| LL-08 | 28 | 2 | 2 | 32 |
+| LL-18 | 0 | 6 | 2 | 8 |
+| LL-08 | 29 | 2 | 3 | 34 |
 | LL-13 | 2 | 1 | 0 | 3 |
 | LL-20 | 9 | 0 | 1 | 10 |
 | LL-21 | 4 | 2 | 0 | 6 |
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
-| LL-24 | 11 | 1 | 3 | 15 |
-| LL-25 | 0 | 8 | 134 | 142 |
+| LL-24 | 13 | 2 | 3 | 18 |
+| LL-25 | 0 | 9 | 135 | 144 |
+| LL-26 | 1 | 0 | 0 | 1 |
 
 LL-17, LL-08 và LL-01 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-12 gặp nhiều nhất.
 
@@ -97,3 +99,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `thu-tu-trong-tap-hop-cac-so-tu-nhien` | Toán | 10 | 3 (vòng 2 còn 1) | 3 |
 | `tap-hop-cac-so-nguyen` | Toán | 4 | 3 (vòng 2 còn 1) | 3 |
 | `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1) | 4 |
+| `quy-tac-dau-ngoac` | Toán | 8 | chưa (vòng 1) | 1 |
