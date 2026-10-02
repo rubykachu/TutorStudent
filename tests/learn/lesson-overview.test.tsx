@@ -142,7 +142,9 @@ describe("LessonOverviewView", () => {
         if (url.endsWith(".vtt")) return new Response("WEBVTT\n");
         if (!failed) {
           failed = true;
-          throw new TypeError("network");
+          // A server error: a network error says "Cần mạng" (see
+          // `tests/components/media-offline.test.tsx`), not "Thử lại".
+          return new Response("no", { status: 500 });
         }
         const headers: Record<string, string> = {};
         if (total !== null) headers["Content-Length"] = String(total);

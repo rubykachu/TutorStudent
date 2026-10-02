@@ -4,6 +4,7 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 import { parseFamilyCodes } from "../../src/access/env";
 import { ACCESS_COOKIE_NAME } from "../../src/lib/config";
+import { WORKER_PATH } from "../../src/offline/config";
 import { listMediaLessons, selectLessonFiles } from "./media-upload";
 import { ENV_FILE, PROD_URL, VERCEL, VERCEL_PROJECT } from "./release-config";
 import { type Exec, parseEnvFile } from "./run";
@@ -65,6 +66,7 @@ export const SMOKE_CHECK_NAMES = [
   "content index 200",
   "media 206",
   "sync 401 without cookie",
+  "worker script no-cache",
 ] as const;
 
 export async function runSmokeChecks(input: SmokeInput): Promise<SmokeCheck[]> {
@@ -146,6 +148,20 @@ export async function runSmokeChecks(input: SmokeInput): Promise<SmokeCheck[]> {
       redirect: "manual",
     });
     return [response.status === 401, String(response.status)];
+  });
+
+  // The service worker script is public (an update check carries no cookie)
+  // and must never be served from a cache, or a device would keep an old
+  // worker for as long as the cache lives.
+  await attempt("worker script no-cache", async () => {
+    const response = await get(`${appUrl}${WORKER_PATH}`, {
+      redirect: "manual",
+    });
+    const cacheControl = response.headers.get("cache-control") ?? "";
+    return [
+      response.status === 200 && /\bno-cache\b/.test(cacheControl),
+      `${response.status} cache-control: ${cacheControl || "(none)"}`,
+    ];
   });
 
   return checks;

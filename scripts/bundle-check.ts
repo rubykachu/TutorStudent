@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { findBundleLeaks, readBundle } from "./lib/bundle-check";
+import { findBundleLeaks, readClientFiles } from "./lib/bundle-check";
 
 // Runs after `next build` (see the `build` script): fails the build when the
 // browser bundle names a server-only variable or holds a secret's value. It
@@ -12,7 +12,7 @@ if (!existsSync(staticDir)) {
   console.error(`bundle check: ${staticDir} not found; run next build first`);
   process.exitCode = 1;
 } else {
-  const files = readBundle(staticDir);
+  const files = readClientFiles(distDir, path.join(process.cwd(), "public"));
   const leaks = findBundleLeaks(files, process.env);
   if (leaks.length === 0) {
     console.log(`bundle check: ${files.length} files, no server secret`);

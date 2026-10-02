@@ -95,7 +95,7 @@ describe("the web app manifest", () => {
     expect(pngSize(APPLE_TOUCH_ICON.path)).toEqual({ width: 180, height: 180 });
   });
 
-  it("has no service worker or offline entry yet", () => {
+  it("names no service worker: the app registers it itself", () => {
     expect(JSON.stringify(m)).not.toMatch(/serviceworker|offline/i);
   });
 });

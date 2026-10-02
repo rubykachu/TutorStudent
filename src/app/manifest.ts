@@ -8,8 +8,9 @@ import {
   THEME_COLOR,
 } from "@/lib/brand";
 
-// Installable, not offline: there is no service worker, so the app opens from
-// the Home Screen and loads over the network like a tab does.
+// Installable. The manifest names no service worker: `src/offline/register.tsx`
+// registers it from the app's screens, so the app also opens from the Home
+// Screen with no network.
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",

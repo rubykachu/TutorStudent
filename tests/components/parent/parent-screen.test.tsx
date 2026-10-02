@@ -39,6 +39,8 @@ vi.mock("next/navigation", () => ({
 }));
 // Sync has its own tests; here it would only add requests to the stubbed fetch.
 vi.mock("@/sync/runner", () => ({ SyncRunner: () => null }));
+// The service worker manager has its own tests (`tests/offline/`).
+vi.mock("@/offline/register", () => ({ OfflineManager: () => null }));
 
 const START = new Date("2026-09-30T02:00:00Z");
 let clock = START;

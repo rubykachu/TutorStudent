@@ -1,9 +1,12 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 import { afterEach } from "vitest";
+import { resetNetworkStatusForTesting } from "@/lib/network-status";
 
 // Vitest runs without globals, so Testing Library cannot unmount on its own.
 afterEach(cleanup);
+// A media download that failed in one test must not leave the next one offline.
+afterEach(resetNetworkStatusForTesting);
 
 // jsdom has no matchMedia; components query it for reduced motion and viewport.
 // Suites that opt into the node environment (filesystem code) have no window.

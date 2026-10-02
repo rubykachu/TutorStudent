@@ -1,7 +1,11 @@
 // @vitest-environment node
-import { describe, expect, it } from "vitest";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   findBundleLeaks,
+  readClientFiles,
   SERVER_ONLY_ENV_NAMES,
 } from "../../scripts/lib/bundle-check";
 
@@ -48,5 +52,49 @@ describe("findBundleLeaks", () => {
     expect(
       findBundleLeaks([file('"short"')], { SESSION_SECRET: "short" }),
     ).toEqual([]);
+  });
+});
+
+describe("readClientFiles", () => {
+  let root: string;
+
+  beforeEach(() => {
+    root = mkdtempSync(path.join(os.tmpdir(), "client-files-"));
+    mkdirSync(path.join(root, "dist/static/chunks"), { recursive: true });
+    mkdirSync(path.join(root, "public"), { recursive: true });
+    writeFileSync(path.join(root, "dist/static/chunks/a.js"), "ok");
+  });
+
+  afterEach(() => {
+    rmSync(root, { recursive: true, force: true });
+  });
+
+  it("holds the static files and the worker script", () => {
+    writeFileSync(path.join(root, "public/sw.js"), "worker");
+    const files = readClientFiles(
+      path.join(root, "dist"),
+      path.join(root, "public"),
+    );
+    expect(files.map((f) => f.path).sort()).toEqual(["chunks/a.js", "sw.js"]);
+  });
+
+  it("works before a worker has been built", () => {
+    const files = readClientFiles(
+      path.join(root, "dist"),
+      path.join(root, "public"),
+    );
+    expect(files.map((f) => f.path)).toEqual(["chunks/a.js"]);
+  });
+
+  it("fails a secret that ends up in the worker script", () => {
+    writeFileSync(
+      path.join(root, "public/sw.js"),
+      `const k="${ENV.SESSION_SECRET}";`,
+    );
+    const leaks = findBundleLeaks(
+      readClientFiles(path.join(root, "dist"), path.join(root, "public")),
+      ENV,
+    );
+    expect(leaks).toEqual([{ file: "sw.js", what: "value of SESSION_SECRET" }]);
   });
 });

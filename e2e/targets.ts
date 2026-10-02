@@ -92,9 +92,15 @@ export const OFFLINE_FAMILY_CODE = "Sao-Bien-4k7m";
 // reads the owner's real settings: media comes from the local `/media`
 // (never the bucket), the family code and secret are test values, and no
 // storage variable is set, so sync stays off (a production server refuses the
-// folder store anyway).
+// folder store anyway). Offline support is on here, and off by default
+// everywhere else (`src/offline/flags.ts`). The deployment id makes Next add
+// `?dpl=` to build file URLs as it does on Vercel with Skew Protection on, so
+// the worker's lookups are tested against those URLs.
 export const OFFLINE_SERVER_ENV = {
   NODE_ENV: "production",
+  NEXT_PUBLIC_OFFLINE_ENABLED: "1",
+  NEXT_PUBLIC_OFFLINE_KILL_SWITCH: "",
+  NEXT_DEPLOYMENT_ID: "offline-lab",
   NEXT_PUBLIC_MEDIA_BASE_URL: "",
   FAMILY_CODES: OFFLINE_FAMILY_CODE,
   SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",

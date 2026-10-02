@@ -1,6 +1,7 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { parseFamilyCodes } from "../../src/access/env";
+import { WORKER_FILE } from "../../src/offline/config";
 import { R2_ENV_NAMES } from "../../src/sync/store/config";
 
 // The browser bundle (`<distDir>/static`) must hold no server secret: not the
@@ -83,4 +84,19 @@ export function readBundle(dir: string): BundleFile[] {
         text: readFileSync(full, "utf8"),
       };
     });
+}
+
+// What the browser downloads and runs: the build's static folder and the
+// service worker script (`public/sw.js`, written after `next build`), which
+// is as public as any chunk.
+export function readClientFiles(
+  distDir: string,
+  publicDir: string,
+): BundleFile[] {
+  const files = readBundle(path.join(distDir, "static"));
+  const worker = path.join(publicDir, WORKER_FILE);
+  if (existsSync(worker)) {
+    files.push({ path: WORKER_FILE, text: readFileSync(worker, "utf8") });
+  }
+  return files;
 }

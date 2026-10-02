@@ -8,6 +8,7 @@ import { PROFILES_PATH } from "@/lib/routes";
 import { useProfiles } from "@/progress/hooks";
 import { closeParentSession } from "@/progress/parent-session";
 import { ChildReport } from "./child-report";
+import { OfflineStatus } from "./offline-status";
 import { ReportSourceNote } from "./progress-location";
 import { SyncStatus } from "./sync-status";
 
@@ -45,6 +46,7 @@ export function ParentDashboard() {
       </header>
       <ReportSourceNote />
       <SyncStatus />
+      <OfflineStatus />
       {profiles && profiles.length === 0 && (
         <p className="rounded-lg bg-surface p-4 shadow-card md:p-6">
           Máy này chưa có hồ sơ con nào.

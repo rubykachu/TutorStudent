@@ -30,7 +30,7 @@ Backlog [`progress-sync/`](progress-sync/task.md), the checklist in `task.md` is
 - Keep the existing celebration sounds; they are free.
 - Do not re-voice existing videos or narrations, and do not add opening greetings to old videos. The blank first seconds of existing videos are accepted.
 - The `narration:build` default engine stays as is. Re-narrating an old lesson must force the engine recorded for that lesson.
-- Offline and PWA precache is a later, separate backlog.
+- Offline support is merged but off in every build until the owner sets `NEXT_PUBLIC_OFFLINE_ENABLED=1` (6e below); `/install` stays a later, separate backlog.
 
 ### Open discussions
 
@@ -86,7 +86,7 @@ Bài 2 (SBT print pages 7–10, solutions 94–96), Bài 3 (11–13, solutions 9
 6b. Full Go-live, after the first deploy: two R2 buckets (private, public), app and admin tokens, `snapshots/` lifecycle 180 days; `BlobStore` with R2 and in-memory adapters; `/api/parent-session`, `/api/sync`, family/epoch/isAdmin checks from `families.json`, PIN lock; Dexie to R2 sync engine (If-Match, snapshots, 1 MB limit, queue, `merge`, progress migration by `retired`); performance measurement (Lighthouse, iPad trace); `/install`, PWA with `@serwist/turbopack`, precache of all content; `pnpm admin` and skill `tutor-admin`; back up the narration caches (README, "Dọn dẹp và Go-live"). Each write outside this machine needs the owner's go-ahead.
 6c. After Bài 12 and Ôn tập chương II are done: `pnpm media:upload` then `pnpm deploy:prod`, per [`docs/operations.md`](../../docs/operations.md); needs the owner's approval for each external write.
 6d. Progress sync across devices ("đồng bộ ngầm, học tới đâu lưu tới đó" plus an import backup button): in progress, see "Current state and next steps" above and [`progress-sync/spec.md`](progress-sync/spec.md) ([`plan.md`](progress-sync/plan.md), [`task.md`](progress-sync/task.md)). Offline precache and `/install` stay a later, separate backlog. The sync must write a per-lesson reset marker from what `resetLessonProgress` returns, or merging brings reset progress back (`docs/spec.md`, merge rules); the reset itself is done and archived in [`archive/reset-lesson-progress/task.md`](archive/reset-lesson-progress/task.md).
-6e. Offline support (service worker precache of pages, lesson JSON, visual chunks, fonts, short sounds; media never stored; update banner "Có bài mới, tải lại"): planned, build approved by the owner without plan review; see [`offline-pwa/spec.md`](offline-pwa/spec.md) ([`plan.md`](offline-pwa/plan.md), [`task.md`](offline-pwa/task.md)). `/install` stays out of scope.
+6e. Offline support (service worker precache of pages, lesson JSON, visual chunks, fonts, short sounds; media never stored; update banner "Có bài mới, tải lại"): reviewed and merged into `main`, off by default: only builds with `NEXT_PUBLIC_OFFLINE_ENABLED=1` register the worker (WebKit is not covered by the offline E2E). Next: the owner sets the variable in Vercel, deploys and checks a real iPad (`docs/operations.md`, "Bật offline"). See [`offline-pwa/spec.md`](offline-pwa/spec.md) ([`plan.md`](offline-pwa/plan.md), [`task.md`](offline-pwa/task.md)). `/install` stays out of scope.
 7. Later: AI feedback for open-ended writing (`AiReviewer` with a Gemini adapter, `/api/feedback`, per-family quota, self-tick fallback); quick-update channel for content (JSON schema to prompt, admin paste page, `/api/content`, overlays from R2).
 
 ## Open follow-ups

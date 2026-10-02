@@ -1,3 +1,5 @@
+import { DEPLOYMENT_ID_PARAM } from "./config";
+
 // How the service worker answers each request, as pure functions the worker
 // calls and Vitest tests. No Node or DOM imports: the worker bundle includes
 // this file.
@@ -106,6 +108,19 @@ export function storable(
     response.type !== "opaqueredirect" &&
     sameUrl(response.url, requestedUrl)
   );
+}
+
+// The path (with query) a request is looked up under in the precache. The
+// deployment id parameter Next adds to build file URLs is dropped: the build
+// files are listed by their bare URL, and the parameter only busts caches.
+export function precacheLookupPath(url: URL): string {
+  if (!url.searchParams.has(DEPLOYMENT_ID_PARAM)) {
+    return url.pathname + url.search;
+  }
+  const params = new URLSearchParams(url.search);
+  params.delete(DEPLOYMENT_ID_PARAM);
+  const query = params.toString();
+  return query ? `${url.pathname}?${query}` : url.pathname;
 }
 
 // The precached page a navigation falls back to: same path, query ignored.

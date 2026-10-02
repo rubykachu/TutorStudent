@@ -3,6 +3,7 @@ import {
   fetchInit,
   navigationFallbackPath,
   PAGE_TIMEOUT_SECONDS,
+  precacheLookupPath,
   type RouteRequest,
   routeFor,
   storable,
@@ -156,6 +157,20 @@ describe("storable", () => {
       false,
     );
     expect(storable({ ...ok, url: "" }, url)).toBe(false);
+  });
+});
+
+describe("precacheLookupPath", () => {
+  it("keeps the path and query but drops Next's deployment id parameter", () => {
+    const at = (path: string) =>
+      precacheLookupPath(new URL(`${ORIGIN}${path}`));
+    expect(at("/_next/static/chunks/x.js")).toBe("/_next/static/chunks/x.js");
+    expect(at("/_next/static/chunks/x.js?dpl=dpl_1")).toBe(
+      "/_next/static/chunks/x.js",
+    );
+    expect(at("/sounds/tap.m4a?v=abc&dpl=dpl_1")).toBe("/sounds/tap.m4a?v=abc");
+    expect(at("/sounds/tap.m4a?dpl=dpl_1&v=abc")).toBe("/sounds/tap.m4a?v=abc");
+    expect(at("/sounds/tap.m4a?v=abc")).toBe("/sounds/tap.m4a?v=abc");
   });
 });
 

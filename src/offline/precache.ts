@@ -1,3 +1,5 @@
+import { WORKER_FILE } from "./config";
+
 // What the service worker stores at install, as one pure function so the
 // build step and the worker share it. No Node imports: the worker bundle
 // uses `keepBuildFile` and the constants, the build step
@@ -66,6 +68,10 @@ export const PRECACHE_DENY: readonly { path: string; reason: string }[] = [
     path: "content/",
     reason:
       "lesson files come from the served lessons, so stale drafts a dev emit left behind are never shipped",
+  },
+  {
+    path: WORKER_FILE,
+    reason: "the worker script is never part of its own precache",
   },
   {
     path: "brand/share.png",

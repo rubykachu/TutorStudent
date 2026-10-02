@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import type { AccessConfig } from "@/access/env";
-import { decideAccess, safeNextPath } from "@/access/gate";
+import { decideAccess, PUBLIC_FILE_PATHS, safeNextPath } from "@/access/gate";
 import { issueSessionToken } from "@/access/session";
 import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
+import { WORKER_PATH } from "@/offline/config";
 
 const SECRET = "a-secret-of-at-least-thirty-two-characters";
 const CODE = "saobien4k7m";
@@ -93,6 +94,24 @@ describe("decideAccess", () => {
     expect(
       (await decideAccess(await request("/", { search: "?icons" }), gate)).kind,
     ).toBe("redirect");
+  });
+
+  it("lets exactly the brand files and the worker script through without the cookie", async () => {
+    expect(PUBLIC_FILE_PATHS).toEqual([...BRAND_PUBLIC_PATHS, WORKER_PATH]);
+    expect(await decideAccess(await request(WORKER_PATH), gate)).toEqual({
+      kind: "allow",
+    });
+    for (const path of [
+      `${WORKER_PATH}.map`,
+      `${WORKER_PATH}/x`,
+      "/sw.jsx",
+      "/serwist/sw.js",
+      "/worker.js",
+    ]) {
+      expect((await decideAccess(await request(path), gate)).kind).not.toBe(
+        "allow",
+      );
+    }
   });
 
   it("sends an unlocked device away from /unlock to where it was going", async () => {

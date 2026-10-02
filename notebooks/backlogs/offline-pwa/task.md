@@ -1,19 +1,53 @@
 # Tasks: offline support (service worker precache)
 
-Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: in build (overnight run). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
+Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: reviewed and merged into `main`, off by default until the owner's iPad check (see Handover). The owner approved building without a review of this plan; every decision follows `spec.md` section 10 ("theo đề xuất"). The plan was critiqued by a fresh reviewer; findings and fixes are in "Plan review" at the end.
 
 ## Handover
 
-Next: Task 4a. Run tasks one at a time, each in a fresh subagent (Sonnet for build tasks per `.claude/rules/agents.md`), starting from this file. Record each commit under "Done" and update "Next".
+Status after the independent review: merged into `main` with the worker OFF by default. Next: the owner turns it on (`NEXT_PUBLIC_OFFLINE_ENABLED=1` in Vercel Production, deploy) and runs the iPad check (`docs/operations.md`, "Bật offline", then "Kiểm trên iPad Safari" steps 9 and 10). Archive this folder once that check passes.
 
-Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. A kill switch (a self-unregistering worker deployable in place) is added as Task 4c and documented in `docs/operations.md` in Task 9. `pnpm content:check` currently fails on another agent's lesson in progress (`phep-cong-phep-tru-so-nguyen` review hash); not caused by this backlog.
+### Independent review (fresh Opus session)
+
+No Critical. Fixed on the branch, each with unit tests:
+- High: Next adds `?dpl=<deployment id>` to build file URLs when the build has a deployment id (Vercel with Skew Protection). The precache lookup used path plus query, so offline every chunk and CSS file missed and the page could not start. `precacheLookupPath` drops the parameter; the lab now builds with `NEXT_DEPLOYMENT_ID` so the offline E2E covers it (78 `?dpl=` asset URLs on the home page, scenario 1 green).
+- High (rollout): WebKit is untested, so `src/offline/flags.ts` adds `NEXT_PUBLIC_OFFLINE_ENABLED`. Unset: no registration, any registration removed, `/sw.js` is the retiring worker, the parent line says "chưa bật". The kill switch wins over it.
+- Medium, fixed: a navigation copied with the `no-cache` init by an engine that refuses the copy would fail every network-first page fetch and serve every page from the precache; the init is now used only when the copy works.
+- Medium, fixed: an install racing the activation of a newer build could finish into a deleted cache and run with nothing stored; the install now fails when its cache is gone.
+
+Measured: 756 entries, 20.9 MB in the precache (pages 1.75 MB, build files 8.5 MB, the rest content, short sounds and public files), well under the 50 MB budget.
+
+Leftovers from the review (none blocks the merge, all matter only once the flag is on):
+- `/content/*.json` has no timeout: on wifi without internet the page comes from the precache after 3 s, but the lesson file waits for the browser's own network timeout. A long timeout (about 10 s) would bound it.
+- A failed install has no backoff: every update check (and every page load before the first install) downloads entries again until the failing one. A persistent failure (a page answering 404, quota) costs up to about 21 MB per attempt.
+- After the 3 s timeout the precached page of the old build runs with the network's newer lesson file.
+
+### Before the review
+
+Next (then): an independent review of the branch `offline-pwa` (worktree `scratchpad/offline/wt` of the overnight run), then the merge into `main`, then the owner's deploy and iPad check (`docs/operations.md`, "Kiểm trên iPad Safari" steps 9 and 10). Nothing is deployed or pushed. Review focus: `src/offline/sw-core.ts` (the worker's behaviour), `src/offline/update-controller.ts` (when a new build takes over), `src/access/gate.ts` (the one public path added), `scripts/offline-worker.ts` and the `pnpm build` order, the kill switch.
+
+Where the work lives: Tasks 1 to 3 and the lab were committed on `main` before the branch rule (listed under "Done"); everything from Task 4a on is on `offline-pwa`. `main` keeps only inert build-time modules and the lab; the `pnpm build` hook for the precache list was reverted on `main` and is part of the branch. When merging, `notebooks/backlogs/index.md` (touched on both sides) needs a hand merge.
+
+Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exception in `src/sync/store/config.ts`. Ports: the lab serves on 3600 (`OFFLINE_PORT` = `TEST_PORT + 500`), inside the range the owner allowed, instead of `TEST_PORT + 3000`. The kill switch is Task 4c, documented in `docs/operations.md` ("Gỡ service worker lỗi"). `pnpm content:check` on the main tree can fail on another agent's lesson in progress; the branch worktree holds only committed content.
 
 ### Done (commits, oldest first)
 
+- On `main` (before the branch rule): 3df7eb5 (Task 1), d954fb5 (Task 2), 29c4fda (Task 3), cfafc94 and e06817c (lab, `OFFLINE_*` in `e2e/targets.ts`, an `env` option in `scripts/lib/run.ts`). All are build-time or test modules that nothing in the running app imports, except the five pages' `generateStaticParams`, which return the same lists as before. The one runtime-adjacent change, the `pnpm build` hook for the precache list in d954fb5, was reverted on `main` by e37cb03 and re-applied on the branch by 30b0043.
 - Task 1: `src/offline/routes.ts` (param functions shared with the five pages, `appPagePaths()`, `NOT_PRECACHED_ROUTES`), `tests/offline/routes.test.ts`.
 - Task 2: `src/offline/precache.ts` (pure list, deny-list, budget), `src/offline/precache-node.ts`, `scripts/lib/offline-manifest.ts` and `scripts/offline-manifest.ts` (writes `src/offline/precache-list.generated.json`, gitignored, run by `pnpm build`), `FAVICON_ICO_PATH` in `src/lib/brand.ts`. The build id is a timestamp per build. The budget counts only what is known before `next build` (content, sounds, public files); pages and build files are measured by the worker build (Task 4b).
 - Task 3: `src/offline/strategy.ts` (`routeFor`, `fetchInit`, `storable`, `navigationFallbackPath`, `PAGE_TIMEOUT_SECONDS`), `tests/offline/strategy.test.ts`. `routeFor` also takes `method` and `isPrecached(url)` (the worker passes a lookup in its precache): precache-first is decided by the list, so a song, a Range request or an unknown path is passthrough without a path-prefix table that could drift from the list.
-- Checkpoint 1: gate green (196 files, 4080 tests); changed files are `src/offline/`, the five page files, the manifest script and lib, `build` script, `.gitignore`, one constant in `src/lib/brand.ts`, tests; nothing reads the generated list; no app behaviour changed.
+- Checkpoint 1 (on main): gate green (196 files, 4080 tests); changed files are `src/offline/`, the five page files, the manifest script and lib, `build` script, `.gitignore`, one constant in `src/lib/brand.ts`, tests; nothing reads the generated list; no app behaviour changed.
+
+- Branch `offline-pwa`: 30b0043 (precache list step back in `pnpm build`, lab finds media in the main tree), 5ff747c (Serwist findings, this file).
+- Task 4b: e105145. Hand-written worker: `src/offline/sw-core.ts` (all behaviour, injected deps, unit-tested on a fake cache and network), `sw.ts` (wiring), `config.ts` (path, cache prefix, messages), `scripts/lib/offline-worker.ts` and `scripts/offline-worker.ts` (esbuild bundle of the worker with the list injected, written to gitignored `public/sw.js` after `next build`; fails above the budget now counting build files and page HTML), `PUBLIC_FILE_PATHS` in `src/access/gate.ts`, `no-cache` header for `/sw.js` in `next.config.ts`, the bundle check reads `public/sw.js` too (`readClientFiles`), `esbuild` as a dev dependency.
+- Task 4c: 705c89c and 208b70c. `src/offline/sw-kill.ts` and `kill-switch.ts` (the retiring worker), `kill-switch-flag.ts` (`NEXT_PUBLIC_OFFLINE_KILL_SWITCH`), a build guard that fails when the worker bundle reads `process.env`.
+
+- Task 5: bff7a9b. `src/offline/update-controller.ts` (registration and update rules, framework-free), `src/offline/register.tsx` (`OfflineManager`, mounted in the child layout and the parent screen), `src/components/update-banner.tsx`, `UPDATE_*_MINUTES` in `config.ts`.
+- Task 6: 78da211. `src/lib/network-status.ts` (`useNetworkStatus`, one store for every player), `MediaOffline` in `media-loading.tsx`, offline states in the video player, narration, preload and the song button. Five existing tests that simulated a failed download with a `TypeError` now use a 500 answer, because a network error is the offline state by design (`tests/setup.ts` also resets the shared network state after each test).
+- Task 7: df2fe88. `src/offline/status.ts`, `src/components/parent/offline-status.tsx`, mounted in `parent-dashboard.tsx`.
+
+- Task 8: fc49286. `playwright.offline.config.ts`, `e2e/offline.spec.ts` (six scenarios on one Chromium device), `test:e2e:offline` in `package.json`, `testIgnore` in `playwright.config.ts`, the unlock test renamed.
+- Task 9: a7ae673. Docs (`docs/spec.md` 5.9, `docs/architecture.md`, `docs/operations.md`, `README.md`, `.env.example`), a seventh deploy smoke check (`/sw.js` 200 with `no-cache`), the manifest comment, the backlog index.
+- Final fixes found by the everyday E2E: the parent line is `aria-live`, not `role="status"` (it made `getByRole("status")` ambiguous on the parent page).
 
 ### Rules for every task
 
@@ -87,9 +121,28 @@ Record each criterion with evidence:
 7. Whether `context.setOffline(true)` cuts the worker's own fetches in Chromium; whether `context.route` can serve a changed worker script; whether `response.fromServiceWorker()` tells a passed-through `/api/sync` answer from a worker answer.
 
 Acceptance:
-- [ ] Criteria 1 to 7 recorded here with evidence; decision written: Serwist (1 to 5 pass) or the hand-written fallback (a worker bundled by esbuild in the build step, a versioned cache per build, unchanged revisions copied from the previous cache, same modules and messages).
-- [ ] The lab script creates and removes its worktree, leaves the main tree's `public/content`, `tsconfig.json` and `next-env.d.ts` unchanged (`git status` before and after), and never contacts the media bucket.
-- [ ] Gate green.
+- [x] Criteria 1 to 7 recorded here with evidence; decision written: Serwist (1 to 5 pass) or the hand-written fallback (a worker bundled by esbuild in the build step, a versioned cache per build, unchanged revisions copied from the previous cache, same modules and messages).
+- [x] The lab script creates and removes its worktree, leaves the main tree's `public/content`, `tsconfig.json` and `next-env.d.ts` unchanged (`git status` before and after), and never contacts the media bucket.
+- [x] Gate green.
+
+### Findings of the Serwist trial (Task 4a)
+
+Setup: `serwist` and `@serwist/turbopack` 9.5.12 plus `esbuild`, added inside the lab worktree only (`--setup`), with the route handler `/serwist/[path]` (`createSerwistRoute`: `swSrc`, native esbuild, `globPatterns` on `.next/static`, `globIgnores` for ttf, woff and maps, `additionalPrecacheEntries` from the generated list) and a worker wired by hand: one `fetch` listener calling `routeFor`, lookups with `serwist.matchPrecache`, `handleInstall` and `handleActivate`, a plugin whose `cacheWillUpdate` applies `storable`. The default precache route is registered by the Serwist constructor but never consulted, because `handleFetch` is not used. The probe scripts and the overlay live in the scratchpad, not in git. Chromium and Playwright WebKit, production build of `HEAD` in the lab worktree, gate on.
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 1 | Turbopack `next build` produces the worker at a fixed path | pass, with a header to fix | built, served at `/serwist/sw.js`, 96,832 bytes, `Service-Worker-Allowed: /`; default `Cache-Control: s-maxage=31536000` would need an override |
+| 2 | Precache takes our entries and every `/_next/static` file except ttf and woff | pass | 755 entries (8.7 MB) in the cache: 309 chunks, 30 woff2, 0 ttf or woff, 331 lesson pages, 34 lesson files, 0 under `/media/` or `/api/` |
+| 3 | Default route left out, lookups by precache key, pages and `/content` network first | pass | offline reload of a lesson renders; online navigation answered by the worker's network-first path; lookups only through `matchPrecache` |
+| 4 | Install fails and writes no entry when one fetch is redirected or 401 | **fail** | with `/profiles` answered 401, answered by a 302 to `/unlock`, or aborted, the entry is not written (the plugin works) but the install never settles: the worker stays "installing" for 30 s and more, never `redundant`, with the other 754 entries already in the live cache |
+| 5 | Chromium: worker controls scope `/`, offline reload of a never-opened lesson renders | pass | controlled `true`, scope `http://localhost:3600/`; `/lessons/thu-tu-trong-tap-hop-cac-so-tu-nhien` rendered offline from the precache |
+| 6 | Playwright WebKit | partial, not usable for the E2E | registers, controls, precaches 755 entries, `fromServiceWorker()` true; but `page.goto` while `setOffline(true)` fails with "WebKit encountered an internal error", and `context.route` does not see the worker's requests (the 401 case installed 755 entries), `context.on("request")` saw none. The gate cookie is `Secure` in production, which WebKit drops on `http://localhost`, so the probe added it by hand |
+| 7 | Offline tooling | pass (Chromium) | `setOffline(true)` cuts the worker's own fetches (a not-precached sound and an unknown `/content` file both fail); `context.route` serves a changed worker script and `registration.update()` then finds a waiting worker; `response.fromServiceWorker()` is `false` for `/api/sync` and `true` for a navigation; `context.on("request")` sees worker requests (`request.serviceWorker()` set, 767 in the run) |
+
+Root cause of criterion 4: `parallel` in `@serwist/utils` builds its queues with `new Promise(async (resolve) => ...)`. When one task throws, the async executor's rejection is dropped, that queue never settles, `Promise.all` waits forever and `handleInstall` neither resolves nor rejects. A stuck install shows "đang tải" on the parent line forever and is not retried by the browser until the worker is replaced. Fixing it means replacing `handleInstall` with our own loop, after which Serwist would only supply key mapping and cleanup. Other costs seen: entries are written one by one into the live cache (not atomic per build), the script carries the whole Serwist runtime, and the integration pulls `@swc/core`, `esbuild`, `browserslist` and `zod` and reads `next/dist/server/config.js`.
+
+**Decision: the hand-written worker.** Criterion 4 fails, the plan's fallback applies: a worker bundled by esbuild in the build step from `src/offline/sw.ts`, written to `public/sw.js` after `next build` (so Vercel ships it and it sits at the root, no `Service-Worker-Allowed` needed), a versioned cache per build (`offline-<buildId>`) written all or nothing, unchanged revisions copied from the previous cache, the same modules (`strategy.ts`, `precache.ts` filters) and messages. The offline E2E runs on Chromium only. `spec.md` Q1 and Q11 get a one-line note at Checkpoint 2.
+
 
 ## Task 4b (M): the service worker
 
@@ -114,18 +167,23 @@ A broken worker on the child's iPad is the worst failure here, so there is a doc
 
 Files: the worker build step 4b chose (a build flag), `src/offline/kill-switch.ts` or the equivalent script source, `next.config.ts` (the `Clear-Site-Data` header on the same script path), tests; the runbook goes into `docs/operations.md` in Task 9.
 
-- One flag (`OFFLINE_KILL_SWITCH=1` at build time, so a deploy can carry it) makes the worker script at the same public path a self-unregistering one: it takes over at once (`skipWaiting`), deletes every Cache Storage entry, calls `registration.unregister()` and reloads the open windows. Browsers fetch the script at that path on every update check (`no-cache`, `updateViaCache: "none"`), so a deploy with the flag reaches every device that opens or resumes the app.
-- Registration code stays unchanged; with no worker left, the app runs as before offline support existed.
+- One flag (`NEXT_PUBLIC_OFFLINE_KILL_SWITCH=1` at build time (set in the Vercel production environment, then redeploy), so a deploy can carry it) makes the worker script at the same public path a self-unregistering one: it takes over at once (`skipWaiting`), deletes every Cache Storage entry, calls `registration.unregister()` and reloads the open windows. Browsers fetch the script at that path on every update check (`no-cache`, `updateViaCache: "none"`), so a deploy with the flag reaches every device that opens or resumes the app.
+- The page code (Task 5) reads the same flag and stops registering, so the retiring worker is not registered again; with no worker left, the app runs as before offline support existed.
 - `Clear-Site-Data: "cache", "storage"` is rejected: `"storage"` would also wipe IndexedDB, which holds the child's unsynced progress. If used at all it would be `"cache"` only (Cache Storage), on the worker script response; Chromium honours it, Safari does not, so the self-unregistering script is the real mechanism.
 
 Acceptance:
-- [ ] With the flag, the built script is the self-unregistering one; a lab run (Chromium) with a worker installed from the normal build, then the flag build served: the worker is gone, Cache Storage is empty, Dexie is intact, the app still loads online.
-- [ ] Unit test of the script's steps; the flag is off by default and a normal build never contains it.
-- [ ] Gate green.
+- [x] With the flag, the built script is the self-unregistering one; a lab run (Chromium) with a worker installed from the normal build, then the flag build served: the worker is gone, Cache Storage is empty, Dexie is intact, the app still loads online.
+- [x] Unit test of the script's steps; the flag is off by default and a normal build never contains it.
+- [x] Gate green.
+
+Results (lab, Chromium): a worker installed from the normal build (756 entries), then the flag build served on the same origin and profile: `/sw.js` is the retiring script (no precache list, `no-cache`); after one update check the registration list is empty, `caches.keys()` is empty, the `tutor` IndexedDB database is still there, the home screen shows the profile created before, a lesson loads online. Unit tests: the retiring steps, the flag off by default in a normal worker, the `process.env` guard. `Clear-Site-Data` is not used: `"storage"` would wipe IndexedDB with unsynced progress, `"cache"` does not touch Cache Storage, and Safari ignores the header, so the retiring worker is the only mechanism.
+
 
 ### Checkpoint 2
 
-- [ ] Decision and evidence of 4a, the lab results of 4b and 4c written here. If the fallback was taken, `spec.md` Q1 gets a one-line note.
+- [x] Decision and evidence of 4a, the lab results of 4b and 4c written here. If the fallback was taken, `spec.md` Q1 gets a one-line note.
+
+Checkpoint 2 evidence: decision and criteria table under "Findings of the Serwist trial" (Serwist fails criterion 4, hand-written worker taken); lab results under Task 4b and Task 4c. `spec.md` Q1 and Q11 carry a one-line note.
 
 ## Task 5 (S): registration and update banner
 
@@ -141,9 +199,9 @@ Files: `src/offline/register.tsx` (new), `src/app/(child)/layout.tsx`, `src/comp
 - Player detection from the pathname (`/lessons/<id>/sections/<id>`, `/lessons/<id>/review`), one helper.
 
 Acceptance:
-- [ ] Component tests with a fake `navigator.serviceWorker` cover every rule above, including boot apply, dev unregister and the first-install case.
-- [ ] Banner copy and spacing follow `docs/design-system.md`; screenshot in a lab run at the iPad and phone sizes, read by the agent.
-- [ ] Gate green.
+- [x] Component tests with a fake `navigator.serviceWorker` cover every rule above, including boot apply, dev unregister and the first-install case.
+- [x] Banner copy and spacing follow `docs/design-system.md`; screenshot in a lab run at the iPad and phone sizes, read by the agent.
+- [x] Gate green.
 
 ## Task 6 (S): media offline states
 
@@ -155,8 +213,8 @@ Files: `src/lib/network-status.ts` (new), `src/components/blocks/video-player.ts
 - Nothing about storage changes: media stays in memory only.
 
 Acceptance:
-- [ ] Tests: each player with `navigator.onLine` false, and with a download that rejects with `TypeError` while `onLine` stays true, shows its line and no percentage; `online`, visible and tap each recover; preload does not fetch offline; existing media tests (`tests/components/video-player.test.tsx`, `tests/lib/media-download.test.ts`, `tests/lib/play-from-tap.test.ts`, `tests/learn/lesson-overview.test.tsx`) still green.
-- [ ] Gate green.
+- [x] Tests: each player with `navigator.onLine` false, and with a download that rejects with `TypeError` while `onLine` stays true, shows its line and no percentage; `online`, visible and tap each recover; preload does not fetch offline; existing media tests (`tests/components/video-player.test.tsx`, `tests/lib/media-download.test.ts`, `tests/lib/play-from-tap.test.ts`, `tests/learn/lesson-overview.test.tsx`) still green.
+- [x] Gate green.
 
 ## Task 7 (S): parent readiness line
 
@@ -165,12 +223,16 @@ Files: `src/offline/status.ts` (new), `src/components/parent/offline-status.tsx`
 - Asks `PRECACHE_STATUS` of the installing worker if there is one, else the active one; shows "Dùng khi không có mạng: sẵn sàng" when the active worker is ready, "đang tải (cached/total)" while one installs, "chưa sẵn sàng" with no worker (dev, or not installed yet). Refreshes on `controllerchange`, on `updatefound` and every few seconds while not ready.
 
 Acceptance:
-- [ ] Component tests for the three states and the refresh.
-- [ ] Gate green.
+- [x] Component tests for the three states and the refresh.
+- [x] Gate green.
 
 ### Checkpoint 3
 
-- [ ] Lab run: banner appears after a second lab build with a changed lesson (second build folder, the first server stopped by its own PID first), tap reloads; parent line goes from "đang tải" to "sẵn sàng". Screenshots read and listed here.
+- [x] Lab run: banner appears after a second lab build with a changed lesson (second build folder, the first server stopped by its own PID first), tap reloads; parent line goes from "đang tải" to "sẵn sàng". Screenshots read and listed here.
+
+
+
+Checkpoint 3 evidence (lab, Chromium, production build of the branch, gate on; scripts and screenshots in the scratchpad `offline/cp3*`): the app registers the worker by itself after the profile is created; with the build files slowed by 120 ms each, the parent line went from "Dùng khi không có mạng: đang tải (n/756)" to "sẵn sàng". A second lab build of the same origin with one page changed: the home screen shows the banner "Có bài mới, tải lại" while the old worker still controls the page, tapping it reloads once, the banner is gone, only the new build's cache is left, the parent line says "sẵn sàng" and the lesson page is the new one. Screenshots read: `banner-ipad.png` (820 wide) and `banner-phone.png` (390 wide), the banner sits above the greeting, aligned with the cards' margins, 48 px tall, no overlap; `parent-ready-ipad.png` and `parent-ready-phone.png`, the readiness card sits under the source note. The banner inside a lesson player is covered by the component tests, not by this run (a player is reached by a full navigation here, which applies a waiting worker at boot by design).
 
 ## Task 8 (M): offline E2E on a production build
 
@@ -179,27 +241,53 @@ Files: `e2e/targets.ts` (`OFFLINE_*` beside `OFFLINE_SERVER_ENV`), `playwright.o
 Scenarios (details in `spec.md` section 11): 1 offline cold start (navigation offline by tapping links in the app, not `page.goto`; parent PIN set first to read the readiness line), 2 offline study kept and `/api/sync` passed through, 3 media offline states, 4 nothing stored that must not be (walk every Cache Storage entry; IndexedDB names), 5 gate (cleared cookie online goes to `/unlock`; a never-unlocked context has no worker), 6 update flow (as 4a criterion 7 decided).
 
 Acceptance:
-- [ ] `pnpm test:e2e:offline` green; run twice in a row to show it is stable.
-- [ ] The everyday `pnpm test:e2e` still green; `e2e/unlock.spec.ts` test renamed to say the dev server registers no worker.
-- [ ] No request leaves localhost: a guard that also sees worker-initiated requests (`context.on("request")` plus a check of every response URL, not only `context.route`), and the bundle check of the lab script for a media origin.
-- [ ] Gate green; main tree's `public/content`, `tsconfig.json` unchanged by the run; dev server untouched.
+- [x] `pnpm test:e2e:offline` green; run twice in a row to show it is stable.
+- [x] The everyday `pnpm test:e2e` still green; `e2e/unlock.spec.ts` test renamed to say the dev server registers no worker.
+- [x] No request leaves localhost: a guard that also sees worker-initiated requests (`context.on("request")` plus a check of every response URL, not only `context.route`), and the bundle check of the lab script for a media origin.
+- [x] Gate green; main tree's `public/content`, `tsconfig.json` unchanged by the run; dev server untouched.
 
 ### Checkpoint 4
 
-- [ ] Both E2E commands green; evidence (test list output) pasted here.
+- [x] Both E2E commands green; evidence (test list output) pasted here.
+
+Checkpoint 4 evidence: `pnpm test:e2e:offline`, run four times in a row on three different builds of the branch, each time the lab built `HEAD` in a temporary worktree and removed it:
+
+```
+  ✓  1 [ipad-chromium] › e2e/offline.spec.ts › 1 opens home, a subject, lessons, sections, tips and review offline from a cold start
+  ✓  2 [ipad-chromium] › e2e/offline.spec.ts › 2 keeps answers given offline and leaves /api/sync alone
+  ✓  3 [ipad-chromium] › e2e/offline.spec.ts › 3 video and narration say they need the network offline, and load again online
+  ✓  4 [ipad-chromium] › e2e/offline.spec.ts › 4 stores no media, no caption, no song and nothing that must not be kept
+  ✓  5 [ipad-chromium] › e2e/offline.spec.ts › 5 online, a device without the cookie goes to the unlock page; a device never unlocked has no worker
+  ✓  6 [ipad-chromium] › e2e/offline.spec.ts › 6 a changed worker waits, the banner offers it outside a lesson, and a tap puts the new one in charge
+  6 passed (11.3s)
+```
+
+Everyday `TEST_PORT=3610 pnpm test:e2e` (ports 3610, 4610, 5610 instead of 3100, 4100, 5100, to stay clear of other agents' servers): 105 passed, 7 skipped as before, exit 0. A first run found two things: the parent page's `getByRole("status")` became ambiguous (fixed, see Done) and one unlock test timed out waiting for the dev server under load (it passes alone and in the second full run).
+
+How the E2E meets its rules: no request leaves localhost (every test ends by checking the requests and responses seen by `context.on`, which include the worker's, and the lab refuses a bundle that names the owner's real media origin); WebKit is not used (4a); the update test registers another script URL for the same scope because Playwright cannot serve a changed script to Chromium's update check; the gate cookie is created through `/api/session` because the production cookie is `Secure`; scenario 3 needs a lesson with a narration and a section-opening video whose files exist in the main tree's `public/media` (the lab links it) and skips itself otherwise.
+
 
 ## Task 9 (S): docs and deploy smoke
 
 Files: `docs/spec.md` section 5.9 and the test strategy row, `docs/architecture.md` (module `offline/`, the media loading line, the manifest line, the checks table rows), `docs/operations.md` ("Kiểm trên iPad Safari" offline steps, step 9 no longer says offline is missing, deploy smoke expectations), `src/app/manifest.ts` comment, `README.md` (the new command), `scripts/lib/deploy-prod.ts` and its test (smoke: the worker script answers 200 without the cookie with `Cache-Control: no-cache`).
 
 Acceptance:
-- [ ] Every doc statement checked against the code (grep for "no service worker", "chưa có offline", "không có service worker" leaves only true statements).
-- [ ] Durable files hold no task numbers, checkpoint names or other planning jargon (grep `Task [0-9]`, `Checkpoint`, `§`).
-- [ ] Gate plus `pnpm content:check` green.
+- [x] Every doc statement checked against the code (grep for "no service worker", "chưa có offline", "không có service worker" leaves only true statements).
+- [x] Durable files hold no task numbers, checkpoint names or other planning jargon (grep `Task [0-9]`, `Checkpoint`, `§`).
+- [x] Gate plus `pnpm content:check` green.
 
 ### Final
 
-- [ ] Backlog index row updated; leftovers listed here; folder archived with `git mv` to `notebooks/backlogs/archive/offline-pwa/` with an "Archived: ..." line once the owner has deployed and checked the iPad.
+- [x] Backlog index row updated; leftovers listed here; folder archived with `git mv` to `notebooks/backlogs/archive/offline-pwa/` with an "Archived: ..." line once the owner has deployed and checked the iPad.
+
+Leftovers (none blocks the merge):
+- The tab icon `/favicon.ico?favicon.<hash>.ico` that Next adds is not a precache hit, so it is a network error offline (the SVG icon is precached).
+- A song cannot be told offline from a failed start when `navigator.onLine` stays true (wifi without internet): the button says "Cần mạng để nghe nhạc" only when the browser says offline or a video or narration download just failed with a network error.
+- A superseded waiting worker leaves its cache until the next activation, which deletes every other build's cache.
+- The offline lab and E2E need `public/media` of the main tree for scenario 3; on a machine without media the scenario skips.
+- `docs/design-system.md` has no entry for the update banner or the offline lines; they use existing tokens.
+- On `main`: commits 3df7eb5 to e06817c and e37cb03 (listed under "Done"); `main` was not rewritten.
+
 
 ## Open for the owner (non-blocking)
 

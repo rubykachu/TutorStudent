@@ -2,10 +2,15 @@
 
 import { Captions, CaptionsOff, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { MediaLoadError, MediaLoading } from "@/components/media-loading";
+import {
+  MediaLoadError,
+  MediaLoading,
+  MediaOffline,
+} from "@/components/media-loading";
 import { parseKaraokeCue, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import { bufferedFraction } from "@/lib/media-download";
+import { useNetworkStatus } from "@/lib/network-status";
 import { ignoringSilentClip, playFromTap } from "@/lib/play-from-tap";
 import { useMediaSource } from "@/lib/use-media-source";
 import type { Video } from "@/schema/content";
@@ -49,6 +54,7 @@ export function VideoPlayer({
   const [started, setStarted] = useState(false);
   const source = useMediaSource(mediaUrl(video.url));
   const { request } = source;
+  const { offline, recheck } = useNetworkStatus();
   // The child tapped play: the video plays as soon as its file is here.
   const [wanted, setWanted] = useState(false);
   // True from the tap on play until the first frame runs, and again whenever
@@ -128,6 +134,21 @@ export function VideoPlayer({
   }, [preload, request]);
 
   const { phase, src: playable } = source;
+  // The network is not there and the file is not in memory: the card says it
+  // needs the network instead of a loading state that cannot move.
+  const unavailable = offline && phase !== "ready";
+  // The network came back after a download failed with a network error: the
+  // download starts again (the child's tap on play, if any, still stands).
+  const wasOffline = useRef(offline);
+  useEffect(() => {
+    const recovered = wasOffline.current && !offline;
+    wasOffline.current = offline;
+    if (recovered && source.networkFailed && phase === "error") request();
+  }, [offline, source.networkFailed, phase, request]);
+  const tapOffline = () => {
+    recheck();
+    if (phase === "error") request();
+  };
   // The file is here: play it if the child already asked (a browser that
   // wants a fresh tap for sound refuses, and the play button comes back).
   useEffect(() => {
@@ -249,7 +270,7 @@ export function VideoPlayer({
             label="Tiếng Việt"
           />
         </video>
-        {!started && !waiting && !failed && (
+        {!started && !waiting && !failed && !unavailable && (
           <button
             type="button"
             aria-label="Phát video"
@@ -262,14 +283,17 @@ export function VideoPlayer({
             </span>
           </button>
         )}
-        {waiting && !failed && (
+        {waiting && !failed && !unavailable && (
           <MediaLoading
             what="video"
             fraction={fraction}
             receivedBytes={source.receivedBytes}
           />
         )}
-        {failed && (
+        {unavailable && (
+          <MediaOffline text="Cần mạng để xem video" onTap={tapOffline} />
+        )}
+        {failed && !unavailable && (
           <MediaLoadError
             onRetry={retry}
             className="absolute inset-0 bg-surface p-3"

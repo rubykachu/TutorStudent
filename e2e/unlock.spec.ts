@@ -140,7 +140,7 @@ test("a link preview crawler without the cookie gets the share card from the unl
   expect(favicon.status()).toBe(200);
 });
 
-test("a Home Screen launch opens the unlock page once, then the app, with no service worker", async ({
+test("a Home Screen launch opens the unlock page once, then the app; the dev server registers no service worker", async ({
   page,
 }) => {
   // What the browser needs to offer "Add to Home Screen", read from the page

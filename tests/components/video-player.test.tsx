@@ -295,7 +295,7 @@ describe("VideoPlayer", () => {
         "fetch",
         vi
           .fn()
-          .mockRejectedValueOnce(new TypeError("network"))
+          .mockResolvedValueOnce(new Response("no", { status: 500 }))
           .mockImplementation(async () => download.response),
       );
       const { container } = render(<VideoPlayer video={VIDEO} />);
@@ -351,7 +351,7 @@ describe("VideoPlayer", () => {
     const download = controlledDownload(100);
     const fetchMock = vi
       .fn()
-      .mockRejectedValueOnce(new TypeError("network"))
+      .mockResolvedValueOnce(new Response("no", { status: 500 }))
       .mockImplementation(async () => download.response);
     vi.stubGlobal("fetch", fetchMock);
     const { container } = render(<VideoPlayer video={VIDEO} />);
