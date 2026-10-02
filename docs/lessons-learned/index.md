@@ -44,17 +44,17 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 02/10/2026 của 18 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 02/10/2026 của 19 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
 | LL-10 | 5 | 38 | 27 | 70 |
 | LL-19 | 2 | 8 | 26 | 36 |
-| LL-12 | 10 | 18 | 30 | 58 |
+| LL-12 | 12 | 18 | 30 | 60 |
 | LL-07 | 1 | 39 | 33 | 73 |
 | LL-15 | 5 | 14 | 10 | 29 |
 | LL-16 | 0 | 31 | 4 | 35 |
-| LL-05 | 10 | 37 | 20 | 67 |
+| LL-05 | 12 | 37 | 20 | 69 |
 | LL-09 | 13 | 15 | 4 | 32 |
 | LL-14 | 1 | 12 | 13 | 26 |
 | LL-11 | 4 | 5 | 7 | 16 |
@@ -71,7 +71,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-21 | 4 | 2 | 0 | 6 |
 | LL-22 | 1 | 0 | 0 | 1 |
 | LL-23 | 1 | 0 | 0 | 1 |
-| LL-24 | 15 | 2 | 3 | 20 |
+| LL-24 | 16 | 2 | 3 | 21 |
 | LL-25 | 0 | 9 | 135 | 144 |
 | LL-26 | 1 | 0 | 0 | 1 |
 
@@ -101,3 +101,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-cong-phep-tru-so-nguyen` | Toán | 8 | 4 (vòng 2 còn 4, vòng 3 còn 1) | 4 |
 | `quy-tac-dau-ngoac` | Toán | 8 | chưa (vòng 2 còn 3) | 2 |
 | `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` | Toán | 11 | chưa (vòng 1) | 1 |
+| `phep-nhan-so-nguyen` | Toán | 5 | chưa | 1 |
