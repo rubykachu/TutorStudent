@@ -18,3 +18,6 @@ Code-only fixes in the app's video player. Do not re-render any video and do not
 ## Then
 - Gate, then a verified deploy with `pnpm deploy:prod --ref <verified sha>`. The owner pre-approved deploys for finished work.
 - Archive this folder when done.
+
+## Pending release (stopped 02/10/2026 07:0x)
+- The Bài 14 `phep-cong-phep-tru-so-nguyen` release is not deployed yet: its media is NOT uploaded and nothing is deployed. Verification of the pinned SHA `20a1a3c` stopped on `pnpm lint`: `src/visuals/registry.ts` import order (`organizeImports`, fixable). Fix it, then ship Bài 14 in the same verified release as this hotfix: `pnpm media:upload --all`, then `pnpm deploy:prod --ref <sha>`.
