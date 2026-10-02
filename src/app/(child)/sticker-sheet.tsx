@@ -1,6 +1,14 @@
 "use client";
 
-import { BookOpen, Lock, Music, Square, VolumeX, X } from "lucide-react";
+import {
+  BookOpen,
+  Lock,
+  Music,
+  Square,
+  VolumeX,
+  WifiOff,
+  X,
+} from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -50,15 +58,19 @@ export function stickerHowToEarn(
 // The button that plays a random song, and stops it on a second press. The
 // sound switch rules it: with sound off it is disabled and says why.
 function MusicButton({ childId }: { childId: string }) {
-  const { enabled, playingId, toggle } = useMusicPlayer(childId, SONGS);
+  const { enabled, playingId, toggle, offline, recheck } = useMusicPlayer(
+    childId,
+    SONGS,
+  );
   const playing = playingId !== null;
+  const needsNetwork = enabled && offline && !playing;
   return (
     <div className="flex w-full flex-col items-center gap-2">
       <BigButton
         variant="secondary"
         data-music-button
         aria-pressed={playing}
-        disabled={!enabled}
+        disabled={!enabled || needsNetwork}
         onClick={toggle}
         // The song is the sound; no button press on top of it.
         data-own-sound
@@ -70,6 +82,17 @@ function MusicButton({ childId }: { childId: string }) {
         )}
         {playing ? "Dừng nhạc" : "Nghe nhạc"}
       </BigButton>
+      {needsNetwork && (
+        <button
+          type="button"
+          onClick={recheck}
+          data-music-offline
+          className="flex min-h-touch items-center gap-2 text-caption text-muted-foreground"
+        >
+          <WifiOff aria-hidden className="size-5 shrink-0" />
+          Cần mạng để nghe nhạc
+        </button>
+      )}
       {!enabled && (
         <p
           data-music-muted

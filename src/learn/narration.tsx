@@ -1,6 +1,6 @@
 "use client";
 
-import { Pause, Play, X } from "lucide-react";
+import { Pause, Play, WifiOff, X } from "lucide-react";
 import {
   type ReactNode,
   type Ref,
@@ -22,6 +22,7 @@ import {
 import { parseKaraokeVtt, type TimedWord } from "@/lib/karaoke-vtt";
 import { mediaUrl } from "@/lib/media";
 import { bufferedFraction, percentLabel } from "@/lib/media-download";
+import { useNetworkStatus } from "@/lib/network-status";
 import { ignoringSilentClip, playFromTap } from "@/lib/play-from-tap";
 import { useMediaSource } from "@/lib/use-media-source";
 import type { LessonOverview } from "@/schema/content";
@@ -68,6 +69,10 @@ export type NarrationState = {
   // The download failed after the child asked to listen.
   failed: boolean;
   retry: () => void;
+  // The network is not there and the file is not in memory: the card says it
+  // needs the network. A tap on that line tries again.
+  offline: boolean;
+  recheck: () => void;
   // 0–1 through the audio.
   progress: number;
   word: number;
@@ -95,6 +100,8 @@ export function useNarration(
   const [word, setWord] = useState(-1);
   const source = useMediaSource(narration ? mediaUrl(narration.audioUrl) : "");
   const { phase, src: playable, request } = source;
+  const network = useNetworkStatus();
+  const offline = network.offline && phase !== "ready";
   const hasNarration = Boolean(narration);
   useEffect(() => {
     if (hasNarration) request();
@@ -105,6 +112,24 @@ export function useNarration(
   const [started, setStarted] = useState(false);
   const [buffered, setBuffered] = useState<number | undefined>();
   const [broken, setBroken] = useState(false);
+
+  // A download that met no network drops the child's tap: when the network is
+  // back the file is fetched again quietly and the child taps play, which
+  // then starts at once (the tap rule of `playFromTap`).
+  const { networkFailed } = source;
+  useEffect(() => {
+    if (networkFailed) setWanted(false);
+  }, [networkFailed]);
+  const wasOffline = useRef(network.offline);
+  useEffect(() => {
+    const recovered = wasOffline.current && !network.offline;
+    wasOffline.current = network.offline;
+    if (recovered && networkFailed && phase === "error") request();
+  }, [network.offline, networkFailed, phase, request]);
+  const recheck = () => {
+    network.recheck();
+    if (phase === "error") request();
+  };
 
   useEffect(() => {
     const element = audioRef.current;
@@ -176,7 +201,7 @@ export function useNarration(
     const element = audioRef.current;
     if (element) setBuffered(bufferedFraction(element));
   };
-  const loadingFile = phase === "loading";
+  const loadingFile = phase === "loading" && !offline;
   const loading = loadingFile || stalled;
   const loadFraction = loadingFile
     ? source.progress
@@ -235,8 +260,10 @@ export function useNarration(
     requested: wanted,
     loadFraction,
     loadedBytes: source.receivedBytes,
-    failed: wanted && (phase === "error" || broken),
+    failed: wanted && (phase === "error" || broken) && !offline,
     retry,
+    offline,
+    recheck,
     progress,
     word: playing ? word : -1,
     toggle,
@@ -252,7 +279,7 @@ export function NarrationPlayer({
   state: NarrationState;
   containerRef?: Ref<HTMLDivElement>;
 }) {
-  const busy = state.loading && !state.failed;
+  const busy = state.loading && !state.failed && !state.offline;
   const Icon = state.playing ? Pause : Play;
   const fraction = busy ? state.loadFraction : state.progress;
   return (
@@ -288,7 +315,17 @@ export function NarrationPlayer({
           />
         </button>
       </span>
-      {state.failed ? (
+      {state.offline ? (
+        <button
+          type="button"
+          onClick={state.recheck}
+          data-narration-offline
+          className="inline-flex min-h-touch min-w-0 flex-1 items-center gap-2 text-left font-semibold"
+        >
+          <WifiOff aria-hidden className="size-5 shrink-0" />
+          Cần mạng để nghe đọc bài
+        </button>
+      ) : state.failed ? (
         <MediaLoadError
           onRetry={state.retry}
           className="min-w-0 flex-1 items-start text-left"

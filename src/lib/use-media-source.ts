@@ -7,6 +7,11 @@ import {
   downloadMedia,
   takePreloaded,
 } from "@/lib/media-download";
+import {
+  clearMediaNetworkFailure,
+  isNetworkError,
+  reportMediaNetworkFailure,
+} from "@/lib/network-status";
 
 export type MediaSourcePhase = "idle" | "loading" | "ready" | "error";
 
@@ -20,6 +25,9 @@ export type MediaSource = {
   // The element streams the file itself (its length was unknown), so the
   // percentage has to come from `bufferedFraction`.
   streamed: boolean;
+  // The last download failed because the network was not there (not because
+  // the server said no); `useNetworkStatus` tells the player to wait for it.
+  networkFailed: boolean;
   receivedBytes: number;
   // Starts the download, or starts it again after an error; a no-op while
   // loading or once ready.
@@ -35,6 +43,7 @@ export function useMediaSource(url: string): MediaSource {
   const [progress, setProgress] = useState<DownloadProgress>({
     receivedBytes: 0,
   });
+  const [networkFailed, setNetworkFailed] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const phaseRef = useRef<MediaSourcePhase>("idle");
   const blobUrlRef = useRef<string | null>(null);
@@ -73,6 +82,8 @@ export function useMediaSource(url: string): MediaSource {
     downloadMedia(url, { signal: controller.signal, onProgress: setProgress })
       .then((result) => {
         if (controller.signal.aborted) return;
+        setNetworkFailed(false);
+        clearMediaNetworkFailure();
         if (result.kind === "blob") {
           adoptBlob(result.blob);
         } else {
@@ -80,8 +91,12 @@ export function useMediaSource(url: string): MediaSource {
           setPhaseBoth("ready");
         }
       })
-      .catch(() => {
-        if (!controller.signal.aborted) setPhaseBoth("error");
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        const network = isNetworkError(error);
+        setNetworkFailed(network);
+        if (network) reportMediaNetworkFailure();
+        setPhaseBoth("error");
       });
   }, [url, setPhaseBoth, adoptBlob]);
 
@@ -97,6 +112,7 @@ export function useMediaSource(url: string): MediaSource {
     return () => {
       release();
       setSrc(undefined);
+      setNetworkFailed(false);
       phaseRef.current = "idle";
       setPhase("idle");
     };
@@ -107,6 +123,7 @@ export function useMediaSource(url: string): MediaSource {
     phase,
     progress: phase === "ready" ? 1 : downloadFraction(progress),
     streamed: phase === "ready" && src === url,
+    networkFailed,
     receivedBytes: progress.receivedBytes,
     request,
   };

@@ -1,4 +1,4 @@
-import { RotateCw } from "lucide-react";
+import { RotateCw, WifiOff } from "lucide-react";
 import type { ReactNode } from "react";
 import { percentLabel } from "@/lib/media-download";
 import { Owl } from "@/mascot/owl";
@@ -143,6 +143,34 @@ export function MediaLoadError({
       >
         <RotateCw aria-hidden className="size-5" />
         Thử lại
+      </button>
+    </span>
+  );
+}
+
+type MediaOfflineProps = {
+  // What the child reads: "Cần mạng để xem video".
+  text: string;
+  onTap: () => void;
+};
+
+// Over a video's picture while the network is not there: the owl and what is
+// needed, no ring and no percentage. A tap tries again (wifi without internet
+// never says it is back).
+export function MediaOffline({ text, onTap }: MediaOfflineProps) {
+  return (
+    <span
+      data-media-offline
+      className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-foreground/35"
+    >
+      <Owl expression="idle" size="exercise" />
+      <button
+        type="button"
+        onClick={onTap}
+        className="inline-flex min-h-touch items-center gap-2 rounded-full bg-surface px-5 font-semibold text-caption text-foreground shadow-card"
+      >
+        <WifiOff aria-hidden className="size-5" />
+        {text}
       </button>
     </span>
   );

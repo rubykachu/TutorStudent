@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNetworkStatus } from "@/lib/network-status";
 import { playMusic, stopMusic, warmSounds } from "@/lib/sound";
 import { soundUrl } from "@/lib/sound-manifest";
 import { useSoundEnabled } from "@/progress/hooks";
@@ -7,9 +8,11 @@ import { pickSong, type Song } from "./songs";
 // Plays the songs for one child, one at a time and only while the child's
 // sound is on. `toggle` starts a random song, or stops the one playing. The
 // song never outlives the component: it stops when the component unmounts,
-// when sound is turned off, or when a voice starts.
+// when sound is turned off, or when a voice starts. A song is fetched when it
+// plays and never stored, so `offline` tells the button the network is needed.
 export function useMusicPlayer(childId: string, songs: readonly Song[]) {
   const enabled = useSoundEnabled(childId) === true;
+  const { offline, recheck } = useNetworkStatus();
   const [playingId, setPlayingId] = useState<string | null>(null);
   const lastId = useRef<string | null>(null);
 
@@ -27,6 +30,7 @@ export function useMusicPlayer(childId: string, songs: readonly Song[]) {
 
   function toggle(): void {
     if (!enabled) return;
+    if (playingId === null && offline) return;
     if (playingId !== null) {
       stopMusic();
       setPlayingId(null);
@@ -42,5 +46,5 @@ export function useMusicPlayer(childId: string, songs: readonly Song[]) {
     );
   }
 
-  return { enabled, playingId, toggle };
+  return { enabled, playingId, toggle, offline, recheck };
 }
