@@ -1,8 +1,9 @@
+import { BINH_HANH_THANG_CAN_SPECS } from "./catalog-binh-hanh-thang-can";
 import { BOOK_SPECS } from "./catalog-book";
 import { CHECK_SPECS } from "./catalog-check";
+import { CHU_NHAT_THOI_SPECS } from "./catalog-chu-nhat-thoi";
 import { COMMON_SPECS } from "./catalog-common";
 import { DRAWING_SPECS } from "./catalog-drawing";
-import { SHAPES_SPECS } from "./catalog-shapes";
 import type { VisualSpec } from "./spec";
 
 // Every picture of the lesson: the registry builds one entry per item (id
@@ -35,7 +36,8 @@ function mergeSpecs(
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = mergeSpecs(
   COMMON_SPECS,
-  SHAPES_SPECS,
+  CHU_NHAT_THOI_SPECS,
+  BINH_HANH_THANG_CAN_SPECS,
   DRAWING_SPECS,
   CHECK_SPECS,
   BOOK_SPECS,
