@@ -1,4 +1,4 @@
-import { OFFLINE_KILL_SWITCH } from "../src/offline/config";
+import { OFFLINE_KILL_SWITCH } from "../src/offline/kill-switch-flag";
 import { buildWorker } from "./lib/offline-worker";
 
 // Run by `pnpm build` after `next build` (and before the bundle check):

@@ -150,6 +150,13 @@ async function writeBundle(
   });
   const output = result.outputFiles[0];
   if (!output) throw new Error("esbuild produced no output");
+  // A worker has no `process`: reading it fails the script's evaluation, and
+  // with it every install of the worker.
+  if (/\bprocess\.env\b/.test(output.text)) {
+    throw new Error(
+      "the worker bundle reads process.env; keep build-time flags out of the modules the worker imports",
+    );
+  }
   writeFileSync(outfile, output.contents);
   return { file: outfile, entries, bytes: output.contents.length };
 }

@@ -9,14 +9,6 @@ export const WORKER_FILE = "sw.js";
 export const WORKER_PATH = `/${WORKER_FILE}`;
 export const WORKER_SCOPE = "/";
 
-// Build-time switch that retires the service worker on every device: with
-// `NEXT_PUBLIC_OFFLINE_KILL_SWITCH=1` the build writes a worker that deletes
-// the offline caches and unregisters itself (`sw-kill.ts`), and the page code
-// stops registering one. The runbook is in `docs/operations.md`. Written out
-// in full so Next inlines it into the browser bundle.
-export const OFFLINE_KILL_SWITCH =
-  process.env.NEXT_PUBLIC_OFFLINE_KILL_SWITCH === "1";
-
 // One cache per build, named after the build id, written all or nothing.
 export const CACHE_PREFIX = "offline-";
 

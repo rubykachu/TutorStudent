@@ -92,6 +92,8 @@ describe("buildWorker", () => {
     expect(script).toContain("/lessons/a");
     expect(script).toContain("offline-");
     // The server-only names must not be in a script every browser reads.
+    // A worker has no `process`: evaluating one would fail.
+    expect(script).not.toMatch(/process\.env/);
     expect(script).not.toContain("SESSION_SECRET");
     expect(script).not.toContain("FAMILY_CODES");
     expect(result.entries).toBe(2 + 3);
@@ -121,6 +123,18 @@ describe("buildWorker", () => {
     expect(script).toContain("unregister");
     expect(script).toContain("skipWaiting");
     expect(script).not.toContain("/_next/static");
+    expect(script).not.toMatch(/process\.env/);
+  });
+
+  it("fails when a module the worker imports reads process.env", async () => {
+    put("bad.ts", "export const x = process.env.NEXT_PUBLIC_X;\nself.x = x;");
+    await expect(
+      buildWorker({
+        rootDir: root,
+        killSwitch: true,
+        killSource: path.join(root, "bad.ts"),
+      }),
+    ).rejects.toThrow("process.env");
   });
 
   it("fails above the budget", async () => {
