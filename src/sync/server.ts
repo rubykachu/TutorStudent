@@ -1,22 +1,32 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { type AccessConfig, readAccessConfig } from "@/access/env";
+import { sameOrigin } from "@/access/origin";
 import { RequestLimiter } from "@/access/rate-limit";
 import { resolveFamily, verifySessionToken } from "@/access/session";
 import {
   ACCESS_COOKIE_NAME,
+  SYNC_BODY_SLACK_BYTES,
+  SYNC_DOC_MAX_BYTES,
+  SYNC_FUTURE_SKEW_MINUTES,
   SYNC_GET_LIMIT_PER_MINUTE,
+  SYNC_HISTORY_MAX_BYTES,
   SYNC_PROFILE_CACHE_SECONDS,
+  SYNC_PUT_LIMIT_PER_MINUTE,
 } from "@/lib/config";
 import { vnDayKey } from "@/lib/time";
+import { clampFutureTimes } from "@/sync/clamp";
 import {
   CHILD_ID_PATTERN,
+  canonicalText,
   type DocKind,
+  type DocOf,
+  type HistoryDoc,
   MONTH_PATTERN,
   migrateDoc,
   type ProfileDoc,
 } from "@/sync/schema";
 import { type SyncPrefix, syncKey } from "@/sync/store/keys";
-import type { BlobStore } from "@/sync/store/types";
+import type { BlobStore, StoredBlob } from "@/sync/store/types";
 
 // The server side of `/api/sync`: it checks who is asking and what, and
 // stores or returns one doc. It never merges (the clients do) and never logs
@@ -110,8 +120,102 @@ export function targetKey(
 
 type Stored =
   | { state: "missing" }
-  | { state: "invalid" }
-  | { state: "ok"; doc: unknown; etag: string; body: string };
+  // The stored text is not a valid doc of this code's version; `version` is
+  // its own version when it has one.
+  | { state: "invalid"; version: number | null }
+  | { state: "ok"; doc: unknown; etag: string; body: string; version: number };
+
+function interpret(found: StoredBlob, kind: DocKind): Stored {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(found.body);
+  } catch {
+    return { state: "invalid", version: null };
+  }
+  const version =
+    typeof raw === "object" && raw !== null && "version" in raw
+      ? Number((raw as { version: unknown }).version)
+      : Number.NaN;
+  const known = Number.isInteger(version) ? version : null;
+  const migrated = migrateDoc(kind, raw);
+  if (!migrated.ok || known === null) {
+    return { state: "invalid", version: known };
+  }
+  return {
+    state: "ok",
+    doc: migrated.doc,
+    etag: found.etag,
+    body: found.body,
+    version: known,
+  };
+}
+
+// The body of a request, or null when it is longer than `max` bytes. Reading
+// stops at the cap, so an oversized body is never held whole or parsed.
+async function readCapped(
+  request: NextRequest,
+  max: number,
+): Promise<string | null> {
+  const declared = Number(request.headers.get("content-length"));
+  if (Number.isFinite(declared) && declared > max) return null;
+  const reader = request.body?.getReader();
+  if (!reader) return "";
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > max) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+// `{ doc, ifMatch }` to replace or `{ doc, ifNoneMatch: "*" }` to create.
+type PutBody = {
+  doc: unknown;
+  condition: { ifMatch: string } | { ifNoneMatch: "*" };
+};
+
+function parsePutBody(raw: unknown): PutBody | null {
+  if (!isRecord(raw) || !("doc" in raw)) return null;
+  if (
+    Object.keys(raw).some((k) => !["doc", "ifMatch", "ifNoneMatch"].includes(k))
+  ) {
+    return null;
+  }
+  const { ifMatch, ifNoneMatch } = raw;
+  if (ifNoneMatch === "*" && ifMatch === undefined) {
+    return { doc: raw.doc, condition: { ifNoneMatch: "*" } };
+  }
+  if (
+    typeof ifMatch === "string" &&
+    ETAG_PATTERN.test(ifMatch) &&
+    ifNoneMatch === undefined
+  ) {
+    return { doc: raw.doc, condition: { ifMatch } };
+  }
+  return null;
+}
+
+const maxBytes = (kind: DocKind) =>
+  kind === "history" ? SYNC_HISTORY_MAX_BYTES : SYNC_DOC_MAX_BYTES;
+
+const byteLength = (text: string) => new TextEncoder().encode(text).length;
 
 export function createSyncService(deps: SyncServiceDeps) {
   const readAccess = deps.readAccess ?? (() => readAccessConfig());
@@ -120,6 +224,11 @@ export function createSyncService(deps: SyncServiceDeps) {
     deps.log ?? ((entry: SyncLogEntry) => console.warn(JSON.stringify(entry)));
   const getLimiter = new RequestLimiter(
     SYNC_GET_LIMIT_PER_MINUTE,
+    MINUTE_MS,
+    () => now().getTime(),
+  );
+  const putLimiter = new RequestLimiter(
+    SYNC_PUT_LIMIT_PER_MINUTE,
     MINUTE_MS,
     () => now().getTime(),
   );
@@ -163,25 +272,11 @@ export function createSyncService(deps: SyncServiceDeps) {
     store: BlobStore,
     key: string,
     kind: DocKind,
-    known?: string,
-  ): Promise<Stored | { state: "unchanged"; etag: string }> {
-    const found = await store.get(key, known ? { ifNoneMatch: known } : {});
-    if (found === null) return { state: "missing" };
-    if ("unchanged" in found) return { state: "unchanged", etag: found.etag };
-    let raw: unknown;
-    try {
-      raw = JSON.parse(found.body);
-    } catch {
-      return { state: "invalid" };
-    }
-    const migrated = migrateDoc(kind, raw);
-    if (!migrated.ok) return { state: "invalid" };
-    return {
-      state: "ok",
-      doc: migrated.doc,
-      etag: found.etag,
-      body: found.body,
-    };
+  ): Promise<Stored> {
+    const found = await store.get(key);
+    return found !== null && "body" in found
+      ? interpret(found, kind)
+      : { state: "missing" };
   }
 
   // Whether the profile doc lists the child. A copy older than a minute, or
@@ -265,29 +360,164 @@ export function createSyncService(deps: SyncServiceDeps) {
       if (listed === "invalid") return fail(500, "stored-invalid");
       if (listed === "unknown") return fail(403, "child");
     }
-    const stored = await readStored(
-      store,
+    const found = await store.get(
       targetKey(deps.prefix, familyId, target),
-      target.kind,
-      known ?? undefined,
+      known ? { ifNoneMatch: known } : {},
     );
     const serverTime = now().toISOString();
-    switch (stored.state) {
-      case "missing":
-        return reply({ familyId, doc: null, etag: null, serverTime });
-      case "unchanged":
-        return reply({ unchanged: true, etag: stored.etag, serverTime });
-      case "invalid":
-        return fail(500, "stored-invalid");
-      case "ok":
-        return reply({
-          familyId,
-          doc: stored.doc,
-          etag: stored.etag,
-          serverTime,
-        });
+    if (found === null) {
+      return reply({ familyId, doc: null, etag: null, serverTime });
     }
+    if ("unchanged" in found) {
+      return reply({ unchanged: true, etag: found.etag, serverTime });
+    }
+    const stored = interpret(found, target.kind);
+    if (stored.state !== "ok") return fail(500, "stored-invalid");
+    return reply({ familyId, doc: stored.doc, etag: stored.etag, serverTime });
   }
 
-  return { get };
+  // The answer to a write that lost to another writer: 412 with what is
+  // stored now, so the client can merge and retry.
+  async function conflict(
+    store: BlobStore,
+    key: string,
+    kind: DocKind,
+  ): Promise<NextResponse> {
+    const current = await readStored(store, key, kind);
+    if (current.state === "invalid") return fail(500, "stored-invalid");
+    return current.state === "missing"
+      ? fail(412, "conflict", { doc: null, etag: null })
+      : fail(412, "conflict", { doc: current.doc, etag: current.etag });
+  }
+
+  async function put(request: NextRequest): Promise<NextResponse> {
+    return logged("PUT", (ctx) => handlePut(request, ctx));
+  }
+
+  async function handlePut(
+    request: NextRequest,
+    ctx: RequestContext,
+  ): Promise<NextResponse> {
+    if (!sameOrigin(request)) return fail(403, "origin");
+    const mediaType = (request.headers.get("content-type") ?? "")
+      .split(";")[0]
+      ?.trim()
+      .toLowerCase();
+    if (mediaType !== "application/json") return fail(400, "invalid");
+    const admitted = await admit(request, putLimiter);
+    if (admitted instanceof NextResponse) return admitted;
+    const { familyId, store } = admitted;
+    ctx.familyId = familyId;
+
+    const parsed = parseTarget(
+      new URL(request.url).searchParams,
+      ["doc", "child", "month"],
+      currentMonth(),
+    );
+    if (parsed === null) return fail(400, "invalid");
+    const { target } = parsed;
+    const kind = target.kind;
+    ctx.doc = kind;
+    const cap = maxBytes(kind);
+
+    const text = await readCapped(request, cap + SYNC_BODY_SLACK_BYTES);
+    if (text === null) return fail(413, "too-large");
+    ctx.bytes = byteLength(text);
+    let raw: unknown;
+    try {
+      raw = JSON.parse(text);
+    } catch {
+      return fail(400, "invalid");
+    }
+    const body = parsePutBody(raw);
+    if (body === null) return fail(400, "invalid");
+    const sentVersion = isRecord(body.doc)
+      ? Number(body.doc.version)
+      : Number.NaN;
+    const migrated = migrateDoc(kind, body.doc);
+    if (!migrated.ok) return fail(400, "invalid");
+    const doc = migrated.doc;
+    if (doc.familyId !== familyId) return fail(400, "invalid");
+    if (kind !== "profile") {
+      const { childId } = doc as DocOf["child" | "history"];
+      if (childId !== (target as { childId: string }).childId) {
+        return fail(400, "invalid");
+      }
+      if (
+        kind === "history" &&
+        (doc as HistoryDoc).month !== (target as { month: string }).month
+      ) {
+        return fail(400, "invalid");
+      }
+      const listed = await childListed(store, deps.prefix, familyId, childId);
+      if (listed === "invalid") return fail(500, "stored-invalid");
+      if (listed === "unknown") return fail(403, "child");
+    }
+
+    // Times in the server's future become the server's time, and the stored
+    // doc goes back to the client so it applies exactly what was stored.
+    const serverNow = now();
+    const limit = new Date(
+      serverNow.getTime() + SYNC_FUTURE_SKEW_MINUTES * MINUTE_MS,
+    ).toISOString();
+    const clamped = clampFutureTimes(kind, doc, limit, serverNow.toISOString());
+    let stored: DocOf[DocKind] = doc;
+    if (clamped.changed) {
+      // A record moved out of its month by the clamp fails the schema here.
+      const again = migrateDoc(kind, clamped.doc);
+      if (!again.ok) return fail(400, "invalid");
+      stored = again.doc;
+    }
+    const storedText = canonicalText(kind, stored as never);
+    if (byteLength(storedText) > cap) return fail(413, "too-large");
+
+    const key = targetKey(deps.prefix, familyId, target);
+    if ("ifMatch" in body.condition) {
+      const current = await readStored(store, key, kind);
+      if (current.state === "missing") {
+        return fail(412, "conflict", { doc: null, etag: null });
+      }
+      if (current.version !== null && current.version > sentVersion) {
+        return fail(409, "upgrade-required");
+      }
+      if (current.state === "invalid") return fail(500, "stored-invalid");
+      if (current.etag !== body.condition.ifMatch) {
+        return fail(412, "conflict", { doc: current.doc, etag: current.etag });
+      }
+      if (
+        kind === "history" &&
+        dropsRecords(current.doc as HistoryDoc, stored as HistoryDoc)
+      ) {
+        return fail(409, "shrink", { doc: current.doc, etag: current.etag });
+      }
+    }
+
+    const written = await store.put(key, storedText, body.condition);
+    if ("conflict" in written) return conflict(store, key, kind);
+    if (kind === "profile") {
+      profileCache.set(familyId, {
+        ids: new Set((stored as ProfileDoc).profiles.map((p) => p.id)),
+        at: serverNow.getTime(),
+      });
+    }
+    return reply({
+      etag: written.etag,
+      serverTime: serverNow.toISOString(),
+      ...(clamped.changed ? { doc: stored } : {}),
+    });
+  }
+
+  return { get, put };
+}
+
+// True when `next` lacks an attempt or writing the stored month doc has.
+function dropsRecords(stored: HistoryDoc, next: HistoryDoc): boolean {
+  const kept = (ids: readonly { id: string }[]) =>
+    new Set(ids.map((record) => record.id));
+  const attempts = kept(next.attempts);
+  const writings = kept(next.writings);
+  return (
+    stored.attempts.some((record) => !attempts.has(record.id)) ||
+    stored.writings.some((record) => !writings.has(record.id))
+  );
 }

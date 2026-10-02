@@ -26,3 +26,7 @@ function syncService() {
 export async function GET(request: NextRequest) {
   return syncService().get(request);
 }
+
+export async function PUT(request: NextRequest) {
+  return syncService().put(request);
+}
