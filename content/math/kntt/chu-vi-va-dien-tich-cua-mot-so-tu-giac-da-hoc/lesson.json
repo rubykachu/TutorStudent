@@ -11,7 +11,8 @@
   },
   "title": "Chu vi và diện tích của một số tứ giác đã học",
   "sourceRef": "Sách bài tập tr.70–73",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "e850b4832c5c68413cfdd3a9fbd7a24ceb783f982e8736ceede27e0a7e2409ac",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách đo một vòng quanh hình và tính diện tích của hình. Bạn thử nghĩ xem, nhà mình muốn rào một mảnh vườn thì cần mua bao nhiêu mét lưới?"
@@ -496,7 +497,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Lấy hai hình thang cân giống hệt nhau, quay một hình cho đáy lớn lên trên rồi đặt sát hình kia. Ta được hình bình hành có đáy bằng hai đáy hình thang cộng lại."
+              "text": "Lấy hai hình thang cân giống hệt nhau, xoay một hình cho đáy lớn lên trên rồi đặt sát hình kia. Ta được hình bình hành có đáy bằng hai đáy hình thang cộng lại."
             },
             {
               "type": "visual",
@@ -733,7 +734,7 @@
             },
             {
               "type": "note",
-              "text": "Hình chữ nhật bị cắt mất một hình chữ nhật nhỏ ở góc vẫn có chu vi như trước khi cắt. Còn diện tích thì bằng diện tích lúc trước trừ đi phần bị cắt."
+              "text": "Hình chữ nhật bị cắt mất một hình chữ nhật nhỏ ở góc vẫn có chu vi như trước khi cắt. Còn diện tích thì bằng diện tích hình chữ nhật trước khi cắt trừ đi phần bị cắt."
             },
             {
               "type": "visual",
@@ -4505,7 +4506,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Vẽ thêm hai đoạn vào chỗ bị cắt, ta được hình chữ nhật dài 8 m, rộng 6 m. Lấy 8 m bớt đoạn 6 m, lấy 6 m bớt đoạn 4 m: phần bị cắt có hai cạnh 2 m. Vì vậy, chu vi bằng chu vi hình chữ nhật, còn diện tích thì trừ đi phần bị cắt.",
+        "text": "Vẽ thêm hai đoạn vào chỗ bị cắt, ta được hình chữ nhật dài 8 m, rộng 6 m. Phần bị cắt rộng 8 − 6 = 2 m (cạnh trên trừ cạnh dưới) và cao 6 − 4 = 2 m (cạnh trái trừ cạnh phải). Vì vậy, chu vi bằng chu vi hình chữ nhật, còn diện tích thì trừ đi phần bị cắt.",
         "tex": "\\begin{gathered} 2 \\cdot (8 + 6) = \\concept{blue}{28}\\ \\mathrm{m} \\\\ 8 \\cdot 6 - 2 \\cdot 2 = \\concept{teal}{44}\\ \\mathrm{m}^{2} \\end{gathered}"
       },
       "segments": [
@@ -4598,7 +4599,7 @@
           },
           {
             "optionId": "c",
-            "text": "6 viên là đếm mỗi viên hai lần."
+            "text": "6 là số cạnh ngoài của hình, không phải số viên đá."
           },
           {
             "optionId": "d",
@@ -4874,7 +4875,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, gạch cạnh 60 cm. Mỗi hàng 25 viên, có 15 hàng, nên cần 375 viên; mỗi thùng 5 viên nên cần 75 thùng. Sách làm cách khác: lấy diện tích sân 135 m² chia cho diện tích một viên 0,36 m², cũng ra 375 viên.",
+        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, gạch cạnh 60 cm. Mỗi hàng 25 viên, có 15 hàng, nên cần 375 viên; mỗi thùng 5 viên nên cần 75 thùng. Sách tính cách khác: sân 15 · 9 = 135 m², một viên 0,6 · 0,6 = 0,36 m², rồi 135 : 0,36 = 375 viên.",
         "tex": "\\begin{gathered} 1\\,500 : 60 = 25 \\\\ 900 : 60 = 15 \\\\ 25 \\cdot 15 = 375 \\\\ 375 : 5 = 75 \\end{gathered}"
       },
       "answer": {
