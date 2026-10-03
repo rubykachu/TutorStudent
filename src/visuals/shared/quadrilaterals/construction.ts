@@ -46,6 +46,12 @@ const RULER_HEIGHT = 28;
 const ARC_HALF_SPAN = 24;
 // How far a guide line runs past the figure, in drawing units.
 const GUIDE_OVERRUN = 26;
+// Where the names of the corners that guide lines pass through are moved from
+// their usual place (away from the middle): the guides leave these corners
+// upward and sideways, so the names go to the free side.
+const PARALLEL_FOURTH_SHIFT: Pt = [6, 24];
+const DIAGONAL_THIRD_SHIFT: Pt = [14, -6];
+const DIAGONAL_FOURTH_SHIFT: Pt = [-10, 22];
 
 export const BOARD_HEIGHT = BASE + RULER_DROP + RULER_HEIGHT + 6;
 
@@ -367,7 +373,15 @@ class Drawing {
     this.named.push(name);
   }
 
-  figure(shape: BoardShape, label: string, first: string, second: string) {
+  // `moved` shifts the names of corners that guide lines run through, so the
+  // name stands in the free quarter beside the corner.
+  figure(
+    shape: BoardShape,
+    label: string,
+    first: string,
+    second: string,
+    moved: Readonly<Record<string, Pt>> = {},
+  ) {
     const { left, width } = LAYOUT[shape];
     return {
       label,
@@ -378,7 +392,7 @@ class Drawing {
       segs: this.segs,
       dots: this.dots,
       names: this.named,
-      nameShift: { [first]: [-4, 2], [second]: [4, 2] },
+      nameShift: { [first]: [-4, 2], [second]: [4, 2], ...moved },
       ruler: { x: left, y: BASE + RULER_DROP, cm: MAX_CM, unit: UNIT },
       arcs: this.arcs,
       rights: this.rights,
@@ -587,6 +601,7 @@ function parallelogramFigure(
     "Bảng vẽ hình bình hành bằng thước, thước đo góc và êke",
     e,
     f,
+    { [h]: PARALLEL_FOURTH_SHIFT },
   );
 }
 
@@ -672,6 +687,7 @@ function diagonalFigure(
     "Bảng vẽ hình bình hành bằng thước, compa và êke",
     a,
     b,
+    { [c]: DIAGONAL_THIRD_SHIFT, [d]: DIAGONAL_FOURTH_SHIFT },
   );
 }
 
