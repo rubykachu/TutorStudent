@@ -35,7 +35,8 @@ export type PrecacheInput = {
   pagePaths: readonly string[];
   lessons: readonly LessonFileInput[];
   contentIndex: { hash: string; bytes: number } | null;
-  // `allSoundUrls()`: every clip except songs.
+  // `offlineSoundUrls()`: every clip except songs (the short clips and the
+  // background music).
   soundUrls: readonly string[];
   soundBytes: number;
   publicFiles: readonly PublicFileInput[];
@@ -57,6 +58,11 @@ export type PrecacheList = {
 // room for about a hundred more lessons.
 export const PRECACHE_BUDGET_BYTES = 50 * 1024 * 1024;
 
+// Largest size of the background music and celebration clips together: they
+// are stored offline only while they stay this small (otherwise the music
+// would be left to the network and skip silently offline).
+export const STORED_MUSIC_BUDGET_BYTES = 1.5 * 1024 * 1024;
+
 // Files of `public/` that never go into the precache, each with the reason.
 // A path ends in "/" for a folder.
 export const PRECACHE_DENY: readonly { path: string; reason: string }[] = [
@@ -64,7 +70,7 @@ export const PRECACHE_DENY: readonly { path: string; reason: string }[] = [
   {
     path: "sounds/",
     reason:
-      "short clips come from `allSoundUrls()` (with their hash in the URL) and songs are never stored",
+      "clips come from `offlineSoundUrls()` (with their hash in the URL: short clips and background music) and songs are never stored",
   },
   {
     path: "content/",

@@ -1,6 +1,11 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  BACKGROUND_MUSIC_IDS,
+  CELEBRATION_IDS,
+  soundUrl,
+} from "@/lib/sound-manifest";
 import {
   buildPrecacheEntries,
   checkBudget,
@@ -8,7 +13,9 @@ import {
   keepBuildFile,
   PRECACHE_BUDGET_BYTES,
   type PrecacheInput,
+  STORED_MUSIC_BUDGET_BYTES,
 } from "@/offline/precache";
+import { appSources } from "@/offline/precache-node";
 
 const BUILD = "20261002000000";
 
@@ -183,6 +190,24 @@ describe("checkBudget", () => {
     expect(() => checkBudget(PRECACHE_BUDGET_BYTES + 1)).toThrow(
       String(PRECACHE_BUDGET_BYTES + 1),
     );
+  });
+});
+
+describe("the stored music", () => {
+  const bytesOf = (url: string) =>
+    statSync(path.join(process.cwd(), "public", url.split("?")[0] ?? "")).size;
+  const urls = [...BACKGROUND_MUSIC_IDS, ...CELEBRATION_IDS].map(
+    (id) => soundUrl(id) ?? "",
+  );
+
+  it("stores the background music and celebrations, so music plays offline", () => {
+    const stored = appSources().soundUrls;
+    for (const url of urls) expect(stored, url).toContain(url);
+  });
+
+  it("keeps the background music and celebrations under their budget", () => {
+    const total = urls.reduce((sum, url) => sum + bytesOf(url), 0);
+    expect(total).toBeLessThan(STORED_MUSIC_BUDGET_BYTES);
   });
 });
 

@@ -4,7 +4,7 @@ import path from "node:path";
 import { lessonContentFile, lessonTipsFile } from "@/content";
 import { servedLessons, servedTipLessonIds } from "@/content/load";
 import { FAVICON_ICO_PATH, MANIFEST_PATH } from "@/lib/brand";
-import { allSoundUrls } from "@/lib/sound-manifest";
+import { offlineSoundUrls } from "@/lib/sound-manifest";
 import {
   isDenied,
   isDotfile,
@@ -34,7 +34,7 @@ export function appSources(): PrecacheSources {
     pagePaths: appPagePaths(),
     lessonIds: servedLessons().map((lesson) => lesson.id),
     tipLessonIds: servedTipLessonIds(),
-    soundUrls: allSoundUrls(),
+    soundUrls: offlineSoundUrls(),
   };
 }
 
