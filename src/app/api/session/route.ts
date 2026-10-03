@@ -1,9 +1,13 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { matchCode, normalizeCode } from "@/access/code";
+import { familyCode, verifyFamilyCode } from "@/access/code";
 import { readAccessConfig } from "@/access/env";
 import { sameOrigin } from "@/access/origin";
 import { FailureLimiter } from "@/access/rate-limit";
-import { issueSessionToken, sessionMaxAgeSeconds } from "@/access/session";
+import {
+  issueSessionToken,
+  resolveFamily,
+  sessionMaxAgeSeconds,
+} from "@/access/session";
 import {
   ACCESS_COOKIE_NAME,
   ACCESS_LOCK_MINUTES,
@@ -34,7 +38,8 @@ function locked(retryAfterSeconds: number) {
   );
 }
 
-// `{ code }` in, the family cookie out when the code is one of `FAMILY_CODES`.
+// `{ code }` in, the family cookie out when the code's signature is right and
+// its family is not revoked.
 export async function POST(request: NextRequest) {
   const config = readAccessConfig();
   if (config.mode === "closed") {
@@ -60,8 +65,9 @@ export async function POST(request: NextRequest) {
   const before = limiter.state(key);
   if (before.locked) return locked(before.retryAfterSeconds);
 
-  const code = matchCode(normalizeCode(input), config.codes);
-  if (code === null) {
+  const found = await verifyFamilyCode(config.codeSecret, input);
+  const familyId = found !== null && !config.revoked.has(found) ? found : null;
+  if (familyId === null) {
     const after = limiter.fail(key);
     return after.locked
       ? locked(after.retryAfterSeconds)
@@ -72,7 +78,7 @@ export async function POST(request: NextRequest) {
   const response = NextResponse.json({ ok: true });
   response.cookies.set({
     name: ACCESS_COOKIE_NAME,
-    value: await issueSessionToken(config.secret, code),
+    value: await issueSessionToken(config, familyId),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -80,4 +86,30 @@ export async function POST(request: NextRequest) {
     maxAge: sessionMaxAgeSeconds(),
   });
   return response;
+}
+
+// The family of this device's cookie and its code, for the parent page to show
+// so a parent can unlock another device. The code is made again from the
+// family id and `FAMILY_CODE_SECRET`; the cookie never holds it. The proxy lets
+// this path through without a cookie (the unlock page posts to it), so the
+// cookie is checked here.
+export async function GET(request: NextRequest) {
+  const config = readAccessConfig();
+  if (config.mode === "closed") {
+    return NextResponse.json({ error: "unavailable" }, { status: 503 });
+  }
+  if (config.mode === "open") {
+    return NextResponse.json({ error: "no-gate" }, { status: 404 });
+  }
+  const familyId = await resolveFamily(
+    config,
+    request.cookies.get(ACCESS_COOKIE_NAME)?.value,
+  );
+  if (familyId === null) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+  return NextResponse.json(
+    { familyId, code: await familyCode(config.codeSecret, familyId) },
+    { headers: { "cache-control": "no-store" } },
+  );
 }

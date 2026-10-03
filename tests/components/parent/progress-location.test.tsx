@@ -21,7 +21,7 @@ describe("where the parent page says progress lives", () => {
   });
 
   it("says other devices show up after they sync once the device syncs", async () => {
-    await writeSyncFamily(appDb(), "nha-minh");
+    await writeSyncFamily(appDb(), "OWL4K7MQ");
     render(<ReportSourceNote />);
     expect(await screen.findByText(REPORT_SOURCE_NOTE.on)).toBeInTheDocument();
     await waitFor(() =>

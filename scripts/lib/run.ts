@@ -1,4 +1,7 @@
 import { spawnSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { ENV_FILE } from "./release-config";
 
 export type ExecResult = { status: number; stdout: string; stderr: string };
 
@@ -37,4 +40,11 @@ export function parseEnvFile(text: string): Record<string, string> {
     env[line.slice(0, eq).trim()] = quoted ? (quoted[2] as string) : value;
   }
   return env;
+}
+
+// The release settings of the checkout at `root` (ENV_FILE), or none when the
+// file is missing.
+export function readReleaseEnv(root: string): Record<string, string> {
+  const file = path.join(root, ENV_FILE);
+  return existsSync(file) ? parseEnvFile(readFileSync(file, "utf8")) : {};
 }

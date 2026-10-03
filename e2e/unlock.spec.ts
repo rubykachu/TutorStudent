@@ -1,7 +1,12 @@
 import { expect, type Page } from "@playwright/test";
 import { APP_NAME, APP_SHORT_NAME, SITE_URL } from "../src/lib/brand";
 import { expectNoHorizontalScroll, expectTouchTargets } from "./layout";
-import { GATE_BASE_URL, GATE_FAMILY_CODE } from "./targets";
+import {
+  e2eFamilyCode,
+  GATE_BASE_URL,
+  GATE_FAMILY_ID,
+  GATE_REVOKED_FAMILY_ID,
+} from "./targets";
 import { test } from "./test";
 
 // These specs run against the second dev server, which has the family-code
@@ -176,7 +181,7 @@ test("a Home Screen launch opens the unlock page once, then the app; the dev ser
   ).json()) as Manifest;
   await page.goto(manifest.start_url);
   await expect(page).toHaveURL(/\/unlock\?next=%2F$/);
-  await enterCode(page, GATE_FAMILY_CODE);
+  await enterCode(page, await e2eFamilyCode(GATE_FAMILY_ID));
   await expect(page).toHaveURL(/\/profiles$/);
   await expect(
     page.getByRole("heading", { level: 1, name: "Chào bạn mới!" }),
@@ -193,6 +198,7 @@ test("a wrong code says so kindly, the right one opens the page asked for and st
   page,
   context,
 }) => {
+  const code = await e2eFamilyCode(GATE_FAMILY_ID);
   await page.goto("/profiles");
   await enterCode(page, "khong-dung-roi");
   await expect(page.locator("[data-unlock-problem=wrong]")).toContainText(
@@ -200,11 +206,8 @@ test("a wrong code says so kindly, the right one opens the page asked for and st
   );
   await expect(page).toHaveURL(/\/unlock/);
 
-  // Capitals and spaces are forgiven.
-  await enterCode(
-    page,
-    ` ${GATE_FAMILY_CODE.toUpperCase().replace(/-/g, " ")} `,
-  );
+  // Lowercase and spaces instead of the dash are forgiven.
+  await enterCode(page, ` ${code.toLowerCase().replace(/-/g, " ")} `);
   await expect(page).toHaveURL(/\/profiles$/);
 
   // The proof is a cookie the page cannot read, and it outlasts a reload.
@@ -235,7 +238,48 @@ test("too many wrong codes ask the child to rest, even for the right code", asyn
   await expect(page.locator("[data-unlock-problem=locked]")).toContainText(
     "Nghỉ một chút",
   );
-  await enterCode(page, GATE_FAMILY_CODE);
+  await enterCode(page, await e2eFamilyCode(GATE_FAMILY_ID));
   await expect(page.locator("[data-unlock-problem=locked]")).toBeVisible();
   await expect(page).toHaveURL(/\/unlock/);
+});
+
+test("a revoked family's code and a code with a wrong signature are refused", async ({
+  page,
+}) => {
+  await page.goto("/unlock");
+  await enterCode(page, await e2eFamilyCode(GATE_REVOKED_FAMILY_ID));
+  await expect(page.locator("[data-unlock-problem=wrong]")).toBeVisible();
+  // The right family id with another family's signature.
+  const forged = `${GATE_FAMILY_ID}-${(await e2eFamilyCode(GATE_REVOKED_FAMILY_ID)).split("-")[1]}`;
+  await enterCode(page, forged);
+  await expect(page.locator("[data-unlock-problem=wrong]")).toBeVisible();
+  await expect(page).toHaveURL(/\/unlock/);
+});
+
+test("the parent page shows the family code behind the PIN, the child screens never do", async ({
+  page,
+}) => {
+  const code = await e2eFamilyCode(GATE_FAMILY_ID);
+  await page.goto("/profiles");
+  await enterCode(page, code);
+  await expect(page).toHaveURL(/\/profiles$/);
+  await expect(page.locator("[data-family-code]")).toHaveCount(0);
+  await expect(page.getByText(code)).toHaveCount(0);
+
+  await page.goto("/parent");
+  await expect(page.locator("[data-family-code]")).toHaveCount(0);
+  for (const [label, button] of [
+    ["PIN mới", "Tiếp tục"],
+    ["Nhập lại PIN để xác nhận", "Lưu PIN"],
+  ] as const) {
+    await page.getByLabel(label).fill("2468");
+    await page.getByRole("button", { name: button }).click();
+  }
+  const panel = page.getByRole("region", { name: "Mã gia đình" });
+  await expect(panel.locator("[data-family-code]")).toHaveText(code);
+  await expect(panel).toContainText(
+    "Dùng mã này để đăng nhập trên máy khác của gia đình.",
+  );
+  await expect(panel.getByRole("button", { name: "Chép mã" })).toBeVisible();
+  await expectNoHorizontalScroll(page);
 });

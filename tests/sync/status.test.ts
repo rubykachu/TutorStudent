@@ -24,11 +24,11 @@ import {
 } from "@/sync/status";
 import {
   CHILD,
-  CODE,
   cookieFor,
+  FAMILY,
   type Harness,
   harness,
-  OTHER_CODE,
+  OTHER_FAMILY,
 } from "../api/sync-helpers";
 import {
   addProfile,
@@ -60,7 +60,7 @@ async function syncedDevice() {
   const db = openDevice();
   opened.push(db);
   const net = network(h);
-  net.cookie = await cookieFor(CODE);
+  net.cookie = await cookieFor(FAMILY);
   await addProfile(db);
   const engine = createSyncEngine({
     db,
@@ -83,7 +83,7 @@ const child = (over: Partial<ChildSyncStatus> = {}): ChildSyncStatus => ({
 });
 
 const status = (over: Partial<DeviceSyncStatus> = {}): DeviceSyncStatus => ({
-  familyId: "nha-minh",
+  familyId: "OWL4K7MQ",
   profileError: null,
   lastSyncAt: NOW.toISOString(),
   profileUnsent: false,
@@ -104,7 +104,7 @@ describe("readSyncStatus", () => {
     await d.sync();
     const synced = await readSyncStatus(d.db);
     expect(synced).toMatchObject({
-      familyId: "nha-minh",
+      familyId: "OWL4K7MQ",
       profileError: null,
       profileUnsent: false,
       lastSyncAt: NOW.toISOString(),
@@ -133,7 +133,7 @@ describe("readSyncStatus", () => {
   it("flags a cookie of another family and offers the switch only when nothing is unsent", async () => {
     const d = await syncedDevice();
     await d.sync();
-    d.net.cookie = await cookieFor(OTHER_CODE);
+    d.net.cookie = await cookieFor(OTHER_FAMILY);
     await d.sync();
     const clean = (await readSyncStatus(d.db)) as DeviceSyncStatus;
     expect(isFamilyMismatch(clean)).toBe(true);
@@ -219,7 +219,7 @@ describe("clearLocalFamilyData", () => {
     await setSetting(d.db, DEVICE_SCOPE, ACTIVE_PROFILE_KEY, CHILD);
     await setSetting(d.db, DEVICE_SCOPE, "parentPin", "pin-hash");
     await setSetting(d.db, scope, "soundEnabled", false);
-    expect(await readSyncFamily(d.db)).toBe("nha-minh");
+    expect(await readSyncFamily(d.db)).toBe("OWL4K7MQ");
 
     await clearLocalFamilyData(d.db);
 

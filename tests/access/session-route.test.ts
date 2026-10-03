@@ -1,9 +1,30 @@
 import { NextRequest } from "next/server";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
+import { familyCode } from "@/access/code";
+import { issueSessionToken } from "@/access/session";
 import { ACCESS_COOKIE_NAME, ACCESS_MAX_FAILS } from "@/lib/config";
+import {
+  CODE_SECRET,
+  FAMILY,
+  gateConfig,
+  OTHER_FAMILY,
+  SESSION_SECRET,
+} from "./helpers";
 
-const CODE = "Sao-Bien-4k7m";
 const HOST = "tutor.example";
+let CODE = "";
+
+beforeAll(async () => {
+  CODE = await familyCode(CODE_SECRET, FAMILY);
+});
 
 function post(body: unknown, headers: Record<string, string> = {}) {
   return new NextRequest(`https://${HOST}/api/session`, {
@@ -25,9 +46,23 @@ async function route() {
   return (await import("@/app/api/session/route")).POST;
 }
 
+async function getRoute() {
+  vi.resetModules();
+  return (await import("@/app/api/session/route")).GET;
+}
+
+function get(cookie?: string) {
+  return new NextRequest(`https://${HOST}/api/session`, {
+    headers: cookie
+      ? { host: HOST, cookie: `${ACCESS_COOKIE_NAME}=${cookie}` }
+      : { host: HOST },
+  });
+}
+
 beforeEach(() => {
-  vi.stubEnv("FAMILY_CODES", CODE);
-  vi.stubEnv("SESSION_SECRET", "a-secret-of-at-least-thirty-two-characters");
+  vi.stubEnv("FAMILY_CODE_SECRET", CODE_SECRET);
+  vi.stubEnv("SESSION_SECRET", SESSION_SECRET);
+  vi.stubEnv("FAMILY_CODES_REVOKED", "");
   vi.stubEnv("NODE_ENV", "production");
 });
 
@@ -38,7 +73,8 @@ afterEach(() => {
 
 describe("POST /api/session", () => {
   it("sets an httpOnly family cookie for a right code typed loosely", async () => {
-    const response = await (await route())(post({ code: " sao bien 4K7M " }));
+    const typed = ` ${CODE.toLowerCase().replace("-", " ")} `;
+    const response = await (await route())(post({ code: typed }));
     expect(response.status).toBe(200);
     const cookie = response.cookies.get(ACCESS_COOKIE_NAME);
     expect(cookie?.httpOnly).toBe(true);
@@ -46,17 +82,21 @@ describe("POST /api/session", () => {
     expect(cookie?.sameSite).toBe("lax");
     expect(cookie?.path).toBe("/");
     expect(cookie?.maxAge).toBe(365 * 24 * 60 * 60);
-    expect(cookie?.value).not.toContain("saobien4k7m");
+    expect(cookie?.value.split(".")[2]).toBe(FAMILY);
+    expect(cookie?.value).not.toContain(CODE.split("-")[1]);
   });
 
-  it("takes the code of a named entry and issues the same cookie as a bare one", async () => {
-    const bare = await (await route())(post({ code: CODE }));
-    vi.stubEnv("FAMILY_CODES", `nha-minh:${CODE}`);
-    const named = await (await route())(post({ code: CODE }));
-    expect(named.status).toBe(200);
-    const fingerprint = (response: typeof bare) =>
-      response.cookies.get(ACCESS_COOKIE_NAME)?.value.split(".")[2];
-    expect(fingerprint(named)).toBe(fingerprint(bare));
+  it("answers a revoked family's right code like a wrong one", async () => {
+    vi.stubEnv("FAMILY_CODES_REVOKED", FAMILY);
+    const response = await (await route())(post({ code: CODE }));
+    expect(response.status).toBe(401);
+    expect(response.cookies.get(ACCESS_COOKIE_NAME)).toBeUndefined();
+  });
+
+  it("refuses a code whose signature belongs to another family", async () => {
+    const other = await familyCode(CODE_SECRET, OTHER_FAMILY);
+    const forged = `${FAMILY}-${other.split("-")[1]}`;
+    expect((await (await route())(post({ code: forged }))).status).toBe(401);
   });
 
   it("answers a wrong code with 401 and no cookie", async () => {
@@ -116,10 +156,45 @@ describe("POST /api/session", () => {
   });
 
   it("answers 503 when production has no valid setup, and 404 without a gate", async () => {
-    vi.stubEnv("SESSION_SECRET", "");
+    vi.stubEnv("FAMILY_CODE_SECRET", "");
     expect((await (await route())(post({ code: CODE }))).status).toBe(503);
-    vi.stubEnv("FAMILY_CODES", "");
+    vi.stubEnv("SESSION_SECRET", "");
     vi.stubEnv("NODE_ENV", "development");
     expect((await (await route())(post({ code: CODE }))).status).toBe(404);
+  });
+});
+
+describe("GET /api/session", () => {
+  it("gives the family id and code of the device's cookie, never cached", async () => {
+    const cookie = await issueSessionToken(gateConfig(), FAMILY);
+    const response = await (await getRoute())(get(cookie));
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(await response.json()).toEqual({ familyId: FAMILY, code: CODE });
+  });
+
+  it("answers 401 without a valid cookie", async () => {
+    const handler = await getRoute();
+    expect((await handler(get())).status).toBe(401);
+    expect((await handler(get("v2.1.OWL4K7MQ.00.AA"))).status).toBe(401);
+    const stale = await issueSessionToken(
+      gateConfig({ codeSecret: `${CODE_SECRET}-old` }),
+      FAMILY,
+    );
+    expect((await handler(get(stale))).status).toBe(401);
+  });
+
+  it("answers 401 for a revoked family's cookie", async () => {
+    const cookie = await issueSessionToken(gateConfig(), FAMILY);
+    vi.stubEnv("FAMILY_CODES_REVOKED", FAMILY);
+    expect((await (await getRoute())(get(cookie))).status).toBe(401);
+  });
+
+  it("answers 503 when production has no valid setup, and 404 without a gate", async () => {
+    vi.stubEnv("FAMILY_CODE_SECRET", "");
+    expect((await (await getRoute())(get())).status).toBe(503);
+    vi.stubEnv("SESSION_SECRET", "");
+    vi.stubEnv("NODE_ENV", "development");
+    expect((await (await getRoute())(get())).status).toBe(404);
   });
 });

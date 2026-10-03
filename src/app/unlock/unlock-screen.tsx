@@ -92,7 +92,7 @@ export function UnlockScreen({ next }: UnlockScreenProps) {
             onChange={(event) => setCode(event.target.value)}
             maxLength={100}
             autoComplete="off"
-            autoCapitalize="none"
+            autoCapitalize="characters"
             autoCorrect="off"
             spellCheck={false}
             enterKeyHint="go"

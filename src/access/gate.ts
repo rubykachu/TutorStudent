@@ -1,7 +1,7 @@
 import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
 import { WORKER_PATH } from "@/offline/config";
 import type { AccessConfig } from "./env";
-import { verifySessionToken } from "./session";
+import { resolveFamily } from "./session";
 
 export const UNLOCK_PATH = "/unlock";
 export const SESSION_API_PATH = "/api/session";
@@ -59,7 +59,7 @@ export async function decideAccess(
 
   const unlocked =
     config.mode === "open" ||
-    (await verifySessionToken(config.secret, config.codes, token, nowMs));
+    (await resolveFamily(config, token, nowMs)) !== null;
 
   if (pathname === UNLOCK_PATH) {
     if (!unlocked) return { kind: "allow" };

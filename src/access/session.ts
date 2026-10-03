@@ -1,40 +1,22 @@
-import { ACCESS_SESSION_DAYS } from "@/lib/config";
-import type { AccessConfig } from "./env";
+import { ACCESS_SESSION_DAYS, FAMILY_ID_PATTERN } from "@/lib/config";
+import { codeSignature } from "./code";
+import type { AccessConfig, GateConfig } from "./env";
+import { hmacSign, hmacVerify, sameText } from "./hmac";
 
 // The cookie value proving a device unlocked the app:
-// `v1.<expiry, unix seconds>.<code fingerprint>.<signature>`.
-// The fingerprint is a keyed hash of the code that was entered, so removing
-// that code from `FAMILY_CODES` stops its cookies while other families keep
-// theirs, and changing `SESSION_SECRET` stops every cookie. The cookie never
-// holds the code itself. Web Crypto only, so it runs in the proxy and in
+// `v2.<expiry, unix seconds>.<family id>.<code fingerprint>.<signature>`,
+// signed with `SESSION_SECRET`. The fingerprint is a keyed hash of the
+// family's code signature, so the cookie stops working when the family id is
+// put in `FAMILY_CODES_REVOKED`, when `FAMILY_CODE_SECRET` changes (every code
+// changes with it) or when `SESSION_SECRET` changes. The cookie never holds
+// the code or its signature. Web Crypto only, so it runs in the proxy and in
 // route handlers alike.
 
-const VERSION = "v1";
-const encoder = new TextEncoder();
+const VERSION = "v2";
 
-async function hmacKey(secret: string, usage: "sign" | "verify") {
-  return crypto.subtle.importKey(
-    "raw",
-    encoder.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    [usage],
-  );
-}
-
-function toBytes(text: string): ArrayBuffer {
-  const bytes = encoder.encode(text);
-  return bytes.buffer.slice(
-    bytes.byteOffset,
-    bytes.byteOffset + bytes.byteLength,
-  ) as ArrayBuffer;
-}
-
-function base64Url(buffer: ArrayBuffer): string {
+function base64Url(bytes: Uint8Array): string {
   let binary = "";
-  for (const byte of new Uint8Array(buffer)) {
-    binary += String.fromCharCode(byte);
-  }
+  for (const byte of bytes) binary += String.fromCharCode(byte);
   return btoa(binary)
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
@@ -53,21 +35,16 @@ function fromBase64Url(text: string): ArrayBuffer | null {
   }
 }
 
-async function sign(secret: string, message: string): Promise<ArrayBuffer> {
-  return crypto.subtle.sign(
-    "HMAC",
-    await hmacKey(secret, "sign"),
-    toBytes(message),
-  );
-}
-
-// A keyed hash of a normalised code: stable for the same code and secret.
-export async function codeFingerprint(
-  secret: string,
-  normalizedCode: string,
+// A keyed hash of the family's current code: the same while both secrets
+// stay, different once either changes.
+async function codeFingerprint(
+  config: GateConfig,
+  familyId: string,
 ): Promise<string> {
-  const digest = new Uint8Array(
-    await sign(secret, `family-code:${normalizedCode}`),
+  const signature = await codeSignature(config.codeSecret, familyId);
+  const digest = await hmacSign(
+    config.sessionSecret,
+    `family-code:${familyId}.${signature}`,
   );
   return Array.from(digest.slice(0, 8), (b) =>
     b.toString(16).padStart(2, "0"),
@@ -79,71 +56,47 @@ export function sessionMaxAgeSeconds(): number {
 }
 
 export async function issueSessionToken(
-  secret: string,
-  normalizedCode: string,
+  config: GateConfig,
+  familyId: string,
   nowMs: number = Date.now(),
 ): Promise<string> {
   const expires = Math.floor(nowMs / 1000) + sessionMaxAgeSeconds();
-  const fingerprint = await codeFingerprint(secret, normalizedCode);
-  const payload = `${VERSION}.${expires}.${fingerprint}`;
-  return `${payload}.${base64Url(await sign(secret, payload))}`;
+  const fingerprint = await codeFingerprint(config, familyId);
+  const payload = `${VERSION}.${expires}.${familyId}.${fingerprint}`;
+  return `${payload}.${base64Url(await hmacSign(config.sessionSecret, payload))}`;
 }
 
-// The normalised code among `normalizedCodes` the token was made from, when
-// the token is signed with `secret` and not expired; otherwise null.
-export async function matchSessionCode(
-  secret: string,
-  normalizedCodes: readonly string[],
-  token: string | undefined,
-  nowMs: number = Date.now(),
-): Promise<string | null> {
-  if (!token) return null;
-  const parts = token.split(".");
-  if (parts.length !== 4 || parts[0] !== VERSION) return null;
-  const [, expiresText, fingerprint, signature] = parts;
-  const signatureBytes = fromBase64Url(signature);
-  if (!signatureBytes) return null;
-  const valid = await crypto.subtle.verify(
-    "HMAC",
-    await hmacKey(secret, "verify"),
-    signatureBytes,
-    toBytes(`${VERSION}.${expiresText}.${fingerprint}`),
-  );
-  if (!valid) return null;
-  const expires = Number(expiresText);
-  if (!Number.isFinite(expires) || expires * 1000 <= nowMs) return null;
-  for (const code of normalizedCodes) {
-    if ((await codeFingerprint(secret, code)) === fingerprint) return code;
-  }
-  return null;
-}
-
-// True when the token is signed with `secret`, not expired, and made from one
-// of the codes still in `normalizedCodes`.
-export async function verifySessionToken(
-  secret: string,
-  normalizedCodes: readonly string[],
-  token: string | undefined,
-  nowMs: number = Date.now(),
-): Promise<boolean> {
-  return (
-    (await matchSessionCode(secret, normalizedCodes, token, nowMs)) !== null
-  );
-}
-
-// The family id of the entry the cookie was made from. Null when the cookie is
-// not valid, or when its code is listed without a family id.
+// The family id the cookie was issued to, when the gate is on, the cookie is
+// signed with today's secrets, not expired, and its family is not revoked;
+// otherwise null. The only source of a family id on the server.
 export async function resolveFamily(
   config: AccessConfig,
   token: string | undefined,
   nowMs: number = Date.now(),
 ): Promise<string | null> {
-  if (config.mode !== "gate") return null;
-  const code = await matchSessionCode(
-    config.secret,
-    config.codes,
-    token,
-    nowMs,
+  if (config.mode !== "gate" || !token) return null;
+  const parts = token.split(".");
+  if (parts.length !== 5 || parts[0] !== VERSION) return null;
+  const [, expiresText, familyId, fingerprint, signature] = parts as [
+    string,
+    string,
+    string,
+    string,
+    string,
+  ];
+  const signatureBytes = fromBase64Url(signature);
+  if (!signatureBytes) return null;
+  const valid = await hmacVerify(
+    config.sessionSecret,
+    signatureBytes,
+    `${VERSION}.${expiresText}.${familyId}.${fingerprint}`,
   );
-  return code === null ? null : (config.families.get(code) ?? null);
+  if (!valid) return null;
+  const expires = Number(expiresText);
+  if (!Number.isFinite(expires) || expires * 1000 <= nowMs) return null;
+  if (!FAMILY_ID_PATTERN.test(familyId) || config.revoked.has(familyId)) {
+    return null;
+  }
+  const current = await codeFingerprint(config, familyId);
+  return sameText(current, fingerprint) ? familyId : null;
 }

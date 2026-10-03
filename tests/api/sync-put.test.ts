@@ -18,7 +18,6 @@ import {
   type Harness,
   harness,
   historyDoc,
-  OTHER_CODE,
   OTHER_FAMILY,
   profileDoc,
   request,
@@ -359,7 +358,7 @@ describe("PUT /api/sync, request checks", () => {
 
   it("never writes into another family's folder", async () => {
     const h = await seeded();
-    const other = await cookieFor(OTHER_CODE);
+    const other = await cookieFor(OTHER_FAMILY);
     const foreign = await h.service.put(
       await request("PUT", `?child=${CHILD}`, {
         cookie: other,

@@ -12,7 +12,6 @@ import { readChildDoc } from "@/sync/local";
 import { PENDING_MONTH, readSyncState, updateSyncState } from "@/sync/state";
 import {
   CHILD,
-  CODE,
   cookieFor,
   FAMILY,
   type Harness,
@@ -40,7 +39,7 @@ async function device(withProfile: boolean): Promise<Device> {
   const db = openDevice();
   opened.push(db);
   const net = network(h);
-  net.cookie = await cookieFor(CODE);
+  net.cookie = await cookieFor(FAMILY);
   if (withProfile) await addProfile(db);
   const engine = createSyncEngine({
     db,

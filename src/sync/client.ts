@@ -8,7 +8,7 @@ export const SYNC_ENDPOINT = "/api/sync";
 
 // Why a request did not give a doc.
 export type FailReason =
-  // Sync is off on the server (no store, no family name, no gate).
+  // Sync is off on the server (no store, no gate).
   | "unavailable"
   // No or rejected family cookie.
   | "unauthorized"

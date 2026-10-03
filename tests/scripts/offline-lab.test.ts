@@ -56,7 +56,8 @@ describe("the lab environment", () => {
   it("overrides every setting that could reach a real service", () => {
     const env = labEnv({
       NEXT_PUBLIC_MEDIA_BASE_URL: "https://media.real.example",
-      FAMILY_CODES: "real:realrealreal",
+      FAMILY_CODE_SECRET: "real-code-secret-real-code-secret-xx",
+      FAMILY_CODES_REVOKED: "OWLREAL0",
       SESSION_SECRET: "real-secret-real-secret-real-secret-xx",
       R2_ACCOUNT_ID: "0123456789abcdef0123456789abcdef",
       R2_ACCESS_KEY_ID: "key",
@@ -68,7 +69,8 @@ describe("the lab environment", () => {
     });
     expect(env.NODE_ENV).toBe("production");
     expect(env.NEXT_PUBLIC_MEDIA_BASE_URL).toBe("");
-    expect(env.FAMILY_CODES).toBe(OFFLINE_SERVER_ENV.FAMILY_CODES);
+    expect(env.FAMILY_CODE_SECRET).toBe(OFFLINE_SERVER_ENV.FAMILY_CODE_SECRET);
+    expect(env.FAMILY_CODES_REVOKED).toBe("");
     expect(env.SESSION_SECRET).toBe(OFFLINE_SERVER_ENV.SESSION_SECRET);
     for (const name of [
       "R2_ACCOUNT_ID",

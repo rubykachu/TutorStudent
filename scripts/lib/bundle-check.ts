@@ -1,6 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { parseFamilyCodes } from "../../src/access/env";
 import { WORKER_FILE } from "../../src/offline/config";
 import { R2_ENV_NAMES } from "../../src/sync/store/config";
 
@@ -14,7 +13,8 @@ import { R2_ENV_NAMES } from "../../src/sync/store/config";
 export const SERVER_ONLY_ENV_NAMES = [
   ...R2_ENV_NAMES,
   "SESSION_SECRET",
-  "FAMILY_CODES",
+  "FAMILY_CODE_SECRET",
+  "FAMILY_CODES_REVOKED",
   "SYNC_STORE",
 ] as const;
 
@@ -25,6 +25,7 @@ const SECRET_VALUE_NAMES = [
   "R2_ACCESS_KEY_ID",
   "R2_SECRET_ACCESS_KEY",
   "SESSION_SECRET",
+  "FAMILY_CODE_SECRET",
 ] as const;
 
 // Shorter values are skipped: they would match by chance.
@@ -43,12 +44,6 @@ function secretValues(env: Env): { label: string; value: string }[] {
     label: `value of ${name}`,
     value: (env[name] ?? "").trim(),
   }));
-  const codes = parseFamilyCodes(env.FAMILY_CODES);
-  if ("entries" in codes) {
-    for (const entry of codes.entries) {
-      values.push({ label: "a code of FAMILY_CODES", value: entry.code });
-    }
-  }
   return values.filter(({ value }) => value.length >= MIN_SECRET_LENGTH);
 }
 

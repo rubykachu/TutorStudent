@@ -18,8 +18,9 @@ import {
 } from "./flows";
 import { SILENCE_MEDIA_SCRIPT } from "./silence";
 import {
+  e2eFamilyCode,
   OFFLINE_BASE_URL,
-  OFFLINE_FAMILY_CODE,
+  OFFLINE_FAMILY_ID,
   TARGET_DEVICES,
 } from "./targets";
 
@@ -74,7 +75,7 @@ async function newDevice(browser: Browser): Promise<BrowserContext> {
 
 async function unlock(target: BrowserContext) {
   const response = await target.request.post("/api/session", {
-    data: { code: OFFLINE_FAMILY_CODE },
+    data: { code: await e2eFamilyCode(OFFLINE_FAMILY_ID) },
     headers: { origin: BASE },
   });
   expect(response.status()).toBe(200);

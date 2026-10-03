@@ -111,7 +111,7 @@ describe("buildWorker", () => {
     // A worker has no `process`: evaluating one would fail.
     expect(script).not.toMatch(/process\.env/);
     expect(script).not.toContain("SESSION_SECRET");
-    expect(script).not.toContain("FAMILY_CODES");
+    expect(script).not.toContain("FAMILY_CODE_SECRET");
     expect(result.entries).toBe(2 + 3);
   });
 

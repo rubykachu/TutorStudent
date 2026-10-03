@@ -4,14 +4,15 @@ import os from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
-  firstFamilyCode,
   parseDeployArgs,
   pickMediaKey,
   runDeploy,
   runSmokeChecks,
+  smokeFamilyCode,
 } from "../../scripts/lib/deploy-prod";
-import { PROD_URL } from "../../scripts/lib/release-config";
+import { PROD_URL, SMOKE_FAMILY_ID } from "../../scripts/lib/release-config";
 import { type Exec, parseEnvFile } from "../../scripts/lib/run";
+import { verifyFamilyCode } from "../../src/access/code";
 import { ACCESS_COOKIE_NAME } from "../../src/lib/config";
 
 describe("parseDeployArgs", () => {
@@ -169,18 +170,20 @@ describe("runSmokeChecks", () => {
   });
 });
 
-describe("firstFamilyCode", () => {
-  it("takes the code of the first entry, named or bare", () => {
-    expect(firstFamilyCode("nha-minh:Sao-Bien 4k7m,nha-an:other")).toBe(
-      "saobien4k7m",
+const CODE_SECRET = "a-code-secret-of-at-least-thirty-two-chars";
+
+describe("smokeFamilyCode", () => {
+  it("is the smoke family's code under FAMILY_CODE_SECRET", async () => {
+    const code = await smokeFamilyCode({ FAMILY_CODE_SECRET: CODE_SECRET });
+    expect(code).not.toBeNull();
+    expect(await verifyFamilyCode(CODE_SECRET, code as string)).toBe(
+      SMOKE_FAMILY_ID,
     );
-    expect(firstFamilyCode(" Sao-Bien 4k7m ,x")).toBe("saobien4k7m");
   });
 
-  it("returns null when there is no usable entry", () => {
-    expect(firstFamilyCode(undefined)).toBeNull();
-    expect(firstFamilyCode("")).toBeNull();
-    expect(firstFamilyCode("BAD_NAME:abcdefghijk")).toBeNull();
+  it("returns null without a usable secret", async () => {
+    expect(await smokeFamilyCode({})).toBeNull();
+    expect(await smokeFamilyCode({ FAMILY_CODE_SECRET: "short" })).toBeNull();
   });
 });
 
@@ -234,7 +237,7 @@ describe("runDeploy", () => {
     const root = mkdtempSync(path.join(os.tmpdir(), "deploy-root-"));
     writeFileSync(
       path.join(root, ".env.production.local"),
-      "FAMILY_CODES=nha-minh:Code-1 abc,nha-an:code-2\nNEXT_PUBLIC_MEDIA_BASE_URL=https://media.test\n",
+      `FAMILY_CODE_SECRET=${CODE_SECRET}\nNEXT_PUBLIC_MEDIA_BASE_URL=https://media.test\n`,
     );
     mkdirSync(path.join(root, "public/media/video/a"), { recursive: true });
     writeFileSync(path.join(root, "public/media/video/a/x.mp4"), "x");
@@ -258,8 +261,14 @@ describe("runDeploy", () => {
       log,
     });
     expect(code).toBe(0);
-    // The login sends the code part of the first entry, not `nha-minh:...`.
-    expect(logins).toEqual([{ code: "code1abc" }]);
+    // The login sends the smoke family's code, made from the secret.
+    expect(logins).toEqual([
+      { code: await smokeFamilyCode({ FAMILY_CODE_SECRET: CODE_SECRET }) },
+    ]);
+    // Neither the code nor the secret reaches the log.
+    const out = lines.join("\n");
+    expect(out).not.toContain(CODE_SECRET);
+    expect(out).not.toContain(SMOKE_FAMILY_ID);
     expect(calls).toContain("git rev-parse --verify 1e10fc2^{commit}");
     expect(
       calls

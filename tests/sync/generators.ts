@@ -15,7 +15,7 @@ import {
 // pools so equal timestamps, equal ids and records on both sides of a reset
 // show up in most generated cases.
 
-export const FAMILY = "nha-minh";
+export const FAMILY = "OWL4K7MQ";
 export const CHILD = "3f9c2a7be1d04c58a6b7f0e2c4d91a35";
 export const MONTH = "2026-10";
 

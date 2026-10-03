@@ -64,6 +64,13 @@ describe("strictness", () => {
       false,
     );
     expect(migrateDoc("child", { ...child(), familyId: "A" }).ok).toBe(false);
+    expect(migrateDoc("child", { ...child(), familyId: "nha-minh" }).ok).toBe(
+      false,
+    );
+    // The device's own family id, carried by backup files.
+    expect(migrateDoc("child", { ...child(), familyId: "local" }).ok).toBe(
+      true,
+    );
     expect(migrateDoc("child", { ...child(), familyId: "../x1" }).ok).toBe(
       false,
     );

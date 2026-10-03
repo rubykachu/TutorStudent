@@ -1,13 +1,20 @@
-import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { mkdtempSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { parseArgs } from "node:util";
-import { parseFamilyCodes } from "../../src/access/env";
+import { familyCode } from "../../src/access/code";
+import { readFamilyCodeSecret } from "../../src/access/env";
 import { ACCESS_COOKIE_NAME } from "../../src/lib/config";
 import { WORKER_PATH } from "../../src/offline/config";
 import { listMediaLessons, selectLessonFiles } from "./media-upload";
-import { ENV_FILE, PROD_URL, VERCEL, VERCEL_PROJECT } from "./release-config";
-import { type Exec, parseEnvFile } from "./run";
+import {
+  ENV_FILE,
+  PROD_URL,
+  SMOKE_FAMILY_ID,
+  VERCEL,
+  VERCEL_PROJECT,
+} from "./release-config";
+import { type Exec, readReleaseEnv } from "./run";
 
 export const DEFAULT_DEPLOY_REF = "HEAD";
 
@@ -53,7 +60,8 @@ export type SmokeCheck = { name: string; ok: boolean; detail: string };
 export type SmokeInput = {
   fetch: typeof fetch;
   appUrl: string;
-  // First family code, or null when the env file has none.
+  // The smoke family's code, or null when the env file has no usable
+  // FAMILY_CODE_SECRET.
   code: string | null;
   // Full URL of one media file, or null when none can be chosen.
   mediaUrl: string | null;
@@ -111,7 +119,7 @@ export async function runSmokeChecks(input: SmokeInput): Promise<SmokeCheck[]> {
 
   let cookie: string | null = null;
   await attempt("login with the family code", async () => {
-    if (!code) return [false, `no FAMILY_CODES in ${ENV_FILE}`];
+    if (!code) return [false, `no valid FAMILY_CODE_SECRET in ${ENV_FILE}`];
     const response = await get(`${appUrl}/api/session`, {
       method: "POST",
       headers: { "content-type": "application/json", origin: appUrl },
@@ -178,11 +186,13 @@ export function pickMediaKey(root: string): string | null {
   return null;
 }
 
-// The code part of the first `FAMILY_CODES` entry (the entry may be written
-// `<familyId>:<code>`), or null when there is none or the list is invalid.
-export function firstFamilyCode(raw: string | undefined): string | null {
-  const parsed = parseFamilyCodes(raw);
-  return "entries" in parsed ? (parsed.entries[0]?.code ?? null) : null;
+// The code of the smoke family (SMOKE_FAMILY_ID), made from the
+// FAMILY_CODE_SECRET of `env`, or null when that secret is missing or invalid.
+export async function smokeFamilyCode(
+  env: Record<string, string | undefined>,
+): Promise<string | null> {
+  const read = readFamilyCodeSecret(env);
+  return "error" in read ? null : familyCode(read.secret, SMOKE_FAMILY_ID);
 }
 
 export type DeployDeps = {
@@ -191,11 +201,6 @@ export type DeployDeps = {
   fetch: typeof fetch;
   log: (line: string) => void;
 };
-
-function readEnv(root: string): Record<string, string> {
-  const file = path.join(root, ENV_FILE);
-  return existsSync(file) ? parseEnvFile(readFileSync(file, "utf8")) : {};
-}
 
 // Returns the process exit code.
 export async function runDeploy(
@@ -287,13 +292,13 @@ export async function runDeploy(
     return 1;
   }
 
-  const env = readEnv(root);
+  const env = readReleaseEnv(root);
   const base = env.NEXT_PUBLIC_MEDIA_BASE_URL;
   const mediaKey = pickMediaKey(root);
   const checks = await runSmokeChecks({
     fetch: deps.fetch,
     appUrl: PROD_URL,
-    code: firstFamilyCode(env.FAMILY_CODES),
+    code: await smokeFamilyCode(env),
     mediaUrl: base && mediaKey ? `${base}/${mediaKey}` : null,
   });
   log(`smoke checks against ${PROD_URL}:`);

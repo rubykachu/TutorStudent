@@ -23,8 +23,8 @@ import { localMonths } from "@/sync/local-history";
 import { canonicalText } from "@/sync/schema";
 import {
   CHILD,
-  CODE,
   cookieFor,
+  FAMILY,
   type Harness,
   harness,
 } from "../api/sync-helpers";
@@ -240,7 +240,7 @@ describe("import of an export", () => {
     const target = device();
     await addProfile(target);
     const net = network(h);
-    net.cookie = await cookieFor(CODE);
+    net.cookie = await cookieFor(FAMILY);
     const engine = createSyncEngine({
       db: target,
       api: createSyncApi(net.fetch),
@@ -250,11 +250,11 @@ describe("import of an export", () => {
     });
     await engine.run({ full: true });
     const months = async () => localMonths(target, CHILD);
-    const clean = await dirtyDocs(target, "nha-minh", CHILD, await months());
+    const clean = await dirtyDocs(target, "OWL4K7MQ", CHILD, await months());
     expect(clean.main.dirty).toBe(false);
 
     await importBackup(target, await plan(target, text));
-    const report = await dirtyDocs(target, "nha-minh", CHILD, await months());
+    const report = await dirtyDocs(target, "OWL4K7MQ", CHILD, await months());
     expect(report.main.dirty).toBe(true);
     expect(report.months.map((m) => [m.month, m.dirty])).toEqual([
       ["2026-08", true],
@@ -263,7 +263,7 @@ describe("import of an export", () => {
     ]);
     // The next full sync sends all of it.
     await engine.run({ full: true });
-    const after = await dirtyDocs(target, "nha-minh", CHILD, await months());
+    const after = await dirtyDocs(target, "OWL4K7MQ", CHILD, await months());
     expect(after.main.dirty).toBe(false);
     expect(after.months.some((m) => m.dirty)).toBe(false);
   });
@@ -306,7 +306,7 @@ describe("import of a file with times in the future", () => {
 describe("import of a snapshot", () => {
   it("merges the state of a child the device has", async () => {
     const source = await studied();
-    const snapshot = await readChildDoc(source, CHILD, "nha-minh");
+    const snapshot = await readChildDoc(source, CHILD, "OWL4K7MQ");
     const target = device();
     await addProfile(target);
     const p = await plan(target, JSON.stringify(snapshot));
@@ -317,7 +317,7 @@ describe("import of a snapshot", () => {
       createsProfile: false,
     });
     await importBackup(target, p);
-    const doc = await readChildDoc(target, CHILD, "nha-minh");
+    const doc = await readChildDoc(target, CHILD, "OWL4K7MQ");
     expect(doc.sections).toEqual(snapshot.sections);
     expect(doc.cards).toHaveLength(3);
     expect(await listAttempts(target, scope)).toHaveLength(0);
@@ -326,7 +326,7 @@ describe("import of a snapshot", () => {
   it("brings a reset dated in the future down to now", async () => {
     const source = await studied();
     const snapshot = {
-      ...(await readChildDoc(source, CHILD, "nha-minh")),
+      ...(await readChildDoc(source, CHILD, "OWL4K7MQ")),
       resets: { "l-one": FAR_FUTURE },
     };
     const target = device();
@@ -337,7 +337,7 @@ describe("import of a snapshot", () => {
 
   it("refuses a child with no profile on the device", async () => {
     const source = await studied();
-    const snapshot = await readChildDoc(source, CHILD, "nha-minh");
+    const snapshot = await readChildDoc(source, CHILD, "OWL4K7MQ");
     const target = device();
     expect(await readBackup(target, JSON.stringify(snapshot), 1_000)).toEqual({
       ok: false,
@@ -397,7 +397,7 @@ describe("a file that cannot be imported", () => {
         JSON.stringify({
           schema: "tutor-child-progress",
           version: 2,
-          familyId: "nha-minh",
+          familyId: "OWL4K7MQ",
         }),
       ),
     ).toBe("too-new");

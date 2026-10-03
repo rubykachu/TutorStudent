@@ -10,6 +10,7 @@ import {
 import { createProfile } from "./flows";
 import { SILENCE_MEDIA_SCRIPT } from "./silence";
 import {
+  e2eFamilyCode,
   SYNC_BASE_URL,
   SYNC_FAMILIES,
   type SyncFamily,
@@ -131,7 +132,7 @@ export class Lab {
       },
     );
     const response = await context.request.post("/api/session", {
-      data: { code: family.code },
+      data: { code: await e2eFamilyCode(family.id) },
       headers: { origin: SYNC_BASE_URL },
     });
     expect(response.ok(), "the family code is accepted").toBe(true);

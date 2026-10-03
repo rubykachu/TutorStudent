@@ -5,21 +5,16 @@ import { issueSessionToken } from "@/access/session";
 import { BRAND_PUBLIC_PATHS } from "@/lib/brand";
 import { WORKER_PATH } from "@/offline/config";
 
-const SECRET = "a-secret-of-at-least-thirty-two-characters";
-const CODE = "saobien4k7m";
-const gate: AccessConfig = {
-  mode: "gate",
-  secret: SECRET,
-  codes: [CODE],
-  families: new Map(),
-};
+import { FAMILY, gateConfig } from "./helpers";
+
+const gate: AccessConfig = gateConfig();
 
 async function request(
   pathname: string,
   options: { search?: string; unlocked?: boolean } = {},
 ) {
   const token = options.unlocked
-    ? await issueSessionToken(SECRET, CODE)
+    ? await issueSessionToken(gateConfig(), FAMILY)
     : undefined;
   return { pathname, search: options.search ?? "", token };
 }
@@ -126,11 +121,19 @@ describe("decideAccess", () => {
     ).toEqual({ kind: "redirect", to: "/" });
   });
 
-  it("treats a cookie for a removed code as no cookie", async () => {
-    const stale: AccessConfig = { ...gate, codes: ["mattroi9x2z"] };
+  it("treats a cookie of a revoked family as no cookie", async () => {
+    const stale = gateConfig({ revoked: [FAMILY] });
     expect(
       (await decideAccess(await request("/", { unlocked: true }), stale)).kind,
     ).toBe("redirect");
+    expect(
+      (
+        await decideAccess(
+          await request("/content/index.json", { unlocked: true }),
+          stale,
+        )
+      ).kind,
+    ).toBe("deny");
   });
 
   it("has no gate when open, and serves nothing when closed", async () => {

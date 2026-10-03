@@ -11,19 +11,19 @@ import {
 const CHILD = "0123456789abcdef0123456789abcdef";
 
 const TARGETS: SyncKeyTarget[] = [
-  { kind: "profile", familyId: "nha-minh" },
-  { kind: "child", familyId: "nha-minh", childId: CHILD },
-  { kind: "history", familyId: "nha-minh", childId: CHILD, month: "2026-10" },
-  { kind: "snapshot", familyId: "nha-minh", childId: CHILD, day: "2026-10-02" },
+  { kind: "profile", familyId: "OWL4K7MQ" },
+  { kind: "child", familyId: "OWL4K7MQ", childId: CHILD },
+  { kind: "history", familyId: "OWL4K7MQ", childId: CHILD, month: "2026-10" },
+  { kind: "snapshot", familyId: "OWL4K7MQ", childId: CHILD, day: "2026-10-02" },
 ];
 
 describe("syncKey", () => {
   it("builds the four kinds of key", () => {
     expect(TARGETS.map((target) => syncKey("dev/", target))).toEqual([
-      "dev/progress/nha-minh/profile.json",
-      `dev/progress/nha-minh/${CHILD}.json`,
-      `dev/progress/nha-minh/${CHILD}/history/2026-10.json`,
-      `dev/snapshots/nha-minh/${CHILD}/2026-10-02.json`,
+      "dev/progress/OWL4K7MQ/profile.json",
+      `dev/progress/OWL4K7MQ/${CHILD}.json`,
+      `dev/progress/OWL4K7MQ/${CHILD}/history/2026-10.json`,
+      `dev/snapshots/OWL4K7MQ/${CHILD}/2026-10-02.json`,
     ]);
   });
 
@@ -32,13 +32,17 @@ describe("syncKey", () => {
       "../x",
       "..",
       "a/b",
-      "nha-minh/../x",
-      "nha-minh/",
-      "/nha-minh",
+      "OWL4K7MQ/../x",
+      "OWL4K7MQ/",
+      "/OWL4K7MQ",
       "%2e%2e",
-      "nha-minh\u0000",
-      "nha-minh\n",
+      "OWL4K7MQ\u0000",
+      "OWL4K7MQ\n",
       "NHA-MINH",
+      "nha-minh",
+      "owl4k7mq",
+      "OWL4K7MO",
+      "local",
       "..%2fx",
       "",
       `${CHILD}/../x`,
@@ -65,8 +69,8 @@ describe("syncKey", () => {
       const key = syncKey("dev/", target);
       const folder =
         target.kind === "snapshot"
-          ? "dev/snapshots/nha-minh/"
-          : "dev/progress/nha-minh/";
+          ? "dev/snapshots/OWL4K7MQ/"
+          : "dev/progress/OWL4K7MQ/";
       expect(key.startsWith(folder)).toBe(true);
       expect(key).not.toContain("..");
     }

@@ -2,9 +2,9 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { decideAccess } from "@/access/gate";
 import { SYNC_GET_LIMIT_PER_MINUTE } from "@/lib/config";
+import { gateConfig } from "../access/helpers";
 import {
   ACCESS,
-  BARE_CODE,
   CHILD,
   CHILD_2,
   childDoc,
@@ -12,7 +12,7 @@ import {
   FAMILY,
   harness,
   historyDoc,
-  OTHER_CODE,
+  OTHER_FAMILY,
   profileDoc,
   request,
   STRANGER,
@@ -139,15 +139,9 @@ describe("GET /api/sync", () => {
         )
       ).status,
     ).toBe(401);
-    const oldCookie = await cookieFor(OTHER_CODE);
+    const oldCookie = await cookieFor(OTHER_FAMILY);
     const removed = harness({
-      access: {
-        ...ACCESS,
-        codes:
-          ACCESS.mode === "gate"
-            ? ACCESS.codes.filter((c) => c !== OTHER_CODE)
-            : [],
-      } as typeof ACCESS,
+      access: gateConfig({ revoked: [OTHER_FAMILY] }),
     });
     expect(
       (
@@ -173,7 +167,7 @@ describe("GET /api/sync", () => {
       { kind: "child", familyId: FAMILY, childId: CHILD },
       childDoc(),
     );
-    const other = await cookieFor(OTHER_CODE);
+    const other = await cookieFor(OTHER_FAMILY);
     const response = await h.service.get(
       await request("GET", `?child=${CHILD}`, { cookie: other }),
     );
@@ -240,15 +234,6 @@ describe("GET /api/sync", () => {
     expect(response.status).toBe(503);
     expect(await json(response)).toEqual({ error: "sync-unavailable" });
 
-    // A valid cookie whose code has no family name.
-    const bare = await harness().service.get(
-      await request("GET", "?doc=profile", {
-        cookie: await cookieFor(BARE_CODE),
-      }),
-    );
-    expect(bare.status).toBe(503);
-    expect(await json(bare)).toEqual({ error: "sync-unavailable" });
-
     const open = harness({ access: { mode: "open" } });
     expect(
       (await open.service.get(await request("GET", "?doc=profile"))).status,
@@ -271,7 +256,7 @@ describe("GET /api/sync", () => {
     expect(Number(limited.headers.get("retry-after"))).toBeGreaterThan(0);
     // Another family is not affected.
     const other = await request("GET", "?doc=profile", {
-      cookie: await cookieFor(OTHER_CODE),
+      cookie: await cookieFor(OTHER_FAMILY),
     });
     expect((await h.service.get(other)).status).toBe(200);
     h.setNow("2026-10-02T03:01:01.000Z");

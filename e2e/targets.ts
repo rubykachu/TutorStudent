@@ -1,5 +1,6 @@
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { familyCode } from "../src/access/code";
 
 // Shared by playwright.config.ts and scripts/visual-shot.ts so E2E runs and
 // visual screenshots always target the same devices and server.
@@ -14,9 +15,20 @@ export const TEST_SERVER_COMMAND = `pnpm dev --port ${TEST_PORT}`;
 // a local production run never locks the everyday E2E server.
 export const TEST_SERVER_ENV = {
   CONTENT_INCLUDE_FIXTURE: "1",
-  FAMILY_CODES: "",
+  FAMILY_CODE_SECRET: "",
+  FAMILY_CODES_REVOKED: "",
   SESSION_SECRET: "",
 } as const;
+
+// Test values of the two gate secrets, shared by every server with the gate on.
+const E2E_SESSION_SECRET = "e2e-secret-of-at-least-thirty-two-characters";
+const E2E_FAMILY_CODE_SECRET = "e2e-family-code-secret-of-at-least-32-chars";
+
+// The code of a test family on the E2E servers, made the way
+// `pnpm family:code` makes a real one.
+export function e2eFamilyCode(familyId: string): Promise<string> {
+  return familyCode(E2E_FAMILY_CODE_SECRET, familyId);
+}
 
 // A second dev server with the family-code gate on, for the unlock E2E. It
 // builds into its own folder because two dev servers cannot share one.
@@ -24,14 +36,17 @@ export const GATE_PORT = TEST_PORT + 1000;
 export const GATE_BASE_URL = `http://localhost:${GATE_PORT}`;
 export const GATE_DIST_DIR = ".next-gate";
 export const GATE_SERVER_COMMAND = `pnpm exec next dev --port ${GATE_PORT}`;
-export const GATE_FAMILY_CODE = "Sao-Bien-4k7m";
+export const GATE_FAMILY_ID = "OWLGATE0";
+// A family whose codes the gate server no longer accepts.
+export const GATE_REVOKED_FAMILY_ID = "OWLREV00";
 export const GATE_SERVER_ENV = {
   NEXT_DIST_DIR: GATE_DIST_DIR,
-  FAMILY_CODES: GATE_FAMILY_CODE,
-  SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",
+  FAMILY_CODE_SECRET: E2E_FAMILY_CODE_SECRET,
+  FAMILY_CODES_REVOKED: GATE_REVOKED_FAMILY_ID,
+  SESSION_SECRET: E2E_SESSION_SECRET,
 } as const;
 
-// A third dev server for the progress-sync E2E: the gate on, named family
+// A third dev server for the progress-sync E2E: the gate on, signed family
 // codes and the folder store. Every test uses its own family (so tests running
 // side by side never share a profile doc or a rate limit) and the store folder
 // is new for each run: its name is made once and handed to the workers through
@@ -41,7 +56,8 @@ export const SYNC_BASE_URL = `http://localhost:${SYNC_PORT}`;
 export const SYNC_DIST_DIR = ".next-sync";
 export const SYNC_SERVER_COMMAND = `pnpm exec next dev --port ${SYNC_PORT}`;
 
-export type SyncFamily = { id: string; code: string };
+// A test family; its code comes from `e2eFamilyCode(id)`.
+export type SyncFamily = { id: string };
 
 // One family per scenario and target, plus one stranger family per target.
 const SYNC_FAMILY_COUNT = 18;
@@ -49,7 +65,7 @@ export const SYNC_FAMILIES: readonly SyncFamily[] = Array.from(
   { length: SYNC_FAMILY_COUNT },
   (_, i) => {
     const n = String(i + 1).padStart(2, "0");
-    return { id: `e2e-family-${n}`, code: `Sync-E2E-Code-${n}` };
+    return { id: `OWLE2E${n}` };
   },
 );
 
@@ -75,8 +91,9 @@ export function syncServerEnv(): Record<string, string> {
   return {
     NEXT_DIST_DIR: SYNC_DIST_DIR,
     CONTENT_INCLUDE_FIXTURE: "1",
-    FAMILY_CODES: SYNC_FAMILIES.map((f) => `${f.id}:${f.code}`).join(","),
-    SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",
+    FAMILY_CODE_SECRET: E2E_FAMILY_CODE_SECRET,
+    FAMILY_CODES_REVOKED: "",
+    SESSION_SECRET: E2E_SESSION_SECRET,
     SYNC_STORE: `fs:${syncStoreDir()}`,
   };
 }
@@ -86,7 +103,7 @@ export function syncServerEnv(): Record<string, string> {
 // test port plus 500 (3600 by default), clear of the dev servers above.
 export const OFFLINE_PORT = TEST_PORT + 500;
 export const OFFLINE_BASE_URL = `http://localhost:${OFFLINE_PORT}`;
-export const OFFLINE_FAMILY_CODE = "Sao-Bien-4k7m";
+export const OFFLINE_FAMILY_ID = "OWL0FF00";
 // Passed to the content emit, the build and the server of every lab run.
 // Explicit values win over any `.env*` file, so a build for checks never
 // reads the owner's real settings: media comes from the local `/media`
@@ -102,8 +119,9 @@ export const OFFLINE_SERVER_ENV = {
   NEXT_PUBLIC_OFFLINE_KILL_SWITCH: "",
   NEXT_DEPLOYMENT_ID: "offline-lab",
   NEXT_PUBLIC_MEDIA_BASE_URL: "",
-  FAMILY_CODES: OFFLINE_FAMILY_CODE,
-  SESSION_SECRET: "e2e-secret-of-at-least-thirty-two-characters",
+  FAMILY_CODE_SECRET: E2E_FAMILY_CODE_SECRET,
+  FAMILY_CODES_REVOKED: "",
+  SESSION_SECRET: E2E_SESSION_SECRET,
   CONTENT_INCLUDE_FIXTURE: "1",
   R2_ACCOUNT_ID: "",
   R2_ACCESS_KEY_ID: "",

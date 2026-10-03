@@ -19,7 +19,6 @@ import { readChildDoc } from "@/sync/local";
 import { readSyncFamily, readSyncState, SYNC_FAMILY_KEY } from "@/sync/state";
 import {
   CHILD,
-  CODE,
   childDoc,
   cookieFor,
   FAMILY,
@@ -70,7 +69,7 @@ function device(
 
 async function seededDevice(options: Parameters<typeof device>[0] = {}) {
   const d = device(options);
-  d.net.cookie = await cookieFor(CODE);
+  d.net.cookie = await cookieFor(FAMILY);
   await addProfile(d.db);
   return d;
 }
@@ -157,7 +156,7 @@ describe("first sync and a second device", () => {
     await a.sync(true);
 
     const b = device();
-    b.net.cookie = await cookieFor(CODE);
+    b.net.cookie = await cookieFor(FAMILY);
     expect(await b.sync()).toEqual({ status: "synced" });
     expect((await b.db.profiles.toArray()).map((p) => p.id)).toEqual([CHILD]);
     const doc = await readChildDoc(b.db, CHILD, FAMILY);

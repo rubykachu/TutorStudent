@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   FAMILY_ID_PATTERN,
+  LOCAL_FAMILY_ID,
   SYNC_MAX_DOC_RECORDS,
   SYNC_MAX_PROFILES,
   SYNC_PROFILE_NAME_MAX_CHARS,
@@ -37,7 +38,11 @@ export const CHILD_ID_PATTERN = /^[0-9a-f]{32}$/;
 export const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
 export const DAY_PATTERN = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
-const FamilyIdSchema = z.string().regex(FAMILY_ID_PATTERN);
+// A family id from the cookie, or the device's own `LOCAL_FAMILY_ID`, which
+// backup files and docs built on the device carry.
+const FamilyIdSchema = z
+  .string()
+  .refine((id) => id === LOCAL_FAMILY_ID || FAMILY_ID_PATTERN.test(id));
 const ChildIdSchema = z.string().regex(CHILD_ID_PATTERN);
 const MonthSchema = z.string().regex(MONTH_PATTERN);
 const DaySchema = z.string().regex(DAY_PATTERN);

@@ -15,31 +15,20 @@ import { createSyncService, type SyncLogEntry } from "@/sync/server";
 import { syncKey } from "@/sync/store/keys";
 import { createMemoryStore } from "@/sync/store/memory";
 import type { BlobStore } from "@/sync/store/types";
+import { FAMILY, gateConfig, OTHER_FAMILY } from "../access/helpers";
 
-export const SECRET = "a-secret-of-at-least-thirty-two-characters";
 export const HOST = "tutor.example";
-export const FAMILY = "nha-minh";
-export const OTHER_FAMILY = "nha-an";
-export const CODE = "saobien4k7m";
-export const OTHER_CODE = "mattroi9x2z";
-export const BARE_CODE = "barecode00000";
+export { FAMILY, OTHER_FAMILY };
 export const CHILD = "3f9c2a7be1d04c58a6b7f0e2c4d91a35";
 export const CHILD_2 = "aa9c2a7be1d04c58a6b7f0e2c4d91a35";
 export const STRANGER = "bb9c2a7be1d04c58a6b7f0e2c4d91a35";
 export const PREFIX = "dev/" as const;
 
-export const ACCESS: AccessConfig = {
-  mode: "gate",
-  secret: SECRET,
-  codes: [CODE, OTHER_CODE, BARE_CODE],
-  families: new Map([
-    [CODE, FAMILY],
-    [OTHER_CODE, OTHER_FAMILY],
-  ]),
-};
+export const ACCESS: AccessConfig = gateConfig();
 
-export async function cookieFor(code: string): Promise<string> {
-  return `${ACCESS_COOKIE_NAME}=${await issueSessionToken(SECRET, code, Date.now())}`;
+// The cookie of a device unlocked with the code of `familyId`.
+export async function cookieFor(familyId: string): Promise<string> {
+  return `${ACCESS_COOKIE_NAME}=${await issueSessionToken(gateConfig(), familyId, Date.now())}`;
 }
 
 export function profileDoc(
@@ -160,7 +149,9 @@ export async function request(
       ...(method === "PUT"
         ? { origin: `https://${HOST}`, "content-type": "application/json" }
         : { "sec-fetch-site": "same-origin" }),
-      ...(cookie === null ? {} : { cookie: cookie ?? (await cookieFor(CODE)) }),
+      ...(cookie === null
+        ? {}
+        : { cookie: cookie ?? (await cookieFor(FAMILY)) }),
       ...headers,
     },
     ...(jsonBody === undefined ? {} : { body: jsonBody }),

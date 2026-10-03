@@ -27,7 +27,7 @@ import {
 const syncNow = vi.fn(async (_options?: unknown) => undefined);
 vi.mock("@/sync/request", () => ({ syncNow: (o: unknown) => syncNow(o) }));
 
-const FAMILY = "nha-minh";
+const FAMILY = "OWL4K7MQ";
 const CHILD = "kid-1";
 const NOW = new Date("2026-10-02T03:00:00.000Z");
 const TIME = NOW.toISOString();

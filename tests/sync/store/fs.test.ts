@@ -26,8 +26,8 @@ describe("fs store", () => {
   it("writes under its folder only and refuses keys that leave it", async () => {
     const dir = await folder();
     const store = createFsStore(dir);
-    await store.put("dev/progress/nha-minh/profile.json", "{}");
-    expect(await readdir(path.join(dir, "dev/progress/nha-minh"))).toEqual([
+    await store.put("dev/progress/OWL4K7MQ/profile.json", "{}");
+    expect(await readdir(path.join(dir, "dev/progress/OWL4K7MQ"))).toEqual([
       "profile.json",
     ]);
     for (const key of [

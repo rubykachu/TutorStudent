@@ -15,7 +15,7 @@ const ENV = {
   R2_SECRET_ACCESS_KEY: "secret-access-key-0001",
   R2_PRIVATE_BUCKET: "tutor-progress",
   SESSION_SECRET: "a-secret-of-at-least-thirty-two-characters",
-  FAMILY_CODES: "nha-minh:saobien4k7m,mattroi9x2z",
+  FAMILY_CODE_SECRET: "a-code-secret-of-at-least-thirty-two-chars",
 };
 
 const file = (text: string) => ({ path: "chunks/app.js", text });
@@ -36,16 +36,17 @@ describe("findBundleLeaks", () => {
     }
   });
 
-  it("reports a secret's value and a family code without printing them", () => {
+  it("reports a secret's value without printing it", () => {
     const leaks = findBundleLeaks(
-      [file(`"${ENV.R2_SECRET_ACCESS_KEY}";"saobien4k7m"`)],
+      [file(`"${ENV.R2_SECRET_ACCESS_KEY}";"${ENV.FAMILY_CODE_SECRET}"`)],
       ENV,
     );
     expect(leaks).toEqual([
       { file: "chunks/app.js", what: "value of R2_SECRET_ACCESS_KEY" },
-      { file: "chunks/app.js", what: "a code of FAMILY_CODES" },
+      { file: "chunks/app.js", what: "value of FAMILY_CODE_SECRET" },
     ]);
     expect(JSON.stringify(leaks)).not.toContain(ENV.R2_SECRET_ACCESS_KEY);
+    expect(JSON.stringify(leaks)).not.toContain(ENV.FAMILY_CODE_SECRET);
   });
 
   it("skips values too short to tell apart from ordinary text", () => {

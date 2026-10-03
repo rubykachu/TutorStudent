@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { type AccessConfig, readAccessConfig } from "@/access/env";
 import { sameOrigin } from "@/access/origin";
 import { RequestLimiter } from "@/access/rate-limit";
-import { resolveFamily, verifySessionToken } from "@/access/session";
+import { resolveFamily } from "@/access/session";
 import {
   ACCESS_COOKIE_NAME,
   SYNC_BODY_SLACK_BYTES,
@@ -262,16 +262,7 @@ export function createSyncService(deps: SyncServiceDeps) {
     const token = request.cookies.get(ACCESS_COOKIE_NAME)?.value;
     const nowMs = now().getTime();
     const familyId = await resolveFamily(config, token, nowMs);
-    if (familyId === null) {
-      const valid = await verifySessionToken(
-        config.secret,
-        config.codes,
-        token,
-        nowMs,
-      );
-      // A valid cookie whose code has no family name cannot sync.
-      return valid ? fail(503, "sync-unavailable") : fail(401, "unauthorized");
-    }
+    if (familyId === null) return fail(401, "unauthorized");
     if (deps.store === null) return fail(503, "sync-unavailable");
     const decision = limiter.hit(familyId);
     if (!decision.allowed) {

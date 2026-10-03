@@ -1,6 +1,6 @@
 // The one place that names the production targets used by `pnpm media:upload`
-// and `pnpm deploy:prod`. Secret values never live here: the family code and
-// the media base URL are read from ENV_FILE at run time.
+// and `pnpm deploy:prod`. Secret values never live here: the family-code
+// secret and the media base URL are read from ENV_FILE at run time.
 
 import { SITE_URL } from "../../src/lib/brand";
 
@@ -11,8 +11,13 @@ export const VERCEL_PROJECT = "tutor";
 // Public address of the production app; origin of the smoke checks. Declared
 // once in the app, which also builds its share-card URLs from it.
 export const PROD_URL = SITE_URL;
-// Untracked file with FAMILY_CODES, SESSION_SECRET, NEXT_PUBLIC_MEDIA_BASE_URL.
+// Untracked file with FAMILY_CODE_SECRET, SESSION_SECRET,
+// NEXT_PUBLIC_MEDIA_BASE_URL and the R2 settings.
 export const ENV_FILE = ".env.production.local";
+// The family the deploy smoke check logs in as. Its code is made from
+// FAMILY_CODE_SECRET at run time and never printed; it never syncs, and
+// `pnpm family:code` never hands this id to a real family.
+export const SMOKE_FAMILY_ID = "OWLTEST0";
 
 // Local media tree; its sub-paths are the object keys in the bucket.
 export const MEDIA_ROOT = "public/media";

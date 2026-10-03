@@ -105,18 +105,32 @@ export const MEDIA_BASE_URL: string = (
 // device entered a valid code, and how long it stays valid.
 export const ACCESS_COOKIE_NAME = "tutor_family";
 export const ACCESS_SESSION_DAYS = 365;
-// A code is compared after `normalizeCode`; shorter ones are refused when the
-// environment is read, because a short code can be guessed.
-export const ACCESS_MIN_CODE_LENGTH = 10;
+// Both secrets of the gate (`SESSION_SECRET`, `FAMILY_CODE_SECRET`) need at
+// least this many characters, or the gate stays closed.
 export const ACCESS_MIN_SECRET_LENGTH = 32;
 // Wrong codes in a row from one address that lock it out, and for how long.
 // Counted in the memory of one server instance, so it slows guessing down;
-// the length of the code is what makes guessing hopeless.
+// the length of the signature is what makes guessing hopeless.
 export const ACCESS_MAX_FAILS = 5;
 export const ACCESS_LOCK_MINUTES = 10;
-// A family id: the name before the colon in a `FAMILY_CODES` entry; it names
-// the family's folder in the progress store.
-export const FAMILY_ID_PATTERN = /^[a-z0-9-]{3,32}$/;
+
+// Family codes (`src/access/code.ts`). A code is the family id followed by its
+// signature, `OWL4K7MQ-9QX2P8RT`: the literal prefix, a random part, then the
+// signature, written with FAMILY_CODE_ALPHABET (Crockford base32: digits and
+// capitals without I, L, O and U, which read like 1, 1, 0 and V). The family
+// id (`OWL4K7MQ`) is not secret: it names the family's folder in the progress
+// store and never changes. The signature is the secret part, made from the id
+// with `FAMILY_CODE_SECRET`, 5 bits per character.
+export const FAMILY_CODE_PREFIX = "OWL";
+export const FAMILY_CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+// 32^5 ids, so two of a few hundred families drawing the same id stays
+// unlikely (the generator never repeats an id within one run).
+export const FAMILY_ID_RANDOM_LENGTH = 5;
+// 8 characters = 40 bits of signature.
+export const FAMILY_CODE_SIGNATURE_LENGTH = 8;
+export const FAMILY_ID_PATTERN = new RegExp(
+  `^${FAMILY_CODE_PREFIX}[${FAMILY_CODE_ALPHABET}]{${FAMILY_ID_RANDOM_LENGTH}}$`,
+);
 
 // Progress sync (`src/sync/`, `src/app/api/sync/`). A synced doc may be at
 // most this many bytes (family profile doc and a child's main doc), and the
