@@ -436,7 +436,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Vẽ hình chữ nhật đi qua bốn đỉnh hình thoi, dài bằng đường chéo a, rộng bằng đường chéo b. Sau đó, xoay bốn tam giác ở ngoài vào trong hình thoi thì chúng lấp đầy hình thoi."
+              "text": "Vẽ hình chữ nhật đi qua bốn đỉnh hình thoi, dài bằng đường chéo a, rộng bằng đường chéo b. Sau đó, như hình dưới, xoay từng tam giác ở ngoài vào trong thì chúng lấp đầy hình thoi."
             },
             {
               "type": "visual",
@@ -780,7 +780,7 @@
             },
             {
               "type": "note",
-              "text": "Muốn đếm gạch, đổi hết ra cm, rồi lấy chiều dài và chiều rộng chia cho cạnh gạch. Nhân hai kết quả là ra số viên; còn khi giá tính theo mét vuông thì đổi ra m."
+              "text": "Muốn đếm gạch, đổi hết ra cm, rồi lấy chiều dài và chiều rộng chia cho cạnh gạch. Nhân hai kết quả là ra số viên; còn khi giá tính theo m² thì đổi độ dài ra m."
             },
             {
               "type": "visual",
@@ -4505,7 +4505,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Vẽ thêm hai đoạn vào chỗ bị cắt, ta được hình chữ nhật dài 8 m, rộng 6 m. Phần bị cắt có hai cạnh là 8 − 6 = 2 m và 6 − 4 = 2 m. Vì vậy, chu vi mảnh vườn bằng chu vi hình chữ nhật, còn diện tích thì trừ đi phần bị cắt.",
+        "text": "Vẽ thêm hai đoạn vào chỗ bị cắt, ta được hình chữ nhật dài 8 m, rộng 6 m. Lấy 8 m bớt đoạn 6 m, lấy 6 m bớt đoạn 4 m: phần bị cắt có hai cạnh 2 m. Vì vậy, chu vi bằng chu vi hình chữ nhật, còn diện tích thì trừ đi phần bị cắt.",
         "tex": "\\begin{gathered} 2 \\cdot (8 + 6) = \\concept{blue}{28}\\ \\mathrm{m} \\\\ 8 \\cdot 6 - 2 \\cdot 2 = \\concept{teal}{44}\\ \\mathrm{m}^{2} \\end{gathered}"
       },
       "segments": [
@@ -4874,7 +4874,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, gạch cạnh 60 cm. Mỗi hàng có 25 viên và có 15 hàng, nên cần 375 viên, tức là 75 thùng. Sách làm cách khác: lấy 135 m² chia cho 0,36 m², cũng ra 375 viên.",
+        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, gạch cạnh 60 cm. Mỗi hàng 25 viên, có 15 hàng, nên cần 375 viên; mỗi thùng 5 viên nên cần 75 thùng. Sách làm cách khác: lấy diện tích sân 135 m² chia cho diện tích một viên 0,36 m², cũng ra 375 viên.",
         "tex": "\\begin{gathered} 1\\,500 : 60 = 25 \\\\ 900 : 60 = 15 \\\\ 25 \\cdot 15 = 375 \\\\ 375 : 5 = 75 \\end{gathered}"
       },
       "answer": {
@@ -4906,7 +4906,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Đổi 50 cm thành 0,5 m, rồi lấy cạnh nhân với cạnh. Ta nhân 5 với 5 được 25. Hai số 0,5 có tất cả hai chữ số sau dấu phẩy, nên kết quả là 0,25.",
+        "text": "Đổi 50 cm thành 0,5 m, rồi lấy cạnh nhân với cạnh: 0,5 · 0,5. Ta nhân 5 · 5 = 25. Mỗi số 0,5 có một chữ số sau dấu phẩy, nên kết quả có hai chữ số sau dấu phẩy: 0,25 m².",
         "tex": "0{,}5 \\cdot 0{,}5 = \\concept{teal}{0{,}25}\\ \\mathrm{m}^{2}"
       },
       "answer": {
