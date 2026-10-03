@@ -12,7 +12,8 @@
   },
   "title": "Hình chữ nhật. Hình thoi",
   "sourceRef": "Sách bài tập tr.67–69",
-  "status": "draft",
+  "status": "published",
+  "reviewedHash": "5631cca68024593cd4e006cbd3fa9c1ed570728361055c9d8b0ea30ca118ec88",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ tìm hiểu hai hình quen thuộc. Bạn thử nhìn cánh cửa ra vào nhà mình xem, nó có hình gì nhỉ?"
@@ -390,7 +391,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Trong một mắt lưới B40, nối các góc đối nhau ta được hai đường chéo của hình thoi. Xem hình chạy từng bước để biết chúng nằm thế nào so với nhau."
+              "text": "Mắt lưới B40 có dạng hình thoi. Nối hai đỉnh không nằm cạnh nhau của nó, ta được một đường chéo."
             },
             {
               "type": "visual",
