@@ -14,7 +14,7 @@ import {
 import { stepDone, stepEnabled } from "@/visuals/shared/plane/board-steps";
 import { FigureLayers } from "@/visuals/shared/plane/figure";
 import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
-import { dist } from "@/visuals/shared/plane/geometry";
+import { dist, polar } from "@/visuals/shared/plane/geometry";
 import { probeFigure } from "@/visuals/shared/plane/probe-model";
 import {
   BoardVisual,
@@ -30,6 +30,10 @@ import {
   isDrawn,
   solvedState,
 } from "@/visuals/shared/quadrilaterals/construction";
+import {
+  boardView,
+  trimTop,
+} from "@/visuals/shared/quadrilaterals/drawing-frames";
 import {
   FIGURE_411,
   FIGURE_412,
@@ -545,6 +549,69 @@ describe("drawing boards", () => {
   });
 });
 
+describe("boardView", () => {
+  const NAMES = ["M", "N", "P", "Q"];
+
+  it("writes the name of the fourth corner of a rhombus clear of its compass arc and guide line", () => {
+    for (const angle of ANGLES) {
+      for (const side of [2, 3, 4, 5, 6]) {
+        const state = solvedState("rhombus", { side, angle });
+        const view = boardView("rhombus", NAMES, state);
+        expect(view.names).not.toContain("Q");
+        const text = (view.texts ?? []).find((t) => t.text === "Q");
+        if (!text) throw new Error("the name Q is not written");
+        const spot: Pt = [text.x, text.y];
+        same(dist(spot, pt(view, "Q")), 30, 0.01);
+        // The arc round M that passes through Q, sampled along its length.
+        const arc = (view.arcs ?? []).find((a) => a.c === "M");
+        if (!arc) throw new Error("no arc round M");
+        const origin = pt(view, "M");
+        for (let i = 0; i <= 20; i++) {
+          const deg = arc.from + ((arc.to - arc.from) * i) / 20;
+          const onArc = polar(origin[0], origin[1], arc.r, deg);
+          expect(dist(spot, onArc)).toBeGreaterThan(14);
+        }
+        // The dashed guide line from M through Q.
+        const ray = pt(view, "ray");
+        const along =
+          ((spot[0] - origin[0]) * (ray[0] - origin[0]) +
+            (spot[1] - origin[1]) * (ray[1] - origin[1])) /
+          dist(origin, ray) ** 2;
+        const foot: Pt = [
+          origin[0] + along * (ray[0] - origin[0]),
+          origin[1] + along * (ray[1] - origin[1]),
+        ];
+        expect(dist(spot, foot)).toBeGreaterThan(14);
+      }
+    }
+  });
+
+  it("leaves every other board as boardFigure draws it", () => {
+    const state = solvedState("parallelogram", { a: 3, b: 4 });
+    expect(boardView("parallelogram", ["E", "F", "H", "K"], state)).toEqual(
+      boardFigure("parallelogram", ["E", "F", "H", "K"], state),
+    );
+    const rectangle = solvedState("rectangle", { a: 3, b: 5 });
+    expect(boardView("rectangle", ["D", "E", "F", "G"], rectangle)).toEqual(
+      boardFigure("rectangle", ["D", "E", "F", "G"], rectangle),
+    );
+  });
+
+  it("cuts the empty top rows off a frame and moves everything else up with it", () => {
+    const full = boardFigure(
+      "rectangle",
+      ["A", "B", "C", "D"],
+      solvedState("rectangle", { a: 4, b: 3 }),
+    );
+    const cut = trimTop(full, 4);
+    same(cut.h, full.h - 4 * 18, 0.01);
+    same(pt(cut, "C")[1], pt(full, "C")[1] - 4 * 18, 0.01);
+    same(pt(cut, "C")[0], pt(full, "C")[0], 0.01);
+    same((cut.ruler?.y ?? 0) + 4 * 18, full.ruler?.y ?? Number.NaN, 0.01);
+    expect(cut.segs).toEqual(full.segs);
+  });
+});
+
 describe("BoardVisual", () => {
   const press = (name: string) =>
     fireEvent.click(screen.getByRole("button", { name }));
@@ -766,7 +833,7 @@ describe("TapCards", () => {
             {
               name: "Hình thoi",
               color: "pink",
-              art: { scene: "kite" },
+              art: { scene: "fence" },
               facts: ["Bốn cạnh bằng nhau"],
             },
           ],

@@ -1,12 +1,13 @@
 import {
-  board,
   figure,
   frame,
+  roomyBoard,
   steps,
 } from "@/visuals/shared/quadrilaterals/builders";
 import {
   finished,
   stage,
+  trimTop,
 } from "@/visuals/shared/quadrilaterals/drawing-frames";
 import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 
@@ -15,6 +16,10 @@ import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 // exercise writes, so the picture and the wording agree.
 
 const ABCD = ["A", "B", "C", "D"] as const;
+
+// Rows of the board (centimetres) cut off the top of a frame of a rectangle
+// drawn 3 cm high: the board has room for 7 cm.
+const ROWS_CUT_AT_3_CM = 4;
 
 export const DRAWING_SPECS: Record<string, VisualSpec> = {
   // Vẽ hình chữ nhật
@@ -31,7 +36,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ),
       frame(
         stage("rectangle", ABCD, { len: 4, perpD: 1, perpE: 1, h: 3 }),
-        "Lấy C và D cách AB đúng 3 cm",
+        "Lấy BC = AD = 3 cm trên hai đường vuông góc, cùng một phía",
       ),
       frame(
         finished(
@@ -42,7 +47,9 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
         ),
         "Nối D với C",
       ),
-    ],
+    ].map(({ figure: shown, caption }) =>
+      frame(trimTop(shown, ROWS_CUT_AT_3_CM), caption),
+    ),
   ),
   "ve-chu-nhat-quy-tac": figure(
     finished(
@@ -53,12 +60,12 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       true,
     ),
   ),
-  "ve-chu-nhat-tap-lam": board("rectangle", ["M", "N", "P", "Q"], {
+  "ve-chu-nhat-tap-lam": roomyBoard("rectangle", ["M", "N", "P", "Q"], {
     a: 6,
     b: 2,
   }),
-  "ve-chu-nhat-abcd": board("rectangle", ABCD),
-  "ve-chu-nhat-efgh": board("rectangle", ["E", "F", "G", "H"]),
+  "ve-chu-nhat-abcd": roomyBoard("rectangle", ABCD),
+  "ve-chu-nhat-efgh": roomyBoard("rectangle", ["E", "F", "G", "H"]),
   // Vẽ hình thoi
   "ve-thoi-cac-buoc": steps(
     "Các bước vẽ hình thoi ABCD có AB = 3 cm và góc BAD bằng 75°",
@@ -116,11 +123,11 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       true,
     ),
   ),
-  "ve-thoi-tap-lam": board("rhombus", ["E", "F", "G", "H"], {
+  "ve-thoi-tap-lam": roomyBoard("rhombus", ["E", "F", "G", "H"], {
     side: 6,
     angle: 45,
   }),
-  "ve-thoi-efgh": board("rhombus", ["E", "F", "G", "H"]),
-  "ve-thoi-abcd": board("rhombus", ABCD),
-  "ve-thoi-mnpq": board("rhombus", ["M", "N", "P", "Q"]),
+  "ve-thoi-efgh": roomyBoard("rhombus", ["E", "F", "G", "H"]),
+  "ve-thoi-abcd": roomyBoard("rhombus", ABCD),
+  "ve-thoi-mnpq": roomyBoard("rhombus", ["M", "N", "P", "Q"]),
 };

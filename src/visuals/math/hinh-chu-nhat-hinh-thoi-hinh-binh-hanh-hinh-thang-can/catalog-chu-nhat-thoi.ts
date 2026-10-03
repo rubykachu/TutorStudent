@@ -17,6 +17,7 @@ import {
   linesFigure,
   polygonFigure,
   quad,
+  renamed,
   textAt,
   textInCorner,
 } from "@/visuals/shared/quadrilaterals/figures";
@@ -28,7 +29,8 @@ import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 const NAMED = { names: true, fill: true } as const;
 
 // A small picture of two lines, for the cards and the options of the section
-// on parallel sides.
+// on parallel sides. The cards carry no chevrons: they would say "song song"
+// before the child taps to find out.
 const TWO_LINES = { w: 140, h: 100 } as const;
 const parallelLines = linesFigure("Hai đường thẳng song song", {
   ...TWO_LINES,
@@ -42,7 +44,6 @@ const parallelLines = linesFigure("Hai đường thẳng song song", {
       [126, 70],
     ],
   ],
-  parallel: [[0, 1]],
 });
 const slantedParallel = linesFigure("Hai đường thẳng nghiêng song song", {
   ...TWO_LINES,
@@ -56,7 +57,6 @@ const slantedParallel = linesFigure("Hai đường thẳng nghiêng song song", 
       [124, 18],
     ],
   ],
-  parallel: [[0, 1]],
 });
 const crossingLines = linesFigure("Hai đường thẳng cắt nhau", {
   ...TWO_LINES,
@@ -191,16 +191,39 @@ function tiltedRhombus(label: string): FigureSpec {
   };
 }
 
+// A rectangle of 180 by 80 turned `degrees` clockwise, its corners named in
+// order from the top left one before the turn.
+function tiltedRectangle(
+  label: string,
+  [first, second, third, fourth]: readonly [string, string, string, string],
+  degrees: number,
+): FigureSpec {
+  const rad = (degrees * Math.PI) / 180;
+  const turn = ([x, y]: Pt): Pt => [
+    x * Math.cos(rad) - y * Math.sin(rad),
+    x * Math.sin(rad) + y * Math.cos(rad),
+  ];
+  return polygonFigure(label, {
+    points: {
+      [first]: turn([-90, -40]),
+      [second]: turn([90, -40]),
+      [third]: turn([90, 40]),
+      [fourth]: turn([-90, 40]),
+    },
+    names: true,
+  });
+}
+
 // Frames of a figure that gains one mark at a time.
 const SIDES_FRAME = { sides: "all" } as const;
 
 export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   // Opening: the two shapes around us
   "hai-vat-doi-song": gallery(
-    "Cánh cửa và khung cánh diều",
+    "Cánh cửa và mắt lưới hàng rào B40",
     [
       { scene: "door", caption: "Cánh cửa" },
-      { scene: "kite", caption: "Khung cánh diều" },
+      { scene: "fence", caption: "Mắt lưới hàng rào B40" },
     ],
     2,
   ),
@@ -208,16 +231,24 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
     "Mỗi vật với hình của nó",
     [
       { scene: "door", caption: "Cánh cửa: hình chữ nhật" },
-      { scene: "kite", caption: "Khung cánh diều: hình thoi" },
+      { scene: "fence", caption: "Mắt lưới B40: hình thoi" },
     ],
     2,
+  ),
+  // One thing each, the left items of the exercise that matches things to
+  // shapes: the captions name the things, not their shapes.
+  "vat-cua": gallery("Cánh cửa", [{ scene: "door", caption: "Cánh cửa" }], 1),
+  "vat-luoi-b40": gallery(
+    "Mắt lưới hàng rào B40",
+    [{ scene: "fence", caption: "Mắt lưới hàng rào B40" }],
+    1,
   ),
   "xem-vat-tim-hinh": {
     kind: "cards",
     label: "Hai vật quanh nhà và hình của chúng",
     items: [
       { name: "Hình chữ nhật", color: "teal", art: { scene: "door" } },
-      { name: "Hình thoi", color: "pink", art: { scene: "kite" } },
+      { name: "Hình thoi", color: "pink", art: { scene: "fence" } },
     ],
     verb: "xem",
     done: "Bạn đã nhận ra hai hình quanh mình.",
@@ -238,12 +269,10 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       c0: [35, 176],
       c1: [105, 176],
       c2: [70, 115],
-      d0: [255, 150],
-      d1: [240, 176],
-      d2: [210, 176],
-      d3: [195, 150],
-      d4: [210, 124],
-      d5: [240, 124],
+      d0: [200, 122],
+      d1: [272, 138],
+      d2: [255, 178],
+      d3: [188, 170],
     },
     polys: [
       {
@@ -265,9 +294,9 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
         label: "Hình thứ ba",
       },
       {
-        v: ["d0", "d1", "d2", "d3", "d4", "d5"],
+        v: ["d0", "d1", "d2", "d3"],
         fill: "mute",
-        region: "luc",
+        region: "lech",
         label: "Hình thứ tư",
       },
     ],
@@ -367,7 +396,15 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
     quad("chu-nhat", { label: "Hình chữ nhật ABCD", names: true }),
   ),
   "chu-nhat-song-song": figure(
-    quad("chu-nhat", { label: "Hình chữ nhật ABCD", names: true }),
+    renamed(quad("chu-nhat", { label: "Hình chữ nhật PQRS", names: true }), {
+      A: "P",
+      B: "Q",
+      C: "R",
+      D: "S",
+    }),
+  ),
+  "chu-nhat-song-song-nghieng": figure(
+    tiltedRectangle("Hình chữ nhật EFGH nằm nghiêng", ["E", "F", "G", "H"], 25),
   ),
   // Đường chéo của hình chữ nhật
   "cheo-chu-nhat-cac-buoc": steps("Hai đường chéo của hình chữ nhật ABCD", [
@@ -717,7 +754,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       tone: "ink",
       angles: { A: "60°", C: "60°" },
       sides: "all",
-      segs: [{ a: "B", b: "D", tone: "amber", bold: true }],
+      segs: [{ a: "B", b: "D", tone: "ink", bold: true }],
     }),
     polys: [
       { v: ["A", "B", "D"], tone: "ink", fill: "mute" },

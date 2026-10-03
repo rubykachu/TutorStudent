@@ -1,17 +1,18 @@
 import type { FigureSpec } from "@/visuals/shared/plane/figure-spec";
 import {
-  board,
   figure,
   frame,
   gallery,
   MEASURE_ROOM,
   measureY,
+  roomyBoard,
   steps,
   THUMB,
 } from "@/visuals/shared/quadrilaterals/builders";
 import {
   finished,
   stage,
+  trimTop,
 } from "@/visuals/shared/quadrilaterals/drawing-frames";
 import {
   FIGURE_411,
@@ -26,6 +27,10 @@ import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 // and their lead-ins, and the solutions.
 
 const letters = ["a", "b", "c", "d"] as const;
+
+// Rows of the board (centimetres) cut off the top of a frame of a rectangle
+// drawn 5 cm high: the board has room for 7 cm.
+const ROWS_CUT_AT_5_CM = 2;
 
 // Height of the drawing of figure 4.13 (see `figures.ts`); the lines of
 // measures under it start below.
@@ -149,9 +154,9 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
   ),
 
   // Boards of the exercises and their lead-ins
-  "ve-chu-nhat-defg": board("rectangle", DEFG),
-  "ve-chu-nhat-xyzt": board("rectangle", ["X", "Y", "Z", "T"]),
-  "ve-thoi-xyzt": board("rhombus", ["X", "Y", "Z", "T"]),
+  "ve-chu-nhat-defg": roomyBoard("rectangle", DEFG),
+  "ve-chu-nhat-xyzt": roomyBoard("rectangle", ["X", "Y", "Z", "T"]),
+  "ve-thoi-xyzt": roomyBoard("rhombus", ["X", "Y", "Z", "T"]),
   // Solutions, run with the numbers of each exercise
   "sbt-4-8-giai": fourFigures(
     "Hình 4.11b là hình chữ nhật, hình 4.11d là hình thoi",
@@ -174,7 +179,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
       ),
       frame(
         stage("rectangle", DEFG, { len: 3, perpD: 1, perpE: 1, h: 5 }),
-        "Lấy G và F cách DE đúng 5 cm",
+        "Lấy EF = DG = 5 cm trên hai đường vuông góc, cùng một phía",
       ),
       frame(
         finished(
@@ -185,7 +190,9 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
         ),
         "Nối G với F",
       ),
-    ],
+    ].map(({ figure: shown, caption }) =>
+      frame(trimTop(shown, ROWS_CUT_AT_5_CM), caption),
+    ),
   ),
   "sbt-4-11-giai": drawingSteps(
     "Các bước vẽ hình thoi MNPQ có cạnh MN = 4 cm",
@@ -193,7 +200,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
       frame(stage("rhombus", MNPQ, { len: 4 }), "Vẽ MN = 4 cm"),
       frame(
         stage("rhombus", MNPQ, { len: 4, angle: 60 }),
-        "Kẻ đường MQ tạo với MN một góc 60°",
+        "Chọn một góc, ví dụ 60°, kẻ đường MQ tạo với MN góc đó",
       ),
       frame(
         stage("rhombus", MNPQ, { len: 4, angle: 60, markQ: 1 }),
@@ -208,7 +215,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
           arcN: 1,
           pointP: 1,
         }),
-        "Vẽ hai cung tâm Q và tâm N, chúng gặp nhau tại P",
+        "Đặt kim ở Q rồi ở N, vẽ hai cung gặp nhau tại P",
       ),
       frame(
         finished(
@@ -242,7 +249,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
           arcN: 1,
           pointP: 1,
         }),
-        "Vẽ hai cung tâm Q và tâm N, chúng gặp nhau tại P",
+        "Đặt kim ở Q rồi ở N, vẽ hai cung gặp nhau tại P",
       ),
       frame(
         finished(

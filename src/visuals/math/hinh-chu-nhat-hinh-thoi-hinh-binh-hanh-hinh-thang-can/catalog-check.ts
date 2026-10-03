@@ -4,12 +4,15 @@ import {
   figure,
   frame,
   gallery,
+  PROBE_MARGIN,
+  sideProbe,
   steps,
   THUMB,
 } from "@/visuals/shared/quadrilaterals/builders";
 import {
   polygonFigure,
   quad,
+  renamed,
   textAt,
 } from "@/visuals/shared/quadrilaterals/figures";
 import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
@@ -106,6 +109,30 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
     rights: [{ at: "O", a: "X", b: "Y", tone: "violet" }],
     texts: [textAt(150, 182, "Góc tờ giấy khít góc vuông")],
   }),
+  // The four sides to measure of the quadrilateral EFGH, all 3 cm.
+  "kiem-efgh-do": {
+    kind: "probe",
+    figure: renamed(
+      quad("thoi", {
+        label: "Tứ giác EFGH cần đo bốn cạnh",
+        names: true,
+        acute: 65,
+        margin: PROBE_MARGIN,
+      }),
+      { A: "E", B: "F", C: "G", D: "H" },
+    ),
+    parts: sideProbe(
+      [
+        ["E", "F"],
+        ["F", "G"],
+        ["G", "H"],
+        ["H", "E"],
+      ],
+      "3 cm",
+    ),
+    verb: "đo",
+    done: "Cả bốn cạnh của EFGH đều dài 3 cm.",
+  },
   "kiem-chu-nhat-goc": {
     kind: "probe",
     figure: quad("chu-nhat", {
@@ -133,10 +160,10 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
     w: 300,
     h: 200,
     pts: {
-      a: [75, 12],
+      a: [70, 20],
       b: [125, 52],
-      c: [75, 92],
-      d: [25, 52],
+      c: [70, 84],
+      d: [15, 52],
       e: [158, 22],
       f: [282, 10],
       g: [262, 84],
