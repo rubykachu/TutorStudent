@@ -20,10 +20,8 @@ GitHub `main` was last pushed at `ec30934`; every later commit is local (36 comm
 
 Backlog [`progress-sync/`](progress-sync/task.md), the checklist in `task.md` is the source of truth.
 
-- Built: merge core with schemas, Dexie v3 with dirty-by-hash and apply-back, server `/api/sync` (GET, PUT, daily snapshot) with memory and folder stores, family ids from `FAMILY_CODES`.
-- Running: the client sync engine and its triggers. Its handover is at the top of that `task.md` once written; read it first.
-- Remaining: parent page items, multi-device e2e, the R2 adapter, security review, docs, rollout.
-- Rollout needs the owner's approval for each step: create ONE private bucket `tutor-progress` with key prefixes `prod/` and `dev/`, a token scoped to that bucket, Vercel env vars, and a deploy.
+- Built and reviewed: merge core, client engine and triggers, parent page items, multi-device e2e, the R2 adapter, security review, docs.
+- Rollout (Task 20 in `task.md`): bucket `tutor-progress` created 2026-10-03 (private, lifecycle rules set) and `.env.production.local` holds `R2_ACCOUNT_ID`, `R2_PRIVATE_BUCKET` and the named `FAMILY_CODES` entry `nha-minh`. Waiting on the owner: the R2 token (Object Read & Write on `tutor-progress` only, made in the dashboard because the wrangler login cannot create tokens) and a usage notification. After that: `pnpm test:r2`, Vercel env vars, deploy, two-device check.
 
 ### Owner decisions to keep
 

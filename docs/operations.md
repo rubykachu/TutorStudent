@@ -97,6 +97,8 @@ Quy tắc đã được code giữ:
 
 Tiến độ của bé nằm trong IndexedDB của từng trình duyệt. Khi bật đồng bộ, app còn gửi nó (ngầm, bé không thấy gì) lên bucket R2 riêng tư `tutor-progress`, để iPad (Safari và app ở Màn hình chính), điện thoại, laptop của cùng gia đình thấy chung hồ sơ, phần đã học, thẻ ôn và sticker. Quy tắc của hệ thống nằm ở `docs/spec.md` mục 5.7; mục này là các việc của chủ dự án.
 
+Trạng thái (03/10/2026): bucket `tutor-progress` đã tạo, riêng tư, đủ ba quy tắc vòng đời ở bước 1; token R2 chưa tạo nên production chưa bật đồng bộ (bản `baffae9` không có biến `R2_*`). Id gia đình của nhà là `nha-minh`, đã ghi trong `.env.production.local`.
+
 Chưa đặt bốn biến `R2_*` thì đồng bộ tắt im lặng và app chạy như trước. Một mục `FAMILY_CODES` không có tên (`<mã>` thay vì `<id gia đình>:<mã>`) vẫn vào được app nhưng máy dùng mã đó không đồng bộ.
 
 Một bucket cho mọi môi trường, tách bằng tiền tố: `prod/` chỉ do bản production trên Vercel ghi, `dev/` cho máy dev và bản preview, `test/<mã chạy>/` cho bài kiểm tra R2 thật tuỳ chọn. Token R2 giới hạn theo bucket chứ không theo tiền tố, nên chỉ có code giữ hai môi trường tách nhau (`prod/` chỉ khi `VERCEL_ENV=production`). Vì vậy:

@@ -26,7 +26,7 @@ Slices 1 to 6 are built, and the R2 adapter (Task 17), the security review (Task
 ### Next steps, in order
 
 1. Checkpoint B: owner reviews the E2E evidence and the security review. Open Low findings are listed there; none blocks the rollout.
-2. Task 20: rollout, each step approved by the owner. The runbook is in `docs/operations.md`, "Bật đồng bộ lần đầu". `pnpm test:r2` only on the owner's yes.
+2. Task 20: rollout. Step 1 is done; the owner creates the token (step 2), then an agent runs steps 3 to 6 (the owner approved the whole rollout on 2026-10-03). See "Status" under Task 20.
 
 ### Deviations from the spec
 
@@ -380,6 +380,14 @@ In this order, each step approved by the owner for this release:
 4. Owner sets on Vercel, Production, Sensitive: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_PRIVATE_BUCKET`, and rewrites `FAMILY_CODES` as named entries. The codes themselves stay the same, so no device re-enters a code. `.env.production.local` (read by the deploy smoke check) gets the same named form.
 5. On approval: `pnpm deploy:prod` from the verified commit, per `docs/operations.md`; smoke checks pass, including the new 401 check.
 6. Owner smoke on two real devices (iPad Safari and the Home Screen app): study one section on one, see it on the other; the parent page shows the last sync time; objects appear under `prod/` only.
+
+Status (2026-10-03; production still runs `baffae9`, sync off there):
+
+- Step 1 done by an agent with wrangler: bucket `tutor-progress` in account `6db27b07be82b34a884bacb6bf63e007`, r2.dev access disabled, no custom domain. Lifecycle rules: `prod-snapshots-180d` (`prod/snapshots/`, 180 days), `dev-snapshots-180d` (`dev/snapshots/`, 180 days), `test-runs-1d` (`test/`, 1 day), plus Cloudflare's default rule aborting unfinished multipart uploads after 7 days. Nothing under `prod/progress/` or `dev/progress/` expires.
+- Usage notification not set: the wrangler login has no alerting permission. Owner sets it in the dashboard.
+- Step 2 not done: the wrangler login cannot create API tokens (Cloudflare error 9109), so the owner creates the token in the dashboard and pastes `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY` into `.env.production.local`.
+- `.env.production.local` (chmod 600, ignored by git) already holds `R2_ACCOUNT_ID`, `R2_PRIVATE_BUCKET=tutor-progress` and `FAMILY_CODES` as the named entry `nha-minh:<same code>`; the family id `nha-minh` is part of every storage key and never changes. No `.env.local` is written, so the owner's dev server stays off the bucket; `pnpm test:r2` gets the four variables from the shell.
+- Remaining, in order: `pnpm test:r2`; Vercel Production env (`R2_*` Sensitive, `FAMILY_CODES` replaced by the named value); `pnpm deploy:prod --ref <verified SHA>` with smoke 7/7; two-browser check of sync and of keys under `prod/progress/nha-minh/`.
 
 Acceptance:
 - [ ] Steps 1 to 6 done, results written here with dates and the deployed commit.
