@@ -34,10 +34,11 @@ export type ConstructSpec = {
 };
 
 // What the board says instead of the instruction. Two compass arcs must meet
-// before the apex is marked, on a lesson screen the compass opening and the
-// two segments taken on the square's perpendiculars must equal the side, and
-// an exercise only says the steps are all done, never whether the figure is
-// right (the frame does, after "Kiểm tra").
+// before the apex is marked, and on a lesson screen the compass opening, the
+// two segments taken on the square's perpendiculars and the side itself must
+// be what the screen asks for. An exercise never says whether the figure is
+// right (the frame does, after "Kiểm tra"); the board only tells the child
+// the steps are done (`finished`).
 function warningOf(
   spec: ConstructSpec,
   state: VisualState,
@@ -46,6 +47,12 @@ function warningOf(
 ): BoardWarning | undefined {
   const [first = "", second = ""] = spec.names;
   const { len, open, h } = state;
+  const wrongLength =
+    guided && spec.goal !== undefined && len !== undefined && len !== spec.goal;
+  const lengthWarning = (blocks: string): BoardWarning => ({
+    text: `Cạnh ${first}${second} phải dài ${spec.goal} cm.`,
+    blocks,
+  });
   if (spec.shape === "triangle") {
     if (current?.key === "apex" && apexOf(state) === undefined) {
       return {
@@ -53,29 +60,31 @@ function warningOf(
         blocks: "apex",
       };
     }
+    const late =
+      current === undefined || ["apex", "join"].includes(current.key);
     if (
       guided &&
       len !== undefined &&
       open !== undefined &&
       open !== len &&
-      (current === undefined || ["apex", "join"].includes(current.key))
+      late
     ) {
       return {
         text: `Độ mở compa phải bằng cạnh ${first}${second}.`,
         blocks: "apex",
       };
     }
-  } else if (guided && len !== undefined && h !== undefined && h !== len) {
-    return {
-      text: `Hai đoạn lấy thêm phải bằng cạnh ${first}${second}.`,
-      blocks: "join",
-    };
-  }
-  if (!guided && current === undefined) {
-    return {
-      text: "Bạn đã bấm đủ các bước. Hãy bấm Kiểm tra.",
-      blocks: "",
-    };
+    if (wrongLength && late) return lengthWarning("apex");
+  } else {
+    if (guided && len !== undefined && h !== undefined && h !== len) {
+      return {
+        text: `Hai đoạn lấy thêm phải bằng cạnh ${first}${second}.`,
+        blocks: "join",
+      };
+    }
+    if (wrongLength && (current === undefined || current.key === "join")) {
+      return lengthWarning("join");
+    }
   }
   return undefined;
 }
@@ -100,6 +109,7 @@ export function Construct({
       warning={(state, current) => warningOf(spec, state, current, guided)}
       maxHeight={BOARD_MAX_HEIGHT}
       done={spec.done ?? "Bạn đã vẽ xong hình."}
+      finished="Bạn đã bấm đủ các bước. Hãy bấm Kiểm tra."
     />
   );
 }

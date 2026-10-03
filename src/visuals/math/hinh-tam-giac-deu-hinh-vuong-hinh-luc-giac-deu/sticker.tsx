@@ -10,7 +10,7 @@ export default function Sticker() {
   return (
     <svg
       role="img"
-      aria-label="Huy hiệu hình đều, trong hình lục giác đều có hình tam giác đều và hình vuông"
+      aria-label="Huy hiệu ba hình, trong hình lục giác đều có hình tam giác đều và hình vuông"
       viewBox="0 0 100 100"
       className="h-auto w-full max-w-32"
     >

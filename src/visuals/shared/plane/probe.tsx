@@ -163,13 +163,25 @@ export function Probe({
   );
   return (
     <div className="flex w-full flex-col items-center gap-3">
-      <div className="w-full max-w-md">
+      <div
+        className={`w-full ${spec.maxScale === undefined ? "max-w-md" : ""}`}
+        style={
+          spec.maxScale === undefined
+            ? undefined
+            : { maxWidth: background.w * spec.maxScale }
+        }
+      >
         {/* biome-ignore lint/a11y/useSemanticElements: a drawing that holds buttons is a group of them */}
         <svg
           viewBox={`0 0 ${background.w} ${background.h}`}
           role="group"
           aria-label={background.label}
-          className="h-auto max-h-72 w-full"
+          className={`h-auto w-full ${spec.maxScale === undefined ? "max-h-72" : ""}`}
+          style={
+            spec.maxScale === undefined
+              ? undefined
+              : { maxHeight: background.h * spec.maxScale }
+          }
         >
           <FigureLayers spec={figure} />
           {spec.parts.map((part, i) =>

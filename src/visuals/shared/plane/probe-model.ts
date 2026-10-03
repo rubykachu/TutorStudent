@@ -39,14 +39,19 @@ export type ProbePart =
     }
   // A region (a polygon named by its corners) that is coloured in when tapped.
   | { kind: "poly"; v: readonly string[]; label: string; tone: Tone }
-  // A button under the figure that outlines the whole figure (`whole`).
-  | { kind: "chip"; label: string; tone: Tone };
+  // A button under the figure that outlines a region: `v` (corners), or the
+  // whole figure (`whole`) when `v` is left out. For a region that lies over
+  // other regions, whose taps it would catch.
+  | { kind: "chip"; label: string; tone: Tone; v?: readonly string[] };
 
 export type ProbeSpec = {
   figure: FigureSpec;
   parts: readonly ProbePart[];
   // Corners of the outline a "chip" part draws.
   whole?: readonly string[];
+  // How many times its own size the figure may be shown at, in place of the
+  // usual cap of 448 by 288 pixels (a figure that is read name by name).
+  maxScale?: number;
   // The word in the progress line: "Đã đo 2/4", "Đã tô 3/5".
   verb: string;
   // Closing line once every part is done.
@@ -201,16 +206,17 @@ export function probeFigure(
           (poly) => poly.v.join("") === part.v.join(""),
         );
         break;
-      case "chip":
-        if (spec.whole) {
-          const whole = spec.whole;
+      case "chip": {
+        const outline = part.v ?? spec.whole;
+        if (outline) {
           put(
             polys,
-            { v: whole, tone: part.tone, fill: part.tone },
-            (poly) => poly.v.join("") === whole.join(""),
+            { v: outline, tone: part.tone, fill: part.tone },
+            (poly) => poly.v.join("") === outline.join(""),
           );
         }
         break;
+      }
     }
   });
   return { ...figure, segs, angles, polys, texts };

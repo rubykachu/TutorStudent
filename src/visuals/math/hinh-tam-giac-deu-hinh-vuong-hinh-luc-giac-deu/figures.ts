@@ -611,8 +611,9 @@ export function figure45(extra?: {
   polys?: readonly FigurePoly[];
   // Draws the three main diagonals too, bold or dashed.
   mainDiagonals?: "bold" | "dash";
-  // Colour of the six secondary diagonals.
+  // Colour of the six secondary diagonals, and of the main ones.
   tone?: Tone;
+  mainTone?: Tone;
   boldSecondary?: boolean;
 }): FigureSpec {
   const pts = named(FIG45_NAMES, regularPoints(6, 160, 135, 112, 240));
@@ -649,7 +650,7 @@ export function figure45(extra?: {
             ([a, b]): FigureSeg => ({
               a,
               b,
-              tone: "amber",
+              tone: extra.mainTone ?? "amber",
               ...(extra.mainDiagonals === "bold"
                 ? { bold: true }
                 : { dash: true }),

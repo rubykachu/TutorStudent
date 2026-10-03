@@ -305,6 +305,55 @@ describe("Construct", () => {
     for (const name of ["Cung A", "Cung B", "Điểm C", "Nối"]) press(name);
     expect(container.textContent).toContain("Bạn đã bấm đủ các bước");
     expect(container.textContent).not.toMatch(/phải bằng cạnh|xong mọi bước/);
+    // Plain writing, not the warning colour, since nothing is wrong.
+    expect(screen.getByText(/Bạn đã bấm đủ các bước/).className).not.toContain(
+      "retry",
+    );
+  });
+
+  it("says nothing of the steps once the frame has graded and locked the board", () => {
+    const { container } = render(
+      <Construct
+        spec={{ shape: "triangle", names: ["A", "B", "C"] }}
+        params={{ side: 2 }}
+        shownState={solvedState("triangle", 2, false)}
+      />,
+    );
+    expect(container.textContent).not.toMatch(/bấm đủ các bước|xong mọi bước/);
+  });
+
+  it("says on a lesson screen that the side must be the goal, even when the compass equals it", () => {
+    const triangle = {
+      shape: "triangle",
+      names: ["A", "B", "C"],
+      goal: 3,
+    } as const;
+    const { unmount } = render(
+      <Construct
+        spec={triangle}
+        shownState={{ len: 4, open: 4, arcM: 1, arcN: 1, apex: 1, join: 1 }}
+      />,
+    );
+    expect(screen.getByText("Cạnh AB phải dài 3 cm.")).toBeInTheDocument();
+    expect(screen.queryByText(/xong mọi bước/)).toBeNull();
+    unmount();
+    render(
+      <Construct
+        spec={{ shape: "square", names: ["A", "B", "C", "D"], goal: 3 }}
+        shownState={{ len: 4, perpD: 1, perpE: 1, h: 4, join: 1 }}
+      />,
+    );
+    expect(screen.getByText("Cạnh AB phải dài 3 cm.")).toBeInTheDocument();
+  });
+
+  it("does not warn about the side while the child is still choosing it", () => {
+    render(
+      <Construct
+        spec={{ shape: "triangle", names: ["A", "B", "C"], goal: 3 }}
+      />,
+    );
+    press("Tăng cạnh ab (cm)");
+    expect(screen.queryByText(/phải dài/)).toBeNull();
   });
 
   it("asks the yes or no question only after the diagonals are drawn", () => {
@@ -380,8 +429,70 @@ describe("Probe", () => {
     if (spec?.kind !== "probe") throw new Error("not a probe");
     const done = spec.parts.map((part) => part.kind === "chip");
     const figure = probeFigure(spec, done);
-    expect(figure.polys?.length).toBe(spec.figure.polys?.length);
-    expect(figure.polys?.some((poly) => poly.fill === "amber")).toBe(true);
+    // The whole triangle takes the place of the outline the figure has; the
+    // medium triangle DGH is a region of its own.
+    expect(figure.polys?.length).toBe((spec.figure.polys?.length ?? 0) + 1);
+    expect(
+      figure.polys?.filter((poly) => poly.fill === "teal").map((p) => p.v),
+    ).toEqual([
+      ["D", "E", "F"],
+      ["D", "G", "H"],
+    ]);
+  });
+
+  it("makes a region that lies over other regions a button, so it cannot catch their taps", () => {
+    const spec = VISUAL_SPECS["dem-cung-lam"];
+    if (spec?.kind !== "probe") throw new Error("not a probe");
+    expect(spec.parts).toHaveLength(9);
+    const corners = (part: (typeof spec.parts)[number]) =>
+      part.kind === "poly" ? part.v : [];
+    const dgh = spec.parts.find(
+      (part) => part.kind === "chip" && part.v?.join("") === "DGH",
+    );
+    expect(dgh).toBeDefined();
+    // Of the tappable regions, none shares its corners with the chip's.
+    expect(
+      spec.parts.filter((part) => corners(part).join("") === "DGH"),
+    ).toHaveLength(0);
+    render(<Probe spec={spec} />);
+    fireEvent.click(screen.getByRole("button", { name: "Hình tam giác DGH" }));
+    expect(screen.getByText("Đã tô 1/9")).toBeInTheDocument();
+  });
+
+  it("grows a figure read name by name past the usual cap only when asked", () => {
+    const grown = VISUAL_SPECS["sbt-4-4b-do"];
+    const usual = VISUAL_SPECS["do-tam-giac-deu"];
+    if (grown?.kind !== "probe" || usual?.kind !== "probe")
+      throw new Error("not a probe");
+    const { container, rerender } = render(<Probe spec={grown} />);
+    const svg = container.querySelector("svg") as SVGElement;
+    expect(grown.maxScale).toBeGreaterThan(1.2);
+    expect(svg.style.maxHeight).toBe(
+      `${grown.figure.h * (grown.maxScale ?? 1)}px`,
+    );
+    rerender(<Probe spec={usual} />);
+    expect(container.querySelector("svg")?.style.maxHeight).toBe("");
+    expect(container.querySelector("svg")?.getAttribute("class")).toContain(
+      "max-h-72",
+    );
+  });
+
+  it("writes the measure of each main diagonal on a line of its own under the hexagon", () => {
+    const spec = VISUAL_SPECS["do-cheo-chinh"];
+    if (spec?.kind !== "probe") throw new Error("not a probe");
+    const figure = probeFigure(
+      spec,
+      spec.parts.map(() => true),
+    );
+    expect((figure.texts ?? []).map((t) => t.text)).toEqual([
+      "AD = 6 cm",
+      "BE = 6 cm",
+      "CF = 6 cm",
+    ]);
+    const ys = (figure.texts ?? []).map((t) => t.y);
+    // One line each, nothing beside the sides of the hexagon.
+    expect(new Set(ys).size).toBe(3);
+    for (const y of ys) expect(y).toBeGreaterThan(spec.figure.h * 0.7);
   });
 
   it("draws a measured segment or region in place of the one the figure has", () => {

@@ -44,6 +44,10 @@ export type BoardProps = VisualProps & {
     current: BoardStep | undefined,
   ) => BoardWarning | undefined;
   done: string;
+  // Exercise (not guided): said, in plain writing, once every step is done,
+  // instead of "Bạn đã làm xong mọi bước."; left out once the frame has
+  // graded the answer (the board is locked then).
+  finished?: string;
   // The picture is capped so it, the instruction and the controls of the
   // biggest board still fit one frame: pixels, or a CSS length.
   maxHeight?: number | string;
@@ -69,6 +73,7 @@ export function Board({
   solved,
   warning,
   done,
+  finished,
   maxHeight = DEFAULT_MAX_HEIGHT,
   onStateChange,
   shownState,
@@ -107,6 +112,12 @@ export function Board({
   );
   const choice = steps.find((step) => step.kind === "choice");
   const pressesDone = presses.every(({ step }) => stepDone(step, state));
+  const closing =
+    finished === undefined || guided
+      ? "Bạn đã làm xong mọi bước."
+      : locked
+        ? ""
+        : finished;
 
   return (
     <div className="flex w-full flex-col items-center gap-2">
@@ -118,7 +129,7 @@ export function Board({
         aria-live="polite"
         data-construct-instruction
       >
-        {warn ? warn.text : (current?.text ?? "Bạn đã làm xong mọi bước.")}
+        {warn ? warn.text : (current?.text ?? closing)}
       </p>
       <div className="flex flex-wrap items-start justify-center gap-x-6 gap-y-1">
         {steppers.map(({ step, i }) =>

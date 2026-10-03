@@ -129,6 +129,9 @@ const sq = (label: string, o: Partial<ShapeOptions> = {}) =>
 const hex = (label: string, o: Partial<ShapeOptions> = {}) =>
   shape("hex", { label, w: 300, h: 240, cx: 150, cy: 120, r: 104, ...o });
 const THUMB = { w: 140, h: 112 } as const;
+// The figures of the workbook exercises that the child reads names off: they
+// may grow to the width of the frame, so a point name stays 16 pixels tall.
+const BOOK_FIGURE_SCALE = 1.5;
 const triThumb = (label: string, o: Partial<ShapeOptions> = {}) =>
   shape("tri", { label, ...THUMB, cx: 70, cy: 62, r: 46, ...o });
 const sqThumb = (label: string, o: Partial<ShapeOptions> = {}) =>
@@ -185,7 +188,7 @@ const segsOf = (
 const equalDiagonals = (pairs: readonly (readonly [string, string])[]) => ({
   segs: pairs,
   count: 2,
-  tone: "blue" as Tone,
+  tone: "ink" as Tone,
   at: 0.22,
 });
 
@@ -534,10 +537,16 @@ function hexagonGallery(): FigureSpec {
   };
 }
 
+// The "?" of the side that ends at the measured corner stands this far along
+// it from its first point, which is its far end: the "?" of the side and of
+// the corner then stay 48 pixels apart on a phone.
+const FAR_FROM_CORNER = 0.25;
+
 // A rhombus (four equal sides, `angle` and its supplement as the angles) for
 // the compass and set-square check, corners named bottom left, top left, top
 // right, bottom right. `sample` marks its first side as the one the compass is
-// opened to.
+// opened to. It is as wide as the drawing allows with the measures written
+// beside its two slanted sides.
 function rhombus(
   label: string,
   o: {
@@ -760,7 +769,7 @@ const TRIANGLE_HINT: FigureSpec = (() => {
 // The catalog
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
-  // 1. Hình đều quanh ta
+  // 1. Ba hình quanh ta
   "doi-song-ba-vat": {
     kind: "gallery",
     label: "Gạch lát nền, tổ ong và biển báo nguy hiểm",
@@ -1152,10 +1161,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   ),
   "do-cheo-chinh": {
     kind: "probe",
+    // The hexagon is a little smaller than the others to leave room under it
+    // for the three measures, one line each.
     figure: hex("Hình lục giác đều ABCDEF với ba đường chéo chính", {
       names: true,
       fill: "lime",
-      extraPts: HEX_CENTRE,
+      cy: 100,
+      r: 92,
+      h: 288,
+      extraPts: { O: [150, 100] },
       dots: ["O"],
       segs: segsOf(HEX_MAIN, { tone: "mute", dash: true }),
     }),
@@ -1163,14 +1177,15 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
       ["A", "D"],
       ["B", "E"],
       ["C", "F"],
-    ].map(([a, b]) => ({
+    ].map(([a, b], i) => ({
       kind: "seg" as const,
       a: a as string,
       b: b as string,
-      text: "6 cm",
+      text: `${a}${b} = 6 cm`,
       label: `Đường chéo chính ${a}${b}`,
       tone: "amber" as Tone,
       at: 0.15,
+      textAt: [150, 226 + i * 24] as Pt,
     })),
     verb: "đo",
     done: "Ba đường chéo chính đều dài 6 cm.",
@@ -1438,6 +1453,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         ],
         "vừa khít",
         "teal",
+      ).map((part) =>
+        part.b === "A" ? { ...part, at: FAR_FROM_CORNER } : part,
       ),
       {
         kind: "angle" as const,
@@ -1459,17 +1476,21 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     figure: rhombus("Hình EFGH có bốn cạnh bằng nhau", {
       names: ["E", "F", "G", "H"],
       angle: 70,
+      sample: true,
     }),
     parts: [
+      // EF is the sample the compass is opened to; the other three sides are
+      // compared with it. HE is tapped far from the corner E.
       ...sideProbe(
         [
-          ["E", "F"],
           ["F", "G"],
           ["G", "H"],
           ["H", "E"],
         ],
         "vừa khít",
         "teal",
+      ).map((part) =>
+        part.b === "E" ? { ...part, at: FAR_FROM_CORNER } : part,
       ),
       {
         kind: "angle" as const,
@@ -1532,7 +1553,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
           [1, 0],
           [1, 1],
         ],
-        outlined: [{ row: 0, col: 0, size: 2, tone: "amber" }],
+        outlined: [{ row: 0, col: 0, size: 2, tone: "pink" }],
       }),
       "Thêm 1 hình vuông lớn: tất cả 5 hình",
     ),
@@ -1550,7 +1571,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         [1, 0],
         [1, 1],
       ],
-      outlined: [{ row: 0, col: 0, size: 2, tone: "amber" }],
+      outlined: [{ row: 0, col: 0, size: 2, tone: "pink" }],
     }),
     texts: [textAt(150, 224, "4 + 1 = 5 hình vuông")],
   }),
@@ -1558,14 +1579,14 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     kind: "probe",
     figure: triangleOfNine("Hình tam giác đều DEF chia thành các hình nhỏ"),
     parts: [
-      // The four smallest, then the four medium ones, then the whole.
+      // The four smallest, then the three medium ones that no other part lies
+      // in.
       ...(
         [
           ["D", "P1", "P2"],
           ["P1", "G", "P3"],
           ["P2", "P3", "H"],
           ["P1", "P2", "P3"],
-          ["D", "G", "H"],
           ["G", "E", "K"],
           ["H", "K", "F"],
           ["G", "H", "K"],
@@ -1579,7 +1600,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
             : `Hình tam giác ${v.join("")}`,
         tone: "teal" as Tone,
       })),
-      { kind: "chip", label: "Cả hình lớn DEF", tone: "amber" },
+      // DGH lies over four of the small ones and would catch their taps, and
+      // its middle is the middle of the small one between them: it is a button,
+      // like the whole triangle.
+      {
+        kind: "chip",
+        label: "Hình tam giác DGH",
+        tone: "teal",
+        v: ["D", "G", "H"],
+      },
+      { kind: "chip", label: "Cả hình lớn DEF", tone: "teal" },
     ],
     whole: ["D", "E", "F"],
     verb: "tô",
@@ -1633,8 +1663,8 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         [1, 2],
       ],
       outlined: [
-        { row: 0, col: 0, size: 2, tone: "amber" },
-        { row: 0, col: 1, size: 2, tone: "blue" },
+        { row: 0, col: 0, size: 2, tone: "pink" },
+        { row: 0, col: 1, size: 2, tone: "pink" },
       ],
     }),
     texts: [textAt(120, 154, "6 + 2 = 8 hình vuông")],
@@ -1657,6 +1687,11 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
 
   // Lead-ins of the book exercises
   "dan-td-nguoc": small(triangleDown),
+  // The same shape turned another way, for the lead-in that follows the one
+  // above, so the child cannot match by remembering the picture.
+  "dan-td-xoay": small(
+    triThumb("Hình tam giác đều xoay nghiêng", { turn: 30 }),
+  ),
   "dan-tam-giac-cao": small(
     triangleBySides(
       "Hình tam giác có hai cạnh bên dài hơn cạnh đáy",
@@ -1683,15 +1718,16 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
 
   // The figures of the workbook exercises 4.1 to 4.7
-  "sbt-hinh-4-4": figure(figure44()),
-  "sbt-hinh-4-5": figure(figure45()),
-  "sbt-hinh-4-6": figure(FIG46),
+  "sbt-hinh-4-4": figure({ ...figure44(), maxScale: BOOK_FIGURE_SCALE }),
+  "sbt-hinh-4-5": figure({ ...figure45(), maxScale: BOOK_FIGURE_SCALE }),
+  "sbt-hinh-4-6": figure({ ...FIG46, maxScale: BOOK_FIGURE_SCALE }),
   "sbt-hinh-4-7": figure(figure47()),
-  "sbt-hinh-4-8": figure(figure48()),
+  "sbt-hinh-4-8": figure({ ...figure48(), maxScale: BOOK_FIGURE_SCALE }),
 
   // The figures of the exercises 4.4b to 4.5b that the child measures
   "sbt-4-4b-do": {
     kind: "probe",
+    maxScale: BOOK_FIGURE_SCALE,
     // The two triangles cross, so their measures are written in two rows
     // under the hexagon, one column per side.
     figure: { ...figure45(), h: 312 },
@@ -1707,6 +1743,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     ).flatMap(([a, b], i) =>
       sideProbe([[a, b]], `${a}${b} 6,9 cm`, "blue").map((part) => ({
         ...part,
+        // Near the end of the segment, between its corner and the first
+        // crossing, so the six "?" stand apart.
+        at: 0.2,
         textAt: [55 + (i % 3) * 105, i < 3 ? 280 : 302] as Pt,
       })),
     ),
@@ -1715,6 +1754,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "sbt-4-5a-do": {
     kind: "probe",
+    maxScale: BOOK_FIGURE_SCALE,
     figure: figure46(),
     parts: [
       ...sideProbe(
@@ -1732,6 +1772,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
   "sbt-4-5b-do": {
     kind: "probe",
+    maxScale: BOOK_FIGURE_SCALE,
     figure: squareMNPQ("Hình MNPQ lấy từ Hình 4.6"),
     parts: [
       ...sideProbe(SQUARE_MNPQ, "3,3 cm", "blue"),
@@ -1774,9 +1815,10 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     shape: "triangle",
     names: ["M", "N", "P"],
   },
+  // The hints draw another figure than the exercise: other names, other side.
   "sbt-4-2-goi-y": steps(
-    "Các bước vẽ hình tam giác đều MNP có cạnh 3 cm, dừng trước điểm P",
-    triangleFrames(3, ["M", "N", "P"], 3),
+    "Các bước vẽ hình tam giác đều ABC có cạnh 3 cm, dừng trước điểm C",
+    triangleFrames(3, TRI_NAMES, 3),
   ),
   "sbt-4-2-giai": steps(
     "Các bước vẽ hình tam giác đều MNP có cạnh 4 cm",
@@ -1789,15 +1831,20 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     diagonals: true,
   },
   "sbt-4-3-goi-y": steps(
-    "Các bước vẽ hình vuông DEFQ có cạnh 3 cm, dừng trước hai đường chéo",
-    squareFrames(3, ["D", "E", "F", "Q"], { upTo: 4 }),
+    "Các bước vẽ hình vuông ABCD có cạnh 3 cm, dừng trước hai đường chéo",
+    squareFrames(3, SQ_NAMES, { upTo: 4 }),
   ),
   "sbt-4-3-giai": steps(
     "Các bước vẽ hình vuông DEFQ có cạnh 5 cm và hai đường chéo",
     squareFrames(5, ["D", "E", "F", "Q"], { diagonals: true }),
   ),
   "sbt-4-4a-giai": figure(
-    figure45({ tone: "teal", boldSecondary: true, mainDiagonals: "dash" }),
+    figure45({
+      tone: "amber",
+      boldSecondary: true,
+      mainDiagonals: "dash",
+      mainTone: "mute",
+    }),
   ),
   "sbt-4-4b-goi-y": figure(
     hex("Hình lục giác đều ABCDEF với ba đường chéo phụ AC, CE, EA", {
