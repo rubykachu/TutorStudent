@@ -152,6 +152,28 @@ const frame = (figureSpec: FigureSpec, caption: string) => ({
   caption,
 });
 
+// The floor of two rows of three tiles, with the big squares to outline.
+const floorGrid = (
+  outlined: NonNullable<Parameters<typeof squareGrid>[1]["outlined"]>,
+) =>
+  squareGrid("Mặt sàn hai hàng, mỗi hàng ba ô", {
+    w: 240,
+    h: 150,
+    top: 8,
+    rows: 2,
+    cols: 3,
+    cell: 64,
+    filled: [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+    ],
+    outlined,
+  });
+
 const TICKS = { ticks: true } as const;
 const MARKS = { ticks: true, angles: true } as const;
 // The same marks on a small picture: the arcs without their measures.
@@ -1656,29 +1678,19 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
     }),
     texts: [textAt(120, 154, "6 hình nhỏ và ? hình lớn hơn")],
   }),
-  "dem-luoi-giai": figure({
-    ...squareGrid("Hai hình vuông lớn ghép từ bốn ô", {
-      w: 240,
-      h: 170,
-      top: 8,
-      rows: 2,
-      cols: 3,
-      cell: 64,
-      filled: [
-        [0, 0],
-        [0, 1],
-        [0, 2],
-        [1, 0],
-        [1, 1],
-        [1, 2],
-      ],
-      outlined: [
-        { row: 0, col: 0, size: 2, tone: "pink" },
-        { row: 0, col: 1, size: 2, tone: "pink" },
-      ],
-    }),
-    texts: [textAt(120, 154, "6 + 2 = 8 hình vuông")],
-  }),
+  // The two big squares overlap in the middle column, so each gets a frame of
+  // its own: drawn together they read as three tall rectangles.
+  "dem-luoi-giai": steps("Hai hình vuông lớn ghép từ bốn ô", [
+    frame(floorGrid([]), "Mặt sàn có 6 hình vuông nhỏ."),
+    frame(
+      floorGrid([{ row: 0, col: 0, size: 2, tone: "pink" }]),
+      "Bốn ô bên trái ghép thành một hình vuông lớn.",
+    ),
+    frame(
+      floorGrid([{ row: 0, col: 1, size: 2, tone: "pink" }]),
+      "Bốn ô bên phải ghép thành hình vuông lớn thứ hai. Vậy có 6 + 2 = 8 hình vuông.",
+    ),
+  ]),
   "dem-luc-giac-ba-cheo": figure(
     hexByDiagonals("Hình lục giác đều chia bởi ba đường chéo chính"),
   ),
