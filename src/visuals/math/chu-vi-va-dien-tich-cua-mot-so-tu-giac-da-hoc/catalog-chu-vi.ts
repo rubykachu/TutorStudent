@@ -6,15 +6,13 @@ import {
   steps,
   walkFrames,
 } from "./builders";
-import { quadrilateral, shape, units } from "./figures";
+import { quadrilateral, RULE_FIGURE_HEIGHT, shape, units } from "./figures";
 import type { WalkSpec } from "./models";
 import type { VisualSpec } from "./spec";
 
 // Pictures of the sections on the perimeter: the walk once round a garden,
 // the rule examples, the walks of the lesson screens and the figures of the
 // exercises.
-
-const GALLERY_THUMB = { w: 150, h: 112, margin: 26 } as const;
 
 function walkOf(
   label: string,
@@ -144,7 +142,7 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
         figure: shape({
           label: "Hình vuông có cạnh a",
           corners: units.rect(1, 1),
-          ...GALLERY_THUMB,
+          h: RULE_FIGURE_HEIGHT,
           sides: [{ i: 0, text: "a", tone: "blue" }],
           extra: () => equalTicks(4),
         }),
@@ -154,13 +152,13 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
         figure: shape({
           label: "Hình thoi có cạnh a",
           corners: units.rhombus(8, 6),
-          ...GALLERY_THUMB,
+          h: RULE_FIGURE_HEIGHT,
           sides: [{ i: 0, text: "a", tone: "blue" }],
           extra: () => equalTicks(4),
         }),
       },
     ],
-    2,
+    1,
   ),
   "walk-thoi": WALK_RHOMBUS,
   // Section 3: two pairs of equal sides.
@@ -182,7 +180,7 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
         figure: shape({
           label: "Hình chữ nhật có hai cạnh kề nhau a và b",
           corners: units.rect(5, 3),
-          ...GALLERY_THUMB,
+          h: RULE_FIGURE_HEIGHT,
           sides: rectSides,
         }),
       },
@@ -191,12 +189,12 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
         figure: shape({
           label: "Hình bình hành có hai cạnh kề nhau a và b",
           corners: units.parallelogram(5, 3, 2),
-          ...GALLERY_THUMB,
+          h: RULE_FIGURE_HEIGHT,
           sides: parallelogramSides,
         }),
       },
     ],
-    2,
+    1,
   ),
   "walk-binh-hanh": WALK_PARALLELOGRAM,
   // Figures of the exercises.

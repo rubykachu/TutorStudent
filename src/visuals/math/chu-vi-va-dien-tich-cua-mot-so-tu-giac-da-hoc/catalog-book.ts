@@ -203,8 +203,9 @@ function trapezoidHexagon(label: string): FigureSpec {
   return { label, w: 320, h: 260, pts, polys };
 }
 
-// A regular hexagon made of six equilateral triangles round its middle.
-function triangleHexagon(label: string): FigureSpec {
+// A regular hexagon made of three rhombuses round its middle, the last one
+// grey: a stone of another colour is still a stone to count.
+function rhombusHexagon(label: string): FigureSpec {
   const r = 10;
   const angle = (deg: number) => (deg * Math.PI) / 180;
   const raw: Record<string, Pt> = { O: [0, 0] };
@@ -219,14 +220,11 @@ function triangleHexagon(label: string): FigureSpec {
   const pts: Record<string, Pt> = Object.fromEntries(
     names.map((name, i) => [name, fitted[i] as Pt]),
   );
-  const polys: NonNullable<FigureSpec["polys"]> = Array.from(
-    { length: 6 },
-    (_, k) => ({
-      v: ["O", `V${k}`, `V${(k + 1) % 6}`],
-      tone: "ink" as const,
-      fill: "sky" as const,
-    }),
-  );
+  const polys: NonNullable<FigureSpec["polys"]> = [0, 2, 4].map((k) => ({
+    v: ["O", `V${k}`, `V${k + 1}`, `V${(k + 2) % 6}`],
+    tone: "ink" as const,
+    fill: k === 4 ? ("slate" as const) : ("sky" as const),
+  }));
   return { label, w: 320, h: 200, pts, polys };
 }
 
@@ -346,31 +344,44 @@ const PAIRS: Record<string, Pair> = {
       row(`80 + 60 = 140\\ ${TEX.cm}`, dTag("hai đường chéo")),
       row(
         `\\begin{gathered} 280 + 200 + 140 \\\\ = 620\\ ${TEX.cm} = 6{,}2\\ ${TEX.m} \\end{gathered}`,
-        cTag("tổng"),
+        nTag("tổng"),
       ),
       row(`6{,}2\\ ${TEX.m} > 6\\ ${TEX.m}`, nTag("không đủ")),
     ],
   },
   "4-24": {
     hint: [
-      row(`C = 2 \\cdot (10 + 5) = 30\\ ${TEX.m}`, cTag("chu vi")),
-      row(`S = 10 \\cdot 5 - 3 \\cdot 1`, sTag("hình lớn trừ phần thiếu")),
+      row(`C = 10 + 5 + 10 + 5 = 30\\ ${TEX.m}`, cTag("chu vi")),
+      row(
+        `\\begin{gathered} 10 - 7 = 3\\ ${TEX.m} \\\\ 5 - 4 = 1\\ ${TEX.m} \\end{gathered}`,
+        nTag("cạnh phần bị cắt"),
+      ),
+      row(
+        `S = 10 \\cdot 5 - 3 \\cdot 1`,
+        sTag("hình chữ nhật trừ phần bị cắt"),
+      ),
       row(`S = 47\\ ${TEX.m2}`),
     ],
     solution: [
+      row(
+        `\\begin{gathered} 8 - 6 = 2\\ ${TEX.m} \\\\ 6 - 4 = 2\\ ${TEX.m} \\end{gathered}`,
+        nTag("cạnh phần bị cắt"),
+      ),
       row(`C = 2 \\cdot (8 + 6) = 28\\ ${TEX.m}`, cTag("chu vi")),
       row(
         `S = 8 \\cdot 6 - 2 \\cdot 2 = 44\\ ${TEX.m2}`,
-        sTag("hình lớn trừ phần thiếu"),
+        sTag("hình chữ nhật trừ phần bị cắt"),
       ),
     ],
     solutionFigure: notched(
-      "Mảnh vườn vẽ thêm hai đoạn bù vào chỗ thiếu, thành hình chữ nhật 8 m và 6 m",
+      "Mảnh vườn vẽ thêm hai đoạn bù vào chỗ bị cắt, thành hình chữ nhật 8 m và 6 m",
       { w: 8, h: 6, nw: 2, nh: 2 },
       {
         sides: [
           { i: 1, text: "8 m" },
           { i: 0, text: "6 m" },
+          { i: 2, text: "4 m" },
+          { i: 5, text: "6 m" },
         ],
         completed: true,
         canvas: CALC_CANVAS,
@@ -390,13 +401,13 @@ const PAIRS: Record<string, Pair> = {
   "4-26": {
     hint: [
       row(`1\\,500 : 30 = 50\\ ${TEX.m}`, nTag("chiều dài vườn")),
-      row(`2 \\cdot (50 + 30) - 4 = 156\\ ${TEX.m}`, cTag("chu vi trừ cửa")),
+      row(`2 \\cdot (50 + 30) - 4 = 156\\ ${TEX.m}`, nTag("chu vi trừ cửa")),
       row(`156 \\cdot 3 = 468\\ ${TEX.m}`),
     ],
     solution: [
       row(`3\\,600 : 40 = 90\\ ${TEX.m}`, nTag("chiều dài vườn")),
       row(`2 \\cdot (90 + 40) = 260\\ ${TEX.m}`, cTag("chu vi")),
-      row(`260 - 5 = 255\\ ${TEX.m}`, cTag("trừ chỗ cửa")),
+      row(`260 - 5 = 255\\ ${TEX.m}`, nTag("trừ chỗ cửa")),
       row(`255 \\cdot 2 = 510\\ ${TEX.m}`, nTag("hai tầng dây")),
     ],
   },
@@ -490,10 +501,13 @@ function notchPairs(): FigureSpec[] {
       polys: [{ v: ["A", "B", "C", "G"], tone: "ink" }],
       segs: [],
     },
-    base("Hình chữ nhật bị cắt một góc rộng 3 m, cao 2 m", {
-      sides: rectangleSides,
-      completed: true,
-    }),
+    base(
+      "Hình chữ nhật bị cắt đi một hình chữ nhật nhỏ ở góc, rộng 3 m, cao 2 m",
+      {
+        sides: rectangleSides,
+        completed: true,
+      },
+    ),
     base("Hai cạnh mới của chỗ cắt bằng hai đoạn đã mất", {
       sides: rectangleSides,
       completed: true,
@@ -563,7 +577,9 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     ),
   ),
   "dan-luc-giac-6": figure(
-    triangleHexagon("Hình lục giác đều ghép từ các viên đá hình tam giác đều"),
+    rhombusHexagon(
+      "Hình lục giác đều ghép từ ba viên đá hình thoi, hai viên màu xanh nhạt và một viên màu xám",
+    ),
   ),
   // Hints and solutions.
   ...Object.fromEntries(
@@ -593,21 +609,24 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     kind: "rows",
     label: "Công thức diện tích của năm hình",
     rows: [
-      row("S = a \\cdot a", ["Hình vuông: a là cạnh", "teal"]),
+      row("S = a \\cdot a = a^{2}", ["Hình vuông: a là cạnh", "teal"]),
       row("S = a \\cdot b", ["Hình chữ nhật: a, b là hai cạnh", "teal"]),
       row("S = a \\cdot b : 2", ["Hình thoi: a, b là hai đường chéo", "teal"]),
-      row("S = a \\cdot h", ["Hình bình hành: a đáy, h chiều cao", "teal"]),
+      row("S = a \\cdot h", [
+        "Hình bình hành: a là cạnh đáy, h là chiều cao",
+        "teal",
+      ]),
       row("S = (a + b) \\cdot h : 2", [
-        "Hình thang cân: a, b hai đáy, h chiều cao",
+        "Hình thang cân: a, b là hai đáy, h là chiều cao",
         "teal",
       ]),
     ],
   },
   "khuyet-cach-lam": steps(
-    "Chu vi hình chữ nhật bị cắt một góc",
+    "Chu vi hình chữ nhật bị cắt đi một hình chữ nhật nhỏ ở góc",
     [
       "Hình chữ nhật 9 m và 6 m.",
-      "Cắt đi một góc rộng 3 m, cao 2 m.",
+      "Cắt đi một hình chữ nhật nhỏ ở góc, rộng 3 m, cao 2 m.",
       "Hai cạnh mới dài 3 m và 2 m, bằng hai đoạn đã mất.",
       "Nên chu vi không đổi: 2 · (9 + 6) = 30 m.",
     ].map((caption, k) => ({

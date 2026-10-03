@@ -3,8 +3,22 @@ import type {
   FigureSpec,
   Pt,
 } from "@/visuals/shared/plane/figure-spec";
-import { figure, formulaCaption, gallery, small, steps } from "./builders";
-import { centroid, gridFigure, shape, sideTextAt, units } from "./figures";
+import {
+  figure,
+  formulaCaption,
+  gallery,
+  small,
+  steps,
+  unbreakable,
+} from "./builders";
+import {
+  centroid,
+  gridFigure,
+  RULE_FIGURE_HEIGHT,
+  shape,
+  sideTextAt,
+  units,
+} from "./figures";
 import type { FloorSpec, TilesSpec } from "./models";
 import type { VisualSpec } from "./spec";
 import {
@@ -21,11 +35,7 @@ import {
 // half of its box, the trapezoid doubled into a parallelogram, and the
 // figures of the exercises.
 
-const GALLERY_THUMB = { w: 150, h: 112, margin: 26 } as const;
 const OPTION = { w: 200, h: 140, margin: 28 } as const;
-// Height of the flat rule figures (a parallelogram or a trapezoid with its
-// height and letters, and nothing written under them).
-const RULE_FIGURE_HEIGHT = 150;
 
 type Cell = readonly [number, number];
 
@@ -217,7 +227,7 @@ function squaresChoice(): FigureSpec {
 }
 
 const rectAB = (w: number, h: number) => ({
-  ...GALLERY_THUMB,
+  h: RULE_FIGURE_HEIGHT,
   corners: units.rect(w, h),
 });
 
@@ -283,7 +293,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
   ),
   "f-chu-l-9-o": figure(
     gridFigure({
-      label: "Hình chữ L gồm 9 ô vuông, mỗi ô có diện tích 1 cm²",
+      label: "Hình chữ L gồm 11 ô vuông, mỗi ô có diện tích 1 cm²",
       cols: 5,
       rows: 3,
       cell: 36,
@@ -294,8 +304,10 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
       cells: [
         [0, 0],
         [1, 0],
+        [2, 0],
         [0, 1],
         [1, 1],
+        [2, 1],
         [0, 2],
         [1, 2],
         [2, 2],
@@ -337,7 +349,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     "Hình chữ nhật có hai cạnh a và b, hình vuông có cạnh a",
     [
       {
-        caption: formulaCaption("Hình chữ nhật", "S = a · b"),
+        caption: `${formulaCaption("Hình chữ nhật", "S = a · b")}\nSách viết ab nghĩa là a · b.`,
         figure: shape({
           label: "Hình chữ nhật có hai cạnh a và b",
           ...rectAB(5, 3),
@@ -349,7 +361,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
         }),
       },
       {
-        caption: formulaCaption("Hình vuông", "S = a · a"),
+        caption: `${formulaCaption("Hình vuông", "S = a · a")}\nSách viết a · a là a².`,
         figure: shape({
           label: "Hình vuông có cạnh a",
           ...rectAB(1, 1),
@@ -361,7 +373,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
         }),
       },
     ],
-    2,
+    1,
   ),
   "floor-lesson": { kind: "floor", ...FLOOR },
   "f-chu-nhat-9-4": figure(
@@ -478,7 +490,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     "Hình thoi có hai đường chéo a và b",
     [
       {
-        caption: `${formulaCaption("Hình thoi", "S = a · b : 2")}\na, b là hai đường chéo`,
+        caption: `${formulaCaption("Hình thoi", "S = a · b : 2")}\na, b là hai đường chéo\nSách viết ${unbreakable("½ · a · b")}, nghĩa là ${unbreakable("a · b : 2")}.`,
         figure: shape({
           label: "Hình thoi có hai đường chéo a và b",
           corners: units.rhombus(8, 6),
@@ -560,7 +572,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     "Hình thang cân có hai đáy a, b và chiều cao h",
     [
       {
-        caption: `${formulaCaption("Hình thang cân", "S = (a + b) · h : 2")}\na, b là hai đáy, h là chiều cao`,
+        caption: `${formulaCaption("Hình thang cân", "S = (a + b) · h : 2")}\na, b là hai đáy, h là chiều cao\nSách viết ${unbreakable("½ · (a + b) · h")}, nghĩa là ${unbreakable("(a + b) · h : 2")}.`,
         figure: shape({
           label: "Hình thang cân có hai đáy a, b và chiều cao h",
           corners: units.trapezoid(8, 4, 3),

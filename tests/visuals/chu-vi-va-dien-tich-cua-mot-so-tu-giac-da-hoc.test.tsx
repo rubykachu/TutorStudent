@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { keepUnits } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/builders";
 import { VISUAL_SPECS } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/catalog";
 import { BOOK_PAIR_KEYS } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/catalog-book";
 import {
@@ -167,6 +169,18 @@ describe("the redrawn hexagon of exercise 4.25", () => {
   });
 });
 
+describe("the redrawn hexagon of the stone-counting question", () => {
+  it("is three equal rhombuses, one of them grey", () => {
+    const spec = VISUAL_SPECS["dan-luc-giac-6"];
+    if (spec?.kind !== "figure") throw new Error("figure expected");
+    const polys = spec.figure.polys ?? [];
+    expect(polys).toHaveLength(3);
+    const areas = polys.map((poly) => polyArea(spec.figure, poly.v));
+    for (const a of areas) near(a, areas[0] ?? 0, 1);
+    expect(polys.filter((poly) => poly.fill === "slate")).toHaveLength(1);
+  });
+});
+
 describe("the walk round a shape", () => {
   const spec: WalkSpec = {
     figure: shape({ label: "Hình chữ nhật", corners: units.rect(6, 4) }),
@@ -181,6 +195,11 @@ describe("the walk round a shape", () => {
     expect(walkSum(spec, 4)).toBe("6 + 4 + 6 + 4 = 20 m");
     expect(walkFigure(spec, 2).segs).toHaveLength(2);
     expect(walkFigure(spec, 2).texts).toHaveLength(2);
+  });
+
+  it("writes each side walked with its unit", () => {
+    const texts = walkFigure(spec, 2).texts ?? [];
+    expect(texts.map((t) => t.text)).toEqual(["6 m", "4 m"]);
   });
 
   it("reports the sides walked and closes with the perimeter", () => {
@@ -252,6 +271,10 @@ describe("the floor of tiles", () => {
   });
 });
 
+// The text as the screen reader tool matches it: a no-break space reads as a
+// space.
+const readAs = (text: string) => text.replaceAll("\u00a0", " ");
+
 describe("the stages", () => {
   it("presses through the cut and slide of the parallelogram", () => {
     const spec = parallelogramSlide();
@@ -262,7 +285,7 @@ describe("the stages", () => {
       fireEvent.click(screen.getByRole("button", { name }));
     }
     expect(onStateChange).toHaveBeenLastCalledWith({ step: 3 });
-    expect(screen.getByText(spec.done)).toBeDefined();
+    expect(screen.getByText(readAs(spec.done))).toBeDefined();
   });
 
   it("turns the four triangles of the rhombus by tapping them", () => {
@@ -277,7 +300,7 @@ describe("the stages", () => {
       );
     }
     expect(screen.getByText("Đã xoay 4/4")).toBeDefined();
-    expect(screen.getByText(spec.done)).toBeDefined();
+    expect(screen.getByText(readAs(spec.done))).toBeDefined();
   });
 
   it("copies and turns the trapezoid in two presses", () => {
@@ -790,5 +813,89 @@ describe("numbers of a thousand or more", () => {
       }
     }
     expect(problems).toEqual([]);
+  });
+});
+
+describe("the rules of the lesson", () => {
+  it("each show one large figure per rule, in a single column", () => {
+    for (const key of [
+      "c4a-quy-tac",
+      "c2ab-quy-tac",
+      "dt-cn-quy-tac",
+      "bbh-quy-tac",
+      "thoi-quy-tac",
+      "thang-quy-tac",
+    ]) {
+      const spec = VISUAL_SPECS[key];
+      if (spec?.kind !== "gallery") throw new Error(`gallery expected: ${key}`);
+      expect(spec.columns, key).toBe(1);
+    }
+  });
+
+  it("tell how the book writes the half of the rhombus and the trapezoid, and the square", () => {
+    const caption = (key: string) => {
+      const spec = VISUAL_SPECS[key];
+      if (spec?.kind !== "gallery") throw new Error(`gallery expected: ${key}`);
+      return spec.items.map((item) => item.caption).join("\n");
+    };
+    expect(caption("thoi-quy-tac")).toContain("Sách viết ½");
+    expect(caption("thang-quy-tac")).toContain("Sách viết ½");
+    expect(caption("dt-cn-quy-tac")).toContain("a²");
+  });
+});
+
+describe("the writing of measures", () => {
+  it("keeps a number with its unit on one line", () => {
+    expect(keepUnits("dài 6 cm và 10 m².")).toBe(
+      "dài 6\u00a0cm và 10\u00a0m².",
+    );
+    expect(keepUnits("có 5 mét, 3 cmx")).toBe("có 5 mét, 3 cmx");
+  });
+});
+
+// The visible width of one line of a formula: macros and braces take no room,
+// a thin space inside a number counts as one character.
+function lineWidth(line: string): number {
+  return line
+    .replace(/\\concept\{\w+\}/g, "")
+    .replace(/\\mathrm/g, "")
+    .replace(/\\ /g, " ")
+    .replace(/\\,/g, " ")
+    .replace(/\\cdot/g, "·")
+    .replace(/\^\{2\}/g, "²")
+    .replace(/[{}]/g, "")
+    .trim().length;
+}
+
+describe("the formulas of the explanations and tips", () => {
+  it("stay within 22 characters a line, one step a line, so a phone shows them whole", () => {
+    const lesson = JSON.parse(
+      readFileSync(
+        "content/math/kntt/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/lesson.json",
+        "utf8",
+      ),
+    ) as {
+      sections: { blocks: { type: string; id?: string; tex?: string }[] }[];
+      exercises: { id: string; explain?: { tex?: string } }[];
+    };
+    const formulas = [
+      ...lesson.exercises.map((e) => ({ id: e.id, tex: e.explain?.tex })),
+      ...lesson.sections.flatMap((section) =>
+        section.blocks
+          .filter((block) => block.type === "tip")
+          .map((block) => ({ id: block.id ?? "tip", tex: block.tex })),
+      ),
+    ];
+    const tooWide: string[] = [];
+    for (const { id, tex } of formulas) {
+      if (tex === undefined) continue;
+      const lines = tex
+        .replace(/\\(?:begin|end)\{gathered\}/g, "")
+        .split("\\\\");
+      for (const line of lines) {
+        if (lineWidth(line) > 22) tooWide.push(`${id}: ${line.trim()}`);
+      }
+    }
+    expect(tooWide).toEqual([]);
   });
 });

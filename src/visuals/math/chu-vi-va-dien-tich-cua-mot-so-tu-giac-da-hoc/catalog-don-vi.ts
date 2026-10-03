@@ -259,6 +259,23 @@ export const DON_VI_SPECS: Record<string, VisualSpec> = {
     "steps",
     tiledFloor(),
   ),
+  // The hint of the tiling question: the same steps with another floor,
+  // stopping before the product.
+  "goi-y-lat-gach-7-3": calc(
+    "Gợi ý: đổi ra cm, đếm theo hàng rồi nhân",
+    [
+      row(
+        "\\begin{gathered} 9\\ \\mathrm{m} = 900\\ \\mathrm{cm} \\\\ 900 : 50 = 18 \\end{gathered}",
+        ["viên mỗi hàng", "slate"],
+      ),
+      row(
+        "\\begin{gathered} 4\\ \\mathrm{m} = 400\\ \\mathrm{cm} \\\\ 400 : 50 = 8 \\end{gathered}",
+        ["số hàng", "slate"],
+      ),
+      row("18 \\cdot 8 = 144", ["số viên gạch", "slate"]),
+    ],
+    "hint",
+  ),
   "chon-chu-vi-dien-tich": gallery(
     "Rào vườn và viền khung là chu vi, lát sàn và sơn tường là diện tích",
     [

@@ -52,7 +52,7 @@ export function walkFigure(spec: WalkSpec, k: number): FigureSpec {
         const b = spec.figure.pts[
           names[(i + 1) % names.length] as string
         ] as Pt;
-        const text = String(spec.sides[i]);
+        const text = `${spec.sides[i]} ${spec.unit}`;
         const [x, y] = sideTextAt(a, b, middle, text);
         return { x, y, text, tone };
       }),

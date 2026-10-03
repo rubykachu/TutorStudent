@@ -96,9 +96,18 @@ export function equalTicks(
   };
 }
 
+// A formula that never breaks across lines: its spaces do not break.
+export const unbreakable = (formula: string): string =>
+  formula.replaceAll(" ", "\u00a0");
+
 // A caption "Name: formula" whose formula never breaks across lines, so a
 // narrow caption wraps after the colon.
 export const formulaCaption = (name: string, formula: string): string =>
-  `${name}: ${formula.replaceAll(" ", "\u00a0")}`;
+  `${name}: ${unbreakable(formula)}`;
+
+// A text where each measure keeps its number and its unit on one line ("6 cm",
+// "10 m²" never end a line on the number).
+export const keepUnits = (text: string): string =>
+  text.replace(/(\d) (cm²|cm|m²|m)(?![\p{L}\d])/gu, "$1\u00a0$2");
 
 export const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];

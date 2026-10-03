@@ -5,6 +5,7 @@ import type {
   Pt,
   Tone,
 } from "@/visuals/shared/plane/figure-spec";
+import { keepUnits } from "./builders";
 import type { StagePiece, StageSpec, StageText } from "./models";
 import {
   type Geometry,
@@ -119,7 +120,7 @@ export function parallelogramSlide(): StageSpec {
           (at(g, "BL")[0] + at(g, "BR")[0]) / 2,
           fy + 24,
           `${base} cm`,
-          "blue",
+          "ink",
         ),
       ],
     ),
@@ -131,8 +132,10 @@ export function parallelogramSlide(): StageSpec {
       "Kẻ chiều cao từ đỉnh xuống cạnh đáy. Chiều cao là 3 cm.",
       "Cắt phần tam giác nằm bên trái đường chiều cao.",
       "Trượt tam giác sang phải: ta được hình chữ nhật 6 cm và 3 cm.",
-    ],
-    done: "Hình chữ nhật có diện tích 6 · 3 = 18 cm², nên hình bình hành cũng có diện tích 18 cm².",
+    ].map(keepUnits),
+    done: keepUnits(
+      "Hình chữ nhật có diện tích 6 · 3 = 18 cm², nên hình bình hành cũng có diện tích 18 cm².",
+    ),
   };
 }
 
@@ -148,7 +151,7 @@ export function parallelogramFrames(): {
     (at(g, "BL")[0] + at(g, "BR")[0]) / 2,
     fy + 24,
     `${base} cm`,
-    "blue",
+    "ink",
   );
   const heightText = text(
     fx + 24,
@@ -161,7 +164,7 @@ export function parallelogramFrames(): {
     (at(g, "TL")[0] + at(g, "TR")[0]) / 2,
     fy + 24,
     `${base} cm`,
-    "blue",
+    "ink",
   );
   const rectHeight = text(
     at(g, "TL")[0] - 28,
@@ -191,7 +194,7 @@ export function parallelogramFrames(): {
   return [
     {
       figure: frame("Hình bình hành đáy 6 cm", [shapeOutline], [baseText]),
-      caption: "Đây là một hình bình hành. Cạnh đáy dài 6 cm.",
+      caption: keepUnits("Đây là một hình bình hành. Cạnh đáy dài 6 cm."),
     },
     {
       figure: frame(
@@ -200,7 +203,7 @@ export function parallelogramFrames(): {
         [baseText, heightText],
         heightSeg,
       ),
-      caption: "Kẻ chiều cao từ đỉnh xuống cạnh đáy: dài 3 cm.",
+      caption: keepUnits("Kẻ chiều cao từ đỉnh xuống cạnh đáy: dài 3 cm."),
     },
     {
       figure: frame(
@@ -220,7 +223,9 @@ export function parallelogramFrames(): {
         ],
         [rectBase, rectHeight],
       ),
-      caption: "Trượt tam giác sang phải: ta được hình chữ nhật 6 cm và 3 cm.",
+      caption: keepUnits(
+        "Trượt tam giác sang phải: ta được hình chữ nhật 6 cm và 3 cm.",
+      ),
     },
     {
       figure: frame(
@@ -237,8 +242,9 @@ export function parallelogramFrames(): {
           ),
         ],
       ),
-      caption:
+      caption: keepUnits(
         "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao: 6 · 3 = 18 cm².",
+      ),
     },
   ];
 }
@@ -323,7 +329,9 @@ export function rhombusFold(): StageSpec {
     pieces,
     texts: rhombusLabels(g),
     verb: "Đã xoay",
-    done: "Bốn tam giác lấp đầy hình thoi. Hình thoi bằng một nửa hình chữ nhật: 8 · 6 : 2 = 24 cm².",
+    done: keepUnits(
+      "Bốn tam giác lấp đầy hình thoi. Hình thoi bằng một nửa hình chữ nhật: 8 · 6 : 2 = 24 cm².",
+    ),
   };
 }
 
@@ -365,7 +373,7 @@ export function rhombusFrames(): { figure: FigureSpec; caption: string }[] {
   return [
     {
       figure: plain,
-      caption: "Hình thoi có hai đường chéo: a = 8 cm và b = 6 cm.",
+      caption: keepUnits("Hình thoi có hai đường chéo: a = 8 cm và b = 6 cm."),
     },
     {
       figure: withPolys(
@@ -373,7 +381,9 @@ export function rhombusFrames(): { figure: FigureSpec; caption: string }[] {
         [],
         [boxText(`Hình chữ nhật: ${d1} · ${d2} = ${d1 * d2} cm²`, "teal")],
       ),
-      caption: "Vẽ hình chữ nhật đi qua bốn đỉnh: dài 8 cm, rộng 6 cm.",
+      caption: keepUnits(
+        "Vẽ hình chữ nhật đi qua bốn đỉnh: dài 8 cm, rộng 6 cm.",
+      ),
     },
     {
       figure: withPolys(boxed, corners, [
@@ -418,7 +428,7 @@ export function trapezoidJoin(): StageSpec {
     x: (at(g, a)[0] + at(g, b)[0]) / 2,
     y: at(g, a)[1] - 20,
     text: t,
-    tone: "blue",
+    tone: "ink",
     ...(appearAt === undefined ? {} : { appearAt }),
   });
   const labelDown = (
@@ -430,7 +440,7 @@ export function trapezoidJoin(): StageSpec {
     x: (at(g, a)[0] + at(g, b)[0]) / 2,
     y: at(g, a)[1] + 22,
     text: t,
-    tone: "blue",
+    tone: "ink",
     ...(appearAt === undefined ? {} : { appearAt }),
   });
   return {
@@ -444,13 +454,13 @@ export function trapezoidJoin(): StageSpec {
           (at(g, "TL")[0] + at(g, "TR")[0]) / 2,
           at(g, "TL")[1] - 20,
           `${top} cm`,
-          "blue",
+          "ink",
         ),
         text(
           (at(g, "BL")[0] + at(g, "BR")[0]) / 2,
           at(g, "BL")[1] + 22,
           `${bottom} cm`,
-          "blue",
+          "ink",
         ),
       ],
     ),
@@ -486,7 +496,7 @@ export function trapezoidJoin(): StageSpec {
         x: (at(g, "W_BL")[0] + at(g, "W_BR")[0]) / 2,
         y: at(g, "W_BL")[1] + 52,
         text: `${top} + ${bottom} = ${sum} cm`,
-        tone: "teal",
+        tone: "ink",
         appearAt: 2,
       },
     ],
@@ -495,8 +505,10 @@ export function trapezoidJoin(): StageSpec {
       "Đây là một hình thang cân. Hai đáy là 4 cm và 8 cm.",
       "Xoay ngược một hình thang giống hệt cho đáy lớn lên trên, rồi ghép vào: ta được hình bình hành.",
       "Đáy hình bình hành dài 4 + 8 = 12 cm. Chiều cao vẫn là 3 cm.",
-    ],
-    done: "Hình bình hành có diện tích 12 · 3 = 36 cm². Hình thang chỉ bằng một nửa: 18 cm².",
+    ].map(keepUnits),
+    done: keepUnits(
+      "Hình bình hành có diện tích 12 · 3 = 36 cm². Hình thang chỉ bằng một nửa: 18 cm².",
+    ),
   };
 }
 
@@ -530,32 +542,33 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
     (at(g, "TL")[0] + at(g, "TR")[0]) / 2,
     at(g, "TL")[1] - 20,
     `${top} cm`,
-    "blue",
+    "ink",
   );
   const botA = text(
     (at(g, "BL")[0] + at(g, "BR")[0]) / 2,
     at(g, "BL")[1] + 22,
     `${bottom} cm`,
-    "blue",
+    "ink",
   );
   const topB = text(
     (at(g, "CBL")[0] + at(g, "CTL")[0]) / 2,
     at(g, "CBL")[1] - 20,
     `${bottom} cm`,
-    "blue",
+    "ink",
   );
   const botB = text(
     (at(g, "CTL")[0] + at(g, "CBL")[0]) / 2,
     at(g, "CTL")[1] + 22,
     `${top} cm`,
-    "blue",
+    "ink",
   );
-  const sumText = (t: string) =>
+  // The sum of the bases is a measure (ink); the areas are teal.
+  const sumText = (t: string, tone: Tone = "teal") =>
     text(
       (at(g, "W_BL")[0] + at(g, "W_BR")[0]) / 2,
       at(g, "W_BL")[1] + 52,
       t,
-      "teal",
+      tone,
     );
   return [
     {
@@ -564,7 +577,9 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
         [{ v: body, fill: "sky" }],
         [topA, botA],
       ),
-      caption: "Đây là hình thang cân: hai đáy 4 cm và 8 cm, chiều cao 3 cm.",
+      caption: keepUnits(
+        "Đây là hình thang cân: hai đáy 4 cm và 8 cm, chiều cao 3 cm.",
+      ),
     },
     {
       figure: mk(
@@ -586,9 +601,15 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
           { v: copy, fill: "sky" },
           { v: whole, tone: "teal" },
         ],
-        [topA, botA, topB, botB, sumText(`${top} + ${bottom} = ${sum} cm`)],
+        [
+          topA,
+          botA,
+          topB,
+          botB,
+          sumText(`${top} + ${bottom} = ${sum} cm`, "ink"),
+        ],
       ),
-      caption: "Ta được hình bình hành có đáy 4 + 8 = 12 cm.",
+      caption: keepUnits("Ta được hình bình hành có đáy 4 + 8 = 12 cm."),
     },
     {
       figure: mk(
@@ -596,7 +617,7 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
         [{ v: whole, tone: "teal", fill: "teal" }],
         [sumText(`${sum} · ${height} = ${sum * height} cm²`)],
       ),
-      caption: "Hình bình hành có diện tích 12 · 3 = 36 cm².",
+      caption: keepUnits("Hình bình hành có diện tích 12 · 3 = 36 cm²."),
     },
     {
       figure: mk(
@@ -607,7 +628,7 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
         ],
         [sumText(`${sum * height} : 2 = ${(sum * height) / 2} cm²`)],
       ),
-      caption: "Hình thang là một nửa: 36 : 2 = 18 cm².",
+      caption: keepUnits("Hình thang là một nửa: 36 : 2 = 18 cm²."),
     },
   ];
 }
