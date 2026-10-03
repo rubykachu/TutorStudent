@@ -83,7 +83,7 @@
 
 ## Kiểm đã chạy
 - `pnpm content:check`: 0 lỗi, 1 cảnh báo của bài này (id chưa khóa, do chưa chạy `content:lock`); `--stats`: mọi tiêu chí PASS, 12 `bookRef` (SBT 4.8, 4.9, 4.10, 4.11, 4.12, 4.13, 4.14, 4.15, 4.16, 4.17, 4.18, 4.19); `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` đã chạy.
-- `pnpm visual:shot`: 264/264 đạt sau khi sửa (lần đầu 252/264: bảng vẽ biết đường chéo tràn khung điện thoại, một nhãn chồng nhãn). `pnpm lesson:walk`: 0 lỗi, 0 cảnh báo (ba kích thước: iPad dọc, điện thoại, iPad ngang), chạy trong git worktree tạm trên cổng 3710. Lần walk đầu có 2 lỗi và 8 cảnh báo (dev overlay "4 Issues" do hai thẻ cùng tên trùng `key`, hình gợi ý ra ngoài màn ở iPad ngang, chữ 14,8px), đã sửa hết.
+- `pnpm visual:shot`: 264/264 đạt sau khi sửa (lần đầu 252/264: bảng vẽ biết đường chéo tràn khung điện thoại, một nhãn chồng nhãn). `pnpm lesson:walk`: 0 lỗi, 0 cảnh báo (ba kích thước: iPad dọc, điện thoại, iPad ngang), chạy trong git worktree tạm trên cổng 3710. Lần chạy cuối ở commit `b85bac6`: `visual:shot` 264/264, `lesson:walk` 0 lỗi 0 cảnh báo (trước đó có 3 lỗi hai nhãn 120° của hình thoi chồng nhau, đã sửa bằng `textDistance` của bộ đo). Lần walk đầu có 2 lỗi và 8 cảnh báo (dev overlay "4 Issues" do hai thẻ cùng tên trùng `key`, hình gợi ý ra ngoài màn ở iPad ngang, chữ 14,8px), đã sửa hết.
 - `pnpm format` trên tệp của bài, `pnpm typecheck`, `pnpm test` đạt (một tệp, `tests/scripts/sources-import.test.ts`, quá thời gian khi cả bộ chạy cùng lúc, chạy riêng đạt). `pnpm lint` toàn kho báo lỗi ở ba tệp `video/projects/tap-hop-cac-so-nguyen/*/index.html` (có từ trước, không thuộc bài); `biome check src tests` sạch.
 
 ## Việc nên làm ở vòng sau
