@@ -442,7 +442,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Sáu hình tam giác đều bằng nhau ghép quanh một điểm thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh.",
+              "text": "Sáu hình tam giác đều bằng nhau ghép chung một đỉnh ở giữa thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh.",
               "rule": true
             },
             {
@@ -483,7 +483,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-quy-tac",
-        "caption": "Sáu hình tam giác đều bằng nhau ghép quanh một điểm thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
+        "caption": "Sáu hình tam giác đều bằng nhau ghép chung một đỉnh ở giữa thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
       }
     },
     {
@@ -510,7 +510,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Vẽ một cạnh, mở compa bằng đúng cạnh đó, rồi đặt kim ở từng đầu cạnh vẽ hai cung tròn. Nối chỗ hai cung gặp nhau với hai đầu cạnh.",
+              "text": "Vẽ một cạnh, rồi mở compa sao cho hai đầu compa cách nhau đúng bằng cạnh đó. Đặt kim ở từng đầu cạnh vẽ hai cung tròn, rồi nối chỗ hai cung gặp nhau với hai đầu cạnh.",
               "rule": true
             },
             {
@@ -550,7 +550,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-quy-tac",
-        "caption": "Vẽ một cạnh, mở compa bằng đúng cạnh đó, rồi đặt kim ở từng đầu cạnh vẽ hai cung tròn. Nối chỗ hai cung gặp nhau với hai đầu cạnh."
+        "caption": "Vẽ một cạnh, rồi mở compa sao cho hai đầu compa cách nhau đúng bằng cạnh đó. Đặt kim ở từng đầu cạnh vẽ hai cung tròn, rồi nối chỗ hai cung gặp nhau với hai đầu cạnh."
       }
     },
     {
@@ -577,7 +577,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, về cùng một phía, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy.",
+              "text": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, cùng một bên của cạnh đã vẽ, lấy hai đoạn bằng cạnh đó rồi nối hai điểm vừa lấy.",
               "rule": true
             },
             {
@@ -604,7 +604,7 @@
           "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.tip.lay-doan-bang-compa",
           "kind": "làm nhanh",
           "title": "Lấy hai đoạn bằng nhau",
-          "text": "Mở compa bằng cạnh AB một lần. Đặt kim ở A rồi ở B, chấm hai điểm cùng một phía trên hai đường vuông góc."
+          "text": "Mở compa bằng cạnh AB một lần. Đặt kim ở A rồi ở B, chấm hai điểm cùng một bên trên hai đường vuông góc."
         }
       ],
       "checkIds": [
@@ -617,7 +617,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-quy-tac",
-        "caption": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, về cùng một phía, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy."
+        "caption": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, cùng một bên của cạnh đã vẽ, lấy hai đoạn bằng cạnh đó rồi nối hai điểm vừa lấy."
       }
     },
     {
@@ -787,11 +787,11 @@
             },
             {
               "type": "note",
-              "text": "Vẽ một cạnh, mở compa bằng đúng cạnh đó, rồi đặt kim ở từng đầu cạnh vẽ hai cung tròn. Nối chỗ hai cung gặp nhau với hai đầu cạnh."
+              "text": "Vẽ một cạnh, rồi mở compa sao cho hai đầu compa cách nhau đúng bằng cạnh đó. Đặt kim ở từng đầu cạnh vẽ hai cung tròn, rồi nối chỗ hai cung gặp nhau với hai đầu cạnh."
             },
             {
               "type": "note",
-              "text": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, về cùng một phía, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy."
+              "text": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, cùng một bên của cạnh đã vẽ, lấy hai đoạn bằng cạnh đó rồi nối hai điểm vừa lấy."
             },
             {
               "type": "note",
@@ -838,7 +838,7 @@
             },
             {
               "type": "note",
-              "text": "Sáu hình tam giác đều bằng nhau ghép quanh một điểm thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
+              "text": "Sáu hình tam giác đều bằng nhau ghép chung một đỉnh ở giữa thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
             },
             {
               "type": "note",
@@ -978,7 +978,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ghep-quy-tac",
-        "caption": "Sáu hình tam giác đều bằng nhau ghép quanh một điểm thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
+        "caption": "Sáu hình tam giác đều bằng nhau ghép chung một đỉnh ở giữa thành một hình lục giác đều. Đường chéo chính của hình lục giác đều dài gấp đôi cạnh."
       }
     },
     {
@@ -991,7 +991,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-td-quy-tac",
-        "caption": "Vẽ một cạnh, mở compa bằng đúng cạnh đó, rồi đặt kim ở từng đầu cạnh vẽ hai cung tròn. Nối chỗ hai cung gặp nhau với hai đầu cạnh."
+        "caption": "Vẽ một cạnh, rồi mở compa sao cho hai đầu compa cách nhau đúng bằng cạnh đó. Đặt kim ở từng đầu cạnh vẽ hai cung tròn, rồi nối chỗ hai cung gặp nhau với hai đầu cạnh."
       }
     },
     {
@@ -1005,7 +1005,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ve-hv-quy-tac",
-        "caption": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, về cùng một phía, lấy hai đoạn bằng cạnh đã vẽ rồi nối hai điểm vừa lấy."
+        "caption": "Vẽ một cạnh, rồi dùng êke kẻ hai đường vuông góc với cạnh đó ở hai đầu cạnh. Trên hai đường ấy, cùng một bên của cạnh đã vẽ, lấy hai đoạn bằng cạnh đó rồi nối hai điểm vừa lấy."
       }
     },
     {
@@ -1064,7 +1064,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Ngăn tổ ong có sáu cạnh bằng nhau và sáu góc bằng nhau, nên là hình lục giác đều. Mặt viên gạch có bốn cạnh bằng nhau và bốn góc vuông, nên là hình vuông. Biển báo có ba cạnh bằng nhau, nên là hình tam giác đều."
+        "text": "Mỗi ngăn tổ ong có sáu cạnh bằng nhau và sáu góc bằng nhau, nên là hình lục giác đều. Viên gạch có bốn cạnh bằng nhau và bốn góc như góc tờ giấy, nên là hình vuông. Biển báo có ba cạnh bằng nhau, nên là hình tam giác đều."
       },
       "left": [
         {
@@ -2883,21 +2883,21 @@
           "id": "compa",
           "content": {
             "type": "text",
-            "text": "Mở compa bằng đúng độ dài cạnh đó"
+            "text": "Mở compa sao cho hai đầu compa cách nhau đúng bằng cạnh đó"
           }
         },
         {
           "id": "cung",
           "content": {
             "type": "text",
-            "text": "Đặt kim ở từng đầu cạnh, vẽ hai cung tròn"
+            "text": "Đặt kim compa ở mỗi đầu cạnh, rồi vẽ một cung tròn"
           }
         },
         {
           "id": "noi",
           "content": {
             "type": "text",
-            "text": "Nối chỗ hai cung gặp nhau với hai đầu cạnh"
+            "text": "Chấm chỗ hai cung gặp nhau, rồi nối điểm đó với hai đầu cạnh"
           }
         }
       ]
@@ -3031,11 +3031,11 @@
           },
           {
             "optionId": "a",
-            "text": "Mở compa 4 cm, bằng nửa cạnh, thì hai cung chỉ chạm nhau ngay trên cạnh. Chúng chưa gặp nhau ở phía trên nên không có đỉnh thứ ba."
+            "text": "Compa mở 4 cm, bằng nửa cạnh 8 cm, nên hai cung chỉ chạm nhau đúng ở giữa cạnh. Chúng không lên được phía trên, nên không có đỉnh thứ ba."
           },
           {
             "optionId": "c",
-            "text": "6 cm ngắn hơn cạnh 8 cm, nên hai cạnh mới sẽ ngắn hơn cạnh đã vẽ."
+            "text": "Compa mở 6 cm thì hai cạnh mới chỉ dài 6 cm. Cạnh đã vẽ dài 8 cm, nên ba cạnh không bằng nhau."
           }
         ]
       },
@@ -3163,7 +3163,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Phải có một cạnh trước, rồi dùng êke kẻ hai đường vuông góc ở hai đầu cạnh. Sau đó lấy hai đoạn bằng cạnh, cùng một phía, trên hai đường ấy, và cuối cùng nối hai điểm vừa lấy."
+        "text": "Phải có một cạnh trước, rồi dùng êke kẻ hai đường vuông góc ở hai đầu cạnh. Sau đó lấy hai đoạn bằng cạnh, cùng một bên, trên hai đường ấy, và cuối cùng nối hai điểm vừa lấy."
       },
       "items": [
         {
@@ -3177,14 +3177,14 @@
           "id": "eke",
           "content": {
             "type": "text",
-            "text": "Dùng êke kẻ hai đường vuông góc ở hai đầu cạnh"
+            "text": "Đặt êke ở mỗi đầu cạnh, kẻ một đường vuông góc với cạnh"
           }
         },
         {
           "id": "lay",
           "content": {
             "type": "text",
-            "text": "Lấy hai đoạn bằng cạnh, cùng một phía, trên hai đường ấy"
+            "text": "Trên hai đường ấy, cùng một bên của cạnh, lấy hai đoạn bằng cạnh đã vẽ"
           }
         },
         {
@@ -3388,7 +3388,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai đường vuông góc đã có, nên cần thêm hai điểm trên chúng. Phải lấy hai đoạn bằng MN, cùng một phía, rồi mới nối hai điểm vừa lấy.",
+        "text": "Hai đường vuông góc đã có, nên cần thêm hai điểm trên chúng. Phải lấy hai đoạn bằng MN, cùng một bên, rồi mới nối hai điểm vừa lấy.",
         "wrong": [
           {
             "optionId": "noi",
@@ -3405,7 +3405,7 @@
           "id": "lay",
           "content": {
             "type": "text",
-            "text": "Lấy hai đoạn bằng MN trên hai đường ấy, cùng một phía"
+            "text": "Lấy hai đoạn bằng MN trên hai đường ấy, cùng một bên"
           }
         },
         {
@@ -3874,7 +3874,7 @@
           },
           {
             "optionId": "cong-mot",
-            "text": "Có thể có nhiều hơn một hình vuông lớn, như mặt sàn hai hàng ba ô có hai hình."
+            "text": "Có thể có nhiều hơn một hình vuông lớn. Ví dụ, hai hàng gạch, mỗi hàng ba viên, ghép được hai hình vuông lớn."
           }
         ]
       },
@@ -4770,7 +4770,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Mở compa bằng cạnh XY của tam giác XYZ thì compa vừa khít cạnh XZ, nhưng ngắn hơn cạnh YZ. Tam giác XYZ có là hình tam giác đều không?"
+          "text": "Mở compa bằng XY thì vừa khít XZ, nhưng ngắn hơn YZ. Tam giác XYZ có là hình tam giác đều không?"
         }
       ],
       "leadsTo": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.ex.sbt-4-5a",
@@ -4788,7 +4788,7 @@
         "wrong": [
           {
             "optionId": "co",
-            "text": "Compa chỉ khít XY và XZ, còn YZ dài hơn nên ba cạnh chưa bằng nhau."
+            "text": "Hai cạnh XY, XZ bằng nhau, nhưng YZ dài hơn. Vậy ba cạnh chưa bằng nhau."
           }
         ]
       },
@@ -5077,11 +5077,11 @@
         "wrong": [
           {
             "optionId": "acndfr",
-            "text": "ACNDFR có sáu cạnh, nhưng cạnh AC dài hơn cạnh CN."
+            "text": "ACNDFR có sáu cạnh, nhưng các cạnh không bằng nhau: AC dài hơn CN."
           },
           {
             "optionId": "aepdbs",
-            "text": "AEPDBS có sáu cạnh, nhưng cạnh AE dài hơn cạnh EP."
+            "text": "AEPDBS có sáu cạnh, nhưng các cạnh không bằng nhau: AE dài hơn EP."
           }
         ]
       },
