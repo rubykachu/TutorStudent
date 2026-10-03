@@ -119,11 +119,11 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
     ),
   ]),
   "kiem-hinh-quy-tac": gallery(
-    "Hai đường chéo cắt nhau ở giữa là hình bình hành, hai góc kề đáy bằng nhau là hình thang cân",
+    "Hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành, hai góc kề một đáy bằng nhau là hình thang cân",
     [
       {
         figure: diagonalParallelogram(
-          "Hình bình hành có hai đường chéo cắt nhau tại trung điểm",
+          "Hình bình hành có hai đường chéo cắt nhau tại trung điểm của mỗi đường",
           {
             first: 4,
             second: 3,
@@ -133,7 +133,8 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
             ...THUMB,
           },
         ),
-        caption: "Hai đường chéo cắt nhau tại trung điểm: hình bình hành",
+        caption:
+          "Hai đường chéo cắt nhau tại trung điểm của mỗi đường: hình bình hành",
       },
       {
         figure: isoTrapezoid("Hình thang cân có hai góc kề đáy bằng nhau", {
@@ -197,6 +198,21 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
           finished: true,
         }),
         "Thêm hình thứ ba: ghép thành hình thang cân",
+      ),
+    ],
+  ),
+  // The hint of the exercise on the same pieces: it stops at two triangles
+  // and asks where the third goes, so the strip is not shown finished.
+  "ghep-thang-can-goi-y": steps(
+    "Ghép ba hình tam giác đều thành hình thang cân: hai hình đầu",
+    [
+      frame(
+        triangleStrip("Một hình tam giác đều", { count: 1 }),
+        "Một hình tam giác đều",
+      ),
+      frame(
+        triangleStrip("Hai hình tam giác đều", { count: 2 }),
+        "Thêm hình thứ ba đặt thế nào?",
       ),
     ],
   ),

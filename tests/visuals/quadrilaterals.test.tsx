@@ -934,3 +934,71 @@ describe("catalog", () => {
     }
   });
 });
+
+describe("parallelogram lesson: shapes that are not the answer", () => {
+  const figureOf = (key: string): FigureSpec => {
+    const spec = PARALLELOGRAM_SPECS[key];
+    if (spec?.kind !== "figure") throw new Error(`no figure ${key}`);
+    return spec.figure;
+  };
+  const side = (figure: FigureSpec, a: string, b: string): Pt => [
+    pt(figure, b)[0] - pt(figure, a)[0],
+    pt(figure, b)[1] - pt(figure, a)[1],
+  ];
+  const degreesBetween = (u: Pt, v: Pt) =>
+    (Math.acos(
+      Math.abs(u[0] * v[0] + u[1] * v[1]) /
+        (Math.hypot(...u) * Math.hypot(...v)),
+    ) *
+      180) /
+    Math.PI;
+
+  it("the loose quadrilateral has no parallel sides and four different lengths", () => {
+    const fig = figureOf("th-tu-giac-lech");
+    expect(
+      degreesBetween(side(fig, "A", "B"), side(fig, "D", "C")),
+    ).toBeGreaterThan(15);
+    expect(
+      degreesBetween(side(fig, "A", "D"), side(fig, "B", "C")),
+    ).toBeGreaterThan(15);
+    const lengths = [
+      length(fig, "A", "B"),
+      length(fig, "B", "C"),
+      length(fig, "C", "D"),
+      length(fig, "D", "A"),
+    ].sort((x, y) => x - y);
+    for (let i = 1; i < lengths.length; i++) {
+      expect(
+        (lengths[i] as number) - (lengths[i - 1] as number),
+      ).toBeGreaterThan(10);
+    }
+  });
+
+  it("the trapezoid has parallel bases and unequal legs, its right leg straight", () => {
+    const fig = figureOf("th-thang-vuong");
+    expect(
+      degreesBetween(side(fig, "A", "B"), side(fig, "D", "C")),
+    ).toBeLessThan(0.01);
+    expect(
+      Math.abs(length(fig, "A", "D") - length(fig, "B", "C")),
+    ).toBeGreaterThan(10);
+    expect(pt(fig, "B")[0]).toBeCloseTo(pt(fig, "C")[0]);
+  });
+
+  it("figure 4.14 as measured keeps B, C, D, A on the sides of EFPQ", () => {
+    const spec = PARALLELOGRAM_SPECS["sbt-hinh-4-14"];
+    if (spec?.kind !== "probe") throw new Error("not a probe");
+    const fig = spec.figure;
+    const onSegment = (p: string, a: string, b: string) =>
+      expect(length(fig, a, p) + length(fig, p, b)).toBeCloseTo(
+        length(fig, a, b),
+        3,
+      );
+    onSegment("B", "E", "F");
+    onSegment("C", "F", "P");
+    onSegment("D", "P", "Q");
+    onSegment("A", "Q", "E");
+    expect(length(fig, "E", "O")).toBeCloseTo(length(fig, "O", "P"));
+    expect(length(fig, "F", "O")).toBeCloseTo(length(fig, "O", "Q"));
+  });
+});

@@ -1,5 +1,4 @@
 import { mergeSpecs } from "@/visuals/shared/quadrilaterals/builders";
-import { OTHER_SHAPE_SPECS } from "@/visuals/shared/quadrilaterals/other-shapes";
 import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 import { BINH_HANH_THANG_CAN_SPECS } from "./catalog-binh-hanh-thang-can";
 import { BOOK_SPECS } from "./catalog-book";
@@ -23,7 +22,6 @@ export {
 } from "@/visuals/shared/quadrilaterals/spec";
 
 export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = mergeSpecs(
-  OTHER_SHAPE_SPECS,
   THUMB_SPECS,
   BINH_HANH_THANG_CAN_SPECS,
   DRAWING_SPECS,

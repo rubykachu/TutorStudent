@@ -4,12 +4,13 @@ import {
   THUMB,
 } from "@/visuals/shared/quadrilaterals/builders";
 import {
+  polygonFigure,
   QUAD_NAME,
   type QuadKind,
   quad,
-  rightTrapezoid,
   turned,
 } from "@/visuals/shared/quadrilaterals/figures";
+import { OTHER_SHAPE_SPECS } from "@/visuals/shared/quadrilaterals/other-shapes";
 import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 
 // Thumbnails shared by the exercises that offer shapes as options, and the
@@ -26,10 +27,29 @@ export const THUMB_SPECS: Record<string, VisualSpec> = {
       small(quad(kind, { label: QUAD_NAME[kind], ...THUMB })),
     ]),
   ),
-  // A shape that is none of the two.
+  // Shapes that are none of the two. The trapezoid has its long base on top
+  // and its right leg straight; the loose quadrilateral has two sides that
+  // visibly lean towards each other and four sides of four lengths.
   "th-thang-vuong": small(
-    rightTrapezoid("Hình thang có một cạnh bên thẳng đứng", THUMB),
+    polygonFigure("Hình thang có một cạnh bên thẳng đứng", {
+      ...THUMB,
+      points: { A: [60, 50], B: [250, 50], C: [250, 160], D: [150, 160] },
+    }),
   ),
+  "th-tu-giac-lech": small(
+    polygonFigure("Hình có bốn cạnh, hai cạnh đối nghiêng về nhau", {
+      ...THUMB,
+      points: { A: [80, 40], B: [230, 70], C: [250, 140], D: [50, 170] },
+    }),
+  ),
+  "th-tam-giac": small(
+    polygonFigure("Hình có ba cạnh", {
+      ...THUMB,
+      points: { A: [150, 30], B: [250, 170], C: [50, 170] },
+    }),
+  ),
+  // The five-sided shape the matching exercise offers.
+  "th-ngu-giac": OTHER_SHAPE_SPECS["th-ngu-giac"] as VisualSpec,
   // The same shapes turned another way, for the exercises that name a shape
   // whatever way it lies.
   "th-thang-can-nguoc": small(

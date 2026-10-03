@@ -1,4 +1,4 @@
-import type { FigureSpec } from "@/visuals/shared/plane/figure-spec";
+import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
 import {
   board,
   figure,
@@ -63,6 +63,35 @@ function fourFigures(
 const ABCD = ["A", "B", "C", "D"] as const;
 const EFHK = ["E", "F", "H", "K"] as const;
 
+// Figure 4.14 with the rectangle ABCD wider than the book's, so that each
+// half of a diagonal has a stretch outside ABCD to tap. B, C, D, A still lie
+// on the four sides of EFPQ.
+function wide414(base: FigureSpec): FigureSpec {
+  const e: Pt = [28, 122];
+  const f: Pt = [160, 40];
+  const p: Pt = [292, 122];
+  const q: Pt = [160, 204];
+  const o: Pt = [160, 122];
+  // B and C stand on EF and FP at x = 88 and 232; A and D mirror them below.
+  const slope = (f[1] - e[1]) / (f[0] - e[0]);
+  const top = e[1] + slope * (88 - e[0]);
+  const bottom = 2 * o[1] - top;
+  return {
+    ...base,
+    pts: {
+      A: [88, bottom],
+      B: [88, top],
+      C: [232, top],
+      D: [232, bottom],
+      E: e,
+      F: f,
+      P: p,
+      Q: q,
+      O: o,
+    },
+  };
+}
+
 // The figure without the names of its corners: a small figure beside others
 // has no room for writing of a readable size.
 const unnamed = (fig: FigureSpec): FigureSpec => ({ ...fig, names: [] });
@@ -79,26 +108,32 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
   "sbt-hinh-4-14": {
     kind: "probe",
     figure: {
-      ...figure414("Hình 4.14: hình chữ nhật ABCD và tứ giác EFPQ", {
-        measure: true,
-      }),
+      ...wide414(
+        figure414("Hình 4.14: hình chữ nhật ABCD và tứ giác EFPQ", {
+          measure: true,
+        }),
+      ),
       h: FIGURE_414_HEIGHT + MEASURE_ROOM,
     },
     parts: [
+      // The half-diagonals are tapped on the part of each diagonal outside
+      // ABCD, where there is room for the "?"; their measures are written on
+      // two lines under the figure.
       ...(
         [
-          ["E", "O", "5 cm", 84, 0],
-          ["O", "P", "5 cm", 84, 1],
-          ["F", "O", "2 cm", 236, 0],
-          ["O", "Q", "2 cm", 236, 1],
+          ["E", "O", "5 cm", 84, 0, 0.23],
+          ["O", "P", "5 cm", 84, 1, 0.77],
+          ["F", "O", "2 cm", 236, 0, 0.27],
+          ["O", "Q", "2 cm", 236, 1, 0.73],
         ] as const
-      ).map(([a, b, measure, x, row]) => ({
+      ).map(([a, b, measure, x, row, at]) => ({
         kind: "seg" as const,
         a,
         b,
         text: `${a}${b} = ${measure}`,
         label: `Đoạn ${a}${b}`,
         tone: "amber" as const,
+        at,
         textAt: [x, measureY(row, FIGURE_414_HEIGHT)] as const,
       })),
       ...(
@@ -123,7 +158,56 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     verb: "đo",
     done: "O chia mỗi đường chéo của EFPQ thành hai nửa bằng nhau, và ABCD có bốn góc 90°.",
   },
-  "sbt-hinh-4-15": figure(figure415("Hình 4.15: các điểm A, B, C, D, E và O")),
+  "sbt-hinh-4-15": {
+    kind: "probe",
+    figure: figure415("Hình 4.15: các điểm A, B, C, D, E và O"),
+    // The seven segments the exercise compares and the two angles of the
+    // trapezoid BEDC at the ends of BE. The "?" of the segments next to a
+    // measured angle stands off the middle, so no two "?" touch.
+    parts: [
+      ...(
+        [
+          ["O", "A"],
+          ["A", "B"],
+          ["B", "C", 0.7],
+          ["C", "O"],
+          ["C", "D"],
+          ["D", "E", 0.3],
+          ["E", "O", 0.65],
+        ] as const
+      ).map(([a, b, at]) => ({
+        kind: "seg" as const,
+        a,
+        b,
+        text: "3 cm",
+        label: `Đoạn ${a}${b}`,
+        tone: "blue" as const,
+        ...(at === undefined ? {} : { at }),
+      })),
+      {
+        kind: "angle" as const,
+        at: "B",
+        a: "E",
+        b: "C",
+        text: "60°",
+        label: "Góc B",
+        tone: "violet" as const,
+        textDistance: 52,
+      },
+      {
+        kind: "angle" as const,
+        at: "E",
+        a: "B",
+        b: "D",
+        text: "60°",
+        label: "Góc E",
+        tone: "violet" as const,
+        textDistance: 52,
+      },
+    ],
+    verb: "đo",
+    done: "Các đoạn OA, AB, BC, CO, CD, DE, EO đều dài 3 cm, và góc B, góc E đều bằng 60°.",
+  },
   // The hexagon of the lead-in to 4.17, with the names U to Z.
   "hex-uvwxyz": figure(
     hexagonDiagonals(
@@ -243,11 +327,11 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     ],
   ),
   "sbt-4-16-giai": figure(
-    figure414(
-      "Hai đường chéo của EFPQ cắt nhau ở giữa, ABCD có bốn góc vuông",
-      {
-        solution: true,
-      },
+    wide414(
+      figure414(
+        "Hai đường chéo của EFPQ cắt nhau tại trung điểm của mỗi đường, ABCD có bốn góc vuông",
+        { solution: true },
+      ),
     ),
   ),
   "sbt-4-17-giai": figure({

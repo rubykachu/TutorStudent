@@ -1,3 +1,4 @@
+import type { FigureSpec } from "@/visuals/shared/plane/figure-spec";
 import {
   angleProbe,
   figure,
@@ -58,12 +59,23 @@ const COMPARE: readonly {
   },
 ];
 
+// Where the name O of the parallelogram GHIK moves from its usual place.
+const O_GHIK_SHIFT = [18, 0] as const;
+
+// The figure without the name of the point where its diagonals cross: a
+// thumbnail beside others has no room for it.
+const withoutCentreName = (fig: FigureSpec): FigureSpec => ({
+  ...fig,
+  names: fig.names?.filter((name) => name !== "O"),
+  texts: fig.texts?.filter((text) => text.text !== "O"),
+});
+
 const COMPARE_DIAGONALS = {
   "chu-nhat": { diagonals: "equal", caption: "Hình chữ nhật: bằng nhau" },
   thoi: { diagonals: "perp", caption: "Hình thoi: vuông góc" },
   "binh-hanh": {
     diagonals: "mid",
-    caption: "Hình bình hành: cắt nhau tại trung điểm",
+    caption: "Hình bình hành: cắt nhau tại trung điểm của mỗi đường",
   },
   "thang-can": { diagonals: "equal", caption: "Hình thang cân: bằng nhau" },
 } as const;
@@ -91,7 +103,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
           ...NAMED,
           parallel: "opposite",
         }),
-        "Các cạnh đối song song",
+        "Các cạnh đối song song: cùng dấu mũi tên",
       ),
       frame(
         quad("binh-hanh", {
@@ -291,17 +303,20 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   ),
   // The same kind of picture for the practice question, leaning the other way
   // and with other names.
-  "binh-hanh-cheo-ghik": figure(
-    renamed(
+  "binh-hanh-cheo-ghik": figure({
+    ...renamed(
       diagonalParallelogram(
         "Hình bình hành GHIK có hai đường chéo cắt nhau tại O",
         { first: 4, second: 3, between: 70, names: true, fill: true },
       ),
       { A: "G", B: "H", C: "I", D: "K" },
     ),
-  ),
+    // The name O stands in the gap between the two diagonals, where no
+    // stroke runs through it: it is the point the exercise asks about.
+    nameShift: { O: O_GHIK_SHIFT },
+  }),
   // Hình thang cân
-  "thang-can-cac-buoc": steps("Hình thang cân ABCD có hai cạnh đáy song song", [
+  "thang-can-cac-buoc": steps("Hình thang cân ABCD", [
     frame(
       quad("thang-can", { label: "Hình thang cân ABCD", ...NAMED }),
       "Hình thang cân ABCD",
@@ -312,7 +327,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         ...NAMED,
         parallel: "bases",
       }),
-      "Hai cạnh đáy AB và DC song song",
+      "AB và DC song song: đó là hai cạnh đáy",
     ),
     frame(
       quad("thang-can", {
@@ -320,7 +335,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         ...NAMED,
         sides: "legs",
       }),
-      "Hai cạnh bên AD và BC bằng nhau",
+      "AD và BC là hai cạnh bên, chúng bằng nhau",
     ),
     frame(
       quad("thang-can", {
@@ -328,7 +343,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         ...NAMED,
         angles: { D: "60°", C: "60°" },
       }),
-      "Hai góc kề đáy DC bằng nhau",
+      "Góc D và góc C ở hai đầu đáy DC, chúng bằng nhau",
     ),
   ]),
   "thang-can-quy-tac": figure(
@@ -498,7 +513,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   ),
   // So sánh bốn hình
   "so-sanh-bon-hinh": gallery(
-    "Bốn hình đặt cạnh nhau, mỗi hình với dấu riêng của nó",
+    "Bốn hình và tính chất của mỗi hình",
     COMPARE.map(({ kind, caption, marks }) => ({
       figure: quad(kind, {
         label: caption,
@@ -515,7 +530,9 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
     (Object.keys(COMPARE_DIAGONALS) as QuadKind[]).map((kind) => {
       const { diagonals, caption } = COMPARE_DIAGONALS[kind];
       return {
-        figure: quad(kind, { label: caption, fill: true, ...THUMB, diagonals }),
+        figure: withoutCentreName(
+          quad(kind, { label: caption, fill: true, ...THUMB, diagonals }),
+        ),
         caption,
       };
     }),
@@ -523,7 +540,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   ),
   "so-sanh-the": {
     kind: "cards",
-    label: "Bốn hình và điểm riêng của mỗi hình",
+    label: "Bốn hình và tính chất của mỗi hình",
     items: [
       {
         name: "Hình chữ nhật",
@@ -566,7 +583,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
         facts: [
           "Các cạnh đối bằng nhau và song song",
           "Các góc đối bằng nhau",
-          "Hai đường chéo cắt nhau tại trung điểm",
+          "Hai đường chéo cắt nhau tại trung điểm của mỗi đường",
         ],
       },
       {
@@ -587,6 +604,6 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
       },
     ],
     verb: "xem",
-    done: "Bạn đã xem điểm riêng của cả bốn hình.",
+    done: "Bạn đã xem tính chất của cả bốn hình.",
   },
 };

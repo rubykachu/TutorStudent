@@ -60,7 +60,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
           { a: 5, b: 3 },
           "Hình bình hành ABCD vẽ xong",
         ),
-        "Hai đường gặp nhau tại C. Nối D với C và B với C",
+        "Hai đường gặp nhau tại C. Nối C với D và với B",
       ),
     ],
   ),
@@ -109,9 +109,16 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
         tone: "slate",
       },
     ],
+    dots: ["a0", "b0"],
+    // The first position of the set square lies along the side AD that is
+    // already drawn; the second position is carried to B, and the stroke
+    // along its edge is the new parallel line.
     texts: [
       textAt(150, 198, "Thước giữ yên"),
       textAt(150, 36, "Êke trượt sang phải"),
+      textAt(42, 134, "A"),
+      textAt(42, 66, "D"),
+      textAt(146, 134, "B"),
     ],
   }),
   "ve-binh-hanh-tap-lam": board("parallelogram", ["M", "N", "P", "Q"], {
