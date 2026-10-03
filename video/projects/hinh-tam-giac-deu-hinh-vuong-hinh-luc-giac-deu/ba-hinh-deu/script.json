@@ -1,0 +1,78 @@
+{
+  "title": "Ba hình quanh ta",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-goc",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta làm quen với ba hình quanh ta.",
+          "opening": true
+        },
+        {
+          "text": "Gạch lát nền, tổ ong, biển báo đều có các hình này."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: ba hình này giống nhau ở điểm nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Hình tam giác đều, hình vuông và hình lục giác đều cùng có các cạnh bằng nhau và các góc bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-goc",
+      "sentences": [
+        {
+          "text": "Hình tam giác đều có ba cạnh, mỗi góc bằng 60 độ."
+        },
+        {
+          "text": "Hình vuông có bốn cạnh, mỗi góc bằng 90 độ."
+        },
+        {
+          "text": "Hình lục giác đều có sáu cạnh, mỗi góc bằng 120 độ.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-nho",
+      "sentences": [
+        {
+          "text": "Bạn nhớ nhé."
+        },
+        {
+          "text": "Hình tam giác đều, hình vuông và hình lục giác đều cùng có các cạnh bằng nhau và các góc bằng nhau.",
+          "rule": true
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ba-hinh-deu",
+      "from": "s02-hoi",
+      "to": "s06-nho",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-deu"
+      ]
+    }
+  ]
+}

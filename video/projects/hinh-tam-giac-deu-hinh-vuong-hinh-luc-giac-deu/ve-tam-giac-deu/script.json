@@ -1,0 +1,95 @@
+{
+  "title": "Vẽ tam giác đều bằng compa",
+  "engine": "local",
+  "poster": {
+    "scene": "s05-cung",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta vẽ hình tam giác đều bằng compa.",
+          "opening": true
+        },
+        {
+          "text": "Bạn chỉ cần một thước và một compa."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: làm sao có ba cạnh bằng nhau?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-canh",
+      "sentences": [
+        {
+          "text": "Đầu tiên, vẽ một cạnh dài 5 cm."
+        }
+      ]
+    },
+    {
+      "id": "s04-mo",
+      "sentences": [
+        {
+          "text": "Vẽ một cạnh, rồi mở compa sao cho hai đầu compa cách nhau đúng bằng cạnh đó.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-cung",
+      "sentences": [
+        {
+          "text": "Đặt kim ở một đầu, vẽ một cung tròn."
+        },
+        {
+          "text": "Đổi sang đầu kia, vẽ cung thứ hai."
+        },
+        {
+          "text": "Hai cung gặp nhau tại một điểm.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-noi",
+      "sentences": [
+        {
+          "text": "Đặt kim ở từng đầu cạnh vẽ hai cung tròn, rồi nối chỗ hai cung gặp nhau với hai đầu cạnh.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s07-xong",
+      "sentences": [
+        {
+          "text": "Vậy là ta có hình tam giác đều."
+        },
+        {
+          "text": "Ba cạnh của nó bằng nhau."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ve-tam-giac-deu",
+      "from": "s02-hoi",
+      "to": "s07-xong",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-tam-giac-deu"
+      ]
+    }
+  ]
+}

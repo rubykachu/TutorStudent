@@ -12,7 +12,7 @@
   "title": "Hình tam giác đều. Hình vuông. Hình lục giác đều",
   "sourceRef": "Sách bài tập tr.63–66",
   "status": "published",
-  "reviewedHash": "d7de67d4254479fb6f51c8f7b3c889e8d8bb4cb8227a521bfd9a560d4c19b149",
+  "reviewedHash": "59f87f85430e6760c401511f8e1477ba01375802225617acd52c72d460c924ca",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ làm quen với ba hình đặc biệt. Bạn thử nhìn viên gạch lát nền nhà mình xem, các cạnh của nó có bằng nhau không?"
@@ -24,7 +24,16 @@
       "vẽ được hình tam giác đều và hình vuông bằng thước, compa và êke",
       "đếm được các hình tam giác đều, hình vuông, hình lục giác đều trong một hình lớn"
     ],
-    "whyItMatters": "Bạn dùng bài này để kiểm tra viên gạch có phải hình vuông không: bốn cạnh bằng nhau, bốn góc vuông."
+    "whyItMatters": "Bạn dùng bài này để kiểm tra viên gạch có phải hình vuông không: bốn cạnh bằng nhau, bốn góc vuông.",
+    "narration": {
+      "audioUrl": "narration/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/overview.m4a",
+      "vttUrl": "narration/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Achird",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -65,6 +74,10 @@
       "sourceRef": "Sách bài tập tr.63 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.video.ba-hinh-deu"
+        },
         {
           "type": "group",
           "children": [
@@ -426,6 +439,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.video.ghep-luc-giac"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -493,6 +510,10 @@
       "sourceRef": "Sách bài tập tr.63 (kĩ năng giải toán), tr.65 (bài 4.2)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.video.ve-tam-giac-deu"
+        },
         {
           "type": "group",
           "children": [
@@ -5201,5 +5222,76 @@
   "sticker": {
     "name": "Huy hiệu ba hình",
     "visualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.video.ba-hinh-deu",
+      "lessonId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu",
+      "url": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ba-hinh-deu.mp4",
+      "vttUrl": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ba-hinh-deu.vtt",
+      "posterUrl": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ba-hinh-deu.jpg",
+      "durationSec": 39.57,
+      "clips": [
+        {
+          "id": "ba-hinh-deu",
+          "start": 8.08,
+          "end": 38.145,
+          "cardIds": [
+            "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.hinh-deu"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.video.ve-tam-giac-deu",
+      "lessonId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu",
+      "url": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ve-tam-giac-deu.mp4",
+      "vttUrl": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ve-tam-giac-deu.vtt",
+      "posterUrl": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ve-tam-giac-deu.jpg",
+      "durationSec": 41.93,
+      "clips": [
+        {
+          "id": "ve-tam-giac-deu",
+          "start": 7.585,
+          "end": 40.519,
+          "cardIds": [
+            "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ve-tam-giac-deu"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.video.ghep-luc-giac",
+      "lessonId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu",
+      "url": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ghep-luc-giac.mp4",
+      "vttUrl": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ghep-luc-giac.vtt",
+      "posterUrl": "video/hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu/ghep-luc-giac.jpg",
+      "durationSec": 36.67,
+      "clips": [
+        {
+          "id": "ghep-luc-giac",
+          "start": 6.984,
+          "end": 35.246,
+          "cardIds": [
+            "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ghep-luc-giac"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

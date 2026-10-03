@@ -1,0 +1,89 @@
+{
+  "title": "Sáu tam giác đều ghép thành lục giác",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-quy-tac",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta ghép hình lục giác đều.",
+          "opening": true
+        },
+        {
+          "text": "Ta chỉ cần các hình tam giác đều."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: cần mấy hình tam giác đều?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-dem",
+      "sentences": [
+        {
+          "text": "Ta ghép từng miếng: một, hai, ba, bốn, năm, sáu."
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Sáu hình tam giác đều bằng nhau ghép chung một đỉnh ở giữa thành một hình lục giác đều.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: đường chéo chính dài gấp mấy lần cạnh?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s06-cheo",
+      "sentences": [
+        {
+          "text": "Đường chéo chính của hình lục giác đều dài gấp đôi cạnh.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s07-nho",
+      "sentences": [
+        {
+          "text": "Cạnh dài 7 thì đường chéo chính dài 14."
+        },
+        {
+          "text": "Biết cạnh thì nhân hai ra đường chéo chính."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ghep-luc-giac",
+      "from": "s02-hoi",
+      "to": "s07-nho",
+      "cardIds": [
+        "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.card.ghep-luc-giac"
+      ]
+    }
+  ]
+}
