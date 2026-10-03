@@ -1,10 +1,25 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { collectVisualRefs } from "@/content/check";
+import {
+  LESSON_SLUG as PARALLELOGRAM_SLUG,
+  VISUAL_SPECS as PARALLELOGRAM_SPECS,
+} from "@/visuals/math/hinh-binh-hanh-hinh-thang-can/catalog";
+import {
+  LESSON_SLUG as RECTANGLE_SLUG,
+  VISUAL_SPECS as RECTANGLE_SPECS,
+} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/catalog";
+import { stepDone, stepEnabled } from "@/visuals/shared/plane/board-steps";
+import { FigureLayers } from "@/visuals/shared/plane/figure";
+import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
+import { dist } from "@/visuals/shared/plane/geometry";
+import { probeFigure } from "@/visuals/shared/plane/probe-model";
 import {
   BoardVisual,
   PiecesVisual,
-} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/board-visual";
-import { VISUAL_SPECS } from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/catalog";
+} from "@/visuals/shared/quadrilaterals/board-visual";
 import {
   ANGLES,
   type BoardShape,
@@ -14,7 +29,7 @@ import {
   expectedState,
   isDrawn,
   solvedState,
-} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/construction";
+} from "@/visuals/shared/quadrilaterals/construction";
 import {
   FIGURE_411,
   FIGURE_412,
@@ -29,17 +44,9 @@ import {
   trayFigure,
   triangleStrip,
   turned,
-} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/figures";
-import {
-  solutions,
-  validators,
-} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/logic";
-import { TapCards } from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/tap-cards";
-import { stepDone, stepEnabled } from "@/visuals/shared/plane/board-steps";
-import { FigureLayers } from "@/visuals/shared/plane/figure";
-import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
-import { dist } from "@/visuals/shared/plane/geometry";
-import { probeFigure } from "@/visuals/shared/plane/probe-model";
+} from "@/visuals/shared/quadrilaterals/figures";
+import { solutions, validators } from "@/visuals/shared/quadrilaterals/logic";
+import { TapCards } from "@/visuals/shared/quadrilaterals/tap-cards";
 
 const pt = (figure: FigureSpec, name: string): Pt => {
   const p = figure.pts[name];
@@ -781,9 +788,43 @@ describe("TapCards", () => {
   });
 });
 
+// Every item of the two lessons' catalogs, keyed by lesson and picture.
+const LESSON_CATALOGS = [
+  [RECTANGLE_SLUG, RECTANGLE_SPECS],
+  [PARALLELOGRAM_SLUG, PARALLELOGRAM_SPECS],
+] as const;
+const ALL_SPECS = LESSON_CATALOGS.flatMap(([slug, specs]) =>
+  Object.entries(specs).map(([key, spec]) => [`${slug}.${key}`, spec] as const),
+);
+
 describe("catalog", () => {
+  it("each lesson's catalog holds exactly the pictures its lesson names", () => {
+    for (const [slug, specs] of LESSON_CATALOGS) {
+      const lesson = JSON.parse(
+        readFileSync(
+          path.join("content/math/kntt", slug, "lesson.json"),
+          "utf8",
+        ),
+      );
+      const named = new Set(
+        collectVisualRefs(lesson).map((ref) => ref.visualId),
+      );
+      const held = new Set(
+        Object.keys(specs).map((key) => `${slug}.visual.${key}`),
+      );
+      expect(
+        [...named].filter((id) => !held.has(id)),
+        slug,
+      ).toEqual([]);
+      expect(
+        [...held].filter((id) => !named.has(id)),
+        slug,
+      ).toEqual([]);
+    }
+  });
+
   it("every probe names points of its figure and writes its measures inside the drawing", () => {
-    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+    for (const [key, spec] of ALL_SPECS) {
       if (spec.kind !== "probe") continue;
       const all = spec.parts.map(() => true);
       const shown = probeFigure(spec, all);
@@ -805,7 +846,7 @@ describe("catalog", () => {
           : typeof o === "object" && o !== null
             ? Object.values(o).flatMap(words)
             : [];
-    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+    for (const [key, spec] of ALL_SPECS) {
       for (const text of words(spec)) {
         expect(text, key).not.toMatch(/\btia\b/);
       }
@@ -813,7 +854,7 @@ describe("catalog", () => {
   });
 
   it("every item has a valid kind and boards name four corners", () => {
-    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+    for (const [key, spec] of ALL_SPECS) {
       if (spec.kind === "board") {
         expect(spec.names, key).toHaveLength(4);
         if (spec.goal) {

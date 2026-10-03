@@ -4,7 +4,8 @@ import type { BoardSpec } from "./board-visual";
 import type { GalleryItem } from "./gallery";
 import type { VisualSpec } from "./spec";
 
-// Small helpers the catalog files share to write their items.
+// Small helpers the catalog files of the lessons on the shapes share to write
+// their items.
 
 // A still figure.
 export const figure = (figureSpec: FigureSpec): VisualSpec => ({
@@ -99,3 +100,19 @@ export const angleProbe = (
     ...(o.right ? { right: true } : {}),
     ...(o.textDistance ? { textDistance: o.textDistance } : {}),
   }));
+
+// The items of a lesson's catalog files as one catalog; a key defined twice is
+// an error.
+export function mergeSpecs(
+  ...parts: readonly Record<string, VisualSpec>[]
+): Record<string, VisualSpec> {
+  const merged: Record<string, VisualSpec> = {};
+  for (const part of parts) {
+    for (const [key, spec] of Object.entries(part)) {
+      if (key in merged)
+        throw new Error(`Visual key "${key}" is defined twice`);
+      merged[key] = spec;
+    }
+  }
+  return merged;
+}

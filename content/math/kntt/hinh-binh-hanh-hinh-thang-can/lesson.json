@@ -1,0 +1,3946 @@
+{
+  "id": "hinh-binh-hanh-hinh-thang-can",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 19.1,
+  "number": 19,
+  "part": 2,
+  "chapter": {
+    "numeral": "IV",
+    "name": "Một số hình phẳng trong thực tiễn"
+  },
+  "title": "Hình bình hành. Hình thang cân",
+  "sourceRef": "Sách bài tập tr.67–69",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ học thêm hai hình nữa. Bạn thử nhìn chiếc thang chữ A nhà mình xem, hai bên của nó nghiêng thế nào nhỉ?"
+    },
+    "summary": "Bài này nói về hình bình hành và hình thang cân. Bạn học cách nhận ra từng hình, vẽ hình bình hành, kiểm tra một hình và ghép hình.",
+    "goals": [
+      "nhận ra hình bình hành và hình thang cân",
+      "biết cạnh, góc và đường chéo (đoạn thẳng nối hai đỉnh không nằm cạnh nhau) của hai hình này",
+      "so sánh bốn hình và kiểm tra một hình xem nó là hình gì",
+      "vẽ được hình bình hành và ghép được hình thang cân từ các hình tam giác đều"
+    ],
+    "whyItMatters": "Khay mứt Tết hình lục giác có thể ghép từ tám miếng hình thang cân, nên bạn cần biết hình thang cân trông thế nào."
+  },
+  "concepts": [
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.canh",
+      "name": "Cạnh",
+      "color": "blue"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.goc",
+      "name": "Góc",
+      "color": "violet"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.duong-cheo",
+      "name": "Đường chéo",
+      "color": "amber"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.hinh-chu-nhat",
+      "name": "Hình chữ nhật",
+      "color": "teal"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.hinh-thoi",
+      "name": "Hình thoi",
+      "color": "pink"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+      "name": "Hình bình hành",
+      "color": "lime"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.hinh-thang-can",
+      "name": "Hình thang cân",
+      "color": "sky"
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.concept.song-song",
+      "name": "Song song",
+      "color": "slate"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.hinh-binh-hanh",
+      "title": "Hình bình hành",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Gạch lát nghiêng có dạng hình bình hành. Xem hình chạy từng bước để thấy hình này có gì đặc biệt."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình bình hành có các cạnh đối bằng nhau và song song. Các góc đối của nó bằng nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng cạnh và từng góc để đo. Bạn sẽ thấy các cạnh đối và các góc đối bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.do-binh-hanh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.binh-hanh-canh-cd",
+        "hinh-binh-hanh-hinh-thang-can.ex.binh-hanh-goc-c"
+      ],
+      "practiceIds": ["hinh-binh-hanh-hinh-thang-can.ex.chon-hinh-binh-hanh"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-quy-tac",
+        "caption": "Hình bình hành có các cạnh đối bằng nhau và song song. Các góc đối của nó bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.cheo-hinh-binh-hanh",
+      "title": "Đường chéo của hình bình hành",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Trung điểm của một đoạn thẳng là điểm nằm chính giữa đoạn đó. Hai nửa của đoạn thẳng có độ dài bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.trung-diem"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-binh-hanh-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng nửa của hai đường chéo để đo. Bạn sẽ thấy hai nửa của mỗi đường chéo bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.do-cheo-binh-hanh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-oc",
+        "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-ao"
+      ],
+      "practiceIds": ["hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-trung-diem"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-binh-hanh-quy-tac",
+        "caption": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.hinh-thang-can",
+      "title": "Hình thang cân",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tứ giác là hình có bốn cạnh. Hình thang là tứ giác có hai cạnh đối song song."
+            },
+            {
+              "type": "note",
+              "text": "Chiếc thang chữ A có dạng hình thang cân. Xem hình chạy từng bước để thấy hình này có gì đặc biệt."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai cạnh song song gọi là cạnh đáy, hai cạnh còn lại gọi là cạnh bên. Hai góc có đỉnh ở hai đầu một đáy gọi là hai góc kề đáy đó."
+            },
+            {
+              "type": "note",
+              "text": "Hình thang cân có hai cạnh bên bằng nhau. Hai góc kề một đáy bằng nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng cạnh bên và từng góc kề đáy DC để đo. Bạn sẽ thấy các số đo bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.do-thang-can"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chiếc thang chữ A và chiếc túi xách đều có dạng hình thang cân. Hai bên của chúng nghiêng đều nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-doi-song"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.thang-can-canh-ben",
+        "hinh-binh-hanh-hinh-thang-can.ex.thang-can-goc-c"
+      ],
+      "practiceIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.chon-hinh-thang-can-hai-ben"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-quy-tac",
+        "caption": "Hình thang cân có hai cạnh bên bằng nhau. Hai góc kề một đáy bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.cheo-hinh-thang-can",
+      "title": "Đường chéo của hình thang cân",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình thang cân cũng có hai đường chéo. Xem hình chạy từng bước để vẽ chúng."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-thang-can-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai đường chéo của hình thang cân bằng nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-thang-can-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng đường chéo để đo. Bạn sẽ thấy hai đường chéo dài bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.do-cheo-thang-can"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.cheo-tc-bd",
+        "hinh-binh-hanh-hinh-thang-can.ex.cheo-tc-cap-bang-nhau"
+      ],
+      "practiceIds": ["hinh-binh-hanh-hinh-thang-can.ex.khung-go-cheo"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-thang-can-quy-tac",
+        "caption": "Hai đường chéo của hình thang cân bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.so-sanh-bon-hinh",
+      "title": "So sánh bốn hình",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bốn hình có nhiều điểm giống và khác nhau. Xem từng hình đặt cạnh nhau, với dấu riêng của nó."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-bon-hinh"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân. Hai đường chéo của hình thoi vuông góc với nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng hình để đọc điểm riêng của nó. So sánh giúp bạn không nhầm hình này với hình kia."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-the"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.so-sanh-cheo-vuong-goc",
+        "hinh-binh-hanh-hinh-thang-can.ex.so-sanh-bon-goc-vuong"
+      ],
+      "practiceIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.so-sanh-cheo-bang-nhau"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo",
+        "caption": "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân. Hai đường chéo của hình thoi vuông góc với nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.ve-hinh-binh-hanh",
+      "title": "Vẽ hình bình hành",
+      "sourceRef": "Sách bài tập tr.67 (kĩ năng giải toán), tr.68 (bài 4.12); cách vẽ theo SGK Toán 6",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Muốn vẽ hình bình hành, ta cần thước, thước đo góc và êke. Êke giúp ta kẻ các đường song song."
+            },
+            {
+              "type": "note",
+              "text": "Xem hình chạy từng bước vẽ hình bình hành ABCD có AB = 5 cm và AD = 3 cm."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vẽ hai cạnh nằm cạnh nhau, tạo góc cho trước. Ở đầu còn lại của mỗi cạnh, dùng êke vẽ một đường song song với cạnh kia.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "hinh-binh-hanh-hinh-thang-can.tip.truot-eke",
+          "kind": "làm nhanh",
+          "title": "Vẽ hai đường song song",
+          "text": "Đặt thước yên một chỗ, rồi trượt êke dọc theo thước. Cạnh êke vẽ ra các đường song song với nhau.",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.truot-eke"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: vẽ hình bình hành MNPQ có MN = 4 cm và MQ = 6 cm. Làm từng bước trong khung dưới hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-tap-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-quy-trinh",
+        "hinh-binh-hanh-hinh-thang-can.ex.truot-eke-song-song"
+      ],
+      "practiceIds": ["hinh-binh-hanh-hinh-thang-can.ex.ve-bh-abcd"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-quy-tac",
+        "caption": "Vẽ hai cạnh nằm cạnh nhau, tạo góc cho trước. Ở đầu còn lại của mỗi cạnh, dùng êke vẽ một đường song song với cạnh kia."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.ve-binh-hanh-cheo",
+      "title": "Vẽ hình bình hành biết đường chéo",
+      "sourceRef": "Sách bài tập tr.67 (kĩ năng giải toán), tr.68 (bài 4.13); cách vẽ theo SGK Toán 6",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Có khi ta biết hai cạnh và một đường chéo của hình bình hành. Compa vẽ cung tròn: tâm là chỗ đặt kim, bán kính là độ mở compa."
+            },
+            {
+              "type": "note",
+              "text": "Xem hình chạy từng bước vẽ hình bình hành ABCD có AB = 4 cm, BC = 3 cm và AC = 6 cm."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: vẽ hình bình hành MNPQ có MN = 5 cm, NP = 4 cm và MP = 7 cm. Làm từng bước trong khung dưới hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-tap-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-tim-c",
+        "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-do-mo"
+      ],
+      "practiceIds": ["hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-mnpq"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-quy-tac",
+        "caption": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.kiem-binh-hanh",
+      "title": "Kiểm tra hình bình hành và hình thang cân",
+      "sourceRef": "Sách bài tập tr.67–69 (bài 4.16, bài 4.17)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình bình hành có hai đường chéo cắt nhau tại trung điểm của mỗi đường. Xem hình chạy từng bước để kiểm tra một tứ giác."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-bh-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hình thang là tứ giác có hai cạnh đối song song. Xem hình chạy từng bước để kiểm tra một hình thang."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-thang-can-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành. Hình thang có hai góc kề một đáy bằng nhau là hình thang cân.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-hinh-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng nửa của hai đường chéo để đo. Hai nửa của mỗi đường chéo bằng nhau thì tứ giác là hình bình hành."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.do-kiem-binh-hanh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.kiem-bh-cheo-co",
+        "hinh-binh-hanh-hinh-thang-can.ex.kiem-bh-cheo-khong"
+      ],
+      "practiceIds": ["hinh-binh-hanh-hinh-thang-can.ex.kiem-thang-can-goc"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-hinh-quy-tac",
+        "caption": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành. Hình thang có hai góc kề một đáy bằng nhau là hình thang cân."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.ghep-hinh",
+      "title": "Ghép hình thang cân",
+      "sourceRef": "Sách bài tập tr.68–69 (ví dụ 2, bài 4.18, bài 4.19)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ba hình tam giác đều bằng nhau, đặt sát nhau, ghép được thành một hình thang cân. Xem hình chạy từng bước để thấy cách ghép."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-thang-can-cac-buoc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ba hình tam giác đều bằng nhau ghép thành một hình thang cân. Hai hình thang cân như thế ghép thành một hình lục giác đều.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: ghép ba hình tam giác đều thành một hình thang cân. Chạm nút cộng để thêm từng miếng."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-tam-giac-cung-lam"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: ghép hai hình thang cân thành một hình lục giác đều. Chạm nút cộng để thêm từng miếng."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-hai-thang-can-cung-lam"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.ghep-day-lon",
+        "hinh-binh-hanh-hinh-thang-can.ex.dem-thoi-luc-giac"
+      ],
+      "practiceIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.ghep-hai-thang-can-thanh"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-quy-tac",
+        "caption": "Ba hình tam giác đều bằng nhau ghép thành một hình thang cân. Hai hình thang cân như thế ghép thành một hình lục giác đều."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.68 đến tr.69 (bài 4.9, bài 4.12, bài 4.13, bài 4.16 đến bài 4.19), lời giải tr.115",
+      "minutes": 13,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.9 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Hình bình hành có các cạnh đối bằng nhau và song song. Các góc đối của nó bằng nhau."
+            },
+            {
+              "type": "note",
+              "text": "Hình thang cân có hai cạnh bên bằng nhau. Hai góc kề một đáy bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-thang-can-ten"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.12 và bài 4.13 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Vẽ hai cạnh nằm cạnh nhau, tạo góc cho trước. Ở đầu còn lại của mỗi cạnh, dùng êke vẽ một đường song song với cạnh kia."
+            },
+            {
+              "type": "note",
+              "text": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-xong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.16 và bài 4.17 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Tứ giác có bốn cạnh bằng nhau là hình thoi. Tứ giác có bốn góc vuông là hình chữ nhật."
+            },
+            {
+              "type": "note",
+              "text": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành. Hình thang có hai góc kề một đáy bằng nhau là hình thang cân.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-hinh-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.18 và bài 4.19 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Ba hình tam giác đều bằng nhau ghép thành một hình thang cân. Hai hình thang cân như thế ghép thành một hình lục giác đều."
+            },
+            {
+              "type": "visual",
+              "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-quy-tac"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-9-noi-ten",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-9",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-12-ve-5-6",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-12",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-13-tim-c",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-13-ve-2-3-4",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-13",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-16-goc-vuong",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-16",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-17-thoi",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-17-thang-can",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-17",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-18",
+        "hinh-binh-hanh-hinh-thang-can.ex.dan-4-19-xep-quanh",
+        "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-19"
+      ],
+      "practiceIds": [],
+      "bookPractice": true,
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-hinh-quy-tac",
+        "caption": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành. Hình thang có hai góc kề một đáy bằng nhau là hình thang cân."
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.hinh-binh-hanh",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+        "hinh-binh-hanh-hinh-thang-can.concept.canh",
+        "hinh-binh-hanh-hinh-thang-can.concept.goc",
+        "hinh-binh-hanh-hinh-thang-can.concept.song-song"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-quy-tac",
+        "caption": "Hình bình hành có các cạnh đối bằng nhau và song song. Các góc đối của nó bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-binh-hanh",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+        "hinh-binh-hanh-hinh-thang-can.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-binh-hanh-quy-tac",
+        "caption": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.hinh-thang-can",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-thang-can",
+        "hinh-binh-hanh-hinh-thang-can.concept.canh",
+        "hinh-binh-hanh-hinh-thang-can.concept.goc",
+        "hinh-binh-hanh-hinh-thang-can.concept.song-song"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-quy-tac",
+        "caption": "Hình thang cân có hai cạnh bên bằng nhau. Hai góc kề một đáy bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thang-can",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-thang-can",
+        "hinh-binh-hanh-hinh-thang-can.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.cheo-thang-can-quy-tac",
+        "caption": "Hai đường chéo của hình thang cân bằng nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.so-sanh-bon-hinh",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-chu-nhat",
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-thoi",
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-thang-can"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo",
+        "caption": "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân. Hai đường chéo của hình thoi vuông góc với nhau."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.ve-hinh-binh-hanh",
+      "sourceRef": "Sách bài tập tr.67 (kĩ năng giải toán), tr.68 (bài 4.12); cách vẽ theo SGK Toán 6",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+        "hinh-binh-hanh-hinh-thang-can.concept.canh",
+        "hinh-binh-hanh-hinh-thang-can.concept.song-song"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-quy-tac",
+        "caption": "Vẽ hai cạnh nằm cạnh nhau, tạo góc cho trước. Ở đầu còn lại của mỗi cạnh, dùng êke vẽ một đường song song với cạnh kia."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.ve-binh-hanh-cheo",
+      "sourceRef": "Sách bài tập tr.67 (kĩ năng giải toán), tr.68 (bài 4.13); cách vẽ theo SGK Toán 6",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+        "hinh-binh-hanh-hinh-thang-can.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-quy-tac",
+        "caption": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.kiem-binh-hanh",
+      "sourceRef": "Sách bài tập tr.67–69 (bài 4.16, bài 4.17)",
+      "conceptIds": [
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-binh-hanh",
+        "hinh-binh-hanh-hinh-thang-can.concept.hinh-thang-can",
+        "hinh-binh-hanh-hinh-thang-can.concept.duong-cheo",
+        "hinh-binh-hanh-hinh-thang-can.concept.goc"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-hinh-quy-tac",
+        "caption": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành. Hình thang có hai góc kề một đáy bằng nhau là hình thang cân."
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.card.ghep-hinh",
+      "sourceRef": "Sách bài tập tr.68–69 (ví dụ 2, bài 4.18, bài 4.19)",
+      "conceptIds": ["hinh-binh-hanh-hinh-thang-can.concept.hinh-thang-can"],
+      "recap": {
+        "type": "visual",
+        "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-quy-tac",
+        "caption": "Ba hình tam giác đều bằng nhau ghép thành một hình thang cân. Hai hình thang cân như thế ghép thành một hình lục giác đều."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.binh-hanh-canh-cd",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành ABCD có AB = 7 cm và BC = 5 cm. Cạnh CD dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-ab-7-bc-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "AB và CD là hai cạnh đối. Các cạnh đối của hình bình hành bằng nhau, nên CD dài 7 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "7"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.binh-hanh-goc-c",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành ABCD có góc A bằng 110°. Góc C bằng bao nhiêu độ?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-goc-a-110"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Góc A và góc C là hai góc đối. Các góc đối của hình bình hành bằng nhau, nên góc C cũng bằng 110°."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 110
+      },
+      "check": {
+        "expr": "110"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.chon-hinh-binh-hanh",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình nào là hình bình hành?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình bình hành có hai cặp cạnh đối bằng nhau và song song. Hình này có đủ hai cặp, còn ba hình kia thì không.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Hình thang cân chỉ có một cặp cạnh song song."
+          },
+          {
+            "optionId": "c",
+            "text": "Hình này có các cạnh dài ngắn khác nhau và không có cặp cạnh nào song song."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-thang-can"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-binh-hanh"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-tu-giac-lech"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-ngu-giac"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.binh-hanh-chon-cau-dung",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng về hình bình hành."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình bình hành có các cạnh đối bằng nhau và song song, và các góc đối bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "d",
+            "text": "Hình bình hành có thể không có góc vuông; hình chữ nhật mới luôn có bốn góc vuông."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Các cạnh đối bằng nhau."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Các cạnh đối song song."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Các góc đối bằng nhau."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Bốn góc đều là góc vuông."
+          }
+        }
+      ],
+      "answer": ["a", "b", "c"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.binh-hanh-canh-pq",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành MNPQ có MN = 8 cm. Cạnh PQ dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "MN và PQ là hai cạnh đối. Các cạnh đối của hình bình hành bằng nhau, nên PQ dài 8 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "8"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-oc",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai đường chéo của hình bình hành ABCD cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Biết AO = 4 cm. Đoạn OC dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-cheo-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "O là trung điểm của AC, nên OA bằng OC. Vậy OC dài 4 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 4
+      },
+      "check": {
+        "expr": "4"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-ao",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai đường chéo của hình bình hành ABCD cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Biết AC = 10 cm. Đoạn AO dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-cheo-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "O là trung điểm của AC, nên AO bằng một nửa AC.",
+        "tex": "10 : 2 = 5"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "5"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-trung-diem",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai đường chéo GI và HK của hình bình hành GHIK cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Chọn tất cả các đoạn thẳng có O là trung điểm."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-cheo-ghik"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "O nằm chính giữa mỗi đường chéo, nên O là trung điểm của GI và của HK. GH và HI là cạnh, O không nằm trên chúng.",
+        "wrong": [
+          {
+            "optionId": "ab",
+            "text": "O không nằm trên cạnh GH."
+          },
+          {
+            "optionId": "bc",
+            "text": "O không nằm trên cạnh HI."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "ac",
+          "content": {
+            "type": "text",
+            "text": "Đoạn GI"
+          }
+        },
+        {
+          "id": "bd",
+          "content": {
+            "type": "text",
+            "text": "Đoạn HK"
+          }
+        },
+        {
+          "id": "ab",
+          "content": {
+            "type": "text",
+            "text": "Đoạn GH"
+          }
+        },
+        {
+          "id": "bc",
+          "content": {
+            "type": "text",
+            "text": "Đoạn HI"
+          }
+        }
+      ],
+      "answer": ["ac", "bd"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-oq",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai đường chéo của hình bình hành MNPQ cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Biết NO = 6 cm. Đoạn OQ dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "O là trung điểm của NQ, nên ON bằng OQ. Vậy OQ dài 6 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-bh-mo",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai đường chéo của hình bình hành MNPQ cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Biết MP = 14 cm. Đoạn MO dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "O là trung điểm của MP, nên MO bằng một nửa MP.",
+        "tex": "14 : 2 = 7"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "7"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.thang-can-canh-ben",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân ABCD có cạnh bên AD = 5 cm. Cạnh bên BC dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-ad-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình thang cân có hai cạnh bên bằng nhau. AD dài 5 cm thì BC cũng dài 5 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "5"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.thang-can-goc-c",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân ABCD có đáy DC và góc D bằng 70°. Góc C bằng bao nhiêu độ?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-goc-d-70"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Góc D và góc C cùng kề đáy DC. Hai góc kề một đáy của hình thang cân bằng nhau, nên góc C cũng bằng 70°."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 70
+      },
+      "check": {
+        "expr": "70"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.chon-hinh-thang-can-hai-ben",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-thang-can"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình nào là hình thang cân?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình thang cân có hai cạnh đáy song song và hai cạnh bên bằng nhau. Hình thang kia có hai cạnh bên dài khác nhau.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Hình thang này có hai cạnh bên dài khác nhau, nên không phải hình thang cân."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-thang-vuong"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-tu-giac-lech"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-ngu-giac"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-thang-can"
+          }
+        }
+      ],
+      "answer": ["d"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.thang-can-chon-cau-dung",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-thang-can"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các câu đúng về hình thang cân."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình thang cân có hai cạnh đáy song song, hai cạnh bên bằng nhau và hai góc kề một đáy bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Hai cạnh đáy của hình thang cân dài ngắn khác nhau, nên bốn cạnh không bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Hai cạnh bên bằng nhau."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hai cạnh đáy song song."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Bốn cạnh bằng nhau."
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Hai góc kề một đáy bằng nhau."
+          }
+        }
+      ],
+      "answer": ["a", "b", "d"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.thang-can-goc-q",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-thang-can"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân MNPQ có đáy PQ và góc P bằng 65°. Góc Q bằng bao nhiêu độ?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Góc P và góc Q cùng kề đáy PQ. Hai góc kề một đáy của hình thang cân bằng nhau, nên góc Q cũng bằng 65°."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 65
+      },
+      "check": {
+        "expr": "65"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-tc-bd",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân ABCD có đường chéo AC = 9 cm. Đường chéo BD dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-cheo-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai đường chéo của hình thang cân bằng nhau. AC dài 9 cm thì BD cũng dài 9 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 9
+      },
+      "check": {
+        "expr": "9"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-tc-cap-bang-nhau",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho hình thang cân ABCD. Chọn tất cả các cặp đoạn thẳng bằng nhau."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "AD và BC là hai cạnh bên bằng nhau. AC và BD là hai đường chéo bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "ab-dc",
+            "text": "AB và DC là hai đáy, đáy trên ngắn hơn đáy dưới."
+          },
+          {
+            "optionId": "ac-ad",
+            "text": "AC là đường chéo còn AD là cạnh bên, chúng dài ngắn khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "ad-bc",
+          "content": {
+            "type": "text",
+            "text": "AD và BC"
+          }
+        },
+        {
+          "id": "ac-bd",
+          "content": {
+            "type": "text",
+            "text": "AC và BD"
+          }
+        },
+        {
+          "id": "ab-dc",
+          "content": {
+            "type": "text",
+            "text": "AB và DC"
+          }
+        },
+        {
+          "id": "ac-ad",
+          "content": {
+            "type": "text",
+            "text": "AC và AD"
+          }
+        }
+      ],
+      "answer": ["ad-bc", "ac-bd"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.khung-go-cheo",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thang-can"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một khung gỗ hình thang có hai đường chéo dài 40 cm và 42 cm. Khung gỗ này có là hình thang cân không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai đường chéo của hình thang cân phải bằng nhau. Khung này có hai đường chéo 40 cm và 42 cm, khác nhau, nên không phải hình thang cân.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Hình thang nào cũng có hai đáy song song; hình thang cân còn cần hai đường chéo bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì nó có hai cạnh đáy song song"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì hai đường chéo không bằng nhau"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-tc-nq",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thang-can"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân MNPQ có đường chéo MP = 15 cm. Đường chéo NQ dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai đường chéo của hình thang cân bằng nhau. MP dài 15 cm thì NQ cũng dài 15 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "15"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.cheo-tc-bang-ac",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thang-can"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cho hình thang cân EFGH. Đường chéo nào bằng đường chéo EG?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.thang-can-cheo-efgh"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai đường chéo của hình thang cân bằng nhau, nên FH bằng EG.",
+        "wrong": [
+          {
+            "optionId": "ab",
+            "text": "EF là cạnh đáy, không phải đường chéo."
+          },
+          {
+            "optionId": "cd",
+            "text": "GH là cạnh đáy, không phải đường chéo."
+          },
+          {
+            "optionId": "ad",
+            "text": "EH là cạnh bên, không phải đường chéo."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "bd",
+          "content": {
+            "type": "text",
+            "text": "FH"
+          }
+        },
+        {
+          "id": "ab",
+          "content": {
+            "type": "text",
+            "text": "EF"
+          }
+        },
+        {
+          "id": "cd",
+          "content": {
+            "type": "text",
+            "text": "GH"
+          }
+        },
+        {
+          "id": "ad",
+          "content": {
+            "type": "text",
+            "text": "EH"
+          }
+        }
+      ],
+      "answer": ["bd"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.so-sanh-cheo-vuong-goc",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình nào luôn có hai đường chéo vuông góc với nhau?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong bốn hình này, hình thoi luôn có hai đường chéo vuông góc với nhau. Ba hình còn lại thì không chắc chắn như vậy.",
+        "wrong": [
+          {
+            "optionId": "cn",
+            "text": "Hình chữ nhật dài hơn rộng thì hai đường chéo cắt nhau không thành góc vuông."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường nhưng thường không vuông góc."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "answer": ["thoi"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.so-sanh-bon-goc-vuong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình nào luôn có bốn góc vuông?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trong bốn hình này, chỉ hình chữ nhật luôn có bốn góc vuông. Các hình còn lại có thể có góc không vuông.",
+        "wrong": [
+          {
+            "optionId": "thoi",
+            "text": "Hình thoi chỉ chắc chắn có bốn cạnh bằng nhau; góc của nó thường không phải góc vuông."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hình bình hành thường có góc không phải góc vuông."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "answer": ["cn"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.so-sanh-cheo-bang-nhau",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.so-sanh-bon-hinh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả các hình luôn có hai đường chéo bằng nhau."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình chữ nhật và hình thang cân luôn có hai đường chéo bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "thoi",
+            "text": "Hai đường chéo của hình thoi thường dài ngắn khác nhau."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hai đường chéo của hình bình hành thường dài ngắn khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "answer": ["cn", "tc"],
+      "multiple": true
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.tam-bia-bon-canh",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.so-sanh-bon-hinh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một tấm bìa có bốn cạnh bằng nhau và hai đường chéo vuông góc. Tấm bìa này có dạng hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong bốn hình, chỉ hình thoi luôn có bốn cạnh bằng nhau và hai đường chéo vuông góc.",
+        "wrong": [
+          {
+            "optionId": "cn",
+            "text": "Hình chữ nhật có hai đường chéo bằng nhau, nhưng bốn cạnh của nó thường không bằng nhau."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hình bình hành thường có hai cạnh dài và hai cạnh ngắn."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "answer": ["thoi"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.khung-anh-bon-goc",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.so-sanh-bon-hinh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một khung ảnh có bốn góc vuông. Khung ảnh này có dạng hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Trong bốn hình, chỉ hình chữ nhật luôn có bốn góc vuông.",
+        "wrong": [
+          {
+            "optionId": "thoi",
+            "text": "Hình thoi thường có góc không phải góc vuông."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hình bình hành thường có góc không phải góc vuông."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "answer": ["cn"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-quy-trinh",
+      "type": "order",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước vẽ hình bình hành theo thứ tự đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ta vẽ cạnh EF và đường EK trước, rồi lấy K trên đường đó. Sau đó vẽ hai đường song song và nối với chỗ chúng gặp nhau."
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Vẽ cạnh EF bằng thước."
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Dùng thước đo góc kẻ đường EK tạo với EF một góc cho trước."
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Lấy K trên đường EK với độ dài cho trước."
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Dùng êke vẽ qua F đường song song với EK, qua K đường song song với EF."
+          }
+        },
+        {
+          "id": "s5",
+          "content": {
+            "type": "text",
+            "text": "Nối K và F với chỗ hai đường gặp nhau."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.truot-eke-song-song",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Đặt thước yên một chỗ, trượt êke dọc theo thước và vẽ hai đường theo cùng một cạnh êke. Hai đường đó thế nào với nhau?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Êke trượt thẳng dọc thước nên cạnh êke giữ nguyên hướng. Các đường vẽ ra song song với nhau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Êke trượt thẳng nên hướng của cạnh không đổi, hai đường không cắt nhau."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai đường vẽ cùng một cạnh êke có cùng hướng, không vuông góc với nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Song song với nhau"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Cắt nhau"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Vuông góc với nhau"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-abcd",
+      "type": "manipulate",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành ABCD có AB = 6 cm và AD = 3 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        },
+        {
+          "type": "note",
+          "text": "Bạn tự chọn góc BAD: 45°, 60° hay 75°."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ AB = 6 cm và đường AD tạo với AB một góc tự chọn, rồi lấy D sao cho AD = 3 cm. Dùng êke vẽ qua B đường song song với AD và qua D đường song song với AB, chúng gặp nhau tại C."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-abcd",
+      "validatorId": "ve-binh-hanh-hai-canh",
+      "params": {
+        "a": 6,
+        "b": 3
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-pqrs",
+      "type": "manipulate",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành PQRS có PQ = 3 cm và PS = 5 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        },
+        {
+          "type": "note",
+          "text": "Bạn tự chọn góc QPS: 45°, 60° hay 75°."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ PQ = 3 cm và đường PS tạo với PQ một góc tự chọn, rồi lấy S sao cho PS = 5 cm. Dùng êke vẽ qua Q đường song song với PS và qua S đường song song với PQ, chúng gặp nhau tại R."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-pqrs",
+      "validatorId": "ve-binh-hanh-hai-canh",
+      "params": {
+        "a": 3,
+        "b": 5
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-canh-dc",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-hinh-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành ABCD có AB = 6 cm và AD = 4 cm. Cạnh DC dài bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "AB và DC là hai cạnh đối. Các cạnh đối của hình bình hành bằng nhau, nên DC dài 6 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-tim-c",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết AB, BC và đường chéo AC của hình bình hành ABCD."
+        },
+        {
+          "type": "note",
+          "text": "Ta tìm điểm C bằng cách nào?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "C cách A một đoạn AC và cách B một đoạn BC. Vì vậy C là chỗ hai cung tròn tâm A bán kính AC và tâm B bán kính BC gặp nhau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai cung cùng bán kính AB cho điểm cách A và B đúng bằng AB, không phải AC và BC."
+          },
+          {
+            "optionId": "c",
+            "text": "Đường vuông góc không cho biết C cách A và B bao xa."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Vẽ hai cung tròn: tâm A bán kính AC và tâm B bán kính BC."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Vẽ hai cung tròn cùng bán kính AB."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Kẻ đường vuông góc với AB tại B."
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-do-mo",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành ABCD có AB = 2 cm, BC = 5 cm và AC = 6 cm."
+        },
+        {
+          "type": "note",
+          "text": "Độ mở compa khi vẽ cung có tâm B là bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cung có tâm B đi qua C, nên bán kính của nó bằng BC. Vậy độ mở compa là 5 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 5
+      },
+      "check": {
+        "expr": "5"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-mnpq",
+      "type": "manipulate",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-binh-hanh-cheo"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành MNPQ có MN = 4 cm, NP = 5 cm và MP = 6 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Vẽ MN = 4 cm, rồi vẽ cung tâm N bán kính 5 cm và cung tâm M bán kính 6 cm. Chúng gặp nhau tại P; dùng êke vẽ hai đường song song để tìm Q."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-mnpq",
+      "validatorId": "ve-binh-hanh-duong-cheo",
+      "params": {
+        "ab": 4,
+        "bc": 5,
+        "ac": 6
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-efgh",
+      "type": "manipulate",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-binh-hanh-cheo"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành EFGH có EF = 2 cm, FG = 4 cm và EG = 5 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Vẽ EF = 2 cm, rồi vẽ cung tâm F bán kính 4 cm và cung tâm E bán kính 5 cm. Chúng gặp nhau tại G; dùng êke vẽ hai đường song song để tìm đỉnh H."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-efgh",
+      "validatorId": "ve-binh-hanh-duong-cheo",
+      "params": {
+        "ab": 2,
+        "bc": 4,
+        "ac": 5
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ve-bh-cheo-hinh-gi",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-binh-hanh-cheo"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ta có ba điểm A, B, C không thẳng hàng."
+        },
+        {
+          "type": "note",
+          "text": "Đường qua C song song với AB và đường qua A song song với BC gặp nhau tại D. Tứ giác ABCD là hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "D là chỗ hai đường song song gặp nhau, nên ABCD có hai cặp cạnh đối song song. Vậy ABCD là hình bình hành.",
+        "wrong": [
+          {
+            "optionId": "cn",
+            "text": "Hình chữ nhật cần có bốn góc vuông, mà đề không nói vậy."
+          },
+          {
+            "optionId": "thoi",
+            "text": "Hình thoi cần có bốn cạnh bằng nhau, mà đề không nói vậy."
+          },
+          {
+            "optionId": "tc",
+            "text": "Hình thang cân chỉ có một cặp cạnh song song."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "answer": ["bh"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.kiem-bh-cheo-co",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tứ giác ABCD có hai đường chéo AC và BD cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Đo được OA = OC = 5 cm và OB = OD = 3 cm. Tứ giác ABCD có là hình bình hành không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "OA bằng OC nên O là trung điểm của AC, và OB bằng OD nên O là trung điểm của BD. Vậy ABCD là hình bình hành.",
+        "wrong": [
+          {
+            "optionId": "khong",
+            "text": "Hai đường chéo không cần bằng nhau; điều cần là O là trung điểm của mỗi đường chéo."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì O là trung điểm của cả hai đường chéo"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì hai đường chéo không bằng nhau"
+          }
+        }
+      ],
+      "answer": ["co"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.kiem-bh-cheo-khong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tứ giác MNPQ có hai đường chéo MP và NQ cắt nhau tại O."
+        },
+        {
+          "type": "note",
+          "text": "Đo được OM = 4 cm và OP = 6 cm. Tứ giác MNPQ có là hình bình hành không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Trong hình bình hành, O phải là trung điểm của MP, tức là OM bằng OP. Ở đây OM khác OP, nên MNPQ không phải hình bình hành.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Hai đường chéo cắt nhau chưa đủ; O phải nằm chính giữa MP."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì hai đường chéo cắt nhau"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì O không là trung điểm của MP"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.kiem-thang-can-goc",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.kiem-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang EFGH có đáy HG, đo được góc H = 72° và góc G = 72°."
+        },
+        {
+          "type": "note",
+          "text": "Hình thang EFGH có là hình thang cân không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hai góc kề đáy HG bằng nhau, đều là 72°. Vậy EFGH là hình thang cân.",
+        "wrong": [
+          {
+            "optionId": "khong",
+            "text": "Góc H và góc G đều bằng 72°, nên chúng bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì hai góc kề đáy bằng nhau"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì hai góc kề đáy khác nhau"
+          }
+        }
+      ],
+      "answer": ["co"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.kiem-thang-can-lech",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.kiem-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang MNPQ có đáy PQ, đo được góc P = 70° và góc Q = 80°."
+        },
+        {
+          "type": "note",
+          "text": "Hình thang MNPQ có là hình thang cân không?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình thang cân có hai góc kề một đáy bằng nhau. Góc P là 70° còn góc Q là 80°, khác nhau, nên MNPQ không phải hình thang cân.",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Hình thang chỉ là hình thang cân khi hai góc kề một đáy bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, vì là hình thang"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, vì hai góc kề đáy khác nhau"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.kiem-chac-chan-binh-hanh",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.kiem-binh-hanh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tứ giác nào chắc chắn là hình bình hành?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Hai đường chéo cắt nhau tại trung điểm của mỗi đường là dấu hiệu của hình bình hành. Các điều còn lại chưa đủ.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hình thang cân cũng có hai đường chéo bằng nhau mà không phải hình bình hành."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai đường chéo vuông góc chưa đủ để chắc chắn là hình bình hành."
+          },
+          {
+            "optionId": "d",
+            "text": "Tứ giác có một cặp cạnh song song là hình thang, chưa chắc là hình bình hành."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Tứ giác có hai đường chéo bằng nhau"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tứ giác có hai đường chéo vuông góc"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Tứ giác có một cặp cạnh song song"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ghep-day-lon",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba hình tam giác đều có cạnh 5 cm ghép thành một hình thang cân."
+        },
+        {
+          "type": "note",
+          "text": "Đáy lớn của hình thang cân dài bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-thang-can-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đáy lớn gồm hai cạnh của hai hình tam giác đều, mỗi cạnh dài 5 cm.",
+        "tex": "5 + 5 = 10"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 10
+      },
+      "check": {
+        "expr": "10"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dem-thoi-luc-giac",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình lục giác đều ABCDEF được chia thành sáu hình tam giác đều có chung đỉnh O."
+        },
+        {
+          "type": "note",
+          "text": "Hai tam giác đều nằm cạnh nhau ghép thành một hình thoi, ví dụ OBCD. Có bao nhiêu hình thoi như vậy?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.hex-ten"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Hai tam giác nằm cạnh nhau có chung một đoạn nối O với một đỉnh của lục giác. Có 6 đoạn như vậy, nên có 6 hình thoi."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "6"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.ghep-hai-thang-can-thanh",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ghep-hinh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hai hình thang cân, mỗi hình ghép từ ba tam giác đều bằng nhau, ghép theo đáy lớn."
+        },
+        {
+          "type": "note",
+          "text": "Chúng ghép thành hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ba tam giác đều là một nửa hình lục giác đều, nên hai hình thang cân này ghép thành hình lục giác đều.",
+        "wrong": [
+          {
+            "optionId": "thoi",
+            "text": "Hình thoi chỉ có bốn cạnh, còn hai hình thang ghép lại có sáu cạnh bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "lg",
+          "content": {
+            "type": "text",
+            "text": "Hình lục giác đều"
+          }
+        },
+        {
+          "id": "td",
+          "content": {
+            "type": "text",
+            "text": "Hình tam giác đều"
+          }
+        }
+      ],
+      "answer": ["lg"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.luc-giac-gom-thang-can",
+      "type": "choice",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ghep-hinh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cắt một hình lục giác đều theo một đường chéo chính. Mỗi phần là hình gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đường chéo chính chia hình lục giác đều thành hai nửa bằng nhau. Mỗi nửa có hai cạnh đáy song song và hai cạnh bên bằng nhau, nên là hình thang cân.",
+        "wrong": [
+          {
+            "optionId": "thoi",
+            "text": "Hình thoi có bốn cạnh bằng nhau, còn nửa hình lục giác có một cạnh dài gấp đôi."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hình bình hành có các cạnh đối bằng nhau, còn hai đáy của nửa hình lục giác dài ngắn khác nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "cn",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật"
+          }
+        }
+      ],
+      "answer": ["tc"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.thang-can-ba-canh-7",
+      "type": "numeric",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ghep-hinh"],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ba hình tam giác đều có cạnh 7 cm ghép thành một hình thang cân."
+        },
+        {
+          "type": "note",
+          "text": "Hình thang cân đó có mấy cạnh dài 7 cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đáy nhỏ và hai cạnh bên đều là một cạnh của tam giác đều, nên dài 7 cm. Đáy lớn gồm hai cạnh, dài 14 cm."
+      },
+      "answer": {
+        "kind": "value",
+        "value": 3
+      },
+      "check": {
+        "expr": "3"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-9-noi-ten",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi tên với hình đúng."
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-9",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình bình hành có hai cặp cạnh đối song song. Hình thang cân có hai cạnh bên bằng nhau và hai đáy dài ngắn khác nhau."
+      },
+      "left": [
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "h1",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-tu-giac-lech"
+          }
+        },
+        {
+          "id": "h2",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-thang-can-nguoc"
+          }
+        },
+        {
+          "id": "h3",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-ngu-giac"
+          }
+        },
+        {
+          "id": "h4",
+          "content": {
+            "type": "visual",
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-binh-hanh-trai"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "bh",
+          "right": "h4"
+        },
+        {
+          "left": "tc",
+          "right": "h2"
+        }
+      ]
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-9",
+      "type": "match",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.12 và cho biết hình nào là hình bình hành, hình nào là hình thang cân."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-hinh-4-12"
+        },
+        {
+          "type": "note",
+          "text": "Nối mỗi tên hình với hình đúng."
+        }
+      ],
+      "bookRef": "SBT 4.9",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-bon-hinh",
+        "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-9-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình bình hành có hai cặp cạnh đối song song: đó là hình 4.12c. Hình thang cân có hai cạnh bên bằng nhau: đó là hình 4.12b. Hình 4.12a có hai cạnh bên dài khác nhau và hình 4.12d có năm cạnh."
+      },
+      "left": [
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "ha",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.12a"
+          }
+        },
+        {
+          "id": "hb",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.12b"
+          }
+        },
+        {
+          "id": "hc",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.12c"
+          }
+        },
+        {
+          "id": "hd",
+          "content": {
+            "type": "text",
+            "text": "Hình 4.12d"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "bh",
+          "right": "hc"
+        },
+        {
+          "left": "tc",
+          "right": "hb"
+        }
+      ]
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-12-ve-5-6",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành XYZT có XY = 5 cm và XT = 6 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        },
+        {
+          "type": "note",
+          "text": "Bạn tự chọn góc YXT: 45°, 60° hay 75°."
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-12",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ XY = 5 cm và đường XT tạo với XY một góc tự chọn, rồi lấy T sao cho XT = 6 cm. Dùng êke vẽ qua Y đường song song với XT và qua T đường song song với XY, chúng gặp nhau tại Z."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-xyzt",
+      "validatorId": "ve-binh-hanh-hai-canh",
+      "params": {
+        "a": 5,
+        "b": 6
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-12",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành EFHK có EF = 3 cm; FH = 4 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        },
+        {
+          "type": "note",
+          "text": "Bạn tự chọn góc FEK: 45°, 60° hay 75°."
+        }
+      ],
+      "bookRef": "SBT 4.12",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-cac-buoc",
+        "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-12-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Vẽ EF = 3 cm và đường EK tạo với EF một góc tự chọn. FH và EK là hai cạnh đối nên bằng nhau: lấy EK = 4 cm. Dùng êke vẽ qua F đường song song với EK và qua K đường song song với EF, chúng gặp nhau tại H."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-efhk",
+      "validatorId": "ve-binh-hanh-hai-canh",
+      "params": {
+        "a": 3,
+        "b": 4
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-13-tim-c",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết XY, YZ và đường chéo XZ của hình bình hành XYZT."
+        },
+        {
+          "type": "note",
+          "text": "Ta vẽ điểm Z bằng cách nào?"
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-13",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Z cách X một đoạn XZ và cách Y một đoạn YZ. Vì vậy Z là chỗ hai cung tròn tâm X bán kính XZ và tâm Y bán kính YZ gặp nhau.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Hai cung cùng bán kính XY cho điểm cách X và Y đúng bằng XY."
+          },
+          {
+            "optionId": "c",
+            "text": "Đường vuông góc không cho biết Z cách X và Y bao xa."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Vẽ hai cung tròn: tâm X bán kính XZ và tâm Y bán kính YZ."
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Vẽ hai cung tròn cùng bán kính XY."
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Kẻ đường vuông góc với XY tại Y."
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-13-ve-2-3-4",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành XYZT có XY = 2 cm, YZ = 3 cm và XZ = 4 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-13",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Vẽ XY = 2 cm, rồi vẽ cung tâm Y bán kính 3 cm và cung tâm X bán kính 4 cm. Chúng gặp nhau tại Z; dùng êke vẽ hai đường song song để tìm T."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-xyzt",
+      "validatorId": "ve-binh-hanh-duong-cheo",
+      "params": {
+        "ab": 2,
+        "bc": 3,
+        "ac": 4
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-13",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vẽ hình bình hành ABCD có AB = 3 cm; BC = 5 cm; AC = 6 cm."
+        },
+        {
+          "type": "note",
+          "text": "Vẽ từng bước trong khung dưới hình."
+        }
+      ],
+      "bookRef": "SBT 4.13",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-cac-buoc",
+        "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-13-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Vẽ AB = 3 cm, rồi vẽ cung tâm B bán kính 5 cm và cung tâm A bán kính 6 cm. Chúng gặp nhau tại C; dùng êke vẽ hai đường song song để tìm D."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-abcd",
+      "validatorId": "ve-binh-hanh-duong-cheo",
+      "params": {
+        "ab": 3,
+        "bc": 5,
+        "ac": 6
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-16-goc-vuong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Muốn kiểm tra một tứ giác có là hình chữ nhật không, ta dùng êke để kiểm tra gì?"
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-16",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Tứ giác có bốn góc vuông là hình chữ nhật, nên ta dùng êke đặt vào cả bốn góc.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Một góc vuông chưa đủ, ba góc còn lại có thể không vuông."
+          },
+          {
+            "optionId": "c",
+            "text": "Êke không đo được độ dài cạnh; bốn cạnh bằng nhau là điều của hình thoi."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Cả bốn góc có khít góc vuông không"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Chỉ một góc có khít góc vuông không"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Bốn cạnh có bằng nhau không"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-16",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.14 và kiểm tra xem tứ giác EFPQ có là hình bình hành không. Tứ giác ABCD có là hình chữ nhật không?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-hinh-4-14"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 4.16",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-bh-cac-buoc",
+        "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-16-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Hai đường chéo EP và FQ của EFPQ cắt nhau tại trung điểm của mỗi đường, nên EFPQ là hình bình hành. Tứ giác ABCD có bốn góc vuông nên là hình chữ nhật.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "ABCD có cả bốn góc vuông, nên nó là hình chữ nhật."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai đường chéo của EFPQ cắt nhau tại trung điểm của mỗi đường, nên EFPQ là hình bình hành."
+          },
+          {
+            "optionId": "d",
+            "text": "EFPQ là hình bình hành và ABCD là hình chữ nhật."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "EFPQ là hình bình hành; ABCD là hình chữ nhật"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "EFPQ là hình bình hành; ABCD không là hình chữ nhật"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "EFPQ không là hình bình hành; ABCD là hình chữ nhật"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "EFPQ không là hình bình hành; ABCD không là hình chữ nhật"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-17-thoi",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình lục giác đều UVWXYZ cạnh 5 cm chia thành sáu tam giác đều có chung đỉnh O. Vậy OU, OV, OW cũng dài 5 cm."
+        },
+        {
+          "type": "note",
+          "text": "Tứ giác OUVW có bốn cạnh OU, UV, VW, WO bằng nhau không?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.hex-uvwxyz"
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-17",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Các đoạn OU, OV, OW dài 5 cm và các cạnh UV, VW cũng dài 5 cm. Vậy OUVW có bốn cạnh bằng nhau, nên là hình thoi."
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Có, cả bốn cạnh đều dài 5 cm"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không, có cạnh dài hơn 5 cm"
+          }
+        }
+      ],
+      "answer": ["co"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-17-thang-can",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một tứ giác có hai cạnh đáy song song và hai góc kề một đáy bằng nhau."
+        },
+        {
+          "type": "note",
+          "text": "Tứ giác này chắc chắn là hình gì?"
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-17",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình thang có hai góc kề một đáy bằng nhau là hình thang cân.",
+        "wrong": [
+          {
+            "optionId": "thoi",
+            "text": "Hình thoi cần bốn cạnh bằng nhau, đề không nói vậy."
+          },
+          {
+            "optionId": "bh",
+            "text": "Hai góc kề một đáy của hình bình hành chỉ bằng nhau khi chúng là góc vuông; đề không nói vậy."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
+          }
+        },
+        {
+          "id": "thoi",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "bh",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành"
+          }
+        }
+      ],
+      "answer": ["tc"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-17",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Quan sát Hình 4.15 và kiểm tra xem các tứ giác OABC, OCDE có là hình thoi không. Tứ giác BEDC có là hình thang cân không?"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-hinh-4-15"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 4.17",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.kiem-thang-can-cac-buoc",
+        "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-17-giai"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "OA, AB, BC, CO đều bằng cạnh của các tam giác đều chung đỉnh O, nên OABC là hình thoi; OCDE cũng vậy. BEDC có BE song song CD, góc B và góc E đều là góc của tam giác đều nên bằng 60°. Vậy BEDC là hình thang cân.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "BEDC có BE song song CD và hai góc B, E đều bằng 60°, nên là hình thang cân."
+          },
+          {
+            "optionId": "c",
+            "text": "OABC và OCDE đều có bốn cạnh bằng nhau, nên là hình thoi."
+          },
+          {
+            "optionId": "d",
+            "text": "OCDE cũng có bốn cạnh bằng nhau, nên cũng là hình thoi."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "OABC và OCDE là hình thoi; BEDC là hình thang cân"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "OABC và OCDE là hình thoi; BEDC không là hình thang cân"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "OABC và OCDE không là hình thoi; BEDC là hình thang cân"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "OABC là hình thoi; OCDE không là hình thoi"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-18",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cắt ba hình tam giác đều có cạnh 4 cm rồi ghép thành một hình thang cân."
+        },
+        {
+          "type": "note",
+          "text": "Ghép từng miếng trong khung dưới hình."
+        }
+      ],
+      "bookRef": "SBT 4.18",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-thang-can-cac-buoc",
+        "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-18-giai"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Xếp ba hình tam giác đều thành một dải: hình đầu xuôi, hình giữa ngược, hình cuối xuôi. Dải đó là một hình thang cân có đáy nhỏ 4 cm và đáy lớn 8 cm."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-ba-tam-giac",
+      "validatorId": "ghep-hinh",
+      "params": {
+        "n": 3
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.dan-4-19-xep-quanh",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một chiếc khay hình lục giác đều ghép từ 8 miếng hình thang cân."
+        },
+        {
+          "type": "note",
+          "text": "Hai miếng ghép thành hình lục giác ở giữa khay. Còn mấy miếng xếp quanh?"
+        }
+      ],
+      "leadsTo": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-19",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cả khay có 8 miếng, trong đó 2 miếng ở giữa. Vậy số miếng xếp quanh là 8 trừ 2.",
+        "tex": "8 - 2 = 6"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 6
+      },
+      "check": {
+        "expr": "8 - 2"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.ex.sbt-4-19",
+      "type": "manipulate",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cắt tám hình thang cân có đáy nhỏ bằng cạnh bên để xếp thành mặt chiếc khay đựng mứt Tết như Hình 4.16"
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-hinh-4-16"
+        },
+        {
+          "type": "note",
+          "text": "Ghép từng miếng trong khung dưới hình."
+        }
+      ],
+      "bookRef": "SBT 4.19",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-quy-tac"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Mỗi hình thang cân này là một nửa hình lục giác đều. Hai nửa ghép thành hình lục giác nhỏ ở giữa, sáu hình còn lại xếp quanh nó, tất cả là 8 hình."
+      },
+      "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-khay",
+      "validatorId": "ghep-hinh",
+      "params": {
+        "n": 8
+      }
+    }
+  ],
+  "sticker": {
+    "name": "Huy hiệu hình bình hành và hình thang cân",
+    "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sticker"
+  }
+}

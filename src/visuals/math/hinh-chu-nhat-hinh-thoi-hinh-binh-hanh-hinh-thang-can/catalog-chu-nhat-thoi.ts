@@ -11,7 +11,7 @@ import {
   sideProbe,
   small,
   steps,
-} from "./builders";
+} from "@/visuals/shared/quadrilaterals/builders";
 import {
   labelSide,
   linesFigure,
@@ -19,11 +19,11 @@ import {
   quad,
   textAt,
   textInCorner,
-} from "./figures";
-import type { VisualSpec } from "./spec";
+} from "@/visuals/shared/quadrilaterals/figures";
+import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 
-// Pictures of sections 1 to 6: the four shapes of the opening, the rectangle,
-// the parallel sides and the rhombus, with their diagonals.
+// Pictures of the rectangle and the rhombus: the two shapes of the opening,
+// the rectangle, the parallel sides and the rhombus, with their diagonals.
 
 const NAMED = { names: true, fill: true } as const;
 
@@ -139,7 +139,7 @@ const choiceMeeting = linesFigure(
 );
 
 // A rectangle drawn 4 to 3, so that its diagonal is 5 when its sides are 4 and
-// 3 centimetres (the sides of the rectangle of section 2 are 6 and 4).
+// 3 centimetres (the sides of the rectangle of the lesson on the rectangle are 6 and 4).
 function fourByThree(figure: FigureSpec): FigureSpec {
   return {
     ...figure,
@@ -195,14 +195,12 @@ function tiltedRhombus(label: string): FigureSpec {
 const SIDES_FRAME = { sides: "all" } as const;
 
 export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
-  // 1. Bốn hình quanh ta
-  "bon-vat-doi-song": gallery(
-    "Cánh cửa, khung cánh diều, gạch lát nghiêng và thang chữ A",
+  // Opening: the two shapes around us
+  "hai-vat-doi-song": gallery(
+    "Cánh cửa và khung cánh diều",
     [
       { scene: "door", caption: "Cánh cửa" },
       { scene: "kite", caption: "Khung cánh diều" },
-      { scene: "tiles", caption: "Gạch lát nghiêng" },
-      { scene: "ladder", caption: "Thang chữ A" },
     ],
     2,
   ),
@@ -211,24 +209,20 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
     [
       { scene: "door", caption: "Cánh cửa: hình chữ nhật" },
       { scene: "kite", caption: "Khung cánh diều: hình thoi" },
-      { scene: "tiles", caption: "Gạch lát nghiêng: hình bình hành" },
-      { scene: "ladder", caption: "Thang chữ A: hình thang cân" },
     ],
     2,
   ),
   "xem-vat-tim-hinh": {
     kind: "cards",
-    label: "Bốn vật quanh nhà và hình của chúng",
+    label: "Hai vật quanh nhà và hình của chúng",
     items: [
       { name: "Hình chữ nhật", color: "teal", art: { scene: "door" } },
       { name: "Hình thoi", color: "pink", art: { scene: "kite" } },
-      { name: "Hình bình hành", color: "lime", art: { scene: "tiles" } },
-      { name: "Hình thang cân", color: "sky", art: { scene: "ladder" } },
     ],
     verb: "xem",
-    done: "Bạn đã nhận ra bốn hình quanh mình.",
+    done: "Bạn đã nhận ra hai hình quanh mình.",
   },
-  "chon-hinh-thang-can": figure({
+  "chon-chu-nhat-quanh-ta": figure({
     label: "Bốn hình để chạm chọn",
     w: 300,
     h: 200,
@@ -241,14 +235,15 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       b1: [225, 24],
       b2: [280, 52],
       b3: [225, 80],
-      c0: [55, 122],
-      c1: [125, 122],
-      c2: [105, 176],
-      c3: [35, 176],
-      d0: [195, 122],
-      d1: [255, 122],
-      d2: [285, 176],
-      d3: [165, 176],
+      c0: [35, 176],
+      c1: [105, 176],
+      c2: [70, 115],
+      d0: [255, 150],
+      d1: [240, 176],
+      d2: [210, 176],
+      d3: [195, 150],
+      d4: [210, 124],
+      d5: [240, 124],
     },
     polys: [
       {
@@ -264,21 +259,21 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
         label: "Hình thứ hai",
       },
       {
-        v: ["c0", "c1", "c2", "c3"],
+        v: ["c0", "c1", "c2"],
         fill: "mute",
-        region: "bh",
+        region: "tg",
         label: "Hình thứ ba",
       },
       {
-        v: ["d0", "d1", "d2", "d3"],
+        v: ["d0", "d1", "d2", "d3", "d4", "d5"],
         fill: "mute",
-        region: "tc",
+        region: "luc",
         label: "Hình thứ tư",
       },
     ],
   }),
 
-  // 2. Hình chữ nhật
+  // Hình chữ nhật
   "chu-nhat-cac-buoc": steps(
     "Hình chữ nhật ABCD có bốn góc vuông và các cạnh đối bằng nhau",
     [
@@ -374,8 +369,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   "chu-nhat-song-song": figure(
     quad("chu-nhat", { label: "Hình chữ nhật ABCD", names: true }),
   ),
-
-  // 3. Đường chéo của hình chữ nhật
+  // Đường chéo của hình chữ nhật
   "cheo-chu-nhat-cac-buoc": steps("Hai đường chéo của hình chữ nhật ABCD", [
     frame(
       quad("chu-nhat", { label: "Hình chữ nhật ABCD", ...NAMED }),
@@ -463,8 +457,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
     h: 200 + ROOM_BELOW,
     texts: [textAt(150, 218, "AC = 8 cm", "amber")],
   }),
-
-  // 4. Hai cạnh song song
+  // Hai cạnh song song
   "ray-tau": steps("Hai thanh ray tàu hỏa song song", [
     frame(
       linesFigure("Hai thanh ray tàu hỏa", {
@@ -586,8 +579,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   "th-hai-duong-song-song": small(choiceParallel),
   "th-hai-duong-cat-nhau": small(choiceCrossing),
   "th-hai-duong-gan-nhau": small(choiceMeeting),
-
-  // 5. Hình thoi
+  // Hình thoi
   "thoi-cac-buoc": steps("Hình thoi ABCD có bốn cạnh bằng nhau", [
     frame(
       quad("thoi", { label: "Hình thoi ABCD", ...NAMED }),
@@ -680,8 +672,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       "?",
     ),
   ),
-
-  // 6. Đường chéo của hình thoi
+  // Đường chéo của hình thoi
   "cheo-thoi-cac-buoc": steps("Hai đường chéo của hình thoi ABCD", [
     frame(
       quad("thoi", { label: "Hình thoi ABCD", ...NAMED }),

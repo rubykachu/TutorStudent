@@ -1,11 +1,8 @@
 import type { ManipulateSolver, ManipulateValidator } from "@/visuals/registry";
 import { type BoardShape, isDrawn, solvedState } from "./construction";
 
-// Validators and solvers of the interactive pictures of this lesson. No
-// React, so `content:check` and tests read it.
-
-export const LESSON_SLUG =
-  "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can";
+// Validators and solvers of the drawing boards and the piece boards of the
+// lessons on the four shapes. No React, so `content:check` and tests read it.
 
 // A board is drawn right when every step has the value of the finished
 // figure for the exercise's params (see `expectedState`).

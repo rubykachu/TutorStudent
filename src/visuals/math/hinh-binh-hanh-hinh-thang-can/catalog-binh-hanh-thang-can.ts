@@ -9,7 +9,7 @@ import {
   sideProbe,
   steps,
   THUMB,
-} from "./builders";
+} from "@/visuals/shared/quadrilaterals/builders";
 import {
   diagonalParallelogram,
   isoTrapezoid,
@@ -18,16 +18,16 @@ import {
   quad,
   renamed,
   textInCorner,
-} from "./figures";
-import type { VisualSpec } from "./spec";
+} from "@/visuals/shared/quadrilaterals/figures";
+import type { VisualSpec } from "@/visuals/shared/quadrilaterals/spec";
 
-// Pictures of sections 7 to 11: the parallelogram, the isosceles trapezoid,
+// Pictures of the parallelogram, the isosceles trapezoid,
 // their diagonals, and the comparison of the four shapes.
 
 const NAMED = { names: true, fill: true } as const;
 
 // A parallelogram whose diagonals have halves of 3 and 4 units, for the
-// section on its diagonals.
+// lesson part on its diagonals.
 const diagonalsOf = (label: string, extra: object = {}) =>
   diagonalParallelogram(label, {
     first: 3,
@@ -69,7 +69,7 @@ const COMPARE_DIAGONALS = {
 } as const;
 
 export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
-  // 7. Hình bình hành
+  // Hình bình hành
   "binh-hanh-cac-buoc": steps(
     "Hình bình hành ABCD có các cạnh đối bằng nhau và song song",
     [
@@ -175,8 +175,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
       "?",
     ),
   ),
-
-  // 8. Đường chéo của hình bình hành
+  // Đường chéo của hình bình hành
   "trung-diem": steps("Trung điểm của đoạn thẳng AB", [
     frame(
       {
@@ -301,8 +300,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
       { A: "G", B: "H", C: "I", D: "K" },
     ),
   ),
-
-  // 9. Hình thang cân
+  // Hình thang cân
   "thang-can-cac-buoc": steps("Hình thang cân ABCD có hai cạnh đáy song song", [
     frame(
       quad("thang-can", { label: "Hình thang cân ABCD", ...NAMED }),
@@ -403,8 +401,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   "thang-can-ten": figure(
     quad("thang-can", { label: "Hình thang cân ABCD", names: true }),
   ),
-
-  // 10. Đường chéo của hình thang cân
+  // Đường chéo của hình thang cân
   "cheo-thang-can-cac-buoc": steps("Hai đường chéo của hình thang cân ABCD", [
     frame(
       quad("thang-can", { label: "Hình thang cân ABCD", ...NAMED }),
@@ -499,8 +496,7 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
       { A: "E", B: "F", C: "G", D: "H" },
     ),
   ),
-
-  // 11. So sánh bốn hình
+  // So sánh bốn hình
   "so-sanh-bon-hinh": gallery(
     "Bốn hình đặt cạnh nhau, mỗi hình với dấu riêng của nó",
     COMPARE.map(({ kind, caption, marks }) => ({

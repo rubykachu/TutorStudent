@@ -50,16 +50,13 @@ import {
   validators as signValidators,
 } from "@/visuals/math/dau-hieu-chia-het/logic";
 import {
-  INTERACTIVE_KINDS as QUADS_INTERACTIVE_KINDS,
-  LESSON_SLUG as QUADS_SLUG,
-  VISUAL_SPECS as QUADS_SPECS,
-  regionsOf as quadsRegions,
-  validatorIdOf as quadsValidatorId,
-} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/catalog";
+  LESSON_SLUG as PARALLELOGRAM_SLUG,
+  VISUAL_SPECS as PARALLELOGRAM_SPECS,
+} from "@/visuals/math/hinh-binh-hanh-hinh-thang-can/catalog";
 import {
-  solutions as quadsSolutions,
-  validators as quadsValidators,
-} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/logic";
+  LESSON_SLUG as RECTANGLE_SLUG,
+  VISUAL_SPECS as RECTANGLE_SPECS,
+} from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/catalog";
 import {
   INTERACTIVE_KINDS as SHAPES_INTERACTIVE_KINDS,
   LESSON_SLUG as SHAPES_SLUG,
@@ -218,6 +215,16 @@ import {
   solutions as commonSolutions,
   validators as commonValidators,
 } from "@/visuals/math/uoc-chung-uoc-chung-lon-nhat/logic";
+import {
+  solutions as quadrilateralSolutions,
+  validators as quadrilateralValidators,
+} from "@/visuals/shared/quadrilaterals/logic";
+import {
+  INTERACTIVE_KINDS as QUADRILATERAL_INTERACTIVE_KINDS,
+  type VisualSpec as QuadrilateralSpec,
+  regionsOf as quadrilateralRegions,
+  validatorIdOf as quadrilateralValidatorId,
+} from "@/visuals/shared/quadrilaterals/spec";
 
 // State an interactive visual reports while the child manipulates it.
 export type VisualState = Record<string, number>;
@@ -769,29 +776,44 @@ const shapesEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
-// Entries of "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can": one per
-// item of its catalog. The drawing boards and the piece boards carry the
-// validator of the `manipulate` exercises built on them; a figure with
-// tappable polygons declares its regions.
-const quadsEntries: Record<string, VisualEntry> = Object.fromEntries(
-  Object.entries(QUADS_SPECS).map(([key, spec]) => {
-    const validatorId = quadsValidatorId(spec) as
-      | keyof typeof quadsValidators
-      | undefined;
-    const regions = quadsRegions(spec);
-    const entry: VisualEntry = {
-      interactive: QUADS_INTERACTIVE_KINDS.has(spec.kind),
-      ...(regions === undefined ? {} : { regions }),
-      ...(validatorId === undefined
-        ? {}
-        : {
-            validators: { [validatorId]: quadsValidators[validatorId] },
-            solutions: { [validatorId]: quadsSolutions[validatorId] },
-          }),
-      load: () => lessonExample(QUADS_SLUG, (m) => m.fromSpec(spec)),
-    };
-    return [`${QUADS_SLUG}.visual.${key}`, entry];
-  }),
+// Entries of a lesson on the four shapes: one per item of its catalog. The
+// drawing boards and the piece boards carry the validator of the `manipulate`
+// exercises built on them; a figure with tappable polygons declares its
+// regions. The two lessons share the drawing and piece boards, so a board has
+// the same validator in both.
+function quadrilateralEntries(
+  slug: typeof RECTANGLE_SLUG | typeof PARALLELOGRAM_SLUG,
+  specs: Readonly<Record<string, QuadrilateralSpec>>,
+): Record<string, VisualEntry> {
+  return Object.fromEntries(
+    Object.entries(specs).map(([key, spec]) => {
+      const validatorId = quadrilateralValidatorId(spec) as
+        | keyof typeof quadrilateralValidators
+        | undefined;
+      const regions = quadrilateralRegions(spec);
+      const entry: VisualEntry = {
+        interactive: QUADRILATERAL_INTERACTIVE_KINDS.has(spec.kind),
+        ...(regions === undefined ? {} : { regions }),
+        ...(validatorId === undefined
+          ? {}
+          : {
+              validators: {
+                [validatorId]: quadrilateralValidators[validatorId],
+              },
+              solutions: {
+                [validatorId]: quadrilateralSolutions[validatorId],
+              },
+            }),
+        load: () => lessonExample(slug, (m) => m.fromSpec(spec)),
+      };
+      return [`${slug}.visual.${key}`, entry];
+    }),
+  );
+}
+const rectangleEntries = quadrilateralEntries(RECTANGLE_SLUG, RECTANGLE_SPECS);
+const parallelogramEntries = quadrilateralEntries(
+  PARALLELOGRAM_SLUG,
+  PARALLELOGRAM_SPECS,
 );
 
 // Entries of "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc": one per item of
@@ -826,7 +848,8 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...bracketEntries,
   ...divisionEntries,
   ...shapesEntries,
-  ...quadsEntries,
+  ...rectangleEntries,
+  ...parallelogramEntries,
   ...areaEntries,
   ...orderEntries,
   ...primeEntries,
@@ -1646,6 +1669,8 @@ const EXAMPLE_MODULES = lessonModules({
     import(
       "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/examples"
     ),
+  "hinh-binh-hanh-hinh-thang-can": () =>
+    import("@/visuals/math/hinh-binh-hanh-hinh-thang-can/examples"),
   "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc": () =>
     import(
       "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/examples"

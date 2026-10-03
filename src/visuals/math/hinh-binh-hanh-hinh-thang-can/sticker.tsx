@@ -2,25 +2,25 @@ import { decorative } from "@/visuals/shared/markers";
 import { pointList } from "@/visuals/shared/plane/figure";
 import type { Pt } from "@/visuals/shared/plane/figure-spec";
 
-// Lesson sticker: a round badge with the two shapes of the lesson, a teal rectangle and a pink rhombus.
+// Lesson sticker: a round badge with the two shapes of the lesson, a lime parallelogram and a sky trapezoid.
 const SHAPES: readonly { points: readonly Pt[]; className: string }[] = [
   {
     points: [
-      [17, 38],
-      [51, 38],
-      [51, 62],
-      [17, 62],
+      [24, 36],
+      [52, 36],
+      [44, 64],
+      [16, 64],
     ],
-    className: "fill-concept-teal",
+    className: "fill-concept-lime",
   },
   {
     points: [
-      [72, 29],
-      [86, 50],
-      [72, 71],
-      [58, 50],
+      [65, 38],
+      [79, 38],
+      [84, 62],
+      [60, 62],
     ],
-    className: "fill-concept-pink",
+    className: "fill-concept-sky",
   },
 ];
 
@@ -28,7 +28,7 @@ export default function Sticker() {
   return (
     <svg
       role="img"
-      aria-label="Huy hiệu hai hình: hình chữ nhật và hình thoi"
+      aria-label="Huy hiệu hai hình: hình bình hành và hình thang cân"
       viewBox="0 0 100 100"
       className="h-auto w-full max-w-32"
     >
@@ -38,7 +38,7 @@ export default function Sticker() {
           cx={50}
           cy={50}
           r={40}
-          className="fill-surface stroke-concept-teal"
+          className="fill-surface stroke-concept-lime"
           strokeWidth={3}
         />
         {SHAPES.map((shape) => (
