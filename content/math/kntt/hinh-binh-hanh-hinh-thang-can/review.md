@@ -1,13 +1,13 @@
 # Review: Hình bình hành. Hình thang cân (`hinh-binh-hanh-hinh-thang-can`)
 
 - Bài: `content/math/kntt/hinh-binh-hanh-hinh-thang-can/lesson.json`
-- Vòng: 4 - chỉ phần đổi (`pnpm content:diff` so với bản vòng 3, commit `fba50e3`, 4 chữ đổi), section: `hinh-thang-can`, `kiem-binh-hanh`, `bai-tap-sach-bai-tap` cùng các câu luyện chứa chữ đổi; tìm cả bài các cụm "dài ngắn khác nhau", "không phải hình bình hành", "chỉ có", "không bao giờ", "luôn"
-- Nguồn đã đọc: `sources/math/hinh-binh-hanh-hinh-thang-can/` - sbt-p68, sbt-p69, sbt-p115; phần 1 `content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/lesson.json` (chỉ đọc)
-- `content:check`: 0 lỗi của bài (lỗi `[review-hash]` của bài khác là việc dở của agent khác, bỏ qua)
-- Đọc hiểu (Haiku, lượt 1): 130 / 9 / 0 (đếm theo mục; dòng "Tổng" cộng các phần ghi 131 Hiểu rõ); tệp `.shots/review/hinh-binh-hanh-hinh-thang-can/doc-hieu.md`; lượt 2 và 3 ở `doc-hieu-2.md`, `doc-hieu-3.md`; lượt cho 4 chữ đổi vòng 4 (`doc-hieu-vong-4.md`): 2 / 1 / 1; hai mục mơ hồ và khó hiểu đã viết lại, chờ Haiku đọc lại
-- `lesson:walk`: 0 FAIL, 0 cảnh báo, ba thiết bị, ảnh trong `.shots/walk/hinh-binh-hanh-hinh-thang-can/` (commit `e125aec`; vòng 4 không đổi hình hay bố cục, lời `wrong` chỉ đổi chữ nên dùng lại)
-- Kết luận: Đạt: 0 Nghiêm trọng (2 Nên sửa, 10 Góp ý); Nghiêm trọng của vòng 3 đã sửa đúng; đã chạy `pnpm content:hash hinh-binh-hanh-hinh-thang-can --root content --approve` ; kết quả `status=published`, `reviewedHash` bằng dòng Bản đã review bên dưới (hash tính trên bản đã gồm hai chữ viết lại sau lượt Haiku, Reviewer đã soát hai chữ đó)
-- Bản đã review: `3701be57526ea92fd5b6053d6c6a50ce671e0a4f39697cf95c66bfc4456067f9` (`pnpm content:diff` so với bản này)
+- Vòng: 5 - chỉ phần đổi (`pnpm content:diff` so với bản vòng 4, commit `db9c2f8`, 2 chữ đổi: `$.exercises[39].explain.wrong[0].text`, `$.exercises[54].explain.wrong[1].text`), section đọc lại: `kiem-binh-hanh`, `bai-tap-sach-bai-tap`
+- Nguồn đã đọc: `sources/math/hinh-binh-hanh-hinh-thang-can/` - sbt-p68, sbt-p69, sbt-p115 (vòng 4, câu sách không đổi ở vòng 5); chữ đổi không thuộc câu sách
+- `content:check`: 0 lỗi của bài (lỗi `[review-hash]` của bài khác nếu có là việc của agent khác, bỏ qua)
+- Đọc hiểu (Haiku, lượt 1): 130 / 9 / 0 (tệp `.shots/review/hinh-binh-hanh-hinh-thang-can/doc-hieu.md`; lượt 2, 3 ở `doc-hieu-2.md`, `doc-hieu-3.md`); chữ đổi vòng 4 (`doc-hieu-vong-4.md`, `-2`, `-3`): lượt 1 2 / 1 / 1, lượt 2 0 / 1 / 1, lượt 3 0 / 2 / 0 cho hai mục của vòng này (mục `[45]` của tệp lượt 3 đã trả về bản đã duyệt, bỏ qua); hết 3 lượt, hai mục còn mơ hồ ghi ở Nên sửa 2 và 3
+- `lesson:walk`: 0 FAIL, 0 cảnh báo, ba thiết bị, ảnh trong `.shots/walk/hinh-binh-hanh-hinh-thang-can/` (commit `e125aec`; vòng 5 chỉ đổi chữ `wrong`, không đổi hình hay bố cục, dùng lại)
+- Kết luận: Đạt: 0 Nghiêm trọng (3 Nên sửa, 10 Góp ý); Nên sửa 2 của vòng 4 đã giải; đã chạy `pnpm content:hash hinh-binh-hanh-hinh-thang-can --root content --approve`; kết quả `status=published`, `reviewedHash` bằng dòng Bản đã review bên dưới
+- Bản đã review: `c00de14d0687dd7809a4eaf403e3429725646277c08698c119f48df340711cd8` (`pnpm content:diff` so với bản này)
 
 ## Tình trạng các mục vòng 2 và vòng 3
 
@@ -45,20 +45,14 @@ Câu `bookPractice` đổi (4.9, 4.12, 4.16, 4.17, 4.18): đề, lựa chọn v�
 
 Không có.
 
-Nghiêm trọng duy nhất của vòng 3 (lời giải nói như quy tắc chung "hình thang cân có hai đáy dài ngắn khác nhau" / "không phải hình bình hành") đã sửa đúng, đã tự kiểm từng chữ mới:
+Hai chữ mới của vòng 5, đã soát từng chữ:
 
 | Vị trí | Chữ mới | Kết quả |
 |---|---|---|
-| `$.exercises[54].explain.wrong[1]` (`ex.dan-4-17-thoi`, đáp án tc; viết lại sau lượt Haiku vòng 4) | "Hình thang cân có hai góc kề một đáy bằng nhau. Ở OUVW, hai góc ở hai đầu mỗi cạnh là 60° và 120°, không bằng nhau." | Đúng: O là tâm lục giác đều nên góc O của OUVW bằng góc UOW = 120°, góc U và góc W bằng 60° (góc tam giác đều), góc V bằng 120° (góc lục giác đều). Mỗi cạnh của OUVW có hai góc kề là 60° và 120°, không cạnh nào có hai góc kề bằng nhau, nên OUVW không là hình thang cân theo định nghĩa của bài. Khớp `wrong` của cn ("OUVW có góc 60°"). |
-| `$.exercises[13].explain.wrong[0]` (`ex.thang-can-chon-cau-dung`, đáp án c) | "Hai đáy của hình thang cân thường dài ngắn khác nhau, nên bốn cạnh chưa chắc bằng nhau." | Đúng: có "thường", "chưa chắc", không nói quy tắc chung; hình chữ nhật (hai đáy bằng nhau) không bị loại. |
-| `$.exercises[45].explain.text` (`ex.dan-4-9-noi-ten`) | "Hình thang cân có hai đáy song song và hai cạnh bên bằng nhau." | Đúng với định nghĩa, không còn nói đáy dài ngắn khác nhau. Xem Góp ý 4. |
-| `$.exercises[39].explain.wrong[0]` (`ex.kiem-chac-chan-binh-hanh`, đáp án b; viết lại sau lượt Haiku vòng 4) | "Hai đường chéo bằng nhau thì chưa đủ. Hình thang cân có hai đáy dài ngắn khác nhau cũng có hai đường chéo bằng nhau, nhưng không phải hình bình hành." | Đúng về kiến thức nếu đọc là một hình thang cân có hai đáy khác nhau (không phải hình bình hành, hai đường chéo bằng nhau); hình chữ nhật không bị loại. Nhưng câu dùng lại đúng cụm "hình thang cân có hai đáy dài ngắn khác nhau" mà vòng 3 cấm nói như quy tắc chung: xem Nên sửa 2. |
+| `$.exercises[39].explain.wrong[0]` (`ex.kiem-chac-chan-binh-hanh`, lựa chọn b "hai đường chéo bằng nhau") | "Hai đường chéo bằng nhau thì chưa đủ. Ví dụ, cái thang chữ A có hai đường chéo bằng nhau, nhưng nó là hình thang cân, không phải hình bình hành." | Đúng: là một ví dụ cụ thể, không nói quy tắc chung nên không loại hình chữ nhật; khớp lựa chọn b; khớp câu bài đã dạy "Chiếc thang chữ A có dạng hình thang cân" (`$.sections[2]`); hình thang cân có hai đường chéo bằng nhau (quy tắc bài đã dạy) và cạnh bên không song song nên không là hình bình hành. 31 chữ, từ lớp 6. Nên sửa 2 của vòng 4 đã giải. Xem Nên sửa 2. |
+| `$.exercises[54].explain.wrong[1]` (`ex.dan-4-17-thoi`, lựa chọn tc "Hình thang cân") | "Hình thang cân có hai góc kề một đáy bằng nhau. OUVW có góc U, góc W bằng 60°, còn góc O, góc V bằng 120°." | Đúng số: O là tâm lục giác đều, góc U = góc OUV = 60° (tam giác đều), góc W = góc VWO = 60°, góc V = góc UVW = 120° (góc lục giác đều), góc O = góc WOU = 2 x 60° = 120°. Mỗi cạnh của OUVW có hai góc kề là 60° và 120°, không cạnh nào có hai góc kề bằng nhau nên không là hình thang cân. Khớp lựa chọn tc và hình `hex-uvwxyz`. Xem Nên sửa 3. |
 
-Tìm cả bài các cụm còn lại (`grep` trên `lesson.json`), mỗi chỗ đã đọc câu quanh nó, không còn câu nói như quy tắc chung mà sai:
-- "dài ngắn khác nhau": dòng `explain.wrong` của `ex.chon-hinh-binh-hanh` (hình cụ thể trong ảnh), `ex.thang-can-ten` (AC với AD của hình cụ thể), hai dòng "thường dài ngắn khác nhau" của hình thoi và hình bình hành (có "thường"; hình vuông, hình chữ nhật không nằm trong lựa chọn), `ex.luc-giac-gom-thang-can` (hai đáy của nửa lục giác cụ thể, 2a và a) - đúng.
-- "không phải hình bình hành": `ex.chon-hinh-binh-hanh` (hình cụ thể "chỉ có hai cạnh song song"), `ex.ve-bh-cheo-mnpq` (OM khác OP, số của câu), `ex.kiem-chac-chan-binh-hanh` (đã nêu ở trên) - đúng.
-- "chỉ có", "không bao giờ", "luôn", "chắc chắn": "chỉ có hai cạnh song song" / "chỉ có ba cạnh" của hình trong ảnh; "không bao giờ cắt nhau" là định nghĩa song song; "hình thoi luôn có hai đường chéo vuông góc" và "hình chữ nhật và hình thang cân luôn có hai đường chéo bằng nhau" đúng; "chắc chắn" chỉ trong câu hỏi - đúng.
-- Bài không có chỗ nào nói hình vuông là hình thang cân hay hình chữ nhật không là hình thang cân: không có câu sai mới.
+Tìm cả bài (vòng 4) không còn câu nói như quy tắc chung mà sai; vòng 5 không thêm cụm nào mới. Cụm "hình thang cân có hai đáy dài ngắn khác nhau" không còn ở `[39]` (grep: còn ở các câu đã duyệt vòng 4 `[13]` có "thường", `ex.chon-hinh-binh-hanh`, `ex.thang-can-ten`, `ex.luc-giac-gom-thang-can`, đều nói hình cụ thể hoặc có "thường").
 
 ## Nên sửa
 
@@ -68,11 +62,17 @@ Tìm cả bài các cụm còn lại (`grep` trên `lesson.json`), mỗi chỗ �
 - Vấn đề: lượt 3 của Haiku còn 2 Hiểu mơ hồ và 5 Khó hiểu. Với (b) và (c) Haiku đọc lẻ từng mục nên chê cả từ "compa", "tâm", "bán kính", "độ mở compa", đã dạy ở Bài 18 và phần 1; câu (b) dài hai ý nhưng đã chia bước bằng "Sau đó", có hình chạy từng bước ngay trước. (d) cần hình đo của `sbt-hinh-4-15` để thấy BE song song CD.
 - Sửa (tuỳ tác giả): (b) tách thành hai câu quy tắc ngắn nếu muốn, sửa đủ bốn chỗ lặp; (d) thêm một câu nói BE nằm trên đường chéo qua O. Không chặn duyệt.
 
-### 2. `ex.kiem-chac-chan-binh-hanh`: cụm "hình thang cân có hai đáy dài ngắn khác nhau" đọc được như quy tắc chung
+### 2. `ex.kiem-chac-chan-binh-hanh`: bé còn phải đoán "đường chéo" của cái thang
 
 - Vị trí: `$.exercises[39].explain.wrong[0].text`
-- Vấn đề: "Hình thang cân có hai đáy dài ngắn khác nhau cũng có hai đường chéo bằng nhau, nhưng không phải hình bình hành." Ý đúng là một hình thang cân có hai đáy khác nhau thì không phải hình bình hành, nhưng bé có thể đọc là mọi hình thang cân có hai đáy khác nhau, đúng kiểu câu của Nghiêm trọng vòng 3 (hình chữ nhật là hình thang cân có hai đáy bằng nhau).
-- Sửa: "Một hình thang cân có hai đáy dài ngắn khác nhau cũng có hai đường chéo bằng nhau, nhưng không phải hình bình hành." Không chặn duyệt vì câu không sai.
+- Vấn đề: Haiku lượt 3 vẫn ghi Hiểu mơ hồ ("câu so sánh phức tạp"). Câu đúng và không còn đọc được như quy tắc chung; nhưng cái thang thật không vẽ đường chéo, bé phải tự nối hình thang cân của thang với hai đường chéo nối các đỉnh.
+- Sửa (tuỳ tác giả): "Ví dụ, mặt bên của thang chữ A là hình thang cân: hai đường chéo của nó bằng nhau, nhưng nó không phải hình bình hành." Không chặn duyệt.
+
+### 3. `ex.dan-4-17-thoi`: lời `wrong` của hình thang cân chưa nêu kết luận
+
+- Vị trí: `$.exercises[54].explain.wrong[1].text`
+- Vấn đề: Haiku lượt 3 ghi Hiểu mơ hồ ("không rõ cấu trúc hình"). Câu nêu quy tắc rồi hai số đo nhưng không nói "không bằng nhau nên chưa phải hình thang cân"; bé phải tự so 60° với 120° (bản vòng 4 có câu kết "không bằng nhau" nhưng Haiku lượt 1 cũng chưa hiểu rõ).
+- Sửa (tuỳ tác giả): thêm "Hai góc kề cùng một cạnh là 60° và 120°, không bằng nhau, nên OUVW không là hình thang cân." Không chặn duyệt.
 
 ## Góp ý
 
@@ -105,8 +105,8 @@ Mỗi dòng dưới đây là một Góp ý, chưa đổi trong diff:
 - Vấn đề: "Hình thang cân có hai đáy song song và hai cạnh bên bằng nhau." đúng, nhưng hình bình hành cũng có cạnh đối song song và bằng nhau, nên bé chưa thấy điều gì tách hình thang cân khỏi hình bình hành (cạnh bên không song song).
 - Sửa: nếu muốn, thêm "còn hai cạnh bên không song song" hoặc "hai góc kề một đáy bằng nhau".
 
-### 5. Mục Đọc hiểu cho 4 chữ đổi vòng 4
+### 5. Đọc hiểu cho chữ đổi vòng 4 và 5
 
-- Vị trí: bốn mục ở bảng trên
-- Vấn đề: lượt Haiku cho chữ đổi vòng 4 (`doc-hieu-vong-4.md`): 2 Hiểu rõ / 1 Hiểu mơ hồ / 1 Khó hiểu; hai mục `[39].explain.wrong[0]` và `[54].explain.wrong[1]` đã viết lại sau lượt đó (chữ nằm ở bảng Nghiêm trọng), chờ Haiku đọc lại, Reviewer đã tự đọc: câu `[54]` tách hai câu, đúng và rõ.
-- Sửa: không cần nếu lượt đọc lại cho "Hiểu rõ".
+- Vị trí: `$.exercises[39].explain.wrong[0]`, `$.exercises[54].explain.wrong[1]`
+- Vấn đề: đã hết ba lượt Haiku, hai mục còn Hiểu mơ hồ (Nên sửa 2 và 3).
+- Sửa: không cần thêm lượt; xem Nên sửa 2 và 3.
