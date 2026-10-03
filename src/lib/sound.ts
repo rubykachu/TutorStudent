@@ -22,6 +22,10 @@ const DECODE_CONCURRENCY = 2;
 // decoding is dropped after this long: a tap sound that arrives late is worse
 // than none.
 const STALE_MS = 1500;
+// With nothing sounding (no clip and no background music) for this long, the
+// shared context is suspended so the audio hardware sleeps; the next tap
+// resumes it.
+export const IDLE_SUSPEND_MS = 15_000;
 // A silent clip that unlocks the shared media element inside the first tap.
 const SILENT_WAV =
   "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
@@ -57,6 +61,11 @@ const blobsLoading = new Set<string>();
 
 let song: Playback | null = null;
 
+// Holders that keep the context running while silent of clips (the
+// background music while it plays).
+let awake = 0;
+let idleTimer: ReturnType<typeof setTimeout> | undefined;
+
 // Safari 17+ lets a page pick an audio session; "playback" keeps sound on
 // when the ringer switch is on silent, for the media element and Web Audio.
 function setPlaybackSession(): void {
@@ -88,6 +97,40 @@ function onVisibilityChange(): void {
   if (document.visibilityState !== "hidden") return;
   stopAll();
   void context?.suspend().catch(noop);
+}
+
+// Suspends the context once nothing has sounded for IDLE_SUSPEND_MS.
+function scheduleIdleSuspend(): void {
+  clearTimeout(idleTimer);
+  idleTimer = undefined;
+  if (!context || active.size > 0 || awake > 0) return;
+  idleTimer = setTimeout(() => {
+    idleTimer = undefined;
+    if (context?.state === "running" && active.size === 0 && awake === 0) {
+      void context.suspend().catch(noop);
+    }
+  }, IDLE_SUSPEND_MS);
+}
+
+// The shared context, created if needed (null without Web Audio). For the
+// background music, which plays through the same context as every clip.
+export function sharedAudioContext(): AudioContext | null {
+  return audioContext();
+}
+
+// Keeps the shared context from its idle suspension while held; returns the
+// release.
+export function keepAudioAwake(): () => void {
+  awake++;
+  clearTimeout(idleTimer);
+  idleTimer = undefined;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    awake--;
+    scheduleIdleSuspend();
+  };
 }
 
 function resumeContext(ctx: AudioContext): Promise<void> {
@@ -124,6 +167,9 @@ export function resetAudioForTesting(): void {
   blobs.clear();
   blobsLoading.clear();
   song = null;
+  awake = 0;
+  clearTimeout(idleTimer);
+  idleTimer = undefined;
 }
 
 // Fetches and decodes one short clip into a buffer, once. Never rejects: a
@@ -241,6 +287,7 @@ export function unlockAudio(): void {
   }
   unlockElement();
   pump();
+  scheduleIdleSuspend();
 }
 
 // Unlocks audio on every tap or key press anywhere while installed, so a
@@ -271,6 +318,7 @@ function begin(
       if (ended) return;
       ended = true;
       active.delete(playback);
+      scheduleIdleSuspend();
       resolve();
     };
   });
@@ -282,6 +330,8 @@ function begin(
     },
   };
   active.add(playback);
+  clearTimeout(idleTimer);
+  idleTimer = undefined;
   try {
     halt = run(end, () => !ended);
   } catch {

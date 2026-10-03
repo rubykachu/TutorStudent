@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  IDLE_SUSPEND_MS,
   installAudioUnlock,
+  keepAudioAwake,
   MAX_DECODED_BYTES,
   playMusic,
   playSequence,
@@ -446,5 +448,25 @@ describe("unlock and the page in the background", () => {
     await playSound("/sounds/tap.m4a");
     expect(context().started).toHaveLength(0);
     vi.restoreAllMocks();
+  });
+
+  it("suspends the context once nothing sounded for a while, unless kept awake", async () => {
+    await ready(["/sounds/tap.m4a"]);
+    vi.useFakeTimers();
+    try {
+      void playSound("/sounds/tap.m4a");
+      await vi.advanceTimersByTimeAsync(IDLE_SUSPEND_MS * 2);
+      // A clip still playing keeps it running.
+      expect(context().suspend).not.toHaveBeenCalled();
+      context().started[0]?.finish();
+      const release = keepAudioAwake();
+      await vi.advanceTimersByTimeAsync(IDLE_SUSPEND_MS * 2);
+      expect(context().suspend).not.toHaveBeenCalled();
+      release();
+      await vi.advanceTimersByTimeAsync(IDLE_SUSPEND_MS);
+      expect(context().suspend).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
