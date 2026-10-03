@@ -3874,7 +3874,7 @@
           },
           {
             "optionId": "cong-mot",
-            "text": "Hình vuông lớn có thể không chỉ một hình, nên cộng thêm 1 là chưa đủ."
+            "text": "Có thể có nhiều hình vuông lớn ghép từ các ô nhỏ, nên chỉ cộng thêm 1 là chưa đủ."
           }
         ]
       },
