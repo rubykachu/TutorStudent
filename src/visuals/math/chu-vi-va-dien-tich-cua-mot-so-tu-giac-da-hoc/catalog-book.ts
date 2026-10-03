@@ -431,8 +431,8 @@ const PAIRS: Record<string, Pair> = {
   "4-28": {
     hint: [
       row(
-        `\\begin{gathered} 40\\ ${TEX.cm} = 0{,}4\\ ${TEX.m} \\\\ 0{,}4 \\cdot 0{,}4 = 0{,}16\\ ${TEX.m2} \\end{gathered}`,
-        sTag("một viên đá"),
+        `0{,}4 \\cdot 0{,}4 = 0{,}16\\ ${TEX.m2}`,
+        sTag("một viên: 40 cm = 0,4 m"),
       ),
       row(`11 \\cdot 6 = 66\\ ${TEX.m2}`, sTag("diện tích sân")),
       row(`0{,}16 \\cdot 150 = 24\\ ${TEX.m2}`, sTag("diện tích đá lát")),
@@ -442,8 +442,8 @@ const PAIRS: Record<string, Pair> = {
     ],
     solution: [
       row(
-        `\\begin{gathered} 60\\ ${TEX.cm} = 0{,}6\\ ${TEX.m} \\\\ 0{,}6 \\cdot 0{,}6 = 0{,}36\\ ${TEX.m2} \\end{gathered}`,
-        sTag("một viên đá"),
+        `0{,}6 \\cdot 0{,}6 = 0{,}36\\ ${TEX.m2}`,
+        sTag("một viên: 60 cm = 0,6 m"),
       ),
       row(`30 \\cdot 20 = 600\\ ${TEX.m2}`, sTag("diện tích sân")),
       row(`0{,}36 \\cdot 1\\,400 = 504\\ ${TEX.m2}`, sTag("diện tích đá")),
