@@ -988,7 +988,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình bình hành có hai cặp cạnh đối bằng nhau và song song. Hình này có đủ hai cặp, còn ba hình kia thì không.",
+        "text": "Hình bình hành có hai cặp cạnh đối bằng nhau và song song. Hình này có đủ hai cặp, còn hai hình kia thì không.",
         "wrong": [
           {
             "optionId": "a",
@@ -1020,13 +1020,6 @@
           "content": {
             "type": "visual",
             "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-tu-giac-lech"
-          }
-        },
-        {
-          "id": "d",
-          "content": {
-            "type": "visual",
-            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-ngu-giac"
           }
         }
       ],
