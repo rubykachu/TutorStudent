@@ -225,7 +225,7 @@
           "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.tip.kiem-khung",
           "kind": "tránh sai",
           "title": "Kiểm tra khung hình chữ nhật",
-          "text": "Khung hình chữ nhật thì hai đường chéo bằng nhau. Đo thấy hai đường chéo khác nhau là khung bị lệch.",
+          "text": "Khung hình chữ nhật thì hai đường chéo bằng nhau. Đo thấy hai đường chéo khác nhau thì khung chưa phải hình chữ nhật.",
           "tex": "AC = BD"
         },
         {
@@ -2660,7 +2660,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Khi vẽ hình chữ nhật, ở hai đầu cạnh DE ta kẻ hai đường cùng vuông góc với DE. Hai đường đó có quan hệ gì với nhau?"
+          "text": "Khi vẽ hình chữ nhật, ở hai đầu cạnh DE ta kẻ hai đường cùng vuông góc với DE. Hai đường đó song song, cắt nhau, hay vuông góc với nhau?"
         }
       ],
       "hints": {
