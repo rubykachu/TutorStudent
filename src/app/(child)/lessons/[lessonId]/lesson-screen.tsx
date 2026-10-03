@@ -104,7 +104,12 @@ function LessonBody({
           <BackLink subjectId={lesson.subject} />
         </PageTopBar>
         <LessonOverviewView
-          lesson={{ title: lesson.title, number: lesson.number, overview }}
+          lesson={{
+            title: lesson.title,
+            number: lesson.number,
+            part: lesson.part,
+            overview,
+          }}
           startLabel={
             nextSection === undefined
               ? "Xem các phần của bài"

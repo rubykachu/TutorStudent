@@ -673,9 +673,14 @@ export const LessonChapterSchema = z.object({
 
 // Where the lesson sits in the book, for a parent looking it up: its number
 // inside the book ("Bài 4") and its chapter. Both stay out when the book
-// prints none.
+// prints none. `part` (1 is the first) marks a lesson of the app that holds
+// one share of a book lesson too long for the learner: all the parts carry the
+// same `number` and `chapter`, and content:check holds each book exercise to
+// exactly one part (src/content/split.ts). It stays out on a lesson that holds
+// its whole book lesson.
 const lessonPlacement = {
   number: z.int().positive().optional(),
+  part: z.int().positive().optional(),
   chapter: LessonChapterSchema.optional(),
 };
 
@@ -693,7 +698,8 @@ export const LessonSchema = z.object({
   // Must equal the grade of its series in content/subjects.json (content:check).
   grade: GradeSchema,
   // Position among the lessons of the book; fractional for a review lesson
-  // (12.5 sits after Bài 12 and before Bài 13).
+  // (12.5 sits after Bài 12 and before Bài 13) and for the parts of a split
+  // lesson (Bài 19 part 2 is 19.1).
   order: z.number().nonnegative(),
   // Absent on a regular lesson.
   kind: LessonKindSchema.optional(),

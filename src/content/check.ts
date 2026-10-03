@@ -32,6 +32,7 @@ import { lintLesson } from "./lint";
 import { checkGlossaryFile } from "./lint/glossary";
 import { guidesBySection } from "./lint/guides";
 import { lintTipsFile } from "./lint/tips";
+import { checkSplitLessons } from "./split";
 
 // Pure content validation: everything `content:check` enforces beyond the zod
 // schema. Reading files is the loader's job, so tests can feed mutated content.
@@ -870,6 +871,10 @@ export function checkContent(
       owners.set(id, file);
     }
   }
+
+  // The parts of a book lesson split across several lessons are checked as a
+  // set: each book exercise belongs to exactly one part.
+  issues.push(...checkSplitLessons(lessons));
 
   if (lock) checkLock(raw.lock, lock, lessons, issues);
   return { issues, lessons };

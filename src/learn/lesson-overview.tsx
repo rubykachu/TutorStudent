@@ -83,7 +83,9 @@ function PartText({
 }
 
 type LessonOverviewViewProps = {
-  lesson: Pick<Lesson, "title" | "number"> & { overview: LessonOverview };
+  lesson: Pick<Lesson, "title" | "number" | "part"> & {
+    overview: LessonOverview;
+  };
   onStart: () => void;
   startLabel: string;
   // Closes the overview onto the lesson's list of sections.

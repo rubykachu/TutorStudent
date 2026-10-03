@@ -79,6 +79,16 @@ Subagent phụ soạn nội dung (nếu có) mở với `model: "sonnet"`. Sửa
 15. **Rút kinh nghiệm.** Đọc các `review.md` của bài: mỗi Nghiêm trọng thuộc mục nào của `docs/lessons-learned/index.md`. Reviewer đã tăng số đếm; tác giả thêm dòng "Lỗi Nghiêm trọng ở vòng 1 theo bài" cho bài này. Lỗi lặp ở từ 2 bài trở lên mà chưa có mục: thêm mục mới; kiểm được bằng máy thì đề xuất luật `content:check` (trong `src/content/lint/`, lời báo trỏ id mục) với người dùng, rồi ghi vào `notebooks/backlogs/index.md` nếu chưa làm ngay.
 16. **Báo lại.** Gửi kết quả `--stats`, đường dẫn `review.md`, việc còn trong backlog, mục lessons-learned đã thêm hay tăng số. Nếu bài và media đã xong, nói rõ bài sẵn sàng lên production và hỏi chủ dự án có chạy `pnpm media:upload <slug>` rồi `pnpm deploy:prod` không (`docs/operations.md`, "Đưa bài mới lên production"); không chạy khi chưa được đồng ý.
 
+## Chia một bài dài thành nhiều bài
+
+Dùng khi một bài của sách quá dài cho bé (hơn khoảng 60 phút các phần, hay chủ dự án yêu cầu tách). Luật máy và quy ước: `.claude/rules/content.md`, mục "Splitting a long lesson".
+
+1. **Chia theo hình hay chủ đề, không chia theo số thứ tự phần.** Lập bảng: mỗi phần dạy và mỗi bài tập SBT thuộc bài nào. Bài tập cần nội dung của nhiều bài con thì xếp vào bài con đứng sau (bé học theo thứ tự). Phần tổng kết cần nội dung cả hai bài con thì xếp vào bài con cuối, hoặc bỏ khi bài đó còn dài.
+2. **Mỗi bài con là một bài đủ bộ.** Slug và tiêu đề riêng (bài đầu giữ slug cũ), `number` và `chapter` của sách, `part`, `order` = `number + (part − 1) / 10`; `overview` riêng mở bằng câu chào; thẻ, sticker, và đúng một phần `bookPractice` cuối bài chỉ chứa bài tập SBT của bài con đó (các `bookRef` của mọi bài con hợp lại đủ danh sách SBT của bài sách, mỗi `bookRef` đúng một lần: xem dòng "split into" của `content:check --stats`). Thời lượng mỗi bài con khoảng 55 phút (`minutes` theo luật bên trên).
+3. **Mỗi bài con chỉ dạy điều nó hay bài con trước đã dạy.** Phần mở đầu, nhiễu của câu chọn hình, gợi ý, lời giải thích, nhắc lại ở phần bài tập sách bài tập không nêu hình hay thuật ngữ của bài con sau: thay nhiễu bằng hình đã học hoặc hình lạ không tên.
+4. **Id.** Id của bài con mới bắt đầu bằng slug mới (id chưa khoá thì đổi tự do; không tạo id trùng id đã khoá của bài khác). Hình dùng chung đặt ở thư mục dùng chung (vd `src/visuals/shared/quadrilaterals/`), danh mục hình của mỗi bài con chỉ liệt kê hình bài đó dùng, giữ nguyên khoá hình khi không đổi nội dung.
+5. **Review.** Mỗi bài con review như một bài mới; `review.md` ghi phát hiện của bài chưa tách (kèm commit gốc) thuộc phần của bài con đó.
+
 ## Bài ôn tập chương (`kind: "review"`)
 
 Dùng cho phần "Ôn tập chương" của sách. Bài này chép nguyên văn đề các bài tập của sách; đó là ngoại lệ duy nhất của luật "không chép" (ngoài `passage`).

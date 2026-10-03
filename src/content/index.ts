@@ -142,6 +142,7 @@ export function summarizeLesson(
     series: lesson.series,
     order: lesson.order,
     ...(lesson.number === undefined ? {} : { number: lesson.number }),
+    ...(lesson.part === undefined ? {} : { part: lesson.part }),
     ...(lesson.chapter === undefined ? {} : { chapter: lesson.chapter }),
     title: lesson.title,
     sourceRef: lesson.sourceRef,

@@ -16,6 +16,15 @@ describe("lesson labels", () => {
     expect(lessonPlacement({})).toBeUndefined();
   });
 
+  it("names one part of a book lesson split across several lessons", () => {
+    expect(lessonPlacement({ number: 19, part: 2, chapter })).toBe(
+      "Chương I · Bài 19 (phần 2)",
+    );
+    expect(lessonHeading({ number: 19, part: 1, title: "Hình chữ nhật" })).toBe(
+      "Bài 19 (phần 1): Hình chữ nhật",
+    );
+  });
+
   it("puts the lesson number before its title", () => {
     expect(lessonHeading({ number: 4, title: "Phép cộng" })).toBe(
       "Bài 4: Phép cộng",

@@ -2,6 +2,7 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 import { checkContent, formatIssue } from "@/content/check";
 import { DEFAULT_CONTENT_ROOT, readContentRoot } from "@/content/load";
+import { groupBookRefs, splitGroups } from "@/content/split";
 import {
   type Criterion,
   type LessonStats,
@@ -61,6 +62,25 @@ if (values.stats) {
     for (const criterion of lessonCriteria(subject, stats)) {
       console.log(describeCriterion(criterion));
     }
+  }
+}
+
+if (values.stats) {
+  // A book lesson split across several lessons: its parts and the book
+  // exercises they hold together (each must appear once; a repeat is an error
+  // reported above).
+  for (const group of splitGroups(lessons)) {
+    console.log(
+      `Bài ${group.number} (${group.subject}/${group.series}) split into ${group.lessons.length} lessons:`,
+    );
+    for (const { lesson } of group.lessons) {
+      console.log(`  part ${lesson.part ?? "?"}: ${lesson.id}`);
+    }
+    const refs = groupBookRefs(group);
+    const distinct = new Set(refs.map(({ ref }) => ref.trim().toLowerCase()));
+    console.log(
+      `  book exercises across the parts (${refs.length}, ${distinct.size} distinct): ${refs.map(({ ref }) => ref).join(", ")}`,
+    );
   }
 }
 
