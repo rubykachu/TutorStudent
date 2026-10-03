@@ -31,7 +31,7 @@ export function OfflineScreen() {
       className="mx-auto flex w-full max-w-content flex-1 flex-col justify-center gap-8 px-gutter py-6 md:px-gutter-lg md:py-10"
     >
       <div className="flex items-center gap-4">
-        <Owl expression="hint" size="home" />
+        <Owl expression="hint" size="home" loop />
         <h1 className="text-title font-bold md:text-title-lg">
           Cần mạng để mở trang này
         </h1>

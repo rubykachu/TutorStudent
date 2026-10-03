@@ -141,7 +141,7 @@ const LEFT_WING =
 const RIGHT_WING =
   "M88 62 C98 65 103 78 99 92 C93 91 87 83 85 73 C84 67 85 63 88 62 Z";
 
-// The owl's gentle idle loop on the home screen: it rises and settles like
+// The owl's gentle idle loop on a waiting screen: it rises and settles like
 // a slow breath and sways a degree or two, forever. Only transform; under
 // reduced motion there is none.
 const IDLE_LOOP: TargetAndTransition = {
@@ -161,8 +161,9 @@ type OwlProps = {
   expression: MascotExpression;
   size: MascotSize;
   className?: string;
-  // Keeps the owl gently moving while it waits (home screen). Beside an
-  // exercise it stays still.
+  // Keeps the owl gently moving while it waits beside a screen's heading
+  // (home, unlock, offline, lesson overview). Beside an exercise, a loading
+  // line or a finished section's message it stays still.
   loop?: boolean;
 };
 

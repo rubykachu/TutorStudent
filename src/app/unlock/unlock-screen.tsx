@@ -72,7 +72,7 @@ export function UnlockScreen({ next }: UnlockScreenProps) {
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col justify-center gap-8 px-gutter py-6 md:px-gutter-lg md:py-10">
       <div className="flex items-center gap-4">
-        <Owl expression={problem ? "hint" : "welcome"} size="home" />
+        <Owl expression={problem ? "hint" : "welcome"} size="home" loop />
         <h1 className="text-title font-bold md:text-title-lg">Chào bạn!</h1>
       </div>
       <form onSubmit={submit} className="flex max-w-xl flex-col gap-6">

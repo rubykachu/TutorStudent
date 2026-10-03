@@ -134,7 +134,7 @@ export function LessonOverviewView({
       data-lesson-overview
     >
       <header className="flex items-center gap-4">
-        <Owl expression="welcome" size="home" className="shrink-0" />
+        <Owl expression="welcome" size="home" className="shrink-0" loop />
         <div className="flex min-w-0 flex-col gap-1">
           <p className="font-semibold text-muted-foreground">Giới thiệu bài</p>
           <h1 className="text-title font-bold md:text-title-lg">

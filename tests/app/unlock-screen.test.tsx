@@ -83,6 +83,34 @@ describe("UnlockScreen", () => {
   });
 });
 
+describe("the owl", () => {
+  const defaultMatchMedia = window.matchMedia;
+  afterEach(() => {
+    window.matchMedia = defaultMatchMedia;
+  });
+
+  it("keeps moving while the child types, and after a wrong code", async () => {
+    answer(401, { error: "wrong" });
+    const { container } = render(<UnlockScreen next="/" />);
+    expect(container.querySelector("[data-mascot-loop]")).not.toBeNull();
+    enter("sao-bien-4k7m");
+    await waitFor(() =>
+      expect(container.querySelector("[data-mascot=hint]")).not.toBeNull(),
+    );
+    expect(container.querySelector("[data-mascot-loop]")).not.toBeNull();
+  });
+
+  it("stays still under reduced motion", () => {
+    window.matchMedia = (query: string) => ({
+      ...defaultMatchMedia(query),
+      matches: query.includes("prefers-reduced-motion"),
+    });
+    const { container } = render(<UnlockScreen next="/" />);
+    expect(container.querySelector("[data-mascot]")).not.toBeNull();
+    expect(container.querySelector("[data-mascot-loop]")).toBeNull();
+  });
+});
+
 describe("problemMessage", () => {
   it("rounds the wait up to whole minutes, at least one", () => {
     expect(problemMessage({ kind: "locked", retryAfterSeconds: 1 })).toContain(

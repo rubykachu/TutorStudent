@@ -58,6 +58,8 @@ describe("LessonOverviewView", () => {
     expect(
       container.querySelector('[data-overview-part="why"]'),
     ).toHaveTextContent("Phép nhân giúp bạn đếm nhanh.");
+    // The owl beside the heading keeps gently moving.
+    expect(container.querySelector("header [data-mascot-loop]")).not.toBeNull();
   });
 
   it("starts the lesson from its one main button", () => {
