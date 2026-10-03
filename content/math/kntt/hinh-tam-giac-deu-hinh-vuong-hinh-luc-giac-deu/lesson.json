@@ -3031,11 +3031,11 @@
           },
           {
             "optionId": "a",
-            "text": "Compa mở 4 cm, bằng nửa cạnh 8 cm, nên hai cung chỉ chạm nhau đúng ở giữa cạnh. Chúng không lên được phía trên, nên không có đỉnh thứ ba."
+            "text": "Compa mở 4 cm thì hai cung chỉ chạm nhau ở giữa cạnh. Hai cung không lên cao nên không có đỉnh thứ ba."
           },
           {
             "optionId": "c",
-            "text": "Compa mở 6 cm thì hai cạnh mới chỉ dài 6 cm. Cạnh đã vẽ dài 8 cm, nên ba cạnh không bằng nhau."
+            "text": "Compa mở 6 cm thì hai cạnh nối tới điểm vừa chấm chỉ dài 6 cm. Cạnh đã vẽ dài 8 cm, nên ba cạnh không bằng nhau."
           }
         ]
       },
@@ -3184,7 +3184,7 @@
           "id": "lay",
           "content": {
             "type": "text",
-            "text": "Trên hai đường ấy, cùng một bên của cạnh, lấy hai đoạn bằng cạnh đã vẽ"
+            "text": "Trên hai đường vuông góc vừa kẻ, cùng một bên của cạnh, lấy hai đoạn bằng cạnh đã vẽ"
           }
         },
         {
@@ -3874,7 +3874,7 @@
           },
           {
             "optionId": "cong-mot",
-            "text": "Có thể có nhiều hơn một hình vuông lớn. Ví dụ, hai hàng gạch, mỗi hàng ba viên, ghép được hai hình vuông lớn."
+            "text": "Hình vuông lớn có thể không chỉ một hình, nên cộng thêm 1 là chưa đủ."
           }
         ]
       },
@@ -5077,11 +5077,11 @@
         "wrong": [
           {
             "optionId": "acndfr",
-            "text": "ACNDFR có sáu cạnh, nhưng các cạnh không bằng nhau: AC dài hơn CN."
+            "text": "Hình ACNDFR có sáu cạnh, nhưng các cạnh không bằng nhau: AC dài hơn CN."
           },
           {
             "optionId": "aepdbs",
-            "text": "AEPDBS có sáu cạnh, nhưng các cạnh không bằng nhau: AE dài hơn EP."
+            "text": "Hình AEPDBS có sáu cạnh, nhưng các cạnh không bằng nhau: AE dài hơn EP."
           }
         ]
       },
