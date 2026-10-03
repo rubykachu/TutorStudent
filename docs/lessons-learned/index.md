@@ -72,7 +72,7 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-22 | 1 | 2 | 0 | 3 |
 | LL-23 | 4 | 1 | 0 | 5 |
 | LL-24 | 17 | 4 | 4 | 25 |
-| LL-25 | 0 | 14 | 315 | 329 |
+| LL-25 | 0 | 14 | 337 | 351 |
 | LL-26 | 2 | 0 | 1 | 3 |
 
 LL-17, LL-08 và LL-09 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-05, LL-17 gặp nhiều nhất.
@@ -103,5 +103,5 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` | Toán | 11 | 3 (vòng 2 còn 6; phần bài tập sách bài tập, vòng 6 có 1, hết ở vòng 7) | 8 |
 | `phep-nhan-so-nguyen` | Toán | 5 | 3 (vòng 2 còn 1; phần bài tập sách bài tập, vòng 6 có 3, hết ở vòng 7) | 8 |
 | `on-tap-chuong-3` | Toán | 7 | chưa | 1 |
-| `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` | Toán | 8 | chưa (vòng 2 còn 4) | 2 |
+| `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` | Toán | 8 | 3 (vòng 2 còn 4) | 3 |
 | `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` | Toán | 21 | chưa | 1 |
