@@ -4,6 +4,10 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: reviewed and merg
 
 ## Handover
 
+Production (03/10/2026): `NEXT_PUBLIC_OFFLINE_ENABLED=1` set in Vercel Production and `38c726d` deployed (smoke 7/7; `media:upload --all --dry-run` showed nothing to upload). Desktop Chromium on production: `/sw.js` is the real worker (200, `no-cache`), the parent line went from "đang tải (3/767)" to "sẵn sàng", the cache holds 767 entries and no lesson media (only the app's `/sounds/*.m4a`), and a reload offline opened the app. Still open: the iPad check (`docs/operations.md`, "Bật offline", step 3). Rollback if it fails: remove the variable and redeploy, or use the kill switch.
+
+Known flake: `e2e/unlock.spec.ts:143` (iPad project, "a Home Screen launch opens the unlock page once...") sometimes fails at code entry -> `/profiles` on a cold dev compile or a full disk, before any worker logic; it failed once in the release run at `38c726d` (disk at 361 MB) and the owner accepted it.
+
 Status after the independent review: merged into `main` with the worker OFF by default. Next: the owner turns it on (`NEXT_PUBLIC_OFFLINE_ENABLED=1` in Vercel Production, deploy) and runs the iPad check (`docs/operations.md`, "Bật offline", then "Kiểm trên iPad Safari" steps 9 and 10). Archive this folder once that check passes.
 
 ### Independent review (fresh Opus session)
