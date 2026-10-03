@@ -96,7 +96,8 @@ export function rhombusGeo(
 // to its right, the copy turned half a turn about the middle M of its right
 // leg: the two together make a parallelogram with base `top + bottom`. The
 // copy's corners are CBL, CTL, CTR, CBR; W_TL, W_TR, W_BR, W_BL are the
-// corners of the parallelogram.
+// corners of the parallelogram; F is the foot, on the bottom base, of the
+// height from TL.
 export function trapezoidGeo(
   bottom: number,
   top: number,
@@ -127,6 +128,7 @@ export function trapezoidGeo(
       "W_TR",
       "W_BR",
       "W_BL",
+      "F",
     ],
     [
       bl,
@@ -142,6 +144,7 @@ export function trapezoidGeo(
       [tl[0] + wholeWidth, 0],
       [wholeWidth, height],
       [0, height],
+      [tl[0], height],
     ],
     canvas,
     40,

@@ -77,7 +77,7 @@ export function Floor({
         <svg
           viewBox={`0 0 ${WIDTH} ${height}`}
           role="img"
-          aria-label={spec.label}
+          aria-label={`Sàn phòng dài ${goal.perRow} m, rộng ${goal.rows} m, chia thành các ô vuông cạnh ${spec.tile}`}
           className="h-auto max-h-72 w-full"
         >
           <rect

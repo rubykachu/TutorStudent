@@ -565,6 +565,10 @@
       "forbidden": []
     },
     {
+      "term": "cạnh kề",
+      "forbidden": []
+    },
+    {
       "term": "chu vi",
       "forbidden": [],
       "color": "blue",
@@ -586,6 +590,11 @@
       "term": "chiều cao",
       "forbidden": [],
       "color": "violet"
+    },
+    {
+      "term": "ô vuông đơn vị",
+      "forbidden": [],
+      "prerequisite": "tiểu học"
     }
   ],
   "names": [

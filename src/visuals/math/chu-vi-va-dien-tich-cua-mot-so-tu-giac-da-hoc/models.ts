@@ -100,7 +100,6 @@ export function tileCells(
 // A floor to cover with square tiles laid in rows: the child sets how many
 // tiles go in a row and how many rows.
 export type FloorSpec = {
-  label: string;
   // The floor of a lesson screen, in tiles; an exercise gives its own.
   goal: { perRow: number; rows: number };
   // Side of one tile, said in the closing line ("1 m").

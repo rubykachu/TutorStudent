@@ -41,39 +41,63 @@ function metreRule(): FigureSpec {
   };
 }
 
-// A square metre cut into 100 by 100 squares of 1 cm², drawn as 10 by 10
-// blocks of 10 cm.
+// A square metre cut into 10 by 10 blocks of 10 cm by 10 cm, each worth
+// 100 cm²: the corner block is outlined and measured beside the grid, and the
+// writing stays outside the grid, clear of its lines.
 function squareMetre(): FigureSpec {
-  const cell = 22;
+  const cell = 18;
+  const x0 = 16;
+  const y0 = 34;
   const grid = gridFigure({
-    label: "Một mét vuông là hình vuông cạnh 100 cm",
+    label:
+      "Hình vuông cạnh 1 m, tức 100 cm, có diện tích 1 m². Hình chia thành 100 ô, mỗi ô cạnh 10 cm có diện tích 100 cm², nên 1 m² bằng 10 000 cm²",
     cols: 10,
     rows: 10,
     cell,
-    x: 50,
-    y: 40,
+    x: x0,
+    y: y0,
     w: 320,
-    h: 300,
+    h: 290,
     fill: "teal",
   });
+  // The block at the top right corner of the grid, outlined in ink.
+  const right = x0 + 10 * cell;
+  const corner: Record<string, Pt> = {
+    k0: [right - cell, y0],
+    k1: [right, y0],
+    k2: [right, y0 + cell],
+    k3: [right - cell, y0 + cell],
+    // The end of the line from the block to its writing.
+    k4: [right + 14, y0 + cell / 2],
+  };
+  const side = right + 18;
   return {
     ...grid,
+    pts: { ...grid.pts, ...corner },
+    polys: [
+      ...(grid.polys ?? []),
+      { v: ["k0", "k1", "k2", "k3"], tone: "ink" },
+    ],
+    segs: [{ a: "k1", b: "k4", tone: "ink" }],
     texts: [
-      { x: 160, y: 20, text: "Cạnh 1 m = 100 cm", tone: "sky" },
-      { x: 160, y: 150, text: "1 m²", tone: "ink" },
-      { x: 160, y: 280, text: `100 · 100 = 10${NBSP}000 cm²`, tone: "teal" },
+      { x: 160, y: 16, text: "Cạnh 1 m = 100 cm", tone: "sky" },
+      { x: side, y: y0 + 9, text: "1 ô:", tone: "ink", anchor: "start" },
+      { x: side, y: y0 + 31, text: "cạnh 10 cm", tone: "sky", anchor: "start" },
+      { x: side, y: y0 + 53, text: "100 cm²", tone: "teal", anchor: "start" },
+      { x: 160, y: 244, text: "1 m² gồm 100 ô, mỗi ô 100 cm²", tone: "ink" },
+      { x: 160, y: 270, text: `100 · 100 = 10${NBSP}000 cm²`, tone: "teal" },
     ],
   };
 }
 
-// Three bars of 0,3 m, 0,6 m and 1 m, each to be converted to cm by a tap.
+// Three bars of 0,3 m, 0,7 m and 1,2 m, each to be converted to cm by a tap.
 function bars(): VisualSpec {
   const x0 = 88;
-  const perMetre = 208;
+  const perMetre = 186;
   const rows = [
     { name: "a", y: 52, metres: 0.3, text: "0,3 m", cm: "30 cm" },
-    { name: "b", y: 108, metres: 0.6, text: "0,6 m", cm: "60 cm" },
-    { name: "c", y: 164, metres: 1, text: "1 m", cm: "100 cm" },
+    { name: "b", y: 108, metres: 0.7, text: "0,7 m", cm: "70 cm" },
+    { name: "c", y: 164, metres: 1.2, text: "1,2 m", cm: "120 cm" },
   ];
   const pts: Record<string, Pt> = {};
   for (const r of rows) {
@@ -83,7 +107,7 @@ function bars(): VisualSpec {
   return {
     kind: "probe",
     figure: {
-      label: "Ba thanh dài 0,3 m, 0,6 m và 1 m",
+      label: "Ba thanh dài 0,3 m, 0,7 m và 1,2 m",
       w: 320,
       h: 196,
       pts,
@@ -113,17 +137,19 @@ function bars(): VisualSpec {
   };
 }
 
-// Canvas of the pictures above a worked calculation: small, so their writing
-// stays above 16px when the calculation's lines take the rest of the frame.
-const CALC_FIGURE = { w: 280, h: 150 } as const;
-
 // A garden of 20 m by 12 m, fenced on all sides but a gate of 3 m in the
-// bottom side.
+// bottom side: the gate is a real gap between two posts, with its width
+// measured under it.
+// The canvas is small so its writing stays above 16px when the calculation's
+// lines take the rest of the frame.
+const GATE_FIGURE = { w: 280, h: 165 } as const;
+
 function gardenWithGate(): FigureSpec {
-  return shape({
+  const garden = shape({
     label: "Vườn hình chữ nhật dài 20 m, rộng 12 m, có cửa rộng 3 m",
     corners: units.rect(20, 12),
-    ...CALC_FIGURE,
+    ...GATE_FIGURE,
+    reserve: 22,
     sides: [
       { i: 0, text: "20 m" },
       { i: 3, text: "12 m" },
@@ -131,22 +157,38 @@ function gardenWithGate(): FigureSpec {
     extra: (pts) => {
       const c = pts.C as Pt;
       const d = pts.D as Pt;
+      // The gate spans 3 of the 20 m, from 5 m to 8 m along the side from C.
       const e = lerp(c, d, 0.25);
       const f = lerp(c, d, 0.4);
+      const gap = 14;
+      const cap = 6;
       return {
-        pts: { E: e, F: f },
+        pts: {
+          E: e,
+          F: f,
+          M1: [e[0], e[1] + gap],
+          M2: [f[0], f[1] + gap],
+          N1: [e[0], e[1] + gap - cap],
+          N2: [e[0], e[1] + gap + cap],
+          N3: [f[0], f[1] + gap - cap],
+          N4: [f[0], f[1] + gap + cap],
+        },
         segs: [
           { a: "A", b: "B", tone: "blue", bold: true },
           { a: "B", b: "C", tone: "blue", bold: true },
           { a: "C", b: "E", tone: "blue", bold: true },
           { a: "F", b: "D", tone: "blue", bold: true },
           { a: "D", b: "A", tone: "blue", bold: true },
-          { a: "E", b: "F", tone: "slate", dash: true },
+          // The width of the gate, measured under it.
+          { a: "M1", b: "M2", tone: "slate" },
+          { a: "N1", b: "N2", tone: "slate" },
+          { a: "N3", b: "N4", tone: "slate" },
         ],
+        dots: ["E", "F"],
         texts: [
           {
             x: (e[0] + f[0]) / 2,
-            y: e[1] + 24,
+            y: e[1] + gap + 24,
             text: "cửa 3 m",
             tone: "slate",
           },
@@ -154,6 +196,8 @@ function gardenWithGate(): FigureSpec {
       };
     },
   });
+  // The outline of the rectangle would close the gate: only the fence is drawn.
+  return { ...garden, polys: [] };
 }
 
 // A floor of 6 m by 4 m cut into tiles of 50 cm.
@@ -204,13 +248,13 @@ export const DON_VI_SPECS: Record<string, VisualSpec> = {
     [
       row(
         "\\begin{gathered} 6\\ \\mathrm{m} = 600\\ \\mathrm{cm} \\\\ 600 : 50 = 12 \\end{gathered}",
-        ["viên mỗi hàng", "blue"],
+        ["viên mỗi hàng", "slate"],
       ),
       row(
         "\\begin{gathered} 4\\ \\mathrm{m} = 400\\ \\mathrm{cm} \\\\ 400 : 50 = 8 \\end{gathered}",
-        ["số hàng", "blue"],
+        ["số hàng", "slate"],
       ),
-      row("12 \\cdot 8 = 96", ["số viên gạch", "teal"]),
+      row("12 \\cdot 8 = 96", ["số viên gạch", "slate"]),
     ],
     "steps",
     tiledFloor(),

@@ -4,7 +4,7 @@ import type {
   Pt,
 } from "@/visuals/shared/plane/figure-spec";
 import { figure, formulaCaption, gallery, small, steps } from "./builders";
-import { gridFigure, shape, units } from "./figures";
+import { centroid, gridFigure, shape, sideTextAt, units } from "./figures";
 import type { FloorSpec, TilesSpec } from "./models";
 import type { VisualSpec } from "./spec";
 import {
@@ -23,6 +23,9 @@ import {
 
 const GALLERY_THUMB = { w: 150, h: 112, margin: 26 } as const;
 const OPTION = { w: 200, h: 140, margin: 28 } as const;
+// Height of the flat rule figures (a parallelogram or a trapezoid with its
+// height and letters, and nothing written under them).
+const RULE_FIGURE_HEIGHT = 150;
 
 type Cell = readonly [number, number];
 
@@ -39,7 +42,7 @@ function paintedRows(
   rows: number,
   cell: number,
   paintedRowCount: number,
-  extra: { h?: number; texts?: FigureSpec["texts"] } = {},
+  extra: { h?: number; y?: number; texts?: FigureSpec["texts"] } = {},
 ): FigureSpec {
   const w = 320;
   return gridFigure({
@@ -48,7 +51,7 @@ function paintedRows(
     rows,
     cell,
     x: (w - cols * cell) / 2,
-    y: 16,
+    y: extra.y ?? 16,
     w,
     h: extra.h ?? rows * cell + 32,
     filled: cellsOfRows(cols, paintedRowCount),
@@ -85,6 +88,20 @@ function heightExtra(
   };
 }
 
+// The floor of the lesson screen, 6 m by 4 m in squares of 1 m, with its
+// measures; the first `painted` rows are painted.
+function floorRows(label: string, painted: number): FigureSpec {
+  const cell = 36;
+  return paintedRows(label, 6, 4, cell, painted, {
+    y: 30,
+    h: 190,
+    texts: [
+      { x: 160, y: 14, text: "6 m", tone: "ink" },
+      { x: 26, y: 30 + 2 * cell, text: "4 m", tone: "ink" },
+    ],
+  });
+}
+
 const TILES_STAIRS: TilesSpec = {
   label: "Hình bậc thang gồm các ô vuông, mỗi ô có diện tích 1 cm²",
   cols: 4,
@@ -106,7 +123,6 @@ const TILES_STAIRS: TilesSpec = {
 };
 
 const FLOOR: FloorSpec = {
-  label: "Sàn phòng dài 5 m, rộng 3 m, chia thành các ô vuông cạnh 1 m",
   goal: { perRow: 5, rows: 3 },
   tile: "1 m",
   done: "5 · 3 = 15 ô vuông: diện tích sàn là 15 m².",
@@ -265,30 +281,58 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
       fill: "teal",
     }),
   ),
+  "f-chu-l-9-o": figure(
+    gridFigure({
+      label: "Hình chữ L gồm 9 ô vuông, mỗi ô có diện tích 1 cm²",
+      cols: 5,
+      rows: 3,
+      cell: 36,
+      x: 70,
+      y: 12,
+      w: 320,
+      h: 132,
+      cells: [
+        [0, 0],
+        [1, 0],
+        [0, 1],
+        [1, 1],
+        [0, 2],
+        [1, 2],
+        [2, 2],
+        [3, 2],
+        [4, 2],
+      ],
+      fill: "teal",
+    }),
+  ),
   "cham-hinh-4-o": figure(squaresChoice()),
   // Section 5: rectangle and square.
-  "hang-cot-gach": steps("Sàn được chia thành các ô vuông cạnh 1 m", [
-    {
-      figure: paintedRows("Sàn 6 ô một hàng, 4 hàng", 6, 4, 36, 0, { h: 176 }),
-      caption: "Sàn chia thành các ô vuông cạnh 1 m: mỗi hàng 6 ô.",
-    },
-    {
-      figure: paintedRows("Một hàng có 6 ô", 6, 4, 36, 1, { h: 176 }),
-      caption: "Hàng đầu có 6 ô.",
-    },
-    {
-      figure: paintedRows("Hai hàng có 12 ô", 6, 4, 36, 2, { h: 176 }),
-      caption: "Hai hàng có 6 + 6 = 12 ô.",
-    },
-    {
-      figure: paintedRows("Ba hàng có 18 ô", 6, 4, 36, 3, { h: 176 }),
-      caption: "Ba hàng có 18 ô.",
-    },
-    {
-      figure: paintedRows("Bốn hàng có 24 ô", 6, 4, 36, 4, { h: 176 }),
-      caption: "Bốn hàng có 6 · 4 = 24 ô: diện tích sàn là 24 m².",
-    },
-  ]),
+  "hang-cot-gach": steps(
+    "Sàn dài 6 m, rộng 4 m, chia thành các ô vuông cạnh 1 m",
+    [
+      {
+        figure: floorRows("Sàn 6 ô một hàng, 4 hàng", 0),
+        caption: "Sàn dài 6 m, rộng 4 m. Dài 6 m nên mỗi hàng có 6 ô.",
+      },
+      {
+        figure: floorRows("Một hàng có 6 ô", 1),
+        caption: "Hàng đầu có 6 ô.",
+      },
+      {
+        figure: floorRows("Hai hàng có 12 ô", 2),
+        caption: "Hai hàng có 6 + 6 = 12 ô.",
+      },
+      {
+        figure: floorRows("Ba hàng có 18 ô", 3),
+        caption: "Ba hàng có 18 ô.",
+      },
+      {
+        figure: floorRows("Bốn hàng có 24 ô", 4),
+        caption:
+          "Rộng 4 m nên có 4 hàng: 6 · 4 = 24 ô, diện tích sàn là 24 m².",
+      },
+    ],
+  ),
   "dt-cn-quy-tac": gallery(
     "Hình chữ nhật có hai cạnh a và b, hình vuông có cạnh a",
     [
@@ -336,24 +380,22 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     "Cắt hình bình hành rồi ghép thành hình chữ nhật",
     parallelogramFrames(),
   ),
-  "bbh-quy-tac": figure(
-    shape({
-      label: "Hình bình hành có cạnh đáy a và chiều cao h",
-      corners: units.parallelogram(6, 3, 2),
-      fill: "teal",
-      reserve: 26,
-      sides: [{ i: 2, text: "a", tone: "ink" }],
-      extra: (pts) => {
-        const more = heightExtra("A", "D", "C", "h")(pts);
-        return {
-          ...more,
-          texts: [
-            ...(more.texts ?? []),
-            { x: 160, y: 196, text: "S = a · h", tone: "teal" },
-          ],
-        };
+  "bbh-quy-tac": gallery(
+    "Hình bình hành có cạnh đáy a và chiều cao h",
+    [
+      {
+        caption: `${formulaCaption("Hình bình hành", "S = a · h")}\na là cạnh đáy, h là chiều cao`,
+        figure: shape({
+          label: "Hình bình hành có cạnh đáy a và chiều cao h",
+          corners: units.parallelogram(6, 3, 2),
+          h: RULE_FIGURE_HEIGHT,
+          fill: "teal",
+          sides: [{ i: 2, text: "a", tone: "ink" }],
+          extra: heightExtra("A", "D", "C", "h"),
+        }),
       },
-    }),
+    ],
+    1,
   ),
   "stage-bbh": { kind: "stage", ...parallelogramSlide() },
   "f-bbh-9-5": figure(
@@ -419,16 +461,10 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
       extra: (pts) => {
         const a = pts.A as Pt;
         const c = pts.C as Pt;
+        const [x, y] = sideTextAt(a, c, centroid([a, c]), "h");
         return {
           segs: [{ a: "A", b: "C", tone: "violet", bold: true }],
-          texts: [
-            {
-              x: (a[0] + c[0]) / 2 - 14,
-              y: (a[1] + c[1]) / 2,
-              text: "h",
-              tone: "violet",
-            },
-          ],
+          texts: [{ x, y, text: "h", tone: "violet" }],
         };
       },
     }),
@@ -438,30 +474,42 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     "Xoay bốn tam giác nằm ngoài vào trong hình thoi",
     rhombusFrames(),
   ),
-  "thoi-quy-tac": figure(
-    shape({
-      label: "Hình thoi có hai đường chéo a và b",
-      corners: units.rhombus(8, 6),
-      fill: "teal",
-      reserve: 26,
-      extra: (pts) => {
-        const top = pts.A as Pt;
-        const left = pts.D as Pt;
-        const cx = top[0];
-        const cy = left[1];
-        return {
-          segs: [
-            { a: "A", b: "C", tone: "amber", dash: true },
-            { a: "B", b: "D", tone: "amber", dash: true },
-          ],
-          texts: [
-            { x: cx - 52, y: cy - 14, text: "a", tone: "amber" },
-            { x: cx + 14, y: (top[1] + cy) / 2, text: "b", tone: "amber" },
-            { x: 160, y: 196, text: "S = a · b : 2", tone: "teal" },
-          ],
-        };
+  "thoi-quy-tac": gallery(
+    "Hình thoi có hai đường chéo a và b",
+    [
+      {
+        caption: `${formulaCaption("Hình thoi", "S = a · b : 2")}\na, b là hai đường chéo`,
+        figure: shape({
+          label: "Hình thoi có hai đường chéo a và b",
+          corners: units.rhombus(8, 6),
+          fill: "teal",
+          extra: (pts) => {
+            const top = pts.A as Pt;
+            const left = pts.D as Pt;
+            const cx = top[0];
+            const cy = left[1];
+            return {
+              segs: [
+                { a: "A", b: "C", tone: "amber", dash: true },
+                { a: "B", b: "D", tone: "amber", dash: true },
+              ],
+              // Each letter beside its own diagonal, on the side where the
+              // rhombus is wide enough to hold it clear of every line.
+              texts: [
+                { x: (cx + left[0]) / 2, y: cy + 17, text: "a", tone: "amber" },
+                {
+                  x: cx + 17,
+                  y: (top[1] + cy) / 2,
+                  text: "b",
+                  tone: "amber",
+                },
+              ],
+            };
+          },
+        }),
       },
-    }),
+    ],
+    1,
   ),
   "stage-thoi": { kind: "stage", ...rhombusFold() },
   "f-thoi-10-4": figure(
@@ -508,27 +556,25 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     "Ghép hai hình thang cân thành một hình bình hành",
     trapezoidFrames(),
   ),
-  "thang-quy-tac": figure(
-    shape({
-      label: "Hình thang cân có hai đáy a, b và chiều cao h",
-      corners: units.trapezoid(8, 4, 3),
-      fill: "teal",
-      reserve: 26,
-      sides: [
-        { i: 1, text: "a", tone: "ink" },
-        { i: 3, text: "b", tone: "ink" },
-      ],
-      extra: (pts) => {
-        const more = heightExtra("B", "A", "D", "h")(pts);
-        return {
-          ...more,
-          texts: [
-            ...(more.texts ?? []),
-            { x: 160, y: 196, text: "S = (a + b) · h : 2", tone: "teal" },
+  "thang-quy-tac": gallery(
+    "Hình thang cân có hai đáy a, b và chiều cao h",
+    [
+      {
+        caption: `${formulaCaption("Hình thang cân", "S = (a + b) · h : 2")}\na, b là hai đáy, h là chiều cao`,
+        figure: shape({
+          label: "Hình thang cân có hai đáy a, b và chiều cao h",
+          corners: units.trapezoid(8, 4, 3),
+          h: RULE_FIGURE_HEIGHT,
+          fill: "teal",
+          sides: [
+            { i: 1, text: "a", tone: "ink" },
+            { i: 3, text: "b", tone: "ink" },
           ],
-        };
+          extra: heightExtra("B", "A", "D", "h"),
+        }),
       },
-    }),
+    ],
+    1,
   ),
   "stage-thang": { kind: "stage", ...trapezoidJoin() },
   "f-thang-3-7-4": figure(

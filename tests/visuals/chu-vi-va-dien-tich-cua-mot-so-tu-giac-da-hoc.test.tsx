@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { VISUAL_SPECS } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/catalog";
+import { BOOK_PAIR_KEYS } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/catalog-book";
 import {
   quadrilateral,
   shape,
@@ -32,8 +33,13 @@ import {
 } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/stages";
 import { Tiles } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/tiles";
 import { Walk } from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/walk";
-import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
+import type {
+  FigureSpec,
+  FigureText,
+  Pt,
+} from "@/visuals/shared/plane/figure-spec";
 import { dist } from "@/visuals/shared/plane/geometry";
+import { probeFigure } from "@/visuals/shared/plane/probe-model";
 
 const pt = (figure: FigureSpec, name: string): Pt => {
   const p = figure.pts[name];
@@ -347,5 +353,422 @@ describe("the catalog", () => {
         expect(new Set(texts).size, `${key}: texts`).toBe(texts.length);
       }
     }
+  });
+});
+
+// ---------------------------------------------------------------- writing
+
+// The writing of a figure must sit clear of every line and of the other
+// writing: a letter under a stroke reads as a struck-through sign, and
+// writing the picture cuts off is lost. Text is 17 units tall; a character is
+// about 9.4 units wide (the width the drawing helpers reserve).
+const CHAR_WIDTH = 9.4;
+const TEXT_HEIGHT = 17;
+const STROKE_CLEARANCE = 2.5;
+// The narrowest frame a figure is drawn in (a phone), in pixels.
+const PHONE_WIDTH = 342;
+const MIN_TEXT_PIXELS = 16;
+
+type Rect = { x0: number; y0: number; x1: number; y1: number };
+
+function textRect(t: FigureText): Rect {
+  const width = t.text.length * CHAR_WIDTH;
+  const left =
+    t.anchor === "start"
+      ? t.x
+      : t.anchor === "end"
+        ? t.x - width
+        : t.x - width / 2;
+  return {
+    x0: left,
+    x1: left + width,
+    y0: t.y - TEXT_HEIGHT / 2,
+    y1: t.y + TEXT_HEIGHT / 2,
+  };
+}
+
+function rectsOverlap(a: Rect, b: Rect): boolean {
+  return a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+}
+
+// Whether the segment p-q passes through the rectangle grown by `pad`.
+function segmentHits(p: Pt, q: Pt, rect: Rect, pad: number): boolean {
+  const box = {
+    x0: rect.x0 - pad,
+    x1: rect.x1 + pad,
+    y0: rect.y0 - pad,
+    y1: rect.y1 + pad,
+  };
+  let t0 = 0;
+  let t1 = 1;
+  const dx = q[0] - p[0];
+  const dy = q[1] - p[1];
+  const clips: [number, number][] = [
+    [-dx, p[0] - box.x0],
+    [dx, box.x1 - p[0]],
+    [-dy, p[1] - box.y0],
+    [dy, box.y1 - p[1]],
+  ];
+  for (const [direction, distance] of clips) {
+    if (direction === 0) {
+      if (distance < 0) return false;
+      continue;
+    }
+    const t = distance / direction;
+    if (direction < 0) t0 = Math.max(t0, t);
+    else t1 = Math.min(t1, t);
+    if (t0 > t1) return false;
+  }
+  return true;
+}
+
+// Every line a figure draws, as end points.
+function linesOf(figure: FigureSpec): [Pt, Pt][] {
+  const lines: [Pt, Pt][] = [];
+  for (const poly of figure.polys ?? []) {
+    poly.v.forEach((name, i) => {
+      const next = poly.v[(i + 1) % poly.v.length] as string;
+      lines.push([pt(figure, name), pt(figure, next)]);
+    });
+  }
+  for (const seg of figure.segs ?? []) {
+    lines.push([pt(figure, seg.a), pt(figure, seg.b)]);
+  }
+  return lines;
+}
+
+// The figures of a spec with their writing: still figures, frames, the
+// pictures of a gallery, the figure above a calculation, a probe with every
+// part measured, a walk to its end, and a stage with its fixed pieces.
+function writtenFigures(spec: VisualSpec): FigureSpec[] {
+  switch (spec.kind) {
+    case "probe":
+      return [
+        probeFigure(
+          spec,
+          spec.parts.map(() => true),
+        ),
+      ];
+    case "stage": {
+      const fixed = spec.pieces.filter(
+        (piece) => piece.moveAt === undefined && piece.v.length > 1,
+      );
+      const pts: Record<string, Pt> = { ...spec.base.pts };
+      const polys = [...(spec.base.polys ?? [])];
+      const segs = [...(spec.base.segs ?? [])];
+      for (const piece of fixed) {
+        const names = piece.v.map((_, i) => `${piece.id}${i}`);
+        names.forEach((name, i) => {
+          pts[name] = piece.v[i] as Pt;
+        });
+        if (piece.v.length === 2) {
+          segs.push({ a: names[0] as string, b: names[1] as string });
+        } else polys.push({ v: names });
+      }
+      const texts = [
+        ...(spec.base.texts ?? []),
+        ...(spec.texts ?? []).map(({ x, y, text, tone }) => ({
+          x,
+          y,
+          text,
+          ...(tone ? { tone } : {}),
+        })),
+      ];
+      return [{ ...spec.base, pts, polys, segs, texts }];
+    }
+    default:
+      return figuresOf(spec);
+  }
+}
+
+// Pixels per drawing unit of a figure in the narrowest frame it is shown in.
+function displayScale(spec: VisualSpec, figure: FigureSpec): number {
+  const own = figure.maxScale ?? 1.2;
+  const byWidth = PHONE_WIDTH / figure.w;
+  switch (spec.kind) {
+    case "gallery": {
+      const columns = spec.columns ?? (spec.items.length >= 3 ? 3 : 2);
+      const cap = { 1: 384, 2: 224, 3: 176 }[columns];
+      const cell = Math.min((PHONE_WIDTH - 8 * (columns - 1)) / columns, cap);
+      return Math.min(own, cell / figure.w);
+    }
+    case "steps":
+      return Math.min(own, byWidth, 280 / figure.h);
+    case "calc":
+      return Math.min(own, byWidth, 160 / figure.h);
+    case "walk":
+    case "stage":
+    case "probe":
+      return Math.min(byWidth, 288 / figure.h);
+    default:
+      return Math.min(own, byWidth);
+  }
+}
+
+describe("the writing in the figures", () => {
+  it("keeps every piece of writing clear of every line and of other writing", () => {
+    const problems: string[] = [];
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      for (const figure of writtenFigures(spec)) {
+        const lines = linesOf(figure);
+        const texts = figure.texts ?? [];
+        texts.forEach((t, i) => {
+          const rect = textRect(t);
+          if (
+            lines.some(([p, q]) => segmentHits(p, q, rect, STROKE_CLEARANCE))
+          ) {
+            problems.push(
+              `${key} (${figure.label}): "${t.text}" is crossed by a line`,
+            );
+          }
+          for (const other of texts.slice(i + 1)) {
+            if (rectsOverlap(rect, textRect(other))) {
+              problems.push(
+                `${key} (${figure.label}): "${t.text}" overlaps "${other.text}"`,
+              );
+            }
+          }
+        });
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+
+  it("keeps every piece of writing inside its drawing", () => {
+    const problems: string[] = [];
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      for (const figure of writtenFigures(spec)) {
+        for (const t of figure.texts ?? []) {
+          const rect = textRect(t);
+          if (
+            rect.x0 < 0 ||
+            rect.y0 < 0 ||
+            rect.x1 > figure.w ||
+            rect.y1 > figure.h
+          ) {
+            problems.push(
+              `${key} (${figure.label}): "${t.text}" leaves the drawing`,
+            );
+          }
+        }
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+
+  it("draws the writing at 16 pixels or more on a phone", () => {
+    const problems: string[] = [];
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      for (const figure of writtenFigures(spec)) {
+        if ((figure.texts ?? []).length === 0) continue;
+        const pixels =
+          (figure.textSize ?? TEXT_HEIGHT) * displayScale(spec, figure);
+        if (pixels < MIN_TEXT_PIXELS) {
+          problems.push(`${key} (${figure.label}): ${pixels.toFixed(1)}px`);
+        }
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+});
+
+describe("the points of the figures", () => {
+  it("keeps every point inside its drawing", () => {
+    const problems: string[] = [];
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      for (const figure of writtenFigures(spec)) {
+        for (const [name, [x, y]] of Object.entries(figure.pts)) {
+          if (x < 0 || y < 0 || x > figure.w || y > figure.h) {
+            problems.push(`${key} (${figure.label}): point ${name}`);
+          }
+        }
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+});
+
+// ------------------------------------------------------------------- hints
+
+// Numbers of a TeX line, units and exponents left out: "2 · (6 + 8) = 28 m"
+// gives 2, 6, 8, 28. A decimal comma written "{,}" reads as a point.
+function numbersOf(tex: string): number[] {
+  const plain = tex
+    .replace(/\\mathrm\{[^}]*\}/g, "")
+    .replace(/\^\{[^}]*\}/g, "")
+    .replace(/\\,/g, "")
+    .replace(/\{,\}/g, ".");
+  return (plain.match(/\d+(?:\.\d+)?/g) ?? []).map(Number);
+}
+
+// What each line of a row finds: the numbers after its last "=".
+function foundBy(tex: string): number[] {
+  return tex
+    .replace(/\\(?:begin|end)\{gathered\}/g, "")
+    .split("\\\\")
+    .flatMap((line) => {
+      const parts = line.split("=");
+      return parts.length > 1
+        ? numbersOf(parts[parts.length - 1] as string)
+        : [];
+    });
+}
+
+function calcRows(key: string): readonly { tex: string }[] {
+  const spec = VISUAL_SPECS[key];
+  if (spec?.kind !== "calc") throw new Error(`calc expected for ${key}`);
+  return spec.rows;
+}
+
+describe("the hints of the book exercises", () => {
+  it("covers the twelve book exercises", () => {
+    expect(BOOK_PAIR_KEYS).toHaveLength(12);
+  });
+
+  it("shows, before its last row, no number that the solution finds", () => {
+    for (const key of BOOK_PAIR_KEYS) {
+      const hint = calcRows(`goi-y-${key}`);
+      const shown = hint.slice(0, -1).flatMap((row) => numbersOf(row.tex));
+      const found = new Set(
+        calcRows(`giai-${key}`).flatMap((row) => foundBy(row.tex)),
+      );
+      const leaked = shown.filter((n) => found.has(n));
+      expect(leaked, `hint of ${key} shows ${leaked.join(", ")}`).toEqual([]);
+    }
+  });
+
+  it("stops every hint at a row it never shows", () => {
+    for (const key of BOOK_PAIR_KEYS) {
+      const spec = VISUAL_SPECS[`goi-y-${key}`];
+      expect(spec?.kind === "calc" && spec.mode, key).toBe("hint");
+    }
+  });
+});
+
+describe("the figures redrawn after the review", () => {
+  it("writes the formula of a rule under the picture, not inside it", () => {
+    for (const key of ["bbh-quy-tac", "thoi-quy-tac", "thang-quy-tac"]) {
+      const spec = VISUAL_SPECS[key];
+      if (spec?.kind !== "gallery") throw new Error(`gallery expected: ${key}`);
+      expect(spec.items, key).toHaveLength(1);
+      const [item] = spec.items;
+      expect(item?.caption, key).toMatch(/S\s=/);
+      expect(
+        item?.figure.texts?.map((t) => t.text).join(" "),
+        key,
+      ).not.toContain("S =");
+    }
+  });
+
+  it("names the rhombus's two diagonals in the caption of its rule", () => {
+    const spec = VISUAL_SPECS["thoi-quy-tac"];
+    if (spec?.kind !== "gallery") throw new Error("gallery expected");
+    expect(spec.items[0]?.caption).toContain("a, b là hai đường chéo");
+  });
+
+  it("measures the corner block of a square metre outside the grid", () => {
+    const spec = VISUAL_SPECS["m2-cm2"];
+    if (spec?.kind !== "figure") throw new Error("figure expected");
+    const written = (spec.figure.texts ?? []).map((t) => t.text);
+    expect(written).toContain("cạnh 10 cm");
+    expect(written).toContain("100 cm²");
+    expect(written.some((t) => t.startsWith("100 · 100 = 10"))).toBe(true);
+    // The block the writing points to is outlined apart from the grid's cells.
+    expect(spec.figure.polys?.some((p) => p.tone === "ink")).toBe(true);
+  });
+
+  it("leaves a real gap for the gate of the fence, between two posts", () => {
+    const spec = VISUAL_SPECS["rao-vuon-giai"];
+    if (spec?.kind !== "calc" || !spec.figure)
+      throw new Error("calc figure expected");
+    const { figure } = spec;
+    expect(figure.polys ?? []).toHaveLength(0);
+    expect(figure.dots).toEqual(["E", "F"]);
+    const gate: Pt = [
+      (pt(figure, "E")[0] + pt(figure, "F")[0]) / 2,
+      (pt(figure, "E")[1] + pt(figure, "F")[1]) / 2,
+    ];
+    const fence = (figure.segs ?? []).filter((seg) => seg.bold);
+    for (const seg of fence) {
+      const [p, q] = [pt(figure, seg.a), pt(figure, seg.b)];
+      expect(
+        segmentHits(
+          p,
+          q,
+          { x0: gate[0], x1: gate[0], y0: gate[1], y1: gate[1] },
+          2,
+        ),
+        `${seg.a}${seg.b} runs across the gate`,
+      ).toBe(false);
+    }
+  });
+
+  it("puts the name of a reflex corner in the notch, clear of both its sides", () => {
+    const spec = VISUAL_SPECS["sbt-hinh-4-20"];
+    if (spec?.kind !== "figure") throw new Error("figure expected");
+    const { figure } = spec;
+    const names = ["A", "B", "C", "D", "E", "F"];
+    const polygon = names.map((n) => pt(figure, n));
+    const inside = (x: number, y: number) =>
+      polygon.reduce((odd, p, i) => {
+        const q = polygon[(i + 1) % polygon.length] as Pt;
+        const crosses =
+          p[1] > y !== q[1] > y &&
+          x < ((q[0] - p[0]) * (y - p[1])) / (q[1] - p[1]) + p[0];
+        return crosses ? !odd : odd;
+      }, false);
+    for (const n of names) {
+      const t = figure.texts?.find((text) => text.text === n);
+      if (!t) throw new Error(`no name ${n}`);
+      expect(inside(t.x, t.y), `${n} stands outside the shape`).toBe(false);
+    }
+  });
+
+  it("marks the two new sides of a cut corner equal to the two stretches they replace", () => {
+    const spec = VISUAL_SPECS["khuyet-hai-cap-10-6"];
+    if (spec?.kind !== "figure") throw new Error("figure expected");
+    const { figure } = spec;
+    near(
+      dist(pt(figure, "D"), pt(figure, "G")),
+      dist(pt(figure, "E"), pt(figure, "F")),
+    );
+    near(
+      dist(pt(figure, "F"), pt(figure, "G")),
+      dist(pt(figure, "D"), pt(figure, "E")),
+    );
+    expect(figure.ticks).toHaveLength(2);
+  });
+
+  it("draws the height of the trapezoid in every frame and in the stage", () => {
+    const frames = VISUAL_SPECS["thang-ghep"];
+    if (frames?.kind !== "steps") throw new Error("steps expected");
+    for (const frame of frames.frames) {
+      expect(frame.figure.segs?.some((s) => s.a === "TL" && s.b === "F")).toBe(
+        true,
+      );
+      expect(frame.figure.texts?.some((t) => t.text === "3 cm")).toBe(true);
+    }
+    const stage = trapezoidJoin();
+    expect(stage.pieces.some((p) => p.id === "chieu-cao")).toBe(true);
+    expect(stage.texts?.some((t) => t.text === "3 cm")).toBe(true);
+  });
+
+  it("gives the three bars the lengths 0,3 m, 0,7 m and 1,2 m", () => {
+    const spec = VISUAL_SPECS["doi-thanh"];
+    if (spec?.kind !== "probe") throw new Error("probe expected");
+    expect(spec.parts.map((p) => p.kind === "seg" && p.text)).toEqual([
+      "= 30 cm",
+      "= 70 cm",
+      "= 120 cm",
+    ]);
+  });
+
+  it("labels the floor with the size of the floor it draws", () => {
+    const spec = VISUAL_SPECS["floor-lesson"];
+    if (spec?.kind !== "floor") throw new Error("floor expected");
+    render(<Floor spec={spec} params={{ perRow: 4, rows: 3 }} />);
+    expect(
+      screen.getByRole("img", { name: /dài 4 m, rộng 3 m/ }),
+    ).toBeDefined();
   });
 });

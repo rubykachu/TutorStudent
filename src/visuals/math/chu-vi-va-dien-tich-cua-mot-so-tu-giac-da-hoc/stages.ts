@@ -53,6 +53,15 @@ const text = (
   tone: Tone = "ink",
 ): FigureText => ({ x, y, text: t, tone });
 
+// The measure of the height of the trapezoid, written beside the dashed
+// segment from TL to its foot F (inside the shape, clear of its sides).
+const HEIGHT_LABEL_OFFSET = 30;
+
+function heightLabel(g: Geometry, t: string): FigureText {
+  const [fx, fy] = at(g, "F");
+  return text(fx + HEIGHT_LABEL_OFFSET, (at(g, "TL")[1] + fy) / 2, t, "violet");
+}
+
 // ------------------------------------------------------- parallelogram -> rectangle
 
 export const PARALLELOGRAM = { base: 6, height: 3, shift: 2 } as const;
@@ -229,7 +238,7 @@ export function parallelogramFrames(): {
         ],
       ),
       caption:
-        "Diện tích hình bình hành bằng đáy nhân chiều cao: 6 · 3 = 18 cm².",
+        "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao: 6 · 3 = 18 cm².",
     },
   ];
 }
@@ -246,12 +255,16 @@ const RHOMBUS_CORNERS = [
   { id: "bl", corner: "BOX_BL", a: "L", b: "B", name: "phía dưới bên trái" },
 ] as const;
 
-// The names of the two diagonals, written inside the rhombus.
+// The names of the two diagonals, written inside the rhombus: a under the
+// across diagonal, b beside the up-and-down one, each where the rhombus is wide
+// enough to hold it clear of its sides.
 function rhombusLabels(g: Geometry): FigureText[] {
   const centre = at(g, "C");
+  const halfWidth = (at(g, "R")[0] - at(g, "L")[0]) / 2;
+  const halfHeight = (at(g, "B")[1] - at(g, "T")[1]) / 2;
   return [
-    text(centre[0] - 40, centre[1] + 20, "a", "amber"),
-    text(centre[0] + 16, centre[1] - 36, "b", "amber"),
+    text(centre[0] - 0.34 * halfWidth, centre[1] + 20, "a", "amber"),
+    text(centre[0] + 17, centre[1] - 0.48 * halfHeight, "b", "amber"),
   ];
 }
 
@@ -360,7 +373,7 @@ export function rhombusFrames(): { figure: FigureSpec; caption: string }[] {
         [],
         [boxText(`Hình chữ nhật: ${d1} · ${d2} = ${d1 * d2} cm²`, "teal")],
       ),
-      caption: "Vẽ hình chữ nhật bao quanh: dài 8 cm, rộng 6 cm.",
+      caption: "Vẽ hình chữ nhật đi qua bốn đỉnh: dài 8 cm, rộng 6 cm.",
     },
     {
       figure: withPolys(boxed, corners, [
@@ -443,6 +456,12 @@ export function trapezoidJoin(): StageSpec {
     ),
     pieces: [
       {
+        id: "chieu-cao",
+        v: poly(g, ["TL", "F"]),
+        tone: "violet",
+        dash: true,
+      },
+      {
         id: "ban-sao",
         v: poly(g, body),
         tone: "sky",
@@ -460,6 +479,7 @@ export function trapezoidJoin(): StageSpec {
       },
     ],
     texts: [
+      heightLabel(g, `${height} cm`),
       labelUp("CBL", "CTL", `${bottom} cm`, 1),
       labelDown("CTL", "CBL", `${top} cm`, 1),
       {
@@ -473,7 +493,7 @@ export function trapezoidJoin(): StageSpec {
     actions: ["Ghép thêm", "Đo đáy"],
     captions: [
       "Đây là một hình thang cân. Hai đáy là 4 cm và 8 cm.",
-      "Lật một hình thang giống hệt rồi ghép vào: ta được hình bình hành.",
+      "Xoay ngược một hình thang giống hệt cho đáy lớn lên trên, rồi ghép vào: ta được hình bình hành.",
       "Đáy hình bình hành dài 4 + 8 = 12 cm. Chiều cao vẫn là 3 cm.",
     ],
     done: "Hình bình hành có diện tích 12 · 3 = 36 cm². Hình thang chỉ bằng một nửa: 18 cm².",
@@ -487,6 +507,11 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
   const copy = ["CBL", "CTL", "CTR", "CBR"];
   const whole = ["W_TL", "W_TR", "W_BR", "W_BL"];
   const sum = top + bottom;
+  const heightSeg = [{ a: "TL", b: "F", tone: "violet" as Tone, dash: true }];
+  const heightMark = [{ at: "F", a: "TL", b: "BR", tone: "violet" as Tone }];
+  const heightText = heightLabel(g, `${height} cm`);
+  // Every frame draws the height, the one measure the area needs besides the
+  // bases.
   const mk = (
     label: string,
     polys: readonly FigurePoly[],
@@ -497,7 +522,9 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
     h: g.h,
     pts: g.pts,
     polys,
-    texts,
+    segs: heightSeg,
+    rights: heightMark,
+    texts: [...texts, heightText],
   });
   const topA = text(
     (at(g, "TL")[0] + at(g, "TR")[0]) / 2,
@@ -548,7 +575,8 @@ export function trapezoidFrames(): { figure: FigureSpec; caption: string }[] {
         ],
         [topA, botA, topB, botB],
       ),
-      caption: "Lật thêm một hình thang giống hệt rồi ghép vào.",
+      caption:
+        "Xoay ngược một hình thang giống hệt cho đáy lớn lên trên, rồi ghép vào.",
     },
     {
       figure: mk(

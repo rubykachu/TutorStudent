@@ -20,6 +20,8 @@ const CORNER_NAMES = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 const CHAR_HALF_WIDTH = 4.7;
 const TEXT_HALF_HEIGHT = 8.5;
 const LABEL_GAP = 6;
+// How far from its corner the name of a corner is written.
+const NAME_DISTANCE = 19;
 // Room a measure written above or below a side takes beyond the shape.
 const LABEL_ROOM = 28;
 
@@ -108,6 +110,43 @@ export function sideTextAt(
   return [spot[0] + normal[0] * push, spot[1] + normal[1] * push];
 }
 
+// Twice the signed area of a polygon: positive when its corners run clockwise
+// on the screen (y down).
+function turnSign(points: readonly Pt[]): number {
+  const sum = points.reduce((total, p, i) => {
+    const q = points[(i + 1) % points.length] as Pt;
+    return total + p[0] * q[1] - q[0] * p[1];
+  }, 0);
+  return sum >= 0 ? 1 : -1;
+}
+
+// The names A, B, C, … of a polygon's corners, each written on the outward
+// bisector of the two sides that meet there (inside the notch at a reflex
+// corner), far enough that no side runs through the letter.
+export function cornerNameTexts(
+  corners: readonly Pt[],
+  distance = NAME_DISTANCE,
+): FigureText[] {
+  const sign = turnSign(corners);
+  const outward = (from: Pt, to: Pt): Pt => {
+    const [dx, dy] = unit(from, to);
+    return [sign * dy, -sign * dx];
+  };
+  return corners.map((corner, i) => {
+    const before = corners[(i + corners.length - 1) % corners.length] as Pt;
+    const after = corners[(i + 1) % corners.length] as Pt;
+    const [ax, ay] = outward(before, corner);
+    const [bx, by] = outward(corner, after);
+    const length = Math.hypot(ax + bx, ay + by) || 1;
+    return {
+      x: corner[0] + ((ax + bx) / length) * distance,
+      y: corner[1] + ((ay + by) / length) * distance,
+      text: cornerName(i),
+      tone: "ink" as Tone,
+    };
+  });
+}
+
 // Unit corners of the five shapes of the lesson, screen coordinates (y down).
 export const units = {
   rect: (a: number, b: number): Pt[] => [
@@ -155,6 +194,7 @@ export type ShapeOptions = {
   reserve?: number;
   tone?: Tone;
   fill?: Tone;
+  // Writes the names A, B, C, … beside the corners (see `cornerNameTexts`).
   names?: boolean;
   sides?: readonly SideNote[];
   // Right-angle squares at these corners.
@@ -176,6 +216,7 @@ export function shape(o: ShapeOptions): FigureSpec {
     boxOf(w, h, o.margin, o.reserve),
   );
   const names = fitted.map((_, i) => cornerName(i));
+  const nameTexts = o.names ? cornerNameTexts(fitted) : [];
   const pts: Record<string, Pt> = Object.fromEntries(
     names.map((name, i) => [name, fitted[i] as Pt]),
   );
@@ -199,8 +240,7 @@ export function shape(o: ShapeOptions): FigureSpec {
         ...(o.fill ? { fill: o.fill } : {}),
       },
     ],
-    ...(o.names ? { names } : {}),
-    texts,
+    texts: [...nameTexts, ...texts],
     ...(o.rights && o.rights.length > 0
       ? {
           rights: o.rights.map((i) => ({
@@ -218,7 +258,7 @@ export function shape(o: ShapeOptions): FigureSpec {
     ...more,
     pts: { ...pts, ...(more.pts ?? {}) },
     polys: [...(base.polys ?? []), ...(more.polys ?? [])],
-    texts: [...texts, ...(more.texts ?? [])],
+    texts: [...nameTexts, ...texts, ...(more.texts ?? [])],
   };
 }
 
