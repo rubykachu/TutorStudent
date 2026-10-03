@@ -3,6 +3,7 @@ import {
   servedLessons,
   servedTipLessonIds,
 } from "@/content/load";
+import { OFFLINE_PAGE_PATH } from "./config";
 
 // Build side only (it reads content/ from disk): the worker never imports it.
 //
@@ -31,8 +32,15 @@ export function sectionParams(): { lessonId: string; sectionId: string }[] {
   );
 }
 
-// Pages without a dynamic segment.
-const FIXED_PAGE_PATHS = ["/", "/profiles", "/grades", "/parent"] as const;
+// Pages without a dynamic segment. The offline page is what a navigation
+// to a page that is not stored gets offline.
+const FIXED_PAGE_PATHS = [
+  "/",
+  "/profiles",
+  "/grades",
+  "/parent",
+  OFFLINE_PAGE_PATH,
+] as const;
 
 // Every statically generated page a child or parent can open.
 export function appPagePaths(): string[] {

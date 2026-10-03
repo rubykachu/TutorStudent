@@ -389,7 +389,251 @@ test("4 stores no media, no caption, no song and nothing that must not be kept",
   expect(databases).toEqual(["tutor"]);
 });
 
-test("5 online, a device without the cookie goes to the unlock page; a device never unlocked has no worker", async ({
+// Watches one page for the signs of a full page load: `pagehide` (counted in
+// sessionStorage, which outlives the document) and a marker on `window`,
+// which a new document no longer has.
+const WATCH_DOCUMENT_SCRIPT = `(() => {
+  addEventListener("pagehide", () => {
+    const n = Number(sessionStorage.getItem("__pagehides") || "0");
+    sessionStorage.setItem("__pagehides", String(n + 1));
+  });
+})();`;
+
+// Records what the shared Web Audio context does: decodes that worked or
+// failed, and each clip started with when it ended.
+const WATCH_AUDIO_SCRIPT = `(() => {
+  const log = { contexts: [], decoded: 0, decodeFailed: 0, clips: [] };
+  window.__audio = log;
+  const Native = window.AudioContext;
+  if (!Native) return;
+  window.AudioContext = class extends Native {
+    constructor(...args) {
+      super(...args);
+      log.contexts.push(this);
+    }
+  };
+  const decode = Native.prototype.decodeAudioData;
+  Native.prototype.decodeAudioData = function (...args) {
+    return decode.apply(this, args).then(
+      (buffer) => { log.decoded++; return buffer; },
+      (error) => { log.decodeFailed++; throw error; },
+    );
+  };
+  const start = AudioBufferSourceNode.prototype.start;
+  AudioBufferSourceNode.prototype.start = function (...args) {
+    const clip = {
+      duration: this.buffer ? this.buffer.duration : 0,
+      startedAt: performance.now(),
+      endedAt: null,
+    };
+    log.clips.push(clip);
+    this.addEventListener("ended", () => { clip.endedAt = performance.now(); });
+    return start.apply(this, args);
+  };
+})();`;
+
+const SAME_DOCUMENT = "same-document";
+
+async function markDocument(target: Page) {
+  await target.evaluate((mark) => {
+    (window as unknown as { __doc?: string }).__doc = mark;
+  }, SAME_DOCUMENT);
+}
+
+// The page is still the document `markDocument` marked, and no page was
+// unloaded since the watch began.
+async function expectSameDocument(target: Page, step: string) {
+  const state = await target.evaluate(() => ({
+    doc: (window as unknown as { __doc?: string }).__doc ?? null,
+    pagehides: Number(sessionStorage.getItem("__pagehides") || "0"),
+  }));
+  expect(state, step).toEqual({ doc: SAME_DOCUMENT, pagehides: 0 });
+}
+
+// A new tab opened offline: nothing was prefetched, so every in-app tap
+// below needs the worker to answer the router's RSC fetch.
+async function coldOfflinePage(path: string): Promise<Page> {
+  const cold = await context.newPage();
+  await cold.addInitScript(WATCH_DOCUMENT_SCRIPT);
+  await cold.addInitScript(WATCH_AUDIO_SCRIPT);
+  await cold.goto(path);
+  return cold;
+}
+
+test("5 offline, in-app taps stay in the same document: Học tiếp, X, Mẹo hay, back, the subject and a lesson card", async () => {
+  await context.setOffline(true);
+  const cold = await coldOfflinePage("/lessons/fixture?intro=1");
+  await expect(cold.locator("[data-lesson-overview]")).toBeVisible();
+  await markDocument(cold);
+
+  await cold.locator("[data-overview-start]").tap();
+  await expect(cold).toHaveURL(/\/lessons\/fixture\/sections\/[^/]+$/);
+  await expect(cold.locator("[data-section-step]")).toBeVisible();
+  await expectSameDocument(cold, "Học tiếp");
+
+  await cold.getByLabel("Về trang bài").tap();
+  await expect(cold).toHaveURL(/\/lessons\/fixture$/);
+  await expect(cold.locator("[data-tips-open]")).toBeVisible();
+  await expectSameDocument(cold, "X");
+
+  await cold.locator("[data-tips-open]").tap();
+  await expect(cold).toHaveURL(/\/lessons\/fixture\/tips$/);
+  await expect(cold.locator("[data-tips-back]")).toBeVisible();
+  await expectSameDocument(cold, "Mẹo hay");
+
+  await cold.locator("[data-tips-back]").tap();
+  await expect(cold).toHaveURL(/\/lessons\/fixture$/);
+  await expectSameDocument(cold, "back from Mẹo hay");
+
+  await cold.locator('a[href="/subjects/math"]').first().tap();
+  await expect(cold).toHaveURL(/\/subjects\/math$/);
+  await expect(cold.locator('[data-lesson="fixture"]')).toBeVisible();
+  await expectSameDocument(cold, "back to the subject");
+
+  await cold.locator('[data-lesson="fixture"]').tap();
+  await expect(cold).toHaveURL(/\/lessons\/fixture$/);
+  await expect(cold.locator("[data-tips-open]")).toBeVisible();
+  await expectSameDocument(cold, "a lesson card");
+
+  await cold.close();
+  await context.setOffline(false);
+});
+
+test("6 offline, the goodbye clip of X plays to its end and the page stays", async () => {
+  await context.setOffline(true);
+  const cold = await coldOfflinePage(
+    `/lessons/fixture/sections/${encodeURIComponent(SECTION)}`,
+  );
+  await expect(cold.locator("[data-section-step]")).toBeVisible();
+  await markDocument(cold);
+  // The first tap creates the audio context; the clips decode after it.
+  await cold.locator("h1, h2").first().tap();
+  await expect
+    .poll(() =>
+      cold.evaluate(
+        () =>
+          (window as unknown as { __audio: { decoded: number } }).__audio
+            .decoded,
+      ),
+    )
+    .toBeGreaterThan(0);
+
+  await cold.getByLabel("Về trang bài").tap();
+  await expect(cold).toHaveURL(/\/lessons\/fixture$/);
+  type Clip = { duration: number; startedAt: number; endedAt: number | null };
+  const clipOf = () =>
+    cold.evaluate(() => {
+      const log = (
+        window as unknown as {
+          __audio: { clips: Clip[] };
+        }
+      ).__audio;
+      return log.clips.at(-1) ?? null;
+    });
+  await expect
+    .poll(async () => (await clipOf())?.endedAt ?? null)
+    .not.toBeNull();
+  const clip = (await clipOf()) as Clip;
+  expect(clip.duration).toBeGreaterThan(0.2);
+  // It ended by itself, not cut off: it ran at least about its length.
+  expect(((clip.endedAt as number) - clip.startedAt) / 1000).toBeGreaterThan(
+    clip.duration * 0.9,
+  );
+  const audio = await cold.evaluate(() => {
+    const log = (
+      window as unknown as {
+        __audio: {
+          contexts: AudioContext[];
+          decoded: number;
+          decodeFailed: number;
+        };
+      }
+    ).__audio;
+    return {
+      contexts: log.contexts.map((c) => c.state),
+      decodeFailed: log.decodeFailed,
+    };
+  });
+  expect(audio.contexts).toEqual(["running"]);
+  expect(audio.decodeFailed).toBe(0);
+  await expectSameDocument(cold, "after the goodbye clip");
+  await cold.close();
+  await context.setOffline(false);
+});
+
+test("7 offline, a page that is not stored shows the offline page, and Quay lại goes back", async () => {
+  await context.setOffline(true);
+  const cold = await coldOfflinePage("/");
+  await expect(
+    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+  ).toBeVisible();
+  await cold.goto("/lessons/a-lesson-this-build-does-not-have");
+  await expect(cold.locator("[data-offline-page]")).toBeVisible();
+  await expect(
+    cold.getByRole("heading", { level: 1, name: "Cần mạng để mở trang này" }),
+  ).toBeVisible();
+  await expect(cold).toHaveURL(/\/lessons\/a-lesson-this-build-does-not-have$/);
+  await cold.getByRole("button", { name: "Quay lại" }).tap();
+  await expect(cold).toHaveURL(new RegExp(`^${BASE}/$`));
+  await expect(
+    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+  ).toBeVisible();
+  await cold.close();
+  await context.setOffline(false);
+});
+
+test("8 offline, a Range request for a short sound gets a 206 slice from the worker", async () => {
+  await context.setOffline(true);
+  const cold = await coldOfflinePage("/");
+  await expect(
+    cold.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),
+  ).toBeVisible();
+  const key = (await cacheKeys(cold)).find((k) => k.startsWith("/sounds/"));
+  expect(key).toBeDefined();
+  const url = (key as string).replace(/[?&]__rev=.*$/, "");
+  const [response, answer] = await Promise.all([
+    cold.waitForResponse(
+      (r) =>
+        r.url().endsWith(url) && r.request().headers().range === "bytes=0-1",
+    ),
+    cold.evaluate(async (soundUrl) => {
+      const r = await fetch(soundUrl, { headers: { Range: "bytes=0-1" } });
+      return {
+        status: r.status,
+        range: r.headers.get("content-range"),
+        bytes: (await r.arrayBuffer()).byteLength,
+      };
+    }, url),
+  ]);
+  expect(response.fromServiceWorker()).toBe(true);
+  expect(answer.status).toBe(206);
+  expect(answer.range).toMatch(/^bytes 0-1\/\d+$/);
+  expect(answer.bytes).toBe(2);
+  // The audio element (the fallback for a clip Web Audio could not decode)
+  // loads it too.
+  const element = await cold.evaluate(
+    (soundUrl) =>
+      new Promise<string>((resolve) => {
+        const audio = new Audio();
+        audio.preload = "auto";
+        const timer = setTimeout(() => resolve("timeout"), 10_000);
+        for (const event of ["canplaythrough", "error"]) {
+          audio.addEventListener(event, () => {
+            clearTimeout(timer);
+            resolve(event);
+          });
+        }
+        audio.src = soundUrl;
+        audio.load();
+      }),
+    url,
+  );
+  expect(element).toBe("canplaythrough");
+  await cold.close();
+  await context.setOffline(false);
+});
+
+test("9 online, a device without the cookie goes to the unlock page; a device never unlocked has no worker", async ({
   browser,
 }) => {
   await context.clearCookies();
@@ -420,7 +664,7 @@ test("5 online, a device without the cookie goes to the unlock page; a device ne
   await stranger.close();
 });
 
-test("6 a changed worker waits, the banner offers it outside a lesson, and a tap puts the new one in charge", async () => {
+test("10 a changed worker waits, the banner offers it outside a lesson, and a tap puts the new one in charge", async () => {
   await page.goto("/");
   await expect(
     page.getByRole("heading", { level: 1, name: "Chào Bé Na!" }),

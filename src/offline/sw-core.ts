@@ -1,14 +1,21 @@
 import {
   CACHE_PREFIX,
   INSTALL_CONCURRENCY,
+  OFFLINE_PAGE_PATH,
   type PrecacheStatus,
   REVISION_PARAM,
   type WorkerBuildData,
 } from "./config";
 import {
+  FLIGHT_CONTENT_TYPE,
+  FLIGHT_FETCH_HEADERS,
   fetchInit,
+  flightLookupPath,
+  isFlightEntry,
   navigationFallbackPath,
   networkTimeoutSeconds,
+  PAGE_TIMEOUT_SECONDS,
+  parseRange,
   precacheLookupPath,
   routeFor,
   storable,
@@ -123,6 +130,7 @@ export function createCore(deps: CoreDeps): Core {
         const response = await deps.fetch(target, {
           ...fetchInit("install"),
           credentials: "same-origin",
+          ...(isFlightEntry(url) ? { headers: FLIGHT_FETCH_HEADERS } : {}),
         });
         if (!storable(response, target)) {
           throw new Error(
@@ -155,11 +163,22 @@ export function createCore(deps: CoreDeps): Core {
     );
   };
 
-  const fromPrecache = async (path: string): Promise<Response> =>
-    (await lookup(path)) ?? Response.error();
+  type NetworkFirstOptions = {
+    timeoutSeconds: number;
+    // The precached copy answered after the timeout or on a network error.
+    fallback: string;
+    // Answered on a network error when `fallback` is not stored. Not after a
+    // timeout: a slow network may still bring the real answer.
+    offlineFallback?: string;
+    // Applied to a stored answer.
+    adapt?: (stored: Response) => Response;
+  };
 
-  const respondNetworkFirst = async (request: Request): Promise<Response> => {
-    const fallbackPath = navigationFallbackPath(request.url);
+  // Network first, the precache after the timeout or on a network error.
+  const networkFirst = async (
+    request: Request,
+    { timeoutSeconds, fallback, offlineFallback, adapt }: NetworkFirstOptions,
+  ): Promise<Response> => {
     const init = fetchInit("network-first");
     const network = acceptsInit(request, init)
       ? deps.fetch(request, init)
@@ -167,16 +186,83 @@ export function createCore(deps: CoreDeps): Core {
     // The timer may win and the network answer then be dropped; its failure
     // must not surface as an unhandled rejection.
     network.catch(() => {});
+    const stored = async (path: string | undefined) => {
+      const hit = path === undefined ? undefined : await lookup(path);
+      return hit && adapt ? adapt(hit) : hit;
+    };
     try {
       const first = await Promise.race([
         network,
-        deps.wait(networkTimeoutSeconds(request.mode) * 1000).then(() => null),
+        deps.wait(timeoutSeconds * 1000).then(() => null),
       ]);
       if (first) return first;
-      return (await lookup(fallbackPath)) ?? (await network);
+      return (await stored(fallback)) ?? (await network);
     } catch {
-      return fromPrecache(fallbackPath);
+      return (
+        (await stored(fallback)) ??
+        (await stored(offlineFallback)) ??
+        Response.error()
+      );
     }
+  };
+
+  // A page, or a lesson file. A navigation whose page is not precached gets
+  // the offline page rather than the browser's error screen: on iOS a failed
+  // navigation can leave the app on a frozen screen.
+  const respondNetworkFirst = (request: Request): Promise<Response> =>
+    networkFirst(request, {
+      timeoutSeconds: networkTimeoutSeconds(request.mode),
+      fallback: navigationFallbackPath(request.url),
+      offlineFallback:
+        request.mode === "navigate" ? OFFLINE_PAGE_PATH : undefined,
+    });
+
+  // A stored flight is answered with the RSC content type the router checks
+  // for, whatever the server sent at install.
+  const asFlight = (stored: Response): Response => {
+    const headers = new Headers(stored.headers);
+    headers.set("content-type", FLIGHT_CONTENT_TYPE);
+    return new Response(stored.body, {
+      status: stored.status,
+      statusText: stored.statusText,
+      headers,
+    });
+  };
+
+  // An in-app navigation waits no longer than a page load would. A flight
+  // that is not precached is a network error, and the router then loads the
+  // page as a navigation, which gets the offline page.
+  const respondFlight = (request: Request): Promise<Response> =>
+    networkFirst(request, {
+      timeoutSeconds: PAGE_TIMEOUT_SECONDS,
+      fallback: flightLookupPath(new URL(request.url)),
+      adapt: asFlight,
+    });
+
+  // The asked-for slice of a precached file. A file not stored (an install
+  // still running) goes to the network as it came.
+  const respondRange = async (request: Request): Promise<Response> => {
+    const hit = await lookup(precacheLookupPath(new URL(request.url)));
+    if (!hit) return deps.fetch(request);
+    const bytes = await hit.arrayBuffer();
+    const size = bytes.byteLength;
+    const range = parseRange(request.headers.get("range") ?? "", size);
+    const headers = new Headers(hit.headers);
+    headers.set("accept-ranges", "bytes");
+    if (range === null) {
+      headers.set("content-length", String(size));
+      return new Response(bytes, { status: 200, headers });
+    }
+    if (range === "unsatisfiable") {
+      return new Response(null, {
+        status: 416,
+        headers: { "content-range": `bytes */${size}` },
+      });
+    }
+    const { start, end } = range;
+    headers.set("content-range", `bytes ${start}-${end}/${size}`);
+    headers.set("content-length", String(end - start + 1));
+    return new Response(bytes.slice(start, end + 1), { status: 206, headers });
   };
 
   const respond = (request: Request): Promise<Response> | null => {
@@ -189,11 +275,20 @@ export function createCore(deps: CoreDeps): Core {
       mediaBaseUrl: deps.mediaBaseUrl,
       isPrecached: (url) => keys.has(precacheLookupPath(url)),
     });
-    if (route === "passthrough") return null;
-    if (route === "network-first") return respondNetworkFirst(request);
-    return lookup(precacheLookupPath(new URL(request.url))).then(
-      (hit) => hit ?? deps.fetch(request),
-    );
+    switch (route) {
+      case "passthrough":
+        return null;
+      case "network-first":
+        return respondNetworkFirst(request);
+      case "flight-network-first":
+        return respondFlight(request);
+      case "precache-range":
+        return respondRange(request);
+      case "precache-first":
+        return lookup(precacheLookupPath(new URL(request.url))).then(
+          (hit) => hit ?? deps.fetch(request),
+        );
+    }
   };
 
   // `progress` is only known to the worker instance that ran the install and

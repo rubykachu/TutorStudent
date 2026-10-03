@@ -53,6 +53,8 @@ beforeEach(() => {
   put(".next/static/chunks/a.js.map", "map");
   put(".next/static/.DS_Store", "junk");
   put(".next/server/app/lessons/a.html", "<html>12345</html>");
+  put(".next/server/app/lessons/a.rsc", "0:flight");
+  put(".next/server/app/index.rsc", "0:home");
 });
 
 afterEach(() => {
@@ -78,6 +80,16 @@ describe("pageBytes", () => {
     expect(
       pageBytes(path.join(root, ".next"), ["/lessons/a", "/missing"]),
     ).toBe("<html>12345</html>".length);
+  });
+
+  it("adds the size of the emitted .rsc file of a flight entry", () => {
+    expect(
+      pageBytes(path.join(root, ".next"), [
+        "/lessons/a?_rsc",
+        "/?_rsc",
+        "/missing?_rsc",
+      ]),
+    ).toBe("0:flight".length + "0:home".length);
   });
 });
 
