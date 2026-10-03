@@ -3,10 +3,10 @@
 Bài 19 của sách (SBT tr.67–69) quá dài cho bé (112 phút), nên chủ dự án tách theo hình thành hai bài của app. Bài này là phần 1 (hình chữ nhật và hình thoi, giữ slug cũ, nên slug dài hơn nội dung); phần 2 là `hinh-binh-hanh-hinh-thang-can`, handover [`lesson-hinh-binh-hanh-hinh-thang-can/task.md`](../lesson-hinh-binh-hanh-hinh-thang-can/task.md). Hai bài đi cùng `number: 19`, `chapter` IV, `part` 1 và 2, `order` 19 và 19.1; màn hình ghi "Bài 19 (phần 1)". Quy tắc chung của việc tách: `.claude/rules/content.md`, mục "Splitting a long lesson". Trong tệp này "phần 1", "phần 2" là hai bài con (`part`); một đơn vị của bài (`sections`) gọi là "phần dạy" hay "section".
 
 ## Trạng thái
-- Cập nhật cuối: 03/10/2026. Bài ở `draft`; vòng 1 của bài chưa tách đã chạy và đã sửa (commit `38c726d` review, `36ff39a` hình và test, `cabb254` nội dung); việc tách là bước sau đó. Chờ review vòng 2 (toàn bài, Opus, phiên mới).
-- Bài này: 9 phần dạy và phần bài tập sách bài tập, 9 thẻ, 56 câu (11 trong phần bài tập sách bài tập: 5 câu sách, 6 câu dẫn), 3 mẹo, 55 phút. `content:check` 0 lỗi (cảnh báo id chưa khoá), `--stats` mọi tiêu chí PASS, 7 dạng câu.
-- `review.md` cạnh `lesson.json` mang phát hiện vòng 1 thuộc bài này (số thứ tự của báo cáo gốc, vị trí đã đổi sang bài này, "Tình trạng sau vòng 1"), bảng phần cũ → bài mới và các chỗ tách đã đổi nội dung. Tệp nhóm vòng 1: `.shots/review/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/nhom-{1,2,3}.md` (ngoài git, theo bài chưa tách).
-- Chưa làm: review vòng 2, lượt Haiku "đọc hiểu" cho chữ mới và chữ đổi khi tách, `content:hash --approve`, `content:lock`, lời đọc, video, deploy.
+- Cập nhật cuối: 03/10/2026. Bài đã duyệt: `status: published`, `reviewedHash` ghi (commit `2f2c1a7`), id đã khoá (`pnpm content:lock hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`, 85 id). Chưa có lời đọc giới thiệu, video, chưa deploy.
+- Bài này: 9 phần dạy và phần bài tập sách bài tập, 9 thẻ, 56 câu (11 trong phần bài tập sách bài tập: 5 câu sách, 6 câu dẫn), 3 mẹo, 55 phút. `content:check` 0 lỗi, `--stats` mọi tiêu chí PASS, 7 dạng câu.
+- Review: vòng 1 của bài chưa tách (commit `38c726d` review, `36ff39a` hình và test, `cabb254` nội dung), rồi tách bài; vòng 2 toàn bài (4 Reviewer Opus + Tổng hợp Opus, commit `8844d56`): 1 Nghiêm trọng, 22 Nên sửa, 21 Góp ý, sửa hết Nghiêm trọng và Nên sửa (commit `a3a4c9a`, `bf25827` code dùng chung; `fbdc96f` hình và test; `a91de68` nội dung và glossary; `d3f29a9` hai câu đọc hiểu); vòng 3 chỉ phần đổi (Sonnet): 0 Nghiêm trọng, 1 Nên sửa (đã sửa trước khi duyệt), 13 Góp ý để lại. `review.md` cạnh `lesson.json` là bản vòng 3 (kết quả sửa vòng 2, Góp ý còn lại, "Cần chủ dự án quyết"). Tệp nhóm vòng 2: `.shots/review/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/nhom-{1,2,3,4}.md`; tệp vòng 1 dời vào `vong-1/` cùng thư mục (ngoài git).
+- Chủ dự án cần xác nhận: vật mẫu hình thoi của bài là mắt lưới hàng rào B40 (thay khung cánh diều, vì diều thật thường không có bốn cạnh bằng nhau), dùng ở `hinh-quanh-ta`, `hinh-thoi`, `cheo-hinh-thoi`, câu nối và kho ôn.
 
 ## Cách tách (theo hình, không theo số phần)
 - Section dạy ở bài này: `hinh-quanh-ta` (mới, hai hình), `hinh-chu-nhat`, `cheo-hinh-chu-nhat`, `song-song`, `hinh-thoi`, `cheo-hinh-thoi`, `ve-hinh-chu-nhat`, `ve-hinh-thoi`, `kiem-thoi-chu-nhat`. Section cũ `hinh-quanh-ta` (bốn hình) viết lại hai bản, mỗi bài chỉ hai hình; các section còn lại giữ id section và id hình.
@@ -61,34 +61,29 @@ Bài 19 của sách (SBT tr.67–69) quá dài cho bé (112 phút), nên chủ d
 - `kiem-thoi-chu-nhat` "Kiểm tra góc vuông" (làm nhanh): góc tờ giấy khít là góc vuông, hở hay chờm ra thì không; thử góc 30°, 60°, 89°, 90°, 91°, 120°, 150°.
 
 ## Đọc hiểu (Haiku, `.shots/review/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/`, không commit)
-- Lượt đọc hiểu của bài chưa tách (đã chạy ở vòng 1, trước khi tách): `doc-hieu*.md`. Chữ mới và chữ đổi khi tách (section `hinh-quanh-ta`, `overview`, nhiễu và lời đổi ở "Cách tách", khối "Nhắc lại" của section bài tập sách bài tập) chưa qua lượt Haiku: chạy lượt "Đọc hiểu" của `lesson-review` cho bài này trước `content:hash --approve`.
+- Lượt của bài chưa tách (vòng 1): `vong-1/doc-hieu*.md`.
+- Sau vòng 2, trên chữ mới và chữ đổi khi tách (`overview`, section `hinh-quanh-ta`, section bài tập sách bài tập) và chữ đổi khi sửa vòng 2: lượt 1 `doc-hieu.md` 98 Hiểu rõ / 2 Hiểu mơ hồ / 0 Khó hiểu; hai mục viết lại, lượt 2 `doc-hieu-2.md` 6 / 0 / 0; note mở đầu `cheo-hinh-thoi` viết lại theo vòng 3, lượt 3 `doc-hieu-3.md` 1 / 0 / 0.
 
 ## Kiểm đã chạy khi tách (03/10/2026)
 - `pnpm content:check --stats`: 0 lỗi; 5 `bookRef` (SBT 4.8, 4.10, 4.11, 4.14, 4.15), cả hai bài hợp 12 `bookRef` mỗi cái một lần; `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` đã chạy.
 - `pnpm visual:shot` và `pnpm lesson:walk` trong git worktree tạm cổng 3780 (đã gỡ): kết quả ghi ở mục "Kiểm cuối" bên dưới.
 - Cổng: `pnpm format` (tệp của bài), `pnpm lint` (chỉ thông báo info ở `video/projects/*/index.html` có từ trước), `pnpm typecheck`, `pnpm test` đạt.
 
-## Kiểm cuối (03/10/2026)
-- `pnpm visual:shot hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`: 142/142 đạt. `pnpm lesson:walk hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`: 0 lỗi, 0 cảnh báo, ba kích thước (iPad dọc, điện thoại, iPad ngang), chạy trong git worktree tạm cổng 3780 (đã gỡ); ảnh walk mới ở `.shots/walk/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/` (bộ ảnh của bài chưa tách đã dời khỏi đó).
+## Kiểm cuối (03/10/2026, sau duyệt, commit `2f2c1a7`)
+- `pnpm visual:shot hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`: 150/150 đạt. `pnpm lesson:walk hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`: 0 lỗi, 0 cảnh báo, ba kích thước (iPad dọc, điện thoại, iPad ngang), chạy trong git worktree tạm cổng 3800 (đã gỡ); ảnh walk ở `.shots/walk/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/`. `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` đã chạy.
+- Cổng: `pnpm lint` (chỉ thông báo info có từ trước), `pnpm typecheck`, `pnpm test` (211 tệp) đạt.
+
+## Code dùng chung đã đổi ở vòng 2 (cả bài phần 2 dùng `src/visuals/shared/quadrilaterals/`)
+- `board-visual.tsx`, `builders.ts`: tuỳ chọn `roomy` của bảng vẽ (mặc định tắt; bài này bật cho 10 bảng). `drawing-frames.ts`: `boardView` dời tên đỉnh thứ tư khỏi cung compa, chỉ ở bảng hình thoi; `trimTop` cắt hàng trống trên khung hình mẫu từng bước. `scene.tsx`: cảnh `kite` thay bằng `fence` (mắt lưới B40). `figures.ts`: nhãn đọc màn hình của Hình 4.11 không còn tên hình. Mặc định bài phần 2 thấy không đổi; `tests/visuals/quadrilaterals.test.tsx` khoá các điều này.
 
 ## Việc nên làm ở vòng sau
+- Góp ý còn lại trong `review.md` (13 mục, vd bảng vẽ iPad dọc vẫn nhỏ, nhãn O sát "90°", hình chạm `do-thoi` nhỏ): làm khi sửa bài lần sau; mỗi lần sửa chữ bé thấy cần vòng chỉ phần đổi và lượt đọc hiểu.
 - Các câu `choice` có phương án là số chưa có `check` (lint không đòi); xét có cần.
-- Bài phần 2 dùng từ "song song" mà không dạy lại (dạy ở section `song-song` của bài này); xét ở review của bài phần 2.
 
-## Điểm nghi cho Reviewer
-- Ba điều ngoài trang sách ở mục "Giả định".
-- 4.11: bé tự chọn góc trong ba góc cho; xem cách chấm có chấp nhận được không.
-- 4.15: trên màn bé không đo được; đề là hình sách vẽ lại và các câu dẫn dạy cách kiểm tra bằng đo cạnh. Xét xem cách làm có đủ cho bé không (hình lời giải nấc 3 có số đo).
-- Section `hinh-quanh-ta` mới: nối hai cặp là ít; câu `ten-hinh-thoi`, `chon-chu-nhat-quanh-ta` dùng hình tam giác đều, lục giác đều của Bài 18 làm nhiễu; lời không nêu hình của bài phần 2.
-- Câu có "luôn" và câu "chắc chắn" (section 3 và 9): xét LL-01 và LL-10.
-- Câu luyện dạng "kiểm tra": một khung có hai đường chéo 30 cm và 34 cm (section 3).
-
-## Giao việc review vòng 2 (cho phiên mới, không phải người soạn hay người sửa)
-Chạy `.claude/skills/lesson-review` mục "Vòng toàn bài" (vòng 2) trên `content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/lesson.json` (`ROOT` là `content/`). Đọc `review.md` trước (phát hiện vòng 1 thuộc bài này và chỗ đã đổi khi tách). Bài còn `draft` và chưa có `reviewedHash`, nên không dùng `content:diff`.
-- **Đối tượng:** chỉ bài này (`lesson.json`, `src/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/`, `src/visuals/shared/quadrilaterals/` và `src/visuals/shared/plane/` mà bài dùng, mục glossary của bài). Ảnh nguồn `sources/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/sbt-p67.png` đến `sbt-p69.png`, lời giải `sbt-p115.png`. Bài phần 2 review riêng sau (phiên khác).
-- **Mô hình:** 4 Reviewer `model: "opus"` song song, rồi 1 Tổng hợp `model: "opus"`. Nhóm 1: section 1–3 (`hinh-quanh-ta`, `hinh-chu-nhat`, `cheo-hinh-chu-nhat`); nhóm 2: section 4–6 (`song-song`, `hinh-thoi`, `cheo-hinh-thoi`); nhóm 3: section 7–9 (`ve-hinh-chu-nhat`, `ve-hinh-thoi`, `kiem-thoi-chu-nhat`); nhóm 4: section bài tập sách bài tập (đủ ba việc với 5 câu sách, soát 6 câu dẫn). Mỗi Reviewer kiểm từng mục vòng 1 thuộc nhóm mình đã sửa đúng chưa (`review.md`, "Tình trạng sau vòng 1"), rồi soát toàn nhóm như vòng 1 (cùng các loại lỗi: khái niệm ngoài sách như "tâm", "tia"; lập luận ngược chiều trong `explain`; nhãn số đo bị nét cắt; thiếu điều kiện compa, thước; hình gợi ý tràn hay lộ đáp án; chép hình sách vào "Cùng làm"), và soát riêng chỗ tách: lời hay nhiễu còn tên hình của phần 2, ba "Nhắc lại" của section bài tập sách bài tập, `overview`.
-- **Trước khi mở Reviewer:** chạy `pnpm lesson:walk hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` trong `git worktree` tạm trên cổng riêng (`TEST_PORT`, `pnpm install --offline`), chép ảnh sang `.shots/walk/` của cây chính sau khi dời bộ ảnh cũ ra scratchpad bằng `mv` (để không lẫn ảnh cũ), rồi `git worktree remove --force`.
-- **Ngoài phạm vi:** sửa bài khác (kể cả Bài 18, Bài 20 và phần 2); `src/sync/`, `src/offline/`, `src/lib/brand.ts`; lời đọc, video; Gemini; deploy; push; `content:lock`. Reviewer không sửa `lesson.json` hay hình.
-- **Kết thúc vòng:** còn Nghiêm trọng thì `content:hash --mark`; hết Nghiêm trọng thì chạy lượt Haiku cho chữ mới và chữ đổi rồi mới `content:hash --approve` và `content:lock hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`. Cập nhật `docs/lessons-learned/` theo skill.
-- **Tệp ngoài git:** `sources/` chỉ đọc; không dùng `rm`; không dừng máy chủ dev cổng 3003, không dừng tiến trình theo tên.
-- **Điểm dừng:** gặp việc ngoài các điều trên thì dừng và báo.
+## Việc tiếp theo: lời đọc giới thiệu, video, rồi deploy
+Một phiên mới, mỗi lần một subagent, theo `.claude/skills/lesson-video/SKILL.md` và `docs/operations.md` "Đưa bài mới lên production".
+1. **Giọng của bài:** chưa có `video/projects/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/media.json`. Bài 18 (`hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu`) dùng `hai-dang`; theo mục "Giọng" của skill (xen kẽ bài liền nhau) đề xuất `my-duyen` cho bài này, ghi lý do ở đây khi chọn. Bài phần 2 nên cùng nhịp xen kẽ (chọn khi làm phần 2).
+2. **Lời đọc giới thiệu:** `pnpm narration:build hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` gọi Gemini TTS thật (tốn hạn mức, ghi ra ngoài máy): chỉ chạy khi chủ dự án đồng ý cho lần này; câu đầu `overview.hook` đã chào "bạn". Không đọc lại lời đọc hay video của bài khác.
+3. **Video:** theo `lesson-video` (VieNeu chạy trên máy), video cho các phần dạy; review kịch bản và lời video bằng `lesson-review` vòng chỉ phần đổi (Sonnet); `pnpm video:check`.
+4. **Deploy:** khi lời đọc và video đã duyệt: `pnpm media:upload` rồi `pnpm deploy:prod --ref <SHA đã kiểm>` (ghi ra ngoài máy; chủ dự án đã cho phép deploy từng bài xong, vẫn làm đúng thứ tự media trước, deploy sau).
+- **Ngoài phạm vi:** sửa nội dung bài (đã duyệt; sửa thì cần review lại), bài khác (kể cả phần 2), `src/sync/`, `src/offline/`. Media ngoài git: không ghi đè media của bài khác; không dùng `rm`; không dừng dev server cổng 3003, không dừng tiến trình theo tên.
