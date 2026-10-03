@@ -64,6 +64,30 @@ Decisions of the overnight run: Q18 answered theo đề xuất, no test-only exc
 - Processes: stop only the PID you started (keep it from the start command). Never `pkill`/`killall`/pattern kills; never stop the dev server on port 3001 or any server you did not start. Outside the lab script's own worktree removal, no `rm` in any form.
 - Stop point: a case outside these tasks (a needed change in sync, content, media or the gate's rules beyond the one public path) is reported in this file, not done.
 
+## Fix (M): offline in-app navigation, unknown pages and sound ranges (iPhone report, 3 Oct 2026)
+
+Branch `offline-rsc` (worktree in the session scratchpad), not merged, not deployed: a combined merge and deploy follows after review.
+
+Reported on the iPhone, offline: the click sound crackles and cuts; X plays "bye bye" but the screen does not move. Diagnosis (lab probe on Chromium and WebKit): the worker passed RSC fetches to the network, so every in-app link to a page not prefetched while online failed its RSC fetch and Next fell back to `location.assign`; the page unloaded about 20 ms after the tap, killing the `AudioContext`. Next also sets a pending MPA path and suspends the tree, so when that browser navigation failed (`Response.error()` on a precache miss, or iOS dropping it) the app was stuck. `Range` requests for sounds also went to the network, so the `<audio>` fallback was silent offline.
+
+What changed (rules in `spec.md` section 5, `docs/spec.md` 5.9):
+- Every precached page also stores its flight: `<page>?_rsc` fetched at install with only `RSC: 1` (Next checks `_rsc` against a hash of the router headers; with only `RSC: 1` the expected value is empty, so a bare `?_rsc` passes without a redirect). It is the payload `next build` wrote to `<page>.rsc`, the same one the server returns to a navigation fetch of a static page. Non-prefetch RSC fetches: network first, 3 s, then that flight as `text/x-component`, keyed by path only. Prefetches stay with the network (they ask for segments in another format; a failed prefetch only makes the navigation ask for the full flight).
+- `/offline` (`src/app/offline/`), precached like every page: a navigation whose page is not stored gets it on a network error. "Quay lại" calls `history.back()` and goes home when no earlier screen exists or none showed within 1 s.
+- `Range` requests for precached files are answered from the cache as 206 slices; media stays passthrough.
+- Exits checked: X is a `Link` whose `onClick` calls `sounds.leave()` without awaiting; "Học tiếp" calls `setOverviewSeen` with `void` and then `router.push`; nothing awaits a sound or a sync before navigating.
+- Cost: 397 flights, 6.6 MB uncompressed, precache total 27.8 MB of the 50 MB budget (`pageBytes` now counts `.rsc` too).
+
+Acceptance:
+- [x] Unit tests: `routeFor` (flight route, prefetch passthrough, range on precached vs media), `flightEntryPath`/`flightLookupPath`, `parseRange`; core: flights fetched with `RSC: 1` at install, online flight untouched, offline flight as `text/x-component` whatever the `_rsc` hash or `dpl`, timeout fallback, miss is a network error; offline page for an unknown page (and a network error without one); 206 slices, 416, whole file for several ranges, network for a sound not yet stored; precache list has a flight per page; budget counts `.rsc`.
+- [x] E2E (`e2e/offline.spec.ts` 5 to 8): offline taps on "Học tiếp", X, "Mẹo hay", back, the subject and a lesson card change the URL with no `pagehide`; the goodbye clip of X decodes and plays to its end on a running `AudioContext`; an unknown page shows the offline page and "Quay lại" goes back; a `Range` request for a sound gets a 206 from the worker. All four fail on a lab build of `main` (5: `pagehide` after "Học tiếp"; 6: the clip never ends; 7: `net::ERR_FAILED`; 8: the 206 did not come from the worker) and pass on the branch.
+- [x] Gate on the branch: format, lint, typecheck, `pnpm test`, `NEXT_PUBLIC_OFFLINE_ENABLED=1 pnpm build`, `pnpm test:e2e:offline` three runs green.
+- [ ] After the deploy, on the iPhone offline: X plays the whole goodbye and the lesson page shows at once; a tap sound is clean; an unknown address shows "Cần mạng để mở trang này".
+
+Risks:
+- WebKit is not covered: Playwright cannot take WebKit offline with a worker in charge. The fix rests on Chromium evidence plus the fact that the flight served is the same bytes Safari gets online.
+- On Vercel the install fetch `/<page>?_rsc` with `RSC: 1` must answer 200 `text/x-component` without a redirect; if it does not, the install fails all or nothing and the parent line stays short of "sẵn sàng" (the app still works online). Check on the deploy: the parent line reaches "sẵn sàng" and Cache Storage holds `?_rsc` keys.
+- A page loaded from the network while the worker still holds an older build's flights: Next compares the flight's build id with the page's and falls back to a browser navigation, as before the fix.
+
 ## Task 1 (S): page paths in one place
 
 Files: `src/offline/routes.ts` (new), the `generateStaticParams` of `src/app/(child)/subjects/[subject]/page.tsx`, `lessons/[lessonId]/page.tsx`, `lessons/[lessonId]/review/page.tsx`, `lessons/[lessonId]/tips/page.tsx`, `lessons/[lessonId]/sections/[sectionId]/page.tsx`; tests in `tests/offline/routes.test.ts`.
