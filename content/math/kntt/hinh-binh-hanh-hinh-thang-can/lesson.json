@@ -2198,14 +2198,14 @@
           "id": "s2",
           "content": {
             "type": "text",
-            "text": "Dùng thước đo góc kẻ đường EK tạo với EF một góc cho trước."
+            "text": "Dùng thước đo góc kẻ EK tạo với EF góc cho trước."
           }
         },
         {
           "id": "s3",
           "content": {
             "type": "text",
-            "text": "Lấy K trên đường EK với độ dài cho trước."
+            "text": "Lấy K trên EK theo độ dài cho trước."
           }
         },
         {
