@@ -1,8 +1,8 @@
 # Bàn giao: Bài 20 `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (Chu vi và diện tích của một số tứ giác đã học)
 
 ## Trạng thái
-- Cập nhật cuối: 03/10/2026. Bài đã duyệt (`published`, `reviewedHash` `e850b483…`) và đã khoá id (`content:lock`, 111 id): 11 phần, 10 thẻ, 80 câu, 4 mẹo. Review vòng 1 (Opus), vòng 2 (Opus) và vòng 3 chỉ phần đổi (Sonnet) xong; đọc hiểu (Haiku) xong (mục "Vòng 2 và duyệt"). Lời đọc và ba video đã làm và duyệt (mục "Lời đọc và video"); chưa tải media, chưa deploy.
-- Việc kế tiếp: `media:upload` và `deploy:prod` khi chủ dự án duyệt cho bản phát hành đó.
+- Cập nhật cuối: 03/10/2026. Bài đã duyệt (`published`, `reviewedHash` `e850b483…`) và đã khoá id (`content:lock`, 111 id): 11 phần, 10 thẻ, 80 câu, 4 mẹo. Review vòng 1 (Opus), vòng 2 (Opus) và vòng 3 chỉ phần đổi (Sonnet) xong; đọc hiểu (Haiku) xong (mục "Vòng 2 và duyệt"). Lời đọc và ba video đã làm và duyệt (mục "Lời đọc và video"); media đã tải lên bucket và đã deploy lên production 03/10/2026 (commit `baffae9`, smoke 7/7).
+- Việc còn lại: chủ dự án nghe lại câu "Nhớ nhé" của `thoi-nua-chu-nhat`; xong thì lưu trữ thư mục backlog này.
 
 ## Nguồn (sách bài tập, `sources/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/`, không commit)
 - Đề: tr.70–73 in (PDF 71–74), tệp `sbt-p70.png` đến `sbt-p73.png`. Tr.70 có tên bài, "Kiến thức cần nhớ" (công thức chu vi và diện tích của hình vuông, hình chữ nhật, hình thang, hình bình hành, hình thoi); tr.71 có "Kĩ năng giải toán", ví dụ 1 (nền nhà 8 m và 6 m lát gạch cạnh 40 cm) và ví dụ 2 (hình bình hành đáy 10 cm, chiều cao 4 cm); tr.72 có bài 4.20 đến 4.24 (Hình 4.19, 4.20); tr.73 có bài 4.25 đến 4.28 (ảnh viên đá lục giác và ảnh sân lát đá). Tr.74 là "Ôn tập chương IV" (không thuộc bài này).

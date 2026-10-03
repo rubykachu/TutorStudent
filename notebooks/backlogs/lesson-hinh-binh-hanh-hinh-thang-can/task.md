@@ -4,10 +4,10 @@ Bài 19 của sách (SBT tr.67–69) quá dài cho bé (112 phút), nên chủ d
 
 ## Trạng thái
 
-- Cập nhật cuối: 03/10/2026. Bài đã duyệt: `status: published`, `reviewedHash` `c00de14d…` (commit `53216c0`), id đã khoá (`pnpm content:lock hinh-binh-hanh-hinh-thang-can`, 89 id, commit `a214db2`). Lời đọc giới thiệu và ba video đã xong (commit `a90b0cb`, review vòng 6, `reviewedHash` `0c95357d…`, 92 id đã khoá), media đã tải lên bucket; chưa deploy.
+- Cập nhật cuối: 03/10/2026. Bài đã duyệt: `status: published`, `reviewedHash` `c00de14d…` (commit `53216c0`), id đã khoá (`pnpm content:lock hinh-binh-hanh-hinh-thang-can`, 89 id, commit `a214db2`). Lời đọc giới thiệu và ba video đã xong (commit `a90b0cb`, review vòng 6, `reviewedHash` `0c95357d…`, 92 id đã khoá), media đã tải lên bucket; đã deploy lên production 03/10/2026 (commit `baffae9`, smoke 7/7).
 - Bài này: 9 section dạy và section bài tập sách bài tập, 9 thẻ, 60 câu (15 trong section bài tập sách bài tập: 7 câu sách, 8 câu dẫn), 1 mẹo, 58 phút. `content:check` 0 lỗi (cảnh báo id chưa khoá), `--stats` mọi tiêu chí PASS, 5 dạng câu (đúng mức tối thiểu).
 - `review.md` cạnh `lesson.json` là bản của vòng 5 (chỉ phần đổi); tệp nhóm vòng 2 và các lượt đọc hiểu ở `.shots/review/hinh-binh-hanh-hinh-thang-can/` (ngoài git). Vòng 1 (bài chưa tách): `git show 38c726d:content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/review.md`.
-- Chưa làm: deploy (mục "Việc tiếp theo" ở cuối).
+- Đã deploy lên production 03/10/2026 (commit `baffae9`); còn lại: lưu trữ thư mục backlog này khi hết việc tồn.
 
 ## Cách tách (theo hình, không theo số phần)
 
@@ -111,8 +111,8 @@ Bài 19 của sách (SBT tr.67–69) quá dài cho bé (112 phút), nên chủ d
 - Review vòng 6 (Sonnet, chỉ phần đổi): 0 Nghiêm trọng, 5 Nên sửa đã sửa hết, chi tiết ở `review.md`. Câu có chữ "êke" ngắn bị Whisper nghe thành "AK" (khớp dưới 97%), nên chữ êke chỉ đứng trong câu dài hay ở chip.
 - `lesson:walk`: 0 lỗi, 0 cảnh báo; `visual:shot`: 150/150 đạt; cả hai trong git worktree tạm cổng 3850 (đã gỡ). `media:upload hinh-binh-hanh-hinh-thang-can`: 11 tệp đã tải lên (9 tệp video, 2 tệp lời đọc).
 
-## Việc tiếp theo: deploy
+## Deploy (xong 03/10/2026)
 
-`pnpm deploy:prod --ref <SHA đã kiểm>` theo `docs/operations.md` "Đưa bài mới lên production" (media đã lên bucket trước). Ghi ra ngoài máy: chỉ chạy khi chủ dự án đồng ý cho bản phát hành này.
+Đã chạy `pnpm deploy:prod --ref baffae92ff22e70c09d8f5558159cb25907b415f` cùng Bài 19 phần 1 và Bài 20 (media đã lên bucket trước), smoke 7/7.
 
 - **Ngoài phạm vi:** sửa nội dung bài (đã duyệt; sửa thì cần review lại), bài khác (kể cả phần 1), `src/sync/`, `src/offline/`. Media ngoài git: không ghi đè media của bài khác; không dùng `rm`; không dừng dev server cổng 3003, không dừng tiến trình theo tên.
