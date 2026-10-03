@@ -30,9 +30,10 @@ import { master, renderFile, renderTone } from "./lib/tone-render";
 
 // Usage: pnpm sounds:build
 // Makes the app's own clips into public/sounds/ and records them in
-// public/sounds/manifest.json: the tones (taps and the correct-answer
-// jingle), synthesised by ffmpeg, the clips imported from assets/sounds/
-// (finish, wrong answer, leaving, the music box songs) and every owl voice
+// public/sounds/manifest.json: the tones (the choice click and the button
+// press), synthesised by ffmpeg, the clips imported from assets/sounds/
+// (correct answer, finish, celebrations, wrong answer, leaving, the music box
+// songs, the background music) and every owl voice
 // line in
 // src/mascot/lines.ts, spoken by VOICE_ENGINE and checked with Whisper. All
 // of them are brought to one loudness and encoded in one format (MASTERING
@@ -263,6 +264,7 @@ async function main() {
       sha256: hash,
       source: spec.source,
       ...(spec.music ? { music: true as const } : {}),
+      ...(spec.background ? { background: true as const } : {}),
       ...loudness,
     });
   }

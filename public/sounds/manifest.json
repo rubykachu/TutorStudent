@@ -19,10 +19,59 @@
     {
       "id": "correct-jingle",
       "file": "correct-jingle.m4a",
-      "kind": "tone",
-      "sha256": "d0ccea5d66d9e0368c3208a05cfce548ec6fa1dbe9aeb5d2f606c935bd242b6e",
+      "kind": "file",
+      "sha256": "bed86719e2246b5de0aba581c99fc02a930f3e773d0844df5f99c68e13047d20",
+      "source": "correct-choice.mp3",
       "lufs": -16,
-      "peakDb": -4.7
+      "peakDb": -3.3
+    },
+    {
+      "id": "win-victory",
+      "file": "win-victory.m4a",
+      "kind": "file",
+      "sha256": "12fe3094d8e166c6e466e17f0df23fbdb9dc1dd25467596f6a7faba1b0cab97e",
+      "source": "win-peekaboolabcreative-11l-victory_sound_with_t-1749487402950-357606.mp3",
+      "lufs": -16,
+      "peakDb": -1.5
+    },
+    {
+      "id": "win-winning",
+      "file": "win-winning.m4a",
+      "kind": "file",
+      "sha256": "28d496fea9309b9501204bb3a254ef006e9f146060a5c6c025c6f9f40dc60b26",
+      "source": "win-pw23check-winning-218995.mp3",
+      "lufs": -16.1,
+      "peakDb": -2.9
+    },
+    {
+      "id": "bg-kids-guitar",
+      "file": "bg-kids-guitar.m4a",
+      "kind": "file",
+      "sha256": "64f8d0058a03076034a5d7b61844466189abb7c937547cb993c200a2074eefd4",
+      "source": "bg-grand_project-kids-guitar-logo-470219.mp3",
+      "background": true,
+      "lufs": -26,
+      "peakDb": -11
+    },
+    {
+      "id": "bg-sunny-spark",
+      "file": "bg-sunny-spark.m4a",
+      "kind": "file",
+      "sha256": "9729682feb77c7f83c5ebbe06b0e450fc83974024e59b26ccb6fac39e35b515b",
+      "source": "bg-openmindaudio-cartoon-good-vibes-intro-sunny-spark-497372.mp3",
+      "background": true,
+      "lufs": -26,
+      "peakDb": -7.9
+    },
+    {
+      "id": "bg-whistle",
+      "file": "bg-whistle.m4a",
+      "kind": "file",
+      "sha256": "22a0c831db9ae971f6d7c8d80a169aec272cb10ea1e11eff48af2ed8cadae8e7",
+      "source": "bg-zec53-quirky-funny-positive-whistle-ending-30-sec-481086.mp3",
+      "background": true,
+      "lufs": -26,
+      "peakDb": -8.6
     },
     {
       "id": "lesson-end",

@@ -28,6 +28,9 @@ export type SoundEntry = {
   // it is music (played only on request, so never preloaded).
   source?: string;
   music?: true;
+  // Imported clips: background music of the outer screens (played by
+  // `src/music/background-music.ts`, never preloaded, stored offline).
+  background?: true;
   // Measured on the delivered file: integrated loudness (LUFS) and true
   // peak (dBFS).
   lufs: number;
@@ -50,6 +53,28 @@ export const WRONG_ID = "wrong-answer";
 export const LESSON_END_ID = "lesson-end";
 // Leaving a section or review with the "×" control.
 export const LEAVE_ID = "leave";
+// The celebration of a won sticker: one of these at random each time
+// (`pickCelebration`).
+export const CELEBRATION_IDS = ["win-victory", "win-winning"] as const;
+// The background music of the outer screens, played as a shuffled playlist.
+export const BACKGROUND_MUSIC_IDS = [
+  "bg-kids-guitar",
+  "bg-sunny-spark",
+  "bg-whistle",
+] as const;
+
+// A random celebration clip id. `random` is injectable for tests.
+export function pickCelebration(random: () => number = Math.random): string {
+  const index = Math.min(
+    CELEBRATION_IDS.length - 1,
+    Math.floor(random() * CELEBRATION_IDS.length),
+  );
+  return CELEBRATION_IDS[index] as string;
+}
+
+export function isCelebration(id: string): boolean {
+  return (CELEBRATION_IDS as readonly string[]).includes(id);
+}
 
 // The clip of each profile avatar, played when the child picks the avatar and
 // when they tap it on the home screen: the one place that maps an avatar id
@@ -88,13 +113,27 @@ export function soundUrl(id: string): string | undefined {
 const FIRST_IDS = [TAP_ID, BUTTON_ID, JINGLE_ID, LEAVE_ID];
 
 // Every clip played in answer to what the child does, for preloading, the
-// most used first. Music is left out: it is fetched when the child asks for
-// a song.
+// most used first. Music is left out: a song is fetched when the child asks
+// for it, and background music is decoded by its own player.
 export function allSoundUrls(): string[] {
-  const entries = [...byId.values()].filter((entry) => !entry.music);
+  const entries = [...byId.values()].filter(
+    (entry) => !entry.music && !entry.background,
+  );
   const rank = (entry: SoundEntry) => {
     const first = FIRST_IDS.indexOf(entry.id);
     return first < 0 ? FIRST_IDS.length : first;
   };
   return entries.sort((a, b) => rank(a) - rank(b)).map(clipUrl);
+}
+
+// The background music tracks, in `BACKGROUND_MUSIC_IDS` order; a track
+// missing from the manifest is left out.
+export function backgroundMusicUrls(): string[] {
+  return BACKGROUND_MUSIC_IDS.flatMap((id) => soundUrl(id) ?? []);
+}
+
+// Every clip the offline worker stores: the short clips and the background
+// music, never the songs.
+export function offlineSoundUrls(): string[] {
+  return [...allSoundUrls(), ...backgroundMusicUrls()];
 }

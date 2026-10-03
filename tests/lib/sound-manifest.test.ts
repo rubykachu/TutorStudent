@@ -6,10 +6,15 @@ import { AVATARS, type AvatarId } from "@/components/avatar";
 import {
   AVATAR_CLIP_IDS,
   allSoundUrls,
+  BACKGROUND_MUSIC_IDS,
   BUTTON_ID,
+  backgroundMusicUrls,
+  CELEBRATION_IDS,
   JINGLE_ID,
   LEAVE_ID,
   LESSON_END_ID,
+  offlineSoundUrls,
+  pickCelebration,
   type SoundManifest,
   soundUrl,
   TAP_ID,
@@ -19,6 +24,7 @@ import { VOICE_LINES } from "@/mascot/lines";
 import { SONGS } from "@/music/songs";
 import manifest from "../../public/sounds/manifest.json";
 import {
+  BACKGROUND_MUSIC_LUFS,
   FILES,
   fileSource,
   MASTERING,
@@ -58,9 +64,7 @@ describe("sound manifest", () => {
   });
 
   it("has every tone made from its current settings", () => {
-    expect(Object.keys(TONES).sort()).toEqual(
-      [BUTTON_ID, JINGLE_ID, TAP_ID].sort(),
-    );
+    expect(Object.keys(TONES).sort()).toEqual([BUTTON_ID, TAP_ID].sort());
     for (const [id, spec] of Object.entries(TONES)) {
       const entry = entries.get(id);
       expect(entry?.kind).toBe("tone");
@@ -72,9 +76,12 @@ describe("sound manifest", () => {
   it("has every imported clip made from its current source file and settings", () => {
     expect(Object.keys(FILES).sort()).toEqual(
       [
+        JINGLE_ID,
         LESSON_END_ID,
         WRONG_ID,
         LEAVE_ID,
+        ...CELEBRATION_IDS,
+        ...BACKGROUND_MUSIC_IDS,
         ...RECORDED_AVATARS.map((id) => AVATAR_CLIP_IDS[id]),
         ...SONGS.map((s) => s.id),
       ].sort(),
@@ -86,6 +93,53 @@ describe("sound manifest", () => {
       expect(entry?.sha256, id).toBe(sha256(fileSource(spec)));
       expect(onDisk(entry?.file ?? ""), id).toBe(true);
       expect(Boolean(entry?.music), id).toBe(spec.music);
+      expect(Boolean(entry?.background), id).toBe(Boolean(spec.background));
+    }
+  });
+
+  it("makes the correct answer from the downloaded chime, as loud as a voice line", () => {
+    const entry = entries.get(JINGLE_ID);
+    expect(entry?.kind).toBe("file");
+    expect(entry?.source).toBe("correct-choice.mp3");
+    expect(Math.abs((entry?.lufs ?? 0) - MASTERING.voiceLufs)).toBeLessThan(1);
+    expect(allSoundUrls().slice(0, 3)).toContain(soundUrl(JINGLE_ID));
+  });
+
+  it("plays the background music at one quiet loudness, never preloaded but stored offline", () => {
+    for (const id of BACKGROUND_MUSIC_IDS) {
+      const entry = entries.get(id);
+      expect(entry?.background, id).toBe(true);
+      expect(entry?.music, id).toBeUndefined();
+      expect(
+        Math.abs((entry?.lufs ?? 0) - BACKGROUND_MUSIC_LUFS),
+        id,
+      ).toBeLessThanOrEqual(1);
+      expect(allSoundUrls()).not.toContain(soundUrl(id));
+      expect(offlineSoundUrls()).toContain(soundUrl(id));
+    }
+    // 25-35% of the UI sounds' amplitude.
+    const share = 10 ** ((BACKGROUND_MUSIC_LUFS - MASTERING.voiceLufs) / 20);
+    expect(share).toBeGreaterThanOrEqual(0.25);
+    expect(share).toBeLessThanOrEqual(0.35);
+    expect(backgroundMusicUrls()).toEqual(
+      BACKGROUND_MUSIC_IDS.map((id) => soundUrl(id)),
+    );
+  });
+
+  it("celebrates with one of the two win clips, preloaded like every short clip", () => {
+    expect(pickCelebration(() => 0)).toBe(CELEBRATION_IDS[0]);
+    expect(pickCelebration(() => 0.999)).toBe(CELEBRATION_IDS[1]);
+    for (const id of CELEBRATION_IDS) {
+      expect(entries.get(id)?.kind, id).toBe("file");
+      expect(allSoundUrls()).toContain(soundUrl(id));
+    }
+  });
+
+  it("names the source and licence of every downloaded clip", () => {
+    for (const id of [JINGLE_ID, ...CELEBRATION_IDS, ...BACKGROUND_MUSIC_IDS]) {
+      const credit = FILES[id]?.credit;
+      expect(credit?.url, id).toMatch(/^https:\/\/pixabay\.com\//);
+      expect(credit?.license, id).toBe("Pixabay Content License");
     }
   });
 
@@ -95,6 +149,7 @@ describe("sound manifest", () => {
       expect(entry?.music, song.id).toBe(true);
       expect(entry?.lufs, song.id).toBeLessThan(MASTERING.voiceLufs - 3);
       expect(allSoundUrls()).not.toContain(soundUrl(song.id));
+      expect(offlineSoundUrls()).not.toContain(soundUrl(song.id));
     }
     expect(allSoundUrls()).toContain(soundUrl(LESSON_END_ID));
   });

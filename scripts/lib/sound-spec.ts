@@ -3,7 +3,9 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import {
   AVATAR_CLIP_IDS,
+  BACKGROUND_MUSIC_IDS,
   BUTTON_ID,
+  CELEBRATION_IDS,
   JINGLE_ID,
   LEAVE_ID,
   LESSON_END_ID,
@@ -48,7 +50,7 @@ export const VOICE_ENGINE = {
 export type VoiceEngine = typeof VOICE_ENGINE;
 
 // A tone synthesised by ffmpeg: soft bell notes, each rising quickly and
-// dying away, plus an optional high flicker on top.
+// dying away.
 export type ToneSpec = {
   durationS: number;
   // [frequency Hz, start s]
@@ -68,13 +70,6 @@ export type ToneSpec = {
   // negative below) away and settles on its pitch at `rate` per second,
   // like a drop landing.
   glide?: { amount: number; rate: number };
-  sparkle?: {
-    hz: number;
-    rateHz: number;
-    startS: number;
-    level: number;
-    decay: number;
-  };
   fadeOutS: number;
   // Integrated loudness the tone is brought to.
   lufs: number;
@@ -110,24 +105,6 @@ export const TONES: Record<string, ToneSpec> = {
     fadeOutS: 0.12,
     lufs: MASTERING.voiceLufs - 8,
   },
-  // A correct answer: a bright rising arpeggio (C6 E6 G6 C7), then a quiet
-  // shimmer.
-  [JINGLE_ID]: {
-    durationS: 0.8,
-    notes: [
-      [1046.5, 0],
-      [1318.5, 0.08],
-      [1568, 0.16],
-      [2093, 0.24],
-    ],
-    noteLevel: 0.35,
-    overtone: 0.3,
-    noteDecay: 7,
-    attack: 250,
-    sparkle: { hz: 6272, rateHz: 22, startS: 0.28, level: 0.08, decay: 6 },
-    fadeOutS: 0.15,
-    lufs: MASTERING.voiceLufs,
-  },
 };
 
 // A clip made from a file in assets/sounds/ (copied into the repo so a build
@@ -144,11 +121,14 @@ export type FileSpec = {
   fadeOutS: number;
   // Played only when the child asks for it (a song), so never preloaded.
   music: boolean;
+  // Background music of the outer screens (`src/music/background-music.ts`):
+  // never preloaded as a short clip, but stored by the offline worker.
+  background?: true;
   // Keep only the first `clipS` seconds (after the silence is cut), faded
   // out by `fadeOutS`; omitted keeps the whole clip.
   clipS?: number;
   // Where a downloaded clip comes from and under what terms it may be used.
-  credit?: { title: string; url: string; license: string };
+  credit?: { title: string; author?: string; url: string; license: string };
 };
 
 export const ASSETS_SOUNDS_DIR = path.join(process.cwd(), "assets", "sounds");
@@ -157,6 +137,22 @@ export const ASSETS_SOUNDS_DIR = path.join(process.cwd(), "assets", "sounds");
 // the ear; iOS ignores a media element's volume, so the loudness is set here.
 const MUSIC_LUFS = MASTERING.voiceLufs - 6;
 
+// Background music sits well under the UI sounds (10 LU below a voice line,
+// about 30% of its amplitude), so it never covers a tap, the owl or a
+// celebration. The tracks are brought to this one loudness so none of them
+// stands out in the playlist.
+export const BACKGROUND_MUSIC_LUFS = MASTERING.voiceLufs - 10;
+
+// Pixabay Content License: free for any use, no attribution needed
+// (https://pixabay.com/service/license-summary/). The page of a clip is named
+// by its slug and id, which the downloaded file name carries.
+const PIXABAY = (title: string, author: string, slug: string) => ({
+  title,
+  author,
+  url: `https://pixabay.com/sound-effects/${slug}/`,
+  license: "Pixabay Content License",
+});
+
 const MIXKIT = (title: string, id: number) => ({
   title,
   url: `https://assets.mixkit.co/active_storage/sfx/${id}/${id}.wav`,
@@ -164,6 +160,83 @@ const MIXKIT = (title: string, id: number) => ({
 });
 
 export const FILES: Record<string, FileSpec> = {
+  // A correct answer: a short bright chime, as loud as a voice line.
+  [JINGLE_ID]: {
+    source: "correct-choice.mp3",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0.05,
+    music: false,
+    credit: {
+      title: "Correct choice",
+      url: "https://pixabay.com/sound-effects/search/correct%20choice/",
+      license: "Pixabay Content License",
+    },
+  },
+  // The celebration of a won sticker, one of the two at random; as loud as
+  // a voice line, like the finish fanfare.
+  [CELEBRATION_IDS[0]]: {
+    source:
+      "win-peekaboolabcreative-11l-victory_sound_with_t-1749487402950-357606.mp3",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0.1,
+    music: false,
+    credit: PIXABAY(
+      "Victory sound",
+      "peekaboolabcreative",
+      "11l-victory_sound_with_t-1749487402950-357606",
+    ),
+  },
+  [CELEBRATION_IDS[1]]: {
+    source: "win-pw23check-winning-218995.mp3",
+    lufs: MASTERING.voiceLufs,
+    trimSilence: true,
+    fadeOutS: 0.2,
+    music: false,
+    credit: PIXABAY("Winning", "pw23check", "winning-218995"),
+  },
+  // The background music of the outer screens, played as a shuffled
+  // playlist.
+  [BACKGROUND_MUSIC_IDS[0]]: {
+    source: "bg-grand_project-kids-guitar-logo-470219.mp3",
+    lufs: BACKGROUND_MUSIC_LUFS,
+    trimSilence: true,
+    fadeOutS: 0.4,
+    music: false,
+    background: true,
+    credit: PIXABAY(
+      "Kids guitar logo",
+      "grand_project",
+      "kids-guitar-logo-470219",
+    ),
+  },
+  [BACKGROUND_MUSIC_IDS[1]]: {
+    source: "bg-openmindaudio-cartoon-good-vibes-intro-sunny-spark-497372.mp3",
+    lufs: BACKGROUND_MUSIC_LUFS,
+    trimSilence: true,
+    fadeOutS: 0.4,
+    music: false,
+    background: true,
+    credit: PIXABAY(
+      "Cartoon good vibes intro (Sunny Spark)",
+      "openmindaudio",
+      "cartoon-good-vibes-intro-sunny-spark-497372",
+    ),
+  },
+  [BACKGROUND_MUSIC_IDS[2]]: {
+    source: "bg-zec53-quirky-funny-positive-whistle-ending-30-sec-481086.mp3",
+    lufs: BACKGROUND_MUSIC_LUFS,
+    trimSilence: true,
+    fadeOutS: 0.4,
+    music: false,
+    background: true,
+    credit: PIXABAY(
+      "Quirky funny positive whistle ending",
+      "zec53",
+      "quirky-funny-positive-whistle-ending-30-sec-481086",
+    ),
+  },
   // A section is finished: a short, bright fanfare, as loud as the correct
   // jingle.
   [LESSON_END_ID]: {
@@ -257,13 +330,6 @@ export function toneExpression(spec: ToneSpec): string {
     return `if(gte(t,${start}),${spec.noteLevel}*${swell}*exp(-${spec.noteDecay}*${t})*(sin(2*PI*${hz}*${phase})+${spec.overtone}*sin(4*PI*${hz}*${phase})),0)`;
   };
   const parts = spec.notes.map(([hz, start]) => tone(hz, start));
-  const s = spec.sparkle;
-  if (s) {
-    const t = `(t-${s.startS})`;
-    parts.push(
-      `if(gte(t,${s.startS}),${s.level}*exp(-${s.decay}*${t})*(0.5+0.5*sin(2*PI*${s.rateHz}*${t}))*sin(2*PI*${s.hz}*t),0)`,
-    );
-  }
   return parts.join("+");
 }
 
