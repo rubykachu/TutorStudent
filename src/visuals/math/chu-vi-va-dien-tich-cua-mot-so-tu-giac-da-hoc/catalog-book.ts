@@ -1,7 +1,7 @@
 import type { ConceptColor } from "@/schema/content";
 import type { Row } from "@/visuals/shared/formula-rows";
 import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
-import { calc, figure, gallery, row } from "./builders";
+import { calc, figure, row } from "./builders";
 import { boxOf, fitInto, gridFigure, shape, units } from "./figures";
 import type { VisualSpec } from "./spec";
 
@@ -48,8 +48,8 @@ function windowFrame(
         // The side's length goes in the corner triangle outside the rhombus.
         texts: [
           {
-            x: (a[0] + top[0] + left[0]) / 3,
-            y: (a[1] + top[1] + left[1]) / 3,
+            x: 0.35 * a[0] + 0.35 * top[0] + 0.3 * left[0],
+            y: 0.35 * a[1] + 0.35 * top[1] + 0.3 * left[1],
             text: `${side} cm`,
             tone: "ink",
           },
@@ -374,8 +374,6 @@ const solutionOf = (key: string): VisualSpec => {
   );
 };
 
-const THUMB = { w: 150, h: 112, margin: 26 } as const;
-
 export const BOOK_SPECS: Record<string, VisualSpec> = {
   // Figures of the exercises.
   "sbt-hinh-4-19": figure(
@@ -432,57 +430,17 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     ]),
   ),
   // Reminders at the head of the section.
-  "nam-hinh-cong-thuc": gallery(
-    "Công thức diện tích của năm hình",
-    [
-      {
-        caption: "Hình vuông: S = a · a",
-        figure: shape({
-          label: "Hình vuông",
-          corners: units.rect(1, 1),
-          ...THUMB,
-          fill: "teal",
-        }),
-      },
-      {
-        caption: "Hình chữ nhật: S = a · b",
-        figure: shape({
-          label: "Hình chữ nhật",
-          corners: units.rect(5, 3),
-          ...THUMB,
-          fill: "teal",
-        }),
-      },
-      {
-        caption: "Hình thoi: S = a · b : 2",
-        figure: shape({
-          label: "Hình thoi",
-          corners: units.rhombus(6, 4),
-          ...THUMB,
-          fill: "teal",
-        }),
-      },
-      {
-        caption: "Hình bình hành: S = a · h",
-        figure: shape({
-          label: "Hình bình hành",
-          corners: units.parallelogram(5, 3, 2),
-          ...THUMB,
-          fill: "teal",
-        }),
-      },
-      {
-        caption: "Hình thang cân: S = (a + b) · h : 2",
-        figure: shape({
-          label: "Hình thang cân",
-          corners: units.trapezoid(7, 4, 3),
-          ...THUMB,
-          fill: "teal",
-        }),
-      },
+  "nam-hinh-cong-thuc": {
+    kind: "rows",
+    label: "Công thức diện tích của năm hình",
+    rows: [
+      row("S = a \\cdot a", ["Hình vuông", "teal"]),
+      row("S = a \\cdot b", ["Hình chữ nhật", "teal"]),
+      row("S = a \\cdot b : 2", ["Hình thoi", "teal"]),
+      row("S = a \\cdot h", ["Hình bình hành", "teal"]),
+      row("S = (a + b) \\cdot h : 2", ["Hình thang cân", "teal"]),
     ],
-    3,
-  ),
+  },
   "khuyet-nhac-lai": figure(
     notched(
       "Hình chữ nhật bị khuyết một góc, kẻ thêm để thành hình chữ nhật lớn",

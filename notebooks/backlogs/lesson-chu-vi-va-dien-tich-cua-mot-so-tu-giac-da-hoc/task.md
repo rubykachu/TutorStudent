@@ -67,10 +67,14 @@
 
 ## Đọc hiểu (Haiku, `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/`, không commit)
 - Lượt 1 (toàn bài, tệp `doc-hieu.md`): 210 mục hiểu rõ, 8 hiểu mơ hồ, 0 khó hiểu. Đã viết lại 8 mục (mục tiêu "đổi mét ra xăng-ti-mét", định nghĩa "kề", cách đọc cm² và m², câu định nghĩa chiều cao, câu xoay tam giác của hình thoi, quy tắc diện tích hình thoi nói "chia cho 2", câu ghép hai hình thang).
-- Lượt 2 (mục đã viết lại và các câu mới đổi sang chọn đáp án, tệp `doc-hieu-2.md`): 94 hiểu rõ, 10 hiểu mơ hồ, 1 khó hiểu. Chín trong mười mục mơ hồ chỉ vì từ của bài (mét vuông, tích, vuông góc, đường chéo, hình thang cân, diện tích, đơn vị): các từ này đã dạy ở bài trước hay ở chính bài này, nên giữ. Mục khó hiểu là câu mở phần 7 ("bao quanh", "phủ vừa khít"); đã viết lại thành "đi qua bốn đỉnh của hình thoi" và "lấp đầy hình thoi" (cả `caption` các bước của hình và lời kết của màn "Cùng làm"). Chưa chạy lượt 3 cho mục này.
+- Lượt 2 (mục đã viết lại và các câu mới đổi sang chọn đáp án, tệp `doc-hieu-2.md`): 94 hiểu rõ, 10 hiểu mơ hồ, 1 khó hiểu. Chín trong mười mục mơ hồ chỉ vì từ của bài (mét vuông, tích, vuông góc, đường chéo, hình thang cân, diện tích, đơn vị): các từ này đã dạy ở bài trước hay ở chính bài này, nên giữ. Mục khó hiểu là câu mở phần 7 ("bao quanh", "phủ vừa khít"); đã viết lại thành "đi qua bốn đỉnh của hình thoi" và "lấp đầy hình thoi" (cả `caption` các bước của hình và lời kết của màn "Cùng làm"). Lượt 3 (hai mục phần 7 đã viết lại, tệp `doc-hieu-3.md`): 2 hiểu rõ, 0 hiểu mơ hồ, 0 khó hiểu.
 
 ## Kiểm đã chạy
-- (đang chạy lần cuối, xem commit kế tiếp)
+- `pnpm content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá, do chưa chạy `content:lock`); `--stats`: mọi tiêu chí PASS (11 phần, 10 thẻ, 80 câu, 7 dạng câu, 9 hình tương tác), 12 `bookRef` (SBT 4.20, 4.21, 4.22a đến 4.22d, 4.23 đến 4.28); `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` đã chạy.
+- `pnpm visual:shot`: 160/160 đạt (lần đầu 150/160: dòng công thức dài tràn khung điện thoại, nhãn chồng nhau trong hình thoi, hình quy tắc nhiều cột có chữ dưới 16px; đã sửa từng cái và chụp lại).
+- `pnpm lesson:walk`: 0 lỗi, 0 cảnh báo (iPad dọc, điện thoại, iPad ngang), chạy trong git worktree tạm trên cổng 3740, đã gỡ bằng `git worktree remove --force`. Lần đầu có 1 lỗi ở điện thoại do hai khoá React trùng (khung cuối của hình xoay tam giác ngoài hình thoi vẽ hình thoi hai lần, huy hiệu "2 Issues" của máy chủ dev che nút "Xem cách làm") và 10 cảnh báo chữ nhãn a, b dưới 16px của hình hai cột; đã sửa, test `never draws two polygons or two segments with the same corners` khoá lỗi trùng khoá.
+- Gate: `pnpm format` (biome, các tệp của bài), `pnpm lint` 0 lỗi, `pnpm typecheck` đạt, `pnpm test`: 4765 đạt, 3 tệp (`tests/content/cli.test.ts`, `tests/exercises/manipulate.test.tsx`, `tests/scripts/contact-sheet.test.ts`) hết thời gian khi cả bộ chạy cùng lúc, chạy riêng 3 tệp đạt 35/35; tệp test của bài và `registry.test.tsx` đạt.
+- Mẹo thử bằng chương trình tạm (không commit): hình bình hành 8 trường hợp, hình thang cân 8 trường hợp, 5 cặp m với cm, 6 vườn có cửa; mọi trường hợp đúng.
 
 ## Việc nên làm ở vòng sau
 - Reviewer xét độ dài: bài 72 phút (60 đến 80), phần bài tập sách bài tập 22 phút với 28 câu.

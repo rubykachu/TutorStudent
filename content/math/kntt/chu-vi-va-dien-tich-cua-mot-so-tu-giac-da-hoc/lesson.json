@@ -3299,7 +3299,7 @@
       "difficulty": 2,
       "explain": {
         "text": "Hai số đo phải cùng đơn vị. Đổi 2 m thành 200 cm, rồi nhân chiều dài với chiều rộng.",
-        "tex": "2\\ \\mathrm{m} = 200\\ \\mathrm{cm},\\quad 200 \\cdot 50 = \\concept{teal}{10\\,000}\\ \\mathrm{cm}^{2}"
+        "tex": "\\begin{gathered} 2\\ \\mathrm{m} = 200\\ \\mathrm{cm} \\\\ 200 \\cdot 50 = \\concept{teal}{10\\,000}\\ \\mathrm{cm}^{2} \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -3654,7 +3654,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Trước hết tính diện tích sàn, rồi nhân với giá tiền mỗi mét vuông.",
-        "tex": "5 \\cdot 4 = \\concept{teal}{20}\\ \\mathrm{m}^{2},\\quad 20 \\cdot 50\\,000 = 1\\,000\\,000"
+        "tex": "\\begin{gathered} 5 \\cdot 4 = \\concept{teal}{20}\\ \\mathrm{m}^{2} \\\\ 20 \\cdot 50\\,000 = 1\\,000\\,000 \\end{gathered}"
       },
       "answer": {
         "kind": "value",
@@ -4575,7 +4575,7 @@
       "difficulty": 3,
       "explain": {
         "text": "Tính diện tích một viên đá hình thang cân, rồi nhân với 8 viên đá của hình lục giác. Một viên có diện tích 129 cm², nên cả hình có 129 · 8 = 1 032 cm².",
-        "tex": "(10 + 20) \\cdot 8{,}6 : 2 = 129,\\quad 129 \\cdot 8 = \\concept{teal}{1\\,032}\\ \\mathrm{cm}^{2}"
+        "tex": "\\begin{gathered} (10 + 20) \\cdot 8{,}6 : 2 = 129 \\\\ 129 \\cdot 8 = \\concept{teal}{1\\,032}\\ \\mathrm{cm}^{2} \\end{gathered}"
       },
       "answer": {
         "kind": "value",

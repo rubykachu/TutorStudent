@@ -1,4 +1,11 @@
-import { equalTicks, figure, gallery, steps, walkFrames } from "./builders";
+import {
+  equalTicks,
+  figure,
+  formulaCaption,
+  gallery,
+  steps,
+  walkFrames,
+} from "./builders";
 import { quadrilateral, shape, units } from "./figures";
 import type { WalkSpec } from "./models";
 import type { VisualSpec } from "./spec";
@@ -133,7 +140,7 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
     "Hình vuông và hình thoi, mỗi hình có bốn cạnh bằng nhau và dài a",
     [
       {
-        caption: "Hình vuông: C = 4 · a",
+        caption: formulaCaption("Hình vuông", "C = 4 · a"),
         figure: shape({
           label: "Hình vuông có cạnh a",
           corners: units.rect(1, 1),
@@ -143,7 +150,7 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
         }),
       },
       {
-        caption: "Hình thoi: C = 4 · a",
+        caption: formulaCaption("Hình thoi", "C = 4 · a"),
         figure: shape({
           label: "Hình thoi có cạnh a",
           corners: units.rhombus(8, 6),
@@ -171,7 +178,7 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
     "Hình chữ nhật và hình bình hành, mỗi hình có hai cạnh kề nhau dài a và b",
     [
       {
-        caption: "Hình chữ nhật: C = 2 · (a + b)",
+        caption: formulaCaption("Hình chữ nhật", "C = 2 · (a + b)"),
         figure: shape({
           label: "Hình chữ nhật có hai cạnh kề nhau a và b",
           corners: units.rect(5, 3),
@@ -180,7 +187,7 @@ export const CHU_VI_SPECS: Record<string, VisualSpec> = {
         }),
       },
       {
-        caption: "Hình bình hành: C = 2 · (a + b)",
+        caption: formulaCaption("Hình bình hành", "C = 2 · (a + b)"),
         figure: shape({
           label: "Hình bình hành có hai cạnh kề nhau a và b",
           corners: units.parallelogram(5, 3, 2),

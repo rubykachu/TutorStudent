@@ -190,7 +190,10 @@ export const DON_VI_SPECS: Record<string, VisualSpec> = {
   "rao-vuon-giai": calc(
     "Rào vườn có cửa: chu vi rồi trừ chỗ cửa",
     [
-      row("C = 2 \\cdot (20 + 12) = 64\\ \\mathrm{m}", ["chu vi vườn", "blue"]),
+      row(
+        "\\begin{gathered} C = 2 \\cdot (20 + 12) \\\\ = 64\\ \\mathrm{m} \\end{gathered}",
+        ["chu vi vườn", "blue"],
+      ),
       row("64 - 3 = 61\\ \\mathrm{m}", ["trừ chỗ cửa", "slate"]),
     ],
     "steps",
@@ -239,7 +242,7 @@ export const DON_VI_SPECS: Record<string, VisualSpec> = {
         }),
       },
       {
-        caption: "Viền khung ảnh: chu vi",
+        caption: "Viền khung: chu vi",
         figure: shape({
           label: "Viền quanh một khung ảnh",
           corners: units.rect(5, 4),

@@ -96,4 +96,9 @@ export function equalTicks(
   };
 }
 
+// A caption "Name: formula" whose formula never breaks across lines, so a
+// narrow caption wraps after the colon.
+export const formulaCaption = (name: string, formula: string): string =>
+  `${name}: ${formula.replaceAll(" ", "\u00a0")}`;
+
 export const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];

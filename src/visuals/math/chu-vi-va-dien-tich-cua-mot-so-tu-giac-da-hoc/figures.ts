@@ -20,6 +20,8 @@ const CORNER_NAMES = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 const CHAR_HALF_WIDTH = 4.7;
 const TEXT_HALF_HEIGHT = 8.5;
 const LABEL_GAP = 6;
+// Room a measure written above or below a side takes beyond the shape.
+const LABEL_ROOM = 28;
 
 export function cornerName(i: number): string {
   const name = CORNER_NAMES[i];
@@ -35,11 +37,14 @@ export function boxOf(
   margin = SIDE_MARGIN,
   reserve = 0,
 ): Box {
+  // A measure above or below a side needs a line of room, whatever the
+  // sides' margin.
+  const vertical = Math.max(margin * 0.6, LABEL_ROOM);
   return {
     x: margin,
-    y: margin * 0.6,
+    y: vertical,
     w: w - 2 * margin,
-    h: h - 1.2 * margin - reserve,
+    h: h - 2 * vertical - reserve,
   };
 }
 

@@ -246,13 +246,12 @@ const RHOMBUS_CORNERS = [
   { id: "bl", corner: "BOX_BL", a: "L", b: "B", name: "phía dưới bên trái" },
 ] as const;
 
-// The two diagonals' lengths, written inside the rhombus.
+// The names of the two diagonals, written inside the rhombus.
 function rhombusLabels(g: Geometry): FigureText[] {
-  const { d1, d2 } = RHOMBUS;
   const centre = at(g, "C");
   return [
-    text(centre[0] - 38, centre[1] + 22, `a = ${d1}`, "amber"),
-    text(centre[0] + 38, centre[1] - 22, `b = ${d2}`, "amber"),
+    text(centre[0] - 40, centre[1] + 20, "a", "amber"),
+    text(centre[0] + 16, centre[1] - 36, "b", "amber"),
   ];
 }
 

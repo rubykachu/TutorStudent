@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { VisualProps } from "@/visuals/registry";
+import { Rows } from "@/visuals/shared/formula-rows";
 import { Figure } from "@/visuals/shared/plane/figure";
 import { FigureSteps } from "@/visuals/shared/plane/figure-steps";
 import { Probe } from "@/visuals/shared/plane/probe";
@@ -32,6 +33,10 @@ export function fromSpec(spec: VisualSpec): ComponentType<VisualProps> {
     case "calc":
       return function CalcVisual() {
         return <Calc spec={spec} />;
+      };
+    case "rows":
+      return function RowsVisual() {
+        return <Rows spec={spec} />;
       };
     case "probe":
       return function ProbeVisual(props: VisualProps) {

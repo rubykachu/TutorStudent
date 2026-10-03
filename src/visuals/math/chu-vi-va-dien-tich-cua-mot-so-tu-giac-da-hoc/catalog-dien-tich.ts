@@ -3,7 +3,7 @@ import type {
   FigureSpec,
   Pt,
 } from "@/visuals/shared/plane/figure-spec";
-import { figure, gallery, small, steps } from "./builders";
+import { figure, formulaCaption, gallery, small, steps } from "./builders";
 import { gridFigure, shape, units } from "./figures";
 import type { FloorSpec, TilesSpec } from "./models";
 import type { VisualSpec } from "./spec";
@@ -109,7 +109,7 @@ const FLOOR: FloorSpec = {
   label: "Sàn phòng dài 5 m, rộng 3 m, chia thành các ô vuông cạnh 1 m",
   goal: { perRow: 5, rows: 3 },
   tile: "1 m",
-  done: "5 · 3 = 15 ô vuông: sàn rộng 15 m².",
+  done: "5 · 3 = 15 ô vuông: diện tích sàn là 15 m².",
 };
 
 // Three shapes of unit squares for the exercise "tap the shape of 4 cm²":
@@ -286,14 +286,14 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
     },
     {
       figure: paintedRows("Bốn hàng có 24 ô", 6, 4, 36, 4, { h: 176 }),
-      caption: "Bốn hàng có 6 · 4 = 24 ô. Sàn rộng 24 m².",
+      caption: "Bốn hàng có 6 · 4 = 24 ô: diện tích sàn là 24 m².",
     },
   ]),
   "dt-cn-quy-tac": gallery(
     "Hình chữ nhật có hai cạnh a và b, hình vuông có cạnh a",
     [
       {
-        caption: "Hình chữ nhật: S = a · b",
+        caption: formulaCaption("Hình chữ nhật", "S = a · b"),
         figure: shape({
           label: "Hình chữ nhật có hai cạnh a và b",
           ...rectAB(5, 3),
@@ -305,7 +305,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
         }),
       },
       {
-        caption: "Hình vuông: S = a · a",
+        caption: formulaCaption("Hình vuông", "S = a · a"),
         figure: shape({
           label: "Hình vuông có cạnh a",
           ...rectAB(1, 1),
@@ -481,7 +481,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
         // The diagonals as dashed lines, their lengths on dimension lines
         // under and beside the rhombus.
         const under = bottom[1] + 26;
-        const beside = right[0] + 34;
+        const beside = right[0] + 20;
         return {
           pts: {
             U1: [left[0], under],
@@ -497,7 +497,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
           ],
           texts: [
             { x: top[0], y: under + 20, text: "10 cm", tone: "amber" },
-            { x: beside + 30, y: left[1], text: "4 cm", tone: "amber" },
+            { x: beside + 28, y: left[1], text: "4 cm", tone: "amber" },
           ],
         };
       },

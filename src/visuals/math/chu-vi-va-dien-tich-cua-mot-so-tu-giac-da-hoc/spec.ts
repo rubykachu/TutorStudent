@@ -1,3 +1,4 @@
+import type { RowsSpec } from "@/visuals/shared/formula-rows";
 import {
   type FigureSpec,
   figureRegions,
@@ -27,6 +28,8 @@ export type VisualSpec =
   | ({ kind: "steps" } & StepsSpec)
   // A worked calculation, line by line.
   | ({ kind: "calc" } & CalcSpec)
+  // Formulas stacked, each with its name.
+  | ({ kind: "rows" } & RowsSpec)
   // A figure whose parts the child taps to measure (see `ProbeSpec`).
   | ({ kind: "probe" } & ProbeSpec)
   // A walk once round a shape, adding up its sides.
