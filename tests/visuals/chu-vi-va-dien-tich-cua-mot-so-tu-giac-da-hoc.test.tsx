@@ -171,7 +171,7 @@ describe("the redrawn hexagon of exercise 4.25", () => {
 
 describe("the redrawn hexagon of the stone-counting question", () => {
   it("is three equal rhombuses, one of them grey", () => {
-    const spec = VISUAL_SPECS["dan-luc-giac-6"];
+    const spec = VISUAL_SPECS["dan-luc-giac-3"];
     if (spec?.kind !== "figure") throw new Error("figure expected");
     const polys = spec.figure.polys ?? [];
     expect(polys).toHaveLength(3);

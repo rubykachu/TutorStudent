@@ -291,7 +291,7 @@ export const DIEN_TICH_SPECS: Record<string, VisualSpec> = {
       fill: "teal",
     }),
   ),
-  "f-chu-l-9-o": figure(
+  "f-chu-l-11-o": figure(
     gridFigure({
       label: "Hình chữ L gồm 11 ô vuông, mỗi ô có diện tích 1 cm²",
       cols: 5,

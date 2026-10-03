@@ -576,7 +576,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
       },
     ),
   ),
-  "dan-luc-giac-6": figure(
+  "dan-luc-giac-3": figure(
     rhombusHexagon(
       "Hình lục giác đều ghép từ ba viên đá hình thoi, hai viên màu xanh nhạt và một viên màu xám",
     ),

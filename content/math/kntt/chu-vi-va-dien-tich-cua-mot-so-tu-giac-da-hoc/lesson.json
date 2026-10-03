@@ -285,7 +285,7 @@
         "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dien-tich-9-o-1m"
       ],
       "practiceIds": [
-        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mieng-dan-9-o"
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mieng-dan-11-o"
       ],
       "recap": {
         "type": "visual",
@@ -1897,7 +1897,7 @@
       "multiple": false
     },
     {
-      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mieng-dan-9-o",
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mieng-dan-11-o",
       "type": "numeric",
       "cardIds": [
         "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-la-gi"
@@ -1909,7 +1909,7 @@
         },
         {
           "type": "visual",
-          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-chu-l-9-o"
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-chu-l-11-o"
         }
       ],
       "hints": {
@@ -4576,7 +4576,7 @@
         },
         {
           "type": "visual",
-          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dan-luc-giac-6"
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dan-luc-giac-3"
         }
       ],
       "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-25",
