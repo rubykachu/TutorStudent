@@ -57,7 +57,7 @@ function squareMetre(): FigureSpec {
     x: x0,
     y: y0,
     w: 320,
-    h: 290,
+    h: 306,
     fill: "teal",
   });
   // The block at the top right corner of the grid, outlined in ink.
@@ -68,9 +68,9 @@ function squareMetre(): FigureSpec {
     k2: [right, y0 + cell],
     k3: [right - cell, y0 + cell],
     // The end of the line from the block to its writing.
-    k4: [right + 14, y0 + cell / 2],
+    k4: [right + 10, y0 + cell / 2],
   };
-  const side = right + 18;
+  const side = right + 26;
   return {
     ...grid,
     pts: { ...grid.pts, ...corner },
@@ -82,10 +82,10 @@ function squareMetre(): FigureSpec {
     texts: [
       { x: 160, y: 16, text: "Cạnh 1 m = 100 cm", tone: "sky" },
       { x: side, y: y0 + 9, text: "1 ô:", tone: "ink", anchor: "start" },
-      { x: side, y: y0 + 31, text: "cạnh 10 cm", tone: "sky", anchor: "start" },
-      { x: side, y: y0 + 53, text: "100 cm²", tone: "teal", anchor: "start" },
-      { x: 160, y: 244, text: "1 m² gồm 100 ô, mỗi ô 100 cm²", tone: "ink" },
-      { x: 160, y: 270, text: `100 · 100 = 10${NBSP}000 cm²`, tone: "teal" },
+      { x: side, y: y0 + 40, text: "cạnh 10 cm", tone: "sky", anchor: "start" },
+      { x: side, y: y0 + 71, text: "100 cm²", tone: "teal", anchor: "start" },
+      { x: 160, y: 242, text: "1 m² gồm 100 ô, mỗi ô 100 cm²", tone: "ink" },
+      { x: 160, y: 282, text: `100 · 100 = 10${NBSP}000 cm²`, tone: "teal" },
     ],
   };
 }

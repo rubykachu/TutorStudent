@@ -772,3 +772,23 @@ describe("the figures redrawn after the review", () => {
     ).toBeDefined();
   });
 });
+
+describe("numbers of a thousand or more", () => {
+  it("are grouped in every row and every piece of writing", () => {
+    const bare = /(^|[^\d.,])\d{4,}/;
+    const problems: string[] = [];
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      const strings: string[] = [];
+      if (spec.kind === "calc" || spec.kind === "rows") {
+        strings.push(...spec.rows.map((row) => row.tex));
+      }
+      for (const figure of writtenFigures(spec)) {
+        strings.push(...(figure.texts ?? []).map((t) => t.text));
+      }
+      for (const text of strings) {
+        if (bare.test(text)) problems.push(`${key}: ${text}`);
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+});

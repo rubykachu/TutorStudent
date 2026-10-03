@@ -441,13 +441,13 @@ const PAIRS: Record<string, Pair> = {
       ),
     ],
     solution: [
-      row(`60\\ ${TEX.cm} = 0{,}6\\ ${TEX.m}`, uTag("đổi cạnh ra m")),
+      row(`60\\ ${TEX.cm} = 0{,}6\\ ${TEX.m}`, uTag("đổi ra m")),
       row(`30 \\cdot 20 = 600\\ ${TEX.m2}`, sTag("diện tích sân")),
       row(
-        `0{,}6 \\cdot 0{,}6 \\cdot 1\\,400 = 504\\ ${TEX.m2}`,
-        sTag("diện tích đá lát"),
+        `0{,}6 \\cdot 0{,}6 \\cdot 1\\;400 = 504\\ ${TEX.m2}`,
+        sTag("diện tích đá"),
       ),
-      row(`600 - 504 = 96\\ ${TEX.m2}`, sTag("diện tích trồng cỏ")),
+      row(`600 - 504 = 96\\ ${TEX.m2}`, sTag("diện tích cỏ")),
       row(`96 \\cdot 30\\,000 = 2\\,880\\,000`, nTag("đồng")),
     ],
   },
