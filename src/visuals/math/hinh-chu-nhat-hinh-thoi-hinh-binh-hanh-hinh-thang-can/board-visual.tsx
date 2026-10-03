@@ -15,7 +15,7 @@ import {
   isDrawn,
   solvedState,
 } from "./construction";
-import { trayFigure, triangleStrip } from "./figures";
+import { halvesFigure, trayFigure, triangleStrip } from "./figures";
 
 // The drawing boards and the piece boards of the lesson, on the shared
 // `Board` and `PieceBoard`.
@@ -72,16 +72,32 @@ export function BoardVisual({
         guided={guided}
         met={(shown) => isDrawn(spec.shape, shown, target)}
         solved={() => solvedState(spec.shape, target)}
-        warning={(shown, current) =>
-          spec.shape === "parallelogram-diagonal" &&
-          current?.key === "pointC" &&
-          cornerOf(shown) === undefined
-            ? {
-                text: "Hai cung chưa gặp nhau. Hãy chọn lại độ mở compa.",
-                blocks: "pointC",
-              }
-            : undefined
-        }
+        warning={(shown, current) => {
+          if (
+            spec.shape === "parallelogram-diagonal" &&
+            current?.key === "pointC" &&
+            cornerOf(shown) === undefined
+          ) {
+            return {
+              text: "Hai cung chưa gặp nhau. Hãy chọn lại độ mở compa.",
+              blocks: "pointC",
+            };
+          }
+          // Every step is done on a lesson screen but the numbers are not
+          // those the screen asks for: say so, not "done".
+          if (
+            guided &&
+            current === undefined &&
+            !isDrawn(spec.shape, shown, target)
+          ) {
+            return {
+              text: "Bạn đã làm đủ các bước, nhưng số đo chưa đúng. Hãy chọn lại.",
+              blocks: "",
+            };
+          }
+          return undefined;
+        }}
+        finished="Bạn đã bấm đủ các bước. Hãy bấm Kiểm tra."
         done={spec.done ?? "Bạn đã vẽ xong hình."}
       />
       {!locked && Object.keys(own).length > 0 && (
@@ -102,8 +118,9 @@ export function BoardVisual({
 }
 
 export type PiecesSpec = {
-  // Three triangles into a trapezoid, or eight trapezoids into a tray.
-  which: "strip" | "tray";
+  // Three triangles into a trapezoid, two trapezoids into a hexagon, or eight
+  // trapezoids into a tray.
+  which: "strip" | "halves" | "tray";
   // Lesson screen only: how many pieces to place before "Tiếp" works.
   goal?: number;
   done?: string;
@@ -113,9 +130,17 @@ const PIECES = {
   strip: {
     total: 3,
     name: "Số miếng tam giác đã ghép",
-    color: "teal",
+    // Grey like the pieces, not the colour of any of the four shapes.
+    color: "slate",
     label: "Ba hình tam giác đều ghép thành một hình thang cân",
     done: "Ba miếng ghép thành một hình thang cân.",
+  },
+  halves: {
+    total: 2,
+    name: "Số miếng hình thang cân đã ghép",
+    color: "sky",
+    label: "Hai hình thang cân ghép thành một hình lục giác đều",
+    done: "Hai miếng ghép thành một hình lục giác đều.",
   },
   tray: {
     total: 8,
@@ -142,7 +167,9 @@ export function PiecesVisual({
       figureOf={(n) =>
         spec.which === "strip"
           ? triangleStrip(piece.label, { count: n, finished: n === 3 })
-          : trayFigure(piece.label, n)
+          : spec.which === "halves"
+            ? halvesFigure(piece.label, n)
+            : trayFigure(piece.label, n)
       }
     />
   );

@@ -5,7 +5,8 @@ import {
   figure,
   frame,
   gallery,
-  sideProbe,
+  MEASURE_ROOM,
+  measureY,
   steps,
   THUMB,
 } from "./builders";
@@ -166,32 +167,44 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
     verb: "kiểm",
     done: "Cả bốn góc đều khít góc vuông, nên ABCD là hình chữ nhật.",
   },
-  "thoi-trong-hinh": figure({
-    label: "Một hình chữ nhật nằm trong một hình thoi",
+  // The three shapes of the tapping exercise lie apart, so that no shape
+  // contains another and none gives the answer away.
+  "chon-hinh-bon-goc-vuong": figure({
+    label: "Ba hình để chạm chọn",
     w: 300,
     h: 200,
     pts: {
-      a: [30, 100],
-      b: [150, 30],
-      c: [270, 100],
-      d: [150, 170],
-      e: [90, 65],
-      f: [210, 65],
-      g: [210, 135],
-      h: [90, 135],
+      a: [75, 12],
+      b: [125, 52],
+      c: [75, 92],
+      d: [25, 52],
+      e: [160, 20],
+      f: [280, 20],
+      g: [250, 84],
+      h: [130, 84],
+      i: [95, 112],
+      j: [215, 112],
+      k: [215, 184],
+      l: [95, 184],
     },
     polys: [
       {
         v: ["a", "b", "c", "d"],
         fill: "mute",
         region: "thoi",
-        label: "Hình ngoài",
+        label: "Hình thứ nhất",
       },
       {
         v: ["e", "f", "g", "h"],
         fill: "mute",
+        region: "bh",
+        label: "Hình thứ hai",
+      },
+      {
+        v: ["i", "j", "k", "l"],
+        fill: "mute",
         region: "cn",
-        label: "Hình ở giữa",
+        label: "Hình thứ ba",
       },
     ],
   }),
@@ -293,23 +306,30 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
     kind: "probe",
     figure: {
       ...checkParallelogram("Tứ giác ABCD có hai đường chéo cắt nhau tại O"),
+      h: 200 + MEASURE_ROOM,
       segs: [
         { a: "A", b: "C", tone: "mute", dash: true },
         { a: "B", b: "D", tone: "mute", dash: true },
       ],
     },
-    parts: [
-      ...sideProbe(
-        [
-          ["A", "O", "4 cm"],
-          ["O", "C", "4 cm"],
-          ["B", "O", "3 cm"],
-          ["O", "D", "3 cm"],
-        ],
-        "",
-        "amber",
-      ),
-    ],
+    // Each half measures its length on a line under the figure, away from
+    // the sides: one column for each diagonal.
+    parts: (
+      [
+        ["A", "O", "4 cm", 84, 0],
+        ["O", "C", "4 cm", 84, 1],
+        ["B", "O", "3 cm", 216, 0],
+        ["O", "D", "3 cm", 216, 1],
+      ] as const
+    ).map(([a, b, measure, x, row]) => ({
+      kind: "seg" as const,
+      a,
+      b,
+      text: `${a}${b} = ${measure}`,
+      label: `Đoạn ${a}${b}`,
+      tone: "amber" as const,
+      textAt: [x, measureY(row)] as const,
+    })),
     verb: "đo",
     done: "O là trung điểm của cả hai đường chéo, nên ABCD là hình bình hành.",
   },
@@ -339,9 +359,8 @@ export const CHECK_SPECS: Record<string, VisualSpec> = {
   "ghep-tam-giac-cung-lam": { kind: "pieces", which: "strip", goal: 3 },
   "ghep-hai-thang-can-cung-lam": {
     kind: "pieces",
-    which: "tray",
+    which: "halves",
     goal: 2,
-    done: "Hai miếng ghép thành hình lục giác đều ở giữa khay.",
   },
   "ghep-thang-can-5": figure(
     labelSide(

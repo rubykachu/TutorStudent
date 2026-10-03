@@ -21,11 +21,14 @@ import {
   figure413,
   figure414,
   figure415,
+  halvesFigure,
   QUAD_NAME,
   type QuadKind,
   quad,
+  renamed,
   trayFigure,
   triangleStrip,
+  turned,
 } from "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/figures";
 import {
   solutions,
@@ -36,6 +39,7 @@ import { stepDone, stepEnabled } from "@/visuals/shared/plane/board-steps";
 import { FigureLayers } from "@/visuals/shared/plane/figure";
 import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
 import { dist } from "@/visuals/shared/plane/geometry";
+import { probeFigure } from "@/visuals/shared/plane/probe-model";
 
 const pt = (figure: FigureSpec, name: string): Pt => {
   const p = figure.pts[name];
@@ -113,6 +117,73 @@ describe("the four shapes", () => {
     same(angleAt(f, "D", "C", "A"), 60);
     same(angleAt(f, "C", "B", "D"), 60);
     expect(length(f, "A", "B")).not.toBeCloseTo(length(f, "D", "A"), 0);
+  });
+
+  it("a rhombus or a parallelogram can take another acute angle", () => {
+    const rhombus = quad("thoi", { label: "x", acute: 75 });
+    const side = length(rhombus, "A", "B");
+    for (const [a, b] of [
+      ["B", "C"],
+      ["C", "D"],
+      ["D", "A"],
+    ] as const) {
+      same(length(rhombus, a, b), side);
+    }
+    same(angleAt(rhombus, "A", "D", "B"), 75);
+    same(angleAt(rhombus, "B", "A", "C"), 105);
+    const para = quad("binh-hanh", { label: "x", acute: 70 });
+    same(length(para, "A", "B"), length(para, "C", "D"));
+    same(length(para, "B", "C"), length(para, "D", "A"));
+    same(angleAt(para, "B", "A", "C"), 70);
+    same(angleAt(para, "A", "D", "B"), 110);
+  });
+
+  it("the name O of a rhombus is written in the gap between the diagonals", () => {
+    const f = quad("thoi", { label: "x", names: true, centre: true });
+    expect(f.names).toEqual(["A", "B", "C", "D"]);
+    const o = f.texts?.find((text) => text.text === "O");
+    expect(o).toBeDefined();
+    const middle = pt(f, "O");
+    // Below and to the left of the middle, as far as a right-angle square
+    // and half a letter.
+    expect((o?.x ?? 0) < middle[0] - 20).toBe(true);
+    expect((o?.y ?? 0) > middle[1] + 10).toBe(true);
+    // Other shapes keep the name where it is.
+    const para = quad("binh-hanh", {
+      label: "x",
+      names: true,
+      diagonals: "mid",
+    });
+    expect(para.names).toContain("O");
+  });
+
+  it("renames points everywhere in a figure and turns a thumbnail over", () => {
+    const f = quad("thang-can", {
+      label: "x",
+      names: true,
+      diagonals: "equal",
+      angles: { D: "60°" },
+      parallel: "bases",
+    });
+    const r = renamed(f, { A: "E", B: "F", C: "G", D: "H" });
+    expect(Object.keys(r.pts).sort()).toEqual(["E", "F", "G", "H"]);
+    expect(r.names).toEqual(["E", "F", "G", "H"]);
+    expect(r.polys?.[0]?.v).toEqual(["E", "F", "G", "H"]);
+    expect(r.segs?.map((seg) => `${seg.a}${seg.b}`)).toEqual(["EG", "FH"]);
+    expect(r.angles?.[0]?.at).toBe("H");
+    same(length(r, "E", "G"), length(r, "F", "H"));
+    // Every name a mark uses is a point of the figure.
+    for (const tick of r.ticks ?? []) {
+      for (const [a, b] of tick.segs) {
+        expect(r.pts[a]).toBeDefined();
+        expect(r.pts[b]).toBeDefined();
+      }
+    }
+    const flipped = turned(f, { flip: "y" });
+    same(length(flipped, "A", "C"), length(f, "A", "C"), 0.01);
+    expect(pt(flipped, "A")[1]).toBeCloseTo(f.h - pt(f, "A")[1], 5);
+    const rotated = turned(f, { degrees: 20 });
+    same(length(rotated, "A", "B"), length(f, "A", "B"), 0.01);
   });
 
   it("marks every side, every angle and the diagonals asked for", () => {
@@ -273,6 +344,27 @@ describe("the figures of the workbook exercises", () => {
       same(sides[3] as number, 2 * unit, 0.01);
     }
     expect(trayFigure("x", 3).polys).toHaveLength(3);
+  });
+
+  it("two trapezoids make a hexagon, cut across it where the tray's cut slants", () => {
+    const halves = halvesFigure("x", 2);
+    expect(halves.polys).toHaveLength(2);
+    expect(halves.segs).toBeUndefined();
+    for (const poly of halves.polys ?? []) {
+      const v = poly.v;
+      const sides = v
+        .map((name, i) => length(halves, name, v[(i + 1) % 4] as string))
+        .sort((x, y) => x - y);
+      const unit = sides[0] as number;
+      for (const side of sides.slice(0, 3)) same(side, unit, 0.01);
+      same(sides[3] as number, 2 * unit, 0.01);
+    }
+    // The cut is level; the tray's cut leans.
+    expect(pt(halves, "h0")[1]).toBeCloseTo(pt(halves, "h3")[1], 5);
+    const tray = trayFigure("x", 8);
+    expect(pt(tray, "i2")[1]).not.toBeCloseTo(pt(tray, "i5")[1], 0);
+    expect(halvesFigure("x", 0).segs).toHaveLength(8);
+    expect(halvesFigure("x", 1).polys).toHaveLength(1);
   });
 });
 
@@ -544,6 +636,54 @@ describe("BoardVisual", () => {
     expect(screen.getByRole("button", { name: /Điểm C/ })).toBeDisabled();
   });
 
+  it("an exercise board says the steps are all pressed, never that the drawing is right", () => {
+    render(
+      <BoardVisual
+        spec={{ shape: "rectangle", names: ["A", "B", "C", "D"] }}
+        params={{ a: 3, b: 2 }}
+      />,
+    );
+    // A wrong length (4, not 3), every step pressed.
+    for (let i = 0; i < 4; i++) press("Tăng cạnh ab (cm)");
+    press("Êke tại A");
+    press("Êke tại B");
+    press("Tăng bc, ad (cm)");
+    press("Tăng bc, ad (cm)");
+    press("Nối DC");
+    expect(
+      screen.getByText("Bạn đã bấm đủ các bước. Hãy bấm Kiểm tra."),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Bạn đã làm xong mọi bước.")).toBeNull();
+  });
+
+  it("a guided board with every step done but the wrong numbers warns instead of closing", () => {
+    render(
+      <BoardVisual
+        spec={{
+          shape: "rectangle",
+          names: ["A", "B", "C", "D"],
+          goal: { a: 1, b: 2 },
+        }}
+      />,
+    );
+    for (let i = 0; i < 2; i++) press("Tăng cạnh ab (cm)");
+    press("Êke tại A");
+    press("Êke tại B");
+    press("Tăng bc, ad (cm)");
+    press("Tăng bc, ad (cm)");
+    press("Nối DC");
+    expect(screen.getByText(/số đo chưa đúng/)).toBeInTheDocument();
+    expect(screen.queryByText("Bạn đã làm xong mọi bước.")).toBeNull();
+  });
+
+  it("writes no ray, only a line at a given angle", () => {
+    for (const shape of ["rhombus", "parallelogram"] as const) {
+      for (const step of boardSteps(shape, ["A", "B", "C", "D"])) {
+        expect(step.text).not.toMatch(/\btia\b/);
+      }
+    }
+  });
+
   it("shows a given state locked, with no way to start over", () => {
     render(
       <BoardVisual
@@ -576,6 +716,26 @@ describe("PiecesVisual", () => {
     expect(onStateChange).toHaveBeenLastCalledWith({ n: 3 });
     expect(
       screen.getByText("Ba miếng ghép thành một hình thang cân."),
+    ).toBeInTheDocument();
+  });
+
+  it("two trapezoids make the hexagon of the guided step", () => {
+    const onStateChange = vi.fn();
+    render(
+      <PiecesVisual
+        spec={{ which: "halves", goal: 2 }}
+        onStateChange={onStateChange}
+      />,
+    );
+    expect(screen.getByText("Đã ghép 0/2 miếng")).toBeInTheDocument();
+    const add = screen.getByRole("button", {
+      name: "Tăng số miếng hình thang cân đã ghép",
+    });
+    fireEvent.click(add);
+    fireEvent.click(add);
+    expect(onStateChange).toHaveBeenLastCalledWith({ n: 2 });
+    expect(
+      screen.getByText("Hai miếng ghép thành một hình lục giác đều."),
     ).toBeInTheDocument();
   });
 
@@ -622,6 +782,36 @@ describe("TapCards", () => {
 });
 
 describe("catalog", () => {
+  it("every probe names points of its figure and writes its measures inside the drawing", () => {
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      if (spec.kind !== "probe") continue;
+      const all = spec.parts.map(() => true);
+      const shown = probeFigure(spec, all);
+      for (const t of shown.texts ?? []) {
+        expect(t.x, `${key} ${t.text}`).toBeGreaterThan(0);
+        expect(t.x, `${key} ${t.text}`).toBeLessThan(spec.figure.w);
+        expect(t.y, `${key} ${t.text}`).toBeGreaterThan(0);
+        expect(t.y, `${key} ${t.text}`).toBeLessThan(spec.figure.h);
+      }
+    }
+  });
+
+  it("no picture or step of a drawing writes a ray", () => {
+    const words = (o: unknown): string[] =>
+      typeof o === "string"
+        ? [o]
+        : Array.isArray(o)
+          ? o.flatMap(words)
+          : typeof o === "object" && o !== null
+            ? Object.values(o).flatMap(words)
+            : [];
+    for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
+      for (const text of words(spec)) {
+        expect(text, key).not.toMatch(/\btia\b/);
+      }
+    }
+  });
+
   it("every item has a valid kind and boards name four corners", () => {
     for (const [key, spec] of Object.entries(VISUAL_SPECS)) {
       if (spec.kind === "board") {

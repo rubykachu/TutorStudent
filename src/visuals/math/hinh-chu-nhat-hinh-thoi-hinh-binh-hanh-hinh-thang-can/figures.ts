@@ -56,6 +56,42 @@ const QUAD_POINTS: Readonly<Record<QuadKind, Record<QuadCorner, Pt>>> = {
   "thang-can": { A: [95, 72], B: [205, 72], C: [250, 150], D: [50, 150] },
 };
 
+// A rhombus has sides of 90 in its 300 by 200 drawing; a parallelogram has a
+// base of 150 and sides of 100.
+const RHOMBUS_SIDE = 90;
+const PARALLELOGRAM_SIDE = 100;
+
+// Corners of a quadrilateral. `acute` turns a rhombus (acute at A and C) or a
+// parallelogram (acute at B and D) to another angle than 60°.
+function cornersOf(
+  kind: QuadKind,
+  acute: number | undefined,
+): Record<QuadCorner, Pt> {
+  if (acute === undefined) return QUAD_POINTS[kind];
+  const rad = (acute * Math.PI) / 180;
+  if (kind === "thoi") {
+    const across = RHOMBUS_SIDE * Math.cos(rad / 2);
+    const up = RHOMBUS_SIDE * Math.sin(rad / 2);
+    return {
+      A: [150 - across, 100],
+      B: [150, 100 - up],
+      C: [150 + across, 100],
+      D: [150, 100 + up],
+    };
+  }
+  if (kind === "binh-hanh") {
+    const run = PARALLELOGRAM_SIDE * Math.cos(rad);
+    const drop = PARALLELOGRAM_SIDE * Math.sin(rad);
+    return {
+      A: [100, 63],
+      B: [250, 63],
+      C: [250 - run, 63 + drop],
+      D: [100 - run, 63 + drop],
+    };
+  }
+  return QUAD_POINTS[kind];
+}
+
 // The sides of a quadrilateral as pairs of corner names, in order round it.
 export const QUAD_SIDES = [
   ["A", "B"],
@@ -63,6 +99,10 @@ export const QUAD_SIDES = [
   ["C", "D"],
   ["D", "A"],
 ] as const;
+
+// Where the name O of a rhombus stands from the middle: down and to the left,
+// clear of the right-angle squares and of the diagonals.
+const RHOMBUS_O_OFFSET: Pt = [-26, 16];
 
 // Where along a side the chevrons sit when equal-side strokes mark its middle.
 const BESIDE_STROKES = 0.26;
@@ -89,6 +129,8 @@ export type QuadOptions = {
   // The two diagonals, and what they show: nothing more (plain), equal
   // lengths, a right angle between them, or the middle of each.
   diagonals?: "plain" | "equal" | "perp" | "mid";
+  // Acute angle in degrees of a rhombus or a parallelogram (default 60°).
+  acute?: number;
   // Room round the shape, for the lengths written beside its sides (default:
   // enough for the corner names).
   margin?: number;
@@ -199,7 +241,7 @@ function fitTo(
 export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
   const w = o.w ?? 300;
   const h = o.h ?? 200;
-  const base = QUAD_POINTS[kind];
+  const base = cornersOf(kind, o.acute);
   const pts: Record<string, Pt> = fitTo(
     base,
     w,
@@ -313,6 +355,22 @@ export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
       names.push("O");
     }
   }
+  // The name O sits in the middle, where the right-angle marks of the rhombus
+  // meet: it is written as a text, in the gap between two diagonals, never
+  // beside the middle where its own place would be a guess.
+  const middleName: FigureText[] =
+    kind === "thoi" && pts.O && names.includes("O")
+      ? [
+          textAt(
+            pts.O[0] + RHOMBUS_O_OFFSET[0],
+            pts.O[1] + RHOMBUS_O_OFFSET[1],
+            "O",
+          ),
+        ]
+      : [];
+  const shownNames =
+    middleName.length > 0 ? names.filter((n) => n !== "O") : names;
+  const allTexts = [...(o.texts ?? []), ...middleName];
   return {
     label: o.label,
     w,
@@ -320,14 +378,14 @@ export function quad(kind: QuadKind, o: QuadOptions): FigureSpec {
     pts,
     polys,
     ...(segs.length > 0 ? { segs } : {}),
-    ...(names.length > 0 ? { names } : {}),
+    ...(shownNames.length > 0 ? { names: shownNames } : {}),
     ...(o.nameShift ? { nameShift: o.nameShift } : {}),
     ...(dots.length > 0 ? { dots } : {}),
     ...(ticks.length > 0 ? { ticks } : {}),
     ...(arrows.length > 0 ? { arrows } : {}),
     ...(rights.length > 0 ? { rights } : {}),
     ...(angles.length > 0 ? { angles } : {}),
-    ...(o.texts ? { texts: o.texts } : {}),
+    ...(allTexts.length > 0 ? { texts: allTexts } : {}),
   };
 }
 
@@ -421,6 +479,110 @@ export function textInCorner(
         tone,
       ),
     ],
+  };
+}
+
+// The figure with its points renamed (`A` to `E`, ...): one drawing serves the
+// exercises that write other names for the same shape.
+export function renamed(
+  figure: FigureSpec,
+  names: Readonly<Record<string, string>>,
+): FigureSpec {
+  const rename = (name: string) => names[name] ?? name;
+  const pair = (p: readonly [string, string]): readonly [string, string] => [
+    rename(p[0]),
+    rename(p[1]),
+  ];
+  return {
+    ...figure,
+    pts: Object.fromEntries(
+      Object.entries(figure.pts).map(([name, p]) => [rename(name), p]),
+    ),
+    ...(figure.polys
+      ? { polys: figure.polys.map((p) => ({ ...p, v: p.v.map(rename) })) }
+      : {}),
+    ...(figure.segs
+      ? {
+          segs: figure.segs.map((seg) => ({
+            ...seg,
+            a: rename(seg.a),
+            b: rename(seg.b),
+          })),
+        }
+      : {}),
+    ...(figure.names ? { names: figure.names.map(rename) } : {}),
+    ...(figure.nameShift
+      ? {
+          nameShift: Object.fromEntries(
+            Object.entries(figure.nameShift).map(([name, shift]) => [
+              rename(name),
+              shift,
+            ]),
+          ),
+        }
+      : {}),
+    ...(figure.dots ? { dots: figure.dots.map(rename) } : {}),
+    ...(figure.ticks
+      ? {
+          ticks: figure.ticks.map((tick) => ({
+            ...tick,
+            segs: tick.segs.map(pair),
+          })),
+        }
+      : {}),
+    ...(figure.arrows
+      ? {
+          arrows: figure.arrows.map((arrow) => ({
+            ...arrow,
+            segs: arrow.segs.map(pair),
+          })),
+        }
+      : {}),
+    ...(figure.rights
+      ? {
+          rights: figure.rights.map((mark) => ({
+            ...mark,
+            at: rename(mark.at),
+            a: rename(mark.a),
+            b: rename(mark.b),
+          })),
+        }
+      : {}),
+    ...(figure.angles
+      ? {
+          angles: figure.angles.map((angle) => ({
+            ...angle,
+            at: rename(angle.at),
+            a: rename(angle.a),
+            b: rename(angle.b),
+          })),
+        }
+      : {}),
+  };
+}
+
+// A drawing of corners only (no names, no marks) turned over: left to right
+// (`x`) or upside down (`y`), or turned `degrees` round its middle.
+export function turned(
+  figure: FigureSpec,
+  how: { flip: "x" | "y" } | { degrees: number },
+): FigureSpec {
+  const mapPoint = ([x, y]: Pt): Pt => {
+    if ("flip" in how) {
+      return how.flip === "x" ? [figure.w - x, y] : [x, figure.h - y];
+    }
+    const rad = (how.degrees * Math.PI) / 180;
+    const [dx, dy] = [x - figure.w / 2, y - figure.h / 2];
+    return [
+      figure.w / 2 + dx * Math.cos(rad) - dy * Math.sin(rad),
+      figure.h / 2 + dx * Math.sin(rad) + dy * Math.cos(rad),
+    ];
+  };
+  return {
+    ...figure,
+    pts: Object.fromEntries(
+      Object.entries(figure.pts).map(([name, p]) => [name, mapPoint(p)]),
+    ),
   };
 }
 
@@ -759,9 +921,21 @@ export function figure49(label: string): FigureSpec {
 export function hexagonDiagonals(
   label: string,
   fill?: { v: readonly string[]; tone: Tone },
-  o: { nameO?: boolean } = {},
+  o: {
+    nameO?: boolean;
+    // The six corner names, clockwise from the left one (default A to F).
+    names?: readonly string[];
+  } = {},
 ): FigureSpec {
-  const names = ["A", "B", "C", "D", "E", "F"];
+  const names = o.names ?? ["A", "B", "C", "D", "E", "F"];
+  const [n0, n1, n2, n3, n4, n5] = names as [
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+  ];
   const corners = regularPoints(6, 160, 120, 100, 180);
   const pts: Record<string, Pt> = Object.fromEntries(
     names.map((name, i) => [name, corners[i] as Pt]),
@@ -777,12 +951,16 @@ export function hexagonDiagonals(
       { v: names },
     ],
     segs: [
-      { a: "A", b: "D" },
-      { a: "B", b: "E" },
-      { a: "C", b: "F" },
+      { a: n0, b: n3 },
+      { a: n1, b: n4 },
+      { a: n2, b: n5 },
     ],
-    names: o.nameO ? [...names, "O"] : names,
-    ...(o.nameO ? { dots: ["O"] } : {}),
+    names,
+    // The three diagonals cut the middle into six equal sectors; the name O
+    // sits in the one on the lower left, clear of both lines round it.
+    ...(o.nameO
+      ? { dots: ["O"], texts: [textAt(160 - 26, 120 + 14, "O")] }
+      : {}),
   };
 }
 
@@ -920,6 +1098,9 @@ export function figure414(
     // The two diagonals of EFPQ meet at O, each cut into equal halves, and the
     // four corners of ABCD are right angles.
     solution?: boolean;
+    // The same drawing for measuring: O and the two diagonals as dashed lines
+    // the child can tap (see `catalog-book.ts`).
+    measure?: boolean;
   } = {},
 ): FigureSpec {
   const pts: Record<string, Pt> = {
@@ -949,8 +1130,17 @@ export function figure414(
       "F",
       "P",
       "Q",
-      ...(o.solution ? ["O"] : []),
+      ...(o.solution || o.measure ? ["O"] : []),
     ],
+    ...(o.measure
+      ? {
+          segs: [
+            { a: "E", b: "P", tone: "mute" as Tone, dash: true },
+            { a: "F", b: "Q", tone: "mute" as Tone, dash: true },
+          ],
+          dots: ["O"],
+        }
+      : {}),
     ...(o.solution
       ? {
           segs: [
@@ -1033,7 +1223,8 @@ export function figure415(label: string): FigureSpec {
 // into a hexagonal tray
 
 // Three equilateral triangles in a strip (up, down, up) with the first
-// `count` filled and the others as dashed outlines.
+// `count` filled and the others as dashed outlines. The pieces are plain
+// grey: no colour of the lesson (the colours of the four shapes) is theirs.
 export function triangleStrip(
   label: string,
   o: { count: number; finished?: boolean },
@@ -1076,7 +1267,7 @@ export function triangleStrip(
     polys: triangles.slice(0, o.count).map((v) => ({
       v,
       tone: "ink" as Tone,
-      fill: "teal" as Tone,
+      fill: "mute" as Tone,
     })),
     ...(segs.length > 0 ? { segs } : {}),
     ...(o.finished
@@ -1114,10 +1305,11 @@ export function trayFigure(label: string, count: number): FigureSpec {
   inner.forEach((p, i) => {
     pts[`i${i}`] = p;
   });
-  // The two halves of the inner hexagon, cut along the diagonal i0-i3.
+  // The two halves of the inner hexagon, cut along the diagonal i2-i5 as the
+  // book draws it.
   const trapezoids: readonly (readonly string[])[] = [
-    ["i0", "i1", "i2", "i3"],
-    ["i3", "i4", "i5", "i0"],
+    ["i2", "i3", "i4", "i5"],
+    ["i5", "i0", "i1", "i2"],
     ...outer.map((_, k) => [
       `o${k}`,
       `o${(k + 1) % 6}`,
@@ -1142,6 +1334,42 @@ export function trayFigure(label: string, count: number): FigureSpec {
     w: 320,
     h: 240,
     pts,
+    polys: trapezoids.slice(0, count).map((v) => ({
+      v,
+      tone: "ink" as Tone,
+      fill: "sky" as Tone,
+    })),
+    ...(segs.length > 0 ? { segs } : {}),
+  };
+}
+
+// A regular hexagon cut along the long diagonal into two trapezoids; the first
+// `count` are filled and the others are dashed outlines. The cut runs across
+// the hexagon from left to right, where the tray's own cut slants.
+export function halvesFigure(label: string, count: number): FigureSpec {
+  const names = ["h0", "h1", "h2", "h3", "h4", "h5"];
+  const corners = regularPoints(6, 160, 120, 104, 0);
+  const trapezoids: readonly (readonly string[])[] = [
+    ["h0", "h1", "h2", "h3"],
+    ["h3", "h4", "h5", "h0"],
+  ];
+  const segs: FigureSeg[] = [];
+  trapezoids.forEach((v, k) => {
+    if (k < count) return;
+    v.forEach((from, i) => {
+      segs.push({
+        a: from,
+        b: v[(i + 1) % v.length] as string,
+        tone: "mute",
+        dash: true,
+      });
+    });
+  });
+  return {
+    label,
+    w: 320,
+    h: 240,
+    pts: Object.fromEntries(names.map((name, i) => [name, corners[i] as Pt])),
     polys: trapezoids.slice(0, count).map((v) => ({
       v,
       tone: "ink" as Tone,

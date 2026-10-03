@@ -1,14 +1,25 @@
+import type { FigureSpec, Pt } from "@/visuals/shared/plane/figure-spec";
+import { lineIntersection } from "@/visuals/shared/plane/geometry";
 import {
   angleProbe,
   figure,
   frame,
   gallery,
+  MEASURE_ROOM,
+  measureY,
   PROBE_MARGIN,
   sideProbe,
   small,
   steps,
 } from "./builders";
-import { labelSide, linesFigure, quad, textAt, textInCorner } from "./figures";
+import {
+  labelSide,
+  linesFigure,
+  polygonFigure,
+  quad,
+  textAt,
+  textInCorner,
+} from "./figures";
 import type { VisualSpec } from "./spec";
 
 // Pictures of sections 1 to 6: the four shapes of the opening, the rectangle,
@@ -78,6 +89,107 @@ const meetingLines = linesFigure(
     ],
   },
 );
+
+// The three pairs of lines of the choice exercise on parallel lines: no
+// chevrons, and not the pairs of the cards above, so the child looks at the
+// lines themselves.
+const choiceParallel = linesFigure("Hai đường thẳng song song", {
+  ...TWO_LINES,
+  lines: [
+    [
+      [16, 20],
+      [124, 52],
+    ],
+    [
+      [16, 60],
+      [124, 92],
+    ],
+  ],
+});
+const choiceCrossing = linesFigure("Hai đường thẳng cắt nhau", {
+  ...TWO_LINES,
+  lines: [
+    [
+      [16, 22],
+      [124, 78],
+    ],
+    [
+      [16, 80],
+      [124, 38],
+    ],
+  ],
+});
+// Two lines that come together to the left: they look close to parallel and
+// will meet.
+const choiceMeeting = linesFigure(
+  "Hai đường thẳng gần nhau dần rồi sẽ cắt nhau",
+  {
+    ...TWO_LINES,
+    lines: [
+      [
+        [16, 50],
+        [124, 22],
+      ],
+      [
+        [16, 64],
+        [124, 96],
+      ],
+    ],
+  },
+);
+
+// A rectangle drawn 4 to 3, so that its diagonal is 5 when its sides are 4 and
+// 3 centimetres (the sides of the rectangle of section 2 are 6 and 4).
+function fourByThree(figure: FigureSpec): FigureSpec {
+  return {
+    ...figure,
+    pts: {
+      ...figure.pts,
+      A: [60, 40],
+      B: [240, 40],
+      C: [240, 175],
+      D: [60, 175],
+    },
+  };
+}
+
+// Room under a figure for measures written in lines beneath it, so that they
+// never touch its strokes.
+const ROOM_BELOW = 36;
+
+// A rhombus EFGH lying tilted, whose diagonals EG and FH cross at I.
+function tiltedRhombus(label: string): FigureSpec {
+  const centre: Pt = [150, 100];
+  const half: Pt = [94, 34];
+  const across: Pt = [18.7, -51.7];
+  const base = polygonFigure(label, {
+    points: {
+      E: [centre[0] - half[0], centre[1] - half[1]],
+      F: [centre[0] + across[0], centre[1] + across[1]],
+      G: [centre[0] + half[0], centre[1] + half[1]],
+      H: [centre[0] - across[0], centre[1] - across[1]],
+    },
+    names: true,
+    segs: [
+      { a: "E", b: "G", tone: "amber", bold: true },
+      { a: "F", b: "H", tone: "amber", bold: true },
+    ],
+  });
+  const meet = lineIntersection(
+    base.pts.E as Pt,
+    base.pts.G as Pt,
+    base.pts.F as Pt,
+    base.pts.H as Pt,
+  );
+  if (!meet) throw new Error("The diagonals of the rhombus must cross");
+  return {
+    ...base,
+    pts: { ...base.pts, I: meet },
+    dots: ["I"],
+    // I is written in the gap between the two diagonals on the lower left.
+    texts: [textAt(meet[0] - 26, meet[1] + 12, "I")],
+  };
+}
 
 // Frames of a figure that gains one mark at a time.
 const SIDES_FRAME = { sides: "all" } as const;
@@ -303,32 +415,40 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
   ),
   "do-cheo-chu-nhat": {
     kind: "probe",
-    figure: quad("chu-nhat", {
-      label: "Hình chữ nhật ABCD",
-      ...NAMED,
-      segs: [
-        { a: "A", b: "C", tone: "mute", dash: true },
-        { a: "B", b: "D", tone: "mute", dash: true },
-      ],
-    }),
+    figure: {
+      ...fourByThree(
+        quad("chu-nhat", {
+          label: "Hình chữ nhật ABCD",
+          ...NAMED,
+          segs: [
+            { a: "A", b: "C", tone: "mute", dash: true },
+            { a: "B", b: "D", tone: "mute", dash: true },
+          ],
+        }),
+      ),
+      h: 200 + MEASURE_ROOM,
+    },
+    // The measures stand on two lines under the figure, away from its sides.
     parts: [
       {
         kind: "seg",
         a: "A",
         b: "C",
-        text: "5 cm",
+        text: "AC = 5 cm",
         label: "Đường chéo AC",
         tone: "amber",
         at: 0.28,
+        textAt: [150, measureY(0)],
       },
       {
         kind: "seg",
         a: "B",
         b: "D",
-        text: "5 cm",
+        text: "BD = 5 cm",
         label: "Đường chéo BD",
         tone: "amber",
         at: 0.28,
+        textAt: [150, measureY(1)],
       },
     ],
     verb: "đo",
@@ -340,7 +460,8 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       names: true,
       segs: [{ a: "A", b: "C", tone: "amber", bold: true }],
     }),
-    texts: [textAt(150, 190, "AC = 8 cm", "amber")],
+    h: 200 + ROOM_BELOW,
+    texts: [textAt(150, 218, "AC = 8 cm", "amber")],
   }),
 
   // 4. Hai cạnh song song
@@ -399,21 +520,15 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       "Hai đường song song, đánh dấu bằng hai mũi tên giống nhau",
     ),
   ]),
-  "song-song-quy-tac": figure(
-    linesFigure("Hai đường thẳng song song không bao giờ cắt nhau", {
-      lines: [
-        [
-          [30, 150],
-          [200, 40],
-        ],
-        [
-          [100, 170],
-          [270, 60],
-        ],
-      ],
-      parallel: [[0, 1]],
+  "song-song-quy-tac": figure({
+    ...quad("chu-nhat", {
+      label: "Hình chữ nhật ABCD: AB song song với CD, BC song song với DA",
+      names: true,
+      parallel: "opposite",
     }),
-  ),
+    h: 200 + ROOM_BELOW,
+    texts: [textAt(150, 218, "AB song song với CD", "slate")],
+  }),
   "xem-song-song": {
     kind: "cards",
     label: "Bốn cặp đường thẳng: song song hay cắt nhau",
@@ -468,9 +583,9 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
     },
     rights: [{ at: "O", a: "l0b", b: "l1a", tone: "violet" }],
   }),
-  "th-hai-duong-song-song": small(parallelLines),
-  "th-hai-duong-cat-nhau": small(crossingLines),
-  "th-hai-duong-gan-nhau": small(meetingLines),
+  "th-hai-duong-song-song": small(choiceParallel),
+  "th-hai-duong-cat-nhau": small(choiceCrossing),
+  "th-hai-duong-gan-nhau": small(choiceMeeting),
 
   // 5. Hình thoi
   "thoi-cac-buoc": steps("Hình thoi ABCD có bốn cạnh bằng nhau", [
@@ -514,6 +629,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
     figure: quad("thoi", {
       label: "Hình thoi ABCD",
       ...NAMED,
+      acute: 75,
       margin: PROBE_MARGIN,
     }),
     parts: [
@@ -528,10 +644,10 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       ),
       ...angleProbe(
         [
-          ["A", "D", "B", "60°"],
-          ["B", "A", "C", "120°"],
-          ["C", "B", "D", "60°"],
-          ["D", "C", "A", "120°"],
+          ["A", "D", "B", "75°"],
+          ["B", "A", "C", "105°"],
+          ["C", "B", "D", "75°"],
+          ["D", "C", "A", "105°"],
         ],
         "",
         { textDistance: 40 },
@@ -552,14 +668,15 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       "5 cm",
     ),
   ),
-  "thoi-goc-a-60": figure(
+  "thoi-goc-b-110": figure(
     textInCorner(
       quad("thoi", {
-        label: "Hình thoi ABCD có góc A bằng 60°",
+        label: "Hình thoi ABCD có góc B bằng 110°",
         names: true,
-        angles: { A: "60°" },
+        acute: 70,
+        angles: { B: "110°" },
       }),
-      "C",
+      "D",
       "?",
     ),
   ),
@@ -661,17 +778,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
       centre: true,
     }),
   ),
-  "thoi-a-60-ab-4": figure(
-    labelSide(
-      quad("thoi", {
-        label: "Hình thoi ABCD có cạnh 4 cm và góc A bằng 60°",
-        names: true,
-        margin: 44,
-        angles: { A: "60°" },
-      }),
-      "A",
-      "B",
-      "4 cm",
-    ),
+  "thoi-efgh-cheo": figure(
+    tiltedRhombus("Hình thoi EFGH có hai đường chéo EG và FH cắt nhau tại I"),
   ),
 };

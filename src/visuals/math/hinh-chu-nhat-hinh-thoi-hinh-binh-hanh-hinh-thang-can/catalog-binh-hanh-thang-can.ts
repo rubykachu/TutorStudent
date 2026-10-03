@@ -3,6 +3,8 @@ import {
   figure,
   frame,
   gallery,
+  MEASURE_ROOM,
+  measureY,
   PROBE_MARGIN,
   sideProbe,
   steps,
@@ -14,6 +16,7 @@ import {
   labelSide,
   type QuadKind,
   quad,
+  renamed,
   textInCorner,
 } from "./figures";
 import type { VisualSpec } from "./spec";
@@ -60,7 +63,7 @@ const COMPARE_DIAGONALS = {
   thoi: { diagonals: "perp", caption: "Hình thoi: vuông góc" },
   "binh-hanh": {
     diagonals: "mid",
-    caption: "Hình bình hành: cắt nhau ở giữa",
+    caption: "Hình bình hành: cắt nhau tại trung điểm",
   },
   "thang-can": { diagonals: "equal", caption: "Hình thang cân: bằng nhau" },
 } as const;
@@ -135,34 +138,38 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
           ["D", "C", "A", "60°"],
         ],
         "",
+        // The two 120° labels stand close to their corners, not side by side
+        // in the middle of the figure.
+        { textDistance: 40 },
       ),
     ],
     verb: "đo",
     done: "Các cạnh đối và các góc đối đều có số đo bằng nhau.",
   },
-  "binh-hanh-ab-6-bc-4": figure(
+  "binh-hanh-ab-7-bc-5": figure(
     labelSide(
       labelSide(
         quad("binh-hanh", {
-          label: "Hình bình hành ABCD có AB = 6 cm và BC = 4 cm",
+          label: "Hình bình hành ABCD có AB = 7 cm và BC = 5 cm",
           names: true,
           margin: 44,
         }),
         "A",
         "B",
-        "6 cm",
+        "7 cm",
       ),
       "B",
       "C",
-      "4 cm",
+      "5 cm",
     ),
   ),
-  "binh-hanh-goc-a-120": figure(
+  "binh-hanh-goc-a-110": figure(
     textInCorner(
       quad("binh-hanh", {
-        label: "Hình bình hành ABCD có góc A bằng 120°",
+        label: "Hình bình hành ABCD có góc A bằng 110°",
         names: true,
-        angles: { A: "120°" },
+        acute: 70,
+        angles: { A: "110°" },
       }),
       "C",
       "?",
@@ -231,43 +238,50 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
     kind: "probe",
     figure: {
       ...diagonalsOf("Hình bình hành ABCD có hai đường chéo cắt nhau tại O"),
+      h: 200 + MEASURE_ROOM,
       segs: [
         { a: "A", b: "C", tone: "mute", dash: true },
         { a: "B", b: "D", tone: "mute", dash: true },
       ],
     },
+    // Each half measures its length on a line under the figure, away from
+    // the sides, where the two columns are the two diagonals.
     parts: [
       {
         kind: "seg",
         a: "A",
         b: "O",
-        text: "3 cm",
+        text: "AO = 3 cm",
         label: "Đoạn AO",
         tone: "amber",
+        textAt: [84, measureY(0)],
       },
       {
         kind: "seg",
         a: "O",
         b: "C",
-        text: "3 cm",
+        text: "OC = 3 cm",
         label: "Đoạn OC",
         tone: "amber",
+        textAt: [84, measureY(1)],
       },
       {
         kind: "seg",
         a: "B",
         b: "O",
-        text: "4 cm",
+        text: "BO = 4 cm",
         label: "Đoạn BO",
         tone: "amber",
+        textAt: [216, measureY(0)],
       },
       {
         kind: "seg",
         a: "O",
         b: "D",
-        text: "4 cm",
+        text: "OD = 4 cm",
         label: "Đoạn OD",
         tone: "amber",
+        textAt: [216, measureY(1)],
       },
     ],
     verb: "đo",
@@ -275,6 +289,17 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   },
   "binh-hanh-cheo-ten": figure(
     diagonalsOf("Hình bình hành ABCD có hai đường chéo cắt nhau tại O"),
+  ),
+  // The same kind of picture for the practice question, leaning the other way
+  // and with other names.
+  "binh-hanh-cheo-ghik": figure(
+    renamed(
+      diagonalParallelogram(
+        "Hình bình hành GHIK có hai đường chéo cắt nhau tại O",
+        { first: 4, second: 3, between: 70, names: true, fill: true },
+      ),
+      { A: "G", B: "H", C: "I", D: "K" },
+    ),
   ),
 
   // 9. Hình thang cân
@@ -419,32 +444,38 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
   ),
   "do-cheo-thang-can": {
     kind: "probe",
-    figure: quad("thang-can", {
-      label: "Hình thang cân ABCD",
-      ...NAMED,
-      segs: [
-        { a: "A", b: "C", tone: "mute", dash: true },
-        { a: "B", b: "D", tone: "mute", dash: true },
-      ],
-    }),
+    figure: {
+      ...quad("thang-can", {
+        label: "Hình thang cân ABCD",
+        ...NAMED,
+        segs: [
+          { a: "A", b: "C", tone: "mute", dash: true },
+          { a: "B", b: "D", tone: "mute", dash: true },
+        ],
+      }),
+      h: 200 + MEASURE_ROOM,
+    },
+    // The measures stand on two lines under the figure, away from its bases.
     parts: [
       {
         kind: "seg",
         a: "A",
         b: "C",
-        text: "7 cm",
+        text: "AC = 7 cm",
         label: "Đường chéo AC",
         tone: "amber",
-        at: 0.2,
+        at: 0.28,
+        textAt: [150, measureY(0)],
       },
       {
         kind: "seg",
         a: "B",
         b: "D",
-        text: "7 cm",
+        text: "BD = 7 cm",
         label: "Đường chéo BD",
         tone: "amber",
-        at: 0.2,
+        at: 0.28,
+        textAt: [150, measureY(1)],
       },
     ],
     verb: "đo",
@@ -456,6 +487,17 @@ export const BINH_HANH_THANG_CAN_SPECS: Record<string, VisualSpec> = {
       names: true,
       diagonals: "plain",
     }),
+  ),
+  // The same picture for the review question, with other names.
+  "thang-can-cheo-efgh": figure(
+    renamed(
+      quad("thang-can", {
+        label: "Hình thang cân EFGH với hai đường chéo EG và FH",
+        names: true,
+        diagonals: "plain",
+      }),
+      { A: "E", B: "F", C: "G", D: "H" },
+    ),
   ),
 
   // 11. So sánh bốn hình

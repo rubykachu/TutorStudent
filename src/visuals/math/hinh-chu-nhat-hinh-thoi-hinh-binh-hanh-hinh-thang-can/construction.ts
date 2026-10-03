@@ -88,7 +88,7 @@ export function boardSteps(
     kind: "pick",
     short: `Góc ${second}${first}${fourth}`,
     options: angleOptions,
-    text: `Dùng thước đo góc ở ${first}, kẻ tia ${first}${fourth}: chọn góc ${second}${first}${fourth}.`,
+    text: `Dùng thước đo góc ở ${first}, kẻ đường ${first}${fourth} tạo với ${first}${second} một góc: chọn góc ${second}${first}${fourth}.`,
   };
   switch (shape) {
     case "rectangle":
@@ -120,7 +120,7 @@ export function boardSteps(
         press(
           "markQ",
           `Lấy ${fourth}`,
-          `Mở compa bằng ${first}${second}. Đặt kim ở ${first}, vẽ cung cắt tia ${first}${fourth} tại ${fourth}.`,
+          `Mở compa bằng ${first}${second}. Đặt kim ở ${first}, vẽ cung cắt đường ${first}${fourth} tại ${fourth}.`,
         ),
         press(
           "arcQ",
@@ -148,7 +148,7 @@ export function boardSteps(
           kind: "stepper",
           ...SLANT,
           short: `${first}${fourth}, ${second}${third} (cm)`,
-          text: `Lấy ${fourth} trên tia ${first}${fourth}: chọn độ dài ${first}${fourth}. ${second}${third} dài bằng ${first}${fourth}.`,
+          text: `Lấy ${fourth} trên đường ${first}${fourth}: chọn độ dài ${first}${fourth}. ${second}${third} dài bằng ${first}${fourth}.`,
         },
         press(
           "parF",
@@ -313,6 +313,23 @@ const add = (p: Pt, q: Pt): Pt => [p[0] + q[0], p[1] + q[1]];
 const sub = (p: Pt, q: Pt): Pt => [p[0] - q[0], p[1] - q[1]];
 const scaled = (p: Pt, k: number): Pt => [p[0] * k, p[1] * k];
 
+// The measure of the angle at the first corner stands on the bisector this
+// far from the corner (drawing units): out beyond the arc, but never past the
+// end of the shorter side, so it stays inside the figure.
+const ANGLE_TEXT_FAR = 46;
+const ANGLE_TEXT_SHARE = 0.85;
+function angleTextDistance(
+  ...sidesCm: readonly (number | undefined)[]
+): number {
+  const shortest = Math.min(
+    ...sidesCm.filter((cm): cm is number => cm !== undefined),
+  );
+  return Math.min(
+    ANGLE_TEXT_FAR,
+    Math.round(ANGLE_TEXT_SHARE * shortest * UNIT),
+  );
+}
+
 // Direction on the screen of a ray rising `deg` degrees from the base line.
 const rise = (deg: number): Pt => [
   Math.cos((deg * Math.PI) / 180),
@@ -463,7 +480,7 @@ function rhombusFigure(
         text: `${angle}°`,
         tone: "violet",
         radius: 24,
-        textDistance: 46,
+        textDistance: angleTextDistance(len),
       });
       if (flag(state, "markQ")) {
         draw.corner(q, corner);
@@ -523,7 +540,7 @@ function parallelogramFigure(
         text: `${angle}°`,
         tone: "violet",
         radius: 24,
-        textDistance: 46,
+        textDistance: angleTextDistance(len, side),
       });
       if (side !== undefined) {
         const slant = scaled(dir, side * UNIT);

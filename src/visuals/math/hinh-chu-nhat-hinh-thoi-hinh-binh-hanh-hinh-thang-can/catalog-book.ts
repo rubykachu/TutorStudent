@@ -1,5 +1,13 @@
 import type { FigureSpec } from "@/visuals/shared/plane/figure-spec";
-import { board, figure, frame, gallery, steps } from "./builders";
+import {
+  board,
+  figure,
+  frame,
+  gallery,
+  MEASURE_ROOM,
+  measureY,
+  steps,
+} from "./builders";
 import { finished, stage } from "./catalog-drawing";
 import {
   FIGURE_411,
@@ -7,6 +15,7 @@ import {
   figure413,
   figure414,
   figure415,
+  hexagonDiagonals,
   labelSide,
   trayFigure,
   triangleStrip,
@@ -18,6 +27,11 @@ import type { VisualSpec } from "./spec";
 // lead-ins, and the solutions.
 
 const letters = ["a", "b", "c", "d"] as const;
+
+// Heights of the drawings of figures 4.13 and 4.14 (see `figures.ts`); the
+// lines of measures under them start below.
+const FIGURE_413_HEIGHT = 230;
+const FIGURE_414_HEIGHT = 230;
 
 // The four figures of 4.11 or 4.12 side by side, with the letters the book
 // prints; the shapes named in `fills` are painted in their colour.
@@ -65,13 +79,90 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
   // The figures of the book
   "sbt-hinh-4-11": fourFigures("Hình 4.11: bốn hình a, b, c, d", FIGURE_411),
   "sbt-hinh-4-12": fourFigures("Hình 4.12: bốn hình a, b, c, d", FIGURE_412),
-  "sbt-hinh-4-13": figure(
-    figure413("Hình 4.13: hình chữ nhật ABCD và tứ giác MNPQ"),
+  // Figures 4.13 and 4.14 are for measuring: the child taps the sides (or
+  // the halves of the diagonals) and the angles, and reads what each measures
+  // on two lines under the drawing.
+  "sbt-hinh-4-13": {
+    kind: "probe",
+    figure: {
+      ...figure413("Hình 4.13: hình chữ nhật ABCD và tứ giác MNPQ"),
+      h: FIGURE_413_HEIGHT + MEASURE_ROOM,
+    },
+    parts: (
+      [
+        ["M", "N", 95, 0],
+        ["N", "P", 95, 1],
+        ["P", "Q", 225, 0],
+        ["Q", "M", 225, 1],
+      ] as const
+    ).map(([a, b, x, row]) => ({
+      kind: "seg" as const,
+      a,
+      b,
+      text: `${a}${b} = 5 cm`,
+      label: `Cạnh ${a}${b}`,
+      tone: "blue" as const,
+      textAt: [x, measureY(row, FIGURE_413_HEIGHT)] as const,
+    })),
+    verb: "đo",
+    done: "Cả bốn cạnh của MNPQ đều dài 5 cm.",
+  },
+  "sbt-hinh-4-14": {
+    kind: "probe",
+    figure: {
+      ...figure414("Hình 4.14: hình chữ nhật ABCD và tứ giác EFPQ", {
+        measure: true,
+      }),
+      h: FIGURE_414_HEIGHT + MEASURE_ROOM,
+    },
+    parts: [
+      ...(
+        [
+          ["E", "O", "5 cm", 84, 0],
+          ["O", "P", "5 cm", 84, 1],
+          ["F", "O", "2 cm", 236, 0],
+          ["O", "Q", "2 cm", 236, 1],
+        ] as const
+      ).map(([a, b, measure, x, row]) => ({
+        kind: "seg" as const,
+        a,
+        b,
+        text: `${a}${b} = ${measure}`,
+        label: `Đoạn ${a}${b}`,
+        tone: "amber" as const,
+        textAt: [x, measureY(row, FIGURE_414_HEIGHT)] as const,
+      })),
+      ...(
+        [
+          ["B", "A", "C"],
+          ["C", "B", "D"],
+          ["D", "C", "A"],
+          ["A", "D", "B"],
+        ] as const
+      ).map(([at, a, b]) => ({
+        kind: "angle" as const,
+        at,
+        a,
+        b,
+        text: "90°",
+        label: `Góc ${at}`,
+        tone: "violet" as const,
+        right: true,
+        textDistance: 26,
+      })),
+    ],
+    verb: "đo",
+    done: "O chia mỗi đường chéo của EFPQ thành hai nửa bằng nhau, và ABCD có bốn góc 90°.",
+  },
+  "sbt-hinh-4-15": figure(figure415("Hình 4.15: các điểm A, B, C, D, E và O")),
+  // The hexagon of the lead-in to 4.17, with the names U to Z.
+  "hex-uvwxyz": figure(
+    hexagonDiagonals(
+      "Hình lục giác đều UVWXYZ chia thành sáu hình tam giác đều có chung đỉnh O",
+      undefined,
+      { nameO: true, names: ["U", "V", "W", "X", "Y", "Z"] },
+    ),
   ),
-  "sbt-hinh-4-14": figure(
-    figure414("Hình 4.14: hình chữ nhật ABCD và tứ giác EFPQ"),
-  ),
-  "sbt-hinh-4-15": figure(figure415("Hình 4.15: hình có tâm O")),
   "sbt-hinh-4-16": figure(trayFigure("Hình 4.16: mặt khay hình lục giác", 8)),
 
   // Boards of the exercises and their lead-ins
@@ -90,19 +181,25 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     [
       {
         figure: unnamed(
-          finished("rectangle", ABCD, { a: 4, b: 3 }, "Hình chữ nhật"),
+          finished("rectangle", ABCD, { a: 4, b: 3 }, "Hình chữ nhật", true),
         ),
         caption: "Hình chữ nhật",
       },
       {
         figure: unnamed(
-          finished("rhombus", ABCD, { side: 3, angle: 75 }, "Hình thoi"),
+          finished("rhombus", ABCD, { side: 3, angle: 75 }, "Hình thoi", true),
         ),
         caption: "Hình thoi",
       },
       {
         figure: unnamed(
-          finished("parallelogram", ABCD, { a: 5, b: 3 }, "Hình bình hành"),
+          finished(
+            "parallelogram",
+            ABCD,
+            { a: 5, b: 3 },
+            "Hình bình hành",
+            true,
+          ),
         ),
         caption: "Hình bình hành",
       },
@@ -162,11 +259,11 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
       frame(stage("rhombus", MNPQ, { len: 4 }), "Vẽ MN = 4 cm"),
       frame(
         stage("rhombus", MNPQ, { len: 4, angle: 60 }),
-        "Kẻ tia MQ, chọn góc NMQ bằng 60°",
+        "Kẻ đường MQ tạo với MN một góc 60°",
       ),
       frame(
         stage("rhombus", MNPQ, { len: 4, angle: 60, markQ: 1 }),
-        "Mở compa 4 cm, vẽ cung từ M cắt tia tại Q",
+        "Mở compa bằng MN = 4 cm, đặt kim ở M, vẽ cung cắt đường MQ tại Q",
       ),
       frame(
         stage("rhombus", MNPQ, {
@@ -177,7 +274,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
           arcN: 1,
           pointP: 1,
         }),
-        "Vẽ hai cung từ Q và từ N, chúng gặp nhau tại P",
+        "Vẽ hai cung tâm Q và tâm N, chúng gặp nhau tại P",
       ),
       frame(
         finished(
@@ -196,11 +293,11 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
       frame(stage("parallelogram", EFHK, { len: 3 }), "Vẽ EF = 3 cm"),
       frame(
         stage("parallelogram", EFHK, { len: 3, angle: 60 }),
-        "Kẻ tia EK, chọn góc FEK bằng 60°",
+        "Kẻ đường EK tạo với EF một góc 60°",
       ),
       frame(
         stage("parallelogram", EFHK, { len: 3, angle: 60, side: 4 }),
-        "Lấy K trên tia, EK dài 4 cm (FH cũng 4 cm)",
+        "Lấy K trên đường EK, EK dài 4 cm (FH cũng 4 cm)",
       ),
       frame(
         stage("parallelogram", EFHK, {
@@ -210,7 +307,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
           parF: 1,
           parK: 1,
         }),
-        "Dùng êke vẽ qua F và qua K hai đường song song",
+        "Dùng êke vẽ qua F đường song song với EK, qua K đường song song với EF",
       ),
       frame(
         finished(
@@ -235,7 +332,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
           rAC: 6,
           arcA: 1,
         }),
-        "Vẽ cung từ B bán kính 5 cm và cung từ A bán kính 6 cm",
+        "Vẽ cung tâm B bán kính 5 cm và cung tâm A bán kính 6 cm",
       ),
       frame(
         stage("parallelogram-diagonal", ABCD, {
@@ -267,11 +364,11 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
       frame(stage("rhombus", MNPQ, { len: 5 }), "Vẽ MN = 5 cm"),
       frame(
         stage("rhombus", MNPQ, { len: 5, angle: 60 }),
-        "Kẻ tia MQ tạo với MN một góc 60°",
+        "Kẻ đường MQ tạo với MN một góc 60°",
       ),
       frame(
         stage("rhombus", MNPQ, { len: 5, angle: 60, markQ: 1 }),
-        "Mở compa 5 cm, vẽ cung từ M cắt tia tại Q",
+        "Mở compa bằng MN = 5 cm, đặt kim ở M, vẽ cung cắt đường MQ tại Q",
       ),
       frame(
         stage("rhombus", MNPQ, {
@@ -282,7 +379,7 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
           arcN: 1,
           pointP: 1,
         }),
-        "Vẽ hai cung từ Q và từ N, chúng gặp nhau tại P",
+        "Vẽ hai cung tâm Q và tâm N, chúng gặp nhau tại P",
       ),
       frame(
         finished(
@@ -328,7 +425,9 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     ),
   ),
   "sbt-4-17-giai": figure({
-    ...figure415("Các đoạn đã đánh dấu bằng nhau; BE và CD song song"),
+    ...figure415(
+      "Các đoạn đã đánh dấu bằng nhau; BE và CD song song; góc B và góc E đều bằng 60°",
+    ),
     ticks: [
       {
         segs: [
@@ -348,6 +447,28 @@ export const BOOK_SPECS: Record<string, VisualSpec> = {
     arrows: [
       { segs: [["B", "E"]], count: 1, tone: "slate", at: 0.25 },
       { segs: [["C", "D"]], count: 1, tone: "slate" },
+    ],
+    // The two angles of the trapezoid at the ends of its long base: each is
+    // the angle of an equilateral triangle, 60°.
+    angles: [
+      {
+        at: "B",
+        a: "E",
+        b: "C",
+        text: "60°",
+        tone: "violet",
+        radius: 22,
+        textDistance: 52,
+      },
+      {
+        at: "E",
+        a: "B",
+        b: "D",
+        text: "60°",
+        tone: "violet",
+        radius: 22,
+        textDistance: 52,
+      },
     ],
   }),
   "sbt-4-18-giai": figure(

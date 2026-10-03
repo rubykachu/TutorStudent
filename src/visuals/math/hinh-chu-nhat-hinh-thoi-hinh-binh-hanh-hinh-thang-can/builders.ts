@@ -19,6 +19,17 @@ export const small = (figureSpec: FigureSpec): VisualSpec =>
 // Room round a shape whose sides get their measures written beside them.
 export const PROBE_MARGIN = 44;
 
+// Room under a figure for two lines of measures written beneath it, so that
+// they never touch its strokes. The figure itself is fitted to a drawing of
+// `FITTED_HEIGHT`; the lines start under it.
+export const MEASURE_ROOM = 52;
+const FITTED_HEIGHT = 200;
+
+// Where the centre of the text of the `row`-th line of measures stands (rows
+// count from 0), under a figure fitted to a drawing `fitted` units high.
+export const measureY = (row: number, fitted = FITTED_HEIGHT) =>
+  fitted + 16 + 26 * row;
+
 // Size of a thumbnail in a row of options or of a gallery.
 export const THUMB = { w: 140, h: 112 } as const;
 

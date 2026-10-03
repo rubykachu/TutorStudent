@@ -6,6 +6,7 @@ import {
   type QuadKind,
   quad,
   rightTrapezoid,
+  turned,
 } from "./figures";
 import type { VisualSpec } from "./spec";
 
@@ -60,6 +61,27 @@ export const COMMON_SPECS: Record<string, VisualSpec> = {
         ...THUMB,
         diagonals: true,
       },
+    ),
+  ),
+  // The same shapes turned another way, for the exercises that name a shape
+  // whatever way it lies.
+  "th-chu-nhat-xoay": small(
+    turned(quad("chu-nhat", { label: "Hình chữ nhật nằm nghiêng", ...THUMB }), {
+      degrees: 20,
+    }),
+  ),
+  "th-thang-can-nguoc": small(
+    turned(quad("thang-can", { label: "Hình thang cân lộn ngược", ...THUMB }), {
+      flip: "y",
+    }),
+  ),
+  "th-binh-hanh-trai": small(
+    turned(
+      quad("binh-hanh", {
+        label: "Hình bình hành nghiêng sang trái",
+        ...THUMB,
+      }),
+      { flip: "x" },
     ),
   ),
   // The four shapes side by side, filled in their concept colour, each with

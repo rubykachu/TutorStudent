@@ -18,13 +18,22 @@ export const stage = (
   state: VisualState,
 ) => boardFigure(shape, names, state);
 
+// Longest side of a cropped finished drawing, and the room round it for the
+// names, strokes and chevrons (drawing units).
+const CROP_CONTENT = 150;
+const CROP_MARGIN = 34;
+
 // A finished drawing without the tools: only its sides (and the right-angle
 // squares, strokes and chevrons that mark them), as the picture of the rule.
+// `crop` cuts the frame to the drawing and scales it up, for a rule picture
+// shown alone or beside others (a step frame keeps the frame of the board, so
+// that the frames of a drawing do not change size).
 export function finished(
   shape: BoardShape,
   names: readonly string[],
   params: Readonly<Record<string, number>>,
   label: string,
+  crop = false,
 ): FigureSpec {
   const board = boardFigure(shape, names, solvedState(shape, params));
   const segs = (board.segs ?? []).filter((seg) => !seg.dash);
@@ -43,14 +52,35 @@ export function finished(
     ...(rest.ticks ?? []).flatMap((tick) => tick.segs.flat()),
     ...(rest.arrows ?? []).flatMap((arrow) => arrow.segs.flat()),
   ]);
-  return {
+  const kept = Object.entries(board.pts).filter(([name]) => used.has(name));
+  const figure: FigureSpec = {
     ...rest,
     label,
-    pts: Object.fromEntries(
-      Object.entries(board.pts).filter(([name]) => used.has(name)),
-    ),
+    pts: Object.fromEntries(kept),
     segs,
     names: rest.names ?? [...names],
+  };
+  return crop ? cropped(figure) : figure;
+}
+
+// The figure with its frame cut to its points and scaled up.
+function cropped(figure: FigureSpec): FigureSpec {
+  const points = Object.values(figure.pts);
+  const xs = points.map((p) => p[0]);
+  const ys = points.map((p) => p[1]);
+  const [minX, minY] = [Math.min(...xs), Math.min(...ys)];
+  const [width, height] = [Math.max(...xs) - minX, Math.max(...ys) - minY];
+  const scale = CROP_CONTENT / Math.max(width, height);
+  return {
+    ...figure,
+    w: Math.round(width * scale + 2 * CROP_MARGIN),
+    h: Math.round(height * scale + 2 * CROP_MARGIN),
+    pts: Object.fromEntries(
+      Object.entries(figure.pts).map(([name, [x, y]]) => [
+        name,
+        [(x - minX) * scale + CROP_MARGIN, (y - minY) * scale + CROP_MARGIN],
+      ]),
+    ),
   };
 }
 
@@ -88,6 +118,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ABCD,
       { a: 4, b: 3 },
       "Hình chữ nhật vẽ bằng thước và êke",
+      true,
     ),
   ),
   "ve-chu-nhat-tap-lam": board("rectangle", ["M", "N", "P", "Q"], {
@@ -107,11 +138,11 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ),
       frame(
         stage("rhombus", ABCD, { len: 3, angle: 75 }),
-        "Dùng thước đo góc kẻ tia AD, góc BAD bằng 75°",
+        "Dùng thước đo góc kẻ đường AD tạo với AB một góc 75°",
       ),
       frame(
         stage("rhombus", ABCD, { len: 3, angle: 75, markQ: 1 }),
-        "Mở compa 3 cm, vẽ cung từ A cắt tia tại D",
+        "Mở compa bằng AB = 3 cm, đặt kim ở A, vẽ cung cắt đường AD tại D",
       ),
       frame(
         stage("rhombus", ABCD, {
@@ -121,7 +152,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
           arcQ: 1,
           arcN: 1,
         }),
-        "Giữ nguyên độ mở, vẽ hai cung từ D và từ B",
+        "Giữ nguyên độ mở, đặt kim ở D rồi ở B, vẽ hai cung",
       ),
       frame(
         stage("rhombus", ABCD, {
@@ -151,6 +182,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ABCD,
       { side: 3, angle: 75 },
       "Hình thoi vẽ bằng thước, thước đo góc và compa",
+      true,
     ),
   ),
   "ve-thoi-tap-lam": board("rhombus", ["E", "F", "G", "H"], {
@@ -171,11 +203,11 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ),
       frame(
         stage("parallelogram", ABCD, { len: 5, angle: 60 }),
-        "Dùng thước đo góc kẻ tia AD, góc BAD bằng 60°",
+        "Dùng thước đo góc kẻ đường AD tạo với AB một góc 60°",
       ),
       frame(
         stage("parallelogram", ABCD, { len: 5, angle: 60, side: 3 }),
-        "Lấy D trên tia, AD dài 3 cm",
+        "Lấy D trên đường AD, AD dài 3 cm",
       ),
       frame(
         stage("parallelogram", ABCD, {
@@ -213,6 +245,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ABCD,
       { a: 5, b: 3 },
       "Hình bình hành vẽ bằng thước, thước đo góc và êke",
+      true,
     ),
   ),
   // A set square sliding along a ruler draws parallel lines.
@@ -257,8 +290,8 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
     ],
   }),
   "ve-binh-hanh-tap-lam": board("parallelogram", ["M", "N", "P", "Q"], {
-    a: 2,
-    b: 4,
+    a: 4,
+    b: 6,
   }),
   "ve-binh-hanh-abcd": board("parallelogram", ABCD),
   "ve-binh-hanh-pqrs": board("parallelogram", ["P", "Q", "R", "S"]),
@@ -273,7 +306,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ),
       frame(
         stage("parallelogram-diagonal", ABCD, { len: 4, rBC: 3, arcB: 1 }),
-        "Mở compa 3 cm, vẽ một cung tròn từ B",
+        "Mở compa bằng BC = 3 cm, đặt kim ở B, vẽ một cung tròn",
       ),
       frame(
         stage("parallelogram-diagonal", ABCD, {
@@ -283,7 +316,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
           rAC: 6,
           arcA: 1,
         }),
-        "Mở compa 6 cm, vẽ một cung tròn từ A",
+        "Mở compa bằng AC = 6 cm, đặt kim ở A, vẽ một cung tròn",
       ),
       frame(
         stage("parallelogram-diagonal", ABCD, {
@@ -326,6 +359,7 @@ export const DRAWING_SPECS: Record<string, VisualSpec> = {
       ABCD,
       { ab: 4, bc: 3, ac: 6 },
       "Hình bình hành vẽ bằng thước, compa và êke",
+      true,
     ),
   ),
   "ve-bh-cheo-tap-lam": board("parallelogram-diagonal", ["M", "N", "P", "Q"], {
