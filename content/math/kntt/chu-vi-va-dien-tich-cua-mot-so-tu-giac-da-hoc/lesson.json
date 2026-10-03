@@ -1,0 +1,4899 @@
+{
+  "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc",
+  "subject": "math",
+  "series": "kntt",
+  "grade": 6,
+  "order": 20,
+  "number": 20,
+  "chapter": {
+    "numeral": "IV",
+    "name": "Một số hình phẳng trong thực tiễn"
+  },
+  "title": "Chu vi và diện tích của một số tứ giác đã học",
+  "sourceRef": "Sách bài tập tr.70–73",
+  "status": "draft",
+  "overview": {
+    "hook": {
+      "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách đo một vòng quanh hình và đo xem hình rộng bao nhiêu. Bạn thử nghĩ xem, nhà mình muốn rào một mảnh vườn thì cần mua bao nhiêu mét lưới?"
+    },
+    "summary": "Bài này dạy chu vi và diện tích của hình vuông, hình chữ nhật, hình thoi, hình bình hành và hình thang cân. Bạn dùng chúng để giải các bài toán rào vườn, lát sàn và sơn tường.",
+    "goals": [
+      "tính chu vi của năm hình đã học",
+      "tính diện tích của năm hình đã học",
+      "đổi mét ra xăng-ti-mét, và đổi mét vuông ra xăng-ti-mét vuông",
+      "giải bài toán rào vườn, lát sàn và sơn tường"
+    ],
+    "whyItMatters": "Bạn dùng bài này khi nhà lát gạch một phòng: biết diện tích sàn, bạn tính được số viên gạch cần mua."
+  },
+  "concepts": [
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chu-vi",
+      "name": "Chu vi",
+      "color": "blue"
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich",
+      "name": "Diện tích",
+      "color": "teal"
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chieu-cao",
+      "name": "Chiều cao",
+      "color": "violet"
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.duong-cheo",
+      "name": "Đường chéo",
+      "color": "amber"
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.don-vi",
+      "name": "Đơn vị đo",
+      "color": "sky"
+    }
+  ],
+  "sections": [
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.chu-vi-la-gi",
+      "title": "Chu vi là gì",
+      "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Bạn đi một vòng quanh mảnh vườn, qua hết các cạnh. Quãng đường bạn đi là chu vi của vườn."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.vuon-di-vong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chu vi của một hình là tổng độ dài các cạnh của hình.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chu-vi-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm \"Đi tiếp\" để đi từng cạnh của mảnh đất hình thang cân. Cộng các cạnh đã đi để biết cần bao nhiêu mét hàng rào."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.walk-thang-can"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chu-vi-tu-giac",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chu-vi-la-gi-chon"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.thang-can-chu-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chu-vi-quy-tac",
+        "caption": "Chu vi của một hình là tổng độ dài các cạnh của hình."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.chu-vi-vuong-thoi",
+      "title": "Chu vi hình vuông và hình thoi",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Mảnh vườn hình vuông có bốn cạnh bằng nhau. Mỗi cạnh dài 6 m, nên đi một vòng là 6 + 6 + 6 + 6."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.vuong-di-vong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chu vi hình vuông và hình thoi bằng 4 nhân với độ dài một cạnh.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.c4a-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm \"Đi tiếp\" để đi quanh hình thoi. Bốn cạnh bằng nhau nên ta chỉ cần nhân độ dài một cạnh với 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.walk-thoi"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.khung-vuong-chu-vi",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.thoi-chu-vi-7"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.rao-vuon-vuong"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.c4a-quy-tac",
+        "caption": "Chu vi hình vuông và hình thoi bằng 4 nhân với độ dài một cạnh."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.chu-vi-chu-nhat-binh-hanh",
+      "title": "Chu vi hình chữ nhật và hình bình hành",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Hai cạnh kề nhau là hai cạnh nối với nhau ở một đỉnh, như chiều dài và chiều rộng của sân. Đi một vòng quanh sân dài 7 m, rộng 4 m là 7 + 4 + 7 + 4."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chu-nhat-di-vong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chu vi hình chữ nhật và hình bình hành bằng 2 nhân với tổng của hai cạnh kề nhau.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.c2ab-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm \"Đi tiếp\" để đi quanh hình bình hành. Bạn sẽ thấy hai cạnh 6 cm và hai cạnh 4 cm, nên chu vi là 2 · (6 + 4)."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.walk-binh-hanh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.khung-chu-nhat-chu-vi",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.binh-hanh-chu-vi"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.san-truong-chu-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.c2ab-quy-tac",
+        "caption": "Chu vi hình chữ nhật và hình bình hành bằng 2 nhân với tổng của hai cạnh kề nhau."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.dien-tich-la-gi",
+      "title": "Diện tích là gì",
+      "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Ô vuông cạnh 1 cm là ô vuông đơn vị, có diện tích 1 xăng-ti-mét vuông, viết là 1 cm². Ô vuông cạnh 1 m có diện tích 1 mét vuông, viết là 1 m²."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.phu-o-vuong"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Diện tích của một hình là số ô vuông đơn vị phủ kín hình đó.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dt-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng ô vuông để đếm. Đếm đủ các ô thì bạn biết diện tích của hình."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.tiles-bac-thang"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dem-o-vuong-7",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dien-tich-9-o-1m"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mieng-dan-15-o"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dt-quy-tac",
+        "caption": "Diện tích của một hình là số ô vuông đơn vị phủ kín hình đó."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.dien-tich-chu-nhat-vuong",
+      "title": "Diện tích hình chữ nhật và hình vuông",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Sàn phòng được chia thành các ô vuông cạnh 1 m: mỗi hàng 6 ô, có 4 hàng. Số ô là 6 · 4 = 24, nên diện tích sàn là 24 m²."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.hang-cot-gach"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Hình vuông có chiều dài bằng chiều rộng, nên diện tích bằng cạnh nhân với cạnh."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dt-cn-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm nút + và − để xếp các ô vuông 1 m phủ kín sàn. Số ô cho bạn biết diện tích sàn."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.floor-lesson"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-chu-nhat-9-4",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.gach-vuong-25"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.phong-hoc-7-5"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dt-cn-quy-tac",
+        "caption": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.dien-tich-binh-hanh",
+      "title": "Diện tích hình bình hành",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Chiều cao của hình bình hành là đoạn thẳng đi từ một đỉnh xuống cạnh đáy, và vuông góc với cạnh đáy. Cắt phần tam giác bên trái, trượt sang phải thì ghép được hình chữ nhật."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.bbh-cat-ghep"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.bbh-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.tip.chon-chieu-cao",
+          "kind": "tránh sai",
+          "title": "Chọn đúng chiều cao",
+          "text": "Chiều cao vuông góc với cạnh đáy. Cạnh bên nghiêng dài hơn chiều cao, nên đừng lấy nó nhân với cạnh đáy.",
+          "tex": "S = a \\cdot h"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm \"Kẻ chiều cao\", \"Cắt\", \"Trượt\" để biến hình bình hành thành hình chữ nhật. Hai hình có diện tích bằng nhau."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.stage-bbh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-bbh-9-5",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-bbh-8-5-4"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.ruong-bbh-20-15"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.bbh-quy-tac",
+        "caption": "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.dien-tich-thoi",
+      "title": "Diện tích hình thoi",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vẽ hình chữ nhật đi qua bốn đỉnh của hình thoi: dài bằng đường chéo a, rộng bằng đường chéo b. Cắt bốn tam giác nằm ngoài hình thoi, xoay mỗi tam giác nửa vòng vào trong: chúng lấp đầy hình thoi."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thoi-gap"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Diện tích hình thoi bằng tích hai đường chéo, chia cho 2.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thoi-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng tam giác nằm ngoài hình thoi để xoay nó vào trong. Xoay đủ bốn tam giác để thấy hình thoi là một nửa hình chữ nhật."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.stage-thoi"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thoi-10-4",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thoi-14-6"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dieu-thoi-40-30"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thoi-quy-tac",
+        "caption": "Diện tích hình thoi bằng tích hai đường chéo, chia cho 2."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.dien-tich-thang-can",
+      "title": "Diện tích hình thang cân",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Lấy hai hình thang cân giống hệt nhau, lật một hình rồi đặt cạnh hình kia, ta được một hình bình hành. Đáy của hình bình hành bằng tổng hai đáy của hình thang."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thang-ghep"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Diện tích hình thang cân bằng tổng hai đáy nhân với chiều cao rồi chia cho 2.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thang-quy-tac"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.tip.chieu-cao-thang",
+          "kind": "tránh sai",
+          "title": "Chiều cao hình thang cân",
+          "text": "Chiều cao là đoạn vuông góc với hai đáy. Cạnh bên nghiêng, nên đừng lấy nó làm chiều cao.",
+          "tex": "S = (a + b) \\cdot h : 2"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: bấm \"Ghép thêm\" để ghép hai hình thang giống hệt. Hình mới là hình bình hành, và hình thang chỉ bằng một nửa của nó."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.stage-thang"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thang-3-7-4",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thang-6-12-5-4"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dat-thang-8-12-5"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thang-quy-tac",
+        "caption": "Diện tích hình thang cân bằng tổng hai đáy nhân với chiều cao rồi chia cho 2."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.doi-don-vi",
+      "title": "Đổi đơn vị",
+      "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.71 (ví dụ 1)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Một mét có 100 cm. Chia một mét thành 10 phần bằng nhau, mỗi phần là 10 cm, tức là 0,1 m."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thuoc-mot-met"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Một mét bằng 100 cm, còn một mét vuông bằng 10 000 cm².",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.m2-cm2"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.tip.cung-don-vi",
+          "kind": "tránh sai",
+          "title": "Cùng đơn vị rồi mới tính",
+          "text": "Trước khi tính, đổi mọi số đo về cùng một đơn vị. Cộng hay nhân số đo m với số đo cm sẽ ra kết quả sai.",
+          "tex": "0{,}6\\ \\mathrm{m} = 60\\ \\mathrm{cm}"
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Cùng làm: chạm vào từng thanh để đổi số đo ra cm. Đổi đúng đơn vị giúp bạn tính không bị nhầm."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.doi-thanh"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.doi-0-5-m",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mot-met-vuong"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.bia-2m-50cm"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.m2-cm2",
+        "caption": "Một mét bằng 100 cm, còn một mét vuông bằng 10 000 cm²."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.bai-toan-doi-song",
+      "title": "Rào vườn, lát sàn, sơn tường",
+      "sourceRef": "Sách bài tập tr.70 đến tr.71 (kiến thức cần nhớ, kĩ năng giải toán)",
+      "minutes": 5,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Vườn hình chữ nhật dài 20 m, rộng 12 m, có cửa rộng 3 m. Hàng rào chạy quanh vườn, trừ chỗ cửa."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.rao-vuon-giai"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Phòng dài 6 m, rộng 4 m, lát gạch vuông cạnh 50 cm. Đổi mét ra cm rồi đếm số viên theo từng hàng."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.lat-san-giai"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Rào quanh hay viền quanh thì tính chu vi. Lát, sơn, trải kín thì tính diện tích.",
+              "rule": true
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chon-chu-vi-dien-tich"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.tip.rao-co-cua",
+          "kind": "tránh sai",
+          "title": "Hàng rào có cửa",
+          "text": "Chỗ có cửa không cần rào. Tính chu vi rồi trừ chiều rộng của cửa.",
+          "tex": "64 - 3 = 61"
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-viec-dien-tich",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.rao-vuon-15-10"
+      ],
+      "practiceIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.son-tuong-cua-so"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chon-chu-vi-dien-tich",
+        "caption": "Rào quanh hay viền quanh thì tính chu vi. Lát, sơn, trải kín thì tính diện tích."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.section.bai-tap-sach-bai-tap",
+      "title": "Bài tập sách bài tập",
+      "sourceRef": "Sách bài tập tr.72 đến tr.73 (bài 4.20 đến bài 4.28), lời giải tr.115 đến tr.116",
+      "minutes": 22,
+      "blocks": [
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.20, bài 4.21 và bài 4.22 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Chu vi hình chữ nhật và hình bình hành bằng 2 nhân với tổng của hai cạnh kề nhau."
+            },
+            {
+              "type": "note",
+              "text": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng."
+            },
+            {
+              "type": "note",
+              "text": "Biết diện tích và một chiều thì lấy diện tích chia cho chiều đó để tìm chiều còn lại."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.nam-hinh-cong-thuc"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.23 và bài 4.24 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Muốn biết cần bao nhiêu sắt, cộng chu vi các hình và độ dài các đoạn thẳng trong hình."
+            },
+            {
+              "type": "note",
+              "text": "Hình chữ nhật bị khuyết một góc vuông có chu vi bằng chu vi hình chữ nhật bao quanh nó. Diện tích của nó bằng hình chữ nhật lớn trừ đi phần khuyết."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.khuyet-nhac-lai"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.25 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Diện tích hình thang cân bằng tổng hai đáy nhân với chiều cao rồi chia cho 2."
+            },
+            {
+              "type": "note",
+              "text": "Hình lục giác đều ghép từ các viên đá giống nhau thì diện tích bằng số viên nhân với diện tích một viên."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.luc-giac-nhac-lai"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "children": [
+            {
+              "type": "note",
+              "text": "Nhắc lại cho bài 4.26, bài 4.27 và bài 4.28 của sách."
+            },
+            {
+              "type": "note",
+              "text": "Rào quanh hay viền quanh thì tính chu vi. Lát, sơn, trải kín thì tính diện tích.",
+              "rule": true
+            },
+            {
+              "type": "note",
+              "text": "Hàng rào có cửa thì lấy chu vi trừ chiều rộng cửa. Hai tầng dây thì độ dài nhân đôi."
+            },
+            {
+              "type": "note",
+              "text": "Lát gạch: đổi mọi số đo ra cm, rồi chia chiều dài và chiều rộng của sân cho cạnh viên gạch."
+            },
+            {
+              "type": "visual",
+              "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.lat-gach-nhac-lai"
+            }
+          ]
+        }
+      ],
+      "checkIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-20-dt",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-20-cv",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-20",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-21-phep",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-21-so",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-21",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22a",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22b",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22c",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22d",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-23-khung",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-23-tong",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-23",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-24-cv",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-24-dt",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-24",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-25-thang",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-25-luc-giac",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-25",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-26-dai",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-26-rao",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-26",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-27-hang",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-27-thung",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-27",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-28-vien",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-28-co",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-28"
+      ],
+      "practiceIds": [],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chon-chu-vi-dien-tich",
+        "caption": "Rào quanh hay viền quanh thì tính chu vi. Lát, sơn, trải kín thì tính diện tích."
+      },
+      "bookPractice": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-la-gi",
+      "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chu-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chu-vi-quy-tac",
+        "caption": "Chu vi của một hình là tổng độ dài các cạnh của hình."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-vuong-thoi",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chu-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.c4a-quy-tac",
+        "caption": "Chu vi hình vuông và hình thoi bằng 4 nhân với độ dài một cạnh."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-chu-nhat-binh-hanh",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chu-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.c2ab-quy-tac",
+        "caption": "Chu vi hình chữ nhật và hình bình hành bằng 2 nhân với tổng của hai cạnh kề nhau."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-la-gi",
+      "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.don-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dt-quy-tac",
+        "caption": "Diện tích của một hình là số ô vuông đơn vị phủ kín hình đó."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dt-cn-quy-tac",
+        "caption": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-binh-hanh",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chieu-cao"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.bbh-quy-tac",
+        "caption": "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thoi",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.duong-cheo"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thoi-quy-tac",
+        "caption": "Diện tích hình thoi bằng tích hai đường chéo, chia cho 2."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thang-can",
+      "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chieu-cao"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.thang-quy-tac",
+        "caption": "Diện tích hình thang cân bằng tổng hai đáy nhân với chiều cao rồi chia cho 2."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.doi-don-vi",
+      "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.71 (ví dụ 1)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.don-vi"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.m2-cm2",
+        "caption": "Một mét bằng 100 cm, còn một mét vuông bằng 10 000 cm²."
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.bai-toan-doi-song",
+      "sourceRef": "Sách bài tập tr.70 đến tr.71 (kiến thức cần nhớ, kĩ năng giải toán)",
+      "conceptIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.chu-vi",
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.concept.dien-tich"
+      ],
+      "recap": {
+        "type": "visual",
+        "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.chon-chu-vi-dien-tich",
+        "caption": "Rào quanh hay viền quanh thì tính chu vi. Lát, sơn, trải kín thì tính diện tích."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chu-vi-tu-giac",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mảnh vườn hình tứ giác có bốn cạnh dài 5 m, 7 m, 6 m và 9 m. Chu vi của vườn là bao nhiêu mét?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-tu-giac-5-7-6-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Chu vi là tổng độ dài các cạnh. Cộng bốn cạnh lại được 27 m.",
+        "tex": "5 + 7 + 6 + 9 = \\concept{blue}{27}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 27
+      },
+      "check": {
+        "expr": "5+7+6+9"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chu-vi-la-gi-chon",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chu vi của một hình là gì?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Chu vi là quãng đường đi một vòng quanh hình, nên ta cộng độ dài mọi cạnh.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Đi một vòng phải qua cả các cạnh ngắn, không chỉ cạnh dài nhất."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai cạnh chưa đủ một vòng: hình còn các cạnh khác."
+          },
+          {
+            "optionId": "d",
+            "text": "Đường chéo nằm trong hình, không phải đường đi quanh hình."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Tổng độ dài các cạnh của hình"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Độ dài cạnh dài nhất của hình"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Tổng độ dài hai cạnh của hình"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Độ dài một đường chéo của hình"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.thang-can-chu-vi",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-la-gi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một mảnh đất hình thang cân có hai đáy dài 4 m và 10 m, mỗi cạnh bên dài 5 m. Chu vi mảnh đất là bao nhiêu mét?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-thang-can-4-10-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình thang cân có hai cạnh bên bằng nhau, nên ta cộng cả hai cạnh bên cùng hai đáy.",
+        "tex": "4 + 10 + 5 + 5 = \\concept{blue}{24}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 24
+      },
+      "check": {
+        "expr": "4+10+5+5"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chu-vi-chon-phep-tinh",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-la-gi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân có hai đáy 3 cm và 9 cm, mỗi cạnh bên 4 cm. Chọn tất cả phép tính cho chu vi của hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Chu vi cộng độ dài cả bốn cạnh: hai đáy và hai cạnh bên. Hai cạnh bên bằng nhau nên cộng 4 + 4 hay nhân 2 · 4 đều được.",
+        "tex": "3 + 9 + 4 + 4 = 2 \\cdot 4 + 3 + 9 = \\concept{blue}{20}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Hình thang có bốn cạnh, mà phép tính này mới cộng ba cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "Chu vi cộng các cạnh với nhau, không nhân chúng."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "3 + 9 + 4 + 4"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "2 · 4 + 3 + 9"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "3 + 9 + 4"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "3 · 9 · 4"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "3+9+4+4"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chu-vi-dien-tu",
+      "type": "fillBlank",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-la-gi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn từ điền vào chỗ trống."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Chu vi là tổng độ dài các cạnh của hình."
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Chu vi của hình là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["tổng"]
+        },
+        {
+          "type": "text",
+          "text": " độ dài các "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["cạnh"]
+        },
+        {
+          "type": "text",
+          "text": " của hình."
+        }
+      ],
+      "bank": ["tổng", "cạnh", "hiệu", "đường chéo"]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.khung-vuong-chu-vi",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khung ảnh hình vuông có cạnh 9 cm. Chu vi của khung là bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-vuong-9"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có bốn cạnh bằng nhau, nên chu vi bằng 4 nhân với độ dài một cạnh.",
+        "tex": "4 \\cdot 9 = \\concept{blue}{36}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 36
+      },
+      "check": {
+        "expr": "4·9"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.thoi-chu-vi-7",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thoi có mỗi cạnh dài 7 cm. Chu vi của hình thoi là bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình thoi có bốn cạnh bằng nhau, mỗi cạnh dài 7 cm. Chu vi là 4 nhân 7.",
+        "tex": "4 \\cdot 7 = \\concept{blue}{28}\\ \\mathrm{cm}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "14 mới là hai cạnh cộng lại (7 + 7). Hình thoi có bốn cạnh."
+          },
+          {
+            "optionId": "c",
+            "text": "49 là 7 nhân 7. Chu vi cộng các cạnh hay nhân 4 với một cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "21 mới là ba cạnh (3 · 7). Còn một cạnh nữa."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "14"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "49"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "21"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "4·7"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.rao-vuon-vuong",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-vuong-thoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Cô Lan rào mảnh vườn hình vuông có cạnh 12 m bằng lưới. Cô cần bao nhiêu mét lưới?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Mảnh vườn hình vuông có bốn cạnh bằng nhau, nên số mét lưới là chu vi: 4 nhân 12.",
+        "tex": "4 \\cdot 12 = \\concept{blue}{48}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 48
+      },
+      "check": {
+        "expr": "4·12"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-hinh-4a",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-vuong-thoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả hình có chu vi bằng 4 nhân với độ dài một cạnh."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Chu vi bằng 4 nhân một cạnh khi cả bốn cạnh bằng nhau. Hình vuông và hình thoi có bốn cạnh bằng nhau.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Hình chữ nhật có chiều dài khác chiều rộng nên các cạnh không bằng nhau cả bốn."
+          },
+          {
+            "optionId": "d",
+            "text": "Hai cặp cạnh của hình bình hành này dài khác nhau, nên bốn cạnh không bằng nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Hình thoi"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Hình chữ nhật có chiều dài khác chiều rộng"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Hình bình hành có hai cặp cạnh dài khác nhau"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.thoi-chu-vi-15",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-vuong-thoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thoi có cạnh 15 cm. Chu vi của hình thoi là bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình thoi có bốn cạnh bằng nhau, nên lấy 4 nhân 15.",
+        "tex": "4 \\cdot 15 = \\concept{blue}{60}\\ \\mathrm{cm}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "30 mới là hai cạnh cộng lại. Hình thoi có bốn cạnh."
+          },
+          {
+            "optionId": "c",
+            "text": "225 là 15 nhân 15, không phải chu vi."
+          },
+          {
+            "optionId": "d",
+            "text": "45 mới là ba cạnh. Còn một cạnh nữa."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "225"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "4·15"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.khung-chu-nhat-chu-vi",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khung ảnh hình chữ nhật dài 12 cm, rộng 8 cm. Chu vi của khung là bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-chu-nhat-12-8"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình chữ nhật có hai cạnh dài 12 cm và hai cạnh rộng 8 cm. Chu vi bằng 2 nhân với tổng chiều dài và chiều rộng.",
+        "tex": "2 \\cdot (12 + 8) = \\concept{blue}{40}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "2·(12+8)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.binh-hanh-chu-vi",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành có hai cạnh kề nhau dài 10 cm và 6 cm. Chu vi của hình là bao nhiêu cm?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-binh-hanh-10-6"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình bình hành có hai cặp cạnh đối bằng nhau. Chu vi bằng 2 nhân với tổng hai cạnh kề nhau.",
+        "tex": "2 \\cdot (10 + 6) = \\concept{blue}{32}\\ \\mathrm{cm}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "10 + 6 = 16 mới là hai cạnh kề nhau. Còn hai cạnh nữa."
+          },
+          {
+            "optionId": "c",
+            "text": "Chu vi cộng các cạnh với nhau, không nhân hai cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "20 mới là hai cạnh dài 10 cm. Còn hai cạnh 6 cm nữa."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "32"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "16"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2·(10+6)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.san-truong-chu-vi",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-chu-nhat-binh-hanh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sân trường hình chữ nhật dài 30 m, rộng 20 m. Một vòng chạy quanh sân dài bao nhiêu mét?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Một vòng chạy quanh sân là chu vi của sân. Cộng chiều dài với chiều rộng rồi nhân 2.",
+        "tex": "2 \\cdot (30 + 20) = \\concept{blue}{100}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 100
+      },
+      "check": {
+        "expr": "2·(30+20)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-phep-tinh-cn-9-5",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-chu-nhat-binh-hanh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình chữ nhật dài 9 m, rộng 5 m. Chọn tất cả phép tính cho chu vi của hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Chu vi là tổng bốn cạnh: 9 + 5 + 9 + 5. Cộng hai cạnh kề nhau rồi nhân 2 cũng ra kết quả đó.",
+        "tex": "2 \\cdot (9 + 5) = 9 + 5 + 9 + 5 = \\concept{blue}{28}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Chu vi cần cả bốn cạnh, mà 9 + 5 mới là hai cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "Chu vi cộng các cạnh với nhau, không nhân chúng."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "2 · (9 + 5)"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9 + 5 + 9 + 5"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "9 + 5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "2 · 9 · 5"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "2·(9+5)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.binh-hanh-chu-vi-14-9",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.chu-vi-chu-nhat-binh-hanh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành có hai cạnh kề nhau dài 14 cm và 9 cm. Chu vi của hình là bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng hai cạnh kề nhau rồi nhân 2.",
+        "tex": "2 \\cdot (14 + 9) = \\concept{blue}{46}\\ \\mathrm{cm}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "14 + 9 = 23 mới là hai cạnh kề nhau. Còn hai cạnh nữa."
+          },
+          {
+            "optionId": "c",
+            "text": "Chu vi cộng các cạnh với nhau, không nhân hai cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "28 mới là hai cạnh dài 14 cm. Còn hai cạnh 9 cm nữa."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "46"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "23"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "126"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "2·(14+9)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dem-o-vuong-7",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình dưới được phủ kín bởi các ô vuông, mỗi ô có diện tích 1 cm². Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-do-7-o"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Đếm các ô vuông phủ kín hình: có 7 ô. Mỗi ô là 1 cm², nên diện tích là 7 cm².",
+        "tex": "7 \\cdot 1 = \\concept{teal}{7}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "7·1"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dien-tich-9-o-1m",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một hình được phủ kín bởi 9 ô vuông, mỗi ô vuông có cạnh 1 m. Diện tích của hình là bao nhiêu?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ô vuông cạnh 1 m có diện tích 1 m². Có 9 ô nên diện tích là 9 m².",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "m là đơn vị đo độ dài. Diện tích đo bằng m²."
+          },
+          {
+            "optionId": "c",
+            "text": "Ô vuông cạnh 1 m có diện tích 1 m², không phải 1 cm²."
+          },
+          {
+            "optionId": "d",
+            "text": "Có 9 ô, mỗi ô 1 m², nên phải đếm đủ 9 ô, không phải 3."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "9 m²"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "9 m"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "9 cm²"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "3 m²"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mieng-dan-15-o",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-la-gi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một miếng dán gồm 15 ô vuông, mỗi ô có diện tích 1 cm². Diện tích miếng dán là bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Mỗi ô vuông là 1 cm², có 15 ô nên diện tích là 15 cm².",
+        "tex": "15 \\cdot 1 = \\concept{teal}{15}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 15
+      },
+      "check": {
+        "expr": "15·1"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.don-vi-dien-tich",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-la-gi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả đơn vị dùng để đo diện tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích đo bằng các ô vuông, nên đơn vị là cm² hay m². Đơn vị cm và m dùng để đo độ dài.",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "cm là đơn vị đo độ dài, không đo diện tích."
+          },
+          {
+            "optionId": "d",
+            "text": "m là đơn vị đo độ dài, không đo diện tích."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "cm²"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "m²"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "cm"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "m"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.cham-hinh-4-o",
+      "type": "tapRegion",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-la-gi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mỗi ô vuông có diện tích 1 cm²."
+        },
+        {
+          "type": "note",
+          "text": "Chạm vào hình có diện tích 4 cm²."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình có diện tích 4 cm² phải có 4 ô vuông: hình đó có hai hàng, mỗi hàng 2 ô."
+      },
+      "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.cham-hinh-4-o",
+      "answer": ["h4"]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-chu-nhat-9-4",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình chữ nhật dài 9 cm, rộng 4 cm. Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-chu-nhat-9-4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng.",
+        "tex": "9 \\cdot 4 = \\concept{teal}{36}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 36
+      },
+      "check": {
+        "expr": "9·4"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.gach-vuong-25",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một viên gạch hình vuông có cạnh 25 cm. Diện tích viên gạch là bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có chiều dài bằng chiều rộng, nên diện tích là cạnh nhân với cạnh.",
+        "tex": "25 \\cdot 25 = \\concept{teal}{625}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "100 là chu vi (4 · 25), không phải diện tích."
+          },
+          {
+            "optionId": "c",
+            "text": "50 là 25 + 25. Diện tích hình vuông là cạnh nhân với cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "125 là 5 · 25. Phải lấy 25 nhân với 25."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "625"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "100"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "50"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "125"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "25·25"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.phong-hoc-7-5",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phòng học hình chữ nhật dài 7 m, rộng 5 m. Diện tích sàn phòng là bao nhiêu m²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Lấy chiều dài nhân với chiều rộng.",
+        "tex": "7 \\cdot 5 = \\concept{teal}{35}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 35
+      },
+      "check": {
+        "expr": "7·5"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-phep-tinh-dt-7-3",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình chữ nhật dài 7 cm, rộng 3 cm. Chọn tất cả phép tính cho diện tích của hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Diện tích bằng chiều dài nhân với chiều rộng. Nhân hai số theo thứ tự nào cũng như nhau.",
+        "tex": "7 \\cdot 3 = 3 \\cdot 7 = \\concept{teal}{21}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "7 + 3 mới là tổng hai cạnh. Diện tích phải nhân hai cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "2 · (7 + 3) là chu vi của hình, không phải diện tích."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "7 · 3"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "3 · 7"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "7 + 3"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "2 · (7 + 3)"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "7·3"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.vuon-vuong-11",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mảnh vườn hình vuông có cạnh 11 m. Diện tích mảnh vườn là bao nhiêu m²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có diện tích bằng cạnh nhân với cạnh.",
+        "tex": "11 \\cdot 11 = \\concept{teal}{121}\\ \\mathrm{m}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "44 là chu vi (4 · 11), không phải diện tích."
+          },
+          {
+            "optionId": "c",
+            "text": "22 là 11 + 11. Diện tích phải nhân cạnh với cạnh."
+          },
+          {
+            "optionId": "d",
+            "text": "33 là 3 · 11. Phải lấy 11 nhân 11."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "121"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "44"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "22"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "33"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "11·11"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.xep-gach-4-3",
+      "type": "manipulate",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sàn phòng dài 4 m, rộng 3 m. Xếp các ô vuông cạnh 1 m phủ kín sàn."
+        },
+        {
+          "type": "note",
+          "text": "Bấm nút + và − trong khung dưới hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Sàn dài 4 m nên mỗi hàng có 4 ô, rộng 3 m nên có 3 hàng. Số ô là 4 · 3 = 12, nên sàn rộng 12 m²."
+      },
+      "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.floor-lesson",
+      "validatorId": "xep-gach",
+      "params": {
+        "perRow": 4,
+        "rows": 3
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-bbh-9-5",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành có cạnh đáy 9 cm và chiều cao 5 cm. Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-bbh-9-5"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao.",
+        "tex": "9 \\cdot 5 = \\concept{teal}{45}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 45
+      },
+      "check": {
+        "expr": "9·5"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-bbh-8-5-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành có cạnh đáy 8 cm, cạnh bên 5 cm và chiều cao 4 cm. Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-bbh-8-5-4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Diện tích bằng cạnh đáy nhân với chiều cao: 8 nhân 4. Cạnh bên 5 cm là cạnh nghiêng, không dùng để tính diện tích.",
+        "tex": "8 \\cdot 4 = \\concept{teal}{32}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "40 là 8 · 5. Cạnh bên 5 cm nghiêng, không phải chiều cao."
+          },
+          {
+            "optionId": "c",
+            "text": "20 là 5 · 4. Phải nhân cạnh đáy 8 cm với chiều cao 4 cm."
+          },
+          {
+            "optionId": "d",
+            "text": "13 là 8 + 5. Diện tích phải nhân, không cộng."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "32"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "40"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "13"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "8·4"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.ruong-bbh-20-15",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-binh-hanh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một mảnh ruộng hình bình hành có cạnh đáy 20 m và chiều cao 15 m. Diện tích mảnh ruộng là bao nhiêu m²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Lấy cạnh đáy nhân với chiều cao.",
+        "tex": "20 \\cdot 15 = \\concept{teal}{300}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 300
+      },
+      "check": {
+        "expr": "20·15"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-chieu-cao-bbh",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-binh-hanh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình nào vẽ đúng chiều cao h của hình bình hành?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Chiều cao là đoạn kẻ từ một đỉnh xuống cạnh đáy và vuông góc với cạnh đáy.",
+        "wrong": [
+          {
+            "optionId": "a",
+            "text": "Đoạn này là cạnh bên nghiêng, không vuông góc với cạnh đáy."
+          },
+          {
+            "optionId": "c",
+            "text": "Đoạn này là đường chéo, không vuông góc với cạnh đáy."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "visual",
+            "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.h-canh-ben"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "visual",
+            "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.h-dung"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "visual",
+            "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.h-duong-cheo"
+          }
+        }
+      ],
+      "answer": ["b"],
+      "multiple": false
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-bbh-14-6",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-binh-hanh"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình bình hành có cạnh đáy 14 cm và chiều cao 6 cm. Diện tích của hình là bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Lấy cạnh đáy nhân với chiều cao.",
+        "tex": "14 \\cdot 6 = \\concept{teal}{84}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "20 là 14 + 6. Diện tích phải nhân."
+          },
+          {
+            "optionId": "c",
+            "text": "40 là 2 · (14 + 6), một phép tính chu vi, không phải diện tích."
+          },
+          {
+            "optionId": "d",
+            "text": "Diện tích hình bình hành không chia cho 2: chỉ nhân đáy với chiều cao."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "84"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "40"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "42"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "14·6"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thoi-10-4",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thoi có hai đường chéo dài 10 cm và 4 cm. Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-thoi-10-4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân hai đường chéo rồi chia cho 2.",
+        "tex": "10 \\cdot 4 : 2 = \\concept{teal}{20}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 20
+      },
+      "check": {
+        "expr": "10·4:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thoi-14-6",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thoi có hai đường chéo dài 14 cm và 6 cm. Diện tích của hình là bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Diện tích hình thoi bằng tích hai đường chéo, chia cho 2. Ta lấy 14 nhân 6 rồi chia cho 2.",
+        "tex": "14 \\cdot 6 : 2 = \\concept{teal}{42}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "84 là diện tích hình chữ nhật bao quanh. Hình thoi chỉ bằng một nửa."
+          },
+          {
+            "optionId": "c",
+            "text": "20 là 14 + 6. Diện tích phải nhân hai đường chéo."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "42"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "84"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "20"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "14·6:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dieu-thoi-40-30",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một chiếc diều hình thoi có hai thanh tre dài 40 cm và 30 cm làm đường chéo. Diện tích mặt diều là bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai thanh tre là hai đường chéo. Nhân chúng rồi chia cho 2.",
+        "tex": "40 \\cdot 30 : 2 = \\concept{teal}{600}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 600
+      },
+      "check": {
+        "expr": "40·30:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-phep-tinh-thoi-12-5",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thoi có hai đường chéo dài 12 cm và 5 cm. Chọn tất cả phép tính cho diện tích của hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhân hai đường chéo rồi chia cho 2. Nhân theo thứ tự nào cũng được.",
+        "tex": "12 \\cdot 5 : 2 = \\concept{teal}{30}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "12 · 5 = 60 là diện tích hình chữ nhật bao quanh. Còn phải chia cho 2."
+          },
+          {
+            "optionId": "d",
+            "text": "Phép tính này chỉ chia 5 cho 2 rồi cộng. Phải nhân hai đường chéo trước."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "12 · 5 : 2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "5 · 12 : 2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "12 · 5"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "12 + 5 : 2"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "12·5:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thoi-16-9",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thoi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thoi có hai đường chéo dài 16 cm và 9 cm. Diện tích của hình là bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Nhân hai đường chéo rồi chia cho 2.",
+        "tex": "16 \\cdot 9 : 2 = \\concept{teal}{72}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "144 là diện tích hình chữ nhật bao quanh. Hình thoi chỉ bằng một nửa."
+          },
+          {
+            "optionId": "c",
+            "text": "25 là 16 + 9. Diện tích phải nhân hai đường chéo."
+          },
+          {
+            "optionId": "d",
+            "text": "50 là 2 · (16 + 9), một phép tính chu vi, không phải diện tích."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "72"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "144"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "25"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "50"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "16·9:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thang-3-7-4",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân có hai đáy 3 cm và 7 cm, chiều cao 4 cm. Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-thang-3-7-4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Cộng hai đáy, nhân với chiều cao rồi chia cho 2.",
+        "tex": "(3 + 7) \\cdot 4 : 2 = \\concept{teal}{20}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 20
+      },
+      "check": {
+        "expr": "(3+7)·4:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dt-thang-6-12-5-4",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân có hai đáy 6 cm và 12 cm, cạnh bên 5 cm, chiều cao 4 cm. Diện tích của hình là bao nhiêu cm²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.f-thang-6-12-5-4"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Dùng chiều cao 4 cm, không dùng cạnh bên 5 cm. Cộng hai đáy, nhân với 4 rồi chia cho 2.",
+        "tex": "(6 + 12) \\cdot 4 : 2 = \\concept{teal}{36}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "45 dùng cạnh bên 5 cm làm chiều cao. Cạnh bên nghiêng, không phải chiều cao."
+          },
+          {
+            "optionId": "c",
+            "text": "72 là diện tích hình bình hành ghép từ hai hình thang. Hình thang chỉ bằng một nửa."
+          },
+          {
+            "optionId": "d",
+            "text": "28 là chu vi (6 + 12 + 5 + 5), không phải diện tích."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "36"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "45"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "72"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "28"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "(6+12)·4:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dat-thang-8-12-5",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thang-can"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một mảnh đất hình thang cân có hai đáy 8 m và 12 m, chiều cao 5 m. Diện tích mảnh đất là bao nhiêu m²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng hai đáy, nhân với chiều cao rồi chia cho 2.",
+        "tex": "(8 + 12) \\cdot 5 : 2 = \\concept{teal}{50}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 50
+      },
+      "check": {
+        "expr": "(8+12)·5:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-phep-tinh-thang-4-10-6",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thang-can"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân có hai đáy 4 cm và 10 cm, chiều cao 6 cm. Chọn tất cả phép tính cho diện tích của hình."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Cộng hai đáy rồi nhân với chiều cao, sau đó chia cho 2. Nhân theo thứ tự nào cũng được.",
+        "tex": "(4 + 10) \\cdot 6 : 2 = \\concept{teal}{42}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "c",
+            "text": "Phép tính này thiếu bước chia cho 2: nó cho diện tích hình bình hành ghép từ hai hình thang."
+          },
+          {
+            "optionId": "d",
+            "text": "Không có ngoặc, phép nhân làm trước nên 10 · 6 : 2 được tính trước. Phải cộng hai đáy trước."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "(4 + 10) · 6 : 2"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "6 · (4 + 10) : 2"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "(4 + 10) · 6"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "4 + 10 · 6 : 2"
+          }
+        }
+      ],
+      "answer": ["a", "b"],
+      "multiple": true,
+      "check": {
+        "expr": "(4+10)·6:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.xep-buoc-thang",
+      "type": "order",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thang-can"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước tính diện tích hình thang cân theo thứ tự đúng."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Ta cộng hai đáy trước, rồi nhân với chiều cao, cuối cùng chia cho 2."
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Cộng độ dài hai đáy."
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Nhân tổng đó với chiều cao."
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Chia kết quả cho 2."
+          }
+        }
+      ]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.doi-0-5-m",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "0,5 m bằng bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Một mét có 100 cm. 0,5 m là 5 phần mười của mét, tức là 5 phần, mỗi phần 10 cm.",
+        "tex": "0{,}5\\ \\mathrm{m} = \\concept{sky}{50}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 50
+      },
+      "check": {
+        "expr": "0,5·100"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mot-met-vuong",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một mét vuông bằng bao nhiêu cm²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Một mét vuông là hình vuông có cạnh 100 cm. Diện tích của nó là 100 nhân 100.",
+        "tex": "100 \\cdot 100 = \\concept{sky}{10\\,000}\\ \\mathrm{cm}^{2}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "100 là số cm trong một mét. Diện tích là 100 nhân 100."
+          },
+          {
+            "optionId": "c",
+            "text": "Cạnh hình vuông là 100 cm, nên diện tích là 100 · 100, lớn hơn 1 000."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "10 000"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "100"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "1 000"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "100 000"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "10000"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.bia-2m-50cm",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.doi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một mảnh bìa hình chữ nhật dài 2 m, rộng 50 cm. Đổi chiều dài ra cm rồi tính diện tích mảnh bìa, theo cm²."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hai số đo phải cùng đơn vị. Đổi 2 m thành 200 cm, rồi nhân chiều dài với chiều rộng.",
+        "tex": "2\\ \\mathrm{m} = 200\\ \\mathrm{cm},\\quad 200 \\cdot 50 = \\concept{teal}{10\\,000}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 10000
+      },
+      "check": {
+        "expr": "200·50"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.doi-1-5-m",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.doi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "1,5 m bằng bao nhiêu cm?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Một mét có 100 cm, nửa mét có 50 cm. Cộng lại: 100 + 50 = 150 cm.",
+        "tex": "1{,}5\\ \\mathrm{m} = \\concept{sky}{150}\\ \\mathrm{cm}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "1,5 m lớn hơn 1 m, mà 1 m đã là 100 cm, nên kết quả phải hơn 100."
+          },
+          {
+            "optionId": "c",
+            "text": "105 cm là 1 m và 5 cm. Nhưng 0,5 m là 50 cm, không phải 5 cm."
+          },
+          {
+            "optionId": "d",
+            "text": "1 500 cm là 15 m, quá dài so với 1,5 m."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "150"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "105"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "1 500"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "150"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.noi-so-do",
+      "type": "match",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.doi-don-vi"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Nối mỗi số đo với số đo bằng nó."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Một mét có 100 cm. 0,2 m là 2 phần mười của mét nên bằng 20 cm. Tương tự, 0,8 m bằng 80 cm, 1 m bằng 100 cm và 2 m bằng 200 cm."
+      },
+      "left": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "0,2 m"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "0,8 m"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "1 m"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "2 m"
+          }
+        }
+      ],
+      "right": [
+        {
+          "id": "w",
+          "content": {
+            "type": "text",
+            "text": "20 cm"
+          }
+        },
+        {
+          "id": "x",
+          "content": {
+            "type": "text",
+            "text": "80 cm"
+          }
+        },
+        {
+          "id": "y",
+          "content": {
+            "type": "text",
+            "text": "100 cm"
+          }
+        },
+        {
+          "id": "z",
+          "content": {
+            "type": "text",
+            "text": "200 cm"
+          }
+        },
+        {
+          "id": "u",
+          "content": {
+            "type": "text",
+            "text": "8 cm"
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "left": "a",
+          "right": "w"
+        },
+        {
+          "left": "b",
+          "right": "x"
+        },
+        {
+          "left": "c",
+          "right": "y"
+        },
+        {
+          "left": "d",
+          "right": "z"
+        }
+      ]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.chon-viec-dien-tich",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Chọn tất cả việc cần tính diện tích."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Lát kín và sơn kín là phủ cả mặt hình, nên cần diện tích. Rào quanh và viền quanh là đi theo mép hình, nên cần chu vi.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Rào quanh vườn đi theo mép vườn, nên cần chu vi."
+          },
+          {
+            "optionId": "d",
+            "text": "Viền ren quanh khăn đi theo mép khăn, nên cần chu vi."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Lát gạch kín sàn nhà"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Rào quanh mảnh vườn"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Sơn kín một bức tường"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Viền ren quanh khăn trải bàn"
+          }
+        }
+      ],
+      "answer": ["a", "c"],
+      "multiple": true
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.rao-vuon-15-10",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vườn hình chữ nhật dài 15 m, rộng 10 m, có cửa rộng 2 m. Cần bao nhiêu mét lưới để rào quanh vườn, trừ chỗ cửa?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hàng rào chạy quanh vườn nên ta tính chu vi, rồi trừ chỗ cửa không cần rào.",
+        "tex": "2 \\cdot (15 + 10) - 2 = \\concept{blue}{48}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 48
+      },
+      "check": {
+        "expr": "2·(15+10)-2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.son-tuong-cua-so",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.bai-toan-doi-song"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Bức tường hình chữ nhật dài 5 m, cao 3 m, có một cửa sổ hình chữ nhật dài 2 m, rộng 1 m."
+        },
+        {
+          "type": "note",
+          "text": "Không sơn chỗ cửa sổ. Diện tích cần sơn là bao nhiêu m²?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Sơn tường là phủ cả mặt tường nên ta tính diện tích. Lấy diện tích tường trừ diện tích cửa sổ.",
+        "tex": "5 \\cdot 3 - 2 \\cdot 1 = \\concept{teal}{13}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 13
+      },
+      "check": {
+        "expr": "5·3-2·1"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.mua-tham",
+      "type": "numeric",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.bai-toan-doi-song"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Phòng khách hình chữ nhật dài 5 m, rộng 4 m."
+        },
+        {
+          "type": "note",
+          "text": "Thảm trải kín sàn giá 50 000 đồng mỗi m². Mua thảm hết bao nhiêu đồng?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Trước hết tính diện tích sàn, rồi nhân với giá tiền mỗi mét vuông.",
+        "tex": "5 \\cdot 4 = \\concept{teal}{20}\\ \\mathrm{m}^{2},\\quad 20 \\cdot 50\\,000 = 1\\,000\\,000"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 1000000
+      },
+      "check": {
+        "expr": "5·4·50000"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.lat-gach-5-3",
+      "type": "choice",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.bai-toan-doi-song"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sàn dài 5 m, rộng 3 m, lát gạch vuông cạnh 50 cm. Cần bao nhiêu viên gạch?"
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Đổi mét ra cm: sàn dài 500 cm, rộng 300 cm. Mỗi hàng có 500 : 50 = 10 viên, có 300 : 50 = 6 hàng.",
+        "tex": "10 \\cdot 6 = \\concept{teal}{60}",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "15 là 5 · 3 tính theo mét. Số đo mét và số đo cm của gạch phải đổi về cùng đơn vị."
+          },
+          {
+            "optionId": "c",
+            "text": "16 là 10 + 6. Số viên là tích của số viên mỗi hàng với số hàng."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "60"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "15"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "16"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "30"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false,
+      "check": {
+        "expr": "(500:50)·(300:50)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.xep-buoc-lat-gach",
+      "type": "order",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.bai-toan-doi-song"
+      ],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sắp xếp các bước tính số viên gạch lát kín một sàn hình chữ nhật."
+        }
+      ],
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Ta đổi về cùng đơn vị trước, rồi đếm số viên theo chiều dài và theo chiều rộng. Cuối cùng nhân hai số đó."
+      },
+      "items": [
+        {
+          "id": "s1",
+          "content": {
+            "type": "text",
+            "text": "Đổi chiều dài và chiều rộng của sàn ra cm."
+          }
+        },
+        {
+          "id": "s2",
+          "content": {
+            "type": "text",
+            "text": "Chia chiều dài sàn cho cạnh viên gạch để biết số viên mỗi hàng."
+          }
+        },
+        {
+          "id": "s3",
+          "content": {
+            "type": "text",
+            "text": "Chia chiều rộng sàn cho cạnh viên gạch để biết số hàng."
+          }
+        },
+        {
+          "id": "s4",
+          "content": {
+            "type": "text",
+            "text": "Nhân số viên mỗi hàng với số hàng."
+          }
+        }
+      ]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-20-dt",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình chữ nhật có chiều dài 9 cm và chiều rộng 6 cm. Diện tích của hình là bao nhiêu cm²?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-20",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng.",
+        "tex": "9 \\cdot 6 = \\concept{teal}{54}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 54
+      },
+      "check": {
+        "expr": "9·6"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-20-cv",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình chữ nhật có chiều dài 9 cm và chiều rộng 6 cm. Chu vi của hình là bao nhiêu cm?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-20",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Chu vi bằng 2 nhân với tổng chiều dài và chiều rộng.",
+        "tex": "2 \\cdot (9 + 6) = \\concept{blue}{30}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "2·(9+6)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-20",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính diện tích và chu vi hình chữ nhật có chiều dài 10 cm và chiều rộng 8 cm."
+        },
+        {
+          "type": "note",
+          "text": "Điền kết quả vào chỗ trống."
+        }
+      ],
+      "bookRef": "SBT 4.20",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-20",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-20"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích bằng chiều dài nhân với chiều rộng. Chu vi bằng 2 nhân với tổng chiều dài và chiều rộng.",
+        "tex": "\\begin{gathered} 10 \\cdot 8 = \\concept{teal}{80}\\ \\mathrm{cm}^{2} \\\\ 2 \\cdot (10 + 8) = \\concept{blue}{36}\\ \\mathrm{cm} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Diện tích là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["80"]
+        },
+        {
+          "type": "text",
+          "text": " cm². Chu vi là "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["36"]
+        },
+        {
+          "type": "text",
+          "text": " cm."
+        }
+      ]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-21-phep",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Biết diện tích hình chữ nhật và độ dài một cạnh. Muốn tìm cạnh còn lại, ta làm phép tính nào?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-21",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích bằng chiều dài nhân với chiều rộng. Muốn tìm một chiều, ta lấy diện tích chia cho chiều đã biết.",
+        "wrong": [
+          {
+            "optionId": "b",
+            "text": "Nhân diện tích với một cạnh cho số lớn hơn nhiều, không ra cạnh còn lại."
+          },
+          {
+            "optionId": "c",
+            "text": "Diện tích đo bằng cm², cạnh đo bằng cm, nên hai số này không cộng với nhau."
+          },
+          {
+            "optionId": "d",
+            "text": "Diện tích đo bằng cm², cạnh đo bằng cm, nên hai số này không trừ cho nhau."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "a",
+          "content": {
+            "type": "text",
+            "text": "Chia diện tích cho cạnh đã biết"
+          }
+        },
+        {
+          "id": "b",
+          "content": {
+            "type": "text",
+            "text": "Nhân diện tích với cạnh đã biết"
+          }
+        },
+        {
+          "id": "c",
+          "content": {
+            "type": "text",
+            "text": "Cộng diện tích với cạnh đã biết"
+          }
+        },
+        {
+          "id": "d",
+          "content": {
+            "type": "text",
+            "text": "Trừ diện tích cho cạnh đã biết"
+          }
+        }
+      ],
+      "answer": ["a"],
+      "multiple": false
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-21-so",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình chữ nhật có diện tích 72 cm² và một chiều dài 9 cm. Chiều còn lại dài bao nhiêu cm?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-21",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Lấy diện tích chia cho chiều đã biết: 72 : 9 = 8.",
+        "tex": "72 : 9 = \\concept{teal}{8}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 8
+      },
+      "check": {
+        "expr": "72:9"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-21",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một miếng gỗ hình chữ nhật có kích thước một chiều là 8 cm, diện tích là 56 cm². Tìm kích thước còn lại của miếng gỗ."
+        },
+        {
+          "type": "note",
+          "text": "Nhập số đo, tính bằng cm."
+        }
+      ],
+      "bookRef": "SBT 4.21",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-21",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-21"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Diện tích bằng chiều dài nhân với chiều rộng, nên chiều còn lại bằng diện tích chia cho chiều đã biết.",
+        "tex": "56 : 8 = \\concept{teal}{7}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 7
+      },
+      "check": {
+        "expr": "56:8"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22a",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính diện tích các hình sau:"
+        },
+        {
+          "type": "note",
+          "text": "Hình vuông có cạnh 5 cm;"
+        },
+        {
+          "type": "note",
+          "text": "Nhập diện tích, tính bằng cm²."
+        }
+      ],
+      "bookRef": "SBT 4.22a",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-22a",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-22a"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Hình vuông có diện tích bằng cạnh nhân với cạnh.",
+        "tex": "5 \\cdot 5 = \\concept{teal}{25}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 25
+      },
+      "check": {
+        "expr": "5·5"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22b",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính diện tích các hình sau:"
+        },
+        {
+          "type": "note",
+          "text": "Hình thang cân có độ dài hai cạnh đáy là 6 cm và 10 cm, chiều cao 4 cm;"
+        },
+        {
+          "type": "note",
+          "text": "Nhập diện tích, tính bằng cm²."
+        }
+      ],
+      "bookRef": "SBT 4.22b",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-22b",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-22b"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng hai đáy, nhân với chiều cao rồi chia cho 2.",
+        "tex": "(6 + 10) \\cdot 4 : 2 = \\concept{teal}{32}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 32
+      },
+      "check": {
+        "expr": "(6+10)·4:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22c",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính diện tích các hình sau:"
+        },
+        {
+          "type": "note",
+          "text": "Hình thoi có độ dài hai đường chéo là 6 cm và 10 cm;"
+        },
+        {
+          "type": "note",
+          "text": "Nhập diện tích, tính bằng cm²."
+        }
+      ],
+      "bookRef": "SBT 4.22c",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-22c",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-22c"
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Nhân hai đường chéo rồi chia cho 2.",
+        "tex": "6 \\cdot 10 : 2 = \\concept{teal}{30}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "6·10:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-22d",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính diện tích các hình sau:"
+        },
+        {
+          "type": "note",
+          "text": "Hình bình hành có độ dài một cạnh bằng 12 cm và chiều cao tương ứng bằng 4 cm."
+        },
+        {
+          "type": "note",
+          "text": "Nhập diện tích, tính bằng cm²."
+        }
+      ],
+      "bookRef": "SBT 4.22d",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 1
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-22d",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-22d"
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Lấy cạnh đáy nhân với chiều cao tương ứng.",
+        "tex": "12 \\cdot 4 = \\concept{teal}{48}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 48
+      },
+      "check": {
+        "expr": "12·4"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-23-khung",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khung sắt hình chữ nhật dài 40 cm, rộng 30 cm. Chu vi của khung là bao nhiêu cm?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-23",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Chu vi bằng 2 nhân với tổng chiều dài và chiều rộng.",
+        "tex": "2 \\cdot (40 + 30) = \\concept{blue}{140}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 140
+      },
+      "check": {
+        "expr": "2·(40+30)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-23-tong",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Ô thoáng có khung sắt hình chữ nhật 40 cm và 30 cm, thêm khung hình thoi cạnh 25 cm."
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dan-khung-40-30"
+        },
+        {
+          "type": "note",
+          "text": "Hai đường chéo của hình thoi cũng bằng sắt. Cần bao nhiêu cm sắt?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-23",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng chu vi hình chữ nhật, chu vi hình thoi và hai đường chéo của hình thoi. Hai đường chéo dài 40 cm và 30 cm.",
+        "tex": "140 + 4 \\cdot 25 + (40 + 30) = 140 + 100 + 70 = \\concept{blue}{310}\\ \\mathrm{cm}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 310
+      },
+      "check": {
+        "expr": "140+4·25+(40+30)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-23",
+      "type": "choice",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một người dự định dùng một thanh sắt dài 6 mét để làm một song sắt cho ô thoáng của cửa sổ có kích thước như Hình 4.19. Hỏi vật liệu người đó chuẩn bị có đủ không? (Bỏ qua mối nối)."
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.sbt-hinh-4-19"
+        },
+        {
+          "type": "note",
+          "text": "Chọn đáp án đúng."
+        }
+      ],
+      "bookRef": "SBT 4.23",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-23",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-23"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Cần cộng chu vi hình chữ nhật (280 cm), chu vi hình thoi (200 cm) và hai đường chéo của hình thoi (140 cm). Tổng là 620 cm, tức 6,2 m, lớn hơn 6 m.",
+        "tex": "280 + 200 + 140 = 620\\ \\mathrm{cm} = 6{,}2\\ \\mathrm{m} > 6\\ \\mathrm{m}",
+        "wrong": [
+          {
+            "optionId": "co",
+            "text": "Thanh sắt chỉ dài 6 m, mà cần tới 6,2 m."
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "co",
+          "content": {
+            "type": "text",
+            "text": "Đủ"
+          }
+        },
+        {
+          "id": "khong",
+          "content": {
+            "type": "text",
+            "text": "Không đủ"
+          }
+        }
+      ],
+      "answer": ["khong"],
+      "multiple": false
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-24-cv",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mảnh vườn hình chữ nhật dài 10 m, rộng 6 m, bị cắt mất một góc hình vuông cạnh 3 m như hình. Chu vi của mảnh vườn là bao nhiêu m?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dan-khuyet-10-6"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-24",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Đường viền đi vào rồi đi ra ở chỗ khuyết, dài bằng hai cạnh của góc bị cắt. Nên chu vi vẫn bằng chu vi hình chữ nhật 10 m và 6 m.",
+        "tex": "2 \\cdot (10 + 6) = \\concept{blue}{32}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 32
+      },
+      "check": {
+        "expr": "2·(10+6)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-24-dt",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Mảnh vườn hình chữ nhật dài 10 m, rộng 6 m, bị cắt mất một góc hình vuông cạnh 3 m như hình. Diện tích của mảnh vườn là bao nhiêu m²?"
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.dan-khuyet-10-6"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-24",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Lấy diện tích hình chữ nhật trừ đi diện tích góc bị cắt.",
+        "tex": "10 \\cdot 6 - 3 \\cdot 3 = 60 - 9 = \\concept{teal}{51}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 51
+      },
+      "check": {
+        "expr": "10·6-3·3"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-24",
+      "type": "fillBlank",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Tính chu vi và diện tích của mảnh vườn có hình dạng và kích thước như Hình 4.20."
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.sbt-hinh-4-20"
+        },
+        {
+          "type": "note",
+          "text": "Điền kết quả vào chỗ trống."
+        }
+      ],
+      "bookRef": "SBT 4.24",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-24",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-24"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Kẻ thêm để được hình chữ nhật 6 m và 8 m. Chu vi bằng chu vi hình chữ nhật đó, còn diện tích bằng hình chữ nhật trừ đi phần khuyết 2 m và 2 m.",
+        "tex": "\\begin{gathered} 2 \\cdot (6 + 8) = \\concept{blue}{28}\\ \\mathrm{m} \\\\ 6 \\cdot 8 - 2 \\cdot 2 = \\concept{teal}{44}\\ \\mathrm{m}^{2} \\end{gathered}"
+      },
+      "segments": [
+        {
+          "type": "text",
+          "text": "Chu vi là "
+        },
+        {
+          "type": "blank",
+          "id": "b1",
+          "accept": ["28"]
+        },
+        {
+          "type": "text",
+          "text": " m. Diện tích là "
+        },
+        {
+          "type": "blank",
+          "id": "b2",
+          "accept": ["44"]
+        },
+        {
+          "type": "text",
+          "text": " m²."
+        }
+      ]
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-25-thang",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Hình thang cân có hai đáy 6 cm và 10 cm, chiều cao 5 cm. Diện tích của hình là bao nhiêu cm²?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-25",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Cộng hai đáy, nhân với chiều cao rồi chia cho 2.",
+        "tex": "(6 + 10) \\cdot 5 : 2 = \\concept{teal}{40}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 40
+      },
+      "check": {
+        "expr": "(6+10)·5:2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-25-luc-giac",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một viên đá lát hình lục giác đều ghép từ 6 viên đá giống nhau, mỗi viên có diện tích 40 cm². Diện tích viên đá lát là bao nhiêu cm²?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-25",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Diện tích cả viên đá bằng số viên đá nhỏ nhân với diện tích một viên.",
+        "tex": "6 \\cdot 40 = \\concept{teal}{240}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 240
+      },
+      "check": {
+        "expr": "6·40"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-25",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Người ta thiết kế viên đá lát vườn hình lục giác đều bằng cách ghép các viên đá hình thang cân lại với nhau (như hình bên). Mỗi viên đá hình thang cân có hai đáy là 10 cm và 20 cm, chiều cao 8,6 cm. Hỏi viên đá lát hình lục giác đều được tạo thành có diện tích bao nhiêu? (Biết rằng diện tích mạch ghép không đáng kể)."
+        },
+        {
+          "type": "visual",
+          "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.sbt-hinh-4-25"
+        },
+        {
+          "type": "note",
+          "text": "Nhập diện tích, tính bằng cm²."
+        }
+      ],
+      "bookRef": "SBT 4.25",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-25",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-25"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính diện tích một viên đá hình thang cân, rồi nhân với 8 viên đá của hình lục giác. Một viên có diện tích 129 cm², nên cả hình có 129 · 8 = 1 032 cm².",
+        "tex": "(10 + 20) \\cdot 8{,}6 : 2 = 129,\\quad 129 \\cdot 8 = \\concept{teal}{1\\,032}\\ \\mathrm{cm}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 1032
+      },
+      "check": {
+        "expr": "(10+20)·8,6:2·8"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-26-dai",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Khu vườn hình chữ nhật có diện tích 600 m² và chiều rộng 20 m. Chiều dài khu vườn là bao nhiêu m?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-26",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 1,
+      "explain": {
+        "text": "Muốn tìm chiều dài, lấy diện tích chia cho chiều rộng.",
+        "tex": "600 : 20 = \\concept{teal}{30}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 30
+      },
+      "check": {
+        "expr": "600:20"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-26-rao",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Vườn hình chữ nhật dài 30 m, rộng 20 m, có cửa rộng 2 m. Hàng rào một tầng quanh vườn, trừ chỗ cửa, dài bao nhiêu m?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-26",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Tính chu vi vườn rồi trừ chiều rộng của cửa.",
+        "tex": "2 \\cdot (30 + 20) - 2 = \\concept{blue}{98}\\ \\mathrm{m}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 98
+      },
+      "check": {
+        "expr": "2·(30+20)-2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-26",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một khu vườn hình chữ nhật có diện tích 3 600 m², chiều rộng 40 m, cửa vào khu vườn rộng 5 m. Người ta muốn làm hàng rào xung quanh vườn bằng hai tầng dây thép gai. Hỏi cần phải dùng bao nhiêu mét dây thép gai để làm hàng rào?"
+        },
+        {
+          "type": "note",
+          "text": "Nhập số đo, tính bằng m."
+        }
+      ],
+      "bookRef": "SBT 4.26",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-26",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-26"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Tìm chiều dài vườn, rồi tính chu vi và trừ chiều rộng cửa. Hàng rào có hai tầng dây nên nhân đôi độ dài đó.",
+        "tex": "\\begin{gathered} 3\\,600 : 40 = 90 \\\\ (2 \\cdot (40 + 90) - 5) \\cdot 2 = \\concept{blue}{510}\\ \\mathrm{m} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 510
+      },
+      "check": {
+        "expr": "(2·(40+90)-5)·2"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-27-hang",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sân dài 12 m, rộng 6 m, lát gạch vuông cạnh 0,5 m. Đổi 0,5 m ra cm, rồi tính số viên gạch lát kín sân."
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-27",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Đổi ra cm: gạch 50 cm, sân dài 1 200 cm và rộng 600 cm. Mỗi hàng có 1 200 : 50 = 24 viên, có 600 : 50 = 12 hàng. Số viên là 24 · 12 = 288.",
+        "tex": "24 \\cdot 12 = \\concept{teal}{288}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 288
+      },
+      "check": {
+        "expr": "(1200:50)·(600:50)"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-27-thung",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Gạch bán theo thùng, mỗi thùng có 4 viên. Cần 288 viên gạch thì phải mua bao nhiêu thùng?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-27",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Chia số viên cần dùng cho số viên trong một thùng.",
+        "tex": "288 : 4 = \\concept{teal}{72}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 72
+      },
+      "check": {
+        "expr": "288:4"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-27",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sân nhà bà Thu hình chữ nhật có chiều dài 15 m và chiều rộng 9 m. Bà Thu mua loại gạch lát nền hình vuông có cạnh 0,6 m để lát sân. Biết rằng mỗi thùng có 5 viên gạch. Hỏi bà Thu cần mua bao nhiêu thùng gạch để đủ lát sân?"
+        },
+        {
+          "type": "note",
+          "text": "Nhập số thùng gạch."
+        }
+      ],
+      "bookRef": "SBT 4.27",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-27",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-27"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Đổi ra cm: sân dài 1 500 cm, rộng 900 cm, gạch 60 cm. Mỗi hàng có 1 500 : 60 = 25 viên, có 900 : 60 = 15 hàng, nên cần 25 · 15 = 375 viên, tức 375 : 5 = 75 thùng.",
+        "tex": "(1\\,500 : 60) \\cdot (900 : 60) : 5 = \\concept{teal}{75}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 75
+      },
+      "check": {
+        "expr": "(1500:60)·(900:60):5"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-28-vien",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một viên đá lát hình vuông có cạnh 0,5 m. Diện tích một viên đá là bao nhiêu m²?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-28",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Hình vuông có diện tích bằng cạnh nhân với cạnh.",
+        "tex": "0{,}5 \\cdot 0{,}5 = \\concept{teal}{0{,}25}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 0.25
+      },
+      "check": {
+        "expr": "0,5·0,5"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.dan-4-28-co",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Sân hình chữ nhật 10 m và 6 m, phần lát đá có diện tích 25 m². Phần trồng cỏ có diện tích bao nhiêu m²?"
+        }
+      ],
+      "leadsTo": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-28",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ]
+      },
+      "difficulty": 2,
+      "explain": {
+        "text": "Lấy diện tích sân trừ diện tích phần lát đá.",
+        "tex": "10 \\cdot 6 - 25 = \\concept{teal}{35}\\ \\mathrm{m}^{2}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 35
+      },
+      "check": {
+        "expr": "10·6-25"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.ex.sbt-4-28",
+      "type": "numeric",
+      "cardIds": [],
+      "prompt": [
+        {
+          "type": "note",
+          "text": "Một người dự định lát đá và trồng cỏ xen kẽ cho sân của một ngôi nhà. Sân có dạng hình chữ nhật kích thước 20 m × 30 m. Người ta dùng 1 400 viên đá lát hình vuông cạnh 60 cm để lát, diện tích còn lại dùng để trồng cỏ. Hỏi cần phải bỏ ra chi phí bao nhiêu để trồng cỏ, biết giá mỗi mét vuông cỏ là 30 000 đồng?"
+        },
+        {
+          "type": "note",
+          "text": "Nhập số tiền, tính bằng đồng."
+        }
+      ],
+      "bookRef": "SBT 4.28",
+      "hints": {
+        "highlight": [
+          {
+            "target": "block",
+            "index": 0
+          }
+        ],
+        "hintVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.goi-y-4-28",
+        "solutionVisualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.giai-4-28"
+      },
+      "difficulty": 3,
+      "explain": {
+        "text": "Tính diện tích sân và diện tích đá lát, hiệu của chúng là diện tích trồng cỏ. Rồi nhân với giá cỏ mỗi mét vuông.",
+        "tex": "\\begin{gathered} 600 - 0{,}6 \\cdot 0{,}6 \\cdot 1\\,400 = 96\\ \\mathrm{m}^{2} \\\\ 96 \\cdot 30\\,000 = \\concept{teal}{2\\,880\\,000} \\end{gathered}"
+      },
+      "answer": {
+        "kind": "value",
+        "value": 2880000
+      },
+      "check": {
+        "expr": "(20·30-0,6·0,6·1400)·30000"
+      }
+    }
+  ],
+  "sticker": {
+    "name": "Huy hiệu chu vi và diện tích",
+    "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.sticker"
+  }
+}

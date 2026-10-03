@@ -29,6 +29,17 @@ import {
   validators as numberValidators,
 } from "@/visuals/math/cach-ghi-so-tu-nhien/logic";
 import {
+  INTERACTIVE_KINDS as AREA_INTERACTIVE_KINDS,
+  LESSON_SLUG as AREA_SLUG,
+  VISUAL_SPECS as AREA_SPECS,
+  regionsOf as areaRegions,
+  validatorIdOf as areaValidatorId,
+} from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/catalog";
+import {
+  solutions as areaSolutions,
+  validators as areaValidators,
+} from "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/logic";
+import {
   INTERACTIVE_KINDS as SIGN_INTERACTIVE_KINDS,
   LESSON_SLUG as SIGN_SLUG,
   VISUAL_SPECS as SIGN_SPECS,
@@ -783,6 +794,30 @@ const quadsEntries: Record<string, VisualEntry> = Object.fromEntries(
   }),
 );
 
+// Entries of "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc": one per item of
+// its catalog. The floor of tiles carries the validator of the `manipulate`
+// exercises built on it; a figure with tappable polygons declares its regions.
+const areaEntries: Record<string, VisualEntry> = Object.fromEntries(
+  Object.entries(AREA_SPECS).map(([key, spec]) => {
+    const validatorId = areaValidatorId(spec) as
+      | keyof typeof areaValidators
+      | undefined;
+    const regions = areaRegions(spec);
+    const entry: VisualEntry = {
+      interactive: AREA_INTERACTIVE_KINDS.has(spec.kind),
+      ...(regions === undefined ? {} : { regions }),
+      ...(validatorId === undefined
+        ? {}
+        : {
+            validators: { [validatorId]: areaValidators[validatorId] },
+            solutions: { [validatorId]: areaSolutions[validatorId] },
+          }),
+      load: () => lessonExample(AREA_SLUG, (m) => m.fromSpec(spec)),
+    };
+    return [`${AREA_SLUG}.visual.${key}`, entry];
+  }),
+);
+
 export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...numberEntries,
   ...integerEntries,
@@ -792,6 +827,7 @@ export const visualRegistry: Readonly<Record<string, VisualEntry>> = {
   ...divisionEntries,
   ...shapesEntries,
   ...quadsEntries,
+  ...areaEntries,
   ...orderEntries,
   ...primeEntries,
   ...thuTuEntries,
@@ -1609,6 +1645,10 @@ const EXAMPLE_MODULES = lessonModules({
   "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can": () =>
     import(
       "@/visuals/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/examples"
+    ),
+  "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc": () =>
+    import(
+      "@/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/examples"
     ),
   "quy-tac-dau-ngoac": () =>
     import("@/visuals/math/quy-tac-dau-ngoac/examples"),

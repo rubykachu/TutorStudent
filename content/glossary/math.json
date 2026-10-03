@@ -563,6 +563,29 @@
     {
       "term": "cạnh đáy",
       "forbidden": []
+    },
+    {
+      "term": "chu vi",
+      "forbidden": [],
+      "color": "blue",
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "diện tích",
+      "forbidden": [],
+      "color": "teal",
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "đơn vị đo",
+      "forbidden": [],
+      "color": "sky",
+      "prerequisite": "tiểu học"
+    },
+    {
+      "term": "chiều cao",
+      "forbidden": [],
+      "color": "violet"
     }
   ],
   "names": [

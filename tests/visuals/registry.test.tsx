@@ -74,6 +74,7 @@ describe("visualRegistry", () => {
       "ve-binh-hanh-hai-canh": [{ a: 3, b: 4 }],
       "ve-binh-hanh-duong-cheo": [{ ab: 3, bc: 5, ac: 6 }],
       "ghep-hinh": [{ n: 3 }, { n: 8 }],
+      "xep-gach": [{ perRow: 4, rows: 3 }],
       "gap-nhau": [
         { p: 4, q: 6, first: 1 },
         { p: 4, q: 5, first: 0 },
