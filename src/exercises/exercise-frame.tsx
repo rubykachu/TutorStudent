@@ -149,6 +149,8 @@ export const COLLAPSED_INPUT_CLASS = "hidden lg:landscape:block";
 // A lesson visual loads on first use and grows after it mounts; the frame
 // keeps it in view while it settles, then leaves scrolling to the child.
 const FOLLOW_VISUAL_MS = 1500;
+// Delay of the one scroll retry that follows a figure appearing.
+const SCROLL_RETRY_MS = 100;
 // Space kept above the explanation panel when the page is lifted to show it.
 const EXPLANATION_TOP_GAP_PX = 16;
 
@@ -255,6 +257,7 @@ export function ExerciseFrame<E extends BasicExercise>({
   // What the child must see after a wrong check: the feedback visual, the
   // answer area while it shows the revealed answer, and the answer area again
   // once "Tự làm lại" gives the input back.
+  const frameRef = useRef<HTMLElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const answerRef = useRef<HTMLDivElement>(null);
   const visualKey = view.visualId && `${tier}:${view.visualId}`;
@@ -280,13 +283,27 @@ export function ExerciseFrame<E extends BasicExercise>({
     const bringIntoView = () =>
       target.scrollIntoView?.({ block: "nearest", behavior });
     bringIntoView();
-    if (typeof ResizeObserver === "undefined") return;
+    // iPad WebKit resets the scroll position a few ms later, when the page
+    // grows under the new figure, and a ResizeObserver does not fire for it.
+    // One retry, only while the target is still not fully above the bar.
+    const retry = setTimeout(() => {
+      const barTop =
+        frameRef.current
+          ?.querySelector("[data-bottom-bar]")
+          ?.getBoundingClientRect().top ?? window.innerHeight;
+      const box = target.getBoundingClientRect();
+      if (box.top < 0 || box.bottom > barTop) bringIntoView();
+    }, SCROLL_RETRY_MS);
+    if (typeof ResizeObserver === "undefined") {
+      return () => clearTimeout(retry);
+    }
     const observer = new ResizeObserver(bringIntoView);
     observer.observe(target);
     const stop = setTimeout(() => observer.disconnect(), FOLLOW_VISUAL_MS);
     return () => {
       observer.disconnect();
       clearTimeout(stop);
+      clearTimeout(retry);
     };
   }, [inViewKey, visualKey, reducedMotion]);
 
@@ -315,7 +332,6 @@ export function ExerciseFrame<E extends BasicExercise>({
   // start. A prompt visual that grows after it loads is followed for a
   // moment, like the feedback visual above, and so is the owl's bubble
   // that appears above the answer after each check and pushes it down.
-  const frameRef = useRef<HTMLElement>(null);
   const columnRef = useRef<HTMLDivElement>(null);
   // Changes when the answer area first shows, after each wrong check and
   // when it is accepted, each time restarting the follow window.

@@ -599,6 +599,71 @@ describe("ExerciseFrame", () => {
     }
   });
 
+  it("retries the scroll once after 100 ms while the figure is still under the bottom bar", () => {
+    const original = Element.prototype.scrollIntoView;
+    const originalRect = Element.prototype.getBoundingClientRect;
+    const calls: Element[] = [];
+    Element.prototype.scrollIntoView = function (this: Element) {
+      calls.push(this);
+    };
+    // The page grew after the first scroll: the figure is back under the bar.
+    const tops: Record<string, [number, number]> = {
+      "[data-feedback-visual]": [650, 760],
+      "[data-bottom-bar]": [700, 800],
+    };
+    mockRects(tops);
+    vi.useFakeTimers();
+    try {
+      const { container } = renderFrame(HINTS_WITH_VISUALS);
+      choose("b");
+      checkAnswer();
+      choose("b");
+      checkAnswer();
+      const visual = container.querySelector("[data-feedback-visual]");
+      const count = () => calls.filter((el) => el === visual).length;
+      expect(count()).toBe(1);
+      vi.advanceTimersByTime(99);
+      expect(count()).toBe(1);
+      vi.advanceTimersByTime(1);
+      expect(count()).toBe(2);
+      // One retry only.
+      vi.advanceTimersByTime(1000);
+      expect(count()).toBe(2);
+    } finally {
+      vi.useRealTimers();
+      Element.prototype.scrollIntoView = original;
+      Element.prototype.getBoundingClientRect = originalRect;
+    }
+  });
+
+  it("does not retry the scroll when the figure is fully above the bottom bar", () => {
+    const original = Element.prototype.scrollIntoView;
+    const originalRect = Element.prototype.getBoundingClientRect;
+    const calls: Element[] = [];
+    Element.prototype.scrollIntoView = function (this: Element) {
+      calls.push(this);
+    };
+    mockRects({
+      "[data-feedback-visual]": [300, 600],
+      "[data-bottom-bar]": [700, 800],
+    });
+    vi.useFakeTimers();
+    try {
+      const { container } = renderFrame(HINTS_WITH_VISUALS);
+      choose("b");
+      checkAnswer();
+      choose("b");
+      checkAnswer();
+      const visual = container.querySelector("[data-feedback-visual]");
+      vi.advanceTimersByTime(500);
+      expect(calls.filter((el) => el === visual)).toHaveLength(1);
+    } finally {
+      vi.useRealTimers();
+      Element.prototype.scrollIntoView = original;
+      Element.prototype.getBoundingClientRect = originalRect;
+    }
+  });
+
   it("lifts the whole answer area above the bottom bar, keeping the card's top on screen", () => {
     const scrollBy = vi.fn();
     const originalScrollBy = window.scrollBy;
