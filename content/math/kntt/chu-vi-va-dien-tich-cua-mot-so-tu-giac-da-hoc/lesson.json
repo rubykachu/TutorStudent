@@ -12,7 +12,7 @@
   "title": "Chu vi và diện tích của một số tứ giác đã học",
   "sourceRef": "Sách bài tập tr.70–73",
   "status": "published",
-  "reviewedHash": "e850b4832c5c68413cfdd3a9fbd7a24ceb783f982e8736ceede27e0a7e2409ac",
+  "reviewedHash": "93582cd02dae58bc505fe0fe1ec82ca45cf8ccc66d00cccdea7e8b8b4efe879a",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học cách đo một vòng quanh hình và tính diện tích của hình. Bạn thử nghĩ xem, nhà mình muốn rào một mảnh vườn thì cần mua bao nhiêu mét lưới?"
@@ -24,7 +24,16 @@
       "đổi mét ra xăng-ti-mét, và đổi mét vuông ra xăng-ti-mét vuông",
       "giải bài toán rào vườn, lát sàn và sơn tường"
     ],
-    "whyItMatters": "Bạn dùng bài này khi nhà lát gạch một phòng: biết diện tích sàn, bạn tính được số viên gạch cần mua."
+    "whyItMatters": "Bạn dùng bài này khi nhà lát gạch một phòng: biết diện tích sàn, bạn tính được số viên gạch cần mua.",
+    "narration": {
+      "audioUrl": "narration/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/overview.m4a",
+      "vttUrl": "narration/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -301,6 +310,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.video.dem-o-vuong"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -364,6 +377,10 @@
       "sourceRef": "Kiến thức nền (tiểu học); sách bài tập tr.70 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.video.cat-binh-hanh"
+        },
         {
           "type": "group",
           "children": [
@@ -432,6 +449,10 @@
       "sourceRef": "Sách bài tập tr.70 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.video.thoi-nua-chu-nhat"
+        },
         {
           "type": "group",
           "children": [
@@ -5014,5 +5035,76 @@
   "sticker": {
     "name": "Huy hiệu chu vi và diện tích",
     "visualId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.video.dem-o-vuong",
+      "lessonId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc",
+      "url": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/dem-o-vuong.mp4",
+      "vttUrl": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/dem-o-vuong.vtt",
+      "posterUrl": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/dem-o-vuong.jpg",
+      "durationSec": 74.57,
+      "clips": [
+        {
+          "id": "dem-o-vuong",
+          "start": 33.047,
+          "end": 73.153,
+          "cardIds": [
+            "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.video.cat-binh-hanh",
+      "lessonId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc",
+      "url": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/cat-binh-hanh.mp4",
+      "vttUrl": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/cat-binh-hanh.vtt",
+      "posterUrl": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/cat-binh-hanh.jpg",
+      "durationSec": 57.2,
+      "clips": [
+        {
+          "id": "cat-binh-hanh",
+          "start": 9.298,
+          "end": 55.77,
+          "cardIds": [
+            "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-binh-hanh"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.video.thoi-nua-chu-nhat",
+      "lessonId": "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc",
+      "url": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/thoi-nua-chu-nhat.mp4",
+      "vttUrl": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/thoi-nua-chu-nhat.vtt",
+      "posterUrl": "video/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/thoi-nua-chu-nhat.jpg",
+      "durationSec": 59.8,
+      "clips": [
+        {
+          "id": "thoi-nua-chu-nhat",
+          "start": 11.411,
+          "end": 58.372,
+          "cardIds": [
+            "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thoi"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

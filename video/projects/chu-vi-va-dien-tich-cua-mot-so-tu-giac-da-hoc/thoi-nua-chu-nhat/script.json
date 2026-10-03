@@ -1,0 +1,116 @@
+{
+  "title": "Hình thoi là nửa hình chữ nhật",
+  "engine": "local",
+  "poster": {
+    "scene": "s06-nua",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm diện tích hình thoi.",
+          "opening": true
+        },
+        {
+          "text": "Hình thoi có hai đường chéo: 8 cm và 6 cm."
+        }
+      ]
+    },
+    {
+      "id": "s02-hop",
+      "sentences": [
+        {
+          "text": "Vẽ hình chữ nhật đi qua bốn đỉnh."
+        },
+        {
+          "text": "Nó dài 8 cm, rộng 6 cm."
+        }
+      ]
+    },
+    {
+      "id": "s03-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hình thoi chiếm bao nhiêu hình chữ nhật?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s04-xoay",
+      "sentences": [
+        {
+          "text": "Bốn tam giác nằm ngoài hình thoi."
+        },
+        {
+          "text": "Xoay chúng vào trong."
+        }
+      ]
+    },
+    {
+      "id": "s05-lap",
+      "sentences": [
+        {
+          "text": "Chúng lấp đầy hình thoi."
+        }
+      ]
+    },
+    {
+      "id": "s06-nua",
+      "sentences": [
+        {
+          "text": "Hình thoi bằng một nửa hình chữ nhật.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s07-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: diện tích hình thoi là mấy?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s08-kq",
+      "sentences": [
+        {
+          "text": "8 nhân 6 bằng 48, một nửa là 24 cm².",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s09-quy-tac",
+      "sentences": [
+        {
+          "text": "Diện tích hình thoi bằng tích hai đường chéo, chia cho 2.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s10-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé: nhân hai đường chéo rồi chia cho 2."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "thoi-nua-chu-nhat",
+      "from": "s02-hop",
+      "to": "s10-nho",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-thoi"
+      ]
+    }
+  ]
+}

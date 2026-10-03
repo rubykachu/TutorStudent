@@ -213,6 +213,42 @@ describe("spokenText", () => {
     }
   });
 
+  it("says an area unit in full, after its number", () => {
+    expect(spokenText("Diện tích là 24 m².")).toBe(
+      "Diện tích là 24 mét-vuông.",
+    );
+    expect(spokenText("Mỗi ô là 1 cm², cả hình 12 cm²")).toBe(
+      "Mỗi ô là 1 xăng-ti-mét-vuông, cả hình 12 xăng-ti-mét-vuông",
+    );
+    expect(spokenText("Sàn dài 6 m, rộng 4 cm")).toBe("Sàn dài 6 m, rộng 4 cm");
+    expect(
+      matchRate(spokenText("Sàn rộng 24 m²."), "Sàn rộng 24 mét vuông."),
+    ).toBe(1);
+  });
+
+  it('matches Whisper\'s "cm" to the spoken "xăng-ti-mét"', () => {
+    expect(
+      matchRate(
+        spokenText(
+          "Đổi mét ra xăng-ti-mét, và đổi mét vuông ra xăng-ti-mét vuông",
+        ),
+        "Đổi mét ra cm và đổi mét vuông ra cm vuông.",
+      ),
+    ).toBe(1);
+    expect(matchRate("Cạnh dài 5 cm", "Cạnh dài 5cm.")).toBe(1);
+    expect(matchRate("Sàn dài 6 m", "Sàn dài 6 mét.")).toBe(1);
+    expect(
+      matchRate(
+        spokenText("6 nhân 4 bằng 24, nên diện tích là 24 m²."),
+        "6 x 4 bằng 24 nên diện tích là 24m2.",
+      ),
+    ).toBe(1);
+    expect(matchRate(spokenText("Hình có 12 cm²"), "Hình có 12 cm2")).toBe(1);
+    expect(
+      matchRate(spokenText("Mỗi ô là 1 cm²"), "Mỗi ô là 1 xăng-ti-mét vuông"),
+    ).toBe(1);
+  });
+
   it("is checked by Whisper against the full words", () => {
     const spoken = spokenText("Tìm ƯCLN và BCNN của 12 và 18.");
     expect(

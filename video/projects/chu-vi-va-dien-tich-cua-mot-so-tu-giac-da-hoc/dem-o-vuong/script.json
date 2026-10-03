@@ -1,0 +1,123 @@
+{
+  "title": "Đếm ô vuông để tính diện tích",
+  "engine": "local",
+  "poster": {
+    "scene": "s09-quy-tac",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta đếm ô vuông để tính diện tích.",
+          "opening": true
+        },
+        {
+          "text": "Một ô vuông cạnh 1 cm có diện tích 1 cm²."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: phủ kín hình này cần mấy ô?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-dem",
+      "sentences": [
+        {
+          "text": "Hàng đầu có 4 ô."
+        },
+        {
+          "text": "Hai hàng có 8 ô."
+        },
+        {
+          "text": "Ba hàng có 12 ô, diện tích là 12 cm²."
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Diện tích của một hình là số ô vuông đơn vị phủ kín hình đó.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-san",
+      "sentences": [
+        {
+          "text": "Giờ ta xét một sàn nhà dài 6 m, rộng 4 m."
+        },
+        {
+          "text": "Ta chia sàn thành ô vuông cạnh 1 m."
+        }
+      ]
+    },
+    {
+      "id": "s06-hang",
+      "sentences": [
+        {
+          "text": "Dài 6 m nên mỗi hàng có 6 ô."
+        },
+        {
+          "text": "Rộng 4 m nên có 4 hàng."
+        }
+      ]
+    },
+    {
+      "id": "s07-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: sàn có tất cả mấy ô?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s08-kq",
+      "sentences": [
+        {
+          "text": "6 nhân 4 bằng 24, nên diện tích sàn là 24 m².",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s09-quy-tac",
+      "sentences": [
+        {
+          "text": "Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng, diện tích hình vuông bằng cạnh nhân với cạnh.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s10-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé: lấy chiều dài nhân chiều rộng."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "dem-o-vuong",
+      "from": "s05-san",
+      "to": "s10-nho",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-chu-nhat-vuong"
+      ]
+    }
+  ]
+}

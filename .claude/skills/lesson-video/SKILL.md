@@ -33,7 +33,7 @@ Chọn giọng theo không khí của bài, lúc dựng video đầu tiên của
 
 ## Chữ viết tắt
 
-Giọng đọc rời từng chữ cái của chữ in hoa ("ƯCLN" thành "Ư C L N"), nên mọi câu gửi tới TTS (câu video và lời đọc giới thiệu, VieNeu và Gemini) đi qua `spokenText` trong `video/lib/text.ts`, thay chữ viết tắt bằng chữ đầy đủ theo `SPOKEN_ABBREVIATIONS` (ƯCLN, BCNN, ƯC, BC) và số La Mã chỉ chương ("chương II" thành "chương hai"). Phụ đề và chữ trên màn giữ nguyên chữ viết tắt; Whisper và khoá cache dùng dạng đã đọc, nên chỉ câu có chữ viết tắt mới bị đọc lại. Viết tắt mới: thêm vào bảng đó, không `say` riêng từng câu. `pnpm video:check` và các lệnh build cảnh báo `WARN` khi còn chữ in hoa bị đọc rời.
+Giọng đọc rời từng chữ cái của chữ in hoa ("ƯCLN" thành "Ư C L N"), nên mọi câu gửi tới TTS (câu video và lời đọc giới thiệu, VieNeu và Gemini) đi qua `spokenText` trong `video/lib/text.ts`, thay chữ viết tắt bằng chữ đầy đủ theo `SPOKEN_ABBREVIATIONS` (ƯCLN, BCNN, ƯC, BC và đơn vị diện tích cm², m² đọc "xăng-ti-mét vuông", "mét vuông") và số La Mã chỉ chương ("chương II" thành "chương hai"). Phụ đề và chữ trên màn giữ nguyên chữ viết tắt; Whisper và khoá cache dùng dạng đã đọc, nên chỉ câu có chữ viết tắt mới bị đọc lại. Viết tắt mới: thêm vào bảng đó, không `say` riêng từng câu. `pnpm video:check` và các lệnh build cảnh báo `WARN` khi còn chữ in hoa bị đọc rời.
 
 ## Câu mở đầu và quãng đệm
 

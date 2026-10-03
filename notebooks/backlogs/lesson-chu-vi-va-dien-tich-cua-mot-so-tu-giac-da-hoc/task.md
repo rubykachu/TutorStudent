@@ -1,8 +1,8 @@
 # Bàn giao: Bài 20 `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (Chu vi và diện tích của một số tứ giác đã học)
 
 ## Trạng thái
-- Cập nhật cuối: 03/10/2026. Bài đã duyệt (`published`, `reviewedHash` `e850b483…`) và đã khoá id (`content:lock`, 111 id): 11 phần, 10 thẻ, 80 câu, 4 mẹo. Review vòng 1 (Opus), vòng 2 (Opus) và vòng 3 chỉ phần đổi (Sonnet) xong; đọc hiểu (Haiku) xong (mục "Vòng 2 và duyệt"). Chưa có lời đọc và video, chưa deploy.
-- Việc kế tiếp: lời đọc (Gemini, theo `lesson-video` và `docs/operations.md`; gọi API cần chủ dự án đồng ý), rồi video, rồi `media:upload` và `deploy:prod` khi chủ dự án duyệt cho bản phát hành đó.
+- Cập nhật cuối: 03/10/2026. Bài đã duyệt (`published`, `reviewedHash` `e850b483…`) và đã khoá id (`content:lock`, 111 id): 11 phần, 10 thẻ, 80 câu, 4 mẹo. Review vòng 1 (Opus), vòng 2 (Opus) và vòng 3 chỉ phần đổi (Sonnet) xong; đọc hiểu (Haiku) xong (mục "Vòng 2 và duyệt"). Lời đọc và ba video đã làm và duyệt (mục "Lời đọc và video"); chưa tải media, chưa deploy.
+- Việc kế tiếp: `media:upload` và `deploy:prod` khi chủ dự án duyệt cho bản phát hành đó.
 
 ## Nguồn (sách bài tập, `sources/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/`, không commit)
 - Đề: tr.70–73 in (PDF 71–74), tệp `sbt-p70.png` đến `sbt-p73.png`. Tr.70 có tên bài, "Kiến thức cần nhớ" (công thức chu vi và diện tích của hình vuông, hình chữ nhật, hình thang, hình bình hành, hình thoi); tr.71 có "Kĩ năng giải toán", ví dụ 1 (nền nhà 8 m và 6 m lát gạch cạnh 40 cm) và ví dụ 2 (hình bình hành đáy 10 cm, chiều cao 4 cm); tr.72 có bài 4.20 đến 4.24 (Hình 4.19, 4.20); tr.73 có bài 4.25 đến 4.28 (ảnh viên đá lục giác và ảnh sân lát đá). Tr.74 là "Ôn tập chương IV" (không thuộc bài này).
@@ -132,3 +132,9 @@ Chạy `.claude/skills/lesson-review` mục "Vòng toàn bài" (vòng 2) trên `
 - Vòng 3 (chỉ phần đổi, Sonnet): 0 Nghiêm trọng, 2 Nên sửa, 5 Góp ý; điều phối sửa cả 2 Nên sửa và 3 Góp ý, bỏ 2 Góp ý có lý do trong `review.md`. Duyệt `content:hash --approve` (`e850b483…`, `published`) và `content:lock chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (111 id). Commit 775c51c.
 - Kiểm trên 775c51c (worktree tạm, cổng 3790, đã gỡ bằng `git worktree remove --force`): `visual:shot` 168/168 đạt; `lesson:walk` 0 lỗi, 0 cảnh báo (iPad dọc, điện thoại, iPad ngang); `pnpm lint`, `pnpm typecheck` đạt; `pnpm test` 211/211 tệp, 4859 đạt; `content:check` 0 lỗi. Ảnh (ngoài git): `/private/tmp/claude-502/-Users-minhtang-Documents-Projects-MyProject-TutorStudent/a67bc03e-e9cb-4c58-94c6-0657b0b85437/scratchpad/bai20-r2/walk-final/` và `shot-final/`. `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` đã chạy ở cây chính.
 - Việc còn lại: lời đọc (Gemini) và video theo `lesson-video`, rồi đưa media và deploy theo `docs/operations.md` "Đưa bài mới lên production" khi chủ dự án duyệt; xong thì lưu trữ thư mục backlog này.
+
+## Lời đọc và video (03/10/2026)
+- Giọng: Mỹ Duyên (`video/projects/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/media.json`); Bài 18 dùng Hải Đăng nên Bài 20 đổi sang giọng nữ cho bé đỡ nhàm. Lời đọc giới thiệu: Gemini Vindemiatrix (không hết hạn mức, không phải VieNeu), 50,8 giây.
+- Ba video, mỗi video một ý: `dem-o-vuong` (đầu phần `dien-tich-chu-nhat-vuong`; đếm ô vuông, sàn 6 m · 4 m, công thức hình chữ nhật; 74,6 giây, 15 câu), `cat-binh-hanh` (đầu phần `dien-tich-binh-hanh`; cắt tam giác trượt thành hình chữ nhật; 57,2 giây, 12 câu), `thoi-nua-chu-nhat` (đầu phần `dien-tich-thoi`; hình thoi bằng nửa hình chữ nhật; 59,8 giây, 13 câu). Hình lấy từ catalog hình của bài qua `video/projects/<bài>/figures.tsx`.
+- Đơn vị: `cm²` và `m²` đọc "xăng-ti-mét vuông" và "mét vuông" qua `SPOKEN_ABBREVIATIONS`; Whisper ghi "cm", "m", "24m2" nên `wordTokens` so khớp theo âm tiết (test trong `tests/video/text.test.ts`).
+- `video:check` ok; Whisper mỗi câu ≥ 97% (thấp nhất 97,7%); review vòng 4 chỉ phần đổi (Sonnet): 0 Nghiêm trọng, 2 Nên sửa (thiếu nhãn ô 1 m ở `dem-o-vuong`, a và b chưa gắn với 8 cm và 6 cm ở `thoi-nua-chu-nhat`) đã sửa, xem `review.md`. Cần chủ dự án nghe lại câu "Nhớ nhé" của `thoi-nua-chu-nhat` (Whisper nghe "nhận" thay "nhân").

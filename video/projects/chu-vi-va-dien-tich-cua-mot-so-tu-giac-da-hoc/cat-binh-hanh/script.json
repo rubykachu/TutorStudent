@@ -1,0 +1,112 @@
+{
+  "title": "Cắt hình bình hành thành hình chữ nhật",
+  "engine": "local",
+  "poster": {
+    "scene": "s06-ghep",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta cắt hình bình hành.",
+          "opening": true
+        },
+        {
+          "text": "Cạnh đáy của hình này dài 6 cm."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: ta cắt hình này thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-cao",
+      "sentences": [
+        {
+          "text": "Kẻ chiều cao từ đỉnh xuống cạnh đáy."
+        },
+        {
+          "text": "Chiều cao vuông góc với cạnh đáy, dài 3 cm."
+        }
+      ]
+    },
+    {
+      "id": "s04-cat",
+      "sentences": [
+        {
+          "text": "Sau đó, cắt tam giác ở bên trái."
+        }
+      ]
+    },
+    {
+      "id": "s05-truot",
+      "sentences": [
+        {
+          "text": "Rồi trượt nó sang bên phải."
+        }
+      ]
+    },
+    {
+      "id": "s06-ghep",
+      "sentences": [
+        {
+          "text": "Ta được hình chữ nhật 6 cm và 3 cm."
+        }
+      ]
+    },
+    {
+      "id": "s07-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: diện tích hình chữ nhật là mấy?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s08-kq",
+      "sentences": [
+        {
+          "text": "6 nhân 3 bằng 18, nên diện tích là 18 cm².",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s09-quy-tac",
+      "sentences": [
+        {
+          "text": "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s10-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé: chiều cao vuông góc với cạnh đáy."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "cat-binh-hanh",
+      "from": "s02-hoi",
+      "to": "s10-nho",
+      "cardIds": [
+        "chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.card.dien-tich-binh-hanh"
+      ]
+    }
+  ]
+}

@@ -100,8 +100,9 @@ export function spokenNegatives(text: string): string {
   return text.replace(NEGATIVE_SIGN, "âm-");
 }
 
-// Abbreviations the voice would spell letter by letter ("ƯCLN" as "Ư C L N"),
-// and what it must say instead. The single source: every sentence that goes
+// Abbreviations the voice would spell letter by letter ("ƯCLN" as "Ư C L N")
+// or read with the exponent dropped ("cm²" as "cm"), and what it must say
+// instead. The single source: every sentence that goes
 // to a TTS engine passes through `spokenText`, so a new abbreviation is added
 // here and nowhere else. Captions and on-screen text keep the abbreviation.
 // Matched as whole words and case-sensitively, so "BCNN" inside another word
@@ -111,6 +112,8 @@ export const SPOKEN_ABBREVIATIONS = {
   BCNN: "bội chung nhỏ nhất",
   ƯC: "ước chung",
   BC: "bội chung",
+  "cm²": "xăng-ti-mét vuông",
+  "m²": "mét vuông",
 } as const satisfies Record<string, string>;
 
 // A chapter number written in Roman numerals right after "chương" is said as
@@ -218,6 +221,15 @@ export function spelledOutCapitals(text: string, say?: string): string[] {
   );
 }
 
+// Whisper writes the spoken "xăng-ti-mét" as "cm" and "mét" as "m", and an
+// area unit as "m2" or "cm2" ("24 mét vuông" as "24m2"), so a length unit is
+// compared as the syllables it is said with, on both sides.
+const UNIT_READINGS: Record<string, string[]> = {
+  cm: ["xang", "ti", "met"],
+  m: ["met"],
+};
+const AREA_UNIT = /^(\d*)(cm|m)2$/;
+
 // One written word (as in the script or a Whisper word) as plain tokens.
 export function wordTokens(word: string): string[] {
   const plain = stripTones(word)
@@ -232,7 +244,18 @@ export function wordTokens(word: string): string[] {
     if (/^\d+$/.test(part)) return readNumber(Number(part));
     const letters = part.match(/^(\d+)([a-z]+)$/);
     if (letters)
-      return [...readNumber(Number(letters[1])), letters[2] as string];
+      return [
+        ...readNumber(Number(letters[1])),
+        ...(UNIT_READINGS[letters[2] as string] ?? [letters[2] as string]),
+      ];
+    if (UNIT_READINGS[part]) return UNIT_READINGS[part];
+    const area = part.match(AREA_UNIT);
+    if (area)
+      return [
+        ...(area[1] ? readNumber(Number(area[1])) : []),
+        ...(UNIT_READINGS[area[2] as string] as string[]),
+        "vuong",
+      ];
     // Northern voices say "tr" and "ch" alike, so Whisper cannot tell
     // "trừ" from "chữ"; both sides compare them as one sound. The same
     // voices say "d" and "gi" before a vowel alike ("dải" and "giải").
