@@ -68,6 +68,9 @@ Bài 19 của sách (SBT tr.67–69) quá dài cho bé (112 phút), nên chủ d
 - `pnpm visual:shot` và `pnpm lesson:walk` trong git worktree tạm cổng 3780 (đã gỡ): kết quả ghi ở mục "Kiểm cuối" bên dưới.
 - Cổng: `pnpm format` (tệp của bài), `pnpm lint` (chỉ thông báo info ở `video/projects/*/index.html` có từ trước), `pnpm typecheck`, `pnpm test` đạt.
 
+## Kiểm cuối (03/10/2026)
+- `pnpm visual:shot hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`: 142/142 đạt. `pnpm lesson:walk hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`: 0 lỗi, 0 cảnh báo, ba kích thước (iPad dọc, điện thoại, iPad ngang), chạy trong git worktree tạm cổng 3780 (đã gỡ); ảnh walk mới ở `.shots/walk/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/` (bộ ảnh của bài chưa tách đã dời khỏi đó).
+
 ## Việc nên làm ở vòng sau
 - Các câu `choice` có phương án là số chưa có `check` (lint không đòi); xét có cần.
 - Bài phần 2 dùng từ "song song" mà không dạy lại (dạy ở section `song-song` của bài này); xét ở review của bài phần 2.
