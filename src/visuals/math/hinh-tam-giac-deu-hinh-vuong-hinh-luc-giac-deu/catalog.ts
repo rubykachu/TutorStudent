@@ -1728,7 +1728,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   },
 
   // The figures of the workbook exercises 4.1 to 4.7
-  "sbt-hinh-4-4": figure({ ...figure44(), maxScale: BOOK_FIGURE_SCALE }),
+  // Figure 4.4 has no point names, so it keeps the default size: grown, it
+  // pushes the hint figure of exercise 4.1 under the button bar.
+  "sbt-hinh-4-4": figure(figure44()),
   "sbt-hinh-4-5": figure({ ...figure45(), maxScale: BOOK_FIGURE_SCALE }),
   "sbt-hinh-4-6": figure({ ...FIG46, maxScale: BOOK_FIGURE_SCALE }),
   "sbt-hinh-4-7": figure(figure47()),
