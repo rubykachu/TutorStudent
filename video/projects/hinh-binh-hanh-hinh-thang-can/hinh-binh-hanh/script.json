@@ -1,0 +1,110 @@
+{
+  "title": "Hình bình hành",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-canh",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học hình bình hành.",
+          "opening": true
+        },
+        {
+          "text": "Gạch lát nghiêng có dạng hình bình hành."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Hai cạnh nằm đối diện nhau gọi là cạnh đối."
+        },
+        {
+          "text": "Bạn thử đoán xem: các cạnh đối của nó thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-canh",
+      "sentences": [
+        {
+          "text": "Hình bình hành có các cạnh đối bằng nhau và song song.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-goc",
+      "sentences": [
+        {
+          "text": "Hai góc nằm đối diện nhau gọi là góc đối."
+        },
+        {
+          "text": "Các góc đối của nó bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-cheo",
+      "sentences": [
+        {
+          "text": "Đường chéo nối hai đỉnh không nằm cạnh nhau."
+        },
+        {
+          "text": "Trung điểm của đoạn thẳng là điểm nằm chính giữa đoạn đó.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hai đường chéo cắt nhau thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s07-trung-diem",
+      "sentences": [
+        {
+          "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s08-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé: hai đường chéo cắt nhau tại trung điểm."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hinh-binh-hanh",
+      "from": "s02-hoi",
+      "to": "s04-goc",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-binh-hanh"]
+    },
+    {
+      "id": "cheo-hinh-binh-hanh",
+      "from": "s05-cheo",
+      "to": "s08-nho",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-binh-hanh"]
+    }
+  ]
+}

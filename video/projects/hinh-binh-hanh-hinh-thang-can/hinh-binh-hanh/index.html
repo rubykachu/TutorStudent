@@ -1,0 +1,242 @@
+<!doctype html>
+<!--
+  Lesson video "Hình bình hành" (lesson hinh-binh-hanh-hinh-thang-can): the parallelogram: opposite sides equal and parallel, opposite angles equal, diagonals cutting each other at their midpoints; its example is the slanted floor tile.
+  Colours as in the lesson: parallelogram lime, side blue, angle violet, diagonal amber. The shapes are the lesson's own figures
+  (figures.tsx). Built by `pnpm video:build hinh-binh-hanh-hinh-thang-can hinh-binh-hanh`, which injects window.TIMING.
+  The rule cards carry `data-rule-text`: their text is the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Hình bình hành</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .step {
+        position: absolute;
+        left: 880px;
+        top: 220px;
+        width: 340px;
+        display: flex;
+      }
+      .step .chip {
+        white-space: normal;
+        font-size: 34px;
+      }
+      .rule {
+        position: absolute;
+        left: 100px;
+        width: 1080px;
+        top: 30px;
+        padding: 20px 32px;
+        font:
+          600 30px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+        text-wrap: balance;
+      }
+      .figure-wrap {
+        width: 560px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="75"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="row title" style="top: 50px">Hình bình hành</div>
+
+          <div id="t1" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-lime)"
+              >Gạch lát: hình bình hành</span
+            >
+          </div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="t2" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-lime)"
+              >Hình bình hành</span
+            >
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="rule3" class="card rule" data-rule-text>
+            Hình bình hành có các cạnh đối bằng nhau và song song.
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="rule4" class="card rule" data-rule-text>
+            Các góc đối của nó bằng nhau.
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="t5" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-amber)"
+              >Đường chéo</span
+            >
+          </div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="t6" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-amber)"
+              >Hai đường chéo</span
+            >
+          </div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="rule7" class="card rule" data-rule-text>
+            Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi
+            đường.
+          </div>
+        </section>
+        <section id="s8" class="scene layer">
+          <div id="t8" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-amber)"
+              >Cắt nhau tại trung điểm</span
+            >
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const {
+          $,
+          start,
+          W,
+          owl,
+          figure,
+          pop,
+          hide,
+          pose,
+          scenes,
+          finish,
+          tl,
+        } = window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-hoi"],
+            ["#s3", "s03-canh"],
+            ["#s4", "s04-goc"],
+            ["#s5", "s05-cheo"],
+            ["#s6", "s06-hoi"],
+            ["#s7", "s07-trung-diem"],
+            ["#s8", "s08-nho"],
+          ],
+          { leave: 0 },
+        );
+
+        // A picture of the lesson in the middle of the stage, with the variants
+        // to switch between (only the first shows); the picture of a scene is
+        // there from its first frame.
+        const picture = (section, names, top = 148) =>
+          figure($(section), names, { left: "300px", top: `${top}px` });
+        // Shows one variant of a picture from time t.
+        const show = (f, name, t) => {
+          for (const [key, layer] of Object.entries(f.layers)) {
+            tl.set(layer, { opacity: key === name ? 1 : 0 }, t);
+          }
+        };
+
+        {
+          const sid = "s01-chao";
+          picture("#s1", ["tiles"], 148);
+          hide(["#t1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#t1", W(sid, "gạch"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-hoi";
+          picture("#s2", ["bh-plain"]);
+          hide(["#t2"]);
+          pose(bird, "idle", start(sid));
+          pop("#t2", start(sid) + 0.1, { from: 0.6 });
+        }
+        {
+          const sid = "s03-canh";
+          const f = picture("#s3", ["bh-plain", "bh-canh", "bh-song-song"]);
+          hide(["#rule3"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule3", W(sid, "hình"), { from: 0.9 });
+          show(f, "bh-canh", W(sid, "cạnh"));
+          show(f, "bh-song-song", W(sid, "song"));
+        }
+        {
+          const sid = "s04-goc";
+          const f = picture("#s4", ["bh-song-song", "bh-goc"]);
+          hide(["#rule4"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule4", W(sid, "các"), { from: 0.9 });
+          show(f, "bh-goc", W(sid, "gọi"));
+        }
+        {
+          const sid = "s05-cheo";
+          const f = picture("#s5", ["bh-plain", "bh-cheo"]);
+          hide(["#t5"]);
+          pose(bird, "idle", start(sid));
+          pop("#t5", W(sid, "đường"), { from: 0.6 });
+          show(f, "bh-cheo", W(sid, "đường"));
+        }
+        {
+          const sid = "s06-hoi";
+          picture("#s6", ["bh-cheo"]);
+          hide(["#t6"]);
+          pose(bird, "idle", start(sid));
+          pop("#t6", start(sid) + 0.1, { from: 0.6 });
+        }
+        {
+          const sid = "s07-trung-diem";
+          const f = picture("#s7", ["bh-cheo", "bh-cheo-rule"]);
+          hide(["#rule7"]);
+          pose(bird, "idle", start(sid));
+          pose(bird, "cheer", W(sid, "trung"));
+          pop("#rule7", start(sid) + 0.1, { from: 0.9 });
+          show(f, "bh-cheo-rule", W(sid, "trung"));
+        }
+        {
+          const sid = "s08-nho";
+          picture("#s8", ["bh-cheo-rule"]);
+          hide(["#t8"]);
+          pose(bird, "idle", start(sid));
+          pop("#t8", W(sid, "nhớ"), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

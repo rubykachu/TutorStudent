@@ -1,0 +1,115 @@
+{
+  "title": "Hình thang cân",
+  "engine": "local",
+  "poster": {
+    "scene": "s05-goc",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta học hình thang cân.",
+          "opening": true
+        },
+        {
+          "text": "Chiếc thang chữ A có dạng hình thang cân."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hai bên thang nghiêng thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-day",
+      "sentences": [
+        {
+          "text": "Hai cạnh song song là hai cạnh đáy."
+        },
+        {
+          "text": "Hai cạnh còn lại là hai cạnh bên."
+        }
+      ]
+    },
+    {
+      "id": "s04-ben",
+      "sentences": [
+        {
+          "text": "Hình thang cân có hai cạnh bên bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-goc",
+      "sentences": [
+        {
+          "text": "Hai góc ở hai đầu một đáy là góc kề đáy."
+        },
+        {
+          "text": "Hai góc kề một đáy bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-cheo",
+      "sentences": [
+        {
+          "text": "Đường chéo nối hai đỉnh không nằm cạnh nhau.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s07-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hai đường chéo dài thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s08-bang",
+      "sentences": [
+        {
+          "text": "Hai đường chéo của hình thang cân bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s09-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé: hai cạnh bên và hai đường chéo bằng nhau."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hinh-thang-can",
+      "from": "s02-hoi",
+      "to": "s05-goc",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-thang-can"]
+    },
+    {
+      "id": "cheo-hinh-thang-can",
+      "from": "s06-cheo",
+      "to": "s09-nho",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thang-can"]
+    }
+  ]
+}

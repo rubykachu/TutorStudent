@@ -13,7 +13,7 @@
   "title": "Hình bình hành. Hình thang cân",
   "sourceRef": "Sách bài tập tr.67–69",
   "status": "published",
-  "reviewedHash": "c00de14d0687dd7809a4eaf403e3429725646277c08698c119f48df340711cd8",
+  "reviewedHash": "0c95357ddabf32218620ddf9cc7fb7531fc1456e02882280e8a0fea3c1116687",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ học thêm hai hình nữa. Bạn thử nhìn chiếc thang chữ A nhà mình xem, hai bên của nó nghiêng thế nào nhỉ?"
@@ -25,7 +25,16 @@
       "so sánh bốn hình và kiểm tra một hình xem nó là hình gì",
       "vẽ được hình bình hành và ghép được hình thang cân từ các hình tam giác đều"
     ],
-    "whyItMatters": "Khi cắt miếng ghép khay mứt Tết, bạn đo cạnh, góc và đường chéo để biết miếng là hình gì."
+    "whyItMatters": "Khi cắt miếng ghép khay mứt Tết, bạn đo cạnh, góc và đường chéo để biết miếng là hình gì.",
+    "narration": {
+      "audioUrl": "narration/hinh-binh-hanh-hinh-thang-can/overview.m4a",
+      "vttUrl": "narration/hinh-binh-hanh-hinh-thang-can/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Achird",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -76,6 +85,10 @@
       "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-binh-hanh-hinh-thang-can.video.hinh-binh-hanh"
+        },
         {
           "type": "group",
           "children": [
@@ -200,6 +213,10 @@
       "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-binh-hanh-hinh-thang-can.video.hinh-thang-can"
+        },
         {
           "type": "group",
           "children": [
@@ -407,6 +424,10 @@
       "sourceRef": "Sách bài tập tr.67 (kĩ năng giải toán), tr.68 (bài 4.12); cách vẽ theo SGK Toán 6",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-binh-hanh-hinh-thang-can.video.ve-hinh-binh-hanh"
+        },
         {
           "type": "group",
           "children": [
@@ -3991,5 +4012,82 @@
   "sticker": {
     "name": "Huy hiệu hình bình hành và hình thang cân",
     "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.video.hinh-binh-hanh",
+      "lessonId": "hinh-binh-hanh-hinh-thang-can",
+      "url": "video/hinh-binh-hanh-hinh-thang-can/hinh-binh-hanh.mp4",
+      "vttUrl": "video/hinh-binh-hanh-hinh-thang-can/hinh-binh-hanh.vtt",
+      "posterUrl": "video/hinh-binh-hanh-hinh-thang-can/hinh-binh-hanh.jpg",
+      "durationSec": 43.83,
+      "clips": [
+        {
+          "id": "hinh-binh-hanh",
+          "start": 6.802,
+          "end": 23.685,
+          "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-binh-hanh"]
+        },
+        {
+          "id": "cheo-hinh-binh-hanh",
+          "start": 24.085,
+          "end": 42.408,
+          "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-binh-hanh"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.video.hinh-thang-can",
+      "lessonId": "hinh-binh-hanh-hinh-thang-can",
+      "url": "video/hinh-binh-hanh-hinh-thang-can/hinh-thang-can.mp4",
+      "vttUrl": "video/hinh-binh-hanh-hinh-thang-can/hinh-thang-can.vtt",
+      "posterUrl": "video/hinh-binh-hanh-hinh-thang-can/hinh-thang-can.jpg",
+      "durationSec": 41.4,
+      "clips": [
+        {
+          "id": "hinh-thang-can",
+          "start": 7.088,
+          "end": 25.953,
+          "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.hinh-thang-can"]
+        },
+        {
+          "id": "cheo-hinh-thang-can",
+          "start": 26.353,
+          "end": 39.97,
+          "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thang-can"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "hinh-binh-hanh-hinh-thang-can.video.ve-hinh-binh-hanh",
+      "lessonId": "hinh-binh-hanh-hinh-thang-can",
+      "url": "video/hinh-binh-hanh-hinh-thang-can/ve-hinh-binh-hanh.mp4",
+      "vttUrl": "video/hinh-binh-hanh-hinh-thang-can/ve-hinh-binh-hanh.vtt",
+      "posterUrl": "video/hinh-binh-hanh-hinh-thang-can/ve-hinh-binh-hanh.jpg",
+      "durationSec": 49.6,
+      "clips": [
+        {
+          "id": "ve-hinh-binh-hanh",
+          "start": 7.755,
+          "end": 48.18,
+          "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-hinh-binh-hanh"]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Hải Đăng",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

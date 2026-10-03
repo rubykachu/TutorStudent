@@ -1,0 +1,254 @@
+<!doctype html>
+<!--
+  Lesson video "Vẽ hình bình hành" (lesson hinh-binh-hanh-hinh-thang-can): draw a parallelogram with a ruler, a protractor and a set square: two sides with a given angle, then a parallel line through the end of each.
+  Colours as in the lesson: parallelogram lime, side blue, angle violet, parallel slate. The shapes are the lesson's own figures
+  (figures.tsx). Built by `pnpm video:build hinh-binh-hanh-hinh-thang-can ve-hinh-binh-hanh`, which injects window.TIMING.
+  The rule cards carry `data-rule-text`: their text is the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Vẽ hình bình hành</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .step {
+        position: absolute;
+        left: 880px;
+        top: 220px;
+        width: 340px;
+        display: flex;
+      }
+      .step .chip {
+        white-space: normal;
+        font-size: 34px;
+      }
+      .rule {
+        position: absolute;
+        left: 100px;
+        width: 1080px;
+        top: 30px;
+        padding: 20px 32px;
+        font:
+          600 30px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+        text-wrap: balance;
+      }
+      .figure-wrap {
+        width: 560px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="75"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="row title" style="top: 50px">Vẽ hình bình hành</div>
+
+          <div id="t1" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-foreground)"
+              >Thước, thước đo góc, êke</span
+            >
+          </div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="t2" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-lime)"
+              >Hình bình hành</span
+            >
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="t3" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-blue)"
+              >Thước: cạnh dài 5 cm</span
+            >
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="t4" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-violet)"
+              >Thước đo góc: 60°</span
+            >
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="t5" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-blue)"
+              >Cạnh thứ hai: 3 cm</span
+            >
+          </div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="t6" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-slate)"
+              >Êke: qua B, song song</span
+            >
+          </div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="t7" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-slate)"
+              >Qua D, song song</span
+            >
+          </div>
+        </section>
+        <section id="s8" class="scene layer">
+          <div id="t8" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-lime)"
+              >Hình bình hành</span
+            >
+          </div>
+        </section>
+        <section id="s9" class="scene layer">
+          <div id="rule9" class="card rule" data-rule-text>
+            Vẽ hai cạnh nằm cạnh nhau, tạo góc cho trước. Ở đầu còn lại của mỗi
+            cạnh, dùng êke vẽ một đường song song với cạnh kia.
+          </div>
+        </section>
+        <section id="s10" class="scene layer">
+          <div id="t10" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-lime)"
+              >Hình bình hành</span
+            >
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, figure, pop, hide, pose, scenes, finish } =
+          window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-hoi"],
+            ["#s3", "s03-canh"],
+            ["#s4", "s04-goc"],
+            ["#s5", "s05-lay"],
+            ["#s6", "s06-song1"],
+            ["#s7", "s07-song2"],
+            ["#s8", "s08-noi"],
+            ["#s9", "s09-quy-tac"],
+            ["#s10", "s10-xong"],
+          ],
+          { leave: 0 },
+        );
+
+        // A picture of the lesson in the middle of the stage, with the variants
+        // to switch between (only the first shows); the picture of a scene is
+        // there from its first frame.
+        const picture = (section, names, top = 148) =>
+          figure($(section), names, { left: "300px", top: `${top}px` });
+
+        {
+          const sid = "s01-chao";
+          picture("#s1", ["ve-6"], 148);
+          hide(["#t1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#t1", W(sid, "ta"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-hoi";
+          picture("#s2", ["ve-6"]);
+          hide(["#t2"]);
+          pose(bird, "idle", start(sid));
+          pop("#t2", start(sid) + 0.1, { from: 0.6 });
+        }
+        {
+          const sid = "s03-canh";
+          picture("#s3", ["ve-1"]);
+          hide(["#t3"]);
+          pose(bird, "idle", start(sid));
+          pop("#t3", W(sid, "thước"), { from: 0.6 });
+        }
+        {
+          const sid = "s04-goc";
+          picture("#s4", ["ve-2"]);
+          hide(["#t4"]);
+          pose(bird, "idle", start(sid));
+          pop("#t4", W(sid, "đặt"), { from: 0.6 });
+        }
+        {
+          const sid = "s05-lay";
+          picture("#s5", ["ve-3"]);
+          hide(["#t5"]);
+          pose(bird, "idle", start(sid));
+          pop("#t5", W(sid, "lấy"), { from: 0.6 });
+        }
+        {
+          const sid = "s06-song1";
+          picture("#s6", ["ve-4"]);
+          hide(["#t6"]);
+          pose(bird, "idle", start(sid));
+          pop("#t6", W(sid, "qua"), { from: 0.6 });
+        }
+        {
+          const sid = "s07-song2";
+          picture("#s7", ["ve-5"]);
+          hide(["#t7"]);
+          pose(bird, "idle", start(sid));
+          pop("#t7", W(sid, "qua"), { from: 0.6 });
+        }
+        {
+          const sid = "s08-noi";
+          picture("#s8", ["ve-6"]);
+          hide(["#t8"]);
+          pose(bird, "idle", start(sid));
+          pop("#t8", W(sid, "hai"), { from: 0.6 });
+        }
+        {
+          const sid = "s09-quy-tac";
+          picture("#s9", ["ve-6"]);
+          hide(["#rule9"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule9", start(sid) + 0.1, { from: 0.9 });
+        }
+        {
+          const sid = "s10-xong";
+          picture("#s10", ["ve-6"]);
+          hide(["#t10"]);
+          pose(bird, "idle", start(sid));
+          pose(bird, "cheer", W(sid, "vậy"));
+          pop("#t10", W(sid, "hình"), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

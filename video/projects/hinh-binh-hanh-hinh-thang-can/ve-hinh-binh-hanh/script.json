@@ -1,0 +1,114 @@
+{
+  "title": "Vẽ hình bình hành",
+  "engine": "local",
+  "poster": {
+    "scene": "s07-song2",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta vẽ hình bình hành bằng êke.",
+          "opening": true
+        },
+        {
+          "text": "Ta cần thước, thước đo góc và êke."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: ta vẽ hình này thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-canh",
+      "sentences": [
+        {
+          "text": "Đầu tiên, dùng thước vẽ một cạnh dài 5 cm."
+        }
+      ]
+    },
+    {
+      "id": "s04-goc",
+      "sentences": [
+        {
+          "text": "Đặt thước đo góc ở đầu cạnh."
+        },
+        {
+          "text": "Kẻ đường tạo với cạnh đó góc 60 độ."
+        }
+      ]
+    },
+    {
+      "id": "s05-lay",
+      "sentences": [
+        {
+          "text": "Trên đường đó, lấy cạnh thứ hai dài 3 cm."
+        }
+      ]
+    },
+    {
+      "id": "s06-song1",
+      "sentences": [
+        {
+          "text": "Qua điểm B, kẻ song song với cạnh thứ hai."
+        }
+      ]
+    },
+    {
+      "id": "s07-song2",
+      "sentences": [
+        {
+          "text": "Qua điểm D, kẻ song song với cạnh thứ nhất."
+        }
+      ]
+    },
+    {
+      "id": "s08-noi",
+      "sentences": [
+        {
+          "text": "Hai đường gặp nhau, ta nối lại là xong.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s09-quy-tac",
+      "sentences": [
+        {
+          "text": "Vẽ hai cạnh nằm cạnh nhau, tạo góc cho trước.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Ở đầu còn lại của mỗi cạnh, dùng êke vẽ một đường song song với cạnh kia.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s10-xong",
+      "sentences": [
+        {
+          "text": "Vậy là ta vẽ xong hình bình hành."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ve-hinh-binh-hanh",
+      "from": "s02-hoi",
+      "to": "s10-xong",
+      "cardIds": ["hinh-binh-hanh-hinh-thang-can.card.ve-hinh-binh-hanh"]
+    }
+  ]
+}
