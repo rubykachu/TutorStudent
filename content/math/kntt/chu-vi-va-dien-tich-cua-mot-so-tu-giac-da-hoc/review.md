@@ -1,391 +1,207 @@
 # Review: Chu vi và diện tích của một số tứ giác đã học (`chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc`)
 
 - Bài: `content/math/kntt/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/lesson.json`
-- Vòng: 1 - toàn bài, 3 reviewer song song + tổng hợp (nhóm 1: tổng quan và phần 1–5; nhóm 2: phần 6–10; nhóm 3: phần bài tập sách bài tập; tệp nhóm ở `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/nhom-<n>.md`)
+- Vòng: 2 - toàn bài, 3 reviewer song song + tổng hợp (nhóm 1: tổng quan và phần 1–5; nhóm 2: phần 6–10; nhóm 3: phần bài tập sách bài tập; tệp nhóm ở `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/nhom-<n>-v2.md`)
 - Nguồn đã đọc: `sources/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/` - sbt-p70, sbt-p71, sbt-p72, sbt-p73 (kiến thức, ví dụ, đề), sbt-p115, sbt-p116 (lời giải)
 - `content:check`: 0 lỗi, 1 cảnh báo của bài (id chưa khoá)
-- Đọc hiểu (Haiku, lượt 1): 210 / 8 / 0; tệp `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/doc-hieu.md`. Người soạn đã chạy lượt 2 (94 / 10 / 1, `doc-hieu-2.md`) và lượt 3 (2 / 0 / 0, `doc-hieu-3.md`) trước vòng này.
-- `lesson:walk`: 0 FAIL, 0 cảnh báo (iPad dọc, điện thoại, iPad ngang; worktree tạm trên commit e137dff), ảnh trong `walk-r1/` của thư mục tạm của phiên review (không commit)
-- Kết luận: Chưa đạt: còn 5 lỗi Nghiêm trọng. Đã chạy `content:hash --mark`, bài giữ `draft`; không `--approve`, không `content:lock` ở vòng này.
-- Bản đã review: `7d0c71674d5396443e984c4c383e6257bf7cb3c84496bd08e5b1b6bfb6ee8c18` (`pnpm content:diff` so với bản này)
+- Đọc hiểu (Haiku, lượt 1): 210 / 8 / 0; tệp `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/doc-hieu.md`. Lượt 4 (chữ sửa sau vòng 1): 50 / 14 / 0, `doc-hieu-4.md`; 14 mục "Hiểu mơ hồ" chưa viết lại, tác giả viết lại sau vòng này.
+- `lesson:walk`: 0 FAIL, 0 cảnh báo (iPad dọc, điện thoại, iPad ngang); dùng lại walk trên commit 137d668 vì bài và hình không đổi từ đó; ảnh trong `walk-r1-fix/` của thư mục tạm của phiên review (không commit)
+- Kết luận: Chưa đạt: còn 1 lỗi Nghiêm trọng. Đã chạy `content:hash --mark`, bài giữ `draft`; không `--approve`, không `content:lock` ở vòng này.
+- Bản đã review: `32ed80e7e35744054c1b9da97aa4118a50cc5b63200805b345dfe7c01197b20f` (`pnpm content:diff` so với bản này)
 
-Điểm ngoài trang sách (mục "Giả định" của bàn giao), xét theo tiêu chí của LL-09 (giữ khi cần cho một bài tập trên các trang đã nạp và lần được về một dòng in, không thêm điều mới phải nhớ): giữ cả sáu điều. Ý nghĩa chu vi, diện tích, cm², m² là kiến thức nền có `prerequisite`; chu vi hình thang cân suy từ `C = a + b + c + d` tr.70; đổi 1 m = 100 cm, 1 m² = 10 000 cm² cần cho 4.23, 4.27 và ví dụ 1 tr.71; hình khuyết một góc có ở lời giải 4.24 tr.116; cắt trượt hình bình hành, xoay tam giác ngoài hình thoi, ghép hai hình thang cân đều chỉ minh hoạ công thức tr.70; "hai cạnh kề nhau" là tên cho hai cạnh a, b của hình tr.70. Công thức viết "chia cho 2" thay ½ đúng toán và nhất quán ở mọi câu quy tắc, recap, thẻ, mẹo và lời giải (xem Góp ý 8 về việc nối với cách sách viết).
+## Trạng thái các mục vòng 1
 
-Đã soát nhất quán giữa các phần (Tổng hợp): câu quy tắc, recap của phần và thẻ khớp nguyên văn ở cả 10 phần; bốn khối "Nhắc lại" của phần bài tập sách bài tập lặp đúng câu quy tắc của phần 3, 5, 8, 10. Chỗ lệch tìm thêm được gộp vào Nên sửa 14 ("bao quanh" và "hình chữ nhật lớn" trong câu "Nhắc lại" hình khuyết), 21 (khối "Nhắc lại" dặn đổi ra cm, mẹo phần 9 nói cùng một đơn vị, bài 4.28 dùng m), 28 (10 000 cm² mang hai màu) và 30 (khối "Nhắc lại" có quy tắc chưa phần nào dạy).
+- Nghiêm trọng 1–5: đã sửa đúng.
+- Nên sửa đã sửa đúng: 1–4, 6–13, 15–20, 22–25, 27, 29–31. Nên sửa 5 đã sửa nhưng câu luyện mới trùng đáp số câu kiểm tra (Nên sửa 1 dưới).
+- Nên sửa sửa chưa đủ: 14 (một hình nhiều tên, còn ở bài 4.24: Nên sửa 5), 21 (cách nói đổi đơn vị: Nên sửa 7), 26 (tập đếm viên đá: Nên sửa 9), 28 (màu chu vi, diện tích tô lên số khác: Nên sửa 4).
+- Góp ý đã sửa: 1, 2, 5, 6, 7, 9–13, 15, 16, 17. Góp ý 14 (số và đơn vị ngắt dòng) sửa đúng hai chỗ đã nêu, còn chỗ khác: Góp ý 3 dưới.
+- Góp ý 3: tác giả bỏ qua, lý do ghi ở `task.md`; không ghi lại.
+- Góp ý 4 và Góp ý 8: chủ dự án chọn làm, nay là Nên sửa 14 và Nên sửa 12.
 
 ## Nghiêm trọng
 
-### 1. Hình gợi ý nấc 2 của bài 4.24 hiện đúng chu vi của đề
+### 1. Công thức lời giải bài 4.26 và 4.28 bị cắt bên phải trên điện thoại, mất đáp số
 
-- Vị trí: `catalog-book.ts` `PAIRS["4-24"].hint[0]` (`visual.goi-y-4-24`), dùng ở `$.exercises[67].hints.hintVisualId` (`ex.sbt-4-24`) - LL-02
-- Nguồn: tr.116, `sbt-p116.png` (chu vi 28 m)
-- Vấn đề: hàng đầu của hình gợi ý hiện `C = 2 · (9 + 5) = 28 m`, không bị che (chế độ gợi ý chỉ che hàng cuối). Số khác đề nhưng kết quả trùng đúng ô chu vi của 4.24, nên bé chép 28 là đúng. Hàng hai còn dùng đúng phần khuyết `2 · 2` mà bé phải tự suy ra từ hình.
-- Sửa: đổi số của ví dụ gợi ý để chu vi khác 28 và phần khuyết khác 2 m và 2 m, ví dụ hình 10 m và 5 m khuyết 3 m và 1 m: `C = 2 · (10 + 5) = 30 m`, `S = 10 · 5 - 3 · 1`, hàng cuối "?". Soát lại mọi hàng hiện ra của 12 hình gợi ý: không hàng nào bằng đáp án hay số trung gian của đề.
-
-### 2. Câu sắp xếp các bước lát gạch có hai thứ tự đúng
-
-- Vị trí: `$.exercises[51]` (`ex.xep-buoc-lat-gach`), mục `s2`, `s3` - LL-01
-- Nguồn: —
-- Vấn đề: "chia chiều dài sàn cho cạnh viên gạch để biết số viên mỗi hàng" và "chia chiều rộng sàn cho cạnh viên gạch để biết số hàng" không phụ thuộc nhau, đổi chỗ vẫn đúng. Câu `order` chỉ chấm một thứ tự nên bé làm đúng mà bị chấm sai; `explain` cũng không nói bước nào trước.
-- Sửa: gộp hai bước thành một mục ("Chia chiều dài và chiều rộng sàn cho cạnh viên gạch: được số viên mỗi hàng và số hàng"), hoặc thay bằng các bước buộc phải nối tiếp nhau (đổi đơn vị, chia, nhân số viên mỗi hàng với số hàng, chia cho số viên một thùng). Tự thử mọi hoán vị trước khi gửi review.
-
-### 3. Dòng công thức của ba hình quy tắc bị cắt chân chữ; nhãn "a" của hình thoi dính cạnh
-
-- Vị trí: hình `visual.bbh-quy-tac`, `visual.thoi-quy-tac`, `visual.thang-quy-tac` (`$.sections[5].blocks[1]`, `$.sections[6].blocks[1]`, `$.sections[7].blocks[1]`, recap phần 6–8 và thẻ `card.dien-tich-binh-hanh`, `card.dien-tich-thoi`, `card.dien-tich-thang-can`) - LL-12
-- Nguồn: tr.70, `sbt-p70.png`
-- Vấn đề: dòng `S = a · h`, `S = a · b : 2`, `S = (a + b) · h : 2` đặt sát đáy khung nên mất nửa dưới chữ ở cả điện thoại lẫn iPad (`phone/079-s6-02-block.png`, `ipad/079-s6-02-block.png`, `phone/093-s7-02-block.png`, `phone/106-s8-02-block.png`); ở màn recap (`089`, `102`, `116`) dòng này hiện đủ nhưng dưới 16px. Đây là công thức cần nhớ của ba phần. Ở `thoi-quy-tac` nhãn "a" nằm trên cạnh trên bên trái của hình thoi, nét cạnh cắt qua chữ. Walk không báo vì chữ nằm trong SVG.
-- Sửa: tăng chiều cao khung của ba hình rồi hạ dòng công thức, hoặc đưa công thức ra khối `formula` đi kèm câu quy tắc; giữ cỡ chữ ≥ 16px cả ở màn recap. Dời nhãn "a" vào giữa nửa trái đường chéo ngang, phía dưới đường chéo. Chụp lại `visual:shot` và xem ảnh điện thoại của màn quy tắc và recap.
-
-### 4. Hình 1 m² = 10 000 cm²: nhãn "1 m²" bị lưới cắt, lưới 100 ô không ghi cỡ ô
-
-- Vị trí: hình `visual.m2-cm2` (`$.sections[8].blocks[1]`, recap phần 9, `card.doi-don-vi`) - LL-15 (kèm LL-12)
-- Nguồn: tr.71 (ví dụ 1), `sbt-p71.png`
-- Vấn đề: chữ "1 m²" đặt giữa lưới nên nét lưới cắt qua chữ (`phone/119-s9-02-block.png`, `phone/129-s9-08-recap.png`). Lưới có 10 × 10 = 100 ô mà không ô nào ghi "10 cm" hay "100 cm²", còn dòng dưới viết `100 · 100 = 10 000 cm²`. Phần 4 vừa dạy diện tích là số ô vuông đơn vị phủ kín hình, nên bé đếm được 100 ô và nhớ 1 m² = 100 cm², đúng nhiễu của `ex.mot-met-vuong`. Đây là hình của câu quy tắc và recap.
-- Sửa: đưa "1 m²" ra ngoài lưới, nền trắng; tô đậm một ô góc và ghi "1 ô: cạnh 10 cm, có 100 cm²", thêm dòng "100 ô · 100 cm² = 10 000 cm²" (hoặc giữ `100 · 100` kèm nhãn "100 cm" ở cả hai cạnh). Chụp lại ảnh điện thoại.
-
-### 5. Nhãn đỉnh "E" bị cạnh ED cắt ngang trong hình của câu dẫn 4.24
-
-- Vị trí: `catalog-book.ts` hình `dan-khuyet-10-6` (hàm `notched`, `names: true`), dùng ở `$.exercises[65].prompt[1]`, `$.exercises[66].prompt[1]` (`ex.dan-4-24-cv`, `ex.dan-4-24-dt`) - LL-12
-- Nguồn: —
-- Vấn đề: ở ảnh walk `185-s11-18-exercise-dan-4-24-cv`, `187-…-dan-4-24-dt` (iPad và điện thoại) chữ E nằm đúng trên đường ED, đọc thành "–E–". Hình 4.20 dùng cùng hàm thì đặt đúng, nên lỗi ở cách đặt tên đỉnh lõm khi phần khuyết là hình vuông. Cùng kiểu đã gặp ở Bài 18, 19.
-- Sửa: đặt nhãn đỉnh lõm theo phân giác, ra phía ngoài hình, cách hai cạnh một khoảng cố định; chụp lại `dan-khuyet-10-6`, `sbt-hinh-4-20`, `khuyet-nhac-lai` và hình lời giải 4.24. Câu dẫn không cần tên đỉnh thì bỏ `names`.
+- Vị trí: `$.exercises[73].explain.tex` (`ex.sbt-4-26`), `$.exercises[79].explain.tex` (`ex.sbt-4-28`) - LL-12
+- Nguồn: — (ảnh walk `phone/200-s11-26-exercise-sbt-4-26-correct.png`, `phone/215-s11-32-exercise-sbt-4-28-correct.png`)
+- Vấn đề: hai `tex` xếp `gathered` nhưng mỗi dòng dài 31–36 ký tự, rộng hơn khung "Giải thích" của điện thoại; KaTeX không ngắt dòng trong `gathered` nên phần cuối bị cắt. Bài 4.26 chỉ còn "(2 · (40 + 90) − 5) · 2 = ¦", mất 510 m; bài 4.28 mất "0,6 m" của dòng đầu, "1 400 = 96 m²" và "2 880 000". Đây là màn bé đọc để biết vì sao đúng, nên bé không thấy phép tính cuối và đáp số. iPad hiện đủ; walk không báo vì chữ nằm trong KaTeX. Dòng 4.26 có từ vòng 1 (vòng 1 bỏ sót); dòng 4.28 dài ra khi sửa Nên sửa 21 vòng 1. Cùng chỗ, `explain` 4.26 cộng `40 + 90` còn hình lời giải cộng `90 + 40` (Nên sửa 23 vòng 1 chọn chiều dài trước).
+- Sửa: mỗi dòng `gathered` một phép, tối đa 22 ký tự, cùng thứ tự với hình lời giải. 4.26: `3\,600 : 40 = 90`, `2 \cdot (90 + 40) = 260`, `260 - 5 = 255`, `255 \cdot 2 = 510\ \mathrm{m}`. 4.28: `60\ \mathrm{cm} = 0{,}6\ \mathrm{m}`, `30 \cdot 20 = 600`, `0{,}36 \cdot 1\,400 = 504`, `600 - 504 = 96\ \mathrm{m}^{2}`, `96 \cdot 30\,000`, `= 2\,880\,000`. `explain` giữ tối đa 3 câu chữ. Chạy walk lại và mở hai ảnh `phone/…-correct`.
 
 ## Nên sửa
 
-### 1. Phần 5 không nối chiều dài, chiều rộng với số ô mỗi hàng và số hàng
+### 1. Câu luyện phần 4 có cùng đáp số 9 với câu kiểm tra ngay trước
 
-- Vị trí: `$.sections[4].blocks[0].children[0].text`, hình `hang-cot-gach`, `$.sections[4].blocks[2].children[0].text`, hình `floor-lesson` (`dien-tich-chu-nhat-vuong`) - LL-16
-- Nguồn: tr.70 (`S = ab`)
-- Vấn đề: màn đầu chỉ nói "mỗi hàng 6 ô, có 4 hàng", không nói sàn dài 6 m, rộng 4 m; màn "Cùng làm" không cho số đo sàn (5 m, 3 m chỉ có trong `label`). Rồi câu quy tắc nói "chiều dài nhân với chiều rộng": bé chậm không thấy vì sao chiều dài thành số ô một hàng.
-- Sửa: màn đầu viết "Sàn dài 6 m, rộng 4 m, chia thành ô vuông cạnh 1 m: dài 6 m nên mỗi hàng 6 ô, rộng 4 m nên có 4 hàng…"; caption bước cuối `hang-cot-gach` nhắc số đo; màn "Cùng làm" nêu "Sàn dài 5 m, rộng 3 m" trong note hoặc trên hình.
-
-### 2. Recap phần 5 thiếu quy tắc diện tích hình vuông
-
-- Vị trí: `$.sections[4].recap.caption`, `$.cards[4].recap.caption`, `$.sections[4].blocks[1].children[1]` - LL-06
-- Nguồn: tr.70 (`S = a²`)
-- Vấn đề: tên phần có hình vuông, câu kiểm tra và kho ôn hỏi hình vuông (`gach-vuong-25`, `vuon-vuong-11`), nhưng câu hình vuông là note thường nên recap và thẻ chỉ còn hình chữ nhật. Phần 2 lại gộp hình vuông với hình thoi vào một câu quy tắc.
-- Sửa: một câu quy tắc gộp ("Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng, diện tích hình vuông bằng cạnh nhân với cạnh.", `rule: true`), recap, thẻ và khối "Nhắc lại" lặp nguyên văn.
-
-### 3. "Ô vuông đơn vị" chỉ gán cho ô 1 cm mà câu quy tắc và câu kiểm tra dùng cả ô 1 m
-
-- Vị trí: `$.sections[3].blocks[0].children[0].text`, `$.sections[3].blocks[1].children[0].text` (`dien-tich-la-gi`), `ex.dien-tich-9-o-1m`; `content/glossary/math.json` - LL-10
-- Nguồn: Kiến thức nền (tiểu học); tr.71 (cm², m²)
-- Vấn đề: "Ô vuông cạnh 1 cm là ô vuông đơn vị", còn ô 1 m chỉ "có diện tích 1 mét vuông"; đọc đúng chữ câu quy tắc thì 9 ô cạnh 1 m không phải ô vuông đơn vị. Từ nền này nằm trong câu quy tắc nhưng glossary không có mục kèm `prerequisite`.
-- Sửa: "Ô vuông cạnh 1 cm và ô vuông cạnh 1 m đều là ô vuông đơn vị: ô 1 cm có diện tích 1 cm², ô 1 m có diện tích 1 m²." (tách hai câu nếu dài); thêm "ô vuông đơn vị" vào glossary với `"prerequisite": "tiểu học"`.
-
-### 4. Chữ "rộng" dùng để nói diện tích, trùng với "chiều rộng"
-
-- Vị trí: `$.overview.hook.text` ("đo xem hình rộng bao nhiêu"), `$.exercises[25].explain.text` (`ex.xep-gach-4-3`: "sàn rộng 12 m²") - LL-10
+- Vị trí: `$.exercises[17]` (`ex.mieng-dan-9-o`, hình `visual.f-chu-l-9-o`); so với `$.exercises[16]` (`ex.dien-tich-9-o-1m`) - LL-07, LL-20
 - Nguồn: —
-- Vấn đề: cả bài dùng "rộng" cho chiều rộng; `xep-gach-4-3` nói "rộng 3 m nên có 3 hàng" rồi "sàn rộng 12 m²", bé dễ đọc chiều rộng là 12.
-- Sửa: hook "tính diện tích của hình"; `explain` "Số ô là 4 · 3 = 12, nên diện tích sàn là 12 m²."
+- Vấn đề: câu kiểm tra vừa ra 9 m², câu luyện kế tiếp lại ra 9 cm²; bé dễ gõ lại 9 mà không đếm hình, câu luyện mất tác dụng tập đếm ô mà vòng 1 sửa để có.
+- Sửa: hình chữ L có số ô khác mọi số của phần 4 (7, 9, 10, 12, 4, 8), ví dụ 11 ô (hàng 3, 3, 5 trên lưới 5 × 3); đổi khoá hình, nhãn đọc màn hình, `id` câu, `explain`, `tex`, `answer`, `check.expr` theo.
 
-### 5. Câu luyện phần 4 không cần làm gì
+### 2. Lý do `wrong` "không nhân chúng" nằm cạnh đáp án đúng có phép nhân
 
-- Vị trí: `$.exercises[17]` (`ex.mieng-dan-15-o`), `$.sections[3].practiceIds[0]` - LL-16
+- Vị trí: `$.exercises[3].explain.wrong[1]` (`ex.chu-vi-chon-phep-tinh`), `$.exercises[13].explain.wrong[1]` (`ex.chon-phep-tinh-cn-9-5`) - LL-10
 - Nguồn: —
-- Vấn đề: đề cho sẵn "15 ô vuông, mỗi ô 1 cm²", đáp án là số in trong đề, không có hình để đếm; câu luyện duy nhất của phần dễ hơn câu kiểm tra `dem-o-vuong-7`.
-- Sửa: cho hình để đếm (hình chữ L hay bậc thang khác số với `tiles-bac-thang`, `f-do-7-o`), hoặc đưa `cham-hinh-4-o` lên làm câu luyện và chuyển câu này xuống kho ôn sau khi thêm hình.
+- Vấn đề: đáp án đúng chứa "2 ·", nhưng lý do của nhiễu viết "Chu vi cộng các cạnh với nhau, không nhân chúng." Bé hiểu "chu vi không có phép nhân" thì nghi luôn đáp án đúng.
+- Sửa: "Chu vi cộng các cạnh với nhau, không nhân các cạnh với nhau." ở cả hai câu.
 
-### 6. Câu luyện phần 3 dùng đúng sân 30 m và 20 m của bài 4.28
+### 3. Lý do `wrong` gọi phép tính dùng chiều cao hay đường chéo là "một phép tính chu vi"
 
-- Vị trí: `$.exercises[12]` (`ex.san-truong-chu-vi`) - LL-07
-- Nguồn: tr.73 bài 4.28, `sbt-p73.png`
-- Vấn đề: sân "dài 30 m, rộng 20 m" trùng sân "20 m × 30 m" của 4.28 ở phần cuối; bàn giao cam kết số các tầng tách khỏi số sách.
-- Sửa: đổi số, ví dụ 40 m và 25 m (chu vi 130 m), không trùng số nào của tr.72–73.
+- Vị trí: `$.exercises[30].explain.wrong[1]` (`ex.dt-bbh-13-6`, lựa chọn "38"), `$.exercises[35].explain.wrong[2]` (`ex.dt-thoi-16-9`, lựa chọn "50") - LL-10, LL-17
+- Nguồn: tr.70, `sbt-p70.png`
+- Vấn đề: "38 là 2 · (13 + 6), một phép tính chu vi" đọc thành chu vi hình bình hành bằng 2 · (đáy + chiều cao); "50 là 2 · (16 + 9)" đọc thành chu vi hình thoi bằng 2 · (tổng hai đường chéo). Cả hai đều sai và gieo đúng lỗi nhầm chiều cao với cạnh mà mẹo phần 6 cảnh báo.
+- Sửa: "38 là 2 · (13 + 6): cộng cạnh đáy với chiều cao rồi nhân 2. Diện tích phải nhân cạnh đáy với chiều cao."; "50 là 2 · (16 + 9): cộng hai đường chéo rồi nhân 2. Diện tích phải nhân hai đường chéo rồi chia cho 2."
 
-### 7. Câu kiểm tra hình vuông cạnh 25 cm cần nhân hai số có hai chữ số
+### 4. Màu chu vi, diện tích còn tô lên số không phải chu vi hay diện tích (Nên sửa 28 vòng 1 sửa chưa đủ)
 
-- Vị trí: `$.exercises[21]` (`ex.gach-vuong-25`, `difficulty: 1`) - LL-18
+- Vị trí: `$.exercises[47].explain.tex` (`ex.rao-vuon-15-10`: 48), `$.exercises[72].explain.tex` (`ex.dan-4-26-rao`: 98), `$.exercises[73].explain.tex` (`ex.sbt-4-26`: 510); `stages.ts` `trapezoidFrames()`, `trapezoidJoin()` (nhãn đáy "4 cm", "8 cm" blue, "4 + 8 = 12 cm" teal), `parallelogramFrames()`, `parallelogramSlide()` (nhãn đáy "6 cm" blue), dùng ở `visual.bbh-cat-ghep`, `visual.stage-bbh`, `visual.thang-ghep`, `visual.stage-thang`; `catalog-book.ts` `PAIRS["4-26"]` thẻ `cTag("trừ chỗ cửa")`, `cTag("chu vi trừ cửa")`, `PAIRS["4-23"]` thẻ `cTag("tổng")` - LL-05
 - Nguồn: —
-- Vấn đề: 25 · 25 = 625 khó nhẩm với bé yếu nhân (`docs/learner.md`); đây là câu kiểm tra đầu tiên của công thức hình vuông nên bé sai vì tính chứ không vì quy tắc.
-- Sửa: cạnh 20 cm (400 cm²) hay 30 cm (900 cm²), giữ nhiễu chu vi và nhiễu "cạnh + cạnh".
+- Vấn đề: bài gắn blue với chu vi, teal với diện tích. 48 m, 98 m, 255 m là chu vi đã trừ cửa, 510 m là hai tầng dây, 620 cm gồm cả đường chéo, "12 cm" là đáy, "4 cm", "6 cm" là một cạnh: không số nào là chu vi hay diện tích. Mẹo `phan-bo-ra` để 61 m mực thường nên cùng một dạng số có hai cách tô; hình câu hỏi cùng phần ghi số đo bằng mực thường.
+- Sửa: bỏ `\concept{blue}` ở 48, 98, 510; ba thẻ hàng đổi sang `nTag` (slate); trong bốn hình phần 6, 8, nhãn đáy và "4 + 8 = 12 cm" dùng `ink`, giữ teal cho các dòng diện tích và violet cho chiều cao. Chụp lại `visual:shot` các hình đã đổi.
 
-### 8. Hai nhiễu không ứng với lỗi thật
+### 5. Bài 4.24 và câu dẫn gọi phần bị cắt và hình chữ nhật ban đầu bằng nhiều tên (Nên sửa 14 vòng 1 sửa chưa đủ)
 
-- Vị trí: `$.exercises[21].options` lựa chọn `d` "125" (`ex.gach-vuong-25`), `$.exercises[24].options` lựa chọn `d` "33" (`ex.vuon-vuong-11`) - LL-14
-- Nguồn: —
-- Vấn đề: "125 là 5 · 25", "33 là 3 · 11" không ứng với cách nghĩ sai nào (đề không có số 5 hay 3), bé loại ngay; `wrong` chỉ nêu phép tính.
-- Sửa: thay bằng nhiễu ứng lỗi thật ("cạnh · 2" nếu chưa có, cộng thay nhân), `wrong` nêu đúng lỗi đó.
+- Vị trí: `$.sections[10].blocks[1].children[2]`; `$.exercises[66].explain.text` (`ex.dan-4-24-dt`: "góc bị cắt"); `$.exercises[67].explain.text` (`ex.sbt-4-24`: "chỗ thiếu", "phần thiếu"); `catalog-book.ts` `PAIRS["4-24"]` thẻ `sTag("hình lớn trừ phần thiếu")` - LL-05, LL-25
+- Nguồn: tr.116
+- Vấn đề: câu "Cách làm" dùng "hình chữ nhật trước khi cắt" và "phần bị cắt", nhưng câu dẫn, `explain` 4.24 và hai hình ngay sau dùng "hình lớn", "phần thiếu", "góc bị cắt", "chỗ thiếu". Bé chậm gặp bốn tên cho hai thứ.
+- Sửa: một cặp tên ở mọi chỗ, theo câu "Cách làm"; thẻ hàng `sTag("hình chữ nhật trừ phần bị cắt")`; `explain` 4.24 "…trừ đi phần bị cắt 2 m và 2 m".
 
-### 9. Nhiễu 28 của câu diện tích hình thoi không ứng với lỗi nào
+### 6. Bài 4.24 không chỗ nào chỉ cách tìm cạnh của phần bị cắt
 
-- Vị trí: `$.exercises[32].options[3]` (`ex.dt-thoi-14-6`) - LL-14
-- Nguồn: —
-- Vấn đề: 28 không ra từ cách tính sai nào với 14 và 6, và không có `wrong`.
-- Sửa: đổi thành 10 ((14 + 6) : 2) hay 40 (2 · (14 + 6)), thêm `wrong`.
+- Vị trí: `$.exercises[67]` (`ex.sbt-4-24`): `explain.text`, `PAIRS["4-24"].solution`, `solutionFigure`, `PAIRS["4-24"].hint` - LL-15, LL-16
+- Nguồn: tr.72 Hình 4.20, tr.116
+- Vấn đề: đề không cho hai cạnh của phần bị cắt; bé phải suy 8 − 6 = 2 m và 6 − 4 = 2 m. Câu dẫn và hình gợi ý cho sẵn cạnh khuyết, `explain` nói thẳng "2 m và 2 m", hình lời giải nhảy tới `8 · 6 − 2 · 2`. Đây là bước bé dễ kẹt nhất, và phần bài tập sách bài tập đòi hướng dẫn từng bước với số của câu.
+- Sửa: hàng đầu lời giải `8 − 6 = 2 m, 6 − 4 = 2 m` (thẻ slate "cạnh phần bị cắt") và nhãn "4 m", "6 m" trên hình lời giải; `explain` thêm "Cạnh của phần bị cắt: 8 − 6 = 2 m và 6 − 4 = 2 m." (giữ tối đa 3 câu); hình gợi ý có hàng tìm cạnh với số của ví dụ (vd `10 − 7 = 3`, `5 − 4 = 1`). Có thể cho câu dẫn `dan-4-24-dt` chỉ ghi các cạnh ngoài, số khác đề.
 
-### 10. Đáp số câu luyện đổi đơn vị trùng số của câu quy tắc
+### 7. Câu "Cách làm" nói "ra m để tính diện tích", trái với phần 9 (Nên sửa 21 vòng 1 sửa chưa đủ)
 
-- Vị trí: `$.exercises[43]` (`ex.bia-2m-50cm`) - LL-07
-- Nguồn: —
-- Vấn đề: 200 · 50 = 10 000 cm², đúng số "10 000 cm²" của câu quy tắc, recap và hình `m2-cm2`; bé gõ số vừa nhớ là đúng mà không cần đổi 2 m ra cm.
-- Sửa: đổi số, ví dụ 3 m và 40 cm (12 000 cm²) hay 2 m và 30 cm (6 000 cm²); sửa `check.expr` và `explain` theo.
+- Vị trí: `$.sections[10].blocks[3].children[3]` - LL-05, LL-10
+- Nguồn: tr.71 ví dụ 1, tr.116
+- Vấn đề: đọc như luật chung "tính diện tích thì đổi ra m", trong khi phần 9 (`ex.bia-3m-40cm`, mẹo `cung-don-vi`) đổi ra cm rồi tính cm². Bài 4.28 đổi ra m chỉ vì giá cỏ tính theo mét vuông.
+- Sửa: "Đổi các số đo về cùng một đơn vị: ra cm để đếm gạch theo hàng, ra m khi giá tính theo mét vuông."
 
-### 11. "Sơn tường trừ cửa sổ" chưa có mẫu trong phần
+### 8. Ngân hàng số của bài 4.23: đáp án luôn là số lớn nhất
 
-- Vị trí: `$.exercises[48]` (`ex.son-tuong-cua-so`, câu luyện của `section.bai-toan-doi-song`) - LL-16
-- Nguồn: tr.71 (kĩ năng giải toán)
-- Vấn đề: phần có mẫu rào vườn và lát sàn, còn bước "diện tích tường trừ diện tích cửa sổ" (trừ diện tích, khác mẹo trừ chiều rộng cửa của chu vi) xuất hiện lần đầu ở câu luyện.
-- Sửa: thêm một màn mẫu sơn tường với số khác câu luyện (tường 6 m và 3 m, cửa sổ 2 m và 2 m: 18 − 4 = 14 m²), hoặc một câu trong note "Phần không sơn thì trừ đi diện tích của nó".
+- Vị trí: `$.exercises[64].bank` (`ex.sbt-4-23`) - LL-14
+- Nguồn: tr.115–116
+- Vấn đề: 480 và 420 đều là tổng thiếu phần, nên 620 luôn lớn nhất; bé chọn số lớn nhất rồi "không đủ" mà không tính.
+- Sửa: thêm nhiễu lớn hơn 620 từ lỗi thật, ví dụ 760 (hai đường chéo tính như chu vi hình chữ nhật: 280 + 200 + 280) và 660 (lấy 60 cm làm cạnh hình thoi: 280 + 240 + 140).
 
-### 12. Số đo có phần nguyên như 1,5 m chưa được dạy
+### 9. Câu dẫn đếm viên đá có đáp án 6, đúng số bé hay đếm nhầm ở bài 4.25 (Nên sửa 26 vòng 1 sửa chưa đủ)
 
-- Vị trí: `$.sections[8].blocks[0]`, hình `visual.doi-thanh`; `$.exercises[44]` (`ex.doi-1-5-m`) - LL-16
-- Nguồn: tr.73 (bài 4.27 dùng 0,6 m)
-- Vấn đề: phần 9 chỉ dạy 0,1 m = 10 cm và cho đổi 0,3 m, 0,6 m, 1 m; `explain` của `doi-1-5-m` dùng "nửa mét có 50 cm" mà phần không nói.
-- Sửa: một thanh của `doi-thanh` có phần nguyên khác số câu ôn và sách (1,2 m = 100 cm + 20 cm = 120 cm), thêm câu "1,2 m là 1 m và 0,2 m, tức là 100 cm và 20 cm"; `explain` của `doi-1-5-m` theo cùng cách.
+- Vị trí: `$.exercises[69]` (`ex.dan-4-25-dem-vien`), hình `visual.dan-luc-giac-6` - LL-07, LL-16
+- Nguồn: tr.73
+- Vấn đề: lục giác 6 tam giác một màu, đáp án 6: bé vừa được khen "6 viên" ngay trước bài 4.25 (8 viên, 2 viên giữa khác màu) nên dễ đếm 6 hơn. Hình không có mảnh khác màu ở giữa, không tập đúng chỗ dễ sai.
+- Sửa: hình có mảnh giữa khác màu, đáp án khác 6 và 8 (vd lục giác ghép từ 3 hình thoi, 1 hình thoi tô xám); nhiễu là số chỉ đếm mảnh nhạt; `wrong` "Viên màu xám cũng là một viên đá, phải đếm cả nó."
 
-### 13. Mẹo và màn "Cùng làm" dùng đúng số 0,6 m của bài 4.27
+### 10. Câu dẫn bài 4.26 dùng lại sân 20 m, 30 m và 600 m² của bài 4.28
 
-- Vị trí: `$.sections[8].blocks[2].tex` (`tip.cung-don-vi`), hình `visual.doi-thanh` (thanh `b`) - LL-07
-- Nguồn: tr.73, `sbt-p73.png`
-- Vấn đề: "0,6 m = 60 cm" là bước đổi đầu tiên của 4.27; màn dạy cho sẵn bước đó.
-- Sửa: đổi thành 0,7 m = 70 cm ở mẹo và thanh (cả nhãn và `label`).
+- Vị trí: `$.exercises[71]` (`ex.dan-4-26-dai`), `$.exercises[72]` (`ex.dan-4-26-rao`) - LL-07
+- Nguồn: tr.73 bài 4.28, tr.116
+- Vấn đề: bé gặp 600 m² và cặp 30 m, 20 m hai lần ngay trước bài 4.28 hỏi đúng sân đó; vòng 1 (Nên sửa 6) đã đổi một câu vì cùng cặp số.
+- Sửa: vd `dan-4-26-dai` "diện tích 750 m², chiều rộng 25 m" (30 m); `dan-4-26-rao` "dài 30 m, rộng 25 m, cửa 2 m" (108 m); sửa `check.expr`, `explain`; soát số mới không trùng tr.72–73.
 
-### 14. Một hình chữ nhật mang ba tên: "bao quanh", "đi qua bốn đỉnh", "hình chữ nhật lớn"
+### 11. "Bị cắt mất một góc vuông" đọc được thành cắt chéo một góc
 
-- Vị trí: `stages.ts` `rhombusFrames()` khung 2 ("Vẽ hình chữ nhật bao quanh…"); `wrong` của `ex.dt-thoi-14-6` (`b`), `ex.chon-phep-tinh-thoi-12-5` (`c`), `ex.dt-thoi-16-9` (`b`); câu "Nhắc lại" `$.sections[10].blocks[1].children[2]` ("chu vi hình chữ nhật bao quanh nó … bằng hình chữ nhật lớn trừ đi phần khuyết") - LL-05, LL-25
-- Nguồn: —
-- Vấn đề: lượt đọc hiểu 2 chấm "bao quanh" là khó hiểu nên note phần 7 đã đổi thành "hình chữ nhật đi qua bốn đỉnh", nhưng caption khung 2, ba lý do `wrong` và câu "Nhắc lại" của hình khuyết vẫn nói "bao quanh". Câu "Nhắc lại" còn gọi cùng một hình là "hình chữ nhật bao quanh" ở vế đầu và "hình chữ nhật lớn" ở vế sau. (Tổng hợp tìm thêm chỗ ở khối "Nhắc lại".)
-- Sửa: hình thoi dùng một tên "hình chữ nhật đi qua bốn đỉnh" ở caption và ba câu `wrong`; hình khuyết dùng một tên, ví dụ "hình chữ nhật trước khi bị cắt góc", ở cả hai vế câu "Nhắc lại", ở `explain` câu dẫn 4.24 và ở hình `khuyet-nhac-lai`.
+- Vị trí: `$.sections[10].blocks[1].children[2]`; hình `visual.khuyet-cach-lam` (`catalog-book.ts`: nhãn "Chu vi hình chữ nhật bị cắt một góc", caption bước 2 "Cắt đi một góc rộng 3 m, cao 2 m.") - LL-10
+- Nguồn: tr.116 (Hình 4.27)
+- Vấn đề: cắt bỏ cái góc theo đường chéo thì chu vi giảm; câu chỉ đúng khi phần bị cắt là hình chữ nhật nhỏ ở góc, như hình và câu dẫn.
+- Sửa: "Hình chữ nhật bị cắt mất một hình chữ nhật nhỏ ở góc có chu vi bằng chu vi hình chữ nhật trước khi cắt." (câu diện tích thêm "diện tích": "…bằng diện tích hình chữ nhật trước khi cắt trừ đi diện tích phần bị cắt."); nhãn và caption bước 2 của `khuyet-cach-lam` nói "cắt đi một hình chữ nhật nhỏ ở góc".
 
-### 15. Caption cuối của hình cắt ghép nói quy tắc hình bình hành bằng chữ khác
+### 12. Chưa nối "chia cho 2" với cách sách viết ½ (Góp ý 8 vòng 1, chủ dự án chọn làm)
 
-- Vị trí: `stages.ts` `parallelogramFrames()` khung 5 (hình `visual.bbh-cat-ghep`) - LL-05
-- Nguồn: —
-- Vấn đề: caption "bằng đáy nhân chiều cao" khác câu quy tắc "bằng cạnh đáy nhân với chiều cao".
-- Sửa: "Diện tích hình bình hành bằng cạnh đáy nhân với chiều cao: 6 · 3 = 18 cm²."
+- Vị trí: màn quy tắc phần 7 (`$.sections[6].blocks[1]`, hình `visual.thoi-quy-tac`) và phần 8 (`$.sections[7].blocks[1]`, hình `visual.thang-quy-tac`)
+- Nguồn: tr.70, `sbt-p70.png` (`S = ½ab`, `S = ½(a + b)h`)
+- Vấn đề: sách và đề kiểm tra viết "½", bài chỉ nói "chia cho 2"; bé gặp ½ trong đề sẽ không nhận ra công thức đã học.
+- Sửa: thêm một dòng ngắn ở hai chỗ dạy công thức, ví dụ dòng thêm dưới công thức của hình quy tắc (caption nhiều dòng của `gallery.tsx`): hình thoi "Sách viết ½ · a · b, nghĩa là a · b : 2."; hình thang cân "Sách viết ½ · (a + b) · h, nghĩa là (a + b) · h : 2." Không dạy phân số; không đổi câu quy tắc, recap.
 
-### 16. "Lật một hình" thang cân đọc được thành lật trái phải
+### 13. Chưa nối "a · a" với cách sách viết a²
 
-- Vị trí: `$.sections[7].blocks[0].children[0].text`; caption khung 2 `trapezoidFrames()`, caption bước 2 `trapezoidJoin()` - LL-10
-- Nguồn: tr.70
-- Vấn đề: hình xoay bản sao nửa vòng; "lật" với bé là lật trái sang phải, mà lật hình thang cân trái phải vẫn ra hình cũ, ghép không thành hình bình hành.
-- Sửa: "xoay ngược một hình cho đáy lớn lên trên, rồi đặt sát cạnh bên hình kia" ở note và hai caption.
+- Vị trí: hình `visual.dt-cn-quy-tac` (caption "Hình vuông: S = a · a"), `$.sections[4].blocks[1]`, kéo theo bảng `visual.nam-hinh-cong-thuc`
+- Nguồn: tr.70, `sbt-p70.png` (`S = a²`, `S = ab`)
+- Vấn đề: cùng loại với Nên sửa 12: sách và đề kiểm tra viết `S = a²` (và viết liền `ab`, `ah`), bài chỉ viết `a · a`. Xếp cùng mức với ½ vì cùng lý do chủ dự án đã chọn (bé phải nhận ra công thức khi gặp trong đề), lại rẻ và an toàn hơn: luỹ thừa đã dạy ở chương I nên dòng này không đưa kiến thức mới.
+- Sửa: thêm dòng dưới công thức hình vuông của `dt-cn-quy-tac`: "Sách viết a · a là a²." Tuỳ tác giả thêm "ab nghĩa là a · b" một lần ở hình chữ nhật.
 
-### 17. Hình hình thang cân nói "chiều cao 3 cm" mà không vẽ chiều cao
+### 14. Hình quy tắc phần 2, 3, 5 nhỏ trên điện thoại (Góp ý 4 vòng 1, chủ dự án chọn làm)
 
-- Vị trí: hình `visual.thang-ghep` (khung 1), `visual.stage-thang` (bước 3) - LL-15
-- Nguồn: —
-- Vấn đề: không khung nào vẽ đoạn chiều cao hay ghi "3 cm" (`phone/104`, `105`, `108`, `109`), trong khi chữ và phép 12 · 3 cần nó, ngay sau mẹo "đừng lấy cạnh bên làm chiều cao".
-- Sửa: vẽ đoạn chiều cao nét đứt tím, dấu góc vuông, nhãn "3 cm" từ khung 1 tới khung hình bình hành.
-
-### 18. Chỗ cửa trong hình rào vườn gần như không thấy
-
-- Vị trí: hình `visual.rao-vuon-giai` (`gardenWithGate()`, `catalog-don-vi.ts`), `$.sections[9].blocks[0]` - LL-15
-- Nguồn: —
-- Vấn đề: cửa là đoạn nét đứt xám đè lên cạnh xanh, trên điện thoại chỉ là vệt nhỏ (`phone/132-s10-01-block-end.png`); hàng rào trông như chạy kín.
-- Sửa: để trống hẳn đoạn cửa, thêm hai cọc và mũi tên đo "3 m"; giữ nhãn "cửa 3 m".
-
-### 19. Lời giải "Một mét vuông là hình vuông có cạnh 100 cm"
-
-- Vị trí: `$.exercises[42].explain.text` (`ex.mot-met-vuong`), `label` của `visual.m2-cm2` - LL-05
-- Nguồn: —
-- Vấn đề: 1 m² là diện tích, không phải một hình; phần 4 đã nói đúng "Ô vuông cạnh 1 m có diện tích 1 mét vuông".
-- Sửa: "Một mét vuông là diện tích hình vuông cạnh 1 m, tức cạnh 100 cm. Diện tích đó là 100 nhân 100."
-
-### 20. Câu ôn lát gạch dùng lại sàn 5 m và 3 m của màn "Cùng làm" phần 5
-
-- Vị trí: `$.exercises[50]` (`ex.lat-gach-5-3`) - LL-07
-- Nguồn: —
-- Vấn đề: sàn 5 m và 3 m là hình `floor-lesson` (15 ô); bé dễ chọn 15 vì quen.
-- Sửa: sàn khác, ví dụ 4 m và 3 m, gạch 50 cm (8 · 6 = 48 viên); đổi nhiễu theo (12, 14).
-
-### 21. Bài 4.28 không có bước đổi 60 cm ra m; khối "Nhắc lại" và mẹo phần 9 nói hai cách
-
-- Vị trí: `$.exercises[77]` (`ex.dan-4-28-vien`), `$.exercises[79].explain` (`ex.sbt-4-28`), `PAIRS["4-28"]` (hình gợi ý, lời giải), câu "Nhắc lại" `$.sections[10].blocks[3].children[3]`, mẹo `$.sections[8].blocks[2]`, note `$.sections[9].blocks[1]` - LL-15, LL-05
-- Nguồn: tr.73, `sbt-p73.png` (viên đá cạnh 60 cm); tr.116 (`0,6 · 0,6 · 1 400`)
-- Vấn đề: đề cho cạnh viên đá bằng cm, giá cỏ theo m². Câu dẫn cho sẵn 0,5 m, hình gợi ý dùng 0,5 m, `explain` và lời giải viết thẳng 0,6, không chỗ nào nói 60 cm = 0,6 m. Câu "Nhắc lại" ngay trước dặn "đổi mọi số đo ra cm" (note phần 10 cũng "đổi mét ra cm"), trong khi mẹo phần 9 nói "đổi mọi số đo về cùng một đơn vị". Bé làm theo khối "Nhắc lại" thì ra số rất lớn rồi phải đổi ngược về m². Thêm vào đó, `dan-4-28-vien` (0,5 · 0,5 = 0,25) và 4.28 (0,6 · 0,6) cần nhân hai số thập phân, việc cả bài chưa làm mẫu lần nào (phần 9 chỉ đổi ra cm để khỏi tính với số thập phân). (Tổng hợp gộp ý mâu thuẫn giữa khối "Nhắc lại" và mẹo.)
-- Sửa: câu dẫn `dan-4-28-vien` cho cạnh bằng cm (50 cm), hỏi diện tích bằng m² với bước "đổi 50 cm = 0,5 m" và nêu cách nhân 0,5 · 0,5 (hoặc tính 50 · 50 = 2 500 cm² rồi dùng 1 m² = 10 000 cm²); `explain` 4.28 thêm "Đổi 60 cm = 0,6 m"; hàng đầu hình gợi ý ghi bước đổi. Câu "Nhắc lại" nói như mẹo phần 9 ("đổi mọi số đo về cùng một đơn vị") rồi tách hai trường hợp: đếm gạch theo hàng (4.27) đổi ra cm, tính tiền theo m² (4.28) đổi cạnh ra m.
-
-### 22. Câu "Nhắc lại" lát gạch thiếu bước nhân
-
-- Vị trí: `$.sections[10].blocks[3].children[3]`, hình `lat-gach-nhac-lai`
-- Nguồn: —
-- Vấn đề: câu dừng ở hai phép chia; bé có số viên mỗi hàng và số hàng mà không biết làm gì tiếp; hình chỉ ghi "dài", "rộng".
-- Sửa: "…chia chiều dài và chiều rộng của sân cho cạnh viên gạch, rồi nhân hai kết quả để có số viên." (gộp với cách viết mới ở Nên sửa 21); thêm vào hình một dòng `5 · 3 = 15 viên`.
-
-### 23. Lời giải bài sách theo sát cách trình bày của sách và đảo thứ tự phép nhân của câu quy tắc
-
-- Vị trí: `$.exercises[67].explain` (`ex.sbt-4-24`: "Kẻ thêm để được hình chữ nhật 6 m và 8 m", `6 · 8 - 2 · 2`); `PAIRS["4-23"].solution` (`50 · 4`, `60 + 80`), `PAIRS["4-24"].solution`, `PAIRS["4-26"].solution` (`2 · (40 + 90)`); `$.sections[1].blocks[2].children[0].text` ("nhân độ dài một cạnh với 4") - LL-08, LL-05
-- Nguồn: tr.115–116, `sbt-p115.png`, `sbt-p116.png`
-- Vấn đề: "Kẻ thêm để được hình chữ nhật…" gần như nguyên văn câu mở lời giải 4.24 của sách; các hình lời giải chép cả thứ tự số hạng của sách (`50 · 4`, `6 · 8`), trong khi câu quy tắc là "4 nhân với độ dài một cạnh" (`4 · 25` ở câu dẫn ngay trước) và "chiều dài nhân với chiều rộng". Màn "Cùng làm" phần 2 cũng nói "nhân độ dài một cạnh với 4". Bé thấy hai thứ tự cho cùng một công thức. (Gộp Góp ý 2 của nhóm 1 cùng kiểu.)
-- Sửa: `explain` 4.24 bằng lời của bài ("Vẽ thêm hai đoạn bù vào chỗ khuyết thì được hình chữ nhật dài 8 m, rộng 6 m."); các hàng lời giải theo câu quy tắc: `4 · 50`, `80 + 60`, `8 · 6 - 2 · 2`, `2 · (8 + 6)`, `2 · (90 + 40)`; màn "Cùng làm" phần 2: "…nên ta chỉ cần lấy 4 nhân với độ dài một cạnh."
-
-### 24. Bài 4.23 chỉ có hai lựa chọn, bé đoán lại là đúng
-
-- Vị trí: `$.exercises[64]` (`ex.sbt-4-23`)
-- Nguồn: tr.72 (sách không in lựa chọn)
-- Vấn đề: sai "Đủ" lần đầu thì chỉ còn "Không đủ" (walk `181-…-wrong1`); bé có điểm mà không phải tính 620 cm.
-- Sửa: giữ nguyên đề, đổi thành `fillBlank` hai ô như 4.20, 4.24 ("Cần ___ cm sắt. Vật liệu ___.": gõ 620, chọn "đủ"/"không đủ"), khối lệnh cuối đề đổi theo; hoặc giữ `choice` và thêm câu dẫn hỏi tổng độ dài sắt với số khác đề.
-
-### 25. Câu dẫn 4.27 dồn gần cả bài vào một câu và đứng trước câu dễ hơn
-
-- Vị trí: `$.exercises[74]` (`ex.dan-4-27-hang`, difficulty 3) trước `$.exercises[75]` (`ex.dan-4-27-thung`, difficulty 2); `ex.dan-4-25-thang` (2) trước `ex.dan-4-25-luc-giac` (1) - LL-18
-- Nguồn: —
-- Vấn đề: `dan-4-27-hang` gồm ba lần đổi, hai phép chia và một phép nhân, vượt mức 2 phép tính; câu dẫn khó trước dễ sau.
-- Sửa: tách thành "Sân dài 12 m, gạch cạnh 50 cm. Mỗi hàng bao nhiêu viên?" và "Mỗi hàng 24 viên, có 12 hàng. Cần bao nhiêu viên, mua bao nhiêu thùng (4 viên một thùng)?"; đảo thứ tự hai câu dẫn 4.25.
-
-### 26. Bài 4.25: không bước nào tập đếm số viên trên hình
-
-- Vị trí: `$.exercises[69]` (`ex.dan-4-25-luc-giac`), `$.exercises[70].explain` (`ex.sbt-4-25`)
-- Nguồn: tr.73, `sbt-p73.png`
-- Vấn đề: đề sách không nói số viên, bé phải đếm 8 viên (2 nửa ở giữa khác màu 6 viên quanh). Câu dẫn cho sẵn "6 viên" bằng chữ, `explain` chỉ nói "nhân với 8"; bé dễ đếm 6 và ra 774.
-- Sửa: câu dẫn kèm một hình ghép khác và hỏi số viên trước khi nhân; `explain` 4.25 thêm "Đếm trên hình: 2 viên ở giữa và 6 viên quanh, tất cả 8 viên."
-
-### 27. Phần bài tập sách bài tập gần như chỉ có câu gõ số
-
-- Vị trí: `$.sections[10].checkIds` (28 câu: 24 `numeric`; 15 trên 16 câu dẫn là `numeric`)
-- Nguồn: —
-- Vấn đề: 28 câu liền cùng một thao tác gõ số, dễ mỏi với bé khó tập trung lâu; câu dẫn là chỗ được chọn dạng câu.
-- Sửa: đổi 3–4 câu dẫn sang dạng khác: `dan-4-24-cv` thành `choice` chọn biểu thức chu vi đúng; `dan-4-28-co` thành `order` các bước 4.28; câu đếm viên ở Nên sửa 26 dùng `choice`.
-
-### 28. Màu "diện tích" (teal) và "chu vi" (blue) tô lên độ dài, số viên, số tiền; 10 000 cm² mang hai màu
-
-- Vị trí: `explain.tex` của `ex.dan-4-21-so` (8 cm), `ex.sbt-4-21` (7 cm), `ex.dan-4-26-dai` (30 m), `ex.dan-4-27-hang` (288), `ex.dan-4-27-thung` (72), `ex.sbt-4-27` (75), `ex.sbt-4-28` (2 880 000), `ex.lat-gach-5-3` (60 viên); thẻ hàng trong `PAIRS` của `catalog-book.ts`: `sTag("chiều còn lại")`, `sTag("chiều dài vườn")`, `cTag("viên mỗi hàng")`, `cTag("số hàng")`, `cTag("hai đường chéo")` (đường chéo là amber); `ex.mot-met-vuong` tô 10 000 cm² màu sky (đơn vị đo) còn `ex.bia-2m-50cm` và hình `m2-cm2` tô cùng số đo đó màu teal - LL-05
-- Nguồn: —
-- Vấn đề: bài gắn teal với diện tích, blue với chu vi. Tô một độ dài hay số thùng gạch bằng màu diện tích làm bé hiểu sai kết quả đó là diện tích (7 cm của 4.21 mang màu cm²); cùng số đo 10 000 cm² lại mang hai màu ở hai câu liền nhau. (Tổng hợp mở rộng ra cả phần 9, 10.)
-- Sửa: kết quả không phải chu vi hay diện tích để màu mực thường (bỏ `\concept`), thẻ hàng dùng `slate`, thẻ "hai đường chéo" dùng amber; diện tích đổi đơn vị (10 000 cm²) một màu teal ở mọi chỗ, màu sky chỉ cho số đo độ dài vừa đổi.
-
-### 29. Chữ a, b của hình thoi khi là cạnh, khi là đường chéo, mà hình không nói
-
-- Vị trí: hình `nam-hinh-cong-thuc` (`catalog-book.ts`, `$.sections[10].blocks[0].children[4]`); hình `visual.thoi-quy-tac` (phần 7) so với `visual.c4a-quy-tac` (phần 2)
-- Nguồn: tr.70, `sbt-p70.png` (sách ghi "a, b là độ dài hai đường chéo")
-- Vấn đề: ở phần 2 a là cạnh hình thoi (`C = 4 · a`); ở phần 7 và bảng năm công thức, `S = a · b : 2` đứng ngay dưới `S = a · b` của hình chữ nhật (a, b là hai cạnh) mà không chữ nào nói a, b là đường chéo. Bé dễ nhân hai cạnh hình thoi; 4.22c ngay sau hỏi đúng hình thoi. (Gộp Góp ý 10 của nhóm 2, giữ mức Nên sửa.)
-- Sửa: ghi thấy được dưới hình quy tắc phần 7 và trong thẻ hàng của bảng năm công thức "a, b là hai đường chéo", hoặc viết công thức bằng chữ như câu quy tắc ("tích hai đường chéo, chia cho 2").
-
-### 30. Khối "Nhắc lại" có quy tắc chưa phần nào dạy
-
-- Vị trí: `$.sections[10].blocks[1].children[2]` (hình khuyết một góc), hình `khuyet-nhac-lai`; `$.sections[10].blocks[0].children[3]` (biết diện tích và một chiều thì chia); `$.sections[10].blocks[1].children[1]` (cộng chu vi các hình và các đoạn thẳng); `$.sections[10].blocks[3].children[2]` (hai tầng dây thì nhân đôi) - LL-16
-- Nguồn: tr.116 (lời giải 4.24)
-- Vấn đề: khối tên "Nhắc lại" mà bốn câu này bé chưa gặp ở 10 phần trước. Nặng nhất là hình khuyết: chu vi bằng chu vi hình chữ nhật trước khi cắt là điều mới, chỉ có một câu và một hình tĩnh, hai câu dẫn 4.24 phải gánh việc dạy. (Tổng hợp thêm ba câu còn lại.)
-- Sửa: dạy hình khuyết ở phần 10 bằng một màn có hình đi quanh hình khuyết (dùng lại `walk.tsx`) rồi mới nhắc ở đây, hoặc đổi tiêu đề khối thành "Cách làm bài 4.24" kèm hình từng bước cho thấy hai cạnh thụt vào bằng hai đoạn bị cắt. Ba câu còn lại: thêm một câu kiểm tra hay kho ôn ở phần 5 (tìm chiều còn lại) và phần 10 (hai tầng dây), hoặc đặt chúng dưới tiêu đề "Cách làm" thay vì "Nhắc lại".
-
-### 31. `explain` của câu dẫn chu vi hình khuyết chưa nói vì sao
-
-- Vị trí: `$.exercises[65].explain.text` (`ex.dan-4-24-cv`)
-- Nguồn: —
-- Vấn đề: "Đường viền đi vào rồi đi ra ở chỗ khuyết, dài bằng hai cạnh của góc bị cắt." không nói cái gì bằng cái gì; bé không thấy hai cạnh mới thay đúng hai đoạn đã mất.
-- Sửa: "Chỗ khuyết bỏ đi 3 m ở cạnh trên và 3 m ở cạnh phải, nhưng thêm hai cạnh mới cũng dài 3 m và 3 m. Nên chu vi vẫn bằng chu vi hình chữ nhật 10 m và 6 m."; thêm hình tô hai cặp đoạn bằng nhau.
+- Vị trí: `visual.c4a-quy-tac`, `visual.c2ab-quy-tac` (`catalog-chu-vi.ts`), `visual.dt-cn-quy-tac` (`catalog-dien-tich.ts`), thành phần `gallery.tsx` của bài (`src/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/`)
+- Nguồn: — (ảnh walk `phone/027-s2-02-block.png`, `phone/040-s3-02-block.png`, `phone/066-s5-02-block.png`)
+- Vấn đề: hai hình cạnh nhau, mỗi hình khoảng 1/3 bề ngang, công thức cỡ chú thích, nửa màn trống; hình quy tắc phần 6–8 đã là một hình lớn với công thức chữ đậm cỡ thân bài. Năm hình quy tắc hai kiểu. Sửa được trong code riêng của bài (`gallery.tsx` nằm trong thư mục hình của bài), không cần đổi code dùng chung.
+- Sửa: ba hình quy tắc xếp một cột (`columns: 1`) như phần 6–8, hay giữ hai cột nhưng công thức cỡ thân bài và hình rộng hơn; dùng chung một kiểu cho cả năm hình quy tắc. Xem lại ảnh walk điện thoại và iPad ngang (màn quy tắc và recap).
 
 ## Góp ý
 
-### 1. Thêm "cạnh kề" vào glossary
+### 1. Lý do của nhiễu 200 nói tới "chia cho 2" mà bài chưa dạy tới
 
-- Vị trí: `$.sections[2].blocks[0].children[0].text`; `content/glossary/math.json`
-- Nguồn: tr.70
-- Vấn đề: "hai cạnh kề nhau" có trong câu quy tắc phần 3 và nhiều câu khác, có câu định nghĩa ở màn đầu, nhưng glossary có "cạnh đối", "cạnh bên", "cạnh đáy" mà không có "cạnh kề".
-- Sửa: thêm mục "cạnh kề" (không màu).
-
-### 2. Câu kho ôn hình thang cân trùng hai số với hình dạy
-
-- Vị trí: `$.exercises[3]` (`ex.chu-vi-chon-phep-tinh`) - LL-07
+- Vị trí: `$.exercises[21].explain.wrong[2]` (`ex.gach-vuong-20`) - LL-09, LL-14
 - Nguồn: —
-- Vấn đề: đáy 3 cm và 9 cm trùng số 9 và 3 của hình `walk-thang-can`.
-- Sửa: hai đáy 4 cm và 8 cm, cạnh bên 3 cm (chu vi 18) hay số khác.
+- Vấn đề: câu ngay sau phần 5; "chia cho 2" chỉ có ở phần 7, 8. Lỗi nhân nhẩm gặp nhiều hơn ở bé (`docs/learner.md`).
+- Sửa: nhiễu 4000, `wrong`: "20 · 20: lấy 2 · 2 = 4 rồi viết thêm hai chữ số 0, được 400."
 
-### 3. Luồng câu của các phần 1–8 cùng một khuôn
+### 2. Hình đi một vòng ghi số đo cạnh không kèm đơn vị
 
-- Vị trí: `checkIds`/`practiceIds` và kho ôn của `$.sections[0]` đến `$.sections[7]`
+- Vị trí: `visual.vuon-di-vong`, `visual.vuong-di-vong`, `visual.chu-nhat-di-vong`, `visual.walk-thang-can`, `visual.walk-thoi`, `visual.walk-binh-hanh` (`catalog-chu-vi.ts`, `walk.tsx`) - LL-15
 - Nguồn: —
-- Vấn đề: phần nào cũng một câu gõ số, một câu chọn cùng lời, một câu gõ số đời sống; `tapRegion` (`cham-hinh-4-o`), `manipulate` (`xep-gach-4-3`), `fillBlank` (`chu-vi-dien-tu`) chỉ nằm trong kho ôn.
-- Sửa: đưa `xep-gach-4-3` lên làm câu luyện phần 5 (chuyển `phong-hoc-7-5` xuống kho ôn), `cham-hinh-4-o` lên phần 4 (cùng Nên sửa 5); mỗi phần 6–8 đổi một câu ôn sang dạng khác (`match` hình với công thức, chạm vào đoạn chiều cao).
+- Vấn đề: nhãn cạnh "8", "5" trong khi hình câu hỏi ghi "5 m", "9 cm".
+- Sửa: nhãn cạnh kèm đơn vị nếu khung đủ chỗ trên điện thoại.
 
-### 4. Hình quy tắc phần 2, 3, 5 nhỏ trên điện thoại
+### 3. Số và đơn vị còn ngắt hai dòng (Góp ý 14 vòng 1 còn sót)
 
-- Vị trí: hình `c4a-quy-tac`, `c2ab-quy-tac`, `dt-cn-quy-tac` (`phone/027-s2-02-block.png`, `040-s3-02-block.png`, `066-s5-02-block.png`)
+- Vị trí: câu quy tắc phần 9 `$.sections[8].blocks[1].children[0].text` (kéo theo recap phần 9, thẻ `card.doi-don-vi`: "10 000 / cm²"); `stages.ts` caption khung 1 của `trapezoidFrames()`, `rhombusFrames()`; đề `ex.sbt-4-21`, `ex.sbt-4-22c`, `ex.sbt-4-22d`, `ex.dan-4-26-dai`, `ex.sbt-4-27`, `ex.sbt-4-28` (walk điện thoại `163`, `173`, `175`, `195`, `205`, `214`; iPad dọc `119`)
 - Nguồn: —
-- Vấn đề: hai hình mẫu đặt cạnh nhau nên trên điện thoại hình vuông chỉ khoảng 60 px, chữ "a", "b" nhỏ.
-- Sửa: tăng cỡ hình mẫu hoặc xếp hai hình một cột trên màn hẹp.
+- Vấn đề: số cuối dòng, đơn vị xuống dòng; một chỗ là câu quy tắc cần nhớ.
+- Sửa: U+00A0 giữa mọi số và đơn vị (chữ sách không đổi); có thể gom một hàm ghép "số + đơn vị" cho caption của `stages.ts`.
 
-### 5. Nhãn đọc màn hình của hình xếp gạch sai số ở câu kho ôn
+### 4. Note "Cùng làm" phần 8 không nhắc nút "Đo đáy"
 
-- Vị trí: hình `floor-lesson` dùng cho `$.exercises[25]` (`ex.xep-gach-4-3`) - LL-15
+- Vị trí: `$.sections[7].blocks[3].children[0].text`
 - Nguồn: —
-- Vấn đề: câu dùng sàn 4 m × 3 m qua `params`, nhưng `aria-label` vẫn là "Sàn phòng dài 5 m, rộng 3 m".
-- Sửa: tạo nhãn từ `params` hoặc dùng khoá hình riêng.
+- Vấn đề: nút thứ hai hiện ra mà note không nói, khác phần 6.
+- Sửa: "Cùng làm: bấm "Ghép thêm" rồi "Đo đáy" để ghép hai hình thang giống hệt. …"
 
-### 6. Tên nút trong note "Cùng làm" khác nút trên màn
+### 5. Mẫu sơn tường trong mẹo không hiện phép nhân
 
-- Vị trí: `$.sections[5].blocks[3].children[0].text`; `parallelogramSlide().actions`
+- Vị trí: `$.sections[9].blocks[3].tex` (`tip.phan-bo-ra`) - LL-16
 - Nguồn: —
-- Vấn đề: note bảo bấm "Cắt", "Trượt"; nút là "Cắt tam giác", "Trượt sang phải".
-- Sửa: chép đúng tên nút vào note.
+- Vấn đề: `tex` chỉ ghi `18 - 4 = 14`, bé phải đoán 18 là 6 · 3, 4 là 2 · 2.
+- Sửa: dòng hai thành `6 \cdot 3 - 2 \cdot 2 = \concept{teal}{14}\ \mathrm{m}^{2}`.
 
-### 7. Ghi dấu kiến thức nền cho các cách cắt ghép
+### 6. Câu ôn lát gạch cần năm phép tính
 
-- Vị trí: `sourceRef` của `section.dien-tich-binh-hanh`, `section.dien-tich-thang-can` và thẻ cùng tên
-- Nguồn: tr.70
-- Vấn đề: cắt trượt và ghép hình là cách tiểu học dùng để ra công thức; `sourceRef` chỉ ghi trang sách bài tập.
-- Sửa: "Kiến thức nền (tiểu học); sách bài tập tr.70 (kiến thức cần nhớ)" như phần 1, 4, 9.
-
-### 8. Nối "chia cho 2" với cách sách viết ½
-
-- Vị trí: `$.sections[6].blocks[1]`, `$.sections[7].blocks[1]`, hình `nam-hinh-cong-thuc`
-- Nguồn: tr.70 (`S = ½ab`, `S = ½(a + b)h`)
-- Vấn đề: bé sẽ gặp ½ trong sách và đề kiểm tra mà bài không nói hai cách viết là một. (Gộp Góp ý 3 nhóm 2 và Góp ý 5 nhóm 3.)
-- Sửa: một dòng nhỏ ở hình quy tắc hoặc hình nhắc lại: "Sách viết ½ trước công thức, nghĩa là chia cho 2." Chỉ khi chủ dự án thấy cần.
-
-### 9. Nhiễu chưa có lý do `wrong`
-
-- Vị trí: `ex.lat-gach-5-3` lựa chọn `d` (30), `ex.mot-met-vuong` lựa chọn `d` (100 000)
+- Vị trí: `$.exercises[50]` (`ex.lat-gach-7-3`) - LL-18
 - Nguồn: —
-- Vấn đề: hai nhiễu không có lý do; 30 không ra từ lỗi rõ nào.
-- Sửa: đổi 30 thành số của lỗi "chỉ đếm một hàng" và thêm `wrong`; thêm `wrong` cho 100 000 ("thêm một chữ số 0; 100 · 100 = 10 000").
+- Vấn đề: đổi hai số đo, chia hai lần rồi nhân, vượt mức cho bé yếu nhân chia.
+- Sửa: thêm `hintVisualId` dạng `calc` số khác đề, dừng ở "?" trước phép nhân cuối; hoặc cho sẵn một chiều đã đổi.
 
-### 10. Hai câu khác phần dùng cùng cặp số 14 và 6
+### 7. Đề sắp xếp bước lát gạch không nói sàn đo bằng m, gạch bằng cm
 
-- Vị trí: `ex.dt-bbh-14-6` (kho ôn phần 6), `ex.dt-thoi-14-6` (câu kiểm phần 7) - LL-07
+- Vị trí: `$.exercises[51].prompt[0].text` (`ex.xep-buoc-lat-gach`) - LL-10
 - Nguồn: —
-- Vấn đề: đáp số 84 của câu bình hành là nhiễu của câu hình thoi.
-- Sửa: hình bình hành đáy 13 cm, cao 6 cm (78 cm²).
+- Vấn đề: bước "Đổi … ra cm" chỉ cần khi hai đơn vị khác nhau, đề không cho biết.
+- Sửa: "Sàn đo bằng mét, gạch đo bằng xăng-ti-mét. Sắp xếp các bước tính số viên gạch lát kín sàn."
 
-### 11. Câu kiểm "chọn việc tính diện tích" lặp đúng bốn ví dụ của màn quy tắc
+### 8. Hình thang khung đầu nhỏ, lệch trái trên điện thoại
 
-- Vị trí: `ex.chon-viec-dien-tich`
+- Vị trí: `visual.thang-ghep` khung 1–2, `visual.stage-thang` trạng thái đầu (`trapezoidGeo`) - LL-12
+- Nguồn: — (ảnh `phone/104-s8-01-block.png`, `phone/108-s8-04-block.png`)
+- Vấn đề: khung chừa chỗ cho bản sao ghép, hình thang rộng khoảng 140 px sát trái.
+- Sửa: căn giữa hình thang ở khung chưa ghép, hay thu khung đầu theo bề rộng hình.
+
+### 9. Công thức lời giải một dòng ngắt giữa ngoặc trên điện thoại
+
+- Vị trí: `$.exercises[63].explain.tex` (`ex.dan-4-23-tong`), `$.exercises[76].explain.tex` (`ex.sbt-4-27`) - LL-12
+- Nguồn: — (walk điện thoại `180`, `206`)
+- Vấn đề: không mất chữ nhưng ngoặc bị tách hai dòng.
+- Sửa: xếp `gathered`, mỗi dòng một phép, tối đa 22 ký tự (như Nghiêm trọng 1).
+
+### 10. Câu dẫn hình thang cân dùng lại hai đáy 6 cm và 10 cm của bài 4.22b
+
+- Vị trí: `$.exercises[68]` (`ex.dan-4-25-thang`) - LL-07
+- Nguồn: tr.72 bài 4.22b
+- Vấn đề: cùng hai đáy, chỉ khác chiều cao; bé vừa làm 4.22b vài câu trước.
+- Sửa: hai đáy khác, ví dụ 3 cm và 11 cm, cao 3 cm (21 cm²), soát không trùng số tr.72–73 và hình gợi ý.
+
+### 11. Bảng năm công thức ghi nghĩa chữ khác hình quy tắc
+
+- Vị trí: `visual.nam-hinh-cong-thuc` (`catalog-book.ts`, `$.sections[10].blocks[0]`) so với `visual.bbh-quy-tac`, `visual.dt-cn-quy-tac`
 - Nguồn: —
-- Vấn đề: rào vườn, lát sàn, viền, sơn tường là bốn ô của hình `chon-chu-vi-dien-tich` vừa xem.
-- Sửa: việc khác: trải thảm, dán giấy kín mặt bàn, căng dây quanh sân, đóng nẹp quanh cửa.
-
-### 12. Note xoay tam giác không nói xoay quanh điểm nào
-
-- Vị trí: `$.sections[6].blocks[0].children[0].text`
-- Nguồn: —
-- Vấn đề: bé tự làm trên giấy không biết xoay quanh đâu.
-- Sửa: "xoay nửa vòng quanh điểm giữa cạnh hình thoi".
-
-### 13. "Phần mười" trong lời giải mà note không dùng
-
-- Vị trí: `ex.doi-0-5-m`, `ex.noi-so-do` (`explain`)
-- Nguồn: —
-- Vấn đề: note nói "chia một mét thành 10 phần … mỗi phần 0,1 m"; lời giải nói "5 phần mười của mét".
-- Sửa: "0,5 m là 5 phần, mỗi phần 0,1 m = 10 cm".
-
-### 14. Số và đơn vị bị ngắt hai dòng
-
-- Vị trí: `$.exercises[59].prompt[1]` (`ex.sbt-4-22b`, walk `170-…-4-22b`); `$.exercises[54].segments[4]` (`ex.sbt-4-20`, iPad)
-- Nguồn: —
-- Vấn đề: chữ số và đơn vị tách dòng, bé đọc chậm dễ lạc.
-- Sửa: khoảng trắng không ngắt (U+00A0) giữa số và đơn vị (chữ sách giữ nguyên); báo người làm app nếu ô `fillBlank` cần co lại.
-
-### 15. Lời câu dẫn còn chỗ đọc vấp
-
-- Vị trí: `$.exercises[56].prompt[0]` (`ex.dan-4-21-so`); `$.exercises[65].prompt[0]`, `$.exercises[66].prompt[0]` (`ex.dan-4-24-*`)
-- Nguồn: —
-- Vấn đề: "một chiều dài 9 cm" đọc như chiều dài là 9 cm; "một góc hình vuông cạnh 3 m" có thể hiểu là góc của một hình vuông.
-- Sửa: "một chiều là 9 cm"; "bị cắt mất một hình vuông cạnh 3 m ở góc".
-
-### 16. Câu dẫn 4.23 dùng đúng nửa số của Hình 4.19
-
-- Vị trí: `$.exercises[63]` (`ex.dan-4-23-tong`, hình `dan-khung-40-30`)
-- Nguồn: tr.72, Hình 4.19
-- Vấn đề: 40, 30, 25 bằng nửa 80, 60, 50, nên 310 nhân đôi ra 620.
-- Sửa: bộ số không tỉ lệ với đề, như 32, 24, 20.
-
-### 17. Cách giải "chia diện tích" của sách chưa xuất hiện lần nào
-
-- Vị trí: `$.exercises[76].explain` (`ex.sbt-4-27`)
-- Nguồn: tr.71 ví dụ 1, tr.116
-- Vấn đề: đếm theo hàng đúng và dễ hơn, nhưng bé chưa thấy cách của sách ra cùng một số.
-- Sửa: thêm "Cách khác: diện tích sân 135 m² chia cho diện tích một viên 0,36 m² cũng được 375 viên." (lời của bài).
+- Vấn đề: bảng viết "Hình bình hành: a đáy, h chiều cao", "Hình thang cân: a, b hai đáy, h chiều cao" (thiếu "là"), còn hình quy tắc viết "a là cạnh đáy, h là chiều cao"; thuật ngữ glossary là "cạnh đáy". Một khái niệm hai cách gọi giữa phần 6 và phần bài tập.
+- Sửa: chép nguyên dòng nghĩa chữ của hình quy tắc vào bảng ("a là cạnh đáy, h là chiều cao"; "a, b là hai đáy, h là chiều cao"); nếu làm Nên sửa 12, 13 thì bảng thêm cùng dòng ½, a².
