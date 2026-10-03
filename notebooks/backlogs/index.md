@@ -6,7 +6,7 @@ Only what is true now and what comes next. History lives in git and `notebooks/b
 
 ### Production
 
-- URL: https://owlyeah.vercel.app (Vercel project `tutor`). The old `nhaky.vercel.app` and `hoctungbuoc.vercel.app` are removed; the Vercel default `tutor-delta-pink.vercel.app` remains. The media bucket's CORS allows only the owlyeah origin (`docs/operations.md`). Last verified deploy: `5155ae5` (03/10/2026, progress sync on with signed `OWL` family codes, smoke 7/7, two-browser sync check on production; previous: `baffae9`).
+- URL: https://owlyeah.vercel.app (Vercel project `tutor`). The old `nhaky.vercel.app` and `hoctungbuoc.vercel.app` are removed; the Vercel default `tutor-delta-pink.vercel.app` remains. The media bucket's CORS allows only the owlyeah origin (`docs/operations.md`). Last verified deploy: `b77d794` (03/10/2026, background music on the outer screens, smoke 7/7, music, parent page and offline line checked on production with a throwaway family `OWLAEKJJ`, now revoked; previous: `5155ae5`).
 - App name "Owl Yeah" (`APP_NAME` in `src/lib/brand.ts`). Only math is visible: `content/subjects.json` has `visible: false` on the other four subjects. The grade picker is hidden because `VISIBLE_GRADES = [6]` in `src/lib/config.ts`.
 - Player work live: real media loading percentage, compact bottom bar on short (iPhone landscape) screens, overview narration mini-player, iOS gesture fix (the tap unlocks the media element).
 - Content live: lessons through Bài 18 (chapter IV, first lesson). Bài 11 and Bài 13 carry extra videos. The `on-tap-chuong-2` overview narration was re-read with abbreviations spoken in full. Where a row of the table below still says "awaiting upload" (Bài 13, Ôn tập chương II), production already has that media.
