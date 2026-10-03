@@ -9,6 +9,7 @@ Chỉ đáp án đúng mang màu khái niệm (hay mang màu khác các lựa ch
 - `luy-thua` vòng 11, `ex.chon-co-so-2`: `\concept` tô cơ số trên các lựa chọn, trẻ nhìn màu là biết.
 - `tap-hop` vòng 1, `ex.chon-viet-dung`, `ex.kt-hai-cach`: chỉ đáp án có màu amber.
 - `thu-tu-thuc-hien-phep-tinh` vòng 4, video `hoa-don`: vòng hồng ("phép làm trước") khoanh cả cách làm sai của Lan.
+- `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` vòng 1, `ex.chon-hinh-song-song`: không phải màu mà là ký hiệu: trong ba hình lựa chọn, chỉ hình đúng có hai mũi tên song song, đúng dấu màn trước vừa dạy, nên bé chọn theo dấu mà không cần xem hai đường có cắt nhau không. Ký hiệu hình học (dấu song song, dấu góc vuông, vạch cạnh bằng nhau) trên hình lựa chọn lộ đáp án như màu khái niệm.
 
 ## Nguyên nhân gốc
 
