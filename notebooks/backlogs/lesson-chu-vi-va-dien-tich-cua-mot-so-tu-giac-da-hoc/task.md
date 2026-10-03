@@ -1,9 +1,8 @@
 # Bàn giao: Bài 20 `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (Chu vi và diện tích của một số tứ giác đã học)
 
 ## Trạng thái
-- Cập nhật cuối: 03/10/2026. Bài đã soạn xong ở trạng thái `draft`: 11 phần (10 phần bài và phần cuối `bookPractice`), 10 thẻ, 80 câu, 80 hình đang dùng (9 hình tương tác), 4 mẹo, `minutes` tổng 72 phút. Chưa review, chưa `content:hash --approve`, chưa `content:lock` (còn cảnh báo "111 id chưa có trong `ids.lock.json`" của `content:check`), chưa có lời đọc và video, chưa deploy.
-- Kiểm đã chạy: xem mục "Kiểm đã chạy".
-- Việc kế tiếp: vòng review 1 (3 Opus Reviewer và 1 Opus Tổng hợp) do một phiên mới chạy theo mục "Giao việc review vòng 1". Người soạn không review và không duyệt bài này.
+- Cập nhật cuối: 03/10/2026. Bài ở trạng thái `draft`: 11 phần, 10 thẻ, 80 câu (`numeric` 42, `choice` 28, `fillBlank` 4, `order` 3, `tapRegion` 1, `manipulate` 1, `match` 1), 4 mẹo. Review vòng 1 xong (5 Nghiêm trọng, 31 Nên sửa, 17 Góp ý; `content:hash --mark`), đã sửa cả 5 Nghiêm trọng và 31 Nên sửa (mục "Vòng 1"). Chưa `content:hash --approve`, chưa `content:lock`, chưa có lời đọc và video, chưa deploy.
+- Việc kế tiếp: vòng review 2 (toàn bài, 3 Opus Reviewer và 1 Opus Tổng hợp) do một phiên mới chạy theo mục "Giao việc review vòng 2". Phiên đã sửa vòng 1 không review vòng 2.
 
 ## Nguồn (sách bài tập, `sources/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/`, không commit)
 - Đề: tr.70–73 in (PDF 71–74), tệp `sbt-p70.png` đến `sbt-p73.png`. Tr.70 có tên bài, "Kiến thức cần nhớ" (công thức chu vi và diện tích của hình vuông, hình chữ nhật, hình thang, hình bình hành, hình thoi); tr.71 có "Kĩ năng giải toán", ví dụ 1 (nền nhà 8 m và 6 m lát gạch cạnh 40 cm) và ví dụ 2 (hình bình hành đáy 10 cm, chiều cao 4 cm); tr.72 có bài 4.20 đến 4.24 (Hình 4.19, 4.20); tr.73 có bài 4.25 đến 4.28 (ảnh viên đá lục giác và ảnh sân lát đá). Tr.74 là "Ôn tập chương IV" (không thuộc bài này).
@@ -55,7 +54,7 @@
 
 ## Bài cần thao tác và cách chấm
 - Bài 4.20 và 4.24 có hai đáp án (diện tích và chu vi): `fillBlank` gõ hai ô, như SBT 2.63 của Ôn tập chương II; lời đề giữ nguyên, hai ô là lời của bài.
-- Bài 4.23: sách không in lựa chọn; `choice` "Đủ" và "Không đủ" (khối lệnh của app "Chọn đáp án đúng." ở cuối đề).
+- Bài 4.23: sách không in lựa chọn; `fillBlank` điền 620 (cm dây cần) và "không đủ" từ một bank có nhiễu (khối lệnh của app "Điền kết quả vào chỗ trống." ở cuối đề), đổi ở vòng 1 vì hai lựa chọn "Đủ"/"Không đủ" đoán được.
 - Bài 4.21, 4.22a đến 4.22d, 4.25 đến 4.28: `numeric`; đơn vị ghi ở khối lệnh cuối đề ("Nhập số đo, tính bằng cm.").
 - `manipulate` `xep-gach` (xếp ô vuông phủ kín sàn): chấm khi số ô mỗi hàng và số hàng đúng với sàn của đề; màn dạy phần 5 dùng cùng hình với sàn 5 m và 3 m.
 
@@ -90,7 +89,7 @@
 - Màn "Cùng làm" phần 7: bốn tam giác ngoài hình thoi xoay nửa vòng quanh trung điểm cạnh thoi (không gấp, vì gấp qua cạnh thoi không phủ vừa khít khi hai đường chéo khác nhau).
 - Công thức hình thoi và hình thang cân viết với dấu chia và "chia cho 2" thay vì phân số.
 
-## Giao việc review vòng 1 (cho phiên mới, không phải người soạn)
+## Giao việc review vòng 1 (đã chạy 03/10/2026, kết quả ở mục "Vòng 1")
 Chạy `.claude/skills/lesson-review` mục "Vòng toàn bài" trên `content/math/kntt/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/lesson.json` (`ROOT` là `content/`).
 - **Đối tượng:** chỉ bài này (`lesson.json`, hình của nó trong `src/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/` và `tests/visuals/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.test.tsx`, bốn từ mới ở `content/glossary/math.json`). Ảnh nguồn: `sources/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/sbt-p70.png` đến `sbt-p73.png` và lời giải `sbt-p115.png`, `sbt-p116.png`.
 - **Mô hình:** 3 Reviewer `model: "opus"` mở song song trong một lượt gọi, rồi 1 Tổng hợp `model: "opus"` (vòng 1 và 2 dùng Opus theo `.claude/rules/agents.md`).
@@ -100,3 +99,28 @@ Chạy `.claude/skills/lesson-review` mục "Vòng toàn bài" trên `content/ma
 - **Tệp ngoài git:** thư mục `sources/` không có bản sao nào khác; chỉ đọc, không ghi đè, không xoá, và không dùng `rm`.
 - **Điểm dừng:** gặp việc ngoài các điều trên thì dừng và báo, không tự mở rộng phạm vi.
 - **Sau vòng 1:** một tác giả mới (không phải Reviewer) sửa Nghiêm trọng và các mục Nên sửa hợp lý, chạy Haiku đọc hiểu cho chữ đã đổi, rồi vòng 2 (Opus); chỉ khi hết Nghiêm trọng mới `content:hash --approve` và `content:lock`; lời đọc và video làm sau đó.
+
+## Vòng 1 (03/10/2026)
+- Review: 3 Opus Reviewer (nhóm 1: tổng quan và phần 1–5; nhóm 2: phần 6–10; nhóm 3: phần bài tập sách bài tập) và 1 Opus Tổng hợp, trên commit e137dff. `content:check` 0 lỗi; `lesson:walk` 0 lỗi, 0 cảnh báo (worktree tạm, cổng 3770). Kết quả: `review.md` cạnh `lesson.json` (5 Nghiêm trọng, 31 Nên sửa, 17 Góp ý), tệp nhóm ở `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/nhom-{1,2,3}.md`. `content:hash --mark` ghi bản đã review `7d0c7167…` (commit 0b1173f, kèm `docs/lessons-learned/`: LL-01, LL-02, LL-12 hai mục, LL-15; LL-25 cộng 8 mục mơ hồ của lượt đọc hiểu 1; dòng của bài trong bảng "Lỗi Nghiêm trọng ở vòng 1 theo bài").
+- Năm Nghiêm trọng và cách sửa:
+  1. Hình gợi ý 4.24 hiện chu vi 28 m trùng đáp án: ví dụ đổi sang 10 m và 5 m khuyết 3 m và 1 m; test mới kiểm mọi hàng hiện ra của hình gợi ý không trùng số nào của lời giải (soát ra và sửa thêm 4.23, 4.27).
+  2. `ex.xep-buoc-lat-gach` có hai thứ tự đúng: gộp hai bước chia thành một, còn 3 bước nối tiếp; `ex.xep-buoc-thang` sửa cùng kiểu.
+  3. Ba hình quy tắc phần 6, 7, 8 cắt chân dòng công thức: công thức ra dưới hình bằng chữ HTML; nhãn "a" của hình thoi dời khỏi cạnh.
+  4. Hình `m2-cm2`: chữ ra ngoài lưới, ô góc viền đậm có chú thích "1 ô: cạnh 10 cm, 100 cm²", dòng "100 · 100 = 10 000 cm²".
+  5. Nhãn "E" bị cạnh cắt: nhãn đỉnh đặt theo phân giác ngoài; hình câu dẫn bỏ tên đỉnh.
+- Nên sửa: cả 31 mục đã sửa (bảng từng mục trong báo cáo của tác giả; điểm lớn: phần 5 nối số đo sàn với số viên mỗi hàng và số hàng; câu quy tắc hình chữ nhật và hình vuông gộp một câu; "ô vuông đơn vị" và "cạnh kề" vào glossary có `prerequisite`; thanh đổi đơn vị 0,3 / 0,7 / 1,2 m và câu "1,2 m là 1 m và 0,2 m"; mẹo phần 10 thành "Phần bỏ ra thì trừ đi"; bài 4.23 đổi sang `fillBlank` (620 và "không đủ"), đề sách giữ nguyên, chỉ đổi khối lệnh cuối thành "Điền kết quả vào chỗ trống."; 4.28 có bước đổi 60 cm ra 0,6 m; câu dẫn 4.27 tách hai câu dễ trước; câu dẫn đếm viên của 4.25; màu khái niệm chỉ tô đúng khái niệm; bốn khối "Nhắc lại" thành "Cách làm cho bài …" có hình từng bước). Góp ý đã làm: 1, 2, 5, 6, 7, 9 đến 17; bỏ qua 3 (đổi khuôn câu các phần, động tới thẻ và kho ôn), 4 (hình quy tắc phần 2, 3, 5 nhỏ trên điện thoại; `visual:shot` đạt), 8 (nối ½ với cách sách viết, chờ chủ dự án).
+- Sửa thêm của điều phối sau `visual:shot`: hình lời giải 4.28 trên điện thoại cao quá khung: hàng đầu thành `0,6 · 0,6 = 0,36 m²` với nhãn "một viên: 60 cm = 0,6 m", hàng đá `0,36 · 1 400 = 504 m²`, hàng tiền bỏ nhãn (như hình gợi ý); hình gợi ý 4.28 cùng khuôn với 0,4 m; "1 400" ngăn hàng nghìn như các số khác.
+- Commit sửa: 1849c03, d2522c3, 14b9d8f, 6b2d80c, e944acf, f705904, 137d668.
+- Kiểm trên 137d668 (worktree tạm sạch, cổng 3770): `content:check` 0 lỗi (cảnh báo id chưa khoá); `pnpm lint`, `pnpm typecheck` đạt; `pnpm format` không đổi tệp nào; `pnpm test` 211/211 tệp, 4837 đạt; `visual:shot` 166/166 đạt; `lesson:walk` 0 lỗi, 0 cảnh báo (iPad dọc, điện thoại, iPad ngang). Ảnh (ngoài git): `/private/tmp/claude-502/-Users-minhtang-Documents-Projects-MyProject-TutorStudent/a67bc03e-e9cb-4c58-94c6-0657b0b85437/scratchpad/bai20-r1/walk-r1-fix/` và `shot-r1-fix/`; vòng 2 nên walk lại nếu thư mục đó đã mất. `CONTENT_INCLUDE_DRAFT=1 pnpm content:emit` đã chạy ở cây chính.
+- Đọc hiểu lượt 4 (Haiku, chỉ chữ đã đổi sau vòng 1, `.shots/review/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/doc-hieu-4.md`): 50 Hiểu rõ / 14 Hiểu mơ hồ / 0 Khó hiểu. Chưa viết lại 14 mục mơ hồ (phần lớn là `explain` dài của 4.23, 4.24, 4.27, 4.28, câu dẫn 4.23 và 4.28, hai khối "Cách làm", câu mở phần 4, 7, 8, mẹo phần 9); làm sau khi vòng 2 hết Nghiêm trọng, theo mục "Đọc hiểu" của skill `lesson-review`.
+
+## Giao việc review vòng 2 (cho phiên mới, không phải người soạn hay người sửa vòng 1)
+Chạy `.claude/skills/lesson-review` mục "Vòng toàn bài" (vòng 2) trên `content/math/kntt/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/lesson.json` (`ROOT` là `content/`).
+- **Đối tượng:** chỉ bài này (`lesson.json`, `review.md`, hình trong `src/visuals/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/`, test `tests/visuals/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc.test.tsx`, hai mục mới "cạnh kề" và "ô vuông đơn vị" cùng bốn từ cũ của bài trong `content/glossary/math.json`). Ảnh nguồn: `sources/math/chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc/sbt-p70.png` đến `sbt-p73.png`, lời giải `sbt-p115.png`, `sbt-p116.png`.
+- **Mô hình và nhóm:** 3 Reviewer `model: "opus"` song song và 1 Tổng hợp `model: "opus"`, cùng ba nhóm như vòng 1. Mỗi Reviewer đọc `review.md` vòng 1 và xác nhận từng mục của nhóm mình đã sửa đúng (ghi trạng thái từng mục), rồi soát toàn bộ nhóm như vòng 1. Xét riêng: các hình mới hay đổi (`khuyet-cach-lam`, `khuyet-hai-cap-10-6`, `dan-luc-giac-6`, `f-chu-l-9-o`, `m2-cm2`, ba hình quy tắc phần 6–8, mọi hình gợi ý và lời giải của câu sách); bài 4.23 dạng `fillBlank` (đề sách y nguyên, khối lệnh cuối, đáp án 620 và "không đủ" khớp lời giải tr.115); các câu `order` chỉ một thứ tự đúng; Góp ý 8 (nối ½) để chủ dự án quyết.
+- **Ngoài phạm vi:** sửa bài khác; đụng `src/sync/`, `src/offline/`, `src/lib/brand.ts`, `src/visuals/shared/**`; lời đọc, video; gọi Gemini; deploy; push; `content:lock`; `--approve` trừ khi vòng 2 ra 0 Nghiêm trọng, lượt đọc hiểu đã xong và chủ dự án đã giao quyền duyệt. Reviewer chỉ ghi phát hiện.
+- **Hiệu ứng ngoài đĩa được phép:** ghi `.shots/review/...`, ghi `review.md`, cập nhật `docs/lessons-learned/`, lệnh cuối vòng (`content:hash --mark` khi còn Nghiêm trọng). `lesson:walk` và `visual:shot` chỉ trong `git worktree` tạm trên cổng riêng (kiểm `df -h /` ≥ 4 GB trước; `pnpm install --offline`; nối `public/media`), xoá bằng `git worktree remove --force` ngay sau; không dừng máy chủ dev cổng 3003, không dừng tiến trình theo tên; không dùng `rm`.
+- **Tệp ngoài git:** `sources/` chỉ đọc.
+- **Điểm dừng:** gặp việc ngoài các điều trên thì dừng và báo.
+- **Sau vòng 2:** sửa Nghiêm trọng và Nên sửa còn lại; khi hết Nghiêm trọng: viết lại 14 mục mơ hồ của `doc-hieu-4.md` và các mục chữ đổi ở vòng 2, Haiku đọc lại, vòng chỉ phần đổi (Sonnet), rồi `content:hash --approve` và `content:lock chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc`; lời đọc và video làm sau đó.
+
