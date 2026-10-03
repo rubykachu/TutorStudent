@@ -44,23 +44,23 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 
 ## Số lần gặp
 
-Đếm từ mọi vòng review tới 03/10/2026 của 22 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `on-tap-chuong-3` (vòng 1), `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` (Nghiêm trọng vòng 1–2), `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` (vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
+Đếm từ mọi vòng review tới 03/10/2026 của 23 bài (Toán: `tap-hop`, `phep-cong-phep-tru` bản nháp, `luy-thua`, `thu-tu-thuc-hien-phep-tinh`, `phep-nhan-phep-chia` (Nghiêm trọng vòng 1–2), `quan-he-chia-het-va-tinh-chat` (Nghiêm trọng vòng 1–3), `dau-hieu-chia-het` (Nghiêm trọng vòng 1–3), `uoc-chung-uoc-chung-lon-nhat` (Nghiêm trọng vòng 1–2), `so-nguyen-to` (Nghiêm trọng vòng 1–2 và, ở video, vòng 4), `on-tap-chuong-2` (Nghiêm trọng vòng 1–3), `boi-chung-boi-chung-nho-nhat` (Nghiêm trọng vòng 1–2), `cach-ghi-so-tu-nhien` (Nghiêm trọng vòng 1–2), `thu-tu-trong-tap-hop-cac-so-tu-nhien` (vòng 1), `tap-hop-cac-so-nguyen` (Nghiêm trọng vòng 1–2), `phep-cong-phep-tru-so-nguyen` (Nghiêm trọng vòng 1–3), `quy-tac-dau-ngoac` (Nghiêm trọng vòng 1–2), `phep-chia-het-uoc-va-boi-cua-mot-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `phep-nhan-so-nguyen` (Nghiêm trọng vòng 1–2 và, ở phần bài tập sách bài tập, vòng 6), `on-tap-chuong-3` (vòng 1), `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` (Nghiêm trọng vòng 1–2), `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` (vòng 1), `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` (vòng 1); Ngữ văn: `neu-cau-muon-co-mot-nguoi-ban`) và đợt review sản phẩm ngày 01/10/2026. Mỗi phát hiện tính một lần, ở vòng đầu tiên nó xuất hiện; một mục review gộp vài chỗ cùng kiểu vẫn tính là một. Vòng 1–7 của `luy-thua` không còn trong lịch sử git nên không đếm được.
 
 | Id | Nghiêm trọng | Nên sửa | Góp ý | Tổng |
 |---|---|---|---|---|
 | LL-10 | 7 | 45 | 31 | 83 |
 | LL-19 | 2 | 8 | 28 | 38 |
-| LL-12 | 20 | 21 | 30 | 71 |
+| LL-12 | 22 | 21 | 30 | 73 |
 | LL-07 | 1 | 46 | 42 | 89 |
-| LL-15 | 5 | 19 | 12 | 36 |
+| LL-15 | 6 | 19 | 12 | 37 |
 | LL-16 | 0 | 33 | 4 | 37 |
 | LL-05 | 14 | 46 | 23 | 83 |
 | LL-09 | 22 | 16 | 4 | 42 |
 | LL-14 | 2 | 19 | 14 | 35 |
 | LL-11 | 4 | 5 | 7 | 16 |
 | LL-06 | 1 | 19 | 8 | 28 |
-| LL-02 | 8 | 19 | 13 | 40 |
-| LL-01 | 19 | 1 | 0 | 20 |
+| LL-02 | 9 | 19 | 13 | 41 |
+| LL-01 | 20 | 1 | 0 | 21 |
 | LL-03 | 3 | 6 | 2 | 11 |
 | LL-17 | 64 | 5 | 3 | 72 |
 | LL-04 | 0 | 5 | 2 | 7 |
@@ -72,10 +72,10 @@ Mỗi mục là một tệp `<id>-<slug>.md` gồm: Triệu chứng, Ví dụ th
 | LL-22 | 1 | 2 | 0 | 3 |
 | LL-23 | 4 | 1 | 0 | 5 |
 | LL-24 | 17 | 4 | 4 | 25 |
-| LL-25 | 0 | 14 | 337 | 351 |
+| LL-25 | 0 | 14 | 345 | 359 |
 | LL-26 | 2 | 0 | 1 | 3 |
 
-LL-17, LL-08 và LL-09 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-05, LL-17 gặp nhiều nhất.
+LL-17, LL-08, LL-09 và LL-12 nhiều Nghiêm trọng nhất; LL-25, LL-07, LL-10, LL-05, LL-12 gặp nhiều nhất.
 
 ## Lỗi Nghiêm trọng ở vòng 1 theo bài
 
@@ -105,3 +105,4 @@ Theo dõi xem kho này có làm giảm lỗi ở bài mới không. Thêm một 
 | `on-tap-chuong-3` | Toán | 7 | chưa | 1 |
 | `hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu` | Toán | 8 | 3 (vòng 2 còn 4) | 3 |
 | `hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` | Toán | 21 | chưa | 1 |
+| `chu-vi-va-dien-tich-cua-mot-so-tu-giac-da-hoc` | Toán | 5 | chưa | 1 |
