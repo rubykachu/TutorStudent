@@ -33,7 +33,7 @@ export type BoardSpec = {
   roomy?: boolean;
 };
 
-const ROOMY_MAX_HEIGHT = "min(36vh, 340px)";
+const ROOMY_MAX_HEIGHT = "min(34vh, 300px)";
 const ROOMY_MAX_SCALE = 2;
 
 // The controls of the step to do and of the step before it: a board with a

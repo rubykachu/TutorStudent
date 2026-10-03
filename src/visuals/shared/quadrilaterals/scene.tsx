@@ -60,46 +60,44 @@ const WIRE_LEAN = 18 / 26;
 // The top corner of the filled rhombus; the wires of both families cross there.
 const NODE = { x: 80, y: 39 };
 
-// The two ends of the `m`-th wire of a family: leaning right going down
-// (`slope` 1) or left going down (`slope` -1).
-function wire(m: number, slope: 1 | -1) {
-  const xAt = (y: number) =>
-    NODE.x + m * WIRE_STEP + slope * WIRE_LEAN * (y - NODE.y);
-  return { x1: xAt(FENCE.top), x2: xAt(FENCE.bottom) };
+// The wires of one family, each cut to the panel: leaning right going down
+// (`slope` 1) or left going down (`slope` -1). A wire is x = c + slope * lean
+// * y; it stays in the panel for the heights where x is between its sides.
+function wires(slope: 1 | -1) {
+  const lean = slope * WIRE_LEAN;
+  return Array.from({ length: 13 }, (_, i) => i - 6).flatMap((m) => {
+    const c = NODE.x + m * WIRE_STEP - lean * NODE.y;
+    const [atLeft, atRight] = [FENCE.left, FENCE.right].map(
+      (x) => (x - c) / lean,
+    ) as [number, number];
+    const top = Math.max(FENCE.top, Math.min(atLeft, atRight));
+    const bottom = Math.min(FENCE.bottom, Math.max(atLeft, atRight));
+    if (bottom - top < 1) return [];
+    return [
+      {
+        key: `${m}${slope}`,
+        x1: c + lean * top,
+        y1: top,
+        x2: c + lean * bottom,
+        y2: bottom,
+      },
+    ];
+  });
 }
 
 function Fence() {
-  const rungs = Array.from({ length: 9 }, (_, i) => i - 4);
   const width = FENCE.right - FENCE.left;
   const height = FENCE.bottom - FENCE.top;
   return (
     <>
-      <clipPath id="fence-panel">
-        <rect x={FENCE.left} y={FENCE.top} width={width} height={height} />
-      </clipPath>
-      <g clipPath="url(#fence-panel)">
-        <polygon
-          points="80,39 98,65 80,91 62,65"
-          className="fill-concept-pink"
-          fillOpacity={0.4}
-        />
-        {rungs.flatMap((m) =>
-          ([1, -1] as const).map((slope) => {
-            const { x1, x2 } = wire(m, slope);
-            return (
-              <line
-                key={`${m}${slope}`}
-                x1={x1}
-                y1={FENCE.top}
-                x2={x2}
-                y2={FENCE.bottom}
-                className={STROKE}
-                strokeWidth={2}
-              />
-            );
-          }),
-        )}
-      </g>
+      <polygon
+        points="80,39 98,65 80,91 62,65"
+        className="fill-concept-pink"
+        fillOpacity={0.4}
+      />
+      {[...wires(1), ...wires(-1)].map(({ key, ...wire }) => (
+        <line key={key} {...wire} className={STROKE} strokeWidth={2} />
+      ))}
       <rect
         x={FENCE.left}
         y={FENCE.top}
