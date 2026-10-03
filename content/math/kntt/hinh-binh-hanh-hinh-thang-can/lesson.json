@@ -1525,7 +1525,7 @@
         "wrong": [
           {
             "optionId": "c",
-            "text": "Hai cạnh đáy của hình thang cân dài ngắn khác nhau, nên bốn cạnh không bằng nhau."
+            "text": "Hai đáy của hình thang cân thường dài ngắn khác nhau, nên bốn cạnh chưa chắc bằng nhau."
           }
         ]
       },
@@ -2851,7 +2851,7 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Hình thang cân cũng có hai đường chéo bằng nhau mà không phải hình bình hành."
+            "text": "Nhiều hình thang cân có hai đường chéo bằng nhau mà không phải hình bình hành."
           },
           {
             "optionId": "c",
@@ -3158,7 +3158,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình bình hành có hai cặp cạnh đối song song. Hình thang cân có hai cạnh bên bằng nhau và hai đáy dài ngắn khác nhau."
+        "text": "Hình bình hành có hai cặp cạnh đối song song. Hình thang cân có hai đáy song song và hai cạnh bên bằng nhau."
       },
       "left": [
         {
@@ -3700,7 +3700,7 @@
           },
           {
             "optionId": "tc",
-            "text": "Hình thang cân có hai cạnh đáy dài ngắn khác nhau, còn OUVW có bốn cạnh bằng nhau."
+            "text": "Hình thang cân cần hai góc kề một đáy bằng nhau, còn hai góc kề mỗi cạnh của OUVW là 60° và 120°."
           }
         ]
       },
