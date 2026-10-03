@@ -4,7 +4,7 @@ Spec: `spec.md`. Plan and dependency graph: `plan.md`. Status: not started; the 
 
 ## Handover
 
-Slices 1 to 6 are built, and the R2 adapter (Task 17), the security review (Task 18) and the docs (Task 19) are done. Next: Checkpoint B (owner reads the E2E evidence and the "Security review" section), then Task 20 (rollout, owner approvals). Working tree was clean after the last commit unless the list below says otherwise.
+Slices 1 to 6 are built, and the R2 adapter (Task 17), the security review (Task 18) and the docs (Task 19) are done. Task 20 (rollout) is live in production since `5155ae5` (2026-10-03); what is left is the usage notification and the one-week usage check, then Checkpoint C. Working tree was clean after the last commit unless the list below says otherwise.
 
 ### Done (commits, oldest first)
 
@@ -26,7 +26,8 @@ Slices 1 to 6 are built, and the R2 adapter (Task 17), the security review (Task
 ### Next steps, in order
 
 1. Checkpoint B: owner reviews the E2E evidence and the security review. Open Low findings are listed there; none blocks the rollout.
-2. Task 20: rollout. Step 1 is done; the owner creates the token (step 2), then an agent runs steps 3 to 6 (the owner approved the whole rollout on 2026-10-03). See "Status" under Task 20.
+2. Task 20: steps 1 to 5 are done and step 6 was checked with two browser contexts on production (see "Status" under Task 20). Left: the owner sets the Cloudflare usage notification, enters the `OWL` code on each real device (iPad Safari, Home Screen app) and checks sync there; one week after 2026-10-03, read R2 and Vercel usage.
+3. Checkpoint C after that.
 
 ### Deviations from the spec
 
@@ -381,21 +382,28 @@ In this order, each step approved by the owner for this release:
 5. On approval: `pnpm deploy:prod` from the verified commit, per `docs/operations.md`; smoke checks pass, including the new 401 check.
 6. Owner smoke on two real devices (iPad Safari and the Home Screen app): study one section on one, see it on the other; the parent page shows the last sync time; objects appear under `prod/` only.
 
-Status (2026-10-03; production still runs `baffae9`, sync off there):
+Status (2026-10-03; production runs `5155ae5` with sync on):
 
 - Step 1 done by an agent with wrangler: bucket `tutor-progress` in account `6db27b07be82b34a884bacb6bf63e007`, r2.dev access disabled, no custom domain. Lifecycle rules: `prod-snapshots-180d` (`prod/snapshots/`, 180 days), `dev-snapshots-180d` (`dev/snapshots/`, 180 days), `test-runs-1d` (`test/`, 1 day), plus Cloudflare's default rule aborting unfinished multipart uploads after 7 days. Nothing under `prod/progress/` or `dev/progress/` expires.
 - Usage notification not set: the wrangler login has no alerting permission. Owner sets it in the dashboard.
 - Step 2 not done: the wrangler login cannot create API tokens (Cloudflare error 9109), so the owner creates the token in the dashboard and pastes `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY` into `.env.production.local`.
 - Signed family codes (2026-10-03, code only, not deployed): codes are `OWL` + 5-character family part + 8-character signature (HMAC-SHA256 of the family id with `FAMILY_CODE_SECRET`, 40 bits), no list of codes in env; `FAMILY_CODES` is gone and `nha-minh` with it. `.env.production.local` (chmod 600, ignored by git) now holds `FAMILY_CODE_SECRET` (made with `openssl rand -hex 32`), `SESSION_SECRET`, the four `R2_*` variables and `NEXT_PUBLIC_MEDIA_BASE_URL`, and no code. The owner's family id is `OWLWRH8A`; its code was printed by `pnpm family:code` into a chmod-600 file outside the repo for the owner, and can be printed again with `pnpm family:code --id OWLWRH8A` or read on the parent page after the deploy. Nothing was ever stored under `prod/progress/` (sync is off in production), so no data moves. No `.env.local` is written, so the owner's dev server stays off the bucket; `pnpm test:r2` gets the four variables from the shell.
-- Remaining, in order: `pnpm test:r2`; Vercel Production env (`FAMILY_CODE_SECRET` and `R2_*` Sensitive, `FAMILY_CODES` removed); `pnpm deploy:prod --ref <verified SHA>` with smoke 7/7; devices re-enter the `OWL` code; two-browser check of sync and of keys under `prod/progress/OWLWRH8A/`.
+- Step 2 done by the owner: the token is in `.env.production.local` (no `.env.local` exists).
+- `pnpm test:r2` (shell holds only the four `R2_*` variables): first run failed two contract cases (`ifNoneMatch '*'` create and the two simultaneous creates answered `conflict`), because on the shared bucket every case of one run wrote the same `test/<run-id>/a.json` and a later create found it. Each case passed alone, so the adapter is right. Fixed in the test, `5155ae5`: on a scoped store each case writes under `<root>case-<n>/`. Then 8 passed, 2 skipped (the two delete cases that need an unscoped store).
+- Gate at `5155ae5` in a clean worktree: lint, typecheck, `pnpm test` 215 files and 4986 tests passed, `content:check` 25 lessons 0 errors, `NEXT_PUBLIC_OFFLINE_ENABLED=1 pnpm build` with the bundle check clean, E2E unlock, parent and sync at `--workers=2` on port 3880: 38 passed. `pnpm media:upload --all --dry-run`: 0 to upload, 285 identical.
+- Step 4: Vercel Production now holds `FAMILY_CODE_SECRET`, `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_PRIVATE_BUCKET`, `FAMILY_CODES_REVOKED` (all Sensitive), plus `SESSION_SECRET`, `NEXT_PUBLIC_OFFLINE_ENABLED`, `NEXT_PUBLIC_MEDIA_BASE_URL`; `FAMILY_CODES` removed.
+- Step 5: `pnpm deploy:prod --ref 5155ae5`, smoke 7/7 (login as `OWLTEST0`).
+- Step 6 on production with two separate Playwright browser contexts (iPad viewport) of a test family `OWLCXM2Q`: the old `FAMILY_CODES` code answers 401, the owner's `OWLWRH8A` code 200; A created profile "Thử đồng bộ" and finished `tap-hop.section.tap-hop-la-gi`; B saw the profile, the section `done` (also after a reload), `/parent` showed "Đồng bộ lần cuối" and the family code box with "Chép mã", and the offline line reached "Dùng khi không có mạng: sẵn sàng". Bucket: `prod/progress/OWLCXM2Q/profile.json`, `prod/progress/OWLCXM2Q/<child id>.json` (456 bytes) and `prod/progress/OWLCXM2Q/<child id>/history/2026-10.json`; nothing under `dev/progress/OWLCXM2Q/`.
+- Test family revoked: `FAMILY_CODES_REVOKED=OWLCXM2Q` on Vercel and in `.env.production.local`, same commit redeployed, smoke 7/7 again; its code now answers 401, the owner's 200. Its objects stay in the bucket. Revoking another family later means keeping `OWLCXM2Q` in the list.
+- Left: Cloudflare usage notification (owner, dashboard); the owner's real devices enter the `OWL` code once and check sync there (production kept no data under `OWLWRH8A` before this deploy).
 
 Acceptance:
-- [ ] Steps 1 to 6 done, results written here with dates and the deployed commit.
+- [x] Steps 1 to 6 done, results written here with dates and the deployed commit (2026-10-03, `5155ae5`; step 6 on two browser contexts, real devices left to the owner).
 - [ ] One week later: R2 and Vercel usage read from the dashboards, inside free tiers.
 
 ### Checkpoint C
 
-- [ ] Backlog index updated; leftovers listed here ; folder archived with `git mv` to `notebooks/backlogs/archive/progress-sync/` with an "Archived: …" line; offline precache and `/install` opened as their own backlog when the owner wants it.
+- [ ] Backlog index updated (done 2026-10-03 for the rollout); leftovers listed here (usage notification, one-week usage check, real-device check, open Low findings 5 and 8); folder archived with `git mv` to `notebooks/backlogs/archive/progress-sync/` with an "Archived: …" line; offline precache and `/install` opened as their own backlog when the owner wants it.
 
 ## Security review
 
