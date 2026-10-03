@@ -8,7 +8,7 @@ Mọi bước ở phần "Các bước ngoài máy" ghi ra ngoài máy này (R2,
 
 - Production: `https://owlyeah.vercel.app` (tên hiển thị "Owl Yeah", project Vercel `tutor`, tài khoản `rubykachu`; là domain của project nên mỗi `vercel deploy --prod` cập nhật luôn). Địa chỉ phụ `https://tutor-minhtangs-projects.vercel.app` chưa nằm trong CORS của bucket. Bản đang chạy: commit `baffae9` (03/10/2026; thêm Bài 19 phần 1, Bài 19 phần 2 và Bài 20 với lời đọc và ba video mỗi bài, sửa chạm trong app khi mất mạng: gói thêm `?_rsc`, trang `/offline`, trả `Range` cho âm thanh; kiểm trên Vercel: worker cài xong, dòng phụ huynh "sẵn sàng", `?_rsc` trả 200 `text/x-component` không chuyển hướng; offline vẫn bật; bản trước là `ac69155`).
 - Bucket media: `tutor-media`, địa chỉ công khai `https://pub-26fcfa663ca24297a8512aaf77c47fe8.r2.dev`, CORS chỉ cho origin `https://owlyeah.vercel.app` (origin khác không nhận header CORS, preflight bị từ chối).
-- Giá trị thật của ba biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Đổi mã gia đình".
+- Giá trị thật của các biến môi trường nằm ở `.env.production.local` ở gốc repo (không commit, `chmod 600`). Next chỉ đọc tệp này khi build hay chạy production, nên dev server không có cổng mã. Muốn đổi biến trên Vercel thì sửa tệp này trước, rồi áp lại bằng các lệnh ở "Mã gia đình".
 - Deploy lại: `pnpm deploy:prod` (chi tiết ở "Đưa bài mới lên production"). Lệnh luôn dựng từ một worktree sạch của `HEAD`, nên thay đổi chưa commit ở cây chính (kể cả việc dở của agent khác) không bao giờ lên mạng.
 
 ## Đưa bài mới lên production
@@ -17,7 +17,7 @@ Hai thứ đi ra ngoài máy theo hai đường khác nhau: nội dung bài (đ�
 
 Cấu hình đích (bucket, project, địa chỉ app, tên tệp env) nằm một chỗ: `scripts/lib/release-config.ts`.
 
-Điều kiện chung, kiểm một lần trước bước 3: `npx wrangler whoami` đăng nhập đúng tài khoản Cloudflare của chủ dự án (chưa thì `npx wrangler login`); `npx vercel whoami` là `rubykachu`; `.env.production.local` có `FAMILY_CODES` và `NEXT_PUBLIC_MEDIA_BASE_URL` (dùng cho kiểm nhanh sau deploy và để bỏ qua tệp đã giống hệt trên bucket).
+Điều kiện chung, kiểm một lần trước bước 3: `npx wrangler whoami` đăng nhập đúng tài khoản Cloudflare của chủ dự án (chưa thì `npx wrangler login`); `npx vercel whoami` là `rubykachu`; `.env.production.local` có `FAMILY_CODE_SECRET` và `NEXT_PUBLIC_MEDIA_BASE_URL` (dùng cho kiểm nhanh sau deploy và để bỏ qua tệp đã giống hệt trên bucket).
 
 ### 1. Soạn, review, xuất bản bài
 
@@ -69,14 +69,15 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 
 ### 5. Kiểm nhanh sau deploy
 
-`pnpm deploy:prod` tự chạy bảy kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã đầu của `FAMILY_CODES` trong `.env.production.local` được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket); `/sw.js` trả 200 không cần cookie với `Cache-Control: no-cache` (tệp service worker phải qua cổng và không bao giờ nằm trong cache, nếu không máy giữ worker cũ bấy lâu cache còn sống). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
+`pnpm deploy:prod` tự chạy bảy kiểm tra và in từng dòng `PASS` hoặc `FAIL`: `/` chuyển về `/unlock`; `/content/index.json` trả 401 khi chưa có cookie; đăng nhập bằng mã của gia đình kiểm thử `OWLTEST0` (`SMOKE_FAMILY_ID` trong `scripts/lib/release-config.ts`, mã tạo lúc chạy từ `FAMILY_CODE_SECRET` của `.env.production.local`, không in ra; gia đình này không bao giờ đồng bộ và `pnpm family:code` không cấp id này cho ai) được cookie; `/content/index.json` trả 200 với cookie; một URL media trả 206 với `Range`; `/api/sync?doc=profile` trả 401 khi chưa có cookie (cổng chặn trước khi chạm bucket); `/sw.js` trả 200 không cần cookie với `Cache-Control: no-cache` (tệp service worker phải qua cổng và không bao giờ nằm trong cache, nếu không máy giữ worker cũ bấy lâu cache còn sống). Lệnh thoát khác 0 nếu có kiểm tra hỏng. Việc còn lại bằng tay: mở bài mới trên iPad theo mục "Kiểm trên iPad Safari" (video phát, phụ đề chạy, lời đọc phát). Hỏng thì xem "Khi có lỗi"; cần quay về bản trước thì `npx vercel rollback`.
 
 ## Biến môi trường
 
 | Tên | Bắt buộc | Đặt ở đâu | Ý nghĩa |
 |---|---|---|---|
-| `FAMILY_CODES` | production | Vercel (Sensitive) | Mã gia đình, các mục cách nhau bằng dấu phẩy. Mỗi mục viết `<id gia đình>:<mã>` (id là 3 đến 32 chữ thường, chữ số hoặc dấu gạch, đặt một lần rồi không đổi) để máy của gia đình đó đồng bộ; mã không tên vẫn vào được app nhưng không đồng bộ. Mỗi mã dài ít nhất 10 chữ hoặc số (dấu cách, dấu gạch và chữ hoa không tính). Một gia đình có thể có nhiều mục; cùng một mã dưới hai id làm cổng đóng. Bỏ một mục khỏi danh sách là cắt quyền của mã đó |
-| `SESSION_SECRET` | production | Vercel (Sensitive) | Khoá ký cookie `tutor_family`, ít nhất 32 ký tự ngẫu nhiên. Đổi khoá là mọi máy phải nhập lại mã |
+| `FAMILY_CODE_SECRET` | production | Vercel (Sensitive), `.env.production.local` | Khoá ký mã gia đình, ít nhất 32 ký tự ngẫu nhiên, khác `SESSION_SECRET`. Không có danh sách mã: server kiểm một mã bằng cách ký lại id gia đình trong mã. `pnpm family:code` đọc nó từ `.env.production.local` để in mã. Đổi khoá là đổi mọi mã (id và dữ liệu giữ nguyên) |
+| `FAMILY_CODES_REVOKED` | không | Vercel (Sensitive) | Id gia đình bị thu hồi (`OWL4K7MQ`), cách nhau dấu phẩy, không phân biệt hoa thường. Mã và cookie của họ không mở app nữa. Một mục không phải id gia đình làm cổng đóng (503), để gõ sai không bao giờ để sót một gia đình đáng lẽ đã bị cắt |
+| `SESSION_SECRET` | production | Vercel (Sensitive) | Khoá ký cookie `tutor_family`, ít nhất 32 ký tự ngẫu nhiên. Đổi khoá là mọi máy phải nhập lại mã; mã không đổi |
 | `R2_ACCOUNT_ID` | để bật đồng bộ | Vercel (Sensitive), `.env.local` khi chạy thử trên máy | Id tài khoản Cloudflare (32 chữ số hex), ghép thành địa chỉ S3 của bucket riêng tư |
 | `R2_ACCESS_KEY_ID` | để bật đồng bộ | như trên | Access key của token R2 chỉ có quyền Object Read & Write trên bucket `tutor-progress` |
 | `R2_SECRET_ACCESS_KEY` | để bật đồng bộ | như trên | Secret của token đó. Không in ra log, không dán vào chat |
@@ -88,7 +89,7 @@ Lệnh luôn dựng từ một `git worktree` tạm của `HEAD` (cây chính c�
 
 Quy tắc đã được code giữ:
 
-- Máy dev và test không đặt hai biến mã: không có cổng, vào thẳng. Server production thiếu hoặc đặt sai một trong hai biến: không phục vụ gì (trả 503, log ghi lý do), để quên biến không bao giờ làm app mở cho người lạ.
+- Máy dev và test không đặt hai khoá (`FAMILY_CODE_SECRET`, `SESSION_SECRET`): không có cổng, vào thẳng. Server production thiếu hoặc đặt sai một trong hai khoá, hay `FAMILY_CODES_REVOKED` có mục sai dạng: không phục vụ gì (trả 503, log ghi lý do), để quên biến không bao giờ làm app mở cho người lạ.
 - `NEXT_PUBLIC_MEDIA_BASE_URL` được ghép vào mã trình duyệt lúc build. Đổi nó thì phải deploy lại. Giá trị sai (thiếu `https://`, hay `http://` ở production) làm build dừng với thông báo rõ.
 - Bốn biến `R2_*` không bao giờ là `NEXT_PUBLIC_*`, nên không vào mã trình duyệt (test kiểm bản build). Tiền tố `prod/` hay `dev/` không do biến nào chọn: chỉ `VERCEL_ENV=production` của Vercel cho `prod/`.
 - Mẫu các biến nằm ở `.env.example`; tệp `.env*` thật không bao giờ commit.
@@ -97,9 +98,9 @@ Quy tắc đã được code giữ:
 
 Tiến độ của bé nằm trong IndexedDB của từng trình duyệt. Khi bật đồng bộ, app còn gửi nó (ngầm, bé không thấy gì) lên bucket R2 riêng tư `tutor-progress`, để iPad (Safari và app ở Màn hình chính), điện thoại, laptop của cùng gia đình thấy chung hồ sơ, phần đã học, thẻ ôn và sticker. Quy tắc của hệ thống nằm ở `docs/spec.md` mục 5.7; mục này là các việc của chủ dự án.
 
-Trạng thái (03/10/2026): bucket `tutor-progress` đã tạo, riêng tư, đủ ba quy tắc vòng đời ở bước 1; token R2 chưa tạo nên production chưa bật đồng bộ (bản `baffae9` không có biến `R2_*`). Id gia đình của nhà là `nha-minh`, đã ghi trong `.env.production.local`.
+Trạng thái (03/10/2026): bucket `tutor-progress` đã tạo, riêng tư, đủ ba quy tắc vòng đời ở bước 1; token R2 chưa tạo nên production chưa bật đồng bộ (bản `baffae9` không có biến `R2_*`). Gia đình của chủ dự án có một id `OWL…` như mọi gia đình khác (id ghi ở `notebooks/backlogs/progress-sync/task.md`, Task 20); `.env.production.local` giữ `FAMILY_CODE_SECRET`, không giữ mã nào, mã in lại bằng `pnpm family:code --id <id>`.
 
-Chưa đặt bốn biến `R2_*` thì đồng bộ tắt im lặng và app chạy như trước. Một mục `FAMILY_CODES` không có tên (`<mã>` thay vì `<id gia đình>:<mã>`) vẫn vào được app nhưng máy dùng mã đó không đồng bộ.
+Chưa đặt bốn biến `R2_*` thì đồng bộ tắt im lặng và app chạy như trước. Mỗi mã mang id gia đình của nó, nên máy nào đã mở khoá cũng đồng bộ dưới id đó.
 
 Một bucket cho mọi môi trường, tách bằng tiền tố: `prod/` chỉ do bản production trên Vercel ghi, `dev/` cho máy dev và bản preview, `test/<mã chạy>/` cho bài kiểm tra R2 thật tuỳ chọn. Token R2 giới hạn theo bucket chứ không theo tiền tố, nên chỉ có code giữ hai môi trường tách nhau (`prod/` chỉ khi `VERCEL_ENV=production`). Vì vậy:
 
@@ -126,29 +127,29 @@ Mỗi bước dưới ghi ra ngoài máy; agent chỉ làm khi chủ dự án đ
    ```
 
    Không dán các giá trị này vào chat, issue hay log.
-3. **Thử trên máy, dữ liệu vào `dev/`.** Chạy một server dev riêng (cổng và thư mục build khác, để không đụng dev server đang chạy) với một gia đình thử đặt tên ngay trên dòng lệnh, đừng ghi `FAMILY_CODES` vào `.env.local` vì như vậy dev server thường cũng đòi mã:
+3. **Thử trên máy, dữ liệu vào `dev/`.** In một gia đình thử bằng `pnpm family:code` (một dòng `<id>`, tab, `<mã>`). Chạy một server dev riêng (cổng và thư mục build khác, để không đụng dev server đang chạy) với các khoá đặt ngay trên dòng lệnh, đừng ghi chúng vào `.env.local` vì như vậy dev server thường cũng đòi mã. Khoá ký mã lấy thẳng từ `.env.production.local` (lệnh không in nó); khoá cookie là một khoá thử dùng một lần. Máy không đặt `VERCEL_ENV` nên mọi thứ ghi dưới `dev/`:
 
    ```bash
-   FAMILY_CODES='gia-dinh-thu:<mã thử, ít nhất 10 chữ hoặc số>' \
-   SESSION_SECRET='<ít nhất 32 ký tự>' \
+   FAMILY_CODE_SECRET="$(sed -n 's/^FAMILY_CODE_SECRET=//p' .env.production.local)" \
+   SESSION_SECRET="$(openssl rand -hex 32)" \
    NEXT_DIST_DIR=.next-sync CONTENT_INCLUDE_FIXTURE=1 \
    pnpm exec next dev --port 3520
    ```
 
-   Mở `http://localhost:3520` ở cửa sổ thường và cửa sổ riêng tư, nhập mã thử ở cả hai, tạo hồ sơ và học xong một phần ở cửa sổ đầu: cửa sổ kia thấy hồ sơ và phần đó sau vài giây, và trang `/parent` hiện "Đồng bộ lần cuối". Trong dashboard, các đối tượng mới nằm dưới `dev/progress/gia-dinh-thu/` và không có gì dưới `prod/`. Tuỳ chọn, khi đã đồng ý riêng: `pnpm test:r2` chạy bộ test của store trên bucket thật; nó chỉ ghi dưới `test/<mã chạy>/`, chỉ xoá khoá do chính nó ghi, và tự bỏ qua kèm thông báo nếu thiếu biến.
-4. **Đặt biến cho production trên Vercel** (môi trường Production, đều Sensitive; giá trị đi qua stdin). Viết lại `FAMILY_CODES` thành mục có tên: mã giữ nguyên nên không máy nào phải nhập lại mã. Id gia đình đặt một lần rồi không đổi, vì nó nằm trong khoá lưu trữ.
+   Mở `http://localhost:3520` ở cửa sổ thường và cửa sổ riêng tư, nhập mã thử ở cả hai, tạo hồ sơ và học xong một phần ở cửa sổ đầu: cửa sổ kia thấy hồ sơ và phần đó sau vài giây, và trang `/parent` hiện "Đồng bộ lần cuối" cùng mã gia đình thử. Trong dashboard, các đối tượng mới nằm dưới `dev/progress/<id thử>/` và không có gì dưới `prod/`. Tuỳ chọn, khi đã đồng ý riêng: `pnpm test:r2` chạy bộ test của store trên bucket thật; nó chỉ ghi dưới `test/<mã chạy>/`, chỉ xoá khoá do chính nó ghi, và tự bỏ qua kèm thông báo nếu thiếu biến.
+4. **Đặt biến cho production trên Vercel** (môi trường Production, đều Sensitive; giá trị đi qua stdin). Đây là danh sách đầy đủ cho lần bật đồng bộ cùng mã `OWL`: `FAMILY_CODE_SECRET` (cùng giá trị với `.env.production.local`), `FAMILY_CODES_REVOKED` (tuỳ chọn, để trống thì không cần đặt) và bốn biến `R2_*`; `SESSION_SECRET` giữ nguyên; xoá `FAMILY_CODES` cũ (bản mới không đọc nó). Mọi máy nhập lại mã `OWL` một lần.
 
    ```bash
+   sed -n 's/^FAMILY_CODE_SECRET=//p' .env.production.local | tr -d '\n' | npx vercel env add FAMILY_CODE_SECRET production --sensitive
    printf '%s' '<R2_ACCOUNT_ID>'        | npx vercel env add R2_ACCOUNT_ID production --sensitive
    printf '%s' '<R2_ACCESS_KEY_ID>'     | npx vercel env add R2_ACCESS_KEY_ID production --sensitive
    printf '%s' '<R2_SECRET_ACCESS_KEY>' | npx vercel env add R2_SECRET_ACCESS_KEY production --sensitive
    printf '%s' 'tutor-progress'         | npx vercel env add R2_PRIVATE_BUCKET production --sensitive
    npx vercel env rm FAMILY_CODES production --yes
-   printf '%s' '<id-gia-dinh>:<mã>[,<id-khác>:<mã khác>]' | npx vercel env add FAMILY_CODES production --sensitive
    ```
 
-   Sửa `.env.production.local` cho cùng dạng có tên (kiểm nhanh sau deploy đọc mã đầu từ đó). Không đặt biến cho Preview: bản preview không có mã nên trả 503, và nếu sau này có thì nó chỉ ghi dưới `dev/`.
-5. **Deploy** theo "Đưa bài mới lên production", bước 4: `pnpm deploy:prod` từ commit đã kiểm. Kiểm nhanh phải `PASS` cả sáu dòng, kể cả `sync 401 without cookie`.
+   Không đặt biến cho Preview: bản preview không có khoá nên trả 503, và nếu sau này có thì nó chỉ ghi dưới `dev/`.
+5. **Deploy** theo "Đưa bài mới lên production", bước 4: `pnpm deploy:prod` từ commit đã kiểm. Kiểm nhanh phải `PASS` cả bảy dòng, kể cả `login with the family code` (mã `OWL` của gia đình kiểm thử) và `sync 401 without cookie`.
 6. **Thử trên hai máy thật** (iPad Safari và app ở Màn hình chính, hoặc iPad và điện thoại): học xong một phần ở máy này, máy kia thấy sau vài giây; `/parent` hiện thời gian đồng bộ lần cuối; trong dashboard đối tượng mới nằm dưới `prod/progress/<id gia đình>/` và không có gì mới dưới `dev/`. Kiểm lại bucket vẫn riêng tư (Settings: Public access tắt, không có `r2.dev` hay domain).
 7. **Một tuần sau:** xem mức dùng R2 và Vercel trên dashboard (số request, dữ liệu truyền), vẫn trong gói miễn phí.
 
@@ -157,33 +158,31 @@ Mỗi bước dưới ghi ra ngoài máy; agent chỉ làm khi chủ dự án đ
 - **Xoay token:** tạo token mới (cùng quyền, cùng bucket), cập nhật `R2_ACCESS_KEY_ID` và `R2_SECRET_ACCESS_KEY` trên Vercel (xoá rồi thêm lại) và trong `.env.local`, deploy lại, kiểm `/parent` còn đồng bộ, rồi xoá token cũ. Nghi lộ token thì làm ngay và xoá token cũ trước khi kiểm.
 - **Khôi phục một bé từ bản chụp:** mỗi ngày server giữ trạng thái của tài liệu chính trước lần ghi đầu của ngày đó, 180 ngày, tại `prod/snapshots/<id gia đình>/<id bé>/<yyyy-mm-dd>.json`. Tải tệp của ngày cần từ dashboard, đưa sang máy đang có hồ sơ của bé, mở `/parent`, bấm "Nhập bản sao lưu" và chọn tệp: app cho xem trước rồi trộn vào máy mà không xoá gì (phần mới hơn trên máy được giữ), và kết quả tự đồng bộ cho các máy khác. Bé phải đã có hồ sơ trên máy đó. Lịch sử làm bài không có bản chụp vì các tháng chỉ được thêm vào.
 - **Xoá hồ sơ thử dưới `dev/`:** dữ liệu của lần thử ở bước 3 nằm trong cùng bucket. Khi không cần nữa, vào dashboard, bucket `tutor-progress`, mở `dev/progress/<id gia đình thử>/` và `dev/snapshots/<id gia đình thử>/` rồi xoá. Không xoá gì dưới `prod/` bằng tay trừ khi chủ dự án muốn xoá dữ liệu thật của một gia đình.
-- **Thêm gia đình:** thêm mục `<id mới>:<mã mới>` vào `FAMILY_CODES` (xem "Đổi mã gia đình"); máy đầu tiên của gia đình đó tạo tài liệu ở lần đồng bộ đầu.
-- **Máy đổi sang gia đình khác:** trang `/parent` chặn nếu máy còn tiến độ chưa gửi (chỉ cho tải bản sao lưu), và cho "Dùng máy này cho gia đình mới" khi máy sạch. Đừng dời một mã từ mục gia đình này sang mục gia đình khác.
+- **Thêm gia đình:** `pnpm family:code` in một id và mã mới (xem "Mã gia đình"), không cần đổi biến hay deploy; máy đầu tiên của gia đình đó tạo tài liệu ở lần đồng bộ đầu.
+- **Máy đổi sang gia đình khác:** trang `/parent` chặn nếu máy còn tiến độ chưa gửi (chỉ cho tải bản sao lưu), và cho "Dùng máy này cho gia đình mới" khi máy sạch.
 
 ## Chuẩn bị trên máy (không ghi ra ngoài)
 
-Tạo mã gia đình (12 ký tự, bỏ chữ dễ nhầm như `0/o`, `1/l`), chạy mỗi gia đình một lần và ghi lại mã đưa cho gia đình đó:
+Tạo hai khoá (mỗi lệnh một khoá, ghi thẳng vào `.env.production.local`, không in ra màn hình). Khoá ký mã chỉ tạo một lần: tạo lại là đổi mã của mọi gia đình.
 
 ```bash
-node -e 'const a="abcdefghjkmnpqrstuvwxyz23456789",c=require("crypto"),g=()=>Array.from({length:4},()=>a[c.randomInt(a.length)]).join("");console.log([g(),g(),g()].join("-"))'
+printf 'FAMILY_CODE_SECRET=%s\n' "$(openssl rand -hex 32)" >> .env.production.local
+printf 'SESSION_SECRET=%s\n' "$(openssl rand -hex 32)" >> .env.production.local
+chmod 600 .env.production.local
 ```
 
-Tạo khoá ký cookie:
-
-```bash
-openssl rand -hex 32
-```
+In mã gia đình bằng `pnpm family:code` (xem "Mã gia đình").
 
 Thử bản production ngay trên máy. Dev server của chủ dự án đang giữ thư mục `.next`, nên build trong một worktree riêng:
 
 ```bash
 git worktree add ../tutor-prod-check HEAD
 cd ../tutor-prod-check && pnpm install --frozen-lockfile --prefer-offline
-FAMILY_CODES='<mã>' SESSION_SECRET='<khoá>' pnpm build
-FAMILY_CODES='<mã>' SESSION_SECRET='<khoá>' pnpm start --port 3200
+FAMILY_CODE_SECRET='<khoá thử>' SESSION_SECRET='<khoá thử khác>' pnpm build
+FAMILY_CODE_SECRET='<khoá thử>' SESSION_SECRET='<khoá thử khác>' pnpm start --port 3200
 ```
 
-Cần thấy: `/` chuyển sang `/unlock`; nhập đúng mã vào được; `/dev/mascot` là 404; chỉ bài `published` có trong `/content/index.json`. Xong thì `git worktree remove ../tutor-prod-check`.
+Cần thấy: `/` chuyển sang `/unlock`; nhập đúng mã (ký bằng khoá thử) vào được; `/dev/mascot` là 404; chỉ bài `published` có trong `/content/index.json`. Xong thì `git worktree remove ../tutor-prod-check`.
 
 ## Các bước ngoài máy
 
@@ -272,12 +271,12 @@ npx vercel link --yes --project tutor-student
 Đặt ba biến cho môi trường `production` (giá trị đi qua stdin, không hiện trong lịch sử lệnh; hai biến đầu là Sensitive nên Vercel không cho đọc lại):
 
 ```bash
-printf '%s' '<mã gia đình, nhiều gia đình thì cách nhau dấu phẩy>' | npx vercel env add FAMILY_CODES production --sensitive
-printf '%s' '<kết quả openssl rand -hex 32>'                       | npx vercel env add SESSION_SECRET production --sensitive
-printf '%s' "$MEDIA_URL"                                           | npx vercel env add NEXT_PUBLIC_MEDIA_BASE_URL production
+sed -n 's/^FAMILY_CODE_SECRET=//p' .env.production.local | tr -d '\n' | npx vercel env add FAMILY_CODE_SECRET production --sensitive
+sed -n 's/^SESSION_SECRET=//p' .env.production.local     | tr -d '\n' | npx vercel env add SESSION_SECRET production --sensitive
+printf '%s' "$MEDIA_URL" | npx vercel env add NEXT_PUBLIC_MEDIA_BASE_URL production
 ```
 
-Cấu hình build đã nằm trong `vercel.json` (`pnpm build`, vì lệnh này chạy kiểm tra nội dung và dựng `public/content` trước `next build`) và `package.json` (`engines.node` là `22.x`). Không đặt biến cho môi trường `preview`: bản preview thiếu mã nên trả 503, đúng ý muốn (người lạ không vào được bản thử).
+Cấu hình build đã nằm trong `vercel.json` (`pnpm build`, vì lệnh này chạy kiểm tra nội dung và dựng `public/content` trước `next build`) và `package.json` (`engines.node` là `22.x`). Không đặt biến cho môi trường `preview`: bản preview thiếu khoá nên trả 503, đúng ý muốn (người lạ không vào được bản thử).
 
 ### 5. Đẩy mã lên GitHub
 
@@ -372,7 +371,7 @@ Cần thấy `200 application/manifest+json`, `200 image/png` hai lần; ba th�
 Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN`.
 
 1. Mở app: tự chuyển sang trang "Chào bạn!". Gõ mã sai: thấy dòng cam "Chưa đúng rồi", không có chữ đỏ. Gõ sai 5 lần: thấy lời nhắc nghỉ vài phút.
-2. Gõ đúng mã (chữ hoa, có dấu gạch hay không đều được): vào trang chọn hồ sơ. Đóng tab, mở lại: vào thẳng, không hỏi mã nữa. Mở một thẻ riêng tư (Private) vào cùng địa chỉ: phải hỏi mã.
+2. Gõ đúng mã `OWL…` (chữ hoa hay thường, có dấu gạch hay không đều được): vào trang chọn hồ sơ. Đóng tab, mở lại: vào thẳng, không hỏi mã nữa. Mở một thẻ riêng tư (Private) vào cùng địa chỉ: phải hỏi mã.
 3. Mở `APP_ORIGIN/parent` trong thẻ riêng tư: cũng phải hỏi mã (trang phụ huynh cùng cổng).
 4. Tạo hồ sơ, vào bài Luỹ thừa. Màn giới thiệu: nút nghe lời đọc phát tiếng, từng từ sáng lên theo giọng (nghĩa là phụ đề tải được qua CORS).
 5. Video của bài: bấm phát, hình hiện trước khi phát (poster), phụ đề từng từ chạy đúng nhịp. Kéo thanh tua giữa video và nhảy đến chỗ khác: video tiếp tục từ đó, không treo (kiểm `Range`). Xoay ngang rồi dọc: video vẫn đúng khung. Video dừng ở chỗ hỏi bé ("Xem tiếp") đúng như đã thiết kế.
@@ -384,28 +383,39 @@ Làm trên chính iPad của bé (hoặc iPad có iOS giống). Mở `APP_ORIGIN
 11. Gửi link `APP_ORIGIN` cho chính mình bằng Zalo, Messenger hoặc iMessage: hiện thẻ có ảnh cú mèo cạnh chữ Owl Yeah, tiêu đề "Owl Yeah: tự học lớp 6 cùng bạn cú" và mô tả tiếng Việt. Facebook lưu thẻ cũ rất lâu: sau khi đổi ảnh hay chữ, dán link vào Sharing Debugger của Facebook (developers.facebook.com/tools/debug) và bấm "Scrape Again".
 12. Nếu một bước hỏng, ghi lại bước và ảnh chụp màn hình, rồi xem "Khi có lỗi" dưới đây.
 
-## Đổi mã gia đình
+## Mã gia đình
 
-Mọi thay đổi biến môi trường chỉ có hiệu lực ở bản deploy mới, nên sau mỗi lệnh dưới cần `npx vercel deploy --prod` (hoặc push một commit). Sửa một biến Sensitive: xoá rồi thêm lại.
+Mã gia đình có dạng `OWL4K7MQ-9QX2P8RT`: `OWL`, 5 ký tự riêng của gia đình, rồi 8 ký tự chữ ký (gạch nối chỉ để dễ đọc; khi gõ, chữ thường, dấu cách và gạch nối đều được bỏ qua). Phần đầu `OWL4K7MQ` là id gia đình: không bí mật, nằm trong khoá lưu trữ tiến độ và không bao giờ đổi. Chữ ký được tạo từ id bằng `FAMILY_CODE_SECRET`, nên không có danh sách mã nào phải giữ trên Vercel: thêm gia đình không cần đổi biến hay deploy. Chữ dùng trong mã bỏ `I`, `L`, `O`, `U`; nếu phụ huynh gõ `O` thay `0` hay `I`/`L` thay `1` sau `OWL`, app vẫn hiểu đúng.
 
-- Thêm gia đình: tạo mã mới (lệnh ở "Chuẩn bị trên máy"), nối mục `<id gia đình>:<mã>` vào `FAMILY_CODES` bằng dấu phẩy. Id gia đình không đổi về sau; đổi nó là tách gia đình khỏi dữ liệu đã lưu.
-- Thu hồi một gia đình: bỏ mục của họ khỏi `FAMILY_CODES` (dữ liệu của họ trong bucket vẫn còn; xoá bằng tay trong dashboard nếu cần). Cookie đã cấp cho mã đó hết hiệu lực ngay ở lần tải trang sau khi deploy xong; các gia đình khác không bị ảnh hưởng.
-- Khẩn cấp (nghi lộ mã): đổi `SESSION_SECRET` và `FAMILY_CODES`, deploy lại; mọi máy phải nhập mã mới.
+- **Cấp mã cho gia đình mới:** `pnpm family:code` in một gia đình, `pnpm family:code --count 10` in mười. Mỗi dòng là `<id gia đình>`, tab, `<mã>`. Lệnh đọc `FAMILY_CODE_SECRET` từ `.env.production.local` và không in khoá; nó không ghi gì ra ngoài máy. Đưa mỗi mã cho đúng một gia đình và ghi lại id của họ (thu hồi hay in lại mã cần id). Lệnh không bao giờ cấp lại một id trong cùng lần chạy, và không cấp `OWLTEST0` (gia đình kiểm thử của `pnpm deploy:prod`). Với khoảng 33 triệu id, xác suất hai trong 100 gia đình trùng id là khoảng 0,015%; nếu id mới trùng một id đã cấp trong danh sách của bạn thì bỏ dòng đó và chạy lại.
+- **Xem lại mã của một gia đình:** `pnpm family:code --id OWL4K7MQ`. Trên máy đã mở khoá, phụ huynh cũng thấy mã ở trang `/parent` (sau PIN), có nút "Chép mã"; màn hình của bé không hiện mã.
+- **Thu hồi một gia đình:** thêm id của họ vào `FAMILY_CODES_REVOKED` (cách nhau dấu phẩy) rồi deploy. Mã của họ bị từ chối như mã sai, cookie trên máy của họ hết hiệu lực ở request sau; các gia đình khác không bị ảnh hưởng. Dữ liệu của họ trong bucket vẫn còn (xoá bằng tay trong dashboard nếu cần). Gia đình bị thu hồi muốn dùng lại thì cấp id mới (dữ liệu cũ nằm dưới id cũ), hoặc bỏ id khỏi danh sách.
+
+  ```bash
+  npx vercel env rm FAMILY_CODES_REVOKED production --yes
+  printf '%s' 'OWL4K7MQ,OWL9X2ZB' | npx vercel env add FAMILY_CODES_REVOKED production --sensitive
+  pnpm deploy:prod --ref <commit đã kiểm>
+  ```
+
+- **Khẩn cấp, nghi lộ khoá ký mã hay nhiều mã:** tạo `FAMILY_CODE_SECRET` mới (lệnh ở "Chuẩn bị trên máy", thay dòng cũ trong `.env.production.local`), đặt lại trên Vercel, deploy. Mọi mã và mọi cookie hết hiệu lực; id gia đình và dữ liệu giữ nguyên. In lại mã cho từng gia đình bằng `pnpm family:code --id <id>` và gửi cho họ; mỗi máy nhập mã mới một lần.
+- **Nghi lộ khoá cookie:** đổi `SESSION_SECRET`, deploy. Mọi máy nhập lại mã một lần; mã không đổi.
+
+Mọi thay đổi biến môi trường chỉ có hiệu lực ở bản deploy mới. Sửa một biến Sensitive: xoá rồi thêm lại.
 
 ```bash
-npx vercel env rm FAMILY_CODES production --yes
-printf '%s' '<danh sách mã mới>' | npx vercel env add FAMILY_CODES production --sensitive
-npx vercel deploy --prod
+npx vercel env rm FAMILY_CODE_SECRET production --yes
+sed -n 's/^FAMILY_CODE_SECRET=//p' .env.production.local | tr -d '\n' | npx vercel env add FAMILY_CODE_SECRET production --sensitive
+pnpm deploy:prod --ref <commit đã kiểm>
 ```
 
-Giới hạn thử sai (5 lần trong 10 phút cho mỗi địa chỉ mạng) được đếm trong bộ nhớ của từng instance Vercel, nên chỉ làm chậm việc đoán mã. Độ dài mã (khoảng 59 bit với 12 ký tự ở lệnh trên) mới là thứ khiến việc đoán vô vọng; không dùng mã ngắn hay mã dễ đoán như tên bé hay ngày sinh.
+Giới hạn thử sai (5 lần trong 10 phút cho mỗi địa chỉ mạng) được đếm trong bộ nhớ của từng instance Vercel, nên chỉ làm chậm việc đoán mã. Chữ ký 40 bit mới là thứ khiến việc đoán vô vọng: id gia đình không bí mật, nên kẻ đoán chọn id nào cũng chỉ có 1 trên khoảng 1,1 nghìn tỉ cơ hội mỗi lần; 10 000 địa chỉ, mỗi địa chỉ 720 lần một ngày, vẫn cần hơn 400 năm. Mã đoán trúng chỉ mở một gia đình trống, không bao giờ mở dữ liệu của gia đình khác.
 
 ## Khi có lỗi
 
 | Dấu hiệu | Nguyên nhân thường gặp | Cách xử lý |
 |---|---|---|
-| Mọi trang trả "Ứng dụng chưa sẵn sàng" (503) | Production thiếu hoặc đặt sai `FAMILY_CODES` / `SESSION_SECRET` | Vercel, Logs: dòng `family-code gate is closed: <lý do>` nói rõ biến nào; sửa rồi deploy lại |
-| Tiến độ không sang máy khác, `/parent` không có dòng "Đồng bộ lần cuối" | Thiếu hay sai một biến `R2_*`, hoặc mã của máy đó là mục không tên | Vercel, Logs: dòng `progress sync is off: <lý do>` nêu tên biến thiếu; kiểm `FAMILY_CODES` dạng `<id>:<mã>`; sửa rồi deploy lại |
+| Mọi trang trả "Ứng dụng chưa sẵn sàng" (503) | Production thiếu hoặc đặt sai `FAMILY_CODE_SECRET` / `SESSION_SECRET`, hai khoá giống nhau, hay `FAMILY_CODES_REVOKED` có mục không phải id gia đình | Vercel, Logs: dòng `family-code gate is closed: <lý do>` nói rõ biến nào; sửa rồi deploy lại |
+| Tiến độ không sang máy khác, `/parent` không có dòng "Đồng bộ lần cuối" | Thiếu hay sai một biến `R2_*` | Vercel, Logs: dòng `progress sync is off: <lý do>` nêu tên biến thiếu; sửa rồi deploy lại |
 | `/parent` báo máy chưa gửi được tiến độ | Mất mạng lâu, hay bucket từ chối (token hết hạn hoặc bị xoá) | Máy vẫn giữ nguyên tiến độ và gửi bù khi được; kiểm token R2 còn dùng được, xoay token nếu cần ("Việc định kỳ và xử lý sự cố") |
 | Nhập đúng mã vẫn quay về trang nhập | Cookie bị chặn (chế độ riêng tư chặn cookie của bên thứ nhất, hay lỗi giờ máy), hoặc truy cập qua một tên miền khác `APP_ORIGIN` | Thử thẻ thường; kiểm giờ của iPad; vào đúng địa chỉ production |
 | Video không phát, phụ đề không hiện | Chưa đặt CORS đúng origin, hay build chưa có `NEXT_PUBLIC_MEDIA_BASE_URL` | Chạy lại bước 7 và các lệnh `curl` ở đó; trong Vercel kiểm biến, sửa xong phải deploy lại |

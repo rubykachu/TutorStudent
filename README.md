@@ -27,7 +27,7 @@ CONTENT_INCLUDE_DRAFT=1 pnpm dev --port 3001 # xem cả bài đang ở trạng t
 
 Tiến độ học lưu trong trình duyệt của từng máy (IndexedDB). Đồng bộ giữa các máy thuộc mốc Go-live.
 
-Máy dev không có cổng mã gia đình. Muốn thử cổng ở máy: đặt `FAMILY_CODES` và `SESSION_SECRET` (mẫu ở `.env.example`) rồi chạy bản production như `docs/operations.md` hướng dẫn. `pnpm test:e2e` tự mở thêm một dev server có cổng (cổng `TEST_PORT + 1000`, thư mục build `.next-gate`) cho `e2e/unlock.spec.ts`, và một dev server thứ ba cho đồng bộ nhiều máy (cổng `TEST_PORT + 2000`, thư mục build `.next-sync`, store thư mục trong thư mục tạm của hệ thống) cho `e2e/sync.spec.ts`. Đồng bộ chỉ bật khi đặt bốn biến `R2_*` (xem `docs/operations.md`, "Đồng bộ tiến độ giữa các máy"); không đặt thì app chạy như chưa có đồng bộ.
+Máy dev không có cổng mã gia đình. Muốn thử cổng ở máy: đặt `FAMILY_CODE_SECRET` và `SESSION_SECRET` (mẫu ở `.env.example`) rồi chạy bản production như `docs/operations.md` hướng dẫn. Mã gia đình (`OWL…`) in bằng `pnpm family:code` (xem `docs/operations.md`, "Mã gia đình"). `pnpm test:e2e` tự mở thêm một dev server có cổng (cổng `TEST_PORT + 1000`, thư mục build `.next-gate`) cho `e2e/unlock.spec.ts`, và một dev server thứ ba cho đồng bộ nhiều máy (cổng `TEST_PORT + 2000`, thư mục build `.next-sync`, store thư mục trong thư mục tạm của hệ thống) cho `e2e/sync.spec.ts`. Đồng bộ chỉ bật khi đặt bốn biến `R2_*` (xem `docs/operations.md`, "Đồng bộ tiến độ giữa các máy"); không đặt thì app chạy như chưa có đồng bộ.
 
 ## Soạn bài mới
 

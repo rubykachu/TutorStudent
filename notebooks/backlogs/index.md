@@ -21,7 +21,7 @@ GitHub `main` was last pushed at `ec30934`; every later commit is local (36 comm
 Backlog [`progress-sync/`](progress-sync/task.md), the checklist in `task.md` is the source of truth.
 
 - Built and reviewed: merge core, client engine and triggers, parent page items, multi-device e2e, the R2 adapter, security review, docs.
-- Rollout (Task 20 in `task.md`): bucket `tutor-progress` created 2026-10-03 (private, lifecycle rules set) and `.env.production.local` holds `R2_ACCOUNT_ID`, `R2_PRIVATE_BUCKET` and the named `FAMILY_CODES` entry `nha-minh`. Waiting on the owner: the R2 token (Object Read & Write on `tutor-progress` only, made in the dashboard because the wrangler login cannot create tokens) and a usage notification. After that: `pnpm test:r2`, Vercel env vars, deploy, two-device check.
+- Rollout (Task 20 in `task.md`): bucket `tutor-progress` created 2026-10-03 (private, lifecycle rules set) and `.env.production.local` holds `R2_ACCOUNT_ID`, `R2_PRIVATE_BUCKET` and `FAMILY_CODE_SECRET`; family codes are now signed (`OWL…`, `pnpm family:code`, no `FAMILY_CODES`), the owner's family id is `OWLWRH8A`. Waiting on the owner: the R2 token (Object Read & Write on `tutor-progress` only, made in the dashboard because the wrangler login cannot create tokens) and a usage notification. After that: `pnpm test:r2`, Vercel env vars, deploy, two-device check.
 
 ### Owner decisions to keep
 
