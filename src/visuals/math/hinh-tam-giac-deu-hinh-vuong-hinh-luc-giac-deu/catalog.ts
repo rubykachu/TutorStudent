@@ -132,6 +132,9 @@ const THUMB = { w: 140, h: 112 } as const;
 // The figures of the workbook exercises that the child reads names off: they
 // may grow to the width of the frame, so a point name stays 16 pixels tall.
 const BOOK_FIGURE_SCALE = 1.5;
+// The tallest of them (the hexagon of exercise 4.4b with its measures in two
+// rows under it) grows less, so the probe's counter line stays in the frame.
+const BOOK_TALL_FIGURE_SCALE = 1.35;
 const triThumb = (label: string, o: Partial<ShapeOptions> = {}) =>
   shape("tri", { label, ...THUMB, cx: 70, cy: 62, r: 46, ...o });
 const sqThumb = (label: string, o: Partial<ShapeOptions> = {}) =>
@@ -1727,7 +1730,7 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
   // The figures of the exercises 4.4b to 4.5b that the child measures
   "sbt-4-4b-do": {
     kind: "probe",
-    maxScale: BOOK_FIGURE_SCALE,
+    maxScale: BOOK_TALL_FIGURE_SCALE,
     // The two triangles cross, so their measures are written in two rows
     // under the hexagon, one column per side.
     figure: { ...figure45(), h: 312 },
