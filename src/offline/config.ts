@@ -23,6 +23,16 @@ export const REVISION_PARAM = "__rev";
 // its bare URL, so a lookup ignores this parameter.
 export const DEPLOYMENT_ID_PARAM = "dpl";
 
+// The query parameter Next's client router puts on an RSC request
+// (`?_rsc=<hash of the router headers>`). A page's flight is precached under
+// the page path with a bare `?_rsc` (`flightEntryPath`).
+export const FLIGHT_PARAM = "_rsc";
+
+// The page a navigation gets offline when its own page is not precached
+// (a lesson added after this build, a mistyped address). It is precached
+// like every other page.
+export const OFFLINE_PAGE_PATH = "/offline";
+
 // Entries fetched at the same time during install.
 export const INSTALL_CONCURRENCY = 6;
 

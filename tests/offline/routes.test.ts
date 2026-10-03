@@ -64,7 +64,7 @@ describe("appPagePaths", () => {
   const paths = appPagePaths();
 
   it("holds the fixed routes, every lesson and its sections", () => {
-    for (const fixed of ["/", "/profiles", "/grades", "/parent"]) {
+    for (const fixed of ["/", "/profiles", "/grades", "/parent", "/offline"]) {
       expect(paths).toContain(fixed);
     }
     for (const lesson of servedLessons()) {

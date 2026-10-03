@@ -1,10 +1,15 @@
 import { describe, expect, it } from "vitest";
 import {
   CONTENT_TIMEOUT_SECONDS,
+  FLIGHT_FETCH_HEADERS,
   fetchInit,
+  flightEntryPath,
+  flightLookupPath,
+  isFlightEntry,
   navigationFallbackPath,
   networkTimeoutSeconds,
   PAGE_TIMEOUT_SECONDS,
+  parseRange,
   precacheLookupPath,
   type RouteRequest,
   routeFor,
@@ -79,14 +84,47 @@ describe("routeFor", () => {
     );
   });
 
-  it("passes RSC fetches and prefetches through", () => {
+  it("answers an RSC navigation fetch from the network first, then its flight", () => {
     expect(routeFor(req("/lessons/a", { headers: { RSC: "1" } }))).toBe(
-      "passthrough",
+      "flight-network-first",
     );
-    expect(routeFor(req("/lessons/a?_rsc=abc"))).toBe("passthrough");
+    expect(routeFor(req("/lessons/a?_rsc=abc"))).toBe("flight-network-first");
     expect(
-      routeFor(req("/lessons/a", { headers: { "Next-Router-Prefetch": "1" } })),
+      routeFor(
+        req("/lessons/a?_rsc=abc", {
+          headers: { RSC: "1", "Next-Router-State-Tree": "%5B%5D" },
+        }),
+      ),
+    ).toBe("flight-network-first");
+  });
+
+  it("passes RSC prefetches through: they ask for a part of a page", () => {
+    expect(
+      routeFor(
+        req("/lessons/a?_rsc=abc", {
+          headers: { RSC: "1", "Next-Router-Prefetch": "1" },
+        }),
+      ),
     ).toBe("passthrough");
+    expect(
+      routeFor(
+        req("/lessons/a?_rsc=abc", {
+          headers: {
+            RSC: "1",
+            "Next-Router-Prefetch": "1",
+            "Next-Router-Segment-Prefetch": "/_tree",
+          },
+        }),
+      ),
+    ).toBe("passthrough");
+  });
+
+  it("keeps passing an RSC request to /api, /media and /unlock through", () => {
+    for (const path of ["/api/sync", "/media/v.mp4", "/unlock"]) {
+      expect(routeFor(req(path, { headers: { RSC: "1" } })), path).toBe(
+        "passthrough",
+      );
+    }
   });
 
   it("answers a navigation, with a query, network first", () => {
@@ -117,14 +155,27 @@ describe("routeFor", () => {
     );
   });
 
-  it("passes a Range request through, even for a precached sound", () => {
+  it("slices a Range request for a precached sound from the precache", () => {
     expect(
       routeFor(
         req("/sounds/tap.m4a?v=0123456789ab", {
           headers: { Range: "bytes=0-" },
         }),
       ),
-    ).toBe("passthrough");
+    ).toBe("precache-range");
+  });
+
+  it("passes a Range request through for a song or a media file", () => {
+    for (const path of [
+      "/sounds/song.m4a?v=ffffffffffff",
+      "/media/video/a/v.mp4",
+      "/media/narration/a/overview.m4a",
+    ]) {
+      expect(
+        routeFor(req(path, { headers: { Range: "bytes=0-" } })),
+        path,
+      ).toBe("passthrough");
+    }
   });
 
   it("passes an unknown path through", () => {
@@ -191,5 +242,51 @@ describe("navigation fallback", () => {
     expect(CONTENT_TIMEOUT_SECONDS).toBe(10);
     expect(networkTimeoutSeconds("navigate")).toBe(PAGE_TIMEOUT_SECONDS);
     expect(networkTimeoutSeconds("cors")).toBe(CONTENT_TIMEOUT_SECONDS);
+  });
+});
+
+describe("flight entries", () => {
+  it("name a page's flight by its path with a bare _rsc", () => {
+    expect(flightEntryPath("/lessons/a")).toBe("/lessons/a?_rsc");
+    expect(flightEntryPath("/")).toBe("/?_rsc");
+    expect(isFlightEntry("/lessons/a?_rsc")).toBe(true);
+    expect(isFlightEntry("/lessons/a")).toBe(false);
+    expect(isFlightEntry("/sounds/tap.m4a?v=abc")).toBe(false);
+  });
+
+  it("look a request up by its path, whatever its _rsc hash, deployment id or query", () => {
+    const at = (path: string) => flightLookupPath(new URL(`${ORIGIN}${path}`));
+    expect(at("/lessons/a?_rsc=1x2y3z")).toBe("/lessons/a?_rsc");
+    expect(at("/lessons/a?intro=1&_rsc=abc&dpl=dpl_1")).toBe("/lessons/a?_rsc");
+    expect(at("/?_rsc=abc")).toBe("/?_rsc");
+  });
+
+  it("are fetched at install with only the RSC header", () => {
+    expect(FLIGHT_FETCH_HEADERS).toEqual({ rsc: "1" });
+  });
+});
+
+describe("parseRange", () => {
+  it("reads a start and an end, both inclusive", () => {
+    expect(parseRange("bytes=0-1", 100)).toEqual({ start: 0, end: 1 });
+    expect(parseRange("bytes=10-", 100)).toEqual({ start: 10, end: 99 });
+    expect(parseRange("bytes=90-500", 100)).toEqual({ start: 90, end: 99 });
+  });
+
+  it("reads a suffix as the last bytes", () => {
+    expect(parseRange("bytes=-10", 100)).toEqual({ start: 90, end: 99 });
+    expect(parseRange("bytes=-500", 100)).toEqual({ start: 0, end: 99 });
+  });
+
+  it("says unsatisfiable for a start past the end or an empty suffix", () => {
+    expect(parseRange("bytes=100-", 100)).toBe("unsatisfiable");
+    expect(parseRange("bytes=-0", 100)).toBe("unsatisfiable");
+  });
+
+  it("gives up (whole file) on several ranges, another unit or nonsense", () => {
+    expect(parseRange("bytes=0-1,5-6", 100)).toBeNull();
+    expect(parseRange("items=0-1", 100)).toBeNull();
+    expect(parseRange("bytes=-", 100)).toBeNull();
+    expect(parseRange("bytes=5-1", 100)).toBeNull();
   });
 });

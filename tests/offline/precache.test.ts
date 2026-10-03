@@ -54,10 +54,13 @@ describe("buildPrecacheEntries", () => {
     expect(list).toContain("/content/index.json");
   });
 
-  it("holds every page with the build id as revision", () => {
+  it("holds every page and its flight with the build id as revision", () => {
     const { entries } = buildPrecacheEntries(input());
     for (const page of input().pagePaths) {
       expect(entries.find((e) => e.url === page)?.revision).toBe(BUILD);
+      expect(entries.find((e) => e.url === `${page}?_rsc`)?.revision).toBe(
+        BUILD,
+      );
     }
   });
 

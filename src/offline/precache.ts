@@ -1,4 +1,5 @@
 import { WORKER_FILE } from "./config";
+import { flightEntryPath } from "./strategy";
 
 // What the service worker stores at install, as one pure function so the
 // build step and the worker share it. No Node imports: the worker bundle
@@ -29,7 +30,8 @@ export type PublicFileInput = {
 };
 
 export type PrecacheInput = {
-  // Every statically generated page (`appPagePaths()`).
+  // Every statically generated page (`appPagePaths()`); each is stored with
+  // its flight.
   pagePaths: readonly string[];
   lessons: readonly LessonFileInput[];
   contentIndex: { hash: string; bytes: number } | null;
@@ -122,8 +124,11 @@ export function buildPrecacheEntries(input: PrecacheInput): PrecacheList {
   const entries: PrecacheEntry[] = [];
   let knownBytes = input.soundBytes;
 
+  // Each page twice: its HTML for a page load, its flight for an in-app
+  // navigation (`flight-network-first` in `strategy.ts`).
   for (const page of input.pagePaths) {
     entries.push({ url: page, revision: input.buildId });
+    entries.push({ url: flightEntryPath(page), revision: input.buildId });
   }
 
   if (input.contentIndex === null) {

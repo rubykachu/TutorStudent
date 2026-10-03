@@ -15,14 +15,15 @@ import {
   keepBuildFile,
   type PrecacheEntry,
 } from "../../src/offline/precache";
+import { isFlightEntry } from "../../src/offline/strategy";
 import { PRECACHE_LIST_FILE, type PrecacheListFile } from "./offline-manifest";
 
 // Builds the service worker after `next build`: the precache list from
 // `scripts/offline-manifest.ts` plus every file of the build's
 // `<distDir>/static` that `keepBuildFile` keeps, injected into
 // `src/offline/sw.ts` and bundled by esbuild to `public/sw.js`, the file
-// Vercel serves at the root. Pages and lesson files are listed with the
-// build id (or file hash) as revision; build files carry none, their names
+// Vercel serves at the root. Pages, their flights and lesson files are listed
+// with the build id (or file hash) as revision; build files carry none, their names
 // are hashed.
 
 export type WorkerBuildResult = {
@@ -57,15 +58,23 @@ export function readBuildFiles(staticDir: string): {
   return { entries, bytes };
 }
 
-// What the emitted pages weigh, from the HTML `next build` wrote for them.
+// What the emitted pages weigh, from the HTML `next build` wrote for a page
+// and the `.rsc` file it wrote for the page's flight.
 export function pageBytes(
   distDir: string,
-  pagePaths: readonly string[],
+  pageUrls: readonly string[],
 ): number {
   let bytes = 0;
-  for (const page of pagePaths) {
+  for (const url of pageUrls) {
+    const flight = isFlightEntry(url);
+    const page = flight ? url.split("?")[0] : url;
     const name = page === "/" ? "index" : page.slice(1);
-    const file = path.join(distDir, "server", "app", `${name}.html`);
+    const file = path.join(
+      distDir,
+      "server",
+      "app",
+      `${name}${flight ? ".rsc" : ".html"}`,
+    );
     if (existsSync(file)) bytes += statSync(file).size;
   }
   return bytes;
