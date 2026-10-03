@@ -363,8 +363,10 @@ const PAIRS: Record<string, Pair> = {
       row(`S = 47\\ ${TEX.m2}`),
     ],
     solution: [
+      // The two sides of the cut piece on one line, so the solution with its
+      // picture still fits a phone.
       row(
-        `\\begin{gathered} 8 - 6 = 2\\ ${TEX.m} \\\\ 6 - 4 = 2\\ ${TEX.m} \\end{gathered}`,
+        `8 - 6 = 2\\ ${TEX.m} \\qquad 6 - 4 = 2\\ ${TEX.m}`,
         nTag("cạnh phần bị cắt"),
       ),
       row(`C = 2 \\cdot (8 + 6) = 28\\ ${TEX.m}`, cTag("chu vi")),
@@ -384,9 +386,7 @@ const PAIRS: Record<string, Pair> = {
           { i: 5, text: "6 m" },
         ],
         completed: true,
-        // Lower than the other solution pictures: this solution has a row
-        // more (the two sides of the cut piece) and must still fit a phone.
-        canvas: { ...CALC_CANVAS, h: 136 },
+        canvas: CALC_CANVAS,
       },
     ),
   },
