@@ -62,7 +62,7 @@
     {
       "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.section.hinh-quanh-ta",
       "title": "Hai hình quanh ta",
-      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ, kĩ năng giải toán)",
       "minutes": 5,
       "blocks": [
         {
@@ -70,7 +70,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Nhìn quanh nhà, bạn thấy cánh cửa và khung cánh diều. Mỗi vật có một hình riêng."
+              "text": "Quanh mình, bạn thấy cánh cửa và mắt lưới hàng rào. Mỗi vật có một hình riêng."
             },
             {
               "type": "visual",
@@ -83,7 +83,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Bài này có hai hình: hình chữ nhật và hình thoi.",
+              "text": "Cánh cửa có dạng hình chữ nhật. Mắt lưới hàng rào B40 có dạng hình thoi.",
               "rule": true
             },
             {
@@ -116,7 +116,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.hai-hinh-ten",
-        "caption": "Bài này có hai hình: hình chữ nhật và hình thoi."
+        "caption": "Cánh cửa có dạng hình chữ nhật. Mắt lưới hàng rào B40 có dạng hình thoi."
       }
     },
     {
@@ -279,7 +279,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai đường thẳng song song là hai đường không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy.",
+              "text": "Hai đường thẳng song song luôn cách nhau một khoảng như nhau và không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy.",
               "rule": true
             },
             {
@@ -312,7 +312,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.song-song-quy-tac",
-        "caption": "Hai đường thẳng song song là hai đường không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy."
+        "caption": "Hai đường thẳng song song luôn cách nhau một khoảng như nhau và không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy."
       }
     },
     {
@@ -326,7 +326,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Chiếc diều trong hình có dạng hình thoi. Xem hình chạy từng bước để thấy hình này có gì đặc biệt."
+              "text": "Mắt lưới hàng rào B40 có dạng hình thoi. Xem hình chạy từng bước để thấy hình thoi có gì đặc biệt."
             },
             {
               "type": "visual",
@@ -390,7 +390,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Vẽ hai đường chéo của hình thoi. Xem hình chạy từng bước để biết chúng nằm thế nào so với nhau."
+              "text": "Trong một mắt lưới B40, nối các góc đối nhau ta được hai đường chéo của hình thoi. Xem hình chạy từng bước để biết chúng nằm thế nào so với nhau."
             },
             {
               "type": "visual",
@@ -582,7 +582,7 @@
     {
       "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.section.kiem-thoi-chu-nhat",
       "title": "Kiểm tra hình thoi và hình chữ nhật",
-      "sourceRef": "Sách bài tập tr.67–69 (ví dụ 1, bài 4.15, bài 4.16)",
+      "sourceRef": "Sách bài tập tr.67–69 (ví dụ 1, bài 4.15)",
       "minutes": 5,
       "blocks": [
         {
@@ -723,8 +723,8 @@
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.sbt-4-11",
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.dan-4-14-ve-3-60",
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.sbt-4-14",
-        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.dan-4-15-do-canh",
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.dan-4-15-do-gi",
+        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.dan-4-15-do-canh",
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.sbt-4-15"
       ],
       "practiceIds": [],
@@ -739,7 +739,7 @@
   "cards": [
     {
       "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.hinh-quanh-ta",
-      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
+      "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ, kĩ năng giải toán)",
       "conceptIds": [
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.concept.hinh-chu-nhat",
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.concept.hinh-thoi"
@@ -747,7 +747,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.hai-hinh-ten",
-        "caption": "Bài này có hai hình: hình chữ nhật và hình thoi."
+        "caption": "Cánh cửa có dạng hình chữ nhật. Mắt lưới hàng rào B40 có dạng hình thoi."
       }
     },
     {
@@ -787,7 +787,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.song-song-quy-tac",
-        "caption": "Hai đường thẳng song song là hai đường không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy."
+        "caption": "Hai đường thẳng song song luôn cách nhau một khoảng như nhau và không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy."
       }
     },
     {
@@ -847,7 +847,7 @@
     },
     {
       "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.kiem-thoi-chu-nhat",
-      "sourceRef": "Sách bài tập tr.67–69 (ví dụ 1, bài 4.15, bài 4.16)",
+      "sourceRef": "Sách bài tập tr.67–69 (ví dụ 1, bài 4.15)",
       "conceptIds": [
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.concept.hinh-thoi",
         "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.concept.hinh-chu-nhat",
@@ -879,21 +879,21 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Cánh cửa có bốn góc vuông nên là hình chữ nhật. Chiếc diều trong hình có bốn cạnh bằng nhau nên là hình thoi."
+        "text": "Cánh cửa có bốn góc vuông nên là hình chữ nhật. Mắt lưới hàng rào B40 có bốn cạnh bằng nhau nên là hình thoi."
       },
       "left": [
         {
           "id": "cua",
           "content": {
-            "type": "text",
-            "text": "Cánh cửa"
+            "type": "visual",
+            "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.vat-cua"
           }
         },
         {
-          "id": "dieu",
+          "id": "luoi",
           "content": {
-            "type": "text",
-            "text": "Khung cánh diều"
+            "type": "visual",
+            "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.vat-luoi-b40"
           }
         }
       ],
@@ -919,7 +919,7 @@
           "right": "cn"
         },
         {
-          "left": "dieu",
+          "left": "luoi",
           "right": "thoi"
         }
       ]
@@ -957,6 +957,10 @@
           {
             "optionId": "tg",
             "text": "Hình tam giác đều chỉ có ba cạnh, còn hình này có bốn cạnh."
+          },
+          {
+            "optionId": "vuong",
+            "text": "Hình vuông có bốn góc vuông, còn các góc của hình này không vuông."
           }
         ]
       },
@@ -983,10 +987,10 @@
           }
         },
         {
-          "id": "luc",
+          "id": "vuong",
           "content": {
             "type": "text",
-            "text": "Hình lục giác đều"
+            "text": "Hình vuông"
           }
         }
       ],
@@ -1015,7 +1019,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình chữ nhật có bốn góc vuông, giống cánh cửa. Hình thoi, hình tam giác đều và hình lục giác đều không có bốn góc vuông."
+        "text": "Hình chữ nhật có bốn góc vuông, giống cánh cửa. Hình thoi, hình tam giác đều và hình bốn cạnh lệch không có bốn góc vuông."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.chon-chu-nhat-quanh-ta",
       "answer": ["cn"]
@@ -1049,8 +1053,8 @@
             "text": "Bánh xe đạp có dạng hình tròn, không có góc."
           },
           {
-            "optionId": "dia",
-            "text": "Đĩa ăn cơm có dạng hình tròn, không có góc."
+            "optionId": "bao",
+            "text": "Biển báo này có ba cạnh, không phải bốn."
           }
         ]
       },
@@ -1077,10 +1081,10 @@
           }
         },
         {
-          "id": "dia",
+          "id": "bao",
           "content": {
             "type": "text",
-            "text": "Đĩa ăn cơm"
+            "text": "Biển báo hình tam giác"
           }
         }
       ],
@@ -1321,11 +1325,11 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình chữ nhật có bốn góc vuông và các cạnh đối bằng nhau. Hai cạnh nằm cạnh nhau thường dài ngắn khác nhau.",
+        "text": "Hình chữ nhật có bốn góc vuông và các cạnh đối bằng nhau. Hai cạnh chung một đỉnh thường dài ngắn khác nhau.",
         "wrong": [
           {
             "optionId": "c",
-            "text": "Hai cạnh nằm cạnh nhau của hình chữ nhật thường dài ngắn khác nhau."
+            "text": "Hai cạnh chung một đỉnh của hình chữ nhật thường dài ngắn khác nhau."
           },
           {
             "optionId": "d",
@@ -1465,6 +1469,10 @@
           {
             "optionId": "c",
             "text": "Hai đường chéo của hình chữ nhật dài bằng nhau, nên không dài ngắn khác nhau."
+          },
+          {
+            "optionId": "d",
+            "text": "Đường chéo dài hơn cả cạnh dài của hình chữ nhật, nên không bằng cạnh dài."
           }
         ]
       },
@@ -1527,7 +1535,7 @@
         "wrong": [
           {
             "optionId": "co",
-            "text": "Tứ giác nào cũng có bốn cạnh và bốn góc, nên chưa đủ để là hình chữ nhật."
+            "text": "Hình nào có bốn cạnh cũng có bốn góc, nên như vậy chưa đủ để là hình chữ nhật."
           }
         ]
       },
@@ -1660,7 +1668,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hình chữ nhật ABCD. Chọn tất cả các cặp cạnh song song."
+          "text": "Hình chữ nhật PQRS. Chọn tất cả các cặp cạnh song song."
         },
         {
           "type": "visual",
@@ -1677,49 +1685,49 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hai cạnh đối của hình chữ nhật song song với nhau: AB với CD, BC với DA. Hai cạnh nằm cạnh nhau gặp nhau ở một đỉnh nên không song song.",
+        "text": "Hai cạnh đối của hình chữ nhật song song với nhau: PQ với RS, QR với SP. Hai cạnh chung một đỉnh gặp nhau ở đỉnh đó nên không song song.",
         "wrong": [
           {
-            "optionId": "ab-bc",
-            "text": "AB và BC gặp nhau tại B, nên không song song."
+            "optionId": "pq-qr",
+            "text": "PQ và QR gặp nhau tại Q, nên không song song."
           },
           {
-            "optionId": "cd-da",
-            "text": "CD và DA gặp nhau tại D, nên không song song."
+            "optionId": "rs-sp",
+            "text": "RS và SP gặp nhau tại S, nên không song song."
           }
         ]
       },
       "options": [
         {
-          "id": "ab-cd",
+          "id": "pq-rs",
           "content": {
             "type": "text",
-            "text": "AB và CD"
+            "text": "PQ và RS"
           }
         },
         {
-          "id": "bc-da",
+          "id": "qr-sp",
           "content": {
             "type": "text",
-            "text": "BC và DA"
+            "text": "QR và SP"
           }
         },
         {
-          "id": "ab-bc",
+          "id": "pq-qr",
           "content": {
             "type": "text",
-            "text": "AB và BC"
+            "text": "PQ và QR"
           }
         },
         {
-          "id": "cd-da",
+          "id": "rs-sp",
           "content": {
             "type": "text",
-            "text": "CD và DA"
+            "text": "RS và SP"
           }
         }
       ],
-      "answer": ["ab-cd", "bc-da"],
+      "answer": ["pq-rs", "qr-sp"],
       "multiple": true
     },
     {
@@ -1785,11 +1793,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hình chữ nhật ABCD. Cạnh nào song song với cạnh AB?"
+          "text": "Hình chữ nhật EFGH. Cạnh nào song song với cạnh FG?"
         },
         {
           "type": "visual",
-          "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.chu-nhat-song-song"
+          "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.chu-nhat-song-song-nghieng"
         }
       ],
       "hints": {
@@ -1802,53 +1810,53 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Cạnh song song với AB là cạnh đối của nó, tức là cạnh CD.",
+        "text": "Cạnh song song với FG là cạnh đối của nó, tức là cạnh HE.",
         "wrong": [
           {
-            "optionId": "bc",
-            "text": "BC gặp AB tại B, nên không song song với AB."
+            "optionId": "ef",
+            "text": "EF gặp FG tại F, nên không song song với FG."
           },
           {
-            "optionId": "da",
-            "text": "DA gặp AB tại A, nên không song song với AB."
+            "optionId": "gh",
+            "text": "GH gặp FG tại G, nên không song song với FG."
           },
           {
-            "optionId": "ac",
-            "text": "AC là đường chéo, nó cắt AB tại A."
+            "optionId": "eg",
+            "text": "EG là đường chéo, nó cắt FG tại G."
           }
         ]
       },
       "options": [
         {
-          "id": "bc",
+          "id": "ef",
           "content": {
             "type": "text",
-            "text": "BC"
+            "text": "EF"
           }
         },
         {
-          "id": "cd",
+          "id": "he",
           "content": {
             "type": "text",
-            "text": "CD"
+            "text": "HE"
           }
         },
         {
-          "id": "da",
+          "id": "gh",
           "content": {
             "type": "text",
-            "text": "DA"
+            "text": "GH"
           }
         },
         {
-          "id": "ac",
+          "id": "eg",
           "content": {
             "type": "text",
-            "text": "AC"
+            "text": "EG"
           }
         }
       ],
-      "answer": ["cd"],
+      "answer": ["he"],
       "multiple": false
     },
     {
@@ -2079,7 +2087,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình thoi có bốn cạnh bằng nhau. Ba hình còn lại không có bốn cạnh bằng nhau.",
+        "text": "Hình thoi có bốn cạnh, và bốn cạnh đều bằng nhau.",
         "wrong": [
           {
             "optionId": "a",
@@ -2088,6 +2096,10 @@
           {
             "optionId": "b",
             "text": "Hình này có bốn cạnh dài ngắn khác nhau."
+          },
+          {
+            "optionId": "d",
+            "text": "Hình này có năm cạnh, nên không phải hình thoi."
           }
         ]
       },
@@ -2279,6 +2291,10 @@
           {
             "optionId": "a",
             "text": "Hai đường chéo của hình chữ nhật dài hơn rộng cắt nhau không thành góc vuông."
+          },
+          {
+            "optionId": "c",
+            "text": "Hai đường chéo của hình này cắt nhau nhưng không tạo thành góc vuông."
           }
         ]
       },
@@ -2591,7 +2607,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ AB = 5 cm. Dùng êke kẻ hai đường vuông góc ở A và B, lấy D và C cách AB đúng 2 cm rồi nối D với C."
+        "text": "Vẽ AB = 5 cm. Dùng êke kẻ hai đường vuông góc ở A và B. Lấy D và C sao cho AD = BC = 2 cm, rồi nối D với C."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-chu-nhat-abcd",
       "validatorId": "ve-hinh-chu-nhat",
@@ -2626,7 +2642,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ EF = 7 cm. Dùng êke kẻ hai đường vuông góc ở E và F, lấy H và G cách EF đúng 3 cm rồi nối H với G."
+        "text": "Vẽ EF = 7 cm. Dùng êke kẻ hai đường vuông góc ở E và F. Lấy H và G sao cho EH = FG = 3 cm, rồi nối H với G."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-chu-nhat-efgh",
       "validatorId": "ve-hinh-chu-nhat",
@@ -2644,7 +2660,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ở hai đầu cạnh DE, ta kẻ hai đường cùng vuông góc với DE. Hai đường đó có quan hệ gì với nhau?"
+          "text": "Khi vẽ hình chữ nhật, ở hai đầu cạnh DE ta kẻ hai đường cùng vuông góc với DE. Hai đường đó có quan hệ gì với nhau?"
         }
       ],
       "hints": {
@@ -2843,7 +2859,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.hai-tam-giac-deu-thoi"
+        "hintVisualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-thoi-cac-buoc"
       },
       "difficulty": 3,
       "explain": {
@@ -2999,11 +3015,11 @@
         "wrong": [
           {
             "optionId": "b",
-            "text": "Bốn cạnh bằng nhau là dấu hiệu của hình thoi, các góc của nó có thể không vuông."
+            "text": "Tứ giác có bốn cạnh bằng nhau là hình thoi, mà các góc của hình thoi có thể không vuông."
           },
           {
             "optionId": "c",
-            "text": "Hai đường chéo vuông góc là điều của hình thoi, các góc có thể không vuông."
+            "text": "Hình thoi cũng có hai đường chéo vuông góc, mà các góc của nó có thể không vuông."
           },
           {
             "optionId": "d",
@@ -3154,7 +3170,7 @@
         "wrong": [
           {
             "optionId": "co",
-            "text": "Chỉ có hai góc khít, còn một góc bị hở."
+            "text": "Hình chữ nhật cần cả bốn góc vuông, mà góc thứ ba bị hở."
           }
         ]
       },
@@ -3163,7 +3179,7 @@
           "id": "co",
           "content": {
             "type": "text",
-            "text": "Có, vì các góc đều vuông"
+            "text": "Có, vì đã có hai góc vuông"
           }
         },
         {
@@ -3372,7 +3388,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ XY = 4 cm. Dùng êke kẻ hai đường vuông góc ở X và Y, lấy T và Z cách XY đúng 6 cm rồi nối T với Z."
+        "text": "Vẽ XY = 4 cm. Dùng êke kẻ hai đường vuông góc ở X và Y. Lấy T và Z sao cho XT = YZ = 6 cm, rồi nối T với Z."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-chu-nhat-xyzt",
       "validatorId": "ve-hinh-chu-nhat",
@@ -3408,7 +3424,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ DE = 3 cm. Dùng êke kẻ hai đường vuông góc ở D và E, lấy G và F cách DE đúng 5 cm rồi nối G với F."
+        "text": "Vẽ DE = 3 cm. Dùng êke kẻ hai đường vuông góc ở D và E. Lấy G và F sao cho DG = EF = 5 cm, rồi nối G với F."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-chu-nhat-defg",
       "validatorId": "ve-hinh-chu-nhat",
@@ -3424,7 +3440,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Vẽ hình thoi XYZT có cạnh XY = 3 cm."
+          "text": "Vẽ hình thoi XYZT có cạnh XY = 6 cm."
         },
         {
           "type": "note",
@@ -3446,12 +3462,12 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ XY = 3 cm và một đường XT tạo với XY góc tự chọn, rồi lấy T sao cho XT = 3 cm. Mở compa 3 cm, vẽ cung tâm T và cung tâm Y để tìm Z."
+        "text": "Vẽ XY = 6 cm và một đường XT tạo với XY góc tự chọn, rồi lấy T sao cho XT = 6 cm. Mở compa 6 cm, đặt kim ở T rồi ở Y, vẽ hai cung gặp nhau tại Z."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-thoi-xyzt",
       "validatorId": "ve-hinh-thoi",
       "params": {
-        "side": 3
+        "side": 6
       }
     },
     {
@@ -3485,7 +3501,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ MN = 4 cm và một đường MQ tạo với MN góc tự chọn, rồi lấy Q sao cho MQ = 4 cm. Mở compa 4 cm, vẽ cung tâm Q và cung tâm N để tìm P."
+        "text": "Vẽ MN = 4 cm và một đường MQ tạo với MN góc tự chọn, rồi lấy Q sao cho MQ = 4 cm. Mở compa 4 cm, đặt kim ở Q rồi ở N, vẽ hai cung gặp nhau tại P."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-thoi-mnpq",
       "validatorId": "ve-hinh-thoi",
@@ -3519,7 +3535,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Vẽ XY = 3 cm và đường XT tạo với XY một góc 60°. Lấy T sao cho XT = 3 cm, rồi mở compa 3 cm, vẽ cung tâm T và cung tâm Y để tìm Z."
+        "text": "Vẽ XY = 3 cm và đường XT tạo với XY một góc 60°. Lấy T sao cho XT = 3 cm. Mở compa 3 cm, đặt kim ở T rồi ở Y, vẽ hai cung gặp nhau tại Z."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-thoi-xyzt",
       "validatorId": "ve-hinh-thoi",
@@ -3559,7 +3575,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Vẽ MN = 5 cm và đường MQ tạo với MN một góc 60°. Lấy Q sao cho MQ = 5 cm, rồi mở compa 5 cm, vẽ cung tâm Q và cung tâm N để tìm P."
+        "text": "Vẽ MN = 5 cm và đường MQ tạo với MN một góc 60°. Lấy Q sao cho MQ = 5 cm. Mở compa 5 cm, đặt kim ở Q rồi ở N, vẽ hai cung gặp nhau tại P."
       },
       "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.ve-thoi-mnpq",
       "validatorId": "ve-hinh-thoi",
@@ -3575,11 +3591,15 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Tứ giác XYZT có XY = 4 cm, YZ = 4 cm, ZT = 4 cm và TX = 5 cm."
+          "text": "Chạm vào từng dấu ? để đo bốn cạnh của tứ giác EFGH."
+        },
+        {
+          "type": "visual",
+          "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.kiem-efgh-do"
         },
         {
           "type": "note",
-          "text": "Tứ giác XYZT có là hình thoi không?"
+          "text": "Tứ giác EFGH có là hình thoi không?"
         }
       ],
       "leadsTo": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.ex.sbt-4-15",
@@ -3587,17 +3607,17 @@
         "highlight": [
           {
             "target": "block",
-            "index": 1
+            "index": 0
           }
         ]
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình thoi có bốn cạnh bằng nhau. Cạnh TX dài 5 cm, khác ba cạnh còn lại, nên XYZT không phải hình thoi.",
+        "text": "Đo bốn cạnh của EFGH thì thấy cả bốn đều dài 3 cm. Tứ giác có bốn cạnh bằng nhau là hình thoi, nên EFGH là hình thoi.",
         "wrong": [
           {
-            "optionId": "co",
-            "text": "Ba cạnh bằng nhau chưa đủ, vì cạnh TX dài 5 cm."
+            "optionId": "khong",
+            "text": "Bốn cạnh của EFGH đo được bằng nhau."
           }
         ]
       },
@@ -3606,7 +3626,7 @@
           "id": "co",
           "content": {
             "type": "text",
-            "text": "Có, vì ba cạnh bằng nhau"
+            "text": "Có, vì bốn cạnh bằng nhau"
           }
         },
         {
@@ -3617,7 +3637,7 @@
           }
         }
       ],
-      "answer": ["khong"],
+      "answer": ["co"],
       "multiple": false
     },
     {
@@ -3694,7 +3714,7 @@
         },
         {
           "type": "note",
-          "text": "Chọn đáp án đúng."
+          "text": "Chạm vào từng dấu ? để đo bốn cạnh. Chọn đáp án đúng."
         }
       ],
       "bookRef": "SBT 4.15",
