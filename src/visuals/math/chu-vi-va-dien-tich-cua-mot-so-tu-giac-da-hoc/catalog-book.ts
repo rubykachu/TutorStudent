@@ -430,23 +430,23 @@ const PAIRS: Record<string, Pair> = {
   },
   "4-28": {
     hint: [
-      row(`40\\ ${TEX.cm} = 0{,}4\\ ${TEX.m}`, uTag("đổi cạnh ra m")),
-      row(`11 \\cdot 6 = 66\\ ${TEX.m2}`, sTag("diện tích sân")),
       row(
-        `0{,}4 \\cdot 0{,}4 \\cdot 150 = 24\\ ${TEX.m2}`,
-        sTag("diện tích đá lát"),
+        `\\begin{gathered} 40\\ ${TEX.cm} = 0{,}4\\ ${TEX.m} \\\\ 0{,}4 \\cdot 0{,}4 = 0{,}16\\ ${TEX.m2} \\end{gathered}`,
+        sTag("một viên đá"),
       ),
+      row(`11 \\cdot 6 = 66\\ ${TEX.m2}`, sTag("diện tích sân")),
+      row(`0{,}16 \\cdot 150 = 24\\ ${TEX.m2}`, sTag("diện tích đá lát")),
       row(
         `\\begin{gathered} 66 - 24 = 42\\ ${TEX.m2} \\\\ 42 \\cdot 20\\,000 = 840\\,000 \\end{gathered}`,
       ),
     ],
     solution: [
-      row(`60\\ ${TEX.cm} = 0{,}6\\ ${TEX.m}`, uTag("đổi ra m")),
-      row(`30 \\cdot 20 = 600\\ ${TEX.m2}`, sTag("diện tích sân")),
       row(
-        `0{,}6 \\cdot 0{,}6 \\cdot 1\\,400 = 504\\ ${TEX.m2}`,
-        sTag("diện tích đá"),
+        `\\begin{gathered} 60\\ ${TEX.cm} = 0{,}6\\ ${TEX.m} \\\\ 0{,}6 \\cdot 0{,}6 = 0{,}36\\ ${TEX.m2} \\end{gathered}`,
+        sTag("một viên đá"),
       ),
+      row(`30 \\cdot 20 = 600\\ ${TEX.m2}`, sTag("diện tích sân")),
+      row(`0{,}36 \\cdot 1\\,400 = 504\\ ${TEX.m2}`, sTag("diện tích đá")),
       row(`600 - 504 = 96\\ ${TEX.m2}`, sTag("diện tích cỏ")),
       row(`96 \\cdot 30\\,000 = 2\\,880\\,000`, nTag("đồng")),
     ],
