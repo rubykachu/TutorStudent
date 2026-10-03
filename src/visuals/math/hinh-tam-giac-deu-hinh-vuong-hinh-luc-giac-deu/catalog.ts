@@ -544,6 +544,9 @@ function hexagonGallery(): FigureSpec {
 // it from its first point, which is its far end: the "?" of the side and of
 // the corner then stay 48 pixels apart on a phone.
 const FAR_FROM_CORNER = 0.25;
+// Where the measure of that bottom side is written: under the middle of it, so
+// it stays clear of the names of its two ends.
+const BOTTOM_MEASURE: Pt = [145, 192];
 
 // A rhombus (four equal sides, `angle` and its supplement as the angles) for
 // the compass and set-square check, corners named bottom left, top left, top
@@ -1457,7 +1460,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         "vừa khít",
         "teal",
       ).map((part) =>
-        part.b === "A" ? { ...part, at: FAR_FROM_CORNER } : part,
+        part.b === "A"
+          ? { ...part, at: FAR_FROM_CORNER, textAt: BOTTOM_MEASURE }
+          : part,
       ),
       {
         kind: "angle" as const,
@@ -1493,7 +1498,9 @@ export const VISUAL_SPECS: Readonly<Record<string, VisualSpec>> = {
         "vừa khít",
         "teal",
       ).map((part) =>
-        part.b === "E" ? { ...part, at: FAR_FROM_CORNER } : part,
+        part.b === "E"
+          ? { ...part, at: FAR_FROM_CORNER, textAt: BOTTOM_MEASURE }
+          : part,
       ),
       {
         kind: "angle" as const,

@@ -1059,8 +1059,7 @@
             "target": "block",
             "index": 0
           }
-        ],
-        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu"
+        ]
       },
       "difficulty": 1,
       "explain": {
@@ -1215,7 +1214,8 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-deu-vi-du-vuong"
+        "hintVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.hinh-deu-vi-du-vuong",
+        "solutionVisualId": "hinh-tam-giac-deu-hinh-vuong-hinh-luc-giac-deu.visual.ba-hinh-deu"
       },
       "difficulty": 2,
       "explain": {
