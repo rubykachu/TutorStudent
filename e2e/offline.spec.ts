@@ -529,11 +529,23 @@ test("6 offline, the goodbye clip of X plays to its end and the page stays", asy
           __audio: { clips: Clip[] };
         }
       ).__audio;
-      return log.clips.at(-1) ?? null;
+      // The lesson page is an outer screen, so a background music track
+      // (20 s or more) starts there too; the goodbye clip is the short one.
+      return log.clips.filter((c) => c.duration < 10).at(-1) ?? null;
     });
   await expect
     .poll(async () => (await clipOf())?.endedAt ?? null)
     .not.toBeNull();
+  // The background music plays offline too, from the worker's store.
+  await expect
+    .poll(() =>
+      cold.evaluate(() =>
+        (
+          window as unknown as { __audio: { clips: Clip[] } }
+        ).__audio.clips.some((c) => c.duration >= 10),
+      ),
+    )
+    .toBe(true);
   const clip = (await clipOf()) as Clip;
   expect(clip.duration).toBeGreaterThan(0.2);
   // It ended by itself, not cut off: it ran at least about its length.
