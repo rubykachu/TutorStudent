@@ -24,7 +24,7 @@
       "so sánh bốn hình và kiểm tra một hình xem nó là hình gì",
       "vẽ được hình bình hành và ghép được hình thang cân từ các hình tam giác đều"
     ],
-    "whyItMatters": "Khay mứt Tết hình lục giác có thể ghép từ tám miếng hình thang cân, nên bạn cần biết hình thang cân trông thế nào."
+    "whyItMatters": "Khi cắt miếng ghép khay mứt Tết, bạn đo cạnh, góc và đường chéo để biết miếng là hình gì."
   },
   "concepts": [
     {
@@ -83,6 +83,10 @@
               "text": "Gạch lát nghiêng có dạng hình bình hành. Xem hình chạy từng bước để thấy hình này có gì đặc biệt."
             },
             {
+              "type": "note",
+              "text": "Hai đường thẳng song song là hai đường không bao giờ cắt nhau. Hai cạnh song song nằm trên hai đường như vậy."
+            },
+            {
               "type": "visual",
               "visualId": "hinh-binh-hanh-hinh-thang-can.visual.binh-hanh-cac-buoc"
             }
@@ -91,6 +95,10 @@
         {
           "type": "group",
           "children": [
+            {
+              "type": "note",
+              "text": "Hai cạnh nằm đối diện nhau gọi là cạnh đối. Hai góc nằm đối diện nhau gọi là góc đối."
+            },
             {
               "type": "note",
               "text": "Hình bình hành có các cạnh đối bằng nhau và song song. Các góc đối của nó bằng nhau.",
@@ -335,7 +343,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Bốn hình có nhiều điểm giống và khác nhau. Xem từng hình đặt cạnh nhau, với dấu riêng của nó."
+              "text": "Cánh cửa, khung diều, viên gạch lát nghiêng và chiếc thang chữ A có bốn hình khác nhau. Xem bốn hình đặt cạnh nhau, mỗi hình với dấu trên hình của nó."
+            },
+            {
+              "type": "note",
+              "text": "Nhắc lại: hình chữ nhật có bốn góc vuông, hình thoi có bốn cạnh bằng nhau."
             },
             {
               "type": "visual",
@@ -348,7 +360,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân. Hai đường chéo của hình thoi vuông góc với nhau.",
+              "text": "Vuông góc nghĩa là cắt nhau tạo thành góc vuông."
+            },
+            {
+              "type": "note",
+              "text": "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau.",
               "rule": true
             },
             {
@@ -362,7 +378,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Cùng làm: chạm vào từng hình để đọc điểm riêng của nó. So sánh giúp bạn không nhầm hình này với hình kia."
+              "text": "Cùng làm: chạm vào từng hình để đọc tính chất của nó. So sánh giúp bạn không nhầm hình này với hình kia."
             },
             {
               "type": "visual",
@@ -381,7 +397,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo",
-        "caption": "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân. Hai đường chéo của hình thoi vuông góc với nhau."
+        "caption": "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau."
       }
     },
     {
@@ -395,11 +411,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Muốn vẽ hình bình hành, ta cần thước, thước đo góc và êke. Êke giúp ta kẻ các đường song song."
+              "text": "Muốn vẽ hình bình hành, ta cần thước, thước đo góc và êke. Êke là thước có một góc vuông, giúp ta kẻ các đường song song."
             },
             {
               "type": "note",
-              "text": "Xem hình chạy từng bước vẽ hình bình hành ABCD có AB = 5 cm và AD = 3 cm."
+              "text": "Muốn cắt một viên gạch hình bình hành bằng giấy, ta vẽ nó trước. Xem hình chạy từng bước vẽ hình bình hành ABCD có AB = 5 cm và AD = 3 cm."
             },
             {
               "type": "visual",
@@ -426,7 +442,7 @@
           "id": "hinh-binh-hanh-hinh-thang-can.tip.truot-eke",
           "kind": "làm nhanh",
           "title": "Vẽ hai đường song song",
-          "text": "Đặt thước yên một chỗ, rồi trượt êke dọc theo thước. Cạnh êke vẽ ra các đường song song với nhau.",
+          "text": "Đặt một cạnh êke trùng với cạnh đã có, áp thước vào cạnh khác của êke. Giữ thước yên, trượt êke tới điểm cần vẽ rồi kẻ theo cạnh đã đặt: đường mới song song với cạnh đã có.",
           "visualId": "hinh-binh-hanh-hinh-thang-can.visual.truot-eke"
         },
         {
@@ -466,6 +482,10 @@
             {
               "type": "note",
               "text": "Có khi ta biết hai cạnh và một đường chéo của hình bình hành. Compa vẽ cung tròn: tâm là chỗ đặt kim, bán kính là độ mở compa."
+            },
+            {
+              "type": "note",
+              "text": "Độ mở compa là khoảng cách giữa kim và đầu bút của compa."
             },
             {
               "type": "note",
@@ -527,7 +547,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hình bình hành có hai đường chéo cắt nhau tại trung điểm của mỗi đường. Xem hình chạy từng bước để kiểm tra một tứ giác."
+              "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Xem hình chạy từng bước để kiểm tra một tứ giác."
             },
             {
               "type": "visual",
@@ -599,6 +619,10 @@
             {
               "type": "note",
               "text": "Ba hình tam giác đều bằng nhau, đặt sát nhau, ghép được thành một hình thang cân. Xem hình chạy từng bước để thấy cách ghép."
+            },
+            {
+              "type": "note",
+              "text": "Đáy dài hơn gọi là đáy lớn, đáy ngắn hơn gọi là đáy nhỏ."
             },
             {
               "type": "visual",
@@ -718,6 +742,10 @@
             {
               "type": "note",
               "text": "Tứ giác có bốn cạnh bằng nhau là hình thoi. Tứ giác có bốn góc vuông là hình chữ nhật."
+            },
+            {
+              "type": "note",
+              "text": "Êke có một góc vuông: đặt êke khít vào góc thì góc đó là góc vuông. Hình thang là tứ giác có hai cạnh đối song song."
             },
             {
               "type": "note",
@@ -843,7 +871,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo",
-        "caption": "Hai đường chéo bằng nhau ở hình chữ nhật và hình thang cân. Hai đường chéo của hình thoi vuông góc với nhau."
+        "caption": "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau."
       }
     },
     {
@@ -992,7 +1020,7 @@
         "wrong": [
           {
             "optionId": "a",
-            "text": "Hình thang cân chỉ có một cặp cạnh song song."
+            "text": "Hình này chỉ có hai cạnh song song, hai cạnh còn lại thì không, nên không phải hình bình hành."
           },
           {
             "optionId": "c",
@@ -1145,7 +1173,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "O là trung điểm của AC, nên OA bằng OC. Vậy OC dài 4 cm."
+        "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của AC, nên OC = OA = 4 cm."
       },
       "answer": {
         "kind": "value",
@@ -1183,7 +1211,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "O là trung điểm của AC, nên AO bằng một nửa AC.",
+        "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của AC, nên AO bằng một nửa AC.",
         "tex": "10 : 2 = 5"
       },
       "answer": {
@@ -1222,7 +1250,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "O nằm chính giữa mỗi đường chéo, nên O là trung điểm của GI và của HK. GH và HI là cạnh, O không nằm trên chúng.",
+        "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của GI và của HK. GH và HI là cạnh, O không nằm trên chúng.",
         "wrong": [
           {
             "optionId": "ab",
@@ -1291,7 +1319,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "O là trung điểm của NQ, nên ON bằng OQ. Vậy OQ dài 6 cm."
+        "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của NQ, nên OQ = ON = 6 cm."
       },
       "answer": {
         "kind": "value",
@@ -1325,7 +1353,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "O là trung điểm của MP, nên MO bằng một nửa MP.",
+        "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Vậy O là trung điểm của MP, nên MO bằng một nửa MP.",
         "tex": "14 : 2 = 7"
       },
       "answer": {
@@ -1424,11 +1452,19 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Hình thang cân có hai cạnh đáy song song và hai cạnh bên bằng nhau. Hình thang kia có hai cạnh bên dài khác nhau.",
+        "text": "Hình thang cân có hai cạnh bên bằng nhau và hai góc kề một đáy bằng nhau. Chỉ hình này có đủ cả hai điều đó.",
         "wrong": [
           {
             "optionId": "a",
             "text": "Hình thang này có hai cạnh bên dài khác nhau, nên không phải hình thang cân."
+          },
+          {
+            "optionId": "b",
+            "text": "Hình này không có cặp cạnh nào song song, nên không phải hình thang."
+          },
+          {
+            "optionId": "c",
+            "text": "Hình này chỉ có ba cạnh, nên không phải hình thang."
           }
         ]
       },
@@ -1451,7 +1487,7 @@
           "id": "c",
           "content": {
             "type": "visual",
-            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-ngu-giac"
+            "visualId": "hinh-binh-hanh-hinh-thang-can.visual.th-tam-giac"
           }
         },
         {
@@ -1898,7 +1934,7 @@
         "wrong": [
           {
             "optionId": "thoi",
-            "text": "Hình thoi chỉ chắc chắn có bốn cạnh bằng nhau; góc của nó thường không phải góc vuông."
+            "text": "Hình thoi có bốn cạnh bằng nhau, nhưng góc của nó thường không phải góc vuông."
           },
           {
             "optionId": "bh",
@@ -2011,7 +2047,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một tấm bìa có bốn cạnh bằng nhau và hai đường chéo vuông góc. Tấm bìa này có dạng hình gì?"
+          "text": "Một tấm bìa có bốn cạnh bằng nhau và không có góc vuông nào."
+        },
+        {
+          "type": "note",
+          "text": "Tấm bìa này có dạng hình gì?"
         }
       ],
       "hints": {
@@ -2024,26 +2064,19 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Trong bốn hình, chỉ hình thoi luôn có bốn cạnh bằng nhau và hai đường chéo vuông góc.",
+        "text": "Tứ giác có bốn cạnh bằng nhau là hình thoi. Tấm bìa không có góc vuông nào nên không phải hình vuông.",
         "wrong": [
           {
-            "optionId": "cn",
-            "text": "Hình chữ nhật có hai đường chéo bằng nhau, nhưng bốn cạnh của nó thường không bằng nhau."
+            "optionId": "vuong",
+            "text": "Hình vuông cần bốn góc vuông, tấm bìa thì không có góc vuông nào."
           },
           {
-            "optionId": "bh",
-            "text": "Hình bình hành thường có hai cạnh dài và hai cạnh ngắn."
+            "optionId": "cn",
+            "text": "Hình chữ nhật cần bốn góc vuông, tấm bìa thì không có góc vuông nào."
           }
         ]
       },
       "options": [
-        {
-          "id": "cn",
-          "content": {
-            "type": "text",
-            "text": "Hình chữ nhật"
-          }
-        },
         {
           "id": "thoi",
           "content": {
@@ -2052,17 +2085,17 @@
           }
         },
         {
-          "id": "bh",
+          "id": "vuong",
           "content": {
             "type": "text",
-            "text": "Hình bình hành"
+            "text": "Hình vuông"
           }
         },
         {
-          "id": "tc",
+          "id": "cn",
           "content": {
             "type": "text",
-            "text": "Hình thang cân"
+            "text": "Hình chữ nhật"
           }
         }
       ],
@@ -2076,7 +2109,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một khung ảnh có bốn góc vuông. Khung ảnh này có dạng hình gì?"
+          "text": "Một khung ảnh có bốn góc vuông, hai cạnh dài 30 cm và hai cạnh dài 20 cm."
+        },
+        {
+          "type": "note",
+          "text": "Khung ảnh này có dạng hình gì?"
         }
       ],
       "hints": {
@@ -2089,15 +2126,15 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Trong bốn hình, chỉ hình chữ nhật luôn có bốn góc vuông.",
+        "text": "Tứ giác có bốn góc vuông là hình chữ nhật. Bốn cạnh không bằng nhau nên không phải hình vuông.",
         "wrong": [
           {
-            "optionId": "thoi",
-            "text": "Hình thoi thường có góc không phải góc vuông."
+            "optionId": "vuong",
+            "text": "Hình vuông có bốn cạnh bằng nhau, khung ảnh thì có hai cạnh dài và hai cạnh ngắn."
           },
           {
-            "optionId": "bh",
-            "text": "Hình bình hành thường có góc không phải góc vuông."
+            "optionId": "thoi",
+            "text": "Hình thoi có bốn cạnh bằng nhau, khung ảnh thì không."
           }
         ]
       },
@@ -2110,24 +2147,17 @@
           }
         },
         {
+          "id": "vuong",
+          "content": {
+            "type": "text",
+            "text": "Hình vuông"
+          }
+        },
+        {
           "id": "thoi",
           "content": {
             "type": "text",
             "text": "Hình thoi"
-          }
-        },
-        {
-          "id": "bh",
-          "content": {
-            "type": "text",
-            "text": "Hình bình hành"
-          }
-        },
-        {
-          "id": "tc",
-          "content": {
-            "type": "text",
-            "text": "Hình thang cân"
           }
         }
       ],
@@ -2374,7 +2404,7 @@
         "highlight": [
           {
             "target": "block",
-            "index": 1
+            "index": 0
           }
         ]
       },
@@ -2425,7 +2455,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Vẽ hình bình hành ABCD có AB = 2 cm, BC = 5 cm và AC = 6 cm."
+          "text": "Vẽ hình bình hành ABCD có AB = 3 cm, BC = 6 cm và AC = 7 cm."
         },
         {
           "type": "note",
@@ -2436,20 +2466,20 @@
         "highlight": [
           {
             "target": "block",
-            "index": 1
+            "index": 0
           }
         ]
       },
       "difficulty": 2,
       "explain": {
-        "text": "Cung có tâm B đi qua C, nên bán kính của nó bằng BC. Vậy độ mở compa là 5 cm."
+        "text": "Cung có tâm B đi qua C, nên bán kính của nó bằng BC. Vậy độ mở compa là 6 cm."
       },
       "answer": {
         "kind": "value",
-        "value": 5
+        "value": 6
       },
       "check": {
-        "expr": "5"
+        "expr": "6"
       }
     },
     {
@@ -2527,11 +2557,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Ta có ba điểm A, B, C không thẳng hàng."
+          "text": "Ba điểm A, B, C không nằm trên một đường thẳng."
         },
         {
           "type": "note",
-          "text": "Đường qua C song song với AB và đường qua A song song với BC gặp nhau tại D. Tứ giác ABCD là hình gì?"
+          "text": "Đường qua C song song với AB và đường qua A song song với BC gặp nhau tại D. Tứ giác ABCD chắc chắn là hình gì?"
         }
       ],
       "hints": {
@@ -2544,7 +2574,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "D là chỗ hai đường song song gặp nhau, nên ABCD có hai cặp cạnh đối song song. Vậy ABCD là hình bình hành.",
+        "text": "Đây là cách vẽ hình bình hành: hai đường song song vẽ bằng êke gặp nhau tại D. Vậy ABCD là hình bình hành.",
         "wrong": [
           {
             "optionId": "cn",
@@ -2556,7 +2586,7 @@
           },
           {
             "optionId": "tc",
-            "text": "Hình thang cân chỉ có một cặp cạnh song song."
+            "text": "Hình thang cân cần hai góc kề một đáy bằng nhau, mà đề không nói vậy."
           }
         ]
       },
@@ -2723,7 +2753,7 @@
         "wrong": [
           {
             "optionId": "khong",
-            "text": "Góc H và góc G đều bằng 72°, nên chúng bằng nhau."
+            "text": "Hai góc kề một đáy bằng nhau là đủ để biết hình thang là hình thang cân, không cần đo cạnh bên."
           }
         ]
       },
@@ -2739,7 +2769,7 @@
           "id": "khong",
           "content": {
             "type": "text",
-            "text": "Không, vì hai góc kề đáy khác nhau"
+            "text": "Chưa biết, phải đo hai cạnh bên"
           }
         }
       ],
@@ -2817,7 +2847,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "Hai đường chéo cắt nhau tại trung điểm của mỗi đường là dấu hiệu của hình bình hành. Các điều còn lại chưa đủ.",
+        "text": "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành. Các điều còn lại chưa đủ.",
         "wrong": [
           {
             "optionId": "b",
@@ -3028,7 +3058,7 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Đường chéo chính chia hình lục giác đều thành hai nửa bằng nhau. Mỗi nửa có hai cạnh đáy song song và hai cạnh bên bằng nhau, nên là hình thang cân.",
+        "text": "Mỗi nửa gồm ba tam giác đều. Đáy lớn song song với đáy nhỏ, hai góc kề đáy lớn đều là góc của tam giác đều nên cùng bằng 60°. Vậy mỗi nửa là hình thang cân.",
         "wrong": [
           {
             "optionId": "thoi",
@@ -3218,7 +3248,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Hình bình hành có hai cặp cạnh đối song song: đó là hình 4.12c. Hình thang cân có hai cạnh bên bằng nhau: đó là hình 4.12b. Hình 4.12a có hai cạnh bên dài khác nhau và hình 4.12d có năm cạnh."
+        "text": "Hình 4.12c có hai cặp cạnh đối song song: đó là hình bình hành. Hình 4.12b là hình thang có hai góc kề một đáy bằng nhau, nên là hình thang cân. Hình 4.12a có hai góc kề một đáy khác nhau, hình 4.12d có năm cạnh."
       },
       "left": [
         {
@@ -3346,7 +3376,7 @@
       },
       "difficulty": 2,
       "explain": {
-        "text": "Vẽ EF = 3 cm và đường EK tạo với EF một góc tự chọn. FH và EK là hai cạnh đối nên bằng nhau: lấy EK = 4 cm. Dùng êke vẽ qua F đường song song với EK và qua K đường song song với EF, chúng gặp nhau tại H."
+        "text": "Vẽ EF = 3 cm và đường EK tạo với EF một góc tự chọn: sách không cho góc, nên góc nào cũng đúng. FH và EK là hai cạnh đối nên bằng nhau: lấy EK = 4 cm. Dùng êke vẽ qua F đường song song với EK và qua K đường song song với EF, chúng gặp nhau tại H."
       },
       "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-binh-hanh-efhk",
       "validatorId": "ve-binh-hanh-hai-canh",
@@ -3564,6 +3594,10 @@
         },
         {
           "type": "note",
+          "text": "Chạm từng nửa đường chéo và từng góc của ABCD để đo."
+        },
+        {
+          "type": "note",
           "text": "Chọn đáp án đúng."
         }
       ],
@@ -3636,11 +3670,11 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Hình lục giác đều UVWXYZ cạnh 5 cm chia thành sáu tam giác đều có chung đỉnh O. Vậy OU, OV, OW cũng dài 5 cm."
+          "text": "Hình lục giác đều UVWXYZ cạnh 5 cm chia thành sáu tam giác đều có chung đỉnh O."
         },
         {
           "type": "note",
-          "text": "Tứ giác OUVW có bốn cạnh OU, UV, VW, WO bằng nhau không?"
+          "text": "Tứ giác OUVW là hình gì?"
         },
         {
           "type": "visual",
@@ -3658,25 +3692,42 @@
       },
       "difficulty": 1,
       "explain": {
-        "text": "Các đoạn OU, OV, OW dài 5 cm và các cạnh UV, VW cũng dài 5 cm. Vậy OUVW có bốn cạnh bằng nhau, nên là hình thoi."
+        "text": "OU, UV, VW, WO đều là cạnh của các tam giác đều có cạnh 5 cm, nên OUVW có bốn cạnh bằng nhau. Vậy OUVW là hình thoi.",
+        "wrong": [
+          {
+            "optionId": "cn",
+            "text": "Hình chữ nhật cần bốn góc vuông, mà OUVW có góc 60°."
+          },
+          {
+            "optionId": "tc",
+            "text": "Hình thang cân có hai cạnh đáy dài ngắn khác nhau, còn OUVW có bốn cạnh bằng nhau."
+          }
+        ]
       },
       "options": [
         {
-          "id": "co",
+          "id": "thoi",
           "content": {
             "type": "text",
-            "text": "Có, cả bốn cạnh đều dài 5 cm"
+            "text": "Hình thoi"
           }
         },
         {
-          "id": "khong",
+          "id": "cn",
           "content": {
             "type": "text",
-            "text": "Không, có cạnh dài hơn 5 cm"
+            "text": "Hình chữ nhật"
+          }
+        },
+        {
+          "id": "tc",
+          "content": {
+            "type": "text",
+            "text": "Hình thang cân"
           }
         }
       ],
-      "answer": ["co"],
+      "answer": ["thoi"],
       "multiple": false
     },
     {
@@ -3686,7 +3737,7 @@
       "prompt": [
         {
           "type": "note",
-          "text": "Một tứ giác có hai cạnh đáy song song và hai góc kề một đáy bằng nhau."
+          "text": "Một hình thang có hai góc kề một đáy bằng nhau."
         },
         {
           "type": "note",
@@ -3754,6 +3805,10 @@
         {
           "type": "visual",
           "visualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-hinh-4-15"
+        },
+        {
+          "type": "note",
+          "text": "Chạm từng đoạn và hai góc B, E để đo."
         },
         {
           "type": "note",
@@ -3844,7 +3899,7 @@
             "index": 0
           }
         ],
-        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-thang-can-cac-buoc",
+        "hintVisualId": "hinh-binh-hanh-hinh-thang-can.visual.ghep-thang-can-goi-y",
         "solutionVisualId": "hinh-binh-hanh-hinh-thang-can.visual.sbt-4-18-giai"
       },
       "difficulty": 2,
