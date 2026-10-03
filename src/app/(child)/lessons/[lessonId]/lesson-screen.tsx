@@ -33,6 +33,7 @@ import {
   tipsPath,
 } from "@/lib/routes";
 import { now } from "@/lib/time";
+import { OuterScreenMusic } from "@/music/background-music-runner";
 import type { ProfileRecord, SectionState } from "@/progress/db";
 import {
   setOverviewSeen,
@@ -148,6 +149,8 @@ function LessonBody({
   };
   return (
     <>
+      {/* The list of parts is an outer screen; the overview above is not. */}
+      <OuterScreenMusic />
       <PageTopBar childId={profile.id}>
         <BackLink subjectId={lesson.subject} />
       </PageTopBar>

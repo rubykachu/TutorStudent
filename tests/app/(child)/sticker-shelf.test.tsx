@@ -7,6 +7,7 @@ import {
   shelfLayout,
   stickerCollectionCaption,
 } from "@/app/(child)/sticker-shelf";
+import { CELEBRATION_IDS } from "@/lib/sound-manifest";
 import type { LessonSummary } from "@/schema/content";
 
 function lesson(id: string, name: string): LessonSummary {
@@ -389,12 +390,16 @@ describe("StickerShelf detail", () => {
     expect(screen.queryByRole("dialog")).toBeNull();
   });
 
-  it("plays the jingle for an earned sticker and a click for a locked one, with sparkle only on the earned", () => {
+  it("plays a celebration clip for an earned sticker and a click for a locked one, with sparkle only on the earned", () => {
     const sounds = shelfOf(["a"]);
     fireEvent.click(screen.getByRole("button", { name: /^Sao/ }));
-    // Only the jingle: the owl's congratulation is for earning the sticker.
+    // Only the celebration: the owl's congratulation is for earning the
+    // sticker.
     expect(sounds.play).toHaveBeenCalledTimes(1);
-    expect(sounds.play).toHaveBeenCalledWith(["correct-jingle"]);
+    expect(CELEBRATION_IDS as readonly string[]).toContain(
+      sounds.play.mock.calls[0]?.[0][0],
+    );
+    expect(sounds.play.mock.calls[0]?.[0]).toHaveLength(1);
     // The confetti bursts over the sheet, not under its backdrop.
     const backdrop = document.querySelector("[data-sticker-sheet-backdrop]");
     expect(backdrop?.querySelector("[data-confetti]")).not.toBeNull();
@@ -417,7 +422,9 @@ describe("StickerShelf detail", () => {
       const sounds = shelfOf(["a"]);
       fireEvent.click(screen.getByRole("button", { name: /^Sao/ }));
       expect(document.querySelector("[data-confetti]")).toBeNull();
-      expect(sounds.play).toHaveBeenCalledWith(["correct-jingle"]);
+      expect(CELEBRATION_IDS as readonly string[]).toContain(
+        sounds.play.mock.calls[0]?.[0][0],
+      );
     } finally {
       window.matchMedia = original;
     }

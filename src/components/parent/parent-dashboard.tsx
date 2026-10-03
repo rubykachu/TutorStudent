@@ -7,6 +7,7 @@ import { Avatar } from "@/components/avatar";
 import { PROFILES_PATH } from "@/lib/routes";
 import { useProfiles } from "@/progress/hooks";
 import { closeParentSession } from "@/progress/parent-session";
+import { BackgroundMusicSetting } from "./background-music-setting";
 import { ChildReport } from "./child-report";
 import { FamilyCodePanel } from "./family-code-panel";
 import { OfflineStatus } from "./offline-status";
@@ -48,6 +49,7 @@ export function ParentDashboard() {
       <ReportSourceNote />
       <SyncStatus />
       <OfflineStatus />
+      <BackgroundMusicSetting />
       <FamilyCodePanel />
       {profiles && profiles.length === 0 && (
         <p className="rounded-lg bg-surface p-4 shadow-card md:p-6">

@@ -10,6 +10,7 @@ import { PageTopBar } from "@/components/page-top-bar";
 import { openGrades, visibleGrades } from "@/content/grades";
 import { ChildSounds } from "@/learn/child-sounds";
 import { HOME_PATH } from "@/lib/routes";
+import { OuterScreenMusic } from "@/music/background-music-runner";
 import type { ProfileRecord } from "@/progress/db";
 import { setProfileGrade, useContentIndex } from "@/progress/hooks";
 import { GRADES } from "@/schema/content";
@@ -138,6 +139,7 @@ export function GradesScreen() {
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">
       {profile && (
         <ChildSounds childId={profile.id}>
+          <OuterScreenMusic />
           <PageTopBar childId={profile.id}>
             <Link
               href={HOME_PATH}

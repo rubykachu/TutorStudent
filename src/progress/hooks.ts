@@ -13,6 +13,7 @@ import { now } from "@/lib/time";
 import {
   ACTIVE_PROFILE_KEY,
   type AttemptRecord,
+  BACKGROUND_MUSIC_KEY,
   type CardStateRecord,
   type ChildScope,
   DEVICE_SCOPE,
@@ -225,6 +226,40 @@ export async function setSoundEnabled(
   enabled: boolean,
 ): Promise<void> {
   await setSetting(appDb(), childScope(childId), SOUND_ENABLED_KEY, enabled);
+}
+
+// The background music of the outer screens is on until it is turned off on
+// this device (the home screen's music switch or the parent page).
+export async function readBackgroundMusicEnabled(
+  db: TutorDb,
+): Promise<boolean> {
+  const value = await getSetting(db, DEVICE_SCOPE, BACKGROUND_MUSIC_KEY);
+  return value !== false;
+}
+
+// `undefined` while the first read is in flight.
+export function useBackgroundMusicEnabled(): boolean | undefined {
+  return useLiveQuery(() => readBackgroundMusicEnabled(appDb()), []);
+}
+
+// Whether the background music may play on this device now: its own switch
+// is on and the child using the device (if any) has not turned sound off.
+export async function readBackgroundMusicAllowed(
+  db: TutorDb,
+): Promise<boolean> {
+  if (!(await readBackgroundMusicEnabled(db))) return false;
+  const profile = await readActiveProfile(db);
+  return profile === null || (await readSoundEnabled(db, profile.id));
+}
+
+export function useBackgroundMusicAllowed(): boolean | undefined {
+  return useLiveQuery(() => readBackgroundMusicAllowed(appDb()), []);
+}
+
+export async function setBackgroundMusicEnabled(
+  enabled: boolean,
+): Promise<void> {
+  await setSetting(appDb(), DEVICE_SCOPE, BACKGROUND_MUSIC_KEY, enabled);
 }
 
 export type LessonProgress = {

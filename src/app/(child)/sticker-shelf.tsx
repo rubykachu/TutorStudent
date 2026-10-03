@@ -8,7 +8,7 @@ import { Sheet } from "@/components/sheet";
 import { Sticker } from "@/components/sticker";
 import { stickerFill } from "@/learn/next-step";
 import type { FeedbackSounds } from "@/lib/feedback-sounds";
-import { JINGLE_ID } from "@/lib/sound-manifest";
+import { pickCelebration } from "@/lib/sound-manifest";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { SectionProgressRecord, StickerRecord } from "@/progress/db";
 import type { LessonSummary } from "@/schema/content";
@@ -233,7 +233,7 @@ export function StickerShelf({
       id: entry.lesson.id,
       count: (tapped?.id === entry.lesson.id ? tapped.count : 0) + 1,
     });
-    if (entry.earned) sounds?.play([JINGLE_ID]);
+    if (entry.earned) sounds?.play([pickCelebration()]);
     else sounds?.tap();
     setOpenId(entry.lesson.id);
   };

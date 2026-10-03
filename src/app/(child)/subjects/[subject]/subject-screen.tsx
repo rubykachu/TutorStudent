@@ -10,6 +10,7 @@ import { LessonCardArt } from "@/components/subject-tile-art";
 import { ChildSounds } from "@/learn/child-sounds";
 import { lessonPlacement, subjectHeading } from "@/lib/lesson-label";
 import { HOME_PATH, lessonPath } from "@/lib/routes";
+import { OuterScreenMusic } from "@/music/background-music-runner";
 import type { ProfileRecord } from "@/progress/db";
 import { useChildProgress, useContentIndex } from "@/progress/hooks";
 import { lessonState, lessonsForSubject } from "@/progress/summary";
@@ -87,6 +88,7 @@ export function SubjectScreen({ subject }: { subject: Subject }) {
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-6 px-gutter py-6 md:px-gutter-lg md:py-10">
       {profile && (
         <ChildSounds childId={profile.id}>
+          <OuterScreenMusic />
           <PageTopBar childId={profile.id}>
             <Link
               href={HOME_PATH}

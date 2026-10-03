@@ -132,6 +132,9 @@ export const FAMILY_DOC_STATE_SCOPE: ChildScope = {
 export const ACTIVE_PROFILE_KEY = "activeProfileId";
 // Per-child setting: false once the child turns the "ting" off; unset = on.
 export const SOUND_ENABLED_KEY = "soundEnabled";
+// Device setting (`DEVICE_SCOPE`, never synced): false once the background
+// music of the outer screens is turned off; unset = on.
+export const BACKGROUND_MUSIC_KEY = "backgroundMusic";
 
 // The scope of a child's records on this device: they all live under the
 // local family id (`LOCAL_FAMILY_ID`), whichever family syncs them.

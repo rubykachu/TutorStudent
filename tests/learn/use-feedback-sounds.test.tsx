@@ -63,3 +63,30 @@ describe("useFeedbackSounds", () => {
     expect(sound.preloadSounds).not.toHaveBeenCalled();
   });
 });
+
+describe("useFeedbackSounds and the background music", () => {
+  it("ducks the music while a celebration plays, and only then", async () => {
+    const { backgroundMusic } = await import("@/music/background-music");
+    const { CELEBRATION_IDS } = await import("@/lib/sound-manifest");
+    const release = vi.fn();
+    const hold = vi.spyOn(backgroundMusic(), "hold").mockReturnValue(release);
+    let finish: () => void = () => undefined;
+    vi.mocked(sound.playSequence).mockImplementationOnce(
+      () =>
+        new Promise<void>((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const { result } = renderHook(() => useFeedbackSounds("kid-1"));
+    await waitFor(() => expect(result.current).toBeDefined());
+    result.current?.play([CELEBRATION_IDS[0]]);
+    expect(hold).toHaveBeenCalledWith("duck");
+    expect(release).not.toHaveBeenCalled();
+    finish();
+    await flush();
+    expect(release).toHaveBeenCalledTimes(1);
+    result.current?.play([JINGLE_ID]);
+    expect(hold).toHaveBeenCalledTimes(1);
+    hold.mockRestore();
+  });
+});

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AVATARS, Avatar } from "@/components/avatar";
 import { CosmosHorizon } from "@/components/cosmos-background";
+import { MusicToggle } from "@/components/music-toggle";
 import { SoundToggle } from "@/components/sound-toggle";
 import { SubjectTile, subjectTileLayout } from "@/components/subject-tile";
 import { hasGradeChoice, subjectsOfGrade } from "@/content/grades";
@@ -22,6 +23,7 @@ import { now, vnDayKey } from "@/lib/time";
 import type { MascotExpression } from "@/mascot/expressions";
 import { OWL_TAP_LINE } from "@/mascot/lines";
 import { Owl } from "@/mascot/owl";
+import { OuterScreenMusic } from "@/music/background-music-runner";
 import type { ProfileRecord } from "@/progress/db";
 import {
   type ChildProgress,
@@ -202,6 +204,7 @@ function AvatarButton({
 function HomeContent({ profile }: { profile: ProfileRecord }) {
   return (
     <ChildSounds childId={profile.id}>
+      <OuterScreenMusic />
       <HomeHeaderAndBody profile={profile} />
     </ChildSounds>
   );
@@ -232,7 +235,8 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
             )}
           </div>
         </div>
-        {/* The sound switch ends the row, where every screen keeps it. */}
+        {/* The sound switch ends the row, where every screen keeps it; the
+            music switch sits just before it. */}
         <div className="flex shrink-0 items-center gap-2">
           <Link
             href={PROFILES_PATH}
@@ -244,6 +248,7 @@ function HomeHeaderAndBody({ profile }: { profile: ProfileRecord }) {
             <Avatar avatar={profile.avatar} className="size-8 shrink-0" />
             <span className="hidden sm:inline">Đổi hồ sơ</span>
           </Link>
+          <MusicToggle />
           <SoundToggle childId={profile.id} />
         </div>
       </header>

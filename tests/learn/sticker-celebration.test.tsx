@@ -1,14 +1,14 @@
 import { render } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
-  STICKER_EARNED_CUE,
   StickerEarnedCelebration,
+  stickerEarnedCue,
 } from "@/learn/sticker-celebration";
 import {
   type FeedbackSounds,
   FeedbackSoundsProvider,
 } from "@/lib/feedback-sounds";
-import { LESSON_END_ID } from "@/lib/sound-manifest";
+import { CELEBRATION_IDS } from "@/lib/sound-manifest";
 import { STICKER_EARNED_LINE } from "@/mascot/lines";
 
 const original = window.matchMedia;
@@ -41,13 +41,25 @@ function renderCelebration(sounds?: { play: FeedbackSounds["play"] }) {
 }
 
 describe("StickerEarnedCelebration", () => {
-  it("bursts confetti and plays the finish fanfare then the owl's congratulation, once", () => {
+  it("picks either celebration clip, then the owl's congratulation", () => {
+    expect(stickerEarnedCue(() => 0)).toEqual([
+      CELEBRATION_IDS[0],
+      STICKER_EARNED_LINE.id,
+    ]);
+    expect(stickerEarnedCue(() => 0.99)).toEqual([
+      CELEBRATION_IDS[1],
+      STICKER_EARNED_LINE.id,
+    ]);
+  });
+
+  it("bursts confetti and plays a celebration then the owl's congratulation, once", () => {
     const play = vi.fn();
     const view = renderCelebration({ play });
     expect(view.container.querySelector("[data-confetti]")).not.toBeNull();
     expect(play).toHaveBeenCalledTimes(1);
-    expect(play).toHaveBeenCalledWith([LESSON_END_ID, STICKER_EARNED_LINE.id]);
-    expect(STICKER_EARNED_CUE).toEqual([LESSON_END_ID, STICKER_EARNED_LINE.id]);
+    const [cue] = play.mock.calls[0] as [string[]];
+    expect(CELEBRATION_IDS).toContain(cue[0]);
+    expect(cue.slice(1)).toEqual([STICKER_EARNED_LINE.id]);
     view.rerender(
       <FeedbackSoundsProvider
         sounds={{ play, tap: vi.fn(), button: vi.fn(), leave: vi.fn() }}

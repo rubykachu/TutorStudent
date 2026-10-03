@@ -5,6 +5,7 @@ import { SectionPlayer } from "@/learn/section-player";
 import { LOCAL_FAMILY_ID } from "@/lib/config";
 import {
   BUTTON_ID,
+  CELEBRATION_IDS,
   LEAVE_ID,
   LESSON_END_ID,
   soundUrl,
@@ -74,15 +75,14 @@ describe("finishing a section", () => {
     await waitFor(() => expect(played()).toEqual([[soundUrl(LESSON_END_ID)]]));
   });
 
-  it("plays the fanfare then the owl's congratulation when the sticker is won, never both at once", async () => {
+  it("plays a celebration clip then the owl's congratulation when the sticker is won, never both at once", async () => {
     renderAtRecap();
     await finishSection();
     expect(await screen.findByText("Giỏi quá!")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(played()).toEqual([
-        [soundUrl(LESSON_END_ID), soundUrl(STICKER_EARNED_LINE.id)],
-      ]),
-    );
+    await waitFor(() => expect(played()).toHaveLength(1));
+    const [urls] = played() as [string[]];
+    expect(CELEBRATION_IDS.map((id) => soundUrl(id))).toContain(urls[0]);
+    expect(urls.slice(1)).toEqual([soundUrl(STICKER_EARNED_LINE.id)]);
   });
 
   it("is silent with sound off", async () => {

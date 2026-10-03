@@ -11,6 +11,7 @@ import { ProfilePicker } from "@/components/profile-picker";
 import { openGrades } from "@/content/grades";
 import { DEFAULT_GRADE } from "@/lib/config";
 import { HOME_PATH, PARENT_PATH } from "@/lib/routes";
+import { OuterScreenMusic } from "@/music/background-music-runner";
 import type { ProfileRecord } from "@/progress/db";
 import {
   createProfile,
@@ -93,6 +94,7 @@ export function ProfilesScreen({ subjects }: ProfilesScreenProps) {
 
   return (
     <main className="mx-auto flex w-full max-w-content flex-1 flex-col gap-8 px-gutter py-6 md:px-gutter-lg md:py-10">
+      <OuterScreenMusic />
       {view === "add" && (
         <>
           <h1 className="text-title font-bold md:text-title-lg">
