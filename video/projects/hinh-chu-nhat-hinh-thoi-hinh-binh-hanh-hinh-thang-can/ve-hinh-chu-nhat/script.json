@@ -1,0 +1,101 @@
+{
+  "title": "Vẽ hình chữ nhật",
+  "engine": "local",
+  "poster": {
+    "scene": "s06-lay",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta vẽ hình chữ nhật.",
+          "opening": true
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: ta dùng gì để kẻ góc vuông?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-eke",
+      "sentences": [
+        {
+          "text": "Thước có một góc vuông gọi là êke."
+        }
+      ]
+    },
+    {
+      "id": "s04-canh",
+      "sentences": [
+        {
+          "text": "Đầu tiên, dùng thước vẽ một cạnh dài 4 cm."
+        }
+      ]
+    },
+    {
+      "id": "s05-vuong",
+      "sentences": [
+        {
+          "text": "Dùng êke vẽ hai đường vuông góc ở hai đầu cạnh."
+        }
+      ]
+    },
+    {
+      "id": "s06-lay",
+      "sentences": [
+        {
+          "text": "Về một phía, lấy hai đoạn cùng dài 3 cm."
+        }
+      ]
+    },
+    {
+      "id": "s07-noi",
+      "sentences": [
+        {
+          "text": "Cuối cùng, nối hai đầu đoạn vừa lấy."
+        }
+      ]
+    },
+    {
+      "id": "s08-quy-tac",
+      "sentences": [
+        {
+          "text": "Vẽ một cạnh, kẻ hai đường vuông góc ở hai đầu cạnh.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Về cùng một phía của cạnh đã vẽ, lấy hai đoạn bằng cạnh kia rồi nối.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s09-xong",
+      "sentences": [
+        {
+          "text": "Vậy là ta vẽ xong hình chữ nhật."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "ve-hinh-chu-nhat",
+      "from": "s02-hoi",
+      "to": "s09-xong",
+      "cardIds": [
+        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.ve-hinh-chu-nhat"
+      ]
+    }
+  ]
+}

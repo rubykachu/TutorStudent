@@ -1,0 +1,244 @@
+<!doctype html>
+<!--
+  Lesson video "Hình chữ nhật" (lesson hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can): the rectangle has four right angles, equal opposite sides and equal diagonals.
+  Colours as in the lesson: rectangle teal, side blue, diagonal amber. The shapes are the lesson's own figures
+  (figures.tsx). Built by `pnpm video:build hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can hinh-chu-nhat`, which injects window.TIMING.
+  The rule cards carry `data-rule-text`: their text is the lesson's note word for word.
+-->
+<html lang="vi">
+  <head>
+    <title>Hình chữ nhật</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=720" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="base.css" />
+    <style>
+      .step {
+        position: absolute;
+        left: 880px;
+        top: 220px;
+        width: 340px;
+        display: flex;
+      }
+      .step .chip {
+        white-space: normal;
+        font-size: 34px;
+      }
+      .rule {
+        position: absolute;
+        left: 100px;
+        width: 1080px;
+        top: 30px;
+        padding: 20px 32px;
+        font:
+          600 30px / 1.4 "Be Vietnam Pro",
+          sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+        text-wrap: balance;
+      }
+      .figure-wrap {
+        width: 560px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="75"
+      data-width="1280"
+      data-height="720"
+    >
+      <div id="stage" class="layer">
+        <section id="s1" class="scene layer">
+          <div class="row title" style="top: 50px">Hình chữ nhật</div>
+        
+          <div id="t1" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-teal)"
+              >Cánh cửa: hình chữ nhật</span
+            >
+          </div>
+        </section>
+        <section id="s2" class="scene layer">
+          <div id="t2" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-blue)"
+              >Cạnh đối</span
+            >
+          </div>
+        </section>
+        <section id="s3" class="scene layer">
+          <div id="t3" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-teal)"
+              >Hình chữ nhật</span
+            >
+          </div>
+        </section>
+        <section id="s4" class="scene layer">
+          <div id="rule4" class="card rule" data-rule-text>
+            Hình chữ nhật có bốn góc vuông và các cạnh đối bằng nhau.
+          </div>
+        </section>
+        <section id="s5" class="scene layer">
+          <div id="t5a" class="step" style="top: 190px">
+            <span class="chip" style="--c: var(--color-concept-slate)"
+              >Đỉnh: A, B, C, D</span
+            >
+          </div>
+        
+          <div id="t5b" class="step" style="top: 300px">
+            <span class="chip" style="--c: var(--color-concept-amber)"
+              >Đường chéo</span
+            >
+          </div>
+        </section>
+        <section id="s6" class="scene layer">
+          <div id="t6" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-amber)"
+              >Hai đường chéo</span
+            >
+          </div>
+        </section>
+        <section id="s7" class="scene layer">
+          <div id="rule7" class="card rule" data-rule-text>
+            Hai đường chéo của hình chữ nhật bằng nhau.
+          </div>
+        </section>
+        <section id="s8" class="scene layer">
+          <div id="t8" class="step" style="top: 220px">
+            <span class="chip" style="--c: var(--color-concept-amber)"
+              >Đo hai đường chéo</span
+            >
+          </div>
+        </section>
+      </div>
+      <div id="owl-layer" class="layer"></div>
+      <div
+        id="fade"
+        class="layer"
+        style="background: var(--color-background)"
+      ></div>
+    </div>
+
+    <script src="gsap.min.js"></script>
+    <script src="owl.js"></script>
+    <script src="figures.js"></script>
+    <script>
+      /*TIMING:BEGIN*/ window.TIMING = null; /*TIMING:END*/
+    </script>
+    <script src="runtime.js"></script>
+    <script>
+      (() => {
+        const { $, start, W, owl, figure, pop, hide, pose, scenes, finish, tl } =
+          window.LV;
+        const bird = owl($("#owl-layer"), ["idle", "happy", "cheer"], {
+          left: "30px",
+          top: "385px",
+          width: "150px",
+          height: "150px",
+        });
+        pop(bird.wrap, 0.3, { from: 0.3 });
+
+        scenes(
+          [
+            ["#s1", "s01-chao"],
+            ["#s2", "s02-doi"],
+            ["#s3", "s03-hoi"],
+            ["#s4", "s04-quy-tac"],
+            ["#s5", "s05-cheo"],
+            ["#s6", "s06-hoi"],
+            ["#s7", "s07-bang"],
+            ["#s8", "s08-nho"],
+          ],
+          { leave: 0 },
+        );
+
+        // A picture of the lesson on the stage, with the variants to switch
+        // between (only the first shows); the picture of a scene is there from
+        // its first frame. `box` moves or resizes it.
+        const picture = (section, names, box = {}) =>
+          figure($(section), names, {
+            left: "300px",
+            top: "148px",
+            ...box,
+          });
+        // Shows one variant of a picture from time t.
+        const show = (f, name, t) => {
+          for (const [key, layer] of Object.entries(f.layers)) {
+            tl.set(layer, { opacity: key === name ? 1 : 0 }, t);
+          }
+        };
+
+        {
+          const sid = "s01-chao";
+          picture("#s1", ["door"]);
+          hide(["#t1"]);
+          pose(bird, "happy", W(sid, "chào"));
+          pose(bird, "idle", W(sid, "bạn"));
+          pop("#t1", W(sid, "cánh"), { from: 0.6 });
+        }
+        {
+          const sid = "s02-doi";
+          const f = picture("#s2", ["cn-plain", "cn-canh"]);
+          hide(["#t2"]);
+          pose(bird, "idle", start(sid));
+          show(f, "cn-canh", W(sid, "gọi"));
+          pop("#t2", W(sid, "gọi"), { from: 0.6 });
+        }
+        {
+          const sid = "s03-hoi";
+          picture("#s3", ["cn-plain"]);
+          hide(["#t3"]);
+          pose(bird, "idle", start(sid));
+          pop("#t3", start(sid) + 0.1, { from: 0.6 });
+        }
+        {
+          const sid = "s04-quy-tac";
+          const f = picture("#s4", ["cn-plain", "cn-goc", "cn-rule"]);
+          hide(["#rule4"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule4", start(sid) + 0.1, { from: 0.9 });
+          show(f, "cn-goc", W(sid, "bốn"));
+          show(f, "cn-rule", W(sid, "các"));
+        }
+        {
+          const sid = "s05-cheo";
+          const f = picture("#s5", ["cn-plain", "cn-ac", "cn-cheo"]);
+          hide(["#t5a", "#t5b"]);
+          pose(bird, "idle", start(sid));
+          pop("#t5a", W(sid, "đỉnh"), { from: 0.6 });
+          pop("#t5b", W(sid, "chéo"), { from: 0.6 });
+          show(f, "cn-ac", W(sid, "nối"));
+          show(f, "cn-cheo", W(sid, "nằm"));
+        }
+        {
+          const sid = "s06-hoi";
+          picture("#s6", ["cn-cheo"]);
+          hide(["#t6"]);
+          pose(bird, "idle", start(sid));
+          pop("#t6", start(sid) + 0.1, { from: 0.6 });
+        }
+        {
+          const sid = "s07-bang";
+          const f = picture("#s7", ["cn-cheo", "cn-bang"]);
+          hide(["#rule7"]);
+          pose(bird, "idle", start(sid));
+          pop("#rule7", start(sid) + 0.1, { from: 0.9 });
+          show(f, "cn-bang", W(sid, "bằng"));
+          pose(bird, "cheer", W(sid, "bằng"));
+        }
+        {
+          const sid = "s08-nho";
+          picture("#s8", ["cn-cheo"]);
+          hide(["#t8"]);
+          pose(bird, "idle", start(sid));
+          pop("#t8", W(sid, "đo"), { from: 0.6 });
+        }
+
+        finish();
+      })();
+    </script>
+  </body>
+</html>

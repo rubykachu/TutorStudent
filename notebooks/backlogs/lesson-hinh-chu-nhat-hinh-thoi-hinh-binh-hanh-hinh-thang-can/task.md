@@ -87,3 +87,10 @@ Một phiên mới, mỗi lần một subagent, theo `.claude/skills/lesson-vide
 3. **Video:** theo `lesson-video` (VieNeu chạy trên máy), video cho các phần dạy; review kịch bản và lời video bằng `lesson-review` vòng chỉ phần đổi (Sonnet); `pnpm video:check`.
 4. **Deploy:** khi lời đọc và video đã duyệt: `pnpm media:upload` rồi `pnpm deploy:prod --ref <SHA đã kiểm>` (ghi ra ngoài máy; chủ dự án đã cho phép deploy từng bài xong, vẫn làm đúng thứ tự media trước, deploy sau).
 - **Ngoài phạm vi:** sửa nội dung bài (đã duyệt; sửa thì cần review lại), bài khác (kể cả phần 2), `src/sync/`, `src/offline/`. Media ngoài git: không ghi đè media của bài khác; không dùng `rm`; không dừng dev server cổng 3003, không dừng tiến trình theo tên.
+
+## Lời đọc và video (03/10/2026)
+- Giọng bài: `my-duyen` (Mỹ Duyên), vì bài 18 dùng `hai-dang` nên xen kẽ; khai ở `video/projects/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/media.json`.
+- Lời đọc giới thiệu: `pnpm narration:build hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`, Gemini Vindemiatrix đọc trọn (52,9 s, mọi câu Whisper ≥ 98,6%), không phải VieNeu.
+- Ba video (VieNeu Mỹ Duyên, Whisper ≥ 97%, `pnpm video:check` ok): `hinh-chu-nhat` (51 s, đầu section `hinh-chu-nhat`, hai clip cho thẻ `hinh-chu-nhat` và `cheo-hinh-chu-nhat`), `hinh-thoi` (56 s, đầu section `hinh-thoi`, hai clip cho thẻ `hinh-thoi` và `cheo-hinh-thoi`), `ve-hinh-chu-nhat` (49 s, đầu section `ve-hinh-chu-nhat`). Hình lấy từ catalog của bài qua `figures.tsx`.
+- Review vòng 4 (chỉ phần đổi, Sonnet): 0 Nghiêm trọng, 6 Nên sửa đã sửa hết, dựng lại video; `content:hash --approve`, `content:lock` (3 id video); `lesson:walk` 0 lỗi ba thiết bị; `pnpm visual:shot` 150/150 ở bản sạch.
+- Còn lại: `pnpm media:upload hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can` rồi deploy cùng đợt (chủ dự án chạy hay cho phép).

@@ -2,13 +2,25 @@
 
 - Bài: `content/math/kntt/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/lesson.json` (Bài 19, phần 1)
 - Vòng 2 (toàn bài, 4 reviewer Opus song song + tổng hợp Opus, tệp nhóm `.shots/review/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/nhom-{1,2,3,4}.md`): 1 Nghiêm trọng, 22 Nên sửa, 21 Góp ý; đã sửa hết Nghiêm trọng và Nên sửa (mục "Kết quả sửa vòng 2").
+- Vòng 4 (lời đọc giới thiệu và ba video, chỉ phần đổi, một Reviewer Sonnet): 0 Nghiêm trọng, 6 Nên sửa, 8 Góp ý; đã sửa hết Nên sửa (mục "Kết quả vòng lời đọc và video"). `lesson:walk` 0 lỗi ở ba thiết bị.
 - Vòng: 3 - chỉ phần đổi (`pnpm content:diff`), section: `hinh-quanh-ta`, `hinh-chu-nhat`, `cheo-hinh-chu-nhat`, `song-song`, `hinh-thoi`, `cheo-hinh-thoi`, `ve-hinh-chu-nhat`, `ve-hinh-thoi`, `kiem-thoi-chu-nhat`, `bai-tap-sach-bai-tap` (diff có mục ở 9 section; section `hinh-chu-nhat` đọc cùng section với các mục liên quan)
 - Nguồn đã đọc: `sources/math/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/` - sbt-p67, sbt-p68, sbt-p69, sbt-p115
 - `content:check`: 0 lỗi (theo kết quả điều phối chuyển)
 - Đọc hiểu (Haiku, lượt 1): 98 / 2 / 0; tệp `.shots/review/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/doc-hieu.md` (lượt 2 trên 2 mục viết lại: 6 / 0 / 0)
 - `lesson:walk`: 0 FAIL, 0 cảnh báo (sau sửa), ba thiết bị, ảnh trong `.shots/walk/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/`
 - Kết luận: Đã xuất bản (0 Nghiêm trọng; `pnpm content:hash hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can --root content --approve`, `status: published`; id đã khoá bằng `pnpm content:lock hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can`). Nên sửa 1 của vòng 3 đã sửa trước lệnh duyệt; Góp ý để lại cho vòng sau.
-- Bản đã review: `5631cca68024593cd4e006cbd3fa9c1ed570728361055c9d8b0ea30ca118ec88` (`pnpm content:diff` so với bản này)
+- Bản đã review: `125600da1306e4de8613b127081b3a3205afef0a1b8e6dadb0e9df95f1b0e34a` (`pnpm content:diff` so với bản này)
+
+## Kết quả vòng lời đọc và video
+
+Phạm vi: `pnpm content:diff` chỉ có ba video (`hinh-chu-nhat`, `hinh-thoi`, `ve-hinh-chu-nhat`) với khối video đầu ba section và metadata lời đọc giới thiệu (Gemini Vindemiatrix); chữ của bài không đổi. Giọng video: Mỹ Duyên. Whisper mọi câu từ 97,1%.
+
+Nên sửa đã sửa (dựng lại video):
+- `hinh-chu-nhat`: câu hỏi nay đứng sát câu quy tắc (định nghĩa cạnh đối đặt trước câu hỏi, hình cảnh hỏi chưa có dấu bằng nhau); thêm câu "Đỉnh là chỗ hai cạnh gặp nhau" trước đường chéo; câu chốt tách thành hai câu có "Khi đóng khung ảnh, bạn đo hai đường chéo".
+- `hinh-thoi`: câu chốt của clip đường chéo nay nói về đường chéo vuông góc (hình `th-vuong`); thêm câu về đỉnh; nhãn "Góc đối" hiện khi đọc "gọi là góc đối", hình có nhãn góc chỉ hiện từ câu quy tắc.
+- `ve-hinh-chu-nhat`: câu hỏi nay hỏi điều bé đoán được ("ta dùng gì để kẻ góc vuông?"), rồi giới thiệu êke kèm hình êke; hình các bước vẽ phóng to lấp chiều cao trên dải phụ đề.
+
+Góp ý để lại: poster của ba video là cảnh quy tắc; câu định nghĩa (cạnh đối, góc đối, đường chéo) chép nguyên văn nhưng chưa đánh `rule`; hai cách nói định nghĩa đường chéo giữa hai section của bài; Whisper nghe "êke" thành "Ê-ke" hay "EK" (khớp 97,1% và 97,8%).
 
 ## Tách bài
 

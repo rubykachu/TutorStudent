@@ -1,0 +1,109 @@
+{
+  "title": "Hình chữ nhật",
+  "engine": "local",
+  "poster": {
+    "scene": "s04-quy-tac",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm hiểu hình chữ nhật.",
+          "opening": true
+        },
+        {
+          "text": "Cánh cửa ra vào có dạng hình chữ nhật."
+        }
+      ]
+    },
+    {
+      "id": "s02-doi",
+      "sentences": [
+        {
+          "text": "Hai cạnh nằm đối diện nhau gọi là cạnh đối."
+        }
+      ]
+    },
+    {
+      "id": "s03-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hình này có gì đặc biệt?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s04-quy-tac",
+      "sentences": [
+        {
+          "text": "Hình chữ nhật có bốn góc vuông và các cạnh đối bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-cheo",
+      "sentences": [
+        {
+          "text": "Đỉnh là chỗ hai cạnh gặp nhau."
+        },
+        {
+          "text": "Đường chéo là đoạn thẳng nối hai đỉnh không nằm cạnh nhau.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hai đường chéo dài thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s07-bang",
+      "sentences": [
+        {
+          "text": "Hai đường chéo của hình chữ nhật bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s08-nho",
+      "sentences": [
+        {
+          "text": "Khi đóng khung ảnh, bạn đo hai đường chéo."
+        },
+        {
+          "text": "Hai đường chéo khác nhau thì chưa phải hình chữ nhật."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hinh-chu-nhat",
+      "from": "s02-doi",
+      "to": "s04-quy-tac",
+      "cardIds": [
+        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.hinh-chu-nhat"
+      ]
+    },
+    {
+      "id": "cheo-hinh-chu-nhat",
+      "from": "s05-cheo",
+      "to": "s08-nho",
+      "cardIds": [
+        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-chu-nhat"
+      ]
+    }
+  ]
+}

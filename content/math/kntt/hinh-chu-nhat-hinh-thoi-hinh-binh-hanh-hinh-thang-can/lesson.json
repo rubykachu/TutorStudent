@@ -13,7 +13,7 @@
   "title": "Hình chữ nhật. Hình thoi",
   "sourceRef": "Sách bài tập tr.67–69",
   "status": "published",
-  "reviewedHash": "5631cca68024593cd4e006cbd3fa9c1ed570728361055c9d8b0ea30ca118ec88",
+  "reviewedHash": "125600da1306e4de8613b127081b3a3205afef0a1b8e6dadb0e9df95f1b0e34a",
   "overview": {
     "hook": {
       "text": "Chào bạn! Ở bài này, chúng ta sẽ tìm hiểu hai hình quen thuộc. Bạn thử nhìn cánh cửa ra vào nhà mình xem, nó có hình gì nhỉ?"
@@ -25,7 +25,16 @@
       "vẽ được hình chữ nhật và hình thoi bằng thước, êke, thước đo góc và compa",
       "kiểm tra một hình xem nó có là hình chữ nhật hay hình thoi không"
     ],
-    "whyItMatters": "Khi đóng khung ảnh, bạn đo hai đường chéo: nếu chúng khác nhau thì khung chưa phải hình chữ nhật."
+    "whyItMatters": "Khi đóng khung ảnh, bạn đo hai đường chéo: nếu chúng khác nhau thì khung chưa phải hình chữ nhật.",
+    "narration": {
+      "audioUrl": "narration/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/overview.m4a",
+      "vttUrl": "narration/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/overview.vtt",
+      "voice": {
+        "engine": "gemini",
+        "voiceName": "Vindemiatrix",
+        "model": "gemini-3.1-flash-tts-preview"
+      }
+    }
   },
   "concepts": [
     {
@@ -126,6 +135,10 @@
       "sourceRef": "Sách bài tập tr.67 (kiến thức cần nhớ)",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.video.hinh-chu-nhat"
+        },
         {
           "type": "group",
           "children": [
@@ -323,6 +336,10 @@
       "minutes": 5,
       "blocks": [
         {
+          "type": "video",
+          "videoId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.video.hinh-thoi"
+        },
+        {
           "type": "group",
           "children": [
             {
@@ -446,6 +463,10 @@
       "sourceRef": "Sách bài tập tr.67 (kĩ năng giải toán), tr.68 (bài 4.10); cách vẽ theo SGK Toán 6",
       "minutes": 5,
       "blocks": [
+        {
+          "type": "video",
+          "videoId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.video.ve-hinh-chu-nhat"
+        },
         {
           "type": "group",
           "children": [
@@ -3762,5 +3783,92 @@
   "sticker": {
     "name": "Huy hiệu hình chữ nhật và hình thoi",
     "visualId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.visual.sticker"
-  }
+  },
+  "videos": [
+    {
+      "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.video.hinh-chu-nhat",
+      "lessonId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can",
+      "url": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/hinh-chu-nhat.mp4",
+      "vttUrl": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/hinh-chu-nhat.vtt",
+      "posterUrl": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/hinh-chu-nhat.jpg",
+      "durationSec": 50.9,
+      "clips": [
+        {
+          "id": "hinh-chu-nhat",
+          "start": 8.719,
+          "end": 23.387,
+          "cardIds": [
+            "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.hinh-chu-nhat"
+          ]
+        },
+        {
+          "id": "cheo-hinh-chu-nhat",
+          "start": 23.787,
+          "end": 49.484,
+          "cardIds": [
+            "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-chu-nhat"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.video.hinh-thoi",
+      "lessonId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can",
+      "url": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/hinh-thoi.mp4",
+      "vttUrl": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/hinh-thoi.vtt",
+      "posterUrl": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/hinh-thoi.jpg",
+      "durationSec": 56.47,
+      "clips": [
+        {
+          "id": "hinh-thoi",
+          "start": 9.699,
+          "end": 28.171,
+          "cardIds": [
+            "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.hinh-thoi"
+          ]
+        },
+        {
+          "id": "cheo-hinh-thoi",
+          "start": 28.571,
+          "end": 55.066,
+          "cardIds": [
+            "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thoi"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    },
+    {
+      "id": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.video.ve-hinh-chu-nhat",
+      "lessonId": "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can",
+      "url": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/ve-hinh-chu-nhat.mp4",
+      "vttUrl": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/ve-hinh-chu-nhat.vtt",
+      "posterUrl": "video/hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can/ve-hinh-chu-nhat.jpg",
+      "durationSec": 48.83,
+      "clips": [
+        {
+          "id": "ve-hinh-chu-nhat",
+          "start": 5.281,
+          "end": 47.418,
+          "cardIds": [
+            "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.ve-hinh-chu-nhat"
+          ]
+        }
+      ],
+      "voice": {
+        "engine": "local",
+        "voiceName": "Mỹ Duyên",
+        "model": "VieNeu-TTS v3 Turbo"
+      }
+    }
+  ]
 }

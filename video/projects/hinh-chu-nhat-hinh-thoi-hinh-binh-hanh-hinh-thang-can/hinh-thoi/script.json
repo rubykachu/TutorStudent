@@ -1,0 +1,116 @@
+{
+  "title": "Hình thoi",
+  "engine": "local",
+  "poster": {
+    "scene": "s03-quy-tac",
+    "at": 1.0
+  },
+  "scenes": [
+    {
+      "id": "s01-chao",
+      "sentences": [
+        {
+          "text": "Chào bạn! Hôm nay ta tìm hiểu hình thoi.",
+          "opening": true
+        },
+        {
+          "text": "Mắt lưới hàng rào B40 có dạng hình thoi."
+        }
+      ]
+    },
+    {
+      "id": "s02-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hình thoi có mấy cạnh bằng nhau?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s03-quy-tac",
+      "sentences": [
+        {
+          "text": "Hình thoi có bốn cạnh bằng nhau và các cạnh đối song song.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s04-goc",
+      "sentences": [
+        {
+          "text": "Hai góc nằm đối diện nhau gọi là góc đối."
+        },
+        {
+          "text": "Các góc đối của hình thoi bằng nhau.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s05-cheo",
+      "sentences": [
+        {
+          "text": "Đỉnh là chỗ hai cạnh gặp nhau."
+        },
+        {
+          "text": "Nối hai đỉnh không nằm cạnh nhau, ta được đường chéo.",
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s06-hoi",
+      "sentences": [
+        {
+          "text": "Bạn thử đoán xem: hai đường chéo cắt nhau thế nào?",
+          "pause": "ask"
+        }
+      ]
+    },
+    {
+      "id": "s07-vuong-goc",
+      "sentences": [
+        {
+          "text": "Hai đường chéo của hình thoi vuông góc với nhau.",
+          "rule": true,
+          "pause": "think"
+        },
+        {
+          "text": "Vuông góc nghĩa là cắt nhau tạo thành góc vuông.",
+          "rule": true,
+          "pause": "think"
+        }
+      ]
+    },
+    {
+      "id": "s08-nho",
+      "sentences": [
+        {
+          "text": "Nhớ nhé: hai đường chéo của hình thoi vuông góc."
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "hinh-thoi",
+      "from": "s02-hoi",
+      "to": "s04-goc",
+      "cardIds": [
+        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.hinh-thoi"
+      ]
+    },
+    {
+      "id": "cheo-hinh-thoi",
+      "from": "s05-cheo",
+      "to": "s08-nho",
+      "cardIds": [
+        "hinh-chu-nhat-hinh-thoi-hinh-binh-hanh-hinh-thang-can.card.cheo-hinh-thoi"
+      ]
+    }
+  ]
+}
