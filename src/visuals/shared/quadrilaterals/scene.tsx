@@ -3,13 +3,13 @@ import { decorative } from "@/visuals/shared/markers";
 // Everyday things that have the shape of one of the four quadrilaterals,
 // drawn small for the gallery and the "chạm để xem" cards.
 
-export type SceneKind = "door" | "kite" | "tiles" | "ladder" | "bag";
+export type SceneKind = "door" | "fence" | "tiles" | "ladder" | "bag";
 
 export const SCENE_SIZE = { w: 160, h: 130 };
 
 export const SCENE_LABEL: Readonly<Record<SceneKind, string>> = {
-  door: "Cánh cửa ra vào hình chữ nhật",
-  kite: "Khung cánh diều hình thoi",
+  door: "Cánh cửa ra vào",
+  fence: "Hàng rào lưới B40",
   tiles: "Gạch lát nền hình bình hành",
   ladder: "Chiếc thang chữ A có dạng hình thang cân",
   bag: "Túi xách có dạng hình thang cân",
@@ -51,38 +51,75 @@ function Door() {
   );
 }
 
-function Kite() {
+// A panel of B40 wire fence between two posts: the wires cross in a lattice
+// of rhombuses, one of them filled. Each wire leans 18 across for every 26
+// up, so a rhombus is 36 wide and 52 high, with four equal sides.
+const FENCE = { left: 24, right: 136, top: 14, bottom: 116 };
+const WIRE_STEP = 36;
+const WIRE_LEAN = 18 / 26;
+// The top corner of the filled rhombus; the wires of both families cross there.
+const NODE = { x: 80, y: 39 };
+
+// The two ends of the `m`-th wire of a family: leaning right going down
+// (`slope` 1) or left going down (`slope` -1).
+function wire(m: number, slope: 1 | -1) {
+  const xAt = (y: number) =>
+    NODE.x + m * WIRE_STEP + slope * WIRE_LEAN * (y - NODE.y);
+  return { x1: xAt(FENCE.top), x2: xAt(FENCE.bottom) };
+}
+
+function Fence() {
+  const rungs = Array.from({ length: 9 }, (_, i) => i - 4);
+  const width = FENCE.right - FENCE.left;
+  const height = FENCE.bottom - FENCE.top;
   return (
     <>
-      <polygon
-        points="80,6 118,58 80,110 42,58"
-        className={`fill-concept-pink ${STROKE}`}
-        fillOpacity={0.35}
-        strokeWidth={3}
-        strokeLinejoin="round"
-      />
-      <line
-        x1={80}
-        y1={6}
-        x2={80}
-        y2={110}
-        className={STROKE}
-        strokeWidth={2}
-      />
-      <line
-        x1={42}
-        y1={58}
-        x2={118}
-        y2={58}
-        className={STROKE}
-        strokeWidth={2}
-      />
-      <path
-        d="M80 110 Q 96 116 86 123 Q 76 128 88 130"
+      <clipPath id="fence-panel">
+        <rect x={FENCE.left} y={FENCE.top} width={width} height={height} />
+      </clipPath>
+      <g clipPath="url(#fence-panel)">
+        <polygon
+          points="80,39 98,65 80,91 62,65"
+          className="fill-concept-pink"
+          fillOpacity={0.4}
+        />
+        {rungs.flatMap((m) =>
+          ([1, -1] as const).map((slope) => {
+            const { x1, x2 } = wire(m, slope);
+            return (
+              <line
+                key={`${m}${slope}`}
+                x1={x1}
+                y1={FENCE.top}
+                x2={x2}
+                y2={FENCE.bottom}
+                className={STROKE}
+                strokeWidth={2}
+              />
+            );
+          }),
+        )}
+      </g>
+      <rect
+        x={FENCE.left}
+        y={FENCE.top}
+        width={width}
+        height={height}
         className={`fill-none ${STROKE}`}
-        strokeWidth={2}
-        strokeLinecap="round"
+        strokeWidth={3}
       />
+      {[FENCE.left - 6, FENCE.right + 6].map((x) => (
+        <line
+          key={x}
+          x1={x}
+          y1={6}
+          x2={x}
+          y2={126}
+          className={STROKE}
+          strokeWidth={6}
+          strokeLinecap="round"
+        />
+      ))}
     </>
   );
 }
@@ -186,7 +223,7 @@ export function Scene({ kind }: { kind: SceneKind }) {
     >
       <g {...decorative}>
         {kind === "door" && <Door />}
-        {kind === "kite" && <Kite />}
+        {kind === "fence" && <Fence />}
         {kind === "tiles" && <Tiles />}
         {kind === "ladder" && <Ladder />}
         {kind === "bag" && <Bag />}

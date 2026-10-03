@@ -9,12 +9,12 @@ import { type BoardStep, stepDone } from "@/visuals/shared/plane/board-steps";
 import { PieceBoard } from "@/visuals/shared/plane/piece-board";
 import {
   type BoardShape,
-  boardFigure,
   boardSteps,
   cornerOf,
   isDrawn,
   solvedState,
 } from "./construction";
+import { boardView } from "./drawing-frames";
 import { halvesFigure, trayFigure, triangleStrip } from "./figures";
 
 // The drawing boards and the piece boards of the lesson, on the shared
@@ -28,7 +28,13 @@ export type BoardSpec = {
   // Lesson screen only: the params to draw before "Tiếp" works.
   goal?: Readonly<Record<string, number>>;
   done?: string;
+  // A bigger picture: it may grow to a share of the screen's height instead
+  // of the board's default cap.
+  roomy?: boolean;
 };
+
+const ROOMY_MAX_HEIGHT = "min(36vh, 340px)";
+const ROOMY_MAX_SCALE = 2;
 
 // The controls of the step to do and of the step before it: a board with a
 // control for every step is taller than a phone screen, and one thing at a
@@ -68,7 +74,11 @@ export function BoardVisual({
         onStateChange={change}
         params={params}
         steps={nearbySteps(boardSteps(spec.shape, spec.names), state)}
-        figureOf={(shown) => boardFigure(spec.shape, spec.names, shown)}
+        maxHeight={spec.roomy ? ROOMY_MAX_HEIGHT : undefined}
+        figureOf={(shown) => {
+          const view = boardView(spec.shape, spec.names, shown);
+          return spec.roomy ? { ...view, maxScale: ROOMY_MAX_SCALE } : view;
+        }}
         guided={guided}
         met={(shown) => isDrawn(spec.shape, shown, target)}
         solved={() => solvedState(spec.shape, target)}

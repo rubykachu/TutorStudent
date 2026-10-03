@@ -983,27 +983,28 @@ function loneShape(
 }
 
 // Figure 4.11, one picture per shape: a trapezoid, a rectangle, a
-// parallelogram and a rhombus.
+// parallelogram and a rhombus. Their labels name the corners only: a label
+// that named the shape would give the answer to a screen reader.
 export const FIGURE_411: readonly FigureSpec[] = [
-  loneShape("Hình a: hình thang ABCD", {
+  loneShape("Hình a, tứ giác ABCD", {
     B: [39, 0],
     C: [94, 0],
     D: [115, 58],
     A: [0, 58],
   }),
-  loneShape("Hình b: hình chữ nhật FGHE", {
+  loneShape("Hình b, tứ giác FGHE", {
     F: [0, 0],
     G: [106, 0],
     H: [106, 58],
     E: [0, 58],
   }),
-  loneShape("Hình c: hình bình hành JKLI", {
+  loneShape("Hình c, tứ giác JKLI", {
     J: [16, 0],
     K: [122, 0],
     L: [106, 58],
     I: [0, 58],
   }),
-  loneShape("Hình d: hình thoi MNOP", {
+  loneShape("Hình d, tứ giác MNOP", {
     M: [0, 56],
     N: [34, 0],
     O: [68, 56],

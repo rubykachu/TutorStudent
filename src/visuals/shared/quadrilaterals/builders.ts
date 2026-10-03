@@ -55,18 +55,27 @@ export const gallery = (
   ...(columns ? { columns } : {}),
 });
 
-export const board = (
+const boardParts = (
   shape: BoardSpec["shape"],
   names: readonly string[],
   goal?: BoardSpec["goal"],
   done?: string,
-): VisualSpec => ({
-  kind: "board",
+): BoardSpec => ({
   shape,
   names,
   ...(goal ? { goal } : {}),
   ...(done ? { done } : {}),
 });
+
+export const board = (...args: Parameters<typeof boardParts>): VisualSpec => ({
+  kind: "board",
+  ...boardParts(...args),
+});
+
+// A board drawn bigger (see `BoardSpec.roomy`).
+export const roomyBoard = (
+  ...args: Parameters<typeof boardParts>
+): VisualSpec => ({ kind: "board", ...boardParts(...args), roomy: true });
 
 // Probe parts: the sides of a figure all measuring `text`, or each its own
 // text, and the angles at corners.
