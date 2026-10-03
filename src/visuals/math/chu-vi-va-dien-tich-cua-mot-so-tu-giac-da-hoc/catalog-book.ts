@@ -444,7 +444,7 @@ const PAIRS: Record<string, Pair> = {
       row(`60\\ ${TEX.cm} = 0{,}6\\ ${TEX.m}`, uTag("đổi ra m")),
       row(`30 \\cdot 20 = 600\\ ${TEX.m2}`, sTag("diện tích sân")),
       row(
-        `0{,}6 \\cdot 0{,}6 \\cdot 1\\;400 = 504\\ ${TEX.m2}`,
+        `0{,}6 \\cdot 0{,}6 \\cdot 1\\,400 = 504\\ ${TEX.m2}`,
         sTag("diện tích đá"),
       ),
       row(`600 - 504 = 96\\ ${TEX.m2}`, sTag("diện tích cỏ")),
