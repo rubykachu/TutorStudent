@@ -34,6 +34,7 @@
     "sounds:build": "tsx scripts/sounds-build.ts",
     "media:upload": "tsx scripts/media-upload.ts",
     "deploy:prod": "tsx scripts/deploy-prod.ts",
+    "family:code": "tsx scripts/family-code.ts",
     "clean": "tsx scripts/clean.ts"
   },
   "dependencies": {
