@@ -534,6 +534,7 @@ export const CHU_NHAT_THOI_SPECS: Record<string, VisualSpec> = {
           ["D", "C", "A", "120°"],
         ],
         "",
+        { textDistance: 40 },
       ),
     ],
     verb: "đo",

@@ -75,7 +75,7 @@ export const sideProbe = (
 export const angleProbe = (
   triples: readonly (readonly [string, string, string, string?])[],
   text: string,
-  o: { right?: boolean } = {},
+  o: { right?: boolean; textDistance?: number } = {},
 ) =>
   triples.map(([at, a, b, own]) => ({
     kind: "angle" as const,
@@ -86,4 +86,5 @@ export const angleProbe = (
     label: `Góc ${at}`,
     tone: "violet" as Tone,
     ...(o.right ? { right: true } : {}),
+    ...(o.textDistance ? { textDistance: o.textDistance } : {}),
   }));

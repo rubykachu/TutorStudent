@@ -33,6 +33,9 @@ export type ProbePart =
       tone: Tone;
       // Drawn as a right-angle square instead of an arc.
       right?: boolean;
+      // Distance from the corner to the text, when the default would put it
+      // on another text (a narrow corner pair in a short figure).
+      textDistance?: number;
     }
   // A region (a polygon named by its corners) that is coloured in when tapped.
   | { kind: "poly"; v: readonly string[]; label: string; tone: Tone }
@@ -184,9 +187,10 @@ export function probeFigure(
           tone: part.tone,
           radius: ANGLE_ARC,
           textDistance:
+            part.textDistance ??
             (part.right ? RIGHT_REACH : ANGLE_ARC) +
-            10 +
-            part.text.length * 2 * CHAR_HALF_WIDTH * 0.6,
+              10 +
+              part.text.length * 2 * CHAR_HALF_WIDTH * 0.6,
           ...(part.right ? { right: true } : {}),
         });
         break;
