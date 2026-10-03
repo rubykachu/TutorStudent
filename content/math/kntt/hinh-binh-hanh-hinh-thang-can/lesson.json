@@ -364,7 +364,7 @@
             },
             {
               "type": "note",
-              "text": "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau.",
+              "text": "Hình chữ nhật có hai đường chéo bằng nhau, hình thang cân cũng vậy. Còn hình thoi có hai đường chéo vuông góc với nhau.",
               "rule": true
             },
             {
@@ -397,7 +397,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo",
-        "caption": "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau."
+        "caption": "Hình chữ nhật có hai đường chéo bằng nhau, hình thang cân cũng vậy. Còn hình thoi có hai đường chéo vuông góc với nhau."
       }
     },
     {
@@ -481,11 +481,11 @@
           "children": [
             {
               "type": "note",
-              "text": "Có khi ta biết hai cạnh và một đường chéo của hình bình hành. Compa vẽ cung tròn: tâm là chỗ đặt kim, bán kính là độ mở compa."
+              "text": "Có khi ta biết hai cạnh và một đường chéo của hình bình hành. Khi đó ta dùng compa vẽ cung tròn, chỗ đặt kim gọi là tâm."
             },
             {
               "type": "note",
-              "text": "Độ mở compa là khoảng cách giữa kim và đầu bút của compa."
+              "text": "Khoảng cách giữa kim và đầu bút gọi là độ mở compa, cũng là bán kính của cung."
             },
             {
               "type": "note",
@@ -502,7 +502,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D.",
+              "text": "Vẽ AB, rồi vẽ cung tâm B bán kính BC, cung tâm A bán kính AC; hai cung gặp nhau ở C. Sau đó dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau ở D.",
               "rule": true
             },
             {
@@ -533,7 +533,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-quy-tac",
-        "caption": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
+        "caption": "Vẽ AB, rồi vẽ cung tâm B bán kính BC, cung tâm A bán kính AC; hai cung gặp nhau ở C. Sau đó dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau ở D."
       }
     },
     {
@@ -547,7 +547,7 @@
           "children": [
             {
               "type": "note",
-              "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Xem hình chạy từng bước để kiểm tra một tứ giác."
+              "text": "Hai đường chéo của hình bình hành cắt nhau tại trung điểm của mỗi đường. Hình dưới đây chỉ từng bước cách dùng điều này để kiểm tra một tứ giác."
             },
             {
               "type": "visual",
@@ -724,7 +724,7 @@
             },
             {
               "type": "note",
-              "text": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
+              "text": "Vẽ AB, rồi vẽ cung tâm B bán kính BC, cung tâm A bán kính AC; hai cung gặp nhau ở C. Sau đó dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau ở D."
             },
             {
               "type": "visual",
@@ -871,7 +871,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-binh-hanh-hinh-thang-can.visual.so-sanh-cheo",
-        "caption": "Hình chữ nhật và hình thang cân có hai đường chéo bằng nhau. Hai đường chéo của hình thoi vuông góc với nhau."
+        "caption": "Hình chữ nhật có hai đường chéo bằng nhau, hình thang cân cũng vậy. Còn hình thoi có hai đường chéo vuông góc với nhau."
       }
     },
     {
@@ -898,7 +898,7 @@
       "recap": {
         "type": "visual",
         "visualId": "hinh-binh-hanh-hinh-thang-can.visual.ve-bh-cheo-quy-tac",
-        "caption": "Vẽ AB, rồi vẽ cung tâm B bán kính BC và cung tâm A bán kính AC, gặp nhau tại C. Dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau tại D."
+        "caption": "Vẽ AB, rồi vẽ cung tâm B bán kính BC, cung tâm A bán kính AC; hai cung gặp nhau ở C. Sau đó dùng êke vẽ qua C đường song song với AB, qua A đường song song với BC, gặp nhau ở D."
       }
     },
     {
@@ -3828,7 +3828,7 @@
       },
       "difficulty": 3,
       "explain": {
-        "text": "OA, AB, BC, CO đều bằng cạnh của các tam giác đều chung đỉnh O, nên OABC là hình thoi; OCDE cũng vậy. BEDC có BE song song CD, góc B và góc E đều là góc của tam giác đều nên bằng 60°. Vậy BEDC là hình thang cân.",
+        "text": "OABC có bốn cạnh bằng nhau vì đều là cạnh của tam giác đều, nên là hình thoi; OCDE cũng vậy. BEDC có BE song song CD, hai góc B, E kề đáy BE đều bằng 60°. Vậy BEDC là hình thang cân.",
         "wrong": [
           {
             "optionId": "b",
